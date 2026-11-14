@@ -1,0 +1,371 @@
+{
+  "request_source_root": "/workspace/work/video-revision-delivery/actual53-64-validation/request-source",
+  "final_source_root": "/workspace/work/video-revision-delivery/actual53-64-validation/final-source",
+  "catalog_path": "/workspace/work/video-revision-delivery/actual53-64-validation/frozen-primary/来源视频清单.json",
+  "order_map_path": "/workspace/work/video-revision-delivery/actual53-64-validation/frozen-primary/篇号对照.json",
+  "book_illustrations": {
+    "path": "/workspace/work/punk-print-20261113-v4-compact/archive-payload/考研学人印刷版/2026-11-13-v4/核验/book-illustrations70.json",
+    "bytes": 34325,
+    "sha256": "083da8975cd2204e3f8325f48373d04987aac24c7f9b5c40c5a81282e1cdaf9c"
+  },
+  "illustration_composition_review": {
+    "path": "/workspace/work/video-audit70-20261113/illustrated-tail/composition-qc70.json",
+    "bytes": 45987,
+    "sha256": "e89a77c1079ccffb8dab44a3c81ab79670c41c3b2b5945c33d02fad458bd2592"
+  },
+  "illustration_crop_review": {
+    "path": "/workspace/work/video-audit70-20261113/illustrated-tail/illustration-crop-review70.json",
+    "bytes": 38354,
+    "sha256": "c3117181bb4a39be0823db0781dc53f4dd387853713f53056851da9d869bfeba"
+  },
+  "video_layout_approval": {
+    "path": "/workspace/work/video-audit70-20261113/illustrated-tail/approved-video-layouts70.json",
+    "bytes": 42434,
+    "sha256": "8116eec9dad3bae18f404bede26c17fe943f3f9c77d0a88be513eb9c58d784d4"
+  },
+  "source_derivation": {
+    "factory": {
+      "path": "/workspace/work/video-audit70-20261113/generator_text_preflight.py",
+      "bytes": 21823,
+      "sha256": "1514e91aee9dc04424e5b755cee37b65b8dadef9717f3e6c0cede35f1c03e044"
+    },
+    "original_tools_root": "/workspace/work/video-audit70-20261113/preflight-frozen66-v2-part1/mirror/视频/工具"
+  },
+  "articles": [
+    {
+      "id": "53",
+      "mp4": {
+        "path": "/workspace/work/video-audit70-20261113/actual-passed-43523430839/53/53-4K-正文后插图2秒-简述2秒.mp4",
+        "bytes": 14989960,
+        "sha256": "b82966baa6439b194a6fa1e2c222f226517982318ef398ae631efcd5c562d588"
+      },
+      "canonical_mp4": {
+        "path": "/workspace/work/video-audit70-20261113/actual-passed-43523430839/53/files/53-4K-读完即转简述2秒.mp4",
+        "bytes": 12187657,
+        "sha256": "4017b8089bef695143be51741b76ed30c3340c50e3e1d559d474ff031d99f4d8"
+      },
+      "qc": {
+        "path": "/workspace/work/video-revision-delivery/actual53-64-validation/53/actual-qc-v3.json",
+        "bytes": 6269,
+        "sha256": "5c7ae5cf030513c769a74480b98f2a0589ef1c680c440c022a61d9c6010ad83d"
+      },
+      "request_source": {
+        "json": {
+          "path": "视频/脚本/53.json",
+          "bytes": 66266,
+          "sha256": "893a7789ddf5f5a79e2a9168011c1c23e2709975d1b07b6b023d6cf5988b2bef"
+        },
+        "gen": {
+          "path": "视频/工具/初稿生成/gen53.py",
+          "bytes": 71622,
+          "sha256": "0282555bfa5c83798288f33bb495588f67f110513db6c265e06ba80d3a1dc70b"
+        },
+        "md": {
+          "path": "新版定稿/53-the-wind-that-kept-no-time.md",
+          "bytes": 17330,
+          "sha256": "6fab302dcadb5a2c509436f5fbf8d9ef925c008a36f5b422749bd405aa4701d3"
+        }
+      },
+      "final_source": {
+        "json": {
+          "path": "视频/脚本/53.json",
+          "bytes": 66277,
+          "sha256": "28b604bfa72896534736293f79e9b3aabd8e3678672f4dc6c66337c02a8f1518",
+          "origin": "official_artifact_working_copy",
+          "artifact_id": 14086370811,
+          "artifact_member": "53-source.json"
+        },
+        "gen": {
+          "path": "视频/工具/初稿生成/gen53.py",
+          "bytes": 71673,
+          "sha256": "3cff64663cedf4b88326d11dfacd42c5bd4195ced2859f22c4a70f4532593d74",
+          "origin": "derived_after_final_QC",
+          "derived_from_json_sha256": "28b604bfa72896534736293f79e9b3aabd8e3678672f4dc6c66337c02a8f1518",
+          "derivation_proof": {
+            "path": "/workspace/work/video-revision-delivery/actual53-64-validation/53/derived-source/derived-source-proof.json",
+            "bytes": 1704,
+            "sha256": "ba57e1f2aed333020c8b47653e47e8608116829879d9af2f5c6153ccc16e9972"
+          }
+        },
+        "md": {
+          "path": "新版定稿/53-the-wind-that-kept-no-time.md",
+          "bytes": 17330,
+          "sha256": "6fab302dcadb5a2c509436f5fbf8d9ef925c008a36f5b422749bd405aa4701d3",
+          "origin": "request_manuscript_with_verified_final_source_equivalence",
+          "derived_from_json_sha256": "28b604bfa72896534736293f79e9b3aabd8e3678672f4dc6c66337c02a8f1518",
+          "derivation_proof": {
+            "path": "/workspace/work/video-revision-delivery/actual53-64-validation/53/derived-source/derived-source-proof.json",
+            "bytes": 1704,
+            "sha256": "ba57e1f2aed333020c8b47653e47e8608116829879d9af2f5c6153ccc16e9972"
+          }
+        }
+      },
+      "illustration": {
+        "source_id": "53",
+        "new_id": "35",
+        "approved": true,
+        "book_source_sha256": "6e30ee5530a93bc27895f3e311134ee92afc38e883889109fe42869a4aaebacd",
+        "path": "/workspace/work/video-audit70-20261113/actual-passed-43523430839/53/53-插图4K.png",
+        "bytes": 7714133,
+        "sha256": "c2d8809b44c9e5f365ed492ff2b36e4fffcf485669342c0ea82d8e7ed422eeaf",
+        "native_source": {
+          "path": "/workspace/work/booklet70/illustrations/53.png",
+          "bytes": 2587781,
+          "sha256": "6e30ee5530a93bc27895f3e311134ee92afc38e883889109fe42869a4aaebacd"
+        }
+      },
+      "stills": [
+        {
+          "path": "/workspace/work/video-audit70-20261113/actual-passed-43523430839/53/decoded-tail-previews/53-body-last.jpg",
+          "bytes": 195506,
+          "sha256": "82408d5f5f728875f7c400cb3f89e3acd0c27fe671b78833fe8d02e302e63621",
+          "kind": "body_end",
+          "frame": 4121,
+          "video_sha256": "b82966baa6439b194a6fa1e2c222f226517982318ef398ae631efcd5c562d588",
+          "decoded_from_actual_mp4": true
+        },
+        {
+          "path": "/workspace/work/video-audit70-20261113/actual-passed-43523430839/53/decoded-tail-previews/53-illustration-first.jpg",
+          "bytes": 337030,
+          "sha256": "7a56112d027f58a116564c395294a6539a36af7c9b87fec68f0a87d0c087f9db",
+          "kind": "illustration",
+          "frame": 4122,
+          "video_sha256": "b82966baa6439b194a6fa1e2c222f226517982318ef398ae631efcd5c562d588",
+          "decoded_from_actual_mp4": true
+        },
+        {
+          "path": "/workspace/work/video-audit70-20261113/actual-passed-43523430839/53/decoded-tail-previews/53-illustration-last.jpg",
+          "bytes": 337133,
+          "sha256": "e449692b3eb76c9f0a97d4ca2ca746c24ea7f3331de5f7d5a94b2c20181c0df8",
+          "kind": "illustration",
+          "frame": 4181,
+          "video_sha256": "b82966baa6439b194a6fa1e2c222f226517982318ef398ae631efcd5c562d588",
+          "decoded_from_actual_mp4": true
+        },
+        {
+          "path": "/workspace/work/video-audit70-20261113/actual-passed-43523430839/53/decoded-tail-previews/53-summary-first.jpg",
+          "bytes": 317218,
+          "sha256": "5f13ca609b4608987fa1e16015d84121977d9d037b774cff0f4edc2b5d2f7717",
+          "kind": "summary",
+          "frame": 4182,
+          "video_sha256": "b82966baa6439b194a6fa1e2c222f226517982318ef398ae631efcd5c562d588",
+          "decoded_from_actual_mp4": true
+        },
+        {
+          "path": "/workspace/work/video-audit70-20261113/actual-passed-43523430839/53/decoded-tail-previews/53-summary-last.jpg",
+          "bytes": 317230,
+          "sha256": "bb89faf9662494a4af665a2874390d389cfaf1cec3d1ca504f867c7ebdb751ae",
+          "kind": "summary",
+          "frame": 4241,
+          "video_sha256": "b82966baa6439b194a6fa1e2c222f226517982318ef398ae631efcd5c562d588",
+          "decoded_from_actual_mp4": true
+        }
+      ],
+      "evidence": [
+        {
+          "path": "/workspace/work/video-audit70-20261113/actual-passed-43523430839/53/53-illustrated-tail-verification.json",
+          "bytes": 6213,
+          "sha256": "00bb1769525c0b8a7a6ec95ba5d1e2668c5845a46eac36038797528105fde300"
+        },
+        {
+          "path": "/workspace/work/video-audit70-20261113/actual-passed-43523430839/53/files/53-status.json",
+          "bytes": 16094,
+          "sha256": "3b8ad32b6a0b3667aa0c5e2b38bf4ecc58f999b7ce8494ab5b2087fa5d866270"
+        },
+        {
+          "path": "/workspace/work/video-audit70-20261113/actual-passed-43523430839/53/files/53-summary-verification.json",
+          "bytes": 2153,
+          "sha256": "e19eb18937b034fbb968b97409e450c50ada5591c62ebd56a116276ab6e5d97e"
+        },
+        {
+          "path": "/workspace/work/video-revision-delivery/actual53-64-validation/53/derived-source/derived-source-proof.json",
+          "bytes": 1704,
+          "sha256": "ba57e1f2aed333020c8b47653e47e8608116829879d9af2f5c6153ccc16e9972"
+        },
+        {
+          "path": "/workspace/work/video-revision-delivery/actual53-64-validation/53/actual-lossless-packet-proof.json",
+          "bytes": 5426355,
+          "sha256": "c6e99073e93e2e0f9c98d96f15cc32956c3f2211b0156b00fd6eafe9811e7263"
+        },
+        {
+          "path": "/workspace/work/video-revision-delivery/actual53-64-validation/53/actual-job-artifact-binding.json",
+          "bytes": 37827,
+          "sha256": "74f29bce9718ff158bcf33203889ff6d60611ccce37449cf9a1cd8b3e2ad81f3"
+        },
+        {
+          "path": "/workspace/work/video-revision-delivery/actual53-64-validation/53/actual-native-job.log",
+          "bytes": 82219,
+          "sha256": "148b32202e2e0335e444962fd29d7ace70d43debd741fffe277b0a5f3ff365f9"
+        }
+      ]
+    },
+    {
+      "id": "64",
+      "mp4": {
+        "path": "/workspace/work/video-audit70-20261113/actual-passed-43523430839/64/64-4K-正文后插图2秒-简述2秒.mp4",
+        "bytes": 16280492,
+        "sha256": "78ef9444e6a65a07ed934c8f9b7f7b51dbcb6d0d6e783db9f61b99a5659b40c9"
+      },
+      "canonical_mp4": {
+        "path": "/workspace/work/video-audit70-20261113/actual-passed-43523430839/64/files/64-4K-读完即转简述2秒.mp4",
+        "bytes": 12920786,
+        "sha256": "99ac666150f4b17fc185cb4a0cf3780ecd32fae895017208ebef10c43804c397"
+      },
+      "qc": {
+        "path": "/workspace/work/video-revision-delivery/actual53-64-validation/64/actual-qc-v3.json",
+        "bytes": 6178,
+        "sha256": "33af7f95a0d67fb5bfc21ed6a9d88449855e0174758803811a6f1c83512f0bbd"
+      },
+      "request_source": {
+        "json": {
+          "path": "视频/脚本/64.json",
+          "bytes": 45092,
+          "sha256": "b85ce0a5dcbce997ad82779a850298fecd9847e03d0b2adfc7045b2db54082cb"
+        },
+        "gen": {
+          "path": "视频/工具/初稿生成/gen64.py",
+          "bytes": 40878,
+          "sha256": "16a76b0a712620854e46456cbdd2eb45bcb7fde7a4b01f9d020c5c7ef353c5d1"
+        },
+        "md": {
+          "path": "新版定稿/64-the-day-zero-that-never-came.md",
+          "bytes": 17798,
+          "sha256": "e0c83cbe36745adbbffd33a156fa8d0671704ea976cb13215cabb612639b37a5"
+        }
+      },
+      "final_source": {
+        "json": {
+          "path": "视频/脚本/64.json",
+          "bytes": 45100,
+          "sha256": "12a36862765922d72ce6e5a4c5fe85f548364eed65fe3b3b284f0b38899a965f",
+          "origin": "official_artifact_working_copy",
+          "artifact_id": 14086207954,
+          "artifact_member": "64-source.json"
+        },
+        "gen": {
+          "path": "视频/工具/初稿生成/gen64.py",
+          "bytes": 40914,
+          "sha256": "5ea6111558168a0aec99a57eebf3e0ee3733cd4e3a9790cdc3402e893c92909a",
+          "origin": "derived_after_final_QC",
+          "derived_from_json_sha256": "12a36862765922d72ce6e5a4c5fe85f548364eed65fe3b3b284f0b38899a965f",
+          "derivation_proof": {
+            "path": "/workspace/work/video-revision-delivery/actual53-64-validation/64/derived-source/derived-source-proof.json",
+            "bytes": 1644,
+            "sha256": "d39055432c3faed0df93839f625140c3dc727c8a1328dbddfb6600194bda9c9b"
+          }
+        },
+        "md": {
+          "path": "新版定稿/64-the-day-zero-that-never-came.md",
+          "bytes": 17798,
+          "sha256": "e0c83cbe36745adbbffd33a156fa8d0671704ea976cb13215cabb612639b37a5",
+          "origin": "request_manuscript_with_verified_final_source_equivalence",
+          "derived_from_json_sha256": "12a36862765922d72ce6e5a4c5fe85f548364eed65fe3b3b284f0b38899a965f",
+          "derivation_proof": {
+            "path": "/workspace/work/video-revision-delivery/actual53-64-validation/64/derived-source/derived-source-proof.json",
+            "bytes": 1644,
+            "sha256": "d39055432c3faed0df93839f625140c3dc727c8a1328dbddfb6600194bda9c9b"
+          }
+        }
+      },
+      "illustration": {
+        "source_id": "64",
+        "new_id": "63",
+        "approved": true,
+        "book_source_sha256": "47e7af906fa4f136b499a1293ee6f36b72e7368001bd6cdb32ff45cf316e8021",
+        "path": "/workspace/work/video-audit70-20261113/actual-passed-43523430839/64/64-插图4K.png",
+        "bytes": 9418082,
+        "sha256": "d1458d68b7eaf29ab8137c27e58eb0d99031e071f56d9b6a81d3278b77d618a4",
+        "native_source": {
+          "path": "/workspace/work/booklet70/illustrations/64.png",
+          "bytes": 3036044,
+          "sha256": "47e7af906fa4f136b499a1293ee6f36b72e7368001bd6cdb32ff45cf316e8021"
+        }
+      },
+      "stills": [
+        {
+          "path": "/workspace/work/video-audit70-20261113/actual-passed-43523430839/64/decoded-tail-previews/64-body-last.jpg",
+          "bytes": 174557,
+          "sha256": "4ddeceaee20656108fcf580c8db203d3850239435b4156cc15754927ab4a0101",
+          "kind": "body_end",
+          "frame": 4564,
+          "video_sha256": "78ef9444e6a65a07ed934c8f9b7f7b51dbcb6d0d6e783db9f61b99a5659b40c9",
+          "decoded_from_actual_mp4": true
+        },
+        {
+          "path": "/workspace/work/video-audit70-20261113/actual-passed-43523430839/64/decoded-tail-previews/64-illustration-first.jpg",
+          "bytes": 458341,
+          "sha256": "ba57f1ebf0f87a2ad07b06cb8601b6c47f18c18b1a88521696597f9ed48ca76a",
+          "kind": "illustration",
+          "frame": 4565,
+          "video_sha256": "78ef9444e6a65a07ed934c8f9b7f7b51dbcb6d0d6e783db9f61b99a5659b40c9",
+          "decoded_from_actual_mp4": true
+        },
+        {
+          "path": "/workspace/work/video-audit70-20261113/actual-passed-43523430839/64/decoded-tail-previews/64-illustration-last.jpg",
+          "bytes": 458464,
+          "sha256": "115f6986aab3114f54874fb36c68cbc1921528189e7b29845ff6ac6a2d83cbf0",
+          "kind": "illustration",
+          "frame": 4624,
+          "video_sha256": "78ef9444e6a65a07ed934c8f9b7f7b51dbcb6d0d6e783db9f61b99a5659b40c9",
+          "decoded_from_actual_mp4": true
+        },
+        {
+          "path": "/workspace/work/video-audit70-20261113/actual-passed-43523430839/64/decoded-tail-previews/64-summary-first.jpg",
+          "bytes": 316485,
+          "sha256": "41225b79290bbb4e5cfcc7c520712a82223822b2f36ca2c0f612d58b84f76acb",
+          "kind": "summary",
+          "frame": 4625,
+          "video_sha256": "78ef9444e6a65a07ed934c8f9b7f7b51dbcb6d0d6e783db9f61b99a5659b40c9",
+          "decoded_from_actual_mp4": true
+        },
+        {
+          "path": "/workspace/work/video-audit70-20261113/actual-passed-43523430839/64/decoded-tail-previews/64-summary-last.jpg",
+          "bytes": 316514,
+          "sha256": "f5a353d3d84baa04b6124bcbf5a8d4d065df5a394a193d8be7fc39d65a274333",
+          "kind": "summary",
+          "frame": 4684,
+          "video_sha256": "78ef9444e6a65a07ed934c8f9b7f7b51dbcb6d0d6e783db9f61b99a5659b40c9",
+          "decoded_from_actual_mp4": true
+        }
+      ],
+      "evidence": [
+        {
+          "path": "/workspace/work/video-audit70-20261113/actual-passed-43523430839/64/64-illustrated-tail-verification.json",
+          "bytes": 6255,
+          "sha256": "96b298b930cd3c112bfb990008fd5b0e41c3c30f709ff573f12eb036e5a1a8b5"
+        },
+        {
+          "path": "/workspace/work/video-audit70-20261113/actual-passed-43523430839/64/files/64-status.json",
+          "bytes": 19698,
+          "sha256": "3e665f1f90068ec2b9fbdc3d102d25d5e683b17ff85e46db538b91a33475b5d1"
+        },
+        {
+          "path": "/workspace/work/video-audit70-20261113/actual-passed-43523430839/64/files/64-summary-verification.json",
+          "bytes": 2161,
+          "sha256": "918c8285f55f1ede6441ed9d500addac2305ab265a44c81430c93cf67c108adf"
+        },
+        {
+          "path": "/workspace/work/video-revision-delivery/actual53-64-validation/64/derived-source/derived-source-proof.json",
+          "bytes": 1644,
+          "sha256": "d39055432c3faed0df93839f625140c3dc727c8a1328dbddfb6600194bda9c9b"
+        },
+        {
+          "path": "/workspace/work/video-revision-delivery/actual53-64-validation/64/actual-lossless-packet-proof.json",
+          "bytes": 6002503,
+          "sha256": "61b392333af865bd1d004a3fca94a0767c199f1f914bb7682d9c37ccf6346a1b"
+        },
+        {
+          "path": "/workspace/work/video-revision-delivery/actual53-64-validation/64/actual-job-artifact-binding.json",
+          "bytes": 41611,
+          "sha256": "d23d3ba955a60b6a64fa65591b9bd72b88900e1cc843c7cf89ae29bf945dfa44"
+        },
+        {
+          "path": "/workspace/work/video-revision-delivery/actual53-64-validation/64/actual-native-job.log",
+          "bytes": 84694,
+          "sha256": "cf70a0766b665c5994c72b7aeebe6e16292426ae5caf42780701e0877d537001"
+        }
+      ]
+    }
+  ],
+  "mapping_commit": "8404ddff99dfa094aa005fec70643d9da55e21fc"
+}
