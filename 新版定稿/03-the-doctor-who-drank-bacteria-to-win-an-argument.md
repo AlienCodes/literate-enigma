@@ -60,7 +60,7 @@ In 2005 Marshall and Warren shared the Nobel Prize in Physiology or Medicine for
 | coiled | 本文：盘绕的；adj. 盘绕的，螺旋状的（a coiled spring） | 3 |
 | collaborate | 本文：合作；v. 合作（collaborate with sb on sth） | 3 |
 | culture | 本文：培养；v. 培养（细菌、细胞等）（culture bacteria in the lab）；n. 文化 | 3 |
-| germ | 本文：病菌；n. 病菌（kill germs） | 3、5 |
+| germ | 本文：病菌；n. 病菌（kill germs） | 3 |
 | Attempts | 本文：尝试；n. (attempt) 尝试，企图（make an attempt to do sth） | 3 |
 | invariably | 本文：无一例外地；adv. 总是，一律（invariably late） | 3 |
 | unsuccessful | 本文：未能成功；adj. 不成功的（an unsuccessful attempt） | 3 |
