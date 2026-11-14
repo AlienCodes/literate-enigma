@@ -1,0 +1,1290 @@
+{
+  "kind": "source18-real-failed-native-historical-and-local-byteproof-v2",
+  "actual_failed_native_run": "43634528653",
+  "actual_source_sha256": "8ca704d42d40c4b7678e96240226c7c1986301c4ac94e055d72ad701192aabfa",
+  "current_WAV_sha256": "916e594a32542618c6d5321f88fadc482adb4d3a6dabf3472cebc53f55c0d088",
+  "historical_three_way_bindings": [
+    {
+      "mode": "legacy76b_candidate",
+      "source_sha256": "c9469b18874c389f20a890b41491f1284e318e47d91c0f3d519b055d2c9ba752",
+      "WAV_sha256": "a7743d5c9ba92c0fca824fadb9a211b8c57a3cc4d3b8a93c0400e95c0583a5ff",
+      "whole_confirmation_md5_first12": "76b99c620981",
+      "AAC_ADTS_sha256": "acc84527d7919648f714baf22baa07858154d1f184682b6d357045b096da5289"
+    },
+    {
+      "mode": "prior3p5",
+      "source_sha256": "0be588e72e2daf950787b7243ee78b29e8255969288cf2abfb6c748f300bdde5",
+      "WAV_sha256": "e2ae360b8e63bad45972054dfab0e74bb448983de82b5d8a2571d6ee916f65fd",
+      "whole_confirmation_md5_first12": "05efc6de075d",
+      "AAC_ADTS_sha256": "0a223ab49b6f4fe997f542bc50a6da7f3d087a09ee344db92dd7c2d5c9b4f526"
+    },
+    {
+      "mode": "actual4p5",
+      "source_sha256": "8ca704d42d40c4b7678e96240226c7c1986301c4ac94e055d72ad701192aabfa",
+      "WAV_sha256": "916e594a32542618c6d5321f88fadc482adb4d3a6dabf3472cebc53f55c0d088",
+      "whole_confirmation_md5_first12": "6f05ea0e0ece",
+      "AAC_ADTS_sha256": "f3dc4bbcfee0688dc9d30551944f028d29a11230f27eed51800d6e03eb4047ce"
+    }
+  ],
+  "typed_deletion_rows": [
+    {
+      "sentence": "S1",
+      "lookup_key": "S1 raw 3.4650-3.7962",
+      "old_typed_fp": "76b99c620981",
+      "type": "紧贴词头的非人声",
+      "existing_basis_exact": "2026-10-15 删除段对应 非人声区间 [[3.545, 3.77625, '紧贴词头']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost', 'post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词",
+      "legacy_full_WAV_md5_first12": "76b99c620981",
+      "legacy_AAC_matches_accepted": true,
+      "raw_mother_full_float32_exact": true,
+      "independent_reference_transform_window_samples": [
+        82800,
+        91469
+      ],
+      "transformed_GT_window_float32_exact": true,
+      "transformed_window_sha256": "d03f2f6b3d3e3d7d6090e5d4cea38b561852e9b5522327d7a5d4e6b4a58a456e",
+      "actual_GT_file_hash_matches_official_diagnostic": true,
+      "actual_GT_sha256": "0af1045560fe3ecb834102d7ba6724127f3788f34b84fd4e9b51c5a514b4a812",
+      "expected_official_GT_sha256": "0af1045560fe3ecb834102d7ba6724127f3788f34b84fd4e9b51c5a514b4a812",
+      "official_edge_numbers": {
+        "pre_min_db": -56.770544032835204,
+        "post_min_db": -48.08614130992757,
+        "lost_max_db": -35.458707305573014
+      },
+      "recomputed_unchanged_original_A10_numbers": {
+        "pre_min_db": -56.77054403283516,
+        "post_min_db": -48.08614130992757,
+        "lost_max_db": -35.45870730557297
+      },
+      "numeric_differences": {
+        "pre_min_db": 4.263256414560601e-14,
+        "post_min_db": 0.0,
+        "lost_max_db": 4.263256414560601e-14
+      },
+      "original_edge_sides_retained": [
+        "post",
+        "lost"
+      ],
+      "official_tail_and_onset_cut_ms": [
+        0.0,
+        0.0
+      ],
+      "not_whole_S6_identity_claimed": false
+    },
+    {
+      "sentence": "S5",
+      "lookup_key": "S5 raw 4.3800-4.8051",
+      "old_typed_fp": "76b99c620981",
+      "type": "紧贴词头的非人声",
+      "existing_basis_exact": "2026-10-15 删除段对应 非人声区间 [[4.655, 4.795125, '紧贴词头']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词",
+      "legacy_full_WAV_md5_first12": "76b99c620981",
+      "legacy_AAC_matches_accepted": true,
+      "raw_mother_full_float32_exact": true,
+      "independent_reference_transform_window_samples": [
+        104760,
+        115683
+      ],
+      "transformed_GT_window_float32_exact": true,
+      "transformed_window_sha256": "26c0de6604ed60d822619ff33fc7978b94a571b8a8e7aa3d334f5cdd6116c349",
+      "actual_GT_file_hash_matches_official_diagnostic": true,
+      "actual_GT_sha256": "e670245eb07b1d51b35105c4dda39431240ab9d2f64a7d01048fd4ff58c3a9c0",
+      "expected_official_GT_sha256": "e670245eb07b1d51b35105c4dda39431240ab9d2f64a7d01048fd4ff58c3a9c0",
+      "official_edge_numbers": {
+        "pre_min_db": -56.641997549213215,
+        "post_min_db": -52.08976580296305,
+        "lost_max_db": -42.53113630191358
+      },
+      "recomputed_unchanged_original_A10_numbers": {
+        "pre_min_db": -56.64199754921323,
+        "post_min_db": -52.08976580296305,
+        "lost_max_db": -42.531136301913584
+      },
+      "numeric_differences": {
+        "pre_min_db": -1.4210854715202004e-14,
+        "post_min_db": 0.0,
+        "lost_max_db": -7.105427357601002e-15
+      },
+      "original_edge_sides_retained": [
+        "post"
+      ],
+      "official_tail_and_onset_cut_ms": [
+        0.0,
+        0.0
+      ],
+      "not_whole_S6_identity_claimed": false
+    },
+    {
+      "sentence": "S6",
+      "lookup_key": "S6 raw 2.9883-3.2828",
+      "old_typed_fp": "76b99c620981",
+      "type": "紧贴两头的非人声",
+      "existing_basis_exact": "2026-10-15 删除段对应 非人声区间 [[2.968292, 3.26275, '紧贴两头']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost', 'post', 'pre'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词",
+      "legacy_full_WAV_md5_first12": "76b99c620981",
+      "legacy_AAC_matches_accepted": true,
+      "raw_mother_full_float32_exact": true,
+      "independent_reference_transform_window_samples": [
+        71359,
+        79146
+      ],
+      "transformed_GT_window_float32_exact": true,
+      "transformed_window_sha256": "58299885b29170d9310544a1e4eb7231bf9f8e6e82326183726a0a3b825f8621",
+      "actual_GT_file_hash_matches_official_diagnostic": true,
+      "actual_GT_sha256": "8cdddc294b0e6572f7f9f287010646db984774e19393fde43b71a5867a29569e",
+      "expected_official_GT_sha256": "8cdddc294b0e6572f7f9f287010646db984774e19393fde43b71a5867a29569e",
+      "official_edge_numbers": {
+        "pre_min_db": -50.7615488043269,
+        "post_min_db": -45.69400001482766,
+        "lost_max_db": -34.2990288462224
+      },
+      "recomputed_unchanged_original_A10_numbers": {
+        "pre_min_db": -50.76154880432692,
+        "post_min_db": -45.69400001482766,
+        "lost_max_db": -34.29902884622237
+      },
+      "numeric_differences": {
+        "pre_min_db": -2.1316282072803006e-14,
+        "post_min_db": 0.0,
+        "lost_max_db": 2.842170943040401e-14
+      },
+      "original_edge_sides_retained": [
+        "pre",
+        "post",
+        "lost"
+      ],
+      "official_tail_and_onset_cut_ms": [
+        0.0,
+        0.0
+      ],
+      "not_whole_S6_identity_claimed": true
+    },
+    {
+      "sentence": "S7",
+      "lookup_key": "S7 raw 5.3150-5.6062",
+      "old_typed_fp": "76b99c620981",
+      "type": "紧贴词头的非人声",
+      "existing_basis_exact": "2026-10-15 删除段对应 非人声区间 [[5.315, 5.59625, '紧贴词头']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost', 'post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词",
+      "legacy_full_WAV_md5_first12": "76b99c620981",
+      "legacy_AAC_matches_accepted": true,
+      "raw_mother_full_float32_exact": true,
+      "independent_reference_transform_window_samples": [
+        127200,
+        134908
+      ],
+      "transformed_GT_window_float32_exact": true,
+      "transformed_window_sha256": "b8fbf898a89c1f42bb4feac9e08397914733c4979fa8ebaf2bc6c1b8ec632579",
+      "actual_GT_file_hash_matches_official_diagnostic": true,
+      "actual_GT_sha256": "379e1ff7f22b908fbba111a9f7bd7195391e9c963e556e43c79e389cfeb64b15",
+      "expected_official_GT_sha256": "379e1ff7f22b908fbba111a9f7bd7195391e9c963e556e43c79e389cfeb64b15",
+      "official_edge_numbers": {
+        "pre_min_db": -55.075597637082254,
+        "post_min_db": -52.09556753539118,
+        "lost_max_db": -38.70122023451961
+      },
+      "recomputed_unchanged_original_A10_numbers": {
+        "pre_min_db": -55.075597637082225,
+        "post_min_db": -52.09556753539118,
+        "lost_max_db": -38.70122023451963
+      },
+      "numeric_differences": {
+        "pre_min_db": 2.842170943040401e-14,
+        "post_min_db": 0.0,
+        "lost_max_db": -2.1316282072803006e-14
+      },
+      "original_edge_sides_retained": [
+        "post",
+        "lost"
+      ],
+      "official_tail_and_onset_cut_ms": [
+        0.0,
+        0.0
+      ],
+      "not_whole_S6_identity_claimed": false
+    },
+    {
+      "sentence": "S8",
+      "lookup_key": "S8 raw 4.1701-4.4649",
+      "old_typed_fp": "76b99c620981",
+      "type": "紧贴词尾的非人声",
+      "existing_basis_exact": "2026-10-15 删除段对应 非人声区间 [[4.170083, 4.45, '紧贴词尾']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost', 'pre'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词",
+      "legacy_full_WAV_md5_first12": "76b99c620981",
+      "legacy_AAC_matches_accepted": true,
+      "raw_mother_full_float32_exact": true,
+      "independent_reference_transform_window_samples": [
+        99722,
+        107518
+      ],
+      "transformed_GT_window_float32_exact": true,
+      "transformed_window_sha256": "e0e8af8ff020793ad34fdb59b3297c6f66eee4103e52473fced72564ae835b2a",
+      "actual_GT_file_hash_matches_official_diagnostic": true,
+      "actual_GT_sha256": "d4b0398b171fc21556860b57cdbb1ae44f2829c467409212ac43c59c564e5a2e",
+      "expected_official_GT_sha256": "d4b0398b171fc21556860b57cdbb1ae44f2829c467409212ac43c59c564e5a2e",
+      "official_edge_numbers": {
+        "pre_min_db": -49.38079966296029,
+        "post_min_db": -56.48155792080885,
+        "lost_max_db": -36.7963685811233
+      },
+      "recomputed_unchanged_original_A10_numbers": {
+        "pre_min_db": -49.38079966296031,
+        "post_min_db": -56.48155792080885,
+        "lost_max_db": -36.79636858112329
+      },
+      "numeric_differences": {
+        "pre_min_db": -1.4210854715202004e-14,
+        "post_min_db": 0.0,
+        "lost_max_db": 1.4210854715202004e-14
+      },
+      "original_edge_sides_retained": [
+        "pre",
+        "lost"
+      ],
+      "official_tail_and_onset_cut_ms": [
+        0.0,
+        0.0
+      ],
+      "not_whole_S6_identity_claimed": false
+    },
+    {
+      "sentence": "S10",
+      "lookup_key": "S10 raw 0.7750-0.7840",
+      "old_typed_fp": "76b99c620981",
+      "type": "紧贴词头的非人声",
+      "existing_basis_exact": "2026-10-21 用实际声音核实：Lancet, 后插停顿（A39 停顿处除阻）处删掉的 9 ms 最响 -60.1 dB（静音级）；post 侧 -52.6 dB 是下一个词 a 的起声（有淡入，A22），词头没切（cut onset=0）",
+      "legacy_full_WAV_md5_first12": "76b99c620981",
+      "legacy_AAC_matches_accepted": true,
+      "raw_mother_full_float32_exact": true,
+      "independent_reference_transform_window_samples": [
+        18240,
+        19175
+      ],
+      "transformed_GT_window_float32_exact": true,
+      "transformed_window_sha256": "75c97e5abaa08523cb14dd82fbea2433e78fa411daabddfa238336530745c56a",
+      "actual_GT_file_hash_matches_official_diagnostic": true,
+      "actual_GT_sha256": "6c5960d50590544fbc54125224c03b7a3219d0d3ff270a5bc9003c1a60fc30ee",
+      "expected_official_GT_sha256": "6c5960d50590544fbc54125224c03b7a3219d0d3ff270a5bc9003c1a60fc30ee",
+      "official_edge_numbers": {
+        "pre_min_db": -55.26511293893341,
+        "post_min_db": -52.637219055942346,
+        "lost_max_db": -60.1211819058709
+      },
+      "recomputed_unchanged_original_A10_numbers": {
+        "pre_min_db": -55.2651129389334,
+        "post_min_db": -52.637219055942346,
+        "lost_max_db": -60.1211819058709
+      },
+      "numeric_differences": {
+        "pre_min_db": 1.4210854715202004e-14,
+        "post_min_db": 0.0,
+        "lost_max_db": 0.0
+      },
+      "original_edge_sides_retained": [
+        "post"
+      ],
+      "official_tail_and_onset_cut_ms": [
+        0.0,
+        0.0
+      ],
+      "not_whole_S6_identity_claimed": false
+    },
+    {
+      "sentence": "S11",
+      "lookup_key": "S11 raw 3.2850-3.6650",
+      "old_typed_fp": "76b99c620981",
+      "type": "紧贴词头的非人声",
+      "existing_basis_exact": "2026-10-15 删除段对应 非人声区间 [[3.42, 3.63625, '紧贴词头']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词",
+      "legacy_full_WAV_md5_first12": "76b99c620981",
+      "legacy_AAC_matches_accepted": true,
+      "raw_mother_full_float32_exact": true,
+      "independent_reference_transform_window_samples": [
+        78480,
+        88320
+      ],
+      "transformed_GT_window_float32_exact": true,
+      "transformed_window_sha256": "379f148976f1f700486cd9e45ed5c63921138d0ca13d9287d9722dc2e236d2aa",
+      "actual_GT_file_hash_matches_official_diagnostic": true,
+      "actual_GT_sha256": "068dfa388897707a37f29869e01207196880ae04c77ad4009f3cf247c535ece2",
+      "expected_official_GT_sha256": "068dfa388897707a37f29869e01207196880ae04c77ad4009f3cf247c535ece2",
+      "official_edge_numbers": {
+        "pre_min_db": -56.132451230252556,
+        "post_min_db": -56.99366873459809,
+        "lost_max_db": -39.632232741073764
+      },
+      "recomputed_unchanged_original_A10_numbers": {
+        "pre_min_db": -56.132451230252514,
+        "post_min_db": -56.99366873459808,
+        "lost_max_db": -39.63223274107375
+      },
+      "numeric_differences": {
+        "pre_min_db": 4.263256414560601e-14,
+        "post_min_db": 7.105427357601002e-15,
+        "lost_max_db": 1.4210854715202004e-14
+      },
+      "original_edge_sides_retained": [
+        "lost"
+      ],
+      "official_tail_and_onset_cut_ms": [
+        0.0,
+        0.0
+      ],
+      "not_whole_S6_identity_claimed": false
+    },
+    {
+      "sentence": "S12",
+      "lookup_key": "S12 raw 1.6900-1.6990",
+      "old_typed_fp": "76b99c620981",
+      "type": "紧贴词头的非人声",
+      "existing_basis_exact": "2026-10-21 用实际声音核实：out, 后插停顿（A39 停顿处除阻）处删掉的 9 ms 最响 -60.1 dB（静音级）；post 侧 -44.6 dB 是下一个词的起声（有淡入，A22），词头没切（cut onset=0）",
+      "legacy_full_WAV_md5_first12": "76b99c620981",
+      "legacy_AAC_matches_accepted": true,
+      "raw_mother_full_float32_exact": true,
+      "independent_reference_transform_window_samples": [
+        40200,
+        41135
+      ],
+      "transformed_GT_window_float32_exact": true,
+      "transformed_window_sha256": "4847268415eb796238c35c7d32ef91e511a231decf5791d33c8d4d8c39e95b3a",
+      "actual_GT_file_hash_matches_official_diagnostic": true,
+      "actual_GT_sha256": "a7dc021ae55722f23d8be2f435f428a345379f0cef9e97b7c998a86fee6cc266",
+      "expected_official_GT_sha256": "a7dc021ae55722f23d8be2f435f428a345379f0cef9e97b7c998a86fee6cc266",
+      "official_edge_numbers": {
+        "pre_min_db": -55.26511332778977,
+        "post_min_db": -44.566573969388365,
+        "lost_max_db": -60.12118214993092
+      },
+      "recomputed_unchanged_original_A10_numbers": {
+        "pre_min_db": -55.26511332778979,
+        "post_min_db": -44.566573969388365,
+        "lost_max_db": -60.12118214993092
+      },
+      "numeric_differences": {
+        "pre_min_db": -2.1316282072803006e-14,
+        "post_min_db": 0.0,
+        "lost_max_db": 0.0
+      },
+      "original_edge_sides_retained": [
+        "post"
+      ],
+      "official_tail_and_onset_cut_ms": [
+        0.0,
+        0.0
+      ],
+      "not_whole_S6_identity_claimed": false
+    },
+    {
+      "sentence": "S13",
+      "lookup_key": "S13 raw 2.0138-2.2400",
+      "old_typed_fp": "76b99c620981",
+      "type": "紧贴词尾的非人声",
+      "existing_basis_exact": "2026-10-15 删除段对应 非人声区间 [[2.003833, 2.22, '紧贴词尾']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost', 'pre'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词",
+      "legacy_full_WAV_md5_first12": "76b99c620981",
+      "legacy_AAC_matches_accepted": true,
+      "raw_mother_full_float32_exact": true,
+      "independent_reference_transform_window_samples": [
+        47972,
+        54120
+      ],
+      "transformed_GT_window_float32_exact": true,
+      "transformed_window_sha256": "4d46e22745968525c6148de36da6fec05d1b39431973066388ca1d344edf74db",
+      "actual_GT_file_hash_matches_official_diagnostic": true,
+      "actual_GT_sha256": "2a9b6805e7c46c5971db8b5a2b76151d1c721b4328ae08594136af8dc9eb56d1",
+      "expected_official_GT_sha256": "2a9b6805e7c46c5971db8b5a2b76151d1c721b4328ae08594136af8dc9eb56d1",
+      "official_edge_numbers": {
+        "pre_min_db": -50.05719605495712,
+        "post_min_db": -56.68999300920738,
+        "lost_max_db": -35.65764039482576
+      },
+      "recomputed_unchanged_original_A10_numbers": {
+        "pre_min_db": -50.0571960549571,
+        "post_min_db": -56.68999300920738,
+        "lost_max_db": -35.65764039482571
+      },
+      "numeric_differences": {
+        "pre_min_db": 1.4210854715202004e-14,
+        "post_min_db": 0.0,
+        "lost_max_db": 4.973799150320701e-14
+      },
+      "original_edge_sides_retained": [
+        "pre",
+        "lost"
+      ],
+      "official_tail_and_onset_cut_ms": [
+        0.0,
+        0.0
+      ],
+      "not_whole_S6_identity_claimed": false
+    }
+  ],
+  "all9_GT_file_hashes_match_actual_native": true,
+  "maximum_original_A10_recomputation_difference": 4.973799150320701e-14,
+  "whole_sentence_comparisons_legacy_and_prior_to_actual": [
+    {
+      "old_mode": "legacy76b_candidate",
+      "sentence": "title",
+      "old_span_s": [
+        0.4,
+        1.94
+      ],
+      "actual_span_s": [
+        0.4,
+        1.94
+      ],
+      "lag_s": 0.0,
+      "PCM16_exact": true,
+      "PCM16_sample_sha256": "9ad40701ceaf64ba117d9ece7a5fb0fab8f888b58b3acdcc1bce42cd0be0733b"
+    },
+    {
+      "old_mode": "legacy76b_candidate",
+      "sentence": "S1",
+      "old_span_s": [
+        2.94,
+        17.47
+      ],
+      "actual_span_s": [
+        2.94,
+        17.47
+      ],
+      "lag_s": 0.0,
+      "PCM16_exact": true,
+      "PCM16_sample_sha256": "5109b1bb2ad3094d9864ac687b1f594052cac2b964caef3fca0ce26f4e203eb8"
+    },
+    {
+      "old_mode": "legacy76b_candidate",
+      "sentence": "S2",
+      "old_span_s": [
+        18.470000000000002,
+        19.735000000000003
+      ],
+      "actual_span_s": [
+        18.470000000000002,
+        19.735000000000003
+      ],
+      "lag_s": 0.0,
+      "PCM16_exact": true,
+      "PCM16_sample_sha256": "836311404c63280254ebc3c12cc2fb7db4292d7ab3e401c1c64711548f8785be"
+    },
+    {
+      "old_mode": "legacy76b_candidate",
+      "sentence": "S3",
+      "old_span_s": [
+        20.735,
+        30.585
+      ],
+      "actual_span_s": [
+        20.735,
+        30.585
+      ],
+      "lag_s": 0.0,
+      "PCM16_exact": true,
+      "PCM16_sample_sha256": "641c1f86eece986a2d93f9932c91940df86f107cecdbfe88722788cd911d6616"
+    },
+    {
+      "old_mode": "legacy76b_candidate",
+      "sentence": "S4",
+      "old_span_s": [
+        31.785,
+        37.055
+      ],
+      "actual_span_s": [
+        31.785,
+        37.055
+      ],
+      "lag_s": 0.0,
+      "PCM16_exact": true,
+      "PCM16_sample_sha256": "ca607492dd948c4d27c143eadcb843cea8bbd3549999ac7e1dc06f44497a1083"
+    },
+    {
+      "old_mode": "legacy76b_candidate",
+      "sentence": "S5",
+      "old_span_s": [
+        38.055,
+        47.22
+      ],
+      "actual_span_s": [
+        38.055,
+        47.22
+      ],
+      "lag_s": 0.0,
+      "PCM16_exact": true,
+      "PCM16_sample_sha256": "7c3ef4bf552005d766969cb8e888f46382c16c77dba971b5610f6952efbd7742"
+    },
+    {
+      "old_mode": "legacy76b_candidate",
+      "sentence": "S7",
+      "old_span_s": [
+        57.02,
+        68.74000000000001
+      ],
+      "actual_span_s": [
+        56.95,
+        68.67
+      ],
+      "lag_s": -0.07000000000000028,
+      "PCM16_exact": true,
+      "PCM16_sample_sha256": "021e9d969cead6ff66362e8c44b6c997cfe468a841271bbed9a6338e6976fefd"
+    },
+    {
+      "old_mode": "legacy76b_candidate",
+      "sentence": "S8",
+      "old_span_s": [
+        69.74,
+        75.615
+      ],
+      "actual_span_s": [
+        69.67,
+        75.545
+      ],
+      "lag_s": -0.06999999999999318,
+      "PCM16_exact": true,
+      "PCM16_sample_sha256": "f348ae09baeaf72f9984ed7393d16ba3b532c4a4fdf0f0dbfbbf65b7c71ac8fc"
+    },
+    {
+      "old_mode": "legacy76b_candidate",
+      "sentence": "S9",
+      "old_span_s": [
+        76.615,
+        86.035
+      ],
+      "actual_span_s": [
+        76.545,
+        85.965
+      ],
+      "lag_s": -0.06999999999999318,
+      "PCM16_exact": true,
+      "PCM16_sample_sha256": "c49b5c3c73c4d4e329b9b8e64d074e90efd153f4532e81c8e6ad5d47f8179902"
+    },
+    {
+      "old_mode": "legacy76b_candidate",
+      "sentence": "S10",
+      "old_span_s": [
+        87.035,
+        91.63
+      ],
+      "actual_span_s": [
+        86.965,
+        91.56
+      ],
+      "lag_s": -0.06999999999999318,
+      "PCM16_exact": true,
+      "PCM16_sample_sha256": "14db3e7819ed4a4da2fcc3faf9c465372f5ec1a1c502fccfccebfc00136d7378"
+    },
+    {
+      "old_mode": "legacy76b_candidate",
+      "sentence": "S11",
+      "old_span_s": [
+        92.83,
+        101.605
+      ],
+      "actual_span_s": [
+        92.76,
+        101.53500000000001
+      ],
+      "lag_s": -0.06999999999999318,
+      "PCM16_exact": true,
+      "PCM16_sample_sha256": "4d9738ab9adbbaf561e26666b85a3e11733b3ee642980809561bc25c53bffba6"
+    },
+    {
+      "old_mode": "legacy76b_candidate",
+      "sentence": "S12",
+      "old_span_s": [
+        102.605,
+        107.845
+      ],
+      "actual_span_s": [
+        102.535,
+        107.77499999999999
+      ],
+      "lag_s": -0.07000000000000739,
+      "PCM16_exact": true,
+      "PCM16_sample_sha256": "bdbe3cb2b1ad441b1838d44c62f9ffc1897126fbf71fd0827ff03ec097433164"
+    },
+    {
+      "old_mode": "legacy76b_candidate",
+      "sentence": "S13",
+      "old_span_s": [
+        108.845,
+        125.05
+      ],
+      "actual_span_s": [
+        108.77499999999999,
+        124.97999999999999
+      ],
+      "lag_s": -0.07000000000000739,
+      "PCM16_exact": true,
+      "PCM16_sample_sha256": "9f173733870e2eba3078872fefcf8a664b3e9f68e0a2a081efbdaecf1e478055"
+    },
+    {
+      "old_mode": "legacy76b_candidate",
+      "sentence": "S14",
+      "old_span_s": [
+        126.05,
+        131.77
+      ],
+      "actual_span_s": [
+        125.98,
+        131.70000000000002
+      ],
+      "lag_s": -0.06999999999999318,
+      "PCM16_exact": true,
+      "PCM16_sample_sha256": "9131ebb69580b45fd3afbf7c354463ac891c920b8f1e9135059a8356a685067f"
+    },
+    {
+      "old_mode": "legacy76b_candidate",
+      "sentence": "S15",
+      "old_span_s": [
+        132.97,
+        140.295
+      ],
+      "actual_span_s": [
+        132.9,
+        140.225
+      ],
+      "lag_s": -0.06999999999999318,
+      "PCM16_exact": true,
+      "PCM16_sample_sha256": "9abefde56322e3994635ee8349a15732ba3443a512fa6dcef5b1e56799c0dba9"
+    },
+    {
+      "old_mode": "legacy76b_candidate",
+      "sentence": "S16",
+      "old_span_s": [
+        141.29500000000002,
+        149.63500000000002
+      ],
+      "actual_span_s": [
+        141.22500000000002,
+        149.56500000000003
+      ],
+      "lag_s": -0.06999999999999318,
+      "PCM16_exact": true,
+      "PCM16_sample_sha256": "e8a21a83ed6835fec6824e3e2c925e8aef25b0316354612fb4945b0508c964e8"
+    },
+    {
+      "old_mode": "prior3p5",
+      "sentence": "title",
+      "old_span_s": [
+        0.4,
+        1.94
+      ],
+      "actual_span_s": [
+        0.4,
+        1.94
+      ],
+      "lag_s": 0.0,
+      "PCM16_exact": true,
+      "PCM16_sample_sha256": "9ad40701ceaf64ba117d9ece7a5fb0fab8f888b58b3acdcc1bce42cd0be0733b"
+    },
+    {
+      "old_mode": "prior3p5",
+      "sentence": "S1",
+      "old_span_s": [
+        2.94,
+        17.47
+      ],
+      "actual_span_s": [
+        2.94,
+        17.47
+      ],
+      "lag_s": 0.0,
+      "PCM16_exact": true,
+      "PCM16_sample_sha256": "5109b1bb2ad3094d9864ac687b1f594052cac2b964caef3fca0ce26f4e203eb8"
+    },
+    {
+      "old_mode": "prior3p5",
+      "sentence": "S2",
+      "old_span_s": [
+        18.470000000000002,
+        19.735000000000003
+      ],
+      "actual_span_s": [
+        18.470000000000002,
+        19.735000000000003
+      ],
+      "lag_s": 0.0,
+      "PCM16_exact": true,
+      "PCM16_sample_sha256": "836311404c63280254ebc3c12cc2fb7db4292d7ab3e401c1c64711548f8785be"
+    },
+    {
+      "old_mode": "prior3p5",
+      "sentence": "S3",
+      "old_span_s": [
+        20.735,
+        30.585
+      ],
+      "actual_span_s": [
+        20.735,
+        30.585
+      ],
+      "lag_s": 0.0,
+      "PCM16_exact": true,
+      "PCM16_sample_sha256": "641c1f86eece986a2d93f9932c91940df86f107cecdbfe88722788cd911d6616"
+    },
+    {
+      "old_mode": "prior3p5",
+      "sentence": "S4",
+      "old_span_s": [
+        31.785,
+        37.055
+      ],
+      "actual_span_s": [
+        31.785,
+        37.055
+      ],
+      "lag_s": 0.0,
+      "PCM16_exact": true,
+      "PCM16_sample_sha256": "ca607492dd948c4d27c143eadcb843cea8bbd3549999ac7e1dc06f44497a1083"
+    },
+    {
+      "old_mode": "prior3p5",
+      "sentence": "S5",
+      "old_span_s": [
+        38.055,
+        47.22
+      ],
+      "actual_span_s": [
+        38.055,
+        47.22
+      ],
+      "lag_s": 0.0,
+      "PCM16_exact": true,
+      "PCM16_sample_sha256": "7c3ef4bf552005d766969cb8e888f46382c16c77dba971b5610f6952efbd7742"
+    },
+    {
+      "old_mode": "prior3p5",
+      "sentence": "S7",
+      "old_span_s": [
+        56.945,
+        68.665
+      ],
+      "actual_span_s": [
+        56.95,
+        68.67
+      ],
+      "lag_s": 0.005000000000002558,
+      "PCM16_exact": true,
+      "PCM16_sample_sha256": "021e9d969cead6ff66362e8c44b6c997cfe468a841271bbed9a6338e6976fefd"
+    },
+    {
+      "old_mode": "prior3p5",
+      "sentence": "S8",
+      "old_span_s": [
+        69.66499999999999,
+        75.53999999999999
+      ],
+      "actual_span_s": [
+        69.67,
+        75.545
+      ],
+      "lag_s": 0.005000000000009663,
+      "PCM16_exact": true,
+      "PCM16_sample_sha256": "f348ae09baeaf72f9984ed7393d16ba3b532c4a4fdf0f0dbfbbf65b7c71ac8fc"
+    },
+    {
+      "old_mode": "prior3p5",
+      "sentence": "S9",
+      "old_span_s": [
+        76.53999999999999,
+        85.96
+      ],
+      "actual_span_s": [
+        76.545,
+        85.965
+      ],
+      "lag_s": 0.005000000000009663,
+      "PCM16_exact": true,
+      "PCM16_sample_sha256": "c49b5c3c73c4d4e329b9b8e64d074e90efd153f4532e81c8e6ad5d47f8179902"
+    },
+    {
+      "old_mode": "prior3p5",
+      "sentence": "S10",
+      "old_span_s": [
+        86.96,
+        91.55499999999999
+      ],
+      "actual_span_s": [
+        86.965,
+        91.56
+      ],
+      "lag_s": 0.005000000000009663,
+      "PCM16_exact": true,
+      "PCM16_sample_sha256": "14db3e7819ed4a4da2fcc3faf9c465372f5ec1a1c502fccfccebfc00136d7378"
+    },
+    {
+      "old_mode": "prior3p5",
+      "sentence": "S11",
+      "old_span_s": [
+        92.755,
+        101.53
+      ],
+      "actual_span_s": [
+        92.76,
+        101.53500000000001
+      ],
+      "lag_s": 0.005000000000009663,
+      "PCM16_exact": true,
+      "PCM16_sample_sha256": "4d9738ab9adbbaf561e26666b85a3e11733b3ee642980809561bc25c53bffba6"
+    },
+    {
+      "old_mode": "prior3p5",
+      "sentence": "S12",
+      "old_span_s": [
+        102.53,
+        107.77
+      ],
+      "actual_span_s": [
+        102.535,
+        107.77499999999999
+      ],
+      "lag_s": 0.0049999999999954525,
+      "PCM16_exact": true,
+      "PCM16_sample_sha256": "bdbe3cb2b1ad441b1838d44c62f9ffc1897126fbf71fd0827ff03ec097433164"
+    },
+    {
+      "old_mode": "prior3p5",
+      "sentence": "S13",
+      "old_span_s": [
+        108.77,
+        124.975
+      ],
+      "actual_span_s": [
+        108.77499999999999,
+        124.97999999999999
+      ],
+      "lag_s": 0.0049999999999954525,
+      "PCM16_exact": true,
+      "PCM16_sample_sha256": "9f173733870e2eba3078872fefcf8a664b3e9f68e0a2a081efbdaecf1e478055"
+    },
+    {
+      "old_mode": "prior3p5",
+      "sentence": "S14",
+      "old_span_s": [
+        125.975,
+        131.695
+      ],
+      "actual_span_s": [
+        125.98,
+        131.70000000000002
+      ],
+      "lag_s": 0.005000000000009663,
+      "PCM16_exact": true,
+      "PCM16_sample_sha256": "9131ebb69580b45fd3afbf7c354463ac891c920b8f1e9135059a8356a685067f"
+    },
+    {
+      "old_mode": "prior3p5",
+      "sentence": "S15",
+      "old_span_s": [
+        132.895,
+        140.22
+      ],
+      "actual_span_s": [
+        132.9,
+        140.225
+      ],
+      "lag_s": 0.0049999999999954525,
+      "PCM16_exact": true,
+      "PCM16_sample_sha256": "9abefde56322e3994635ee8349a15732ba3443a512fa6dcef5b1e56799c0dba9"
+    },
+    {
+      "old_mode": "prior3p5",
+      "sentence": "S16",
+      "old_span_s": [
+        141.22,
+        149.56
+      ],
+      "actual_span_s": [
+        141.22500000000002,
+        149.56500000000003
+      ],
+      "lag_s": 0.005000000000023874,
+      "PCM16_exact": true,
+      "PCM16_sample_sha256": "e8a21a83ed6835fec6824e3e2c925e8aef25b0316354612fb4945b0508c964e8"
+    }
+  ],
+  "PV_eight_old_to_current_identity_rows": [
+    {
+      "sentence": "S8",
+      "old_key": "75.36–75.45s",
+      "actual_new_key": "75.37–75.45s",
+      "old_event": [
+        "呼吸声",
+        75.365,
+        75.45,
+        -35.15143687153778,
+        1981.6092239768152,
+        0.29553286064991996,
+        -3.0363816446328906
+      ],
+      "actual_event": [
+        "呼吸声",
+        75.37,
+        75.455,
+        -35.15143687153778,
+        1981.6092239768152,
+        0.29553286064991996,
+        -3.0363816446328906
+      ],
+      "actual_fp": "6f05ea0e0ece",
+      "clock_shift_s": 0.005000000000009663,
+      "event_and_40ms_context_PCM16_exact": true,
+      "scalar_differences": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "original_confirmation_accepts_existing_basis": true,
+      "reason": "",
+      "existing_basis_preserved": {
+        "配音指纹": "05efc6de075d",
+        "依据": "2026-10-16 用实际声音（逐段看声音.py 逐 2.5 ms 电平/周期/低频占比/重心，a.wav 低通峰）核实是词的一部分（S8 w 5.835–5.920s，呼吸声）：compound. 的 /n/：/aʊ/ 之后 5.70–5.955 是连续的鼻音（-17～-48 dB，重心 0.8–2.8 kHz、周期 0.2–0.53、低频 -1～-14 dB），之后 5.9625 闭塞（-59.5 dB）、5.9725 /d/ 除阻（-30 dB）；在词里，不是呼吸（accepted-prior-a.wav → 新配音：这一段声音逐样本相同，位置挪了 -0.075 秒；确认平移.py 自动挪，配音指纹 76b99c620981 → 05efc6de075d）"
+      },
+      "actual_existing_newkey": {
+        "配音指纹": "6f05ea0e0ece",
+        "依据": "2026-10-16 用实际声音（逐段看声音.py 逐 2.5 ms 电平/周期/低频占比/重心，a.wav 低通峰）核实是词的一部分（S8 w 5.835–5.920s，呼吸声）：compound. 的 /n/：/aʊ/ 之后 5.70–5.955 是连续的鼻音（-17～-48 dB，重心 0.8–2.8 kHz、周期 0.2–0.53、低频 -1～-14 dB），之后 5.9625 闭塞（-59.5 dB）、5.9725 /d/ 除阻（-30 dB）；在词里，不是呼吸"
+      }
+    },
+    {
+      "sentence": "S8",
+      "old_key": "75.46–75.49s",
+      "actual_new_key": "75.47–75.50s",
+      "old_event": [
+        "噗声",
+        75.46,
+        75.49,
+        -37.25418898699781,
+        1564.4178987224818,
+        0.3676728418328707,
+        -2.7416614059774758
+      ],
+      "actual_event": [
+        "噗声",
+        75.465,
+        75.495,
+        -37.25418898699781,
+        1564.4178987224818,
+        0.3676728418328707,
+        -2.7416614059774758
+      ],
+      "actual_fp": "6f05ea0e0ece",
+      "clock_shift_s": 0.005000000000009663,
+      "event_and_40ms_context_PCM16_exact": true,
+      "scalar_differences": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "original_confirmation_accepts_existing_basis": true,
+      "reason": "",
+      "existing_basis_preserved": {
+        "配音指纹": "05efc6de075d",
+        "依据": "2026-10-16 用实际声音（逐段看声音.py 逐 2.5 ms 电平/周期/低频占比/重心，a.wav 低通峰）核实是词的一部分（S8 w 5.930–5.960s，噗声）：compound. 的 /n/ 收尾（/d/ 闭塞之前）：5.9275–5.9475 是 -38～-48 dB、周期 0.32–0.38、低频 -2～-3.5 dB 的浊音，连着前面的 /n/，5.9625 -59.5 dB 闭塞后 5.9725 是 /d/ 除阻；在词里（accepted-prior-a.wav → 新配音：这一段声音逐样本相同，位置挪了 -0.075 秒；确认平移.py 自动挪，配音指纹 76b99c620981 → 05efc6de075d）"
+      },
+      "actual_existing_newkey": {
+        "配音指纹": "6f05ea0e0ece",
+        "依据": "2026-10-16 用实际声音（逐段看声音.py 逐 2.5 ms 电平/周期/低频占比/重心，a.wav 低通峰）核实是词的一部分（S8 w 5.930–5.960s，噗声）：compound. 的 /n/ 收尾（/d/ 闭塞之前）：5.9275–5.9475 是 -38～-48 dB、周期 0.32–0.38、低频 -2～-3.5 dB 的浊音，连着前面的 /n/，5.9625 -59.5 dB 闭塞后 5.9725 是 /d/ 除阻；在词里"
+      }
+    },
+    {
+      "sentence": "S9",
+      "old_key": "85.75–85.88s",
+      "actual_new_key": "85.76–85.89s",
+      "old_event": [
+        "呼吸声",
+        85.755,
+        85.88,
+        -36.16302394619089,
+        3546.678427627098,
+        0.18927501332061952,
+        -1.7965047477145226
+      ],
+      "actual_event": [
+        "呼吸声",
+        85.76,
+        85.885,
+        -36.16302394619089,
+        3546.678427627098,
+        0.18927501332061952,
+        -1.7965047477145226
+      ],
+      "actual_fp": "6f05ea0e0ece",
+      "clock_shift_s": 0.005000000000009663,
+      "event_and_40ms_context_PCM16_exact": true,
+      "scalar_differences": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "original_confirmation_accepts_existing_basis": true,
+      "reason": "",
+      "existing_basis_preserved": {
+        "配音指纹": "05efc6de075d",
+        "依据": "2026-10-16 用实际声音（逐段看声音.py 逐 2.5 ms 电平/周期/低频占比/重心，a.wav 低通峰）核实是词的一部分（S9 w 9.525–9.650s，呼吸声）：lived. 的 /v/：元音之后 9.465–9.585 浊擦（周期 0.2–0.4、重心 1.2–1.7 kHz）转成 9.595–9.635 的清化摩擦（重心 4.2–4.5 kHz、低频 -15～-20 dB），9.645–9.665 闭塞（-56～-67 dB），9.675 /d/ 除阻（-32 dB）；擦音，词的一部分（accepted-prior-a.wav → 新配音：这一段声音逐样本相同，位置挪了 -0.075 秒；确认平移.py 自动挪，配音指纹 76b99c620981 → 05efc6de075d）"
+      },
+      "actual_existing_newkey": {
+        "配音指纹": "6f05ea0e0ece",
+        "依据": "2026-10-16 用实际声音（逐段看声音.py 逐 2.5 ms 电平/周期/低频占比/重心，a.wav 低通峰）核实是词的一部分（S9 w 9.525–9.650s，呼吸声）：lived. 的 /v/：元音之后 9.465–9.585 浊擦（周期 0.2–0.4、重心 1.2–1.7 kHz）转成 9.595–9.635 的清化摩擦（重心 4.2–4.5 kHz、低频 -15～-20 dB），9.645–9.665 闭塞（-56～-67 dB），9.675 /d/ 除阻（-32 dB）；擦音，词的一部分"
+      }
+    },
+    {
+      "sentence": "S13",
+      "old_key": "124.89–124.97s",
+      "actual_new_key": "124.90–124.98s",
+      "old_event": [
+        "呼吸声",
+        124.895,
+        124.975,
+        -35.40386420118164,
+        1833.4290782223427,
+        0.27284008657617853,
+        -5.572288716400755
+      ],
+      "actual_event": [
+        "呼吸声",
+        124.9,
+        124.98,
+        -35.40386420118164,
+        1833.4290782223427,
+        0.27284008657617853,
+        -5.572288716400755
+      ],
+      "actual_fp": "6f05ea0e0ece",
+      "clock_shift_s": 0.0049999999999954525,
+      "event_and_40ms_context_PCM16_exact": true,
+      "scalar_differences": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "original_confirmation_accepts_existing_basis": true,
+      "reason": "",
+      "existing_basis_preserved": {
+        "配音指纹": "05efc6de075d",
+        "依据": "2026-10-16 用实际声音（逐段看声音.py 逐 2.5 ms 电平/周期/低频占比/重心，a.wav 低通峰）核实是词的一部分（S13 w 15.990–16.070s，呼吸声）：strain. 句末 /n/ 的气声收尾：15.93–15.99 的 -30～-44 dB 连着 16.00–16.07 的 -45～-54 dB（周期 0.15–0.45、重心 1–2.7 kHz），之后平滑衰减到 -65、-75、-83 dB，中间没有 -55 dB 低谷断开；词的收尾（accepted-prior-a.wav → 新配音：这一段声音逐样本相同，位置挪了 -0.075 秒；确认平移.py 自动挪，配音指纹 76b99c620981 → 05efc6de075d）"
+      },
+      "actual_existing_newkey": {
+        "配音指纹": "6f05ea0e0ece",
+        "依据": "2026-10-16 用实际声音（逐段看声音.py 逐 2.5 ms 电平/周期/低频占比/重心，a.wav 低通峰）核实是词的一部分（S13 w 15.990–16.070s，呼吸声）：strain. 句末 /n/ 的气声收尾：15.93–15.99 的 -30～-44 dB 连着 16.00–16.07 的 -45～-54 dB（周期 0.15–0.45、重心 1–2.7 kHz），之后平滑衰减到 -65、-75、-83 dB，中间没有 -55 dB 低谷断开；词的收尾"
+      }
+    },
+    {
+      "sentence": "S14",
+      "old_key": "131.51–131.53s",
+      "actual_new_key": "131.52–131.53s",
+      "old_event": [
+        "噗声",
+        131.515,
+        131.53,
+        -46.62741239200547,
+        1457.1760248932374,
+        0.0,
+        -0.7193890109372267
+      ],
+      "actual_event": [
+        "噗声",
+        131.52,
+        131.535,
+        -46.62741239200547,
+        1457.1760248932374,
+        0.0,
+        -0.7193890109372267
+      ],
+      "actual_fp": "6f05ea0e0ece",
+      "clock_shift_s": 0.005000000000009663,
+      "event_and_40ms_context_PCM16_exact": true,
+      "scalar_differences": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "original_confirmation_accepts_existing_basis": true,
+      "reason": "",
+      "existing_basis_preserved": {
+        "配音指纹": "05efc6de075d",
+        "依据": "2026-10-16 用实际声音（逐段看声音.py 逐 2.5 ms 电平/周期/低频占比/重心，a.wav 低通峰）核实是词的一部分（S14 w 5.745–5.760s，噗声）：needs. 的 /d/ 浊闭塞：5.70–5.755 是 -35～-52 dB、周期 0.2–0.45、低频 -1～-5 dB 的浊音，之后 5.76–5.78 闭塞静音（-57～-69 dB）、5.785 起 /z/ 摩擦（重心 3.5–6 kHz）；词的一部分（accepted-prior-a.wav → 新配音：这一段声音逐样本相同，位置挪了 -0.075 秒；确认平移.py 自动挪，配音指纹 76b99c620981 → 05efc6de075d）"
+      },
+      "actual_existing_newkey": {
+        "配音指纹": "6f05ea0e0ece",
+        "依据": "2026-10-16 用实际声音（逐段看声音.py 逐 2.5 ms 电平/周期/低频占比/重心，a.wav 低通峰）核实是词的一部分（S14 w 5.745–5.760s，噗声）：needs. 的 /d/ 浊闭塞：5.70–5.755 是 -35～-52 dB、周期 0.2–0.45、低频 -1～-5 dB 的浊音，之后 5.76–5.78 闭塞静音（-57～-69 dB）、5.785 起 /z/ 摩擦（重心 3.5–6 kHz）；词的一部分"
+      }
+    },
+    {
+      "sentence": "S15",
+      "old_key": "138.29–138.31s",
+      "actual_new_key": "138.29–138.32s",
+      "old_event": [
+        "噗声",
+        138.29,
+        138.315,
+        -36.09702246055293,
+        2173.464299974093,
+        0.4638822757530055,
+        -1.2155621986421152
+      ],
+      "actual_event": [
+        "噗声",
+        138.295,
+        138.32,
+        -36.09702246055293,
+        2173.464299974093,
+        0.4638822757530055,
+        -1.2155621986421152
+      ],
+      "actual_fp": "6f05ea0e0ece",
+      "clock_shift_s": 0.0049999999999954525,
+      "event_and_40ms_context_PCM16_exact": true,
+      "scalar_differences": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "original_confirmation_accepts_existing_basis": true,
+      "reason": "",
+      "existing_basis_preserved": {
+        "配音指纹": "05efc6de075d",
+        "依据": "2026-10-16 用实际声音（逐段看声音.py 逐 2.5 ms 电平/周期/低频占比/重心，a.wav 低通峰）核实是词的一部分（S15 w 5.015–5.040s，噗声）：prize; 的 /aɪ/ 收尾到 /z/（同 4.96–5.065 一段）：5.015–5.04 在 -37～-48 dB、低频 -1～-4 dB、周期 0.2–0.44，前后连着元音和 /z/，没有 -55 dB 低谷；词里的浊音（accepted-prior-a.wav → 新配音：这一段声音逐样本相同，位置挪了 -0.075 秒；确认平移.py 自动挪，配音指纹 76b99c620981 → 05efc6de075d）"
+      },
+      "actual_existing_newkey": {
+        "配音指纹": "6f05ea0e0ece",
+        "依据": "2026-10-16 用实际声音（逐段看声音.py 逐 2.5 ms 电平/周期/低频占比/重心，a.wav 低通峰）核实是词的一部分（S15 w 5.015–5.040s，噗声）：prize; 的 /aɪ/ 收尾到 /z/（同 4.96–5.065 一段）：5.015–5.04 在 -37～-48 dB、低频 -1～-4 dB、周期 0.2–0.44，前后连着元音和 /z/，没有 -55 dB 低谷；词里的浊音"
+      }
+    },
+    {
+      "sentence": "S15",
+      "old_key": "140.09–140.10s",
+      "actual_new_key": "140.09–140.11s",
+      "old_event": [
+        "孤立杂音",
+        140.085,
+        140.105,
+        -38.348767722025244,
+        1706.655335538299,
+        0.16940059335956717,
+        -10.361085921095196
+      ],
+      "actual_event": [
+        "孤立杂音",
+        140.09,
+        140.11,
+        -38.348767722025244,
+        1706.655335538299,
+        0.16940059335956717,
+        -10.361085921095196
+      ],
+      "actual_fp": "6f05ea0e0ece",
+      "clock_shift_s": 0.0049999999999954525,
+      "event_and_40ms_context_PCM16_exact": true,
+      "scalar_differences": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "original_confirmation_accepts_existing_basis": true,
+      "reason": "",
+      "existing_basis_preserved": {
+        "配音指纹": "05efc6de075d",
+        "依据": "2026-10-16 用实际声音（逐段看声音.py 逐 2.5 ms 电平/周期/低频占比/重心，a.wav 低通峰）核实是词的一部分（S15 w 6.815–6.835s，孤立杂音）：overlooked. 句末 /t/ 的除阻：/k/ 之后 6.7675–6.8125 闭塞（-59～-71 dB），6.8175 一下爆破（-38 dB、低频 -18 dB、无周期），6.835 降到 -53 dB 以下；塞音除阻，不删（accepted-prior-a.wav → 新配音：这一段声音逐样本相同，位置挪了 -0.075 秒；确认平移.py 自动挪，配音指纹 76b99c620981 → 05efc6de075d）"
+      },
+      "actual_existing_newkey": {
+        "配音指纹": "6f05ea0e0ece",
+        "依据": "2026-10-16 用实际声音（逐段看声音.py 逐 2.5 ms 电平/周期/低频占比/重心，a.wav 低通峰）核实是词的一部分（S15 w 6.815–6.835s，孤立杂音）：overlooked. 句末 /t/ 的除阻：/k/ 之后 6.7675–6.8125 闭塞（-59～-71 dB），6.8175 一下爆破（-38 dB、低频 -18 dB、无周期），6.835 降到 -53 dB 以下；塞音除阻，不删"
+      }
+    },
+    {
+      "sentence": "S7",
+      "old_key": "63.45–63.48s",
+      "actual_new_key": "63.46–63.49s",
+      "old_event": [
+        "噗声",
+        63.455,
+        63.485,
+        -49.35320874226954,
+        2381.35434771528,
+        0.2018495043708209,
+        -0.3790638561293389
+      ],
+      "actual_event": [
+        "噗声",
+        63.46,
+        63.49,
+        -49.35320874226954,
+        2381.35434771528,
+        0.2018495043708209,
+        -0.3790638561293389
+      ],
+      "actual_fp": "6f05ea0e0ece",
+      "clock_shift_s": 0.005000000000002558,
+      "event_and_40ms_context_PCM16_exact": true,
+      "scalar_differences": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "original_confirmation_accepts_existing_basis": true,
+      "reason": "",
+      "existing_basis_preserved": {
+        "配音指纹": "05efc6de075d",
+        "依据": "2026-10-16 用实际声音（逐段看声音.py 逐 2.5 ms 电平/周期/低频占比/重心，逐 1 ms 分频段，a.wav 低通峰）核实是词的一部分（S7 w 5.595–5.625s，噗声）：revived 的 /r/ 起声：pathologist, 后的吸气声已删（非人声区间到 5.59625，自动切点留下紧挨词头的 40 ms），5.5975–5.6225 是 -47～-58 dB 的低频声（低频占比 -0.3～-4.6 dB，周期 0.3–0.48），连到 5.625 起的 /r/（5.635 -16 dB），5 ms 窗没有低于 -55 dB 的低谷；与 17 S6 warned 的起始浊音同类（accepted-prior-a.wav → 新配音：这一段声音逐样本相同，位置挪了 -0.075 秒；确认平移.py 自动挪，配音指纹 76b99c620981 → 05efc6de075d）"
+      },
+      "actual_existing_newkey": {
+        "配音指纹": "6f05ea0e0ece",
+        "依据": "2026-10-16 用实际声音（逐段看声音.py 逐 2.5 ms 电平/周期/低频占比/重心，逐 1 ms 分频段，a.wav 低通峰）核实是词的一部分（S7 w 5.595–5.625s，噗声）：revived 的 /r/ 起声：pathologist, 后的吸气声已删（非人声区间到 5.59625，自动切点留下紧挨词头的 40 ms），5.5975–5.6225 是 -47～-58 dB 的低频声（低频占比 -0.3～-4.6 dB，周期 0.3–0.48），连到 5.625 起的 /r/（5.635 -16 dB），5 ms 窗没有低于 -55 dB 的低谷；与 17 S6 warned 的起始浊音同类"
+      }
+    }
+  ],
+  "all_existing_current_PV_confirmations_passed_unchanged": true,
+  "PV_old_key_inventory_initial_interpretation_corrected": true,
+  "only_nine_type_fingerprint_leaves_proposed": true,
+  "original12_A10_flags_retained_not_zeroed": true,
+  "original106_edits_cut0_extras0_from_actual_native_retained": true,
+  "original_admission_block_sha256": "5dc09d4099ef2dac8182a3088acab9dcfabdcf3de33c7288729e3f511b01fde6",
+  "original_delivery_program_sha256": "26e8e213a07747f6fc3654be18d64336011cba59ffd83bf74e4cf4759baf6976",
+  "original_admission_parser_counterfactual": [
+    {
+      "case": "original_failed_metadata",
+      "unconfirmed_original12_flags": 9,
+      "cut_tail_onset_bad": [],
+      "admission_passed": false
+    },
+    {
+      "case": "proposed9fingerprints_only",
+      "unconfirmed_original12_flags": 0,
+      "cut_tail_onset_bad": [],
+      "admission_passed": true
+    }
+  ],
+  "not_an_alignment_or_new_production_pass": "Original12abnormal officialscalarrows reformatted for exact admission parser; existing106edits/cut0/extras0 stay actual native facts. New formal native still required.",
+  "original_PV_validation_and_four_noise_selftest": [
+    {
+      "label": "PV-existing16-confirmations",
+      "exit": 0,
+      "log": "/dev/shm/source18-user102-confirmation-diagnostic-20261114/PV-existing16-confirmations.log",
+      "sha256": "6ac45b37a70a45a67c23b9784c6f08003783534946342f09a586ea86c44597a2",
+      "last_lines": [
+        "18 OK（已用实际声音核实是词的一部分） 噗声 138.29–138.32s 长 25 ms 最响 -36.1 dB 重心 2173 Hz 周期 0.46 低频占比 -1.2 dB",
+        "18 OK（已用实际声音核实是词的一部分） 孤立杂音 140.09–140.11s 长 20 ms 最响 -38.3 dB 重心 1707 Hz 周期 0.17 低频占比 -10.4 dB",
+        "18 纯人声核对（配音指纹 6f05ea0e0ece）问题数 0"
+      ]
+    },
+    {
+      "label": "PV-original-four-noise-selftest",
+      "exit": 0,
+      "log": "/dev/shm/source18-user102-confirmation-diagnostic-20261114/PV-original-four-noise-selftest.log",
+      "sha256": "2d8766ece62841bc3095321e6014521027991e114adf24d444a40d312d3573bc",
+      "last_lines": [
+        "✔ 纯人声核对 自检：53.38s 假呼吸声报出、96.20s 假噗声报出、65.74s 假咔哒声报出、69.52s 开口前假吸气声报出；别处没有多报"
+      ]
+    }
+  ],
+  "unapplied_nine_leaf_proposal": {
+    "path": "/dev/shm/source18-user102-confirmation-diagnostic-20261114/18-exact-nine-typed-fingerprint-proposal-UNAPPLIED.json",
+    "sha256": "2709d7cccae41ffdb854a1007360e9e28ab64b5b7d2032b243814925a968843e"
+  },
+  "no_new_basis_or_listening_claims": true,
+  "no_TTS_no_PAY_GEN_CI_source_voice_core_or_threshold_writes": true,
+  "private_mother_PCM_GT_not_exported": true,
+  "new_native_acceptance_not_claimed": true,
+  "utc": "2026-11-14T20:35:44.469909+00:00"
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "actual-specific-G35-v2-full-audio-and-negative-tests",
+  "program_sha256": "f1d2d49b17baaa9b28c341a0de289acbd8350906b7cf7ff727af10348c231624",
+  "reference_sha256": "79bcaf7aef1ce211f55b2493317ed3fc8a9eaea109bdcdf3ee514e8a453de433",
+  "cases": [
+    {
+      "case": "actual-after-G35-note",
+      "exit": 0,
+      "expected_exit": 0,
+      "full_actual_audio_and_clock_binding_checked": true,
+      "source_note_byte_exact_preserved": true,
+      "passed": true
+    },
+    {
+      "case": "actual-before-G35-note",
+      "exit": 0,
+      "expected_exit": 0,
+      "full_actual_audio_and_clock_binding_checked": true,
+      "source_note_byte_exact_preserved": true,
+      "passed": true
+    },
+    {
+      "case": "reject-one-extra-note-space",
+      "exit": 1,
+      "expected_exit": 1,
+      "full_actual_audio_and_clock_binding_checked": true,
+      "source_note_byte_exact_preserved": true,
+      "passed": true
+    },
+    {
+      "case": "pure-guard-reject-nine-basis",
+      "passed": true
+    },
+    {
+      "case": "pure-guard-reject-PV",
+      "passed": true
+    },
+    {
+      "case": "pure-guard-reject-gain",
+      "passed": true
+    },
+    {
+      "case": "pure-guard-reject-body",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "private_temp_removed": true,
+  "prior_v1_nine_full_actual_audio_tests_preserved_as_history": true
+}
