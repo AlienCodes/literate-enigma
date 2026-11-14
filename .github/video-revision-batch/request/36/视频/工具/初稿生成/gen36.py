@@ -117,7 +117,7 @@ S = [(1,
  (4,
   [[[('A **portfolio** of 1,100 digital imaging patents', '由1,100项数字成像专利构成的**组合**(portfolio)')],
     '（a portfolio of…：……的组合）'],
-   [[('fetched about $525 million', '以约5.25亿美元卖给'),
+   [[('**fetched** about $525 million', '**以**(fetched)约5.25亿美元**卖给**(fetched)'),
      ('from a **consortium** of twelve **buyers**,', '一个由十二家**买家**(buyers)组成的**财团**(consortium)，')],
     '（fetch：卖得（价钱）；a consortium of…：由……组成的财团）'],
    [[('including', '其中包括'), ('the **giants**', '**巨头**(giants)'), ('Apple and Google.', '苹果和谷歌。')],
@@ -128,7 +128,7 @@ S = [(1,
      ('of **reorganisation**,', '的**改组**(reorganisation)，'),
      ('the **once-mighty**', '**昔日强大的**(once-mighty)'),
      ('Kodak', '柯达'),
-     ('left bankruptcy in September 2013,', '于2013年9月走出破产，')],
+     ('left **bankruptcy** in September 2013,', '于2013年9月走出**破产**(bankruptcy)，')],
     '（left bankruptcy：走出破产）'],
    [[('**downsized**,', '规模已**缩小**(downsized)，'),
      ('**streamlined**,', '业务经过**精简**(streamlined)，'),
@@ -459,7 +459,9 @@ out = {'no': '36',
                                            '除阻（-39～-45 dB、重心 3.2–4.0 kHz），前面 2.19–2.21 闭塞 -61～-62 dB，属于 '
                                            'Kodak'}},
           '同词异译': {'dependence on：依赖/对': 'S5 dependence on“对……的依赖”被“胶卷的”隔开，“对”和“依赖”是同一个意思的两部分（T22/T23，用户 '
-                                         '2026-11-03 原话“意思里面这个对，也要标注颜色”），不是两种译法'},
+                                         '2026-11-03 原话“意思里面这个对，也要标注颜色”），不是两种译法',
+                   'fetched：以/卖给': '用户2026-11-14明确要求 fetched '
+                                   '对应中文只标“以”“卖给”，金额普通，原小字不改；这是同一谓语“以……卖给”的两处对应，不是两个不同释义。'},
           '机器复听': {'S5': {'配音指纹': '27d061cb4211',
                           '依据': "2026-10-29 实测（配音指纹 27d061cb4211）：Kodak's 配音音标 kˈoʊdæks，读音核对 0；第二个元音（原始合成 "
                                 '0.417–0.442）LPC 共振峰 F1 605–692 Hz、F2 1755–1825 Hz，与 S1 里机器复听通过的 Kodak 的 æ（F1 '
@@ -476,7 +478,7 @@ out = {'no': '36',
                                    '元音（-14.6 dB、重心 1.8 kHz）；乙（68.52）对，高亮 68.51 比 /s/ 开口早 0.01 '
                                    '秒，甲（68.67）落在元音上偏晚'}}},
  '结尾解说': '简述',
- 'allow_clash': ['keep it hushed', 'patent'],
+ 'allow_clash': ['keep it hushed', 'patent', 'fetched', 'bankruptcy'],
  '说明放宽特批': {'S19': {'倍数': '整屏',
                     '依据': '用户 2026-10-25 看 25 简述截图：“以后以后一定要合理的安排，不要压缩成这个样子……这个地方特批一下”（用户同意记录：原话适用以后各篇，26 '
                           '起沿用）'}},
