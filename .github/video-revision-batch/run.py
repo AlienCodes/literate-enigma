@@ -16,6 +16,8 @@ ROOT = Path.cwd()
 TASK = ROOT / '.github/video-revision-batch'
 NO = os.environ.get('ARTICLE_NO', '12').zfill(2)
 ALLOWED = {f'{n:02d}' for n in range(1, 71)}
+A21_AUDIO_REPAIRS = {'15', '17', '18', '30'}
+APPROVED_AUDIO_REPAIRS = {'10', '12', '44', '51'} | A21_AUDIO_REPAIRS
 SELECTED = json.loads((TASK / 'articles.json').read_text())
 assert NO in ALLOWED and NO in SELECTED, f'Article {NO} is outside the pinned revision scope.'
 M = Path(os.environ['RUNNER_TEMP']) / 'completion-machine'
@@ -202,6 +204,24 @@ def collect_confirmation_continuity():
     else:
         record['diagnostic_error_type'] = 'ScalarCollectionFailed'
     status['confirmation_continuity'] = record
+
+
+def prepare_approved_a21_derived_level(source_video, accepted_aac):
+    """Only30's newly approved raw release needs a new original level-cache key."""
+    if NO != '30':
+        return
+    program = TASK / 'prepare-derived-level30.py'
+    output = OUT / '30-derived-level-preparation.json'
+    checked(['python3', program, '--video-root', M, '--repository', ROOT,
+             '--accepted-video', source_video, '--output', output],
+            'approved30-derived-level-preparation.log', W)
+    evidence = json.loads(output.read_text())
+    assert evidence['derived_reference_prepared'] is True
+    assert evidence['private_PCM_GT_cache_arrays_or_models_exported'] is False
+    assert aac_hash(source_video) == accepted_aac
+    status['approved_derived_level_preparation'] = evidence
+    status['approved_derived_level_preparation_program_sha256'] = sha(program)
+    save()
 
 
 def collect_actual_public_sources(request, current_source):
@@ -864,6 +884,7 @@ try:
         status['checker_reference_preparation'] = evidence
         status['checker_reference_preparation_program_sha256'] = sha(reference_helper)
         save()
+    prepare_approved_a21_derived_level(source_video, accepted_aac)
     prepare_accepted_pcm_continuity(baseline_bytes, accepted_aac)
     clear_current_reference_cache()
     clear_temporary_video()
@@ -888,9 +909,9 @@ try:
     status['final_wav_sha256'] = sha(W / f'work_{NO}/a.wav')
     save()
     canonical_aac = aac_hash(canonical)
-    if NO in {'10', '12', '44', '51'}:
+    if NO in APPROVED_AUDIO_REPAIRS:
         # Root supplies actual approved audio-change validation. No gain/overlay implementation is assumed here.
-        audio_qc = TASK / 'audio-qc.py'
+        audio_qc = TASK / ('audio-a21-qc.py' if NO in A21_AUDIO_REPAIRS else 'audio-qc.py')
         assert audio_qc.exists(), f'Root must attach approved audio QC for article {NO}.'
         evidence = OUT / f'{NO}-approved-audio-qc.json'
         checked(['python3', audio_qc, '--article', NO, '--accepted-source', source_video,
@@ -900,6 +921,13 @@ try:
         assert audio_evidence.get('article') == NO and audio_evidence.get('passed') is True
         status['approved_audio_qc'] = audio_evidence
         status['approved_audio_qc_program_sha256'] = sha(audio_qc)
+        if NO in A21_AUDIO_REPAIRS:
+            status['approved_audio_repair_scope'] = {
+                'kind': 'one-root-approved-original-release-instead-of-grafted-release',
+                'request_source_sha256': sha(request / f'视频/脚本/{NO}.json'),
+                'reference_file_sha256': sha(TASK / 'audio-a21-qc-reference.json'),
+                'original_A21_five_phase_checks_required': True,
+                'untouched_voice_waveform_level_pitch_and_controls_required': True}
     else:
         assert canonical_aac == accepted_aac, 'Canonical AAC differs from the accepted prior voice.'
     status['accepted_prior_aac_identical'] = canonical_aac == accepted_aac
@@ -939,7 +967,7 @@ try:
     assert timing['end_page_frames'] == 60 and timing['end_page_seconds'] == 2
     assert timing['original_audio_identical'] and timing['original_audio_packet_timings_identical']
     assert aac_hash(processed[0]) == canonical_aac, 'Exact-card processing changed the canonical AAC stream.'
-    if NO not in {'10', '12', '44', '51'}:
+    if NO not in APPROVED_AUDIO_REPAIRS:
         assert aac_hash(processed[0]) == accepted_aac, 'Final AAC differs from accepted prior voice.'
     final = OUT / f'{NO}-4K-读完即转简述2秒.mp4'
     shutil.copyfile(processed[0], final)
