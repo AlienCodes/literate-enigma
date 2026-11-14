@@ -972,6 +972,13 @@ try:
             assert actual_record['篇'] == NO
             if actual_record not in records['记录']:
                 records['记录'].append(actual_record)
+    if NO == '53':
+        supplement = request / '真实用户同意补充.json'
+        assert sha(supplement) == '0d1ec1564097c667de5ddc9830f3abe643c75ef7dd2d063481e9c47cf4cf7253'
+        for actual_record in json.loads(supplement.read_text())['records']:
+            assert actual_record['篇'] == NO
+            if actual_record not in records['记录']:
+                records['记录'].append(actual_record)
     supplied_agreement = request / '视频/工具/用户同意记录.json'
     if supplied_agreement.is_file():
         supplied_records = json.loads(supplied_agreement.read_text())
