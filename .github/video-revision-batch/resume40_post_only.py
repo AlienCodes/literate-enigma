@@ -9,11 +9,26 @@ import argparse,ast,copy,json,os,shutil,sys,time
 from pathlib import Path
 from resume40_contract import *
 
+BOOTSTRAP_RESOURCE_NAME='40-approved-illustration-resource.json'
+BOOTSTRAP_RESOURCE_SHA256='de1b90da11ef46f6b4f33d11485f9cc1d855b4f17707133aeabe532c1a9868ff'
+def check_initial_output(out):
+ out=Path(out)
+ if not out.exists():return None
+ require(out.is_dir() and not out.is_symlink(),'Completion output must be an actual directory')
+ rows=list(out.iterdir())
+ if not rows:return None
+ require(len(rows)==1 and rows[0].name==BOOTSTRAP_RESOURCE_NAME,'Only the exact original workflow bootstrap resource JSON may precede completion')
+ p=rows[0]
+ require(p.is_file() and not p.is_symlink() and p.stat().st_size==642 and digest(p)==BOOTSTRAP_RESOURCE_SHA256,'Original verified bootstrap resource bytes differ')
+ r=load(p)
+ require(r['source_id']=='40' and r['resource_verified']is True and r['ref']=='64621068034f8b6e09836a6d97210a0e9b2f1ed6' and r['sha256']=='5b1aabe5efdc4543a1989bfac2dd27a8e1f3dbd0f5db232f32c5800ef9e496e1' and r['approved_manifest_sha256']=='98f4601ef3c40ed141834505bfc8392fb195a8a2d6a7658eeae0c5e0dde758ec' and r['resource_contract_sha256']=='d94fa43499c6feb097508fe747231c85daf57d44dd92ef9c0197b2334909b86b','Original workflow book-resource identity differs')
+ return p
+
 def complete(a):
  require(os.environ.get('GITHUB_ACTIONS')=='true'and os.environ.get('GITHUB_RUN_ID','').isdigit()and int(os.environ['GITHUB_RUN_ID'])!=43640848824,'Post-only completion must have its own genuine new native run')
  require(digest(a.reference)==REFERENCE_SHA256,'Exact frozen source40 reference file required')
  ref=load(a.reference);root=Path(a.repository).resolve();request=Path(a.request).resolve();cap=Path(a.capsule).resolve();program=Path(a.original_program).resolve();decision=Path(a.decision).resolve();task=root/'.github/video-revision-batch';m=Path(a.work).resolve();w=m/'video';out=Path(a.output).resolve();log=m/'article40-local-logs'
- require(not out.exists()or not any(out.iterdir()),'New completion output must be empty, never overwrite old failed output');out.mkdir(parents=True,exist_ok=True);w.mkdir(parents=True,exist_ok=True);log.mkdir(parents=True,exist_ok=True)
+ bootstrap_resource=check_initial_output(out);out.mkdir(parents=True,exist_ok=True);w.mkdir(parents=True,exist_ok=True);log.mkdir(parents=True,exist_ok=True)
  old=load(cap/'files/40-status.json');reference=old['accepted_source'];accepted=root/reference['path'];verified=verify_inputs(cap,request,program,decision,ref,accepted_video=accepted,inspect_media=True);checked(task/'certified-core/manifest.json',ref['original_core_manifest'])
  # Preserve old false verdict and all public failed provenance byte-for-byte.
  for name in ['40-status.json','40-failed-draft-proof.json','40-failed-draft-fingerprint.json','40-failed-working-source.json']:
@@ -50,6 +65,9 @@ def complete(a):
   exec(compile(ast.Module(body=original_body[font_start:font_end],type_ignores=[]),str(program)+'#unchanged-outer-font-alias-setup','exec'),ns)
   ns['checked'](['python3',ns['T']/'新管/印章.py'],'resume-original-stamp-before-outer.log',w)
   tail,bridge=prepare_tail(program.read_text());write(out/'40-original-outer-resume-AST-bridge.json',bridge);exec(compile(tail,str(program)+'#actual-post-only-suffix','exec'),ns)
+  if bootstrap_resource is not None:
+   require(bootstrap_resource.is_file() and bootstrap_resource.stat().st_size==642 and digest(bootstrap_resource)==BOOTSTRAP_RESOURCE_SHA256,'Original workflow resource proof must remain byte-for-byte preserved')
+   status['inherited_original_workflow_bootstrap_resource']={'path':str(bootstrap_resource),'bytes':642,'sha256':BOOTSTRAP_RESOURCE_SHA256,'role':'original pinned book illustration bootstrap verification; user143 revised video illustration remains a separate final144-tail input'}
   status.update(actual_new_native_remaining_original_outer_checks_passed=True,inherited_original_gates_not_rerun=True,private_intermediate_only=True,production_delivery_eligible=False,remaining_hold18_and_independent_fullV3_required=True);ns['save']()
   write(out/'40-post-only-native-completion-ready.json',dict(source_id='40',quality_book_order='46',actual_new_native_run=int(os.environ['GITHUB_RUN_ID']),original_failed_run=43640848824,original_remaining_outer_completed=True,original_gate_provenance_inherited_not_rerun=True,canonical_video_sha256=status['canonical_video_sha256'],current_AAC_SHA256=status['canonical_aac_adts_sha256'],new_private_source_QA_candidate_only=True,production_delivery_eligible=False,final_user_acceptance=False,remaining_hold18_and_fullV3_required=True))
  except Exception as e:
