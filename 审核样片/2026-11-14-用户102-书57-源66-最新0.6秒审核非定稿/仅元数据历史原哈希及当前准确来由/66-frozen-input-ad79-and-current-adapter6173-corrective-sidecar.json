@@ -1,0 +1,42 @@
+{
+  "kind": "source66-review102-frozen-input-historical-adapter-pointer-and-pre-freeze-corrected-serialization-sidecar",
+  "historical_expected_adapter_exact_bytes": {
+    "path": "/dev/shm/review66-hold18-intake/history/66-upstream-ad79-exact-reconstructed.json",
+    "bytes": 2593,
+    "sha256": "ad79da6ed5ad2eec6f15c3aa84e633b91e970fa1ed7e17e64c14eaa703587582"
+  },
+  "current_corrected_adapter": {
+    "path": "/dev/shm/source66-review102-hold18-20261114/media/upstream/66/66-review18-upstream-with-actual-source-V3-reference.json",
+    "bytes": 2666,
+    "sha256": "617320f60dd3e440423cf5b4db0beee0769e099237a6bfbcafcbb8139e8b6086"
+  },
+  "historical_reconstruction_method": "Reconstruct the deterministic original adapter from immutable raw2002B record, prior sourceH944ac and exact original preparation keyword order; accept only if full expected2593B/SHAad79 matches the frozen input. This is explicitly a reconstructed exact historical snapshot, not a claim of a newly found untouched file.",
+  "changed_fields": [
+    {
+      "key": "original_producer_prior_full_delivery_V3_claim_false_preserved",
+      "old": "ABSENT",
+      "current": true
+    },
+    {
+      "key": "source_validation_completed_after_producer_inheritance_claim",
+      "old": true,
+      "current": "ABSENT"
+    },
+    {
+      "key": "actual_source_fullV3_handoff_bound_without_chronology_claim",
+      "old": "ABSENT",
+      "current": true
+    }
+  ],
+  "history_and_correction_reason": "Before freezing H1b916, the adapter source_validation_completed_after_producer_inheritance_claim field was removed because chronology was not established, replaced by actual source-H binding without chronology claim and preservation of original priorV3=false. The frozen input evidence retained the earlier adapter spec; this sidecar preserves both serialized versions without rewriting H or input.",
+  "historical_chronology_claim_not_adopted": true,
+  "current_source_H_actual_binding_and_original_producer_priorV3_false_preserved": true,
+  "MP4_AAC_decoded_frames_source_GEN_MD_and_all_actual_QA_unchanged": true,
+  "frozen_H_input_and_validation_not_modified": true,
+  "media_remeasurement_performed": false,
+  "diff": {
+    "path": "/dev/shm/review66-hold18-intake/history/66-ad79-to-current6173-metadata-only.diff",
+    "bytes": 537,
+    "sha256": "4d1a3bac3b8110edff428d123091077df0ed5008dbedfe089c647594368ae8d2"
+  }
+}
