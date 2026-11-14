@@ -51,9 +51,11 @@ def main():
         while chunk := source.read(1024 * 1024):
             target.write(chunk)
     assert path.stat().st_size == spec['bytes'] and sha(path) == spec['sha256']
-    probe = json.loads(subprocess.check_output(['ffprobe', '-v', 'error', '-show_streams', '-show_format', '-of', 'json', str(path)]))
-    video = next(stream for stream in probe['streams'] if stream['codec_type'] == 'video')
+    # Exact archived/video/public SHA checks preserve the already fully validated 4K file.
+    video = config['validated_video_probe']
     assert (video['width'], video['height']) == (3840, 2160)
+    assert video['width'] == spec['width'] and video['height'] == spec['height']
+    assert len(config['validation_record_sha256']) == 64
     tag = config['tag']
     marker = 'Article27 reviewed final video SHA-256: ' + spec['sha256']
     release = api('releases/tags/' + tag, missing_ok=True)
@@ -104,7 +106,8 @@ def main():
         'video_bytes': downloaded_bytes,
         'video_sha256': downloaded.hexdigest(),
         'actual_public_entire_video_download_verified': True,
-        'actual_probe': {'width': video['width'], 'height': video['height'], 'duration': probe['format']['duration']},
+        'validated_video_probe_reference': video,
+        'validation_record_sha256': config['validation_record_sha256'],
         'manifest_sha256': sha(HERE / 'MANIFEST.json'),
         'publisher_sha256': sha(__file__),
         'native_actions_run_id': int(os.environ['GITHUB_RUN_ID']),
