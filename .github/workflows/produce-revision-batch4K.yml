@@ -63,6 +63,8 @@ jobs:
             /视频/配音缓存/*.json
             /视频/*.md
             /新版定稿/
+            /插图阅读小册/illustrations/${{ matrix.article }}.png
+            /插图阅读小册/illustrations/01-preview.png
             /最终版4K视频/${{ matrix.article }} - *
             /CLAUDE.md
           sparse-checkout-cone-mode: false
@@ -111,6 +113,9 @@ jobs:
             article${{ matrix.article }}-delivery/*.png
             article${{ matrix.article }}-delivery/*.wav
             article${{ matrix.article }}-delivery/*.log
+            article${{ matrix.article }}-delivery/*.py
+            article${{ matrix.article }}-delivery/*.md
+            article${{ matrix.article }}-delivery/*-illustrated-tail-previews/*.jpg
           compression-level: 1
           retention-days: 30
           if-no-files-found: error

@@ -29,9 +29,12 @@ ENV = {**os.environ, 'XG_P': str(ROOT), 'XG_TOOLS': str(T), 'XG_WORK': str(W),
        'VIDEO_ROOT': str(M), 'XG_NOPUSH': '1', 'STRICT_CACHE': '1'}
 for key in ('YAOWENBEN', 'OLD_IV_VOID', 'AUDIO_ONLY', 'VIDEO_S'):
     ENV.pop(key, None)
-status = {'article': NO, 'passed': False, 'stage': 'start', 'checks_unchanged': True,
+status = {'article': NO, 'passed': False, 'stage': 'start',
+          'original_audit_and_quality_thresholds_unchanged': True, 'original_maker_unchanged': True,
+          'core_repairs': [],
           'strict_production_cache': True, 'pdf_requested': False}
 PRODUCTION_STARTED_NS = None
+BASELINE_AUDIO_FILES = None
 
 
 def sha(path):
@@ -40,6 +43,253 @@ def sha(path):
 
 def save():
     (OUT / f'{NO}-status.json').write_text(json.dumps(status, ensure_ascii=False, indent=2) + '\n')
+
+
+def install_certified_core_repairs():
+    """Install the reviewed three-file repair with its actual original stamp."""
+    folder = TASK / 'certified-core'
+    manifest_file = folder / 'manifest.json'
+    if not manifest_file.is_file():
+        return
+    manifest = json.loads(manifest_file.read_text())
+    assert manifest['kind'] == 'actual-original-fastcheck-certified-three-core-repair'
+    allowed = {'视频/工具/草稿声音.sh','视频/工具/句内响度.py','视频/工具/独立复核/synth.py'}
+    assert {item['target'] for item in manifest['core_files']} == allowed
+    for item in manifest['core_files']:
+        source = folder / item['file']
+        target = ROOT / item['target']
+        assert sha(source) == item['patched_sha256'] and sha(target) == item['original_sha256']
+        shutil.copyfile(source, target)
+    data = manifest['reviewed_regression_resource']
+    assert data['target'] == '视频/工具/新管/回归基准_27.json'
+    assert sha(folder / data['file']) == data['sha256']
+    shutil.copyfile(folder / data['file'], ROOT / data['target'])
+    stamp = manifest['actual_native_fastcheck_stamp']
+    assert stamp['target'] == '视频/工具/新管/快测通过.json'
+    assert sha(folder / stamp['file']) == stamp['sha256']
+    shutil.copyfile(folder / stamp['file'], ROOT / stamp['target'])
+    # The unchanged original verifier checks every program's stamp entry;
+    # no synthetic or manually constructed stamp is accepted here.
+    checked(['python3',T / '新管/印章.py'], 'certified-core-original-stamp-verification.log')
+    ENV['XG_KEEP_REVIEWED_GAIN'] = '1'
+    status['core_repairs'] = manifest['core_files']
+    status['actual_native_core_certification'] = manifest['actual_native_certification']
+    status['actual_native_fastcheck_stamp'] = stamp
+    status['reviewed_regression_resource'] = data
+    status['core_repair_manifest_sha256'] = sha(manifest_file)
+    status['reviewed_gain_preservation_mode'] = True
+    save()
+
+
+def prepare_accepted_pcm_continuity(baseline_bytes, accepted_aac):
+    """Rebuild genuine old PCM privately for exact confirmation comparisons."""
+    global BASELINE_AUDIO_FILES
+    expected = {'10':'15f47fa51add', '11':'5da69def8d01', '12':'04f94362f377',
+                '44':'21efe6263229', '51':'ff0728857c2d'}
+    if NO not in expected:
+        return
+    script = W / f'scripts/{NO}.json'
+    current = script.read_bytes()
+    old_source = LOG / 'accepted-prior-source.json'
+    old_source.write_bytes(baseline_bytes)
+    proof = {'article':NO, 'purpose':'diagnostic old accepted PCM reconstruction only; not a QC verdict',
+             'quality_acceptance':False, 'old_source_sha256':sha(old_source),
+             'expected_accepted_pcm_md5_first12':expected[NO],
+             'old_pcm_matches_accepted_confirmation_fingerprint':False,
+             'private_PCM_or_cache_exported':False}
+    proof_file = OUT / f'{NO}-accepted-prior-pcm-probe.json'
+    try:
+        script.write_bytes(baseline_bytes)
+        output = W / f'_accepted-prior-diagnostic-{NO}.m4a'
+        with (LOG / 'accepted-prior-pcm-probe.log').open('w') as stream:
+            process = subprocess.run(['python3', str(W / 'make_video.py'), str(script), str(output)],
+                                     cwd=W, env={**ENV, 'AUDIO_ONLY':'1'}, stdout=stream, stderr=subprocess.STDOUT)
+        proof['original_maker_exit'] = process.returncode
+        if process.returncode == 0:
+            wav = W / f'work_{NO}/a.wav'
+            old_wav, old_segments = LOG / 'accepted-prior-a.wav', LOG / 'accepted-prior-segments.json'
+            shutil.copyfile(wav, old_wav)
+            shutil.copyfile(W / f'work_{NO}/分段.json', old_segments)
+            actual_fp = hashlib.md5(old_wav.read_bytes()).hexdigest()[:12]
+            proof.update({'actual_old_pcm_md5_first12':actual_fp, 'actual_old_pcm_sha256':sha(old_wav),
+                          'old_pcm_matches_accepted_confirmation_fingerprint':actual_fp == expected[NO],
+                          'old_reconstructed_aac_adts_sha256':aac_hash(output),
+                          'accepted_prior_aac_adts_sha256':accepted_aac,
+                          'old_reconstructed_aac_exactly_matches_accepted':aac_hash(output) == accepted_aac,
+                          'old_segment_metadata_sha256':sha(old_segments)})
+            BASELINE_AUDIO_FILES = {'old_wav':old_wav, 'old_source':old_source,
+                                    'old_segments':old_segments, 'proof':proof_file}
+    except Exception as exc:
+        proof['diagnostic_error'] = {'type':type(exc).__name__, 'message':str(exc).replace(str(M), '<private-machine>')[:600]}
+    finally:
+        script.write_bytes(current)
+        proof_file.write_text(json.dumps(proof, ensure_ascii=False, indent=2) + '\n')
+        status['accepted_prior_pcm_probe'] = proof
+        save()
+    if not BASELINE_AUDIO_FILES or not proof['old_pcm_matches_accepted_confirmation_fingerprint']:
+        return
+    # Original precise confirmations may refer to a previously public failed
+    # draft (12's reviewed highlight), as well as the accepted prior voice.
+    # Reconstruct that exact input privately and require its complete PCM SHA.
+    originals = [BASELINE_AUDIO_FILES['old_wav']]
+    supplemental = TASK / 'public-failed-audio-reference' / f'{NO}.json'
+    contract_file = supplemental.with_name(NO + '-proof.json')
+    if supplemental.is_file() and contract_file.is_file():
+        contract = json.loads(contract_file.read_text())
+        record = {'source_sha256':sha(supplemental), 'exact_public_failed_pcm_reproduced':False}
+        try:
+            assert sha(supplemental) == contract['source_sha256']
+            script.write_bytes(supplemental.read_bytes())
+            with (LOG / 'prior-public-failed-audio-probe.log').open('w') as stream:
+                result = subprocess.run(['python3', str(W / 'make_video.py'), str(script),
+                                         str(W / f'_prior-public-failed-{NO}.m4a')], cwd=W,
+                    env={**ENV, 'AUDIO_ONLY':'1'}, stdout=stream, stderr=subprocess.STDOUT)
+            record['original_maker_exit'] = result.returncode
+            if result.returncode == 0:
+                wav = W / f'work_{NO}/a.wav'
+                record['actual_pcm_sha256'] = sha(wav)
+                if sha(wav) == contract['internal_pcm_sha256']:
+                    extra = LOG / 'prior-public-failed-a.wav'
+                    shutil.copyfile(wav, extra)
+                    originals.append(extra)
+                    record['exact_public_failed_pcm_reproduced'] = True
+        except Exception as exc:
+            record['diagnostic_error'] = type(exc).__name__
+        finally:
+            script.write_bytes(current)
+            status['prior_public_failed_audio_probe'] = record
+    # Use the unchanged factory's exact-sample migration, before the regular
+    # 草稿声音 pipeline. It never changes audio, and every original QC still runs.
+    with (LOG / 'current-PCM-before-original-confirmation-migration.log').open('w') as stream:
+        result = subprocess.run(['python3', str(W / 'make_video.py'), str(script), str(W / f'{NO}.mp4')],
+                                cwd=W, env={**ENV, 'AUDIO_ONLY':'1'}, stdout=stream, stderr=subprocess.STDOUT)
+    status['original_confirmation_migration'] = {'actual_current_audio_only_exit':result.returncode,
+        'unchanged_original_program_sha256':sha(T / '确认平移.py'), 'attempts':[],
+        'new_quality_gate':False, 'audio_modified_by_migration':False}
+    if result.returncode == 0:
+        actual_fp = hashlib.md5((W / f'work_{NO}/a.wav').read_bytes()).hexdigest()[:12]
+        for index, old_wav in enumerate(originals):
+            old_fp = hashlib.md5(old_wav.read_bytes()).hexdigest()[:12]
+            if old_fp == actual_fp:
+                continue
+            with (LOG / f'original-confirmation-migration-{index}.log').open('w') as stream:
+                migrated = subprocess.run(['python3', str(T / '确认平移.py'), NO, str(old_wav), '--写入'],
+                                         cwd=W, env=ENV, stdout=stream, stderr=subprocess.STDOUT)
+            status['original_confirmation_migration']['attempts'].append({
+                'old_pcm_md5_first12':old_fp, 'actual_pcm_md5_first12':actual_fp, 'exit':migrated.returncode})
+    save()
+
+
+def collect_confirmation_continuity():
+    """Export all confirmation categories as scalar evidence, with no renewal."""
+    if not BASELINE_AUDIO_FILES or PRODUCTION_STARTED_NS is None:
+        return
+    wav = W / f'work_{NO}/a.wav'
+    segments = W / f'work_{NO}/分段.json'
+    if not wav.is_file() or not segments.is_file() or wav.stat().st_mtime_ns < PRODUCTION_STARTED_NS:
+        return
+    output = OUT / f'{NO}-confirmation-continuity.json'
+    args = ['python3', TASK / 'collect-confirmation-continuity.py',
+            '--old-wav', BASELINE_AUDIO_FILES['old_wav'], '--actual-wav', wav,
+            '--old-source', BASELINE_AUDIO_FILES['old_source'], '--actual-source', W / f'scripts/{NO}.json',
+            '--old-segments', BASELINE_AUDIO_FILES['old_segments'], '--actual-segments', segments,
+            '--baseline-proof', BASELINE_AUDIO_FILES['proof'], '--dossier', W / f'dossier_{NO}.json',
+            '--output', output]
+    result = subprocess.run(list(map(str,args)), cwd=W, env=ENV, capture_output=True, text=True, errors='replace', timeout=120)
+    record = {'diagnostic_only':True, 'automatic_renewals':False, 'exit':result.returncode}
+    if output.is_file():
+        record.update({'file':output.name,'sha256':sha(output)})
+    else:
+        record['diagnostic_error_type'] = 'ScalarCollectionFailed'
+    status['confirmation_continuity'] = record
+
+
+def collect_actual_public_sources(request, current_source):
+    """Archive actual source files honestly; this creates no extra QC verdict."""
+    manifest = {'article': NO, 'kind': 'actual-production-source-collection',
+                'new_quality_gate': False, 'files': {}}
+    paths = [('request_json', request / f'视频/脚本/{NO}.json', f'{NO}-request-source.json'),
+             ('request_generator', request / f'视频/工具/初稿生成/gen{NO}.py', f'{NO}-request-gen.py'),
+             ('used_generator', T / f'初稿生成/gen{NO}.py', f'{NO}-used-gen.py'),
+             ('actual_working_source', current_source, f'{NO}-actual-working-source.json')]
+    request_md = next((request / '新版定稿').glob(f'{NO}-*.md'))
+    paths += [('request_manuscript', request_md, f'{NO}-request-manuscript.md'),
+              ('actual_working_manuscript', ROOT / '新版定稿' / request_md.name,
+               f'{NO}-actual-working-manuscript.md')]
+    for role, source, name in paths:
+        destination = OUT / name
+        shutil.copyfile(source, destination)
+        manifest['files'][role] = {'file': name, 'sha256': sha(destination),
+                                   'origin': 'actual_production_filesystem' if role.startswith(('used_', 'actual_')) else 'immutable_request'}
+    log = W / f'做_{NO}/生成.log'
+    observed = bool(log.is_file() and PRODUCTION_STARTED_NS is not None
+                    and log.stat().st_mtime_ns >= PRODUCTION_STARTED_NS)
+    manifest['generator_execution_observed'] = observed
+    manifest['generator_execution_evidence'] = 'fresh official 做/生成.log' if observed else 'No fresh generator execution log; do not claim this GEN was executed during rendering.'
+    if observed:
+        shutil.copyfile(log, OUT / f'{NO}-used-generator-execution.log')
+    def changes(before, after, path=''):
+        if type(before) is not type(after):
+            return [{'path': path or '/', 'request': before, 'actual': after}]
+        if isinstance(before, dict):
+            rows = []
+            for key in sorted(set(before) | set(after)):
+                part = path + '/' + key.replace('~', '~0').replace('/', '~1')
+                if key not in before:
+                    rows.append({'path': part, 'added_actual_value': after[key]})
+                elif key not in after:
+                    rows.append({'path': part, 'removed_request_value': before[key]})
+                else:
+                    rows += changes(before[key], after[key], part)
+            return rows
+        if isinstance(before, list) and len(before) == len(after):
+            return [row for i, (a, b) in enumerate(zip(before, after)) for row in changes(a, b, path + '/' + str(i))]
+        return [] if before == after else [{'path': path or '/', 'request': before, 'actual': after}]
+    diff = {'article': NO, 'kind': 'observed-request-to-actual-source-differences',
+            'quality_verdict': None,
+            'changes': changes(json.loads((request / f'视频/脚本/{NO}.json').read_text()),
+                               json.loads(current_source.read_text()))}
+    diff_file = OUT / f'{NO}-actual-source-differences.json'
+    diff_file.write_text(json.dumps(diff, ensure_ascii=False, indent=2) + '\n')
+    manifest['source_differences'] = {'file': diff_file.name, 'sha256': sha(diff_file)}
+    (OUT / f'{NO}-actual-source-collection.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n')
+    status['actual_source_collection'] = manifest
+
+
+def add_approved_illustrated_tail(request, final, verification):
+    """Keep the genuine passed body/AAC, then approved book art60 + summary60."""
+    helper = TASK / 'illustrated_tail.py'
+    # The upstream verdict is genuine and complete before this independent
+    # packet-preserving composition step; preserve it as a separate record.
+    upstream_status = OUT / f'{NO}-canonical-summary-passed-status.json'
+    shutil.copyfile(OUT / f'{NO}-status.json', upstream_status)
+    image = ROOT / '插图阅读小册/illustrations' / ('01-preview.png' if NO == '01' else f'{NO}.png')
+    output = OUT / f'{NO}-4K-正文-书中插图2秒-简述2秒.mp4'
+    report = OUT / f'{NO}-illustrated-tail-verification.json'
+    checked(['python3', helper, '--source-id', NO, '--input', final,
+             '--verification', verification, '--illustration-manifest', TASK / 'illustration-manifest70.json',
+             '--order-manifest', TASK / 'book-order-manifest.json', '--crop-review', TASK / 'illustration-crop-review70.json',
+             '--illustration', image, '--summary-image', OUT / f'{NO}-简述.png',
+             '--layout-approval', TASK / 'approved-video-layouts70.json', '--output', output,
+             '--report', report, '--status', upstream_status, '--source-script', request / f'视频/脚本/{NO}.json',
+             '--work', M / f'{NO}-illustrated-tail', '--preview-dir', OUT / f'{NO}-illustrated-tail-previews',
+             '--prepared-illustration-output', OUT / f'{NO}-批准插图4K.png'], 'approved-illustrated-tail.log', ROOT)
+    proof = json.loads(report.read_text())
+    assert proof['passed'] is True and aac_hash(output) == status['canonical_aac_adts_sha256']
+    assert proof['production_delivery_eligible'] is True and proof['source_kind'] == 'new-canonical-4K'
+    assert proof['input_video_sha256'] == sha(final) and proof['video_sha256'] == sha(output)
+    status.update({'passed': True, 'stage': 'final4K-passed', 'video_sha256': sha(output),
+                   'final_video_file': output.name, 'illustration_frames': 60, 'illustration_seconds': 2,
+                   'summary_start_seconds': proof['summary_start_seconds'],
+                   'illustration_start_frame': proof['illustration_start_frame'],
+                   'illustration_start_seconds': proof['illustration_start_seconds'],
+                   'summary_start_frame': proof['summary_start_frame'],
+                   'output_frames': proof['output_frames'], 'output_seconds': proof['output_seconds'],
+                   'first_tail_page': 'illustration',
+                   'final_decoded_frame_previews': proof.get('decoded_frame_previews', []),
+                   'illustrated_tail_verification': {'file': report.name, 'sha256': sha(report)}})
+    # The predecessor and its actual passed proof remain archived for lineage.
+    return output
 
 
 def install_reviewed_context(request):
@@ -136,6 +386,70 @@ def clear_temporary_video():
                                          'production_started_ns': PRODUCTION_STARTED_NS,
                                          'repository_outputs_modified': False}
     save()
+
+
+def clear_current_reference_cache():
+    """Rebuild only this article's temporary GT with the approved raw loader."""
+    qc = Path(ENV.get('QC_DIR', str(M / 'qc_independent')))
+    assert qc.resolve().is_relative_to(M.resolve()) and not qc.resolve().is_relative_to(ROOT.resolve())
+    removed = []
+    for path in sorted((qc / 'gt').glob(NO + '_*')):
+        assert path.is_file() and not path.is_symlink()
+        removed.append({'name': path.name, 'sha256': sha(path)})
+        path.unlink()
+    status['fresh_current_article_reference'] = {'article': NO, 'removed_temporary_gt_files': removed,
+        'processed_pcm_or_raw_mother_cache_modified': False,
+        'purpose': 'Original synth/labels/audit rebuild fresh for this production; no old CPU GT reuse.'}
+    save()
+
+
+def activate_read_only_failure_probe():
+    if NO not in {'06','54','57','67'}:
+        return
+    probe = TASK / 'read-only-scalar-probe'
+    result = subprocess.run(['python3','-c',
+        "import importlib.util,json; s=importlib.util.find_spec('sitecustomize'); print(json.dumps(s.origin if s else None))"],
+        cwd=W, env=ENV, capture_output=True, text=True)
+    existing = json.loads(result.stdout) if result.returncode == 0 else 'Existing customization could not be inspected.'
+    if existing:
+        status['read_only_failure_scalar_probe'] = {'enabled':False,'existing_customization_preserved':True,
+                                                   'reason':'An existing sitecustomize was preserved.'}
+        return
+    ENV.update({'PYTHONPATH':str(probe)+(os.pathsep+ENV['PYTHONPATH'] if ENV.get('PYTHONPATH') else ''),
+                'VIDEO_SAFE_SCALAR_DIR':str(OUT), 'VIDEO_SAFE_SCALAR_ARTICLE':NO,
+                'VIDEO_SAFE_SCALAR_MAKER':str(W / 'make_video.py'),
+                'VIDEO_SAFE_SCALAR_SOURCE':str(W / f'scripts/{NO}.json'),
+                'VIDEO_SAFE_SCALAR_SEGS':str(W / f'work_{NO}/分段.json')})
+    status['read_only_failure_scalar_probe'] = {'enabled':True,'no_original_exception_or_result_changed':True,
+        'hook_sha256':{name:sha(probe/name) for name in ('sitecustomize.py','safe_scalar_probe.py')}}
+    save()
+
+
+def assert_reviewed_gain_controls(requested, stage):
+    if ENV.get('XG_KEEP_REVIEWED_GAIN') != '1':
+        return
+    def gains(value, path=''):
+        if isinstance(value, dict):
+            rows = {}
+            for key, item in value.items():
+                pointer = path + '/' + key.replace('~', '~0').replace('/', '~1')
+                if '增益' in key:
+                    rows[pointer] = item
+                else:
+                    rows.update(gains(item, pointer))
+            return rows
+        if isinstance(value, list):
+            return {key: item for index, child in enumerate(value)
+                    for key, item in gains(child, path + '/' + str(index)).items()}
+        return {}
+    before = gains(requested)
+    after = gains(json.loads((W / f'scripts/{NO}.json').read_text()))
+    same = before == after
+    status.setdefault('reviewed_gain_control_preservation', []).append({
+        'stage': stage, 'requested_gain_controls': before, 'actual_gain_controls': after,
+        'exactly_preserved': same})
+    save()
+    assert same, 'Reviewed source gain controls changed during production.'
 
 
 def failure_audio_diagnostics():
@@ -409,6 +723,7 @@ def same_summary_content(expected, actual):
 try:
     assert (M / 'tts/kokoro-v1.0.onnx').exists(), 'Original warm machine cache was not restored.'
     W.mkdir(parents=True, exist_ok=True)
+    install_certified_core_repairs()
     # Keep restored historical logs internal; report only this run's checks.
     for name in (f'做_{NO}', f'定稿_{NO}'):
         old = W / name
@@ -447,7 +762,8 @@ try:
         files.append((confirmations, ROOT / f'视频/制作记录/逐句确认/{NO}.json'))
     # Keep the accepted original English baseline before installing updated
     # cross-article context; context cannot erase this invariant.
-    baseline = json.loads((ROOT / script_rel).read_text())
+    baseline_bytes = (ROOT / script_rel).read_bytes()
+    baseline = json.loads(baseline_bytes)
     install_reviewed_context(request)
     for source, destination in files:
         destination.parent.mkdir(parents=True, exist_ok=True)
@@ -523,9 +839,15 @@ try:
         status['checker_reference_preparation'] = evidence
         status['checker_reference_preparation_program_sha256'] = sha(reference_helper)
         save()
+    prepare_accepted_pcm_continuity(baseline_bytes, accepted_aac)
+    clear_current_reference_cache()
     clear_temporary_video()
+    activate_read_only_failure_probe()
     official(['bash', T / '新管/做.sh', NO, '--不推'], 'canonical-draft')
+    assert_reviewed_gain_controls(requested, 'canonical-draft')
     official(['bash', T / '新管/定稿.sh', NO], 'canonical-final4K')
+    assert_reviewed_gain_controls(requested, 'canonical-final4K')
+    collect_confirmation_continuity()
     checked(['python3', T / '新管/印章.py'], 'original-stamp-after-production.log')
     current = json.loads((W / f'scripts/{NO}.json').read_text())
     assert same_summary_content(requested_summary, summary(current)), (
@@ -614,11 +936,15 @@ try:
                    'summary_start_seconds': timing['summary_start_seconds'],
                    'delay_after_voice_seconds': timing['delay_after_voice_seconds']})
     save()
+    collect_actual_public_sources(request, W / f'scripts/{NO}.json')
+    save()
+    final = add_approved_illustrated_tail(request, final, OUT / f'{NO}-summary-verification.json')
+    save()
     print(json.dumps(status, ensure_ascii=False), flush=True)
 except Exception as exc:
     status['passed'] = False
     status['error'] = str(exc)
-    for collector in (failure_audio_diagnostics, export_failed_current_video):
+    for collector in (collect_confirmation_continuity, failure_audio_diagnostics, export_failed_current_video):
         try:
             collector()
         except Exception as collection_error:
