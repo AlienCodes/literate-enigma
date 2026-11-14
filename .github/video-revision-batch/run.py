@@ -48,14 +48,18 @@ def save():
 
 
 def install_certified_core_repairs():
-    """Install the reviewed three-file repair with its actual original stamp."""
+    """Install the reviewed certified repair with its actual original full stamp."""
     folder = TASK / 'certified-core'
     manifest_file = folder / 'manifest.json'
     if not manifest_file.is_file():
         return
     manifest = json.loads(manifest_file.read_text())
-    assert manifest['kind'] == 'actual-original-fastcheck-certified-three-core-repair'
+    assert manifest['kind'] in {'actual-original-fastcheck-certified-three-core-repair',
+                                'actual-original-fastcheck-certified-four-core-repair'}
     allowed = {'视频/工具/草稿声音.sh','视频/工具/句内响度.py','视频/工具/独立复核/synth.py'}
+    keep_ending = manifest['kind'] == 'actual-original-fastcheck-certified-four-core-repair'
+    if keep_ending:
+        allowed.add('视频/工具/结尾句接点.py')
     assert {item['target'] for item in manifest['core_files']} == allowed
     for item in manifest['core_files']:
         source = folder / item['file']
@@ -74,12 +78,15 @@ def install_certified_core_repairs():
     # no synthetic or manually constructed stamp is accepted here.
     checked(['python3',T / '新管/印章.py'], 'certified-core-original-stamp-verification.log')
     ENV['XG_KEEP_REVIEWED_GAIN'] = '1'
+    if keep_ending:
+        ENV['XG_KEEP_REVIEWED_ENDING'] = '1'
     status['core_repairs'] = manifest['core_files']
     status['actual_native_core_certification'] = manifest['actual_native_certification']
     status['actual_native_fastcheck_stamp'] = stamp
     status['reviewed_regression_resource'] = data
     status['core_repair_manifest_sha256'] = sha(manifest_file)
     status['reviewed_gain_preservation_mode'] = True
+    status['reviewed_existing_ending_preservation_mode'] = keep_ending
     save()
 
 
