@@ -1,0 +1,2515 @@
+{
+  "article": "26",
+  "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+  "reference_prepared": true,
+  "acceptance": false,
+  "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+  "source_sha256": "22349b0a29f05689aae5bd5e9d0907846a68e6ad42949eb0b8cc392d6dce18d6",
+  "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+  "checker_program_sha256": {
+    "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+    "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+    "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+    "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+    "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+    "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+  },
+  "reference_calls": [
+    {
+      "sentence": "标题",
+      "piece": null,
+      "reference_kind": "title-default-raw",
+      "method": "create",
+      "source_slice": "The Language the Children Invented",
+      "exact_native_cache_key": "39bbfde32584bce1c33b6eb2ce96f134653f17d1.pkl",
+      "cache_input_text_sha256": "a90c110b99099ab3cd74036cbf1a9665eeb4c8ca5492eac116d61b117bb7d411",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "标题",
+      "piece": null,
+      "reference_kind": "title-default-timed",
+      "method": "create_timed",
+      "source_slice": "The Language the Children Invented",
+      "exact_native_cache_key": "5f123ab97550a07bfbe8f1c58f20930dbaf46670.pkl",
+      "cache_input_text_sha256": "a90c110b99099ab3cd74036cbf1a9665eeb4c8ca5492eac116d61b117bb7d411",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "On a rattling bus in Managua, deaf pupils kept up a brisk, voiceless hubbub across the aisle, palms fluttering, wrists flicking.",
+      "exact_native_cache_key": "08c32f1396b9813a92eb80e37c081829a998f0d3.pkl",
+      "cache_input_text_sha256": "6c8ce666d56c9723ecd75c89643b0f656c4098daedea535db862009785c4939e",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "On a rattling bus in Managua, deaf pupils kept up a brisk, voiceless hubbub across the aisle, palms fluttering, wrists flicking.",
+      "exact_native_cache_key": "584e9f8767a8c1b8b0d2bd297bacbe17fc72cc19.pkl",
+      "cache_input_text_sha256": "6c8ce666d56c9723ecd75c89643b0f656c4098daedea535db862009785c4939e",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "On a rattling bus in Managua, deaf pupils kept up a brisk, voiceless hubbub across the aisle,",
+      "exact_native_cache_key": "c7316d7bd3c6a42fd8fa89b172f05b88e08da36c.pkl",
+      "cache_input_text_sha256": "5972c05f55ad5fa19e00f38eda0dd0e55ba264dbef2c4007ea8952281c5ce80f",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "palms fluttering, wrists flicking.",
+      "exact_native_cache_key": "0c2d1a0ebdf3318e1f8b469a50a8c20f3c4f3d54.pkl",
+      "cache_input_text_sha256": "a48b9f66695e9ce1fa39b7fb02dbaa2a18aa58078ea836bea2628ab5bb59bd66",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "On a rattling bus in Managua,",
+      "exact_native_cache_key": "f97926715b0174dec05b18027053855f838c80d6.pkl",
+      "cache_input_text_sha256": "9211211ce4ce9c641c58e849423f67697f299a2b4bc0f6d61ea304152aa85a02",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "deaf pupils kept up a brisk,",
+      "exact_native_cache_key": "2f8c02ec2ab1d319cf0aa2a403995d3fa0bfe6b4.pkl",
+      "cache_input_text_sha256": "58ec5e67094d7d7758bf5ada77a6016f8dd7e0b7023e880e5bfc7d5923adb355",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "voiceless hubbub across the aisle,",
+      "exact_native_cache_key": "0c1a8e153c3ed75306dce481956c78c817c19e90.pkl",
+      "cache_input_text_sha256": "6ad24a13ffbccf5fb8cd881ba83ea00e9e38921389e6aa9774d6505ddb1d585f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 4,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "palms fluttering,",
+      "exact_native_cache_key": "2170235e032099abfc5aeee4e7dc75b19a2d9942.pkl",
+      "cache_input_text_sha256": "330989e20c6c1016d4ec193fbd242da06702c835270c8dc4cd495a3a0b16c4e0",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 5,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "wrists flicking.",
+      "exact_native_cache_key": "f3cd72fa6231d34ba20f5979606b839908d64464.pkl",
+      "cache_input_text_sha256": "1e89ebbb97fdfa34dbe94a44ce1a76c2d666a7dd477c5d658194d0358e761648",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Their teachers could not follow a word.",
+      "exact_native_cache_key": "c979397829408a6546e06481704104a8d74c738e.pkl",
+      "cache_input_text_sha256": "88822b86a1752323d045bff2ca2107993dc97309b15bb5888b95e9c98af97009",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Their teachers could not follow a word.",
+      "exact_native_cache_key": "fab0c80d5f92d3b207da96ec0464825f46974493.pkl",
+      "cache_input_text_sha256": "88822b86a1752323d045bff2ca2107993dc97309b15bb5888b95e9c98af97009",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Before the late 1970s Nicaragua had no deaf community.",
+      "exact_native_cache_key": "dba06baf2a788b5ab5d7bf1bc211307a0ad8b58c.pkl",
+      "cache_input_text_sha256": "6c61c54c599446c716bf0a2eb544b5ca4a1e64020ce7f743eb84244a2cf24402",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Before the late 1970s Nicaragua had no deaf community.",
+      "exact_native_cache_key": "597750c11fbe0be84998b9b0e5e3a51b59035991.pkl",
+      "cache_input_text_sha256": "6c61c54c599446c716bf0a2eb544b5ca4a1e64020ce7f743eb84244a2cf24402",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Most deaf people led secluded lives, sharing a homemade repertoire of gestures with parents and siblings.",
+      "exact_native_cache_key": "473c69557a845f412b78a42c5926ffbb64950422.pkl",
+      "cache_input_text_sha256": "4109baf173f2c38ceedaa1a6d1ae0959f68d68a49f38fcee6c149a5abae00e1c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Most deaf people led secluded lives, sharing a homemade repertoire of gestures with parents and siblings.",
+      "exact_native_cache_key": "ccb9edf6619d57ebfa711a6e6344da69c2e0a6a7.pkl",
+      "cache_input_text_sha256": "4109baf173f2c38ceedaa1a6d1ae0959f68d68a49f38fcee6c149a5abae00e1c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Most deaf people led secluded lives,",
+      "exact_native_cache_key": "6efa71b8c0987d5483e95234ba1d53b9146eaf24.pkl",
+      "cache_input_text_sha256": "ef2b5e0cc9e3932587df72414ad1cde9712962633b87b04847bd4ce787a26caa",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "sharing a homemade repertoire of gestures with parents and siblings.",
+      "exact_native_cache_key": "711bff9312593ae9c431311831fd15f01a88d701.pkl",
+      "cache_input_text_sha256": "d59369c664b377235b55095f9ad06431f25c4f96f17cdd3cbd13d7652385c7ac",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Most deaf people led secluded lives,",
+      "exact_native_cache_key": "6efa71b8c0987d5483e95234ba1d53b9146eaf24.pkl",
+      "cache_input_text_sha256": "ef2b5e0cc9e3932587df72414ad1cde9712962633b87b04847bd4ce787a26caa",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "sharing a homemade repertoire of gestures with parents and siblings.",
+      "exact_native_cache_key": "711bff9312593ae9c431311831fd15f01a88d701.pkl",
+      "cache_input_text_sha256": "d59369c664b377235b55095f9ad06431f25c4f96f17cdd3cbd13d7652385c7ac",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "In 1977 a special-education centre opened in Managua's San Judas district with 50 deaf pupils.",
+      "exact_native_cache_key": "a1ba016d44c58f555cce563c261668b4bc9525c4.pkl",
+      "cache_input_text_sha256": "0a953b2646447e39f614feb9f5ea2d3d1ff8bc0e4212632bb83c5c6f57ec310b",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "In 1977 a special-education centre opened in Managua's San Judas district with 50 deaf pupils.",
+      "exact_native_cache_key": "64c5e076b67342dba40cd3989707e2a7a74598ac.pkl",
+      "cache_input_text_sha256": "0a953b2646447e39f614feb9f5ea2d3d1ff8bc0e4212632bb83c5c6f57ec310b",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "By 1983 the centre and a vocational school for teenage pupils held more than 400.",
+      "exact_native_cache_key": "7a7b51965bc96b99c59b47bf262797955e3db81a.pkl",
+      "cache_input_text_sha256": "959df255f1aa5ec2095c2dbdca3deaac1a9c77f8f21d617491d952d1e403b614",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "By 1983 the centre and a vocational school for teenage pupils held more than 400.",
+      "exact_native_cache_key": "0ce08b50a2f3c4b269dbe807b44148f0e5637f16.pkl",
+      "cache_input_text_sha256": "959df255f1aa5ec2095c2dbdca3deaac1a9c77f8f21d617491d952d1e403b614",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "The curriculum hinged on oral Spanish and lipreading, and teachers signed only the alphabet.",
+      "exact_native_cache_key": "f7268db62e89d5cdf1236abea1569bc798431863.pkl",
+      "cache_input_text_sha256": "bb8c9b1e31091342224092cd877fd6d56b657ed8d3c7b49044e315a201583cdc",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "The curriculum hinged on oral Spanish and lipreading, and teachers signed only the alphabet.",
+      "exact_native_cache_key": "916bba9a62fa4ad62cd5645cec4df4b4490ee53b.pkl",
+      "cache_input_text_sha256": "bb8c9b1e31091342224092cd877fd6d56b657ed8d3c7b49044e315a201583cdc",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "The curriculum hinged on oral Spanish and lipreading,",
+      "exact_native_cache_key": "eef6dee2cb2641f9a1c8f7c99525ffe2c8c8406a.pkl",
+      "cache_input_text_sha256": "fb20d4fc13c67020e6d1faf00f596ee488cc5d8c857ebfcad6412eee1f0b5bd1",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "and teachers signed only the alphabet.",
+      "exact_native_cache_key": "ddc75555fb95ed96edc72b319c51d56d602a85d7.pkl",
+      "cache_input_text_sha256": "46b88a697ed743f2e8c6459b0bcf86cc7d751ebf64684dd66bca1678ddc7914d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "The curriculum hinged on oral Spanish and lipreading,",
+      "exact_native_cache_key": "eef6dee2cb2641f9a1c8f7c99525ffe2c8c8406a.pkl",
+      "cache_input_text_sha256": "fb20d4fc13c67020e6d1faf00f596ee488cc5d8c857ebfcad6412eee1f0b5bd1",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "and teachers signed only the alphabet.",
+      "exact_native_cache_key": "ddc75555fb95ed96edc72b319c51d56d602a85d7.pkl",
+      "cache_input_text_sha256": "46b88a697ed743f2e8c6459b0bcf86cc7d751ebf64684dd66bca1678ddc7914d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Pupils studied lips in vain, and most failed to grasp what a Spanish word was.",
+      "exact_native_cache_key": "7133fc381907a5dbce91cb8dcd0f7f4fb1e31a44.pkl",
+      "cache_input_text_sha256": "ef063b192d579c4f233e27463877044af5b5dba1a124ace2d4cee4eccc4d6c13",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Pupils studied lips in vain, and most failed to grasp what a Spanish word was.",
+      "exact_native_cache_key": "2907022ef995664e91804e260c66e40299747353.pkl",
+      "cache_input_text_sha256": "ef063b192d579c4f233e27463877044af5b5dba1a124ace2d4cee4eccc4d6c13",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Pupils studied lips in vain,",
+      "exact_native_cache_key": "44559bb1357f15459206c4cb1a0f4c341862e946.pkl",
+      "cache_input_text_sha256": "0fc8ae04315e3f0c9e7af5d0351f9497181310434aeacaec934bbd281c2602c5",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "and most failed to grasp what a Spanish word was.",
+      "exact_native_cache_key": "de31ecdbb2ea0f7a4b6498db92bc5abdb927b149.pkl",
+      "cache_input_text_sha256": "5c5fa4bd46f8b533b9ad8e7310b0696d5799ac062834b23fe94252b6cc4538b3",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Pupils studied lips in vain,",
+      "exact_native_cache_key": "44559bb1357f15459206c4cb1a0f4c341862e946.pkl",
+      "cache_input_text_sha256": "0fc8ae04315e3f0c9e7af5d0351f9497181310434aeacaec934bbd281c2602c5",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "and most failed to grasp what a Spanish word was.",
+      "exact_native_cache_key": "de31ecdbb2ea0f7a4b6498db92bc5abdb927b149.pkl",
+      "cache_input_text_sha256": "5c5fa4bd46f8b533b9ad8e7310b0696d5799ac062834b23fe94252b6cc4538b3",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "At recess, in the street, and on the buses, they mingled gestures with home signs.",
+      "exact_native_cache_key": "e185dffd70a7d1c5e2e219a22aaecceefca83053.pkl",
+      "cache_input_text_sha256": "24798a4e6c026e11a1454c32d830014811a26fbcc790108437865549ba693a84",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "At recess, in the street, and on the buses, they mingled gestures with home signs.",
+      "exact_native_cache_key": "a8cf0ddc1cb576e9e4ffd81d6b51559ca6d1202c.pkl",
+      "cache_input_text_sha256": "24798a4e6c026e11a1454c32d830014811a26fbcc790108437865549ba693a84",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "At recess,",
+      "exact_native_cache_key": "69c7275591965927b4bde718d53b877f65455eef.pkl",
+      "cache_input_text_sha256": "4eae14d1c11ced44ae6a0ee381faf90c184b01f20da6a65fac19ef5995bfcc8a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "in the street,",
+      "exact_native_cache_key": "6deadeeae33b7ae20e3cab5b1a84d278eacfeab4.pkl",
+      "cache_input_text_sha256": "92612d4192a66fdcc568fcd21e984eb967fa996e0a7c83e66f05d1fdc3314c26",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "and on the buses,",
+      "exact_native_cache_key": "4e3579baa34d96792516fda5abbf7aa8cf0bb394.pkl",
+      "cache_input_text_sha256": "041fcaa392af1cb2e44b8add26b9447c8d08ad750ce563e62c2a6d7fff300c05",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": 4,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "they mingled gestures with home signs.",
+      "exact_native_cache_key": "2bafdf5c607787d95de69ce7d0856a857a4c4b91.pkl",
+      "cache_input_text_sha256": "ed3ff7184f7045cc10ec6976b89c97c30543182ed969f85d684725a77be5ae6d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "A rough jumble ripened rapidly into a coherent language entirely their own.",
+      "exact_native_cache_key": "c6cc8feb64a2fddbf9e0c308e3a1a84bcb781457.pkl",
+      "cache_input_text_sha256": "4af82ad771fedfacf49bb16e42f4bf8375d6f1a23b26d16acf69b5d65e55c815",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "A rough jumble ripened rapidly into a coherent language entirely their own.",
+      "exact_native_cache_key": "45ce270f05442ae2abde57209554f23041afeda1.pkl",
+      "cache_input_text_sha256": "4af82ad771fedfacf49bb16e42f4bf8375d6f1a23b26d16acf69b5d65e55c815",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "A rough jumble ripened rapidly into",
+      "exact_native_cache_key": "53e912855d096da69dabbda72ab0545e906f6c3b.pkl",
+      "cache_input_text_sha256": "980e10759eedd7918e2e1de0fcebb29b304e1cfc8064690c49102652abc3cefc",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "a coherent language entirely their own.",
+      "exact_native_cache_key": "c72e2e64c725d638554886716400722a8e2f34c2.pkl",
+      "cache_input_text_sha256": "399bffeb042f85c0b23f8eb9881ad6562182d0ac5f380a29eb8e4d25b5f261a1",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "The teachers found it unintelligible, and in June 1986 the Ministry of Education brought in Judy Kegl, an American Sign Language linguist from MIT.",
+      "exact_native_cache_key": "74983c4b8bbbf18975da348d77cca27aafb4a601.pkl",
+      "cache_input_text_sha256": "2a1cbd8582aef1baacd2f2819a01daebb6086d581bf6dfedcb0d28d6eb8088cf",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "The teachers found it unintelligible, and in June 1986 the Ministry of Education brought in Judy Kegl, an American Sign Language linguist from MIT.",
+      "exact_native_cache_key": "8df16eac9ec413005ca293c82689c5efcd45ce2a.pkl",
+      "cache_input_text_sha256": "2a1cbd8582aef1baacd2f2819a01daebb6086d581bf6dfedcb0d28d6eb8088cf",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "The teachers found it unintelligible,",
+      "exact_native_cache_key": "d45bc70b25aad9ed46f7d70859bb7ca1a193c792.pkl",
+      "cache_input_text_sha256": "263dd2959a0870a8bfe4c5e39f216f545a66fa8ec97f2dd12c1fe3c94bcc4bf0",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "and in June 1986 the Ministry of Education brought in Judy Kegl,",
+      "exact_native_cache_key": "0ec916b06e2c1a91443b2f8d25d8d12ac5847fa4.pkl",
+      "cache_input_text_sha256": "429ab7cf707133ecb90fa6920c92494f6ef98254fd93b55c3f9ee8038357458b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "an American Sign Language linguist from MIT.",
+      "exact_native_cache_key": "56ea302f0b63c5f726e2cba807a344eb2a2afa66.pkl",
+      "cache_input_text_sha256": "1e8ffe0e5654da760a4981b75b1a4923613f5b73cf7d4c1fccf8f1c1eeb5c78f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "The teachers found it unintelligible,",
+      "exact_native_cache_key": "d45bc70b25aad9ed46f7d70859bb7ca1a193c792.pkl",
+      "cache_input_text_sha256": "263dd2959a0870a8bfe4c5e39f216f545a66fa8ec97f2dd12c1fe3c94bcc4bf0",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "and in June 1986 the Ministry of Education brought in Judy Kegl,",
+      "exact_native_cache_key": "0ec916b06e2c1a91443b2f8d25d8d12ac5847fa4.pkl",
+      "cache_input_text_sha256": "429ab7cf707133ecb90fa6920c92494f6ef98254fd93b55c3f9ee8038357458b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "an American Sign Language linguist from MIT.",
+      "exact_native_cache_key": "56ea302f0b63c5f726e2cba807a344eb2a2afa66.pkl",
+      "cache_input_text_sha256": "1e8ffe0e5654da760a4981b75b1a4923613f5b73cf7d4c1fccf8f1c1eeb5c78f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "A 2001 study found that pupils who arrived younger, and later intakes, used grammatical devices more often and more uniformly than their forerunners.",
+      "exact_native_cache_key": "534f16977bbc32d9415888675112078d189f5ce4.pkl",
+      "cache_input_text_sha256": "f7755496d689a3b6bac680128dbfeb42c246f0d9718245c29d84910f8dacf8d2",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "A 2001 study found that pupils who arrived younger, and later intakes, used grammatical devices more often and more uniformly than their forerunners.",
+      "exact_native_cache_key": "e40a5a0311baa970242e225b139282f9caf00214.pkl",
+      "cache_input_text_sha256": "f7755496d689a3b6bac680128dbfeb42c246f0d9718245c29d84910f8dacf8d2",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "A 2001 study found that pupils who arrived younger, and later intakes,",
+      "exact_native_cache_key": "074cf1599c598bc533672458313e30eba67ecf31.pkl",
+      "cache_input_text_sha256": "04612e3a5f7fac56f86990dc0e290fbf1a418234001bb02acde99671178b9ce9",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "used grammatical devices more often and more uniformly than their forerunners.",
+      "exact_native_cache_key": "a526b2463e55b84a17533eaca316c3d76a24cce5.pkl",
+      "cache_input_text_sha256": "9cf113d7fe8207d014896ab31b1f1f6240f46dc3d50df05908d9f8d7b14fc4d4",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "A 2001 study found that pupils who arrived younger,",
+      "exact_native_cache_key": "bf409a497bfc968eda2384c34a91a12442ab8c43.pkl",
+      "cache_input_text_sha256": "804b360d157a74a2f6d8e594f6d33ae085009cb1214d932c7b736a03c1cdde13",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "and later intakes,",
+      "exact_native_cache_key": "72861dd8bac681ef5f877b65fea8ee1780fdfa67.pkl",
+      "cache_input_text_sha256": "79528a888880cfd8c87c162d5239041f35878d08d78e0a5cfb8ceeb2acd4eb86",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "used grammatical devices more often and more uniformly than their forerunners.",
+      "exact_native_cache_key": "a526b2463e55b84a17533eaca316c3d76a24cce5.pkl",
+      "cache_input_text_sha256": "9cf113d7fe8207d014896ab31b1f1f6240f46dc3d50df05908d9f8d7b14fc4d4",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Each fresh wave of young signers added complexity.",
+      "exact_native_cache_key": "6cf032acd4ea6214ebe7e574839d93ae14b7b607.pkl",
+      "cache_input_text_sha256": "87a4f2dfb2837a18ec0203b447fd70488251c35836dd4519f3cfef18e8f3d244",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Each fresh wave of young signers added complexity.",
+      "exact_native_cache_key": "d68af9bbe73e3dbf870ea6e06c3a2f0094d69bc1.pkl",
+      "cache_input_text_sha256": "87a4f2dfb2837a18ec0203b447fd70488251c35836dd4519f3cfef18e8f3d244",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "In a 2004 study, gesturing Spanish speakers and the earliest signers described something rolling downhill by welding how it moved and where it went into one undivided movement.",
+      "exact_native_cache_key": "274c64a0bad82c8def1a1dc7be72f27041417119.pkl",
+      "cache_input_text_sha256": "ce065531a7a94f14c1c6579f12ff9a94e25f3e50e693578cd516a470586ec762",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "In a 2004 study, gesturing Spanish speakers and the earliest signers described something rolling downhill by welding how it moved and where it went into one undivided movement.",
+      "exact_native_cache_key": "351c56b0dc43f16d8abae1933fe534a178b7a063.pkl",
+      "cache_input_text_sha256": "ce065531a7a94f14c1c6579f12ff9a94e25f3e50e693578cd516a470586ec762",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "In a 2004 study, gesturing Spanish speakers and the earliest signers",
+      "exact_native_cache_key": "bba5e0d6067976ec1fb572c89807c9338dd8d1b2.pkl",
+      "cache_input_text_sha256": "6ff967488d00bf7d7d098957aed35f791c0762e138e10e0e4c80247b4ca2234c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "described something rolling downhill",
+      "exact_native_cache_key": "36dff20f071813d4749ebb4ca5d72588ce2e55d1.pkl",
+      "cache_input_text_sha256": "0d72a5ac675dc9fdc5eacf6cc29f42b8d09b763ed847e2ddeb873cd0928e5622",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "by welding how it moved and where it went into one undivided movement.",
+      "exact_native_cache_key": "5d1f1b188636a893ce25f3859e183a270706a644.pkl",
+      "cache_input_text_sha256": "d48ec0227ebfb4b7b7f435bef554feeb0c3c01b7a6bb7431661d48c5716b6bd4",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "In a 2004 study,",
+      "exact_native_cache_key": "6c140bd718a14bb8590256c0722ab952133dcf0e.pkl",
+      "cache_input_text_sha256": "9bb28e37bb81f296490804c4678676b4d72c3de5a004751052e9ed52e9980119",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "gesturing Spanish speakers and the earliest signers described something rolling downhill by welding how it moved and where it went into one undivided movement.",
+      "exact_native_cache_key": "a1576aeb5c89b4969faae743bf3039fccb679c28.pkl",
+      "cache_input_text_sha256": "8f790fe54dcf7083434e81593213523502b3c02c29da2dba5369c5fe380b68c9",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Later signers dismantled it into discrete segments in linear order, a framework found nowhere in the gestures around them.",
+      "exact_native_cache_key": "99621fe48d88c179a40f2bd5f2fe183075ee26a0.pkl",
+      "cache_input_text_sha256": "8b46e6f8d2c103a84f1a740b3d043831a5605f45b61bbfb92d56ff98da59a6df",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Later signers dismantled it into discrete segments in linear order, a framework found nowhere in the gestures around them.",
+      "exact_native_cache_key": "abda1ef70e633a9e8843104334174d3167c1619f.pkl",
+      "cache_input_text_sha256": "8b46e6f8d2c103a84f1a740b3d043831a5605f45b61bbfb92d56ff98da59a6df",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Later signers dismantled it into discrete segments in linear order,",
+      "exact_native_cache_key": "88b1c0c9fbcfee18d5a170338d8154c530ba67ac.pkl",
+      "cache_input_text_sha256": "89d27fcd927602f302c061345a4327d37ffd73ab1ec565bbb62ea44fe2fb29a3",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "a framework found nowhere in the gestures around them.",
+      "exact_native_cache_key": "c890f5ef78a290bdcad77d8324c05d276d188121.pkl",
+      "cache_input_text_sha256": "9b45a7bd89a1d7734bb132e7fc79a6d4be7f85beb3c3219482e387aa61f7e805",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Later signers dismantled it into discrete segments in linear order,",
+      "exact_native_cache_key": "88b1c0c9fbcfee18d5a170338d8154c530ba67ac.pkl",
+      "cache_input_text_sha256": "89d27fcd927602f302c061345a4327d37ffd73ab1ec565bbb62ea44fe2fb29a3",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "a framework found nowhere in the gestures around them.",
+      "exact_native_cache_key": "c890f5ef78a290bdcad77d8324c05d276d188121.pkl",
+      "cache_input_text_sha256": "9b45a7bd89a1d7734bb132e7fc79a6d4be7f85beb3c3219482e387aa61f7e805",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Linguists had a rare chance to watch a language grow from infancy to maturity.",
+      "exact_native_cache_key": "e8a718526da69a45521bdb61432367233e090e7b.pkl",
+      "cache_input_text_sha256": "75d10ee841ee2612c51f0bff6395da495343fdd31eadc37059331dc0985eb10c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Linguists had a rare chance to watch a language grow from infancy to maturity.",
+      "exact_native_cache_key": "bff96459e69497f6e6abca7f7f3f9c996fc38442.pkl",
+      "cache_input_text_sha256": "75d10ee841ee2612c51f0bff6395da495343fdd31eadc37059331dc0985eb10c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Its builders were not teachers or experts but deaf playmates in playgrounds, streets, and buses.",
+      "exact_native_cache_key": "12aa935613007c924c4b42a35c8fa03164ae1ab1.pkl",
+      "cache_input_text_sha256": "da7b8612711b85d99e43d948bcccd2e7fa906094d97dafca4ffb4e1dd97228cb",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Its builders were not teachers or experts but deaf playmates in playgrounds, streets, and buses.",
+      "exact_native_cache_key": "28d608cd56532025474ba9fe38043480d60dbec1.pkl",
+      "cache_input_text_sha256": "da7b8612711b85d99e43d948bcccd2e7fa906094d97dafca4ffb4e1dd97228cb",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Its builders were not teachers or experts but deaf playmates in playgrounds,",
+      "exact_native_cache_key": "9d5ec39533b032caebd96588223066546a4ec505.pkl",
+      "cache_input_text_sha256": "e7c58cdc5ec11aa8c4d25a91bdbc58425dea761aa208118fbe3ed8158694c2b3",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "streets,",
+      "exact_native_cache_key": "04594703a75578a89a7404fc90f12902564f4c84.pkl",
+      "cache_input_text_sha256": "46362d528736b0c726b00f5c644262357ed9e641e3963cf5c0debce05e417bd6",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "and buses.",
+      "exact_native_cache_key": "c065033006b441789b347395979f051f0f6bbc9b.pkl",
+      "cache_input_text_sha256": "8db13e16f26048e16a688be5e66b23c34a052d41f18adf2d3e4875d9f722b710",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    }
+  ],
+  "unique_reference_key_count": 72,
+  "raw_mother_cache_scalar_manifest": [
+    {
+      "exact_native_cache_key": "39bbfde32584bce1c33b6eb2ce96f134653f17d1.pkl",
+      "pkl_sha256": "1360bc9d6b271541e20180ca75e0504d806a6dec3474ffc476940e3d23aa99d1",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "标题",
+          "piece": null,
+          "reference_kind": "title-default-raw",
+          "method": "create",
+          "source_slice": "The Language the Children Invented",
+          "exact_native_cache_key": "39bbfde32584bce1c33b6eb2ce96f134653f17d1.pkl",
+          "cache_input_text_sha256": "a90c110b99099ab3cd74036cbf1a9665eeb4c8ca5492eac116d61b117bb7d411",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        48128
+      ],
+      "unprocessed_array_sha256": "1e520bb26bcfa5dc2dad02368eff583649719e45e37451097a847ec8acb787b5"
+    },
+    {
+      "exact_native_cache_key": "08c32f1396b9813a92eb80e37c081829a998f0d3.pkl",
+      "pkl_sha256": "db097d28b029493e97ca2b4747cad92c66dad58aa1c8952f0e30aa92a84289db",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "On a rattling bus in Managua, deaf pupils kept up a brisk, voiceless hubbub across the aisle, palms fluttering, wrists flicking.",
+          "exact_native_cache_key": "08c32f1396b9813a92eb80e37c081829a998f0d3.pkl",
+          "cache_input_text_sha256": "6c8ce666d56c9723ecd75c89643b0f656c4098daedea535db862009785c4939e",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        205824
+      ],
+      "unprocessed_array_sha256": "c9b2f233a0f8a98d20b5e096ca084a0fba6b8ea87616feca07d2f0c106a91d6d"
+    },
+    {
+      "exact_native_cache_key": "c7316d7bd3c6a42fd8fa89b172f05b88e08da36c.pkl",
+      "pkl_sha256": "a6a63176d41307c76b233b9f6a4682b5f6b17322e053cd8c31306c04d8c7e709",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "On a rattling bus in Managua, deaf pupils kept up a brisk, voiceless hubbub across the aisle,",
+          "exact_native_cache_key": "c7316d7bd3c6a42fd8fa89b172f05b88e08da36c.pkl",
+          "cache_input_text_sha256": "5972c05f55ad5fa19e00f38eda0dd0e55ba264dbef2c4007ea8952281c5ce80f",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        153600
+      ],
+      "unprocessed_array_sha256": "3cc7d86fffb670ec7b046a772c3649ab45f5d1c9c42c075307445665ee73dbe1"
+    },
+    {
+      "exact_native_cache_key": "0c2d1a0ebdf3318e1f8b469a50a8c20f3c4f3d54.pkl",
+      "pkl_sha256": "ecb6aa39abd926be593b421a3abe7fbc0cbd65d4d66e2564484f00fe5ec1c835",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "palms fluttering, wrists flicking.",
+          "exact_native_cache_key": "0c2d1a0ebdf3318e1f8b469a50a8c20f3c4f3d54.pkl",
+          "cache_input_text_sha256": "a48b9f66695e9ce1fa39b7fb02dbaa2a18aa58078ea836bea2628ab5bb59bd66",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        43008
+      ],
+      "unprocessed_array_sha256": "3a31a33aa2b173bc3c136fa73e6b3cc3839b3a33c38c34a4cfb68c44910dd184"
+    },
+    {
+      "exact_native_cache_key": "f97926715b0174dec05b18027053855f838c80d6.pkl",
+      "pkl_sha256": "075ab838685ee9ecff92c946969f7bc548dfe245c48e4b6e30b109e55f071c0e",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "On a rattling bus in Managua,",
+          "exact_native_cache_key": "f97926715b0174dec05b18027053855f838c80d6.pkl",
+          "cache_input_text_sha256": "9211211ce4ce9c641c58e849423f67697f299a2b4bc0f6d61ea304152aa85a02",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        46080
+      ],
+      "unprocessed_array_sha256": "392a9bb85a50c6b60e90e8c79ad1ed4feac91889b2ba96d946517b922dec2ae3"
+    },
+    {
+      "exact_native_cache_key": "2f8c02ec2ab1d319cf0aa2a403995d3fa0bfe6b4.pkl",
+      "pkl_sha256": "30c5ab694302141e97e75e353fa383ace6030dd4165204783f5a3b463f9cfe2d",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "deaf pupils kept up a brisk,",
+          "exact_native_cache_key": "2f8c02ec2ab1d319cf0aa2a403995d3fa0bfe6b4.pkl",
+          "cache_input_text_sha256": "58ec5e67094d7d7758bf5ada77a6016f8dd7e0b7023e880e5bfc7d5923adb355",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        44032
+      ],
+      "unprocessed_array_sha256": "c2cad70aa23260325d7e26e9c73012b23bd25088bbb5dee050e5c1e8f2000340"
+    },
+    {
+      "exact_native_cache_key": "0c1a8e153c3ed75306dce481956c78c817c19e90.pkl",
+      "pkl_sha256": "c22987849fcdca017ce641d738af1d1a366c0f5b5a12a08d9c114fab8e4668a9",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "voiceless hubbub across the aisle,",
+          "exact_native_cache_key": "0c1a8e153c3ed75306dce481956c78c817c19e90.pkl",
+          "cache_input_text_sha256": "6ad24a13ffbccf5fb8cd881ba83ea00e9e38921389e6aa9774d6505ddb1d585f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        45568
+      ],
+      "unprocessed_array_sha256": "9bbae6386900a1d93082e3eea615fa0ddf8b02607882d5d5c59710f16b2b6f3f"
+    },
+    {
+      "exact_native_cache_key": "2170235e032099abfc5aeee4e7dc75b19a2d9942.pkl",
+      "pkl_sha256": "a0f38d1796853c3e65a38ddd5dded2d95867d73630c60f101f87dd8348262cb0",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "palms fluttering,",
+          "exact_native_cache_key": "2170235e032099abfc5aeee4e7dc75b19a2d9942.pkl",
+          "cache_input_text_sha256": "330989e20c6c1016d4ec193fbd242da06702c835270c8dc4cd495a3a0b16c4e0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        26112
+      ],
+      "unprocessed_array_sha256": "09a579186a7aa39afb9639dced34802e4467791ddb3e2a93d56db48e4037b748"
+    },
+    {
+      "exact_native_cache_key": "f3cd72fa6231d34ba20f5979606b839908d64464.pkl",
+      "pkl_sha256": "77fa859cf728200ab96345891eff0f56c2923630370e764e2f8c9515974117c9",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 5,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "wrists flicking.",
+          "exact_native_cache_key": "f3cd72fa6231d34ba20f5979606b839908d64464.pkl",
+          "cache_input_text_sha256": "1e89ebbb97fdfa34dbe94a44ce1a76c2d666a7dd477c5d658194d0358e761648",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        25088
+      ],
+      "unprocessed_array_sha256": "5c2f9dcce3fd6cf3ae4fd561a2228cb04399c3ecf66b291ae71873f7f566dba4"
+    },
+    {
+      "exact_native_cache_key": "c979397829408a6546e06481704104a8d74c738e.pkl",
+      "pkl_sha256": "35ab0a40fd9434ae5bd6a79ca57a45c112f2e10eba796093bae476b01c50ff7d",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Their teachers could not follow a word.",
+          "exact_native_cache_key": "c979397829408a6546e06481704104a8d74c738e.pkl",
+          "cache_input_text_sha256": "88822b86a1752323d045bff2ca2107993dc97309b15bb5888b95e9c98af97009",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        53760
+      ],
+      "unprocessed_array_sha256": "e4757bfddaf374703b6390506ae6c8ec036d0d9ea2ee75625197e72e4968b751"
+    },
+    {
+      "exact_native_cache_key": "dba06baf2a788b5ab5d7bf1bc211307a0ad8b58c.pkl",
+      "pkl_sha256": "7e77d2ee15ed02d06cf03d4d5ed872d59b40629ae0d800e87ea0c88c9824ed9e",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Before the late 1970s Nicaragua had no deaf community.",
+          "exact_native_cache_key": "dba06baf2a788b5ab5d7bf1bc211307a0ad8b58c.pkl",
+          "cache_input_text_sha256": "6c61c54c599446c716bf0a2eb544b5ca4a1e64020ce7f743eb84244a2cf24402",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        107008
+      ],
+      "unprocessed_array_sha256": "5c7230041798262206274df74b1ab93034d9a9fc0144f1f1afdff5eb90456b07"
+    },
+    {
+      "exact_native_cache_key": "473c69557a845f412b78a42c5926ffbb64950422.pkl",
+      "pkl_sha256": "d2ff1b02f47203870ca8b2928751f4f4f2f06603f2da7f00d604da6bb2a11de8",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Most deaf people led secluded lives, sharing a homemade repertoire of gestures with parents and siblings.",
+          "exact_native_cache_key": "473c69557a845f412b78a42c5926ffbb64950422.pkl",
+          "cache_input_text_sha256": "4109baf173f2c38ceedaa1a6d1ae0959f68d68a49f38fcee6c149a5abae00e1c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        167424
+      ],
+      "unprocessed_array_sha256": "83864fbed71af9ef6a94e5908f39b5378bf6082622d3b173efb5ab830b0d7d21"
+    },
+    {
+      "exact_native_cache_key": "6efa71b8c0987d5483e95234ba1d53b9146eaf24.pkl",
+      "pkl_sha256": "d2ed5580394e8ca1b32940e4028f9bef0e71a471524a8bd971a0f35fb398df8e",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Most deaf people led secluded lives,",
+          "exact_native_cache_key": "6efa71b8c0987d5483e95234ba1d53b9146eaf24.pkl",
+          "cache_input_text_sha256": "ef2b5e0cc9e3932587df72414ad1cde9712962633b87b04847bd4ce787a26caa",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Most deaf people led secluded lives,",
+          "exact_native_cache_key": "6efa71b8c0987d5483e95234ba1d53b9146eaf24.pkl",
+          "cache_input_text_sha256": "ef2b5e0cc9e3932587df72414ad1cde9712962633b87b04847bd4ce787a26caa",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        55296
+      ],
+      "unprocessed_array_sha256": "000c88fade198e5eb71699a6ac5b02c95ca9ca3fd37cc0c1396ade4cd9aeea20"
+    },
+    {
+      "exact_native_cache_key": "711bff9312593ae9c431311831fd15f01a88d701.pkl",
+      "pkl_sha256": "b1befd09ab3d5139b1cf4b98bf26bd2c11e7555c5a5cca60e17ce6d78a0e7c37",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "sharing a homemade repertoire of gestures with parents and siblings.",
+          "exact_native_cache_key": "711bff9312593ae9c431311831fd15f01a88d701.pkl",
+          "cache_input_text_sha256": "d59369c664b377235b55095f9ad06431f25c4f96f17cdd3cbd13d7652385c7ac",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "sharing a homemade repertoire of gestures with parents and siblings.",
+          "exact_native_cache_key": "711bff9312593ae9c431311831fd15f01a88d701.pkl",
+          "cache_input_text_sha256": "d59369c664b377235b55095f9ad06431f25c4f96f17cdd3cbd13d7652385c7ac",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        100864
+      ],
+      "unprocessed_array_sha256": "0f7d472437857eebf131cc7694933aa8cc35ce0362c670f5386e5bbb2ed45ce0"
+    },
+    {
+      "exact_native_cache_key": "a1ba016d44c58f555cce563c261668b4bc9525c4.pkl",
+      "pkl_sha256": "e8d645dc2bf374a6d9949f9315069a0c57ffe0be3f1c949697b209cfcd9daacc",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In 1977 a special-education centre opened in Managua's San Judas district with 50 deaf pupils.",
+          "exact_native_cache_key": "a1ba016d44c58f555cce563c261668b4bc9525c4.pkl",
+          "cache_input_text_sha256": "0a953b2646447e39f614feb9f5ea2d3d1ff8bc0e4212632bb83c5c6f57ec310b",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        197120
+      ],
+      "unprocessed_array_sha256": "ef0ee1107cd4442dfa3ee99ae6ec05dc7a1509eec9fea83424aaf4e47d4dd1c0"
+    },
+    {
+      "exact_native_cache_key": "7a7b51965bc96b99c59b47bf262797955e3db81a.pkl",
+      "pkl_sha256": "66c26efde5c80d190669da333670455026b30876320ea64c0c1319a361e7813f",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "By 1983 the centre and a vocational school for teenage pupils held more than 400.",
+          "exact_native_cache_key": "7a7b51965bc96b99c59b47bf262797955e3db81a.pkl",
+          "cache_input_text_sha256": "959df255f1aa5ec2095c2dbdca3deaac1a9c77f8f21d617491d952d1e403b614",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        174080
+      ],
+      "unprocessed_array_sha256": "5350612a68e32405111dd2fca670aecb5ae0bab6c2097f5be337d6b865c1ffee"
+    },
+    {
+      "exact_native_cache_key": "f7268db62e89d5cdf1236abea1569bc798431863.pkl",
+      "pkl_sha256": "b62efe184469724718361cf7a73c159e5e7d763993ebcdc286ced591a5ac8296",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The curriculum hinged on oral Spanish and lipreading, and teachers signed only the alphabet.",
+          "exact_native_cache_key": "f7268db62e89d5cdf1236abea1569bc798431863.pkl",
+          "cache_input_text_sha256": "bb8c9b1e31091342224092cd877fd6d56b657ed8d3c7b49044e315a201583cdc",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        143872
+      ],
+      "unprocessed_array_sha256": "9c89151aa201490e52ebf3ec57a252b872c8f3c11df55b03a59dfaafa4868ad5"
+    },
+    {
+      "exact_native_cache_key": "eef6dee2cb2641f9a1c8f7c99525ffe2c8c8406a.pkl",
+      "pkl_sha256": "881dbbac86c1801515691d0b8fea9d51e197b1d0ff13b22652945185a67ab6ae",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "The curriculum hinged on oral Spanish and lipreading,",
+          "exact_native_cache_key": "eef6dee2cb2641f9a1c8f7c99525ffe2c8c8406a.pkl",
+          "cache_input_text_sha256": "fb20d4fc13c67020e6d1faf00f596ee488cc5d8c857ebfcad6412eee1f0b5bd1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "The curriculum hinged on oral Spanish and lipreading,",
+          "exact_native_cache_key": "eef6dee2cb2641f9a1c8f7c99525ffe2c8c8406a.pkl",
+          "cache_input_text_sha256": "fb20d4fc13c67020e6d1faf00f596ee488cc5d8c857ebfcad6412eee1f0b5bd1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        76288
+      ],
+      "unprocessed_array_sha256": "adbe2225a973230377ed364469cbc70989d218cea3c74dee98873400fe2609d5"
+    },
+    {
+      "exact_native_cache_key": "ddc75555fb95ed96edc72b319c51d56d602a85d7.pkl",
+      "pkl_sha256": "fb33ebf7259cfd2fb0617d96bc7c1b312992f126a99c88fc6e6350dc6b3f52c7",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and teachers signed only the alphabet.",
+          "exact_native_cache_key": "ddc75555fb95ed96edc72b319c51d56d602a85d7.pkl",
+          "cache_input_text_sha256": "46b88a697ed743f2e8c6459b0bcf86cc7d751ebf64684dd66bca1678ddc7914d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and teachers signed only the alphabet.",
+          "exact_native_cache_key": "ddc75555fb95ed96edc72b319c51d56d602a85d7.pkl",
+          "cache_input_text_sha256": "46b88a697ed743f2e8c6459b0bcf86cc7d751ebf64684dd66bca1678ddc7914d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        55296
+      ],
+      "unprocessed_array_sha256": "3f0042310f4e684cef4d329eb4dd6e1728eff7f73de68fe9bc76693024cbfc82"
+    },
+    {
+      "exact_native_cache_key": "7133fc381907a5dbce91cb8dcd0f7f4fb1e31a44.pkl",
+      "pkl_sha256": "dfdff5647889e453e81713147c0d77d0b80d982bec390336aea1c06cc228ae33",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Pupils studied lips in vain, and most failed to grasp what a Spanish word was.",
+          "exact_native_cache_key": "7133fc381907a5dbce91cb8dcd0f7f4fb1e31a44.pkl",
+          "cache_input_text_sha256": "ef063b192d579c4f233e27463877044af5b5dba1a124ace2d4cee4eccc4d6c13",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        124416
+      ],
+      "unprocessed_array_sha256": "7a0cbddcbe6c8e83a37d9e86e606bc5dcda4b6d0d40bdd6d306001fce3671a44"
+    },
+    {
+      "exact_native_cache_key": "44559bb1357f15459206c4cb1a0f4c341862e946.pkl",
+      "pkl_sha256": "fecd3b018717be8fcd3f6504dc26b7f9b626cdccba43363e3aad4a4a52edd45e",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Pupils studied lips in vain,",
+          "exact_native_cache_key": "44559bb1357f15459206c4cb1a0f4c341862e946.pkl",
+          "cache_input_text_sha256": "0fc8ae04315e3f0c9e7af5d0351f9497181310434aeacaec934bbd281c2602c5",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Pupils studied lips in vain,",
+          "exact_native_cache_key": "44559bb1357f15459206c4cb1a0f4c341862e946.pkl",
+          "cache_input_text_sha256": "0fc8ae04315e3f0c9e7af5d0351f9497181310434aeacaec934bbd281c2602c5",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        42496
+      ],
+      "unprocessed_array_sha256": "f6742d186f3d7b9b714a64dc3f732f8abdf7b03ce32a76f0e5f6d1acb73f5299"
+    },
+    {
+      "exact_native_cache_key": "de31ecdbb2ea0f7a4b6498db92bc5abdb927b149.pkl",
+      "pkl_sha256": "0e67d8caef5b08d71727dee705bd624df0ead7a727d2de8c8a2c4d36778bab3c",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and most failed to grasp what a Spanish word was.",
+          "exact_native_cache_key": "de31ecdbb2ea0f7a4b6498db92bc5abdb927b149.pkl",
+          "cache_input_text_sha256": "5c5fa4bd46f8b533b9ad8e7310b0696d5799ac062834b23fe94252b6cc4538b3",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and most failed to grasp what a Spanish word was.",
+          "exact_native_cache_key": "de31ecdbb2ea0f7a4b6498db92bc5abdb927b149.pkl",
+          "cache_input_text_sha256": "5c5fa4bd46f8b533b9ad8e7310b0696d5799ac062834b23fe94252b6cc4538b3",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        67072
+      ],
+      "unprocessed_array_sha256": "1d4407190eebbe2c57717f0abfad97605b8fbacc362b4dc5f3205c87ada82eb1"
+    },
+    {
+      "exact_native_cache_key": "e185dffd70a7d1c5e2e219a22aaecceefca83053.pkl",
+      "pkl_sha256": "6a93c24e351e79145935652cc4215e69adbfee97d1442d369a4f96b938a877db",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "At recess, in the street, and on the buses, they mingled gestures with home signs.",
+          "exact_native_cache_key": "e185dffd70a7d1c5e2e219a22aaecceefca83053.pkl",
+          "cache_input_text_sha256": "24798a4e6c026e11a1454c32d830014811a26fbcc790108437865549ba693a84",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        125952
+      ],
+      "unprocessed_array_sha256": "d98a963cfd73dde69dd2000f301c33a0d349e776487ea02ae7b333db914696ac"
+    },
+    {
+      "exact_native_cache_key": "69c7275591965927b4bde718d53b877f65455eef.pkl",
+      "pkl_sha256": "ac19bc1585b9d536b7ce883475706c043d3d926ebe46fc2fbe91e00083c0a0d6",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "At recess,",
+          "exact_native_cache_key": "69c7275591965927b4bde718d53b877f65455eef.pkl",
+          "cache_input_text_sha256": "4eae14d1c11ced44ae6a0ee381faf90c184b01f20da6a65fac19ef5995bfcc8a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        23040
+      ],
+      "unprocessed_array_sha256": "b3a576b3ec5e4be337dd70fb47be447bbac3b85162ee81e6070b347f7b63cff7"
+    },
+    {
+      "exact_native_cache_key": "6deadeeae33b7ae20e3cab5b1a84d278eacfeab4.pkl",
+      "pkl_sha256": "94e6b35bb25ac738205928faa3b6a545ccfa44eef3473cf1754a74e34e43a201",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "in the street,",
+          "exact_native_cache_key": "6deadeeae33b7ae20e3cab5b1a84d278eacfeab4.pkl",
+          "cache_input_text_sha256": "92612d4192a66fdcc568fcd21e984eb967fa996e0a7c83e66f05d1fdc3314c26",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        23552
+      ],
+      "unprocessed_array_sha256": "68b64b6e98d1b1d6a557bf815a3f30be8ed97626b897faad7a439249cf2829a7"
+    },
+    {
+      "exact_native_cache_key": "4e3579baa34d96792516fda5abbf7aa8cf0bb394.pkl",
+      "pkl_sha256": "b861fd7a54a55c23e18ee5ee5d927197f08ad492b4dac6a1c56f6bf420e05974",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and on the buses,",
+          "exact_native_cache_key": "4e3579baa34d96792516fda5abbf7aa8cf0bb394.pkl",
+          "cache_input_text_sha256": "041fcaa392af1cb2e44b8add26b9447c8d08ad750ce563e62c2a6d7fff300c05",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        28160
+      ],
+      "unprocessed_array_sha256": "39798e79dc404441af5053774a1b4f5792a835e8a5cff9f393be7475e5422624"
+    },
+    {
+      "exact_native_cache_key": "2bafdf5c607787d95de69ce7d0856a857a4c4b91.pkl",
+      "pkl_sha256": "7ee486001a57fba6048439d90bba9275be0a1ff780be122f5eac2caae3bb5fbf",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "they mingled gestures with home signs.",
+          "exact_native_cache_key": "2bafdf5c607787d95de69ce7d0856a857a4c4b91.pkl",
+          "cache_input_text_sha256": "ed3ff7184f7045cc10ec6976b89c97c30543182ed969f85d684725a77be5ae6d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        55296
+      ],
+      "unprocessed_array_sha256": "d1adec1de24e52a1ed77e98baddab2fdde91d28f9d3992cb26d383ee2fd6d7c7"
+    },
+    {
+      "exact_native_cache_key": "c6cc8feb64a2fddbf9e0c308e3a1a84bcb781457.pkl",
+      "pkl_sha256": "1bfad30d53743843f7815cf618e119a010f16e61ae3505c97335ea7027355d67",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "A rough jumble ripened rapidly into a coherent language entirely their own.",
+          "exact_native_cache_key": "c6cc8feb64a2fddbf9e0c308e3a1a84bcb781457.pkl",
+          "cache_input_text_sha256": "4af82ad771fedfacf49bb16e42f4bf8375d6f1a23b26d16acf69b5d65e55c815",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        130560
+      ],
+      "unprocessed_array_sha256": "33f4b512df145a722e7b0b5d7b159d4b1353ac319ad176247d0d8b8f5c25cc51"
+    },
+    {
+      "exact_native_cache_key": "53e912855d096da69dabbda72ab0545e906f6c3b.pkl",
+      "pkl_sha256": "47b530c4880acb407dcee8fa01982bf60988711930790df4509dbe23abe5f85d",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "A rough jumble ripened rapidly into",
+          "exact_native_cache_key": "53e912855d096da69dabbda72ab0545e906f6c3b.pkl",
+          "cache_input_text_sha256": "980e10759eedd7918e2e1de0fcebb29b304e1cfc8064690c49102652abc3cefc",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        56832
+      ],
+      "unprocessed_array_sha256": "21f0f383256206866865f69fc4f9ac6ca37b92e50b50ea96d383bbf09e8a93ae"
+    },
+    {
+      "exact_native_cache_key": "c72e2e64c725d638554886716400722a8e2f34c2.pkl",
+      "pkl_sha256": "6027e7ea7a759468a4ae9f499be7329b0db326ca258a45185022216b59248501",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "a coherent language entirely their own.",
+          "exact_native_cache_key": "c72e2e64c725d638554886716400722a8e2f34c2.pkl",
+          "cache_input_text_sha256": "399bffeb042f85c0b23f8eb9881ad6562182d0ac5f380a29eb8e4d25b5f261a1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        60416
+      ],
+      "unprocessed_array_sha256": "efa8e1e74c3e790482c6d3ad2087b82f559056386bbff4529a9ccb2276f79196"
+    },
+    {
+      "exact_native_cache_key": "74983c4b8bbbf18975da348d77cca27aafb4a601.pkl",
+      "pkl_sha256": "d519b09f11fb0bde268ad32477d9345c08dccb15902df2bdbe5d6661d66f1947",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The teachers found it unintelligible, and in June 1986 the Ministry of Education brought in Judy Kegl, an American Sign Language linguist from MIT.",
+          "exact_native_cache_key": "74983c4b8bbbf18975da348d77cca27aafb4a601.pkl",
+          "cache_input_text_sha256": "2a1cbd8582aef1baacd2f2819a01daebb6086d581bf6dfedcb0d28d6eb8088cf",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        276992
+      ],
+      "unprocessed_array_sha256": "383205952f050c7d84ab22e4e522a20426646d40c632e0007c7d390f732a7796"
+    },
+    {
+      "exact_native_cache_key": "d45bc70b25aad9ed46f7d70859bb7ca1a193c792.pkl",
+      "pkl_sha256": "3a5701a2d0055ce63258d671df60db603e14c0a0723db0549af0658dcfce4e0e",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "The teachers found it unintelligible,",
+          "exact_native_cache_key": "d45bc70b25aad9ed46f7d70859bb7ca1a193c792.pkl",
+          "cache_input_text_sha256": "263dd2959a0870a8bfe4c5e39f216f545a66fa8ec97f2dd12c1fe3c94bcc4bf0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "The teachers found it unintelligible,",
+          "exact_native_cache_key": "d45bc70b25aad9ed46f7d70859bb7ca1a193c792.pkl",
+          "cache_input_text_sha256": "263dd2959a0870a8bfe4c5e39f216f545a66fa8ec97f2dd12c1fe3c94bcc4bf0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        54272
+      ],
+      "unprocessed_array_sha256": "0ecb2570079670722254bc435a9f6052392fa374c43f5b530eb0341b8e274646"
+    },
+    {
+      "exact_native_cache_key": "0ec916b06e2c1a91443b2f8d25d8d12ac5847fa4.pkl",
+      "pkl_sha256": "0cb009cc8b608e7aa5112918b1dcd70275647beb5a4220604733f6b55879ecfd",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and in June 1986 the Ministry of Education brought in Judy Kegl,",
+          "exact_native_cache_key": "0ec916b06e2c1a91443b2f8d25d8d12ac5847fa4.pkl",
+          "cache_input_text_sha256": "429ab7cf707133ecb90fa6920c92494f6ef98254fd93b55c3f9ee8038357458b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and in June 1986 the Ministry of Education brought in Judy Kegl,",
+          "exact_native_cache_key": "0ec916b06e2c1a91443b2f8d25d8d12ac5847fa4.pkl",
+          "cache_input_text_sha256": "429ab7cf707133ecb90fa6920c92494f6ef98254fd93b55c3f9ee8038357458b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        132096
+      ],
+      "unprocessed_array_sha256": "53c4144b1660707c6c20d43f678476a0efa45b38edf2d33c7029c99eb031eab3"
+    },
+    {
+      "exact_native_cache_key": "56ea302f0b63c5f726e2cba807a344eb2a2afa66.pkl",
+      "pkl_sha256": "c0c240a5e1d561d914b604e56a70624afb86bfbf137b0bf1c65ec2dbadfe922e",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "an American Sign Language linguist from MIT.",
+          "exact_native_cache_key": "56ea302f0b63c5f726e2cba807a344eb2a2afa66.pkl",
+          "cache_input_text_sha256": "1e8ffe0e5654da760a4981b75b1a4923613f5b73cf7d4c1fccf8f1c1eeb5c78f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "an American Sign Language linguist from MIT.",
+          "exact_native_cache_key": "56ea302f0b63c5f726e2cba807a344eb2a2afa66.pkl",
+          "cache_input_text_sha256": "1e8ffe0e5654da760a4981b75b1a4923613f5b73cf7d4c1fccf8f1c1eeb5c78f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        73216
+      ],
+      "unprocessed_array_sha256": "0961f19d5ef70c79eb8bb710a140a6981880274ebad6e8ccbe924426e73a30cf"
+    },
+    {
+      "exact_native_cache_key": "534f16977bbc32d9415888675112078d189f5ce4.pkl",
+      "pkl_sha256": "9d365c51e736261e75af9191514f4a79086322b9de9da9c69fa1d8856118c433",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "A 2001 study found that pupils who arrived younger, and later intakes, used grammatical devices more often and more uniformly than their forerunners.",
+          "exact_native_cache_key": "534f16977bbc32d9415888675112078d189f5ce4.pkl",
+          "cache_input_text_sha256": "f7755496d689a3b6bac680128dbfeb42c246f0d9718245c29d84910f8dacf8d2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        266752
+      ],
+      "unprocessed_array_sha256": "6ce8685949266a1166119623ef0c46548f7eab128606776ac7bfcd4051577388"
+    },
+    {
+      "exact_native_cache_key": "074cf1599c598bc533672458313e30eba67ecf31.pkl",
+      "pkl_sha256": "52aae71d287b5341d1438b4dc1a4810545a1fb9c1efe1f2bfe3fbff9cea643a2",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "A 2001 study found that pupils who arrived younger, and later intakes,",
+          "exact_native_cache_key": "074cf1599c598bc533672458313e30eba67ecf31.pkl",
+          "cache_input_text_sha256": "04612e3a5f7fac56f86990dc0e290fbf1a418234001bb02acde99671178b9ce9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        131072
+      ],
+      "unprocessed_array_sha256": "2c6162180b06045d1052ee305fe659279f0f242af9f4f189f8db955148d603a4"
+    },
+    {
+      "exact_native_cache_key": "a526b2463e55b84a17533eaca316c3d76a24cce5.pkl",
+      "pkl_sha256": "5062e3c05b1f657528c0a1adcc391a238cab6136fefb79ce055862d3d51cb925",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "used grammatical devices more often and more uniformly than their forerunners.",
+          "exact_native_cache_key": "a526b2463e55b84a17533eaca316c3d76a24cce5.pkl",
+          "cache_input_text_sha256": "9cf113d7fe8207d014896ab31b1f1f6240f46dc3d50df05908d9f8d7b14fc4d4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "used grammatical devices more often and more uniformly than their forerunners.",
+          "exact_native_cache_key": "a526b2463e55b84a17533eaca316c3d76a24cce5.pkl",
+          "cache_input_text_sha256": "9cf113d7fe8207d014896ab31b1f1f6240f46dc3d50df05908d9f8d7b14fc4d4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        126464
+      ],
+      "unprocessed_array_sha256": "65f26a9f9e7b45fcfde9099e0d6f8449223d4091084e721d6657448262c2d010"
+    },
+    {
+      "exact_native_cache_key": "bf409a497bfc968eda2384c34a91a12442ab8c43.pkl",
+      "pkl_sha256": "8ba319cee17b0ec292b8e01872a95be15e47ee6eec4e207251f9231c8ba946cc",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "A 2001 study found that pupils who arrived younger,",
+          "exact_native_cache_key": "bf409a497bfc968eda2384c34a91a12442ab8c43.pkl",
+          "cache_input_text_sha256": "804b360d157a74a2f6d8e594f6d33ae085009cb1214d932c7b736a03c1cdde13",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        96256
+      ],
+      "unprocessed_array_sha256": "7f48cd41572238621d2394912dfa27eb43170c3d9b044bfd37a03e7afec6ab54"
+    },
+    {
+      "exact_native_cache_key": "72861dd8bac681ef5f877b65fea8ee1780fdfa67.pkl",
+      "pkl_sha256": "556be91539ca6abc9cbe5a1c753e18301a6c789900128d20d38c4680189f7f99",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and later intakes,",
+          "exact_native_cache_key": "72861dd8bac681ef5f877b65fea8ee1780fdfa67.pkl",
+          "cache_input_text_sha256": "79528a888880cfd8c87c162d5239041f35878d08d78e0a5cfb8ceeb2acd4eb86",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        31232
+      ],
+      "unprocessed_array_sha256": "ca07feefa44909e3a3fd58f0e045eef68445050cf6ea14379b66025a4fabb6e8"
+    },
+    {
+      "exact_native_cache_key": "6cf032acd4ea6214ebe7e574839d93ae14b7b607.pkl",
+      "pkl_sha256": "5e8660105c6a2b05f28f10fa37be2219548f257797684409d55765f6569ae314",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Each fresh wave of young signers added complexity.",
+          "exact_native_cache_key": "6cf032acd4ea6214ebe7e574839d93ae14b7b607.pkl",
+          "cache_input_text_sha256": "87a4f2dfb2837a18ec0203b447fd70488251c35836dd4519f3cfef18e8f3d244",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        77312
+      ],
+      "unprocessed_array_sha256": "9e2cdd39997963f3dc692be2b655d42ee2cd982c302c3fedc69f0c7afa095763"
+    },
+    {
+      "exact_native_cache_key": "274c64a0bad82c8def1a1dc7be72f27041417119.pkl",
+      "pkl_sha256": "6e3b581db52ff9b2c70e8eb0fccb5d2a2da93147fcdb76f870f3e7a7520e6ff6",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In a 2004 study, gesturing Spanish speakers and the earliest signers described something rolling downhill by welding how it moved and where it went into one undivided movement.",
+          "exact_native_cache_key": "274c64a0bad82c8def1a1dc7be72f27041417119.pkl",
+          "cache_input_text_sha256": "ce065531a7a94f14c1c6579f12ff9a94e25f3e50e693578cd516a470586ec762",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        302592
+      ],
+      "unprocessed_array_sha256": "ea593d9509813ddd0c9c955230f7ae088e03180f123b3185c562c317e49d0faa"
+    },
+    {
+      "exact_native_cache_key": "bba5e0d6067976ec1fb572c89807c9338dd8d1b2.pkl",
+      "pkl_sha256": "6027aa04dbb456011ce55daf89fd25b02e1d75e68dc7f00a22f4770c496ef7e1",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In a 2004 study, gesturing Spanish speakers and the earliest signers",
+          "exact_native_cache_key": "bba5e0d6067976ec1fb572c89807c9338dd8d1b2.pkl",
+          "cache_input_text_sha256": "6ff967488d00bf7d7d098957aed35f791c0762e138e10e0e4c80247b4ca2234c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        121344
+      ],
+      "unprocessed_array_sha256": "659dfdb971abc966e985704bbcd45492231e83df7ef877bb13d35f512109f0ae"
+    },
+    {
+      "exact_native_cache_key": "36dff20f071813d4749ebb4ca5d72588ce2e55d1.pkl",
+      "pkl_sha256": "1357f93485dc16a74f3f4635532baf2947f3dbe05e17668138a13778a84abac9",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "described something rolling downhill",
+          "exact_native_cache_key": "36dff20f071813d4749ebb4ca5d72588ce2e55d1.pkl",
+          "cache_input_text_sha256": "0d72a5ac675dc9fdc5eacf6cc29f42b8d09b763ed847e2ddeb873cd0928e5622",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        48128
+      ],
+      "unprocessed_array_sha256": "ac3f8548e6b62cde3f3dfb8f88d2759ff381e389cfb19f537c686ac001ee3202"
+    },
+    {
+      "exact_native_cache_key": "5d1f1b188636a893ce25f3859e183a270706a644.pkl",
+      "pkl_sha256": "c2f3a35f53d1be716628397a2fced6dd61abcaa62463be6f1c0b4e05f2ca74f5",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "by welding how it moved and where it went into one undivided movement.",
+          "exact_native_cache_key": "5d1f1b188636a893ce25f3859e183a270706a644.pkl",
+          "cache_input_text_sha256": "d48ec0227ebfb4b7b7f435bef554feeb0c3c01b7a6bb7431661d48c5716b6bd4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        111104
+      ],
+      "unprocessed_array_sha256": "1540fca5177478ba9623919243a5dcd2f44381eb1bfdcbee719b06c961102aaa"
+    },
+    {
+      "exact_native_cache_key": "6c140bd718a14bb8590256c0722ab952133dcf0e.pkl",
+      "pkl_sha256": "f1f1a6334536afca16a31512f5b145b3cc3dc0e76ffcdc23789a55ef831a2e75",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In a 2004 study,",
+          "exact_native_cache_key": "6c140bd718a14bb8590256c0722ab952133dcf0e.pkl",
+          "cache_input_text_sha256": "9bb28e37bb81f296490804c4678676b4d72c3de5a004751052e9ed52e9980119",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        44032
+      ],
+      "unprocessed_array_sha256": "c3a47c834760a8cdcb7601b3532854fd2a71b1d1da5863fdaaba72afcd9cf947"
+    },
+    {
+      "exact_native_cache_key": "a1576aeb5c89b4969faae743bf3039fccb679c28.pkl",
+      "pkl_sha256": "4a94271cf9ba6a1479a801e093375c98da359c87be1019860f0ccd3d4cbfb8a7",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "gesturing Spanish speakers and the earliest signers described something rolling downhill by welding how it moved and where it went into one undivided movement.",
+          "exact_native_cache_key": "a1576aeb5c89b4969faae743bf3039fccb679c28.pkl",
+          "cache_input_text_sha256": "8f790fe54dcf7083434e81593213523502b3c02c29da2dba5369c5fe380b68c9",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        251904
+      ],
+      "unprocessed_array_sha256": "619b197efcde893ed3fd7038ce204cd644ade9f500a24e30ca2a03e4b1916a89"
+    },
+    {
+      "exact_native_cache_key": "99621fe48d88c179a40f2bd5f2fe183075ee26a0.pkl",
+      "pkl_sha256": "59f97029dc15ad208c78196ae3a66e7d8bf5b043e86657c44a6becff5e695bd3",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Later signers dismantled it into discrete segments in linear order, a framework found nowhere in the gestures around them.",
+          "exact_native_cache_key": "99621fe48d88c179a40f2bd5f2fe183075ee26a0.pkl",
+          "cache_input_text_sha256": "8b46e6f8d2c103a84f1a740b3d043831a5605f45b61bbfb92d56ff98da59a6df",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        187392
+      ],
+      "unprocessed_array_sha256": "faedd4532394c6a046c139fc74d142b825ae0ce7831a77d5376dd0eaaf35a9ad"
+    },
+    {
+      "exact_native_cache_key": "88b1c0c9fbcfee18d5a170338d8154c530ba67ac.pkl",
+      "pkl_sha256": "9c65fea0f22fe7d9ae3648caa6a39f179f61898920e18d25118dfe56b834226c",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Later signers dismantled it into discrete segments in linear order,",
+          "exact_native_cache_key": "88b1c0c9fbcfee18d5a170338d8154c530ba67ac.pkl",
+          "cache_input_text_sha256": "89d27fcd927602f302c061345a4327d37ffd73ab1ec565bbb62ea44fe2fb29a3",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Later signers dismantled it into discrete segments in linear order,",
+          "exact_native_cache_key": "88b1c0c9fbcfee18d5a170338d8154c530ba67ac.pkl",
+          "cache_input_text_sha256": "89d27fcd927602f302c061345a4327d37ffd73ab1ec565bbb62ea44fe2fb29a3",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        105472
+      ],
+      "unprocessed_array_sha256": "7c6bbcadb390a4b66f6d16dfda79dbc437f3df68ed4015124b47ab64b7837165"
+    },
+    {
+      "exact_native_cache_key": "c890f5ef78a290bdcad77d8324c05d276d188121.pkl",
+      "pkl_sha256": "7795b07c5a23e6ab0d73d4f0c274ccc71869a56c5abfcc193da808e15a3bd00d",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "a framework found nowhere in the gestures around them.",
+          "exact_native_cache_key": "c890f5ef78a290bdcad77d8324c05d276d188121.pkl",
+          "cache_input_text_sha256": "9b45a7bd89a1d7734bb132e7fc79a6d4be7f85beb3c3219482e387aa61f7e805",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a framework found nowhere in the gestures around them.",
+          "exact_native_cache_key": "c890f5ef78a290bdcad77d8324c05d276d188121.pkl",
+          "cache_input_text_sha256": "9b45a7bd89a1d7734bb132e7fc79a6d4be7f85beb3c3219482e387aa61f7e805",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        73216
+      ],
+      "unprocessed_array_sha256": "09d34987b9e7c048e40b8203250ab932b0287d56ed802e0bdd002fbfa06c2560"
+    },
+    {
+      "exact_native_cache_key": "e8a718526da69a45521bdb61432367233e090e7b.pkl",
+      "pkl_sha256": "35dc0023b1c54fef05df9594677cc0af818b88b4f2ffadc1af481ff41afa112f",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S16",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Linguists had a rare chance to watch a language grow from infancy to maturity.",
+          "exact_native_cache_key": "e8a718526da69a45521bdb61432367233e090e7b.pkl",
+          "cache_input_text_sha256": "75d10ee841ee2612c51f0bff6395da495343fdd31eadc37059331dc0985eb10c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        123904
+      ],
+      "unprocessed_array_sha256": "257de779b031183316124189bf534e8b4244a1d1432fa99dc3122a3afe377fc0"
+    },
+    {
+      "exact_native_cache_key": "12aa935613007c924c4b42a35c8fa03164ae1ab1.pkl",
+      "pkl_sha256": "c4a43566bfdd80c84ddbdedbf0ca915dcdcedffe177f316a303f82b893dfa3dc",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Its builders were not teachers or experts but deaf playmates in playgrounds, streets, and buses.",
+          "exact_native_cache_key": "12aa935613007c924c4b42a35c8fa03164ae1ab1.pkl",
+          "cache_input_text_sha256": "da7b8612711b85d99e43d948bcccd2e7fa906094d97dafca4ffb4e1dd97228cb",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        141824
+      ],
+      "unprocessed_array_sha256": "2053c7f29d6daf6b2b5da6fd1d5e5edc81701fdbf67449cc33640b342072a435"
+    },
+    {
+      "exact_native_cache_key": "9d5ec39533b032caebd96588223066546a4ec505.pkl",
+      "pkl_sha256": "9186401e989a996995d93aadd51eb1e300855be28596c3d3a6a63e27ab381253",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Its builders were not teachers or experts but deaf playmates in playgrounds,",
+          "exact_native_cache_key": "9d5ec39533b032caebd96588223066546a4ec505.pkl",
+          "cache_input_text_sha256": "e7c58cdc5ec11aa8c4d25a91bdbc58425dea761aa208118fbe3ed8158694c2b3",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        112640
+      ],
+      "unprocessed_array_sha256": "3ad8f5f04c9f6f60c9180b778fe5daceb8b12d5731e417a2db408e1e130937fb"
+    },
+    {
+      "exact_native_cache_key": "04594703a75578a89a7404fc90f12902564f4c84.pkl",
+      "pkl_sha256": "63ac809675342f4f16b03d9989ce8328befc591432b0f96ad9ebefeab72e9a6f",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "streets,",
+          "exact_native_cache_key": "04594703a75578a89a7404fc90f12902564f4c84.pkl",
+          "cache_input_text_sha256": "46362d528736b0c726b00f5c644262357ed9e641e3963cf5c0debce05e417bd6",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        18432
+      ],
+      "unprocessed_array_sha256": "c01d14929e37d538bd145c19037c36c3961d567dd8aad686476f9d827cb2081a"
+    },
+    {
+      "exact_native_cache_key": "c065033006b441789b347395979f051f0f6bbc9b.pkl",
+      "pkl_sha256": "2f5cf232d5e34e9c43eab452f0554baadc385f08da4bbc35c841043c243cba2f",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and buses.",
+          "exact_native_cache_key": "c065033006b441789b347395979f051f0f6bbc9b.pkl",
+          "cache_input_text_sha256": "8db13e16f26048e16a688be5e66b23c34a052d41f18adf2d3e4875d9f722b710",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        21504
+      ],
+      "unprocessed_array_sha256": "a896a7b9e52a54682d4676e8324d3b381fbb8115f773c2e9892e22877cdd292f"
+    }
+  ],
+  "missing_reference_key_count": 0,
+  "observed_missing_keys_covered": [],
+  "new_private_cache_names": [],
+  "native_single_thread_marker_verified": true,
+  "single_thread_sessions": [
+    {
+      "intra_op_num_threads": 1,
+      "inter_op_num_threads": 1
+    },
+    {
+      "intra_op_num_threads": 1,
+      "inter_op_num_threads": 1
+    }
+  ],
+  "models_sha256": {
+    "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+    "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+    "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+  },
+  "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+  "existing_private_cache_count": 11514,
+  "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+  "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+  "existing_private_cache_bytes_unchanged": true,
+  "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+  "public_repository_cache_unchanged": true,
+  "producer_pcm_existed_before": false,
+  "producer_pcm_sha256_before": null,
+  "producer_pcm_sha256_after": null,
+  "accepted_aac_adts_sha256_before": "47aca30ab2216befac47bf4b59728730502349b6fea17675785842582c09a53d",
+  "accepted_aac_adts_sha256_after": "47aca30ab2216befac47bf4b59728730502349b6fea17675785842582c09a53d",
+  "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+  "private_cache_exported": false
+}
