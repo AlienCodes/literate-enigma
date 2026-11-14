@@ -1,0 +1,783 @@
+{
+  "schema": 1,
+  "kind": "exact-root-approved-controlled-current-audio-profiles",
+  "numeric_utilities_sha256": "3a2bd846386b16bd74e9785c548e97283131efcad9989b9e886f64e86e57c7c6",
+  "profiles": {
+    "67": {
+      "state": "approved-exact-profile",
+      "authorization": "Root explicitly approved current user S1 gain/ramp, accumulated S15 objective, normalK134 and single S9#3+1.9. Exact original G35 summary-wrap source variant is declared for root review before freezing.",
+      "fingerprints": {
+        "request_source_sha256": "6839a46ebdb51cdcff6a65ca238efc228f1e114efd1734cee6c994ca659a29cb",
+        "request_generator_sha256": "0cf862922d09043fc617739e45a1cf690365fdd99faf7eb29882fc2c5eef3230",
+        "actual_raw_WAV_sha256": "a134119bc6caf3f1fd167cf7119f3414f44486643ee42ce17a6c9a247f3a9241",
+        "accepted_video_sha256": "fd026c420a146db9324d90c2486e5abc2b1a98ac0beb3c8b8bd24ce5201d40d7",
+        "canonical_AAC_ADTS_sha256": "e9ea80df817aa07649361244a87ddd96bf88fc56e0a0c7b82f28389064ceec70",
+        "accepted_AAC_ADTS_sha256": "d000709a63d3d0af11bfe52f42332d1e35d8bf7ca3d347549b09796cfe9008ad"
+      },
+      "existing_review_only_top_level_keys": [
+        "核对确认",
+        "区间声音指纹"
+      ],
+      "approved_nonreview_document_sha256": "6185eeb845f357156519026ae81215e2b231360b44aaf1294f4dc5dd7ad4ab2c",
+      "approved_actual_nonreview_document_sha256": [
+        "6185eeb845f357156519026ae81215e2b231360b44aaf1294f4dc5dd7ad4ab2c",
+        "3d5d005fe58d33c62c85c75b54637242415d2ef1f45a8c6f7e7cfeee7a88c9e0"
+      ],
+      "exact_actual_source_variants": [
+        {
+          "kind": "root-approved-request",
+          "source_sha256": "6839a46ebdb51cdcff6a65ca238efc228f1e114efd1734cee6c994ca659a29cb",
+          "nonreview_sha256": "6185eeb845f357156519026ae81215e2b231360b44aaf1294f4dc5dd7ad4ab2c"
+        },
+        {
+          "kind": "original-G35-mechanical-summary-wrapping-only",
+          "source_sha256": "873c862170c7a3d5c8cba6c0ef77889acb238e21c6da003efdc2de58f64997ff",
+          "nonreview_sha256": "3d5d005fe58d33c62c85c75b54637242415d2ef1f45a8c6f7e7cfeee7a88c9e0",
+          "evidence": "root-approved-audio-source-GEN-text-20261114/report.json; only S18 final note linebreak/continuation markers changes, words unchanged"
+        }
+      ],
+      "approved_audio_controls": {
+        "分段增益dB": {
+          "S7": {
+            "1": -1.5,
+            "2": 1.5
+          },
+          "S9": {
+            "4": 2.5,
+            "3": 1.9
+          },
+          "S4": {
+            "3": 1.5,
+            "2": 1.5
+          },
+          "S1": {
+            "1": -2.5,
+            "2": -2.0,
+            "4": 2.0
+          }
+        },
+        "句子增益dB": null,
+        "段内渐变dB": {
+          "S1": {
+            "1": [
+              0.0,
+              6.0
+            ]
+          }
+        },
+        "停顿插入点": {
+          "S4": {
+            "1": [
+              0.64375,
+              "交界"
+            ]
+          },
+          "S10": {
+            "2": [
+              1.272292,
+              "交界"
+            ]
+          },
+          "S13": {
+            "2": [
+              4.566583,
+              "交界"
+            ]
+          }
+        },
+        "停顿删除区间": null,
+        "非人声区间": {
+          "S1": [
+            [
+              2.08,
+              2.345708,
+              "紧贴词头"
+            ],
+            [
+              7.73,
+              7.971167,
+              "紧贴词头"
+            ]
+          ],
+          "S6": [
+            [
+              2.475,
+              2.743625,
+              "紧贴词头"
+            ]
+          ],
+          "S8": [
+            [
+              2.525,
+              2.825
+            ]
+          ],
+          "S9": [
+            [
+              7.01,
+              7.19
+            ],
+            [
+              8.815,
+              9.07
+            ]
+          ],
+          "S10": [
+            [
+              2.06,
+              2.343417,
+              "紧贴词头"
+            ]
+          ],
+          "S12": [
+            [
+              5.055,
+              5.277,
+              "紧贴词头"
+            ]
+          ],
+          "S13": [
+            [
+              5.76,
+              5.98
+            ]
+          ],
+          "S15": [
+            [
+              4.72,
+              4.988708,
+              "紧贴词头"
+            ],
+            [
+              9.195,
+              9.43
+            ]
+          ],
+          "S16": [
+            [
+              4.315,
+              4.523625,
+              "紧贴词头"
+            ]
+          ],
+          "S2": [
+            [
+              2.365,
+              2.605
+            ],
+            [
+              6.815,
+              6.905375,
+              "紧贴词头"
+            ]
+          ],
+          "S4": [
+            [
+              0.994667,
+              1.19,
+              "紧贴词尾"
+            ]
+          ]
+        },
+        "词尾除阻": {
+          "S14": {
+            "1": [
+              3.195,
+              "k"
+            ]
+          }
+        },
+        "停顿处除阻": null,
+        "除阻加强": {
+          "S12": {
+            "1": [
+              4.79,
+              4.84,
+              6.0
+            ]
+          },
+          "S13": {
+            "1": [
+              3.44,
+              3.505,
+              6.0
+            ]
+          },
+          "S16": {
+            "句末": [
+              7.34,
+              7.37,
+              6.0
+            ]
+          }
+        },
+        "列举逗号": null,
+        "结尾句": {
+          "S18": {
+            "前段语速": 0.9,
+            "最后一段语速": 0.78,
+            "最后一段前停顿": 0.7,
+            "接点": [
+              97980,
+              122340
+            ],
+            "依据": "全篇结尾句按 07 定下的标准（用户 2026-10-10 同意并要求所有视频统一）：前段 0.9、最后一段“the originals being inaccessible to them.” 0.78、前面停 0.7 秒。接点由 结尾句接点.py 自动找：0.9 那遍最后一个标点后最长静音（40 ms）的正中 4.082 s，0.78 那遍（110 ms）的正中 5.098 s，所在帧和两侧各 5 ms 都低于 -55 dB（程序以 08 校准：与人工核实的接点落在同一段静音里）"
+          }
+        },
+        "合成标点": null
+      },
+      "raw_WAV_shape": {
+        "rate": 24000,
+        "channels": 1,
+        "width": 2,
+        "samples": 3510360
+      },
+      "original_tool_sha256": {
+        "make_video.py": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+        "clean.py": "86b3872cbca83437e24da2c7ada5fffd916f06cacdd2b32fee2a78c9b134178d",
+        "响度一致性核对.py": "2bb89e427ec014a7fc1b4cc46ea6a11f91a786930f91e8cec720e0307940b85b",
+        "音频体检.py": "708a28bb13a270e250e2ba1354cd3856beac29f183e84e6f5bf469fe0ccb8757",
+        "音频体检基准.json": "5624187514c9ad391f155a315d771de4770ad64027a9ab05e416bedadcb2c7d1"
+      },
+      "alignment_reference_spans": [
+        [
+          16,
+          17
+        ],
+        [
+          27,
+          28
+        ],
+        [
+          45,
+          46
+        ],
+        [
+          83,
+          84
+        ],
+        [
+          128,
+          129
+        ]
+      ],
+      "allowed_audio_changes": [
+        [
+          2.895,
+          4.165
+        ],
+        [
+          9.26,
+          10.775
+        ],
+        [
+          66.06,
+          66.965
+        ],
+        [
+          67.345,
+          68.91
+        ],
+        [
+          69.29,
+          70.82
+        ],
+        [
+          116.35,
+          118.0
+        ]
+      ],
+      "units": {
+        "S1_name_ramp": [
+          3.0,
+          4.1
+        ],
+        "S1_part4": [
+          9.32,
+          10.7
+        ],
+        "S9_part2": [
+          66.12,
+          66.92
+        ],
+        "S9_part3": [
+          67.4,
+          68.85
+        ],
+        "S9_part4": [
+          69.35,
+          70.75
+        ],
+        "S15_prior_post_objective": [
+          116.6,
+          117.72
+        ]
+      },
+      "constant_gain_units": {
+        "S1_part4": 2.0,
+        "S9_part2": 1.5,
+        "S9_part3": 1.9,
+        "S9_part4": 2.5,
+        "S15_prior_post_objective": 0.4
+      },
+      "ramp_units": {
+        "S1_name_ramp": {
+          "entire_piece_span_s": [
+            2.895,
+            4.165
+          ],
+          "base_delta_db": -0.5,
+          "ramp_start_db": 0.0,
+          "ramp_end_db": 6.0
+        }
+      },
+      "expected_producer_piece_metadata": {
+        "S1": [
+          {
+            "段": 1,
+            "增益": -4.0,
+            "停顿": 0.4,
+            "时刻": [
+              2.895,
+              4.165
+            ]
+          },
+          {
+            "段": 2,
+            "增益": 3.0,
+            "停顿": 0.4,
+            "时刻": [
+              4.545,
+              5.165
+            ]
+          },
+          {
+            "段": 3,
+            "增益": -2.0,
+            "停顿": 0.4,
+            "时刻": [
+              5.545,
+              8.88
+            ]
+          },
+          {
+            "段": 4,
+            "增益": 2.0,
+            "停顿": 0.4,
+            "时刻": [
+              9.26,
+              10.775
+            ]
+          },
+          {
+            "段": 5,
+            "增益": 0.0,
+            "停顿": null,
+            "时刻": [
+              11.155,
+              14.73
+            ]
+          }
+        ],
+        "S2": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "停顿": 0.4,
+            "时刻": [
+              15.73,
+              22.085
+            ]
+          },
+          {
+            "段": 2,
+            "增益": 0.0,
+            "停顿": null,
+            "时刻": [
+              22.465,
+              25.785
+            ]
+          }
+        ],
+        "S3": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "停顿": 0.4,
+            "时刻": [
+              26.985,
+              28.195
+            ]
+          },
+          {
+            "段": 2,
+            "增益": 0.0,
+            "停顿": null,
+            "时刻": [
+              28.575,
+              32.08
+            ]
+          }
+        ],
+        "S4": [
+          {
+            "段": 1,
+            "增益": -4.0,
+            "停顿": 0.4,
+            "时刻": [
+              33.08,
+              33.7037
+            ]
+          },
+          {
+            "段": 2,
+            "增益": 3.0,
+            "停顿": 0.4,
+            "时刻": [
+              34.1037,
+              34.465
+            ]
+          },
+          {
+            "段": 3,
+            "增益": 1.5,
+            "停顿": null,
+            "时刻": [
+              34.845,
+              36.28
+            ]
+          }
+        ],
+        "S5": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "停顿": null,
+            "时刻": [
+              37.28,
+              39.97
+            ]
+          }
+        ],
+        "S6": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "停顿": 0.4,
+            "时刻": [
+              40.97,
+              43.295
+            ]
+          },
+          {
+            "段": 2,
+            "增益": 0.0,
+            "停顿": null,
+            "时刻": [
+              43.675,
+              46.385
+            ]
+          }
+        ],
+        "S7": [
+          {
+            "段": 1,
+            "增益": -1.5,
+            "停顿": 0.4,
+            "时刻": [
+              47.385,
+              48.15
+            ]
+          },
+          {
+            "段": 2,
+            "增益": 1.5,
+            "停顿": null,
+            "时刻": [
+              48.53,
+              51.695
+            ]
+          }
+        ],
+        "S8": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "停顿": null,
+            "时刻": [
+              52.895,
+              59.07
+            ]
+          }
+        ],
+        "S9": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "停顿": 0.4,
+            "时刻": [
+              60.07,
+              65.68
+            ]
+          },
+          {
+            "段": 2,
+            "增益": -2.5,
+            "停顿": 0.4,
+            "时刻": [
+              66.06,
+              66.965
+            ]
+          },
+          {
+            "段": 3,
+            "增益": 1.9,
+            "停顿": 0.4,
+            "时刻": [
+              67.345,
+              68.91
+            ]
+          },
+          {
+            "段": 4,
+            "增益": 2.5,
+            "停顿": null,
+            "时刻": [
+              69.29,
+              70.82
+            ]
+          }
+        ],
+        "S10": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "停顿": 0.2,
+            "时刻": [
+              71.82,
+              72.505
+            ]
+          },
+          {
+            "段": 2,
+            "增益": 0.0,
+            "停顿": 0.2,
+            "时刻": [
+              72.705,
+              73.2823
+            ]
+          },
+          {
+            "段": 3,
+            "增益": 0.0,
+            "停顿": null,
+            "时刻": [
+              73.4823,
+              77.565
+            ]
+          }
+        ],
+        "S11": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "停顿": null,
+            "时刻": [
+              78.565,
+              81.11
+            ]
+          }
+        ],
+        "S12": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "停顿": 0.4,
+            "时刻": [
+              82.31,
+              87.145
+            ]
+          },
+          {
+            "段": 2,
+            "增益": 0.0,
+            "停顿": null,
+            "时刻": [
+              87.525,
+              92.67
+            ]
+          }
+        ],
+        "S13": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "停顿": 0.2,
+            "时刻": [
+              93.67,
+              97.165
+            ]
+          },
+          {
+            "段": 2,
+            "增益": 0.0,
+            "停顿": 0.2,
+            "时刻": [
+              97.345,
+              98.1016
+            ]
+          },
+          {
+            "段": 3,
+            "增益": 0.0,
+            "停顿": 0.2,
+            "时刻": [
+              98.3016,
+              99.305
+            ]
+          },
+          {
+            "段": 4,
+            "增益": 0.0,
+            "停顿": null,
+            "时刻": [
+              99.485,
+              102.875
+            ]
+          }
+        ],
+        "S14": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "停顿": 0.4,
+            "时刻": [
+              103.875,
+              107.165
+            ]
+          },
+          {
+            "段": 2,
+            "增益": 0.0,
+            "停顿": null,
+            "时刻": [
+              107.545,
+              110.44
+            ]
+          }
+        ],
+        "S15": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "停顿": 0.4,
+            "时刻": [
+              111.64,
+              116.165
+            ]
+          },
+          {
+            "段": 2,
+            "增益": 0.0,
+            "停顿": 0.4,
+            "时刻": [
+              116.545,
+              117.775
+            ]
+          },
+          {
+            "段": 3,
+            "增益": 0.0,
+            "停顿": 0.4,
+            "时刻": [
+              118.155,
+              120.74
+            ]
+          },
+          {
+            "段": 4,
+            "增益": 1.0,
+            "停顿": null,
+            "时刻": [
+              121.12,
+              122.965
+            ]
+          }
+        ],
+        "S16": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "停顿": 0.4,
+            "时刻": [
+              123.965,
+              128.07
+            ]
+          },
+          {
+            "段": 2,
+            "增益": 0.0,
+            "停顿": null,
+            "时刻": [
+              128.45,
+              131.305
+            ]
+          }
+        ],
+        "S17": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "停顿": null,
+            "时刻": [
+              132.305,
+              135.76
+            ]
+          }
+        ],
+        "S18": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "停顿": 0.4,
+            "时刻": [
+              136.76,
+              140.31
+            ]
+          },
+          {
+            "段": 2,
+            "增益": 0.0,
+            "停顿": null,
+            "时刻": [
+              140.99,
+              144.265
+            ]
+          }
+        ]
+      },
+      "prior_approved_postrepair_objective": {
+        "kind": "original encoded postrepair retained as reference; do not stack its gain on K134 output",
+        "S15_gain_db": 2.1,
+        "postrepair_final_decoded_float32_sha256": "0347440cbd04e62e6c5e68d0cd69b547d9ad382f53661d3887e434e475ff1392"
+      },
+      "official_ASR_word_end_nonvoice_highlight_selftests": "Must remain the separate real original full draft/final/stamp gates before this supplement.",
+      "approved_actual_sorted_nonreview_document_sha256": [
+        "85ee7a99df706a8df2b26f6f4c5bd5c3e7169781b48f496e411d6c855291d3d3",
+        "efb10a642900caa9826e6f78a5e19f1d293e4d5b92b33e1cb3c00affc258aa26"
+      ],
+      "original_pending_consent_consumption_scope": {
+        "keys": [
+          "换行变更已获同意",
+          "换行变更记录"
+        ],
+        "only_original_exact_single_append_allowed": true,
+        "old_history_prefix_and_quote_exact": true,
+        "calendar_valid_ISO_date_not_frozen_to_wall_date": true,
+        "all_other_nonreview_fields_and_audio_controls_remain_exact": true,
+        "does_not_modify_audio_or_original_quality_gates": true
+      }
+    }
+  },
+  "threshold_policy": "All existing numerical thresholds are copied unchanged from the original audio-qc helper and original R/health modules; no official gates are replaced."
+}
