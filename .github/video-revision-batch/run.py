@@ -55,11 +55,14 @@ def install_certified_core_repairs():
         return
     manifest = json.loads(manifest_file.read_text())
     assert manifest['kind'] in {'actual-original-fastcheck-certified-three-core-repair',
-                                'actual-original-fastcheck-certified-four-core-repair'}
+                                'actual-original-fastcheck-certified-four-core-repair',
+                                'actual-original-fastcheck-certified-five-core-repair'}
     allowed = {'视频/工具/草稿声音.sh','视频/工具/句内响度.py','视频/工具/独立复核/synth.py'}
-    keep_ending = manifest['kind'] == 'actual-original-fastcheck-certified-four-core-repair'
+    keep_ending = manifest['kind'] != 'actual-original-fastcheck-certified-three-core-repair'
     if keep_ending:
         allowed.add('视频/工具/结尾句接点.py')
+    if manifest['kind'] == 'actual-original-fastcheck-certified-five-core-repair':
+        allowed.add('视频/工具/读音核对.py')
     assert {item['target'] for item in manifest['core_files']} == allowed
     for item in manifest['core_files']:
         source = folder / item['file']

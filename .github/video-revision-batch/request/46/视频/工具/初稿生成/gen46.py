@@ -363,7 +363,17 @@ out = {'no': '46',
                    'S8': {'配音指纹': 'f51746024861',
                           '依据': '2026-11-04 实测（配音指纹 f51746024861）：整句注音 əmeɪlblɪŋksənoʊvəɹtjʊɹ，an 在句中是弱读 '
                                 '/ən/（blinks an overture 连读 blɪŋksən）；parakeet 整句听对 an overture，small.en 把弱读 '
-                                'ən 听成 in（近音），不是读错'}},
+                                'ən 听成 in（近音），不是读错'},
+                   'S6': {'配音指纹': 'f51746024861',
+                          '依据': '2026-11-14按原机器复听方法实测S6，当前配音指纹f51746024861。原始句窗48.29–53.49秒：small.en=In 477 '
+                                'field clips, precious few darted straight at the light.；parakeet=In 477 field '
+                                'clips, precious few darted straight at the '
+                                'lights.。实际公开MP4扩大前后各120毫秒上下文（48.17–53.61秒）：small.en=In 477 field clips, '
+                                'precious few darted straight at the light.；parakeet=In 477 field clips, '
+                                'precious few darted straight at the light.；两路逐词比较差异均为空。当前公开整轨AAC '
+                                'ADTS字节、所有包的payload及绝对PTS/DTS/duration/size与codec参数均与已验旧轨严格相同，6988800个float32解码样本逐字节相同、maxdiff=0。本记录只对应本句、本指纹的两种识别器上下文差异实测。依据：comparison-report.json '
+                                'SHA256=d9d4a9bf77504a762bbbb15519f7f1a1c88289ca6ddc54588831d153f67be3d7；46-original-ASR-target-evidence.json '
+                                'SHA256=e9ccae4ca6e4ff7f1308e0e011196ced7fef264581366275a4a0503a860a713f。'}},
           '删除段': {'S5 raw 1.9700-2.2700': '2026-11-04 46 逐 10 ms 实测原声（S5 sky, / hijacks 的停顿）：删掉的 raw 1.97–2.27 '
                                           '是 -40～-55 dB、重心 0.9–1.7 kHz、低频占比 -3～-19 dB 的吸气声；左边 sky 的 aɪ 到 1.95 '
                                           '已降到 -45→-51 dB，右边 2.28 -52.6 dB，hijacks 的 /h/（2.29 起，重心 1.7–2.1 '
