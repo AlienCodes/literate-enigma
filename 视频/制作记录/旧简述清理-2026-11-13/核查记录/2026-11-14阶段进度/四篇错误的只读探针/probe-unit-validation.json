@@ -1,0 +1,67 @@
+{
+  "passed": true,
+  "fixture_only_not_actual_failure_diagnosis": true,
+  "count": 8,
+  "maker_original_nonvoice_AST_used_unmodified": true,
+  "native_source_audio_cache_GT_or_threshold_modified": false,
+  "PCM_or_GT_files_created_or_exported": false,
+  "probe_sha256": "f1a293eb432c14ea8d1f8c9819cc83ca6ab06daa14040eca8de54a1773b3eb55",
+  "tests": [
+    {
+      "test": "actual-native-bounds-branch",
+      "original_native_exception_result_unchanged": true,
+      "input_array_unchanged": true,
+      "expected_original_predicates_observed": [
+        "invalid_interval_bounds"
+      ],
+      "passed": true
+    },
+    {
+      "test": "actual-native-attached-start-zero-crossing-branch",
+      "original_native_exception_result_unchanged": true,
+      "input_array_unchanged": true,
+      "expected_original_predicates_observed": [
+        "attached_start_not_zero_crossing"
+      ],
+      "passed": true
+    },
+    {
+      "test": "actual-native-external-post-window-branch",
+      "original_native_exception_result_unchanged": true,
+      "input_array_unchanged": true,
+      "expected_original_predicates_observed": [
+        "external_post5ms_not_quiet"
+      ],
+      "passed": true
+    },
+    {
+      "test": "actual-native-region-level-branches",
+      "original_native_exception_result_unchanged": true,
+      "input_array_unchanged": true,
+      "expected_original_predicates_observed": [
+        "region_RMS_above_original_threshold",
+        "region_5ms_peak_at_or_above_original_threshold"
+      ],
+      "passed": true
+    },
+    {
+      "test": "actual-native-valid-interval-remains-valid",
+      "original_native_exception_result_unchanged": true,
+      "input_array_unchanged": true,
+      "expected_original_predicates_observed": [],
+      "passed": true
+    },
+    {
+      "test": "refuses-waveform-data-object-in-JSON",
+      "passed": true
+    },
+    {
+      "test": "empty-match-anchor-fit-scalars-only-without-changing-gain-reference-or-input",
+      "passed": true
+    },
+    {
+      "test": "exact-native-AST-pin-portable-between-Python3.11-and3.12-empty-type-params",
+      "passed": true
+    }
+  ]
+}

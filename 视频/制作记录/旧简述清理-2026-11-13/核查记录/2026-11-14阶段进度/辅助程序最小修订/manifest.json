@@ -1,0 +1,49 @@
+{
+  "purpose": "Approved wrapper/actual-audio evidence changes for subsequent source archive; official gates remain unchanged",
+  "files": [
+    {
+      "file": "audio-qc.py",
+      "before_sha256": "de91700c2e34996430c42879b28762d8d1667d87851488093945435cbbe28335",
+      "after_sha256": "3a2bd846386b16bd74e9785c548e97283131efcad9989b9e886f64e86e57c7c6"
+    },
+    {
+      "file": "diagnose_reference_gain.py",
+      "before_sha256": "0995327b04344f89ebd00cf4ed98ac6e6f15b2d1017d363d426a8ab561b007e8",
+      "after_sha256": "7cd76891ac0212f856f597ea95b5f1127a69815170e2a7bb9623f343db6afb93"
+    },
+    {
+      "file": "prepare-checker-reference.py",
+      "before_sha256": "4fe81f6f47c7f4821ad1d09384158d695483e2542658e553d4c58a2ead518733",
+      "after_sha256": "f6f2a032e207085e7252d036e39430fb80b06e84a721c525b61196d021c5ca12"
+    },
+    {
+      "file": "run.py",
+      "before_sha256": "1e19aa75fb9815f6be223c60bf4a399ec84dea288b3432a83e8659ed58fe6083",
+      "after_sha256": "47982f26de1707025ac5b8d8e63da23e6a0730c00e0a0a7d83621577ddf5581f"
+    }
+  ],
+  "pitch_identity_real_and_negative_test": "../actual-audio-qc/pitch-identity-branch-validation.json",
+  "44_onset_scalar_contract": {
+    "input": "actual raw a.wav only",
+    "original_pure_functions": [
+      "\u662f\u5f00\u53e3",
+      "\u786e\u8ba4\u53ef\u6536"
+    ],
+    "fine_window_seconds": [
+      25.77,
+      25.83
+    ],
+    "step_seconds": 0.001,
+    "exports": [
+      "pre30ms_max_db",
+      "post40ms_max_db",
+      "this5ms_db",
+      "original_G45_accepts",
+      "current_confirmation",
+      "actual_wav_md5_first12",
+      "confirmation_fingerprint_matches"
+    ],
+    "no_waveform_export": true
+  },
+  "new_quality_thresholds": false
+}

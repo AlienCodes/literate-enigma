@@ -1,0 +1,54 @@
+{
+  "program_sha256": "3a2bd846386b16bd74e9785c548e97283131efcad9989b9e886f64e86e57c7c6",
+  "official_quality_gates_unchanged": true,
+  "nonidentical_original_pitch_thresholds_unchanged": true,
+  "cases": [
+    {
+      "kind": "actual12_vowel",
+      "pitch_preserved": true,
+      "evidence": {
+        "voiced_pairs": 10,
+        "median_absolute_cents": 0.0,
+        "p90_absolute_cents": 0.0,
+        "whole_decoded_crop_bit_identical": true,
+        "decoded_sample_count": 21120,
+        "decoded_dtype": "float64",
+        "accepted_crop_sha256": "81e63cc5e97032145b7a14180412fba4f6dcbcfac65fa3508444d3ad358881a3",
+        "actual_crop_sha256": "81e63cc5e97032145b7a14180412fba4f6dcbcfac65fa3508444d3ad358881a3",
+        "preservation_basis": "whole-decoded-crop-bit-identical"
+      }
+    },
+    {
+      "kind": "real_pitch_changed_short_sine_negative",
+      "duration_seconds": 0.13,
+      "pitch_preserved": false,
+      "evidence": {
+        "voiced_pairs": 9,
+        "median_absolute_cents": 636.6217577580396,
+        "p90_absolute_cents": 636.6252259117258,
+        "whole_decoded_crop_bit_identical": false,
+        "decoded_sample_count": 6240,
+        "decoded_dtype": "float64",
+        "accepted_crop_sha256": "a80b7eee18f25596dbeeecf1be30d7059e83099b8d2646e0fe8b70e3006a90e5",
+        "actual_crop_sha256": "a171cdae0f001d23f8d173609e441822257d3b112602024bd5cc807c97388f34",
+        "preservation_basis": "measured-pitch-original-count-and-cent-limits"
+      }
+    },
+    {
+      "kind": "real_pitch_changed_short_sine_negative",
+      "duration_seconds": 0.14,
+      "pitch_preserved": false,
+      "evidence": {
+        "voiced_pairs": 9,
+        "median_absolute_cents": 636.6217578879532,
+        "p90_absolute_cents": 636.6252262436761,
+        "whole_decoded_crop_bit_identical": false,
+        "decoded_sample_count": 6720,
+        "decoded_dtype": "float64",
+        "accepted_crop_sha256": "97a89702654ab25b22afb2aab210f89e948de1d09ded7d8f57cb89703689229e",
+        "actual_crop_sha256": "b158306c5a41b9f3c97b7568a41b640c7c83b67e53f424a237a0f5a7a1636e85",
+        "preservation_basis": "measured-pitch-original-count-and-cent-limits"
+      }
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+--- frozen27-29/diagnose_reference_gain.py
++++ current/diagnose_reference_gain.py
+@@ -9,6 +9,7 @@
+ from __future__ import annotations
+ 
+ import argparse
++import ast
+ import hashlib
+ import importlib.metadata
+ import json
+@@ -83,6 +84,38 @@
+         "a10_edge_violations": sum(bool(e.get("edge_bad")) for e in edits),
+         "extra_nonzero_run_count": len(data.get("extra_runs", [])),
+     }
++
++
++def raw_highlight_onset_scalars(tools, a, sr, no):
++    """Run the unchanged pure G45 functions on actual PCM; publish levels only."""
++    if no != '44':
++        return None
++    path = tools / '高亮同步核对.py'
++    tree = ast.parse(path.read_text())
++    nodes = [node for node in tree.body if isinstance(node, ast.FunctionDef)
++             and node.name in {'是开口', '确认可收'}]
++    assert len(nodes) == 2
++    scope = {'np': np}
++    exec(compile(ast.Module(body=nodes, type_ignores=[]), str(path), 'exec'), scope)
++    rows = []
++    times = sorted(set([tick * .005 for tick in range(5120, 5201)] +
++                       [tick / 1000 for tick in range(25770, 25831)]))
++    for t in times:
++        F = int(.005 * sr)
++        i = int(round(t * sr))
++        w = a[max(0, i - 2 * sr):i + 2 * sr]
++        n = len(w) // (2 * F)
++        ref = np.sqrt(np.mean(w[:n * 2 * F].reshape(n, 2 * F) ** 2, axis=1)).max() + 1e-12
++        level = lambda start: float(20 * np.log10(np.sqrt(np.mean(a[start:start + F] ** 2)) / ref + 1e-12))
++        pre = [level(j) for j in range(i - 6 * F, i, F)]
++        post = [level(j) for j in range(i, i + 8 * F, F)]
++        rows.append({'actual_pcm_time_s': round(t, 3), 'pre30ms_max_db': max(pre),
++                     'post40ms_max_db': max(post), 'this5ms_db': level(i),
++                     'original_G45_accepts': bool(scope['确认可收'](no, a, sr, t))})
++    return {'original_checker_sha256': sha256(path), 'original_functions_executed': ['是开口', '确认可收'],
++            'sentence': 'S2', 'chunk': 3, 'window_s': [25.6, 26.0],
++            'fine_window_s': [25.77, 25.83], 'fine_step_s': .001,
++            'purpose': 'raw actual PCM onset diagnosis only; does not approve a confirmation', 'rows': rows}
+ 
+ 
+ def abnormal_edit_scalars(report_path: Path, script_path: Path, wav_path: Path, sr=24000):
+@@ -259,6 +292,13 @@
+         a, sr = sf.read(wav, dtype="float64")
+         if a.ndim != 1 or sr != 24000:
+             raise ValueError(f"expected mono 24000 Hz; got channels={a.ndim}, sample_rate={sr}")
++        result['raw_highlight_onset_scalars'] = raw_highlight_onset_scalars(args.tools, a, sr, no)
++        if no == '44':
++            conf = json.loads(script.read_text()).get('核对确认', {}).get('高亮', {}).get('S2 第3块')
++            current_fingerprint = hashlib.md5(wav.read_bytes()).hexdigest()[:12]
++            result['raw_highlight_onset_scalars'].update({
++                'current_confirmation': conf, 'actual_wav_md5_first12': current_fingerprint,
++                'confirmation_fingerprint_matches': isinstance(conf, dict) and conf.get('配音指纹') == current_fingerprint})
+         meta = json.loads(meta_path.read_text())
+         records_path = work / "分段.json"
+         records = json.loads(records_path.read_text()) if records_path.is_file() else {}

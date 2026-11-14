@@ -1,0 +1,58 @@
+{
+  "kind": "opt-in-observational-safe-scalars-for-existing-next-native4-workflow",
+  "articles": [
+    "06",
+    "54",
+    "57",
+    "67"
+  ],
+  "no_separate_diagnostic_workflow_or_serial_reproduction_required": true,
+  "do_not_modify_original_core": true,
+  "report": "/workspace/work/video-audit70-20261113/readonly-indexerror-interval-20261114/root-cause-readonly.json",
+  "report_sha256": "e08f16f0b276d64d225eb15248c669a2a648f93ed133ad74657a2dd5536ed439",
+  "hook_files": [
+    {
+      "path": "/workspace/work/video-audit70-20261113/readonly-indexerror-interval-20261114/probe_hooks/sitecustomize.py",
+      "sha256": "f981dfb191e82190450402f7221798832d00a530db42cac136f4574ea69d13d3",
+      "bytes": 380
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/readonly-indexerror-interval-20261114/probe_hooks/safe_scalar_probe.py",
+      "sha256": "f1a293eb432c14ea8d1f8c9819cc83ca6ab06daa14040eca8de54a1773b3eb55",
+      "bytes": 13213
+    }
+  ],
+  "activation_example_python": [
+    "Only for NO in {06,54,57,67}, after actual tools/workspace preparation and before unchanged official native commands:",
+    "Ensure baseline importlib.util.find_spec(\"sitecustomize\") is None; if it exists, preserve that existing customization rather than shadowing it.",
+    "ENV[\"PYTHONPATH\"] = str(TASK / \"read-only-scalar-probe\") + (os.pathsep + ENV[\"PYTHONPATH\"] if ENV.get(\"PYTHONPATH\") else \"\")",
+    "ENV[\"VIDEO_SAFE_SCALAR_DIR\"] = str(OUT)",
+    "ENV[\"VIDEO_SAFE_SCALAR_ARTICLE\"] = NO",
+    "ENV[\"VIDEO_SAFE_SCALAR_MAKER\"] = str(W / \"make_video.py\")",
+    "ENV[\"VIDEO_SAFE_SCALAR_SOURCE\"] = str(W / \"scripts\" / (NO + \".json\"))",
+    "ENV[\"VIDEO_SAFE_SCALAR_SEGS\"] = str(W / (\"work_\" + NO) / \"分段.json\")",
+    "Keep original program argv/strict cache/model settings/exception/exit behavior unchanged. Upload only OUT/NO-safe-scalar-*.json alongside the existing public status proofs.",
+    "The startup hook was actually tested locally; 8 in-memory predicate/immutability fixtures also passed. These fixtures are not article-level acoustic evidence."
+  ],
+  "original_function_identity_checks": {
+    "audit_file_sha256": "bfe12dab6bec96c9b765faea286ae30a067589f6c5ef78461b21d12b955f1e22",
+    "nonvoice_AST_sha256": "cb28e3a860ed5d13226fc5ebd34861ed4aa9039b8f947ca0cebdc4d915dabbf9",
+    "approved3core_maker_whole_file_may_differ_but_nonvoice_AST_must_match": true,
+    "AST_projection_is_Python3_11_3_12_portable_ignoring_only_empty_type_params": true
+  },
+  "outputs": [
+    "Per-process NO-safe-scalar-PID.json only when an actual matching failure is observed.",
+    "IndexError: exact reference index, title/S#, samples/counts, NCC, fixed-gain/diagnostic-local-fit residuals, gain region min/max/hash; fit never applied to native audio/checker.",
+    "06: exact bounds, RMS/5ms peak, pre/post5ms and zero-crossing booleans, original failed predicate names; no raw arrays.",
+    "selftest_copy flag distinguishes deliberate-corruption child audits from the ordinary native audit."
+  ],
+  "safety_properties": {
+    "quality_acceptance_always_false": true,
+    "changes_native_results": false,
+    "writes_original_source_core_waveform_or_reference": false,
+    "exports_waveform_GT_or_cache_bytes": false,
+    "overrides_an_existing_debugger": false
+  },
+  "unit_validation": "/workspace/work/video-audit70-20261113/readonly-indexerror-interval-20261114/probe-unit-validation.json",
+  "startup_validation": "/workspace/work/video-audit70-20261113/readonly-indexerror-interval-20261114/startup-hook-validation.json"
+}

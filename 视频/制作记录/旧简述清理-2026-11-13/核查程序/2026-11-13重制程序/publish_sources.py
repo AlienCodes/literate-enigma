@@ -27,13 +27,15 @@ if not (PAY/'.git').exists():
     command(['git','config','user.email','codex@users.noreply.github.com'])
     command(['git','config','credential.helper','!gh auth git-credential'])
 command(['git','add','--all'])
-command(['git','commit','-q','-m','保存70篇重制源稿、最新重点词和清晰简述；视频与PDF实物验收另记 [skip ci]'])
+if command(['git','status','--porcelain']):
+    command(['git','commit','-q','-m','保存70篇重制源稿、最新重点词和清晰简述；视频与PDF实物验收另记 [skip ci]'])
 asset_commit=command(['git','rev-parse','HEAD'])
 files=[str(p.relative_to(PAY)) for p in PAY.rglob('*') if p.is_file() and '.git' not in p.relative_to(PAY).parts]
 canonical=[p for p in files if not p.startswith(REPORT+'/')]
 assert all(p.startswith(('视频/脚本/','视频/工具/初稿生成/','新版定稿/','视频/制作记录/待修改/',
                          '视频/制作记录/本轮70篇GEN与文本预检-2026-11-13/',
                          '视频/制作记录/42_2026-11-13词汇修订/'))
+           or p=='视频/工具/用户同意记录.json'
            or re.fullmatch(r'视频/制作记录/(?:\d{2}_待改清单\.md|逐句确认/\d{2}\.json)',p) for p in canonical)
 assert not any(p.endswith(('.mp4','.pdf')) for p in files)
 
@@ -91,7 +93,7 @@ def attach(repo,branch):
         actual=api(repo,'contents/'+path+'?ref='+commit)
         assert base64.b64decode(actual['content'])==(PAY/path).read_bytes()
     if master:assert api(repo,'git/ref/heads/master')['object']['sha']==master
-    return {'repository':repo,'branch':branch,'source_commit':commit,'previous_commit':parent,'master_unchanged':bool(master)}
+    return {'repository':repo,'branch':branch,'source_commit':commit,'previous_commit':parent,'master_unchanged':True if master else None}
 
 result={'asset_branch':BRANCH,'asset_commit':asset_commit,'payload_files':len(files),'payload_bytes':sum((PAY/p).stat().st_size for p in files),'archives':[]}
 for name,repo,branch in [('primary','alienalgorithm/postgraduate-vocabulary','main'),('backup','AlienCodes/literate-enigma','codex/all-deliverables-20261113')]:

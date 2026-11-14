@@ -1,0 +1,108 @@
+{
+  "article": "46",
+  "sentence": "S6",
+  "checked_utc": "2026-11-14T00:34:01.681928+00:00",
+  "human_listening_performed": false,
+  "audio_controls_sources_thresholds_or_confirmations_modified": false,
+  "media_retrieval": {
+    "article": "46",
+    "public_media_only": true,
+    "failed": {
+      "path": "/workspace/work/video-audit70-20261113/asr46-49-55-readonly-20261114/public-media/46/46-failed-draft.mp4",
+      "bytes": 7238017,
+      "sha256": "c66621780bba8a256f124754ac50ea079e8356497f9db2c0e1b3e567931b7858",
+      "purpose": "diagnosis only; not an accepted deliverable"
+    },
+    "accepted": {
+      "path": "/workspace/work/video-audit70-20261113/asr46-49-55-readonly-20261114/public-media/46/46-accepted.mp4",
+      "bytes": 12512629,
+      "sha256": "7ec49387c4b84870e2e2d651888c20c8803d48319c59b7545fd2a2c4368aabca",
+      "repository": "alienalgorithm/postgraduate-vocabulary",
+      "pinned_commit": "3d82f20ce7ecfea2e4e0a2aa93c340a779e646d3",
+      "repo_path": "最终版4K视频/46 - Lost in the Glare - 光之殇.mp4"
+    },
+    "original_artifact_id": 14085605409,
+    "artifact_zip_sha256": "2920feec0c3ad895b2fc40fa1686846a9c9eb88d5c92a9594d0331cd364df684",
+    "artifact_zip_removed_after_MP4_extraction": true,
+    "private_GT_cache_models_or_PCM_extracted": false
+  },
+  "actual_adts": {
+    "accepted": {
+      "bytes": 2277675,
+      "sha256": "deed9b94fd8870132256eeda357a75dd007ccebf4245eed285efd3a00483108d"
+    },
+    "failed": {
+      "bytes": 2277675,
+      "sha256": "deed9b94fd8870132256eeda357a75dd007ccebf4245eed285efd3a00483108d"
+    }
+  },
+  "ADTS_payload_and_headers_byte_identical": true,
+  "audio_codec_parameters_equal": true,
+  "codec_parameters": {
+    "accepted": {
+      "codec_name": "aac",
+      "profile": "LC",
+      "sample_rate": "48000",
+      "channels": 1,
+      "channel_layout": "mono",
+      "time_base": "1/48000",
+      "start_pts": 0,
+      "start_time": "0.000000",
+      "extradata_size": 5,
+      "extradata_hash": "SHA256:643b0e23faf2831be78dddd3de11c0f1b4aac4d4f762554c9bdaab7cc1e9e409"
+    },
+    "failed": {
+      "codec_name": "aac",
+      "profile": "LC",
+      "sample_rate": "48000",
+      "channels": 1,
+      "channel_layout": "mono",
+      "time_base": "1/48000",
+      "start_pts": 0,
+      "start_time": "0.000000",
+      "extradata_size": 5,
+      "extradata_hash": "SHA256:643b0e23faf2831be78dddd3de11c0f1b4aac4d4f762554c9bdaab7cc1e9e409"
+    }
+  },
+  "packet_counts": {
+    "accepted": 6826,
+    "failed": 6826
+  },
+  "AAC_payload_absolute_pts_dts_duration_sizes_equal": true,
+  "packet_projection_sha256": {
+    "accepted": "7509b40ab9975b427bab979833b3dc7fa4f58c80ff399dafb20357ee0121c491",
+    "failed": "7509b40ab9975b427bab979833b3dc7fa4f58c80ff399dafb20357ee0121c491"
+  },
+  "decoded_public_PCM": {
+    "format": "native ffmpeg float32le, original audio channel count/sample rate; no gain, filtering, resampling or alignment fit",
+    "sample_rate": "48000",
+    "channels": 1,
+    "accepted_bytes": 27955200,
+    "failed_bytes": 27955200,
+    "accepted_sha256": "b7a0c9b44db3122c224082bb6e3e98abb9cec85a35b5f6c303f01c6c4ff87f63",
+    "failed_sha256": "b7a0c9b44db3122c224082bb6e3e98abb9cec85a35b5f6c303f01c6c4ff87f63",
+    "entire_decoded_track_byte_identical": true,
+    "samples_each": 6988800,
+    "max_abs_sample_difference": 0.0
+  },
+  "sentence_script": "In 477 field clips, precious few darted straight at the light.",
+  "existing_machine_confirmation_for_target": null,
+  "existing_machine_confirmation_sentence_keys": [
+    "S2",
+    "S8"
+  ],
+  "public_silence_span_count": 18,
+  "expected_title_plus_sentence_count": 18,
+  "public_clip_locator_logic": "official 音频体检.句段: consecutive abs(sample)<1e-6 for>=0.7seconds; keep spans>0.3seconds",
+  "actual_public_sentence_clip": {
+    "path": "/workspace/work/video-audit70-20261113/asr46-49-55-readonly-20261114/public-media/46/46-S6-actual-failed-public-sentence.wav",
+    "bytes": 1024464,
+    "sha256": "6fd51ecfd16b140626e4e8eb62d569c754c807e589088a47bca012fa7dc76862",
+    "sample_start": 2318247,
+    "sample_end": 2574340,
+    "seconds_start": 48.2968125,
+    "seconds_end": 53.632083333333334,
+    "derived_only_from_public_MP4": true,
+    "entire_target_interval_matches_approved_samples": true
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "purpose": "Actual unchanged S5 speech continuity for renewing the existing precise ASR review; no new exception",
+  "article": "44",
+  "quality_acceptance": false,
+  "actual_current_pcm_md5_first12": "22c5ec30299f",
+  "native_timing_diagnostic_sha256": "0b496934f0cf0907869bd9f9f33d5559fb0483325b1e92e334f45664ab2a597f",
+  "accepted_video": {
+    "sha256": "efb332cdaf0f09a6cd892c91b8f6cef6eba48ea540f83eaa70eccf19aa26e659",
+    "path": "/workspace/work/video-audit70-20261113/audio44/44-accepted-public.mp4"
+  },
+  "actual_video": {
+    "sha256": "86373400d36ff726cf00543bf992ec2c731f4f0efad73c34480f752a7e40e684",
+    "path": "/workspace/work/video-audit70-20261113/ci-direct-43526354790/files/44-failed-draft.mp4"
+  },
+  "source_sentence": "Safety favoured alignment too.",
+  "existing_confirmation": {
+    "配音指纹": "21efe6263229",
+    "依据": "2026-11-03 实测（S5 w）：favoured 配音音标 fˈeɪvɚd，读音核对 0；ɚ 0.76–0.80（-10～-13 dB），0.81 降到 -20 dB，0.82–0.83 是 20–30 ms 的 /d/ 浊音闭塞（低频 -1 dB、重心 0.4–0.5 kHz），0.84 起 alignment 的 ɐ；中间没有 /ɪ/ 元音、也没有 /t/ 爆破，favorite 要多一个 ɪt；/d/ 在元音前读成浊闪音，parakeet 一路听成 favorite，交用户听"
+  },
+  "whole_sentence_proofs": [
+    {
+      "span_seconds": [
+        45.875,
+        47.69
+      ],
+      "decoded_sample_rate": 48000,
+      "decoded_dtype": "float64",
+      "sample_count": 87120,
+      "np_array_equal": true,
+      "old_decoded_sha256": "972d7ba601a20e9c894b26508a4c652eeb2af61b74787900e338a6e80cca042e",
+      "actual_decoded_sha256": "972d7ba601a20e9c894b26508a4c652eeb2af61b74787900e338a6e80cca042e",
+      "fit": {
+        "gain_db": 0.0,
+        "correlation": 0.9999999999999999,
+        "gain_compensated_residual_snr_db": 276.55253669173464
+      }
+    },
+    {
+      "span_seconds": [
+        45.725,
+        47.839999999999996
+      ],
+      "decoded_sample_rate": 48000,
+      "decoded_dtype": "float64",
+      "sample_count": 101520,
+      "np_array_equal": true,
+      "old_decoded_sha256": "b79db7a8b7d337ae27828b7271cec708723dc6b9c2247f4b22ac11e5114c81ea",
+      "actual_decoded_sha256": "b79db7a8b7d337ae27828b7271cec708723dc6b9c2247f4b22ac11e5114c81ea",
+      "fit": {
+        "gain_db": 0.0,
+        "correlation": 1.0,
+        "gain_compensated_residual_snr_db": 275.88820268346404
+      }
+    }
+  ],
+  "proposal": {
+    "scope": "核对确认.机器复听.S5 only",
+    "配音指纹": "22c5ec30299f",
+    "retain_existing_basis_and_types": true,
+    "basis_append": "本轮实际公开旧/新成片 S5 整句45.875–47.690秒及两端各150ms的48kHz decoded样本逐样本完全相同；原favoured误识别依据适用于本轮真实同一语音，只续whole-a.wav指纹。"
+  },
+  "source_modified": false,
+  "original_ASR_program_and_thresholds_modified": false
+}

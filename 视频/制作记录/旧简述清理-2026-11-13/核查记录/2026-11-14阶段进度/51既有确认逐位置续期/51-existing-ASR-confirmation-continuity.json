@@ -1,0 +1,527 @@
+{
+  "article": "51",
+  "purpose": "Actual public sound continuity for six existing sentence-specific ASR confirmations; no new ASR basis or exemption",
+  "quality_acceptance": false,
+  "source_audio_or_checkers_modified": false,
+  "base_payload_source_sha256": "efb069793b6f325a0f0c0910c8dddf72df67ab8d3c2bc224fde5a59c2d3fc7b8",
+  "current_producer_pcm_sha256": "202d6b8cbbfe20cf33647bc024ac20cdcb780a2f4a8c7abc36d9f951f80fce65",
+  "current_producer_pcm_md5_first12": "b86f2f88ba42",
+  "original_official_ASR_checker_sha256": "40caf651184d50efeb8d3b4477cd7a2b85911a495360554db1b3cd09ab596229",
+  "observed_actual_failed_run": 43526354790,
+  "observed_original_ASR_status_lines": [
+    "  ✘ 机器复听（逐词读音与脚本一致）：机器复听 19 句：读音对不上的 5 句",
+    "      S2：脚本“oll” 听到“all〔small.en〕”；脚本“oll” 听到“all〔parakeet〕”",
+    "      S5：脚本“as” 听到“is〔small.en〕”",
+    "      S6：脚本“letters” 听到“letter〔small.en〕”；脚本“oll korrect” 听到“all correct〔small.en〕”；脚本“oll korrect” 听到“all correct〔parakeet〕”",
+    "      S12：脚本“kurrek” 听到“correct〔small.en〕”；脚本“（多出）” 听到“ok for〔parakeet〕”；脚本“k for ole kurrek” 听到“correct〔parakeet〕”",
+    "      S16：脚本“choctaw okeh a"
+  ],
+  "observations": {
+    "existing_confirmation_count": 6,
+    "whole_sentence_bit_identical_count": 5,
+    "S2_actual_piece2_bit_identical": true,
+    "S2_pieces1_and4_high_fidelity_with_small_decoded_AAC_residuals_not_claimed_identical": true,
+    "actual_public_audio_qc_passed": true,
+    "actual_public_audio_qc_check_count": 20
+  },
+  "inputs": {
+    "/workspace/work/video-audit70-20261113/readonly-audio-replay-43528832985/51-reference-gain-diagnostic.json": "02a204d18e9bfa79109901603d354cbff830063e3e3919e1455e71b086756b2a",
+    "/workspace/work/video-audit70-20261113/payload/视频/脚本/51.json": "efb069793b6f325a0f0c0910c8dddf72df67ab8d3c2bc224fde5a59c2d3fc7b8",
+    "/workspace/work/video-audit70-20261113/ci-direct-43526354790-51/51-status.json": "3a7b77872c965cb4ee984c3d768c4b6839a04a2c9e8b128e5232415e7cac081b",
+    "/workspace/work/video-audit70-20261113/audio51-remaining-edits/51-public-actual-change-qc-with-native-timings.json": "900ddbb4d074c6602b4c35e0fc8481040089e1dd037c3fac982f246dd8b49e79",
+    "/workspace/work/video-audit70-20261113/audio51-independent/51-accepted-decoded.wav": "4f9d8385578b4dfddbd3c47b5cd80fc9a7544ec2063d0c9f4e91cb034c8df8c8",
+    "/workspace/work/video-audit70-20261113/audio51-independent/51-failed-decoded.wav": "d57872dfa4f282d73f6a81acf6d396d51fa77aa72ddd809131b0e0eb6ac14330"
+  },
+  "rows": [
+    {
+      "sentence": "S2",
+      "source_English": "From 1838 **abbreviations** were **all the vogue** in Boston's papers, and the **craze** turned **comic** through **deliberate** **misspellings**: O.W. for 'oll wright', K.Y. for 'know yuse'.",
+      "existing_confirmation": {
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06（配音指纹 ff0728857c2d）：oll 是 all 的故意错拼（Merriam-Webster OK 词源），已核实读音照 all 读 ˈɑːl，两路都听成 all 正是读对了"
+      },
+      "native_actual_segment_times": [
+        {
+          "段": 1,
+          "增益": 0.0,
+          "停顿": 0.4,
+          "时刻": [
+            10.77,
+            15.56
+          ]
+        },
+        {
+          "段": 2,
+          "增益": 0.0,
+          "停顿": 0.4,
+          "时刻": [
+            15.95,
+            19.295
+          ]
+        },
+        {
+          "段": 3,
+          "增益": 0.0,
+          "停顿": 0.4,
+          "时刻": [
+            19.675,
+            22.03
+          ]
+        },
+        {
+          "段": 4,
+          "增益": 1.5,
+          "停顿": null,
+          "时刻": [
+            22.415,
+            24.225
+          ]
+        }
+      ],
+      "actual_public_sentence_window_seconds": [
+        10.67,
+        24.325000000000003
+      ],
+      "margin_seconds": 0.1,
+      "whole_sentence_comparison": {
+        "decoded_sample_count": 655440,
+        "decoded_dtype": "float64",
+        "whole_region_bit_identical": false,
+        "accepted_decoded_sha256": "982d5442724121e18a619232ed7a5f35bdb29dcc9dbf11f77c5617733818f378",
+        "actual_decoded_sha256": "6d1fd48c6449898e29724121e60dfa9cef4d679fc2c88038b8a1da8ec0fb2981",
+        "different_sample_count": 132684
+      },
+      "all_samples_outside_approved_audio_change_window": {
+        "approved_change_window_seconds": [
+          19.55,
+          22.18
+        ],
+        "compared_windows_seconds": [
+          [
+            10.67,
+            19.55
+          ],
+          [
+            22.18,
+            24.325000000000003
+          ]
+        ],
+        "decoded_sample_count": 529200,
+        "decoded_dtype": "float64",
+        "whole_region_bit_identical": false,
+        "accepted_decoded_sha256": "e5e9f12b8d23ca13e09e2149ab14d63d61b915ef33e529316d252b84f5bf047a",
+        "actual_decoded_sha256": "c0e1f0a1c34633a1d965967f53def260fa5580875efc584f6d2adda03a4dde49",
+        "different_sample_count": 14284,
+        "fit": {
+          "gain_db": -5.626844742216756e-06,
+          "correlation": 0.9999999851797147,
+          "gain_compensated_residual_snr_db": 75.28113435590086
+        }
+      },
+      "per_actual_piece_comparison": [
+        {
+          "piece": 1,
+          "actual_time_seconds": [
+            10.77,
+            15.56
+          ],
+          "decoded_sample_count": 229920,
+          "decoded_dtype": "float64",
+          "whole_region_bit_identical": false,
+          "accepted_decoded_sha256": "6f1127c661bb450bb7caf7a003a0a29ff2b135f9dee4fd38a3b56cf37e5944f3",
+          "actual_decoded_sha256": "8b205be72e2dbbcc97e312a9ea7016024de51f21a4fe73a3897fabc67b337b19",
+          "different_sample_count": 3072,
+          "direct_waveform_fit": {
+            "gain_db": 2.846077511640081e-10,
+            "correlation": 0.9999999999970968,
+            "gain_compensated_residual_snr_db": 112.36102143370358
+          }
+        },
+        {
+          "piece": 2,
+          "actual_time_seconds": [
+            15.95,
+            19.295
+          ],
+          "decoded_sample_count": 160560,
+          "decoded_dtype": "float64",
+          "whole_region_bit_identical": true,
+          "accepted_decoded_sha256": "adb49bf5d0c632867ac9c06ee6eba32d0e96bf95674279f854231f3fd44ebbae",
+          "actual_decoded_sha256": "adb49bf5d0c632867ac9c06ee6eba32d0e96bf95674279f854231f3fd44ebbae",
+          "different_sample_count": 0,
+          "direct_waveform_fit": {
+            "gain_db": 0.0,
+            "correlation": 1.0,
+            "gain_compensated_residual_snr_db": 276.19663066175286
+          }
+        },
+        {
+          "piece": 3,
+          "actual_time_seconds": [
+            19.675,
+            22.03
+          ],
+          "decoded_sample_count": 113040,
+          "decoded_dtype": "float64",
+          "whole_region_bit_identical": false,
+          "accepted_decoded_sha256": "604063d1dfa1db6e3d51223da4898825943221072d244495dca41178d1b70ecc",
+          "actual_decoded_sha256": "f017e62a21b535cf4a5b270aed1b7e1e8113870cc167e1c8ca7d0fe3adab8ed7",
+          "different_sample_count": 110928,
+          "direct_waveform_fit": {
+            "gain_db": -0.6367666383694346,
+            "correlation": 0.9861288677767256,
+            "gain_compensated_residual_snr_db": 15.477480095561862
+          },
+          "approved_delta_gain_endpoints_db": [
+            -2,
+            2.5
+          ],
+          "approved_ramp_prediction_fit": {
+            "gain_db": -0.04832036843950636,
+            "correlation": 0.9999792711524972,
+            "gain_compensated_residual_snr_db": 43.82381343974036
+          }
+        },
+        {
+          "piece": 4,
+          "actual_time_seconds": [
+            22.415,
+            24.225
+          ],
+          "decoded_sample_count": 86880,
+          "decoded_dtype": "float64",
+          "whole_region_bit_identical": false,
+          "accepted_decoded_sha256": "a376b84281b4380885eea6bb5cc9fcea87a1b6193184296c03bdcad6712fcc57",
+          "actual_decoded_sha256": "9386dc5c3e48046a816fafe7dc0e9f1ec7901ae2fde06211159309282b1effd1",
+          "different_sample_count": 5068,
+          "direct_waveform_fit": {
+            "gain_db": -3.650581992828027e-05,
+            "correlation": 0.9999999072423761,
+            "gain_compensated_residual_snr_db": 67.31620328448871
+          }
+        }
+      ],
+      "original_full_actual_audio_qc_ramp_checks": [
+        {
+          "name": "actual-approved-smooth-ramp",
+          "passed": true,
+          "median_error_db": 0.046788568257577934,
+          "p95_error_db": 0.07596957924181655,
+          "actual_piece_range": [
+            19.675,
+            22.03
+          ]
+        },
+        {
+          "name": "actual-ramp-same-waveform-no-new-distortion",
+          "passed": true,
+          "gain_db": -0.04831987928265489,
+          "correlation": 0.999979333121763,
+          "gain_compensated_residual_snr_db": 43.83681660142632
+        },
+        {
+          "name": "actual-pitch-preserved:oll_wright",
+          "passed": true,
+          "voiced_pairs": 50,
+          "median_absolute_cents": 0.07798888687092319,
+          "p90_absolute_cents": 0.39086381600718606,
+          "whole_decoded_crop_bit_identical": false,
+          "decoded_sample_count": 39840,
+          "decoded_dtype": "float64",
+          "accepted_crop_sha256": "b9021c15e2af11eb0b0e0e810e02fd46b379901f93e89c406f8a25c234efe439",
+          "actual_crop_sha256": "05ea6b3db23cf1044e67f9128fbf77ce1188151edd0c0885ab2112ad35885d7f",
+          "preservation_basis": "measured-pitch-original-count-and-cent-limits"
+        }
+      ],
+      "minimal_update": {
+        "old_fingerprint": "ff0728857c2d",
+        "new_fingerprint": "b86f2f88ba42",
+        "existing_original_ASR_basis_retained_verbatim": true,
+        "new_ASR_exception_introduced": false
+      }
+    },
+    {
+      "sentence": "S5",
+      "source_English": "It carried the first known 'o.k.', **glossed as** 'all correct'.",
+      "existing_confirmation": {
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06（配音指纹 ff0728857c2d）：只有 small.en 一路把 glossed as 的 as 听成 is，parakeet 听对；as 弱读 əz，读音核对通过；'o.k.' 按用户 2026-11-06 原话改连读 ˌoʊkˈeɪ"
+      },
+      "native_actual_segment_times": [
+        {
+          "段": 1,
+          "增益": 0.0,
+          "停顿": 0.4,
+          "时刻": [
+            44.725,
+            46.52
+          ]
+        },
+        {
+          "段": 2,
+          "增益": 0.0,
+          "停顿": null,
+          "时刻": [
+            46.9,
+            48.42
+          ]
+        }
+      ],
+      "actual_public_sentence_window_seconds": [
+        44.625,
+        48.52
+      ],
+      "margin_seconds": 0.1,
+      "whole_sentence_comparison": {
+        "decoded_sample_count": 186960,
+        "decoded_dtype": "float64",
+        "whole_region_bit_identical": true,
+        "accepted_decoded_sha256": "9ab586164640c41be31684a72a00a1b22a108e0330b0e232438fc5ea316ab5b2",
+        "actual_decoded_sha256": "9ab586164640c41be31684a72a00a1b22a108e0330b0e232438fc5ea316ab5b2",
+        "different_sample_count": 0
+      },
+      "minimal_update": {
+        "old_fingerprint": "ff0728857c2d",
+        "new_fingerprint": "b86f2f88ba42",
+        "existing_original_ASR_basis_retained_verbatim": true,
+        "new_ASR_exception_introduced": false
+      }
+    },
+    {
+      "sentence": "S6",
+      "source_English": "The letters **stood for** a **knowingly** **illiterate** 'oll korrect'.",
+      "existing_confirmation": {
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06（配音指纹 ff0728857c2d）：oll korrect 是 all correct 的故意错拼，已核实读音照 all correct 读（korrect kəɹˈɛkt），两路听成 all correct 正是读对了；letters 只有 small.en 一路听成 letter，parakeet 听对，词尾 /z/ 在"
+      },
+      "native_actual_segment_times": [
+        {
+          "段": 1,
+          "增益": 0.0,
+          "停顿": null,
+          "时刻": [
+            49.42,
+            52.33
+          ]
+        }
+      ],
+      "actual_public_sentence_window_seconds": [
+        49.32,
+        52.43
+      ],
+      "margin_seconds": 0.1,
+      "whole_sentence_comparison": {
+        "decoded_sample_count": 149280,
+        "decoded_dtype": "float64",
+        "whole_region_bit_identical": true,
+        "accepted_decoded_sha256": "59b9ee743c351a473bb53e5c6a6df640561b31116cf6eae2a8ec4205346a82c3",
+        "actual_decoded_sha256": "59b9ee743c351a473bb53e5c6a6df640561b31116cf6eae2a8ec4205346a82c3",
+        "different_sample_count": 0
+      },
+      "minimal_update": {
+        "old_fingerprint": "ff0728857c2d",
+        "new_fingerprint": "b86f2f88ba42",
+        "existing_original_ASR_basis_retained_verbatim": true,
+        "new_ASR_exception_introduced": false
+      }
+    },
+    {
+      "sentence": "S12",
+      "source_English": "On 30 March 1840 the New York Morning Herald printed a **fabricated** **smear**: the former president Andrew Jackson, a **supposedly** **inept** speller, had marked **paperwork** O.K., for 'Ole Kurrek'.",
+      "existing_confirmation": {
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06（配音指纹 ff0728857c2d）：按用户 2026-11-06 原话把 O.K. 改连读 ˌoʊkˈeɪ（脚本字面仍是 O.K.，比对时拆成 o k）；parakeet 听到 “…paperwork ok for correct”：ok 就是连读的 OK，Ole Kurrek 是 all correct 的故意错拼（已核实 Ole ˈoʊl、Kurrek kəɹˈɛk），听成 correct 正是读对了；small.en 也听成 correct"
+      },
+      "native_actual_segment_times": [
+        {
+          "段": 1,
+          "增益": 0.0,
+          "停顿": 0.4,
+          "时刻": [
+            89.515,
+            95.43
+          ]
+        },
+        {
+          "段": 2,
+          "增益": -1.5,
+          "停顿": 0.4,
+          "时刻": [
+            95.81,
+            98.015
+          ]
+        },
+        {
+          "段": 3,
+          "增益": -1.5,
+          "停顿": 0.4,
+          "时刻": [
+            98.395,
+            100.265
+          ]
+        },
+        {
+          "段": 4,
+          "增益": 0.0,
+          "停顿": 0.4,
+          "时刻": [
+            100.645,
+            102.595
+          ]
+        },
+        {
+          "段": 5,
+          "增益": 0.0,
+          "停顿": null,
+          "时刻": [
+            102.975,
+            104.08
+          ]
+        }
+      ],
+      "actual_public_sentence_window_seconds": [
+        89.415,
+        104.17999999999999
+      ],
+      "margin_seconds": 0.1,
+      "whole_sentence_comparison": {
+        "decoded_sample_count": 708720,
+        "decoded_dtype": "float64",
+        "whole_region_bit_identical": true,
+        "accepted_decoded_sha256": "2b058e8ead3660746e820a83d55de829b849470159fd71e4412a8bfbaaa3fbd2",
+        "actual_decoded_sha256": "2b058e8ead3660746e820a83d55de829b849470159fd71e4412a8bfbaaa3fbd2",
+        "different_sample_count": 0
+      },
+      "minimal_update": {
+        "old_fingerprint": "ff0728857c2d",
+        "new_fingerprint": "b86f2f88ba42",
+        "existing_original_ASR_basis_retained_verbatim": true,
+        "new_ASR_exception_introduced": false
+      }
+    },
+    {
+      "sentence": "S16",
+      "source_English": "Rival stories offered **exotic** **pedigrees**: Choctaw 'okeh' and Greek 'ola kala'.",
+      "existing_confirmation": {
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06（配音指纹 ff0728857c2d）：Choctaw tʃˈɑːktɔː、okeh、ola kala（kɑːlˈɑː）都已核实读音；识别器词表里没有这几个外语/专名，small.en 写成 chakto oke、olokala，parakeet 写成 oke，是拼写不同、读音对得上"
+      },
+      "native_actual_segment_times": [
+        {
+          "段": 1,
+          "增益": 0.0,
+          "停顿": 0.4,
+          "时刻": [
+            118.47,
+            121.08
+          ]
+        },
+        {
+          "段": 2,
+          "增益": 0.0,
+          "停顿": null,
+          "时刻": [
+            121.46,
+            124.02
+          ]
+        }
+      ],
+      "actual_public_sentence_window_seconds": [
+        118.37,
+        124.11999999999999
+      ],
+      "margin_seconds": 0.1,
+      "whole_sentence_comparison": {
+        "decoded_sample_count": 276000,
+        "decoded_dtype": "float64",
+        "whole_region_bit_identical": true,
+        "accepted_decoded_sha256": "9a209bb60490bdd7ba4599394f1f481cd69eb18beabf83e5b7c5f95113c8a518",
+        "actual_decoded_sha256": "9a209bb60490bdd7ba4599394f1f481cd69eb18beabf83e5b7c5f95113c8a518",
+        "different_sample_count": 0
+      },
+      "minimal_update": {
+        "old_fingerprint": "ff0728857c2d",
+        "new_fingerprint": "b86f2f88ba42",
+        "existing_original_ASR_basis_retained_verbatim": true,
+        "new_ASR_exception_introduced": false
+      }
+    },
+    {
+      "sentence": "S18",
+      "source_English": "In 1963–64 the linguist Allen Walker Read **excavated** the **neglected** Boston **provenance** from **archival** newspapers in six **influential** American Speech articles.",
+      "existing_confirmation": {
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06（配音指纹 ff0728857c2d）：只有 parakeet 一路把 provenance 听成 provence，small.en 听对；读音已按 Merriam-Webster 改正为 pɹˈɑːvənəns（读音核对通过）"
+      },
+      "native_actual_segment_times": [
+        {
+          "段": 1,
+          "增益": 0.0,
+          "停顿": null,
+          "时刻": [
+            130.94,
+            143.27
+          ]
+        }
+      ],
+      "actual_public_sentence_window_seconds": [
+        130.84,
+        143.37
+      ],
+      "margin_seconds": 0.1,
+      "whole_sentence_comparison": {
+        "decoded_sample_count": 601440,
+        "decoded_dtype": "float64",
+        "whole_region_bit_identical": true,
+        "accepted_decoded_sha256": "5b804d0334b9ea0cb3f0fd8de11a9a9b446011b6a04ad61258913f6b52960947",
+        "actual_decoded_sha256": "5b804d0334b9ea0cb3f0fd8de11a9a9b446011b6a04ad61258913f6b52960947",
+        "different_sample_count": 0
+      },
+      "minimal_update": {
+        "old_fingerprint": "ff0728857c2d",
+        "new_fingerprint": "b86f2f88ba42",
+        "existing_original_ASR_basis_retained_verbatim": true,
+        "new_ASR_exception_introduced": false
+      }
+    }
+  ],
+  "minimal_proposal": {
+    "scope": "Only six preexisting 核对确认.机器复听 records S2/S5/S6/S12/S16/S18: renew actual fingerprint and append per-sentence continuity proof. Preserve every original ASR spelling/foreign-language explanation verbatim. No new ASR claim, exception, audio change, or quality-threshold change.",
+    "metadata_updates": {
+      "核对确认": {
+        "机器复听": {
+          "S2": {
+            "配音指纹": "b86f2f88ba42",
+            "依据": "2026-11-06（配音指纹 ff0728857c2d）：oll 是 all 的故意错拼（Merriam-Webster OK 词源），已核实读音照 all 读 ˈɑːl，两路都听成 all 正是读对了；2026-11-14 本轮声音连续性实证：当前配音指纹b86f2f88ba42，完整producer PCM SHA256 202d6b8cbbfe20cf33647bc024ac20cdcb780a2f4a8c7abc36d9f951f80fce65。S2真实段时刻10.770–24.225 s，第2段15.950–19.295 s与旧已验成片逐字节相同；第1/4段解码AAC存在微小残差，声波相关系数分别0.999999999997和0.999999907，局部增益分别约0 dB和−0.0000365 dB，不夸称逐样本相同。第3段19.675–22.030 s按获准连续增益差−2→+2.5 dB预测，实际声波形状及oll wright音高由20项真实音轨辅助检查通过。本次不新增拼写/外语或ASR例外，只保留原oll/all识别依据并续当前指纹。详见51-existing-ASR-confirmation-continuity.json。"
+          },
+          "S5": {
+            "配音指纹": "b86f2f88ba42",
+            "依据": "2026-11-06（配音指纹 ff0728857c2d）：只有 small.en 一路把 glossed as 的 as 听成 is，parakeet 听对；as 弱读 əz，读音核对通过；'o.k.' 按用户 2026-11-06 原话改连读 ˌoʊkˈeɪ；2026-11-14 本轮声音连续性实证：当前配音指纹b86f2f88ba42，完整producer PCM SHA256 202d6b8cbbfe20cf33647bc024ac20cdcb780a2f4a8c7abc36d9f951f80fce65。按真实分段记录取整句44.625–48.520 s（两侧各100 ms）直接比较新旧公开MP4解码，186960个48 kHz float64样本逐字节完全相同，SHA256 9ab586164640c41be31684a72a00a1b22a108e0330b0e232438fc5ea316ab5b2。原句词音与原误识别解释均未变；本次只续已有确认的当前指纹，不新增ASR依据或豁免。详见51-existing-ASR-confirmation-continuity.json。"
+          },
+          "S6": {
+            "配音指纹": "b86f2f88ba42",
+            "依据": "2026-11-06（配音指纹 ff0728857c2d）：oll korrect 是 all correct 的故意错拼，已核实读音照 all correct 读（korrect kəɹˈɛkt），两路听成 all correct 正是读对了；letters 只有 small.en 一路听成 letter，parakeet 听对，词尾 /z/ 在；2026-11-14 本轮声音连续性实证：当前配音指纹b86f2f88ba42，完整producer PCM SHA256 202d6b8cbbfe20cf33647bc024ac20cdcb780a2f4a8c7abc36d9f951f80fce65。按真实分段记录取整句49.320–52.430 s（两侧各100 ms）直接比较新旧公开MP4解码，149280个48 kHz float64样本逐字节完全相同，SHA256 59b9ee743c351a473bb53e5c6a6df640561b31116cf6eae2a8ec4205346a82c3。原句词音与原误识别解释均未变；本次只续已有确认的当前指纹，不新增ASR依据或豁免。详见51-existing-ASR-confirmation-continuity.json。"
+          },
+          "S12": {
+            "配音指纹": "b86f2f88ba42",
+            "依据": "2026-11-06（配音指纹 ff0728857c2d）：按用户 2026-11-06 原话把 O.K. 改连读 ˌoʊkˈeɪ（脚本字面仍是 O.K.，比对时拆成 o k）；parakeet 听到 “…paperwork ok for correct”：ok 就是连读的 OK，Ole Kurrek 是 all correct 的故意错拼（已核实 Ole ˈoʊl、Kurrek kəɹˈɛk），听成 correct 正是读对了；small.en 也听成 correct；2026-11-14 本轮声音连续性实证：当前配音指纹b86f2f88ba42，完整producer PCM SHA256 202d6b8cbbfe20cf33647bc024ac20cdcb780a2f4a8c7abc36d9f951f80fce65。按真实分段记录取整句89.415–104.180 s（两侧各100 ms）直接比较新旧公开MP4解码，708720个48 kHz float64样本逐字节完全相同，SHA256 2b058e8ead3660746e820a83d55de829b849470159fd71e4412a8bfbaaa3fbd2。原句词音与原误识别解释均未变；本次只续已有确认的当前指纹，不新增ASR依据或豁免。详见51-existing-ASR-confirmation-continuity.json。"
+          },
+          "S16": {
+            "配音指纹": "b86f2f88ba42",
+            "依据": "2026-11-06（配音指纹 ff0728857c2d）：Choctaw tʃˈɑːktɔː、okeh、ola kala（kɑːlˈɑː）都已核实读音；识别器词表里没有这几个外语/专名，small.en 写成 chakto oke、olokala，parakeet 写成 oke，是拼写不同、读音对得上；2026-11-14 本轮声音连续性实证：当前配音指纹b86f2f88ba42，完整producer PCM SHA256 202d6b8cbbfe20cf33647bc024ac20cdcb780a2f4a8c7abc36d9f951f80fce65。按真实分段记录取整句118.370–124.120 s（两侧各100 ms）直接比较新旧公开MP4解码，276000个48 kHz float64样本逐字节完全相同，SHA256 9a209bb60490bdd7ba4599394f1f481cd69eb18beabf83e5b7c5f95113c8a518。原句词音与原误识别解释均未变；本次只续已有确认的当前指纹，不新增ASR依据或豁免。详见51-existing-ASR-confirmation-continuity.json。"
+          },
+          "S18": {
+            "配音指纹": "b86f2f88ba42",
+            "依据": "2026-11-06（配音指纹 ff0728857c2d）：只有 parakeet 一路把 provenance 听成 provence，small.en 听对；读音已按 Merriam-Webster 改正为 pɹˈɑːvənəns（读音核对通过）；2026-11-14 本轮声音连续性实证：当前配音指纹b86f2f88ba42，完整producer PCM SHA256 202d6b8cbbfe20cf33647bc024ac20cdcb780a2f4a8c7abc36d9f951f80fce65。按真实分段记录取整句130.840–143.370 s（两侧各100 ms）直接比较新旧公开MP4解码，601440个48 kHz float64样本逐字节完全相同，SHA256 5b804d0334b9ea0cb3f0fd8de11a9a9b446011b6a04ad61258913f6b52960947。原句词音与原误识别解释均未变；本次只续已有确认的当前指纹，不新增ASR依据或豁免。详见51-existing-ASR-confirmation-continuity.json。"
+          }
+        }
+      }
+    }
+  },
+  "limits": [
+    "This is continuity evidence for previously documented ASR discrepancies, not a new phonetic transcription or new subjective listening approval.",
+    "The original 机器复听.py two recognizers and selftests remain authoritative. This report does not forge their output, suppress a new mismatch, or replace final canonical QA.",
+    "S2 actual samples inside the approved gain window are intentionally changed; sample identity is claimed only for actual piece2. Other unchanged S2 pieces have very small measured decoded AAC residuals, and are described by their gain/correlation/SNR rather than falsely called identical.",
+    "Existing original workflow classifies valid, fingerprint-bound actual-voice explanations as user-listening doubt; original current authorization/finalization rules remain unchanged."
+  ]
+}
