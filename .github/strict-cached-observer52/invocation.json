@@ -1,7 +1,7 @@
 {
   "article": "52",
-  "helper": "observe52_private_two_NV_measured_mother_bound_candidate.py",
-  "helper_sha256": "16819b1416aaa2aec766c21c8461c7aafaeec29440d0f20abdfbd9b45378b77d",
+  "helper": "observe52_S18_first_zero_only.py",
+  "helper_sha256": "560c7a451f621be8e172dcbf00e0ea1cf5fa4407bef2dc20001368f13bf0a205",
   "arguments": [
     "--tools",
     "{tools}",
@@ -9,16 +9,12 @@
     "{video_root}",
     "--request-source",
     "{namespace}/52-request-source.json",
-    "--working-source",
-    "{namespace}/52-failed-working-source.json",
-    "--old-source",
-    "{namespace}/52-old-actual-source.json",
-    "--whole-reference",
-    "{namespace}/strict-spoken-whole-track-diagnostic.json",
+    "--old-private-candidate",
+    "{namespace}/52-private-only-two-NV-and-measured-mother-pins-candidate.json",
     "--mother-contract",
     "{namespace}/actual-six-spoken-mother-cache-contract.json",
-    "--failure-status",
-    "{namespace}/52-failed-status.json",
+    "--actual-observation",
+    "{namespace}/source52-strict-cached-observation.json",
     "--output",
     "{output}"
   ],
@@ -40,14 +36,11 @@
   },
   "included_files": {
     "52-request-source.json": "c00eb5707f1b269d2ce88fed455f592962d674d46e3bf172ba00cfe6597245f3",
-    "52-failed-working-source.json": "8844aaef1329e717baeebd1d6044b866304d942cd192b17283032e90d17da2c5",
-    "52-old-actual-source.json": "2a92386d5f459ad115685d5c3904cc2cf834659f44f6b836caf0bcbc70245c24",
-    "strict-spoken-whole-track-diagnostic.json": "5c4a2e62624ade5d119086c9525a8d90588efc7507fdbdd04678219dd8f4a156",
-    "actual-six-spoken-mother-cache-contract.json": "9d133939b08a08b78cb6810028708618b92a2f2449cf56a67bd9b82506887b79",
-    "52-failed-status.json": "d03d1af8dd06aaefe98ff33b03476ff36d5b2141bb709191825a296c2b1c0ef9",
     "52-private-only-two-NV-and-measured-mother-pins-candidate.json": "448f3733ebba009945f555eac4ddb551dc7e996db7b9b60ef8c44835099d9e91",
-    "SOURCE52-PRIVATE-CANDIDATE-NEW-MOTHER-DATA-BINDING-RETRY-HANDOFF.json": "90f3cb01a166bb9c58b591f0324f2ab805852f850847e2fa1cbba462600527ba",
-    "root-source52-private-two-NV-exact-new-mother-data-binding-code-adoption-decision.json": "298f98d0c1ae7ee76cf79a5c8db7d7a996fa607bb92375ff03371ab12dba8097"
+    "actual-six-spoken-mother-cache-contract.json": "9d133939b08a08b78cb6810028708618b92a2f2449cf56a67bd9b82506887b79",
+    "source52-strict-cached-observation.json": "55594624daca4a4601146e4cb1822e813782e14e1cdc0a5e65774e8602045822",
+    "SOURCE52-S18-ONLY-FIRST-ZERO-LOCAL-OBSERVER-HANDOFF.json": "1d074d5666430606a73f90c4c5e0487de76d47648b0d87d3e6a89e148654fa27",
+    "root-source52-S18-only-conservative-first-zero-local-code-adoption-decision.json": "61329fa73714fa729d4db047c122c405598badf8f9391ad3c45eede95308f314"
   },
   "diagnostic_only": true,
   "new_model_inference_authorized": false
