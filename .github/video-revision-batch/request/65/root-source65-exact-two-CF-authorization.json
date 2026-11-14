@@ -1,0 +1,113 @@
+{
+  "kind": "root-actual-read-source65-specific-two-existing-unchanged-whole-sentence-confirmation-renewal",
+  "utc": "2026-11-14T19:43:52.768008+00:00",
+  "source_id": "65",
+  "book_order": "37",
+  "proposal_path": "/dev/shm/book37-source65-production-20261114/actual65-only-S3-S4-same-whole-PCM-existing-CF-renewal-proposal.json",
+  "proposal_sha256": "0a58e96b068af026eaa0da55f499a44678256146b51a07ab7293c8d807ecb358",
+  "exact_cases": [
+    {
+      "sentence": "S3",
+      "exact_review_path": [
+        "核对确认",
+        "机器复听",
+        "S3"
+      ],
+      "existing_basis_verbatim": {
+        "配音指纹": "130d1dd4adb4",
+        "依据": "2026-11-07：insure 美式读 /ɪnˈʃʊr/，与 ensure 同音（Merriam-Webster 两词同音），两路识别器按常见词拼成 ensure；读音正确"
+      },
+      "actual_failed_working_entry_verbatim": {
+        "配音指纹": "130d1dd4adb4",
+        "依据": "2026-11-07：insure 美式读 /ɪnˈʃʊr/，与 ensure 同音（Merriam-Webster 两词同音），两路识别器按常见词拼成 ensure；读音正确"
+      },
+      "whole_sentence_native_PCM16_sample_identity": {
+        "old_span_seconds": [
+          22.18,
+          35.67
+        ],
+        "actual_span_seconds": [
+          22.18,
+          35.67
+        ],
+        "old_sample_count": 323760,
+        "actual_sample_count": 323760,
+        "dtype": "int16",
+        "old_decoded_pcm_sha256": "780ac76fc95c03d299f2cdce4cf933c24441f120a18128a1cee555eccd53766c",
+        "actual_decoded_pcm_sha256": "780ac76fc95c03d299f2cdce4cf933c24441f120a18128a1cee555eccd53766c",
+        "whole_crop_samples_identical": true,
+        "different_sample_count": 0,
+        "maximum_absolute_difference_PCM16": 0.0,
+        "least_squares_gain_db": 0.0,
+        "ncc": 0.9999999999999998
+      },
+      "actual_current_native_ASR_difference_line": "      S3：脚本“insure” 听到“ensure〔small.en〕”；脚本“insure” 听到“ensure〔parakeet〕”",
+      "new_full_two_route_transcript_exported": false,
+      "actual_ASR_evidence_role": "original two-route difference report only; no invented complete transcript",
+      "proposed_runtime_entry": {
+        "配音指纹": "7fa49a5e903a",
+        "依据": "2026-11-07：insure 美式读 /ɪnˈʃʊr/，与 ensure 同音（Merriam-Webster 两词同音），两路识别器按常见词拼成 ensure；读音正确"
+      },
+      "proposed_change": "only existing entry fingerprint 130d1dd4adb4 -> 7fa49a5e903a; basis remains byte-for-byte identical"
+    },
+    {
+      "sentence": "S4",
+      "exact_review_path": [
+        "核对确认",
+        "机器复听",
+        "S4"
+      ],
+      "existing_basis_verbatim": {
+        "配音指纹": "130d1dd4adb4",
+        "依据": "2026-11-07：four and a half million 两路识别器都写成数字“4.5 million”，and a half 已读出；读音正确"
+      },
+      "actual_failed_working_entry_verbatim": {
+        "配音指纹": "130d1dd4adb4",
+        "依据": "2026-11-07：four and a half million 两路识别器都写成数字“4.5 million”，and a half 已读出；读音正确"
+      },
+      "whole_sentence_native_PCM16_sample_identity": {
+        "old_span_seconds": [
+          36.67,
+          39.955
+        ],
+        "actual_span_seconds": [
+          36.67,
+          39.955
+        ],
+        "old_sample_count": 78840,
+        "actual_sample_count": 78840,
+        "dtype": "int16",
+        "old_decoded_pcm_sha256": "9cc8c864d676014bf73c1e109ba1aa50b5754d8f34bab67d351d73a83027158f",
+        "actual_decoded_pcm_sha256": "9cc8c864d676014bf73c1e109ba1aa50b5754d8f34bab67d351d73a83027158f",
+        "whole_crop_samples_identical": true,
+        "different_sample_count": 0,
+        "maximum_absolute_difference_PCM16": 0.0,
+        "least_squares_gain_db": 0.0,
+        "ncc": 1.0000000000000002
+      },
+      "actual_current_native_ASR_difference_line": "      S4：脚本“and a half” 听到“5〔small.en〕”；脚本“and a half” 听到“5〔parakeet〕”",
+      "new_full_two_route_transcript_exported": false,
+      "actual_ASR_evidence_role": "original two-route difference report only; no invented complete transcript",
+      "proposed_runtime_entry": {
+        "配音指纹": "7fa49a5e903a",
+        "依据": "2026-11-07：four and a half million 两路识别器都写成数字“4.5 million”，and a half 已读出；读音正确"
+      },
+      "proposed_change": "only existing entry fingerprint 130d1dd4adb4 -> 7fa49a5e903a; basis remains byte-for-byte identical"
+    }
+  ],
+  "approved_scope": "Only existing S3/S4 runtime machine confirmation fingerprints 130d1dd4adb4 -> 7fa49a5e903a; preserve bases verbatim. Actual full-sentence decoded PCM16 0 samples different. No new confirmation basis or blanket renewal.",
+  "old_reference_role": "latest-current-native-reference with original canonical gates passed but outer legacy AAC identity guard failed; not formally accepted whole",
+  "actual_failed_run": 43632228447,
+  "actual_continuity": {
+    "path": "/dev/shm/failed-65-43632228447/artifact-files/65-confirmation-continuity.json",
+    "sha256": "88e88b59b2c330fd124f8b831832c5c19de04528bf21602ee8d22f4acc77a63c"
+  },
+  "native_old_pcm_binding_valid": false,
+  "legacy_acceptance_not_invented": true,
+  "S2_explicitly_excluded_due_to_18105_changed_samples": true,
+  "whole_new_native_and_original_ASR_all_gates_must_run_again": true,
+  "failure_history_retained": true,
+  "no_actual_ASR_full_transcript_or_human_listening_claim": true,
+  "no_source_voice_checker_threshold_change_authorized": true,
+  "archive_and_actual_finalV3_still_pending": true
+}
