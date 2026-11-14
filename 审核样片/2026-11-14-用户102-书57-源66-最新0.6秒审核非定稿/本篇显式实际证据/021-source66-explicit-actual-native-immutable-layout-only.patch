@@ -1,0 +1,12 @@
+--- E20/import_actual_article.py
++++ E23/import_actual_article.py
+@@ -43,7 +43,8 @@
+     explicit = (inline or {}).get('explicit_approved_video_layout')
+     if explicit is None:
+         return spec(TAIL/'approved-video-layouts70.json')
+-    approved = {'60': '02ed9814a9ba57868c687a8da2680c63cf02840e2ece3339921b366e29c4eb57',
++    approved = {'66': 'f6d4e960e54ead8ae50a9b112f7b1ed59e23b7c168f3daa4d9ede1660bad3013',
++                '60': '02ed9814a9ba57868c687a8da2680c63cf02840e2ece3339921b366e29c4eb57',
+                 '53': '34657693292b0a021cf601304a030c152fe5f4f3605bba650b99664667b9b87e',
+                 '05': 'ee85a037716e219d568efd2d2300a517fe7518836bf06f3df3f4a6cedd97fa15',
+                 '67': 'cc41c1b5d4daa5ffcbfc92dbffc05996161a1c48c89508be8787583a4c8bc08d',
