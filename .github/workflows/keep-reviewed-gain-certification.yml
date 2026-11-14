@@ -1,4 +1,4 @@
-name: 保持已审增益程序独立认证
+name: 已审增益与原始音频参考完整快测
 on:
   push:
     branches: [codex/finish-05-and-summaries-20261112]
@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        variant: [original, keep-reviewed-gain]
+        variant: [keep-reviewed-gain]
     steps:
       - uses: actions/checkout@v4
         with:

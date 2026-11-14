@@ -41,6 +41,14 @@ try:
  if not alias.exists():subprocess.run(['sudo','ln','-s',str(REPO),str(alias)],check=True)
  assert alias.resolve()==REPO.resolve()
  r=run([sys.executable,T/'出片指纹.py','--拷',W],'canonical-module-copy',cwd=REPO);assert r.returncode==0
+ # A newly approved raw-mother loader must rebuild only the current regression article's temporary GT.
+ if any(f['path'].endswith('/独立复核/synth.py') for f in manifest['files']):
+  removed=[]
+  for oldgt in sorted((W.parent/'qc_independent/gt').glob('27_*')):
+   if oldgt.is_file():removed.append({'name':oldgt.name,'SHA256':sha(oldgt)});oldgt.unlink()
+  report['fresh_reference_27_temporary_files_removed']=removed
+  report['unchanged_independent_audit_SHA256']=sha(T/'独立复核/audit.py')
+  report['fresh_reference_is_original_raw_cache_not_processed_PCM']=True
  r=run([sys.executable,T/'新管/快测.py'],'original-full-fastcheck',cwd=W);assert r.returncode==0,'Original full quickcheck failed; no approval stamp invented'
  report['original_full_fastcheck_passed']=True
  stamp=T/'新管/快测通过.json';assert stamp.is_file();shutil.copyfile(stamp,OUT/'real-fastcheck-stamp.json');report['real_fastcheck_stamp_SHA256']=sha(stamp)
