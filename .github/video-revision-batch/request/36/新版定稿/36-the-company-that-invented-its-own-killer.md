@@ -8,9 +8,9 @@ Kodak's **revenues** showed its **dependence on** film, the **profitable** **pil
 
 The **advent** of digital photography proved **disruptive**. In June 2009 Kodak said it would stop making Kodachrome, its **analogue** film, citing **lessened** demand in the digital **era**. Kodak's **manpower** had reached an **apex** of about 145,000 in the 1980s. By 2012, **layoffs** since 2003 had **slashed** 47,000 jobs, alongside the **shutdown** of 13 factories and some 130 labs.
 
-On 19 January 2012 the 131-year-old firm sought Chapter 11 protection from its **creditors**, **sapped** by **pension** costs and years of **slowness** in going digital. Citigroup, a **lender**, provided $950 million for its **restructuring**. A **portfolio** of 1,100 digital imaging patents fetched about $525 million from a **consortium** of twelve **buyers**, including the **giants** Apple and Google.
+On 19 January 2012 the 131-year-old firm sought Chapter 11 protection from its **creditors**, **sapped** by **pension** costs and years of **slowness** in going digital. Citigroup, a **lender**, provided $950 million for its **restructuring**. A **portfolio** of 1,100 digital imaging patents **fetched** about $525 million from a **consortium** of twelve **buyers**, including the **giants** Apple and Google.
 
-After 19 months of **reorganisation**, the **once-mighty** Kodak left bankruptcy in September 2013, **downsized**, **streamlined**, and **refocused as** a commercial **printer** for business **clients**. In November 2009 President Obama had **decorated** Sasson with national **laurels**, **commending** his digital camera. That **medal**'s year also saw Kodak announce **the end of** Kodachrome.
+After 19 months of **reorganisation**, the **once-mighty** Kodak left **bankruptcy** in September 2013, **downsized**, **streamlined**, and **refocused as** a commercial **printer** for business **clients**. In November 2009 President Obama had **decorated** Sasson with national **laurels**, **commending** his digital camera. That **medal**'s year also saw Kodak announce **the end of** Kodachrome.
 
 ## 中文
 
@@ -20,9 +20,9 @@ After 19 months of **reorganisation**, the **once-mighty** Kodak left bankruptcy
 
 数码摄影的**问世**(advent)，结果证明是**颠覆性的**(disruptive)。（the advent of…：……的出现；prove + 形容词：结果证明是……）2009年6月，柯达宣布将停产Kodachrome这种**模拟**(analogue)胶卷，理由是数码**时代**(era)里需求**减少**(lessened)。（its analogue film：同位语，补充说明 Kodachrome；Kodachrome：柯达的胶卷品牌）（citing…：现在分词短语作伴随状语，交代理由）柯达的**员工规模**(manpower)曾达到约14.5万人的**顶峰**(apex)，那是在20世纪80年代。（an apex of about 145,000：约14.5万人的顶峰）到2012年，自2003年以来的**裁员**(layoffs)已**砍掉**(slashed)4.7万个岗位，同时13家工厂和约130个冲印室相继**关闭**(shutdown)。（By 2012：到2012年为止；had slashed：过去完成时）（alongside…：与……同时；the shutdown of…：……的关闭）
 
-2012年1月19日，这家已有131年历史的公司申请《破产法》第11章保护，以免受**债权人**(creditors)追讨，它受**养老金**(pension)负担和多年来转向数码的**迟缓**(slowness)所**慢慢抽空/消耗**(sapped)。（Chapter 11：美国《破产法》第11章；protection from…：免受……的保护）（sapped by…：过去分词短语作原因状语，被……削弱；going digital：转向数码）**贷款方（借出钱的人）**(lender)花旗集团提供了9.5亿美元，用于其**重组**(restructuring)。（a lender：同位语，补充说明 Citigroup）由1,100项数字成像专利构成的**组合**(portfolio)以约5.25亿美元卖给一个由十二家**买家**(buyers)组成的**财团**(consortium)，其中包括**巨头**(giants)苹果和谷歌。（a portfolio of…：……的组合）（fetch：卖得（价钱）；a consortium of…：由……组成的财团）（including…：介词短语，补充说明 twelve buyers）
+2012年1月19日，这家已有131年历史的公司申请《破产法》第11章保护，以免受**债权人**(creditors)追讨，它受**养老金**(pension)负担和多年来转向数码的**迟缓**(slowness)所**慢慢抽空/消耗**(sapped)。（Chapter 11：美国《破产法》第11章；protection from…：免受……的保护）（sapped by…：过去分词短语作原因状语，被……削弱；going digital：转向数码）**贷款方（借出钱的人）**(lender)花旗集团提供了9.5亿美元，用于其**重组**(restructuring)。（a lender：同位语，补充说明 Citigroup）由1,100项数字成像专利构成的**组合**(portfolio)**以**(fetched)约5.25亿美元**卖给**(fetched)一个由十二家**买家**(buyers)组成的**财团**(consortium)，其中包括**巨头**(giants)苹果和谷歌。（a portfolio of…：……的组合）（fetch：卖得（价钱）；a consortium of…：由……组成的财团）（including…：介词短语，补充说明 twelve buyers）
 
-经过19个月的**改组**(reorganisation)，**昔日强大的**(once-mighty)柯达于2013年9月走出破产，规模已**缩小**(downsized)，业务经过**精简**(streamlined)，**重新定位为**(refocused as)商业**印刷商**(printer)，面向企业**客户**(clients)。（left bankruptcy：走出破产）（downsized, streamlined, and refocused…：三个过去分词并列，补充说明 Kodak 走出破产时的样子；refocus as…：重新定位为……）2009年11月，奥巴马总统**授予**(decorated)萨松国家级**荣誉**(laurels)，来**表彰**(commending)他的数码相机。（decorate：授给（某人）勋章（或奖章）；national laurels：国家级荣誉，即国家技术与创新奖章）（commending…：现在分词短语作伴随状语）那枚**奖章**(medal)颁发的同年，柯达也宣布了Kodachrome 的**终结**(the end of)。（That medal's year also saw…：以时间作主语，那一年发生了……）（简述：1975年，柯达工程师萨松造出第一台数码相机，重约八磅，第一张照片只有1万个像素，录到磁带上要23秒。柯达靠胶卷赚钱，上司让他别声张，1978年获得专利，却始终没有投产。2009年6月，柯达宣布停产 Kodachrome；员工从80年代约14.5万人的顶峰，到2012年已裁掉4.7万个岗位，关闭13家工厂。2012年1月19日，柯达申请破产保护，花旗为重组提供9.5亿美元，1,100项专利以约5.25亿美元卖给十二家买家组成的财团。2013年9月，柯达走出破产，转做商业印刷。2009年11月，奥巴马总统授予萨松国家技术与创新奖章，同一年柯达宣布停产 Kodachrome。）
+经过19个月的**改组**(reorganisation)，**昔日强大的**(once-mighty)柯达于2013年9月走出**破产**(bankruptcy)，规模已**缩小**(downsized)，业务经过**精简**(streamlined)，**重新定位为**(refocused as)商业**印刷商**(printer)，面向企业**客户**(clients)。（left bankruptcy：走出破产）（downsized, streamlined, and refocused…：三个过去分词并列，补充说明 Kodak 走出破产时的样子；refocus as…：重新定位为……）2009年11月，奥巴马总统**授予**(decorated)萨松国家级**荣誉**(laurels)，来**表彰**(commending)他的数码相机。（decorate：授给（某人）勋章（或奖章）；national laurels：国家级荣誉，即国家技术与创新奖章）（commending…：现在分词短语作伴随状语）那枚**奖章**(medal)颁发的同年，柯达也宣布了Kodachrome 的**终结**(the end of)。（That medal's year also saw…：以时间作主语，那一年发生了……）（简述：▸先机：1975年，柯达工程师萨松造出第一台数码相机：▹约八磅重、一万黑白像素，存一张照片需23秒。▸牵制：胶卷是利润支柱；据萨松回忆，上司让他别声张。原型机1978年获专利，却未投产。▸衰退：数码摄影冲击胶卷需求，▹转型迟缓与养老金负担削弱公司，柯达于2012年申请破产保护。▸重组：柯达获9.5亿美元贷款，并以约5.25亿美元出售1100项专利；▹2013年完成重组，转做企业印刷。▸反差：2009年，萨松因数码相机获美国国家荣誉；▹同年，柯达宣布停产Kodachrome这一胶卷产品。）
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -69,9 +69,11 @@ After 19 months of **reorganisation**, the **once-mighty** Kodak left bankruptcy
 | portfolio | 本文：组合；n. 组合；作品集（a property/investment portfolio） | 4 |
 | buyers | 本文：买家；n. (buyer) 买家（first-time buyers） | 4 |
 | consortium | 本文：财团；n. 财团，联合体（a consortium of banks） | 4 |
+| fetch | 本文：以……卖给；v. 卖得（价钱）（fetch a good price） | 4 |
 | giants | 本文：巨头；n. (giant) 巨头；巨人（oil giants；tech giants） | 4 |
 | reorganisation | 本文：改组；n. 改组，重组（a major reorganisation） | 5 |
 | once-mighty | 本文：昔日强大的；adj. 昔日强大的（a once-mighty empire） | 5 |
+| bankruptcy | 本文：破产；n. 破产（file for bankruptcy） | 5 |
 | downsized | 本文：缩小；adj./v. (downsize) 缩小规模的（a downsized workforce） | 5 |
 | streamlined | 本文：精简；adj./v. (streamline) 精简的，流线型的（a streamlined process） | 5 |
 | refocused as | 本文：重新定位为；v. (refocus) 重新定位，调整重点（refocus attention/efforts） | 5 |

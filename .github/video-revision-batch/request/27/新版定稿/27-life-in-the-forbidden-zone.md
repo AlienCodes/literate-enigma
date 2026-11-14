@@ -7,7 +7,7 @@ In October 2015, a study in **Current Biology** combined **aerial** surveys with
 
 Later **fieldwork** **bolstered** these findings. In April 2016, camera traps **snapped** wolves, boar, and raccoon dogs near the most **hazardous** spots, with no sign of **suppressed** numbers. The **probable** reason is **mundane**: the **absence** of **agriculture**, **forestry**, and hunting.
 
-Smaller **organisms** fared worse in some studies. One, in March 2007, found fewer **nesting** birds, and fewer species, where radiation was more **intense**. Another, in March 2009, found **pollinators** and spiders less **plentiful** where **exposure** was greater. A third, in March 2014, found leaves **decomposing** about 40 per cent less at the most **polluted** sites, **impeding** the return of **nutrients** to the soil.
+Smaller **organisms** fared worse in some studies. One, in March 2007, found fewer **nesting** birds, and fewer species, where radiation was more **intense**. Another, in March 2009, found **pollinators** and spiders less **plentiful** where **exposure** was greater. A third, in March 2014, found leaves **decomposing** about 40 per cent less at the most **polluted** sites, **impeding** the return of nutrients to the soil.
 
 Counting heads cannot **guarantee** the health of **individual** animals, and **how much damage** low but **continual** doses **inflict** remains **contentious**, as studies **clash over** methods. The **burgeoning** **herds** may **trumpet** the **dividend** of human **departure**, but the **sluggish** **rot** of fallen leaves keeps a quieter **ledger** of radiation's cost.
 
@@ -19,7 +19,7 @@ Counting heads cannot **guarantee** the health of **individual** animals, and **
 
 后来的**实地考察**(fieldwork)**佐证了**(bolstered)这些发现。（bolster：支持/加强）2016年4月，相机陷阱在最**危险的**(hazardous)几个地点附近，**拍到了**(snapped)狼、野猪和貉，没有迹象表明动物的数量**被抑制**(suppressed)。（camera trap：相机陷阱，自动拍摄的相机；raccoon dog：貉）（with no sign of…：没有……的迹象）**可能的**(probable)原因很**平常**(mundane)：**没有**(absence)**农耕**(agriculture)、**伐木**(forestry)和狩猎。（the absence of…：没有……，缺乏……）
 
-在一些研究中，更小的**生物**(organisms)过得更差。（fare：过得，进展；fare worse：过得更差）（organism：指任何有生命的个体（也就是生物体或有机体）。例：人类 a human organism，树木 a plant organism，细菌 a single-celled organism（单细胞生物））一项研究于2007年3月发现了更少的**筑巢的**(nesting)鸟类，以及更少的种类，在这里辐射更加**强烈**(intense)。（One 指一项研究；where…：地点状语从句，在……的地方）（intense：强烈的、极度集中的。例：强光 intense light，剧痛 intense pain，激烈的竞争 intense competition）另一项研究于2009年3月发现，**传粉昆虫**(pollinators)和蜘蛛没那么**丰富/数量众多**(plentiful)，在这些地方，辐射**接触**(exposure)更大。（find A less plentiful：发现 A 没那么多，复合宾语）（exposure：“暴露”或“接触”，指毫无遮挡地处在某种环境（尤其是有害环境）中。exposure to radiation 就是“暴露于辐射中”，大白话就是“受到辐射照射”）第三项研究于2014年3月发现，在最严重**被污染的**(polluted)地点，落叶的**分解**(decomposing)少了约40%，**阻碍了**(impeding)**养分**(nutrients)回归土壤。（find sth doing：发现……在怎样；per cent：百分之……）（impeding…：现在分词短语作结果状语；the return of A to B：A 回到 B）
+在一些研究中，更小的**生物**(organisms)过得更差。（fare：过得，进展；fare worse：过得更差）（organism：指任何有生命的个体（也就是生物体或有机体）。例：人类 a human organism，树木 a plant organism，细菌 a single-celled organism（单细胞生物））一项研究于2007年3月发现了更少的**筑巢的**(nesting)鸟类，以及更少的种类，在这里辐射更加**强烈**(intense)。（One 指一项研究；where…：地点状语从句，在……的地方）（intense：强烈的、极度集中的。例：强光 intense light，剧痛 intense pain，激烈的竞争 intense competition）另一项研究于2009年3月发现，**传粉昆虫**(pollinators)和蜘蛛没那么**丰富/数量众多**(plentiful)，在这些地方，辐射**接触**(exposure)更大。（find A less plentiful：发现 A 没那么多，复合宾语）（exposure：“暴露”或“接触”，指毫无遮挡地处在某种环境（尤其是有害环境）中。exposure to radiation 就是“暴露于辐射中”，大白话就是“受到辐射照射”）第三项研究于2014年3月发现，在最严重**被污染的**(polluted)地点，落叶的**分解**(decomposing)少了约40%，**阻碍了**(impeding)养分回归土壤。（find sth doing：发现……在怎样；per cent：百分之……）（impeding…：现在分词短语作结果状语；the return of A to B：A 回到 B）
 
 仅靠清点动物的数量无法**确保**(guarantee)动物**个体**(individual)就是健康的；并且较低但是却**一直持续的**(continual)辐射剂量究竟会（对生物）**造成**(inflict)**多大伤害**(how much damage)，目前仍然存在**争议**(contentious)，因为各项研究**在**(clash over)方法**上存在冲突**(clash over)。（切尔诺贝利这里的动物数量比较多，不一定就说明这里的环境更加健康和适合这群动物）（how much damage…inflict：主语从句，damage 是 inflict 的宾语，提到了前面；remain + 形容词：仍然……）（clash over…：在……上冲突）**迅速增长的**(burgeoning)**兽群**(herds)或许在**宣扬**(trumpet)人类**离开**(departure)所带来的**红利**(dividend)，但落叶**迟缓的**(sluggish)**腐烂**(rot)，记着一笔更安静的**账**(ledger)：辐射的代价。（trumpet：大肆宣扬，与后面的 quieter 对比；the dividend of…：……带来的红利）（keep a ledger of…：记下……的账，这里比喻记录代价）（简述：▸灾后：1986年切尔诺贝利核事故后，居民撤离、周边封禁，受污染地区却出现大量野生动物。▸繁盛：白俄罗斯一侧多种兽类密度与四个未污染保护区相当，狼的数量为对照区的七倍多。▸原因：可能的解释是农耕、伐木和狩猎消失，人类活动减少给野生动物带来了生存空间。▸代价：部分研究发现高辐射处筑巢鸟数量及鸟种较少，传粉昆虫和蜘蛛也少；污染最重地点的落叶分解明显变慢，养分更难回到土壤。▸限度：动物多不等于个体健康；长期低剂量辐射造成多大伤害仍有争议，不能据此说辐射无害。）
 
@@ -74,7 +74,6 @@ Counting heads cannot **guarantee** the health of **individual** animals, and **
 | polluted | 本文：被污染的；adj. 受污染的（polluted air/water/sites）；pollute v. | 4 |
 | decomposing | 本文：分解；v. (decompose) 分解，腐烂（leaves decompose；decompose into）；decomposition n. | 4 |
 | impeding | 本文：阻碍了；v. (impede) 阻碍，妨碍（impede progress/the return of nutrients） | 4 |
-| nutrients | 本文：养分；n. (nutrient) 养分，营养物质（nutrients in the soil） | 4 |
 | guarantee | 本文：确保；v. 保证，担保（guarantee the health/quality of；guarantee that…）；n. 保证，保修单 | 5 |
 | individual | 本文：个体；adj. 个体的，个别的（individual animals/cases）；n. 个人，个体 | 5 |
 | continual | 本文：一直持续的；adj. 持续不断的，频频的（continual doses/complaints）；比较 continuous 不间断的 | 5 |

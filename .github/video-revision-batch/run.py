@@ -361,7 +361,7 @@ def verify_correct_origin_reference_cache(request, after_references=False):
 
 def verify_unchanged_review_audio_packets(accepted_video, canonical_video):
     """Pure visual13/14/26 revisions preserve their own accepted audio packets."""
-    if NO not in {'13', '14', '26'}:
+    if NO not in {'13', '14', '26', '36'}:
         return
     status['stage'] = f'{NO}-accepted-audio-packet-preservation'
     save()
