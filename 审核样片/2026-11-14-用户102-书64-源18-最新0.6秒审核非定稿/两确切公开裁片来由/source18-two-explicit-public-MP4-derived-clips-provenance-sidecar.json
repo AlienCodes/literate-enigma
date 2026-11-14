@@ -1,0 +1,65 @@
+{
+  "kind": "source18-two-exact-public-MP4-derived-diagnostic-WAV-clips",
+  "original_QC_report": {
+    "path": "/dev/shm/review18-native/43644184021/18/artifact-files/18-approved-audio-qc.json",
+    "bytes": 88695,
+    "sha256": "aaa08951c3402b3d8b68cc008818400acf6976fb982ebd6cf50adf7855bfc18b"
+  },
+  "actual_original_instrument": {
+    "path": "/dev/shm/native-inline-engine-review18-v32-actual102-A21-fourp5/actual-approved-audio-a21-qc.py",
+    "bytes": 29271,
+    "sha256": "4bd358eb6d78e755a9d88ba55bc07dca99c814f84b9b1153061d8bed8fd43e55"
+  },
+  "clips": [
+    {
+      "path": "/dev/shm/review18-native/43644184021/18/artifact-files/18-a21-controlled-word-accepted.wav",
+      "bytes": 72044,
+      "sha256": "f3fd0f712cfbcd836a76472c6424c53a1759d1831f013ea889f5f9126c855c79",
+      "role": "accepted",
+      "source_public_MP4_sha256": "4f81d5abd6744efce64bf42d5a1a79cbd9927fec646848f70a7867cc97239e9f",
+      "source_MP4_time_s": [
+        52.864958333333334,
+        53.614958333333334
+      ],
+      "PCM_header": {
+        "channels": 1,
+        "sample_rate": 48000,
+        "sample_width": 2,
+        "samples": 36000
+      }
+    },
+    {
+      "path": "/dev/shm/review18-native/43644184021/18/artifact-files/18-a21-controlled-word-actual.wav",
+      "bytes": 72044,
+      "sha256": "0e942aa63017ad4c4e8760d4e5f8ff1124f4a6ae59a509fbb4c9628bcfef1c9b",
+      "role": "actual",
+      "source_public_MP4_sha256": "d0d01b6429077f88e427df75e7220348ba9f80208b5d52a4ec339d33e93bb953",
+      "source_MP4_time_s": [
+        52.794958333333334,
+        53.544958333333334
+      ],
+      "PCM_header": {
+        "channels": 1,
+        "sample_rate": 48000,
+        "sample_width": 2,
+        "samples": 36000
+      }
+    }
+  ],
+  "origin_observed_from_original_program": {
+    "decode_lines": [
+      248,
+      249
+    ],
+    "crop_and_export_lines": [
+      437,
+      441
+    ],
+    "description": "old=utilities.decode(accepted public MP4), current=utilities.decode(canonical public MP4); only those decoded arrays cropped at reported actual_MP4_time_s and exported PCM_16."
+  },
+  "private_GT_cache_or_raw_producer_PCM_read": false,
+  "private_mother_GT_or_cache_files_included": false,
+  "only_these_two_bytes_SHA_audio_files_authorized_as_public_diagnostic_clips": true,
+  "no_new_listening_or_quality_acceptance_claimed": true,
+  "frozen_H_and_original_files_not_modified": true
+}
