@@ -1,0 +1,9 @@
+import pathlib,json,subprocess,concurrent.futures,hashlib,sys
+B=pathlib.Path(__file__).parent;Q=pathlib.Path('/workspace/work/video-revision-batch-ci/.github/video-revision-batch/audio-a21-qc.py');O=B/'qc-clock-fixed-real-negatives';O.mkdir(exist_ok=True);work=O/'no-fabricated-native-metadata';work.mkdir(exist_ok=True)
+def test(no):
+ p=B/no/f'{no}-accepted-public.mp4';out=O/f'{no}-actual-old-negative.json';c=subprocess.run([sys.executable,str(Q),'--article',no,'--accepted-source',str(p),'--canonical-video',str(p),'--work',str(work),'--request','/workspace/work/video-audit70-20261113/payload','--output',str(out)],capture_output=True,text=True)
+ (O/f'{no}-execution.log').write_text(c.stdout+c.stderr)
+ s=json.loads(out.read_text());checks=s['checks'];bad=next(x for x in checks if x['name']=='actual-no-double-release-in-any-original-A21-phase');assert c.returncode!=0 and s['passed'] is False and bad['passed'] is False
+ return {'article':no,'actual_helper_exit':c.returncode,'input_MP4_SHA256':hashlib.sha256(p.read_bytes()).hexdigest(),'actual_old_duplicate_still_rejected':True,'result_sha256':hashlib.sha256(out.read_bytes()).hexdigest(),'result':str(out),'failed_names':[x['name'] for x in checks if not x['passed']]}
+with concurrent.futures.ThreadPoolExecutor(max_workers=4) as ex:rows=list(ex.map(test,['15','17','18','30']))
+r={'kind':'clock-corrected-helper-real-old-bad-negative-tests','interpreter':sys.executable,'program_sha256':hashlib.sha256(Q.read_bytes()).hexdigest(),'reference_sha256':hashlib.sha256(Q.with_name('audio-a21-qc-reference.json').read_bytes()).hexdigest(),'original_A21_thresholds_phases_or_judge_modified':False,'new_actual_positive_MP4_tested_or_claimed':False,'native_metadata_not_fabricated':True,'all_four_real_old_double_releases_rejected':True,'tests':rows};(O/'validation.json').write_text(json.dumps(r,ensure_ascii=False,indent=2)+'\n');print(json.dumps(r,ensure_ascii=False))

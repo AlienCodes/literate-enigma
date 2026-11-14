@@ -1,0 +1,228 @@
+{
+  "kind": "read-only-actual-CI-failure-triage",
+  "source_run": 43538347790,
+  "articles": [
+    "10",
+    "11"
+  ],
+  "quality_acceptance": false,
+  "code_source_or_thresholds_changed": false,
+  "new_audio_analysis_performed": false,
+  "private_PCM_GT_or_cache_extracted": false,
+  "common_failure": {
+    "stage": "approved-illustrated-tail.log",
+    "category": "required approved illustration file absent at native postprocessing stage",
+    "original_gate_failure_observed": false,
+    "final_deliverable_passed": false
+  },
+  "articles_detail": [
+    {
+      "article": "10",
+      "artifact_id": 14092186161,
+      "github_expected_digest": "sha256:1443fb403fd2ee84306e145c0e9ba8002e07ce0c85b7ccc16ec8757a0bd898bf",
+      "actual_zip_sha256": "1443fb403fd2ee84306e145c0e9ba8002e07ce0c85b7ccc16ec8757a0bd898bf",
+      "zip_digest_verified": true,
+      "status_file": "/workspace/work/video-audit70-20261113/first3core7-failure-triage/10/safe-files/10-status.json",
+      "status_sha256": "93bec6012fc471209ec0b945b5263f7f10bcb22289f3cb6f18d542aaa72bcd26",
+      "actual_status_fields": {
+        "passed": false,
+        "stage": "approved-illustrated-tail.log",
+        "error": "approved-illustrated-tail.log: exit 1",
+        "canonical_pipeline_passed": true,
+        "accepted_prior_aac_identical": false,
+        "canonical_aac_adts_sha256": "6ba668d552af9744d5b3a398e89ad4d77a9e2e23b365fa06e03834c94dfb60c4",
+        "width": 3840,
+        "height": 2160
+      },
+      "failure_details": {
+        "step": "approved-illustrated-tail.log",
+        "exit": 1,
+        "tail": [
+          "Traceback (most recent call last):",
+          "  File \"/home/runner/work/literate-enigma/literate-enigma/.github/video-revision-batch/illustrated_tail.py\", line 364, in <module>",
+          "    main()",
+          "  File \"/home/runner/work/literate-enigma/literate-enigma/.github/video-revision-batch/illustrated_tail.py\", line 239, in main",
+          "    image_row, choice, approved = approved_inputs(args)",
+          "                                  ^^^^^^^^^^^^^^^^^^^^^",
+          "  File \"/home/runner/work/literate-enigma/literate-enigma/.github/video-revision-batch/illustrated_tail.py\", line 127, in approved_inputs",
+          "    assert sha(args.illustration) == row['sha256'], 'Wrong or changed approved book illustration.'",
+          "           ^^^^^^^^^^^^^^^^^^^^^^",
+          "  File \"/home/runner/work/literate-enigma/literate-enigma/.github/video-revision-batch/illustrated_tail.py\", line 44, in sha",
+          "    with Path(path).open('rb') as stream:",
+          "         ^^^^^^^^^^^^^^^^^^^^^",
+          "  File \"/opt/hostedtoolcache/Python/3.11.18/x64/lib/python3.11/pathlib.py\", line 1044, in open",
+          "    return io.open(self, mode, buffering, encoding, errors, newline)",
+          "           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+          "FileNotFoundError: [Errno 2] No such file or directory: '/home/runner/work/literate-enigma/literate-enigma/插图阅读小册/illustrations/10.png'"
+        ]
+      },
+      "illustrated_tail_error": "[Errno 2] No such file or directory: '/home/runner/work/literate-enigma/literate-enigma/插图阅读小册/illustrations/10.png'",
+      "illustrated_tail_verification_sha256": "57ca861aa6b60eb41bbe266db137051f33d9ed0e5f3d9fb74e0de0e8441cef3a",
+      "original_draft_gate_summary": [
+        "第10篇 做完（216 秒）：修了 3 处、疑点 22 处",
+        "① 文本：通过，自动修 3 处",
+        "② 声音：10 词尾辅音核对 问题数 0；10 纯人声核对（配音指纹 ab6412c491dd）问题数 0；问题数 0；10 句间停顿核对 问题数 0；问题数 0",
+        "③ 出片前核查：通过",
+        "⑤ 出片后核查：全部通过",
+        "⑥ 已拷 视频/视频/草稿1080p/10_1080p.mp4（--不推）"
+      ],
+      "pre_illustration_actual_passed_snapshot": {
+        "file": "/workspace/work/video-audit70-20261113/first3core7-failure-triage/10/safe-files/10-canonical-summary-passed-status.json",
+        "sha256": "6b687e1d5de352d2d131405e9dcf9d678516c69645fbea929e9ffd97dd96f3f1",
+        "passed": true,
+        "stage": "final4K-passed",
+        "canonical_pipeline_passed": true,
+        "request_source_sha256": {
+          "视频/脚本/10.json": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
+          "视频/工具/初稿生成/gen10.py": "8bf8c79662f5342d56316b3a2f36c19ca269dd92796ca78e459b7955ade84d9d",
+          "新版定稿/10-the-stolen-smile.md": "ff63cf94e4d2c835e2e2f1ffd3e6c5642f0916f0b13c012f1f13c3dff716d47a",
+          "视频/制作记录/10_待改清单.md": "df4c3479deb57bfa1400eeb6c99ce5f9fee59744e8a828bbe3fda42199dc5b59"
+        },
+        "canonical_video_sha256": "6cf4ffb5108d3cbfd6ef8822f55189a63dffac42e47190d5e89063ea2800a69e",
+        "post_summary_video_sha256": "50cbf6276680b7a6af0b129a88914713b422060b0e13460f426587dceba6c33b"
+      },
+      "actual_summary_verification": {
+        "source_kind": "new-canonical-4K",
+        "canonical_pipeline_passed": true,
+        "canonical_source_video_sha256": "6cf4ffb5108d3cbfd6ef8822f55189a63dffac42e47190d5e89063ea2800a69e",
+        "video_sha256": "50cbf6276680b7a6af0b129a88914713b422060b0e13460f426587dceba6c33b",
+        "copied_prefix_coded_pictures_identical": true,
+        "copied_prefix_packet_timings_identical": true,
+        "body_outside_summary_min_ssim": 0.999709,
+        "original_audio_identical": true,
+        "original_audio_packet_timings_identical": true,
+        "final_canonical_aac_identical": true,
+        "accepted_prior_aac_identical": false,
+        "body_script_identical": true
+      },
+      "current_video_provenance": {
+        "passed": false,
+        "acceptance": false,
+        "official_fingerprint_matches_current_video_source_and_pcm": true,
+        "source_sha256": "289affbd790d95b034b0422f1ec645be5de15be647ba88c43fcb4f341676685d",
+        "internal_pcm_sha256": "394320a6392c001f2588adc922053d089b85329abfb5e369cacc20fb67bd8caf",
+        "video_sha256": "6cf4ffb5108d3cbfd6ef8822f55189a63dffac42e47190d5e89063ea2800a69e",
+        "aac_adts_sha256": "6ba668d552af9744d5b3a398e89ad4d77a9e2e23b365fa06e03834c94dfb60c4"
+      },
+      "approved_audio_qc": {
+        "applicable": true,
+        "file": "/workspace/work/video-audit70-20261113/first3core7-failure-triage/10/safe-files/10-approved-audio-qc.json",
+        "sha256": "8a4530bf876dc17b1ee8f2fd50d263d80c599c77bae0c6d7c5aaf9dc5a1fe4cb",
+        "actual_report_passed": true,
+        "checks_count": 18,
+        "failed_check_names": []
+      },
+      "actual_MP4_members_present_but_not_extracted_or_analyzed": [
+        "10-4K-读完即转简述2秒.mp4",
+        "10-failed-draft.mp4"
+      ]
+    },
+    {
+      "article": "11",
+      "artifact_id": 14091647055,
+      "github_expected_digest": "sha256:62d320a7a087d13a29d7af6b2f5cb5ee7820071712f7de25cae26f24a00c4729",
+      "actual_zip_sha256": "62d320a7a087d13a29d7af6b2f5cb5ee7820071712f7de25cae26f24a00c4729",
+      "zip_digest_verified": true,
+      "status_file": "/workspace/work/video-audit70-20261113/first3core7-failure-triage/11/safe-files/11-status.json",
+      "status_sha256": "e946796992882e693ac15540a0cf57e233005021d379e57c3c1b74f45989701f",
+      "actual_status_fields": {
+        "passed": false,
+        "stage": "approved-illustrated-tail.log",
+        "error": "approved-illustrated-tail.log: exit 1",
+        "canonical_pipeline_passed": true,
+        "accepted_prior_aac_identical": true,
+        "canonical_aac_adts_sha256": "bbb015df86171dab11bb2dc2c34e99610d853105d14065414980d2bc2121bae0",
+        "width": 3840,
+        "height": 2160
+      },
+      "failure_details": {
+        "step": "approved-illustrated-tail.log",
+        "exit": 1,
+        "tail": [
+          "Traceback (most recent call last):",
+          "  File \"/home/runner/work/literate-enigma/literate-enigma/.github/video-revision-batch/illustrated_tail.py\", line 364, in <module>",
+          "    main()",
+          "  File \"/home/runner/work/literate-enigma/literate-enigma/.github/video-revision-batch/illustrated_tail.py\", line 239, in main",
+          "    image_row, choice, approved = approved_inputs(args)",
+          "                                  ^^^^^^^^^^^^^^^^^^^^^",
+          "  File \"/home/runner/work/literate-enigma/literate-enigma/.github/video-revision-batch/illustrated_tail.py\", line 127, in approved_inputs",
+          "    assert sha(args.illustration) == row['sha256'], 'Wrong or changed approved book illustration.'",
+          "           ^^^^^^^^^^^^^^^^^^^^^^",
+          "  File \"/home/runner/work/literate-enigma/literate-enigma/.github/video-revision-batch/illustrated_tail.py\", line 44, in sha",
+          "    with Path(path).open('rb') as stream:",
+          "         ^^^^^^^^^^^^^^^^^^^^^",
+          "  File \"/opt/hostedtoolcache/Python/3.11.18/x64/lib/python3.11/pathlib.py\", line 1044, in open",
+          "    return io.open(self, mode, buffering, encoding, errors, newline)",
+          "           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+          "FileNotFoundError: [Errno 2] No such file or directory: '/home/runner/work/literate-enigma/literate-enigma/插图阅读小册/illustrations/11.png'"
+        ]
+      },
+      "illustrated_tail_error": "[Errno 2] No such file or directory: '/home/runner/work/literate-enigma/literate-enigma/插图阅读小册/illustrations/11.png'",
+      "illustrated_tail_verification_sha256": "b2e018b1e0608e6eca5eb1aae01f6892029a8962a911242465a07499490c6889",
+      "original_draft_gate_summary": [
+        "第11篇 做完（256 秒）：修了 7 处、疑点 16 处",
+        "① 文本：通过，自动修 7 处",
+        "② 声音：11 词尾辅音核对 问题数 0；11 纯人声核对（配音指纹 5da69def8d01）问题数 0；问题数 0；11 句间停顿核对 问题数 0；问题数 0",
+        "③ 出片前核查：通过",
+        "⑤ 出片后核查：全部通过",
+        "⑥ 已拷 视频/视频/草稿1080p/11_1080p.mp4（--不推）"
+      ],
+      "pre_illustration_actual_passed_snapshot": {
+        "file": "/workspace/work/video-audit70-20261113/first3core7-failure-triage/11/safe-files/11-canonical-summary-passed-status.json",
+        "sha256": "017492977d1a56a76d75b9e7780e3e97acd89ea82d2a3cbca63470224ff8a6d4",
+        "passed": true,
+        "stage": "final4K-passed",
+        "canonical_pipeline_passed": true,
+        "request_source_sha256": {
+          "视频/脚本/11.json": "665cbb80cc70b700ecc0cc5813209fd100ad4fa8f0eead3929b9e53778d9d07f",
+          "视频/工具/初稿生成/gen11.py": "663d57648d827a3c9414a3722628599251e126f649a7a062619bf46d60ecf398",
+          "新版定稿/11-move-37.md": "7e0b49b346c1fa3ab994a11a2301167c0d6a1bb00916508bdc0b1acf71e68053",
+          "视频/制作记录/11_待改清单.md": "1ccada2d6e449bea6a271ce9e50ec53f78476c95a2e997d0468fd9fedc09118b"
+        },
+        "canonical_video_sha256": "36dce31d920822f6db16dbb21d38be0d92dd7167b34c8144df15a40a34ef848e",
+        "post_summary_video_sha256": "9ff32631f97755645823e91b01b891c0214f0b42368f39025368e036402dc1d6"
+      },
+      "actual_summary_verification": {
+        "source_kind": "new-canonical-4K",
+        "canonical_pipeline_passed": true,
+        "canonical_source_video_sha256": "36dce31d920822f6db16dbb21d38be0d92dd7167b34c8144df15a40a34ef848e",
+        "video_sha256": "9ff32631f97755645823e91b01b891c0214f0b42368f39025368e036402dc1d6",
+        "copied_prefix_coded_pictures_identical": true,
+        "copied_prefix_packet_timings_identical": true,
+        "body_outside_summary_min_ssim": 0.999716,
+        "original_audio_identical": true,
+        "original_audio_packet_timings_identical": true,
+        "final_canonical_aac_identical": true,
+        "accepted_prior_aac_identical": true,
+        "body_script_identical": true
+      },
+      "current_video_provenance": {
+        "passed": false,
+        "acceptance": false,
+        "official_fingerprint_matches_current_video_source_and_pcm": true,
+        "source_sha256": "b8cd484cd8c41b08f226cbb15232632d82e1a5c005d7186d9c2cff54b842e88a",
+        "internal_pcm_sha256": "28f545b4a90fadf05c4f94238e4ca0b867236902da08da6b25bb0e54583169aa",
+        "video_sha256": "36dce31d920822f6db16dbb21d38be0d92dd7167b34c8144df15a40a34ef848e",
+        "aac_adts_sha256": "bbb015df86171dab11bb2dc2c34e99610d853105d14065414980d2bc2121bae0"
+      },
+      "approved_audio_qc": {
+        "applicable": false,
+        "file": null,
+        "sha256": null,
+        "actual_report_passed": null,
+        "checks_count": null,
+        "failed_check_names": []
+      },
+      "actual_MP4_members_present_but_not_extracted_or_analyzed": [
+        "11-4K-读完即转简述2秒.mp4",
+        "11-failed-draft.mp4"
+      ]
+    }
+  ],
+  "next_step_evidence_limited": {
+    "action": "Provide the exact approved illustration resource to the isolated tail helper, preserving the real canonical and pre-illustration proof bindings.",
+    "reason": "Both actual statuses reached this step after canonical QC and summary verification; the exception occurs while opening illustration bytes, before its SHA could be compared.",
+    "not_performed_in_this_triage": true,
+    "no_claim_that_missing_file_hash_was_verified": true
+  }
+}

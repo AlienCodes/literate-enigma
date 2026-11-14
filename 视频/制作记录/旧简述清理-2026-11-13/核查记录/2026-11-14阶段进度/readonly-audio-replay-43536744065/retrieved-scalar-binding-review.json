@@ -1,0 +1,25 @@
+{
+  "purpose": "Review existing actual scalar bindings, not rerun acceptance or quality waiver",
+  "rows": [
+    {
+      "article": "44",
+      "exact_PCM_SHA_bound": "13433aea28ccf9bd95fdfba14f87cc0aee52f1536ec4ca075d13f1d9138eb3c4",
+      "exact_source_SHA_bound": "0fe7f29856e29ca81af088bab2f5e460d9bcf57519e4580aa3febe45c859106e",
+      "original_selftest_5_of_5": true,
+      "scalar_file_sha256": "d8bb97503a9a1f501f8483ec950709fd40cd801426b6dc3098c2d0823e626988",
+      "native_collector_final_assertion_failed_due_to_variable_shadowing": true,
+      "private_models_GT_or_PCM_exported": false
+    },
+    {
+      "article": "51",
+      "exact_PCM_SHA_bound": "202d6b8cbbfe20cf33647bc024ac20cdcb780a2f4a8c7abc36d9f951f80fce65",
+      "exact_source_SHA_bound": "dd410ed3f1d9534e35e09d1e7ca1e592678c75e9d17b5a84e2f93a1c2de9dd80",
+      "original_selftest_5_of_5": true,
+      "scalar_file_sha256": "58e1802130a569c47710fe25a54be9fa50e90d92bd8c75aee1e9c840eb802636",
+      "native_collector_final_assertion_failed_due_to_variable_shadowing": true,
+      "private_models_GT_or_PCM_exported": false
+    }
+  ],
+  "final_diagnostic_wrapper_bug": "The local variable actual was overwritten with synth.py Path before comparing the SHA string. Actual scalar/source/fullPCM fields independently verified unchanged here.",
+  "quality_acceptance": false
+}

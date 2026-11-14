@@ -1,0 +1,58 @@
+{
+  "scope": "Four root-approved specific original-release boosts and donor removals; actual finalMP4 QA only",
+  "original_official_gate_changes": false,
+  "native_working_metadata_required": [
+    "work_NN/分段.json",
+    "work_NN/词尾除阻.json",
+    "scripts/NN.json"
+  ],
+  "source_binding": [
+    "accepted complete MP4 SHA256",
+    "root-approved request exact file SHA256",
+    "all approved audio controls exact",
+    "precise removed graft absent in request and working source",
+    "precise boost present in request and working source",
+    "removed target graft absent from actual native graft metadata"
+  ],
+  "original_A21": [
+    "read exact approved original checker source",
+    "extract original constants and7 pure functions without modification",
+    "actual MP4 decode24000mono",
+    "native target piece end as new endpoint; do not reuse old donor end",
+    "five phases -5,-2.5,0,+2.5,+5ms; require every release judge true and every double-release None"
+  ],
+  "approved_existing_thresholds": {
+    "track_integrated_R128_delta_LU": 0.8,
+    "max_abs_gain_dB_outside": 0.35,
+    "NCC_outside": 0.985,
+    "residual_SNR_dB_outside": 22,
+    "p95_absolute_10ms_gain_dB_outside": 0.8,
+    "max_abs_gain_dB_one_second": 0.5,
+    "NCC_one_second": 0.98,
+    "residual_SNR_dB_one_second": 20,
+    "old_active_10ms_threshold_dBFS": -40,
+    "old_quiet_threshold_dBFS": -70,
+    "new_quiet_max_10ms_dBFS": -55,
+    "within_prefix_or_suffix_lag_spread_s": 0.006,
+    "unchanged_prefix_encoder_lag_limit_s": 0.02,
+    "allowed_one_donor_removal_time_step_s": [
+      -0.18,
+      0.01
+    ],
+    "duration_minus_time_step_limit_s": 0.04,
+    "native_endpoint_vs_independent_mapped_endpoint_limit_s": 0.025,
+    "encoded_boundary_padding_s": 0.15,
+    "pitch_nonidentity_voiced_pair_requirement": ">10",
+    "pitch_median_absolute_cents_limit": 40,
+    "pitch_p90_absolute_cents_limit": 150,
+    "exact_full_decoded_crop_identity_proves_pitch_unchanged": true
+  },
+  "change_scope": "Only union of the actual old original-release and graft-release ranges from all5 measured endpoint phases. 0.15s is existing encoding-boundary tolerance, not a whole-sentence change permit.",
+  "timeline_proof": "Every active1s window outside the exact approved range is independently aligned; prefix and suffix each must have one constant timeline. Only one step is allowed, inside the approved word. Actual audio duration change must agree.",
+  "old_real_video_negative_rule": "Use actual original accepted files as canonical negative inputs. They must fail specifically for the original double-release result, not merely metadata availability. No positive finalMP4 simulation is allowed.",
+  "review_artifacts": "Actual public MP4 clips plus waveform and spectrum; failure to draw a diagnostic image does not create a new sound-quality gate.",
+  "new_files": {
+    "audio-a21-qc.py": "c88076f6b4391cb9fda5de70f64fff1798a608ea56098fada46374b02d165a48",
+    "audio-a21-qc-reference.json": "eae9167ed0dfce2dcfe90337a5eadfa35e5bfecb8f136fccdc4035de3379634d"
+  }
+}
