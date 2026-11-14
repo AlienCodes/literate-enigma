@@ -1,0 +1,113 @@
+{
+  "status": "passed",
+  "article": "08",
+  "origin": "derived_after_final_QC",
+  "actual_original_job_execution_claimed": false,
+  "used_generator_observation": "exported_actual_production_file; execution observation is a separate original fact",
+  "source_json_sha256": "81fdf84f461b4258b29397d0b1ab17bedc7954c5b63492b826c0a79e20e6d921",
+  "derived_generator_sha256": "f42ee59497279275907c8f239ffdac5a86cf00dc0fad9e3a5476f57ec6ec1f72",
+  "request_json_sha256": "254832e09f12759d950384dd9f31f671ad5a3bc1590b7466065dd3ef5fe4b8d5",
+  "request_generator_sha256": "379db8a770015e017d233d341dc88b0d243d7476dd3e42605904f8acecedc7e3",
+  "request_manuscript_sha256": "0b2bfa68070ce585a452f6b7034d03c3683e710dcabec5e86d7b221950dc7bab",
+  "immutable_native_status_sha256": "c5350622c1a48d4535d5c9f853b4757945f49c03a99d13b1cd888c380c1982e3",
+  "factory_program_sha256": "1514e91aee9dc04424e5b755cee37b65b8dadef9717f3e6c0cede35f1c03e044",
+  "original_helper_sha256": {
+    "初稿生成/核对.py": "c635aee82e0fe4dff9f70dcae03e2f797aadb670c8ebe6c8f202b82a35a87a74",
+    "重点词被去掉.py": "b898e63bb0954f0f17b90f92c2af41b3264ca60b7fd264e1cfa632f3d1e86f93"
+  },
+  "original_helper_exit": 0,
+  "whole_JSON_roundtrip_exact": true,
+  "semantic_control_invariants": {
+    "visible_body_notes_summary_and_focus_unchanged": true,
+    "layout_only_newlines_and_T38_bold_allowed": true,
+    "audio_render_title_metadata_unchanged": false,
+    "effective_audio_render_title_controls_unchanged": false,
+    "same_accepted_audio_locator_metadata_reconciliations": [
+      {
+        "request_structural_sha256": "9d08929027ad8fe4926a117794df2efcad71b9b8973fda7678d3635ae57b9119",
+        "final_structural_sha256": "f875e14a5faea0fed3684cabb27acab61ef8b7512b9290b942be7e05c665a04c",
+        "ending_key": "S17",
+        "old_join": [
+          272100,
+          339300
+        ],
+        "new_join": [
+          272580,
+          340380
+        ],
+        "actual_accepted_AAC_SHA256": "8ff0a7e9a38270bca8557e5a42422ef1287f640922d372c9b001bcb85cbf1b22",
+        "whole_public_decoded_sha256": "51612e7e538b85aa5965922606ea715a05ec4c0366eae323d64f47345622c702",
+        "proof_sha256": "237531785467ff8f0cd6463960945401062d56609bed7c7b082b41bb206a1090",
+        "path": "/结尾句/S17",
+        "before": {
+          "前段语速": 0.9,
+          "最后一段语速": 0.78,
+          "最后一段前停顿": 0.7,
+          "接点": [
+            272100,
+            339300
+          ],
+          "依据": "全篇结尾句按 07 定下的标准（用户 2026-10-10 听了 07 结尾句试听后同意，并要求所有视频统一）：前段 0.90、最后一段 vindicating him. 0.78、前面停 0.70 秒。接点：0.90 那遍 others, 后的停顿里最安静处（11.34 s，静音段 11.04–11.43 s），0.78 那遍停顿里最安静处（14.14 s，静音段 13.81–14.26 s），两侧 10 ms 都低于 -55 dB"
+        },
+        "after": {
+          "前段语速": 0.9,
+          "最后一段语速": 0.78,
+          "最后一段前停顿": 0.7,
+          "接点": [
+            272580,
+            340380
+          ],
+          "依据": "全篇结尾句按 07 定下的标准（用户 2026-10-10 同意并要求所有视频统一）：前段 0.9、最后一段“vindicating him.” 0.78、前面停 0.7 秒。接点由 结尾句接点.py 自动找：0.9 那遍最后一个标点后最长静音（150 ms）的正中 11.357 s，0.78 那遍（160 ms）的正中 14.182 s，所在帧和两侧各 5 ms 都低于 -55 dB（程序以 08 校准：与人工核实的接点落在同一段静音里）"
+        },
+        "actual_accepted_whole_AAC_packets_and_absolute_timing_identical": true,
+        "whole_public_decoded_audio_float32_bit_identical": true,
+        "numeric_splice_metadata_unchanged": false,
+        "basis": "Root independently extracted the exact previously accepted Git MP4 and current native MP4. Full payload/absolute packet timing/side-data and all decoded samples match, while the unchanged official locator reconciles these exact legacy source metadata values. Entire source pair, original history and the measurement proof are permanently retained; no other numeric/control change is authorized."
+      }
+    ],
+    "official_regenerated_nonaudio_rationale_updates": [],
+    "observed_original_QC_interval_fingerprint_updates": [
+      {
+        "path": "/区间声音指纹",
+        "before": null,
+        "after": {
+          "S5": "e3d8b98cdbce",
+          "S6": "f2f65b2354d4",
+          "S13": "52be3975789f",
+          "S14": "b603d2207559",
+          "S16": "f5e6a543b7df",
+          "S17": "355b7925ae4d"
+        },
+        "basis": "Original maker A45 observed raw-synthesis validity hashes, not physical audio controls. Both immutable source versions and actual native QC remain in the artifact; original full sound gates and actual approved AAC/absolute timing validation remain mandatory."
+      }
+    ]
+  },
+  "changed_paths": [
+    "/sentences/7/chunks/1/note",
+    "/sentences/15/chunks/1/note",
+    "/sentences/16/chunks/3/note",
+    "/区间声音指纹",
+    "/结尾句/S17/依据",
+    "/结尾句/S17/接点/0",
+    "/结尾句/S17/接点/1"
+  ],
+  "original_inputs_unchanged": true,
+  "manuscript_origin": "immutable request used for roundtrip; actual exported production manuscript recorded separately",
+  "manuscript_runtime_observed": true,
+  "no_repository_or_remote_write": true,
+  "scope": "data fidelity and regeneration only; final JSON artifact-member origin must additionally be checked by delivery validation/archive",
+  "final_JSON_artifact_origin_checked_here": false,
+  "observed_used_generator": {
+    "file": "08-used-gen.py",
+    "sha256": "c0497f1d7b5e39303dba2df39868bd9e1e4f3514025cfabaeb12a998cf58f46a",
+    "origin": "actual_production_filesystem"
+  },
+  "original_production_generator_execution_observed": false,
+  "original_production_generator_execution_evidence": "No fresh generator execution log; do not claim this GEN was executed during rendering.",
+  "actual_production_manuscript": {
+    "file": "08-actual-working-manuscript.md",
+    "sha256": "9bb7dc3e6169a0e1b7c1189a53424bde85bd8de3038bd53be8e8d340db16af0c",
+    "origin": "actual_production_filesystem"
+  },
+  "derived_generator_original_job_execution_claimed": false
+}

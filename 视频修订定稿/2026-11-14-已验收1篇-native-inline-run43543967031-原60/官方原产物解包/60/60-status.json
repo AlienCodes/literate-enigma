@@ -1,0 +1,3562 @@
+{
+  "article": "60",
+  "passed": true,
+  "stage": "final4K-passed",
+  "original_audit_and_quality_thresholds_unchanged": true,
+  "original_maker_unchanged": true,
+  "core_repairs": [
+    {
+      "target": "视频/工具/草稿声音.sh",
+      "file": "files/视频/工具/草稿声音.sh",
+      "original_sha256": "0ce3277812cf16ed30438509b6dc97db0c26725db4c5db5d9b058c3ef6531aa2",
+      "patched_sha256": "957d7eb1598698ea33ff77d83379256ecae258d84d588753d561a902284be439",
+      "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+    },
+    {
+      "target": "视频/工具/句内响度.py",
+      "file": "files/视频/工具/句内响度.py",
+      "original_sha256": "58735b7173a3c03efa61fb300b4aed4039c164fa970e0593a40bae2a3f3cbd27",
+      "patched_sha256": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea",
+      "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+    },
+    {
+      "target": "视频/工具/独立复核/synth.py",
+      "file": "files/视频/工具/独立复核/synth.py",
+      "original_sha256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+      "patched_sha256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+      "repair_scope": "validated unprocessed raw-mother reference input only; independent transforms/audit/thresholds retained"
+    }
+  ],
+  "strict_production_cache": true,
+  "pdf_requested": false,
+  "check_summaries": {
+    "approved-illustration-resource.log": [],
+    "certified-core-original-stamp-verification.log": [],
+    "original-restored-stamp.log": [],
+    "canonical-module-copy.log": [],
+    "canonical-draft-00.log": [
+      "第60篇 做完（390 秒）：修了 1 处、疑点 19 处",
+      "① 文本：通过，自动修 1 处",
+      "② 声音：60 词尾辅音核对 问题数 0；60 纯人声核对（配音指纹 c51376cb90f5）问题数 0；问题数 0；60 句间停顿核对 问题数 0；问题数 0",
+      "③ 出片前核查：通过",
+      "⑤ 出片后核查：全部通过",
+      "⑥ 已拷 视频/视频/草稿1080p/60_1080p.mp4（--不推）"
+    ],
+    "canonical-final4K-00.log": [
+      "第60篇 用户定稿原话：有"
+    ],
+    "original-stamp-after-production.log": []
+  },
+  "actual_native_core_certification": {
+    "run_id": 43535822030,
+    "job_id": 132264443476,
+    "commit": "395e8da264fafa2453a42ee70a3f7aed8303a769",
+    "actual_full_quickcheck_exit": 0,
+    "actual_full_quickcheck_seconds": 478.16,
+    "artifact_id": 14089812323,
+    "artifact_zip_sha256": "5e396c84e4a6fc7c6cc737ceb8648d7f15f397e9551806e032c93db8ab0963b8",
+    "full_original_quickcheck_log_sha256": "dbe7f6e08d2b7c3a5f9a2f925bb75a662aed725c780e1bc6714706807552a294",
+    "article_audio_or_video_passed_not_implied": true
+  },
+  "actual_native_fastcheck_stamp": {
+    "target": "视频/工具/新管/快测通过.json",
+    "file": "files/视频/工具/新管/快测通过.json",
+    "sha256": "6ebc7aa41f79f77258fa333b665af258e007daa36a4ea290de972cd3da7b42f2",
+    "origin": "actual unmodified original full quickcheck, native run43535822030"
+  },
+  "reviewed_regression_resource": {
+    "target": "视频/工具/新管/回归基准_27.json",
+    "file": "files/视频/工具/新管/回归基准_27.json",
+    "sha256": "b8ddb4656ae27cbfc7ec8e3b99511983b4e568997bd4ad4ee33c364f3926ae94",
+    "origin": "pre-existing root-reviewed 67-screen data; original voice/segment MD5 unchanged"
+  },
+  "core_repair_manifest_sha256": "1b1558108d15603e5711e200135651d6c7700a583d8bcf53ad8753683ed05a5e",
+  "reviewed_gain_preservation_mode": true,
+  "real_restored_stamp_validated": true,
+  "reviewed_cross_article_context": {
+    "provided": true,
+    "manifest_sha256": "eddfbdceea4e25f2398a2198f94d9852f1e30e35b35c4075c5a5ff0c8e32c096",
+    "files_sha256": {
+      "视频/脚本/01.json": "2be2f80a69af28703992204ac95f987c745362c326e62ad81b3cd8e0e0735d3a",
+      "新版定稿/01-the-robber-who-thought-lemon-juice-made-him-invisible.md": "572054065b5bb65446bf8939a21c789c1e9c7664d82da5117c43efdded894351",
+      "视频/脚本/02.json": "0403368c77fd3e0f91e1ee3780e1c7c147894ad13c16b5f14707d700a8f717c8",
+      "新版定稿/02-the-truth-about-one-marshmallow.md": "91b92505aad03f963861bec39e96f0a472c126d1d57c9fc538676c32f65e545c",
+      "视频/脚本/03.json": "527f3bf4a11843f4d606188dabc6ebce6830da3fb454a49c782e3a595cb47407",
+      "新版定稿/03-the-doctor-who-drank-bacteria-to-win-an-argument.md": "6dfb56504882e24854a3584fd740e7f6601e3f2532818aee3a56d5330d317aa3",
+      "视频/脚本/04.json": "93cc1ff58d65ebe43a65ecb2fb2dbd2da262d80877c05740bbdf4eab4eaca1e8",
+      "新版定稿/04-the-brain-that-learned-london.md": "a8ccb31ffff50aaae77de4b83de1847fafae1d585981cf960c5880c409f6cfc3",
+      "视频/脚本/05.json": "2282acbfa4b82825f93261ec6c18359eb47fd3f7c639319ac5058d126643e136",
+      "新版定稿/05-the-fingerprint-in-the-blood.md": "612deac4ed066489e04e214ca969f8f27dda05856e0ef0ed2e540e7a4a52ae34",
+      "视频/脚本/06.json": "2cbf1d6cd6e66a59285298ea830f5ef914590b64286d40b2ae5f3168aa27a2e9",
+      "新版定稿/06-the-horse-that-could-count.md": "7fd21ba491c7596c53c486f2bb0b0f2f6da8e67bac75461a4649a7caff822f74",
+      "视频/脚本/07.json": "842e44e5aa19fddcfa239cb6530c5152341cd86e11db959543d02d8670ca13e8",
+      "新版定稿/07-the-octopus-that-escaped.md": "b8544281bb2ada88fce9d1082cbc30233dcb63ee3e9c2bbefafc22cb28b8cb39",
+      "视频/脚本/08.json": "254832e09f12759d950384dd9f31f671ad5a3bc1590b7466065dd3ef5fe4b8d5",
+      "新版定稿/08-the-doctor-who-solved-the-cholera-mystery.md": "0b2bfa68070ce585a452f6b7034d03c3683e710dcabec5e86d7b221950dc7bab",
+      "视频/脚本/09.json": "fa3e429351d629de188c184d04e9986200e16e80606fcbec82332b6433301dae",
+      "新版定稿/09-the-great-emu-war.md": "af5c3e844bad15f94bfc43aeed6d7417c4bfae85f026b194da667a7a3bdb6196",
+      "视频/脚本/10.json": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
+      "新版定稿/10-the-stolen-smile.md": "ff63cf94e4d2c835e2e2f1ffd3e6c5642f0916f0b13c012f1f13c3dff716d47a",
+      "视频/脚本/11.json": "665cbb80cc70b700ecc0cc5813209fd100ad4fa8f0eead3929b9e53778d9d07f",
+      "新版定稿/11-move-37.md": "7e0b49b346c1fa3ab994a11a2301167c0d6a1bb00916508bdc0b1acf71e68053",
+      "视频/脚本/12.json": "e3bfbcce6f1a8e14cfe451d656574353321e297c90c62f5a7b422f37478311d5",
+      "新版定稿/12-the-79-days-of-new-coke.md": "5a23c1e0c81318527bcbf27573487d1845c5318905a2b1e020cc6e2eaf5d643f",
+      "视频/脚本/13.json": "3687b6c42a6d524d0d7e40a47ed02c37b18abe8d524db4f5914abad52019a63c",
+      "新版定稿/13-eleven-days-without-sleep.md": "72b842de127132e386e9e52a1719ec96765e94958f56687987f53e2801c69704",
+      "视频/脚本/14.json": "17141351875ddb8f0e308602c0b6ab85cbf5126a4d0118978c25c869db769fee",
+      "新版定稿/14-the-fungus-that-turns-ants-into-zombies.md": "e114c9e1783c80a2ffdb60af05e824f93a8ea8725905cb733560abe1c0ad01a8",
+      "视频/脚本/15.json": "0934aa067f19814028c398b0c70a400bb09e354f744bde4000742950d77f441e",
+      "新版定稿/15-the-myth-of-the-unsinkable.md": "68e236868c4b466928ff2a60358250b9592dfe9287b66561b1e5a80b4d14de4f",
+      "视频/脚本/16.json": "d25aa07f3fac316c26c2ae1006d3efa7eb82a396b66150432b50239c1628396d",
+      "新版定稿/16-the-bread-made-from-air.md": "4da63148111213f6d77451b0eb4193893e6fc2fc170400bc39ce5f5ffcaa0b20",
+      "视频/脚本/17.json": "2e9971ea5ce7857e119226fe95def06e6eb9c3ef9823d8e8c4f3456f46a3bbb0",
+      "新版定稿/17-the-curse-of-the-pharaoh.md": "a2e8d92f9136e1b22fcc0799f9a4d281092f0e547cc68242e090241d7b09e222",
+      "视频/脚本/18.json": "8cffbad6f0b8451e46ad1a65d5f629c450ceff2c771218445770c8cbfd77ebca",
+      "新版定稿/18-the-mould-that-changed-the-world.md": "ef41cea03f471fe3b9a53939c843e450da3325eb711f6414e108ae92a7518dd8",
+      "视频/脚本/19.json": "cc3c5eea0f7d9ec0712b2e58adba7e5ef8b61d6518a322f9b25a12fcc45282fb",
+      "新版定稿/19-tulip-mania.md": "3882d487383b759c31dda4785966091c362960cd873a5d83c530d08d52e2e97c",
+      "视频/脚本/20.json": "cc5ed6d7be8767e5e7e9b098e8f3836821c0b3f51c17581b2746722da1cf3001",
+      "新版定稿/20-the-5000-year-old-murder-in-the-ice.md": "8d55638070787f7ff5432c197292af1188c463a8b018e01bdefc32999b888e95",
+      "视频/脚本/21.json": "61c1569a26d7569ee0f586178be6b307b1c394c0a30c3cb02541c910038b0589",
+      "新版定稿/21-the-man-who-sold-the-eiffel-tower-twice.md": "e8e966b70f579235d696ba11fb01d3b2cae3fa26efb9071bbea95071be259e1f",
+      "视频/脚本/22.json": "e3027a42c532fee9935afcecdd0542713cbb907183802c2345b9472f93b75f59",
+      "新版定稿/22-the-building-that-melted-a-car.md": "49ae09483bc80bbc40a71551cd98aebec355d96d9ff7b2bcdea59a06fe599267",
+      "视频/脚本/23.json": "c4574a79fd3a58577a1402ce095ea9e4a0ea1f98883ce63e3cc60d126e819409",
+      "新版定稿/23-the-man-who-gave-machines-a-mind.md": "72ed3049e87fe75ce1e753d5e443bdbe6a7ab72f6e282e8467fbbb62be873169",
+      "视频/脚本/24.json": "f08620b534bb10b718f7515c805dcb541721427d855bd5a092b8954847a351b8",
+      "新版定稿/24-survival-in-the-ice.md": "cb7f810d9a74256e0c00625290be4f16207feb90f5719ca87d5d7c9912b91307",
+      "视频/脚本/25.json": "c73e854e052b3df9bd920d4a59fafb183dee19bd58765fa426af6ea3d7c9a329",
+      "新版定稿/25-apollo-13-the-successful-failure.md": "b6b7d55fe66e6e32116431ea955778fab779b8bda622df0ba1036c2f40a3969f",
+      "视频/脚本/26.json": "ab663b240eb5e27923f38e2ff296c0196e3d820766d0c909adb9faf19aa3cac9",
+      "新版定稿/26-the-language-the-children-invented.md": "9e9ad8021ddabc17157d73dc739383f9676df3583cf965e470fcd773e26a3761",
+      "视频/脚本/27.json": "61cd724c5fab6f07a46aa5ac069101617c4c8350311eb11a43f9fefdddb31d8b",
+      "新版定稿/27-life-in-the-forbidden-zone.md": "e276bcf76225b9ae16cd8cfda8c9b726b442fbd625d3718f532b47b09b21b16f",
+      "视频/脚本/28.json": "a6a4befc0291727f5cc3f8b50857ee954ef9f936738f014a978ebb4d37a28ea8",
+      "新版定稿/28-a-handful-of-wormwood-that-saved-millions.md": "b9817d3429767d07b6a2eb14cce5422a20cb4e3b89f8b03e6b3d5da2daf91d91",
+      "视频/脚本/29.json": "1e5f1d9f0c22b5d14b757f029be694c2a3969666d732ca79bb695282763de791",
+      "新版定稿/29-the-volcano-that-gave-us-frankenstein.md": "69045ee19a170c7ea9d0008b468c7e947bc28b639b834c0192dc0aeafc3ef4d0",
+      "视频/脚本/30.json": "cdf727cb4c6832063421df9da6ab8ae7729cf9df01d6be089a8981c92c360f06",
+      "新版定稿/30-the-stink-that-built-londons-sewers.md": "84dbf19cee0045ea2608b13ee0677cb9623dd8fbb371c67093bf50c64186137a",
+      "视频/脚本/31.json": "d81f8645a1e5663ba8c84668e817cdb218bc6689079fbfd51326b3a7fd3cd384",
+      "新版定稿/31-the-book-twelve-publishers-turned-down.md": "7abd20fed44918dcf01586c056e9d0acd9d2ad3b90aa7d3d403762d9f06d2659",
+      "视频/脚本/32.json": "357aa59bed62154f7302a5efcf528859b303004e028657b93058138fe931bf85",
+      "新版定稿/32-the-planet-that-was-demoted.md": "1421f2b0921e7e9478ebc48777e3e8b2c979172de63d0124015107c3750a3542",
+      "视频/脚本/33.json": "ca51103c1a9d45c9159322765efc86c81f61f6ec78975f160019d21a1d9ee0d7",
+      "新版定稿/33-thirteen-in-the-cave.md": "9862078044ce45a9f6d51aa7d165afdfcf90066d1de98cbb317dd7e8f980610d",
+      "视频/脚本/34.json": "74921848a6bb25a2ba631813f60d4756c9ff90c64c03a2fb936ce34f310ce509",
+      "新版定稿/34-the-game-that-escaped-the-soviet-union.md": "e3244b67b21e283e67f4e88e932a1dbb85bf273a48ee009b3f435e1c5814831c",
+      "视频/脚本/35.json": "d8439077dc2c909b1c6cbd1347f31e9625f25fffe447d6f5945c9492561f1a16",
+      "新版定稿/35-the-bird-that-beat-the-letter-home.md": "ba8c38e38b21a3345624e2d44fd352561d3096cfb6f62214b48ea9b6e66faead",
+      "视频/脚本/36.json": "76daa28f421bd40d8e2744d4e785a34bb8ee67da1403b4b1546db9465c535cef",
+      "新版定稿/36-the-company-that-invented-its-own-killer.md": "411eeb96c8641ee7082b49a5abf4c7343d3f1dbb7ef331064d7c0f3c630fe58f",
+      "视频/脚本/37.json": "b1b8945ccf3581df48ade5714a2d0e93e4cc6812708f95bef6f5e44439106c99",
+      "新版定稿/37-dynamite-for-the-heart.md": "4933e24d2384471a96d9c8c26c15d5224a85dae98d9971a3fed15b4978dafc51",
+      "视频/脚本/38.json": "8d0379032000967c9f72e550574874949f798eefbfbfb58ab2b38e4e23ecbc6b",
+      "新版定稿/38-the-web-beneath-the-woods.md": "abb7eead9f3da0b2b326ceed5a649cfbf71fc28dad22e0d52f7b19caa798c54f",
+      "视频/脚本/39.json": "6c3e9539f624b192335312912572a05fba2c7bcfb821b44c3c1dbb21b42527a7",
+      "新版定稿/39-y2k-the-crisis-that-success-erased.md": "abbc9804661126aa006595031ed8f201ce55e8eb5fd9e1ad5669c0c6fcdb80ab",
+      "视频/脚本/40.json": "1c50d1a47ee6f8528d0f7299e8a45bc8c30312622f3f465a964d21cc1395ee7f",
+      "新版定稿/40-the-glue-that-failed.md": "dce9f78f3a0828307843dd667b7eeebf3380a3630f03d234bd5824870aba61a1",
+      "视频/脚本/41.json": "6b6673ffc1db986f4c355f3685de6a0faf2272cee042c5e917f26a8b3057c2be",
+      "新版定稿/41-the-toad-that-invaded-australia.md": "eca590f97120f4e76d719e29aa07b094f9117cd462f5a70c029331a63b85f710",
+      "视频/脚本/42.json": "eceb10ae92aa4b9cd23180d1138149a7fa7b674385462c898bc0d2283c8739e7",
+      "新版定稿/42-the-telescope-that-needed-glasses.md": "d4aa049779a0eba06c555d76ca14103648378eef90465df424120126fa771280",
+      "视频/脚本/43.json": "aa9da1246e293c80408edf94a7c9bed65ef3178ae7cb5265a8273e8c4396687f",
+      "新版定稿/43-from-a-garage-to-the-top-of-the-world.md": "bd70c83e5ac867238ca179f3c9f3548eb9cbdcae1f6df40994aef0bda721ae54",
+      "视频/脚本/44.json": "87f531203ca38d88ae5e71ffd88190b1530715cdc0adba146c2a4a78ebe9b976",
+      "新版定稿/44-the-night-sweden-switched-sides.md": "d3f7ad2ac43f02aae9205a15b9808280ca3db597d6ef3b36aca8ca6176c5f74a",
+      "视频/脚本/45.json": "569406607d2bf18dce5e916052d6460509450d97fe17ac9820be524f59c2c3cc",
+      "新版定稿/45-the-record-humanity-threw-into-the-stars.md": "27deabec4a8478fe570f7f237a2fb850ffdce3deebfd952f512d82a60cf7314f",
+      "视频/脚本/46.json": "804ecfddb6060288b05eda0e1027c65e9bff0c08a9d010c201bf39306c769b62",
+      "新版定稿/46-lost-in-the-glare.md": "7aaa06e875fe56c5d78210b90a8769b8b2051714025ef10df37c2fe89db7a68c",
+      "视频/脚本/47.json": "0417489c8a672e7e63d46c2239d847acabda2d93160cabed3b0fb14f701ac39a",
+      "新版定稿/47-shadows-of-wolves-over-yellowstone.md": "34c68cf4d0f0ef3545ad68edf3367fcb76ab500174b11ae7f83b782cd5a80a2a",
+      "视频/脚本/48.json": "4f146ce6a70bb0bf5d2c6e1f6b47bd6a2bcc2f311be7a948092d7bde1a08f449",
+      "新版定稿/48-rice-for-the-world.md": "76416be21f857e8a05c37baa33ac90f5785812291485231c249e38a1d0edf15f",
+      "视频/脚本/49.json": "640168eb8a17c5d53d266c6604ffe287919314947371c2ee239eeea952d73b77",
+      "新版定稿/49-the-woman-who-won-two-nobels.md": "1e4fb068aa9ae4513d01b199a074b84dc9d819f57b2134df32588a0e4a4b6b6a",
+      "视频/脚本/50.json": "1d4a41824dfa5e8d11e5990b2a4b802ba2fcc3231d85b15ed6630396c6f027bf",
+      "新版定稿/50-microplastics.md": "5439589bacf1abb2abbb184eb658492bc02bcc5bdd8dfd8ababcd80ab93621cb",
+      "视频/脚本/51.json": "39886d83593a31fb575b124ecf6457190773dca695b6ff78f8434d52aebd6d7c",
+      "新版定稿/51-the-joke-that-became-ok.md": "8de30ea4846f4e88d8b71c8d5ced3ee63a73955e39b7dc3c5adad0971b854fd0",
+      "视频/脚本/52.json": "832249bb44617d38ede75560a5e57af6ba79ec284c9609407cb30ce879f6f862",
+      "新版定稿/52-the-killer-smog-of-1952.md": "179500361e4a837d7edb2e0497e08677d5abd425e8ad542f788205a6f7667b4b",
+      "视频/脚本/53.json": "28b604bfa72896534736293f79e9b3aabd8e3678672f4dc6c66337c02a8f1518",
+      "新版定稿/53-the-wind-that-kept-no-time.md": "6fab302dcadb5a2c509436f5fbf8d9ef925c008a36f5b422749bd405aa4701d3",
+      "视频/脚本/54.json": "b1fcb8ae86045b3d35ccfa0f52eb9594b8921d43063835769ee3ecc4543be75e",
+      "新版定稿/54-the-sound-that-shook-the-world.md": "abd5f4bfe11ed73bcc5326a92cf99b0a8e5ad70adaca1ce8d0c8f622b57fa519",
+      "视频/脚本/55.json": "06344fc0ad5975cba2f4dbe5262a9957dd7c024f9a05b9abbfa327f32ea8c719",
+      "新版定稿/55-the-secret-of-romes-undying-concrete.md": "a7759eddcc7ec06dfd6dab7912e06b3b5ef8576df0c025a97812006669d0be61",
+      "视频/脚本/56.json": "22ca3b4180a8ae6a37b4c8e25f5e357d5696d9b23bf148fb7064425d1403e59c",
+      "新版定稿/56-the-letter-that-startled-darwin.md": "aad1e2aab9ff28f534a510362e807ef401e0b502475240f4b2531e9e518a8d7a",
+      "视频/脚本/57.json": "a0ba65b769430289a33ec1f7bc6dbf91dad8d2c3b1d725348851de546563cd6f",
+      "新版定稿/57-a-change-of-anthem-in-the-deep.md": "0731d925a98bafc222718c111985362e166b38b9189c516219a481e36d0d4b6e",
+      "视频/脚本/58.json": "8b0bd3d7d39000518789e9907aec53bd52fab1b9d6b4f22a152d158635b6e8ee",
+      "新版定稿/58-from-a-scratch-to-a-world-without-smallpox.md": "1aa2a0d2c51da76f9c9ebb88d049dd1a55ab530791566fdbf6476e5aa48c15ee",
+      "视频/脚本/59.json": "df1db4174d942371166048b220ef6d55b0b700b2ce31c866edf6dfdf33b92f0c",
+      "新版定稿/59-saving-the-sky.md": "7bf9c4661e733e7af23dc2f11bc820b809ec93dad75a94fb6a12748226e8722c",
+      "视频/脚本/60.json": "eed1655c0919db32a3a016b24791b93d25683f287c7ccb2523e168a69bddc562",
+      "新版定稿/60-the-scientific-giant-who-changed-the-world.md": "9d1578e7af085559922394a3db01de4eb22dc1c520ca17de5cad68e5a38a31a8",
+      "视频/脚本/61.json": "72378937501769dfb3d934fe65ab1a69afeb5420a15e19890c161433717d2435",
+      "新版定稿/61-the-steel-box-that-remade-the-world.md": "135cc9cfbcbd68d957f831cf55558112a45b1cc3749366cb9a304507355c7d2c",
+      "视频/脚本/62.json": "4b3a97f2b6404e1b091537c21f01fc60088902f596803345983c38be52ec79eb",
+      "新版定稿/62-dolly-the-copied-sheep.md": "62817546ae33824b57255f941135c503e41a41f905331ed4af1e32850fa00960",
+      "视频/脚本/63.json": "5d266d80f9cf29cce6f7e34531449cf75191a42f180102685a5bcd04849e75c5",
+      "新版定稿/63-the-crowded-heavens.md": "6ef79d4310019dfefa7364b8a428411a6bc337678c69fa5cbc89b84689e253a4",
+      "视频/脚本/64.json": "12a36862765922d72ce6e5a4c5fe85f548364eed65fe3b3b284f0b38899a965f",
+      "新版定稿/64-the-day-zero-that-never-came.md": "e0c83cbe36745adbbffd33a156fa8d0671704ea976cb13215cabb612639b37a5",
+      "视频/脚本/65.json": "78e60dd231df4ac71df83e21a26f82bbf706dc0bef80bee156a36bc287661ede",
+      "新版定稿/65-the-day-the-doomsday-vault-opened.md": "71a50d32e25955e713e6ca108ab68422a4fd5b77c914a9074eece1dc33cbff89",
+      "视频/脚本/66.json": "ad5324af4270834186285a5e7273a90213094077adc6f9e1d5c7b0ebff9cf035",
+      "新版定稿/66-the-burrs-that-became-velcro.md": "75dbe6c148ca97a7780ac1737f33f58bf8ee27a51aa729a83315705655b12b2a",
+      "视频/脚本/67.json": "8897cc1c2df1e4672eec3bbff2776d0565afb9c9fe84087a1758ebb15b2a233e",
+      "新版定稿/67-the-cave-found-by-a-dog.md": "10e37b81eeef4e3289448a6b4fd679f34d495a4fc087c57747e6dca949e00cf1",
+      "视频/脚本/68.json": "568f72dacac48e206811d35a57c7fa22e3da428783f64e507c184f2090e579f3",
+      "新版定稿/68-the-last-flight-of-the-hindenburg.md": "c25f58ffb0e3748336767bb7470dd7cef10374c53cbb48af89dba26f65b2dd5c",
+      "视频/脚本/69.json": "09fd3fdbbc834badd16a9b38d8c14e425193a6849d7db87253f26a782a1c4137",
+      "新版定稿/69-the-trial-of-the-father-of-the-atomic-bomb.md": "570eda5b7d979d71e9bcad1c67e295ed326ecdb8b61e663aba33272c8a9451bd",
+      "视频/脚本/70.json": "0f6827f02cef0d2416f9d7d69b7e1c5553acee7cf6dc89f3379201264587236c",
+      "新版定稿/70-the-stamp-that-changed-the-post.md": "edfd85cea33730ba67e4210e756da1f2945f1a21bce55c7e75497cb5f0095d80"
+    },
+    "source_file_count": 140,
+    "working_script_count": 70,
+    "target_request_exactly_matches_context": true
+  },
+  "request_source_sha256": {
+    "视频/脚本/60.json": "eed1655c0919db32a3a016b24791b93d25683f287c7ccb2523e168a69bddc562",
+    "视频/工具/初稿生成/gen60.py": "5c2819f1ed71b8cea4b05608c64e2b4f34b3a49b9b223b2449d370d1337e5e43",
+    "新版定稿/60-the-scientific-giant-who-changed-the-world.md": "9d1578e7af085559922394a3db01de4eb22dc1c520ca17de5cad68e5a38a31a8",
+    "视频/制作记录/60_待改清单.md": "0fddeb3473779c137ac5da0b1b6720d44aceb32e851d63a26260abf89d38d504",
+    "视频/制作记录/逐句确认/60.json": "f4febf3ac61612041ed011d6a0a47c6e006b16cf1808f5037dc028feb6e41624"
+  },
+  "accepted_source": {
+    "id": "60",
+    "path": "最终版4K视频/60 - The Scientific Giant Who Changed the World - 改变世界的科学巨匠.mp4",
+    "sha256": "1bae9834273bf0290dbcdddaee699af10f30b8856994afc423e68078b04e2fb0",
+    "git_blob_sha": "a75ea2149fa3f3056abf6bff9e39677b32984d13",
+    "bytes": 12427147,
+    "width": 3840,
+    "height": 2160,
+    "summary_frames": 60,
+    "aac_adts_sha256": "102b6fdc4879a86f95334c9ee8900c3f8f1ac4dcfceb264e345e6bf241c0bdf0"
+  },
+  "checker_reference_preparation": {
+    "article": "60",
+    "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+    "reference_prepared": true,
+    "acceptance": false,
+    "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+    "source_sha256": "eed1655c0919db32a3a016b24791b93d25683f287c7ccb2523e168a69bddc562",
+    "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+    "checker_program_sha256": {
+      "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+      "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+      "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+      "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+      "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+      "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+    },
+    "reference_calls": [
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-raw",
+        "method": "create",
+        "source_slice": "The Scientific Giant Who Changed the World",
+        "exact_native_cache_key": "af7a9470b131aa707f4235b1fd1cd79730c746ac.pkl",
+        "cache_input_text_sha256": "e9314e80f31cf4ee3c2bb6bd8092d39609ae5da0a0d381c3d30c2495691a1ea9",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-timed",
+        "method": "create_timed",
+        "source_slice": "The Scientific Giant Who Changed the World",
+        "exact_native_cache_key": "59fb32e6ef8298e1adec57f34857b3819bdde7f7.pkl",
+        "cache_input_text_sha256": "e9314e80f31cf4ee3c2bb6bd8092d39609ae5da0a0d381c3d30c2495691a1ea9",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "On 29 May 1919, as a total eclipse obscured the sun, two British expeditions photographed stars in its apparent vicinity.",
+        "exact_native_cache_key": "0d549e32e8eefc19d2e8339388d2739dd133e3c4.pkl",
+        "cache_input_text_sha256": "5fa93e3ad0c07f290c2a2a5831be4c6a9d84597f8d04d43e5c28d5d3b0a4eb20",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "On 29 May 1919, as a total eclipse obscured the sun, two British expeditions photographed stars in its apparent vicinity.",
+        "exact_native_cache_key": "6ebdb67913ec6489d6f20a72aff5622155bb0bb0.pkl",
+        "cache_input_text_sha256": "5fa93e3ad0c07f290c2a2a5831be4c6a9d84597f8d04d43e5c28d5d3b0a4eb20",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "On 29 May 1919, as a total eclipse obscured the sun,",
+        "exact_native_cache_key": "deb4ee323c4671136836559f09ca2b0f711ecde0.pkl",
+        "cache_input_text_sha256": "908b3d4ac78ff049622252d6f2d417d32976108d0bd844b7da5db6b5711e7a8b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "two British expeditions photographed stars in its apparent vicinity.",
+        "exact_native_cache_key": "a687092a14a735ba4af8b11d9399ec56a10e57cf.pkl",
+        "cache_input_text_sha256": "ada9d85efecf453a0b7274699438381d3837f8d2d943054afa8370ad4a0111fa",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "On 29 May 1919,",
+        "exact_native_cache_key": "aab75daf138ea4b2bb1a1f624e48c3e218902c8f.pkl",
+        "cache_input_text_sha256": "b61843a52216956b6a2a0b6967f8c7f3a430c3e204e11f62652e71e5eb1600e5",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "as a total eclipse obscured the sun,",
+        "exact_native_cache_key": "3c4602b7e4f8f03adbbbcd32372def14cf38987e.pkl",
+        "cache_input_text_sha256": "a73342576810501db8b6bccccffcbe8450267db9a6d40949fca927d366178243",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "two British expeditions photographed stars in its apparent vicinity.",
+        "exact_native_cache_key": "a687092a14a735ba4af8b11d9399ec56a10e57cf.pkl",
+        "cache_input_text_sha256": "ada9d85efecf453a0b7274699438381d3837f8d2d943054afa8370ad4a0111fa",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Arthur Eddington observed from Príncipe, an island off West Africa; Crommelin and Davidson from Sobral, in north-eastern Brazil.",
+        "exact_native_cache_key": "2e1109a757db5834ac0c0b2748a93c963ab4c5b3.pkl",
+        "cache_input_text_sha256": "357bd17ad23dd823916178337550370b0baefea5a1f663d3eeaced8240bcae87",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Arthur Eddington observed from Príncipe, an island off West Africa; Crommelin and Davidson from Sobral, in north-eastern Brazil.",
+        "exact_native_cache_key": "f30630c2f7815e0692681dee720f4293e17f39bd.pkl",
+        "cache_input_text_sha256": "357bd17ad23dd823916178337550370b0baefea5a1f663d3eeaced8240bcae87",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Arthur Eddington observed from Príncipe, an island off West Africa;",
+        "exact_native_cache_key": "1ca57eb31e2ed6957ab20650a40718ee93418673.pkl",
+        "cache_input_text_sha256": "bd26a636fbadfdf3935eca908e877553e9868bc8f234bce5086d6c4a4a528240",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Crommelin and Davidson from Sobral, in north-eastern Brazil.",
+        "exact_native_cache_key": "cdc7298b7656403390b5eb198ea1e1be226d4453.pkl",
+        "cache_input_text_sha256": "135e96817985883c57fd0952702d13e532a544c1c3993dcfc34c2d6bd01e466b",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Arthur Eddington observed from Príncipe,",
+        "exact_native_cache_key": "d66c3fcbdac406ba5a30657a39c697be14559851.pkl",
+        "cache_input_text_sha256": "9c221cbb07bce12d643b2d0c58215ffbc19f7f3adf514891cb6d1dd9fd79fc3a",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "an island off West Africa;",
+        "exact_native_cache_key": "c97cfdd96bc216686fc365a70fcae84f166ec445.pkl",
+        "cache_input_text_sha256": "31f0b8737fd84bf8f7d86b1954d064c26d82520a1fbb719116f2d148daf9e962",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Crommelin and Davidson from Sobral,",
+        "exact_native_cache_key": "6a2293668d322267c775848953984f7312152c2b.pkl",
+        "cache_input_text_sha256": "55f282b02f25b29d2f55ac985e7009ceaf80b1b3b1a33f60d96cee624b338831",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "in north-eastern Brazil.",
+        "exact_native_cache_key": "e3618e6ed57849906c47f5e5fcd16773e6b71fe1.pkl",
+        "cache_input_text_sha256": "3a6b4e06879b9789cd11c1921f5f29760487584748aab3fab69f23def7f928a0",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "They were testing general relativity's bold prediction that the sun's gravity would deflect starlight.",
+        "exact_native_cache_key": "74ca934e9083250fd8a44d1817379e36a1cd7cd8.pkl",
+        "cache_input_text_sha256": "91ccff0a98d08c27f50d982fe5ebb432b94f5326582c04882e688a282cf13354",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "They were testing general relativity's bold prediction that the sun's gravity would deflect starlight.",
+        "exact_native_cache_key": "169d9ca1ece0bd9dd27b270b40875bf9690c369d.pkl",
+        "cache_input_text_sha256": "91ccff0a98d08c27f50d982fe5ebb432b94f5326582c04882e688a282cf13354",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "They were testing general relativity's bold prediction",
+        "exact_native_cache_key": "6e0ff0c18b48ca2895999c15e249a6a415a23bf6.pkl",
+        "cache_input_text_sha256": "7873a3557a378c74cd721934a142b68055358b28791efd891e9c12787843364e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "that the sun's gravity would deflect starlight.",
+        "exact_native_cache_key": "1c326e2661de3f9614761c84033e6fce05a06efc.pkl",
+        "cache_input_text_sha256": "daa95bd19ee5f6dc5121c417b4c3a7f678726bade93e5972a26bc4cada4c5b68",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "On 6 November, at a joint meeting of the Royal Society and the Royal Astronomical Society, the findings were hailed as confirming it.",
+        "exact_native_cache_key": "9594536f9b1b9b343ffc452f5c631a7ef6e4194f.pkl",
+        "cache_input_text_sha256": "d78d69fc2925a3778e74294fc19c225ae59b5b66b024ef1e1e46a0afbc178971",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "On 6 November, at a joint meeting of the Royal Society and the Royal Astronomical Society, the findings were hailed as confirming it.",
+        "exact_native_cache_key": "c7c1388ddf3b76a3a54ef4d5dbba3d49f6d52b8a.pkl",
+        "cache_input_text_sha256": "d78d69fc2925a3778e74294fc19c225ae59b5b66b024ef1e1e46a0afbc178971",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "On 6 November, at a joint meeting of the Royal Society and the Royal Astronomical Society,",
+        "exact_native_cache_key": "4625654b79f9668a4130f5fb0ed3fd86254cfdde.pkl",
+        "cache_input_text_sha256": "d0b210b2f56097a7bb9f4b66c61cdf4a13b72693dcfa45c386b9f9ad25a28d81",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "the findings were hailed as confirming it.",
+        "exact_native_cache_key": "07563d90f28fb88629380382fd92d4cc8c8605cb.pkl",
+        "cache_input_text_sha256": "43f7ef0a565c187c6b4001af143b8ae3592094b10fe43288e1048ba352158c62",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "On 6 November,",
+        "exact_native_cache_key": "d37ac4fe2f98cdfccc0f0f963d625c8f50722ad5.pkl",
+        "cache_input_text_sha256": "26d9125a9575dbb7824c465a1c3dbde130d372ee84dd642ed1efd3c63e817a82",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "at a joint meeting of the Royal Society and the Royal Astronomical Society,",
+        "exact_native_cache_key": "173ab0052a47e25a2a1f41b1806008947998b5e3.pkl",
+        "cache_input_text_sha256": "768f4f9eaa869dccdafde518457284dd9813ccc033195309f1319bf30d463031",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "the findings were hailed as confirming it.",
+        "exact_native_cache_key": "07563d90f28fb88629380382fd92d4cc8c8605cb.pkl",
+        "cache_input_text_sha256": "43f7ef0a565c187c6b4001af143b8ae3592094b10fe43288e1048ba352158c62",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The Times proclaimed a \"Revolution in Science\"; a New York Times headline read \"Lights All Askew in the Heavens\".",
+        "exact_native_cache_key": "1cd58d39eb2d9aba24bb78dc66b05840530678eb.pkl",
+        "cache_input_text_sha256": "8d43a84899b859f195a8537708c906a5766a83ea9a9ae154afaa53e535e99696",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The Times proclaimed a \"Revolution in Science\"; a New York Times headline read \"Lights All Askew in the Heavens\".",
+        "exact_native_cache_key": "5570bf60fb43f374edccd5f395da0defb6f55683.pkl",
+        "cache_input_text_sha256": "8d43a84899b859f195a8537708c906a5766a83ea9a9ae154afaa53e535e99696",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "The Times proclaimed a \"Revolution in Science\";",
+        "exact_native_cache_key": "d8c928e60f711286ff807aeb00ad3eb60748457e.pkl",
+        "cache_input_text_sha256": "e2f1cf9b7aa4f5606c83e113524668e1b1655b0ab812e30b8531c64468770416",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "a New York Times headline read \"Lights All Askew in the Heavens\".",
+        "exact_native_cache_key": "65dbbefe5f5030a34af99d511adc9aa94aa41cd7.pkl",
+        "cache_input_text_sha256": "6c8c4593c82ee858f3a77dbe196502ca8ba712cb021c947360872160a6ca5aad",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "The Times proclaimed a \"Revolution in Science\";",
+        "exact_native_cache_key": "d8c928e60f711286ff807aeb00ad3eb60748457e.pkl",
+        "cache_input_text_sha256": "e2f1cf9b7aa4f5606c83e113524668e1b1655b0ab812e30b8531c64468770416",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "a New York Times headline read \"Lights All Askew in the Heavens\".",
+        "exact_native_cache_key": "65dbbefe5f5030a34af99d511adc9aa94aa41cd7.pkl",
+        "cache_input_text_sha256": "6c8c4593c82ee858f3a77dbe196502ca8ba712cb021c947360872160a6ca5aad",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Almost overnight, Einstein, eminent among physicists, became a global celebrity.",
+        "exact_native_cache_key": "1d0f5f4eb246b94ab387fc3ce6325fc228d1be39.pkl",
+        "cache_input_text_sha256": "940e492e6305e76fadfe1fb5d3d2227913e7a9040087e025f294a4ba6e0bf322",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Almost overnight, Einstein, eminent among physicists, became a global celebrity.",
+        "exact_native_cache_key": "f1c7261d37fb3bfb0bc122fdd2a19d29a5bac67b.pkl",
+        "cache_input_text_sha256": "940e492e6305e76fadfe1fb5d3d2227913e7a9040087e025f294a4ba6e0bf322",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Almost overnight, Einstein, eminent among physicists,",
+        "exact_native_cache_key": "b678bb949f7133911600c2ad357ee20363c50503.pkl",
+        "cache_input_text_sha256": "e1c40c56b3ab92bd32cf97833d882c01227ccad4d16b304cc05ff185f23a725c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "became a global celebrity.",
+        "exact_native_cache_key": "ed66ea8b905c417e0414bc8360bef93072b8f1a2.pkl",
+        "cache_input_text_sha256": "c2a4d95e9946702538cffec41fe37a0abd75d9f62c5afd005d15413775809a48",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Almost overnight,",
+        "exact_native_cache_key": "cdc99d5db7ed43c614cdf295fd756c9e72c62ae3.pkl",
+        "cache_input_text_sha256": "6c34bd35f9bcb9749de4e88f0b357e7e29d39df2461887430143fc709e4b9b72",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Einstein,",
+        "exact_native_cache_key": "fc79eaed8b869133a2e8553bbc16ee05117115f2.pkl",
+        "cache_input_text_sha256": "c24eb39f1b1a42070a0df547ac5122228023cc6cddc7e786d773af9e86093dba",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "eminent among physicists,",
+        "exact_native_cache_key": "702b86915107f40f56531f73f4aea64795c2e6c5.pkl",
+        "cache_input_text_sha256": "109acc6e63c082bc4111fa542bbd9db5a44af71d8740c5279b1cac0a4bfc756e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "became a global celebrity.",
+        "exact_native_cache_key": "ed66ea8b905c417e0414bc8360bef93072b8f1a2.pkl",
+        "cache_input_text_sha256": "c2a4d95e9946702538cffec41fe37a0abd75d9f62c5afd005d15413775809a48",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Stockholm proved harder to dazzle.",
+        "exact_native_cache_key": "b5ec28d228f855aa136da4ee444c9ea691173bda.pkl",
+        "cache_input_text_sha256": "45e3ca11b18fde8b1bad07381bd8452404ff04328020b117076c76bb807e8b01",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Stockholm proved harder to dazzle.",
+        "exact_native_cache_key": "a891490e7a14c665e375e5e8e3186e3129585c6f.pkl",
+        "cache_input_text_sha256": "45e3ca11b18fde8b1bad07381bd8452404ff04328020b117076c76bb807e8b01",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The Nobel physics committee valued rigorous experimental confirmation, and committee member Allvar Gullstrand, a Nobel-winning eye specialist, deemed the empirical support for relativity insufficient.",
+        "exact_native_cache_key": "b2383295c4689234bf28069af7a776f013261856.pkl",
+        "cache_input_text_sha256": "5e5e36f9a6fc735554c008af0cb03c51e7f7382b67a9084115c30a87360b0ed2",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The Nobel physics committee valued rigorous experimental confirmation, and committee member Allvar Gullstrand, a Nobel-winning eye specialist, deemed the empirical support for relativity insufficient.",
+        "exact_native_cache_key": "85ac191a24df22399f3118be6d79cf08885bad61.pkl",
+        "cache_input_text_sha256": "5e5e36f9a6fc735554c008af0cb03c51e7f7382b67a9084115c30a87360b0ed2",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "The Nobel physics committee valued rigorous experimental confirmation,",
+        "exact_native_cache_key": "91441928c13befcb07ed990e7c3bfbaaf1d7e032.pkl",
+        "cache_input_text_sha256": "4c081cf12f06fba3048ce8cc793c3c120c83db45fce8ef4879785f8b55c5c3bb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and committee member Allvar Gullstrand, a Nobel-winning eye specialist,",
+        "exact_native_cache_key": "856e366f4a3f4a6f203c20b3205a963ae743fb0d.pkl",
+        "cache_input_text_sha256": "3018bce1c862a784faaa1a5e535e963f3d324c2abdd7c7d20c5e70860ce78e27",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "deemed the empirical support for relativity insufficient.",
+        "exact_native_cache_key": "b77ea07187e9acd1cebde5eea878f5ca7e28da34.pkl",
+        "cache_input_text_sha256": "afe829f6cf9dea978aadd3ed810af35ca1ad227a84115c45076d665565cb20e3",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "The Nobel physics committee valued rigorous experimental confirmation,",
+        "exact_native_cache_key": "91441928c13befcb07ed990e7c3bfbaaf1d7e032.pkl",
+        "cache_input_text_sha256": "4c081cf12f06fba3048ce8cc793c3c120c83db45fce8ef4879785f8b55c5c3bb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and committee member Allvar Gullstrand,",
+        "exact_native_cache_key": "c9e9a8558a0240363ae8df58702fddd60be47f05.pkl",
+        "cache_input_text_sha256": "9e75f3b4163fe15b2b4f9fd37e0d962fc2f441f87264a21c027da50f49f90a9c",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "a Nobel-winning eye specialist,",
+        "exact_native_cache_key": "2365660d1f64b4195cb6215180ff1c0579e648dd.pkl",
+        "cache_input_text_sha256": "0305bf75612b1906e943cd448a6157d764d09731d182f05077caee72c281ccf7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "deemed the empirical support for relativity insufficient.",
+        "exact_native_cache_key": "b77ea07187e9acd1cebde5eea878f5ca7e28da34.pkl",
+        "cache_input_text_sha256": "afe829f6cf9dea978aadd3ed810af35ca1ad227a84115c45076d665565cb20e3",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Since no nomination fulfilled Nobel's criteria, the 1921 prize was reserved for a year, as the statutes permit.",
+        "exact_native_cache_key": "9573f70a335466049245b1556b750bfc7c5b2fe2.pkl",
+        "cache_input_text_sha256": "d73ca64961be1a3ff96d26fa587b913027f362f8768a8d7974973b31a97e37b3",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Since no nomination fulfilled Nobel's criteria, the 1921 prize was reserved for a year, as the statutes permit.",
+        "exact_native_cache_key": "6966de7b4180d2cd0a511141e35f8774b88b1c6c.pkl",
+        "cache_input_text_sha256": "d73ca64961be1a3ff96d26fa587b913027f362f8768a8d7974973b31a97e37b3",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Since no nomination fulfilled Nobel's criteria,",
+        "exact_native_cache_key": "56c22b5591d1c6ba3eb9c64958a95e4a5a9d5477.pkl",
+        "cache_input_text_sha256": "30861ec96410d751b6510f13d268b55c94ecdea916e0cfd1a2de7cd466d5956e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "the 1921 prize was reserved for a year, as the statutes permit.",
+        "exact_native_cache_key": "ebb4768a89806bbb7a25af4e92cd2788f56d4ff4.pkl",
+        "cache_input_text_sha256": "22266450c1113815f48c32769759c4945d25c3f8edd4822d1a3a9f02316d26b0",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Since no nomination fulfilled Nobel's criteria,",
+        "exact_native_cache_key": "56c22b5591d1c6ba3eb9c64958a95e4a5a9d5477.pkl",
+        "cache_input_text_sha256": "30861ec96410d751b6510f13d268b55c94ecdea916e0cfd1a2de7cd466d5956e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "the 1921 prize was reserved for a year,",
+        "exact_native_cache_key": "4fae8a1a29bfaf61531fbe776a0b772ea6d3d435.pkl",
+        "cache_input_text_sha256": "74fe89d2ffd6927e3c85030e5f62f71b6fe853f49584181a87a648069f95b9c2",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "as the statutes permit.",
+        "exact_native_cache_key": "cb386f43d441420f2539df6223d3595603a269f9.pkl",
+        "cache_input_text_sha256": "070c9942c48b2d569002c28a7cc24bea83ca727f426c8347874731e5dda44e2c",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "On 9 November 1922 the Royal Swedish Academy of Sciences conferred it on Einstein, citing his services to theoretical physics, especially his discovery of the law of the photoelectric effect.",
+        "exact_native_cache_key": "f9c9d31f47c1a409584d93db253e16780cea5f6a.pkl",
+        "cache_input_text_sha256": "0e4ec935aaa31e462ab98e9fb51980977443248a84c53b540a5c0b5135382f8e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "On 9 November 1922 the Royal Swedish Academy of Sciences conferred it on Einstein, citing his services to theoretical physics, especially his discovery of the law of the photoelectric effect.",
+        "exact_native_cache_key": "f34c573f0f905f80390d53118ccea3d3470aae65.pkl",
+        "cache_input_text_sha256": "0e4ec935aaa31e462ab98e9fb51980977443248a84c53b540a5c0b5135382f8e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "On 9 November 1922 the Royal Swedish Academy of Sciences conferred it on Einstein,",
+        "exact_native_cache_key": "45699b38c628d76d38a01e1f2cbabb1873ee0a2c.pkl",
+        "cache_input_text_sha256": "2efe566920ab99ef55ec99ab0417a50d6df6d1da6b27e0dc3897173c8a2929ea",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "citing his services to theoretical physics, especially his discovery of the law of the photoelectric effect.",
+        "exact_native_cache_key": "10dbe508e825789531505402d28839a9e232fe3f.pkl",
+        "cache_input_text_sha256": "6ca4da81297423db31a15c464017408263aefb3337aefd3cdeeb6812f0e09aaa",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "On 9 November 1922 the Royal Swedish Academy of Sciences conferred it on Einstein,",
+        "exact_native_cache_key": "45699b38c628d76d38a01e1f2cbabb1873ee0a2c.pkl",
+        "cache_input_text_sha256": "2efe566920ab99ef55ec99ab0417a50d6df6d1da6b27e0dc3897173c8a2929ea",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "citing his services to theoretical physics,",
+        "exact_native_cache_key": "cb14d66e4391cad0212631e82fe6ef79a3c2d4ec.pkl",
+        "cache_input_text_sha256": "27ad775340bde5f5500d27817465430cf7cb331001afb617961012288847f22d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "especially his discovery of the law of the photoelectric effect.",
+        "exact_native_cache_key": "55173de1064e3985925e376ab3143b389ba32461.pkl",
+        "cache_input_text_sha256": "6619d484fa5f0479ef851dfd88ef92962b22a7b04d0912f6aa7072f885fb4625",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "That law, which governs how light ejects electrons from metal, helped underpin quantum theory.",
+        "exact_native_cache_key": "57ab6ae968ad01d01649cfca56a04098c6df5f85.pkl",
+        "cache_input_text_sha256": "cd3b02af3a6512a2c46a9ab64cf3e8ecba5e0f9ff9ef8414178929f42a7efe11",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "That law, which governs how light ejects electrons from metal, helped underpin quantum theory.",
+        "exact_native_cache_key": "8df70d1e4a99729ba6dfdc0d44e1c0ee949b6013.pkl",
+        "cache_input_text_sha256": "cd3b02af3a6512a2c46a9ab64cf3e8ecba5e0f9ff9ef8414178929f42a7efe11",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "That law, which governs how light ejects electrons from metal,",
+        "exact_native_cache_key": "032f55686911c4b425e1ea53a0c29b98c214d2e5.pkl",
+        "cache_input_text_sha256": "364e17e45d5ee79e859a393567089b55f391d6a7d0b92c4bac4e63f3ab26f53b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "helped underpin quantum theory.",
+        "exact_native_cache_key": "5521765d1387049381c70346bf25d7aa0ce3b742.pkl",
+        "cache_input_text_sha256": "15a024325d66f0c6cb937bca7b0265a97e74761682f7c7b9da4985d9be9fd4e2",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "That law,",
+        "exact_native_cache_key": "b5619f2324c8e76d6c25a45bb430cbefbf08d119.pkl",
+        "cache_input_text_sha256": "8bd5c588c68ae72d65e16f8a9b7bdedd52849c519fdfc5dbbc1bf244357d307c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "which governs how light ejects electrons from metal,",
+        "exact_native_cache_key": "bd181ce5e0d9876a1d68d757d45bda9a6d05232e.pkl",
+        "cache_input_text_sha256": "109e1aec84e93666e6ba858310250ca8ee5a8888b9d2d850d3b9bcfeadebb21c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "helped underpin quantum theory.",
+        "exact_native_cache_key": "5521765d1387049381c70346bf25d7aa0ce3b742.pkl",
+        "cache_input_text_sha256": "15a024325d66f0c6cb937bca7b0265a97e74761682f7c7b9da4985d9be9fd4e2",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "A letter the next day clarified that the prize took no account of relativity.",
+        "exact_native_cache_key": "deb6224efdb91af47cae7a94904cbdf4e2d02972.pkl",
+        "cache_input_text_sha256": "3a9bd386ee2573df3de2edd9912dc94fa4d6efd3b29f9e7bd294463ca1ae9648",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "A letter the next day clarified that the prize took no account of relativity.",
+        "exact_native_cache_key": "9a0d289c3cab017fe992068193b5f1b6044ff309.pkl",
+        "cache_input_text_sha256": "3a9bd386ee2573df3de2edd9912dc94fa4d6efd3b29f9e7bd294463ca1ae9648",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Einstein, then aboard a steamer bound for Japan, would miss the December ceremony.",
+        "exact_native_cache_key": "88dd5aada745a99043b856ac70cce013523c639e.pkl",
+        "cache_input_text_sha256": "a954a39ee94ebf30acfd489d294013fb237c3995ec4d6257ac4a22ed5fdcaea7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Einstein, then aboard a steamer bound for Japan, would miss the December ceremony.",
+        "exact_native_cache_key": "4d4e2bfc5b762bb01d2c786dd1b189d943869aff.pkl",
+        "cache_input_text_sha256": "a954a39ee94ebf30acfd489d294013fb237c3995ec4d6257ac4a22ed5fdcaea7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Einstein, then aboard a steamer bound for Japan,",
+        "exact_native_cache_key": "a3c45537a9d863b96334391012988fc8479a7173.pkl",
+        "cache_input_text_sha256": "d1c27ae13415936417411f6374087d477455e2cfcab0c076d85bb743805ad89f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "would miss the December ceremony.",
+        "exact_native_cache_key": "f6429e42d55a158e74099b03095c5c8b6ea2c825.pkl",
+        "cache_input_text_sha256": "c2a2a4e0060b9e41b8a47e242211c9b6fd829f4a5f3a1a16a5a73a5c93bb9136",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Einstein,",
+        "exact_native_cache_key": "fc79eaed8b869133a2e8553bbc16ee05117115f2.pkl",
+        "cache_input_text_sha256": "c24eb39f1b1a42070a0df547ac5122228023cc6cddc7e786d773af9e86093dba",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "then aboard a steamer bound for Japan,",
+        "exact_native_cache_key": "94168d0a2650ec9a02f1be3b40310db20d031e5d.pkl",
+        "cache_input_text_sha256": "38ee698edc36275b15359775ed9aead7f46b622c5aded0088f8297a44355f7db",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "would miss the December ceremony.",
+        "exact_native_cache_key": "f6429e42d55a158e74099b03095c5c8b6ea2c825.pkl",
+        "cache_input_text_sha256": "c2a2a4e0060b9e41b8a47e242211c9b6fd829f4a5f3a1a16a5a73a5c93bb9136",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "On 11 July 1923, in Gothenburg, Sweden, he delivered his Nobel lecture before a congress of Nordic scientists, devoting it to the fundamental ideas and problems of relativity.",
+        "exact_native_cache_key": "3f9c3f7024d3ac29bfef538bd83659dc053f4e05.pkl",
+        "cache_input_text_sha256": "549b42ac683a8d13def19094a656a8c15e42d6e2aa782a98a05d6aa741cac0b3",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "On 11 July 1923, in Gothenburg, Sweden, he delivered his Nobel lecture before a congress of Nordic scientists, devoting it to the fundamental ideas and problems of relativity.",
+        "exact_native_cache_key": "69072349e8bfd7028ec7f5fca654da441f7bd76c.pkl",
+        "cache_input_text_sha256": "549b42ac683a8d13def19094a656a8c15e42d6e2aa782a98a05d6aa741cac0b3",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "On 11 July 1923, in Gothenburg, Sweden, he delivered his Nobel lecture",
+        "exact_native_cache_key": "e5924fc7f69d61755ffd5d83870f1788c66dfcbc.pkl",
+        "cache_input_text_sha256": "7ac40afe3e97b2582c384870a12f0a95d98ed04916e35220246ea146a5b67d81",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "before a congress of Nordic scientists,",
+        "exact_native_cache_key": "69fa655306df53f2161061d2083b53fcc3898ab4.pkl",
+        "cache_input_text_sha256": "ec7b19744980370f77302da8d3c1e4b71034031c21b213074a449dd022037b07",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "devoting it to the fundamental ideas and problems of relativity.",
+        "exact_native_cache_key": "d42d0f1a35074911360c8ec3e00a5af9e5104657.pkl",
+        "cache_input_text_sha256": "a7d22682740e70d1049d717043aba863408449a45a29d78b06f71233a99446f7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "On 11 July 1923,",
+        "exact_native_cache_key": "9c7631106332418e5d374b3a7db3defb5ffb1a7d.pkl",
+        "cache_input_text_sha256": "13ea35b5ddbd9e5fe8ce14bc019dedbd54ad170a905aa1714de714ba1f5a3dd8",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "in Gothenburg,",
+        "exact_native_cache_key": "8f3f0ca071dc2f4749b29b5c1d5790922f44db03.pkl",
+        "cache_input_text_sha256": "b0aab6a1722a89ada4237de0e9861bc9618613cba1fd31f2c2a425aba4430556",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Sweden,",
+        "exact_native_cache_key": "408c9155b4b9f8a355d303c547cde49ea8b69792.pkl",
+        "cache_input_text_sha256": "f8e207e456cf025d495d1cfcf9bcd51e0ada4adecfc4a5d4668145ef3dec8afc",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "he delivered his Nobel lecture before a congress of Nordic scientists,",
+        "exact_native_cache_key": "1f4d09fd4e6cb18655873bd92a1912b92d822df9.pkl",
+        "cache_input_text_sha256": "bfd06bcb5ddd38e9184faaefd9e8a6bb22f26eed928467e9e67834059e18f501",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 5,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "devoting it to the fundamental ideas and problems of relativity.",
+        "exact_native_cache_key": "d42d0f1a35074911360c8ec3e00a5af9e5104657.pkl",
+        "cache_input_text_sha256": "a7d22682740e70d1049d717043aba863408449a45a29d78b06f71233a99446f7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The theory the committee looked past reached a Nobel podium after all, carried there by the man the prize had honoured.",
+        "exact_native_cache_key": "c369a0055cd13ef2a439d137ee502256e223d1aa.pkl",
+        "cache_input_text_sha256": "ab60915acec606224cf50b4bdae63e01ce1deeb600a61769e7f5cf5a475d9802",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The theory the committee looked past reached a Nobel podium after all, carried there by the man the prize had honoured.",
+        "exact_native_cache_key": "8be63bbaebcb2e8b626ecdaf7f8d9a6b34270289.pkl",
+        "cache_input_text_sha256": "ab60915acec606224cf50b4bdae63e01ce1deeb600a61769e7f5cf5a475d9802",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "The theory the committee looked past reached a Nobel podium after all,",
+        "exact_native_cache_key": "ef4381d0cec19a12bf9a224b463678aa82d3d3e4.pkl",
+        "cache_input_text_sha256": "30473a92c5660274276b361f34aa576280c8459b390e7bbadd666f7811ce88de",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "carried there by the man the prize had honoured.",
+        "exact_native_cache_key": "e32bff4a592ad1ade6d605b0087c952a9684e422.pkl",
+        "cache_input_text_sha256": "693abce7c388616ed297c350912e9c98a0156c3b289096cdeb1272a28b65c21d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "The theory the committee looked past reached a Nobel podium after all,",
+        "exact_native_cache_key": "ef4381d0cec19a12bf9a224b463678aa82d3d3e4.pkl",
+        "cache_input_text_sha256": "30473a92c5660274276b361f34aa576280c8459b390e7bbadd666f7811ce88de",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "carried there by the man the prize had honoured.",
+        "exact_native_cache_key": "e32bff4a592ad1ade6d605b0087c952a9684e422.pkl",
+        "cache_input_text_sha256": "693abce7c388616ed297c350912e9c98a0156c3b289096cdeb1272a28b65c21d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      }
+    ],
+    "unique_reference_key_count": 84,
+    "raw_mother_cache_scalar_manifest": [
+      {
+        "exact_native_cache_key": "af7a9470b131aa707f4235b1fd1cd79730c746ac.pkl",
+        "pkl_sha256": "0c1404d6be265fadbb4bd6d22cb4849009155a10306abf44e4acfd8090562e39",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "标题",
+            "piece": null,
+            "reference_kind": "title-default-raw",
+            "method": "create",
+            "source_slice": "The Scientific Giant Who Changed the World",
+            "exact_native_cache_key": "af7a9470b131aa707f4235b1fd1cd79730c746ac.pkl",
+            "cache_input_text_sha256": "e9314e80f31cf4ee3c2bb6bd8092d39609ae5da0a0d381c3d30c2495691a1ea9",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "0c1404d6be265fad",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          57344
+        ],
+        "unprocessed_array_sha256": "1bdfefd2de9b4c22d7c5295e13d2cbc184a0db52a017018bdecad597a7d4d7c9"
+      },
+      {
+        "exact_native_cache_key": "0d549e32e8eefc19d2e8339388d2739dd133e3c4.pkl",
+        "pkl_sha256": "037be28e9d58b5b75875dd19e89002b1682726d4c18f525a6c19558ef16c6523",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "On 29 May 1919, as a total eclipse obscured the sun, two British expeditions photographed stars in its apparent vicinity.",
+            "exact_native_cache_key": "0d549e32e8eefc19d2e8339388d2739dd133e3c4.pkl",
+            "cache_input_text_sha256": "5fa93e3ad0c07f290c2a2a5831be4c6a9d84597f8d04d43e5c28d5d3b0a4eb20",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "037be28e9d58b5b7",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          241152
+        ],
+        "unprocessed_array_sha256": "8ef464379e8a02374683767429ae834eb08b0278215e3ef8d0937369cad6e0c7"
+      },
+      {
+        "exact_native_cache_key": "deb4ee323c4671136836559f09ca2b0f711ecde0.pkl",
+        "pkl_sha256": "4c5aeff18e3eba7806b4626c6ee3ac2cd9048f9cf6340dd0b4b2280d3d8f272b",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "On 29 May 1919, as a total eclipse obscured the sun,",
+            "exact_native_cache_key": "deb4ee323c4671136836559f09ca2b0f711ecde0.pkl",
+            "cache_input_text_sha256": "908b3d4ac78ff049622252d6f2d417d32976108d0bd844b7da5db6b5711e7a8b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "4c5aeff18e3eba78",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          122368
+        ],
+        "unprocessed_array_sha256": "d793b2e2db63b8b0b7ff8e6d7e06c5a32eea96718e588f7f950340c4dc084b8b"
+      },
+      {
+        "exact_native_cache_key": "a687092a14a735ba4af8b11d9399ec56a10e57cf.pkl",
+        "pkl_sha256": "021bece47a4ade1d001eccbede6a81e5238ff94ac99a572e4cc96d718ddabcb4",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "two British expeditions photographed stars in its apparent vicinity.",
+            "exact_native_cache_key": "a687092a14a735ba4af8b11d9399ec56a10e57cf.pkl",
+            "cache_input_text_sha256": "ada9d85efecf453a0b7274699438381d3837f8d2d943054afa8370ad4a0111fa",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S1",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "two British expeditions photographed stars in its apparent vicinity.",
+            "exact_native_cache_key": "a687092a14a735ba4af8b11d9399ec56a10e57cf.pkl",
+            "cache_input_text_sha256": "ada9d85efecf453a0b7274699438381d3837f8d2d943054afa8370ad4a0111fa",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "021bece47a4ade1d",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          102400
+        ],
+        "unprocessed_array_sha256": "b9170d0fd86b91f888ec73d96b6511b46c062d673b3c0f3dad5667395429c9d1"
+      },
+      {
+        "exact_native_cache_key": "aab75daf138ea4b2bb1a1f624e48c3e218902c8f.pkl",
+        "pkl_sha256": "c90d016a676fba82e4dbe8bf91beea80d416cf1b33b8e3fad5e196df9d112b7a",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "On 29 May 1919,",
+            "exact_native_cache_key": "aab75daf138ea4b2bb1a1f624e48c3e218902c8f.pkl",
+            "cache_input_text_sha256": "b61843a52216956b6a2a0b6967f8c7f3a430c3e204e11f62652e71e5eb1600e5",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "c90d016a676fba82",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          60928
+        ],
+        "unprocessed_array_sha256": "ced11842d9f32e8431ae780ca7d251150fab2add626d60a945c4cc9b2d54abb2"
+      },
+      {
+        "exact_native_cache_key": "3c4602b7e4f8f03adbbbcd32372def14cf38987e.pkl",
+        "pkl_sha256": "fd928457fe8cdd9c7efd88b645572d5265cdab1bf081e60940984da6f0a7664e",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "as a total eclipse obscured the sun,",
+            "exact_native_cache_key": "3c4602b7e4f8f03adbbbcd32372def14cf38987e.pkl",
+            "cache_input_text_sha256": "a73342576810501db8b6bccccffcbe8450267db9a6d40949fca927d366178243",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "fd928457fe8cdd9c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          53760
+        ],
+        "unprocessed_array_sha256": "4081248a4139cc0c54d1a55f1e42b89f058ff2b53eafe21b4a042b7ebdb9697e"
+      },
+      {
+        "exact_native_cache_key": "2e1109a757db5834ac0c0b2748a93c963ab4c5b3.pkl",
+        "pkl_sha256": "8b878065373abf4fea61133f486979527a1a5c87b74edea48867a3e6567c9ca5",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Arthur Eddington observed from Príncipe, an island off West Africa; Crommelin and Davidson from Sobral, in north-eastern Brazil.",
+            "exact_native_cache_key": "2e1109a757db5834ac0c0b2748a93c963ab4c5b3.pkl",
+            "cache_input_text_sha256": "357bd17ad23dd823916178337550370b0baefea5a1f663d3eeaced8240bcae87",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "8b878065373abf4f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          233984
+        ],
+        "unprocessed_array_sha256": "8094ec7474f7db1343b08c646aa7734e23ea13b3b0e72896fdfe52fd4cacfb20"
+      },
+      {
+        "exact_native_cache_key": "1ca57eb31e2ed6957ab20650a40718ee93418673.pkl",
+        "pkl_sha256": "a7ef05148e732aae1e5c5c3634a44608dd670c30947f8ba6641da3cc4dcbfb8f",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Arthur Eddington observed from Príncipe, an island off West Africa;",
+            "exact_native_cache_key": "1ca57eb31e2ed6957ab20650a40718ee93418673.pkl",
+            "cache_input_text_sha256": "bd26a636fbadfdf3935eca908e877553e9868bc8f234bce5086d6c4a4a528240",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "a7ef05148e732aae",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          115712
+        ],
+        "unprocessed_array_sha256": "330136091d8491787236bdee9440dc05460f61fa8779c6ada8ada8f0da4058e3"
+      },
+      {
+        "exact_native_cache_key": "cdc7298b7656403390b5eb198ea1e1be226d4453.pkl",
+        "pkl_sha256": "fdd314c0b446edd80dac8359b4f41aad05925a3d6c00a64be8e805a4ff8baa5c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Crommelin and Davidson from Sobral, in north-eastern Brazil.",
+            "exact_native_cache_key": "cdc7298b7656403390b5eb198ea1e1be226d4453.pkl",
+            "cache_input_text_sha256": "135e96817985883c57fd0952702d13e532a544c1c3993dcfc34c2d6bd01e466b",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "fdd314c0b446edd8",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          102400
+        ],
+        "unprocessed_array_sha256": "b8c81033a12d538652a8c60c162b1080b3103442ff422a7d9f3a898993550eb8"
+      },
+      {
+        "exact_native_cache_key": "d66c3fcbdac406ba5a30657a39c697be14559851.pkl",
+        "pkl_sha256": "2dd0a95c2451799cd2d5e99daf660365e7bec2314f9a878e1025a46a237ef5aa",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Arthur Eddington observed from Príncipe,",
+            "exact_native_cache_key": "d66c3fcbdac406ba5a30657a39c697be14559851.pkl",
+            "cache_input_text_sha256": "9c221cbb07bce12d643b2d0c58215ffbc19f7f3adf514891cb6d1dd9fd79fc3a",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "2dd0a95c2451799c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          61440
+        ],
+        "unprocessed_array_sha256": "7d9fbade9237ef3cf9e75ee66d3a8b32c267e07b28477b88a3fd2c28b70c7923"
+      },
+      {
+        "exact_native_cache_key": "c97cfdd96bc216686fc365a70fcae84f166ec445.pkl",
+        "pkl_sha256": "9fd6253e7e072dfc207b013dd8117d2324b632fbf7feee3ac1663c613fd2df29",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "an island off West Africa;",
+            "exact_native_cache_key": "c97cfdd96bc216686fc365a70fcae84f166ec445.pkl",
+            "cache_input_text_sha256": "31f0b8737fd84bf8f7d86b1954d064c26d82520a1fbb719116f2d148daf9e962",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "9fd6253e7e072dfc",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          44544
+        ],
+        "unprocessed_array_sha256": "a45b0b28eef6c5287509575f9fcd3ccd239421a10b3550fe0f35a98f8b1bd10f"
+      },
+      {
+        "exact_native_cache_key": "6a2293668d322267c775848953984f7312152c2b.pkl",
+        "pkl_sha256": "6da167b38f4dc299160f3fec2b3114024f685ebfa5543d480cee6bf4945d6307",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Crommelin and Davidson from Sobral,",
+            "exact_native_cache_key": "6a2293668d322267c775848953984f7312152c2b.pkl",
+            "cache_input_text_sha256": "55f282b02f25b29d2f55ac985e7009ceaf80b1b3b1a33f60d96cee624b338831",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "6da167b38f4dc299",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          56320
+        ],
+        "unprocessed_array_sha256": "ccaa14d002f6a7dc88e337d0b90219b6551116743eb55c4f89db474593d077d9"
+      },
+      {
+        "exact_native_cache_key": "e3618e6ed57849906c47f5e5fcd16773e6b71fe1.pkl",
+        "pkl_sha256": "e9d6a6a76b25bf9357a17057b66247ab0806dd24d9dc930a0bbd9c3f026ac13e",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "in north-eastern Brazil.",
+            "exact_native_cache_key": "e3618e6ed57849906c47f5e5fcd16773e6b71fe1.pkl",
+            "cache_input_text_sha256": "3a6b4e06879b9789cd11c1921f5f29760487584748aab3fab69f23def7f928a0",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "e9d6a6a76b25bf93",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          36352
+        ],
+        "unprocessed_array_sha256": "40998e1713ab85ba370a47fb7d209392e294dc0c07bc1b3944a6e58ba3f7cdf5"
+      },
+      {
+        "exact_native_cache_key": "74ca934e9083250fd8a44d1817379e36a1cd7cd8.pkl",
+        "pkl_sha256": "6e59b1f32c98a784eed3bc1a1ed391f39134a01216874a8d42babbc69b94823e",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "They were testing general relativity's bold prediction that the sun's gravity would deflect starlight.",
+            "exact_native_cache_key": "74ca934e9083250fd8a44d1817379e36a1cd7cd8.pkl",
+            "cache_input_text_sha256": "91ccff0a98d08c27f50d982fe5ebb432b94f5326582c04882e688a282cf13354",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "6e59b1f32c98a784",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          151552
+        ],
+        "unprocessed_array_sha256": "5934c8616ef6ef5853e28260419b7139daf030d04eefbd8179790f9e03d4e030"
+      },
+      {
+        "exact_native_cache_key": "6e0ff0c18b48ca2895999c15e249a6a415a23bf6.pkl",
+        "pkl_sha256": "6fcb4c927d8bc2485efa4fbaf830aa8f163b8cd03bf038acc1456299c7d0e6ef",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "They were testing general relativity's bold prediction",
+            "exact_native_cache_key": "6e0ff0c18b48ca2895999c15e249a6a415a23bf6.pkl",
+            "cache_input_text_sha256": "7873a3557a378c74cd721934a142b68055358b28791efd891e9c12787843364e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "6fcb4c927d8bc248",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          76288
+        ],
+        "unprocessed_array_sha256": "92b1bdf22e53da7daafc7fa92041650d5642a3aab206945870c822b9da85b1c1"
+      },
+      {
+        "exact_native_cache_key": "1c326e2661de3f9614761c84033e6fce05a06efc.pkl",
+        "pkl_sha256": "fe414fbbcef0d8280b7ca1f50edd81fc685dc8fc77405cbb8fba2f9cd131a247",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "that the sun's gravity would deflect starlight.",
+            "exact_native_cache_key": "1c326e2661de3f9614761c84033e6fce05a06efc.pkl",
+            "cache_input_text_sha256": "daa95bd19ee5f6dc5121c417b4c3a7f678726bade93e5972a26bc4cada4c5b68",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "fe414fbbcef0d828",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          62464
+        ],
+        "unprocessed_array_sha256": "85cbfb3453deb60d40aed6796bf27468e4392ddb5d2530aa46b525714eb174fe"
+      },
+      {
+        "exact_native_cache_key": "9594536f9b1b9b343ffc452f5c631a7ef6e4194f.pkl",
+        "pkl_sha256": "7aefa70de3758ea91797b7a425231826b2935f419343d5cbe471d354d793fda2",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "On 6 November, at a joint meeting of the Royal Society and the Royal Astronomical Society, the findings were hailed as confirming it.",
+            "exact_native_cache_key": "9594536f9b1b9b343ffc452f5c631a7ef6e4194f.pkl",
+            "cache_input_text_sha256": "d78d69fc2925a3778e74294fc19c225ae59b5b66b024ef1e1e46a0afbc178971",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "7aefa70de3758ea9",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          228864
+        ],
+        "unprocessed_array_sha256": "971c9baf74004b0a14858823356bbe0b23a2d9898563664df8973783bb543274"
+      },
+      {
+        "exact_native_cache_key": "4625654b79f9668a4130f5fb0ed3fd86254cfdde.pkl",
+        "pkl_sha256": "f423f99735a934e7a4a2fea1f22668940187accd4371f53f69f4a28b19737b99",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "On 6 November, at a joint meeting of the Royal Society and the Royal Astronomical Society,",
+            "exact_native_cache_key": "4625654b79f9668a4130f5fb0ed3fd86254cfdde.pkl",
+            "cache_input_text_sha256": "d0b210b2f56097a7bb9f4b66c61cdf4a13b72693dcfa45c386b9f9ad25a28d81",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "f423f99735a934e7",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          167424
+        ],
+        "unprocessed_array_sha256": "a472f4f90a14131cc9f8396044fb514eb03819e9467adc9ccc8aa43592c693da"
+      },
+      {
+        "exact_native_cache_key": "07563d90f28fb88629380382fd92d4cc8c8605cb.pkl",
+        "pkl_sha256": "272275de962ed034a22307bbadee39c134af2af0786b2a408f728dca3f90401c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "the findings were hailed as confirming it.",
+            "exact_native_cache_key": "07563d90f28fb88629380382fd92d4cc8c8605cb.pkl",
+            "cache_input_text_sha256": "43f7ef0a565c187c6b4001af143b8ae3592094b10fe43288e1048ba352158c62",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S4",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "the findings were hailed as confirming it.",
+            "exact_native_cache_key": "07563d90f28fb88629380382fd92d4cc8c8605cb.pkl",
+            "cache_input_text_sha256": "43f7ef0a565c187c6b4001af143b8ae3592094b10fe43288e1048ba352158c62",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "272275de962ed034",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          53248
+        ],
+        "unprocessed_array_sha256": "c045d3e7c0125a0c1de82108d48df1e01dc72013da31b0542eed378909d96400"
+      },
+      {
+        "exact_native_cache_key": "d37ac4fe2f98cdfccc0f0f963d625c8f50722ad5.pkl",
+        "pkl_sha256": "1a341f2a646a5257ccca02351302aeb2931a1233e95ad3e7a0a038070d53ac1f",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "On 6 November,",
+            "exact_native_cache_key": "d37ac4fe2f98cdfccc0f0f963d625c8f50722ad5.pkl",
+            "cache_input_text_sha256": "26d9125a9575dbb7824c465a1c3dbde130d372ee84dd642ed1efd3c63e817a82",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "1a341f2a646a5257",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          34816
+        ],
+        "unprocessed_array_sha256": "048daefc870c32cb3cd4a7c0fc4a20e0fdd6714da1183887976435ec83d989fd"
+      },
+      {
+        "exact_native_cache_key": "173ab0052a47e25a2a1f41b1806008947998b5e3.pkl",
+        "pkl_sha256": "d64ef65544dc53ed6b7ba932ca0dc8a57f6f2df8eca4e577bf1e46af06972857",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "at a joint meeting of the Royal Society and the Royal Astronomical Society,",
+            "exact_native_cache_key": "173ab0052a47e25a2a1f41b1806008947998b5e3.pkl",
+            "cache_input_text_sha256": "768f4f9eaa869dccdafde518457284dd9813ccc033195309f1319bf30d463031",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "d64ef65544dc53ed",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          123392
+        ],
+        "unprocessed_array_sha256": "d08f0a011c54025cdc9c84528b4498a53ab4503bd81cd3fa1a619b8c5f4da9c3"
+      },
+      {
+        "exact_native_cache_key": "1cd58d39eb2d9aba24bb78dc66b05840530678eb.pkl",
+        "pkl_sha256": "afb9d5f5b4af4eaa3ff44418ec52b9b8b8a758ee3f685e51174ff3ad766c7164",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The Times proclaimed a \"Revolution in Science\"; a New York Times headline read \"Lights All Askew in the Heavens\".",
+            "exact_native_cache_key": "1cd58d39eb2d9aba24bb78dc66b05840530678eb.pkl",
+            "cache_input_text_sha256": "8d43a84899b859f195a8537708c906a5766a83ea9a9ae154afaa53e535e99696",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "afb9d5f5b4af4eaa",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          174592
+        ],
+        "unprocessed_array_sha256": "5f251904933f9d5bcbc58e953432066a0c58059cd3813f21de48273cc107b969"
+      },
+      {
+        "exact_native_cache_key": "d8c928e60f711286ff807aeb00ad3eb60748457e.pkl",
+        "pkl_sha256": "a280414847ca00023722e0e3bd81233f4135318eadc264765c6e76fa5a76e193",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "The Times proclaimed a \"Revolution in Science\";",
+            "exact_native_cache_key": "d8c928e60f711286ff807aeb00ad3eb60748457e.pkl",
+            "cache_input_text_sha256": "e2f1cf9b7aa4f5606c83e113524668e1b1655b0ab812e30b8531c64468770416",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S5",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "The Times proclaimed a \"Revolution in Science\";",
+            "exact_native_cache_key": "d8c928e60f711286ff807aeb00ad3eb60748457e.pkl",
+            "cache_input_text_sha256": "e2f1cf9b7aa4f5606c83e113524668e1b1655b0ab812e30b8531c64468770416",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "a280414847ca0002",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          65536
+        ],
+        "unprocessed_array_sha256": "763ebf3470f9f38c9290603db08b6870b9c9ef06062f3259146139c82d3a9761"
+      },
+      {
+        "exact_native_cache_key": "65dbbefe5f5030a34af99d511adc9aa94aa41cd7.pkl",
+        "pkl_sha256": "9d69194a0834e4a43d0f276378b4da41c5222894f36419dfd81bdc4449ee6ae9",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "a New York Times headline read \"Lights All Askew in the Heavens\".",
+            "exact_native_cache_key": "65dbbefe5f5030a34af99d511adc9aa94aa41cd7.pkl",
+            "cache_input_text_sha256": "6c8c4593c82ee858f3a77dbe196502ca8ba712cb021c947360872160a6ca5aad",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S5",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "a New York Times headline read \"Lights All Askew in the Heavens\".",
+            "exact_native_cache_key": "65dbbefe5f5030a34af99d511adc9aa94aa41cd7.pkl",
+            "cache_input_text_sha256": "6c8c4593c82ee858f3a77dbe196502ca8ba712cb021c947360872160a6ca5aad",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "9d69194a0834e4a4",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          92160
+        ],
+        "unprocessed_array_sha256": "7269349891494fa3030add4623a8c62a84c69a5668ce13b41dbe201cf2cc94e6"
+      },
+      {
+        "exact_native_cache_key": "1d0f5f4eb246b94ab387fc3ce6325fc228d1be39.pkl",
+        "pkl_sha256": "cfffa71c4076968d553186ba234e010136b09ccb24883871c87d1276c61ac509",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Almost overnight, Einstein, eminent among physicists, became a global celebrity.",
+            "exact_native_cache_key": "1d0f5f4eb246b94ab387fc3ce6325fc228d1be39.pkl",
+            "cache_input_text_sha256": "940e492e6305e76fadfe1fb5d3d2227913e7a9040087e025f294a4ba6e0bf322",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "cfffa71c4076968d",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          138240
+        ],
+        "unprocessed_array_sha256": "e33fcda652feda9120b3ba32d5022539ef1def3f7dfda2ddecf7f6aff7b34d94"
+      },
+      {
+        "exact_native_cache_key": "b678bb949f7133911600c2ad357ee20363c50503.pkl",
+        "pkl_sha256": "076b7730c1862599104d633b5dbaf57a2213ad90e015efa41b8d8a88e4f39aac",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Almost overnight, Einstein, eminent among physicists,",
+            "exact_native_cache_key": "b678bb949f7133911600c2ad357ee20363c50503.pkl",
+            "cache_input_text_sha256": "e1c40c56b3ab92bd32cf97833d882c01227ccad4d16b304cc05ff185f23a725c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "076b7730c1862599",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          86016
+        ],
+        "unprocessed_array_sha256": "0880a5537555192925e3810f18f560af71cc70d7633894347cd8271bd892cbab"
+      },
+      {
+        "exact_native_cache_key": "ed66ea8b905c417e0414bc8360bef93072b8f1a2.pkl",
+        "pkl_sha256": "527d5cd65202da5a83474ebf63a50f4bec7c8ffdd302d01a81cd1c653929b01b",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "became a global celebrity.",
+            "exact_native_cache_key": "ed66ea8b905c417e0414bc8360bef93072b8f1a2.pkl",
+            "cache_input_text_sha256": "c2a4d95e9946702538cffec41fe37a0abd75d9f62c5afd005d15413775809a48",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S6",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "became a global celebrity.",
+            "exact_native_cache_key": "ed66ea8b905c417e0414bc8360bef93072b8f1a2.pkl",
+            "cache_input_text_sha256": "c2a4d95e9946702538cffec41fe37a0abd75d9f62c5afd005d15413775809a48",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "527d5cd65202da5a",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          42496
+        ],
+        "unprocessed_array_sha256": "2d55fc953dfdae75b7a732d286336d70f30a0c7678cd732acbfe7d0fa1d19ce6"
+      },
+      {
+        "exact_native_cache_key": "cdc99d5db7ed43c614cdf295fd756c9e72c62ae3.pkl",
+        "pkl_sha256": "76f202507e7132132ac655b30781af732b4d5e15caf7956610203b8b3548dadd",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Almost overnight,",
+            "exact_native_cache_key": "cdc99d5db7ed43c614cdf295fd756c9e72c62ae3.pkl",
+            "cache_input_text_sha256": "6c34bd35f9bcb9749de4e88f0b357e7e29d39df2461887430143fc709e4b9b72",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "76f202507e713213",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          31744
+        ],
+        "unprocessed_array_sha256": "ea35840d3f0c837698f498cfd8f8177f423d1d3735ce522550dfe4d60a279b00"
+      },
+      {
+        "exact_native_cache_key": "fc79eaed8b869133a2e8553bbc16ee05117115f2.pkl",
+        "pkl_sha256": "c494d58daa66d6586d91ac30110b946b502c1b3c684fdcfda9d6aa2e2216fbc4",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Einstein,",
+            "exact_native_cache_key": "fc79eaed8b869133a2e8553bbc16ee05117115f2.pkl",
+            "cache_input_text_sha256": "c24eb39f1b1a42070a0df547ac5122228023cc6cddc7e786d773af9e86093dba",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S13",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Einstein,",
+            "exact_native_cache_key": "fc79eaed8b869133a2e8553bbc16ee05117115f2.pkl",
+            "cache_input_text_sha256": "c24eb39f1b1a42070a0df547ac5122228023cc6cddc7e786d773af9e86093dba",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "c494d58daa66d658",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          23040
+        ],
+        "unprocessed_array_sha256": "407aeeccb5cca5a1bd8f203710123673ca0018ca5002bb78007b9c2bd485f7d4"
+      },
+      {
+        "exact_native_cache_key": "702b86915107f40f56531f73f4aea64795c2e6c5.pkl",
+        "pkl_sha256": "95c30d93243fe7c43dd50c01def1aebe976b4fa5702d1f8ef712a6eef4264572",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "eminent among physicists,",
+            "exact_native_cache_key": "702b86915107f40f56531f73f4aea64795c2e6c5.pkl",
+            "cache_input_text_sha256": "109acc6e63c082bc4111fa542bbd9db5a44af71d8740c5279b1cac0a4bfc756e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "95c30d93243fe7c4",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          39936
+        ],
+        "unprocessed_array_sha256": "430e6aaa919e454898c982eb1e77a053dcb0cb11367f439d21c425aaffda1c55"
+      },
+      {
+        "exact_native_cache_key": "b5ec28d228f855aa136da4ee444c9ea691173bda.pkl",
+        "pkl_sha256": "4712ea4404e79b617abc53b61cd98ef67a0c0a91f58cc44e173f91cc19d61f40",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Stockholm proved harder to dazzle.",
+            "exact_native_cache_key": "b5ec28d228f855aa136da4ee444c9ea691173bda.pkl",
+            "cache_input_text_sha256": "45e3ca11b18fde8b1bad07381bd8452404ff04328020b117076c76bb807e8b01",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "4712ea4404e79b61",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          49664
+        ],
+        "unprocessed_array_sha256": "a0c24ec104d8142d8dc15e11d00486694c0689ce7d60f6c77ed0f914382e39c2"
+      },
+      {
+        "exact_native_cache_key": "b2383295c4689234bf28069af7a776f013261856.pkl",
+        "pkl_sha256": "5a7cd36592543c21c4db91c248d07bc7aba9fb6c757d67bc1fdb8614d2610750",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The Nobel physics committee valued rigorous experimental confirmation, and committee member Allvar Gullstrand, a Nobel-winning eye specialist, deemed the empirical support for relativity insufficient.",
+            "exact_native_cache_key": "b2383295c4689234bf28069af7a776f013261856.pkl",
+            "cache_input_text_sha256": "5e5e36f9a6fc735554c008af0cb03c51e7f7382b67a9084115c30a87360b0ed2",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "5a7cd36592543c21",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          333824
+        ],
+        "unprocessed_array_sha256": "0710dc2c98af200ebf431cbc4eae782165bf30ce4693ac2eaaf739ea63a434ef"
+      },
+      {
+        "exact_native_cache_key": "91441928c13befcb07ed990e7c3bfbaaf1d7e032.pkl",
+        "pkl_sha256": "eed1dccc3f21e94845c99965e7498066eb1872411cceffdf31bb54a25cfa58b5",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "The Nobel physics committee valued rigorous experimental confirmation,",
+            "exact_native_cache_key": "91441928c13befcb07ed990e7c3bfbaaf1d7e032.pkl",
+            "cache_input_text_sha256": "4c081cf12f06fba3048ce8cc793c3c120c83db45fce8ef4879785f8b55c5c3bb",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S8",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "The Nobel physics committee valued rigorous experimental confirmation,",
+            "exact_native_cache_key": "91441928c13befcb07ed990e7c3bfbaaf1d7e032.pkl",
+            "cache_input_text_sha256": "4c081cf12f06fba3048ce8cc793c3c120c83db45fce8ef4879785f8b55c5c3bb",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "eed1dccc3f21e948",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          112640
+        ],
+        "unprocessed_array_sha256": "c9b808a8300411705bf8cf4c21aff62505062266caad728f04de83d8b3e9dd92"
+      },
+      {
+        "exact_native_cache_key": "856e366f4a3f4a6f203c20b3205a963ae743fb0d.pkl",
+        "pkl_sha256": "b128db53756547c783bf7f8955e75954a2e7f5ec69f21d539f6891d4b3ea6ef7",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and committee member Allvar Gullstrand, a Nobel-winning eye specialist,",
+            "exact_native_cache_key": "856e366f4a3f4a6f203c20b3205a963ae743fb0d.pkl",
+            "cache_input_text_sha256": "3018bce1c862a784faaa1a5e535e963f3d324c2abdd7c7d20c5e70860ce78e27",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "b128db53756547c7",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          110080
+        ],
+        "unprocessed_array_sha256": "46638adbb639497f0aac1171d9540e9c4e8771274a44f32852bb513ee3c17621"
+      },
+      {
+        "exact_native_cache_key": "b77ea07187e9acd1cebde5eea878f5ca7e28da34.pkl",
+        "pkl_sha256": "99718a6d9a2326007be1aced250150b869af6060d7ce8ec8e302c6fef951f3bd",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "deemed the empirical support for relativity insufficient.",
+            "exact_native_cache_key": "b77ea07187e9acd1cebde5eea878f5ca7e28da34.pkl",
+            "cache_input_text_sha256": "afe829f6cf9dea978aadd3ed810af35ca1ad227a84115c45076d665565cb20e3",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S8",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "deemed the empirical support for relativity insufficient.",
+            "exact_native_cache_key": "b77ea07187e9acd1cebde5eea878f5ca7e28da34.pkl",
+            "cache_input_text_sha256": "afe829f6cf9dea978aadd3ed810af35ca1ad227a84115c45076d665565cb20e3",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "99718a6d9a232600",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          83968
+        ],
+        "unprocessed_array_sha256": "bb354f49bee639d1499b48d7cf8ee72507c75394280113916ee0736e7af78765"
+      },
+      {
+        "exact_native_cache_key": "c9e9a8558a0240363ae8df58702fddd60be47f05.pkl",
+        "pkl_sha256": "383d3a2acbca989756c019a8fdaf8b6ecd79385d8363992c107ac390b915bd20",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and committee member Allvar Gullstrand,",
+            "exact_native_cache_key": "c9e9a8558a0240363ae8df58702fddd60be47f05.pkl",
+            "cache_input_text_sha256": "9e75f3b4163fe15b2b4f9fd37e0d962fc2f441f87264a21c027da50f49f90a9c",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "383d3a2acbca9897",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          54272
+        ],
+        "unprocessed_array_sha256": "efaaeb30da7930d942bac6e5223ed5623b52fe267e1ce17c422316b784d31496"
+      },
+      {
+        "exact_native_cache_key": "2365660d1f64b4195cb6215180ff1c0579e648dd.pkl",
+        "pkl_sha256": "d6538b14c91fa35ecce98cc37cd56960f95af372deec7c1fc99f90bf9ae85377",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "a Nobel-winning eye specialist,",
+            "exact_native_cache_key": "2365660d1f64b4195cb6215180ff1c0579e648dd.pkl",
+            "cache_input_text_sha256": "0305bf75612b1906e943cd448a6157d764d09731d182f05077caee72c281ccf7",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "d6538b14c91fa35e",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          43520
+        ],
+        "unprocessed_array_sha256": "0d88df05cd58defcae4afe29fc87a34e17dbffaad4da8589e937e8e3b7dc7ccb"
+      },
+      {
+        "exact_native_cache_key": "9573f70a335466049245b1556b750bfc7c5b2fe2.pkl",
+        "pkl_sha256": "cc567be763f5e19765410316c9e73ec6c8e88d25911e10c3244674cf2de86f00",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Since no nomination fulfilled Nobel's criteria, the 1921 prize was reserved for a year, as the statutes permit.",
+            "exact_native_cache_key": "9573f70a335466049245b1556b750bfc7c5b2fe2.pkl",
+            "cache_input_text_sha256": "d73ca64961be1a3ff96d26fa587b913027f362f8768a8d7974973b31a97e37b3",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "cc567be763f5e197",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          220160
+        ],
+        "unprocessed_array_sha256": "fc2bf694695b62da158da5d5bd533dd052b9a60f7b4b60a6e774b4b45b9ce4b5"
+      },
+      {
+        "exact_native_cache_key": "56c22b5591d1c6ba3eb9c64958a95e4a5a9d5477.pkl",
+        "pkl_sha256": "6588c04f473a5b00aef70edea4bdd4725b09dcfc4f2310f3836985532adb970c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Since no nomination fulfilled Nobel's criteria,",
+            "exact_native_cache_key": "56c22b5591d1c6ba3eb9c64958a95e4a5a9d5477.pkl",
+            "cache_input_text_sha256": "30861ec96410d751b6510f13d268b55c94ecdea916e0cfd1a2de7cd466d5956e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S9",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Since no nomination fulfilled Nobel's criteria,",
+            "exact_native_cache_key": "56c22b5591d1c6ba3eb9c64958a95e4a5a9d5477.pkl",
+            "cache_input_text_sha256": "30861ec96410d751b6510f13d268b55c94ecdea916e0cfd1a2de7cd466d5956e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "6588c04f473a5b00",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          76800
+        ],
+        "unprocessed_array_sha256": "513b2c914d0f6189a2c625f760e88c0c644e7c549b87205a863880ced8791739"
+      },
+      {
+        "exact_native_cache_key": "ebb4768a89806bbb7a25af4e92cd2788f56d4ff4.pkl",
+        "pkl_sha256": "5fca77ab2918c9e6e0cb1a0404dc3c7b3262e3e417d3fae142cbaa8ecb4e9cb9",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "the 1921 prize was reserved for a year, as the statutes permit.",
+            "exact_native_cache_key": "ebb4768a89806bbb7a25af4e92cd2788f56d4ff4.pkl",
+            "cache_input_text_sha256": "22266450c1113815f48c32769759c4945d25c3f8edd4822d1a3a9f02316d26b0",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "5fca77ab2918c9e6",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          119808
+        ],
+        "unprocessed_array_sha256": "a8821f469a4f40c79edd3da0f59a235dee09641bca25862abd1b480c538b8c1f"
+      },
+      {
+        "exact_native_cache_key": "4fae8a1a29bfaf61531fbe776a0b772ea6d3d435.pkl",
+        "pkl_sha256": "ca8700f7e19111678e21c38d865a624738ec78b3a94c128ce5e2a6cf4d071b24",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "the 1921 prize was reserved for a year,",
+            "exact_native_cache_key": "4fae8a1a29bfaf61531fbe776a0b772ea6d3d435.pkl",
+            "cache_input_text_sha256": "74fe89d2ffd6927e3c85030e5f62f71b6fe853f49584181a87a648069f95b9c2",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "ca8700f7e1911167",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          79360
+        ],
+        "unprocessed_array_sha256": "9b4c1995699242f59da32edc06e2763b7745c8e81806ce5d8f7331100323cc24"
+      },
+      {
+        "exact_native_cache_key": "cb386f43d441420f2539df6223d3595603a269f9.pkl",
+        "pkl_sha256": "6589b22087d615d2ff2f47745f8ab05b4a34d862ad7670bfe62d1bc4c86b7bd0",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "as the statutes permit.",
+            "exact_native_cache_key": "cb386f43d441420f2539df6223d3595603a269f9.pkl",
+            "cache_input_text_sha256": "070c9942c48b2d569002c28a7cc24bea83ca727f426c8347874731e5dda44e2c",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "6589b22087d615d2",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          35328
+        ],
+        "unprocessed_array_sha256": "ca17c4cceacc93713229a2dbffc9357892820d574b05f80c39b16d3e298b3aae"
+      },
+      {
+        "exact_native_cache_key": "f9c9d31f47c1a409584d93db253e16780cea5f6a.pkl",
+        "pkl_sha256": "3f331f630d7cc1125c75e37436f2dae0b8fbbe1c123b036502e288c412e654a7",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "On 9 November 1922 the Royal Swedish Academy of Sciences conferred it on Einstein, citing his services to theoretical physics, especially his discovery of the law of the photoelectric effect.",
+            "exact_native_cache_key": "f9c9d31f47c1a409584d93db253e16780cea5f6a.pkl",
+            "cache_input_text_sha256": "0e4ec935aaa31e462ab98e9fb51980977443248a84c53b540a5c0b5135382f8e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "3f331f630d7cc112",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          356352
+        ],
+        "unprocessed_array_sha256": "0ce9201cced96544f5ba14d0ba4852d6242b8834e8dea5f25c1706a7eee6710f"
+      },
+      {
+        "exact_native_cache_key": "45699b38c628d76d38a01e1f2cbabb1873ee0a2c.pkl",
+        "pkl_sha256": "a0d845199491441a25834d99113c20ed3eac871ee497f4146ddd7d9d41963f03",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "On 9 November 1922 the Royal Swedish Academy of Sciences conferred it on Einstein,",
+            "exact_native_cache_key": "45699b38c628d76d38a01e1f2cbabb1873ee0a2c.pkl",
+            "cache_input_text_sha256": "2efe566920ab99ef55ec99ab0417a50d6df6d1da6b27e0dc3897173c8a2929ea",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S10",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "On 9 November 1922 the Royal Swedish Academy of Sciences conferred it on Einstein,",
+            "exact_native_cache_key": "45699b38c628d76d38a01e1f2cbabb1873ee0a2c.pkl",
+            "cache_input_text_sha256": "2efe566920ab99ef55ec99ab0417a50d6df6d1da6b27e0dc3897173c8a2929ea",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "a0d845199491441a",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          168448
+        ],
+        "unprocessed_array_sha256": "93f645754feaeb55ec4fdefed6ff0bee481b15dd5bac003d5826d62f24749172"
+      },
+      {
+        "exact_native_cache_key": "10dbe508e825789531505402d28839a9e232fe3f.pkl",
+        "pkl_sha256": "3d20dcef4b390d6fb137f0e7944f290db4eca1c5703d4de9a638d17021e639f8",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "citing his services to theoretical physics, especially his discovery of the law of the photoelectric effect.",
+            "exact_native_cache_key": "10dbe508e825789531505402d28839a9e232fe3f.pkl",
+            "cache_input_text_sha256": "6ca4da81297423db31a15c464017408263aefb3337aefd3cdeeb6812f0e09aaa",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "3d20dcef4b390d6f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          173568
+        ],
+        "unprocessed_array_sha256": "75d3f592dcf04b7657e910fcc17303272eda3860d380994abbe7bdd847c2f112"
+      },
+      {
+        "exact_native_cache_key": "cb14d66e4391cad0212631e82fe6ef79a3c2d4ec.pkl",
+        "pkl_sha256": "55c71d64705c59005ffd770c8134c595cc5132e3f2921886998a342f1742cfc6",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "citing his services to theoretical physics,",
+            "exact_native_cache_key": "cb14d66e4391cad0212631e82fe6ef79a3c2d4ec.pkl",
+            "cache_input_text_sha256": "27ad775340bde5f5500d27817465430cf7cb331001afb617961012288847f22d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "55c71d64705c5900",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          62976
+        ],
+        "unprocessed_array_sha256": "f1ff503aca36e716d7fd72fcd9994db0b5b78764a5ccde47a13dda61eee10f60"
+      },
+      {
+        "exact_native_cache_key": "55173de1064e3985925e376ab3143b389ba32461.pkl",
+        "pkl_sha256": "5e84fe5d0c026bd52563bea8164522341c4e3bd43b01a1d38af342a9058933e4",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "especially his discovery of the law of the photoelectric effect.",
+            "exact_native_cache_key": "55173de1064e3985925e376ab3143b389ba32461.pkl",
+            "cache_input_text_sha256": "6619d484fa5f0479ef851dfd88ef92962b22a7b04d0912f6aa7072f885fb4625",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "5e84fe5d0c026bd5",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          103424
+        ],
+        "unprocessed_array_sha256": "adcf4c5300edaed820c1945826d2a0e7a372ce3876e80fd6c7131dc50ed259b9"
+      },
+      {
+        "exact_native_cache_key": "57ab6ae968ad01d01649cfca56a04098c6df5f85.pkl",
+        "pkl_sha256": "75df45a230b4c60ead90858ef5b28d147e1a5e551614e7cb85528785bfe35a02",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "That law, which governs how light ejects electrons from metal, helped underpin quantum theory.",
+            "exact_native_cache_key": "57ab6ae968ad01d01649cfca56a04098c6df5f85.pkl",
+            "cache_input_text_sha256": "cd3b02af3a6512a2c46a9ab64cf3e8ecba5e0f9ff9ef8414178929f42a7efe11",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "75df45a230b4c60e",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          145920
+        ],
+        "unprocessed_array_sha256": "9e896a563c966cb621e5e0878eb5bb48bf5c78ad3d63bbd1b25db09cd900e69f"
+      },
+      {
+        "exact_native_cache_key": "032f55686911c4b425e1ea53a0c29b98c214d2e5.pkl",
+        "pkl_sha256": "af182a6f320b09e112f42b8bf5c38b549150b0e7444917b8caf8b1b5ca6461e7",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "That law, which governs how light ejects electrons from metal,",
+            "exact_native_cache_key": "032f55686911c4b425e1ea53a0c29b98c214d2e5.pkl",
+            "cache_input_text_sha256": "364e17e45d5ee79e859a393567089b55f391d6a7d0b92c4bac4e63f3ab26f53b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "af182a6f320b09e1",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          91136
+        ],
+        "unprocessed_array_sha256": "b1940b3817c20a7e74ceb26d6bb51e9ae929f163e04c0cce3051aae6d64063b6"
+      },
+      {
+        "exact_native_cache_key": "5521765d1387049381c70346bf25d7aa0ce3b742.pkl",
+        "pkl_sha256": "02e4f7a1715dbe89efc87f0af55bb3d157980a75ada72a42bf8a97f61a6e84ef",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "helped underpin quantum theory.",
+            "exact_native_cache_key": "5521765d1387049381c70346bf25d7aa0ce3b742.pkl",
+            "cache_input_text_sha256": "15a024325d66f0c6cb937bca7b0265a97e74761682f7c7b9da4985d9be9fd4e2",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S11",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "helped underpin quantum theory.",
+            "exact_native_cache_key": "5521765d1387049381c70346bf25d7aa0ce3b742.pkl",
+            "cache_input_text_sha256": "15a024325d66f0c6cb937bca7b0265a97e74761682f7c7b9da4985d9be9fd4e2",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "02e4f7a1715dbe89",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          44032
+        ],
+        "unprocessed_array_sha256": "f0d15c347bfe2975d0f9908115471068449bfacf9b0e21f4f6e9753efa765cae"
+      },
+      {
+        "exact_native_cache_key": "b5619f2324c8e76d6c25a45bb430cbefbf08d119.pkl",
+        "pkl_sha256": "070da7a82012f566a3b683f3103a77682e5d99c9be482788b3cb0e4cb8d2c7c4",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "That law,",
+            "exact_native_cache_key": "b5619f2324c8e76d6c25a45bb430cbefbf08d119.pkl",
+            "cache_input_text_sha256": "8bd5c588c68ae72d65e16f8a9b7bdedd52849c519fdfc5dbbc1bf244357d307c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "070da7a82012f566",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          19456
+        ],
+        "unprocessed_array_sha256": "edea441b7790c8ee7afb86ce9d629b514d6ebb60aedb05b6e05c9a2c7f3cb3d3"
+      },
+      {
+        "exact_native_cache_key": "bd181ce5e0d9876a1d68d757d45bda9a6d05232e.pkl",
+        "pkl_sha256": "381d4429133dea31aa3e9928a05b93a83c5e69e69c41a833861ce6873760938c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "which governs how light ejects electrons from metal,",
+            "exact_native_cache_key": "bd181ce5e0d9876a1d68d757d45bda9a6d05232e.pkl",
+            "cache_input_text_sha256": "109e1aec84e93666e6ba858310250ca8ee5a8888b9d2d850d3b9bcfeadebb21c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "381d4429133dea31",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          73728
+        ],
+        "unprocessed_array_sha256": "b7c9dedbfff65d4a050f7c11327e9016a4cbedb8a9e7a181442379530884a38b"
+      },
+      {
+        "exact_native_cache_key": "deb6224efdb91af47cae7a94904cbdf4e2d02972.pkl",
+        "pkl_sha256": "e2bcb1fcc3c83d3da6d0dbcfb6368b8bbf71b88eb116a119fcd9ba394426a27a",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "A letter the next day clarified that the prize took no account of relativity.",
+            "exact_native_cache_key": "deb6224efdb91af47cae7a94904cbdf4e2d02972.pkl",
+            "cache_input_text_sha256": "3a9bd386ee2573df3de2edd9912dc94fa4d6efd3b29f9e7bd294463ca1ae9648",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "e2bcb1fcc3c83d3d",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          112640
+        ],
+        "unprocessed_array_sha256": "ef9bec61474cfe9a2be1a51c50935b9f7a44b34e3c5b4b040b9e9590acc0bc10"
+      },
+      {
+        "exact_native_cache_key": "88dd5aada745a99043b856ac70cce013523c639e.pkl",
+        "pkl_sha256": "9c9ddc889734357292ea665c066253f6aeacad536d948f13147158c1f83e973d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Einstein, then aboard a steamer bound for Japan, would miss the December ceremony.",
+            "exact_native_cache_key": "88dd5aada745a99043b856ac70cce013523c639e.pkl",
+            "cache_input_text_sha256": "a954a39ee94ebf30acfd489d294013fb237c3995ec4d6257ac4a22ed5fdcaea7",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "9c9ddc8897343572",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          130048
+        ],
+        "unprocessed_array_sha256": "c3f5de8af30c057b791d3836d6be0b4264d1a20fc44d7e4e8300f86a38eb7853"
+      },
+      {
+        "exact_native_cache_key": "a3c45537a9d863b96334391012988fc8479a7173.pkl",
+        "pkl_sha256": "587f983bc1e9edab039e4f2d2812a2deafb6207bac202503146430cb0c23dd11",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Einstein, then aboard a steamer bound for Japan,",
+            "exact_native_cache_key": "a3c45537a9d863b96334391012988fc8479a7173.pkl",
+            "cache_input_text_sha256": "d1c27ae13415936417411f6374087d477455e2cfcab0c076d85bb743805ad89f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "587f983bc1e9edab",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          74240
+        ],
+        "unprocessed_array_sha256": "ac9cd6023ad719b39fb01c0d82aba94f82ed29dea8b06f399aaf4b401fd6a1d6"
+      },
+      {
+        "exact_native_cache_key": "f6429e42d55a158e74099b03095c5c8b6ea2c825.pkl",
+        "pkl_sha256": "37ed28624dc7d657b6977d4867ab4aa01f729fd4f23febe518e9cda29e5b0f1a",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "would miss the December ceremony.",
+            "exact_native_cache_key": "f6429e42d55a158e74099b03095c5c8b6ea2c825.pkl",
+            "cache_input_text_sha256": "c2a2a4e0060b9e41b8a47e242211c9b6fd829f4a5f3a1a16a5a73a5c93bb9136",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S13",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "would miss the December ceremony.",
+            "exact_native_cache_key": "f6429e42d55a158e74099b03095c5c8b6ea2c825.pkl",
+            "cache_input_text_sha256": "c2a2a4e0060b9e41b8a47e242211c9b6fd829f4a5f3a1a16a5a73a5c93bb9136",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "37ed28624dc7d657",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          43520
+        ],
+        "unprocessed_array_sha256": "a81b77cc3166a01284b726464402a1a6710149e0ce0981ea3946a80abde6c8cc"
+      },
+      {
+        "exact_native_cache_key": "94168d0a2650ec9a02f1be3b40310db20d031e5d.pkl",
+        "pkl_sha256": "6541d2ad9bfbf356da94b15c810c64fe866b5417553c24d516f2812da936d97d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "then aboard a steamer bound for Japan,",
+            "exact_native_cache_key": "94168d0a2650ec9a02f1be3b40310db20d031e5d.pkl",
+            "cache_input_text_sha256": "38ee698edc36275b15359775ed9aead7f46b622c5aded0088f8297a44355f7db",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "6541d2ad9bfbf356",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          53760
+        ],
+        "unprocessed_array_sha256": "2890f06e067bdf1ca28f855a10025fa6b7b5bbd714f950bfa476397f60a41ec6"
+      },
+      {
+        "exact_native_cache_key": "3f9c3f7024d3ac29bfef538bd83659dc053f4e05.pkl",
+        "pkl_sha256": "54595e05b9c2718b9912dabdcc7a28e2b0c738042e5c3ed3057b0cb7ecec1d71",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "On 11 July 1923, in Gothenburg, Sweden, he delivered his Nobel lecture before a congress of Nordic scientists, devoting it to the fundamental ideas and problems of relativity.",
+            "exact_native_cache_key": "3f9c3f7024d3ac29bfef538bd83659dc053f4e05.pkl",
+            "cache_input_text_sha256": "549b42ac683a8d13def19094a656a8c15e42d6e2aa782a98a05d6aa741cac0b3",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "54595e05b9c2718b",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          346112
+        ],
+        "unprocessed_array_sha256": "4220758d2c0a3a428c0eb5e24cd040e88fd44c724bd4e490a4f3afce797c2414"
+      },
+      {
+        "exact_native_cache_key": "e5924fc7f69d61755ffd5d83870f1788c66dfcbc.pkl",
+        "pkl_sha256": "76feb0178f6bb5054bf33b54a86ca74ffe70843d3d4fadd0561a12cc3a22414b",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "On 11 July 1923, in Gothenburg, Sweden, he delivered his Nobel lecture",
+            "exact_native_cache_key": "e5924fc7f69d61755ffd5d83870f1788c66dfcbc.pkl",
+            "cache_input_text_sha256": "7ac40afe3e97b2582c384870a12f0a95d98ed04916e35220246ea146a5b67d81",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "76feb0178f6bb505",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          166912
+        ],
+        "unprocessed_array_sha256": "0796dbaeca77127bf455429d92156f5a73d1644bc3ddacf7dc48dba992e9079a"
+      },
+      {
+        "exact_native_cache_key": "69fa655306df53f2161061d2083b53fcc3898ab4.pkl",
+        "pkl_sha256": "9ece2eb48ce2e34eaaedbc6f94eb694114149ba8b76beb05951621711708b2f2",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "before a congress of Nordic scientists,",
+            "exact_native_cache_key": "69fa655306df53f2161061d2083b53fcc3898ab4.pkl",
+            "cache_input_text_sha256": "ec7b19744980370f77302da8d3c1e4b71034031c21b213074a449dd022037b07",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "9ece2eb48ce2e34e",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          58880
+        ],
+        "unprocessed_array_sha256": "3f9913b217ebc9bd250171d53f00211b6bb86a8807c269793ddf3c520168991d"
+      },
+      {
+        "exact_native_cache_key": "d42d0f1a35074911360c8ec3e00a5af9e5104657.pkl",
+        "pkl_sha256": "73b256f1620539c2ae990ebe28252d8766ff75906d204d50e3b860be1fa5647b",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "devoting it to the fundamental ideas and problems of relativity.",
+            "exact_native_cache_key": "d42d0f1a35074911360c8ec3e00a5af9e5104657.pkl",
+            "cache_input_text_sha256": "a7d22682740e70d1049d717043aba863408449a45a29d78b06f71233a99446f7",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S14",
+            "piece": 5,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "devoting it to the fundamental ideas and problems of relativity.",
+            "exact_native_cache_key": "d42d0f1a35074911360c8ec3e00a5af9e5104657.pkl",
+            "cache_input_text_sha256": "a7d22682740e70d1049d717043aba863408449a45a29d78b06f71233a99446f7",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "73b256f1620539c2",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          107008
+        ],
+        "unprocessed_array_sha256": "26d7544de224b97bd7c59238a2921bf1a1aef26a2a68ae33b8b975417b91ef0d"
+      },
+      {
+        "exact_native_cache_key": "9c7631106332418e5d374b3a7db3defb5ffb1a7d.pkl",
+        "pkl_sha256": "8fbbdf711e4e507426bfa2e7b78418fc132ca2a6b6dd463442075ae532b9e9f6",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "On 11 July 1923,",
+            "exact_native_cache_key": "9c7631106332418e5d374b3a7db3defb5ffb1a7d.pkl",
+            "cache_input_text_sha256": "13ea35b5ddbd9e5fe8ce14bc019dedbd54ad170a905aa1714de714ba1f5a3dd8",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "8fbbdf711e4e5074",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          68096
+        ],
+        "unprocessed_array_sha256": "1db696ea37c76ea447fd3f633efc92547c50cd6dc6960b4552c0a6f73ffcd700"
+      },
+      {
+        "exact_native_cache_key": "8f3f0ca071dc2f4749b29b5c1d5790922f44db03.pkl",
+        "pkl_sha256": "04e2d19a681ff86b016d2a4a4c9eee616a3bf2abff08d34dd186f88cefceb41b",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "in Gothenburg,",
+            "exact_native_cache_key": "8f3f0ca071dc2f4749b29b5c1d5790922f44db03.pkl",
+            "cache_input_text_sha256": "b0aab6a1722a89ada4237de0e9861bc9618613cba1fd31f2c2a425aba4430556",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "04e2d19a681ff86b",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          27648
+        ],
+        "unprocessed_array_sha256": "4b6111745f364cefd176071dd5d8d200e913448f1b785d1df183334043e64593"
+      },
+      {
+        "exact_native_cache_key": "408c9155b4b9f8a355d303c547cde49ea8b69792.pkl",
+        "pkl_sha256": "255015e4926c8e4fa4aa95f67bf871147f38c8e23eeeef91c18f95da17f32114",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Sweden,",
+            "exact_native_cache_key": "408c9155b4b9f8a355d303c547cde49ea8b69792.pkl",
+            "cache_input_text_sha256": "f8e207e456cf025d495d1cfcf9bcd51e0ada4adecfc4a5d4668145ef3dec8afc",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "255015e4926c8e4f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          19968
+        ],
+        "unprocessed_array_sha256": "24cdafc8a189b536126ca2d93c1277f844b2ccca7b26f3e6e57b40c0c708dbed"
+      },
+      {
+        "exact_native_cache_key": "1f4d09fd4e6cb18655873bd92a1912b92d822df9.pkl",
+        "pkl_sha256": "1579c6adaeb55921d55dd9755c55294db200640e968428fc32a03504a837d111",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "he delivered his Nobel lecture before a congress of Nordic scientists,",
+            "exact_native_cache_key": "1f4d09fd4e6cb18655873bd92a1912b92d822df9.pkl",
+            "cache_input_text_sha256": "bfd06bcb5ddd38e9184faaefd9e8a6bb22f26eed928467e9e67834059e18f501",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "1579c6adaeb55921",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          111616
+        ],
+        "unprocessed_array_sha256": "150289874e683912387f310b1d10a2e20facbf0265719cbafcc810d1f0bc229b"
+      },
+      {
+        "exact_native_cache_key": "c369a0055cd13ef2a439d137ee502256e223d1aa.pkl",
+        "pkl_sha256": "61878ea77284f7f80d5bb522aee14c90d375b2be646be2ffbbb1620f137f7db4",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The theory the committee looked past reached a Nobel podium after all, carried there by the man the prize had honoured.",
+            "exact_native_cache_key": "c369a0055cd13ef2a439d137ee502256e223d1aa.pkl",
+            "cache_input_text_sha256": "ab60915acec606224cf50b4bdae63e01ce1deeb600a61769e7f5cf5a475d9802",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "61878ea77284f7f8",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          174592
+        ],
+        "unprocessed_array_sha256": "141049cd8374007bacccbe513954fcc3be83ce685e8c0bd5f1ddf2f1a5f2f105"
+      },
+      {
+        "exact_native_cache_key": "ef4381d0cec19a12bf9a224b463678aa82d3d3e4.pkl",
+        "pkl_sha256": "dc5c6f8944ba12d3233e3d2d6d105d3cdc8416bfd230b810b53ade455b7393db",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "The theory the committee looked past reached a Nobel podium after all,",
+            "exact_native_cache_key": "ef4381d0cec19a12bf9a224b463678aa82d3d3e4.pkl",
+            "cache_input_text_sha256": "30473a92c5660274276b361f34aa576280c8459b390e7bbadd666f7811ce88de",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S15",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "The theory the committee looked past reached a Nobel podium after all,",
+            "exact_native_cache_key": "ef4381d0cec19a12bf9a224b463678aa82d3d3e4.pkl",
+            "cache_input_text_sha256": "30473a92c5660274276b361f34aa576280c8459b390e7bbadd666f7811ce88de",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "dc5c6f8944ba12d3",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          105472
+        ],
+        "unprocessed_array_sha256": "6d5c8afdd11fff2cc29c81f00e6435a6d2675ebcef9add65dd8b32d92132eff6"
+      },
+      {
+        "exact_native_cache_key": "e32bff4a592ad1ade6d605b0087c952a9684e422.pkl",
+        "pkl_sha256": "38ded576b6431331b4547eabb29b365887712ec84cbaae8ab12bd5ab0a0ca803",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "carried there by the man the prize had honoured.",
+            "exact_native_cache_key": "e32bff4a592ad1ade6d605b0087c952a9684e422.pkl",
+            "cache_input_text_sha256": "693abce7c388616ed297c350912e9c98a0156c3b289096cdeb1272a28b65c21d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S15",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "carried there by the man the prize had honoured.",
+            "exact_native_cache_key": "e32bff4a592ad1ade6d605b0087c952a9684e422.pkl",
+            "cache_input_text_sha256": "693abce7c388616ed297c350912e9c98a0156c3b289096cdeb1272a28b65c21d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "38ded576b6431331",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          57856
+        ],
+        "unprocessed_array_sha256": "31f3566dc54550713220f1a460e886841e8edea0ff47be93123d517dc09d69dc"
+      }
+    ],
+    "missing_reference_key_count": 0,
+    "observed_missing_keys_covered": [],
+    "new_private_cache_names": [],
+    "native_single_thread_marker_verified": true,
+    "single_thread_sessions": [
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      },
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      }
+    ],
+    "models_sha256": {
+      "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+      "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+      "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+    },
+    "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+    "existing_private_cache_count": 11514,
+    "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "existing_private_cache_bytes_unchanged": true,
+    "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+    "public_repository_cache_unchanged": true,
+    "producer_pcm_existed_before": false,
+    "producer_pcm_sha256_before": null,
+    "producer_pcm_sha256_after": null,
+    "accepted_aac_adts_sha256_before": "102b6fdc4879a86f95334c9ee8900c3f8f1ac4dcfceb264e345e6bf241c0bdf0",
+    "accepted_aac_adts_sha256_after": "102b6fdc4879a86f95334c9ee8900c3f8f1ac4dcfceb264e345e6bf241c0bdf0",
+    "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+    "private_cache_exported": false
+  },
+  "checker_reference_preparation_program_sha256": "f6f2a032e207085e7252d036e39430fb80b06e84a721c525b61196d021c5ca12",
+  "fresh_current_article_reference": {
+    "article": "60",
+    "removed_temporary_gt_files": [],
+    "processed_pcm_or_raw_mother_cache_modified": false,
+    "purpose": "Original synth/labels/audit rebuild fresh for this production; no old CPU GT reuse."
+  },
+  "temporary_output_reset": {
+    "removed": [],
+    "production_started_ns": 1794623695725734748,
+    "repository_outputs_modified": false
+  },
+  "reviewed_gain_control_preservation": [
+    {
+      "stage": "canonical-draft",
+      "requested_gain_controls": {
+        "/分段增益dB": {
+          "S11": {
+            "1": -1.0
+          }
+        }
+      },
+      "actual_gain_controls": {
+        "/分段增益dB": {
+          "S11": {
+            "1": -1.0
+          }
+        }
+      },
+      "exactly_preserved": true
+    },
+    {
+      "stage": "canonical-final4K",
+      "requested_gain_controls": {
+        "/分段增益dB": {
+          "S11": {
+            "1": -1.0
+          }
+        }
+      },
+      "actual_gain_controls": {
+        "/分段增益dB": {
+          "S11": {
+            "1": -1.0
+          }
+        }
+      },
+      "exactly_preserved": true
+    }
+  ],
+  "canonical_video_sha256": "63a4ce8ae52913d9c79a99cea090caeda473487feeb4d410a069126a3d38f135",
+  "canonical_aac_adts_sha256": "102b6fdc4879a86f95334c9ee8900c3f8f1ac4dcfceb264e345e6bf241c0bdf0",
+  "canonical_pipeline_passed": true,
+  "cached_input_wav_sha256": null,
+  "final_wav_sha256": "2b34c90dcf4f337e5f2cd0e32387e97cff79fe1b5d640efb5ba1c64e1c0c81c6",
+  "accepted_prior_aac_identical": true,
+  "video_sha256": "b6aa78bb842f30312d3a717d001082940c3bf4aea1a5a3bd916101813577a265",
+  "width": 3840,
+  "height": 2160,
+  "summary_seconds": 2,
+  "summary_frames": 60,
+  "summary_start_seconds": 146.83333333333334,
+  "delay_after_voice_seconds": 0.013333333333349628,
+  "actual_source_collection": {
+    "article": "60",
+    "kind": "actual-production-source-collection",
+    "new_quality_gate": false,
+    "files": {
+      "request_json": {
+        "file": "60-request-source.json",
+        "sha256": "eed1655c0919db32a3a016b24791b93d25683f287c7ccb2523e168a69bddc562",
+        "origin": "immutable_request"
+      },
+      "request_generator": {
+        "file": "60-request-gen.py",
+        "sha256": "5c2819f1ed71b8cea4b05608c64e2b4f34b3a49b9b223b2449d370d1337e5e43",
+        "origin": "immutable_request"
+      },
+      "used_generator": {
+        "file": "60-used-gen.py",
+        "sha256": "5c2819f1ed71b8cea4b05608c64e2b4f34b3a49b9b223b2449d370d1337e5e43",
+        "origin": "actual_production_filesystem"
+      },
+      "actual_working_source": {
+        "file": "60-actual-working-source.json",
+        "sha256": "010ad78e63a03db6b7136598db246e833984d71e44af4fa8a567a5f3b659f93a",
+        "origin": "actual_production_filesystem"
+      },
+      "request_manuscript": {
+        "file": "60-request-manuscript.md",
+        "sha256": "9d1578e7af085559922394a3db01de4eb22dc1c520ca17de5cad68e5a38a31a8",
+        "origin": "immutable_request"
+      },
+      "actual_working_manuscript": {
+        "file": "60-actual-working-manuscript.md",
+        "sha256": "e44790a371772e2980ebf33e543eb05189df463f6000a25d7f4af59eeff5277b",
+        "origin": "actual_production_filesystem"
+      }
+    },
+    "generator_execution_observed": false,
+    "generator_execution_evidence": "No fresh generator execution log; do not claim this GEN was executed during rendering.",
+    "source_differences": {
+      "file": "60-actual-source-differences.json",
+      "sha256": "513b38b448b55c12d014db29e653c6aef86bb0b9b9a00ad622829cc504c5084b"
+    }
+  }
+}

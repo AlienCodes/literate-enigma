@@ -1,0 +1,3221 @@
+{
+  "article": "08",
+  "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+  "reference_prepared": true,
+  "acceptance": false,
+  "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+  "source_sha256": "254832e09f12759d950384dd9f31f671ad5a3bc1590b7466065dd3ef5fe4b8d5",
+  "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+  "checker_program_sha256": {
+    "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+    "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+    "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+    "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+    "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+    "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+  },
+  "reference_calls": [
+    {
+      "sentence": "标题",
+      "piece": null,
+      "reference_kind": "title-default-raw",
+      "method": "create",
+      "source_slice": "The Doctor Who Solved the Cholera Mystery",
+      "exact_native_cache_key": "e9fa49174e46ad417b32d07ad48ae8479ced0885.pkl",
+      "cache_input_text_sha256": "bfcaa95540ce40d7808d8b38fcf50cddd961e85af895716363e7b660e58182e3",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "标题",
+      "piece": null,
+      "reference_kind": "title-default-timed",
+      "method": "create_timed",
+      "source_slice": "The Doctor Who Solved the Cholera Mystery",
+      "exact_native_cache_key": "c3204c9958f1d3b0fb23872aeeb2c18a707d6e64.pkl",
+      "cache_input_text_sha256": "bfcaa95540ce40d7808d8b38fcf50cddd961e85af895716363e7b660e58182e3",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "In the first ten days of September 1854, cholera ravaged an overcrowded corner of London's Soho; upwards of 500 people perished.",
+      "exact_native_cache_key": "89e2681d59adc30ca222965680f4a225e576d435.pkl",
+      "cache_input_text_sha256": "c6282aba18b744ef8c484eee2086a3dfef96616d2f4ead8dc2b9bdecd8da42e0",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "In the first ten days of September 1854, cholera ravaged an overcrowded corner of London's Soho; upwards of 500 people perished.",
+      "exact_native_cache_key": "8129f343366df9faf947faa8896ae7407cf2c9ce.pkl",
+      "cache_input_text_sha256": "c6282aba18b744ef8c484eee2086a3dfef96616d2f4ead8dc2b9bdecd8da42e0",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "In the first ten days of September 1854,",
+      "exact_native_cache_key": "1b3c3a30c3fffb08dafc5ad7d25af629aacacdc9.pkl",
+      "cache_input_text_sha256": "0527f459a5d433485d1cc32d38f4a2b9dd34d11ee685c295cb4ff6e3347af457",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S1",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "cholera ravaged an overcrowded corner of London's Soho;",
+      "exact_native_cache_key": "21afcf1464bd40a8be6e76d200be23ba8888fe3e.pkl",
+      "cache_input_text_sha256": "57684a7d367baa8a870a5cf4f076b27df0b2310033b62af3c7db4d3a08f4313a",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S1",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "upwards of 500 people perished.",
+      "exact_native_cache_key": "0c4a45dd86e8d391d665cd4702f364266faa8ead.pkl",
+      "cache_input_text_sha256": "7a22912a170d0b84ba8ef6f96a560f3feac6ed2981d03a52cd327c55143840a8",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S1",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "In the first ten days of September 1854,",
+      "exact_native_cache_key": "1b3c3a30c3fffb08dafc5ad7d25af629aacacdc9.pkl",
+      "cache_input_text_sha256": "0527f459a5d433485d1cc32d38f4a2b9dd34d11ee685c295cb4ff6e3347af457",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S1",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "cholera ravaged an overcrowded corner of London's Soho;",
+      "exact_native_cache_key": "21afcf1464bd40a8be6e76d200be23ba8888fe3e.pkl",
+      "cache_input_text_sha256": "57684a7d367baa8a870a5cf4f076b27df0b2310033b62af3c7db4d3a08f4313a",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S1",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "upwards of 500 people perished.",
+      "exact_native_cache_key": "0c4a45dd86e8d391d665cd4702f364266faa8ead.pkl",
+      "cache_input_text_sha256": "7a22912a170d0b84ba8ef6f96a560f3feac6ed2981d03a52cd327c55143840a8",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S2",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Most doctors attributed epidemics to miasma, foul air arising from filth.",
+      "exact_native_cache_key": "c0cef7ae015f860860d599eea073376274a472dc.pkl",
+      "cache_input_text_sha256": "337390cd0ba139ef566c4f318d3a022da354b6cc5e6aa634e8f06e152d44fac1",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Most doctors attributed epidemics to miasma, foul air arising from filth.",
+      "exact_native_cache_key": "af546bb057e702c504093e06e5f1bc6220768cfe.pkl",
+      "cache_input_text_sha256": "337390cd0ba139ef566c4f318d3a022da354b6cc5e6aa634e8f06e152d44fac1",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Most doctors attributed epidemics to miasma,",
+      "exact_native_cache_key": "0357e99981d48719debe3b2b3468338f3940f27c.pkl",
+      "cache_input_text_sha256": "020ba86a8b6b010b0d8177d35d0873567ae53b6e6850440746fb5a90bd73a358",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S2",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "foul air arising from filth.",
+      "exact_native_cache_key": "860edcd98565fb1abaf6fa8cdc072d1363182f79.pkl",
+      "cache_input_text_sha256": "4c867c0b7254d75eef293f9f5a4546e94da93f084159af344af097c64ea7c51c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S2",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Most doctors attributed epidemics to miasma,",
+      "exact_native_cache_key": "0357e99981d48719debe3b2b3468338f3940f27c.pkl",
+      "cache_input_text_sha256": "020ba86a8b6b010b0d8177d35d0873567ae53b6e6850440746fb5a90bd73a358",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S2",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "foul air arising from filth.",
+      "exact_native_cache_key": "860edcd98565fb1abaf6fa8cdc072d1363182f79.pkl",
+      "cache_input_text_sha256": "4c867c0b7254d75eef293f9f5a4546e94da93f084159af344af097c64ea7c51c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S3",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "John Snow, a physician who had been convinced since 1849 that cholera's poison was swallowed, not inhaled, suspected the Broad Street pump.",
+      "exact_native_cache_key": "ff4261a3a92dbdcd07cbcebef93c41c7a754acff.pkl",
+      "cache_input_text_sha256": "ff5732aba09f6ca0e7c06e70aff49516afa7232043010acd2057c58fe26158f7",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "John Snow, a physician who had been convinced since 1849 that cholera's poison was swallowed, not inhaled, suspected the Broad Street pump.",
+      "exact_native_cache_key": "bb6e50ac3472208c724befbf26879ba4104ecae8.pkl",
+      "cache_input_text_sha256": "ff5732aba09f6ca0e7c06e70aff49516afa7232043010acd2057c58fe26158f7",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "John Snow, a physician",
+      "exact_native_cache_key": "d256fc2d26c0d0408fddcc9e4b85c549b8c065f7.pkl",
+      "cache_input_text_sha256": "37cf618f1603ace4dc43aadba423f7654a40fa0e287acba261b8f3e3db003702",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S3",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "who had been convinced since 1849 that cholera's poison was swallowed, not inhaled,",
+      "exact_native_cache_key": "326a0a680df8fd28836ecac89a8c4c00d3ea5335.pkl",
+      "cache_input_text_sha256": "9d3aa07721cdd91f8fc829f771d4e1839f724da078f67fa48bff12bd1ea0520a",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S3",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "suspected the Broad Street pump.",
+      "exact_native_cache_key": "10fa949ce9f781ca54c2e0d8b992fb010067242f.pkl",
+      "cache_input_text_sha256": "bfc7181ae66a370626bc1bf835df856fb71dae3ae6ff9e28d20a40f9b16d5867",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S3",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "John Snow,",
+      "exact_native_cache_key": "2562c0940eb0288122558d32d5e8eec49063ddfb.pkl",
+      "cache_input_text_sha256": "cf83a57907db9ddf24caf079a7a565bb332722c69b4a90b9a47cf3bb2433785e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S3",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "a physician who had been convinced since 1849 that cholera's poison was swallowed,",
+      "exact_native_cache_key": "1ad6eb235c551f941dd77cfc8bcef97fc190d1e2.pkl",
+      "cache_input_text_sha256": "37e77dbc84ec9dc2a0a4f4f998cec54bdc85adfbbe93053e801cc229fa1e0d38",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S3",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "not inhaled,",
+      "exact_native_cache_key": "dbd1e41b60f85ed1459464350de267470ad6b90e.pkl",
+      "cache_input_text_sha256": "69ae18db5ca5982457e3c02c1f8e8d2a6c078628e2cebddffea9bbacaa40bccc",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S3",
+      "piece": 4,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "suspected the Broad Street pump.",
+      "exact_native_cache_key": "10fa949ce9f781ca54c2e0d8b992fb010067242f.pkl",
+      "cache_input_text_sha256": "bfc7181ae66a370626bc1bf835df856fb71dae3ae6ff9e28d20a40f9b16d5867",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S4",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Finding little visible impurity, he hesitated, then consulted the death register and questioned bereaved families.",
+      "exact_native_cache_key": "843962a82d025b5abea354dc009415b76f93ee67.pkl",
+      "cache_input_text_sha256": "fe384675bd2d578a484428375d60cc71eecdf7b40dfc6f2d96ff2762db399b5a",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Finding little visible impurity, he hesitated, then consulted the death register and questioned bereaved families.",
+      "exact_native_cache_key": "05190f084f77071ef89a45c92ca56b00fc968c45.pkl",
+      "cache_input_text_sha256": "fe384675bd2d578a484428375d60cc71eecdf7b40dfc6f2d96ff2762db399b5a",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Finding little visible impurity,",
+      "exact_native_cache_key": "f1893d5f426f6d9e315f16fb171d7584f463a4aa.pkl",
+      "cache_input_text_sha256": "e0af61ae074e1ac77f8970508493ffc55827434ce5caa5ae1271e66cf057169d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S4",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "he hesitated,",
+      "exact_native_cache_key": "5eb70e56616353a5d9de1bbdf96be225efa6f6d9.pkl",
+      "cache_input_text_sha256": "564623de7ec4c9bb8836c67c642afc8ed926959e21a2d47a722403694230097c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S4",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "then consulted the death register and questioned bereaved families.",
+      "exact_native_cache_key": "9ba9b22ceb810b220905f19faa29c23b7e0c7042.pkl",
+      "cache_input_text_sha256": "f745bbb8be1ac3d578b57aa4d9adb3044465e336b13b4f6e5417eaa5e8d0d11e",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S4",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Finding little visible impurity,",
+      "exact_native_cache_key": "f1893d5f426f6d9e315f16fb171d7584f463a4aa.pkl",
+      "cache_input_text_sha256": "e0af61ae074e1ac77f8970508493ffc55827434ce5caa5ae1271e66cf057169d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S4",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "he hesitated,",
+      "exact_native_cache_key": "5eb70e56616353a5d9de1bbdf96be225efa6f6d9.pkl",
+      "cache_input_text_sha256": "564623de7ec4c9bb8836c67c642afc8ed926959e21a2d47a722403694230097c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S4",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "then consulted the death register and questioned bereaved families.",
+      "exact_native_cache_key": "9ba9b22ceb810b220905f19faa29c23b7e0c7042.pkl",
+      "cache_input_text_sha256": "f745bbb8be1ac3d578b57aa4d9adb3044465e336b13b4f6e5417eaa5e8d0d11e",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S5",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Most victims lived near the pump and drank from it.",
+      "exact_native_cache_key": "ab062cf9438e56cd3f1d19f28a329cd5cc37f255.pkl",
+      "cache_input_text_sha256": "434811b71e5f3e0bae4ad3670ef27c303fec5a2cde34132b74a3fa3b37cc2890",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Most victims lived near the pump and drank from it.",
+      "exact_native_cache_key": "f12b4a5661b1f83a7cf499467c0c8d2e620e9171.pkl",
+      "cache_input_text_sha256": "434811b71e5f3e0bae4ad3670ef27c303fec5a2cde34132b74a3fa3b37cc2890",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "At his urging, parish officials removed the handle, but daily fatal attacks had already plunged from a peak of 143 to 12.",
+      "exact_native_cache_key": "81f644c73efb78bc2147f707c6a8619c30052ec7.pkl",
+      "cache_input_text_sha256": "ebb856759d500967ca503e4ed1a7811a98222b296273e41d49322814533685ba",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "At his urging, parish officials removed the handle, but daily fatal attacks had already plunged from a peak of 143 to 12.",
+      "exact_native_cache_key": "311f4271c256de0ecc46d099f1baf2370e36a950.pkl",
+      "cache_input_text_sha256": "ebb856759d500967ca503e4ed1a7811a98222b296273e41d49322814533685ba",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "At his urging, parish officials removed the handle,",
+      "exact_native_cache_key": "14d1df9e5190bf1bdcfd17c209a17872b59c7968.pkl",
+      "cache_input_text_sha256": "8973bfb8a5334ee89f42c1e5af3c01bbeba0916196d4908bb1e1fdb7bfc6a994",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S6",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "but daily fatal attacks had already plunged from a peak of 143 to 12.",
+      "exact_native_cache_key": "06e9f3c7d5ee4ad1ff1f1521f2befc16e641503a.pkl",
+      "cache_input_text_sha256": "34ee3af65f954c0098f4beb7c200dad91b801394a4dadf603f9d4c7108d0a114",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S6",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "At his urging,",
+      "exact_native_cache_key": "d732e978ed1e6d66cc4cbe9d4155a1164cae4c8e.pkl",
+      "cache_input_text_sha256": "7a700eddce577f953b86755949f8a14c2afe546e88a8ce3d1c32e86c1c3bedfc",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S6",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "parish officials removed the handle,",
+      "exact_native_cache_key": "65a392bab807fe8280603bde06bd02a103cf122e.pkl",
+      "cache_input_text_sha256": "9d80db264c13f9243d9117d87956ef6226c2eb839a76bea5e28e4831dc7c619e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S6",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "but daily fatal attacks had already plunged from a peak of 143 to 12.",
+      "exact_native_cache_key": "06e9f3c7d5ee4ad1ff1f1521f2befc16e641503a.pkl",
+      "cache_input_text_sha256": "34ee3af65f954c0098f4beb7c200dad91b801394a4dadf603f9d4c7108d0a114",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S7",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "He later mapped the deaths.",
+      "exact_native_cache_key": "3ca251fc7ba373196aa4ae9a325c4e74f95609ef.pkl",
+      "cache_input_text_sha256": "f044f0185910930bf0743e8011fa682ecb39601553c7d2e15eed1d86e67ba0b2",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "He later mapped the deaths.",
+      "exact_native_cache_key": "6a9f73a2ff723f3b7e5929e6686a963c9cf9333e.pkl",
+      "cache_input_text_sha256": "f044f0185910930bf0743e8011fa682ecb39601553c7d2e15eed1d86e67ba0b2",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "In 1855 Edmund Parkes, a professor of clinical medicine, interpreted the cluster on that map as a poison drifting through the air.",
+      "exact_native_cache_key": "8daa1c085f9f78324dbc7e9a74484f6d6b468d23.pkl",
+      "cache_input_text_sha256": "1a0d6daee3be6f308fd11a4d86f51c3e09b715ab0f5cb0e890cc4417924368a0",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "In 1855 Edmund Parkes, a professor of clinical medicine, interpreted the cluster on that map as a poison drifting through the air.",
+      "exact_native_cache_key": "ee6f78ef807dddc8ad2faef5333e205dc1f29c25.pkl",
+      "cache_input_text_sha256": "1a0d6daee3be6f308fd11a4d86f51c3e09b715ab0f5cb0e890cc4417924368a0",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "In 1855 Edmund Parkes, a professor of clinical medicine,",
+      "exact_native_cache_key": "d3ea399ec8b40f912b8750bd7faf6c07bf36b8c2.pkl",
+      "cache_input_text_sha256": "4ca8f070bc8ab01bd0a7cbb27a40b62680f302341cf2c4a2777c529b2b887c8f",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S8",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "interpreted the cluster on that map as a poison drifting through the air.",
+      "exact_native_cache_key": "0441fb398029ee9bbcf355e5f15c0d5d73b8ddb2.pkl",
+      "cache_input_text_sha256": "b9094cec55b0e80b3aaa4e3d54c66d077ccd9cbd7cc0a091b0b50c3eac562e64",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S8",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "In 1855 Edmund Parkes,",
+      "exact_native_cache_key": "b804c1eff85888c5bc2ace1a7e683e2f214bc4c0.pkl",
+      "cache_input_text_sha256": "665e726a6978aedebe3c1c55d3beadad5bdc795f99d9f0f74373f35bb40400bd",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S8",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "a professor of clinical medicine,",
+      "exact_native_cache_key": "b7421052a00e3b427ab88e42c3386291683a8efc.pkl",
+      "cache_input_text_sha256": "b4bb4aea913c75c5fd477618012df0b9167f9321deb88f12134083c373b3e0d4",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S8",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "interpreted the cluster on that map as a poison drifting through the air.",
+      "exact_native_cache_key": "0441fb398029ee9bbcf355e5f15c0d5d73b8ddb2.pkl",
+      "cache_input_text_sha256": "b9094cec55b0e80b3aaa4e3d54c66d077ccd9cbd7cc0a091b0b50c3eac562e64",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S9",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Yet a map could chart where people died, not what they drank.",
+      "exact_native_cache_key": "1edbdb075b1b36e7475a3d004acedf8d4d8e8bbf.pkl",
+      "cache_input_text_sha256": "c41564e6abe92537f4e12bc1b7c414b8c5b98c474b55fa081092c4dc66150666",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Yet a map could chart where people died, not what they drank.",
+      "exact_native_cache_key": "a63270179b33a24b1833a040a90a2c2758f824f2.pkl",
+      "cache_input_text_sha256": "c41564e6abe92537f4e12bc1b7c414b8c5b98c474b55fa081092c4dc66150666",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Yet a map could chart where people died,",
+      "exact_native_cache_key": "0f1ecf9e4b54f487c6368b0e2d56ae0fbfc385ef.pkl",
+      "cache_input_text_sha256": "dfa568206ed8196bea1a1c86d028ca29d911e5d4a4be5f258df2eedf7155372e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S9",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "not what they drank.",
+      "exact_native_cache_key": "8f0a2a534d0ab3af4cbd9f2276e4a41ff3c62514.pkl",
+      "cache_input_text_sha256": "5e962025ede44a64f9bf3d97e4fa0a1d1236dd6bfb9a4795163e60e711c94a4a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S10",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "The crucial evidence, gathered in 1854, lay in exceptions.",
+      "exact_native_cache_key": "1254ed9b6208c62a481420c75625842b952e21dd.pkl",
+      "cache_input_text_sha256": "9049fc9a48b51150785aa758b1aef801a127fc1a58c8e4eea328e2ac59650cba",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "The crucial evidence, gathered in 1854, lay in exceptions.",
+      "exact_native_cache_key": "7be4ad2a57b44096fe35f28f629c73da2a951f68.pkl",
+      "cache_input_text_sha256": "9049fc9a48b51150785aa758b1aef801a127fc1a58c8e4eea328e2ac59650cba",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "The crucial evidence,",
+      "exact_native_cache_key": "3ad2d47976c20a79ddda83f2b637846b1b4ba2ab.pkl",
+      "cache_input_text_sha256": "7a70ca1290020bb74ecb019525bff45aaf3a1407bf7a6951e994f5396a309baa",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S10",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "gathered in 1854,",
+      "exact_native_cache_key": "87f54aa8cd87ff05234e42062418da4bb8cc3e04.pkl",
+      "cache_input_text_sha256": "6169eb2077cbca2cbd52604273c8d10004ca6d1bc89ce653cc5d32bb254937cb",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S10",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "lay in exceptions.",
+      "exact_native_cache_key": "842b8488153fac543161d9f3ec642b10051c0632.pkl",
+      "cache_input_text_sha256": "c08d156a7189d9a0e50c8a0e427e95177f56ed56af7a25f106d88408e5b40d7f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S11",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Amid the deaths in the surrounding streets, a workhouse with its own well lost a mere five of 535 inmates.",
+      "exact_native_cache_key": "b8aadb2f5ec8f69c92ddc117dbd872c04fbb8a13.pkl",
+      "cache_input_text_sha256": "141fbdf25b3cafa9a2083402c9dfb96a5494737ec5a3ea084aeb825627380538",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Amid the deaths in the surrounding streets, a workhouse with its own well lost a mere five of 535 inmates.",
+      "exact_native_cache_key": "55c9725a933cca35b6ad3ccfd365bad607e08f89.pkl",
+      "cache_input_text_sha256": "141fbdf25b3cafa9a2083402c9dfb96a5494737ec5a3ea084aeb825627380538",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Amid the deaths in the surrounding streets,",
+      "exact_native_cache_key": "ecfbeffaa28e20a307051e8a9a6b393e5536e966.pkl",
+      "cache_input_text_sha256": "9c2689dc7d6f2a49fc1d2a938b156d3fe4d87f84f0c3a7ab801146a4bdcfb22f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S11",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "a workhouse with its own well lost a mere five of 535 inmates.",
+      "exact_native_cache_key": "619a577ec704972d61fbce676eb17a837dd7ee74.pkl",
+      "cache_input_text_sha256": "54d9e26e99c8c292948c61cc325c1ed6960aae8d94bfc3ab566bb8a533dc6a68",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S11",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Amid the deaths in the surrounding streets,",
+      "exact_native_cache_key": "ecfbeffaa28e20a307051e8a9a6b393e5536e966.pkl",
+      "cache_input_text_sha256": "9c2689dc7d6f2a49fc1d2a938b156d3fe4d87f84f0c3a7ab801146a4bdcfb22f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S11",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "a workhouse with its own well lost a mere five of 535 inmates.",
+      "exact_native_cache_key": "619a577ec704972d61fbce676eb17a837dd7ee74.pkl",
+      "cache_input_text_sha256": "54d9e26e99c8c292948c61cc325c1ed6960aae8d94bfc3ab566bb8a533dc6a68",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S12",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "More than 70 nearby brewery workers, with a beer allowance and their own well, escaped severe cholera.",
+      "exact_native_cache_key": "1d89cded270e708220832746da39d41ceded167b.pkl",
+      "cache_input_text_sha256": "94b6345be3d7a331848c37f72ef3fa71643e772dddd4cd0beab2615f7668215d",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "More than 70 nearby brewery workers, with a beer allowance and their own well, escaped severe cholera.",
+      "exact_native_cache_key": "a840ee7908453107b1364fb8e2dc861c67bfefcc.pkl",
+      "cache_input_text_sha256": "94b6345be3d7a331848c37f72ef3fa71643e772dddd4cd0beab2615f7668215d",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "More than 70 nearby brewery workers, with a beer allowance and their own well,",
+      "exact_native_cache_key": "6bba80d64adf07f64354ed8ade9a801b0957c089.pkl",
+      "cache_input_text_sha256": "ecf952c07fb6d81f68f19cb9ce857bfabe949f60dd5f634be6a2a2ba133b27fb",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S12",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "escaped severe cholera.",
+      "exact_native_cache_key": "84c25d0d054e9512f332eecc4a8af8b8b1727d4f.pkl",
+      "cache_input_text_sha256": "f9cfdb0e40a43ba694e1af5d0bd4360c7877fe442b4c149b01c996ec5d9e05b0",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S12",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "More than 70 nearby brewery workers,",
+      "exact_native_cache_key": "d8b78c7e19d7ee6d547a3a58a1bf3343d120af5f.pkl",
+      "cache_input_text_sha256": "2f9efd152222312c1dff16f7fd5451968630ec00cd74d7d13fd235dda9e3fae3",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S12",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "with a beer allowance and their own well,",
+      "exact_native_cache_key": "9493f35a495f79481e3d952b7e2e4336748e3732.pkl",
+      "cache_input_text_sha256": "f53990f88777ed4bd9241aaba2a1b3dddcbab5d2ac43ff97c44ab87acbff5acd",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S12",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "escaped severe cholera.",
+      "exact_native_cache_key": "84c25d0d054e9512f332eecc4a8af8b8b1727d4f.pkl",
+      "cache_input_text_sha256": "f9cfdb0e40a43ba694e1af5d0bd4360c7877fe442b4c149b01c996ec5d9e05b0",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S13",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Conversely, a Hampstead widow who had not set foot in Soho for months had the pump's water carted to her daily.",
+      "exact_native_cache_key": "5406af26359b2b4f07d4860bda072db0c581f7a3.pkl",
+      "cache_input_text_sha256": "f088f3095f445415011b63a196e3887639057c69a867e05c5e422efe298ead42",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Conversely, a Hampstead widow who had not set foot in Soho for months had the pump's water carted to her daily.",
+      "exact_native_cache_key": "c3be293331da4d097c94c95e6ea13888f21e0bb3.pkl",
+      "cache_input_text_sha256": "f088f3095f445415011b63a196e3887639057c69a867e05c5e422efe298ead42",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Conversely, a Hampstead widow who had not set foot in Soho for months",
+      "exact_native_cache_key": "41a705adcca8255d5f4dc6a4c9315f8a7de44495.pkl",
+      "cache_input_text_sha256": "08c57e35cf7642d1a83159da0e2edcffc559a7e66aac6f486d4660499047ad3d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S13",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "had the pump's water carted to her daily.",
+      "exact_native_cache_key": "1edef0d117e022153aab5f842db606c28f60f307.pkl",
+      "cache_input_text_sha256": "f421d460f04fc0a26dde4a445aef69136023702dedaa394d8488dbe7437f4a1d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S13",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Conversely,",
+      "exact_native_cache_key": "f384ebaedb5238d310d2e2c01f83f3a99a79edbb.pkl",
+      "cache_input_text_sha256": "5ec2602ed7af81c94233b13c3d5a579fb66ce23eeac2c38aec54cd0cc26d03b1",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S13",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "a Hampstead widow who had not set foot in Soho for months had the pump's water carted to her daily.",
+      "exact_native_cache_key": "b833e358693a9e1829f282da96a461e9e4008386.pkl",
+      "cache_input_text_sha256": "b262a3a60ba8462d2945a7a1dba15ad54eebdeeaa656d0f82b93e993bd79e80f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S14",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "She died, as did a visiting niece who drank it.",
+      "exact_native_cache_key": "2426ab024496390cfaf05f8ef3b47e7272564f09.pkl",
+      "cache_input_text_sha256": "7412d71cdc48ce3e25cbeeb5c5273dd3db0f74d0ff8b69dcc9367a6150777b9b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "She died, as did a visiting niece who drank it.",
+      "exact_native_cache_key": "e17ed57ce80d054abe3f524466bfdda086b9b2e9.pkl",
+      "cache_input_text_sha256": "7412d71cdc48ce3e25cbeeb5c5273dd3db0f74d0ff8b69dcc9367a6150777b9b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "She died,",
+      "exact_native_cache_key": "5e46cb840076b27e1d41cce936537ffe04deabfd.pkl",
+      "cache_input_text_sha256": "cc993975a6ded3fef54803e94601db90fbef38a65c5275cc0b68c97986e4dd4d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S14",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "as did a visiting niece who drank it.",
+      "exact_native_cache_key": "00a56dbeb3246d766d1f046724dedf4ed9e5d8ef.pkl",
+      "cache_input_text_sha256": "1352534b7165a93190dcabfd3c0bfb10044cea992fa2cd294e6ffbfb29343f8d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S15",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Hampstead then had no cholera.",
+      "exact_native_cache_key": "7a72503f2698000b862fd80e705f00f1cb7e4b9f.pkl",
+      "cache_input_text_sha256": "286f907472cb7233c90b62a8aa3ca98ef3b00fd4bde42ac25b3bedbe7df48862",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Hampstead then had no cholera.",
+      "exact_native_cache_key": "7ea42e29205325d029833c3c80a568a11c03550b.pkl",
+      "cache_input_text_sha256": "286f907472cb7233c90b62a8aa3ca98ef3b00fd4bde42ac25b3bedbe7df48862",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "In 1855 a government inquiry declined to condemn the pump, contending its water had at most absorbed airborne poison.",
+      "exact_native_cache_key": "258f27ca59f701b93245584c610a1be7264931d3.pkl",
+      "cache_input_text_sha256": "e35fa335f7479138ec5cf01fd9827b44c91bf7c268706e0d70e65170fb6353e3",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "In 1855 a government inquiry declined to condemn the pump, contending its water had at most absorbed airborne poison.",
+      "exact_native_cache_key": "178dcd6085848d1f80681af10f79abb15285c3ae.pkl",
+      "cache_input_text_sha256": "e35fa335f7479138ec5cf01fd9827b44c91bf7c268706e0d70e65170fb6353e3",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "In 1855 a government inquiry declined to condemn the pump,",
+      "exact_native_cache_key": "1fca3a78b6db1cee99b11de7b3724030188020fd.pkl",
+      "cache_input_text_sha256": "1bfa57cfe415a86ba5b47a91fdb291d113a4b8b03063e805264e3f2bce1f15f8",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S16",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "contending its water had at most absorbed airborne poison.",
+      "exact_native_cache_key": "b23be5ac2178798b886dc07d28eb9e42d8565ff4.pkl",
+      "cache_input_text_sha256": "ca0ea630176ebffbd4bb7d0ea7869df55a185b87010f9ddc7d2593d182172400",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S16",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "In 1855 a government inquiry declined to condemn the pump,",
+      "exact_native_cache_key": "1fca3a78b6db1cee99b11de7b3724030188020fd.pkl",
+      "cache_input_text_sha256": "1bfa57cfe415a86ba5b47a91fdb291d113a4b8b03063e805264e3f2bce1f15f8",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S16",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "contending its water had at most absorbed airborne poison.",
+      "exact_native_cache_key": "b23be5ac2178798b886dc07d28eb9e42d8565ff4.pkl",
+      "cache_input_text_sha256": "ca0ea630176ebffbd4bb7d0ea7869df55a185b87010f9ddc7d2593d182172400",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S17",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Meanwhile, the sceptical curate Henry Whitehead set out to refute Snow but found that those who drank from the pump were far more likely to succumb to the disease than others, vindicating him.",
+      "exact_native_cache_key": "65ef48c8f80080fbeb40e7daf1a37af2d15ca0e7.pkl",
+      "cache_input_text_sha256": "49dda56c925c769f0a45b017515e17e44d24a6a9d1ee7b02d2f022e60f582867",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Meanwhile, the sceptical curate Henry Whitehead set out to refute Snow but found that those who drank from the pump were far more likely to succumb to the disease than others, vindicating him.",
+      "exact_native_cache_key": "9aa84efa1b593ea041d8960d93fac378244f256f.pkl",
+      "cache_input_text_sha256": "49dda56c925c769f0a45b017515e17e44d24a6a9d1ee7b02d2f022e60f582867",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Meanwhile, the sceptical curate",
+      "exact_native_cache_key": "9720f882c1c23d44707be636beb785e4b5add7ba.pkl",
+      "cache_input_text_sha256": "b0a0bf85cf234703d0e2c2721af4a65a55b3b78d011bc224cccb60e31de68615",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S17",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Henry Whitehead set out to refute Snow but found",
+      "exact_native_cache_key": "532793de3d9a998484c3bd5d8f3092a6df48dc5d.pkl",
+      "cache_input_text_sha256": "73166cb31997800d7fad5c795ca1246d3c854736305a655808dc2915c9f84aad",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S17",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "that those who drank from the pump were far more likely to succumb to the disease than others,",
+      "exact_native_cache_key": "0ec79b0365638b958c28f41cb0f028ef015ea7e4.pkl",
+      "cache_input_text_sha256": "be43684d6e5f5deace783db2f45e8b4144c158aa842f0e0897399cb279350838",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S17",
+      "piece": 4,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "vindicating him.",
+      "exact_native_cache_key": "d461c557b0744ab3eb59ea690c5ad29bf90c5f14.pkl",
+      "cache_input_text_sha256": "0f1c841df344fe6c4df9684b61e4df823175642164940e872e9b459c098fe1b9",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S17",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Meanwhile,",
+      "exact_native_cache_key": "f54199d32a89cb853bfef2c12e9c3fbbe6dded48.pkl",
+      "cache_input_text_sha256": "01d0eef70abc55d087bd6273044b2ecd5e2a33944d7d6fe72de53284a7acaecf",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S17",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "the sceptical curate Henry Whitehead set out to refute Snow but found that those who drank from the pump were far more likely to succumb to the disease than others,",
+      "exact_native_cache_key": "22d4b70ea071fcf02b8be5f07d88714a8ac3c7ad.pkl",
+      "cache_input_text_sha256": "e08fee84f39bfe4ba48cec656f179c8487dd0756f7cb1dfdbc83aea9d72f6b09",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S17",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "vindicating him.",
+      "exact_native_cache_key": "d461c557b0744ab3eb59ea690c5ad29bf90c5f14.pkl",
+      "cache_input_text_sha256": "0f1c841df344fe6c4df9684b61e4df823175642164940e872e9b459c098fe1b9",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    }
+  ],
+  "unique_reference_key_count": 83,
+  "raw_mother_cache_scalar_manifest": [
+    {
+      "exact_native_cache_key": "e9fa49174e46ad417b32d07ad48ae8479ced0885.pkl",
+      "pkl_sha256": "99bea3c426f8ba16abc18e37c60cf1df598ba0ab412327c52a17fad9551ced79",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "标题",
+          "piece": null,
+          "reference_kind": "title-default-raw",
+          "method": "create",
+          "source_slice": "The Doctor Who Solved the Cholera Mystery",
+          "exact_native_cache_key": "e9fa49174e46ad417b32d07ad48ae8479ced0885.pkl",
+          "cache_input_text_sha256": "bfcaa95540ce40d7808d8b38fcf50cddd961e85af895716363e7b660e58182e3",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        54272
+      ],
+      "unprocessed_array_sha256": "062b946a1f0025d8c350e1d9e44f027167a9b7788d68fc1673b11528158fa760"
+    },
+    {
+      "exact_native_cache_key": "89e2681d59adc30ca222965680f4a225e576d435.pkl",
+      "pkl_sha256": "6e5230bfdd9688c552bda2ad35db3d38ffa28f0feeb1a94538d10368d5495bd4",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In the first ten days of September 1854, cholera ravaged an overcrowded corner of London's Soho; upwards of 500 people perished.",
+          "exact_native_cache_key": "89e2681d59adc30ca222965680f4a225e576d435.pkl",
+          "cache_input_text_sha256": "c6282aba18b744ef8c484eee2086a3dfef96616d2f4ead8dc2b9bdecd8da42e0",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        260096
+      ],
+      "unprocessed_array_sha256": "00e4f148b0569f9c1ea2c57230b7433c3fdff835bfa3a904a199b39f9c769add"
+    },
+    {
+      "exact_native_cache_key": "1b3c3a30c3fffb08dafc5ad7d25af629aacacdc9.pkl",
+      "pkl_sha256": "5de80ddf623ff7926d1a06cc6c5107eac6e2da5f659a5e9c3736759fae27cff3",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In the first ten days of September 1854,",
+          "exact_native_cache_key": "1b3c3a30c3fffb08dafc5ad7d25af629aacacdc9.pkl",
+          "cache_input_text_sha256": "0527f459a5d433485d1cc32d38f4a2b9dd34d11ee685c295cb4ff6e3347af457",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        },
+        {
+          "sentence": "S1",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In the first ten days of September 1854,",
+          "exact_native_cache_key": "1b3c3a30c3fffb08dafc5ad7d25af629aacacdc9.pkl",
+          "cache_input_text_sha256": "0527f459a5d433485d1cc32d38f4a2b9dd34d11ee685c295cb4ff6e3347af457",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "5de80ddf623ff792",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        76800
+      ],
+      "unprocessed_array_sha256": "ebcb309e0b2b6c9420a69f30edec7e8c541382d9a8fd541590eaea46df64eee5"
+    },
+    {
+      "exact_native_cache_key": "21afcf1464bd40a8be6e76d200be23ba8888fe3e.pkl",
+      "pkl_sha256": "a8733c3dbcaed2f56c8279dd5cd3063d5f38290b73d3b4e6cd48c357f212625a",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "cholera ravaged an overcrowded corner of London's Soho;",
+          "exact_native_cache_key": "21afcf1464bd40a8be6e76d200be23ba8888fe3e.pkl",
+          "cache_input_text_sha256": "57684a7d367baa8a870a5cf4f076b27df0b2310033b62af3c7db4d3a08f4313a",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": false
+        },
+        {
+          "sentence": "S1",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "cholera ravaged an overcrowded corner of London's Soho;",
+          "exact_native_cache_key": "21afcf1464bd40a8be6e76d200be23ba8888fe3e.pkl",
+          "cache_input_text_sha256": "57684a7d367baa8a870a5cf4f076b27df0b2310033b62af3c7db4d3a08f4313a",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "a8733c3dbcaed2f5",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        93184
+      ],
+      "unprocessed_array_sha256": "d42e7c672a826bb7350412bb17f9da807b129cc61eba0cfe577b9dda54f2ceb1"
+    },
+    {
+      "exact_native_cache_key": "0c4a45dd86e8d391d665cd4702f364266faa8ead.pkl",
+      "pkl_sha256": "60bd22087bcdd95bffd14ebe7933be5ffe638fa809314328e8685860f18762e3",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "upwards of 500 people perished.",
+          "exact_native_cache_key": "0c4a45dd86e8d391d665cd4702f364266faa8ead.pkl",
+          "cache_input_text_sha256": "7a22912a170d0b84ba8ef6f96a560f3feac6ed2981d03a52cd327c55143840a8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        },
+        {
+          "sentence": "S1",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "upwards of 500 people perished.",
+          "exact_native_cache_key": "0c4a45dd86e8d391d665cd4702f364266faa8ead.pkl",
+          "cache_input_text_sha256": "7a22912a170d0b84ba8ef6f96a560f3feac6ed2981d03a52cd327c55143840a8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "60bd22087bcdd95b",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        57344
+      ],
+      "unprocessed_array_sha256": "7872a147838824be620bb966a5fc974dc410e0a4bfc717cd2e3b938acc714281"
+    },
+    {
+      "exact_native_cache_key": "c0cef7ae015f860860d599eea073376274a472dc.pkl",
+      "pkl_sha256": "746e3836b7d71211e8de3e26dc73952ad11450d368566602b1df650c2c2aaab8",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Most doctors attributed epidemics to miasma, foul air arising from filth.",
+          "exact_native_cache_key": "c0cef7ae015f860860d599eea073376274a472dc.pkl",
+          "cache_input_text_sha256": "337390cd0ba139ef566c4f318d3a022da354b6cc5e6aa634e8f06e152d44fac1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        131584
+      ],
+      "unprocessed_array_sha256": "2d02abaaaa292e77eca90579d724a58b6a1cd763a4422855e1d5f033f854c018"
+    },
+    {
+      "exact_native_cache_key": "0357e99981d48719debe3b2b3468338f3940f27c.pkl",
+      "pkl_sha256": "0652cc164631bbb675132399e7442d92cdfdbda7bd07ad24579f586163af9c06",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Most doctors attributed epidemics to miasma,",
+          "exact_native_cache_key": "0357e99981d48719debe3b2b3468338f3940f27c.pkl",
+          "cache_input_text_sha256": "020ba86a8b6b010b0d8177d35d0873567ae53b6e6850440746fb5a90bd73a358",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        },
+        {
+          "sentence": "S2",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Most doctors attributed epidemics to miasma,",
+          "exact_native_cache_key": "0357e99981d48719debe3b2b3468338f3940f27c.pkl",
+          "cache_input_text_sha256": "020ba86a8b6b010b0d8177d35d0873567ae53b6e6850440746fb5a90bd73a358",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "0652cc164631bbb6",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        76288
+      ],
+      "unprocessed_array_sha256": "f1997010c4360ecce3d0c08e7d8ac707a70b6d972d623be3cbf43afde86c0d27"
+    },
+    {
+      "exact_native_cache_key": "860edcd98565fb1abaf6fa8cdc072d1363182f79.pkl",
+      "pkl_sha256": "9eabdd90cd870fc8954b4cdf8c549bc11d43ff37adb0640de2b41697256dae29",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "foul air arising from filth.",
+          "exact_native_cache_key": "860edcd98565fb1abaf6fa8cdc072d1363182f79.pkl",
+          "cache_input_text_sha256": "4c867c0b7254d75eef293f9f5a4546e94da93f084159af344af097c64ea7c51c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        },
+        {
+          "sentence": "S2",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "foul air arising from filth.",
+          "exact_native_cache_key": "860edcd98565fb1abaf6fa8cdc072d1363182f79.pkl",
+          "cache_input_text_sha256": "4c867c0b7254d75eef293f9f5a4546e94da93f084159af344af097c64ea7c51c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "9eabdd90cd870fc8",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        44544
+      ],
+      "unprocessed_array_sha256": "f933c9935d55745f95dfff3db3ac5ee295257c0b557f9776b019d70ff3ffcfbd"
+    },
+    {
+      "exact_native_cache_key": "ff4261a3a92dbdcd07cbcebef93c41c7a754acff.pkl",
+      "pkl_sha256": "c13869b6198f00fd23e6e9fd704308aafda5a0daab3b1a1a89276480d4837d0c",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "John Snow, a physician who had been convinced since 1849 that cholera's poison was swallowed, not inhaled, suspected the Broad Street pump.",
+          "exact_native_cache_key": "ff4261a3a92dbdcd07cbcebef93c41c7a754acff.pkl",
+          "cache_input_text_sha256": "ff5732aba09f6ca0e7c06e70aff49516afa7232043010acd2057c58fe26158f7",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        248320
+      ],
+      "unprocessed_array_sha256": "b51067db7cf500ab268f22ba66f8472f48c549de6f999bb9cc5bafe8ddda73dc"
+    },
+    {
+      "exact_native_cache_key": "d256fc2d26c0d0408fddcc9e4b85c549b8c065f7.pkl",
+      "pkl_sha256": "d29a272f61b9b81213a56a9d3fa9242e660f9363ecbb976c5e603a9e830bddb0",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "John Snow, a physician",
+          "exact_native_cache_key": "d256fc2d26c0d0408fddcc9e4b85c549b8c065f7.pkl",
+          "cache_input_text_sha256": "37cf618f1603ace4dc43aadba423f7654a40fa0e287acba261b8f3e3db003702",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "d29a272f61b9b812",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        38912
+      ],
+      "unprocessed_array_sha256": "114e370dfcf7b0d7b0d2b701565d4aa31cb65a292b7ee24c76be73319c1219d1"
+    },
+    {
+      "exact_native_cache_key": "326a0a680df8fd28836ecac89a8c4c00d3ea5335.pkl",
+      "pkl_sha256": "1e6e1fb1b7b7bb01d4b3271e84afa5561cf935e1d3ec13c5fe5d0b1292ef032a",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "who had been convinced since 1849 that cholera's poison was swallowed, not inhaled,",
+          "exact_native_cache_key": "326a0a680df8fd28836ecac89a8c4c00d3ea5335.pkl",
+          "cache_input_text_sha256": "9d3aa07721cdd91f8fc829f771d4e1839f724da078f67fa48bff12bd1ea0520a",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "1e6e1fb1b7b7bb01",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        143872
+      ],
+      "unprocessed_array_sha256": "3423a87d9eeb07ec74488f5bd364ef7cbeefef8e076dc30bdb4b152df2598012"
+    },
+    {
+      "exact_native_cache_key": "10fa949ce9f781ca54c2e0d8b992fb010067242f.pkl",
+      "pkl_sha256": "7a1a684610b7275994eb385c10b3ddcb2dccb0ae528d562877d59b9aac3087e0",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "suspected the Broad Street pump.",
+          "exact_native_cache_key": "10fa949ce9f781ca54c2e0d8b992fb010067242f.pkl",
+          "cache_input_text_sha256": "bfc7181ae66a370626bc1bf835df856fb71dae3ae6ff9e28d20a40f9b16d5867",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        },
+        {
+          "sentence": "S3",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "suspected the Broad Street pump.",
+          "exact_native_cache_key": "10fa949ce9f781ca54c2e0d8b992fb010067242f.pkl",
+          "cache_input_text_sha256": "bfc7181ae66a370626bc1bf835df856fb71dae3ae6ff9e28d20a40f9b16d5867",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "7a1a684610b72759",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        46592
+      ],
+      "unprocessed_array_sha256": "612a639cf50f43656382a9047c269392ff330bab07dfdbb91f33b5691e3d7bae"
+    },
+    {
+      "exact_native_cache_key": "2562c0940eb0288122558d32d5e8eec49063ddfb.pkl",
+      "pkl_sha256": "2e65430876a4fc46473a65b9979ad20a58c738d02d612761ccfb685d9e8653ec",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "John Snow,",
+          "exact_native_cache_key": "2562c0940eb0288122558d32d5e8eec49063ddfb.pkl",
+          "cache_input_text_sha256": "cf83a57907db9ddf24caf079a7a565bb332722c69b4a90b9a47cf3bb2433785e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "2e65430876a4fc46",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        24576
+      ],
+      "unprocessed_array_sha256": "abbf9e92a7f5a54d99eb12722a24ee02cda3731ca46dc7853b117728b07d220a"
+    },
+    {
+      "exact_native_cache_key": "1ad6eb235c551f941dd77cfc8bcef97fc190d1e2.pkl",
+      "pkl_sha256": "e3b58c92864822e7905df20dea4f0cd018e0a1116d6a8a3dd3a8af56cfe3c3e4",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a physician who had been convinced since 1849 that cholera's poison was swallowed,",
+          "exact_native_cache_key": "1ad6eb235c551f941dd77cfc8bcef97fc190d1e2.pkl",
+          "cache_input_text_sha256": "37e77dbc84ec9dc2a0a4f4f998cec54bdc85adfbbe93053e801cc229fa1e0d38",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "e3b58c92864822e7",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        134656
+      ],
+      "unprocessed_array_sha256": "ff1e068e00a59cbeb5fff436229cf0d531212483a45fae4e4392c04ec18e1b2e"
+    },
+    {
+      "exact_native_cache_key": "dbd1e41b60f85ed1459464350de267470ad6b90e.pkl",
+      "pkl_sha256": "bac7cacf72fa55a5449ddbc7b59d87355c89319083ee5d5c5df29b88f70cd24c",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "not inhaled,",
+          "exact_native_cache_key": "dbd1e41b60f85ed1459464350de267470ad6b90e.pkl",
+          "cache_input_text_sha256": "69ae18db5ca5982457e3c02c1f8e8d2a6c078628e2cebddffea9bbacaa40bccc",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "bac7cacf72fa55a5",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        24064
+      ],
+      "unprocessed_array_sha256": "01ab0c2726f40f0a262ddec31aef9001af39b2e7a57528944d26f87f5a68110a"
+    },
+    {
+      "exact_native_cache_key": "843962a82d025b5abea354dc009415b76f93ee67.pkl",
+      "pkl_sha256": "92704950d3fd38a669d06dfaef6d698df72a0e4e342b488332d089d752b72825",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Finding little visible impurity, he hesitated, then consulted the death register and questioned bereaved families.",
+          "exact_native_cache_key": "843962a82d025b5abea354dc009415b76f93ee67.pkl",
+          "cache_input_text_sha256": "fe384675bd2d578a484428375d60cc71eecdf7b40dfc6f2d96ff2762db399b5a",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        187392
+      ],
+      "unprocessed_array_sha256": "d022d4525e4d860731e13cd170c05e392186d2ac14d1ffbf4b9568f868acf619"
+    },
+    {
+      "exact_native_cache_key": "f1893d5f426f6d9e315f16fb171d7584f463a4aa.pkl",
+      "pkl_sha256": "4942eea73e3ec1650f9317844a834a1ba88c8d826936545ae161ab465d577d52",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Finding little visible impurity,",
+          "exact_native_cache_key": "f1893d5f426f6d9e315f16fb171d7584f463a4aa.pkl",
+          "cache_input_text_sha256": "e0af61ae074e1ac77f8970508493ffc55827434ce5caa5ae1271e66cf057169d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        },
+        {
+          "sentence": "S4",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Finding little visible impurity,",
+          "exact_native_cache_key": "f1893d5f426f6d9e315f16fb171d7584f463a4aa.pkl",
+          "cache_input_text_sha256": "e0af61ae074e1ac77f8970508493ffc55827434ce5caa5ae1271e66cf057169d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "4942eea73e3ec165",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        49152
+      ],
+      "unprocessed_array_sha256": "bd4dd72f649603d622ca718a551e0f5b3e1f66bf5784e9af617110dd0c2ebbd7"
+    },
+    {
+      "exact_native_cache_key": "5eb70e56616353a5d9de1bbdf96be225efa6f6d9.pkl",
+      "pkl_sha256": "fa20e78f710266bb8a036e15efbf5d9d5a42c573819c79953fc5ab967b5e8d64",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "he hesitated,",
+          "exact_native_cache_key": "5eb70e56616353a5d9de1bbdf96be225efa6f6d9.pkl",
+          "cache_input_text_sha256": "564623de7ec4c9bb8836c67c642afc8ed926959e21a2d47a722403694230097c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        },
+        {
+          "sentence": "S4",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "he hesitated,",
+          "exact_native_cache_key": "5eb70e56616353a5d9de1bbdf96be225efa6f6d9.pkl",
+          "cache_input_text_sha256": "564623de7ec4c9bb8836c67c642afc8ed926959e21a2d47a722403694230097c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "fa20e78f710266bb",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        26624
+      ],
+      "unprocessed_array_sha256": "78d0c74f5f154dfbf867cdc790d19117f20e612ee62163e0a444215639a25be2"
+    },
+    {
+      "exact_native_cache_key": "9ba9b22ceb810b220905f19faa29c23b7e0c7042.pkl",
+      "pkl_sha256": "6bb21d76eeec118a287bae2f11cf310158ab753d243cab0721b655f93864d71f",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "then consulted the death register and questioned bereaved families.",
+          "exact_native_cache_key": "9ba9b22ceb810b220905f19faa29c23b7e0c7042.pkl",
+          "cache_input_text_sha256": "f745bbb8be1ac3d578b57aa4d9adb3044465e336b13b4f6e5417eaa5e8d0d11e",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": false
+        },
+        {
+          "sentence": "S4",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "then consulted the death register and questioned bereaved families.",
+          "exact_native_cache_key": "9ba9b22ceb810b220905f19faa29c23b7e0c7042.pkl",
+          "cache_input_text_sha256": "f745bbb8be1ac3d578b57aa4d9adb3044465e336b13b4f6e5417eaa5e8d0d11e",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "6bb21d76eeec118a",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        102912
+      ],
+      "unprocessed_array_sha256": "5608d12ac3074cf134ed4220e014ee47144672ad052ca4b08ae7f50cac89b6c5"
+    },
+    {
+      "exact_native_cache_key": "ab062cf9438e56cd3f1d19f28a329cd5cc37f255.pkl",
+      "pkl_sha256": "f5237221f8bdb36f58556576c49fe95aa9f098e06c5e1bfc92667071d5f32528",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Most victims lived near the pump and drank from it.",
+          "exact_native_cache_key": "ab062cf9438e56cd3f1d19f28a329cd5cc37f255.pkl",
+          "cache_input_text_sha256": "434811b71e5f3e0bae4ad3670ef27c303fec5a2cde34132b74a3fa3b37cc2890",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        71680
+      ],
+      "unprocessed_array_sha256": "1f131ee04d434fe1ca71d571e783f692efb26658711097ac7171ea8c50902204"
+    },
+    {
+      "exact_native_cache_key": "81f644c73efb78bc2147f707c6a8619c30052ec7.pkl",
+      "pkl_sha256": "cae77de4203576e0fecae192beb427d964bcaca06a6758ab0e068ddc83462429",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "At his urging, parish officials removed the handle, but daily fatal attacks had already plunged from a peak of 143 to 12.",
+          "exact_native_cache_key": "81f644c73efb78bc2147f707c6a8619c30052ec7.pkl",
+          "cache_input_text_sha256": "ebb856759d500967ca503e4ed1a7811a98222b296273e41d49322814533685ba",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        225792
+      ],
+      "unprocessed_array_sha256": "01cc83f18f9db9ceb2f78cbe98efca0bf59f1c194af3bfdd823882c88a08a4a2"
+    },
+    {
+      "exact_native_cache_key": "14d1df9e5190bf1bdcfd17c209a17872b59c7968.pkl",
+      "pkl_sha256": "4bd4e2fac0abc0a7ddb58d9caa87473174259707de0c21ab1dd8772b2e86a34f",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "At his urging, parish officials removed the handle,",
+          "exact_native_cache_key": "14d1df9e5190bf1bdcfd17c209a17872b59c7968.pkl",
+          "cache_input_text_sha256": "8973bfb8a5334ee89f42c1e5af3c01bbeba0916196d4908bb1e1fdb7bfc6a994",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "4bd4e2fac0abc0a7",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        73216
+      ],
+      "unprocessed_array_sha256": "582418af01ae6b4767d73b30f5cc1e9f7ccee1b1fa34f0d15bd78d6c35e80780"
+    },
+    {
+      "exact_native_cache_key": "06e9f3c7d5ee4ad1ff1f1521f2befc16e641503a.pkl",
+      "pkl_sha256": "abad02b723ddcbfc6254a2d7680311f3fdb345584fd48696291abe87f8c42724",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "but daily fatal attacks had already plunged from a peak of 143 to 12.",
+          "exact_native_cache_key": "06e9f3c7d5ee4ad1ff1f1521f2befc16e641503a.pkl",
+          "cache_input_text_sha256": "34ee3af65f954c0098f4beb7c200dad91b801394a4dadf603f9d4c7108d0a114",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        },
+        {
+          "sentence": "S6",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "but daily fatal attacks had already plunged from a peak of 143 to 12.",
+          "exact_native_cache_key": "06e9f3c7d5ee4ad1ff1f1521f2befc16e641503a.pkl",
+          "cache_input_text_sha256": "34ee3af65f954c0098f4beb7c200dad91b801394a4dadf603f9d4c7108d0a114",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "abad02b723ddcbfc",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        140800
+      ],
+      "unprocessed_array_sha256": "8fbe40766d370401f02b851682607c774168786edcbf9a4c016333d6e5acf85e"
+    },
+    {
+      "exact_native_cache_key": "d732e978ed1e6d66cc4cbe9d4155a1164cae4c8e.pkl",
+      "pkl_sha256": "0411d4f68851cd1a3a1fc062c1ebe95306e915eb5d522151e7ca70f769e55d87",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "At his urging,",
+          "exact_native_cache_key": "d732e978ed1e6d66cc4cbe9d4155a1164cae4c8e.pkl",
+          "cache_input_text_sha256": "7a700eddce577f953b86755949f8a14c2afe546e88a8ce3d1c32e86c1c3bedfc",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "0411d4f68851cd1a",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        26112
+      ],
+      "unprocessed_array_sha256": "9fdc897fe8eb06c1498a20ac22f44c798f11b421bee63bf248722fb0ae21f93c"
+    },
+    {
+      "exact_native_cache_key": "65a392bab807fe8280603bde06bd02a103cf122e.pkl",
+      "pkl_sha256": "84786e773a9a9a43de75d7f32251a38ec42fdbac1e44a2619b5585c827c41903",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "parish officials removed the handle,",
+          "exact_native_cache_key": "65a392bab807fe8280603bde06bd02a103cf122e.pkl",
+          "cache_input_text_sha256": "9d80db264c13f9243d9117d87956ef6226c2eb839a76bea5e28e4831dc7c619e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "84786e773a9a9a43",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        49152
+      ],
+      "unprocessed_array_sha256": "8ce2a61cc23b402b8a204ba0ef45c834f5bcfbe50a72fd7494e0b0772ae1ec4c"
+    },
+    {
+      "exact_native_cache_key": "3ca251fc7ba373196aa4ae9a325c4e74f95609ef.pkl",
+      "pkl_sha256": "8690371fed137d86030c4de843160aefaf3bbbaa9d0b06cafd5f6253f635ad30",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "He later mapped the deaths.",
+          "exact_native_cache_key": "3ca251fc7ba373196aa4ae9a325c4e74f95609ef.pkl",
+          "cache_input_text_sha256": "f044f0185910930bf0743e8011fa682ecb39601553c7d2e15eed1d86e67ba0b2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        34304
+      ],
+      "unprocessed_array_sha256": "590f094b93edf4eec33bedfa827feade5571dd89879da7ef6f6a3c480a35fe97"
+    },
+    {
+      "exact_native_cache_key": "8daa1c085f9f78324dbc7e9a74484f6d6b468d23.pkl",
+      "pkl_sha256": "a80589d99bd567fd5a56a3f906663578513d81487728d2e0e12b32c9cda8d98e",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In 1855 Edmund Parkes, a professor of clinical medicine, interpreted the cluster on that map as a poison drifting through the air.",
+          "exact_native_cache_key": "8daa1c085f9f78324dbc7e9a74484f6d6b468d23.pkl",
+          "cache_input_text_sha256": "1a0d6daee3be6f308fd11a4d86f51c3e09b715ab0f5cb0e890cc4417924368a0",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        234496
+      ],
+      "unprocessed_array_sha256": "e74adf4b821dfefd59273c2b797de598074bd43b65eae1bffdacd5e48ea09b15"
+    },
+    {
+      "exact_native_cache_key": "d3ea399ec8b40f912b8750bd7faf6c07bf36b8c2.pkl",
+      "pkl_sha256": "cfe5568af8ea838cc90d1fb60309f31433b0705b4c2dbe19f5163d56e317afec",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In 1855 Edmund Parkes, a professor of clinical medicine,",
+          "exact_native_cache_key": "d3ea399ec8b40f912b8750bd7faf6c07bf36b8c2.pkl",
+          "cache_input_text_sha256": "4ca8f070bc8ab01bd0a7cbb27a40b62680f302341cf2c4a2777c529b2b887c8f",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "cfe5568af8ea838c",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        113664
+      ],
+      "unprocessed_array_sha256": "871fcdd5bcdfc3e68b8738936a66ecb4af6dca2acabcd0e9642dc4d81fa9f7fe"
+    },
+    {
+      "exact_native_cache_key": "0441fb398029ee9bbcf355e5f15c0d5d73b8ddb2.pkl",
+      "pkl_sha256": "caf8c872722e3b95b7324a2b5421b4a2aeab204ae56f9aa8d4ebd3b7dae9039f",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "interpreted the cluster on that map as a poison drifting through the air.",
+          "exact_native_cache_key": "0441fb398029ee9bbcf355e5f15c0d5d73b8ddb2.pkl",
+          "cache_input_text_sha256": "b9094cec55b0e80b3aaa4e3d54c66d077ccd9cbd7cc0a091b0b50c3eac562e64",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        },
+        {
+          "sentence": "S8",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "interpreted the cluster on that map as a poison drifting through the air.",
+          "exact_native_cache_key": "0441fb398029ee9bbcf355e5f15c0d5d73b8ddb2.pkl",
+          "cache_input_text_sha256": "b9094cec55b0e80b3aaa4e3d54c66d077ccd9cbd7cc0a091b0b50c3eac562e64",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "caf8c872722e3b95",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        103936
+      ],
+      "unprocessed_array_sha256": "959908b571d6b15b57f06eb5b967b91b2599e22e6eafa44f00ba369934dc14b1"
+    },
+    {
+      "exact_native_cache_key": "b804c1eff85888c5bc2ace1a7e683e2f214bc4c0.pkl",
+      "pkl_sha256": "9eedec1c33d5f9f6fdcf913759697832167f5ba6dfaebd57066e81a88993dffb",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In 1855 Edmund Parkes,",
+          "exact_native_cache_key": "b804c1eff85888c5bc2ace1a7e683e2f214bc4c0.pkl",
+          "cache_input_text_sha256": "665e726a6978aedebe3c1c55d3beadad5bdc795f99d9f0f74373f35bb40400bd",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "9eedec1c33d5f9f6",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        55296
+      ],
+      "unprocessed_array_sha256": "030c85321a8d47a6555cfd7e23ba4a8b810c4250ebe1f2534dfc6a286078ac9e"
+    },
+    {
+      "exact_native_cache_key": "b7421052a00e3b427ab88e42c3386291683a8efc.pkl",
+      "pkl_sha256": "ceaf2c5dea4d0918bdc1adf633dd6a0692b3a2ae435f5df48fe9e93ec45a49eb",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a professor of clinical medicine,",
+          "exact_native_cache_key": "b7421052a00e3b427ab88e42c3386291683a8efc.pkl",
+          "cache_input_text_sha256": "b4bb4aea913c75c5fd477618012df0b9167f9321deb88f12134083c373b3e0d4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "ceaf2c5dea4d0918",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        47616
+      ],
+      "unprocessed_array_sha256": "59858fa84b747a666df694385b48030c47680e5d4054307b420193ddc0140970"
+    },
+    {
+      "exact_native_cache_key": "1edbdb075b1b36e7475a3d004acedf8d4d8e8bbf.pkl",
+      "pkl_sha256": "8573dd9ba3a0a18b62c18e8a820c5bca7c2a53e2490dbd50d2fcd821c63e4f1d",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Yet a map could chart where people died, not what they drank.",
+          "exact_native_cache_key": "1edbdb075b1b36e7475a3d004acedf8d4d8e8bbf.pkl",
+          "cache_input_text_sha256": "c41564e6abe92537f4e12bc1b7c414b8c5b98c474b55fa081092c4dc66150666",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        87040
+      ],
+      "unprocessed_array_sha256": "c648b5d997a836594f7ef1f86a536b978dfc60f3c6da3c6411468b5bbefd976f"
+    },
+    {
+      "exact_native_cache_key": "0f1ecf9e4b54f487c6368b0e2d56ae0fbfc385ef.pkl",
+      "pkl_sha256": "a49379daba2a9fbaf7e46e378cd322dcb298af0e995ab225273a2be1c4f768e8",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Yet a map could chart where people died,",
+          "exact_native_cache_key": "0f1ecf9e4b54f487c6368b0e2d56ae0fbfc385ef.pkl",
+          "cache_input_text_sha256": "dfa568206ed8196bea1a1c86d028ca29d911e5d4a4be5f258df2eedf7155372e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "a49379daba2a9fba",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        52736
+      ],
+      "unprocessed_array_sha256": "1afab29d2110a1b8ccec53d312daa4dfa1a29e2b4c7d7747463bf7a54f68da11"
+    },
+    {
+      "exact_native_cache_key": "8f0a2a534d0ab3af4cbd9f2276e4a41ff3c62514.pkl",
+      "pkl_sha256": "7a1c93e80f3e4ef65c5c3850a2ef8bc4501cdfdf40253c4009978224b3c034d5",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "not what they drank.",
+          "exact_native_cache_key": "8f0a2a534d0ab3af4cbd9f2276e4a41ff3c62514.pkl",
+          "cache_input_text_sha256": "5e962025ede44a64f9bf3d97e4fa0a1d1236dd6bfb9a4795163e60e711c94a4a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "7a1c93e80f3e4ef6",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        30720
+      ],
+      "unprocessed_array_sha256": "df85ac55ac7f6adb1db47be3e44fe57f93978e6e3b6253283f761b89576ad59f"
+    },
+    {
+      "exact_native_cache_key": "1254ed9b6208c62a481420c75625842b952e21dd.pkl",
+      "pkl_sha256": "1e4ddeacf5fd61f21864a81ac0612b1f534dc935ce059a84d31c3096ada31235",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The crucial evidence, gathered in 1854, lay in exceptions.",
+          "exact_native_cache_key": "1254ed9b6208c62a481420c75625842b952e21dd.pkl",
+          "cache_input_text_sha256": "9049fc9a48b51150785aa758b1aef801a127fc1a58c8e4eea328e2ac59650cba",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        104960
+      ],
+      "unprocessed_array_sha256": "ec0be34b9db98dec30f3b9171861790c60d72ddb52a8f00e502db8a85aab9824"
+    },
+    {
+      "exact_native_cache_key": "3ad2d47976c20a79ddda83f2b637846b1b4ba2ab.pkl",
+      "pkl_sha256": "eccab27ee281798538127ce99861eb6dd29dbe906818a884d38179b833b78f55",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "The crucial evidence,",
+          "exact_native_cache_key": "3ad2d47976c20a79ddda83f2b637846b1b4ba2ab.pkl",
+          "cache_input_text_sha256": "7a70ca1290020bb74ecb019525bff45aaf3a1407bf7a6951e994f5396a309baa",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "eccab27ee2817985",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        33280
+      ],
+      "unprocessed_array_sha256": "adfdb4f5ecc6c63c9990dc2db9c0776ba42127a3e773b796eb944b70e238e353"
+    },
+    {
+      "exact_native_cache_key": "87f54aa8cd87ff05234e42062418da4bb8cc3e04.pkl",
+      "pkl_sha256": "1a6a30bca9d5fd7365911adb9867836425e006128f3a83bd3eb4060660bcf25c",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "gathered in 1854,",
+          "exact_native_cache_key": "87f54aa8cd87ff05234e42062418da4bb8cc3e04.pkl",
+          "cache_input_text_sha256": "6169eb2077cbca2cbd52604273c8d10004ca6d1bc89ce653cc5d32bb254937cb",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "1a6a30bca9d5fd73",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        45056
+      ],
+      "unprocessed_array_sha256": "f159e942ae224bb30fe13dd808d695850b621b819ecabd4f41fcfeb85fd1202a"
+    },
+    {
+      "exact_native_cache_key": "842b8488153fac543161d9f3ec642b10051c0632.pkl",
+      "pkl_sha256": "0efc2c9424fd097617ad1f796351e5a3b889ce0bde591f1e5be38e1d594d0162",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "lay in exceptions.",
+          "exact_native_cache_key": "842b8488153fac543161d9f3ec642b10051c0632.pkl",
+          "cache_input_text_sha256": "c08d156a7189d9a0e50c8a0e427e95177f56ed56af7a25f106d88408e5b40d7f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "0efc2c9424fd0976",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        30208
+      ],
+      "unprocessed_array_sha256": "8cf5cecd8dd51ae48082b130e19ef2e1226c38ce56c6222b59b53a2008f22f55"
+    },
+    {
+      "exact_native_cache_key": "b8aadb2f5ec8f69c92ddc117dbd872c04fbb8a13.pkl",
+      "pkl_sha256": "9523a41cff969013bf3c9346ffa10270cdd9614bb5b02d848b13d75c4458c440",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Amid the deaths in the surrounding streets, a workhouse with its own well lost a mere five of 535 inmates.",
+          "exact_native_cache_key": "b8aadb2f5ec8f69c92ddc117dbd872c04fbb8a13.pkl",
+          "cache_input_text_sha256": "141fbdf25b3cafa9a2083402c9dfb96a5494737ec5a3ea084aeb825627380538",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        190976
+      ],
+      "unprocessed_array_sha256": "efc4809a884d082212fe1db21fca049695a7c61492a7cb139ea367acc11add27"
+    },
+    {
+      "exact_native_cache_key": "ecfbeffaa28e20a307051e8a9a6b393e5536e966.pkl",
+      "pkl_sha256": "1733c2f307390d0a8ea8aa9eb5fbc7d9db4da694205683cfaef36e021917612e",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Amid the deaths in the surrounding streets,",
+          "exact_native_cache_key": "ecfbeffaa28e20a307051e8a9a6b393e5536e966.pkl",
+          "cache_input_text_sha256": "9c2689dc7d6f2a49fc1d2a938b156d3fe4d87f84f0c3a7ab801146a4bdcfb22f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        },
+        {
+          "sentence": "S11",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Amid the deaths in the surrounding streets,",
+          "exact_native_cache_key": "ecfbeffaa28e20a307051e8a9a6b393e5536e966.pkl",
+          "cache_input_text_sha256": "9c2689dc7d6f2a49fc1d2a938b156d3fe4d87f84f0c3a7ab801146a4bdcfb22f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "1733c2f307390d0a",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        51200
+      ],
+      "unprocessed_array_sha256": "2f89251ae295f0909225df247303a83337ef322b4691b3f59a9afd3358ea1704"
+    },
+    {
+      "exact_native_cache_key": "619a577ec704972d61fbce676eb17a837dd7ee74.pkl",
+      "pkl_sha256": "47f17026bb8792524b4a083e0c2707ba9dcf968c0552c13ea5b8da6a435d42ff",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "a workhouse with its own well lost a mere five of 535 inmates.",
+          "exact_native_cache_key": "619a577ec704972d61fbce676eb17a837dd7ee74.pkl",
+          "cache_input_text_sha256": "54d9e26e99c8c292948c61cc325c1ed6960aae8d94bfc3ab566bb8a533dc6a68",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        },
+        {
+          "sentence": "S11",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a workhouse with its own well lost a mere five of 535 inmates.",
+          "exact_native_cache_key": "619a577ec704972d61fbce676eb17a837dd7ee74.pkl",
+          "cache_input_text_sha256": "54d9e26e99c8c292948c61cc325c1ed6960aae8d94bfc3ab566bb8a533dc6a68",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "47f17026bb879252",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        128000
+      ],
+      "unprocessed_array_sha256": "d6329dfc6b6f7270757f0e1fc0a596a31b1c8d78199f1b9554658aa73c57b093"
+    },
+    {
+      "exact_native_cache_key": "1d89cded270e708220832746da39d41ceded167b.pkl",
+      "pkl_sha256": "036422c6b2955d6c3431c101d3dac4000635699b4ba97a15697f719f207cf0b5",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "More than 70 nearby brewery workers, with a beer allowance and their own well, escaped severe cholera.",
+          "exact_native_cache_key": "1d89cded270e708220832746da39d41ceded167b.pkl",
+          "cache_input_text_sha256": "94b6345be3d7a331848c37f72ef3fa71643e772dddd4cd0beab2615f7668215d",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        166912
+      ],
+      "unprocessed_array_sha256": "d43525e294687e35440fcce306d4d73664570d051d4ce0d8a65063db4db9ce1a"
+    },
+    {
+      "exact_native_cache_key": "6bba80d64adf07f64354ed8ade9a801b0957c089.pkl",
+      "pkl_sha256": "d1e6829db474475b846d2789b721ff04550b0fd2e040ac0b16b2c94cfd1afad9",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "More than 70 nearby brewery workers, with a beer allowance and their own well,",
+          "exact_native_cache_key": "6bba80d64adf07f64354ed8ade9a801b0957c089.pkl",
+          "cache_input_text_sha256": "ecf952c07fb6d81f68f19cb9ce857bfabe949f60dd5f634be6a2a2ba133b27fb",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "d1e6829db474475b",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        123392
+      ],
+      "unprocessed_array_sha256": "2d199ee6cc04d631d3e5c6e24b5762cb34bb859580c9e3944b97fa12ec62b88f"
+    },
+    {
+      "exact_native_cache_key": "84c25d0d054e9512f332eecc4a8af8b8b1727d4f.pkl",
+      "pkl_sha256": "2e6e81768ef9c798fecc25c7f475ca61b7d6182bd0bf8f788c606c891e872e2c",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "escaped severe cholera.",
+          "exact_native_cache_key": "84c25d0d054e9512f332eecc4a8af8b8b1727d4f.pkl",
+          "cache_input_text_sha256": "f9cfdb0e40a43ba694e1af5d0bd4360c7877fe442b4c149b01c996ec5d9e05b0",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": false
+        },
+        {
+          "sentence": "S12",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "escaped severe cholera.",
+          "exact_native_cache_key": "84c25d0d054e9512f332eecc4a8af8b8b1727d4f.pkl",
+          "cache_input_text_sha256": "f9cfdb0e40a43ba694e1af5d0bd4360c7877fe442b4c149b01c996ec5d9e05b0",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "2e6e81768ef9c798",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        35328
+      ],
+      "unprocessed_array_sha256": "cdd6dd999b9cd47cf08c1c03c84412cf31d902f437732d570f8768e7d73b3981"
+    },
+    {
+      "exact_native_cache_key": "d8b78c7e19d7ee6d547a3a58a1bf3343d120af5f.pkl",
+      "pkl_sha256": "c1371c192486f3f3bd3f878638ec9df1fd5fe832f67b043dd4f6fb2e99206ab6",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "More than 70 nearby brewery workers,",
+          "exact_native_cache_key": "d8b78c7e19d7ee6d547a3a58a1bf3343d120af5f.pkl",
+          "cache_input_text_sha256": "2f9efd152222312c1dff16f7fd5451968630ec00cd74d7d13fd235dda9e3fae3",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "c1371c192486f3f3",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        56320
+      ],
+      "unprocessed_array_sha256": "afe13310483ef38577f135da707c66d4d0f31f25d580a43ca1154396ca529a39"
+    },
+    {
+      "exact_native_cache_key": "9493f35a495f79481e3d952b7e2e4336748e3732.pkl",
+      "pkl_sha256": "3fd94c0aa97d112da9a39a8477445d68031acc68b25f050895a981b53ce52fa2",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "with a beer allowance and their own well,",
+          "exact_native_cache_key": "9493f35a495f79481e3d952b7e2e4336748e3732.pkl",
+          "cache_input_text_sha256": "f53990f88777ed4bd9241aaba2a1b3dddcbab5d2ac43ff97c44ab87acbff5acd",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "3fd94c0aa97d112d",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        50176
+      ],
+      "unprocessed_array_sha256": "9ce660206cefcc34d311b2ed0a63258083714e52870976121ce23b8e07cbe9a8"
+    },
+    {
+      "exact_native_cache_key": "5406af26359b2b4f07d4860bda072db0c581f7a3.pkl",
+      "pkl_sha256": "a57e5fa76a531faf4635a785d9f02a9684065befb39e73dc0948b471fffc6d52",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Conversely, a Hampstead widow who had not set foot in Soho for months had the pump's water carted to her daily.",
+          "exact_native_cache_key": "5406af26359b2b4f07d4860bda072db0c581f7a3.pkl",
+          "cache_input_text_sha256": "f088f3095f445415011b63a196e3887639057c69a867e05c5e422efe298ead42",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        175616
+      ],
+      "unprocessed_array_sha256": "ad7ac9fd009021839c42d720cb790ac2a390e5952792a4407dcce5398386dad6"
+    },
+    {
+      "exact_native_cache_key": "41a705adcca8255d5f4dc6a4c9315f8a7de44495.pkl",
+      "pkl_sha256": "56838244af30b0b7b7057e6480b5471088a464afa4b3376f7977cfb5d24f7470",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Conversely, a Hampstead widow who had not set foot in Soho for months",
+          "exact_native_cache_key": "41a705adcca8255d5f4dc6a4c9315f8a7de44495.pkl",
+          "cache_input_text_sha256": "08c57e35cf7642d1a83159da0e2edcffc559a7e66aac6f486d4660499047ad3d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "56838244af30b0b7",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        103424
+      ],
+      "unprocessed_array_sha256": "258e1b8d6e53d444c67ee42bffd82d79cac14c5f830718a9e097137ab8500099"
+    },
+    {
+      "exact_native_cache_key": "1edef0d117e022153aab5f842db606c28f60f307.pkl",
+      "pkl_sha256": "8d1a6d7345551fb78e24c192287c82f7c19f977882fd5fb17bc84a97a76f0176",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "had the pump's water carted to her daily.",
+          "exact_native_cache_key": "1edef0d117e022153aab5f842db606c28f60f307.pkl",
+          "cache_input_text_sha256": "f421d460f04fc0a26dde4a445aef69136023702dedaa394d8488dbe7437f4a1d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "8d1a6d7345551fb7",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        54272
+      ],
+      "unprocessed_array_sha256": "50911a675fca43819c84ab733a469784c21ff7db5681b249b96426b3dc7a43f8"
+    },
+    {
+      "exact_native_cache_key": "f384ebaedb5238d310d2e2c01f83f3a99a79edbb.pkl",
+      "pkl_sha256": "840c29112009a67f3c5475f8656cb08ebe739591d395067c13e9f3fafaa3c8d2",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Conversely,",
+          "exact_native_cache_key": "f384ebaedb5238d310d2e2c01f83f3a99a79edbb.pkl",
+          "cache_input_text_sha256": "5ec2602ed7af81c94233b13c3d5a579fb66ce23eeac2c38aec54cd0cc26d03b1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "840c29112009a67f",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        23040
+      ],
+      "unprocessed_array_sha256": "04f40774b88615a0e8e405b9828f1786d2d00f3a533e1d674b6b4c7a368e6697"
+    },
+    {
+      "exact_native_cache_key": "b833e358693a9e1829f282da96a461e9e4008386.pkl",
+      "pkl_sha256": "7023a3e6afc8d629577f899254e6b7e00528ee5a1b404afa6cbb54190c1c0d06",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a Hampstead widow who had not set foot in Soho for months had the pump's water carted to her daily.",
+          "exact_native_cache_key": "b833e358693a9e1829f282da96a461e9e4008386.pkl",
+          "cache_input_text_sha256": "b262a3a60ba8462d2945a7a1dba15ad54eebdeeaa656d0f82b93e993bd79e80f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "7023a3e6afc8d629",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        154624
+      ],
+      "unprocessed_array_sha256": "7250ce837e2d020792e73fefde3dc55c95264b5efe0624fa3ef1deb56b3e4b95"
+    },
+    {
+      "exact_native_cache_key": "2426ab024496390cfaf05f8ef3b47e7272564f09.pkl",
+      "pkl_sha256": "004cc54b0b69c6784f28baf84c1723f3c3567d86f6c3e29f1d90612b94e3a852",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "She died, as did a visiting niece who drank it.",
+          "exact_native_cache_key": "2426ab024496390cfaf05f8ef3b47e7272564f09.pkl",
+          "cache_input_text_sha256": "7412d71cdc48ce3e25cbeeb5c5273dd3db0f74d0ff8b69dcc9367a6150777b9b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        65536
+      ],
+      "unprocessed_array_sha256": "534a5e1de851ded68e88646c1785059e05012624d9ae59dcd8403b7fff815de5"
+    },
+    {
+      "exact_native_cache_key": "5e46cb840076b27e1d41cce936537ffe04deabfd.pkl",
+      "pkl_sha256": "e4693e5291d9a93078f9e20dc45be2036f66c22a66455db1225d8931f2592c10",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "She died,",
+          "exact_native_cache_key": "5e46cb840076b27e1d41cce936537ffe04deabfd.pkl",
+          "cache_input_text_sha256": "cc993975a6ded3fef54803e94601db90fbef38a65c5275cc0b68c97986e4dd4d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "e4693e5291d9a930",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        22016
+      ],
+      "unprocessed_array_sha256": "8fc788b3e5f58a315d7c6a7fcfba54e22c98c5fffcc6613d5c871f56d04f594b"
+    },
+    {
+      "exact_native_cache_key": "00a56dbeb3246d766d1f046724dedf4ed9e5d8ef.pkl",
+      "pkl_sha256": "c4fd98d32a12254fa7eceebafd2cc4ff2f6cf42d5f7ebeeb88811e25100ec264",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "as did a visiting niece who drank it.",
+          "exact_native_cache_key": "00a56dbeb3246d766d1f046724dedf4ed9e5d8ef.pkl",
+          "cache_input_text_sha256": "1352534b7165a93190dcabfd3c0bfb10044cea992fa2cd294e6ffbfb29343f8d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "c4fd98d32a12254f",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        52224
+      ],
+      "unprocessed_array_sha256": "aad3d60eff72529e541ae48a807ebec0d4b3d2ebb83d01225f1b4e7a6b6acf0f"
+    },
+    {
+      "exact_native_cache_key": "7a72503f2698000b862fd80e705f00f1cb7e4b9f.pkl",
+      "pkl_sha256": "725b0ed4db45c2684de2083345a3a9075c16237e5ef0ce1c3f46cb47f1683489",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Hampstead then had no cholera.",
+          "exact_native_cache_key": "7a72503f2698000b862fd80e705f00f1cb7e4b9f.pkl",
+          "cache_input_text_sha256": "286f907472cb7233c90b62a8aa3ca98ef3b00fd4bde42ac25b3bedbe7df48862",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        45056
+      ],
+      "unprocessed_array_sha256": "70e4807aea91871ac61965a90f1f912be2c86bba83f98f0ebd181d9a2136deb5"
+    },
+    {
+      "exact_native_cache_key": "258f27ca59f701b93245584c610a1be7264931d3.pkl",
+      "pkl_sha256": "2e26775accb063d116afc9a49a96de78e734d206e408664c6353f375fb98ff95",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S16",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In 1855 a government inquiry declined to condemn the pump, contending its water had at most absorbed airborne poison.",
+          "exact_native_cache_key": "258f27ca59f701b93245584c610a1be7264931d3.pkl",
+          "cache_input_text_sha256": "e35fa335f7479138ec5cf01fd9827b44c91bf7c268706e0d70e65170fb6353e3",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        225792
+      ],
+      "unprocessed_array_sha256": "0b9c6763c6eecc24d2553c1ba5c555e284fe0881ead87d2a6a6705929cd9efd7"
+    },
+    {
+      "exact_native_cache_key": "1fca3a78b6db1cee99b11de7b3724030188020fd.pkl",
+      "pkl_sha256": "2e8733996b8da3a9c10cc148a0cdc551d3384e7f321428394a9cbbe073d3d08d",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S16",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In 1855 a government inquiry declined to condemn the pump,",
+          "exact_native_cache_key": "1fca3a78b6db1cee99b11de7b3724030188020fd.pkl",
+          "cache_input_text_sha256": "1bfa57cfe415a86ba5b47a91fdb291d113a4b8b03063e805264e3f2bce1f15f8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        },
+        {
+          "sentence": "S16",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In 1855 a government inquiry declined to condemn the pump,",
+          "exact_native_cache_key": "1fca3a78b6db1cee99b11de7b3724030188020fd.pkl",
+          "cache_input_text_sha256": "1bfa57cfe415a86ba5b47a91fdb291d113a4b8b03063e805264e3f2bce1f15f8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "2e8733996b8da3a9",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        116224
+      ],
+      "unprocessed_array_sha256": "f1ceb479b3bf9b8f292c8903963d0f4e6bf29528ba274dda80193a5a6d97f65e"
+    },
+    {
+      "exact_native_cache_key": "b23be5ac2178798b886dc07d28eb9e42d8565ff4.pkl",
+      "pkl_sha256": "9d1dc6bfaba609fec3915c88d042698abb762c01104059c8e0a85039a826f084",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S16",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "contending its water had at most absorbed airborne poison.",
+          "exact_native_cache_key": "b23be5ac2178798b886dc07d28eb9e42d8565ff4.pkl",
+          "cache_input_text_sha256": "ca0ea630176ebffbd4bb7d0ea7869df55a185b87010f9ddc7d2593d182172400",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        },
+        {
+          "sentence": "S16",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "contending its water had at most absorbed airborne poison.",
+          "exact_native_cache_key": "b23be5ac2178798b886dc07d28eb9e42d8565ff4.pkl",
+          "cache_input_text_sha256": "ca0ea630176ebffbd4bb7d0ea7869df55a185b87010f9ddc7d2593d182172400",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "9d1dc6bfaba609fe",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        86528
+      ],
+      "unprocessed_array_sha256": "72291655adc9df64deeffde363a4b5caa29c553a2d5802a8a02be79660a893cf"
+    },
+    {
+      "exact_native_cache_key": "65ef48c8f80080fbeb40e7daf1a37af2d15ca0e7.pkl",
+      "pkl_sha256": "2c5abc9f7c6536917979eaeb433ed1db0aa401a016f541f69891bc2d6098e28f",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Meanwhile, the sceptical curate Henry Whitehead set out to refute Snow but found that those who drank from the pump were far more likely to succumb to the disease than others, vindicating him.",
+          "exact_native_cache_key": "65ef48c8f80080fbeb40e7daf1a37af2d15ca0e7.pkl",
+          "cache_input_text_sha256": "49dda56c925c769f0a45b017515e17e44d24a6a9d1ee7b02d2f022e60f582867",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        291840
+      ],
+      "unprocessed_array_sha256": "2b126d4bd28d9047208d652e8d5f87634d39ff6cfab57769c0fcbe4bf52c394a"
+    },
+    {
+      "exact_native_cache_key": "9720f882c1c23d44707be636beb785e4b5add7ba.pkl",
+      "pkl_sha256": "2a2972dd217ad05bf0792a9b1dc4216b2f0be9ae7e6c1b99bbbc4a2df0d3cb42",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Meanwhile, the sceptical curate",
+          "exact_native_cache_key": "9720f882c1c23d44707be636beb785e4b5add7ba.pkl",
+          "cache_input_text_sha256": "b0a0bf85cf234703d0e2c2721af4a65a55b3b78d011bc224cccb60e31de68615",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "2a2972dd217ad05b",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        45568
+      ],
+      "unprocessed_array_sha256": "2d5dd07ab60286654c9fcd8d686ed0f6e11acf50f86b15a168c58b1d18eca7c3"
+    },
+    {
+      "exact_native_cache_key": "532793de3d9a998484c3bd5d8f3092a6df48dc5d.pkl",
+      "pkl_sha256": "8fee4fd6a7bbd6eaa3d616db355350f36c70341cf2334b52e5c9093c36fc050c",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Henry Whitehead set out to refute Snow but found",
+          "exact_native_cache_key": "532793de3d9a998484c3bd5d8f3092a6df48dc5d.pkl",
+          "cache_input_text_sha256": "73166cb31997800d7fad5c795ca1246d3c854736305a655808dc2915c9f84aad",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "8fee4fd6a7bbd6ea",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        71168
+      ],
+      "unprocessed_array_sha256": "66ad553ec1ed78dc0a37fdb64a259d0435ff998c3829ec8c862f4f75f37bdec6"
+    },
+    {
+      "exact_native_cache_key": "0ec79b0365638b958c28f41cb0f028ef015ea7e4.pkl",
+      "pkl_sha256": "24e878f9cf3b165a6a2e91114fe04b152675edc15ef0fbab62494f9492f97061",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "that those who drank from the pump were far more likely to succumb to the disease than others,",
+          "exact_native_cache_key": "0ec79b0365638b958c28f41cb0f028ef015ea7e4.pkl",
+          "cache_input_text_sha256": "be43684d6e5f5deace783db2f45e8b4144c158aa842f0e0897399cb279350838",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "24e878f9cf3b165a",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        126976
+      ],
+      "unprocessed_array_sha256": "f32ee5845a78e005a17221142b844a0f22184edd5406a77cff74b3bcf2b2b365"
+    },
+    {
+      "exact_native_cache_key": "d461c557b0744ab3eb59ea690c5ad29bf90c5f14.pkl",
+      "pkl_sha256": "9ef3483c5abf1ce4978b2765fcbcd57e7cbe421e18ac803d94c2b9b450a30028",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": 4,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "vindicating him.",
+          "exact_native_cache_key": "d461c557b0744ab3eb59ea690c5ad29bf90c5f14.pkl",
+          "cache_input_text_sha256": "0f1c841df344fe6c4df9684b61e4df823175642164940e872e9b459c098fe1b9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        },
+        {
+          "sentence": "S17",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "vindicating him.",
+          "exact_native_cache_key": "d461c557b0744ab3eb59ea690c5ad29bf90c5f14.pkl",
+          "cache_input_text_sha256": "0f1c841df344fe6c4df9684b61e4df823175642164940e872e9b459c098fe1b9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "9ef3483c5abf1ce4",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        29184
+      ],
+      "unprocessed_array_sha256": "e772eae18e20541a3ccb1566231f44e121c993130c61c51b220c6b4ba34ff251"
+    },
+    {
+      "exact_native_cache_key": "f54199d32a89cb853bfef2c12e9c3fbbe6dded48.pkl",
+      "pkl_sha256": "6aa4916d405212ea3098fa926986f3764437837b98ecd8e16b673aac26c5ec57",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Meanwhile,",
+          "exact_native_cache_key": "f54199d32a89cb853bfef2c12e9c3fbbe6dded48.pkl",
+          "cache_input_text_sha256": "01d0eef70abc55d087bd6273044b2ecd5e2a33944d7d6fe72de53284a7acaecf",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "6aa4916d405212ea",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        20992
+      ],
+      "unprocessed_array_sha256": "74689246e7ced264de82f7c2e3def2be6ada9c9bbf45ee343ba0ff881a08515c"
+    },
+    {
+      "exact_native_cache_key": "22d4b70ea071fcf02b8be5f07d88714a8ac3c7ad.pkl",
+      "pkl_sha256": "b01a48777bb63e1ac55651faf95f1db9d2906fa5d677e2563b14401e8c9f783f",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "the sceptical curate Henry Whitehead set out to refute Snow but found that those who drank from the pump were far more likely to succumb to the disease than others,",
+          "exact_native_cache_key": "22d4b70ea071fcf02b8be5f07d88714a8ac3c7ad.pkl",
+          "cache_input_text_sha256": "e08fee84f39bfe4ba48cec656f179c8487dd0756f7cb1dfdbc83aea9d72f6b09",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "b01a48777bb63e1a",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        238592
+      ],
+      "unprocessed_array_sha256": "aef41c51949a821465411088873fb1e002d4f16a9cc9521229ee6288e2efafe5"
+    }
+  ],
+  "missing_reference_key_count": 47,
+  "observed_missing_keys_covered": [],
+  "new_private_cache_names": [
+    "00a56dbeb3246d766d1f046724dedf4ed9e5d8ef.pkl",
+    "00a56dbeb3246d766d1f046724dedf4ed9e5d8ef.pkl.单线程",
+    "0357e99981d48719debe3b2b3468338f3940f27c.pkl",
+    "0357e99981d48719debe3b2b3468338f3940f27c.pkl.单线程",
+    "0441fb398029ee9bbcf355e5f15c0d5d73b8ddb2.pkl",
+    "0441fb398029ee9bbcf355e5f15c0d5d73b8ddb2.pkl.单线程",
+    "06e9f3c7d5ee4ad1ff1f1521f2befc16e641503a.pkl",
+    "06e9f3c7d5ee4ad1ff1f1521f2befc16e641503a.pkl.单线程",
+    "0c4a45dd86e8d391d665cd4702f364266faa8ead.pkl",
+    "0c4a45dd86e8d391d665cd4702f364266faa8ead.pkl.单线程",
+    "0ec79b0365638b958c28f41cb0f028ef015ea7e4.pkl",
+    "0ec79b0365638b958c28f41cb0f028ef015ea7e4.pkl.单线程",
+    "0f1ecf9e4b54f487c6368b0e2d56ae0fbfc385ef.pkl",
+    "0f1ecf9e4b54f487c6368b0e2d56ae0fbfc385ef.pkl.单线程",
+    "10fa949ce9f781ca54c2e0d8b992fb010067242f.pkl",
+    "10fa949ce9f781ca54c2e0d8b992fb010067242f.pkl.单线程",
+    "14d1df9e5190bf1bdcfd17c209a17872b59c7968.pkl",
+    "14d1df9e5190bf1bdcfd17c209a17872b59c7968.pkl.单线程",
+    "1ad6eb235c551f941dd77cfc8bcef97fc190d1e2.pkl",
+    "1ad6eb235c551f941dd77cfc8bcef97fc190d1e2.pkl.单线程",
+    "1b3c3a30c3fffb08dafc5ad7d25af629aacacdc9.pkl",
+    "1b3c3a30c3fffb08dafc5ad7d25af629aacacdc9.pkl.单线程",
+    "1edef0d117e022153aab5f842db606c28f60f307.pkl",
+    "1edef0d117e022153aab5f842db606c28f60f307.pkl.单线程",
+    "1fca3a78b6db1cee99b11de7b3724030188020fd.pkl",
+    "1fca3a78b6db1cee99b11de7b3724030188020fd.pkl.单线程",
+    "21afcf1464bd40a8be6e76d200be23ba8888fe3e.pkl",
+    "21afcf1464bd40a8be6e76d200be23ba8888fe3e.pkl.单线程",
+    "22d4b70ea071fcf02b8be5f07d88714a8ac3c7ad.pkl",
+    "22d4b70ea071fcf02b8be5f07d88714a8ac3c7ad.pkl.单线程",
+    "2562c0940eb0288122558d32d5e8eec49063ddfb.pkl",
+    "2562c0940eb0288122558d32d5e8eec49063ddfb.pkl.单线程",
+    "326a0a680df8fd28836ecac89a8c4c00d3ea5335.pkl",
+    "326a0a680df8fd28836ecac89a8c4c00d3ea5335.pkl.单线程",
+    "3ad2d47976c20a79ddda83f2b637846b1b4ba2ab.pkl",
+    "3ad2d47976c20a79ddda83f2b637846b1b4ba2ab.pkl.单线程",
+    "41a705adcca8255d5f4dc6a4c9315f8a7de44495.pkl",
+    "41a705adcca8255d5f4dc6a4c9315f8a7de44495.pkl.单线程",
+    "532793de3d9a998484c3bd5d8f3092a6df48dc5d.pkl",
+    "532793de3d9a998484c3bd5d8f3092a6df48dc5d.pkl.单线程",
+    "5e46cb840076b27e1d41cce936537ffe04deabfd.pkl",
+    "5e46cb840076b27e1d41cce936537ffe04deabfd.pkl.单线程",
+    "5eb70e56616353a5d9de1bbdf96be225efa6f6d9.pkl",
+    "5eb70e56616353a5d9de1bbdf96be225efa6f6d9.pkl.单线程",
+    "619a577ec704972d61fbce676eb17a837dd7ee74.pkl",
+    "619a577ec704972d61fbce676eb17a837dd7ee74.pkl.单线程",
+    "65a392bab807fe8280603bde06bd02a103cf122e.pkl",
+    "65a392bab807fe8280603bde06bd02a103cf122e.pkl.单线程",
+    "6bba80d64adf07f64354ed8ade9a801b0957c089.pkl",
+    "6bba80d64adf07f64354ed8ade9a801b0957c089.pkl.单线程",
+    "842b8488153fac543161d9f3ec642b10051c0632.pkl",
+    "842b8488153fac543161d9f3ec642b10051c0632.pkl.单线程",
+    "84c25d0d054e9512f332eecc4a8af8b8b1727d4f.pkl",
+    "84c25d0d054e9512f332eecc4a8af8b8b1727d4f.pkl.单线程",
+    "860edcd98565fb1abaf6fa8cdc072d1363182f79.pkl",
+    "860edcd98565fb1abaf6fa8cdc072d1363182f79.pkl.单线程",
+    "87f54aa8cd87ff05234e42062418da4bb8cc3e04.pkl",
+    "87f54aa8cd87ff05234e42062418da4bb8cc3e04.pkl.单线程",
+    "8f0a2a534d0ab3af4cbd9f2276e4a41ff3c62514.pkl",
+    "8f0a2a534d0ab3af4cbd9f2276e4a41ff3c62514.pkl.单线程",
+    "9493f35a495f79481e3d952b7e2e4336748e3732.pkl",
+    "9493f35a495f79481e3d952b7e2e4336748e3732.pkl.单线程",
+    "9720f882c1c23d44707be636beb785e4b5add7ba.pkl",
+    "9720f882c1c23d44707be636beb785e4b5add7ba.pkl.单线程",
+    "9ba9b22ceb810b220905f19faa29c23b7e0c7042.pkl",
+    "9ba9b22ceb810b220905f19faa29c23b7e0c7042.pkl.单线程",
+    "b23be5ac2178798b886dc07d28eb9e42d8565ff4.pkl",
+    "b23be5ac2178798b886dc07d28eb9e42d8565ff4.pkl.单线程",
+    "b7421052a00e3b427ab88e42c3386291683a8efc.pkl",
+    "b7421052a00e3b427ab88e42c3386291683a8efc.pkl.单线程",
+    "b804c1eff85888c5bc2ace1a7e683e2f214bc4c0.pkl",
+    "b804c1eff85888c5bc2ace1a7e683e2f214bc4c0.pkl.单线程",
+    "b833e358693a9e1829f282da96a461e9e4008386.pkl",
+    "b833e358693a9e1829f282da96a461e9e4008386.pkl.单线程",
+    "d256fc2d26c0d0408fddcc9e4b85c549b8c065f7.pkl",
+    "d256fc2d26c0d0408fddcc9e4b85c549b8c065f7.pkl.单线程",
+    "d3ea399ec8b40f912b8750bd7faf6c07bf36b8c2.pkl",
+    "d3ea399ec8b40f912b8750bd7faf6c07bf36b8c2.pkl.单线程",
+    "d461c557b0744ab3eb59ea690c5ad29bf90c5f14.pkl",
+    "d461c557b0744ab3eb59ea690c5ad29bf90c5f14.pkl.单线程",
+    "d732e978ed1e6d66cc4cbe9d4155a1164cae4c8e.pkl",
+    "d732e978ed1e6d66cc4cbe9d4155a1164cae4c8e.pkl.单线程",
+    "d8b78c7e19d7ee6d547a3a58a1bf3343d120af5f.pkl",
+    "d8b78c7e19d7ee6d547a3a58a1bf3343d120af5f.pkl.单线程",
+    "dbd1e41b60f85ed1459464350de267470ad6b90e.pkl",
+    "dbd1e41b60f85ed1459464350de267470ad6b90e.pkl.单线程",
+    "ecfbeffaa28e20a307051e8a9a6b393e5536e966.pkl",
+    "ecfbeffaa28e20a307051e8a9a6b393e5536e966.pkl.单线程",
+    "f1893d5f426f6d9e315f16fb171d7584f463a4aa.pkl",
+    "f1893d5f426f6d9e315f16fb171d7584f463a4aa.pkl.单线程",
+    "f384ebaedb5238d310d2e2c01f83f3a99a79edbb.pkl",
+    "f384ebaedb5238d310d2e2c01f83f3a99a79edbb.pkl.单线程",
+    "f54199d32a89cb853bfef2c12e9c3fbbe6dded48.pkl",
+    "f54199d32a89cb853bfef2c12e9c3fbbe6dded48.pkl.单线程"
+  ],
+  "native_single_thread_marker_verified": true,
+  "single_thread_sessions": [
+    {
+      "intra_op_num_threads": 1,
+      "inter_op_num_threads": 1
+    },
+    {
+      "intra_op_num_threads": 1,
+      "inter_op_num_threads": 1
+    }
+  ],
+  "models_sha256": {
+    "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+    "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+    "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+  },
+  "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+  "existing_private_cache_count": 11514,
+  "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+  "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+  "existing_private_cache_bytes_unchanged": true,
+  "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+  "public_repository_cache_unchanged": true,
+  "producer_pcm_existed_before": false,
+  "producer_pcm_sha256_before": null,
+  "producer_pcm_sha256_after": null,
+  "accepted_aac_adts_sha256_before": "8ff0a7e9a38270bca8557e5a42422ef1287f640922d372c9b001bcb85cbf1b22",
+  "accepted_aac_adts_sha256_after": "8ff0a7e9a38270bca8557e5a42422ef1287f640922d372c9b001bcb85cbf1b22",
+  "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+  "private_cache_exported": false
+}
