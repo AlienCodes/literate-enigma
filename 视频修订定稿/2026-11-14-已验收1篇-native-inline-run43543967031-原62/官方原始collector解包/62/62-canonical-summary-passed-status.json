@@ -1,0 +1,3872 @@
+{
+  "article": "62",
+  "passed": true,
+  "stage": "final4K-passed",
+  "original_audit_and_quality_thresholds_unchanged": true,
+  "original_maker_unchanged": true,
+  "core_repairs": [
+    {
+      "target": "视频/工具/草稿声音.sh",
+      "file": "files/视频/工具/草稿声音.sh",
+      "original_sha256": "0ce3277812cf16ed30438509b6dc97db0c26725db4c5db5d9b058c3ef6531aa2",
+      "patched_sha256": "957d7eb1598698ea33ff77d83379256ecae258d84d588753d561a902284be439",
+      "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+    },
+    {
+      "target": "视频/工具/句内响度.py",
+      "file": "files/视频/工具/句内响度.py",
+      "original_sha256": "58735b7173a3c03efa61fb300b4aed4039c164fa970e0593a40bae2a3f3cbd27",
+      "patched_sha256": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea",
+      "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+    },
+    {
+      "target": "视频/工具/独立复核/synth.py",
+      "file": "files/视频/工具/独立复核/synth.py",
+      "original_sha256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+      "patched_sha256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+      "repair_scope": "validated unprocessed raw-mother reference input only; independent transforms/audit/thresholds retained"
+    }
+  ],
+  "strict_production_cache": true,
+  "pdf_requested": false,
+  "check_summaries": {
+    "approved-illustration-resource.log": [],
+    "certified-core-original-stamp-verification.log": [],
+    "original-restored-stamp.log": [],
+    "canonical-module-copy.log": [],
+    "canonical-draft-00.log": [
+      "第62篇 做完（359 秒）：修了 1 处、疑点 24 处",
+      "① 文本：通过，自动修 1 处",
+      "② 声音：62 词尾辅音核对 问题数 0；62 纯人声核对（配音指纹 68b79d47f327）问题数 0；问题数 0；62 句间停顿核对 问题数 0；问题数 0",
+      "③ 出片前核查：通过",
+      "⑤ 出片后核查：全部通过",
+      "⑥ 已拷 视频/视频/草稿1080p/62_1080p.mp4（--不推）"
+    ],
+    "canonical-final4K-00.log": [
+      "第62篇 用户定稿原话：有"
+    ],
+    "original-stamp-after-production.log": []
+  },
+  "actual_native_core_certification": {
+    "run_id": 43535822030,
+    "job_id": 132264443476,
+    "commit": "395e8da264fafa2453a42ee70a3f7aed8303a769",
+    "actual_full_quickcheck_exit": 0,
+    "actual_full_quickcheck_seconds": 478.16,
+    "artifact_id": 14089812323,
+    "artifact_zip_sha256": "5e396c84e4a6fc7c6cc737ceb8648d7f15f397e9551806e032c93db8ab0963b8",
+    "full_original_quickcheck_log_sha256": "dbe7f6e08d2b7c3a5f9a2f925bb75a662aed725c780e1bc6714706807552a294",
+    "article_audio_or_video_passed_not_implied": true
+  },
+  "actual_native_fastcheck_stamp": {
+    "target": "视频/工具/新管/快测通过.json",
+    "file": "files/视频/工具/新管/快测通过.json",
+    "sha256": "6ebc7aa41f79f77258fa333b665af258e007daa36a4ea290de972cd3da7b42f2",
+    "origin": "actual unmodified original full quickcheck, native run43535822030"
+  },
+  "reviewed_regression_resource": {
+    "target": "视频/工具/新管/回归基准_27.json",
+    "file": "files/视频/工具/新管/回归基准_27.json",
+    "sha256": "b8ddb4656ae27cbfc7ec8e3b99511983b4e568997bd4ad4ee33c364f3926ae94",
+    "origin": "pre-existing root-reviewed 67-screen data; original voice/segment MD5 unchanged"
+  },
+  "core_repair_manifest_sha256": "1b1558108d15603e5711e200135651d6c7700a583d8bcf53ad8753683ed05a5e",
+  "reviewed_gain_preservation_mode": true,
+  "real_restored_stamp_validated": true,
+  "reviewed_cross_article_context": {
+    "provided": true,
+    "manifest_sha256": "eddfbdceea4e25f2398a2198f94d9852f1e30e35b35c4075c5a5ff0c8e32c096",
+    "files_sha256": {
+      "视频/脚本/01.json": "2be2f80a69af28703992204ac95f987c745362c326e62ad81b3cd8e0e0735d3a",
+      "新版定稿/01-the-robber-who-thought-lemon-juice-made-him-invisible.md": "572054065b5bb65446bf8939a21c789c1e9c7664d82da5117c43efdded894351",
+      "视频/脚本/02.json": "0403368c77fd3e0f91e1ee3780e1c7c147894ad13c16b5f14707d700a8f717c8",
+      "新版定稿/02-the-truth-about-one-marshmallow.md": "91b92505aad03f963861bec39e96f0a472c126d1d57c9fc538676c32f65e545c",
+      "视频/脚本/03.json": "527f3bf4a11843f4d606188dabc6ebce6830da3fb454a49c782e3a595cb47407",
+      "新版定稿/03-the-doctor-who-drank-bacteria-to-win-an-argument.md": "6dfb56504882e24854a3584fd740e7f6601e3f2532818aee3a56d5330d317aa3",
+      "视频/脚本/04.json": "93cc1ff58d65ebe43a65ecb2fb2dbd2da262d80877c05740bbdf4eab4eaca1e8",
+      "新版定稿/04-the-brain-that-learned-london.md": "a8ccb31ffff50aaae77de4b83de1847fafae1d585981cf960c5880c409f6cfc3",
+      "视频/脚本/05.json": "2282acbfa4b82825f93261ec6c18359eb47fd3f7c639319ac5058d126643e136",
+      "新版定稿/05-the-fingerprint-in-the-blood.md": "612deac4ed066489e04e214ca969f8f27dda05856e0ef0ed2e540e7a4a52ae34",
+      "视频/脚本/06.json": "2cbf1d6cd6e66a59285298ea830f5ef914590b64286d40b2ae5f3168aa27a2e9",
+      "新版定稿/06-the-horse-that-could-count.md": "7fd21ba491c7596c53c486f2bb0b0f2f6da8e67bac75461a4649a7caff822f74",
+      "视频/脚本/07.json": "842e44e5aa19fddcfa239cb6530c5152341cd86e11db959543d02d8670ca13e8",
+      "新版定稿/07-the-octopus-that-escaped.md": "b8544281bb2ada88fce9d1082cbc30233dcb63ee3e9c2bbefafc22cb28b8cb39",
+      "视频/脚本/08.json": "254832e09f12759d950384dd9f31f671ad5a3bc1590b7466065dd3ef5fe4b8d5",
+      "新版定稿/08-the-doctor-who-solved-the-cholera-mystery.md": "0b2bfa68070ce585a452f6b7034d03c3683e710dcabec5e86d7b221950dc7bab",
+      "视频/脚本/09.json": "fa3e429351d629de188c184d04e9986200e16e80606fcbec82332b6433301dae",
+      "新版定稿/09-the-great-emu-war.md": "af5c3e844bad15f94bfc43aeed6d7417c4bfae85f026b194da667a7a3bdb6196",
+      "视频/脚本/10.json": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
+      "新版定稿/10-the-stolen-smile.md": "ff63cf94e4d2c835e2e2f1ffd3e6c5642f0916f0b13c012f1f13c3dff716d47a",
+      "视频/脚本/11.json": "665cbb80cc70b700ecc0cc5813209fd100ad4fa8f0eead3929b9e53778d9d07f",
+      "新版定稿/11-move-37.md": "7e0b49b346c1fa3ab994a11a2301167c0d6a1bb00916508bdc0b1acf71e68053",
+      "视频/脚本/12.json": "e3bfbcce6f1a8e14cfe451d656574353321e297c90c62f5a7b422f37478311d5",
+      "新版定稿/12-the-79-days-of-new-coke.md": "5a23c1e0c81318527bcbf27573487d1845c5318905a2b1e020cc6e2eaf5d643f",
+      "视频/脚本/13.json": "3687b6c42a6d524d0d7e40a47ed02c37b18abe8d524db4f5914abad52019a63c",
+      "新版定稿/13-eleven-days-without-sleep.md": "72b842de127132e386e9e52a1719ec96765e94958f56687987f53e2801c69704",
+      "视频/脚本/14.json": "17141351875ddb8f0e308602c0b6ab85cbf5126a4d0118978c25c869db769fee",
+      "新版定稿/14-the-fungus-that-turns-ants-into-zombies.md": "e114c9e1783c80a2ffdb60af05e824f93a8ea8725905cb733560abe1c0ad01a8",
+      "视频/脚本/15.json": "0934aa067f19814028c398b0c70a400bb09e354f744bde4000742950d77f441e",
+      "新版定稿/15-the-myth-of-the-unsinkable.md": "68e236868c4b466928ff2a60358250b9592dfe9287b66561b1e5a80b4d14de4f",
+      "视频/脚本/16.json": "d25aa07f3fac316c26c2ae1006d3efa7eb82a396b66150432b50239c1628396d",
+      "新版定稿/16-the-bread-made-from-air.md": "4da63148111213f6d77451b0eb4193893e6fc2fc170400bc39ce5f5ffcaa0b20",
+      "视频/脚本/17.json": "2e9971ea5ce7857e119226fe95def06e6eb9c3ef9823d8e8c4f3456f46a3bbb0",
+      "新版定稿/17-the-curse-of-the-pharaoh.md": "a2e8d92f9136e1b22fcc0799f9a4d281092f0e547cc68242e090241d7b09e222",
+      "视频/脚本/18.json": "8cffbad6f0b8451e46ad1a65d5f629c450ceff2c771218445770c8cbfd77ebca",
+      "新版定稿/18-the-mould-that-changed-the-world.md": "ef41cea03f471fe3b9a53939c843e450da3325eb711f6414e108ae92a7518dd8",
+      "视频/脚本/19.json": "cc3c5eea0f7d9ec0712b2e58adba7e5ef8b61d6518a322f9b25a12fcc45282fb",
+      "新版定稿/19-tulip-mania.md": "3882d487383b759c31dda4785966091c362960cd873a5d83c530d08d52e2e97c",
+      "视频/脚本/20.json": "cc5ed6d7be8767e5e7e9b098e8f3836821c0b3f51c17581b2746722da1cf3001",
+      "新版定稿/20-the-5000-year-old-murder-in-the-ice.md": "8d55638070787f7ff5432c197292af1188c463a8b018e01bdefc32999b888e95",
+      "视频/脚本/21.json": "61c1569a26d7569ee0f586178be6b307b1c394c0a30c3cb02541c910038b0589",
+      "新版定稿/21-the-man-who-sold-the-eiffel-tower-twice.md": "e8e966b70f579235d696ba11fb01d3b2cae3fa26efb9071bbea95071be259e1f",
+      "视频/脚本/22.json": "e3027a42c532fee9935afcecdd0542713cbb907183802c2345b9472f93b75f59",
+      "新版定稿/22-the-building-that-melted-a-car.md": "49ae09483bc80bbc40a71551cd98aebec355d96d9ff7b2bcdea59a06fe599267",
+      "视频/脚本/23.json": "c4574a79fd3a58577a1402ce095ea9e4a0ea1f98883ce63e3cc60d126e819409",
+      "新版定稿/23-the-man-who-gave-machines-a-mind.md": "72ed3049e87fe75ce1e753d5e443bdbe6a7ab72f6e282e8467fbbb62be873169",
+      "视频/脚本/24.json": "f08620b534bb10b718f7515c805dcb541721427d855bd5a092b8954847a351b8",
+      "新版定稿/24-survival-in-the-ice.md": "cb7f810d9a74256e0c00625290be4f16207feb90f5719ca87d5d7c9912b91307",
+      "视频/脚本/25.json": "c73e854e052b3df9bd920d4a59fafb183dee19bd58765fa426af6ea3d7c9a329",
+      "新版定稿/25-apollo-13-the-successful-failure.md": "b6b7d55fe66e6e32116431ea955778fab779b8bda622df0ba1036c2f40a3969f",
+      "视频/脚本/26.json": "ab663b240eb5e27923f38e2ff296c0196e3d820766d0c909adb9faf19aa3cac9",
+      "新版定稿/26-the-language-the-children-invented.md": "9e9ad8021ddabc17157d73dc739383f9676df3583cf965e470fcd773e26a3761",
+      "视频/脚本/27.json": "61cd724c5fab6f07a46aa5ac069101617c4c8350311eb11a43f9fefdddb31d8b",
+      "新版定稿/27-life-in-the-forbidden-zone.md": "e276bcf76225b9ae16cd8cfda8c9b726b442fbd625d3718f532b47b09b21b16f",
+      "视频/脚本/28.json": "a6a4befc0291727f5cc3f8b50857ee954ef9f936738f014a978ebb4d37a28ea8",
+      "新版定稿/28-a-handful-of-wormwood-that-saved-millions.md": "b9817d3429767d07b6a2eb14cce5422a20cb4e3b89f8b03e6b3d5da2daf91d91",
+      "视频/脚本/29.json": "1e5f1d9f0c22b5d14b757f029be694c2a3969666d732ca79bb695282763de791",
+      "新版定稿/29-the-volcano-that-gave-us-frankenstein.md": "69045ee19a170c7ea9d0008b468c7e947bc28b639b834c0192dc0aeafc3ef4d0",
+      "视频/脚本/30.json": "cdf727cb4c6832063421df9da6ab8ae7729cf9df01d6be089a8981c92c360f06",
+      "新版定稿/30-the-stink-that-built-londons-sewers.md": "84dbf19cee0045ea2608b13ee0677cb9623dd8fbb371c67093bf50c64186137a",
+      "视频/脚本/31.json": "d81f8645a1e5663ba8c84668e817cdb218bc6689079fbfd51326b3a7fd3cd384",
+      "新版定稿/31-the-book-twelve-publishers-turned-down.md": "7abd20fed44918dcf01586c056e9d0acd9d2ad3b90aa7d3d403762d9f06d2659",
+      "视频/脚本/32.json": "357aa59bed62154f7302a5efcf528859b303004e028657b93058138fe931bf85",
+      "新版定稿/32-the-planet-that-was-demoted.md": "1421f2b0921e7e9478ebc48777e3e8b2c979172de63d0124015107c3750a3542",
+      "视频/脚本/33.json": "ca51103c1a9d45c9159322765efc86c81f61f6ec78975f160019d21a1d9ee0d7",
+      "新版定稿/33-thirteen-in-the-cave.md": "9862078044ce45a9f6d51aa7d165afdfcf90066d1de98cbb317dd7e8f980610d",
+      "视频/脚本/34.json": "74921848a6bb25a2ba631813f60d4756c9ff90c64c03a2fb936ce34f310ce509",
+      "新版定稿/34-the-game-that-escaped-the-soviet-union.md": "e3244b67b21e283e67f4e88e932a1dbb85bf273a48ee009b3f435e1c5814831c",
+      "视频/脚本/35.json": "d8439077dc2c909b1c6cbd1347f31e9625f25fffe447d6f5945c9492561f1a16",
+      "新版定稿/35-the-bird-that-beat-the-letter-home.md": "ba8c38e38b21a3345624e2d44fd352561d3096cfb6f62214b48ea9b6e66faead",
+      "视频/脚本/36.json": "76daa28f421bd40d8e2744d4e785a34bb8ee67da1403b4b1546db9465c535cef",
+      "新版定稿/36-the-company-that-invented-its-own-killer.md": "411eeb96c8641ee7082b49a5abf4c7343d3f1dbb7ef331064d7c0f3c630fe58f",
+      "视频/脚本/37.json": "b1b8945ccf3581df48ade5714a2d0e93e4cc6812708f95bef6f5e44439106c99",
+      "新版定稿/37-dynamite-for-the-heart.md": "4933e24d2384471a96d9c8c26c15d5224a85dae98d9971a3fed15b4978dafc51",
+      "视频/脚本/38.json": "8d0379032000967c9f72e550574874949f798eefbfbfb58ab2b38e4e23ecbc6b",
+      "新版定稿/38-the-web-beneath-the-woods.md": "abb7eead9f3da0b2b326ceed5a649cfbf71fc28dad22e0d52f7b19caa798c54f",
+      "视频/脚本/39.json": "6c3e9539f624b192335312912572a05fba2c7bcfb821b44c3c1dbb21b42527a7",
+      "新版定稿/39-y2k-the-crisis-that-success-erased.md": "abbc9804661126aa006595031ed8f201ce55e8eb5fd9e1ad5669c0c6fcdb80ab",
+      "视频/脚本/40.json": "1c50d1a47ee6f8528d0f7299e8a45bc8c30312622f3f465a964d21cc1395ee7f",
+      "新版定稿/40-the-glue-that-failed.md": "dce9f78f3a0828307843dd667b7eeebf3380a3630f03d234bd5824870aba61a1",
+      "视频/脚本/41.json": "6b6673ffc1db986f4c355f3685de6a0faf2272cee042c5e917f26a8b3057c2be",
+      "新版定稿/41-the-toad-that-invaded-australia.md": "eca590f97120f4e76d719e29aa07b094f9117cd462f5a70c029331a63b85f710",
+      "视频/脚本/42.json": "eceb10ae92aa4b9cd23180d1138149a7fa7b674385462c898bc0d2283c8739e7",
+      "新版定稿/42-the-telescope-that-needed-glasses.md": "d4aa049779a0eba06c555d76ca14103648378eef90465df424120126fa771280",
+      "视频/脚本/43.json": "aa9da1246e293c80408edf94a7c9bed65ef3178ae7cb5265a8273e8c4396687f",
+      "新版定稿/43-from-a-garage-to-the-top-of-the-world.md": "bd70c83e5ac867238ca179f3c9f3548eb9cbdcae1f6df40994aef0bda721ae54",
+      "视频/脚本/44.json": "87f531203ca38d88ae5e71ffd88190b1530715cdc0adba146c2a4a78ebe9b976",
+      "新版定稿/44-the-night-sweden-switched-sides.md": "d3f7ad2ac43f02aae9205a15b9808280ca3db597d6ef3b36aca8ca6176c5f74a",
+      "视频/脚本/45.json": "569406607d2bf18dce5e916052d6460509450d97fe17ac9820be524f59c2c3cc",
+      "新版定稿/45-the-record-humanity-threw-into-the-stars.md": "27deabec4a8478fe570f7f237a2fb850ffdce3deebfd952f512d82a60cf7314f",
+      "视频/脚本/46.json": "804ecfddb6060288b05eda0e1027c65e9bff0c08a9d010c201bf39306c769b62",
+      "新版定稿/46-lost-in-the-glare.md": "7aaa06e875fe56c5d78210b90a8769b8b2051714025ef10df37c2fe89db7a68c",
+      "视频/脚本/47.json": "0417489c8a672e7e63d46c2239d847acabda2d93160cabed3b0fb14f701ac39a",
+      "新版定稿/47-shadows-of-wolves-over-yellowstone.md": "34c68cf4d0f0ef3545ad68edf3367fcb76ab500174b11ae7f83b782cd5a80a2a",
+      "视频/脚本/48.json": "4f146ce6a70bb0bf5d2c6e1f6b47bd6a2bcc2f311be7a948092d7bde1a08f449",
+      "新版定稿/48-rice-for-the-world.md": "76416be21f857e8a05c37baa33ac90f5785812291485231c249e38a1d0edf15f",
+      "视频/脚本/49.json": "640168eb8a17c5d53d266c6604ffe287919314947371c2ee239eeea952d73b77",
+      "新版定稿/49-the-woman-who-won-two-nobels.md": "1e4fb068aa9ae4513d01b199a074b84dc9d819f57b2134df32588a0e4a4b6b6a",
+      "视频/脚本/50.json": "1d4a41824dfa5e8d11e5990b2a4b802ba2fcc3231d85b15ed6630396c6f027bf",
+      "新版定稿/50-microplastics.md": "5439589bacf1abb2abbb184eb658492bc02bcc5bdd8dfd8ababcd80ab93621cb",
+      "视频/脚本/51.json": "39886d83593a31fb575b124ecf6457190773dca695b6ff78f8434d52aebd6d7c",
+      "新版定稿/51-the-joke-that-became-ok.md": "8de30ea4846f4e88d8b71c8d5ced3ee63a73955e39b7dc3c5adad0971b854fd0",
+      "视频/脚本/52.json": "832249bb44617d38ede75560a5e57af6ba79ec284c9609407cb30ce879f6f862",
+      "新版定稿/52-the-killer-smog-of-1952.md": "179500361e4a837d7edb2e0497e08677d5abd425e8ad542f788205a6f7667b4b",
+      "视频/脚本/53.json": "28b604bfa72896534736293f79e9b3aabd8e3678672f4dc6c66337c02a8f1518",
+      "新版定稿/53-the-wind-that-kept-no-time.md": "6fab302dcadb5a2c509436f5fbf8d9ef925c008a36f5b422749bd405aa4701d3",
+      "视频/脚本/54.json": "b1fcb8ae86045b3d35ccfa0f52eb9594b8921d43063835769ee3ecc4543be75e",
+      "新版定稿/54-the-sound-that-shook-the-world.md": "abd5f4bfe11ed73bcc5326a92cf99b0a8e5ad70adaca1ce8d0c8f622b57fa519",
+      "视频/脚本/55.json": "06344fc0ad5975cba2f4dbe5262a9957dd7c024f9a05b9abbfa327f32ea8c719",
+      "新版定稿/55-the-secret-of-romes-undying-concrete.md": "a7759eddcc7ec06dfd6dab7912e06b3b5ef8576df0c025a97812006669d0be61",
+      "视频/脚本/56.json": "22ca3b4180a8ae6a37b4c8e25f5e357d5696d9b23bf148fb7064425d1403e59c",
+      "新版定稿/56-the-letter-that-startled-darwin.md": "aad1e2aab9ff28f534a510362e807ef401e0b502475240f4b2531e9e518a8d7a",
+      "视频/脚本/57.json": "a0ba65b769430289a33ec1f7bc6dbf91dad8d2c3b1d725348851de546563cd6f",
+      "新版定稿/57-a-change-of-anthem-in-the-deep.md": "0731d925a98bafc222718c111985362e166b38b9189c516219a481e36d0d4b6e",
+      "视频/脚本/58.json": "8b0bd3d7d39000518789e9907aec53bd52fab1b9d6b4f22a152d158635b6e8ee",
+      "新版定稿/58-from-a-scratch-to-a-world-without-smallpox.md": "1aa2a0d2c51da76f9c9ebb88d049dd1a55ab530791566fdbf6476e5aa48c15ee",
+      "视频/脚本/59.json": "df1db4174d942371166048b220ef6d55b0b700b2ce31c866edf6dfdf33b92f0c",
+      "新版定稿/59-saving-the-sky.md": "7bf9c4661e733e7af23dc2f11bc820b809ec93dad75a94fb6a12748226e8722c",
+      "视频/脚本/60.json": "eed1655c0919db32a3a016b24791b93d25683f287c7ccb2523e168a69bddc562",
+      "新版定稿/60-the-scientific-giant-who-changed-the-world.md": "9d1578e7af085559922394a3db01de4eb22dc1c520ca17de5cad68e5a38a31a8",
+      "视频/脚本/61.json": "72378937501769dfb3d934fe65ab1a69afeb5420a15e19890c161433717d2435",
+      "新版定稿/61-the-steel-box-that-remade-the-world.md": "135cc9cfbcbd68d957f831cf55558112a45b1cc3749366cb9a304507355c7d2c",
+      "视频/脚本/62.json": "4b3a97f2b6404e1b091537c21f01fc60088902f596803345983c38be52ec79eb",
+      "新版定稿/62-dolly-the-copied-sheep.md": "62817546ae33824b57255f941135c503e41a41f905331ed4af1e32850fa00960",
+      "视频/脚本/63.json": "5d266d80f9cf29cce6f7e34531449cf75191a42f180102685a5bcd04849e75c5",
+      "新版定稿/63-the-crowded-heavens.md": "6ef79d4310019dfefa7364b8a428411a6bc337678c69fa5cbc89b84689e253a4",
+      "视频/脚本/64.json": "12a36862765922d72ce6e5a4c5fe85f548364eed65fe3b3b284f0b38899a965f",
+      "新版定稿/64-the-day-zero-that-never-came.md": "e0c83cbe36745adbbffd33a156fa8d0671704ea976cb13215cabb612639b37a5",
+      "视频/脚本/65.json": "78e60dd231df4ac71df83e21a26f82bbf706dc0bef80bee156a36bc287661ede",
+      "新版定稿/65-the-day-the-doomsday-vault-opened.md": "71a50d32e25955e713e6ca108ab68422a4fd5b77c914a9074eece1dc33cbff89",
+      "视频/脚本/66.json": "ad5324af4270834186285a5e7273a90213094077adc6f9e1d5c7b0ebff9cf035",
+      "新版定稿/66-the-burrs-that-became-velcro.md": "75dbe6c148ca97a7780ac1737f33f58bf8ee27a51aa729a83315705655b12b2a",
+      "视频/脚本/67.json": "8897cc1c2df1e4672eec3bbff2776d0565afb9c9fe84087a1758ebb15b2a233e",
+      "新版定稿/67-the-cave-found-by-a-dog.md": "10e37b81eeef4e3289448a6b4fd679f34d495a4fc087c57747e6dca949e00cf1",
+      "视频/脚本/68.json": "568f72dacac48e206811d35a57c7fa22e3da428783f64e507c184f2090e579f3",
+      "新版定稿/68-the-last-flight-of-the-hindenburg.md": "c25f58ffb0e3748336767bb7470dd7cef10374c53cbb48af89dba26f65b2dd5c",
+      "视频/脚本/69.json": "09fd3fdbbc834badd16a9b38d8c14e425193a6849d7db87253f26a782a1c4137",
+      "新版定稿/69-the-trial-of-the-father-of-the-atomic-bomb.md": "570eda5b7d979d71e9bcad1c67e295ed326ecdb8b61e663aba33272c8a9451bd",
+      "视频/脚本/70.json": "0f6827f02cef0d2416f9d7d69b7e1c5553acee7cf6dc89f3379201264587236c",
+      "新版定稿/70-the-stamp-that-changed-the-post.md": "edfd85cea33730ba67e4210e756da1f2945f1a21bce55c7e75497cb5f0095d80"
+    },
+    "source_file_count": 140,
+    "working_script_count": 70,
+    "target_request_exactly_matches_context": true
+  },
+  "request_source_sha256": {
+    "视频/脚本/62.json": "4b3a97f2b6404e1b091537c21f01fc60088902f596803345983c38be52ec79eb",
+    "视频/工具/初稿生成/gen62.py": "bb99070c311479355156a3e01711befb726290663de19b8f26806f90537857dd",
+    "新版定稿/62-dolly-the-copied-sheep.md": "62817546ae33824b57255f941135c503e41a41f905331ed4af1e32850fa00960",
+    "视频/制作记录/62_待改清单.md": "ae281b66c302d1c20512933558aeedd53b53652facf7131122bbef7f58a3367a",
+    "视频/制作记录/逐句确认/62.json": "18da501aff5790cad3493a78fd31930c4a51bc4a198f5f98f3b8fe1110cce9b9"
+  },
+  "accepted_source": {
+    "id": "62",
+    "path": "最终版4K视频/62 - Dolly, the Copied Sheep - 多莉：一只羊的复制.mp4",
+    "sha256": "f58f936ce8aea5724619f88f96806f2d43554840550bf7703f454d21f2df1fc9",
+    "git_blob_sha": "acba35c96df2928586977a3e222ba7299b7caca8",
+    "bytes": 12208306,
+    "width": 3840,
+    "height": 2160,
+    "summary_frames": 60,
+    "aac_adts_sha256": "cbaa0988f1020bcaa2c245f8349001d8ad2224194164bfaa819231493f06b081"
+  },
+  "checker_reference_preparation": {
+    "article": "62",
+    "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+    "reference_prepared": true,
+    "acceptance": false,
+    "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+    "source_sha256": "4b3a97f2b6404e1b091537c21f01fc60088902f596803345983c38be52ec79eb",
+    "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+    "checker_program_sha256": {
+      "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+      "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+      "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+      "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+      "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+      "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+    },
+    "reference_calls": [
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-raw",
+        "method": "create",
+        "source_slice": "Dolly, the Copied Sheep",
+        "exact_native_cache_key": "0e6dfb99a8a91b0ff4dd456cf02c6cc5b6bf3635.pkl",
+        "cache_input_text_sha256": "7630154470c596d58fb48f0737400e0a4d6422bbc1e7efedd698ff18c0ab37f7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-timed",
+        "method": "create_timed",
+        "source_slice": "Dolly, the Copied Sheep",
+        "exact_native_cache_key": "426207fe73ee739420bd2b41e02211fab4b7c77d.pkl",
+        "cache_input_text_sha256": "7630154470c596d58fb48f0737400e0a4d6422bbc1e7efedd698ff18c0ab37f7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Dolly was born at Roslin, Scotland, on 5 July 1996.",
+        "exact_native_cache_key": "5ab125c669b61e436e9e330fe39afe02c6fd0007.pkl",
+        "cache_input_text_sha256": "1731b69e5aa5020710ecae02d77c4dd3fa5640245a6d92025bbdbbefbc21a174",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Dolly was born at Roslin, Scotland, on 5 July 1996.",
+        "exact_native_cache_key": "56ab0ae8776210ebaac4b49ac4e6ac1e84bc18ea.pkl",
+        "cache_input_text_sha256": "1731b69e5aa5020710ecae02d77c4dd3fa5640245a6d92025bbdbbefbc21a174",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Dolly was born at Roslin,",
+        "exact_native_cache_key": "ebd40ac99b5f2cb0d5984ac7e27e0b9a2cb8990b.pkl",
+        "cache_input_text_sha256": "413d53297f6f20823afd678c0ecff02c85c573f993eee9e25722b4cbd73ccb5f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Scotland,",
+        "exact_native_cache_key": "b7519f8b3a16535838265b0a5cb2c22052146779.pkl",
+        "cache_input_text_sha256": "ca20c12e270a28052e30c495652c59da50331be5d21a449c2614b16dee60d489",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "on 5 July 1996.",
+        "exact_native_cache_key": "82c67889fc387eabadb8eb602d09e15a4ca5f0c5.pkl",
+        "cache_input_text_sha256": "5d0aaced74f12b3387cfe45bc643222e0a4e5b8ef66ff215100800b514cc942e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Her genome came from a Finn Dorset ewe's mammary cell, fused with a Blackface egg stripped of its nucleus.",
+        "exact_native_cache_key": "01a7d200f64868e63735ef7977423e632b387dd4.pkl",
+        "cache_input_text_sha256": "fe8f6edda45513932471f32f1a27d8553bb2fc49a79c8bc35c24dab3a5326a34",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Her genome came from a Finn Dorset ewe's mammary cell, fused with a Blackface egg stripped of its nucleus.",
+        "exact_native_cache_key": "82b1ab2b6af2b3d3f525c7001b45ce7233b7ed4b.pkl",
+        "cache_input_text_sha256": "fe8f6edda45513932471f32f1a27d8553bb2fc49a79c8bc35c24dab3a5326a34",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Her genome came from a Finn Dorset ewe's mammary cell,",
+        "exact_native_cache_key": "e69ce6a0689eb8cecc2459125291516ee9c2308a.pkl",
+        "cache_input_text_sha256": "1b6b4773503e9a6982cfe27e140969a8b23be5fd56bdf802dcd2d50a14023a05",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "fused with a Blackface egg stripped of its nucleus.",
+        "exact_native_cache_key": "e8c1aa7d7b71c3972fdb44d169644ee03de09642.pkl",
+        "cache_input_text_sha256": "3f1c6ec50f5945517c3c8900c9940cd2d716bbf2c84048fcfd92e9252747452a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Her genome came from a Finn Dorset ewe's mammary cell,",
+        "exact_native_cache_key": "e69ce6a0689eb8cecc2459125291516ee9c2308a.pkl",
+        "cache_input_text_sha256": "1b6b4773503e9a6982cfe27e140969a8b23be5fd56bdf802dcd2d50a14023a05",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "fused with a Blackface egg stripped of its nucleus.",
+        "exact_native_cache_key": "e8c1aa7d7b71c3972fdb44d169644ee03de09642.pkl",
+        "cache_input_text_sha256": "3f1c6ec50f5945517c3c8900c9940cd2d716bbf2c84048fcfd92e9252747452a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "A Blackface surrogate carried the embryo through pregnancy, yet her white face was proof of a genetically different lineage.",
+        "exact_native_cache_key": "531913c3b0a07041cfbf1bb49b9df68c36d2eafc.pkl",
+        "cache_input_text_sha256": "48dc6bb2b19420a775cf3cc85b729aeb79b568e44e514b07c6fdeef3cebeae42",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "A Blackface surrogate carried the embryo through pregnancy, yet her white face was proof of a genetically different lineage.",
+        "exact_native_cache_key": "cb6e584afa5f15f0e76ce322df06e789e5b3e99a.pkl",
+        "cache_input_text_sha256": "48dc6bb2b19420a775cf3cc85b729aeb79b568e44e514b07c6fdeef3cebeae42",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "A Blackface surrogate carried the embryo through pregnancy,",
+        "exact_native_cache_key": "39390dbe699e15c254c226511d67c06ef6167c35.pkl",
+        "cache_input_text_sha256": "8a521ef04c2d4e23a1aa2880474a9b223fff652ab623ef6c600fab6110b22091",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "yet her white face was proof of a genetically different lineage.",
+        "exact_native_cache_key": "6157c15555cced6bee2457173efba18d6b0ca33e.pkl",
+        "cache_input_text_sha256": "1f2a0b2a1a89420d7800775265252c527b4c57b5e920be71245084bef59300dd",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "A Blackface surrogate carried the embryo through pregnancy,",
+        "exact_native_cache_key": "39390dbe699e15c254c226511d67c06ef6167c35.pkl",
+        "cache_input_text_sha256": "8a521ef04c2d4e23a1aa2880474a9b223fff652ab623ef6c600fab6110b22091",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "yet her white face was proof of a genetically different lineage.",
+        "exact_native_cache_key": "6157c15555cced6bee2457173efba18d6b0ca33e.pkl",
+        "cache_input_text_sha256": "1f2a0b2a1a89420d7800775265252c527b4c57b5e920be71245084bef59300dd",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "She alone survived from 277 attempts, an extraordinary failure rate.",
+        "exact_native_cache_key": "edc0631a5b65a71ee31975d26e6a4999d2eb88a7.pkl",
+        "cache_input_text_sha256": "a9f257fc48eaee7b09bdc05984e3a9744a254bee723fcd3a8f4707c8687aa16f",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "She alone survived from 277 attempts, an extraordinary failure rate.",
+        "exact_native_cache_key": "170b42e662c5307c34b813f02e2e67422b81a13d.pkl",
+        "cache_input_text_sha256": "a9f257fc48eaee7b09bdc05984e3a9744a254bee723fcd3a8f4707c8687aa16f",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "She alone survived from 277 attempts,",
+        "exact_native_cache_key": "7213b3bd60c05f006bbf26b4788d4cfc566bb223.pkl",
+        "cache_input_text_sha256": "bb8438779d4a9c453951e585c818ed7d8177b7ef1cb913f16d30c1f3bfa794bd",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "an extraordinary failure rate.",
+        "exact_native_cache_key": "67b5b8324b400ac000223ae2d64509b6962b4612.pkl",
+        "cache_input_text_sha256": "f89826bed292af725f468e8a5796a95541802708f1236d70b3290d70636d337f",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Dolly is popularly called the first clone, a misconception.",
+        "exact_native_cache_key": "306039b3cdbeac801124529ae3671438e8817f52.pkl",
+        "cache_input_text_sha256": "d270574d9e0bcdd2f54303350ea051aca8802ddde51a8a78cfec8b5df0ad1707",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Dolly is popularly called the first clone, a misconception.",
+        "exact_native_cache_key": "f613f14b984947fe93a4a47eda19fd18d187403e.pkl",
+        "cache_input_text_sha256": "d270574d9e0bcdd2f54303350ea051aca8802ddde51a8a78cfec8b5df0ad1707",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Dolly is popularly called the first clone,",
+        "exact_native_cache_key": "566dec972351e370b56af021b3302cf0b0916781.pkl",
+        "cache_input_text_sha256": "66ebb4f4d483c31d83ae443c6e58d1ed7995a8fd690ef45147536c981fefe1ce",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "a misconception.",
+        "exact_native_cache_key": "45eba502ebfb085b97ed8df4fd759919e525e7b4.pkl",
+        "cache_input_text_sha256": "ba3e6290221bb81c48b3a6b7c3e95150c9ebbb82276725ad8fe6a2ecad18e377",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Her predecessors included frogs cloned from transplanted nuclei in 1962 and Roslin's embryo-derived duo, Megan and Morag, in 1995.",
+        "exact_native_cache_key": "192a35fc46e4ced4bb4dec405e3cb46a5ecef2dc.pkl",
+        "cache_input_text_sha256": "d576befc022a0f63aa991489bd5f2ae4df73aaa93986e9f265a5308b52618c88",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Her predecessors included frogs cloned from transplanted nuclei in 1962 and Roslin's embryo-derived duo, Megan and Morag, in 1995.",
+        "exact_native_cache_key": "6c1c093138d0b028705cbfb987265c321e2b9e99.pkl",
+        "cache_input_text_sha256": "d576befc022a0f63aa991489bd5f2ae4df73aaa93986e9f265a5308b52618c88",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Her predecessors included",
+        "exact_native_cache_key": "d04a2d57e4d82a5df6ee0587609a7f002efa44bb.pkl",
+        "cache_input_text_sha256": "3a97164790518b2c1084a82181d3c9bbec16d6fb3bab0578708aa42b0c29ed28",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "frogs cloned from transplanted nuclei in 1962",
+        "exact_native_cache_key": "0fe0c582cb8e66c5774a87e6a8389daa221a921a.pkl",
+        "cache_input_text_sha256": "5c1c43129cbbb1753897de1814c10aa63ae1068f77155772a584a8cc381bc37e",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and Roslin's embryo-derived duo, Megan and Morag, in 1995.",
+        "exact_native_cache_key": "8689bf8bb327f5e89b160b43358516c2449dbf83.pkl",
+        "cache_input_text_sha256": "2febe8965eb5182cad147eb26cc5f62e0fb013e05fa7a9db3972a1a185b5d588",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Her predecessors included frogs cloned from transplanted nuclei in 1962 and Roslin's embryo-derived duo,",
+        "exact_native_cache_key": "b482a8d03a31a9c5b8f9a52971f8b9527ae2f614.pkl",
+        "cache_input_text_sha256": "cda87066a749a5d1c33fdc23943be5b4a1fa8ff53528772c5f11050ca832aa78",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Megan and Morag,",
+        "exact_native_cache_key": "75eabcfa366e501e726a32a259d7c59b4e4edf0f.pkl",
+        "cache_input_text_sha256": "41f0c77dc40b044573b30bf396f5e18818cb223c09bd803b315e6557b10675d8",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "in 1995.",
+        "exact_native_cache_key": "e9dda4b121f1466021fb05ae06ecdaf567b589b9.pkl",
+        "cache_input_text_sha256": "120e00c0bcf31e77cd3e195280d4d42f8dd8dfbf8f0b59674c1a14d643063f04",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "She was genuinely the first mammal cloned from an adult cell.",
+        "exact_native_cache_key": "350e6b21689c382c228020437383d94705133cea.pkl",
+        "cache_input_text_sha256": "d8ee7590b759a50f757986d6a069d39338a8c95b336a62f1336adee7dd2e45f3",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "She was genuinely the first mammal cloned from an adult cell.",
+        "exact_native_cache_key": "d1e298fe0dbc8e158002180becd5e4d1dc445ba3.pkl",
+        "cache_input_text_sha256": "d8ee7590b759a50f757986d6a069d39338a8c95b336a62f1336adee7dd2e45f3",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Roslin's announcement on 22 February 1997 coincided with the paper, and her name, a mammary pun, honoured Dolly Parton.",
+        "exact_native_cache_key": "44cad648d8ac25de1da2e1c76d2f03a10ca82cfb.pkl",
+        "cache_input_text_sha256": "c284b438a323a208c4ed68bc961f7a194e62dcd94d68ca3393b364a1807f4503",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Roslin's announcement on 22 February 1997 coincided with the paper, and her name, a mammary pun, honoured Dolly Parton.",
+        "exact_native_cache_key": "16c37679a06639b94d8afc4b2942b1797029fbf9.pkl",
+        "cache_input_text_sha256": "c284b438a323a208c4ed68bc961f7a194e62dcd94d68ca3393b364a1807f4503",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Roslin's announcement on 22 February 1997 coincided with the paper,",
+        "exact_native_cache_key": "c6b18ce8d5c35090f35080d5308890c2d5461673.pkl",
+        "cache_input_text_sha256": "70e0b23ed3857ed5e1b8b784269693c39f533f4e98dad2e9b10ce7ea20ebf732",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and her name, a mammary pun, honoured Dolly Parton.",
+        "exact_native_cache_key": "6399fce431a8d97879495e0dfc331a9e018778e8.pkl",
+        "cache_input_text_sha256": "f0a482d4ba06d0a59c4569fca2fe36b30b4d45d304cdfc6be8c134d1f8049711",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Roslin's announcement on 22 February 1997 coincided with the paper,",
+        "exact_native_cache_key": "c6b18ce8d5c35090f35080d5308890c2d5461673.pkl",
+        "cache_input_text_sha256": "70e0b23ed3857ed5e1b8b784269693c39f533f4e98dad2e9b10ce7ea20ebf732",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and her name,",
+        "exact_native_cache_key": "a6f88e5aa7520633c786e4ec2ccfd155a020fae6.pkl",
+        "cache_input_text_sha256": "e844bc3d9c871bdb480d73d98ca99407fa905a7cf48280dd26e12e351492bf43",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "a mammary pun,",
+        "exact_native_cache_key": "f0f7f010ff549afaf5cf5b618927547b5fcb42a3.pkl",
+        "cache_input_text_sha256": "f27c8efcbf45c7384e14e313dff958e3ead1f3b143902e404d70f91024e32bf8",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "honoured Dolly Parton.",
+        "exact_native_cache_key": "18a9f64768c7ff0c5e0b1c6de90597c26495bfd2.pkl",
+        "cache_input_text_sha256": "3e1b0713806c43985a71bfb86c80665fdc42dbc0fc8cbf13e26eb02737646719",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The news provoked uproar and apprehension about the ethics of human cloning.",
+        "exact_native_cache_key": "06e0f489f80ce5d63200a37e4c2a7974f314807c.pkl",
+        "cache_input_text_sha256": "c5ba68c9712419b36b9f333976ccbd3be98bc55d663eef021ac85b285a5a149e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The news provoked uproar and apprehension about the ethics of human cloning.",
+        "exact_native_cache_key": "dc05d0e7fd6d606d25407ccf26929960274db945.pkl",
+        "cache_input_text_sha256": "c5ba68c9712419b36b9f333976ccbd3be98bc55d663eef021ac85b285a5a149e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "The news provoked uproar",
+        "exact_native_cache_key": "c126b6ef63a52e4163ffbcef6835c71a9b7194d3.pkl",
+        "cache_input_text_sha256": "7f211f9d5d93c929104b2395a7d0ed6b7d473e89ab3998fdff8b240c2c3a4a37",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and apprehension about the ethics of human cloning.",
+        "exact_native_cache_key": "af6393980c3a18c7724dcd733f239e348f657531.pkl",
+        "cache_input_text_sha256": "c7c986605eb1ea42ee345adf23a2146f7c959ac3048b9c6360008fc23daaf260",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "In March 1997 Clinton prohibited federal funding for such experiments.",
+        "exact_native_cache_key": "145a30a5074787c99870f433d1415f4855c8ce16.pkl",
+        "cache_input_text_sha256": "8448a65712d6835ba7544eca1469b610c2ed756a3de7eeb6c3733cf3f5fa09d7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "In March 1997 Clinton prohibited federal funding for such experiments.",
+        "exact_native_cache_key": "e5fb0acd3b73100864e63e019881a23010f62256.pkl",
+        "cache_input_text_sha256": "8448a65712d6835ba7544eca1469b610c2ed756a3de7eeb6c3733cf3f5fa09d7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "In 1999 her telomeres, or chromosome tips, were reported shortened by about 20% for her age.",
+        "exact_native_cache_key": "726747257b27d1a34dba33f1ea94cf008d8abcb9.pkl",
+        "cache_input_text_sha256": "bd66535baea0f9a9f6f44524e4092cd07a3747ee5df81d379310278d300abfda",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "In 1999 her telomeres, or chromosome tips, were reported shortened by about 20% for her age.",
+        "exact_native_cache_key": "678ca22d3cb957339ba38c591ff4e2dfe26045b1.pkl",
+        "cache_input_text_sha256": "bd66535baea0f9a9f6f44524e4092cd07a3747ee5df81d379310278d300abfda",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "In 1999 her telomeres, or chromosome tips,",
+        "exact_native_cache_key": "b538aacdb5b267e94f0a971ec12842ca5dde48a5.pkl",
+        "cache_input_text_sha256": "f17f46d78bc3e13ba9156b0fdf78d9e7d604f00b012b2f18fd1b7ae5c2a59c27",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "were reported shortened by about 20% for her age.",
+        "exact_native_cache_key": "6808a49c12b9d635d2b42ec858317a043d13c969.pkl",
+        "cache_input_text_sha256": "c88e391b27c5e1376b762027a68196714846c911981ea4a1bc9af628e879e2c5",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "In 1999 her telomeres,",
+        "exact_native_cache_key": "2c082a19077e44a43498e625fe53256ae13a5cfe.pkl",
+        "cache_input_text_sha256": "9720cbac7e84ceda2b32bbdd5f7ecb883c4f937d2a1989537171aec20babb745",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "or chromosome tips,",
+        "exact_native_cache_key": "e0382963e777187aec0e38a2c1b25c7639817733.pkl",
+        "cache_input_text_sha256": "fe9606d1b90719e4b7cc230b0be348f357270e5478740a0b92d1823863abc890",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "were reported shortened by about 20% for her age.",
+        "exact_native_cache_key": "6808a49c12b9d635d2b42ec858317a043d13c969.pkl",
+        "cache_input_text_sha256": "c88e391b27c5e1376b762027a68196714846c911981ea4a1bc9af628e879e2c5",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "That fed anxiety; some speculated she was ageing prematurely.",
+        "exact_native_cache_key": "4f413a69db619037ea39b66ce0c1aa592c7a6418.pkl",
+        "cache_input_text_sha256": "d0c8cd62ee36f68dc6953fd9d71a71aaae42885c4f2e16919f9e8d43f29a6f50",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "That fed anxiety; some speculated she was ageing prematurely.",
+        "exact_native_cache_key": "3ca4ba5b77f78da0e6d32f6d465dc2e8b0bc9043.pkl",
+        "cache_input_text_sha256": "d0c8cd62ee36f68dc6953fd9d71a71aaae42885c4f2e16919f9e8d43f29a6f50",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "That fed anxiety;",
+        "exact_native_cache_key": "f1d89f46564d0d1adcb9e97ddfc49be86bb2fc15.pkl",
+        "cache_input_text_sha256": "682a8a6929148e90c1da4892acb6221edf70ff3ed897808927b92b0437cf41d4",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "some speculated she was ageing prematurely.",
+        "exact_native_cache_key": "5fce4f39f964b3d86dad45816bde7aef7233cad3.pkl",
+        "cache_input_text_sha256": "db06714b092d153cba6518238e919583da6a5d2abc196a578a975453d5ee1cb0",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "That fed anxiety;",
+        "exact_native_cache_key": "f1d89f46564d0d1adcb9e97ddfc49be86bb2fc15.pkl",
+        "cache_input_text_sha256": "682a8a6929148e90c1da4892acb6221edf70ff3ed897808927b92b0437cf41d4",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "some speculated she was ageing prematurely.",
+        "exact_native_cache_key": "5fce4f39f964b3d86dad45816bde7aef7233cad3.pkl",
+        "cache_input_text_sha256": "db06714b092d153cba6518238e919583da6a5d2abc196a578a975453d5ee1cb0",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Dolly was put down, aged six, on 14 February 2003, with arthritis and a progressive lung disease caused by a sheep virus.",
+        "exact_native_cache_key": "c30f4bba6b1dca9aff999e6be71afa41ace9ea36.pkl",
+        "cache_input_text_sha256": "61af062304167e72caf5b3e3b6deed055ac24ea165521f1b441f7ce1ca992b38",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Dolly was put down, aged six, on 14 February 2003, with arthritis and a progressive lung disease caused by a sheep virus.",
+        "exact_native_cache_key": "05db1e7a26c40ef513045c5c39bc3645271a3379.pkl",
+        "cache_input_text_sha256": "61af062304167e72caf5b3e3b6deed055ac24ea165521f1b441f7ce1ca992b38",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Dolly was put down, aged six, on 14 February 2003,",
+        "exact_native_cache_key": "1fb892ed76bda737491901709445b0f0297b23b9.pkl",
+        "cache_input_text_sha256": "1dfe366fb8e7a48e0ab221f1dd5f5b1d1054022b1d47e3a12a54841cbb45d588",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "with arthritis and a progressive lung disease caused by a sheep virus.",
+        "exact_native_cache_key": "cd08310b255bda62cd8fd7eb343beee27307edc1.pkl",
+        "cache_input_text_sha256": "fd5f8334ebb34f20efe71d19bced7e2f48ed70071a1d1ea4502e18660d1dbebb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Dolly was put down,",
+        "exact_native_cache_key": "d9858b69b18c0f27c4036f8c29dbf70315db75ff.pkl",
+        "cache_input_text_sha256": "6373f0db4c491ccde264e20e5838d85f9da1ed380ff205b77f06d10310e57925",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "aged six,",
+        "exact_native_cache_key": "b310ba10f19b9adf461f5fadd2f6023ba8a8d157.pkl",
+        "cache_input_text_sha256": "ff47721ec9f15ebd301ee401654db03c20a35cb50295f9adc0fce6036eec7afb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "on 14 February 2003,",
+        "exact_native_cache_key": "956c56ce1f8338665a41ec7592ac46ce3565035e.pkl",
+        "cache_input_text_sha256": "a4e1f736829deabbcc710193fb0d384f027dd3d2ff4e75c604fe737004b524eb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "with arthritis and a progressive lung disease caused by a sheep virus.",
+        "exact_native_cache_key": "cd08310b255bda62cd8fd7eb343beee27307edc1.pkl",
+        "cache_input_text_sha256": "fd5f8334ebb34f20efe71d19bced7e2f48ed70071a1d1ea4502e18660d1dbebb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Indoor confinement probably contributed.",
+        "exact_native_cache_key": "257b70b2dc07ea56c45af6fe03a0b498803b6074.pkl",
+        "cache_input_text_sha256": "31529c28827004838a9440d627752f26672efd89a5ccebdf4b8862a2e8c7e999",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Indoor confinement probably contributed.",
+        "exact_native_cache_key": "125f9932f142db3e14b781d140e5a96d18a57ea2.pkl",
+        "cache_input_text_sha256": "31529c28827004838a9440d627752f26672efd89a5ccebdf4b8862a2e8c7e999",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "In July 2016, 13 clones, four from her cell line, were ageing normally, without hypertension or diabetes.",
+        "exact_native_cache_key": "54e6ef327fa6583c4f8468f8e1cddca2defdf4d4.pkl",
+        "cache_input_text_sha256": "2bdca16ff65c604dda3377a674addb51db0f2e586bf3e461530505b9a5fe4fa2",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "In July 2016, 13 clones, four from her cell line, were ageing normally, without hypertension or diabetes.",
+        "exact_native_cache_key": "2b97f2accb76e0f0df119bc21460ef4aef8ba386.pkl",
+        "cache_input_text_sha256": "2bdca16ff65c604dda3377a674addb51db0f2e586bf3e461530505b9a5fe4fa2",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "In July 2016, 13 clones, four from her cell line,",
+        "exact_native_cache_key": "703727b3a22a1fceab3cdc9fd263fb7b7b0bc66a.pkl",
+        "cache_input_text_sha256": "d12f234fd1a6f00ef84c7eb2329dfc531cbdcd39a19aebaf175682a43c9234e4",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "were ageing normally, without hypertension or diabetes.",
+        "exact_native_cache_key": "35feab802467ce1af24ee919936b8c2558330495.pkl",
+        "cache_input_text_sha256": "80c296f7230a98af576876709f7e33ce87b59df87cec944791d99e3201329db6",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "In July 2016,",
+        "exact_native_cache_key": "4f16d8777f0a036aed95763940edf70967bb8216.pkl",
+        "cache_input_text_sha256": "92341646b065e70f9306e65bbc17f122e1a93004b2691a7437cd36edbb79a28f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "13 clones,",
+        "exact_native_cache_key": "bab02a382e5eb4ad432da268c769203be685d785.pkl",
+        "cache_input_text_sha256": "aa232d7e88434538b7c8575ed37305d9ac46815c5ac3391c36284d135b3946b0",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "four from her cell line,",
+        "exact_native_cache_key": "85463442afe8daf83079407da78cb4837271754e.pkl",
+        "cache_input_text_sha256": "c0775f3df98d115d2a04072cae843435c54f26a0d7336f3ae682969649fbb781",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "were ageing normally,",
+        "exact_native_cache_key": "c485c351f9d4786368d09e881e8690f80523193c.pkl",
+        "cache_input_text_sha256": "cb6e65a8603965b255fab152338c920b30e3855a85524ec78fe02a69ba262138",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 5,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "without hypertension or diabetes.",
+        "exact_native_cache_key": "2fbe4db224f143cca41ef54e1229324e92b942a5.pkl",
+        "cache_input_text_sha256": "40060e9d51f626657a2a4bca11c89c2a5ea7a59f005c8adc26353a7af54ed5ed",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "In November 2017, her skeletal X-rays showed ordinary arthritis, and fears of early onset were judged unfounded.",
+        "exact_native_cache_key": "50e36ab511ab4831b585455e4361c3f1dfdd528f.pkl",
+        "cache_input_text_sha256": "cc4878b18c9120d2a0f564b07a7701d3e406835824e46a7cbf91cefc92544476",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "In November 2017, her skeletal X-rays showed ordinary arthritis, and fears of early onset were judged unfounded.",
+        "exact_native_cache_key": "792cf49374cb6f6488d26610e0bae6c17ae42cbf.pkl",
+        "cache_input_text_sha256": "cc4878b18c9120d2a0f564b07a7701d3e406835824e46a7cbf91cefc92544476",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "In November 2017, her skeletal X-rays showed ordinary arthritis,",
+        "exact_native_cache_key": "555b4dcc6987ca7a31edcdc7d556ed30170a0c63.pkl",
+        "cache_input_text_sha256": "0f9db4171f6e77a59e9bbbe760038e2b5a71aab2f0518f4c27424a4fdddeca4d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and fears of early onset were judged unfounded.",
+        "exact_native_cache_key": "1db1fc10a2bea518d8ce047cc43a7095471053ec.pkl",
+        "cache_input_text_sha256": "fd1484cd24c580bf13f0f02bd99676deab641160f44c52a65569e42de6f6293e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "In November 2017,",
+        "exact_native_cache_key": "480bd5da064bbc7df367b254b4436f006f4d3ce2.pkl",
+        "cache_input_text_sha256": "4ca1ba0abdd0df44b0694dec6643be74ac4c521ffc01cdd6761f1c3f1c14fc09",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "her skeletal X-rays showed ordinary arthritis,",
+        "exact_native_cache_key": "5ca8fc101818474109ca9306a98a2aa90d97c4e8.pkl",
+        "cache_input_text_sha256": "5ed43b13c7832bdb8a3e338324eb404bf9242347bee3b1c40b2abf3cfe015da4",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and fears of early onset were judged unfounded.",
+        "exact_native_cache_key": "1db1fc10a2bea518d8ce047cc43a7095471053ec.pkl",
+        "cache_input_text_sha256": "fd1484cd24c580bf13f0f02bd99676deab641160f44c52a65569e42de6f6293e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "She bore six lambs by natural mating; Bonnie, first of these descendants, arrived in April 1998.",
+        "exact_native_cache_key": "1c33f0bce3023afd7a160fac6bd6084e293dbe23.pkl",
+        "cache_input_text_sha256": "3757c6c0839cb16b89e2236d16b121783912eea9f40e47143cecd17c0239576f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "She bore six lambs by natural mating; Bonnie, first of these descendants, arrived in April 1998.",
+        "exact_native_cache_key": "594430fbdb5d0f533371b00ad6871c6e11069b22.pkl",
+        "cache_input_text_sha256": "3757c6c0839cb16b89e2236d16b121783912eea9f40e47143cecd17c0239576f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "She bore six lambs by natural mating;",
+        "exact_native_cache_key": "bb6fc0f2596ffd8b67c4726fc9f96c96d0b184a1.pkl",
+        "cache_input_text_sha256": "ac9c721a09c44c109c222c2d57bf64f13e0273c7b7f0df9b64239a48f8fa71d1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Bonnie, first of these descendants, arrived in April 1998.",
+        "exact_native_cache_key": "752616782a84e8521a9beed5c8ff9be8d205ae7a.pkl",
+        "cache_input_text_sha256": "0edebb9c23da7f17fa159c66c3c7a394188aacfd8dbaf636d9bdc9b6dcd07cc0",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "She bore six lambs by natural mating;",
+        "exact_native_cache_key": "bb6fc0f2596ffd8b67c4726fc9f96c96d0b184a1.pkl",
+        "cache_input_text_sha256": "ac9c721a09c44c109c222c2d57bf64f13e0273c7b7f0df9b64239a48f8fa71d1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Bonnie,",
+        "exact_native_cache_key": "f01ab40569d8f9cda14b73a38820d8c3459a3ded.pkl",
+        "cache_input_text_sha256": "c7f178f4e8ec8ec8ec0aacf715b208e09c047dee99dd4b653ccc1d94b25dacee",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "first of these descendants,",
+        "exact_native_cache_key": "b9f4c224705105a52cf51d1d48c58d3f6bdcdd67.pkl",
+        "cache_input_text_sha256": "4ff99b49a0bd209b7ebe3fe58521cb9d57b601d3af946e319a27f8b3c255900e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "arrived in April 1998.",
+        "exact_native_cache_key": "652492cb173071e8ca2296a7e99db6bc084bdf57.pkl",
+        "cache_input_text_sha256": "9fec0a23ca6324ec676d62d0404f11cad82e65831ccb862f87dde8c5177f36d1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Since 2003 her stuffed body, now famously an icon and memorial, has been encased in the National Museum of Scotland.",
+        "exact_native_cache_key": "a9641b917bea8d67320b3ab9bff15c3c07a290be.pkl",
+        "cache_input_text_sha256": "0f7c5ac58021430993d9e4fec92d82bddef95dea58baf6a4cc13d54419e98e44",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Since 2003 her stuffed body, now famously an icon and memorial, has been encased in the National Museum of Scotland.",
+        "exact_native_cache_key": "1b7358ccb870480373858d5c3b275281d2efd2ff.pkl",
+        "cache_input_text_sha256": "0f7c5ac58021430993d9e4fec92d82bddef95dea58baf6a4cc13d54419e98e44",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Since 2003 her stuffed body,",
+        "exact_native_cache_key": "5e94ebaa91ce0c73521738fff157ba3bca2a2d2f.pkl",
+        "cache_input_text_sha256": "1e888b074e6ca88223659b595a65ebbd0e881216895617f51eb4ed7a4f21cf0f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "now famously an icon and memorial,",
+        "exact_native_cache_key": "3ccd9e59d8a6700eb031d60d2d469e57a6062fb1.pkl",
+        "cache_input_text_sha256": "4542bea5a09bb01ffd82cbbd2b7d0501ff06d71b26f7f9e33c98035ff0030f73",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "has been encased in the National Museum of Scotland.",
+        "exact_native_cache_key": "cf96d46ee28871d902ce709c85764b43400f145a.pkl",
+        "cache_input_text_sha256": "b68aa6b084d4449d15500570f6609796395d95a788f2e3b2522febf22c72a64b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Since 2003 her stuffed body,",
+        "exact_native_cache_key": "5e94ebaa91ce0c73521738fff157ba3bca2a2d2f.pkl",
+        "cache_input_text_sha256": "1e888b074e6ca88223659b595a65ebbd0e881216895617f51eb4ed7a4f21cf0f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "now famously an icon and memorial,",
+        "exact_native_cache_key": "3ccd9e59d8a6700eb031d60d2d469e57a6062fb1.pkl",
+        "cache_input_text_sha256": "4542bea5a09bb01ffd82cbbd2b7d0501ff06d71b26f7f9e33c98035ff0030f73",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "has been encased in the National Museum of Scotland.",
+        "exact_native_cache_key": "cf96d46ee28871d902ce709c85764b43400f145a.pkl",
+        "cache_input_text_sha256": "b68aa6b084d4449d15500570f6609796395d95a788f2e3b2522febf22c72a64b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Behind glass, her white face plainly testifies to her Finn Dorset ancestry.",
+        "exact_native_cache_key": "c547e0e50be6e05aa422e8ea291db441dae972d3.pkl",
+        "cache_input_text_sha256": "4080e21cf8f681c0f872f65351afbd9a7d0b6430ffa6fd630fbb8f89d9cd1497",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Behind glass, her white face plainly testifies to her Finn Dorset ancestry.",
+        "exact_native_cache_key": "de9b8b2777c886a446c3b634b96d5ee61d25125b.pkl",
+        "cache_input_text_sha256": "4080e21cf8f681c0f872f65351afbd9a7d0b6430ffa6fd630fbb8f89d9cd1497",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Behind glass,",
+        "exact_native_cache_key": "23a61f8ccb9dd468ac5a1d8bc0c169e5d3a8a6be.pkl",
+        "cache_input_text_sha256": "278017dc1e402ad6509ca190f995867bcfcd10ceab9721ed7a2307af9269fa03",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "her white face plainly testifies to her Finn Dorset ancestry.",
+        "exact_native_cache_key": "e6b489527f6537bfbef2f78ba080cc2599e1aba2.pkl",
+        "cache_input_text_sha256": "782b4f755845f13db9fd3249d0299cc219f60f36d337f8b8bdefde4f7f5a3a37",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      }
+    ],
+    "unique_reference_key_count": 96,
+    "raw_mother_cache_scalar_manifest": [
+      {
+        "exact_native_cache_key": "0e6dfb99a8a91b0ff4dd456cf02c6cc5b6bf3635.pkl",
+        "pkl_sha256": "b7c8ebb477f61c1090c2d145653e74912538f8dc5d86be1c5eacace840265d2d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "标题",
+            "piece": null,
+            "reference_kind": "title-default-raw",
+            "method": "create",
+            "source_slice": "Dolly, the Copied Sheep",
+            "exact_native_cache_key": "0e6dfb99a8a91b0ff4dd456cf02c6cc5b6bf3635.pkl",
+            "cache_input_text_sha256": "7630154470c596d58fb48f0737400e0a4d6422bbc1e7efedd698ff18c0ab37f7",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "b7c8ebb477f61c10",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          32256
+        ],
+        "unprocessed_array_sha256": "e50d8504d8ba65a8de39f2d011acb18026c8e28e48b8838bc776ada8fa340fac"
+      },
+      {
+        "exact_native_cache_key": "5ab125c669b61e436e9e330fe39afe02c6fd0007.pkl",
+        "pkl_sha256": "93e4bf083f638b561595b7a592729bbe1cba5127e77dc8443d11c872e2aff4ed",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Dolly was born at Roslin, Scotland, on 5 July 1996.",
+            "exact_native_cache_key": "5ab125c669b61e436e9e330fe39afe02c6fd0007.pkl",
+            "cache_input_text_sha256": "1731b69e5aa5020710ecae02d77c4dd3fa5640245a6d92025bbdbbefbc21a174",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "93e4bf083f638b56",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          134144
+        ],
+        "unprocessed_array_sha256": "2556a57d932eb6805fdac07a369d2483cd367048af43c133f9d2386dda9e1e42"
+      },
+      {
+        "exact_native_cache_key": "ebd40ac99b5f2cb0d5984ac7e27e0b9a2cb8990b.pkl",
+        "pkl_sha256": "57e7ee57c60077ab93b99ddba0fde6449570c6f8bfecdca26288d3e292dffd1d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Dolly was born at Roslin,",
+            "exact_native_cache_key": "ebd40ac99b5f2cb0d5984ac7e27e0b9a2cb8990b.pkl",
+            "cache_input_text_sha256": "413d53297f6f20823afd678c0ecff02c85c573f993eee9e25722b4cbd73ccb5f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "57e7ee57c60077ab",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          40960
+        ],
+        "unprocessed_array_sha256": "afebf9c3276b02298b70b20db04f7776afa381a42463c3aea8a213d9bb669288"
+      },
+      {
+        "exact_native_cache_key": "b7519f8b3a16535838265b0a5cb2c22052146779.pkl",
+        "pkl_sha256": "8fd437d1fb7c733b29ee7639ac1f8815d00d4ec5c68cbc616cf65bc7a17c0019",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Scotland,",
+            "exact_native_cache_key": "b7519f8b3a16535838265b0a5cb2c22052146779.pkl",
+            "cache_input_text_sha256": "ca20c12e270a28052e30c495652c59da50331be5d21a449c2614b16dee60d489",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "8fd437d1fb7c733b",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          22016
+        ],
+        "unprocessed_array_sha256": "a545185563167fd3c4c2d61aca4ee0b06c5b11ffa2c56724e00fa29425b8efcd"
+      },
+      {
+        "exact_native_cache_key": "82c67889fc387eabadb8eb602d09e15a4ca5f0c5.pkl",
+        "pkl_sha256": "a879c4b9da2bbbc3fa9a351c03cf6fee8bb2599da3c6974d47b6e3f1171a8d7e",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "on 5 July 1996.",
+            "exact_native_cache_key": "82c67889fc387eabadb8eb602d09e15a4ca5f0c5.pkl",
+            "cache_input_text_sha256": "5d0aaced74f12b3387cfe45bc643222e0a4e5b8ef66ff215100800b514cc942e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "a879c4b9da2bbbc3",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          63488
+        ],
+        "unprocessed_array_sha256": "203fadcfc7bc05807d2e13e5ec592e4c82dc0848572fec01881dead67af55870"
+      },
+      {
+        "exact_native_cache_key": "01a7d200f64868e63735ef7977423e632b387dd4.pkl",
+        "pkl_sha256": "7162f8a186e03f649df626ff57224daf74d32306ccc94386635ef4935c339303",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Her genome came from a Finn Dorset ewe's mammary cell, fused with a Blackface egg stripped of its nucleus.",
+            "exact_native_cache_key": "01a7d200f64868e63735ef7977423e632b387dd4.pkl",
+            "cache_input_text_sha256": "fe8f6edda45513932471f32f1a27d8553bb2fc49a79c8bc35c24dab3a5326a34",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "7162f8a186e03f64",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          167424
+        ],
+        "unprocessed_array_sha256": "b30a87524f2014998b29c7f72a256ded8bf859b270fd3dfaec248c947da9acf3"
+      },
+      {
+        "exact_native_cache_key": "e69ce6a0689eb8cecc2459125291516ee9c2308a.pkl",
+        "pkl_sha256": "2a138a1939f8493b58e19db8353709773d528151c7673d5f310f90766adee5ea",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Her genome came from a Finn Dorset ewe's mammary cell,",
+            "exact_native_cache_key": "e69ce6a0689eb8cecc2459125291516ee9c2308a.pkl",
+            "cache_input_text_sha256": "1b6b4773503e9a6982cfe27e140969a8b23be5fd56bdf802dcd2d50a14023a05",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S2",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Her genome came from a Finn Dorset ewe's mammary cell,",
+            "exact_native_cache_key": "e69ce6a0689eb8cecc2459125291516ee9c2308a.pkl",
+            "cache_input_text_sha256": "1b6b4773503e9a6982cfe27e140969a8b23be5fd56bdf802dcd2d50a14023a05",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "2a138a1939f8493b",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          87040
+        ],
+        "unprocessed_array_sha256": "4cdb345a2d2f6fef08e95f338572894d5ea701c4f60bc3070e277df47691130b"
+      },
+      {
+        "exact_native_cache_key": "e8c1aa7d7b71c3972fdb44d169644ee03de09642.pkl",
+        "pkl_sha256": "5bda14b3699b6dd36e89f92dedf3d986faa875dc196b85e6eacce00961bf717f",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "fused with a Blackface egg stripped of its nucleus.",
+            "exact_native_cache_key": "e8c1aa7d7b71c3972fdb44d169644ee03de09642.pkl",
+            "cache_input_text_sha256": "3f1c6ec50f5945517c3c8900c9940cd2d716bbf2c84048fcfd92e9252747452a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S2",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "fused with a Blackface egg stripped of its nucleus.",
+            "exact_native_cache_key": "e8c1aa7d7b71c3972fdb44d169644ee03de09642.pkl",
+            "cache_input_text_sha256": "3f1c6ec50f5945517c3c8900c9940cd2d716bbf2c84048fcfd92e9252747452a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "5bda14b3699b6dd3",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          68096
+        ],
+        "unprocessed_array_sha256": "4a996ea73b11919a4c03164503f17e469e96197533e92a0e1f3191afe89add78"
+      },
+      {
+        "exact_native_cache_key": "531913c3b0a07041cfbf1bb49b9df68c36d2eafc.pkl",
+        "pkl_sha256": "a265ae1b080d48629b730a4d9b36fd03f8f11a1e19d8c4a3519529a7e5591429",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "A Blackface surrogate carried the embryo through pregnancy, yet her white face was proof of a genetically different lineage.",
+            "exact_native_cache_key": "531913c3b0a07041cfbf1bb49b9df68c36d2eafc.pkl",
+            "cache_input_text_sha256": "48dc6bb2b19420a775cf3cc85b729aeb79b568e44e514b07c6fdeef3cebeae42",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "a265ae1b080d4862",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          185856
+        ],
+        "unprocessed_array_sha256": "74e056260fdce385fc96831fe29c9d98bcd09496e8feeadb4151728ca70d98ae"
+      },
+      {
+        "exact_native_cache_key": "39390dbe699e15c254c226511d67c06ef6167c35.pkl",
+        "pkl_sha256": "549125c2abcde54c6738b6a3ba56a6f4bf927b7060aceb2d9001f60e041600a2",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "A Blackface surrogate carried the embryo through pregnancy,",
+            "exact_native_cache_key": "39390dbe699e15c254c226511d67c06ef6167c35.pkl",
+            "cache_input_text_sha256": "8a521ef04c2d4e23a1aa2880474a9b223fff652ab623ef6c600fab6110b22091",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S3",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "A Blackface surrogate carried the embryo through pregnancy,",
+            "exact_native_cache_key": "39390dbe699e15c254c226511d67c06ef6167c35.pkl",
+            "cache_input_text_sha256": "8a521ef04c2d4e23a1aa2880474a9b223fff652ab623ef6c600fab6110b22091",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "549125c2abcde54c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          82944
+        ],
+        "unprocessed_array_sha256": "c3f5a8369ed437263a5348a1963d4d09b2a159b95d14b9d6178d6d63e4fb40ce"
+      },
+      {
+        "exact_native_cache_key": "6157c15555cced6bee2457173efba18d6b0ca33e.pkl",
+        "pkl_sha256": "f3354b2b8289beb7c9a0b84fa32fc77ae553112c949140ba43549714f63d2c62",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "yet her white face was proof of a genetically different lineage.",
+            "exact_native_cache_key": "6157c15555cced6bee2457173efba18d6b0ca33e.pkl",
+            "cache_input_text_sha256": "1f2a0b2a1a89420d7800775265252c527b4c57b5e920be71245084bef59300dd",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S3",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "yet her white face was proof of a genetically different lineage.",
+            "exact_native_cache_key": "6157c15555cced6bee2457173efba18d6b0ca33e.pkl",
+            "cache_input_text_sha256": "1f2a0b2a1a89420d7800775265252c527b4c57b5e920be71245084bef59300dd",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "f3354b2b8289beb7",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          94720
+        ],
+        "unprocessed_array_sha256": "dc4888ec4988050e3fffc49e173f299b875770e60c6d0687341924fa7f302bfe"
+      },
+      {
+        "exact_native_cache_key": "edc0631a5b65a71ee31975d26e6a4999d2eb88a7.pkl",
+        "pkl_sha256": "3a569a56fe328b18bb5270c96bcb0c385462c371180defcaf811330e8941a062",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "She alone survived from 277 attempts, an extraordinary failure rate.",
+            "exact_native_cache_key": "edc0631a5b65a71ee31975d26e6a4999d2eb88a7.pkl",
+            "cache_input_text_sha256": "a9f257fc48eaee7b09bdc05984e3a9744a254bee723fcd3a8f4707c8687aa16f",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "3a569a56fe328b18",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          141824
+        ],
+        "unprocessed_array_sha256": "58882d208f6ca4cf12635871e6af8998c6fe22c242f46ec52310101e0c6bf378"
+      },
+      {
+        "exact_native_cache_key": "7213b3bd60c05f006bbf26b4788d4cfc566bb223.pkl",
+        "pkl_sha256": "2eae44997880b85e46374e24f3c598e0967a7f83864881ca7ad2fcdd6e7b78a0",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "She alone survived from 277 attempts,",
+            "exact_native_cache_key": "7213b3bd60c05f006bbf26b4788d4cfc566bb223.pkl",
+            "cache_input_text_sha256": "bb8438779d4a9c453951e585c818ed7d8177b7ef1cb913f16d30c1f3bfa794bd",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "2eae44997880b85e",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          85504
+        ],
+        "unprocessed_array_sha256": "b58405dad4ef90838649352b7522e274d0e90b0e596fed2b41003fa858af707d"
+      },
+      {
+        "exact_native_cache_key": "67b5b8324b400ac000223ae2d64509b6962b4612.pkl",
+        "pkl_sha256": "7356c9cfbcd53ca87a712f6dd5613f01db83752ec194eee05c19095dff498455",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "an extraordinary failure rate.",
+            "exact_native_cache_key": "67b5b8324b400ac000223ae2d64509b6962b4612.pkl",
+            "cache_input_text_sha256": "f89826bed292af725f468e8a5796a95541802708f1236d70b3290d70636d337f",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "7356c9cfbcd53ca8",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          46592
+        ],
+        "unprocessed_array_sha256": "af32dc8a9a685796ba741c9b3182a09599dd76da525762f5d46ae7e96c5dbe50"
+      },
+      {
+        "exact_native_cache_key": "306039b3cdbeac801124529ae3671438e8817f52.pkl",
+        "pkl_sha256": "984b0f8fb5590f0d1bd2b0b7ad61056273b2dd4ab9f21c913abac142fb297c90",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Dolly is popularly called the first clone, a misconception.",
+            "exact_native_cache_key": "306039b3cdbeac801124529ae3671438e8817f52.pkl",
+            "cache_input_text_sha256": "d270574d9e0bcdd2f54303350ea051aca8802ddde51a8a78cfec8b5df0ad1707",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "984b0f8fb5590f0d",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          91136
+        ],
+        "unprocessed_array_sha256": "b9e79a1f76344c1b374c8fdd94716c387778701b391c5fe8376e15ac92327c15"
+      },
+      {
+        "exact_native_cache_key": "566dec972351e370b56af021b3302cf0b0916781.pkl",
+        "pkl_sha256": "7d8537935615381264a5f40e73c7f55980ce3c402772c5ed57b20459d2dadd55",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Dolly is popularly called the first clone,",
+            "exact_native_cache_key": "566dec972351e370b56af021b3302cf0b0916781.pkl",
+            "cache_input_text_sha256": "66ebb4f4d483c31d83ae443c6e58d1ed7995a8fd690ef45147536c981fefe1ce",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "7d85379356153812",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          59904
+        ],
+        "unprocessed_array_sha256": "711274bc7cbd9a6c4daef98f25c416299c6a189c39c1feaebd67261bce30215c"
+      },
+      {
+        "exact_native_cache_key": "45eba502ebfb085b97ed8df4fd759919e525e7b4.pkl",
+        "pkl_sha256": "d59f694a53985713209f09b6fe67ec5c5bb09399d5882e6ef754708efe7f4a64",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "a misconception.",
+            "exact_native_cache_key": "45eba502ebfb085b97ed8df4fd759919e525e7b4.pkl",
+            "cache_input_text_sha256": "ba3e6290221bb81c48b3a6b7c3e95150c9ebbb82276725ad8fe6a2ecad18e377",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "d59f694a53985713",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          27136
+        ],
+        "unprocessed_array_sha256": "2556d12be2456548b01dfff6fa2904472ccfc5066b53bb82e3b3ccdfdde4c277"
+      },
+      {
+        "exact_native_cache_key": "192a35fc46e4ced4bb4dec405e3cb46a5ecef2dc.pkl",
+        "pkl_sha256": "ba3baac1bfb35cb00dfc809026b8fe93a979f56261493e8c3ccdf683efaa5596",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Her predecessors included frogs cloned from transplanted nuclei in 1962 and Roslin's embryo-derived duo, Megan and Morag, in 1995.",
+            "exact_native_cache_key": "192a35fc46e4ced4bb4dec405e3cb46a5ecef2dc.pkl",
+            "cache_input_text_sha256": "d576befc022a0f63aa991489bd5f2ae4df73aaa93986e9f265a5308b52618c88",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "ba3baac1bfb35cb0",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          294400
+        ],
+        "unprocessed_array_sha256": "8b392f437781af3287f81bccac4343ea5a6a3bea2a496fe862f112eaab648884"
+      },
+      {
+        "exact_native_cache_key": "d04a2d57e4d82a5df6ee0587609a7f002efa44bb.pkl",
+        "pkl_sha256": "2009419db045e89be5704ac6129eaee1569f9756bf9b3a731455c75e8962962c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Her predecessors included",
+            "exact_native_cache_key": "d04a2d57e4d82a5df6ee0587609a7f002efa44bb.pkl",
+            "cache_input_text_sha256": "3a97164790518b2c1084a82181d3c9bbec16d6fb3bab0578708aa42b0c29ed28",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "2009419db045e89b",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          40448
+        ],
+        "unprocessed_array_sha256": "2ec87cbdc00e09b3d26d4cf5bcb131955b8d7a731c9acc3ec11bd9b8c6d3f127"
+      },
+      {
+        "exact_native_cache_key": "0fe0c582cb8e66c5774a87e6a8389daa221a921a.pkl",
+        "pkl_sha256": "9cd44cbd289d9a390f180cfb17d43dbaeeee24c352ab8db0aea64fc726b5df40",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "frogs cloned from transplanted nuclei in 1962",
+            "exact_native_cache_key": "0fe0c582cb8e66c5774a87e6a8389daa221a921a.pkl",
+            "cache_input_text_sha256": "5c1c43129cbbb1753897de1814c10aa63ae1068f77155772a584a8cc381bc37e",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "9cd44cbd289d9a39",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          95232
+        ],
+        "unprocessed_array_sha256": "00f3c3d85e89d9446ff7f882488c332775819001c807c562ac7ff1b028060212"
+      },
+      {
+        "exact_native_cache_key": "8689bf8bb327f5e89b160b43358516c2449dbf83.pkl",
+        "pkl_sha256": "06d9326a805c121cf71e904b91529602281fc028a012a1c002988dcdd79e86ac",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and Roslin's embryo-derived duo, Megan and Morag, in 1995.",
+            "exact_native_cache_key": "8689bf8bb327f5e89b160b43358516c2449dbf83.pkl",
+            "cache_input_text_sha256": "2febe8965eb5182cad147eb26cc5f62e0fb013e05fa7a9db3972a1a185b5d588",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "06d9326a805c121c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          133632
+        ],
+        "unprocessed_array_sha256": "d871a4cd631a20dc7c17d06f14ec6ff02cafaa4ec6f85ae0ed2d73977dead518"
+      },
+      {
+        "exact_native_cache_key": "b482a8d03a31a9c5b8f9a52971f8b9527ae2f614.pkl",
+        "pkl_sha256": "59b002d9b17b74181ff4a5c5d6d82c73914d55baf4808912f559e5627efa3b7c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Her predecessors included frogs cloned from transplanted nuclei in 1962 and Roslin's embryo-derived duo,",
+            "exact_native_cache_key": "b482a8d03a31a9c5b8f9a52971f8b9527ae2f614.pkl",
+            "cache_input_text_sha256": "cda87066a749a5d1c33fdc23943be5b4a1fa8ff53528772c5f11050ca832aa78",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "59b002d9b17b7418",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          210432
+        ],
+        "unprocessed_array_sha256": "760bc374a06489f48c907a291069c61aac2ae3dfa8b7f439a8dab800cb37eefd"
+      },
+      {
+        "exact_native_cache_key": "75eabcfa366e501e726a32a259d7c59b4e4edf0f.pkl",
+        "pkl_sha256": "93c95ade7ec538e8ce290f77644b458ebead6a5e4b26aacac8741050c3182a59",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Megan and Morag,",
+            "exact_native_cache_key": "75eabcfa366e501e726a32a259d7c59b4e4edf0f.pkl",
+            "cache_input_text_sha256": "41f0c77dc40b044573b30bf396f5e18818cb223c09bd803b315e6557b10675d8",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "93c95ade7ec538e8",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          29184
+        ],
+        "unprocessed_array_sha256": "7e13b805d3016d1794ad3539329de9b3e21fb8bdd78924823a6761b74ce57698"
+      },
+      {
+        "exact_native_cache_key": "e9dda4b121f1466021fb05ae06ecdaf567b589b9.pkl",
+        "pkl_sha256": "e3e2e5747a05949c52c2c1846b851abfbade56060308f946972a8652d9826ffc",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "in 1995.",
+            "exact_native_cache_key": "e9dda4b121f1466021fb05ae06ecdaf567b589b9.pkl",
+            "cache_input_text_sha256": "120e00c0bcf31e77cd3e195280d4d42f8dd8dfbf8f0b59674c1a14d643063f04",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "e3e2e5747a05949c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          38912
+        ],
+        "unprocessed_array_sha256": "b175116e81bb8df08f8c258477acb4792ac2ccb417cc0d8f15f5ce475530c8a8"
+      },
+      {
+        "exact_native_cache_key": "350e6b21689c382c228020437383d94705133cea.pkl",
+        "pkl_sha256": "4c7afd55e2d3fefaec5ee7dffa15faad7b7ff7fc508e351f5e5c42f80fb82548",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "She was genuinely the first mammal cloned from an adult cell.",
+            "exact_native_cache_key": "350e6b21689c382c228020437383d94705133cea.pkl",
+            "cache_input_text_sha256": "d8ee7590b759a50f757986d6a069d39338a8c95b336a62f1336adee7dd2e45f3",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "4c7afd55e2d3fefa",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          86528
+        ],
+        "unprocessed_array_sha256": "1bbd7616f0c65c7592dbd7a7be0f66db207a9bf857343513617a288a00bb527e"
+      },
+      {
+        "exact_native_cache_key": "44cad648d8ac25de1da2e1c76d2f03a10ca82cfb.pkl",
+        "pkl_sha256": "fa825ad1c88640b18772f82754b7828c2fbda33c3aedf366d4df6ab5e56dc737",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Roslin's announcement on 22 February 1997 coincided with the paper, and her name, a mammary pun, honoured Dolly Parton.",
+            "exact_native_cache_key": "44cad648d8ac25de1da2e1c76d2f03a10ca82cfb.pkl",
+            "cache_input_text_sha256": "c284b438a323a208c4ed68bc961f7a194e62dcd94d68ca3393b364a1807f4503",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "fa825ad1c88640b1",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          250368
+        ],
+        "unprocessed_array_sha256": "6690742b7ff5f0656730a2ccddbfb104c8c86e96f5c9d0b1b43862075e8f8e85"
+      },
+      {
+        "exact_native_cache_key": "c6b18ce8d5c35090f35080d5308890c2d5461673.pkl",
+        "pkl_sha256": "48faf4124231c2535e8efee87e0714ddfd001a07e390f5c9dc611d2f14551a23",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Roslin's announcement on 22 February 1997 coincided with the paper,",
+            "exact_native_cache_key": "c6b18ce8d5c35090f35080d5308890c2d5461673.pkl",
+            "cache_input_text_sha256": "70e0b23ed3857ed5e1b8b784269693c39f533f4e98dad2e9b10ce7ea20ebf732",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S8",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Roslin's announcement on 22 February 1997 coincided with the paper,",
+            "exact_native_cache_key": "c6b18ce8d5c35090f35080d5308890c2d5461673.pkl",
+            "cache_input_text_sha256": "70e0b23ed3857ed5e1b8b784269693c39f533f4e98dad2e9b10ce7ea20ebf732",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "48faf4124231c253",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          164352
+        ],
+        "unprocessed_array_sha256": "caf2d01497ff5876d9538bf4f8d85c1597e64ae61ec4c3b9382c495229a66d7d"
+      },
+      {
+        "exact_native_cache_key": "6399fce431a8d97879495e0dfc331a9e018778e8.pkl",
+        "pkl_sha256": "b62950cbf02c22fff31486a144e8dae70761759ecfe6881112965ca5aba02fb9",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and her name, a mammary pun, honoured Dolly Parton.",
+            "exact_native_cache_key": "6399fce431a8d97879495e0dfc331a9e018778e8.pkl",
+            "cache_input_text_sha256": "f0a482d4ba06d0a59c4569fca2fe36b30b4d45d304cdfc6be8c134d1f8049711",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "b62950cbf02c22ff",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          78848
+        ],
+        "unprocessed_array_sha256": "7d8031472ba600be3e1420ea6461c432a923aea9938c82eb692fe8756b3bd234"
+      },
+      {
+        "exact_native_cache_key": "a6f88e5aa7520633c786e4ec2ccfd155a020fae6.pkl",
+        "pkl_sha256": "61d8f327b76adf912d9577cdc4955650fefb5047172747b19c186f2bd6000e78",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and her name,",
+            "exact_native_cache_key": "a6f88e5aa7520633c786e4ec2ccfd155a020fae6.pkl",
+            "cache_input_text_sha256": "e844bc3d9c871bdb480d73d98ca99407fa905a7cf48280dd26e12e351492bf43",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "61d8f327b76adf91",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          25088
+        ],
+        "unprocessed_array_sha256": "e8ed89b65141b24ee6669c2a4271ad7082732c405249bdb94c70e8cfe71c4dd7"
+      },
+      {
+        "exact_native_cache_key": "f0f7f010ff549afaf5cf5b618927547b5fcb42a3.pkl",
+        "pkl_sha256": "9e8def9812335bfb0be4551e223c9dd9ffe9a3ba7531ee971691ee67e2e4b3b1",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "a mammary pun,",
+            "exact_native_cache_key": "f0f7f010ff549afaf5cf5b618927547b5fcb42a3.pkl",
+            "cache_input_text_sha256": "f27c8efcbf45c7384e14e313dff958e3ead1f3b143902e404d70f91024e32bf8",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "9e8def9812335bfb",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          27648
+        ],
+        "unprocessed_array_sha256": "71baf8f4110ce9b692443a1867fe3d28b854be2f6768554f55eb1262b7afeb4b"
+      },
+      {
+        "exact_native_cache_key": "18a9f64768c7ff0c5e0b1c6de90597c26495bfd2.pkl",
+        "pkl_sha256": "6467abb148015b5798a20fc4a7dd3c4721b625b782ace29a39d9673e3e6733b8",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "honoured Dolly Parton.",
+            "exact_native_cache_key": "18a9f64768c7ff0c5e0b1c6de90597c26495bfd2.pkl",
+            "cache_input_text_sha256": "3e1b0713806c43985a71bfb86c80665fdc42dbc0fc8cbf13e26eb02737646719",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "6467abb148015b57",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          35840
+        ],
+        "unprocessed_array_sha256": "b92cf08b03055749ea96d395edcb2d3d5e4cfd4f1ccc6a198a2aa155a5c5d304"
+      },
+      {
+        "exact_native_cache_key": "06e0f489f80ce5d63200a37e4c2a7974f314807c.pkl",
+        "pkl_sha256": "d6744a3fddf58be5e7a92a8b06ec79aa243a9de7769fedcfd9afa21271aa8036",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The news provoked uproar and apprehension about the ethics of human cloning.",
+            "exact_native_cache_key": "06e0f489f80ce5d63200a37e4c2a7974f314807c.pkl",
+            "cache_input_text_sha256": "c5ba68c9712419b36b9f333976ccbd3be98bc55d663eef021ac85b285a5a149e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "d6744a3fddf58be5",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          117248
+        ],
+        "unprocessed_array_sha256": "2ae11f9f6bf6ad44077186217848a7ec3929c7933555484eb8630f7d024fa596"
+      },
+      {
+        "exact_native_cache_key": "c126b6ef63a52e4163ffbcef6835c71a9b7194d3.pkl",
+        "pkl_sha256": "c3f1c171e6d6da3f74e91a58964e5c53fb98b1ccda310e7f51d85f61f9f92808",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "The news provoked uproar",
+            "exact_native_cache_key": "c126b6ef63a52e4163ffbcef6835c71a9b7194d3.pkl",
+            "cache_input_text_sha256": "7f211f9d5d93c929104b2395a7d0ed6b7d473e89ab3998fdff8b240c2c3a4a37",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "c3f1c171e6d6da3f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          38400
+        ],
+        "unprocessed_array_sha256": "6549b65544a831a14e514f59552e159bcbf3e86b6da34deb617c2acea096f835"
+      },
+      {
+        "exact_native_cache_key": "af6393980c3a18c7724dcd733f239e348f657531.pkl",
+        "pkl_sha256": "8b4765dfcc28d008ad2956a527a8180c0f20b739e14a09b69fab7801de290ef8",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and apprehension about the ethics of human cloning.",
+            "exact_native_cache_key": "af6393980c3a18c7724dcd733f239e348f657531.pkl",
+            "cache_input_text_sha256": "c7c986605eb1ea42ee345adf23a2146f7c959ac3048b9c6360008fc23daaf260",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "8b4765dfcc28d008",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          76800
+        ],
+        "unprocessed_array_sha256": "3157d4879f729368754715357c5628c61365f197984508f162982fc65621d33a"
+      },
+      {
+        "exact_native_cache_key": "145a30a5074787c99870f433d1415f4855c8ce16.pkl",
+        "pkl_sha256": "022615b43a1baa5b1a81d7acb99f28a8315f17d4a900cde1202fc15e3e47d06e",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "In March 1997 Clinton prohibited federal funding for such experiments.",
+            "exact_native_cache_key": "145a30a5074787c99870f433d1415f4855c8ce16.pkl",
+            "cache_input_text_sha256": "8448a65712d6835ba7544eca1469b610c2ed756a3de7eeb6c3733cf3f5fa09d7",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "022615b43a1baa5b",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          139264
+        ],
+        "unprocessed_array_sha256": "8ca66c11047e7c32efb57748d659f8324a2345c8ea8405e5d887764f5b81591b"
+      },
+      {
+        "exact_native_cache_key": "726747257b27d1a34dba33f1ea94cf008d8abcb9.pkl",
+        "pkl_sha256": "9fa0cc6c056864df1a3f83cbcd55c46ad096f0e3a40e3c04f8f557e91ae20751",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "In 1999 her telomeres, or chromosome tips, were reported shortened by about 20% for her age.",
+            "exact_native_cache_key": "726747257b27d1a34dba33f1ea94cf008d8abcb9.pkl",
+            "cache_input_text_sha256": "bd66535baea0f9a9f6f44524e4092cd07a3747ee5df81d379310278d300abfda",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "9fa0cc6c056864df",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          191488
+        ],
+        "unprocessed_array_sha256": "41d6203d9ef5b90501c746a49a28415a789f0399b399cafee6bf0a8807eb4202"
+      },
+      {
+        "exact_native_cache_key": "b538aacdb5b267e94f0a971ec12842ca5dde48a5.pkl",
+        "pkl_sha256": "df3e29f1d9dbdcf8f5eb619eb08b5512f2be69679ad04eb803dc5de153e9a235",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "In 1999 her telomeres, or chromosome tips,",
+            "exact_native_cache_key": "b538aacdb5b267e94f0a971ec12842ca5dde48a5.pkl",
+            "cache_input_text_sha256": "f17f46d78bc3e13ba9156b0fdf78d9e7d604f00b012b2f18fd1b7ae5c2a59c27",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "df3e29f1d9dbdcf8",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          90624
+        ],
+        "unprocessed_array_sha256": "c59b18e2e0593ad8fbe2cc924713c18d869477b9f78658083b56d10daadf9b88"
+      },
+      {
+        "exact_native_cache_key": "6808a49c12b9d635d2b42ec858317a043d13c969.pkl",
+        "pkl_sha256": "834a60fe9b45a7836bb645a78033922168920a678da5a654c88bd1eb78035379",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "were reported shortened by about 20% for her age.",
+            "exact_native_cache_key": "6808a49c12b9d635d2b42ec858317a043d13c969.pkl",
+            "cache_input_text_sha256": "c88e391b27c5e1376b762027a68196714846c911981ea4a1bc9af628e879e2c5",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S11",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "were reported shortened by about 20% for her age.",
+            "exact_native_cache_key": "6808a49c12b9d635d2b42ec858317a043d13c969.pkl",
+            "cache_input_text_sha256": "c88e391b27c5e1376b762027a68196714846c911981ea4a1bc9af628e879e2c5",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "834a60fe9b45a783",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          84480
+        ],
+        "unprocessed_array_sha256": "5b4ea3327c45e158acd4c1fa09435376011304e7c94439ba73d279e465e0bbe3"
+      },
+      {
+        "exact_native_cache_key": "2c082a19077e44a43498e625fe53256ae13a5cfe.pkl",
+        "pkl_sha256": "14fe04e0edbc98c1272eb4c67ddcc7065b52c9df3419fc2fba3d178ab7bf4873",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "In 1999 her telomeres,",
+            "exact_native_cache_key": "2c082a19077e44a43498e625fe53256ae13a5cfe.pkl",
+            "cache_input_text_sha256": "9720cbac7e84ceda2b32bbdd5f7ecb883c4f937d2a1989537171aec20babb745",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "14fe04e0edbc98c1",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          53248
+        ],
+        "unprocessed_array_sha256": "218bb8aea4095e9381a26ce78a1f18c919558d3e1645dcc14bb7985bb0b55bfd"
+      },
+      {
+        "exact_native_cache_key": "e0382963e777187aec0e38a2c1b25c7639817733.pkl",
+        "pkl_sha256": "1c54f0ac96824203f00249414d0319d00149619fcaef72e6c0ed701e824b15e6",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "or chromosome tips,",
+            "exact_native_cache_key": "e0382963e777187aec0e38a2c1b25c7639817733.pkl",
+            "cache_input_text_sha256": "fe9606d1b90719e4b7cc230b0be348f357270e5478740a0b92d1823863abc890",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "1c54f0ac96824203",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          32768
+        ],
+        "unprocessed_array_sha256": "b112a408613ac0f077ac7ee069f12f514579eb6b96cf4335633503c249c20818"
+      },
+      {
+        "exact_native_cache_key": "4f413a69db619037ea39b66ce0c1aa592c7a6418.pkl",
+        "pkl_sha256": "23a66cb9fc26e59d5fdea5c57bbda2fb36193dce86f21452ea88e1ffedff40e2",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "That fed anxiety; some speculated she was ageing prematurely.",
+            "exact_native_cache_key": "4f413a69db619037ea39b66ce0c1aa592c7a6418.pkl",
+            "cache_input_text_sha256": "d0c8cd62ee36f68dc6953fd9d71a71aaae42885c4f2e16919f9e8d43f29a6f50",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "23a66cb9fc26e59d",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          104448
+        ],
+        "unprocessed_array_sha256": "307dde1e116d72aeb06f4d8155cb546919632f28a0f3f17620b9bef423d0eebd"
+      },
+      {
+        "exact_native_cache_key": "f1d89f46564d0d1adcb9e97ddfc49be86bb2fc15.pkl",
+        "pkl_sha256": "4c1c7d22a8a8a6d6968da476080097c9dc5bc9d9d9898942582a0905c1ea2e73",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "That fed anxiety;",
+            "exact_native_cache_key": "f1d89f46564d0d1adcb9e97ddfc49be86bb2fc15.pkl",
+            "cache_input_text_sha256": "682a8a6929148e90c1da4892acb6221edf70ff3ed897808927b92b0437cf41d4",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S12",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "That fed anxiety;",
+            "exact_native_cache_key": "f1d89f46564d0d1adcb9e97ddfc49be86bb2fc15.pkl",
+            "cache_input_text_sha256": "682a8a6929148e90c1da4892acb6221edf70ff3ed897808927b92b0437cf41d4",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "4c1c7d22a8a8a6d6",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          29696
+        ],
+        "unprocessed_array_sha256": "fbd86b918f33b0d986fc06271424653860c4e8ee4a81ab2df22c8711dae2d440"
+      },
+      {
+        "exact_native_cache_key": "5fce4f39f964b3d86dad45816bde7aef7233cad3.pkl",
+        "pkl_sha256": "f4ef2f4da9a44f6e7ac5102a76ebf788bba85208adbab9f7d25e7903b93b17da",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "some speculated she was ageing prematurely.",
+            "exact_native_cache_key": "5fce4f39f964b3d86dad45816bde7aef7233cad3.pkl",
+            "cache_input_text_sha256": "db06714b092d153cba6518238e919583da6a5d2abc196a578a975453d5ee1cb0",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S12",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "some speculated she was ageing prematurely.",
+            "exact_native_cache_key": "5fce4f39f964b3d86dad45816bde7aef7233cad3.pkl",
+            "cache_input_text_sha256": "db06714b092d153cba6518238e919583da6a5d2abc196a578a975453d5ee1cb0",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "f4ef2f4da9a44f6e",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          68096
+        ],
+        "unprocessed_array_sha256": "1e2fd8d54cd3189d93d91e5ccff7532ec108d6441eb6883af74f717496f03900"
+      },
+      {
+        "exact_native_cache_key": "c30f4bba6b1dca9aff999e6be71afa41ace9ea36.pkl",
+        "pkl_sha256": "d676fd2d5d09f32952fc715fc5009064e4505724ff4bb81aa6c75fcf18ee49d2",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Dolly was put down, aged six, on 14 February 2003, with arthritis and a progressive lung disease caused by a sheep virus.",
+            "exact_native_cache_key": "c30f4bba6b1dca9aff999e6be71afa41ace9ea36.pkl",
+            "cache_input_text_sha256": "61af062304167e72caf5b3e3b6deed055ac24ea165521f1b441f7ce1ca992b38",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "d676fd2d5d09f329",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          251904
+        ],
+        "unprocessed_array_sha256": "039fe6d25677b7a26baff83f62f6e9ddf8e6d5dc694a9409a965574562e98d90"
+      },
+      {
+        "exact_native_cache_key": "1fb892ed76bda737491901709445b0f0297b23b9.pkl",
+        "pkl_sha256": "f1894fe860598ea04d3a54b95b58d0dc9101390fd92696a910faad21889ce2cc",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Dolly was put down, aged six, on 14 February 2003,",
+            "exact_native_cache_key": "1fb892ed76bda737491901709445b0f0297b23b9.pkl",
+            "cache_input_text_sha256": "1dfe366fb8e7a48e0ab221f1dd5f5b1d1054022b1d47e3a12a54841cbb45d588",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "f1894fe860598ea0",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          128512
+        ],
+        "unprocessed_array_sha256": "2b7bbc258d6ad834bffcd0c190ac69ea8b00be7948c29091fa71992c46c443af"
+      },
+      {
+        "exact_native_cache_key": "cd08310b255bda62cd8fd7eb343beee27307edc1.pkl",
+        "pkl_sha256": "9a2a72a549aa2a9079cee8e87319aa06abe59943d66800f515b10eda4f95b54d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "with arthritis and a progressive lung disease caused by a sheep virus.",
+            "exact_native_cache_key": "cd08310b255bda62cd8fd7eb343beee27307edc1.pkl",
+            "cache_input_text_sha256": "fd5f8334ebb34f20efe71d19bced7e2f48ed70071a1d1ea4502e18660d1dbebb",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S13",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "with arthritis and a progressive lung disease caused by a sheep virus.",
+            "exact_native_cache_key": "cd08310b255bda62cd8fd7eb343beee27307edc1.pkl",
+            "cache_input_text_sha256": "fd5f8334ebb34f20efe71d19bced7e2f48ed70071a1d1ea4502e18660d1dbebb",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "9a2a72a549aa2a90",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          109568
+        ],
+        "unprocessed_array_sha256": "3211aeb01bdb6a4f190947420c9f7d85a97952a357067ad5dde45d6d66a22ee8"
+      },
+      {
+        "exact_native_cache_key": "d9858b69b18c0f27c4036f8c29dbf70315db75ff.pkl",
+        "pkl_sha256": "9c3667974d40a394bcc929cf8ff4696ab4a870089266302369d26c2780877267",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Dolly was put down,",
+            "exact_native_cache_key": "d9858b69b18c0f27c4036f8c29dbf70315db75ff.pkl",
+            "cache_input_text_sha256": "6373f0db4c491ccde264e20e5838d85f9da1ed380ff205b77f06d10310e57925",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "9c3667974d40a394",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          33792
+        ],
+        "unprocessed_array_sha256": "8d87b106ac6556f50bbad5213c8f37d004e48a5309e8859801b0de867b947fee"
+      },
+      {
+        "exact_native_cache_key": "b310ba10f19b9adf461f5fadd2f6023ba8a8d157.pkl",
+        "pkl_sha256": "0e646e62ce9a05e264edaf3810c9b58e565af0369464b277c52112d3c6a6b0fc",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "aged six,",
+            "exact_native_cache_key": "b310ba10f19b9adf461f5fadd2f6023ba8a8d157.pkl",
+            "cache_input_text_sha256": "ff47721ec9f15ebd301ee401654db03c20a35cb50295f9adc0fce6036eec7afb",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "0e646e62ce9a05e2",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          23040
+        ],
+        "unprocessed_array_sha256": "1ab21c985301116b320ac3417ce467f49014e871870240589f07eaca0a8ea536"
+      },
+      {
+        "exact_native_cache_key": "956c56ce1f8338665a41ec7592ac46ce3565035e.pkl",
+        "pkl_sha256": "6eb63b86693d867d87d2b5ecd3021cbcb1852abe2dffd0c15a4d8d3385379a3a",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "on 14 February 2003,",
+            "exact_native_cache_key": "956c56ce1f8338665a41ec7592ac46ce3565035e.pkl",
+            "cache_input_text_sha256": "a4e1f736829deabbcc710193fb0d384f027dd3d2ff4e75c604fe737004b524eb",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "6eb63b86693d867d",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          64000
+        ],
+        "unprocessed_array_sha256": "1ddb31a1a77d7ebf06ee917efd9ed9143da26330f2ff27961e9af8c081af833e"
+      },
+      {
+        "exact_native_cache_key": "257b70b2dc07ea56c45af6fe03a0b498803b6074.pkl",
+        "pkl_sha256": "40c46d2e987dc1f29e3c1c2f700e1b1af84b1d9fe9d2991f7ce3193626062ac6",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Indoor confinement probably contributed.",
+            "exact_native_cache_key": "257b70b2dc07ea56c45af6fe03a0b498803b6074.pkl",
+            "cache_input_text_sha256": "31529c28827004838a9440d627752f26672efd89a5ccebdf4b8862a2e8c7e999",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "40c46d2e987dc1f2",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          62976
+        ],
+        "unprocessed_array_sha256": "1b245f281b484eef6a3ec275c8da39ce2438178702bb46d3c121c6ae77ceb47d"
+      },
+      {
+        "exact_native_cache_key": "54e6ef327fa6583c4f8468f8e1cddca2defdf4d4.pkl",
+        "pkl_sha256": "05c009edf8cdfca111ed14599108d001043d1633e6576f5cf8f98a7c1aa91b52",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "In July 2016, 13 clones, four from her cell line, were ageing normally, without hypertension or diabetes.",
+            "exact_native_cache_key": "54e6ef327fa6583c4f8468f8e1cddca2defdf4d4.pkl",
+            "cache_input_text_sha256": "2bdca16ff65c604dda3377a674addb51db0f2e586bf3e461530505b9a5fe4fa2",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "05c009edf8cdfca1",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          216576
+        ],
+        "unprocessed_array_sha256": "15fc0139749911fb28a72ca353154e5abbfb5ef4bf2cf4c5e481eb4e558f620e"
+      },
+      {
+        "exact_native_cache_key": "703727b3a22a1fceab3cdc9fd263fb7b7b0bc66a.pkl",
+        "pkl_sha256": "6dc60bae7ab648f275693e7f0a5d2c8e86fb940c56c16ed38d38240623d953fb",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "In July 2016, 13 clones, four from her cell line,",
+            "exact_native_cache_key": "703727b3a22a1fceab3cdc9fd263fb7b7b0bc66a.pkl",
+            "cache_input_text_sha256": "d12f234fd1a6f00ef84c7eb2329dfc531cbdcd39a19aebaf175682a43c9234e4",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "6dc60bae7ab648f2",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          115200
+        ],
+        "unprocessed_array_sha256": "47b500e46a731ff45303a485254fed5f92cbd9e81b1d55019388c5dcc1422453"
+      },
+      {
+        "exact_native_cache_key": "35feab802467ce1af24ee919936b8c2558330495.pkl",
+        "pkl_sha256": "6f9b5c6349972493e545e94237d1e83374e172ffcc092f9ec63f7a0075dc032d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "were ageing normally, without hypertension or diabetes.",
+            "exact_native_cache_key": "35feab802467ce1af24ee919936b8c2558330495.pkl",
+            "cache_input_text_sha256": "80c296f7230a98af576876709f7e33ce87b59df87cec944791d99e3201329db6",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "6f9b5c6349972493",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          95744
+        ],
+        "unprocessed_array_sha256": "b158e3477a557a0a77d9e62ea4e0f1390d9d3187766f626f27948d9a7218fde3"
+      },
+      {
+        "exact_native_cache_key": "4f16d8777f0a036aed95763940edf70967bb8216.pkl",
+        "pkl_sha256": "dfa3e291ade0fb162d1ab75061d3552f145282fe73e2920cd287500c6042e73a",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "In July 2016,",
+            "exact_native_cache_key": "4f16d8777f0a036aed95763940edf70967bb8216.pkl",
+            "cache_input_text_sha256": "92341646b065e70f9306e65bbc17f122e1a93004b2691a7437cd36edbb79a28f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "dfa3e291ade0fb16",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          47104
+        ],
+        "unprocessed_array_sha256": "d7099d16dcdfe714106cf1939c0d31e8ade933b30548d433a486e452b339419f"
+      },
+      {
+        "exact_native_cache_key": "bab02a382e5eb4ad432da268c769203be685d785.pkl",
+        "pkl_sha256": "0c62dfbd129d074746c305fe504f90c5e3b97d1b67ba397cf14dbb3907f2808c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "13 clones,",
+            "exact_native_cache_key": "bab02a382e5eb4ad432da268c769203be685d785.pkl",
+            "cache_input_text_sha256": "aa232d7e88434538b7c8575ed37305d9ac46815c5ac3391c36284d135b3946b0",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "0c62dfbd129d0747",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          28160
+        ],
+        "unprocessed_array_sha256": "cf8893bff4a599f46c784f9ac953c1d8d9d1f89e6b92f82f1c1c0b2e8e0fa260"
+      },
+      {
+        "exact_native_cache_key": "85463442afe8daf83079407da78cb4837271754e.pkl",
+        "pkl_sha256": "6659866105a1483987148603bbf65ec1cb6d160891ca87754b427a630c5a05fb",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "four from her cell line,",
+            "exact_native_cache_key": "85463442afe8daf83079407da78cb4837271754e.pkl",
+            "cache_input_text_sha256": "c0775f3df98d115d2a04072cae843435c54f26a0d7336f3ae682969649fbb781",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "6659866105a14839",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          34304
+        ],
+        "unprocessed_array_sha256": "2b4838aaffe3014a4955c564562b0c1e8f3522afcd9338757ef5e8f90d79c2ce"
+      },
+      {
+        "exact_native_cache_key": "c485c351f9d4786368d09e881e8690f80523193c.pkl",
+        "pkl_sha256": "22f6104c69286c2e4d1b8c8e8ca23a6faab3c2b933ab79d962f25f21e4e6503f",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "were ageing normally,",
+            "exact_native_cache_key": "c485c351f9d4786368d09e881e8690f80523193c.pkl",
+            "cache_input_text_sha256": "cb6e65a8603965b255fab152338c920b30e3855a85524ec78fe02a69ba262138",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "22f6104c69286c2e",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          32768
+        ],
+        "unprocessed_array_sha256": "fe3774f65cd7dd8f4e453e447bc29172bee26531262232a0fa8bef065ca07eea"
+      },
+      {
+        "exact_native_cache_key": "2fbe4db224f143cca41ef54e1229324e92b942a5.pkl",
+        "pkl_sha256": "0b1fe5778bacc2d8bcf6a465a923d701e41a2e501b61f2000fca097963f5ea63",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 5,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "without hypertension or diabetes.",
+            "exact_native_cache_key": "2fbe4db224f143cca41ef54e1229324e92b942a5.pkl",
+            "cache_input_text_sha256": "40060e9d51f626657a2a4bca11c89c2a5ea7a59f005c8adc26353a7af54ed5ed",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "0b1fe5778bacc2d8",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          56832
+        ],
+        "unprocessed_array_sha256": "216ecbaef130041e70f70ad74df2a2ad3e23034fc46c19df2cad149e4d21d624"
+      },
+      {
+        "exact_native_cache_key": "50e36ab511ab4831b585455e4361c3f1dfdd528f.pkl",
+        "pkl_sha256": "afc3343ccb980576a2e412f205fbdd46566dea4cec4e607fcdece851bc45e615",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "In November 2017, her skeletal X-rays showed ordinary arthritis, and fears of early onset were judged unfounded.",
+            "exact_native_cache_key": "50e36ab511ab4831b585455e4361c3f1dfdd528f.pkl",
+            "cache_input_text_sha256": "cc4878b18c9120d2a0f564b07a7701d3e406835824e46a7cbf91cefc92544476",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "afc3343ccb980576",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          233472
+        ],
+        "unprocessed_array_sha256": "ebdc8cd54ce2b5e3b53b7cf9a478b056d520d845fd2c16ebe22774db2a131ea0"
+      },
+      {
+        "exact_native_cache_key": "555b4dcc6987ca7a31edcdc7d556ed30170a0c63.pkl",
+        "pkl_sha256": "aa74bcffe93089e6b7e2e030a909c636b210dc30e299170c33e3b8fcee0755a4",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "In November 2017, her skeletal X-rays showed ordinary arthritis,",
+            "exact_native_cache_key": "555b4dcc6987ca7a31edcdc7d556ed30170a0c63.pkl",
+            "cache_input_text_sha256": "0f9db4171f6e77a59e9bbbe760038e2b5a71aab2f0518f4c27424a4fdddeca4d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "aa74bcffe93089e6",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          142848
+        ],
+        "unprocessed_array_sha256": "ce30b759caae28e661636c5bf977c360a3a2f357e797c25012715d1b2b813e32"
+      },
+      {
+        "exact_native_cache_key": "1db1fc10a2bea518d8ce047cc43a7095471053ec.pkl",
+        "pkl_sha256": "fb790469a671c415c6c56f3f3ce2204d70833fc3eafe033b10afbf9d302cc1f1",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and fears of early onset were judged unfounded.",
+            "exact_native_cache_key": "1db1fc10a2bea518d8ce047cc43a7095471053ec.pkl",
+            "cache_input_text_sha256": "fd1484cd24c580bf13f0f02bd99676deab641160f44c52a65569e42de6f6293e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S16",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and fears of early onset were judged unfounded.",
+            "exact_native_cache_key": "1db1fc10a2bea518d8ce047cc43a7095471053ec.pkl",
+            "cache_input_text_sha256": "fd1484cd24c580bf13f0f02bd99676deab641160f44c52a65569e42de6f6293e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "fb790469a671c415",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          73216
+        ],
+        "unprocessed_array_sha256": "260b1f80b61410a7295efb872a93a53d404d5a394a94b72440a5d238d1d39767"
+      },
+      {
+        "exact_native_cache_key": "480bd5da064bbc7df367b254b4436f006f4d3ce2.pkl",
+        "pkl_sha256": "25d6e838d3c7560f573693f98120d0d044064cb45ddf505db0a508243890b313",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "In November 2017,",
+            "exact_native_cache_key": "480bd5da064bbc7df367b254b4436f006f4d3ce2.pkl",
+            "cache_input_text_sha256": "4ca1ba0abdd0df44b0694dec6643be74ac4c521ffc01cdd6761f1c3f1c14fc09",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "25d6e838d3c7560f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          51712
+        ],
+        "unprocessed_array_sha256": "da4ef7b9cc703780f1d44c79a1c117fb3959feae854cd321d48bb7a9df6fca29"
+      },
+      {
+        "exact_native_cache_key": "5ca8fc101818474109ca9306a98a2aa90d97c4e8.pkl",
+        "pkl_sha256": "5e0b0857b349d9db8e396e07ef8b37835cce321ebc47af5f69380a755254ff71",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "her skeletal X-rays showed ordinary arthritis,",
+            "exact_native_cache_key": "5ca8fc101818474109ca9306a98a2aa90d97c4e8.pkl",
+            "cache_input_text_sha256": "5ed43b13c7832bdb8a3e338324eb404bf9242347bee3b1c40b2abf3cfe015da4",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "5e0b0857b349d9db",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          79360
+        ],
+        "unprocessed_array_sha256": "8aa105c924cb924bfd331a08da67457ff6c6b57ca1ccf8a938866af0345687db"
+      },
+      {
+        "exact_native_cache_key": "1c33f0bce3023afd7a160fac6bd6084e293dbe23.pkl",
+        "pkl_sha256": "ee4484402de288f6ac2144fa40f5073331306324ca3794a150ab31a0408f1a92",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "She bore six lambs by natural mating; Bonnie, first of these descendants, arrived in April 1998.",
+            "exact_native_cache_key": "1c33f0bce3023afd7a160fac6bd6084e293dbe23.pkl",
+            "cache_input_text_sha256": "3757c6c0839cb16b89e2236d16b121783912eea9f40e47143cecd17c0239576f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "ee4484402de288f6",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          185344
+        ],
+        "unprocessed_array_sha256": "d0f8676d0eb954f12e1fe60e02f24a35105aec9cda7b012b8be4fb26256d4039"
+      },
+      {
+        "exact_native_cache_key": "bb6fc0f2596ffd8b67c4726fc9f96c96d0b184a1.pkl",
+        "pkl_sha256": "091a63d226e3531cc28829f0e71de7423540845399033da8460d81acbf968482",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "She bore six lambs by natural mating;",
+            "exact_native_cache_key": "bb6fc0f2596ffd8b67c4726fc9f96c96d0b184a1.pkl",
+            "cache_input_text_sha256": "ac9c721a09c44c109c222c2d57bf64f13e0273c7b7f0df9b64239a48f8fa71d1",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S17",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "She bore six lambs by natural mating;",
+            "exact_native_cache_key": "bb6fc0f2596ffd8b67c4726fc9f96c96d0b184a1.pkl",
+            "cache_input_text_sha256": "ac9c721a09c44c109c222c2d57bf64f13e0273c7b7f0df9b64239a48f8fa71d1",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "091a63d226e3531c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          56832
+        ],
+        "unprocessed_array_sha256": "fdfb7879e3e8589d7bb47174ffa0e89104d4600b33a7f6b3ff1cedc77385a74d"
+      },
+      {
+        "exact_native_cache_key": "752616782a84e8521a9beed5c8ff9be8d205ae7a.pkl",
+        "pkl_sha256": "82c7b05876a61bb9dd83b54e44928d6f7e7921a9c74286685b811c1ce14a8f9c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Bonnie, first of these descendants, arrived in April 1998.",
+            "exact_native_cache_key": "752616782a84e8521a9beed5c8ff9be8d205ae7a.pkl",
+            "cache_input_text_sha256": "0edebb9c23da7f17fa159c66c3c7a394188aacfd8dbaf636d9bdc9b6dcd07cc0",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "82c7b05876a61bb9",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          116736
+        ],
+        "unprocessed_array_sha256": "18f372a93d6be2941d64b07065889b0c1839e9fd62c146f83e553130afd37486"
+      },
+      {
+        "exact_native_cache_key": "f01ab40569d8f9cda14b73a38820d8c3459a3ded.pkl",
+        "pkl_sha256": "e55fc41c5e7c941fde70caf932f4859f854203a06c454633495f1c5e3ef320bf",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Bonnie,",
+            "exact_native_cache_key": "f01ab40569d8f9cda14b73a38820d8c3459a3ded.pkl",
+            "cache_input_text_sha256": "c7f178f4e8ec8ec8ec0aacf715b208e09c047dee99dd4b653ccc1d94b25dacee",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "e55fc41c5e7c941f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          17920
+        ],
+        "unprocessed_array_sha256": "6ccaa8d3be655a0cbf213043ae7b75733ad765816781d24e3c404990b19fb1b1"
+      },
+      {
+        "exact_native_cache_key": "b9f4c224705105a52cf51d1d48c58d3f6bdcdd67.pkl",
+        "pkl_sha256": "2f5f917a78537741481c90db4e99e66092933191282db15436054e301fd00c20",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "first of these descendants,",
+            "exact_native_cache_key": "b9f4c224705105a52cf51d1d48c58d3f6bdcdd67.pkl",
+            "cache_input_text_sha256": "4ff99b49a0bd209b7ebe3fe58521cb9d57b601d3af946e319a27f8b3c255900e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "2f5f917a78537741",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          37376
+        ],
+        "unprocessed_array_sha256": "ba2945cd205c2f0f5967a8cddd75a2e97bc6e4572c3857b47ff164da0608a963"
+      },
+      {
+        "exact_native_cache_key": "652492cb173071e8ca2296a7e99db6bc084bdf57.pkl",
+        "pkl_sha256": "015cca1ebf6507fd99f4e4d812ce7eb9c3c35cefc499552288e12a2a52ace9c6",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "arrived in April 1998.",
+            "exact_native_cache_key": "652492cb173071e8ca2296a7e99db6bc084bdf57.pkl",
+            "cache_input_text_sha256": "9fec0a23ca6324ec676d62d0404f11cad82e65831ccb862f87dde8c5177f36d1",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "015cca1ebf6507fd",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          58880
+        ],
+        "unprocessed_array_sha256": "020a02115478fbedb51539f1947d6c4e25fdda58e19887af6009cd797293fb88"
+      },
+      {
+        "exact_native_cache_key": "a9641b917bea8d67320b3ab9bff15c3c07a290be.pkl",
+        "pkl_sha256": "11d6768a1aeff04cac8b238dc3e341e592bf6c519dddd28c481b134a9b58dfff",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Since 2003 her stuffed body, now famously an icon and memorial, has been encased in the National Museum of Scotland.",
+            "exact_native_cache_key": "a9641b917bea8d67320b3ab9bff15c3c07a290be.pkl",
+            "cache_input_text_sha256": "0f7c5ac58021430993d9e4fec92d82bddef95dea58baf6a4cc13d54419e98e44",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "11d6768a1aeff04c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          218112
+        ],
+        "unprocessed_array_sha256": "a841dddd3b0df061c4df5bc81bc6cdf44298d47cb1df19ff556e42a46d8cb7a3"
+      },
+      {
+        "exact_native_cache_key": "5e94ebaa91ce0c73521738fff157ba3bca2a2d2f.pkl",
+        "pkl_sha256": "aa59e3ac3c28440a200833a0f1bb53326027ca4ba3c6c9f6fbb84282b6fd4fcf",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Since 2003 her stuffed body,",
+            "exact_native_cache_key": "5e94ebaa91ce0c73521738fff157ba3bca2a2d2f.pkl",
+            "cache_input_text_sha256": "1e888b074e6ca88223659b595a65ebbd0e881216895617f51eb4ed7a4f21cf0f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S18",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Since 2003 her stuffed body,",
+            "exact_native_cache_key": "5e94ebaa91ce0c73521738fff157ba3bca2a2d2f.pkl",
+            "cache_input_text_sha256": "1e888b074e6ca88223659b595a65ebbd0e881216895617f51eb4ed7a4f21cf0f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "aa59e3ac3c28440a",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          54784
+        ],
+        "unprocessed_array_sha256": "6b39cf4503618a93fc7e0643680f8550a5c4c36d71047ce0c3e9ae49b72b8bc1"
+      },
+      {
+        "exact_native_cache_key": "3ccd9e59d8a6700eb031d60d2d469e57a6062fb1.pkl",
+        "pkl_sha256": "493ad299d9726d82dae72b40ef6374ec15aa43ebdc728f8d9088a580c22a6030",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "now famously an icon and memorial,",
+            "exact_native_cache_key": "3ccd9e59d8a6700eb031d60d2d469e57a6062fb1.pkl",
+            "cache_input_text_sha256": "4542bea5a09bb01ffd82cbbd2b7d0501ff06d71b26f7f9e33c98035ff0030f73",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S18",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "now famously an icon and memorial,",
+            "exact_native_cache_key": "3ccd9e59d8a6700eb031d60d2d469e57a6062fb1.pkl",
+            "cache_input_text_sha256": "4542bea5a09bb01ffd82cbbd2b7d0501ff06d71b26f7f9e33c98035ff0030f73",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "493ad299d9726d82",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          55296
+        ],
+        "unprocessed_array_sha256": "696ffcf7ff906dd98211568e452f01890533a2d357a782a2f5371c4ccad1c695"
+      },
+      {
+        "exact_native_cache_key": "cf96d46ee28871d902ce709c85764b43400f145a.pkl",
+        "pkl_sha256": "aca80df9b1a9b9d734f3e5d095bfd94aae87d0f6badf31032d4b89aa51b12c71",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "has been encased in the National Museum of Scotland.",
+            "exact_native_cache_key": "cf96d46ee28871d902ce709c85764b43400f145a.pkl",
+            "cache_input_text_sha256": "b68aa6b084d4449d15500570f6609796395d95a788f2e3b2522febf22c72a64b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S18",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "has been encased in the National Museum of Scotland.",
+            "exact_native_cache_key": "cf96d46ee28871d902ce709c85764b43400f145a.pkl",
+            "cache_input_text_sha256": "b68aa6b084d4449d15500570f6609796395d95a788f2e3b2522febf22c72a64b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "aca80df9b1a9b9d7",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          83968
+        ],
+        "unprocessed_array_sha256": "eb46d640d55803639e6297df40dd9732c87fe4d796e45eb49f47cd233d3453fc"
+      },
+      {
+        "exact_native_cache_key": "c547e0e50be6e05aa422e8ea291db441dae972d3.pkl",
+        "pkl_sha256": "622919a9d94efc9e36efb6cbf3ce24767147d42fd38a817fa2e6a9f949bbb0fa",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S19",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Behind glass, her white face plainly testifies to her Finn Dorset ancestry.",
+            "exact_native_cache_key": "c547e0e50be6e05aa422e8ea291db441dae972d3.pkl",
+            "cache_input_text_sha256": "4080e21cf8f681c0f872f65351afbd9a7d0b6430ffa6fd630fbb8f89d9cd1497",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "622919a9d94efc9e",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          128000
+        ],
+        "unprocessed_array_sha256": "cfa0179878e518345a18839a93190af185cfbcc9d348bf201fd97ed5edd86c02"
+      },
+      {
+        "exact_native_cache_key": "23a61f8ccb9dd468ac5a1d8bc0c169e5d3a8a6be.pkl",
+        "pkl_sha256": "edcabfa4821f5a0b65ffd7308444d6ea5e1a23fa04ee6d41d0034012af208300",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S19",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Behind glass,",
+            "exact_native_cache_key": "23a61f8ccb9dd468ac5a1d8bc0c169e5d3a8a6be.pkl",
+            "cache_input_text_sha256": "278017dc1e402ad6509ca190f995867bcfcd10ceab9721ed7a2307af9269fa03",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "edcabfa4821f5a0b",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          25600
+        ],
+        "unprocessed_array_sha256": "f5a0adae16205b443099859084db343e35db9952e687d7fc13ef73a8f4384000"
+      },
+      {
+        "exact_native_cache_key": "e6b489527f6537bfbef2f78ba080cc2599e1aba2.pkl",
+        "pkl_sha256": "79e179bcbcf79b15c5ac2ea12809850a0b72d55aca367751677830cc6bb4be03",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S19",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "her white face plainly testifies to her Finn Dorset ancestry.",
+            "exact_native_cache_key": "e6b489527f6537bfbef2f78ba080cc2599e1aba2.pkl",
+            "cache_input_text_sha256": "782b4f755845f13db9fd3249d0299cc219f60f36d337f8b8bdefde4f7f5a3a37",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "79e179bcbcf79b15",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          95744
+        ],
+        "unprocessed_array_sha256": "68c1a078ba3d22e2e2ba4d543920547fe52a1f198b376b0c603b689fb7018ffa"
+      }
+    ],
+    "missing_reference_key_count": 0,
+    "observed_missing_keys_covered": [],
+    "new_private_cache_names": [],
+    "native_single_thread_marker_verified": true,
+    "single_thread_sessions": [
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      },
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      }
+    ],
+    "models_sha256": {
+      "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+      "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+      "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+    },
+    "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+    "existing_private_cache_count": 11514,
+    "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "existing_private_cache_bytes_unchanged": true,
+    "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+    "public_repository_cache_unchanged": true,
+    "producer_pcm_existed_before": false,
+    "producer_pcm_sha256_before": null,
+    "producer_pcm_sha256_after": null,
+    "accepted_aac_adts_sha256_before": "cbaa0988f1020bcaa2c245f8349001d8ad2224194164bfaa819231493f06b081",
+    "accepted_aac_adts_sha256_after": "cbaa0988f1020bcaa2c245f8349001d8ad2224194164bfaa819231493f06b081",
+    "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+    "private_cache_exported": false
+  },
+  "checker_reference_preparation_program_sha256": "f6f2a032e207085e7252d036e39430fb80b06e84a721c525b61196d021c5ca12",
+  "fresh_current_article_reference": {
+    "article": "62",
+    "removed_temporary_gt_files": [],
+    "processed_pcm_or_raw_mother_cache_modified": false,
+    "purpose": "Original synth/labels/audit rebuild fresh for this production; no old CPU GT reuse."
+  },
+  "temporary_output_reset": {
+    "removed": [],
+    "production_started_ns": 1794623743533111737,
+    "repository_outputs_modified": false
+  },
+  "reviewed_gain_control_preservation": [
+    {
+      "stage": "canonical-draft",
+      "requested_gain_controls": {},
+      "actual_gain_controls": {},
+      "exactly_preserved": true
+    },
+    {
+      "stage": "canonical-final4K",
+      "requested_gain_controls": {},
+      "actual_gain_controls": {},
+      "exactly_preserved": true
+    }
+  ],
+  "canonical_video_sha256": "02dcf6eb48be19b9363e1571fd9f87a6a796ae4646cb5f88622fed0be67ff074",
+  "canonical_aac_adts_sha256": "cbaa0988f1020bcaa2c245f8349001d8ad2224194164bfaa819231493f06b081",
+  "canonical_pipeline_passed": true,
+  "cached_input_wav_sha256": null,
+  "final_wav_sha256": "f7348a62d6b00aa9cf74ad7c26f83bd3c4c98ff6621e3875dbced7bcfd0ac2c0",
+  "accepted_prior_aac_identical": true,
+  "video_sha256": "a424b7b3ccd276097c8bfdf97456d98cc2c82417c5abb41fd9a05ce6baf700f3",
+  "width": 3840,
+  "height": 2160,
+  "summary_seconds": 2,
+  "summary_frames": 60,
+  "summary_start_seconds": 157.76666666666668,
+  "delay_after_voice_seconds": 0.03166666666666629,
+  "actual_source_collection": {
+    "article": "62",
+    "kind": "actual-production-source-collection",
+    "new_quality_gate": false,
+    "files": {
+      "request_json": {
+        "file": "62-request-source.json",
+        "sha256": "4b3a97f2b6404e1b091537c21f01fc60088902f596803345983c38be52ec79eb",
+        "origin": "immutable_request"
+      },
+      "request_generator": {
+        "file": "62-request-gen.py",
+        "sha256": "bb99070c311479355156a3e01711befb726290663de19b8f26806f90537857dd",
+        "origin": "immutable_request"
+      },
+      "used_generator": {
+        "file": "62-used-gen.py",
+        "sha256": "bb99070c311479355156a3e01711befb726290663de19b8f26806f90537857dd",
+        "origin": "actual_production_filesystem"
+      },
+      "actual_working_source": {
+        "file": "62-actual-working-source.json",
+        "sha256": "8147198c65aa6f66839b2a7050dbe13c5e4209725ddff01bcb636859340ba084",
+        "origin": "actual_production_filesystem"
+      },
+      "request_manuscript": {
+        "file": "62-request-manuscript.md",
+        "sha256": "62817546ae33824b57255f941135c503e41a41f905331ed4af1e32850fa00960",
+        "origin": "immutable_request"
+      },
+      "actual_working_manuscript": {
+        "file": "62-actual-working-manuscript.md",
+        "sha256": "e9c838ba99403703c71b8360d6b070f861d480397f70ce2caf1377ae2be6d840",
+        "origin": "actual_production_filesystem"
+      }
+    },
+    "generator_execution_observed": false,
+    "generator_execution_evidence": "No fresh generator execution log; do not claim this GEN was executed during rendering.",
+    "source_differences": {
+      "file": "62-actual-source-differences.json",
+      "sha256": "c33a1c4ef01076a986840794b76aa60173991337e857ba78eb124ee13fc28585"
+    }
+  }
+}
