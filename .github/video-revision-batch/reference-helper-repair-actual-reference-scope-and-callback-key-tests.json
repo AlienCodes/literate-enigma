@@ -1,0 +1,378 @@
+{
+  "kind": "actual-frozen-checker-reference-probe-context-and-certified-plan-input-compatibility-tests",
+  "passed": true,
+  "actual_native_first_failures": [
+    {
+      "source_id": 43,
+      "status_file_SHA256": "d878a0f4505df3eccba1a33fef1c50b72cae0bc9d199989a85cbcfbe15af4f50",
+      "stage": "checker-reference-preparation",
+      "diagnostics": [
+        "【停止】朗读删逗号模型输入缺少当前源篇号"
+      ],
+      "actual_PCM_or_full_pipeline_pass_not_claimed": true
+    },
+    {
+      "source_id": 52,
+      "status_file_SHA256": "f422ed1dc23d7b3ed99647a5fa6796bd0522f204887ccf732df4ba3e0db4b480",
+      "stage": "checker-reference-preparation",
+      "diagnostics": [
+        "【停止】朗读删逗号模型输入缺少当前源篇号"
+      ],
+      "actual_PCM_or_full_pipeline_pass_not_claimed": true
+    }
+  ],
+  "new_model_inference_or_cache_write": false,
+  "producer_core_or_numeric_threshold_changed": false,
+  "formal_audio_or_video_acceptance_claimed": false,
+  "actual_original_model_id_registry_SHA256": "dfde6c065a3558b74923ce82865a3b01dae1f839af4456b74de55dc3ff492312",
+  "private_cache_inventory_not_probed_or_claimed": true,
+  "scope_cases": [
+    {
+      "source_id": 43,
+      "source_sha256": "bacc7abafe824031e0d85349f80327b66947839472008a18bd679cf6cdc3b53e",
+      "actual_original_missing_context_failure": {
+        "type": "SystemExit",
+        "detail": "【停止】朗读删逗号模型输入缺少当前源篇号",
+        "actual_probe_call_stack": [
+          {
+            "file": "/dev/shm/spoken43-52-checker-reference-context-repair-20261114/test_actual_reference_scope.py",
+            "line": 23,
+            "function": "enumerate_refs",
+            "code": "try:exec(compile(ast.Module(body=actual_nodes,type_ignores=[]),str(path),'exec'),env)"
+          },
+          {
+            "file": "/dev/shm/spoken43-52-checker-reference-context-repair-20261114/original-prepare-checker-reference.py",
+            "line": 154,
+            "function": "<module>",
+            "code": "reference(sentence, label, 'whole-default-raw')"
+          },
+          {
+            "file": "/dev/shm/spoken43-52-checker-reference-context-repair-20261114/original-prepare-checker-reference.py",
+            "line": 139,
+            "function": "reference",
+            "code": "probes[method](spoken, voice=module.V, speed=module.SPEED, lang='en-us', **kwargs)"
+          },
+          {
+            "file": "/dev/shm/spoken-comma-feature-20261114/full-T/视频/工具/make_video.py",
+            "line": 253,
+            "function": "g",
+            "code": "if not kw.get('is_phonemes') and (SYNTH_PUNCT or SPOKEN_COMMA): text=_synth_punct(text)"
+          },
+          {
+            "file": "/dev/shm/spoken-comma-feature-20261114/full-T/视频/工具/make_video.py",
+            "line": 242,
+            "function": "_synth_punct",
+            "code": "text=_speech_spoken_projection(text)"
+          },
+          {
+            "file": "/dev/shm/spoken-comma-feature-20261114/full-T/视频/工具/make_video.py",
+            "line": 222,
+            "function": "_speech_spoken_projection",
+            "code": "if context is None:raise SystemExit('【停止】朗读删逗号模型输入缺少当前源篇号')"
+          }
+        ]
+      },
+      "fixed_actual_reference_rows": 122,
+      "old_context_only_reference_rows": 123,
+      "all_non_target_reference_rows_and_actual_cache_keys_exact": true,
+      "non_target_reference_count": 118,
+      "new_required_keys_not_prepared_by_context_only_fix": [
+        "7aa9b077f84046a15819284969fb999b8bd009a2.pkl"
+      ],
+      "obsolete_keys_not_used_by_certified_checker_plan": [
+        "341fe745957e2b1a1f00e04637100eb0d064cc3a.pkl",
+        "84354d538e4ce8babb9359f0285b956f2158271f.pkl"
+      ],
+      "selected_reference_input_rows": [
+        {
+          "sentence": "S16",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Apple, he later said, had been weeks from ruin.",
+          "exact_native_cache_key": "ccb9fddc3511d31dff6cad74ca3efd8154964cef.pkl",
+          "cache_input_text_sha256": "a716195f3b1fe3058fa567811a35190d9b8bedfd455cae624572460314b30932",
+          "cache_input_is_phonemes": false
+        },
+        {
+          "sentence": "S16",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Apple, he later said, had been weeks from ruin.",
+          "exact_native_cache_key": "500ce320ebdad6a292cb2cec9fb64782d3417a2e.pkl",
+          "cache_input_text_sha256": "a716195f3b1fe3058fa567811a35190d9b8bedfd455cae624572460314b30932",
+          "cache_input_is_phonemes": false
+        },
+        {
+          "sentence": "S16",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Apple he later said,",
+          "exact_native_cache_key": "7aa9b077f84046a15819284969fb999b8bd009a2.pkl",
+          "cache_input_text_sha256": "45d19d13182d682f90cd5312e777e8ce6c3ad8c08bf15c4f82f5780d250582d7",
+          "cache_input_is_phonemes": false
+        },
+        {
+          "sentence": "S16",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "had been weeks from ruin.",
+          "exact_native_cache_key": "3c96ecd7949afd273d10f6c7b7c45f4bef39600c.pkl",
+          "cache_input_text_sha256": "3bf75faa4f3b87979cfa1f11e75111162abc417162d7b36e12244cbf508fe3dc",
+          "cache_input_is_phonemes": false
+        }
+      ],
+      "all_original_six_mother_input_keys_crossmatched": [
+        "S16"
+      ],
+      "legacy_default_all_actual_reference_rows_exact": true,
+      "legacy_default_reference_count": 123
+    },
+    {
+      "source_id": 52,
+      "source_sha256": "c00eb5707f1b269d2ce88fed455f592962d674d46e3bf172ba00cfe6597245f3",
+      "actual_original_missing_context_failure": {
+        "type": "SystemExit",
+        "detail": "【停止】朗读删逗号模型输入缺少当前源篇号",
+        "actual_probe_call_stack": [
+          {
+            "file": "/dev/shm/spoken43-52-checker-reference-context-repair-20261114/test_actual_reference_scope.py",
+            "line": 23,
+            "function": "enumerate_refs",
+            "code": "try:exec(compile(ast.Module(body=actual_nodes,type_ignores=[]),str(path),'exec'),env)"
+          },
+          {
+            "file": "/dev/shm/spoken43-52-checker-reference-context-repair-20261114/original-prepare-checker-reference.py",
+            "line": 154,
+            "function": "<module>",
+            "code": "reference(sentence, label, 'whole-default-raw')"
+          },
+          {
+            "file": "/dev/shm/spoken43-52-checker-reference-context-repair-20261114/original-prepare-checker-reference.py",
+            "line": 139,
+            "function": "reference",
+            "code": "probes[method](spoken, voice=module.V, speed=module.SPEED, lang='en-us', **kwargs)"
+          },
+          {
+            "file": "/dev/shm/spoken-comma-feature-20261114/full-T/视频/工具/make_video.py",
+            "line": 253,
+            "function": "g",
+            "code": "if not kw.get('is_phonemes') and (SYNTH_PUNCT or SPOKEN_COMMA): text=_synth_punct(text)"
+          },
+          {
+            "file": "/dev/shm/spoken-comma-feature-20261114/full-T/视频/工具/make_video.py",
+            "line": 242,
+            "function": "_synth_punct",
+            "code": "text=_speech_spoken_projection(text)"
+          },
+          {
+            "file": "/dev/shm/spoken-comma-feature-20261114/full-T/视频/工具/make_video.py",
+            "line": 222,
+            "function": "_speech_spoken_projection",
+            "code": "if context is None:raise SystemExit('【停止】朗读删逗号模型输入缺少当前源篇号')"
+          }
+        ]
+      },
+      "fixed_actual_reference_rows": 93,
+      "old_context_only_reference_rows": 100,
+      "all_non_target_reference_rows_and_actual_cache_keys_exact": true,
+      "non_target_reference_count": 82,
+      "new_required_keys_not_prepared_by_context_only_fix": [
+        "818342b9ea40e763800e3a762bd2c84092c8929a.pkl",
+        "a144761815ef6809064df0fe0e7f6daf41a08898.pkl",
+        "a31c4cc7797022fc244e4a779c77e20a50e747d1.pkl"
+      ],
+      "obsolete_keys_not_used_by_certified_checker_plan": [
+        "239a358d16de20fbff45e0cd8fc9344408561a6a.pkl",
+        "23f4570607bb04d47fccf991f444bf47b6e96f1b.pkl",
+        "28ba3ac8f43569f6e102a398c6237cad7b90ef38.pkl",
+        "2a0dcb34115b38fdfa7baedb01e63a5d193de25b.pkl",
+        "31a8046613f51e8dde413f304e5fa77869e726b7.pkl",
+        "46a64819d3e9b820e427c3e3002f15997e7ba136.pkl",
+        "89cf384adbed3301b92aef73e0d5a6e2dd699fba.pkl",
+        "9e05aeedaae791ec1f7c0a59cbb317fe764aa009.pkl",
+        "acb7e6b344c28279f9c80f499f36c0bfae151f2c.pkl",
+        "d23cef01c1dfe90a71baf39e1a0bba6002f13794.pkl",
+        "e8ed41c1f59e182ef807af97d7044aa8215fea34.pkl"
+      ],
+      "selected_reference_input_rows": [
+        {
+          "sentence": "S18",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The cosy hearth, beloved of British families, had, all along, been among the chief offenders.",
+          "exact_native_cache_key": "6940455e9f7664736554b2e950b3628c9e32befd.pkl",
+          "cache_input_text_sha256": "f2d2488edea39c769c9c8bd1e73d343640ec2187d9ba9a7336386fbf5d6eae62",
+          "cache_input_is_phonemes": false
+        },
+        {
+          "sentence": "S18",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "The cosy hearth, beloved of British families, had, all along, been among the chief offenders.",
+          "exact_native_cache_key": "6c861948342a1c639e9b762e441198355c5b3326.pkl",
+          "cache_input_text_sha256": "f2d2488edea39c769c9c8bd1e73d343640ec2187d9ba9a7336386fbf5d6eae62",
+          "cache_input_is_phonemes": false
+        },
+        {
+          "sentence": "S18",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "The cosy hearth beloved of British families",
+          "exact_native_cache_key": "a31c4cc7797022fc244e4a779c77e20a50e747d1.pkl",
+          "cache_input_text_sha256": "2400620ec602ddccab9ad00fcdd8a0ec12f68b6e5b5b68a93aeafd0382a2ec69",
+          "cache_input_is_phonemes": false
+        },
+        {
+          "sentence": "S18",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "had all along been among the chief offenders.",
+          "exact_native_cache_key": "a144761815ef6809064df0fe0e7f6daf41a08898.pkl",
+          "cache_input_text_sha256": "4fddc24b2a13cd3f1ca062901a2a66f5cfbfeb990b7290ab327d6815145f4f1f",
+          "cache_input_is_phonemes": false
+        },
+        {
+          "sentence": "S4",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "This time, though, the capital's smoke was trapped too, thickening into a choking smog, a mix of smoke and fog.",
+          "exact_native_cache_key": "626269a6aa2d824c4cd3922d6c9aea1cd91e2aad.pkl",
+          "cache_input_text_sha256": "fe602f6d1ce4f1f6ff7508c7f7cc5eb038f0803c236f0b2ff2ed510f5a0e6d8c",
+          "cache_input_is_phonemes": false
+        },
+        {
+          "sentence": "S4",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "This time, though, the capital's smoke was trapped too, thickening into a choking smog, a mix of smoke and fog.",
+          "exact_native_cache_key": "5033658f57d8e204ccb64b3d53b4cd8d3908fc87.pkl",
+          "cache_input_text_sha256": "fe602f6d1ce4f1f6ff7508c7f7cc5eb038f0803c236f0b2ff2ed510f5a0e6d8c",
+          "cache_input_is_phonemes": false
+        },
+        {
+          "sentence": "S4",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "This time though the capital's smoke was trapped too,",
+          "exact_native_cache_key": "818342b9ea40e763800e3a762bd2c84092c8929a.pkl",
+          "cache_input_text_sha256": "11884093f4fbff02602828208a0e3f49b7aa638692468cca49cbde051ffa541a",
+          "cache_input_is_phonemes": false
+        },
+        {
+          "sentence": "S4",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "thickening into a choking smog, a mix of smoke and fog.",
+          "exact_native_cache_key": "4f3594c0f23d11256297067adff550bd4f628d00.pkl",
+          "cache_input_text_sha256": "2c8f0aed11f2178fb7837658c683142bfeae65aebb3a8b4a9839bd866697f9ad",
+          "cache_input_is_phonemes": false
+        },
+        {
+          "sentence": "S4",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "This time though the capital's smoke was trapped too,",
+          "exact_native_cache_key": "818342b9ea40e763800e3a762bd2c84092c8929a.pkl",
+          "cache_input_text_sha256": "11884093f4fbff02602828208a0e3f49b7aa638692468cca49cbde051ffa541a",
+          "cache_input_is_phonemes": false
+        },
+        {
+          "sentence": "S4",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "thickening into a choking smog,",
+          "exact_native_cache_key": "af9072585a3a2c12b147535b3db4a297ea3e5743.pkl",
+          "cache_input_text_sha256": "0abc788a7b6f7f3f3c567bf041c6ddb86eed57d4f2ff109eb00927c70b742ed4",
+          "cache_input_is_phonemes": false
+        },
+        {
+          "sentence": "S4",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a mix of smoke and fog.",
+          "exact_native_cache_key": "23f7820b8467c09ea8a229e293a9a657487eefae.pkl",
+          "cache_input_text_sha256": "ed823fc1e51537719b45806fece04191c68064a4e5af9f9744e80b8eac20a726",
+          "cache_input_is_phonemes": false
+        }
+      ],
+      "all_original_six_mother_input_keys_crossmatched": [
+        "S18",
+        "S4"
+      ],
+      "legacy_default_all_actual_reference_rows_exact": true,
+      "legacy_default_reference_count": 100
+    }
+  ],
+  "guard_tests": [
+    {
+      "source_id": 43,
+      "case": "wrong-source-id",
+      "rejected_before_scope_mutation": true
+    },
+    {
+      "source_id": 43,
+      "case": "wrong-maker",
+      "rejected_before_scope_mutation": true
+    },
+    {
+      "source_id": 43,
+      "case": "wrong-request-bytes",
+      "rejected_before_scope_mutation": true
+    },
+    {
+      "source_id": 43,
+      "case": "wrong-stable-source-in-data",
+      "rejected_before_scope_mutation": true
+    },
+    {
+      "source_id": 43,
+      "case": "legacy-no-field-does-not-mutate-module-context",
+      "passed": true
+    },
+    {
+      "source_id": 52,
+      "case": "wrong-source-id",
+      "rejected_before_scope_mutation": true
+    },
+    {
+      "source_id": 52,
+      "case": "wrong-maker",
+      "rejected_before_scope_mutation": true
+    },
+    {
+      "source_id": 52,
+      "case": "wrong-request-bytes",
+      "rejected_before_scope_mutation": true
+    },
+    {
+      "source_id": 52,
+      "case": "wrong-stable-source-in-data",
+      "rejected_before_scope_mutation": true
+    },
+    {
+      "source_id": 52,
+      "case": "legacy-no-field-does-not-mutate-module-context",
+      "passed": true
+    }
+  ],
+  "all_old_top_functions_except_main_AST_exact": true,
+  "all_existing_nested_reference_and_cache_probe_AST_exact": true,
+  "original_helper_SHA256": "f6f2a032e207085e7252d036e39430fb80b06e84a721c525b61196d021c5ca12",
+  "candidate_helper_SHA256": "9d20771b3875a139eec5411a54cd1a2a0635253180fbefddc23984f08b798115",
+  "exact_diff_SHA256": "a7c986abef29ad0d00c47dcf8eb2ad020f4b7fbe3d61770dcd8d82f23cdcab31"
+}
