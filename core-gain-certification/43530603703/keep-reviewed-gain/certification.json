@@ -1,0 +1,82 @@
+{
+  "variant": "keep-reviewed-gain",
+  "passed": false,
+  "production_audio_or_video_acceptance": false,
+  "official_main_commit": "fc0b56af9a0ac0e97015548b756d4e51d66dc2ea",
+  "stage": "original-full-fastcheck",
+  "overlay_manifest": {
+    "base_repository": "alienalgorithm/postgraduate-vocabulary",
+    "immutable_main_HEAD": "fc0b56af9a0ac0e97015548b756d4e51d66dc2ea",
+    "mode_environment": {
+      "XG_KEEP_REVIEWED_GAIN": "1"
+    },
+    "CLI": "--保持已审增益",
+    "default_unchanged": true,
+    "files": [
+      {
+        "path": "视频/工具/草稿声音.sh",
+        "main_SHA256": "0ce3277812cf16ed30438509b6dc97db0c26725db4c5db5d9b058c3ef6531aa2",
+        "patch_SHA256": "957d7eb1598698ea33ff77d83379256ecae258d84d588753d561a902284be439",
+        "diff": "/workspace/work/video-audit70-20261113/core-overlays/keep-reviewed-gain/草稿声音.sh.diff"
+      },
+      {
+        "path": "视频/工具/句内响度.py",
+        "main_SHA256": "58735b7173a3c03efa61fb300b4aed4039c164fa970e0593a40bae2a3f3cbd27",
+        "patch_SHA256": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea",
+        "diff": "/workspace/work/video-audit70-20261113/core-overlays/keep-reviewed-gain/句内响度.py.diff"
+      }
+    ]
+  },
+  "checks": [
+    {
+      "name": "current24-positive",
+      "exit": 0,
+      "seconds": 0.07,
+      "log_SHA256": "7cd565ff445526786b21ba9d4bea8809947abe15d05525dbffa0ca9a765bcdcf"
+    },
+    {
+      "name": "canonical-module-copy",
+      "exit": 0,
+      "seconds": 0.16,
+      "log_SHA256": "cf7fb1d94f674135fa89934bb399789885d339f95ddedd413e9c3296ac852013"
+    },
+    {
+      "name": "original-full-fastcheck",
+      "exit": 1,
+      "seconds": 187.5,
+      "log_SHA256": "698777cf852d0908c8a56d4612580cc1afeeadafde78b4316e0e8848548d012a"
+    }
+  ],
+  "historical_fixture_provenance": {
+    "repository": "alienalgorithm/postgraduate-vocabulary",
+    "immutable_commit": "b24406d11f2ddd936f65bcc344aa9a7d32d074da",
+    "scope": "isolated historical regression fixtures only; never production request replacements",
+    "files": [
+      {
+        "path": "视频/脚本/10.json",
+        "Git_blob_SHA1": "866377ecb1cd3bb214a854fd384492de9f334897",
+        "SHA256": "aebb5ef09fcd147b2be6dc056e4503678f9c1eb965b6de29d98eb57585701314"
+      },
+      {
+        "path": "视频/脚本/24.json",
+        "Git_blob_SHA1": "05ace590ad947c5b9d45e59537c04f7baf5bf0dc",
+        "SHA256": "186698a05b8eb2914eef1998e54ee3a39c897c1a47afc35ca2dafe4563d7f0d7"
+      },
+      {
+        "path": "视频/脚本/27.json",
+        "Git_blob_SHA1": "c19daf92fac1cc09fdf18060622e441222dd2f45",
+        "SHA256": "335a95b17cbd6da61d736f93b21e9db95aae645578e7e3b0b844aa791f0adaad"
+      },
+      {
+        "path": "新版定稿/10-the-stolen-smile.md",
+        "Git_blob_SHA1": "8a45b3a4a41ba738506912293eecf078d1b30621",
+        "SHA256": "65d1563c2f82679afb9d509b96a50adb3e3bc67ac539d3081220a01e46bc5ee7"
+      }
+    ]
+  },
+  "actual_core_SHA256": {
+    "视频/工具/草稿声音.sh": "957d7eb1598698ea33ff77d83379256ecae258d84d588753d561a902284be439",
+    "视频/工具/句内响度.py": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea"
+  },
+  "error": "Original full quickcheck failed; no approval stamp invented"
+}
