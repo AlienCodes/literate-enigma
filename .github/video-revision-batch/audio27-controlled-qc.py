@@ -125,18 +125,23 @@ def audit(args):
         report['outside_measurements'] = C.outside_measurements(U,old,aligned,ranges,checks)
         fits = {}
         for name,row in units.items():
-            span = row['span_s']
-            start,end = span
             gain = row['gain_delta_dB']
-            lo,hi = round(start*SR),round(end*SR)
-            fit = U.fit(old[lo:hi],aligned[lo:hi])
-            om,nm = U.measure(old,span,old_tm),U.measure(aligned,span,new_tm)
-            delta = U.difference(nm['crop_bs1770_lufs'],om['crop_bs1770_lufs'])
-            add('approved-gain-articulation-and-waveform:'+name,
-                delta is not None and abs(fit['gain_db']-gain)<=.45 and abs(delta-gain)<=.55 and
-                fit['correlation']>=.985 and fit['gain_compensated_residual_snr_db']>=20,
-                expected_gain_db=gain,actual_lufs_delta=delta,accepted=om,actual=nm,**fit)
-            fits[name]=fit
+            # Original AF adds an independently measured ~25ms raw/public
+            # clock offset. This is not a new old-versus-new alignment shift.
+            start,end = row['public_measurement_span_s']
+            variants = []
+            for shave in [0., .02, .04]:
+                span = [start+shave,end-shave]
+                lo,hi = round(span[0]*SR),round(span[1]*SR)
+                fit = U.fit(old[lo:hi],aligned[lo:hi])
+                om,nm = U.measure(old,span,old_tm),U.measure(aligned,span,new_tm)
+                delta = U.difference(nm['crop_bs1770_lufs'],om['crop_bs1770_lufs'])
+                add('approved-gain-articulation-and-waveform:'+name+':'+str(shave),
+                    delta is not None and abs(fit['gain_db']-gain)<=.35 and abs(delta-gain)<=.55 and
+                    fit['correlation']>=.985 and fit['gain_compensated_residual_snr_db']>=20,
+                    expected_gain_db=gain,actual_lufs_delta=delta,accepted=om,actual=nm,**fit)
+                variants.append(dict(boundary_shave_s=shave,public_span_s=span,**fit))
+            fits[name]=variants
         report['actual_opening_waveform_fits']=fits
         tools = Path(args.tools or HERE.parents[1]/'视频/工具')
         for name,want in profile['original_tool_sha256'].items():

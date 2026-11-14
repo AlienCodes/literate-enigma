@@ -16,8 +16,8 @@ ROOT = Path.cwd()
 TASK = ROOT / '.github/video-revision-batch'
 NO = os.environ.get('ARTICLE_NO', '12').zfill(2)
 ALLOWED = {f'{n:02d}' for n in range(1, 71)}
-A21_AUDIO_REPAIRS = {'15', '17', '18', '30'}
-CONTROLLED_AUDIO_REPAIRS = {'05', '16', '67'}
+A21_AUDIO_REPAIRS = {'17', '18', '30'}  #15 is a pure text review preserving its latest fully accepted +5 voice.
+CONTROLLED_AUDIO_REPAIRS = {'05', '16', '27', '67'}
 APPROVED_AUDIO_REPAIRS = {'10', '12', '44', '51'} | A21_AUDIO_REPAIRS | CONTROLLED_AUDIO_REPAIRS
 SELECTED = json.loads((TASK / 'articles.json').read_text())
 assert NO in ALLOWED and NO in SELECTED, f'Article {NO} is outside the pinned revision scope.'
@@ -116,20 +116,23 @@ def prepare_accepted_pcm_continuity(baseline_bytes, accepted_aac):
                 '15':'7e5ea2bdb6d3', '17':'0ef19e50999f',
                 '18':'76b99c620981', '30':'93a277750d35', '02':None,
                 '69':'8b8618454b80', '05':'1e25fbe69f6f',
-                '67':'c34294a522a7', '16':'630cbdf1eae2'}
+                '67':'c34294a522a7', '16':'630cbdf1eae2', '27':'79f315bb8b44'}
     exact_old_pcm = {'02':'c21872d4db894f37b1b8b5db752917f9f6ef60680834ca4cccef9b806b5c1c52',
                      '69':'d04e5e1b057dfaa788bf86dcd6fe7da7b88fc1a254f8abd0a695621f074c2837',
+                     '15':'35787ac5bcd13fcc68e7327745ae9b0f164f06190cb512d9b30e85e101b5818e',
                      '05':'4c20eb528b935e7a315e3f41b3f4168fe82cd5e26e0b33d16ea4bfce2609cb64',
                      '67':'39f7defdcfad7a4dae00c9677c7998d8f70c984247583e136e09e6efe9392bae',
-                     '16':'3a2239772fe1941d4a5de28be034ff49670fedcf6ced0d1c0e61e5476912b93d'}
-    prior_public_aac = {'69':'2b15b4811866afd03ef5962f6ce99717d28d7e97704750d9ede91bd7799eed15',
+                     '16':'3a2239772fe1941d4a5de28be034ff49670fedcf6ced0d1c0e61e5476912b93d',
+                     '27':'e15a2d05428e3219216ac8d10780669007f903071b0fcfc3c6bf377c517b8d7f'}
+    prior_public_aac = {'15':'cf3caec115dacb46ca856c214fa4597055e3305b909bce3613444b55c39fce9e',
+                        '69':'2b15b4811866afd03ef5962f6ce99717d28d7e97704750d9ede91bd7799eed15',
                         '67':'d5d57519d6b60e31eeb92bd1bf0b0505192b49ee9c1e34ae02b5c9ddc9532856'}
     if NO not in expected:
         return
     # These reviewed prior-source snapshots contain the exact approved old
     # audio inputs. Re-prove the complete real accepted PCM and AAC below
     # before attempting any original exact-sample confirmation migration.
-    if NO in {'05', '16'}:
+    if NO in {'05', '16', '27'}:
         reference_source = TASK / 'accepted-pcm-source-reference' / f'{NO}.json'
         reference_contract = json.loads(reference_source.with_name(f'{NO}-proof.json').read_text())
         assert reference_contract['article'] == NO
@@ -150,7 +153,8 @@ def prepare_accepted_pcm_continuity(baseline_bytes, accepted_aac):
     if NO in prior_public_aac:
         proof.update({'purpose':'diagnostic exact prior public native PCM for original confirmation migration; not a QC verdict',
                       'reference_kind':'actual_prior_public_native_render_not_the_accepted_voice',
-                      'original_public_run_id':43543967031,
+                      'original_public_run_id':None if NO == '15' else 43543967031,
+                      'historical_accepted_confirmation_reference':NO == '15',
                       'expected_prior_public_native_pcm_md5_first12':expected[NO],
                       'expected_prior_public_native_pcm_sha256':exact_old_pcm[NO],
                       'expected_prior_public_native_aac_adts_sha256':prior_public_aac[NO]})
@@ -220,7 +224,7 @@ def prepare_accepted_pcm_continuity(baseline_bytes, accepted_aac):
             proof_file.write_text(json.dumps(proof, ensure_ascii=False, indent=2) + '\n')
             save()
             return
-    if NO in A21_AUDIO_REPAIRS | {'02', '05', '16'} and not proof.get('old_reconstructed_aac_exactly_matches_accepted', False):
+    if NO in A21_AUDIO_REPAIRS | {'02', '05', '16', '27'} and not proof.get('old_reconstructed_aac_exactly_matches_accepted', False):
         proof['migration_not_attempted'] = 'Old reconstruction did not exactly reproduce the accepted AAC.'
         proof_file.write_text(json.dumps(proof, ensure_ascii=False, indent=2) + '\n')
         save()
@@ -359,8 +363,8 @@ def verify_correct_origin_reference_cache(request, after_references=False):
 
 
 def verify_unchanged_review_audio_packets(accepted_video, canonical_video):
-    """Pure visual13/14/26 revisions preserve their own accepted audio packets."""
-    if NO not in {'13', '14', '26'}:
+    """Pure visual13/14/15/26 revisions preserve their own latest accepted audio packets."""
+    if NO not in {'13', '14', '15', '26'}:
         return
     status['stage'] = f'{NO}-accepted-audio-packet-preservation'
     save()
@@ -1092,6 +1096,7 @@ try:
         # Root supplies actual approved audio-change validation. No gain/overlay implementation is assumed here.
         helper_name = ('audio05-tail-qc.py' if NO == '05' else
                        'audio16-origin-qc.py' if NO == '16' else
+                       'audio27-controlled-qc.py' if NO == '27' else
                        'audio-controlled-qc.py' if NO in CONTROLLED_AUDIO_REPAIRS else
                        'audio-a21-qc.py' if NO in A21_AUDIO_REPAIRS else 'audio-qc.py')
         audio_qc = TASK / helper_name
@@ -1113,13 +1118,19 @@ try:
                 'untouched_voice_waveform_level_pitch_and_controls_required': True}
         elif NO in CONTROLLED_AUDIO_REPAIRS:
             assert audio_evidence.get('kind') in {'controlled_audio_repair',
-                                                 'root-approved-current-source-controlled-audio-repair'}
+                                                 'root-approved-current-source-controlled-audio-repair',
+                                                 'exact-two-approved-opening-pieces-controlled-audio-repair'}
+            if NO == '27':
+                assert audio_evidence.get('kind') == 'exact-two-approved-opening-pieces-controlled-audio-repair'
+            else:
+                assert audio_evidence.get('kind') != 'exact-two-approved-opening-pieces-controlled-audio-repair'
             assert audio_evidence.get('repair_applied') is True
             if NO != '05':
                 assert audio_evidence.get('diagnostic_only') is False
                 assert audio_evidence.get('production_delivery_eligible') is True
             reference_file = TASK / ('audio05-tail-qc-reference.json' if NO == '05' else
                                      'audio16-origin-qc-reference.json' if NO == '16' else
+                                     'audio27-controlled-qc-reference.json' if NO == '27' else
                                      'audio-controlled-qc-reference.json')
             status['approved_audio_repair_scope'] = {
                 'kind': 'controlled_audio_repair', 'repair_applied': True,
