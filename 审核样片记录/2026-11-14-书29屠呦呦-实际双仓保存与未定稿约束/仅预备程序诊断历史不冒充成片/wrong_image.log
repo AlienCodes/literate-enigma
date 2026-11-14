@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/workspace/work/video-audit70-20261113/article28-user-review-20261114/hold9-integrator/illustrated_tail.py", line 419, in <module>
+    main()
+  File "/workspace/work/video-audit70-20261113/article28-user-review-20261114/hold9-integrator/illustrated_tail.py", line 288, in main
+    image_row, choice, approved = approved_inputs(args)
+                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/video-audit70-20261113/article28-user-review-20261114/hold9-integrator/illustrated_tail.py", line 127, in approved_inputs
+    assert sha(args.illustration) == row['sha256'], 'Wrong or changed approved book illustration.'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Wrong or changed approved book illustration.

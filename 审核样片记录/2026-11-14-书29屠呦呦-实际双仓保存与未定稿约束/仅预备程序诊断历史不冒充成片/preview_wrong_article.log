@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/workspace/work/video-audit70-20261113/article28-user-review-20261114/hold9-integrator/illustrated_tail.py", line 419, in <module>
+    main()
+  File "/workspace/work/video-audit70-20261113/article28-user-review-20261114/hold9-integrator/illustrated_tail.py", line 289, in main
+    source_sha = sha(args.input); timing, status, binding = provenance(args, source_sha, approved)
+                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/video-audit70-20261113/article28-user-review-20261114/hold9-integrator/illustrated_tail.py", line 214, in provenance
+    is_preview = preview_hold_contract(args, timing)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/video-audit70-20261113/article28-user-review-20261114/hold9-integrator/illustrated_tail.py", line 174, in preview_hold_contract
+    assert args.source_id == '28', 'Nine-frame trial is authorized only for source28/book29.'
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Nine-frame trial is authorized only for source28/book29.

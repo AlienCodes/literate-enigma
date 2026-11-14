@@ -1,0 +1,31 @@
+{
+  "kind": "existing_fixture_actual9frame_decoding_diagnostic_only",
+  "program_sha256": "f90e399b59ec5d1c7bc83a9d8c4c0134b7ba4dbe1627a2bde6ab91daa6c06562",
+  "input": "/workspace/work/video-audit70-20261113/illustrated-tail/validation-only/synthetic-idr.mp4",
+  "input_sha256": "69cc9a6a19a0f8c0fc7ecbaf62ea6bd22425119ba4e60045ae96d84336b21540",
+  "static_9frame_positive": {
+    "preview_last_body_hold_frames": 9,
+    "preview_last_body_hold_seconds": 0.3,
+    "preview_hold_start_frame": 21,
+    "preview_hold_end_frame_inclusive": 29,
+    "preview_frozen_reference_frame": 20,
+    "preview_actual_held_frames_checked": 9,
+    "preview_hold_thumbnail_MAE_each": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "preview_hold_thumbnail_MAE_max": 0.0,
+    "preview_hold_visual_reference": "actual decoded last spoken-page frame before9-frame hold; existing static-page MAE<2 rule"
+  },
+  "actual_transition_inside_hold_rejected": true,
+  "negative_error": "('Preview held body page changed.', [1.5650479038065843, 1.6117420588991769, 1.640528549382716, 1.6686358667695476, 1.6881188914609053, 1.7077666859567902, 124.31215036651236, 124.31210615997942, 124.31210615997942])",
+  "genuine_new_source28_preview_not_claimed": true,
+  "passed": true
+}

@@ -1,0 +1,257 @@
+{
+  "article": "28",
+  "book_order": "29",
+  "text_source_freeze_complete": true,
+  "preview_only_user_final_effect_acceptance_pending": true,
+  "existing_active_book29_final_preserved": true,
+  "created_utc": "2026-11-14T08:11:48.102440+00:00",
+  "source_JSON_sha256": "e0c8e6c644ab0c5d52d99c23461b99e9ae1574aa574369e56feb35e2ac20698b",
+  "GEN_sha256": "067592d5540ce36ac2b25a04603b425d931fa297d27a0da25f3afb3574cdaae5",
+  "MD_sha256": "d609cd99ab982365c6f0167e211c55b31e52a354d50918780f3da66ef702a5bb",
+  "sentence_review_record_sha256": "e168a3e815774ec19b74523c04ebce328ba80020ca0ed2073a2254bfa71d0171",
+  "files_applied": [
+    {
+      "path": "/workspace/work/video-audit70-20261113/payload/视频/脚本/28.json",
+      "before_sha256": "a6a4befc0291727f5cc3f8b50857ee954ef9f936738f014a978ebb4d37a28ea8",
+      "after_sha256": "e0c8e6c644ab0c5d52d99c23461b99e9ae1574aa574369e56feb35e2ac20698b",
+      "bytes": 50258
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/payload/视频/工具/初稿生成/gen28.py",
+      "before_sha256": "b8650311d89e8f02723f7eb8b5783bb62f92f200dc2422091fcc929aeab6a9f3",
+      "after_sha256": "067592d5540ce36ac2b25a04603b425d931fa297d27a0da25f3afb3574cdaae5",
+      "bytes": 38843
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/payload/新版定稿/28-a-handful-of-wormwood-that-saved-millions.md",
+      "before_sha256": "b9817d3429767d07b6a2eb14cce5422a20cb4e3b89f8b03e6b3d5da2daf91d91",
+      "after_sha256": "d609cd99ab982365c6f0167e211c55b31e52a354d50918780f3da66ef702a5bb",
+      "bytes": 21327
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/gen-sources/gen28.py",
+      "before_sha256": null,
+      "after_sha256": "067592d5540ce36ac2b25a04603b425d931fa297d27a0da25f3afb3574cdaae5",
+      "bytes": 38843
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/payload/视频/制作记录/逐句确认/28.json",
+      "before_sha256": "6d1e47ca6c3cf558cb0885d52f8a844dcd5beb5ce5a544e4a01d20eda44c1591",
+      "after_sha256": "e168a3e815774ec19b74523c04ebce328ba80020ca0ed2073a2254bfa71d0171",
+      "bytes": 11796
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/payload/视频/工具/用户同意记录.json",
+      "before_sha256": "260dec713ff561d8d4c9dea62e537863169dbedd99efcc3fff927cc4a7793d5d",
+      "after_sha256": "94703754ea69acde9c32bc35e14d213a2f816de1a2b583823485d7f8231ea749",
+      "scope": "Fresh only28 two records appended, all other records retained."
+    }
+  ],
+  "exact_source_diff": [
+    {
+      "path": "/allow_clash",
+      "reason": "list_length",
+      "expected_length": 2,
+      "actual_length": 5
+    },
+    {
+      "path": "/allow_clash/2",
+      "reason": "unexpected_item",
+      "actual": "was named after"
+    },
+    {
+      "path": "/allow_clash/3",
+      "reason": "unexpected_item",
+      "actual": "credited"
+    },
+    {
+      "path": "/allow_clash/4",
+      "reason": "unexpected_item",
+      "actual": "with"
+    },
+    {
+      "path": "/sentences/0/chunks/1/align",
+      "reason": "list_length",
+      "expected_length": 6,
+      "actual_length": 5
+    },
+    {
+      "path": "/sentences/0/chunks/1/align/0/0",
+      "reason": "value",
+      "expected": "was named",
+      "actual": "**was named after**"
+    },
+    {
+      "path": "/sentences/0/chunks/1/align/0/1",
+      "reason": "value",
+      "expected": "得名",
+      "actual": "**得名于**(was named after)"
+    },
+    {
+      "path": "/sentences/0/chunks/1/align/1/0",
+      "reason": "value",
+      "expected": "after",
+      "actual": "its"
+    },
+    {
+      "path": "/sentences/0/chunks/1/align/1/1",
+      "reason": "value",
+      "expected": "于",
+      "actual": "它的"
+    },
+    {
+      "path": "/sentences/0/chunks/1/align/2/0",
+      "reason": "value",
+      "expected": "its",
+      "actual": "launch"
+    },
+    {
+      "path": "/sentences/0/chunks/1/align/2/1",
+      "reason": "value",
+      "expected": "它的",
+      "actual": "启动"
+    },
+    {
+      "path": "/sentences/0/chunks/1/align/3/0",
+      "reason": "value",
+      "expected": "launch",
+      "actual": "date,"
+    },
+    {
+      "path": "/sentences/0/chunks/1/align/3/1",
+      "reason": "value",
+      "expected": "启动",
+      "actual": "日期，"
+    },
+    {
+      "path": "/sentences/0/chunks/1/align/4/0",
+      "reason": "value",
+      "expected": "date,",
+      "actual": "23 May 1967."
+    },
+    {
+      "path": "/sentences/0/chunks/1/align/4/1",
+      "reason": "value",
+      "expected": "日期，",
+      "actual": "1967年5月23日。"
+    },
+    {
+      "path": "/sentences/0/chunks/1/align/5",
+      "reason": "missing_item",
+      "expected": [
+        "23 May 1967.",
+        "1967年5月23日。"
+      ]
+    },
+    {
+      "path": "/sentences/0/chunks/1/en",
+      "reason": "value",
+      "expected": "was named after its launch date, 23 May 1967.",
+      "actual": "**was named after** its launch date, 23 May 1967."
+    },
+    {
+      "path": "/sentences/0/chunks/1/zh",
+      "reason": "value",
+      "expected": "得名于它的启动日期，1967年5月23日。",
+      "actual": "**得名于**(was named after)它的启动日期，1967年5月23日。"
+    },
+    {
+      "path": "/sentences/13/chunks/1/align/1/0",
+      "reason": "value",
+      "expected": "credited the drug with saving millions.",
+      "actual": "**credited** the drug **with** saving millions."
+    },
+    {
+      "path": "/sentences/13/chunks/1/align/1/1",
+      "reason": "value",
+      "expected": "将挽救了数百万人的功劳归功于这种药物。",
+      "actual": "**将**(credited with)挽救了数百万人的功劳**归功于**(credited with)这种药物。"
+    },
+    {
+      "path": "/sentences/13/chunks/1/en",
+      "reason": "value",
+      "expected": "its **jury** credited the drug with saving millions.",
+      "actual": "its **jury** **credited** the drug **with** saving millions."
+    },
+    {
+      "path": "/sentences/13/chunks/1/zh",
+      "reason": "value",
+      "expected": "该奖的**评审团**(jury)将挽救了数百万人的功劳归功于这种药物。",
+      "actual": "该奖的**评审团**(jury)**将**(credited with)挽救了数百万人的功劳**归功于**(credited with)这种药物。"
+    },
+    {
+      "path": "/核对确认/同词异译",
+      "reason": "unexpected_field",
+      "actual": {
+        "credited with：将/归功于": "不是两种译法：credit A with B的同一中文意思将B归功于A，被挽救了数百万人的功劳隔开；用户031明确只将与归功于两处同色，中间具体内容普通。"
+      }
+    },
+    {
+      "path": "/核对确认/方向/S1-2 after→得名于",
+      "reason": "unexpected_field",
+      "actual": "after属于完整be named after（以……命名），本句523项目得名于1967年5月23日启动日期，不是时间先后方向；用户030只得名于三字重点。"
+    }
+  ],
+  "original_GEN_JSON_text_checks": {
+    "path": "/workspace/work/video-audit70-20261113/article28-user-review-20261114/thin-validation/report.json",
+    "sha256": "4b93fbc0aa5623962c0af3d339b734e504defe9f0aa8cf2c232f36e06ac3361e",
+    "all_passed": true,
+    "mechanical_summary_wrap_raw_difference_preserved": true
+  },
+  "actual_static_1080_and_4K": {
+    "path": "/workspace/work/video-audit70-20261113/article28-user-review-20261114/static-render-report.json",
+    "sha256": "62f86e7d40fcb54348ec22a0a81606ec0793d673e201672f345577e2a887c2c0",
+    "all_passed": true,
+    "actual_changed_page_renders": 4,
+    "visual_review": "/workspace/work/video-audit70-20261113/article28-user-review-20261114/actual-static-visual-review.json",
+    "visual_review_sha256": "6029f685091fafa94d58f7b0d7048d4f391bed5b5e08d032910fb1c8d5fe65c9",
+    "actually_visually_reviewed": true
+  },
+  "CI_approved_manifest": {
+    "path": "/workspace/work/video-revision-batch-ci/.github/video-revision-batch/approved-video-layouts70.json",
+    "before_sha256": "350c1bd13878605852365944845c7326ad018d20f19c38c4b3ab6159b7de548a",
+    "after_sha256": "f8ea41d72efebd613c5bab9778e9c7cf524c3d03279ca03449f5074379844717",
+    "before_row": {
+      "source_id": "28",
+      "new_id": "29",
+      "source_json_sha256": "a6a4befc0291727f5cc3f8b50857ee954ef9f936738f014a978ebb4d37a28ea8",
+      "approved_summary_text_sha256": "9dd1c35c4e95bbb65b4f44beb9fca13bd67016872265e7d1a38d9470aa9ec10b",
+      "summary_png_sha256": "8879f0b0394128bce3a89f1b04e102b1c12d5b81d518c863e27a548766eeee1c",
+      "summary_rgb_sha256": "c960f8069fad03e328654b90aff4c7d539176264bad7ea1aa59365aa4284c0fa",
+      "summary_font_4k_px": 122,
+      "source_layout_structural_sha256": "f1c9121d5619eaba4d5892310644ff34d1693181a2440c8d35ef7b9be6c75cec"
+    },
+    "after_row": {
+      "source_id": "28",
+      "new_id": "29",
+      "source_json_sha256": "e0c8e6c644ab0c5d52d99c23461b99e9ae1574aa574369e56feb35e2ac20698b",
+      "approved_summary_text_sha256": "9dd1c35c4e95bbb65b4f44beb9fca13bd67016872265e7d1a38d9470aa9ec10b",
+      "summary_png_sha256": "8879f0b0394128bce3a89f1b04e102b1c12d5b81d518c863e27a548766eeee1c",
+      "summary_rgb_sha256": "c960f8069fad03e328654b90aff4c7d539176264bad7ea1aa59365aa4284c0fa",
+      "summary_font_4k_px": 122,
+      "source_layout_structural_sha256": "62069e51ee17f88dfba4df4f729409038b256bbb708ffde5c51a06123006c64f"
+    },
+    "only_two_article28_source_digest_leaves_changed": true,
+    "other_articles_rows_and_all_approved_summary_fields_exact": true
+  },
+  "all_spoken_English_and_chunk_boundaries_exact": true,
+  "all_existing_audio_DSP_controls_exact": true,
+  "all_original_notes_and_summary_full_note_exact": true,
+  "tail_body_geometry_and_font_exact": true,
+  "tail_4k_font_px": 200,
+  "tail_RGB_identity_not_claimed": true,
+  "summary_font_4k_px": 122,
+  "summary_RGB_original_approved_exact": true,
+  "official_core_or_renderer_modified": false,
+  "audio_or_video_produced_or_dispatched_by_this_agent": false,
+  "published40_package_unchanged": true,
+  "preview_producer_contract": {
+    "scope_only": "28",
+    "after_actual_final_spoken_sentence_last_body_hold_frames_at_30fps": 9,
+    "then_approved_illustration_frames": 60,
+    "then_original_summary_frames": 60,
+    "audio_ci_is_sole_official_launcher": true,
+    "timing_not_implemented_by_text_writer": true
+  },
+  "next_source_writer": "/root/resume_audio_ci exclusively, if actual original pipeline mechanically updates review metadata; text writer is frozen"
+}
