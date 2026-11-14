@@ -1,0 +1,3995 @@
+{
+  "article": "10",
+  "passed": false,
+  "stage": "approved-illustrated-tail.log",
+  "original_audit_and_quality_thresholds_unchanged": true,
+  "original_maker_unchanged": true,
+  "core_repairs": [
+    {
+      "target": "视频/工具/草稿声音.sh",
+      "file": "files/视频/工具/草稿声音.sh",
+      "original_sha256": "0ce3277812cf16ed30438509b6dc97db0c26725db4c5db5d9b058c3ef6531aa2",
+      "patched_sha256": "957d7eb1598698ea33ff77d83379256ecae258d84d588753d561a902284be439",
+      "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+    },
+    {
+      "target": "视频/工具/句内响度.py",
+      "file": "files/视频/工具/句内响度.py",
+      "original_sha256": "58735b7173a3c03efa61fb300b4aed4039c164fa970e0593a40bae2a3f3cbd27",
+      "patched_sha256": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea",
+      "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+    },
+    {
+      "target": "视频/工具/独立复核/synth.py",
+      "file": "files/视频/工具/独立复核/synth.py",
+      "original_sha256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+      "patched_sha256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+      "repair_scope": "validated unprocessed raw-mother reference input only; independent transforms/audit/thresholds retained"
+    }
+  ],
+  "strict_production_cache": true,
+  "pdf_requested": false,
+  "check_summaries": {
+    "certified-core-original-stamp-verification.log": [],
+    "original-restored-stamp.log": [],
+    "canonical-module-copy.log": [],
+    "canonical-draft-00.log": [
+      "第10篇 做完（216 秒）：修了 3 处、疑点 22 处",
+      "① 文本：通过，自动修 3 处",
+      "② 声音：10 词尾辅音核对 问题数 0；10 纯人声核对（配音指纹 ab6412c491dd）问题数 0；问题数 0；10 句间停顿核对 问题数 0；问题数 0",
+      "③ 出片前核查：通过",
+      "⑤ 出片后核查：全部通过",
+      "⑥ 已拷 视频/视频/草稿1080p/10_1080p.mp4（--不推）"
+    ],
+    "canonical-final4K-00.log": [
+      "第10篇 用户定稿原话：有"
+    ],
+    "original-stamp-after-production.log": [],
+    "approved-audio-qc.log": [],
+    "approved-illustrated-tail.log": []
+  },
+  "actual_native_core_certification": {
+    "run_id": 43535822030,
+    "job_id": 132264443476,
+    "commit": "395e8da264fafa2453a42ee70a3f7aed8303a769",
+    "actual_full_quickcheck_exit": 0,
+    "actual_full_quickcheck_seconds": 478.16,
+    "artifact_id": 14089812323,
+    "artifact_zip_sha256": "5e396c84e4a6fc7c6cc737ceb8648d7f15f397e9551806e032c93db8ab0963b8",
+    "full_original_quickcheck_log_sha256": "dbe7f6e08d2b7c3a5f9a2f925bb75a662aed725c780e1bc6714706807552a294",
+    "article_audio_or_video_passed_not_implied": true
+  },
+  "actual_native_fastcheck_stamp": {
+    "target": "视频/工具/新管/快测通过.json",
+    "file": "files/视频/工具/新管/快测通过.json",
+    "sha256": "6ebc7aa41f79f77258fa333b665af258e007daa36a4ea290de972cd3da7b42f2",
+    "origin": "actual unmodified original full quickcheck, native run43535822030"
+  },
+  "reviewed_regression_resource": {
+    "target": "视频/工具/新管/回归基准_27.json",
+    "file": "files/视频/工具/新管/回归基准_27.json",
+    "sha256": "b8ddb4656ae27cbfc7ec8e3b99511983b4e568997bd4ad4ee33c364f3926ae94",
+    "origin": "pre-existing root-reviewed 67-screen data; original voice/segment MD5 unchanged"
+  },
+  "core_repair_manifest_sha256": "1b1558108d15603e5711e200135651d6c7700a583d8bcf53ad8753683ed05a5e",
+  "reviewed_gain_preservation_mode": true,
+  "real_restored_stamp_validated": true,
+  "reviewed_cross_article_context": {
+    "provided": true,
+    "manifest_sha256": "e5d06b6488ca595da3ee2029e5208a061d8446278f6b1e2ca7c42f36e82c0f8f",
+    "files_sha256": {
+      "视频/脚本/01.json": "2be2f80a69af28703992204ac95f987c745362c326e62ad81b3cd8e0e0735d3a",
+      "新版定稿/01-the-robber-who-thought-lemon-juice-made-him-invisible.md": "572054065b5bb65446bf8939a21c789c1e9c7664d82da5117c43efdded894351",
+      "视频/脚本/02.json": "0403368c77fd3e0f91e1ee3780e1c7c147894ad13c16b5f14707d700a8f717c8",
+      "新版定稿/02-the-truth-about-one-marshmallow.md": "91b92505aad03f963861bec39e96f0a472c126d1d57c9fc538676c32f65e545c",
+      "视频/脚本/03.json": "527f3bf4a11843f4d606188dabc6ebce6830da3fb454a49c782e3a595cb47407",
+      "新版定稿/03-the-doctor-who-drank-bacteria-to-win-an-argument.md": "6dfb56504882e24854a3584fd740e7f6601e3f2532818aee3a56d5330d317aa3",
+      "视频/脚本/04.json": "93cc1ff58d65ebe43a65ecb2fb2dbd2da262d80877c05740bbdf4eab4eaca1e8",
+      "新版定稿/04-the-brain-that-learned-london.md": "a8ccb31ffff50aaae77de4b83de1847fafae1d585981cf960c5880c409f6cfc3",
+      "视频/脚本/05.json": "2282acbfa4b82825f93261ec6c18359eb47fd3f7c639319ac5058d126643e136",
+      "新版定稿/05-the-fingerprint-in-the-blood.md": "612deac4ed066489e04e214ca969f8f27dda05856e0ef0ed2e540e7a4a52ae34",
+      "视频/脚本/06.json": "2cbf1d6cd6e66a59285298ea830f5ef914590b64286d40b2ae5f3168aa27a2e9",
+      "新版定稿/06-the-horse-that-could-count.md": "7fd21ba491c7596c53c486f2bb0b0f2f6da8e67bac75461a4649a7caff822f74",
+      "视频/脚本/07.json": "842e44e5aa19fddcfa239cb6530c5152341cd86e11db959543d02d8670ca13e8",
+      "新版定稿/07-the-octopus-that-escaped.md": "b8544281bb2ada88fce9d1082cbc30233dcb63ee3e9c2bbefafc22cb28b8cb39",
+      "视频/脚本/08.json": "254832e09f12759d950384dd9f31f671ad5a3bc1590b7466065dd3ef5fe4b8d5",
+      "新版定稿/08-the-doctor-who-solved-the-cholera-mystery.md": "0b2bfa68070ce585a452f6b7034d03c3683e710dcabec5e86d7b221950dc7bab",
+      "视频/脚本/09.json": "fa3e429351d629de188c184d04e9986200e16e80606fcbec82332b6433301dae",
+      "新版定稿/09-the-great-emu-war.md": "af5c3e844bad15f94bfc43aeed6d7417c4bfae85f026b194da667a7a3bdb6196",
+      "视频/脚本/10.json": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
+      "新版定稿/10-the-stolen-smile.md": "ff63cf94e4d2c835e2e2f1ffd3e6c5642f0916f0b13c012f1f13c3dff716d47a",
+      "视频/脚本/11.json": "665cbb80cc70b700ecc0cc5813209fd100ad4fa8f0eead3929b9e53778d9d07f",
+      "新版定稿/11-move-37.md": "7e0b49b346c1fa3ab994a11a2301167c0d6a1bb00916508bdc0b1acf71e68053",
+      "视频/脚本/12.json": "e3bfbcce6f1a8e14cfe451d656574353321e297c90c62f5a7b422f37478311d5",
+      "新版定稿/12-the-79-days-of-new-coke.md": "5a23c1e0c81318527bcbf27573487d1845c5318905a2b1e020cc6e2eaf5d643f",
+      "视频/脚本/13.json": "3687b6c42a6d524d0d7e40a47ed02c37b18abe8d524db4f5914abad52019a63c",
+      "新版定稿/13-eleven-days-without-sleep.md": "72b842de127132e386e9e52a1719ec96765e94958f56687987f53e2801c69704",
+      "视频/脚本/14.json": "17141351875ddb8f0e308602c0b6ab85cbf5126a4d0118978c25c869db769fee",
+      "新版定稿/14-the-fungus-that-turns-ants-into-zombies.md": "e114c9e1783c80a2ffdb60af05e824f93a8ea8725905cb733560abe1c0ad01a8",
+      "视频/脚本/15.json": "95fd14da0704f4cb39120284bcd2c48836930ba3b9e9395edb0f4850d0eb0814",
+      "新版定稿/15-the-myth-of-the-unsinkable.md": "68e236868c4b466928ff2a60358250b9592dfe9287b66561b1e5a80b4d14de4f",
+      "视频/脚本/16.json": "d25aa07f3fac316c26c2ae1006d3efa7eb82a396b66150432b50239c1628396d",
+      "新版定稿/16-the-bread-made-from-air.md": "4da63148111213f6d77451b0eb4193893e6fc2fc170400bc39ce5f5ffcaa0b20",
+      "视频/脚本/17.json": "bd541a1b2881ea8ea7649cdfe571cc449672bde8792b50a2808a7832ce2a9ee1",
+      "新版定稿/17-the-curse-of-the-pharaoh.md": "a2e8d92f9136e1b22fcc0799f9a4d281092f0e547cc68242e090241d7b09e222",
+      "视频/脚本/18.json": "c9469b18874c389f20a890b41491f1284e318e47d91c0f3d519b055d2c9ba752",
+      "新版定稿/18-the-mould-that-changed-the-world.md": "ef41cea03f471fe3b9a53939c843e450da3325eb711f6414e108ae92a7518dd8",
+      "视频/脚本/19.json": "cc3c5eea0f7d9ec0712b2e58adba7e5ef8b61d6518a322f9b25a12fcc45282fb",
+      "新版定稿/19-tulip-mania.md": "3882d487383b759c31dda4785966091c362960cd873a5d83c530d08d52e2e97c",
+      "视频/脚本/20.json": "cc5ed6d7be8767e5e7e9b098e8f3836821c0b3f51c17581b2746722da1cf3001",
+      "新版定稿/20-the-5000-year-old-murder-in-the-ice.md": "8d55638070787f7ff5432c197292af1188c463a8b018e01bdefc32999b888e95",
+      "视频/脚本/21.json": "61c1569a26d7569ee0f586178be6b307b1c394c0a30c3cb02541c910038b0589",
+      "新版定稿/21-the-man-who-sold-the-eiffel-tower-twice.md": "e8e966b70f579235d696ba11fb01d3b2cae3fa26efb9071bbea95071be259e1f",
+      "视频/脚本/22.json": "e3027a42c532fee9935afcecdd0542713cbb907183802c2345b9472f93b75f59",
+      "新版定稿/22-the-building-that-melted-a-car.md": "49ae09483bc80bbc40a71551cd98aebec355d96d9ff7b2bcdea59a06fe599267",
+      "视频/脚本/23.json": "c4574a79fd3a58577a1402ce095ea9e4a0ea1f98883ce63e3cc60d126e819409",
+      "新版定稿/23-the-man-who-gave-machines-a-mind.md": "72ed3049e87fe75ce1e753d5e443bdbe6a7ab72f6e282e8467fbbb62be873169",
+      "视频/脚本/24.json": "f08620b534bb10b718f7515c805dcb541721427d855bd5a092b8954847a351b8",
+      "新版定稿/24-survival-in-the-ice.md": "cb7f810d9a74256e0c00625290be4f16207feb90f5719ca87d5d7c9912b91307",
+      "视频/脚本/25.json": "c73e854e052b3df9bd920d4a59fafb183dee19bd58765fa426af6ea3d7c9a329",
+      "新版定稿/25-apollo-13-the-successful-failure.md": "b6b7d55fe66e6e32116431ea955778fab779b8bda622df0ba1036c2f40a3969f",
+      "视频/脚本/26.json": "456cf19082860ca5d4a1f88b68aa7c8303d901a980f1db50ca130de5288bc891",
+      "新版定稿/26-the-language-the-children-invented.md": "9e9ad8021ddabc17157d73dc739383f9676df3583cf965e470fcd773e26a3761",
+      "视频/脚本/27.json": "966d26ab222e43b25d5d4ae569e451ec4364548e4231a9f1b9fc3cd8cc9754cf",
+      "新版定稿/27-life-in-the-forbidden-zone.md": "e276bcf76225b9ae16cd8cfda8c9b726b442fbd625d3718f532b47b09b21b16f",
+      "视频/脚本/28.json": "a6a4befc0291727f5cc3f8b50857ee954ef9f936738f014a978ebb4d37a28ea8",
+      "新版定稿/28-a-handful-of-wormwood-that-saved-millions.md": "b9817d3429767d07b6a2eb14cce5422a20cb4e3b89f8b03e6b3d5da2daf91d91",
+      "视频/脚本/29.json": "e916f33df7cacafe7666f0d51af6116bdbc639bc5e9a7a5a92a3420050f227a1",
+      "新版定稿/29-the-volcano-that-gave-us-frankenstein.md": "69045ee19a170c7ea9d0008b468c7e947bc28b639b834c0192dc0aeafc3ef4d0",
+      "视频/脚本/30.json": "b8e250df2282e388aa901c97be46b1bd610b14e38bc14a97d3aca262ef1d43f1",
+      "新版定稿/30-the-stink-that-built-londons-sewers.md": "84dbf19cee0045ea2608b13ee0677cb9623dd8fbb371c67093bf50c64186137a",
+      "视频/脚本/31.json": "d81f8645a1e5663ba8c84668e817cdb218bc6689079fbfd51326b3a7fd3cd384",
+      "新版定稿/31-the-book-twelve-publishers-turned-down.md": "7abd20fed44918dcf01586c056e9d0acd9d2ad3b90aa7d3d403762d9f06d2659",
+      "视频/脚本/32.json": "357aa59bed62154f7302a5efcf528859b303004e028657b93058138fe931bf85",
+      "新版定稿/32-the-planet-that-was-demoted.md": "1421f2b0921e7e9478ebc48777e3e8b2c979172de63d0124015107c3750a3542",
+      "视频/脚本/33.json": "ca51103c1a9d45c9159322765efc86c81f61f6ec78975f160019d21a1d9ee0d7",
+      "新版定稿/33-thirteen-in-the-cave.md": "9862078044ce45a9f6d51aa7d165afdfcf90066d1de98cbb317dd7e8f980610d",
+      "视频/脚本/34.json": "74921848a6bb25a2ba631813f60d4756c9ff90c64c03a2fb936ce34f310ce509",
+      "新版定稿/34-the-game-that-escaped-the-soviet-union.md": "e3244b67b21e283e67f4e88e932a1dbb85bf273a48ee009b3f435e1c5814831c",
+      "视频/脚本/35.json": "d8439077dc2c909b1c6cbd1347f31e9625f25fffe447d6f5945c9492561f1a16",
+      "新版定稿/35-the-bird-that-beat-the-letter-home.md": "ba8c38e38b21a3345624e2d44fd352561d3096cfb6f62214b48ea9b6e66faead",
+      "视频/脚本/36.json": "76daa28f421bd40d8e2744d4e785a34bb8ee67da1403b4b1546db9465c535cef",
+      "新版定稿/36-the-company-that-invented-its-own-killer.md": "411eeb96c8641ee7082b49a5abf4c7343d3f1dbb7ef331064d7c0f3c630fe58f",
+      "视频/脚本/37.json": "b1b8945ccf3581df48ade5714a2d0e93e4cc6812708f95bef6f5e44439106c99",
+      "新版定稿/37-dynamite-for-the-heart.md": "4933e24d2384471a96d9c8c26c15d5224a85dae98d9971a3fed15b4978dafc51",
+      "视频/脚本/38.json": "8d0379032000967c9f72e550574874949f798eefbfbfb58ab2b38e4e23ecbc6b",
+      "新版定稿/38-the-web-beneath-the-woods.md": "abb7eead9f3da0b2b326ceed5a649cfbf71fc28dad22e0d52f7b19caa798c54f",
+      "视频/脚本/39.json": "de2f83f5494d2218b0de6c6ede6b7b1e841e01988ec5ff6a3d7864be19a63494",
+      "新版定稿/39-y2k-the-crisis-that-success-erased.md": "abbc9804661126aa006595031ed8f201ce55e8eb5fd9e1ad5669c0c6fcdb80ab",
+      "视频/脚本/40.json": "1c50d1a47ee6f8528d0f7299e8a45bc8c30312622f3f465a964d21cc1395ee7f",
+      "新版定稿/40-the-glue-that-failed.md": "dce9f78f3a0828307843dd667b7eeebf3380a3630f03d234bd5824870aba61a1",
+      "视频/脚本/41.json": "6b6673ffc1db986f4c355f3685de6a0faf2272cee042c5e917f26a8b3057c2be",
+      "新版定稿/41-the-toad-that-invaded-australia.md": "eca590f97120f4e76d719e29aa07b094f9117cd462f5a70c029331a63b85f710",
+      "视频/脚本/42.json": "eceb10ae92aa4b9cd23180d1138149a7fa7b674385462c898bc0d2283c8739e7",
+      "新版定稿/42-the-telescope-that-needed-glasses.md": "d4aa049779a0eba06c555d76ca14103648378eef90465df424120126fa771280",
+      "视频/脚本/43.json": "f9a7e6b49e095b859de15b773a8560a5be917e5b066b5f4be95deb232bbe6645",
+      "新版定稿/43-from-a-garage-to-the-top-of-the-world.md": "bd70c83e5ac867238ca179f3c9f3548eb9cbdcae1f6df40994aef0bda721ae54",
+      "视频/脚本/44.json": "eb11422f14274c8d1b7cdb27064a4db03624a1af07c66b820899e08cfb4c9940",
+      "新版定稿/44-the-night-sweden-switched-sides.md": "d3f7ad2ac43f02aae9205a15b9808280ca3db597d6ef3b36aca8ca6176c5f74a",
+      "视频/脚本/45.json": "fb936d92e9f5a998cfefc2c26a7bb20829bc7a5b142c08fdb83ba7a48fdf2a98",
+      "新版定稿/45-the-record-humanity-threw-into-the-stars.md": "27deabec4a8478fe570f7f237a2fb850ffdce3deebfd952f512d82a60cf7314f",
+      "视频/脚本/46.json": "804ecfddb6060288b05eda0e1027c65e9bff0c08a9d010c201bf39306c769b62",
+      "新版定稿/46-lost-in-the-glare.md": "7aaa06e875fe56c5d78210b90a8769b8b2051714025ef10df37c2fe89db7a68c",
+      "视频/脚本/47.json": "0eb7b97ebb056249aa10d2c0d8950e4ae02e056d4772750d02a44ab7ee99c661",
+      "新版定稿/47-shadows-of-wolves-over-yellowstone.md": "34c68cf4d0f0ef3545ad68edf3367fcb76ab500174b11ae7f83b782cd5a80a2a",
+      "视频/脚本/48.json": "4f146ce6a70bb0bf5d2c6e1f6b47bd6a2bcc2f311be7a948092d7bde1a08f449",
+      "新版定稿/48-rice-for-the-world.md": "76416be21f857e8a05c37baa33ac90f5785812291485231c249e38a1d0edf15f",
+      "视频/脚本/49.json": "640168eb8a17c5d53d266c6604ffe287919314947371c2ee239eeea952d73b77",
+      "新版定稿/49-the-woman-who-won-two-nobels.md": "1e4fb068aa9ae4513d01b199a074b84dc9d819f57b2134df32588a0e4a4b6b6a",
+      "视频/脚本/50.json": "1d4a41824dfa5e8d11e5990b2a4b802ba2fcc3231d85b15ed6630396c6f027bf",
+      "新版定稿/50-microplastics.md": "5439589bacf1abb2abbb184eb658492bc02bcc5bdd8dfd8ababcd80ab93621cb",
+      "视频/脚本/51.json": "39886d83593a31fb575b124ecf6457190773dca695b6ff78f8434d52aebd6d7c",
+      "新版定稿/51-the-joke-that-became-ok.md": "8de30ea4846f4e88d8b71c8d5ced3ee63a73955e39b7dc3c5adad0971b854fd0",
+      "视频/脚本/52.json": "832249bb44617d38ede75560a5e57af6ba79ec284c9609407cb30ce879f6f862",
+      "新版定稿/52-the-killer-smog-of-1952.md": "179500361e4a837d7edb2e0497e08677d5abd425e8ad542f788205a6f7667b4b",
+      "视频/脚本/53.json": "893a7789ddf5f5a79e2a9168011c1c23e2709975d1b07b6b023d6cf5988b2bef",
+      "新版定稿/53-the-wind-that-kept-no-time.md": "6fab302dcadb5a2c509436f5fbf8d9ef925c008a36f5b422749bd405aa4701d3",
+      "视频/脚本/54.json": "b1fcb8ae86045b3d35ccfa0f52eb9594b8921d43063835769ee3ecc4543be75e",
+      "新版定稿/54-the-sound-that-shook-the-world.md": "abd5f4bfe11ed73bcc5326a92cf99b0a8e5ad70adaca1ce8d0c8f622b57fa519",
+      "视频/脚本/55.json": "06344fc0ad5975cba2f4dbe5262a9957dd7c024f9a05b9abbfa327f32ea8c719",
+      "新版定稿/55-the-secret-of-romes-undying-concrete.md": "a7759eddcc7ec06dfd6dab7912e06b3b5ef8576df0c025a97812006669d0be61",
+      "视频/脚本/56.json": "22ca3b4180a8ae6a37b4c8e25f5e357d5696d9b23bf148fb7064425d1403e59c",
+      "新版定稿/56-the-letter-that-startled-darwin.md": "aad1e2aab9ff28f534a510362e807ef401e0b502475240f4b2531e9e518a8d7a",
+      "视频/脚本/57.json": "a0ba65b769430289a33ec1f7bc6dbf91dad8d2c3b1d725348851de546563cd6f",
+      "新版定稿/57-a-change-of-anthem-in-the-deep.md": "0731d925a98bafc222718c111985362e166b38b9189c516219a481e36d0d4b6e",
+      "视频/脚本/58.json": "8b0bd3d7d39000518789e9907aec53bd52fab1b9d6b4f22a152d158635b6e8ee",
+      "新版定稿/58-from-a-scratch-to-a-world-without-smallpox.md": "1aa2a0d2c51da76f9c9ebb88d049dd1a55ab530791566fdbf6476e5aa48c15ee",
+      "视频/脚本/59.json": "df1db4174d942371166048b220ef6d55b0b700b2ce31c866edf6dfdf33b92f0c",
+      "新版定稿/59-saving-the-sky.md": "7bf9c4661e733e7af23dc2f11bc820b809ec93dad75a94fb6a12748226e8722c",
+      "视频/脚本/60.json": "eed1655c0919db32a3a016b24791b93d25683f287c7ccb2523e168a69bddc562",
+      "新版定稿/60-the-scientific-giant-who-changed-the-world.md": "9d1578e7af085559922394a3db01de4eb22dc1c520ca17de5cad68e5a38a31a8",
+      "视频/脚本/61.json": "72378937501769dfb3d934fe65ab1a69afeb5420a15e19890c161433717d2435",
+      "新版定稿/61-the-steel-box-that-remade-the-world.md": "135cc9cfbcbd68d957f831cf55558112a45b1cc3749366cb9a304507355c7d2c",
+      "视频/脚本/62.json": "4b3a97f2b6404e1b091537c21f01fc60088902f596803345983c38be52ec79eb",
+      "新版定稿/62-dolly-the-copied-sheep.md": "62817546ae33824b57255f941135c503e41a41f905331ed4af1e32850fa00960",
+      "视频/脚本/63.json": "5d266d80f9cf29cce6f7e34531449cf75191a42f180102685a5bcd04849e75c5",
+      "新版定稿/63-the-crowded-heavens.md": "6ef79d4310019dfefa7364b8a428411a6bc337678c69fa5cbc89b84689e253a4",
+      "视频/脚本/64.json": "b85ce0a5dcbce997ad82779a850298fecd9847e03d0b2adfc7045b2db54082cb",
+      "新版定稿/64-the-day-zero-that-never-came.md": "e0c83cbe36745adbbffd33a156fa8d0671704ea976cb13215cabb612639b37a5",
+      "视频/脚本/65.json": "78e60dd231df4ac71df83e21a26f82bbf706dc0bef80bee156a36bc287661ede",
+      "新版定稿/65-the-day-the-doomsday-vault-opened.md": "71a50d32e25955e713e6ca108ab68422a4fd5b77c914a9074eece1dc33cbff89",
+      "视频/脚本/66.json": "ad5324af4270834186285a5e7273a90213094077adc6f9e1d5c7b0ebff9cf035",
+      "新版定稿/66-the-burrs-that-became-velcro.md": "75dbe6c148ca97a7780ac1737f33f58bf8ee27a51aa729a83315705655b12b2a",
+      "视频/脚本/67.json": "8897cc1c2df1e4672eec3bbff2776d0565afb9c9fe84087a1758ebb15b2a233e",
+      "新版定稿/67-the-cave-found-by-a-dog.md": "10e37b81eeef4e3289448a6b4fd679f34d495a4fc087c57747e6dca949e00cf1",
+      "视频/脚本/68.json": "568f72dacac48e206811d35a57c7fa22e3da428783f64e507c184f2090e579f3",
+      "新版定稿/68-the-last-flight-of-the-hindenburg.md": "c25f58ffb0e3748336767bb7470dd7cef10374c53cbb48af89dba26f65b2dd5c",
+      "视频/脚本/69.json": "09fd3fdbbc834badd16a9b38d8c14e425193a6849d7db87253f26a782a1c4137",
+      "新版定稿/69-the-trial-of-the-father-of-the-atomic-bomb.md": "570eda5b7d979d71e9bcad1c67e295ed326ecdb8b61e663aba33272c8a9451bd",
+      "视频/脚本/70.json": "0f6827f02cef0d2416f9d7d69b7e1c5553acee7cf6dc89f3379201264587236c",
+      "新版定稿/70-the-stamp-that-changed-the-post.md": "edfd85cea33730ba67e4210e756da1f2945f1a21bce55c7e75497cb5f0095d80"
+    },
+    "source_file_count": 140,
+    "working_script_count": 70,
+    "target_request_exactly_matches_context": true
+  },
+  "request_source_sha256": {
+    "视频/脚本/10.json": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
+    "视频/工具/初稿生成/gen10.py": "8bf8c79662f5342d56316b3a2f36c19ca269dd92796ca78e459b7955ade84d9d",
+    "新版定稿/10-the-stolen-smile.md": "ff63cf94e4d2c835e2e2f1ffd3e6c5642f0916f0b13c012f1f13c3dff716d47a",
+    "视频/制作记录/10_待改清单.md": "df4c3479deb57bfa1400eeb6c99ce5f9fee59744e8a828bbe3fda42199dc5b59"
+  },
+  "accepted_source": {
+    "id": "10",
+    "path": "最终版4K视频/10 - The Stolen Smile - 被偷走的微笑.mp4",
+    "sha256": "c0cbc1eb2691e208fd827d264cc9b6bfb64fb74217c674d81e87b1ae71a055fa",
+    "git_blob_sha": "d5595dda081d842914fa9171609c92451d7f58bd",
+    "bytes": 12553849,
+    "width": 3840,
+    "height": 2160,
+    "summary_frames": 60,
+    "aac_adts_sha256": "ae7f8c1639ca03eb246cf0aa5f2ff885d8b368496b16acc6af4ef3c3a08dbb14"
+  },
+  "checker_reference_preparation": {
+    "article": "10",
+    "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+    "reference_prepared": true,
+    "acceptance": false,
+    "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+    "source_sha256": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
+    "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+    "checker_program_sha256": {
+      "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+      "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+      "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+      "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+      "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+      "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+    },
+    "reference_calls": [
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-raw",
+        "method": "create",
+        "source_slice": "The Stolen Smile",
+        "exact_native_cache_key": "6abb6fedb87ba0dcb93b996c325351556f2b10cf.pkl",
+        "cache_input_text_sha256": "20239da1c571fe6e5ec48aec8c5d23a8825c59d9ec2f760daba1da17b819d11b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-timed",
+        "method": "create_timed",
+        "source_slice": "The Stolen Smile",
+        "exact_native_cache_key": "d2bfe45d966315ff7fef117637cbb4d093e3ccba.pkl",
+        "cache_input_text_sha256": "20239da1c571fe6e5ec48aec8c5d23a8825c59d9ec2f760daba1da17b819d11b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "On Monday 21 August 1911, when the Louvre was customarily closed, the Mona Lisa was discreetly plucked from its wall.",
+        "exact_native_cache_key": "319dd46a756eb03316c669c2ad8f53e152dfdb07.pkl",
+        "cache_input_text_sha256": "9f9ecda324fdd78ef3f6fcd13961495da7e071767ff8a90725cc4e70996d2a0b",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "On Monday 21 August 1911, when the Louvre was customarily closed, the Mona Lisa was discreetly plucked from its wall.",
+        "exact_native_cache_key": "7ce9bb2407fd7802a3f4e0bac48f0d142894789a.pkl",
+        "cache_input_text_sha256": "9f9ecda324fdd78ef3f6fcd13961495da7e071767ff8a90725cc4e70996d2a0b",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "On Monday 21 August 1911,",
+        "exact_native_cache_key": "1779cdbdd68560e1ecd50d812c5c8a8a0df6394c.pkl",
+        "cache_input_text_sha256": "1725c070d13c77c6f4be04665d1a9c9f59882d589945429dfd63c50bafe70c2c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S1",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "when the Louvre was customarily closed,",
+        "exact_native_cache_key": "849001ae0dc6c1436d06f5c608358bcdca630f4b.pkl",
+        "cache_input_text_sha256": "4c15bd3714fdabf072086fe71ee8398e8edd4acb74e1d3d6cf78438549e524e1",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S1",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "the Mona Lisa was discreetly plucked from its wall.",
+        "exact_native_cache_key": "cc0f01c912012e660f13a8899a10e62d9d51c816.pkl",
+        "cache_input_text_sha256": "d100b9b894c7f8e6c97cabfaa41bf0e8eb585ddf56f8861e3c23e4eae6cf059c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S1",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "On Monday 21 August 1911,",
+        "exact_native_cache_key": "1779cdbdd68560e1ecd50d812c5c8a8a0df6394c.pkl",
+        "cache_input_text_sha256": "1725c070d13c77c6f4be04665d1a9c9f59882d589945429dfd63c50bafe70c2c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S1",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "when the Louvre was customarily closed,",
+        "exact_native_cache_key": "849001ae0dc6c1436d06f5c608358bcdca630f4b.pkl",
+        "cache_input_text_sha256": "4c15bd3714fdabf072086fe71ee8398e8edd4acb74e1d3d6cf78438549e524e1",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S1",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "the Mona Lisa was discreetly plucked from its wall.",
+        "exact_native_cache_key": "cc0f01c912012e660f13a8899a10e62d9d51c816.pkl",
+        "cache_input_text_sha256": "d100b9b894c7f8e6c97cabfaa41bf0e8eb585ddf56f8861e3c23e4eae6cf059c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The disappearance went unnoticed until the next day, when a painter arriving to sketch found a conspicuous gap of bare plaster.",
+        "exact_native_cache_key": "75b6a5d9a0e70ad65a02d385231e1a5966e5a75b.pkl",
+        "cache_input_text_sha256": "1b19e7aeaa577bb79160b74cd67f544ecb6d82b307d65cfa015ccdbb7b9ddd8c",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The disappearance went unnoticed until the next day, when a painter arriving to sketch found a conspicuous gap of bare plaster.",
+        "exact_native_cache_key": "f4c3f783c123f2fbde13c213932949cf1f2a1c68.pkl",
+        "cache_input_text_sha256": "1b19e7aeaa577bb79160b74cd67f544ecb6d82b307d65cfa015ccdbb7b9ddd8c",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "The disappearance went unnoticed",
+        "exact_native_cache_key": "d50d3642f8022ba1c409e7ef50fabe55b50d9c8e.pkl",
+        "cache_input_text_sha256": "773c41348d4f3428e24a6fe1311993ce4e7b0adb91a03d5f0a7e43e131b04f36",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S2",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "until the next day,",
+        "exact_native_cache_key": "3d5d1d7dcf60a20e8bb99e006f309b436a607d09.pkl",
+        "cache_input_text_sha256": "ac71f9feb56310ad8f3c447371e6f9d26aff09d56c3bfdcc225d63c1602b8a27",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S2",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "when a painter arriving to sketch found",
+        "exact_native_cache_key": "edabfcf946ec7e29542ae075fdb1301f969e39cc.pkl",
+        "cache_input_text_sha256": "73935c63886a0ab92948115991082b150e4bda4a7bf1327046634f54ec25d295",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S2",
+        "piece": 4,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "a conspicuous gap of bare plaster.",
+        "exact_native_cache_key": "a4c4ce3e6ebac3cea5214aa2922f7d0f59a94f06.pkl",
+        "cache_input_text_sha256": "8a9944f4980dbf48d92b521e95404b8f33bfdb65f567baffd9b38914c607f925",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S2",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "The disappearance went unnoticed until the next day,",
+        "exact_native_cache_key": "a13458db3a93a9cfcaabc8d7ab4f24337197fcf5.pkl",
+        "cache_input_text_sha256": "0f88c89b9c5b7ca8cdee50cd0147fae61adc06c5d86db0da40d206d63462d3e9",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S2",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "when a painter arriving to sketch found a conspicuous gap of bare plaster.",
+        "exact_native_cache_key": "bf3e7931f5ba0fa12ce4a0c94357ddfd58190b70.pkl",
+        "cache_input_text_sha256": "e319adffc16f9ed5ad0a7ac7e9ebfc72305c3217fbdfb187e0b339032753b1c7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Custodians shuttered the museum for a week.",
+        "exact_native_cache_key": "86f4136754e36cff2aef80a3f5af0a65402c6307.pkl",
+        "cache_input_text_sha256": "743834fa066be5605b42578e79ee36ecb31d337806405034a4e1c04ae934916a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Custodians shuttered the museum for a week.",
+        "exact_native_cache_key": "c78d82a2ad0ba7bcbe3157824daffafbbf61a818.pkl",
+        "cache_input_text_sha256": "743834fa066be5605b42578e79ee36ecb31d337806405034a4e1c04ae934916a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "When the museum reopened, curious onlookers queued to stare at the vacant space where the masterpiece had hung.",
+        "exact_native_cache_key": "63b05404e3334f612547f1430209669afad64095.pkl",
+        "cache_input_text_sha256": "de2d48f71a5d2d45f34bc65b81474bd6a635854ec4df458f216c780a9458b88f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "When the museum reopened, curious onlookers queued to stare at the vacant space where the masterpiece had hung.",
+        "exact_native_cache_key": "efe4735405ada0c104ed5f1f70a546b20cae8c8f.pkl",
+        "cache_input_text_sha256": "de2d48f71a5d2d45f34bc65b81474bd6a635854ec4df458f216c780a9458b88f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "When the museum reopened,",
+        "exact_native_cache_key": "a864f879ce839b9f1c38f25899a48405f2ccbe70.pkl",
+        "cache_input_text_sha256": "c7de01d49699ec48bb89a9a918ec1a9a639e9267e4e4d0e901ce84e6fb266db1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S4",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "curious onlookers queued",
+        "exact_native_cache_key": "9197bcba53d92f88a24dc0ed35b9e5ee092debe0.pkl",
+        "cache_input_text_sha256": "b551091508bcd22c881906bb5558a5edc6a00443d41c8b939ee5fb63f01fdbe1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S4",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "to stare at the vacant space",
+        "exact_native_cache_key": "6f698122b06752a54d47e3bf6d137171ccfd8bb5.pkl",
+        "cache_input_text_sha256": "f75ef6aadc781f4abc2f37a2ca8892e9b77159a9ff3a70310b54dd7be5e3016b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S4",
+        "piece": 4,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "where the masterpiece had hung.",
+        "exact_native_cache_key": "e412c971c58cb85c8730ad15ee3b142f81dc80c3.pkl",
+        "cache_input_text_sha256": "248189e9c010f33dacbb0c5d8d4f503db2fae789d994163e7b442b8c6db34cd5",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S4",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "When the museum reopened,",
+        "exact_native_cache_key": "a864f879ce839b9f1c38f25899a48405f2ccbe70.pkl",
+        "cache_input_text_sha256": "c7de01d49699ec48bb89a9a918ec1a9a639e9267e4e4d0e901ce84e6fb266db1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S4",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "curious onlookers queued to stare at the vacant space where the masterpiece had hung.",
+        "exact_native_cache_key": "cc27de674af7704e5a1ff6dccc5185ae34903ca3.pkl",
+        "cache_input_text_sha256": "10bd80f9a13a317f6ee8a9ab0f6639f4d8aee81df22e0ec12ce665d87512f7b5",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "On 7 September 1911 the poet Guillaume Apollinaire was held in custody for about a week, and Pablo Picasso was interrogated.",
+        "exact_native_cache_key": "c84f1f042da35fbb1ce38bf0bc91cf2b6f118dfc.pkl",
+        "cache_input_text_sha256": "03c9fbeaa9df36cf4335db46787053826ef06060822b86b636b52dee67711de7",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "On 7 September 1911 the poet Guillaume Apollinaire was held in custody for about a week, and Pablo Picasso was interrogated.",
+        "exact_native_cache_key": "2cc9283e1875bc58f4a34adb5156eab2d1079ae5.pkl",
+        "cache_input_text_sha256": "03c9fbeaa9df36cf4335db46787053826ef06060822b86b636b52dee67711de7",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "On 7 September 1911 the poet Guillaume Apollinaire",
+        "exact_native_cache_key": "0a2335a8f985fcf211025173ba4d6b3e56ef56be.pkl",
+        "cache_input_text_sha256": "511dc3c2361ea442e782cce3f3d20f786cf468e8437c124d51eae2cddcf7abc7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S5",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "was held in custody for about a week,",
+        "exact_native_cache_key": "67521e8af2740c6b333263df6d60368facf1777d.pkl",
+        "cache_input_text_sha256": "f4aa6dbbbb2e1bff7d0251923eca3c75222c32c580ffd2cb4155ca01713d66aa",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S5",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and Pablo Picasso was interrogated.",
+        "exact_native_cache_key": "3df817c7199fed2d5e947160d1d0bcc81410dc90.pkl",
+        "cache_input_text_sha256": "25b0df49cc857ade18bd156773f231b1df903cbbdd0362ca556af84c8c78fc9c",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S5",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "On 7 September 1911 the poet Guillaume Apollinaire was held in custody for about a week,",
+        "exact_native_cache_key": "1603e66e1acd0a25622bc4d7f6b3c8cdde978038.pkl",
+        "cache_input_text_sha256": "1de99048331540ced40c65419942f5649ba99e5f35ce94ec7987b9f6f4fd70c2",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S5",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and Pablo Picasso was interrogated.",
+        "exact_native_cache_key": "3df817c7199fed2d5e947160d1d0bcc81410dc90.pkl",
+        "cache_input_text_sha256": "25b0df49cc857ade18bd156773f231b1df903cbbdd0362ca556af84c8c78fc9c",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Both were cleared of involvement in the burglary.",
+        "exact_native_cache_key": "06636a5b358187bcb7c311c23abe61c57927c113.pkl",
+        "cache_input_text_sha256": "1d1ba8dc47ccb4938823dabbca51c6adae6f69987058eb9de723f69aaf50a57c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Both were cleared of involvement in the burglary.",
+        "exact_native_cache_key": "54690af7c82a343f26f398a2c5def776cf1d3621.pkl",
+        "cache_input_text_sha256": "1d1ba8dc47ccb4938823dabbca51c6adae6f69987058eb9de723f69aaf50a57c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The intruder was Vincenzo Peruggia, an Italian who had temporarily worked at the Louvre as a glazier.",
+        "exact_native_cache_key": "8c39b4471326eb59c2ca91d5481a766b46541217.pkl",
+        "cache_input_text_sha256": "c0dae73cf4fc4fd43aec90203cd9f05e9a4924e708b139e24878999d0b23e77f",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The intruder was Vincenzo Peruggia, an Italian who had temporarily worked at the Louvre as a glazier.",
+        "exact_native_cache_key": "3a7c39502cfd4f38dc9b5d8f8c17f53e43cc13eb.pkl",
+        "cache_input_text_sha256": "c0dae73cf4fc4fd43aec90203cd9f05e9a4924e708b139e24878999d0b23e77f",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "The intruder was Vincenzo Peruggia,",
+        "exact_native_cache_key": "686a8cd543e47c7caaf96860ecb3ceb1b1cbacfa.pkl",
+        "cache_input_text_sha256": "00928139d77c3b3bb88487a923701afbba3a88b625058cf0510aedede122501e",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S7",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "an Italian who had temporarily worked at the Louvre as a glazier.",
+        "exact_native_cache_key": "af486670b6e59954bb2d82594d779a46bb6df660.pkl",
+        "cache_input_text_sha256": "b2f3a7a6ef179ab91bd47730d1c66e06c36af0e0f8010588c477f8898cd601b3",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S7",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "The intruder was Vincenzo Peruggia,",
+        "exact_native_cache_key": "686a8cd543e47c7caaf96860ecb3ceb1b1cbacfa.pkl",
+        "cache_input_text_sha256": "00928139d77c3b3bb88487a923701afbba3a88b625058cf0510aedede122501e",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S7",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "an Italian who had temporarily worked at the Louvre as a glazier.",
+        "exact_native_cache_key": "af486670b6e59954bb2d82594d779a46bb6df660.pkl",
+        "cache_input_text_sha256": "b2f3a7a6ef179ab91bd47730d1c66e06c36af0e0f8010588c477f8898cd601b3",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Having lurked in a storeroom on Sunday, he strode out unchallenged in a workman's smock, the painting tucked beneath his clothes.",
+        "exact_native_cache_key": "23fe552e4fabfbbdabef2472103a607d232ac947.pkl",
+        "cache_input_text_sha256": "ec638dc6622a34097293bf3b81476696c94179d6f3e4c1eb65f8ce1ac5acc239",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Having lurked in a storeroom on Sunday, he strode out unchallenged in a workman's smock, the painting tucked beneath his clothes.",
+        "exact_native_cache_key": "e700b4b91feaaeac5753c96dfe7ab837012788db.pkl",
+        "cache_input_text_sha256": "ec638dc6622a34097293bf3b81476696c94179d6f3e4c1eb65f8ce1ac5acc239",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Having lurked in a storeroom on Sunday,",
+        "exact_native_cache_key": "7b462f1f0362aeddd4c694f337ccfa8e1d032bc6.pkl",
+        "cache_input_text_sha256": "e31698dff6aab7add4c2402939856680733e37eec5514a887adb10195c759af1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S8",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "he strode out unchallenged in a workman's smock,",
+        "exact_native_cache_key": "bf1c54a47522a1f8e490a7f529ecb1944b425064.pkl",
+        "cache_input_text_sha256": "472af0cad7224600f7bc7753a1e99e840554467a96d58aba2da1fd84f3b1b8e6",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S8",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "the painting tucked beneath his clothes.",
+        "exact_native_cache_key": "9b58241a4196bfd59d21184e1e73d380f057fe86.pkl",
+        "cache_input_text_sha256": "0635570550b76e7c07a7a5d8561c667f317b2d9251ee9e9fac54d324ab8fca55",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S8",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Having lurked in a storeroom on Sunday,",
+        "exact_native_cache_key": "7b462f1f0362aeddd4c694f337ccfa8e1d032bc6.pkl",
+        "cache_input_text_sha256": "e31698dff6aab7add4c2402939856680733e37eec5514a887adb10195c759af1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S8",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "he strode out unchallenged in a workman's smock,",
+        "exact_native_cache_key": "bf1c54a47522a1f8e490a7f529ecb1944b425064.pkl",
+        "cache_input_text_sha256": "472af0cad7224600f7bc7753a1e99e840554467a96d58aba2da1fd84f3b1b8e6",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S8",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "the painting tucked beneath his clothes.",
+        "exact_native_cache_key": "9b58241a4196bfd59d21184e1e73d380f057fe86.pkl",
+        "cache_input_text_sha256": "0635570550b76e7c07a7a5d8561c667f317b2d9251ee9e9fac54d324ab8fca55",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "For more than two years it lay stashed in a false-bottomed trunk in his Paris lodgings.",
+        "exact_native_cache_key": "d4b365d284a886046ff7e5eebe2bb2a068ec2abf.pkl",
+        "cache_input_text_sha256": "554279bcdb7dd61d714940325a12f7e2a1b08f7978f48cdd0fb927d0c45b1c50",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "For more than two years it lay stashed in a false-bottomed trunk in his Paris lodgings.",
+        "exact_native_cache_key": "3f5ddf8d8badd3f0552366b2f99dd5c8a6bb82f8.pkl",
+        "cache_input_text_sha256": "554279bcdb7dd61d714940325a12f7e2a1b08f7978f48cdd0fb927d0c45b1c50",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "For more than two years it lay stashed",
+        "exact_native_cache_key": "67ae9e8048de56d0dba519bba36f3fdac9c996ab.pkl",
+        "cache_input_text_sha256": "cb93dbdb9fdda8f27539d43c8bd45a893bd3af7e092c238d14c63683abd37b94",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S9",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "in a false-bottomed trunk in his Paris lodgings.",
+        "exact_native_cache_key": "f397902bda21c8efeaa17fb2a6acd738ab097209.pkl",
+        "cache_input_text_sha256": "5ac1625216662c47c1eed78e27e335ceaee24c9d608462764868dc7a17e6aee6",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "In December 1913 Peruggia contacted Alfredo Geri, an art dealer in Florence.",
+        "exact_native_cache_key": "68b11ef11976a66aa9a28a90bbb54c733ff8ba96.pkl",
+        "cache_input_text_sha256": "51ca5c6a208c59ce64c931da9b3a1028365247e5fd154028be6296d55cd319a2",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "In December 1913 Peruggia contacted Alfredo Geri, an art dealer in Florence.",
+        "exact_native_cache_key": "55516fc26b5f8a562121861ef60018b96079477a.pkl",
+        "cache_input_text_sha256": "51ca5c6a208c59ce64c931da9b3a1028365247e5fd154028be6296d55cd319a2",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "In December 1913 Peruggia contacted",
+        "exact_native_cache_key": "dce1c0447b7f054cf33967e154ed6704353c8bc2.pkl",
+        "cache_input_text_sha256": "dbf6fe927d24e6ec2481343a9ee168cccf16fa9c14b11694c978dd285f04afd9",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S10",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Alfredo Geri, an art dealer in Florence.",
+        "exact_native_cache_key": "3fbcbf6e08c12995cc27597a2abc13b151a05bc9.pkl",
+        "cache_input_text_sha256": "6d2eed69046f3415c7896a08dbbca6df0deb8eb1e32f8b264521003dcf961f3d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S10",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "In December 1913 Peruggia contacted Alfredo Geri,",
+        "exact_native_cache_key": "88d0d5bc0ecb88b40699d254b637000bf0e5fed1.pkl",
+        "cache_input_text_sha256": "8eda26f339dc6eadd2bd6f02ae1f19708c306d4f4d8900031a5d87dd1672e746",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S10",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "an art dealer in Florence.",
+        "exact_native_cache_key": "bd0b413dd5f4249588b60d8a1fc80e6c9a282c72.pkl",
+        "cache_input_text_sha256": "f12d9554d18a79e2e710b92a4c89641048f77d5128b49e25520c380aa472d6e5",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The Uffizi's director authenticated the painting at Peruggia's hotel; Peruggia was apprehended on 11 December 1913.",
+        "exact_native_cache_key": "056b758b8d5ec1b7569062b988a370db2e508f5e.pkl",
+        "cache_input_text_sha256": "e30ec6b6c00e3151ece38b1bfee32ea82c34786b554fe6e92c1f8877a2217a5a",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The Uffizi's director authenticated the painting at Peruggia's hotel; Peruggia was apprehended on 11 December 1913.",
+        "exact_native_cache_key": "d60eeab04742be5752248e610351aa89bef62e77.pkl",
+        "cache_input_text_sha256": "e30ec6b6c00e3151ece38b1bfee32ea82c34786b554fe6e92c1f8877a2217a5a",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "The Uffizi's director authenticated the painting at Peruggia's hotel;",
+        "exact_native_cache_key": "ae259011f6cfef1557131dd27cfd8f53617be114.pkl",
+        "cache_input_text_sha256": "e6365cebba97905b2cbf5a82a3b270efa8e07862eaca28cf1a7b6214a793be8b",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S11",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Peruggia was apprehended on 11 December 1913.",
+        "exact_native_cache_key": "f69c983b0710a97bc8a30049c00ad8f6518e8ef9.pkl",
+        "cache_input_text_sha256": "c45880dacd0cec53ff66c9517da2d01fb875fe1adf94ba21f7cd220e8af582fc",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S11",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "The Uffizi's director authenticated the painting at Peruggia's hotel;",
+        "exact_native_cache_key": "ae259011f6cfef1557131dd27cfd8f53617be114.pkl",
+        "cache_input_text_sha256": "e6365cebba97905b2cbf5a82a3b270efa8e07862eaca28cf1a7b6214a793be8b",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S11",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Peruggia was apprehended on 11 December 1913.",
+        "exact_native_cache_key": "f69c983b0710a97bc8a30049c00ad8f6518e8ef9.pkl",
+        "cache_input_text_sha256": "c45880dacd0cec53ff66c9517da2d01fb875fe1adf94ba21f7cd220e8af582fc",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Citing patriotism, he said he wanted it repatriated, mistakenly believing Napoleon had looted it.",
+        "exact_native_cache_key": "364e4dddd0a8211af381618b37808f5ead3dfda0.pkl",
+        "cache_input_text_sha256": "10a4b079568f98b1047c63cead36c0762d76bfbbdf9212b9f00cb4d456b685ff",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Citing patriotism, he said he wanted it repatriated, mistakenly believing Napoleon had looted it.",
+        "exact_native_cache_key": "32fd9f90117b678e878845726e173c3f85a8aad4.pkl",
+        "cache_input_text_sha256": "10a4b079568f98b1047c63cead36c0762d76bfbbdf9212b9f00cb4d456b685ff",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Citing patriotism,",
+        "exact_native_cache_key": "b200d61534bab29f70dd51363b358fa34ecba2b1.pkl",
+        "cache_input_text_sha256": "e6c1507d4b5439477723483b708cb5f76d44767e8b19d0de57f9f9afab50acf5",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S12",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "he said he wanted it repatriated,",
+        "exact_native_cache_key": "ec078c34e7de70e6038c22abb094a5b9c9879b3f.pkl",
+        "cache_input_text_sha256": "ccc9c74de6ed6d0dcf1cbdd0496bd966ca6da42e5a14c2ab4e1dd861d4ee5a4d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S12",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "mistakenly believing Napoleon had looted it.",
+        "exact_native_cache_key": "2a380a0671a928b9ec825dbfad565dd42e842cd0.pkl",
+        "cache_input_text_sha256": "f08910d527afe4cf8d1c9f1a5af853262c445b3dec91e40487545927b5eec300",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S12",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Citing patriotism,",
+        "exact_native_cache_key": "b200d61534bab29f70dd51363b358fa34ecba2b1.pkl",
+        "cache_input_text_sha256": "e6c1507d4b5439477723483b708cb5f76d44767e8b19d0de57f9f9afab50acf5",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S12",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "he said he wanted it repatriated,",
+        "exact_native_cache_key": "ec078c34e7de70e6038c22abb094a5b9c9879b3f.pkl",
+        "cache_input_text_sha256": "ccc9c74de6ed6d0dcf1cbdd0496bd966ca6da42e5a14c2ab4e1dd861d4ee5a4d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S12",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "mistakenly believing Napoleon had looted it.",
+        "exact_native_cache_key": "2a380a0671a928b9ec825dbfad565dd42e842cd0.pkl",
+        "cache_input_text_sha256": "f08910d527afe4cf8d1c9f1a5af853262c445b3dec91e40487545927b5eec300",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "In fact Leonardo da Vinci had accompanied it to France at the invitation of King Francis I.",
+        "exact_native_cache_key": "662bd749883c15ac2d13ad0fc397c8f166beb767.pkl",
+        "cache_input_text_sha256": "cdfc9479441fabbaaf4d2cc85d928500811a4854468900bcbae9f88cf9e94b6b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "In fact Leonardo da Vinci had accompanied it to France at the invitation of King Francis I.",
+        "exact_native_cache_key": "a3a0c922a48c3384d6dd928c015748c2a7bbd8e4.pkl",
+        "cache_input_text_sha256": "cdfc9479441fabbaaf4d2cc85d928500811a4854468900bcbae9f88cf9e94b6b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "In fact Leonardo da Vinci",
+        "exact_native_cache_key": "1ded92d974aed40ac8024b2b6630e544c418696f.pkl",
+        "cache_input_text_sha256": "fc5a8b3fdc1e1625620babf6dd96ed41ffb5bdfbd3e572eea525f7860e60a872",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S13",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "had accompanied it to France at the invitation of King Francis I.",
+        "exact_native_cache_key": "8ebef88ad93058a6eeb7f618d7c1cab5eb4b2eeb.pkl",
+        "cache_input_text_sha256": "f3a718677bf00df801c8a2c2b073ee06e874c6b3f1c523263c87fff7a4c9dc93",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "After showings in Italy, the painting was reinstated in the Louvre on 4 January 1914.",
+        "exact_native_cache_key": "334f5a610583bb8a3d831da1c2ab5a3701be3cf4.pkl",
+        "cache_input_text_sha256": "1876dd5b2453e09361b10ff372173c760e8e2a633bc1034aac29cf7fec26b969",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "After showings in Italy, the painting was reinstated in the Louvre on 4 January 1914.",
+        "exact_native_cache_key": "98c8dd99bf5a21026fcc563214c653dab148c62c.pkl",
+        "cache_input_text_sha256": "1876dd5b2453e09361b10ff372173c760e8e2a633bc1034aac29cf7fec26b969",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "After showings in Italy,",
+        "exact_native_cache_key": "5a5b92514920921f3621d04f2196adbda844dcd5.pkl",
+        "cache_input_text_sha256": "8a825ec9bb4c2d5bdd184b48537301416ecb09bee0d774d9faf6daad3b1b9a8d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S14",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "the painting was reinstated in the Louvre on 4 January 1914.",
+        "exact_native_cache_key": "4c8b9f320dad6d5a3313239c339b57d736101270.pkl",
+        "cache_input_text_sha256": "bff00a0101100cd92984d9fe162a1c01c93949f098af23690d80e007ead04db8",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S14",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "After showings in Italy,",
+        "exact_native_cache_key": "5a5b92514920921f3621d04f2196adbda844dcd5.pkl",
+        "cache_input_text_sha256": "8a825ec9bb4c2d5bdd184b48537301416ecb09bee0d774d9faf6daad3b1b9a8d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S14",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "the painting was reinstated in the Louvre on 4 January 1914.",
+        "exact_native_cache_key": "4c8b9f320dad6d5a3313239c339b57d736101270.pkl",
+        "cache_input_text_sha256": "bff00a0101100cd92984d9fe162a1c01c93949f098af23690d80e007ead04db8",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S15",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "In June 1914 a tribunal imposed a penalty of a year and 15 days, but he was imprisoned for about seven months.",
+        "exact_native_cache_key": "9e1bc06d36e9b9e446dc99d40614b8ac95c52cdd.pkl",
+        "cache_input_text_sha256": "09e6fa3f8c43b530b38147fa2ca08587ea7b2c8255c4283046d653908f1adbae",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "In June 1914 a tribunal imposed a penalty of a year and 15 days, but he was imprisoned for about seven months.",
+        "exact_native_cache_key": "0560db0d387ba6294cfc4053130458c00d31eff2.pkl",
+        "cache_input_text_sha256": "09e6fa3f8c43b530b38147fa2ca08587ea7b2c8255c4283046d653908f1adbae",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "In June 1914 a tribunal imposed",
+        "exact_native_cache_key": "848e8164c052a04259c8580ff7380c7dcbe7c0cf.pkl",
+        "cache_input_text_sha256": "a2e90a315ca300cea3710886855a9336aa1d3b15a339690a45d6a87668e03bd8",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S15",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "a penalty of a year and 15 days,",
+        "exact_native_cache_key": "9a04b7680b2c49340e25008d7bf07dbd08e14b08.pkl",
+        "cache_input_text_sha256": "faff56176534efd7c04a756803847f8ad0ef05cd8cb2750569819cefc68bacda",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S15",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "but he was imprisoned for about seven months.",
+        "exact_native_cache_key": "743acee94aa206483f5ed3a8bf39ceb6262687cc.pkl",
+        "cache_input_text_sha256": "483211660b7a931572ed70bd29f9a446f19b9c14f2f19e7e4326c837d7284b93",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S15",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "In June 1914 a tribunal imposed a penalty of a year and 15 days,",
+        "exact_native_cache_key": "bdbcbf9d697453018deb0e6128605a35b0d3128e.pkl",
+        "cache_input_text_sha256": "7b838f82221bd58229b1478bf4da754d14c4d6500013b99db7fd53ee62d7cef2",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S15",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "but he was imprisoned for about seven months.",
+        "exact_native_cache_key": "743acee94aa206483f5ed3a8bf39ceb6262687cc.pkl",
+        "cache_input_text_sha256": "483211660b7a931572ed70bd29f9a446f19b9c14f2f19e7e4326c837d7284b93",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S16",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Many historians argue the heist elevated one esteemed gem among many to the world's most renowned painting.",
+        "exact_native_cache_key": "ac79f689468ba46695a488685a41de32892423da.pkl",
+        "cache_input_text_sha256": "c504c88840ea4d380ed9cee3bb121d1127e7b01a8565e5f20bc6d65faaa20dcf",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Many historians argue the heist elevated one esteemed gem among many to the world's most renowned painting.",
+        "exact_native_cache_key": "5d4cd948088ea9247d80642fc2bb7e3218796134.pkl",
+        "cache_input_text_sha256": "c504c88840ea4d380ed9cee3bb121d1127e7b01a8565e5f20bc6d65faaa20dcf",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Many historians argue",
+        "exact_native_cache_key": "9e6cec74ba671db2077643d9247cf33d84810858.pkl",
+        "cache_input_text_sha256": "f2cea3ac1715c8192b3f153574549d880ad28bf7c9129a3aaa593a786828c477",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S16",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "the heist elevated one esteemed gem among many",
+        "exact_native_cache_key": "eb56e7054a9f90019476d3db43899d5b3d14ccab.pkl",
+        "cache_input_text_sha256": "d6270aa6ad6e0cf3e2225f2c8aee789dd0a7a5b1804346c8ea038064acdbd30c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S16",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "to the world's most renowned painting.",
+        "exact_native_cache_key": "585def15f3cc08b257a0fb7b2512d00da96db9bd.pkl",
+        "cache_input_text_sha256": "a3d08b3ee62e104df359903d969442ea03a8d3162fbcc3793fc024ca7dbb8b25",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S17",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "If so, its fame began with a bare wall.",
+        "exact_native_cache_key": "88d035e3be65a589841f740341c8030d5157b083.pkl",
+        "cache_input_text_sha256": "241e41e004cc3de730e056bfb33740cf9e009edf199777b4eaa90f5076893c96",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "If so, its fame began with a bare wall.",
+        "exact_native_cache_key": "e082e0b3809323d1e2ce680f12c52e8f706d4523.pkl",
+        "cache_input_text_sha256": "241e41e004cc3de730e056bfb33740cf9e009edf199777b4eaa90f5076893c96",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "If so,",
+        "exact_native_cache_key": "83b78513bb2829a303b1a634d861d559dc1ec2ed.pkl",
+        "cache_input_text_sha256": "ef4022b69b97c1f8723b730578e84e23c4e8facb75e2a58285ee11c22de1144c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S17",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "its fame began with a bare wall.",
+        "exact_native_cache_key": "34f4953e94c82788c9db28db8c28d6c692b62214.pkl",
+        "cache_input_text_sha256": "a9fe8f5e9b30a5468cc07782fd2625f6bfe5ed82795d9169d256d09e3f0e8082",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      }
+    ],
+    "unique_reference_key_count": 83,
+    "raw_mother_cache_scalar_manifest": [
+      {
+        "exact_native_cache_key": "6abb6fedb87ba0dcb93b996c325351556f2b10cf.pkl",
+        "pkl_sha256": "9e11362a80aa5c315de16ce5c6c25286e7ca99925344541a268b6b5dcf97cb18",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "标题",
+            "piece": null,
+            "reference_kind": "title-default-raw",
+            "method": "create",
+            "source_slice": "The Stolen Smile",
+            "exact_native_cache_key": "6abb6fedb87ba0dcb93b996c325351556f2b10cf.pkl",
+            "cache_input_text_sha256": "20239da1c571fe6e5ec48aec8c5d23a8825c59d9ec2f760daba1da17b819d11b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          29696
+        ],
+        "unprocessed_array_sha256": "133870153ebc54c10452252a4cc5c29d45bec465886e5e0fd04566751cb5b163"
+      },
+      {
+        "exact_native_cache_key": "319dd46a756eb03316c669c2ad8f53e152dfdb07.pkl",
+        "pkl_sha256": "016b99f4c5cd3eb18bb63b8311fbf86932f371ca0ed4ea1c7255de2c0235c1db",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "On Monday 21 August 1911, when the Louvre was customarily closed, the Mona Lisa was discreetly plucked from its wall.",
+            "exact_native_cache_key": "319dd46a756eb03316c669c2ad8f53e152dfdb07.pkl",
+            "cache_input_text_sha256": "9f9ecda324fdd78ef3f6fcd13961495da7e071767ff8a90725cc4e70996d2a0b",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          225280
+        ],
+        "unprocessed_array_sha256": "8d3dbf324dcff9997a8e69dfdb472eed31761e6d19d7650ef231c1571a32a30f"
+      },
+      {
+        "exact_native_cache_key": "1779cdbdd68560e1ecd50d812c5c8a8a0df6394c.pkl",
+        "pkl_sha256": "3d88cb9ca553b6e3b020dc5e1cff21bb449fd7e483f5d098e1a9ad7bfb1fc7bf",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "On Monday 21 August 1911,",
+            "exact_native_cache_key": "1779cdbdd68560e1ecd50d812c5c8a8a0df6394c.pkl",
+            "cache_input_text_sha256": "1725c070d13c77c6f4be04665d1a9c9f59882d589945429dfd63c50bafe70c2c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S1",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "On Monday 21 August 1911,",
+            "exact_native_cache_key": "1779cdbdd68560e1ecd50d812c5c8a8a0df6394c.pkl",
+            "cache_input_text_sha256": "1725c070d13c77c6f4be04665d1a9c9f59882d589945429dfd63c50bafe70c2c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "3d88cb9ca553b6e3",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          79872
+        ],
+        "unprocessed_array_sha256": "778e47455229e53ef2429701349dca88ed614754a66197686d6686f0ff2d5aeb"
+      },
+      {
+        "exact_native_cache_key": "849001ae0dc6c1436d06f5c608358bcdca630f4b.pkl",
+        "pkl_sha256": "ea65299ba0113ee5b35252e1da96494c1362a6ca1ce650ecabfae9df84d7d00c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "when the Louvre was customarily closed,",
+            "exact_native_cache_key": "849001ae0dc6c1436d06f5c608358bcdca630f4b.pkl",
+            "cache_input_text_sha256": "4c15bd3714fdabf072086fe71ee8398e8edd4acb74e1d3d6cf78438549e524e1",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S1",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "when the Louvre was customarily closed,",
+            "exact_native_cache_key": "849001ae0dc6c1436d06f5c608358bcdca630f4b.pkl",
+            "cache_input_text_sha256": "4c15bd3714fdabf072086fe71ee8398e8edd4acb74e1d3d6cf78438549e524e1",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "ea65299ba0113ee5",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          56320
+        ],
+        "unprocessed_array_sha256": "a5d44f476349be6ff0765f8325ba6d9904f11534cdfeca474ea0064ffffa57be"
+      },
+      {
+        "exact_native_cache_key": "cc0f01c912012e660f13a8899a10e62d9d51c816.pkl",
+        "pkl_sha256": "f751682a0000d4d52eccf1d95856c13ca4be6154c9e4e94f742da2d907c2caf6",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "the Mona Lisa was discreetly plucked from its wall.",
+            "exact_native_cache_key": "cc0f01c912012e660f13a8899a10e62d9d51c816.pkl",
+            "cache_input_text_sha256": "d100b9b894c7f8e6c97cabfaa41bf0e8eb585ddf56f8861e3c23e4eae6cf059c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S1",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "the Mona Lisa was discreetly plucked from its wall.",
+            "exact_native_cache_key": "cc0f01c912012e660f13a8899a10e62d9d51c816.pkl",
+            "cache_input_text_sha256": "d100b9b894c7f8e6c97cabfaa41bf0e8eb585ddf56f8861e3c23e4eae6cf059c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "f751682a0000d4d5",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          73728
+        ],
+        "unprocessed_array_sha256": "ea97755509b9bf176c3065d56690a25a121e9977024207cf8935769023d5922b"
+      },
+      {
+        "exact_native_cache_key": "75b6a5d9a0e70ad65a02d385231e1a5966e5a75b.pkl",
+        "pkl_sha256": "1d4bdd8458c76304001e365cab3e353376db09aa0fb4ed75c42f2cde9b5c9fb7",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The disappearance went unnoticed until the next day, when a painter arriving to sketch found a conspicuous gap of bare plaster.",
+            "exact_native_cache_key": "75b6a5d9a0e70ad65a02d385231e1a5966e5a75b.pkl",
+            "cache_input_text_sha256": "1b19e7aeaa577bb79160b74cd67f544ecb6d82b307d65cfa015ccdbb7b9ddd8c",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "1d4bdd8458c76304",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          194560
+        ],
+        "unprocessed_array_sha256": "26cde418caf3df9535d8cffc6f5d4e8dcc358855b773b9c3e46b65ff0d6af9e4"
+      },
+      {
+        "exact_native_cache_key": "d50d3642f8022ba1c409e7ef50fabe55b50d9c8e.pkl",
+        "pkl_sha256": "b5e6d26b3879756efdbc35692718bf5f860c082fd2adab8b20d106ba6285bf19",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "The disappearance went unnoticed",
+            "exact_native_cache_key": "d50d3642f8022ba1c409e7ef50fabe55b50d9c8e.pkl",
+            "cache_input_text_sha256": "773c41348d4f3428e24a6fe1311993ce4e7b0adb91a03d5f0a7e43e131b04f36",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "b5e6d26b3879756e",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          43520
+        ],
+        "unprocessed_array_sha256": "9df1a594bb752f0aa1ed8af4bff72062162102aea4426bb9dc25cf91e216f80e"
+      },
+      {
+        "exact_native_cache_key": "3d5d1d7dcf60a20e8bb99e006f309b436a607d09.pkl",
+        "pkl_sha256": "5e2f3e451eeca3ca5a1ddd2762846dd7d15bf85137a03e9de989abec22a4200a",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "until the next day,",
+            "exact_native_cache_key": "3d5d1d7dcf60a20e8bb99e006f309b436a607d09.pkl",
+            "cache_input_text_sha256": "ac71f9feb56310ad8f3c447371e6f9d26aff09d56c3bfdcc225d63c1602b8a27",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "5e2f3e451eeca3ca",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          31744
+        ],
+        "unprocessed_array_sha256": "194b5c339cc844ac370801040935ac2d3fbd233501072371b4a27ae5a2bc333e"
+      },
+      {
+        "exact_native_cache_key": "edabfcf946ec7e29542ae075fdb1301f969e39cc.pkl",
+        "pkl_sha256": "030251b52d6dae87a74eac5967182a720e31aa65603cbd31eb3ffa08c4579fd2",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "when a painter arriving to sketch found",
+            "exact_native_cache_key": "edabfcf946ec7e29542ae075fdb1301f969e39cc.pkl",
+            "cache_input_text_sha256": "73935c63886a0ab92948115991082b150e4bda4a7bf1327046634f54ec25d295",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "030251b52d6dae87",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          51200
+        ],
+        "unprocessed_array_sha256": "aafde45663d4afb1773e5a544139a7b3b38d103bb1b5a635c549dda81a54ca51"
+      },
+      {
+        "exact_native_cache_key": "a4c4ce3e6ebac3cea5214aa2922f7d0f59a94f06.pkl",
+        "pkl_sha256": "246634078eb65ad50f8e9ba0221eda8a9aff034360c126a025ca927b96947483",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 4,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "a conspicuous gap of bare plaster.",
+            "exact_native_cache_key": "a4c4ce3e6ebac3cea5214aa2922f7d0f59a94f06.pkl",
+            "cache_input_text_sha256": "8a9944f4980dbf48d92b521e95404b8f33bfdb65f567baffd9b38914c607f925",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "246634078eb65ad5",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          52736
+        ],
+        "unprocessed_array_sha256": "05811022bc5b6d195fc1afa70c53906c0b2b31584a331e8fc994a13bf11561b7"
+      },
+      {
+        "exact_native_cache_key": "a13458db3a93a9cfcaabc8d7ab4f24337197fcf5.pkl",
+        "pkl_sha256": "1ddb3232568a57abb7c18682b069a3b24f2ac140db6444aebe756543f6c9db3d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "The disappearance went unnoticed until the next day,",
+            "exact_native_cache_key": "a13458db3a93a9cfcaabc8d7ab4f24337197fcf5.pkl",
+            "cache_input_text_sha256": "0f88c89b9c5b7ca8cdee50cd0147fae61adc06c5d86db0da40d206d63462d3e9",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "1ddb3232568a57ab",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          72192
+        ],
+        "unprocessed_array_sha256": "30957390a3776c9fd34659be97f42b8ddd01b496b0deb0c4484dc1065a8f1212"
+      },
+      {
+        "exact_native_cache_key": "bf3e7931f5ba0fa12ce4a0c94357ddfd58190b70.pkl",
+        "pkl_sha256": "fdc24f5c6fb0374dac86e929f3d0691861c3992b5e2835669e9c7fbca97565ff",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "when a painter arriving to sketch found a conspicuous gap of bare plaster.",
+            "exact_native_cache_key": "bf3e7931f5ba0fa12ce4a0c94357ddfd58190b70.pkl",
+            "cache_input_text_sha256": "e319adffc16f9ed5ad0a7ac7e9ebfc72305c3217fbdfb187e0b339032753b1c7",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "fdc24f5c6fb0374d",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          112128
+        ],
+        "unprocessed_array_sha256": "acac1a02ef75431b6460ff91d2d9d0ef344b7b4ede5a52362779e19c22f0a591"
+      },
+      {
+        "exact_native_cache_key": "86f4136754e36cff2aef80a3f5af0a65402c6307.pkl",
+        "pkl_sha256": "7019e6b7b9c1d4d0f6acb7eb9949b55bd89b488c5b49df33c7831d71225ed66d",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Custodians shuttered the museum for a week.",
+            "exact_native_cache_key": "86f4136754e36cff2aef80a3f5af0a65402c6307.pkl",
+            "cache_input_text_sha256": "743834fa066be5605b42578e79ee36ecb31d337806405034a4e1c04ae934916a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          60416
+        ],
+        "unprocessed_array_sha256": "6ba950cf33abd7d53b96af510c1a9d70b741e6c48fee48d398e5428363a0822a"
+      },
+      {
+        "exact_native_cache_key": "63b05404e3334f612547f1430209669afad64095.pkl",
+        "pkl_sha256": "584cff35658dadaf16435faa2b7a3ee4df625c42c50d94ca2ecbda10af4fdd4d",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "When the museum reopened, curious onlookers queued to stare at the vacant space where the masterpiece had hung.",
+            "exact_native_cache_key": "63b05404e3334f612547f1430209669afad64095.pkl",
+            "cache_input_text_sha256": "de2d48f71a5d2d45f34bc65b81474bd6a635854ec4df458f216c780a9458b88f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          163840
+        ],
+        "unprocessed_array_sha256": "830d8786dfebdecae3b4f83103341ce0f747150fed396db84bedc402a25e8478"
+      },
+      {
+        "exact_native_cache_key": "a864f879ce839b9f1c38f25899a48405f2ccbe70.pkl",
+        "pkl_sha256": "c608849752b2498c0b22b6713d4141716722e022b493c7b2120c40494f83ee93",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "When the museum reopened,",
+            "exact_native_cache_key": "a864f879ce839b9f1c38f25899a48405f2ccbe70.pkl",
+            "cache_input_text_sha256": "c7de01d49699ec48bb89a9a918ec1a9a639e9267e4e4d0e901ce84e6fb266db1",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S4",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "When the museum reopened,",
+            "exact_native_cache_key": "a864f879ce839b9f1c38f25899a48405f2ccbe70.pkl",
+            "cache_input_text_sha256": "c7de01d49699ec48bb89a9a918ec1a9a639e9267e4e4d0e901ce84e6fb266db1",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "c608849752b2498c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          36864
+        ],
+        "unprocessed_array_sha256": "b2b93171a288e85806ac811eb54f80626801dbdbd47b52cf38e365002ddc87e6"
+      },
+      {
+        "exact_native_cache_key": "9197bcba53d92f88a24dc0ed35b9e5ee092debe0.pkl",
+        "pkl_sha256": "9677e86664eb67e72bda6ab58e4ad86502b381a828d1e9a591b001307d40e466",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "curious onlookers queued",
+            "exact_native_cache_key": "9197bcba53d92f88a24dc0ed35b9e5ee092debe0.pkl",
+            "cache_input_text_sha256": "b551091508bcd22c881906bb5558a5edc6a00443d41c8b939ee5fb63f01fdbe1",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "9677e86664eb67e7",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          36864
+        ],
+        "unprocessed_array_sha256": "3b5946687003254a4b370367b79701ceed58828e902e4b700dbf2400f5783074"
+      },
+      {
+        "exact_native_cache_key": "6f698122b06752a54d47e3bf6d137171ccfd8bb5.pkl",
+        "pkl_sha256": "8554142da9ffcf6cc995370b125cad67c678f433cb84be94406d8ccc04f96234",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "to stare at the vacant space",
+            "exact_native_cache_key": "6f698122b06752a54d47e3bf6d137171ccfd8bb5.pkl",
+            "cache_input_text_sha256": "f75ef6aadc781f4abc2f37a2ca8892e9b77159a9ff3a70310b54dd7be5e3016b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "8554142da9ffcf6c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          39424
+        ],
+        "unprocessed_array_sha256": "06ff5c99743b6e846ec741d405c1759fd3c0381f3ac4b7acffcec1f831b23167"
+      },
+      {
+        "exact_native_cache_key": "e412c971c58cb85c8730ad15ee3b142f81dc80c3.pkl",
+        "pkl_sha256": "d3cd1643ccf1c711ba2d7faafed08c8cf3e0c43ebc988f245dae260496cd68f4",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 4,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "where the masterpiece had hung.",
+            "exact_native_cache_key": "e412c971c58cb85c8730ad15ee3b142f81dc80c3.pkl",
+            "cache_input_text_sha256": "248189e9c010f33dacbb0c5d8d4f503db2fae789d994163e7b442b8c6db34cd5",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "d3cd1643ccf1c711",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          38912
+        ],
+        "unprocessed_array_sha256": "49b908d7db770ca3fcb1029223eb882094927496628c167720ef536220d3ee5d"
+      },
+      {
+        "exact_native_cache_key": "cc27de674af7704e5a1ff6dccc5185ae34903ca3.pkl",
+        "pkl_sha256": "f6dbf7ba95286fefde053a8fb4168c1f1b7202a7cd43ec3f96f7c32dca1e43c7",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "curious onlookers queued to stare at the vacant space where the masterpiece had hung.",
+            "exact_native_cache_key": "cc27de674af7704e5a1ff6dccc5185ae34903ca3.pkl",
+            "cache_input_text_sha256": "10bd80f9a13a317f6ee8a9ab0f6639f4d8aee81df22e0ec12ce665d87512f7b5",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "f6dbf7ba95286fef",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          124416
+        ],
+        "unprocessed_array_sha256": "675909d4dc8d29fb15be2aacd39b62184b1d86ee6067d564f2ec51e1a3d32c69"
+      },
+      {
+        "exact_native_cache_key": "c84f1f042da35fbb1ce38bf0bc91cf2b6f118dfc.pkl",
+        "pkl_sha256": "c4f8702a9e40054cc1516849bf3327764535a373a9856b9aab6ae9c12541d0a2",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "On 7 September 1911 the poet Guillaume Apollinaire was held in custody for about a week, and Pablo Picasso was interrogated.",
+            "exact_native_cache_key": "c84f1f042da35fbb1ce38bf0bc91cf2b6f118dfc.pkl",
+            "cache_input_text_sha256": "03c9fbeaa9df36cf4335db46787053826ef06060822b86b636b52dee67711de7",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          244736
+        ],
+        "unprocessed_array_sha256": "a6427cad12a8fbc7fa881690dad1ec61a071302f378f83ac4cb30ef74f2235c2"
+      },
+      {
+        "exact_native_cache_key": "0a2335a8f985fcf211025173ba4d6b3e56ef56be.pkl",
+        "pkl_sha256": "fd7fddc3bfc02b86a70189afdf8c72cacc29839c7562cd334ff2693f6678bec9",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "On 7 September 1911 the poet Guillaume Apollinaire",
+            "exact_native_cache_key": "0a2335a8f985fcf211025173ba4d6b3e56ef56be.pkl",
+            "cache_input_text_sha256": "511dc3c2361ea442e782cce3f3d20f786cf468e8437c124d51eae2cddcf7abc7",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "fd7fddc3bfc02b86",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          107520
+        ],
+        "unprocessed_array_sha256": "0b5427ecf6c037de98321910d82a896bf1576d07803275c5c3bc739970da1c52"
+      },
+      {
+        "exact_native_cache_key": "67521e8af2740c6b333263df6d60368facf1777d.pkl",
+        "pkl_sha256": "42ea0684aadfcfab81540926fc2e7965ac1772591575477367cedb9f4989a281",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "was held in custody for about a week,",
+            "exact_native_cache_key": "67521e8af2740c6b333263df6d60368facf1777d.pkl",
+            "cache_input_text_sha256": "f4aa6dbbbb2e1bff7d0251923eca3c75222c32c580ffd2cb4155ca01713d66aa",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "42ea0684aadfcfab",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          52224
+        ],
+        "unprocessed_array_sha256": "4166d3acf26462e7e092d062d27acf1fa5414981e6951ef08976897af12cacde"
+      },
+      {
+        "exact_native_cache_key": "3df817c7199fed2d5e947160d1d0bcc81410dc90.pkl",
+        "pkl_sha256": "549d130448b9ea50bac94879681d8f092169aa9b59054a6f385a4b44149b453f",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and Pablo Picasso was interrogated.",
+            "exact_native_cache_key": "3df817c7199fed2d5e947160d1d0bcc81410dc90.pkl",
+            "cache_input_text_sha256": "25b0df49cc857ade18bd156773f231b1df903cbbdd0362ca556af84c8c78fc9c",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S5",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and Pablo Picasso was interrogated.",
+            "exact_native_cache_key": "3df817c7199fed2d5e947160d1d0bcc81410dc90.pkl",
+            "cache_input_text_sha256": "25b0df49cc857ade18bd156773f231b1df903cbbdd0362ca556af84c8c78fc9c",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "549d130448b9ea50",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          62464
+        ],
+        "unprocessed_array_sha256": "16ad6aa540a65ee825fb047561352e4404ad56ff43664e9bce24b50295e3120a"
+      },
+      {
+        "exact_native_cache_key": "1603e66e1acd0a25622bc4d7f6b3c8cdde978038.pkl",
+        "pkl_sha256": "ba874817d387ae0dcca640be6515e39d4cb691a9bac71b832d8dbf5f0a96fef6",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "On 7 September 1911 the poet Guillaume Apollinaire was held in custody for about a week,",
+            "exact_native_cache_key": "1603e66e1acd0a25622bc4d7f6b3c8cdde978038.pkl",
+            "cache_input_text_sha256": "1de99048331540ced40c65419942f5649ba99e5f35ce94ec7987b9f6f4fd70c2",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "ba874817d387ae0d",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          169984
+        ],
+        "unprocessed_array_sha256": "77a3bf29d8e095b9b535794e862e65660cea75858c556a6769e7e139ff01dd2c"
+      },
+      {
+        "exact_native_cache_key": "06636a5b358187bcb7c311c23abe61c57927c113.pkl",
+        "pkl_sha256": "52c693e841942a01d6d648aeedce385a5fbfcf27131474013178a8a9b30e9587",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Both were cleared of involvement in the burglary.",
+            "exact_native_cache_key": "06636a5b358187bcb7c311c23abe61c57927c113.pkl",
+            "cache_input_text_sha256": "1d1ba8dc47ccb4938823dabbca51c6adae6f69987058eb9de723f69aaf50a57c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          67072
+        ],
+        "unprocessed_array_sha256": "f42fb1ddb03f83a9339c9db2771a6208b7e13dbbf2489fd7aa97155b9ceecbb6"
+      },
+      {
+        "exact_native_cache_key": "8c39b4471326eb59c2ca91d5481a766b46541217.pkl",
+        "pkl_sha256": "94540333d523b2c6a21ed66273f1647a9056a05845258ee5cb67045dbf5e2345",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The intruder was Vincenzo Peruggia, an Italian who had temporarily worked at the Louvre as a glazier.",
+            "exact_native_cache_key": "8c39b4471326eb59c2ca91d5481a766b46541217.pkl",
+            "cache_input_text_sha256": "c0dae73cf4fc4fd43aec90203cd9f05e9a4924e708b139e24878999d0b23e77f",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          162816
+        ],
+        "unprocessed_array_sha256": "4fe649d553856696bd31198b83025989b7397752506cf5deb12e56330c883b50"
+      },
+      {
+        "exact_native_cache_key": "686a8cd543e47c7caaf96860ecb3ceb1b1cbacfa.pkl",
+        "pkl_sha256": "b15119d51678b83333c1db3877900ad07ab2853075a7b3dc1e9e5a856596b064",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "The intruder was Vincenzo Peruggia,",
+            "exact_native_cache_key": "686a8cd543e47c7caaf96860ecb3ceb1b1cbacfa.pkl",
+            "cache_input_text_sha256": "00928139d77c3b3bb88487a923701afbba3a88b625058cf0510aedede122501e",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S7",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "The intruder was Vincenzo Peruggia,",
+            "exact_native_cache_key": "686a8cd543e47c7caaf96860ecb3ceb1b1cbacfa.pkl",
+            "cache_input_text_sha256": "00928139d77c3b3bb88487a923701afbba3a88b625058cf0510aedede122501e",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "b15119d51678b833",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          54272
+        ],
+        "unprocessed_array_sha256": "ae87658e8261f86f51d4f048f34fd92afdf89eb4395e597390c5613efd46ef82"
+      },
+      {
+        "exact_native_cache_key": "af486670b6e59954bb2d82594d779a46bb6df660.pkl",
+        "pkl_sha256": "a97501861667c66bc98428d3ea6d7bea0f964065d9e49de8576e26af1683d4f0",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "an Italian who had temporarily worked at the Louvre as a glazier.",
+            "exact_native_cache_key": "af486670b6e59954bb2d82594d779a46bb6df660.pkl",
+            "cache_input_text_sha256": "b2f3a7a6ef179ab91bd47730d1c66e06c36af0e0f8010588c477f8898cd601b3",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S7",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "an Italian who had temporarily worked at the Louvre as a glazier.",
+            "exact_native_cache_key": "af486670b6e59954bb2d82594d779a46bb6df660.pkl",
+            "cache_input_text_sha256": "b2f3a7a6ef179ab91bd47730d1c66e06c36af0e0f8010588c477f8898cd601b3",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "a97501861667c66b",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          99328
+        ],
+        "unprocessed_array_sha256": "5ab30e6ca8bfa14c0fd0ca58c93c3bde2c539e8782c257213ae7aa133c8aa0d3"
+      },
+      {
+        "exact_native_cache_key": "23fe552e4fabfbbdabef2472103a607d232ac947.pkl",
+        "pkl_sha256": "6251487246d790b063250b8ea8ce87dad6c8ed3d0bf12c269d6a8dc072c329f2",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Having lurked in a storeroom on Sunday, he strode out unchallenged in a workman's smock, the painting tucked beneath his clothes.",
+            "exact_native_cache_key": "23fe552e4fabfbbdabef2472103a607d232ac947.pkl",
+            "cache_input_text_sha256": "ec638dc6622a34097293bf3b81476696c94179d6f3e4c1eb65f8ce1ac5acc239",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          197632
+        ],
+        "unprocessed_array_sha256": "b11799c3b36e53d14aeed569b77f2d673140a21f184947e0a8e9809a46fbd869"
+      },
+      {
+        "exact_native_cache_key": "7b462f1f0362aeddd4c694f337ccfa8e1d032bc6.pkl",
+        "pkl_sha256": "89d7afdc86be7a4a4976a03c2124f53da842da4b6f2316e528e66c8cf730cb95",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Having lurked in a storeroom on Sunday,",
+            "exact_native_cache_key": "7b462f1f0362aeddd4c694f337ccfa8e1d032bc6.pkl",
+            "cache_input_text_sha256": "e31698dff6aab7add4c2402939856680733e37eec5514a887adb10195c759af1",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S8",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Having lurked in a storeroom on Sunday,",
+            "exact_native_cache_key": "7b462f1f0362aeddd4c694f337ccfa8e1d032bc6.pkl",
+            "cache_input_text_sha256": "e31698dff6aab7add4c2402939856680733e37eec5514a887adb10195c759af1",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "89d7afdc86be7a4a",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          50688
+        ],
+        "unprocessed_array_sha256": "76a13596cbdda90c17f272c9c12afd383ba00b2d5eeb1e26e48462fa1c366de4"
+      },
+      {
+        "exact_native_cache_key": "bf1c54a47522a1f8e490a7f529ecb1944b425064.pkl",
+        "pkl_sha256": "ef04697143e0408d54b1799b63ab2e52e1aa915b7dd3b5b99c714a0ccfb0b412",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "he strode out unchallenged in a workman's smock,",
+            "exact_native_cache_key": "bf1c54a47522a1f8e490a7f529ecb1944b425064.pkl",
+            "cache_input_text_sha256": "472af0cad7224600f7bc7753a1e99e840554467a96d58aba2da1fd84f3b1b8e6",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S8",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "he strode out unchallenged in a workman's smock,",
+            "exact_native_cache_key": "bf1c54a47522a1f8e490a7f529ecb1944b425064.pkl",
+            "cache_input_text_sha256": "472af0cad7224600f7bc7753a1e99e840554467a96d58aba2da1fd84f3b1b8e6",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "ef04697143e0408d",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          67072
+        ],
+        "unprocessed_array_sha256": "4e03ea8c0ca458123c0d814261ef70b6ea95d6cae1e62e66fad50bfdc8846ef1"
+      },
+      {
+        "exact_native_cache_key": "9b58241a4196bfd59d21184e1e73d380f057fe86.pkl",
+        "pkl_sha256": "8a3feee6faabc87e7940adfca3f21533b6d4180f52f3bd1c954da36c4866e331",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "the painting tucked beneath his clothes.",
+            "exact_native_cache_key": "9b58241a4196bfd59d21184e1e73d380f057fe86.pkl",
+            "cache_input_text_sha256": "0635570550b76e7c07a7a5d8561c667f317b2d9251ee9e9fac54d324ab8fca55",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S8",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "the painting tucked beneath his clothes.",
+            "exact_native_cache_key": "9b58241a4196bfd59d21184e1e73d380f057fe86.pkl",
+            "cache_input_text_sha256": "0635570550b76e7c07a7a5d8561c667f317b2d9251ee9e9fac54d324ab8fca55",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "8a3feee6faabc87e",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          51712
+        ],
+        "unprocessed_array_sha256": "d16e25d356863fc01d4f321ae15963f9cdd2ec02800d6a42aaf1524aa0625158"
+      },
+      {
+        "exact_native_cache_key": "d4b365d284a886046ff7e5eebe2bb2a068ec2abf.pkl",
+        "pkl_sha256": "bf27c259db34d336bcedb4d4bdf720243338200c61ec0d1b9c6fd61081bd4954",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "For more than two years it lay stashed in a false-bottomed trunk in his Paris lodgings.",
+            "exact_native_cache_key": "d4b365d284a886046ff7e5eebe2bb2a068ec2abf.pkl",
+            "cache_input_text_sha256": "554279bcdb7dd61d714940325a12f7e2a1b08f7978f48cdd0fb927d0c45b1c50",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          123392
+        ],
+        "unprocessed_array_sha256": "d0df60fa8f3952381d749ac10dacf321a6fb57a8809cbb5343897ab41c1bb1ec"
+      },
+      {
+        "exact_native_cache_key": "67ae9e8048de56d0dba519bba36f3fdac9c996ab.pkl",
+        "pkl_sha256": "0c50fc501e85f34503714ef58c0538340c85512486783946858ad9ff4c423e1d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "For more than two years it lay stashed",
+            "exact_native_cache_key": "67ae9e8048de56d0dba519bba36f3fdac9c996ab.pkl",
+            "cache_input_text_sha256": "cb93dbdb9fdda8f27539d43c8bd45a893bd3af7e092c238d14c63683abd37b94",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "0c50fc501e85f345",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          49152
+        ],
+        "unprocessed_array_sha256": "9473c2015b64285fb989d6b8d4df54fdfc06e8f5115281ff57f7822830175a26"
+      },
+      {
+        "exact_native_cache_key": "f397902bda21c8efeaa17fb2a6acd738ab097209.pkl",
+        "pkl_sha256": "ee9002ce3585efb21db5790e0e23451c23b9ddddb779ae4f3b2c3d99225115a1",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "in a false-bottomed trunk in his Paris lodgings.",
+            "exact_native_cache_key": "f397902bda21c8efeaa17fb2a6acd738ab097209.pkl",
+            "cache_input_text_sha256": "5ac1625216662c47c1eed78e27e335ceaee24c9d608462764868dc7a17e6aee6",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "ee9002ce3585efb2",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          68096
+        ],
+        "unprocessed_array_sha256": "dee2a6c5b519e53844957636b46eeac303bcd1d990a595cfb68512c71dbc04ec"
+      },
+      {
+        "exact_native_cache_key": "68b11ef11976a66aa9a28a90bbb54c733ff8ba96.pkl",
+        "pkl_sha256": "c15ed56df3ef22e2ff402123ed6f4ac02a1083d91ed5a279d1afac5dc2931263",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "In December 1913 Peruggia contacted Alfredo Geri, an art dealer in Florence.",
+            "exact_native_cache_key": "68b11ef11976a66aa9a28a90bbb54c733ff8ba96.pkl",
+            "cache_input_text_sha256": "51ca5c6a208c59ce64c931da9b3a1028365247e5fd154028be6296d55cd319a2",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          159232
+        ],
+        "unprocessed_array_sha256": "74b6de541e2b2fdee0e9aacaad84ec527c92ef14f99ea1a95012d16ed2bfa36f"
+      },
+      {
+        "exact_native_cache_key": "dce1c0447b7f054cf33967e154ed6704353c8bc2.pkl",
+        "pkl_sha256": "7b8da96ae5aea85c58f2b4b09191cd5008c8675893ee25c28657eb9f7f914672",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "In December 1913 Peruggia contacted",
+            "exact_native_cache_key": "dce1c0447b7f054cf33967e154ed6704353c8bc2.pkl",
+            "cache_input_text_sha256": "dbf6fe927d24e6ec2481343a9ee168cccf16fa9c14b11694c978dd285f04afd9",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "7b8da96ae5aea85c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          76800
+        ],
+        "unprocessed_array_sha256": "430e90ed0298366601ec8b8b64820ce7c57f926a70450d7a09aa708cca4f875a"
+      },
+      {
+        "exact_native_cache_key": "3fbcbf6e08c12995cc27597a2abc13b151a05bc9.pkl",
+        "pkl_sha256": "915468f1ff0712b913b54fdb88b36abd17ab911931c4837eb0191bf0637bb60a",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Alfredo Geri, an art dealer in Florence.",
+            "exact_native_cache_key": "3fbcbf6e08c12995cc27597a2abc13b151a05bc9.pkl",
+            "cache_input_text_sha256": "6d2eed69046f3415c7896a08dbbca6df0deb8eb1e32f8b264521003dcf961f3d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "915468f1ff0712b9",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          69632
+        ],
+        "unprocessed_array_sha256": "aaddf5d3a2558adf5baba284fcfccca0af4b5cea7fe0f91a3e71effdc7653427"
+      },
+      {
+        "exact_native_cache_key": "88d0d5bc0ecb88b40699d254b637000bf0e5fed1.pkl",
+        "pkl_sha256": "a10d65b064b19b415f7e83d4abfaff8cc7cdcc94c7b18c373e5830cb2755358b",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "In December 1913 Peruggia contacted Alfredo Geri,",
+            "exact_native_cache_key": "88d0d5bc0ecb88b40699d254b637000bf0e5fed1.pkl",
+            "cache_input_text_sha256": "8eda26f339dc6eadd2bd6f02ae1f19708c306d4f4d8900031a5d87dd1672e746",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "a10d65b064b19b41",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          108032
+        ],
+        "unprocessed_array_sha256": "a822dcf92816e70200a1ba8744fe221c4dc2fde8fbcd6ebbdd5b2dc1e393bc92"
+      },
+      {
+        "exact_native_cache_key": "bd0b413dd5f4249588b60d8a1fc80e6c9a282c72.pkl",
+        "pkl_sha256": "3b54462cfaabb00a2269cab4c335deed8c341af5936f175203978dd6b13e7b7b",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "an art dealer in Florence.",
+            "exact_native_cache_key": "bd0b413dd5f4249588b60d8a1fc80e6c9a282c72.pkl",
+            "cache_input_text_sha256": "f12d9554d18a79e2e710b92a4c89641048f77d5128b49e25520c380aa472d6e5",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "3b54462cfaabb00a",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          40448
+        ],
+        "unprocessed_array_sha256": "b23ddc2d0cfae115d4e361bff3b4483f0c281a02021f88afd7112bfaf103b25b"
+      },
+      {
+        "exact_native_cache_key": "056b758b8d5ec1b7569062b988a370db2e508f5e.pkl",
+        "pkl_sha256": "e6adf659c91cd005d6a6e8a0b3ba16b320fc3386fc93796db049722dd7fd1d54",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The Uffizi's director authenticated the painting at Peruggia's hotel; Peruggia was apprehended on 11 December 1913.",
+            "exact_native_cache_key": "056b758b8d5ec1b7569062b988a370db2e508f5e.pkl",
+            "cache_input_text_sha256": "e30ec6b6c00e3151ece38b1bfee32ea82c34786b554fe6e92c1f8877a2217a5a",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          225792
+        ],
+        "unprocessed_array_sha256": "8e2745344c65303d26929285f332a16b61b81e93a3d954d023dfe043553447e2"
+      },
+      {
+        "exact_native_cache_key": "ae259011f6cfef1557131dd27cfd8f53617be114.pkl",
+        "pkl_sha256": "37f26ebe0685c343b7192606b8030cda8542a76e7e914876ac1c166d4b2a55f7",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "The Uffizi's director authenticated the painting at Peruggia's hotel;",
+            "exact_native_cache_key": "ae259011f6cfef1557131dd27cfd8f53617be114.pkl",
+            "cache_input_text_sha256": "e6365cebba97905b2cbf5a82a3b270efa8e07862eaca28cf1a7b6214a793be8b",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S11",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "The Uffizi's director authenticated the painting at Peruggia's hotel;",
+            "exact_native_cache_key": "ae259011f6cfef1557131dd27cfd8f53617be114.pkl",
+            "cache_input_text_sha256": "e6365cebba97905b2cbf5a82a3b270efa8e07862eaca28cf1a7b6214a793be8b",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "37f26ebe0685c343",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          110080
+        ],
+        "unprocessed_array_sha256": "8dae3714b8827783c066ae982ceb10b7938373e99d183d1fd45bf1ae355c67d1"
+      },
+      {
+        "exact_native_cache_key": "f69c983b0710a97bc8a30049c00ad8f6518e8ef9.pkl",
+        "pkl_sha256": "c278c3e0b434335e48b502ca09f30204e4dd3c8e73b36b4ed2d9d428da691ae8",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Peruggia was apprehended on 11 December 1913.",
+            "exact_native_cache_key": "f69c983b0710a97bc8a30049c00ad8f6518e8ef9.pkl",
+            "cache_input_text_sha256": "c45880dacd0cec53ff66c9517da2d01fb875fe1adf94ba21f7cd220e8af582fc",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S11",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Peruggia was apprehended on 11 December 1913.",
+            "exact_native_cache_key": "f69c983b0710a97bc8a30049c00ad8f6518e8ef9.pkl",
+            "cache_input_text_sha256": "c45880dacd0cec53ff66c9517da2d01fb875fe1adf94ba21f7cd220e8af582fc",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "c278c3e0b434335e",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          107520
+        ],
+        "unprocessed_array_sha256": "33e5e134f0589ca153d7a5136a4e070db9cf25ab789f224d2538845cf9d29702"
+      },
+      {
+        "exact_native_cache_key": "364e4dddd0a8211af381618b37808f5ead3dfda0.pkl",
+        "pkl_sha256": "f806ee8974ac283c44cd46fdbe91a9604056d6f47a138545b95ae66f89af1ef2",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Citing patriotism, he said he wanted it repatriated, mistakenly believing Napoleon had looted it.",
+            "exact_native_cache_key": "364e4dddd0a8211af381618b37808f5ead3dfda0.pkl",
+            "cache_input_text_sha256": "10a4b079568f98b1047c63cead36c0762d76bfbbdf9212b9f00cb4d456b685ff",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          168960
+        ],
+        "unprocessed_array_sha256": "0e83501ee846a2df331e0dafd779d210360f0f350a3a2f395f8ff4d90bd32f03"
+      },
+      {
+        "exact_native_cache_key": "b200d61534bab29f70dd51363b358fa34ecba2b1.pkl",
+        "pkl_sha256": "7a2e34f9e07e3cdc353a08912c9823456c9179bcefcafd8816ebef8be5edf084",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Citing patriotism,",
+            "exact_native_cache_key": "b200d61534bab29f70dd51363b358fa34ecba2b1.pkl",
+            "cache_input_text_sha256": "e6c1507d4b5439477723483b708cb5f76d44767e8b19d0de57f9f9afab50acf5",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S12",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Citing patriotism,",
+            "exact_native_cache_key": "b200d61534bab29f70dd51363b358fa34ecba2b1.pkl",
+            "cache_input_text_sha256": "e6c1507d4b5439477723483b708cb5f76d44767e8b19d0de57f9f9afab50acf5",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "7a2e34f9e07e3cdc",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          34304
+        ],
+        "unprocessed_array_sha256": "a4fa9f3ccd6e3923d6038d2716ea57ae8f37f9f8d258e903f5b721d00a38464a"
+      },
+      {
+        "exact_native_cache_key": "ec078c34e7de70e6038c22abb094a5b9c9879b3f.pkl",
+        "pkl_sha256": "e557f7c02283c04ec67c62053ce44519b1c24d1abfad5872ec916ef822ca6783",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "he said he wanted it repatriated,",
+            "exact_native_cache_key": "ec078c34e7de70e6038c22abb094a5b9c9879b3f.pkl",
+            "cache_input_text_sha256": "ccc9c74de6ed6d0dcf1cbdd0496bd966ca6da42e5a14c2ab4e1dd861d4ee5a4d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S12",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "he said he wanted it repatriated,",
+            "exact_native_cache_key": "ec078c34e7de70e6038c22abb094a5b9c9879b3f.pkl",
+            "cache_input_text_sha256": "ccc9c74de6ed6d0dcf1cbdd0496bd966ca6da42e5a14c2ab4e1dd861d4ee5a4d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "e557f7c02283c04e",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          54272
+        ],
+        "unprocessed_array_sha256": "7787f3b99a5095de13449c1ca5a23ad63f6448b58057db3957b962a93a024e9a"
+      },
+      {
+        "exact_native_cache_key": "2a380a0671a928b9ec825dbfad565dd42e842cd0.pkl",
+        "pkl_sha256": "a40ffc95345710132dbf50c7fed105fd33d01e02e0558c491bbc12017d49c459",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "mistakenly believing Napoleon had looted it.",
+            "exact_native_cache_key": "2a380a0671a928b9ec825dbfad565dd42e842cd0.pkl",
+            "cache_input_text_sha256": "f08910d527afe4cf8d1c9f1a5af853262c445b3dec91e40487545927b5eec300",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S12",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "mistakenly believing Napoleon had looted it.",
+            "exact_native_cache_key": "2a380a0671a928b9ec825dbfad565dd42e842cd0.pkl",
+            "cache_input_text_sha256": "f08910d527afe4cf8d1c9f1a5af853262c445b3dec91e40487545927b5eec300",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "a40ffc9534571013",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          66560
+        ],
+        "unprocessed_array_sha256": "1ad2e005512c1f81c69095526981becb7b0e531b2acbc5fe8b51730d85b13520"
+      },
+      {
+        "exact_native_cache_key": "662bd749883c15ac2d13ad0fc397c8f166beb767.pkl",
+        "pkl_sha256": "3189f04b5f0699991a71992b1ad9e7361816f7201707931f28d481acdc450359",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "In fact Leonardo da Vinci had accompanied it to France at the invitation of King Francis I.",
+            "exact_native_cache_key": "662bd749883c15ac2d13ad0fc397c8f166beb767.pkl",
+            "cache_input_text_sha256": "cdfc9479441fabbaaf4d2cc85d928500811a4854468900bcbae9f88cf9e94b6b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          159744
+        ],
+        "unprocessed_array_sha256": "e6bb42bddc9fea8a8445f27030135a0c8750f84be601a72d0abe84a2c62be5e1"
+      },
+      {
+        "exact_native_cache_key": "1ded92d974aed40ac8024b2b6630e544c418696f.pkl",
+        "pkl_sha256": "e6432c0ad0f24188bce56353c16ab9f34bd8c554ae314202299445f9bc7296d7",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "In fact Leonardo da Vinci",
+            "exact_native_cache_key": "1ded92d974aed40ac8024b2b6630e544c418696f.pkl",
+            "cache_input_text_sha256": "fc5a8b3fdc1e1625620babf6dd96ed41ffb5bdfbd3e572eea525f7860e60a872",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "e6432c0ad0f24188",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          40448
+        ],
+        "unprocessed_array_sha256": "a1fef5dd0767957bbc1e55d79793bbf4e6314f14dcba20a1cfcfd70a3f2fd0a9"
+      },
+      {
+        "exact_native_cache_key": "8ebef88ad93058a6eeb7f618d7c1cab5eb4b2eeb.pkl",
+        "pkl_sha256": "9fef18f82d76c4ec35ad66d32d0aaba8c2deaf60212a7f33bb799aeff5c32b1d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "had accompanied it to France at the invitation of King Francis I.",
+            "exact_native_cache_key": "8ebef88ad93058a6eeb7f618d7c1cab5eb4b2eeb.pkl",
+            "cache_input_text_sha256": "f3a718677bf00df801c8a2c2b073ee06e874c6b3f1c523263c87fff7a4c9dc93",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "9fef18f82d76c4ec",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          108032
+        ],
+        "unprocessed_array_sha256": "399b0d800dd35bd2616b422c7491f8151ad13edcbeb38123a654e5deccf1f0a3"
+      },
+      {
+        "exact_native_cache_key": "334f5a610583bb8a3d831da1c2ab5a3701be3cf4.pkl",
+        "pkl_sha256": "e91548e6c7e07bababde6235b5b948f4e0b79ab55e5d07aec79242a5e787fc44",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "After showings in Italy, the painting was reinstated in the Louvre on 4 January 1914.",
+            "exact_native_cache_key": "334f5a610583bb8a3d831da1c2ab5a3701be3cf4.pkl",
+            "cache_input_text_sha256": "1876dd5b2453e09361b10ff372173c760e8e2a633bc1034aac29cf7fec26b969",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          176640
+        ],
+        "unprocessed_array_sha256": "6ad9016126ff3f73058c4316a7183fb4587ad3720dd31e27fdbe39f259afd069"
+      },
+      {
+        "exact_native_cache_key": "5a5b92514920921f3621d04f2196adbda844dcd5.pkl",
+        "pkl_sha256": "4c10b0a44d7eaa0eaa1ac84ac0c520e9a3d585ccdd6ca2714c1801882d12ecfd",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "After showings in Italy,",
+            "exact_native_cache_key": "5a5b92514920921f3621d04f2196adbda844dcd5.pkl",
+            "cache_input_text_sha256": "8a825ec9bb4c2d5bdd184b48537301416ecb09bee0d774d9faf6daad3b1b9a8d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S14",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "After showings in Italy,",
+            "exact_native_cache_key": "5a5b92514920921f3621d04f2196adbda844dcd5.pkl",
+            "cache_input_text_sha256": "8a825ec9bb4c2d5bdd184b48537301416ecb09bee0d774d9faf6daad3b1b9a8d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "4c10b0a44d7eaa0e",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          37376
+        ],
+        "unprocessed_array_sha256": "6200c674a20e805e38db28a1c85cec16ac7e3a1b5d802f15a231719463771b09"
+      },
+      {
+        "exact_native_cache_key": "4c8b9f320dad6d5a3313239c339b57d736101270.pkl",
+        "pkl_sha256": "7584af726aa1cce073943acd6038587d44abfaad74c6aecfe5c40cdd7ef8a282",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "the painting was reinstated in the Louvre on 4 January 1914.",
+            "exact_native_cache_key": "4c8b9f320dad6d5a3313239c339b57d736101270.pkl",
+            "cache_input_text_sha256": "bff00a0101100cd92984d9fe162a1c01c93949f098af23690d80e007ead04db8",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S14",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "the painting was reinstated in the Louvre on 4 January 1914.",
+            "exact_native_cache_key": "4c8b9f320dad6d5a3313239c339b57d736101270.pkl",
+            "cache_input_text_sha256": "bff00a0101100cd92984d9fe162a1c01c93949f098af23690d80e007ead04db8",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "7584af726aa1cce0",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          132096
+        ],
+        "unprocessed_array_sha256": "0147388d88211f922c447e6d3a72353b9818b484aa168a2cc8bc9e8c3f6c8302"
+      },
+      {
+        "exact_native_cache_key": "9e1bc06d36e9b9e446dc99d40614b8ac95c52cdd.pkl",
+        "pkl_sha256": "44c6498edc2deadcb4fc07ef8b75e11dac2d875bfa39b02760f71856bc587a82",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "In June 1914 a tribunal imposed a penalty of a year and 15 days, but he was imprisoned for about seven months.",
+            "exact_native_cache_key": "9e1bc06d36e9b9e446dc99d40614b8ac95c52cdd.pkl",
+            "cache_input_text_sha256": "09e6fa3f8c43b530b38147fa2ca08587ea7b2c8255c4283046d653908f1adbae",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          212992
+        ],
+        "unprocessed_array_sha256": "f3767e5179038c9d2967fcad0041f859eae3c8ffccff6203e4b08e63a82df9c1"
+      },
+      {
+        "exact_native_cache_key": "848e8164c052a04259c8580ff7380c7dcbe7c0cf.pkl",
+        "pkl_sha256": "de8f811c628a3ffb6b5d9f673f640e0076070c77e060d4491a458bfe8906b914",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "In June 1914 a tribunal imposed",
+            "exact_native_cache_key": "848e8164c052a04259c8580ff7380c7dcbe7c0cf.pkl",
+            "cache_input_text_sha256": "a2e90a315ca300cea3710886855a9336aa1d3b15a339690a45d6a87668e03bd8",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "de8f811c628a3ffb",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          73728
+        ],
+        "unprocessed_array_sha256": "b28f77f4c077f7446379678f1aa07b7b898b3f99920856895ea93736cee95d86"
+      },
+      {
+        "exact_native_cache_key": "9a04b7680b2c49340e25008d7bf07dbd08e14b08.pkl",
+        "pkl_sha256": "220f9e487b67f048c80f38331a93837efde872fce29e1d3292362cc7241da6c1",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "a penalty of a year and 15 days,",
+            "exact_native_cache_key": "9a04b7680b2c49340e25008d7bf07dbd08e14b08.pkl",
+            "cache_input_text_sha256": "faff56176534efd7c04a756803847f8ad0ef05cd8cb2750569819cefc68bacda",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "220f9e487b67f048",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          53248
+        ],
+        "unprocessed_array_sha256": "e95eeae3623d623db617b1e6f8dd706b3c0d803c5af4ab657c7bb1a7c06add81"
+      },
+      {
+        "exact_native_cache_key": "743acee94aa206483f5ed3a8bf39ceb6262687cc.pkl",
+        "pkl_sha256": "c5f56701068647be2685b49a3a8434c59af6df410deeb426bb70f534fe635f5c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "but he was imprisoned for about seven months.",
+            "exact_native_cache_key": "743acee94aa206483f5ed3a8bf39ceb6262687cc.pkl",
+            "cache_input_text_sha256": "483211660b7a931572ed70bd29f9a446f19b9c14f2f19e7e4326c837d7284b93",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S15",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "but he was imprisoned for about seven months.",
+            "exact_native_cache_key": "743acee94aa206483f5ed3a8bf39ceb6262687cc.pkl",
+            "cache_input_text_sha256": "483211660b7a931572ed70bd29f9a446f19b9c14f2f19e7e4326c837d7284b93",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "c5f56701068647be",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          57856
+        ],
+        "unprocessed_array_sha256": "bce5fabf263bcdd115013c929f0f47adbee5c1a38f98c02144c24a0dbd20499d"
+      },
+      {
+        "exact_native_cache_key": "bdbcbf9d697453018deb0e6128605a35b0d3128e.pkl",
+        "pkl_sha256": "e4d86e641fbc0aab51e799734ac0835d66bc8596b24458ca3ffb540d2da88a90",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "In June 1914 a tribunal imposed a penalty of a year and 15 days,",
+            "exact_native_cache_key": "bdbcbf9d697453018deb0e6128605a35b0d3128e.pkl",
+            "cache_input_text_sha256": "7b838f82221bd58229b1478bf4da754d14c4d6500013b99db7fd53ee62d7cef2",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "e4d86e641fbc0aab",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          139776
+        ],
+        "unprocessed_array_sha256": "66c35b7ea5aabdf6d6bb7d3fdfefc77dd97b3aaf2633df9a14191583f6d830ec"
+      },
+      {
+        "exact_native_cache_key": "ac79f689468ba46695a488685a41de32892423da.pkl",
+        "pkl_sha256": "5fefcc7dc6ec937e40c108a302d8552a1132bdd162d79a1d5c419e8b0cc52da7",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Many historians argue the heist elevated one esteemed gem among many to the world's most renowned painting.",
+            "exact_native_cache_key": "ac79f689468ba46695a488685a41de32892423da.pkl",
+            "cache_input_text_sha256": "c504c88840ea4d380ed9cee3bb121d1127e7b01a8565e5f20bc6d65faaa20dcf",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          183296
+        ],
+        "unprocessed_array_sha256": "9930af05232c0f03e2f25060487a0d3bdf9ad55c2c59e05dcc710d09f4969253"
+      },
+      {
+        "exact_native_cache_key": "9e6cec74ba671db2077643d9247cf33d84810858.pkl",
+        "pkl_sha256": "d7e679dd25f8d763e673e965bf9f59fbf11cfa03bd0f7c027cf9e89c7767d748",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Many historians argue",
+            "exact_native_cache_key": "9e6cec74ba671db2077643d9247cf33d84810858.pkl",
+            "cache_input_text_sha256": "f2cea3ac1715c8192b3f153574549d880ad28bf7c9129a3aaa593a786828c477",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "d7e679dd25f8d763",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          38912
+        ],
+        "unprocessed_array_sha256": "5b91239c774f1fc2c5400a9b849e47704df7f34a95cd6be55f0b958b41ce4d4c"
+      },
+      {
+        "exact_native_cache_key": "eb56e7054a9f90019476d3db43899d5b3d14ccab.pkl",
+        "pkl_sha256": "c44bb77764fccf43e1e4056ab2ab6150a1e04218ff23c63e83244c11be76f78d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "the heist elevated one esteemed gem among many",
+            "exact_native_cache_key": "eb56e7054a9f90019476d3db43899d5b3d14ccab.pkl",
+            "cache_input_text_sha256": "d6270aa6ad6e0cf3e2225f2c8aee789dd0a7a5b1804346c8ea038064acdbd30c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "c44bb77764fccf43",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          73216
+        ],
+        "unprocessed_array_sha256": "831e8f7eec0a9b31989d85bfc640cde5bfd63615c08e0c31ad71e94f6cf43673"
+      },
+      {
+        "exact_native_cache_key": "585def15f3cc08b257a0fb7b2512d00da96db9bd.pkl",
+        "pkl_sha256": "67e8cac0acd4f27f1fc0ffdea77a9e544426922cbcaf700e6688c8a4963d583e",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "to the world's most renowned painting.",
+            "exact_native_cache_key": "585def15f3cc08b257a0fb7b2512d00da96db9bd.pkl",
+            "cache_input_text_sha256": "a3d08b3ee62e104df359903d969442ea03a8d3162fbcc3793fc024ca7dbb8b25",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "67e8cac0acd4f27f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          49664
+        ],
+        "unprocessed_array_sha256": "0c985ce3b363b2836a4bb246d97499770200fd2ac1df59740aaa496ee5b1cec3"
+      },
+      {
+        "exact_native_cache_key": "88d035e3be65a589841f740341c8030d5157b083.pkl",
+        "pkl_sha256": "abf7811d028ccc326286e0588c1d132c966f0dbb34e9afee8462906e8a2d2e9f",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "If so, its fame began with a bare wall.",
+            "exact_native_cache_key": "88d035e3be65a589841f740341c8030d5157b083.pkl",
+            "cache_input_text_sha256": "241e41e004cc3de730e056bfb33740cf9e009edf199777b4eaa90f5076893c96",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          57856
+        ],
+        "unprocessed_array_sha256": "df71a373a01bdec3e0ed5c3d52ccd8d9d7b36f515d7d83aa23964d7611478a97"
+      },
+      {
+        "exact_native_cache_key": "83b78513bb2829a303b1a634d861d559dc1ec2ed.pkl",
+        "pkl_sha256": "54fbd97c6b6570a0c507eb41787780f1ce38e34596e372b6aec26ff5bf041798",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "If so,",
+            "exact_native_cache_key": "83b78513bb2829a303b1a634d861d559dc1ec2ed.pkl",
+            "cache_input_text_sha256": "ef4022b69b97c1f8723b730578e84e23c4e8facb75e2a58285ee11c22de1144c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "54fbd97c6b6570a0",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          18432
+        ],
+        "unprocessed_array_sha256": "854f18b6561fafc55f2b2a5318aca5c0781d32c82b2450804ad5ed1a305c6725"
+      },
+      {
+        "exact_native_cache_key": "34f4953e94c82788c9db28db8c28d6c692b62214.pkl",
+        "pkl_sha256": "ee768724b9caa1c045198a683616a38217f5e1f06c279ab52bbac45bb115e546",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "its fame began with a bare wall.",
+            "exact_native_cache_key": "34f4953e94c82788c9db28db8c28d6c692b62214.pkl",
+            "cache_input_text_sha256": "a9fe8f5e9b30a5468cc07782fd2625f6bfe5ed82795d9169d256d09e3f0e8082",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "ee768724b9caa1c0",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          48640
+        ],
+        "unprocessed_array_sha256": "c93805ae30723313c7b4ee3790675da13e979a9f1350cfb735120d0df605cdbd"
+      }
+    ],
+    "missing_reference_key_count": 47,
+    "observed_missing_keys_covered": [
+      "1779cdbdd68560e1ecd50d812c5c8a8a0df6394c.pkl",
+      "849001ae0dc6c1436d06f5c608358bcdca630f4b.pkl",
+      "d50d3642f8022ba1c409e7ef50fabe55b50d9c8e.pkl"
+    ],
+    "new_private_cache_names": [
+      "0a2335a8f985fcf211025173ba4d6b3e56ef56be.pkl",
+      "0a2335a8f985fcf211025173ba4d6b3e56ef56be.pkl.单线程",
+      "1603e66e1acd0a25622bc4d7f6b3c8cdde978038.pkl",
+      "1603e66e1acd0a25622bc4d7f6b3c8cdde978038.pkl.单线程",
+      "1779cdbdd68560e1ecd50d812c5c8a8a0df6394c.pkl",
+      "1779cdbdd68560e1ecd50d812c5c8a8a0df6394c.pkl.单线程",
+      "1ded92d974aed40ac8024b2b6630e544c418696f.pkl",
+      "1ded92d974aed40ac8024b2b6630e544c418696f.pkl.单线程",
+      "2a380a0671a928b9ec825dbfad565dd42e842cd0.pkl",
+      "2a380a0671a928b9ec825dbfad565dd42e842cd0.pkl.单线程",
+      "34f4953e94c82788c9db28db8c28d6c692b62214.pkl",
+      "34f4953e94c82788c9db28db8c28d6c692b62214.pkl.单线程",
+      "3d5d1d7dcf60a20e8bb99e006f309b436a607d09.pkl",
+      "3d5d1d7dcf60a20e8bb99e006f309b436a607d09.pkl.单线程",
+      "3df817c7199fed2d5e947160d1d0bcc81410dc90.pkl",
+      "3df817c7199fed2d5e947160d1d0bcc81410dc90.pkl.单线程",
+      "3fbcbf6e08c12995cc27597a2abc13b151a05bc9.pkl",
+      "3fbcbf6e08c12995cc27597a2abc13b151a05bc9.pkl.单线程",
+      "4c8b9f320dad6d5a3313239c339b57d736101270.pkl",
+      "4c8b9f320dad6d5a3313239c339b57d736101270.pkl.单线程",
+      "585def15f3cc08b257a0fb7b2512d00da96db9bd.pkl",
+      "585def15f3cc08b257a0fb7b2512d00da96db9bd.pkl.单线程",
+      "5a5b92514920921f3621d04f2196adbda844dcd5.pkl",
+      "5a5b92514920921f3621d04f2196adbda844dcd5.pkl.单线程",
+      "67521e8af2740c6b333263df6d60368facf1777d.pkl",
+      "67521e8af2740c6b333263df6d60368facf1777d.pkl.单线程",
+      "67ae9e8048de56d0dba519bba36f3fdac9c996ab.pkl",
+      "67ae9e8048de56d0dba519bba36f3fdac9c996ab.pkl.单线程",
+      "686a8cd543e47c7caaf96860ecb3ceb1b1cbacfa.pkl",
+      "686a8cd543e47c7caaf96860ecb3ceb1b1cbacfa.pkl.单线程",
+      "6f698122b06752a54d47e3bf6d137171ccfd8bb5.pkl",
+      "6f698122b06752a54d47e3bf6d137171ccfd8bb5.pkl.单线程",
+      "743acee94aa206483f5ed3a8bf39ceb6262687cc.pkl",
+      "743acee94aa206483f5ed3a8bf39ceb6262687cc.pkl.单线程",
+      "7b462f1f0362aeddd4c694f337ccfa8e1d032bc6.pkl",
+      "7b462f1f0362aeddd4c694f337ccfa8e1d032bc6.pkl.单线程",
+      "83b78513bb2829a303b1a634d861d559dc1ec2ed.pkl",
+      "83b78513bb2829a303b1a634d861d559dc1ec2ed.pkl.单线程",
+      "848e8164c052a04259c8580ff7380c7dcbe7c0cf.pkl",
+      "848e8164c052a04259c8580ff7380c7dcbe7c0cf.pkl.单线程",
+      "849001ae0dc6c1436d06f5c608358bcdca630f4b.pkl",
+      "849001ae0dc6c1436d06f5c608358bcdca630f4b.pkl.单线程",
+      "88d0d5bc0ecb88b40699d254b637000bf0e5fed1.pkl",
+      "88d0d5bc0ecb88b40699d254b637000bf0e5fed1.pkl.单线程",
+      "8ebef88ad93058a6eeb7f618d7c1cab5eb4b2eeb.pkl",
+      "8ebef88ad93058a6eeb7f618d7c1cab5eb4b2eeb.pkl.单线程",
+      "9197bcba53d92f88a24dc0ed35b9e5ee092debe0.pkl",
+      "9197bcba53d92f88a24dc0ed35b9e5ee092debe0.pkl.单线程",
+      "9a04b7680b2c49340e25008d7bf07dbd08e14b08.pkl",
+      "9a04b7680b2c49340e25008d7bf07dbd08e14b08.pkl.单线程",
+      "9b58241a4196bfd59d21184e1e73d380f057fe86.pkl",
+      "9b58241a4196bfd59d21184e1e73d380f057fe86.pkl.单线程",
+      "9e6cec74ba671db2077643d9247cf33d84810858.pkl",
+      "9e6cec74ba671db2077643d9247cf33d84810858.pkl.单线程",
+      "a13458db3a93a9cfcaabc8d7ab4f24337197fcf5.pkl",
+      "a13458db3a93a9cfcaabc8d7ab4f24337197fcf5.pkl.单线程",
+      "a4c4ce3e6ebac3cea5214aa2922f7d0f59a94f06.pkl",
+      "a4c4ce3e6ebac3cea5214aa2922f7d0f59a94f06.pkl.单线程",
+      "a864f879ce839b9f1c38f25899a48405f2ccbe70.pkl",
+      "a864f879ce839b9f1c38f25899a48405f2ccbe70.pkl.单线程",
+      "ae259011f6cfef1557131dd27cfd8f53617be114.pkl",
+      "ae259011f6cfef1557131dd27cfd8f53617be114.pkl.单线程",
+      "af486670b6e59954bb2d82594d779a46bb6df660.pkl",
+      "af486670b6e59954bb2d82594d779a46bb6df660.pkl.单线程",
+      "b200d61534bab29f70dd51363b358fa34ecba2b1.pkl",
+      "b200d61534bab29f70dd51363b358fa34ecba2b1.pkl.单线程",
+      "bd0b413dd5f4249588b60d8a1fc80e6c9a282c72.pkl",
+      "bd0b413dd5f4249588b60d8a1fc80e6c9a282c72.pkl.单线程",
+      "bdbcbf9d697453018deb0e6128605a35b0d3128e.pkl",
+      "bdbcbf9d697453018deb0e6128605a35b0d3128e.pkl.单线程",
+      "bf1c54a47522a1f8e490a7f529ecb1944b425064.pkl",
+      "bf1c54a47522a1f8e490a7f529ecb1944b425064.pkl.单线程",
+      "bf3e7931f5ba0fa12ce4a0c94357ddfd58190b70.pkl",
+      "bf3e7931f5ba0fa12ce4a0c94357ddfd58190b70.pkl.单线程",
+      "cc0f01c912012e660f13a8899a10e62d9d51c816.pkl",
+      "cc0f01c912012e660f13a8899a10e62d9d51c816.pkl.单线程",
+      "cc27de674af7704e5a1ff6dccc5185ae34903ca3.pkl",
+      "cc27de674af7704e5a1ff6dccc5185ae34903ca3.pkl.单线程",
+      "d50d3642f8022ba1c409e7ef50fabe55b50d9c8e.pkl",
+      "d50d3642f8022ba1c409e7ef50fabe55b50d9c8e.pkl.单线程",
+      "dce1c0447b7f054cf33967e154ed6704353c8bc2.pkl",
+      "dce1c0447b7f054cf33967e154ed6704353c8bc2.pkl.单线程",
+      "e412c971c58cb85c8730ad15ee3b142f81dc80c3.pkl",
+      "e412c971c58cb85c8730ad15ee3b142f81dc80c3.pkl.单线程",
+      "eb56e7054a9f90019476d3db43899d5b3d14ccab.pkl",
+      "eb56e7054a9f90019476d3db43899d5b3d14ccab.pkl.单线程",
+      "ec078c34e7de70e6038c22abb094a5b9c9879b3f.pkl",
+      "ec078c34e7de70e6038c22abb094a5b9c9879b3f.pkl.单线程",
+      "edabfcf946ec7e29542ae075fdb1301f969e39cc.pkl",
+      "edabfcf946ec7e29542ae075fdb1301f969e39cc.pkl.单线程",
+      "f397902bda21c8efeaa17fb2a6acd738ab097209.pkl",
+      "f397902bda21c8efeaa17fb2a6acd738ab097209.pkl.单线程",
+      "f69c983b0710a97bc8a30049c00ad8f6518e8ef9.pkl",
+      "f69c983b0710a97bc8a30049c00ad8f6518e8ef9.pkl.单线程"
+    ],
+    "native_single_thread_marker_verified": true,
+    "single_thread_sessions": [
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      },
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      }
+    ],
+    "models_sha256": {
+      "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+      "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+      "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+    },
+    "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+    "existing_private_cache_count": 11514,
+    "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "existing_private_cache_bytes_unchanged": true,
+    "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+    "public_repository_cache_unchanged": true,
+    "producer_pcm_existed_before": false,
+    "producer_pcm_sha256_before": null,
+    "producer_pcm_sha256_after": null,
+    "accepted_aac_adts_sha256_before": "ae7f8c1639ca03eb246cf0aa5f2ff885d8b368496b16acc6af4ef3c3a08dbb14",
+    "accepted_aac_adts_sha256_after": "ae7f8c1639ca03eb246cf0aa5f2ff885d8b368496b16acc6af4ef3c3a08dbb14",
+    "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+    "private_cache_exported": false
+  },
+  "checker_reference_preparation_program_sha256": "f6f2a032e207085e7252d036e39430fb80b06e84a721c525b61196d021c5ca12",
+  "accepted_prior_pcm_probe": {
+    "article": "10",
+    "purpose": "diagnostic old accepted PCM reconstruction only; not a QC verdict",
+    "quality_acceptance": false,
+    "old_source_sha256": "03f5c3b3bea0ef45f46452eba99a3357518eee5399780ea8b836f543a911a8fe",
+    "expected_accepted_pcm_md5_first12": "15f47fa51add",
+    "old_pcm_matches_accepted_confirmation_fingerprint": true,
+    "private_PCM_or_cache_exported": false,
+    "original_maker_exit": 0,
+    "actual_old_pcm_md5_first12": "15f47fa51add",
+    "actual_old_pcm_sha256": "0558427f406441c9823240ca4d29a51e456fdd72ef9e40b352a7c413cc4fe768",
+    "old_reconstructed_aac_adts_sha256": "ae7f8c1639ca03eb246cf0aa5f2ff885d8b368496b16acc6af4ef3c3a08dbb14",
+    "accepted_prior_aac_adts_sha256": "ae7f8c1639ca03eb246cf0aa5f2ff885d8b368496b16acc6af4ef3c3a08dbb14",
+    "old_reconstructed_aac_exactly_matches_accepted": true,
+    "old_segment_metadata_sha256": "8e2dd8b8c73bda80036708cf8d7cab30d96363bccf01e9200daa2ff1b6fdb65e"
+  },
+  "original_confirmation_migration": {
+    "actual_current_audio_only_exit": 0,
+    "unchanged_original_program_sha256": "8d12b72841efba01ee1d8855158f56c4cbc4370d151bccf87ab770ece6ba6fde",
+    "attempts": [
+      {
+        "old_pcm_md5_first12": "15f47fa51add",
+        "actual_pcm_md5_first12": "ab6412c491dd",
+        "exit": 0
+      }
+    ],
+    "new_quality_gate": false,
+    "audio_modified_by_migration": false
+  },
+  "fresh_current_article_reference": {
+    "article": "10",
+    "removed_temporary_gt_files": [],
+    "processed_pcm_or_raw_mother_cache_modified": false,
+    "purpose": "Original synth/labels/audit rebuild fresh for this production; no old CPU GT reuse."
+  },
+  "temporary_output_reset": {
+    "removed": [
+      {
+        "name": "10.mp4",
+        "mtime_ns": 1794619142345800787,
+        "bytes": 2078918,
+        "was_symlink": false
+      },
+      {
+        "name": "10.mp4.指纹.json",
+        "mtime_ns": 1794619142441450915,
+        "bytes": 421,
+        "was_symlink": false
+      }
+    ],
+    "production_started_ns": 1794619143441790554,
+    "repository_outputs_modified": false
+  },
+  "reviewed_gain_control_preservation": [
+    {
+      "stage": "canonical-draft",
+      "requested_gain_controls": {
+        "/结尾句/S17/前段增益dB": -3.5,
+        "/句子增益dB": {
+          "S17": 1.0
+        }
+      },
+      "actual_gain_controls": {
+        "/结尾句/S17/前段增益dB": -3.5,
+        "/句子增益dB": {
+          "S17": 1.0
+        }
+      },
+      "exactly_preserved": true
+    },
+    {
+      "stage": "canonical-final4K",
+      "requested_gain_controls": {
+        "/结尾句/S17/前段增益dB": -3.5,
+        "/句子增益dB": {
+          "S17": 1.0
+        }
+      },
+      "actual_gain_controls": {
+        "/结尾句/S17/前段增益dB": -3.5,
+        "/句子增益dB": {
+          "S17": 1.0
+        }
+      },
+      "exactly_preserved": true
+    }
+  ],
+  "confirmation_continuity": {
+    "diagnostic_only": true,
+    "automatic_renewals": false,
+    "exit": 0,
+    "file": "10-confirmation-continuity.json",
+    "sha256": "1f6267aaf23c99d9d9a2920e608787562dc2867e07fe14f61d63574ac1e27e3e"
+  },
+  "canonical_video_sha256": "6cf4ffb5108d3cbfd6ef8822f55189a63dffac42e47190d5e89063ea2800a69e",
+  "canonical_aac_adts_sha256": "6ba668d552af9744d5b3a398e89ad4d77a9e2e23b365fa06e03834c94dfb60c4",
+  "canonical_pipeline_passed": true,
+  "cached_input_wav_sha256": null,
+  "final_wav_sha256": "394320a6392c001f2588adc922053d089b85329abfb5e369cacc20fb67bd8caf",
+  "approved_audio_qc": {
+    "article": "10",
+    "passed": true,
+    "validation_basis": "Actual accepted and reconstructed public MP4 decoded samples; no simulated values determine passed.",
+    "accepted_sha256": "c0cbc1eb2691e208fd827d264cc9b6bfb64fb74217c674d81e87b1ae71a055fa",
+    "canonical_sha256": "6cf4ffb5108d3cbfd6ef8822f55189a63dffac42e47190d5e89063ea2800a69e",
+    "accepted_global": {
+      "integrated_lufs": -24.2,
+      "true_peak_dbtp": -0.5,
+      "lra_lu": 3.8
+    },
+    "actual_global": {
+      "integrated_lufs": -24.2,
+      "true_peak_dbtp": -0.5,
+      "lra_lu": 3.8
+    },
+    "accepted_units": {
+      "If_so": {
+        "start_s": 130.99,
+        "end_s": 131.7,
+        "crop_bs1770_lufs": -25.488086483625924,
+        "gated_400ms_lufs": -25.437926281560458,
+        "max_400ms_lufs": -25.2,
+        "active_10ms_rms_dbfs": -25.93072155397681,
+        "rms_dbfs": -26.11795481096822,
+        "sample_peak_dbfs": -12.63653288349283
+      },
+      "last_main": {
+        "start_s": 132.13,
+        "end_s": 134.46,
+        "crop_bs1770_lufs": -25.397245188458502,
+        "gated_400ms_lufs": -25.344063405547395,
+        "max_400ms_lufs": -23.0,
+        "active_10ms_rms_dbfs": -24.533298588814993,
+        "rms_dbfs": -25.108300390828934,
+        "sample_peak_dbfs": -7.782512814330856
+      },
+      "last_sentence": {
+        "start_s": 130.99,
+        "end_s": 134.46,
+        "crop_bs1770_lufs": -25.966291218162528,
+        "gated_400ms_lufs": -25.908281744084757,
+        "max_400ms_lufs": -23.0,
+        "active_10ms_rms_dbfs": -24.842792014213714,
+        "rms_dbfs": -25.89852773467337,
+        "sample_peak_dbfs": -7.782512814330856
+      },
+      "preceding_sentence": {
+        "start_s": 122.7,
+        "end_s": 129.97,
+        "crop_bs1770_lufs": -24.665880300323067,
+        "gated_400ms_lufs": -24.712402686239283,
+        "max_400ms_lufs": -19.8,
+        "active_10ms_rms_dbfs": -23.521733424167092,
+        "rms_dbfs": -24.20537019984104,
+        "sample_peak_dbfs": -3.665094582578342
+      }
+    },
+    "actual_units": {
+      "If_so": {
+        "start_s": 130.99,
+        "end_s": 131.7,
+        "crop_bs1770_lufs": -22.41861772610418,
+        "gated_400ms_lufs": -22.38601173886222,
+        "max_400ms_lufs": -22.1,
+        "active_10ms_rms_dbfs": -22.89054038149516,
+        "rms_dbfs": -23.07775704587503,
+        "sample_peak_dbfs": -9.577186416910921
+      },
+      "last_main": {
+        "start_s": 132.13,
+        "end_s": 134.46,
+        "crop_bs1770_lufs": -24.3856918550392,
+        "gated_400ms_lufs": -24.344063405547395,
+        "max_400ms_lufs": -22.0,
+        "active_10ms_rms_dbfs": -23.672790542167817,
+        "rms_dbfs": -24.10240644131298,
+        "sample_peak_dbfs": -6.782041537978486
+      },
+      "last_sentence": {
+        "start_s": 130.99,
+        "end_s": 134.46,
+        "crop_bs1770_lufs": -24.511364266920655,
+        "gated_400ms_lufs": -24.471557133382966,
+        "max_400ms_lufs": -22.0,
+        "active_10ms_rms_dbfs": -23.46875396538956,
+        "rms_dbfs": -24.415118865447766,
+        "sample_peak_dbfs": -6.782041537978486
+      },
+      "preceding_sentence": {
+        "start_s": 122.7,
+        "end_s": 129.97,
+        "crop_bs1770_lufs": -24.665880300323067,
+        "gated_400ms_lufs": -24.712402686239283,
+        "max_400ms_lufs": -19.8,
+        "active_10ms_rms_dbfs": -23.521733424167092,
+        "rms_dbfs": -24.20537019984104,
+        "sample_peak_dbfs": -3.665094582578342
+      }
+    },
+    "actual_waveform_fits": {
+      "If_so": {
+        "gain_db": 3.0390773787531784,
+        "correlation": 0.9998710190745087,
+        "gain_compensated_residual_snr_db": 35.883604856010145
+      },
+      "last_main": {
+        "gain_db": 1.0055555814607,
+        "correlation": 0.9999610446967789,
+        "gain_compensated_residual_snr_db": 41.083780374703586
+      }
+    },
+    "pitch_comparison": {
+      "If_so": {
+        "voiced_pairs": 44,
+        "median_absolute_cents": 0.06410121397820526,
+        "p90_absolute_cents": 0.2952192655268474,
+        "whole_decoded_crop_bit_identical": false,
+        "decoded_sample_count": 34080,
+        "decoded_dtype": "float64",
+        "accepted_crop_sha256": "c9385c817e7a2556d2fff9e7282a862a452275078ccde893fd62251a86d76699",
+        "actual_crop_sha256": "a019dd9e14f9ed0b6b6e33ff19c5cae97693f883eb63122aa42bd43a35f1df54",
+        "preservation_basis": "measured-pitch-original-count-and-cent-limits"
+      },
+      "last_main": {
+        "voiced_pairs": 166,
+        "median_absolute_cents": 0.10013548941949751,
+        "p90_absolute_cents": 0.4263969301054311,
+        "whole_decoded_crop_bit_identical": false,
+        "decoded_sample_count": 111840,
+        "decoded_dtype": "float64",
+        "accepted_crop_sha256": "b41fdf27daac788fca6394fe9720f481c55c27922d08fa5e63d3452f7a80e009",
+        "actual_crop_sha256": "0f872ca09b86148e1dd4b8a89a7314f72d827e812eeba09c71634292acc7ea9e",
+        "preservation_basis": "measured-pitch-original-count-and-cent-limits"
+      }
+    },
+    "actual_public_piece_ranges": {
+      "S17:1": [
+        130.97,
+        131.7113
+      ],
+      "S17:2": [
+        132.0963,
+        134.47
+      ]
+    },
+    "actual_title_A21": null,
+    "checks": [
+      {
+        "name": "accepted-public-source-sha256",
+        "passed": true
+      },
+      {
+        "name": "duration-preserved",
+        "passed": true,
+        "delta_s": 0.0
+      },
+      {
+        "name": "encoding-alignment-only",
+        "passed": true,
+        "lag_samples": 0,
+        "local_lags_samples": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "actual-original-audio-format",
+        "passed": true,
+        "actual": {
+          "sample_rate": "48000",
+          "channels": 1
+        }
+      },
+      {
+        "name": "actual-no-digital-clipping-or-nonfinite",
+        "passed": true,
+        "sample_peak_dbfs": -0.5451984327596021
+      },
+      {
+        "name": "actual-true-peak-below-zero",
+        "passed": true,
+        "measured_dbtp": -0.5
+      },
+      {
+        "name": "whole-track-level-preserved",
+        "passed": true,
+        "accepted": {
+          "integrated_lufs": -24.2,
+          "true_peak_dbtp": -0.5,
+          "lra_lu": 3.8
+        },
+        "actual": {
+          "integrated_lufs": -24.2,
+          "true_peak_dbtp": -0.5,
+          "lra_lu": 3.8
+        }
+      },
+      {
+        "name": "outside-approved-ranges-same-voice-timing-gain",
+        "passed": true,
+        "gain_db": 0.0,
+        "correlation": 0.9999999999999999,
+        "gain_compensated_residual_snr_db": 277.2674028900623,
+        "p95_absolute_frame_gain_db": 0.0
+      },
+      {
+        "name": "every-untouched-active-one-second-block-preserved",
+        "passed": true,
+        "checked_blocks": 122,
+        "failed_blocks": []
+      },
+      {
+        "name": "no-new-click-or-noise-in-modified-pauses",
+        "passed": true,
+        "maximum_actual_10ms_dbfs": -71.04953693363929
+      },
+      {
+        "name": "requested-control:/结尾句/S17/前段增益dB",
+        "passed": true,
+        "actual": -3.5,
+        "expected": -3.5
+      },
+      {
+        "name": "requested-control:/句子增益dB/S17",
+        "passed": true,
+        "actual": 1.0,
+        "expected": 1.0
+      },
+      {
+        "name": "actual-production-piece-timings-present",
+        "passed": true
+      },
+      {
+        "name": "actual-gain-and-same-waveform:If_so",
+        "passed": true,
+        "expected_gain_db": 3.0,
+        "actual_lufs_delta": 3.0694687575217436,
+        "gain_db": 3.0390773787531784,
+        "correlation": 0.9998710190745087,
+        "gain_compensated_residual_snr_db": 35.883604856010145
+      },
+      {
+        "name": "actual-gain-and-same-waveform:last_main",
+        "passed": true,
+        "expected_gain_db": 1.0,
+        "actual_lufs_delta": 1.0115533334193003,
+        "gain_db": 1.0055555814607,
+        "correlation": 0.9999610446967789,
+        "gain_compensated_residual_snr_db": 41.083780374703586
+      },
+      {
+        "name": "actual-final-phrase-strength-and-mean",
+        "passed": true,
+        "strongest400ms_delta_lu": -0.10000000000000142,
+        "mean_delta_lu": 1.967074128935021
+      },
+      {
+        "name": "actual-pitch-preserved:If_so",
+        "passed": true,
+        "voiced_pairs": 44,
+        "median_absolute_cents": 0.06410121397820526,
+        "p90_absolute_cents": 0.2952192655268474,
+        "whole_decoded_crop_bit_identical": false,
+        "decoded_sample_count": 34080,
+        "decoded_dtype": "float64",
+        "accepted_crop_sha256": "c9385c817e7a2556d2fff9e7282a862a452275078ccde893fd62251a86d76699",
+        "actual_crop_sha256": "a019dd9e14f9ed0b6b6e33ff19c5cae97693f883eb63122aa42bd43a35f1df54",
+        "preservation_basis": "measured-pitch-original-count-and-cent-limits"
+      },
+      {
+        "name": "actual-pitch-preserved:last_main",
+        "passed": true,
+        "voiced_pairs": 166,
+        "median_absolute_cents": 0.10013548941949751,
+        "p90_absolute_cents": 0.4263969301054311,
+        "whole_decoded_crop_bit_identical": false,
+        "decoded_sample_count": 111840,
+        "decoded_dtype": "float64",
+        "accepted_crop_sha256": "b41fdf27daac788fca6394fe9720f481c55c27922d08fa5e63d3452f7a80e009",
+        "actual_crop_sha256": "0f872ca09b86148e1dd4b8a89a7314f72d827e812eeba09c71634292acc7ea9e",
+        "preservation_basis": "measured-pitch-original-count-and-cent-limits"
+      }
+    ],
+    "public_listening_clips": [
+      "10-final-context-accepted.wav",
+      "10-final-context-actual.wav"
+    ],
+    "subjective_listening": "Public final-file clips saved for root listening; this program does not claim listening acceptance.",
+    "private_caches_or_GT_exported": false
+  },
+  "approved_audio_qc_program_sha256": "3a2bd846386b16bd74e9785c548e97283131efcad9989b9e886f64e86e57c7c6",
+  "accepted_prior_aac_identical": false,
+  "video_sha256": "50cbf6276680b7a6af0b129a88914713b422060b0e13460f426587dceba6c33b",
+  "width": 3840,
+  "height": 2160,
+  "summary_seconds": 2,
+  "summary_frames": 60,
+  "summary_start_seconds": 134.5,
+  "delay_after_voice_seconds": 0.0049999999999954525,
+  "actual_source_collection": {
+    "article": "10",
+    "kind": "actual-production-source-collection",
+    "new_quality_gate": false,
+    "files": {
+      "request_json": {
+        "file": "10-request-source.json",
+        "sha256": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
+        "origin": "immutable_request"
+      },
+      "request_generator": {
+        "file": "10-request-gen.py",
+        "sha256": "8bf8c79662f5342d56316b3a2f36c19ca269dd92796ca78e459b7955ade84d9d",
+        "origin": "immutable_request"
+      },
+      "used_generator": {
+        "file": "10-used-gen.py",
+        "sha256": "25ee9232b8ec482ccd56ae41ff181e4b151b6ce6aefea5c0fb584099493e79c7",
+        "origin": "actual_production_filesystem"
+      },
+      "actual_working_source": {
+        "file": "10-actual-working-source.json",
+        "sha256": "289affbd790d95b034b0422f1ec645be5de15be647ba88c43fcb4f341676685d",
+        "origin": "actual_production_filesystem"
+      },
+      "request_manuscript": {
+        "file": "10-request-manuscript.md",
+        "sha256": "ff63cf94e4d2c835e2e2f1ffd3e6c5642f0916f0b13c012f1f13c3dff716d47a",
+        "origin": "immutable_request"
+      },
+      "actual_working_manuscript": {
+        "file": "10-actual-working-manuscript.md",
+        "sha256": "a89200ce829fc702d9ab03b0c331e53f779329ff64904ee5d3aaabd0c33f418a",
+        "origin": "actual_production_filesystem"
+      }
+    },
+    "generator_execution_observed": false,
+    "generator_execution_evidence": "No fresh generator execution log; do not claim this GEN was executed during rendering.",
+    "source_differences": {
+      "file": "10-actual-source-differences.json",
+      "sha256": "d9286596703e64460fd8633e8de449816e5b6d833886fb191bf829cc11489584"
+    }
+  },
+  "failure_details": {
+    "step": "approved-illustrated-tail.log",
+    "exit": 1,
+    "tail": [
+      "Traceback (most recent call last):",
+      "  File \"/home/runner/work/literate-enigma/literate-enigma/.github/video-revision-batch/illustrated_tail.py\", line 364, in <module>",
+      "    main()",
+      "  File \"/home/runner/work/literate-enigma/literate-enigma/.github/video-revision-batch/illustrated_tail.py\", line 239, in main",
+      "    image_row, choice, approved = approved_inputs(args)",
+      "                                  ^^^^^^^^^^^^^^^^^^^^^",
+      "  File \"/home/runner/work/literate-enigma/literate-enigma/.github/video-revision-batch/illustrated_tail.py\", line 127, in approved_inputs",
+      "    assert sha(args.illustration) == row['sha256'], 'Wrong or changed approved book illustration.'",
+      "           ^^^^^^^^^^^^^^^^^^^^^^",
+      "  File \"/home/runner/work/literate-enigma/literate-enigma/.github/video-revision-batch/illustrated_tail.py\", line 44, in sha",
+      "    with Path(path).open('rb') as stream:",
+      "         ^^^^^^^^^^^^^^^^^^^^^",
+      "  File \"/opt/hostedtoolcache/Python/3.11.18/x64/lib/python3.11/pathlib.py\", line 1044, in open",
+      "    return io.open(self, mode, buffering, encoding, errors, newline)",
+      "           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+      "FileNotFoundError: [Errno 2] No such file or directory: '/home/runner/work/literate-enigma/literate-enigma/插图阅读小册/illustrations/10.png'"
+    ]
+  },
+  "error": "approved-illustrated-tail.log: exit 1",
+  "reference_gain_failure_diagnostic": {
+    "acceptance": false,
+    "diagnostic_only": true,
+    "program_present": true,
+    "reference_meta_present": true,
+    "actual_pcm_present": true,
+    "current_post_check_present": true,
+    "exit": 0,
+    "program_sha256": "e9c6fa0ad2147ab6227919c2039406b87a4865567d1c0ceaa70c456c1bd02e60",
+    "file": "10-reference-gain-diagnostic.json",
+    "sha256": "0b8bf335e6d584dd79340df27d713a08e7d458716ce7c03362f6fb4a11c1f684",
+    "anchor_summary": {
+      "count": 288,
+      "same_waveform_candidates": 276,
+      "median_fitted_gain": 0.7936205639621516,
+      "median_fitted_to_default_gain": 1.0000007088786225,
+      "fitted_gain_min": 0.793593816976434,
+      "fitted_gain_max": 0.7936347913262766,
+      "inferred_kept_input_peak": 1.121442715088775,
+      "default_gain_fails_original_2_2_lsb_limit_count": 0
+    },
+    "diagnostic_error": null
+  },
+  "failed_current_video": {
+    "exported": true,
+    "passed": false,
+    "acceptance": false,
+    "purpose": "failed current-attempt video for diagnosis; not a final deliverable",
+    "file": "10-failed-draft.mp4",
+    "sha256": "6cf4ffb5108d3cbfd6ef8822f55189a63dffac42e47190d5e89063ea2800a69e",
+    "width": 3840,
+    "height": 2160,
+    "proof": "10-failed-draft-proof.json",
+    "proof_sha256": "2f2fad8ad462cdf28f5752b0fcb9ca3715f669eeb7013fe665dc06a28ed3be03",
+    "derived_clip_count": 1
+  }
+}

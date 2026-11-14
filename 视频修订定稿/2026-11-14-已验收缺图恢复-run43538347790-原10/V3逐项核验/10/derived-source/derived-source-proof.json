@@ -1,0 +1,176 @@
+{
+  "status": "passed",
+  "article": "10",
+  "origin": "derived_after_final_QC",
+  "actual_original_job_execution_claimed": false,
+  "used_generator_observation": "exported_actual_production_file; execution observation is a separate original fact",
+  "source_json_sha256": "289affbd790d95b034b0422f1ec645be5de15be647ba88c43fcb4f341676685d",
+  "derived_generator_sha256": "6ccfe5dc5905da7ce85f85ab6b82d2d027ef4134408ad32ce1aad7fde060b085",
+  "request_json_sha256": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
+  "request_generator_sha256": "8bf8c79662f5342d56316b3a2f36c19ca269dd92796ca78e459b7955ade84d9d",
+  "request_manuscript_sha256": "ff63cf94e4d2c835e2e2f1ffd3e6c5642f0916f0b13c012f1f13c3dff716d47a",
+  "immutable_native_status_sha256": "6b687e1d5de352d2d131405e9dcf9d678516c69645fbea929e9ffd97dd96f3f1",
+  "factory_program_sha256": "1514e91aee9dc04424e5b755cee37b65b8dadef9717f3e6c0cede35f1c03e044",
+  "original_helper_sha256": {
+    "初稿生成/核对.py": "c635aee82e0fe4dff9f70dcae03e2f797aadb670c8ebe6c8f202b82a35a87a74",
+    "重点词被去掉.py": "b898e63bb0954f0f17b90f92c2af41b3264ca60b7fd264e1cfa632f3d1e86f93"
+  },
+  "original_helper_exit": 0,
+  "whole_JSON_roundtrip_exact": true,
+  "semantic_control_invariants": {
+    "visible_body_notes_summary_and_focus_unchanged": true,
+    "layout_only_newlines_and_T38_bold_allowed": true,
+    "audio_render_title_metadata_unchanged": false,
+    "effective_audio_render_title_controls_unchanged": true,
+    "official_regenerated_nonaudio_rationale_updates": [
+      {
+        "path": "/结尾句/S17/依据",
+        "before": "全篇结尾句按 07 定下的标准（用户 2026-10-10 同意并要求所有视频统一）：前段 0.8、最后一段“its fame began with a bare wall.” 0.78、前面停 0.4 秒。接点由 结尾句接点.py 自动找：0.8 那遍最后一个标点后最长静音（20 ms）的正中 0.682 s，0.78 那遍（15 ms）的正中 0.757 s，所在帧和两侧各 5 ms 都低于 -55 dB（程序以 08 校准：与人工核实的接点落在同一段静音里）；2026-10-14 用户（第16条）：“我希望这个so有那种嘲讽的语气 意味深长的语气，有点像中文发音 拼音 三声 那种音调，还有就是 if so 后面的这个逗号 不要停顿太久”：配音模型 so 怎么写标点都是一路降下去，整句 0.80 那一遍里 so 的浊音段用 PSOLA 换成三声曲线（140 → 105 → 176 Hz，从中低起、先降后升，像三声 214）、拉长 1.8 倍；逗号后停顿 0.7 → 0.4 秒（标准逗号停顿）；“If so,”比后半句响 5.9 LU，前段 -5.5 dB",
+        "after": "全篇结尾句按 07 定下的标准（用户 2026-10-10 同意并要求所有视频统一）：前段 0.8、最后一段“its fame began with a bare wall.” 0.78、前面停 0.4 秒。接点由 结尾句接点.py 自动找：0.8 那遍最后一个标点后最长静音（20 ms）的正中 0.682 s，0.78 那遍（15 ms）的正中 0.757 s，所在帧和两侧各 5 ms 都低于 -55 dB（程序以 08 校准：与人工核实的接点落在同一段静音里）",
+        "before_sha256": "e89279d84d3062b1202ae2709d433d84fd2a6a35d90fbe231c7cb83e40b88f7c",
+        "after_sha256": "304aeefc9b6c1c42142b52af498e3b83debdf8eebb8726f7fa60e77590fe81f2",
+        "effective_controls_identical": true,
+        "effective_controls": {
+          "前段语速": 0.8,
+          "最后一段语速": 0.78,
+          "最后一段前停顿": 0.4,
+          "接点": [
+            16380,
+            18180
+          ],
+          "前段音调": {
+            "曲线": [
+              [
+                0,
+                140
+              ],
+              [
+                0.45,
+                105
+              ],
+              [
+                0.9,
+                176
+              ],
+              [
+                1,
+                178
+              ]
+            ],
+            "拉长": 1.8,
+            "范围": [
+              0.41,
+              0.62
+            ]
+          },
+          "前段增益dB": -3.5
+        },
+        "official_regenerator": "结尾句接点.py",
+        "official_program_sha256": "15303682c605dd4544172c92d42c016d8d0536e0c6d1f9816d0d38dd5d2b9a61",
+        "basis": "Actual fixed official template regenerates rationale (lines11/122); root explicitly authorized this exact nonaudio prose update on 2026-11-14. Both original source versions retained; native full audio gates and actual AAC/absolute timing invariants remain mandatory."
+      }
+    ],
+    "observed_original_QC_interval_fingerprint_updates": [
+      {
+        "path": "/区间声音指纹",
+        "before_present": false,
+        "after": {
+          "S1": "293b90a323e8",
+          "S2": "b6609133b18b",
+          "S3": "e30f93969178",
+          "S4": "9b35aac2d69e",
+          "S5": "a8a91b0ac1be",
+          "S7": "90fda5907512",
+          "S8": "c9d016987212",
+          "S10": "9cd0e3d45089",
+          "S11": "f761995721b9",
+          "S12": "598dd10d4a2d",
+          "S13": "09c2720f0ff9",
+          "S14": "3654af72cf8b",
+          "S15": "07526af18057",
+          "S16": "629aa9d4f741"
+        },
+        "basis": "Actual source collector observed original maker A45 interval/raw-synthesis validity hashes; fixed make_video.py lines391ff checks these. Root explicitly approved exact10/11/12 observed additions; all other effective metadata remains deeply identical."
+      }
+    ]
+  },
+  "changed_paths": [
+    "/sentences/1/chunks/2/note",
+    "/sentences/16/chunks/0/note",
+    "/区间声音指纹",
+    "/核对确认/删除段/S1 raw 3.1200-3.5033/依据",
+    "/核对确认/删除段/S1 raw 3.1200-3.5033/配音指纹",
+    "/核对确认/删除段/S10 raw 1.7246-1.9997/依据",
+    "/核对确认/删除段/S10 raw 1.7246-1.9997/配音指纹",
+    "/核对确认/删除段/S11 raw 6.6102-6.7561/依据",
+    "/核对确认/删除段/S11 raw 6.6102-6.7561/配音指纹",
+    "/核对确认/删除段/S13 raw 3.7338-3.8706/依据",
+    "/核对确认/删除段/S13 raw 3.7338-3.8706/配音指纹",
+    "/核对确认/删除段/S14 raw 4.5739-4.7000/依据",
+    "/核对确认/删除段/S14 raw 4.5739-4.7000/配音指纹",
+    "/核对确认/删除段/S2 raw 3.0400-3.4425/依据",
+    "/核对确认/删除段/S2 raw 3.0400-3.4425/配音指纹",
+    "/核对确认/删除段/S4 raw 5.0892-5.2500/依据",
+    "/核对确认/删除段/S4 raw 5.0892-5.2500/配音指纹",
+    "/核对确认/删除段/S5 raw 2.5450-2.9400/依据",
+    "/核对确认/删除段/S5 raw 2.5450-2.9400/配音指纹",
+    "/核对确认/非人声/10.66–10.68s/依据",
+    "/核对确认/非人声/10.66–10.68s/配音指纹",
+    "/核对确认/非人声/103.39–103.47s/依据",
+    "/核对确认/非人声/103.39–103.47s/配音指纹",
+    "/核对确认/非人声/107.01–107.03s/依据",
+    "/核对确认/非人声/107.01–107.03s/配音指纹",
+    "/核对确认/非人声/118.53–118.64s/依据",
+    "/核对确认/非人声/118.53–118.64s/配音指纹",
+    "/核对确认/非人声/12.85–12.87s/依据",
+    "/核对确认/非人声/12.85–12.87s/配音指纹",
+    "/核对确认/非人声/129.93–129.94s/依据",
+    "/核对确认/非人声/129.93–129.94s/配音指纹",
+    "/核对确认/非人声/15.48–15.50s/依据",
+    "/核对确认/非人声/15.48–15.50s/配音指纹",
+    "/核对确认/非人声/16.48–16.50s/依据",
+    "/核对确认/非人声/16.48–16.50s/配音指纹",
+    "/核对确认/非人声/20.78–20.86s/依据",
+    "/核对确认/非人声/20.78–20.86s/配音指纹",
+    "/核对确认/非人声/42.95–43.04s/依据",
+    "/核对确认/非人声/42.95–43.04s/配音指纹",
+    "/核对确认/非人声/42.99–43.02s/依据",
+    "/核对确认/非人声/42.99–43.02s/配音指纹",
+    "/核对确认/非人声/44.09–44.12s/依据",
+    "/核对确认/非人声/44.09–44.12s/配音指纹",
+    "/核对确认/非人声/67.77–67.78s/依据",
+    "/核对确认/非人声/67.77–67.78s/配音指纹",
+    "/核对确认/非人声/69.82–69.90s/依据",
+    "/核对确认/非人声/69.82–69.90s/配音指纹",
+    "/核对确认/非人声/81.19–81.21s/依据",
+    "/核对确认/非人声/81.19–81.21s/配音指纹",
+    "/核对确认/非人声/87.83–87.91s/依据",
+    "/核对确认/非人声/87.83–87.91s/配音指纹",
+    "/核对确认/非人声/97.61–97.66s/依据",
+    "/核对确认/非人声/97.61–97.66s/配音指纹",
+    "/核对确认/非人声/99.12–99.20s/依据",
+    "/核对确认/非人声/99.12–99.20s/配音指纹",
+    "/核对确认/高亮/S10 第2块/依据",
+    "/核对确认/高亮/S10 第2块/配音指纹",
+    "/结尾句/S17/依据"
+  ],
+  "original_inputs_unchanged": true,
+  "manuscript_origin": "immutable request used for roundtrip; actual exported production manuscript recorded separately",
+  "manuscript_runtime_observed": true,
+  "no_repository_or_remote_write": true,
+  "scope": "data fidelity and regeneration only; final JSON artifact-member origin must additionally be checked by delivery validation/archive",
+  "final_JSON_artifact_origin_checked_here": false,
+  "observed_used_generator": {
+    "file": "10-used-gen.py",
+    "sha256": "25ee9232b8ec482ccd56ae41ff181e4b151b6ce6aefea5c0fb584099493e79c7",
+    "origin": "actual_production_filesystem"
+  },
+  "original_production_generator_execution_observed": false,
+  "original_production_generator_execution_evidence": "No fresh generator execution log; do not claim this GEN was executed during rendering.",
+  "actual_production_manuscript": {
+    "file": "10-actual-working-manuscript.md",
+    "sha256": "a89200ce829fc702d9ab03b0c331e53f779329ff64904ee5d3aaabd0c33f418a",
+    "origin": "actual_production_filesystem"
+  },
+  "derived_generator_original_job_execution_claimed": false
+}

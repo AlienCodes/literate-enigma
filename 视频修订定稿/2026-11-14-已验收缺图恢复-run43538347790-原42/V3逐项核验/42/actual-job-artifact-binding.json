@@ -1,0 +1,3563 @@
+{
+  "actual_successful_job_verified": false,
+  "actual_genuine_upstream_pass_with_missing_art_recovery": true,
+  "actual_job_uploaded_selected_artifact": false,
+  "overall_matrix_success_required": false,
+  "acceptance_basis": "genuine immutable upstream quality-passed 4K + original outer missing-art failure retained + actual local approved-art postprocessing and complete final V3 media validation",
+  "run": {
+    "id": 43538347790,
+    "name": "本轮改动篇目原缓存正式4K",
+    "node_id": "WFR_kwLODJcpM88AAAAKIxZ3Dg",
+    "head_branch": "codex/finish-05-and-summaries-20261112",
+    "head_sha": "e558509b9bfb09fa869511c09a54be9a156b1471",
+    "path": ".github/workflows/produce-revision-batch4K.yml",
+    "display_title": "Rebuild revised articles in official4K: 10,11,12,44,51,07,42",
+    "run_number": 13,
+    "event": "push",
+    "status": "completed",
+    "conclusion": "failure",
+    "workflow_id": 417752518,
+    "check_suite_id": 117892308151,
+    "check_suite_node_id": "CS_kwDODJcpM88AAAAbcu3ctw",
+    "url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43538347790",
+    "html_url": "https://github.com/AlienCodes/literate-enigma/actions/runs/43538347790",
+    "pull_requests": [],
+    "created_at": "2026-11-14T01:04:42Z",
+    "updated_at": "2026-11-14T01:37:36Z",
+    "actor": {
+      "login": "AlienCodes",
+      "id": 52247027,
+      "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/AlienCodes",
+      "html_url": "https://github.com/AlienCodes",
+      "followers_url": "https://api.github.com/users/AlienCodes/followers",
+      "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+      "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+      "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+      "repos_url": "https://api.github.com/users/AlienCodes/repos",
+      "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "run_attempt": 1,
+    "referenced_workflows": [],
+    "run_started_at": "2026-11-14T01:04:42Z",
+    "triggering_actor": {
+      "login": "AlienCodes",
+      "id": 52247027,
+      "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/AlienCodes",
+      "html_url": "https://github.com/AlienCodes",
+      "followers_url": "https://api.github.com/users/AlienCodes/followers",
+      "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+      "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+      "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+      "repos_url": "https://api.github.com/users/AlienCodes/repos",
+      "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "jobs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43538347790/attempts/1/jobs",
+    "logs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43538347790/attempts/1/logs",
+    "check_suite_url": "https://api.github.com/repos/AlienCodes/literate-enigma/check-suites/117892308151",
+    "artifacts_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43538347790/artifacts",
+    "cancel_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43538347790/cancel",
+    "rerun_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43538347790/rerun",
+    "previous_attempt_url": null,
+    "workflow_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/workflows/417752518",
+    "head_commit": {
+      "id": "e558509b9bfb09fa869511c09a54be9a156b1471",
+      "tree_id": "83a21cb1c7dbf207d235aa6d02dfdd697b556ab0",
+      "message": "Rebuild revised articles in official4K: 10,11,12,44,51,07,42",
+      "timestamp": "2026-11-14T01:04:39Z",
+      "author": {
+        "name": "the Sword God",
+        "email": "52247027+AlienCodes@users.noreply.github.com"
+      },
+      "committer": {
+        "name": "the Sword God",
+        "email": "52247027+AlienCodes@users.noreply.github.com"
+      }
+    },
+    "repository": {
+      "id": 211233075,
+      "node_id": "MDEwOlJlcG9zaXRvcnkyMTEyMzMwNzU=",
+      "name": "literate-enigma",
+      "full_name": "AlienCodes/literate-enigma",
+      "private": false,
+      "owner": {
+        "login": "AlienCodes",
+        "id": 52247027,
+        "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+        "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/AlienCodes",
+        "html_url": "https://github.com/AlienCodes",
+        "followers_url": "https://api.github.com/users/AlienCodes/followers",
+        "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+        "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+        "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+        "repos_url": "https://api.github.com/users/AlienCodes/repos",
+        "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/AlienCodes/literate-enigma",
+      "description": "I am exploring this world!",
+      "fork": false,
+      "url": "https://api.github.com/repos/AlienCodes/literate-enigma",
+      "forks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/forks",
+      "keys_url": "https://api.github.com/repos/AlienCodes/literate-enigma/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/AlienCodes/literate-enigma/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/AlienCodes/literate-enigma/teams",
+      "hooks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/hooks",
+      "issue_events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/events",
+      "assignees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/AlienCodes/literate-enigma/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/tags",
+      "blobs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/AlienCodes/literate-enigma/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/AlienCodes/literate-enigma/languages",
+      "stargazers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/stargazers",
+      "contributors_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contributors",
+      "subscribers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscribers",
+      "subscription_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscription",
+      "commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/AlienCodes/literate-enigma/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/AlienCodes/literate-enigma/merges",
+      "archive_url": "https://api.github.com/repos/AlienCodes/literate-enigma/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/AlienCodes/literate-enigma/downloads",
+      "issues_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/AlienCodes/literate-enigma/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/AlienCodes/literate-enigma/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/AlienCodes/literate-enigma/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/AlienCodes/literate-enigma/labels{/name}",
+      "releases_url": "https://api.github.com/repos/AlienCodes/literate-enigma/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/deployments"
+    },
+    "head_repository": {
+      "id": 211233075,
+      "node_id": "MDEwOlJlcG9zaXRvcnkyMTEyMzMwNzU=",
+      "name": "literate-enigma",
+      "full_name": "AlienCodes/literate-enigma",
+      "private": false,
+      "owner": {
+        "login": "AlienCodes",
+        "id": 52247027,
+        "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+        "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/AlienCodes",
+        "html_url": "https://github.com/AlienCodes",
+        "followers_url": "https://api.github.com/users/AlienCodes/followers",
+        "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+        "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+        "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+        "repos_url": "https://api.github.com/users/AlienCodes/repos",
+        "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/AlienCodes/literate-enigma",
+      "description": "I am exploring this world!",
+      "fork": false,
+      "url": "https://api.github.com/repos/AlienCodes/literate-enigma",
+      "forks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/forks",
+      "keys_url": "https://api.github.com/repos/AlienCodes/literate-enigma/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/AlienCodes/literate-enigma/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/AlienCodes/literate-enigma/teams",
+      "hooks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/hooks",
+      "issue_events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/events",
+      "assignees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/AlienCodes/literate-enigma/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/tags",
+      "blobs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/AlienCodes/literate-enigma/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/AlienCodes/literate-enigma/languages",
+      "stargazers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/stargazers",
+      "contributors_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contributors",
+      "subscribers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscribers",
+      "subscription_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscription",
+      "commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/AlienCodes/literate-enigma/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/AlienCodes/literate-enigma/merges",
+      "archive_url": "https://api.github.com/repos/AlienCodes/literate-enigma/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/AlienCodes/literate-enigma/downloads",
+      "issues_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/AlienCodes/literate-enigma/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/AlienCodes/literate-enigma/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/AlienCodes/literate-enigma/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/AlienCodes/literate-enigma/labels{/name}",
+      "releases_url": "https://api.github.com/repos/AlienCodes/literate-enigma/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/deployments"
+    }
+  },
+  "job": {
+    "id": 132273627087,
+    "run_id": 43538347790,
+    "workflow_name": "本轮改动篇目原缓存正式4K",
+    "head_branch": "codex/finish-05-and-summaries-20261112",
+    "run_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43538347790",
+    "run_attempt": 1,
+    "node_id": "CR_kwDODJcpM88AAAAezB9fzw",
+    "head_sha": "e558509b9bfb09fa869511c09a54be9a156b1471",
+    "url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/jobs/132273627087",
+    "html_url": "https://github.com/AlienCodes/literate-enigma/actions/runs/43538347790/job/132273627087",
+    "status": "completed",
+    "conclusion": "failure",
+    "created_at": "2026-11-14T01:07:18Z",
+    "started_at": "2026-11-14T01:19:25Z",
+    "completed_at": "2026-11-14T01:37:35Z",
+    "name": "produce (42)",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-11-14T01:19:26Z",
+        "completed_at": "2026-11-14T01:19:27Z"
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-11-14T01:19:27Z",
+        "completed_at": "2026-11-14T01:19:41Z"
+      },
+      {
+        "name": "Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3,
+        "started_at": "2026-11-14T01:19:41Z",
+        "completed_at": "2026-11-14T01:19:41Z"
+      },
+      {
+        "name": "Run actions/cache/restore@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4,
+        "started_at": "2026-11-14T01:19:41Z",
+        "completed_at": "2026-11-14T01:20:27Z"
+      },
+      {
+        "name": "确认恢复既有机器缓存",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5,
+        "started_at": "2026-11-14T01:20:27Z",
+        "completed_at": "2026-11-14T01:20:28Z"
+      },
+      {
+        "name": "准备原有核查工具",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6,
+        "started_at": "2026-11-14T01:20:28Z",
+        "completed_at": "2026-11-14T01:21:49Z"
+      },
+      {
+        "name": "Run actions/cache/restore@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7,
+        "started_at": "2026-11-14T01:21:49Z",
+        "completed_at": "2026-11-14T01:21:49Z"
+      },
+      {
+        "name": "确认原快测印章缓存命中",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8,
+        "started_at": "2026-11-14T01:21:49Z",
+        "completed_at": "2026-11-14T01:21:49Z"
+      },
+      {
+        "name": "原程序做稿并正式定稿4K",
+        "status": "completed",
+        "conclusion": "failure",
+        "number": 9,
+        "started_at": "2026-11-14T01:21:49Z",
+        "completed_at": "2026-11-14T01:37:29Z"
+      },
+      {
+        "name": "仅保留本篇公开成片和核验材料",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 10,
+        "started_at": "2026-11-14T01:37:29Z",
+        "completed_at": "2026-11-14T01:37:32Z"
+      },
+      {
+        "name": "Post Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 19,
+        "started_at": "2026-11-14T01:37:32Z",
+        "completed_at": "2026-11-14T01:37:32Z"
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 20,
+        "started_at": "2026-11-14T01:37:32Z",
+        "completed_at": "2026-11-14T01:37:32Z"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 21,
+        "started_at": "2026-11-14T01:37:32Z",
+        "completed_at": "2026-11-14T01:37:32Z"
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/AlienCodes/literate-enigma/check-runs/132273627087",
+    "labels": [
+      "ubuntu-latest"
+    ],
+    "runner_id": 1000008381,
+    "runner_name": "GitHub Actions 1000008381",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  "artifact": {
+    "id": 14091468900,
+    "node_id": "MDg6QXJ0aWZhY3QxNDA5MTQ2ODkwMA==",
+    "name": "article42-revised-canonical-4K-final",
+    "size_in_bytes": 26485807,
+    "url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/artifacts/14091468900",
+    "archive_download_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/artifacts/14091468900/zip",
+    "expired": false,
+    "digest": "sha256:e12ac12bce67e02d05d11ca8d4e98ebc1fee5672f868fc7c82898fa6b2633378",
+    "created_at": "2026-11-14T01:37:32Z",
+    "updated_at": "2026-11-14T01:37:32Z",
+    "expires_at": "2026-12-14T01:37:29Z",
+    "workflow_run": {
+      "id": 43538347790,
+      "repository_id": 211233075,
+      "head_repository_id": 211233075,
+      "head_branch": "codex/finish-05-and-summaries-20261112",
+      "head_sha": "e558509b9bfb09fa869511c09a54be9a156b1471"
+    }
+  },
+  "upload_step_proof": {
+    "unambiguous_selected_step_upload": false,
+    "auxiliary_only": true,
+    "reason": "Upload action log block is missing or ambiguous in selected API step interval",
+    "acceptance_blocked_by_log": false
+  },
+  "native_status": {
+    "article": "42",
+    "passed": true,
+    "stage": "final4K-passed",
+    "original_audit_and_quality_thresholds_unchanged": true,
+    "original_maker_unchanged": true,
+    "core_repairs": [
+      {
+        "target": "视频/工具/草稿声音.sh",
+        "file": "files/视频/工具/草稿声音.sh",
+        "original_sha256": "0ce3277812cf16ed30438509b6dc97db0c26725db4c5db5d9b058c3ef6531aa2",
+        "patched_sha256": "957d7eb1598698ea33ff77d83379256ecae258d84d588753d561a902284be439",
+        "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+      },
+      {
+        "target": "视频/工具/句内响度.py",
+        "file": "files/视频/工具/句内响度.py",
+        "original_sha256": "58735b7173a3c03efa61fb300b4aed4039c164fa970e0593a40bae2a3f3cbd27",
+        "patched_sha256": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea",
+        "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+      },
+      {
+        "target": "视频/工具/独立复核/synth.py",
+        "file": "files/视频/工具/独立复核/synth.py",
+        "original_sha256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+        "patched_sha256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+        "repair_scope": "validated unprocessed raw-mother reference input only; independent transforms/audit/thresholds retained"
+      }
+    ],
+    "strict_production_cache": true,
+    "pdf_requested": false,
+    "check_summaries": {
+      "certified-core-original-stamp-verification.log": [],
+      "original-restored-stamp.log": [],
+      "canonical-module-copy.log": [],
+      "canonical-draft-00.log": [
+        "第42篇 做完（440 秒）：修了 1 处、疑点 25 处",
+        "① 文本：通过，自动修 1 处",
+        "② 声音：42 词尾辅音核对 问题数 0；42 纯人声核对（配音指纹 961c831462c1）问题数 0；问题数 0；42 句间停顿核对 问题数 0；问题数 0",
+        "③ 出片前核查：通过",
+        "⑤ 出片后核查：全部通过",
+        "⑥ 已拷 视频/视频/草稿1080p/42_1080p.mp4（--不推）"
+      ],
+      "canonical-final4K-00.log": [
+        "第42篇 用户定稿原话：有"
+      ],
+      "original-stamp-after-production.log": []
+    },
+    "actual_native_core_certification": {
+      "run_id": 43535822030,
+      "job_id": 132264443476,
+      "commit": "395e8da264fafa2453a42ee70a3f7aed8303a769",
+      "actual_full_quickcheck_exit": 0,
+      "actual_full_quickcheck_seconds": 478.16,
+      "artifact_id": 14089812323,
+      "artifact_zip_sha256": "5e396c84e4a6fc7c6cc737ceb8648d7f15f397e9551806e032c93db8ab0963b8",
+      "full_original_quickcheck_log_sha256": "dbe7f6e08d2b7c3a5f9a2f925bb75a662aed725c780e1bc6714706807552a294",
+      "article_audio_or_video_passed_not_implied": true
+    },
+    "actual_native_fastcheck_stamp": {
+      "target": "视频/工具/新管/快测通过.json",
+      "file": "files/视频/工具/新管/快测通过.json",
+      "sha256": "6ebc7aa41f79f77258fa333b665af258e007daa36a4ea290de972cd3da7b42f2",
+      "origin": "actual unmodified original full quickcheck, native run43535822030"
+    },
+    "reviewed_regression_resource": {
+      "target": "视频/工具/新管/回归基准_27.json",
+      "file": "files/视频/工具/新管/回归基准_27.json",
+      "sha256": "b8ddb4656ae27cbfc7ec8e3b99511983b4e568997bd4ad4ee33c364f3926ae94",
+      "origin": "pre-existing root-reviewed 67-screen data; original voice/segment MD5 unchanged"
+    },
+    "core_repair_manifest_sha256": "1b1558108d15603e5711e200135651d6c7700a583d8bcf53ad8753683ed05a5e",
+    "reviewed_gain_preservation_mode": true,
+    "real_restored_stamp_validated": true,
+    "reviewed_cross_article_context": {
+      "provided": true,
+      "manifest_sha256": "e5d06b6488ca595da3ee2029e5208a061d8446278f6b1e2ca7c42f36e82c0f8f",
+      "files_sha256": {
+        "视频/脚本/01.json": "2be2f80a69af28703992204ac95f987c745362c326e62ad81b3cd8e0e0735d3a",
+        "新版定稿/01-the-robber-who-thought-lemon-juice-made-him-invisible.md": "572054065b5bb65446bf8939a21c789c1e9c7664d82da5117c43efdded894351",
+        "视频/脚本/02.json": "0403368c77fd3e0f91e1ee3780e1c7c147894ad13c16b5f14707d700a8f717c8",
+        "新版定稿/02-the-truth-about-one-marshmallow.md": "91b92505aad03f963861bec39e96f0a472c126d1d57c9fc538676c32f65e545c",
+        "视频/脚本/03.json": "527f3bf4a11843f4d606188dabc6ebce6830da3fb454a49c782e3a595cb47407",
+        "新版定稿/03-the-doctor-who-drank-bacteria-to-win-an-argument.md": "6dfb56504882e24854a3584fd740e7f6601e3f2532818aee3a56d5330d317aa3",
+        "视频/脚本/04.json": "93cc1ff58d65ebe43a65ecb2fb2dbd2da262d80877c05740bbdf4eab4eaca1e8",
+        "新版定稿/04-the-brain-that-learned-london.md": "a8ccb31ffff50aaae77de4b83de1847fafae1d585981cf960c5880c409f6cfc3",
+        "视频/脚本/05.json": "2282acbfa4b82825f93261ec6c18359eb47fd3f7c639319ac5058d126643e136",
+        "新版定稿/05-the-fingerprint-in-the-blood.md": "612deac4ed066489e04e214ca969f8f27dda05856e0ef0ed2e540e7a4a52ae34",
+        "视频/脚本/06.json": "2cbf1d6cd6e66a59285298ea830f5ef914590b64286d40b2ae5f3168aa27a2e9",
+        "新版定稿/06-the-horse-that-could-count.md": "7fd21ba491c7596c53c486f2bb0b0f2f6da8e67bac75461a4649a7caff822f74",
+        "视频/脚本/07.json": "842e44e5aa19fddcfa239cb6530c5152341cd86e11db959543d02d8670ca13e8",
+        "新版定稿/07-the-octopus-that-escaped.md": "b8544281bb2ada88fce9d1082cbc30233dcb63ee3e9c2bbefafc22cb28b8cb39",
+        "视频/脚本/08.json": "254832e09f12759d950384dd9f31f671ad5a3bc1590b7466065dd3ef5fe4b8d5",
+        "新版定稿/08-the-doctor-who-solved-the-cholera-mystery.md": "0b2bfa68070ce585a452f6b7034d03c3683e710dcabec5e86d7b221950dc7bab",
+        "视频/脚本/09.json": "fa3e429351d629de188c184d04e9986200e16e80606fcbec82332b6433301dae",
+        "新版定稿/09-the-great-emu-war.md": "af5c3e844bad15f94bfc43aeed6d7417c4bfae85f026b194da667a7a3bdb6196",
+        "视频/脚本/10.json": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
+        "新版定稿/10-the-stolen-smile.md": "ff63cf94e4d2c835e2e2f1ffd3e6c5642f0916f0b13c012f1f13c3dff716d47a",
+        "视频/脚本/11.json": "665cbb80cc70b700ecc0cc5813209fd100ad4fa8f0eead3929b9e53778d9d07f",
+        "新版定稿/11-move-37.md": "7e0b49b346c1fa3ab994a11a2301167c0d6a1bb00916508bdc0b1acf71e68053",
+        "视频/脚本/12.json": "e3bfbcce6f1a8e14cfe451d656574353321e297c90c62f5a7b422f37478311d5",
+        "新版定稿/12-the-79-days-of-new-coke.md": "5a23c1e0c81318527bcbf27573487d1845c5318905a2b1e020cc6e2eaf5d643f",
+        "视频/脚本/13.json": "3687b6c42a6d524d0d7e40a47ed02c37b18abe8d524db4f5914abad52019a63c",
+        "新版定稿/13-eleven-days-without-sleep.md": "72b842de127132e386e9e52a1719ec96765e94958f56687987f53e2801c69704",
+        "视频/脚本/14.json": "17141351875ddb8f0e308602c0b6ab85cbf5126a4d0118978c25c869db769fee",
+        "新版定稿/14-the-fungus-that-turns-ants-into-zombies.md": "e114c9e1783c80a2ffdb60af05e824f93a8ea8725905cb733560abe1c0ad01a8",
+        "视频/脚本/15.json": "95fd14da0704f4cb39120284bcd2c48836930ba3b9e9395edb0f4850d0eb0814",
+        "新版定稿/15-the-myth-of-the-unsinkable.md": "68e236868c4b466928ff2a60358250b9592dfe9287b66561b1e5a80b4d14de4f",
+        "视频/脚本/16.json": "d25aa07f3fac316c26c2ae1006d3efa7eb82a396b66150432b50239c1628396d",
+        "新版定稿/16-the-bread-made-from-air.md": "4da63148111213f6d77451b0eb4193893e6fc2fc170400bc39ce5f5ffcaa0b20",
+        "视频/脚本/17.json": "bd541a1b2881ea8ea7649cdfe571cc449672bde8792b50a2808a7832ce2a9ee1",
+        "新版定稿/17-the-curse-of-the-pharaoh.md": "a2e8d92f9136e1b22fcc0799f9a4d281092f0e547cc68242e090241d7b09e222",
+        "视频/脚本/18.json": "c9469b18874c389f20a890b41491f1284e318e47d91c0f3d519b055d2c9ba752",
+        "新版定稿/18-the-mould-that-changed-the-world.md": "ef41cea03f471fe3b9a53939c843e450da3325eb711f6414e108ae92a7518dd8",
+        "视频/脚本/19.json": "cc3c5eea0f7d9ec0712b2e58adba7e5ef8b61d6518a322f9b25a12fcc45282fb",
+        "新版定稿/19-tulip-mania.md": "3882d487383b759c31dda4785966091c362960cd873a5d83c530d08d52e2e97c",
+        "视频/脚本/20.json": "cc5ed6d7be8767e5e7e9b098e8f3836821c0b3f51c17581b2746722da1cf3001",
+        "新版定稿/20-the-5000-year-old-murder-in-the-ice.md": "8d55638070787f7ff5432c197292af1188c463a8b018e01bdefc32999b888e95",
+        "视频/脚本/21.json": "61c1569a26d7569ee0f586178be6b307b1c394c0a30c3cb02541c910038b0589",
+        "新版定稿/21-the-man-who-sold-the-eiffel-tower-twice.md": "e8e966b70f579235d696ba11fb01d3b2cae3fa26efb9071bbea95071be259e1f",
+        "视频/脚本/22.json": "e3027a42c532fee9935afcecdd0542713cbb907183802c2345b9472f93b75f59",
+        "新版定稿/22-the-building-that-melted-a-car.md": "49ae09483bc80bbc40a71551cd98aebec355d96d9ff7b2bcdea59a06fe599267",
+        "视频/脚本/23.json": "c4574a79fd3a58577a1402ce095ea9e4a0ea1f98883ce63e3cc60d126e819409",
+        "新版定稿/23-the-man-who-gave-machines-a-mind.md": "72ed3049e87fe75ce1e753d5e443bdbe6a7ab72f6e282e8467fbbb62be873169",
+        "视频/脚本/24.json": "f08620b534bb10b718f7515c805dcb541721427d855bd5a092b8954847a351b8",
+        "新版定稿/24-survival-in-the-ice.md": "cb7f810d9a74256e0c00625290be4f16207feb90f5719ca87d5d7c9912b91307",
+        "视频/脚本/25.json": "c73e854e052b3df9bd920d4a59fafb183dee19bd58765fa426af6ea3d7c9a329",
+        "新版定稿/25-apollo-13-the-successful-failure.md": "b6b7d55fe66e6e32116431ea955778fab779b8bda622df0ba1036c2f40a3969f",
+        "视频/脚本/26.json": "456cf19082860ca5d4a1f88b68aa7c8303d901a980f1db50ca130de5288bc891",
+        "新版定稿/26-the-language-the-children-invented.md": "9e9ad8021ddabc17157d73dc739383f9676df3583cf965e470fcd773e26a3761",
+        "视频/脚本/27.json": "966d26ab222e43b25d5d4ae569e451ec4364548e4231a9f1b9fc3cd8cc9754cf",
+        "新版定稿/27-life-in-the-forbidden-zone.md": "e276bcf76225b9ae16cd8cfda8c9b726b442fbd625d3718f532b47b09b21b16f",
+        "视频/脚本/28.json": "a6a4befc0291727f5cc3f8b50857ee954ef9f936738f014a978ebb4d37a28ea8",
+        "新版定稿/28-a-handful-of-wormwood-that-saved-millions.md": "b9817d3429767d07b6a2eb14cce5422a20cb4e3b89f8b03e6b3d5da2daf91d91",
+        "视频/脚本/29.json": "e916f33df7cacafe7666f0d51af6116bdbc639bc5e9a7a5a92a3420050f227a1",
+        "新版定稿/29-the-volcano-that-gave-us-frankenstein.md": "69045ee19a170c7ea9d0008b468c7e947bc28b639b834c0192dc0aeafc3ef4d0",
+        "视频/脚本/30.json": "b8e250df2282e388aa901c97be46b1bd610b14e38bc14a97d3aca262ef1d43f1",
+        "新版定稿/30-the-stink-that-built-londons-sewers.md": "84dbf19cee0045ea2608b13ee0677cb9623dd8fbb371c67093bf50c64186137a",
+        "视频/脚本/31.json": "d81f8645a1e5663ba8c84668e817cdb218bc6689079fbfd51326b3a7fd3cd384",
+        "新版定稿/31-the-book-twelve-publishers-turned-down.md": "7abd20fed44918dcf01586c056e9d0acd9d2ad3b90aa7d3d403762d9f06d2659",
+        "视频/脚本/32.json": "357aa59bed62154f7302a5efcf528859b303004e028657b93058138fe931bf85",
+        "新版定稿/32-the-planet-that-was-demoted.md": "1421f2b0921e7e9478ebc48777e3e8b2c979172de63d0124015107c3750a3542",
+        "视频/脚本/33.json": "ca51103c1a9d45c9159322765efc86c81f61f6ec78975f160019d21a1d9ee0d7",
+        "新版定稿/33-thirteen-in-the-cave.md": "9862078044ce45a9f6d51aa7d165afdfcf90066d1de98cbb317dd7e8f980610d",
+        "视频/脚本/34.json": "74921848a6bb25a2ba631813f60d4756c9ff90c64c03a2fb936ce34f310ce509",
+        "新版定稿/34-the-game-that-escaped-the-soviet-union.md": "e3244b67b21e283e67f4e88e932a1dbb85bf273a48ee009b3f435e1c5814831c",
+        "视频/脚本/35.json": "d8439077dc2c909b1c6cbd1347f31e9625f25fffe447d6f5945c9492561f1a16",
+        "新版定稿/35-the-bird-that-beat-the-letter-home.md": "ba8c38e38b21a3345624e2d44fd352561d3096cfb6f62214b48ea9b6e66faead",
+        "视频/脚本/36.json": "76daa28f421bd40d8e2744d4e785a34bb8ee67da1403b4b1546db9465c535cef",
+        "新版定稿/36-the-company-that-invented-its-own-killer.md": "411eeb96c8641ee7082b49a5abf4c7343d3f1dbb7ef331064d7c0f3c630fe58f",
+        "视频/脚本/37.json": "b1b8945ccf3581df48ade5714a2d0e93e4cc6812708f95bef6f5e44439106c99",
+        "新版定稿/37-dynamite-for-the-heart.md": "4933e24d2384471a96d9c8c26c15d5224a85dae98d9971a3fed15b4978dafc51",
+        "视频/脚本/38.json": "8d0379032000967c9f72e550574874949f798eefbfbfb58ab2b38e4e23ecbc6b",
+        "新版定稿/38-the-web-beneath-the-woods.md": "abb7eead9f3da0b2b326ceed5a649cfbf71fc28dad22e0d52f7b19caa798c54f",
+        "视频/脚本/39.json": "de2f83f5494d2218b0de6c6ede6b7b1e841e01988ec5ff6a3d7864be19a63494",
+        "新版定稿/39-y2k-the-crisis-that-success-erased.md": "abbc9804661126aa006595031ed8f201ce55e8eb5fd9e1ad5669c0c6fcdb80ab",
+        "视频/脚本/40.json": "1c50d1a47ee6f8528d0f7299e8a45bc8c30312622f3f465a964d21cc1395ee7f",
+        "新版定稿/40-the-glue-that-failed.md": "dce9f78f3a0828307843dd667b7eeebf3380a3630f03d234bd5824870aba61a1",
+        "视频/脚本/41.json": "6b6673ffc1db986f4c355f3685de6a0faf2272cee042c5e917f26a8b3057c2be",
+        "新版定稿/41-the-toad-that-invaded-australia.md": "eca590f97120f4e76d719e29aa07b094f9117cd462f5a70c029331a63b85f710",
+        "视频/脚本/42.json": "eceb10ae92aa4b9cd23180d1138149a7fa7b674385462c898bc0d2283c8739e7",
+        "新版定稿/42-the-telescope-that-needed-glasses.md": "d4aa049779a0eba06c555d76ca14103648378eef90465df424120126fa771280",
+        "视频/脚本/43.json": "f9a7e6b49e095b859de15b773a8560a5be917e5b066b5f4be95deb232bbe6645",
+        "新版定稿/43-from-a-garage-to-the-top-of-the-world.md": "bd70c83e5ac867238ca179f3c9f3548eb9cbdcae1f6df40994aef0bda721ae54",
+        "视频/脚本/44.json": "eb11422f14274c8d1b7cdb27064a4db03624a1af07c66b820899e08cfb4c9940",
+        "新版定稿/44-the-night-sweden-switched-sides.md": "d3f7ad2ac43f02aae9205a15b9808280ca3db597d6ef3b36aca8ca6176c5f74a",
+        "视频/脚本/45.json": "fb936d92e9f5a998cfefc2c26a7bb20829bc7a5b142c08fdb83ba7a48fdf2a98",
+        "新版定稿/45-the-record-humanity-threw-into-the-stars.md": "27deabec4a8478fe570f7f237a2fb850ffdce3deebfd952f512d82a60cf7314f",
+        "视频/脚本/46.json": "804ecfddb6060288b05eda0e1027c65e9bff0c08a9d010c201bf39306c769b62",
+        "新版定稿/46-lost-in-the-glare.md": "7aaa06e875fe56c5d78210b90a8769b8b2051714025ef10df37c2fe89db7a68c",
+        "视频/脚本/47.json": "0eb7b97ebb056249aa10d2c0d8950e4ae02e056d4772750d02a44ab7ee99c661",
+        "新版定稿/47-shadows-of-wolves-over-yellowstone.md": "34c68cf4d0f0ef3545ad68edf3367fcb76ab500174b11ae7f83b782cd5a80a2a",
+        "视频/脚本/48.json": "4f146ce6a70bb0bf5d2c6e1f6b47bd6a2bcc2f311be7a948092d7bde1a08f449",
+        "新版定稿/48-rice-for-the-world.md": "76416be21f857e8a05c37baa33ac90f5785812291485231c249e38a1d0edf15f",
+        "视频/脚本/49.json": "640168eb8a17c5d53d266c6604ffe287919314947371c2ee239eeea952d73b77",
+        "新版定稿/49-the-woman-who-won-two-nobels.md": "1e4fb068aa9ae4513d01b199a074b84dc9d819f57b2134df32588a0e4a4b6b6a",
+        "视频/脚本/50.json": "1d4a41824dfa5e8d11e5990b2a4b802ba2fcc3231d85b15ed6630396c6f027bf",
+        "新版定稿/50-microplastics.md": "5439589bacf1abb2abbb184eb658492bc02bcc5bdd8dfd8ababcd80ab93621cb",
+        "视频/脚本/51.json": "39886d83593a31fb575b124ecf6457190773dca695b6ff78f8434d52aebd6d7c",
+        "新版定稿/51-the-joke-that-became-ok.md": "8de30ea4846f4e88d8b71c8d5ced3ee63a73955e39b7dc3c5adad0971b854fd0",
+        "视频/脚本/52.json": "832249bb44617d38ede75560a5e57af6ba79ec284c9609407cb30ce879f6f862",
+        "新版定稿/52-the-killer-smog-of-1952.md": "179500361e4a837d7edb2e0497e08677d5abd425e8ad542f788205a6f7667b4b",
+        "视频/脚本/53.json": "893a7789ddf5f5a79e2a9168011c1c23e2709975d1b07b6b023d6cf5988b2bef",
+        "新版定稿/53-the-wind-that-kept-no-time.md": "6fab302dcadb5a2c509436f5fbf8d9ef925c008a36f5b422749bd405aa4701d3",
+        "视频/脚本/54.json": "b1fcb8ae86045b3d35ccfa0f52eb9594b8921d43063835769ee3ecc4543be75e",
+        "新版定稿/54-the-sound-that-shook-the-world.md": "abd5f4bfe11ed73bcc5326a92cf99b0a8e5ad70adaca1ce8d0c8f622b57fa519",
+        "视频/脚本/55.json": "06344fc0ad5975cba2f4dbe5262a9957dd7c024f9a05b9abbfa327f32ea8c719",
+        "新版定稿/55-the-secret-of-romes-undying-concrete.md": "a7759eddcc7ec06dfd6dab7912e06b3b5ef8576df0c025a97812006669d0be61",
+        "视频/脚本/56.json": "22ca3b4180a8ae6a37b4c8e25f5e357d5696d9b23bf148fb7064425d1403e59c",
+        "新版定稿/56-the-letter-that-startled-darwin.md": "aad1e2aab9ff28f534a510362e807ef401e0b502475240f4b2531e9e518a8d7a",
+        "视频/脚本/57.json": "a0ba65b769430289a33ec1f7bc6dbf91dad8d2c3b1d725348851de546563cd6f",
+        "新版定稿/57-a-change-of-anthem-in-the-deep.md": "0731d925a98bafc222718c111985362e166b38b9189c516219a481e36d0d4b6e",
+        "视频/脚本/58.json": "8b0bd3d7d39000518789e9907aec53bd52fab1b9d6b4f22a152d158635b6e8ee",
+        "新版定稿/58-from-a-scratch-to-a-world-without-smallpox.md": "1aa2a0d2c51da76f9c9ebb88d049dd1a55ab530791566fdbf6476e5aa48c15ee",
+        "视频/脚本/59.json": "df1db4174d942371166048b220ef6d55b0b700b2ce31c866edf6dfdf33b92f0c",
+        "新版定稿/59-saving-the-sky.md": "7bf9c4661e733e7af23dc2f11bc820b809ec93dad75a94fb6a12748226e8722c",
+        "视频/脚本/60.json": "eed1655c0919db32a3a016b24791b93d25683f287c7ccb2523e168a69bddc562",
+        "新版定稿/60-the-scientific-giant-who-changed-the-world.md": "9d1578e7af085559922394a3db01de4eb22dc1c520ca17de5cad68e5a38a31a8",
+        "视频/脚本/61.json": "72378937501769dfb3d934fe65ab1a69afeb5420a15e19890c161433717d2435",
+        "新版定稿/61-the-steel-box-that-remade-the-world.md": "135cc9cfbcbd68d957f831cf55558112a45b1cc3749366cb9a304507355c7d2c",
+        "视频/脚本/62.json": "4b3a97f2b6404e1b091537c21f01fc60088902f596803345983c38be52ec79eb",
+        "新版定稿/62-dolly-the-copied-sheep.md": "62817546ae33824b57255f941135c503e41a41f905331ed4af1e32850fa00960",
+        "视频/脚本/63.json": "5d266d80f9cf29cce6f7e34531449cf75191a42f180102685a5bcd04849e75c5",
+        "新版定稿/63-the-crowded-heavens.md": "6ef79d4310019dfefa7364b8a428411a6bc337678c69fa5cbc89b84689e253a4",
+        "视频/脚本/64.json": "b85ce0a5dcbce997ad82779a850298fecd9847e03d0b2adfc7045b2db54082cb",
+        "新版定稿/64-the-day-zero-that-never-came.md": "e0c83cbe36745adbbffd33a156fa8d0671704ea976cb13215cabb612639b37a5",
+        "视频/脚本/65.json": "78e60dd231df4ac71df83e21a26f82bbf706dc0bef80bee156a36bc287661ede",
+        "新版定稿/65-the-day-the-doomsday-vault-opened.md": "71a50d32e25955e713e6ca108ab68422a4fd5b77c914a9074eece1dc33cbff89",
+        "视频/脚本/66.json": "ad5324af4270834186285a5e7273a90213094077adc6f9e1d5c7b0ebff9cf035",
+        "新版定稿/66-the-burrs-that-became-velcro.md": "75dbe6c148ca97a7780ac1737f33f58bf8ee27a51aa729a83315705655b12b2a",
+        "视频/脚本/67.json": "8897cc1c2df1e4672eec3bbff2776d0565afb9c9fe84087a1758ebb15b2a233e",
+        "新版定稿/67-the-cave-found-by-a-dog.md": "10e37b81eeef4e3289448a6b4fd679f34d495a4fc087c57747e6dca949e00cf1",
+        "视频/脚本/68.json": "568f72dacac48e206811d35a57c7fa22e3da428783f64e507c184f2090e579f3",
+        "新版定稿/68-the-last-flight-of-the-hindenburg.md": "c25f58ffb0e3748336767bb7470dd7cef10374c53cbb48af89dba26f65b2dd5c",
+        "视频/脚本/69.json": "09fd3fdbbc834badd16a9b38d8c14e425193a6849d7db87253f26a782a1c4137",
+        "新版定稿/69-the-trial-of-the-father-of-the-atomic-bomb.md": "570eda5b7d979d71e9bcad1c67e295ed326ecdb8b61e663aba33272c8a9451bd",
+        "视频/脚本/70.json": "0f6827f02cef0d2416f9d7d69b7e1c5553acee7cf6dc89f3379201264587236c",
+        "新版定稿/70-the-stamp-that-changed-the-post.md": "edfd85cea33730ba67e4210e756da1f2945f1a21bce55c7e75497cb5f0095d80"
+      },
+      "source_file_count": 140,
+      "working_script_count": 70,
+      "target_request_exactly_matches_context": true
+    },
+    "request_source_sha256": {
+      "视频/脚本/42.json": "eceb10ae92aa4b9cd23180d1138149a7fa7b674385462c898bc0d2283c8739e7",
+      "视频/工具/初稿生成/gen42.py": "7803bd353d91ef4d84d95b91e2a7d08c65a75d8a96cdffac06065625b6e898d5",
+      "新版定稿/42-the-telescope-that-needed-glasses.md": "d4aa049779a0eba06c555d76ca14103648378eef90465df424120126fa771280",
+      "视频/制作记录/42_待改清单.md": "3ab11dd65b5a37a73b8744609965484a9f858e056978e8b98572c1467be964da",
+      "视频/制作记录/逐句确认/42.json": "c473adc820b2a424e3179b54807210f873c80399c6dd01a3a95bc7bffa57f720"
+    },
+    "accepted_source": {
+      "id": "42",
+      "path": "最终版4K视频/42 - The Telescope That Needed Glasses - 需要戴眼镜的望远镜.mp4",
+      "sha256": "1d5aae36ff8817779e10edec93bee8e0338231db772dc4be852fc8e2fae4c9b5",
+      "git_blob_sha": "e51e597a1e3ba1a397143e35e13a48c2f066ab86",
+      "bytes": 12338682,
+      "width": 3840,
+      "height": 2160,
+      "summary_frames": 60,
+      "aac_adts_sha256": "8eac620f51f997c85cd976148ba45f2a322c5e69b8bc6467d23157d2e237b92f"
+    },
+    "checker_reference_preparation": {
+      "article": "42",
+      "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+      "reference_prepared": true,
+      "acceptance": false,
+      "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+      "source_sha256": "eceb10ae92aa4b9cd23180d1138149a7fa7b674385462c898bc0d2283c8739e7",
+      "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+      "checker_program_sha256": {
+        "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+        "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+        "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+        "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+        "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+        "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+      },
+      "reference_calls": [
+        {
+          "sentence": "标题",
+          "piece": null,
+          "reference_kind": "title-default-raw",
+          "method": "create",
+          "source_slice": "The Telescope That Needed Glasses",
+          "exact_native_cache_key": "75f6d95c8cbd26568110f1dbfffcb587162f1894.pkl",
+          "cache_input_text_sha256": "741deed322f860947098b4f6511f204dc518c55ffa03393bba46a071ab3c4b82",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "标题",
+          "piece": null,
+          "reference_kind": "title-default-timed",
+          "method": "create_timed",
+          "source_slice": "The Telescope That Needed Glasses",
+          "exact_native_cache_key": "643aeeb0b3438a4acf2826d718b7d966b209032f.pkl",
+          "cache_input_text_sha256": "741deed322f860947098b4f6511f204dc518c55ffa03393bba46a071ab3c4b82",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "On 24 April 1990 the space shuttle Discovery lofted the Hubble Space Telescope into orbit.",
+          "exact_native_cache_key": "0d6b6163dcc29ff814ec7f3f83eaebc6470354bb.pkl",
+          "cache_input_text_sha256": "bf41c2d5166bece5039ee83e1302d692da86fcafee2221e54e2bf24c248c7911",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "On 24 April 1990 the space shuttle Discovery lofted the Hubble Space Telescope into orbit.",
+          "exact_native_cache_key": "79666879a69358dbe900b647cc61625afe3955f7.pkl",
+          "cache_input_text_sha256": "bf41c2d5166bece5039ee83e1302d692da86fcafee2221e54e2bf24c248c7911",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The observatory cradled in the payload bay had cost about $1.5 billion, a lavish investment meant to fix its gaze on the cosmos and its galaxies.",
+          "exact_native_cache_key": "0715ae4c889e52d7a1b3f3fddbb996deeade04c4.pkl",
+          "cache_input_text_sha256": "eb893dc9e6bfe1ef1c9dcf2b53bc9657089ac87580155740891a05dd75026696",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "The observatory cradled in the payload bay had cost about $1.5 billion, a lavish investment meant to fix its gaze on the cosmos and its galaxies.",
+          "exact_native_cache_key": "f69e2e02e89689ccd0e4a69642a4a72203fc0560.pkl",
+          "cache_input_text_sha256": "eb893dc9e6bfe1ef1c9dcf2b53bc9657089ac87580155740891a05dd75026696",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "The observatory cradled in the payload bay had cost about $1.5 billion,",
+          "exact_native_cache_key": "5074f5d604898ffbf9d237056f17c968665ab097.pkl",
+          "cache_input_text_sha256": "697871abab68511bdf08f202d637234d12be6555dc5216c0c7763f10cf44d1ef",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "a lavish investment meant to fix its gaze on the cosmos and its galaxies.",
+          "exact_native_cache_key": "43fb93758799b923757099c77178e8bac34b8239.pkl",
+          "cache_input_text_sha256": "c1a7c0dae3aaca8133a0185b1bb960ee9088b9fc8746451be5605c173e475179",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "The observatory cradled in the payload bay had cost about $1.5 billion,",
+          "exact_native_cache_key": "5074f5d604898ffbf9d237056f17c968665ab097.pkl",
+          "cache_input_text_sha256": "697871abab68511bdf08f202d637234d12be6555dc5216c0c7763f10cf44d1ef",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a lavish investment meant to fix its gaze on the cosmos and its galaxies.",
+          "exact_native_cache_key": "43fb93758799b923757099c77178e8bac34b8239.pkl",
+          "cache_input_text_sha256": "c1a7c0dae3aaca8133a0185b1bb960ee9088b9fc8746451be5605c173e475179",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Money, it soon emerged, could not buy clarity.",
+          "exact_native_cache_key": "455d3d25de3a8aea6674e79c37072a029fd486f8.pkl",
+          "cache_input_text_sha256": "4be1c25302b8f65b732160d8bebee91a51d5d567be6563fe6db62097e5e83068",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Money, it soon emerged, could not buy clarity.",
+          "exact_native_cache_key": "2dc5f66b4edc34c4eeaeed78d6a698213ce41406.pkl",
+          "cache_input_text_sha256": "4be1c25302b8f65b732160d8bebee91a51d5d567be6563fe6db62097e5e83068",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Money,",
+          "exact_native_cache_key": "6b40cf0028e49a1862257802539eb24c5cf487b7.pkl",
+          "cache_input_text_sha256": "ddf014459ab186104fd29e74de551a323881b5dc6aac06b80e161631b4abba8d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "it soon emerged,",
+          "exact_native_cache_key": "19c037c3237abc7e026ea1a0fc548c44ee777913.pkl",
+          "cache_input_text_sha256": "170834f27d7a7c6725e17404c38e21db1d10fdfb3e2244d4baffb7d19bb467b7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "could not buy clarity.",
+          "exact_native_cache_key": "2666931e6c525a28da6ebaa9bce8d0b1567650eb.pkl",
+          "cache_input_text_sha256": "d49df11214d35e722241b59c6763bfc1e98016b510745d71810a08ff81dd6506",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Its first snapshots came back blurred and fuzzy.",
+          "exact_native_cache_key": "b165dd401f42a17730ba0c3f50a40952d89761ce.pkl",
+          "cache_input_text_sha256": "3a6b88b909549323d8ffa484167edd23c6b6fe9449c1d727287d066eec672078",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Its first snapshots came back blurred and fuzzy.",
+          "exact_native_cache_key": "bce60a02cf61ac54411a970c4a2a10d38dcc4ff5.pkl",
+          "cache_input_text_sha256": "3a6b88b909549323d8ffa484167edd23c6b6fe9449c1d727287d066eec672078",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In June 1990 NASA announced a flaw in the main mirror: its outer rim had been flattened by 2.2 micrometres, roughly a fiftieth of the width of a hair.",
+          "exact_native_cache_key": "2acf2ec593bea4840218efbc656484374e9c928d.pkl",
+          "cache_input_text_sha256": "b64d720b6f5d2fa4c2620ee5e5ab8ce9d6621ebbdfad99bc9ac7f7635d3416e9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "In June 1990 NASA announced a flaw in the main mirror: its outer rim had been flattened by 2.2 micrometres, roughly a fiftieth of the width of a hair.",
+          "exact_native_cache_key": "489752fc3572355bbce6304025a7f475369e0e2a.pkl",
+          "cache_input_text_sha256": "b64d720b6f5d2fa4c2620ee5e5ab8ce9d6621ebbdfad99bc9ac7f7635d3416e9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In June 1990 NASA announced a flaw in the main mirror:",
+          "exact_native_cache_key": "09f5b7ba26b632d6f26bff191ad6b74db8a52651.pkl",
+          "cache_input_text_sha256": "64dac00a56cd83d7d491fcecd3b9585a7fbf165d978813e23cfa26bf314cc120",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "its outer rim had been flattened by 2.2 micrometres,",
+          "exact_native_cache_key": "0abcf7e2892d04a249809d757b8e18030c4926c8.pkl",
+          "cache_input_text_sha256": "a0050cd1bb6772d65c08e386e78464e019d79162e1cffb684283dd109542fd8f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "roughly a fiftieth of the width of a hair.",
+          "exact_native_cache_key": "8635ffd2e7d0d5ff54f5b824d60153025fa8406b.pkl",
+          "cache_input_text_sha256": "4c1f49d28f8fc8c3b263aaf768bbdcbd6e084af61c261cde97d866d9a48aaf80",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In June 1990 NASA announced a flaw in the main mirror:",
+          "exact_native_cache_key": "09f5b7ba26b632d6f26bff191ad6b74db8a52651.pkl",
+          "cache_input_text_sha256": "64dac00a56cd83d7d491fcecd3b9585a7fbf165d978813e23cfa26bf314cc120",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "its outer rim had been flattened by 2.2 micrometres,",
+          "exact_native_cache_key": "0abcf7e2892d04a249809d757b8e18030c4926c8.pkl",
+          "cache_input_text_sha256": "a0050cd1bb6772d65c08e386e78464e019d79162e1cffb684283dd109542fd8f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "roughly a fiftieth of the width of a hair.",
+          "exact_native_cache_key": "8635ffd2e7d0d5ff54f5b824d60153025fa8406b.pkl",
+          "cache_input_text_sha256": "4c1f49d28f8fc8c3b263aaf768bbdcbd6e084af61c261cde97d866d9a48aaf80",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "That deviation marred the optics, leaving light without a sharp focus.",
+          "exact_native_cache_key": "1dea5930a0f1805865347935a4f992e12c358e7a.pkl",
+          "cache_input_text_sha256": "93d42979eb2b339fd3d257f0910e43539feab47d3febde9c6eac88549a2e1686",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "That deviation marred the optics, leaving light without a sharp focus.",
+          "exact_native_cache_key": "e6acf9152ac386d930d3933fa7dd22401be4bbb4.pkl",
+          "cache_input_text_sha256": "93d42979eb2b339fd3d257f0910e43539feab47d3febde9c6eac88549a2e1686",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "That deviation marred the optics,",
+          "exact_native_cache_key": "f5d1664da46df6df8c33422c130e7486237b04ca.pkl",
+          "cache_input_text_sha256": "bda5297dc4fdaa3c20e5f9c3d8e422adc98fe89952dac1425cbc9fe86b323749",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "leaving light without a sharp focus.",
+          "exact_native_cache_key": "965a3541b8fe027c7c11193cc779d0e327faa70e.pkl",
+          "cache_input_text_sha256": "18cb1967a7402672fe7f1b8c5affe3f34858c67583ad577aab4bec18a5cf8043",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "That deviation marred the optics,",
+          "exact_native_cache_key": "f5d1664da46df6df8c33422c130e7486237b04ca.pkl",
+          "cache_input_text_sha256": "bda5297dc4fdaa3c20e5f9c3d8e422adc98fe89952dac1425cbc9fe86b323749",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "leaving light without a sharp focus.",
+          "exact_native_cache_key": "965a3541b8fe027c7c11193cc779d0e327faa70e.pkl",
+          "cache_input_text_sha256": "18cb1967a7402672fe7f1b8c5affe3f34858c67583ad577aab4bec18a5cf8043",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The trouble began with calibration.",
+          "exact_native_cache_key": "cd2cfe030f86b94e77907d1795a5d75e8fb0e61f.pkl",
+          "cache_input_text_sha256": "966e3b929875b8ec3bf33f52c772ea0fb61bb63967b21e4a14a48b29499fa5ca",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "The trouble began with calibration.",
+          "exact_native_cache_key": "d6e112fddad1d005ef6737726ccce1f35468dc91.pkl",
+          "cache_input_text_sha256": "966e3b929875b8ec3bf33f52c772ea0fb61bb63967b21e4a14a48b29499fa5ca",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "A lens in the assembly that checked the mirror's shape had been offset by about 1.3 millimetres, so the mirror was ground to the wrong curve.",
+          "exact_native_cache_key": "531be48f1492db32eef0d05b1c5bdc9509006132.pkl",
+          "cache_input_text_sha256": "a74af77bf63d2280ad0e17ac14a3d24ce4d2ea92ee6978a0bc08a2aa3a2a9c3e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "A lens in the assembly that checked the mirror's shape had been offset by about 1.3 millimetres, so the mirror was ground to the wrong curve.",
+          "exact_native_cache_key": "a1e00206bfd878b5687b87517ecd88eac215e911.pkl",
+          "cache_input_text_sha256": "a74af77bf63d2280ad0e17ac14a3d24ce4d2ea92ee6978a0bc08a2aa3a2a9c3e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "A lens in the assembly that checked the mirror's shape had been offset by about 1.3 millimetres,",
+          "exact_native_cache_key": "4f3888a6572becf5db799eb3900d9145b3f689af.pkl",
+          "cache_input_text_sha256": "aa226ae2d560eca8dd30aa9970de699a14aee5f0ff658ff44c2d9f9cd88ec1a8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "so the mirror was ground to the wrong curve.",
+          "exact_native_cache_key": "8e9cb290193e392895f8ca7f28a008ebd5b8329d.pkl",
+          "cache_input_text_sha256": "af0bad0ac7cac34aa8bb7697e5348dd6988c8b06b4544055026c9f7077bffca7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "A lens in the assembly that checked the mirror's shape had been offset by about 1.3 millimetres,",
+          "exact_native_cache_key": "4f3888a6572becf5db799eb3900d9145b3f689af.pkl",
+          "cache_input_text_sha256": "aa226ae2d560eca8dd30aa9970de699a14aee5f0ff658ff44c2d9f9cd88ec1a8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "so the mirror was ground to the wrong curve.",
+          "exact_native_cache_key": "8e9cb290193e392895f8ca7f28a008ebd5b8329d.pkl",
+          "cache_input_text_sha256": "af0bad0ac7cac34aa8bb7697e5348dd6988c8b06b4544055026c9f7077bffca7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "A second, independent test by the contractor, Perkin-Elmer, gave a divergent result, but engineers and NASA managers judged it less reliable and left the contradictory reading unexplored.",
+          "exact_native_cache_key": "1630971b1ad79a71018da4895aa95e4fd0dcb613.pkl",
+          "cache_input_text_sha256": "2ff42fffff26c19fa6fc63381bb0e36a7683421d21d5cfa434ac37033aae1ad6",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "A second, independent test by the contractor, Perkin-Elmer, gave a divergent result, but engineers and NASA managers judged it less reliable and left the contradictory reading unexplored.",
+          "exact_native_cache_key": "59a56fb317320d8e310dad08f6e42bca23ddf022.pkl",
+          "cache_input_text_sha256": "2ff42fffff26c19fa6fc63381bb0e36a7683421d21d5cfa434ac37033aae1ad6",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "A second, independent test by the contractor, Perkin-Elmer, gave a divergent result,",
+          "exact_native_cache_key": "6b330e91214cdff32f048d0368abb32ba50fd307.pkl",
+          "cache_input_text_sha256": "774afd5de805fc2189ede445601d8a8a5226dce3cb23f177eb783618f6205934",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "but engineers and NASA managers judged it less reliable",
+          "exact_native_cache_key": "d07e1c22b82afefe15e4f8e540f01f0f3f8439c1.pkl",
+          "cache_input_text_sha256": "2a89e641ca30c21a0e80f1bb2fca4ab3b3dff12f46a46a6e803e5e55debc74c1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and left the contradictory reading unexplored.",
+          "exact_native_cache_key": "746b7258450e016713e92709db5642124199b04e.pkl",
+          "cache_input_text_sha256": "1ba9f9d74ae00dc8c95e780c907199726540335a2104b7c1a6404ac4ca25dd67",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "A second,",
+          "exact_native_cache_key": "a3fd5207167a510dce32824538e329dfbb633c21.pkl",
+          "cache_input_text_sha256": "04e91c53e577ca2b19074c61800a35c76ab1b18eacc05c75bf914010e6dbc996",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "independent test by the contractor,",
+          "exact_native_cache_key": "b7b366b5d3b68902e42cd1dd644ad34c0f8c5adb.pkl",
+          "cache_input_text_sha256": "8a4a7cdb7845c65fe68d88f0768fad0f441b22e7868e829cc06eee2085b5d98e",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Perkin-Elmer,",
+          "exact_native_cache_key": "9f2a059fb64de5c0140b4146bc981701c897187b.pkl",
+          "cache_input_text_sha256": "245dedcf21df0997b73a825785e5ccf6396a1e543a7b9c84b91888abb768854c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "gave a divergent result,",
+          "exact_native_cache_key": "e72d858e9cd83c22080c09d40be133f8a9cf859a.pkl",
+          "cache_input_text_sha256": "84dd4836a73d921266795401031394bd9a90e3c350ce0ed9b4b647f9d0cfd3d4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 5,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "but engineers and NASA managers judged it less reliable and left the contradictory reading unexplored.",
+          "exact_native_cache_key": "cbfb1b892cc0037a3203763aa6586664bc95dac6.pkl",
+          "cache_input_text_sha256": "01faf2c079c97253ddcfbc66f30311c1725a1a5465fe4b1377ed9d660f4f0047",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The mirror could not be repaired in orbit, so engineers prescribed tailored glasses.",
+          "exact_native_cache_key": "6a72b3a6a75cb94d118810ed52871fbdd0324d7a.pkl",
+          "cache_input_text_sha256": "1f01901a6019370e2080de09890caad6a89e032d4fa8217c40646dd902fc366a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "The mirror could not be repaired in orbit, so engineers prescribed tailored glasses.",
+          "exact_native_cache_key": "c3a372e84a16e850092316b11af096a216bde3e6.pkl",
+          "cache_input_text_sha256": "1f01901a6019370e2080de09890caad6a89e032d4fa8217c40646dd902fc366a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "The mirror could not be repaired in orbit,",
+          "exact_native_cache_key": "8ee10ae327ba02a5249e289bfa1713899a5dce70.pkl",
+          "cache_input_text_sha256": "d0c67a9dd1e43838466d3b89e0e857874153266f7712e5b5baabc6fc42248e9a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "so engineers prescribed tailored glasses.",
+          "exact_native_cache_key": "ed89889baa4e392b59b544e45768cb45f05ccaa3.pkl",
+          "cache_input_text_sha256": "19e4f4b92327c72ae6a5b8ce45b07b1e3cf73bdcaaa2dc5365e94c7b2def35e3",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "The mirror could not be repaired in orbit,",
+          "exact_native_cache_key": "8ee10ae327ba02a5249e289bfa1713899a5dce70.pkl",
+          "cache_input_text_sha256": "d0c67a9dd1e43838466d3b89e0e857874153266f7712e5b5baabc6fc42248e9a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "so engineers prescribed tailored glasses.",
+          "exact_native_cache_key": "ed89889baa4e392b59b544e45768cb45f05ccaa3.pkl",
+          "cache_input_text_sha256": "19e4f4b92327c72ae6a5b8ce45b07b1e3cf73bdcaaa2dc5365e94c7b2def35e3",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "COSTAR, a corrective cabinet the size of a refrigerator, carried small mirrors on adjustable arms that intercepted the light and compensated for the imperfect mirror's distortion before the light reached the instruments.",
+          "exact_native_cache_key": "467afa5a35f3758d499f7f53b03f2bc6d42c754e.pkl",
+          "cache_input_text_sha256": "1f0292c68629bf7e780e27eb00017a30aa9b493e40e2abc5dc6312ccbc1a93ed",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "COSTAR, a corrective cabinet the size of a refrigerator, carried small mirrors on adjustable arms that intercepted the light and compensated for the imperfect mirror's distortion before the light reached the instruments.",
+          "exact_native_cache_key": "e763b5af4f9fde6507f1e30edd89f0dd87d62428.pkl",
+          "cache_input_text_sha256": "1f0292c68629bf7e780e27eb00017a30aa9b493e40e2abc5dc6312ccbc1a93ed",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "COSTAR, a corrective cabinet the size of a refrigerator,",
+          "exact_native_cache_key": "c83841018cc0dad3af3e80a3e2044f2064092d63.pkl",
+          "cache_input_text_sha256": "54a5b73f12d68fcf50a140f4b09122c33f30db1bb2625f4596cec3851245b0c2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "carried small mirrors on adjustable arms",
+          "exact_native_cache_key": "d23724151ce811a6d3202f0a3e8f69236992cc8e.pkl",
+          "cache_input_text_sha256": "544e804ce00563035944365291384eff67c5aec8c323f17a82f8ac2a8df0e24e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "that intercepted the light and compensated for the imperfect mirror's distortion before the light reached the instruments.",
+          "exact_native_cache_key": "bcccd9ee6b75c02f4f2fc2816bdd0814716b7152.pkl",
+          "cache_input_text_sha256": "a538aeb7a7603cf84f8e98a11a53eee4f46be3488f293521e82b480d8e3bdf26",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "COSTAR,",
+          "exact_native_cache_key": "7f0adfb595656972bf6b037986df933b7cb07f43.pkl",
+          "cache_input_text_sha256": "e98ff76c42cc224b35fccc51aa36ca640dd503e67c35aaf99a20fbfa33423ed9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a corrective cabinet the size of a refrigerator,",
+          "exact_native_cache_key": "6b78dff25e2608c6d9a8c47070c175ef723160d5.pkl",
+          "cache_input_text_sha256": "a198a8df85c4e2d39e368d814f29df79a1eb1f06f5cf05badf70402e170a4217",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "carried small mirrors on adjustable arms that intercepted the light and compensated for the imperfect mirror's distortion before the light reached the instruments.",
+          "exact_native_cache_key": "58323960393a0982616857f4054ab2a0dc4bf874.pkl",
+          "cache_input_text_sha256": "10c7badaa8c6bde53feeef4ebb65da8b45a122a35b0d342b5dab21e93e4d8673",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The mirror itself would stay untouched, and a new main camera was prepared.",
+          "exact_native_cache_key": "1ce61f28a96e7be2e98c1e3c9d81468353203721.pkl",
+          "cache_input_text_sha256": "2b0c323159cf361fd5fe0e8ce6d341c09f7e989a0aebdb0bf5e1d8dccb4e3803",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "The mirror itself would stay untouched, and a new main camera was prepared.",
+          "exact_native_cache_key": "922b84eae245b10fce1d50b56683cd4f737904ce.pkl",
+          "cache_input_text_sha256": "2b0c323159cf361fd5fe0e8ce6d341c09f7e989a0aebdb0bf5e1d8dccb4e3803",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "The mirror itself would stay untouched,",
+          "exact_native_cache_key": "680fad99f820ad31a6b96d226ad1ecd13929e7e9.pkl",
+          "cache_input_text_sha256": "2ed15ecb9ef9e9655a7b1a457ec52195566f705832a312a1f5a996a64f3e5184",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and a new main camera was prepared.",
+          "exact_native_cache_key": "59aaf358c39c6cfd86e1e27a115fcf22622384ba.pkl",
+          "cache_input_text_sha256": "9fa6efe86636702f2f9ba322c35e03172dd4ed4d9565d3713ce215e1b77716c4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "The mirror itself would stay untouched,",
+          "exact_native_cache_key": "680fad99f820ad31a6b96d226ad1ecd13929e7e9.pkl",
+          "cache_input_text_sha256": "2ed15ecb9ef9e9655a7b1a457ec52195566f705832a312a1f5a996a64f3e5184",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and a new main camera was prepared.",
+          "exact_native_cache_key": "59aaf358c39c6cfd86e1e27a115fcf22622384ba.pkl",
+          "cache_input_text_sha256": "9fa6efe86636702f2f9ba322c35e03172dd4ed4d9565d3713ce215e1b77716c4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "On 2 December 1993 Endeavour ascended with seven astronauts.",
+          "exact_native_cache_key": "acc60a07d364035d9427c113c173afbe065753bb.pkl",
+          "cache_input_text_sha256": "0028f0a14248160bd34d805e41784479e10cad9df6e3ecc0ee3b12f2255528d1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "On 2 December 1993 Endeavour ascended with seven astronauts.",
+          "exact_native_cache_key": "4dffbc1554ac7959973f404c64fdef422ba4cc9e.pkl",
+          "cache_input_text_sha256": "0028f0a14248160bd34d805e41784479e10cad9df6e3ecc0ee3b12f2255528d1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "After a rendezvous, they worked in tandem across five spacewalks, about 35 and a half hours of exertion, installing COSTAR and the new camera.",
+          "exact_native_cache_key": "0c0b48e0e4de1b9c004f5899fa94816117cb4fa7.pkl",
+          "cache_input_text_sha256": "445b9f557215c0bdb4a57f837fd467c187186c9595f3cc73d655e22045665b47",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "After a rendezvous, they worked in tandem across five spacewalks, about 35 and a half hours of exertion, installing COSTAR and the new camera.",
+          "exact_native_cache_key": "285210708df923ef602d8e84d8ccbab9bcb3c9c8.pkl",
+          "cache_input_text_sha256": "445b9f557215c0bdb4a57f837fd467c187186c9595f3cc73d655e22045665b47",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "After a rendezvous,",
+          "exact_native_cache_key": "5f5e062d7dd3b1d2c59071060c553efcf4aa3be0.pkl",
+          "cache_input_text_sha256": "49ef3efd933978fc37488a4fa7c883e29431b2edbd4216dd13422d14034b8115",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "they worked in tandem across five spacewalks,",
+          "exact_native_cache_key": "f57181cad7afdabaf6e4f0ff8e3b6ef56080c9c1.pkl",
+          "cache_input_text_sha256": "fbfaeec90c2c8dd94e58241e432d9ca222aad18f54cf40dcd8443824d8e8baf0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "about 35 and a half hours of exertion,",
+          "exact_native_cache_key": "e759eef1944c0613dea8f649a443dca0f51f5b2d.pkl",
+          "cache_input_text_sha256": "4fbec23028c5be959ffb5bb1b630b1b7dc19b0c324bf1358da75a0b8ece4cce2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 4,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "installing COSTAR and the new camera.",
+          "exact_native_cache_key": "187db3fabc8e24680ee37d5db767a777006a5bd4.pkl",
+          "cache_input_text_sha256": "2ce7793e8d632d3038ab083bbc07be01d23661f63b6b918c137150fe9d2ca70c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "After a rendezvous,",
+          "exact_native_cache_key": "5f5e062d7dd3b1d2c59071060c553efcf4aa3be0.pkl",
+          "cache_input_text_sha256": "49ef3efd933978fc37488a4fa7c883e29431b2edbd4216dd13422d14034b8115",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "they worked in tandem across five spacewalks,",
+          "exact_native_cache_key": "f57181cad7afdabaf6e4f0ff8e3b6ef56080c9c1.pkl",
+          "cache_input_text_sha256": "fbfaeec90c2c8dd94e58241e432d9ca222aad18f54cf40dcd8443824d8e8baf0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "about 35 and a half hours of exertion,",
+          "exact_native_cache_key": "e759eef1944c0613dea8f649a443dca0f51f5b2d.pkl",
+          "cache_input_text_sha256": "4fbec23028c5be959ffb5bb1b630b1b7dc19b0c324bf1358da75a0b8ece4cce2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "installing COSTAR and the new camera.",
+          "exact_native_cache_key": "187db3fabc8e24680ee37d5db767a777006a5bd4.pkl",
+          "cache_input_text_sha256": "2ce7793e8d632d3038ab083bbc07be01d23661f63b6b918c137150fe9d2ca70c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The imagery turned crisp, Hubble's vision renewed.",
+          "exact_native_cache_key": "f0bc75dd2152777e2b2d4ccb4f2cc0ae5b4c57e9.pkl",
+          "cache_input_text_sha256": "63d85459e340a7f7ada9264661cf20622b45bbf25c851d6052ac9e181bdb43b0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "The imagery turned crisp, Hubble's vision renewed.",
+          "exact_native_cache_key": "8102060b4f795be38060c4e4716b784d0ff4570b.pkl",
+          "cache_input_text_sha256": "63d85459e340a7f7ada9264661cf20622b45bbf25c851d6052ac9e181bdb43b0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "The imagery turned crisp,",
+          "exact_native_cache_key": "68317e4fad102231a72f85568a9fbaab8b209cf6.pkl",
+          "cache_input_text_sha256": "027583459dc845e4770ec50f1c055b3e2051d8dfdf15c77720067ac813126ea9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Hubble's vision renewed.",
+          "exact_native_cache_key": "efdd08213cdf1ba64453a6a95df2f76033ea6897.pkl",
+          "cache_input_text_sha256": "9cab63037aa1917d794970df2bff746f95b8a7d57e1237dfa728f0af06a3a40f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "The imagery turned crisp,",
+          "exact_native_cache_key": "68317e4fad102231a72f85568a9fbaab8b209cf6.pkl",
+          "cache_input_text_sha256": "027583459dc845e4770ec50f1c055b3e2051d8dfdf15c77720067ac813126ea9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Hubble's vision renewed.",
+          "exact_native_cache_key": "efdd08213cdf1ba64453a6a95df2f76033ea6897.pkl",
+          "cache_input_text_sha256": "9cab63037aa1917d794970df2bff746f95b8a7d57e1237dfa728f0af06a3a40f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The mirror still carries that 2.2-micrometre flaw, and the light it gathers is corrected only after leaving it.",
+          "exact_native_cache_key": "14b07a27cec30dc36c6704254dd6d758c0e24842.pkl",
+          "cache_input_text_sha256": "a32e8f907e593f5ed4f9431e2e8a940180e7c658780f7dd69a7e8ade81338598",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "The mirror still carries that 2.2-micrometre flaw, and the light it gathers is corrected only after leaving it.",
+          "exact_native_cache_key": "7bcfb1f1beb2c113bb2f564b257431e538c54a7b.pkl",
+          "cache_input_text_sha256": "a32e8f907e593f5ed4f9431e2e8a940180e7c658780f7dd69a7e8ade81338598",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "The mirror still carries that 2.2-micrometre flaw,",
+          "exact_native_cache_key": "28299d9f72574bfe1107210a78bfc97decc9651f.pkl",
+          "cache_input_text_sha256": "38d7caf34de219acb3bd07fe586cf1a55bc46c8dca7f1d37fbeaf33e7b098bae",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and the light it gathers is corrected only after leaving it.",
+          "exact_native_cache_key": "a317c45954179fa7082a24cf3bdcc05f1853ef4a.pkl",
+          "cache_input_text_sha256": "b95df1bb7e21b5c928e52c825deab27fc82114905c57442f88c1c64b55376bee",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "The mirror still carries that 2.2-micrometre flaw,",
+          "exact_native_cache_key": "28299d9f72574bfe1107210a78bfc97decc9651f.pkl",
+          "cache_input_text_sha256": "38d7caf34de219acb3bd07fe586cf1a55bc46c8dca7f1d37fbeaf33e7b098bae",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and the light it gathers is corrected only after leaving it.",
+          "exact_native_cache_key": "a317c45954179fa7082a24cf3bdcc05f1853ef4a.pkl",
+          "cache_input_text_sha256": "b95df1bb7e21b5c928e52c825deab27fc82114905c57442f88c1c64b55376bee",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "unique_reference_key_count": 72,
+      "raw_mother_cache_scalar_manifest": [
+        {
+          "exact_native_cache_key": "75f6d95c8cbd26568110f1dbfffcb587162f1894.pkl",
+          "pkl_sha256": "275ccee22047fb8433e90e2a5b32ca70070649f53c5ff228d43c3978c56fefc4",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "标题",
+              "piece": null,
+              "reference_kind": "title-default-raw",
+              "method": "create",
+              "source_slice": "The Telescope That Needed Glasses",
+              "exact_native_cache_key": "75f6d95c8cbd26568110f1dbfffcb587162f1894.pkl",
+              "cache_input_text_sha256": "741deed322f860947098b4f6511f204dc518c55ffa03393bba46a071ab3c4b82",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "275ccee22047fb84",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            47104
+          ],
+          "unprocessed_array_sha256": "f8a70320f982d41f35fbea8a4a8f694d0dd6ed628d55889d9d13c3db2a1bab57"
+        },
+        {
+          "exact_native_cache_key": "0d6b6163dcc29ff814ec7f3f83eaebc6470354bb.pkl",
+          "pkl_sha256": "2fb0a2bde8d39821f68aa17b356b59207e180c4daecec2cbe432421eaa91570e",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "On 24 April 1990 the space shuttle Discovery lofted the Hubble Space Telescope into orbit.",
+              "exact_native_cache_key": "0d6b6163dcc29ff814ec7f3f83eaebc6470354bb.pkl",
+              "cache_input_text_sha256": "bf41c2d5166bece5039ee83e1302d692da86fcafee2221e54e2bf24c248c7911",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "2fb0a2bde8d39821",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            186880
+          ],
+          "unprocessed_array_sha256": "540f0771397f5ca6ef0a693be2515ee5478e9cbe8fffaebc08b05195d5b94ea7"
+        },
+        {
+          "exact_native_cache_key": "0715ae4c889e52d7a1b3f3fddbb996deeade04c4.pkl",
+          "pkl_sha256": "33bdc775e36ae017e64ef2594958a5fa50ee75c08cb4567ba1574ef556215836",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S2",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "The observatory cradled in the payload bay had cost about $1.5 billion, a lavish investment meant to fix its gaze on the cosmos and its galaxies.",
+              "exact_native_cache_key": "0715ae4c889e52d7a1b3f3fddbb996deeade04c4.pkl",
+              "cache_input_text_sha256": "eb893dc9e6bfe1ef1c9dcf2b53bc9657089ac87580155740891a05dd75026696",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "33bdc775e36ae017",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            274944
+          ],
+          "unprocessed_array_sha256": "3f7fd5508a78a71e9e523c9fc9d6df8e9a834c84f55e8b91c43658163f46c3a3"
+        },
+        {
+          "exact_native_cache_key": "5074f5d604898ffbf9d237056f17c968665ab097.pkl",
+          "pkl_sha256": "79046284fc3740401d8fe0b0869a7c94e4e6fb0c011c7fd6a55c9bb4928404d6",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S2",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "The observatory cradled in the payload bay had cost about $1.5 billion,",
+              "exact_native_cache_key": "5074f5d604898ffbf9d237056f17c968665ab097.pkl",
+              "cache_input_text_sha256": "697871abab68511bdf08f202d637234d12be6555dc5216c0c7763f10cf44d1ef",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S2",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "The observatory cradled in the payload bay had cost about $1.5 billion,",
+              "exact_native_cache_key": "5074f5d604898ffbf9d237056f17c968665ab097.pkl",
+              "cache_input_text_sha256": "697871abab68511bdf08f202d637234d12be6555dc5216c0c7763f10cf44d1ef",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "79046284fc374040",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            147968
+          ],
+          "unprocessed_array_sha256": "bf2547402b082df0b9d3e55a621a5f946cbba0d52a7811d83e72e48efc3e44b3"
+        },
+        {
+          "exact_native_cache_key": "43fb93758799b923757099c77178e8bac34b8239.pkl",
+          "pkl_sha256": "0534198b990ea2bf2f1448d21ef4bbad46b541ff7de639f2bfc12668fc63e321",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S2",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "a lavish investment meant to fix its gaze on the cosmos and its galaxies.",
+              "exact_native_cache_key": "43fb93758799b923757099c77178e8bac34b8239.pkl",
+              "cache_input_text_sha256": "c1a7c0dae3aaca8133a0185b1bb960ee9088b9fc8746451be5605c173e475179",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S2",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "a lavish investment meant to fix its gaze on the cosmos and its galaxies.",
+              "exact_native_cache_key": "43fb93758799b923757099c77178e8bac34b8239.pkl",
+              "cache_input_text_sha256": "c1a7c0dae3aaca8133a0185b1bb960ee9088b9fc8746451be5605c173e475179",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "0534198b990ea2bf",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            118272
+          ],
+          "unprocessed_array_sha256": "f0dc4b85e00778aceb8298009fd02f341090d4a405c73a20f4e89dc72c3a0ce5"
+        },
+        {
+          "exact_native_cache_key": "455d3d25de3a8aea6674e79c37072a029fd486f8.pkl",
+          "pkl_sha256": "fbfe90da4c5d327cc1208f7cca7fc7055ce3e33b121139cad9eccd18de086add",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S3",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Money, it soon emerged, could not buy clarity.",
+              "exact_native_cache_key": "455d3d25de3a8aea6674e79c37072a029fd486f8.pkl",
+              "cache_input_text_sha256": "4be1c25302b8f65b732160d8bebee91a51d5d567be6563fe6db62097e5e83068",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "fbfe90da4c5d327c",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            70656
+          ],
+          "unprocessed_array_sha256": "0ed6db43f6e9738b47586ca602318108ac0e018afe233e9290c6d213ed4e77cf"
+        },
+        {
+          "exact_native_cache_key": "6b40cf0028e49a1862257802539eb24c5cf487b7.pkl",
+          "pkl_sha256": "60f21e562007d426629641ebfb190f0aa39a082e9f80c414169de7f84911c338",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S3",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Money,",
+              "exact_native_cache_key": "6b40cf0028e49a1862257802539eb24c5cf487b7.pkl",
+              "cache_input_text_sha256": "ddf014459ab186104fd29e74de551a323881b5dc6aac06b80e161631b4abba8d",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "60f21e562007d426",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            16896
+          ],
+          "unprocessed_array_sha256": "ca4338bd8036d14f8dddc9e6627d3868ca5b8aefec022d4ed1a7966406cd241c"
+        },
+        {
+          "exact_native_cache_key": "19c037c3237abc7e026ea1a0fc548c44ee777913.pkl",
+          "pkl_sha256": "b61118bded9de21103f7dd4460787596af7db88756b6f1535fe6de922bca08fd",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S3",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "it soon emerged,",
+              "exact_native_cache_key": "19c037c3237abc7e026ea1a0fc548c44ee777913.pkl",
+              "cache_input_text_sha256": "170834f27d7a7c6725e17404c38e21db1d10fdfb3e2244d4baffb7d19bb467b7",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "b61118bded9de211",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            28160
+          ],
+          "unprocessed_array_sha256": "a81d8b259e7ca3b042b7cb32ab32253aaa4c235e77be1b9998bb05e1a04648fe"
+        },
+        {
+          "exact_native_cache_key": "2666931e6c525a28da6ebaa9bce8d0b1567650eb.pkl",
+          "pkl_sha256": "89d4250a009d147113f07b7a99a257ab78e6849309df7eaa7582c43d3567b702",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S3",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "could not buy clarity.",
+              "exact_native_cache_key": "2666931e6c525a28da6ebaa9bce8d0b1567650eb.pkl",
+              "cache_input_text_sha256": "d49df11214d35e722241b59c6763bfc1e98016b510745d71810a08ff81dd6506",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "89d4250a009d1471",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            34816
+          ],
+          "unprocessed_array_sha256": "25179c52a7548a1627d26dda7bfa6e61a1615a7af1966fed735f31ecedd112f4"
+        },
+        {
+          "exact_native_cache_key": "b165dd401f42a17730ba0c3f50a40952d89761ce.pkl",
+          "pkl_sha256": "92c3e2a77dc52c1157e9f2917702fca3f4375147452fb51e6c11fe6b1aa041d7",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Its first snapshots came back blurred and fuzzy.",
+              "exact_native_cache_key": "b165dd401f42a17730ba0c3f50a40952d89761ce.pkl",
+              "cache_input_text_sha256": "3a6b88b909549323d8ffa484167edd23c6b6fe9449c1d727287d066eec672078",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "92c3e2a77dc52c11",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            67072
+          ],
+          "unprocessed_array_sha256": "28debcf0446614c3372a5c43a1a0e06aead2ec31acf4fea3b54da8504c22278d"
+        },
+        {
+          "exact_native_cache_key": "2acf2ec593bea4840218efbc656484374e9c928d.pkl",
+          "pkl_sha256": "3f22220b509dc335511e384b664cfadebe0b0d82ed8f22b6c1c9210c03be58a3",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "In June 1990 NASA announced a flaw in the main mirror: its outer rim had been flattened by 2.2 micrometres, roughly a fiftieth of the width of a hair.",
+              "exact_native_cache_key": "2acf2ec593bea4840218efbc656484374e9c928d.pkl",
+              "cache_input_text_sha256": "b64d720b6f5d2fa4c2620ee5e5ab8ce9d6621ebbdfad99bc9ac7f7635d3416e9",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "3f22220b509dc335",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            274432
+          ],
+          "unprocessed_array_sha256": "feca3c3f9a42970b193cba3a9685c152677580d1889ed12b378e7e3f712f7630"
+        },
+        {
+          "exact_native_cache_key": "09f5b7ba26b632d6f26bff191ad6b74db8a52651.pkl",
+          "pkl_sha256": "2e500340c4ee3d77f0ccb6779fac5157cee98132f1dc7f64cd8d569389a8e6a1",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "In June 1990 NASA announced a flaw in the main mirror:",
+              "exact_native_cache_key": "09f5b7ba26b632d6f26bff191ad6b74db8a52651.pkl",
+              "cache_input_text_sha256": "64dac00a56cd83d7d491fcecd3b9585a7fbf165d978813e23cfa26bf314cc120",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S5",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "In June 1990 NASA announced a flaw in the main mirror:",
+              "exact_native_cache_key": "09f5b7ba26b632d6f26bff191ad6b74db8a52651.pkl",
+              "cache_input_text_sha256": "64dac00a56cd83d7d491fcecd3b9585a7fbf165d978813e23cfa26bf314cc120",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "2e500340c4ee3d77",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            102400
+          ],
+          "unprocessed_array_sha256": "2d0be158ec2402bdc89c470c473b671a89849eb6e414bddf95e6774555368071"
+        },
+        {
+          "exact_native_cache_key": "0abcf7e2892d04a249809d757b8e18030c4926c8.pkl",
+          "pkl_sha256": "fcebbd13aecc7955bbc1117ab2a614b08add398c4bae16d2671d6e75a8cb5212",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "its outer rim had been flattened by 2.2 micrometres,",
+              "exact_native_cache_key": "0abcf7e2892d04a249809d757b8e18030c4926c8.pkl",
+              "cache_input_text_sha256": "a0050cd1bb6772d65c08e386e78464e019d79162e1cffb684283dd109542fd8f",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S5",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "its outer rim had been flattened by 2.2 micrometres,",
+              "exact_native_cache_key": "0abcf7e2892d04a249809d757b8e18030c4926c8.pkl",
+              "cache_input_text_sha256": "a0050cd1bb6772d65c08e386e78464e019d79162e1cffb684283dd109542fd8f",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "fcebbd13aecc7955",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            91136
+          ],
+          "unprocessed_array_sha256": "76390261a1728d7d415de39af0ba0e1bb1b6a8d06e6844e57a4402cdfc183fe5"
+        },
+        {
+          "exact_native_cache_key": "8635ffd2e7d0d5ff54f5b824d60153025fa8406b.pkl",
+          "pkl_sha256": "e5f6c10718b1fc5739d7886b32ab2c97ab709c99e378b07193c187eb89962285",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": 3,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "roughly a fiftieth of the width of a hair.",
+              "exact_native_cache_key": "8635ffd2e7d0d5ff54f5b824d60153025fa8406b.pkl",
+              "cache_input_text_sha256": "4c1f49d28f8fc8c3b263aaf768bbdcbd6e084af61c261cde97d866d9a48aaf80",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S5",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "roughly a fiftieth of the width of a hair.",
+              "exact_native_cache_key": "8635ffd2e7d0d5ff54f5b824d60153025fa8406b.pkl",
+              "cache_input_text_sha256": "4c1f49d28f8fc8c3b263aaf768bbdcbd6e084af61c261cde97d866d9a48aaf80",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "e5f6c10718b1fc57",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            56320
+          ],
+          "unprocessed_array_sha256": "59521fb45a32253fa15dfc943069946b16292012495f10947c0f0edf24a26494"
+        },
+        {
+          "exact_native_cache_key": "1dea5930a0f1805865347935a4f992e12c358e7a.pkl",
+          "pkl_sha256": "5cf59116e9ec2b99f21413b1e3504397c880e855c4c9f8f0099489cf2f1215ec",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "That deviation marred the optics, leaving light without a sharp focus.",
+              "exact_native_cache_key": "1dea5930a0f1805865347935a4f992e12c358e7a.pkl",
+              "cache_input_text_sha256": "93d42979eb2b339fd3d257f0910e43539feab47d3febde9c6eac88549a2e1686",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "5cf59116e9ec2b99",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            111104
+          ],
+          "unprocessed_array_sha256": "963877886665944c3f0b14a5eb14b2089ea466d3086a44eb97b6040e924ee738"
+        },
+        {
+          "exact_native_cache_key": "f5d1664da46df6df8c33422c130e7486237b04ca.pkl",
+          "pkl_sha256": "84a71ef99a2ad0e447195c7db570a271401ffa7a85aac959957d8ae95c9e3eff",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "That deviation marred the optics,",
+              "exact_native_cache_key": "f5d1664da46df6df8c33422c130e7486237b04ca.pkl",
+              "cache_input_text_sha256": "bda5297dc4fdaa3c20e5f9c3d8e422adc98fe89952dac1425cbc9fe86b323749",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S6",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "That deviation marred the optics,",
+              "exact_native_cache_key": "f5d1664da46df6df8c33422c130e7486237b04ca.pkl",
+              "cache_input_text_sha256": "bda5297dc4fdaa3c20e5f9c3d8e422adc98fe89952dac1425cbc9fe86b323749",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "84a71ef99a2ad0e4",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            48640
+          ],
+          "unprocessed_array_sha256": "d3b18ad8b4654f251f2c5ab2d2225df691a9100147b5fd690f8436851e54f92b"
+        },
+        {
+          "exact_native_cache_key": "965a3541b8fe027c7c11193cc779d0e327faa70e.pkl",
+          "pkl_sha256": "a87469a64f8e1b527862611c3500a6158b3826c3717084b5f3cbbb9e1b7c9350",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "leaving light without a sharp focus.",
+              "exact_native_cache_key": "965a3541b8fe027c7c11193cc779d0e327faa70e.pkl",
+              "cache_input_text_sha256": "18cb1967a7402672fe7f1b8c5affe3f34858c67583ad577aab4bec18a5cf8043",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S6",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "leaving light without a sharp focus.",
+              "exact_native_cache_key": "965a3541b8fe027c7c11193cc779d0e327faa70e.pkl",
+              "cache_input_text_sha256": "18cb1967a7402672fe7f1b8c5affe3f34858c67583ad577aab4bec18a5cf8043",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "a87469a64f8e1b52",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            53248
+          ],
+          "unprocessed_array_sha256": "0a4a73c9431aec1ff51c14cb482774cf675d15ac1affe94aa7a009cde6e33ee4"
+        },
+        {
+          "exact_native_cache_key": "cd2cfe030f86b94e77907d1795a5d75e8fb0e61f.pkl",
+          "pkl_sha256": "bff923a5eb0df8874df73df5ff3f1504e02fc761d2058f982cd2efe54fe55c2d",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S7",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "The trouble began with calibration.",
+              "exact_native_cache_key": "cd2cfe030f86b94e77907d1795a5d75e8fb0e61f.pkl",
+              "cache_input_text_sha256": "966e3b929875b8ec3bf33f52c772ea0fb61bb63967b21e4a14a48b29499fa5ca",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "bff923a5eb0df887",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            49664
+          ],
+          "unprocessed_array_sha256": "72149f3f2d2f76324c2b45b0a9ca2bd7908acc6e52c68eca6bfc3fe47f3f5ce5"
+        },
+        {
+          "exact_native_cache_key": "531be48f1492db32eef0d05b1c5bdc9509006132.pkl",
+          "pkl_sha256": "1fc3b7ce3f02739a0e1c1969d68ad7cc32e81a4a8301936d6c34c78ba4e10fe8",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "A lens in the assembly that checked the mirror's shape had been offset by about 1.3 millimetres, so the mirror was ground to the wrong curve.",
+              "exact_native_cache_key": "531be48f1492db32eef0d05b1c5bdc9509006132.pkl",
+              "cache_input_text_sha256": "a74af77bf63d2280ad0e17ac14a3d24ce4d2ea92ee6978a0bc08a2aa3a2a9c3e",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "1fc3b7ce3f02739a",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            233984
+          ],
+          "unprocessed_array_sha256": "188f497e90d00b8f496cc626eb8ed308dc660f64973ceac0e03ccfe4adaa2d42"
+        },
+        {
+          "exact_native_cache_key": "4f3888a6572becf5db799eb3900d9145b3f689af.pkl",
+          "pkl_sha256": "0dc33a6134d3a30ad8e8696dca37ce7bc0fc12ca3608c43cadb4881f8500040e",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "A lens in the assembly that checked the mirror's shape had been offset by about 1.3 millimetres,",
+              "exact_native_cache_key": "4f3888a6572becf5db799eb3900d9145b3f689af.pkl",
+              "cache_input_text_sha256": "aa226ae2d560eca8dd30aa9970de699a14aee5f0ff658ff44c2d9f9cd88ec1a8",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S8",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "A lens in the assembly that checked the mirror's shape had been offset by about 1.3 millimetres,",
+              "exact_native_cache_key": "4f3888a6572becf5db799eb3900d9145b3f689af.pkl",
+              "cache_input_text_sha256": "aa226ae2d560eca8dd30aa9970de699a14aee5f0ff658ff44c2d9f9cd88ec1a8",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "0dc33a6134d3a30a",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            156672
+          ],
+          "unprocessed_array_sha256": "a935f9525da845bd0f0b3ffba412bc01d4d604497ae166248601a40f01543971"
+        },
+        {
+          "exact_native_cache_key": "8e9cb290193e392895f8ca7f28a008ebd5b8329d.pkl",
+          "pkl_sha256": "0066d0b4a903f4e45ebbbe499340cbb697209bcda33e84ed462bb9eff4cc7e5b",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "so the mirror was ground to the wrong curve.",
+              "exact_native_cache_key": "8e9cb290193e392895f8ca7f28a008ebd5b8329d.pkl",
+              "cache_input_text_sha256": "af0bad0ac7cac34aa8bb7697e5348dd6988c8b06b4544055026c9f7077bffca7",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S8",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "so the mirror was ground to the wrong curve.",
+              "exact_native_cache_key": "8e9cb290193e392895f8ca7f28a008ebd5b8329d.pkl",
+              "cache_input_text_sha256": "af0bad0ac7cac34aa8bb7697e5348dd6988c8b06b4544055026c9f7077bffca7",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "0066d0b4a903f4e4",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            56320
+          ],
+          "unprocessed_array_sha256": "c2cef1304703a357d5f1381c5738ae29e4ccc5212dab53d6e64c705d811896b8"
+        },
+        {
+          "exact_native_cache_key": "1630971b1ad79a71018da4895aa95e4fd0dcb613.pkl",
+          "pkl_sha256": "8b0aed14ea76b0e09b2e26466a47bb21da6ac601d6af9e2ad8694b80fa614e97",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S9",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "A second, independent test by the contractor, Perkin-Elmer, gave a divergent result, but engineers and NASA managers judged it less reliable and left the contradictory reading unexplored.",
+              "exact_native_cache_key": "1630971b1ad79a71018da4895aa95e4fd0dcb613.pkl",
+              "cache_input_text_sha256": "2ff42fffff26c19fa6fc63381bb0e36a7683421d21d5cfa434ac37033aae1ad6",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "8b0aed14ea76b0e0",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            321024
+          ],
+          "unprocessed_array_sha256": "5695a0de19a5cab8913f7ba4f7f3446bae67f511611675f451b5b759677ebce9"
+        },
+        {
+          "exact_native_cache_key": "6b330e91214cdff32f048d0368abb32ba50fd307.pkl",
+          "pkl_sha256": "b05fbb8bdfa8b239b8518ce9770258e4c6f093ed7687804b720f1cce7b9c5b63",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S9",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "A second, independent test by the contractor, Perkin-Elmer, gave a divergent result,",
+              "exact_native_cache_key": "6b330e91214cdff32f048d0368abb32ba50fd307.pkl",
+              "cache_input_text_sha256": "774afd5de805fc2189ede445601d8a8a5226dce3cb23f177eb783618f6205934",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "b05fbb8bdfa8b239",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            138240
+          ],
+          "unprocessed_array_sha256": "6d7616e898dd8ba96ca682a112b70beb876ca43eedef42e72aa0338bf8d36e89"
+        },
+        {
+          "exact_native_cache_key": "d07e1c22b82afefe15e4f8e540f01f0f3f8439c1.pkl",
+          "pkl_sha256": "304923ad1c52953b9b02f3735e8fe2bf0f42f8574ac4bf4b83d564291830e9f0",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S9",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "but engineers and NASA managers judged it less reliable",
+              "exact_native_cache_key": "d07e1c22b82afefe15e4f8e540f01f0f3f8439c1.pkl",
+              "cache_input_text_sha256": "2a89e641ca30c21a0e80f1bb2fca4ab3b3dff12f46a46a6e803e5e55debc74c1",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "304923ad1c52953b",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            94720
+          ],
+          "unprocessed_array_sha256": "6f6ed537dd303097fe8bd270465be3f79f9fee4a002ed586c41fc24949649858"
+        },
+        {
+          "exact_native_cache_key": "746b7258450e016713e92709db5642124199b04e.pkl",
+          "pkl_sha256": "972bd87750dc8545faaaa2b868bb35bc04f106be431f960475771a59ecf5cba0",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S9",
+              "piece": 3,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "and left the contradictory reading unexplored.",
+              "exact_native_cache_key": "746b7258450e016713e92709db5642124199b04e.pkl",
+              "cache_input_text_sha256": "1ba9f9d74ae00dc8c95e780c907199726540335a2104b7c1a6404ac4ca25dd67",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "972bd87750dc8545",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            66048
+          ],
+          "unprocessed_array_sha256": "68169923bad1f4866da5012426c81287344efa8e8efe8a9a9c53ba9b5a4db5fd"
+        },
+        {
+          "exact_native_cache_key": "a3fd5207167a510dce32824538e329dfbb633c21.pkl",
+          "pkl_sha256": "5c473682b2fd58853fe0ef1fa80d0dd6be884532f827996805a5585cecdbcf3d",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S9",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "A second,",
+              "exact_native_cache_key": "a3fd5207167a510dce32824538e329dfbb633c21.pkl",
+              "cache_input_text_sha256": "04e91c53e577ca2b19074c61800a35c76ab1b18eacc05c75bf914010e6dbc996",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "5c473682b2fd5885",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            19456
+          ],
+          "unprocessed_array_sha256": "cfda83ca3bc143df1a25030c5aad6f236219b3a5e9924bbc5e58c4d4fa88da56"
+        },
+        {
+          "exact_native_cache_key": "b7b366b5d3b68902e42cd1dd644ad34c0f8c5adb.pkl",
+          "pkl_sha256": "6a819fd15c2cbe086f57e354cc981663383a7f1bc1885029621eb36acb3da3fe",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S9",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "independent test by the contractor,",
+              "exact_native_cache_key": "b7b366b5d3b68902e42cd1dd644ad34c0f8c5adb.pkl",
+              "cache_input_text_sha256": "8a4a7cdb7845c65fe68d88f0768fad0f441b22e7868e829cc06eee2085b5d98e",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "6a819fd15c2cbe08",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            52224
+          ],
+          "unprocessed_array_sha256": "cd734d7087ea89fd1ea6c371b1c9accaf927b1d0a425b66ac4e29f66260bc5e2"
+        },
+        {
+          "exact_native_cache_key": "9f2a059fb64de5c0140b4146bc981701c897187b.pkl",
+          "pkl_sha256": "527f30ff39cf4273c47d22277e31d4793d91c3cca567cca1699ddc81fe670fdf",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S9",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Perkin-Elmer,",
+              "exact_native_cache_key": "9f2a059fb64de5c0140b4146bc981701c897187b.pkl",
+              "cache_input_text_sha256": "245dedcf21df0997b73a825785e5ccf6396a1e543a7b9c84b91888abb768854c",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "527f30ff39cf4273",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            23552
+          ],
+          "unprocessed_array_sha256": "336bb7abf062e79b877ba83089ba9903e18235afe69908fe7f8a03249de1278e"
+        },
+        {
+          "exact_native_cache_key": "e72d858e9cd83c22080c09d40be133f8a9cf859a.pkl",
+          "pkl_sha256": "5469bd66e4bc1cb5e1b5cbd61fdc683396d9d03b055125648747dbe67d757946",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S9",
+              "piece": 4,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "gave a divergent result,",
+              "exact_native_cache_key": "e72d858e9cd83c22080c09d40be133f8a9cf859a.pkl",
+              "cache_input_text_sha256": "84dd4836a73d921266795401031394bd9a90e3c350ce0ed9b4b647f9d0cfd3d4",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "5469bd66e4bc1cb5",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            40448
+          ],
+          "unprocessed_array_sha256": "cff7990d9e7eb50be090f7a1180a48295c09eeb123feb62b97c7f1d09ce5074b"
+        },
+        {
+          "exact_native_cache_key": "cbfb1b892cc0037a3203763aa6586664bc95dac6.pkl",
+          "pkl_sha256": "02629a5b95c23a28d98e9c9abc12434d598c9cee98bfb25e025a3482a0f3ca36",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S9",
+              "piece": 5,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "but engineers and NASA managers judged it less reliable and left the contradictory reading unexplored.",
+              "exact_native_cache_key": "cbfb1b892cc0037a3203763aa6586664bc95dac6.pkl",
+              "cache_input_text_sha256": "01faf2c079c97253ddcfbc66f30311c1725a1a5465fe4b1377ed9d660f4f0047",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "02629a5b95c23a28",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            174592
+          ],
+          "unprocessed_array_sha256": "4111443434d0474ac10edc6d605780707181dfe5d00f310adff05247502fa784"
+        },
+        {
+          "exact_native_cache_key": "6a72b3a6a75cb94d118810ed52871fbdd0324d7a.pkl",
+          "pkl_sha256": "91194cbc594663b036d942129560e5d37add85cacb087f3c3988e7ba219cca96",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S10",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "The mirror could not be repaired in orbit, so engineers prescribed tailored glasses.",
+              "exact_native_cache_key": "6a72b3a6a75cb94d118810ed52871fbdd0324d7a.pkl",
+              "cache_input_text_sha256": "1f01901a6019370e2080de09890caad6a89e032d4fa8217c40646dd902fc366a",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "91194cbc594663b0",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            128000
+          ],
+          "unprocessed_array_sha256": "33596b486b44ae4ff0a3f411b5cc0b1dc54627b99f2e590a6515eb17d1de688f"
+        },
+        {
+          "exact_native_cache_key": "8ee10ae327ba02a5249e289bfa1713899a5dce70.pkl",
+          "pkl_sha256": "348435a6d7850ef8d9bd0e3084ce56df0688c99c269bd6c53716a1fb509d9ce5",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S10",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "The mirror could not be repaired in orbit,",
+              "exact_native_cache_key": "8ee10ae327ba02a5249e289bfa1713899a5dce70.pkl",
+              "cache_input_text_sha256": "d0c67a9dd1e43838466d3b89e0e857874153266f7712e5b5baabc6fc42248e9a",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S10",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "The mirror could not be repaired in orbit,",
+              "exact_native_cache_key": "8ee10ae327ba02a5249e289bfa1713899a5dce70.pkl",
+              "cache_input_text_sha256": "d0c67a9dd1e43838466d3b89e0e857874153266f7712e5b5baabc6fc42248e9a",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "348435a6d7850ef8",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            53760
+          ],
+          "unprocessed_array_sha256": "0a6d7c711e487dc9ef947db6cb44dcc010314ef6a362416e6fed74fa8ace40d3"
+        },
+        {
+          "exact_native_cache_key": "ed89889baa4e392b59b544e45768cb45f05ccaa3.pkl",
+          "pkl_sha256": "50a63ae44b8673b158d46798d715223536f87bae946e73be48c487016c757346",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S10",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "so engineers prescribed tailored glasses.",
+              "exact_native_cache_key": "ed89889baa4e392b59b544e45768cb45f05ccaa3.pkl",
+              "cache_input_text_sha256": "19e4f4b92327c72ae6a5b8ce45b07b1e3cf73bdcaaa2dc5365e94c7b2def35e3",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S10",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "so engineers prescribed tailored glasses.",
+              "exact_native_cache_key": "ed89889baa4e392b59b544e45768cb45f05ccaa3.pkl",
+              "cache_input_text_sha256": "19e4f4b92327c72ae6a5b8ce45b07b1e3cf73bdcaaa2dc5365e94c7b2def35e3",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "50a63ae44b8673b1",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            63488
+          ],
+          "unprocessed_array_sha256": "1272c530c3b9bdebaefbb493b28a71cf79934f85c04bda1fe142eb22f50987d3"
+        },
+        {
+          "exact_native_cache_key": "467afa5a35f3758d499f7f53b03f2bc6d42c754e.pkl",
+          "pkl_sha256": "40a8f27a923f62ffb6895685704a0fc795e677a4419dea43cca4fab2b9f7c407",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "COSTAR, a corrective cabinet the size of a refrigerator, carried small mirrors on adjustable arms that intercepted the light and compensated for the imperfect mirror's distortion before the light reached the instruments.",
+              "exact_native_cache_key": "467afa5a35f3758d499f7f53b03f2bc6d42c754e.pkl",
+              "cache_input_text_sha256": "1f0292c68629bf7e780e27eb00017a30aa9b493e40e2abc5dc6312ccbc1a93ed",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "40a8f27a923f62ff",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            341504
+          ],
+          "unprocessed_array_sha256": "345c7b8a9f7293c223cedaee34a6d310e6f3b584d8a39a6cf57e85c6fa1ecedb"
+        },
+        {
+          "exact_native_cache_key": "c83841018cc0dad3af3e80a3e2044f2064092d63.pkl",
+          "pkl_sha256": "119b5f63f97c55bbc5b1ebfb5de4cff86037039a0a4a692a35716940f47d59c9",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "COSTAR, a corrective cabinet the size of a refrigerator,",
+              "exact_native_cache_key": "c83841018cc0dad3af3e80a3e2044f2064092d63.pkl",
+              "cache_input_text_sha256": "54a5b73f12d68fcf50a140f4b09122c33f30db1bb2625f4596cec3851245b0c2",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "119b5f63f97c55bb",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            92672
+          ],
+          "unprocessed_array_sha256": "190faa05c7a5cb663864bb0b566316ebd3375856852ca35ed9171f4e676405b8"
+        },
+        {
+          "exact_native_cache_key": "d23724151ce811a6d3202f0a3e8f69236992cc8e.pkl",
+          "pkl_sha256": "5b4971b51978bdb2bddeda92a608e4d3b03445ed917d6dae2bde528cc0771155",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "carried small mirrors on adjustable arms",
+              "exact_native_cache_key": "d23724151ce811a6d3202f0a3e8f69236992cc8e.pkl",
+              "cache_input_text_sha256": "544e804ce00563035944365291384eff67c5aec8c323f17a82f8ac2a8df0e24e",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "5b4971b51978bdb2",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            60416
+          ],
+          "unprocessed_array_sha256": "790862e3ad81d9f20e4e2109f6ce948046bcbb645d3fdee588489d913ecb07f7"
+        },
+        {
+          "exact_native_cache_key": "bcccd9ee6b75c02f4f2fc2816bdd0814716b7152.pkl",
+          "pkl_sha256": "422c3d14907ca143798211b3dd2008145c6656c962eab5795671093445f40a7f",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": 3,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "that intercepted the light and compensated for the imperfect mirror's distortion before the light reached the instruments.",
+              "exact_native_cache_key": "bcccd9ee6b75c02f4f2fc2816bdd0814716b7152.pkl",
+              "cache_input_text_sha256": "a538aeb7a7603cf84f8e98a11a53eee4f46be3488f293521e82b480d8e3bdf26",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "422c3d14907ca143",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            175616
+          ],
+          "unprocessed_array_sha256": "755352cc4913d560fa6e9a3a6229fc27a2476d32b7ef29eaed9f605d9d2a144c"
+        },
+        {
+          "exact_native_cache_key": "7f0adfb595656972bf6b037986df933b7cb07f43.pkl",
+          "pkl_sha256": "da2ffd0a70261deab8e2a8e9d53aa10f28a5dd5ba76a6231f7a04f2af6bc6408",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "COSTAR,",
+              "exact_native_cache_key": "7f0adfb595656972bf6b037986df933b7cb07f43.pkl",
+              "cache_input_text_sha256": "e98ff76c42cc224b35fccc51aa36ca640dd503e67c35aaf99a20fbfa33423ed9",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "da2ffd0a70261dea",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            20992
+          ],
+          "unprocessed_array_sha256": "579a9c142efe200e0e755ac5552dbc65059574b6dd288f9c6d48c1c3ba19fb53"
+        },
+        {
+          "exact_native_cache_key": "6b78dff25e2608c6d9a8c47070c175ef723160d5.pkl",
+          "pkl_sha256": "3e961e7d5a2a29fdd454bfa9e08a34bce07a1e29873681126405c934ee21e2b0",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "a corrective cabinet the size of a refrigerator,",
+              "exact_native_cache_key": "6b78dff25e2608c6d9a8c47070c175ef723160d5.pkl",
+              "cache_input_text_sha256": "a198a8df85c4e2d39e368d814f29df79a1eb1f06f5cf05badf70402e170a4217",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "3e961e7d5a2a29fd",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            76800
+          ],
+          "unprocessed_array_sha256": "d7011370ea81565c35b9279b5116c2195ae53853ac57be49f811cc51d2bd1626"
+        },
+        {
+          "exact_native_cache_key": "58323960393a0982616857f4054ab2a0dc4bf874.pkl",
+          "pkl_sha256": "fc45ebf48c30c61ac92bdc21da3d47514879808e85b9dfa6373fc1c93ef80cab",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "carried small mirrors on adjustable arms that intercepted the light and compensated for the imperfect mirror's distortion before the light reached the instruments.",
+              "exact_native_cache_key": "58323960393a0982616857f4054ab2a0dc4bf874.pkl",
+              "cache_input_text_sha256": "10c7badaa8c6bde53feeef4ebb65da8b45a122a35b0d342b5dab21e93e4d8673",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "fc45ebf48c30c61a",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            239104
+          ],
+          "unprocessed_array_sha256": "c09e412d6105fa268255fe4f091af52bb6a1c36698a657afe751ca777ee971ae"
+        },
+        {
+          "exact_native_cache_key": "1ce61f28a96e7be2e98c1e3c9d81468353203721.pkl",
+          "pkl_sha256": "135231fb637fd3204adf6f7f6fbe577279a869d0b3474a7685748525b4346e90",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S12",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "The mirror itself would stay untouched, and a new main camera was prepared.",
+              "exact_native_cache_key": "1ce61f28a96e7be2e98c1e3c9d81468353203721.pkl",
+              "cache_input_text_sha256": "2b0c323159cf361fd5fe0e8ce6d341c09f7e989a0aebdb0bf5e1d8dccb4e3803",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "135231fb637fd320",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            111616
+          ],
+          "unprocessed_array_sha256": "a79d5c46192f98346f2ca99e6c09a4beef244d761e3913631e2c19a54caed60b"
+        },
+        {
+          "exact_native_cache_key": "680fad99f820ad31a6b96d226ad1ecd13929e7e9.pkl",
+          "pkl_sha256": "cda46a49ec2427d3b1ba6ba68e7fe678cf8fd57369e4109ccb54fbc84c227d54",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S12",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "The mirror itself would stay untouched,",
+              "exact_native_cache_key": "680fad99f820ad31a6b96d226ad1ecd13929e7e9.pkl",
+              "cache_input_text_sha256": "2ed15ecb9ef9e9655a7b1a457ec52195566f705832a312a1f5a996a64f3e5184",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S12",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "The mirror itself would stay untouched,",
+              "exact_native_cache_key": "680fad99f820ad31a6b96d226ad1ecd13929e7e9.pkl",
+              "cache_input_text_sha256": "2ed15ecb9ef9e9655a7b1a457ec52195566f705832a312a1f5a996a64f3e5184",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "cda46a49ec2427d3",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            51712
+          ],
+          "unprocessed_array_sha256": "32f9f158f40cba1341971de72dbc9b0288e0f30191914a9d8238b327fea38072"
+        },
+        {
+          "exact_native_cache_key": "59aaf358c39c6cfd86e1e27a115fcf22622384ba.pkl",
+          "pkl_sha256": "7045e1d81a67d5dc10c94f4464e6ca6cee515a5ecd1a3ae388d06529a261b5c0",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S12",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "and a new main camera was prepared.",
+              "exact_native_cache_key": "59aaf358c39c6cfd86e1e27a115fcf22622384ba.pkl",
+              "cache_input_text_sha256": "9fa6efe86636702f2f9ba322c35e03172dd4ed4d9565d3713ce215e1b77716c4",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S12",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "and a new main camera was prepared.",
+              "exact_native_cache_key": "59aaf358c39c6cfd86e1e27a115fcf22622384ba.pkl",
+              "cache_input_text_sha256": "9fa6efe86636702f2f9ba322c35e03172dd4ed4d9565d3713ce215e1b77716c4",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "7045e1d81a67d5dc",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            48128
+          ],
+          "unprocessed_array_sha256": "107894b81ba2d9f4fa42a7403ed2a3d2c4a7c3649ed14fb97c88d0d9cb320edc"
+        },
+        {
+          "exact_native_cache_key": "acc60a07d364035d9427c113c173afbe065753bb.pkl",
+          "pkl_sha256": "6db0206b7604280f44ca66c3dd26a0b21cfe409bcbc7c7b1b78496d6206fc9f3",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S13",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "On 2 December 1993 Endeavour ascended with seven astronauts.",
+              "exact_native_cache_key": "acc60a07d364035d9427c113c173afbe065753bb.pkl",
+              "cache_input_text_sha256": "0028f0a14248160bd34d805e41784479e10cad9df6e3ecc0ee3b12f2255528d1",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "6db0206b7604280f",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            131072
+          ],
+          "unprocessed_array_sha256": "1cd7ed872c26e4d88e2bd8c5e09db4dce1f79a511cef4ceee5f7e797e3e2f937"
+        },
+        {
+          "exact_native_cache_key": "0c0b48e0e4de1b9c004f5899fa94816117cb4fa7.pkl",
+          "pkl_sha256": "ce96384413daeb3c79df1f26745e3cbabda11b47ae4e9b4931adcbe0e14167dc",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S14",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "After a rendezvous, they worked in tandem across five spacewalks, about 35 and a half hours of exertion, installing COSTAR and the new camera.",
+              "exact_native_cache_key": "0c0b48e0e4de1b9c004f5899fa94816117cb4fa7.pkl",
+              "cache_input_text_sha256": "445b9f557215c0bdb4a57f837fd467c187186c9595f3cc73d655e22045665b47",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "ce96384413daeb3c",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            239616
+          ],
+          "unprocessed_array_sha256": "96cb212ab1e80c1b2605fba10448f2ef43fc3cca2de3ab4b3dfb44e0889cf689"
+        },
+        {
+          "exact_native_cache_key": "5f5e062d7dd3b1d2c59071060c553efcf4aa3be0.pkl",
+          "pkl_sha256": "b76b2dc8bef288a629e25ca9f9b837ded65242d28f959267568ba1b9684bce38",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S14",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "After a rendezvous,",
+              "exact_native_cache_key": "5f5e062d7dd3b1d2c59071060c553efcf4aa3be0.pkl",
+              "cache_input_text_sha256": "49ef3efd933978fc37488a4fa7c883e29431b2edbd4216dd13422d14034b8115",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S14",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "After a rendezvous,",
+              "exact_native_cache_key": "5f5e062d7dd3b1d2c59071060c553efcf4aa3be0.pkl",
+              "cache_input_text_sha256": "49ef3efd933978fc37488a4fa7c883e29431b2edbd4216dd13422d14034b8115",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "b76b2dc8bef288a6",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            31744
+          ],
+          "unprocessed_array_sha256": "fa0f7436d32fab27f81f18d6a3791e821747cb44c1060828f8b8579396015a51"
+        },
+        {
+          "exact_native_cache_key": "f57181cad7afdabaf6e4f0ff8e3b6ef56080c9c1.pkl",
+          "pkl_sha256": "5f4915361d147d031f4d37e5e0e84f92af02527a9118cd3a8dbbd528800a1c2a",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S14",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "they worked in tandem across five spacewalks,",
+              "exact_native_cache_key": "f57181cad7afdabaf6e4f0ff8e3b6ef56080c9c1.pkl",
+              "cache_input_text_sha256": "fbfaeec90c2c8dd94e58241e432d9ca222aad18f54cf40dcd8443824d8e8baf0",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S14",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "they worked in tandem across five spacewalks,",
+              "exact_native_cache_key": "f57181cad7afdabaf6e4f0ff8e3b6ef56080c9c1.pkl",
+              "cache_input_text_sha256": "fbfaeec90c2c8dd94e58241e432d9ca222aad18f54cf40dcd8443824d8e8baf0",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "5f4915361d147d03",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            66048
+          ],
+          "unprocessed_array_sha256": "9784d5d5b0d490a74a5ea3131fef2d262d2eb6ba38967c83f972f0441f7dd931"
+        },
+        {
+          "exact_native_cache_key": "e759eef1944c0613dea8f649a443dca0f51f5b2d.pkl",
+          "pkl_sha256": "d879580414f59541b8dad2216df47ce0f421be3daf8463a3b84c4365af4345ff",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S14",
+              "piece": 3,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "about 35 and a half hours of exertion,",
+              "exact_native_cache_key": "e759eef1944c0613dea8f649a443dca0f51f5b2d.pkl",
+              "cache_input_text_sha256": "4fbec23028c5be959ffb5bb1b630b1b7dc19b0c324bf1358da75a0b8ece4cce2",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S14",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "about 35 and a half hours of exertion,",
+              "exact_native_cache_key": "e759eef1944c0613dea8f649a443dca0f51f5b2d.pkl",
+              "cache_input_text_sha256": "4fbec23028c5be959ffb5bb1b630b1b7dc19b0c324bf1358da75a0b8ece4cce2",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "d879580414f59541",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            66560
+          ],
+          "unprocessed_array_sha256": "5f1acfacdf7960b3d9077fef08eccc81854eecb3a2c2983f523be6d95264e1c9"
+        },
+        {
+          "exact_native_cache_key": "187db3fabc8e24680ee37d5db767a777006a5bd4.pkl",
+          "pkl_sha256": "af91daa57094f530e1f7c842815202da4ebabb63c71b79340c34f1a322836abf",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S14",
+              "piece": 4,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "installing COSTAR and the new camera.",
+              "exact_native_cache_key": "187db3fabc8e24680ee37d5db767a777006a5bd4.pkl",
+              "cache_input_text_sha256": "2ce7793e8d632d3038ab083bbc07be01d23661f63b6b918c137150fe9d2ca70c",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S14",
+              "piece": 4,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "installing COSTAR and the new camera.",
+              "exact_native_cache_key": "187db3fabc8e24680ee37d5db767a777006a5bd4.pkl",
+              "cache_input_text_sha256": "2ce7793e8d632d3038ab083bbc07be01d23661f63b6b918c137150fe9d2ca70c",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "af91daa57094f530",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            53248
+          ],
+          "unprocessed_array_sha256": "da7e8a65aa3703c84914b810b061da8abced02a65239173b4eddb2863759ed42"
+        },
+        {
+          "exact_native_cache_key": "f0bc75dd2152777e2b2d4ccb4f2cc0ae5b4c57e9.pkl",
+          "pkl_sha256": "2eec37bb6bdb2d6a4a7bc6ca041f56e712cd4d91ddb315bffc2e43fab9679c13",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S15",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "The imagery turned crisp, Hubble's vision renewed.",
+              "exact_native_cache_key": "f0bc75dd2152777e2b2d4ccb4f2cc0ae5b4c57e9.pkl",
+              "cache_input_text_sha256": "63d85459e340a7f7ada9264661cf20622b45bbf25c851d6052ac9e181bdb43b0",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "2eec37bb6bdb2d6a",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            73728
+          ],
+          "unprocessed_array_sha256": "9475fffdfcbf4a6b8711ae8771c40e8cdaafabaf8fe982a34e986fd913747737"
+        },
+        {
+          "exact_native_cache_key": "68317e4fad102231a72f85568a9fbaab8b209cf6.pkl",
+          "pkl_sha256": "6bc8c69abca2486418e6880a50e833c8cf13eb050a1f6b1de933af068ddf7e8f",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S15",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "The imagery turned crisp,",
+              "exact_native_cache_key": "68317e4fad102231a72f85568a9fbaab8b209cf6.pkl",
+              "cache_input_text_sha256": "027583459dc845e4770ec50f1c055b3e2051d8dfdf15c77720067ac813126ea9",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S15",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "The imagery turned crisp,",
+              "exact_native_cache_key": "68317e4fad102231a72f85568a9fbaab8b209cf6.pkl",
+              "cache_input_text_sha256": "027583459dc845e4770ec50f1c055b3e2051d8dfdf15c77720067ac813126ea9",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "6bc8c69abca24864",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            37888
+          ],
+          "unprocessed_array_sha256": "f7a3c327cf6beb11b01672655e5ee20b5b124c62258371cd5c6dc4f1ee3a661d"
+        },
+        {
+          "exact_native_cache_key": "efdd08213cdf1ba64453a6a95df2f76033ea6897.pkl",
+          "pkl_sha256": "30bf76c1a085083fc807be2e0b85dca05e66f8e4df7608afa9eba3be9f4e9d07",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S15",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Hubble's vision renewed.",
+              "exact_native_cache_key": "efdd08213cdf1ba64453a6a95df2f76033ea6897.pkl",
+              "cache_input_text_sha256": "9cab63037aa1917d794970df2bff746f95b8a7d57e1237dfa728f0af06a3a40f",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S15",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Hubble's vision renewed.",
+              "exact_native_cache_key": "efdd08213cdf1ba64453a6a95df2f76033ea6897.pkl",
+              "cache_input_text_sha256": "9cab63037aa1917d794970df2bff746f95b8a7d57e1237dfa728f0af06a3a40f",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "30bf76c1a085083f",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            36352
+          ],
+          "unprocessed_array_sha256": "be58c25bc1d332df8d948ec2819e1e20cb674ec44e9fc06ea7b652c35ab8b5e9"
+        },
+        {
+          "exact_native_cache_key": "14b07a27cec30dc36c6704254dd6d758c0e24842.pkl",
+          "pkl_sha256": "c4f2e1d07e267b8d6b00ac586bf10cd2a2ef4d9048cc40667f0e012eded30a7f",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S16",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "The mirror still carries that 2.2-micrometre flaw, and the light it gathers is corrected only after leaving it.",
+              "exact_native_cache_key": "14b07a27cec30dc36c6704254dd6d758c0e24842.pkl",
+              "cache_input_text_sha256": "a32e8f907e593f5ed4f9431e2e8a940180e7c658780f7dd69a7e8ade81338598",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "c4f2e1d07e267b8d",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            179712
+          ],
+          "unprocessed_array_sha256": "0eb05b05940f886674a3abd70dedcfd0ad1450e150e3b0d7f23bd2140c3c02d8"
+        },
+        {
+          "exact_native_cache_key": "28299d9f72574bfe1107210a78bfc97decc9651f.pkl",
+          "pkl_sha256": "09c1741fe3fc3a0b718cba8f60a77d1db96d76c48f34121caf7f78fa889fcd09",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S16",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "The mirror still carries that 2.2-micrometre flaw,",
+              "exact_native_cache_key": "28299d9f72574bfe1107210a78bfc97decc9651f.pkl",
+              "cache_input_text_sha256": "38d7caf34de219acb3bd07fe586cf1a55bc46c8dca7f1d37fbeaf33e7b098bae",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S16",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "The mirror still carries that 2.2-micrometre flaw,",
+              "exact_native_cache_key": "28299d9f72574bfe1107210a78bfc97decc9651f.pkl",
+              "cache_input_text_sha256": "38d7caf34de219acb3bd07fe586cf1a55bc46c8dca7f1d37fbeaf33e7b098bae",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "09c1741fe3fc3a0b",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            82432
+          ],
+          "unprocessed_array_sha256": "506538341856f589d0cbbea925a30d60e4127488a1688b7ec2d87aa86c31df04"
+        },
+        {
+          "exact_native_cache_key": "a317c45954179fa7082a24cf3bdcc05f1853ef4a.pkl",
+          "pkl_sha256": "c665866dfdb1371b7c9f7568989dfec88b689882c6c7ab685370991a828e9026",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S16",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "and the light it gathers is corrected only after leaving it.",
+              "exact_native_cache_key": "a317c45954179fa7082a24cf3bdcc05f1853ef4a.pkl",
+              "cache_input_text_sha256": "b95df1bb7e21b5c928e52c825deab27fc82114905c57442f88c1c64b55376bee",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S16",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "and the light it gathers is corrected only after leaving it.",
+              "exact_native_cache_key": "a317c45954179fa7082a24cf3bdcc05f1853ef4a.pkl",
+              "cache_input_text_sha256": "b95df1bb7e21b5c928e52c825deab27fc82114905c57442f88c1c64b55376bee",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "c665866dfdb1371b",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            84480
+          ],
+          "unprocessed_array_sha256": "7e794cd28c5fc91043c790ce55c6e6b160733e66318a3e4a6bd4732da83428d7"
+        }
+      ],
+      "missing_reference_key_count": 0,
+      "observed_missing_keys_covered": [],
+      "new_private_cache_names": [],
+      "native_single_thread_marker_verified": true,
+      "single_thread_sessions": [
+        {
+          "intra_op_num_threads": 1,
+          "inter_op_num_threads": 1
+        },
+        {
+          "intra_op_num_threads": 1,
+          "inter_op_num_threads": 1
+        }
+      ],
+      "models_sha256": {
+        "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+        "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+        "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+      },
+      "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+      "existing_private_cache_count": 11514,
+      "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+      "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+      "existing_private_cache_bytes_unchanged": true,
+      "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+      "public_repository_cache_unchanged": true,
+      "producer_pcm_existed_before": false,
+      "producer_pcm_sha256_before": null,
+      "producer_pcm_sha256_after": null,
+      "accepted_aac_adts_sha256_before": "8eac620f51f997c85cd976148ba45f2a322c5e69b8bc6467d23157d2e237b92f",
+      "accepted_aac_adts_sha256_after": "8eac620f51f997c85cd976148ba45f2a322c5e69b8bc6467d23157d2e237b92f",
+      "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+      "private_cache_exported": false
+    },
+    "checker_reference_preparation_program_sha256": "f6f2a032e207085e7252d036e39430fb80b06e84a721c525b61196d021c5ca12",
+    "fresh_current_article_reference": {
+      "article": "42",
+      "removed_temporary_gt_files": [],
+      "processed_pcm_or_raw_mother_cache_modified": false,
+      "purpose": "Original synth/labels/audit rebuild fresh for this production; no old CPU GT reuse."
+    },
+    "temporary_output_reset": {
+      "removed": [],
+      "production_started_ns": 1794619321064193516,
+      "repository_outputs_modified": false
+    },
+    "reviewed_gain_control_preservation": [
+      {
+        "stage": "canonical-draft",
+        "requested_gain_controls": {},
+        "actual_gain_controls": {},
+        "exactly_preserved": true
+      },
+      {
+        "stage": "canonical-final4K",
+        "requested_gain_controls": {},
+        "actual_gain_controls": {},
+        "exactly_preserved": true
+      }
+    ],
+    "canonical_video_sha256": "be3ac0d58aa6c3367340dd815ccba693baabbce4e661a5e2f2759411308b76d1",
+    "canonical_aac_adts_sha256": "8eac620f51f997c85cd976148ba45f2a322c5e69b8bc6467d23157d2e237b92f",
+    "canonical_pipeline_passed": true,
+    "cached_input_wav_sha256": null,
+    "final_wav_sha256": "542f90bd4663c597548206cefdca3c46f064ec65e82a5cbb3e99d634960ffe7d",
+    "accepted_prior_aac_identical": true,
+    "video_sha256": "cbf742347ad986049c48da10325b209db509c399e39cbae3094ded2c9020861c",
+    "width": 3840,
+    "height": 2160,
+    "summary_seconds": 2,
+    "summary_frames": 60,
+    "summary_start_seconds": 136.63333333333333,
+    "delay_after_voice_seconds": 0.013333333333321207,
+    "actual_source_collection": {
+      "article": "42",
+      "kind": "actual-production-source-collection",
+      "new_quality_gate": false,
+      "files": {
+        "request_json": {
+          "file": "42-request-source.json",
+          "sha256": "eceb10ae92aa4b9cd23180d1138149a7fa7b674385462c898bc0d2283c8739e7",
+          "origin": "immutable_request"
+        },
+        "request_generator": {
+          "file": "42-request-gen.py",
+          "sha256": "7803bd353d91ef4d84d95b91e2a7d08c65a75d8a96cdffac06065625b6e898d5",
+          "origin": "immutable_request"
+        },
+        "used_generator": {
+          "file": "42-used-gen.py",
+          "sha256": "7803bd353d91ef4d84d95b91e2a7d08c65a75d8a96cdffac06065625b6e898d5",
+          "origin": "actual_production_filesystem"
+        },
+        "actual_working_source": {
+          "file": "42-actual-working-source.json",
+          "sha256": "bf6b6e56d97fb9646091e8d4c7822d48fdc8b14f59e5f313a714215117f96a77",
+          "origin": "actual_production_filesystem"
+        },
+        "request_manuscript": {
+          "file": "42-request-manuscript.md",
+          "sha256": "d4aa049779a0eba06c555d76ca14103648378eef90465df424120126fa771280",
+          "origin": "immutable_request"
+        },
+        "actual_working_manuscript": {
+          "file": "42-actual-working-manuscript.md",
+          "sha256": "2696677b44bcb64eacba6bb9e7808cfe6e0038a82f795223154b59477b1cce52",
+          "origin": "actual_production_filesystem"
+        }
+      },
+      "generator_execution_observed": false,
+      "generator_execution_evidence": "No fresh generator execution log; do not claim this GEN was executed during rendering.",
+      "source_differences": {
+        "file": "42-actual-source-differences.json",
+        "sha256": "1cc7079fbb632647fd09b300060c7312bee118238b7cee463905291c7c88a2ce"
+      }
+    }
+  },
+  "native_status_sha256": "594bd6e563e07da23692a1f059a457b35a6861454fd3dc8ea95cb3ea479a3519"
+}

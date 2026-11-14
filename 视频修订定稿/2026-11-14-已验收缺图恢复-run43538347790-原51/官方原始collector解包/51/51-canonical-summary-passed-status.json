@@ -1,0 +1,3775 @@
+{
+  "article": "51",
+  "passed": true,
+  "stage": "final4K-passed",
+  "original_audit_and_quality_thresholds_unchanged": true,
+  "original_maker_unchanged": true,
+  "core_repairs": [
+    {
+      "target": "视频/工具/草稿声音.sh",
+      "file": "files/视频/工具/草稿声音.sh",
+      "original_sha256": "0ce3277812cf16ed30438509b6dc97db0c26725db4c5db5d9b058c3ef6531aa2",
+      "patched_sha256": "957d7eb1598698ea33ff77d83379256ecae258d84d588753d561a902284be439",
+      "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+    },
+    {
+      "target": "视频/工具/句内响度.py",
+      "file": "files/视频/工具/句内响度.py",
+      "original_sha256": "58735b7173a3c03efa61fb300b4aed4039c164fa970e0593a40bae2a3f3cbd27",
+      "patched_sha256": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea",
+      "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+    },
+    {
+      "target": "视频/工具/独立复核/synth.py",
+      "file": "files/视频/工具/独立复核/synth.py",
+      "original_sha256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+      "patched_sha256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+      "repair_scope": "validated unprocessed raw-mother reference input only; independent transforms/audit/thresholds retained"
+    }
+  ],
+  "strict_production_cache": true,
+  "pdf_requested": false,
+  "check_summaries": {
+    "certified-core-original-stamp-verification.log": [],
+    "original-restored-stamp.log": [],
+    "canonical-module-copy.log": [],
+    "canonical-draft-00.log": [
+      "第51篇 做完（365 秒）：修了 1 处、疑点 31 处",
+      "① 文本：通过，自动修 1 处",
+      "② 声音：51 词尾辅音核对 问题数 0；51 纯人声核对（配音指纹 b86f2f88ba42）问题数 1；问题数 0；51 句间停顿核对 问题数 0；问题数 0",
+      "③ 出片前核查：通过",
+      "⑤ 出片后核查：全部通过",
+      "⑥ 已拷 视频/视频/草稿1080p/51_1080p.mp4（--不推）"
+    ],
+    "canonical-final4K-00.log": [
+      "第51篇 用户定稿原话：有"
+    ],
+    "original-stamp-after-production.log": [],
+    "approved-audio-qc.log": []
+  },
+  "actual_native_core_certification": {
+    "run_id": 43535822030,
+    "job_id": 132264443476,
+    "commit": "395e8da264fafa2453a42ee70a3f7aed8303a769",
+    "actual_full_quickcheck_exit": 0,
+    "actual_full_quickcheck_seconds": 478.16,
+    "artifact_id": 14089812323,
+    "artifact_zip_sha256": "5e396c84e4a6fc7c6cc737ceb8648d7f15f397e9551806e032c93db8ab0963b8",
+    "full_original_quickcheck_log_sha256": "dbe7f6e08d2b7c3a5f9a2f925bb75a662aed725c780e1bc6714706807552a294",
+    "article_audio_or_video_passed_not_implied": true
+  },
+  "actual_native_fastcheck_stamp": {
+    "target": "视频/工具/新管/快测通过.json",
+    "file": "files/视频/工具/新管/快测通过.json",
+    "sha256": "6ebc7aa41f79f77258fa333b665af258e007daa36a4ea290de972cd3da7b42f2",
+    "origin": "actual unmodified original full quickcheck, native run43535822030"
+  },
+  "reviewed_regression_resource": {
+    "target": "视频/工具/新管/回归基准_27.json",
+    "file": "files/视频/工具/新管/回归基准_27.json",
+    "sha256": "b8ddb4656ae27cbfc7ec8e3b99511983b4e568997bd4ad4ee33c364f3926ae94",
+    "origin": "pre-existing root-reviewed 67-screen data; original voice/segment MD5 unchanged"
+  },
+  "core_repair_manifest_sha256": "1b1558108d15603e5711e200135651d6c7700a583d8bcf53ad8753683ed05a5e",
+  "reviewed_gain_preservation_mode": true,
+  "real_restored_stamp_validated": true,
+  "reviewed_cross_article_context": {
+    "provided": true,
+    "manifest_sha256": "e5d06b6488ca595da3ee2029e5208a061d8446278f6b1e2ca7c42f36e82c0f8f",
+    "files_sha256": {
+      "视频/脚本/01.json": "2be2f80a69af28703992204ac95f987c745362c326e62ad81b3cd8e0e0735d3a",
+      "新版定稿/01-the-robber-who-thought-lemon-juice-made-him-invisible.md": "572054065b5bb65446bf8939a21c789c1e9c7664d82da5117c43efdded894351",
+      "视频/脚本/02.json": "0403368c77fd3e0f91e1ee3780e1c7c147894ad13c16b5f14707d700a8f717c8",
+      "新版定稿/02-the-truth-about-one-marshmallow.md": "91b92505aad03f963861bec39e96f0a472c126d1d57c9fc538676c32f65e545c",
+      "视频/脚本/03.json": "527f3bf4a11843f4d606188dabc6ebce6830da3fb454a49c782e3a595cb47407",
+      "新版定稿/03-the-doctor-who-drank-bacteria-to-win-an-argument.md": "6dfb56504882e24854a3584fd740e7f6601e3f2532818aee3a56d5330d317aa3",
+      "视频/脚本/04.json": "93cc1ff58d65ebe43a65ecb2fb2dbd2da262d80877c05740bbdf4eab4eaca1e8",
+      "新版定稿/04-the-brain-that-learned-london.md": "a8ccb31ffff50aaae77de4b83de1847fafae1d585981cf960c5880c409f6cfc3",
+      "视频/脚本/05.json": "2282acbfa4b82825f93261ec6c18359eb47fd3f7c639319ac5058d126643e136",
+      "新版定稿/05-the-fingerprint-in-the-blood.md": "612deac4ed066489e04e214ca969f8f27dda05856e0ef0ed2e540e7a4a52ae34",
+      "视频/脚本/06.json": "2cbf1d6cd6e66a59285298ea830f5ef914590b64286d40b2ae5f3168aa27a2e9",
+      "新版定稿/06-the-horse-that-could-count.md": "7fd21ba491c7596c53c486f2bb0b0f2f6da8e67bac75461a4649a7caff822f74",
+      "视频/脚本/07.json": "842e44e5aa19fddcfa239cb6530c5152341cd86e11db959543d02d8670ca13e8",
+      "新版定稿/07-the-octopus-that-escaped.md": "b8544281bb2ada88fce9d1082cbc30233dcb63ee3e9c2bbefafc22cb28b8cb39",
+      "视频/脚本/08.json": "254832e09f12759d950384dd9f31f671ad5a3bc1590b7466065dd3ef5fe4b8d5",
+      "新版定稿/08-the-doctor-who-solved-the-cholera-mystery.md": "0b2bfa68070ce585a452f6b7034d03c3683e710dcabec5e86d7b221950dc7bab",
+      "视频/脚本/09.json": "fa3e429351d629de188c184d04e9986200e16e80606fcbec82332b6433301dae",
+      "新版定稿/09-the-great-emu-war.md": "af5c3e844bad15f94bfc43aeed6d7417c4bfae85f026b194da667a7a3bdb6196",
+      "视频/脚本/10.json": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
+      "新版定稿/10-the-stolen-smile.md": "ff63cf94e4d2c835e2e2f1ffd3e6c5642f0916f0b13c012f1f13c3dff716d47a",
+      "视频/脚本/11.json": "665cbb80cc70b700ecc0cc5813209fd100ad4fa8f0eead3929b9e53778d9d07f",
+      "新版定稿/11-move-37.md": "7e0b49b346c1fa3ab994a11a2301167c0d6a1bb00916508bdc0b1acf71e68053",
+      "视频/脚本/12.json": "e3bfbcce6f1a8e14cfe451d656574353321e297c90c62f5a7b422f37478311d5",
+      "新版定稿/12-the-79-days-of-new-coke.md": "5a23c1e0c81318527bcbf27573487d1845c5318905a2b1e020cc6e2eaf5d643f",
+      "视频/脚本/13.json": "3687b6c42a6d524d0d7e40a47ed02c37b18abe8d524db4f5914abad52019a63c",
+      "新版定稿/13-eleven-days-without-sleep.md": "72b842de127132e386e9e52a1719ec96765e94958f56687987f53e2801c69704",
+      "视频/脚本/14.json": "17141351875ddb8f0e308602c0b6ab85cbf5126a4d0118978c25c869db769fee",
+      "新版定稿/14-the-fungus-that-turns-ants-into-zombies.md": "e114c9e1783c80a2ffdb60af05e824f93a8ea8725905cb733560abe1c0ad01a8",
+      "视频/脚本/15.json": "95fd14da0704f4cb39120284bcd2c48836930ba3b9e9395edb0f4850d0eb0814",
+      "新版定稿/15-the-myth-of-the-unsinkable.md": "68e236868c4b466928ff2a60358250b9592dfe9287b66561b1e5a80b4d14de4f",
+      "视频/脚本/16.json": "d25aa07f3fac316c26c2ae1006d3efa7eb82a396b66150432b50239c1628396d",
+      "新版定稿/16-the-bread-made-from-air.md": "4da63148111213f6d77451b0eb4193893e6fc2fc170400bc39ce5f5ffcaa0b20",
+      "视频/脚本/17.json": "bd541a1b2881ea8ea7649cdfe571cc449672bde8792b50a2808a7832ce2a9ee1",
+      "新版定稿/17-the-curse-of-the-pharaoh.md": "a2e8d92f9136e1b22fcc0799f9a4d281092f0e547cc68242e090241d7b09e222",
+      "视频/脚本/18.json": "c9469b18874c389f20a890b41491f1284e318e47d91c0f3d519b055d2c9ba752",
+      "新版定稿/18-the-mould-that-changed-the-world.md": "ef41cea03f471fe3b9a53939c843e450da3325eb711f6414e108ae92a7518dd8",
+      "视频/脚本/19.json": "cc3c5eea0f7d9ec0712b2e58adba7e5ef8b61d6518a322f9b25a12fcc45282fb",
+      "新版定稿/19-tulip-mania.md": "3882d487383b759c31dda4785966091c362960cd873a5d83c530d08d52e2e97c",
+      "视频/脚本/20.json": "cc5ed6d7be8767e5e7e9b098e8f3836821c0b3f51c17581b2746722da1cf3001",
+      "新版定稿/20-the-5000-year-old-murder-in-the-ice.md": "8d55638070787f7ff5432c197292af1188c463a8b018e01bdefc32999b888e95",
+      "视频/脚本/21.json": "61c1569a26d7569ee0f586178be6b307b1c394c0a30c3cb02541c910038b0589",
+      "新版定稿/21-the-man-who-sold-the-eiffel-tower-twice.md": "e8e966b70f579235d696ba11fb01d3b2cae3fa26efb9071bbea95071be259e1f",
+      "视频/脚本/22.json": "e3027a42c532fee9935afcecdd0542713cbb907183802c2345b9472f93b75f59",
+      "新版定稿/22-the-building-that-melted-a-car.md": "49ae09483bc80bbc40a71551cd98aebec355d96d9ff7b2bcdea59a06fe599267",
+      "视频/脚本/23.json": "c4574a79fd3a58577a1402ce095ea9e4a0ea1f98883ce63e3cc60d126e819409",
+      "新版定稿/23-the-man-who-gave-machines-a-mind.md": "72ed3049e87fe75ce1e753d5e443bdbe6a7ab72f6e282e8467fbbb62be873169",
+      "视频/脚本/24.json": "f08620b534bb10b718f7515c805dcb541721427d855bd5a092b8954847a351b8",
+      "新版定稿/24-survival-in-the-ice.md": "cb7f810d9a74256e0c00625290be4f16207feb90f5719ca87d5d7c9912b91307",
+      "视频/脚本/25.json": "c73e854e052b3df9bd920d4a59fafb183dee19bd58765fa426af6ea3d7c9a329",
+      "新版定稿/25-apollo-13-the-successful-failure.md": "b6b7d55fe66e6e32116431ea955778fab779b8bda622df0ba1036c2f40a3969f",
+      "视频/脚本/26.json": "456cf19082860ca5d4a1f88b68aa7c8303d901a980f1db50ca130de5288bc891",
+      "新版定稿/26-the-language-the-children-invented.md": "9e9ad8021ddabc17157d73dc739383f9676df3583cf965e470fcd773e26a3761",
+      "视频/脚本/27.json": "966d26ab222e43b25d5d4ae569e451ec4364548e4231a9f1b9fc3cd8cc9754cf",
+      "新版定稿/27-life-in-the-forbidden-zone.md": "e276bcf76225b9ae16cd8cfda8c9b726b442fbd625d3718f532b47b09b21b16f",
+      "视频/脚本/28.json": "a6a4befc0291727f5cc3f8b50857ee954ef9f936738f014a978ebb4d37a28ea8",
+      "新版定稿/28-a-handful-of-wormwood-that-saved-millions.md": "b9817d3429767d07b6a2eb14cce5422a20cb4e3b89f8b03e6b3d5da2daf91d91",
+      "视频/脚本/29.json": "e916f33df7cacafe7666f0d51af6116bdbc639bc5e9a7a5a92a3420050f227a1",
+      "新版定稿/29-the-volcano-that-gave-us-frankenstein.md": "69045ee19a170c7ea9d0008b468c7e947bc28b639b834c0192dc0aeafc3ef4d0",
+      "视频/脚本/30.json": "b8e250df2282e388aa901c97be46b1bd610b14e38bc14a97d3aca262ef1d43f1",
+      "新版定稿/30-the-stink-that-built-londons-sewers.md": "84dbf19cee0045ea2608b13ee0677cb9623dd8fbb371c67093bf50c64186137a",
+      "视频/脚本/31.json": "d81f8645a1e5663ba8c84668e817cdb218bc6689079fbfd51326b3a7fd3cd384",
+      "新版定稿/31-the-book-twelve-publishers-turned-down.md": "7abd20fed44918dcf01586c056e9d0acd9d2ad3b90aa7d3d403762d9f06d2659",
+      "视频/脚本/32.json": "357aa59bed62154f7302a5efcf528859b303004e028657b93058138fe931bf85",
+      "新版定稿/32-the-planet-that-was-demoted.md": "1421f2b0921e7e9478ebc48777e3e8b2c979172de63d0124015107c3750a3542",
+      "视频/脚本/33.json": "ca51103c1a9d45c9159322765efc86c81f61f6ec78975f160019d21a1d9ee0d7",
+      "新版定稿/33-thirteen-in-the-cave.md": "9862078044ce45a9f6d51aa7d165afdfcf90066d1de98cbb317dd7e8f980610d",
+      "视频/脚本/34.json": "74921848a6bb25a2ba631813f60d4756c9ff90c64c03a2fb936ce34f310ce509",
+      "新版定稿/34-the-game-that-escaped-the-soviet-union.md": "e3244b67b21e283e67f4e88e932a1dbb85bf273a48ee009b3f435e1c5814831c",
+      "视频/脚本/35.json": "d8439077dc2c909b1c6cbd1347f31e9625f25fffe447d6f5945c9492561f1a16",
+      "新版定稿/35-the-bird-that-beat-the-letter-home.md": "ba8c38e38b21a3345624e2d44fd352561d3096cfb6f62214b48ea9b6e66faead",
+      "视频/脚本/36.json": "76daa28f421bd40d8e2744d4e785a34bb8ee67da1403b4b1546db9465c535cef",
+      "新版定稿/36-the-company-that-invented-its-own-killer.md": "411eeb96c8641ee7082b49a5abf4c7343d3f1dbb7ef331064d7c0f3c630fe58f",
+      "视频/脚本/37.json": "b1b8945ccf3581df48ade5714a2d0e93e4cc6812708f95bef6f5e44439106c99",
+      "新版定稿/37-dynamite-for-the-heart.md": "4933e24d2384471a96d9c8c26c15d5224a85dae98d9971a3fed15b4978dafc51",
+      "视频/脚本/38.json": "8d0379032000967c9f72e550574874949f798eefbfbfb58ab2b38e4e23ecbc6b",
+      "新版定稿/38-the-web-beneath-the-woods.md": "abb7eead9f3da0b2b326ceed5a649cfbf71fc28dad22e0d52f7b19caa798c54f",
+      "视频/脚本/39.json": "de2f83f5494d2218b0de6c6ede6b7b1e841e01988ec5ff6a3d7864be19a63494",
+      "新版定稿/39-y2k-the-crisis-that-success-erased.md": "abbc9804661126aa006595031ed8f201ce55e8eb5fd9e1ad5669c0c6fcdb80ab",
+      "视频/脚本/40.json": "1c50d1a47ee6f8528d0f7299e8a45bc8c30312622f3f465a964d21cc1395ee7f",
+      "新版定稿/40-the-glue-that-failed.md": "dce9f78f3a0828307843dd667b7eeebf3380a3630f03d234bd5824870aba61a1",
+      "视频/脚本/41.json": "6b6673ffc1db986f4c355f3685de6a0faf2272cee042c5e917f26a8b3057c2be",
+      "新版定稿/41-the-toad-that-invaded-australia.md": "eca590f97120f4e76d719e29aa07b094f9117cd462f5a70c029331a63b85f710",
+      "视频/脚本/42.json": "eceb10ae92aa4b9cd23180d1138149a7fa7b674385462c898bc0d2283c8739e7",
+      "新版定稿/42-the-telescope-that-needed-glasses.md": "d4aa049779a0eba06c555d76ca14103648378eef90465df424120126fa771280",
+      "视频/脚本/43.json": "f9a7e6b49e095b859de15b773a8560a5be917e5b066b5f4be95deb232bbe6645",
+      "新版定稿/43-from-a-garage-to-the-top-of-the-world.md": "bd70c83e5ac867238ca179f3c9f3548eb9cbdcae1f6df40994aef0bda721ae54",
+      "视频/脚本/44.json": "eb11422f14274c8d1b7cdb27064a4db03624a1af07c66b820899e08cfb4c9940",
+      "新版定稿/44-the-night-sweden-switched-sides.md": "d3f7ad2ac43f02aae9205a15b9808280ca3db597d6ef3b36aca8ca6176c5f74a",
+      "视频/脚本/45.json": "fb936d92e9f5a998cfefc2c26a7bb20829bc7a5b142c08fdb83ba7a48fdf2a98",
+      "新版定稿/45-the-record-humanity-threw-into-the-stars.md": "27deabec4a8478fe570f7f237a2fb850ffdce3deebfd952f512d82a60cf7314f",
+      "视频/脚本/46.json": "804ecfddb6060288b05eda0e1027c65e9bff0c08a9d010c201bf39306c769b62",
+      "新版定稿/46-lost-in-the-glare.md": "7aaa06e875fe56c5d78210b90a8769b8b2051714025ef10df37c2fe89db7a68c",
+      "视频/脚本/47.json": "0eb7b97ebb056249aa10d2c0d8950e4ae02e056d4772750d02a44ab7ee99c661",
+      "新版定稿/47-shadows-of-wolves-over-yellowstone.md": "34c68cf4d0f0ef3545ad68edf3367fcb76ab500174b11ae7f83b782cd5a80a2a",
+      "视频/脚本/48.json": "4f146ce6a70bb0bf5d2c6e1f6b47bd6a2bcc2f311be7a948092d7bde1a08f449",
+      "新版定稿/48-rice-for-the-world.md": "76416be21f857e8a05c37baa33ac90f5785812291485231c249e38a1d0edf15f",
+      "视频/脚本/49.json": "640168eb8a17c5d53d266c6604ffe287919314947371c2ee239eeea952d73b77",
+      "新版定稿/49-the-woman-who-won-two-nobels.md": "1e4fb068aa9ae4513d01b199a074b84dc9d819f57b2134df32588a0e4a4b6b6a",
+      "视频/脚本/50.json": "1d4a41824dfa5e8d11e5990b2a4b802ba2fcc3231d85b15ed6630396c6f027bf",
+      "新版定稿/50-microplastics.md": "5439589bacf1abb2abbb184eb658492bc02bcc5bdd8dfd8ababcd80ab93621cb",
+      "视频/脚本/51.json": "39886d83593a31fb575b124ecf6457190773dca695b6ff78f8434d52aebd6d7c",
+      "新版定稿/51-the-joke-that-became-ok.md": "8de30ea4846f4e88d8b71c8d5ced3ee63a73955e39b7dc3c5adad0971b854fd0",
+      "视频/脚本/52.json": "832249bb44617d38ede75560a5e57af6ba79ec284c9609407cb30ce879f6f862",
+      "新版定稿/52-the-killer-smog-of-1952.md": "179500361e4a837d7edb2e0497e08677d5abd425e8ad542f788205a6f7667b4b",
+      "视频/脚本/53.json": "893a7789ddf5f5a79e2a9168011c1c23e2709975d1b07b6b023d6cf5988b2bef",
+      "新版定稿/53-the-wind-that-kept-no-time.md": "6fab302dcadb5a2c509436f5fbf8d9ef925c008a36f5b422749bd405aa4701d3",
+      "视频/脚本/54.json": "b1fcb8ae86045b3d35ccfa0f52eb9594b8921d43063835769ee3ecc4543be75e",
+      "新版定稿/54-the-sound-that-shook-the-world.md": "abd5f4bfe11ed73bcc5326a92cf99b0a8e5ad70adaca1ce8d0c8f622b57fa519",
+      "视频/脚本/55.json": "06344fc0ad5975cba2f4dbe5262a9957dd7c024f9a05b9abbfa327f32ea8c719",
+      "新版定稿/55-the-secret-of-romes-undying-concrete.md": "a7759eddcc7ec06dfd6dab7912e06b3b5ef8576df0c025a97812006669d0be61",
+      "视频/脚本/56.json": "22ca3b4180a8ae6a37b4c8e25f5e357d5696d9b23bf148fb7064425d1403e59c",
+      "新版定稿/56-the-letter-that-startled-darwin.md": "aad1e2aab9ff28f534a510362e807ef401e0b502475240f4b2531e9e518a8d7a",
+      "视频/脚本/57.json": "a0ba65b769430289a33ec1f7bc6dbf91dad8d2c3b1d725348851de546563cd6f",
+      "新版定稿/57-a-change-of-anthem-in-the-deep.md": "0731d925a98bafc222718c111985362e166b38b9189c516219a481e36d0d4b6e",
+      "视频/脚本/58.json": "8b0bd3d7d39000518789e9907aec53bd52fab1b9d6b4f22a152d158635b6e8ee",
+      "新版定稿/58-from-a-scratch-to-a-world-without-smallpox.md": "1aa2a0d2c51da76f9c9ebb88d049dd1a55ab530791566fdbf6476e5aa48c15ee",
+      "视频/脚本/59.json": "df1db4174d942371166048b220ef6d55b0b700b2ce31c866edf6dfdf33b92f0c",
+      "新版定稿/59-saving-the-sky.md": "7bf9c4661e733e7af23dc2f11bc820b809ec93dad75a94fb6a12748226e8722c",
+      "视频/脚本/60.json": "eed1655c0919db32a3a016b24791b93d25683f287c7ccb2523e168a69bddc562",
+      "新版定稿/60-the-scientific-giant-who-changed-the-world.md": "9d1578e7af085559922394a3db01de4eb22dc1c520ca17de5cad68e5a38a31a8",
+      "视频/脚本/61.json": "72378937501769dfb3d934fe65ab1a69afeb5420a15e19890c161433717d2435",
+      "新版定稿/61-the-steel-box-that-remade-the-world.md": "135cc9cfbcbd68d957f831cf55558112a45b1cc3749366cb9a304507355c7d2c",
+      "视频/脚本/62.json": "4b3a97f2b6404e1b091537c21f01fc60088902f596803345983c38be52ec79eb",
+      "新版定稿/62-dolly-the-copied-sheep.md": "62817546ae33824b57255f941135c503e41a41f905331ed4af1e32850fa00960",
+      "视频/脚本/63.json": "5d266d80f9cf29cce6f7e34531449cf75191a42f180102685a5bcd04849e75c5",
+      "新版定稿/63-the-crowded-heavens.md": "6ef79d4310019dfefa7364b8a428411a6bc337678c69fa5cbc89b84689e253a4",
+      "视频/脚本/64.json": "b85ce0a5dcbce997ad82779a850298fecd9847e03d0b2adfc7045b2db54082cb",
+      "新版定稿/64-the-day-zero-that-never-came.md": "e0c83cbe36745adbbffd33a156fa8d0671704ea976cb13215cabb612639b37a5",
+      "视频/脚本/65.json": "78e60dd231df4ac71df83e21a26f82bbf706dc0bef80bee156a36bc287661ede",
+      "新版定稿/65-the-day-the-doomsday-vault-opened.md": "71a50d32e25955e713e6ca108ab68422a4fd5b77c914a9074eece1dc33cbff89",
+      "视频/脚本/66.json": "ad5324af4270834186285a5e7273a90213094077adc6f9e1d5c7b0ebff9cf035",
+      "新版定稿/66-the-burrs-that-became-velcro.md": "75dbe6c148ca97a7780ac1737f33f58bf8ee27a51aa729a83315705655b12b2a",
+      "视频/脚本/67.json": "8897cc1c2df1e4672eec3bbff2776d0565afb9c9fe84087a1758ebb15b2a233e",
+      "新版定稿/67-the-cave-found-by-a-dog.md": "10e37b81eeef4e3289448a6b4fd679f34d495a4fc087c57747e6dca949e00cf1",
+      "视频/脚本/68.json": "568f72dacac48e206811d35a57c7fa22e3da428783f64e507c184f2090e579f3",
+      "新版定稿/68-the-last-flight-of-the-hindenburg.md": "c25f58ffb0e3748336767bb7470dd7cef10374c53cbb48af89dba26f65b2dd5c",
+      "视频/脚本/69.json": "09fd3fdbbc834badd16a9b38d8c14e425193a6849d7db87253f26a782a1c4137",
+      "新版定稿/69-the-trial-of-the-father-of-the-atomic-bomb.md": "570eda5b7d979d71e9bcad1c67e295ed326ecdb8b61e663aba33272c8a9451bd",
+      "视频/脚本/70.json": "0f6827f02cef0d2416f9d7d69b7e1c5553acee7cf6dc89f3379201264587236c",
+      "新版定稿/70-the-stamp-that-changed-the-post.md": "edfd85cea33730ba67e4210e756da1f2945f1a21bce55c7e75497cb5f0095d80"
+    },
+    "source_file_count": 140,
+    "working_script_count": 70,
+    "target_request_exactly_matches_context": true
+  },
+  "request_source_sha256": {
+    "视频/脚本/51.json": "39886d83593a31fb575b124ecf6457190773dca695b6ff78f8434d52aebd6d7c",
+    "视频/工具/初稿生成/gen51.py": "af067a6776644e464ee673a21831fa685c5fd6fb023db03ec700a3cec49e82cc",
+    "新版定稿/51-the-joke-that-became-ok.md": "8de30ea4846f4e88d8b71c8d5ced3ee63a73955e39b7dc3c5adad0971b854fd0",
+    "视频/制作记录/51_待改清单.md": "34c29bbe2c6cac2200ca853d91336e25ece11d2b3d39def40686cdefb35c3ea0",
+    "视频/制作记录/逐句确认/51.json": "29feb66b629b87d2e5f289169a9d599584fd2f1bb1f6f5f5f9bdc8db8b568ec8"
+  },
+  "accepted_source": {
+    "id": "51",
+    "path": "最终版4K视频/51 - The Joke That Became OK - OK 原本是个玩笑.mp4",
+    "sha256": "791318f1d7408d738f4024088114386f4de7035a2e4663f4b8c8b815bd9550d2",
+    "git_blob_sha": "87f9a2c3365be06f229d1c62f99f02e2df6ee7e0",
+    "bytes": 11881102,
+    "width": 3840,
+    "height": 2160,
+    "summary_frames": 60,
+    "aac_adts_sha256": "56fc5f26412760d72144399ab8431a54d87e668f14cd960d65c32368a803feed"
+  },
+  "checker_reference_preparation": {
+    "article": "51",
+    "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+    "reference_prepared": true,
+    "acceptance": false,
+    "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+    "source_sha256": "39886d83593a31fb575b124ecf6457190773dca695b6ff78f8434d52aebd6d7c",
+    "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+    "checker_program_sha256": {
+      "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+      "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+      "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+      "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+      "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+      "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+    },
+    "reference_calls": [
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-raw",
+        "method": "create",
+        "source_slice": "The Joke That Became OK",
+        "exact_native_cache_key": "2db12681a725181d5a34c004100e099d3df420e0.pkl",
+        "cache_input_text_sha256": "811d8410686ccc989f7723a99110e8edd459c7b94ea705a677f2ee910d535b0d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-timed",
+        "method": "create_timed",
+        "source_slice": "The Joke That Became OK",
+        "exact_native_cache_key": "a56d2dc8369c54e11dbf42d30ed4dae243ac76c3.pkl",
+        "cache_input_text_sha256": "811d8410686ccc989f7723a99110e8edd459c7b94ea705a677f2ee910d535b0d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "OK, often said to be the planet's most frequently spoken word, began as a newspaper gag.",
+        "exact_native_cache_key": "eb2f4631f80afd935ee0dd9d9146f4c0c976356a.pkl",
+        "cache_input_text_sha256": "ec40522a2471cda5da4f4584e82fd15e870f0cff5782868b0fcc38dd4a7abc78",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "OK, often said to be the planet's most frequently spoken word, began as a newspaper gag.",
+        "exact_native_cache_key": "97663d698c7dbc362fe2902ce1f1a2116f4413a1.pkl",
+        "cache_input_text_sha256": "ec40522a2471cda5da4f4584e82fd15e870f0cff5782868b0fcc38dd4a7abc78",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "OK,",
+        "exact_native_cache_key": "76d09367920f9b5795d34bc9c06eb1f404171b25.pkl",
+        "cache_input_text_sha256": "ca88112e687bd49b279c0774039711442fef8435c5115f4dd852dc2c02281173",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "often said to be the planet's most frequently spoken word,",
+        "exact_native_cache_key": "c07ee292bb9a8fb83669c9205525570b8776351c.pkl",
+        "cache_input_text_sha256": "e8f9c7a773abf9a0a866c97335f8a21f9edb93ffcf6ecbc23358de907eabfee1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "began as a newspaper gag.",
+        "exact_native_cache_key": "693d42eb476d589751e28ccc62e8340ce7fdc8b1.pkl",
+        "cache_input_text_sha256": "0a427f8bdc35f4107556338b53142dc8e5ff198e872cd3654b0d75a904e245c4",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "From 1838 abbreviations were all the vogue in Boston's papers, and the craze turned comic through deliberate misspellings: O.W. for 'oll wright', K.Y. for 'know yuse'.",
+        "exact_native_cache_key": "a40427a7423e5e2ff841aac9c686fbae95912160.pkl",
+        "cache_input_text_sha256": "e3db0933ad6eb68e159ec7deaea1d2265193ca4ab7b94c83e4681ddb920fd354",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "From 1838 abbreviations were all the vogue in Boston's papers, and the craze turned comic through deliberate misspellings: O.W. for 'oll wright', K.Y. for 'know yuse'.",
+        "exact_native_cache_key": "99f8a01fe16d5b0ab7d9544409632d36472090ec.pkl",
+        "cache_input_text_sha256": "e3db0933ad6eb68e159ec7deaea1d2265193ca4ab7b94c83e4681ddb920fd354",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "From 1838 abbreviations were all the vogue in Boston's papers,",
+        "exact_native_cache_key": "d64f4dfc40b7bc438b326c0e1aa612de7fbe5e9b.pkl",
+        "cache_input_text_sha256": "a2adc4084009db3ee6c72534960ebde4a56be1556f51bef7fcf0480deb9b2b3f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and the craze turned comic through deliberate misspellings:",
+        "exact_native_cache_key": "1b714f81dab5f0f3140734756fcd8acb8ac4c035.pkl",
+        "cache_input_text_sha256": "8cb414c07aef36da54799fc48ffb02b6c9242f2f0ae26f0b28c4cf13e25a5109",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "O.W. for 'oll wright', K.Y. for 'know yuse'.",
+        "exact_native_cache_key": "46c6fa73821dc65f24e06a68320016b3291c51ba.pkl",
+        "cache_input_text_sha256": "b49edfc3a89fae211d6f1d042325592be11ef7393aa756cbc066e487df5e942a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "From 1838 abbreviations were all the vogue in Boston's papers,",
+        "exact_native_cache_key": "d64f4dfc40b7bc438b326c0e1aa612de7fbe5e9b.pkl",
+        "cache_input_text_sha256": "a2adc4084009db3ee6c72534960ebde4a56be1556f51bef7fcf0480deb9b2b3f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and the craze turned comic through deliberate misspellings:",
+        "exact_native_cache_key": "1b714f81dab5f0f3140734756fcd8acb8ac4c035.pkl",
+        "cache_input_text_sha256": "8cb414c07aef36da54799fc48ffb02b6c9242f2f0ae26f0b28c4cf13e25a5109",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "O.W. for 'oll wright',",
+        "exact_native_cache_key": "4a14402b16e51a818487e72ad703cf3077e1aa64.pkl",
+        "cache_input_text_sha256": "e167bdb367446933a4c6f8f7415a6536b88818e193072d848d81bf6959322026",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "K.Y. for 'know yuse'.",
+        "exact_native_cache_key": "ea174cdb55d25b406c9d5acd2385613c3d38f0f8.pkl",
+        "cache_input_text_sha256": "bcea02c706151c200b881baa7cba6db2892cbc71d6426c90596bb91c59a404ad",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The humour lay in the persona of an uneducated bumpkin.",
+        "exact_native_cache_key": "b03b386761d16dedc293f8017deb28110b3eb522.pkl",
+        "cache_input_text_sha256": "e3f3292860d3a352a04b0c016592f577897422e4e500de29165a38f45be24c3e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The humour lay in the persona of an uneducated bumpkin.",
+        "exact_native_cache_key": "6b9c1f5fc46fb015c38f04befac8619ea5552d06.pkl",
+        "cache_input_text_sha256": "e3f3292860d3a352a04b0c016592f577897422e4e500de29165a38f45be24c3e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "On 23 March 1839 a Boston Morning Post satire took a swipe at a contemporary, the Providence Journal, over a mock society parodying an ordinance against ringing dinner bells.",
+        "exact_native_cache_key": "893d4baf2452a1e811d88b4f1d90d86ae56080d3.pkl",
+        "cache_input_text_sha256": "7b90fe52daa6558353790d72183dbfe3e55ac6b7b5e35b2a327fe83e185b81bb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "On 23 March 1839 a Boston Morning Post satire took a swipe at a contemporary, the Providence Journal, over a mock society parodying an ordinance against ringing dinner bells.",
+        "exact_native_cache_key": "b34aef6fa704ec583a10839fff1af0f5f67eae6f.pkl",
+        "cache_input_text_sha256": "7b90fe52daa6558353790d72183dbfe3e55ac6b7b5e35b2a327fe83e185b81bb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "On 23 March 1839 a Boston Morning Post satire",
+        "exact_native_cache_key": "ee09c256ea4f8edb32a7604c58c00d20024c6ad4.pkl",
+        "cache_input_text_sha256": "4f74de30a5712924f46537703a2ca5cc1ee51f0dacf50ff8fa44e95c24e11eeb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "took a swipe at a contemporary, the Providence Journal,",
+        "exact_native_cache_key": "fd73976d647d319e15dc7ed39bffab1d176ae57e.pkl",
+        "cache_input_text_sha256": "def5d225f5814eb3348324cc59842ed28aba13645197ef5665d9de955b8a5a4f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "over a mock society parodying an ordinance against ringing dinner bells.",
+        "exact_native_cache_key": "756524cf1fa59937f66e5ad3ae83cfb05420d5fb.pkl",
+        "cache_input_text_sha256": "43785c1fedf18d8dfb78681fa9f7683d62cfa6bcd4481df915a7d6a89da8e254",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "On 23 March 1839 a Boston Morning Post satire took a swipe at a contemporary,",
+        "exact_native_cache_key": "e5be9e721a7268d5fceebd6e1985b45e0f09fe2e.pkl",
+        "cache_input_text_sha256": "9d64dd7f053eb961c5b82cc91e59708d406ecdb00a120a7af5c3706dfbac34d4",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "the Providence Journal,",
+        "exact_native_cache_key": "c291e4b412dd2cb0bf90d869e1b5f4d80841782c.pkl",
+        "cache_input_text_sha256": "db060681ac509b733bb24d27b6051f33abcf81b64bccdcd11f1a00515d766458",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "over a mock society parodying an ordinance against ringing dinner bells.",
+        "exact_native_cache_key": "756524cf1fa59937f66e5ad3ae83cfb05420d5fb.pkl",
+        "cache_input_text_sha256": "43785c1fedf18d8dfb78681fa9f7683d62cfa6bcd4481df915a7d6a89da8e254",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "It carried the first known 'o.k.', glossed as 'all correct'.",
+        "exact_native_cache_key": "5d147e81914fb7c23df06f40fb61f7b455a360d6.pkl",
+        "cache_input_text_sha256": "4e73ac83b3838ddaa3d54ea07a73d1dc921e0066048f5310b4771894f92341ca",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "It carried the first known 'o.k.', glossed as 'all correct'.",
+        "exact_native_cache_key": "66966dccfc1e16f49206c1f455589a883469264d.pkl",
+        "cache_input_text_sha256": "4e73ac83b3838ddaa3d54ea07a73d1dc921e0066048f5310b4771894f92341ca",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "It carried the first known 'o.k.',",
+        "exact_native_cache_key": "73d8b6c37f812306d3e14da9e1d49212c2e69879.pkl",
+        "cache_input_text_sha256": "4cab80b8a223fde8858914724c97a550abec4f56548417a8c31c2b006c8fe843",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "glossed as 'all correct'.",
+        "exact_native_cache_key": "ce0d3c77675c2bd6a96b36ca871d65869840c614.pkl",
+        "cache_input_text_sha256": "a6bfad9f7d624f926d572bc181e0b4c0474519408a8626b64083ed3328b79e49",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The letters stood for a knowingly illiterate 'oll korrect'.",
+        "exact_native_cache_key": "d0d078c75ed2bce46f81d54c0d5abd6766bfab87.pkl",
+        "cache_input_text_sha256": "84c508f647d413a8c0347b7846823c0a60982d8919d21ea250eeac9a84c2f85d",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The letters stood for a knowingly illiterate 'oll korrect'.",
+        "exact_native_cache_key": "c9f78ede4453f4c58e7e182629bfb2baf2e673ec.pkl",
+        "cache_input_text_sha256": "84c508f647d413a8c0347b7846823c0a60982d8919d21ea250eeac9a84c2f85d",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The presumed writer was the editor, Charles Gordon Greene.",
+        "exact_native_cache_key": "732b7d24bb5216415074df2e827bd7ad54a1e288.pkl",
+        "cache_input_text_sha256": "132b1f736fe9fe7df6aa9cb62560f3d1e8ee00d342bd425edf19c838bcb79ce9",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The presumed writer was the editor, Charles Gordon Greene.",
+        "exact_native_cache_key": "9c2057121f9d9efd9a0d224a13090cc4cc5c586c.pkl",
+        "cache_input_text_sha256": "132b1f736fe9fe7df6aa9cb62560f3d1e8ee00d342bd425edf19c838bcb79ce9",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "The presumed writer was the editor,",
+        "exact_native_cache_key": "37a0158c2a2abeb9f746a5be033fb4af5fbefe50.pkl",
+        "cache_input_text_sha256": "cd9012a5723d42214e94ae03ebe54296f8a7610e1a90ed391d8c110add6ee56f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Charles Gordon Greene.",
+        "exact_native_cache_key": "20e77eb94058366fbb958517daa2e654d05c8a46.pkl",
+        "cache_input_text_sha256": "34c55dd9f178426df3b3db72e67886291a14d5c6ff4da36bfe96210592426c14",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Partisan politics propagated the letters nationwide.",
+        "exact_native_cache_key": "c48bb29954a90d52542725621133305ba0f9bc66.pkl",
+        "cache_input_text_sha256": "0450890f52c7a13432e9622b0cbb2c54068f541db114406d472c8efc861229ce",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Partisan politics propagated the letters nationwide.",
+        "exact_native_cache_key": "749ecf50d46f3d5e0ed9433a93008d9195d26547.pkl",
+        "cache_input_text_sha256": "0450890f52c7a13432e9622b0cbb2c54068f541db114406d472c8efc861229ce",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "In 1840 Martin Van Buren, the incumbent president, sought re-election.",
+        "exact_native_cache_key": "08b33d1b0e24266181d755b5e6a9a68cc4c2a18d.pkl",
+        "cache_input_text_sha256": "f86a50f8e405298fc9fe266c12fd4762df80fca134c6a20df901af5f9196903a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "In 1840 Martin Van Buren, the incumbent president, sought re-election.",
+        "exact_native_cache_key": "afc6e6299523597e22eb92b073467b7a691d5b19.pkl",
+        "cache_input_text_sha256": "f86a50f8e405298fc9fe266c12fd4762df80fca134c6a20df901af5f9196903a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "In 1840 Martin Van Buren,",
+        "exact_native_cache_key": "ff1a0b246c77a1305335f0a20b805a2bf35ead23.pkl",
+        "cache_input_text_sha256": "31e0ef4d0143f8c82506e387ae88b1b8c85cd051df2811f427ff6483848e449a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "the incumbent president,",
+        "exact_native_cache_key": "1ce8094b931fc6d8b811445ce3e139642facd012.pkl",
+        "cache_input_text_sha256": "6b6dce6fb1da507dd482e0fa6d910f555200ac10302727e7dd0cd2e5ac9a6e83",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "sought re-election.",
+        "exact_native_cache_key": "fa62ea24554424a4fe9c556a304e1ee70257c3e4.pkl",
+        "cache_input_text_sha256": "74abf20dbbbf7a83e730ee7973b8e48a1f72ae471f677bb4fdac35c42e8b1f7d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "His New York backers, punning on his nickname 'Old Kinderhook', after his birthplace, formed the Democratic O.K. Club, making the letters a double-meaning slogan.",
+        "exact_native_cache_key": "33396d857a67240097982733220b4cc7faf00c84.pkl",
+        "cache_input_text_sha256": "60c4e41add030a0803ca1e9ec6c26b8c4892ef44bbc7104e67dfeae9ca099068",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "His New York backers, punning on his nickname 'Old Kinderhook', after his birthplace, formed the Democratic O.K. Club, making the letters a double-meaning slogan.",
+        "exact_native_cache_key": "4c1b901bdf3b613956ca11c09f4a66736dc052bb.pkl",
+        "cache_input_text_sha256": "60c4e41add030a0803ca1e9ec6c26b8c4892ef44bbc7104e67dfeae9ca099068",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "His New York backers, punning on his nickname 'Old Kinderhook', after his birthplace,",
+        "exact_native_cache_key": "f61f76a4397565e8d9a321e32778d71e3f00e0b8.pkl",
+        "cache_input_text_sha256": "83ff194451b5dd5ef1f2f6f4538bc2b6b568488071ee1399b90ef0a8be7e88b7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "formed the Democratic O.K. Club, making the letters a double-meaning slogan.",
+        "exact_native_cache_key": "b31336e23943aa38e086a6450879263346591606.pkl",
+        "cache_input_text_sha256": "af261d860e64435a60ef1d1dd54c6c1395ffbf91eeaa1272d3ad4f0af6e58812",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "His New York backers,",
+        "exact_native_cache_key": "bced2e88b1f1b76585435ce044b65c1a61a35291.pkl",
+        "cache_input_text_sha256": "bc47de2963938668ec183f6790d22d97655193b7ca038c6a478c3543139c0782",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "punning on his nickname 'Old Kinderhook',",
+        "exact_native_cache_key": "c4aa0c7b1f363242a0c68829239eefd48fa20dd5.pkl",
+        "cache_input_text_sha256": "4cdccfd9ce148feab715bd6a2568e541a902898d8a0c6051cf513b7951512d56",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "after his birthplace,",
+        "exact_native_cache_key": "34d921bca311d2816c38a31313743c366139357f.pkl",
+        "cache_input_text_sha256": "c457004a9ea5001a1b1f2cbe6d449f9f433ec9b0b4d30fc0ae70ea08f41159a6",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "formed the Democratic O.K. Club,",
+        "exact_native_cache_key": "dfbafc1ef538921e4b7ec321264f2dcd03655164.pkl",
+        "cache_input_text_sha256": "aa0bb2796e04df15f9661d5264b897a478c78a48798ae24657d411ea45679c19",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 5,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "making the letters a double-meaning slogan.",
+        "exact_native_cache_key": "a2fb41e04e7d812506bbf38c399870141dde82b1.pkl",
+        "cache_input_text_sha256": "d546639e562bc447a33e8751157945ed1f786f645ffc0145057a8c1fdd24ab2a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "That November William Henry Harrison unseated him, 234 electoral votes to 60.",
+        "exact_native_cache_key": "610fede53be90c5fc213e64233bcfdb45c073375.pkl",
+        "cache_input_text_sha256": "dcdd8c6686751c02bed1300e61f7a72e619d7277b18c43ecb33ef1b35ab99c95",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "That November William Henry Harrison unseated him, 234 electoral votes to 60.",
+        "exact_native_cache_key": "bbe99c576aa8d152c058f9b504f4fccba7313f08.pkl",
+        "cache_input_text_sha256": "dcdd8c6686751c02bed1300e61f7a72e619d7277b18c43ecb33ef1b35ab99c95",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "That November William Henry Harrison unseated him,",
+        "exact_native_cache_key": "fc06041d3d125868be2b0040fbf21f756426e296.pkl",
+        "cache_input_text_sha256": "4fe80b5266d55f6b48cb1ff0c0b9234c18c57cd30d0dac22f0d85998653a5d5b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "234 electoral votes to 60.",
+        "exact_native_cache_key": "3528c5cf9ae8cb75641c6f8a7d89abe6ba268487.pkl",
+        "cache_input_text_sha256": "ccf979c65b4f1a93bbe87d71c58b97b597a2023eba630cdc43f49d5725b5b940",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "On 30 March 1840 the New York Morning Herald printed a fabricated smear: the former president Andrew Jackson, a supposedly inept speller, had marked paperwork O.K., for 'Ole Kurrek'.",
+        "exact_native_cache_key": "80f49c9e557f829abc011c09a96564edca57a3e3.pkl",
+        "cache_input_text_sha256": "0afe5da3ae37ff31a2fe209b349c9e2784bcb262ea70bc4dda2b52b1eda4d513",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "On 30 March 1840 the New York Morning Herald printed a fabricated smear: the former president Andrew Jackson, a supposedly inept speller, had marked paperwork O.K., for 'Ole Kurrek'.",
+        "exact_native_cache_key": "a8e44c90d1efa572b0a55ce4bfa04cb78b32f56c.pkl",
+        "cache_input_text_sha256": "0afe5da3ae37ff31a2fe209b349c9e2784bcb262ea70bc4dda2b52b1eda4d513",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "On 30 March 1840 the New York Morning Herald printed a fabricated smear:",
+        "exact_native_cache_key": "977b8287e19173f3a71acfd986090b31d34466e8.pkl",
+        "cache_input_text_sha256": "6ffe5c26e60020b1b800568015691599dcd5578debb38e3309604825082ca9dd",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "the former president Andrew Jackson, a supposedly inept speller, had marked paperwork O.K., for 'Ole Kurrek'.",
+        "exact_native_cache_key": "79147a9a6327be7d55eef4f7a86ca6d54217b2ef.pkl",
+        "cache_input_text_sha256": "937931d5fe3f877ea4090990c6ba1c6df931a8dccbf622f6ca61bd8df3d82f80",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "On 30 March 1840 the New York Morning Herald printed a fabricated smear:",
+        "exact_native_cache_key": "977b8287e19173f3a71acfd986090b31d34466e8.pkl",
+        "cache_input_text_sha256": "6ffe5c26e60020b1b800568015691599dcd5578debb38e3309604825082ca9dd",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "the former president Andrew Jackson,",
+        "exact_native_cache_key": "4441eb54efcf8a8a7ef623b9301d2bbc290109a0.pkl",
+        "cache_input_text_sha256": "3e1a7b7b58e3ea68c1ed353e98d3de711ceaa6e6f5cb1a40b79bc25b25839909",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "a supposedly inept speller,",
+        "exact_native_cache_key": "2a309c26c25d03f80dfba1b2db3a9bc97634c2bd.pkl",
+        "cache_input_text_sha256": "400ca26049944675106c67c67692b2067f21d4b019da877a8cd662b5076b36c3",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "had marked paperwork O.K.,",
+        "exact_native_cache_key": "dcccb2a502de7ae0f7d0df2e67d7a44dd05edd1c.pkl",
+        "cache_input_text_sha256": "d387ec443395dd415929ea0ec2a888e939645b9759d06a7f7dcbe9b3495e6cd7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 5,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "for 'Ole Kurrek'.",
+        "exact_native_cache_key": "2138d901b35ecf32bf9b955a451b66ac78bc3085.pkl",
+        "cache_input_text_sha256": "dbc708982cefa8f1c1b42c875f9b7d34173a8321c590f554134be2f5b3d92982",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Jackson spelled reasonably well and never marked documents O.K.",
+        "exact_native_cache_key": "03e3dda349f9179492f76a79c3cbb8c3c41f71b4.pkl",
+        "cache_input_text_sha256": "6d9305ba6bc64350c5e207e58c44179f91053ca114b33dccfb8728f04a2d1f61",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Jackson spelled reasonably well and never marked documents O.K.",
+        "exact_native_cache_key": "f761f1182b34207110a6ffd26921cccbf780873e.pkl",
+        "cache_input_text_sha256": "6d9305ba6bc64350c5e207e58c44179f91053ca114b33dccfb8728f04a2d1f61",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Within about twenty years, people did so in earnest.",
+        "exact_native_cache_key": "55d7709fa6e72c365bf9dd098ae337c1e3ebf8a6.pkl",
+        "cache_input_text_sha256": "c623243bb5e9111dc16a06f7f4c113be5eaa3b008964346dbb7d96583e51f610",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Within about twenty years, people did so in earnest.",
+        "exact_native_cache_key": "ea154ae10b6b2b3d6bd2be6b929e12081614951e.pkl",
+        "cache_input_text_sha256": "c623243bb5e9111dc16a06f7f4c113be5eaa3b008964346dbb7d96583e51f610",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Within about twenty years,",
+        "exact_native_cache_key": "b44c410203174555eb207d89007ef6b3ab975a06.pkl",
+        "cache_input_text_sha256": "8336f016fb7db23b20d9055860d29f7b8b2ff09aba0dbbd64578916da02c6aee",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "people did so in earnest.",
+        "exact_native_cache_key": "34c1720fad2f262744cd667c9d5e1a2d3b60b01e.pkl",
+        "cache_input_text_sha256": "f2e30ff34d8cc25c276955ef02094a681d71f126f035098be896f32762ae6620",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The bogus notation was merely premature.",
+        "exact_native_cache_key": "61405ee6e51fc4df09392ae35ef4d70c6e60a0f2.pkl",
+        "cache_input_text_sha256": "1fa3a1af91bc02613a5c54b16b79b84eea9d257bd79ebf21bad5326cf75cad81",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The bogus notation was merely premature.",
+        "exact_native_cache_key": "56260b6948581aab992f13e33a23cbd9c21025b9.pkl",
+        "cache_input_text_sha256": "1fa3a1af91bc02613a5c54b16b79b84eea9d257bd79ebf21bad5326cf75cad81",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Rival stories offered exotic pedigrees: Choctaw 'okeh' and Greek 'ola kala'.",
+        "exact_native_cache_key": "54730c4e43106c1b7d85e39989aca6c5bee7165f.pkl",
+        "cache_input_text_sha256": "993a9f7b87705a8fa4c3a137e842fbdbcaf3815970e288e9aebe7fef48a54a1c",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Rival stories offered exotic pedigrees: Choctaw 'okeh' and Greek 'ola kala'.",
+        "exact_native_cache_key": "066c205e45e68eaca507af9bfdc79504582fc749.pkl",
+        "cache_input_text_sha256": "993a9f7b87705a8fa4c3a137e842fbdbcaf3815970e288e9aebe7fef48a54a1c",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Rival stories offered exotic pedigrees:",
+        "exact_native_cache_key": "cb7de4218ae1724bfb4d5bc2a3615be11c08b5fc.pkl",
+        "cache_input_text_sha256": "e866ba3084005fa6fb8e6745730f0e977ca501167c59d2692e1c27c1a18d71ca",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Choctaw 'okeh' and Greek 'ola kala'.",
+        "exact_native_cache_key": "4f98b5123a61967568ff724ae8f269e94278c9ba.pkl",
+        "cache_input_text_sha256": "1294db290f2c66d03db371e867568565f40eb80b7b35ffd9d3ec66907f1d89f8",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Authoritative dictionaries favoured Choctaw as late as 1961.",
+        "exact_native_cache_key": "27b18ca0dcc7c5afd4e36f7f1fb7abb4a3bde496.pkl",
+        "cache_input_text_sha256": "01a08864680a084da1b35abd2655c6bab6d16694260755de6c17af911388f9d9",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Authoritative dictionaries favoured Choctaw as late as 1961.",
+        "exact_native_cache_key": "788028c61927a92957db1590598e13b8e8f38999.pkl",
+        "cache_input_text_sha256": "01a08864680a084da1b35abd2655c6bab6d16694260755de6c17af911388f9d9",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "In 1963–64 the linguist Allen Walker Read excavated the neglected Boston provenance from archival newspapers in six influential American Speech articles.",
+        "exact_native_cache_key": "b7d638e148ce20aeda3c6c8a5ed079c803c2a2ce.pkl",
+        "cache_input_text_sha256": "fe911d225fed2e6b2008041c8ab3a8e3418de17930cb53ac19ea9382050f6537",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "In 1963–64 the linguist Allen Walker Read excavated the neglected Boston provenance from archival newspapers in six influential American Speech articles.",
+        "exact_native_cache_key": "fdbb4cfc85cba1895ef66e38706523f5ed74a202.pkl",
+        "cache_input_text_sha256": "fe911d225fed2e6b2008041c8ab3a8e3418de17930cb53ac19ea9382050f6537",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "In 1963–64 the linguist Allen Walker Read",
+        "exact_native_cache_key": "dca7bf3c425d4b7add39f548c2be3a16c15c8f63.pkl",
+        "cache_input_text_sha256": "2f75faee00e9a989d72f27cb0de36735d6d66f06d38052d6eec2a0fce7d2c968",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "excavated the neglected Boston provenance from archival newspapers",
+        "exact_native_cache_key": "3bc43ebf384a7d1ba4e0536d81ab75e5e7980134.pkl",
+        "cache_input_text_sha256": "e2431b7a896bf6c98d62c9f1e1ed0e5b61dcbff7aa254bbe49b487263b72b103",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "in six influential American Speech articles.",
+        "exact_native_cache_key": "499e86f88841b14b0dbd260e500b051bc228237c.pkl",
+        "cache_input_text_sha256": "cb9f52ea6f5ac902239f66bd288cf89cdc42b6dd2b05e72e22a9c38c6861496c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Most dictionaries now embrace his derivation, a pedigree of bad spelling and dinner-bell satire.",
+        "exact_native_cache_key": "efb1ecc42c19f4ad14ca7ce336a0b94a82ea3f44.pkl",
+        "cache_input_text_sha256": "f8f339cf54613e39918070f98a34fdf48577cf8b35c04b5a2137da23ee394f4d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Most dictionaries now embrace his derivation, a pedigree of bad spelling and dinner-bell satire.",
+        "exact_native_cache_key": "7b108057764aa5f2a343be22f142356a83f16cc7.pkl",
+        "cache_input_text_sha256": "f8f339cf54613e39918070f98a34fdf48577cf8b35c04b5a2137da23ee394f4d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Most dictionaries now embrace his derivation,",
+        "exact_native_cache_key": "7bc138750ab94ab4d66aebeec1aa636fba878b84.pkl",
+        "cache_input_text_sha256": "231428b4896669ce425d5be1884c5c80a0e3076e13b0d1afbac82e1ea36f0040",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "a pedigree of bad spelling and dinner-bell satire.",
+        "exact_native_cache_key": "800ea948577a45a58d4ea310ac875619a0c43899.pkl",
+        "cache_input_text_sha256": "9e550b8440aef2571f92c36a9c42ddca04878503a504bddff18bd4c7ee70abeb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      }
+    ],
+    "unique_reference_key_count": 84,
+    "raw_mother_cache_scalar_manifest": [
+      {
+        "exact_native_cache_key": "2db12681a725181d5a34c004100e099d3df420e0.pkl",
+        "pkl_sha256": "b5406233929e7a71dfbcb21cb0be64b63d614bae84fbc0c99fcaab4fe6f939d2",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "标题",
+            "piece": null,
+            "reference_kind": "title-default-raw",
+            "method": "create",
+            "source_slice": "The Joke That Became OK",
+            "exact_native_cache_key": "2db12681a725181d5a34c004100e099d3df420e0.pkl",
+            "cache_input_text_sha256": "811d8410686ccc989f7723a99110e8edd459c7b94ea705a677f2ee910d535b0d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "b5406233929e7a71",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          41984
+        ],
+        "unprocessed_array_sha256": "cb1641d2845bdf613416e769919a9ee5854a4a32032681a9ddb0ed1b337718bd"
+      },
+      {
+        "exact_native_cache_key": "eb2f4631f80afd935ee0dd9d9146f4c0c976356a.pkl",
+        "pkl_sha256": "bfa99ac7e56fc2e716d98a28cbba9d555293091b3a16a092d92a2818a5ac8588",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "OK, often said to be the planet's most frequently spoken word, began as a newspaper gag.",
+            "exact_native_cache_key": "eb2f4631f80afd935ee0dd9d9146f4c0c976356a.pkl",
+            "cache_input_text_sha256": "ec40522a2471cda5da4f4584e82fd15e870f0cff5782868b0fcc38dd4a7abc78",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "bfa99ac7e56fc2e7",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          155136
+        ],
+        "unprocessed_array_sha256": "df4f302d6ac7c6ca9bd7269a29407930ab67edad22d2eac21f04a00db56f87d1"
+      },
+      {
+        "exact_native_cache_key": "76d09367920f9b5795d34bc9c06eb1f404171b25.pkl",
+        "pkl_sha256": "83b67056f2b52ea76ce6d4a8ea586137698191f7fb3015e5add54da268752bb6",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "OK,",
+            "exact_native_cache_key": "76d09367920f9b5795d34bc9c06eb1f404171b25.pkl",
+            "cache_input_text_sha256": "ca88112e687bd49b279c0774039711442fef8435c5115f4dd852dc2c02281173",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "83b67056f2b52ea7",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          19968
+        ],
+        "unprocessed_array_sha256": "4a425010f283f3bd4d1cb2135ce351c86912e5a323fc957ab9b903860dc3381f"
+      },
+      {
+        "exact_native_cache_key": "c07ee292bb9a8fb83669c9205525570b8776351c.pkl",
+        "pkl_sha256": "a2dafe1b36126f1af3159c423a98b9124ea55b127f515d54e960a1d6edc2fbe5",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "often said to be the planet's most frequently spoken word,",
+            "exact_native_cache_key": "c07ee292bb9a8fb83669c9205525570b8776351c.pkl",
+            "cache_input_text_sha256": "e8f9c7a773abf9a0a866c97335f8a21f9edb93ffcf6ecbc23358de907eabfee1",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "a2dafe1b36126f1a",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          82432
+        ],
+        "unprocessed_array_sha256": "344be00b62d9c049157e4a11e9d55b32f41bf08a68931ef0d95c0d2fc0cfd210"
+      },
+      {
+        "exact_native_cache_key": "693d42eb476d589751e28ccc62e8340ce7fdc8b1.pkl",
+        "pkl_sha256": "c0c53fe6b1fa88894eb0c32d250c729ae198da3363f9fa6fac03acb49520a260",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "began as a newspaper gag.",
+            "exact_native_cache_key": "693d42eb476d589751e28ccc62e8340ce7fdc8b1.pkl",
+            "cache_input_text_sha256": "0a427f8bdc35f4107556338b53142dc8e5ff198e872cd3654b0d75a904e245c4",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "c0c53fe6b1fa8889",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          45056
+        ],
+        "unprocessed_array_sha256": "c8e4252e234674ad1194b9c9bc26a4002e6bd4739893866ebb935004dd72085b"
+      },
+      {
+        "exact_native_cache_key": "a40427a7423e5e2ff841aac9c686fbae95912160.pkl",
+        "pkl_sha256": "a58269c17d0742649b0431d6ac314832877133eb8c3b98a3a8baa5c43d45ddc8",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "From 1838 abbreviations were all the vogue in Boston's papers, and the craze turned comic through deliberate misspellings: O.W. for 'oll wright', K.Y. for 'know yuse'.",
+            "exact_native_cache_key": "a40427a7423e5e2ff841aac9c686fbae95912160.pkl",
+            "cache_input_text_sha256": "e3db0933ad6eb68e159ec7deaea1d2265193ca4ab7b94c83e4681ddb920fd354",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "a58269c17d074264",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          320000
+        ],
+        "unprocessed_array_sha256": "627f867e935c1be85dcd185bdfea124244287e06d995716b72d88ffb265c9eae"
+      },
+      {
+        "exact_native_cache_key": "d64f4dfc40b7bc438b326c0e1aa612de7fbe5e9b.pkl",
+        "pkl_sha256": "b7f81019eb6d240f1e5dbfc963cd379f1da7aeb7973fd34cca1c1a8e2d4b429d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "From 1838 abbreviations were all the vogue in Boston's papers,",
+            "exact_native_cache_key": "d64f4dfc40b7bc438b326c0e1aa612de7fbe5e9b.pkl",
+            "cache_input_text_sha256": "a2adc4084009db3ee6c72534960ebde4a56be1556f51bef7fcf0480deb9b2b3f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S2",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "From 1838 abbreviations were all the vogue in Boston's papers,",
+            "exact_native_cache_key": "d64f4dfc40b7bc438b326c0e1aa612de7fbe5e9b.pkl",
+            "cache_input_text_sha256": "a2adc4084009db3ee6c72534960ebde4a56be1556f51bef7fcf0480deb9b2b3f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "b7f81019eb6d240f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          121344
+        ],
+        "unprocessed_array_sha256": "99e2c2a83c76c63024f396b8c9e4e81beaa04aa0760f6305bbcf4a35a40ecb40"
+      },
+      {
+        "exact_native_cache_key": "1b714f81dab5f0f3140734756fcd8acb8ac4c035.pkl",
+        "pkl_sha256": "2335609e5dbfe5fdef99e2407403204a92897d3af7ae0b68108a91b1ce511999",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and the craze turned comic through deliberate misspellings:",
+            "exact_native_cache_key": "1b714f81dab5f0f3140734756fcd8acb8ac4c035.pkl",
+            "cache_input_text_sha256": "8cb414c07aef36da54799fc48ffb02b6c9242f2f0ae26f0b28c4cf13e25a5109",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S2",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and the craze turned comic through deliberate misspellings:",
+            "exact_native_cache_key": "1b714f81dab5f0f3140734756fcd8acb8ac4c035.pkl",
+            "cache_input_text_sha256": "8cb414c07aef36da54799fc48ffb02b6c9242f2f0ae26f0b28c4cf13e25a5109",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "2335609e5dbfe5fd",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          77824
+        ],
+        "unprocessed_array_sha256": "4b01917181c8a71de5a270346d363ead31e3668636730485d8307b1970c5bb32"
+      },
+      {
+        "exact_native_cache_key": "46c6fa73821dc65f24e06a68320016b3291c51ba.pkl",
+        "pkl_sha256": "7835d5c5a19c9fb7bd056bc4da5bbf94bdc040ba26a4f0ee3366b8c022a3ea8a",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "O.W. for 'oll wright', K.Y. for 'know yuse'.",
+            "exact_native_cache_key": "46c6fa73821dc65f24e06a68320016b3291c51ba.pkl",
+            "cache_input_text_sha256": "b49edfc3a89fae211d6f1d042325592be11ef7393aa756cbc066e487df5e942a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "7835d5c5a19c9fb7",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          78336
+        ],
+        "unprocessed_array_sha256": "1c53da592139cf54a42a0454da649a15c7b41a393f6924ee3e064d466bdf1a2e"
+      },
+      {
+        "exact_native_cache_key": "4a14402b16e51a818487e72ad703cf3077e1aa64.pkl",
+        "pkl_sha256": "40711bdb2b45d5e137487d233f81374b45fff0d21b2a08f293cd786e0fca30f9",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "O.W. for 'oll wright',",
+            "exact_native_cache_key": "4a14402b16e51a818487e72ad703cf3077e1aa64.pkl",
+            "cache_input_text_sha256": "e167bdb367446933a4c6f8f7415a6536b88818e193072d848d81bf6959322026",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "40711bdb2b45d5e1",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          41984
+        ],
+        "unprocessed_array_sha256": "f012f3274c5c00a0508d07c3a29990e86b401f125ba5fe217be21fe3847094a9"
+      },
+      {
+        "exact_native_cache_key": "ea174cdb55d25b406c9d5acd2385613c3d38f0f8.pkl",
+        "pkl_sha256": "9140366236334bd4b0f92b3e506b762a26f54e04062f2e8d7e6a56644b8b30c7",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "K.Y. for 'know yuse'.",
+            "exact_native_cache_key": "ea174cdb55d25b406c9d5acd2385613c3d38f0f8.pkl",
+            "cache_input_text_sha256": "bcea02c706151c200b881baa7cba6db2892cbc71d6426c90596bb91c59a404ad",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "9140366236334bd4",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          33792
+        ],
+        "unprocessed_array_sha256": "f50e47ebef5583408e658b6a2b94ed5d5833706272a3756d52969a9e4071655b"
+      },
+      {
+        "exact_native_cache_key": "b03b386761d16dedc293f8017deb28110b3eb522.pkl",
+        "pkl_sha256": "edffe8d21502e6660c612c9a23ab62a608eb6fe8c92cedf0213cf09828fa9b44",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The humour lay in the persona of an uneducated bumpkin.",
+            "exact_native_cache_key": "b03b386761d16dedc293f8017deb28110b3eb522.pkl",
+            "cache_input_text_sha256": "e3f3292860d3a352a04b0c016592f577897422e4e500de29165a38f45be24c3e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "edffe8d21502e666",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          94720
+        ],
+        "unprocessed_array_sha256": "e188ececf831b2897c21c4fb6062f6e0c8e0696f08e0004190b2f4651a2d7cf1"
+      },
+      {
+        "exact_native_cache_key": "893d4baf2452a1e811d88b4f1d90d86ae56080d3.pkl",
+        "pkl_sha256": "3b7a249ba19d80d1370e8ceb5d8eac14f1759c4a59cd58f5129ed7ba160358f1",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "On 23 March 1839 a Boston Morning Post satire took a swipe at a contemporary, the Providence Journal, over a mock society parodying an ordinance against ringing dinner bells.",
+            "exact_native_cache_key": "893d4baf2452a1e811d88b4f1d90d86ae56080d3.pkl",
+            "cache_input_text_sha256": "7b90fe52daa6558353790d72183dbfe3e55ac6b7b5e35b2a327fe83e185b81bb",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "3b7a249ba19d80d1",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          331776
+        ],
+        "unprocessed_array_sha256": "57cd3fed35fd6f115b1827b630657c48389172aa6ab59fe4c085a47a67c4bcbb"
+      },
+      {
+        "exact_native_cache_key": "ee09c256ea4f8edb32a7604c58c00d20024c6ad4.pkl",
+        "pkl_sha256": "60f9184a30eeefdd68f54685c90d8debb4a49c266c596de12b876f6001893f8c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "On 23 March 1839 a Boston Morning Post satire",
+            "exact_native_cache_key": "ee09c256ea4f8edb32a7604c58c00d20024c6ad4.pkl",
+            "cache_input_text_sha256": "4f74de30a5712924f46537703a2ca5cc1ee51f0dacf50ff8fa44e95c24e11eeb",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "60f9184a30eeefdd",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          117760
+        ],
+        "unprocessed_array_sha256": "e710a12a9588faa4f51b9c96e629ba3082583d55930d3a7579230d894e093324"
+      },
+      {
+        "exact_native_cache_key": "fd73976d647d319e15dc7ed39bffab1d176ae57e.pkl",
+        "pkl_sha256": "5c710d010bc3b491969f6ee56acef88196a1f339c00971d20eecd6eef3780a7c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "took a swipe at a contemporary, the Providence Journal,",
+            "exact_native_cache_key": "fd73976d647d319e15dc7ed39bffab1d176ae57e.pkl",
+            "cache_input_text_sha256": "def5d225f5814eb3348324cc59842ed28aba13645197ef5665d9de955b8a5a4f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "5c710d010bc3b491",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          79360
+        ],
+        "unprocessed_array_sha256": "3b360549df2f578336aee86a6d1b2c8c1ace86f043e7202bdac36617a8b70e4c"
+      },
+      {
+        "exact_native_cache_key": "756524cf1fa59937f66e5ad3ae83cfb05420d5fb.pkl",
+        "pkl_sha256": "bd40e8398a990d6a1e8f05c9ad97e9d858ee99ad9d67003553834430d33fa406",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "over a mock society parodying an ordinance against ringing dinner bells.",
+            "exact_native_cache_key": "756524cf1fa59937f66e5ad3ae83cfb05420d5fb.pkl",
+            "cache_input_text_sha256": "43785c1fedf18d8dfb78681fa9f7683d62cfa6bcd4481df915a7d6a89da8e254",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S4",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "over a mock society parodying an ordinance against ringing dinner bells.",
+            "exact_native_cache_key": "756524cf1fa59937f66e5ad3ae83cfb05420d5fb.pkl",
+            "cache_input_text_sha256": "43785c1fedf18d8dfb78681fa9f7683d62cfa6bcd4481df915a7d6a89da8e254",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "bd40e8398a990d6a",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          113664
+        ],
+        "unprocessed_array_sha256": "f4f2e665942e4e1763fb06043e80a58e8a71e6b6b07fbf17ee69c1f5324852e8"
+      },
+      {
+        "exact_native_cache_key": "e5be9e721a7268d5fceebd6e1985b45e0f09fe2e.pkl",
+        "pkl_sha256": "e51ea5b78e46f9b22abea45a971cf933b2a010085e71a7affcc15f25c3d036e9",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "On 23 March 1839 a Boston Morning Post satire took a swipe at a contemporary,",
+            "exact_native_cache_key": "e5be9e721a7268d5fceebd6e1985b45e0f09fe2e.pkl",
+            "cache_input_text_sha256": "9d64dd7f053eb961c5b82cc91e59708d406ecdb00a120a7af5c3706dfbac34d4",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "e51ea5b78e46f9b2",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          173568
+        ],
+        "unprocessed_array_sha256": "362653d7880605c77dd9bcdfd825f9dc3be229fdfd192dff818df9c17c085393"
+      },
+      {
+        "exact_native_cache_key": "c291e4b412dd2cb0bf90d869e1b5f4d80841782c.pkl",
+        "pkl_sha256": "82da4821844c18e1a2a999a54bddaf450f3cf6af744dfad8d421e94b4ee362ec",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "the Providence Journal,",
+            "exact_native_cache_key": "c291e4b412dd2cb0bf90d869e1b5f4d80841782c.pkl",
+            "cache_input_text_sha256": "db060681ac509b733bb24d27b6051f33abcf81b64bccdcd11f1a00515d766458",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "82da4821844c18e1",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          33792
+        ],
+        "unprocessed_array_sha256": "1b85ec043cec7fde2249c99341ca8b9b83cd99ab12f953d16f50b69c339617b0"
+      },
+      {
+        "exact_native_cache_key": "5d147e81914fb7c23df06f40fb61f7b455a360d6.pkl",
+        "pkl_sha256": "6ebd8c609d4a4564131f67738ca24096433e7cbd9baaccd290f578898510eff9",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "It carried the first known 'o.k.', glossed as 'all correct'.",
+            "exact_native_cache_key": "5d147e81914fb7c23df06f40fb61f7b455a360d6.pkl",
+            "cache_input_text_sha256": "4e73ac83b3838ddaa3d54ea07a73d1dc921e0066048f5310b4771894f92341ca",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "6ebd8c609d4a4564",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          84992
+        ],
+        "unprocessed_array_sha256": "ea2bbeca50ebf1350ab959f5b1d4a82fbbbd6a33a0474ebd5c0266a6b7d52bc5"
+      },
+      {
+        "exact_native_cache_key": "73d8b6c37f812306d3e14da9e1d49212c2e69879.pkl",
+        "pkl_sha256": "1eca7a66aa172d61e222f9e7e3bed0e625b8bf55986254f823dac92cf9b31109",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "It carried the first known 'o.k.',",
+            "exact_native_cache_key": "73d8b6c37f812306d3e14da9e1d49212c2e69879.pkl",
+            "cache_input_text_sha256": "4cab80b8a223fde8858914724c97a550abec4f56548417a8c31c2b006c8fe843",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "1eca7a66aa172d61",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          45056
+        ],
+        "unprocessed_array_sha256": "9f569ecb665fc1c764df809b138cdbdec824bae9838867988bffa36fe7779776"
+      },
+      {
+        "exact_native_cache_key": "ce0d3c77675c2bd6a96b36ca871d65869840c614.pkl",
+        "pkl_sha256": "61f4fcfa693bcc4d0650cec463cf6977f08f247bca5c27f78295d2d299237b7d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "glossed as 'all correct'.",
+            "exact_native_cache_key": "ce0d3c77675c2bd6a96b36ca871d65869840c614.pkl",
+            "cache_input_text_sha256": "a6bfad9f7d624f926d572bc181e0b4c0474519408a8626b64083ed3328b79e49",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "61f4fcfa693bcc4d",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          34816
+        ],
+        "unprocessed_array_sha256": "984e39755a196ac7763a5353fc8f0cb1495e857cf22a09d8de172b403a20419e"
+      },
+      {
+        "exact_native_cache_key": "d0d078c75ed2bce46f81d54c0d5abd6766bfab87.pkl",
+        "pkl_sha256": "229e14ad67d56f9b23231c3ba16741cf656a5c4b866b821f1f51c66df0d7fa21",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The letters stood for a knowingly illiterate 'oll korrect'.",
+            "exact_native_cache_key": "d0d078c75ed2bce46f81d54c0d5abd6766bfab87.pkl",
+            "cache_input_text_sha256": "84c508f647d413a8c0347b7846823c0a60982d8919d21ea250eeac9a84c2f85d",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "229e14ad67d56f9b",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          71680
+        ],
+        "unprocessed_array_sha256": "0c73a9dd27a33de3e8ef36315ce49223fa9dd0c262494cc980fbceedd22a4dee"
+      },
+      {
+        "exact_native_cache_key": "732b7d24bb5216415074df2e827bd7ad54a1e288.pkl",
+        "pkl_sha256": "b14a10f31d7c3a4263141e231202a5525d956beb3d96838544c62a41ddb4cebf",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The presumed writer was the editor, Charles Gordon Greene.",
+            "exact_native_cache_key": "732b7d24bb5216415074df2e827bd7ad54a1e288.pkl",
+            "cache_input_text_sha256": "132b1f736fe9fe7df6aa9cb62560f3d1e8ee00d342bd425edf19c838bcb79ce9",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "b14a10f31d7c3a42",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          82944
+        ],
+        "unprocessed_array_sha256": "3b6ad89732f59d74a733ce0e73ecad4abc0170bbfaa5d85f46a00cebba7092a6"
+      },
+      {
+        "exact_native_cache_key": "37a0158c2a2abeb9f746a5be033fb4af5fbefe50.pkl",
+        "pkl_sha256": "e2e35fb09b8bc42c338d87fd9ca0c432e2a75058f3c6e2206bb5b33fe83e4e81",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "The presumed writer was the editor,",
+            "exact_native_cache_key": "37a0158c2a2abeb9f746a5be033fb4af5fbefe50.pkl",
+            "cache_input_text_sha256": "cd9012a5723d42214e94ae03ebe54296f8a7610e1a90ed391d8c110add6ee56f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "e2e35fb09b8bc42c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          48128
+        ],
+        "unprocessed_array_sha256": "abf9b734564c1cfbd327b05c27b68e4898bbb68151f22c83280ff842047668a1"
+      },
+      {
+        "exact_native_cache_key": "20e77eb94058366fbb958517daa2e654d05c8a46.pkl",
+        "pkl_sha256": "7655e2ca97dc772330d8514df0b709ad1097675fd4064c2a39c2790339d52b8f",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Charles Gordon Greene.",
+            "exact_native_cache_key": "20e77eb94058366fbb958517daa2e654d05c8a46.pkl",
+            "cache_input_text_sha256": "34c55dd9f178426df3b3db72e67886291a14d5c6ff4da36bfe96210592426c14",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "7655e2ca97dc7723",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          33792
+        ],
+        "unprocessed_array_sha256": "259cb63ba8f4eece3ce4691179d521121f3f0b3977f13bb496418bbccca3588e"
+      },
+      {
+        "exact_native_cache_key": "c48bb29954a90d52542725621133305ba0f9bc66.pkl",
+        "pkl_sha256": "4e6b2b4d25669bee296692885188f1a775107d4bafc786ded3c3db878da30162",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Partisan politics propagated the letters nationwide.",
+            "exact_native_cache_key": "c48bb29954a90d52542725621133305ba0f9bc66.pkl",
+            "cache_input_text_sha256": "0450890f52c7a13432e9622b0cbb2c54068f541db114406d472c8efc861229ce",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "4e6b2b4d25669bee",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          81920
+        ],
+        "unprocessed_array_sha256": "15041f80c8c824171846aa8a053b4d424316761cab9e258b2c038f3715b6bdb2"
+      },
+      {
+        "exact_native_cache_key": "08b33d1b0e24266181d755b5e6a9a68cc4c2a18d.pkl",
+        "pkl_sha256": "3074467dbc038a96ec7e8d2656d918229e83081c5cdb70f024253526a3d2cfd1",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "In 1840 Martin Van Buren, the incumbent president, sought re-election.",
+            "exact_native_cache_key": "08b33d1b0e24266181d755b5e6a9a68cc4c2a18d.pkl",
+            "cache_input_text_sha256": "f86a50f8e405298fc9fe266c12fd4762df80fca134c6a20df901af5f9196903a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "3074467dbc038a96",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          126464
+        ],
+        "unprocessed_array_sha256": "dbf527b636181e2bb7e915818c9731ac949b27eabfe0d56c6db3f4776bcabe4f"
+      },
+      {
+        "exact_native_cache_key": "ff1a0b246c77a1305335f0a20b805a2bf35ead23.pkl",
+        "pkl_sha256": "6f9c2ca6b4d66f2d3008a80445ff71d8d0cc8ec697228fdfc8cbeaca9ad83207",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "In 1840 Martin Van Buren,",
+            "exact_native_cache_key": "ff1a0b246c77a1305335f0a20b805a2bf35ead23.pkl",
+            "cache_input_text_sha256": "31e0ef4d0143f8c82506e387ae88b1b8c85cd051df2811f427ff6483848e449a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "6f9c2ca6b4d66f2d",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          62464
+        ],
+        "unprocessed_array_sha256": "7c63bf6bd30d705a2d73f0dd86b02b3339daa8523c8279685ce6c8c1ce4c96dc"
+      },
+      {
+        "exact_native_cache_key": "1ce8094b931fc6d8b811445ce3e139642facd012.pkl",
+        "pkl_sha256": "1f859e0374873e05d91546d1abef3fbbb1579aa755056d5deff4d0a7a232110a",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "the incumbent president,",
+            "exact_native_cache_key": "1ce8094b931fc6d8b811445ce3e139642facd012.pkl",
+            "cache_input_text_sha256": "6b6dce6fb1da507dd482e0fa6d910f555200ac10302727e7dd0cd2e5ac9a6e83",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "1f859e0374873e05",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          33792
+        ],
+        "unprocessed_array_sha256": "6b59811f0d57ef97f24699317305d485ae8a25094b9f4a0b2e7f0f286928d529"
+      },
+      {
+        "exact_native_cache_key": "fa62ea24554424a4fe9c556a304e1ee70257c3e4.pkl",
+        "pkl_sha256": "5c6d97ff52bf7e9d17501f69096943f141976cc7d5eca83a9c9989125bf16716",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "sought re-election.",
+            "exact_native_cache_key": "fa62ea24554424a4fe9c556a304e1ee70257c3e4.pkl",
+            "cache_input_text_sha256": "74abf20dbbbf7a83e730ee7973b8e48a1f72ae471f677bb4fdac35c42e8b1f7d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "5c6d97ff52bf7e9d",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          27136
+        ],
+        "unprocessed_array_sha256": "42b13e09f25aafb5ba1e84a5adade2243236b4bb57be22dbb2e42c9ac5d2ed13"
+      },
+      {
+        "exact_native_cache_key": "33396d857a67240097982733220b4cc7faf00c84.pkl",
+        "pkl_sha256": "6922248b0d6343795f60d68e1ab821737c7868d71cf96a1b3c0f6d13b3f2c272",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "His New York backers, punning on his nickname 'Old Kinderhook', after his birthplace, formed the Democratic O.K. Club, making the letters a double-meaning slogan.",
+            "exact_native_cache_key": "33396d857a67240097982733220b4cc7faf00c84.pkl",
+            "cache_input_text_sha256": "60c4e41add030a0803ca1e9ec6c26b8c4892ef44bbc7104e67dfeae9ca099068",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "6922248b0d634379",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          260608
+        ],
+        "unprocessed_array_sha256": "afb1791e2fc1fc0c8207417111b1db0a6dd8ae8ad37081b5ac57c17e0f8d0f4c"
+      },
+      {
+        "exact_native_cache_key": "f61f76a4397565e8d9a321e32778d71e3f00e0b8.pkl",
+        "pkl_sha256": "066ba58a5340d97cd6a7d6a3e0a3ca6bcd4df94b9cf26f237380a79b5bee105d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "His New York backers, punning on his nickname 'Old Kinderhook', after his birthplace,",
+            "exact_native_cache_key": "f61f76a4397565e8d9a321e32778d71e3f00e0b8.pkl",
+            "cache_input_text_sha256": "83ff194451b5dd5ef1f2f6f4538bc2b6b568488071ee1399b90ef0a8be7e88b7",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "066ba58a5340d97c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          122368
+        ],
+        "unprocessed_array_sha256": "81e41d6d184d8481fe9a398e5d2d482cb612877aa0d8b15aa6abbcfafe5369c7"
+      },
+      {
+        "exact_native_cache_key": "b31336e23943aa38e086a6450879263346591606.pkl",
+        "pkl_sha256": "0416fd878a67fb388dad51abd5852a43f1cb46643bd684957959a5ceb56832e6",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "formed the Democratic O.K. Club, making the letters a double-meaning slogan.",
+            "exact_native_cache_key": "b31336e23943aa38e086a6450879263346591606.pkl",
+            "cache_input_text_sha256": "af261d860e64435a60ef1d1dd54c6c1395ffbf91eeaa1272d3ad4f0af6e58812",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "0416fd878a67fb38",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          120320
+        ],
+        "unprocessed_array_sha256": "5cc27020ccd09954c01365b3b370431949c19ab008fed32fd8b6079ef76d5557"
+      },
+      {
+        "exact_native_cache_key": "bced2e88b1f1b76585435ce044b65c1a61a35291.pkl",
+        "pkl_sha256": "cc7822c9a6dc506b1a0a000ef97e1d79d71c49eab6373ebfbcd5a5b1666c249b",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "His New York backers,",
+            "exact_native_cache_key": "bced2e88b1f1b76585435ce044b65c1a61a35291.pkl",
+            "cache_input_text_sha256": "bc47de2963938668ec183f6790d22d97655193b7ca038c6a478c3543139c0782",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "cc7822c9a6dc506b",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          33280
+        ],
+        "unprocessed_array_sha256": "7fc3b8f79b6a71adb0d6e4a1f65e5cb731c6bf8a411e7269f200583a97b91969"
+      },
+      {
+        "exact_native_cache_key": "c4aa0c7b1f363242a0c68829239eefd48fa20dd5.pkl",
+        "pkl_sha256": "90323b94e00e0dc461670e568052b9b9b62717f27150d1a3600e2d8feb25c87e",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "punning on his nickname 'Old Kinderhook',",
+            "exact_native_cache_key": "c4aa0c7b1f363242a0c68829239eefd48fa20dd5.pkl",
+            "cache_input_text_sha256": "4cdccfd9ce148feab715bd6a2568e541a902898d8a0c6051cf513b7951512d56",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "90323b94e00e0dc4",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          52224
+        ],
+        "unprocessed_array_sha256": "2430e71e3939575fe7e8080f8692a488a73c457bf63d17468ddd3ed722a207d7"
+      },
+      {
+        "exact_native_cache_key": "34d921bca311d2816c38a31313743c366139357f.pkl",
+        "pkl_sha256": "6d8bc701637777e50fe5a2c70573006f27a852bb36104b6b721074c92f561d39",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "after his birthplace,",
+            "exact_native_cache_key": "34d921bca311d2816c38a31313743c366139357f.pkl",
+            "cache_input_text_sha256": "c457004a9ea5001a1b1f2cbe6d449f9f433ec9b0b4d30fc0ae70ea08f41159a6",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "6d8bc701637777e5",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          35328
+        ],
+        "unprocessed_array_sha256": "21f5aa2edd897f372bc9642457e226186996750918c4108aa72f827847f44ec2"
+      },
+      {
+        "exact_native_cache_key": "dfbafc1ef538921e4b7ec321264f2dcd03655164.pkl",
+        "pkl_sha256": "a3f185a863ec665c4e2b35e6315903f1810ef185b9e612a78d1e6f56def587d4",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "formed the Democratic O.K. Club,",
+            "exact_native_cache_key": "dfbafc1ef538921e4b7ec321264f2dcd03655164.pkl",
+            "cache_input_text_sha256": "aa0bb2796e04df15f9661d5264b897a478c78a48798ae24657d411ea45679c19",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "a3f185a863ec665c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          50688
+        ],
+        "unprocessed_array_sha256": "e73e6fbe7ef737cba0cb4a62b3c59cbeedb293c75be55b9471e3102a35e6f6c8"
+      },
+      {
+        "exact_native_cache_key": "a2fb41e04e7d812506bbf38c399870141dde82b1.pkl",
+        "pkl_sha256": "eb21597a1427d89897122142c20342245abe90d73cb074f0343d8f856ef34e7f",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 5,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "making the letters a double-meaning slogan.",
+            "exact_native_cache_key": "a2fb41e04e7d812506bbf38c399870141dde82b1.pkl",
+            "cache_input_text_sha256": "d546639e562bc447a33e8751157945ed1f786f645ffc0145057a8c1fdd24ab2a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "eb21597a1427d898",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          60928
+        ],
+        "unprocessed_array_sha256": "d1206394caf9495b44115003a00163d9b98098e937b570f143c986247600e8f4"
+      },
+      {
+        "exact_native_cache_key": "610fede53be90c5fc213e64233bcfdb45c073375.pkl",
+        "pkl_sha256": "da54ebcfe502d91032fcb377b9a051821b0263d3ff8a0a36732d7d55b2a9935e",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "That November William Henry Harrison unseated him, 234 electoral votes to 60.",
+            "exact_native_cache_key": "610fede53be90c5fc213e64233bcfdb45c073375.pkl",
+            "cache_input_text_sha256": "dcdd8c6686751c02bed1300e61f7a72e619d7277b18c43ecb33ef1b35ab99c95",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "da54ebcfe502d910",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          163840
+        ],
+        "unprocessed_array_sha256": "f8c055c35227aac0371917350fffef57eacff28844307437d92dd2a27b63a342"
+      },
+      {
+        "exact_native_cache_key": "fc06041d3d125868be2b0040fbf21f756426e296.pkl",
+        "pkl_sha256": "3a7a5f258c4dfb637d0d727a79c7ac168e6fce852dbf7d9c37e97138787d07d0",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "That November William Henry Harrison unseated him,",
+            "exact_native_cache_key": "fc06041d3d125868be2b0040fbf21f756426e296.pkl",
+            "cache_input_text_sha256": "4fe80b5266d55f6b48cb1ff0c0b9234c18c57cd30d0dac22f0d85998653a5d5b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "3a7a5f258c4dfb63",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          74752
+        ],
+        "unprocessed_array_sha256": "19ea3bab2cc9102aa8f62d7548bf8bef540091e8045304d8711d1baa000aae84"
+      },
+      {
+        "exact_native_cache_key": "3528c5cf9ae8cb75641c6f8a7d89abe6ba268487.pkl",
+        "pkl_sha256": "eb099a34c68fb6fdee233318b7bc73b3de292c67921c9208479e69a7cb80d761",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "234 electoral votes to 60.",
+            "exact_native_cache_key": "3528c5cf9ae8cb75641c6f8a7d89abe6ba268487.pkl",
+            "cache_input_text_sha256": "ccf979c65b4f1a93bbe87d71c58b97b597a2023eba630cdc43f49d5725b5b940",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "eb099a34c68fb6fd",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          76288
+        ],
+        "unprocessed_array_sha256": "0fdd6e151cf40f3e79a44c2b42afd96ef8770c6f89ed232d14a8ec26de607c48"
+      },
+      {
+        "exact_native_cache_key": "80f49c9e557f829abc011c09a96564edca57a3e3.pkl",
+        "pkl_sha256": "fcb758f925a9ea4a54f8cc5714dd4b16b350407dde4e77c14887ee0f036c296c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "On 30 March 1840 the New York Morning Herald printed a fabricated smear: the former president Andrew Jackson, a supposedly inept speller, had marked paperwork O.K., for 'Ole Kurrek'.",
+            "exact_native_cache_key": "80f49c9e557f829abc011c09a96564edca57a3e3.pkl",
+            "cache_input_text_sha256": "0afe5da3ae37ff31a2fe209b349c9e2784bcb262ea70bc4dda2b52b1eda4d513",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "fcb758f925a9ea4a",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          346624
+        ],
+        "unprocessed_array_sha256": "f43dec6ec919ab51415e1bcd0710d1523bf499209fd380a56f366fb84138b9eb"
+      },
+      {
+        "exact_native_cache_key": "977b8287e19173f3a71acfd986090b31d34466e8.pkl",
+        "pkl_sha256": "98a7b527fa52c277214f66a434b93021f6efce846015ae25d6c2c13bf4f81613",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "On 30 March 1840 the New York Morning Herald printed a fabricated smear:",
+            "exact_native_cache_key": "977b8287e19173f3a71acfd986090b31d34466e8.pkl",
+            "cache_input_text_sha256": "6ffe5c26e60020b1b800568015691599dcd5578debb38e3309604825082ca9dd",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S12",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "On 30 March 1840 the New York Morning Herald printed a fabricated smear:",
+            "exact_native_cache_key": "977b8287e19173f3a71acfd986090b31d34466e8.pkl",
+            "cache_input_text_sha256": "6ffe5c26e60020b1b800568015691599dcd5578debb38e3309604825082ca9dd",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "98a7b527fa52c277",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          150016
+        ],
+        "unprocessed_array_sha256": "360921adcadda5a5335f9d7e7a6171b0b93762f93fcc008ffb32daab969470cd"
+      },
+      {
+        "exact_native_cache_key": "79147a9a6327be7d55eef4f7a86ca6d54217b2ef.pkl",
+        "pkl_sha256": "7e30386112fb5bb8e599cd08f375d510a9cfcfe20deefb0cc1b6be7b91cd28fc",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "the former president Andrew Jackson, a supposedly inept speller, had marked paperwork O.K., for 'Ole Kurrek'.",
+            "exact_native_cache_key": "79147a9a6327be7d55eef4f7a86ca6d54217b2ef.pkl",
+            "cache_input_text_sha256": "937931d5fe3f877ea4090990c6ba1c6df931a8dccbf622f6ca61bd8df3d82f80",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "7e30386112fb5bb8",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          177152
+        ],
+        "unprocessed_array_sha256": "028dcc6138204b61bdddd1cb7fd459fa48690a5b3caf0809d8d43272b564bcfc"
+      },
+      {
+        "exact_native_cache_key": "4441eb54efcf8a8a7ef623b9301d2bbc290109a0.pkl",
+        "pkl_sha256": "505680dac16c67850ea3b85b850269a3a35aefcb0f6c4ce2224df73a55135d01",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "the former president Andrew Jackson,",
+            "exact_native_cache_key": "4441eb54efcf8a8a7ef623b9301d2bbc290109a0.pkl",
+            "cache_input_text_sha256": "3e1a7b7b58e3ea68c1ed353e98d3de711ceaa6e6f5cb1a40b79bc25b25839909",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "505680dac16c6785",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          49664
+        ],
+        "unprocessed_array_sha256": "5bfe3c108bac9b8fa3f647a5a4e55bc773c14ad30bab7419dcf11e68a34aecfb"
+      },
+      {
+        "exact_native_cache_key": "2a309c26c25d03f80dfba1b2db3a9bc97634c2bd.pkl",
+        "pkl_sha256": "173effbf31c3c3740d2fed4bf9036d4d57279e5edbaeeb770aacd03f01f1be5b",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "a supposedly inept speller,",
+            "exact_native_cache_key": "2a309c26c25d03f80dfba1b2db3a9bc97634c2bd.pkl",
+            "cache_input_text_sha256": "400ca26049944675106c67c67692b2067f21d4b019da877a8cd662b5076b36c3",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "173effbf31c3c374",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          39936
+        ],
+        "unprocessed_array_sha256": "27eac7d8f701b7a411e8cffaaaf51e46ffc7fcac58d64d2f604a33a0c514fe18"
+      },
+      {
+        "exact_native_cache_key": "dcccb2a502de7ae0f7d0df2e67d7a44dd05edd1c.pkl",
+        "pkl_sha256": "60e0d0c46e16d51fac2b2471c8d45fadc3e7c041a58ce3d1696ff95a90ec63f9",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "had marked paperwork O.K.,",
+            "exact_native_cache_key": "dcccb2a502de7ae0f7d0df2e67d7a44dd05edd1c.pkl",
+            "cache_input_text_sha256": "d387ec443395dd415929ea0ec2a888e939645b9759d06a7f7dcbe9b3495e6cd7",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "60e0d0c46e16d51f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          41984
+        ],
+        "unprocessed_array_sha256": "90004bae7d4e6355f6ce0e1726cfd72dac05d73a459d2cfd6ff8f8c69abcc567"
+      },
+      {
+        "exact_native_cache_key": "2138d901b35ecf32bf9b955a451b66ac78bc3085.pkl",
+        "pkl_sha256": "f9b98f52b106261030cc7934066528b0cedee2293f4508c430065f13d6b6d681",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 5,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "for 'Ole Kurrek'.",
+            "exact_native_cache_key": "2138d901b35ecf32bf9b955a451b66ac78bc3085.pkl",
+            "cache_input_text_sha256": "dbc708982cefa8f1c1b42c875f9b7d34173a8321c590f554134be2f5b3d92982",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "f9b98f52b1062610",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          29184
+        ],
+        "unprocessed_array_sha256": "f1aecb5e00ba52972778d669e23a077318f737a794f0a51828a4b7ee827277d9"
+      },
+      {
+        "exact_native_cache_key": "03e3dda349f9179492f76a79c3cbb8c3c41f71b4.pkl",
+        "pkl_sha256": "8cbc6e0a336aa8f13d54ebbc47e86bce59b4c0d4de87bc134b1485fe22311c8b",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Jackson spelled reasonably well and never marked documents O.K.",
+            "exact_native_cache_key": "03e3dda349f9179492f76a79c3cbb8c3c41f71b4.pkl",
+            "cache_input_text_sha256": "6d9305ba6bc64350c5e207e58c44179f91053ca114b33dccfb8728f04a2d1f61",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "8cbc6e0a336aa8f1",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          104960
+        ],
+        "unprocessed_array_sha256": "b5a1fdf4b30ec5e60c9ebd1f5ec21a237e1c820a21276600f960851bdde69b8a"
+      },
+      {
+        "exact_native_cache_key": "55d7709fa6e72c365bf9dd098ae337c1e3ebf8a6.pkl",
+        "pkl_sha256": "9f8bddb5e6d555de69283812cf2da85d39b259a5eb699cba3feeb8a61a9a972e",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Within about twenty years, people did so in earnest.",
+            "exact_native_cache_key": "55d7709fa6e72c365bf9dd098ae337c1e3ebf8a6.pkl",
+            "cache_input_text_sha256": "c623243bb5e9111dc16a06f7f4c113be5eaa3b008964346dbb7d96583e51f610",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "9f8bddb5e6d555de",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          77824
+        ],
+        "unprocessed_array_sha256": "95338c130c730c9fc36ab75424798db28955f3c0b012d7d2718c511c5b129637"
+      },
+      {
+        "exact_native_cache_key": "b44c410203174555eb207d89007ef6b3ab975a06.pkl",
+        "pkl_sha256": "ec29ae34d9266ca5616aad49f2e20df7d3dd470e0f46d7b9bf62f03091d832ef",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Within about twenty years,",
+            "exact_native_cache_key": "b44c410203174555eb207d89007ef6b3ab975a06.pkl",
+            "cache_input_text_sha256": "8336f016fb7db23b20d9055860d29f7b8b2ff09aba0dbbd64578916da02c6aee",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "ec29ae34d9266ca5",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          37888
+        ],
+        "unprocessed_array_sha256": "a2e866365dd2eb0363c9b3e15bf2b54367b80e9b97198c86f1b35aedb931a5db"
+      },
+      {
+        "exact_native_cache_key": "34c1720fad2f262744cd667c9d5e1a2d3b60b01e.pkl",
+        "pkl_sha256": "72a2732d01ae47179d025b8a3da70370d648c27bddde102f16824ceb9ad9d49f",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "people did so in earnest.",
+            "exact_native_cache_key": "34c1720fad2f262744cd667c9d5e1a2d3b60b01e.pkl",
+            "cache_input_text_sha256": "f2e30ff34d8cc25c276955ef02094a681d71f126f035098be896f32762ae6620",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "72a2732d01ae4717",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          40448
+        ],
+        "unprocessed_array_sha256": "3c55611e510fb4a97a604afd78b5673149b36fa3afb1cf39b8101235474bd0c5"
+      },
+      {
+        "exact_native_cache_key": "61405ee6e51fc4df09392ae35ef4d70c6e60a0f2.pkl",
+        "pkl_sha256": "097ddce188abfe3d75743b4e48be8e3e52c3f2355c19a2f89c2505916475ded4",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The bogus notation was merely premature.",
+            "exact_native_cache_key": "61405ee6e51fc4df09392ae35ef4d70c6e60a0f2.pkl",
+            "cache_input_text_sha256": "1fa3a1af91bc02613a5c54b16b79b84eea9d257bd79ebf21bad5326cf75cad81",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "097ddce188abfe3d",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          67072
+        ],
+        "unprocessed_array_sha256": "ff221bbe6a02c2f4c7d55ac2f5d015b70d8fd634ed1a07768ac9d379c25cc077"
+      },
+      {
+        "exact_native_cache_key": "54730c4e43106c1b7d85e39989aca6c5bee7165f.pkl",
+        "pkl_sha256": "7827efa1db8447f0352509f452d6d4e5fef394deb97fc669fb91713a84ccf166",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Rival stories offered exotic pedigrees: Choctaw 'okeh' and Greek 'ola kala'.",
+            "exact_native_cache_key": "54730c4e43106c1b7d85e39989aca6c5bee7165f.pkl",
+            "cache_input_text_sha256": "993a9f7b87705a8fa4c3a137e842fbdbcaf3815970e288e9aebe7fef48a54a1c",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "7827efa1db8447f0",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          134144
+        ],
+        "unprocessed_array_sha256": "621d7142347abb5229710c5bbdf5cdbcde12c686a92389ea3beb3ddb7171cf5a"
+      },
+      {
+        "exact_native_cache_key": "cb7de4218ae1724bfb4d5bc2a3615be11c08b5fc.pkl",
+        "pkl_sha256": "76ab78cc94becaa6c9accf329f419f3ab73e66066d0ee001c73ea85d652df492",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Rival stories offered exotic pedigrees:",
+            "exact_native_cache_key": "cb7de4218ae1724bfb4d5bc2a3615be11c08b5fc.pkl",
+            "cache_input_text_sha256": "e866ba3084005fa6fb8e6745730f0e977ca501167c59d2692e1c27c1a18d71ca",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "76ab78cc94becaa6",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          66560
+        ],
+        "unprocessed_array_sha256": "da4aa90adc7bdd067b804edd28a15f952672a7cc3acf4e14eac8cbda27a62558"
+      },
+      {
+        "exact_native_cache_key": "4f98b5123a61967568ff724ae8f269e94278c9ba.pkl",
+        "pkl_sha256": "4d81508f1afe3d7661fe2c743c623256b9ad1256aeefd52426ca49e99fa44cf4",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Choctaw 'okeh' and Greek 'ola kala'.",
+            "exact_native_cache_key": "4f98b5123a61967568ff724ae8f269e94278c9ba.pkl",
+            "cache_input_text_sha256": "1294db290f2c66d03db371e867568565f40eb80b7b35ffd9d3ec66907f1d89f8",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "4d81508f1afe3d76",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          56832
+        ],
+        "unprocessed_array_sha256": "46161a8d3e5b8b24071bf38808f09fecc2e308433400d02f18f03e1b534bd393"
+      },
+      {
+        "exact_native_cache_key": "27b18ca0dcc7c5afd4e36f7f1fb7abb4a3bde496.pkl",
+        "pkl_sha256": "395f3c4e0eca9d9f6e4aa4e817dd94cac92c4cf5f210da81303e681a4861c3db",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Authoritative dictionaries favoured Choctaw as late as 1961.",
+            "exact_native_cache_key": "27b18ca0dcc7c5afd4e36f7f1fb7abb4a3bde496.pkl",
+            "cache_input_text_sha256": "01a08864680a084da1b35abd2655c6bab6d16694260755de6c17af911388f9d9",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "395f3c4e0eca9d9f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          124416
+        ],
+        "unprocessed_array_sha256": "ac3d5f0d4dd03e27833560f7252e7ff621ccd348e5c977785f290d9ea34f6b13"
+      },
+      {
+        "exact_native_cache_key": "b7d638e148ce20aeda3c6c8a5ed079c803c2a2ce.pkl",
+        "pkl_sha256": "cabfb3cd62b5c1eceb1776ab69aace80d863440efbefaae2e88c49096843155b",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "In 1963–64 the linguist Allen Walker Read excavated the neglected Boston provenance from archival newspapers in six influential American Speech articles.",
+            "exact_native_cache_key": "b7d638e148ce20aeda3c6c8a5ed079c803c2a2ce.pkl",
+            "cache_input_text_sha256": "fe911d225fed2e6b2008041c8ab3a8e3418de17930cb53ac19ea9382050f6537",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "cabfb3cd62b5c1ec",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          304640
+        ],
+        "unprocessed_array_sha256": "518561c297b442b02f9245cdd98a36bac22132232b646f1e30af9853599e9fe5"
+      },
+      {
+        "exact_native_cache_key": "dca7bf3c425d4b7add39f548c2be3a16c15c8f63.pkl",
+        "pkl_sha256": "e5f034bff4048433d05cbea0d7a9775f916960076d75ce4cda90408015db9c75",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "In 1963–64 the linguist Allen Walker Read",
+            "exact_native_cache_key": "dca7bf3c425d4b7add39f548c2be3a16c15c8f63.pkl",
+            "cache_input_text_sha256": "2f75faee00e9a989d72f27cb0de36735d6d66f06d38052d6eec2a0fce7d2c968",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "e5f034bff4048433",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          102912
+        ],
+        "unprocessed_array_sha256": "37924fc3ddc12dfa026d6cd52d3653524ba59e50b1e1dda7e43744a9f2ec3847"
+      },
+      {
+        "exact_native_cache_key": "3bc43ebf384a7d1ba4e0536d81ab75e5e7980134.pkl",
+        "pkl_sha256": "2e9847cfb35b875244149f429a3d5f276208247307c324d133a0b689b76a9d65",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "excavated the neglected Boston provenance from archival newspapers",
+            "exact_native_cache_key": "3bc43ebf384a7d1ba4e0536d81ab75e5e7980134.pkl",
+            "cache_input_text_sha256": "e2431b7a896bf6c98d62c9f1e1ed0e5b61dcbff7aa254bbe49b487263b72b103",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "2e9847cfb35b8752",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          110592
+        ],
+        "unprocessed_array_sha256": "f254c2a6a49aa337e1545c63d9b70fe5cf155a6801865932b29b39542e66ad09"
+      },
+      {
+        "exact_native_cache_key": "499e86f88841b14b0dbd260e500b051bc228237c.pkl",
+        "pkl_sha256": "da008725f0f47735c6b0d0fd23119ef533a22c475f7d8ba25acfc6da0ed76c03",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "in six influential American Speech articles.",
+            "exact_native_cache_key": "499e86f88841b14b0dbd260e500b051bc228237c.pkl",
+            "cache_input_text_sha256": "cb9f52ea6f5ac902239f66bd288cf89cdc42b6dd2b05e72e22a9c38c6861496c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "da008725f0f47735",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          71680
+        ],
+        "unprocessed_array_sha256": "f5dd974690e7bbbf6ef8c9bba497ec60d8ba71188ed23386414ac84782f8c144"
+      },
+      {
+        "exact_native_cache_key": "efb1ecc42c19f4ad14ca7ce336a0b94a82ea3f44.pkl",
+        "pkl_sha256": "87cb3018a6a8056fd425527da83b745c77ae3b14df9d78cb9b1e819b758cf864",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S19",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Most dictionaries now embrace his derivation, a pedigree of bad spelling and dinner-bell satire.",
+            "exact_native_cache_key": "efb1ecc42c19f4ad14ca7ce336a0b94a82ea3f44.pkl",
+            "cache_input_text_sha256": "f8f339cf54613e39918070f98a34fdf48577cf8b35c04b5a2137da23ee394f4d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "87cb3018a6a8056f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          158720
+        ],
+        "unprocessed_array_sha256": "2b0801883769d9a5d52ee0677132c4da9752988e1d59f2528ef0977860317078"
+      },
+      {
+        "exact_native_cache_key": "7bc138750ab94ab4d66aebeec1aa636fba878b84.pkl",
+        "pkl_sha256": "40388f9cccbbcee7e4895671275774c81bba22a82d95db8badca0b19f549e823",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S19",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Most dictionaries now embrace his derivation,",
+            "exact_native_cache_key": "7bc138750ab94ab4d66aebeec1aa636fba878b84.pkl",
+            "cache_input_text_sha256": "231428b4896669ce425d5be1884c5c80a0e3076e13b0d1afbac82e1ea36f0040",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "40388f9cccbbcee7",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          72704
+        ],
+        "unprocessed_array_sha256": "599e77a241c9d43d96d6cafd8ea527c1e08b02b95875ad097f52df792def8dea"
+      },
+      {
+        "exact_native_cache_key": "800ea948577a45a58d4ea310ac875619a0c43899.pkl",
+        "pkl_sha256": "77498ffe6e78ee1a2820e5d6435d20134c18aed37168b7564b545a540a324aa6",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S19",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "a pedigree of bad spelling and dinner-bell satire.",
+            "exact_native_cache_key": "800ea948577a45a58d4ea310ac875619a0c43899.pkl",
+            "cache_input_text_sha256": "9e550b8440aef2571f92c36a9c42ddca04878503a504bddff18bd4c7ee70abeb",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "77498ffe6e78ee1a",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          71680
+        ],
+        "unprocessed_array_sha256": "e7ff780e446b8cceaa6397f0641ab2e84f68642a1a2622d4284f5acb0ece121e"
+      }
+    ],
+    "missing_reference_key_count": 0,
+    "observed_missing_keys_covered": [],
+    "new_private_cache_names": [],
+    "native_single_thread_marker_verified": true,
+    "single_thread_sessions": [
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      },
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      }
+    ],
+    "models_sha256": {
+      "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+      "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+      "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+    },
+    "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+    "existing_private_cache_count": 11514,
+    "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "existing_private_cache_bytes_unchanged": true,
+    "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+    "public_repository_cache_unchanged": true,
+    "producer_pcm_existed_before": false,
+    "producer_pcm_sha256_before": null,
+    "producer_pcm_sha256_after": null,
+    "accepted_aac_adts_sha256_before": "56fc5f26412760d72144399ab8431a54d87e668f14cd960d65c32368a803feed",
+    "accepted_aac_adts_sha256_after": "56fc5f26412760d72144399ab8431a54d87e668f14cd960d65c32368a803feed",
+    "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+    "private_cache_exported": false
+  },
+  "checker_reference_preparation_program_sha256": "f6f2a032e207085e7252d036e39430fb80b06e84a721c525b61196d021c5ca12",
+  "accepted_prior_pcm_probe": {
+    "article": "51",
+    "purpose": "diagnostic old accepted PCM reconstruction only; not a QC verdict",
+    "quality_acceptance": false,
+    "old_source_sha256": "7fca159025b86543fac322224ce756a1975813982168918714e7fbcd978bf404",
+    "expected_accepted_pcm_md5_first12": "ff0728857c2d",
+    "old_pcm_matches_accepted_confirmation_fingerprint": true,
+    "private_PCM_or_cache_exported": false,
+    "original_maker_exit": 0,
+    "actual_old_pcm_md5_first12": "ff0728857c2d",
+    "actual_old_pcm_sha256": "254074002aa37460d01be3800797ddd96b678d94625b3b82b1db1475bfc5920d",
+    "old_reconstructed_aac_adts_sha256": "56fc5f26412760d72144399ab8431a54d87e668f14cd960d65c32368a803feed",
+    "accepted_prior_aac_adts_sha256": "56fc5f26412760d72144399ab8431a54d87e668f14cd960d65c32368a803feed",
+    "old_reconstructed_aac_exactly_matches_accepted": true,
+    "old_segment_metadata_sha256": "45e1b998db5e5a246e7dfc723d748fe29681266529fe745b3541b5b8e9977677"
+  },
+  "original_confirmation_migration": {
+    "actual_current_audio_only_exit": 0,
+    "unchanged_original_program_sha256": "8d12b72841efba01ee1d8855158f56c4cbc4370d151bccf87ab770ece6ba6fde",
+    "attempts": [
+      {
+        "old_pcm_md5_first12": "ff0728857c2d",
+        "actual_pcm_md5_first12": "b86f2f88ba42",
+        "exit": 0
+      }
+    ],
+    "new_quality_gate": false,
+    "audio_modified_by_migration": false
+  },
+  "fresh_current_article_reference": {
+    "article": "51",
+    "removed_temporary_gt_files": [],
+    "processed_pcm_or_raw_mother_cache_modified": false,
+    "purpose": "Original synth/labels/audit rebuild fresh for this production; no old CPU GT reuse."
+  },
+  "temporary_output_reset": {
+    "removed": [
+      {
+        "name": "51.mp4",
+        "mtime_ns": 1794619029468591422,
+        "bytes": 2336176,
+        "was_symlink": false
+      },
+      {
+        "name": "51.mp4.指纹.json",
+        "mtime_ns": 1794619029567282700,
+        "bytes": 421,
+        "was_symlink": false
+      }
+    ],
+    "production_started_ns": 1794619031143031169,
+    "repository_outputs_modified": false
+  },
+  "reviewed_gain_control_preservation": [
+    {
+      "stage": "canonical-draft",
+      "requested_gain_controls": {
+        "/分段增益dB": {
+          "S2": {
+            "4": 1.5
+          },
+          "S10": {
+            "1": -1.0,
+            "4": -1.0
+          },
+          "S14": {
+            "1": -1.5,
+            "2": 1.5
+          },
+          "S1": {
+            "1": 1.5
+          }
+        }
+      },
+      "actual_gain_controls": {
+        "/分段增益dB": {
+          "S2": {
+            "4": 1.5
+          },
+          "S10": {
+            "1": -1.0,
+            "4": -1.0
+          },
+          "S14": {
+            "1": -1.5,
+            "2": 1.5
+          },
+          "S1": {
+            "1": 1.5
+          }
+        }
+      },
+      "exactly_preserved": true
+    },
+    {
+      "stage": "canonical-final4K",
+      "requested_gain_controls": {
+        "/分段增益dB": {
+          "S2": {
+            "4": 1.5
+          },
+          "S10": {
+            "1": -1.0,
+            "4": -1.0
+          },
+          "S14": {
+            "1": -1.5,
+            "2": 1.5
+          },
+          "S1": {
+            "1": 1.5
+          }
+        }
+      },
+      "actual_gain_controls": {
+        "/分段增益dB": {
+          "S2": {
+            "4": 1.5
+          },
+          "S10": {
+            "1": -1.0,
+            "4": -1.0
+          },
+          "S14": {
+            "1": -1.5,
+            "2": 1.5
+          },
+          "S1": {
+            "1": 1.5
+          }
+        }
+      },
+      "exactly_preserved": true
+    }
+  ],
+  "confirmation_continuity": {
+    "diagnostic_only": true,
+    "automatic_renewals": false,
+    "exit": 0,
+    "file": "51-confirmation-continuity.json",
+    "sha256": "ae289530d1613347d325aa5481f14c5f43083b20b80f9d15c60105ed1a68e199"
+  },
+  "canonical_video_sha256": "7a6f288a307ba94c27b06e9bd867723c7d3d0e68dfafb5eeaeb8f87072bffe86",
+  "canonical_aac_adts_sha256": "ff3303283d702f40fc29522222dd332b76144f29811ce8f48802d6329a3644e0",
+  "canonical_pipeline_passed": true,
+  "cached_input_wav_sha256": null,
+  "final_wav_sha256": "202d6b8cbbfe20cf33647bc024ac20cdcb780a2f4a8c7abc36d9f951f80fce65",
+  "approved_audio_qc": {
+    "article": "51",
+    "passed": true,
+    "validation_basis": "Actual accepted and reconstructed public MP4 decoded samples; no simulated values determine passed.",
+    "accepted_sha256": "791318f1d7408d738f4024088114386f4de7035a2e4663f4b8c8b815bd9550d2",
+    "canonical_sha256": "7a6f288a307ba94c27b06e9bd867723c7d3d0e68dfafb5eeaeb8f87072bffe86",
+    "accepted_global": {
+      "integrated_lufs": -23.5,
+      "true_peak_dbtp": -0.9,
+      "lra_lu": 3.2
+    },
+    "actual_global": {
+      "integrated_lufs": -23.5,
+      "true_peak_dbtp": -0.9,
+      "lra_lu": 3.2
+    },
+    "accepted_units": {
+      "opening_OK": {
+        "start_s": 3.09,
+        "end_s": 3.7,
+        "crop_bs1770_lufs": -23.94837805330886,
+        "gated_400ms_lufs": -23.926829361031118,
+        "max_400ms_lufs": -22.6,
+        "active_10ms_rms_dbfs": -22.36492093235813,
+        "rms_dbfs": -22.81430859644719,
+        "sample_peak_dbfs": -8.134008805204505
+      },
+      "following_words": {
+        "start_s": 4.12,
+        "end_s": 7.49,
+        "crop_bs1770_lufs": -24.497482582887304,
+        "gated_400ms_lufs": -24.747730453244806,
+        "max_400ms_lufs": -20.7,
+        "active_10ms_rms_dbfs": -23.007460147078195,
+        "rms_dbfs": -23.54062793356594,
+        "sample_peak_dbfs": -2.2918951759230426
+      },
+      "S1_final_clause": {
+        "start_s": 7.9,
+        "end_s": 9.76,
+        "crop_bs1770_lufs": -24.073609259758882,
+        "gated_400ms_lufs": -24.428306758573708,
+        "max_400ms_lufs": -20.4,
+        "active_10ms_rms_dbfs": -22.93539331582913,
+        "rms_dbfs": -23.50807088076761,
+        "sample_peak_dbfs": -8.346120815067412
+      },
+      "OW_phrase": {
+        "start_s": 19.71,
+        "end_s": 22.02,
+        "crop_bs1770_lufs": -23.119717335538496,
+        "gated_400ms_lufs": -24.09678427073482,
+        "max_400ms_lufs": -18.7,
+        "active_10ms_rms_dbfs": -20.423519896590495,
+        "rms_dbfs": -21.910244885295104,
+        "sample_peak_dbfs": -3.9264226938678704
+      },
+      "OW_letters": {
+        "start_s": 19.71,
+        "end_s": 20.9,
+        "crop_bs1770_lufs": -22.6678314115805,
+        "gated_400ms_lufs": -24.07355433924819,
+        "max_400ms_lufs": -18.7,
+        "active_10ms_rms_dbfs": -19.468183451577158,
+        "rms_dbfs": -20.40017020545693,
+        "sample_peak_dbfs": -3.9264226938678704
+      },
+      "oll_wright": {
+        "start_s": 21.08,
+        "end_s": 21.91,
+        "crop_bs1770_lufs": -22.700000464417403,
+        "gated_400ms_lufs": -22.609176720359248,
+        "max_400ms_lufs": -21.4,
+        "active_10ms_rms_dbfs": -22.276765140270708,
+        "rms_dbfs": -23.14203151903245,
+        "sample_peak_dbfs": -8.31460308504466
+      },
+      "KY_phrase": {
+        "start_s": 22.49,
+        "end_s": 24.23,
+        "crop_bs1770_lufs": -24.108694761461155,
+        "gated_400ms_lufs": -24.052512746167864,
+        "max_400ms_lufs": -21.6,
+        "active_10ms_rms_dbfs": -23.170972469747554,
+        "rms_dbfs": -24.052747424391868,
+        "sample_peak_dbfs": -4.665391035284082
+      },
+      "know_yuse": {
+        "start_s": 23.36,
+        "end_s": 24.23,
+        "crop_bs1770_lufs": -24.405934037479142,
+        "gated_400ms_lufs": -24.441245964290527,
+        "max_400ms_lufs": -23.5,
+        "active_10ms_rms_dbfs": -23.598553812812316,
+        "rms_dbfs": -24.127363007719435,
+        "sample_peak_dbfs": -8.208805243518139
+      },
+      "OK_S5_approx": {
+        "start_s": 45.91,
+        "end_s": 46.42,
+        "crop_bs1770_lufs": -25.1155445120329,
+        "gated_400ms_lufs": -25.0,
+        "max_400ms_lufs": -25.0,
+        "active_10ms_rms_dbfs": -24.24305776696046,
+        "rms_dbfs": -24.690181970530837,
+        "sample_peak_dbfs": -11.783601127452721
+      },
+      "OK_S10_approx": {
+        "start_s": 76.68,
+        "end_s": 77.18,
+        "crop_bs1770_lufs": -25.275810124000945,
+        "gated_400ms_lufs": -25.51526609715515,
+        "max_400ms_lufs": -25.0,
+        "active_10ms_rms_dbfs": -23.815829545014605,
+        "rms_dbfs": -24.677139206795623,
+        "sample_peak_dbfs": -11.326630851820195
+      },
+      "OK_S12_approx": {
+        "start_s": 101.88,
+        "end_s": 102.52,
+        "crop_bs1770_lufs": -24.76295298831685,
+        "gated_400ms_lufs": -24.703257026682625,
+        "max_400ms_lufs": -23.6,
+        "active_10ms_rms_dbfs": -23.562396633595768,
+        "rms_dbfs": -24.06514904957632,
+        "sample_peak_dbfs": -8.880286102595583
+      },
+      "OK_S13_approx": {
+        "start_s": 108.58,
+        "end_s": 109.16,
+        "crop_bs1770_lufs": -26.91387981334283,
+        "gated_400ms_lufs": -26.71343353688753,
+        "max_400ms_lufs": -26.3,
+        "active_10ms_rms_dbfs": -25.969821595648757,
+        "rms_dbfs": -26.700390005387376,
+        "sample_peak_dbfs": -11.34357779274936
+      }
+    },
+    "actual_units": {
+      "opening_OK": {
+        "start_s": 3.09,
+        "end_s": 3.7,
+        "crop_bs1770_lufs": -22.434076281513008,
+        "gated_400ms_lufs": -22.396694882515952,
+        "max_400ms_lufs": -21.1,
+        "active_10ms_rms_dbfs": -20.85846714405919,
+        "rms_dbfs": -21.30784778105054,
+        "sample_peak_dbfs": -6.619739537398468
+      },
+      "following_words": {
+        "start_s": 4.12,
+        "end_s": 7.49,
+        "crop_bs1770_lufs": -24.497484179251156,
+        "gated_400ms_lufs": -24.747730453244806,
+        "max_400ms_lufs": -20.7,
+        "active_10ms_rms_dbfs": -23.007462109992233,
+        "rms_dbfs": -23.54063003163949,
+        "sample_peak_dbfs": -2.2918951759230426
+      },
+      "S1_final_clause": {
+        "start_s": 7.9,
+        "end_s": 9.76,
+        "crop_bs1770_lufs": -24.073608887342683,
+        "gated_400ms_lufs": -24.428306758573708,
+        "max_400ms_lufs": -20.4,
+        "active_10ms_rms_dbfs": -22.93539319286168,
+        "rms_dbfs": -23.508070757825642,
+        "sample_peak_dbfs": -8.346120815067412
+      },
+      "OW_phrase": {
+        "start_s": 19.71,
+        "end_s": 22.02,
+        "crop_bs1770_lufs": -23.11732567924575,
+        "gated_400ms_lufs": -23.50366840616401,
+        "max_400ms_lufs": -20.2,
+        "active_10ms_rms_dbfs": -20.991666024404392,
+        "rms_dbfs": -22.425685850820205,
+        "sample_peak_dbfs": -5.752160064222336
+      },
+      "OW_letters": {
+        "start_s": 19.71,
+        "end_s": 20.9,
+        "crop_bs1770_lufs": -23.98173599307414,
+        "gated_400ms_lufs": -25.158691078947925,
+        "max_400ms_lufs": -20.4,
+        "active_10ms_rms_dbfs": -20.983822829597628,
+        "rms_dbfs": -21.915499079856584,
+        "sample_peak_dbfs": -5.752160064222336
+      },
+      "oll_wright": {
+        "start_s": 21.08,
+        "end_s": 21.91,
+        "crop_bs1770_lufs": -21.302721863153494,
+        "gated_400ms_lufs": -21.230330819542893,
+        "max_400ms_lufs": -20.2,
+        "active_10ms_rms_dbfs": -20.877197953323364,
+        "rms_dbfs": -21.742516340751102,
+        "sample_peak_dbfs": -7.339077287021536
+      },
+      "KY_phrase": {
+        "start_s": 22.49,
+        "end_s": 24.23,
+        "crop_bs1770_lufs": -24.108697713727967,
+        "gated_400ms_lufs": -24.052512746167864,
+        "max_400ms_lufs": -21.6,
+        "active_10ms_rms_dbfs": -23.171002302977183,
+        "rms_dbfs": -24.052783171318342,
+        "sample_peak_dbfs": -4.665391035284082
+      },
+      "know_yuse": {
+        "start_s": 23.36,
+        "end_s": 24.23,
+        "crop_bs1770_lufs": -24.405992214408197,
+        "gated_400ms_lufs": -24.441245964290527,
+        "max_400ms_lufs": -23.5,
+        "active_10ms_rms_dbfs": -23.59861452243983,
+        "rms_dbfs": -24.127435740821447,
+        "sample_peak_dbfs": -8.208805243518139
+      },
+      "OK_S5_approx": {
+        "start_s": 45.91,
+        "end_s": 46.42,
+        "crop_bs1770_lufs": -25.1155445120329,
+        "gated_400ms_lufs": -25.0,
+        "max_400ms_lufs": -25.0,
+        "active_10ms_rms_dbfs": -24.24305776696046,
+        "rms_dbfs": -24.690181970530837,
+        "sample_peak_dbfs": -11.783601127452721
+      },
+      "OK_S10_approx": {
+        "start_s": 76.68,
+        "end_s": 77.18,
+        "crop_bs1770_lufs": -25.275810124000945,
+        "gated_400ms_lufs": -25.51526609715515,
+        "max_400ms_lufs": -25.0,
+        "active_10ms_rms_dbfs": -23.815829545014605,
+        "rms_dbfs": -24.677139206795623,
+        "sample_peak_dbfs": -11.326630851820195
+      },
+      "OK_S12_approx": {
+        "start_s": 101.88,
+        "end_s": 102.52,
+        "crop_bs1770_lufs": -24.76295298831685,
+        "gated_400ms_lufs": -24.703257026682625,
+        "max_400ms_lufs": -23.6,
+        "active_10ms_rms_dbfs": -23.562396633595768,
+        "rms_dbfs": -24.06514904957632,
+        "sample_peak_dbfs": -8.880286102595583
+      },
+      "OK_S13_approx": {
+        "start_s": 108.58,
+        "end_s": 109.16,
+        "crop_bs1770_lufs": -26.91387981334283,
+        "gated_400ms_lufs": -26.71343353688753,
+        "max_400ms_lufs": -26.3,
+        "active_10ms_rms_dbfs": -25.969821595648757,
+        "rms_dbfs": -26.700390005387376,
+        "sample_peak_dbfs": -11.34357779274936
+      }
+    },
+    "actual_waveform_fits": {
+      "opening_OK": {
+        "gain_db": 1.5062525878179414,
+        "correlation": 0.9999760272014174,
+        "gain_compensated_residual_snr_db": 43.192356507304524
+      },
+      "OW_ramp": {
+        "gain_db": -0.048319879282656825,
+        "correlation": 0.9999793331217628,
+        "gain_compensated_residual_snr_db": 43.83681660142632
+      }
+    },
+    "pitch_comparison": {
+      "opening_OK": {
+        "voiced_pairs": 43,
+        "median_absolute_cents": 0.08643081486137583,
+        "p90_absolute_cents": 0.6084157408313551,
+        "whole_decoded_crop_bit_identical": false,
+        "decoded_sample_count": 29280,
+        "decoded_dtype": "float64",
+        "accepted_crop_sha256": "1d8ce90997697b28d32205debeda4ab497a1eb3154b60a326591b21e575c1cbc",
+        "actual_crop_sha256": "ab34cd959be6e1507f6161568094f335ff4750a90fe78751bcd100e4848ed748",
+        "preservation_basis": "measured-pitch-original-count-and-cent-limits"
+      },
+      "oll_wright": {
+        "voiced_pairs": 50,
+        "median_absolute_cents": 0.07798888687092319,
+        "p90_absolute_cents": 0.39086381600718606,
+        "whole_decoded_crop_bit_identical": false,
+        "decoded_sample_count": 39840,
+        "decoded_dtype": "float64",
+        "accepted_crop_sha256": "b9021c15e2af11eb0b0e0e810e02fd46b379901f93e89c406f8a25c234efe439",
+        "actual_crop_sha256": "05ea6b3db23cf1044e67f9128fbf77ce1188151edd0c0885ab2112ad35885d7f",
+        "preservation_basis": "measured-pitch-original-count-and-cent-limits"
+      }
+    },
+    "actual_public_piece_ranges": {
+      "S1:1": [
+        3.065,
+        3.705
+      ],
+      "S2:3": [
+        19.675,
+        22.03
+      ]
+    },
+    "actual_title_A21": null,
+    "checks": [
+      {
+        "name": "accepted-public-source-sha256",
+        "passed": true
+      },
+      {
+        "name": "duration-preserved",
+        "passed": true,
+        "delta_s": 0.0
+      },
+      {
+        "name": "encoding-alignment-only",
+        "passed": true,
+        "lag_samples": 0,
+        "local_lags_samples": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "actual-original-audio-format",
+        "passed": true,
+        "actual": {
+          "sample_rate": "48000",
+          "channels": 1
+        }
+      },
+      {
+        "name": "actual-no-digital-clipping-or-nonfinite",
+        "passed": true,
+        "sample_peak_dbfs": -0.9068279512281932
+      },
+      {
+        "name": "actual-true-peak-below-zero",
+        "passed": true,
+        "measured_dbtp": -0.9
+      },
+      {
+        "name": "whole-track-level-preserved",
+        "passed": true,
+        "accepted": {
+          "integrated_lufs": -23.5,
+          "true_peak_dbtp": -0.9,
+          "lra_lu": 3.2
+        },
+        "actual": {
+          "integrated_lufs": -23.5,
+          "true_peak_dbtp": -0.9,
+          "lra_lu": 3.2
+        }
+      },
+      {
+        "name": "outside-approved-ranges-same-voice-timing-gain",
+        "passed": true,
+        "gain_db": -3.7985604102508933e-07,
+        "correlation": 0.9999999992009446,
+        "gain_compensated_residual_snr_db": 87.96393189424123,
+        "p95_absolute_frame_gain_db": 0.0
+      },
+      {
+        "name": "every-untouched-active-one-second-block-preserved",
+        "passed": true,
+        "checked_blocks": 141,
+        "failed_blocks": []
+      },
+      {
+        "name": "no-new-click-or-noise-in-modified-pauses",
+        "passed": true,
+        "maximum_actual_10ms_dbfs": -68.04841898894625
+      },
+      {
+        "name": "requested-control:/分段增益dB/S1/1",
+        "passed": true,
+        "actual": 1.5,
+        "expected": 1.5
+      },
+      {
+        "name": "requested-control:/段内渐变dB/S2/3",
+        "passed": true,
+        "actual": [
+          -1.5,
+          -3.5
+        ],
+        "expected": [
+          -1.5,
+          -3.5
+        ]
+      },
+      {
+        "name": "actual-production-piece-timings-present",
+        "passed": true
+      },
+      {
+        "name": "actual-gain-and-same-waveform:opening_OK",
+        "passed": true,
+        "expected_gain_db": 1.5,
+        "actual_lufs_delta": 1.5143017717958536,
+        "gain_db": 1.5062525878179414,
+        "correlation": 0.9999760272014174,
+        "gain_compensated_residual_snr_db": 43.192356507304524
+      },
+      {
+        "name": "actual-opening-OK-strength",
+        "passed": true,
+        "strongest400ms_delta_lu": -0.40000000000000213
+      },
+      {
+        "name": "actual-OW-oll-wright-local-continuity",
+        "passed": true,
+        "letters_minus_oll_wright_active_rms_db": -0.10662487627426387,
+        "OW_minus_KY_lufs": 0.9913720344822181
+      },
+      {
+        "name": "actual-approved-smooth-ramp",
+        "passed": true,
+        "median_error_db": 0.046788568257577934,
+        "p95_error_db": 0.07596957924181655,
+        "actual_piece_range": [
+          19.675,
+          22.03
+        ]
+      },
+      {
+        "name": "actual-ramp-same-waveform-no-new-distortion",
+        "passed": true,
+        "gain_db": -0.048319879282656825,
+        "correlation": 0.9999793331217628,
+        "gain_compensated_residual_snr_db": 43.83681660142632
+      },
+      {
+        "name": "actual-pitch-preserved:opening_OK",
+        "passed": true,
+        "voiced_pairs": 43,
+        "median_absolute_cents": 0.08643081486137583,
+        "p90_absolute_cents": 0.6084157408313551,
+        "whole_decoded_crop_bit_identical": false,
+        "decoded_sample_count": 29280,
+        "decoded_dtype": "float64",
+        "accepted_crop_sha256": "1d8ce90997697b28d32205debeda4ab497a1eb3154b60a326591b21e575c1cbc",
+        "actual_crop_sha256": "ab34cd959be6e1507f6161568094f335ff4750a90fe78751bcd100e4848ed748",
+        "preservation_basis": "measured-pitch-original-count-and-cent-limits"
+      },
+      {
+        "name": "actual-pitch-preserved:oll_wright",
+        "passed": true,
+        "voiced_pairs": 50,
+        "median_absolute_cents": 0.07798888687092319,
+        "p90_absolute_cents": 0.39086381600718606,
+        "whole_decoded_crop_bit_identical": false,
+        "decoded_sample_count": 39840,
+        "decoded_dtype": "float64",
+        "accepted_crop_sha256": "b9021c15e2af11eb0b0e0e810e02fd46b379901f93e89c406f8a25c234efe439",
+        "actual_crop_sha256": "05ea6b3db23cf1044e67f9128fbf77ce1188151edd0c0885ab2112ad35885d7f",
+        "preservation_basis": "measured-pitch-original-count-and-cent-limits"
+      }
+    ],
+    "public_listening_clips": [
+      "51-opening-OK-context-accepted.wav",
+      "51-opening-OK-context-actual.wav",
+      "51-OW-oll-wright-context-accepted.wav",
+      "51-OW-oll-wright-context-actual.wav"
+    ],
+    "subjective_listening": "Public final-file clips saved for root listening; this program does not claim listening acceptance.",
+    "private_caches_or_GT_exported": false
+  },
+  "approved_audio_qc_program_sha256": "3a2bd846386b16bd74e9785c548e97283131efcad9989b9e886f64e86e57c7c6",
+  "accepted_prior_aac_identical": false,
+  "video_sha256": "22eb669f3e29cfe5c3fa5866ff7b0ec1405e375d182142b4047d8ca9d972be0c",
+  "width": 3840,
+  "height": 2160,
+  "summary_seconds": 2,
+  "summary_frames": 60,
+  "summary_start_seconds": 152.1,
+  "delay_after_voice_seconds": 0.01999999999998181,
+  "actual_source_collection": {
+    "article": "51",
+    "kind": "actual-production-source-collection",
+    "new_quality_gate": false,
+    "files": {
+      "request_json": {
+        "file": "51-request-source.json",
+        "sha256": "39886d83593a31fb575b124ecf6457190773dca695b6ff78f8434d52aebd6d7c",
+        "origin": "immutable_request"
+      },
+      "request_generator": {
+        "file": "51-request-gen.py",
+        "sha256": "af067a6776644e464ee673a21831fa685c5fd6fb023db03ec700a3cec49e82cc",
+        "origin": "immutable_request"
+      },
+      "used_generator": {
+        "file": "51-used-gen.py",
+        "sha256": "af067a6776644e464ee673a21831fa685c5fd6fb023db03ec700a3cec49e82cc",
+        "origin": "actual_production_filesystem"
+      },
+      "actual_working_source": {
+        "file": "51-actual-working-source.json",
+        "sha256": "bb21df47d9524a952182d7f2ff6699a3012f3b9360c3443ff2f4098fdb4109d1",
+        "origin": "actual_production_filesystem"
+      },
+      "request_manuscript": {
+        "file": "51-request-manuscript.md",
+        "sha256": "8de30ea4846f4e88d8b71c8d5ced3ee63a73955e39b7dc3c5adad0971b854fd0",
+        "origin": "immutable_request"
+      },
+      "actual_working_manuscript": {
+        "file": "51-actual-working-manuscript.md",
+        "sha256": "54149fd57371df435f9328637f84cfff4cad359b108fdf8e024b0b587fed3512",
+        "origin": "actual_production_filesystem"
+      }
+    },
+    "generator_execution_observed": false,
+    "generator_execution_evidence": "No fresh generator execution log; do not claim this GEN was executed during rendering.",
+    "source_differences": {
+      "file": "51-actual-source-differences.json",
+      "sha256": "7820bddf4f01ce93e08dda6f28e892544c16bb4500450af146a9772e3efab9b6"
+    }
+  }
+}
