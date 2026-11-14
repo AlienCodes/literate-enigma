@@ -1,0 +1,94 @@
+{
+  "status": "passed",
+  "article": "09",
+  "origin": "derived_after_final_QC",
+  "actual_original_job_execution_claimed": false,
+  "used_generator_observation": "exported_actual_production_file; execution observation is a separate original fact",
+  "source_json_sha256": "dfcb788c109526892d2cbd40f8acd0b3190ac02c7d20e19986499d13cba00743",
+  "derived_generator_sha256": "c49461dd9b978fc72cf8881cafc98d32be723060c13c88ee78a0de86727d4d0e",
+  "request_json_sha256": "fa3e429351d629de188c184d04e9986200e16e80606fcbec82332b6433301dae",
+  "request_generator_sha256": "6cd5d6dde443c62eb1b622f60c6336776331a548691adfb2101e5e5266f56f94",
+  "request_manuscript_sha256": "af5c3e844bad15f94bfc43aeed6d7417c4bfae85f026b194da667a7a3bdb6196",
+  "immutable_native_status_sha256": "95de1c27a8cef3f67b44e9cc5ed235e0bcf4d7bda27c49fdfbda7f224f7a04c7",
+  "factory_program_sha256": "1514e91aee9dc04424e5b755cee37b65b8dadef9717f3e6c0cede35f1c03e044",
+  "original_helper_sha256": {
+    "初稿生成/核对.py": "c635aee82e0fe4dff9f70dcae03e2f797aadb670c8ebe6c8f202b82a35a87a74",
+    "重点词被去掉.py": "b898e63bb0954f0f17b90f92c2af41b3264ca60b7fd264e1cfa632f3d1e86f93"
+  },
+  "original_helper_exit": 0,
+  "whole_JSON_roundtrip_exact": true,
+  "semantic_control_invariants": {
+    "visible_body_notes_summary_and_focus_unchanged": true,
+    "layout_only_newlines_and_T38_bold_allowed": true,
+    "audio_render_title_metadata_unchanged": false,
+    "effective_audio_render_title_controls_unchanged": true,
+    "official_regenerated_nonaudio_rationale_updates": [
+      {
+        "path": "/结尾句/S18/依据",
+        "before": "全篇结尾句按 07 定下的标准（用户 2026-10-10 同意并要求所有视频统一）：前段 0.88、最后一段“more than fifty-seven times Meredith's 986 kills.” 0.78、前面停 0.7 秒。接点由 结尾句接点.py 自动找：0.88 那遍最后一个标点后最长静音（15 ms）的正中 6.282 s，0.78 那遍（15 ms）的正中 7.638 s，所在帧和两侧各 5 ms 都低于 -55 dB（程序以 08 校准：与人工核实的接点落在同一段静音里）；前段标准语速 0.9 那一遍最后一个标点处连读（-55 dB 静音不足 15 ms），改用 0.88",
+        "after": "全篇结尾句按 07 定下的标准（用户 2026-10-10 同意并要求所有视频统一）：前段 0.88、最后一段“more than fifty-seven times Meredith's 986 kills.” 0.78、前面停 0.7 秒。接点由 结尾句接点.py 自动找：0.88 那遍最后一个标点后最长静音（15 ms）的正中 6.282 s，0.78 那遍（15 ms）的正中 7.638 s，所在帧和两侧各 5 ms 都低于 -55 dB（程序以 08 校准：与人工核实的接点落在同一段静音里）",
+        "before_sha256": "57944a8cc885163d21b72bc795a89d0b01c18cfe39a42512d028dc0abc8d60b9",
+        "after_sha256": "54393e3a373cd4c4b34f476523ca1af4358f80600e0ad838e357b3a70ffd3292",
+        "effective_controls_identical": true,
+        "effective_controls": {
+          "前段语速": 0.88,
+          "最后一段语速": 0.78,
+          "最后一段前停顿": 0.7,
+          "接点": [
+            150780,
+            183300
+          ]
+        },
+        "official_regenerator": "结尾句接点.py",
+        "basis": "Original official locator regenerated the same rationale prefix for deeply identical effective settings. Exact original appended history is retained here and in the immutable requested source. No actual gain/cut/speed/pitch/splice control change is permitted by this classification."
+      }
+    ],
+    "observed_original_QC_interval_fingerprint_updates": [
+      {
+        "path": "/区间声音指纹",
+        "before": null,
+        "after": {
+          "S3": "d48013b1ae4d",
+          "S5": "84038e510f19",
+          "S6": "d32880819b31",
+          "S7": "903f87ed03b7",
+          "S9": "1aded13f1cfa",
+          "S11": "e52e444e0b42",
+          "S12": "f6e0a47458af",
+          "S13": "93310ffd625b",
+          "S15": "06568a4c9765",
+          "S16": "ba4aa9278cae",
+          "S17": "3ac82c40fb8d"
+        },
+        "basis": "Original maker A45 observed raw-synthesis validity hashes, not physical audio controls. Both immutable source versions and actual native QC remain in the artifact; original full sound gates and actual approved AAC/absolute timing validation remain mandatory."
+      }
+    ]
+  },
+  "changed_paths": [
+    "/sentences/0/chunks/2/note",
+    "/sentences/8/chunks/2/note",
+    "/sentences/17/chunks/1/note",
+    "/区间声音指纹",
+    "/核对确认/非人声/45.71–45.73s",
+    "/结尾句/S18/依据"
+  ],
+  "original_inputs_unchanged": true,
+  "manuscript_origin": "immutable request used for roundtrip; actual exported production manuscript recorded separately",
+  "manuscript_runtime_observed": true,
+  "no_repository_or_remote_write": true,
+  "scope": "data fidelity and regeneration only; final JSON artifact-member origin must additionally be checked by delivery validation/archive",
+  "final_JSON_artifact_origin_checked_here": false,
+  "observed_used_generator": {
+    "file": "09-used-gen.py",
+    "sha256": "c4b205d0bdeb67a9174f509387b56344b00db2860ebab45c9f7571682d7017dd",
+    "origin": "actual_production_filesystem"
+  },
+  "original_production_generator_execution_observed": false,
+  "original_production_generator_execution_evidence": "No fresh generator execution log; do not claim this GEN was executed during rendering.",
+  "actual_production_manuscript": {
+    "file": "09-actual-working-manuscript.md",
+    "sha256": "2d20446a44ce54e692c8ef37827fa87ede0fd253ce80edd28fcac9db97ceeefb",
+    "origin": "actual_production_filesystem"
+  },
+  "derived_generator_original_job_execution_claimed": false
+}
