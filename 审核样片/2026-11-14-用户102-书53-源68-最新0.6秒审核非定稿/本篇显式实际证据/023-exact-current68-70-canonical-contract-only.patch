@@ -1,0 +1,17 @@
+--- 
++++ 
+@@ -1,3 +1,4 @@
++from exact_review102_current68_70 import check as exact_current_review102_identity
+ from exact077_source60_audio import actual_source60_repair_scope
+ """Pure V3 delivery contracts. No network or mutation at import."""
+ import hashlib, json, re, zipfile
+@@ -368,6 +369,9 @@
+ 
+ def canonical_audio_contract(review,native,article,selected_sha,actual_aac_sha,evidence_hashes,status_sha,strict_review):
+     require(review['actual_new_output']is True and review['status']=='passed'and review['canonical_video_sha256']==selected_sha and review['report_sha256']in evidence_hashes,'Canonical audio review identity/evidence differs')
++    if article in {'68','70'} and native.get('review_only') is True:
++        exact_current_review102_identity(review,native,article,actual_aac_sha,evidence_hashes,status_sha,require)
++        return 'actual_original_audio_gates_plus_exact_current_native_reference_review_only'
+     if strict_review:
+         if article=='60' and review['tool']=='audio60-controlled-qc.py':
+             actual_source60_repair_scope(review,native,native.get('approved_audio_qc',{}),article)
