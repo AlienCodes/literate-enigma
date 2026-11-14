@@ -105,12 +105,18 @@ jobs:
           else:
               work.symlink_to(tools,target_is_directory=True)
           PYENV
-          python -u .github/target48-whole-cached-diagnostic/native48_whole_audio_correct_context_scope.py --tools "$GITHUB_WORKSPACE/official-main/视频/工具" --video-root "$RUNNER_TEMP/completion-machine" --request "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48.json" --baseline-source "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48-current-baseline.json" --cache-identity "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48-correct-context-S15-private-cache-identity.json" --gain-decision "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/root-source48-correct-native-context-actual-two-mother-name-only-plus1-reselection-decision.json" --output "$GITHUB_WORKSPACE/target48-whole-public/48-correct-context-whole-strict-cached-diagnostic.json"
+          python -u .github/target48-whole-cached-diagnostic/native48_actual_whole_tuple_G36_math_only.py --tools "$GITHUB_WORKSPACE/official-main/视频/工具" --video-root "$RUNNER_TEMP/completion-machine" --request "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48.json" --baseline-source "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48-current-baseline.json" --cache-identity "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48-correct-context-S15-private-cache-identity.json" --gain-decision "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/root-source48-correct-native-context-actual-two-mother-name-only-plus1-reselection-decision.json" --missing-witness "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/actual-whole-STRICT-missing-G36-3089-witness.json" --output "$GITHUB_WORKSPACE/target48-whole-public/48-actual-whole-G36-3089-original-math-and-levels.json" --cache-path-output "$RUNNER_TEMP/48-only-actual3089-private-cache-path.txt"
+      - name: 只私有保存真实whole原数学3089调平JSON
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ runner.temp }}/completion-machine/tts/cache_tts/调平_3089bf1e9ad992be5bc42ea6c586ae366b1b1a40.json
+          key: Linux-native48-correctcontext-whole-G36-3089-${{ github.run_id }}
       - name: 仅保存安全标量JSON不导母料音频
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: native48-correct-context-strict-cached-whole-scope-diagnostic
+          name: native48-actual-whole-G36-3089-original-math-diagnostic
           path: |
             target48-whole-public/*.json
           retention-days: 30
