@@ -52,7 +52,8 @@ S = [(1, [[[('Dolly was born at Roslin, **Scotland**, on 5 July 1996.', '1996年
    [[('frogs cloned from **transplanted** nuclei in 1962', '于1962年由**移植**(transplanted)的细胞核克隆出的青蛙，')],
     '（cloned from…：过去分词短语作后置定语，修饰 frogs；\nnuclei 是 nucleus 的复数）'],
    [[("and Roslin's", '以及罗斯林'),
-     ('embryo-derived **duo**, Megan and Morag, in 1995.', '于1995年由胚胎衍生的**一对**(duo)绵羊：梅根和莫拉格。')],
+     ('embryo-**derived**', '于1995年由胚胎**衍生的**(derived)'),
+     ('**duo**, Megan and Morag, in 1995.', '**一对**(duo)绵羊：梅根和莫拉格。')],
     '（Megan and Morag：同位语，补充说明 duo）']]),
  (2,
   [[[('She', '她'),
@@ -80,7 +81,7 @@ S = [(1, [[[('Dolly was born at Roslin, **Scotland**, on 5 July 1996.', '1996年
      ('Clinton', '克林顿'),
      ('**prohibited**', '**禁止**(prohibited)'),
      ('federal', '联邦'),
-     ('funding', '资金'),
+     ('**funding**', '**提供资金**(funding)'),
      ('for such experiments.', '用于这类实验。')]]]),
  (3,
   [[[('In 1999', '1999年，'),
@@ -123,7 +124,7 @@ S = [(1, [[[('Dolly was born at Roslin, **Scotland**, on 5 July 1996.', '1996年
      ('cell', '细胞'),
      ('line,', '系，')],
     '（four from her cell line：插入语，补充说明 13 clones）'],
-   [[('were ageing normally,', '正在正常衰老，'),
+   [[('were **ageing** normally,', '正在正常**衰老**(ageing)，'),
      ('without', '没有'),
      ('**hypertension**', '**高血压**(hypertension)，'),
      ('or **diabetes**.', '也没有**糖尿病**(diabetes)。')]]]),
@@ -172,7 +173,15 @@ S = [(1, [[[('Dolly was born at Roslin, **Scotland**, on 5 July 1996.', '1996年
      ('Finn Dorset', '芬兰多塞特'),
      ('**ancestry**.', '**祖源**(ancestry)。')],
     '（testify to：证明，见证）\n'
-    '（简述：▸诞生：研究者将去掉细胞核的卵细胞与成年母羊乳腺细胞融合，培育胚胎，1996年由代孕母羊产下多莉。▸突破：277次尝试仅多莉存活；她是首只由成年细胞克隆的哺乳动物，此前已能用胚胎细胞克隆羊。▸争议：成果引发人类克隆伦理争论；多莉的端粒（染色体末端）比同龄羊短约20%，又引起早衰猜测。▸离世：多莉自然交配育下六只小羊；患有关节炎和病毒性肺病，六岁时被实施安乐死，不能据此认定克隆导致早衰。▸复核：后续研究中13只克隆羊正常衰老；多莉骨骼复查也未支持关节炎过早出现的担忧。）']])]
+    '（多莉虽由另一品种母羊代孕，\n'
+    '但遗传物质来自芬兰多塞特羊，因此保留了白脸特征。）\n'
+    '（简述：▸诞生：研究者将去掉细胞核的卵细胞与成年母羊乳腺细胞融合，\n'
+    '▹培育胚胎，1996年由代孕母羊产下多莉。\n'
+    '▸突破：277次尝试仅多莉存活；她是首只由成年细胞克隆的哺乳动物，此前已能用胚胎细胞克隆羊。\n'
+    '▸争议：成果引发人类克隆伦理争论；多莉的端粒（染色体末端）比同龄羊短约20%，又引起早衰猜测。\n'
+    '▸离世：多莉自然交配育下六只小羊；患有关节炎和病毒性肺病，\n'
+    '▹六岁时被实施安乐死，不能据此认定克隆导致早衰。\n'
+    '▸复核：后续研究中13只克隆羊正常衰老；多莉骨骼复查也未支持关节炎过早出现的担忧。）']])]
 
 out = {'no': '62',
  'title_en': 'Dolly, the Copied Sheep',
@@ -219,7 +228,12 @@ out = {'no': '62',
                  'S16 her skeletal X-rays': '对齐不了：X-rays 是一个词“X光片”，skeletal 在前已单独对“骨骼”，her skeletal X-rays '
                                             '三个中文顺序与英文一样，不用拆得更细',
                  'S18 her stuffed body': '对齐不了：stuffed body 中文“填充标本”是一个整体说法（文章定稿原文），拆开不通',
-                 'S18 the National Museum of Scotland': '对齐不了：机构名“苏格兰国家博物馆”，拆开不通'},
+                 'S18 the National Museum of Scotland': '对齐不了：机构名“苏格兰国家博物馆”，拆开不通',
+                 'S6 embryo-derived': '对齐不了：embryo-derived是原英文一个连字符复合词，只derived部分按用户要求标为重点；按空格拆成embryo-和derived会凭空增加原文空格。in '
+                                      '1995时间状语按原定稿中文前置为于1995年，保留在由胚胎衍生的这个定语组。',
+                 'S6 duo, Megan and Morag, in 1995': '对齐不了：Megan and Morag是duo的同位语，in '
+                                                     '1995修饰这对羊；原中文于1995年已随胚胎衍生的定语前置在上一组。继续按英文逐词分割会让末尾in '
+                                                     '1995没有对应中文或移动已定稿日期位置，现按原文语序保留一对绵羊与人名同位语。'},
           '对齐': {'S3-2 proof of a genetically different l': 'proof of 的内容 a genetically different lineage '
                                                             '中文“一个基因上不同血统的证明”，“证明”必须放到最后（用户 11-08 原话）',
                  'S4-1 She alone survived from 277 at': 'from 277 attempts 是范围状语，中文“在277次尝试中”必须提前',
@@ -233,8 +247,6 @@ out = {'no': '62',
                                                         '在句末，中文日期必须提前到句首；地名中文由大到小“苏格兰罗斯林”（文章定稿原文，中文不改）',
                  'S4-1 survived from 277 attempts,': 'from 277 attempts 是范围状语，中文“从277次尝试中”必须放到动词前（用户 11-08 原话）',
                  'S6-2 frogs cloned from transplanted': 'cloned from… in 1962 是过去分词短语作后置定语，修饰 frogs，中文定语必须提前',
-                 'S6-3 embryo-derived duo, Megan and ': 'embryo-derived、in 1995 都修饰 '
-                                                        'duo，中文定语“1995年用胚胎细胞培育的”必须提前',
                  'S7-1 the first mammal cloned from a': 'cloned from an adult cell 是后置定语，修饰 mammal，中文定语必须提前',
                  "S8-1 Roslin's announcement on 22 Fe": 'on 22 February 1997 是后置定语，修饰 announcement，中文日期必须提前',
                  'S9-2 apprehension about the ethics ': 'about the ethics of human cloning 是后置定语，修饰 '
@@ -242,7 +254,9 @@ out = {'no': '62',
                  'S11-2 shortened by about 20% for her': 'for her age 中文“比同龄羊”必须放到动词前',
                  'S16-2 fears of early onset': 'of early onset 是 of 结构作后置定语，修饰 fears，中文“对提前发病的担忧”必须提前（用户 11-08 '
                                                '原话）',
-                 'S18-3 the National Museum of Scotlan': '机构名“苏格兰国家博物馆”，拆开不通'},
+                 'S18-3 the National Museum of Scotlan': '机构名“苏格兰国家博物馆”，拆开不通',
+                 'S6-3 duo, Megan and Morag, in 1995.': 'embryo-derived、in 1995 都修饰 '
+                                                        'duo，中文定语“1995年用胚胎细胞培育的”必须提前'},
           '同词异译': {'coincided with：与/同时': '不是两种译法：coincide with 的意思“与……同时”被“论文发表”隔开，“与”和“同时”是同一个意思的两部分（T23）',
                    'coincided with：与/同时发生': '不是两种译法：coincide with '
                                             '的意思“与……同时发生”被“这篇论文”隔开，“与”和“同时发生”是同一个意思的两部分（T23）'},
@@ -462,7 +476,7 @@ out = {'no': '62',
            'S7': [[1.025625, 1.247542, '紧贴词尾']],
            'S15': [[6.405583, 6.4635, '紧贴两头']]},
  '词尾除阻': {'S4': {'句末': [5.79, 't']}, 'S17': {'句末': [7.565, 't']}},
- '停顿插入点': {'S1': {'1': [1.8455, '交界']}, 'S15': {'2': [3.580083, '交界'], '3': [4.85225, '交界']}},
+ '停顿插入点': {'S1': {'1': [1.8455, '交界']}, 'S15': {'2': [3.584083, '交界'], '3': [4.85225, '交界']}},
  '区间声音指纹': {'S1': '454d381d6f01',
             'S3': 'c06fa540d3e3',
             'S4': 'ee0ac63304a5',
@@ -484,10 +498,11 @@ out = {'no': '62',
                        'testifies to her Finn Dorset ancestry.” 0.78、前面停 0.7 秒。接点由 结尾句接点.py 自动找：0.9 '
                        '那遍最后一个标点后最长静音（40 ms）的正中 1.288 s，0.78 那遍（125 ms）的正中 1.702 s，所在帧和两侧各 5 ms 都低于 -55 dB（程序以 '
                        '08 校准：与人工核实的接点落在同一段静音里）'}},
- 'allow_clash': ['honoured', 'stripped of'],
+ 'allow_clash': ['honoured', 'stripped of', 'derived', 'funding', 'ageing'],
  '换行变更记录': [{'日期': '2026-11-08',
              'S3': '用户 2026-11-08 原话“这个翻译不对，这个翻译不对，改成这个：一个基因上不同血统的证明”（中文按用户给的语序重排，“证明”移到最后）；另 11-07 '
-                   '原话“上面的这个英文和它下面这个中文意思尽可能对齐……”（对齐需要改换行算已同意，用户同意记录 篇“61-65”）'}]}
+                   '原话“上面的这个英文和它下面这个中文意思尽可能对齐……”（对齐需要改换行算已同意，用户同意记录 篇“61-65”）'}],
+ '换行变更已获同意': {'S6': '用户2026-11-14本篇定稿原话：“Ok了，ok了，那这一篇可以定稿生成4k视频了。就克隆羊多利这一篇。”（执行本轮derived重点词所需的原T34单组拆分；已用真实旧snapshot实比L13，仅S6实际换行随该指定词色调整，全文EN与中文内容保持）'}}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对
