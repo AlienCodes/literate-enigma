@@ -1035,7 +1035,7 @@ try:
         # Root-approved exact sentence transfer only; failed first native records stay unchanged.
         installer = TASK / 'install67-exact-unchanged-machine-confirmations.py'
         assert sha(installer) == '73a37918ebbda90f0a985d546d03e2a1de26b5c08887e606272b4031785db983'
-        assert sha(installer.with_name('install67-exact-unchanged-machine-confirmations-reference.json')) == 'b8379a27eb1c485afddbfbf8477ec48900644668d288f986eccc450a02076f7c'
+        assert sha(installer.with_name('install67-exact-unchanged-machine-confirmations-reference.json')) == '1c8d995b3cedc4b68f9dc315f734c93780e90c5aca173b1753c1f7aab93aa246'
         exact_transfer = OUT / '67-six-exact-unchanged-machine-confirmation-transfer.json'
         checked(['python3', installer, '--work', W, '--request', request,
                  '--old-source', LOG / 'accepted-prior-source.json',
