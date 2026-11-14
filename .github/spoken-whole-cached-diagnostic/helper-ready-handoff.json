@@ -1,0 +1,54 @@
+{
+  "kind": "ready-for-sole-CI-small-strict-cache-AUDIO_ONLY-diagnostic-not-production",
+  "source_ids": [
+    43,
+    52
+  ],
+  "final_source_pins": {
+    "43": "bacc7abafe824031e0d85349f80327b66947839472008a18bd679cf6cdc3b53e",
+    "52": "c00eb5707f1b269d2ce88fed455f592962d674d46e3bf172ba00cfe6597245f3"
+  },
+  "files": {
+    "spoken-whole-track-diagnostic.py": {
+      "bytes": 15105,
+      "SHA256": "7f0a8bd086e96429e7ed064e54b715647de3fa4a9b61029d080438f689ba92b4"
+    },
+    "spoken-whole-track-reference.json": {
+      "bytes": 2898,
+      "SHA256": "24f601f32666298aa632737ece4a0ede425c8f2413c7e894481131c59a0d4de3"
+    },
+    "helper-guard-tests.json": {
+      "bytes": 1449,
+      "SHA256": "d663f14c2fa25fc9bc49984746899d509f95346526ae0c8a6fedaa102c8460ea"
+    },
+    "test_helper_guards.py": {
+      "bytes": 5139,
+      "SHA256": "05390e2ae95d50822471a2f0f9e66a26c0d39c7adc5c1f2f54cf8edda34f786c"
+    },
+    "baselines/43.json": {
+      "bytes": 47972,
+      "SHA256": "aa9da1246e293c80408edf94a7c9bed65ef3178ae7cb5265a8273e8c4396687f"
+    },
+    "baselines/52.json": {
+      "bytes": 50666,
+      "SHA256": "2a92386d5f459ad115685d5c3904cc2cf834659f44f6b836caf0bcbc70245c24"
+    }
+  },
+  "ABI": "python spoken-whole-track-diagnostic.py --tools T --video-root M --request43 C43 --request52 C52 --cache-contract ACTUAL6JSON --output OUT/strict-spoken-whole-track-diagnostic.json",
+  "existing_private_cache_restore_key": "Linux-three-spoken-comma-reference-43638178374",
+  "restore_path": "M/tts/spoken-comma-reference-cache",
+  "private_new_cache_save_path": "M/tts/spoken-comma-whole-reference-cache",
+  "new_private_saved_files": "12 exact already-certified original mother PKL/marker files plus two exact original-math G36 JSON files; no WAV/GT/media",
+  "original_algorithm_only_G36_authorities": [
+    "43S16",
+    "52S4"
+  ],
+  "S18_no_new_G36_or_ENDING_or_extra_mother_retest": true,
+  "original_baseline_native_WAV_and_AAC_both_must_bind": true,
+  "actual_non_target_pre_master_np_array_equal_required": true,
+  "whole_master_multiplier_recorded_not_assumed_equal": true,
+  "new_whole_raw_AAC_hashes_are_pending_actual_run_not_guessed": true,
+  "test_limit": "11 actual executable input guards/pins incl actual one-float32-sample negative; no model inference or actual whole-track numerical math run locally",
+  "formal_original_Q8_R_two_ASR_and_fullV3_still_required": true,
+  "current_state": "not launched by helper owner"
+}
