@@ -1,0 +1,20 @@
+--- 
++++ 
+@@ -43,7 +43,8 @@
+     explicit = (inline or {}).get('explicit_approved_video_layout')
+     if explicit is None:
+         return spec(TAIL/'approved-video-layouts70.json')
+-    approved = {'68': '4192bd822046c9e216fc5868ba296a4bb62f63e6d84a86dcf95fa8e14eba0eb9',
++    approved = {'54': '4192bd822046c9e216fc5868ba296a4bb62f63e6d84a86dcf95fa8e14eba0eb9',
++                '68': '4192bd822046c9e216fc5868ba296a4bb62f63e6d84a86dcf95fa8e14eba0eb9',
+                 '70': '4192bd822046c9e216fc5868ba296a4bb62f63e6d84a86dcf95fa8e14eba0eb9',
+                 '69': 'ca43e7a01e0ff5d56f383235b1df701314bcf2a00b0c1228ce8b321ec2295ae3',
+                 '66': 'f6d4e960e54ead8ae50a9b112f7b1ed59e23b7c168f3daa4d9ede1660bad3013',
+@@ -165,6 +166,7 @@
+             'source_transform':{'status':provenance['status'],'actual_working_copy':True,'operations':['L19']+(['production_qc_metadata']if any(not p.startswith('/sentences/')for p in provenance['changed_paths'])else[]),'report_sha256':proof['sha256'],'changed_paths':provenance['changed_paths']},
+             'adapter_scope':'Explicit actual native status + raw real postprocessor report field mapping; not fabricated audio-qc.py or unobserved runtime GEN/MD.'}
+         current_reference_review=bool(inline and n in {'68','70'} and native.get('review_only')is True and native.get('approved_current_reference_review_binding',{}).get('kind')=='source-specific-current-native-voice-identity-binding-only')
++        current_reference_review=current_reference_review or bool(inline and n=='54' and native.get('review_only')is True and native.get('approved_current_reference_review_binding',{}).get('kind')=='source54-specific-current-reference-and-two-existing-CF-identity-only')
+         repaired=bool(inline and native_audio['aac_adts_sha256']!=native['accepted_source']['aac_adts_sha256'] and not current_reference_review)
+         if current_reference_review:
+             qc['audio'].update(current_reference_role='latest-current-native-not-formally-accepted-whole',current_reference_identity_binding=native['approved_current_reference_review_binding'],current_and_legacy_AAC_equal=False,review_only=True,user_individual_finalization_authorized=False)

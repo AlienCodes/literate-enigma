@@ -1,0 +1,11 @@
+--- 
++++ 
+@@ -560,7 +560,7 @@
+         else:
+             require(native_status['accepted_source']['sha256']==old[n]['sha256'],'Native accepted audio reference differs from existing catalog baseline')
+     elif audio_basis=='actual_original_audio_gates_plus_exact_current_native_reference_review_only':
+-        require(n in {'68','70'} and native_status.get('review_only')is True and native_status['accepted_source']['sha256']==old[n]['sha256'] and native_status.get('accepted_prior_aac_identical')is False,'Exact review-only current reference must preserve original legacy catalog')
++        require(n in {'54','68','70'} and native_status.get('review_only')is True and native_status['accepted_source']['sha256']==old[n]['sha256'] and native_status.get('accepted_prior_aac_identical')is False,'Exact review-only current reference must preserve original legacy catalog')
+     else:
+         raw_audio=load(checked_file(next(e for e in item['evidence']if e['sha256']==canonical_qc['report_sha256'])))
+         if audio_basis=='actual_dedicated_audio_qc_then_verified_exact_AAC_copy':

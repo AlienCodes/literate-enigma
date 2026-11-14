@@ -1,0 +1,33 @@
+{
+  "actual_positive_passed": true,
+  "negative_cases": [
+    {
+      "case": "wrong-source",
+      "rejected": true,
+      "reason": "Only exact54 current-native and two existing CF reference"
+    },
+    {
+      "case": "wrong-request",
+      "rejected": true,
+      "reason": "Exact latest source/GEN differs"
+    },
+    {
+      "case": "original-full-gates-failed",
+      "rejected": true,
+      "reason": "All actual original complete gates remain required for review-only"
+    },
+    {
+      "case": "other-current-wholeAAC",
+      "rejected": true,
+      "reason": "Actual current wholeWAV/AAC/new canonical differs"
+    },
+    {
+      "case": "final-promotion",
+      "rejected": true,
+      "reason": "All actual original complete gates remain required for review-only"
+    }
+  ],
+  "original_numeric_acoustic_thresholds_unmodified": true,
+  "repair_applied": false,
+  "reference_formally_accepted_whole": false
+}
