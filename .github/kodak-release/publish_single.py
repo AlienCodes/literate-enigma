@@ -40,6 +40,9 @@ def main():
     assert config['actual_complete_validation_passed'] is True
     assert config['actual_dual_permanent_archive_passed'] is True
     assert set(config['reviewed_terms']) == {'bankruptcy', 'fetch'}
+    assert config['end_reading_pause_seconds'] == 0.6
+    assert config['nominal_extra_hold_frames_at_30fps'] == 18
+    assert 0.6 <= config['actual_end_reading_pause_seconds'] < 0.633334
     spec = config['video']
     assert spec['release_name'] == '28-The-Company-That-Invented-Its-Own-Killer-4K.mp4'
     assert spec['width'] == 3840 and spec['height'] == 2160
@@ -57,7 +60,7 @@ def main():
     assert video['width'] == spec['width'] and video['height'] == spec['height']
     assert len(config['validation_record_sha256']) == 64
     tag = config['tag']
-    marker = 'Article36 reviewed final video SHA-256: ' + spec['sha256']
+    marker = 'Article36 reviewed final hold18 video SHA-256: ' + spec['sha256']
     release = api('releases/tags/' + tag, missing_ok=True)
     if release is None:
         matches = [item for item in api('releases?per_page=100') if item['tag_name'] == tag and marker in (item.get('body') or '')]
@@ -113,6 +116,9 @@ def main():
         'native_actions_run_id': int(os.environ['GITHUB_RUN_ID']),
         'native_actions_head_sha': os.environ['GITHUB_SHA'],
         'other_release_or_tag_deleted': False,
+        'end_reading_pause_seconds': config['end_reading_pause_seconds'],
+        'actual_end_reading_pause_seconds': config['actual_end_reading_pause_seconds'],
+        'nominal_extra_hold_frames_at_30fps': 18,
         'recorded_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
     }
     (out / 'RELEASE-VERIFICATION.json').write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + '\n')
