@@ -1,0 +1,50 @@
+{
+  "article": "27",
+  "book_order": "22",
+  "candidate_source_sha256": "1e7b2a55ff5df575a9065fe5f827cfd4c42b55832dd1a535e44e9f7048fe31d4",
+  "candidate_GEN_sha256": "a3aa230e293c2d41e056ea4ba00223bd22d2d12010fbcee0b86074e589d43d9d",
+  "candidate_MD_sha256": "c592b44a8e6ec26f3c2e96ed19191958e57c81d31e54329c20d726e538c10e52",
+  "before_source_sha256": "61cd724c5fab6f07a46aa5ac069101617c4c8350311eb11a43f9fefdddb31d8b",
+  "English_spoken_and_chunk_boundaries_exact": true,
+  "all_existing_audio_controls_exact": true,
+  "original_summary_last_full_note_exact": true,
+  "only_new_focus_and_named_clash_exemption": "nutrients/养分",
+  "diff": [
+    {
+      "path": "/allow_clash",
+      "reason": "list_length",
+      "expected_length": 1,
+      "actual_length": 2
+    },
+    {
+      "path": "/allow_clash/1",
+      "reason": "unexpected_item",
+      "actual": "nutrients"
+    },
+    {
+      "path": "/sentences/13/chunks/1/align/1/0",
+      "reason": "value",
+      "expected": "the return of nutrients to the soil.",
+      "actual": "the return of **nutrients** to the soil."
+    },
+    {
+      "path": "/sentences/13/chunks/1/align/1/1",
+      "reason": "value",
+      "expected": "养分回归土壤。",
+      "actual": "**养分**(nutrients)回归土壤。"
+    },
+    {
+      "path": "/sentences/13/chunks/1/en",
+      "reason": "value",
+      "expected": "**impeding** the return of nutrients to the soil.",
+      "actual": "**impeding** the return of **nutrients** to the soil."
+    },
+    {
+      "path": "/sentences/13/chunks/1/zh",
+      "reason": "value",
+      "expected": "**阻碍了**(impeding)养分回归土壤。",
+      "actual": "**阻碍了**(impeding)**养分**(nutrients)回归土壤。"
+    }
+  ],
+  "published_to_PAY": false
+}

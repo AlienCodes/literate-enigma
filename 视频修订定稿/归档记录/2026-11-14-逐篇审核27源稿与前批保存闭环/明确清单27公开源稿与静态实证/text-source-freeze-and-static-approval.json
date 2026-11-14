@@ -1,0 +1,136 @@
+{
+  "article": "27",
+  "book_order": "22",
+  "text_source_freeze_complete": true,
+  "created_utc": "2026-11-14T06:54:24.459320+00:00",
+  "sole_requested_new_focus": "nutrients/养分",
+  "source_JSON_sha256": "1e7b2a55ff5df575a9065fe5f827cfd4c42b55832dd1a535e44e9f7048fe31d4",
+  "GEN_sha256": "a3aa230e293c2d41e056ea4ba00223bd22d2d12010fbcee0b86074e589d43d9d",
+  "MD_sha256": "c592b44a8e6ec26f3c2e96ed19191958e57c81d31e54329c20d726e538c10e52",
+  "sentence14_review_record_sha256": "d23af23a3a246a4bc3b61ce4904f6527c77fa8ad995e26e768f5b7eed8b41a03",
+  "files_applied": [
+    {
+      "path": "/workspace/work/video-audit70-20261113/payload/视频/脚本/27.json",
+      "before_sha256": "61cd724c5fab6f07a46aa5ac069101617c4c8350311eb11a43f9fefdddb31d8b",
+      "after_sha256": "1e7b2a55ff5df575a9065fe5f827cfd4c42b55832dd1a535e44e9f7048fe31d4",
+      "bytes": 59665
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/payload/视频/工具/初稿生成/gen27.py",
+      "before_sha256": "9a2cb8af891a47ffa742a058a6816ea6c1d566ab01abc21af220f5dcfe36a1ed",
+      "after_sha256": "a3aa230e293c2d41e056ea4ba00223bd22d2d12010fbcee0b86074e589d43d9d",
+      "bytes": 54313
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/payload/新版定稿/27-life-in-the-forbidden-zone.md",
+      "before_sha256": "e276bcf76225b9ae16cd8cfda8c9b726b442fbd625d3718f532b47b09b21b16f",
+      "after_sha256": "c592b44a8e6ec26f3c2e96ed19191958e57c81d31e54329c20d726e538c10e52",
+      "bytes": 20252
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/gen-sources/gen27.py",
+      "before_sha256": null,
+      "after_sha256": "a3aa230e293c2d41e056ea4ba00223bd22d2d12010fbcee0b86074e589d43d9d",
+      "bytes": 54313
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/payload/视频/制作记录/逐句确认/27.json",
+      "before_sha256": "ac1f787b2738a30d5fb53c1c005f4d0d11b602b659b451a2d08f6956f8e30079",
+      "after_sha256": "d23af23a3a246a4bc3b61ce4904f6527c77fa8ad995e26e768f5b7eed8b41a03",
+      "bytes": 10510
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/payload/视频/工具/用户同意记录.json",
+      "before_sha256": "b055a106cf8cf82387ae489b29eb8c18ee041f5c8704a3ee9a5a153746d4c9e8",
+      "after_sha256": "afe833c89bf58dcb0913644026566f73d55a1e05f5998a1d9ecf9eecce50cca7",
+      "scope": "Only27 two consent records appended fresh;13/14/other entries retained."
+    }
+  ],
+  "exact_source_diff": [
+    {
+      "path": "/allow_clash",
+      "reason": "list_length",
+      "expected_length": 1,
+      "actual_length": 2
+    },
+    {
+      "path": "/allow_clash/1",
+      "reason": "unexpected_item",
+      "actual": "nutrients"
+    },
+    {
+      "path": "/sentences/13/chunks/1/align/1/0",
+      "reason": "value",
+      "expected": "the return of nutrients to the soil.",
+      "actual": "the return of **nutrients** to the soil."
+    },
+    {
+      "path": "/sentences/13/chunks/1/align/1/1",
+      "reason": "value",
+      "expected": "养分回归土壤。",
+      "actual": "**养分**(nutrients)回归土壤。"
+    },
+    {
+      "path": "/sentences/13/chunks/1/en",
+      "reason": "value",
+      "expected": "**impeding** the return of nutrients to the soil.",
+      "actual": "**impeding** the return of **nutrients** to the soil."
+    },
+    {
+      "path": "/sentences/13/chunks/1/zh",
+      "reason": "value",
+      "expected": "**阻碍了**(impeding)养分回归土壤。",
+      "actual": "**阻碍了**(impeding)**养分**(nutrients)回归土壤。"
+    }
+  ],
+  "original_GEN_JSON_text_checks": {
+    "path": "/workspace/work/video-audit70-20261113/article27-user-review-20261114/thin-validation/report.json",
+    "sha256": "6cf5aeaab136fa2b8ac24c262856dd3a37c3eb5a8503f02e13b5b1b8695cd7f5",
+    "all_passed": true
+  },
+  "actual_static_1080_and_4K": {
+    "path": "/workspace/work/video-audit70-20261113/article27-user-review-20261114/static-render-report.json",
+    "sha256": "196c58de023e436c66d4170fe13c086786b1aff47c0bc042c4259c09adfecd46",
+    "all_passed": true,
+    "actual_changed_page_renders": 2,
+    "actual_target_and_tail_contact": "/workspace/work/video-audit70-20261113/article27-user-review-20261114/actual-target-and-tail-contact.jpg",
+    "actually_visually_reviewed": true
+  },
+  "CI_approved_manifest": {
+    "path": "/workspace/work/video-revision-batch-ci/.github/video-revision-batch/approved-video-layouts70.json",
+    "before_sha256": "f8916652d87c09c84a8a4347c6050f47d84648b1ed790046fb3459b7ca366e95",
+    "after_sha256": "3883cc98effd9731d9748bcca66ce9b1c1c4c5a39712dd4f17c7ffc38d6d3d4a",
+    "before_row": {
+      "source_id": "27",
+      "new_id": "22",
+      "source_json_sha256": "966d26ab222e43b25d5d4ae569e451ec4364548e4231a9f1b9fc3cd8cc9754cf",
+      "approved_summary_text_sha256": "e778792a4a4e62aa079f694a8776d0751934bd505d696867c41255cae549f0dc",
+      "summary_png_sha256": "cb6797d2fdc34cafabe38f4d9acca408e7a7a1bdf1e93c5bbf7de15191d5bc9c",
+      "summary_rgb_sha256": "a35edb67af7fb193c5e354dc8b21a6659663cd2487b93a9ace577436b9537cf4",
+      "summary_font_4k_px": 113,
+      "source_layout_structural_sha256": "2c0c328e3ed26f9f1c987e39d946ed33a1717059ce964ff0fa1b5527b5936b8d"
+    },
+    "after_row": {
+      "source_id": "27",
+      "new_id": "22",
+      "source_json_sha256": "1e7b2a55ff5df575a9065fe5f827cfd4c42b55832dd1a535e44e9f7048fe31d4",
+      "approved_summary_text_sha256": "e778792a4a4e62aa079f694a8776d0751934bd505d696867c41255cae549f0dc",
+      "summary_png_sha256": "cb6797d2fdc34cafabe38f4d9acca408e7a7a1bdf1e93c5bbf7de15191d5bc9c",
+      "summary_rgb_sha256": "a35edb67af7fb193c5e354dc8b21a6659663cd2487b93a9ace577436b9537cf4",
+      "summary_font_4k_px": 113,
+      "source_layout_structural_sha256": "4bb66120548ce7ad746b83fb8f7382a75b6010ed05344cbf68376de4438f980b"
+    },
+    "only_two_article27_source_digest_leaves_changed": true,
+    "old_approved_to_current_before_only_original_summary_wrap": true,
+    "original_approved_summary_canonical_text_RGB_and_font_unchanged": true
+  },
+  "all_spoken_English_and_chunk_boundaries_exact": true,
+  "all_existing_audio_DSP_controls_exact": true,
+  "all_existing_summary_full_note_exact": true,
+  "tail_body_geometry_and_font_exact": true,
+  "tail_RGB_identity_not_claimed": true,
+  "official_core_or_renderer_modified": false,
+  "audio_or_video_produced_or_dispatched_by_this_agent": false,
+  "published40_package_unchanged": true,
+  "next_source_writer": "/root/resume_audio_ci exclusively for necessary27 audio controls; this text writer is now stopped"
+}
