@@ -1,0 +1,21 @@
+27 S1 ok
+27 S2 ok
+27 S3 ok
+27 S4 ok
+27 S5 ok
+27 S6 ok
+27 S7 ok
+27 S8 ok
+27 S9 ok
+27 S10 ok
+27 S11 ok
+27 S12 ok
+27 S13 ok
+27 S14 ok
+27 S15 ok
+27 S16 ok
+Traceback (most recent call last):
+  File "/workspace/work/video-audit70-20261113/article27-user-review-20261114/probe27_S12_baseline.py", line 17, in <module>
+    raw,sr=sf.read(wav,dtype='float32');prefix=hashlib.sha256(np.ascontiguousarray(raw[:2454600]).tobytes()).hexdigest();assert prefix=='6d4e5f189a4c6c6b139fb881f82bcf08e48f0126929e5c19e898590ce7d5cb2f'
+                                                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

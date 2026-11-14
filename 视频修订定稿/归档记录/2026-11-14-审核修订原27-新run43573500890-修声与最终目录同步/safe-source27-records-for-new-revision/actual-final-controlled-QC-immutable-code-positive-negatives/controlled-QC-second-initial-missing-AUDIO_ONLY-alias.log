@@ -1,0 +1,37 @@
+27 S1 ok
+27 S2 ok
+27 S3 ok
+27 S4 ok
+27 S5 ok
+27 S6 ok
+27 S7 ok
+27 S8 ok
+27 S9 ok
+27 S10 ok
+27 S11 ok
+27 S12 ok
+27 S13 ok
+27 S14 ok
+27 S15 ok
+27 S16 ok
+27 S1 ok
+27 S2 ok
+27 S3 ok
+27 S4 ok
+27 S5 ok
+27 S6 ok
+27 S7 ok
+27 S8 ok
+27 S9 ok
+27 S10 ok
+27 S11 ok
+27 S12 ok
+27 S13 ok
+27 S14 ok
+27 S15 ok
+27 S16 ok
+Traceback (most recent call last):
+  File "/workspace/work/video-audit70-20261113/article27-user-review-20261114/validate27_controlled_case.py", line 69, in <module>
+    p=subprocess.run([sys.executable,*args],cwd=work,capture_output=True,text=True);(OUT/(basename+'.log')).write_text(p.stdout+'\n'+p.stderr);report[basename]={'exit':p.returncode,'last_lines':p.stdout.strip().splitlines()[-4:],'actual_BAD_lines':[s for s in p.stdout.splitlines()if' BAD'in s]};assert p.returncode==0,(basename,p.stdout[-1200:],p.stderr[-500:])
+                                                                                                                                                                                                                                                                                                               ^^^^^^^^^^^^^^^
+AssertionError: ('original-confirmation-transfer', '', '没有 27.mp4（先 AUDIO_ONLY=1 出声音），无法核对响度骤降的新时段\n')

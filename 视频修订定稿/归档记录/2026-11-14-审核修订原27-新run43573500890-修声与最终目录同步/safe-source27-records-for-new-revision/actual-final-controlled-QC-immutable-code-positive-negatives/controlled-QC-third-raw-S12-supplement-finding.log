@@ -1,0 +1,37 @@
+27 S1 ok
+27 S2 ok
+27 S3 ok
+27 S4 ok
+27 S5 ok
+27 S6 ok
+27 S7 ok
+27 S8 ok
+27 S9 ok
+27 S10 ok
+27 S11 ok
+27 S12 ok
+27 S13 ok
+27 S14 ok
+27 S15 ok
+27 S16 ok
+27 S1 ok
+27 S2 ok
+27 S3 ok
+27 S4 ok
+27 S5 ok
+27 S6 ok
+27 S7 ok
+27 S8 ok
+27 S9 ok
+27 S10 ok
+27 S11 ok
+27 S12 ok
+27 S13 ok
+27 S14 ok
+27 S15 ok
+27 S16 ok
+Traceback (most recent call last):
+  File "/workspace/work/video-audit70-20261113/article27-user-review-20261114/validate27_controlled_case.py", line 75, in <module>
+    code=Q.audit(args);positive=json.loads(Path(args.output).read_text());report['positive_exit']=code;report['positive_error']=positive.get('error');report['positive_failed_checks']=[r for r in positive['checks']if not r['passed']];assert code==0 and positive['passed']and positive['diagnostic_only']and not positive['production_delivery_eligible'],report['positive_failed_checks']or positive.get('error')
+                                                                                                                                                                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [{'name': 'original-suppressed-segment-rule-every-body-sentence', 'passed': False, 'failures': [['S12', 2, [99.2, 101.4], 1.572465497844636, 5.199999999999999]]}]
