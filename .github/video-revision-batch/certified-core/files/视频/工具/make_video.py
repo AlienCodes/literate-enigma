@@ -156,8 +156,90 @@ for _p_ in sorted(__import__('glob').glob('scripts/*.json')):
         for a_,b_ in _v_:
             if not _合成标点可收(a_,b_): raise SystemExit(f'【停止】合成标点只许把逗号换成分号、去掉人名首字母后的点（G57）：{_p_} {_k_} {a_} → {b_}')
         SYNTH_PUNCT[(_p_,_k_)]=(_disp_,[tuple(x) for x in _v_])
+# SPOKEN_COMMA_PURE_START: only three explicitly requested source sentences.
+_SPOKEN_COMMA_ALLOWED={('43','S16'):(1,),('52','S4'):(1,2),('52','S18'):(1,2,3,4)}
+def _speech_comma_spec(data,label):
+    table=data.get('朗读删逗号',{})
+    if not isinstance(table,dict): raise SystemExit('【停止】朗读删逗号必须按 S句号写字典')
+    if label not in table: return None
+    spec=table[label]; no=str(data.get('no',''))
+    if not re.fullmatch(r'S[1-9][0-9]*',label) or not 1<=int(label[1:])<=len(data.get('sentences',[])): raise SystemExit('【停止】朗读删逗号句号不存在')
+    if (no,label)not in _SPOKEN_COMMA_ALLOWED: raise SystemExit('【停止】朗读删逗号只能用于已明确指定的43S16、52S4、52S18')
+    if not isinstance(spec,dict)or set(spec)!={'篇号','原文','逗号序号'}: raise SystemExit('【停止】朗读删逗号只许篇号、原文、逗号序号三个字段')
+    if type(spec['篇号'])is not int or str(spec['篇号'])!=no: raise SystemExit('【停止】朗读删逗号篇号与当前源不符')
+    sentence=data['sentences'][int(label[1:])-1]
+    original=' '.join(re.sub(r'\*\*','',re.sub(r'\{\{.*?\}\}','',c['en'])).strip()for c in sentence['chunks'])
+    if not isinstance(spec['原文'],str)or spec['原文']!=original: raise SystemExit('【停止】朗读删逗号原文与当前完整展示英文不符')
+    marks=list(re.finditer(r',(?=\s)',original)); selected=spec['逗号序号']
+    if not isinstance(selected,list)or not selected or any(type(x)is not int for x in selected)or selected!=sorted(set(selected))or any(x<1 or x>len(marks)for x in selected): raise SystemExit('【停止】朗读删逗号序号必须是有后空格ASCII逗号的升序不重复有效整数')
+    if tuple(selected)!=_SPOKEN_COMMA_ALLOWED[(no,label)]: raise SystemExit('【停止】朗读删逗号序号超出这一句明确指定的范围')
+    if data.get('合成标点',{}).get(label): raise SystemExit('【停止】同一句不能叠加合成标点与朗读删逗号')
+    if data.get('结尾句',{}).get(label): raise SystemExit('【停止】朗读删逗号新母不能沿用旧结尾接点')
+    positions={marks[i-1].start()for i in selected}
+    projected=''.join(c for i,c in enumerate(original)if i not in positions)
+    if projected.replace(',','')!=original.replace(',',''): raise SystemExit('【停止】朗读删逗号改变了逗号以外的文字')
+    fields=('非人声区间','词尾除阻','除阻加强','停顿插入点','停顿删除区间','停顿处除阻','分段增益dB','段内渐变dB','句子增益dB','分段包络dB','列举逗号')
+    needs_binding=any(data.get(k,{}).get(label)for k in fields)or any(k.startswith(label+' ')for k in data.get('高亮开始',{}))
+    return {'no':no,'label':label,'original':original,'projected':projected,'positions':positions,'needs_mother_binding':needs_binding}
+def _speech_comma_display_for_data(data,label,text):
+    spec=_speech_comma_spec(data,label)
+    if spec is None:return text
+    if text!=spec['original']:raise SystemExit('【停止】朗读删逗号模型参考文字不符')
+    return spec['projected']
+# SPOKEN_COMMA_PURE_END
+SPOKEN_COMMA={};_SPOKEN_SOURCE_NO=None
+for _scp_ in sorted(__import__('glob').glob('scripts/*.json')):
+    try:_scd_=json.load(open(_scp_))
+    except Exception:continue
+    _sct_=_scd_.get('朗读删逗号',{})
+    if not isinstance(_sct_,dict):raise SystemExit('【停止】朗读删逗号必须按句号写字典')
+    for _scl_ in _sct_:
+        _scv_=_speech_comma_spec(_scd_,_scl_);SPOKEN_COMMA[(_scv_['no'],_scl_)]=_scv_
+def _speech_source_context():
+    value=globals().get('_SPOKEN_SOURCE_NO')
+    if value is None:value=globals().get('no')
+    return str(value)if value is not None else None
+def _speech_rule(sent):
+    if not globals().get('SPOKEN_COMMA'):return None
+    context=_speech_source_context()
+    hits=[v for (n,_),v in SPOKEN_COMMA.items()if v['original']==sent and(context is None or n==context)]
+    if not hits:return None
+    if context is None:raise SystemExit('【停止】朗读删逗号缺少当前源篇号上下文')
+    if len(hits)!=1:raise SystemExit('【停止】同源同句的朗读删逗号设置冲突')
+    return hits[0]
+def _speech_mother_guard(sent,fingerprint):
+    rule=_speech_rule(sent)
+    if rule is None:return
+    old=globals().get('VFP',{}).get(sent)
+    if old is not None and old!=fingerprint:raise SystemExit('【停止】朗读删逗号产生了新母，旧区间声音指纹必须明确作废后重新实测（A45）')
+    if rule['needs_mother_binding'] and old!=fingerprint:raise SystemExit('【停止】朗读删逗号的新母不能盲套旧段增益、秒点或区间；先清旧控制，原算法重测后按新母指纹绑定（A45）')
+def _speech_spoken_projection(text):
+    if not globals().get('SPOKEN_COMMA'):return text
+    context=_speech_source_context()
+    for (no_,_),rule in SPOKEN_COMMA.items():
+        if context is not None and no_!=context:continue
+        if text==spoken(rule['original']):
+            if context is None:raise SystemExit('【停止】朗读删逗号模型输入缺少当前源篇号')
+            return spoken(rule['projected'])
+    return text
+def _speech_marks(sent):
+    rule=_speech_rule(sent);removed=rule['positions']if rule else set()
+    return [m for m in re.finditer(r'[,;:](?=\s)',sent)if m.start()not in removed]
+def _speech_piece(sent,a,b):
+    rule=_speech_rule(sent)
+    if not rule:return sent[a:b]
+    return ''.join(sent[i]for i in range(a,b)if i not in rule['positions'])
+def _speech_chunk_texts(texts):
+    sent=' '.join(texts);rule=_speech_rule(sent)
+    if not rule:return texts
+    out=[];offset=0
+    for text in texts:
+        out.append(_speech_piece(sent,offset,offset+len(text)));offset+=len(text)+1
+    return out
+
 _SP_CACHE={}
 def _synth_punct(text):
+    text=_speech_spoken_projection(text)
     for (p_,k_),(disp_,pairs_) in SYNTH_PUNCT.items():
         if disp_ is None: continue
         if (p_,k_) not in _SP_CACHE: _SP_CACHE[(p_,k_)]=spoken(disp_)
@@ -168,7 +250,7 @@ def _synth_punct(text):
     return text
 def _pron(fn):
     def g(text,voice,speed=1.0,lang='en-us',**kw):
-        if not kw.get('is_phonemes') and SYNTH_PUNCT: text=_synth_punct(text)
+        if not kw.get('is_phonemes') and (SYNTH_PUNCT or SPOKEN_COMMA): text=_synth_punct(text)
         if not kw.get('is_phonemes') and (any(re.search(r"(?<![A-Za-z])"+re.escape(w_)+r"(?![A-Za-z])",text,flags=_wf(w_)) for w_ in PRON_WORDS) or _ctx_hit(text)):
             return fn(phonemes_of(text),voice=voice,speed=speed,lang=lang,is_phonemes=True,**kw)
         return fn(text,voice=voice,speed=speed,lang=lang,**kw)
@@ -329,7 +411,7 @@ def chunk_token_starts(texts,toks):
     full=''.join(x.phoneme for x in toks)
     if full!=phonemes_of(_synth_punct(spoken(' '.join(texts)))): raise SystemExit('【停止】带时长模型的音素与朗读文字对不上（L14）')   # G57：合成标点（逗号换分号）按合成用的文字比
     cat='';starts=[]
-    for t_ in texts:
+    for t_ in _speech_chunk_texts(texts):
         p_=phonemes_of(spoken(t_)).strip()
         starts.append(len(cat)+(1 if cat else 0)); cat=(cat+' '+p_) if cat else p_
     bl=[b_ for b_ in difflib.SequenceMatcher(None,cat,full,autojunk=False).get_matching_blocks() if b_.size>0]
@@ -861,6 +943,13 @@ def 余音自检():
 def sentence_audio(sent,pieces,gaps):
     """整句一次合成（原模型，声音不变）。标点位置用带时长输出的同版模型精确定位（A9）；
     在标点处只删除"真正无声"的部分（A10：绝不删词尾的 s/f/z 等弱音），再补静音，使实际听到的停顿 = 标准时长。"""
+    _speech_rule_=_speech_rule(sent)
+    if _speech_rule_ is not None:
+        _speech_ms_=_speech_marks(sent);_speech_expected_=[];_speech_p0_=0
+        for _speech_m_ in _speech_ms_:
+            _speech_expected_.append((_speech_p0_,_speech_m_.end()));_speech_p0_=_speech_m_.end()+1
+        _speech_expected_.append((_speech_p0_,len(sent)))
+        if pieces!=_speech_expected_ or len(gaps)!=len(_speech_ms_):raise SystemExit('【停止】朗读删逗号的实际分段与保留标点不一致（A9）')
     E_=ENDING.get(sent)
     if E_:                                                            # 结尾句：两遍合成接起来，最后一段前的停顿用结尾的长度
         raw=_ending_raw(sent,E_); gaps=list(gaps)
@@ -869,6 +958,7 @@ def sentence_audio(sent,pieces,gaps):
     w=clean_tail(raw)
     w=_keep_tail(raw,w,_head_offset(raw,w))
     _fp=_hl.md5(np.ascontiguousarray(w).tobytes()).hexdigest()[:12]; SENT_FP[sent]=_fp
+    if _speech_rule_ is not None:_speech_mother_guard(sent,_fp)
     if sent in VFP and VFP[sent]!=_fp and any(sent in X for X in (NONVOICE,GRAFT,BOOST,PGRAFT,DEL_AT,INSERT_AT)):   # A45 改了读音/语速，这一句旧的区间、除阻全部作废
         if os.environ.get('OLD_IV_VOID')=='1':
             for X in (NONVOICE,GRAFT,BOOST,PGRAFT,DEL_AT,INSERT_AT): X.pop(sent,None)
@@ -1094,7 +1184,9 @@ def title_audio(title):
     return wc[e0:e1]
 TITLE_GRAFT=[]
 def build(js,out):
+    global _SPOKEN_SOURCE_NO
     d=json.load(open(js)); no=d['no']
+    _SPOKEN_SOURCE_NO=str(d['no'])
     if os.environ.get('OLD_IV_VOID') and not os.environ.get('AUDIO_ONLY'): raise SystemExit('【停止】OLD_IV_VOID（跳过旧区间）只许 草稿声音.sh 只出声音时用，出正式视频不许带（A45 开关）')
     if str(no).isdigit() and int(no)>=24:                            # T36 破折号禁用（用户 2026-10-24：“以后我们坚决不可以使用破折号……一定一定一定要保证这个规矩绝对要跑起来”），24 起；单词内连字符不算
         _pz=[(f'S{i}-{k}',f,m.group(0)) for i,s_ in enumerate(d['sentences'],1) for k,c_ in enumerate(s_['chunks'],1) for f in ('en','zh','note') for m in re.finditer(r'(?!(?<=\d)–(?=\d))[—–―─⸺⸻﹘－]+|--|(?<=\s)-(?=\s)',c_.get(f) or '')]
@@ -1127,7 +1219,7 @@ def build(js,out):
         # 牛津逗号列举 A, B, and C / A, B, or C：列举内部的逗号只停 P_LIST
         lst=list_commas(sent)   # 列举逗号（见 list_commas）
         pieces=[];p0=0;gaps=[]
-        for mm in re.finditer(r'[,;:](?=\s)',sent):
+        for mm in _speech_marks(sent):
             pieces.append((p0,mm.end())); p0=mm.end()+1; gaps.append(P_LIST if mm.start() in lst else P_COMMA)
         pieces.append((p0,len(sent)))
         # 整句一次合成（2026-10-05 用户定：分段合成会让逗号后的开头发闷），再把模型在逗号处的自然停顿拉长到标准时长
