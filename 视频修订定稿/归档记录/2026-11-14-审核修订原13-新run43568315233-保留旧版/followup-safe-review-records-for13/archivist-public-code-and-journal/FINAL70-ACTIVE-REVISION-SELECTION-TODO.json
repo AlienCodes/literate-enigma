@@ -1,0 +1,16 @@
+{
+  "kind": "root_reported_final70_collector_revision_selection_followup",
+  "recorded_date_utc": "2026-11-14",
+  "current_scope": "Journal only; do not change current approved media or delay single-article delivery.",
+  "observed_legacy_logic": "The final70 collector previously asserted equal SHA for repeated source_id handoffs.",
+  "required_final70_behavior": [
+    "Read the latest actually verified cumulative inventory selected by CURRENT-ARCHIVE-STATE.json actual_inventory.",
+    "Choose the active video SHA, immutable asset commit and exact repository path from that inventory for each unique source_id.",
+    "Retain all prior handoffs, media and source revisions as superseded historical evidence.",
+    "Count each original source_id once and order selected videos by the book's new_id.",
+    "Never fall back silently to old14 or old13 merely because an earlier handoff is encountered first."
+  ],
+  "root_will_address_at_final70_assembly": true,
+  "new_generation_or_quality_gate_changes_authorized_by_this_journal": false,
+  "historical_passed_handoffs_are_not_deleted_or_reclassified_as_failures": true
+}
