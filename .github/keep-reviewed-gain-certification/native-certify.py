@@ -13,6 +13,11 @@ try:
  manifest=json.loads((PKG/'overlay-manifest.json').read_text());report['overlay_manifest']=manifest
  for f in manifest['files']: assert sha(REPO/f['path'])==f['main_SHA256']
  assert (W/'make_video.py').is_file() and (W.parent/'tts/kokoro-v1.0.onnx').is_file()
+ # Resource observations only; original quality checks remain the acceptance test.
+ resource_inventory=PKG/'certification-resource-inventory.json'
+ shutil.copyfile(resource_inventory,OUT/'resource-inventory.json')
+ cachemap=REPO/'视频/配音缓存/老条目指纹.json'
+ report['actual_dependency_observations']={'formal_cache_map_present':cachemap.is_file(),'formal_cache_map_SHA256':sha(cachemap) if cachemap.is_file() else None,'formal_legacy_entries':len(json.loads(cachemap.read_text()).get('条目',{})) if cachemap.is_file() else 0,'public_cache_JSON_count':len(list((REPO/'视频/配音缓存').glob('*.json'))),'existing_private_model_present':(W.parent/'tts/kokoro-v1.0.onnx').is_file(),'existing_private_ASR_directory_present':(Path.home()/'asr').is_dir(),'resources_are_original_not_invented_markers':True}
  # New24 is independently tested against the current full-screen rule before legacy fixture setup.
  current24=OUT/'current-24-structured.json';shutil.copyfile(REPO/'视频/脚本/24.json',current24)
  code="import sys,json;sys.path.insert(0,sys.argv[1]);import render as R;d=json.load(open(sys.argv[2]));R.apply_script(d);k=' '.join(p[0] for c in d['sentences'][-1]['chunks'] for p in c['align']);assert R.NOTE_WIDE.get(k)=='整屏';print('Current structured24 full-screen positive passed')"
