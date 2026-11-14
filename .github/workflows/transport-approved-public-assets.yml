@@ -1,0 +1,33 @@
+name: Restore exact approved PUBLIC asset Git transport
+on:
+  push:
+    branches: ["codex/passed4k-records-43554669373-53"]
+    paths: [".github/workflows/transport-approved-public-assets.yml"]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  transfer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Fetch only frozen public transport code and inputs, no checkout
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh api "repos/$GITHUB_REPOSITORY/contents/.github/approved-asset-transport/input.json?ref=$GITHUB_SHA" --jq .content | base64 -d > "$RUNNER_TEMP/transport-input.json"
+          gh api "repos/$GITHUB_REPOSITORY/contents/.github/approved-asset-transport/transport.py?ref=$GITHUB_SHA" --jq .content | base64 -d > "$RUNNER_TEMP/transport.py"
+          python3 -c 'import hashlib,pathlib,sys; assert hashlib.sha256(pathlib.Path(sys.argv[1]).read_bytes()).hexdigest()==sys.argv[2]' "$RUNNER_TEMP/transport-input.json" 200e03a2b3bfb336dd67e14f1fcebe89eabc8df466c28e23fbd5d0099e335d93
+          python3 -c 'import hashlib,pathlib,sys; assert hashlib.sha256(pathlib.Path(sys.argv[1]).read_bytes()).hexdigest()==sys.argv[2]' "$RUNNER_TEMP/transport.py" b81dc902f4bb0e4c5fbd785bbf54432ad56200a81cfb19ec0bc6cf4fafb44c1d
+      - name: Copy exact original public asset commits, no video generation
+        shell: bash
+        run: python3 "$RUNNER_TEMP/transport.py" --input "$RUNNER_TEMP/transport-input.json" --out "$RUNNER_TEMP/approved-public-transfer-receipt.json"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: approved-public-transfer-receipt
+          path: ${{ runner.temp }}/approved-public-transfer-receipt.json
+          if-no-files-found: warn
+          retention-days: 90
