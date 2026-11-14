@@ -1,0 +1,19 @@
+"""Read-only actual53 original producer input/DSP plans; no waveform or inference."""
+import hashlib,importlib.util,json,copy
+from pathlib import Path
+H=Path(__file__).parent;B=H.parent;F=B/'actual-passed-43523430839/53/files';sha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest()
+s=importlib.util.spec_from_file_location('unchanged_original53_input_capture',B/'audio14-color-review-input-invariance/inspect14_audio_inputs.py');m=importlib.util.module_from_spec(s);s.loader.exec_module(m)
+assert hashlib.sha256(m.r.m.source.encode()).hexdigest()=='4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3'
+paths={'actual_native_request':F/'53-original-request.json','actual_native_final_source':F/'53-source.json','current_before':H/'before/视频/脚本/53.json','candidate':H/'candidate-payload/视频/脚本/53.json'}
+rows={k:m.source_inputs(p)for k,p in paths.items()}
+for d in rows.values():
+ a=d['audio_semantics'];a.pop('S12_and_other_legacy_DSP_conditions');a['article_control_condition']='53>=26 automatic gain branch and 53>=46 tail guard branch remain original; original S17 two-speed/graft, S13 ramp, S8 +0.6 are preserved';d['audio_semantics_sha256']=hashlib.sha256(m.canonical(a)).hexdigest()
+a=rows['current_before']['audio_semantics'];b=rows['candidate']['audio_semantics'];assert a==b
+prep=F/'53-checker-reference-preparation.json';p=json.loads(prep.read_text());calls=p['reference_calls'];matches=[]
+for plan in a['model_input_plans']:
+ found=[c for c in calls if c['exact_native_cache_key']==plan['expected_exact_cache_key']]
+ matches.append(dict(sentence=plan['sentence'],role=plan['role'],method=plan['method'],expected_cache_key=plan['expected_exact_cache_key'],actual_old_native_key_observed=bool(found),actual_old_effective_input_sha_match=any(c['cache_input_text_sha256']==plan['effective_input_sha256']for c in found)))
+controls=m.controls;before=json.loads(paths['current_before'].read_text());candidate=json.loads(paths['candidate'].read_text());actual=json.loads(paths['actual_native_final_source'].read_text());assert all(before.get(k)==candidate.get(k)==actual.get(k)for k in controls)
+assert all(rows[k]['audio_semantics']['model_input_plans']==a['model_input_plans']for k in rows)
+report=dict(article='53',book_order='35',kind='read-only-original53-effective-model-input-and-DSP-invariance',passed_input_invariance=True,new_video_or_audio_generated=False,new_video_quality_acceptance=False,original_maker_sha256=hashlib.sha256(m.r.m.source.encode()).hexdigest(),all17_sentences_title_original_chunk_boundaries_and_135_align_units_exact=True,all_cleaned_chunks_spoken_full_sentences_paragraphs_punctuation_and_model_input_plans_exact=True,all_effective_waveform_controls_equal_actual_accepted_native=True,actual_effective_model_input_count=len(a['model_input_plans']),S17_original_controls_preserved={k:before.get(k,{}).get('S17')for k in controls},S13_original_ramp=before.get('段内渐变dB',{}).get('S13'),S8_original_gain=before.get('分段增益dB',{}).get('S8'),actual_old_native_preparation=dict(path=str(prep),sha256=sha(prep),crosschecks=matches,model_sha256=p['models_sha256'],fixed_voice_file_sha256=p['fixed_voice_sha256'],qualification='This early actual native prep enumerates its own 27 calls; unmatched ending/extra timed plans are recorded as unobserved, never inferred or treated as a new gate.'),audio_semantics_sha256=rows['candidate']['audio_semantics_sha256'],sources=rows,qualification='This proves original producer input/control equality only. New formal native must still pass all original audio gates and accepted53 AAC/clock comparison; no new waveform or MP4 is claimed here.')
+out=H/'original-audio-input-invariance.json';out.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n');print(json.dumps(dict(passed=True,plans=len(a['model_input_plans']),report=str(out),sha256=sha(out)),ensure_ascii=False))

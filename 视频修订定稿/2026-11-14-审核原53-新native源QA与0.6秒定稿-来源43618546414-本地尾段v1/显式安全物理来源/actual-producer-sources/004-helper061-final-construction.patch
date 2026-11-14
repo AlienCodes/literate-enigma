@@ -1,0 +1,39 @@
+--- original-normal18-05011f.py
++++ user061-only-source53-final-2e3a.py
+@@ -216,11 +216,17 @@
+     policy = getattr(args, 'final_hold_policy', None)
+     assert type(hold) is int and hold in (0,18), 'Only default0 or exactly18 final hold frames are supported.'
+     assert not (hold and preview), 'Final and preview hold modes are mutually exclusive.'
++    if getattr(args, 'single_article_review_authorization', None) is not None:
++        assert hold == 18, 'A specific article final authorization requires exactly18 final frames.'
+     if hold == 0:
+         assert policy is None, 'A final hold policy requires explicit final18 mode.'
+         assert timing.get('kind') != 'last-body-hold18-then-summary60' and not timing.get('last_body_hold_frames',0), 'Final hold metadata requires explicit final18 mode.'
+         return False
+-    assert args.source_id in FINAL_HOLD18_SOURCE_IDS, 'This article has no explicit finalization authorization.'
++    if getattr(args, 'single_article_review_authorization', None) is not None:
++        assert sha(args.single_article_review_authorization) == '46821260a9699626904c96f33772ce1941e021519fcc5bbbea428f14fadfac5f', 'Wrong specific article finalization authorization.'
++        assert args.source_id == '53' and str(args.single_article_book_order).zfill(2) == '35', 'Only user061 book35/source53.'
++    else:
++        assert args.source_id in FINAL_HOLD18_SOURCE_IDS, 'This article has no explicit finalization authorization.'
+     assert not args.validation_fixture, 'Final delivery requires actual passed native quality provenance.'
+     assert policy is not None and sha(policy) == FINAL_HOLD18_POLICY_SHA256, 'Wrong or missing approved final hold policy.'
+     assert timing.get('kind') == 'last-body-hold18-then-summary60', 'Wrong normal-final upstream kind; a preview cannot be promoted.'
+@@ -316,6 +322,8 @@
+     ap.add_argument('--preview-last-body-hold-frames', type=int, default=0, help='Only source28 authorized review variant: exactly18frames after actual final speech; default0 retains original contract.')
+     ap.add_argument('--final-last-body-hold-frames', type=int, default=0, help='Only explicitly finalized articles: exactly18frames after measured final speech, bound to policy051.')
+     ap.add_argument('--final-hold-policy', type=Path)
++    ap.add_argument('--single-article-review-authorization', type=Path)
++    ap.add_argument('--single-article-book-order')
+     args = ap.parse_args(); args.source_id = args.source_id.zfill(2)
+     assert PILLOW_VERSION == '12.3.0', 'Use the approved Pillow12.3.0 production environment.'
+     assert args.input.resolve() != args.output.resolve(), 'Write a separate new output; retain the verified input.'
+@@ -359,6 +367,8 @@
+         if is_final:
+             result.update({'preview_only':False,'finalization_authorized':True,'kind':'last-body-hold18-then-approved-book-illustration60-then-approved-summary60','final_hold_policy_sha256':sha(args.final_hold_policy)})
+             result.update(verify_final_hold(args.input,body_frames))
++            if args.single_article_review_authorization is not None:
++                result.update(single_article_review_authorization_sha256=sha(args.single_article_review_authorization), single_article_review_book_order='35', single_article_review_source_id='53', specific_authorization_id='061')
+         if args.plan_only:
+             result['plan_passed'] = True
+             args.report.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')

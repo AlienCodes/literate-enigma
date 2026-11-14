@@ -1,0 +1,3010 @@
+{
+  "article": "53",
+  "passed": true,
+  "stage": "final4K-passed",
+  "original_audit_and_quality_thresholds_unchanged": true,
+  "original_maker_unchanged": true,
+  "core_repairs": [
+    {
+      "target": "视频/工具/草稿声音.sh",
+      "file": "files/视频/工具/草稿声音.sh",
+      "original_sha256": "0ce3277812cf16ed30438509b6dc97db0c26725db4c5db5d9b058c3ef6531aa2",
+      "patched_sha256": "43fc6a1acdae6bb1c2252178bf034407400bbbe92eb1752053f3047da9760491",
+      "repair_scope": "explicit revision flags keep reviewed gain, existing valid ending and reviewed physical cuts; automatic cuts still measured/proposed without --写入 in CUTS=1 mode; default full JSON/PCM/AAC exact to prior5; all original later quality checks retained"
+    },
+    {
+      "target": "视频/工具/句内响度.py",
+      "file": "files/视频/工具/句内响度.py",
+      "original_sha256": "58735b7173a3c03efa61fb300b4aed4039c164fa970e0593a40bae2a3f3cbd27",
+      "patched_sha256": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea",
+      "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+    },
+    {
+      "target": "视频/工具/独立复核/synth.py",
+      "file": "files/视频/工具/独立复核/synth.py",
+      "original_sha256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+      "patched_sha256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+      "repair_scope": "validated unprocessed raw-mother reference input only; independent transforms/audit/thresholds retained"
+    },
+    {
+      "target": "视频/工具/结尾句接点.py",
+      "file": "files/视频/工具/结尾句接点.py",
+      "original_sha256": "15303682c605dd4544172c92d42c016d8d0536e0c6d1f9816d0d38dd5d2b9a61",
+      "patched_sha256": "1a5d43c4f5483014b69bbea7ad43dddb0333a9a80e29bb2b4c8029d8915ff798",
+      "repair_scope": "validate existing ending entry with original producer guard then keep it; bad points fail, missing points use original algorithm; default unchanged"
+    },
+    {
+      "target": "视频/工具/读音核对.py",
+      "file": "files/视频/工具/读音核对.py",
+      "original_sha256": "0a3b97e1179e47c0593f69286f4206eecc123cc7ec5d5adf4f5e62457c228a41",
+      "patched_sha256": "50f4363bb2fc2930be59904cdccfa44fd46f14393a0385c7846028ee25b4e84c",
+      "repair_scope": "selftest-only fault injection keeps compound registry and injects actual uncorrected espeak IPA; normal checker AST/output and dictionaries unchanged; unrelated exceptions propagate with restoration"
+    }
+  ],
+  "strict_production_cache": true,
+  "pdf_requested": false,
+  "check_summaries": {
+    "approved-illustration-resource.log": [],
+    "certified-core-original-stamp-verification.log": [],
+    "original-restored-stamp.log": [],
+    "canonical-module-copy.log": [],
+    "canonical-draft-00.log": [
+      "第53篇 做完（431 秒）：修了 0 处、疑点 81 处",
+      "① 文本：通过",
+      "② 声音：53 词尾辅音核对 问题数 0；53 纯人声核对（配音指纹 30984056eceb）问题数 0；问题数 0；53 句间停顿核对 问题数 0；问题数 0",
+      "③ 出片前核查：通过",
+      "⑤ 出片后核查：全部通过",
+      "⑥ 已拷 视频/视频/草稿1080p/53_1080p.mp4（--不推）"
+    ],
+    "canonical-final4K-00.log": [
+      "第53篇 用户定稿原话：有"
+    ],
+    "original-stamp-after-production.log": []
+  },
+  "actual_native_core_certification": {
+    "run_id": 43550422832,
+    "job_id": 132311381738,
+    "commit": "5ecda5ba57c151cb74fc3d36193b60fa59f51c26",
+    "actual_full_quickcheck_exit": 0,
+    "actual_full_quickcheck_seconds": 384.1,
+    "artifact_id": 14096681983,
+    "artifact_zip_sha256": "19dee7da557610e78f39567446bd7dd17ee2c1fe58a0070bb2d6f2c11c22b347",
+    "full_original_quickcheck_log_sha256": "43e1f723087d59c15e78593b23dc37cd2360ba3526474cc5484fbe80edc253d8",
+    "article_audio_or_video_passed_not_implied": true
+  },
+  "actual_native_fastcheck_stamp": {
+    "target": "视频/工具/新管/快测通过.json",
+    "file": "files/视频/工具/新管/快测通过.json",
+    "sha256": "bb75875985ff106abe142caf7ecbf0a5eb76a1412309bf78d77bf146f64512af",
+    "origin": "actual unmodified original full quickcheck, native run43550422832"
+  },
+  "reviewed_regression_resource": {
+    "target": "视频/工具/新管/回归基准_27.json",
+    "file": "files/视频/工具/新管/回归基准_27.json",
+    "sha256": "b8ddb4656ae27cbfc7ec8e3b99511983b4e568997bd4ad4ee33c364f3926ae94",
+    "origin": "pre-existing root-reviewed 67-screen data; original voice/segment MD5 unchanged"
+  },
+  "core_repair_manifest_sha256": "24766577a0001a4920f21cf4887c4cff080d233c34d57cf45a83b7ac660cdcac",
+  "reviewed_gain_preservation_mode": true,
+  "reviewed_existing_ending_preservation_mode": true,
+  "reviewed_existing_physical_cuts_preservation_mode": true,
+  "real_restored_stamp_validated": true,
+  "reviewed_cross_article_context": {
+    "provided": true,
+    "manifest_sha256": "8331ddb80384e975cf9f9e04f2f401961da080ed9824cdd210c5c7fbfd454e74",
+    "files_sha256": {
+      "视频/脚本/01.json": "2be2f80a69af28703992204ac95f987c745362c326e62ad81b3cd8e0e0735d3a",
+      "新版定稿/01-the-robber-who-thought-lemon-juice-made-him-invisible.md": "572054065b5bb65446bf8939a21c789c1e9c7664d82da5117c43efdded894351",
+      "视频/脚本/02.json": "0403368c77fd3e0f91e1ee3780e1c7c147894ad13c16b5f14707d700a8f717c8",
+      "新版定稿/02-the-truth-about-one-marshmallow.md": "91b92505aad03f963861bec39e96f0a472c126d1d57c9fc538676c32f65e545c",
+      "视频/脚本/03.json": "527f3bf4a11843f4d606188dabc6ebce6830da3fb454a49c782e3a595cb47407",
+      "新版定稿/03-the-doctor-who-drank-bacteria-to-win-an-argument.md": "6dfb56504882e24854a3584fd740e7f6601e3f2532818aee3a56d5330d317aa3",
+      "视频/脚本/04.json": "93cc1ff58d65ebe43a65ecb2fb2dbd2da262d80877c05740bbdf4eab4eaca1e8",
+      "新版定稿/04-the-brain-that-learned-london.md": "a8ccb31ffff50aaae77de4b83de1847fafae1d585981cf960c5880c409f6cfc3",
+      "视频/脚本/05.json": "96116f6806b8783cc8abe9583424047683505025dab6c3bc5b38629bbafb418b",
+      "新版定稿/05-the-fingerprint-in-the-blood.md": "612deac4ed066489e04e214ca969f8f27dda05856e0ef0ed2e540e7a4a52ae34",
+      "视频/脚本/06.json": "2cbf1d6cd6e66a59285298ea830f5ef914590b64286d40b2ae5f3168aa27a2e9",
+      "新版定稿/06-the-horse-that-could-count.md": "7fd21ba491c7596c53c486f2bb0b0f2f6da8e67bac75461a4649a7caff822f74",
+      "视频/脚本/07.json": "842e44e5aa19fddcfa239cb6530c5152341cd86e11db959543d02d8670ca13e8",
+      "新版定稿/07-the-octopus-that-escaped.md": "b8544281bb2ada88fce9d1082cbc30233dcb63ee3e9c2bbefafc22cb28b8cb39",
+      "视频/脚本/08.json": "254832e09f12759d950384dd9f31f671ad5a3bc1590b7466065dd3ef5fe4b8d5",
+      "新版定稿/08-the-doctor-who-solved-the-cholera-mystery.md": "0b2bfa68070ce585a452f6b7034d03c3683e710dcabec5e86d7b221950dc7bab",
+      "视频/脚本/09.json": "fa3e429351d629de188c184d04e9986200e16e80606fcbec82332b6433301dae",
+      "新版定稿/09-the-great-emu-war.md": "af5c3e844bad15f94bfc43aeed6d7417c4bfae85f026b194da667a7a3bdb6196",
+      "视频/脚本/10.json": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
+      "新版定稿/10-the-stolen-smile.md": "ff63cf94e4d2c835e2e2f1ffd3e6c5642f0916f0b13c012f1f13c3dff716d47a",
+      "视频/脚本/11.json": "665cbb80cc70b700ecc0cc5813209fd100ad4fa8f0eead3929b9e53778d9d07f",
+      "新版定稿/11-move-37.md": "7e0b49b346c1fa3ab994a11a2301167c0d6a1bb00916508bdc0b1acf71e68053",
+      "视频/脚本/12.json": "e3bfbcce6f1a8e14cfe451d656574353321e297c90c62f5a7b422f37478311d5",
+      "新版定稿/12-the-79-days-of-new-coke.md": "5a23c1e0c81318527bcbf27573487d1845c5318905a2b1e020cc6e2eaf5d643f",
+      "视频/脚本/13.json": "c22ccc9eb34a92380ecbd2ea72189db492264c4730141c73024685b3fca5fd1e",
+      "新版定稿/13-eleven-days-without-sleep.md": "41998b355721703f761685dd351fbf4628b2be67dfed8b3d37276f9e8f929ecb",
+      "视频/脚本/14.json": "2889a9b31bc7945ee55c306d3507b8557bf1efe371af8a97483a61172be800b8",
+      "新版定稿/14-the-fungus-that-turns-ants-into-zombies.md": "618900d05bd2cecc8d577c446146e4df98d71e070c0b779b40992820d1fdd332",
+      "视频/脚本/15.json": "9b42f089b79e4e0c54c254c948ac4d9ae28d224585095a373607122a0d7c6898",
+      "新版定稿/15-the-myth-of-the-unsinkable.md": "bc2d0c8613437b39149cd6e66729104b26efceb8681fb645f782a97b40007584",
+      "视频/脚本/16.json": "d25aa07f3fac316c26c2ae1006d3efa7eb82a396b66150432b50239c1628396d",
+      "新版定稿/16-the-bread-made-from-air.md": "4da63148111213f6d77451b0eb4193893e6fc2fc170400bc39ce5f5ffcaa0b20",
+      "视频/脚本/17.json": "9750857c3e2c67e6abe5ea6913cb0602347be8b58836bbbc03e2c4153bb12e1b",
+      "新版定稿/17-the-curse-of-the-pharaoh.md": "0dc7b6ee7f4ef05d5e4382beeb077d57578d0bb6a6b69415485008facae98717",
+      "视频/脚本/18.json": "5192b78e582c36fd7d5a34973d8314c5b23e13b8313c8960ac29653bd7fa5d8c",
+      "新版定稿/18-the-mould-that-changed-the-world.md": "ef41cea03f471fe3b9a53939c843e450da3325eb711f6414e108ae92a7518dd8",
+      "视频/脚本/19.json": "cc3c5eea0f7d9ec0712b2e58adba7e5ef8b61d6518a322f9b25a12fcc45282fb",
+      "新版定稿/19-tulip-mania.md": "3882d487383b759c31dda4785966091c362960cd873a5d83c530d08d52e2e97c",
+      "视频/脚本/20.json": "cc5ed6d7be8767e5e7e9b098e8f3836821c0b3f51c17581b2746722da1cf3001",
+      "新版定稿/20-the-5000-year-old-murder-in-the-ice.md": "8d55638070787f7ff5432c197292af1188c463a8b018e01bdefc32999b888e95",
+      "视频/脚本/21.json": "61c1569a26d7569ee0f586178be6b307b1c394c0a30c3cb02541c910038b0589",
+      "新版定稿/21-the-man-who-sold-the-eiffel-tower-twice.md": "e8e966b70f579235d696ba11fb01d3b2cae3fa26efb9071bbea95071be259e1f",
+      "视频/脚本/22.json": "e3027a42c532fee9935afcecdd0542713cbb907183802c2345b9472f93b75f59",
+      "新版定稿/22-the-building-that-melted-a-car.md": "49ae09483bc80bbc40a71551cd98aebec355d96d9ff7b2bcdea59a06fe599267",
+      "视频/脚本/23.json": "c4574a79fd3a58577a1402ce095ea9e4a0ea1f98883ce63e3cc60d126e819409",
+      "新版定稿/23-the-man-who-gave-machines-a-mind.md": "72ed3049e87fe75ce1e753d5e443bdbe6a7ab72f6e282e8467fbbb62be873169",
+      "视频/脚本/24.json": "f08620b534bb10b718f7515c805dcb541721427d855bd5a092b8954847a351b8",
+      "新版定稿/24-survival-in-the-ice.md": "cb7f810d9a74256e0c00625290be4f16207feb90f5719ca87d5d7c9912b91307",
+      "视频/脚本/25.json": "c73e854e052b3df9bd920d4a59fafb183dee19bd58765fa426af6ea3d7c9a329",
+      "新版定稿/25-apollo-13-the-successful-failure.md": "b6b7d55fe66e6e32116431ea955778fab779b8bda622df0ba1036c2f40a3969f",
+      "视频/脚本/26.json": "22349b0a29f05689aae5bd5e9d0907846a68e6ad42949eb0b8cc392d6dce18d6",
+      "新版定稿/26-the-language-the-children-invented.md": "f64089bc9487e756522746058fba2e27c45e56ffc339d8590038643012eb496d",
+      "视频/脚本/27.json": "e1214d8e9314a1cb54da82e2532889198bec555d6be9189fbfb43b5fdedcd728",
+      "新版定稿/27-life-in-the-forbidden-zone.md": "c592b44a8e6ec26f3c2e96ed19191958e57c81d31e54329c20d726e538c10e52",
+      "视频/脚本/28.json": "e0c8e6c644ab0c5d52d99c23461b99e9ae1574aa574369e56feb35e2ac20698b",
+      "新版定稿/28-a-handful-of-wormwood-that-saved-millions.md": "d609cd99ab982365c6f0167e211c55b31e52a354d50918780f3da66ef702a5bb",
+      "视频/脚本/29.json": "1e5f1d9f0c22b5d14b757f029be694c2a3969666d732ca79bb695282763de791",
+      "新版定稿/29-the-volcano-that-gave-us-frankenstein.md": "69045ee19a170c7ea9d0008b468c7e947bc28b639b834c0192dc0aeafc3ef4d0",
+      "视频/脚本/30.json": "34eb48747f1ea7d14b41ccc0cf45aa1592907aacf6618999b3506944e2ff4a0c",
+      "新版定稿/30-the-stink-that-built-londons-sewers.md": "84dbf19cee0045ea2608b13ee0677cb9623dd8fbb371c67093bf50c64186137a",
+      "视频/脚本/31.json": "d81f8645a1e5663ba8c84668e817cdb218bc6689079fbfd51326b3a7fd3cd384",
+      "新版定稿/31-the-book-twelve-publishers-turned-down.md": "7abd20fed44918dcf01586c056e9d0acd9d2ad3b90aa7d3d403762d9f06d2659",
+      "视频/脚本/32.json": "357aa59bed62154f7302a5efcf528859b303004e028657b93058138fe931bf85",
+      "新版定稿/32-the-planet-that-was-demoted.md": "1421f2b0921e7e9478ebc48777e3e8b2c979172de63d0124015107c3750a3542",
+      "视频/脚本/33.json": "da87d68fdee3401e499aa145c23d9b2c663ce3b27f79feec5eca1ddb0d794e72",
+      "新版定稿/33-thirteen-in-the-cave.md": "b96faac786ace911140b835d9f9c6e37eeb0c5f3e7a077b913805b8942c56067",
+      "视频/脚本/34.json": "5350c08cdc6dfa5579f0bdc6960805cbe079a1c471c46bb2250f11b32da34868",
+      "新版定稿/34-the-game-that-escaped-the-soviet-union.md": "fdfd966f8624bc506b7cfe16da04f2f7382ce5566fab3bcb35c3d99dd6d4a5f2",
+      "视频/脚本/35.json": "d8439077dc2c909b1c6cbd1347f31e9625f25fffe447d6f5945c9492561f1a16",
+      "新版定稿/35-the-bird-that-beat-the-letter-home.md": "ba8c38e38b21a3345624e2d44fd352561d3096cfb6f62214b48ea9b6e66faead",
+      "视频/脚本/36.json": "e35a3dcb2ff0f0c7054493331370c0364190771ecf56e0dad6dbee3af860a628",
+      "新版定稿/36-the-company-that-invented-its-own-killer.md": "4b0f1d016d3e94bd7f77d3a36bfc423700006c7a23c0b0cae5ca68d5c5af883f",
+      "视频/脚本/37.json": "b1b8945ccf3581df48ade5714a2d0e93e4cc6812708f95bef6f5e44439106c99",
+      "新版定稿/37-dynamite-for-the-heart.md": "4933e24d2384471a96d9c8c26c15d5224a85dae98d9971a3fed15b4978dafc51",
+      "视频/脚本/38.json": "8d0379032000967c9f72e550574874949f798eefbfbfb58ab2b38e4e23ecbc6b",
+      "新版定稿/38-the-web-beneath-the-woods.md": "abb7eead9f3da0b2b326ceed5a649cfbf71fc28dad22e0d52f7b19caa798c54f",
+      "视频/脚本/39.json": "6c3e9539f624b192335312912572a05fba2c7bcfb821b44c3c1dbb21b42527a7",
+      "新版定稿/39-y2k-the-crisis-that-success-erased.md": "abbc9804661126aa006595031ed8f201ce55e8eb5fd9e1ad5669c0c6fcdb80ab",
+      "视频/脚本/40.json": "1c50d1a47ee6f8528d0f7299e8a45bc8c30312622f3f465a964d21cc1395ee7f",
+      "新版定稿/40-the-glue-that-failed.md": "dce9f78f3a0828307843dd667b7eeebf3380a3630f03d234bd5824870aba61a1",
+      "视频/脚本/41.json": "6b6673ffc1db986f4c355f3685de6a0faf2272cee042c5e917f26a8b3057c2be",
+      "新版定稿/41-the-toad-that-invaded-australia.md": "eca590f97120f4e76d719e29aa07b094f9117cd462f5a70c029331a63b85f710",
+      "视频/脚本/42.json": "eceb10ae92aa4b9cd23180d1138149a7fa7b674385462c898bc0d2283c8739e7",
+      "新版定稿/42-the-telescope-that-needed-glasses.md": "d4aa049779a0eba06c555d76ca14103648378eef90465df424120126fa771280",
+      "视频/脚本/43.json": "aa9da1246e293c80408edf94a7c9bed65ef3178ae7cb5265a8273e8c4396687f",
+      "新版定稿/43-from-a-garage-to-the-top-of-the-world.md": "bd70c83e5ac867238ca179f3c9f3548eb9cbdcae1f6df40994aef0bda721ae54",
+      "视频/脚本/44.json": "87f531203ca38d88ae5e71ffd88190b1530715cdc0adba146c2a4a78ebe9b976",
+      "新版定稿/44-the-night-sweden-switched-sides.md": "d3f7ad2ac43f02aae9205a15b9808280ca3db597d6ef3b36aca8ca6176c5f74a",
+      "视频/脚本/45.json": "569406607d2bf18dce5e916052d6460509450d97fe17ac9820be524f59c2c3cc",
+      "新版定稿/45-the-record-humanity-threw-into-the-stars.md": "27deabec4a8478fe570f7f237a2fb850ffdce3deebfd952f512d82a60cf7314f",
+      "视频/脚本/46.json": "c8c7ce7a76226f5274a91af693d24410d5eacfa59206b085a70d133f3634c12b",
+      "新版定稿/46-lost-in-the-glare.md": "7aaa06e875fe56c5d78210b90a8769b8b2051714025ef10df37c2fe89db7a68c",
+      "视频/脚本/47.json": "4c33bb0764a9b98e914a55806486ce841a1503efda1ff001cd2f8c9bb1626c06",
+      "新版定稿/47-shadows-of-wolves-over-yellowstone.md": "6b51ae76b8ec4ffd0ff1748c5902ef59754fa446479fc40357e9946a9aaac7a1",
+      "视频/脚本/48.json": "4f146ce6a70bb0bf5d2c6e1f6b47bd6a2bcc2f311be7a948092d7bde1a08f449",
+      "新版定稿/48-rice-for-the-world.md": "76416be21f857e8a05c37baa33ac90f5785812291485231c249e38a1d0edf15f",
+      "视频/脚本/49.json": "fdcc3a438e50a32fdf8c7bcbe27a97d20fc101b6169ca305f920fedbd3303c3c",
+      "新版定稿/49-the-woman-who-won-two-nobels.md": "1e4fb068aa9ae4513d01b199a074b84dc9d819f57b2134df32588a0e4a4b6b6a",
+      "视频/脚本/50.json": "1d4a41824dfa5e8d11e5990b2a4b802ba2fcc3231d85b15ed6630396c6f027bf",
+      "新版定稿/50-microplastics.md": "5439589bacf1abb2abbb184eb658492bc02bcc5bdd8dfd8ababcd80ab93621cb",
+      "视频/脚本/51.json": "39886d83593a31fb575b124ecf6457190773dca695b6ff78f8434d52aebd6d7c",
+      "新版定稿/51-the-joke-that-became-ok.md": "8de30ea4846f4e88d8b71c8d5ced3ee63a73955e39b7dc3c5adad0971b854fd0",
+      "视频/脚本/52.json": "832249bb44617d38ede75560a5e57af6ba79ec284c9609407cb30ce879f6f862",
+      "新版定稿/52-the-killer-smog-of-1952.md": "179500361e4a837d7edb2e0497e08677d5abd425e8ad542f788205a6f7667b4b",
+      "视频/脚本/53.json": "73393dad5d67261f2ec7819f3749a6589278900e2f214a1da06b0dbde55fe31b",
+      "新版定稿/53-the-wind-that-kept-no-time.md": "e10fced4950a461f591d111f4901551fe8409dde9c66bb8fd06b8a2b9f8fdfd5",
+      "视频/脚本/54.json": "b1fcb8ae86045b3d35ccfa0f52eb9594b8921d43063835769ee3ecc4543be75e",
+      "新版定稿/54-the-sound-that-shook-the-world.md": "abd5f4bfe11ed73bcc5326a92cf99b0a8e5ad70adaca1ce8d0c8f622b57fa519",
+      "视频/脚本/55.json": "06344fc0ad5975cba2f4dbe5262a9957dd7c024f9a05b9abbfa327f32ea8c719",
+      "新版定稿/55-the-secret-of-romes-undying-concrete.md": "a7759eddcc7ec06dfd6dab7912e06b3b5ef8576df0c025a97812006669d0be61",
+      "视频/脚本/56.json": "22ca3b4180a8ae6a37b4c8e25f5e357d5696d9b23bf148fb7064425d1403e59c",
+      "新版定稿/56-the-letter-that-startled-darwin.md": "aad1e2aab9ff28f534a510362e807ef401e0b502475240f4b2531e9e518a8d7a",
+      "视频/脚本/57.json": "a0ba65b769430289a33ec1f7bc6dbf91dad8d2c3b1d725348851de546563cd6f",
+      "新版定稿/57-a-change-of-anthem-in-the-deep.md": "0731d925a98bafc222718c111985362e166b38b9189c516219a481e36d0d4b6e",
+      "视频/脚本/58.json": "8b0bd3d7d39000518789e9907aec53bd52fab1b9d6b4f22a152d158635b6e8ee",
+      "新版定稿/58-from-a-scratch-to-a-world-without-smallpox.md": "1aa2a0d2c51da76f9c9ebb88d049dd1a55ab530791566fdbf6476e5aa48c15ee",
+      "视频/脚本/59.json": "df1db4174d942371166048b220ef6d55b0b700b2ce31c866edf6dfdf33b92f0c",
+      "新版定稿/59-saving-the-sky.md": "7bf9c4661e733e7af23dc2f11bc820b809ec93dad75a94fb6a12748226e8722c",
+      "视频/脚本/60.json": "eed1655c0919db32a3a016b24791b93d25683f287c7ccb2523e168a69bddc562",
+      "新版定稿/60-the-scientific-giant-who-changed-the-world.md": "9d1578e7af085559922394a3db01de4eb22dc1c520ca17de5cad68e5a38a31a8",
+      "视频/脚本/61.json": "2d08704376faff25b06d334d7567a381460975a56a4cef6b4ae97b3580ea8dbc",
+      "新版定稿/61-the-steel-box-that-remade-the-world.md": "135cc9cfbcbd68d957f831cf55558112a45b1cc3749366cb9a304507355c7d2c",
+      "视频/脚本/62.json": "0779c44ccd17679ec853adc3fcc733623fc774e3cb6f68e59c7bb2c4ae62d541",
+      "新版定稿/62-dolly-the-copied-sheep.md": "9edfbd3ebacdecc8c3aa3034d38dd371a105c19382282e8c0de2d08a1713f863",
+      "视频/脚本/63.json": "5d266d80f9cf29cce6f7e34531449cf75191a42f180102685a5bcd04849e75c5",
+      "新版定稿/63-the-crowded-heavens.md": "6ef79d4310019dfefa7364b8a428411a6bc337678c69fa5cbc89b84689e253a4",
+      "视频/脚本/64.json": "12a36862765922d72ce6e5a4c5fe85f548364eed65fe3b3b284f0b38899a965f",
+      "新版定稿/64-the-day-zero-that-never-came.md": "e0c83cbe36745adbbffd33a156fa8d0671704ea976cb13215cabb612639b37a5",
+      "视频/脚本/65.json": "78e60dd231df4ac71df83e21a26f82bbf706dc0bef80bee156a36bc287661ede",
+      "新版定稿/65-the-day-the-doomsday-vault-opened.md": "71a50d32e25955e713e6ca108ab68422a4fd5b77c914a9074eece1dc33cbff89",
+      "视频/脚本/66.json": "ad5324af4270834186285a5e7273a90213094077adc6f9e1d5c7b0ebff9cf035",
+      "新版定稿/66-the-burrs-that-became-velcro.md": "75dbe6c148ca97a7780ac1737f33f58bf8ee27a51aa729a83315705655b12b2a",
+      "视频/脚本/67.json": "6839a46ebdb51cdcff6a65ca238efc228f1e114efd1734cee6c994ca659a29cb",
+      "新版定稿/67-the-cave-found-by-a-dog.md": "10e37b81eeef4e3289448a6b4fd679f34d495a4fc087c57747e6dca949e00cf1",
+      "视频/脚本/68.json": "568f72dacac48e206811d35a57c7fa22e3da428783f64e507c184f2090e579f3",
+      "新版定稿/68-the-last-flight-of-the-hindenburg.md": "c25f58ffb0e3748336767bb7470dd7cef10374c53cbb48af89dba26f65b2dd5c",
+      "视频/脚本/69.json": "c493528f054e2d572e56b8ea15be0950158e86e3d3271b0f94237e8d296163ff",
+      "新版定稿/69-the-trial-of-the-father-of-the-atomic-bomb.md": "570eda5b7d979d71e9bcad1c67e295ed326ecdb8b61e663aba33272c8a9451bd",
+      "视频/脚本/70.json": "0f6827f02cef0d2416f9d7d69b7e1c5553acee7cf6dc89f3379201264587236c",
+      "新版定稿/70-the-stamp-that-changed-the-post.md": "edfd85cea33730ba67e4210e756da1f2945f1a21bce55c7e75497cb5f0095d80"
+    },
+    "source_file_count": 140,
+    "working_script_count": 70,
+    "target_request_exactly_matches_context": true
+  },
+  "request_source_sha256": {
+    "视频/脚本/53.json": "73393dad5d67261f2ec7819f3749a6589278900e2f214a1da06b0dbde55fe31b",
+    "视频/工具/初稿生成/gen53.py": "f556d6e0d9da68a44d10545b4ae5c0f876ddc897d51b0ff4c648e1b4a7e0a209",
+    "新版定稿/53-the-wind-that-kept-no-time.md": "e10fced4950a461f591d111f4901551fe8409dde9c66bb8fd06b8a2b9f8fdfd5",
+    "视频/制作记录/53_待改清单.md": "8762aa02165a5ef9204b8d1fa3d2c8311e7d06f34bb5f11f4063ab40aaab1c1e",
+    "视频/制作记录/逐句确认/53.json": "4559eb34d2a909a1d9086ec3bf5a04d30bc5fe3e25a80b4c215f796585604f7f"
+  },
+  "accepted_source": {
+    "id": "53",
+    "path": ".github/video-revision-batch/accepted-reviewed53/53-current.mp4",
+    "sha256": "b82966baa6439b194a6fa1e2c222f226517982318ef398ae631efcd5c562d588",
+    "git_blob_sha": "9878041f4bb94eff6e695c25f87d3452893ade04",
+    "bytes": 14989960,
+    "width": 3840,
+    "height": 2160,
+    "summary_frames": 60,
+    "current_accepted_review_source_run": 43523430839,
+    "current_accepted_V3_handoff_sha256": "7f5a144446fe122cc56460fc5beea0b0ebd71514f259ce477718f772c0aefc6f",
+    "aac_adts_sha256": "cb40c9e82c60f1991c7b0f5ba2a779b4ef28886f3c87298cbe3bcc0d30529b1b"
+  },
+  "checker_reference_preparation": {
+    "article": "53",
+    "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+    "reference_prepared": true,
+    "acceptance": false,
+    "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+    "source_sha256": "73393dad5d67261f2ec7819f3749a6589278900e2f214a1da06b0dbde55fe31b",
+    "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+    "checker_program_sha256": {
+      "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+      "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+      "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+      "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+      "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+      "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+    },
+    "reference_calls": [
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-raw",
+        "method": "create",
+        "source_slice": "The Wind That Kept No Time: The Fall of Galloping Gertie",
+        "exact_native_cache_key": "fc05ade77bfe46c00103cf7102bb0f62fd308707.pkl",
+        "cache_input_text_sha256": "812a0d6d5b3dad464b7f20054f37817318d3f673c0dacbdc1a8ce7a57b31cda9",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-timed",
+        "method": "create_timed",
+        "source_slice": "The Wind That Kept No Time: The Fall of Galloping Gertie",
+        "exact_native_cache_key": "ef5c2e99de028b8d86067ca3810646fcd72610dc.pkl",
+        "cache_input_text_sha256": "812a0d6d5b3dad464b7f20054f37817318d3f673c0dacbdc1a8ce7a57b31cda9",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "On the morning of 7 November 1940, a sustained wind of about 40 miles an hour set the Tacoma Narrows Bridge twisting.",
+        "exact_native_cache_key": "8835c7e84369a35d322c6abb30c31d53d6b03e63.pkl",
+        "cache_input_text_sha256": "959b485285f24e1f6928ef104ee7fd7324463fcfefd995e4c0342c94ba15d2b0",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "On the morning of 7 November 1940, a sustained wind of about 40 miles an hour set the Tacoma Narrows Bridge twisting.",
+        "exact_native_cache_key": "4565588b96a4ebc011478c7446cbefee74fdfed4.pkl",
+        "cache_input_text_sha256": "959b485285f24e1f6928ef104ee7fd7324463fcfefd995e4c0342c94ba15d2b0",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "On the morning of 7 November 1940,",
+        "exact_native_cache_key": "48728aba4a57df54f509f08668f60fc3f4f076c6.pkl",
+        "cache_input_text_sha256": "3f97abde9e3a1e2ea7f8be61244fc47eee295d060f40723675b169750efc3fc7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "a sustained wind of about 40 miles an hour set the Tacoma Narrows Bridge twisting.",
+        "exact_native_cache_key": "3ddcc1349e1c24ec137ba8e16580a11e09a5be1e.pkl",
+        "cache_input_text_sha256": "c4162f07d6f2fc25a0a69bc95b71792598e6ceab336910506096c7373f1cefac",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Its deck tilted from side to side in ever more violent oscillations until most of the main span tore apart and tumbled into the water.",
+        "exact_native_cache_key": "36816dd3911b9d6e87134f3630557fd27fbef607.pkl",
+        "cache_input_text_sha256": "917a22fb9d56b0022117118d7634adb4e2b60353e9c73477b172018deb927236",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Its deck tilted from side to side in ever more violent oscillations until most of the main span tore apart and tumbled into the water.",
+        "exact_native_cache_key": "883c6bfaf95aa98f3ba76be978053d6c4803fdd9.pkl",
+        "cache_input_text_sha256": "917a22fb9d56b0022117118d7634adb4e2b60353e9c73477b172018deb927236",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Its deck tilted from side to side in ever more violent oscillations",
+        "exact_native_cache_key": "76dfd38a2640d85347ee0d9ceb8075d8ffc6c56b.pkl",
+        "cache_input_text_sha256": "a7ab031a012a14baed2dfaa02dd2f96355fe701299da442d3a43becd3e4a4fc2",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "until most of the main span tore apart and tumbled into the water.",
+        "exact_native_cache_key": "82c500a1b0d563d7b92c5c913e6c2f6acf3564a9.pkl",
+        "cache_input_text_sha256": "2e66aaa52d1a8b2f2e3f8636bbfed6a0456445889823306f4a2de48a376aba82",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "No one died.",
+        "exact_native_cache_key": "3678d4980b80ea80dc9ebacdb8cd81b7ab7b2ac4.pkl",
+        "cache_input_text_sha256": "9d4d30d7d6948bcb3a75c01788c9418cab727505748819692a1e074e83748160",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "No one died.",
+        "exact_native_cache_key": "a4d857783403404eaa0815b3b54288b9cb81bd0b.pkl",
+        "cache_input_text_sha256": "9d4d30d7d6948bcb3a75c01788c9418cab727505748819692a1e074e83748160",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Footage of the spectacle would later fascinate students worldwide.",
+        "exact_native_cache_key": "f22d9d48543c508205dcc1d3afe5ac30d18c77b3.pkl",
+        "cache_input_text_sha256": "3132fefc171f429861bf9b3720075af4d27d750af1c43af41a37cc28d4c01411",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Footage of the spectacle would later fascinate students worldwide.",
+        "exact_native_cache_key": "44c75c239c9425893e78d71d0812d37c24ec5d9f.pkl",
+        "cache_input_text_sha256": "3132fefc171f429861bf9b3720075af4d27d750af1c43af41a37cc28d4c01411",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The bridge had opened in July 1940 as the third-longest suspension span in the world at the time, its roadway hung from steel cables.",
+        "exact_native_cache_key": "9fe8c30794bee4aea496958a00d836ec6e5593e9.pkl",
+        "cache_input_text_sha256": "aec4225ff6802ebde9dd4217dcb578190d6d1111e3ccd38016f5c273b07075e3",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The bridge had opened in July 1940 as the third-longest suspension span in the world at the time, its roadway hung from steel cables.",
+        "exact_native_cache_key": "1702eddbfa1e31aeca6e88b7792503a8cd0d36ad.pkl",
+        "cache_input_text_sha256": "aec4225ff6802ebde9dd4217dcb578190d6d1111e3ccd38016f5c273b07075e3",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "The bridge had opened in July 1940",
+        "exact_native_cache_key": "8b7256701958b2a356ceef59ee43139fa73f268d.pkl",
+        "cache_input_text_sha256": "aef87b49cc7081da9b888751666fafadf0bc9228c6e01df2310855e271522551",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "as the third-longest suspension span in the world at the time,",
+        "exact_native_cache_key": "202fb4d5ac084abb88678aa147160c29c4ba3dbe.pkl",
+        "cache_input_text_sha256": "338f4c74ebe39b5b83f1409d6dc7dced9a08291a5f30b716c315e6abd07823ee",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "its roadway hung from steel cables.",
+        "exact_native_cache_key": "ef6f4486b9239996c5e4f2482e7b8b75e0fcc75b.pkl",
+        "cache_input_text_sha256": "902a0675c50738f0268dfb45d63c8607f963306001c02429101742c2c96bbce2",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "The bridge had opened in July 1940 as the third-longest suspension span in the world at the time,",
+        "exact_native_cache_key": "1a8ee21132e21436bbb26b199c58b1ee2e7f9af0.pkl",
+        "cache_input_text_sha256": "e51212448b3d91e1c933ee306236dc7f800f8a26ee47f544defd0946768d6b8d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "its roadway hung from steel cables.",
+        "exact_native_cache_key": "ef6f4486b9239996c5e4f2482e7b8b75e0fcc75b.pkl",
+        "cache_input_text_sha256": "902a0675c50738f0268dfb45d63c8607f963306001c02429101742c2c96bbce2",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Girders only eight feet deep stiffened the deck, making it slender, elegant, and economical, but far from rigid.",
+        "exact_native_cache_key": "7d97404510c778a8dbad0c0647b456ed0f3a0e60.pkl",
+        "cache_input_text_sha256": "854c1f890e3c8c9fe68ece2b640f21766dd0efdfa50e09006b5223d58b7b50f6",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Girders only eight feet deep stiffened the deck, making it slender, elegant, and economical, but far from rigid.",
+        "exact_native_cache_key": "07b4e3e50c7f4f1a5b9018279e730ae0dff91fdd.pkl",
+        "cache_input_text_sha256": "854c1f890e3c8c9fe68ece2b640f21766dd0efdfa50e09006b5223d58b7b50f6",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Girders only eight feet deep stiffened the deck,",
+        "exact_native_cache_key": "5a323318009fc7943d586ccdb54ad6baa8cd24b4.pkl",
+        "cache_input_text_sha256": "bac52c97a29f046ebd3aae599f2c2478f65b7e1abb26e2af60c22178ae54fdfa",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "making it slender, elegant, and economical, but far from rigid.",
+        "exact_native_cache_key": "2aaec98bea3ebe734ba067b35fb0570cf35d5fb3.pkl",
+        "cache_input_text_sha256": "0db3b604cb7de73ab07977e9ff8c28be18a6e130d9d6c24241dacb3f64342a59",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Girders only eight feet deep stiffened the deck,",
+        "exact_native_cache_key": "5a323318009fc7943d586ccdb54ad6baa8cd24b4.pkl",
+        "cache_input_text_sha256": "bac52c97a29f046ebd3aae599f2c2478f65b7e1abb26e2af60c22178ae54fdfa",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "making it slender,",
+        "exact_native_cache_key": "59de4b75ce76980f21912ade2b7370e05cc9d2bc.pkl",
+        "cache_input_text_sha256": "738dba7c2347ba3119c74df1aa342c8a8c8b2fd3b9d2c86d5753a655c6050a70",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "elegant,",
+        "exact_native_cache_key": "2470de8e1c0f0a09c3d488db463f8fea86c5fddf.pkl",
+        "cache_input_text_sha256": "cdcdf35f3c9489bc41e2ec9a454032f16445e5f8f523e6b413cb228cd06401ae",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and economical,",
+        "exact_native_cache_key": "5fb955b53b4a5e2ea548ec527429625c63962a98.pkl",
+        "cache_input_text_sha256": "f90607b99213f30f2b3627d840fe7e970d8b706bbffff6b4e5942e1c2c882d65",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 5,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "but far from rigid.",
+        "exact_native_cache_key": "cc41c440261f16729ef0d27a98ecdc0968a62499.pkl",
+        "cache_input_text_sha256": "b960c34f6108a551546d6464e6600b2f4c9c88590ce820c66d09b4b34c7b50c8",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Even faint breezes made it heave, earning the nickname Galloping Gertie.",
+        "exact_native_cache_key": "9f7dc1368df329d6c716fb7b9ec6db28dc518a11.pkl",
+        "cache_input_text_sha256": "23aebd290d84e669d45998fe7f3ad1d3f236d1c6f7cf6b3859d8992e1d8a4023",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Even faint breezes made it heave, earning the nickname Galloping Gertie.",
+        "exact_native_cache_key": "872250c674d642cba4ba63d1521800801437b6fb.pkl",
+        "cache_input_text_sha256": "23aebd290d84e669d45998fe7f3ad1d3f236d1c6f7cf6b3859d8992e1d8a4023",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Even faint breezes made it heave,",
+        "exact_native_cache_key": "cc6ac7c7082440ac6126706e861570f8e7246f13.pkl",
+        "cache_input_text_sha256": "2dcc9a7c9fee28a8ff2dc986e288373ed797c294201c7b828ec8916d6be8bceb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "earning the nickname Galloping Gertie.",
+        "exact_native_cache_key": "29e50fb80943340e3f09976be0b0bc1c02689680.pkl",
+        "cache_input_text_sha256": "528cb74557a57a3005fe852a4c4873997d5b518cddc8ad0737624fa60944dc24",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Even faint breezes made it heave,",
+        "exact_native_cache_key": "cc6ac7c7082440ac6126706e861570f8e7246f13.pkl",
+        "cache_input_text_sha256": "2dcc9a7c9fee28a8ff2dc986e288373ed797c294201c7b828ec8916d6be8bceb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "earning the nickname Galloping Gertie.",
+        "exact_native_cache_key": "29e50fb80943340e3f09976be0b0bc1c02689680.pkl",
+        "cache_input_text_sha256": "528cb74557a57a3005fe852a4c4873997d5b518cddc8ad0737624fa60944dc24",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Textbooks have long invoked resonance: a periodic push that matches an object's natural frequency can amplify its motion, as when well-timed shoves propel a child on a swing.",
+        "exact_native_cache_key": "6519ef742b9597a63c6f86726368625510a34529.pkl",
+        "cache_input_text_sha256": "6a1b344be37170e1680d63362d7191ca56d132d26fb9c50c1fcc39ff0e337fb9",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Textbooks have long invoked resonance: a periodic push that matches an object's natural frequency can amplify its motion, as when well-timed shoves propel a child on a swing.",
+        "exact_native_cache_key": "78a7f582800e53439f5c44f646e5f1be881cbbb2.pkl",
+        "cache_input_text_sha256": "6a1b344be37170e1680d63362d7191ca56d132d26fb9c50c1fcc39ff0e337fb9",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Textbooks have long invoked resonance:",
+        "exact_native_cache_key": "68bc622298830b8c0b4ea2aca1f1d6944b42b7ee.pkl",
+        "cache_input_text_sha256": "d40c39454c2cf35b6d46aabd2074136d84134fccd0f00fc93138a460fddfb1d7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "a periodic push that matches an object's natural frequency can amplify its motion,",
+        "exact_native_cache_key": "e31a41093d1077254617036145b70f9854b86fcb.pkl",
+        "cache_input_text_sha256": "a277670db075edc813b37ac8b54a792f14b08abd13c15940e5c0a63329801ccc",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "as when well-timed shoves propel a child on a swing.",
+        "exact_native_cache_key": "913012b2cbec0f537b04b6e8a2b7761a44384073.pkl",
+        "cache_input_text_sha256": "baf4208315b570caa1f56e67b3a9774ef88ba676756c4d2f57fe0eec67990f6c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Textbooks have long invoked resonance:",
+        "exact_native_cache_key": "68bc622298830b8c0b4ea2aca1f1d6944b42b7ee.pkl",
+        "cache_input_text_sha256": "d40c39454c2cf35b6d46aabd2074136d84134fccd0f00fc93138a460fddfb1d7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "a periodic push that matches an object's natural frequency can amplify its motion,",
+        "exact_native_cache_key": "e31a41093d1077254617036145b70f9854b86fcb.pkl",
+        "cache_input_text_sha256": "a277670db075edc813b37ac8b54a792f14b08abd13c15940e5c0a63329801ccc",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "as when well-timed shoves propel a child on a swing.",
+        "exact_native_cache_key": "913012b2cbec0f537b04b6e8a2b7761a44384073.pkl",
+        "cache_input_text_sha256": "baf4208315b570caa1f56e67b3a9774ef88ba676756c4d2f57fe0eec67990f6c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The analogy is intuitive but deceptive.",
+        "exact_native_cache_key": "f43768d81324239e56e07c5085bde9cdc5d6e4ae.pkl",
+        "cache_input_text_sha256": "51977c6efa489227cab4a3668c38e406be60293def4377e04817e8f99f20314f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The analogy is intuitive but deceptive.",
+        "exact_native_cache_key": "82acb449ccd12d2287acf25f5601058bb4732957.pkl",
+        "cache_input_text_sha256": "51977c6efa489227cab4a3668c38e406be60293def4377e04817e8f99f20314f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "That morning's wind did not pulse in time with the bridge; it blew fairly steadily.",
+        "exact_native_cache_key": "c5c1f5c54620f570552a9d26c65bd33638374c81.pkl",
+        "cache_input_text_sha256": "c324af589e139df81a79efe1e4ff5f75f1996dc3797644b010cf5d7aac4a98b8",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "That morning's wind did not pulse in time with the bridge; it blew fairly steadily.",
+        "exact_native_cache_key": "000e2fbd13f0ebf95f80e315b896606f76d82641.pkl",
+        "cache_input_text_sha256": "c324af589e139df81a79efe1e4ff5f75f1996dc3797644b010cf5d7aac4a98b8",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "That morning's wind did not pulse in time with the bridge;",
+        "exact_native_cache_key": "d282e6bd39635b29de3eb6bf577d315bd2d29585.pkl",
+        "cache_input_text_sha256": "59baea46914299a3248d328db47994c630eecc2b49f6e723436ab2597d6a316b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "it blew fairly steadily.",
+        "exact_native_cache_key": "5fb2ac747e9381afd8e03acdbb1c684d789581c1.pkl",
+        "cache_input_text_sha256": "6bdf29c3c4a694168f65bb4dbaeaff3cd65f675e261057cc93d00db82170808b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "That morning's wind did not pulse in time with the bridge;",
+        "exact_native_cache_key": "d282e6bd39635b29de3eb6bf577d315bd2d29585.pkl",
+        "cache_input_text_sha256": "59baea46914299a3248d328db47994c630eecc2b49f6e723436ab2597d6a316b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "it blew fairly steadily.",
+        "exact_native_cache_key": "5fb2ac747e9381afd8e03acdbb1c684d789581c1.pkl",
+        "cache_input_text_sha256": "6bdf29c3c4a694168f65bb4dbaeaff3cd65f675e261057cc93d00db82170808b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The mechanism was subtler.",
+        "exact_native_cache_key": "28b993202580c5b2a65c9c1a38b59796f6e3c6ac.pkl",
+        "cache_input_text_sha256": "ce7399f2419e0b2f3dc5ae81125047dbcc723924ec886ecccafd8a7c47c5b829",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The mechanism was subtler.",
+        "exact_native_cache_key": "f719871c57e656d061cd469a29f1f8f507aa1bb5.pkl",
+        "cache_input_text_sha256": "ce7399f2419e0b2f3dc5ae81125047dbcc723924ec886ecccafd8a7c47c5b829",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Each twist altered the passing airflow, which reinforced the next twist: a feedback loop that kept tapping the wind for energy.",
+        "exact_native_cache_key": "b87d582f98265c6b8e629fd7ceccff0e3d04ab39.pkl",
+        "cache_input_text_sha256": "cef0b8eac1b4291fda4ffe5be4b6d6aa63d40401b839b239163ea3ae7d60b3d4",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Each twist altered the passing airflow, which reinforced the next twist: a feedback loop that kept tapping the wind for energy.",
+        "exact_native_cache_key": "023653a28f3ff3c6769c70fe976ab1637c79b802.pkl",
+        "cache_input_text_sha256": "cef0b8eac1b4291fda4ffe5be4b6d6aa63d40401b839b239163ea3ae7d60b3d4",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Each twist altered the passing airflow,",
+        "exact_native_cache_key": "a1680e6c6aebb5a0d3cbf6a3bc8b5fb23dee1038.pkl",
+        "cache_input_text_sha256": "29a9b82dd747e72578491759f8e9df271463d71b1088fa163d2f6d5e3e539fa5",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "which reinforced the next twist:",
+        "exact_native_cache_key": "4e5caea95d2078e8fc8dede65b25e8299cd28385.pkl",
+        "cache_input_text_sha256": "936cc730090463afcaf8311e450dcc92365c7873be4629d70948bffff49c71e8",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "a feedback loop that kept tapping the wind for energy.",
+        "exact_native_cache_key": "502797b479897eaf9206396939bc333e88ff280e.pkl",
+        "cache_input_text_sha256": "256edf61229618105c1bbab6ea3d45cd64ff9b742615cd6ada390855013e997d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Each twist altered the passing airflow,",
+        "exact_native_cache_key": "a1680e6c6aebb5a0d3cbf6a3bc8b5fb23dee1038.pkl",
+        "cache_input_text_sha256": "29a9b82dd747e72578491759f8e9df271463d71b1088fa163d2f6d5e3e539fa5",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "which reinforced the next twist:",
+        "exact_native_cache_key": "4e5caea95d2078e8fc8dede65b25e8299cd28385.pkl",
+        "cache_input_text_sha256": "936cc730090463afcaf8311e450dcc92365c7873be4629d70948bffff49c71e8",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "a feedback loop that kept tapping the wind for energy.",
+        "exact_native_cache_key": "502797b479897eaf9206396939bc333e88ff280e.pkl",
+        "cache_input_text_sha256": "256edf61229618105c1bbab6ea3d45cd64ff9b742615cd6ada390855013e997d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "In March 1941 a federal panel blamed the deck's flexibility and wing-like lift.",
+        "exact_native_cache_key": "48fe390954e65f09623b96be0397a7498bdb89fd.pkl",
+        "cache_input_text_sha256": "9b35c02e68fc83b8d90b62b8d3333302f3d09371460288c8576f87b4e660d7ec",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "In March 1941 a federal panel blamed the deck's flexibility and wing-like lift.",
+        "exact_native_cache_key": "5a8b8634633a511a9ee4b524f9e08769c1058876.pkl",
+        "cache_input_text_sha256": "9b35c02e68fc83b8d90b62b8d3333302f3d09371460288c8576f87b4e660d7ec",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Later analysis called the mechanism flutter; in February 1991 two engineers asserted in a physics journal that textbooks had erred.",
+        "exact_native_cache_key": "341da5d91eb90bcc34a1a29f927e2b733233a35f.pkl",
+        "cache_input_text_sha256": "874e86ee35a33a3120873dbe2348462132951d9ffa7c921385db19af7a204827",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Later analysis called the mechanism flutter; in February 1991 two engineers asserted in a physics journal that textbooks had erred.",
+        "exact_native_cache_key": "20520faee6cba1152f09cb8f37b468c5312028d8.pkl",
+        "cache_input_text_sha256": "874e86ee35a33a3120873dbe2348462132951d9ffa7c921385db19af7a204827",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Later analysis called the mechanism flutter;",
+        "exact_native_cache_key": "c915687ab04c309750c27141fb23ae284858e432.pkl",
+        "cache_input_text_sha256": "ca89dca1a4056bc95ca83b3fa2263ed25b95da5d42dbbb4bd99fc3cc576b2304",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "in February 1991 two engineers asserted in a physics journal that textbooks had erred.",
+        "exact_native_cache_key": "b164b7d9ed132aacff1d2ddff8d4a84b886c4b14.pkl",
+        "cache_input_text_sha256": "87fe624a960311a58f084626de47038d7a748d77fbe3aa546f7dbc90602af74a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Later analysis called the mechanism flutter;",
+        "exact_native_cache_key": "c915687ab04c309750c27141fb23ae284858e432.pkl",
+        "cache_input_text_sha256": "ca89dca1a4056bc95ca83b3fa2263ed25b95da5d42dbbb4bd99fc3cc576b2304",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "in February 1991 two engineers asserted in a physics journal that textbooks had erred.",
+        "exact_native_cache_key": "b164b7d9ed132aacff1d2ddff8d4a84b886c4b14.pkl",
+        "cache_input_text_sha256": "87fe624a960311a58f084626de47038d7a748d77fbe3aa546f7dbc90602af74a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The panel urged wind-tunnel tests, and trials on scaled-down replicas gradually became customary for suspension bridges.",
+        "exact_native_cache_key": "fdd45e528dfd96ba31520af5959a8ac87f533886.pkl",
+        "cache_input_text_sha256": "84781ad38998133bd3241d1d1ea96b2caf31e4f6c21204242e0074050fb58364",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The panel urged wind-tunnel tests, and trials on scaled-down replicas gradually became customary for suspension bridges.",
+        "exact_native_cache_key": "823e45a666e43fade3a5917ab3017fe500306c47.pkl",
+        "cache_input_text_sha256": "84781ad38998133bd3241d1d1ea96b2caf31e4f6c21204242e0074050fb58364",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "The panel urged wind-tunnel tests,",
+        "exact_native_cache_key": "ad61986be54d51e8368b4b0ce75f1ddba8b6f720.pkl",
+        "cache_input_text_sha256": "ef51340e831b539b7bb67fc35b0500760126287b10a0a86a2bc6e9273499576b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and trials on scaled-down replicas gradually became customary for suspension bridges.",
+        "exact_native_cache_key": "e2c340ba595baf63210a4cfd1f2d00e0a6d9f23a.pkl",
+        "cache_input_text_sha256": "06fee925cae092eb092f90f9f0e1b9c30f8a0ef9067d6aa8ef9ee4be92de1b9f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "The panel urged wind-tunnel tests,",
+        "exact_native_cache_key": "ad61986be54d51e8368b4b0ce75f1ddba8b6f720.pkl",
+        "cache_input_text_sha256": "ef51340e831b539b7bb67fc35b0500760126287b10a0a86a2bc6e9273499576b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and trials on scaled-down replicas gradually became customary for suspension bridges.",
+        "exact_native_cache_key": "e2c340ba595baf63210a4cfd1f2d00e0a6d9f23a.pkl",
+        "cache_input_text_sha256": "06fee925cae092eb092f90f9f0e1b9c30f8a0ef9067d6aa8ef9ee4be92de1b9f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "A sturdier replacement opened in October 1950.",
+        "exact_native_cache_key": "888220f92168163f9a90138e4d78ba52ecf644b0.pkl",
+        "cache_input_text_sha256": "2d97d30c8a3833fa1276af61fbce7bf8de66a2ed223e2bbb91690cd15bedde3c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "A sturdier replacement opened in October 1950.",
+        "exact_native_cache_key": "6fafefd36339256497dc1c332b8e7e56967de71f.pkl",
+        "cache_input_text_sha256": "2d97d30c8a3833fa1276af61fbce7bf8de66a2ed223e2bbb91690cd15bedde3c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Gertie's fall may still instruct engineers, if read accurately: the wind never kept time with the bridge, the bridge's own motion turned a sustained wind destructive.",
+        "exact_native_cache_key": "696deb59497e109fbb12ed03bbdfa3c1af999ac6.pkl",
+        "cache_input_text_sha256": "b9c829b6a0bf691c3cb992e18717dd51d5e45b350709c8c1705ff060c33b8b6b",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Gertie's fall may still instruct engineers, if read accurately: the wind never kept time with the bridge, the bridge's own motion turned a sustained wind destructive.",
+        "exact_native_cache_key": "98209dbe5529b024b1447f8c1ebf20bbcdd610ba.pkl",
+        "cache_input_text_sha256": "b9c829b6a0bf691c3cb992e18717dd51d5e45b350709c8c1705ff060c33b8b6b",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Gertie's fall may still instruct engineers, if read accurately:",
+        "exact_native_cache_key": "ae1f00f67f048f4354145061097ba632318ddd77.pkl",
+        "cache_input_text_sha256": "d5da01d0165561609ef9296ac50097fb170aef72a22a0914c19aa073cbe9e076",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "the wind never kept time with the bridge, the bridge's own motion turned a sustained wind destructive.",
+        "exact_native_cache_key": "283b45330c85ac387d80d0b517b024b60f3b9aac.pkl",
+        "cache_input_text_sha256": "c8142290afdd99c092ea3545c3589030004c28de79c742988709c4904c1b2e5f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Gertie's fall may still instruct engineers,",
+        "exact_native_cache_key": "b02c9232b50c48dd70a77f6345466b0a712aca1c.pkl",
+        "cache_input_text_sha256": "4f7bd5f6a7d462a9ea7cc7f78d72016fac3801b7a7827ab11caaf465d5a6e43f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "if read accurately:",
+        "exact_native_cache_key": "5360dbf2bec4e54c6f6cd1c5d7e70ed04d7531bf.pkl",
+        "cache_input_text_sha256": "f6810ac729137ab7f2c8f1972511ce3b092d00d2cc29dfbde3484ee12fa2784c",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "the wind never kept time with the bridge,",
+        "exact_native_cache_key": "a2dec314a443e4517a1d77eb95ae6a29852fcc38.pkl",
+        "cache_input_text_sha256": "6f2259c027b6926a9b51374497e37a19571102b0007426ebd50dc94145b25baa",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "the bridge's own motion turned a sustained wind destructive.",
+        "exact_native_cache_key": "a4ab662022fdbd6c3ec32fa53fd69157530165c4.pkl",
+        "cache_input_text_sha256": "b80485c6f181d3fbe22f1d87bd727fb155ccdc82c90e8f830cdaf0f845103303",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      }
+    ],
+    "unique_reference_key_count": 70,
+    "raw_mother_cache_scalar_manifest": [
+      {
+        "exact_native_cache_key": "fc05ade77bfe46c00103cf7102bb0f62fd308707.pkl",
+        "pkl_sha256": "3006d0eb1928c406766fad2dbd21e50d07469cdd97aff168ac43028976fe4fe1",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "标题",
+            "piece": null,
+            "reference_kind": "title-default-raw",
+            "method": "create",
+            "source_slice": "The Wind That Kept No Time: The Fall of Galloping Gertie",
+            "exact_native_cache_key": "fc05ade77bfe46c00103cf7102bb0f62fd308707.pkl",
+            "cache_input_text_sha256": "812a0d6d5b3dad464b7f20054f37817318d3f673c0dacbdc1a8ce7a57b31cda9",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "3006d0eb1928c406",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          86016
+        ],
+        "unprocessed_array_sha256": "7fe160ee229cd9b142afdf09605e4edd99f5aa4661a306c359308fba037011da"
+      },
+      {
+        "exact_native_cache_key": "8835c7e84369a35d322c6abb30c31d53d6b03e63.pkl",
+        "pkl_sha256": "da59fb76eb2b6b5241047f49f06ba26988abc89eb01d494372033e4e4221d4d1",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "On the morning of 7 November 1940, a sustained wind of about 40 miles an hour set the Tacoma Narrows Bridge twisting.",
+            "exact_native_cache_key": "8835c7e84369a35d322c6abb30c31d53d6b03e63.pkl",
+            "cache_input_text_sha256": "959b485285f24e1f6928ef104ee7fd7324463fcfefd995e4c0342c94ba15d2b0",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "da59fb76eb2b6b52",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          230912
+        ],
+        "unprocessed_array_sha256": "71a41da54cffbd48965d0db51fe82b4665e45015d24b4d1410c263ee038f542b"
+      },
+      {
+        "exact_native_cache_key": "48728aba4a57df54f509f08668f60fc3f4f076c6.pkl",
+        "pkl_sha256": "b0996ff445f06952daed19b7f13461d7870c442b3263ed776b6dd239b201c8b0",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "On the morning of 7 November 1940,",
+            "exact_native_cache_key": "48728aba4a57df54f509f08668f60fc3f4f076c6.pkl",
+            "cache_input_text_sha256": "3f97abde9e3a1e2ea7f8be61244fc47eee295d060f40723675b169750efc3fc7",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "b0996ff445f06952",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          84480
+        ],
+        "unprocessed_array_sha256": "d3d731d316bd854498e326039102f7a784ffa7f89ec84b6105e4a36e66cd97a0"
+      },
+      {
+        "exact_native_cache_key": "3ddcc1349e1c24ec137ba8e16580a11e09a5be1e.pkl",
+        "pkl_sha256": "cd336961682f6b2e3125c19e59f3c0447f95230e7cfaa378e72b10e355d132ec",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "a sustained wind of about 40 miles an hour set the Tacoma Narrows Bridge twisting.",
+            "exact_native_cache_key": "3ddcc1349e1c24ec137ba8e16580a11e09a5be1e.pkl",
+            "cache_input_text_sha256": "c4162f07d6f2fc25a0a69bc95b71792598e6ceab336910506096c7373f1cefac",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "cd336961682f6b2e",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          142336
+        ],
+        "unprocessed_array_sha256": "45c853362980b7ab2bef1c146623132a40b8815827d0a0d73be74a3676ed39b4"
+      },
+      {
+        "exact_native_cache_key": "36816dd3911b9d6e87134f3630557fd27fbef607.pkl",
+        "pkl_sha256": "d919731046c064a6628058a94ad7d52f7bb189412c6f70b21e9980baac6fd27a",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Its deck tilted from side to side in ever more violent oscillations until most of the main span tore apart and tumbled into the water.",
+            "exact_native_cache_key": "36816dd3911b9d6e87134f3630557fd27fbef607.pkl",
+            "cache_input_text_sha256": "917a22fb9d56b0022117118d7634adb4e2b60353e9c73477b172018deb927236",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "d919731046c064a6",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          216576
+        ],
+        "unprocessed_array_sha256": "5bd8ab90bb1ce19d3b61367b4da1914a84c8d076ed406ddf6c72739ed8e59082"
+      },
+      {
+        "exact_native_cache_key": "76dfd38a2640d85347ee0d9ceb8075d8ffc6c56b.pkl",
+        "pkl_sha256": "c09d9386bfc7119261c7bbf48170549f179349ab194bb272185ee4252dab126f",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Its deck tilted from side to side in ever more violent oscillations",
+            "exact_native_cache_key": "76dfd38a2640d85347ee0d9ceb8075d8ffc6c56b.pkl",
+            "cache_input_text_sha256": "a7ab031a012a14baed2dfaa02dd2f96355fe701299da442d3a43becd3e4a4fc2",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "c09d9386bfc71192",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          113152
+        ],
+        "unprocessed_array_sha256": "ef1f6c8badc12b6ae7b0014d68e1be1e2d345095452caec2995632d78419abf2"
+      },
+      {
+        "exact_native_cache_key": "82c500a1b0d563d7b92c5c913e6c2f6acf3564a9.pkl",
+        "pkl_sha256": "d3a36752846310886e20363b5716088d019628c24a45ffb005eb5733b340de0b",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "until most of the main span tore apart and tumbled into the water.",
+            "exact_native_cache_key": "82c500a1b0d563d7b92c5c913e6c2f6acf3564a9.pkl",
+            "cache_input_text_sha256": "2e66aaa52d1a8b2f2e3f8636bbfed6a0456445889823306f4a2de48a376aba82",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "d3a3675284631088",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          103424
+        ],
+        "unprocessed_array_sha256": "be6565cd0402bdf676d60532bc526a52e7b6dca8ea087e9cbe10fb4397caa547"
+      },
+      {
+        "exact_native_cache_key": "3678d4980b80ea80dc9ebacdb8cd81b7ab7b2ac4.pkl",
+        "pkl_sha256": "ecb97ce6a7a62eada17bbc2c15936f21943800b72f93f00abcd7b14e623b6cd9",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "No one died.",
+            "exact_native_cache_key": "3678d4980b80ea80dc9ebacdb8cd81b7ab7b2ac4.pkl",
+            "cache_input_text_sha256": "9d4d30d7d6948bcb3a75c01788c9418cab727505748819692a1e074e83748160",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "ecb97ce6a7a62ead",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          26624
+        ],
+        "unprocessed_array_sha256": "a585c6dbcd2bd20d07ce75387f7d98550fc66dcf0b34bf59100a22184e983cdb"
+      },
+      {
+        "exact_native_cache_key": "f22d9d48543c508205dcc1d3afe5ac30d18c77b3.pkl",
+        "pkl_sha256": "a24d6685f360e80ee77a2098e022a9ae700328170cdf4a01b437d81ab39dcfa0",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Footage of the spectacle would later fascinate students worldwide.",
+            "exact_native_cache_key": "f22d9d48543c508205dcc1d3afe5ac30d18c77b3.pkl",
+            "cache_input_text_sha256": "3132fefc171f429861bf9b3720075af4d27d750af1c43af41a37cc28d4c01411",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "a24d6685f360e80e",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          98304
+        ],
+        "unprocessed_array_sha256": "b43508bb7b4b7959c3198e94f8e9c5aea5c216b1cfde988feee9772ee9205ef0"
+      },
+      {
+        "exact_native_cache_key": "9fe8c30794bee4aea496958a00d836ec6e5593e9.pkl",
+        "pkl_sha256": "774746ee35f902ac2d54b9ac147365f1a90dacde21f12f862237443b19ae0074",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The bridge had opened in July 1940 as the third-longest suspension span in the world at the time, its roadway hung from steel cables.",
+            "exact_native_cache_key": "9fe8c30794bee4aea496958a00d836ec6e5593e9.pkl",
+            "cache_input_text_sha256": "aec4225ff6802ebde9dd4217dcb578190d6d1111e3ccd38016f5c273b07075e3",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "774746ee35f902ac",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          228864
+        ],
+        "unprocessed_array_sha256": "486c84e6d35e008e1298ba66deddb468eb5c29552a0cc1ebf9a96206cca0596f"
+      },
+      {
+        "exact_native_cache_key": "8b7256701958b2a356ceef59ee43139fa73f268d.pkl",
+        "pkl_sha256": "a36117a42998ad3110bd62f4ad0cfb3b37486fc21e3df5a6e11c28b438533629",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "The bridge had opened in July 1940",
+            "exact_native_cache_key": "8b7256701958b2a356ceef59ee43139fa73f268d.pkl",
+            "cache_input_text_sha256": "aef87b49cc7081da9b888751666fafadf0bc9228c6e01df2310855e271522551",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "a36117a42998ad31",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          65536
+        ],
+        "unprocessed_array_sha256": "a294f1a2dd66c2d19ed28719a0d68ba5280bda8899feca30ee092f0f7d687469"
+      },
+      {
+        "exact_native_cache_key": "202fb4d5ac084abb88678aa147160c29c4ba3dbe.pkl",
+        "pkl_sha256": "23d21213176e42089f4c2445960582637374c2603a9b1767a560a7c62ef060dd",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "as the third-longest suspension span in the world at the time,",
+            "exact_native_cache_key": "202fb4d5ac084abb88678aa147160c29c4ba3dbe.pkl",
+            "cache_input_text_sha256": "338f4c74ebe39b5b83f1409d6dc7dced9a08291a5f30b716c315e6abd07823ee",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "23d21213176e4208",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          83456
+        ],
+        "unprocessed_array_sha256": "ed8dd59375fcf250e6e036e7723e8bbfaf50d834c70644fd8f89355691619528"
+      },
+      {
+        "exact_native_cache_key": "ef6f4486b9239996c5e4f2482e7b8b75e0fcc75b.pkl",
+        "pkl_sha256": "632845d143cf76d2c52f161e24f58c386adabbee62512503fae0deb6ad11d86b",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "its roadway hung from steel cables.",
+            "exact_native_cache_key": "ef6f4486b9239996c5e4f2482e7b8b75e0fcc75b.pkl",
+            "cache_input_text_sha256": "902a0675c50738f0268dfb45d63c8607f963306001c02429101742c2c96bbce2",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S5",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "its roadway hung from steel cables.",
+            "exact_native_cache_key": "ef6f4486b9239996c5e4f2482e7b8b75e0fcc75b.pkl",
+            "cache_input_text_sha256": "902a0675c50738f0268dfb45d63c8607f963306001c02429101742c2c96bbce2",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "632845d143cf76d2",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          50176
+        ],
+        "unprocessed_array_sha256": "698bc736aea93e36111af452274a2ae7889fcbd699b60560cce45b5e9230f196"
+      },
+      {
+        "exact_native_cache_key": "1a8ee21132e21436bbb26b199c58b1ee2e7f9af0.pkl",
+        "pkl_sha256": "b9be468176c27139eb4ed0e929cede2e2bb30346bed1908e2ca60a9a072f88df",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "The bridge had opened in July 1940 as the third-longest suspension span in the world at the time,",
+            "exact_native_cache_key": "1a8ee21132e21436bbb26b199c58b1ee2e7f9af0.pkl",
+            "cache_input_text_sha256": "e51212448b3d91e1c933ee306236dc7f800f8a26ee47f544defd0946768d6b8d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "b9be468176c27139",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          163328
+        ],
+        "unprocessed_array_sha256": "ebdd9fc7529c7f182383668f4003776e266ce44aa6042e71c27469187201b104"
+      },
+      {
+        "exact_native_cache_key": "7d97404510c778a8dbad0c0647b456ed0f3a0e60.pkl",
+        "pkl_sha256": "fc70c0e0944eb9f1e44566ba391638909d2148ac21d5cfa6035137caa4402e04",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Girders only eight feet deep stiffened the deck, making it slender, elegant, and economical, but far from rigid.",
+            "exact_native_cache_key": "7d97404510c778a8dbad0c0647b456ed0f3a0e60.pkl",
+            "cache_input_text_sha256": "854c1f890e3c8c9fe68ece2b640f21766dd0efdfa50e09006b5223d58b7b50f6",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "fc70c0e0944eb9f1",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          180736
+        ],
+        "unprocessed_array_sha256": "efaea390028bbfe7aa771172ad9e6d36e596734c63c3c3e6dfc708ef571620a1"
+      },
+      {
+        "exact_native_cache_key": "5a323318009fc7943d586ccdb54ad6baa8cd24b4.pkl",
+        "pkl_sha256": "48a6fbc67fd0f7e8eb61a654c6d8abddad76991bc1981d35deb6d485758aff37",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Girders only eight feet deep stiffened the deck,",
+            "exact_native_cache_key": "5a323318009fc7943d586ccdb54ad6baa8cd24b4.pkl",
+            "cache_input_text_sha256": "bac52c97a29f046ebd3aae599f2c2478f65b7e1abb26e2af60c22178ae54fdfa",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S6",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Girders only eight feet deep stiffened the deck,",
+            "exact_native_cache_key": "5a323318009fc7943d586ccdb54ad6baa8cd24b4.pkl",
+            "cache_input_text_sha256": "bac52c97a29f046ebd3aae599f2c2478f65b7e1abb26e2af60c22178ae54fdfa",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "48a6fbc67fd0f7e8",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          66048
+        ],
+        "unprocessed_array_sha256": "4d544307a97a3727345baf5c28ec1950329ea2cf2c35aae60ae78e1c18bb7dc4"
+      },
+      {
+        "exact_native_cache_key": "2aaec98bea3ebe734ba067b35fb0570cf35d5fb3.pkl",
+        "pkl_sha256": "3353e0df1bb2f2a4bc82bbe0777e056c3ac312caae50f0051d7560af2120f5c2",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "making it slender, elegant, and economical, but far from rigid.",
+            "exact_native_cache_key": "2aaec98bea3ebe734ba067b35fb0570cf35d5fb3.pkl",
+            "cache_input_text_sha256": "0db3b604cb7de73ab07977e9ff8c28be18a6e130d9d6c24241dacb3f64342a59",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "3353e0df1bb2f2a4",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          102912
+        ],
+        "unprocessed_array_sha256": "b947f11a4ff47de4353c412d035f3509becbc93b6d21747fc5e32590f3a1fdd7"
+      },
+      {
+        "exact_native_cache_key": "59de4b75ce76980f21912ade2b7370e05cc9d2bc.pkl",
+        "pkl_sha256": "0eb55d3dc6d7d48ab4b6e00eeb59340dd7749c8caf6b947abc8196eda0327fe1",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "making it slender,",
+            "exact_native_cache_key": "59de4b75ce76980f21912ade2b7370e05cc9d2bc.pkl",
+            "cache_input_text_sha256": "738dba7c2347ba3119c74df1aa342c8a8c8b2fd3b9d2c86d5753a655c6050a70",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "0eb55d3dc6d7d48a",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          29696
+        ],
+        "unprocessed_array_sha256": "9e58cdac6fc03996fc9b674b5838ddbb1c530e874b5b7e17071ebae236e00ea9"
+      },
+      {
+        "exact_native_cache_key": "2470de8e1c0f0a09c3d488db463f8fea86c5fddf.pkl",
+        "pkl_sha256": "80001fb7878b6e63dd48108191f68308d4d3ad7ff6e64e33946ec66a5e8a08f3",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "elegant,",
+            "exact_native_cache_key": "2470de8e1c0f0a09c3d488db463f8fea86c5fddf.pkl",
+            "cache_input_text_sha256": "cdcdf35f3c9489bc41e2ec9a454032f16445e5f8f523e6b413cb228cd06401ae",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "80001fb7878b6e63",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          19456
+        ],
+        "unprocessed_array_sha256": "9a75411e59c5eb065c3e96454ce06e0630fc05c97e4aa4ab75e80ec6079ffc27"
+      },
+      {
+        "exact_native_cache_key": "5fb955b53b4a5e2ea548ec527429625c63962a98.pkl",
+        "pkl_sha256": "1359e59cd8e08b9df143de9ae66cc42ffdc4c1e63593542bbb914bafc78a5e32",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and economical,",
+            "exact_native_cache_key": "5fb955b53b4a5e2ea548ec527429625c63962a98.pkl",
+            "cache_input_text_sha256": "f90607b99213f30f2b3627d840fe7e970d8b706bbffff6b4e5942e1c2c882d65",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "1359e59cd8e08b9d",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          30720
+        ],
+        "unprocessed_array_sha256": "3adae3a44d419be7870d33b5ce2b7f8ed3ebbac9cfc6d196b683cad0330ebb63"
+      },
+      {
+        "exact_native_cache_key": "cc41c440261f16729ef0d27a98ecdc0968a62499.pkl",
+        "pkl_sha256": "56181c0e7bba1dc80607778e361e9d2a6b3fa8481370716b99c63478baf211cd",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 5,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "but far from rigid.",
+            "exact_native_cache_key": "cc41c440261f16729ef0d27a98ecdc0968a62499.pkl",
+            "cache_input_text_sha256": "b960c34f6108a551546d6464e6600b2f4c9c88590ce820c66d09b4b34c7b50c8",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "56181c0e7bba1dc8",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          33280
+        ],
+        "unprocessed_array_sha256": "4881359d068dc598926e1b6b6f4c96afb1be494c4a6c6fc970849efdcac3e7a1"
+      },
+      {
+        "exact_native_cache_key": "9f7dc1368df329d6c716fb7b9ec6db28dc518a11.pkl",
+        "pkl_sha256": "c64e0f49cb094f05f5f0ef5d7c53e38dfa4874d72bde3f3cd55c40d7dfa81ad1",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Even faint breezes made it heave, earning the nickname Galloping Gertie.",
+            "exact_native_cache_key": "9f7dc1368df329d6c716fb7b9ec6db28dc518a11.pkl",
+            "cache_input_text_sha256": "23aebd290d84e669d45998fe7f3ad1d3f236d1c6f7cf6b3859d8992e1d8a4023",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "c64e0f49cb094f05",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          107520
+        ],
+        "unprocessed_array_sha256": "2831a624e1fd96d4c4c1ca6a9fca1ac580fc9781e4a811688a4f4f1b748b9822"
+      },
+      {
+        "exact_native_cache_key": "cc6ac7c7082440ac6126706e861570f8e7246f13.pkl",
+        "pkl_sha256": "974fdd1b1dda1925ceba99be9d2745993c81ebad6ab2f90646a12d07aeea9b2c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Even faint breezes made it heave,",
+            "exact_native_cache_key": "cc6ac7c7082440ac6126706e861570f8e7246f13.pkl",
+            "cache_input_text_sha256": "2dcc9a7c9fee28a8ff2dc986e288373ed797c294201c7b828ec8916d6be8bceb",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S7",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Even faint breezes made it heave,",
+            "exact_native_cache_key": "cc6ac7c7082440ac6126706e861570f8e7246f13.pkl",
+            "cache_input_text_sha256": "2dcc9a7c9fee28a8ff2dc986e288373ed797c294201c7b828ec8916d6be8bceb",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "974fdd1b1dda1925",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          48640
+        ],
+        "unprocessed_array_sha256": "79697e9c70abb7606b22bce5da9ffba15cab4eef20b9e7085127cba2caea6900"
+      },
+      {
+        "exact_native_cache_key": "29e50fb80943340e3f09976be0b0bc1c02689680.pkl",
+        "pkl_sha256": "b0984bf57dfd40b65a7d73f0906baac226a4714229714d568d3552249c8c3e25",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "earning the nickname Galloping Gertie.",
+            "exact_native_cache_key": "29e50fb80943340e3f09976be0b0bc1c02689680.pkl",
+            "cache_input_text_sha256": "528cb74557a57a3005fe852a4c4873997d5b518cddc8ad0737624fa60944dc24",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S7",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "earning the nickname Galloping Gertie.",
+            "exact_native_cache_key": "29e50fb80943340e3f09976be0b0bc1c02689680.pkl",
+            "cache_input_text_sha256": "528cb74557a57a3005fe852a4c4873997d5b518cddc8ad0737624fa60944dc24",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "b0984bf57dfd40b6",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          49664
+        ],
+        "unprocessed_array_sha256": "f2565bde5cbe45c05400307ad0ebe5129437ff3d6172c4f9df9017bf519e72b7"
+      },
+      {
+        "exact_native_cache_key": "6519ef742b9597a63c6f86726368625510a34529.pkl",
+        "pkl_sha256": "229d6c141c3d7cea77d6cfa16f7c04956000c00fb19d638a8fcfc82f9b73a12c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Textbooks have long invoked resonance: a periodic push that matches an object's natural frequency can amplify its motion, as when well-timed shoves propel a child on a swing.",
+            "exact_native_cache_key": "6519ef742b9597a63c6f86726368625510a34529.pkl",
+            "cache_input_text_sha256": "6a1b344be37170e1680d63362d7191ca56d132d26fb9c50c1fcc39ff0e337fb9",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "229d6c141c3d7cea",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          310272
+        ],
+        "unprocessed_array_sha256": "81893398d3dab8032c44fbffc715f6fa2c797b1f7541ba59454b8bb9a4b3137a"
+      },
+      {
+        "exact_native_cache_key": "68bc622298830b8c0b4ea2aca1f1d6944b42b7ee.pkl",
+        "pkl_sha256": "439991be655525d4de6b89944c654fd0bb37f4ff3bfef7712e827147ea4634b7",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Textbooks have long invoked resonance:",
+            "exact_native_cache_key": "68bc622298830b8c0b4ea2aca1f1d6944b42b7ee.pkl",
+            "cache_input_text_sha256": "d40c39454c2cf35b6d46aabd2074136d84134fccd0f00fc93138a460fddfb1d7",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S8",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Textbooks have long invoked resonance:",
+            "exact_native_cache_key": "68bc622298830b8c0b4ea2aca1f1d6944b42b7ee.pkl",
+            "cache_input_text_sha256": "d40c39454c2cf35b6d46aabd2074136d84134fccd0f00fc93138a460fddfb1d7",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "439991be655525d4",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          57344
+        ],
+        "unprocessed_array_sha256": "6e209f96688bb59e60b99186ffeaf7acba15994df9e3603408414538c7859dd9"
+      },
+      {
+        "exact_native_cache_key": "e31a41093d1077254617036145b70f9854b86fcb.pkl",
+        "pkl_sha256": "f400f2e9198f78d4d8c6545659c638b9108ee85d85228a949395b87d64072285",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "a periodic push that matches an object's natural frequency can amplify its motion,",
+            "exact_native_cache_key": "e31a41093d1077254617036145b70f9854b86fcb.pkl",
+            "cache_input_text_sha256": "a277670db075edc813b37ac8b54a792f14b08abd13c15940e5c0a63329801ccc",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S8",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "a periodic push that matches an object's natural frequency can amplify its motion,",
+            "exact_native_cache_key": "e31a41093d1077254617036145b70f9854b86fcb.pkl",
+            "cache_input_text_sha256": "a277670db075edc813b37ac8b54a792f14b08abd13c15940e5c0a63329801ccc",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "f400f2e9198f78d4",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          145920
+        ],
+        "unprocessed_array_sha256": "6ae344778a8a0bc8fc5a6115a73e4599995e6cf37e84de44fce372f4b50e895c"
+      },
+      {
+        "exact_native_cache_key": "913012b2cbec0f537b04b6e8a2b7761a44384073.pkl",
+        "pkl_sha256": "b1be58fc3b616403793adb24ed7733ce97b0b17b82a689dcd60a9b36cafb004d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "as when well-timed shoves propel a child on a swing.",
+            "exact_native_cache_key": "913012b2cbec0f537b04b6e8a2b7761a44384073.pkl",
+            "cache_input_text_sha256": "baf4208315b570caa1f56e67b3a9774ef88ba676756c4d2f57fe0eec67990f6c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S8",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "as when well-timed shoves propel a child on a swing.",
+            "exact_native_cache_key": "913012b2cbec0f537b04b6e8a2b7761a44384073.pkl",
+            "cache_input_text_sha256": "baf4208315b570caa1f56e67b3a9774ef88ba676756c4d2f57fe0eec67990f6c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "b1be58fc3b616403",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          73728
+        ],
+        "unprocessed_array_sha256": "8c50a5869a8c85f395b7a36c0362e169623b4855ddd9e230685d836334246a7c"
+      },
+      {
+        "exact_native_cache_key": "f43768d81324239e56e07c5085bde9cdc5d6e4ae.pkl",
+        "pkl_sha256": "4618a9f0436d21d947bc73a656f31d713ce002ea04569fce527df7dd23075259",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The analogy is intuitive but deceptive.",
+            "exact_native_cache_key": "f43768d81324239e56e07c5085bde9cdc5d6e4ae.pkl",
+            "cache_input_text_sha256": "51977c6efa489227cab4a3668c38e406be60293def4377e04817e8f99f20314f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "4618a9f0436d21d9",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          64000
+        ],
+        "unprocessed_array_sha256": "c25db2d46180a75c27751468cb393ec4a68ef3af04a27f7eaeae83a99b2100ca"
+      },
+      {
+        "exact_native_cache_key": "c5c1f5c54620f570552a9d26c65bd33638374c81.pkl",
+        "pkl_sha256": "86c4d120eb891bd55af0b41c68f4a9e0a8711c42e4c6771f2456e3a3b223d885",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "That morning's wind did not pulse in time with the bridge; it blew fairly steadily.",
+            "exact_native_cache_key": "c5c1f5c54620f570552a9d26c65bd33638374c81.pkl",
+            "cache_input_text_sha256": "c324af589e139df81a79efe1e4ff5f75f1996dc3797644b010cf5d7aac4a98b8",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "86c4d120eb891bd5",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          121856
+        ],
+        "unprocessed_array_sha256": "86d09020c72d3de71803aebd11301cf561724213131e7389abb5b620b7eaa442"
+      },
+      {
+        "exact_native_cache_key": "d282e6bd39635b29de3eb6bf577d315bd2d29585.pkl",
+        "pkl_sha256": "194f12dd4648e29ca4485a687e0f0f5d54fd83684a0d23bad5a06703961512e2",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "That morning's wind did not pulse in time with the bridge;",
+            "exact_native_cache_key": "d282e6bd39635b29de3eb6bf577d315bd2d29585.pkl",
+            "cache_input_text_sha256": "59baea46914299a3248d328db47994c630eecc2b49f6e723436ab2597d6a316b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S10",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "That morning's wind did not pulse in time with the bridge;",
+            "exact_native_cache_key": "d282e6bd39635b29de3eb6bf577d315bd2d29585.pkl",
+            "cache_input_text_sha256": "59baea46914299a3248d328db47994c630eecc2b49f6e723436ab2597d6a316b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "194f12dd4648e29c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          79872
+        ],
+        "unprocessed_array_sha256": "5ef968a671423fb44c6daa6023846918d9c2f131b07b7ab26f91693f66c1ba84"
+      },
+      {
+        "exact_native_cache_key": "5fb2ac747e9381afd8e03acdbb1c684d789581c1.pkl",
+        "pkl_sha256": "a513d9aa19349abf8fdfa0c70462c261ec80d01d223938c0770bf83565ad17e9",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "it blew fairly steadily.",
+            "exact_native_cache_key": "5fb2ac747e9381afd8e03acdbb1c684d789581c1.pkl",
+            "cache_input_text_sha256": "6bdf29c3c4a694168f65bb4dbaeaff3cd65f675e261057cc93d00db82170808b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S10",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "it blew fairly steadily.",
+            "exact_native_cache_key": "5fb2ac747e9381afd8e03acdbb1c684d789581c1.pkl",
+            "cache_input_text_sha256": "6bdf29c3c4a694168f65bb4dbaeaff3cd65f675e261057cc93d00db82170808b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "a513d9aa19349abf",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          36352
+        ],
+        "unprocessed_array_sha256": "a77a45d08b68405a118f969d02e99d523540fab2e674d2bd1d9db5d330861c43"
+      },
+      {
+        "exact_native_cache_key": "28b993202580c5b2a65c9c1a38b59796f6e3c6ac.pkl",
+        "pkl_sha256": "ac920d03b128d77e37d87a7d8550130bc4ed6fb1ff9d16d28a12678aac002b53",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The mechanism was subtler.",
+            "exact_native_cache_key": "28b993202580c5b2a65c9c1a38b59796f6e3c6ac.pkl",
+            "cache_input_text_sha256": "ce7399f2419e0b2f3dc5ae81125047dbcc723924ec886ecccafd8a7c47c5b829",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "ac920d03b128d77e",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          37376
+        ],
+        "unprocessed_array_sha256": "5117e97ad64e2e1833d4d040c17e1e79413fb4ab3235765539cec61ffa07446c"
+      },
+      {
+        "exact_native_cache_key": "b87d582f98265c6b8e629fd7ceccff0e3d04ab39.pkl",
+        "pkl_sha256": "e2c393851388e7175017d9244dfed959e6ee9f99c634198e090b0bea00527008",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Each twist altered the passing airflow, which reinforced the next twist: a feedback loop that kept tapping the wind for energy.",
+            "exact_native_cache_key": "b87d582f98265c6b8e629fd7ceccff0e3d04ab39.pkl",
+            "cache_input_text_sha256": "cef0b8eac1b4291fda4ffe5be4b6d6aa63d40401b839b239163ea3ae7d60b3d4",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "e2c393851388e717",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          198656
+        ],
+        "unprocessed_array_sha256": "52ad88050c59cd6772b3ffbb9279bef028cf1d2629a84e72fbd702f566825b30"
+      },
+      {
+        "exact_native_cache_key": "a1680e6c6aebb5a0d3cbf6a3bc8b5fb23dee1038.pkl",
+        "pkl_sha256": "55d6253b55e25a169c075105d913487dfcdba024742d19f7a25c2dcef0977cfe",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Each twist altered the passing airflow,",
+            "exact_native_cache_key": "a1680e6c6aebb5a0d3cbf6a3bc8b5fb23dee1038.pkl",
+            "cache_input_text_sha256": "29a9b82dd747e72578491759f8e9df271463d71b1088fa163d2f6d5e3e539fa5",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S12",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Each twist altered the passing airflow,",
+            "exact_native_cache_key": "a1680e6c6aebb5a0d3cbf6a3bc8b5fb23dee1038.pkl",
+            "cache_input_text_sha256": "29a9b82dd747e72578491759f8e9df271463d71b1088fa163d2f6d5e3e539fa5",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "55d6253b55e25a16",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          53248
+        ],
+        "unprocessed_array_sha256": "960f671066e4c3f0cac5e2fcfd54436482f1f18eac739d66226d56f88aedbbbf"
+      },
+      {
+        "exact_native_cache_key": "4e5caea95d2078e8fc8dede65b25e8299cd28385.pkl",
+        "pkl_sha256": "ba57f0384aacaadf2610ebb77919edeb69a6d0d126314ce4296791ae33fdf436",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "which reinforced the next twist:",
+            "exact_native_cache_key": "4e5caea95d2078e8fc8dede65b25e8299cd28385.pkl",
+            "cache_input_text_sha256": "936cc730090463afcaf8311e450dcc92365c7873be4629d70948bffff49c71e8",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S12",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "which reinforced the next twist:",
+            "exact_native_cache_key": "4e5caea95d2078e8fc8dede65b25e8299cd28385.pkl",
+            "cache_input_text_sha256": "936cc730090463afcaf8311e450dcc92365c7873be4629d70948bffff49c71e8",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "ba57f0384aacaadf",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          47104
+        ],
+        "unprocessed_array_sha256": "07ce80c4d3dbad9bec861a44fc4e5e856301ea73100cfa59c12d54624e39a225"
+      },
+      {
+        "exact_native_cache_key": "502797b479897eaf9206396939bc333e88ff280e.pkl",
+        "pkl_sha256": "5b81465f13d593e73e01728cb21c659fdcc00a61f6ae844f38db9268e7fca164",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "a feedback loop that kept tapping the wind for energy.",
+            "exact_native_cache_key": "502797b479897eaf9206396939bc333e88ff280e.pkl",
+            "cache_input_text_sha256": "256edf61229618105c1bbab6ea3d45cd64ff9b742615cd6ada390855013e997d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S12",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "a feedback loop that kept tapping the wind for energy.",
+            "exact_native_cache_key": "502797b479897eaf9206396939bc333e88ff280e.pkl",
+            "cache_input_text_sha256": "256edf61229618105c1bbab6ea3d45cd64ff9b742615cd6ada390855013e997d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "5b81465f13d593e7",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          75264
+        ],
+        "unprocessed_array_sha256": "92f328046011b52a25cf21e274615c1bb4b946df1b8317709f7ddf549a297921"
+      },
+      {
+        "exact_native_cache_key": "48fe390954e65f09623b96be0397a7498bdb89fd.pkl",
+        "pkl_sha256": "5428c3123e2d1801a4b913383f357bf1985adf1487834d5a0f2d79f6abd24d63",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "In March 1941 a federal panel blamed the deck's flexibility and wing-like lift.",
+            "exact_native_cache_key": "48fe390954e65f09623b96be0397a7498bdb89fd.pkl",
+            "cache_input_text_sha256": "9b35c02e68fc83b8d90b62b8d3333302f3d09371460288c8576f87b4e660d7ec",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "5428c3123e2d1801",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          154624
+        ],
+        "unprocessed_array_sha256": "6fb598788a622847a778bec074c29aea3ffe0d9397b3b5e450e89f71c47f1aa2"
+      },
+      {
+        "exact_native_cache_key": "341da5d91eb90bcc34a1a29f927e2b733233a35f.pkl",
+        "pkl_sha256": "4c1890689e17e5f71cd6299cc7c76e05f18da00a8c511fc89e78c2d42fd976bb",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Later analysis called the mechanism flutter; in February 1991 two engineers asserted in a physics journal that textbooks had erred.",
+            "exact_native_cache_key": "341da5d91eb90bcc34a1a29f927e2b733233a35f.pkl",
+            "cache_input_text_sha256": "874e86ee35a33a3120873dbe2348462132951d9ffa7c921385db19af7a204827",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "4c1890689e17e5f7",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          229888
+        ],
+        "unprocessed_array_sha256": "a10536ae9be73521c16653c6207e25e07ac72ccd4df38fe6d25166759e8267a1"
+      },
+      {
+        "exact_native_cache_key": "c915687ab04c309750c27141fb23ae284858e432.pkl",
+        "pkl_sha256": "2e80a1e817af476087f4172a7dd7eecec5d75c47b5b32de375aed49cca459aa7",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Later analysis called the mechanism flutter;",
+            "exact_native_cache_key": "c915687ab04c309750c27141fb23ae284858e432.pkl",
+            "cache_input_text_sha256": "ca89dca1a4056bc95ca83b3fa2263ed25b95da5d42dbbb4bd99fc3cc576b2304",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S14",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Later analysis called the mechanism flutter;",
+            "exact_native_cache_key": "c915687ab04c309750c27141fb23ae284858e432.pkl",
+            "cache_input_text_sha256": "ca89dca1a4056bc95ca83b3fa2263ed25b95da5d42dbbb4bd99fc3cc576b2304",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "2e80a1e817af4760",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          65536
+        ],
+        "unprocessed_array_sha256": "c01db8906c14ef48f8ff1fc879c406cb358d90b9bbc8c199f4461961b294c3d7"
+      },
+      {
+        "exact_native_cache_key": "b164b7d9ed132aacff1d2ddff8d4a84b886c4b14.pkl",
+        "pkl_sha256": "0c39b28006bdce73aa1b53de1eae800a085514fa2b02f771a1d56881df94ed4b",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "in February 1991 two engineers asserted in a physics journal that textbooks had erred.",
+            "exact_native_cache_key": "b164b7d9ed132aacff1d2ddff8d4a84b886c4b14.pkl",
+            "cache_input_text_sha256": "87fe624a960311a58f084626de47038d7a748d77fbe3aa546f7dbc90602af74a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S14",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "in February 1991 two engineers asserted in a physics journal that textbooks had erred.",
+            "exact_native_cache_key": "b164b7d9ed132aacff1d2ddff8d4a84b886c4b14.pkl",
+            "cache_input_text_sha256": "87fe624a960311a58f084626de47038d7a748d77fbe3aa546f7dbc90602af74a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "0c39b28006bdce73",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          153600
+        ],
+        "unprocessed_array_sha256": "1834c773b881cf3e97f8b738f97fe3dc742e1bc142fc3e86e1574320314abfc0"
+      },
+      {
+        "exact_native_cache_key": "fdd45e528dfd96ba31520af5959a8ac87f533886.pkl",
+        "pkl_sha256": "6e0baba3e48067600be00f220f7a1818e27b06913f6bf9ecde3f0670b8a2dfc8",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The panel urged wind-tunnel tests, and trials on scaled-down replicas gradually became customary for suspension bridges.",
+            "exact_native_cache_key": "fdd45e528dfd96ba31520af5959a8ac87f533886.pkl",
+            "cache_input_text_sha256": "84781ad38998133bd3241d1d1ea96b2caf31e4f6c21204242e0074050fb58364",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "6e0baba3e4806760",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          207360
+        ],
+        "unprocessed_array_sha256": "67c8fe292f01448b1ef6b8580422c06ee9a3462786fff862e6ccec661186bf19"
+      },
+      {
+        "exact_native_cache_key": "ad61986be54d51e8368b4b0ce75f1ddba8b6f720.pkl",
+        "pkl_sha256": "cfa1b5e2f4d1ad9e9e9d7bfcbcf23dd4eae876352923d5821664dd3b98e613d5",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "The panel urged wind-tunnel tests,",
+            "exact_native_cache_key": "ad61986be54d51e8368b4b0ce75f1ddba8b6f720.pkl",
+            "cache_input_text_sha256": "ef51340e831b539b7bb67fc35b0500760126287b10a0a86a2bc6e9273499576b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S15",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "The panel urged wind-tunnel tests,",
+            "exact_native_cache_key": "ad61986be54d51e8368b4b0ce75f1ddba8b6f720.pkl",
+            "cache_input_text_sha256": "ef51340e831b539b7bb67fc35b0500760126287b10a0a86a2bc6e9273499576b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "cfa1b5e2f4d1ad9e",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          52224
+        ],
+        "unprocessed_array_sha256": "d6de07262d39a9af1d5a389ec7d48e20dee79b1865b1880cd43383535052a6f0"
+      },
+      {
+        "exact_native_cache_key": "e2c340ba595baf63210a4cfd1f2d00e0a6d9f23a.pkl",
+        "pkl_sha256": "fdead2c90948897b89e3c499319467cd5fdc330ab36f725cc3e7184488a8f316",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and trials on scaled-down replicas gradually became customary for suspension bridges.",
+            "exact_native_cache_key": "e2c340ba595baf63210a4cfd1f2d00e0a6d9f23a.pkl",
+            "cache_input_text_sha256": "06fee925cae092eb092f90f9f0e1b9c30f8a0ef9067d6aa8ef9ee4be92de1b9f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S15",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and trials on scaled-down replicas gradually became customary for suspension bridges.",
+            "exact_native_cache_key": "e2c340ba595baf63210a4cfd1f2d00e0a6d9f23a.pkl",
+            "cache_input_text_sha256": "06fee925cae092eb092f90f9f0e1b9c30f8a0ef9067d6aa8ef9ee4be92de1b9f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "fdead2c90948897b",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          145408
+        ],
+        "unprocessed_array_sha256": "d73571c4723e4a4a8b9db445725568e067fd264668bbb976c7e1fab4dcb8a9d9"
+      },
+      {
+        "exact_native_cache_key": "888220f92168163f9a90138e4d78ba52ecf644b0.pkl",
+        "pkl_sha256": "ffad3ba73f7ec9874715ff0fe14111f83e3ea68b116db5d58eec1b90bc169590",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "A sturdier replacement opened in October 1950.",
+            "exact_native_cache_key": "888220f92168163f9a90138e4d78ba52ecf644b0.pkl",
+            "cache_input_text_sha256": "2d97d30c8a3833fa1276af61fbce7bf8de66a2ed223e2bbb91690cd15bedde3c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "ffad3ba73f7ec987",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          88064
+        ],
+        "unprocessed_array_sha256": "debd7919866a2dd3ac5d34273d42c1020257998c296052c2685b9b440aa384df"
+      },
+      {
+        "exact_native_cache_key": "696deb59497e109fbb12ed03bbdfa3c1af999ac6.pkl",
+        "pkl_sha256": "585be3e360fce43cf0c4a2bdfab9e8930dc7140680d114cdb6f94f2f10d98230",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Gertie's fall may still instruct engineers, if read accurately: the wind never kept time with the bridge, the bridge's own motion turned a sustained wind destructive.",
+            "exact_native_cache_key": "696deb59497e109fbb12ed03bbdfa3c1af999ac6.pkl",
+            "cache_input_text_sha256": "b9c829b6a0bf691c3cb992e18717dd51d5e45b350709c8c1705ff060c33b8b6b",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "585be3e360fce43c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          267264
+        ],
+        "unprocessed_array_sha256": "1141ac02cbde291f3dabaa8b4dab9c3eb6d0e6933fabe07c857f99903c4860d3"
+      },
+      {
+        "exact_native_cache_key": "ae1f00f67f048f4354145061097ba632318ddd77.pkl",
+        "pkl_sha256": "891bedb93a648562a2615fe574dbe5ffc0c0b2ba9772ca6a08d7c78c190ac929",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Gertie's fall may still instruct engineers, if read accurately:",
+            "exact_native_cache_key": "ae1f00f67f048f4354145061097ba632318ddd77.pkl",
+            "cache_input_text_sha256": "d5da01d0165561609ef9296ac50097fb170aef72a22a0914c19aa073cbe9e076",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "891bedb93a648562",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          95744
+        ],
+        "unprocessed_array_sha256": "701d7dfac4695da3457b4052283dc3143e2d193877af7eaa1a9792b981f256e6"
+      },
+      {
+        "exact_native_cache_key": "283b45330c85ac387d80d0b517b024b60f3b9aac.pkl",
+        "pkl_sha256": "7d2f33561e45100631a8736f624150ebeedfdb68ad7d0e41b2d63b01471f8924",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "the wind never kept time with the bridge, the bridge's own motion turned a sustained wind destructive.",
+            "exact_native_cache_key": "283b45330c85ac387d80d0b517b024b60f3b9aac.pkl",
+            "cache_input_text_sha256": "c8142290afdd99c092ea3545c3589030004c28de79c742988709c4904c1b2e5f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "7d2f33561e451006",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          157696
+        ],
+        "unprocessed_array_sha256": "18bcab23f578e94e73c9c7ef8cd1f7a565171e921d2659895a65a61f6536fe99"
+      },
+      {
+        "exact_native_cache_key": "b02c9232b50c48dd70a77f6345466b0a712aca1c.pkl",
+        "pkl_sha256": "7259c498f6673c7901b04443e8c3bb7f7a91148ac088a3903f5ca428e3f75942",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Gertie's fall may still instruct engineers,",
+            "exact_native_cache_key": "b02c9232b50c48dd70a77f6345466b0a712aca1c.pkl",
+            "cache_input_text_sha256": "4f7bd5f6a7d462a9ea7cc7f78d72016fac3801b7a7827ab11caaf465d5a6e43f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "7259c498f6673c79",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          61440
+        ],
+        "unprocessed_array_sha256": "e88f71575fecae4be9cef4c0ddd44463dbc408cb82f48c6410d407ea8f8ee41f"
+      },
+      {
+        "exact_native_cache_key": "5360dbf2bec4e54c6f6cd1c5d7e70ed04d7531bf.pkl",
+        "pkl_sha256": "fbb8ff1e06f1b7048f9f7ac8a0beb3760ab78c577d2341ba252247fab9fa3198",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "if read accurately:",
+            "exact_native_cache_key": "5360dbf2bec4e54c6f6cd1c5d7e70ed04d7531bf.pkl",
+            "cache_input_text_sha256": "f6810ac729137ab7f2c8f1972511ce3b092d00d2cc29dfbde3484ee12fa2784c",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "fbb8ff1e06f1b704",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          30720
+        ],
+        "unprocessed_array_sha256": "095949e2be2812183dd70a0d8fdd2a126429c9289170dc07a60cf3b23ae6acde"
+      },
+      {
+        "exact_native_cache_key": "a2dec314a443e4517a1d77eb95ae6a29852fcc38.pkl",
+        "pkl_sha256": "5b80f3436216ad3b65a0bc014cd791d2ab85e59fc8944342460844bd67bc8207",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "the wind never kept time with the bridge,",
+            "exact_native_cache_key": "a2dec314a443e4517a1d77eb95ae6a29852fcc38.pkl",
+            "cache_input_text_sha256": "6f2259c027b6926a9b51374497e37a19571102b0007426ebd50dc94145b25baa",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "5b80f3436216ad3b",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          54272
+        ],
+        "unprocessed_array_sha256": "98b77d548d5b9803bc05e9511d19bd17621da1d5bd771f80fa0cc806f3e2bed3"
+      },
+      {
+        "exact_native_cache_key": "a4ab662022fdbd6c3ec32fa53fd69157530165c4.pkl",
+        "pkl_sha256": "b16d916f33be343906e7390b3b3d26ee49dced2b1da047c200bd96f58c1dde45",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "the bridge's own motion turned a sustained wind destructive.",
+            "exact_native_cache_key": "a4ab662022fdbd6c3ec32fa53fd69157530165c4.pkl",
+            "cache_input_text_sha256": "b80485c6f181d3fbe22f1d87bd727fb155ccdc82c90e8f830cdaf0f845103303",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "b16d916f33be3439",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          91136
+        ],
+        "unprocessed_array_sha256": "86e51b192bd513e2ac0834506428e28fc0cdfc7a68a097e796c7f9dd518d57f3"
+      }
+    ],
+    "missing_reference_key_count": 0,
+    "observed_missing_keys_covered": [],
+    "new_private_cache_names": [],
+    "native_single_thread_marker_verified": true,
+    "single_thread_sessions": [
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      },
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      }
+    ],
+    "models_sha256": {
+      "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+      "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+      "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+    },
+    "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+    "existing_private_cache_count": 11514,
+    "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "existing_private_cache_bytes_unchanged": true,
+    "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+    "public_repository_cache_unchanged": true,
+    "producer_pcm_existed_before": false,
+    "producer_pcm_sha256_before": null,
+    "producer_pcm_sha256_after": null,
+    "accepted_aac_adts_sha256_before": "cb40c9e82c60f1991c7b0f5ba2a779b4ef28886f3c87298cbe3bcc0d30529b1b",
+    "accepted_aac_adts_sha256_after": "cb40c9e82c60f1991c7b0f5ba2a779b4ef28886f3c87298cbe3bcc0d30529b1b",
+    "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+    "private_cache_exported": false
+  },
+  "checker_reference_preparation_program_sha256": "f6f2a032e207085e7252d036e39430fb80b06e84a721c525b61196d021c5ca12",
+  "fresh_current_article_reference": {
+    "article": "53",
+    "removed_temporary_gt_files": [],
+    "processed_pcm_or_raw_mother_cache_modified": false,
+    "purpose": "Original synth/labels/audit rebuild fresh for this production; no old CPU GT reuse."
+  },
+  "temporary_output_reset": {
+    "removed": [],
+    "production_started_ns": 1794675671464099433,
+    "repository_outputs_modified": false
+  },
+  "reviewed_gain_control_preservation": [
+    {
+      "stage": "canonical-draft",
+      "requested_gain_controls": {
+        "/分段增益dB": {
+          "S8": {
+            "2": 0.6
+          }
+        }
+      },
+      "actual_gain_controls": {
+        "/分段增益dB": {
+          "S8": {
+            "2": 0.6
+          }
+        }
+      },
+      "exactly_preserved": true
+    },
+    {
+      "stage": "canonical-final4K",
+      "requested_gain_controls": {
+        "/分段增益dB": {
+          "S8": {
+            "2": 0.6
+          }
+        }
+      },
+      "actual_gain_controls": {
+        "/分段增益dB": {
+          "S8": {
+            "2": 0.6
+          }
+        }
+      },
+      "exactly_preserved": true
+    }
+  ],
+  "canonical_video_sha256": "d3d5715711c81a551a62ea888cacd1aeb3f7aa698d1eb3b1654c171703ed72a1",
+  "canonical_aac_adts_sha256": "cb40c9e82c60f1991c7b0f5ba2a779b4ef28886f3c87298cbe3bcc0d30529b1b",
+  "canonical_pipeline_passed": true,
+  "cached_input_wav_sha256": null,
+  "final_wav_sha256": "f6a02b14660a6498691b507a327569f3a7718258b215f17764228afe668af4d2",
+  "accepted_prior_aac_identical": true,
+  "video_sha256": "e4af545ce5516686374e19617a039a42d55a34b107b39b7b07f6d29de3178117",
+  "width": 3840,
+  "height": 2160,
+  "summary_seconds": 2,
+  "summary_frames": 60,
+  "summary_start_seconds": 138.0,
+  "delay_after_voice_seconds": 0.615,
+  "actual_source_collection": {
+    "article": "53",
+    "kind": "actual-production-source-collection",
+    "new_quality_gate": false,
+    "files": {
+      "request_json": {
+        "file": "53-request-source.json",
+        "sha256": "73393dad5d67261f2ec7819f3749a6589278900e2f214a1da06b0dbde55fe31b",
+        "origin": "immutable_request"
+      },
+      "request_generator": {
+        "file": "53-request-gen.py",
+        "sha256": "f556d6e0d9da68a44d10545b4ae5c0f876ddc897d51b0ff4c648e1b4a7e0a209",
+        "origin": "immutable_request"
+      },
+      "used_generator": {
+        "file": "53-used-gen.py",
+        "sha256": "f556d6e0d9da68a44d10545b4ae5c0f876ddc897d51b0ff4c648e1b4a7e0a209",
+        "origin": "actual_production_filesystem"
+      },
+      "actual_working_source": {
+        "file": "53-actual-working-source.json",
+        "sha256": "7a2a5e1b8168abbe74f90ee72bcb4301a21b8214b955ba598917dedf9dd98b18",
+        "origin": "actual_production_filesystem"
+      },
+      "request_manuscript": {
+        "file": "53-request-manuscript.md",
+        "sha256": "e10fced4950a461f591d111f4901551fe8409dde9c66bb8fd06b8a2b9f8fdfd5",
+        "origin": "immutable_request"
+      },
+      "actual_working_manuscript": {
+        "file": "53-actual-working-manuscript.md",
+        "sha256": "5d8007a8c953bc0dd47bfb2536e6f3b3308c0bcf93ca607d6f1c6d02dcac457f",
+        "origin": "actual_production_filesystem"
+      }
+    },
+    "generator_execution_observed": false,
+    "generator_execution_evidence": "No fresh generator execution log; do not claim this GEN was executed during rendering.",
+    "source_differences": {
+      "file": "53-actual-source-differences.json",
+      "sha256": "7819ace0d03d7b727f3f341b15701d43a29683d37136005b81e5372cfa069d07"
+    }
+  },
+  "preview_only": false,
+  "finalization_authorized": true,
+  "last_body_hold_frames": 18,
+  "last_body_hold_seconds": 0.6,
+  "summary_start_frame": 4140,
+  "postprocessing_only": true,
+  "original_producer_or_TTS_repeated": false,
+  "true_original_native_full_QA_run": 43618546414,
+  "inherited_original_summary_status_sha256": "8ade1b2835a0a7252d637ab81248ad0ec22bd7a1e612e149ae4be81c717ec02f",
+  "final_hold_policy_sha256": "4bcae46b68b9584f107966f683af580b474fa9835f101834fe55ed6968dfc36b"
+}

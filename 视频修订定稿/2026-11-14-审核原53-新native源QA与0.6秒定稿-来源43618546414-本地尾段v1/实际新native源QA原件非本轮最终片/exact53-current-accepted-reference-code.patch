@@ -1,0 +1,34 @@
+--- E19-before-current-reference
++++ E19-exact53-current-reference
+@@ -535,7 +535,30 @@
+     canonical_audio = actual_aac(canonical); final_audio = actual_aac(video)
+     audio_basis=canonical_audio_contract(canonical_qc,native_status,n,item['canonical_mp4']['sha256'],canonical_audio['aac_adts_sha256'],evidence_hashes,native_status_sha256,n in changed_audio or n in {'10','12','44','51'})
+     if audio_basis=='actual_official_audio_gates_plus_exact_accepted_AAC':
+-        require(native_status['accepted_source']['sha256']==old[n]['sha256'],'Native accepted audio reference differs from existing catalog baseline')
++        if (n == '53' and run['run_id'] == 43618546414
++                and run['head_sha'] == '8b4b4ceb2181037c4a83305abfd12438318e4f63'
++                and native_status['accepted_source']['sha256'] == 'b82966baa6439b194a6fa1e2c222f226517982318ef398ae631efcd5c562d588'):
++            registry = load(checked_file(next(e for e in item['evidence'] if e['sha256'] == '8d0d4447f8aa1b7f3ebd3aeb2f866805f8504174d367153d61ed6579409a83a1')))
++            prior_h = load(checked_file(registry['current_accepted_prior_handoff']))
++            prior_r = load(checked_file(registry['current_accepted_prior_record']))
++            identity = load(checked_file(registry['actual_entire_oldcurrent_to_newcanonical_audio_identity']))
++            prior_a = next(a for a in prior_h['articles'] if a['source_id'] == '53')
++            require(prior_h['source_run'] == 43523430839 and prior_a['passed_per_article'] is True
++                    and registry['current_accepted_prior_handoff']['sha256'] == '7f5a144446fe122cc56460fc5beea0b0ebd71514f259ce477718f772c0aefc6f'
++                    and native_status['accepted_source']['current_accepted_V3_handoff_sha256'] == registry['current_accepted_prior_handoff']['sha256']
++                    and prior_a['final_mp4']['sha256'] == prior_r['sha256'] == native_status['accepted_source']['sha256']
++                    and prior_r['bytes'] == 14989960 and registry['legacy_catalog_identity_preserved']['sha256'] == old[n]['sha256'],
++                    'Exact current53 prior accepted lineage differs; legacy catalog must remain historical')
++            require(registry['actual_entire_oldcurrent_to_newcanonical_audio_identity']['sha256'] == '448c756f173af409668a18636d883716e4da9458cf4a3e96ef0ba166c185a817'
++                    and identity['actual_comparison_passed'] is True
++                    and identity['codec_AAC_payload_side_data_and_absolute_packet_projection_entire_objects_equal'] is True
++                    and identity['accepted_MP4_sha256'] == prior_r['sha256']
++                    and identity['new_canonical_MP4_sha256'] == registry['actual_new_canonical_SHA256'] == item['canonical_mp4']['sha256']
++                    and all(identity['new_audio'][k] == prior_r['actual_audio_chain'][k] == canonical_audio[k]
++                            for k in ('aac_adts_sha256', 'packet_projection_sha256', 'packet_count')),
++                    'Actual current53 whole AAC, codec, side-data or absolute packet clock differs')
++        else:
++            require(native_status['accepted_source']['sha256']==old[n]['sha256'],'Native accepted audio reference differs from existing catalog baseline')
+     else:
+         raw_audio=load(checked_file(next(e for e in item['evidence']if e['sha256']==canonical_qc['report_sha256'])))
+         if audio_basis=='actual_dedicated_audio_qc_then_verified_exact_AAC_copy':

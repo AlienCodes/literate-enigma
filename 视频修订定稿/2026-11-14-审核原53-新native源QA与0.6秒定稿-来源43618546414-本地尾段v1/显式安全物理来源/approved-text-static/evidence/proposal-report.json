@@ -1,0 +1,123 @@
+{
+  "article": "53",
+  "book_order": "35",
+  "before_source_sha256": "28b604bfa72896534736293f79e9b3aabd8e3678672f4dc6c66337c02a8f1518",
+  "candidate_source_sha256": "215268e993f0953b43071cc2fabe7a4ba5b3f86dac8471fd582a79fcefacc962",
+  "candidate_GEN_sha256": "6f56286cd304d5d907bace149cd4c8108dba83a51bc07a35c5d46ff0b58536e3",
+  "candidate_MD_sha256": "19101b58cf504933594458051ccb27b55001852ea0cd924608f3257c877f4aa3",
+  "diff": [
+    {
+      "path": "/allow_clash",
+      "reason": "list_length",
+      "expected_length": 1,
+      "actual_length": 4
+    },
+    {
+      "path": "/allow_clash/1",
+      "reason": "unexpected_item",
+      "actual": "analysis"
+    },
+    {
+      "path": "/allow_clash/2",
+      "reason": "unexpected_item",
+      "actual": "mechanism"
+    },
+    {
+      "path": "/allow_clash/3",
+      "reason": "unexpected_item",
+      "actual": "kept time with"
+    },
+    {
+      "path": "/sentences/13/chunks/0/align/0/0",
+      "reason": "value",
+      "expected": "Later analysis",
+      "actual": "Later **analysis**"
+    },
+    {
+      "path": "/sentences/13/chunks/0/align/0/1",
+      "reason": "value",
+      "expected": "后来的分析",
+      "actual": "后来的**分析**(analysis)"
+    },
+    {
+      "path": "/sentences/13/chunks/0/align/1/0",
+      "reason": "value",
+      "expected": "called the mechanism",
+      "actual": "called the **mechanism**"
+    },
+    {
+      "path": "/sentences/13/chunks/0/align/1/1",
+      "reason": "value",
+      "expected": "把这一机理称为",
+      "actual": "把这一**机理**(mechanism)称为"
+    },
+    {
+      "path": "/sentences/13/chunks/0/en",
+      "reason": "value",
+      "expected": "Later analysis called the mechanism flutter;",
+      "actual": "Later **analysis** called the **mechanism** flutter;"
+    },
+    {
+      "path": "/sentences/13/chunks/0/zh",
+      "reason": "value",
+      "expected": "后来的分析把这一机理称为颤振；",
+      "actual": "后来的**分析**(analysis)把这一**机理**(mechanism)称为颤振；"
+    },
+    {
+      "path": "/sentences/14/chunks/0/align/1/1",
+      "reason": "value",
+      "expected": "力主进行",
+      "actual": "敦促进行"
+    },
+    {
+      "path": "/sentences/14/chunks/0/zh",
+      "reason": "value",
+      "expected": "该委员会力主进行**风洞**(wind-tunnel)试验，",
+      "actual": "该委员会敦促进行**风洞**(wind-tunnel)试验，"
+    },
+    {
+      "path": "/sentences/16/chunks/1/align/2/0",
+      "reason": "value",
+      "expected": "kept time with the bridge,",
+      "actual": "**kept time with** the bridge,"
+    },
+    {
+      "path": "/sentences/16/chunks/1/align/2/1",
+      "reason": "value",
+      "expected": "与大桥合拍，",
+      "actual": "**与**(kept time with)大桥**合拍**(kept time with)，"
+    },
+    {
+      "path": "/sentences/16/chunks/1/en",
+      "reason": "value",
+      "expected": "the wind never kept time with the bridge, the bridge's own motion turned a sustained wind **destructive**.",
+      "actual": "the wind never **kept time with** the bridge, the bridge's own motion turned a sustained wind **destructive**."
+    },
+    {
+      "path": "/sentences/16/chunks/1/zh",
+      "reason": "value",
+      "expected": "风从未与大桥合拍，是大桥自身的运动使一股持续的风**具有了破坏力**(destructive)。",
+      "actual": "风从未**与**(kept time with)大桥**合拍**(kept time with)，是大桥自身的运动使一股持续的风**具有了破坏力**(destructive)。"
+    }
+  ],
+  "English_bare_strings_all17_sentences_and_chunks_exact": true,
+  "all_audio_controls_and_chunk_alignment_indices_exact": true,
+  "all_original_notes_and_summary_exact": true,
+  "feedback": [
+    {
+      "path": "/workspace/work/first50-review-release/USER-REVIEW-2026-11-14-058.json",
+      "sha256": "890051ee5182069f352c10e8d1fdb406af296820da86ea55b661ac25e6e80780"
+    },
+    {
+      "path": "/workspace/work/first50-review-release/USER-REVIEW-2026-11-14-059.json",
+      "sha256": "68d224814f1ecdaa8cf31fa587f66c6e7f3dc309c744b5bfa98d27c599f3fbd0"
+    },
+    {
+      "path": "/workspace/work/first50-review-release/USER-REVIEW-2026-11-14-060.json",
+      "sha256": "2c45b9977100da83ea46642cbcae6dcda7b23934400012501720fe00a2ed20b1"
+    }
+  ],
+  "only_allow_clash_named_user_words_added": true,
+  "no_voice_native_or_PDF_generated": true,
+  "PAY_not_yet_changed": true
+}

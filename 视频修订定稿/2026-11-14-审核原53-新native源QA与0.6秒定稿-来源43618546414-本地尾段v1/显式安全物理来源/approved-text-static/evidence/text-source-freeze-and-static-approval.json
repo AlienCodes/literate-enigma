@@ -1,0 +1,210 @@
+{
+  "article": "53",
+  "book_order": "35",
+  "source_and_static_ready": true,
+  "created_utc": "2026-11-14T16:57:07.318761+00:00",
+  "source_JSON_sha256": "73393dad5d67261f2ec7819f3749a6589278900e2f214a1da06b0dbde55fe31b",
+  "GEN_sha256": "f556d6e0d9da68a44d10545b4ae5c0f876ddc897d51b0ff4c648e1b4a7e0a209",
+  "MD_sha256": "e10fced4950a461f591d111f4901551fe8409dde9c66bb8fd06b8a2b9f8fdfd5",
+  "exact_source_delta": [
+    {
+      "path": "/allow_clash",
+      "reason": "list_length",
+      "expected_length": 1,
+      "actual_length": 4
+    },
+    {
+      "path": "/allow_clash/1",
+      "reason": "unexpected_item",
+      "actual": "analysis"
+    },
+    {
+      "path": "/allow_clash/2",
+      "reason": "unexpected_item",
+      "actual": "mechanism"
+    },
+    {
+      "path": "/allow_clash/3",
+      "reason": "unexpected_item",
+      "actual": "kept time with"
+    },
+    {
+      "path": "/sentences/13/chunks/0/align/0/0",
+      "reason": "value",
+      "expected": "Later analysis",
+      "actual": "Later **analysis**"
+    },
+    {
+      "path": "/sentences/13/chunks/0/align/0/1",
+      "reason": "value",
+      "expected": "后来的分析",
+      "actual": "后来的**分析**(analysis)"
+    },
+    {
+      "path": "/sentences/13/chunks/0/align/1/0",
+      "reason": "value",
+      "expected": "called the mechanism",
+      "actual": "called the **mechanism**"
+    },
+    {
+      "path": "/sentences/13/chunks/0/align/1/1",
+      "reason": "value",
+      "expected": "把这一机理称为",
+      "actual": "把这一**机理**(mechanism)称为"
+    },
+    {
+      "path": "/sentences/13/chunks/0/en",
+      "reason": "value",
+      "expected": "Later analysis called the mechanism flutter;",
+      "actual": "Later **analysis** called the **mechanism** flutter;"
+    },
+    {
+      "path": "/sentences/13/chunks/0/zh",
+      "reason": "value",
+      "expected": "后来的分析把这一机理称为颤振；",
+      "actual": "后来的**分析**(analysis)把这一**机理**(mechanism)称为颤振；"
+    },
+    {
+      "path": "/sentences/14/chunks/0/align/1/1",
+      "reason": "value",
+      "expected": "力主进行",
+      "actual": "敦促进行"
+    },
+    {
+      "path": "/sentences/14/chunks/0/zh",
+      "reason": "value",
+      "expected": "该委员会力主进行**风洞**(wind-tunnel)试验，",
+      "actual": "该委员会敦促进行**风洞**(wind-tunnel)试验，"
+    },
+    {
+      "path": "/sentences/16/chunks/1/align/2/0",
+      "reason": "value",
+      "expected": "kept time with the bridge,",
+      "actual": "**kept time with** the bridge,"
+    },
+    {
+      "path": "/sentences/16/chunks/1/align/2/1",
+      "reason": "value",
+      "expected": "与大桥合拍，",
+      "actual": "**与**(kept time with)大桥**合拍**(kept time with)，"
+    },
+    {
+      "path": "/sentences/16/chunks/1/en",
+      "reason": "value",
+      "expected": "the wind never kept time with the bridge, the bridge's own motion turned a sustained wind **destructive**.",
+      "actual": "the wind never **kept time with** the bridge, the bridge's own motion turned a sustained wind **destructive**."
+    },
+    {
+      "path": "/sentences/16/chunks/1/zh",
+      "reason": "value",
+      "expected": "风从未与大桥合拍，是大桥自身的运动使一股持续的风**具有了破坏力**(destructive)。",
+      "actual": "风从未**与**(kept time with)大桥**合拍**(kept time with)，是大桥自身的运动使一股持续的风**具有了破坏力**(destructive)。"
+    },
+    {
+      "path": "/核对确认/同词异译/kept time with：与~1合拍",
+      "reason": "unexpected_field",
+      "actual": "不是两种译法：kept time with 整组三词表示“与……合拍”；中文“与”和“合拍”被“大桥”隔开，是同一用法的两部分（T23）。用户2026-11-14明确“对应的中文在下面就是 与 合拍”，只标这两处，保留普通的大桥。"
+    }
+  ],
+  "all_bare_English_and_original_chunks_align_indices_notes_summary_and_DSP_preserved": true,
+  "only_semantic_CF_added_for_two_parts_of_one_phrase": true,
+  "files_applied": [
+    {
+      "path": "/workspace/work/video-audit70-20261113/payload/视频/脚本/53.json",
+      "before_sha256": "28b604bfa72896534736293f79e9b3aabd8e3678672f4dc6c66337c02a8f1518",
+      "after_sha256": "73393dad5d67261f2ec7819f3749a6589278900e2f214a1da06b0dbde55fe31b",
+      "bytes": 73641
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/payload/视频/工具/初稿生成/gen53.py",
+      "before_sha256": "3cff64663cedf4b88326d11dfacd42c5bd4195ced2859f22c4a70f4532593d74",
+      "after_sha256": "f556d6e0d9da68a44d10545b4ae5c0f876ddc897d51b0ff4c648e1b4a7e0a209",
+      "bytes": 72236
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/payload/新版定稿/53-the-wind-that-kept-no-time.md",
+      "before_sha256": "6fab302dcadb5a2c509436f5fbf8d9ef925c008a36f5b422749bd405aa4701d3",
+      "after_sha256": "e10fced4950a461f591d111f4901551fe8409dde9c66bb8fd06b8a2b9f8fdfd5",
+      "bytes": 17676
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/payload/视频/制作记录/53_待改清单.md",
+      "before_sha256": "0db3138ed995442cf08ae7304206ffe2ca8e6a7b67a8bcc0fda2955231a4a327",
+      "after_sha256": "8762aa02165a5ef9204b8d1fa3d2c8311e7d06f34bb5f11f4063ab40aaab1c1e",
+      "bytes": 14602
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/payload/视频/制作记录/逐句确认/53.json",
+      "before_sha256": "94ead2c819646e94843ac3b2b1608767c7f002e79562e006601e44627d5ce86b",
+      "after_sha256": "4559eb34d2a909a1d9086ec3bf5a04d30bc5fe3e25a80b4c215f796585604f7f",
+      "bytes": 11081
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/gen-sources/gen53.py",
+      "before_sha256": null,
+      "after_sha256": "f556d6e0d9da68a44d10545b4ae5c0f876ddc897d51b0ff4c648e1b4a7e0a209",
+      "bytes": 72236
+    }
+  ],
+  "original_GEN_text": {
+    "path": "/workspace/work/video-audit70-20261113/article53-user-review-20261114/thin-validation/report.json",
+    "sha256": "e2c87ec3f7d3f40c074eed6b9d66b1f71347ce622604026e81938476c9bd9573",
+    "whole_JSON_exact": true,
+    "raw_text_before0_repair0_after0": true,
+    "true_old_L13_snapshot_sha256": "40c62496709925567ae538f8202e4fa54dc9112b95b551ce52f536caaca0ee8a"
+  },
+  "actual_static": {
+    "path": "/workspace/work/video-audit70-20261113/article53-user-review-20261114/static-render-report.json",
+    "sha256": "ed23b9c58fc63f532fe54f51c8063e378ceaee9e559c2ba4aadba054fc936536",
+    "all17_sentences_three_sources_1080_4K_measured_no_overflow_or_orphan": true,
+    "summary_font4K_px": 120,
+    "summary_RGB_exact_approved": true,
+    "changed_page_RGB_identity_not_claimed": true
+  },
+  "actual_visual_review": {
+    "path": "/workspace/work/video-audit70-20261113/article53-user-review-20261114/actual-static-visual-review.json",
+    "sha256": "9c7fb47e19bab77ca957f4b7e77242372e7c8dc1b77ab055860a105d3e9d46a3"
+  },
+  "original_audio_input_plan": {
+    "path": "/workspace/work/video-audit70-20261113/article53-user-review-20261114/original-audio-input-invariance.json",
+    "sha256": "9dd1822eee8ebd5d416246647663e562fa06fbff51060231a031242f93818542",
+    "actual_original_maker_input_plans38_exact": true,
+    "actual_original_S17_two_speed_graft_S13_ramp_S8_gain_preserved": true,
+    "new_actual_audio_not_generated": true
+  },
+  "actual_user061": {
+    "path": "/workspace/work/first50-review-release/USER-REVIEW-2026-11-14-061.json",
+    "sha256": "46821260a9699626904c96f33772ce1941e021519fcc5bbbea428f14fadfac5f"
+  },
+  "CI_approval": {
+    "path": "/workspace/work/video-revision-batch-ci/.github/video-revision-batch/approved-video-layouts70.json",
+    "before_sha256": "ee85a037716e219d568efd2d2300a517fe7518836bf06f3df3f4a6cedd97fa15",
+    "after_sha256": "34657693292b0a021cf601304a030c152fe5f4f3605bba650b99664667b9b87e",
+    "before_row": {
+      "source_id": "53",
+      "new_id": "35",
+      "source_json_sha256": "893a7789ddf5f5a79e2a9168011c1c23e2709975d1b07b6b023d6cf5988b2bef",
+      "approved_summary_text_sha256": "cb972709b926ac9753321884c3c92d488ed81ac26395747e7b2e7958de6607ba",
+      "summary_png_sha256": "dd91d381414b9957072bcbf415a87af9f387631b370463207d644ded48cc7759",
+      "summary_rgb_sha256": "1759228cbeb9b42e6ea8d12eebf9e88672ad7f6bf2a015b3d18fe12cc5ba5f32",
+      "summary_font_4k_px": 120,
+      "source_layout_structural_sha256": "a13ed71e7c24b20a9d9b19dbef2c804f134a2388db9e3cdfe507900a01e5bd21"
+    },
+    "after_row": {
+      "source_id": "53",
+      "new_id": "35",
+      "source_json_sha256": "73393dad5d67261f2ec7819f3749a6589278900e2f214a1da06b0dbde55fe31b",
+      "approved_summary_text_sha256": "cb972709b926ac9753321884c3c92d488ed81ac26395747e7b2e7958de6607ba",
+      "summary_png_sha256": "dd91d381414b9957072bcbf415a87af9f387631b370463207d644ded48cc7759",
+      "summary_rgb_sha256": "1759228cbeb9b42e6ea8d12eebf9e88672ad7f6bf2a015b3d18fe12cc5ba5f32",
+      "summary_font_4k_px": 120,
+      "source_layout_structural_sha256": "b30d6306b2f4d58e80d77aef161708acf4af429d05ad121c27005087a3e0574c"
+    },
+    "only53_two_source_digest_fields_changed": true,
+    "other69rows_and_all_summary_approval_fields_exact": true
+  },
+  "no_GitHub_active_row_or_main_or_alias_or_first34_F_modified": true,
+  "no_new_native_audio_video_or_PDF_generated": true,
+  "native_production_owner": "/root/resume_audio_ci",
+  "normal_body_read_end_hold_seconds_by_audio_owner_only": 0.6
+}

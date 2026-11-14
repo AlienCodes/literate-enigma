@@ -1,0 +1,203 @@
+#!/usr/bin/env python3
+"""Import one actual passed native artifact and its real illustrated tail.
+
+This is a per-article import/QC check. It cannot build, archive or publish a
+partial release and does not pretend that the remaining69 articles passed.
+"""
+import datetime, hashlib, json, shutil, zipfile
+from pathlib import Path
+import delivery as D
+from release_contract import book_illustrations
+from request_source_inputs import immutable_request_inputs
+
+B=Path(__file__).resolve().parent
+ACTUAL=Path('/workspace/work/video-audit70-20261113/actual-passed-43523430839')
+AUDIT=Path('/workspace/work/video-audit70-20261113')
+TAIL=AUDIT/'illustrated-tail';PAY=AUDIT/'payload'
+OUT=B/'actual53-64-validation'
+BOOK=Path('/workspace/work/punk-print-20261113-v4-compact/archive-payload/考研学人印刷版/2026-11-13-v4/核验/book-illustrations70.json')
+
+def spec(path):
+    p=Path(path);return {'path':str(p),'bytes':p.stat().st_size,'sha256':D.digest(p)}
+
+def summary_text(source):
+    found=[]
+    for sentence in source['sentences']:
+        for chunk in sentence['chunks']:
+            text=chunk.get('note','');start=text.find('（简述：')
+            if start<0:continue
+            depth=0
+            for end in range(start,len(text)):
+                depth+=(text[end]=='（')-(text[end]=='）')
+                if depth==0:found.append(text[start:end+1]);break
+    D.require(len(found)==1,'Expected unique actual five-point summary')
+    return found[0]
+
+def preview_path(root,row):
+    original=Path(row['path']);local=root/'decoded-tail-previews'/original.name
+    path=original if original.is_file()and D.digest(original)==row['sha256']else local
+    D.require(path.is_file()and D.digest(path)==row['sha256'],'Attach the actual native decoded preview bytes')
+    return path
+
+def explicit_approved_layout_reference(article, inline, output):
+    explicit = (inline or {}).get('explicit_approved_video_layout')
+    if explicit is None:
+        return spec(TAIL/'approved-video-layouts70.json')
+    approved = {'53': '34657693292b0a021cf601304a030c152fe5f4f3605bba650b99664667b9b87e',
+                '05': 'ee85a037716e219d568efd2d2300a517fe7518836bf06f3df3f4a6cedd97fa15',
+                '67': 'cc41c1b5d4daa5ffcbfc92dbffc05996161a1c48c89508be8787583a4c8bc08d',
+                '62': 'cc41c1b5d4daa5ffcbfc92dbffc05996161a1c48c89508be8787583a4c8bc08d',
+                '47': 'c0113acd4727e31b5bca145a49e6faa91622589a6d52637af607c81f577fefe1',
+                '34': 'c0113acd4727e31b5bca145a49e6faa91622589a6d52637af607c81f577fefe1',
+                '33': '35acd87bcbd994c98951bddd5c83c54f24c35283808bcb76e3da4b20612f0894',
+                '36': '09b201148ea45e79448d6f8ec5c2f4e84f130f73696d21a1e929fe5f105235b7',
+                '27': 'a0ccdae04318a1917fdd8455f5ae79ef7c482afa7d43b8e50700f8b1bf0bb49b',
+                '26': 'dafd999321d787c5538c2d3addc0d64a06c5d6224b90b304970c59d3c056d9dd',
+                '13': 'f8916652d87c09c84a8a4347c6050f47d84648b1ed790046fb3459b7ca366e95',
+                '14': '15289acded565266384ffb44f3fc90a1e8402f5ec09b9ce515fbedaafcb6e968',
+                '49': '7f312d6fe6c9ac64f1f5292502256039db303f3f14498bd971151e4c2b45b089',
+                '15': '929a23c88336899fea69003d2a8384f94a59da0a41c9036471a4a399671ee80a',
+                '17': '35acd87bcbd994c98951bddd5c83c54f24c35283808bcb76e3da4b20612f0894',
+                '30': '40414bed8e2bf8ffc32c6fe24d0a9ac5c40fd6fe12571f8f66d6a39a736507b0'}
+    D.require(article in approved and explicit['sha256'] == approved[article],
+              'Only the exact approved immutable article layout manifest is accepted here')
+    source = D.checked_file(explicit)
+    target = Path(output)/article/'approved-video-layouts70-frozen.json'
+    target.parent.mkdir(parents=True, exist_ok=True)
+    if target.exists():
+        D.require(D.digest(target) == explicit['sha256'], 'Frozen per-article layout reference already differs')
+    else:
+        shutil.copyfile(source, target)
+    return spec(target)
+
+
+def import_one(native_directory, article, output_directory):
+    global ACTUAL,OUT
+    ACTUAL=Path(native_directory).resolve().parent;OUT=Path(output_directory).resolve()
+    OUT.mkdir(parents=True,exist_ok=True)
+    for file in ("来源视频清单.json","篇号对照.json"):
+        target=OUT/"frozen-primary"/file;target.parent.mkdir(parents=True,exist_ok=True)
+        if not target.exists():shutil.copyfile(B/"actual53-64-validation/frozen-primary"/file,target)
+    early_inline_path=Path(native_directory).resolve()/'inline-adapter-context.json'
+    early_inline=D.load(early_inline_path)if early_inline_path.exists()else None
+    actual_layout=explicit_approved_layout_reference(article,early_inline,OUT)
+    config={'request_source_root':str(OUT/'request-source'),'final_source_root':str(OUT/'final-source'),
+            'catalog_path':str(OUT/'frozen-primary/来源视频清单.json'),'order_map_path':str(OUT/'frozen-primary/篇号对照.json'),
+            'book_illustrations':spec(BOOK),'illustration_composition_review':spec(TAIL/'composition-qc70.json'),
+            'illustration_crop_review':spec(TAIL/'illustration-crop-review70.json'),'video_layout_approval':actual_layout,
+            'source_derivation':{'factory':spec(AUDIT/'generator_text_preflight.py'),'original_tools_root':str(AUDIT/'preflight-frozen66-v2-part1/mirror/视频/工具')},'articles':[]}
+    # Mapping was actually fetched from this immutable primary commit via the
+    # GitHub connector; no fabricated paths/order are inferred from filenames.
+    config['mapping_commit']='8404ddff99dfa094aa005fec70643d9da55e21fc'
+    _,order,old,reorder=D.mapping(config);images=book_illustrations(D.load(BOOK),order['rows'])
+    compositions=D.load(TAIL/'composition-qc70.json');crops=D.load(TAIL/'illustration-crop-review70.json');layouts=D.load(D.checked_file(config['video_layout_approval']))
+    compose={r['source_id']:r for r in compositions['articles']};crop={r['source_id']:r for r in crops['articles']};layout={r['source_id']:r for r in layouts['articles']}
+    observed_run=D.load(OUT/'actual-native-run.json');validated=[]
+    for n in (article,):
+        root=ACTUAL/n;files=root/'files';dest=OUT/n
+        inline=D.load(root/'inline-adapter-context.json')if(root/'inline-adapter-context.json').exists()else None
+        native=D.load(files/f'{n}-status.json');report_path=root/f'{n}-illustrated-tail-verification.json';report=D.load(report_path)
+        retrieval=D.load(root/'retrieval-receipt.json');job=D.load(dest/'actual-native-job.json');artifact=D.load(dest/'actual-native-artifact.json')
+        zip_path=root/f'article{n}-passed-output.zip';canonical=files/f'{n}-4K-读完即转简述2秒.mp4';final=root/f'{n}-4K-正文后插图2秒-简述2秒.mp4'
+        with zipfile.ZipFile(zip_path)as z:
+            status_member=inline['upstream_status_member']if inline else next(p for p in z.namelist()if Path(p).name==n+'-status.json')
+            source_member=inline['actual_working_source_member']if inline else next(p for p in z.namelist()if Path(p).name==n+'-source.json')
+            media_member=inline['upstream_mp4_member']if inline else next(p for p in z.namelist()if Path(p).name==canonical.name)
+        upload_step=next(step for step in job['steps']if '仅保留本篇' in step['name'])
+        run={'repository':D.BACKUP[0],'run_id':retrieval['run_id'],'run_attempt':job['run_attempt'],'status':observed_run['status'],'conclusion':observed_run['conclusion'],'head_sha':observed_run['head_sha'],'workflow_path':observed_run['path'],'entrypoint':'视频/工具/新管/定稿.sh','stage':'4K',
+             'canonical_selection':'native_final_official_passed','artifact_id':retrieval['artifact_id'],'artifact_zip':spec(zip_path),'artifact_zip_sha256':retrieval['zip_sha256'],'artifact_status_member':status_member,'artifact_mp4_member':media_member,'artifact_mp4_sha256':D.digest(canonical),
+             'job':{'id':job['id'],'name':job['name'],'article':n,'run_attempt':job['run_attempt'],'status':job['status'],'conclusion':job['conclusion'],'upload_step_name':upload_step['name']}}
+        if inline:
+            if inline.get('post_quality_recovery'):
+                run['post_quality_recovery']=inline['post_quality_recovery']
+            else:
+                run.update(artifact_main_status_member=inline['main_status_member'],artifact_main_status_sha256=inline['main_status_sha256'],native_inline_final_original_bytes_preserved=True)
+        class ActualAcquiredEvidence:
+            def api(self,repository,route):
+                D.require(repository==D.BACKUP[0],'Unexpected repository')
+                if route.startswith('actions/runs/'):return observed_run
+                if route.startswith('actions/jobs/'):return job
+                if route.startswith('actions/artifacts/'):return artifact
+                raise ValueError(route)
+            def raw_job_logs(self,*args):return (dest/'actual-native-job.log').read_text()
+            def raw_artifact(self,*args):return zip_path.read_bytes()
+        observed=D.verify_remote_official_job(ActualAcquiredEvidence(),run,n,D.digest(canonical))
+        D.write(dest/'actual-job-artifact-binding.json',{k:v for k,v in observed.items()if not k.startswith('_')})
+        request_files=immutable_request_inputs(native,[files/'immutable-request']);request_files['json']=files/f'{n}-original-request.json'
+        names={'json':f'视频/脚本/{n}.json','gen':f'视频/工具/初稿生成/gen{n}.py','md':'新版定稿/'+request_files['md'].name}
+        final_files={'json':files/f'{n}-source.json','gen':dest/f'derived-source/gen{n}.py','md':Path(inline['actual_working_manuscript_local'])if inline else request_files['md']}
+        proof=spec(dest/'derived-source/derived-source-proof.json');asked={};sources={}
+        for kind,path in request_files.items():
+            target=OUT/'request-source'/names[kind];target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(path,target);asked[kind]={**spec(target),'path':names[kind]}
+        for kind,path in final_files.items():
+            target=OUT/'final-source'/names[kind];target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(path,target);entry={**spec(target),'path':names[kind]}
+            if kind=='json':entry.update(origin='official_artifact_working_copy',artifact_id=run['artifact_id'],artifact_member=source_member)
+            elif kind=='md'and inline:
+                entry.update(origin='actual_working_manuscript',artifact_id=run['artifact_id'],artifact_member=inline['actual_working_manuscript_member'])
+            else:entry.update(origin='derived_after_final_QC'if kind=='gen'else'request_manuscript_with_verified_final_source_equivalence',derived_from_json_sha256=D.digest(final_files['json']),derivation_proof=proof)
+            sources[kind]=entry
+        native_audio=D.actual_aac(canonical);final_audio=D.actual_aac(final)
+        D.write(dest/'actual-lossless-packet-proof.json',{'canonical':native_audio,'final':final_audio})
+        raw_source=D.load(final_files['json']);provenance=D.load(proof['path']);end=report['body_frames']
+        evidence=[spec(report_path),spec(files/f'{n}-status.json'),spec(files/f'{n}-summary-verification.json'),proof,spec(dest/'actual-lossless-packet-proof.json'),spec(dest/'actual-job-artifact-binding.json')]
+        if (dest/'actual-native-job.log').stat().st_size:
+            evidence.append(spec(dest/'actual-native-job.log'))
+        if inline:
+            evidence.extend(spec(path)for path in inline['extra_evidence_local_files'])
+            if inline.get('explicit_approved_video_layout'):evidence.append(config['video_layout_approval'])
+        image={'source_id':n,'new_id':images[n]['new_id'],'approved':True,'book_source_sha256':images[n]['sha256'],**spec(root/f'{n}-插图4K.png'),'native_source':spec(images[n]['approved_book_illustration_path'])}
+        stills=[{**spec(preview_path(root,row)),'kind':'body_end'if row['label']=='body-last'else('illustration'if row['label'].startswith('illustration')else'summary'),'frame':row['frame'],'video_sha256':D.digest(final),'decoded_from_actual_mp4':True}for row in report['decoded_frame_previews']]
+        chain={'canonical_video_sha256':D.digest(canonical),'final_video_sha256':D.digest(final),'audio_packet_times_identical':report['aac_packet_payload_and_absolute_timings_identical']}
+        for role,audio in [('canonical',native_audio),('final',final_audio)]:
+            for key in ('aac_adts_sha256','packet_projection_sha256','packet_count'):chain[role+'_'+key]=audio[key]
+        qc={'article':n,'status':'passed'if report['passed']and report['production_delivery_eligible']else'failed','actual_new_mp4':report['source_kind']=='new-canonical-4K','video_sha256':D.digest(final),'video_bytes':final.stat().st_size,'official_run':run,'actual_probe':D.probe(final),
+            'speech_end':{'actual_new_output':True,'measured_from_actual_audio':True,'end_frame':end,'report_sha256':D.digest(files/f'{n}-summary-verification.json')},
+            'illustration':{'decoded_from_actual_mp4':True,'frames':report['illustration_frames'],'start_frame':report['illustration_start_frame'],'width':3840,'height':2160,'approved_illustration_sha256':report['approved_illustration_sha256'],'book_source_sha256':images[n]['sha256'],'preparation':report['illustration_preparation'],
+                            'frame_comparison':{'status':'passed'if report['passed']else'failed','actual_new_output':True,'decoded_from_actual_mp4':True,'frames_checked':report['illustration_frames_checked'],'start_frame':end,'video_sha256':report['video_sha256'],'reference_sha256':image['sha256'],'report_sha256':D.digest(report_path)}},
+            'summary':{'decoded_from_actual_mp4':True,'frames':report['summary_frames'],'start_frame':report['summary_start_frame'],'overflow':False,'normal_font_size':True,'font_px':layout[n]['summary_font_4k_px'],'text_sha256':hashlib.sha256(summary_text(raw_source).encode()).hexdigest(),'approved_request_text_sha256':layout[n]['approved_summary_text_sha256']},
+            'audio':{'canonical_qc':{'tool':'native_official_audio_gates','actual_new_output':True,'status':'passed','canonical_video_sha256':D.digest(canonical),'report_sha256':D.digest(files/f'{n}-status.json')},'repair_applied':False,'lossless_copy':chain},
+            'source_sha256':{'request':{k:v['sha256']for k,v in asked.items()},'final':{k:v['sha256']for k,v in sources.items()}},
+            'source_transform':{'status':provenance['status'],'actual_working_copy':True,'operations':['L19']+(['production_qc_metadata']if any(not p.startswith('/sentences/')for p in provenance['changed_paths'])else[]),'report_sha256':proof['sha256'],'changed_paths':provenance['changed_paths']},
+            'adapter_scope':'Explicit actual native status + raw real postprocessor report field mapping; not fabricated audio-qc.py or unobserved runtime GEN/MD.'}
+        repaired=bool(inline and native_audio['aac_adts_sha256']!=native['accepted_source']['aac_adts_sha256'])
+        # Native inline status preserves an actual dedicated review even when
+        # copied AAC already equals the accepted reference; record repair by
+        # observed bytes, rather than by the article's historical issue list.
+        changed_audio=({n}if repaired else set())if inline else {'10','12','51'}
+        if inline and (n in {'10','12','44','51'}or repaired):
+            raw_path=Path(inline['dedicated_audio_qc_local']);raw_audio=D.load(raw_path)
+            a21=native.get('approved_audio_repair_scope',{}).get('kind')=='one-root-approved-original-release-instead-of-grafted-release'
+            opening27=n=='27'and raw_audio.get('kind')=='exact-two-approved-opening-pieces-controlled-audio-repair'
+            boundary62=n=='62'and raw_audio.get('kind')=='controlled_audio_repair'
+            first34controlled=n in {'05','67'} and raw_audio.get('kind')==('controlled_audio_repair' if n=='05' else 'root-approved-current-source-controlled-audio-repair')
+            first34tool='audio05-tail-qc.py' if n=='05' else 'audio67-controlled-qc.py'
+            binding={'tool':first34tool if first34controlled else('audio62-controlled-qc.py'if boundary62 else('audio27-controlled-qc.py'if opening27 else('audio-a21-qc.py'if a21 else'audio-qc.py'))),'actual_new_output':True,'status':'passed'if raw_audio['passed']else'failed','canonical_video_sha256':D.digest(canonical),'reviewed_canonical_video_sha256':raw_audio['canonical_sha256'],'binding':'reviewed_native_pre_card_then_exact_audio_copy','copy_verification_sha256':D.digest(files/f'{n}-summary-verification.json'),'report_sha256':D.digest(raw_path)}
+            if a21 or opening27 or boundary62:
+                binding.update(program_sha256=raw_audio['program_sha256'],reference_file_sha256=raw_audio['reference_file_sha256'],request_source_sha256=native['approved_audio_repair_scope']['request_source_sha256'])
+            if first34controlled:
+                binding.update(program_sha256=raw_audio['program_sha256'],reference_file_sha256=raw_audio['reference_sha256'],request_source_sha256=native['approved_audio_repair_scope']['request_source_sha256'])
+            qc['audio'].update(canonical_qc=binding,repair_applied=repaired,targeted_review={'article':n,'actual_new_output':True,'status':'passed'if raw_audio['passed']else'failed','canonical_video_sha256':D.digest(canonical),'reviewed_canonical_video_sha256':raw_audio['canonical_sha256'],'binding':binding['binding'],'report_sha256':D.digest(raw_path),'whole_track_loudness_review':bool(raw_audio.get('actual_global'))})
+            if repaired:
+                qc['audio']['controlled_repair']={'status':'passed'if raw_audio['passed']else'failed','actual_new_output':True,'canonical_video_sha256':D.digest(canonical),'reviewed_canonical_video_sha256':raw_audio['canonical_sha256'],'binding':binding['binding'],'report_sha256':D.digest(raw_path),'authorization':'Actual immutable native user-authorization/source request records and approved dedicated acoustic QC retained in evidence.'}
+                if first34controlled:
+                    qc['audio']['controlled_repair'].update(actual_qc_program=first34tool,program_sha256=raw_audio['program_sha256'],approved_native_repair_scope=native['approved_audio_repair_scope'])
+                if boundary62:
+                    qc['audio']['controlled_repair'].update(actual_qc_program='audio62-controlled-qc.py',program_sha256=raw_audio['program_sha256'],approved_native_repair_scope=native['approved_audio_repair_scope'])
+                if opening27:
+                    qc['audio']['controlled_repair'].update(actual_qc_program='audio27-controlled-qc.py',program_sha256=raw_audio['program_sha256'],approved_native_repair_scope=native['approved_audio_repair_scope'])
+                if a21:
+                    qc['audio']['controlled_repair'].update(actual_qc_program='audio-a21-qc.py',program_sha256=raw_audio['program_sha256'],approved_native_repair_scope=native['approved_audio_repair_scope'])
+        config['audio_changed_articles']=sorted(changed_audio)
+        D.write(dest/'actual-qc-v3.json',qc)
+        item={'id':n,'mp4':spec(final),'canonical_mp4':spec(canonical),'qc':spec(dest/'actual-qc-v3.json'),'request_source':asked,'final_source':sources,'illustration':image,'stills':stills,'evidence':evidence}
+        config['articles'].append(item)
+        record=D.validate_article(config,item,old,reorder,images,compose,crop,changed_audio)
+        D.write(dest/'validated-article-record.json',record)
+        validated.append({'id':n,'new_id':record['new_id'],'passed_per_article':True,'bytes':record['bytes'],'sha256':record['sha256'],'actual_aac_packet_count':record['actual_audio_chain']['packet_count'],'canonical_audio_basis':record['canonical_audio_acceptance_basis'],'whole_actual_final_JSON_GEN_roundtrip':True})
+        print(json.dumps(validated[-1],ensure_ascii=False),flush=True)
+    D.write(OUT/'actual-sample-input.json',config)
+    logs={row['id']:{'bytes':(OUT/row['id']/'actual-native-job.log').stat().st_size,'content_available':(OUT/row['id']/'actual-native-job.log').stat().st_size>0,'http_status_observed_by_this_importer':None,'auxiliary_only':True,'state':'acquired_original_log'if(OUT/row['id']/'actual-native-job.log').stat().st_size else'auxiliary_unavailable'}for row in validated}
+    result={'created':datetime.datetime.now(datetime.timezone.utc).isoformat(),'status':'passed_actual_one_article_interface_only','actual_articles':validated,'complete70_release_validated':False,'remaining_articles_not_claimed_passed':69,'published_or_archived_remote':False,'native_job_metadata_actually_acquired_from_GitHub':True,'raw_job_logs_actually_acquired_from_GitHub':all(row['bytes']>0 for row in logs.values()),'raw_job_log_evidence':logs,'original_actual_ZIP_digests_rechecked':True}
+    D.write(OUT/'report.json',result);return result
+
+
