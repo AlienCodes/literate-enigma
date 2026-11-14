@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/dev/shm/review39-hold06-intake/code/validate_single_article_post_only.py", line 87, in <module>
+    validate(p.parse_args())
+  File "/dev/shm/review39-hold06-intake/code/validate_single_article_post_only.py", line 34, in validate
+    folder=ufile.parent;timing_path=folder/(n+'-verification.json');timing=D.load(timing_path);adapted_path=folder/(n+'-summary-verification.json');status_path=folder/(n+'-upstream-summary-status.json');adapted=D.load(adapted_path);status=D.load(status_path)
+                                                                           ^^^^^^^^^^^^^^^^^^^
+  File "/dev/shm/native-inline-engine-reviewed60-v20-077-layout/delivery.py", line 27, in load
+    return json.loads(Path(path).read_text())
+                      ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/dev/shm/review39-hold06-intake/29-verification.json'

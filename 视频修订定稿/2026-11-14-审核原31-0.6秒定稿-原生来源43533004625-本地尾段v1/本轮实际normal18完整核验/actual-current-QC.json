@@ -1,0 +1,201 @@
+{
+  "article": "31",
+  "status": "passed",
+  "actual_new_mp4": true,
+  "video_sha256": "c6cc2bbfb224338bfb64a4f753e065d072ece9c2a022e17a453ebfe515ae64f9",
+  "video_bytes": 15958705,
+  "official_run": {
+    "repository": "AlienCodes/literate-enigma",
+    "run_id": 43533004625,
+    "run_attempt": 1,
+    "status": "completed",
+    "conclusion": "failure",
+    "head_sha": "3e35513ae5379806f6cedd1adcd8c933e0518584",
+    "workflow_path": ".github/workflows/produce-revision-batch4K.yml",
+    "entrypoint": "视频/工具/新管/定稿.sh",
+    "stage": "4K",
+    "canonical_selection": "native_final_official_passed",
+    "artifact_id": 14091285507,
+    "artifact_zip": {
+      "path": "/workspace/work/video-audit70-20261113/next-passed-native/43533004625/31/article31-passed-output.zip",
+      "bytes": 14224651,
+      "sha256": "b0a818899e397b5e459388fa096a816f502d2e3c5c26accd00d907c4747ddeba"
+    },
+    "artifact_zip_sha256": "b0a818899e397b5e459388fa096a816f502d2e3c5c26accd00d907c4747ddeba",
+    "artifact_status_member": "31-status.json",
+    "artifact_mp4_member": "31-4K-读完即转简述2秒.mp4",
+    "artifact_mp4_sha256": "880602cbd3c75bcc425a5b10d3d7b75735ca67daf137d00f64a7a6f1ffc8681f",
+    "job": {
+      "id": 132255480993,
+      "name": "produce (31)",
+      "article": "31",
+      "run_attempt": 1,
+      "status": "completed",
+      "conclusion": "success",
+      "upload_step_name": "仅保留本篇公开成片和核验材料"
+    },
+    "current_final_is_local_tail_derivative": true
+  },
+  "actual_probe": {
+    "width": 3840,
+    "height": 2160,
+    "frames": 4456,
+    "fps": "30/1",
+    "duration_seconds": 148.533333
+  },
+  "speech_end": {
+    "actual_new_output": true,
+    "measured_from_actual_audio": true,
+    "end_frame": 4318,
+    "report_sha256": "e54bec90ee8a7ea4e0cd523bb89c46a03012ec5dfebe69af0a53260f23ac8c60",
+    "endpoint_seconds": 143.93
+  },
+  "illustration": {
+    "decoded_from_actual_mp4": true,
+    "frames": 60,
+    "start_frame": 4336,
+    "width": 3840,
+    "height": 2160,
+    "approved_illustration_sha256": "e5c1f1c08ff2153cffa03b97be8b578a1198f94d53b6eca1fe486b5a8b39ed3d",
+    "book_source_sha256": "e5c1f1c08ff2153cffa03b97be8b578a1198f94d53b6eca1fe486b5a8b39ed3d",
+    "preparation": {
+      "source_id": "31",
+      "new_id": "44",
+      "native_image_sha256": "e5c1f1c08ff2153cffa03b97be8b578a1198f94d53b6eca1fe486b5a8b39ed3d",
+      "native_pixel_dimensions": [
+        1536,
+        1024
+      ],
+      "prepared_png_sha256": "8fb02fc23978993584db5af51c71e6a73ea1639f165d340383455d61b4e1fa7a",
+      "prepared_rgb_sha256": "fc07c186170144ff992cfa08a1bd121352c26b6a71c778ae5b355eef15282a65",
+      "prepared_pixel_dimensions": [
+        3840,
+        2160
+      ],
+      "mode": "contain_blur",
+      "Pillow": "12.3.0",
+      "native_source_crop_box": null,
+      "resampling": "Pillow Image.Resampling.LANCZOS",
+      "same_image_background_gaussian_blur_radius": 64,
+      "derived_in_this_process_from_exact_approved_native_image": true,
+      "generated_or_substituted_artwork": false,
+      "added_text_or_graphics": false,
+      "preparer_program_sha256": "3c6dfe1f25b5d50b4b02cda26b102c27db32913001d1d7c1e27dc4fd2ab38b30",
+      "prepared_image_path": "/dev/shm/source31-user134-hold06-20261114/book44-source31/31-approved-art4K.png"
+    },
+    "frame_comparison": {
+      "status": "passed",
+      "actual_new_output": true,
+      "decoded_from_actual_mp4": true,
+      "frames_checked": 60,
+      "start_frame": 4336,
+      "video_sha256": "c6cc2bbfb224338bfb64a4f753e065d072ece9c2a022e17a453ebfe515ae64f9",
+      "reference_sha256": "8fb02fc23978993584db5af51c71e6a73ea1639f165d340383455d61b4e1fa7a",
+      "report_sha256": "8925fd64b9548ec77d84cd70b2b73fa6c5ab6118147bd2f5bec483c377f3dbc7"
+    }
+  },
+  "summary": {
+    "decoded_from_actual_mp4": true,
+    "frames": 60,
+    "start_frame": 4396,
+    "overflow": false,
+    "normal_font_size": true,
+    "font_px": 119,
+    "text_sha256": "1ae2a7b38196ad5fe9e610272f2a0bb5d198ca9e1dbba978545c56940cb029af",
+    "approved_request_text_sha256": "7f66bd24445f5b53220490b2c4c440507afab71c200b64813f847a6c93779d12"
+  },
+  "audio": {
+    "canonical_qc": {
+      "tool": "native_official_audio_gates",
+      "actual_new_output": true,
+      "status": "passed",
+      "canonical_video_sha256": "880602cbd3c75bcc425a5b10d3d7b75735ca67daf137d00f64a7a6f1ffc8681f",
+      "report_sha256": "ac4d7e0ee31163b5217272b4b6100c80532ce1220be6698b22c34ebfd1b50bab"
+    },
+    "repair_applied": false,
+    "lossless_copy": {
+      "canonical_video_sha256": "880602cbd3c75bcc425a5b10d3d7b75735ca67daf137d00f64a7a6f1ffc8681f",
+      "final_video_sha256": "c6cc2bbfb224338bfb64a4f753e065d072ece9c2a022e17a453ebfe515ae64f9",
+      "audio_packet_times_identical": true,
+      "canonical_aac_adts_sha256": "aa28de85e8e2468cb82087e1748f42bb86b5ad8847cb254bded66cbc5792b2f6",
+      "canonical_packet_projection_sha256": "4a73b7d69e425963a3c548164d8f8afd1fd1fd6fa15cb81f65497f6d5eaeb38d",
+      "canonical_packet_count": 6841,
+      "final_aac_adts_sha256": "aa28de85e8e2468cb82087e1748f42bb86b5ad8847cb254bded66cbc5792b2f6",
+      "final_packet_projection_sha256": "4a73b7d69e425963a3c548164d8f8afd1fd1fd6fa15cb81f65497f6d5eaeb38d",
+      "final_packet_count": 6841
+    }
+  },
+  "source_sha256": {
+    "request": {
+      "json": "d81f8645a1e5663ba8c84668e817cdb218bc6689079fbfd51326b3a7fd3cd384",
+      "gen": "b34c20b8387e4f38c18f2659d0ab3ae66923a7a4b445b99a6f911f58a1654763",
+      "md": "7abd20fed44918dcf01586c056e9d0acd9d2ad3b90aa7d3d403762d9f06d2659"
+    },
+    "final": {
+      "json": "894d5afa8daf71a68e71c46e89679c55150f9668894f84ad2df66336ca6480fb",
+      "gen": "2f15cbb377f8d8eaabd4280546fbd37a5fda39798990f5ff0ac64cf33828bcd9",
+      "md": "7abd20fed44918dcf01586c056e9d0acd9d2ad3b90aa7d3d403762d9f06d2659"
+    }
+  },
+  "source_transform": {
+    "status": "passed",
+    "actual_working_copy": true,
+    "operations": [
+      "L19"
+    ],
+    "report_sha256": "d8e58cc02b319ceff1e68a9a8739e00d8de8ecc4822fe44e6796bc2e1b628463",
+    "changed_paths": [
+      "/sentences/15/chunks/0/note"
+    ]
+  },
+  "adapter_scope": "Explicit actual native status + raw real postprocessor report field mapping; not fabricated audio-qc.py or unobserved runtime GEN/MD.",
+  "preview_only": false,
+  "production_delivery_eligible": true,
+  "local_postprocessing_only": true,
+  "new_native_quality_run_claimed": false,
+  "inherited_full_V3_handoff": {
+    "path": "/workspace/work/video-revision-delivery/next-passed-validated/43533004625/31/archive-handoff.json",
+    "bytes": 22801,
+    "sha256": "9a461a42861364201f3b8b7eedb61522b2dfceebf46287299f33ad32fed730a9"
+  },
+  "body_hold": {
+    "speech_ceiling_frame": 4318,
+    "hold_start_frame": 4318,
+    "hold_end_frame_inclusive": 4335,
+    "held_body_end_frame_exclusive": 4336,
+    "frozen_reference_frame": 4317,
+    "extra_body_frames": 18,
+    "voice_to_picture_seconds": 0.6033333333333334,
+    "actual_decoded_hold_validation": {
+      "last_body_hold_frames": 18,
+      "last_body_hold_seconds": 0.6,
+      "hold_start_frame": 4318,
+      "hold_end_frame_inclusive": 4335,
+      "frozen_reference_frame": 4317,
+      "actual_held_frames_checked": 18,
+      "hold_thumbnail_MAE_each": [
+        4.8225308641975306e-05,
+        4.8225308641975306e-05,
+        4.8225308641975306e-05,
+        8.439429012345679e-05,
+        8.439429012345679e-05,
+        8.439429012345679e-05,
+        8.439429012345679e-05,
+        7.233796296296296e-05,
+        0.00016476980452674898,
+        0.00016476980452674898,
+        0.00016476980452674898,
+        0.00020093878600823043,
+        0.00022907021604938273,
+        0.00022907021604938273,
+        0.00022907021604938273,
+        0.0002451453189300412,
+        0.0002451453189300412,
+        0.0002853330761316872
+      ],
+      "hold_thumbnail_MAE_max": 0.0002853330761316872,
+      "hold_visual_reference": "actual decoded last spoken-page frame before18-frame hold; existing static-page MAE<2 rule"
+    }
+  },
+  "audio_repair_applied_in_this_tail_postprocess": false
+}

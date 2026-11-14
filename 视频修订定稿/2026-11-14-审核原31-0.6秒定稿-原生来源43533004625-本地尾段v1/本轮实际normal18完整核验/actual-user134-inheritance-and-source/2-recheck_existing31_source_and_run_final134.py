@@ -1,0 +1,14 @@
+from pathlib import Path
+import json,subprocess,sys
+sys.path.insert(0,'/dev/shm/native-inline-engine-reviewed60-v20-077-layout')
+import delivery as D
+from derive_final_generator import derive
+O=Path(__file__).parent;W=Path('/dev/shm/book44-source31-user134-hold06-20261114');prior=Path('/workspace/work/video-revision-delivery/next-passed-validated/43533004625/31/archive-handoff.json');h=D.load(prior);cfg=D.load(h['input_path']);item=h['articles'][0]['section'];a=item['request_source'];b=item['final_source'];reqroot=Path(cfg['request_source_root']);finalroot=Path(cfg['final_source_root'])
+for source,root in ((a,reqroot),(b,finalroot)):
+ for kind,s in source.items():D.checked_file(s,root)
+asked=D.load(reqroot/a['json']['path']);final=D.load(finalroot/b['json']['path']);invariants=D.source_invariants(asked,final,'31');md=D.markdown_prose_equivalence((reqroot/a['md']['path']).read_text(),(finalroot/b['md']['path']).read_text(),asked,final,'31',D.visible_tokens,D.require)
+proof=derive(finalroot/b['json']['path'],reqroot/a['json']['path'],reqroot/a['gen']['path'],reqroot/a['md']['path'],'/workspace/work/video-audit70-20261113/next-passed-native/43533004625/31/files/31-status.json',cfg['source_derivation']['original_tools_root'],cfg['source_derivation']['factory']['path'],O/'fresh-source-rederivation');D.require(proof['derived_generator_sha256']==b['gen']['sha256'] and proof['whole_JSON_roundtrip_exact'] is True,'Fresh source31 full JSON and derivedGEN differ')
+D.write(O/'actual-current31-source-GEN-MD-full-invariance-and-roundtrip-proof.json',dict(kind='fresh-existing-source31-request-final-GEN-MD-invariance-and-original-helper-roundtrip',source_id='31',book_order='44',original_native_run=43533004625,original_fullV3_sha256=D.digest(prior),request_sources=a,actual_validated_final_sources=b,current_source_same_as_validated_final=D.digest('/workspace/work/video-audit70-20261113/next-passed-native/43533004625/31/files/31-source.json')==b['json']['sha256'],source_invariants=invariants,markdown_prose_equivalence=md,fresh_original_helper_derivation=proof,original_acoustic_QA_not_rerun=True,no_new_native_source_GEN_execution_or_observed_MD_claim=True))
+r=D.load(W/'ready-book44-source31.json');up=Path(r['upstream_record']).with_name('31-upstream-with-exact-existing-full-V3-reference.json');args=['/workspace/work/video-venv/bin/python',str(O/'code/validate_single_article_post_only.py'),'--upstream-record',str(up),'--tail-report',r['actual_raw_tail_report'],'--mp4',r['actual_final_MP4'],'--boundary-review',str(O/'actual-five-boundary-visual-review.json'),'--output',str(O/'validated/31')]
+with (O/'finalize134.log').open('w') as f:p=subprocess.run(args,stdout=f,stderr=subprocess.STDOUT)
+print(json.dumps(dict(exit_code=p.returncode,log=str(O/'finalize134.log'))));raise SystemExit(p.returncode)
