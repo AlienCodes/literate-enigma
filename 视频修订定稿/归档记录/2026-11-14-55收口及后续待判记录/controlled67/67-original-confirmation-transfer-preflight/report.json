@@ -1,0 +1,407 @@
+{
+  "article": "67",
+  "quality_acceptance": false,
+  "official_native_video_produced": false,
+  "purpose": "unchanged original exact-sample confirmation transfer then original PV scan in private approved-source clone",
+  "program_sha256": "aa277b97d33f1fcfba6eb9c3fc5ffcd8449428449bbf44a6c2789e7c8fe8c49e",
+  "confirmation_migration_program_sha256": "8d12b72841efba01ee1d8855158f56c4cbc4370d151bccf87ab770ece6ba6fde",
+  "original_PV_program_sha256": "1050d1df51eb21ed0dbd19e9a97a8325c4dbfa1f58e9834760f8e5e5ba0b414f",
+  "baseline_source_sha256": "8897cc1c2df1e4672eec3bbff2776d0565afb9c9fe84087a1758ebb15b2a233e",
+  "new_source_sha256": "6839a46ebdb51cdcff6a65ca238efc228f1e114efd1734cee6c994ca659a29cb",
+  "old_expected_PCM_MD5_first12": "c34294a522a7",
+  "source_or_core_or_existing_cache_modified": false,
+  "exact_two_source_full_WAV_AAC_bindings": {
+    "old": {
+      "WAV_sha256": "39f7defdcfad7a4dae00c9677c7998d8f70c984247583e136e09e6efe9392bae",
+      "AAC_ADTS_sha256": "d5d57519d6b60e31eeb92bd1bf0b0505192b49ee9c1e34ae02b5c9ddc9532856",
+      "PCM_file_MD5_first12": "c34294a522a7",
+      "samples": 3510360
+    },
+    "new": {
+      "WAV_sha256": "a134119bc6caf3f1fd167cf7119f3414f44486643ee42ce17a6c9a247f3a9241",
+      "AAC_ADTS_sha256": "e9ea80df817aa07649361244a87ddd96bf88fc56e0a0c7b82f28389064ceec70",
+      "PCM_file_MD5_first12": "10d2c7e14c69",
+      "samples": 3510360
+    }
+  },
+  "original_transfer_exit": 0,
+  "original_transfer_summary": [
+    "67 高亮 S13 第2块 → 96.42（位移 +0.000 s）",
+    "67 确认平移：挪了 31 处，留给人核实 3 处（旧指纹 c34294a522a7 → 新指纹 10d2c7e14c69）",
+    "已写入 scripts/67.json"
+  ],
+  "original_transfer_unmoved_lines": [
+    "67 非人声 117.72–117.74s：新配音里这里已经不报了（移植或接长后不再是孤立的声音），不挪",
+    "67 非人声 14.65–14.73s：新配音里这里已经不报了（移植或接长后不再是孤立的声音），不挪",
+    "67 非人声 14.69–14.70s：新配音里这里已经不报了（移植或接长后不再是孤立的声音），不挪"
+  ],
+  "original_PV_exit": 0,
+  "original_PV_summary": [
+    "67 纯人声核对（配音指纹 10d2c7e14c69）问题数 0"
+  ],
+  "original_PV_BAD_lines": [],
+  "original_PV_selftest_exit": 0,
+  "original_PV_selftest_summary": [
+    "✔ 纯人声核对 自检：28.31s 假呼吸声报出、69.10s 假噗声报出、48.34s 假咔哒声报出、59.92s 开口前假吸气声报出；别处没有多报"
+  ],
+  "actual_original_PV_findings": [
+    {
+      "key": "18.25–18.27s",
+      "kind": "噗声",
+      "start_s": 18.255,
+      "end_s": 18.27,
+      "original_measurements": {
+        "最响dB": -45.4,
+        "重心Hz": 2346,
+        "周期": 0.0,
+        "低频dB": -0.4
+      },
+      "accepted_by_original_PV": true,
+      "original_reason": "",
+      "existing_confirmation_fingerprint": "10d2c7e14c69",
+      "overlaps_changed_S9_part3": false
+    },
+    {
+      "key": "16.66–16.68s",
+      "kind": "孤立杂音",
+      "start_s": 16.66,
+      "end_s": 16.675,
+      "original_measurements": {
+        "最响dB": -34.4,
+        "重心Hz": 3298,
+        "周期": 0.0,
+        "低频dB": -22.9
+      },
+      "accepted_by_original_PV": true,
+      "original_reason": "",
+      "existing_confirmation_fingerprint": "10d2c7e14c69",
+      "overlaps_changed_S9_part3": false
+    },
+    {
+      "key": "32.02–32.08s",
+      "kind": "孤立杂音",
+      "start_s": 32.025,
+      "end_s": 32.08,
+      "original_measurements": {
+        "最响dB": -36.6,
+        "重心Hz": 4035,
+        "周期": 0.17,
+        "低频dB": -16.6
+      },
+      "accepted_by_original_PV": true,
+      "original_reason": "",
+      "existing_confirmation_fingerprint": "10d2c7e14c69",
+      "overlaps_changed_S9_part3": false
+    },
+    {
+      "key": "38.63–38.69s",
+      "kind": "孤立杂音",
+      "start_s": 38.635,
+      "end_s": 38.69,
+      "original_measurements": {
+        "最响dB": -33.7,
+        "重心Hz": 1611,
+        "周期": 0.19,
+        "低频dB": -3.2
+      },
+      "accepted_by_original_PV": true,
+      "original_reason": "",
+      "existing_confirmation_fingerprint": "10d2c7e14c69",
+      "overlaps_changed_S9_part3": false
+    },
+    {
+      "key": "46.30–46.38s",
+      "kind": "呼吸声",
+      "start_s": 46.3,
+      "end_s": 46.385,
+      "original_measurements": {
+        "最响dB": -38.7,
+        "重心Hz": 1957,
+        "周期": 0.26,
+        "低频dB": -8.6
+      },
+      "accepted_by_original_PV": true,
+      "original_reason": "",
+      "existing_confirmation_fingerprint": "10d2c7e14c69",
+      "overlaps_changed_S9_part3": false
+    },
+    {
+      "key": "43.92–43.94s",
+      "kind": "噗声",
+      "start_s": 43.92,
+      "end_s": 43.935,
+      "original_measurements": {
+        "最响dB": -46.7,
+        "重心Hz": 2057,
+        "周期": 0.0,
+        "低频dB": -0.1
+      },
+      "accepted_by_original_PV": true,
+      "original_reason": "",
+      "existing_confirmation_fingerprint": "10d2c7e14c69",
+      "overlaps_changed_S9_part3": false
+    },
+    {
+      "key": "58.13–58.16s",
+      "kind": "孤立杂音",
+      "start_s": 58.135,
+      "end_s": 58.155,
+      "original_measurements": {
+        "最响dB": -48.4,
+        "重心Hz": 4823,
+        "周期": 0.29,
+        "低频dB": -3.9
+      },
+      "accepted_by_original_PV": true,
+      "original_reason": "",
+      "existing_confirmation_fingerprint": "10d2c7e14c69",
+      "overlaps_changed_S9_part3": false
+    },
+    {
+      "key": "77.34–77.44s",
+      "kind": "呼吸声",
+      "start_s": 77.345,
+      "end_s": 77.44,
+      "original_measurements": {
+        "最响dB": -37.7,
+        "重心Hz": 1657,
+        "周期": 0.23,
+        "低频dB": -3.9
+      },
+      "accepted_by_original_PV": true,
+      "original_reason": "",
+      "existing_confirmation_fingerprint": "10d2c7e14c69",
+      "overlaps_changed_S9_part3": false
+    },
+    {
+      "key": "72.71–72.72s",
+      "kind": "噗声",
+      "start_s": 72.71,
+      "end_s": 72.725,
+      "original_measurements": {
+        "最响dB": -32.6,
+        "重心Hz": 460,
+        "周期": 0.0,
+        "低频dB": -1.1
+      },
+      "accepted_by_original_PV": true,
+      "original_reason": "",
+      "existing_confirmation_fingerprint": "10d2c7e14c69",
+      "overlaps_changed_S9_part3": false
+    },
+    {
+      "key": "92.57–92.67s",
+      "kind": "呼吸声",
+      "start_s": 92.56504166666667,
+      "end_s": 92.66504166666667,
+      "original_measurements": {
+        "最响dB": -35.5,
+        "重心Hz": 3288,
+        "周期": 0.21,
+        "低频dB": -5.8
+      },
+      "accepted_by_original_PV": true,
+      "original_reason": "",
+      "existing_confirmation_fingerprint": "10d2c7e14c69",
+      "overlaps_changed_S9_part3": false
+    },
+    {
+      "key": "87.54–87.56s",
+      "kind": "噗声",
+      "start_s": 87.53504166666667,
+      "end_s": 87.55504166666667,
+      "original_measurements": {
+        "最响dB": -47.2,
+        "重心Hz": 2506,
+        "周期": 0.38,
+        "低频dB": -0.4
+      },
+      "accepted_by_original_PV": true,
+      "original_reason": "",
+      "existing_confirmation_fingerprint": "10d2c7e14c69",
+      "overlaps_changed_S9_part3": false
+    },
+    {
+      "key": "102.80–102.88s",
+      "kind": "呼吸声",
+      "start_s": 102.795,
+      "end_s": 102.875,
+      "original_measurements": {
+        "最响dB": -36.4,
+        "重心Hz": 3223,
+        "周期": 0.26,
+        "低频dB": -2.6
+      },
+      "accepted_by_original_PV": true,
+      "original_reason": "",
+      "existing_confirmation_fingerprint": "10d2c7e14c69",
+      "overlaps_changed_S9_part3": false
+    },
+    {
+      "key": "99.11–99.12s",
+      "kind": "噗声",
+      "start_s": 99.11,
+      "end_s": 99.125,
+      "original_measurements": {
+        "最响dB": -33.6,
+        "重心Hz": 1068,
+        "周期": 0.0,
+        "低频dB": -2.8
+      },
+      "accepted_by_original_PV": true,
+      "original_reason": "",
+      "existing_confirmation_fingerprint": "10d2c7e14c69",
+      "overlaps_changed_S9_part3": false
+    },
+    {
+      "key": "102.83–102.84s",
+      "kind": "噗声",
+      "start_s": 102.83,
+      "end_s": 102.845,
+      "original_measurements": {
+        "最响dB": -38.5,
+        "重心Hz": 3454,
+        "周期": 0.0,
+        "低频dB": -1.4
+      },
+      "accepted_by_original_PV": true,
+      "original_reason": "",
+      "existing_confirmation_fingerprint": "10d2c7e14c69",
+      "overlaps_changed_S9_part3": false
+    },
+    {
+      "key": "105.38–105.47s",
+      "kind": "呼吸声",
+      "start_s": 105.38,
+      "end_s": 105.475,
+      "original_measurements": {
+        "最响dB": -37.3,
+        "重心Hz": 2387,
+        "周期": 0.25,
+        "低频dB": -6.9
+      },
+      "accepted_by_original_PV": true,
+      "original_reason": "",
+      "existing_confirmation_fingerprint": "10d2c7e14c69",
+      "overlaps_changed_S9_part3": false
+    },
+    {
+      "key": "122.88–122.97s",
+      "kind": "呼吸声",
+      "start_s": 122.88,
+      "end_s": 122.965,
+      "original_measurements": {
+        "最响dB": -38.5,
+        "重心Hz": 3329,
+        "周期": 0.26,
+        "低频dB": -3.5
+      },
+      "accepted_by_original_PV": true,
+      "original_reason": "",
+      "existing_confirmation_fingerprint": "10d2c7e14c69",
+      "overlaps_changed_S9_part3": false
+    },
+    {
+      "key": "128.46–128.47s",
+      "kind": "噗声",
+      "start_s": 128.46,
+      "end_s": 128.475,
+      "original_measurements": {
+        "最响dB": -44.7,
+        "重心Hz": 2243,
+        "周期": 0.0,
+        "低频dB": -0.3
+      },
+      "accepted_by_original_PV": true,
+      "original_reason": "",
+      "existing_confirmation_fingerprint": "10d2c7e14c69",
+      "overlaps_changed_S9_part3": false
+    },
+    {
+      "key": "128.00–128.06s",
+      "kind": "孤立杂音",
+      "start_s": 128.0,
+      "end_s": 128.06,
+      "original_measurements": {
+        "最响dB": -30.6,
+        "重心Hz": 4491,
+        "周期": 0.16,
+        "低频dB": -19.2
+      },
+      "accepted_by_original_PV": true,
+      "original_reason": "",
+      "existing_confirmation_fingerprint": "10d2c7e14c69",
+      "overlaps_changed_S9_part3": false
+    },
+    {
+      "key": "131.28–131.31s",
+      "kind": "孤立杂音",
+      "start_s": 131.275,
+      "end_s": 131.305,
+      "original_measurements": {
+        "最响dB": -42.0,
+        "重心Hz": 2665,
+        "周期": 0.15,
+        "低频dB": -10.6
+      },
+      "accepted_by_original_PV": true,
+      "original_reason": "",
+      "existing_confirmation_fingerprint": "10d2c7e14c69",
+      "overlaps_changed_S9_part3": false
+    },
+    {
+      "key": "140.21–140.30s",
+      "kind": "呼吸声",
+      "start_s": 140.21,
+      "end_s": 140.3,
+      "original_measurements": {
+        "最响dB": -35.2,
+        "重心Hz": 1706,
+        "周期": 0.25,
+        "低频dB": -2.9
+      },
+      "accepted_by_original_PV": true,
+      "original_reason": "",
+      "existing_confirmation_fingerprint": "10d2c7e14c69",
+      "overlaps_changed_S9_part3": false
+    },
+    {
+      "key": "144.17–144.26s",
+      "kind": "呼吸声",
+      "start_s": 144.17,
+      "end_s": 144.265,
+      "original_measurements": {
+        "最响dB": -36.3,
+        "重心Hz": 1591,
+        "周期": 0.31,
+        "低频dB": -6.2
+      },
+      "accepted_by_original_PV": true,
+      "original_reason": "",
+      "existing_confirmation_fingerprint": "10d2c7e14c69",
+      "overlaps_changed_S9_part3": false
+    },
+    {
+      "key": "141.00–141.03s",
+      "kind": "噗声",
+      "start_s": 141.005,
+      "end_s": 141.03,
+      "original_measurements": {
+        "最响dB": -31.0,
+        "重心Hz": 4760,
+        "周期": 0.28,
+        "低频dB": -1.2
+      },
+      "accepted_by_original_PV": true,
+      "original_reason": "",
+      "existing_confirmation_fingerprint": "10d2c7e14c69",
+      "overlaps_changed_S9_part3": false
+    }
+  ],
+  "actual_remaining_original_PV_bad_keys": [],
+  "confirmation_only_changed_in_private_clone": true,
+  "manual_CF_added_or_reconfirmed": false,
+  "only_original_exact_sample_mapper_mutated_private_confirmations": true,
+  "private_generated_PCM_AAC_and_source_clone_deleted": true,
+  "no_raw_GT_cache_or_PCM_exported": true
+}

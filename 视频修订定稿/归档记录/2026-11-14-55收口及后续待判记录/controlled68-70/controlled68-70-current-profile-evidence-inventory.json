@@ -1,0 +1,403 @@
+{
+ "kind": "readonly68-70-current-controlled-profile-safe-scalar-inventory",
+ "created_utc": "2026-11-14T06:16:42.059118+00:00",
+ "quality_acceptance": false,
+ "production_delivery_eligible": false,
+ "root_approval_of_new_profiles_claimed": false,
+ "source_QC_reference_or_gain_fields_modified": false,
+ "private_audio_or_cache_opened_or_reconstructed": false,
+ "new_measurement_or_source_fitting_performed": false,
+ "reference_path": "/workspace/work/video-revision-batch-ci/.github/video-revision-batch/audio-controlled-qc-reference.json",
+ "reference_sha256_before_after": "1c0e529e05eb41b56087dd5bbcf906858ad6f10f46d855178de08206b0e580ee",
+ "QC_program_path": "/workspace/work/video-revision-batch-ci/.github/video-revision-batch/audio-controlled-qc.py",
+ "QC_program_sha256_before_after": "3d830350b30bcb818ce9e46a5e52ee722ef8b87aa2a5f1c3c4aff3e33d82ae12",
+ "causal_proposal_path": "/workspace/work/video-audit70-20261113/readonly-audio48-67-68-70-43543967031/causal-gain-and-approved-post-change-ranges67-68-70.json",
+ "causal_proposal_sha256": "a1ac39518bcdbd92528d16b8b61456d11a99be363e37270849cf8835b60539bf",
+ "causal_proposal_applied_to_QC_or_source": false,
+ "summary": {
+  "exact_current_fingerprint_and_fulltrack_R_health_pairs_available_for": [
+   "68",
+   "70"
+  ],
+  "actual_producer_piece_metadata_available_not_missing": {
+   "68": 38,
+   "70": 40
+  },
+  "pitch_comparison_missing_for": [
+   "68",
+   "70"
+  ],
+  "pending_profiles_remain_disabled": [
+   "68",
+   "70"
+  ]
+ },
+ "minimal_specific_missing_for_audio_ci": [
+  "Actual producer metadata is ALREADY present (68:19 sentences/38 pieces;70:18/40) at the listed native JSON pointer with original segment-record SHA; no private producer directory export is needed.",
+  "Missing: direct pitch comparison of title plus every sentence on exact current hash-bound audio vs old accepted anchor. Existing67 rule: >10 voiced pairs, median absolute cents<=40 and p90<=150; no such68/70 result is in the scoped current reports.",
+  "Native diagnostic full working-source SHA differs from request SHA for both68/70; full post-G35 working documents are not present in this scoped public evidence. Obtain/freeze exact actual nonreview variants rather than broadly ignoring any content or control keys.",
+  "Existing helper unconditionally applies67 S9-third-piece boundary test.70 S9 has only2 pieces;68 S9 has5 but causal changed pieces are1/2/4/5. Map each article’s actual targets under unchanged original rules before enabling its profile.",
+  "68/70 complete profiles and their real controlled positive/adversarial audits remain pending-root-review; preserve all current gain/ramp fields, and do not stack historical post-AAC repair windows or restore old gains."
+ ],
+ "articles": [
+  {
+   "source_id": "68",
+   "profile_state_unchanged": {
+    "state": "pending-root-exact-profile-and-reference-review",
+    "enabled": false
+   },
+   "exact_fingerprints": {
+    "current_request_source_sha256": "568f72dacac48e206811d35a57c7fa22e3da428783f64e507c184f2090e579f3",
+    "current_request_generator_sha256": "0a964f368cb28898c1ff7fef8721e509e1de9ab890c8770bfabaa81029ef6deb",
+    "native_raw_WAV_sha256": "91cdc512b6af36698f482052fe4499c3d4a25dfa42786f11aa71061c5e63313b",
+    "native_canonical_MP4_sha256_reported_in_native_status": "84bb911a6739ecdf5edc45fef72f6636ad1dae65a358f37dc6793c16701d70ea",
+    "native_canonical_AAC_ADTS_sha256": "25d35cb1eb11540ac282b575628ed94d2d9cdbb9dc528d6880adf946f93f5da9",
+    "old_accepted_MP4_sha256": "2f0714a25bde75b30a5af5273edad433467957baec359cca4b55b0a7b9a3b1ad",
+    "old_accepted_AAC_ADTS_sha256": "8e0b3f960413e498b1715e0006d5f3a848a0f4c3b29115547a8eee0cb2e7fc53"
+   },
+   "old_accepted_public_MP4_path": "/workspace/work/video-audit70-20261113/readonly-audio48-67-68-70-43543967031/68/68-accepted-public.mp4",
+   "current_native_public_MP4_path_in_scoped_evidence": null,
+   "current_native_public_MP4_missing_reason": "Native status failed_current_video.exported=false (script fingerprint mismatch); current native container SHA and exact whole WAV/AAC reconstruction bindings are available, no substitute media is claimed.",
+   "native_outcome": {
+    "run_id": 43543967031,
+    "original_canonical_pipeline_passed": true,
+    "outer_status_passed": false,
+    "outer_failure": "Canonical AAC differs from the accepted prior voice.",
+    "native_video_exported": false,
+    "fingerprint_mismatch_fields": [
+     "脚本"
+    ],
+    "current_audio_equals_old_accepted_AAC": false
+   },
+   "causal_changed_units": {
+    "columns": [
+     "sentence",
+     "segment",
+     "native_span_seconds",
+     "old_effective_dB",
+     "current_effective_dB",
+     "nominal_delta_dB"
+    ],
+    "rows": [
+     [
+      "S2",
+      2,
+      [
+       14.751,
+       15.31
+      ],
+      -2.0,
+      -1.0,
+      1.0
+     ],
+     [
+      "S9",
+      1,
+      [
+       59.05,
+       60.49
+      ],
+      -1.0,
+      0,
+      1.0
+     ],
+     [
+      "S9",
+      2,
+      [
+       60.89,
+       62.515
+      ],
+      1.0,
+      0,
+      -1.0
+     ],
+     [
+      "S9",
+      4,
+      [
+       65.33,
+       67.91
+      ],
+      0,
+      -1.0,
+      -1.0
+     ],
+     [
+      "S9",
+      5,
+      [
+       68.29,
+       70.135
+      ],
+      2.0,
+      1.0,
+      -1.0
+     ]
+    ]
+   },
+   "historical_approved_postencoding_windows": [],
+   "historical_windows_are_objectives_not_gains_to_stack_again": true,
+   "actual_producer_all_piece_metadata": {
+    "available": true,
+    "missing": false,
+    "evidence_path": "/workspace/work/video-audit70-20261113/readonly-audio48-67-68-70-43543967031/68/68-reference-gain-diagnostic.json",
+    "evidence_sha256": "11bf538f7c3253fa1ff40ba85b425e8ab675d3e550a9fea374bcd2d1bf86b5b3",
+    "JSON_pointer": "/public_producer_timing_metadata/segments",
+    "original_segment_record_sha256": "e7d90015c2d99fabd86ed63461be2054acd1302971a2e3a9d4dd915d57899a63",
+    "sentence_count": 19,
+    "piece_count": 38,
+    "each_piece_fields": [
+     "段",
+     "增益",
+     "停顿",
+     "时刻"
+    ],
+    "actual_native_source_sha256_recorded_in_diagnostic": "e7b05316b10b584981af784aac4aa7c74dc9e0f2786923519d92df845e7c5a9b",
+    "actual_WAV_sha256_same_as_current_native": true,
+    "S9_piece_count": 5
+   },
+   "actual_original_R_and_health": {
+    "binding_path": "/workspace/work/video-audit70-20261113/readonly-audio48-67-68-70-43543967031/68/actual-native-hash-bound-fulltrack-measurement/68-actual-native-binding-and-limitations.json",
+    "binding_sha256": "bd114261d0942b6f1bb5e92ab0532b58e3a1641cb50755762e303b98ed417dc6",
+    "report_path": "/workspace/work/video-audit70-20261113/readonly-audio48-67-68-70-43543967031/68/actual-native-hash-bound-fulltrack-measurement/68-audio-audit.json",
+    "report_sha256": "9985096298c289b26f8e29451227a96072d8fffa3defc9d3cd8d5ce0566bc800",
+    "exact_whole_WAV_and_AAC_matched_actual_native": true,
+    "original_numeric_checks_passed": true,
+    "numeric_failures": [],
+    "health_failures": [],
+    "health_metric_count": 8,
+    "original_R_summary": "全片 -22.6 LUFS，峰值 -0.4 dBFS，19 句，逐句与全片差 -1.5～+0.7 LU",
+    "original_R_failures": [],
+    "body_sentence_count": 19,
+    "title_plus_body_voice_spans": 20,
+    "mapping_includes_S1_and_every_body_sentence": true,
+    "within_sentence_failures": [],
+    "preservation_failures_expected_due_real_audio_change": [
+     "Decoded audio or encoded AAC packets/timing changed from immutable BASE."
+    ],
+    "quality_acceptance": false,
+    "new_ASR_performed": false
+   },
+   "gaps": {
+    "title_and_every_sentence_pitch_comparison_missing_from_scoped_current_reports": true,
+    "actual_post_G35_full_working_source_document_missing_from_scoped_public_evidence": true,
+    "request_source_SHA_differs_from_native_diagnostic_actual_working_source_SHA": true,
+    "root_approved_complete_current_controlled_profile_not_yet_enabled": true,
+    "real_controlled_helper_positive_and_adversarial_validation_for_this_article_not_yet_present": true
+   }
+  },
+  {
+   "source_id": "70",
+   "profile_state_unchanged": {
+    "state": "pending-root-exact-profile-and-reference-review",
+    "enabled": false
+   },
+   "exact_fingerprints": {
+    "current_request_source_sha256": "0f6827f02cef0d2416f9d7d69b7e1c5553acee7cf6dc89f3379201264587236c",
+    "current_request_generator_sha256": "d44d996f471b6d640ecc35f3c255fa919ddd87ef6f9bae22bfd4db745b6761c1",
+    "native_raw_WAV_sha256": "950829b17bedc5ac103b93bb9b488a712163800bbf5c392bf1163b381cd61f34",
+    "native_canonical_MP4_sha256_reported_in_native_status": "e35b011061961fb759f00639d331912e04cc77d499db697a398dd8ef5cb1b40a",
+    "native_canonical_AAC_ADTS_sha256": "6b3fa39185d897196cd171ad04d0565aa1384518e8388c27bf9c68bee3df7ec9",
+    "old_accepted_MP4_sha256": "b7a37a1ccb0e6c12229da9a0e1c6ff8c3df941f7dd15105e469859c5ff162985",
+    "old_accepted_AAC_ADTS_sha256": "ac0fcb5c0a8583e310ce129b8e6bec1841677519acd8b4c6516c033fbea82250"
+   },
+   "old_accepted_public_MP4_path": "/workspace/work/video-audit70-20261113/readonly-audio48-67-68-70-43543967031/70/70-accepted-public.mp4",
+   "current_native_public_MP4_path_in_scoped_evidence": null,
+   "current_native_public_MP4_missing_reason": "Native status failed_current_video.exported=false (script fingerprint mismatch); current native container SHA and exact whole WAV/AAC reconstruction bindings are available, no substitute media is claimed.",
+   "native_outcome": {
+    "run_id": 43543967031,
+    "original_canonical_pipeline_passed": true,
+    "outer_status_passed": false,
+    "outer_failure": "Canonical AAC differs from the accepted prior voice.",
+    "native_video_exported": false,
+    "fingerprint_mismatch_fields": [
+     "脚本"
+    ],
+    "current_audio_equals_old_accepted_AAC": false
+   },
+   "causal_changed_units": {
+    "columns": [
+     "sentence",
+     "segment",
+     "native_span_seconds",
+     "old_effective_dB",
+     "current_effective_dB",
+     "nominal_delta_dB"
+    ],
+    "rows": [
+     [
+      "S2",
+      1,
+      [
+       11.62,
+       14.28
+      ],
+      0,
+      -1.0,
+      -1.0
+     ],
+     [
+      "S2",
+      2,
+      [
+       14.66,
+       17.0355
+      ],
+      0,
+      -1.0,
+      -1.0
+     ],
+     [
+      "S2",
+      3,
+      [
+       17.4255,
+       18.405
+      ],
+      0,
+      1.0,
+      1.0
+     ],
+     [
+      "S2",
+      4,
+      [
+       18.785,
+       19.455
+      ],
+      0,
+      1.0,
+      1.0
+     ],
+     [
+      "S8",
+      1,
+      [
+       55.55,
+       56.54
+      ],
+      -3.5,
+      -1.5,
+      2.0
+     ],
+     [
+      "S12",
+      1,
+      [
+       84.15,
+       85.295
+      ],
+      -2.0,
+      0,
+      2.0
+     ],
+     [
+      "S12",
+      2,
+      [
+       85.675,
+       92.79
+      ],
+      2.0,
+      0,
+      -2.0
+     ],
+     [
+      "S14",
+      1,
+      [
+       96.3,
+       97.31
+      ],
+      -4.5,
+      -3.0,
+      1.5
+     ],
+     [
+      "S15",
+      2,
+      [
+       110.815,
+       112.235
+      ],
+      0,
+      2.0,
+      2.0
+     ]
+    ]
+   },
+   "historical_approved_postencoding_windows": [
+    {
+     "sentence": "S12",
+     "phrase": "Mailings doubled",
+     "start": 84.0,
+     "attack_end": 84.05,
+     "release_start": 85.48,
+     "end": 85.53,
+     "gain_db": 2.2,
+     "role": "suppressed-phrase-repair"
+    },
+    {
+     "sentence": "S13",
+     "phrase": "The design had a drawback.",
+     "start": 93.6,
+     "attack_end": 93.65,
+     "release_start": 95.5,
+     "end": 95.55,
+     "gain_db": 0.4,
+     "role": "adjacent-short-sentence-balance"
+    }
+   ],
+   "historical_windows_are_objectives_not_gains_to_stack_again": true,
+   "actual_producer_all_piece_metadata": {
+    "available": true,
+    "missing": false,
+    "evidence_path": "/workspace/work/video-audit70-20261113/readonly-audio48-67-68-70-43543967031/70/70-reference-gain-diagnostic.json",
+    "evidence_sha256": "3a457af8b2520206fa06d7ed55f9335d79f2f2006a95712c923e50ba1d8034be",
+    "JSON_pointer": "/public_producer_timing_metadata/segments",
+    "original_segment_record_sha256": "e2b78813a7804456f0e2a8997434b28b2bbe7db18d41ba7888a93de9a8a17b4b",
+    "sentence_count": 18,
+    "piece_count": 40,
+    "each_piece_fields": [
+     "段",
+     "增益",
+     "停顿",
+     "时刻"
+    ],
+    "actual_native_source_sha256_recorded_in_diagnostic": "7d598893bf53016d2a2fba6b0b6aeb0817f31e8ca0e932525e45042591407d9f",
+    "actual_WAV_sha256_same_as_current_native": true,
+    "S9_piece_count": 2
+   },
+   "actual_original_R_and_health": {
+    "binding_path": "/workspace/work/video-audit70-20261113/readonly-audio48-67-68-70-43543967031/70/actual-native-hash-bound-fulltrack-measurement/70-actual-native-binding-and-limitations.json",
+    "binding_sha256": "07b3dc14921a29685fb14378a04cbc6c3ab6a40e0de5273996849883dbbebce8",
+    "report_path": "/workspace/work/video-audit70-20261113/readonly-audio48-67-68-70-43543967031/70/actual-native-hash-bound-fulltrack-measurement/70-audio-audit.json",
+    "report_sha256": "36898b11f1d023dd982b98345309b1aadb88704aeda963373bafa53fb10adc83",
+    "exact_whole_WAV_and_AAC_matched_actual_native": true,
+    "original_numeric_checks_passed": true,
+    "numeric_failures": [],
+    "health_failures": [],
+    "health_metric_count": 8,
+    "original_R_summary": "全片 -22.9 LUFS，峰值 -0.7 dBFS，18 句，逐句与全片差 -1.2～+0.7 LU",
+    "original_R_failures": [],
+    "body_sentence_count": 18,
+    "title_plus_body_voice_spans": 19,
+    "mapping_includes_S1_and_every_body_sentence": true,
+    "within_sentence_failures": [],
+    "preservation_failures_expected_due_real_audio_change": [
+     "Decoded audio or encoded AAC packets/timing changed from immutable BASE."
+    ],
+    "quality_acceptance": false,
+    "new_ASR_performed": false
+   },
+   "gaps": {
+    "title_and_every_sentence_pitch_comparison_missing_from_scoped_current_reports": true,
+    "actual_post_G35_full_working_source_document_missing_from_scoped_public_evidence": true,
+    "request_source_SHA_differs_from_native_diagnostic_actual_working_source_SHA": true,
+    "root_approved_complete_current_controlled_profile_not_yet_enabled": true,
+    "real_controlled_helper_positive_and_adversarial_validation_for_this_article_not_yet_present": true
+   }
+  }
+ ]
+}

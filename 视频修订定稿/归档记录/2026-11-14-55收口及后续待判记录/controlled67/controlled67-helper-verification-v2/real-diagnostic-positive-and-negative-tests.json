@@ -1,0 +1,62 @@
+{
+  "kind": "real-G72-cache-reconstruction-diagnostic-positive-and-adversarial-checks",
+  "quality_acceptance": false,
+  "official_native_video_produced": false,
+  "program_sha256": "3d830350b30bcb818ce9e46a5e52ee722ef8b87aa2a5f1c3c4aff3e33d82ae12",
+  "reference_sha256": "1c0e529e05eb41b56087dd5bbcf906858ad6f10f46d855178de08206b0e580ee",
+  "tests": [
+    {
+      "case": "actual-current-source-G72-reconstruction-complete-diagnostic-audit",
+      "passed": true,
+      "actual_report": "/workspace/work/video-audit70-20261113/readonly-audio48-67-68-70-43543967031/controlled67-helper-verification-v2/67-actual-diagnostic-positive.json",
+      "actual_report_sha256": "865529bff142b30f97cd9261dfeac7f0aa7bd866d54811744858d7bfc74cde79",
+      "failed_checks": [],
+      "error": null
+    },
+    {
+      "case": "actual-decoded-outside-voiced-block-plus6dB-rejected-numerically",
+      "passed": true,
+      "failed_checks": [
+        "outside-approved-ranges-same-voice-timing-gain",
+        "every-untouched-active-one-second-block-preserved"
+      ]
+    },
+    {
+      "case": "real-decoded-sample-clipping-rejected-original-no-clip-rule",
+      "passed": true,
+      "sample_peak": 1.1
+    },
+    {
+      "case": "actual-full-source-changed-effective-gain-rejected",
+      "passed": true,
+      "actual_report": "/workspace/work/video-audit70-20261113/readonly-audio48-67-68-70-43543967031/controlled67-helper-verification-v2/67-wrong-effective-control-negative.json",
+      "actual_report_sha256": "4f1c40f5d702ecb9772171bff1eedbbffcd8f6a57d6df71ec774d33a6059397c",
+      "failed_checks": [
+        "actual-entire-nonreview-source-exact-approved-document",
+        "all-approved-audio-controls-exact"
+      ],
+      "error": null
+    },
+    {
+      "case": "68-pending-profile-fail-closed",
+      "passed": true,
+      "actual_report_sha256": "b77e0d4ca14ba5079db97622bad9250c95ca4fd62da280189c35d4e12293b7ad",
+      "error": {
+        "type": "ValueError",
+        "detail": "Article profile is pending; no approved complete profile is enabled."
+      }
+    },
+    {
+      "case": "70-pending-profile-fail-closed",
+      "passed": true,
+      "actual_report_sha256": "79a4a59e013b94de549775051955372bce87fefe74e0bb636a7065cecd4ee943",
+      "error": {
+        "type": "ValueError",
+        "detail": "Article profile is pending; no approved complete profile is enabled."
+      }
+    }
+  ],
+  "private_generated_test_audio_deleted": true,
+  "no_TTS_inference_no_source_or_cache_or_official_core_changes": true,
+  "all_tests_passed": true
+}
