@@ -1,0 +1,97 @@
+{
+  "article": "26",
+  "book_order": "27",
+  "kind": "two-user-requested-focus-only-source-proposal",
+  "quality_acceptance": false,
+  "before_source_sha256": "ab663b240eb5e27923f38e2ff296c0196e3d820766d0c909adb9faf19aa3cac9",
+  "after_source_sha256": "22349b0a29f05689aae5bd5e9d0907846a68e6ad42949eb0b8cc392d6dce18d6",
+  "generator_sha256": "c5a529ca845f3435f78522ab8b51319a8903839fbe1cb271e0afab4ad0d45475",
+  "manuscript_sha256": "f64089bc9487e756522746058fba2e27c45e56ffc339d8590038643012eb496d",
+  "all_spoken_English_chunk_boundaries_exact": true,
+  "all_other_non_sentence_controls_exact": true,
+  "full_last_summary_note_exact": true,
+  "exact_JSON_diff": [
+    {
+      "path": "/allow_clash",
+      "reason": "list_length",
+      "expected_length": 1,
+      "actual_length": 3
+    },
+    {
+      "path": "/allow_clash/1",
+      "reason": "unexpected_item",
+      "actual": "gestures"
+    },
+    {
+      "path": "/allow_clash/2",
+      "reason": "unexpected_item",
+      "actual": "linguist"
+    },
+    {
+      "path": "/sentences/3/chunks/1/align/3/0",
+      "reason": "value",
+      "expected": "of gestures",
+      "actual": "of **gestures**"
+    },
+    {
+      "path": "/sentences/3/chunks/1/align/3/1",
+      "reason": "value",
+      "expected": "手势，",
+      "actual": "**手势**(gestures)，"
+    },
+    {
+      "path": "/sentences/3/chunks/1/en",
+      "reason": "value",
+      "expected": "sharing a **homemade** **repertoire** of gestures with parents and **siblings**.",
+      "actual": "sharing a **homemade** **repertoire** of **gestures** with parents and **siblings**."
+    },
+    {
+      "path": "/sentences/3/chunks/1/zh",
+      "reason": "value",
+      "expected": "共用**自制的**(homemade)**一整套/全部**(repertoire)手势，在父母和**兄弟姐妹**(siblings)之间。",
+      "actual": "共用**自制的**(homemade)**一整套/全部**(repertoire)**手势**(gestures)，在父母和**兄弟姐妹**(siblings)之间。"
+    },
+    {
+      "path": "/sentences/15/chunks/0/align/0/0",
+      "reason": "value",
+      "expected": "Linguists",
+      "actual": "**Linguists**"
+    },
+    {
+      "path": "/sentences/15/chunks/0/align/0/1",
+      "reason": "value",
+      "expected": "语言学家",
+      "actual": "**语言学家**(Linguists)"
+    },
+    {
+      "path": "/sentences/15/chunks/0/en",
+      "reason": "value",
+      "expected": "Linguists had a rare chance to watch a language grow from **infancy** to **maturity**.",
+      "actual": "**Linguists** had a rare chance to watch a language grow from **infancy** to **maturity**."
+    },
+    {
+      "path": "/sentences/15/chunks/0/zh",
+      "reason": "value",
+      "expected": "语言学家难得有机会看着一门语言从**婴儿期**(infancy)长到**成熟期**(maturity)。",
+      "actual": "**语言学家**(Linguists)难得有机会看着一门语言从**婴儿期**(infancy)长到**成熟期**(maturity)。"
+    }
+  ],
+  "auth_entries": [
+    {
+      "篇": "26",
+      "日期": "2026-11-10",
+      "原话": "不用管，这个就是我清点的词，我清点的词不用管，撞不撞车，全都留，全都留，全都特批。我专门说的这个加为重点词汇的这个所有的词全都这个重点特批。",
+      "用于": "allow_clash.gestures / linguist（2026-11-14用户本篇指定新增S4 gestures手势与S16 Linguists语言学家重点；保复数和大小写，linguist沿用原词表词头）",
+      "来源": "沿用真实通用特批；本轮具体截图和原话见USER-REVIEW-2026-11-14-012及013.json；其他篇原重点词不变"
+    },
+    {
+      "篇": "26",
+      "日期": "2026-11-14",
+      "原话": "孩子们发明的语言这一篇就可以进行4k定稿了。",
+      "用于": "本篇gestures手势与Linguists语言学家两项重点修改后重新生成4K定稿；仅原26/书27",
+      "来源": "/workspace/work/first50-review-release/USER-REVIEW-2026-11-14-014.json",
+      "来源文件SHA256": "8628367b6ef85a0d6b12479ed347cc4709e8fd8d1c6c823506fae0f1bbb075e4"
+    }
+  ],
+  "created_utc": "2026-11-14T06:51:56.702471+00:00"
+}
