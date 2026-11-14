@@ -1,0 +1,191 @@
+{
+  "article": "13",
+  "book_order": "23",
+  "source_freeze_complete": true,
+  "created_utc": "2026-11-14T06:47:57.279464+00:00",
+  "two_user_feedback_implemented": true,
+  "source_JSON_sha256": "c22ccc9eb34a92380ecbd2ea72189db492264c4730141c73024685b3fca5fd1e",
+  "GEN_sha256": "1188b0bf86a5c0549a25c3e0aeb5cc27e9c2798ba3c3988e63c258a8bdaefb07",
+  "MD_sha256": "41998b355721703f761685dd351fbf4628b2be67dfed8b3d37276f9e8f929ecb",
+  "GEN_sources_sha256": "1188b0bf86a5c0549a25c3e0aeb5cc27e9c2798ba3c3988e63c258a8bdaefb07",
+  "files_applied": [
+    {
+      "path": "/workspace/work/video-audit70-20261113/payload/视频/脚本/13.json",
+      "before_sha256": "3687b6c42a6d524d0d7e40a47ed02c37b18abe8d524db4f5914abad52019a63c",
+      "after_sha256": "c22ccc9eb34a92380ecbd2ea72189db492264c4730141c73024685b3fca5fd1e",
+      "bytes": 51321
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/payload/视频/工具/初稿生成/gen13.py",
+      "before_sha256": "769972cf2a0324fd7544a0d3c0186b3d06a25fe86829ab95c6cc1960b1f43160",
+      "after_sha256": "1188b0bf86a5c0549a25c3e0aeb5cc27e9c2798ba3c3988e63c258a8bdaefb07",
+      "bytes": 43339
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/payload/新版定稿/13-eleven-days-without-sleep.md",
+      "before_sha256": "72b842de127132e386e9e52a1719ec96765e94958f56687987f53e2801c69704",
+      "after_sha256": "41998b355721703f761685dd351fbf4628b2be67dfed8b3d37276f9e8f929ecb",
+      "bytes": 16930
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/payload/视频/制作记录/13_待改清单.md",
+      "before_sha256": "e53d4e6bedbf30866bb2dc14b1b9f764b206626688c5da7cc6e9a62046d9f86a",
+      "after_sha256": "6363262346a1da560387acc3392c74ccb084c7d5b3c26183848b126ecd09fa7b",
+      "bytes": 21436
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/gen-sources/gen13.py",
+      "before_sha256": "5ca2ab49e4d46b02bc670c07fef996f64885a85286fb0988e19e4244d9c61a52",
+      "after_sha256": "1188b0bf86a5c0549a25c3e0aeb5cc27e9c2798ba3c3988e63c258a8bdaefb07",
+      "bytes": 43339
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/payload/视频/工具/用户同意记录.json",
+      "before_sha256": "c92628031e388afc91b69b193999581e55f5187413b642ffd5ac4a827fff3c49",
+      "after_sha256": "b055a106cf8cf82387ae489b29eb8c18ee041f5c8704a3ee9a5a153746d4c9e8",
+      "scope": "Only two exact article13 consent records appended; unrelated current records retained."
+    }
+  ],
+  "exact_JSON_diff": [
+    {
+      "path": "/allow_clash",
+      "reason": "list_length",
+      "expected_length": 2,
+      "actual_length": 4
+    },
+    {
+      "path": "/allow_clash/2",
+      "reason": "unexpected_item",
+      "actual": "logged"
+    },
+    {
+      "path": "/allow_clash/3",
+      "reason": "unexpected_item",
+      "actual": "Guinness World Records"
+    },
+    {
+      "path": "/sentences/1/chunks/2/align",
+      "reason": "list_length",
+      "expected_length": 2,
+      "actual_length": 3
+    },
+    {
+      "path": "/sentences/1/chunks/2/align/0/0",
+      "reason": "value",
+      "expected": "and logged",
+      "actual": "and"
+    },
+    {
+      "path": "/sentences/1/chunks/2/align/0/1",
+      "reason": "value",
+      "expected": "并记录了",
+      "actual": "并"
+    },
+    {
+      "path": "/sentences/1/chunks/2/align/1/0",
+      "reason": "value",
+      "expected": "his **mood**.",
+      "actual": "**logged**"
+    },
+    {
+      "path": "/sentences/1/chunks/2/align/1/1",
+      "reason": "value",
+      "expected": "他的**情绪**(mood)。",
+      "actual": "**记录了**(logged)"
+    },
+    {
+      "path": "/sentences/1/chunks/2/align/2",
+      "reason": "unexpected_item",
+      "actual": [
+        "his **mood**.",
+        "他的**情绪**(mood)。"
+      ]
+    },
+    {
+      "path": "/sentences/1/chunks/2/en",
+      "reason": "value",
+      "expected": "and logged his **mood**.",
+      "actual": "and **logged** his **mood**."
+    },
+    {
+      "path": "/sentences/1/chunks/2/zh",
+      "reason": "value",
+      "expected": "并记录了他的**情绪**(mood)。",
+      "actual": "并**记录了**(logged)他的**情绪**(mood)。"
+    },
+    {
+      "path": "/sentences/14/chunks/0/align/1/0",
+      "reason": "value",
+      "expected": "Guinness World Records",
+      "actual": "**Guinness World Records**"
+    },
+    {
+      "path": "/sentences/14/chunks/0/align/1/1",
+      "reason": "value",
+      "expected": "吉尼斯世界纪录",
+      "actual": "**吉尼斯世界纪录**(Guinness World Records)"
+    },
+    {
+      "path": "/sentences/14/chunks/0/en",
+      "reason": "value",
+      "expected": "In 1997 Guinness World Records",
+      "actual": "In 1997 **Guinness World Records**"
+    },
+    {
+      "path": "/sentences/14/chunks/0/zh",
+      "reason": "value",
+      "expected": "1997年，吉尼斯世界纪录",
+      "actual": "1997年，**吉尼斯世界纪录**(Guinness World Records)"
+    }
+  ],
+  "original_GEN_JSON_text_checks": {
+    "path": "/workspace/work/video-audit70-20261113/article13-user-review-20261114/gen-text-validation-v2/report.json",
+    "sha256": "47a7326b1a4ed8aee91142fe3215baee41bf1b36f87f9ee055ce77a3bfe00319",
+    "all_passed": true
+  },
+  "actual_static_1080_and_4K": {
+    "path": "/workspace/work/video-audit70-20261113/article13-user-review-20261114/static-render-report.json",
+    "sha256": "ead57c6ef07cfc8319d7e9cd683d93f983c2b83814ba583b49a43799ac754836",
+    "all_passed": true,
+    "actual_changed_page_renders": 4,
+    "actually_visually_reviewed_all_4_changed_pages": true,
+    "actual_tail_and_summary_contact": "/workspace/work/video-audit70-20261113/article13-user-review-20261114/static-4K/after-summary.png"
+  },
+  "CI_approved_manifest": {
+    "path": "/workspace/work/video-revision-batch-ci/.github/video-revision-batch/approved-video-layouts70.json",
+    "before_sha256": "15289acded565266384ffb44f3fc90a1e8402f5ec09b9ce515fbedaafcb6e968",
+    "after_sha256": "f8916652d87c09c84a8a4347c6050f47d84648b1ed790046fb3459b7ca366e95",
+    "before_row": {
+      "source_id": "13",
+      "new_id": "23",
+      "source_json_sha256": "3687b6c42a6d524d0d7e40a47ed02c37b18abe8d524db4f5914abad52019a63c",
+      "approved_summary_text_sha256": "1e114fa5c14571da0164a363f7b70e61e3aaae5cf5d4746be508ec037e46e501",
+      "summary_png_sha256": "ddb9f860581e88ebdc94d5d9b2c5d0777e904731f020cb05f6b4244a208ecd4b",
+      "summary_rgb_sha256": "02c6f9f1d33675534326ead66fb3b63fb805d201dfde25c087d713c66f1dd9d5",
+      "summary_font_4k_px": 126,
+      "source_layout_structural_sha256": "903e8763227c59c648b74df174d5dbb6b4e83b641ba119309ca93ab37bbd5b79"
+    },
+    "after_row": {
+      "source_id": "13",
+      "new_id": "23",
+      "source_json_sha256": "c22ccc9eb34a92380ecbd2ea72189db492264c4730141c73024685b3fca5fd1e",
+      "approved_summary_text_sha256": "1e114fa5c14571da0164a363f7b70e61e3aaae5cf5d4746be508ec037e46e501",
+      "summary_png_sha256": "ddb9f860581e88ebdc94d5d9b2c5d0777e904731f020cb05f6b4244a208ecd4b",
+      "summary_rgb_sha256": "02c6f9f1d33675534326ead66fb3b63fb805d201dfde25c087d713c66f1dd9d5",
+      "summary_font_4k_px": 126,
+      "source_layout_structural_sha256": "04349cbee772c0c5e13088bb4049ba4a4e3e859183a62ba7a709480c3e165769"
+    },
+    "only_two_article13_source_digest_leaves_changed": true,
+    "unchanged_approved_summary_text_RGB_font": true
+  },
+  "spoken_English_and_chunk_boundaries_exact": true,
+  "all_existing_DSP_and_audio_controls_exact": true,
+  "summary_five_points_and_full_last_note_exact": true,
+  "body_tail_geometry_and_font_exact": true,
+  "body_tail_RGB_identity_claimed": false,
+  "official_cyclic_color_shift_expected": true,
+  "official_core_or_renderer_modified": false,
+  "native_video_or_audio_generated_or_dispatched_by_this_agent": false,
+  "published40_review_bundle_modified": false,
+  "sole_next_native_launcher": "/root/resume_audio_ci"
+}
