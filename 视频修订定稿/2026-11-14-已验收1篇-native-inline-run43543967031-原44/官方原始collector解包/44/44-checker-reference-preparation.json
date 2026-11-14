@@ -1,0 +1,3069 @@
+{
+  "article": "44",
+  "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+  "reference_prepared": true,
+  "acceptance": false,
+  "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+  "source_sha256": "87f531203ca38d88ae5e71ffd88190b1530715cdc0adba146c2a4a78ebe9b976",
+  "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+  "checker_program_sha256": {
+    "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+    "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+    "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+    "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+    "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+    "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+  },
+  "reference_calls": [
+    {
+      "sentence": "标题",
+      "piece": null,
+      "reference_kind": "title-default-raw",
+      "method": "create",
+      "source_slice": "The Night Sweden Switched Sides",
+      "exact_native_cache_key": "5e0ba9b274b5d84998940b13cdd76a84dd2a7e49.pkl",
+      "cache_input_text_sha256": "03f797d375c9f99e97448410a985d0597b4cf1395fcbbd065bf8dc49ec3effa7",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "标题",
+      "piece": null,
+      "reference_kind": "title-default-timed",
+      "method": "create_timed",
+      "source_slice": "The Night Sweden Switched Sides",
+      "exact_native_cache_key": "ef5b459c44a15fc18dae864b6129d3692dd0603c.pkl",
+      "cache_input_text_sha256": "03f797d375c9f99e97448410a985d0597b4cf1395fcbbd065bf8dc49ec3effa7",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "In a 1955 referendum, about 83 per cent of voters chose to keep driving on the left, an overwhelmingly clear rejection of change.",
+      "exact_native_cache_key": "1d5ba2c137d1e17109d79f3f8a44da96c74326d1.pkl",
+      "cache_input_text_sha256": "1cc223b10718626f48821865d92c4360201c5088f75dd9e8426b2213b82b0b92",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "In a 1955 referendum, about 83 per cent of voters chose to keep driving on the left, an overwhelmingly clear rejection of change.",
+      "exact_native_cache_key": "4ca6cb5927e6288a8791cf8b1c909d8c12410985.pkl",
+      "cache_input_text_sha256": "1cc223b10718626f48821865d92c4360201c5088f75dd9e8426b2213b82b0b92",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "In a 1955 referendum, about 83 per cent of voters chose to keep driving on the left,",
+      "exact_native_cache_key": "eec08cbc7c3045c76be777f1f264f5a981eb17c0.pkl",
+      "cache_input_text_sha256": "4262d381b72f6c1e2d2f6816b984faf6ea5525d1dbaaef829a51146d50e34695",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "an overwhelmingly clear rejection of change.",
+      "exact_native_cache_key": "b9303d4c4f8d1ac6f6b074c353d6fd4a35ced585.pkl",
+      "cache_input_text_sha256": "06d2ff2df954050d477a9bfdacfd5d854c0404dd50c1d2d8c6995f55cd918cbd",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "In a 1955 referendum,",
+      "exact_native_cache_key": "c92d2d4896736a21473571c90808acf21353ffa0.pkl",
+      "cache_input_text_sha256": "1f7a30924aa7bf4f4fa9624c8fb869caff5d9f138be0f395c11c725c4396a68c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "about 83 per cent of voters chose to keep driving on the left,",
+      "exact_native_cache_key": "60da19886d649dfff7a718e5d0ead051d3c60eb6.pkl",
+      "cache_input_text_sha256": "b4cee4e1c4501d10fe22521d40f50e5ac3809a46dd832acae9ab6cf336747491",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "an overwhelmingly clear rejection of change.",
+      "exact_native_cache_key": "b9303d4c4f8d1ac6f6b074c353d6fd4a35ced585.pkl",
+      "cache_input_text_sha256": "06d2ff2df954050d477a9bfdacfd5d854c0404dd50c1d2d8c6995f55cd918cbd",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "On 10 May 1963, however, legislators in parliament overruled the electorate, approving right-hand traffic from 1967 in defiance of a populace among whom the plan was unpopular.",
+      "exact_native_cache_key": "3c430613e6ecfc0e6da63cefaa398600d7581e4a.pkl",
+      "cache_input_text_sha256": "32b7ce1f2ef6c2e794869c896838ae874e0f0703be5311860ea7dfb8915938f2",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "On 10 May 1963, however, legislators in parliament overruled the electorate, approving right-hand traffic from 1967 in defiance of a populace among whom the plan was unpopular.",
+      "exact_native_cache_key": "878b8c03faaaf4b48e54d9b24f305970033ae949.pkl",
+      "cache_input_text_sha256": "32b7ce1f2ef6c2e794869c896838ae874e0f0703be5311860ea7dfb8915938f2",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "On 10 May 1963, however, legislators in parliament overruled the electorate,",
+      "exact_native_cache_key": "4c30b8c76c75be6d361d6d5c11e64772bb494bf7.pkl",
+      "cache_input_text_sha256": "8ef62ba46deda2fc4f23623ea1d7dfc0ec221cb5c2d8afa5a49dacdceff2cc1b",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "approving right-hand traffic from 1967",
+      "exact_native_cache_key": "0ec9bb317de182ae8dc78fd0c301beee92ed952e.pkl",
+      "cache_input_text_sha256": "9344a15d94e45708f5dd29cc4b7ca08d0de74135f75c498a159f682541c8dc5d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "in defiance of a populace among whom the plan was unpopular.",
+      "exact_native_cache_key": "5a6e40487b778d330877c7eb469c0461c0f51d60.pkl",
+      "cache_input_text_sha256": "cb1ccdb04672221c78c483a907c62febcc9f4b6a2b464270f44d7ed57c223af8",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "On 10 May 1963,",
+      "exact_native_cache_key": "5d7cfaa5d4440729d3eedad6470a81f895de27f4.pkl",
+      "cache_input_text_sha256": "ba95687880255c0d1e3325453c5ec3a328489f4dbc4594050047471a6b83a311",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "however,",
+      "exact_native_cache_key": "297b7cda4a221e878f1387c3ae26ba3e4016c6fb.pkl",
+      "cache_input_text_sha256": "4860ed8c70b23f76771f0681d90724ce76e5c2a97c99f459b574117522a0b4f6",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "legislators in parliament overruled the electorate,",
+      "exact_native_cache_key": "41506a411b2c463d99e7f4d83206e0831aefd9cc.pkl",
+      "cache_input_text_sha256": "db691764b041fbd9b9b58acd1cbd9eef2f2ac1527ac8f7979c65ab7420efb07d",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 4,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "approving right-hand traffic from 1967 in defiance of a populace among whom the plan was unpopular.",
+      "exact_native_cache_key": "2ace8f7531e1a9a5f27af4e3f4b69125ebc9852e.pkl",
+      "cache_input_text_sha256": "bc9404d706af4a4a4678005f04a836173ee1e6ac76e85141dbcbd58feeda9c79",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "The case rested on conformity.",
+      "exact_native_cache_key": "ba9eea4183afa84aad16f7ba9b59f32b09535904.pkl",
+      "cache_input_text_sha256": "c030a18f41a6cb131ed95e77abb374d9e442e91d73aebc1e2803e700081d2b4e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "The case rested on conformity.",
+      "exact_native_cache_key": "9b6d4ee48691b90a3e77153a07ea9305b087f028.pkl",
+      "cache_input_text_sha256": "c030a18f41a6cb131ed95e77abb374d9e442e91d73aebc1e2803e700081d2b4e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Norway and Finland drove on the right, with about five million border crossings a year, so a left-hand orientation meant isolation and inconvenient journeys.",
+      "exact_native_cache_key": "b8f8f713091508914fc679b679ffe072b0c84375.pkl",
+      "cache_input_text_sha256": "2633d7c20f1d650207a417afdb8a53d635c9969b7e403e02c8053f3746637085",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Norway and Finland drove on the right, with about five million border crossings a year, so a left-hand orientation meant isolation and inconvenient journeys.",
+      "exact_native_cache_key": "ce4426577e91648c0bffbad70555fa71fb28de85.pkl",
+      "cache_input_text_sha256": "2633d7c20f1d650207a417afdb8a53d635c9969b7e403e02c8053f3746637085",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Norway and Finland drove on the right, with about five million border crossings a year,",
+      "exact_native_cache_key": "b45c72e17f97a6a4871df0446854f2a97dac6583.pkl",
+      "cache_input_text_sha256": "31235a868130b8310a71647ea3923b83cf903d3265c087bd1fc1b2fc6079d5a8",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "so a left-hand orientation meant isolation and inconvenient journeys.",
+      "exact_native_cache_key": "35f34a5b32612e83fedbe463bd43926fd061e8d4.pkl",
+      "cache_input_text_sha256": "8c1db9ff3849b84ac7f766fb32236fc4147ef62148ea8345f7751dfbc968e3a0",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Norway and Finland drove on the right,",
+      "exact_native_cache_key": "d72880947dcf22aa20bf84e0718c8f97c91ca4ae.pkl",
+      "cache_input_text_sha256": "6b53a0c676bc8387d1cadf802e9297e96f89d04d32e6345a29b8e64955f882ef",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "with about five million border crossings a year,",
+      "exact_native_cache_key": "b2bbbc3a7e66ee92670c919d85eaed0b14af09ab.pkl",
+      "cache_input_text_sha256": "d88e4ae125c80e3ec921b7b77c7c7eb253ada908cc4a3c925c8fe91f7d83b805",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "so a left-hand orientation meant isolation and inconvenient journeys.",
+      "exact_native_cache_key": "35f34a5b32612e83fedbe463bd43926fd061e8d4.pkl",
+      "cache_input_text_sha256": "8c1db9ff3849b84ac7f766fb32236fc4147ef62148ea8345f7751dfbc968e3a0",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Safety favoured alignment too.",
+      "exact_native_cache_key": "8d1a700ceb3ae9ab4774dc3b8d627ec39f201850.pkl",
+      "cache_input_text_sha256": "4658cb0848334beb5f15f213b862773e77971d38a5e33c72a2b8c631ab9cb506",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Safety favoured alignment too.",
+      "exact_native_cache_key": "1a6da5a1a3f19fbbff32701722bdcfc69c5a0d46.pkl",
+      "cache_input_text_sha256": "4658cb0848334beb5f15f213b862773e77971d38a5e33c72a2b8c631ab9cb506",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "About 90 per cent of cars were left-hand drive, so motorists overtaking on narrow two-lane highways risked head-on collisions.",
+      "exact_native_cache_key": "af9943164c71258e54f31c2a85ef808039e2c935.pkl",
+      "cache_input_text_sha256": "9847dfcea826d138302bfcbc45f642229a06d01a27e13d36fb6405f4a0da5664",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "About 90 per cent of cars were left-hand drive, so motorists overtaking on narrow two-lane highways risked head-on collisions.",
+      "exact_native_cache_key": "1720c8a9268fa786fd117ba4e15177aeffd26e1a.pkl",
+      "cache_input_text_sha256": "9847dfcea826d138302bfcbc45f642229a06d01a27e13d36fb6405f4a0da5664",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "About 90 per cent of cars were left-hand drive,",
+      "exact_native_cache_key": "1a080e96b0a06a6dea4cdaf4b396284600ddeb40.pkl",
+      "cache_input_text_sha256": "70bbe79a0fa6fc45a7b3aa45393982c840cc4bc0c379c49e3329ad3678d6c581",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "so motorists overtaking on narrow two-lane highways risked head-on collisions.",
+      "exact_native_cache_key": "fb46070bb621e2b0fcfed00ea5f61f72dea63a6c.pkl",
+      "cache_input_text_sha256": "8ab87d4ec036b4feea2cdfa3dea59938dfd711155ad90eb42ec3f2adda1f9e36",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "About 90 per cent of cars were left-hand drive,",
+      "exact_native_cache_key": "1a080e96b0a06a6dea4cdaf4b396284600ddeb40.pkl",
+      "cache_input_text_sha256": "70bbe79a0fa6fc45a7b3aa45393982c840cc4bc0c379c49e3329ad3678d6c581",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "so motorists overtaking on narrow two-lane highways risked head-on collisions.",
+      "exact_native_cache_key": "fb46070bb621e2b0fcfed00ea5f61f72dea63a6c.pkl",
+      "cache_input_text_sha256": "8ab87d4ec036b4feea2cdfa3dea59938dfd711155ad90eb42ec3f2adda1f9e36",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "A state body ran the mammoth preparation under a logo, a large H with an arrow.",
+      "exact_native_cache_key": "f9ff8fc47109c8c1228fa06318e12a2109966a1f.pkl",
+      "cache_input_text_sha256": "e7eca44418b6e4211ca33627029d1127a9d0d5c563a52b3ec95e44a5f424a099",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "A state body ran the mammoth preparation under a logo, a large H with an arrow.",
+      "exact_native_cache_key": "2edbeddda96255229e0c6c779b3909aecc5f163f.pkl",
+      "cache_input_text_sha256": "e7eca44418b6e4211ca33627029d1127a9d0d5c563a52b3ec95e44a5f424a099",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "A state body ran the mammoth preparation",
+      "exact_native_cache_key": "e62a9f506ecc1fe4c78294ddb9e516822583eb4a.pkl",
+      "cache_input_text_sha256": "5c0056439d742d7e8518257c4f9ef24a7c07e0a3a556cdf5668379ce980c3c7e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "under a logo, a large H with an arrow.",
+      "exact_native_cache_key": "c5b9d75b1580099b26dc46eadf14b142d09febb9.pkl",
+      "cache_input_text_sha256": "02ab850efee5128f724b4218f2b321181ec2785f57af0242cf269239327a4326",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "A state body ran the mammoth preparation under a logo,",
+      "exact_native_cache_key": "b3990a040c3fde43f05d9df18ad2d824d2011728.pkl",
+      "cache_input_text_sha256": "c9a504492b6477a3eb948e147e0aa1fed8036b799393d372d3ac495738e9cf73",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "a large H with an arrow.",
+      "exact_native_cache_key": "503dcf813454268c6f521430bb2cafbad350943e.pkl",
+      "cache_input_text_sha256": "fcd163602314b5c3736ba5274d37ea911ebe4dc9a0a0a5b1cb2dcee804382d6e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Its propaganda included a song contest on television, and the winning jingle, whose lyrics urged people to keep right, reached fifth in the chart.",
+      "exact_native_cache_key": "9079d316e32809da89059a79b81e762be78bbece.pkl",
+      "cache_input_text_sha256": "6422c43eb15d765d1b0ca7b2b758583b135915c2e6747180da33589a3d1f4dc0",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Its propaganda included a song contest on television, and the winning jingle, whose lyrics urged people to keep right, reached fifth in the chart.",
+      "exact_native_cache_key": "08a41269b2d99ebcabfa643706a62df09942bf29.pkl",
+      "cache_input_text_sha256": "6422c43eb15d765d1b0ca7b2b758583b135915c2e6747180da33589a3d1f4dc0",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Its propaganda included a song contest on television,",
+      "exact_native_cache_key": "d505c691664d46712810de5a351ab9e629765b42.pkl",
+      "cache_input_text_sha256": "ac50356c152491323fca75c7750f5b807d298d7daa931187720490047857db73",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "and the winning jingle, whose lyrics urged people to keep right, reached fifth in the chart.",
+      "exact_native_cache_key": "bcd29ae2b6152d90627f9da7ffd5c17c3a5334f8.pkl",
+      "cache_input_text_sha256": "b41c0ed78a1344bda55e5962172431e133ebefcbe74f8ff2119fe76a6b66f5f7",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Its propaganda included a song contest on television,",
+      "exact_native_cache_key": "d505c691664d46712810de5a351ab9e629765b42.pkl",
+      "cache_input_text_sha256": "ac50356c152491323fca75c7750f5b807d298d7daa931187720490047857db73",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "and the winning jingle,",
+      "exact_native_cache_key": "88695f851bbbbec4b68a9e79a8cd8cb6023503c7.pkl",
+      "cache_input_text_sha256": "c0fc60a39f74c4197b4a5bf4177a95561577e9b019f5f213693cf9456ba17eb8",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "whose lyrics urged people to keep right,",
+      "exact_native_cache_key": "3e0263fab9e06a1a5e446c23ceaab320b3ecf6c3.pkl",
+      "cache_input_text_sha256": "08f4df6c7b5c7f3d48809b5ccc607e83196f4b209e2abee084156e38e176d1e3",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": 4,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "reached fifth in the chart.",
+      "exact_native_cache_key": "c3b139ec02465362c65d73af78f39537fff70997.pkl",
+      "cache_input_text_sha256": "b993b9cd2926f623dc2d6a6ac80a9570008918d2ffd9a2d774be13e788db16a4",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Some 360,000 items of signage were changed, and a massive fleet of over 1,000 new buses with right-hand doors was procured.",
+      "exact_native_cache_key": "c3d1acdbbd008191d28f287a8e502eb2ac6c2b9b.pkl",
+      "cache_input_text_sha256": "a1f6776e7d82c87d87359f366a23a40da3044d09056bf35471fbfd2391558686",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Some 360,000 items of signage were changed, and a massive fleet of over 1,000 new buses with right-hand doors was procured.",
+      "exact_native_cache_key": "48c4f137937be4f50672ceef8a9ac4417e3d54c0.pkl",
+      "cache_input_text_sha256": "a1f6776e7d82c87d87359f366a23a40da3044d09056bf35471fbfd2391558686",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Some 360,000 items of signage were changed,",
+      "exact_native_cache_key": "55b612883986592b448b51f6b66ad131d92651a0.pkl",
+      "cache_input_text_sha256": "c59e2e43dca7ac93ec0fa89223c61211bf719f709ba422646e038bb24bb0ea8c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "and a massive fleet",
+      "exact_native_cache_key": "24a02c4f9a88707ba5a68dc6e3ad2ec2ba76f877.pkl",
+      "cache_input_text_sha256": "6cce3f8a205b9ef1bd6abc78fc6281cbf93fc55e57f877244499a2415c0bc44b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "of over 1,000 new buses with right-hand doors was procured.",
+      "exact_native_cache_key": "700ed942a7eb809fb888c0158a271333d9e1f667.pkl",
+      "cache_input_text_sha256": "bec5745eba7582930d8dc71b2c88d1792b6e1187173a3cf2465e6e63449c1c37",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Some 360,000 items of signage were changed,",
+      "exact_native_cache_key": "55b612883986592b448b51f6b66ad131d92651a0.pkl",
+      "cache_input_text_sha256": "c59e2e43dca7ac93ec0fa89223c61211bf719f709ba422646e038bb24bb0ea8c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "and a massive fleet of over 1,000 new buses with right-hand doors was procured.",
+      "exact_native_cache_key": "c1fcfbf7e925c94c18669d02138297a9369b806d.pkl",
+      "cache_input_text_sha256": "274865a1dd5f05ed25571b1d5aa2e8db1e9e77eb2cc27795a6a8870aa89d0030",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "The transition came on Sunday 3 September 1967.",
+      "exact_native_cache_key": "7343aedae6e445a038142509690ddfb41b1bc71e.pkl",
+      "cache_input_text_sha256": "3ba1d22f96df601111a9877572610d5561a4f55cdb54c83573ad066a1719f5be",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "The transition came on Sunday 3 September 1967.",
+      "exact_native_cache_key": "452ea22e45ef8e225ea0d71b007f1923c840e361.pkl",
+      "cache_input_text_sha256": "3ba1d22f96df601111a9877572610d5561a4f55cdb54c83573ad066a1719f5be",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "A curfew kept non-essential vehicles off the asphalt from one to six, with essential traffic exempt.",
+      "exact_native_cache_key": "eda7dd0e4d0b093ccd767689fb074a5fe8d66b63.pkl",
+      "cache_input_text_sha256": "291ec13be902d329c8075ef5a47742cf828c886a55674d7a4d4060465032c525",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "A curfew kept non-essential vehicles off the asphalt from one to six, with essential traffic exempt.",
+      "exact_native_cache_key": "d25e4c5286d4a838eb146e17ea89ce7188c100c0.pkl",
+      "cache_input_text_sha256": "291ec13be902d329c8075ef5a47742cf828c886a55674d7a4d4060465032c525",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "A curfew kept non-essential vehicles off the asphalt from one to six,",
+      "exact_native_cache_key": "a9616ca03cc456072b8d48781d92a89ed89ed6dc.pkl",
+      "cache_input_text_sha256": "aef80672e8ed5b306741b4558f47cbadb76f57a4558b285b1a1002a71fd5d72b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "with essential traffic exempt.",
+      "exact_native_cache_key": "b03101ccb3d9dfd1aba179645ab7c05056b2a81b.pkl",
+      "cache_input_text_sha256": "f56d29a9e1a4295e8a8f0d2e8dd334b7c76ac8f03218f7a2b9a563c9c2bf035c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "A curfew kept non-essential vehicles off the asphalt from one to six,",
+      "exact_native_cache_key": "a9616ca03cc456072b8d48781d92a89ed89ed6dc.pkl",
+      "cache_input_text_sha256": "aef80672e8ed5b306741b4558f47cbadb76f57a4558b285b1a1002a71fd5d72b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "with essential traffic exempt.",
+      "exact_native_cache_key": "b03101ccb3d9dfd1aba179645ab7c05056b2a81b.pkl",
+      "cache_input_text_sha256": "f56d29a9e1a4295e8a8f0d2e8dd334b7c76ac8f03218f7a2b9a563c9c2bf035c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "At ten to five, all traffic stopped and crawled across, restarting at five, before dawn, with its direction flipped.",
+      "exact_native_cache_key": "5fa5fede6f4a5c887068cd298360f7472712e48c.pkl",
+      "cache_input_text_sha256": "785a4fe28a58d4d827c41f4c0a32784cb83a6ef836a15ce040dfacf9d829fd6d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "At ten to five, all traffic stopped and crawled across, restarting at five, before dawn, with its direction flipped.",
+      "exact_native_cache_key": "874c1eb4ec220eefcd5b3506ba199275ecb8a664.pkl",
+      "cache_input_text_sha256": "785a4fe28a58d4d827c41f4c0a32784cb83a6ef836a15ce040dfacf9d829fd6d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "At ten to five, all traffic stopped and crawled across,",
+      "exact_native_cache_key": "74c68f93e5510a08cc47e13bb79cd0f05ab74ff0.pkl",
+      "cache_input_text_sha256": "aa7a8622f15ddc80ba88ca8ecef92b91ae8f4d6878389f46bd3249cc094e7860",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "restarting at five, before dawn, with its direction flipped.",
+      "exact_native_cache_key": "9bcb7b76eb8e2e7a32c6983a09f8f0bb62e44782.pkl",
+      "cache_input_text_sha256": "58a68e5d630fbe533189c8e7f04d87f1c72e6bbd2dfcb432f3923b59c268130e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "At ten to five,",
+      "exact_native_cache_key": "890726c366670743cf2d443c4e8ae69c09eec5f6.pkl",
+      "cache_input_text_sha256": "b8f98957db5fbcecd3513960148457a32ee42ff5670a0f20b7ae3626803564ad",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "all traffic stopped and crawled across,",
+      "exact_native_cache_key": "0d4650c6b9cf0d484a91a48d801ea6c9d2b207c6.pkl",
+      "cache_input_text_sha256": "597056cc3de5416da231ea98f1b8ac88c1e5faa6996c0a3d2996c6a7a26369a7",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "restarting at five,",
+      "exact_native_cache_key": "cc105364fdac0a2ec19d5a0abf31765083969557.pkl",
+      "cache_input_text_sha256": "881e37c62695d173153f77308af6bcf1c57f9d31b3c882f58e50df85c8fd4c86",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 4,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "before dawn,",
+      "exact_native_cache_key": "322ab8eb3b79872c14c91f565c970d3d3293102e.pkl",
+      "cache_input_text_sha256": "149031c170182dfcd4d52281d0535793adc26b18ea3c00ef87fc9fc69d3e1edf",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 5,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "with its direction flipped.",
+      "exact_native_cache_key": "57ed1001693c36035c7de738e2a6b7c60316f24c.pkl",
+      "cache_input_text_sha256": "c4c069e5af4c6a14804a89f5ed15e9d7c0c13535b5d9e8f03f29ecf7c18c9930",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Stockholm and Malmö had a longer closure, from Saturday morning to Sunday afternoon, while crews reconfigured junctions.",
+      "exact_native_cache_key": "6fc945a208e06df156acf5582290d09e9f074180.pkl",
+      "cache_input_text_sha256": "da841f5d8f0574e387e27c388bf27a79d8558e201cc20710f1afce9c34c870cd",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Stockholm and Malmö had a longer closure, from Saturday morning to Sunday afternoon, while crews reconfigured junctions.",
+      "exact_native_cache_key": "a4d98bf8242a4869a6e8b7e91811034141ab0cd6.pkl",
+      "cache_input_text_sha256": "da841f5d8f0574e387e27c388bf27a79d8558e201cc20710f1afce9c34c870cd",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Stockholm and Malmö had a longer closure, from Saturday morning to Sunday afternoon,",
+      "exact_native_cache_key": "9fbd7b8f05477d82158dad5b6e38fee4d7afa73b.pkl",
+      "cache_input_text_sha256": "ec9fb282f569b2714b6568701ad29ef4f5c4bd37be9ced944523164e051a2b79",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "while crews reconfigured junctions.",
+      "exact_native_cache_key": "09e1771acbbf3567346fab1635dc2a9a6ca26573.pkl",
+      "cache_input_text_sha256": "9c1ed92df9b1dad84fceee961e2d02a08525c0f9316abe4b220bd9bf80efd42d",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Stockholm and Malmö had a longer closure,",
+      "exact_native_cache_key": "f574138cedc2df84d5b3b43996d8d61d9d2c4d3e.pkl",
+      "cache_input_text_sha256": "f718cf087d432d051ec23fb07d04e290faae219b8916679c032d1c51ad616b63",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "from Saturday morning to Sunday afternoon,",
+      "exact_native_cache_key": "0f2f42c30154d71fc621e4463d8868d05d5cc6b4.pkl",
+      "cache_input_text_sha256": "b6e67577660bbe0f9363431a0d8fb658a5cd03a547ecc65a166b044495930112",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "while crews reconfigured junctions.",
+      "exact_native_cache_key": "09e1771acbbf3567346fab1635dc2a9a6ca26573.pkl",
+      "cache_input_text_sha256": "9c1ed92df9b1dad84fceee961e2d02a08525c0f9316abe4b220bd9bf80efd42d",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "On the following Monday, 125 accidents were reported, against 130 to 198 on earlier Mondays, a statistical improvement put down to the heightened care of hesitant drivers.",
+      "exact_native_cache_key": "23e05dcb2f991a515a24b35781cc5301cbc97f97.pkl",
+      "cache_input_text_sha256": "1472242023b91c4b1b763ff3e4855eafa240c50c21b17d1c7690beee3301604f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "On the following Monday, 125 accidents were reported, against 130 to 198 on earlier Mondays, a statistical improvement put down to the heightened care of hesitant drivers.",
+      "exact_native_cache_key": "3768427b7199ba248bbc2b93c9bbb86798e5ad39.pkl",
+      "cache_input_text_sha256": "1472242023b91c4b1b763ff3e4855eafa240c50c21b17d1c7690beee3301604f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "On the following Monday, 125 accidents were reported, against 130 to 198 on earlier Mondays,",
+      "exact_native_cache_key": "b252a5ed997109d10019f21439cc0bb3eaae7ef5.pkl",
+      "cache_input_text_sha256": "a9792be477ca2ae62514dd6427e9259d286e8d34ed900995ffeea0989c06a44c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "a statistical improvement put down to the heightened care of hesitant drivers.",
+      "exact_native_cache_key": "6356f0d79d66115d7ff0680a524b3842097d9291.pkl",
+      "cache_input_text_sha256": "c54cc8e3fdfc3fc2be5d5e8197c5ad93de94c27da6a1b7272b8a60dcb22d2cbe",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "On the following Monday,",
+      "exact_native_cache_key": "f5845be1b50ffb232bc75a5bc3b96ac4525e531a.pkl",
+      "cache_input_text_sha256": "07c9f2734520d1565247fa54b15274ad3bf53166dd10c718762ec2c0d75b3d4f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "125 accidents were reported,",
+      "exact_native_cache_key": "ea2b8146264ddb0a67532b91b8fa70ebbdb642c5.pkl",
+      "cache_input_text_sha256": "71bee07a8a8175b5b1643721f4504653de642d14c58a98165c044b687d6c5cdd",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "against 130 to 198 on earlier Mondays,",
+      "exact_native_cache_key": "fb5103daaa319a40f1cbf256008a7b3e8e0e40d4.pkl",
+      "cache_input_text_sha256": "70eafde15e2c701cb300e3cf36b0e0cb2acdea8b3af933e6af3321babf0d70be",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 4,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "a statistical improvement put down to the heightened care of hesitant drivers.",
+      "exact_native_cache_key": "6356f0d79d66115d7ff0680a524b3842097d9291.pkl",
+      "cache_input_text_sha256": "c54cc8e3fdfc3fc2be5d5e8197c5ad93de94c27da6a1b7272b8a60dcb22d2cbe",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "The nervousness apparently subsided and prudent habits faded, for by 1969 accident and fatality rates had reverted to their baseline.",
+      "exact_native_cache_key": "4edb21016aa3739b558278353b91cbf55042982b.pkl",
+      "cache_input_text_sha256": "8383e52c2b689e95bc688b3f6f886416b168e04e981437d051653e92bd2a8e27",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "The nervousness apparently subsided and prudent habits faded, for by 1969 accident and fatality rates had reverted to their baseline.",
+      "exact_native_cache_key": "e17691268d1734c4c9e4fcbe47f06eaa77a11d45.pkl",
+      "cache_input_text_sha256": "8383e52c2b689e95bc688b3f6f886416b168e04e981437d051653e92bd2a8e27",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "The nervousness apparently subsided and prudent habits faded,",
+      "exact_native_cache_key": "d8966adabab234732e0837511fb8d6c36554cb37.pkl",
+      "cache_input_text_sha256": "fdffeb42ce7354e79a5fb5a6319dbac8b89e69a21adfc86cddc2b441fe6ca3b2",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "for by 1969 accident and fatality rates had reverted to their baseline.",
+      "exact_native_cache_key": "e256765aaead2f25c15f0d880f07e6bf9fb91c5e.pkl",
+      "cache_input_text_sha256": "7469d0f25a1b83cf10743b9b7ef8e1cd1c2e7bd39aeed85c4abb2d925cddebf1",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "The nervousness apparently subsided and prudent habits faded,",
+      "exact_native_cache_key": "d8966adabab234732e0837511fb8d6c36554cb37.pkl",
+      "cache_input_text_sha256": "fdffeb42ce7354e79a5fb5a6319dbac8b89e69a21adfc86cddc2b441fe6ca3b2",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "for by 1969 accident and fatality rates had reverted to their baseline.",
+      "exact_native_cache_key": "e256765aaead2f25c15f0d880f07e6bf9fb91c5e.pkl",
+      "cache_input_text_sha256": "7469d0f25a1b83cf10743b9b7ef8e1cd1c2e7bd39aeed85c4abb2d925cddebf1",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    }
+  ],
+  "unique_reference_key_count": 82,
+  "raw_mother_cache_scalar_manifest": [
+    {
+      "exact_native_cache_key": "5e0ba9b274b5d84998940b13cdd76a84dd2a7e49.pkl",
+      "pkl_sha256": "3184aa32fc5bd29eab5630bc844c7e28c2d4749a8ce11d44019ac46cc9cf5ed9",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "标题",
+          "piece": null,
+          "reference_kind": "title-default-raw",
+          "method": "create",
+          "source_slice": "The Night Sweden Switched Sides",
+          "exact_native_cache_key": "5e0ba9b274b5d84998940b13cdd76a84dd2a7e49.pkl",
+          "cache_input_text_sha256": "03f797d375c9f99e97448410a985d0597b4cf1395fcbbd065bf8dc49ec3effa7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "3184aa32fc5bd29e",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        41984
+      ],
+      "unprocessed_array_sha256": "d82ddbbf9abc92b93dd8e3537e4204dd89cdedf7671345ecf123e78e6571afad"
+    },
+    {
+      "exact_native_cache_key": "1d5ba2c137d1e17109d79f3f8a44da96c74326d1.pkl",
+      "pkl_sha256": "424debc4f0b1cb9273df174a157b8d890da59b54f572926ab94a6672ec9e6e9e",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In a 1955 referendum, about 83 per cent of voters chose to keep driving on the left, an overwhelmingly clear rejection of change.",
+          "exact_native_cache_key": "1d5ba2c137d1e17109d79f3f8a44da96c74326d1.pkl",
+          "cache_input_text_sha256": "1cc223b10718626f48821865d92c4360201c5088f75dd9e8426b2213b82b0b92",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "424debc4f0b1cb92",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        258560
+      ],
+      "unprocessed_array_sha256": "17988ba1e73a23577de8f4156127ef63fcbe062aa1a2df0f1ec0c53813dd9876"
+    },
+    {
+      "exact_native_cache_key": "eec08cbc7c3045c76be777f1f264f5a981eb17c0.pkl",
+      "pkl_sha256": "b3d6b0dcbbb946f69c369a0b6a566380f6b8b806d310c2a25da3d1b2650c0979",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In a 1955 referendum, about 83 per cent of voters chose to keep driving on the left,",
+          "exact_native_cache_key": "eec08cbc7c3045c76be777f1f264f5a981eb17c0.pkl",
+          "cache_input_text_sha256": "4262d381b72f6c1e2d2f6816b984faf6ea5525d1dbaaef829a51146d50e34695",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "b3d6b0dcbbb946f6",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        172544
+      ],
+      "unprocessed_array_sha256": "8b056617920cfe7637686e37b3a219db0b5ddce1f9580a853d2cc3ab305af125"
+    },
+    {
+      "exact_native_cache_key": "b9303d4c4f8d1ac6f6b074c353d6fd4a35ced585.pkl",
+      "pkl_sha256": "ccb0020359d4d16adad2bead56d742963c044ba4bb10130ebb1dfa83f94cfa85",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "an overwhelmingly clear rejection of change.",
+          "exact_native_cache_key": "b9303d4c4f8d1ac6f6b074c353d6fd4a35ced585.pkl",
+          "cache_input_text_sha256": "06d2ff2df954050d477a9bfdacfd5d854c0404dd50c1d2d8c6995f55cd918cbd",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "an overwhelmingly clear rejection of change.",
+          "exact_native_cache_key": "b9303d4c4f8d1ac6f6b074c353d6fd4a35ced585.pkl",
+          "cache_input_text_sha256": "06d2ff2df954050d477a9bfdacfd5d854c0404dd50c1d2d8c6995f55cd918cbd",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "ccb0020359d4d16a",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        64512
+      ],
+      "unprocessed_array_sha256": "7ff882eef24f3dd2962d4a04854f848a72de940b8a44ed88de73a60709399af5"
+    },
+    {
+      "exact_native_cache_key": "c92d2d4896736a21473571c90808acf21353ffa0.pkl",
+      "pkl_sha256": "89a8491ba0efe9237189869e6410d1f404f83103abde82c57711bbf691b41814",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In a 1955 referendum,",
+          "exact_native_cache_key": "c92d2d4896736a21473571c90808acf21353ffa0.pkl",
+          "cache_input_text_sha256": "1f7a30924aa7bf4f4fa9624c8fb869caff5d9f138be0f395c11c725c4396a68c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "89a8491ba0efe923",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        57344
+      ],
+      "unprocessed_array_sha256": "0498272d69f53aa08b6fcdfbff8555826bddbe9837ffecb67c78d2f2da266ff6"
+    },
+    {
+      "exact_native_cache_key": "60da19886d649dfff7a718e5d0ead051d3c60eb6.pkl",
+      "pkl_sha256": "f2b31d611a43b125102f5b837a648d469534c213fc48c3acd65968e77418c092",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "about 83 per cent of voters chose to keep driving on the left,",
+          "exact_native_cache_key": "60da19886d649dfff7a718e5d0ead051d3c60eb6.pkl",
+          "cache_input_text_sha256": "b4cee4e1c4501d10fe22521d40f50e5ac3809a46dd832acae9ab6cf336747491",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "f2b31d611a43b125",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        105472
+      ],
+      "unprocessed_array_sha256": "3b05f31229f5e3f4a9891e82b2e261bf426df481b67a5d85f8b272809fa6bcdc"
+    },
+    {
+      "exact_native_cache_key": "3c430613e6ecfc0e6da63cefaa398600d7581e4a.pkl",
+      "pkl_sha256": "854b9b30f144aa156b8c74236f4156a7056ae28f93ad35b5591bd7a1dc00a697",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "On 10 May 1963, however, legislators in parliament overruled the electorate, approving right-hand traffic from 1967 in defiance of a populace among whom the plan was unpopular.",
+          "exact_native_cache_key": "3c430613e6ecfc0e6da63cefaa398600d7581e4a.pkl",
+          "cache_input_text_sha256": "32b7ce1f2ef6c2e794869c896838ae874e0f0703be5311860ea7dfb8915938f2",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "854b9b30f144aa15",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        360960
+      ],
+      "unprocessed_array_sha256": "e9bbc18a60b7d9928ce3eb63d21bc66f4cfd790da59987a6c68e93215586b466"
+    },
+    {
+      "exact_native_cache_key": "4c30b8c76c75be6d361d6d5c11e64772bb494bf7.pkl",
+      "pkl_sha256": "950b890cbb48ca5896df81d56ceb10ffc20d65d099220ebbd60c283a3e322447",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "On 10 May 1963, however, legislators in parliament overruled the electorate,",
+          "exact_native_cache_key": "4c30b8c76c75be6d361d6d5c11e64772bb494bf7.pkl",
+          "cache_input_text_sha256": "8ef62ba46deda2fc4f23623ea1d7dfc0ec221cb5c2d8afa5a49dacdceff2cc1b",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "950b890cbb48ca58",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        170496
+      ],
+      "unprocessed_array_sha256": "333655c9f6b34d0fe1c623ee9d0612673448113e5e61c1bf0a68edccd426e866"
+    },
+    {
+      "exact_native_cache_key": "0ec9bb317de182ae8dc78fd0c301beee92ed952e.pkl",
+      "pkl_sha256": "3b29809f612e921d87af52ddf54d35a72ae3e86f27071e5ae2b9a1f62bfe15da",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "approving right-hand traffic from 1967",
+          "exact_native_cache_key": "0ec9bb317de182ae8dc78fd0c301beee92ed952e.pkl",
+          "cache_input_text_sha256": "9344a15d94e45708f5dd29cc4b7ca08d0de74135f75c498a159f682541c8dc5d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "3b29809f612e921d",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        77312
+      ],
+      "unprocessed_array_sha256": "bec6adb05487d8b983add06def3780bac8db8d1e40e81e2ed594e95ee626f442"
+    },
+    {
+      "exact_native_cache_key": "5a6e40487b778d330877c7eb469c0461c0f51d60.pkl",
+      "pkl_sha256": "d3e71d755d801255bef96153893dcc9c1d089f7c0ccb2615525ff1e6ed6df2ef",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "in defiance of a populace among whom the plan was unpopular.",
+          "exact_native_cache_key": "5a6e40487b778d330877c7eb469c0461c0f51d60.pkl",
+          "cache_input_text_sha256": "cb1ccdb04672221c78c483a907c62febcc9f4b6a2b464270f44d7ed57c223af8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "d3e71d755d801255",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        95232
+      ],
+      "unprocessed_array_sha256": "712f8b24c768c544966926c300425711a79d2c3b68ac7b272488353c30a2f3f8"
+    },
+    {
+      "exact_native_cache_key": "5d7cfaa5d4440729d3eedad6470a81f895de27f4.pkl",
+      "pkl_sha256": "86c6f1193422362de39c1cd38826d3ac27c47b1f2134ecd95db8ace6368f049f",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "On 10 May 1963,",
+          "exact_native_cache_key": "5d7cfaa5d4440729d3eedad6470a81f895de27f4.pkl",
+          "cache_input_text_sha256": "ba95687880255c0d1e3325453c5ec3a328489f4dbc4594050047471a6b83a311",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "86c6f1193422362d",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        55296
+      ],
+      "unprocessed_array_sha256": "7935b1b265b9d84ac580e80616293753d699a01b4c71275daf34088d58dbe81e"
+    },
+    {
+      "exact_native_cache_key": "297b7cda4a221e878f1387c3ae26ba3e4016c6fb.pkl",
+      "pkl_sha256": "cea7b13b4519104ec7815f0b2435554d0b074534b7001febb86e95b128487cdc",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "however,",
+          "exact_native_cache_key": "297b7cda4a221e878f1387c3ae26ba3e4016c6fb.pkl",
+          "cache_input_text_sha256": "4860ed8c70b23f76771f0681d90724ce76e5c2a97c99f459b574117522a0b4f6",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "cea7b13b4519104e",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        19456
+      ],
+      "unprocessed_array_sha256": "c6365acd72c316fd1f43cfd753c45578d409bf91c16f9c5c88a110e49f37c755"
+    },
+    {
+      "exact_native_cache_key": "41506a411b2c463d99e7f4d83206e0831aefd9cc.pkl",
+      "pkl_sha256": "90af487de391aaa8308aaae4ec87674ca3dae5b1285b515598230dde2c23df82",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "legislators in parliament overruled the electorate,",
+          "exact_native_cache_key": "41506a411b2c463d99e7f4d83206e0831aefd9cc.pkl",
+          "cache_input_text_sha256": "db691764b041fbd9b9b58acd1cbd9eef2f2ac1527ac8f7979c65ab7420efb07d",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "90af487de391aaa8",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        81920
+      ],
+      "unprocessed_array_sha256": "ea47c9b12695b4f9f220fbf4c3f863dc4eef8fca1e470f95550abc3d59ccc1af"
+    },
+    {
+      "exact_native_cache_key": "2ace8f7531e1a9a5f27af4e3f4b69125ebc9852e.pkl",
+      "pkl_sha256": "da5095d7aa94f7acfb96269fda2e849f8ddfd9f20fe851fba9c54a55d75d5709",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "approving right-hand traffic from 1967 in defiance of a populace among whom the plan was unpopular.",
+          "exact_native_cache_key": "2ace8f7531e1a9a5f27af4e3f4b69125ebc9852e.pkl",
+          "cache_input_text_sha256": "bc9404d706af4a4a4678005f04a836173ee1e6ac76e85141dbcbd58feeda9c79",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "da5095d7aa94f7ac",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        190976
+      ],
+      "unprocessed_array_sha256": "7bc17771d70276310889a4a020daa7e4f48fb63fd62818ca92628c8d54d6628f"
+    },
+    {
+      "exact_native_cache_key": "ba9eea4183afa84aad16f7ba9b59f32b09535904.pkl",
+      "pkl_sha256": "636de892a16ece3a70e1d60af00fceffdbb910e13b3370356ad2471f7821f6dd",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The case rested on conformity.",
+          "exact_native_cache_key": "ba9eea4183afa84aad16f7ba9b59f32b09535904.pkl",
+          "cache_input_text_sha256": "c030a18f41a6cb131ed95e77abb374d9e442e91d73aebc1e2803e700081d2b4e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "636de892a16ece3a",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        50688
+      ],
+      "unprocessed_array_sha256": "44fe7930b7eab8434c8bc684941450e2828c3f6613d03c0b334b25de1fb3fbf0"
+    },
+    {
+      "exact_native_cache_key": "b8f8f713091508914fc679b679ffe072b0c84375.pkl",
+      "pkl_sha256": "cf3159e1cf5ab59aba494e07ae9798e9911c4be64832c991fb88e5ec4e4bd110",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Norway and Finland drove on the right, with about five million border crossings a year, so a left-hand orientation meant isolation and inconvenient journeys.",
+          "exact_native_cache_key": "b8f8f713091508914fc679b679ffe072b0c84375.pkl",
+          "cache_input_text_sha256": "2633d7c20f1d650207a417afdb8a53d635c9969b7e403e02c8053f3746637085",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "cf3159e1cf5ab59a",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        263168
+      ],
+      "unprocessed_array_sha256": "ed84f2acb57850dff6634f5ed44a0ca0b9becd88fcc5346d3abb2e7e95e36e3b"
+    },
+    {
+      "exact_native_cache_key": "b45c72e17f97a6a4871df0446854f2a97dac6583.pkl",
+      "pkl_sha256": "12549179155d8dc16341dea660b0e08f00c7eb50d3383b40d1a25366b7fc0d54",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Norway and Finland drove on the right, with about five million border crossings a year,",
+          "exact_native_cache_key": "b45c72e17f97a6a4871df0446854f2a97dac6583.pkl",
+          "cache_input_text_sha256": "31235a868130b8310a71647ea3923b83cf903d3265c087bd1fc1b2fc6079d5a8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "12549179155d8dc1",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        137216
+      ],
+      "unprocessed_array_sha256": "1aa02b30eacd0eaf824397a3041797454a10dc8748fc9dc0bb6217f7bc046bbc"
+    },
+    {
+      "exact_native_cache_key": "35f34a5b32612e83fedbe463bd43926fd061e8d4.pkl",
+      "pkl_sha256": "72beda65cf86eac39230df0c360cd8f6ee12180d629a549776b26340f7e1e26b",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "so a left-hand orientation meant isolation and inconvenient journeys.",
+          "exact_native_cache_key": "35f34a5b32612e83fedbe463bd43926fd061e8d4.pkl",
+          "cache_input_text_sha256": "8c1db9ff3849b84ac7f766fb32236fc4147ef62148ea8345f7751dfbc968e3a0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "so a left-hand orientation meant isolation and inconvenient journeys.",
+          "exact_native_cache_key": "35f34a5b32612e83fedbe463bd43926fd061e8d4.pkl",
+          "cache_input_text_sha256": "8c1db9ff3849b84ac7f766fb32236fc4147ef62148ea8345f7751dfbc968e3a0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "72beda65cf86eac3",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        120320
+      ],
+      "unprocessed_array_sha256": "d097025e007d0a3ba89a62781bc9f8e22d9d4914d31830ff8b4159eeb8df5481"
+    },
+    {
+      "exact_native_cache_key": "d72880947dcf22aa20bf84e0718c8f97c91ca4ae.pkl",
+      "pkl_sha256": "6f2466b1fff3934e70203be11b567b74620b69089ac6cfa005013d3269e38378",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Norway and Finland drove on the right,",
+          "exact_native_cache_key": "d72880947dcf22aa20bf84e0718c8f97c91ca4ae.pkl",
+          "cache_input_text_sha256": "6b53a0c676bc8387d1cadf802e9297e96f89d04d32e6345a29b8e64955f882ef",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "6f2466b1fff3934e",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        52736
+      ],
+      "unprocessed_array_sha256": "a741c7f2cc8821e20991d5e6337aedee913eb9cf81fe07bee4656e8dc3ae33c6"
+    },
+    {
+      "exact_native_cache_key": "b2bbbc3a7e66ee92670c919d85eaed0b14af09ab.pkl",
+      "pkl_sha256": "de88a9644b39a0cc317a5e01a2b86916aa6acdbcd116cb660a5c9714409903a5",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "with about five million border crossings a year,",
+          "exact_native_cache_key": "b2bbbc3a7e66ee92670c919d85eaed0b14af09ab.pkl",
+          "cache_input_text_sha256": "d88e4ae125c80e3ec921b7b77c7c7eb253ada908cc4a3c925c8fe91f7d83b805",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "de88a9644b39a0cc",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        64512
+      ],
+      "unprocessed_array_sha256": "72dbe046b54753cfbc7808c9d04466b53eb5ec6c59a72931c866acbf548fe97a"
+    },
+    {
+      "exact_native_cache_key": "8d1a700ceb3ae9ab4774dc3b8d627ec39f201850.pkl",
+      "pkl_sha256": "d8ad10697cf7c11425092d7967b4f425cc49257029a1dd5509832c8984de1580",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Safety favoured alignment too.",
+          "exact_native_cache_key": "8d1a700ceb3ae9ab4774dc3b8d627ec39f201850.pkl",
+          "cache_input_text_sha256": "4658cb0848334beb5f15f213b862773e77971d38a5e33c72a2b8c631ab9cb506",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "d8ad10697cf7c114",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        45568
+      ],
+      "unprocessed_array_sha256": "33fe85db3d2511edfa5f37dbd2e3f3e49cab1c91fd23b73f0cddcd73a4c8e751"
+    },
+    {
+      "exact_native_cache_key": "af9943164c71258e54f31c2a85ef808039e2c935.pkl",
+      "pkl_sha256": "dc13cbf83a462eec506779716853f6761db1af49366f649252cba405fd0f110b",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "About 90 per cent of cars were left-hand drive, so motorists overtaking on narrow two-lane highways risked head-on collisions.",
+          "exact_native_cache_key": "af9943164c71258e54f31c2a85ef808039e2c935.pkl",
+          "cache_input_text_sha256": "9847dfcea826d138302bfcbc45f642229a06d01a27e13d36fb6405f4a0da5664",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "dc13cbf83a462eec",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        219136
+      ],
+      "unprocessed_array_sha256": "5b152ce5fe9a427209d54593a8e7ba1e7418751606b7bd2d0d5d27dc1f20355a"
+    },
+    {
+      "exact_native_cache_key": "1a080e96b0a06a6dea4cdaf4b396284600ddeb40.pkl",
+      "pkl_sha256": "18efa77d64ec4dd8f1e298a95b535a902356fabc65466c14db5c3b201af6033b",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "About 90 per cent of cars were left-hand drive,",
+          "exact_native_cache_key": "1a080e96b0a06a6dea4cdaf4b396284600ddeb40.pkl",
+          "cache_input_text_sha256": "70bbe79a0fa6fc45a7b3aa45393982c840cc4bc0c379c49e3329ad3678d6c581",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "About 90 per cent of cars were left-hand drive,",
+          "exact_native_cache_key": "1a080e96b0a06a6dea4cdaf4b396284600ddeb40.pkl",
+          "cache_input_text_sha256": "70bbe79a0fa6fc45a7b3aa45393982c840cc4bc0c379c49e3329ad3678d6c581",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "18efa77d64ec4dd8",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        75264
+      ],
+      "unprocessed_array_sha256": "732266f34a1582020061394a02f3410719212611c655dba38d9dba3e54479faf"
+    },
+    {
+      "exact_native_cache_key": "fb46070bb621e2b0fcfed00ea5f61f72dea63a6c.pkl",
+      "pkl_sha256": "c97f469fdeacaaab58ffe7f66ef00b511a0ce5e09a3c00befd72431e685f30c9",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "so motorists overtaking on narrow two-lane highways risked head-on collisions.",
+          "exact_native_cache_key": "fb46070bb621e2b0fcfed00ea5f61f72dea63a6c.pkl",
+          "cache_input_text_sha256": "8ab87d4ec036b4feea2cdfa3dea59938dfd711155ad90eb42ec3f2adda1f9e36",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "so motorists overtaking on narrow two-lane highways risked head-on collisions.",
+          "exact_native_cache_key": "fb46070bb621e2b0fcfed00ea5f61f72dea63a6c.pkl",
+          "cache_input_text_sha256": "8ab87d4ec036b4feea2cdfa3dea59938dfd711155ad90eb42ec3f2adda1f9e36",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "c97f469fdeacaaab",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        130560
+      ],
+      "unprocessed_array_sha256": "830b6e1bbd89d214315104dc5236c4a2bcf7c6578d9043b008e49702566ae968"
+    },
+    {
+      "exact_native_cache_key": "f9ff8fc47109c8c1228fa06318e12a2109966a1f.pkl",
+      "pkl_sha256": "2117dee40ec8d0c2c84db0d3c963a4e98a21f4fb52080d1da2d7e241524b2975",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "A state body ran the mammoth preparation under a logo, a large H with an arrow.",
+          "exact_native_cache_key": "f9ff8fc47109c8c1228fa06318e12a2109966a1f.pkl",
+          "cache_input_text_sha256": "e7eca44418b6e4211ca33627029d1127a9d0d5c563a52b3ec95e44a5f424a099",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "2117dee40ec8d0c2",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        135168
+      ],
+      "unprocessed_array_sha256": "3b9cde7b8c2befb6cf90277bf38ede91890727ca626717af329e935b457091a7"
+    },
+    {
+      "exact_native_cache_key": "e62a9f506ecc1fe4c78294ddb9e516822583eb4a.pkl",
+      "pkl_sha256": "47a288a93d13fcd2483e13907db03cada47ac365159fc80c6c83279dea6819f7",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "A state body ran the mammoth preparation",
+          "exact_native_cache_key": "e62a9f506ecc1fe4c78294ddb9e516822583eb4a.pkl",
+          "cache_input_text_sha256": "5c0056439d742d7e8518257c4f9ef24a7c07e0a3a556cdf5668379ce980c3c7e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "47a288a93d13fcd2",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        61952
+      ],
+      "unprocessed_array_sha256": "ad68dc2891fec4ca127857854730dc9d99bc6a12216d4ab401c82313718efb64"
+    },
+    {
+      "exact_native_cache_key": "c5b9d75b1580099b26dc46eadf14b142d09febb9.pkl",
+      "pkl_sha256": "8bd2b23bdcfba60f73a8c11562208750cbbd9d1ceda720f52eb7763ebc8743f8",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "under a logo, a large H with an arrow.",
+          "exact_native_cache_key": "c5b9d75b1580099b26dc46eadf14b142d09febb9.pkl",
+          "cache_input_text_sha256": "02ab850efee5128f724b4218f2b321181ec2785f57af0242cf269239327a4326",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "8bd2b23bdcfba60f",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        68608
+      ],
+      "unprocessed_array_sha256": "e6e7bf71d9bce7a8f2b20c5cc38e2304d01d8e6f449a30463d5b10f995576689"
+    },
+    {
+      "exact_native_cache_key": "b3990a040c3fde43f05d9df18ad2d824d2011728.pkl",
+      "pkl_sha256": "1310a1086027df8026df1117958b2daeaf45a9bf19b65b55914969417bafb678",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "A state body ran the mammoth preparation under a logo,",
+          "exact_native_cache_key": "b3990a040c3fde43f05d9df18ad2d824d2011728.pkl",
+          "cache_input_text_sha256": "c9a504492b6477a3eb948e147e0aa1fed8036b799393d372d3ac495738e9cf73",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "1310a1086027df80",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        86016
+      ],
+      "unprocessed_array_sha256": "34bef2444a3fd1fe5169528db5245f472957d2a322152d2d95d9d45666a48757"
+    },
+    {
+      "exact_native_cache_key": "503dcf813454268c6f521430bb2cafbad350943e.pkl",
+      "pkl_sha256": "552bf44a57d8f98444a6a30d2a7af5389c93293353d2026137ed2436442362eb",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a large H with an arrow.",
+          "exact_native_cache_key": "503dcf813454268c6f521430bb2cafbad350943e.pkl",
+          "cache_input_text_sha256": "fcd163602314b5c3736ba5274d37ea911ebe4dc9a0a0a5b1cb2dcee804382d6e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "552bf44a57d8f984",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        41984
+      ],
+      "unprocessed_array_sha256": "af93a360db798678e3cfe0005ddbeb4aac284913e8762df488c0f80dfe99ccb6"
+    },
+    {
+      "exact_native_cache_key": "9079d316e32809da89059a79b81e762be78bbece.pkl",
+      "pkl_sha256": "2d1f7a78f8b10dd76332c20faea1d21c9c191389fb54525a518b49d7687cf02d",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Its propaganda included a song contest on television, and the winning jingle, whose lyrics urged people to keep right, reached fifth in the chart.",
+          "exact_native_cache_key": "9079d316e32809da89059a79b81e762be78bbece.pkl",
+          "cache_input_text_sha256": "6422c43eb15d765d1b0ca7b2b758583b135915c2e6747180da33589a3d1f4dc0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "2d1f7a78f8b10dd7",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        233472
+      ],
+      "unprocessed_array_sha256": "d3bfa33f9c80fd92601cac40dc5695170a6cdc76439959062b590993b1ed62b6"
+    },
+    {
+      "exact_native_cache_key": "d505c691664d46712810de5a351ab9e629765b42.pkl",
+      "pkl_sha256": "5e31f65b80b90fef27e726f2b4747371e2182cb3095a2f8e4008d882e0462d3b",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Its propaganda included a song contest on television,",
+          "exact_native_cache_key": "d505c691664d46712810de5a351ab9e629765b42.pkl",
+          "cache_input_text_sha256": "ac50356c152491323fca75c7750f5b807d298d7daa931187720490047857db73",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Its propaganda included a song contest on television,",
+          "exact_native_cache_key": "d505c691664d46712810de5a351ab9e629765b42.pkl",
+          "cache_input_text_sha256": "ac50356c152491323fca75c7750f5b807d298d7daa931187720490047857db73",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "5e31f65b80b90fef",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        90624
+      ],
+      "unprocessed_array_sha256": "896a56b4f781352c9e0cd7661964aaa7cb399e2a27312b97fb3f4963cae2f7fc"
+    },
+    {
+      "exact_native_cache_key": "bcd29ae2b6152d90627f9da7ffd5c17c3a5334f8.pkl",
+      "pkl_sha256": "a7ca7cb14a89f1059a56f636e54f6dfe18fe31f27f1e80ebb21cbbdceac28530",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and the winning jingle, whose lyrics urged people to keep right, reached fifth in the chart.",
+          "exact_native_cache_key": "bcd29ae2b6152d90627f9da7ffd5c17c3a5334f8.pkl",
+          "cache_input_text_sha256": "b41c0ed78a1344bda55e5962172431e133ebefcbe74f8ff2119fe76a6b66f5f7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "a7ca7cb14a89f105",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        133632
+      ],
+      "unprocessed_array_sha256": "96c2ca3430383965f0fda2ec093ddb01744ab10b0d768198a4608493b3bd978a"
+    },
+    {
+      "exact_native_cache_key": "88695f851bbbbec4b68a9e79a8cd8cb6023503c7.pkl",
+      "pkl_sha256": "fefeb32eba478dac1c86d36fb284fcbdca30929ed5eb24d052b92ce4a4655179",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and the winning jingle,",
+          "exact_native_cache_key": "88695f851bbbbec4b68a9e79a8cd8cb6023503c7.pkl",
+          "cache_input_text_sha256": "c0fc60a39f74c4197b4a5bf4177a95561577e9b019f5f213693cf9456ba17eb8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "fefeb32eba478dac",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        32768
+      ],
+      "unprocessed_array_sha256": "66c7a56888335587115d72b1e5af3d84627e22db273d64446d2942325a52c29f"
+    },
+    {
+      "exact_native_cache_key": "3e0263fab9e06a1a5e446c23ceaab320b3ecf6c3.pkl",
+      "pkl_sha256": "e945a6724bf7b8c6c77b31ddc2b6851a74e42657dc98f20e72dc4c5a1f4fcc62",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "whose lyrics urged people to keep right,",
+          "exact_native_cache_key": "3e0263fab9e06a1a5e446c23ceaab320b3ecf6c3.pkl",
+          "cache_input_text_sha256": "08f4df6c7b5c7f3d48809b5ccc607e83196f4b209e2abee084156e38e176d1e3",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "e945a6724bf7b8c6",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        56320
+      ],
+      "unprocessed_array_sha256": "d35efd1d9ec468c17faa4b8af4445d67006afcbb5fbb4448c540555e21bcf1c1"
+    },
+    {
+      "exact_native_cache_key": "c3b139ec02465362c65d73af78f39537fff70997.pkl",
+      "pkl_sha256": "c7e523305bfc7c4b9de7204b085ab2be90896ff043b76f9b3bd9024df59f8c21",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "reached fifth in the chart.",
+          "exact_native_cache_key": "c3b139ec02465362c65d73af78f39537fff70997.pkl",
+          "cache_input_text_sha256": "b993b9cd2926f623dc2d6a6ac80a9570008918d2ffd9a2d774be13e788db16a4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "c7e523305bfc7c4b",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        35328
+      ],
+      "unprocessed_array_sha256": "7928fb4338045c288888bbab206b53cc37eae27084e39672f6be23b8cde0c901"
+    },
+    {
+      "exact_native_cache_key": "c3d1acdbbd008191d28f287a8e502eb2ac6c2b9b.pkl",
+      "pkl_sha256": "56d4577fedcb72e430f0d0deed03a66f3631bf46a8898da57a1557b71e64af67",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Some 360,000 items of signage were changed, and a massive fleet of over 1,000 new buses with right-hand doors was procured.",
+          "exact_native_cache_key": "c3d1acdbbd008191d28f287a8e502eb2ac6c2b9b.pkl",
+          "cache_input_text_sha256": "a1f6776e7d82c87d87359f366a23a40da3044d09056bf35471fbfd2391558686",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "56d4577fedcb72e4",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        236032
+      ],
+      "unprocessed_array_sha256": "37c8710710def2ac8224f0651108feabbd719f0651732a673f348f329f911e14"
+    },
+    {
+      "exact_native_cache_key": "55b612883986592b448b51f6b66ad131d92651a0.pkl",
+      "pkl_sha256": "ecef30b062b9f2281f443a5c0cb5fd98f097725e03edb40ef49933c2c6b8481c",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Some 360,000 items of signage were changed,",
+          "exact_native_cache_key": "55b612883986592b448b51f6b66ad131d92651a0.pkl",
+          "cache_input_text_sha256": "c59e2e43dca7ac93ec0fa89223c61211bf719f709ba422646e038bb24bb0ea8c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Some 360,000 items of signage were changed,",
+          "exact_native_cache_key": "55b612883986592b448b51f6b66ad131d92651a0.pkl",
+          "cache_input_text_sha256": "c59e2e43dca7ac93ec0fa89223c61211bf719f709ba422646e038bb24bb0ea8c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "ecef30b062b9f228",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        122368
+      ],
+      "unprocessed_array_sha256": "90537fd041bf286d3a7806d4fb3cf83574eb4ee67d3b9ad20991a08b20755218"
+    },
+    {
+      "exact_native_cache_key": "24a02c4f9a88707ba5a68dc6e3ad2ec2ba76f877.pkl",
+      "pkl_sha256": "94891baea5504b4db475d15a8cd70ae6be986f7a4208ebc9b7d7730443784b27",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and a massive fleet",
+          "exact_native_cache_key": "24a02c4f9a88707ba5a68dc6e3ad2ec2ba76f877.pkl",
+          "cache_input_text_sha256": "6cce3f8a205b9ef1bd6abc78fc6281cbf93fc55e57f877244499a2415c0bc44b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "94891baea5504b4d",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        30208
+      ],
+      "unprocessed_array_sha256": "ee7b2aa4ec2f9073c4402e73cb7bfeaa50148a3588f2509d677a0fb658a2aa5a"
+    },
+    {
+      "exact_native_cache_key": "700ed942a7eb809fb888c0158a271333d9e1f667.pkl",
+      "pkl_sha256": "18c77a13ebbeb5a712e449085dd84dfb3125671ab6689942420e22454c3a21b5",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "of over 1,000 new buses with right-hand doors was procured.",
+          "exact_native_cache_key": "700ed942a7eb809fb888c0158a271333d9e1f667.pkl",
+          "cache_input_text_sha256": "bec5745eba7582930d8dc71b2c88d1792b6e1187173a3cf2465e6e63449c1c37",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "18c77a13ebbeb5a7",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        103424
+      ],
+      "unprocessed_array_sha256": "c26464695216c42241311c194cd38000710d07d18f48995698e4ff659841b916"
+    },
+    {
+      "exact_native_cache_key": "c1fcfbf7e925c94c18669d02138297a9369b806d.pkl",
+      "pkl_sha256": "9fe33474aeff8fa11e3c57c26afc7f9426c04e5978fc50dee09e1048fbc257f4",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and a massive fleet of over 1,000 new buses with right-hand doors was procured.",
+          "exact_native_cache_key": "c1fcfbf7e925c94c18669d02138297a9369b806d.pkl",
+          "cache_input_text_sha256": "274865a1dd5f05ed25571b1d5aa2e8db1e9e77eb2cc27795a6a8870aa89d0030",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "9fe33474aeff8fa1",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        130048
+      ],
+      "unprocessed_array_sha256": "12d3c3619aeef3caec81d6426d0255b08c6bf563b76bdf7bcccae4dfce35bbdb"
+    },
+    {
+      "exact_native_cache_key": "7343aedae6e445a038142509690ddfb41b1bc71e.pkl",
+      "pkl_sha256": "76393eec1c7c59339e0381e0fdcfca137382dcfc4e414e29eee1d9e9062d6381",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The transition came on Sunday 3 September 1967.",
+          "exact_native_cache_key": "7343aedae6e445a038142509690ddfb41b1bc71e.pkl",
+          "cache_input_text_sha256": "3ba1d22f96df601111a9877572610d5561a4f55cdb54c83573ad066a1719f5be",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "76393eec1c7c5933",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        116224
+      ],
+      "unprocessed_array_sha256": "a16808a98953848ba7d8fb0978bc974a7404a0877fbdd2d0efc6a2c90e42ac77"
+    },
+    {
+      "exact_native_cache_key": "eda7dd0e4d0b093ccd767689fb074a5fe8d66b63.pkl",
+      "pkl_sha256": "e6d87a04315dcb0530aea2422c33be3be96849f65d7a9614fbd5dcb3ecaca949",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "A curfew kept non-essential vehicles off the asphalt from one to six, with essential traffic exempt.",
+          "exact_native_cache_key": "eda7dd0e4d0b093ccd767689fb074a5fe8d66b63.pkl",
+          "cache_input_text_sha256": "291ec13be902d329c8075ef5a47742cf828c886a55674d7a4d4060465032c525",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "e6d87a04315dcb05",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        159744
+      ],
+      "unprocessed_array_sha256": "5799bba01e944f194fbe725153a2b4d7dbc937f5eb3fce443bc3ede1d79ff05c"
+    },
+    {
+      "exact_native_cache_key": "a9616ca03cc456072b8d48781d92a89ed89ed6dc.pkl",
+      "pkl_sha256": "25e6fe18b9b5ea614677140c25c5bb197ec8e53a47828c4ffb591797417e3d25",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "A curfew kept non-essential vehicles off the asphalt from one to six,",
+          "exact_native_cache_key": "a9616ca03cc456072b8d48781d92a89ed89ed6dc.pkl",
+          "cache_input_text_sha256": "aef80672e8ed5b306741b4558f47cbadb76f57a4558b285b1a1002a71fd5d72b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "A curfew kept non-essential vehicles off the asphalt from one to six,",
+          "exact_native_cache_key": "a9616ca03cc456072b8d48781d92a89ed89ed6dc.pkl",
+          "cache_input_text_sha256": "aef80672e8ed5b306741b4558f47cbadb76f57a4558b285b1a1002a71fd5d72b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "25e6fe18b9b5ea61",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        107520
+      ],
+      "unprocessed_array_sha256": "6e71da1962ebe0f9c3398a8bc89c24e0d91be383ad4afcb5167cde7a3b8434a8"
+    },
+    {
+      "exact_native_cache_key": "b03101ccb3d9dfd1aba179645ab7c05056b2a81b.pkl",
+      "pkl_sha256": "0727243c44ff0919c80bf1942195243dd125d5e1c10dde18a639dca473a90dbe",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "with essential traffic exempt.",
+          "exact_native_cache_key": "b03101ccb3d9dfd1aba179645ab7c05056b2a81b.pkl",
+          "cache_input_text_sha256": "f56d29a9e1a4295e8a8f0d2e8dd334b7c76ac8f03218f7a2b9a563c9c2bf035c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "with essential traffic exempt.",
+          "exact_native_cache_key": "b03101ccb3d9dfd1aba179645ab7c05056b2a81b.pkl",
+          "cache_input_text_sha256": "f56d29a9e1a4295e8a8f0d2e8dd334b7c76ac8f03218f7a2b9a563c9c2bf035c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "0727243c44ff0919",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        41984
+      ],
+      "unprocessed_array_sha256": "114419867bf7795270b62b2081a564907b30e1e944c5ce1454ec4db8b43cded1"
+    },
+    {
+      "exact_native_cache_key": "5fa5fede6f4a5c887068cd298360f7472712e48c.pkl",
+      "pkl_sha256": "caed809fb28efab97c6ff3b0b4c62b782bb07abaf705370a8f1f235c534b054f",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "At ten to five, all traffic stopped and crawled across, restarting at five, before dawn, with its direction flipped.",
+          "exact_native_cache_key": "5fa5fede6f4a5c887068cd298360f7472712e48c.pkl",
+          "cache_input_text_sha256": "785a4fe28a58d4d827c41f4c0a32784cb83a6ef836a15ce040dfacf9d829fd6d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "caed809fb28efab9",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        185344
+      ],
+      "unprocessed_array_sha256": "7ea59e81b3d2b0e047ba9871514d9774b9dc521f86f8899716ab62540a2860bb"
+    },
+    {
+      "exact_native_cache_key": "74c68f93e5510a08cc47e13bb79cd0f05ab74ff0.pkl",
+      "pkl_sha256": "c9846919edcc3e8b00b13199da7946e3e01b95c3c951adeb9e071bc09f19c921",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "At ten to five, all traffic stopped and crawled across,",
+          "exact_native_cache_key": "74c68f93e5510a08cc47e13bb79cd0f05ab74ff0.pkl",
+          "cache_input_text_sha256": "aa7a8622f15ddc80ba88ca8ecef92b91ae8f4d6878389f46bd3249cc094e7860",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "c9846919edcc3e8b",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        77824
+      ],
+      "unprocessed_array_sha256": "eb2c39ac4ead9caee43ab4060794066daf2a9311665c82759f82b8e261762346"
+    },
+    {
+      "exact_native_cache_key": "9bcb7b76eb8e2e7a32c6983a09f8f0bb62e44782.pkl",
+      "pkl_sha256": "60883019d16e98af31dca64f86350a811405a8628c33b9ae5efb4442e1120f66",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "restarting at five, before dawn, with its direction flipped.",
+          "exact_native_cache_key": "9bcb7b76eb8e2e7a32c6983a09f8f0bb62e44782.pkl",
+          "cache_input_text_sha256": "58a68e5d630fbe533189c8e7f04d87f1c72e6bbd2dfcb432f3923b59c268130e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "60883019d16e98af",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        88576
+      ],
+      "unprocessed_array_sha256": "a4851a51a9de7a616a218af6bfcd06b6d9721df0b770f6638f6ad5b0ab913ee8"
+    },
+    {
+      "exact_native_cache_key": "890726c366670743cf2d443c4e8ae69c09eec5f6.pkl",
+      "pkl_sha256": "1a0187f175ff0bbdee6698ef466b4dd1057a06ec0abb809926f0e5b580746497",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "At ten to five,",
+          "exact_native_cache_key": "890726c366670743cf2d443c4e8ae69c09eec5f6.pkl",
+          "cache_input_text_sha256": "b8f98957db5fbcecd3513960148457a32ee42ff5670a0f20b7ae3626803564ad",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "1a0187f175ff0bbd",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        28160
+      ],
+      "unprocessed_array_sha256": "4d69e8b75f06ff1ddb3998a30a7e713846344923b9c1e85e1bbfa45bfa391be3"
+    },
+    {
+      "exact_native_cache_key": "0d4650c6b9cf0d484a91a48d801ea6c9d2b207c6.pkl",
+      "pkl_sha256": "7f9fb6da7ca631087eb48bc5d78b3704c732033d4fe224f004abd38f7d72fc36",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "all traffic stopped and crawled across,",
+          "exact_native_cache_key": "0d4650c6b9cf0d484a91a48d801ea6c9d2b207c6.pkl",
+          "cache_input_text_sha256": "597056cc3de5416da231ea98f1b8ac88c1e5faa6996c0a3d2996c6a7a26369a7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "7f9fb6da7ca63108",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        52224
+      ],
+      "unprocessed_array_sha256": "31b520fafd41c1ab69123107a31ebc0a2f709ad687110e55c8b742447e15dab6"
+    },
+    {
+      "exact_native_cache_key": "cc105364fdac0a2ec19d5a0abf31765083969557.pkl",
+      "pkl_sha256": "979ca04cb25c11d80924fbca4febd12b5f2010bc77b739680a134360400a864a",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "restarting at five,",
+          "exact_native_cache_key": "cc105364fdac0a2ec19d5a0abf31765083969557.pkl",
+          "cache_input_text_sha256": "881e37c62695d173153f77308af6bcf1c57f9d31b3c882f58e50df85c8fd4c86",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "979ca04cb25c11d8",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        32768
+      ],
+      "unprocessed_array_sha256": "20f37d6e367254b0aedcb0a18319b42038def8ea81e7924d43f299c84c230142"
+    },
+    {
+      "exact_native_cache_key": "322ab8eb3b79872c14c91f565c970d3d3293102e.pkl",
+      "pkl_sha256": "1cb298b94ed629261efe2a04ca68c519cf3297b7495cb5b65267f5dc92b2fb7e",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "before dawn,",
+          "exact_native_cache_key": "322ab8eb3b79872c14c91f565c970d3d3293102e.pkl",
+          "cache_input_text_sha256": "149031c170182dfcd4d52281d0535793adc26b18ea3c00ef87fc9fc69d3e1edf",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "1cb298b94ed62926",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        24576
+      ],
+      "unprocessed_array_sha256": "9a9894ad5c89b1ceea2c217525a192c881331073fbfc96997b0cfa87aa7937e9"
+    },
+    {
+      "exact_native_cache_key": "57ed1001693c36035c7de738e2a6b7c60316f24c.pkl",
+      "pkl_sha256": "d298c9e8d4d7a0f02577324b76cf25758d2f111bfab81324409e055b9dbf1633",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 5,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "with its direction flipped.",
+          "exact_native_cache_key": "57ed1001693c36035c7de738e2a6b7c60316f24c.pkl",
+          "cache_input_text_sha256": "c4c069e5af4c6a14804a89f5ed15e9d7c0c13535b5d9e8f03f29ecf7c18c9930",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "d298c9e8d4d7a0f0",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        36864
+      ],
+      "unprocessed_array_sha256": "c8f9038b842a4aa899f47edb9890692da17bf391417435f552ca9d547fb3c402"
+    },
+    {
+      "exact_native_cache_key": "6fc945a208e06df156acf5582290d09e9f074180.pkl",
+      "pkl_sha256": "c93329491836af21d7b0c6bce14aa85ebb8ab866189520e0e897f9eecd79811a",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Stockholm and Malmö had a longer closure, from Saturday morning to Sunday afternoon, while crews reconfigured junctions.",
+          "exact_native_cache_key": "6fc945a208e06df156acf5582290d09e9f074180.pkl",
+          "cache_input_text_sha256": "da841f5d8f0574e387e27c388bf27a79d8558e201cc20710f1afce9c34c870cd",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "c93329491836af21",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        189952
+      ],
+      "unprocessed_array_sha256": "967633e33735e51ec698a21f6f90776df1bb2451ce523757bc98c6b3057113b7"
+    },
+    {
+      "exact_native_cache_key": "9fbd7b8f05477d82158dad5b6e38fee4d7afa73b.pkl",
+      "pkl_sha256": "5beeade1c3a37b78563ccd983fe0816c544243e7b537662062ec7e8210a82946",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Stockholm and Malmö had a longer closure, from Saturday morning to Sunday afternoon,",
+          "exact_native_cache_key": "9fbd7b8f05477d82158dad5b6e38fee4d7afa73b.pkl",
+          "cache_input_text_sha256": "ec9fb282f569b2714b6568701ad29ef4f5c4bd37be9ced944523164e051a2b79",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "5beeade1c3a37b78",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        126464
+      ],
+      "unprocessed_array_sha256": "d40c48e80264594149f845a3b45db9ffd5da5e24c89380d9150e2f239e245c0c"
+    },
+    {
+      "exact_native_cache_key": "09e1771acbbf3567346fab1635dc2a9a6ca26573.pkl",
+      "pkl_sha256": "d33612980b3e007c9b94c4299bec1b512c0ac784fe730c01bd2dea4e0223c834",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "while crews reconfigured junctions.",
+          "exact_native_cache_key": "09e1771acbbf3567346fab1635dc2a9a6ca26573.pkl",
+          "cache_input_text_sha256": "9c1ed92df9b1dad84fceee961e2d02a08525c0f9316abe4b220bd9bf80efd42d",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "while crews reconfigured junctions.",
+          "exact_native_cache_key": "09e1771acbbf3567346fab1635dc2a9a6ca26573.pkl",
+          "cache_input_text_sha256": "9c1ed92df9b1dad84fceee961e2d02a08525c0f9316abe4b220bd9bf80efd42d",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "d33612980b3e007c",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        55296
+      ],
+      "unprocessed_array_sha256": "2d9065e87169a93703a1d7cbd8f2d66a4d3ba8d06b126331c2ef6d9cec06f2ab"
+    },
+    {
+      "exact_native_cache_key": "f574138cedc2df84d5b3b43996d8d61d9d2c4d3e.pkl",
+      "pkl_sha256": "d4c576d15fbb6f461b34747f8734ca7970b580b8c9313042f273848fc1429ec5",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Stockholm and Malmö had a longer closure,",
+          "exact_native_cache_key": "f574138cedc2df84d5b3b43996d8d61d9d2c4d3e.pkl",
+          "cache_input_text_sha256": "f718cf087d432d051ec23fb07d04e290faae219b8916679c032d1c51ad616b63",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "d4c576d15fbb6f46",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        56832
+      ],
+      "unprocessed_array_sha256": "4151ef27de7da877ecad3a584c147f76751128ba5a9bdf306f011661708014fb"
+    },
+    {
+      "exact_native_cache_key": "0f2f42c30154d71fc621e4463d8868d05d5cc6b4.pkl",
+      "pkl_sha256": "0cfd780bf3eed5fe279c2d25e47db7d8197684ee07617059b3e843b2f0d11fb3",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "from Saturday morning to Sunday afternoon,",
+          "exact_native_cache_key": "0f2f42c30154d71fc621e4463d8868d05d5cc6b4.pkl",
+          "cache_input_text_sha256": "b6e67577660bbe0f9363431a0d8fb658a5cd03a547ecc65a166b044495930112",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "0cfd780bf3eed5fe",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        60928
+      ],
+      "unprocessed_array_sha256": "5d28e6a119661105dc909ec02d8028fbc6d96e189f384fcea63d5f97c13226d6"
+    },
+    {
+      "exact_native_cache_key": "23e05dcb2f991a515a24b35781cc5301cbc97f97.pkl",
+      "pkl_sha256": "fd4ca83855e02d96e8f43e5d14e22e0407a26f3f3c6e1befd7423da5af8302b0",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "On the following Monday, 125 accidents were reported, against 130 to 198 on earlier Mondays, a statistical improvement put down to the heightened care of hesitant drivers.",
+          "exact_native_cache_key": "23e05dcb2f991a515a24b35781cc5301cbc97f97.pkl",
+          "cache_input_text_sha256": "1472242023b91c4b1b763ff3e4855eafa240c50c21b17d1c7690beee3301604f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "fd4ca83855e02d96",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        338432
+      ],
+      "unprocessed_array_sha256": "fb3bcc91d5b5708463062972fe876488394433a24c98ae1f638c80df0218861a"
+    },
+    {
+      "exact_native_cache_key": "b252a5ed997109d10019f21439cc0bb3eaae7ef5.pkl",
+      "pkl_sha256": "1d0fa5a53a1c214ac0c56dfa0b73f4b6b567481f9e900b5386eba59e764ae96b",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "On the following Monday, 125 accidents were reported, against 130 to 198 on earlier Mondays,",
+          "exact_native_cache_key": "b252a5ed997109d10019f21439cc0bb3eaae7ef5.pkl",
+          "cache_input_text_sha256": "a9792be477ca2ae62514dd6427e9259d286e8d34ed900995ffeea0989c06a44c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "1d0fa5a53a1c214a",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        216064
+      ],
+      "unprocessed_array_sha256": "2fe92b9324105038fe97c3b2f705d60aa3ed1ee7ad09ed1bf61840f1c19beddf"
+    },
+    {
+      "exact_native_cache_key": "6356f0d79d66115d7ff0680a524b3842097d9291.pkl",
+      "pkl_sha256": "e2009ff3f0f45bb4c90722856167fd8e16db912a86ba48a5b3583faecd0db38d",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "a statistical improvement put down to the heightened care of hesitant drivers.",
+          "exact_native_cache_key": "6356f0d79d66115d7ff0680a524b3842097d9291.pkl",
+          "cache_input_text_sha256": "c54cc8e3fdfc3fc2be5d5e8197c5ad93de94c27da6a1b7272b8a60dcb22d2cbe",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a statistical improvement put down to the heightened care of hesitant drivers.",
+          "exact_native_cache_key": "6356f0d79d66115d7ff0680a524b3842097d9291.pkl",
+          "cache_input_text_sha256": "c54cc8e3fdfc3fc2be5d5e8197c5ad93de94c27da6a1b7272b8a60dcb22d2cbe",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "e2009ff3f0f45bb4",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        117760
+      ],
+      "unprocessed_array_sha256": "fcd78e99e96d99f7798f2bf095d67ca7a6494474ef2f1e152405f903146d446c"
+    },
+    {
+      "exact_native_cache_key": "f5845be1b50ffb232bc75a5bc3b96ac4525e531a.pkl",
+      "pkl_sha256": "0e3be56bfa6d689ee2ef7a2362cb6cbc1a34c0082eca419f0f61efcc897f2802",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "On the following Monday,",
+          "exact_native_cache_key": "f5845be1b50ffb232bc75a5bc3b96ac4525e531a.pkl",
+          "cache_input_text_sha256": "07c9f2734520d1565247fa54b15274ad3bf53166dd10c718762ec2c0d75b3d4f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "0e3be56bfa6d689e",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        34816
+      ],
+      "unprocessed_array_sha256": "e6aa94153b22fd7f71116e1ab8fa8f1c2fce20e6634ed0f00f5a5ff4eddd814c"
+    },
+    {
+      "exact_native_cache_key": "ea2b8146264ddb0a67532b91b8fa70ebbdb642c5.pkl",
+      "pkl_sha256": "a4c54f9c20786fa328b3bf7e9bc952e330fe0925ebb592ad07b55dffe744b49e",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "125 accidents were reported,",
+          "exact_native_cache_key": "ea2b8146264ddb0a67532b91b8fa70ebbdb642c5.pkl",
+          "cache_input_text_sha256": "71bee07a8a8175b5b1643721f4504653de642d14c58a98165c044b687d6c5cdd",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "a4c54f9c20786fa3",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        67072
+      ],
+      "unprocessed_array_sha256": "905ffc0f0ae66977dbadeb945c59795c0a9a27b7b06449e593af7f12bb823d62"
+    },
+    {
+      "exact_native_cache_key": "fb5103daaa319a40f1cbf256008a7b3e8e0e40d4.pkl",
+      "pkl_sha256": "0510afc35b3c85fbaefd31346a7114d61cd2e72c126e54ef1d715ea27a20ece8",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "against 130 to 198 on earlier Mondays,",
+          "exact_native_cache_key": "fb5103daaa319a40f1cbf256008a7b3e8e0e40d4.pkl",
+          "cache_input_text_sha256": "70eafde15e2c701cb300e3cf36b0e0cb2acdea8b3af933e6af3321babf0d70be",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "0510afc35b3c85fb",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        107520
+      ],
+      "unprocessed_array_sha256": "b9e84ebeab41a5155b4e9c8330405c453e4ba5a5a1a629130bb393586a5aea4f"
+    },
+    {
+      "exact_native_cache_key": "4edb21016aa3739b558278353b91cbf55042982b.pkl",
+      "pkl_sha256": "6322281bf346c931e554d6b7f73727df9ca4ccc21b59ce12eaadca0dd41bafaa",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The nervousness apparently subsided and prudent habits faded, for by 1969 accident and fatality rates had reverted to their baseline.",
+          "exact_native_cache_key": "4edb21016aa3739b558278353b91cbf55042982b.pkl",
+          "cache_input_text_sha256": "8383e52c2b689e95bc688b3f6f886416b168e04e981437d051653e92bd2a8e27",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "6322281bf346c931",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        240640
+      ],
+      "unprocessed_array_sha256": "9b097e0c919eebf8a098c3c361d2ea6cc31151ef4f88ad87a5444ef2460ab570"
+    },
+    {
+      "exact_native_cache_key": "d8966adabab234732e0837511fb8d6c36554cb37.pkl",
+      "pkl_sha256": "c395513c2ea9e344f0f410a6ea11e2081d59f6d3c655611c194e722eab0893a3",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "The nervousness apparently subsided and prudent habits faded,",
+          "exact_native_cache_key": "d8966adabab234732e0837511fb8d6c36554cb37.pkl",
+          "cache_input_text_sha256": "fdffeb42ce7354e79a5fb5a6319dbac8b89e69a21adfc86cddc2b441fe6ca3b2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "The nervousness apparently subsided and prudent habits faded,",
+          "exact_native_cache_key": "d8966adabab234732e0837511fb8d6c36554cb37.pkl",
+          "cache_input_text_sha256": "fdffeb42ce7354e79a5fb5a6319dbac8b89e69a21adfc86cddc2b441fe6ca3b2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "c395513c2ea9e344",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        88064
+      ],
+      "unprocessed_array_sha256": "efbbd1830200ab076221ebc5442ee63ae8bd8dcd53251e26514aea349568c710"
+    },
+    {
+      "exact_native_cache_key": "e256765aaead2f25c15f0d880f07e6bf9fb91c5e.pkl",
+      "pkl_sha256": "c2ed27667a65e57c4654dce6d5e21e4071ce217bb3878289f5d80d69cc6b877b",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "for by 1969 accident and fatality rates had reverted to their baseline.",
+          "exact_native_cache_key": "e256765aaead2f25c15f0d880f07e6bf9fb91c5e.pkl",
+          "cache_input_text_sha256": "7469d0f25a1b83cf10743b9b7ef8e1cd1c2e7bd39aeed85c4abb2d925cddebf1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "for by 1969 accident and fatality rates had reverted to their baseline.",
+          "exact_native_cache_key": "e256765aaead2f25c15f0d880f07e6bf9fb91c5e.pkl",
+          "cache_input_text_sha256": "7469d0f25a1b83cf10743b9b7ef8e1cd1c2e7bd39aeed85c4abb2d925cddebf1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "c2ed27667a65e57c",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        138752
+      ],
+      "unprocessed_array_sha256": "e151c14e5a9a83e1e21c0d631cd855f9708144d6c89df20942869d08302346cf"
+    }
+  ],
+  "missing_reference_key_count": 0,
+  "observed_missing_keys_covered": [],
+  "new_private_cache_names": [],
+  "native_single_thread_marker_verified": true,
+  "single_thread_sessions": [
+    {
+      "intra_op_num_threads": 1,
+      "inter_op_num_threads": 1
+    },
+    {
+      "intra_op_num_threads": 1,
+      "inter_op_num_threads": 1
+    }
+  ],
+  "models_sha256": {
+    "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+    "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+    "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+  },
+  "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+  "existing_private_cache_count": 11514,
+  "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+  "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+  "existing_private_cache_bytes_unchanged": true,
+  "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+  "public_repository_cache_unchanged": true,
+  "producer_pcm_existed_before": false,
+  "producer_pcm_sha256_before": null,
+  "producer_pcm_sha256_after": null,
+  "accepted_aac_adts_sha256_before": "9c5f254e0c4a6a0f4d4f796988d1289dc28d0805042eea82a8eb202f476b2678",
+  "accepted_aac_adts_sha256_after": "9c5f254e0c4a6a0f4d4f796988d1289dc28d0805042eea82a8eb202f476b2678",
+  "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+  "private_cache_exported": false
+}
