@@ -1,0 +1,3807 @@
+{
+  "actual_successful_job_verified": true,
+  "actual_genuine_upstream_pass_with_missing_art_recovery": false,
+  "actual_job_uploaded_selected_artifact": false,
+  "overall_matrix_success_required": false,
+  "acceptance_basis": "actual successful article job + immutable run artifact + actual native passed article/media/source identity; upload log is auxiliary",
+  "run": {
+    "id": 43543967031,
+    "name": "本轮改动篇目原缓存正式4K",
+    "node_id": "WFR_kwLODJcpM88AAAAKI2w1Nw",
+    "head_branch": "codex/finish-05-and-summaries-20261112",
+    "head_sha": "751cbb58491b7918c7437f9cd91efe28d90fa32e",
+    "path": ".github/workflows/produce-revision-batch4K.yml",
+    "display_title": "Rebuild revised articles in official4K: 01,02,03,04,05,06,08,09,13,14…",
+    "run_number": 14,
+    "event": "push",
+    "status": "completed",
+    "conclusion": "failure",
+    "workflow_id": 417752518,
+    "check_suite_id": 117906846498,
+    "check_suite_node_id": "CS_kwDODJcpM88AAAAbc8uzIg",
+    "url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43543967031",
+    "html_url": "https://github.com/AlienCodes/literate-enigma/actions/runs/43543967031",
+    "pull_requests": [],
+    "created_at": "2026-11-14T02:01:39Z",
+    "updated_at": "2026-11-14T02:50:52Z",
+    "actor": {
+      "login": "AlienCodes",
+      "id": 52247027,
+      "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/AlienCodes",
+      "html_url": "https://github.com/AlienCodes",
+      "followers_url": "https://api.github.com/users/AlienCodes/followers",
+      "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+      "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+      "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+      "repos_url": "https://api.github.com/users/AlienCodes/repos",
+      "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "run_attempt": 1,
+    "referenced_workflows": [],
+    "run_started_at": "2026-11-14T02:01:39Z",
+    "triggering_actor": {
+      "login": "AlienCodes",
+      "id": 52247027,
+      "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/AlienCodes",
+      "html_url": "https://github.com/AlienCodes",
+      "followers_url": "https://api.github.com/users/AlienCodes/followers",
+      "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+      "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+      "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+      "repos_url": "https://api.github.com/users/AlienCodes/repos",
+      "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "jobs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43543967031/attempts/1/jobs",
+    "logs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43543967031/attempts/1/logs",
+    "check_suite_url": "https://api.github.com/repos/AlienCodes/literate-enigma/check-suites/117906846498",
+    "artifacts_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43543967031/artifacts",
+    "cancel_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43543967031/cancel",
+    "rerun_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43543967031/rerun",
+    "previous_attempt_url": null,
+    "workflow_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/workflows/417752518",
+    "head_commit": {
+      "id": "751cbb58491b7918c7437f9cd91efe28d90fa32e",
+      "tree_id": "0914f9e0bf4e159fafeea9ae61cad85548219250",
+      "message": "Rebuild revised articles in official4K: 01,02,03,04,05,06,08,09,13,14,16,19,20,21,22,23,24,28,32,33,36,37,41,44,46,48,49,54,55,57,59,60,61,62,63,65,66,67,68,69,70",
+      "timestamp": "2026-11-14T02:01:37Z",
+      "author": {
+        "name": "the Sword God",
+        "email": "52247027+AlienCodes@users.noreply.github.com"
+      },
+      "committer": {
+        "name": "the Sword God",
+        "email": "52247027+AlienCodes@users.noreply.github.com"
+      }
+    },
+    "repository": {
+      "id": 211233075,
+      "node_id": "MDEwOlJlcG9zaXRvcnkyMTEyMzMwNzU=",
+      "name": "literate-enigma",
+      "full_name": "AlienCodes/literate-enigma",
+      "private": false,
+      "owner": {
+        "login": "AlienCodes",
+        "id": 52247027,
+        "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+        "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/AlienCodes",
+        "html_url": "https://github.com/AlienCodes",
+        "followers_url": "https://api.github.com/users/AlienCodes/followers",
+        "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+        "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+        "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+        "repos_url": "https://api.github.com/users/AlienCodes/repos",
+        "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/AlienCodes/literate-enigma",
+      "description": "I am exploring this world!",
+      "fork": false,
+      "url": "https://api.github.com/repos/AlienCodes/literate-enigma",
+      "forks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/forks",
+      "keys_url": "https://api.github.com/repos/AlienCodes/literate-enigma/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/AlienCodes/literate-enigma/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/AlienCodes/literate-enigma/teams",
+      "hooks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/hooks",
+      "issue_events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/events",
+      "assignees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/AlienCodes/literate-enigma/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/tags",
+      "blobs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/AlienCodes/literate-enigma/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/AlienCodes/literate-enigma/languages",
+      "stargazers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/stargazers",
+      "contributors_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contributors",
+      "subscribers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscribers",
+      "subscription_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscription",
+      "commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/AlienCodes/literate-enigma/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/AlienCodes/literate-enigma/merges",
+      "archive_url": "https://api.github.com/repos/AlienCodes/literate-enigma/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/AlienCodes/literate-enigma/downloads",
+      "issues_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/AlienCodes/literate-enigma/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/AlienCodes/literate-enigma/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/AlienCodes/literate-enigma/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/AlienCodes/literate-enigma/labels{/name}",
+      "releases_url": "https://api.github.com/repos/AlienCodes/literate-enigma/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/deployments"
+    },
+    "head_repository": {
+      "id": 211233075,
+      "node_id": "MDEwOlJlcG9zaXRvcnkyMTEyMzMwNzU=",
+      "name": "literate-enigma",
+      "full_name": "AlienCodes/literate-enigma",
+      "private": false,
+      "owner": {
+        "login": "AlienCodes",
+        "id": 52247027,
+        "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+        "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/AlienCodes",
+        "html_url": "https://github.com/AlienCodes",
+        "followers_url": "https://api.github.com/users/AlienCodes/followers",
+        "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+        "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+        "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+        "repos_url": "https://api.github.com/users/AlienCodes/repos",
+        "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/AlienCodes/literate-enigma",
+      "description": "I am exploring this world!",
+      "fork": false,
+      "url": "https://api.github.com/repos/AlienCodes/literate-enigma",
+      "forks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/forks",
+      "keys_url": "https://api.github.com/repos/AlienCodes/literate-enigma/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/AlienCodes/literate-enigma/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/AlienCodes/literate-enigma/teams",
+      "hooks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/hooks",
+      "issue_events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/events",
+      "assignees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/AlienCodes/literate-enigma/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/tags",
+      "blobs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/AlienCodes/literate-enigma/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/AlienCodes/literate-enigma/languages",
+      "stargazers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/stargazers",
+      "contributors_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contributors",
+      "subscribers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscribers",
+      "subscription_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscription",
+      "commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/AlienCodes/literate-enigma/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/AlienCodes/literate-enigma/merges",
+      "archive_url": "https://api.github.com/repos/AlienCodes/literate-enigma/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/AlienCodes/literate-enigma/downloads",
+      "issues_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/AlienCodes/literate-enigma/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/AlienCodes/literate-enigma/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/AlienCodes/literate-enigma/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/AlienCodes/literate-enigma/labels{/name}",
+      "releases_url": "https://api.github.com/repos/AlienCodes/literate-enigma/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/deployments"
+    }
+  },
+  "job": {
+    "id": 132290750983,
+    "run_id": 43543967031,
+    "workflow_name": "本轮改动篇目原缓存正式4K",
+    "head_branch": "codex/finish-05-and-summaries-20261112",
+    "run_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43543967031",
+    "run_attempt": 1,
+    "node_id": "CR_kwDODJcpM88AAAAezSSqBw",
+    "head_sha": "751cbb58491b7918c7437f9cd91efe28d90fa32e",
+    "url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/jobs/132290750983",
+    "html_url": "https://github.com/AlienCodes/literate-enigma/actions/runs/43543967031/job/132290750983",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-11-14T02:01:46Z",
+    "started_at": "2026-11-14T02:31:49Z",
+    "completed_at": "2026-11-14T02:49:44Z",
+    "name": "produce (59)",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-11-14T02:31:49Z",
+        "completed_at": "2026-11-14T02:31:50Z"
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-11-14T02:31:50Z",
+        "completed_at": "2026-11-14T02:31:58Z"
+      },
+      {
+        "name": "按批准的原图清单解析本篇原生文件名",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3,
+        "started_at": "2026-11-14T02:31:58Z",
+        "completed_at": "2026-11-14T02:31:58Z"
+      },
+      {
+        "name": "取固定主仓中已批准的本篇书中原图",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4,
+        "started_at": "2026-11-14T02:31:58Z",
+        "completed_at": "2026-11-14T02:31:59Z"
+      },
+      {
+        "name": "先验本篇原图的主仓提交、原生blob和批准SHA",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5,
+        "started_at": "2026-11-14T02:31:59Z",
+        "completed_at": "2026-11-14T02:31:59Z"
+      },
+      {
+        "name": "Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6,
+        "started_at": "2026-11-14T02:31:59Z",
+        "completed_at": "2026-11-14T02:32:00Z"
+      },
+      {
+        "name": "Run actions/cache/restore@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7,
+        "started_at": "2026-11-14T02:32:00Z",
+        "completed_at": "2026-11-14T02:32:31Z"
+      },
+      {
+        "name": "确认恢复既有机器缓存",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8,
+        "started_at": "2026-11-14T02:32:31Z",
+        "completed_at": "2026-11-14T02:32:31Z"
+      },
+      {
+        "name": "准备原有核查工具",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 9,
+        "started_at": "2026-11-14T02:32:31Z",
+        "completed_at": "2026-11-14T02:33:10Z"
+      },
+      {
+        "name": "Run actions/cache/restore@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 10,
+        "started_at": "2026-11-14T02:33:10Z",
+        "completed_at": "2026-11-14T02:33:10Z"
+      },
+      {
+        "name": "确认原快测印章缓存命中",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 11,
+        "started_at": "2026-11-14T02:33:10Z",
+        "completed_at": "2026-11-14T02:33:10Z"
+      },
+      {
+        "name": "原程序做稿并正式定稿4K",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 12,
+        "started_at": "2026-11-14T02:33:10Z",
+        "completed_at": "2026-11-14T02:49:39Z"
+      },
+      {
+        "name": "仅保留本篇公开成片和核验材料",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 13,
+        "started_at": "2026-11-14T02:49:39Z",
+        "completed_at": "2026-11-14T02:49:41Z"
+      },
+      {
+        "name": "Post Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 24,
+        "started_at": "2026-11-14T02:49:41Z",
+        "completed_at": "2026-11-14T02:49:41Z"
+      },
+      {
+        "name": "Post 取固定主仓中已批准的本篇书中原图",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 25,
+        "started_at": "2026-11-14T02:49:41Z",
+        "completed_at": "2026-11-14T02:49:41Z"
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 26,
+        "started_at": "2026-11-14T02:49:41Z",
+        "completed_at": "2026-11-14T02:49:42Z"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 27,
+        "started_at": "2026-11-14T02:49:42Z",
+        "completed_at": "2026-11-14T02:49:42Z"
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/AlienCodes/literate-enigma/check-runs/132290750983",
+    "labels": [
+      "ubuntu-latest"
+    ],
+    "runner_id": 1000008440,
+    "runner_name": "GitHub Actions 1000008440",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  "artifact": {
+    "id": 14095470935,
+    "node_id": "MDg6QXJ0aWZhY3QxNDA5NTQ3MDkzNQ==",
+    "name": "article59-revised-canonical-4K-final",
+    "size_in_bytes": 42601916,
+    "url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/artifacts/14095470935",
+    "archive_download_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/artifacts/14095470935/zip",
+    "expired": false,
+    "digest": "sha256:468954e1d99ae4875b1b2f3df416bc675cf74901f7c4c324e4cabeb168f6385f",
+    "created_at": "2026-11-14T02:49:41Z",
+    "updated_at": "2026-11-14T02:49:41Z",
+    "expires_at": "2026-12-14T02:49:39Z",
+    "workflow_run": {
+      "id": 43543967031,
+      "repository_id": 211233075,
+      "head_repository_id": 211233075,
+      "head_branch": "codex/finish-05-and-summaries-20261112",
+      "head_sha": "751cbb58491b7918c7437f9cd91efe28d90fa32e"
+    }
+  },
+  "upload_step_proof": {
+    "unambiguous_selected_step_upload": false,
+    "auxiliary_only": true,
+    "reason": "Upload action log block is missing or ambiguous in selected API step interval",
+    "acceptance_blocked_by_log": false
+  },
+  "native_status": {
+    "article": "59",
+    "passed": true,
+    "stage": "final4K-passed",
+    "original_audit_and_quality_thresholds_unchanged": true,
+    "original_maker_unchanged": true,
+    "core_repairs": [
+      {
+        "target": "视频/工具/草稿声音.sh",
+        "file": "files/视频/工具/草稿声音.sh",
+        "original_sha256": "0ce3277812cf16ed30438509b6dc97db0c26725db4c5db5d9b058c3ef6531aa2",
+        "patched_sha256": "957d7eb1598698ea33ff77d83379256ecae258d84d588753d561a902284be439",
+        "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+      },
+      {
+        "target": "视频/工具/句内响度.py",
+        "file": "files/视频/工具/句内响度.py",
+        "original_sha256": "58735b7173a3c03efa61fb300b4aed4039c164fa970e0593a40bae2a3f3cbd27",
+        "patched_sha256": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea",
+        "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+      },
+      {
+        "target": "视频/工具/独立复核/synth.py",
+        "file": "files/视频/工具/独立复核/synth.py",
+        "original_sha256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+        "patched_sha256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+        "repair_scope": "validated unprocessed raw-mother reference input only; independent transforms/audit/thresholds retained"
+      }
+    ],
+    "strict_production_cache": true,
+    "pdf_requested": false,
+    "check_summaries": {
+      "approved-illustration-resource.log": [],
+      "certified-core-original-stamp-verification.log": [],
+      "original-restored-stamp.log": [],
+      "canonical-module-copy.log": [],
+      "canonical-draft-00.log": [
+        "第59篇 做完（450 秒）：修了 1 处、疑点 30 处",
+        "① 文本：通过，自动修 1 处",
+        "② 声音：59 词尾辅音核对 问题数 0；59 纯人声核对（配音指纹 ae7bdd90e6e1）问题数 0；问题数 0；59 句间停顿核对 问题数 0；问题数 0",
+        "③ 出片前核查：通过",
+        "⑤ 出片后核查：全部通过",
+        "⑥ 已拷 视频/视频/草稿1080p/59_1080p.mp4（--不推）"
+      ],
+      "canonical-final4K-00.log": [
+        "第59篇 用户定稿原话：有"
+      ],
+      "original-stamp-after-production.log": []
+    },
+    "actual_native_core_certification": {
+      "run_id": 43535822030,
+      "job_id": 132264443476,
+      "commit": "395e8da264fafa2453a42ee70a3f7aed8303a769",
+      "actual_full_quickcheck_exit": 0,
+      "actual_full_quickcheck_seconds": 478.16,
+      "artifact_id": 14089812323,
+      "artifact_zip_sha256": "5e396c84e4a6fc7c6cc737ceb8648d7f15f397e9551806e032c93db8ab0963b8",
+      "full_original_quickcheck_log_sha256": "dbe7f6e08d2b7c3a5f9a2f925bb75a662aed725c780e1bc6714706807552a294",
+      "article_audio_or_video_passed_not_implied": true
+    },
+    "actual_native_fastcheck_stamp": {
+      "target": "视频/工具/新管/快测通过.json",
+      "file": "files/视频/工具/新管/快测通过.json",
+      "sha256": "6ebc7aa41f79f77258fa333b665af258e007daa36a4ea290de972cd3da7b42f2",
+      "origin": "actual unmodified original full quickcheck, native run43535822030"
+    },
+    "reviewed_regression_resource": {
+      "target": "视频/工具/新管/回归基准_27.json",
+      "file": "files/视频/工具/新管/回归基准_27.json",
+      "sha256": "b8ddb4656ae27cbfc7ec8e3b99511983b4e568997bd4ad4ee33c364f3926ae94",
+      "origin": "pre-existing root-reviewed 67-screen data; original voice/segment MD5 unchanged"
+    },
+    "core_repair_manifest_sha256": "1b1558108d15603e5711e200135651d6c7700a583d8bcf53ad8753683ed05a5e",
+    "reviewed_gain_preservation_mode": true,
+    "real_restored_stamp_validated": true,
+    "reviewed_cross_article_context": {
+      "provided": true,
+      "manifest_sha256": "eddfbdceea4e25f2398a2198f94d9852f1e30e35b35c4075c5a5ff0c8e32c096",
+      "files_sha256": {
+        "视频/脚本/01.json": "2be2f80a69af28703992204ac95f987c745362c326e62ad81b3cd8e0e0735d3a",
+        "新版定稿/01-the-robber-who-thought-lemon-juice-made-him-invisible.md": "572054065b5bb65446bf8939a21c789c1e9c7664d82da5117c43efdded894351",
+        "视频/脚本/02.json": "0403368c77fd3e0f91e1ee3780e1c7c147894ad13c16b5f14707d700a8f717c8",
+        "新版定稿/02-the-truth-about-one-marshmallow.md": "91b92505aad03f963861bec39e96f0a472c126d1d57c9fc538676c32f65e545c",
+        "视频/脚本/03.json": "527f3bf4a11843f4d606188dabc6ebce6830da3fb454a49c782e3a595cb47407",
+        "新版定稿/03-the-doctor-who-drank-bacteria-to-win-an-argument.md": "6dfb56504882e24854a3584fd740e7f6601e3f2532818aee3a56d5330d317aa3",
+        "视频/脚本/04.json": "93cc1ff58d65ebe43a65ecb2fb2dbd2da262d80877c05740bbdf4eab4eaca1e8",
+        "新版定稿/04-the-brain-that-learned-london.md": "a8ccb31ffff50aaae77de4b83de1847fafae1d585981cf960c5880c409f6cfc3",
+        "视频/脚本/05.json": "2282acbfa4b82825f93261ec6c18359eb47fd3f7c639319ac5058d126643e136",
+        "新版定稿/05-the-fingerprint-in-the-blood.md": "612deac4ed066489e04e214ca969f8f27dda05856e0ef0ed2e540e7a4a52ae34",
+        "视频/脚本/06.json": "2cbf1d6cd6e66a59285298ea830f5ef914590b64286d40b2ae5f3168aa27a2e9",
+        "新版定稿/06-the-horse-that-could-count.md": "7fd21ba491c7596c53c486f2bb0b0f2f6da8e67bac75461a4649a7caff822f74",
+        "视频/脚本/07.json": "842e44e5aa19fddcfa239cb6530c5152341cd86e11db959543d02d8670ca13e8",
+        "新版定稿/07-the-octopus-that-escaped.md": "b8544281bb2ada88fce9d1082cbc30233dcb63ee3e9c2bbefafc22cb28b8cb39",
+        "视频/脚本/08.json": "254832e09f12759d950384dd9f31f671ad5a3bc1590b7466065dd3ef5fe4b8d5",
+        "新版定稿/08-the-doctor-who-solved-the-cholera-mystery.md": "0b2bfa68070ce585a452f6b7034d03c3683e710dcabec5e86d7b221950dc7bab",
+        "视频/脚本/09.json": "fa3e429351d629de188c184d04e9986200e16e80606fcbec82332b6433301dae",
+        "新版定稿/09-the-great-emu-war.md": "af5c3e844bad15f94bfc43aeed6d7417c4bfae85f026b194da667a7a3bdb6196",
+        "视频/脚本/10.json": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
+        "新版定稿/10-the-stolen-smile.md": "ff63cf94e4d2c835e2e2f1ffd3e6c5642f0916f0b13c012f1f13c3dff716d47a",
+        "视频/脚本/11.json": "665cbb80cc70b700ecc0cc5813209fd100ad4fa8f0eead3929b9e53778d9d07f",
+        "新版定稿/11-move-37.md": "7e0b49b346c1fa3ab994a11a2301167c0d6a1bb00916508bdc0b1acf71e68053",
+        "视频/脚本/12.json": "e3bfbcce6f1a8e14cfe451d656574353321e297c90c62f5a7b422f37478311d5",
+        "新版定稿/12-the-79-days-of-new-coke.md": "5a23c1e0c81318527bcbf27573487d1845c5318905a2b1e020cc6e2eaf5d643f",
+        "视频/脚本/13.json": "3687b6c42a6d524d0d7e40a47ed02c37b18abe8d524db4f5914abad52019a63c",
+        "新版定稿/13-eleven-days-without-sleep.md": "72b842de127132e386e9e52a1719ec96765e94958f56687987f53e2801c69704",
+        "视频/脚本/14.json": "17141351875ddb8f0e308602c0b6ab85cbf5126a4d0118978c25c869db769fee",
+        "新版定稿/14-the-fungus-that-turns-ants-into-zombies.md": "e114c9e1783c80a2ffdb60af05e824f93a8ea8725905cb733560abe1c0ad01a8",
+        "视频/脚本/15.json": "0934aa067f19814028c398b0c70a400bb09e354f744bde4000742950d77f441e",
+        "新版定稿/15-the-myth-of-the-unsinkable.md": "68e236868c4b466928ff2a60358250b9592dfe9287b66561b1e5a80b4d14de4f",
+        "视频/脚本/16.json": "d25aa07f3fac316c26c2ae1006d3efa7eb82a396b66150432b50239c1628396d",
+        "新版定稿/16-the-bread-made-from-air.md": "4da63148111213f6d77451b0eb4193893e6fc2fc170400bc39ce5f5ffcaa0b20",
+        "视频/脚本/17.json": "2e9971ea5ce7857e119226fe95def06e6eb9c3ef9823d8e8c4f3456f46a3bbb0",
+        "新版定稿/17-the-curse-of-the-pharaoh.md": "a2e8d92f9136e1b22fcc0799f9a4d281092f0e547cc68242e090241d7b09e222",
+        "视频/脚本/18.json": "8cffbad6f0b8451e46ad1a65d5f629c450ceff2c771218445770c8cbfd77ebca",
+        "新版定稿/18-the-mould-that-changed-the-world.md": "ef41cea03f471fe3b9a53939c843e450da3325eb711f6414e108ae92a7518dd8",
+        "视频/脚本/19.json": "cc3c5eea0f7d9ec0712b2e58adba7e5ef8b61d6518a322f9b25a12fcc45282fb",
+        "新版定稿/19-tulip-mania.md": "3882d487383b759c31dda4785966091c362960cd873a5d83c530d08d52e2e97c",
+        "视频/脚本/20.json": "cc5ed6d7be8767e5e7e9b098e8f3836821c0b3f51c17581b2746722da1cf3001",
+        "新版定稿/20-the-5000-year-old-murder-in-the-ice.md": "8d55638070787f7ff5432c197292af1188c463a8b018e01bdefc32999b888e95",
+        "视频/脚本/21.json": "61c1569a26d7569ee0f586178be6b307b1c394c0a30c3cb02541c910038b0589",
+        "新版定稿/21-the-man-who-sold-the-eiffel-tower-twice.md": "e8e966b70f579235d696ba11fb01d3b2cae3fa26efb9071bbea95071be259e1f",
+        "视频/脚本/22.json": "e3027a42c532fee9935afcecdd0542713cbb907183802c2345b9472f93b75f59",
+        "新版定稿/22-the-building-that-melted-a-car.md": "49ae09483bc80bbc40a71551cd98aebec355d96d9ff7b2bcdea59a06fe599267",
+        "视频/脚本/23.json": "c4574a79fd3a58577a1402ce095ea9e4a0ea1f98883ce63e3cc60d126e819409",
+        "新版定稿/23-the-man-who-gave-machines-a-mind.md": "72ed3049e87fe75ce1e753d5e443bdbe6a7ab72f6e282e8467fbbb62be873169",
+        "视频/脚本/24.json": "f08620b534bb10b718f7515c805dcb541721427d855bd5a092b8954847a351b8",
+        "新版定稿/24-survival-in-the-ice.md": "cb7f810d9a74256e0c00625290be4f16207feb90f5719ca87d5d7c9912b91307",
+        "视频/脚本/25.json": "c73e854e052b3df9bd920d4a59fafb183dee19bd58765fa426af6ea3d7c9a329",
+        "新版定稿/25-apollo-13-the-successful-failure.md": "b6b7d55fe66e6e32116431ea955778fab779b8bda622df0ba1036c2f40a3969f",
+        "视频/脚本/26.json": "ab663b240eb5e27923f38e2ff296c0196e3d820766d0c909adb9faf19aa3cac9",
+        "新版定稿/26-the-language-the-children-invented.md": "9e9ad8021ddabc17157d73dc739383f9676df3583cf965e470fcd773e26a3761",
+        "视频/脚本/27.json": "61cd724c5fab6f07a46aa5ac069101617c4c8350311eb11a43f9fefdddb31d8b",
+        "新版定稿/27-life-in-the-forbidden-zone.md": "e276bcf76225b9ae16cd8cfda8c9b726b442fbd625d3718f532b47b09b21b16f",
+        "视频/脚本/28.json": "a6a4befc0291727f5cc3f8b50857ee954ef9f936738f014a978ebb4d37a28ea8",
+        "新版定稿/28-a-handful-of-wormwood-that-saved-millions.md": "b9817d3429767d07b6a2eb14cce5422a20cb4e3b89f8b03e6b3d5da2daf91d91",
+        "视频/脚本/29.json": "1e5f1d9f0c22b5d14b757f029be694c2a3969666d732ca79bb695282763de791",
+        "新版定稿/29-the-volcano-that-gave-us-frankenstein.md": "69045ee19a170c7ea9d0008b468c7e947bc28b639b834c0192dc0aeafc3ef4d0",
+        "视频/脚本/30.json": "cdf727cb4c6832063421df9da6ab8ae7729cf9df01d6be089a8981c92c360f06",
+        "新版定稿/30-the-stink-that-built-londons-sewers.md": "84dbf19cee0045ea2608b13ee0677cb9623dd8fbb371c67093bf50c64186137a",
+        "视频/脚本/31.json": "d81f8645a1e5663ba8c84668e817cdb218bc6689079fbfd51326b3a7fd3cd384",
+        "新版定稿/31-the-book-twelve-publishers-turned-down.md": "7abd20fed44918dcf01586c056e9d0acd9d2ad3b90aa7d3d403762d9f06d2659",
+        "视频/脚本/32.json": "357aa59bed62154f7302a5efcf528859b303004e028657b93058138fe931bf85",
+        "新版定稿/32-the-planet-that-was-demoted.md": "1421f2b0921e7e9478ebc48777e3e8b2c979172de63d0124015107c3750a3542",
+        "视频/脚本/33.json": "ca51103c1a9d45c9159322765efc86c81f61f6ec78975f160019d21a1d9ee0d7",
+        "新版定稿/33-thirteen-in-the-cave.md": "9862078044ce45a9f6d51aa7d165afdfcf90066d1de98cbb317dd7e8f980610d",
+        "视频/脚本/34.json": "74921848a6bb25a2ba631813f60d4756c9ff90c64c03a2fb936ce34f310ce509",
+        "新版定稿/34-the-game-that-escaped-the-soviet-union.md": "e3244b67b21e283e67f4e88e932a1dbb85bf273a48ee009b3f435e1c5814831c",
+        "视频/脚本/35.json": "d8439077dc2c909b1c6cbd1347f31e9625f25fffe447d6f5945c9492561f1a16",
+        "新版定稿/35-the-bird-that-beat-the-letter-home.md": "ba8c38e38b21a3345624e2d44fd352561d3096cfb6f62214b48ea9b6e66faead",
+        "视频/脚本/36.json": "76daa28f421bd40d8e2744d4e785a34bb8ee67da1403b4b1546db9465c535cef",
+        "新版定稿/36-the-company-that-invented-its-own-killer.md": "411eeb96c8641ee7082b49a5abf4c7343d3f1dbb7ef331064d7c0f3c630fe58f",
+        "视频/脚本/37.json": "b1b8945ccf3581df48ade5714a2d0e93e4cc6812708f95bef6f5e44439106c99",
+        "新版定稿/37-dynamite-for-the-heart.md": "4933e24d2384471a96d9c8c26c15d5224a85dae98d9971a3fed15b4978dafc51",
+        "视频/脚本/38.json": "8d0379032000967c9f72e550574874949f798eefbfbfb58ab2b38e4e23ecbc6b",
+        "新版定稿/38-the-web-beneath-the-woods.md": "abb7eead9f3da0b2b326ceed5a649cfbf71fc28dad22e0d52f7b19caa798c54f",
+        "视频/脚本/39.json": "6c3e9539f624b192335312912572a05fba2c7bcfb821b44c3c1dbb21b42527a7",
+        "新版定稿/39-y2k-the-crisis-that-success-erased.md": "abbc9804661126aa006595031ed8f201ce55e8eb5fd9e1ad5669c0c6fcdb80ab",
+        "视频/脚本/40.json": "1c50d1a47ee6f8528d0f7299e8a45bc8c30312622f3f465a964d21cc1395ee7f",
+        "新版定稿/40-the-glue-that-failed.md": "dce9f78f3a0828307843dd667b7eeebf3380a3630f03d234bd5824870aba61a1",
+        "视频/脚本/41.json": "6b6673ffc1db986f4c355f3685de6a0faf2272cee042c5e917f26a8b3057c2be",
+        "新版定稿/41-the-toad-that-invaded-australia.md": "eca590f97120f4e76d719e29aa07b094f9117cd462f5a70c029331a63b85f710",
+        "视频/脚本/42.json": "eceb10ae92aa4b9cd23180d1138149a7fa7b674385462c898bc0d2283c8739e7",
+        "新版定稿/42-the-telescope-that-needed-glasses.md": "d4aa049779a0eba06c555d76ca14103648378eef90465df424120126fa771280",
+        "视频/脚本/43.json": "aa9da1246e293c80408edf94a7c9bed65ef3178ae7cb5265a8273e8c4396687f",
+        "新版定稿/43-from-a-garage-to-the-top-of-the-world.md": "bd70c83e5ac867238ca179f3c9f3548eb9cbdcae1f6df40994aef0bda721ae54",
+        "视频/脚本/44.json": "87f531203ca38d88ae5e71ffd88190b1530715cdc0adba146c2a4a78ebe9b976",
+        "新版定稿/44-the-night-sweden-switched-sides.md": "d3f7ad2ac43f02aae9205a15b9808280ca3db597d6ef3b36aca8ca6176c5f74a",
+        "视频/脚本/45.json": "569406607d2bf18dce5e916052d6460509450d97fe17ac9820be524f59c2c3cc",
+        "新版定稿/45-the-record-humanity-threw-into-the-stars.md": "27deabec4a8478fe570f7f237a2fb850ffdce3deebfd952f512d82a60cf7314f",
+        "视频/脚本/46.json": "804ecfddb6060288b05eda0e1027c65e9bff0c08a9d010c201bf39306c769b62",
+        "新版定稿/46-lost-in-the-glare.md": "7aaa06e875fe56c5d78210b90a8769b8b2051714025ef10df37c2fe89db7a68c",
+        "视频/脚本/47.json": "0417489c8a672e7e63d46c2239d847acabda2d93160cabed3b0fb14f701ac39a",
+        "新版定稿/47-shadows-of-wolves-over-yellowstone.md": "34c68cf4d0f0ef3545ad68edf3367fcb76ab500174b11ae7f83b782cd5a80a2a",
+        "视频/脚本/48.json": "4f146ce6a70bb0bf5d2c6e1f6b47bd6a2bcc2f311be7a948092d7bde1a08f449",
+        "新版定稿/48-rice-for-the-world.md": "76416be21f857e8a05c37baa33ac90f5785812291485231c249e38a1d0edf15f",
+        "视频/脚本/49.json": "640168eb8a17c5d53d266c6604ffe287919314947371c2ee239eeea952d73b77",
+        "新版定稿/49-the-woman-who-won-two-nobels.md": "1e4fb068aa9ae4513d01b199a074b84dc9d819f57b2134df32588a0e4a4b6b6a",
+        "视频/脚本/50.json": "1d4a41824dfa5e8d11e5990b2a4b802ba2fcc3231d85b15ed6630396c6f027bf",
+        "新版定稿/50-microplastics.md": "5439589bacf1abb2abbb184eb658492bc02bcc5bdd8dfd8ababcd80ab93621cb",
+        "视频/脚本/51.json": "39886d83593a31fb575b124ecf6457190773dca695b6ff78f8434d52aebd6d7c",
+        "新版定稿/51-the-joke-that-became-ok.md": "8de30ea4846f4e88d8b71c8d5ced3ee63a73955e39b7dc3c5adad0971b854fd0",
+        "视频/脚本/52.json": "832249bb44617d38ede75560a5e57af6ba79ec284c9609407cb30ce879f6f862",
+        "新版定稿/52-the-killer-smog-of-1952.md": "179500361e4a837d7edb2e0497e08677d5abd425e8ad542f788205a6f7667b4b",
+        "视频/脚本/53.json": "28b604bfa72896534736293f79e9b3aabd8e3678672f4dc6c66337c02a8f1518",
+        "新版定稿/53-the-wind-that-kept-no-time.md": "6fab302dcadb5a2c509436f5fbf8d9ef925c008a36f5b422749bd405aa4701d3",
+        "视频/脚本/54.json": "b1fcb8ae86045b3d35ccfa0f52eb9594b8921d43063835769ee3ecc4543be75e",
+        "新版定稿/54-the-sound-that-shook-the-world.md": "abd5f4bfe11ed73bcc5326a92cf99b0a8e5ad70adaca1ce8d0c8f622b57fa519",
+        "视频/脚本/55.json": "06344fc0ad5975cba2f4dbe5262a9957dd7c024f9a05b9abbfa327f32ea8c719",
+        "新版定稿/55-the-secret-of-romes-undying-concrete.md": "a7759eddcc7ec06dfd6dab7912e06b3b5ef8576df0c025a97812006669d0be61",
+        "视频/脚本/56.json": "22ca3b4180a8ae6a37b4c8e25f5e357d5696d9b23bf148fb7064425d1403e59c",
+        "新版定稿/56-the-letter-that-startled-darwin.md": "aad1e2aab9ff28f534a510362e807ef401e0b502475240f4b2531e9e518a8d7a",
+        "视频/脚本/57.json": "a0ba65b769430289a33ec1f7bc6dbf91dad8d2c3b1d725348851de546563cd6f",
+        "新版定稿/57-a-change-of-anthem-in-the-deep.md": "0731d925a98bafc222718c111985362e166b38b9189c516219a481e36d0d4b6e",
+        "视频/脚本/58.json": "8b0bd3d7d39000518789e9907aec53bd52fab1b9d6b4f22a152d158635b6e8ee",
+        "新版定稿/58-from-a-scratch-to-a-world-without-smallpox.md": "1aa2a0d2c51da76f9c9ebb88d049dd1a55ab530791566fdbf6476e5aa48c15ee",
+        "视频/脚本/59.json": "df1db4174d942371166048b220ef6d55b0b700b2ce31c866edf6dfdf33b92f0c",
+        "新版定稿/59-saving-the-sky.md": "7bf9c4661e733e7af23dc2f11bc820b809ec93dad75a94fb6a12748226e8722c",
+        "视频/脚本/60.json": "eed1655c0919db32a3a016b24791b93d25683f287c7ccb2523e168a69bddc562",
+        "新版定稿/60-the-scientific-giant-who-changed-the-world.md": "9d1578e7af085559922394a3db01de4eb22dc1c520ca17de5cad68e5a38a31a8",
+        "视频/脚本/61.json": "72378937501769dfb3d934fe65ab1a69afeb5420a15e19890c161433717d2435",
+        "新版定稿/61-the-steel-box-that-remade-the-world.md": "135cc9cfbcbd68d957f831cf55558112a45b1cc3749366cb9a304507355c7d2c",
+        "视频/脚本/62.json": "4b3a97f2b6404e1b091537c21f01fc60088902f596803345983c38be52ec79eb",
+        "新版定稿/62-dolly-the-copied-sheep.md": "62817546ae33824b57255f941135c503e41a41f905331ed4af1e32850fa00960",
+        "视频/脚本/63.json": "5d266d80f9cf29cce6f7e34531449cf75191a42f180102685a5bcd04849e75c5",
+        "新版定稿/63-the-crowded-heavens.md": "6ef79d4310019dfefa7364b8a428411a6bc337678c69fa5cbc89b84689e253a4",
+        "视频/脚本/64.json": "12a36862765922d72ce6e5a4c5fe85f548364eed65fe3b3b284f0b38899a965f",
+        "新版定稿/64-the-day-zero-that-never-came.md": "e0c83cbe36745adbbffd33a156fa8d0671704ea976cb13215cabb612639b37a5",
+        "视频/脚本/65.json": "78e60dd231df4ac71df83e21a26f82bbf706dc0bef80bee156a36bc287661ede",
+        "新版定稿/65-the-day-the-doomsday-vault-opened.md": "71a50d32e25955e713e6ca108ab68422a4fd5b77c914a9074eece1dc33cbff89",
+        "视频/脚本/66.json": "ad5324af4270834186285a5e7273a90213094077adc6f9e1d5c7b0ebff9cf035",
+        "新版定稿/66-the-burrs-that-became-velcro.md": "75dbe6c148ca97a7780ac1737f33f58bf8ee27a51aa729a83315705655b12b2a",
+        "视频/脚本/67.json": "8897cc1c2df1e4672eec3bbff2776d0565afb9c9fe84087a1758ebb15b2a233e",
+        "新版定稿/67-the-cave-found-by-a-dog.md": "10e37b81eeef4e3289448a6b4fd679f34d495a4fc087c57747e6dca949e00cf1",
+        "视频/脚本/68.json": "568f72dacac48e206811d35a57c7fa22e3da428783f64e507c184f2090e579f3",
+        "新版定稿/68-the-last-flight-of-the-hindenburg.md": "c25f58ffb0e3748336767bb7470dd7cef10374c53cbb48af89dba26f65b2dd5c",
+        "视频/脚本/69.json": "09fd3fdbbc834badd16a9b38d8c14e425193a6849d7db87253f26a782a1c4137",
+        "新版定稿/69-the-trial-of-the-father-of-the-atomic-bomb.md": "570eda5b7d979d71e9bcad1c67e295ed326ecdb8b61e663aba33272c8a9451bd",
+        "视频/脚本/70.json": "0f6827f02cef0d2416f9d7d69b7e1c5553acee7cf6dc89f3379201264587236c",
+        "新版定稿/70-the-stamp-that-changed-the-post.md": "edfd85cea33730ba67e4210e756da1f2945f1a21bce55c7e75497cb5f0095d80"
+      },
+      "source_file_count": 140,
+      "working_script_count": 70,
+      "target_request_exactly_matches_context": true
+    },
+    "request_source_sha256": {
+      "视频/脚本/59.json": "df1db4174d942371166048b220ef6d55b0b700b2ce31c866edf6dfdf33b92f0c",
+      "视频/工具/初稿生成/gen59.py": "add62b94c477077b0c36c42babb0830142986ab0184e6ae0ca0e300fd78a7c3d",
+      "新版定稿/59-saving-the-sky.md": "7bf9c4661e733e7af23dc2f11bc820b809ec93dad75a94fb6a12748226e8722c",
+      "视频/制作记录/59_待改清单.md": "2142d70bf94be7376180e365b08f4c7aac75c85c1697513ce2b05893a65dc501",
+      "视频/制作记录/逐句确认/59.json": "cab2fc400b61bdb28c97e6a6de10405e3123a22ccf111d07d8bcb71f1f137a5e"
+    },
+    "accepted_source": {
+      "id": "59",
+      "path": "最终版4K视频/59 - Saving the Sky - 拯救天空.mp4",
+      "sha256": "15e5e96166f8f58f5967d1aa202e9388be88faed7a8b64f6ecb87dc649d23e4f",
+      "git_blob_sha": "feb79bb600eb2e82471ff6515c73b28e5c9f6ee1",
+      "bytes": 12972745,
+      "width": 3840,
+      "height": 2160,
+      "summary_frames": 60,
+      "aac_adts_sha256": "7afa1458e1f5551b37157889fac4f63b2052e7401df16ae9f5f235f8cb1a6fc4"
+    },
+    "checker_reference_preparation": {
+      "article": "59",
+      "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+      "reference_prepared": true,
+      "acceptance": false,
+      "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+      "source_sha256": "df1db4174d942371166048b220ef6d55b0b700b2ce31c866edf6dfdf33b92f0c",
+      "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+      "checker_program_sha256": {
+        "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+        "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+        "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+        "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+        "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+        "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+      },
+      "reference_calls": [
+        {
+          "sentence": "标题",
+          "piece": null,
+          "reference_kind": "title-default-raw",
+          "method": "create",
+          "source_slice": "Saving the Sky",
+          "exact_native_cache_key": "c44f900269726aea5c33833bb3ead1f94dd74475.pkl",
+          "cache_input_text_sha256": "2bd048a7489018691fc493f59b9351304a7b916409b66a7122b2de7c748a362d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "标题",
+          "piece": null,
+          "reference_kind": "title-default-timed",
+          "method": "create_timed",
+          "source_slice": "Saving the Sky",
+          "exact_native_cache_key": "196e204c1ed4ac7165be697160aeceb9367618c1.pkl",
+          "cache_input_text_sha256": "2bd048a7489018691fc493f59b9351304a7b916409b66a7122b2de7c748a362d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "A layer of ozone shields Earth from much of the sun's ultraviolet radiation.",
+          "exact_native_cache_key": "170ee7ab8dbcc9e8a2ad261efdda0810c905cc70.pkl",
+          "cache_input_text_sha256": "88720fb2ea0f6665e8aede2ca4e6dc71a041d9b0bdbce750035e0e9c44b903c0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "A layer of ozone shields Earth from much of the sun's ultraviolet radiation.",
+          "exact_native_cache_key": "fa20d84d2aba5edc935f0108d10433781e8da39e.pkl",
+          "cache_input_text_sha256": "88720fb2ea0f6665e8aede2ca4e6dc71a041d9b0bdbce750035e0e9c44b903c0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In June 1974 Mario Molina and Sherwood Rowland, chemists in California, warned in Nature of a menace in fridges and spray cans.",
+          "exact_native_cache_key": "cc91dec4c4f03241c03901ddd5e74e485c2958d6.pkl",
+          "cache_input_text_sha256": "8b43e543b0e6a2748a9a94f97188fd0bf8d54cfdcba73a3ebb8ee00e68613154",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "In June 1974 Mario Molina and Sherwood Rowland, chemists in California, warned in Nature of a menace in fridges and spray cans.",
+          "exact_native_cache_key": "646e02c17d38bd04b47073e88898aa685c0c4f9f.pkl",
+          "cache_input_text_sha256": "8b43e543b0e6a2748a9a94f97188fd0bf8d54cfdcba73a3ebb8ee00e68613154",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In June 1974 Mario Molina and Sherwood Rowland, chemists in California,",
+          "exact_native_cache_key": "6684fbc82525584d9b6f9f5815115efc817ba069.pkl",
+          "cache_input_text_sha256": "66fc1716a653bfbbddd9ecd37ab383ff09c6a7961ca4e391bb25d1b8eb118b88",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "warned in Nature of a menace in fridges and spray cans.",
+          "exact_native_cache_key": "98ca4b2f7ea8a7ecf998bbb966b0334196e78185.pkl",
+          "cache_input_text_sha256": "547b04c7d9f5b9749787a38129c871eba54d0cd60c9c0e6ee25b8ba6b0dcd3c1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In June 1974 Mario Molina and Sherwood Rowland,",
+          "exact_native_cache_key": "1615cfbd830c50793969baf44febb0b5af15ff27.pkl",
+          "cache_input_text_sha256": "8a14db288c5b20acca859b8066d1ba582d9a84b5fb1ee5995ed245386d42efed",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "chemists in California,",
+          "exact_native_cache_key": "d1493dacd8580746fa76bd3e990c2b2dafaf19d7.pkl",
+          "cache_input_text_sha256": "5a6ffb85518b3583a67e35b22692f4cbd8cb223b71ffca84f834dbf0fa45752d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "warned in Nature of a menace in fridges and spray cans.",
+          "exact_native_cache_key": "98ca4b2f7ea8a7ecf998bbb966b0334196e78185.pkl",
+          "cache_input_text_sha256": "547b04c7d9f5b9749787a38129c871eba54d0cd60c9c0e6ee25b8ba6b0dcd3c1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Chlorofluorocarbons (CFCs) are so inert that they drift intact into the stratosphere, high in the atmosphere, where they can liberate chlorine, a catalyst that destroys ozone molecule after molecule.",
+          "exact_native_cache_key": "6b672fbb34ed818d8191d99e2e9cf03a3f356c84.pkl",
+          "cache_input_text_sha256": "175a0cc9ba4a3048db5320cd533fa7d7addbb33f589b1d23d87df477f8e4b8c1",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Chlorofluorocarbons (CFCs) are so inert that they drift intact into the stratosphere, high in the atmosphere, where they can liberate chlorine, a catalyst that destroys ozone molecule after molecule.",
+          "exact_native_cache_key": "9fbb57c3f0dfb6f45bec3e1981711c46222652a1.pkl",
+          "cache_input_text_sha256": "175a0cc9ba4a3048db5320cd533fa7d7addbb33f589b1d23d87df477f8e4b8c1",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Chlorofluorocarbons (CFCs) are so inert that they drift intact into the stratosphere,",
+          "exact_native_cache_key": "2ca518ad703b504fb3aa2797003582e799a72cb2.pkl",
+          "cache_input_text_sha256": "f18131c43566a7e705ee28a3cab0a2dc9203c5635347e5c9912311fffba5c9e3",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "high in the atmosphere,",
+          "exact_native_cache_key": "7decc4d856b91a4684084a49bb39a552d7e613fe.pkl",
+          "cache_input_text_sha256": "81f6af6ac26e23b1f15358b3283b681e3cad3fb3846e57330a05711efbdc5609",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "where they can liberate chlorine,",
+          "exact_native_cache_key": "07aa14f16ac6a49553fd220c4467e8eafb05a3fe.pkl",
+          "cache_input_text_sha256": "0332e7b5433b704d5d4c80fd1ee4e5fd3f301eeccffe2c23b972b29ea77c53e5",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 4,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "a catalyst that destroys ozone molecule after molecule.",
+          "exact_native_cache_key": "0fc340458fc74ef32bb6e033b941d4e13fdfb745.pkl",
+          "cache_input_text_sha256": "02c32365873d5b43305700cf94225363aafbe04c4c7c7b01ce45f8ed71e5a20b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Chlorofluorocarbons (CFCs) are so inert that they drift intact into the stratosphere,",
+          "exact_native_cache_key": "2ca518ad703b504fb3aa2797003582e799a72cb2.pkl",
+          "cache_input_text_sha256": "f18131c43566a7e705ee28a3cab0a2dc9203c5635347e5c9912311fffba5c9e3",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "high in the atmosphere,",
+          "exact_native_cache_key": "7decc4d856b91a4684084a49bb39a552d7e613fe.pkl",
+          "cache_input_text_sha256": "81f6af6ac26e23b1f15358b3283b681e3cad3fb3846e57330a05711efbdc5609",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "where they can liberate chlorine,",
+          "exact_native_cache_key": "07aa14f16ac6a49553fd220c4467e8eafb05a3fe.pkl",
+          "cache_input_text_sha256": "0332e7b5433b704d5d4c80fd1ee4e5fd3f301eeccffe2c23b972b29ea77c53e5",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a catalyst that destroys ozone molecule after molecule.",
+          "exact_native_cache_key": "0fc340458fc74ef32bb6e033b941d4e13fdfb745.pkl",
+          "cache_input_text_sha256": "02c32365873d5b43305700cf94225363aafbe04c4c7c7b01ce45f8ed71e5a20b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The pair foresaw gradual erosion.",
+          "exact_native_cache_key": "c06d14103c9b54193822c1874ab2057d9b9835d6.pkl",
+          "cache_input_text_sha256": "8c4ac5c48a3e1514c812473b4d6b8aafa28bfb0658300a7553efff57be89cae0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "The pair foresaw gradual erosion.",
+          "exact_native_cache_key": "a8aa706362114d39434092476fb2e33099d6371a.pkl",
+          "cache_input_text_sha256": "8c4ac5c48a3e1514c812473b4d6b8aafa28bfb0658300a7553efff57be89cae0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The alarm, when it sounded, was abrupt.",
+          "exact_native_cache_key": "d45a627f2aafe067995c97c317ae73cbe484843c.pkl",
+          "cache_input_text_sha256": "36ce48b062d5942d7192d792458c1222b49c5e6e635451239dc1feba98e27b6f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "The alarm, when it sounded, was abrupt.",
+          "exact_native_cache_key": "2aa25290cecbed9c5619e592d8c437edf99e0bcb.pkl",
+          "cache_input_text_sha256": "36ce48b062d5942d7192d792458c1222b49c5e6e635451239dc1feba98e27b6f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "The alarm,",
+          "exact_native_cache_key": "ce3fb7f2f873ebcd695b21e997c0a23eb7be67a9.pkl",
+          "cache_input_text_sha256": "34efa261bb993e061d4ce6ee8084e8e8cdcf7833fca6cc4ea59019e7ef48f0a9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "when it sounded,",
+          "exact_native_cache_key": "4f7029fecdc66cd575be5e7d7da5fc1cf491218e.pkl",
+          "cache_input_text_sha256": "29d797c755872fae02257bc5119432a418f60c5e59466ef070a25ab6325a1a72",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "was abrupt.",
+          "exact_native_cache_key": "a147e0e47331df7e2eee34bdadf28e110d47b8cf.pkl",
+          "cache_input_text_sha256": "509b04c26dd2da7b74b52ce6f9c938d857649140aefcf2428908fd182e75e7a9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In May 1985 Joseph Farman and colleagues at the British Antarctic Survey reported that ozone over Halley Bay, their Antarctic station, had plummeted each southern spring since the mid-1970s.",
+          "exact_native_cache_key": "6801c8fafdd944c013520ca6429b28f135f693e2.pkl",
+          "cache_input_text_sha256": "e72ea4a915ced7da09e94b394c1633fe117d9e8817256f2d44c338d7540c8b3c",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "In May 1985 Joseph Farman and colleagues at the British Antarctic Survey reported that ozone over Halley Bay, their Antarctic station, had plummeted each southern spring since the mid-1970s.",
+          "exact_native_cache_key": "90f757c48b7e6cf31a0973ac681b0f6f83736499.pkl",
+          "cache_input_text_sha256": "e72ea4a915ced7da09e94b394c1633fe117d9e8817256f2d44c338d7540c8b3c",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In May 1985 Joseph Farman and colleagues at the British Antarctic Survey reported that",
+          "exact_native_cache_key": "3ea7838bb0f4f69a2c717dd3c4f63701cd446bef.pkl",
+          "cache_input_text_sha256": "834dd667d370c76ceb41bf5ad7a315045527c1b69022d538f4344d1acb5ab8f1",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "ozone over Halley Bay, their Antarctic station, had plummeted each southern spring since the mid-1970s.",
+          "exact_native_cache_key": "ca45dfe61c3cb6263852dbd43fa90150a41ceedb.pkl",
+          "cache_input_text_sha256": "56f7fc15034de653a180191fd9108d0ba3f5792a0ff9054e70298e2c5db6a297",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In May 1985 Joseph Farman and colleagues at the British Antarctic Survey reported that ozone over Halley Bay,",
+          "exact_native_cache_key": "3e1ca5208bf3f5a41a5130c7f8bdf924f62f7eb9.pkl",
+          "cache_input_text_sha256": "4b1773a777af22ce8a1447ce268132b24a366109367a1900e6133109f0f29735",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "their Antarctic station,",
+          "exact_native_cache_key": "4d5c1f166230cb5fc011689803ea85249f9be891.pkl",
+          "cache_input_text_sha256": "2dd08b91ebe8b813ce495cd1a168fd824727ce8064fa8cdbd2c0fa85c60122fd",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "had plummeted each southern spring since the mid-1970s.",
+          "exact_native_cache_key": "efd7347bd692864d36f143b2013e635cc5dafcef.pkl",
+          "cache_input_text_sha256": "d1b182abd43c13eccc480a23ae2aeadb042e2e2d0ddee7e06731aa03bb761e19",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Their humble Dobson spectrophotometer gauged ozone from the ground.",
+          "exact_native_cache_key": "eb172e9c44526e9b998427772ce562383ac036ca.pkl",
+          "cache_input_text_sha256": "1c5f76bf081cc1bf9e21b00fd4b500628e49b250506e8073f50345b95963df6b",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Their humble Dobson spectrophotometer gauged ozone from the ground.",
+          "exact_native_cache_key": "c7910c8430224075afedd903b4b6b25806706085.pkl",
+          "cache_input_text_sha256": "1c5f76bf081cc1bf9e21b00fd4b500628e49b250506e8073f50345b95963df6b",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The staff were persistent, reading it in a painstaking routine of manual observation.",
+          "exact_native_cache_key": "b54fc9d142a4d63e1ebd273a2f8c933e892c6c95.pkl",
+          "cache_input_text_sha256": "50710aa51a1cc5456a4bdd8d4db1d2f5ac7b0bd3d8319d9db1b0d658810b08a8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "The staff were persistent, reading it in a painstaking routine of manual observation.",
+          "exact_native_cache_key": "ba4bb55add3f85230fe70176e4e585fc96c8a822.pkl",
+          "cache_input_text_sha256": "50710aa51a1cc5456a4bdd8d4db1d2f5ac7b0bd3d8319d9db1b0d658810b08a8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "The staff were persistent,",
+          "exact_native_cache_key": "a0b40cb11151fd41c2a3f44ca2785289676d850b.pkl",
+          "cache_input_text_sha256": "5e5dffa578a61c4063ca7ff995212750d55fad088047b7eff8d0c0da40a22f2f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "reading it in a painstaking routine of manual observation.",
+          "exact_native_cache_key": "fd4cd238852aeb4567ab395c9618c5b764123a08.pkl",
+          "cache_input_text_sha256": "a8befaf9fc05e58170ac209b10e801ecf2c44b35b6946a772478c5ed09adb835",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Yet NASA's Nimbus-7 satellite, a sophisticated eye in orbit, had recorded the same lows.",
+          "exact_native_cache_key": "f2f0e05ab978058d1ab3697abb6f2a51325cd3c1.pkl",
+          "cache_input_text_sha256": "7cd54d18997ec33581a5a40b8c3b08ccd9b550315af533db1011801ccb87c6ae",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Yet NASA's Nimbus-7 satellite, a sophisticated eye in orbit, had recorded the same lows.",
+          "exact_native_cache_key": "c8d12073456956f54b8f8e15b48347fb0d26428b.pkl",
+          "cache_input_text_sha256": "7cd54d18997ec33581a5a40b8c3b08ccd9b550315af533db1011801ccb87c6ae",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Yet NASA's Nimbus-7 satellite,",
+          "exact_native_cache_key": "2df2ac2c5f1653168c7a505c4f05b6e5216456d2.pkl",
+          "cache_input_text_sha256": "68433d9aed4117721b5f916db7cd7657d91d6f1cbcb2231963ed1d7f62eba7ff",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "a sophisticated eye in orbit,",
+          "exact_native_cache_key": "8e83da20ad41bdfa6d10b82eb614ffd3efa56a1f.pkl",
+          "cache_input_text_sha256": "4286e4710cb2c80bb661aa36a7f9e7243ea72f67c3df14a8eed38537e3eb8aef",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "had recorded the same lows.",
+          "exact_native_cache_key": "8a707621ab7a065a0a1d89b98175c0b8239c0138.pkl",
+          "cache_input_text_sha256": "1847249cc76767d15a28a997a729444fd7f8ebb77816ef514d5962cc25ebbe77",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Yet NASA's Nimbus-7 satellite,",
+          "exact_native_cache_key": "2df2ac2c5f1653168c7a505c4f05b6e5216456d2.pkl",
+          "cache_input_text_sha256": "68433d9aed4117721b5f916db7cd7657d91d6f1cbcb2231963ed1d7f62eba7ff",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a sophisticated eye in orbit,",
+          "exact_native_cache_key": "8e83da20ad41bdfa6d10b82eb614ffd3efa56a1f.pkl",
+          "cache_input_text_sha256": "4286e4710cb2c80bb661aa36a7f9e7243ea72f67c3df14a8eed38537e3eb8aef",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "had recorded the same lows.",
+          "exact_native_cache_key": "8a707621ab7a065a0a1d89b98175c0b8239c0138.pkl",
+          "cache_input_text_sha256": "1847249cc76767d15a28a997a729444fd7f8ebb77816ef514d5962cc25ebbe77",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Its software flagged them as dubious, since ozone that low had never been reliably measured.",
+          "exact_native_cache_key": "02f1d5a4b224757617c0c8b06a1de327c39b3dfa.pkl",
+          "cache_input_text_sha256": "0ab44c78d859b04ec920802ea08c0061f2ab121b9f478fb8bd79b8f8068b6c20",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Its software flagged them as dubious, since ozone that low had never been reliably measured.",
+          "exact_native_cache_key": "4685480cc9b045eda56aed236cf4a51514324312.pkl",
+          "cache_input_text_sha256": "0ab44c78d859b04ec920802ea08c0061f2ab121b9f478fb8bd79b8f8068b6c20",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Its software flagged them as dubious,",
+          "exact_native_cache_key": "419be703564edc901fadc261b80f00dd3c553cb8.pkl",
+          "cache_input_text_sha256": "976f2f273e90c69b1e77d5df00ba221cb0547538bb0859b3b8bafdc8cb6a1ff9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "since ozone that low had never been reliably measured.",
+          "exact_native_cache_key": "21d634ea9fdba648492476e18d241ce7c523a991.pkl",
+          "cache_input_text_sha256": "dc9ee67f2047ffe3f8d3017a796898eb7574974bbf0e77e05ec315459657c855",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Its software flagged them as dubious,",
+          "exact_native_cache_key": "419be703564edc901fadc261b80f00dd3c553cb8.pkl",
+          "cache_input_text_sha256": "976f2f273e90c69b1e77d5df00ba221cb0547538bb0859b3b8bafdc8cb6a1ff9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "since ozone that low had never been reliably measured.",
+          "exact_native_cache_key": "21d634ea9fdba648492476e18d241ce7c523a991.pkl",
+          "cache_input_text_sha256": "dc9ee67f2047ffe3f8d3017a796898eb7574974bbf0e77e05ec315459657c855",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "NASA says it was still verifying them when Farman published.",
+          "exact_native_cache_key": "871d2a141d30a918ddd63a381201881bc5d2fa74.pkl",
+          "cache_input_text_sha256": "687f069c518c33db86b62a8cd9b5b4082ccef67122b23ef5d58cfcab1195a1ff",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "NASA says it was still verifying them when Farman published.",
+          "exact_native_cache_key": "69c1cf2da64c184efb8a9c0acf022aae1d63aff1.pkl",
+          "cache_input_text_sha256": "687f069c518c33db86b62a8cd9b5b4082ccef67122b23ef5d58cfcab1195a1ff",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The sensor had worked; expectation had not.",
+          "exact_native_cache_key": "c5c6583275656a17a87c7e385ea4a3a1d3e1b81e.pkl",
+          "cache_input_text_sha256": "283c01184834ff91b3b8a14485aa7eecd21ac4aeb82da78a2d5f0a9a9e42e70a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "The sensor had worked; expectation had not.",
+          "exact_native_cache_key": "3e2395442710097b8036c0cc28608f733db6d1f8.pkl",
+          "cache_input_text_sha256": "283c01184834ff91b3b8a14485aa7eecd21ac4aeb82da78a2d5f0a9a9e42e70a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "The sensor had worked;",
+          "exact_native_cache_key": "28da5914ae40aafcf6cfcb4ce86aa98013ce2238.pkl",
+          "cache_input_text_sha256": "e4180fefe818676b11d94b52b1b16d23927b5ca6279ef04a500ebcf69a1611f0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "expectation had not.",
+          "exact_native_cache_key": "e18724d3b28f2580f9a22757aed27f64d58c75b6.pkl",
+          "cache_input_text_sha256": "21f2d61bd403bf4774c49572623b51b70aa956582b527fadb12e02af44a07764",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Remarkably, the response was swift.",
+          "exact_native_cache_key": "a9fb1308b23286470b9c86ab8cec45662d01ddb4.pkl",
+          "cache_input_text_sha256": "c6821dbbf023b11e7f89a6c22756bcc8cb50967f2fc529fdccb16cbdc0785ea9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Remarkably, the response was swift.",
+          "exact_native_cache_key": "a8cfb4eedea090d627d186631c8fbf40a42ba378.pkl",
+          "cache_input_text_sha256": "c6821dbbf023b11e7f89a6c22756bcc8cb50967f2fc529fdccb16cbdc0785ea9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Remarkably,",
+          "exact_native_cache_key": "348af92d951f94f5da2ff4ada054d71d0ca21432.pkl",
+          "cache_input_text_sha256": "4452bf6066d66e4ed7107392ccd181fd353dc5e364ede1b5612441ac6d4fc084",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "the response was swift.",
+          "exact_native_cache_key": "a2b2804d75695d267f4c0e1dece0542eba6e9371.pkl",
+          "cache_input_text_sha256": "641c0f2baf1726fb15102e3363d5153f0d5fa2af8a40992f6628747785b14d6f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In September 1987 diplomats signed the Montreal Protocol, a binding accord to curb CFCs.",
+          "exact_native_cache_key": "6d6def9d89c1ad352658b656d311f21e698f377d.pkl",
+          "cache_input_text_sha256": "7a07513b4c0386005a1426b99cfbaa3507228f3237d1322607de17d6e23c4128",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "In September 1987 diplomats signed the Montreal Protocol, a binding accord to curb CFCs.",
+          "exact_native_cache_key": "f5dfbf1c01ece666d6f8cc3444bc2e029530dafe.pkl",
+          "cache_input_text_sha256": "7a07513b4c0386005a1426b99cfbaa3507228f3237d1322607de17d6e23c4128",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In September 1987 diplomats signed the Montreal Protocol,",
+          "exact_native_cache_key": "8b65b356ba540d6ec7e9b8ae417c4bc5806136ed.pkl",
+          "cache_input_text_sha256": "7895943f67ddec93d9fc98378b8e9cf8cd9211012ac4c1d358bf9ae9c811ca3c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "a binding accord to curb CFCs.",
+          "exact_native_cache_key": "1501963b5ad7db4fc9baa4d74841de943646bfb2.pkl",
+          "cache_input_text_sha256": "d85674f61d7e1ff43c0beda79178c33e685a2200bffa4df5470bc18d82efa20f",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In September 1987 diplomats signed the Montreal Protocol,",
+          "exact_native_cache_key": "8b65b356ba540d6ec7e9b8ae417c4bc5806136ed.pkl",
+          "cache_input_text_sha256": "7895943f67ddec93d9fc98378b8e9cf8cd9211012ac4c1d358bf9ae9c811ca3c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a binding accord to curb CFCs.",
+          "exact_native_cache_key": "1501963b5ad7db4fc9baa4d74841de943646bfb2.pkl",
+          "cache_input_text_sha256": "d85674f61d7e1ff43c0beda79178c33e685a2200bffa4df5470bc18d82efa20f",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Amendments tightened it: in June 1990 affluent countries pledged to phase out CFCs by 2000.",
+          "exact_native_cache_key": "967f6dcdb4d64055f12dd9566fd33bfe204975ee.pkl",
+          "cache_input_text_sha256": "85342d1cbe64382d2030040262fa41c2964a0a701bcf95fa4e60fd772697132c",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Amendments tightened it: in June 1990 affluent countries pledged to phase out CFCs by 2000.",
+          "exact_native_cache_key": "14ce39c4e4a68c6f9ea2e5e8cff02cc739312025.pkl",
+          "cache_input_text_sha256": "85342d1cbe64382d2030040262fa41c2964a0a701bcf95fa4e60fd772697132c",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Amendments tightened it:",
+          "exact_native_cache_key": "1068db836bbeb75c766282555dae0f442a401679.pkl",
+          "cache_input_text_sha256": "c23541a05a34b2e1689ec2c88335a5215b36e9ede56e3a9b9e4d552df01ce2c9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "in June 1990 affluent countries pledged to phase out CFCs by 2000.",
+          "exact_native_cache_key": "9620e44f855a85dd282cdb1eca8623afa0773f89.pkl",
+          "cache_input_text_sha256": "8d944d3c44692e0a00bf2e0f92558bde64fc7c66b6b9f9bae878452307a27f31",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Amendments tightened it:",
+          "exact_native_cache_key": "1068db836bbeb75c766282555dae0f442a401679.pkl",
+          "cache_input_text_sha256": "c23541a05a34b2e1689ec2c88335a5215b36e9ede56e3a9b9e4d552df01ce2c9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "in June 1990 affluent countries pledged to phase out CFCs by 2000.",
+          "exact_native_cache_key": "9620e44f855a85dd282cdb1eca8623afa0773f89.pkl",
+          "cache_input_text_sha256": "8d944d3c44692e0a00bf2e0f92558bde64fc7c66b6b9f9bae878452307a27f31",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In September 2009 the Protocol and its parent Vienna Convention became the UN's first treaties to win universal ratification.",
+          "exact_native_cache_key": "fa3f47c97823c8bd59dfe37b0eec9467a19463ae.pkl",
+          "cache_input_text_sha256": "91c2f8778840c5203f31733a617d98dd40ffa9f8deaa1e6dcacb3321676f8491",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "In September 2009 the Protocol and its parent Vienna Convention became the UN's first treaties to win universal ratification.",
+          "exact_native_cache_key": "68da12e3d7e373a5061f8c034c5faa31fd2a0cf7.pkl",
+          "cache_input_text_sha256": "91c2f8778840c5203f31733a617d98dd40ffa9f8deaa1e6dcacb3321676f8491",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In September 2009 the Protocol and its parent Vienna Convention",
+          "exact_native_cache_key": "e20372f001e5112146a07138b7fb4bd34e0de227.pkl",
+          "cache_input_text_sha256": "48cda5b2cd27521f176e4ae03df84813ed670ef9d7d1c1cc96ef952383f4f479",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "became the UN's first treaties to win universal ratification.",
+          "exact_native_cache_key": "820a3b6879fb0474a6b3135e29046741d4bbb200.pkl",
+          "cache_input_text_sha256": "90cb46c11cf6647bf2de785bafe40bb6216d5197d28842872874e9ff06608cc4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In January 2023 a UN-backed assessment forecast recovery to 1980 levels around 2066 over Antarctica, 2045 over the Arctic, and 2040 elsewhere.",
+          "exact_native_cache_key": "773c1ea805b85f4199a1196615a01d819c3732cc.pkl",
+          "cache_input_text_sha256": "88482c13c00a67cb1f47c8be60ccfee5f40ae01be3d7538d2027b2f30a20ea4e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "In January 2023 a UN-backed assessment forecast recovery to 1980 levels around 2066 over Antarctica, 2045 over the Arctic, and 2040 elsewhere.",
+          "exact_native_cache_key": "088285b690243d1dadc862ec5baf3cf21b2ca932.pkl",
+          "cache_input_text_sha256": "88482c13c00a67cb1f47c8be60ccfee5f40ae01be3d7538d2027b2f30a20ea4e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In January 2023 a UN-backed assessment forecast",
+          "exact_native_cache_key": "41446c64edd3191f175b7b21f61400fb643c2161.pkl",
+          "cache_input_text_sha256": "8bb456267ef01fa8acad94a6a421f2b20aa8c5467d5669150cff517b0022f8b1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "recovery to 1980 levels",
+          "exact_native_cache_key": "cf05c5aa5da74dac83760989b96851a4fbe81388.pkl",
+          "cache_input_text_sha256": "3c73de844e3928e8dd1c893b4a656a6344d620e5f929da1fc1b5e04529be5ace",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "around 2066 over Antarctica, 2045 over the Arctic, and 2040 elsewhere.",
+          "exact_native_cache_key": "8186e6c400124bb68ce494d06f186dfebb6aa1c5.pkl",
+          "cache_input_text_sha256": "01c45f4c79b4cab7a9f0de863384dcf9e4e85796049775a9c05d52122e2d0287",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In January 2023 a UN-backed assessment forecast recovery to 1980 levels around 2066 over Antarctica,",
+          "exact_native_cache_key": "ff750993d9eeb8ddbb61d52a5f787d47c00fdcf6.pkl",
+          "cache_input_text_sha256": "eb5167dd6dfd57d78b993055faf2bdc4a28606059325e1ba3af9b21f6c45a32f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "2045 over the Arctic,",
+          "exact_native_cache_key": "44f49f120564c17a26ae0e035c4810b9e7f3f7db.pkl",
+          "cache_input_text_sha256": "6b8c152dcedfa93b8a9204a8d831ed09c2f5f02258c693462e400e37d6ab0f23",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and 2040 elsewhere.",
+          "exact_native_cache_key": "e343fa1a10205da4270245a1f0ea102314079d13.pkl",
+          "cache_input_text_sha256": "62fd421a2f023df617dcb4ac797811192bd3cde2854e91e84927c16a384b0fde",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S18",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Healing will take decades.",
+          "exact_native_cache_key": "1f8cc1bf501809cb7219249324448e612b4d3da0.pkl",
+          "cache_input_text_sha256": "ef3c1d2b7da29fd3bd69926afa442aa6f04d9893d957610fc040f1659ac9c6b7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S18",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Healing will take decades.",
+          "exact_native_cache_key": "ba40c419b8f8ce95200b311a5c44cc43db648ce3.pkl",
+          "cache_input_text_sha256": "ef3c1d2b7da29fd3bd69926afa442aa6f04d9893d957610fc040f1659ac9c6b7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S19",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The sky's rescue began with diligent observers who trusted that a baffling number was no glitch, and published it.",
+          "exact_native_cache_key": "fb8c21b320b37f7e0975fee2b8d6d50d7c211356.pkl",
+          "cache_input_text_sha256": "09b3437216e8d617b2572e2f2f59d3c461455d150db06a37cf21d8d08a682477",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S19",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "The sky's rescue began with diligent observers who trusted that a baffling number was no glitch, and published it.",
+          "exact_native_cache_key": "e5c3b9cb02099f5f51f91a3d91b59e162ab14fc2.pkl",
+          "cache_input_text_sha256": "09b3437216e8d617b2572e2f2f59d3c461455d150db06a37cf21d8d08a682477",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S19",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "The sky's rescue began with diligent observers",
+          "exact_native_cache_key": "aff7e31c5889ba22f358d310bd59cf99cbab05eb.pkl",
+          "cache_input_text_sha256": "ed45935a11b4ae2006fe4001af06df5c30ae50852425ca3ac85dc30d5510cf8e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S19",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "who trusted that a baffling number was no glitch, and published it.",
+          "exact_native_cache_key": "2946b246ab03546b06188ff565166d2d2e98e994.pkl",
+          "cache_input_text_sha256": "9255afe7df635bdd3596582067148c91d8e025bbc72f96110ea6d83c611905d5",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S19",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "The sky's rescue began with diligent observers who trusted that a baffling number was no glitch,",
+          "exact_native_cache_key": "5cd618111f166a1c2923a65d291003907fb5b0ea.pkl",
+          "cache_input_text_sha256": "8a501274dd4e4add6d6bb6692cbce534ed95846dc83dbecb7f4e78945a5ce4ce",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S19",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and published it.",
+          "exact_native_cache_key": "1f32e84bcb598000693909f33e017791a10bfa25.pkl",
+          "cache_input_text_sha256": "223d6ced3f198c90e21d95086a6c886c119185094628170edacb0ab2e868d159",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "unique_reference_key_count": 83,
+      "raw_mother_cache_scalar_manifest": [
+        {
+          "exact_native_cache_key": "c44f900269726aea5c33833bb3ead1f94dd74475.pkl",
+          "pkl_sha256": "e6971a9203709d9bb0ba106b221ff1a4aaaa9417709ca89cdbf6b0cbd46cc801",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "标题",
+              "piece": null,
+              "reference_kind": "title-default-raw",
+              "method": "create",
+              "source_slice": "Saving the Sky",
+              "exact_native_cache_key": "c44f900269726aea5c33833bb3ead1f94dd74475.pkl",
+              "cache_input_text_sha256": "2bd048a7489018691fc493f59b9351304a7b916409b66a7122b2de7c748a362d",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "e6971a9203709d9b",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            29184
+          ],
+          "unprocessed_array_sha256": "1772c6d3fb6b00907fbe7c66cf703bd0f02dd10204f6b06343404db346ecf56e"
+        },
+        {
+          "exact_native_cache_key": "170ee7ab8dbcc9e8a2ad261efdda0810c905cc70.pkl",
+          "pkl_sha256": "427b509234b697d7dbe95777684b567f5cb6cae0c00ab79b0e8781286618ff22",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "A layer of ozone shields Earth from much of the sun's ultraviolet radiation.",
+              "exact_native_cache_key": "170ee7ab8dbcc9e8a2ad261efdda0810c905cc70.pkl",
+              "cache_input_text_sha256": "88720fb2ea0f6665e8aede2ca4e6dc71a041d9b0bdbce750035e0e9c44b903c0",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "427b509234b697d7",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            129536
+          ],
+          "unprocessed_array_sha256": "7e36a643007850ca79743c9bb50889f78cff9249dc77d48fdc49ee6f5624b274"
+        },
+        {
+          "exact_native_cache_key": "cc91dec4c4f03241c03901ddd5e74e485c2958d6.pkl",
+          "pkl_sha256": "5d4929906433168c0daa929a121957e73b9e47df629d95ce8f5e1af682b6f21e",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S2",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "In June 1974 Mario Molina and Sherwood Rowland, chemists in California, warned in Nature of a menace in fridges and spray cans.",
+              "exact_native_cache_key": "cc91dec4c4f03241c03901ddd5e74e485c2958d6.pkl",
+              "cache_input_text_sha256": "8b43e543b0e6a2748a9a94f97188fd0bf8d54cfdcba73a3ebb8ee00e68613154",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "5d4929906433168c",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            259584
+          ],
+          "unprocessed_array_sha256": "fd2a68225511621285eede3594ec88b5238fdc0f3b15cff6a6941df7f2ad611e"
+        },
+        {
+          "exact_native_cache_key": "6684fbc82525584d9b6f9f5815115efc817ba069.pkl",
+          "pkl_sha256": "0f9bae4d7a3b1a8fe8f044751a73266f1af315f782df27f88710c5ce87169c9d",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S2",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "In June 1974 Mario Molina and Sherwood Rowland, chemists in California,",
+              "exact_native_cache_key": "6684fbc82525584d9b6f9f5815115efc817ba069.pkl",
+              "cache_input_text_sha256": "66fc1716a653bfbbddd9ecd37ab383ff09c6a7961ca4e391bb25d1b8eb118b88",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "0f9bae4d7a3b1a8f",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            151552
+          ],
+          "unprocessed_array_sha256": "c2a47f2dca8871c03259930f0467bf77ecdb19c88c5c219332ba7f7250306b1b"
+        },
+        {
+          "exact_native_cache_key": "98ca4b2f7ea8a7ecf998bbb966b0334196e78185.pkl",
+          "pkl_sha256": "77c372208f25d22e514d0a38a721f68e2209fd9dd28e755186a234c9610cfea1",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S2",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "warned in Nature of a menace in fridges and spray cans.",
+              "exact_native_cache_key": "98ca4b2f7ea8a7ecf998bbb966b0334196e78185.pkl",
+              "cache_input_text_sha256": "547b04c7d9f5b9749787a38129c871eba54d0cd60c9c0e6ee25b8ba6b0dcd3c1",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S2",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "warned in Nature of a menace in fridges and spray cans.",
+              "exact_native_cache_key": "98ca4b2f7ea8a7ecf998bbb966b0334196e78185.pkl",
+              "cache_input_text_sha256": "547b04c7d9f5b9749787a38129c871eba54d0cd60c9c0e6ee25b8ba6b0dcd3c1",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "77c372208f25d22e",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            88064
+          ],
+          "unprocessed_array_sha256": "7336b8fcdd3dfc85263bf6b378adf0e6cf42b35544047e536be1b9dcb70ec381"
+        },
+        {
+          "exact_native_cache_key": "1615cfbd830c50793969baf44febb0b5af15ff27.pkl",
+          "pkl_sha256": "3d0c9eb709c1be61264169811d724f1020c6ac5f496944aa4db9c764d5962577",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S2",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "In June 1974 Mario Molina and Sherwood Rowland,",
+              "exact_native_cache_key": "1615cfbd830c50793969baf44febb0b5af15ff27.pkl",
+              "cache_input_text_sha256": "8a14db288c5b20acca859b8066d1ba582d9a84b5fb1ee5995ed245386d42efed",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "3d0c9eb709c1be61",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            110080
+          ],
+          "unprocessed_array_sha256": "d3bbe27ea4b2029cee9aa0a521a52348123e2a38a3ab83b389d76413d799e37b"
+        },
+        {
+          "exact_native_cache_key": "d1493dacd8580746fa76bd3e990c2b2dafaf19d7.pkl",
+          "pkl_sha256": "80fbf19d58b7201534470f10c8b1c16dc80cd2f305157f2087cc87a9c3322dbe",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S2",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "chemists in California,",
+              "exact_native_cache_key": "d1493dacd8580746fa76bd3e990c2b2dafaf19d7.pkl",
+              "cache_input_text_sha256": "5a6ffb85518b3583a67e35b22692f4cbd8cb223b71ffca84f834dbf0fa45752d",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "80fbf19d58b72015",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            37376
+          ],
+          "unprocessed_array_sha256": "6852dd7c535bbff876ea6fe038687fd326820eb5c31737a83417f4f23aa39d39"
+        },
+        {
+          "exact_native_cache_key": "6b672fbb34ed818d8191d99e2e9cf03a3f356c84.pkl",
+          "pkl_sha256": "38fff92237f40b8b02477f6b1aac1dcd7d093a4ea0eb45baead54ff9fedc4fe2",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S3",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Chlorofluorocarbons (CFCs) are so inert that they drift intact into the stratosphere, high in the atmosphere, where they can liberate chlorine, a catalyst that destroys ozone molecule after molecule.",
+              "exact_native_cache_key": "6b672fbb34ed818d8191d99e2e9cf03a3f356c84.pkl",
+              "cache_input_text_sha256": "175a0cc9ba4a3048db5320cd533fa7d7addbb33f589b1d23d87df477f8e4b8c1",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "38fff92237f40b8b",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            351744
+          ],
+          "unprocessed_array_sha256": "b009c8a1ddb51b57bafc3fe60d80f320da9f6c8c9cb03c129646f0e5bcd19c05"
+        },
+        {
+          "exact_native_cache_key": "2ca518ad703b504fb3aa2797003582e799a72cb2.pkl",
+          "pkl_sha256": "efeee3a9a3ad62a6127ac70ea90dc04121786dac09ff3acaea67d67599006f97",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S3",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Chlorofluorocarbons (CFCs) are so inert that they drift intact into the stratosphere,",
+              "exact_native_cache_key": "2ca518ad703b504fb3aa2797003582e799a72cb2.pkl",
+              "cache_input_text_sha256": "f18131c43566a7e705ee28a3cab0a2dc9203c5635347e5c9912311fffba5c9e3",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S3",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Chlorofluorocarbons (CFCs) are so inert that they drift intact into the stratosphere,",
+              "exact_native_cache_key": "2ca518ad703b504fb3aa2797003582e799a72cb2.pkl",
+              "cache_input_text_sha256": "f18131c43566a7e705ee28a3cab0a2dc9203c5635347e5c9912311fffba5c9e3",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "efeee3a9a3ad62a6",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            147456
+          ],
+          "unprocessed_array_sha256": "746663d1336b19d8a3580db98f903845bafb5d84818d8881f8125be83bd97668"
+        },
+        {
+          "exact_native_cache_key": "7decc4d856b91a4684084a49bb39a552d7e613fe.pkl",
+          "pkl_sha256": "beb8d36e2730a740e5b6bc09942800a56a11032f273897020803c339c486ae6a",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S3",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "high in the atmosphere,",
+              "exact_native_cache_key": "7decc4d856b91a4684084a49bb39a552d7e613fe.pkl",
+              "cache_input_text_sha256": "81f6af6ac26e23b1f15358b3283b681e3cad3fb3846e57330a05711efbdc5609",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S3",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "high in the atmosphere,",
+              "exact_native_cache_key": "7decc4d856b91a4684084a49bb39a552d7e613fe.pkl",
+              "cache_input_text_sha256": "81f6af6ac26e23b1f15358b3283b681e3cad3fb3846e57330a05711efbdc5609",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "beb8d36e2730a740",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            33280
+          ],
+          "unprocessed_array_sha256": "0692069bea912aec6a94a76c7b9205292948f2659e9886ff41a6eb7ea49aff7d"
+        },
+        {
+          "exact_native_cache_key": "07aa14f16ac6a49553fd220c4467e8eafb05a3fe.pkl",
+          "pkl_sha256": "27e2c88fa5886bb5fce208e8b84d1f551cb7e6702cd417368504d36fa1410162",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S3",
+              "piece": 3,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "where they can liberate chlorine,",
+              "exact_native_cache_key": "07aa14f16ac6a49553fd220c4467e8eafb05a3fe.pkl",
+              "cache_input_text_sha256": "0332e7b5433b704d5d4c80fd1ee4e5fd3f301eeccffe2c23b972b29ea77c53e5",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S3",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "where they can liberate chlorine,",
+              "exact_native_cache_key": "07aa14f16ac6a49553fd220c4467e8eafb05a3fe.pkl",
+              "cache_input_text_sha256": "0332e7b5433b704d5d4c80fd1ee4e5fd3f301eeccffe2c23b972b29ea77c53e5",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "27e2c88fa5886bb5",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            41984
+          ],
+          "unprocessed_array_sha256": "981f257f399d45646ee243f2aa16f221c6b9d51557307ac80d9c7f75f2e88873"
+        },
+        {
+          "exact_native_cache_key": "0fc340458fc74ef32bb6e033b941d4e13fdfb745.pkl",
+          "pkl_sha256": "811431846347a7bc3aaa8d927228808e6880c3b283681b4fd026ed65f14931d0",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S3",
+              "piece": 4,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "a catalyst that destroys ozone molecule after molecule.",
+              "exact_native_cache_key": "0fc340458fc74ef32bb6e033b941d4e13fdfb745.pkl",
+              "cache_input_text_sha256": "02c32365873d5b43305700cf94225363aafbe04c4c7c7b01ce45f8ed71e5a20b",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S3",
+              "piece": 4,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "a catalyst that destroys ozone molecule after molecule.",
+              "exact_native_cache_key": "0fc340458fc74ef32bb6e033b941d4e13fdfb745.pkl",
+              "cache_input_text_sha256": "02c32365873d5b43305700cf94225363aafbe04c4c7c7b01ce45f8ed71e5a20b",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "811431846347a7bc",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            93696
+          ],
+          "unprocessed_array_sha256": "6528c0bc00b6116e40d97f7fdda880159dce196a6c7c4c9e39d2bf7856c14e30"
+        },
+        {
+          "exact_native_cache_key": "c06d14103c9b54193822c1874ab2057d9b9835d6.pkl",
+          "pkl_sha256": "ecbb15197a27f7488fa372117e950c151b8b0f16e0c04cfc2ef1db3321ba53e6",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "The pair foresaw gradual erosion.",
+              "exact_native_cache_key": "c06d14103c9b54193822c1874ab2057d9b9835d6.pkl",
+              "cache_input_text_sha256": "8c4ac5c48a3e1514c812473b4d6b8aafa28bfb0658300a7553efff57be89cae0",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "ecbb15197a27f748",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            51712
+          ],
+          "unprocessed_array_sha256": "73cd73ab140555b4b6793144ec23685f6d036f126f873cda805dfbd6e0832b5d"
+        },
+        {
+          "exact_native_cache_key": "d45a627f2aafe067995c97c317ae73cbe484843c.pkl",
+          "pkl_sha256": "ebfb61c52278a8cd3c21de5229292083a441aeba9e3c0beb2f1a426fd3860b2e",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "The alarm, when it sounded, was abrupt.",
+              "exact_native_cache_key": "d45a627f2aafe067995c97c317ae73cbe484843c.pkl",
+              "cache_input_text_sha256": "36ce48b062d5942d7192d792458c1222b49c5e6e635451239dc1feba98e27b6f",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "ebfb61c52278a8cd",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            55808
+          ],
+          "unprocessed_array_sha256": "30bf476afd56a7be6fd95ef26056d301ca5f628b693cf91ad85d9441464ce52c"
+        },
+        {
+          "exact_native_cache_key": "ce3fb7f2f873ebcd695b21e997c0a23eb7be67a9.pkl",
+          "pkl_sha256": "a8b49d6aa23064ea2dc8225f50576dad95187e0a9a745dc23867e4cff4852c43",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "The alarm,",
+              "exact_native_cache_key": "ce3fb7f2f873ebcd695b21e997c0a23eb7be67a9.pkl",
+              "cache_input_text_sha256": "34efa261bb993e061d4ce6ee8084e8e8cdcf7833fca6cc4ea59019e7ef48f0a9",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "a8b49d6aa23064ea",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            20992
+          ],
+          "unprocessed_array_sha256": "f67b58266d0187966d94bf0231ec611b03430b19ebcab2a35c8579746517745e"
+        },
+        {
+          "exact_native_cache_key": "4f7029fecdc66cd575be5e7d7da5fc1cf491218e.pkl",
+          "pkl_sha256": "0c92c4c8a14c728d7c4131c347a215dd122116accb36894196d9fb90cafbdae4",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "when it sounded,",
+              "exact_native_cache_key": "4f7029fecdc66cd575be5e7d7da5fc1cf491218e.pkl",
+              "cache_input_text_sha256": "29d797c755872fae02257bc5119432a418f60c5e59466ef070a25ab6325a1a72",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "0c92c4c8a14c728d",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            25088
+          ],
+          "unprocessed_array_sha256": "bdb2beffbc86842dc937c67472e0e2d9b54f0322f6e3f513dc5c5b55f38c5915"
+        },
+        {
+          "exact_native_cache_key": "a147e0e47331df7e2eee34bdadf28e110d47b8cf.pkl",
+          "pkl_sha256": "aa338703c31de1a2472ada8a122fadc58b152292df53a765233c61d4e16b452b",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "was abrupt.",
+              "exact_native_cache_key": "a147e0e47331df7e2eee34bdadf28e110d47b8cf.pkl",
+              "cache_input_text_sha256": "509b04c26dd2da7b74b52ce6f9c938d857649140aefcf2428908fd182e75e7a9",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "aa338703c31de1a2",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            22528
+          ],
+          "unprocessed_array_sha256": "fd4e08727f734173b96988ee53462c535637e41d819ad3d3277426b28b32189f"
+        },
+        {
+          "exact_native_cache_key": "6801c8fafdd944c013520ca6429b28f135f693e2.pkl",
+          "pkl_sha256": "99cb289778df5e7d50f020ad669223394b4658daa82f404555f61d4e8ea49b19",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "In May 1985 Joseph Farman and colleagues at the British Antarctic Survey reported that ozone over Halley Bay, their Antarctic station, had plummeted each southern spring since the mid-1970s.",
+              "exact_native_cache_key": "6801c8fafdd944c013520ca6429b28f135f693e2.pkl",
+              "cache_input_text_sha256": "e72ea4a915ced7da09e94b394c1633fe117d9e8817256f2d44c338d7540c8b3c",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "99cb289778df5e7d",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            350208
+          ],
+          "unprocessed_array_sha256": "ab8685d4d8a06c46599a152e9e7a7ac915257c3cabe27e5c01790ddc370c35ec"
+        },
+        {
+          "exact_native_cache_key": "3ea7838bb0f4f69a2c717dd3c4f63701cd446bef.pkl",
+          "pkl_sha256": "aa799ce534cd9a36f864131fcfbf061dbf45d781ed47c257994ebc1d96b29952",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "In May 1985 Joseph Farman and colleagues at the British Antarctic Survey reported that",
+              "exact_native_cache_key": "3ea7838bb0f4f69a2c717dd3c4f63701cd446bef.pkl",
+              "cache_input_text_sha256": "834dd667d370c76ceb41bf5ad7a315045527c1b69022d538f4344d1acb5ab8f1",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "aa799ce534cd9a36",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            158208
+          ],
+          "unprocessed_array_sha256": "2e1654656c760530aa8d12990d5231033d5ededf4144a7c634027a19a30131dd"
+        },
+        {
+          "exact_native_cache_key": "ca45dfe61c3cb6263852dbd43fa90150a41ceedb.pkl",
+          "pkl_sha256": "7ab8d4955145d2aa56f7c84cd17164a68f75cf4e6916c876886fb47d5ccaea99",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "ozone over Halley Bay, their Antarctic station, had plummeted each southern spring since the mid-1970s.",
+              "exact_native_cache_key": "ca45dfe61c3cb6263852dbd43fa90150a41ceedb.pkl",
+              "cache_input_text_sha256": "56f7fc15034de653a180191fd9108d0ba3f5792a0ff9054e70298e2c5db6a297",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "7ab8d4955145d2aa",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            180224
+          ],
+          "unprocessed_array_sha256": "7de1156ee9526872a61b63de2f6b76796b696d86985883a5deb9a9b79570f3da"
+        },
+        {
+          "exact_native_cache_key": "3e1ca5208bf3f5a41a5130c7f8bdf924f62f7eb9.pkl",
+          "pkl_sha256": "6e8a69d2da07ea565a99062b3986268dea611165747c4133acbb5b31bc24bde0",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "In May 1985 Joseph Farman and colleagues at the British Antarctic Survey reported that ozone over Halley Bay,",
+              "exact_native_cache_key": "3e1ca5208bf3f5a41a5130c7f8bdf924f62f7eb9.pkl",
+              "cache_input_text_sha256": "4b1773a777af22ce8a1447ce268132b24a366109367a1900e6133109f0f29735",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "6e8a69d2da07ea56",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            202240
+          ],
+          "unprocessed_array_sha256": "e3659c83f4ed556b31999c5741d638651facf57170e69c77d341cdc3e89676c6"
+        },
+        {
+          "exact_native_cache_key": "4d5c1f166230cb5fc011689803ea85249f9be891.pkl",
+          "pkl_sha256": "669358759c77cd8fa3816388b1a9a9937376cf339a97d21c4d79a2ead0eb01dd",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "their Antarctic station,",
+              "exact_native_cache_key": "4d5c1f166230cb5fc011689803ea85249f9be891.pkl",
+              "cache_input_text_sha256": "2dd08b91ebe8b813ce495cd1a168fd824727ce8064fa8cdbd2c0fa85c60122fd",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "669358759c77cd8f",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            35840
+          ],
+          "unprocessed_array_sha256": "4546a8e21c3aaa7073c15b57c985e5237ff94795c96dd3732cd4a62003c390c7"
+        },
+        {
+          "exact_native_cache_key": "efd7347bd692864d36f143b2013e635cc5dafcef.pkl",
+          "pkl_sha256": "d9d2647c5a84db9787b20a0194221d9115c5ccb6b2d85fc47da156fe12652ffb",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "had plummeted each southern spring since the mid-1970s.",
+              "exact_native_cache_key": "efd7347bd692864d36f143b2013e635cc5dafcef.pkl",
+              "cache_input_text_sha256": "d1b182abd43c13eccc480a23ae2aeadb042e2e2d0ddee7e06731aa03bb761e19",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "d9d2647c5a84db97",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            94720
+          ],
+          "unprocessed_array_sha256": "91f0bf502b34ebe1768126026eded26280fb2e16cdd36b1dd50bc0e1e8d303d6"
+        },
+        {
+          "exact_native_cache_key": "eb172e9c44526e9b998427772ce562383ac036ca.pkl",
+          "pkl_sha256": "7406471f3103b3265d3a7fabbb3b1cf0de023bab3942a8ac83191b2023ad6fc8",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S7",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Their humble Dobson spectrophotometer gauged ozone from the ground.",
+              "exact_native_cache_key": "eb172e9c44526e9b998427772ce562383ac036ca.pkl",
+              "cache_input_text_sha256": "1c5f76bf081cc1bf9e21b00fd4b500628e49b250506e8073f50345b95963df6b",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "7406471f3103b326",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            107008
+          ],
+          "unprocessed_array_sha256": "dcec2026c74674d4b556f6856638389f8a07e16aa11819e1f4e206069528e2ff"
+        },
+        {
+          "exact_native_cache_key": "b54fc9d142a4d63e1ebd273a2f8c933e892c6c95.pkl",
+          "pkl_sha256": "75bead3cebb90515e2f0b9aaf9341549c3a04f8fb4b6970c7ad2cc51dac24a0c",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "The staff were persistent, reading it in a painstaking routine of manual observation.",
+              "exact_native_cache_key": "b54fc9d142a4d63e1ebd273a2f8c933e892c6c95.pkl",
+              "cache_input_text_sha256": "50710aa51a1cc5456a4bdd8d4db1d2f5ac7b0bd3d8319d9db1b0d658810b08a8",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "75bead3cebb90515",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            134144
+          ],
+          "unprocessed_array_sha256": "1d259a7fcce0079ad7ec150c60ff124752af67ae7b20eee1b4e6d8f6c155cb44"
+        },
+        {
+          "exact_native_cache_key": "a0b40cb11151fd41c2a3f44ca2785289676d850b.pkl",
+          "pkl_sha256": "cd9853b594ca0c50fd21db64a92c159b49097582c86cecff8df35e7ecfbccc41",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "The staff were persistent,",
+              "exact_native_cache_key": "a0b40cb11151fd41c2a3f44ca2785289676d850b.pkl",
+              "cache_input_text_sha256": "5e5dffa578a61c4063ca7ff995212750d55fad088047b7eff8d0c0da40a22f2f",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "cd9853b594ca0c50",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            34304
+          ],
+          "unprocessed_array_sha256": "61083c0cdceb89bc67ea3a751d83e9103d509dcccaa28ef732f8dfc2a47827ca"
+        },
+        {
+          "exact_native_cache_key": "fd4cd238852aeb4567ab395c9618c5b764123a08.pkl",
+          "pkl_sha256": "45ce13f6de2cfee5171ebc4b52edc351636e93a157ec1aa7287442493f4927c9",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "reading it in a painstaking routine of manual observation.",
+              "exact_native_cache_key": "fd4cd238852aeb4567ab395c9618c5b764123a08.pkl",
+              "cache_input_text_sha256": "a8befaf9fc05e58170ac209b10e801ecf2c44b35b6946a772478c5ed09adb835",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "45ce13f6de2cfee5",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            98304
+          ],
+          "unprocessed_array_sha256": "e4507bfb2e7518c3ca939ec84824f4d63acbfcbf4eff3533a54056d1b28ee68f"
+        },
+        {
+          "exact_native_cache_key": "f2f0e05ab978058d1ab3697abb6f2a51325cd3c1.pkl",
+          "pkl_sha256": "e01263c078c4d4a9f3e1f51a9d2892d665af87dff5044c3ff052d9eb5ba0ff53",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S9",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Yet NASA's Nimbus-7 satellite, a sophisticated eye in orbit, had recorded the same lows.",
+              "exact_native_cache_key": "f2f0e05ab978058d1ab3697abb6f2a51325cd3c1.pkl",
+              "cache_input_text_sha256": "7cd54d18997ec33581a5a40b8c3b08ccd9b550315af533db1011801ccb87c6ae",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "e01263c078c4d4a9",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            166400
+          ],
+          "unprocessed_array_sha256": "2680259083a1ff70047d4ca9e03baee60b5ec47d45c2e742471a387d70e6f683"
+        },
+        {
+          "exact_native_cache_key": "2df2ac2c5f1653168c7a505c4f05b6e5216456d2.pkl",
+          "pkl_sha256": "2bb5093398b9f614c543be9f70950bf8f567479c6059b96f7a6ee3ebc27dc20e",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S9",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Yet NASA's Nimbus-7 satellite,",
+              "exact_native_cache_key": "2df2ac2c5f1653168c7a505c4f05b6e5216456d2.pkl",
+              "cache_input_text_sha256": "68433d9aed4117721b5f916db7cd7657d91d6f1cbcb2231963ed1d7f62eba7ff",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S9",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Yet NASA's Nimbus-7 satellite,",
+              "exact_native_cache_key": "2df2ac2c5f1653168c7a505c4f05b6e5216456d2.pkl",
+              "cache_input_text_sha256": "68433d9aed4117721b5f916db7cd7657d91d6f1cbcb2231963ed1d7f62eba7ff",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "2bb5093398b9f614",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            51712
+          ],
+          "unprocessed_array_sha256": "a6884c595c049e59acc1748ad90461e57ea305af1110760ecb4cf34624fcfff0"
+        },
+        {
+          "exact_native_cache_key": "8e83da20ad41bdfa6d10b82eb614ffd3efa56a1f.pkl",
+          "pkl_sha256": "53dc12d746495e706a71404c2c0b67fc95770367f655de08bee9f7f0455b3c14",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S9",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "a sophisticated eye in orbit,",
+              "exact_native_cache_key": "8e83da20ad41bdfa6d10b82eb614ffd3efa56a1f.pkl",
+              "cache_input_text_sha256": "4286e4710cb2c80bb661aa36a7f9e7243ea72f67c3df14a8eed38537e3eb8aef",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S9",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "a sophisticated eye in orbit,",
+              "exact_native_cache_key": "8e83da20ad41bdfa6d10b82eb614ffd3efa56a1f.pkl",
+              "cache_input_text_sha256": "4286e4710cb2c80bb661aa36a7f9e7243ea72f67c3df14a8eed38537e3eb8aef",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "53dc12d746495e70",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            46592
+          ],
+          "unprocessed_array_sha256": "f3fa1d8fdbc3e0b127f1d48b730c03f8567a24cf1d855e835322b5c7d214543b"
+        },
+        {
+          "exact_native_cache_key": "8a707621ab7a065a0a1d89b98175c0b8239c0138.pkl",
+          "pkl_sha256": "5e8fb2e8d01aaf00580ddc7878f83b6ffa88154ba7c54540546f19812de19ff4",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S9",
+              "piece": 3,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "had recorded the same lows.",
+              "exact_native_cache_key": "8a707621ab7a065a0a1d89b98175c0b8239c0138.pkl",
+              "cache_input_text_sha256": "1847249cc76767d15a28a997a729444fd7f8ebb77816ef514d5962cc25ebbe77",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S9",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "had recorded the same lows.",
+              "exact_native_cache_key": "8a707621ab7a065a0a1d89b98175c0b8239c0138.pkl",
+              "cache_input_text_sha256": "1847249cc76767d15a28a997a729444fd7f8ebb77816ef514d5962cc25ebbe77",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "5e8fb2e8d01aaf00",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            40960
+          ],
+          "unprocessed_array_sha256": "dbc6053deb882497048364e30a013d8e811c20631b74b414f8af8ba92692db9b"
+        },
+        {
+          "exact_native_cache_key": "02f1d5a4b224757617c0c8b06a1de327c39b3dfa.pkl",
+          "pkl_sha256": "c78bf33e7e00a0c60b6cd3c44d6055b9d8102b2eebd592be6b91280fd4fcece6",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S10",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Its software flagged them as dubious, since ozone that low had never been reliably measured.",
+              "exact_native_cache_key": "02f1d5a4b224757617c0c8b06a1de327c39b3dfa.pkl",
+              "cache_input_text_sha256": "0ab44c78d859b04ec920802ea08c0061f2ab121b9f478fb8bd79b8f8068b6c20",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "c78bf33e7e00a0c6",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            145408
+          ],
+          "unprocessed_array_sha256": "f4b056f352c124b069fcbce68c8fd9e0bf64cd64feadb2b2f07d630f810ae60f"
+        },
+        {
+          "exact_native_cache_key": "419be703564edc901fadc261b80f00dd3c553cb8.pkl",
+          "pkl_sha256": "5fd5890cb45e50a2c0e7fd96966d0c0f59368a051dcb2c930e58c563b47eccae",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S10",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Its software flagged them as dubious,",
+              "exact_native_cache_key": "419be703564edc901fadc261b80f00dd3c553cb8.pkl",
+              "cache_input_text_sha256": "976f2f273e90c69b1e77d5df00ba221cb0547538bb0859b3b8bafdc8cb6a1ff9",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S10",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Its software flagged them as dubious,",
+              "exact_native_cache_key": "419be703564edc901fadc261b80f00dd3c553cb8.pkl",
+              "cache_input_text_sha256": "976f2f273e90c69b1e77d5df00ba221cb0547538bb0859b3b8bafdc8cb6a1ff9",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "5fd5890cb45e50a2",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            49152
+          ],
+          "unprocessed_array_sha256": "f358ea8f02165e63e08cea77d8f5f30aad99818914b2bd74e9aeeeb541a6ccb7"
+        },
+        {
+          "exact_native_cache_key": "21d634ea9fdba648492476e18d241ce7c523a991.pkl",
+          "pkl_sha256": "8c9baf65f39abbdd711d6a5f5317b6a93a0464947f183ae592d2306f925d8275",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S10",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "since ozone that low had never been reliably measured.",
+              "exact_native_cache_key": "21d634ea9fdba648492476e18d241ce7c523a991.pkl",
+              "cache_input_text_sha256": "dc9ee67f2047ffe3f8d3017a796898eb7574974bbf0e77e05ec315459657c855",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S10",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "since ozone that low had never been reliably measured.",
+              "exact_native_cache_key": "21d634ea9fdba648492476e18d241ce7c523a991.pkl",
+              "cache_input_text_sha256": "dc9ee67f2047ffe3f8d3017a796898eb7574974bbf0e77e05ec315459657c855",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "8c9baf65f39abbdd",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            82432
+          ],
+          "unprocessed_array_sha256": "1684e69ec439345a560423190fba7a29fca5c2f0c492b889cc7f4e650507896a"
+        },
+        {
+          "exact_native_cache_key": "871d2a141d30a918ddd63a381201881bc5d2fa74.pkl",
+          "pkl_sha256": "aef671db60a5e71fc8e38d2099d6873e74935f0939164e664e69f65cda13bb39",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "NASA says it was still verifying them when Farman published.",
+              "exact_native_cache_key": "871d2a141d30a918ddd63a381201881bc5d2fa74.pkl",
+              "cache_input_text_sha256": "687f069c518c33db86b62a8cd9b5b4082ccef67122b23ef5d58cfcab1195a1ff",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "aef671db60a5e71f",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            89088
+          ],
+          "unprocessed_array_sha256": "38a4e4ce5ab1d64cd817e1157c94305ec54e73d7313ade218a1b0ed5384a0974"
+        },
+        {
+          "exact_native_cache_key": "c5c6583275656a17a87c7e385ea4a3a1d3e1b81e.pkl",
+          "pkl_sha256": "c127628b33a1307e223af6e4856bb5184072cd145d2496d0088f4458ae05f8a9",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S12",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "The sensor had worked; expectation had not.",
+              "exact_native_cache_key": "c5c6583275656a17a87c7e385ea4a3a1d3e1b81e.pkl",
+              "cache_input_text_sha256": "283c01184834ff91b3b8a14485aa7eecd21ac4aeb82da78a2d5f0a9a9e42e70a",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "c127628b33a1307e",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            69120
+          ],
+          "unprocessed_array_sha256": "39f7917e7d5ce6102e79530b84c3765e7ee7380d4fa2221423b696749e986be2"
+        },
+        {
+          "exact_native_cache_key": "28da5914ae40aafcf6cfcb4ce86aa98013ce2238.pkl",
+          "pkl_sha256": "aae8b976d66ac51e8942e8e1a9ce3330bee1b14cb1098b76b1e56c0948cb490e",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S12",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "The sensor had worked;",
+              "exact_native_cache_key": "28da5914ae40aafcf6cfcb4ce86aa98013ce2238.pkl",
+              "cache_input_text_sha256": "e4180fefe818676b11d94b52b1b16d23927b5ca6279ef04a500ebcf69a1611f0",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "aae8b976d66ac51e",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            31744
+          ],
+          "unprocessed_array_sha256": "013b00059d4e2b8b46fe0a0d31e25b609770879d305db19b0a35c49116c5c150"
+        },
+        {
+          "exact_native_cache_key": "e18724d3b28f2580f9a22757aed27f64d58c75b6.pkl",
+          "pkl_sha256": "478ca66446a15143ed6bcc9ab6eac8c6b0e1e4b06dcf44b8ef0638bab29c8202",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S12",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "expectation had not.",
+              "exact_native_cache_key": "e18724d3b28f2580f9a22757aed27f64d58c75b6.pkl",
+              "cache_input_text_sha256": "21f2d61bd403bf4774c49572623b51b70aa956582b527fadb12e02af44a07764",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "478ca66446a15143",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            37888
+          ],
+          "unprocessed_array_sha256": "1facbc1a81a822c64af445cc04ff875818cfe70052988d4e938a16ea33a3ce75"
+        },
+        {
+          "exact_native_cache_key": "a9fb1308b23286470b9c86ab8cec45662d01ddb4.pkl",
+          "pkl_sha256": "cf121a8c36ebe1770c72a27315fea417283ef4cfe0de502132f2aabb5a964a97",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S13",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Remarkably, the response was swift.",
+              "exact_native_cache_key": "a9fb1308b23286470b9c86ab8cec45662d01ddb4.pkl",
+              "cache_input_text_sha256": "c6821dbbf023b11e7f89a6c22756bcc8cb50967f2fc529fdccb16cbdc0785ea9",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "cf121a8c36ebe177",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            50688
+          ],
+          "unprocessed_array_sha256": "64baa832126483b431c882ab06c6cc64e93936d05b54e8518a3e8097da9a4335"
+        },
+        {
+          "exact_native_cache_key": "348af92d951f94f5da2ff4ada054d71d0ca21432.pkl",
+          "pkl_sha256": "d3c7e907781ef3ba31b8f1d30e46dc8d7c578c4bc9e999cc85027824861ff2ba",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S13",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Remarkably,",
+              "exact_native_cache_key": "348af92d951f94f5da2ff4ada054d71d0ca21432.pkl",
+              "cache_input_text_sha256": "4452bf6066d66e4ed7107392ccd181fd353dc5e364ede1b5612441ac6d4fc084",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "d3c7e907781ef3ba",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            23552
+          ],
+          "unprocessed_array_sha256": "7a487927535eae435c9722ccce77914a5e25f4f508cc5bc6e7dce06747e7717e"
+        },
+        {
+          "exact_native_cache_key": "a2b2804d75695d267f4c0e1dece0542eba6e9371.pkl",
+          "pkl_sha256": "242541db74d730b43f1021a1bca89cf321d95e87036b24611389b649cb4a1609",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S13",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "the response was swift.",
+              "exact_native_cache_key": "a2b2804d75695d267f4c0e1dece0542eba6e9371.pkl",
+              "cache_input_text_sha256": "641c0f2baf1726fb15102e3363d5153f0d5fa2af8a40992f6628747785b14d6f",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "242541db74d730b4",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            34816
+          ],
+          "unprocessed_array_sha256": "c606eac62a46b54afea2c94d64c777faece55bfc98e9c7d2ef83d798118b52ca"
+        },
+        {
+          "exact_native_cache_key": "6d6def9d89c1ad352658b656d311f21e698f377d.pkl",
+          "pkl_sha256": "3346ba548bab3a78509611aa6ad0d897f92b33c5ec75ecdd030b3dbc1b20b7c8",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S14",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "In September 1987 diplomats signed the Montreal Protocol, a binding accord to curb CFCs.",
+              "exact_native_cache_key": "6d6def9d89c1ad352658b656d311f21e698f377d.pkl",
+              "cache_input_text_sha256": "7a07513b4c0386005a1426b99cfbaa3507228f3237d1322607de17d6e23c4128",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "3346ba548bab3a78",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            196096
+          ],
+          "unprocessed_array_sha256": "33e5228641afe63eac39a4c90a16ad2ca830f32c82adbb4f75fadedd36fa55cd"
+        },
+        {
+          "exact_native_cache_key": "8b65b356ba540d6ec7e9b8ae417c4bc5806136ed.pkl",
+          "pkl_sha256": "cb712d3185e56a4c5d162a428018330547751deda88433aac950d5216b5f1b4f",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S14",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "In September 1987 diplomats signed the Montreal Protocol,",
+              "exact_native_cache_key": "8b65b356ba540d6ec7e9b8ae417c4bc5806136ed.pkl",
+              "cache_input_text_sha256": "7895943f67ddec93d9fc98378b8e9cf8cd9211012ac4c1d358bf9ae9c811ca3c",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S14",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "In September 1987 diplomats signed the Montreal Protocol,",
+              "exact_native_cache_key": "8b65b356ba540d6ec7e9b8ae417c4bc5806136ed.pkl",
+              "cache_input_text_sha256": "7895943f67ddec93d9fc98378b8e9cf8cd9211012ac4c1d358bf9ae9c811ca3c",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "cb712d3185e56a4c",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            122368
+          ],
+          "unprocessed_array_sha256": "5ac3db4d7a860d6ba270796d72015761bad2f3240490ee625b77fea945a7306c"
+        },
+        {
+          "exact_native_cache_key": "1501963b5ad7db4fc9baa4d74841de943646bfb2.pkl",
+          "pkl_sha256": "844122812373dc2277b05245ead1074ab95a4862e541b3d77e3a0226a9d7ca78",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S14",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "a binding accord to curb CFCs.",
+              "exact_native_cache_key": "1501963b5ad7db4fc9baa4d74841de943646bfb2.pkl",
+              "cache_input_text_sha256": "d85674f61d7e1ff43c0beda79178c33e685a2200bffa4df5470bc18d82efa20f",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S14",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "a binding accord to curb CFCs.",
+              "exact_native_cache_key": "1501963b5ad7db4fc9baa4d74841de943646bfb2.pkl",
+              "cache_input_text_sha256": "d85674f61d7e1ff43c0beda79178c33e685a2200bffa4df5470bc18d82efa20f",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "844122812373dc22",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            56320
+          ],
+          "unprocessed_array_sha256": "9ffd753619885432fe61edcf38cb7d9178d7fabb1bd67baa5931be49cc9e26ae"
+        },
+        {
+          "exact_native_cache_key": "967f6dcdb4d64055f12dd9566fd33bfe204975ee.pkl",
+          "pkl_sha256": "014242372a3e0fc8c89456933c7435c9e8bc0809cb7327bf6028840ee896969d",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S15",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Amendments tightened it: in June 1990 affluent countries pledged to phase out CFCs by 2000.",
+              "exact_native_cache_key": "967f6dcdb4d64055f12dd9566fd33bfe204975ee.pkl",
+              "cache_input_text_sha256": "85342d1cbe64382d2030040262fa41c2964a0a701bcf95fa4e60fd772697132c",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "014242372a3e0fc8",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            184320
+          ],
+          "unprocessed_array_sha256": "0abe6201eb67b9f7264b2c78d97e9d3fc67d1073e85a05181b769525a6a97212"
+        },
+        {
+          "exact_native_cache_key": "1068db836bbeb75c766282555dae0f442a401679.pkl",
+          "pkl_sha256": "ddefdc26c1852f6cfe0bc02192cb56a242a5d7294392f84dcd688ac9c9656570",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S15",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Amendments tightened it:",
+              "exact_native_cache_key": "1068db836bbeb75c766282555dae0f442a401679.pkl",
+              "cache_input_text_sha256": "c23541a05a34b2e1689ec2c88335a5215b36e9ede56e3a9b9e4d552df01ce2c9",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S15",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Amendments tightened it:",
+              "exact_native_cache_key": "1068db836bbeb75c766282555dae0f442a401679.pkl",
+              "cache_input_text_sha256": "c23541a05a34b2e1689ec2c88335a5215b36e9ede56e3a9b9e4d552df01ce2c9",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "ddefdc26c1852f6c",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            35328
+          ],
+          "unprocessed_array_sha256": "4a5d0d7695dda41f10b1f892f92c45aa997cceda6998c68789d31deec754060f"
+        },
+        {
+          "exact_native_cache_key": "9620e44f855a85dd282cdb1eca8623afa0773f89.pkl",
+          "pkl_sha256": "9a3ee2c6bb8bdccd223bb74b04756d5c085efece7ec43145e7b70971c4dfadf1",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S15",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "in June 1990 affluent countries pledged to phase out CFCs by 2000.",
+              "exact_native_cache_key": "9620e44f855a85dd282cdb1eca8623afa0773f89.pkl",
+              "cache_input_text_sha256": "8d944d3c44692e0a00bf2e0f92558bde64fc7c66b6b9f9bae878452307a27f31",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S15",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "in June 1990 affluent countries pledged to phase out CFCs by 2000.",
+              "exact_native_cache_key": "9620e44f855a85dd282cdb1eca8623afa0773f89.pkl",
+              "cache_input_text_sha256": "8d944d3c44692e0a00bf2e0f92558bde64fc7c66b6b9f9bae878452307a27f31",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "9a3ee2c6bb8bdccd",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            145408
+          ],
+          "unprocessed_array_sha256": "bc7351a1ae9c9cbab7435882fcf4fd975d0d4526f2a6aee15a24e3f4630b76c1"
+        },
+        {
+          "exact_native_cache_key": "fa3f47c97823c8bd59dfe37b0eec9467a19463ae.pkl",
+          "pkl_sha256": "9709535fd1a8f0b035dbc8b36ff965feea3ef7570b4f0ad57e34f89dd55804f7",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S16",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "In September 2009 the Protocol and its parent Vienna Convention became the UN's first treaties to win universal ratification.",
+              "exact_native_cache_key": "fa3f47c97823c8bd59dfe37b0eec9467a19463ae.pkl",
+              "cache_input_text_sha256": "91c2f8778840c5203f31733a617d98dd40ffa9f8deaa1e6dcacb3321676f8491",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "9709535fd1a8f0b0",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            228352
+          ],
+          "unprocessed_array_sha256": "383b97d40cab8fbb522c595f6a7ca082bca00d763cbecfd4ea5a06425cdde7fc"
+        },
+        {
+          "exact_native_cache_key": "e20372f001e5112146a07138b7fb4bd34e0de227.pkl",
+          "pkl_sha256": "b6585c1e97453de2ad31ceeda4c84954474fdc0b4e76e3110b57a2384daed1b4",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S16",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "In September 2009 the Protocol and its parent Vienna Convention",
+              "exact_native_cache_key": "e20372f001e5112146a07138b7fb4bd34e0de227.pkl",
+              "cache_input_text_sha256": "48cda5b2cd27521f176e4ae03df84813ed670ef9d7d1c1cc96ef952383f4f479",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "b6585c1e97453de2",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            116224
+          ],
+          "unprocessed_array_sha256": "cb2b71b76088cb6a95e768712f814b4ecd301248355d93487cb7de9da9db1570"
+        },
+        {
+          "exact_native_cache_key": "820a3b6879fb0474a6b3135e29046741d4bbb200.pkl",
+          "pkl_sha256": "0aee44beb88d8f7df3a477720a91633c698ed881d55f4e5310362e5a29e6e304",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S16",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "became the UN's first treaties to win universal ratification.",
+              "exact_native_cache_key": "820a3b6879fb0474a6b3135e29046741d4bbb200.pkl",
+              "cache_input_text_sha256": "90cb46c11cf6647bf2de785bafe40bb6216d5197d28842872874e9ff06608cc4",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "0aee44beb88d8f7d",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            99840
+          ],
+          "unprocessed_array_sha256": "f4466995bc27c7ed4554279bea8a819f9b97a7aae0b836b60fe739c43c5c6c04"
+        },
+        {
+          "exact_native_cache_key": "773c1ea805b85f4199a1196615a01d819c3732cc.pkl",
+          "pkl_sha256": "251e0fa355dcbaa9db1bc739d5fa4366b91f7f89ba6713cf095c63d0d2a544e1",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S17",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "In January 2023 a UN-backed assessment forecast recovery to 1980 levels around 2066 over Antarctica, 2045 over the Arctic, and 2040 elsewhere.",
+              "exact_native_cache_key": "773c1ea805b85f4199a1196615a01d819c3732cc.pkl",
+              "cache_input_text_sha256": "88482c13c00a67cb1f47c8be60ccfee5f40ae01be3d7538d2027b2f30a20ea4e",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "251e0fa355dcbaa9",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            378880
+          ],
+          "unprocessed_array_sha256": "cb85932852ae6b1374d6088a5b804bd6c5a59ab2bd75592df1ae28feea011af9"
+        },
+        {
+          "exact_native_cache_key": "41446c64edd3191f175b7b21f61400fb643c2161.pkl",
+          "pkl_sha256": "2f04e14153393b4103a83896cee279a7c7fdba2948571c5b2743bf41738c10ed",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S17",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "In January 2023 a UN-backed assessment forecast",
+              "exact_native_cache_key": "41446c64edd3191f175b7b21f61400fb643c2161.pkl",
+              "cache_input_text_sha256": "8bb456267ef01fa8acad94a6a421f2b20aa8c5467d5669150cff517b0022f8b1",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "2f04e14153393b41",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            111616
+          ],
+          "unprocessed_array_sha256": "78aec5a13c8cbe7b8fbf0592c85b90fa576c09121d4f57951b3018dac015f42b"
+        },
+        {
+          "exact_native_cache_key": "cf05c5aa5da74dac83760989b96851a4fbe81388.pkl",
+          "pkl_sha256": "076ea9cc2adab36a4737f0a42ec0d8692a098ec65ee541080ac2b3895023f170",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S17",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "recovery to 1980 levels",
+              "exact_native_cache_key": "cf05c5aa5da74dac83760989b96851a4fbe81388.pkl",
+              "cache_input_text_sha256": "3c73de844e3928e8dd1c893b4a656a6344d620e5f929da1fc1b5e04529be5ace",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "076ea9cc2adab36a",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            50176
+          ],
+          "unprocessed_array_sha256": "02b919aef3c761d2cb6cdc89f7b70441d178ee66fc93c8d2d8a3e3573eb09fea"
+        },
+        {
+          "exact_native_cache_key": "8186e6c400124bb68ce494d06f186dfebb6aa1c5.pkl",
+          "pkl_sha256": "d0c98d0065cad6068e7b6287f3740da3ff034c62be99e9445d969243af6d26e0",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S17",
+              "piece": 3,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "around 2066 over Antarctica, 2045 over the Arctic, and 2040 elsewhere.",
+              "exact_native_cache_key": "8186e6c400124bb68ce494d06f186dfebb6aa1c5.pkl",
+              "cache_input_text_sha256": "01c45f4c79b4cab7a9f0de863384dcf9e4e85796049775a9c05d52122e2d0287",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "d0c98d0065cad606",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            200704
+          ],
+          "unprocessed_array_sha256": "db64d5c0d1c997a8384ca7797dbe70c8fd9898de2624893aedff8b2fee91b8da"
+        },
+        {
+          "exact_native_cache_key": "ff750993d9eeb8ddbb61d52a5f787d47c00fdcf6.pkl",
+          "pkl_sha256": "b9e0c112e3469eddc5e18b04bc301be07aa0d85c9e51ea868e6e318b109e3433",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S17",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "In January 2023 a UN-backed assessment forecast recovery to 1980 levels around 2066 over Antarctica,",
+              "exact_native_cache_key": "ff750993d9eeb8ddbb61d52a5f787d47c00fdcf6.pkl",
+              "cache_input_text_sha256": "eb5167dd6dfd57d78b993055faf2bdc4a28606059325e1ba3af9b21f6c45a32f",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "b9e0c112e3469edd",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            255488
+          ],
+          "unprocessed_array_sha256": "b3a0930b7c72f49e37e0697b53dde976938f5801e1ccada95e617ad0d4243e13"
+        },
+        {
+          "exact_native_cache_key": "44f49f120564c17a26ae0e035c4810b9e7f3f7db.pkl",
+          "pkl_sha256": "cf24b20336d105a9f70617726d401a2df83b11e7579edf7d6cf85fbb80f410e2",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S17",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "2045 over the Arctic,",
+              "exact_native_cache_key": "44f49f120564c17a26ae0e035c4810b9e7f3f7db.pkl",
+              "cache_input_text_sha256": "6b8c152dcedfa93b8a9204a8d831ed09c2f5f02258c693462e400e37d6ab0f23",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "cf24b20336d105a9",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            57344
+          ],
+          "unprocessed_array_sha256": "f4dd4653d5b3515560c9d148713d2e0474f855c3c6f0967d2914c4601a95a133"
+        },
+        {
+          "exact_native_cache_key": "e343fa1a10205da4270245a1f0ea102314079d13.pkl",
+          "pkl_sha256": "71fc07245035049bc38220d8c51419ed107785e509c0feee932a1d50a8319120",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S17",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "and 2040 elsewhere.",
+              "exact_native_cache_key": "e343fa1a10205da4270245a1f0ea102314079d13.pkl",
+              "cache_input_text_sha256": "62fd421a2f023df617dcb4ac797811192bd3cde2854e91e84927c16a384b0fde",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "71fc07245035049b",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            43520
+          ],
+          "unprocessed_array_sha256": "004f08e274b2c71368d7145795a0a5f6e2967c7acfabbd3217e419ee4f0543b0"
+        },
+        {
+          "exact_native_cache_key": "1f8cc1bf501809cb7219249324448e612b4d3da0.pkl",
+          "pkl_sha256": "0ebfb033c37c979ee45cb323196cad16b39eb99b41227d7d342a9233433d119b",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S18",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Healing will take decades.",
+              "exact_native_cache_key": "1f8cc1bf501809cb7219249324448e612b4d3da0.pkl",
+              "cache_input_text_sha256": "ef3c1d2b7da29fd3bd69926afa442aa6f04d9893d957610fc040f1659ac9c6b7",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "0ebfb033c37c979e",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            38912
+          ],
+          "unprocessed_array_sha256": "286cc493321774eb665343f13f2bcd0b47b45e6a537b0e209c0426866df85279"
+        },
+        {
+          "exact_native_cache_key": "fb8c21b320b37f7e0975fee2b8d6d50d7c211356.pkl",
+          "pkl_sha256": "6d13e589c803b8e1f3a3d53038d3fcbc6559c02a866ce1c0881ea19ee81975a0",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S19",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "The sky's rescue began with diligent observers who trusted that a baffling number was no glitch, and published it.",
+              "exact_native_cache_key": "fb8c21b320b37f7e0975fee2b8d6d50d7c211356.pkl",
+              "cache_input_text_sha256": "09b3437216e8d617b2572e2f2f59d3c461455d150db06a37cf21d8d08a682477",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "6d13e589c803b8e1",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            174592
+          ],
+          "unprocessed_array_sha256": "20cac1b589f7a5991bc028967123c7229cbee4ce483c8ff3f9cc2bc3e1f9e618"
+        },
+        {
+          "exact_native_cache_key": "aff7e31c5889ba22f358d310bd59cf99cbab05eb.pkl",
+          "pkl_sha256": "8bfd3126906fdca15657f9e95c34e9c46f3386e01290ea2def924aebe7a31d3e",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S19",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "The sky's rescue began with diligent observers",
+              "exact_native_cache_key": "aff7e31c5889ba22f358d310bd59cf99cbab05eb.pkl",
+              "cache_input_text_sha256": "ed45935a11b4ae2006fe4001af06df5c30ae50852425ca3ac85dc30d5510cf8e",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "8bfd3126906fdca1",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            72704
+          ],
+          "unprocessed_array_sha256": "777f300e57edf5aa2731937aadf92ae50aa6cef513f86f03f4d62ae8aa8e5a41"
+        },
+        {
+          "exact_native_cache_key": "2946b246ab03546b06188ff565166d2d2e98e994.pkl",
+          "pkl_sha256": "cf286671002c5200a8510049727790c7f586d1fc4a9b58c13805bad299ed285b",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S19",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "who trusted that a baffling number was no glitch, and published it.",
+              "exact_native_cache_key": "2946b246ab03546b06188ff565166d2d2e98e994.pkl",
+              "cache_input_text_sha256": "9255afe7df635bdd3596582067148c91d8e025bbc72f96110ea6d83c611905d5",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "cf286671002c5200",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            91648
+          ],
+          "unprocessed_array_sha256": "00d27295925c7fedf36a3b6d17ce1090c46c3370c4172a18980c8593492f84c9"
+        },
+        {
+          "exact_native_cache_key": "5cd618111f166a1c2923a65d291003907fb5b0ea.pkl",
+          "pkl_sha256": "f1471863209cf788e37cd19654ca5ab5a7cb3d183a94ad2f0f928c854e3f8bc7",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S19",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "The sky's rescue began with diligent observers who trusted that a baffling number was no glitch,",
+              "exact_native_cache_key": "5cd618111f166a1c2923a65d291003907fb5b0ea.pkl",
+              "cache_input_text_sha256": "8a501274dd4e4add6d6bb6692cbce534ed95846dc83dbecb7f4e78945a5ce4ce",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "f1471863209cf788",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            155136
+          ],
+          "unprocessed_array_sha256": "335a8d8340d99f2739cbb03686856a644a76e757103324c08b0f8ca453229791"
+        },
+        {
+          "exact_native_cache_key": "1f32e84bcb598000693909f33e017791a10bfa25.pkl",
+          "pkl_sha256": "a185c0f87b3938892586a76ef6390d101ab2150c5840464f29aaf47d72333ca2",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S19",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "and published it.",
+              "exact_native_cache_key": "1f32e84bcb598000693909f33e017791a10bfa25.pkl",
+              "cache_input_text_sha256": "223d6ced3f198c90e21d95086a6c886c119185094628170edacb0ab2e868d159",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "a185c0f87b393889",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            27136
+          ],
+          "unprocessed_array_sha256": "9ccd8cf1b0309844502ff133bf080c16ddd4fdb324c0652c6c68107197f55720"
+        }
+      ],
+      "missing_reference_key_count": 0,
+      "observed_missing_keys_covered": [],
+      "new_private_cache_names": [],
+      "native_single_thread_marker_verified": true,
+      "single_thread_sessions": [
+        {
+          "intra_op_num_threads": 1,
+          "inter_op_num_threads": 1
+        },
+        {
+          "intra_op_num_threads": 1,
+          "inter_op_num_threads": 1
+        }
+      ],
+      "models_sha256": {
+        "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+        "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+        "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+      },
+      "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+      "existing_private_cache_count": 11514,
+      "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+      "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+      "existing_private_cache_bytes_unchanged": true,
+      "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+      "public_repository_cache_unchanged": true,
+      "producer_pcm_existed_before": false,
+      "producer_pcm_sha256_before": null,
+      "producer_pcm_sha256_after": null,
+      "accepted_aac_adts_sha256_before": "7afa1458e1f5551b37157889fac4f63b2052e7401df16ae9f5f235f8cb1a6fc4",
+      "accepted_aac_adts_sha256_after": "7afa1458e1f5551b37157889fac4f63b2052e7401df16ae9f5f235f8cb1a6fc4",
+      "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+      "private_cache_exported": false
+    },
+    "checker_reference_preparation_program_sha256": "f6f2a032e207085e7252d036e39430fb80b06e84a721c525b61196d021c5ca12",
+    "fresh_current_article_reference": {
+      "article": "59",
+      "removed_temporary_gt_files": [],
+      "processed_pcm_or_raw_mother_cache_modified": false,
+      "purpose": "Original synth/labels/audit rebuild fresh for this production; no old CPU GT reuse."
+    },
+    "temporary_output_reset": {
+      "removed": [],
+      "production_started_ns": 1794623600175783469,
+      "repository_outputs_modified": false
+    },
+    "reviewed_gain_control_preservation": [
+      {
+        "stage": "canonical-draft",
+        "requested_gain_controls": {
+          "/句子增益dB": {
+            "S5": 1.0,
+            "S16": 0.3
+          }
+        },
+        "actual_gain_controls": {
+          "/句子增益dB": {
+            "S5": 1.0,
+            "S16": 0.3
+          }
+        },
+        "exactly_preserved": true
+      },
+      {
+        "stage": "canonical-final4K",
+        "requested_gain_controls": {
+          "/句子增益dB": {
+            "S5": 1.0,
+            "S16": 0.3
+          }
+        },
+        "actual_gain_controls": {
+          "/句子增益dB": {
+            "S5": 1.0,
+            "S16": 0.3
+          }
+        },
+        "exactly_preserved": true
+      }
+    ],
+    "canonical_video_sha256": "3c8485ac94fde5159b48fae7ac798001be5cc5c88d05e732ad478e27591af1e5",
+    "canonical_aac_adts_sha256": "7afa1458e1f5551b37157889fac4f63b2052e7401df16ae9f5f235f8cb1a6fc4",
+    "canonical_pipeline_passed": true,
+    "cached_input_wav_sha256": null,
+    "final_wav_sha256": "8f822a42adab797aeb278971afbcb260944c088a60ca241d416a9c962409daa7",
+    "accepted_prior_aac_identical": true,
+    "video_sha256": "f36d8842cbdfc00549edd34bbaa70d6614fd4314a7600d7f1579da261ebed94f",
+    "width": 3840,
+    "height": 2160,
+    "summary_seconds": 2,
+    "summary_frames": 60,
+    "summary_start_seconds": 152.5,
+    "delay_after_voice_seconds": 0.014999999999986358,
+    "actual_source_collection": {
+      "article": "59",
+      "kind": "actual-production-source-collection",
+      "new_quality_gate": false,
+      "files": {
+        "request_json": {
+          "file": "59-request-source.json",
+          "sha256": "df1db4174d942371166048b220ef6d55b0b700b2ce31c866edf6dfdf33b92f0c",
+          "origin": "immutable_request"
+        },
+        "request_generator": {
+          "file": "59-request-gen.py",
+          "sha256": "add62b94c477077b0c36c42babb0830142986ab0184e6ae0ca0e300fd78a7c3d",
+          "origin": "immutable_request"
+        },
+        "used_generator": {
+          "file": "59-used-gen.py",
+          "sha256": "add62b94c477077b0c36c42babb0830142986ab0184e6ae0ca0e300fd78a7c3d",
+          "origin": "actual_production_filesystem"
+        },
+        "actual_working_source": {
+          "file": "59-actual-working-source.json",
+          "sha256": "d160e9695f29b909fbb5154f83e4277b26589d10a3665fbe389aa51b94e578d0",
+          "origin": "actual_production_filesystem"
+        },
+        "request_manuscript": {
+          "file": "59-request-manuscript.md",
+          "sha256": "7bf9c4661e733e7af23dc2f11bc820b809ec93dad75a94fb6a12748226e8722c",
+          "origin": "immutable_request"
+        },
+        "actual_working_manuscript": {
+          "file": "59-actual-working-manuscript.md",
+          "sha256": "0ade79f4c849c802a122da3f70fd3f1c9248a1641968f24e9562c6ead6340552",
+          "origin": "actual_production_filesystem"
+        }
+      },
+      "generator_execution_observed": false,
+      "generator_execution_evidence": "No fresh generator execution log; do not claim this GEN was executed during rendering.",
+      "source_differences": {
+        "file": "59-actual-source-differences.json",
+        "sha256": "8f97c4171e0b83c87d405500e238ecdddb05664f3f98a45664c47356347e8774"
+      }
+    }
+  },
+  "native_status_sha256": "71aa4b292616c1efa696a0544e8a40210499f79fababb162b9134daf63938c9d"
+}
