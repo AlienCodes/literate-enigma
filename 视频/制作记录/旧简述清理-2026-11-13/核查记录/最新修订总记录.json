@@ -1,7 +1,7 @@
 {
-  "recorded_at_utc": "2026-11-14T00:45:36.415903+00:00",
+  "recorded_at_utc": "2026-11-14T01:07:01.430994+00:00",
   "task": "70篇精读视频及正式印刷书的全部修订、重建和GitHub交付",
-  "state": "COMPACT_BOOK_DUAL_ARCHIVED; ALL70_TEXT_LAYOUT_PASSED; FIVE_ILLUSTRATED_4K_VIDEOS_PASSED; REMAINING_AUDIO_PRODUCTION_IN_PROGRESS",
+  "state": "COMPACT_BOOK_DUAL_ARCHIVED; ALL70_TEXT_LAYOUT_PASSED; EIGHT_ILLUSTRATED_4K_VIDEOS_PASSED; REMAINING_AUDIO_PRODUCTION_IN_PROGRESS",
   "status_is_not_a_final_delivery_claim": true,
   "scope": {
     "main_pdf_latest_correction": "799页含解析版本仅未发布本地历史草稿，主册改为v4-compact；小字/句析/语法/练习均从主册移除，解析材料源码留存供以后单独解析书，本轮不制作解析册",
@@ -182,7 +182,7 @@
     "旧字面摘要锚保留历史记录，现行全文由请求源稿及实际排版归一化校验，原检查器不被绕过"
   ],
   "production": {
-    "new_final_videos_passed": 5,
+    "new_final_videos_passed": 8,
     "required_videos": 70,
     "passed_videos": [
       {
@@ -215,6 +215,27 @@
         "sha256": "5774c9a0e724fcec1906fef0d5445a645624d8b9b886875a675bc615f9f12684",
         "bytes": 16691614,
         "passed_handoff": "/workspace/work/video-revision-delivery/next-passed-validated/43532011110/29/archive-handoff.json"
+      },
+      {
+        "original_id": "39",
+        "book_order": "11",
+        "bytes": 16511048,
+        "sha256": "cf72981e15efde1b5e7b3202739dcd712e092570490e6ece45d4d60fd54e799c",
+        "passed_handoff": "/workspace/work/video-revision-delivery/next-passed-validated/43533004625/39/archive-handoff.json"
+      },
+      {
+        "original_id": "45",
+        "book_order": "70",
+        "bytes": 15760850,
+        "sha256": "96af2c088e534c311ae4d67088835598d9d4a2f795c84fa4ac06759d49bf2b66",
+        "passed_handoff": "/workspace/work/video-revision-delivery/next-passed-validated/43533004625/45/archive-handoff.json"
+      },
+      {
+        "original_id": "43",
+        "book_order": "40",
+        "bytes": 17303283,
+        "sha256": "8a47d5f83a33f6cc09f4844ec443292e3b1a7cd27a76f93a75184b38aabefb56",
+        "passed_handoff": "/workspace/work/video-revision-delivery/next-passed-validated/43533004625/43/archive-handoff.json"
       }
     ],
     "passed_video_ending": "实际正文结束后，书中对应插图60帧，再简述60帧；3840×2160、30fps；原正文编码与AAC包及绝对时间保持不变",
@@ -272,8 +293,20 @@
     "core_fixed_reference_diagnostic_run": 43533172028,
     "final_three_core_certification_run": 43535822030,
     "final_three_core_certification_commit": "395e8da264fafa2453a42ee70a3f7aed8303a769",
-    "final_three_core_certification_status": "awaiting_actual_original_full_fastcheck_with_prior_approved67screen_fixture",
-    "diagnostic51_status": "wrapper NameError re; actual PCM matched and synth/labels exited0; not a failed-audio conclusion"
+    "final_three_core_certification_status": "REAL_ORIGINAL_FULL_QUICKCHECK_PASSED; actual canonical5 staged for permanent main/backup archive",
+    "diagnostic51_status": "wrapper NameError re; actual PCM matched and synth/labels exited0; not a failed-audio conclusion",
+    "early44_51_fixed_diagnostic_run": 43536744065,
+    "next_formal_audio_renewal": "Use unchanged original 确认平移.py with strictly reconstructed old/current private PCM; normal original sound checks follow; no custom ASR renewal without per-sentence proof",
+    "core_program_full_original_quickcheck": {
+      "passed": true,
+      "run": 43535822030,
+      "commit": "395e8da264fafa2453a42ee70a3f7aed8303a769",
+      "job": 132264443476,
+      "seconds": 478.16,
+      "real_stamp_sha256": "6ebc7aa41f79f77258fa333b665af258e007daa36a4ea290de972cd3da7b42f2",
+      "thresholds_unchanged": true,
+      "not_article_audio_acceptance": true
+    }
   },
   "preservation": {
     "primary": "alienalgorithm/postgraduate-vocabulary:main",
@@ -281,22 +314,22 @@
     "backup_master_never_modified": "6355a02864ebae616b693200d9d26f74f5da80e9",
     "latest_saved_source_state": {
       "asset_branch": "codex/review-source-fixes-20261113-v1",
-      "asset_commit": "09ad0ffc782ed6bf5b146dc554b3e4b7d78c2cec",
-      "payload_files": 964,
-      "payload_bytes": 44478699,
+      "asset_commit": "3413b5a142b6a108d4df23bfe13c0907ada54dbc",
+      "payload_files": 1331,
+      "payload_bytes": 58193408,
       "archives": [
         {
           "repository": "alienalgorithm/postgraduate-vocabulary",
           "branch": "main",
-          "source_commit": "49a080e7385b1f09fb9d863ae52c279b5327a650",
-          "previous_commit": "5ad6562db1aa7bccae54b92fa5625eb340599094",
-          "master_unchanged": false
+          "source_commit": "d160c0d53886326224dfd865704036c61ea88d48",
+          "previous_commit": "d69f49ab6916dd81ebdc07d67133db2af6b1d694",
+          "master_unchanged": null
         },
         {
           "repository": "AlienCodes/literate-enigma",
           "branch": "codex/all-deliverables-20261113",
-          "source_commit": "a9688b3e57d3676c36353c3ca599e574bc197830",
-          "previous_commit": "e098b9ab734db2e3ad1e95f53477c24c9760512d",
+          "source_commit": "2cd1e5e2ff260f325c4ebac60d6914599abc29f3",
+          "previous_commit": "5a7138456ba5ecb7f475ad86b3bb8bcef7a1bb08",
           "master_unchanged": true
         }
       ]
