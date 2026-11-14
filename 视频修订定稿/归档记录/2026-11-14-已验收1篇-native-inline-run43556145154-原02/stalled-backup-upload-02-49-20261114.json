@@ -1,0 +1,49 @@
+{
+  "observed_utc": "2026-11-14T04:55:43.715455+00:00",
+  "scope": "Only exact two owned stalled backup isolated-asset upload process trees; no CI rerun, source/media/check changes or main/backup protected-ref write",
+  "observed_backup_new_refs_and_first_commits": "Each confirmed HTTP404 while push waited nearly6minutes for server response",
+  "owned_processes_terminated": [
+    {
+      "pid": 217138,
+      "ppid": 217011,
+      "args": "git --git-dir=/workspace/work/video-archive-batches-20261114/run43556226408-49/assets.git --work-tree=/workspace/work/video-archive-batches-20261114/run43556226408-49/payload -c http.postBuffer=209715200 push --quiet https://github.com/AlienCodes/literate-enigma.git 0ba808cc097e9039aedd49002c0c321034d18a26:refs/heads/codex/passed4k-assets-43556226408-49"
+    },
+    {
+      "pid": 217139,
+      "ppid": 217138,
+      "args": "/usr/local/libexec/git-core/git remote-https https://github.com/AlienCodes/literate-enigma.git https://github.com/AlienCodes/literate-enigma.git"
+    },
+    {
+      "pid": 217140,
+      "ppid": 217139,
+      "args": "/usr/local/libexec/git-core/git-remote-https https://github.com/AlienCodes/literate-enigma.git https://github.com/AlienCodes/literate-enigma.git"
+    },
+    {
+      "pid": 217152,
+      "ppid": 217142,
+      "args": "git --git-dir=/workspace/work/video-archive-batches-20261114/run43556145154-02/assets.git --work-tree=/workspace/work/video-archive-batches-20261114/run43556145154-02/payload -c http.postBuffer=209715200 push --quiet https://github.com/AlienCodes/literate-enigma.git c6f4f1acf4ab3bf8218267aac320ab5e95365e18:refs/heads/codex/passed4k-assets-43556145154-02"
+    },
+    {
+      "pid": 217153,
+      "ppid": 217152,
+      "args": "/usr/local/libexec/git-core/git remote-https https://github.com/AlienCodes/literate-enigma.git https://github.com/AlienCodes/literate-enigma.git"
+    },
+    {
+      "pid": 217154,
+      "ppid": 217153,
+      "args": "/usr/local/libexec/git-core/git-remote-https https://github.com/AlienCodes/literate-enigma.git https://github.com/AlienCodes/literate-enigma.git"
+    },
+    {
+      "pid": 217156,
+      "ppid": 217154,
+      "args": "/usr/local/libexec/git-core/git send-pack --stateless-rpc --helper-status --thin --quiet --no-progress https://github.com/AlienCodes/literate-enigma.git/ --stdin"
+    },
+    {
+      "pid": 217157,
+      "ppid": 217140,
+      "args": "/usr/local/libexec/git-core/git send-pack --stateless-rpc --helper-status --thin --quiet --no-progress https://github.com/AlienCodes/literate-enigma.git/ --stdin"
+    }
+  ],
+  "all_bare_original_payload_immutable_commits_and_primary_archives_kept": true,
+  "retry_transport": "Only two owned temporary bare configs use HTTP/1.1, low speed1B/s90s; retry serially with same original asset commits"
+}

@@ -1,0 +1,14 @@
+{"repository": "alienalgorithm/postgraduate-vocabulary", "branch": "main", "source_commit": "3c320110a663b59c7e5aeb9b1bd5f6f8f4d57f20", "previous_commit": "4f57deab47960d99d222629a1414dcc77290bc4c", "master_unchanged": null}
+Traceback (most recent call last):
+  File "/workspace/work/video-audit70-20261113/publish_sources.py", line 104, in <module>
+    result['archives'].append(attach(repo,branch))
+                              ^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/video-audit70-20261113/publish_sources.py", line 91, in attach
+    tree=graft(base,updates)
+         ^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/video-audit70-20261113/publish_sources.py", line 90, in graft
+    return api(repo,'git/trees','POST',{'tree':list(existing.values())})['sha']
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<existing-api>", line 114, in api
+RuntimeError: gh: Sorry, your request timed out.  It's likely that your input was too large to process.  Consider building the tree incrementally, or building the commits you need in a local clone of the repository and then pushing them to GitHub. (HTTP 422)
+
