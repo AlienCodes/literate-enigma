@@ -297,12 +297,20 @@ def selftest(no):
         # espeak pronunciation. Popping Haber-Bosch also changes the replacement
         # count for Haber inside that compound and aborts before check() can
         # identify the intentionally wrong pronunciation.
-        keep_w = PRON_WORDS[w]
-        PRON_WORDS[w] = re.sub(r'[,;:.!?]', '', KT.tokenizer.phonemize(w, 'en-us')).strip()
+        # All aliases activated for this same lexical correction must receive
+        # the same uncorrected-word fault. Keep every registry key (including
+        # compounds), and restore every original value even if check raises.
+        _stem = lambda a: re.sub(r"['’]s$", '', a)
+        aliases = [a for a in PRON_WORDS if _stem(a) == _stem(w) or
+                   (_wf(a) == re.I and _wf(w) == re.I and
+                    _stem(a).casefold() == _stem(w).casefold())]
+        keep_aliases = {a: PRON_WORDS[a] for a in aliases}
+        for a in aliases:
+            PRON_WORDS[a] = re.sub(r'[,;:.!?]', '', KT.tokenizer.phonemize(a, 'en-us')).strip()
         try:
             got = {line for _, line, bad in check(no) if bad}
         finally:
-            PRON_WORDS[w] = keep_w
+            PRON_WORDS.update(keep_aliases)
         hit = any(re.search(r'\] ' + re.escape(w) + r"(['’]s)? ", l_) for l_ in got - base)   # 文中只有所有格的（10 Uffizi's）也算
         print(f'  K102 ② {w}：单独关掉改正 → ' + ('报 BAD（当样本）' if hit else '不报（关掉后仍读对，不当样本）'))
         if hit: valid.append(w)

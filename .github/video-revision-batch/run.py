@@ -35,7 +35,7 @@ for key in ('YAOWENBEN', 'OLD_IV_VOID', 'AUDIO_ONLY', 'VIDEO_S'):
 status = {'article': NO, 'passed': False, 'stage': 'start',
           'original_audit_and_quality_thresholds_unchanged': True, 'original_maker_unchanged': True,
           'core_repairs': [],
-          'strict_production_cache': True, 'pdf_requested': False, 'review_only':True, 'user_individual_finalization_authorized':False, 'specific_review_authorization_102_sha256':'baf7b2fc59a11d2b1b135051a3e9c0aec2782c7789b055c87c782d7a67aba536'}
+          'strict_production_cache': True, 'pdf_requested': False}
 PRODUCTION_STARTED_NS = None
 BASELINE_AUDIO_FILES = None
 
@@ -114,15 +114,15 @@ def prepare_accepted_pcm_continuity(baseline_bytes, accepted_aac):
     expected = {'10':'15f47fa51add', '11':'5da69def8d01', '12':'04f94362f377',
                 '44':'21efe6263229', '51':'ff0728857c2d',
                 '15':'7e5ea2bdb6d3', '17':'0ef19e50999f',
-                '18':'05efc6de075d', '30':'93a277750d35', '02':None,
+                '18':'76b99c620981', '30':'93a277750d35', '02':None,
                 '69':'8b8618454b80', '05':'1e25fbe69f6f',
                 '67':'c34294a522a7', '16':'630cbdf1eae2'}
-    exact_old_pcm = {'18':'e2ae360b8e63bad45972054dfab0e74bb448983de82b5d8a2571d6ee916f65fd','02':'c21872d4db894f37b1b8b5db752917f9f6ef60680834ca4cccef9b806b5c1c52',
+    exact_old_pcm = {'02':'c21872d4db894f37b1b8b5db752917f9f6ef60680834ca4cccef9b806b5c1c52',
                      '69':'d04e5e1b057dfaa788bf86dcd6fe7da7b88fc1a254f8abd0a695621f074c2837',
                      '05':'4c20eb528b935e7a315e3f41b3f4168fe82cd5e26e0b33d16ea4bfce2609cb64',
                      '67':'39f7defdcfad7a4dae00c9677c7998d8f70c984247583e136e09e6efe9392bae',
                      '16':'3a2239772fe1941d4a5de28be034ff49670fedcf6ced0d1c0e61e5476912b93d'}
-    prior_public_aac = {'18':'0a223ab49b6f4fe997f542bc50a6da7f3d087a09ee344db92dd7c2d5c9b4f526','69':'2b15b4811866afd03ef5962f6ce99717d28d7e97704750d9ede91bd7799eed15',
+    prior_public_aac = {'69':'2b15b4811866afd03ef5962f6ce99717d28d7e97704750d9ede91bd7799eed15',
                         '67':'d5d57519d6b60e31eeb92bd1bf0b0505192b49ee9c1e34ae02b5c9ddc9532856'}
     if NO not in expected:
         return
@@ -141,10 +141,6 @@ def prepare_accepted_pcm_continuity(baseline_bytes, accepted_aac):
         exact_prior = TASK / 'accepted-pcm-source-reference/67-prior-native.json'
         assert sha(exact_prior) == '8897cc1c2df1e4672eec3bbff2776d0565afb9c9fe84087a1758ebb15b2a233e'
         baseline_bytes = exact_prior.read_bytes()
-    if NO == '18':
-        exact_prior = TASK / 'accepted-pcm-source-reference/18-prior-native.json'
-        assert sha(exact_prior) == '0be588e72e2daf950787b7243ee78b29e8255969288cf2abfb6c748f300bdde5'
-        baseline_bytes = exact_prior.read_bytes()
     script = W / f'scripts/{NO}.json'
     current = script.read_bytes()
     old_source = LOG / 'accepted-prior-source.json'
@@ -162,8 +158,6 @@ def prepare_accepted_pcm_continuity(baseline_bytes, accepted_aac):
                       'expected_prior_public_native_pcm_md5_first12':expected[NO],
                       'expected_prior_public_native_pcm_sha256':exact_old_pcm[NO],
                       'expected_prior_public_native_aac_adts_sha256':prior_public_aac[NO]})
-    if NO == '18':
-        proof.update(reference_kind='actual-original3p5-public-native-before-root4p5-not-legacy-accepted-graft', original_public_run_id=None, reference_source_role='exact e2ae source from actual first4K A21 artifact', legacy_accepted_AAC_adts_sha256=accepted_aac, formally_accepted_whole=False)
     proof_file = OUT / f'{NO}-accepted-prior-pcm-probe.json'
     private_reference_inputs = {}
     try:
@@ -230,7 +224,7 @@ def prepare_accepted_pcm_continuity(baseline_bytes, accepted_aac):
             proof_file.write_text(json.dumps(proof, ensure_ascii=False, indent=2) + '\n')
             save()
             return
-    if NO != '18' and NO in A21_AUDIO_REPAIRS | {'02', '05', '16'} and not proof.get('old_reconstructed_aac_exactly_matches_accepted', False):
+    if NO in A21_AUDIO_REPAIRS | {'02', '05', '16'} and not proof.get('old_reconstructed_aac_exactly_matches_accepted', False):
         proof['migration_not_attempted'] = 'Old reconstruction did not exactly reproduce the accepted AAC.'
         proof_file.write_text(json.dumps(proof, ensure_ascii=False, indent=2) + '\n')
         save()
@@ -992,10 +986,10 @@ try:
             assert actual_record['篇'] == NO
             if actual_record not in records['记录']:
                 records['记录'].append(actual_record)
-    if NO == '18':
+    if NO == '19':
         supplement = request / '真实用户同意补充.json'
-        assert sha(supplement) == 'e5979c92d17a9db5b40871e9f7fb3a27043d87782c5a444ad14aba19998c770c'
-        assert sha(request / 'root-source18-dormant-original-t-exact-review-decision.json') == '477fa3370cbf0c987d624eefbee4dc9fdff307a3dab582de299211d3365d1ba2'
+        assert sha(supplement) == '203cf81ed3627aff80f724bf2eb98ff08ba45c4791ebcdba635850fc3cb9ac89'
+        assert sha(request / 'root-source19-user105-measured-original-voice-preservation-decision.json') == '3f71278a3b5915abdc6e6a2233c63a8c8ebdd9a970c2f80852676fe4324c105d'
         for actual_record in json.loads(supplement.read_text())['records']:
             assert actual_record['篇'] == NO
             if actual_record not in records['记录']:
@@ -1101,9 +1095,9 @@ try:
     if NO == '07':
         assert status['canonical_aac_adts_sha256'] == '16b6293adfc7a3c35224408ae39d831317e1932f8d47876824e129129c9115d8'
         assert sha(W / 'work_07/a.wav') == '11edc969af0797bcd7121034f43de130d72ca9186508e64e3330aff6c4069643'
-    if NO == '18':
-        assert status['canonical_aac_adts_sha256'] == 'f3dc4bbcfee0688dc9d30551944f028d29a11230f27eed51800d6e03eb4047ce'
-        assert sha(W / 'work_18/a.wav') == '916e594a32542618c6d5321f88fadc482adb4d3a6dabf3472cebc53f55c0d088'
+    if NO == '19':
+        assert status['canonical_aac_adts_sha256'] == 'bec515a6e5087e53d90e69671303ab9edf17d49cd66cb6cdbe4b0a534027e547'
+        assert sha(W / 'work_19/a.wav') == 'fe5819c52306836749f72d78979a02025c30cf7918fec915a43ac7a6a915d956'
     status['canonical_pipeline_passed'] = True
     status['cached_input_wav_sha256'] = start_wav
     status['final_wav_sha256'] = sha(W / f'work_{NO}/a.wav')
