@@ -52,8 +52,7 @@ S = [(1, [[[('Dolly was born at Roslin, **Scotland**, on 5 July 1996.', '1996年
    [[('frogs cloned from **transplanted** nuclei in 1962', '于1962年由**移植**(transplanted)的细胞核克隆出的青蛙，')],
     '（cloned from…：过去分词短语作后置定语，修饰 frogs；\nnuclei 是 nucleus 的复数）'],
    [[("and Roslin's", '以及罗斯林'),
-     ('embryo-**derived**', '于1995年由胚胎**衍生的**(derived)'),
-     ('**duo**, Megan and Morag, in 1995.', '**一对**(duo)绵羊：梅根和莫拉格。')],
+     ('embryo-derived **duo**, Megan and Morag, in 1995.', '于1995年由胚胎衍生的**一对**(duo)绵羊：梅根和莫拉格。')],
     '（Megan and Morag：同位语，补充说明 duo）']]),
  (2,
   [[[('She', '她'),
@@ -81,7 +80,7 @@ S = [(1, [[[('Dolly was born at Roslin, **Scotland**, on 5 July 1996.', '1996年
      ('Clinton', '克林顿'),
      ('**prohibited**', '**禁止**(prohibited)'),
      ('federal', '联邦'),
-     ('**funding**', '**提供资金**(funding)'),
+     ('funding', '资金'),
      ('for such experiments.', '用于这类实验。')]]]),
  (3,
   [[[('In 1999', '1999年，'),
@@ -124,7 +123,7 @@ S = [(1, [[[('Dolly was born at Roslin, **Scotland**, on 5 July 1996.', '1996年
      ('cell', '细胞'),
      ('line,', '系，')],
     '（four from her cell line：插入语，补充说明 13 clones）'],
-   [[('were **ageing** normally,', '正在正常**衰老**(ageing)，'),
+   [[('were ageing normally,', '正在正常衰老，'),
      ('without', '没有'),
      ('**hypertension**', '**高血压**(hypertension)，'),
      ('or **diabetes**.', '也没有**糖尿病**(diabetes)。')]]]),
@@ -173,15 +172,7 @@ S = [(1, [[[('Dolly was born at Roslin, **Scotland**, on 5 July 1996.', '1996年
      ('Finn Dorset', '芬兰多塞特'),
      ('**ancestry**.', '**祖源**(ancestry)。')],
     '（testify to：证明，见证）\n'
-    '（多莉虽由另一品种母羊代孕，\n'
-    '但遗传物质来自芬兰多塞特羊，因此保留了白脸特征。）\n'
-    '（简述：▸诞生：研究者将去掉细胞核的卵细胞与成年母羊乳腺细胞融合，\n'
-    '▹培育胚胎，1996年由代孕母羊产下多莉。\n'
-    '▸突破：277次尝试仅多莉存活；她是首只由成年细胞克隆的哺乳动物，此前已能用胚胎细胞克隆羊。\n'
-    '▸争议：成果引发人类克隆伦理争论；多莉的端粒（染色体末端）比同龄羊短约20%，又引起早衰猜测。\n'
-    '▸离世：多莉自然交配育下六只小羊；患有关节炎和病毒性肺病，\n'
-    '▹六岁时被实施安乐死，不能据此认定克隆导致早衰。\n'
-    '▸复核：后续研究中13只克隆羊正常衰老；多莉骨骼复查也未支持关节炎过早出现的担忧。）']])]
+    '（简述：▸诞生：研究者将去掉细胞核的卵细胞与成年母羊乳腺细胞融合，培育胚胎，1996年由代孕母羊产下多莉。▸突破：277次尝试仅多莉存活；她是首只由成年细胞克隆的哺乳动物，此前已能用胚胎细胞克隆羊。▸争议：成果引发人类克隆伦理争论；多莉的端粒（染色体末端）比同龄羊短约20%，又引起早衰猜测。▸离世：多莉自然交配育下六只小羊；患有关节炎和病毒性肺病，六岁时被实施安乐死，不能据此认定克隆导致早衰。▸复核：后续研究中13只克隆羊正常衰老；多莉骨骼复查也未支持关节炎过早出现的担忧。）']])]
 
 out = {'no': '62',
  'title_en': 'Dolly, the Copied Sheep',
@@ -228,12 +219,7 @@ out = {'no': '62',
                  'S16 her skeletal X-rays': '对齐不了：X-rays 是一个词“X光片”，skeletal 在前已单独对“骨骼”，her skeletal X-rays '
                                             '三个中文顺序与英文一样，不用拆得更细',
                  'S18 her stuffed body': '对齐不了：stuffed body 中文“填充标本”是一个整体说法（文章定稿原文），拆开不通',
-                 'S18 the National Museum of Scotland': '对齐不了：机构名“苏格兰国家博物馆”，拆开不通',
-                 'S6 embryo-derived': '对齐不了：embryo-derived是原英文一个连字符复合词，只derived部分按用户要求标为重点；按空格拆成embryo-和derived会凭空增加原文空格。in '
-                                      '1995时间状语按原定稿中文前置为于1995年，保留在由胚胎衍生的这个定语组。',
-                 'S6 duo, Megan and Morag, in 1995': '对齐不了：Megan and Morag是duo的同位语，in '
-                                                     '1995修饰这对羊；原中文于1995年已随胚胎衍生的定语前置在上一组。继续按英文逐词分割会让末尾in '
-                                                     '1995没有对应中文或移动已定稿日期位置，现按原文语序保留一对绵羊与人名同位语。'},
+                 'S18 the National Museum of Scotland': '对齐不了：机构名“苏格兰国家博物馆”，拆开不通'},
           '对齐': {'S3-2 proof of a genetically different l': 'proof of 的内容 a genetically different lineage '
                                                             '中文“一个基因上不同血统的证明”，“证明”必须放到最后（用户 11-08 原话）',
                  'S4-1 She alone survived from 277 at': 'from 277 attempts 是范围状语，中文“在277次尝试中”必须提前',
@@ -247,6 +233,8 @@ out = {'no': '62',
                                                         '在句末，中文日期必须提前到句首；地名中文由大到小“苏格兰罗斯林”（文章定稿原文，中文不改）',
                  'S4-1 survived from 277 attempts,': 'from 277 attempts 是范围状语，中文“从277次尝试中”必须放到动词前（用户 11-08 原话）',
                  'S6-2 frogs cloned from transplanted': 'cloned from… in 1962 是过去分词短语作后置定语，修饰 frogs，中文定语必须提前',
+                 'S6-3 embryo-derived duo, Megan and ': 'embryo-derived、in 1995 都修饰 '
+                                                        'duo，中文定语“1995年用胚胎细胞培育的”必须提前',
                  'S7-1 the first mammal cloned from a': 'cloned from an adult cell 是后置定语，修饰 mammal，中文定语必须提前',
                  "S8-1 Roslin's announcement on 22 Fe": 'on 22 February 1997 是后置定语，修饰 announcement，中文日期必须提前',
                  'S9-2 apprehension about the ethics ': 'about the ethics of human cloning 是后置定语，修饰 '
@@ -254,9 +242,7 @@ out = {'no': '62',
                  'S11-2 shortened by about 20% for her': 'for her age 中文“比同龄羊”必须放到动词前',
                  'S16-2 fears of early onset': 'of early onset 是 of 结构作后置定语，修饰 fears，中文“对提前发病的担忧”必须提前（用户 11-08 '
                                                '原话）',
-                 'S18-3 the National Museum of Scotlan': '机构名“苏格兰国家博物馆”，拆开不通',
-                 'S6-3 duo, Megan and Morag, in 1995.': 'embryo-derived、in 1995 都修饰 '
-                                                        'duo，中文定语“1995年用胚胎细胞培育的”必须提前'},
+                 'S18-3 the National Museum of Scotlan': '机构名“苏格兰国家博物馆”，拆开不通'},
           '同词异译': {'coincided with：与/同时': '不是两种译法：coincide with 的意思“与……同时”被“论文发表”隔开，“与”和“同时”是同一个意思的两部分（T23）',
                    'coincided with：与/同时发生': '不是两种译法：coincide with '
                                             '的意思“与……同时发生”被“这篇论文”隔开，“与”和“同时发生”是同一个意思的两部分（T23）'},
@@ -415,24 +401,10 @@ out = {'no': '62',
                                  'from her cell line）；单听段 2–4 parakeet 听到 Thirteen clones, four from her cell '
                                  'line, were aging normally、单听段 3 听到 Four from her cell '
                                  'line，读音完整，是识别器整句时略过插入语，非读错'},
-                   'S2': {'配音指纹': '128ca94f8329',
-                          '依据': "2026-11-07：ewe's 配音按 CMU Y UW1 Z 读 /juːz/，两个识别器听成 used（/juːzd/，同音近形），读音正确\n"
-                                '2026-11-14 客观指纹续期（root056）：本次native43585224225旧实际WAV '
-                                'f7348a62d6b00aa9cf74ad7c26f83bd3c4c98ff6621e3875dbced7bcfd0ac2c0与新实际WAV '
-                                'c5330026dbc9f81d0c7546a1716b9dade9960f44311862a5feb3e4aa0749d7c3中本句PCM16全166080样本逐字节相同，0样本差；同SHA256 '
-                                'ba5d8facdbc372753e5ff891b1aa2100c197b650484686d3c02757a1df8cc4e1，实际句窗[9.56, '
-                                '16.48]秒。原既有量测依据完整保留，此次只续全局指纹，不声明新试听。原连续性报告SHA256 '
-                                'b511921b8856b117698917258d6b29d4d3f07a206b2a27a587e76f1aecb89d83；root056 '
-                                'SHA256 bcb37d8930d804988c95da94b9cfeaaab2c7b026df96e6e4567f9b698ce88fbf。'},
-                   'S8': {'配音指纹': '128ca94f8329',
-                          '依据': "2026-11-07：Roslin's 按已核实读音 ɹˈɑːslɪnz 读，识别器拼成 rosslyn's（同一地名的另一拼法，同音），非读错\n"
-                                '2026-11-14 客观指纹续期（root056）：本次native43585224225旧实际WAV '
-                                'f7348a62d6b00aa9cf74ad7c26f83bd3c4c98ff6621e3875dbced7bcfd0ac2c0与新实际WAV '
-                                'c5330026dbc9f81d0c7546a1716b9dade9960f44311862a5feb3e4aa0749d7c3中本句PCM16全252240样本逐字节相同，0样本差；同SHA256 '
-                                '0c82b18cec42441986fa43fc353aec2dcb33e70bbe17e6372d8a3fd9b9d40449，实际句窗[55.61, '
-                                '66.12]秒。原既有量测依据完整保留，此次只续全局指纹，不声明新试听。原连续性报告SHA256 '
-                                'b511921b8856b117698917258d6b29d4d3f07a206b2a27a587e76f1aecb89d83；root056 '
-                                'SHA256 bcb37d8930d804988c95da94b9cfeaaab2c7b026df96e6e4567f9b698ce88fbf。'}},
+                   'S2': {'配音指纹': '68b79d47f327',
+                          '依据': "2026-11-07：ewe's 配音按 CMU Y UW1 Z 读 /juːz/，两个识别器听成 used（/juːzd/，同音近形），读音正确"},
+                   'S8': {'配音指纹': '68b79d47f327',
+                          '依据': "2026-11-07：Roslin's 按已核实读音 ɹˈɑːslɪnz 读，识别器拼成 rosslyn's（同一地名的另一拼法，同音），非读错"}},
           '停顿位置': {'S15 clones, / four @3.588': '2026-11-07 逐 2.5 ms 实测（S15 w）：clones 的 /z/ 3.55–3.585（重心 '
                                                 '6–7.5 kHz），3.5875 起重心降到 5.2→4.1→3.5→2.2 kHz（four 的 /f/ '
                                                 '转元音），3.6025 起元音；擦音连读没有静音，程序原插在 3.595 落在 /f/ 里，改插在 /z/ 与 /f/ '
@@ -461,12 +433,7 @@ out = {'no': '62',
                                                 '后面这块……这块音频有问题”）：实测原插入点 3.587667 后面一段开头 15 ms 渐强把 four 的 /f/（w '
                                                 '3.5875–3.5975，-31～-33 dB、重心 4–5 kHz，只有约 10 ms）压低 20 多 dB（成片 '
                                                 '-65～-45 dB），/f/ 几乎听不见。改为交界插入（A42，两头 8 ms 渐变），插在 /z/ 尾部过零点 '
-                                                '3.580083（/z/ 重心仍 6 kHz），/f/ 整段留在停顿后面、不受渐强影响',
-                   'S15 clones, / four @3.584': '2026-11-14 原62实际新WAV '
-                                                'c5330026dbc9f81d0c7546a1716b9dade9960f44311862a5feb3e4aa0749d7c3（配音指纹128ca94f8329）及原母缓存客观核实；依据用户046接缝问题与root049最小修复批准。仅将S15第2标点A42插入界85922移至86018样本（w=3.584083秒，+96样本/4ms），不删原母样本，标准0.4秒停顿、原8ms余弦渐变、原增益和全轨时长均保留。实际2.5/5ms声谱核查：/z/高频残尾在停顿后能量约降13.47dB，four的/f/核心仅降0.57dB，其元音原始PCM逐样本不变；独立原logmel/DTW在新点前词末音素起3.456s、后词开头3.606s，位置/前后段比及G40合格。核实来源为实际波形、声谱、原工具复测和root批准，未声称用户或人工已试听新版本。 '
-                                                '实施登记依据root055（SHA256 '
-                                                '55026ce1b7cdb7e9c1a72da2f715e3d9e6e6f45050a8ddd575dc052b09dca872）；原工具注册前后报告SHA256 '
-                                                'eeac1ff524a74581523ecc32d0974ec193ebe8c6a402e7c4d14aecde0fe30394。'},
+                                                '3.580083（/z/ 重心仍 6 kHz），/f/ 整段留在停顿后面、不受渐强影响'},
           '中文重复': {'证明': '用户 2026-11-08 原话：S3 “一个基因上不同血统的证明”（proof of），S19 “见证着 改为 证明着”（testifies '
                          'to）；两处中文都是用户定的'}},
  '结尾解说': '简述',
@@ -495,7 +462,7 @@ out = {'no': '62',
            'S7': [[1.025625, 1.247542, '紧贴词尾']],
            'S15': [[6.405583, 6.4635, '紧贴两头']]},
  '词尾除阻': {'S4': {'句末': [5.79, 't']}, 'S17': {'句末': [7.565, 't']}},
- '停顿插入点': {'S1': {'1': [1.8455, '交界']}, 'S15': {'2': [3.584083, '交界'], '3': [4.85225, '交界']}},
+ '停顿插入点': {'S1': {'1': [1.8455, '交界']}, 'S15': {'2': [3.580083, '交界'], '3': [4.85225, '交界']}},
  '区间声音指纹': {'S1': '454d381d6f01',
             'S3': 'c06fa540d3e3',
             'S4': 'ee0ac63304a5',
@@ -517,11 +484,10 @@ out = {'no': '62',
                        'testifies to her Finn Dorset ancestry.” 0.78、前面停 0.7 秒。接点由 结尾句接点.py 自动找：0.9 '
                        '那遍最后一个标点后最长静音（40 ms）的正中 1.288 s，0.78 那遍（125 ms）的正中 1.702 s，所在帧和两侧各 5 ms 都低于 -55 dB（程序以 '
                        '08 校准：与人工核实的接点落在同一段静音里）'}},
- 'allow_clash': ['honoured', 'stripped of', 'derived', 'funding', 'ageing'],
+ 'allow_clash': ['honoured', 'stripped of'],
  '换行变更记录': [{'日期': '2026-11-08',
              'S3': '用户 2026-11-08 原话“这个翻译不对，这个翻译不对，改成这个：一个基因上不同血统的证明”（中文按用户给的语序重排，“证明”移到最后）；另 11-07 '
-                   '原话“上面的这个英文和它下面这个中文意思尽可能对齐……”（对齐需要改换行算已同意，用户同意记录 篇“61-65”）'}],
- '换行变更已获同意': {'S6': '用户2026-11-14本篇定稿原话：“Ok了，ok了，那这一篇可以定稿生成4k视频了。就克隆羊多利这一篇。”（执行本轮derived重点词所需的原T34单组拆分；已用真实旧snapshot实比L13，仅S6实际换行随该指定词色调整，全文EN与中文内容保持）'}}
+                   '原话“上面的这个英文和它下面这个中文意思尽可能对齐……”（对齐需要改换行算已同意，用户同意记录 篇“61-65”）'}]}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对
