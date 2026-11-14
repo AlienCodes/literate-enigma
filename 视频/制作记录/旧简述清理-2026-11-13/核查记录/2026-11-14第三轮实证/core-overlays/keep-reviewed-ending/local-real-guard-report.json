@@ -1,0 +1,62 @@
+{
+  "status": "passed_local_real_original_guard_positive_negative",
+  "source_sha256": "842e44e5aa19fddcfa239cb6530c5152341cd86e11db959543d02d8670ca13e8",
+  "test_program_sha256": "c7e52ccefde480e9acfe85e5a95af2807002dfb4dea39eaa1fa0d39911091b33",
+  "producer_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+  "candidate_tool_sha256": "1a5d43c4f5483014b69bbea7ad43dddb0333a9a80e29bb2b4c8029d8915ff798",
+  "method": "Execute unchanged original _env5/_ending_parts/spoken AST definitions; initialize exact original raw arrays through a pinned read-only model adapter. Full original model namespace is reserved for native certification.",
+  "original_approved_join": [
+    45598,
+    57353
+  ],
+  "original_guard_measurements": [
+    {
+      "speed": 0.9,
+      "join_sample": 45598,
+      "original_3x5ms_RMS_max_dB": -64.26612854003906
+    },
+    {
+      "speed": 0.78,
+      "join_sample": 57353,
+      "original_3x5ms_RMS_max_dB": -59.64947509765625
+    }
+  ],
+  "actual_bad_front_and_tail_rejected_by_original_guard": [
+    {
+      "channel": 0,
+      "speed": 0.9,
+      "sample": 38700,
+      "original_error": "【停止】结尾句的接点不在静音里（前段，样本 38700，所在帧和两侧各 5 ms 最响 0.0 dB）：Inky, somewhere beyond the pipe, remained wholly oblivious t",
+      "rejected": true
+    },
+    {
+      "channel": 1,
+      "speed": 0.78,
+      "sample": 48300,
+      "original_error": "【停止】结尾句的接点不在静音里（最后一段，样本 48300，所在帧和两侧各 5 ms 最响 0.0 dB）：Inky, somewhere beyond the pipe, remained wholly oblivious t",
+      "rejected": true
+    }
+  ],
+  "all_original_selftests_exit": 0,
+  "bash_syntax_exit": 0,
+  "PAY_source_and_all_ending_settings_unchanged": true,
+  "private_mother_scalar_bindings": [
+    {
+      "speed": 0.9,
+      "cache_key": "5f93aa786be55c461e644507810b77990fa6e4da.pkl",
+      "pinned_private_mother_pkl_sha256": "d92e6ab085713243e61f92fc237677e1429e4bd5dd7d7cb1e187ab29ce18547e",
+      "PCM_array_sha256": "8d5ad5fed20422eccbf3af1610ac9f3d562ace075d5c3524999d39d372f64376",
+      "samples": 112128
+    },
+    {
+      "speed": 0.78,
+      "cache_key": "37112da59e215ce16f6352f7f133828c39d090a8.pkl",
+      "pinned_private_mother_pkl_sha256": "857ed318a2254d1b8971499cdc5c8d1c118957ef9978cd0653bfe7165b59fc74",
+      "PCM_array_sha256": "1dbc26f22a408acd38a6fb0f97e8d05a0166dd6b96dee0665d095e918dc3d878",
+      "samples": 139264
+    }
+  ],
+  "private_PCM_exported": false,
+  "full_original_quickcheck_ran_here": false,
+  "production_audio_or_video_accepted": false
+}

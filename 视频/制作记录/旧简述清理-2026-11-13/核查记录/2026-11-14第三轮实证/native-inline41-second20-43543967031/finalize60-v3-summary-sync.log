@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "/workspace/work/video-revision-delivery/native-inline-engine-frozen-20261114-v3-voice-and-approved-summary-sync/ingest_inline_article.py", line 103, in <module>
+    else:D.require(a.boundary_review,'Actual five-frame review required');finalize(a)
+                                                                          ^^^^^^^^^^^
+  File "/workspace/work/video-revision-delivery/native-inline-engine-frozen-20261114-v3-voice-and-approved-summary-sync/ingest_inline_article.py", line 86, in finalize
+    import_one(root,n,out);D.write(out/n/'actual-boundary-frame-review.json',review)
+    ^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/video-revision-delivery/native-inline-engine-frozen-20261114-v3-voice-and-approved-summary-sync/import_actual_article.py", line 104, in import_one
+    native_audio=D.actual_aac(canonical);final_audio=D.actual_aac(final)
+                 ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/video-revision-delivery/native-inline-engine-frozen-20261114-v3-voice-and-approved-summary-sync/delivery.py", line 100, in actual_aac
+    with tempfile.TemporaryDirectory(prefix='actual-aac-') as td:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/tempfile.py", line 886, in __init__
+    self.name = mkdtemp(suffix, prefix, dir)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/tempfile.py", line 384, in mkdtemp
+    _os.mkdir(file, 0o700)
+OSError: [Errno 28] No space left on device: '/tmp/actual-aac-sc6ykdsu'

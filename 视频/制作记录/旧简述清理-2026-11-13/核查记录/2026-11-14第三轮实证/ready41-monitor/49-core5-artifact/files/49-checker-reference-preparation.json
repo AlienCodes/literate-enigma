@@ -1,0 +1,3238 @@
+{
+  "article": "49",
+  "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+  "reference_prepared": true,
+  "acceptance": false,
+  "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+  "source_sha256": "a7ea38ae5c2461fb3a2e2f18dc65577300f6873b139a75d7c89b9b7c70652ed8",
+  "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+  "checker_program_sha256": {
+    "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+    "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+    "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+    "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+    "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+    "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+  },
+  "reference_calls": [
+    {
+      "sentence": "标题",
+      "piece": null,
+      "reference_kind": "title-default-raw",
+      "method": "create",
+      "source_slice": "The Woman Who Won Two Nobels",
+      "exact_native_cache_key": "addb53a22fb9dbbda78622893c91320ff74d635a.pkl",
+      "cache_input_text_sha256": "5032c2f91d79980f76b70e7cb433038306fa9b0ed50c6313cdd54d9281d8bd0b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "标题",
+      "piece": null,
+      "reference_kind": "title-default-timed",
+      "method": "create_timed",
+      "source_slice": "The Woman Who Won Two Nobels",
+      "exact_native_cache_key": "e7f61232c3040ed43c7a630dd46982b9ca6d783f.pkl",
+      "cache_input_text_sha256": "5032c2f91d79980f76b70e7cb433038306fa9b0ed50c6313cdd54d9281d8bd0b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Marie Curie was born Maria Skłodowska on 7 November 1867 in Warsaw, then under Russian dominion, where women were denied university admission.",
+      "exact_native_cache_key": "2c489784b69ee4b3f07090f1d595efa94ef6bb25.pkl",
+      "cache_input_text_sha256": "30734e46bb35ffa9693d31560c0ebbd7becdf4378fe22f37b941410c6da5eb18",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Marie Curie was born Maria Skłodowska on 7 November 1867 in Warsaw, then under Russian dominion, where women were denied university admission.",
+      "exact_native_cache_key": "1065e5c50971fe55084a7c27479f0234a259f525.pkl",
+      "cache_input_text_sha256": "30734e46bb35ffa9693d31560c0ebbd7becdf4378fe22f37b941410c6da5eb18",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Marie Curie was born Maria Skłodowska",
+      "exact_native_cache_key": "bec04f19ea54908749c064a4b0321982e65f80e7.pkl",
+      "cache_input_text_sha256": "2163f6ff4e625900dd3a472f5813fcda8afcb57fa2c88888db2b3a33f3c87d03",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "on 7 November 1867 in Warsaw,",
+      "exact_native_cache_key": "8c122670daba9d0fac3476f0cd8d1c1e5a80ada2.pkl",
+      "cache_input_text_sha256": "569ad87e1ed61fc174abed82c2fdc83ac3155cf51735fdc0e9138e2b96ab5744",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "then under Russian dominion,",
+      "exact_native_cache_key": "15e5f6495364332ff6eb7cee1f1a64644bf08342.pkl",
+      "cache_input_text_sha256": "4f8b0b1e036d221d3c3ef6ac88d36aa78f1defb88c0693206f0e51e013bef282",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 4,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "where women were denied university admission.",
+      "exact_native_cache_key": "b1526eb361e56d94ec514e777ef792600d5487ed.pkl",
+      "cache_input_text_sha256": "560845225296a881b2ae693b6bd96bd2cba73f8e86fb3b5e57618dab9c7bb3bb",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Marie Curie was born Maria Skłodowska on 7 November 1867 in Warsaw,",
+      "exact_native_cache_key": "24ccfeb5b3735fe5d6a19a77f298e6ae5a6af0ec.pkl",
+      "cache_input_text_sha256": "9ab95b35ba557c69950d33858beb603ae898e92a994efe4a1e6b23b55ea13a00",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "then under Russian dominion,",
+      "exact_native_cache_key": "15e5f6495364332ff6eb7cee1f1a64644bf08342.pkl",
+      "cache_input_text_sha256": "4f8b0b1e036d221d3c3ef6ac88d36aa78f1defb88c0693206f0e51e013bef282",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "where women were denied university admission.",
+      "exact_native_cache_key": "b1526eb361e56d94ec514e777ef792600d5487ed.pkl",
+      "cache_input_text_sha256": "560845225296a881b2ae693b6bd96bd2cba73f8e86fb3b5e57618dab9c7bb3bb",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Eager to pursue formal study, she emigrated to Paris in 1891, enrolling at the Sorbonne.",
+      "exact_native_cache_key": "a9bfe53cfa97f4599ded94fabbd171a3d0e0f035.pkl",
+      "cache_input_text_sha256": "71d2c2aa7528e635d351dae6b068760b77bd20bf7bea86996efe93abb083c108",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Eager to pursue formal study, she emigrated to Paris in 1891, enrolling at the Sorbonne.",
+      "exact_native_cache_key": "bad4fa1635151f18ec4893927e934097acde9623.pkl",
+      "cache_input_text_sha256": "71d2c2aa7528e635d351dae6b068760b77bd20bf7bea86996efe93abb083c108",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Eager to pursue formal study,",
+      "exact_native_cache_key": "ab7d906fc74c8547dca96c133a75895faac3031f.pkl",
+      "cache_input_text_sha256": "20af5a04ff9007d2c37fb8777c6fdbcafdaade224571b8aff9365e307bed6d62",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "she emigrated to Paris in 1891, enrolling at the Sorbonne.",
+      "exact_native_cache_key": "e6fda7572cc4fa41466baf6f6e204b2f616a95e2.pkl",
+      "cache_input_text_sha256": "0716fce615b3e1e6f879c75777a406a77f0bcbda16950bbcacd9c4ea9472a394",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Eager to pursue formal study,",
+      "exact_native_cache_key": "ab7d906fc74c8547dca96c133a75895faac3031f.pkl",
+      "cache_input_text_sha256": "20af5a04ff9007d2c37fb8777c6fdbcafdaade224571b8aff9365e307bed6d62",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "she emigrated to Paris in 1891,",
+      "exact_native_cache_key": "2d4526291fafea603fe598c196d52baac3198678.pkl",
+      "cache_input_text_sha256": "d59c8158cbe72a35564a2a15047bf1100383ee135487ec460ac436af99462400",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "enrolling at the Sorbonne.",
+      "exact_native_cache_key": "a29021b095df96bfb3211acca34187fe69584a3a.pkl",
+      "cache_input_text_sha256": "25096fc1b12ea310ee73e066521f422afd5b6f68e7ca7e58a2891ad80a4262a9",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "On 26 July 1895 she wed the physicist Pierre Curie, forging a research partnership.",
+      "exact_native_cache_key": "b91ed81228df05f946732a59d5209a0e22d304af.pkl",
+      "cache_input_text_sha256": "42a8e96bf1fd0d105ba178639066c13bd017d91ecd202ff49c93f253754eb2b6",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "On 26 July 1895 she wed the physicist Pierre Curie, forging a research partnership.",
+      "exact_native_cache_key": "02aa293b0d79a33177dc94e3d051b9c25416bddf.pkl",
+      "cache_input_text_sha256": "42a8e96bf1fd0d105ba178639066c13bd017d91ecd202ff49c93f253754eb2b6",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "On 26 July 1895 she wed the physicist Pierre Curie,",
+      "exact_native_cache_key": "c54bd29b3098ac3507d8b4db862d5069f8de3761.pkl",
+      "cache_input_text_sha256": "44de345ec3b780eacda53bacd1b1525a0a68fcffd92ac127d771ed8a141f3e3b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "forging a research partnership.",
+      "exact_native_cache_key": "ae3c4190f764bbde6c137c25824e893887888e40.pkl",
+      "cache_input_text_sha256": "38448360bdb149f69a0e5b5ad77ff5b7010cd7ec42cf7e127dbe4f8ab2a1dec4",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "On 26 July 1895 she wed the physicist Pierre Curie,",
+      "exact_native_cache_key": "c54bd29b3098ac3507d8b4db862d5069f8de3761.pkl",
+      "cache_input_text_sha256": "44de345ec3b780eacda53bacd1b1525a0a68fcffd92ac127d771ed8a141f3e3b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "forging a research partnership.",
+      "exact_native_cache_key": "ae3c4190f764bbde6c137c25824e893887888e40.pkl",
+      "cache_input_text_sha256": "38448360bdb149f69a0e5b5ad77ff5b7010cd7ec42cf7e127dbe4f8ab2a1dec4",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Henri Becquerel found that uranium emitted rays; she named this property of certain elements radioactivity.",
+      "exact_native_cache_key": "1b5c1401c73a8b33ab9f00cf715ec3491a313d52.pkl",
+      "cache_input_text_sha256": "a0b34dab20acec76029220e3b61b133e26375c922764deee8374c3ac3cc9cc0f",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Henri Becquerel found that uranium emitted rays; she named this property of certain elements radioactivity.",
+      "exact_native_cache_key": "dcd4e2fbc4574f1aca80785324e5b4781df6ecd2.pkl",
+      "cache_input_text_sha256": "a0b34dab20acec76029220e3b61b133e26375c922764deee8374c3ac3cc9cc0f",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Henri Becquerel found that uranium emitted rays;",
+      "exact_native_cache_key": "12ab450f4349d5cc970b23ce138a456a99474299.pkl",
+      "cache_input_text_sha256": "baa414c12e785b025084f8f3e623b1ac953e7d1c4d5b78d6d27f22ee24207f8b",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "she named this property of certain elements radioactivity.",
+      "exact_native_cache_key": "a7dcec12944b3a980d072557bdaeea4ef1c89ca6.pkl",
+      "cache_input_text_sha256": "e04985f09fc71b0bb66b17b9887b5ddd80e313686f8d1a463fd059fd5adc7d97",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Henri Becquerel found that uranium emitted rays;",
+      "exact_native_cache_key": "12ab450f4349d5cc970b23ce138a456a99474299.pkl",
+      "cache_input_text_sha256": "baa414c12e785b025084f8f3e623b1ac953e7d1c4d5b78d6d27f22ee24207f8b",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "she named this property of certain elements radioactivity.",
+      "exact_native_cache_key": "a7dcec12944b3a980d072557bdaeea4ef1c89ca6.pkl",
+      "cache_input_text_sha256": "e04985f09fc71b0bb66b17b9887b5ddd80e313686f8d1a463fd059fd5adc7d97",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "In July 1898 the Curies announced polonium, a tribute to her motherland, and on 26 December, radium.",
+      "exact_native_cache_key": "0e984a8d4c73fd3d129aca1ad63604bc9f2c200c.pkl",
+      "cache_input_text_sha256": "95d93fd1e530afd6dc89dc362b6ead3a28f8fed038d5db2fe4ccce5d409d5c7a",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "In July 1898 the Curies announced polonium, a tribute to her motherland, and on 26 December, radium.",
+      "exact_native_cache_key": "563ef0e08819e5419d9c3146952fca834b5f3e6b.pkl",
+      "cache_input_text_sha256": "95d93fd1e530afd6dc89dc362b6ead3a28f8fed038d5db2fe4ccce5d409d5c7a",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "In July 1898 the Curies announced polonium,",
+      "exact_native_cache_key": "18d81a1db7cf365008d882c532887ab5841ddbf1.pkl",
+      "cache_input_text_sha256": "39aa04dc9dd40026b6ddc0ae43da170aa77a89267e77b0967a23d023f0800ed5",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "a tribute to her motherland,",
+      "exact_native_cache_key": "d18f031a232288c9083c88f6c29d36bffd24d2c6.pkl",
+      "cache_input_text_sha256": "54fcd9fdafd5e47ccac44442a6ec878e763ae742ec73b3650e64d3112a173a1b",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "and on 26 December, radium.",
+      "exact_native_cache_key": "40244514a08d3806774d983178fcf5912c58a855.pkl",
+      "cache_input_text_sha256": "db1e1523069e7060d9e78aebe909c9c58c53b65f1e3ed592a0d2a40167475f49",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "In July 1898 the Curies announced polonium,",
+      "exact_native_cache_key": "18d81a1db7cf365008d882c532887ab5841ddbf1.pkl",
+      "cache_input_text_sha256": "39aa04dc9dd40026b6ddc0ae43da170aa77a89267e77b0967a23d023f0800ed5",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "a tribute to her motherland,",
+      "exact_native_cache_key": "d18f031a232288c9083c88f6c29d36bffd24d2c6.pkl",
+      "cache_input_text_sha256": "54fcd9fdafd5e47ccac44442a6ec878e763ae742ec73b3650e64d3112a173a1b",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "and on 26 December,",
+      "exact_native_cache_key": "7a5edda8fdb18eb98b8a16287d26c23261e11c68.pkl",
+      "cache_input_text_sha256": "cd83349b60cdd833b16284796e651f21a8bb73bdd30aee2eb1c5a3b8c8605939",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 4,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "radium.",
+      "exact_native_cache_key": "9341a2dcf3389f6002b8f8d1bb9ef89bdf4a8ed1.pkl",
+      "cache_input_text_sha256": "40989fd92510e3adaad5701945bad905e84e03510c1e1c6a4f747220a4ec8d59",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "In a leaky shed they painstakingly processed tonnes of pitchblende, a uranium ore; by 1902 she had recovered about a tenth of a gram of radium chloride.",
+      "exact_native_cache_key": "55c0d88c3a568e608897d29544312b136bf63181.pkl",
+      "cache_input_text_sha256": "70f7099c6387cd531cd3c5c09370678c06865951a244396a24c263b7a6910f98",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "In a leaky shed they painstakingly processed tonnes of pitchblende, a uranium ore; by 1902 she had recovered about a tenth of a gram of radium chloride.",
+      "exact_native_cache_key": "9c768d4696e78462a86b283bb8664842466319ee.pkl",
+      "cache_input_text_sha256": "70f7099c6387cd531cd3c5c09370678c06865951a244396a24c263b7a6910f98",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "In a leaky shed they painstakingly processed tonnes of pitchblende,",
+      "exact_native_cache_key": "d59c9c38263ac9fb8eae813592448ee17f172f35.pkl",
+      "cache_input_text_sha256": "5313b15eee3224ed8d52dba7b811f75ed3b78007806066a99ae3c80810b50999",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "a uranium ore;",
+      "exact_native_cache_key": "1f403b4b1f3435cd45e4a31837ab044a690b9fdd.pkl",
+      "cache_input_text_sha256": "7601039f5db418ebccfd2dc4d2cadc92d6b263068e9de235b799660e409edf0d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "by 1902 she had recovered about a tenth of a gram of radium chloride.",
+      "exact_native_cache_key": "8bb5cf06bab06f9f79aef5253d21dd4690ca4623.pkl",
+      "cache_input_text_sha256": "1181265fdcf14d0f67772abb31a99c89f77f48d16ba8ec50982436cf3018b27a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "In a leaky shed they painstakingly processed tonnes of pitchblende,",
+      "exact_native_cache_key": "d59c9c38263ac9fb8eae813592448ee17f172f35.pkl",
+      "cache_input_text_sha256": "5313b15eee3224ed8d52dba7b811f75ed3b78007806066a99ae3c80810b50999",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "a uranium ore;",
+      "exact_native_cache_key": "1f403b4b1f3435cd45e4a31837ab044a690b9fdd.pkl",
+      "cache_input_text_sha256": "7601039f5db418ebccfd2dc4d2cadc92d6b263068e9de235b799660e409edf0d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "by 1902 she had recovered about a tenth of a gram of radium chloride.",
+      "exact_native_cache_key": "8bb5cf06bab06f9f79aef5253d21dd4690ca4623.pkl",
+      "cache_input_text_sha256": "1181265fdcf14d0f67772abb31a99c89f77f48d16ba8ec50982436cf3018b27a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "On 10 December 1903 she jointly won the physics Nobel with Pierre and Becquerel, the first woman so recognised.",
+      "exact_native_cache_key": "aeea9d71e31f90709bcacd058adf4e4654113609.pkl",
+      "cache_input_text_sha256": "2e2c90b6d7914b2951163c3d46f24a8d389ea6e6476a890480a2e7f33814e42c",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "On 10 December 1903 she jointly won the physics Nobel with Pierre and Becquerel, the first woman so recognised.",
+      "exact_native_cache_key": "b25c8219c6f6d8963c9f660d42eafa741549e345.pkl",
+      "cache_input_text_sha256": "2e2c90b6d7914b2951163c3d46f24a8d389ea6e6476a890480a2e7f33814e42c",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "On 10 December 1903 she jointly won the physics Nobel with Pierre and Becquerel,",
+      "exact_native_cache_key": "8c92ba56735cb6d5b3af0a5b2a6a201e33de8bb6.pkl",
+      "cache_input_text_sha256": "50dc98cd194446eae60002a4054401a96d191d8db221c96a2c202c84c09a5224",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "the first woman so recognised.",
+      "exact_native_cache_key": "62fa09ed49c341f3e3cf9febb7880539d8d1c0af.pkl",
+      "cache_input_text_sha256": "b3c6be2cdf4265fc3dc9780ed47dfd38e4690d3c0d603e82ce6ddec57fafee66",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "On 10 December 1903 she jointly won the physics Nobel with Pierre and Becquerel,",
+      "exact_native_cache_key": "8c92ba56735cb6d5b3af0a5b2a6a201e33de8bb6.pkl",
+      "cache_input_text_sha256": "50dc98cd194446eae60002a4054401a96d191d8db221c96a2c202c84c09a5224",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "the first woman so recognised.",
+      "exact_native_cache_key": "62fa09ed49c341f3e3cf9febb7880539d8d1c0af.pkl",
+      "cache_input_text_sha256": "b3c6be2cdf4265fc3dc9780ed47dfd38e4690d3c0d603e82ce6ddec57fafee66",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "The nomination had initially left her out; at Pierre's insistence, the omission was rectified.",
+      "exact_native_cache_key": "97f906066a9ce4a8dafe7c4631823eced2743693.pkl",
+      "cache_input_text_sha256": "2a95d7de66495bbd4391ec94d9f747c50a0db94755d8dd38f97f8b337a17516d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "The nomination had initially left her out; at Pierre's insistence, the omission was rectified.",
+      "exact_native_cache_key": "392826e6856e6b80704ef2236d60f402bce400a3.pkl",
+      "cache_input_text_sha256": "2a95d7de66495bbd4391ec94d9f747c50a0db94755d8dd38f97f8b337a17516d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "The nomination had initially left her out;",
+      "exact_native_cache_key": "949843eeb94d0ae80dd58a3262da4f9263e72146.pkl",
+      "cache_input_text_sha256": "756c154a82e88daaeb1676b15627045be264fa937fc21462216d08095d0c99c6",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "at Pierre's insistence, the omission was rectified.",
+      "exact_native_cache_key": "9ab68b375209a113301246ddd831209a50bc9aeb.pkl",
+      "cache_input_text_sha256": "544b9c880aabd33af7f43508337e7d2739d42dadda045ff821f34f3b76dc6f4f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "The nomination had initially left her out;",
+      "exact_native_cache_key": "949843eeb94d0ae80dd58a3262da4f9263e72146.pkl",
+      "cache_input_text_sha256": "756c154a82e88daaeb1676b15627045be264fa937fc21462216d08095d0c99c6",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "at Pierre's insistence,",
+      "exact_native_cache_key": "4aadfc9fbfc61dc571487096a37ae672155d9cec.pkl",
+      "cache_input_text_sha256": "66f6b50cade4c3a9529b156778df33020c689ff34845fc340c07ec8a54fe0503",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "the omission was rectified.",
+      "exact_native_cache_key": "c00d7e16bc73061238da8b5310bb78e572dea485.pkl",
+      "cache_input_text_sha256": "2886279b9f0f44a5cd9efb84af6dcfdfe8d56c12f6b52a5dfabcbf12fb562947",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "On 19 April 1906 a horse-drawn wagon fatally struck Pierre.",
+      "exact_native_cache_key": "c845b8b95c912c4fdd3f788ea0b06bf306acd812.pkl",
+      "cache_input_text_sha256": "dba28ba40b94892510a3b514df9c1813d87fbe2b01cd1d654b676fbb6ea07b6a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "On 19 April 1906 a horse-drawn wagon fatally struck Pierre.",
+      "exact_native_cache_key": "594a8a43f4e73606ec2fc6fbbec5231692c0f1e9.pkl",
+      "cache_input_text_sha256": "dba28ba40b94892510a3b514df9c1813d87fbe2b01cd1d654b676fbb6ea07b6a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "On 5 November she gave her inaugural lecture as his successor, the Sorbonne's first woman professor.",
+      "exact_native_cache_key": "ff6c450dd2c60658e1d0a11022d59f3fbd4c9dcc.pkl",
+      "cache_input_text_sha256": "d735685a448c368bb7043eb119f05f30a1972f430ddb3a4abb946844cb44ec9a",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "On 5 November she gave her inaugural lecture as his successor, the Sorbonne's first woman professor.",
+      "exact_native_cache_key": "48fa39f589fc3d3789bc9f947ec290d164dec4f6.pkl",
+      "cache_input_text_sha256": "d735685a448c368bb7043eb119f05f30a1972f430ddb3a4abb946844cb44ec9a",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "On 5 November she gave her inaugural lecture as his successor,",
+      "exact_native_cache_key": "cc1b856be9805d46a2bb9048a9056a6255a0f1be.pkl",
+      "cache_input_text_sha256": "2dc43f5fb8de8d6039213cdab2e83dc8a922cc72d51daf8b6d82d142b590cd3b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "the Sorbonne's first woman professor.",
+      "exact_native_cache_key": "4e15887f044ba75807a899f44e79c6cf5acdea3f.pkl",
+      "cache_input_text_sha256": "2ee2503579c85e09bec2db7c7aade8cc74c04c9d4441d3adc7abdea35dff5316",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "On 5 November she gave her inaugural lecture as his successor,",
+      "exact_native_cache_key": "cc1b856be9805d46a2bb9048a9056a6255a0f1be.pkl",
+      "cache_input_text_sha256": "2dc43f5fb8de8d6039213cdab2e83dc8a922cc72d51daf8b6d82d142b590cd3b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "the Sorbonne's first woman professor.",
+      "exact_native_cache_key": "4e15887f044ba75807a899f44e79c6cf5acdea3f.pkl",
+      "cache_input_text_sha256": "2ee2503579c85e09bec2db7c7aade8cc74c04c9d4441d3adc7abdea35dff5316",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "In November 1911 a press scandal about her private life erupted; she was urged to stay away.",
+      "exact_native_cache_key": "41debf49e0cbcc1534772ced05c40139689a423d.pkl",
+      "cache_input_text_sha256": "c22ed19018b5a7f3164b22cec3b51206cc7fc4bb7052524ab2c9791045c16072",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "In November 1911 a press scandal about her private life erupted; she was urged to stay away.",
+      "exact_native_cache_key": "1e7c1ef6d7a4acef52eaf6cd7799a91ff3d0135e.pkl",
+      "cache_input_text_sha256": "c22ed19018b5a7f3164b22cec3b51206cc7fc4bb7052524ab2c9791045c16072",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "In November 1911 a press scandal about her private life erupted;",
+      "exact_native_cache_key": "904f8453a9473dca36d86502789b047b39c36478.pkl",
+      "cache_input_text_sha256": "700051df802718cdb17e00deb251466d52d6424048dd4176323b20d0ea0523ba",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "she was urged to stay away.",
+      "exact_native_cache_key": "eb673a3c735395a85e96e88d9bb3843e9ca4d29b.pkl",
+      "cache_input_text_sha256": "1902f03083e28b7c7f3e9bc08c28001db07e56effd7d669518bbd617519aa8ec",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "In November 1911 a press scandal about her private life erupted;",
+      "exact_native_cache_key": "904f8453a9473dca36d86502789b047b39c36478.pkl",
+      "cache_input_text_sha256": "700051df802718cdb17e00deb251466d52d6424048dd4176323b20d0ea0523ba",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "she was urged to stay away.",
+      "exact_native_cache_key": "eb673a3c735395a85e96e88d9bb3843e9ca4d29b.pkl",
+      "cache_input_text_sha256": "1902f03083e28b7c7f3e9bc08c28001db07e56effd7d669518bbd617519aa8ec",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Undeterred, she collected the chemistry Nobel, won outright, on 10 December.",
+      "exact_native_cache_key": "16e724d1b71c92a3ef81c06e9e9d9fc5012ce9c0.pkl",
+      "cache_input_text_sha256": "4f5fde548dfaa568cf1892148ffea48e4ecfef82c9aff20874376c2febeb0622",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Undeterred, she collected the chemistry Nobel, won outright, on 10 December.",
+      "exact_native_cache_key": "e9c88cc7170fbf32171205c29d498cca8f7cecc2.pkl",
+      "cache_input_text_sha256": "4f5fde548dfaa568cf1892148ffea48e4ecfef82c9aff20874376c2febeb0622",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Undeterred,",
+      "exact_native_cache_key": "8b6e778d61927c98e2721ab7d917a7d034f371ad.pkl",
+      "cache_input_text_sha256": "665374ef4a268293540759d7aa4a110d2612e661f5820f862558d7a87d7dea32",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "she collected the chemistry Nobel, won outright, on 10 December.",
+      "exact_native_cache_key": "146b8301d96aa8e877899c16964d8ae3552f34c0.pkl",
+      "cache_input_text_sha256": "7fba626b027cf80f7468d8211a396c37d56d002119b45f43ba78cdd9a4918355",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Undeterred,",
+      "exact_native_cache_key": "8b6e778d61927c98e2721ab7d917a7d034f371ad.pkl",
+      "cache_input_text_sha256": "665374ef4a268293540759d7aa4a110d2612e661f5820f862558d7a87d7dea32",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "she collected the chemistry Nobel,",
+      "exact_native_cache_key": "1537eda354aab103152ef0954d7309f1c88c4b3b.pkl",
+      "cache_input_text_sha256": "b63e735da6449a2ef68d052b9b9218b11f08f58ac439deaa2fe0ea41257fa9ac",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "won outright,",
+      "exact_native_cache_key": "0dda06149da6f03570822e31fd1f5bf9a70f4cb6.pkl",
+      "cache_input_text_sha256": "d781f9fb4f0b16131ddc52bf6f922db08558b18911542ae8731058bd7d703112",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 4,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "on 10 December.",
+      "exact_native_cache_key": "9ad512eaf160f24c0082b9526726e57c4f52ac74.pkl",
+      "cache_input_text_sha256": "e4bd22ede2e0146d9845707903d10373179e2958ed682bf743775e0e89211872",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Her distinction in two sciences remains unmatched.",
+      "exact_native_cache_key": "502ade4e3b0d9e77b92061c65beb0506e7c336df.pkl",
+      "cache_input_text_sha256": "e259a7e2a5564ffa4634f5facdba4c2bb172caa65abdcb8b2aa7d0ab86ece662",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Her distinction in two sciences remains unmatched.",
+      "exact_native_cache_key": "69f8ad78f3e9c83faccff769e086a39e4a3adf2e.pkl",
+      "cache_input_text_sha256": "e259a7e2a5564ffa4634f5facdba4c2bb172caa65abdcb8b2aa7d0ab86ece662",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "In the First World War she mobilised X-ray vans and stationary posts that examined over a million casualties.",
+      "exact_native_cache_key": "f9c96073844ec4ac7856f2ac7fba8bc67f17fee6.pkl",
+      "cache_input_text_sha256": "bb5323b82d94d03ab42e5859acb3e722e8b19c5555c54e304f8412ed5ca39e26",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "In the First World War she mobilised X-ray vans and stationary posts that examined over a million casualties.",
+      "exact_native_cache_key": "ec388e053fa3a10d0f56c268ffc9c658b43527b6.pkl",
+      "cache_input_text_sha256": "bb5323b82d94d03ab42e5859acb3e722e8b19c5555c54e304f8412ed5ca39e26",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "In the First World War she mobilised X-ray vans and stationary posts",
+      "exact_native_cache_key": "6244d53c91f4f9b6dc56848c041705453f356eaf.pkl",
+      "cache_input_text_sha256": "5eb698fb6a4b9110d13384e6b646b6fa1c2e9674f7a0d495768ca012fa2ce6d2",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "that examined over a million casualties.",
+      "exact_native_cache_key": "26010894fb80c78663deb38e38fa1d093aa554fa.pkl",
+      "cache_input_text_sha256": "9dae2738ebd8d3bbc59171c0b4f465d91e97d6f0e0c80fd72e6bbdc5be0dfdc6",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "She died on 4 July 1934 of a blood disorder, probably caused by prolonged exposure to radiation.",
+      "exact_native_cache_key": "be8e9c5b5bc960b00358da60f5e97210584f770d.pkl",
+      "cache_input_text_sha256": "1a256b3c013cb8f7d55a967d81e957533fd2ffdd5080b576ee468f9e40e86fa6",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "She died on 4 July 1934 of a blood disorder, probably caused by prolonged exposure to radiation.",
+      "exact_native_cache_key": "2ea5ac41d195475414836106d7cc059ac7543dd8.pkl",
+      "cache_input_text_sha256": "1a256b3c013cb8f7d55a967d81e957533fd2ffdd5080b576ee468f9e40e86fa6",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "She died on 4 July 1934 of a blood disorder,",
+      "exact_native_cache_key": "db3457184f8edf055ec74a6ae61b5186dd97e087.pkl",
+      "cache_input_text_sha256": "83b52f885dbe3c25cecd07a4ceb2ac1bd057d771173835f3dbdecb4d398ab909",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "probably caused by prolonged exposure to radiation.",
+      "exact_native_cache_key": "dec275715aaada188189a56c5d171b0305fe8643.pkl",
+      "cache_input_text_sha256": "acfb6d3d843dd601db58ec85d2e1cf4b144e657337cb8ce6e0fbe18421a35e89",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "She died on 4 July 1934 of a blood disorder,",
+      "exact_native_cache_key": "db3457184f8edf055ec74a6ae61b5186dd97e087.pkl",
+      "cache_input_text_sha256": "83b52f885dbe3c25cecd07a4ceb2ac1bd057d771173835f3dbdecb4d398ab909",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "probably caused by prolonged exposure to radiation.",
+      "exact_native_cache_key": "dec275715aaada188189a56c5d171b0305fe8643.pkl",
+      "cache_input_text_sha256": "acfb6d3d843dd601db58ec85d2e1cf4b144e657337cb8ce6e0fbe18421a35e89",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Her notebooks, still radioactive, are preserved in lead-lined boxes at the National Library of France; readers sign a liability waiver and don protective garments.",
+      "exact_native_cache_key": "0d4e925f50f47cb2c7de6221cc1d6fbd92712231.pkl",
+      "cache_input_text_sha256": "15f87d369d1999bcd00ca99c874b466c34a66ef08cd1ba8e9acaee45815c2469",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Her notebooks, still radioactive, are preserved in lead-lined boxes at the National Library of France; readers sign a liability waiver and don protective garments.",
+      "exact_native_cache_key": "34096d6fe00fccbb1bd978314a7bca3d06c0bf54.pkl",
+      "cache_input_text_sha256": "15f87d369d1999bcd00ca99c874b466c34a66ef08cd1ba8e9acaee45815c2469",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Her notebooks, still radioactive,",
+      "exact_native_cache_key": "bd67398f7f4833bcea2b669c1bb66a2356283746.pkl",
+      "cache_input_text_sha256": "3a7e5ea1095c10ee8e2cd796c50bfdc0380af77f00fe488a9aaadcbfec9eb9f2",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "are preserved in lead-lined boxes at the National Library of France;",
+      "exact_native_cache_key": "2c4292f1bcdf3071d7166439ac09d628b71b20d8.pkl",
+      "cache_input_text_sha256": "d5ef98f07f8afa58b7d7e79069cd26da93d72d4b8fad35d7f9b3d6655c3e667c",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "readers sign a liability waiver and don protective garments.",
+      "exact_native_cache_key": "fb5cd467ed475863c8719ee46372d4026107c764.pkl",
+      "cache_input_text_sha256": "1b5dcb15b0bb347fcb91c908701d0337f7ca006cef7dc4a226771bc0dacb5777",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Her notebooks,",
+      "exact_native_cache_key": "44187a64357c09ef011442731ae9aa8cb87f9da3.pkl",
+      "cache_input_text_sha256": "474256535e17e5114d7e208e275a7d78fefe06b3cf86c8f9a9b09eae384b6f98",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "still radioactive,",
+      "exact_native_cache_key": "86f8ab8684338172b32b336127212863eb7d5d80.pkl",
+      "cache_input_text_sha256": "7dae88b726d47cdc824096c6e5f63d01137db34a522c9d091622ff2be6224c73",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "are preserved in lead-lined boxes at the National Library of France;",
+      "exact_native_cache_key": "2c4292f1bcdf3071d7166439ac09d628b71b20d8.pkl",
+      "cache_input_text_sha256": "d5ef98f07f8afa58b7d7e79069cd26da93d72d4b8fad35d7f9b3d6655c3e667c",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": 4,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "readers sign a liability waiver and don protective garments.",
+      "exact_native_cache_key": "fb5cd467ed475863c8719ee46372d4026107c764.pkl",
+      "cache_input_text_sha256": "1b5dcb15b0bb347fcb91c908701d0337f7ca006cef7dc4a226771bc0dacb5777",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "The pages retain her handwriting and her radium.",
+      "exact_native_cache_key": "5b43c3a74750fee6ed3798cb586f4af4f9c77a9d.pkl",
+      "cache_input_text_sha256": "3d4ad3e5752df700c3b0a7a86702a9f3401369b1e81787bd926e932f0183e49f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "The pages retain her handwriting and her radium.",
+      "exact_native_cache_key": "b2e69d8626c554443ba4eb502b367a4ec53fb7df.pkl",
+      "cache_input_text_sha256": "3d4ad3e5752df700c3b0a7a86702a9f3401369b1e81787bd926e932f0183e49f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    }
+  ],
+  "unique_reference_key_count": 81,
+  "raw_mother_cache_scalar_manifest": [
+    {
+      "exact_native_cache_key": "addb53a22fb9dbbda78622893c91320ff74d635a.pkl",
+      "pkl_sha256": "b81574e7dcbae549e5486fb83a08c42e7e289c2aaa6c9fb8d6eb0c9cdf673e77",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "标题",
+          "piece": null,
+          "reference_kind": "title-default-raw",
+          "method": "create",
+          "source_slice": "The Woman Who Won Two Nobels",
+          "exact_native_cache_key": "addb53a22fb9dbbda78622893c91320ff74d635a.pkl",
+          "cache_input_text_sha256": "5032c2f91d79980f76b70e7cb433038306fa9b0ed50c6313cdd54d9281d8bd0b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "b81574e7dcbae549",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        40448
+      ],
+      "unprocessed_array_sha256": "7f549e35c7bd3d7e545c2bac936716eb81357d820f1f1656aacbeef70df31684"
+    },
+    {
+      "exact_native_cache_key": "2c489784b69ee4b3f07090f1d595efa94ef6bb25.pkl",
+      "pkl_sha256": "1f0a69584cd212fd0c0952739685370814d218a34a40f23df0a8b268dfa78a55",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Marie Curie was born Maria Skłodowska on 7 November 1867 in Warsaw, then under Russian dominion, where women were denied university admission.",
+          "exact_native_cache_key": "2c489784b69ee4b3f07090f1d595efa94ef6bb25.pkl",
+          "cache_input_text_sha256": "30734e46bb35ffa9693d31560c0ebbd7becdf4378fe22f37b941410c6da5eb18",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "1f0a69584cd212fd",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        287232
+      ],
+      "unprocessed_array_sha256": "9c8b127feb31b35577123d889a1f6464bd26484e45b2ce0c41abdd360bd6ce7f"
+    },
+    {
+      "exact_native_cache_key": "bec04f19ea54908749c064a4b0321982e65f80e7.pkl",
+      "pkl_sha256": "8ca1506a1a54598bcb08b60f42d3134e5ee706a10944d41fbbacb356766470b6",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Marie Curie was born Maria Skłodowska",
+          "exact_native_cache_key": "bec04f19ea54908749c064a4b0321982e65f80e7.pkl",
+          "cache_input_text_sha256": "2163f6ff4e625900dd3a472f5813fcda8afcb57fa2c88888db2b3a33f3c87d03",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "8ca1506a1a54598b",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        59392
+      ],
+      "unprocessed_array_sha256": "7d786bfba7616a164182010dbb13520ab83b3fb166041801dec8cc8618ddd6c2"
+    },
+    {
+      "exact_native_cache_key": "8c122670daba9d0fac3476f0cd8d1c1e5a80ada2.pkl",
+      "pkl_sha256": "7b262e44fa6f2639f793b828ad2985a5e356588d2b1328befb265df0b19ff1fa",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "on 7 November 1867 in Warsaw,",
+          "exact_native_cache_key": "8c122670daba9d0fac3476f0cd8d1c1e5a80ada2.pkl",
+          "cache_input_text_sha256": "569ad87e1ed61fc174abed82c2fdc83ac3155cf51735fdc0e9138e2b96ab5744",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "7b262e44fa6f2639",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        92160
+      ],
+      "unprocessed_array_sha256": "26b5d69a6cd6bd26b1a47546fb226836f2300480c68cd529cde3deee6c84600e"
+    },
+    {
+      "exact_native_cache_key": "15e5f6495364332ff6eb7cee1f1a64644bf08342.pkl",
+      "pkl_sha256": "bca2ed6b28c4cc70ea75599e5130b7d17d7181392355c03e45c3ffb74dd151b4",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "then under Russian dominion,",
+          "exact_native_cache_key": "15e5f6495364332ff6eb7cee1f1a64644bf08342.pkl",
+          "cache_input_text_sha256": "4f8b0b1e036d221d3c3ef6ac88d36aa78f1defb88c0693206f0e51e013bef282",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "then under Russian dominion,",
+          "exact_native_cache_key": "15e5f6495364332ff6eb7cee1f1a64644bf08342.pkl",
+          "cache_input_text_sha256": "4f8b0b1e036d221d3c3ef6ac88d36aa78f1defb88c0693206f0e51e013bef282",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "bca2ed6b28c4cc70",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        39424
+      ],
+      "unprocessed_array_sha256": "3b3cbed19002dbcd037e089fd515af27adf3f494dbd65d31586efeae1e818370"
+    },
+    {
+      "exact_native_cache_key": "b1526eb361e56d94ec514e777ef792600d5487ed.pkl",
+      "pkl_sha256": "0091985d6f73c951dfdb0ffccd3e6a27121e3ffcde61505b9bebb0ac21ade3f5",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 4,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "where women were denied university admission.",
+          "exact_native_cache_key": "b1526eb361e56d94ec514e777ef792600d5487ed.pkl",
+          "cache_input_text_sha256": "560845225296a881b2ae693b6bd96bd2cba73f8e86fb3b5e57618dab9c7bb3bb",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "where women were denied university admission.",
+          "exact_native_cache_key": "b1526eb361e56d94ec514e777ef792600d5487ed.pkl",
+          "cache_input_text_sha256": "560845225296a881b2ae693b6bd96bd2cba73f8e86fb3b5e57618dab9c7bb3bb",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "0091985d6f73c951",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        68096
+      ],
+      "unprocessed_array_sha256": "2d0b3b5af449735f4129243a0174e2eea4428242a5f58ee9502bd6662bde2110"
+    },
+    {
+      "exact_native_cache_key": "24ccfeb5b3735fe5d6a19a77f298e6ae5a6af0ec.pkl",
+      "pkl_sha256": "820496dc444a27ed89c8bf693a27baf5a112ec18553b5ff0a31b6134d2f0dc55",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Marie Curie was born Maria Skłodowska on 7 November 1867 in Warsaw,",
+          "exact_native_cache_key": "24ccfeb5b3735fe5d6a19a77f298e6ae5a6af0ec.pkl",
+          "cache_input_text_sha256": "9ab95b35ba557c69950d33858beb603ae898e92a994efe4a1e6b23b55ea13a00",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "820496dc444a27ed",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        169472
+      ],
+      "unprocessed_array_sha256": "c85605f5bec502e5beb8946d2e5b39de40d6e52f33332c063752e64b1031742d"
+    },
+    {
+      "exact_native_cache_key": "a9bfe53cfa97f4599ded94fabbd171a3d0e0f035.pkl",
+      "pkl_sha256": "066930c532915dd795b075aa1e81bd6420f65b605cd05eb6fcac1bb31558e4e8",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Eager to pursue formal study, she emigrated to Paris in 1891, enrolling at the Sorbonne.",
+          "exact_native_cache_key": "a9bfe53cfa97f4599ded94fabbd171a3d0e0f035.pkl",
+          "cache_input_text_sha256": "71d2c2aa7528e635d351dae6b068760b77bd20bf7bea86996efe93abb083c108",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "066930c532915dd7",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        168960
+      ],
+      "unprocessed_array_sha256": "bf416cf38579824331920b2314e3eaa0a662cfe9413189cb927ff6846f3f541e"
+    },
+    {
+      "exact_native_cache_key": "ab7d906fc74c8547dca96c133a75895faac3031f.pkl",
+      "pkl_sha256": "8b4df7d4392a5d44d2bbba2b100d4d1024d36cc6c47df0525f81aaa95da391d5",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Eager to pursue formal study,",
+          "exact_native_cache_key": "ab7d906fc74c8547dca96c133a75895faac3031f.pkl",
+          "cache_input_text_sha256": "20af5a04ff9007d2c37fb8777c6fdbcafdaade224571b8aff9365e307bed6d62",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Eager to pursue formal study,",
+          "exact_native_cache_key": "ab7d906fc74c8547dca96c133a75895faac3031f.pkl",
+          "cache_input_text_sha256": "20af5a04ff9007d2c37fb8777c6fdbcafdaade224571b8aff9365e307bed6d62",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "8b4df7d4392a5d44",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        44032
+      ],
+      "unprocessed_array_sha256": "94650946376fb278ad9beda712e60109cf6f49e8d4e53c756eb8a369a46d4908"
+    },
+    {
+      "exact_native_cache_key": "e6fda7572cc4fa41466baf6f6e204b2f616a95e2.pkl",
+      "pkl_sha256": "7d4dead245e026852e5da5c9e23355ebdd56ed8d18fd305d80999532310364d4",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "she emigrated to Paris in 1891, enrolling at the Sorbonne.",
+          "exact_native_cache_key": "e6fda7572cc4fa41466baf6f6e204b2f616a95e2.pkl",
+          "cache_input_text_sha256": "0716fce615b3e1e6f879c75777a406a77f0bcbda16950bbcacd9c4ea9472a394",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "7d4dead245e02685",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        113152
+      ],
+      "unprocessed_array_sha256": "c61310b3eabba2288606f0c87515b7f6245f4f12efb1ce3e83cc6deea9efa079"
+    },
+    {
+      "exact_native_cache_key": "2d4526291fafea603fe598c196d52baac3198678.pkl",
+      "pkl_sha256": "17b7449317903fa2e1d5d4237dcf782eb2ec3c93817e2a228874fc906333c5ed",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "she emigrated to Paris in 1891,",
+          "exact_native_cache_key": "2d4526291fafea603fe598c196d52baac3198678.pkl",
+          "cache_input_text_sha256": "d59c8158cbe72a35564a2a15047bf1100383ee135487ec460ac436af99462400",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "17b7449317903fa2",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        66560
+      ],
+      "unprocessed_array_sha256": "0e49b1b42991e6d82196e09cffe4fe5192ba0e91d5b0deed8d78d8b3f43698b8"
+    },
+    {
+      "exact_native_cache_key": "a29021b095df96bfb3211acca34187fe69584a3a.pkl",
+      "pkl_sha256": "410e43c7e24884ed4c78f8c8c99d9146aef5599f469a634360d38b1a568a6799",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "enrolling at the Sorbonne.",
+          "exact_native_cache_key": "a29021b095df96bfb3211acca34187fe69584a3a.pkl",
+          "cache_input_text_sha256": "25096fc1b12ea310ee73e066521f422afd5b6f68e7ca7e58a2891ad80a4262a9",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "410e43c7e24884ed",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        39424
+      ],
+      "unprocessed_array_sha256": "a6177752da493c519de62fc877b30aae23823dee78b8ccd4efc2f987ec815268"
+    },
+    {
+      "exact_native_cache_key": "b91ed81228df05f946732a59d5209a0e22d304af.pkl",
+      "pkl_sha256": "e2a7171b8295956ec4b7597d3f7aae7170f3b905c0929959b33a65b962a22179",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "On 26 July 1895 she wed the physicist Pierre Curie, forging a research partnership.",
+          "exact_native_cache_key": "b91ed81228df05f946732a59d5209a0e22d304af.pkl",
+          "cache_input_text_sha256": "42a8e96bf1fd0d105ba178639066c13bd017d91ecd202ff49c93f253754eb2b6",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "e2a7171b8295956e",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        194560
+      ],
+      "unprocessed_array_sha256": "9e8deba737dae17e868913c82cc4046e39a444f23b25040c7beec1754d8fb9d5"
+    },
+    {
+      "exact_native_cache_key": "c54bd29b3098ac3507d8b4db862d5069f8de3761.pkl",
+      "pkl_sha256": "f21cb881e1d7aa3161ac842e8205b9f52a1f3a0e24c482a3190ef1adecc04e71",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "On 26 July 1895 she wed the physicist Pierre Curie,",
+          "exact_native_cache_key": "c54bd29b3098ac3507d8b4db862d5069f8de3761.pkl",
+          "cache_input_text_sha256": "44de345ec3b780eacda53bacd1b1525a0a68fcffd92ac127d771ed8a141f3e3b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "On 26 July 1895 she wed the physicist Pierre Curie,",
+          "exact_native_cache_key": "c54bd29b3098ac3507d8b4db862d5069f8de3761.pkl",
+          "cache_input_text_sha256": "44de345ec3b780eacda53bacd1b1525a0a68fcffd92ac127d771ed8a141f3e3b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "f21cb881e1d7aa31",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        131072
+      ],
+      "unprocessed_array_sha256": "d11f69bd413146b7729508056e89738dff8e78283832b6d146028c9a119bcf4f"
+    },
+    {
+      "exact_native_cache_key": "ae3c4190f764bbde6c137c25824e893887888e40.pkl",
+      "pkl_sha256": "199d51d0ca907b3e81d0f6a22fe3871eafe86ff53d3160c6ffe11d908a8a0dc7",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "forging a research partnership.",
+          "exact_native_cache_key": "ae3c4190f764bbde6c137c25824e893887888e40.pkl",
+          "cache_input_text_sha256": "38448360bdb149f69a0e5b5ad77ff5b7010cd7ec42cf7e127dbe4f8ab2a1dec4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "forging a research partnership.",
+          "exact_native_cache_key": "ae3c4190f764bbde6c137c25824e893887888e40.pkl",
+          "cache_input_text_sha256": "38448360bdb149f69a0e5b5ad77ff5b7010cd7ec42cf7e127dbe4f8ab2a1dec4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "199d51d0ca907b3e",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        47104
+      ],
+      "unprocessed_array_sha256": "19cb37801772063e0a8337b01a2718fb5f07f06ac4de347d5594fd4c11fb7682"
+    },
+    {
+      "exact_native_cache_key": "1b5c1401c73a8b33ab9f00cf715ec3491a313d52.pkl",
+      "pkl_sha256": "38a915178a9093daeda72277ddf3524333aae3b0e85841fd7b5fa702cba08c4f",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Henri Becquerel found that uranium emitted rays; she named this property of certain elements radioactivity.",
+          "exact_native_cache_key": "1b5c1401c73a8b33ab9f00cf715ec3491a313d52.pkl",
+          "cache_input_text_sha256": "a0b34dab20acec76029220e3b61b133e26375c922764deee8374c3ac3cc9cc0f",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "38a915178a9093da",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        186368
+      ],
+      "unprocessed_array_sha256": "1a38e63b3a617586e208fd4db268414ad8f604f0949fd5bab7b8dfb64e8a9897"
+    },
+    {
+      "exact_native_cache_key": "12ab450f4349d5cc970b23ce138a456a99474299.pkl",
+      "pkl_sha256": "0b804a624d6302bad719d1d12d176090651961c74f92fdc386e889cd909bc46f",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Henri Becquerel found that uranium emitted rays;",
+          "exact_native_cache_key": "12ab450f4349d5cc970b23ce138a456a99474299.pkl",
+          "cache_input_text_sha256": "baa414c12e785b025084f8f3e623b1ac953e7d1c4d5b78d6d27f22ee24207f8b",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Henri Becquerel found that uranium emitted rays;",
+          "exact_native_cache_key": "12ab450f4349d5cc970b23ce138a456a99474299.pkl",
+          "cache_input_text_sha256": "baa414c12e785b025084f8f3e623b1ac953e7d1c4d5b78d6d27f22ee24207f8b",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "0b804a624d6302ba",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        76288
+      ],
+      "unprocessed_array_sha256": "b64fa2edeb5dafd73a83173883050d6681fda909e429fdd925b02d2f6c746b2d"
+    },
+    {
+      "exact_native_cache_key": "a7dcec12944b3a980d072557bdaeea4ef1c89ca6.pkl",
+      "pkl_sha256": "5381c64eaa0e90a23add0b4dba702acc38c827be53d5887dbd7c13cfd20c4a3c",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "she named this property of certain elements radioactivity.",
+          "exact_native_cache_key": "a7dcec12944b3a980d072557bdaeea4ef1c89ca6.pkl",
+          "cache_input_text_sha256": "e04985f09fc71b0bb66b17b9887b5ddd80e313686f8d1a463fd059fd5adc7d97",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "she named this property of certain elements radioactivity.",
+          "exact_native_cache_key": "a7dcec12944b3a980d072557bdaeea4ef1c89ca6.pkl",
+          "cache_input_text_sha256": "e04985f09fc71b0bb66b17b9887b5ddd80e313686f8d1a463fd059fd5adc7d97",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "5381c64eaa0e90a2",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        90624
+      ],
+      "unprocessed_array_sha256": "e1ee01989e02b5a73f5e42f7812a72b31261bce07df18542565eb09bd762bfae"
+    },
+    {
+      "exact_native_cache_key": "0e984a8d4c73fd3d129aca1ad63604bc9f2c200c.pkl",
+      "pkl_sha256": "854f400a3256099ed76335e86e183f6ced77596800841a0a2680d7c48a21487c",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In July 1898 the Curies announced polonium, a tribute to her motherland, and on 26 December, radium.",
+          "exact_native_cache_key": "0e984a8d4c73fd3d129aca1ad63604bc9f2c200c.pkl",
+          "cache_input_text_sha256": "95d93fd1e530afd6dc89dc362b6ead3a28f8fed038d5db2fe4ccce5d409d5c7a",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "854f400a3256099e",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        202752
+      ],
+      "unprocessed_array_sha256": "ebb4fb07b13332d2546c82237c39aa9837279de199cddd11d9c43173abe4ede1"
+    },
+    {
+      "exact_native_cache_key": "18d81a1db7cf365008d882c532887ab5841ddbf1.pkl",
+      "pkl_sha256": "41bfaaf7fa04098068c38e35def1d6e54d654de2b814a3d1d548a15033e785ef",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In July 1898 the Curies announced polonium,",
+          "exact_native_cache_key": "18d81a1db7cf365008d882c532887ab5841ddbf1.pkl",
+          "cache_input_text_sha256": "39aa04dc9dd40026b6ddc0ae43da170aa77a89267e77b0967a23d023f0800ed5",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In July 1898 the Curies announced polonium,",
+          "exact_native_cache_key": "18d81a1db7cf365008d882c532887ab5841ddbf1.pkl",
+          "cache_input_text_sha256": "39aa04dc9dd40026b6ddc0ae43da170aa77a89267e77b0967a23d023f0800ed5",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "41bfaaf7fa040980",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        87552
+      ],
+      "unprocessed_array_sha256": "ae1ee7b36b7660cf947a5d2a398f5085e33ed020ed9890734807406af0f8e7f6"
+    },
+    {
+      "exact_native_cache_key": "d18f031a232288c9083c88f6c29d36bffd24d2c6.pkl",
+      "pkl_sha256": "b54c5d69e3b9714d51ec0a9c330fe3b66da56a140897323dbef7317396dbff26",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "a tribute to her motherland,",
+          "exact_native_cache_key": "d18f031a232288c9083c88f6c29d36bffd24d2c6.pkl",
+          "cache_input_text_sha256": "54fcd9fdafd5e47ccac44442a6ec878e763ae742ec73b3650e64d3112a173a1b",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a tribute to her motherland,",
+          "exact_native_cache_key": "d18f031a232288c9083c88f6c29d36bffd24d2c6.pkl",
+          "cache_input_text_sha256": "54fcd9fdafd5e47ccac44442a6ec878e763ae742ec73b3650e64d3112a173a1b",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "b54c5d69e3b9714d",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        37888
+      ],
+      "unprocessed_array_sha256": "7d542d8b69f22182dc8414ceae6e23967fe7158206680ad576a4a68c828d2298"
+    },
+    {
+      "exact_native_cache_key": "40244514a08d3806774d983178fcf5912c58a855.pkl",
+      "pkl_sha256": "5f9203390d41ddf6688c9ec9de5ce50d2155406666572448aa3718d44de56402",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and on 26 December, radium.",
+          "exact_native_cache_key": "40244514a08d3806774d983178fcf5912c58a855.pkl",
+          "cache_input_text_sha256": "db1e1523069e7060d9e78aebe909c9c58c53b65f1e3ed592a0d2a40167475f49",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "5f9203390d41ddf6",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        58368
+      ],
+      "unprocessed_array_sha256": "5385c1d8af488414caa6ab0270564a7f17baf9903cbd87eae88ac4e7ab59859a"
+    },
+    {
+      "exact_native_cache_key": "7a5edda8fdb18eb98b8a16287d26c23261e11c68.pkl",
+      "pkl_sha256": "f20464f0479d17bf57fe286a7ae0e2d607d6ad5061ebd00ec4c765dba68418a8",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and on 26 December,",
+          "exact_native_cache_key": "7a5edda8fdb18eb98b8a16287d26c23261e11c68.pkl",
+          "cache_input_text_sha256": "cd83349b60cdd833b16284796e651f21a8bb73bdd30aee2eb1c5a3b8c8605939",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "f20464f0479d17bf",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        45056
+      ],
+      "unprocessed_array_sha256": "ab90774506f0faf2bf7b56a9450ea946e9cdb6f2306af0954e2b0afe3dfcde40"
+    },
+    {
+      "exact_native_cache_key": "9341a2dcf3389f6002b8f8d1bb9ef89bdf4a8ed1.pkl",
+      "pkl_sha256": "5913757a03e32a5abfded01c087c35698a540caf02409e3c35effc64dc1f8040",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "radium.",
+          "exact_native_cache_key": "9341a2dcf3389f6002b8f8d1bb9ef89bdf4a8ed1.pkl",
+          "cache_input_text_sha256": "40989fd92510e3adaad5701945bad905e84e03510c1e1c6a4f747220a4ec8d59",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "5913757a03e32a5a",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        19456
+      ],
+      "unprocessed_array_sha256": "28bca3531d1b8f73d0716fe792895f593b99a19d57783a678f045658da1b4b56"
+    },
+    {
+      "exact_native_cache_key": "55c0d88c3a568e608897d29544312b136bf63181.pkl",
+      "pkl_sha256": "86410dd9b70ef8d059282965558fa3db0d4d09d240fc7d11ec71628e2c15b7f3",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In a leaky shed they painstakingly processed tonnes of pitchblende, a uranium ore; by 1902 she had recovered about a tenth of a gram of radium chloride.",
+          "exact_native_cache_key": "55c0d88c3a568e608897d29544312b136bf63181.pkl",
+          "cache_input_text_sha256": "70f7099c6387cd531cd3c5c09370678c06865951a244396a24c263b7a6910f98",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "86410dd9b70ef8d0",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        280064
+      ],
+      "unprocessed_array_sha256": "3dfee6600628184bd22dbc60aeecd3d09dcc680598b739aeeaf0474350351933"
+    },
+    {
+      "exact_native_cache_key": "d59c9c38263ac9fb8eae813592448ee17f172f35.pkl",
+      "pkl_sha256": "997f657042e21a8fa08aab009d34e2acda5e3c910de03860027ab79cad6e8f73",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In a leaky shed they painstakingly processed tonnes of pitchblende,",
+          "exact_native_cache_key": "d59c9c38263ac9fb8eae813592448ee17f172f35.pkl",
+          "cache_input_text_sha256": "5313b15eee3224ed8d52dba7b811f75ed3b78007806066a99ae3c80810b50999",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In a leaky shed they painstakingly processed tonnes of pitchblende,",
+          "exact_native_cache_key": "d59c9c38263ac9fb8eae813592448ee17f172f35.pkl",
+          "cache_input_text_sha256": "5313b15eee3224ed8d52dba7b811f75ed3b78007806066a99ae3c80810b50999",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "997f657042e21a8f",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        95744
+      ],
+      "unprocessed_array_sha256": "f724ce8f27cbd03411a94b5967ca73bdf068b179b0770bd044dbf9d7eb98273c"
+    },
+    {
+      "exact_native_cache_key": "1f403b4b1f3435cd45e4a31837ab044a690b9fdd.pkl",
+      "pkl_sha256": "d13b076d3297c5735b76f4b56f8e0ad3aa1d3d1803caff7c9cdd6238987e6625",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "a uranium ore;",
+          "exact_native_cache_key": "1f403b4b1f3435cd45e4a31837ab044a690b9fdd.pkl",
+          "cache_input_text_sha256": "7601039f5db418ebccfd2dc4d2cadc92d6b263068e9de235b799660e409edf0d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a uranium ore;",
+          "exact_native_cache_key": "1f403b4b1f3435cd45e4a31837ab044a690b9fdd.pkl",
+          "cache_input_text_sha256": "7601039f5db418ebccfd2dc4d2cadc92d6b263068e9de235b799660e409edf0d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "d13b076d3297c573",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        32256
+      ],
+      "unprocessed_array_sha256": "7c3f0e8650a9b2fb1483cbe4053ab6dcc02968ff04a1b7a5424613e562eab5be"
+    },
+    {
+      "exact_native_cache_key": "8bb5cf06bab06f9f79aef5253d21dd4690ca4623.pkl",
+      "pkl_sha256": "5d25b19dba1e84922f611175d9fb88719fe5ae6715437388f78346f331617ac4",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "by 1902 she had recovered about a tenth of a gram of radium chloride.",
+          "exact_native_cache_key": "8bb5cf06bab06f9f79aef5253d21dd4690ca4623.pkl",
+          "cache_input_text_sha256": "1181265fdcf14d0f67772abb31a99c89f77f48d16ba8ec50982436cf3018b27a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "by 1902 she had recovered about a tenth of a gram of radium chloride.",
+          "exact_native_cache_key": "8bb5cf06bab06f9f79aef5253d21dd4690ca4623.pkl",
+          "cache_input_text_sha256": "1181265fdcf14d0f67772abb31a99c89f77f48d16ba8ec50982436cf3018b27a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "5d25b19dba1e8492",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        126464
+      ],
+      "unprocessed_array_sha256": "2120f705bb79e75bedbbc1614f26b2d1aeb5e37237ab53d0f8ce3b2035ed78fb"
+    },
+    {
+      "exact_native_cache_key": "aeea9d71e31f90709bcacd058adf4e4654113609.pkl",
+      "pkl_sha256": "2511facda22aab3ab3e497fb45305a3fade6657b7b5cbed6752be4a0e4a99ae3",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "On 10 December 1903 she jointly won the physics Nobel with Pierre and Becquerel, the first woman so recognised.",
+          "exact_native_cache_key": "aeea9d71e31f90709bcacd058adf4e4654113609.pkl",
+          "cache_input_text_sha256": "2e2c90b6d7914b2951163c3d46f24a8d389ea6e6476a890480a2e7f33814e42c",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "2511facda22aab3a",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        209408
+      ],
+      "unprocessed_array_sha256": "e8bb7aa0f874885b5de98ef69d39d2c92fab042b37a50bd53f09d5e040337154"
+    },
+    {
+      "exact_native_cache_key": "8c92ba56735cb6d5b3af0a5b2a6a201e33de8bb6.pkl",
+      "pkl_sha256": "22c304ea312a4f3adac527743594bb8c8370797b831bcf6f35beda0a7f070904",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "On 10 December 1903 she jointly won the physics Nobel with Pierre and Becquerel,",
+          "exact_native_cache_key": "8c92ba56735cb6d5b3af0a5b2a6a201e33de8bb6.pkl",
+          "cache_input_text_sha256": "50dc98cd194446eae60002a4054401a96d191d8db221c96a2c202c84c09a5224",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "On 10 December 1903 she jointly won the physics Nobel with Pierre and Becquerel,",
+          "exact_native_cache_key": "8c92ba56735cb6d5b3af0a5b2a6a201e33de8bb6.pkl",
+          "cache_input_text_sha256": "50dc98cd194446eae60002a4054401a96d191d8db221c96a2c202c84c09a5224",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "22c304ea312a4f3a",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        146944
+      ],
+      "unprocessed_array_sha256": "0269a460544ae3c06eaaafab5534a793ea99e94a478d5467ed1f7d833a541fad"
+    },
+    {
+      "exact_native_cache_key": "62fa09ed49c341f3e3cf9febb7880539d8d1c0af.pkl",
+      "pkl_sha256": "3fde71d748e262e442e4049604fad1e81b452ff027b7696b3b4f5324f5393ed6",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "the first woman so recognised.",
+          "exact_native_cache_key": "62fa09ed49c341f3e3cf9febb7880539d8d1c0af.pkl",
+          "cache_input_text_sha256": "b3c6be2cdf4265fc3dc9780ed47dfd38e4690d3c0d603e82ce6ddec57fafee66",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "the first woman so recognised.",
+          "exact_native_cache_key": "62fa09ed49c341f3e3cf9febb7880539d8d1c0af.pkl",
+          "cache_input_text_sha256": "b3c6be2cdf4265fc3dc9780ed47dfd38e4690d3c0d603e82ce6ddec57fafee66",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "3fde71d748e262e4",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        47104
+      ],
+      "unprocessed_array_sha256": "d4305625afeeec3f52981c74a7378acadcdcfe9e29434e769086cc2984d47edc"
+    },
+    {
+      "exact_native_cache_key": "97f906066a9ce4a8dafe7c4631823eced2743693.pkl",
+      "pkl_sha256": "d3205be8b95f43f7b87146c5e886ac2ecf597f68c4c4769cf9e1cc1252758b92",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The nomination had initially left her out; at Pierre's insistence, the omission was rectified.",
+          "exact_native_cache_key": "97f906066a9ce4a8dafe7c4631823eced2743693.pkl",
+          "cache_input_text_sha256": "2a95d7de66495bbd4391ec94d9f747c50a0db94755d8dd38f97f8b337a17516d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "d3205be8b95f43f7",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        151552
+      ],
+      "unprocessed_array_sha256": "1529bd714eb2615cf418ffd9b7cde462447ed830dd76a5f3a42dc9dfd3d56a3e"
+    },
+    {
+      "exact_native_cache_key": "949843eeb94d0ae80dd58a3262da4f9263e72146.pkl",
+      "pkl_sha256": "1f3aac74a48c801c0adf2c326dec842ca7bc60e417dbb55514f838c75386ed3a",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "The nomination had initially left her out;",
+          "exact_native_cache_key": "949843eeb94d0ae80dd58a3262da4f9263e72146.pkl",
+          "cache_input_text_sha256": "756c154a82e88daaeb1676b15627045be264fa937fc21462216d08095d0c99c6",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "The nomination had initially left her out;",
+          "exact_native_cache_key": "949843eeb94d0ae80dd58a3262da4f9263e72146.pkl",
+          "cache_input_text_sha256": "756c154a82e88daaeb1676b15627045be264fa937fc21462216d08095d0c99c6",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "1f3aac74a48c801c",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        62464
+      ],
+      "unprocessed_array_sha256": "f7474ed4034a9b22e9f974328603bab61c3fbd5983bdc39acfb9976f8e7bbc5d"
+    },
+    {
+      "exact_native_cache_key": "9ab68b375209a113301246ddd831209a50bc9aeb.pkl",
+      "pkl_sha256": "ae6e085ea1068008dc533e11017ba81c7de69492ec4c4f1d9beaf8948bd78744",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "at Pierre's insistence, the omission was rectified.",
+          "exact_native_cache_key": "9ab68b375209a113301246ddd831209a50bc9aeb.pkl",
+          "cache_input_text_sha256": "544b9c880aabd33af7f43508337e7d2739d42dadda045ff821f34f3b76dc6f4f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "ae6e085ea1068008",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        83456
+      ],
+      "unprocessed_array_sha256": "cab1d56ce2e508a115e972a8fe8901eafa45d9ab65c1737af72908b797df5653"
+    },
+    {
+      "exact_native_cache_key": "4aadfc9fbfc61dc571487096a37ae672155d9cec.pkl",
+      "pkl_sha256": "23864522488879288bf641782401d78babc931cbe70dd8359af2af460f8234a7",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "at Pierre's insistence,",
+          "exact_native_cache_key": "4aadfc9fbfc61dc571487096a37ae672155d9cec.pkl",
+          "cache_input_text_sha256": "66f6b50cade4c3a9529b156778df33020c689ff34845fc340c07ec8a54fe0503",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "2386452248887928",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        35840
+      ],
+      "unprocessed_array_sha256": "476508d0b83763d21c57079659c46b62ea2667e791669d701272ff1a1d317d16"
+    },
+    {
+      "exact_native_cache_key": "c00d7e16bc73061238da8b5310bb78e572dea485.pkl",
+      "pkl_sha256": "0a24f1877cd7fb8d3e3a33737ca0fdce8ac3a8f6c65b643c4b0020220df11a51",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "the omission was rectified.",
+          "exact_native_cache_key": "c00d7e16bc73061238da8b5310bb78e572dea485.pkl",
+          "cache_input_text_sha256": "2886279b9f0f44a5cd9efb84af6dcfdfe8d56c12f6b52a5dfabcbf12fb562947",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "0a24f1877cd7fb8d",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        41984
+      ],
+      "unprocessed_array_sha256": "a0c5a40bde2f6a449e1f20ffe01bd49afdc0f51a63ef331786106c88b1a9995b"
+    },
+    {
+      "exact_native_cache_key": "c845b8b95c912c4fdd3f788ea0b06bf306acd812.pkl",
+      "pkl_sha256": "42c70f9cb449201633a75e8fb77d637573051e56b7c043cfb66a89a49335bf37",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "On 19 April 1906 a horse-drawn wagon fatally struck Pierre.",
+          "exact_native_cache_key": "c845b8b95c912c4fdd3f788ea0b06bf306acd812.pkl",
+          "cache_input_text_sha256": "dba28ba40b94892510a3b514df9c1813d87fbe2b01cd1d654b676fbb6ea07b6a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "42c70f9cb4492016",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        130048
+      ],
+      "unprocessed_array_sha256": "37b5bd791a9b12591b9277e9d35b2ef7cd628020a9eb13206c385caafa883fd8"
+    },
+    {
+      "exact_native_cache_key": "ff6c450dd2c60658e1d0a11022d59f3fbd4c9dcc.pkl",
+      "pkl_sha256": "4aa0162890791eb4ba150c922ad6d42c57db4779cc70421ceb5a601446576fc1",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "On 5 November she gave her inaugural lecture as his successor, the Sorbonne's first woman professor.",
+          "exact_native_cache_key": "ff6c450dd2c60658e1d0a11022d59f3fbd4c9dcc.pkl",
+          "cache_input_text_sha256": "d735685a448c368bb7043eb119f05f30a1972f430ddb3a4abb946844cb44ec9a",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "4aa0162890791eb4",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        170496
+      ],
+      "unprocessed_array_sha256": "e146f1716b601776ddc79262f32e0107fb73721e6c765adcc661831810d9e033"
+    },
+    {
+      "exact_native_cache_key": "cc1b856be9805d46a2bb9048a9056a6255a0f1be.pkl",
+      "pkl_sha256": "079c77a5c8e750a26edea51118c6d3daf1b1b3f38cb9b6a17f97fd3a072871f8",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "On 5 November she gave her inaugural lecture as his successor,",
+          "exact_native_cache_key": "cc1b856be9805d46a2bb9048a9056a6255a0f1be.pkl",
+          "cache_input_text_sha256": "2dc43f5fb8de8d6039213cdab2e83dc8a922cc72d51daf8b6d82d142b590cd3b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "On 5 November she gave her inaugural lecture as his successor,",
+          "exact_native_cache_key": "cc1b856be9805d46a2bb9048a9056a6255a0f1be.pkl",
+          "cache_input_text_sha256": "2dc43f5fb8de8d6039213cdab2e83dc8a922cc72d51daf8b6d82d142b590cd3b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "079c77a5c8e750a2",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        110592
+      ],
+      "unprocessed_array_sha256": "6d80c15ad2de9236867a663f12c074d24602c1c273bb9861d27f5cbedd1aefb0"
+    },
+    {
+      "exact_native_cache_key": "4e15887f044ba75807a899f44e79c6cf5acdea3f.pkl",
+      "pkl_sha256": "93865d452979ba9da7caefa49d3360e20169cc5b72967ca4e3720d13d599bc05",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "the Sorbonne's first woman professor.",
+          "exact_native_cache_key": "4e15887f044ba75807a899f44e79c6cf5acdea3f.pkl",
+          "cache_input_text_sha256": "2ee2503579c85e09bec2db7c7aade8cc74c04c9d4441d3adc7abdea35dff5316",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "the Sorbonne's first woman professor.",
+          "exact_native_cache_key": "4e15887f044ba75807a899f44e79c6cf5acdea3f.pkl",
+          "cache_input_text_sha256": "2ee2503579c85e09bec2db7c7aade8cc74c04c9d4441d3adc7abdea35dff5316",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "93865d452979ba9d",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        50176
+      ],
+      "unprocessed_array_sha256": "9fb3214bb827405e438998a67b2ef5820457d204d0dda4c1d368af908ba69597"
+    },
+    {
+      "exact_native_cache_key": "41debf49e0cbcc1534772ced05c40139689a423d.pkl",
+      "pkl_sha256": "2aade66aecd309081dfc8008e1496c9804b4926669197b68f1425d09eb8740ab",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In November 1911 a press scandal about her private life erupted; she was urged to stay away.",
+          "exact_native_cache_key": "41debf49e0cbcc1534772ced05c40139689a423d.pkl",
+          "cache_input_text_sha256": "c22ed19018b5a7f3164b22cec3b51206cc7fc4bb7052524ab2c9791045c16072",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "2aade66aecd30908",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        167424
+      ],
+      "unprocessed_array_sha256": "eb92c4beffd0d78c4021b29848164a560f72bcfdd6c45cc83499377855cec66b"
+    },
+    {
+      "exact_native_cache_key": "904f8453a9473dca36d86502789b047b39c36478.pkl",
+      "pkl_sha256": "e9aa37c20554710c6856be6c48d76b31bd6cf4127694584bd4d936521734faa7",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In November 1911 a press scandal about her private life erupted;",
+          "exact_native_cache_key": "904f8453a9473dca36d86502789b047b39c36478.pkl",
+          "cache_input_text_sha256": "700051df802718cdb17e00deb251466d52d6424048dd4176323b20d0ea0523ba",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In November 1911 a press scandal about her private life erupted;",
+          "exact_native_cache_key": "904f8453a9473dca36d86502789b047b39c36478.pkl",
+          "cache_input_text_sha256": "700051df802718cdb17e00deb251466d52d6424048dd4176323b20d0ea0523ba",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "e9aa37c20554710c",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        117248
+      ],
+      "unprocessed_array_sha256": "f49c0546d4d618ef11897ecba31a9b04666bf2a7db5257837d000bc8e3e801b6"
+    },
+    {
+      "exact_native_cache_key": "eb673a3c735395a85e96e88d9bb3843e9ca4d29b.pkl",
+      "pkl_sha256": "6afd22f5a0356d43231fdf1b26c7ccb00e2944054ca89749d956fa637e559800",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "she was urged to stay away.",
+          "exact_native_cache_key": "eb673a3c735395a85e96e88d9bb3843e9ca4d29b.pkl",
+          "cache_input_text_sha256": "1902f03083e28b7c7f3e9bc08c28001db07e56effd7d669518bbd617519aa8ec",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "she was urged to stay away.",
+          "exact_native_cache_key": "eb673a3c735395a85e96e88d9bb3843e9ca4d29b.pkl",
+          "cache_input_text_sha256": "1902f03083e28b7c7f3e9bc08c28001db07e56effd7d669518bbd617519aa8ec",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "6afd22f5a0356d43",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        40960
+      ],
+      "unprocessed_array_sha256": "c4b3e3c6797589f13e84ac09f6a23155973d20a6d65245a585d03bb86fb7ce99"
+    },
+    {
+      "exact_native_cache_key": "16e724d1b71c92a3ef81c06e9e9d9fc5012ce9c0.pkl",
+      "pkl_sha256": "0766311b53c85efba9db1eef1b8da640cdb55dce9596ec152221efdd1821e8dd",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Undeterred, she collected the chemistry Nobel, won outright, on 10 December.",
+          "exact_native_cache_key": "16e724d1b71c92a3ef81c06e9e9d9fc5012ce9c0.pkl",
+          "cache_input_text_sha256": "4f5fde548dfaa568cf1892148ffea48e4ecfef82c9aff20874376c2febeb0622",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "0766311b53c85efb",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        134656
+      ],
+      "unprocessed_array_sha256": "88f961bb2a140daea4dc5c35156e41e571dc905a468d700763730a0ceab83618"
+    },
+    {
+      "exact_native_cache_key": "8b6e778d61927c98e2721ab7d917a7d034f371ad.pkl",
+      "pkl_sha256": "ac2ae54ebf728836bc382813dc5e07562a7c6cb10a5ddda583d77a0f332d596b",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Undeterred,",
+          "exact_native_cache_key": "8b6e778d61927c98e2721ab7d917a7d034f371ad.pkl",
+          "cache_input_text_sha256": "665374ef4a268293540759d7aa4a110d2612e661f5820f862558d7a87d7dea32",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Undeterred,",
+          "exact_native_cache_key": "8b6e778d61927c98e2721ab7d917a7d034f371ad.pkl",
+          "cache_input_text_sha256": "665374ef4a268293540759d7aa4a110d2612e661f5820f862558d7a87d7dea32",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "ac2ae54ebf728836",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        23552
+      ],
+      "unprocessed_array_sha256": "f2976c5c8811a3f13688afa1c0adaa088d9737cf864778205ec0b2a6e2728ad5"
+    },
+    {
+      "exact_native_cache_key": "146b8301d96aa8e877899c16964d8ae3552f34c0.pkl",
+      "pkl_sha256": "734629454112412857866da568ad1ffd92a23809c60e6782673d0ddf5e58ba79",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "she collected the chemistry Nobel, won outright, on 10 December.",
+          "exact_native_cache_key": "146b8301d96aa8e877899c16964d8ae3552f34c0.pkl",
+          "cache_input_text_sha256": "7fba626b027cf80f7468d8211a396c37d56d002119b45f43ba78cdd9a4918355",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "7346294541124128",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        112128
+      ],
+      "unprocessed_array_sha256": "a866cb3c4ae40a82fdbcaf24c18cce05275734b26d485e7982661a166b1410d3"
+    },
+    {
+      "exact_native_cache_key": "1537eda354aab103152ef0954d7309f1c88c4b3b.pkl",
+      "pkl_sha256": "edc98f278a5a7e8ea2ad29343e388537451a9a5ea7d24f0b2a5646cc54251fe3",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "she collected the chemistry Nobel,",
+          "exact_native_cache_key": "1537eda354aab103152ef0954d7309f1c88c4b3b.pkl",
+          "cache_input_text_sha256": "b63e735da6449a2ef68d052b9b9218b11f08f58ac439deaa2fe0ea41257fa9ac",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "edc98f278a5a7e8e",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        46080
+      ],
+      "unprocessed_array_sha256": "7865779f431c4991490b013f3d3c5ffda53b787739eed35cba0e206bc5b59c1e"
+    },
+    {
+      "exact_native_cache_key": "0dda06149da6f03570822e31fd1f5bf9a70f4cb6.pkl",
+      "pkl_sha256": "7ad35e66e6f010ef498d0d3ab389e46c23ba469538376e7f716bf045a1528290",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "won outright,",
+          "exact_native_cache_key": "0dda06149da6f03570822e31fd1f5bf9a70f4cb6.pkl",
+          "cache_input_text_sha256": "d781f9fb4f0b16131ddc52bf6f922db08558b18911542ae8731058bd7d703112",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "7ad35e66e6f010ef",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        25088
+      ],
+      "unprocessed_array_sha256": "1d08dadc50ae766aedf5ac21b859cda982bcd947d1eb0526aa476857b2cbe092"
+    },
+    {
+      "exact_native_cache_key": "9ad512eaf160f24c0082b9526726e57c4f52ac74.pkl",
+      "pkl_sha256": "53626eddf3086e209631fd98344df7f20f39ac2d553ef84b55ba8a5b8e3ee7d9",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "on 10 December.",
+          "exact_native_cache_key": "9ad512eaf160f24c0082b9526726e57c4f52ac74.pkl",
+          "cache_input_text_sha256": "e4bd22ede2e0146d9845707903d10373179e2958ed682bf743775e0e89211872",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "53626eddf3086e20",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        36352
+      ],
+      "unprocessed_array_sha256": "70bb8118bd98fbe7f47500206aabc45026031426b2176c9dc59515cd7c967e35"
+    },
+    {
+      "exact_native_cache_key": "502ade4e3b0d9e77b92061c65beb0506e7c336df.pkl",
+      "pkl_sha256": "13b6e43e9a180780cf74271f89c6af12ec842c770e75524c8f16f2047a7611ae",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Her distinction in two sciences remains unmatched.",
+          "exact_native_cache_key": "502ade4e3b0d9e77b92061c65beb0506e7c336df.pkl",
+          "cache_input_text_sha256": "e259a7e2a5564ffa4634f5facdba4c2bb172caa65abdcb8b2aa7d0ab86ece662",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "13b6e43e9a180780",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        75264
+      ],
+      "unprocessed_array_sha256": "26bfa7451faaf1b28e898ce5ca1aee0402028898d5ffbed9e19a269475a3fb33"
+    },
+    {
+      "exact_native_cache_key": "f9c96073844ec4ac7856f2ac7fba8bc67f17fee6.pkl",
+      "pkl_sha256": "e61fb74d1b7897d8fdb76b88bf7f5b0c043738e048c0c7aad57534963e8ff5c9",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In the First World War she mobilised X-ray vans and stationary posts that examined over a million casualties.",
+          "exact_native_cache_key": "f9c96073844ec4ac7856f2ac7fba8bc67f17fee6.pkl",
+          "cache_input_text_sha256": "bb5323b82d94d03ab42e5859acb3e722e8b19c5555c54e304f8412ed5ca39e26",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "e61fb74d1b7897d8",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        192000
+      ],
+      "unprocessed_array_sha256": "475f1e30fe3e47a3b41ba69c7354c15ae49be7f197b70c1f700e6d292c32eac9"
+    },
+    {
+      "exact_native_cache_key": "6244d53c91f4f9b6dc56848c041705453f356eaf.pkl",
+      "pkl_sha256": "d37a45721ed2713b511c94bca535ef424d911cd62cf169bcded37f7d6c2a63fa",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In the First World War she mobilised X-ray vans and stationary posts",
+          "exact_native_cache_key": "6244d53c91f4f9b6dc56848c041705453f356eaf.pkl",
+          "cache_input_text_sha256": "5eb698fb6a4b9110d13384e6b646b6fa1c2e9674f7a0d495768ca012fa2ce6d2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "d37a45721ed2713b",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        117248
+      ],
+      "unprocessed_array_sha256": "e20a8c53ba90fa0036f4a709e6d26e8f1a435f5bd384cb4c8cd50703789fb33e"
+    },
+    {
+      "exact_native_cache_key": "26010894fb80c78663deb38e38fa1d093aa554fa.pkl",
+      "pkl_sha256": "f6a9d172447d0a2fa0f0c2d9ce0d865fbd9e7986299bfb2760bcedfe4dd0b7d7",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "that examined over a million casualties.",
+          "exact_native_cache_key": "26010894fb80c78663deb38e38fa1d093aa554fa.pkl",
+          "cache_input_text_sha256": "9dae2738ebd8d3bbc59171c0b4f465d91e97d6f0e0c80fd72e6bbdc5be0dfdc6",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "f6a9d172447d0a2f",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        61440
+      ],
+      "unprocessed_array_sha256": "3e46943b607415d0646358940dbf5c50d4281003a803757198dc20c70737fed2"
+    },
+    {
+      "exact_native_cache_key": "be8e9c5b5bc960b00358da60f5e97210584f770d.pkl",
+      "pkl_sha256": "7c1217a36b6fac1000c21b67580e72ff78e40c180fac28fdc97c00dfe18b5b9c",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "She died on 4 July 1934 of a blood disorder, probably caused by prolonged exposure to radiation.",
+          "exact_native_cache_key": "be8e9c5b5bc960b00358da60f5e97210584f770d.pkl",
+          "cache_input_text_sha256": "1a256b3c013cb8f7d55a967d81e957533fd2ffdd5080b576ee468f9e40e86fa6",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "7c1217a36b6fac10",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        208896
+      ],
+      "unprocessed_array_sha256": "2a1ac82f87b5238635822d33baf1754bd179aebbb391d9c2f3f6daedef3944a9"
+    },
+    {
+      "exact_native_cache_key": "db3457184f8edf055ec74a6ae61b5186dd97e087.pkl",
+      "pkl_sha256": "7459c1b5244f7722264e806ea21c2ba64d5d8592f33d607a0bcf6ec904ea8818",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "She died on 4 July 1934 of a blood disorder,",
+          "exact_native_cache_key": "db3457184f8edf055ec74a6ae61b5186dd97e087.pkl",
+          "cache_input_text_sha256": "83b52f885dbe3c25cecd07a4ceb2ac1bd057d771173835f3dbdecb4d398ab909",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "She died on 4 July 1934 of a blood disorder,",
+          "exact_native_cache_key": "db3457184f8edf055ec74a6ae61b5186dd97e087.pkl",
+          "cache_input_text_sha256": "83b52f885dbe3c25cecd07a4ceb2ac1bd057d771173835f3dbdecb4d398ab909",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "7459c1b5244f7722",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        115200
+      ],
+      "unprocessed_array_sha256": "c3698cd64de7e48d23e7f4aa06fb065794d32bbb71662c1e55c0e6395349c860"
+    },
+    {
+      "exact_native_cache_key": "dec275715aaada188189a56c5d171b0305fe8643.pkl",
+      "pkl_sha256": "c9973b6844f5bfea85cf45c2bfc7f006407d214e20577c1f33c108a818d058ee",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "probably caused by prolonged exposure to radiation.",
+          "exact_native_cache_key": "dec275715aaada188189a56c5d171b0305fe8643.pkl",
+          "cache_input_text_sha256": "acfb6d3d843dd601db58ec85d2e1cf4b144e657337cb8ce6e0fbe18421a35e89",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "probably caused by prolonged exposure to radiation.",
+          "exact_native_cache_key": "dec275715aaada188189a56c5d171b0305fe8643.pkl",
+          "cache_input_text_sha256": "acfb6d3d843dd601db58ec85d2e1cf4b144e657337cb8ce6e0fbe18421a35e89",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "c9973b6844f5bfea",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        80384
+      ],
+      "unprocessed_array_sha256": "7772be0bd1946ea66a862197baa1250a3c6fbc177c3468d6e238520535febd28"
+    },
+    {
+      "exact_native_cache_key": "0d4e925f50f47cb2c7de6221cc1d6fbd92712231.pkl",
+      "pkl_sha256": "94ee30f6e26d39edabb8087fc080b8a12da4305aca16bdcacefa9d49553ddc01",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S16",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Her notebooks, still radioactive, are preserved in lead-lined boxes at the National Library of France; readers sign a liability waiver and don protective garments.",
+          "exact_native_cache_key": "0d4e925f50f47cb2c7de6221cc1d6fbd92712231.pkl",
+          "cache_input_text_sha256": "15f87d369d1999bcd00ca99c874b466c34a66ef08cd1ba8e9acaee45815c2469",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "94ee30f6e26d39ed",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        285184
+      ],
+      "unprocessed_array_sha256": "861fb88163cf3db2d229937b44c584af457e44ec4b70bc449dcccbf91941abdc"
+    },
+    {
+      "exact_native_cache_key": "bd67398f7f4833bcea2b669c1bb66a2356283746.pkl",
+      "pkl_sha256": "908bc6db7810c048d1fd972ce3d42b6e2852d067d4e255cb77042af026460368",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S16",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Her notebooks, still radioactive,",
+          "exact_native_cache_key": "bd67398f7f4833bcea2b669c1bb66a2356283746.pkl",
+          "cache_input_text_sha256": "3a7e5ea1095c10ee8e2cd796c50bfdc0380af77f00fe488a9aaadcbfec9eb9f2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "908bc6db7810c048",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        49152
+      ],
+      "unprocessed_array_sha256": "68ead1fb1d88d979a1b91600d0ea664e03cfc0fdcf5e773a6b1fc299c31ed928"
+    },
+    {
+      "exact_native_cache_key": "2c4292f1bcdf3071d7166439ac09d628b71b20d8.pkl",
+      "pkl_sha256": "16840ad1a2e4293e417f3b4b7661031020b25a6fc8a36d61a3429a5a6ba405bf",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S16",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "are preserved in lead-lined boxes at the National Library of France;",
+          "exact_native_cache_key": "2c4292f1bcdf3071d7166439ac09d628b71b20d8.pkl",
+          "cache_input_text_sha256": "d5ef98f07f8afa58b7d7e79069cd26da93d72d4b8fad35d7f9b3d6655c3e667c",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "are preserved in lead-lined boxes at the National Library of France;",
+          "exact_native_cache_key": "2c4292f1bcdf3071d7166439ac09d628b71b20d8.pkl",
+          "cache_input_text_sha256": "d5ef98f07f8afa58b7d7e79069cd26da93d72d4b8fad35d7f9b3d6655c3e667c",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "16840ad1a2e4293e",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        110080
+      ],
+      "unprocessed_array_sha256": "96bddf2cbe149bd79ace93e938603785765732f6788a6c6f4ea38d011ff92e1d"
+    },
+    {
+      "exact_native_cache_key": "fb5cd467ed475863c8719ee46372d4026107c764.pkl",
+      "pkl_sha256": "43a154144b83d8e253ddfd5bd84deb4df134a099125743b246ecaa202a3747e0",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S16",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "readers sign a liability waiver and don protective garments.",
+          "exact_native_cache_key": "fb5cd467ed475863c8719ee46372d4026107c764.pkl",
+          "cache_input_text_sha256": "1b5dcb15b0bb347fcb91c908701d0337f7ca006cef7dc4a226771bc0dacb5777",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "readers sign a liability waiver and don protective garments.",
+          "exact_native_cache_key": "fb5cd467ed475863c8719ee46372d4026107c764.pkl",
+          "cache_input_text_sha256": "1b5dcb15b0bb347fcb91c908701d0337f7ca006cef7dc4a226771bc0dacb5777",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "43a154144b83d8e2",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        103424
+      ],
+      "unprocessed_array_sha256": "29705419a6e1104ab124ca87fa0cf841e84f56e675eda3abcbc8325209b75005"
+    },
+    {
+      "exact_native_cache_key": "44187a64357c09ef011442731ae9aa8cb87f9da3.pkl",
+      "pkl_sha256": "efd29d07eb3965dd95fbc8ef4a4e808a0bb6c41f4ed280411d4935b6015ff6e4",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S16",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Her notebooks,",
+          "exact_native_cache_key": "44187a64357c09ef011442731ae9aa8cb87f9da3.pkl",
+          "cache_input_text_sha256": "474256535e17e5114d7e208e275a7d78fefe06b3cf86c8f9a9b09eae384b6f98",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "efd29d07eb3965dd",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        23552
+      ],
+      "unprocessed_array_sha256": "a19353d1cf66a709ebbd892d4f23975e3c7cd6646175ecb591f3a40ec2575111"
+    },
+    {
+      "exact_native_cache_key": "86f8ab8684338172b32b336127212863eb7d5d80.pkl",
+      "pkl_sha256": "ac051ee098684cb8550f6c53907749bad45bbcb5d9f4ece0be6a5927e805b21e",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S16",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "still radioactive,",
+          "exact_native_cache_key": "86f8ab8684338172b32b336127212863eb7d5d80.pkl",
+          "cache_input_text_sha256": "7dae88b726d47cdc824096c6e5f63d01137db34a522c9d091622ff2be6224c73",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "ac051ee098684cb8",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        33792
+      ],
+      "unprocessed_array_sha256": "6d129defd34d788da2773390581d203c13b5e9c1cc933429c77d72cf91154652"
+    },
+    {
+      "exact_native_cache_key": "5b43c3a74750fee6ed3798cb586f4af4f9c77a9d.pkl",
+      "pkl_sha256": "52859cb75a5db66c5d86c80c25b58a44152d884fc6231a1ecf6c157c5fb95af1",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The pages retain her handwriting and her radium.",
+          "exact_native_cache_key": "5b43c3a74750fee6ed3798cb586f4af4f9c77a9d.pkl",
+          "cache_input_text_sha256": "3d4ad3e5752df700c3b0a7a86702a9f3401369b1e81787bd926e932f0183e49f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "52859cb75a5db66c",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        72704
+      ],
+      "unprocessed_array_sha256": "5b9b5c2485d355fc505a31617d597a2dfc98cdb06c8ced502879afac7aa12b81"
+    }
+  ],
+  "missing_reference_key_count": 0,
+  "observed_missing_keys_covered": [],
+  "new_private_cache_names": [],
+  "native_single_thread_marker_verified": true,
+  "single_thread_sessions": [
+    {
+      "intra_op_num_threads": 1,
+      "inter_op_num_threads": 1
+    },
+    {
+      "intra_op_num_threads": 1,
+      "inter_op_num_threads": 1
+    }
+  ],
+  "models_sha256": {
+    "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+    "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+    "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+  },
+  "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+  "existing_private_cache_count": 11514,
+  "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+  "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+  "existing_private_cache_bytes_unchanged": true,
+  "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+  "public_repository_cache_unchanged": true,
+  "producer_pcm_existed_before": false,
+  "producer_pcm_sha256_before": null,
+  "producer_pcm_sha256_after": null,
+  "accepted_aac_adts_sha256_before": "6d68121b448428148efca585cb2b2ad9fbf52825f9cec76b15325a1b28a4069c",
+  "accepted_aac_adts_sha256_after": "6d68121b448428148efca585cb2b2ad9fbf52825f9cec76b15325a1b28a4069c",
+  "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+  "private_cache_exported": false
+}

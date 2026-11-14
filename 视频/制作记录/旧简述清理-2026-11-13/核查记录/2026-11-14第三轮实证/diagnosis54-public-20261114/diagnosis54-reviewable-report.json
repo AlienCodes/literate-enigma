@@ -1,0 +1,698 @@
+{
+  "kind": "read_only_actual54_public_MP4_loudness_and_legacy_confirmation_diagnosis",
+  "quality_acceptance": false,
+  "workflow_launched": false,
+  "original_source_checker_or_media_modified": false,
+  "subjective_listening_claimed": false,
+  "actual_old_accepted_Git_ref": "64621068034f8b6e09836a6d97210a0e9b2f1ed6",
+  "old_accepted_source": {
+    "id": "54",
+    "path": "最终版4K视频/54 - The Sound That Shook the World - 震动世界的一声巨响.mp4",
+    "sha256": "c9b1c7a4f5a47f3fc230cc6b2bfa44af1bdefe784e314d231cd8b06f25a6fff2",
+    "git_blob_sha": "44e88f29be7d063d54c9d2f556f87d4acc45aedf",
+    "bytes": 14453615,
+    "width": 3840,
+    "height": 2160,
+    "summary_frames": 60,
+    "aac_adts_sha256": "e0db71dcddd5bc28addf36b644a24caf51b4685538a617cd200ebf0f466b3d1a"
+  },
+  "new_failed_media": {
+    "exported": true,
+    "passed": false,
+    "acceptance": false,
+    "purpose": "failed current-attempt video for diagnosis; not a final deliverable",
+    "file": "54-failed-draft.mp4",
+    "sha256": "350c130414892b96ed1521e0dbfb5b875e1c2c240a8cfb64f2e934f9a911ed07",
+    "width": 3840,
+    "height": 2160,
+    "proof": "54-failed-draft-proof.json",
+    "proof_sha256": "67fe405fe3216ec4836ac0ce8a7a29f932b0784af54998e16ccbc16a89da10dd",
+    "derived_clip_count": 0
+  },
+  "original_tools_sha256": {
+    "audio_qc.py": "3595b544fd87013fafaf5af1fa13fbc623595e94fd6978feee70bb754f836104",
+    "交付核查.py": "26e8e213a07747f6fc3654be18d64336011cba59ffd83bf74e4cf4759baf6976",
+    "响度一致性核对.py": "2bb89e427ec014a7fc1b4cc46ea6a11f91a786930f91e8cec720e0307940b85b",
+    "make_video.py": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3"
+  },
+  "original_audio_qc_actual_reproduced_exit": 1,
+  "original_audio_qc_actual_reproduced_stdout": "95.6–96.0s 响度比全片低 6.3 dB（疑似发闷/变小，需试听）\n118.3–118.8s 响度比全片低 6.5 dB（疑似发闷/变小，需试听）\n",
+  "original_measurements": {
+    "old_accepted": {
+      "segment_count": 115,
+      "median_dBFS": -24.25881173781708,
+      "dips": [
+        {
+          "exact_MP4_clock_seconds": [
+            95.58,
+            96.02
+          ],
+          "original_formatted_key": "95.6–96.0s",
+          "RMS_dBFS": -30.57848121785078,
+          "segment_median_dBFS": -24.25881173781708,
+          "dip_dB": 6.319669480033699,
+          "original_reported_dB": 6.3
+        },
+        {
+          "exact_MP4_clock_seconds": [
+            118.35,
+            118.78
+          ],
+          "original_formatted_key": "118.3–118.8s",
+          "RMS_dBFS": -30.730405995543315,
+          "segment_median_dBFS": -24.25881173781708,
+          "dip_dB": 6.471594257726235,
+          "original_reported_dB": 6.5
+        }
+      ],
+      "decoded_PCM16_sha256": "8eb2f803aa3e77e86d3da00b12b8b914cc2118b761a01af3c7e8c0b911ccb322"
+    },
+    "new_failed": {
+      "segment_count": 115,
+      "median_dBFS": -24.244028252437452,
+      "dips": [
+        {
+          "exact_MP4_clock_seconds": [
+            95.58,
+            96.02
+          ],
+          "original_formatted_key": "95.6–96.0s",
+          "RMS_dBFS": -30.57848121785078,
+          "segment_median_dBFS": -24.244028252437452,
+          "dip_dB": 6.334452965413327,
+          "original_reported_dB": 6.3
+        },
+        {
+          "exact_MP4_clock_seconds": [
+            118.35,
+            118.78
+          ],
+          "original_formatted_key": "118.3–118.8s",
+          "RMS_dBFS": -30.730405995543315,
+          "segment_median_dBFS": -24.244028252437452,
+          "dip_dB": 6.486377743105862,
+          "original_reported_dB": 6.5
+        }
+      ],
+      "decoded_PCM16_sha256": "e483f671305afa9e1f9735000064abba9020b6a05a4efd569a1489054d164ada"
+    }
+  },
+  "actual_public_float32_sample_count_each": 7726080,
+  "actual_public_float32_comparison_without_any_alignment_shift": true,
+  "old_public_float32_sha256": "30d94b680370e3bdd337ff092450bc3d6a86db4ba3f98521c4314f07e13e0dd8",
+  "new_public_float32_sha256": "826ca26e9133962a3d411adbedef695c2a07a6e4da294702c05f504b271f1ade",
+  "whole_public_float32_identical": false,
+  "same_public_float32_sample_count": 7514313,
+  "target_and_sentence_comparison": [
+    {
+      "name": "S11 dip",
+      "absolute_public_MP4_clock_seconds": [
+        95.58,
+        96.02
+      ],
+      "public_decoded_sample_count": 21120,
+      "float32_bit_identical": true,
+      "max_abs_difference": 0.0
+    },
+    {
+      "name": "S13 dip",
+      "absolute_public_MP4_clock_seconds": [
+        118.35,
+        118.78
+      ],
+      "public_decoded_sample_count": 20640,
+      "float32_bit_identical": true,
+      "max_abs_difference": 0.0
+    },
+    {
+      "name": "full processed S11 first punctuation group",
+      "absolute_public_MP4_clock_seconds": [
+        94.04,
+        96.06
+      ],
+      "public_decoded_sample_count": 96960,
+      "float32_bit_identical": true,
+      "max_abs_difference": 0.0
+    },
+    {
+      "name": "full processed S13",
+      "absolute_public_MP4_clock_seconds": [
+        114.91,
+        121.865
+      ],
+      "public_decoded_sample_count": 333840,
+      "float32_bit_identical": true,
+      "max_abs_difference": 0.0
+    }
+  ],
+  "remaining_whole_audio_difference_ranges_merged_gap_100ms": [
+    [
+      7.924,
+      8.981333333333334
+    ],
+    [
+      9.194666666666667,
+      9.548
+    ],
+    [
+      15.744,
+      17.386666666666667
+    ],
+    [
+      17.641333333333332,
+      17.6653125
+    ],
+    [
+      26.484,
+      26.688
+    ],
+    [
+      31.652,
+      31.657333333333334
+    ],
+    [
+      51.989333333333335,
+      53.056
+    ],
+    [
+      53.16266666666667,
+      53.388
+    ],
+    [
+      54.528,
+      54.57066666666667
+    ],
+    [
+      156.23333333333332,
+      156.25733333333332
+    ]
+  ],
+  "legacy_confirmation_predicates": [
+    {
+      "key": "95.6–96.0s",
+      "original_confirmation_retained_exactly": {
+        "配音指纹": "8058ea5228f9",
+        "低": 6.6,
+        "句子": "S11 Ash and sulphur dioxide,（逗号前 dioxide 的 -ide）",
+        "依据": "2026-11-10 逐 50 ms 实测新 work_54/a.wav（S4 重新合成后整篇后移约 0.40 秒，S11 声音本身没变）：95.55–95.65 是 dioxide 的 /ks/（2 kHz 以上占 -0～-1 dB，清楚），95.70 aɪ -14 dB，95.75–96.00 是 /d/ 和逗号前降调的浊音衰减（-18→-39 dB、2 kHz 以上占 -12～-21 dB），96.05 起停顿；与 11-05 实测（原 95.15–95.65）逐段对应，读音清楚、不闷不哑，是逗号前降调变轻",
+        "用户原话": "用户 2026-11-04（CLAUDE.md 守则22，主会话是总负责人）：“你拥有最高决策权……你是总负责人……你来帮我做最好的决定，但是前提是这个决定他能够是最好的。”声音按实测定，交主会话核定；主会话 2026-11-05 已按守则22 定稿 54"
+      },
+      "current_original_runtime_PCM_fingerprint": "d9e2abbede1a",
+      "stored_confirmation_fingerprint_matches": false,
+      "same_time_key": true,
+      "current_dB_within_original_confirmed_dB_plus_0_3": true,
+      "original_policy_accepts_this_article_and_dB": true
+    },
+    {
+      "key": "118.3–118.8s",
+      "original_confirmation_retained_exactly": {
+        "配音指纹": "8058ea5228f9",
+        "低": 6.5,
+        "句子": "S13 …global temperatures dipped…（temperatures 的非重读词尾 -tures）",
+        "依据": "2026-11-10 逐 50 ms 实测新 work_54/a.wav（整篇后移约 0.40 秒，S13 声音本身没变）：118.30–118.40 是 temperatures 的 /tʃ/（2 kHz 以上占 -0～-1 dB），118.45–118.60 非重读 ɚ（-18→-35 dB、2 kHz 以上占 -10～-29 dB 的正常浊音），118.65–118.70 词尾 /z/（-20～-21 dB、高频占 -0 dB，清楚），118.80–118.85 是已核实的非人声区间（数字静音），118.95 起 dipped；与 11-05 实测（原 117.90–118.55）逐段对应，读音清楚、不闷不哑，是非重读音节变轻",
+        "用户原话": "用户 2026-11-04（CLAUDE.md 守则22，主会话是总负责人）：“你拥有最高决策权……你是总负责人……你来帮我做最好的决定，但是前提是这个决定他能够是最好的。”声音按实测定，交主会话核定；主会话 2026-11-05 已按守则22 定稿 54"
+      },
+      "current_original_runtime_PCM_fingerprint": "d9e2abbede1a",
+      "stored_confirmation_fingerprint_matches": false,
+      "same_time_key": true,
+      "current_dB_within_original_confirmed_dB_plus_0_3": true,
+      "original_policy_accepts_this_article_and_dB": true
+    }
+  ],
+  "actual_processed_public_timing_metadata": {
+    "purpose": "actual public timeline metadata only; no raw sample arrays",
+    "segment_record_sha256": "8bcb9c9b4242bb83eab6b19c84f0f8a873314f487e9a4a75aabfb8e8f09da657",
+    "graft_record_sha256": "15e037679ce2f733ffeb39a155d3175abc09799940f37ea5f6e6c98588310735",
+    "segments": {
+      "S1": [
+        {
+          "段": 1,
+          "增益": 0.0,
+          "停顿": 0.4,
+          "时刻": [
+            2.845,
+            7.525
+          ]
+        },
+        {
+          "段": 2,
+          "增益": -2.5,
+          "停顿": 0.4,
+          "时刻": [
+            7.905,
+            8.815
+          ]
+        },
+        {
+          "段": 3,
+          "增益": -1.0,
+          "停顿": 0.4,
+          "时刻": [
+            9.195,
+            11.78
+          ]
+        },
+        {
+          "段": 4,
+          "增益": 0.0,
+          "停顿": null,
+          "时刻": [
+            12.16,
+            14.75
+          ]
+        }
+      ],
+      "S2": [
+        {
+          "段": 1,
+          "增益": -1.5,
+          "停顿": 0.4,
+          "时刻": [
+            15.75,
+            17.225
+          ]
+        },
+        {
+          "段": 2,
+          "增益": 0.0,
+          "停顿": 0.4,
+          "时刻": [
+            17.605,
+            19.405
+          ]
+        },
+        {
+          "段": 3,
+          "增益": 0.0,
+          "停顿": 0.4,
+          "时刻": [
+            19.785,
+            24.015
+          ]
+        },
+        {
+          "段": 4,
+          "增益": 0.0,
+          "停顿": null,
+          "时刻": [
+            24.395,
+            26.535
+          ]
+        }
+      ],
+      "S3": [
+        {
+          "段": 1,
+          "增益": 0.0,
+          "停顿": 0.4,
+          "时刻": [
+            27.535,
+            31.125
+          ]
+        },
+        {
+          "段": 2,
+          "增益": 0.0,
+          "停顿": null,
+          "时刻": [
+            31.505,
+            34.625
+          ]
+        }
+      ],
+      "S4": [
+        {
+          "段": 1,
+          "增益": 0.0,
+          "停顿": 0.4,
+          "时刻": [
+            35.825,
+            37.815
+          ]
+        },
+        {
+          "段": 2,
+          "增益": 0.0,
+          "停顿": null,
+          "时刻": [
+            38.195,
+            43.925
+          ]
+        }
+      ],
+      "S5": [
+        {
+          "段": 1,
+          "增益": 0.0,
+          "停顿": 0.4,
+          "时刻": [
+            44.925,
+            49.065
+          ]
+        },
+        {
+          "段": 2,
+          "增益": 0.0,
+          "停顿": null,
+          "时刻": [
+            49.445,
+            51.0
+          ]
+        }
+      ],
+      "S6": [
+        {
+          "段": 1,
+          "增益": -2.0,
+          "停顿": 0.4,
+          "时刻": [
+            52.0,
+            52.795
+          ]
+        },
+        {
+          "段": 2,
+          "增益": 0.0,
+          "停顿": 0.4,
+          "时刻": [
+            53.175,
+            55.97
+          ]
+        },
+        {
+          "段": 3,
+          "增益": 0.0,
+          "停顿": null,
+          "时刻": [
+            56.35,
+            59.605
+          ]
+        }
+      ],
+      "S7": [
+        {
+          "段": 1,
+          "增益": 0.0,
+          "停顿": 0.4,
+          "时刻": [
+            60.605,
+            66.045
+          ]
+        },
+        {
+          "段": 2,
+          "增益": 0.0,
+          "停顿": 0.4,
+          "时刻": [
+            66.425,
+            67.525
+          ]
+        },
+        {
+          "段": 3,
+          "增益": 0.0,
+          "停顿": null,
+          "时刻": [
+            67.905,
+            70.01
+          ]
+        }
+      ],
+      "S8": [
+        {
+          "段": 1,
+          "增益": 0.0,
+          "停顿": 0.4,
+          "时刻": [
+            71.21,
+            73.955
+          ]
+        },
+        {
+          "段": 2,
+          "增益": 0.0,
+          "停顿": 0.4,
+          "时刻": [
+            74.335,
+            76.2
+          ]
+        },
+        {
+          "段": 3,
+          "增益": 0.0,
+          "停顿": null,
+          "时刻": [
+            76.58,
+            78.315
+          ]
+        }
+      ],
+      "S9": [
+        {
+          "段": 1,
+          "增益": 0.0,
+          "停顿": null,
+          "时刻": [
+            79.315,
+            85.215
+          ]
+        }
+      ],
+      "S10": [
+        {
+          "段": 1,
+          "增益": -1.0,
+          "停顿": 0.4,
+          "时刻": [
+            86.215,
+            88.385
+          ]
+        },
+        {
+          "段": 2,
+          "增益": 1.0,
+          "停顿": null,
+          "时刻": [
+            88.765,
+            92.84
+          ]
+        }
+      ],
+      "S11": [
+        {
+          "段": 1,
+          "增益": 0.0,
+          "停顿": 0.4,
+          "时刻": [
+            94.04,
+            96.06
+          ]
+        },
+        {
+          "段": 2,
+          "增益": 0.0,
+          "停顿": 0.4,
+          "时刻": [
+            96.44,
+            98.425
+          ]
+        },
+        {
+          "段": 3,
+          "增益": 0.0,
+          "停顿": null,
+          "时刻": [
+            98.805,
+            102.38
+          ]
+        }
+      ],
+      "S12": [
+        {
+          "段": 1,
+          "增益": 0.0,
+          "停顿": 0.4,
+          "时刻": [
+            103.38,
+            105.265
+          ]
+        },
+        {
+          "段": 2,
+          "增益": 0.0,
+          "停顿": 0.4,
+          "时刻": [
+            105.645,
+            109.225
+          ]
+        },
+        {
+          "段": 3,
+          "增益": 1.5,
+          "停顿": null,
+          "时刻": [
+            109.605,
+            113.91
+          ]
+        }
+      ],
+      "S13": [
+        {
+          "段": 1,
+          "增益": 0.0,
+          "停顿": null,
+          "时刻": [
+            114.91,
+            121.865
+          ]
+        }
+      ],
+      "S14": [
+        {
+          "段": 1,
+          "增益": 0.0,
+          "停顿": 0.4,
+          "时刻": [
+            123.065,
+            126.2
+          ]
+        },
+        {
+          "段": 2,
+          "增益": 0.0,
+          "停顿": null,
+          "时刻": [
+            126.58,
+            131.425
+          ]
+        }
+      ],
+      "S15": [
+        {
+          "段": 1,
+          "增益": 0.0,
+          "停顿": 0.4,
+          "时刻": [
+            132.425,
+            134.55
+          ]
+        },
+        {
+          "段": 2,
+          "增益": 0.0,
+          "停顿": 0.4,
+          "时刻": [
+            134.93,
+            139.685
+          ]
+        },
+        {
+          "段": 3,
+          "增益": 0.0,
+          "停顿": 0.4,
+          "时刻": [
+            140.065,
+            142.11
+          ]
+        },
+        {
+          "段": 4,
+          "增益": 0.0,
+          "停顿": null,
+          "时刻": [
+            142.49,
+            147.235
+          ]
+        }
+      ],
+      "S16": [
+        {
+          "段": 1,
+          "增益": 0.0,
+          "停顿": 0.2,
+          "时刻": [
+            148.235,
+            149.43
+          ]
+        },
+        {
+          "段": 2,
+          "增益": 0.0,
+          "停顿": 0.2,
+          "时刻": [
+            149.61,
+            150.215
+          ]
+        },
+        {
+          "段": 3,
+          "增益": 0.0,
+          "停顿": 0.4,
+          "时刻": [
+            150.415,
+            151.775
+          ]
+        },
+        {
+          "段": 4,
+          "增益": 0.0,
+          "停顿": null,
+          "时刻": [
+            152.455,
+            158.94
+          ]
+        }
+      ]
+    },
+    "consonant_grafts": [
+      {
+        "句": "S1",
+        "位置": "第3个标点",
+        "类型": "词尾辅音除阻移植",
+        "开始": 11.705,
+        "结束": 11.785
+      },
+      {
+        "句": "S4",
+        "位置": "句末",
+        "类型": "词尾辅音除阻移植",
+        "开始": 43.86,
+        "结束": 43.94
+      },
+      {
+        "句": "S14",
+        "位置": "句末",
+        "类型": "词尾辅音除阻移植",
+        "开始": 131.36,
+        "结束": 131.44
+      }
+    ]
+  },
+  "clock_scope": "All displayed times are actual decoded public MP4 absolute clock. Producer segment scalars are processed public timeline metadata, not original raw-mother timing. No raw-mother gain/cut interval is inferred or written.",
+  "existing_manual_gain_controls": {},
+  "proposal_for_root_and_audio_owner": [
+    "The two flagged syllable/sentence regions are sample-for-sample identical to the exact previously accepted public MP4. Do not raise their gain merely to silence this stale-fingerprint alert.",
+    "The two existing confirmation time keys, original documented dB, historical wording and original permission quotation remain intact. If this exact audio survives the independent whole-audio issue below, root may approve transferring only the matching confirmation fingerprint to the actual final PCM fingerprint with this exact public-voice equality evidence. This is not a new user listening confirmation.",
+    "Current d9e2abbede1a belongs only to this failed attempt. After any real audio repair, measure its new original PCM fingerprint and repeat the applicable local equality/clock check; do not blindly reuse this fingerprint.",
+    "Independently resolve old/new whole AAC identity. Public float32 shows three short groups about +2 dB plus codec-neighbor residual changes, outside both alarm regions. Audio owner should replay the actual original G72/K134 cache/control path before choosing an approved repair or exact old-voice restoration. Do not speculate that CPU or gain alone is the proven cause.",
+    "Only after source/audio stabilizes should official full draft/4K checks, the original loudness confirmation policy, and accepted-prior AAC identity or an expressly approved actual repair QC all pass. Updating these two confirmation records alone is not delivery acceptance."
+  ],
+  "limitations": [
+    "No new human/auditory listening is claimed.",
+    "Original private raw PCM, GT arrays, TTS mother/cache and raw-mother interval mapping are not exported or inferred.",
+    "The complete new failed artifact remains a failure and must not enter the accepted-film ledger."
+  ],
+  "program_sha256": "3818322676c4fcf449449aee4303c4c4e1a3df262f8894092b4097435fb6bc77",
+  "original_artifact_zip": {
+    "path": "/workspace/work/video-audit70-20261113/readonly-failed54-61-66-69-43543967031/54/article54-original-output.zip",
+    "sha256": "b945f64114437a37fa53bdaff7864d815791821f9776b59c93a906c93e44ce4d"
+  },
+  "source_JSON": {
+    "path": "/workspace/work/video-audit70-20261113/readonly-failed54-61-66-69-43543967031/54/public-original-metadata/54-failed-working-source.json",
+    "sha256": "e92175ea0d1064c0bf6a20febf6a8475988ce4d7d382f59a460e7cd787a8288c"
+  },
+  "original_reference_diagnostic": {
+    "path": "/workspace/work/video-audit70-20261113/readonly-failed54-61-66-69-43543967031/54/public-original-metadata/54-reference-gain-diagnostic.json",
+    "sha256": "48db6a002b6cbd8da36a75baf1eed50318fa107537b4660e0d347708122f574e"
+  }
+}

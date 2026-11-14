@@ -1,0 +1,125 @@
+{
+  "status": "passed_real_complete_original_namespace_ending_mode_tests",
+  "production_audio_or_video_acceptance": false,
+  "good_original_source": {
+    "original_approved_points": [
+      45598,
+      57353
+    ],
+    "JSON_all_bytes_and_all_metadata_preserved": true,
+    "original_producer_guard_passed": true
+  },
+  "bad_front_and_tail": [
+    {
+      "channel": 0,
+      "sample": 38700,
+      "original_bad_point_gate_rejected": true,
+      "no_automatic_fallback_or_write": true
+    },
+    {
+      "channel": 1,
+      "sample": 48300,
+      "original_bad_point_gate_rejected": true,
+      "no_automatic_fallback_or_write": true
+    }
+  ],
+  "default_mode": {
+    "original_vs_candidate_auto_full_JSON_deep_exact": true,
+    "actual_auto_points": [
+      52620,
+      64500
+    ]
+  },
+  "no_existing_points_uses_exact_original_auto_algorithm": true,
+  "whole_speed_mode_preserves_JSON_bytes": true,
+  "actual_shell_pipeline_bad_point_exit_propagated": true,
+  "request_SHA256": "842e44e5aa19fddcfa239cb6530c5152341cd86e11db959543d02d8670ca13e8",
+  "candidate_tool_SHA256": "1a5d43c4f5483014b69bbea7ad43dddb0333a9a80e29bb2b4c8029d8915ff798",
+  "original_producer_namespace_not_replaced_by_mocks": true,
+  "private_raw_audio_exported": false,
+  "calls": [
+    {
+      "tool": "/home/runner/work/literate-enigma/literate-enigma/official-main/视频/工具/结尾句接点.py",
+      "flags": [
+        "--写入",
+        "--保持已审接点"
+      ],
+      "exit": 0,
+      "stdout": "  保持已审接点样本 [45598, 57353]：原静音门通过，原设置和脚本文件未写入\n",
+      "stderr": ""
+    },
+    {
+      "tool": "/home/runner/work/literate-enigma/literate-enigma/official-main/视频/工具/结尾句接点.py",
+      "flags": [
+        "--写入",
+        "--保持已审接点"
+      ],
+      "exit": 1,
+      "stdout": "",
+      "stderr": "【停止】结尾句的接点不在静音里（前段，样本 38700，所在帧和两侧各 5 ms 最响 0.0 dB）：Inky, somewhere beyond the pipe, remained wholly oblivious t\n"
+    },
+    {
+      "tool": "/home/runner/work/literate-enigma/literate-enigma/official-main/视频/工具/结尾句接点.py",
+      "flags": [
+        "--写入",
+        "--保持已审接点"
+      ],
+      "exit": 1,
+      "stdout": "",
+      "stderr": "【停止】结尾句的接点不在静音里（最后一段，样本 48300，所在帧和两侧各 5 ms 最响 0.0 dB）：Inky, somewhere beyond the pipe, remained wholly oblivious t\n"
+    },
+    {
+      "tool": "/home/runner/work/literate-enigma/literate-enigma/.github/reviewed-cuts-certification/original-source/视频/工具/结尾句接点.py",
+      "flags": [
+        "--写入"
+      ],
+      "exit": 0,
+      "stdout": "第07篇 S16：“Inky, somewhere beyond the pipe, remained wholly oblivious to the debate.”\n  最后一段：“remained wholly oblivious to the debate.”\n  前段 0.9：接点样本 52620（2.192 秒，所在静音 40 ms）；最后一段 0.78：接点样本 64500（2.688 秒，所在静音 90 ms）\n  结尾句 = {\"S16\": {\"前段语速\": 0.9, \"最后一段语速\": 0.78, \"最后一段前停顿\": 0.7, \"接点\": [52620, 64500], \"依据\": \"全篇结尾句按 07 定下的标准（用户 2026-10-10 同意并要求所有视频统一）：前段 0.9、最后一段“remained wholly oblivious to the debate.” 0.78、前面停 0.7 秒。接点由 结尾句接点.py 自动找：0.9 那遍最后一个标点后最长静音（40 ms）的正中 2.192 s，0.78 那遍（90 ms）的正中 2.688 s，所在帧和两侧各 5 ms 都低于 -55 dB（程序以 08 校准：与人工核实的接点落在同一段静音里）\"}}\n  已写进 scripts/07.json\n",
+      "stderr": ""
+    },
+    {
+      "tool": "/home/runner/work/literate-enigma/literate-enigma/official-main/视频/工具/结尾句接点.py",
+      "flags": [
+        "--写入"
+      ],
+      "exit": 0,
+      "stdout": "第07篇 S16：“Inky, somewhere beyond the pipe, remained wholly oblivious to the debate.”\n  最后一段：“remained wholly oblivious to the debate.”\n  前段 0.9：接点样本 52620（2.192 秒，所在静音 40 ms）；最后一段 0.78：接点样本 64500（2.688 秒，所在静音 90 ms）\n  结尾句 = {\"S16\": {\"前段语速\": 0.9, \"最后一段语速\": 0.78, \"最后一段前停顿\": 0.7, \"接点\": [52620, 64500], \"依据\": \"全篇结尾句按 07 定下的标准（用户 2026-10-10 同意并要求所有视频统一）：前段 0.9、最后一段“remained wholly oblivious to the debate.” 0.78、前面停 0.7 秒。接点由 结尾句接点.py 自动找：0.9 那遍最后一个标点后最长静音（40 ms）的正中 2.192 s，0.78 那遍（90 ms）的正中 2.688 s，所在帧和两侧各 5 ms 都低于 -55 dB（程序以 08 校准：与人工核实的接点落在同一段静音里）\"}}\n  已写进 scripts/07.json\n",
+      "stderr": ""
+    },
+    {
+      "tool": "/home/runner/work/literate-enigma/literate-enigma/.github/reviewed-cuts-certification/original-source/视频/工具/结尾句接点.py",
+      "flags": [
+        "--写入"
+      ],
+      "exit": 0,
+      "stdout": "第07篇 S16：“Inky, somewhere beyond the pipe, remained wholly oblivious to the debate.”\n  最后一段：“remained wholly oblivious to the debate.”\n  前段 0.9：接点样本 52620（2.192 秒，所在静音 40 ms）；最后一段 0.78：接点样本 64500（2.688 秒，所在静音 90 ms）\n  结尾句 = {\"S16\": {\"前段语速\": 0.9, \"最后一段语速\": 0.78, \"最后一段前停顿\": 0.7, \"接点\": [52620, 64500], \"依据\": \"全篇结尾句按 07 定下的标准（用户 2026-10-10 同意并要求所有视频统一）：前段 0.9、最后一段“remained wholly oblivious to the debate.” 0.78、前面停 0.7 秒。接点由 结尾句接点.py 自动找：0.9 那遍最后一个标点后最长静音（40 ms）的正中 2.192 s，0.78 那遍（90 ms）的正中 2.688 s，所在帧和两侧各 5 ms 都低于 -55 dB（程序以 08 校准：与人工核实的接点落在同一段静音里）\"}}\n  已写进 scripts/07.json\n",
+      "stderr": ""
+    },
+    {
+      "tool": "/home/runner/work/literate-enigma/literate-enigma/official-main/视频/工具/结尾句接点.py",
+      "flags": [
+        "--写入",
+        "--保持已审接点"
+      ],
+      "exit": 0,
+      "stdout": "第07篇 S16：“Inky, somewhere beyond the pipe, remained wholly oblivious to the debate.”\n  最后一段：“remained wholly oblivious to the debate.”\n  前段 0.9：接点样本 52620（2.192 秒，所在静音 40 ms）；最后一段 0.78：接点样本 64500（2.688 秒，所在静音 90 ms）\n  结尾句 = {\"S16\": {\"前段语速\": 0.9, \"最后一段语速\": 0.78, \"最后一段前停顿\": 0.7, \"接点\": [52620, 64500], \"依据\": \"全篇结尾句按 07 定下的标准（用户 2026-10-10 同意并要求所有视频统一）：前段 0.9、最后一段“remained wholly oblivious to the debate.” 0.78、前面停 0.7 秒。接点由 结尾句接点.py 自动找：0.9 那遍最后一个标点后最长静音（40 ms）的正中 2.192 s，0.78 那遍（90 ms）的正中 2.688 s，所在帧和两侧各 5 ms 都低于 -55 dB（程序以 08 校准：与人工核实的接点落在同一段静音里）\"}}\n  已写进 scripts/07.json\n",
+      "stderr": ""
+    },
+    {
+      "tool": "/home/runner/work/literate-enigma/literate-enigma/official-main/视频/工具/结尾句接点.py",
+      "flags": [
+        "--写入",
+        "--保持已审接点"
+      ],
+      "exit": 0,
+      "stdout": "  保持已审整句语速：原设置和脚本文件未写入\n",
+      "stderr": ""
+    },
+    {
+      "tool": "actual shell ending prefix",
+      "exit": 1,
+      "stdout": "没有会话记录（GitHub 或演练里跑），不查上下文\n【停止】结尾句的接点不在静音里（前段，样本 38700，所在帧和两侧各 5 ms 最响 0.0 dB）：Inky, somewhere beyond the pipe, remained wholly oblivious t\n",
+      "stderr": ""
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "passed": true,
+  "production_audio_acceptance": false,
+  "original_loudness_checker_SHA256": "2bb89e427ec014a7fc1b4cc46ea6a11f91a786930f91e8cec720e0307940b85b",
+  "cases": [
+    {
+      "article": "10",
+      "actual_request_JSON_SHA256": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
+      "request_JSON_byte_exact_in_keep_mode": true,
+      "calibration_audio_byte_exact_in_keep_mode": true,
+      "signal_kind": "synthetic four-segment calibration only; no claim of production audio acceptance",
+      "measurement_and_suggestion_output": [
+        "10 S1 分段增益dB {} → {'3': 4.0}",
+        "10 保持已审增益：仅测量并保留建议，未写入分段增益dB/段内渐变dB；原响度核查照常拦截不合格声音",
+        "10 句内相邻两段超过 2.5 LU 的句子：1"
+      ],
+      "unchanged_original_bad_loudness_gate_exit": 1,
+      "unchanged_original_good_loudness_gate_exit": 0,
+      "default_write_mode_still_updates_gain": true
+    },
+    {
+      "article": "11",
+      "actual_request_JSON_SHA256": "665cbb80cc70b700ecc0cc5813209fd100ad4fa8f0eead3929b9e53778d9d07f",
+      "request_JSON_byte_exact_in_keep_mode": true,
+      "calibration_audio_byte_exact_in_keep_mode": true,
+      "signal_kind": "synthetic four-segment calibration only; no claim of production audio acceptance",
+      "measurement_and_suggestion_output": [
+        "11 S1 分段增益dB {} → {'3': 4.0}",
+        "11 保持已审增益：仅测量并保留建议，未写入分段增益dB/段内渐变dB；原响度核查照常拦截不合格声音",
+        "11 句内相邻两段超过 2.5 LU 的句子：1"
+      ],
+      "unchanged_original_bad_loudness_gate_exit": 1,
+      "unchanged_original_good_loudness_gate_exit": 0,
+      "default_write_mode_still_updates_gain": true
+    },
+    {
+      "article": "12",
+      "actual_request_JSON_SHA256": "e3bfbcce6f1a8e14cfe451d656574353321e297c90c62f5a7b422f37478311d5",
+      "request_JSON_byte_exact_in_keep_mode": true,
+      "calibration_audio_byte_exact_in_keep_mode": true,
+      "signal_kind": "synthetic four-segment calibration only; no claim of production audio acceptance",
+      "measurement_and_suggestion_output": [
+        "12 S1 分段增益dB {} → {'3': 4.0}",
+        "12 保持已审增益：仅测量并保留建议，未写入分段增益dB/段内渐变dB；原响度核查照常拦截不合格声音",
+        "12 句内相邻两段超过 2.5 LU 的句子：1"
+      ],
+      "unchanged_original_bad_loudness_gate_exit": 1,
+      "unchanged_original_good_loudness_gate_exit": 0,
+      "default_write_mode_still_updates_gain": true
+    }
+  ],
+  "shell_wiring": {
+    "actual_shell_environment_mode_keeps_request_JSON_byte_exact": true,
+    "stdout": [
+      "12 S1 分段增益dB {} → {'3': 4.0}",
+      "12 保持已审增益：仅测量并保留建议，未写入分段增益dB/段内渐变dB；原响度核查照常拦截不合格声音",
+      "12 句内相邻两段超过 2.5 LU 的句子：1",
+      "12 句内相邻两段超过 2.5 LU 的句子：1"
+    ],
+    "harness_scope": "All unrelated sound stages inert; real loudness measurement CLI executes unchanged. Not a full production run."
+  }
+}

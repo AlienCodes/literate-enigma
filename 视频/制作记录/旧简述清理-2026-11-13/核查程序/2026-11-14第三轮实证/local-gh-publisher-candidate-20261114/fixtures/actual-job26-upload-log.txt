@@ -1,0 +1,41 @@
+2026-11-13T23:10:00.1158922Z ##[group]Run actions/upload-artifact@v4
+2026-11-13T23:10:00.1159085Z with:
+2026-11-13T23:10:00.1159229Z   name: article26-revised-canonical-4K-final
+2026-11-13T23:10:00.1159559Z   path: article26-delivery/*.mp4
+article26-delivery/*.json
+article26-delivery/*.png
+article26-delivery/*.wav
+article26-delivery/*.log
+
+2026-11-13T23:10:00.1159894Z   compression-level: 1
+2026-11-13T23:10:00.1160026Z   retention-days: 30
+2026-11-13T23:10:00.1160152Z   if-no-files-found: error
+2026-11-13T23:10:00.1160293Z   overwrite: false
+2026-11-13T23:10:00.1160421Z   include-hidden-files: false
+2026-11-13T23:10:00.1160561Z env:
+2026-11-13T23:10:00.1160670Z   ARTICLE_NO: 26
+2026-11-13T23:10:00.1160783Z   STRICT_CACHE: 1
+2026-11-13T23:10:00.1160901Z   XG_NOPUSH: 1
+2026-11-13T23:10:00.1161052Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-13T23:10:00.1161291Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-13T23:10:00.1161551Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-13T23:10:00.1161764Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-13T23:10:00.1161972Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-13T23:10:00.1162194Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-13T23:10:00.1162374Z ##[endgroup]
+2026-11-13T23:10:00.2278114Z (node:5051) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-13T23:10:00.2278532Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-13T23:10:00.2322696Z With the provided path, there will be 7 files uploaded
+2026-11-13T23:10:00.2334012Z Artifact name is valid!
+2026-11-13T23:10:00.2335093Z Root directory input is valid!
+2026-11-13T23:10:00.5142247Z Beginning upload of artifact content to blob storage
+2026-11-13T23:10:00.6893480Z (node:5051) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-13T23:10:01.2061837Z Uploaded bytes 8388608
+2026-11-13T23:10:01.3054140Z Uploaded bytes 10824481
+2026-11-13T23:10:01.3468073Z Finished uploading artifact content to blob storage!
+2026-11-13T23:10:01.3468613Z SHA256 digest of uploaded artifact zip is 7c4a1bd64083145f7a94a4ca2a36bc774374ef266ce44c85a0688670d179d8f1
+2026-11-13T23:10:01.3469446Z Finalizing artifact upload
+2026-11-13T23:10:01.7222518Z Artifact article26-revised-canonical-4K-final.zip successfully finalized. Artifact ID 14083893826
+2026-11-13T23:10:01.7223071Z Artifact article26-revised-canonical-4K-final has been successfully uploaded! Final size is 10824481 bytes. Artifact ID is 14083893826
+2026-11-13T23:10:01.7228234Z Artifact download URL: https://github.com/AlienCodes/literate-enigma/actions/runs/43523430839/artifacts/14083893826
+2026-11-13T23:10:01.7419061Z Post job cleanup.

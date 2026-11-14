@@ -1,0 +1,66 @@
+import json,re,glob,os
+# 第15篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
+# 2026-10-16 程序打底：英文、重点词与文章逐字核对，重点词中文沿用文章定稿（铁律），只按《翻译风格》调格式（“的”“了”进粗体）。
+# 08–14 用户定下的规矩一开始就照做：过去时“了”、顺着英文语序排、代词译出（her→她的）、英文没有引号中文不加、结尾解说（T28）、术语不漏（T30）、短语型用法整体标（T22）。
+S=[
+(1,[[[("On 10 April 1912","1912年4月10日，"),("the **opulent** **liner** Titanic","**豪华的**(opulent)**邮轮**(liner)泰坦尼克号"),("left Southampton","离开了南安普敦，")]],
+    [[("on her **maiden voyage**.","开始了她的**处女航**(maiden voyage)。")],
+     "（maiden voyage：处女航，首航；\n英语常用 she/her 指船）"]]),
+(1,[[[("A 1911 **trade journal**","1911年，一家**行业期刊**(trade journal)"),("had **dubbed** her and her sister ship","**把**(dubbed)她和她的姊妹船**称为**(dubbed)"),('"**practically** **unsinkable**".',"“**几乎**(practically)**不会沉没的**(unsinkable)”。")],
+     "（dub A B：把A称作B；sister ship：姊妹船）"]]),
+(1,[[[("At about 11.40pm on 14 April","4月14日晚约11时40分，"),("she **collided with** an **iceberg**;","她**和**(collided with)一座**冰山**(iceberg)**相撞了**(collided with)；")]],
+    [[("by 2.20am","到次日凌晨2时20分，"),("she had **vanished** beneath the waves,","她已**消失**(vanished)在海浪之下，")]],
+    [[("and the **death toll**","**遇难人数**(death toll)"),("would **surpass** 1,500.","最终将**超过**(surpass)1,500。")],
+     "（collide with：与……相撞；would：过去将来时，表示后来的结果）"]]),
+(2,[[[("**Folklore**","**坊间流传的说法**(Folklore)"),("blames **arrogance**.","把灾难归咎于**傲慢**(arrogance)。")],
+     "（blame A：把过错归咎于A）"]]),
+(2,[[[("Yet the Titanic","然而泰坦尼克号"),("was **compliant with** the law.","**符合**(compliant with)法规。")],
+     "（be compliant with：符合（规定、标准））"]]),
+(2,[[[("Under 1894 rules,","按照1894年的规则，"),("Britain's **maritime** **regulator**","英国的**海事**(maritime)**监管机构**(regulator)")]],
+    [[("**pegged** lifeboat numbers **to** **gross tonnage** (volume, not weight)","**把**(pegged to)救生艇数量**与**(pegged to)**总吨位**(gross tonnage)（体积，而非重量）**挂钩**(pegged to)，")]],
+    [[("on a **scale**","在一个**等级表**(scale)上/**等级体系**(scale)中，"),("that **topped out at** 16 boats","（其数量）**最高达**(topped out at)（只能）**到**(topped out at)16艘，"),("for 10,000 tons or more.","针对10,000吨及以上（的船）。")],
+     "（peg A to B：把A与B挂钩；that…：定语从句，修饰 scale；\ntop out at：最高达到……）"]]),
+(2,[[[("At about 46,000 tons","她约有46,000吨，"),("she carried 20,","带了20艘，"),("**exceeding** the **requirement**.","**超出了**(exceeding)**要求**(requirement)。")],
+     "（20 后面省略了 boats；\nexceeding…：现在分词短语，补充说明带了20艘的结果）"]]),
+(2,[[[("Their **capacity**","它们的**容量**(capacity)"),("was 1,178,","是1,178人，"),("**roughly** half the 2,200 aboard:","**大约**(roughly)是船上2,200人的一半：")]],
+    [[("**sufficient** in law,","按法律**足够**(sufficient)，"),("**inadequate** at sea.","到了海上却**不足**(inadequate)。")],
+     "（Their：指这20艘救生艇；\nhalf the 2,200 aboard：船上2,200人的一半，\naboard 作后置定语；\nsufficient…, inadequate…：说明这样的容量）"]]),
+(3,[[[("Within radio range,","在无线电通讯范围内，"),("the steamer Californian","加州人号轮船")]],
+    [[("kept an **equally** **lawful** routine.","遵循的是一套**同样**(equally)**合法的**(lawful)值班惯例。")],
+     "（Within radio range：在泰坦尼克号的无线电通讯范围内；\nequally lawful：和泰坦尼克号一样合法）\n（按照当时的规定，加州人号报务员下班睡觉，是完全合法的。\n他没有违规。泰坦尼克号没收到加州人号的冰情警告，\n加州人号没收到泰坦尼克的求救，错的不是船员，\n错的是这套没跟上时代（没要求全天候值守）的法律。）"]]),
+(3,[[[("Her **sole** **wireless** **operator**,","她**唯一的**(sole)**无线电**(wireless)**操作员**(operator)"),("Cyril Evans,","西里尔·埃文斯，")]],
+    [[("was **on the payroll of** the Marconi company;","**受雇于**(on the payroll of)马可尼公司；")]],
+    [[("when he slept,","他一睡下，"),("so did the radio.","电台也一样睡了。")],
+     "（Her：指加州人号；Cyril Evans：同位语，说明报务员是谁；\nbe on the payroll of：受雇于，领……的薪水；\nso did the radio：倒装，电台也一样）"]]),
+(3,[[[("Around 11.30pm","晚上11时30分左右，"),("he **switched off** his set.","他**关掉了**(switched off)自己的设备。")],
+     "（switch off：关掉；set：这里指无线电收发报机）"]]),
+(3,[[[("**Hindsight**","**事后看来**(Hindsight)，"),("may call that **negligence**,","这或许可称为**疏忽**(negligence)，")]],
+    [[("yet no rule","然而没有哪条规则"),("**obliged** him **to** stay **vigilant**,","**强制**(obliged to)他保持**警觉**(vigilant)，")]],
+    [[("so the Titanic's **frantic** **distress calls**","所以泰坦尼克号**发狂似的**(frantic)**求救呼叫**(distress calls)，"),("went **unheard** there.","在那里**无人听见**(unheard)。")],
+     "（call A B：把A称为B；oblige sb to do：责成某人做……；\ngo unheard：没有被听到）"]]),
+(4,[[[("Between April and July 1912,","1912年4月至7月，"),("inquiries in Washington and London","华盛顿和伦敦的调查")]],
+    [[("heard **testimony** from **survivors** and the Californian's crew.","听取了**幸存者**(survivors)以及加州人号船员的**证词**(testimony)。")],
+     "（hear testimony from…：听取……的证词）"]]),
+(4,[[[("That July,","同年7月，"),("American **legislation**","美国的一项**立法**(legislation)"),("made **round-the-clock** radio watch **compulsory**.","将**全天候**(round-the-clock)无线电值守定为**强制性的**(compulsory)（义务）。")],
+     "（make A B：使A成为B，把A定为B）"]]),
+(4,[[[("In January 1914","1914年1月，"),("**delegates** of 13 nations","13国的**代表**(delegates)"),("signed the first Safety of Life at Sea **convention**,","签署了第一部《海上人命安全**公约**(convention)》，")]],
+    [[("**stipulating** lifeboat seats for all,","**规定**(stipulating)救生艇座位要够所有人乘坐，"),("**continuous** radio watch,","电台要**不间断**(continuous)值守，"),("and an ice **patrol**.","还要开展冰情**巡逻**(patrol)。")],
+     "（stipulating…：现在分词短语，说明公约规定的内容；\nlifeboat seats for all：够所有人坐的救生艇座位）"]]),
+(4,[[[("The First World War","第一次世界大战"),("**stalled** the **treaty**;","让这项**条约**(treaty)**暂缓搁置了**(stalled)；")]],
+    [[("the patrol","然而冰情巡逻"),("went ahead **regardless**.","**不管怎样**(regardless)依然进行。")],
+     "（go ahead：开始进行，照计划进行）"]]),
+(5,[[[("The **doomed** liner","这艘**在劫难逃的**(doomed)邮轮"),("sank within three hours.","不到三小时就沉没了。")]]]),
+(5,[[[("The **outdated** rules she sailed under","她航行时所遵循的那套**过时的**(outdated)规则，"),("had **stayed afloat** since 1894;","却自1894年起**一直没有沉没**(stayed afloat)；")]],
+    [[("it took her dead","直到她的乘客葬身大海，"),("to **discredit** them.","它们才**信誉扫地**(discredit)。")],
+     "（she sailed under：省略了 that 的定语从句，修饰 rules；\nstay afloat：浮在水上，没有沉没；也指维持下去；\nit took A to do B：直到有了A才做成B；\nher dead：她船上的死者）\n（结局：泰坦尼克号合乎1894年的规则，\n救生艇却只够船上一半的人；\n加州人号的报务员按惯例关了电台，没听到她的求救呼叫。\n1,500多人遇难后，\n美国1912年7月立法规定电台全天候值守，\n1914年13国签署了第一部《海上人命安全公约》，\n冰情巡逻也开展了起来。\n按法律足够，\n到了海上却不足：过时的规则直到这场灾难才信誉扫地。）"]]),
+]
+# 习语整体标（T22，用户 2026-10-15 turn the tide）：maiden voyage、distress calls 撞词也保留，写进 allow_clash。
+CONF={"中文重复":{"把":"用户 2026-10-16 明确要求 dub 标“把……称为”、被隔开的两处都标（T23）；pegged to 的“把……与……挂钩”也是被隔开的“把”，两个“把”都只是框架词的一半，各自后半（称为／挂钩）不同，学生分得清"},"牛津逗号":{"S13 April and July 1912, inquiries in Washington and":"不是并列：April and July、Washington and London 各只有两项，逗号前是时间状语"},
+ "短语":{"S13 testimony … from":"testimony from sb 里 from 引出证词的来源，testimony 本身就是“证词”，意思不靠 from 产生（同 10 involvement in 的判法）；hear testimony from 写进 note"},
+ "中文意思":{"S15 delegates":"本句 delegates 是名词复数（13国的代表），用的是 n. 代表 这个义项，不是 v. 委派……为代表"}}
+out={"no":"15","title_en":"The Myth of the Unsinkable","title_zh":"永不沉没的神话","title_fx":{"hl":["Unsinkable"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"结局","allow_clash":["practically","maiden voyage","distress calls"],
+     "高亮按实际开口":True,"高亮开口门槛":40,"术语":{"Titanic":"泰坦尼克号","Southampton":"南安普敦","Britain":"英国","Californian":"加州人号","Cyril Evans":"西里尔·埃文斯",
+     "Marconi":"马可尼","Washington":"华盛顿","London":"伦敦","American":"美国","Safety of Life at Sea":"海上人命安全","First World War":"第一次世界大战"}}
+import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from 核对 import 生成并核对
+生成并核对(S, out)

@@ -1,0 +1,101 @@
+{
+  "article": "46",
+  "sentence": "S6",
+  "checked_utc": "2026-11-14T02:53:52.074343+00:00",
+  "scope": "Read-only actual current public MP4 compared with previously accepted public MP4. No human listening, new quality approval, waiver, source/threshold/audio/control changes.",
+  "human_listening_performed": false,
+  "confirmation_or_gate_modified": false,
+  "input_ZIP_sha256": "329565110f5d635c3e8a57db2aafb1ca79d923ce7e14f1dec52e1620e943e658",
+  "accepted_public_mp4": {
+    "path": "/workspace/work/video-audit70-20261113/asr46-49-55-readonly-20261114/public-media/46/46-accepted.mp4",
+    "bytes": 12512629,
+    "sha256": "7ec49387c4b84870e2e2d651888c20c8803d48319c59b7545fd2a2c4368aabca",
+    "repository": "alienalgorithm/postgraduate-vocabulary",
+    "pinned_commit": "3d82f20ce7ecfea2e4e0a2aa93c340a779e646d3",
+    "repo_path": "最终版4K视频/46 - Lost in the Glare - 光之殇.mp4"
+  },
+  "current_public_mp4": {
+    "path": "/workspace/work/video-audit70-20261113/asr46-new-evidence-readonly-20261114/46-current-failed-public.mp4",
+    "sha256": "8ad410849a709dc1a7325ab44c8d6833bdb098b54124641957adaa92832ea17c",
+    "bytes": 7234583
+  },
+  "ASR_evidence": {
+    "article": "46",
+    "sentence": "S6",
+    "diagnostic_only": true,
+    "acceptance": false,
+    "automatic_confirmation": false,
+    "private_raw_PCM_GT_models_or_caches_exported": false,
+    "original_asr_program_sha256": "40caf651184d50efeb8d3b4477cd7a2b85911a495360554db1b3cd09ab596229",
+    "source_sha256": "278ce7411f2fb3bc960335ebb5aab8980164c80597884f3dbd43d1e78d845e75",
+    "internal_pcm_sha256": "b56090f8989da0d8cb809bcc0268db1c01e766f2778aedae142b5a89276a20a0",
+    "public_video_sha256": "8ad410849a709dc1a7325ab44c8d6833bdb098b54124641957adaa92832ea17c",
+    "actual_segment_metadata_sha256": "78275fde28a9e376a3d6172ccd16cde233ba8ca79ccb851d8ac2a6465dd1cde4",
+    "reference_text": "In 477 field clips, precious few darted straight at the light.",
+    "original_pipeline_input": {
+      "native_seconds": [
+        48.29,
+        53.49
+      ],
+      "sample_rate": 16000,
+      "sample_count": 83200,
+      "float32_sample_sha256": "35bd663726a5a13584afe53ef489abfa6d3581cb4b411a3504439a2501b14fdc",
+      "full_transcripts_by_original_recognizer": {
+        "small.en": "In 477 field clips, precious few darted straight at the light.",
+        "parakeet": "In 477 field clips, precious few darted straight at the lights."
+      },
+      "original_comparison_differences": [
+        [
+          "light",
+          "lights〔parakeet〕"
+        ]
+      ],
+      "original_merged_word_observations": []
+    },
+    "public_MP4_context": {
+      "file": "46-S6-public-ASR-context.wav",
+      "sha256": "c12d86c6a4119e092e2996b84dba2fde65316378b13d2e1bb4d88739f3032753",
+      "source_video_sha256": "8ad410849a709dc1a7325ab44c8d6833bdb098b54124641957adaa92832ea17c",
+      "public_mp4_seconds": [
+        48.17,
+        53.61
+      ],
+      "clock_relation": "native sentence bounds plus 120ms public-context padding; not a sample-identity alignment",
+      "derived_from_public_mp4_only": true,
+      "full_transcripts_by_original_recognizer": {
+        "small.en": "In 477 field clips, precious few darted straight at the light.",
+        "parakeet": "In 477 field clips, precious few darted straight at the light."
+      },
+      "original_comparison_differences": [],
+      "original_merged_word_observations": []
+    }
+  },
+  "AAC_ADTS_entire_track_byte_equal": true,
+  "AAC_ADTS_sha256": {
+    "accepted": "deed9b94fd8870132256eeda357a75dd007ccebf4245eed285efd3a00483108d",
+    "current": "deed9b94fd8870132256eeda357a75dd007ccebf4245eed285efd3a00483108d"
+  },
+  "audio_codec_parameters_equal": true,
+  "AAC_packet_payload_absolute_pts_dts_duration_size_equal": true,
+  "packet_counts": {
+    "accepted": 6826,
+    "current": 6826
+  },
+  "packet_projection_sha256": {
+    "accepted": "7509b40ab9975b427bab979833b3dc7fa4f58c80ff399dafb20357ee0121c491",
+    "current": "7509b40ab9975b427bab979833b3dc7fa4f58c80ff399dafb20357ee0121c491"
+  },
+  "public_decoded_float32_entire_track_byte_equal": true,
+  "public_decoded_samples": {
+    "accepted": 6988800,
+    "current": 6988800
+  },
+  "public_decoded_sha256": {
+    "accepted": "b7a0c9b44db3122c224082bb6e3e98abb9cec85a35b5f6c303f01c6c4ff87f63",
+    "current": "b7a0c9b44db3122c224082bb6e3e98abb9cec85a35b5f6c303f01c6c4ff87f63"
+  },
+  "max_abs_public_sample_difference": 0.0,
+  "private_native_ASR_input_PCM_not_read_or_exported": true,
+  "native_ASR_input_identity_to_accepted_not_claimed": true,
+  "transcript_context_observation": "Original exact sentence window: small.en light, parakeet lights. Public MP4 context with 120ms padding: both recognizers light and no word differences. Different context/window, not a sample-identity claim."
+}

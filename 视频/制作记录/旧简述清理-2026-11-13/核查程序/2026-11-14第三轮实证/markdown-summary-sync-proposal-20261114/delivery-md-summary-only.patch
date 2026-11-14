@@ -1,0 +1,91 @@
+--- a/delivery.py
++++ b/delivery.py
+@@ -114,6 +114,73 @@
+     text = re.sub(r'\{\{([^{}|]+)\|[^{}]+\}\}', r'\1', text)  # KEEP visible gloss text
+     text = re.sub(r'(?m)^\s*@[A-Za-z][A-Za-z0-9 \'/-]*\|', '', text)  # repeated color-continuation key only
+     return re.findall(r"[A-Za-z0-9]+(?:['-][A-Za-z0-9]+)*|[^\s]", text)
++
++
++def markdown_prose_equivalence(request_md, final_md, request_json, final_json,
++                               article, visible_tokens, require):
++    marker = '（简述：'
++
++    def section(md, heading, stop):
++        require(md.count(heading) == md.count(stop) == 1,
++                f'Unique Markdown section required: {article}/{heading}')
++        return md.split(heading, 1)[1].split(stop, 1)[0]
++
++    def complete_tail_brief(text, scope):
++        require(text.count(marker) == 1,
++                f'One identifiable tail brief required: {article}/{scope}')
++        prefix, tail = text.split(marker, 1)
++        depth = 1  # The opening full-width parenthesis is part of marker.
++        for index, char in enumerate(tail):
++            if char == '（':
++                depth += 1
++            elif char == '）':
++                depth -= 1
++                if depth == 0:
++                    require(not tail[index + 1:].strip(),
++                            f'Unapproved prose or note after tail brief: {article}/{scope}')
++                    return prefix, tail[:index]
++        require(False, f'Unbalanced or incomplete tail brief: {article}/{scope}')
++
++    def approved_summary(document):
++        hits = [c['note']
++                for s in document['sentences'] for c in s['chunks']
++                if marker in c.get('note', '')]
++        require(len(hits) == 1 and hits[0].count(marker) == 1,
++                f'One complete approved JSON summary required: {article}')
++        return complete_tail_brief(hits[0], 'approved JSON')[1]
++
++    request_en = section(request_md, '## 英文', '## 中文')
++    final_en = section(final_md, '## 英文', '## 中文')
++    require(visible_tokens(request_en) == visible_tokens(final_en),
++            f'Markdown English prose changed: {article}')
++    request_cn = section(request_md, '## 中文', '## 速查表')
++    final_cn = section(final_md, '## 中文', '## 速查表')
++    result = {'kind': 'unchanged_visible_Markdown_prose', 'article': article}
++    if visible_tokens(request_cn, True) != visible_tokens(final_cn, True):
++        old_prefix, old_brief = complete_tail_brief(request_cn, 'request Markdown')
++        new_prefix, new_brief = complete_tail_brief(final_cn, 'working Markdown')
++        require(visible_tokens(old_prefix, True) == visible_tokens(new_prefix, True),
++                f'Markdown Chinese body/note prose changed: {article}')
++        requested = approved_summary(request_json)
++        actual = approved_summary(final_json)
++        expected = visible_tokens(requested, True)
++        require(expected == visible_tokens(actual, True) ==
++                visible_tokens(new_brief, True),
++                f'Working MD summary is not the already requested JSON summary: {article}')
++        result.update(kind='official_sync_of_already_requested_JSON_summary',
++                      request_JSON_and_final_JSON_and_working_MD_summary_visible_exact=True,
++                      all_other_Chinese_body_and_note_prose_visible_exact=True,
++                      original_request_MD_retained_unmodified=True,
++                      old_request_MD_summary=old_brief,
++                      approved_JSON_summary=requested,
++                      final_working_MD_summary=new_brief,
++                      outer_brief_parentheses_balanced_and_no_following_note=True)
++    require(visible_tokens(request_md.split('## 史实与来源', 1)[-1]) ==
++            visible_tokens(final_md.split('## 史实与来源', 1)[-1]),
++            f'Markdown facts changed: {article}')
++    result['request_MD_sha256'] = hashlib.sha256(request_md.encode()).hexdigest()
++    result['final_MD_sha256'] = hashlib.sha256(final_md.encode()).hexdigest()
++    return result
+ 
+ 
+ def changed_json_paths(before, after, path=''):
+@@ -425,12 +492,9 @@
+     require(sorted(transform['changed_paths']) == sorted(actual_changed_paths), f'Actual mechanical source diff ledger mismatch: {n}')
+     invariants = source_invariants(request_json, final_json, n)
+     invariants['actual_changed_paths'] = actual_changed_paths
+-    # Markdown English/Chinese prose and fact appendix must also remain stable under style/wrapping.
++    # Official MD sync may replace only a stale embedded brief with the already requested JSON brief.
+     req_md = (request_root / request_sources['md']['path']).read_text(); final_md = (root / sources['md']['path']).read_text()
+-    for heading, stop in [('## 英文', '## 中文'), ('## 中文', '## 速查表')]:
+-        require(visible_tokens(req_md.split(heading, 1)[1].split(stop, 1)[0], heading == '## 中文') ==
+-                visible_tokens(final_md.split(heading, 1)[1].split(stop, 1)[0], heading == '## 中文'), f'Markdown prose changed outside mechanical style: {n}/{heading}')
+-    require(visible_tokens(req_md.split('## 史实与来源', 1)[-1]) == visible_tokens(final_md.split('## 史实与来源', 1)[-1]), f'Markdown facts changed: {n}')
++    invariants['markdown_prose_equivalence'] = markdown_prose_equivalence(req_md, final_md, request_json, final_json, n, visible_tokens, require)
+     require({s['kind'] for s in item['stills']} >= {'summary', 'body_end', 'illustration'}, f'Need actual body/illustration/card stills: {n}')
+     for still in item['stills']:
+         checked_file(still); require(still['video_sha256'] == item['mp4']['sha256'], f'Still from other MP4: {n}')

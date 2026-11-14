@@ -1,0 +1,536 @@
+{
+  "observed_via": "connected GitHub GET releases?per_page=30&page=1",
+  "repository": "AlienCodes/literate-enigma",
+  "page_complete": true,
+  "read_only": true,
+  "releases": [
+    {
+      "id": 402873342,
+      "tag_name": "v18.6",
+      "name": "声音分身 VoiceTwin v18.6（Windows）",
+      "html_url": "https://github.com/AlienCodes/literate-enigma/releases/tag/v18.6",
+      "target_commitish": "febc63db632fb762e2fbb924f182d91d8d4bc2c3",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-10-04T06:00:53Z",
+      "published_at": "2026-10-04T06:12:25Z",
+      "body": "## 声音分身 VoiceTwin v18.6（Windows）\n\n用你以前的讲课视频训练出\"你的声音\"，以后粘贴讲稿就能生成你的声音读的讲课音频和字幕（中文 + 英文）。\n\n### ✨ 这一版新增\n\n- **新的质量档「一模一样」（以后默认就是它）**：每句话换几条你自己的录音当参考、试很多个版本，挑出最像你的；句子之间的停顿长短和每句的音量按你讲课录音里实测的习惯来；句子之间照样是**绝对静音**。最像你，也最慢\n- **训练方式「一模一样」（默认）**：中文和英文一起训练——以前中文句子里夹的英文单词训练时被丢掉了（你的母本 1004 句里有 559 句夹着英文，一共 2080 个英文单词没练到），现在一起练；练得更久、多存几个版本，再用你没参加训练的录音把每个版本都试一遍，挑出最像你的。第一次会很慢（估计要几个小时），练完一次会显示你电脑上实际用的时间\n- **挑模型看四项分数**：中英夹在一起、纯中文、纯英文（有这类句子时）、综合总评分（按你讲课里各类句子实际说的时长合起来）；差别在误差范围内会写「分不出来」\n- **文字校正母本最优先**：准备素材时自动查、🔍 自动查找、📝 一键全部文字校正、「修改建议」那一列，四个地方都先和你的母本对照，和母本不一样的地方按母本改（定于从句 → 定语从句）；重新准备过素材、视频换了文件夹也对得上。用你的母本实测：要改的 123 句全部改得和母本一样，对的句子一处没多改\n- **生成的文件名最后写实际用的模型**，例如 `第3课_10月05日09点30分_v2ProPlus.wav`（音频、字幕、两个版本都一样）；文件名只用汉字、字母、数字和下划线\n- **全面找 bug（第四轮）**：找到并修好 57 个问题，修完复查又修好 15 个（每个都先写了测试）\n- **《快速上手》改成一页纸**\n- 网页标题永远是「声音分身 VoiceTwin v18」（这次的安装包叫 v18.6）\n\n### 📥 下载（在下面的 Assets 里）\n\n| 文件 | 是什么 |\n|---|---|\n| **`VoiceTwin-QuickStart-v18.6.pdf`** | **快速上手（一页纸，先看这个）** |\n| **`VoiceTwin-Windows-v18.6.zip`** | 程序本体 |\n\n不需要下载 Source code。\n\n### 🚀 最快用起来\n\n**安装（一次）**\n1. 下载 [GPT-SoVITS 整合包](https://www.yuque.com/baicaigongchang1145haoyuangong/ib3g1e/dkxgpiy9zb96hob4#KTvnO)（最新 v2pro 版），解压并改名为 `D:\\GPT-SoVITS`\n2. 把 `VoiceTwin-Windows-v18.6.zip` 解压到 `D:\\`，双击 `D:\\VoiceTwin\\install_windows.bat`，输入 **1** 回车，再输入 `D:\\GPT-SoVITS` 回车，等它装完，黑色窗口里写着「声音分身 VoiceTwin v18.6 正在启动」就对了（网页标题永远显示 v18）\n\n**训练（一次）**\n3. 把讲课视频复制到 `D:\\讲课素材`，双击桌面「声音分身 VoiceTwin」\n4. 声音名称填 `我的声音` → **① 准备素材**：文件夹填 `D:\\讲课素材` → 开始准备素材 → 等 ✅\n5. **② 训练模型** → 开始训练 → 等 ✅\n\n**以后每次**\n6. **③ 生成讲课音频** → 粘贴讲稿 → 生成 → 试听、下载音频和字幕\n\n图文版：[快速上手](https://github.com/AlienCodes/literate-enigma/blob/master/快速上手.md)（解压后双击 `使用教程（先看我）.html` 也能看）。\n\n> 电脑要求：Windows 10/11，NVIDIA 显卡 6GB 显存以上，硬盘空闲 30GB。只克隆你自己的声音；公开发布 AI 合成音频时请按平台规定标注。\n",
+      "assets": [
+        {
+          "id": 609258373,
+          "name": "VoiceTwin-QuickStart-v18.6.pdf",
+          "bytes": 505314,
+          "state": "uploaded",
+          "digest": "sha256:817e5bfe8674c48566394e630de2a04d8f73827b77ccafbc2e00414b8f0a2bed",
+          "url": "https://github.com/AlienCodes/literate-enigma/releases/download/v18.6/VoiceTwin-QuickStart-v18.6.pdf"
+        },
+        {
+          "id": 609258374,
+          "name": "VoiceTwin-Windows-v18.6.zip",
+          "bytes": 1955730,
+          "state": "uploaded",
+          "digest": "sha256:520ede7bce97724d1987c8f08e44fde55f61830e5fe6c5b2531cd0839869868d",
+          "url": "https://github.com/AlienCodes/literate-enigma/releases/download/v18.6/VoiceTwin-Windows-v18.6.zip"
+        }
+      ]
+    },
+    {
+      "id": 402436973,
+      "tag_name": "v18.5",
+      "name": "声音分身 VoiceTwin v18.5（Windows）",
+      "html_url": "https://github.com/AlienCodes/literate-enigma/releases/tag/v18.5",
+      "target_commitish": "cf6f0c145286aa94b001b12352b442f7ef9013aa",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-10-03T09:26:05Z",
+      "published_at": "2026-10-03T09:33:33Z",
+      "body": "## 声音分身 VoiceTwin v18.5（Windows）\n\n用你以前的讲课视频训练出\"你的声音\"，以后粘贴讲稿就能生成你的声音读的讲课音频和字幕（中文 + 英文）。\n\n### ✨ 这一版新增\n\n- **「📝 一键全部文字校正」**（在「① 准备素材」校对表上面）：以你的**母本标准库**为准，点一下就把识别引擎写错的字**一次全部改好**——标准库 = 你修缮过的讲课母本（你所有的说话习惯）+ 所有的英语语法术语 + 「错的写法 → 正确写法」对照表（借词 → 介词、艾子 → as、关系带词 → 关系代词、定语从剧 → 定语从句……），程序里已经带着，不用上传\n- · 「修改建议」那一列**有把握**的建议也一起采用；**没把握的不会乱改**（比如两个识别引擎听得不一样的中文、本身就是一个词的同音字），还是红色、建议还在：听一听录音，对就点那一行的蓝色的「采用」\n- · 你自己改过的字不会被改回去；点过「这句没错」的句子不动\n- · **每批素材只能用一次**：用完按钮变灰（刷新网页、重开程序也是灰的）；以后加了新的素材、识别完（或者恢复了删除的句子），按钮会再亮起来，只改这些还没改过的句子，以前的句子一点不动\n- · 改错了可以撤销：点那一行红色的「已采用」（或者自己改回去、撤销这一行的修改）；一行里你自己又改过别的地方时，只改建议的那几个字，程序拿不准改哪里时不会乱改，会告诉你原因，请你双击「文字」自己改\n- · 颜色还是原来的规矩：改过的字「文字」列绿色、「可能有错」列蓝色，没改的可能有错的字红色；改过的行是 🔴 没保存，看一眼没问题点「保存修改」，训练前点「✅ 确认训练素材」\n- · 只改「刚好是一个完整的词」的地方（「凭借词汇」里的「借词」不改），你母本里常用的说法（比如「原型」）不改\n- · 按钮亮着的时候，可以上传新的讲稿或改好的文字（txt 或 transcripts.csv）一起当母本用（可选）\n- **你的母本逐句修缮过**：1005 句（你删除的 3 句不算）里有 123 句还有当时没看到的识别错误（借词、定语从剧 / 从具……），装好这一版点一次「一键全部文字校正」就会全部改好（存成没保存的修改，你看一眼再保存）；另外 6 处英文例句听不出原话，没有改\n- **「⬇️ 下载改好的文字（txt）」**：把「文字」列改好的文字一次全部存成 txt（一行一句，紫色删除的不要）\n- **全面检查以后修好的问题**：🔍 自动查找、加新素材时自动查错字，不会再冲掉一键校正改好的结果；你常说的英文词（whose、why、he、way……）不再被当成听错标红；你手动选的语言不会被悄悄改回去；「保存修改」以后马上点「✅ 确认训练素材」偶尔报错、两个按钮同时点会丢修改的问题都修好了；电脑突然断电留下的坏文件不会再让程序一直报错；视频换了位置不会再被切第二遍\n- **升级更稳**：旧版本的黑色窗口还开着时，新版本会请你先关掉它、关掉以后自动接着启动；解压到了新的文件夹（不是原来装的地方）时，安装程序会提醒你\n- 网页标题永远是「声音分身 VoiceTwin v18」（浏览器标签页上也是；这次的安装包叫 v18.5）\n\n### 🔄 已经装过旧版本？升级只要 3 步（声音和训练好的模型都不会丢）\n\n先关掉声音分身的黑色窗口（如果开着）。\n\n1. 下载下面的 `VoiceTwin-Windows-v18.5.zip`，右键 → 全部解压缩 → 位置填**你原来解压的位置**（不记得：右键桌面「声音分身 VoiceTwin」图标 →「打开文件所在的位置」，地址栏里 `\\VoiceTwin` 前面那一段就是；照快速上手第一次装的是 `D:\\`），提示有同名文件时选**替换**\n2. 双击那里的 `VoiceTwin\\install_windows.bat`，输入 **1** 回车，再输入 `D:\\GPT-SoVITS` 回车，等它装完\n3. 双击桌面「声音分身 VoiceTwin」，黑色窗口里写着「声音分身 VoiceTwin v18.5 正在启动」就对了（网页标题永远显示 v18）\n\n### 📥 下载（在下面的 Assets 里）\n\n| 文件 | 是什么 |\n|---|---|\n| **`VoiceTwin-QuickStart-v18.5.pdf`** | **快速上手（几页纸，先看这个）** |\n| **`VoiceTwin-Windows-v18.5.zip`** | 程序本体 |\n\n不需要下载 Source code。\n\n### 🚀 最快用起来\n\n**安装（一次）**\n1. 下载 [GPT-SoVITS 整合包](https://www.yuque.com/baicaigongchang1145haoyuangong/ib3g1e/dkxgpiy9zb96hob4#KTvnO)（最新 v2pro 版），解压并改名为 `D:\\GPT-SoVITS`\n2. 把 `VoiceTwin-Windows-v18.5.zip` 解压到 `D:\\`，双击 `D:\\VoiceTwin\\install_windows.bat`，输入 **1** 回车，再输入 `D:\\GPT-SoVITS` 回车，等它装完\n\n**训练（一次）**\n3. 把讲课视频复制到 `D:\\讲课素材`，双击桌面「声音分身 VoiceTwin」\n4. 声音名称填 `我的声音` → **① 准备素材**：文件夹填 `D:\\讲课素材` → 开始准备素材 → 等 ✅\n5. **② 训练模型** → 开始训练 → 等 ✅\n\n**以后每次**\n6. **③ 生成讲课音频** → 粘贴讲稿 → 生成 → 试听、下载音频和字幕\n\n图文版：[快速上手](https://github.com/AlienCodes/literate-enigma/blob/master/快速上手.md)（解压后双击 `使用教程（先看我）.html` 也能看）。\n\n> 电脑要求：Windows 10/11，NVIDIA 显卡 6GB 显存以上，硬盘空闲 30GB。只克隆你自己的声音；公开发布 AI 合成音频时请按平台规定标注。\n",
+      "assets": [
+        {
+          "id": 607537015,
+          "name": "VoiceTwin-QuickStart-v18.5.pdf",
+          "bytes": 2862046,
+          "state": "uploaded",
+          "digest": "sha256:d1c16ea06f88ecabbef4df90057c100ba3aae091b7ce3bf1555b35bad5445f1d",
+          "url": "https://github.com/AlienCodes/literate-enigma/releases/download/v18.5/VoiceTwin-QuickStart-v18.5.pdf"
+        },
+        {
+          "id": 607537013,
+          "name": "VoiceTwin-Windows-v18.5.zip",
+          "bytes": 5458006,
+          "state": "uploaded",
+          "digest": "sha256:9a10254760bd67a6dd4d3f2739652dc41467a3ab0a23e2ae487c45c146f9d699",
+          "url": "https://github.com/AlienCodes/literate-enigma/releases/download/v18.5/VoiceTwin-Windows-v18.5.zip"
+        }
+      ]
+    },
+    {
+      "id": 402195462,
+      "tag_name": "v18.4",
+      "name": "声音分身 VoiceTwin v18.4（Windows）",
+      "html_url": "https://github.com/AlienCodes/literate-enigma/releases/tag/v18.4",
+      "target_commitish": "d2483ac7a71fe43d42996989d8e06b6c9ad6e509",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-10-02T22:21:51Z",
+      "published_at": "2026-10-02T22:25:32Z",
+      "body": "## 声音分身 VoiceTwin v18.4（Windows）\n\n用你以前的讲课视频训练出\"你的声音\"，以后粘贴讲稿就能生成你的声音读的讲课音频和字幕（中文 + 英文）。\n\n### ✨ 这一版新增\n\n- **修好：训练完以后「自动挑选最像你的模型」「重新挑选最佳模型」和「生成讲课音频」卡在「启动合成引擎」，等 10 分钟后报「GPT-SoVITS 没能启动」**。其实合成引擎一分钟内就开好了，是声音分身问它「好了没有」的方式不对，一直以为它没好。现在一开好就能认出来\n- **训练好的模型不用重新训练**：装好这一版以后，到「② 训练模型」点「重新挑选最佳模型」就行\n- **出问题时自动生成「问题报告」**：页面下面的「详细过程」里直接写出停在哪一步、原因、怎么办和自动找到的线索，同时在 logs 文件夹里存一份「问题报告_日期_时间.txt」；需要帮忙时把这个文件发给帮你的人就行\n- 合成引擎如果真的打不开，1~2 分钟内就会说明原因，不会再白等 10 分钟\n- **必须先点「✅ 确认训练素材」才能训练**：没确认、确认以后又改过、或者还有没保存的修改，点「开始训练」都不会开始，会告诉你先去做哪一步\n- **核查过：训练只用你保存过的、改好的文字；紫色（删除）的那一行音频和文字都不用**（也不当参考音频、不当挑模型的试听句子）；训练以后又改了文字，训练页和生成时会提醒你重新训练\n- 关掉黑色窗口时，GPT-SoVITS 的后台程序一起关掉，不会留在后台占着显卡\n- 修好真实引擎的两个音质问题：偶尔出现的「咔哒」声；句子开头第一个字被淡掉\n- 网页标题永远是「声音分身 VoiceTwin v18」（这次的安装包叫 v18.4）\n\n### 🔄 已经装过旧版本？升级只要 3 步（声音和训练好的模型都不会丢）\n\n1. 下载下面的 `VoiceTwin-Windows-v18.4.zip`，右键 → 全部解压缩 → 位置填 `D:\\`，提示有同名文件时选**替换**\n2. 双击 `D:\\VoiceTwin\\install_windows.bat`，输入 **1** 回车，再输入 `D:\\GPT-SoVITS` 回车，等它装完\n3. 双击桌面「声音分身 VoiceTwin」，黑色窗口里写着「声音分身 VoiceTwin v18.4 正在启动」就对了（网页标题永远显示 v18）\n\n### 📥 下载（在下面的 Assets 里）\n\n| 文件 | 是什么 |\n|---|---|\n| **`VoiceTwin-QuickStart-v18.4.pdf`** | **快速上手（几页纸，先看这个）** |\n| **`VoiceTwin-Windows-v18.4.zip`** | 程序本体 |\n\n不需要下载 Source code。\n\n### 🚀 最快用起来\n\n**安装（一次）**\n1. 下载 [GPT-SoVITS 整合包](https://www.yuque.com/baicaigongchang1145haoyuangong/ib3g1e/dkxgpiy9zb96hob4#KTvnO)（最新 v2pro 版），解压并改名为 `D:\\GPT-SoVITS`\n2. 把 `VoiceTwin-Windows-v18.4.zip` 解压到 `D:\\`，双击 `D:\\VoiceTwin\\install_windows.bat`，输入 **1** 回车，再输入 `D:\\GPT-SoVITS` 回车，等它装完\n\n**训练（一次）**\n3. 把讲课视频复制到 `D:\\讲课素材`，双击桌面「声音分身 VoiceTwin」\n4. 声音名称填 `我的声音` → **① 准备素材**：文件夹填 `D:\\讲课素材` → 开始准备素材 → 等 ✅\n5. **② 训练模型** → 开始训练 → 等 ✅\n\n**以后每次**\n6. **③ 生成讲课音频** → 粘贴讲稿 → 生成 → 试听、下载音频和字幕\n\n图文版：[快速上手](https://github.com/AlienCodes/literate-enigma/blob/master/快速上手.md)（解压后双击 `使用教程（先看我）.html` 也能看）。\n\n> 电脑要求：Windows 10/11，NVIDIA 显卡 6GB 显存以上，硬盘空闲 30GB。只克隆你自己的声音；公开发布 AI 合成音频时请按平台规定标注。\n",
+      "assets": [
+        {
+          "id": 606612777,
+          "name": "VoiceTwin-QuickStart-v18.4.pdf",
+          "bytes": 2693895,
+          "state": "uploaded",
+          "digest": "sha256:f288a6f7760dcc6007916764b7ccacfa87c16c9841c41900659613d3471f6081",
+          "url": "https://github.com/AlienCodes/literate-enigma/releases/download/v18.4/VoiceTwin-QuickStart-v18.4.pdf"
+        },
+        {
+          "id": 606612775,
+          "name": "VoiceTwin-Windows-v18.4.zip",
+          "bytes": 5038787,
+          "state": "uploaded",
+          "digest": "sha256:9a3c7dca23178b78ffc84bf437fe78637dddcd16a747d134520dd4a36563592e",
+          "url": "https://github.com/AlienCodes/literate-enigma/releases/download/v18.4/VoiceTwin-Windows-v18.4.zip"
+        }
+      ]
+    },
+    {
+      "id": 401890369,
+      "tag_name": "v18.3",
+      "name": "声音分身 VoiceTwin v18.3（Windows）",
+      "html_url": "https://github.com/AlienCodes/literate-enigma/releases/tag/v18.3",
+      "target_commitish": "aec67a53ef7bbd0dadffec100e08917b49e1dc07",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-10-02T14:26:36Z",
+      "published_at": "2026-10-02T14:30:37Z",
+      "body": "## 声音分身 VoiceTwin v18.3（Windows）\n\n用你以前的讲课视频训练出\"你的声音\"，以后粘贴讲稿就能生成你的声音读的讲课音频和字幕（中文 + 英文）。\n\n### ✨ 这一版新增\n\n- **校对表加了「查找 / 替换」（像 Word 一样全局改错字）**：表格上面有一个专门的查找框，输入一个词（例如「艾子」）点「🔍 查找」或者按回车，表格里只列出有这个词的句子，找到的字是**黄色**，现在这一处是**橙色**\n- · 「⬆ 上一处 / ⬇ 下一处」一处一处看；「替换这一处」只换橙色的那一个，换完自动跳到下一处\n- · 「全部替换」一次把所有的都换掉（会先问一次，说清楚一共几处）；换错了点「↩️ 撤销刚才的替换」\n- · 换上的字是**绿色**、这一行亮**红灯**（没保存），和自己改字一样，点「保存修改」才生效；删除（紫色）的句子不查也不换\n- · 英文默认只找整个单词（找 as 不会找到 has 里面的 as），要找单词里面的就把勾去掉；点「✖ 关闭查找」表格显示全部句子\n- · 查找时找到过的句子一直列在表格里：换完、改完、删除以后也不会突然不见\n- 表格最左边的行号是这一句在全部句子里的位置（只看可能有错的、查找的时候也不变）\n- 网页标题永远是「声音分身 VoiceTwin v18」（这次的安装包叫 v18.3）\n\n### 🔄 已经装过旧版本？升级只要 3 步（声音和训练好的模型都不会丢）\n\n1. 下载下面的 `VoiceTwin-Windows-v18.3.zip`，右键 → 全部解压缩 → 位置填 `D:\\`，提示有同名文件时选**替换**\n2. 双击 `D:\\VoiceTwin\\install_windows.bat`，输入 **1** 回车，再输入 `D:\\GPT-SoVITS` 回车，等它装完\n3. 双击桌面「声音分身 VoiceTwin」，黑色窗口里写着「声音分身 VoiceTwin v18.3 正在启动」就对了（网页标题永远显示 v18）\n\n### 📥 下载（在下面的 Assets 里）\n\n| 文件 | 是什么 |\n|---|---|\n| **`VoiceTwin-QuickStart-v18.3.pdf`** | **快速上手（几页纸，先看这个）** |\n| **`VoiceTwin-Windows-v18.3.zip`** | 程序本体 |\n\n不需要下载 Source code。\n\n### 🚀 最快用起来\n\n**安装（一次）**\n1. 下载 [GPT-SoVITS 整合包](https://www.yuque.com/baicaigongchang1145haoyuangong/ib3g1e/dkxgpiy9zb96hob4#KTvnO)（最新 v2pro 版），解压并改名为 `D:\\GPT-SoVITS`\n2. 把 `VoiceTwin-Windows-v18.3.zip` 解压到 `D:\\`，双击 `D:\\VoiceTwin\\install_windows.bat`，输入 **1** 回车，再输入 `D:\\GPT-SoVITS` 回车，等它装完\n\n**训练（一次）**\n3. 把讲课视频复制到 `D:\\讲课素材`，双击桌面「声音分身 VoiceTwin」\n4. 声音名称填 `我的声音` → **① 准备素材**：文件夹填 `D:\\讲课素材` → 开始准备素材 → 等 ✅\n5. **② 训练模型** → 开始训练 → 等 ✅\n\n**以后每次**\n6. **③ 生成讲课音频** → 粘贴讲稿 → 生成 → 试听、下载音频和字幕\n\n图文版：[快速上手](https://github.com/AlienCodes/literate-enigma/blob/master/快速上手.md)（解压后双击 `使用教程（先看我）.html` 也能看）。\n\n> 电脑要求：Windows 10/11，NVIDIA 显卡 6GB 显存以上，硬盘空闲 30GB。只克隆你自己的声音；公开发布 AI 合成音频时请按平台规定标注。\n",
+      "assets": [
+        {
+          "id": 605782345,
+          "name": "VoiceTwin-QuickStart-v18.3.pdf",
+          "bytes": 2682756,
+          "state": "uploaded",
+          "digest": "sha256:3cbc0fe0cac00952d243b735c1e0684f05e9c175e0640d46022ddbadb21c573a",
+          "url": "https://github.com/AlienCodes/literate-enigma/releases/download/v18.3/VoiceTwin-QuickStart-v18.3.pdf"
+        },
+        {
+          "id": 605782346,
+          "name": "VoiceTwin-Windows-v18.3.zip",
+          "bytes": 5014006,
+          "state": "uploaded",
+          "digest": "sha256:6cdbc9007791bcd590666f0d4019356b2cf31d1fda77c794c5d85de1b670ebbf",
+          "url": "https://github.com/AlienCodes/literate-enigma/releases/download/v18.3/VoiceTwin-Windows-v18.3.zip"
+        }
+      ]
+    },
+    {
+      "id": 401499564,
+      "tag_name": "v18.2",
+      "name": "声音分身 VoiceTwin v18.2（Windows）",
+      "html_url": "https://github.com/AlienCodes/literate-enigma/releases/tag/v18.2",
+      "target_commitish": "153ca72c7aebd2657c03b325f6f52c72c536a385",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-10-02T02:29:34Z",
+      "published_at": "2026-10-02T02:34:18Z",
+      "body": "## 声音分身 VoiceTwin v18.2（Windows）\n\n用你以前的讲课视频训练出\"你的声音\"，以后粘贴讲稿就能生成你的声音读的讲课音频和字幕（中文 + 英文）。\n\n### ✨ 这一版新增\n\n- **删除的句子整行变成紫色**（不再消失）：紫色 = 不再算训练素材；在「⋯ 选项」里点「撤销删除」，紫色消失、又算训练素材\n- **新按钮「✅ 确认训练素材」**（在「保存修改」下面）：点了以后，用来训练的句子行号变成**橙色**，删除的、不能用的不显示行号\n- 表格上方显示**用来训练的句子数**：删几条就减几条，例如「1000 − 2（你删除的）= 998 条」，撤销删除就加回来\n- **修好：删除时报错「还没有可用的素材」**：片段的文字还没识别出来时（上次「开始准备素材」的识别中途停了），删除会报错、表格不刷新。现在删除照样成功，表格里会写「还没有识别出文字」，上方说明**再点一次「开始准备素材」**就会接着把文字识别完\n- 网页标题永远是「声音分身 VoiceTwin v18」（这次的安装包叫 v18.2）\n\n### 🔄 已经装过旧版本？升级只要 3 步（声音和训练好的模型都不会丢）\n\n1. 下载下面的 `VoiceTwin-Windows-v18.2.zip`，右键 → 全部解压缩 → 位置填 `D:\\`，提示有同名文件时选**替换**\n2. 双击 `D:\\VoiceTwin\\install_windows.bat`，输入 **1** 回车，再输入 `D:\\GPT-SoVITS` 回车，等它装完\n3. 双击桌面「声音分身 VoiceTwin」，网页标题显示 v18.2 就对了\n\n### 📥 下载（在下面的 Assets 里）\n\n| 文件 | 是什么 |\n|---|---|\n| **`VoiceTwin-QuickStart-v18.2.pdf`** | **快速上手（几页纸，先看这个）** |\n| **`VoiceTwin-Windows-v18.2.zip`** | 程序本体 |\n\n不需要下载 Source code。\n\n### 🚀 最快用起来\n\n**安装（一次）**\n1. 下载 [GPT-SoVITS 整合包](https://www.yuque.com/baicaigongchang1145haoyuangong/ib3g1e/dkxgpiy9zb96hob4#KTvnO)（最新 v2pro 版），解压并改名为 `D:\\GPT-SoVITS`\n2. 把 `VoiceTwin-Windows-v18.2.zip` 解压到 `D:\\`，双击 `D:\\VoiceTwin\\install_windows.bat`，输入 **1** 回车，再输入 `D:\\GPT-SoVITS` 回车，等它装完\n\n**训练（一次）**\n3. 把讲课视频复制到 `D:\\讲课素材`，双击桌面「声音分身 VoiceTwin」\n4. 声音名称填 `我的声音` → **① 准备素材**：文件夹填 `D:\\讲课素材` → 开始准备素材 → 等 ✅\n5. **② 训练模型** → 开始训练 → 等 ✅\n\n**以后每次**\n6. **③ 生成讲课音频** → 粘贴讲稿 → 生成 → 试听、下载音频和字幕\n\n图文版：[快速上手](https://github.com/AlienCodes/literate-enigma/blob/master/快速上手.md)（解压后双击 `使用教程（先看我）.html` 也能看）。\n\n> 电脑要求：Windows 10/11，NVIDIA 显卡 6GB 显存以上，硬盘空闲 30GB。只克隆你自己的声音；公开发布 AI 合成音频时请按平台规定标注。\n",
+      "assets": [
+        {
+          "id": 604640375,
+          "name": "VoiceTwin-QuickStart-v18.2.pdf",
+          "bytes": 2479450,
+          "state": "uploaded",
+          "digest": "sha256:007d431f1bca7f891c9aadbab06698cd5adfa28158cd0025611217e0d792cc80",
+          "url": "https://github.com/AlienCodes/literate-enigma/releases/download/v18.2/VoiceTwin-QuickStart-v18.2.pdf"
+        },
+        {
+          "id": 604640376,
+          "name": "VoiceTwin-Windows-v18.2.zip",
+          "bytes": 4622934,
+          "state": "uploaded",
+          "digest": "sha256:33e2770b85eb784525278f62aef83b6aff3d448e19d539c52011f3b677998f32",
+          "url": "https://github.com/AlienCodes/literate-enigma/releases/download/v18.2/VoiceTwin-Windows-v18.2.zip"
+        }
+      ]
+    },
+    {
+      "id": 401465568,
+      "tag_name": "v18.1",
+      "name": "声音分身 VoiceTwin v18.1（Windows）",
+      "html_url": "https://github.com/AlienCodes/literate-enigma/releases/tag/v18.1",
+      "target_commitish": "6b5b2bbc0a1d3f08b7d41a08ea0021d070e5c76e",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-10-02T00:59:35Z",
+      "published_at": "2026-10-02T01:03:29Z",
+      "body": "## 声音分身 VoiceTwin v18.1（Windows）\n\n用你以前的讲课视频训练出\"你的声音\"，以后粘贴讲稿就能生成你的声音读的讲课音频和字幕（中文 + 英文）。\n\n### ✨ 这一版新增\n\n- **校对表（① 准备素材下面）按老师的要求重新做了**：\n- · 改错字：**双击「文字」**会打开一个会自动换行的大框，整句话都看得见（以前一点就挤成一行、超出格子）；改过、新打上去的字在「文字」里是**绿色**，在「可能有错」那一列是**蓝色**\n- · 「修改建议」是一个**蓝色小按钮**：点一下就按建议自动改好，按钮**变红 = 生效了**（再点一下可以撤销）；只有「可能有错」那一列有内容的行才有。建议更准了：像「艾子」这种把老师说的英文（as）听成汉字的，现在会建议改回 as（以前查过错字的，再点一次「🔍 自动查找可能的错字」就能用上）\n- · 最右边一列「**⋯ 选项**」：**保存这一行**、**删除这一行**（会再问一次；删除的行变灰色，菜单里变成**撤销删除**）、修改文字、听一听、撤销这一行的修改、这句没错；按钮左边的小灯 **🔴 = 改了还没保存、🟢 = 已经保存**\n- · 去掉了「丢弃原因」「保留」两列：不用来训练的行整行变灰；没保存的修改刷新网页也不会丢\n- 顶部的模型型号框改成圆角长方形；网页标题仍然是「声音分身 VoiceTwin v18」（这次的安装包叫 v18.1，因为同一个号码不能发布两次）\n\n### 🔄 已经装过旧版本？升级只要 3 步（声音和训练好的模型都不会丢）\n\n1. 下载下面的 `VoiceTwin-Windows-v18.1.zip`，右键 → 全部解压缩 → 位置填 `D:\\`，提示有同名文件时选**替换**\n2. 双击 `D:\\VoiceTwin\\install_windows.bat`，输入 **1** 回车，再输入 `D:\\GPT-SoVITS` 回车，等它装完\n3. 双击桌面「声音分身 VoiceTwin」，网页标题显示 v18.1 就对了\n\n### 📥 下载（在下面的 Assets 里）\n\n| 文件 | 是什么 |\n|---|---|\n| **`VoiceTwin-QuickStart-v18.1.pdf`** | **快速上手（几页纸，先看这个）** |\n| **`VoiceTwin-Windows-v18.1.zip`** | 程序本体 |\n\n不需要下载 Source code。\n\n### 🚀 最快用起来\n\n**安装（一次）**\n1. 下载 [GPT-SoVITS 整合包](https://www.yuque.com/baicaigongchang1145haoyuangong/ib3g1e/dkxgpiy9zb96hob4#KTvnO)（最新 v2pro 版），解压并改名为 `D:\\GPT-SoVITS`\n2. 把 `VoiceTwin-Windows-v18.1.zip` 解压到 `D:\\`，双击 `D:\\VoiceTwin\\install_windows.bat`，输入 **1** 回车，再输入 `D:\\GPT-SoVITS` 回车，等它装完\n\n**训练（一次）**\n3. 把讲课视频复制到 `D:\\讲课素材`，双击桌面「声音分身 VoiceTwin」\n4. 声音名称填 `我的声音` → **① 准备素材**：文件夹填 `D:\\讲课素材` → 开始准备素材 → 等 ✅\n5. **② 训练模型** → 开始训练 → 等 ✅\n\n**以后每次**\n6. **③ 生成讲课音频** → 粘贴讲稿 → 生成 → 试听、下载音频和字幕\n\n图文版：[快速上手](https://github.com/AlienCodes/literate-enigma/blob/master/快速上手.md)（解压后双击 `使用教程（先看我）.html` 也能看）。\n\n> 电脑要求：Windows 10/11，NVIDIA 显卡 6GB 显存以上，硬盘空闲 30GB。只克隆你自己的声音；公开发布 AI 合成音频时请按平台规定标注。\n",
+      "assets": [
+        {
+          "id": 604480522,
+          "name": "VoiceTwin-QuickStart-v18.1.pdf",
+          "bytes": 2469541,
+          "state": "uploaded",
+          "digest": "sha256:ea73f353a5f5a59098e8c4b3f6e92b5b8cf10351240fdf3ddf68e008cd280d6b",
+          "url": "https://github.com/AlienCodes/literate-enigma/releases/download/v18.1/VoiceTwin-QuickStart-v18.1.pdf"
+        },
+        {
+          "id": 604480517,
+          "name": "VoiceTwin-Windows-v18.1.zip",
+          "bytes": 4608601,
+          "state": "uploaded",
+          "digest": "sha256:8ffd47b54bc386c17b3bb41a793d408e3797ef2a71b764daa861566d7786e66f",
+          "url": "https://github.com/AlienCodes/literate-enigma/releases/download/v18.1/VoiceTwin-Windows-v18.1.zip"
+        }
+      ]
+    },
+    {
+      "id": 401393609,
+      "tag_name": "v18",
+      "name": "声音分身 VoiceTwin v18（Windows）",
+      "html_url": "https://github.com/AlienCodes/literate-enigma/releases/tag/v18",
+      "target_commitish": "469f73a1db8ba929d25fb6f480be76345ee1371d",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-10-01T22:06:27Z",
+      "published_at": "2026-10-01T22:09:24Z",
+      "body": "## 声音分身 VoiceTwin v18（Windows）\n\n用你以前的讲课视频训练出\"你的声音\"，以后粘贴讲稿就能生成你的声音读的讲课音频和字幕（中文 + 英文）。\n\n### ✨ 这一版新增\n\n- **版本号改成 v18**（老师喜欢的号码）：网页标题显示「声音分身 VoiceTwin v18」。v18 比 v0.1.9 新，功能和 v0.1.9 完全一样，只是换了号码；以后的版本是 v19、v20……\n- 包含 v0.1.8、v0.1.9 的全部改进：标题右边显示从模型文件里检测出来的模型型号；修好桌面图标建不出来（????）；安装时不再出现红色 ERROR / 黄色 WARNING；「以管理员身份运行」时安装窗口的中文不再变成「?」\n\n### 🔄 已经装过旧版本？升级只要 3 步（声音和训练好的模型都不会丢）\n\n1. 下载下面的 `VoiceTwin-Windows-v18.zip`，右键 → 全部解压缩 → 位置填 `D:\\`，提示有同名文件时选**替换**\n2. 双击 `D:\\VoiceTwin\\install_windows.bat`，输入 **1** 回车，再输入 `D:\\GPT-SoVITS` 回车，等它装完\n3. 双击桌面「声音分身 VoiceTwin」，网页标题显示 v18 就对了\n\n### 📥 下载（在下面的 Assets 里）\n\n| 文件 | 是什么 |\n|---|---|\n| **`VoiceTwin-QuickStart-v18.pdf`** | **快速上手（几页纸，先看这个）** |\n| **`VoiceTwin-Windows-v18.zip`** | 程序本体 |\n\n不需要下载 Source code。\n\n### 🚀 最快用起来\n\n**安装（一次）**\n1. 下载 [GPT-SoVITS 整合包](https://www.yuque.com/baicaigongchang1145haoyuangong/ib3g1e/dkxgpiy9zb96hob4#KTvnO)（最新 v2pro 版），解压并改名为 `D:\\GPT-SoVITS`\n2. 把 `VoiceTwin-Windows-v18.zip` 解压到 `D:\\`，双击 `D:\\VoiceTwin\\install_windows.bat`，输入 **1** 回车，再输入 `D:\\GPT-SoVITS` 回车，等它装完\n\n**训练（一次）**\n3. 把讲课视频复制到 `D:\\讲课素材`，双击桌面「声音分身 VoiceTwin」\n4. 声音名称填 `我的声音` → **① 准备素材**：文件夹填 `D:\\讲课素材` → 开始准备素材 → 等 ✅\n5. **② 训练模型** → 开始训练 → 等 ✅\n\n**以后每次**\n6. **③ 生成讲课音频** → 粘贴讲稿 → 生成 → 试听、下载音频和字幕\n\n图文版：[快速上手](https://github.com/AlienCodes/literate-enigma/blob/master/快速上手.md)（解压后双击 `使用教程（先看我）.html` 也能看）。\n\n> 电脑要求：Windows 10/11，NVIDIA 显卡 6GB 显存以上，硬盘空闲 30GB。只克隆你自己的声音；公开发布 AI 合成音频时请按平台规定标注。\n",
+      "assets": [
+        {
+          "id": 604228319,
+          "name": "VoiceTwin-QuickStart-v18.pdf",
+          "bytes": 2394701,
+          "state": "uploaded",
+          "digest": "sha256:6cef157be82543a2531a0c394f29025ddc65abf365cf18a5f5f0bcbe3f2c8082",
+          "url": "https://github.com/AlienCodes/literate-enigma/releases/download/v18/VoiceTwin-QuickStart-v18.pdf"
+        },
+        {
+          "id": 604228318,
+          "name": "VoiceTwin-Windows-v18.zip",
+          "bytes": 4488751,
+          "state": "uploaded",
+          "digest": "sha256:cab030fdb1fe6ae75e751d9c42bbbf311f60ae241ced947fbd9bddefa94ae1a1",
+          "url": "https://github.com/AlienCodes/literate-enigma/releases/download/v18/VoiceTwin-Windows-v18.zip"
+        }
+      ]
+    },
+    {
+      "id": 401376418,
+      "tag_name": "v0.1.9",
+      "name": "声音分身 VoiceTwin v0.1.9（Windows）",
+      "html_url": "https://github.com/AlienCodes/literate-enigma/releases/tag/v0.1.9",
+      "target_commitish": "abe3bdf6a396a195addd1e94b900f6b0188c6571",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-10-01T21:37:03Z",
+      "published_at": "2026-10-01T21:39:59Z",
+      "body": "## 声音分身 VoiceTwin v0.1.9（Windows）\n\n用你以前的讲课视频训练出\"你的声音\"，以后粘贴讲稿就能生成你的声音读的讲课音频和字幕（中文 + 英文）。\n\n### ✨ 这一版新增\n\n- **修好：安装窗口里中文全部变成「?」**：右键「以管理员身份运行」时，Windows 会打开老式黑色窗口；在「非 Unicode 程序的语言」不是中文的电脑上，这种窗口的字体没有中文字。现在安装程序会自动换到 Windows Terminal 里运行，没有 Windows Terminal 时把窗口字体换成有中文字的「新宋体」；声音分身的黑色窗口也一样\n- （安装本身一直是正常的，只是中文显示不出来；已经装好的不用重装）\n\n### 🔄 已经装过旧版本？升级只要 3 步（声音和训练好的模型都不会丢）\n\n1. 下载下面的 `VoiceTwin-Windows-v0.1.9.zip`，右键 → 全部解压缩 → 位置填 `D:\\`，提示有同名文件时选**替换**\n2. 双击 `D:\\VoiceTwin\\install_windows.bat`，输入 **1** 回车，再输入 `D:\\GPT-SoVITS` 回车，等它装完\n3. 双击桌面「声音分身 VoiceTwin」，网页标题显示 v0.1.9 就对了\n\n### 📥 下载（在下面的 Assets 里）\n\n| 文件 | 是什么 |\n|---|---|\n| **`VoiceTwin-QuickStart-v0.1.9.pdf`** | **快速上手（几页纸，先看这个）** |\n| **`VoiceTwin-Windows-v0.1.9.zip`** | 程序本体 |\n\n不需要下载 Source code。\n\n### 🚀 最快用起来\n\n**安装（一次）**\n1. 下载 [GPT-SoVITS 整合包](https://www.yuque.com/baicaigongchang1145haoyuangong/ib3g1e/dkxgpiy9zb96hob4#KTvnO)（最新 v2pro 版），解压并改名为 `D:\\GPT-SoVITS`\n2. 把 `VoiceTwin-Windows-v0.1.9.zip` 解压到 `D:\\`，双击 `D:\\VoiceTwin\\install_windows.bat`，输入 **1** 回车，再输入 `D:\\GPT-SoVITS` 回车，等它装完\n\n**训练（一次）**\n3. 把讲课视频复制到 `D:\\讲课素材`，双击桌面「声音分身 VoiceTwin」\n4. 声音名称填 `我的声音` → **① 准备素材**：文件夹填 `D:\\讲课素材` → 开始准备素材 → 等 ✅\n5. **② 训练模型** → 开始训练 → 等 ✅\n\n**以后每次**\n6. **③ 生成讲课音频** → 粘贴讲稿 → 生成 → 试听、下载音频和字幕\n\n图文版：[快速上手](https://github.com/AlienCodes/literate-enigma/blob/master/快速上手.md)（解压后双击 `使用教程（先看我）.html` 也能看）。\n\n> 电脑要求：Windows 10/11，NVIDIA 显卡 6GB 显存以上，硬盘空闲 30GB。只克隆你自己的声音；公开发布 AI 合成音频时请按平台规定标注。\n",
+      "assets": [
+        {
+          "id": 604188792,
+          "name": "VoiceTwin-QuickStart-v0.1.9.pdf",
+          "bytes": 2394605,
+          "state": "uploaded",
+          "digest": "sha256:35c6368f839858e3478e9d9c8b58b8d3398d7924e7736b963932038e93b0abe7",
+          "url": "https://github.com/AlienCodes/literate-enigma/releases/download/v0.1.9/VoiceTwin-QuickStart-v0.1.9.pdf"
+        },
+        {
+          "id": 604188789,
+          "name": "VoiceTwin-Windows-v0.1.9.zip",
+          "bytes": 4488612,
+          "state": "uploaded",
+          "digest": "sha256:5e99bfdd659491f802f03e9a14f9ba47b0261833d0ffd79b83ceafb815f97d2b",
+          "url": "https://github.com/AlienCodes/literate-enigma/releases/download/v0.1.9/VoiceTwin-Windows-v0.1.9.zip"
+        }
+      ]
+    },
+    {
+      "id": 401356801,
+      "tag_name": "v0.1.8",
+      "name": "声音分身 VoiceTwin v0.1.8（Windows）",
+      "html_url": "https://github.com/AlienCodes/literate-enigma/releases/tag/v0.1.8",
+      "target_commitish": "6506e53c462beb4c8e1f4bb192b9d03c8c14cf25",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-10-01T21:03:54Z",
+      "published_at": "2026-10-01T21:07:11Z",
+      "body": "## 声音分身 VoiceTwin v0.1.8（Windows）\n\n用你以前的讲课视频训练出\"你的声音\"，以后粘贴讲稿就能生成你的声音读的讲课音频和字幕（中文 + 英文）。\n\n### ✨ 这一版新增\n\n- **网页顶部显示你正在用的模型型号**：标题右边写着例如「模型：GPT-SoVITS v2ProPlus」。它是从你的声音模型文件里读出来的（和 GPT-SoVITS 自己判断版本的方法一样），不是照抄设置；还没训练时读底模；读不出来就如实写「读不出来」。以后换成 v4、v5（官方公开后）也能认出来\n- **修好桌面图标建不出来的问题**：有些电脑（Windows 的「非 Unicode 程序的语言」不是中文）会把中文图标名变成 ????、保存失败；现在先用英文名建好，再改成中文名放到桌面\n- 安装时不再出现 librosa 的红色 ERROR 和「不在 PATH 里」的黄色 WARNING（两条都不影响使用；已用和整合包完全相同的版本测试过）；「环境检查」前面不再出现一堆英文警告\n\n### 🔄 已经装过旧版本？升级只要 3 步（声音和训练好的模型都不会丢）\n\n1. 下载下面的 `VoiceTwin-Windows-v0.1.8.zip`，右键 → 全部解压缩 → 位置填 `D:\\`，提示有同名文件时选**替换**\n2. 双击 `D:\\VoiceTwin\\install_windows.bat`，输入 **1** 回车，再输入 `D:\\GPT-SoVITS` 回车，等它装完\n3. 双击桌面「声音分身 VoiceTwin」，网页标题显示 v0.1.8 就对了\n\n### 📥 下载（在下面的 Assets 里）\n\n| 文件 | 是什么 |\n|---|---|\n| **`VoiceTwin-QuickStart-v0.1.8.pdf`** | **快速上手（几页纸，先看这个）** |\n| **`VoiceTwin-Windows-v0.1.8.zip`** | 程序本体 |\n\n不需要下载 Source code。\n\n### 🚀 最快用起来\n\n**安装（一次）**\n1. 下载 [GPT-SoVITS 整合包](https://www.yuque.com/baicaigongchang1145haoyuangong/ib3g1e/dkxgpiy9zb96hob4#KTvnO)（最新 v2pro 版），解压并改名为 `D:\\GPT-SoVITS`\n2. 把 `VoiceTwin-Windows-v0.1.8.zip` 解压到 `D:\\`，双击 `D:\\VoiceTwin\\install_windows.bat`，输入 **1** 回车，再输入 `D:\\GPT-SoVITS` 回车，等它装完\n\n**训练（一次）**\n3. 把讲课视频复制到 `D:\\讲课素材`，双击桌面「声音分身 VoiceTwin」\n4. 声音名称填 `我的声音` → **① 准备素材**：文件夹填 `D:\\讲课素材` → 开始准备素材 → 等 ✅\n5. **② 训练模型** → 开始训练 → 等 ✅\n\n**以后每次**\n6. **③ 生成讲课音频** → 粘贴讲稿 → 生成 → 试听、下载音频和字幕\n\n图文版：[快速上手](https://github.com/AlienCodes/literate-enigma/blob/master/快速上手.md)（解压后双击 `使用教程（先看我）.html` 也能看）。\n\n> 电脑要求：Windows 10/11，NVIDIA 显卡 6GB 显存以上，硬盘空闲 30GB。只克隆你自己的声音；公开发布 AI 合成音频时请按平台规定标注。\n",
+      "assets": [
+        {
+          "id": 604138420,
+          "name": "VoiceTwin-QuickStart-v0.1.8.pdf",
+          "bytes": 2385461,
+          "state": "uploaded",
+          "digest": "sha256:a68f1fe025e011732ce17950d5c71fd700888094ab82913ddf026749d3568e5c",
+          "url": "https://github.com/AlienCodes/literate-enigma/releases/download/v0.1.8/VoiceTwin-QuickStart-v0.1.8.pdf"
+        },
+        {
+          "id": 604138417,
+          "name": "VoiceTwin-Windows-v0.1.8.zip",
+          "bytes": 4480228,
+          "state": "uploaded",
+          "digest": "sha256:5d98668df466f9544161c68ee7b59d109a57d186fb1806eb1db8b0c3890cd0b9",
+          "url": "https://github.com/AlienCodes/literate-enigma/releases/download/v0.1.8/VoiceTwin-Windows-v0.1.8.zip"
+        }
+      ]
+    },
+    {
+      "id": 401307401,
+      "tag_name": "v0.1.7",
+      "name": "声音分身 VoiceTwin v0.1.7（Windows）",
+      "html_url": "https://github.com/AlienCodes/literate-enigma/releases/tag/v0.1.7",
+      "target_commitish": "c4e0fec6180c5872c19bbf5a85371a8c4ab965f9",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-10-01T19:56:22Z",
+      "published_at": "2026-10-01T19:59:52Z",
+      "body": "## 声音分身 VoiceTwin v0.1.7（Windows）\n\n用你以前的讲课视频训练出\"你的声音\"，以后粘贴讲稿就能生成你的声音读的讲课音频和字幕（中文 + 英文）。\n\n### ✨ 这一版新增\n\n- **「像你本人（%）」换成精准声纹打分**：测试了 19 个公开的声纹模型，选出最准的 3 个一起打分（ReDimNet2-B6 + ERes2NetV2 + ERes2Net-base，都用中文训练过）；2 秒的中文短句里认错人的比例约 0.05%\n- **百分比两头校准**：100% = 和你自己的真实录音一样像，0% = 陌生人的水平；⑤ 鉴别会告诉你你自己的录音一般在多少 %\n- **只比较人声**：句子之间的绝对静音、「去杂音」版本、音量大小基本不影响分数（实测偏差只有 1~3 个百分点）\n- **很短的句子**按同样长度的你自己的录音来算 100%；人声不到 2 秒的句子不直接判「不像」，提醒你用耳朵听\n- 安装时自动下载声纹模型（约 170 MB，下载后逐个核对）；没下载时自动用旧的打分方式，网页上点「⬇️ 下载缺少的模型」可以补上\n- 以前生成好的句子会自动按新标准重新打分，不用重新生成\n- 「环境检查」新增一行：确认用的是 GPT-SoVITS 目前公开的最新、最强版本 v2ProPlus（V5 还没公开）\n\n### 🔄 已经装过旧版本？升级只要 3 步（声音和训练好的模型都不会丢）\n\n1. 下载下面的 `VoiceTwin-Windows-v0.1.7.zip`，右键 → 全部解压缩 → 位置填 `D:\\`，提示有同名文件时选**替换**\n2. 双击 `D:\\VoiceTwin\\install_windows.bat`，输入 **1** 回车，再输入 `D:\\GPT-SoVITS` 回车，等它装完\n3. 双击桌面「声音分身 VoiceTwin」，网页标题显示 v0.1.7 就对了\n\n### 📥 下载（在下面的 Assets 里）\n\n| 文件 | 是什么 |\n|---|---|\n| **`VoiceTwin-QuickStart-v0.1.7.pdf`** | **快速上手（几页纸，先看这个）** |\n| **`VoiceTwin-Windows-v0.1.7.zip`** | 程序本体 |\n\n不需要下载 Source code。\n\n### 🚀 最快用起来\n\n**安装（一次）**\n1. 下载 [GPT-SoVITS 整合包](https://www.yuque.com/baicaigongchang1145haoyuangong/ib3g1e/dkxgpiy9zb96hob4#KTvnO)（最新 v2pro 版），解压并改名为 `D:\\GPT-SoVITS`\n2. 把 `VoiceTwin-Windows-v0.1.7.zip` 解压到 `D:\\`，双击 `D:\\VoiceTwin\\install_windows.bat`，输入 **1** 回车，再输入 `D:\\GPT-SoVITS` 回车，等它装完\n\n**训练（一次）**\n3. 把讲课视频复制到 `D:\\讲课素材`，双击桌面「声音分身 VoiceTwin」\n4. 声音名称填 `我的声音` → **① 准备素材**：文件夹填 `D:\\讲课素材` → 开始准备素材 → 等 ✅\n5. **② 训练模型** → 开始训练 → 等 ✅\n\n**以后每次**\n6. **③ 生成讲课音频** → 粘贴讲稿 → 生成 → 试听、下载音频和字幕\n\n图文版：[快速上手](https://github.com/AlienCodes/literate-enigma/blob/master/快速上手.md)（解压后双击 `使用教程（先看我）.html` 也能看）。\n\n> 电脑要求：Windows 10/11，NVIDIA 显卡 6GB 显存以上，硬盘空闲 30GB。只克隆你自己的声音；公开发布 AI 合成音频时请按平台规定标注。\n",
+      "assets": [
+        {
+          "id": 604030978,
+          "name": "VoiceTwin-QuickStart-v0.1.7.pdf",
+          "bytes": 2384381,
+          "state": "uploaded",
+          "digest": "sha256:ab9152859b44ac314d460a9786c921963c4103d33a6a49b367f9a7393d6e8050",
+          "url": "https://github.com/AlienCodes/literate-enigma/releases/download/v0.1.7/VoiceTwin-QuickStart-v0.1.7.pdf"
+        },
+        {
+          "id": 604030976,
+          "name": "VoiceTwin-Windows-v0.1.7.zip",
+          "bytes": 4475217,
+          "state": "uploaded",
+          "digest": "sha256:ddffa05308901fb2a3502c4a653ba0dc82549824e7e31821308223249cc53673",
+          "url": "https://github.com/AlienCodes/literate-enigma/releases/download/v0.1.7/VoiceTwin-Windows-v0.1.7.zip"
+        }
+      ]
+    },
+    {
+      "id": 401128261,
+      "tag_name": "v0.1.6",
+      "name": "声音分身 VoiceTwin v0.1.6（Windows）",
+      "html_url": "https://github.com/AlienCodes/literate-enigma/releases/tag/v0.1.6",
+      "target_commitish": "f75accaba205416da725b375ea5cf648e0afa1cf",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-10-01T15:54:45Z",
+      "published_at": "2026-10-01T15:58:07Z",
+      "body": "## 声音分身 VoiceTwin v0.1.6（Windows）\n\n用你以前的讲课视频训练出\"你的声音\"，以后粘贴讲稿就能生成你的声音读的讲课音频和字幕（中文 + 英文）。\n\n### ✨ 这一版新增\n\n- **每一步都有进度条**：百分比、第几步、已用时间、预计几点完成；绿色 = 正常，黄色 = 好几分钟没动静，红色 = 出问题（写明原因和怎么办）\n- **网页最上面一直显示显卡状态**：绿色 = 正常；红色时告诉你怎么修\n- **所有表格都有编号和总数**；新增 **🎙️ 我的声音库**，点一下就选中声音\n- **训练参数全自动**：按你的显卡和素材选出最好的设置，显存不够自动重试\n- **新的「完美」质量**：每句最多试 20 次；同时做「未去杂音 / 去杂音」两个版本，自动推荐更像你原声的那个，由你选\n- **每句都有「像你本人（%）」**：用你自己的真实录音做标尺，低于 85% 的自动淘汰\n- **绝对静音**：生成的音频只有你的声音，没有背景音、没有底噪，句子之间完全静音\n- **语速拉杆**：往左更快、往右更慢，音色不变\n- **自动查找错字**：可能识别错的字标成红色，并给出修改建议\n- **⑤ 鉴别**：机器打分排名 + 观众盲听测试\n- 出错时用中文说明原因和怎么办；修复生成失败后再点「生成」可能提示「看不懂「[]」」的问题\n\n### 🔄 已经装过旧版本？升级只要 3 步（声音和训练好的模型都不会丢）\n\n1. 下载下面的 `VoiceTwin-Windows-v0.1.6.zip`，右键 → 全部解压缩 → 位置填 `D:\\`，提示有同名文件时选**替换**\n2. 双击 `D:\\VoiceTwin\\install_windows.bat`，输入 **1** 回车，再输入 `D:\\GPT-SoVITS` 回车，等它装完\n3. 双击桌面「声音分身 VoiceTwin」，网页标题显示 v0.1.6 就对了\n\n### 📥 下载（在下面的 Assets 里）\n\n| 文件 | 是什么 |\n|---|---|\n| **`VoiceTwin-QuickStart-v0.1.6.pdf`** | **快速上手（几页纸，先看这个）** |\n| **`VoiceTwin-Windows-v0.1.6.zip`** | 程序本体 |\n\n不需要下载 Source code。\n\n### 🚀 最快用起来\n\n**安装（一次）**\n1. 下载 [GPT-SoVITS 整合包](https://www.yuque.com/baicaigongchang1145haoyuangong/ib3g1e/dkxgpiy9zb96hob4#KTvnO)（最新 v2pro 版），解压并改名为 `D:\\GPT-SoVITS`\n2. 把 `VoiceTwin-Windows-v0.1.6.zip` 解压到 `D:\\`，双击 `D:\\VoiceTwin\\install_windows.bat`，输入 **1** 回车，再输入 `D:\\GPT-SoVITS` 回车，等它装完\n\n**训练（一次）**\n3. 把讲课视频复制到 `D:\\讲课素材`，双击桌面「声音分身 VoiceTwin」\n4. 声音名称填 `我的声音` → **① 准备素材**：文件夹填 `D:\\讲课素材` → 开始准备素材 → 等 ✅\n5. **② 训练模型** → 开始训练 → 等 ✅\n\n**以后每次**\n6. **③ 生成讲课音频** → 粘贴讲稿 → 生成 → 试听、下载音频和字幕\n\n图文版：[快速上手](https://github.com/AlienCodes/literate-enigma/blob/master/快速上手.md)（解压后双击 `使用教程（先看我）.html` 也能看）。\n\n> 电脑要求：Windows 10/11，NVIDIA 显卡 6GB 显存以上，硬盘空闲 30GB。只克隆你自己的声音；公开发布 AI 合成音频时请按平台规定标注。\n",
+      "assets": [
+        {
+          "id": 603603391,
+          "name": "VoiceTwin-QuickStart-v0.1.6.pdf",
+          "bytes": 2370484,
+          "state": "uploaded",
+          "digest": "sha256:b03f4902084f8c7d14312deb27766b8f746e72c9b2cfc7219042c1b4d9d7cf8e",
+          "url": "https://github.com/AlienCodes/literate-enigma/releases/download/v0.1.6/VoiceTwin-QuickStart-v0.1.6.pdf"
+        },
+        {
+          "id": 603603388,
+          "name": "VoiceTwin-Windows-v0.1.6.zip",
+          "bytes": 3469024,
+          "state": "uploaded",
+          "digest": "sha256:35049796cb9c10dbbe3daa1219c8dc99c0b307f4f3789bd284cab5a31c2cbed5",
+          "url": "https://github.com/AlienCodes/literate-enigma/releases/download/v0.1.6/VoiceTwin-Windows-v0.1.6.zip"
+        }
+      ]
+    },
+    {
+      "id": 400601479,
+      "tag_name": "v0.1.3",
+      "name": "声音分身 VoiceTwin v0.1.3（Windows）",
+      "html_url": "https://github.com/AlienCodes/literate-enigma/releases/tag/v0.1.3",
+      "target_commitish": "b5180116c6c06dc768f8a87527dd42d55d16d27e",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-10-01T02:29:46Z",
+      "published_at": "2026-10-01T02:30:57Z",
+      "body": "## 声音分身 VoiceTwin v0.1.3（Windows）\n\n用你以前的讲课视频训练出\"你的声音\"，以后粘贴讲稿就能生成你的声音读的讲课音频和字幕（中文 + 英文）。\n\n### 📥 下载（在下面的 Assets 里）\n\n| 文件 | 是什么 |\n|---|---|\n| **`VoiceTwin-QuickStart-v0.1.3.pdf`** | **快速上手（几页纸，先看这个）** |\n| **`VoiceTwin-Windows-v0.1.3.zip`** | 程序本体 |\n| `VoiceTwin-Manual-v0.1.3.pdf` | 详细手册（遇到问题时再查） |\n\n不需要下载 Source code。\n\n### 🚀 最快用起来\n\n**安装（一次）**\n1. 下载 [GPT-SoVITS 整合包](https://www.yuque.com/baicaigongchang1145haoyuangong/ib3g1e/dkxgpiy9zb96hob4#KTvnO)（最新 v2pro 版），解压并改名为 `D:\\GPT-SoVITS`\n2. 把 `VoiceTwin-Windows-v0.1.3.zip` 解压到 `D:\\`，双击 `D:\\VoiceTwin\\install_windows.bat`，输入 **1** 回车，再输入 `D:\\GPT-SoVITS` 回车，等它装完\n\n**训练（一次）**\n3. 把讲课视频复制到 `D:\\讲课素材`，双击桌面「声音分身 VoiceTwin」\n4. 声音名称填 `我的声音` → **① 准备素材**：文件夹填 `D:\\讲课素材` → 开始准备素材 → 等 ✅\n5. **② 训练模型** → 开始训练 → 等 ✅\n\n**以后每次**\n6. **③ 生成讲课音频** → 粘贴讲稿 → 生成 → 试听、下载音频和字幕\n\n图文版：[快速上手](https://github.com/AlienCodes/literate-enigma/blob/master/快速上手.md)（解压后双击 `使用教程（先看我）.html` 也能看）。\n\n> 电脑要求：Windows 10/11，NVIDIA 显卡 6GB 显存以上，硬盘空闲 30GB。只克隆你自己的声音；公开发布 AI 合成音频时请按平台规定标注。\n",
+      "assets": [
+        {
+          "id": 602271176,
+          "name": "VoiceTwin-Manual-v0.1.3.pdf",
+          "bytes": 9110364,
+          "state": "uploaded",
+          "digest": "sha256:518be1bdfde2aeef4fb0194cf1e7fc76f76bb2c8142978f6c972c2107e5472a2",
+          "url": "https://github.com/AlienCodes/literate-enigma/releases/download/v0.1.3/VoiceTwin-Manual-v0.1.3.pdf"
+        },
+        {
+          "id": 602271175,
+          "name": "VoiceTwin-QuickStart-v0.1.3.pdf",
+          "bytes": 1316069,
+          "state": "uploaded",
+          "digest": "sha256:7c1bbcb458b1985266c0f8a2fda887853ab4fd6f90ed6df31feb4fad05b6ee21",
+          "url": "https://github.com/AlienCodes/literate-enigma/releases/download/v0.1.3/VoiceTwin-QuickStart-v0.1.3.pdf"
+        },
+        {
+          "id": 602271177,
+          "name": "VoiceTwin-Windows-v0.1.3.zip",
+          "bytes": 6924448,
+          "state": "uploaded",
+          "digest": "sha256:ebb303010b66e402b22d9e32cbfa9d85986d7d8307e1b9e033a7b39edf6b25b5",
+          "url": "https://github.com/AlienCodes/literate-enigma/releases/download/v0.1.3/VoiceTwin-Windows-v0.1.3.zip"
+        }
+      ]
+    },
+    {
+      "id": 401243509,
+      "tag_name": "sv-models-1",
+      "name": "声纹打分模型 sv-models-1（程序会自动下载，不用手动下载）",
+      "html_url": "https://github.com/AlienCodes/literate-enigma/releases/tag/sv-models-1",
+      "target_commitish": "b5925603e68ff156955e10bf5d538ac90f43a50d",
+      "draft": false,
+      "prerelease": true,
+      "created_at": "2026-10-01T18:31:32Z",
+      "published_at": "2026-10-01T18:32:54Z",
+      "body": "声音分身 VoiceTwin「精准声纹打分」用的模型（v0.1.7 起）。**程序会自动下载这些文件，不需要手动下载。**\n\n| 文件 | 模型 | 出处 |\n|---|---|---|\n| silero_vad.onnx | silero-vad v4（人声检测） | Silero Team（MIT 许可），k2-fsa 导出的 16 kHz 版本 |\n| 3dspeaker_speech_campplus_sv_zh_en_16k-common_advanced.onnx | CAM++（3D-Speaker，中英文 20 万人训练） | 3D-Speaker（阿里通义实验室，Apache-2.0 许可） |\n| 3dspeaker_speech_eres2netv2_sv_zh-cn_16k-common.onnx | ERes2NetV2（3D-Speaker，中文 20 万人训练） | 3D-Speaker（阿里通义实验室，Apache-2.0 许可） |\n| 3dspeaker_speech_eres2net_base_200k_sv_zh-cn_16k-common.onnx | ERes2Net-base（3D-Speaker，中文 20 万人训练） | 3D-Speaker（阿里通义实验室，Apache-2.0 许可） |\n| redimnet2_b6_vb2_vox2_cnc2_lm.onnx | ReDimNet2-B6 | ReDimNet2（Interspeech 2026，Palabra.ai，MIT 许可），由官方权重导出（scripts/export_redimnet2.py） |\n\n每个文件的 sha256 见 sv_models_sources.json / redimnet2_export.json；程序下载后会逐个核对。\n",
+      "assets": [
+        {
+          "id": 603877759,
+          "name": "3dspeaker_speech_campplus_sv_zh_en_16k-common_advanced.onnx",
+          "bytes": 28281164,
+          "state": "uploaded",
+          "digest": "sha256:aa3cfc16963a10586a9393f5035d6d6b57e98d358b347f80c2a30bf4f00ceba2",
+          "url": "https://github.com/AlienCodes/literate-enigma/releases/download/sv-models-1/3dspeaker_speech_campplus_sv_zh_en_16k-common_advanced.onnx"
+        },
+        {
+          "id": 603877896,
+          "name": "3dspeaker_speech_eres2netv2_sv_zh-cn_16k-common.onnx",
+          "bytes": 71441526,
+          "state": "uploaded",
+          "digest": "sha256:bf1a75b9930474cf3389ef415e6e5d38ca96fea4a3a00f7e301d080a58ee2239",
+          "url": "https://github.com/AlienCodes/literate-enigma/releases/download/sv-models-1/3dspeaker_speech_eres2netv2_sv_zh-cn_16k-common.onnx"
+        },
+        {
+          "id": 603877845,
+          "name": "3dspeaker_speech_eres2net_base_200k_sv_zh-cn_16k-common.onnx",
+          "bytes": 39593765,
+          "state": "uploaded",
+          "digest": "sha256:e2d2048292e055f7b61cdec3db010503f35369b245bf0b3bbad021c9a91e4053",
+          "url": "https://github.com/AlienCodes/literate-enigma/releases/download/sv-models-1/3dspeaker_speech_eres2net_base_200k_sv_zh-cn_16k-common.onnx"
+        },
+        {
+          "id": 603878056,
+          "name": "redimnet2_b6_vb2_vox2_cnc2_lm.onnx",
+          "bytes": 51181366,
+          "state": "uploaded",
+          "digest": "sha256:cc3c77b26a59e6537c2ce9e4889e36c4430439b96d33e9bfa9b022be55d9e461",
+          "url": "https://github.com/AlienCodes/literate-enigma/releases/download/sv-models-1/redimnet2_b6_vb2_vox2_cnc2_lm.onnx"
+        },
+        {
+          "id": 603878190,
+          "name": "redimnet2_export.json",
+          "bytes": 666,
+          "state": "uploaded",
+          "digest": "sha256:5df337e8c6393e1c3fff3d0e6c4cdff3bd9790d900ecf6848d9c38fd87649fd2",
+          "url": "https://github.com/AlienCodes/literate-enigma/releases/download/sv-models-1/redimnet2_export.json"
+        },
+        {
+          "id": 603878153,
+          "name": "silero_vad.onnx",
+          "bytes": 643854,
+          "state": "uploaded",
+          "digest": "sha256:9e2449e1087496d8d4caba907f23e0bd3f78d91fa552479bb9c23ac09cbb1fd6",
+          "url": "https://github.com/AlienCodes/literate-enigma/releases/download/sv-models-1/silero_vad.onnx"
+        },
+        {
+          "id": 603878214,
+          "name": "sv_models_sources.json",
+          "bytes": 1764,
+          "state": "uploaded",
+          "digest": "sha256:a38299afbdedac0216717b07f3aadf2fc33eccb121a1ef7ffc3e7cbfdbc12385",
+          "url": "https://github.com/AlienCodes/literate-enigma/releases/download/sv-models-1/sv_models_sources.json"
+        }
+      ]
+    },
+    {
+      "id": 400496081,
+      "tag_name": "v0.1.2",
+      "name": "声音分身 VoiceTwin v0.1.2（Windows）",
+      "html_url": "https://github.com/AlienCodes/literate-enigma/releases/tag/v0.1.2",
+      "target_commitish": "ce1bacfa5141fd26b1511fd6065ac33174bcc2d6",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-09-30T22:56:22Z",
+      "published_at": "2026-09-30T22:57:43Z",
+      "body": "## 声音分身 VoiceTwin v0.1.2（Windows）\n\n用你以前的讲课视频训练出\"你的声音\"，以后粘贴讲稿就能生成你的声音读的讲课音频和字幕（中文 + 英文）。\n\n### 📥 下载（在下面的 Assets 里）\n\n| 文件 | 是什么 |\n|---|---|\n| **`VoiceTwin-QuickStart-v0.1.2.pdf`** | **快速上手（几页纸，先看这个）** |\n| **`VoiceTwin-Windows-v0.1.2.zip`** | 程序本体 |\n| `VoiceTwin-Manual-v0.1.2.pdf` | 详细手册（遇到问题时再查） |\n\n不需要下载 Source code。\n\n### 🚀 最快用起来\n\n**安装（一次）**\n1. 下载 [GPT-SoVITS 整合包](https://www.yuque.com/baicaigongchang1145haoyuangong/ib3g1e/dkxgpiy9zb96hob4#KTvnO)（最新 v2pro 版），解压并改名为 `D:\\GPT-SoVITS`\n2. 把 `VoiceTwin-Windows-v0.1.2.zip` 解压到 `D:\\`，双击 `D:\\VoiceTwin\\install_windows.bat`，输入 **1** 回车，再输入 `D:\\GPT-SoVITS` 回车，等它装完\n\n**训练（一次）**\n3. 把讲课视频复制到 `D:\\讲课素材`，双击桌面「声音分身 VoiceTwin」\n4. 声音名称填 `我的声音` → **① 准备素材**：文件夹填 `D:\\讲课素材` → 开始准备素材 → 等 ✅\n5. **② 训练模型** → 开始训练 → 等 ✅\n\n**以后每次**\n6. **③ 生成讲课音频** → 粘贴讲稿 → 生成 → 试听、下载音频和字幕\n\n图文版：[快速上手](https://github.com/AlienCodes/literate-enigma/blob/master/快速上手.md)（解压后双击 `使用教程（先看我）.html` 也能看）。\n\n> 电脑要求：Windows 10/11，NVIDIA 显卡 6GB 显存以上，硬盘空闲 30GB。只克隆你自己的声音；公开发布 AI 合成音频时请按平台规定标注。\n",
+      "assets": [
+        {
+          "id": 601958047,
+          "name": "VoiceTwin-Manual-v0.1.2.pdf",
+          "bytes": 9104743,
+          "state": "uploaded",
+          "digest": "sha256:b16708ece2e8e1c615357d6f2f865d7f440d5a1b51c2b77c384e74569749836e",
+          "url": "https://github.com/AlienCodes/literate-enigma/releases/download/v0.1.2/VoiceTwin-Manual-v0.1.2.pdf"
+        },
+        {
+          "id": 601958046,
+          "name": "VoiceTwin-QuickStart-v0.1.2.pdf",
+          "bytes": 1293375,
+          "state": "uploaded",
+          "digest": "sha256:d4c3b7fe7b4074cb1ae688b1842ab79900a4d224c9f13f30b85cf8ff879259e9",
+          "url": "https://github.com/AlienCodes/literate-enigma/releases/download/v0.1.2/VoiceTwin-QuickStart-v0.1.2.pdf"
+        },
+        {
+          "id": 601958045,
+          "name": "VoiceTwin-Windows-v0.1.2.zip",
+          "bytes": 6908059,
+          "state": "uploaded",
+          "digest": "sha256:36868a430659e1066ab0f93033e1c1fc60369f0ac5cddf3638a167008926ce7b",
+          "url": "https://github.com/AlienCodes/literate-enigma/releases/download/v0.1.2/VoiceTwin-Windows-v0.1.2.zip"
+        }
+      ]
+    },
+    {
+      "id": 400486446,
+      "tag_name": "v0.1.1",
+      "name": "声音分身 VoiceTwin v0.1.1（Windows）",
+      "html_url": "https://github.com/AlienCodes/literate-enigma/releases/tag/v0.1.1",
+      "target_commitish": "eb130fed0dff28a4edc5d4a403cddef08747d1a8",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-09-30T22:34:42Z",
+      "published_at": "2026-09-30T22:35:56Z",
+      "body": "## 声音分身 VoiceTwin v0.1.1（Windows）\n\n用你自己的讲课视频和录音，复刻你的音色、语气和节奏（中文 + 英文），把讲稿生成\"你的声音\"的讲课音频和字幕。\n\n### 下载\n\n👉 下面 **Assets** 里的 **`VoiceTwin-Windows-v0.1.1.zip`**（不需要下载 Source code）。\n\n### 三步开始\n\n1. 下载并解压 [GPT-SoVITS 官方整合包](https://www.yuque.com/baicaigongchang1145haoyuangong/ib3g1e/dkxgpiy9zb96hob4#KTvnO)（最新 v2pro 版）到 `D:\\GPT-SoVITS`；\n2. 把 `VoiceTwin-Windows-v0.1.1.zip` 解压到 `D:\\`，双击 `D:\\VoiceTwin\\install_windows.bat`，选 **1**，输入 `D:\\GPT-SoVITS`；\n3. 双击桌面「声音分身 VoiceTwin」，按网页上的 ① 准备素材 → ② 训练 → ③ 生成讲课音频 操作。\n\n**每一步的详细说明**：下载 Assets 里的 **《声音分身VoiceTwin使用手册》PDF**（`VoiceTwin-Manual-v0.1.1.pdf`，\n约 80 页图文教程，压缩包的 `docs` 文件夹里也有一份）；或解压后双击 **`使用教程（先看我）.html`**，或在线查看\n[Windows 详细使用教程](https://github.com/AlienCodes/literate-enigma/blob/master/docs/Windows详细使用教程.md)。\n\n### 电脑要求\n\nWindows 10/11，NVIDIA 显卡 6GB 显存以上（推荐 8GB+），硬盘空闲 30GB 以上。\n\n> 只克隆你自己的声音，或已取得本人授权的声音；公开发布 AI 合成音频时请遵守平台关于 AI 内容标识的规定。\n",
+      "assets": [
+        {
+          "id": 601927150,
+          "name": "VoiceTwin-Manual-v0.1.1.pdf",
+          "bytes": 9103060,
+          "state": "uploaded",
+          "digest": "sha256:c510729a2dcef243685c9cae31fa159539e59f595da358996e83621f1f4a9477",
+          "url": "https://github.com/AlienCodes/literate-enigma/releases/download/v0.1.1/VoiceTwin-Manual-v0.1.1.pdf"
+        },
+        {
+          "id": 601927152,
+          "name": "VoiceTwin-Windows-v0.1.1.zip",
+          "bytes": 5531693,
+          "state": "uploaded",
+          "digest": "sha256:55ff762b58649424f47e2378c1407eacd0098e870f3cd0517d85db495f7ae81d",
+          "url": "https://github.com/AlienCodes/literate-enigma/releases/download/v0.1.1/VoiceTwin-Windows-v0.1.1.zip"
+        }
+      ]
+    },
+    {
+      "id": 400445891,
+      "tag_name": "v0.1.0",
+      "name": "声音分身 VoiceTwin v0.1.0（Windows）",
+      "html_url": "https://github.com/AlienCodes/literate-enigma/releases/tag/v0.1.0",
+      "target_commitish": "5399328d95818bb97ca6a9e8408fab70a448b703",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-09-30T21:19:35Z",
+      "published_at": "2026-09-30T21:20:44Z",
+      "body": "## 声音分身 VoiceTwin v0.1.0（Windows）\n\n用你自己的讲课视频和录音，复刻你的音色、语气和节奏（中文 + 英文），把讲稿生成\"你的声音\"的讲课音频和字幕。\n\n### 下载\n\n👉 下面 **Assets** 里的 **`VoiceTwin-Windows-v0.1.0.zip`**（不需要下载 Source code）。\n\n### 三步开始\n\n1. 下载并解压 [GPT-SoVITS 官方整合包](https://www.yuque.com/baicaigongchang1145haoyuangong/ib3g1e/dkxgpiy9zb96hob4#KTvnO)（最新 v2pro 版）到 `D:\\GPT-SoVITS`；\n2. 把 `VoiceTwin-Windows-v0.1.0.zip` 解压到 `D:\\`，双击 `D:\\VoiceTwin\\install_windows.bat`，选 **1**，输入 `D:\\GPT-SoVITS`；\n3. 双击桌面「声音分身 VoiceTwin」，按网页上的 ① 准备素材 → ② 训练 → ③ 生成讲课音频 操作。\n\n**每一步的详细说明**：解压后双击 **`使用教程（先看我）.html`**，或在线查看\n[Windows 详细使用教程](https://github.com/AlienCodes/literate-enigma/blob/master/docs/Windows详细使用教程.md)。\n\n### 电脑要求\n\nWindows 10/11，NVIDIA 显卡 6GB 显存以上（推荐 8GB+），硬盘空闲 30GB 以上。\n\n> 只克隆你自己的声音，或已取得本人授权的声音；公开发布 AI 合成音频时请遵守平台关于 AI 内容标识的规定。\n",
+      "assets": [
+        {
+          "id": 601819148,
+          "name": "VoiceTwin-Windows-v0.1.0.zip",
+          "bytes": 145319,
+          "state": "uploaded",
+          "digest": "sha256:e22b38a4122926f0e0ca8db2491ef9a09c785c121d9f8a3257a44c5244fc28c9",
+          "url": "https://github.com/AlienCodes/literate-enigma/releases/download/v0.1.0/VoiceTwin-Windows-v0.1.0.zip"
+        }
+      ]
+    }
+  ]
+}

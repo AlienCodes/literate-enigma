@@ -1,0 +1,59 @@
+#!/usr/bin/env python3
+"""把定稿的 4K 视频复制到仓库根目录的"最终版4K视频/"，文件名 = 序号 - 英文标题 - 中文标题.mp4（2026-10-08 用户定）。
+  python3 视频/工具/归档定稿视频.py 01 02 03 04
+只复制、不移动（视频/视频/NN.mp4 留在原处，核查程序要用）；复制后逐字节核对与定稿一致，并重写文件夹里的目录 README.md。
+只能归档已经确认是 4K 定稿的篇目：视频必须是 3840×2160。
+存视频的文件夹只存定稿（G7，用户 2026-10-08："之前那些有瑕疵的视频要及时删除，就只能存我们最后定稿的这个版本"）：
+归档后自动删掉这一篇的旧草稿（视频/视频/草稿1080p/NN_*）和试听视频（视频/试听/NN_*.mp4 等），最后用《踩坑核查》的 G7 检查全部文件夹。
+铁律 G9（用户 2026-10-10：“一定一定一定要确定我们这个最终存的视频是我们做的这些视频，千万不要弄那些老的视频”）：
+归档完自动跑《定稿视频核对》——视频里每一屏、每一个样本的声音都要与现行定稿脚本重新生成的一致，镜像仓库逐字节相同；不通过返回 1。
+所以要在视频工作目录（含 make_video.py、render.py、fonts/）下运行：python3 <工具目录>/归档定稿视频.py NN"""
+import sys, os, re, json, glob, shutil, hashlib, subprocess
+T = os.path.dirname(os.path.abspath(__file__)); V = os.path.dirname(T); ROOT = os.path.dirname(V)
+DST = f'{ROOT}/最终版4K视频'
+md5 = lambda p: hashlib.md5(open(p, 'rb').read()).hexdigest()
+safe = lambda s: re.sub(r'[\\/:*?"<>|]', '', s).strip()          # 去掉文件名里不能用的字符
+
+
+def size_of(p):
+    import imageio_ffmpeg
+    r = subprocess.run([imageio_ffmpeg.get_ffmpeg_exe(), '-i', p], capture_output=True, text=True).stderr
+    return re.search(r'Video: .*?, (\d+)x(\d+)', r).groups()
+
+
+if not all(os.path.exists(x) for x in ('make_video.py', 'render.py', 'fonts')):
+    sys.exit('【停止】请在视频工作目录（含 make_video.py、render.py、fonts/）下运行：归档后要做定稿视频核对（G9）')
+os.makedirs(DST, exist_ok=True)
+for no in [a.zfill(2) for a in sys.argv[1:]]:
+    d = json.load(open(f'{V}/脚本/{no}.json')); src = f'{V}/视频/{no}.mp4'
+    if size_of(src) != ('3840', '2160'): sys.exit(f'第{no}篇不是 4K 定稿视频，不归档')
+    name = f"{no} - {safe(d['title_en'])} - {safe(d['title_zh'])}.mp4"
+    for old in glob.glob(f'{DST}/{no} - *.mp4'):                   # 同一篇的旧文件（标题改过时）先删掉
+        if os.path.basename(old) != name: os.remove(old)
+    shutil.copy2(src, f'{DST}/{name}')
+    assert md5(src) == md5(f'{DST}/{name}'), f'第{no}篇复制后与定稿不一致'
+    print(f'已归档：{name}')
+    for old in glob.glob(f'{V}/视频/草稿1080p/{no}_*') + [q for q in glob.glob(f'{V}/试听/{no}_*') if q.lower().endswith(('.mp4', '.mov', '.m4v', '.webm', '.mkv', '.avi'))]:
+        os.remove(old); print(f'  已删除旧草稿/试听视频：{os.path.relpath(old, ROOT)}')
+if os.path.isdir(f'{V}/视频/草稿1080p') and not os.listdir(f'{V}/视频/草稿1080p'): os.rmdir(f'{V}/视频/草稿1080p')
+rows = []
+for p in sorted(glob.glob(f'{DST}/[0-9][0-9] - *.mp4')):
+    no, en, zh = os.path.basename(p)[:-4].split(' - ', 2)
+    rows.append(f'| {no} | {en} | {zh} | {os.path.getsize(p) / 1e6:.1f} MB |')
+open(f'{DST}/README.md', 'w').write('# 最终版 4K 视频\n\n> 这里只放已经定稿的 4K 视频（3840×2160），每篇都已通过《交付核查》出片前、出片后全部核查。'
+                                     '\n> 每篇只存最后定稿的一个版本；有瑕疵的旧版本、草稿一律及时删除（用户 2026-10-08 要求）。'
+                                     '\n> 文件名：序号 - 英文标题 - 中文标题。与 `视频/视频/NN.mp4` 逐字节相同，由 `视频/工具/归档定稿视频.py` 复制并核对。\n\n'
+                                     '| 序号 | 英文标题 | 中文标题 | 大小 |\n|---|---|---|---|\n' + '\n'.join(rows) + '\n')
+print(f'共 {len(rows)} 篇，目录已写入 最终版4K视频/README.md')
+sys.path.insert(0, T); import importlib; K = importlib.import_module('踩坑核查')
+vf = K.video_folders(ROOT)
+_want = [a.zfill(2) for a in sys.argv[1:]]; _号 = lambda x: next((g for g in (re.search(r'(?:第(\d\d)篇|视频/视频/(\d\d)\.mp4|里第(\d\d)篇)', x) or re.match('$','')).groups() if g), None) if re.search(r'(?:第(\d\d)篇|视频/视频/(\d\d)\.mp4|里第(\d\d)篇)', x) else None; _别 = [x for x in vf if _want and _号(x) and _号(x) not in _want]   # 51 重做中途 视频/视频/51.mp4 与归档不一致也拦了 52：写明别篇篇号的 G7 项一律只提醒   # 52/51 11-06：别篇正在重做的草稿只提醒，不拦本篇（同 定稿视频核对）
+for x in _别: print('  【提醒】', x, '（别篇的事，不拦本篇）')
+vf = [x for x in vf if x not in _别]
+print('存视频的文件夹只存定稿（G7）：' + ('通过' if not vf else '\n  ✘ ' + '\n  ✘ '.join(vf)))
+# G9：存的必须是最终版——逐屏、逐样本与现行定稿脚本比对（镜像仓库这时还没同步；同步推送后再跑 定稿视频核对.py --只查清点和镜像）
+from 重查记录 import 记, 键, 程序指纹   # K160（43 定稿）：这道核对和全篇重查是同一套判法，通过就记进 全篇重查通过.json，刚定稿的篇目不再被列成欠着、主会话不用再重查一遍
+fp = 程序指纹(); nos = [a.zfill(2) for a in sys.argv[1:]]; cur = lambda no: 键(no, glob.glob(f'{DST}/{no} - *.mp4')[0], fp); k0 = {no: cur(no) for no in nos}
+g9 = subprocess.run(['python3', f'{T}/定稿视频核对.py', '--不查镜像'] + nos).returncode
+if not g9 and all(cur(no) == k0[no] for no in nos): 记(k0, fp=fp); print(f'已记入全篇重查记录：{" ".join(nos)}')
+sys.exit(1 if vf or g9 else 0)

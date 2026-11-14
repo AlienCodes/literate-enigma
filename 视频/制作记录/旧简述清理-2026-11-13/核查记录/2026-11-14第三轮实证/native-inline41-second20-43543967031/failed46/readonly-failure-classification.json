@@ -1,0 +1,32 @@
+{
+  "created_utc": "2026-11-14T02:35:43.551769+00:00",
+  "source_id": "46",
+  "run_id": 43543967031,
+  "actual_status_sha256": "fe66706d9f5aaf9b38f53d75145dbd0053a1980420cfc7ed272a8f6be1653ec3",
+  "actual_status_passed": false,
+  "actual_stage": "canonical-draft-00.log",
+  "actual_error": "canonical-draft: official quality check failed; see article status JSON",
+  "primary_class": "original_post_QC_machine_relisten_single_word_mismatch",
+  "original_specific_alarm_lines": [
+    "✘ 机器复听（逐词读音与脚本一致）：机器复听 17 句：读音对不上的 1 句；实测写了依据交用户听 2 句（S2 “monteverde”听成“mon teverdi〔parakeet〕”；S8 “an”听成“in〔small.en〕”）",
+    "✔ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：46 纯人声核对（配音指纹 f51746024861）问题数 0"
+  ],
+  "original_failure_tail": [
+    "① 文本：通过，自动修 1 处",
+    "② 声音：46 词尾辅音核对 问题数 0；46 纯人声核对（配音指纹 f51746024861）问题数 0；问题数 0；46 句间停顿核对 问题数 0；问题数 0",
+    "③ 出片前核查：通过",
+    "【停】⑤ 出片后核查（427 秒；全文在 /home/runner/work/_temp/completion-machine/video/做_46/）：",
+    "  ✘ 机器复听（逐词读音与脚本一致）：机器复听 17 句：读音对不上的 1 句；实测写了依据交用户听 2 句（S2 “monteverde”听成“mon teverdi〔parakeet〕”；S8 “an”听成“in〔small.en〕”）",
+    "      S6：脚本“light” 听到“lights〔parakeet〕”",
+    "    \u001b[0;93m2026-11-14 02:30:15.063457861 [W:onnxruntime:Default, device_discovery.cc:146 GetPciBusId] Skipping pci_bus_id for PCI path at \"/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/5620e0c7-8062-4dce-aeb7-520c7ef76171\" beca",
+    "  已自动修：",
+    "    结尾简述整屏折行（G35）：S17 结尾简述：现在字号 30，整屏最大 59（简述折成 9 行）"
+  ],
+  "canonical_inline_not_reached": true,
+  "no_CPU_or_universal_wrapper_cause_inferred": true,
+  "detector_labels_not_converted_to_confirmed_audio_defects_without_actual_sound_review": true,
+  "ZIP_verified_and_retained_for_audio_owner_public_actual_MP4_diagnosis": "/workspace/work/video-audit70-20261113/native-inline41-second20-43543967031/failed46/article46-native-output.zip",
+  "no_failed_MP4_accepted_or_ingested": true,
+  "no_PCM_GT_cache_or_raw_audio_extracted": true,
+  "quality_or_source_or_core_changed": false
+}
