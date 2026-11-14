@@ -1,0 +1,86 @@
+{
+  "kind": "root_renews_only_two_unchanged_Dolly_sentence_ASR_fingerprints_based_on_complete_PCM_identity",
+  "user_facing_date": "2026-11-14",
+  "source_id": "62",
+  "book_order": "34",
+  "authorization_records": [
+    "046",
+    "048",
+    "049",
+    "051",
+    "052",
+    "053"
+  ],
+  "root_implementation_not_a_fabricated_user_or_human_listening_statement": true,
+  "measured_proposal_sha256": "5335d1912b378347059307b5372502ffd7de9bc4453c567f9fc33616b865336f",
+  "actual_continuity_report_sha256": "b511921b8856b117698917258d6b29d4d3f07a206b2a27a587e76f1aecb89d83",
+  "actual_accepted_baseline_WAV_sha256": "f7348a62d6b00aa9cf74ad7c26f83bd3c4c98ff6621e3875dbced7bcfd0ac2c0",
+  "actual_accepted_baseline_AAC_sha256": "cbaa0988f1020bcaa2c245f8349001d8ad2224194164bfaa819231493f06b081",
+  "actual_new_WAV_sha256": "c5330026dbc9f81d0c7546a1716b9dade9960f44311862a5feb3e4aa0749d7c3",
+  "only_approved_changes": [
+    {
+      "path": "核对确认.机器复听.S2.配音指纹",
+      "from": "68b79d47f327",
+      "to": "128ca94f8329",
+      "preserve_original_basis": "2026-11-07：ewe's 配音按 CMU Y UW1 Z 读 /juːz/，两个识别器听成 used（/juːzd/，同音近形），读音正确",
+      "append_exact_identity_evidence": {
+        "old_span_seconds": [
+          9.56,
+          16.48
+        ],
+        "actual_span_seconds": [
+          9.56,
+          16.48
+        ],
+        "old_sample_count": 166080,
+        "actual_sample_count": 166080,
+        "dtype": "int16",
+        "old_decoded_pcm_sha256": "ba5d8facdbc372753e5ff891b1aa2100c197b650484686d3c02757a1df8cc4e1",
+        "actual_decoded_pcm_sha256": "ba5d8facdbc372753e5ff891b1aa2100c197b650484686d3c02757a1df8cc4e1",
+        "whole_crop_samples_identical": true,
+        "different_sample_count": 0,
+        "maximum_absolute_difference_PCM16": 0.0,
+        "least_squares_gain_db": 0.0,
+        "ncc": 1.0
+      }
+    },
+    {
+      "path": "核对确认.机器复听.S8.配音指纹",
+      "from": "68b79d47f327",
+      "to": "128ca94f8329",
+      "preserve_original_basis": "2026-11-07：Roslin's 按已核实读音 ɹˈɑːslɪnz 读，识别器拼成 rosslyn's（同一地名的另一拼法，同音），非读错",
+      "append_exact_identity_evidence": {
+        "old_span_seconds": [
+          55.61,
+          66.12
+        ],
+        "actual_span_seconds": [
+          55.61,
+          66.12
+        ],
+        "old_sample_count": 252240,
+        "actual_sample_count": 252240,
+        "dtype": "int16",
+        "old_decoded_pcm_sha256": "0c82b18cec42441986fa43fc353aec2dcb33e70bbe17e6372d8a3fd9b9d40449",
+        "actual_decoded_pcm_sha256": "0c82b18cec42441986fa43fc353aec2dcb33e70bbe17e6372d8a3fd9b9d40449",
+        "whole_crop_samples_identical": true,
+        "different_sample_count": 0,
+        "maximum_absolute_difference_PCM16": 0.0,
+        "least_squares_gain_db": 0.0,
+        "ncc": 1.0000000000000002
+      }
+    }
+  ],
+  "execution_state": {
+    "preserve_legacy_native_old_pcm_binding_valid_false_and_its_expectedFP_None_explanation": true,
+    "do_not_relabel_legacy_false_as_pass": true,
+    "separate_real_old_full_WAV_and_AAC_chain_binding_used": true,
+    "S15_changed_transition_ASR_confirmation_must_not_be_renewed_from_old_fingerprint": true,
+    "S15_requires_actual_current_native_ASR_and_context_results": true,
+    "all_original_native_ASR_and_remaining_audio_gates_still_required": true,
+    "no_voice_or_DSP_or_clock_or_original_checker_threshold_changes": true,
+    "new_human_listening_claimed": false,
+    "not_yet_a_final_video_pass": true,
+    "all_PDF_work_remains_paused": true
+  }
+}

@@ -820,6 +820,28 @@ def collect_original_asr_target_evidence():
     status['original_asr_target_evidence'] = record
 
 
+def collect_actual_current62_dual_ASR_contexts():
+    # Readonly evidence in the same real native job, regardless of its verdict.
+    # It never adds/renews a confirmation or replaces an original quality result.
+    if NO != '62':
+        return
+    output = OUT / '62-current-S15-original-dual-ASR-contexts.json'
+    try:
+        result = subprocess.run(['python3', str(TASK / 'collect_original_asr62.py'),
+            '--work', str(W), '--tools', str(T), '--output', str(output)],
+            cwd=W, env=ENV, capture_output=True, text=True, errors='replace', timeout=300)
+        (LOG / 'current62-original-dual-ASR-contexts.log').write_text(result.stdout + '\n' + result.stderr)
+        status['current62_actual_dual_ASR_context_evidence'] = {
+            'diagnostic_only':True, 'acceptance':False, 'automatic_confirmation_or_renewal':False,
+            'exit':result.returncode, 'original_pipeline_verdict_not_replaced':True}
+        if output.is_file():
+            status['current62_actual_dual_ASR_context_evidence'].update(file=output.name, sha256=sha(output))
+    except Exception as exc:
+        status['current62_actual_dual_ASR_context_evidence'] = {'diagnostic_only':True,
+            'acceptance':False, 'error_type':type(exc).__name__, 'original_pipeline_verdict_not_replaced':True}
+    save()
+
+
 def cache_entry(name):
     assert re.fullmatch(r'[A-Za-z0-9_\u4e00-\u9fff.-]+\.(pkl|json)', name), name
     destination = M / 'tts/cache_tts' / name
@@ -1247,3 +1269,6 @@ except Exception as exc:
     save()
     print(json.dumps(status, ensure_ascii=False), flush=True)
     raise
+
+finally:
+    collect_actual_current62_dual_ASR_contexts()
