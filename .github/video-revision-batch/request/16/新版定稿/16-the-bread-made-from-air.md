@@ -10,7 +10,7 @@ Haber's **ambition** had a **sinister** side. Ammonia **stocked** Germany's **ar
 
 Haber's wife, Clara Immerwahr, Germany's first woman with a **doctoral** degree in chemistry, voiced **objections to** his work. On 2 May 1915, after **festivities** in his honour, she shot herself in the garden with his service **pistol**. The next day the **widower** left for the Eastern Front.
 
-**Prestige** offered no **sanctuary**. Of Jewish origin, Haber left Germany an **outcast** after Hitler's **regime** **seized** power, dying in Basel in 1934. His institute's **pesticide** research had produced Zyklon. A later **variant**, Zyklon B, was used in Nazi death camps, where relatives of his died.
+**Prestige** offered no **sanctuary**. Of **Jewish** origin, Haber left Germany an **outcast** after Hitler's **regime** **seized** power, dying in Basel in 1934. His institute's **pesticide** research had produced Zyklon. A later **variant**, Zyklon B, was used in Nazi death camps, where **relatives** of his died.
 
 About half the **nitrogen** in our **proteins** and DNA has **passed through** a Haber-Bosch factory, so each of us carries a little of Haber's chemistry.
 
@@ -24,7 +24,7 @@ BASF的卡尔·博施**扩大了**(scaled up)该方法的**规模**(scaled up)�
 
 哈伯的妻子克拉拉·伊梅瓦尔，是德国第一位获得化学**博士**(doctoral)学位的女性，她曾**对**(objections to)他的工作表达了**反对**(objections to)。（Germany's first woman…：同位语，说明克拉拉的身份）（objection to sth：对某事的反对）1915年5月2日，在为他致敬的**庆祝活动**(festivities)之后，她在花园里用他的军用**手枪**(pistol)自尽了。（in his honour：为了向他表示敬意，这里指为他庆功）第二天，这位**丧妻之人**(widower)动身前往东线。（leave for：动身前往）
 
-**声望**(Prestige)没有提供（给他）**庇护**(sanctuary)。身为犹太裔，哈伯在希特勒**政权**(regime)**夺取了**(seized)权力之后，作为一个**被驱逐的人**(outcast)离开了德国，并于1934年死于巴塞尔。（an outcast：补充说明他离开时的身份；after…：时间状语从句）（dying…：现在分词短语作结果状语，补充说明后来的事）他研究所的**杀虫剂**(pesticide)研究曾催生了齐克隆。后来的**变体**(variant)齐克隆B被用于纳粹死亡营，他的一些亲属就死在那里。（where：非限制性定语从句，指在这些死亡营里；relatives of his：他的亲属）
+**声望**(Prestige)没有提供（给他）**庇护**(sanctuary)。身为**犹太**(Jewish)裔，哈伯在希特勒**政权**(regime)**夺取了**(seized)权力之后，作为一个**被驱逐的人**(outcast)离开了德国，并于1934年死于巴塞尔。（an outcast：补充说明他离开时的身份；after…：时间状语从句）（dying…：现在分词短语作结果状语，补充说明后来的事）他研究所的**杀虫剂**(pesticide)研究曾催生了齐克隆。后来的**变体**(variant)齐克隆B被用于纳粹死亡营，他的一些**亲属**(relatives)就死在那里。（where：非限制性定语从句，指在这些死亡营里；relatives of his：他的亲属）
 
 我们**蛋白质**(proteins)和DNA中约有一半的**氮**(nitrogen)，都**经过了**(passed through)哈伯-博施工厂；因此，我们每个人体内都携带着一点哈伯的化学。（in our proteins and DNA：介词短语作后置定语，修饰 nitrogen）（a little of Haber's chemistry：一点哈伯的化学，指经哈伯-博施工艺合成的氮）（简述：▸突破：1909年，哈伯把空气中的氮与氢在高温高压下合成氨；博施将这套方法扩大到工厂，1913年实现大量生产。▸养育：氨制成化肥，帮助粮食增产；到2008年，靠这种方法生产的化肥已养活近半人类，人体蛋白质和DNA中约一半的氮也经此工艺而来。▸战争：合成氨也为德国弹药提供原料；哈伯还在1915年组织首次大规模毒气攻击，他的妻子反对这类战争工作。▸命运：妻子后来开枪自杀，哈伯次日仍赴前线；他虽获1918年诺奖，却因犹太血统遭纳粹排斥，1934年死于流亡中。▸余波：哈伯研究所研制的杀虫剂齐克隆，后来衍生出齐克隆B，被纳粹用于死亡营；他的一些亲属也死在这些营中。）
 
@@ -80,11 +80,13 @@ BASF的卡尔·博施**扩大了**(scaled up)该方法的**规模**(scaled up)�
 | widower | 本文：丧妻之人；n. 鳏夫，丧妻的男人（a lonely widower） | 4 |
 | Prestige | 本文：声望；n. 声望，威望（national prestige） | 5 |
 | sanctuary | 本文：庇护；n. 庇护，避难所（seek sanctuary） | 5 |
+| Jewish | 本文：犹太；adj. 犹太人的，犹太民族的，犹太教的（of Jewish origin 犹太裔的） | 5 |
 | regime | 本文：政权；n. 政权，政体（a military regime） | 5 |
 | seized | 本文：夺取了；v. (seize) 夺取，抓住（seize power/control） | 5 |
 | outcast | 本文：被驱逐的人；n. 被排斥者，被放逐者（a social outcast） | 5 |
 | pesticide | 本文：杀虫剂；n. 杀虫剂，农药（spray pesticide on crops） | 5 |
 | variant | 本文：变体；n. 变体，变种（a new variant of the virus） | 5 |
+| relatives | 本文：亲属；n. (relative) 亲属，亲戚（复数 relatives）；relative 也可作形容词：相对的，相关的 | 5 |
 | proteins | 本文：蛋白质；n. (protein) 蛋白质（a diet rich in protein） | 6 |
 | nitrogen | 本文：氮；n. 氮，氮气（liquid nitrogen） | 6 |
 | passed through | 本文：经过了；短语. (pass through) 经过，穿过（pass through the town） | 6 |
