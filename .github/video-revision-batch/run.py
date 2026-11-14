@@ -33,6 +33,7 @@ ENV = {**os.environ, 'XG_P': str(ROOT), 'XG_TOOLS': str(T), 'XG_WORK': str(W),
 for key in ('YAOWENBEN', 'OLD_IV_VOID', 'AUDIO_ONLY', 'VIDEO_S'):
     ENV.pop(key, None)
 status = {'article': NO, 'passed': False, 'stage': 'start',
+          'preview_only': True, 'active_final_replacement_authorized': False,
           'original_audit_and_quality_thresholds_unchanged': True, 'original_maker_unchanged': True,
           'core_repairs': [],
           'strict_production_cache': True, 'pdf_requested': False}
@@ -361,7 +362,7 @@ def verify_correct_origin_reference_cache(request, after_references=False):
 
 def verify_unchanged_review_audio_packets(accepted_video, canonical_video):
     """Pure visual13/14/26 revisions preserve their own accepted audio packets."""
-    if NO not in {'13', '14', '26', '33'}:
+    if NO not in {'13', '14', '26', '28'}:
         return
     status['stage'] = f'{NO}-accepted-audio-packet-preservation'
     save()
@@ -458,7 +459,7 @@ def add_approved_illustrated_tail(request, final, verification):
     resource_spec.loader.exec_module(resource_module)
     image, image_receipt = resource_module.resolve(NO, ROOT / '.approved-publication-illustrations', TASK)
     status['approved_illustration_resource'] = image_receipt
-    output = OUT / f'{NO}-4K-正文-书中插图2秒-简述2秒.mp4'
+    output = OUT / f'{NO}-4K-效果审核-末句后停0.3秒-插图2秒-简述2秒.mp4'
     report = OUT / f'{NO}-illustrated-tail-verification.json'
     checked(['python3', helper, '--source-id', NO, '--input', final,
              '--verification', verification, '--illustration-manifest', TASK / 'illustration-manifest70.json',
@@ -467,12 +468,14 @@ def add_approved_illustrated_tail(request, final, verification):
              '--layout-approval', TASK / 'approved-video-layouts70.json', '--output', output,
              '--report', report, '--status', upstream_status, '--source-script', request / f'视频/脚本/{NO}.json',
              '--work', M / f'{NO}-illustrated-tail', '--preview-dir', OUT / f'{NO}-illustrated-tail-previews',
-             '--prepared-illustration-output', OUT / f'{NO}-批准插图4K.png'], 'approved-illustrated-tail.log', ROOT)
+             '--prepared-illustration-output', OUT / f'{NO}-批准插图4K.png',
+             '--preview-last-body-hold-frames', '9'], 'approved-illustrated-tail.log', ROOT)
     proof = json.loads(report.read_text())
     assert proof['passed'] is True and aac_hash(output) == status['canonical_aac_adts_sha256']
-    assert proof['production_delivery_eligible'] is True and proof['source_kind'] == 'new-canonical-4K'
+    assert proof['preview_only'] is True and proof['preview_delivery_eligible'] is True
+    assert proof['production_delivery_eligible'] is False and proof['source_kind'] == 'new-canonical-4K'
     assert proof['input_video_sha256'] == sha(final) and proof['video_sha256'] == sha(output)
-    status.update({'passed': True, 'stage': 'final4K-passed', 'video_sha256': sha(output),
+    status.update({'passed': True, 'stage': 'preview4K-passed', 'video_sha256': sha(output),
                    'final_video_file': output.name, 'illustration_frames': 60, 'illustration_seconds': 2,
                    'summary_start_seconds': proof['summary_start_seconds'],
                    'illustration_start_frame': proof['illustration_start_frame'],
@@ -480,6 +483,9 @@ def add_approved_illustrated_tail(request, final, verification):
                    'summary_start_frame': proof['summary_start_frame'],
                    'output_frames': proof['output_frames'], 'output_seconds': proof['output_seconds'],
                    'first_tail_page': 'illustration',
+                   'preview_only': True, 'preview_last_body_hold_frames': 9,
+                   'preview_delivery_eligible': True, 'production_delivery_eligible': False,
+                   'active_final_replacement_authorized': False,
                    'final_decoded_frame_previews': proof.get('decoded_frame_previews', []),
                    'illustrated_tail_verification': {'file': report.name, 'sha256': sha(report)}})
     # The predecessor and its actual passed proof remain archived for lineage.
@@ -1156,6 +1162,12 @@ try:
     batch.LOCAL_SCRIPT = current
     batch.summary = lambda no: requested_summary
     body = inspect.getsource(batch.end_card)
+    assert NO == '28', 'This isolated runtime is only the explicitly requested28 effect preview.'
+    hold_spec = importlib.util.spec_from_file_location('only28_existing_end_card_hold', TASK / 'preview28_hold.py')
+    hold_module = importlib.util.module_from_spec(hold_spec)
+    hold_spec.loader.exec_module(hold_module)
+    hold_module.pinned_module(module_file)
+    body = hold_module.patch_end_card_source(body, NO, 9)
     lo = body.index('    paths = tree_paths()')
     hi = body.index('    info = probe(source)')
     loader = ("    originals = [f'new-canonical-4K:{no}']\n"
@@ -1177,7 +1189,7 @@ try:
     assert aac_hash(processed[0]) == canonical_aac, 'Exact-card processing changed the canonical AAC stream.'
     if NO not in APPROVED_AUDIO_REPAIRS:
         assert aac_hash(processed[0]) == accepted_aac, 'Final AAC differs from accepted prior voice.'
-    final = OUT / f'{NO}-4K-读完即转简述2秒.mp4'
+    final = OUT / f'{NO}-4K-效果审核-末句后停9帧-简述2秒.mp4'
     shutil.copyfile(processed[0], final)
     timing.update({'source_kind': 'new-canonical-4K', 'source_commit': commit,
                    'canonical_source_video_sha256': status['canonical_video_sha256'],

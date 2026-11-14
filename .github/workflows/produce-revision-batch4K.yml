@@ -150,7 +150,7 @@ jobs:
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: article${{ matrix.article }}-revised-canonical-4K-final
+          name: article${{ matrix.article }}-user-requested-hold0p3s-preview4K
           path: |
             article${{ matrix.article }}-delivery/*.mp4
             article${{ matrix.article }}-delivery/*.json
