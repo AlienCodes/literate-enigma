@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "/workspace/work/video-revision-delivery/native-inline-engine-frozen-20261114-v1/ingest_inline_article.py", line 102, in <module>
+    if a.phase=='prepare':D.require(all(getattr(a,k)for k in('zip','run_id','job_id','artifact_id')),'Actual native ZIP/run/job/artifact identity required');prepare(a)
+                                                                                                                                                             ^^^^^^^^^^
+  File "/workspace/work/video-revision-delivery/native-inline-engine-frozen-20261114-v1/ingest_inline_article.py", line 78, in prepare
+    if not derived.exists():derive(records['actual_working_source'][1],records['request_json'][1],records['request_generator'][1],files/'immutable-request'/md_keys[0],main_path,AUDIT/'preflight-frozen66-v2-part1/mirror/视频/工具',AUDIT/'generator_text_preflight.py',derived)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/video-revision-delivery/native-inline-engine-frozen-20261114-v1/derive_final_generator.py", line 21, in derive
+    semantic=source_invariants(asked,final,n)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/video-revision-delivery/native-inline-engine-frozen-20261114-v1/delivery.py", line 190, in source_invariants
+    require(req_meta==fin_meta,f'Audio/render/title metadata changed outside actual QC records: {n}')
+  File "/workspace/work/video-revision-delivery/native-inline-engine-frozen-20261114-v1/delivery.py", line 23, in require
+    raise ValueError(message)
+ValueError: Audio/render/title metadata changed outside actual QC records: 19
