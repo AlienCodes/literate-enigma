@@ -397,6 +397,7 @@ def end_card(no):
     command(args + ['-filter_complex',graph,'-map','[out]','-an',
                     '-frames:v',body_tail_frames+60,'-r','30','-fps_mode','cfr',
                     '-c:v','libx264','-preset','fast','-crf','10','-threads','2',
+                    '-force_key_frames',f'{body_tail_frames/30:.9f}',
                     '-pix_fmt','yuv420p','-profile:v','high','-level:v','5.1',
                     '-video_track_timescale',Fraction(vs['time_base']).denominator,tail])
     concat = OUT / f'{no}.ffconcat'
@@ -502,4 +503,3 @@ if __name__ == '__main__':
     os.chdir(ROOT)
     OUT.mkdir(exist_ok=True)
     end_card(no)
-
