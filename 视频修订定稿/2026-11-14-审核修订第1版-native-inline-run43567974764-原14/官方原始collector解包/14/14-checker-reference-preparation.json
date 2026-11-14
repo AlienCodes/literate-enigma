@@ -1,0 +1,3228 @@
+{
+  "article": "14",
+  "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+  "reference_prepared": true,
+  "acceptance": false,
+  "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+  "source_sha256": "2889a9b31bc7945ee55c306d3507b8557bf1efe371af8a97483a61172be800b8",
+  "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+  "checker_program_sha256": {
+    "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+    "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+    "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+    "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+    "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+    "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+  },
+  "reference_calls": [
+    {
+      "sentence": "标题",
+      "piece": null,
+      "reference_kind": "title-default-raw",
+      "method": "create",
+      "source_slice": "The Fungus That Turns Ants into Zombies",
+      "exact_native_cache_key": "3d3400fadf80486f1678ffc058cba226c7cd5c0e.pkl",
+      "cache_input_text_sha256": "6b6328a465c6bf7225b27218f4d79ec9ae13411b0e0a485f1f236ac58a49b68e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "标题",
+      "piece": null,
+      "reference_kind": "title-default-timed",
+      "method": "create_timed",
+      "source_slice": "The Fungus That Turns Ants into Zombies",
+      "exact_native_cache_key": "f35839b254e0b371bf4ea732ffee3c157cb0450b.pkl",
+      "cache_input_text_sha256": "6b6328a465c6bf7225b27218f4d79ec9ae13411b0e0a485f1f236ac58a49b68e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Deep in a Thai rainforest, a carpenter ant breaks from its colony's column in the lofty canopy.",
+      "exact_native_cache_key": "27b8d1721edcae0aa8f6fa21d46ae3d924b34a7d.pkl",
+      "cache_input_text_sha256": "139b923509b0e2ad70a2de4599522253313c198cf11e369c5ff03a153afcdfbf",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Deep in a Thai rainforest, a carpenter ant breaks from its colony's column in the lofty canopy.",
+      "exact_native_cache_key": "6fa9285b4bfff1229d40d02b26e7003f219d5b96.pkl",
+      "cache_input_text_sha256": "139b923509b0e2ad70a2de4599522253313c198cf11e369c5ff03a153afcdfbf",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Deep in a Thai rainforest,",
+      "exact_native_cache_key": "8c46713d6280e975c8eea48366023ec88b4bfa2e.pkl",
+      "cache_input_text_sha256": "801b210eddec84d58a35c8e38e6f8eb8a9bb56f7e8100876534faff680cc7f96",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "a carpenter ant breaks from its colony's column in the lofty canopy.",
+      "exact_native_cache_key": "18d8cf91c36bbd771005fb8b931a62c22d285cf7.pkl",
+      "cache_input_text_sha256": "d04f0a1d3d7405369ccef4eeb4edd16420e09864341f30abe8892851cba85e4b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Deep in a Thai rainforest,",
+      "exact_native_cache_key": "8c46713d6280e975c8eea48366023ec88b4bfa2e.pkl",
+      "cache_input_text_sha256": "801b210eddec84d58a35c8e38e6f8eb8a9bb56f7e8100876534faff680cc7f96",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "a carpenter ant breaks from its colony's column in the lofty canopy.",
+      "exact_native_cache_key": "18d8cf91c36bbd771005fb8b931a62c22d285cf7.pkl",
+      "cache_input_text_sha256": "d04f0a1d3d7405369ccef4eeb4edd16420e09864341f30abe8892851cba85e4b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Swaying on unsteady legs, it wanders downward, as if intoxicated, into leafy undergrowth.",
+      "exact_native_cache_key": "4dc2dc141a2bd2d5829579bbfda2858de07c2f6f.pkl",
+      "cache_input_text_sha256": "54dabf6af00881ef607e4fcceaeb27f0403dcb4f910ea3daebdc983f12dfb0b4",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Swaying on unsteady legs, it wanders downward, as if intoxicated, into leafy undergrowth.",
+      "exact_native_cache_key": "69b445c85cafec15ae631e8afb101ec29f793257.pkl",
+      "cache_input_text_sha256": "54dabf6af00881ef607e4fcceaeb27f0403dcb4f910ea3daebdc983f12dfb0b4",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Swaying on unsteady legs,",
+      "exact_native_cache_key": "19a8c4ee36d30aa48f44190c2585d605f3a01b79.pkl",
+      "cache_input_text_sha256": "4a56a2868ac7dd3b5a980579139044a68250e3c36588e4410fb6f12f1685b627",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "it wanders downward, as if intoxicated, into leafy undergrowth.",
+      "exact_native_cache_key": "1c5cbe7a9ea22672dc3f23ea8e7ceafefe194059.pkl",
+      "cache_input_text_sha256": "64cbd3a8293711d447d4b42df29dc8e266dca55f9fe674b8aa29289c1c4ceebf",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Swaying on unsteady legs,",
+      "exact_native_cache_key": "19a8c4ee36d30aa48f44190c2585d605f3a01b79.pkl",
+      "cache_input_text_sha256": "4a56a2868ac7dd3b5a980579139044a68250e3c36588e4410fb6f12f1685b627",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "it wanders downward,",
+      "exact_native_cache_key": "f1ea55df2776a2aae4e8c1b1061d034ad098d0b1.pkl",
+      "cache_input_text_sha256": "8afb0577ea4d1f919b3facf579c66a053672d8a691c9566fd142bf7d2f6b3da8",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "as if intoxicated,",
+      "exact_native_cache_key": "607d5677fabb87f2e155f05a66a84784f273b03e.pkl",
+      "cache_input_text_sha256": "8d9254f6e0b40b21c293c1730a78a4f0dddf98db5f484d7491f6d2a87a924413",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 4,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "into leafy undergrowth.",
+      "exact_native_cache_key": "c4022e96df3550fc7eace1167716ce4227b499a1.pkl",
+      "cache_input_text_sha256": "a34bc6bc19cf2c4eac43f418c914598679a99b1a3935f38921835e8b78b3f60b",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Around midday it clenches its jaws on a major vein underneath a leaf, about 25 centimetres above the ground.",
+      "exact_native_cache_key": "3339b7eed82c9fb9b924c28d65a592baa2719772.pkl",
+      "cache_input_text_sha256": "6b3489b0367bb38aac59e0f17af770c11ddd40de12c084b9336a38845246677a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Around midday it clenches its jaws on a major vein underneath a leaf, about 25 centimetres above the ground.",
+      "exact_native_cache_key": "be4a3fd0369acafdfd5dbe735c97f39f3310c71a.pkl",
+      "cache_input_text_sha256": "6b3489b0367bb38aac59e0f17af770c11ddd40de12c084b9336a38845246677a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Around midday it clenches its jaws",
+      "exact_native_cache_key": "ba0adf6331ad5cc507a4e02c24029db75a3cc27d.pkl",
+      "cache_input_text_sha256": "fb5ba5552b2faa9b503f673bcc029e6429f42c4b1c00013ed7e08d348bff8e20",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "on a major vein underneath a leaf, about 25 centimetres above the ground.",
+      "exact_native_cache_key": "adceb07250a9ad786aaf278e4cd218565edb37ab.pkl",
+      "cache_input_text_sha256": "02649dc4934a2fee4765c580a2f24c5c8301f6901284ac384de3e8c93c4d3990",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Around midday it clenches its jaws on a major vein underneath a leaf,",
+      "exact_native_cache_key": "3af021302c94df26c4f7c992428699017570ea8f.pkl",
+      "cache_input_text_sha256": "afda847bb03070c72cb6b736d9e3e4a4f9123f91b24a17a64ea282ba2a59eeb2",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "about 25 centimetres above the ground.",
+      "exact_native_cache_key": "f006e476c54f85c3180a9f90ec83b088f2892bc4.pkl",
+      "cache_input_text_sha256": "0cb309eac5a4a5fdf3eeb8a89f15f72f93f1f7de694d43c07a10825318f9120b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "By dusk the insect is lifeless, yet the bite holds rigidly.",
+      "exact_native_cache_key": "ea11fab75f0842a1cf62ecdfc0f2e545bf03b283.pkl",
+      "cache_input_text_sha256": "ad81d03280235c7e22536a0587edae3e58685cdc86bcf71120acd47b8bd286cb",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "By dusk the insect is lifeless, yet the bite holds rigidly.",
+      "exact_native_cache_key": "3cba378d74c2df7906f0fac4f7dd043f0ad7eca9.pkl",
+      "cache_input_text_sha256": "ad81d03280235c7e22536a0587edae3e58685cdc86bcf71120acd47b8bd286cb",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "By dusk the insect is lifeless,",
+      "exact_native_cache_key": "e476a2d6660eac0f8adb11a26920b32ab12723ad.pkl",
+      "cache_input_text_sha256": "945c9ec1a1faac8b822f706ad81142d00b1666b6e75ca6312954994b5b4f5e59",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "yet the bite holds rigidly.",
+      "exact_native_cache_key": "229d458e900de1bddb403c822828ec928f9dc157.pkl",
+      "cache_input_text_sha256": "d2f2fcd5ece492d597541c47e29ad0b5715ef3527c116c3bdd175352441e474c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "By dusk the insect is lifeless,",
+      "exact_native_cache_key": "e476a2d6660eac0f8adb11a26920b32ab12723ad.pkl",
+      "cache_input_text_sha256": "945c9ec1a1faac8b822f706ad81142d00b1666b6e75ca6312954994b5b4f5e59",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "yet the bite holds rigidly.",
+      "exact_native_cache_key": "229d458e900de1bddb403c822828ec928f9dc157.pkl",
+      "cache_input_text_sha256": "d2f2fcd5ece492d597541c47e29ad0b5715ef3527c116c3bdd175352441e474c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "A fungus has destroyed its jaw muscles, so they cannot loosen.",
+      "exact_native_cache_key": "86b691b9bdc41f38f5e96dd3225381fcac1cdc06.pkl",
+      "cache_input_text_sha256": "b4585dd98e38c42c964f73ff76ad657bf582886a835ff3caf7238e2265be0488",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "A fungus has destroyed its jaw muscles, so they cannot loosen.",
+      "exact_native_cache_key": "dc981cdcc3e6dcdef18d871d63474c2646fbb36e.pkl",
+      "cache_input_text_sha256": "b4585dd98e38c42c964f73ff76ad657bf582886a835ff3caf7238e2265be0488",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "A fungus has destroyed its jaw muscles,",
+      "exact_native_cache_key": "b92588befd586cdadc12d971bb94faa14fb5872b.pkl",
+      "cache_input_text_sha256": "8fe7d5531136df465485e2211568e46e17872d3869cb2fdb151296cda639632e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "so they cannot loosen.",
+      "exact_native_cache_key": "774f941cd34ee8146bf5bc043b9505df785dda3a.pkl",
+      "cache_input_text_sha256": "a78f0abfaa1d6d329ac17ed209bf75f8b191bf6d29515c459d1bd87ec318e5d9",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "A fungus has destroyed its jaw muscles,",
+      "exact_native_cache_key": "b92588befd586cdadc12d971bb94faa14fb5872b.pkl",
+      "cache_input_text_sha256": "8fe7d5531136df465485e2211568e46e17872d3869cb2fdb151296cda639632e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "so they cannot loosen.",
+      "exact_native_cache_key": "774f941cd34ee8146bf5bc043b9505df785dda3a.pkl",
+      "cache_input_text_sha256": "a78f0abfaa1d6d329ac17ed209bf75f8b191bf6d29515c459d1bd87ec318e5d9",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Two or three days later a fungal stalk pushes from its head and releases infectious spores on to the ground below, where foraging ants tread.",
+      "exact_native_cache_key": "cec44b4d371067ab1da4e377ceb24a7d8a7ded36.pkl",
+      "cache_input_text_sha256": "e5c857ce95a1bdfe2b8267f2956930fc24029c1985785166c80eeba8534f1a37",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Two or three days later a fungal stalk pushes from its head and releases infectious spores on to the ground below, where foraging ants tread.",
+      "exact_native_cache_key": "25d7152aed7a8d49d5a3382907654be359d1881d.pkl",
+      "cache_input_text_sha256": "e5c857ce95a1bdfe2b8267f2956930fc24029c1985785166c80eeba8534f1a37",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Two or three days later a fungal stalk pushes from its head",
+      "exact_native_cache_key": "c423715f1cfb0f19a46b52cdfad81aab29dff632.pkl",
+      "cache_input_text_sha256": "d1e08bfa5bf167c782746e8531cabc30dea58ff8c6b4709bcd8318291f7323f9",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "and releases infectious spores on to the ground below,",
+      "exact_native_cache_key": "8ae0ab2c9fb690f60411ffebc678de556a74707e.pkl",
+      "cache_input_text_sha256": "f305c3769d0d4e190845f1a3212e31697055003c8b9c31a061b987f99b972d7f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "where foraging ants tread.",
+      "exact_native_cache_key": "a760dff287d7e266df8fa11e89fb6674353f0df5.pkl",
+      "cache_input_text_sha256": "c9f1d3dd145e4d2039ae43bd44a2eb17762321fd4d51bc092869a7f10fc6520d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Two or three days later a fungal stalk pushes from its head and releases infectious spores on to the ground below,",
+      "exact_native_cache_key": "81ae11f7e343677dcffe1fee16888dc7c0d42eeb.pkl",
+      "cache_input_text_sha256": "e35bd343ca3edb9fc12df1f70a20700d21c1c6aa2e2adf595dce42791e0b7b1d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "where foraging ants tread.",
+      "exact_native_cache_key": "a760dff287d7e266df8fa11e89fb6674353f0df5.pkl",
+      "cache_input_text_sha256": "c9f1d3dd145e4d2039ae43bd44a2eb17762321fd4d51bc092869a7f10fc6520d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "The invader, Ophiocordyceps unilateralis, is fussy about location.",
+      "exact_native_cache_key": "f24196db6f72e536acd66537640ab5065aa799b0.pkl",
+      "cache_input_text_sha256": "dbce083218d3b369f86179ebfee866cd37745e7d6b468d657ac1ed117d3a800f",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "The invader, Ophiocordyceps unilateralis, is fussy about location.",
+      "exact_native_cache_key": "97bc395506832da51eba96cdb8226124a66d089a.pkl",
+      "cache_input_text_sha256": "dbce083218d3b369f86179ebfee866cd37745e7d6b468d657ac1ed117d3a800f",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "The invader, Ophiocordyceps unilateralis,",
+      "exact_native_cache_key": "ae6ed2cad4c6002683a53906479b6b9a6a7d54de.pkl",
+      "cache_input_text_sha256": "d0ba3637527600c719e2d8bfc3fadf0259ebed1e4beb4f751810883f87ba9189",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "is fussy about location.",
+      "exact_native_cache_key": "88716e02e84dac152068f7c38b2890cbc4f483ec.pkl",
+      "cache_input_text_sha256": "922ec964b1854194a1abb78eb0a21c5c8350af88003c10c4eba6e93b384ca8f4",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "The invader,",
+      "exact_native_cache_key": "086c6a6c9675cf0184e9d38469b742a682dcea70.pkl",
+      "cache_input_text_sha256": "11505ddd6baef2dee136a91bac6df700c60dd79d815948a4cd9da5d87a48b916",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Ophiocordyceps unilateralis,",
+      "exact_native_cache_key": "bc163e12849fc909d2d70767b09a82bb45e7a186.pkl",
+      "cache_input_text_sha256": "4cc8dbae39f92ef09ec0eac8849aeb07fbe17af7389311d34fdb14d41d3afbda",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "is fussy about location.",
+      "exact_native_cache_key": "88716e02e84dac152068f7c38b2890cbc4f483ec.pkl",
+      "cache_input_text_sha256": "922ec964b1854194a1abb78eb0a21c5c8350af88003c10c4eba6e93b384ca8f4",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "David Hughes and colleagues found the bites mostly on the north-west side of plants, where the air is humid and the temperature suits the fungus.",
+      "exact_native_cache_key": "37a4235de49f80b74e87f8e6147ba521c6c044e6.pkl",
+      "cache_input_text_sha256": "11871e7dc0c354ce187c2899881bdd5b5a69caa4b77eebe16e83daf5849b80dc",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "David Hughes and colleagues found the bites mostly on the north-west side of plants, where the air is humid and the temperature suits the fungus.",
+      "exact_native_cache_key": "3479335f2d322a464abe3c65bcc0a5e9ef6e00dd.pkl",
+      "cache_input_text_sha256": "11871e7dc0c354ce187c2899881bdd5b5a69caa4b77eebe16e83daf5849b80dc",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "David Hughes and colleagues found",
+      "exact_native_cache_key": "5743cc75aeae3d1a0d4d04cfd76c8f320f389026.pkl",
+      "cache_input_text_sha256": "b7e511c619d442140ffabf73deb70bd7e0bf07b9dae97c5e8ee319c66dfd05e4",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "the bites mostly on the north-west side of plants,",
+      "exact_native_cache_key": "dfd5ea2165617fd3e40a351103fd9a3c65e30ab7.pkl",
+      "cache_input_text_sha256": "9f9270e4ac2cf4611e13f731744fa5f8dde60afd0c2bd15e942971b166826f7c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "where the air is humid and the temperature suits the fungus.",
+      "exact_native_cache_key": "f0121550f578e6aadbbdac274af1c29f44789dee.pkl",
+      "cache_input_text_sha256": "9cd28cc57ddd2135c90156b393add3af18d0c3dcd14ec3acb45a0be9ccf205b9",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "David Hughes and colleagues found the bites mostly on the north-west side of plants,",
+      "exact_native_cache_key": "d58374ce578bba1bbec0eb23d49b41e186513df3.pkl",
+      "cache_input_text_sha256": "60266d64fed6555372cce5d57133174999c8fb29b02014ffdaa2fcc6e478a9b5",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "where the air is humid and the temperature suits the fungus.",
+      "exact_native_cache_key": "f0121550f578e6aadbbdac274af1c29f44789dee.pkl",
+      "cache_input_text_sha256": "9cd28cc57ddd2135c90156b393add3af18d0c3dcd14ec3acb45a0be9ccf205b9",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "When researchers moved infected ants higher, the fungus grew abnormally.",
+      "exact_native_cache_key": "39f555812fae9925b91b26c4ca107995c810c581.pkl",
+      "cache_input_text_sha256": "3581dfd6c301481cc9b83d7d04f7fb02728a4e7d52c44e82ddfb72e234e18cc4",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "When researchers moved infected ants higher, the fungus grew abnormally.",
+      "exact_native_cache_key": "bb2383e97a8f2d15efd8c99527e5c8ee3d2406db.pkl",
+      "cache_input_text_sha256": "3581dfd6c301481cc9b83d7d04f7fb02728a4e7d52c44e82ddfb72e234e18cc4",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "When researchers moved infected ants higher,",
+      "exact_native_cache_key": "5e20538dcf2da5fcaddff3528cf485676e797d9d.pkl",
+      "cache_input_text_sha256": "11856a5afdd36a1bafe5678ed8ec15087316a37c2d60cde4b8cd0adfc5dbf42c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "the fungus grew abnormally.",
+      "exact_native_cache_key": "0853368ead9df4ed9aebac44b3499e8294d543de.pkl",
+      "cache_input_text_sha256": "a180ce77ba8530eee802f3a08acebddbb1a29288c1629307eb8e2aad4841c73a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "When researchers moved infected ants higher,",
+      "exact_native_cache_key": "5e20538dcf2da5fcaddff3528cf485676e797d9d.pkl",
+      "cache_input_text_sha256": "11856a5afdd36a1bafe5678ed8ec15087316a37c2d60cde4b8cd0adfc5dbf42c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "the fungus grew abnormally.",
+      "exact_native_cache_key": "0853368ead9df4ed9aebac44b3499e8294d543de.pkl",
+      "cache_input_text_sha256": "a180ce77ba8530eee802f3a08acebddbb1a29288c1629307eb8e2aad4841c73a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Placed on the ground, the bodies disappeared.",
+      "exact_native_cache_key": "6e3fb12278574e278623627192283c4e642d193a.pkl",
+      "cache_input_text_sha256": "13f78e1ad40ba1e6bedb84f25ce847fbd9a9e0c72355f04a77bf1eec3ea2f85e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Placed on the ground, the bodies disappeared.",
+      "exact_native_cache_key": "94f85378584fc59c9e7c7cf4c4f4007633557237.pkl",
+      "cache_input_text_sha256": "13f78e1ad40ba1e6bedb84f25ce847fbd9a9e0c72355f04a77bf1eec3ea2f85e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Placed on the ground,",
+      "exact_native_cache_key": "f0867b6994d4ad38cec6be9e461bcf6efe104cb0.pkl",
+      "cache_input_text_sha256": "9ab073e1b0e99a7f91337b23089a048ce8e170097e92149139dc68bf0f65c82e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "the bodies disappeared.",
+      "exact_native_cache_key": "6411c9b07f3677dccc30bb1716143245fb65deda.pkl",
+      "cache_input_text_sha256": "80f62707a06dcba39a406a6c2334143f8b79f33b38030734f6ab8b855e1b3577",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "In 2017 a Penn State team examined infected ants with three-dimensional microscope imaging.",
+      "exact_native_cache_key": "ab0d44522cb97f9d9b05fb9fb159926d73b8721b.pkl",
+      "cache_input_text_sha256": "e1106f72746ff0236c74ec5a2a5289542124b83a1d3e99e60f18e6a9383ca348",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "In 2017 a Penn State team examined infected ants with three-dimensional microscope imaging.",
+      "exact_native_cache_key": "cdf05fd94f6f9840432be2dc67a07e8bef355ea6.pkl",
+      "cache_input_text_sha256": "e1106f72746ff0236c74ec5a2a5289542124b83a1d3e99e60f18e6a9383ca348",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "In 2017 a Penn State team examined infected ants",
+      "exact_native_cache_key": "6a23f2ea95e84cdbf894028a743773309d7065d2.pkl",
+      "cache_input_text_sha256": "87f86e1ad8f71898d7b452f46513ac879f54e9cee90a521d9a83d8f623af40cb",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "with three-dimensional microscope imaging.",
+      "exact_native_cache_key": "30e2f9111e8d1583fe182da04ae108904c2b8956.pkl",
+      "cache_input_text_sha256": "c6fcc28db0895c38fb61c0c3c5556b9dd24dadac3b24fbc3460a5bab0134fbc7",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Fungal cells had formed an intertwined lattice around muscle fibres in the legs and jaw, a picture that evokes the strings of a puppet.",
+      "exact_native_cache_key": "ceb09682911d7ecc2a77cd81816e26003bd1537b.pkl",
+      "cache_input_text_sha256": "604f9f152161c9b3e7613c2258fb8eefe2fe5ead37f54b73cc81d55737783601",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Fungal cells had formed an intertwined lattice around muscle fibres in the legs and jaw, a picture that evokes the strings of a puppet.",
+      "exact_native_cache_key": "878fe0806f975160b8888fffe8374716e9e37047.pkl",
+      "cache_input_text_sha256": "604f9f152161c9b3e7613c2258fb8eefe2fe5ead37f54b73cc81d55737783601",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Fungal cells had formed an intertwined lattice",
+      "exact_native_cache_key": "941feeaab1e0cbcd26a98b5c06e50ec613197310.pkl",
+      "cache_input_text_sha256": "1900926a89329f7d15cbcff6a60d42aa711edb243e534c4f2730e80424ac19bb",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "around muscle fibres in the legs and jaw,",
+      "exact_native_cache_key": "e17085743b0238b80d83fc239d84ccc0a0c1e1ac.pkl",
+      "cache_input_text_sha256": "41b0d637eca54efbdaded74e7b22921d76d9a74d77fa478343a0200a092e3996",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "a picture that evokes the strings of a puppet.",
+      "exact_native_cache_key": "bb2dd52b8e513fa1a2eef5d2ed3e7931865e87d1.pkl",
+      "cache_input_text_sha256": "0caf66bb6a9bac2a5db5007208e8018119f348adbfc889a18542325a7d70d8e7",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Fungal cells had formed an intertwined lattice around muscle fibres in the legs and jaw,",
+      "exact_native_cache_key": "cbd924871a12135c3d89177e13002e6ca6cad497.pkl",
+      "cache_input_text_sha256": "5d4bdfe5bc0a283520601b8aee604e73ad5ee8f5fe7e552cf8d12cf76bfea7f5",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "a picture that evokes the strings of a puppet.",
+      "exact_native_cache_key": "bb2dd52b8e513fa1a2eef5d2ed3e7931865e87d1.pkl",
+      "cache_input_text_sha256": "0caf66bb6a9bac2a5db5007208e8018119f348adbfc889a18542325a7d70d8e7",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Yet the fungus had not infiltrated the brain.",
+      "exact_native_cache_key": "2c53ca6b984ca01ceca83971dbbe3f7502291ead.pkl",
+      "cache_input_text_sha256": "4a2c0194b3faa9234ba468e5526325c2a17fcbe91a8758f6ee23a47ffbd44db6",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Yet the fungus had not infiltrated the brain.",
+      "exact_native_cache_key": "8d780b7861704d94cf2957c9bf38436b94e2df7d.pkl",
+      "cache_input_text_sha256": "4a2c0194b3faa9234ba468e5526325c2a17fcbe91a8758f6ee23a47ffbd44db6",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "A Planet Earth episode, with David Attenborough's narration, showed one such ant.",
+      "exact_native_cache_key": "8ef558a8ba2b2f03ffb73e13a1e1483e5da0cdf3.pkl",
+      "cache_input_text_sha256": "d44e5c1c8b4a5655044aba6480a9ab3b5c545b645df314719f41b42f48ef0e5d",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "A Planet Earth episode, with David Attenborough's narration, showed one such ant.",
+      "exact_native_cache_key": "74b0b20088afa11cc66f94cd23ca9914af7386ba.pkl",
+      "cache_input_text_sha256": "d44e5c1c8b4a5655044aba6480a9ab3b5c545b645df314719f41b42f48ef0e5d",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "A Planet Earth episode, with David Attenborough's narration,",
+      "exact_native_cache_key": "e0e5043f3ec6d8ab90b532f515789664c7da13c6.pkl",
+      "cache_input_text_sha256": "f6f1bedf226cc26fb3f101bc30067bf3566865291027885d561dc373e8361d16",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "showed one such ant.",
+      "exact_native_cache_key": "7f6a94bc386f8ca5d5d9dd0232e3fd0d89aac154.pkl",
+      "cache_input_text_sha256": "9d15b6169fac8a1d7ab5b1d496ab943ace421c3b3c64120295d61413be56e82f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "A Planet Earth episode,",
+      "exact_native_cache_key": "e70ff9b349225fd3ff5f0a57de84ab594e0bed14.pkl",
+      "cache_input_text_sha256": "c4024ad67552e95b6772c929842ae1ae74cb0c24e2bc30bdb6bf7de710e34682",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "with David Attenborough's narration,",
+      "exact_native_cache_key": "96fb28788b957bde821c585738ae26cff04ff83d.pkl",
+      "cache_input_text_sha256": "2065989d69523eaee7dc90aede8a82f3c9d0848812170d1622827672884d14a3",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "showed one such ant.",
+      "exact_native_cache_key": "7f6a94bc386f8ca5d5d9dd0232e3fd0d89aac154.pkl",
+      "cache_input_text_sha256": "9d15b6169fac8a1d7ab5b1d496ab943ace421c3b3c64120295d61413be56e82f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "It helped inspire The Last of Us, a 2013 video game whose makers envisioned the parasite jumping to humans.",
+      "exact_native_cache_key": "28071f50c357d76d305aacd5908ac8828d03cecc.pkl",
+      "cache_input_text_sha256": "9109bae9161d2faab0875edf6d9a55c6aa0b749bd11c6d62308fb00abb69e972",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "It helped inspire The Last of Us, a 2013 video game whose makers envisioned the parasite jumping to humans.",
+      "exact_native_cache_key": "2cf9f90817f02f7fd1ab291331502e7eb5ba91c3.pkl",
+      "cache_input_text_sha256": "9109bae9161d2faab0875edf6d9a55c6aa0b749bd11c6d62308fb00abb69e972",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "It helped inspire The Last of Us, a 2013 video game",
+      "exact_native_cache_key": "da4c83a200d946e4a825886648aa3438da3e7d91.pkl",
+      "cache_input_text_sha256": "3ac4839d83ee4e0094df4e1ff3dca3316588750a0105223496b6c23542fad934",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "whose makers envisioned the parasite jumping to humans.",
+      "exact_native_cache_key": "15ac0fe32516347a18e76fe31223d430a8637ad9.pkl",
+      "cache_input_text_sha256": "c12f1a3b4565b1c4e5f16466246c8cc705fdb2a79380464e238eb5c5a1b65b20",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "It helped inspire The Last of Us,",
+      "exact_native_cache_key": "87ed3cb49d0d59e4435a8ec64f7c76448d44bd88.pkl",
+      "cache_input_text_sha256": "73acff5cbe66be990e18591b5e65998d0f637a11e750a8950156bf6a4d9566e7",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "a 2013 video game whose makers envisioned the parasite jumping to humans.",
+      "exact_native_cache_key": "47e6e02905aa783304d6cd5be226c2ec1215ff5c.pkl",
+      "cache_input_text_sha256": "1376100f5feca0b7afa75c3ec6ad238f6ec7ec17640f0377c46cf7b9e9afcf6f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "The hypothetical scenario gave gamers a fictional nightmare.",
+      "exact_native_cache_key": "10fc61d2a7dff886ed67442d4ae4df7812ba16d2.pkl",
+      "cache_input_text_sha256": "a136e3d54b75e3784cf3f88d1e1ce7b943fa7003d2c985d7fb85e71a9c411516",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "The hypothetical scenario gave gamers a fictional nightmare.",
+      "exact_native_cache_key": "9f5c45c8445d039e7277d444d8d1314513bb3f45.pkl",
+      "cache_input_text_sha256": "a136e3d54b75e3784cf3f88d1e1ce7b943fa7003d2c985d7fb85e71a9c411516",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "The real parasite's roots run far deeper, into the geological record.",
+      "exact_native_cache_key": "ec2887c74dac01d641347b979b896e635f207ae9.pkl",
+      "cache_input_text_sha256": "9ec14e8d2041720ca808fa1843aef1ea255b61cbc7df6584da2a195af62396e6",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "The real parasite's roots run far deeper, into the geological record.",
+      "exact_native_cache_key": "bd461337512f7eda53d5b52b47f23e8a71c4aa4b.pkl",
+      "cache_input_text_sha256": "9ec14e8d2041720ca808fa1843aef1ea255b61cbc7df6584da2a195af62396e6",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "The real parasite's roots run far deeper,",
+      "exact_native_cache_key": "613357c04fed274cb50d7618090e2a3ce188d06a.pkl",
+      "cache_input_text_sha256": "5bed0bf2ec40264f88079d215e6d80aa31a8de54331d4fd6be2389cd6c3362b9",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "into the geological record.",
+      "exact_native_cache_key": "b12fc4696333de7cdff9081be10c082242176117.pkl",
+      "cache_input_text_sha256": "253227bc7cf52691657e59f271e16a49b1a4b2d980cc647f816dcc4d4820b949",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "The real parasite's roots run far deeper,",
+      "exact_native_cache_key": "613357c04fed274cb50d7618090e2a3ce188d06a.pkl",
+      "cache_input_text_sha256": "5bed0bf2ec40264f88079d215e6d80aa31a8de54331d4fd6be2389cd6c3362b9",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "into the geological record.",
+      "exact_native_cache_key": "b12fc4696333de7cdff9081be10c082242176117.pkl",
+      "cache_input_text_sha256": "253227bc7cf52691657e59f271e16a49b1a4b2d980cc647f816dcc4d4820b949",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S18",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "A 48-million-year-old fossil leaf from Messel, in Germany, bears the same characteristic bite scars.",
+      "exact_native_cache_key": "67206f673af4c521dd7cf717fc6d9867dad6e568.pkl",
+      "cache_input_text_sha256": "28a43ecf138a9def3bac61c1c1547ea32562563b68c2b23e587017f8b634e683",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S18",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "A 48-million-year-old fossil leaf from Messel, in Germany, bears the same characteristic bite scars.",
+      "exact_native_cache_key": "f91c12909e3fef5da662cf3e0defb17397b706a0.pkl",
+      "cache_input_text_sha256": "28a43ecf138a9def3bac61c1c1547ea32562563b68c2b23e587017f8b634e683",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S18",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "A 48-million-year-old fossil leaf from Messel, in Germany,",
+      "exact_native_cache_key": "965cb2c86e6f48ebefcb28d6b385626132e60967.pkl",
+      "cache_input_text_sha256": "64b77515d6f629fdf69282418150434cbaacb462870607d20a0b9de0dfa8626a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S18",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "bears the same characteristic bite scars.",
+      "exact_native_cache_key": "6765d74d17032bda82b9a1eba857819b0c81cf6f.pkl",
+      "cache_input_text_sha256": "572eb60d1bf81ed69262207de2b825f7183c9be5171329b63c5cf1af5619a669",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S18",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "A 48-million-year-old fossil leaf from Messel,",
+      "exact_native_cache_key": "2ce4900e7dc4139a7f2aa0665056ba247d56ff49.pkl",
+      "cache_input_text_sha256": "48ceeecab8d25aa34d3125a377e985a7633ee61b143388f588886574246bd9c8",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S18",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "in Germany,",
+      "exact_native_cache_key": "355c7578ddd43e5e75d98a128bd5ac95e2fd9163.pkl",
+      "cache_input_text_sha256": "f57a70713d16151e525ef425ad02acde3bfeae193f05a90690107a619a2d3485",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S18",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "bears the same characteristic bite scars.",
+      "exact_native_cache_key": "6765d74d17032bda82b9a1eba857819b0c81cf6f.pkl",
+      "cache_input_text_sha256": "572eb60d1bf81ed69262207de2b825f7183c9be5171329b63c5cf1af5619a669",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    }
+  ],
+  "unique_reference_key_count": 89,
+  "raw_mother_cache_scalar_manifest": [
+    {
+      "exact_native_cache_key": "3d3400fadf80486f1678ffc058cba226c7cd5c0e.pkl",
+      "pkl_sha256": "77b0f0b7f9a583f4580aaaa294410b46af4b7edaaeb301fe4e313cf3e231fa63",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "标题",
+          "piece": null,
+          "reference_kind": "title-default-raw",
+          "method": "create",
+          "source_slice": "The Fungus That Turns Ants into Zombies",
+          "exact_native_cache_key": "3d3400fadf80486f1678ffc058cba226c7cd5c0e.pkl",
+          "cache_input_text_sha256": "6b6328a465c6bf7225b27218f4d79ec9ae13411b0e0a485f1f236ac58a49b68e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        56320
+      ],
+      "unprocessed_array_sha256": "aa72e1b05d72c1945fc17c0027acc63f137536e7682d4affbe77c799733f8e1d"
+    },
+    {
+      "exact_native_cache_key": "27b8d1721edcae0aa8f6fa21d46ae3d924b34a7d.pkl",
+      "pkl_sha256": "7c39e01ec45f44e6bb601c8560114a395bd4302bfb2497cea1d12a9f5cc0df2a",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Deep in a Thai rainforest, a carpenter ant breaks from its colony's column in the lofty canopy.",
+          "exact_native_cache_key": "27b8d1721edcae0aa8f6fa21d46ae3d924b34a7d.pkl",
+          "cache_input_text_sha256": "139b923509b0e2ad70a2de4599522253313c198cf11e369c5ff03a153afcdfbf",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        155136
+      ],
+      "unprocessed_array_sha256": "0e1688f2682ff33d6dcc94f6a9b4988429762271a4eabc4821c78d5d5c9292eb"
+    },
+    {
+      "exact_native_cache_key": "8c46713d6280e975c8eea48366023ec88b4bfa2e.pkl",
+      "pkl_sha256": "0ff1834d63919be7dbf1ca475a3c4d4aad665523e90b21bf184a08a105fc79c7",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Deep in a Thai rainforest,",
+          "exact_native_cache_key": "8c46713d6280e975c8eea48366023ec88b4bfa2e.pkl",
+          "cache_input_text_sha256": "801b210eddec84d58a35c8e38e6f8eb8a9bb56f7e8100876534faff680cc7f96",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Deep in a Thai rainforest,",
+          "exact_native_cache_key": "8c46713d6280e975c8eea48366023ec88b4bfa2e.pkl",
+          "cache_input_text_sha256": "801b210eddec84d58a35c8e38e6f8eb8a9bb56f7e8100876534faff680cc7f96",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        40448
+      ],
+      "unprocessed_array_sha256": "8f481031830408a2c6de7b363cb5823328d439da65536d937bfe229e93832059"
+    },
+    {
+      "exact_native_cache_key": "18d8cf91c36bbd771005fb8b931a62c22d285cf7.pkl",
+      "pkl_sha256": "8fa0dfcfc99d55ceb9326f07592a5361422689c1baafe57df69a39f40753bb3b",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "a carpenter ant breaks from its colony's column in the lofty canopy.",
+          "exact_native_cache_key": "18d8cf91c36bbd771005fb8b931a62c22d285cf7.pkl",
+          "cache_input_text_sha256": "d04f0a1d3d7405369ccef4eeb4edd16420e09864341f30abe8892851cba85e4b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a carpenter ant breaks from its colony's column in the lofty canopy.",
+          "exact_native_cache_key": "18d8cf91c36bbd771005fb8b931a62c22d285cf7.pkl",
+          "cache_input_text_sha256": "d04f0a1d3d7405369ccef4eeb4edd16420e09864341f30abe8892851cba85e4b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        106496
+      ],
+      "unprocessed_array_sha256": "4f5028c4ac85bd72d3543693f6b6f4f6e5a04ab183f1c995b93ccd8b92be8e23"
+    },
+    {
+      "exact_native_cache_key": "4dc2dc141a2bd2d5829579bbfda2858de07c2f6f.pkl",
+      "pkl_sha256": "fe9594f67724a7cc06825a13d9de42deca2937a9854aca6eb87ca6629fe9fef5",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Swaying on unsteady legs, it wanders downward, as if intoxicated, into leafy undergrowth.",
+          "exact_native_cache_key": "4dc2dc141a2bd2d5829579bbfda2858de07c2f6f.pkl",
+          "cache_input_text_sha256": "54dabf6af00881ef607e4fcceaeb27f0403dcb4f910ea3daebdc983f12dfb0b4",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        161280
+      ],
+      "unprocessed_array_sha256": "a1f9efe371bede5f354cebfb4a2116bdd5bea37e3ef99539bc5e2d134367a319"
+    },
+    {
+      "exact_native_cache_key": "19a8c4ee36d30aa48f44190c2585d605f3a01b79.pkl",
+      "pkl_sha256": "0d27800270ffff003e67a2316917e16f53c72c9df478125daa24ec794750ba95",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Swaying on unsteady legs,",
+          "exact_native_cache_key": "19a8c4ee36d30aa48f44190c2585d605f3a01b79.pkl",
+          "cache_input_text_sha256": "4a56a2868ac7dd3b5a980579139044a68250e3c36588e4410fb6f12f1685b627",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Swaying on unsteady legs,",
+          "exact_native_cache_key": "19a8c4ee36d30aa48f44190c2585d605f3a01b79.pkl",
+          "cache_input_text_sha256": "4a56a2868ac7dd3b5a980579139044a68250e3c36588e4410fb6f12f1685b627",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        41472
+      ],
+      "unprocessed_array_sha256": "678a78248a2a48301725e0e281be7aebc791a8418ea00d86ad64d0530d99988f"
+    },
+    {
+      "exact_native_cache_key": "1c5cbe7a9ea22672dc3f23ea8e7ceafefe194059.pkl",
+      "pkl_sha256": "2e1a6276738aa678519ba1802499f178f57078140cb53290a231f563defd9b9e",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "it wanders downward, as if intoxicated, into leafy undergrowth.",
+          "exact_native_cache_key": "1c5cbe7a9ea22672dc3f23ea8e7ceafefe194059.pkl",
+          "cache_input_text_sha256": "64cbd3a8293711d447d4b42df29dc8e266dca55f9fe674b8aa29289c1c4ceebf",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        108544
+      ],
+      "unprocessed_array_sha256": "c1b4fa1eb101d7605df64580e15f14dff2dbfe2d6bcaa776587dd840c5096fc2"
+    },
+    {
+      "exact_native_cache_key": "f1ea55df2776a2aae4e8c1b1061d034ad098d0b1.pkl",
+      "pkl_sha256": "386c38deac73fea9d6b3da1fbc655f1c24b4da72c5d3c69cd4abd82c436038bf",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "it wanders downward,",
+          "exact_native_cache_key": "f1ea55df2776a2aae4e8c1b1061d034ad098d0b1.pkl",
+          "cache_input_text_sha256": "8afb0577ea4d1f919b3facf579c66a053672d8a691c9566fd142bf7d2f6b3da8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        31232
+      ],
+      "unprocessed_array_sha256": "5311ed1ee0a658076fc0e4e53d5c2ac07fb77cb11fedf90e17ccde83a90bd8ac"
+    },
+    {
+      "exact_native_cache_key": "607d5677fabb87f2e155f05a66a84784f273b03e.pkl",
+      "pkl_sha256": "1837ea5932ec0f17421c4a3f2f977eed8b7db30edf90fd2fec2dca617452fcc5",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "as if intoxicated,",
+          "exact_native_cache_key": "607d5677fabb87f2e155f05a66a84784f273b03e.pkl",
+          "cache_input_text_sha256": "8d9254f6e0b40b21c293c1730a78a4f0dddf98db5f484d7491f6d2a87a924413",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        35840
+      ],
+      "unprocessed_array_sha256": "ab66d600ae3bd659633c7ffa636a78bcf32c0cbb2d4136020f0c519fe3dd341e"
+    },
+    {
+      "exact_native_cache_key": "c4022e96df3550fc7eace1167716ce4227b499a1.pkl",
+      "pkl_sha256": "0c74a79784ce1a7aedd4e1881782febfb1b36c2de8d1504f8cc27c50cc499b55",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "into leafy undergrowth.",
+          "exact_native_cache_key": "c4022e96df3550fc7eace1167716ce4227b499a1.pkl",
+          "cache_input_text_sha256": "a34bc6bc19cf2c4eac43f418c914598679a99b1a3935f38921835e8b78b3f60b",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        38912
+      ],
+      "unprocessed_array_sha256": "df81ff05a47502f482f834bdf07e64aef91c7faf291b68d5e01c5b78c9d6391f"
+    },
+    {
+      "exact_native_cache_key": "3339b7eed82c9fb9b924c28d65a592baa2719772.pkl",
+      "pkl_sha256": "f6767f1349cf7727bb49ef0bf0b28d6062dfce7b0ad73926d5e195d879b3f6f4",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Around midday it clenches its jaws on a major vein underneath a leaf, about 25 centimetres above the ground.",
+          "exact_native_cache_key": "3339b7eed82c9fb9b924c28d65a592baa2719772.pkl",
+          "cache_input_text_sha256": "6b3489b0367bb38aac59e0f17af770c11ddd40de12c084b9336a38845246677a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        192512
+      ],
+      "unprocessed_array_sha256": "2ed8be9dad6cac2163ad2fbe26d58674ec07fb3443a7842c9dd2ef998d12f345"
+    },
+    {
+      "exact_native_cache_key": "ba0adf6331ad5cc507a4e02c24029db75a3cc27d.pkl",
+      "pkl_sha256": "4f3dc1352da9dbec310e1a6e02de39a1193d49abd9fd2da350f6075afbc90d15",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Around midday it clenches its jaws",
+          "exact_native_cache_key": "ba0adf6331ad5cc507a4e02c24029db75a3cc27d.pkl",
+          "cache_input_text_sha256": "fb5ba5552b2faa9b503f673bcc029e6429f42c4b1c00013ed7e08d348bff8e20",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        53248
+      ],
+      "unprocessed_array_sha256": "ee625056f0eb343bd9a7735be9b8d76ad393c715f99d18b31a7fc46701fa2103"
+    },
+    {
+      "exact_native_cache_key": "adceb07250a9ad786aaf278e4cd218565edb37ab.pkl",
+      "pkl_sha256": "8cb6c59165a49ed9fb301a15c7d81c6a74e30a2d33799f4a1064ccfe84354b84",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "on a major vein underneath a leaf, about 25 centimetres above the ground.",
+          "exact_native_cache_key": "adceb07250a9ad786aaf278e4cd218565edb37ab.pkl",
+          "cache_input_text_sha256": "02649dc4934a2fee4765c580a2f24c5c8301f6901284ac384de3e8c93c4d3990",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        132608
+      ],
+      "unprocessed_array_sha256": "c97556abf9f76b2b9fa72539e6137c75249b47b5bddc47367c924abe18d87603"
+    },
+    {
+      "exact_native_cache_key": "3af021302c94df26c4f7c992428699017570ea8f.pkl",
+      "pkl_sha256": "3332c94b92b19fc61aade13f3331713e41119d7b7677dfb84ea748f866fb785f",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Around midday it clenches its jaws on a major vein underneath a leaf,",
+          "exact_native_cache_key": "3af021302c94df26c4f7c992428699017570ea8f.pkl",
+          "cache_input_text_sha256": "afda847bb03070c72cb6b736d9e3e4a4f9123f91b24a17a64ea282ba2a59eeb2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        117248
+      ],
+      "unprocessed_array_sha256": "0bcbca43bab3d0f66bd4e79a343f9b4ca893b0b876867f19596fde4ffff60d65"
+    },
+    {
+      "exact_native_cache_key": "f006e476c54f85c3180a9f90ec83b088f2892bc4.pkl",
+      "pkl_sha256": "2c65379ebb1d87317ed9399c3d532afa6b8d1c2284287b62ee244d041de740a1",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "about 25 centimetres above the ground.",
+          "exact_native_cache_key": "f006e476c54f85c3180a9f90ec83b088f2892bc4.pkl",
+          "cache_input_text_sha256": "0cb309eac5a4a5fdf3eeb8a89f15f72f93f1f7de694d43c07a10825318f9120b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        64000
+      ],
+      "unprocessed_array_sha256": "c01d7fb277040ab3fe8f78260229ff8768c92c950dc66e5789df51e74753a47b"
+    },
+    {
+      "exact_native_cache_key": "ea11fab75f0842a1cf62ecdfc0f2e545bf03b283.pkl",
+      "pkl_sha256": "74db67d48d022d04b7c031480c77501c40c91bc9b4ca927b0d8467015887cfe9",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "By dusk the insect is lifeless, yet the bite holds rigidly.",
+          "exact_native_cache_key": "ea11fab75f0842a1cf62ecdfc0f2e545bf03b283.pkl",
+          "cache_input_text_sha256": "ad81d03280235c7e22536a0587edae3e58685cdc86bcf71120acd47b8bd286cb",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        98816
+      ],
+      "unprocessed_array_sha256": "a3d52a5ec34b154ac6091c320566dcb4edb78163feab6ebd79dc28f7ac83052a"
+    },
+    {
+      "exact_native_cache_key": "e476a2d6660eac0f8adb11a26920b32ab12723ad.pkl",
+      "pkl_sha256": "e080c9184e915dfa58fa516372decd15d5069fcd814820cc7049d8d28688caff",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "By dusk the insect is lifeless,",
+          "exact_native_cache_key": "e476a2d6660eac0f8adb11a26920b32ab12723ad.pkl",
+          "cache_input_text_sha256": "945c9ec1a1faac8b822f706ad81142d00b1666b6e75ca6312954994b5b4f5e59",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "By dusk the insect is lifeless,",
+          "exact_native_cache_key": "e476a2d6660eac0f8adb11a26920b32ab12723ad.pkl",
+          "cache_input_text_sha256": "945c9ec1a1faac8b822f706ad81142d00b1666b6e75ca6312954994b5b4f5e59",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        46592
+      ],
+      "unprocessed_array_sha256": "703462ff94cc32bd6e66b25d8ee5724ff7922442574d058de5f6bc5d53c4acff"
+    },
+    {
+      "exact_native_cache_key": "229d458e900de1bddb403c822828ec928f9dc157.pkl",
+      "pkl_sha256": "efbee2fb1cfd8f19f67e69e167c781ec61af43e097ad3ad1b7459f5c61c11798",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "yet the bite holds rigidly.",
+          "exact_native_cache_key": "229d458e900de1bddb403c822828ec928f9dc157.pkl",
+          "cache_input_text_sha256": "d2f2fcd5ece492d597541c47e29ad0b5715ef3527c116c3bdd175352441e474c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "yet the bite holds rigidly.",
+          "exact_native_cache_key": "229d458e900de1bddb403c822828ec928f9dc157.pkl",
+          "cache_input_text_sha256": "d2f2fcd5ece492d597541c47e29ad0b5715ef3527c116c3bdd175352441e474c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        41984
+      ],
+      "unprocessed_array_sha256": "b4c0a24eec98b7754c8d38dce0ef4b7f242635dc86af12259a792ddfa8f0f170"
+    },
+    {
+      "exact_native_cache_key": "86b691b9bdc41f38f5e96dd3225381fcac1cdc06.pkl",
+      "pkl_sha256": "13d9fcb1b7ccfecd949d0d7dba06add681e2e7946b69463d0dc7cf915d2eceaa",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "A fungus has destroyed its jaw muscles, so they cannot loosen.",
+          "exact_native_cache_key": "86b691b9bdc41f38f5e96dd3225381fcac1cdc06.pkl",
+          "cache_input_text_sha256": "b4585dd98e38c42c964f73ff76ad657bf582886a835ff3caf7238e2265be0488",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        98816
+      ],
+      "unprocessed_array_sha256": "c75148549b19b9dcd222cd13522bd7ee5cf88f0954606d8a83ee6d4daba81e03"
+    },
+    {
+      "exact_native_cache_key": "b92588befd586cdadc12d971bb94faa14fb5872b.pkl",
+      "pkl_sha256": "6ab46c5e5351e694e46b20a2c754bf0d7f65f0a8153307d3a4e6892052bf60c9",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "A fungus has destroyed its jaw muscles,",
+          "exact_native_cache_key": "b92588befd586cdadc12d971bb94faa14fb5872b.pkl",
+          "cache_input_text_sha256": "8fe7d5531136df465485e2211568e46e17872d3869cb2fdb151296cda639632e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "A fungus has destroyed its jaw muscles,",
+          "exact_native_cache_key": "b92588befd586cdadc12d971bb94faa14fb5872b.pkl",
+          "cache_input_text_sha256": "8fe7d5531136df465485e2211568e46e17872d3869cb2fdb151296cda639632e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        57856
+      ],
+      "unprocessed_array_sha256": "3e86719a31cc7514816a6c9488b7921251b694a8890ddd79f24f6e6a70dcd53a"
+    },
+    {
+      "exact_native_cache_key": "774f941cd34ee8146bf5bc043b9505df785dda3a.pkl",
+      "pkl_sha256": "32c040ec9e232c3fea0857cba36991c39639c71a740cfb4a607c672fa1f59b5f",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "so they cannot loosen.",
+          "exact_native_cache_key": "774f941cd34ee8146bf5bc043b9505df785dda3a.pkl",
+          "cache_input_text_sha256": "a78f0abfaa1d6d329ac17ed209bf75f8b191bf6d29515c459d1bd87ec318e5d9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "so they cannot loosen.",
+          "exact_native_cache_key": "774f941cd34ee8146bf5bc043b9505df785dda3a.pkl",
+          "cache_input_text_sha256": "a78f0abfaa1d6d329ac17ed209bf75f8b191bf6d29515c459d1bd87ec318e5d9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        33792
+      ],
+      "unprocessed_array_sha256": "2431e2ba0d83b73bce119eb95056e0667da3e380ecd86126ef4e844a46120c05"
+    },
+    {
+      "exact_native_cache_key": "cec44b4d371067ab1da4e377ceb24a7d8a7ded36.pkl",
+      "pkl_sha256": "6fe5387c88d70223b9ce56426234bcccebf7b3266b6372189f18ff853a6e3be2",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Two or three days later a fungal stalk pushes from its head and releases infectious spores on to the ground below, where foraging ants tread.",
+          "exact_native_cache_key": "cec44b4d371067ab1da4e377ceb24a7d8a7ded36.pkl",
+          "cache_input_text_sha256": "e5c857ce95a1bdfe2b8267f2956930fc24029c1985785166c80eeba8534f1a37",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        228352
+      ],
+      "unprocessed_array_sha256": "67ec52be3935b8655b98528d24bda5f10c4bbff2a7350589f8ff71595aab1db4"
+    },
+    {
+      "exact_native_cache_key": "c423715f1cfb0f19a46b52cdfad81aab29dff632.pkl",
+      "pkl_sha256": "1136f7de8083ca4160e8009d190a606368e9cdb091703c14e99aa9bcc6763acd",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Two or three days later a fungal stalk pushes from its head",
+          "exact_native_cache_key": "c423715f1cfb0f19a46b52cdfad81aab29dff632.pkl",
+          "cache_input_text_sha256": "d1e08bfa5bf167c782746e8531cabc30dea58ff8c6b4709bcd8318291f7323f9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        87552
+      ],
+      "unprocessed_array_sha256": "360b72f8011891daf8c6a22034d6d4f18e2e68a398012f1bf5d129d5d4534fac"
+    },
+    {
+      "exact_native_cache_key": "8ae0ab2c9fb690f60411ffebc678de556a74707e.pkl",
+      "pkl_sha256": "6c11178f7c1cf2144cfd04e506f088ceede2b55463b19b07a82d25f8878834a3",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and releases infectious spores on to the ground below,",
+          "exact_native_cache_key": "8ae0ab2c9fb690f60411ffebc678de556a74707e.pkl",
+          "cache_input_text_sha256": "f305c3769d0d4e190845f1a3212e31697055003c8b9c31a061b987f99b972d7f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        79872
+      ],
+      "unprocessed_array_sha256": "0f0a685f4a7ad223d652067ee22fe39a769e5a16e894432dbd71ef330eca4339"
+    },
+    {
+      "exact_native_cache_key": "a760dff287d7e266df8fa11e89fb6674353f0df5.pkl",
+      "pkl_sha256": "3bb82beb7fec61c61a31aa0c906d6edd98e002f5b920868705162e440acd5d2f",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "where foraging ants tread.",
+          "exact_native_cache_key": "a760dff287d7e266df8fa11e89fb6674353f0df5.pkl",
+          "cache_input_text_sha256": "c9f1d3dd145e4d2039ae43bd44a2eb17762321fd4d51bc092869a7f10fc6520d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "where foraging ants tread.",
+          "exact_native_cache_key": "a760dff287d7e266df8fa11e89fb6674353f0df5.pkl",
+          "cache_input_text_sha256": "c9f1d3dd145e4d2039ae43bd44a2eb17762321fd4d51bc092869a7f10fc6520d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        40448
+      ],
+      "unprocessed_array_sha256": "88a6e4fc4b5173d7f222fcac099154b17b0719d456c7b00cc05d15ffcc36f7f2"
+    },
+    {
+      "exact_native_cache_key": "81ae11f7e343677dcffe1fee16888dc7c0d42eeb.pkl",
+      "pkl_sha256": "3ce63137a4a21be40f2bb046986f140d60a45bc83117d96526a0df2a538656fb",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Two or three days later a fungal stalk pushes from its head and releases infectious spores on to the ground below,",
+          "exact_native_cache_key": "81ae11f7e343677dcffe1fee16888dc7c0d42eeb.pkl",
+          "cache_input_text_sha256": "e35bd343ca3edb9fc12df1f70a20700d21c1c6aa2e2adf595dce42791e0b7b1d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        178176
+      ],
+      "unprocessed_array_sha256": "c34f01724c1c3fa3612c329f0db159dc34717f2fa489679537064065c5f6608d"
+    },
+    {
+      "exact_native_cache_key": "f24196db6f72e536acd66537640ab5065aa799b0.pkl",
+      "pkl_sha256": "1b10aedb81ea39941f93207bdd6d52eab36bc74f765e50e26081dd63d81a74e0",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The invader, Ophiocordyceps unilateralis, is fussy about location.",
+          "exact_native_cache_key": "f24196db6f72e536acd66537640ab5065aa799b0.pkl",
+          "cache_input_text_sha256": "dbce083218d3b369f86179ebfee866cd37745e7d6b468d657ac1ed117d3a800f",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        120832
+      ],
+      "unprocessed_array_sha256": "14f8f103f88681cdc7c159aa10d357bba940797a9dd46bfab1aac4dae8a83a9e"
+    },
+    {
+      "exact_native_cache_key": "ae6ed2cad4c6002683a53906479b6b9a6a7d54de.pkl",
+      "pkl_sha256": "81c203a6a1c34053cbb9e80b21a9a69f794880921c90cf63c0e5f669c720a375",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "The invader, Ophiocordyceps unilateralis,",
+          "exact_native_cache_key": "ae6ed2cad4c6002683a53906479b6b9a6a7d54de.pkl",
+          "cache_input_text_sha256": "d0ba3637527600c719e2d8bfc3fadf0259ebed1e4beb4f751810883f87ba9189",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        73216
+      ],
+      "unprocessed_array_sha256": "3f9cfea3b913c039a78b56c93655f8d8ee7b925f0366801bf2acef4de9eae40d"
+    },
+    {
+      "exact_native_cache_key": "88716e02e84dac152068f7c38b2890cbc4f483ec.pkl",
+      "pkl_sha256": "e07624293fde187a7d48dd7f78b68be028e959dc919e55101022dac54e286f0c",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "is fussy about location.",
+          "exact_native_cache_key": "88716e02e84dac152068f7c38b2890cbc4f483ec.pkl",
+          "cache_input_text_sha256": "922ec964b1854194a1abb78eb0a21c5c8350af88003c10c4eba6e93b384ca8f4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "is fussy about location.",
+          "exact_native_cache_key": "88716e02e84dac152068f7c38b2890cbc4f483ec.pkl",
+          "cache_input_text_sha256": "922ec964b1854194a1abb78eb0a21c5c8350af88003c10c4eba6e93b384ca8f4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        39936
+      ],
+      "unprocessed_array_sha256": "0946f7a8c13c648ceff73b5f94f46001e34f748dcc8f9ff8c17a33e35765e896"
+    },
+    {
+      "exact_native_cache_key": "086c6a6c9675cf0184e9d38469b742a682dcea70.pkl",
+      "pkl_sha256": "67e3a01f645e6d5c62c2296e830b9e32683ccd05c944d11b628802fcbcb2e46b",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "The invader,",
+          "exact_native_cache_key": "086c6a6c9675cf0184e9d38469b742a682dcea70.pkl",
+          "cache_input_text_sha256": "11505ddd6baef2dee136a91bac6df700c60dd79d815948a4cd9da5d87a48b916",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        21504
+      ],
+      "unprocessed_array_sha256": "d71d7012b525617fcdc51ccbf33401507a3ea0eba80b8961f6d967e1ea6bc6ea"
+    },
+    {
+      "exact_native_cache_key": "bc163e12849fc909d2d70767b09a82bb45e7a186.pkl",
+      "pkl_sha256": "6847fb5512e7a1e3a62fd5bef254ed833fcdfe4da102a26fb2e0e01efcfa256b",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Ophiocordyceps unilateralis,",
+          "exact_native_cache_key": "bc163e12849fc909d2d70767b09a82bb45e7a186.pkl",
+          "cache_input_text_sha256": "4cc8dbae39f92ef09ec0eac8849aeb07fbe17af7389311d34fdb14d41d3afbda",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        49664
+      ],
+      "unprocessed_array_sha256": "1860eda732b23bc95df2e361aa0fba4eec2224e0f9f757cf5b842e79e4846905"
+    },
+    {
+      "exact_native_cache_key": "37a4235de49f80b74e87f8e6147ba521c6c044e6.pkl",
+      "pkl_sha256": "ae07cf5df8eaec0a4a3fbd9dcea179be5da4164ce35c65ff852742e47cf6f554",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "David Hughes and colleagues found the bites mostly on the north-west side of plants, where the air is humid and the temperature suits the fungus.",
+          "exact_native_cache_key": "37a4235de49f80b74e87f8e6147ba521c6c044e6.pkl",
+          "cache_input_text_sha256": "11871e7dc0c354ce187c2899881bdd5b5a69caa4b77eebe16e83daf5849b80dc",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        218624
+      ],
+      "unprocessed_array_sha256": "ebd7d6e14e8a026cae316e9f6449170fe3c14c6bccdaa61272a0edc11af647a8"
+    },
+    {
+      "exact_native_cache_key": "5743cc75aeae3d1a0d4d04cfd76c8f320f389026.pkl",
+      "pkl_sha256": "e02d3fe4a2f912270c17e67323a01a54e6ee7b4972448a4b28484777da6dd32b",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "David Hughes and colleagues found",
+          "exact_native_cache_key": "5743cc75aeae3d1a0d4d04cfd76c8f320f389026.pkl",
+          "cache_input_text_sha256": "b7e511c619d442140ffabf73deb70bd7e0bf07b9dae97c5e8ee319c66dfd05e4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        49152
+      ],
+      "unprocessed_array_sha256": "471d9be42fa327bc1e2af0a493939f8bf3a714a7c932351f3d794731603ee3b2"
+    },
+    {
+      "exact_native_cache_key": "dfd5ea2165617fd3e40a351103fd9a3c65e30ab7.pkl",
+      "pkl_sha256": "6d6207468b43d732eb8062c954d53a47a74cadbf54164d2f9df831f889148eec",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "the bites mostly on the north-west side of plants,",
+          "exact_native_cache_key": "dfd5ea2165617fd3e40a351103fd9a3c65e30ab7.pkl",
+          "cache_input_text_sha256": "9f9270e4ac2cf4611e13f731744fa5f8dde60afd0c2bd15e942971b166826f7c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        64512
+      ],
+      "unprocessed_array_sha256": "c291d60fbc0a682b936292196ecda63f07ec81b08f0fb9adc00f41e776bef023"
+    },
+    {
+      "exact_native_cache_key": "f0121550f578e6aadbbdac274af1c29f44789dee.pkl",
+      "pkl_sha256": "ca5b1a54e27762b63339d5decf1cdee77283c31ec98ee1d691a29805c5ff0e69",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "where the air is humid and the temperature suits the fungus.",
+          "exact_native_cache_key": "f0121550f578e6aadbbdac274af1c29f44789dee.pkl",
+          "cache_input_text_sha256": "9cd28cc57ddd2135c90156b393add3af18d0c3dcd14ec3acb45a0be9ccf205b9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "where the air is humid and the temperature suits the fungus.",
+          "exact_native_cache_key": "f0121550f578e6aadbbdac274af1c29f44789dee.pkl",
+          "cache_input_text_sha256": "9cd28cc57ddd2135c90156b393add3af18d0c3dcd14ec3acb45a0be9ccf205b9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        84480
+      ],
+      "unprocessed_array_sha256": "7d0ae9054781f97f9d83ffb31a3ed8290d181f3e295282afa8ba83607234553f"
+    },
+    {
+      "exact_native_cache_key": "d58374ce578bba1bbec0eb23d49b41e186513df3.pkl",
+      "pkl_sha256": "46e061f4217b3e9621176474c113bbd098cf45b0a55d237624fed5d0e4cc6e57",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "David Hughes and colleagues found the bites mostly on the north-west side of plants,",
+          "exact_native_cache_key": "d58374ce578bba1bbec0eb23d49b41e186513df3.pkl",
+          "cache_input_text_sha256": "60266d64fed6555372cce5d57133174999c8fb29b02014ffdaa2fcc6e478a9b5",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        118784
+      ],
+      "unprocessed_array_sha256": "b4e56d3c73b5d8c012e0086ce6e7c7ada96d0a0a69a198ba9611bdc7a58efa3b"
+    },
+    {
+      "exact_native_cache_key": "39f555812fae9925b91b26c4ca107995c810c581.pkl",
+      "pkl_sha256": "33ab65b57f8c8512013b24fe0d8fe2b22ada267c527e97a11305e09db5e4c492",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "When researchers moved infected ants higher, the fungus grew abnormally.",
+          "exact_native_cache_key": "39f555812fae9925b91b26c4ca107995c810c581.pkl",
+          "cache_input_text_sha256": "3581dfd6c301481cc9b83d7d04f7fb02728a4e7d52c44e82ddfb72e234e18cc4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        112640
+      ],
+      "unprocessed_array_sha256": "aec618ed19075570a9ae1aefc07a3436447a9be2b5f3b64a8e1e90099bd74c87"
+    },
+    {
+      "exact_native_cache_key": "5e20538dcf2da5fcaddff3528cf485676e797d9d.pkl",
+      "pkl_sha256": "83732a7fb95a640b8ab78863972aadd693c72ac186c7ec898ddaa739e97b7eaa",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "When researchers moved infected ants higher,",
+          "exact_native_cache_key": "5e20538dcf2da5fcaddff3528cf485676e797d9d.pkl",
+          "cache_input_text_sha256": "11856a5afdd36a1bafe5678ed8ec15087316a37c2d60cde4b8cd0adfc5dbf42c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "When researchers moved infected ants higher,",
+          "exact_native_cache_key": "5e20538dcf2da5fcaddff3528cf485676e797d9d.pkl",
+          "cache_input_text_sha256": "11856a5afdd36a1bafe5678ed8ec15087316a37c2d60cde4b8cd0adfc5dbf42c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        62976
+      ],
+      "unprocessed_array_sha256": "f0bc015128230147a484cea6b97ce50e2f26f5cb5d6c04220052abe950b57b34"
+    },
+    {
+      "exact_native_cache_key": "0853368ead9df4ed9aebac44b3499e8294d543de.pkl",
+      "pkl_sha256": "9e3900d3d07d0cb395794cfc7518b5a2ba4374b0efe9d16bf66ceaa709e1f097",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "the fungus grew abnormally.",
+          "exact_native_cache_key": "0853368ead9df4ed9aebac44b3499e8294d543de.pkl",
+          "cache_input_text_sha256": "a180ce77ba8530eee802f3a08acebddbb1a29288c1629307eb8e2aad4841c73a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "the fungus grew abnormally.",
+          "exact_native_cache_key": "0853368ead9df4ed9aebac44b3499e8294d543de.pkl",
+          "cache_input_text_sha256": "a180ce77ba8530eee802f3a08acebddbb1a29288c1629307eb8e2aad4841c73a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        38912
+      ],
+      "unprocessed_array_sha256": "b3ff7b095921c87fc0e81753823f141aaaf553e56762640a07feb6ad0848181c"
+    },
+    {
+      "exact_native_cache_key": "6e3fb12278574e278623627192283c4e642d193a.pkl",
+      "pkl_sha256": "266a8b7d63776605278356238c55f608ed5e661796319dc0001f452fc2c40777",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Placed on the ground, the bodies disappeared.",
+          "exact_native_cache_key": "6e3fb12278574e278623627192283c4e642d193a.pkl",
+          "cache_input_text_sha256": "13f78e1ad40ba1e6bedb84f25ce847fbd9a9e0c72355f04a77bf1eec3ea2f85e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        56832
+      ],
+      "unprocessed_array_sha256": "6419141028a51dd115bc9614bc116c2f7339e6ede0f9652f0e458dae89c823c8"
+    },
+    {
+      "exact_native_cache_key": "f0867b6994d4ad38cec6be9e461bcf6efe104cb0.pkl",
+      "pkl_sha256": "090067336ab5e801c199579f8fdd8f5edc97d9906889fd5b3fcb6a5abd624c30",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Placed on the ground,",
+          "exact_native_cache_key": "f0867b6994d4ad38cec6be9e461bcf6efe104cb0.pkl",
+          "cache_input_text_sha256": "9ab073e1b0e99a7f91337b23089a048ce8e170097e92149139dc68bf0f65c82e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        29696
+      ],
+      "unprocessed_array_sha256": "1175922d923be5b755ff795a8bdd85fadc23ed7e4da8b3b79ead6557d6f2d6d6"
+    },
+    {
+      "exact_native_cache_key": "6411c9b07f3677dccc30bb1716143245fb65deda.pkl",
+      "pkl_sha256": "76c93e32449bf3543661fa03cfefdfddfc9867a2c0bcca83a0c40b0013ef9f21",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "the bodies disappeared.",
+          "exact_native_cache_key": "6411c9b07f3677dccc30bb1716143245fb65deda.pkl",
+          "cache_input_text_sha256": "80f62707a06dcba39a406a6c2334143f8b79f33b38030734f6ab8b855e1b3577",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        32768
+      ],
+      "unprocessed_array_sha256": "cf07559f558f4332694ed3ba628e8b5c50aa43c605b375f48e462e6787d0fadf"
+    },
+    {
+      "exact_native_cache_key": "ab0d44522cb97f9d9b05fb9fb159926d73b8721b.pkl",
+      "pkl_sha256": "fc7a5f6214cb5993bdbdc9ea7b84337140569267471df1c1a877e785518de785",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In 2017 a Penn State team examined infected ants with three-dimensional microscope imaging.",
+          "exact_native_cache_key": "ab0d44522cb97f9d9b05fb9fb159926d73b8721b.pkl",
+          "cache_input_text_sha256": "e1106f72746ff0236c74ec5a2a5289542124b83a1d3e99e60f18e6a9383ca348",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        187904
+      ],
+      "unprocessed_array_sha256": "5eb75c41611b9c71b070d032ae8db05f69c0c6dce67e928a41d22991245f9870"
+    },
+    {
+      "exact_native_cache_key": "6a23f2ea95e84cdbf894028a743773309d7065d2.pkl",
+      "pkl_sha256": "3f0328705d54142328a0538b4458fc27ab1923b385cf6f67c49028da9fc65293",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In 2017 a Penn State team examined infected ants",
+          "exact_native_cache_key": "6a23f2ea95e84cdbf894028a743773309d7065d2.pkl",
+          "cache_input_text_sha256": "87f86e1ad8f71898d7b452f46513ac879f54e9cee90a521d9a83d8f623af40cb",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        108032
+      ],
+      "unprocessed_array_sha256": "aed1ad7b3bf7e086d5c29c62b936e09b39b41582ed540a3675f025ca3384e8e6"
+    },
+    {
+      "exact_native_cache_key": "30e2f9111e8d1583fe182da04ae108904c2b8956.pkl",
+      "pkl_sha256": "daaba52a130489d5fb339196167c9f687ae857d095283a0b432de9aa62f538ac",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "with three-dimensional microscope imaging.",
+          "exact_native_cache_key": "30e2f9111e8d1583fe182da04ae108904c2b8956.pkl",
+          "cache_input_text_sha256": "c6fcc28db0895c38fb61c0c3c5556b9dd24dadac3b24fbc3460a5bab0134fbc7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        58880
+      ],
+      "unprocessed_array_sha256": "4ea1bd5296dd86d22fff3ab9553eacffae2e7abe29f271d7c744398e85da9469"
+    },
+    {
+      "exact_native_cache_key": "ceb09682911d7ecc2a77cd81816e26003bd1537b.pkl",
+      "pkl_sha256": "2caed70f17a72e7d8470ee5a64943ac19f19fa086e507e864517ee8f774a2352",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Fungal cells had formed an intertwined lattice around muscle fibres in the legs and jaw, a picture that evokes the strings of a puppet.",
+          "exact_native_cache_key": "ceb09682911d7ecc2a77cd81816e26003bd1537b.pkl",
+          "cache_input_text_sha256": "604f9f152161c9b3e7613c2258fb8eefe2fe5ead37f54b73cc81d55737783601",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        218112
+      ],
+      "unprocessed_array_sha256": "659c28c10719b1d4382a9acde0b6f77c40dacda0a764f00245e919f5f88291e3"
+    },
+    {
+      "exact_native_cache_key": "941feeaab1e0cbcd26a98b5c06e50ec613197310.pkl",
+      "pkl_sha256": "14c8bf0788168f4aa1c1e61702d5e78e08635f49e23e51826af5f14d94cfabad",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Fungal cells had formed an intertwined lattice",
+          "exact_native_cache_key": "941feeaab1e0cbcd26a98b5c06e50ec613197310.pkl",
+          "cache_input_text_sha256": "1900926a89329f7d15cbcff6a60d42aa711edb243e534c4f2730e80424ac19bb",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        65536
+      ],
+      "unprocessed_array_sha256": "4ad52c43d34ef8daa17ba7208e8d4351cc1a6c179c5f6b08641a44cefd5a7489"
+    },
+    {
+      "exact_native_cache_key": "e17085743b0238b80d83fc239d84ccc0a0c1e1ac.pkl",
+      "pkl_sha256": "4c96f40658784a5f3d151bf8c436d0e73e9c19d9cf906822f46cf39935f4b810",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "around muscle fibres in the legs and jaw,",
+          "exact_native_cache_key": "e17085743b0238b80d83fc239d84ccc0a0c1e1ac.pkl",
+          "cache_input_text_sha256": "41b0d637eca54efbdaded74e7b22921d76d9a74d77fa478343a0200a092e3996",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        62464
+      ],
+      "unprocessed_array_sha256": "c190dab1c0a2099772b3d11b30780866f9cf95370334e7bf4cb758c38646bf42"
+    },
+    {
+      "exact_native_cache_key": "bb2dd52b8e513fa1a2eef5d2ed3e7931865e87d1.pkl",
+      "pkl_sha256": "3292f5e8ecd30270ab8cbb470a91100d6dd4d13fbbf0ca0c8d37d20d84578867",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "a picture that evokes the strings of a puppet.",
+          "exact_native_cache_key": "bb2dd52b8e513fa1a2eef5d2ed3e7931865e87d1.pkl",
+          "cache_input_text_sha256": "0caf66bb6a9bac2a5db5007208e8018119f348adbfc889a18542325a7d70d8e7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a picture that evokes the strings of a puppet.",
+          "exact_native_cache_key": "bb2dd52b8e513fa1a2eef5d2ed3e7931865e87d1.pkl",
+          "cache_input_text_sha256": "0caf66bb6a9bac2a5db5007208e8018119f348adbfc889a18542325a7d70d8e7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        61440
+      ],
+      "unprocessed_array_sha256": "59b44abb7e5d6c43e5449dfb04351565d4b42a567d14d09514e27b87d4bdde4f"
+    },
+    {
+      "exact_native_cache_key": "cbd924871a12135c3d89177e13002e6ca6cad497.pkl",
+      "pkl_sha256": "438c3574804ba4c8534428630662c686c52f16e7c92902c0009be7e2df8500dd",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Fungal cells had formed an intertwined lattice around muscle fibres in the legs and jaw,",
+          "exact_native_cache_key": "cbd924871a12135c3d89177e13002e6ca6cad497.pkl",
+          "cache_input_text_sha256": "5d4bdfe5bc0a283520601b8aee604e73ad5ee8f5fe7e552cf8d12cf76bfea7f5",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        147456
+      ],
+      "unprocessed_array_sha256": "c4dcc72ae3e3043a922ec5ec491335248f58993fe7e6b45313ab952b5642b782"
+    },
+    {
+      "exact_native_cache_key": "2c53ca6b984ca01ceca83971dbbe3f7502291ead.pkl",
+      "pkl_sha256": "128600018bbe49e2b2be52576e7c7eeee4ec13afec560edc1635f70c67e36eea",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Yet the fungus had not infiltrated the brain.",
+          "exact_native_cache_key": "2c53ca6b984ca01ceca83971dbbe3f7502291ead.pkl",
+          "cache_input_text_sha256": "4a2c0194b3faa9234ba468e5526325c2a17fcbe91a8758f6ee23a47ffbd44db6",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        70144
+      ],
+      "unprocessed_array_sha256": "419abea8881962049b9d58194051a6d788151d9a0d257455a4264e2b34816d07"
+    },
+    {
+      "exact_native_cache_key": "8ef558a8ba2b2f03ffb73e13a1e1483e5da0cdf3.pkl",
+      "pkl_sha256": "a219626db0eea5afec91aa56bb5767e4f507b16915417dcf68d0d35286c22bb1",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "A Planet Earth episode, with David Attenborough's narration, showed one such ant.",
+          "exact_native_cache_key": "8ef558a8ba2b2f03ffb73e13a1e1483e5da0cdf3.pkl",
+          "cache_input_text_sha256": "d44e5c1c8b4a5655044aba6480a9ab3b5c545b645df314719f41b42f48ef0e5d",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        123904
+      ],
+      "unprocessed_array_sha256": "0f63854ced9f8112dcb2f9a0bf21a2e68556d6914172a7f26b3735e660e49d94"
+    },
+    {
+      "exact_native_cache_key": "e0e5043f3ec6d8ab90b532f515789664c7da13c6.pkl",
+      "pkl_sha256": "7b11cb9b0751616baf09a0c5a61fd2f9a4712fd90fb8059abd31301bfb503cd5",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "A Planet Earth episode, with David Attenborough's narration,",
+          "exact_native_cache_key": "e0e5043f3ec6d8ab90b532f515789664c7da13c6.pkl",
+          "cache_input_text_sha256": "f6f1bedf226cc26fb3f101bc30067bf3566865291027885d561dc373e8361d16",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        93184
+      ],
+      "unprocessed_array_sha256": "cddc0cbe3578aed70864b84283e2028714dbc51160d18497d06aa953d11867d0"
+    },
+    {
+      "exact_native_cache_key": "7f6a94bc386f8ca5d5d9dd0232e3fd0d89aac154.pkl",
+      "pkl_sha256": "d118f5e4f03d54164fd380a6d808d5df29ff1eeb50daf8dfdd9026fe8c48d60e",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "showed one such ant.",
+          "exact_native_cache_key": "7f6a94bc386f8ca5d5d9dd0232e3fd0d89aac154.pkl",
+          "cache_input_text_sha256": "9d15b6169fac8a1d7ab5b1d496ab943ace421c3b3c64120295d61413be56e82f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "showed one such ant.",
+          "exact_native_cache_key": "7f6a94bc386f8ca5d5d9dd0232e3fd0d89aac154.pkl",
+          "cache_input_text_sha256": "9d15b6169fac8a1d7ab5b1d496ab943ace421c3b3c64120295d61413be56e82f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        32256
+      ],
+      "unprocessed_array_sha256": "eb22a8fb43ba896443672a42e9472312bf9ef8efd977ca8ec4393f43d9b5999c"
+    },
+    {
+      "exact_native_cache_key": "e70ff9b349225fd3ff5f0a57de84ab594e0bed14.pkl",
+      "pkl_sha256": "e3b131aec8eaa0f43c465653fd41118134058bc965fc906445aac6e5ce90dcbd",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "A Planet Earth episode,",
+          "exact_native_cache_key": "e70ff9b349225fd3ff5f0a57de84ab594e0bed14.pkl",
+          "cache_input_text_sha256": "c4024ad67552e95b6772c929842ae1ae74cb0c24e2bc30bdb6bf7de710e34682",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        38400
+      ],
+      "unprocessed_array_sha256": "af508a1c6c58eac55a6e2aaa25fbebee5222a368b8bfb59dd653c453cb2476fe"
+    },
+    {
+      "exact_native_cache_key": "96fb28788b957bde821c585738ae26cff04ff83d.pkl",
+      "pkl_sha256": "4bf8929a06b353f8cf2978887846641e44896e3d8ea49bb75d9ad99258c7bc24",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "with David Attenborough's narration,",
+          "exact_native_cache_key": "96fb28788b957bde821c585738ae26cff04ff83d.pkl",
+          "cache_input_text_sha256": "2065989d69523eaee7dc90aede8a82f3c9d0848812170d1622827672884d14a3",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        47104
+      ],
+      "unprocessed_array_sha256": "69272a9df53dcc14f1f21f91ef5e7764f67043d59a802a7cc49cb978bfe0e2cd"
+    },
+    {
+      "exact_native_cache_key": "28071f50c357d76d305aacd5908ac8828d03cecc.pkl",
+      "pkl_sha256": "83d49357a5974514219b39f7941f5dc1d018bd99f384d8647e569a06b4772275",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "It helped inspire The Last of Us, a 2013 video game whose makers envisioned the parasite jumping to humans.",
+          "exact_native_cache_key": "28071f50c357d76d305aacd5908ac8828d03cecc.pkl",
+          "cache_input_text_sha256": "9109bae9161d2faab0875edf6d9a55c6aa0b749bd11c6d62308fb00abb69e972",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        193536
+      ],
+      "unprocessed_array_sha256": "56d02241e1b3c752ba7fd565676b113cf4a339f2e354d3cef9400279a29e0403"
+    },
+    {
+      "exact_native_cache_key": "da4c83a200d946e4a825886648aa3438da3e7d91.pkl",
+      "pkl_sha256": "6c2f27ce3600bc201b71655f960a02a5145f48cc1a4752a29b10267ec7238617",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "It helped inspire The Last of Us, a 2013 video game",
+          "exact_native_cache_key": "da4c83a200d946e4a825886648aa3438da3e7d91.pkl",
+          "cache_input_text_sha256": "3ac4839d83ee4e0094df4e1ff3dca3316588750a0105223496b6c23542fad934",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        104960
+      ],
+      "unprocessed_array_sha256": "d5fe36e3f8fbb7e3e252817f7ab8197f3185da1a3492dfdee332ef09a0436f34"
+    },
+    {
+      "exact_native_cache_key": "15ac0fe32516347a18e76fe31223d430a8637ad9.pkl",
+      "pkl_sha256": "da4e73778faf73acb8ae057381e5b1341251d06a3b47d32929d634f3f3eaeccf",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "whose makers envisioned the parasite jumping to humans.",
+          "exact_native_cache_key": "15ac0fe32516347a18e76fe31223d430a8637ad9.pkl",
+          "cache_input_text_sha256": "c12f1a3b4565b1c4e5f16466246c8cc705fdb2a79380464e238eb5c5a1b65b20",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        86016
+      ],
+      "unprocessed_array_sha256": "8c0c16d8eb9c8e52e6fd2724f4f250f560a5afef009550922f5f4ed46b2e9669"
+    },
+    {
+      "exact_native_cache_key": "87ed3cb49d0d59e4435a8ec64f7c76448d44bd88.pkl",
+      "pkl_sha256": "961717c3724c75cc201877d129761138886bed86dc65af2881094e37e9a8330d",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "It helped inspire The Last of Us,",
+          "exact_native_cache_key": "87ed3cb49d0d59e4435a8ec64f7c76448d44bd88.pkl",
+          "cache_input_text_sha256": "73acff5cbe66be990e18591b5e65998d0f637a11e750a8950156bf6a4d9566e7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        47104
+      ],
+      "unprocessed_array_sha256": "a8a69ab83f47c4c6d7232f689f5f285963c003161386d8cd6309cb58222cac5c"
+    },
+    {
+      "exact_native_cache_key": "47e6e02905aa783304d6cd5be226c2ec1215ff5c.pkl",
+      "pkl_sha256": "abfa65b5e6e87d11af147f18e25cbef9fffe21a07b85f62fdd67e7e9ed26278b",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a 2013 video game whose makers envisioned the parasite jumping to humans.",
+          "exact_native_cache_key": "47e6e02905aa783304d6cd5be226c2ec1215ff5c.pkl",
+          "cache_input_text_sha256": "1376100f5feca0b7afa75c3ec6ad238f6ec7ec17640f0377c46cf7b9e9afcf6f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        142336
+      ],
+      "unprocessed_array_sha256": "3ac30ad64120ca7641682098ebec47327f76ce46e982ef40e85ca65e9b03180f"
+    },
+    {
+      "exact_native_cache_key": "10fc61d2a7dff886ed67442d4ae4df7812ba16d2.pkl",
+      "pkl_sha256": "399b8c2458e91cdd3a8acfcfccc5c68315fe349e7588e467e199b039408b697f",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S16",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The hypothetical scenario gave gamers a fictional nightmare.",
+          "exact_native_cache_key": "10fc61d2a7dff886ed67442d4ae4df7812ba16d2.pkl",
+          "cache_input_text_sha256": "a136e3d54b75e3784cf3f88d1e1ce7b943fa7003d2c985d7fb85e71a9c411516",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        96768
+      ],
+      "unprocessed_array_sha256": "00d310353f349feef82df449d544e84d00085aa4faf0c43244e2d73cebe1886d"
+    },
+    {
+      "exact_native_cache_key": "ec2887c74dac01d641347b979b896e635f207ae9.pkl",
+      "pkl_sha256": "7dc9e3137b4a4a9314b3837999b4a262dfb92bd29ad12d331691e9c980f3e778",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The real parasite's roots run far deeper, into the geological record.",
+          "exact_native_cache_key": "ec2887c74dac01d641347b979b896e635f207ae9.pkl",
+          "cache_input_text_sha256": "9ec14e8d2041720ca808fa1843aef1ea255b61cbc7df6584da2a195af62396e6",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        117248
+      ],
+      "unprocessed_array_sha256": "1554a64182fbd33c0c50595415c35f7b486091854ebd2937bdcbe1b6a7c54ded"
+    },
+    {
+      "exact_native_cache_key": "613357c04fed274cb50d7618090e2a3ce188d06a.pkl",
+      "pkl_sha256": "17bffc7ea7458f09ed1d656fee1f9135713b1deb965020beb65f05a109bbeffe",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "The real parasite's roots run far deeper,",
+          "exact_native_cache_key": "613357c04fed274cb50d7618090e2a3ce188d06a.pkl",
+          "cache_input_text_sha256": "5bed0bf2ec40264f88079d215e6d80aa31a8de54331d4fd6be2389cd6c3362b9",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "The real parasite's roots run far deeper,",
+          "exact_native_cache_key": "613357c04fed274cb50d7618090e2a3ce188d06a.pkl",
+          "cache_input_text_sha256": "5bed0bf2ec40264f88079d215e6d80aa31a8de54331d4fd6be2389cd6c3362b9",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        60928
+      ],
+      "unprocessed_array_sha256": "cc1d06f68dc454d704b0e751087cc5502316cd2a149a99b14b371c988ba50b50"
+    },
+    {
+      "exact_native_cache_key": "b12fc4696333de7cdff9081be10c082242176117.pkl",
+      "pkl_sha256": "38f85d6fe2ba080ce744ac9ac6f5a4cc3843abd88b5da165502a3a3f15af8d73",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "into the geological record.",
+          "exact_native_cache_key": "b12fc4696333de7cdff9081be10c082242176117.pkl",
+          "cache_input_text_sha256": "253227bc7cf52691657e59f271e16a49b1a4b2d980cc647f816dcc4d4820b949",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "into the geological record.",
+          "exact_native_cache_key": "b12fc4696333de7cdff9081be10c082242176117.pkl",
+          "cache_input_text_sha256": "253227bc7cf52691657e59f271e16a49b1a4b2d980cc647f816dcc4d4820b949",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        44544
+      ],
+      "unprocessed_array_sha256": "68359fccc995943dd19366ed611902e01d36afb87eae2a9333d3cf14d8f5c098"
+    },
+    {
+      "exact_native_cache_key": "67206f673af4c521dd7cf717fc6d9867dad6e568.pkl",
+      "pkl_sha256": "b22f4935357dfec61c9fa7e93bac5bc5e3e547f75809e46a2ba0d5790574f26f",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S18",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "A 48-million-year-old fossil leaf from Messel, in Germany, bears the same characteristic bite scars.",
+          "exact_native_cache_key": "67206f673af4c521dd7cf717fc6d9867dad6e568.pkl",
+          "cache_input_text_sha256": "28a43ecf138a9def3bac61c1c1547ea32562563b68c2b23e587017f8b634e683",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        184320
+      ],
+      "unprocessed_array_sha256": "d21ce16bf6bd5f3d9f6a50e0167162adcf2ca502d5f14240afd65678a69f63de"
+    },
+    {
+      "exact_native_cache_key": "965cb2c86e6f48ebefcb28d6b385626132e60967.pkl",
+      "pkl_sha256": "bdb6353b1fb5e4cfd298b26e55fdad821cc8bd115966b8cd518545414881ef26",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S18",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "A 48-million-year-old fossil leaf from Messel, in Germany,",
+          "exact_native_cache_key": "965cb2c86e6f48ebefcb28d6b385626132e60967.pkl",
+          "cache_input_text_sha256": "64b77515d6f629fdf69282418150434cbaacb462870607d20a0b9de0dfa8626a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        104448
+      ],
+      "unprocessed_array_sha256": "7cc7d999e1a0f86547ca56beae0feb8404705f46d7df4d0a1cb0872d364cdd90"
+    },
+    {
+      "exact_native_cache_key": "6765d74d17032bda82b9a1eba857819b0c81cf6f.pkl",
+      "pkl_sha256": "9f71a34a794610c2f58e00f09bdc6cedaf2c265f7479005a9718d5d29944cca5",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S18",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "bears the same characteristic bite scars.",
+          "exact_native_cache_key": "6765d74d17032bda82b9a1eba857819b0c81cf6f.pkl",
+          "cache_input_text_sha256": "572eb60d1bf81ed69262207de2b825f7183c9be5171329b63c5cf1af5619a669",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S18",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "bears the same characteristic bite scars.",
+          "exact_native_cache_key": "6765d74d17032bda82b9a1eba857819b0c81cf6f.pkl",
+          "cache_input_text_sha256": "572eb60d1bf81ed69262207de2b825f7183c9be5171329b63c5cf1af5619a669",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        61440
+      ],
+      "unprocessed_array_sha256": "dfbbb432eff88d54cb54a5cd3578855670a5b1fbc86f2c07d1e3387c9d32e00a"
+    },
+    {
+      "exact_native_cache_key": "2ce4900e7dc4139a7f2aa0665056ba247d56ff49.pkl",
+      "pkl_sha256": "44217e5356eebde09b6db5eb7c2088f305cd9e6ab7208b93226a527c2a52b054",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S18",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "A 48-million-year-old fossil leaf from Messel,",
+          "exact_native_cache_key": "2ce4900e7dc4139a7f2aa0665056ba247d56ff49.pkl",
+          "cache_input_text_sha256": "48ceeecab8d25aa34d3125a377e985a7633ee61b143388f588886574246bd9c8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        77312
+      ],
+      "unprocessed_array_sha256": "60d01d4ff778adcd3a0dbfd5150d69884fe76fca32117753dd2605ae82c60570"
+    },
+    {
+      "exact_native_cache_key": "355c7578ddd43e5e75d98a128bd5ac95e2fd9163.pkl",
+      "pkl_sha256": "9dc72947906b6440b2a6c8eee86a40f42e2240c13d467d99ce49ca88e07224cf",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S18",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "in Germany,",
+          "exact_native_cache_key": "355c7578ddd43e5e75d98a128bd5ac95e2fd9163.pkl",
+          "cache_input_text_sha256": "f57a70713d16151e525ef425ad02acde3bfeae193f05a90690107a619a2d3485",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        23040
+      ],
+      "unprocessed_array_sha256": "7b7d489362e20d61d151e17ceb4cd9198650a27ef9e464b9666e170a5b34ca09"
+    }
+  ],
+  "missing_reference_key_count": 0,
+  "observed_missing_keys_covered": [],
+  "new_private_cache_names": [],
+  "native_single_thread_marker_verified": true,
+  "single_thread_sessions": [
+    {
+      "intra_op_num_threads": 1,
+      "inter_op_num_threads": 1
+    },
+    {
+      "intra_op_num_threads": 1,
+      "inter_op_num_threads": 1
+    }
+  ],
+  "models_sha256": {
+    "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+    "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+    "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+  },
+  "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+  "existing_private_cache_count": 11514,
+  "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+  "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+  "existing_private_cache_bytes_unchanged": true,
+  "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+  "public_repository_cache_unchanged": true,
+  "producer_pcm_existed_before": false,
+  "producer_pcm_sha256_before": null,
+  "producer_pcm_sha256_after": null,
+  "accepted_aac_adts_sha256_before": "1856ed8d25dce10ec0b4884aeed4cc926a9eef434fc695efb8008d000817cd70",
+  "accepted_aac_adts_sha256_after": "1856ed8d25dce10ec0b4884aeed4cc926a9eef434fc695efb8008d000817cd70",
+  "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+  "private_cache_exported": false
+}
