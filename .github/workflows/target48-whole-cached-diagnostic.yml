@@ -60,6 +60,21 @@ jobs:
           python -m pip install --quiet -r official-main/视频/工具/环境/requirements.txt
       - name: 安装真正已认证五core原CUTS程序和实际110T
         run: python .github/target48-whole-cached-diagnostic/install_exact_core5.py
+      - name: 恢复正式原native既有仓库别名上下文不改任何原母
+        run: |
+          python - <<'PYALIAS'
+          from pathlib import Path
+          import os,subprocess
+          root=Path(os.environ['GITHUB_WORKSPACE'])/'official-main'
+          alias=Path('/home/user/postgraduate-vocabulary')
+          if not alias.exists():
+              subprocess.run(['sudo','mkdir','-p',str(alias.parent)],check=True)
+              subprocess.run(['sudo','ln','-s',str(root),str(alias)],check=True)
+          assert alias.resolve()==root.resolve()
+          assert (alias/'视频/工具/发音词典/读音改正.json').is_file()
+          assert (alias/'视频/工具/发音词典/按语境读音.json').is_file()
+          assert (alias/'视频/配音缓存/老条目指纹.json').is_file()
+          PYALIAS
       - name: 原文件拷入临时工作目录
         env:
           XG_P: ${{ github.workspace }}/official-main
