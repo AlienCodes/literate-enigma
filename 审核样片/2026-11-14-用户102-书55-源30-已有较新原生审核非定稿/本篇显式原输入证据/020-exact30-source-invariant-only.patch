@@ -1,0 +1,30 @@
+--- v20/delivery.py
++++ v22/delivery.py
+@@ -269,7 +269,7 @@
+     return [] if before == after else [path]
+ 
+ 
+-def source_invariants(request, final, n):
++def _source_invariants_before_exact30(request, final, n):
+     require(len(request['sentences']) == len(final['sentences']), f'Sentence grouping changed: {n}')
+     for si, (a, b) in enumerate(zip(request['sentences'], final['sentences'])):
+         require(a['para'] == b['para'] and len(a['chunks']) == len(b['chunks']), f'Paragraph/chunk grouping changed: {n}/S{si+1}')
+@@ -369,6 +369,18 @@
+             'same_accepted_audio_locator_metadata_reconciliations':join_reconciliations,
+             'official_regenerated_nonaudio_rationale_updates':rationale_updates,
+             'observed_original_QC_interval_fingerprint_updates':interval_fingerprint_updates}
++
++
++def source_invariants(request, final, n):
++    if str(n).zfill(2) == '30':
++        from exact30_t38_presentation import REQUEST, structure, virtual_original_T38_request
++        if structure(request) == REQUEST:
++            virtual, provenance = virtual_original_T38_request(request, final, n)
++            result = _source_invariants_before_exact30(virtual, final, n)
++            result['specific_existing30_T38_reconciliation'] = provenance
++            return result
++    return _source_invariants_before_exact30(request, final, n)
++
+ 
+ 
+ def mapping(config):
