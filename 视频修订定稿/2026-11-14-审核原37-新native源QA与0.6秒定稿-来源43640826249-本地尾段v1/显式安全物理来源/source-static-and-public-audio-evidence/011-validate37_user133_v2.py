@@ -1,0 +1,32 @@
+"""Unchanged original GEN/full-text checks in RAM only, current03 actual delivered baseline."""
+from pathlib import Path
+import hashlib,importlib.util,json,os,shutil,sys
+B=Path('/workspace/work/video-audit70-20261113');H=Path('/dev/shm/article37-user131-draft-20261114');C=H/'candidate-payload';BASE=B/'preflight-frozen66-v2-part1/mirror';V=H/'thin-validation-v1';M=V/'mirror';W=M/'_text-work37';sha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest();s=importlib.util.spec_from_file_location('P',B/'generator_text_preflight.py');P=importlib.util.module_from_spec(s);s.loader.exec_module(P)
+if not M.exists():
+ (M/'视频').mkdir(parents=True);shutil.copytree(B/'article60-user-review-draft-20261114/thin-validation/mirror/视频/工具',M/'视频/工具',copy_function=os.link,ignore=shutil.ignore_patterns('__pycache__','*.pyc'));shutil.copytree(BASE/'新版定稿',M/'新版定稿');(M/'视频/制作记录').mkdir();(M/'视频/脚本').mkdir();W.mkdir();(W/'scripts').mkdir();(W/'fonts').symlink_to(M/'视频/工具/fonts',target_is_directory=True);q=M/'视频/资源/字体';q.parent.mkdir(parents=True);q.symlink_to(M/'视频/工具/fonts',target_is_directory=True)
+ for p in BASE.glob('*.md'):shutil.copyfile(p,M/p.name)
+for root in[BASE,B/'payload']:
+ for p in(root/'视频/制作记录').glob('*'):
+  if p.is_file()and p.suffix in('.md','.json'):shutil.copyfile(p,M/'视频/制作记录'/p.name)
+ for p in(root/'视频').glob('*.md'):shutil.copyfile(p,M/'视频'/p.name)
+ for p in(root/'新版定稿').glob('*.md'):shutil.copyfile(p,M/'新版定稿'/p.name)
+ for p in(root/'视频/脚本').glob('[0-9][0-9].json'):shutil.copyfile(p,M/'视频/脚本'/p.name);shutil.copyfile(p,W/'scripts'/p.name)
+for rel in['视频/脚本/37.json','视频/工具/初稿生成/gen37.py','新版定稿/37-dynamite-for-the-heart.md','视频/工具/用户同意记录.json','视频/制作记录/37_待改清单.md']:
+ (M/rel).unlink(missing_ok=True);shutil.copyfile(C/rel,M/rel)
+snapshot=Path('/workspace/work/video-revision-delivery/next-passed-validated/43543967031/37/final-source/视频/脚本/37.json');assert sha(snapshot)=='cf4d7618f46155f222d9ce016c5411fbd3904aa6296834048c486c286ed2e40d';dest=M/'视频/脚本/已发版本/37.json';dest.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(snapshot,dest)
+record_src=B/'payload/视频/制作记录/逐句确认/37.json';record_src=record_src if record_src.exists()else BASE/'视频/制作记录/逐句确认/37.json';record=M/'视频/制作记录/逐句确认/37.json';record.parent.mkdir(exist_ok=True);shutil.copyfile(record_src,record);fixture_restore_not_required_for_source37=True
+logs=V/'logs-v3-user133-actual-raw';logs.mkdir(exist_ok=True);tmp=H/'temp-original-tools';tmp.mkdir(exist_ok=True);core={p:sha(M/p)for p in P.CORE_FILES};expected=json.loads((C/'视频/脚本/37.json').read_text());source_sha=sha(C/'视频/脚本/37.json');workjson=W/'scripts/37.json';workjson.unlink(missing_ok=True);env={**os.environ,'TMPDIR':str(tmp),'XG_P':str(M),'XG_TOOLS':str(M/'视频/工具'),'XG_WORK':str(W),'PYTHONDONTWRITEBYTECODE':'1','VIDEO_S':'1'};env['PATH']=str(Path(sys.executable).parent)+os.pathsep+env.get('PATH','')
+for k in['YAOWENBEN','AUDIO_ONLY','OLD_IV_VOID']:env.pop(k,None)
+code,_=P.execute([sys.executable,M/'视频/工具/初稿生成/gen37.py'],W,env,logs/'37-original-GEN.log');got=json.loads(workjson.read_text());delta=P.differences(expected,got);assert code==0 and not delta
+reasons={
+'S16':'T1没加信息：用户131只将blood vessels完整名词词组及血管标重点，原1977年穆拉德查明硝酸甘油释放一氧化氮并扩张血管的句意和小字完整。T3词性：ascertained动词查明、nitroglycerin名词硝酸甘油、nitric oxide名词一氧化氮、widens动词扩张、blood vessels为blood vessel名词复数血管。T6不生硬：它会扩张血管原中文完整保留。T7通顺：which指一氧化氮，原非限制性定语从句说明完整。T8看得懂：that宾从与which定从及医学词中文说明完整。T21贴合语境：blood vessels整体血管非血液或船，widens扩张原重点且独立key。',
+'S18':'T1没加信息：用户132指定原分享了改共同获得了，1998诺奖三人组及奖项领域都保留。T3词性：shared是share过去式的谓语共同获得，保持普通；trio名词三人组、Nobel Prize名词诺贝尔奖。T6不生硬：三人组共同获得了奖项自然，不写分享了奖。T7通顺：原年份和生理学或医学奖名保持中文语序。T8看得懂：原奖名和三人组指前文三位研究者。T21贴合语境：shared指共同获奖，不增每人奖金或全体参与者之外事实。',
+'S19':'T1没加信息：原结语和独立详细五点简述全文完整保留。T3词性：presentation名词作颁奖定语，anniversary名词纪念日；quoted为quote过去式引述了，ironic形容词讽刺的。T6不生硬：原完整结语保留。T7通顺：依原文叙述自然总结。T8看得懂：原语法小字说明保留。T21贴合语境：不因131132词色和译法更改医学史事实。T33简述讲全：原详细五点简述全文保留，独立结尾卡内容完整保留。'}
+
+reviews=[]
+for sid,why in reasons.items():
+ rc,_=P.execute([sys.executable,M/'视频/工具/逐句确认.py','37',sid,why],W,env,logs/f'37-original-{sid}-review.log');assert rc==0;reviews.append(sid)
+raw,txt=P.execute([sys.executable,M/'视频/工具/踩坑核查.py','37','出片'],W,env,logs/'37-original-text-before-repair.log');rc,_=P.execute([sys.executable,M/'视频/工具/新管/修.py','37'],W,env,logs/'37-original-repair.log');actual=json.loads(workjson.read_text());shutil.copyfile(workjson,V/'37-original-mechanical-repair-result-v2.json');shutil.copyfile(record,V/'37-sentence-reviews-before-original-mechanical-wrap-v2.json')
+pr,pt=P.execute([sys.executable,M/'视频/工具/逐句确认.py','37','S19',reasons['S19']],W,env,logs/'37-original-S19-post-mechanical-review.log');assert pr==0
+last,lasttxt=P.execute([sys.executable,M/'视频/工具/踩坑核查.py','37','出片'],W,env,logs/'37-original-text-after-repair.log');out=C/'视频/制作记录/逐句确认/37.json';out.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(record,out)
+r=dict(source_id='37',book_order='43',draft_only=False,native_final_authorized=True,source_sha256=source_sha,GEN_sha256=sha(C/'视频/工具/初稿生成/gen37.py'),MD_sha256=sha(C/'新版定稿/37-dynamite-for-the-heart.md'),original_generator_exit=code,whole_JSON_roundtrip_exact=not delta,original_text_before_repair_exit=raw,original_repair_exit=rc,original_text_after_repair_exit=last,original_mechanical_repair_differences=P.differences(expected,actual),hard_errors=[x for x in lasttxt.splitlines()if x.strip().startswith('✘')],pending_confirmations=[x for x in lasttxt.splitlines()if x.strip().startswith('？')],source_input_unchanged=sha(C/'视频/脚本/37.json')==source_sha,core_before_sha256=core,core_after_sha256={p:sha(M/p)for p in P.CORE_FILES},reviewed_sentences=reviews,actual_current_latest_sent_video_source_for_L13={'path':str(snapshot),'sha256':sha(snapshot),'derived_from_actual_native_final_source':True,'actual_current_accepted37_handoff':'/workspace/work/video-revision-delivery/next-passed-validated/43543967031/37/archive-handoff.json','historical_ROOT_repository_snapshot_not_falsely_claimed':True,'missing_snapshot_skip_not_used':True},no_audio_video_or_PAY_CI_remote_alias_PDF_changed=True);r['passed']=code==raw==rc==last==0 and not delta and r['source_input_unchanged']and r['core_before_sha256']==r['core_after_sha256'];p=V/'report-v3-user133-actual-raw.json';p.write_text(json.dumps(r,ensure_ascii=False,indent=2)+'\n');print(json.dumps(dict(passed=r['passed'],GEN_exact=not delta,text_before=raw,text_after=last,report=str(p),sha256=sha(p)),ensure_ascii=False));sys.exit(0 if r['passed'] else 1)
