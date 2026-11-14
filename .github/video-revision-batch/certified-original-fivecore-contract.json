@@ -1,0 +1,101 @@
+{
+  "kind": "actual-original-fastcheck-certified-five-core-reviewed-cuts-repair",
+  "core_files": [
+    {
+      "target": "视频/工具/草稿声音.sh",
+      "file": "files/视频/工具/草稿声音.sh",
+      "original_sha256": "0ce3277812cf16ed30438509b6dc97db0c26725db4c5db5d9b058c3ef6531aa2",
+      "patched_sha256": "43fc6a1acdae6bb1c2252178bf034407400bbbe92eb1752053f3047da9760491",
+      "repair_scope": "explicit revision flags keep reviewed gain, existing valid ending and reviewed physical cuts; automatic cuts still measured/proposed without --写入 in CUTS=1 mode; default full JSON/PCM/AAC exact to prior5; all original later quality checks retained"
+    },
+    {
+      "target": "视频/工具/句内响度.py",
+      "file": "files/视频/工具/句内响度.py",
+      "original_sha256": "58735b7173a3c03efa61fb300b4aed4039c164fa970e0593a40bae2a3f3cbd27",
+      "patched_sha256": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea",
+      "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+    },
+    {
+      "target": "视频/工具/独立复核/synth.py",
+      "file": "files/视频/工具/独立复核/synth.py",
+      "original_sha256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+      "patched_sha256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+      "repair_scope": "validated unprocessed raw-mother reference input only; independent transforms/audit/thresholds retained"
+    },
+    {
+      "target": "视频/工具/结尾句接点.py",
+      "file": "files/视频/工具/结尾句接点.py",
+      "original_sha256": "15303682c605dd4544172c92d42c016d8d0536e0c6d1f9816d0d38dd5d2b9a61",
+      "patched_sha256": "1a5d43c4f5483014b69bbea7ad43dddb0333a9a80e29bb2b4c8029d8915ff798",
+      "repair_scope": "validate existing ending entry with original producer guard then keep it; bad points fail, missing points use original algorithm; default unchanged"
+    },
+    {
+      "target": "视频/工具/读音核对.py",
+      "file": "files/视频/工具/读音核对.py",
+      "original_sha256": "0a3b97e1179e47c0593f69286f4206eecc123cc7ec5d5adf4f5e62457c228a41",
+      "patched_sha256": "50f4363bb2fc2930be59904cdccfa44fd46f14393a0385c7846028ee25b4e84c",
+      "repair_scope": "selftest-only fault injection keeps compound registry and injects actual uncorrected espeak IPA; normal checker AST/output and dictionaries unchanged; unrelated exceptions propagate with restoration"
+    }
+  ],
+  "reviewed_regression_resource": {
+    "target": "视频/工具/新管/回归基准_27.json",
+    "file": "files/视频/工具/新管/回归基准_27.json",
+    "sha256": "b8ddb4656ae27cbfc7ec8e3b99511983b4e568997bd4ad4ee33c364f3926ae94",
+    "origin": "pre-existing root-reviewed 67-screen data; original voice/segment MD5 unchanged"
+  },
+  "actual_native_fastcheck_stamp": {
+    "target": "视频/工具/新管/快测通过.json",
+    "file": "files/视频/工具/新管/快测通过.json",
+    "sha256": "bb75875985ff106abe142caf7ecbf0a5eb76a1412309bf78d77bf146f64512af",
+    "origin": "actual unmodified original full quickcheck, native run43550422832"
+  },
+  "actual_native_certification": {
+    "run_id": 43550422832,
+    "job_id": 132311381738,
+    "commit": "5ecda5ba57c151cb74fc3d36193b60fa59f51c26",
+    "actual_full_quickcheck_exit": 0,
+    "actual_full_quickcheck_seconds": 384.1,
+    "artifact_id": 14096681983,
+    "artifact_zip_sha256": "19dee7da557610e78f39567446bd7dd17ee2c1fe58a0070bb2d6f2c11c22b347",
+    "full_original_quickcheck_log_sha256": "43e1f723087d59c15e78593b23dc37cd2360ba3526474cc5484fbe80edc253d8",
+    "article_audio_or_video_passed_not_implied": true
+  },
+  "environment_for_revision_jobs": {
+    "XG_KEEP_REVIEWED_GAIN": "1",
+    "XG_KEEP_REVIEWED_ENDING": "1",
+    "XG_KEEP_REVIEWED_CUTS": "1"
+  },
+  "whole_production_T_compatibility": {
+    "source_ref": "e5446f35ffc522e96cf8cabdf36d1a182551a6a9",
+    "all_program_count": 110,
+    "original_stamp_exit": 0,
+    "all_program_map_exact": true,
+    "proof_SHA256": "cac2792ddcfec6833e165033d43c812c673d0b17c80df665e63cdcc0e52d2480"
+  },
+  "actual_native_pronunciation_tests": {
+    "original16_bug_reproduced": true,
+    "nine_real_bad_pronunciations_caught": true,
+    "all_non_selftest_AST_unchanged": true,
+    "normal_check_output_exact": true,
+    "unrelated_exception_propagated_and_dict_restored": true,
+    "report_SHA256": "cbb5a935e2ae1ae2b42be4ab54c6ff9f718e5d80b41366c1e8faf7a361d77370"
+  },
+  "default_behavior_unchanged": true,
+  "quality_thresholds_lowered": false,
+  "all_checkers_unchanged_claim": false,
+  "producer_unchanged_SHA256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+  "independent_audit_unchanged_SHA256": "bfe12dab6bec96c9b765faea286ae30a067589f6c5ef78461b21d12b955f1e22",
+  "historical_test_article_data_not_to_install": true,
+  "actual_native_complete02_cuts_tests": {
+    "default_original5_and_candidate_actual_PCM_AAC_JSON_exact": true,
+    "mode1_NV_retained": true,
+    "mode1_actual_AAC_matches_old_accepted": "c026dfff1f9591a3e11539cc40e87e3da0ed247cec3bf883d265011126e094d3",
+    "original_four_new_noise_selftests_passed": true,
+    "bad_existing_NV_rejected_by_original_producer": true,
+    "automatic_cut_algorithm_SHA256_unchanged": "c3d2e6a911a33e57fbe629bc97ca332cbb2cce73d6aec9f3dbebd731aa1e6562",
+    "full_report_SHA256": "818d3a1d8d70904965f6617af8fa3105627056c41d591d1e5eab4a5a2d1c4a12",
+    "article_QA_not_implied": true
+  },
+  "program_count": 5,
+  "runtime_file_count": 7
+}

@@ -107,27 +107,34 @@ jobs:
             ~/asr
           key: completion-05-machine-43294745262
       - uses: actions/cache/restore@v4
-        id: exact-spoken-whole-cache
+        id: exact48-correct-mothers
         with:
-          path: ${{ runner.temp }}/completion-machine/tts/spoken-comma-whole-reference-cache
-          key: Linux-spoken43-52-whole-reference-43643745207
-      - name: 真正读取全部14原母marker和原G36的完整SHA
+          path: |
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/5277782c078c7fbb56cd99004114eaeae82ec430.pkl
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/5277782c078c7fbb56cd99004114eaeae82ec430.pkl.单线程
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/586bd56cd87532d8969be74dde574dc5ef09a448.pkl
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/586bd56cd87532d8969be74dde574dc5ef09a448.pkl.单线程
+          key: Linux-native48-correctcontext-YuanLongping-43646876571
+      - uses: actions/cache/restore@v4
+        id: exact48-whole3089
+        with:
+          path: ${{ runner.temp }}/completion-machine/tts/cache_tts/调平_3089bf1e9ad992be5bc42ea6c586ae366b1b1a40.json
+          key: Linux-native48-correctcontext-whole-G36-3089-43649749759
+      - name: 精确读取正确原母及真实whole3089五叶完整SHA
         env:
-          CACHE_HIT: ${{ steps.exact-spoken-whole-cache.outputs.cache-hit }}
+          MOTHER_HIT: ${{ steps.exact48-correct-mothers.outputs.cache-hit }}
+          LEVEL_HIT: ${{ steps.exact48-whole3089.outputs.cache-hit }}
         run: |
-          test "$CACHE_HIT" = true
+          test "$MOTHER_HIT" = true
+          test "$LEVEL_HIT" = true
           python - <<'PYCACHE'
-          import hashlib,json,os,shutil
+          import hashlib,json,os
           from pathlib import Path
-          M=Path(os.environ['RUNNER_TEMP'])/'completion-machine/tts'
-          data=json.loads(Path('.github/video-revision-batch/actual-spoken-whole-reference-cache14.json').read_text())
-          assert len(data)==14
+          M=Path(os.environ['RUNNER_TEMP'])/'completion-machine/tts/cache_tts'
+          data=json.loads(Path('.github/video-revision-batch/actual48-correct-mothers-and-whole3089-private-cache.json').read_text())
+          assert len(data)==5
           for name,h in data.items():
-              assert Path(name).name==name
-              src=M/'spoken-comma-whole-reference-cache'/name;dst=M/'cache_tts'/name
-              assert hashlib.sha256(src.read_bytes()).hexdigest()==h
-              if dst.exists():assert hashlib.sha256(dst.read_bytes()).hexdigest()==h
-              else:shutil.copyfile(src,dst)
+              assert Path(name).name==name and hashlib.sha256((M/name).read_bytes()).hexdigest()==h
           PYCACHE
       - name: 确认恢复既有机器缓存
         env:
