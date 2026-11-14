@@ -1,0 +1,3861 @@
+{
+  "actual_successful_job_verified": true,
+  "actual_genuine_upstream_pass_with_missing_art_recovery": false,
+  "actual_job_uploaded_selected_artifact": false,
+  "overall_matrix_success_required": false,
+  "acceptance_basis": "actual successful article job + immutable run artifact + actual native passed article/media/source identity; upload log is auxiliary",
+  "run": {
+    "id": 43583310590,
+    "name": "本轮改动篇目原缓存正式4K",
+    "node_id": "WFR_kwLODJcpM88AAAAKJcSK_g",
+    "head_branch": "codex/finish-05-and-summaries-20261112",
+    "head_sha": "b2960c9a4a2c84fa115a8302aab76a1f6e144bdd",
+    "path": ".github/workflows/produce-revision-batch4K.yml",
+    "display_title": "Rebuild revised articles in official4K: 47,34",
+    "run_number": 36,
+    "event": "push",
+    "status": "completed",
+    "conclusion": "failure",
+    "workflow_id": 417752518,
+    "check_suite_id": 118009873258,
+    "check_suite_node_id": "CS_kwDODJcpM88AAAAbee_Dag",
+    "url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43583310590",
+    "html_url": "https://github.com/AlienCodes/literate-enigma/actions/runs/43583310590",
+    "pull_requests": [],
+    "created_at": "2026-11-14T10:01:56Z",
+    "updated_at": "2026-11-14T10:20:11Z",
+    "actor": {
+      "login": "AlienCodes",
+      "id": 52247027,
+      "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/AlienCodes",
+      "html_url": "https://github.com/AlienCodes",
+      "followers_url": "https://api.github.com/users/AlienCodes/followers",
+      "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+      "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+      "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+      "repos_url": "https://api.github.com/users/AlienCodes/repos",
+      "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "run_attempt": 1,
+    "referenced_workflows": [],
+    "run_started_at": "2026-11-14T10:01:55Z",
+    "triggering_actor": {
+      "login": "AlienCodes",
+      "id": 52247027,
+      "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/AlienCodes",
+      "html_url": "https://github.com/AlienCodes",
+      "followers_url": "https://api.github.com/users/AlienCodes/followers",
+      "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+      "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+      "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+      "repos_url": "https://api.github.com/users/AlienCodes/repos",
+      "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "jobs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43583310590/attempts/1/jobs",
+    "logs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43583310590/attempts/1/logs",
+    "check_suite_url": "https://api.github.com/repos/AlienCodes/literate-enigma/check-suites/118009873258",
+    "artifacts_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43583310590/artifacts",
+    "cancel_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43583310590/cancel",
+    "rerun_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43583310590/rerun",
+    "previous_attempt_url": null,
+    "workflow_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/workflows/417752518",
+    "head_commit": {
+      "id": "b2960c9a4a2c84fa115a8302aab76a1f6e144bdd",
+      "tree_id": "0e2d94c7da1132220a3b26be17aa6b1d0f092325",
+      "message": "Rebuild revised articles in official4K: 47,34",
+      "timestamp": "2026-11-14T10:01:53Z",
+      "author": {
+        "name": "the Sword God",
+        "email": "52247027+AlienCodes@users.noreply.github.com"
+      },
+      "committer": {
+        "name": "the Sword God",
+        "email": "52247027+AlienCodes@users.noreply.github.com"
+      }
+    },
+    "repository": {
+      "id": 211233075,
+      "node_id": "MDEwOlJlcG9zaXRvcnkyMTEyMzMwNzU=",
+      "name": "literate-enigma",
+      "full_name": "AlienCodes/literate-enigma",
+      "private": false,
+      "owner": {
+        "login": "AlienCodes",
+        "id": 52247027,
+        "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+        "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/AlienCodes",
+        "html_url": "https://github.com/AlienCodes",
+        "followers_url": "https://api.github.com/users/AlienCodes/followers",
+        "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+        "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+        "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+        "repos_url": "https://api.github.com/users/AlienCodes/repos",
+        "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/AlienCodes/literate-enigma",
+      "description": "I am exploring this world!",
+      "fork": false,
+      "url": "https://api.github.com/repos/AlienCodes/literate-enigma",
+      "forks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/forks",
+      "keys_url": "https://api.github.com/repos/AlienCodes/literate-enigma/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/AlienCodes/literate-enigma/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/AlienCodes/literate-enigma/teams",
+      "hooks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/hooks",
+      "issue_events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/events",
+      "assignees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/AlienCodes/literate-enigma/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/tags",
+      "blobs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/AlienCodes/literate-enigma/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/AlienCodes/literate-enigma/languages",
+      "stargazers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/stargazers",
+      "contributors_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contributors",
+      "subscribers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscribers",
+      "subscription_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscription",
+      "commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/AlienCodes/literate-enigma/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/AlienCodes/literate-enigma/merges",
+      "archive_url": "https://api.github.com/repos/AlienCodes/literate-enigma/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/AlienCodes/literate-enigma/downloads",
+      "issues_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/AlienCodes/literate-enigma/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/AlienCodes/literate-enigma/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/AlienCodes/literate-enigma/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/AlienCodes/literate-enigma/labels{/name}",
+      "releases_url": "https://api.github.com/repos/AlienCodes/literate-enigma/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/deployments"
+    },
+    "head_repository": {
+      "id": 211233075,
+      "node_id": "MDEwOlJlcG9zaXRvcnkyMTEyMzMwNzU=",
+      "name": "literate-enigma",
+      "full_name": "AlienCodes/literate-enigma",
+      "private": false,
+      "owner": {
+        "login": "AlienCodes",
+        "id": 52247027,
+        "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+        "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/AlienCodes",
+        "html_url": "https://github.com/AlienCodes",
+        "followers_url": "https://api.github.com/users/AlienCodes/followers",
+        "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+        "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+        "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+        "repos_url": "https://api.github.com/users/AlienCodes/repos",
+        "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/AlienCodes/literate-enigma",
+      "description": "I am exploring this world!",
+      "fork": false,
+      "url": "https://api.github.com/repos/AlienCodes/literate-enigma",
+      "forks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/forks",
+      "keys_url": "https://api.github.com/repos/AlienCodes/literate-enigma/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/AlienCodes/literate-enigma/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/AlienCodes/literate-enigma/teams",
+      "hooks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/hooks",
+      "issue_events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/events",
+      "assignees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/AlienCodes/literate-enigma/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/tags",
+      "blobs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/AlienCodes/literate-enigma/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/AlienCodes/literate-enigma/languages",
+      "stargazers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/stargazers",
+      "contributors_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contributors",
+      "subscribers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscribers",
+      "subscription_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscription",
+      "commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/AlienCodes/literate-enigma/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/AlienCodes/literate-enigma/merges",
+      "archive_url": "https://api.github.com/repos/AlienCodes/literate-enigma/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/AlienCodes/literate-enigma/downloads",
+      "issues_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/AlienCodes/literate-enigma/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/AlienCodes/literate-enigma/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/AlienCodes/literate-enigma/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/AlienCodes/literate-enigma/labels{/name}",
+      "releases_url": "https://api.github.com/repos/AlienCodes/literate-enigma/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/deployments"
+    }
+  },
+  "job": {
+    "id": 132412507348,
+    "run_id": 43583310590,
+    "workflow_name": "本轮改动篇目原缓存正式4K",
+    "head_branch": "codex/finish-05-and-summaries-20261112",
+    "run_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43583310590",
+    "run_attempt": 1,
+    "node_id": "CR_kwDODJcpM88AAAAe1GaE1A",
+    "head_sha": "b2960c9a4a2c84fa115a8302aab76a1f6e144bdd",
+    "url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/jobs/132412507348",
+    "html_url": "https://github.com/AlienCodes/literate-enigma/actions/runs/43583310590/job/132412507348",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-11-14T10:02:08Z",
+    "started_at": "2026-11-14T10:02:10Z",
+    "completed_at": "2026-11-14T10:20:10Z",
+    "name": "produce (34)",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-11-14T10:02:11Z",
+        "completed_at": "2026-11-14T10:02:12Z"
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-11-14T10:02:12Z",
+        "completed_at": "2026-11-14T10:02:30Z"
+      },
+      {
+        "name": "按批准的原图清单解析本篇原生文件名",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3,
+        "started_at": "2026-11-14T10:02:30Z",
+        "completed_at": "2026-11-14T10:02:30Z"
+      },
+      {
+        "name": "取固定主仓中已批准的本篇书中原图",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4,
+        "started_at": "2026-11-14T10:02:30Z",
+        "completed_at": "2026-11-14T10:02:31Z"
+      },
+      {
+        "name": "先验本篇原图的主仓提交、原生blob和批准SHA",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5,
+        "started_at": "2026-11-14T10:02:31Z",
+        "completed_at": "2026-11-14T10:02:31Z"
+      },
+      {
+        "name": "Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6,
+        "started_at": "2026-11-14T10:02:31Z",
+        "completed_at": "2026-11-14T10:02:31Z"
+      },
+      {
+        "name": "Run actions/cache/restore@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7,
+        "started_at": "2026-11-14T10:02:31Z",
+        "completed_at": "2026-11-14T10:03:08Z"
+      },
+      {
+        "name": "确认恢复既有机器缓存",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8,
+        "started_at": "2026-11-14T10:03:08Z",
+        "completed_at": "2026-11-14T10:03:09Z"
+      },
+      {
+        "name": "恢复16正确Origin的本轮已固定原始母素材",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 9,
+        "started_at": "2026-11-14T10:03:09Z",
+        "completed_at": "2026-11-14T10:03:09Z"
+      },
+      {
+        "name": "确认16精确原母缓存真实命中",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 10,
+        "started_at": "2026-11-14T10:03:09Z",
+        "completed_at": "2026-11-14T10:03:09Z"
+      },
+      {
+        "name": "准备原有核查工具",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 11,
+        "started_at": "2026-11-14T10:03:09Z",
+        "completed_at": "2026-11-14T10:03:46Z"
+      },
+      {
+        "name": "Run actions/cache/restore@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 12,
+        "started_at": "2026-11-14T10:03:46Z",
+        "completed_at": "2026-11-14T10:03:47Z"
+      },
+      {
+        "name": "确认原快测印章缓存命中",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 13,
+        "started_at": "2026-11-14T10:03:47Z",
+        "completed_at": "2026-11-14T10:03:47Z"
+      },
+      {
+        "name": "原程序做稿并正式定稿4K",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 14,
+        "started_at": "2026-11-14T10:03:47Z",
+        "completed_at": "2026-11-14T10:20:04Z"
+      },
+      {
+        "name": "仅保留本篇公开成片和核验材料",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 15,
+        "started_at": "2026-11-14T10:20:04Z",
+        "completed_at": "2026-11-14T10:20:07Z"
+      },
+      {
+        "name": "Post Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 28,
+        "started_at": "2026-11-14T10:20:07Z",
+        "completed_at": "2026-11-14T10:20:07Z"
+      },
+      {
+        "name": "Post 取固定主仓中已批准的本篇书中原图",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 29,
+        "started_at": "2026-11-14T10:20:07Z",
+        "completed_at": "2026-11-14T10:20:07Z"
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 30,
+        "started_at": "2026-11-14T10:20:07Z",
+        "completed_at": "2026-11-14T10:20:08Z"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 31,
+        "started_at": "2026-11-14T10:20:08Z",
+        "completed_at": "2026-11-14T10:20:08Z"
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/AlienCodes/literate-enigma/check-runs/132412507348",
+    "labels": [
+      "ubuntu-latest"
+    ],
+    "runner_id": 1000008566,
+    "runner_name": "GitHub Actions 1000008566",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  "artifact": {
+    "id": 14109344591,
+    "node_id": "MDg6QXJ0aWZhY3QxNDEwOTM0NDU5MQ==",
+    "name": "article34-revised-canonical-4K-final",
+    "size_in_bytes": 43249632,
+    "url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/artifacts/14109344591",
+    "archive_download_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/artifacts/14109344591/zip",
+    "expired": false,
+    "digest": "sha256:fb33567620f8cdf7cf7909152eecd5562a94925a5e87477d443e8b35eeadb74a",
+    "created_at": "2026-11-14T10:20:07Z",
+    "updated_at": "2026-11-14T10:20:07Z",
+    "expires_at": "2026-12-14T10:20:05Z",
+    "workflow_run": {
+      "id": 43583310590,
+      "repository_id": 211233075,
+      "head_repository_id": 211233075,
+      "head_branch": "codex/finish-05-and-summaries-20261112",
+      "head_sha": "b2960c9a4a2c84fa115a8302aab76a1f6e144bdd"
+    }
+  },
+  "upload_step_proof": {
+    "unambiguous_selected_step_upload": false,
+    "auxiliary_only": true,
+    "reason": "Upload action log block is missing or ambiguous in selected API step interval",
+    "acceptance_blocked_by_log": false
+  },
+  "native_status": {
+    "article": "34",
+    "passed": true,
+    "stage": "final4K-passed",
+    "original_audit_and_quality_thresholds_unchanged": true,
+    "original_maker_unchanged": true,
+    "core_repairs": [
+      {
+        "target": "视频/工具/草稿声音.sh",
+        "file": "files/视频/工具/草稿声音.sh",
+        "original_sha256": "0ce3277812cf16ed30438509b6dc97db0c26725db4c5db5d9b058c3ef6531aa2",
+        "patched_sha256": "957d7eb1598698ea33ff77d83379256ecae258d84d588753d561a902284be439",
+        "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+      },
+      {
+        "target": "视频/工具/句内响度.py",
+        "file": "files/视频/工具/句内响度.py",
+        "original_sha256": "58735b7173a3c03efa61fb300b4aed4039c164fa970e0593a40bae2a3f3cbd27",
+        "patched_sha256": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea",
+        "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+      },
+      {
+        "target": "视频/工具/独立复核/synth.py",
+        "file": "files/视频/工具/独立复核/synth.py",
+        "original_sha256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+        "patched_sha256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+        "repair_scope": "validated unprocessed raw-mother reference input only; independent transforms/audit/thresholds retained"
+      }
+    ],
+    "strict_production_cache": true,
+    "pdf_requested": false,
+    "check_summaries": {
+      "approved-illustration-resource.log": [],
+      "certified-core-original-stamp-verification.log": [],
+      "original-restored-stamp.log": [],
+      "canonical-module-copy.log": [],
+      "canonical-draft-00.log": [
+        "第34篇 做完（441 秒）：修了 2 处、疑点 29 处",
+        "① 文本：通过，自动修 2 处",
+        "② 声音：34 词尾辅音核对 问题数 0；34 纯人声核对（配音指纹 9a357258522f）问题数 0；问题数 0；34 句间停顿核对 问题数 0；问题数 0",
+        "③ 出片前核查：通过",
+        "⑤ 出片后核查：全部通过",
+        "⑥ 已拷 视频/视频/草稿1080p/34_1080p.mp4（--不推）"
+      ],
+      "canonical-final4K-00.log": [
+        "第34篇 用户定稿原话：有"
+      ],
+      "original-stamp-after-production.log": []
+    },
+    "actual_native_core_certification": {
+      "run_id": 43535822030,
+      "job_id": 132264443476,
+      "commit": "395e8da264fafa2453a42ee70a3f7aed8303a769",
+      "actual_full_quickcheck_exit": 0,
+      "actual_full_quickcheck_seconds": 478.16,
+      "artifact_id": 14089812323,
+      "artifact_zip_sha256": "5e396c84e4a6fc7c6cc737ceb8648d7f15f397e9551806e032c93db8ab0963b8",
+      "full_original_quickcheck_log_sha256": "dbe7f6e08d2b7c3a5f9a2f925bb75a662aed725c780e1bc6714706807552a294",
+      "article_audio_or_video_passed_not_implied": true
+    },
+    "actual_native_fastcheck_stamp": {
+      "target": "视频/工具/新管/快测通过.json",
+      "file": "files/视频/工具/新管/快测通过.json",
+      "sha256": "6ebc7aa41f79f77258fa333b665af258e007daa36a4ea290de972cd3da7b42f2",
+      "origin": "actual unmodified original full quickcheck, native run43535822030"
+    },
+    "reviewed_regression_resource": {
+      "target": "视频/工具/新管/回归基准_27.json",
+      "file": "files/视频/工具/新管/回归基准_27.json",
+      "sha256": "b8ddb4656ae27cbfc7ec8e3b99511983b4e568997bd4ad4ee33c364f3926ae94",
+      "origin": "pre-existing root-reviewed 67-screen data; original voice/segment MD5 unchanged"
+    },
+    "core_repair_manifest_sha256": "1b1558108d15603e5711e200135651d6c7700a583d8bcf53ad8753683ed05a5e",
+    "reviewed_gain_preservation_mode": true,
+    "reviewed_existing_ending_preservation_mode": false,
+    "reviewed_existing_physical_cuts_preservation_mode": false,
+    "real_restored_stamp_validated": true,
+    "reviewed_cross_article_context": {
+      "provided": true,
+      "manifest_sha256": "0412f53e02f6588bd6423c8178307e6def7bfa6e767c0895d8c84b00bdad83b3",
+      "files_sha256": {
+        "视频/脚本/01.json": "2be2f80a69af28703992204ac95f987c745362c326e62ad81b3cd8e0e0735d3a",
+        "新版定稿/01-the-robber-who-thought-lemon-juice-made-him-invisible.md": "572054065b5bb65446bf8939a21c789c1e9c7664d82da5117c43efdded894351",
+        "视频/脚本/02.json": "0403368c77fd3e0f91e1ee3780e1c7c147894ad13c16b5f14707d700a8f717c8",
+        "新版定稿/02-the-truth-about-one-marshmallow.md": "91b92505aad03f963861bec39e96f0a472c126d1d57c9fc538676c32f65e545c",
+        "视频/脚本/03.json": "527f3bf4a11843f4d606188dabc6ebce6830da3fb454a49c782e3a595cb47407",
+        "新版定稿/03-the-doctor-who-drank-bacteria-to-win-an-argument.md": "6dfb56504882e24854a3584fd740e7f6601e3f2532818aee3a56d5330d317aa3",
+        "视频/脚本/04.json": "93cc1ff58d65ebe43a65ecb2fb2dbd2da262d80877c05740bbdf4eab4eaca1e8",
+        "新版定稿/04-the-brain-that-learned-london.md": "a8ccb31ffff50aaae77de4b83de1847fafae1d585981cf960c5880c409f6cfc3",
+        "视频/脚本/05.json": "fa9b957b54271d144712ec503c628dae4e0d726eefc348d54a08d89d0f179d87",
+        "新版定稿/05-the-fingerprint-in-the-blood.md": "612deac4ed066489e04e214ca969f8f27dda05856e0ef0ed2e540e7a4a52ae34",
+        "视频/脚本/06.json": "2cbf1d6cd6e66a59285298ea830f5ef914590b64286d40b2ae5f3168aa27a2e9",
+        "新版定稿/06-the-horse-that-could-count.md": "7fd21ba491c7596c53c486f2bb0b0f2f6da8e67bac75461a4649a7caff822f74",
+        "视频/脚本/07.json": "842e44e5aa19fddcfa239cb6530c5152341cd86e11db959543d02d8670ca13e8",
+        "新版定稿/07-the-octopus-that-escaped.md": "b8544281bb2ada88fce9d1082cbc30233dcb63ee3e9c2bbefafc22cb28b8cb39",
+        "视频/脚本/08.json": "254832e09f12759d950384dd9f31f671ad5a3bc1590b7466065dd3ef5fe4b8d5",
+        "新版定稿/08-the-doctor-who-solved-the-cholera-mystery.md": "0b2bfa68070ce585a452f6b7034d03c3683e710dcabec5e86d7b221950dc7bab",
+        "视频/脚本/09.json": "fa3e429351d629de188c184d04e9986200e16e80606fcbec82332b6433301dae",
+        "新版定稿/09-the-great-emu-war.md": "af5c3e844bad15f94bfc43aeed6d7417c4bfae85f026b194da667a7a3bdb6196",
+        "视频/脚本/10.json": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
+        "新版定稿/10-the-stolen-smile.md": "ff63cf94e4d2c835e2e2f1ffd3e6c5642f0916f0b13c012f1f13c3dff716d47a",
+        "视频/脚本/11.json": "665cbb80cc70b700ecc0cc5813209fd100ad4fa8f0eead3929b9e53778d9d07f",
+        "新版定稿/11-move-37.md": "7e0b49b346c1fa3ab994a11a2301167c0d6a1bb00916508bdc0b1acf71e68053",
+        "视频/脚本/12.json": "e3bfbcce6f1a8e14cfe451d656574353321e297c90c62f5a7b422f37478311d5",
+        "新版定稿/12-the-79-days-of-new-coke.md": "5a23c1e0c81318527bcbf27573487d1845c5318905a2b1e020cc6e2eaf5d643f",
+        "视频/脚本/13.json": "c22ccc9eb34a92380ecbd2ea72189db492264c4730141c73024685b3fca5fd1e",
+        "新版定稿/13-eleven-days-without-sleep.md": "41998b355721703f761685dd351fbf4628b2be67dfed8b3d37276f9e8f929ecb",
+        "视频/脚本/14.json": "2889a9b31bc7945ee55c306d3507b8557bf1efe371af8a97483a61172be800b8",
+        "新版定稿/14-the-fungus-that-turns-ants-into-zombies.md": "618900d05bd2cecc8d577c446146e4df98d71e070c0b779b40992820d1fdd332",
+        "视频/脚本/15.json": "9b42f089b79e4e0c54c254c948ac4d9ae28d224585095a373607122a0d7c6898",
+        "新版定稿/15-the-myth-of-the-unsinkable.md": "bc2d0c8613437b39149cd6e66729104b26efceb8681fb645f782a97b40007584",
+        "视频/脚本/16.json": "d25aa07f3fac316c26c2ae1006d3efa7eb82a396b66150432b50239c1628396d",
+        "新版定稿/16-the-bread-made-from-air.md": "4da63148111213f6d77451b0eb4193893e6fc2fc170400bc39ce5f5ffcaa0b20",
+        "视频/脚本/17.json": "9750857c3e2c67e6abe5ea6913cb0602347be8b58836bbbc03e2c4153bb12e1b",
+        "新版定稿/17-the-curse-of-the-pharaoh.md": "0dc7b6ee7f4ef05d5e4382beeb077d57578d0bb6a6b69415485008facae98717",
+        "视频/脚本/18.json": "5192b78e582c36fd7d5a34973d8314c5b23e13b8313c8960ac29653bd7fa5d8c",
+        "新版定稿/18-the-mould-that-changed-the-world.md": "ef41cea03f471fe3b9a53939c843e450da3325eb711f6414e108ae92a7518dd8",
+        "视频/脚本/19.json": "cc3c5eea0f7d9ec0712b2e58adba7e5ef8b61d6518a322f9b25a12fcc45282fb",
+        "新版定稿/19-tulip-mania.md": "3882d487383b759c31dda4785966091c362960cd873a5d83c530d08d52e2e97c",
+        "视频/脚本/20.json": "cc5ed6d7be8767e5e7e9b098e8f3836821c0b3f51c17581b2746722da1cf3001",
+        "新版定稿/20-the-5000-year-old-murder-in-the-ice.md": "8d55638070787f7ff5432c197292af1188c463a8b018e01bdefc32999b888e95",
+        "视频/脚本/21.json": "61c1569a26d7569ee0f586178be6b307b1c394c0a30c3cb02541c910038b0589",
+        "新版定稿/21-the-man-who-sold-the-eiffel-tower-twice.md": "e8e966b70f579235d696ba11fb01d3b2cae3fa26efb9071bbea95071be259e1f",
+        "视频/脚本/22.json": "e3027a42c532fee9935afcecdd0542713cbb907183802c2345b9472f93b75f59",
+        "新版定稿/22-the-building-that-melted-a-car.md": "49ae09483bc80bbc40a71551cd98aebec355d96d9ff7b2bcdea59a06fe599267",
+        "视频/脚本/23.json": "c4574a79fd3a58577a1402ce095ea9e4a0ea1f98883ce63e3cc60d126e819409",
+        "新版定稿/23-the-man-who-gave-machines-a-mind.md": "72ed3049e87fe75ce1e753d5e443bdbe6a7ab72f6e282e8467fbbb62be873169",
+        "视频/脚本/24.json": "f08620b534bb10b718f7515c805dcb541721427d855bd5a092b8954847a351b8",
+        "新版定稿/24-survival-in-the-ice.md": "cb7f810d9a74256e0c00625290be4f16207feb90f5719ca87d5d7c9912b91307",
+        "视频/脚本/25.json": "c73e854e052b3df9bd920d4a59fafb183dee19bd58765fa426af6ea3d7c9a329",
+        "新版定稿/25-apollo-13-the-successful-failure.md": "b6b7d55fe66e6e32116431ea955778fab779b8bda622df0ba1036c2f40a3969f",
+        "视频/脚本/26.json": "22349b0a29f05689aae5bd5e9d0907846a68e6ad42949eb0b8cc392d6dce18d6",
+        "新版定稿/26-the-language-the-children-invented.md": "f64089bc9487e756522746058fba2e27c45e56ffc339d8590038643012eb496d",
+        "视频/脚本/27.json": "e1214d8e9314a1cb54da82e2532889198bec555d6be9189fbfb43b5fdedcd728",
+        "新版定稿/27-life-in-the-forbidden-zone.md": "c592b44a8e6ec26f3c2e96ed19191958e57c81d31e54329c20d726e538c10e52",
+        "视频/脚本/28.json": "e0c8e6c644ab0c5d52d99c23461b99e9ae1574aa574369e56feb35e2ac20698b",
+        "新版定稿/28-a-handful-of-wormwood-that-saved-millions.md": "d609cd99ab982365c6f0167e211c55b31e52a354d50918780f3da66ef702a5bb",
+        "视频/脚本/29.json": "1e5f1d9f0c22b5d14b757f029be694c2a3969666d732ca79bb695282763de791",
+        "新版定稿/29-the-volcano-that-gave-us-frankenstein.md": "69045ee19a170c7ea9d0008b468c7e947bc28b639b834c0192dc0aeafc3ef4d0",
+        "视频/脚本/30.json": "34eb48747f1ea7d14b41ccc0cf45aa1592907aacf6618999b3506944e2ff4a0c",
+        "新版定稿/30-the-stink-that-built-londons-sewers.md": "84dbf19cee0045ea2608b13ee0677cb9623dd8fbb371c67093bf50c64186137a",
+        "视频/脚本/31.json": "d81f8645a1e5663ba8c84668e817cdb218bc6689079fbfd51326b3a7fd3cd384",
+        "新版定稿/31-the-book-twelve-publishers-turned-down.md": "7abd20fed44918dcf01586c056e9d0acd9d2ad3b90aa7d3d403762d9f06d2659",
+        "视频/脚本/32.json": "357aa59bed62154f7302a5efcf528859b303004e028657b93058138fe931bf85",
+        "新版定稿/32-the-planet-that-was-demoted.md": "1421f2b0921e7e9478ebc48777e3e8b2c979172de63d0124015107c3750a3542",
+        "视频/脚本/33.json": "da87d68fdee3401e499aa145c23d9b2c663ce3b27f79feec5eca1ddb0d794e72",
+        "新版定稿/33-thirteen-in-the-cave.md": "b96faac786ace911140b835d9f9c6e37eeb0c5f3e7a077b913805b8942c56067",
+        "视频/脚本/34.json": "5350c08cdc6dfa5579f0bdc6960805cbe079a1c471c46bb2250f11b32da34868",
+        "新版定稿/34-the-game-that-escaped-the-soviet-union.md": "fdfd966f8624bc506b7cfe16da04f2f7382ce5566fab3bcb35c3d99dd6d4a5f2",
+        "视频/脚本/35.json": "d8439077dc2c909b1c6cbd1347f31e9625f25fffe447d6f5945c9492561f1a16",
+        "新版定稿/35-the-bird-that-beat-the-letter-home.md": "ba8c38e38b21a3345624e2d44fd352561d3096cfb6f62214b48ea9b6e66faead",
+        "视频/脚本/36.json": "e35a3dcb2ff0f0c7054493331370c0364190771ecf56e0dad6dbee3af860a628",
+        "新版定稿/36-the-company-that-invented-its-own-killer.md": "4b0f1d016d3e94bd7f77d3a36bfc423700006c7a23c0b0cae5ca68d5c5af883f",
+        "视频/脚本/37.json": "b1b8945ccf3581df48ade5714a2d0e93e4cc6812708f95bef6f5e44439106c99",
+        "新版定稿/37-dynamite-for-the-heart.md": "4933e24d2384471a96d9c8c26c15d5224a85dae98d9971a3fed15b4978dafc51",
+        "视频/脚本/38.json": "8d0379032000967c9f72e550574874949f798eefbfbfb58ab2b38e4e23ecbc6b",
+        "新版定稿/38-the-web-beneath-the-woods.md": "abb7eead9f3da0b2b326ceed5a649cfbf71fc28dad22e0d52f7b19caa798c54f",
+        "视频/脚本/39.json": "6c3e9539f624b192335312912572a05fba2c7bcfb821b44c3c1dbb21b42527a7",
+        "新版定稿/39-y2k-the-crisis-that-success-erased.md": "abbc9804661126aa006595031ed8f201ce55e8eb5fd9e1ad5669c0c6fcdb80ab",
+        "视频/脚本/40.json": "1c50d1a47ee6f8528d0f7299e8a45bc8c30312622f3f465a964d21cc1395ee7f",
+        "新版定稿/40-the-glue-that-failed.md": "dce9f78f3a0828307843dd667b7eeebf3380a3630f03d234bd5824870aba61a1",
+        "视频/脚本/41.json": "6b6673ffc1db986f4c355f3685de6a0faf2272cee042c5e917f26a8b3057c2be",
+        "新版定稿/41-the-toad-that-invaded-australia.md": "eca590f97120f4e76d719e29aa07b094f9117cd462f5a70c029331a63b85f710",
+        "视频/脚本/42.json": "eceb10ae92aa4b9cd23180d1138149a7fa7b674385462c898bc0d2283c8739e7",
+        "新版定稿/42-the-telescope-that-needed-glasses.md": "d4aa049779a0eba06c555d76ca14103648378eef90465df424120126fa771280",
+        "视频/脚本/43.json": "aa9da1246e293c80408edf94a7c9bed65ef3178ae7cb5265a8273e8c4396687f",
+        "新版定稿/43-from-a-garage-to-the-top-of-the-world.md": "bd70c83e5ac867238ca179f3c9f3548eb9cbdcae1f6df40994aef0bda721ae54",
+        "视频/脚本/44.json": "87f531203ca38d88ae5e71ffd88190b1530715cdc0adba146c2a4a78ebe9b976",
+        "新版定稿/44-the-night-sweden-switched-sides.md": "d3f7ad2ac43f02aae9205a15b9808280ca3db597d6ef3b36aca8ca6176c5f74a",
+        "视频/脚本/45.json": "569406607d2bf18dce5e916052d6460509450d97fe17ac9820be524f59c2c3cc",
+        "新版定稿/45-the-record-humanity-threw-into-the-stars.md": "27deabec4a8478fe570f7f237a2fb850ffdce3deebfd952f512d82a60cf7314f",
+        "视频/脚本/46.json": "c8c7ce7a76226f5274a91af693d24410d5eacfa59206b085a70d133f3634c12b",
+        "新版定稿/46-lost-in-the-glare.md": "7aaa06e875fe56c5d78210b90a8769b8b2051714025ef10df37c2fe89db7a68c",
+        "视频/脚本/47.json": "4c33bb0764a9b98e914a55806486ce841a1503efda1ff001cd2f8c9bb1626c06",
+        "新版定稿/47-shadows-of-wolves-over-yellowstone.md": "6b51ae76b8ec4ffd0ff1748c5902ef59754fa446479fc40357e9946a9aaac7a1",
+        "视频/脚本/48.json": "4f146ce6a70bb0bf5d2c6e1f6b47bd6a2bcc2f311be7a948092d7bde1a08f449",
+        "新版定稿/48-rice-for-the-world.md": "76416be21f857e8a05c37baa33ac90f5785812291485231c249e38a1d0edf15f",
+        "视频/脚本/49.json": "fdcc3a438e50a32fdf8c7bcbe27a97d20fc101b6169ca305f920fedbd3303c3c",
+        "新版定稿/49-the-woman-who-won-two-nobels.md": "1e4fb068aa9ae4513d01b199a074b84dc9d819f57b2134df32588a0e4a4b6b6a",
+        "视频/脚本/50.json": "1d4a41824dfa5e8d11e5990b2a4b802ba2fcc3231d85b15ed6630396c6f027bf",
+        "新版定稿/50-microplastics.md": "5439589bacf1abb2abbb184eb658492bc02bcc5bdd8dfd8ababcd80ab93621cb",
+        "视频/脚本/51.json": "39886d83593a31fb575b124ecf6457190773dca695b6ff78f8434d52aebd6d7c",
+        "新版定稿/51-the-joke-that-became-ok.md": "8de30ea4846f4e88d8b71c8d5ced3ee63a73955e39b7dc3c5adad0971b854fd0",
+        "视频/脚本/52.json": "832249bb44617d38ede75560a5e57af6ba79ec284c9609407cb30ce879f6f862",
+        "新版定稿/52-the-killer-smog-of-1952.md": "179500361e4a837d7edb2e0497e08677d5abd425e8ad542f788205a6f7667b4b",
+        "视频/脚本/53.json": "28b604bfa72896534736293f79e9b3aabd8e3678672f4dc6c66337c02a8f1518",
+        "新版定稿/53-the-wind-that-kept-no-time.md": "6fab302dcadb5a2c509436f5fbf8d9ef925c008a36f5b422749bd405aa4701d3",
+        "视频/脚本/54.json": "b1fcb8ae86045b3d35ccfa0f52eb9594b8921d43063835769ee3ecc4543be75e",
+        "新版定稿/54-the-sound-that-shook-the-world.md": "abd5f4bfe11ed73bcc5326a92cf99b0a8e5ad70adaca1ce8d0c8f622b57fa519",
+        "视频/脚本/55.json": "06344fc0ad5975cba2f4dbe5262a9957dd7c024f9a05b9abbfa327f32ea8c719",
+        "新版定稿/55-the-secret-of-romes-undying-concrete.md": "a7759eddcc7ec06dfd6dab7912e06b3b5ef8576df0c025a97812006669d0be61",
+        "视频/脚本/56.json": "22ca3b4180a8ae6a37b4c8e25f5e357d5696d9b23bf148fb7064425d1403e59c",
+        "新版定稿/56-the-letter-that-startled-darwin.md": "aad1e2aab9ff28f534a510362e807ef401e0b502475240f4b2531e9e518a8d7a",
+        "视频/脚本/57.json": "a0ba65b769430289a33ec1f7bc6dbf91dad8d2c3b1d725348851de546563cd6f",
+        "新版定稿/57-a-change-of-anthem-in-the-deep.md": "0731d925a98bafc222718c111985362e166b38b9189c516219a481e36d0d4b6e",
+        "视频/脚本/58.json": "8b0bd3d7d39000518789e9907aec53bd52fab1b9d6b4f22a152d158635b6e8ee",
+        "新版定稿/58-from-a-scratch-to-a-world-without-smallpox.md": "1aa2a0d2c51da76f9c9ebb88d049dd1a55ab530791566fdbf6476e5aa48c15ee",
+        "视频/脚本/59.json": "df1db4174d942371166048b220ef6d55b0b700b2ce31c866edf6dfdf33b92f0c",
+        "新版定稿/59-saving-the-sky.md": "7bf9c4661e733e7af23dc2f11bc820b809ec93dad75a94fb6a12748226e8722c",
+        "视频/脚本/60.json": "eed1655c0919db32a3a016b24791b93d25683f287c7ccb2523e168a69bddc562",
+        "新版定稿/60-the-scientific-giant-who-changed-the-world.md": "9d1578e7af085559922394a3db01de4eb22dc1c520ca17de5cad68e5a38a31a8",
+        "视频/脚本/61.json": "2d08704376faff25b06d334d7567a381460975a56a4cef6b4ae97b3580ea8dbc",
+        "新版定稿/61-the-steel-box-that-remade-the-world.md": "135cc9cfbcbd68d957f831cf55558112a45b1cc3749366cb9a304507355c7d2c",
+        "视频/脚本/62.json": "e34fe389b2d543996f09c063e8c57750b2b9a9be77e6a5d757c3529f96471d47",
+        "新版定稿/62-dolly-the-copied-sheep.md": "9edfbd3ebacdecc8c3aa3034d38dd371a105c19382282e8c0de2d08a1713f863",
+        "视频/脚本/63.json": "5d266d80f9cf29cce6f7e34531449cf75191a42f180102685a5bcd04849e75c5",
+        "新版定稿/63-the-crowded-heavens.md": "6ef79d4310019dfefa7364b8a428411a6bc337678c69fa5cbc89b84689e253a4",
+        "视频/脚本/64.json": "12a36862765922d72ce6e5a4c5fe85f548364eed65fe3b3b284f0b38899a965f",
+        "新版定稿/64-the-day-zero-that-never-came.md": "e0c83cbe36745adbbffd33a156fa8d0671704ea976cb13215cabb612639b37a5",
+        "视频/脚本/65.json": "78e60dd231df4ac71df83e21a26f82bbf706dc0bef80bee156a36bc287661ede",
+        "新版定稿/65-the-day-the-doomsday-vault-opened.md": "71a50d32e25955e713e6ca108ab68422a4fd5b77c914a9074eece1dc33cbff89",
+        "视频/脚本/66.json": "ad5324af4270834186285a5e7273a90213094077adc6f9e1d5c7b0ebff9cf035",
+        "新版定稿/66-the-burrs-that-became-velcro.md": "75dbe6c148ca97a7780ac1737f33f58bf8ee27a51aa729a83315705655b12b2a",
+        "视频/脚本/67.json": "6839a46ebdb51cdcff6a65ca238efc228f1e114efd1734cee6c994ca659a29cb",
+        "新版定稿/67-the-cave-found-by-a-dog.md": "10e37b81eeef4e3289448a6b4fd679f34d495a4fc087c57747e6dca949e00cf1",
+        "视频/脚本/68.json": "568f72dacac48e206811d35a57c7fa22e3da428783f64e507c184f2090e579f3",
+        "新版定稿/68-the-last-flight-of-the-hindenburg.md": "c25f58ffb0e3748336767bb7470dd7cef10374c53cbb48af89dba26f65b2dd5c",
+        "视频/脚本/69.json": "c493528f054e2d572e56b8ea15be0950158e86e3d3271b0f94237e8d296163ff",
+        "新版定稿/69-the-trial-of-the-father-of-the-atomic-bomb.md": "570eda5b7d979d71e9bcad1c67e295ed326ecdb8b61e663aba33272c8a9451bd",
+        "视频/脚本/70.json": "0f6827f02cef0d2416f9d7d69b7e1c5553acee7cf6dc89f3379201264587236c",
+        "新版定稿/70-the-stamp-that-changed-the-post.md": "edfd85cea33730ba67e4210e756da1f2945f1a21bce55c7e75497cb5f0095d80"
+      },
+      "source_file_count": 140,
+      "working_script_count": 70,
+      "target_request_exactly_matches_context": true
+    },
+    "request_source_sha256": {
+      "视频/脚本/34.json": "5350c08cdc6dfa5579f0bdc6960805cbe079a1c471c46bb2250f11b32da34868",
+      "视频/工具/初稿生成/gen34.py": "f09d0ddd27e46fea69a27c7a5b05844b01372d7acf7c8af48ae9d7b1d00ef314",
+      "新版定稿/34-the-game-that-escaped-the-soviet-union.md": "fdfd966f8624bc506b7cfe16da04f2f7382ce5566fab3bcb35c3d99dd6d4a5f2",
+      "视频/制作记录/34_待改清单.md": "7ccf745678133b18f7ff0f506610e6203280184dc91b903b99bba00d7736939e",
+      "视频/制作记录/逐句确认/34.json": "cbd1dca3a8299e93573539a0049d8e3067ced9f4843f8758d33fe6ad756ab170"
+    },
+    "accepted_source": {
+      "id": "34",
+      "path": ".github/video-revision-batch/latest-accepted-reviews/34.mp4",
+      "sha256": "c75a9a89749e3987c1aa806630f90e06f68b1281101c180a6a5f4abfbc8b8739",
+      "git_blob_sha": "6674be44f6c4fc7237619210adbee1e234407bf6",
+      "bytes": 17583047,
+      "width": 3840,
+      "height": 2160,
+      "summary_frames": 60,
+      "reference_role": "own-latest-accepted-voice-for-pure-visual-review",
+      "actual_accepted_native_run": 43533004625,
+      "aac_adts_sha256": "5649e6746d919510ba830daa5509ab68814dc1afe4d3578cf9c246dfb2c4a0e6"
+    },
+    "checker_reference_preparation": {
+      "article": "34",
+      "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+      "reference_prepared": true,
+      "acceptance": false,
+      "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+      "source_sha256": "5350c08cdc6dfa5579f0bdc6960805cbe079a1c471c46bb2250f11b32da34868",
+      "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+      "checker_program_sha256": {
+        "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+        "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+        "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+        "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+        "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+        "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+      },
+      "reference_calls": [
+        {
+          "sentence": "标题",
+          "piece": null,
+          "reference_kind": "title-default-raw",
+          "method": "create",
+          "source_slice": "The Game That Escaped the Soviet Union",
+          "exact_native_cache_key": "af0eb6052e04dba863a29d666157e6383bea7b81.pkl",
+          "cache_input_text_sha256": "da040eaaadbd8ef55540328f0af690c40a3335bf83c5c9c27cbf791ab7e2a4d6",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "标题",
+          "piece": null,
+          "reference_kind": "title-default-timed",
+          "method": "create_timed",
+          "source_slice": "The Game That Escaped the Soviet Union",
+          "exact_native_cache_key": "e260db45270febdb2df48cb627b1989042e6058d.pkl",
+          "cache_input_text_sha256": "da040eaaadbd8ef55540328f0af690c40a3335bf83c5c9c27cbf791ab7e2a4d6",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In June 1984 Alexey Pajitnov, a 29-year-old Moscow coder, grew engrossed in a diversion he had built.",
+          "exact_native_cache_key": "26d9c3e3fa8979bffb91eace4f6a960dfa24d6b0.pkl",
+          "cache_input_text_sha256": "b6188ea1a07092dc307094f4d150714c990a303a942cc4ce0cf10c997abc7255",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "In June 1984 Alexey Pajitnov, a 29-year-old Moscow coder, grew engrossed in a diversion he had built.",
+          "exact_native_cache_key": "32a0c4638b3d0bec6b90447b027abb11ca4856ad.pkl",
+          "cache_input_text_sha256": "b6188ea1a07092dc307094f4d150714c990a303a942cc4ce0cf10c997abc7255",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In June 1984 Alexey Pajitnov, a 29-year-old Moscow coder,",
+          "exact_native_cache_key": "602a3e4e30c70bb1c54036521c3f51adf258ffed.pkl",
+          "cache_input_text_sha256": "fff823a89b52c52f93981923969c8bb437d9f3bc5d9da9778f68f09d5805f2d8",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "grew engrossed in a diversion he had built.",
+          "exact_native_cache_key": "2a600a3532fd9d075d4ff909e6e0cafa44d2ddc7.pkl",
+          "cache_input_text_sha256": "e717addc6c48a969f760d168d6cdd70ed2a88e19a210f78b37a836fd655c96f4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In June 1984 Alexey Pajitnov,",
+          "exact_native_cache_key": "9b2563e34563ef54a218c2c0e1f8a32623392539.pkl",
+          "cache_input_text_sha256": "84ab2e71046fed22f77ec57faa0025cd06491af6d0e829b71a3fe0953dedae98",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a 29-year-old Moscow coder,",
+          "exact_native_cache_key": "729d1e426b1b1cf6ab7a2cc3c080fc572fe1bb6a.pkl",
+          "cache_input_text_sha256": "b844a603413f0aee90ae8cbbf168200cde72adb62a078438417e025b45a1c3d9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "grew engrossed in a diversion he had built.",
+          "exact_native_cache_key": "2a600a3532fd9d075d4ff909e6e0cafa44d2ddc7.pkl",
+          "cache_input_text_sha256": "e717addc6c48a969f760d168d6cdd70ed2a88e19a210f78b37a836fd655c96f4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "His primitive Elektronika 60 had a purely textual display, so every geometric piece of four tiles was assembled from characters.",
+          "exact_native_cache_key": "7b4b77bcad780b47cdf6a216f20f1ca3dbd823ae.pkl",
+          "cache_input_text_sha256": "53a013f9e1d8656caae764130a4c951599311cd2bdbee203cf27f1e6049ed4a7",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "His primitive Elektronika 60 had a purely textual display, so every geometric piece of four tiles was assembled from characters.",
+          "exact_native_cache_key": "d221c6b856049f93002e623fbbc679b1d791bce6.pkl",
+          "cache_input_text_sha256": "53a013f9e1d8656caae764130a4c951599311cd2bdbee203cf27f1e6049ed4a7",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "His primitive Elektronika 60 had a purely textual display,",
+          "exact_native_cache_key": "cbf17cfb6ef06d96298a7ba211b0c2e4d0e9a9da.pkl",
+          "cache_input_text_sha256": "a29756b22861278702893fce50a3ff25868568b6ada104b4275e58dc60d364d0",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "so every geometric piece of four tiles was assembled from characters.",
+          "exact_native_cache_key": "68c72292aff45006c2723f3212c259d761d8a76e.pkl",
+          "cache_input_text_sha256": "16c5f98e2e80a03aff1551a3b6b3a459c2bd0436cd646dd3a332d4e8f92caea2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "His primitive Elektronika 60 had a purely textual display,",
+          "exact_native_cache_key": "cbf17cfb6ef06d96298a7ba211b0c2e4d0e9a9da.pkl",
+          "cache_input_text_sha256": "a29756b22861278702893fce50a3ff25868568b6ada104b4275e58dc60d364d0",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "so every geometric piece of four tiles was assembled from characters.",
+          "exact_native_cache_key": "68c72292aff45006c2723f3212c259d761d8a76e.pkl",
+          "cache_input_text_sha256": "16c5f98e2e80a03aff1551a3b6b3a459c2bd0436cd646dd3a332d4e8f92caea2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The result proved addictive.",
+          "exact_native_cache_key": "5df4301f4e3e06c2c0e7a0c64991057fd65a75ce.pkl",
+          "cache_input_text_sha256": "060742d1f236cbdf625e86f56a8e098ed47a8d4475eeb4817d3a3b01bef24a66",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "The result proved addictive.",
+          "exact_native_cache_key": "cd3d17ffd77f322a8b8e60867cf432377af98184.pkl",
+          "cache_input_text_sha256": "060742d1f236cbdf625e86f56a8e098ed47a8d4475eeb4817d3a3b01bef24a66",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "He called it Tetris, a fusion of the Greek tetra- and tennis, his favourite pastime.",
+          "exact_native_cache_key": "7d1afb020329bd911b8a391b073afad93526dbcd.pkl",
+          "cache_input_text_sha256": "410c49a60133d018453d0ea6f648d86b9204597055397a290464395b8008d002",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "He called it Tetris, a fusion of the Greek tetra- and tennis, his favourite pastime.",
+          "exact_native_cache_key": "6fb7bafcc79bd063b253a30f3b750646114804a7.pkl",
+          "cache_input_text_sha256": "410c49a60133d018453d0ea6f648d86b9204597055397a290464395b8008d002",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "He called it Tetris,",
+          "exact_native_cache_key": "4e34f45d4b46bf55c046f47ac1ca6b6b96113631.pkl",
+          "cache_input_text_sha256": "ce47e7e6bc37a331808ccc7a93cd8cea29e30ef367c6c75de93759106a1e9ec3",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "a fusion of the Greek tetra- and tennis,",
+          "exact_native_cache_key": "fd37ab31b357f09d9221ca03b0eedac16c761c8f.pkl",
+          "cache_input_text_sha256": "e7e5b47ebe2c258f4a2c0f819e9a4b51bd2ccfe95d647edf143c0c5b50996594",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "his favourite pastime.",
+          "exact_native_cache_key": "9e638919db8ac0de5e443e1bef50bc5ae3433370.pkl",
+          "cache_input_text_sha256": "75541b3fe386340a3d541be2b6d5bfef166a52de1cb2ef52e4e00f03f2a5b5e2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "He called it Tetris,",
+          "exact_native_cache_key": "4e34f45d4b46bf55c046f47ac1ca6b6b96113631.pkl",
+          "cache_input_text_sha256": "ce47e7e6bc37a331808ccc7a93cd8cea29e30ef367c6c75de93759106a1e9ec3",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a fusion of the Greek tetra- and tennis,",
+          "exact_native_cache_key": "fd37ab31b357f09d9221ca03b0eedac16c761c8f.pkl",
+          "cache_input_text_sha256": "e7e5b47ebe2c258f4a2c0f819e9a4b51bd2ccfe95d647edf143c0c5b50996594",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "his favourite pastime.",
+          "exact_native_cache_key": "9e638919db8ac0de5e443e1bef50bc5ae3433370.pkl",
+          "cache_input_text_sha256": "75541b3fe386340a3d541be2b6d5bfef166a52de1cb2ef52e4e00f03f2a5b5e2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In the Soviet Union, the state, not its salaried designer, was the proprietor of this intellectual property, and Pajitnov held no entitlement to it.",
+          "exact_native_cache_key": "d3fbe314e295debd41d6f93dd3da517003705f41.pkl",
+          "cache_input_text_sha256": "ca824ad6dda46a42b44aae76f64f4d42370ccfaa9425504b5703341105b4fec2",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "In the Soviet Union, the state, not its salaried designer, was the proprietor of this intellectual property, and Pajitnov held no entitlement to it.",
+          "exact_native_cache_key": "0b228cfe804356f0f6bc346f6e6ae1e6381531f7.pkl",
+          "cache_input_text_sha256": "ca824ad6dda46a42b44aae76f64f4d42370ccfaa9425504b5703341105b4fec2",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In the Soviet Union,",
+          "exact_native_cache_key": "501743a72c3c6e55514e5e2c93769cad637c2f2a.pkl",
+          "cache_input_text_sha256": "02d9fc0f77f9c3cf75db503a9ab3f4ebb50572c71e5fb3780ad7df7a6bb4dd0e",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "the state, not its salaried designer, was the proprietor of this intellectual property,",
+          "exact_native_cache_key": "ae2e9b808eb6af2abb4a4ad80bc5db4da99d5409.pkl",
+          "cache_input_text_sha256": "1da0dad0a6b3c82e3bcbba1839bbe633b2497fdb0b4acb446ff87abd4193b7e0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and Pajitnov held no entitlement to it.",
+          "exact_native_cache_key": "a961c830b4b57315a95ffa4495f65666c9be9838.pkl",
+          "cache_input_text_sha256": "1fcc7482ec31c48b5313555e005f727f01457248342a61477d60cd5f9b7f100a",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In the Soviet Union,",
+          "exact_native_cache_key": "501743a72c3c6e55514e5e2c93769cad637c2f2a.pkl",
+          "cache_input_text_sha256": "02d9fc0f77f9c3cf75db503a9ab3f4ebb50572c71e5fb3780ad7df7a6bb4dd0e",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "the state,",
+          "exact_native_cache_key": "ef0e5c33118a09e84cbb637b7b54ef9808b465c7.pkl",
+          "cache_input_text_sha256": "3ca784835c6f487a7be5d592d8b7aad59573954be2c467fdff838214ca15ea49",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "not its salaried designer,",
+          "exact_native_cache_key": "00d9eac52222ee7ff4a1d59eceba71738df165e1.pkl",
+          "cache_input_text_sha256": "726c3a4298ee4f3d9a6cc9dc6e939b1f58b1a109523ac2dfdc77b5e346c92117",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "was the proprietor of this intellectual property,",
+          "exact_native_cache_key": "ca565ad0ea1eb16337c0cd95fdccb421125223a6.pkl",
+          "cache_input_text_sha256": "678aa5e11c1585680bfed751c95abf01768ca003c959ea51a8d629ad01e731e0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 5,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and Pajitnov held no entitlement to it.",
+          "exact_native_cache_key": "a961c830b4b57315a95ffa4495f65666c9be9838.pkl",
+          "cache_input_text_sha256": "1fcc7482ec31c48b5313555e005f727f01457248342a61477d60cd5f9b7f100a",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Copies mushroomed freely on floppy disks across the Eastern bloc.",
+          "exact_native_cache_key": "a2e59cb611b2c0f773b6f550ea82606b20c3d593.pkl",
+          "cache_input_text_sha256": "c12ca460f0393c19199e588a6dbe293d27f0619b5e153b531142b03f5bd1a066",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Copies mushroomed freely on floppy disks across the Eastern bloc.",
+          "exact_native_cache_key": "d03d909eec880ededeae50bf593766025741d733.pkl",
+          "cache_input_text_sha256": "c12ca460f0393c19199e588a6dbe293d27f0619b5e153b531142b03f5bd1a066",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Copies mushroomed freely",
+          "exact_native_cache_key": "08af74163c79ce30910978af3c76e749fc18b212.pkl",
+          "cache_input_text_sha256": "a870c3fc75e14840a9e199ae8e22493156891f77932a6a67873e644b129284b2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "on floppy disks across the Eastern bloc.",
+          "exact_native_cache_key": "9a72d42333936b15e40f23cf7fcea499a2b333d1.pkl",
+          "cache_input_text_sha256": "07057ba63c8217e40cfbd7eb7ea00e2788bae61b890d6b0bda64e0e9770cd38f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In 1986 Robert Stein, an enterprising British software vendor, stumbled upon Tetris in Hungary.",
+          "exact_native_cache_key": "3f9aa76b04a37e048a13c9d4fd59c976d4294dc6.pkl",
+          "cache_input_text_sha256": "2d5f4a109a8da6c21255080e5b9ba87a360af66d6157a8ea6ae2e1a8f3f2bba4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "In 1986 Robert Stein, an enterprising British software vendor, stumbled upon Tetris in Hungary.",
+          "exact_native_cache_key": "75068b9be190db289e7e0101356e8d6f401a46cf.pkl",
+          "cache_input_text_sha256": "2d5f4a109a8da6c21255080e5b9ba87a360af66d6157a8ea6ae2e1a8f3f2bba4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In 1986 Robert Stein, an enterprising British software vendor,",
+          "exact_native_cache_key": "e1c886a714699ce069f229c2151b0ace7130ed2e.pkl",
+          "cache_input_text_sha256": "bad6ed6f1a9bfd3a352ac45c2ea28230f21e79a129244f9f3cc72f36574ae19a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "stumbled upon Tetris in Hungary.",
+          "exact_native_cache_key": "b8cb77245fe565ef00f19fb5f2bcf693884b3e2e.pkl",
+          "cache_input_text_sha256": "563f93aee1123fe960bc72df9fdf7673abf98595fb7d0cc1ca655307d4c8f5cd",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In 1986 Robert Stein,",
+          "exact_native_cache_key": "509ff1f1faaf507755c09094703fce05ccf51833.pkl",
+          "cache_input_text_sha256": "e8c9be0e26231948068c9a97b5dbd87abb20d7fbdeecb86c405b087dd104bc02",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "an enterprising British software vendor,",
+          "exact_native_cache_key": "c18857ae335bbca054444747577711091421151d.pkl",
+          "cache_input_text_sha256": "913f0b0aa88a33cf7e3ee390e6f19976034e62c1d0cfd0d341c198764a4b36a8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "stumbled upon Tetris in Hungary.",
+          "exact_native_cache_key": "b8cb77245fe565ef00f19fb5f2bcf693884b3e2e.pkl",
+          "cache_input_text_sha256": "563f93aee1123fe960bc72df9fdf7673abf98595fb7d0cc1ca655307d4c8f5cd",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In his ignorance of Elorg, the state bureau regulating Soviet software exports, he hastily hawked rights he did not yet legitimately hold.",
+          "exact_native_cache_key": "bcb43292d30195479e00f8a73c7a50d96fbb65a1.pkl",
+          "cache_input_text_sha256": "10876de5590e76208661b674a24fdcf6b315447ed593f3c966f07be6c216992e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "In his ignorance of Elorg, the state bureau regulating Soviet software exports, he hastily hawked rights he did not yet legitimately hold.",
+          "exact_native_cache_key": "f4e921d7957412995be940d77fb064dbba91aa96.pkl",
+          "cache_input_text_sha256": "10876de5590e76208661b674a24fdcf6b315447ed593f3c966f07be6c216992e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In his ignorance of Elorg, the state bureau regulating Soviet software exports,",
+          "exact_native_cache_key": "dbb0dee99b5c71f7497ceca34cbea38e5959a366.pkl",
+          "cache_input_text_sha256": "2288ec1857713b5aa1dc952cdb9472cc7f282f1e3ae6c7f4f036f9710ae249ed",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "he hastily hawked rights he did not yet legitimately hold.",
+          "exact_native_cache_key": "807fcc73ec9316f0da0109b7eefa28e70c1948d1.pkl",
+          "cache_input_text_sha256": "92b81f33612a52b9acfaa54c4bded049b46466c7cf706517589e18451ae34203",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In his ignorance of Elorg,",
+          "exact_native_cache_key": "7f740de9bd55ea45437926029ab9c05413f66a4a.pkl",
+          "cache_input_text_sha256": "8c7d0f71f397caba74ddabb7ebdcfda8351ea7fddc2ae4832b9975d4908a0eb0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "the state bureau regulating Soviet software exports,",
+          "exact_native_cache_key": "126ba7c0cd3c21858205663ed6928bba877da3a2.pkl",
+          "cache_input_text_sha256": "2b911ab018ebf2f651ddc93f7375effc547805f60531de94b486dfbe5140ff53",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "he hastily hawked rights he did not yet legitimately hold.",
+          "exact_native_cache_key": "807fcc73ec9316f0da0109b7eefa28e70c1948d1.pkl",
+          "cache_input_text_sha256": "92b81f33612a52b9acfaa54c4bded049b46466c7cf706517589e18451ae34203",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The rights were shuffled onward through a chaotic muddle of overlapping deals among Western firms, one owned by the magnate Robert Maxwell.",
+          "exact_native_cache_key": "b4a440bc9b29d6639c325c15079be9415a1c09de.pkl",
+          "cache_input_text_sha256": "222746eba76d5028d257ca454f9bf11a49210f244ff1c6243e413455b99fa4af",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "The rights were shuffled onward through a chaotic muddle of overlapping deals among Western firms, one owned by the magnate Robert Maxwell.",
+          "exact_native_cache_key": "277bec054cdbda016b3ed8cf9dd0a06ff6167fd6.pkl",
+          "cache_input_text_sha256": "222746eba76d5028d257ca454f9bf11a49210f244ff1c6243e413455b99fa4af",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "The rights were shuffled onward through a chaotic muddle",
+          "exact_native_cache_key": "824da8bec7b1d1029dcdce60d1757942070703e9.pkl",
+          "cache_input_text_sha256": "d8c6f6d8308999bd3353b38e27646a840377586c2cb298ebed6562f6c05f0476",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "of overlapping deals among Western firms,",
+          "exact_native_cache_key": "9ce3513ff1b55a2ff64d55e1de204a385fe9b8cf.pkl",
+          "cache_input_text_sha256": "6eb8b73e69ea704809baeaa5805f8babae9fd9cc0230411d1d1bb877ea0ef5d3",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "one owned by the magnate Robert Maxwell.",
+          "exact_native_cache_key": "2dfcf701ba1a293524d4d39b99ff60941ee1b0b4.pkl",
+          "cache_input_text_sha256": "a45477a25c2e50499dc438d3f9076bf7e447ad069df9be6a75504b1c748ff0aa",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "The rights were shuffled onward through a chaotic muddle of overlapping deals among Western firms,",
+          "exact_native_cache_key": "ea4aafd6eb65dd30567a265477931dc0a4b22000.pkl",
+          "cache_input_text_sha256": "fc32d73550493a3d1a14ed1f2d9016f49076b42c8ef6d5b1ebcbddd98f6d0dfc",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "one owned by the magnate Robert Maxwell.",
+          "exact_native_cache_key": "2dfcf701ba1a293524d4d39b99ff60941ee1b0b4.pkl",
+          "cache_input_text_sha256": "a45477a25c2e50499dc438d3f9076bf7e447ad069df9be6a75504b1c748ff0aa",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In February 1989 Henk Rogers, a resourceful Dutch-born publisher, reached Moscow on a tourist visa and found his way to Elorg.",
+          "exact_native_cache_key": "70880c751e26e8c14cd79edce8799a6cba819dce.pkl",
+          "cache_input_text_sha256": "48a93b4b241c4dfe1425bace499c1caa26f376d767af560c6e9b88502a77755e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "In February 1989 Henk Rogers, a resourceful Dutch-born publisher, reached Moscow on a tourist visa and found his way to Elorg.",
+          "exact_native_cache_key": "41fad86d32c78ff45532e5397a272030db23826b.pkl",
+          "cache_input_text_sha256": "48a93b4b241c4dfe1425bace499c1caa26f376d767af560c6e9b88502a77755e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In February 1989 Henk Rogers, a resourceful Dutch-born publisher,",
+          "exact_native_cache_key": "cb5475161883eae802f7cdab4fb60aaec180b97e.pkl",
+          "cache_input_text_sha256": "8237b7a0fdf8fa9000d7923ddd0fd67ce8b9fb4e349f9ae94850e8988708e6cd",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "reached Moscow on a tourist visa and found his way to Elorg.",
+          "exact_native_cache_key": "2eb4f27dd178523d24f32b9586ecb93dce0a74a1.pkl",
+          "cache_input_text_sha256": "df3dafd1e9692864d522e6b122e6765b3d0bfdc3693250c7d1115828f9dc2b2f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In February 1989 Henk Rogers,",
+          "exact_native_cache_key": "90f761a5108bc6ea8e092753e5ccdbe9e8f0ed29.pkl",
+          "cache_input_text_sha256": "56a9d6c5877e63a64c1b9fbef154f80a26e8ff62425485fe33118416431143d9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a resourceful Dutch-born publisher,",
+          "exact_native_cache_key": "cc98b67aaaa200d4b960950df34d95cc877c2cf3.pkl",
+          "cache_input_text_sha256": "0134e313f89c14d789a67d24fb8631ee80d00406f4fa630bdefa4052d0b13fcc",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "reached Moscow on a tourist visa and found his way to Elorg.",
+          "exact_native_cache_key": "2eb4f27dd178523d24f32b9586ecb93dce0a74a1.pkl",
+          "cache_input_text_sha256": "df3dafd1e9692864d522e6b122e6765b3d0bfdc3693250c7d1115828f9dc2b2f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Stein and Kevin Maxwell, the magnate's son, were in Moscow that same hectic week of negotiations, each a bidder.",
+          "exact_native_cache_key": "a5193be88143b9dc94fadf25fddcb70101fd9d1e.pkl",
+          "cache_input_text_sha256": "7e1daaa5887c8858b31ab7476a10693c908359afa0e21409bea30c82c162ea9f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Stein and Kevin Maxwell, the magnate's son, were in Moscow that same hectic week of negotiations, each a bidder.",
+          "exact_native_cache_key": "bcd1d193105bf07b89ae7b4a330ca257928fa852.pkl",
+          "cache_input_text_sha256": "7e1daaa5887c8858b31ab7476a10693c908359afa0e21409bea30c82c162ea9f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Stein and Kevin Maxwell, the magnate's son,",
+          "exact_native_cache_key": "91edd32e25f06ef638f74bd158eba94a2a8290d4.pkl",
+          "cache_input_text_sha256": "22d77b2905d3f453c38d77d3370c3a5bcc660c82526071fd8db052e5bcf6d9b2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "were in Moscow that same hectic week of negotiations, each a bidder.",
+          "exact_native_cache_key": "84bd2a8c8c8d6cc023fb50b2640c385af0df1260.pkl",
+          "cache_input_text_sha256": "110f4ef7104e062ea8a52ca3811d09d7f1e78cfa83d207e0c62d43054e9c5100",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Stein and Kevin Maxwell,",
+          "exact_native_cache_key": "833129868c53a39095b2443533a4ffaa27ea3cd0.pkl",
+          "cache_input_text_sha256": "ecb46dea8c4ad122e9c9be0f4929ce0e3eaf62054fcbc02425f765d3186ab584",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "the magnate's son,",
+          "exact_native_cache_key": "eade0494d5b5a68b06fcc35ac107311eab03ad21.pkl",
+          "cache_input_text_sha256": "4b62c9e99afc5b87e83aca15ee469b63e0da818fa5e3ee5c6fe830b7740cb6e4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "were in Moscow that same hectic week of negotiations,",
+          "exact_native_cache_key": "da071c53875855644e5d62d79230caec44a658ce.pkl",
+          "cache_input_text_sha256": "04695997f08c833b5d1b50ba1cf50cbb63d138c29137a6a3d8ca79c2d26f88de",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "each a bidder.",
+          "exact_native_cache_key": "39d678d5131718bff357a56cba3ce363c9d1339c.pkl",
+          "cache_input_text_sha256": "aeeee0770aeb2eaf4b1d9188f092a4b10583840d9d50922894dc2f95d260ac0e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Pajitnov felt a fondness for Rogers, and Nintendo scooped the handheld rights, then worldwide console rights.",
+          "exact_native_cache_key": "0a0bb25cbd5cd583f7babb827af9465b6af4e55b.pkl",
+          "cache_input_text_sha256": "8fe1e7ac617a0bce0b1b2164b58024cb7c9949c7c56c7dfaac9a738de3197a49",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Pajitnov felt a fondness for Rogers, and Nintendo scooped the handheld rights, then worldwide console rights.",
+          "exact_native_cache_key": "448821d3bcd59d55bd1fc7e3a6fc746bf2d7c4ff.pkl",
+          "cache_input_text_sha256": "8fe1e7ac617a0bce0b1b2164b58024cb7c9949c7c56c7dfaac9a738de3197a49",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Pajitnov felt a fondness for Rogers,",
+          "exact_native_cache_key": "ff3280971d6e590d1dd26bbe17d0ec799c9b047a.pkl",
+          "cache_input_text_sha256": "42f06d1f586b89a1bd4a501d83d8ed5aefbadb9ac52833117204e86d2bc344b9",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and Nintendo scooped the handheld rights, then worldwide console rights.",
+          "exact_native_cache_key": "bf2392c1e551073fb49ae2fbf50c8e6e2fbcbf2e.pkl",
+          "cache_input_text_sha256": "fcea0d90c1dfa4892bc2023ddc05c556dc31929eb8236eb3ad79d0e861ab7149",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Pajitnov felt a fondness for Rogers,",
+          "exact_native_cache_key": "ff3280971d6e590d1dd26bbe17d0ec799c9b047a.pkl",
+          "cache_input_text_sha256": "42f06d1f586b89a1bd4a501d83d8ed5aefbadb9ac52833117204e86d2bc344b9",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and Nintendo scooped the handheld rights,",
+          "exact_native_cache_key": "32abffc49ed3db76333dc45b03940ac8966d4b8b.pkl",
+          "cache_input_text_sha256": "4b96489491628a62bda2d5cf7ff4d86f86ece1cec7869f1764ab65538ad321f0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "then worldwide console rights.",
+          "exact_native_cache_key": "0f2178d7524cd9e51753acf8a3d357c633293511.pkl",
+          "cache_input_text_sha256": "2fb7ae3b847d2eaff5630fa906ca81e2a29c8511f91e65744bc573cbbcf19521",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Nintendo bundled Tetris with its pocket-sized Game Boy, and that version shipped over 35 million copies.",
+          "exact_native_cache_key": "884ee44ae149e1039933d79370becdc699e20817.pkl",
+          "cache_input_text_sha256": "a8a878a8c918aae8f47fe6b12b1118cdacc9e14f96ad2bc1f467571b4967b5a0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Nintendo bundled Tetris with its pocket-sized Game Boy, and that version shipped over 35 million copies.",
+          "exact_native_cache_key": "9c3d5b96dbe1dcdc9267ba10996d38285defbd27.pkl",
+          "cache_input_text_sha256": "a8a878a8c918aae8f47fe6b12b1118cdacc9e14f96ad2bc1f467571b4967b5a0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Nintendo bundled Tetris with its pocket-sized Game Boy,",
+          "exact_native_cache_key": "a9235b02bd65f7ff86f0a053124e406d6e938d74.pkl",
+          "cache_input_text_sha256": "8f2a80cc8d4f27e7ebc1cc5496a30d1a563980dda273cc4c7e5dbc0d8d7c315f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and that version shipped over 35 million copies.",
+          "exact_native_cache_key": "3b182684f7b94e4466e884380bbd31aa94098b61.pkl",
+          "cache_input_text_sha256": "b50cce3d8d3243309133b691e8ba7fafb475c21b5b41edc5c0a384340d1672e2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Nintendo bundled Tetris with its pocket-sized Game Boy,",
+          "exact_native_cache_key": "a9235b02bd65f7ff86f0a053124e406d6e938d74.pkl",
+          "cache_input_text_sha256": "8f2a80cc8d4f27e7ebc1cc5496a30d1a563980dda273cc4c7e5dbc0d8d7c315f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and that version shipped over 35 million copies.",
+          "exact_native_cache_key": "3b182684f7b94e4466e884380bbd31aa94098b61.pkl",
+          "cache_input_text_sha256": "b50cce3d8d3243309133b691e8ba7fafb475c21b5b41edc5c0a384340d1672e2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Pajitnov reaped none of the spoils for years.",
+          "exact_native_cache_key": "10df89444d2707fff9e6bc8bff0b32d4ff87be37.pkl",
+          "cache_input_text_sha256": "f3278acc3e973de07972c33df88867ad2aac03d3b9e882d0ade2a21f540349db",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Pajitnov reaped none of the spoils for years.",
+          "exact_native_cache_key": "c43c99fe9e6c73836f6fe1186830419de2010d00.pkl",
+          "cache_input_text_sha256": "f3278acc3e973de07972c33df88867ad2aac03d3b9e882d0ade2a21f540349db",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "His earnings began only after his arrangement's expiry around 1995.",
+          "exact_native_cache_key": "eede1a1d33b1dc6963e192b47be6a7389f0bf772.pkl",
+          "cache_input_text_sha256": "250865c3ebcd456517266c18ace72effd1c3f7d3e4a20f322d43db57fa58ceac",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "His earnings began only after his arrangement's expiry around 1995.",
+          "exact_native_cache_key": "004ba5c83a3c5194d1b14132e610f7590c315a71.pkl",
+          "cache_input_text_sha256": "250865c3ebcd456517266c18ace72effd1c3f7d3e4a20f322d43db57fa58ceac",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In 1996 he and Rogers founded The Tetris Company to manage the rights.",
+          "exact_native_cache_key": "7c3cb1e6ba7f150cf2a2e44b564997b01e87cced.pkl",
+          "cache_input_text_sha256": "513792e2fc625280ec87fa07c022cd4842c190043829b6a66054bc42fd960f60",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "In 1996 he and Rogers founded The Tetris Company to manage the rights.",
+          "exact_native_cache_key": "af83b68238bfbce9f9ed355eddb29db8f18a5a56.pkl",
+          "cache_input_text_sha256": "513792e2fc625280ec87fa07c022cd4842c190043829b6a66054bc42fd960f60",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The man whose puzzle once spread for nothing later helped decide who could sell it.",
+          "exact_native_cache_key": "a9e82b1a52a15a04fc2352a72d5f141c0804f0fa.pkl",
+          "cache_input_text_sha256": "08f3b9d608d14e6da81b8a29e2aadf5f71bae886504d6c15d8440bdd4fa850cf",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "The man whose puzzle once spread for nothing later helped decide who could sell it.",
+          "exact_native_cache_key": "d1d73af856ea986e880baadf632085c5299dfa1a.pkl",
+          "cache_input_text_sha256": "08f3b9d608d14e6da81b8a29e2aadf5f71bae886504d6c15d8440bdd4fa850cf",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "unique_reference_key_count": 81,
+      "raw_mother_cache_scalar_manifest": [
+        {
+          "exact_native_cache_key": "af0eb6052e04dba863a29d666157e6383bea7b81.pkl",
+          "pkl_sha256": "6e654d1d24f0459671a38d47a57afa6777470974305707132440750e105926fc",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "标题",
+              "piece": null,
+              "reference_kind": "title-default-raw",
+              "method": "create",
+              "source_slice": "The Game That Escaped the Soviet Union",
+              "exact_native_cache_key": "af0eb6052e04dba863a29d666157e6383bea7b81.pkl",
+              "cache_input_text_sha256": "da040eaaadbd8ef55540328f0af690c40a3335bf83c5c9c27cbf791ab7e2a4d6",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "6e654d1d24f04596",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            52224
+          ],
+          "unprocessed_array_sha256": "4b685b761ff40516e8fda33695715b5cdceb4c7a2bda02086eedcdb0802805c0"
+        },
+        {
+          "exact_native_cache_key": "26d9c3e3fa8979bffb91eace4f6a960dfa24d6b0.pkl",
+          "pkl_sha256": "0e112e459883fdfd2b862dcc27a25c1afd145b5da8378f49c7ded7096e67b338",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "In June 1984 Alexey Pajitnov, a 29-year-old Moscow coder, grew engrossed in a diversion he had built.",
+              "exact_native_cache_key": "26d9c3e3fa8979bffb91eace4f6a960dfa24d6b0.pkl",
+              "cache_input_text_sha256": "b6188ea1a07092dc307094f4d150714c990a303a942cc4ce0cf10c997abc7255",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "0e112e459883fdfd",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            222208
+          ],
+          "unprocessed_array_sha256": "d9b1006b6bdc6dccbe8ae85fbb80be3fd44985e0b64e52c00080a652b0a3f498"
+        },
+        {
+          "exact_native_cache_key": "602a3e4e30c70bb1c54036521c3f51adf258ffed.pkl",
+          "pkl_sha256": "d8c224691c6bb3dd823a7b92f353ec44f18988c3aa1978743a5b3dc9dde47ae8",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "In June 1984 Alexey Pajitnov, a 29-year-old Moscow coder,",
+              "exact_native_cache_key": "602a3e4e30c70bb1c54036521c3f51adf258ffed.pkl",
+              "cache_input_text_sha256": "fff823a89b52c52f93981923969c8bb437d9f3bc5d9da9778f68f09d5805f2d8",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "d8c224691c6bb3dd",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            147968
+          ],
+          "unprocessed_array_sha256": "eb5983ee6b1242aaa56c3492b70e3a18366b351d29343972cc979287f720d92d"
+        },
+        {
+          "exact_native_cache_key": "2a600a3532fd9d075d4ff909e6e0cafa44d2ddc7.pkl",
+          "pkl_sha256": "57cd13601d918fcdc9426ca6edafdcc60b791edc508f72fb36b90e933a35087b",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "grew engrossed in a diversion he had built.",
+              "exact_native_cache_key": "2a600a3532fd9d075d4ff909e6e0cafa44d2ddc7.pkl",
+              "cache_input_text_sha256": "e717addc6c48a969f760d168d6cdd70ed2a88e19a210f78b37a836fd655c96f4",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S1",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "grew engrossed in a diversion he had built.",
+              "exact_native_cache_key": "2a600a3532fd9d075d4ff909e6e0cafa44d2ddc7.pkl",
+              "cache_input_text_sha256": "e717addc6c48a969f760d168d6cdd70ed2a88e19a210f78b37a836fd655c96f4",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "57cd13601d918fcd",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            62976
+          ],
+          "unprocessed_array_sha256": "ea79d95ebaf29b3313ba489f22eaa99227dbec54a41a57aee6dc7eea6141419f"
+        },
+        {
+          "exact_native_cache_key": "9b2563e34563ef54a218c2c0e1f8a32623392539.pkl",
+          "pkl_sha256": "6edbdd0fe44a117b3a9892bb51851781bbabfeb603c59d45a2dee4da9285a4f3",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "In June 1984 Alexey Pajitnov,",
+              "exact_native_cache_key": "9b2563e34563ef54a218c2c0e1f8a32623392539.pkl",
+              "cache_input_text_sha256": "84ab2e71046fed22f77ec57faa0025cd06491af6d0e829b71a3fe0953dedae98",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "6edbdd0fe44a117b",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            74752
+          ],
+          "unprocessed_array_sha256": "d1938931dbb280770fa1f61e9f1ceb773b2a62f1cc1c217d0185b74c81cb6ea6"
+        },
+        {
+          "exact_native_cache_key": "729d1e426b1b1cf6ab7a2cc3c080fc572fe1bb6a.pkl",
+          "pkl_sha256": "5a27f0c8f712d8ee98f8cb72678ca5325f8ba8c86b3a93556c8653d9de3c6d69",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "a 29-year-old Moscow coder,",
+              "exact_native_cache_key": "729d1e426b1b1cf6ab7a2cc3c080fc572fe1bb6a.pkl",
+              "cache_input_text_sha256": "b844a603413f0aee90ae8cbbf168200cde72adb62a078438417e025b45a1c3d9",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "5a27f0c8f712d8ee",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            57856
+          ],
+          "unprocessed_array_sha256": "b8d9c3b33fc90bf2e34ea025af1b7eec4cff49bf3048dc7533657748fb037326"
+        },
+        {
+          "exact_native_cache_key": "7b4b77bcad780b47cdf6a216f20f1ca3dbd823ae.pkl",
+          "pkl_sha256": "d429852e626a76d007e5c25aad79401820c6bbfd4b9de6b3f47fd1c85e220549",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S2",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "His primitive Elektronika 60 had a purely textual display, so every geometric piece of four tiles was assembled from characters.",
+              "exact_native_cache_key": "7b4b77bcad780b47cdf6a216f20f1ca3dbd823ae.pkl",
+              "cache_input_text_sha256": "53a013f9e1d8656caae764130a4c951599311cd2bdbee203cf27f1e6049ed4a7",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "d429852e626a76d0",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            227840
+          ],
+          "unprocessed_array_sha256": "6f688a30b1564942ed275ffd220095de6a348a5628080e527b6e92716708215b"
+        },
+        {
+          "exact_native_cache_key": "cbf17cfb6ef06d96298a7ba211b0c2e4d0e9a9da.pkl",
+          "pkl_sha256": "c03504a0f6a033482ea4d681507d4fcc0cbd0740dcdcccb4bd540c8b5057ecef",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S2",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "His primitive Elektronika 60 had a purely textual display,",
+              "exact_native_cache_key": "cbf17cfb6ef06d96298a7ba211b0c2e4d0e9a9da.pkl",
+              "cache_input_text_sha256": "a29756b22861278702893fce50a3ff25868568b6ada104b4275e58dc60d364d0",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S2",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "His primitive Elektronika 60 had a purely textual display,",
+              "exact_native_cache_key": "cbf17cfb6ef06d96298a7ba211b0c2e4d0e9a9da.pkl",
+              "cache_input_text_sha256": "a29756b22861278702893fce50a3ff25868568b6ada104b4275e58dc60d364d0",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "c03504a0f6a03348",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            106496
+          ],
+          "unprocessed_array_sha256": "68a7375f0e03db2aee61472cf204471d223f586bac4a7b0746ec29de24a8aeb6"
+        },
+        {
+          "exact_native_cache_key": "68c72292aff45006c2723f3212c259d761d8a76e.pkl",
+          "pkl_sha256": "7e32d8fa2373fd6487fc700690eb74039af838bf8e14d215f74d15a5b2715ffd",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S2",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "so every geometric piece of four tiles was assembled from characters.",
+              "exact_native_cache_key": "68c72292aff45006c2723f3212c259d761d8a76e.pkl",
+              "cache_input_text_sha256": "16c5f98e2e80a03aff1551a3b6b3a459c2bd0436cd646dd3a332d4e8f92caea2",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S2",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "so every geometric piece of four tiles was assembled from characters.",
+              "exact_native_cache_key": "68c72292aff45006c2723f3212c259d761d8a76e.pkl",
+              "cache_input_text_sha256": "16c5f98e2e80a03aff1551a3b6b3a459c2bd0436cd646dd3a332d4e8f92caea2",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "7e32d8fa2373fd64",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            116736
+          ],
+          "unprocessed_array_sha256": "669ec26df07cd747e4f6f2912dc3931446b2c01cdc954185cb374e5e0f8725c9"
+        },
+        {
+          "exact_native_cache_key": "5df4301f4e3e06c2c0e7a0c64991057fd65a75ce.pkl",
+          "pkl_sha256": "50a6f3152fb1a843f3b038420ad9caf55ca37a69d9f9b7073e68dbaac5f632b3",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S3",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "The result proved addictive.",
+              "exact_native_cache_key": "5df4301f4e3e06c2c0e7a0c64991057fd65a75ce.pkl",
+              "cache_input_text_sha256": "060742d1f236cbdf625e86f56a8e098ed47a8d4475eeb4817d3a3b01bef24a66",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "50a6f3152fb1a843",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            38912
+          ],
+          "unprocessed_array_sha256": "ae2405a6a827ecf1faa48075a6d4eb8e50fececaf42555cd4c1e630a4580fdee"
+        },
+        {
+          "exact_native_cache_key": "7d1afb020329bd911b8a391b073afad93526dbcd.pkl",
+          "pkl_sha256": "0d48eba1064af2d556b04300238a4f5a323dccf6370f172c98b76e1696887efc",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "He called it Tetris, a fusion of the Greek tetra- and tennis, his favourite pastime.",
+              "exact_native_cache_key": "7d1afb020329bd911b8a391b073afad93526dbcd.pkl",
+              "cache_input_text_sha256": "410c49a60133d018453d0ea6f648d86b9204597055397a290464395b8008d002",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "0d48eba1064af2d5",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            129024
+          ],
+          "unprocessed_array_sha256": "86d1da1197594743f19424fa79ceda2f58cae35fb53d821ddf440d634c611bea"
+        },
+        {
+          "exact_native_cache_key": "4e34f45d4b46bf55c046f47ac1ca6b6b96113631.pkl",
+          "pkl_sha256": "d8639578fcfa6e69888b48ab7d0fd16985fd59e19679334121614ff7a2cbe00a",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "He called it Tetris,",
+              "exact_native_cache_key": "4e34f45d4b46bf55c046f47ac1ca6b6b96113631.pkl",
+              "cache_input_text_sha256": "ce47e7e6bc37a331808ccc7a93cd8cea29e30ef367c6c75de93759106a1e9ec3",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S4",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "He called it Tetris,",
+              "exact_native_cache_key": "4e34f45d4b46bf55c046f47ac1ca6b6b96113631.pkl",
+              "cache_input_text_sha256": "ce47e7e6bc37a331808ccc7a93cd8cea29e30ef367c6c75de93759106a1e9ec3",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "d8639578fcfa6e69",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            30208
+          ],
+          "unprocessed_array_sha256": "b3d1b2641dce94f1167a54f8f5359b4a57c456e0d6e3f881fd8bb7a279bbf63d"
+        },
+        {
+          "exact_native_cache_key": "fd37ab31b357f09d9221ca03b0eedac16c761c8f.pkl",
+          "pkl_sha256": "12cabdba886a179de66ac4eb1b955cf8968765b6904d9a0df8da91e5bd92e8cb",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "a fusion of the Greek tetra- and tennis,",
+              "exact_native_cache_key": "fd37ab31b357f09d9221ca03b0eedac16c761c8f.pkl",
+              "cache_input_text_sha256": "e7e5b47ebe2c258f4a2c0f819e9a4b51bd2ccfe95d647edf143c0c5b50996594",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S4",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "a fusion of the Greek tetra- and tennis,",
+              "exact_native_cache_key": "fd37ab31b357f09d9221ca03b0eedac16c761c8f.pkl",
+              "cache_input_text_sha256": "e7e5b47ebe2c258f4a2c0f819e9a4b51bd2ccfe95d647edf143c0c5b50996594",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "12cabdba886a179d",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            54784
+          ],
+          "unprocessed_array_sha256": "6516dfa767d222abbc13eb0e77a8c866cee920a4fec0d6729d619e190f4b37d4"
+        },
+        {
+          "exact_native_cache_key": "9e638919db8ac0de5e443e1bef50bc5ae3433370.pkl",
+          "pkl_sha256": "cbb505bd2b856101fdcb9e86e3a5aa0a32524ffa2dcb3d6d7dd588b51fbbbfc8",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": 3,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "his favourite pastime.",
+              "exact_native_cache_key": "9e638919db8ac0de5e443e1bef50bc5ae3433370.pkl",
+              "cache_input_text_sha256": "75541b3fe386340a3d541be2b6d5bfef166a52de1cb2ef52e4e00f03f2a5b5e2",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S4",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "his favourite pastime.",
+              "exact_native_cache_key": "9e638919db8ac0de5e443e1bef50bc5ae3433370.pkl",
+              "cache_input_text_sha256": "75541b3fe386340a3d541be2b6d5bfef166a52de1cb2ef52e4e00f03f2a5b5e2",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "cbb505bd2b856101",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            34816
+          ],
+          "unprocessed_array_sha256": "5bec9ca27364fc4e897dbd470b02c381177ae54421b658c39ea56f92cfc6b9f2"
+        },
+        {
+          "exact_native_cache_key": "d3fbe314e295debd41d6f93dd3da517003705f41.pkl",
+          "pkl_sha256": "a5455a73cb23af3848f8501c1381dc5ee3e2c53742d4835629b9c63f1833361a",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "In the Soviet Union, the state, not its salaried designer, was the proprietor of this intellectual property, and Pajitnov held no entitlement to it.",
+              "exact_native_cache_key": "d3fbe314e295debd41d6f93dd3da517003705f41.pkl",
+              "cache_input_text_sha256": "ca824ad6dda46a42b44aae76f64f4d42370ccfaa9425504b5703341105b4fec2",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "a5455a73cb23af38",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            242176
+          ],
+          "unprocessed_array_sha256": "f3488f6f90313eb7ed5d645a4946e653bdc9a4f01da5d9ca2456b2eccae82121"
+        },
+        {
+          "exact_native_cache_key": "501743a72c3c6e55514e5e2c93769cad637c2f2a.pkl",
+          "pkl_sha256": "26277771ee5fd51f0ea018c959476fbeeddace0ee27b80ddcf16a843ab5d309c",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "In the Soviet Union,",
+              "exact_native_cache_key": "501743a72c3c6e55514e5e2c93769cad637c2f2a.pkl",
+              "cache_input_text_sha256": "02d9fc0f77f9c3cf75db503a9ab3f4ebb50572c71e5fb3780ad7df7a6bb4dd0e",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S5",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "In the Soviet Union,",
+              "exact_native_cache_key": "501743a72c3c6e55514e5e2c93769cad637c2f2a.pkl",
+              "cache_input_text_sha256": "02d9fc0f77f9c3cf75db503a9ab3f4ebb50572c71e5fb3780ad7df7a6bb4dd0e",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "26277771ee5fd51f",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            32256
+          ],
+          "unprocessed_array_sha256": "54327d1fa3488bcc3b6fb0f03645b652321d6096095f5ea5fc810c4cfd0d3f48"
+        },
+        {
+          "exact_native_cache_key": "ae2e9b808eb6af2abb4a4ad80bc5db4da99d5409.pkl",
+          "pkl_sha256": "1fab5bd0a5ad7998a62d37e2c7ebfa307ca8891c594fc81105ce0ef0e70782bb",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "the state, not its salaried designer, was the proprietor of this intellectual property,",
+              "exact_native_cache_key": "ae2e9b808eb6af2abb4a4ad80bc5db4da99d5409.pkl",
+              "cache_input_text_sha256": "1da0dad0a6b3c82e3bcbba1839bbe633b2497fdb0b4acb446ff87abd4193b7e0",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "1fab5bd0a5ad7998",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            131584
+          ],
+          "unprocessed_array_sha256": "a4cf206fe8bd4f9a5681434ffa34542e2d6f6cd32ea39529820f664e5c0d9403"
+        },
+        {
+          "exact_native_cache_key": "a961c830b4b57315a95ffa4495f65666c9be9838.pkl",
+          "pkl_sha256": "613b970c1ef860df73bb8220258806038247ce39b52035a675a4c188f2136a7e",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": 3,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "and Pajitnov held no entitlement to it.",
+              "exact_native_cache_key": "a961c830b4b57315a95ffa4495f65666c9be9838.pkl",
+              "cache_input_text_sha256": "1fcc7482ec31c48b5313555e005f727f01457248342a61477d60cd5f9b7f100a",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S5",
+              "piece": 5,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "and Pajitnov held no entitlement to it.",
+              "exact_native_cache_key": "a961c830b4b57315a95ffa4495f65666c9be9838.pkl",
+              "cache_input_text_sha256": "1fcc7482ec31c48b5313555e005f727f01457248342a61477d60cd5f9b7f100a",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "613b970c1ef860df",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            60416
+          ],
+          "unprocessed_array_sha256": "8f297f7157cce3f46ff5912463447b79f641ebca61cfb7c5f29070aa1d820ff9"
+        },
+        {
+          "exact_native_cache_key": "ef0e5c33118a09e84cbb637b7b54ef9808b465c7.pkl",
+          "pkl_sha256": "aac3dd199bd6f6dc4c1300dc44beae3710b5d422b94392013221ceb97f7c9ee6",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "the state,",
+              "exact_native_cache_key": "ef0e5c33118a09e84cbb637b7b54ef9808b465c7.pkl",
+              "cache_input_text_sha256": "3ca784835c6f487a7be5d592d8b7aad59573954be2c467fdff838214ca15ea49",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "aac3dd199bd6f6dc",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            19968
+          ],
+          "unprocessed_array_sha256": "93c6a45a6ef0a425c7afae66b2a3d156a30ca6e85466335f91742855371f0c93"
+        },
+        {
+          "exact_native_cache_key": "00d9eac52222ee7ff4a1d59eceba71738df165e1.pkl",
+          "pkl_sha256": "df3339a8f342044eeac9aef0ef24ce017ac25e3a11e67bed52f30cf216f896a2",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "not its salaried designer,",
+              "exact_native_cache_key": "00d9eac52222ee7ff4a1d59eceba71738df165e1.pkl",
+              "cache_input_text_sha256": "726c3a4298ee4f3d9a6cc9dc6e939b1f58b1a109523ac2dfdc77b5e346c92117",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "df3339a8f342044e",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            36864
+          ],
+          "unprocessed_array_sha256": "950418616141eda9ad5ffb25980662aeb4937f243e333a2d6a8e8be3bcf0688f"
+        },
+        {
+          "exact_native_cache_key": "ca565ad0ea1eb16337c0cd95fdccb421125223a6.pkl",
+          "pkl_sha256": "7721f75662754db3df4c38ea2c7d5ed2c9342f6815103f85c1add6350c10b9bc",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": 4,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "was the proprietor of this intellectual property,",
+              "exact_native_cache_key": "ca565ad0ea1eb16337c0cd95fdccb421125223a6.pkl",
+              "cache_input_text_sha256": "678aa5e11c1585680bfed751c95abf01768ca003c959ea51a8d629ad01e731e0",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "7721f75662754db3",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            68096
+          ],
+          "unprocessed_array_sha256": "de602fa038376dccda1053d7ebd69cf6db80654d4c6ecfac7eb6191c09e6afc0"
+        },
+        {
+          "exact_native_cache_key": "a2e59cb611b2c0f773b6f550ea82606b20c3d593.pkl",
+          "pkl_sha256": "930cda00ffc508fa43218d736c8912c4261cf171d4c31af950078701697094e8",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Copies mushroomed freely on floppy disks across the Eastern bloc.",
+              "exact_native_cache_key": "a2e59cb611b2c0f773b6f550ea82606b20c3d593.pkl",
+              "cache_input_text_sha256": "c12ca460f0393c19199e588a6dbe293d27f0619b5e153b531142b03f5bd1a066",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "930cda00ffc508fa",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            107520
+          ],
+          "unprocessed_array_sha256": "d61c1d224c0534a40a4a1b175cb36f6428a2d4c8ce1c21a7ee71435354fcc66f"
+        },
+        {
+          "exact_native_cache_key": "08af74163c79ce30910978af3c76e749fc18b212.pkl",
+          "pkl_sha256": "25c151f56fdbcdb3e91df809e15a78d1f3f9a4547648375bbbb5a8246b971c17",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Copies mushroomed freely",
+              "exact_native_cache_key": "08af74163c79ce30910978af3c76e749fc18b212.pkl",
+              "cache_input_text_sha256": "a870c3fc75e14840a9e199ae8e22493156891f77932a6a67873e644b129284b2",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "25c151f56fdbcdb3",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            37888
+          ],
+          "unprocessed_array_sha256": "73d6bfccc236da85f30c0245b2ab5b17ae3f7a0f59ce8871a08a66b9ecb8fd51"
+        },
+        {
+          "exact_native_cache_key": "9a72d42333936b15e40f23cf7fcea499a2b333d1.pkl",
+          "pkl_sha256": "02a77bac83edcdad46b7a9a40b4d7a24a57faac42cb14edffef58b18630209a4",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "on floppy disks across the Eastern bloc.",
+              "exact_native_cache_key": "9a72d42333936b15e40f23cf7fcea499a2b333d1.pkl",
+              "cache_input_text_sha256": "07057ba63c8217e40cfbd7eb7ea00e2788bae61b890d6b0bda64e0e9770cd38f",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "02a77bac83edcdad",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            65536
+          ],
+          "unprocessed_array_sha256": "04f1e398a94eee76af6f5c0491e93ce02e0eb8f7f1734d557bd656e18f02d3cd"
+        },
+        {
+          "exact_native_cache_key": "3f9aa76b04a37e048a13c9d4fd59c976d4294dc6.pkl",
+          "pkl_sha256": "35f6fd6287c1054ab3f41dc9246d5dc18840210930a495bbefc297a94087a3ec",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S7",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "In 1986 Robert Stein, an enterprising British software vendor, stumbled upon Tetris in Hungary.",
+              "exact_native_cache_key": "3f9aa76b04a37e048a13c9d4fd59c976d4294dc6.pkl",
+              "cache_input_text_sha256": "2d5f4a109a8da6c21255080e5b9ba87a360af66d6157a8ea6ae2e1a8f3f2bba4",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "35f6fd6287c1054a",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            184832
+          ],
+          "unprocessed_array_sha256": "b32e025f970d525912bb65879aae6b699222c4c0c1b5fff5bf1704cc8881f409"
+        },
+        {
+          "exact_native_cache_key": "e1c886a714699ce069f229c2151b0ace7130ed2e.pkl",
+          "pkl_sha256": "960f6d1db76da6230bbc50a25082041b2c099d0c0ca9dd710dd80a842ecb37ca",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S7",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "In 1986 Robert Stein, an enterprising British software vendor,",
+              "exact_native_cache_key": "e1c886a714699ce069f229c2151b0ace7130ed2e.pkl",
+              "cache_input_text_sha256": "bad6ed6f1a9bfd3a352ac45c2ea28230f21e79a129244f9f3cc72f36574ae19a",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "960f6d1db76da623",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            124416
+          ],
+          "unprocessed_array_sha256": "00eb5166ff1ed560293d3e52c7a327bd7608854d81d15e41e3df55ef8609748b"
+        },
+        {
+          "exact_native_cache_key": "b8cb77245fe565ef00f19fb5f2bcf693884b3e2e.pkl",
+          "pkl_sha256": "200ee9ed17be17b2fb0c457eded0092f86b81160ef2bec1e375420a8fd62f81e",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S7",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "stumbled upon Tetris in Hungary.",
+              "exact_native_cache_key": "b8cb77245fe565ef00f19fb5f2bcf693884b3e2e.pkl",
+              "cache_input_text_sha256": "563f93aee1123fe960bc72df9fdf7673abf98595fb7d0cc1ca655307d4c8f5cd",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S7",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "stumbled upon Tetris in Hungary.",
+              "exact_native_cache_key": "b8cb77245fe565ef00f19fb5f2bcf693884b3e2e.pkl",
+              "cache_input_text_sha256": "563f93aee1123fe960bc72df9fdf7673abf98595fb7d0cc1ca655307d4c8f5cd",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "200ee9ed17be17b2",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            50688
+          ],
+          "unprocessed_array_sha256": "e676edebe1f4660eb768f3d24ddc4280f047cc429f7e6559220902219f2c80ba"
+        },
+        {
+          "exact_native_cache_key": "509ff1f1faaf507755c09094703fce05ccf51833.pkl",
+          "pkl_sha256": "29bc770f31ceae41f8cfd718b8d6be7ddc943b3ff42cb4b583316fe78dca7e65",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S7",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "In 1986 Robert Stein,",
+              "exact_native_cache_key": "509ff1f1faaf507755c09094703fce05ccf51833.pkl",
+              "cache_input_text_sha256": "e8c9be0e26231948068c9a97b5dbd87abb20d7fbdeecb86c405b087dd104bc02",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "29bc770f31ceae41",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            52736
+          ],
+          "unprocessed_array_sha256": "54440eeb7349dd37a4b1ff57ff19003d46d3e0c8d3950b3992f494d3cae93630"
+        },
+        {
+          "exact_native_cache_key": "c18857ae335bbca054444747577711091421151d.pkl",
+          "pkl_sha256": "e3178861b6dfd0555e5f2c57a55a677ddcac518871af5a019f9049319b5efacd",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S7",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "an enterprising British software vendor,",
+              "exact_native_cache_key": "c18857ae335bbca054444747577711091421151d.pkl",
+              "cache_input_text_sha256": "913f0b0aa88a33cf7e3ee390e6f19976034e62c1d0cfd0d341c198764a4b36a8",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "e3178861b6dfd055",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            56320
+          ],
+          "unprocessed_array_sha256": "4abc577e22682e932a261c273e57ad9260ec83ff9f18d435377f711491ecf3db"
+        },
+        {
+          "exact_native_cache_key": "bcb43292d30195479e00f8a73c7a50d96fbb65a1.pkl",
+          "pkl_sha256": "a56e09358ac2c1ca29141e00e28ab9b827836cb14f161e2fb47067543f9c1d6d",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "In his ignorance of Elorg, the state bureau regulating Soviet software exports, he hastily hawked rights he did not yet legitimately hold.",
+              "exact_native_cache_key": "bcb43292d30195479e00f8a73c7a50d96fbb65a1.pkl",
+              "cache_input_text_sha256": "10876de5590e76208661b674a24fdcf6b315447ed593f3c966f07be6c216992e",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "a56e09358ac2c1ca",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            238080
+          ],
+          "unprocessed_array_sha256": "7c83fc947396410e70683552e61a6eb7ca49c50e1b2a12c4d02a685c2b773df6"
+        },
+        {
+          "exact_native_cache_key": "dbb0dee99b5c71f7497ceca34cbea38e5959a366.pkl",
+          "pkl_sha256": "2171dc9252280954ae77077d83d9838f22545b2ddf558de51c1db39cd3eec0d5",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "In his ignorance of Elorg, the state bureau regulating Soviet software exports,",
+              "exact_native_cache_key": "dbb0dee99b5c71f7497ceca34cbea38e5959a366.pkl",
+              "cache_input_text_sha256": "2288ec1857713b5aa1dc952cdb9472cc7f282f1e3ae6c7f4f036f9710ae249ed",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "2171dc9252280954",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            137728
+          ],
+          "unprocessed_array_sha256": "8069ba6c9b5c6972da7f9dd61e2b45ce1ab86297f6437e1d8d0f913d79ebf94d"
+        },
+        {
+          "exact_native_cache_key": "807fcc73ec9316f0da0109b7eefa28e70c1948d1.pkl",
+          "pkl_sha256": "b640a846ef33df5359a688797ccfed5273b972a3088db1bf07420de0d2576c07",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "he hastily hawked rights he did not yet legitimately hold.",
+              "exact_native_cache_key": "807fcc73ec9316f0da0109b7eefa28e70c1948d1.pkl",
+              "cache_input_text_sha256": "92b81f33612a52b9acfaa54c4bded049b46466c7cf706517589e18451ae34203",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S8",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "he hastily hawked rights he did not yet legitimately hold.",
+              "exact_native_cache_key": "807fcc73ec9316f0da0109b7eefa28e70c1948d1.pkl",
+              "cache_input_text_sha256": "92b81f33612a52b9acfaa54c4bded049b46466c7cf706517589e18451ae34203",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "b640a846ef33df53",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            94720
+          ],
+          "unprocessed_array_sha256": "0a6e019d035f1bb19c183ea397c5ba0526d8d9ca9242d7f5c6768be0e6210ebb"
+        },
+        {
+          "exact_native_cache_key": "7f740de9bd55ea45437926029ab9c05413f66a4a.pkl",
+          "pkl_sha256": "a0d4777154efaffcf9cdae7694ded8299fc861bd3d8bfcdd1b83183952b74212",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "In his ignorance of Elorg,",
+              "exact_native_cache_key": "7f740de9bd55ea45437926029ab9c05413f66a4a.pkl",
+              "cache_input_text_sha256": "8c7d0f71f397caba74ddabb7ebdcfda8351ea7fddc2ae4832b9975d4908a0eb0",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "a0d4777154efaffc",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            39936
+          ],
+          "unprocessed_array_sha256": "1c9676a97dbba4eadeeb084b79656b9cfaebbc3a36d21e80cccfddbbc3c0e6ba"
+        },
+        {
+          "exact_native_cache_key": "126ba7c0cd3c21858205663ed6928bba877da3a2.pkl",
+          "pkl_sha256": "a548627d6885d1c35e13706bd5617eef8198b7e0c450357f5597548a97d8b8e7",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "the state bureau regulating Soviet software exports,",
+              "exact_native_cache_key": "126ba7c0cd3c21858205663ed6928bba877da3a2.pkl",
+              "cache_input_text_sha256": "2b911ab018ebf2f651ddc93f7375effc547805f60531de94b486dfbe5140ff53",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "a548627d6885d1c3",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            86528
+          ],
+          "unprocessed_array_sha256": "a51b9c8dd95c1828541af5dbe5cde065e98d21eac3d5f3d9ca4c537b6e49c17a"
+        },
+        {
+          "exact_native_cache_key": "b4a440bc9b29d6639c325c15079be9415a1c09de.pkl",
+          "pkl_sha256": "1ec676c6cc5dd1f0e975aceadfe511a233a28b1be131a14180338f85848b0d97",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S9",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "The rights were shuffled onward through a chaotic muddle of overlapping deals among Western firms, one owned by the magnate Robert Maxwell.",
+              "exact_native_cache_key": "b4a440bc9b29d6639c325c15079be9415a1c09de.pkl",
+              "cache_input_text_sha256": "222746eba76d5028d257ca454f9bf11a49210f244ff1c6243e413455b99fa4af",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "1ec676c6cc5dd1f0",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            214016
+          ],
+          "unprocessed_array_sha256": "0ae71cd8d4a707102a2629e034e1214d4989b1cb9e2a0de36128eece0e1c4597"
+        },
+        {
+          "exact_native_cache_key": "824da8bec7b1d1029dcdce60d1757942070703e9.pkl",
+          "pkl_sha256": "e408585ccddd6a26b57b62f19a3ef8b9f04940e59e5b46e57fcd8eb7b97b82ba",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S9",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "The rights were shuffled onward through a chaotic muddle",
+              "exact_native_cache_key": "824da8bec7b1d1029dcdce60d1757942070703e9.pkl",
+              "cache_input_text_sha256": "d8c6f6d8308999bd3353b38e27646a840377586c2cb298ebed6562f6c05f0476",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "e408585ccddd6a26",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            72192
+          ],
+          "unprocessed_array_sha256": "c8623af3904b5c34d7dd5a4fe55909fd5558789d31fbb2be10ebf5dae5b13e6c"
+        },
+        {
+          "exact_native_cache_key": "9ce3513ff1b55a2ff64d55e1de204a385fe9b8cf.pkl",
+          "pkl_sha256": "76f3b3d7fcb7e246b1aea5d9a963baf23fe7bad7f15c8405740a877ad9616ae5",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S9",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "of overlapping deals among Western firms,",
+              "exact_native_cache_key": "9ce3513ff1b55a2ff64d55e1de204a385fe9b8cf.pkl",
+              "cache_input_text_sha256": "6eb8b73e69ea704809baeaa5805f8babae9fd9cc0230411d1d1bb877ea0ef5d3",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "76f3b3d7fcb7e246",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            64000
+          ],
+          "unprocessed_array_sha256": "0a986110622038b6f3665d35721f6cb7e9816044c6b0ced830f5c409d5f809cd"
+        },
+        {
+          "exact_native_cache_key": "2dfcf701ba1a293524d4d39b99ff60941ee1b0b4.pkl",
+          "pkl_sha256": "94dffd8908d97a15ceecc6a4f1685a1c9cd954fe4be19007199c3bd545e35462",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S9",
+              "piece": 3,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "one owned by the magnate Robert Maxwell.",
+              "exact_native_cache_key": "2dfcf701ba1a293524d4d39b99ff60941ee1b0b4.pkl",
+              "cache_input_text_sha256": "a45477a25c2e50499dc438d3f9076bf7e447ad069df9be6a75504b1c748ff0aa",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S9",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "one owned by the magnate Robert Maxwell.",
+              "exact_native_cache_key": "2dfcf701ba1a293524d4d39b99ff60941ee1b0b4.pkl",
+              "cache_input_text_sha256": "a45477a25c2e50499dc438d3f9076bf7e447ad069df9be6a75504b1c748ff0aa",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "94dffd8908d97a15",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            57344
+          ],
+          "unprocessed_array_sha256": "1459c2923ca5046322ffc055a956211c397f3dcae14c64c8d2e123715264cb60"
+        },
+        {
+          "exact_native_cache_key": "ea4aafd6eb65dd30567a265477931dc0a4b22000.pkl",
+          "pkl_sha256": "e97a11eef52c9d145b13c6a67d2102fdf441cf2a76751a159ffe0e8a6bb46e57",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S9",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "The rights were shuffled onward through a chaotic muddle of overlapping deals among Western firms,",
+              "exact_native_cache_key": "ea4aafd6eb65dd30567a265477931dc0a4b22000.pkl",
+              "cache_input_text_sha256": "fc32d73550493a3d1a14ed1f2d9016f49076b42c8ef6d5b1ebcbddd98f6d0dfc",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "e97a11eef52c9d14",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            144896
+          ],
+          "unprocessed_array_sha256": "fbb9f1e1f51390f13ab8beabfbdd3554f6e9dd8a5a01b4932c645198cd411a72"
+        },
+        {
+          "exact_native_cache_key": "70880c751e26e8c14cd79edce8799a6cba819dce.pkl",
+          "pkl_sha256": "cf924e8222c10c55245af286ece7c40a75c8e85c798251ad0136fcc5727a2e26",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S10",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "In February 1989 Henk Rogers, a resourceful Dutch-born publisher, reached Moscow on a tourist visa and found his way to Elorg.",
+              "exact_native_cache_key": "70880c751e26e8c14cd79edce8799a6cba819dce.pkl",
+              "cache_input_text_sha256": "48a93b4b241c4dfe1425bace499c1caa26f376d767af560c6e9b88502a77755e",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "cf924e8222c10c55",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            245760
+          ],
+          "unprocessed_array_sha256": "f29ab6ff2cbad73672e57446068c4577d2aa2e8250ae5689babbf5d4ba644ec5"
+        },
+        {
+          "exact_native_cache_key": "cb5475161883eae802f7cdab4fb60aaec180b97e.pkl",
+          "pkl_sha256": "4f874206839105778bb0cb342e6a36f8dd0f10c171feba3971a349337d5eebc8",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S10",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "In February 1989 Henk Rogers, a resourceful Dutch-born publisher,",
+              "exact_native_cache_key": "cb5475161883eae802f7cdab4fb60aaec180b97e.pkl",
+              "cache_input_text_sha256": "8237b7a0fdf8fa9000d7923ddd0fd67ce8b9fb4e349f9ae94850e8988708e6cd",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "4f87420683910577",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            133632
+          ],
+          "unprocessed_array_sha256": "ac3cced75fc24c1cf09170fa8fcf7ea99743cf51fb519eb7a6a4c81dfa4ca9dc"
+        },
+        {
+          "exact_native_cache_key": "2eb4f27dd178523d24f32b9586ecb93dce0a74a1.pkl",
+          "pkl_sha256": "b1e317d4925a4bfee46cdde4cc37c592aaa26d594e68e56b80bc70043617465f",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S10",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "reached Moscow on a tourist visa and found his way to Elorg.",
+              "exact_native_cache_key": "2eb4f27dd178523d24f32b9586ecb93dce0a74a1.pkl",
+              "cache_input_text_sha256": "df3dafd1e9692864d522e6b122e6765b3d0bfdc3693250c7d1115828f9dc2b2f",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S10",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "reached Moscow on a tourist visa and found his way to Elorg.",
+              "exact_native_cache_key": "2eb4f27dd178523d24f32b9586ecb93dce0a74a1.pkl",
+              "cache_input_text_sha256": "df3dafd1e9692864d522e6b122e6765b3d0bfdc3693250c7d1115828f9dc2b2f",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "b1e317d4925a4bfe",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            101376
+          ],
+          "unprocessed_array_sha256": "596b17225a3c53f568752073f35bca09f882b4e9bed2eb3e232360159e2aa226"
+        },
+        {
+          "exact_native_cache_key": "90f761a5108bc6ea8e092753e5ccdbe9e8f0ed29.pkl",
+          "pkl_sha256": "6268d6e87410c88729a8ad03d182b21a547ac91202aa40400748155144dd6a77",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S10",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "In February 1989 Henk Rogers,",
+              "exact_native_cache_key": "90f761a5108bc6ea8e092753e5ccdbe9e8f0ed29.pkl",
+              "cache_input_text_sha256": "56a9d6c5877e63a64c1b9fbef154f80a26e8ff62425485fe33118416431143d9",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "6268d6e87410c887",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            75264
+          ],
+          "unprocessed_array_sha256": "8e50b621497ad3d26ec23364c58d05e2ac44d2cb2026903a5da174eb44101ea1"
+        },
+        {
+          "exact_native_cache_key": "cc98b67aaaa200d4b960950df34d95cc877c2cf3.pkl",
+          "pkl_sha256": "402843faacaa376652aa93021e3016bba0ef6340a6929ef66d8173028600dd01",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S10",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "a resourceful Dutch-born publisher,",
+              "exact_native_cache_key": "cc98b67aaaa200d4b960950df34d95cc877c2cf3.pkl",
+              "cache_input_text_sha256": "0134e313f89c14d789a67d24fb8631ee80d00406f4fa630bdefa4052d0b13fcc",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "402843faacaa3766",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            51200
+          ],
+          "unprocessed_array_sha256": "bdf7d2e4647f8ed394c5b12d903a3e09523cc716c2c7e280f174f65d91d1b186"
+        },
+        {
+          "exact_native_cache_key": "a5193be88143b9dc94fadf25fddcb70101fd9d1e.pkl",
+          "pkl_sha256": "9097a967a9bd7e01fef27ec87f5929f172e2aa30200361192123fd029b14f67b",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Stein and Kevin Maxwell, the magnate's son, were in Moscow that same hectic week of negotiations, each a bidder.",
+              "exact_native_cache_key": "a5193be88143b9dc94fadf25fddcb70101fd9d1e.pkl",
+              "cache_input_text_sha256": "7e1daaa5887c8858b31ab7476a10693c908359afa0e21409bea30c82c162ea9f",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "9097a967a9bd7e01",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            188928
+          ],
+          "unprocessed_array_sha256": "be9c06b085785f3aa6aee908d6732544951c22fac34c33fc4127d4cdcf898912"
+        },
+        {
+          "exact_native_cache_key": "91edd32e25f06ef638f74bd158eba94a2a8290d4.pkl",
+          "pkl_sha256": "5efeb081e8539531cc9ee5dc554cae7910e32b965f67860dc7a3c1ecb635753b",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Stein and Kevin Maxwell, the magnate's son,",
+              "exact_native_cache_key": "91edd32e25f06ef638f74bd158eba94a2a8290d4.pkl",
+              "cache_input_text_sha256": "22d77b2905d3f453c38d77d3370c3a5bcc660c82526071fd8db052e5bcf6d9b2",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "5efeb081e8539531",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            65536
+          ],
+          "unprocessed_array_sha256": "bce545c5e4e0bdae0aa207a902ab458aae17d880c235ed53d1af656be236c409"
+        },
+        {
+          "exact_native_cache_key": "84bd2a8c8c8d6cc023fb50b2640c385af0df1260.pkl",
+          "pkl_sha256": "0225c4acabb818a407ca65283f50e3fe48c90ed57de854862d48fbb3e372e25a",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "were in Moscow that same hectic week of negotiations, each a bidder.",
+              "exact_native_cache_key": "84bd2a8c8c8d6cc023fb50b2640c385af0df1260.pkl",
+              "cache_input_text_sha256": "110f4ef7104e062ea8a52ca3811d09d7f1e78cfa83d207e0c62d43054e9c5100",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "0225c4acabb818a4",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            110080
+          ],
+          "unprocessed_array_sha256": "445963d0d2282933dc3dd22799591f0227f359bbf166ff2904d29a529556c7b2"
+        },
+        {
+          "exact_native_cache_key": "833129868c53a39095b2443533a4ffaa27ea3cd0.pkl",
+          "pkl_sha256": "163f72e844c1c9a0be2555568ccd99d75030827aa4ef24312279822a2af25cc0",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Stein and Kevin Maxwell,",
+              "exact_native_cache_key": "833129868c53a39095b2443533a4ffaa27ea3cd0.pkl",
+              "cache_input_text_sha256": "ecb46dea8c4ad122e9c9be0f4929ce0e3eaf62054fcbc02425f765d3186ab584",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "163f72e844c1c9a0",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            37888
+          ],
+          "unprocessed_array_sha256": "4f15e22c7014e65dc68cf4be0de164c3d09dda24107dd0b2e9168e55535ff943"
+        },
+        {
+          "exact_native_cache_key": "eade0494d5b5a68b06fcc35ac107311eab03ad21.pkl",
+          "pkl_sha256": "b14054b5ca06de4e0df02f48e49042c1c92b0d4131779cd7f1033ff76dd79cd5",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "the magnate's son,",
+              "exact_native_cache_key": "eade0494d5b5a68b06fcc35ac107311eab03ad21.pkl",
+              "cache_input_text_sha256": "4b62c9e99afc5b87e83aca15ee469b63e0da818fa5e3ee5c6fe830b7740cb6e4",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "b14054b5ca06de4e",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            28160
+          ],
+          "unprocessed_array_sha256": "44008e2df78613683dab27187fd317970a93678e7c3834d3e7b78dc5fca87a6d"
+        },
+        {
+          "exact_native_cache_key": "da071c53875855644e5d62d79230caec44a658ce.pkl",
+          "pkl_sha256": "c6fb113207b9d044197e047c49792fbbb53da5ce2986a7a012518091f2430d97",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "were in Moscow that same hectic week of negotiations,",
+              "exact_native_cache_key": "da071c53875855644e5d62d79230caec44a658ce.pkl",
+              "cache_input_text_sha256": "04695997f08c833b5d1b50ba1cf50cbb63d138c29137a6a3d8ca79c2d26f88de",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "c6fb113207b9d044",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            81920
+          ],
+          "unprocessed_array_sha256": "52a2366ba0f64edc3e2fbd38cbfa14f0b9e6399e618f965892c919d2442db2f4"
+        },
+        {
+          "exact_native_cache_key": "39d678d5131718bff357a56cba3ce363c9d1339c.pkl",
+          "pkl_sha256": "4fb3d17d2153a66819eaea0406ac1ad03af1e2146a6a1ba36349cd3d730ded32",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": 4,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "each a bidder.",
+              "exact_native_cache_key": "39d678d5131718bff357a56cba3ce363c9d1339c.pkl",
+              "cache_input_text_sha256": "aeeee0770aeb2eaf4b1d9188f092a4b10583840d9d50922894dc2f95d260ac0e",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "4fb3d17d2153a668",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            24576
+          ],
+          "unprocessed_array_sha256": "5e06fe9a6c4445f34c316e111ac1dfa315d7ba52b1ef5d6368ee2d964cf3de3c"
+        },
+        {
+          "exact_native_cache_key": "0a0bb25cbd5cd583f7babb827af9465b6af4e55b.pkl",
+          "pkl_sha256": "e46ff44de8a418564b3960ee08277f44b3816c98dd5c06e5cc41f6b098a9f8b0",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S12",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Pajitnov felt a fondness for Rogers, and Nintendo scooped the handheld rights, then worldwide console rights.",
+              "exact_native_cache_key": "0a0bb25cbd5cd583f7babb827af9465b6af4e55b.pkl",
+              "cache_input_text_sha256": "8fe1e7ac617a0bce0b1b2164b58024cb7c9949c7c56c7dfaac9a738de3197a49",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "e46ff44de8a41856",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            181248
+          ],
+          "unprocessed_array_sha256": "c95627b9a6341ebbeb6e5cd1969119b332a4481d514c7730833dd624ff4e37ac"
+        },
+        {
+          "exact_native_cache_key": "ff3280971d6e590d1dd26bbe17d0ec799c9b047a.pkl",
+          "pkl_sha256": "8142d19667345ecd402e8940b0823702aa05e70a4c72755628eebbfc38595599",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S12",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Pajitnov felt a fondness for Rogers,",
+              "exact_native_cache_key": "ff3280971d6e590d1dd26bbe17d0ec799c9b047a.pkl",
+              "cache_input_text_sha256": "42f06d1f586b89a1bd4a501d83d8ed5aefbadb9ac52833117204e86d2bc344b9",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S12",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Pajitnov felt a fondness for Rogers,",
+              "exact_native_cache_key": "ff3280971d6e590d1dd26bbe17d0ec799c9b047a.pkl",
+              "cache_input_text_sha256": "42f06d1f586b89a1bd4a501d83d8ed5aefbadb9ac52833117204e86d2bc344b9",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "8142d19667345ecd",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            54784
+          ],
+          "unprocessed_array_sha256": "d24cb04460b77007ec187d913602a7a4a5e06152044f6fc6f08126eaa646450a"
+        },
+        {
+          "exact_native_cache_key": "bf2392c1e551073fb49ae2fbf50c8e6e2fbcbf2e.pkl",
+          "pkl_sha256": "75d616a24ee163add33933781a5e62df2cf3caea358926ec08b92b23cef93913",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S12",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "and Nintendo scooped the handheld rights, then worldwide console rights.",
+              "exact_native_cache_key": "bf2392c1e551073fb49ae2fbf50c8e6e2fbcbf2e.pkl",
+              "cache_input_text_sha256": "fcea0d90c1dfa4892bc2023ddc05c556dc31929eb8236eb3ad79d0e861ab7149",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "75d616a24ee163ad",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            109568
+          ],
+          "unprocessed_array_sha256": "a79416ac309019502438d6e6e39d797db313c05af5501702c4b0bd0ea1963cc4"
+        },
+        {
+          "exact_native_cache_key": "32abffc49ed3db76333dc45b03940ac8966d4b8b.pkl",
+          "pkl_sha256": "aeabed5f2d1c17c7c9ececd50f635fb2879b7ae920d61b6325d121dc130280ad",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S12",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "and Nintendo scooped the handheld rights,",
+              "exact_native_cache_key": "32abffc49ed3db76333dc45b03940ac8966d4b8b.pkl",
+              "cache_input_text_sha256": "4b96489491628a62bda2d5cf7ff4d86f86ece1cec7869f1764ab65538ad321f0",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "aeabed5f2d1c17c7",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            55296
+          ],
+          "unprocessed_array_sha256": "612c3ca35b085c56599d09deba4b3283e58941a142dbeb6cac06dd87d69c292b"
+        },
+        {
+          "exact_native_cache_key": "0f2178d7524cd9e51753acf8a3d357c633293511.pkl",
+          "pkl_sha256": "5e862b3a5ed2ca9a423f544c00499247e88274266a42ceaad869590bda886d0a",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S12",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "then worldwide console rights.",
+              "exact_native_cache_key": "0f2178d7524cd9e51753acf8a3d357c633293511.pkl",
+              "cache_input_text_sha256": "2fb7ae3b847d2eaff5630fa906ca81e2a29c8511f91e65744bc573cbbcf19521",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "5e862b3a5ed2ca9a",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            45568
+          ],
+          "unprocessed_array_sha256": "777e7e682f13f5b818f3b1e4e86204f3c41c6687bd148a6b3e600cc275edd712"
+        },
+        {
+          "exact_native_cache_key": "884ee44ae149e1039933d79370becdc699e20817.pkl",
+          "pkl_sha256": "7001739630af275551e505f4e98919e7e83ce5873a1fff590c1cfe2162a4d2c0",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S13",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Nintendo bundled Tetris with its pocket-sized Game Boy, and that version shipped over 35 million copies.",
+              "exact_native_cache_key": "884ee44ae149e1039933d79370becdc699e20817.pkl",
+              "cache_input_text_sha256": "a8a878a8c918aae8f47fe6b12b1118cdacc9e14f96ad2bc1f467571b4967b5a0",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "7001739630af2755",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            187904
+          ],
+          "unprocessed_array_sha256": "9b61a76bfa3699dec8bd2870e93d491f6425f45067da72a7171912bb99f8d0c3"
+        },
+        {
+          "exact_native_cache_key": "a9235b02bd65f7ff86f0a053124e406d6e938d74.pkl",
+          "pkl_sha256": "cbfeddf61544553c1b03735761e545e793e49662d7d664784c1533176663c7ea",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S13",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Nintendo bundled Tetris with its pocket-sized Game Boy,",
+              "exact_native_cache_key": "a9235b02bd65f7ff86f0a053124e406d6e938d74.pkl",
+              "cache_input_text_sha256": "8f2a80cc8d4f27e7ebc1cc5496a30d1a563980dda273cc4c7e5dbc0d8d7c315f",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S13",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Nintendo bundled Tetris with its pocket-sized Game Boy,",
+              "exact_native_cache_key": "a9235b02bd65f7ff86f0a053124e406d6e938d74.pkl",
+              "cache_input_text_sha256": "8f2a80cc8d4f27e7ebc1cc5496a30d1a563980dda273cc4c7e5dbc0d8d7c315f",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "cbfeddf61544553c",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            88064
+          ],
+          "unprocessed_array_sha256": "d163ebade29e9c7d5dc62b70b046696f961bee2009a96372ba1e9026e42e1d8e"
+        },
+        {
+          "exact_native_cache_key": "3b182684f7b94e4466e884380bbd31aa94098b61.pkl",
+          "pkl_sha256": "302bb73854ce686ad948843282454c7c6b18a1ab23009f41fbc9f06e58d0e062",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S13",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "and that version shipped over 35 million copies.",
+              "exact_native_cache_key": "3b182684f7b94e4466e884380bbd31aa94098b61.pkl",
+              "cache_input_text_sha256": "b50cce3d8d3243309133b691e8ba7fafb475c21b5b41edc5c0a384340d1672e2",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S13",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "and that version shipped over 35 million copies.",
+              "exact_native_cache_key": "3b182684f7b94e4466e884380bbd31aa94098b61.pkl",
+              "cache_input_text_sha256": "b50cce3d8d3243309133b691e8ba7fafb475c21b5b41edc5c0a384340d1672e2",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "302bb73854ce686a",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            80384
+          ],
+          "unprocessed_array_sha256": "2b4e102699ab50ab8cd6b558f1a3d634ac00eb94cf367beb4d270c3157e6e957"
+        },
+        {
+          "exact_native_cache_key": "10df89444d2707fff9e6bc8bff0b32d4ff87be37.pkl",
+          "pkl_sha256": "e5a3d69d82e4526cc9a20c5a29772225602082ff8c16f3a6a79a3401ebbb3ccb",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S14",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Pajitnov reaped none of the spoils for years.",
+              "exact_native_cache_key": "10df89444d2707fff9e6bc8bff0b32d4ff87be37.pkl",
+              "cache_input_text_sha256": "f3278acc3e973de07972c33df88867ad2aac03d3b9e882d0ade2a21f540349db",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "e5a3d69d82e4526c",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            62464
+          ],
+          "unprocessed_array_sha256": "5acfca96bac3d1193b96de308839f1b671c9c6979acea8d8cec99624c933f79c"
+        },
+        {
+          "exact_native_cache_key": "eede1a1d33b1dc6963e192b47be6a7389f0bf772.pkl",
+          "pkl_sha256": "43fca031f4c7cdc4563fa5633cc27a92826cc5ec60fb68ee710270765b2132c1",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S15",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "His earnings began only after his arrangement's expiry around 1995.",
+              "exact_native_cache_key": "eede1a1d33b1dc6963e192b47be6a7389f0bf772.pkl",
+              "cache_input_text_sha256": "250865c3ebcd456517266c18ace72effd1c3f7d3e4a20f322d43db57fa58ceac",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "43fca031f4c7cdc4",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            136192
+          ],
+          "unprocessed_array_sha256": "bf8c200d4b6ff48c2e3471e763abd32a4a4ac4f75d406ce93e42445a9909dd90"
+        },
+        {
+          "exact_native_cache_key": "7c3cb1e6ba7f150cf2a2e44b564997b01e87cced.pkl",
+          "pkl_sha256": "9784e24179bc847b3bb2cdff433bb9217fa09206214d246169e1fa1f14a63495",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S16",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "In 1996 he and Rogers founded The Tetris Company to manage the rights.",
+              "exact_native_cache_key": "7c3cb1e6ba7f150cf2a2e44b564997b01e87cced.pkl",
+              "cache_input_text_sha256": "513792e2fc625280ec87fa07c022cd4842c190043829b6a66054bc42fd960f60",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "9784e24179bc847b",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            135168
+          ],
+          "unprocessed_array_sha256": "bae2ea8ff5eb529f5cb004503393d148b783b7d6785bcc3368e1cdcb4417036f"
+        },
+        {
+          "exact_native_cache_key": "a9e82b1a52a15a04fc2352a72d5f141c0804f0fa.pkl",
+          "pkl_sha256": "4eb3a223621728bc9b57c44fe4fab904e1f1f5f1322e02e20ac122f8ac5f9e06",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S17",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "The man whose puzzle once spread for nothing later helped decide who could sell it.",
+              "exact_native_cache_key": "a9e82b1a52a15a04fc2352a72d5f141c0804f0fa.pkl",
+              "cache_input_text_sha256": "08f3b9d608d14e6da81b8a29e2aadf5f71bae886504d6c15d8440bdd4fa850cf",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "4eb3a223621728bc",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            108544
+          ],
+          "unprocessed_array_sha256": "671110005e317ab3fda9f51f623af6299dc1e7a096eeed8d481df42c9ec26269"
+        }
+      ],
+      "missing_reference_key_count": 0,
+      "observed_missing_keys_covered": [],
+      "new_private_cache_names": [],
+      "native_single_thread_marker_verified": true,
+      "single_thread_sessions": [
+        {
+          "intra_op_num_threads": 1,
+          "inter_op_num_threads": 1
+        },
+        {
+          "intra_op_num_threads": 1,
+          "inter_op_num_threads": 1
+        }
+      ],
+      "models_sha256": {
+        "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+        "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+        "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+      },
+      "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+      "existing_private_cache_count": 11514,
+      "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+      "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+      "existing_private_cache_bytes_unchanged": true,
+      "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+      "public_repository_cache_unchanged": true,
+      "producer_pcm_existed_before": false,
+      "producer_pcm_sha256_before": null,
+      "producer_pcm_sha256_after": null,
+      "accepted_aac_adts_sha256_before": "5649e6746d919510ba830daa5509ab68814dc1afe4d3578cf9c246dfb2c4a0e6",
+      "accepted_aac_adts_sha256_after": "5649e6746d919510ba830daa5509ab68814dc1afe4d3578cf9c246dfb2c4a0e6",
+      "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+      "private_cache_exported": false
+    },
+    "checker_reference_preparation_program_sha256": "f6f2a032e207085e7252d036e39430fb80b06e84a721c525b61196d021c5ca12",
+    "fresh_current_article_reference": {
+      "article": "34",
+      "removed_temporary_gt_files": [],
+      "processed_pcm_or_raw_mother_cache_modified": false,
+      "purpose": "Original synth/labels/audit rebuild fresh for this production; no old CPU GT reuse."
+    },
+    "temporary_output_reset": {
+      "removed": [],
+      "production_started_ns": 1794650637638562484,
+      "repository_outputs_modified": false
+    },
+    "reviewed_gain_control_preservation": [
+      {
+        "stage": "canonical-draft",
+        "requested_gain_controls": {
+          "/句子增益dB": {
+            "S3": -1.0
+          }
+        },
+        "actual_gain_controls": {
+          "/句子增益dB": {
+            "S3": -1.0
+          }
+        },
+        "exactly_preserved": true
+      },
+      {
+        "stage": "canonical-final4K",
+        "requested_gain_controls": {
+          "/句子增益dB": {
+            "S3": -1.0
+          }
+        },
+        "actual_gain_controls": {
+          "/句子增益dB": {
+            "S3": -1.0
+          }
+        },
+        "exactly_preserved": true
+      }
+    ],
+    "canonical_video_sha256": "2a22cbec7b023d7bd96782b3f03d9a3009b97a9966521e555431e7ce79a110ee",
+    "canonical_aac_adts_sha256": "5649e6746d919510ba830daa5509ab68814dc1afe4d3578cf9c246dfb2c4a0e6",
+    "canonical_pipeline_passed": true,
+    "cached_input_wav_sha256": null,
+    "final_wav_sha256": "460d6113f34677d349884ddb0e80b68ff4bd6f16efce5feb0e998e7eab9659d4",
+    "accepted_prior_audio_packet_preservation": {
+      "file": "34-accepted-audio-packet-preservation.json",
+      "sha256": "89127186114cf80db78d6b7da5c20d29cae67f1e684c070efe6c01f475e7ca09",
+      "article": "34",
+      "scope": "This34 revision changes focus colours and Chinese explanations only.",
+      "accepted_video_sha256": "c75a9a89749e3987c1aa806630f90e06f68b1281101c180a6a5f4abfbc8b8739",
+      "canonical_video_sha256": "2a22cbec7b023d7bd96782b3f03d9a3009b97a9966521e555431e7ce79a110ee",
+      "accepted_packet_count": 6643,
+      "canonical_packet_count": 6643,
+      "accepted_packet_records_sha256": "349d4e8ba4e71b28b9cb30af506ddd844f40de9722b9ce3b07dbe92161d2b5da",
+      "canonical_packet_records_sha256": "349d4e8ba4e71b28b9cb30af506ddd844f40de9722b9ce3b07dbe92161d2b5da",
+      "AAC_payload_side_data_and_absolute_PTS_DTS_duration_identical": true,
+      "codec_parameters_identical": true,
+      "codec_parameters": [
+        {
+          "codec_name": "aac",
+          "profile": "LC",
+          "codec_tag_string": "mp4a",
+          "sample_fmt": "fltp",
+          "sample_rate": "48000",
+          "channels": 1,
+          "channel_layout": "mono",
+          "time_base": "1/48000"
+        },
+        {
+          "codec_name": "aac",
+          "profile": "LC",
+          "codec_tag_string": "mp4a",
+          "sample_fmt": "fltp",
+          "sample_rate": "48000",
+          "channels": 1,
+          "channel_layout": "mono",
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_packet_reader_sha256": "dc204b91415e28297b844e9666087b0e23e67194944b359cb5fb5ddbca0f1208",
+      "private_PCM_or_cache_read": false
+    },
+    "accepted_prior_aac_identical": true,
+    "video_sha256": "ce5970001c4e1410f7274b7488242e8c3283e24cf8600ed76a3e28d944cd32e0",
+    "width": 3840,
+    "height": 2160,
+    "summary_seconds": 2,
+    "summary_frames": 60,
+    "summary_start_seconds": 139.7,
+    "delay_after_voice_seconds": 0.0,
+    "actual_source_collection": {
+      "article": "34",
+      "kind": "actual-production-source-collection",
+      "new_quality_gate": false,
+      "files": {
+        "request_json": {
+          "file": "34-request-source.json",
+          "sha256": "5350c08cdc6dfa5579f0bdc6960805cbe079a1c471c46bb2250f11b32da34868",
+          "origin": "immutable_request"
+        },
+        "request_generator": {
+          "file": "34-request-gen.py",
+          "sha256": "f09d0ddd27e46fea69a27c7a5b05844b01372d7acf7c8af48ae9d7b1d00ef314",
+          "origin": "immutable_request"
+        },
+        "used_generator": {
+          "file": "34-used-gen.py",
+          "sha256": "f09d0ddd27e46fea69a27c7a5b05844b01372d7acf7c8af48ae9d7b1d00ef314",
+          "origin": "actual_production_filesystem"
+        },
+        "actual_working_source": {
+          "file": "34-actual-working-source.json",
+          "sha256": "117097af02bc7c5395962997d9b21786c78e7cb125cf9cef1ce77ca424939917",
+          "origin": "actual_production_filesystem"
+        },
+        "request_manuscript": {
+          "file": "34-request-manuscript.md",
+          "sha256": "fdfd966f8624bc506b7cfe16da04f2f7382ce5566fab3bcb35c3d99dd6d4a5f2",
+          "origin": "immutable_request"
+        },
+        "actual_working_manuscript": {
+          "file": "34-actual-working-manuscript.md",
+          "sha256": "c62b687fff87a667c266e293ac81e4e4b5b3f2bdc239c14bbc084ce6e118c9dc",
+          "origin": "actual_production_filesystem"
+        }
+      },
+      "generator_execution_observed": false,
+      "generator_execution_evidence": "No fresh generator execution log; do not claim this GEN was executed during rendering.",
+      "source_differences": {
+        "file": "34-actual-source-differences.json",
+        "sha256": "cd53e261b8afb3e5af19f3873819190807bb07b720868ebf634e19a24988a86a"
+      }
+    }
+  },
+  "native_status_sha256": "ce76cf03c09e48a7ce1c50f7786606078189079d4cd0f48f6da3554a07ea6d3d"
+}
