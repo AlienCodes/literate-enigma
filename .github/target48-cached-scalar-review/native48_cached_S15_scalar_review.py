@@ -76,7 +76,7 @@ try:
     original_window = T / '逐段看声音.py'
     tree = ast.parse(original_window.read_text())
     funcs = [n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name in ('per', 'spec')]
-    ns = {'np': np, '__builtins__': __builtins__}
+    ns = {'np': np, 'SR': SR, '__builtins__': __builtins__}
     exec(compile(ast.Module(body=funcs, type_ignores=[]), str(original_window), 'exec'), ns)
     per, spectrum = ns['per'], ns['spec']
     F5 = int(0.005 * SR)
