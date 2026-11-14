@@ -1,0 +1,367 @@
+{
+  "kind": "source54-existing-two-loudness-confirmations-original-comparison-context-readonly-evidence",
+  "quality_acceptance": false,
+  "original_rule": "audio_qc 48k PCM16 decode, 10ms RMS, relative45dB silence segmentation, >0.4s speech islands, whole-track median; source54 DIP6.0. No neighboring baseline is used by the original rule. Neighbors independently included below.",
+  "old_current_measurements": [
+    {
+      "path": "/workspace/work/video-audit70-20261113/diagnosis54-public-20261114/54-accepted4K.mp4",
+      "mp4_sha256": "c9b1c7a4f5a47f3fc230cc6b2bfa44af1bdefe784e314d231cd8b06f25a6fff2",
+      "actual_decoded_PCM16_sha256": "8eb2f803aa3e77e86d3da00b12b8b914cc2118b761a01af3c7e8c0b911ccb322",
+      "sample_count": 7726080,
+      "original_segmentation_count": 115,
+      "global_baseline_median_dBFS": -24.25881173781708,
+      "targets": [
+        {
+          "key": "95.6–96.0s",
+          "exact_segment_index": 71,
+          "exact_segment_span_s": [
+            95.58,
+            96.02
+          ],
+          "RMS_dBFS": -30.57848121785078,
+          "whole_piece_comparison_baseline_median_dBFS": -24.25881173781708,
+          "dip_exact_dB": 6.319669480033699,
+          "original_reported_dB": 6.3,
+          "neighbor_context_two_segments_each_side": [
+            {
+              "segment_index": 69,
+              "span_s": [
+                91.47,
+                92.65
+              ],
+              "RMS_dBFS": -25.850377819110726,
+              "global_median_minus_segment_dB": 1.5915660812936459
+            },
+            {
+              "segment_index": 70,
+              "span_s": [
+                94.07000000000001,
+                95.55
+              ],
+              "RMS_dBFS": -22.284335209795522,
+              "global_median_minus_segment_dB": -1.9744765280215582
+            },
+            {
+              "segment_index": 71,
+              "span_s": [
+                95.58,
+                96.02
+              ],
+              "RMS_dBFS": -30.57848121785078,
+              "global_median_minus_segment_dB": 6.319669480033699
+            },
+            {
+              "segment_index": 72,
+              "span_s": [
+                96.84,
+                97.34
+              ],
+              "RMS_dBFS": -23.183570302096292,
+              "global_median_minus_segment_dB": -1.0752414357207876
+            },
+            {
+              "segment_index": 73,
+              "span_s": [
+                97.4,
+                98.42
+              ],
+              "RMS_dBFS": -24.495723385045736,
+              "global_median_minus_segment_dB": 0.23691164722865565
+            }
+          ]
+        },
+        {
+          "key": "118.3–118.8s",
+          "exact_segment_index": 87,
+          "exact_segment_span_s": [
+            118.35,
+            118.78
+          ],
+          "RMS_dBFS": -30.730405995543315,
+          "whole_piece_comparison_baseline_median_dBFS": -24.25881173781708,
+          "dip_exact_dB": 6.471594257726235,
+          "original_reported_dB": 6.5,
+          "neighbor_context_two_segments_each_side": [
+            {
+              "segment_index": 85,
+              "span_s": [
+                116.89,
+                117.35
+              ],
+              "RMS_dBFS": -22.41985811117397,
+              "global_median_minus_segment_dB": -1.8389536266431108
+            },
+            {
+              "segment_index": 86,
+              "span_s": [
+                117.41,
+                117.92
+              ],
+              "RMS_dBFS": -21.099802893092807,
+              "global_median_minus_segment_dB": -3.159008844724273
+            },
+            {
+              "segment_index": 87,
+              "span_s": [
+                118.35,
+                118.78
+              ],
+              "RMS_dBFS": -30.730405995543315,
+              "global_median_minus_segment_dB": 6.471594257726235
+            },
+            {
+              "segment_index": 88,
+              "span_s": [
+                119.22999999999999,
+                119.64
+              ],
+              "RMS_dBFS": -26.32492502636584,
+              "global_median_minus_segment_dB": 2.0661132885487596
+            },
+            {
+              "segment_index": 89,
+              "span_s": [
+                119.68,
+                121.84
+              ],
+              "RMS_dBFS": -24.95456136051039,
+              "global_median_minus_segment_dB": 0.6957496226933095
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/diagnosis54-public-20261114/54-failed-draft.mp4",
+      "mp4_sha256": "350c130414892b96ed1521e0dbfb5b875e1c2c240a8cfb64f2e934f9a911ed07",
+      "actual_decoded_PCM16_sha256": "e483f671305afa9e1f9735000064abba9020b6a05a4efd569a1489054d164ada",
+      "sample_count": 7726080,
+      "original_segmentation_count": 115,
+      "global_baseline_median_dBFS": -24.244028252437452,
+      "targets": [
+        {
+          "key": "95.6–96.0s",
+          "exact_segment_index": 71,
+          "exact_segment_span_s": [
+            95.58,
+            96.02
+          ],
+          "RMS_dBFS": -30.57848121785078,
+          "whole_piece_comparison_baseline_median_dBFS": -24.244028252437452,
+          "dip_exact_dB": 6.334452965413327,
+          "original_reported_dB": 6.3,
+          "neighbor_context_two_segments_each_side": [
+            {
+              "segment_index": 69,
+              "span_s": [
+                91.47,
+                92.65
+              ],
+              "RMS_dBFS": -25.850377819110726,
+              "global_median_minus_segment_dB": 1.6063495666732734
+            },
+            {
+              "segment_index": 70,
+              "span_s": [
+                94.07000000000001,
+                95.55
+              ],
+              "RMS_dBFS": -22.284335209795522,
+              "global_median_minus_segment_dB": -1.9596930426419306
+            },
+            {
+              "segment_index": 71,
+              "span_s": [
+                95.58,
+                96.02
+              ],
+              "RMS_dBFS": -30.57848121785078,
+              "global_median_minus_segment_dB": 6.334452965413327
+            },
+            {
+              "segment_index": 72,
+              "span_s": [
+                96.84,
+                97.34
+              ],
+              "RMS_dBFS": -23.183570302096292,
+              "global_median_minus_segment_dB": -1.06045795034116
+            },
+            {
+              "segment_index": 73,
+              "span_s": [
+                97.4,
+                98.42
+              ],
+              "RMS_dBFS": -24.495723385045736,
+              "global_median_minus_segment_dB": 0.25169513260828325
+            }
+          ]
+        },
+        {
+          "key": "118.3–118.8s",
+          "exact_segment_index": 87,
+          "exact_segment_span_s": [
+            118.35,
+            118.78
+          ],
+          "RMS_dBFS": -30.730405995543315,
+          "whole_piece_comparison_baseline_median_dBFS": -24.244028252437452,
+          "dip_exact_dB": 6.486377743105862,
+          "original_reported_dB": 6.5,
+          "neighbor_context_two_segments_each_side": [
+            {
+              "segment_index": 85,
+              "span_s": [
+                116.89,
+                117.35
+              ],
+              "RMS_dBFS": -22.41985811117397,
+              "global_median_minus_segment_dB": -1.8241701412634832
+            },
+            {
+              "segment_index": 86,
+              "span_s": [
+                117.41,
+                117.92
+              ],
+              "RMS_dBFS": -21.099802893092807,
+              "global_median_minus_segment_dB": -3.144225359344645
+            },
+            {
+              "segment_index": 87,
+              "span_s": [
+                118.35,
+                118.78
+              ],
+              "RMS_dBFS": -30.730405995543315,
+              "global_median_minus_segment_dB": 6.486377743105862
+            },
+            {
+              "segment_index": 88,
+              "span_s": [
+                119.22999999999999,
+                119.64
+              ],
+              "RMS_dBFS": -26.32492502636584,
+              "global_median_minus_segment_dB": 2.0808967739283872
+            },
+            {
+              "segment_index": 89,
+              "span_s": [
+                119.68,
+                121.84
+              ],
+              "RMS_dBFS": -24.95456136051039,
+              "global_median_minus_segment_dB": 0.7105331080729371
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "whole_logical_sentence_plus_margin_and_alarm_window_identity": [
+    {
+      "scope": "whole_S11_plus200ms_each_side",
+      "span_s": [
+        93.84,
+        102.58
+      ],
+      "samples": 419520,
+      "old_PCM16_sha256": "cef87c72c3fce8780685a403dba0d833aa552abc794f7d5a989b1b371e997e67",
+      "current_PCM16_sha256": "cef87c72c3fce8780685a403dba0d833aa552abc794f7d5a989b1b371e997e67",
+      "whole_window_samples_exact": true,
+      "different_sample_count": 0,
+      "max_abs_PCM16_difference": 0
+    },
+    {
+      "scope": "whole_S13_plus200ms_each_side",
+      "span_s": [
+        114.71,
+        122.065
+      ],
+      "samples": 353040,
+      "old_PCM16_sha256": "1a3aabee08a98fd87fc19cd7142ade108eeeca1f42dbdd4757f2e4264debacfd",
+      "current_PCM16_sha256": "1a3aabee08a98fd87fc19cd7142ade108eeeca1f42dbdd4757f2e4264debacfd",
+      "whole_window_samples_exact": true,
+      "different_sample_count": 0,
+      "max_abs_PCM16_difference": 0
+    },
+    {
+      "scope": "S11_alarm_region",
+      "span_s": [
+        95.58,
+        96.02
+      ],
+      "samples": 21120,
+      "old_PCM16_sha256": "9a37c4ba38edac0d0cd8372c2b75eb46e2297bffd5abd14515838bd922c364b7",
+      "current_PCM16_sha256": "9a37c4ba38edac0d0cd8372c2b75eb46e2297bffd5abd14515838bd922c364b7",
+      "whole_window_samples_exact": true,
+      "different_sample_count": 0,
+      "max_abs_PCM16_difference": 0
+    },
+    {
+      "scope": "S13_alarm_region",
+      "span_s": [
+        118.35,
+        118.78
+      ],
+      "samples": 20640,
+      "old_PCM16_sha256": "f84693255c4117eef95549315ee90ac93dfa15d03d652407f5c45f47e1781d69",
+      "current_PCM16_sha256": "f84693255c4117eef95549315ee90ac93dfa15d03d652407f5c45f47e1781d69",
+      "whole_window_samples_exact": true,
+      "different_sample_count": 0,
+      "max_abs_PCM16_difference": 0
+    }
+  ],
+  "exact_existing_cases": [
+    {
+      "key": "95.6–96.0s",
+      "existing_confirmation_verbatim": {
+        "配音指纹": "8058ea5228f9",
+        "低": 6.6,
+        "句子": "S11 Ash and sulphur dioxide,（逗号前 dioxide 的 -ide）",
+        "依据": "2026-11-10 逐 50 ms 实测新 work_54/a.wav（S4 重新合成后整篇后移约 0.40 秒，S11 声音本身没变）：95.55–95.65 是 dioxide 的 /ks/（2 kHz 以上占 -0～-1 dB，清楚），95.70 aɪ -14 dB，95.75–96.00 是 /d/ 和逗号前降调的浊音衰减（-18→-39 dB、2 kHz 以上占 -12～-21 dB），96.05 起停顿；与 11-05 实测（原 95.15–95.65）逐段对应，读音清楚、不闷不哑，是逗号前降调变轻",
+        "用户原话": "用户 2026-11-04（CLAUDE.md 守则22，主会话是总负责人）：“你拥有最高决策权……你是总负责人……你来帮我做最好的决定，但是前提是这个决定他能够是最好的。”声音按实测定，交主会话核定；主会话 2026-11-05 已按守则22 定稿 54"
+      },
+      "same_original_segment_time_key": true,
+      "old_vs_current_target_RMS_exact": true,
+      "old_vs_current_neighbor_context_exact": false,
+      "global_median_change_dB": 0.014783485379627592,
+      "actual_current_reported_dB": 6.3,
+      "original_confirmed_dB": 6.6,
+      "original_plus0_3_bound": 6.8999999999999995,
+      "original_plus0_3_predicate_still_true": true,
+      "basis_not_rewritten_or_human_listening_invented": true,
+      "neighbor_spans_and_RMS_exact_excluding_global_relative_values": true,
+      "comparison_context_note": "Original rule compares to whole-piece median, not neighbor loudness. Neighbor spans and RMS are exactly unchanged; median-relative values differ only because whole-piece median rises 0.01478348538 dB. This is explicitly not equality of the full comparison baseline."
+    },
+    {
+      "key": "118.3–118.8s",
+      "existing_confirmation_verbatim": {
+        "配音指纹": "8058ea5228f9",
+        "低": 6.5,
+        "句子": "S13 …global temperatures dipped…（temperatures 的非重读词尾 -tures）",
+        "依据": "2026-11-10 逐 50 ms 实测新 work_54/a.wav（整篇后移约 0.40 秒，S13 声音本身没变）：118.30–118.40 是 temperatures 的 /tʃ/（2 kHz 以上占 -0～-1 dB），118.45–118.60 非重读 ɚ（-18→-35 dB、2 kHz 以上占 -10～-29 dB 的正常浊音），118.65–118.70 词尾 /z/（-20～-21 dB、高频占 -0 dB，清楚），118.80–118.85 是已核实的非人声区间（数字静音），118.95 起 dipped；与 11-05 实测（原 117.90–118.55）逐段对应，读音清楚、不闷不哑，是非重读音节变轻",
+        "用户原话": "用户 2026-11-04（CLAUDE.md 守则22，主会话是总负责人）：“你拥有最高决策权……你是总负责人……你来帮我做最好的决定，但是前提是这个决定他能够是最好的。”声音按实测定，交主会话核定；主会话 2026-11-05 已按守则22 定稿 54"
+      },
+      "same_original_segment_time_key": true,
+      "old_vs_current_target_RMS_exact": true,
+      "old_vs_current_neighbor_context_exact": false,
+      "global_median_change_dB": 0.014783485379627592,
+      "actual_current_reported_dB": 6.5,
+      "original_confirmed_dB": 6.5,
+      "original_plus0_3_bound": 6.8,
+      "original_plus0_3_predicate_still_true": true,
+      "basis_not_rewritten_or_human_listening_invented": true,
+      "neighbor_spans_and_RMS_exact_excluding_global_relative_values": true,
+      "comparison_context_note": "Original rule compares to whole-piece median, not neighbor loudness. Neighbor spans and RMS are exactly unchanged; median-relative values differ only because whole-piece median rises 0.01478348538 dB. This is explicitly not equality of the full comparison baseline."
+    }
+  ],
+  "global_whole_audio_identical_claimed": false,
+  "whole_audio_other_regions_changed_preserved_for_separate_current-reference_binding": true,
+  "raw_source_CF_checker_threshold_or_media_mutated": false,
+  "no_subjective_or_user_hearing_claim": true,
+  "utc": "2026-11-14T20:22:53.860559+00:00",
+  "actual_MP4_and_PCM_decode_fullSHA_bound_to_original_sources": true
+}
