@@ -4,7 +4,7 @@
 ## 英文
 In May 1985, after a **bruising** **confrontation**, Apple's **board** **ultimately** backed chief **executive** John Sculley. Steve Jobs, 30, was **stripped of** his **managerial** duties at the company he had **co-founded**. That September, **sidelined** and **alienated**, he **resigned**.
 
-**Rewind** three decades. Born in **San Francisco** on 24 February 1955, Jobs was **adopted** as a **newborn**. On 1 April 1976 he **founded** Apple with Steve Wozniak, the **electronics** engineer behind its first **prototypes**. Apple's **garage** **origins** are largely **symbolic**; Wozniak calls their **significance** **inflated**. Apple **floated** on 12 December 1980; the **flagship** Macintosh **debuted** on 24 January 1984.
+**Rewind** three decades. Born in **San Francisco** on 24 February 1955, Jobs was **adopted** as a **newborn**. On 1 April 1976 he **founded** Apple with Steve Wozniak, the **electronics** engineer behind its first **prototypes**. Apple's garage **origins** are largely **symbolic**; Wozniak calls their **significance** **inflated**. Apple **floated** on 12 December 1980; the **flagship** Macintosh **debuted** on 24 January 1984.
 
 **Exile** proved **productive**. Later in 1985 Jobs **founded** NeXT, a computer **start-up**. In February 1986 he **acquired** Lucasfilm's computer-**graphics** **outfit**, which became **Pixar**. It began as a **manufacturer** of **specialised** **hardware**, not chiefly an **animation** **studio**. Toy Story, **released** on 22 November 1995, was the first **feature-length** **computer-animated** film.
 
@@ -14,15 +14,15 @@ In October 2003 Jobs received a **diagnosis**: an **uncommon**, **cancerous** **
 
 ## 中文
 
-1985年5月，经过一场**十分激烈的**(bruising)**争执/交锋**(confrontation)，苹果公司**董事会**(board)**最终**(ultimately)支持首席**执行官**(executive)约翰·斯卡利。（after…：介词短语作时间状语）（back：支持；chief executive：首席执行官，作 John Sculley 的头衔）时年30岁的史蒂夫·乔布斯在他参与**创办**(co-founded)的公司里被**剥夺了**(stripped of)**管理的**(managerial)职务。（30：插入语，说明他当时的年龄）（be stripped of…：被剥夺……；he had co-founded：定语从句，省略了关系代词，修饰 company）同年9月，**已被架空的**(sidelined)、**被疏远的**(alienated)乔布斯**辞职了**(resigned)。（sidelined and alienated：分词短语作状语，说明他辞职时的处境）（sidelined：指被排挤出核心圈子，剥夺实权、靠边站）（alienated：指感到被疏远、排斥，从而觉得格格不入、失去归属感）
+1985年5月，经过一场**十分激烈的**(bruising)**争执/交锋**(confrontation)，苹果公司**董事会**(board)**最终**(ultimately)支持首席**执行官**(executive)约翰·斯卡利。（after…：介词短语作时间状语）（back：支持；chief executive：首席执行官，作 John Sculley 的头衔）时年30岁的史蒂夫·乔布斯在他参与**创办**(co-founded)的公司里被**剥夺了**(stripped of)**管理的**(managerial)职务。（30：插入语，说明他当时的年龄）（be stripped of…：被剥夺……；he had co-founded：定语从句，省略了关系代词，修饰 company）同年9月，已被**架空**(sidelined)、**被疏远的**(alienated)乔布斯**辞职了**(resigned)。（sidelined and alienated：分词短语作状语，说明他辞职时的处境）（sidelined：指被排挤出核心圈子，剥夺实权、靠边站）（alienated：指感到被疏远、排斥，从而觉得格格不入、失去归属感）
 
-**回溯**(Rewind)三十年。（rewind：本义倒带；从1985年往回倒三十年，正是乔布斯出生的1955年）1955年2月24日，乔布斯生于**旧金山**(San Francisco)，还是**新生儿**(newborn)时就**被收养**(adopted)。（Born in…：过去分词短语作状语）（as a newborn：作为新生儿，指刚出生不久）1976年4月1日，他与史蒂夫·沃兹尼亚克**创办了**(founded)苹果公司；沃兹尼亚克是苹果首批**样机**(prototypes)背后的**电子**(electronics)工程师。（the electronics engineer…：同位语，补充说明 Steve Wozniak；behind…：介词短语作后置定语，修饰 engineer）苹果的**车库**(garage)**起源**(origins)在很大程度上只是具有**象征**(symbolic)意义的；沃兹尼亚克称其**意义**(significance)被**夸大了**(inflated)。（largely：在很大程度上）（call A B：认为 A 是 B；their 指 Apple's garage origins）1980年12月12日，苹果公司**上市**(floated)；而**旗舰**(flagship)产品 Macintosh**首次推出**(debuted)于1984年1月24号。（float：使公司上市）（debut：首次亮相，首次推出）
+**回溯**(Rewind)三十年。（rewind：本义倒带；从1985年往回倒三十年，正是乔布斯出生的1955年）1955年2月24日，乔布斯生于**旧金山**(San Francisco)，还是**新生儿**(newborn)时就**被收养**(adopted)。（Born in…：过去分词短语作状语）（as a newborn：作为新生儿，指刚出生不久）1976年4月1日，他与史蒂夫·沃兹尼亚克**创办了**(founded)苹果公司；沃兹尼亚克是苹果首批**样机**(prototypes)背后的**电子**(electronics)工程师。（the electronics engineer…：同位语，补充说明 Steve Wozniak；behind…：介词短语作后置定语，修饰 engineer）苹果的车库**起源**(origins)在很大程度上只是具有**象征**(symbolic)意义的；沃兹尼亚克称其**意义**(significance)被**夸大了**(inflated)。（largely：在很大程度上）（call A B：认为 A 是 B；their 指 Apple's garage origins）1980年12月12日，苹果公司**上市**(floated)；而**旗舰**(flagship)产品 Macintosh**首次推出**(debuted)于1984年1月24号。（float：使公司上市）（debut：首次亮相，首次推出）
 
 这段**放逐**(Exile)岁月**成果丰硕**(productive)。（prove＋形容词：结果是……，事实证明……）1985年晚些时候，乔布斯**创办了**(founded) NeXT，一家电脑**初创公司**(start-up)。（a computer start-up：同位语，补充说明 NeXT）1986年2月，他**收购了**(acquired)卢卡斯影业的电脑**图形**(graphics)**团队**(outfit)，这个团队后来成为**皮克斯**(Pixar)。（outfit：口语，团队，小机构）（which…：非限制性定语从句，补充说明 outfit）皮克斯起初是一家**制造商**(manufacturer)，生产**专用**(specialised)**硬件**(hardware)，主要并不是**动画**(animation)**工作室**(studio)。（begin as…：起初是……；of specialised hardware：of 结构作后置定语，修饰 manufacturer）（not chiefly…：主要并不是……，与 a manufacturer 对照）《玩具总动员》于1995年11月22日**上映**(released)，是第一部**长篇**(feature-length)**电脑动画**(computer-animated)电影。（released on…：过去分词短语作后置定语，补充说明 Toy Story）
 
 1996年12月20日，局面出现**彻底转变**(reversal)。苹果同意收购NeXT，从而获得了**最终版**(eventual) Mac OS X 的**核心**(core)软件，并**与**(reuniting with)**关系疏远的**(estranged)联合创始人**重聚**(reuniting with)。（冒号后具体说明彻底转变的内容）（reversal：局势、决定或状态彻底转向了相反的方向（即：逆转/反转））（agree to do：同意做……）（gaining… and reuniting…：现在分词短语作结果状语）（reunite with…：与……重聚；its estranged co-founder：指乔布斯）1997年8月，微软**向**(invested in)这个**陷入困境的**(distressed)**竞争对手**(competitor)**投资**(invested in)1.5亿美元；同年9月，乔布斯**接掌大权**(took the reins)，出任**临时**(interim)负责人。（invest A in B：向 B 投资 A）（take the reins：接掌大权，reins 本义缰绳；as：作为）他后来说，苹果当时离**破产**(ruin)只差几周。（he later said：插入语；weeks from ruin：离破产只有几周）iMac、iPod和 iPhone相继问世，iPhone于2007年1月9日公开**展示**(showcased)。（the iPhone showcased…：独立主格结构，补充说明 iPhone）
 
-2003年10月，乔布斯收到了一份**诊断**(diagnosis)：一种**罕见的**(uncommon)**恶性**(cancerous)**胰腺**(pancreatic)**肿瘤**(tumour)。（receive a diagnosis：被诊断出；冒号后说明诊断结果）2011年8月，苹果公司**一度**(briefly)**超越**(overtook)埃克森美孚，成为全球**市值最高的**(most valuable)公司。（overtake A as…：超过 A，成为……）2011年8月24日，他的**任期**(tenure)结束；2011年10月5日，他去世，终年56岁。（aged 56：作状语，说明去世时的年龄）（在他最终离开时）他已在那家曾把他**逐出**(ousted)的公司**掌舵**(at the helm of)近十四年。（at the helm of…：执掌……，helm 本义船舵；that ousted him：定语从句，修饰 company）（简述：▸创业：1976年，乔布斯与沃兹尼亚克创办苹果，沃兹尼亚克研制首批样机。▹苹果1980年上市；广为流传的车库创业故事，意义被夸大。▸离开：1985年，董事会支持首席执行官斯卡利，撤掉乔布斯的管理权，乔布斯随后辞职。▸另起：他创办一家电脑公司，又收购后来成为皮克斯的图形部门。▹皮克斯起初卖专用硬件，1995年推出长篇电脑动画《玩具总动员》。▸回归：1996年，苹果同意收购他的电脑公司，获得日后操作系统的核心软件，▹他也重回苹果；次年微软注资，乔布斯开始掌舵。▸重振：iMac、iPod、iPhone相继推出，苹果2011年一度市值全球第一。▹患胰腺恶性肿瘤的乔布斯同年卸任、去世，此前已领导这家曾撤掉他职权的公司近十四年。）
+2003年10月，乔布斯收到了一份**诊断**(diagnosis)：一种**罕见的**(uncommon)**恶性**(cancerous)**胰腺**(pancreatic)**肿瘤**(tumour)。（receive a diagnosis：被诊断出；冒号后说明诊断结果）2011年8月，苹果公司**一度**(briefly)**超越**(overtook)埃克森美孚，成为全球**市值最高的**(most valuable)公司。（overtake A as…：超过 A，成为……）2011年8月24日，他的**任期**(tenure)结束；2011年10月5日，他去世，终年56岁。（aged 56：作状语，说明去世时的年龄）（在他最终离开时）他已在那家曾把他**逐出**(ousted)的公司**掌舵**(at the helm of)近十四年。（at the helm of…：执掌……，helm 本义船舵；that ousted him：定语从句，修饰 company）（简述：▸创业：1976年，乔布斯与沃兹尼亚克创办苹果，沃兹尼亚克研制首批样机。苹果1980年上市；广为流传的车库创业故事，意义被夸大。▸离开：1985年，董事会支持首席执行官斯卡利，撤掉乔布斯的管理权，乔布斯随后辞职。▸另起：他创办一家电脑公司，又收购后来成为皮克斯的图形部门。皮克斯起初卖专用硬件，1995年推出长篇电脑动画《玩具总动员》。▸回归：1996年，苹果同意收购他的电脑公司，获得日后操作系统的核心软件，他也重回苹果；次年微软注资，乔布斯开始掌舵。▸重振：iMac、iPod、iPhone相继推出，苹果2011年一度市值全球第一。患胰腺恶性肿瘤的乔布斯同年卸任、去世，此前已领导这家曾撤掉他职权的公司近十四年。）
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -35,7 +35,7 @@ In October 2003 Jobs received a **diagnosis**: an **uncommon**, **cancerous** **
 | co-founded | 本文：创办；v. (co-found) 共同创办（co-found a charity/band） | 1 |
 | stripped of | 本文：剥夺了；v. (strip) 剥夺，夺去（be stripped of a title/medal） | 1 |
 | managerial | 本文：管理的；adj. 管理的，经理的（managerial skills/experience） | 1 |
-| sidelined | 本文：已被架空的；v. (sideline) 使靠边站，排挤（feel sidelined；be sidelined by injury） | 1 |
+| sidelined | 本文：架空；v. (sideline) 使靠边站，排挤（feel sidelined；be sidelined by injury） | 1 |
 | alienated | 本文：被疏远的；adj./v. (alienate) 疏离的，心生隔阂的（feel alienated from society；alienate voters） | 1 |
 | resigned | 本文：辞职了；v. (resign) 辞职（resign from a post；resign as captain） | 1 |
 | Rewind | 本文：回溯；v. 倒回（磁带、视频等）；回顾（rewind the tape；press rewind） | 2 |
@@ -45,7 +45,6 @@ In October 2003 Jobs received a **diagnosis**: an **uncommon**, **cancerous** **
 | founded | 本文：创办了；v. (found) 创办，创建（found a company/school；be founded in 1976） | 2 |
 | prototypes | 本文：样机；n. (prototype) 原型，样机（build/test a prototype） | 2 |
 | electronics | 本文：电子；n. 电子学；电子产品（consumer electronics；an electronics company） | 2 |
-| garage | 本文：车库；n. 车库（in a garage；a garage door） | 2 |
 | origins | 本文：起源；n. (origin) 起源，起家；出身（the origins of the universe；of humble origins） | 2 |
 | symbolic | 本文：象征；adj. 象征性的（a symbolic gesture；of symbolic importance） | 2 |
 | significance | 本文：意义；n. 意义，重要性（of great significance；the significance of a discovery） | 2 |
