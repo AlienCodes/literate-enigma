@@ -1,0 +1,53 @@
+{
+  "created_utc": "2026-11-14T02:07:21.324830+00:00",
+  "scope": "Read-only code/path review; existing23 offline tests previously passed, no production release validation or mutation run",
+  "current_tools": {
+    "delivery.py": {
+      "path": "/workspace/work/video-revision-delivery/delivery.py",
+      "sha256": "5ff63ba8084a390a57489b12c75ba7b27bba2ad5454ce376bcfa1356489254d8"
+    },
+    "release_actions.py": {
+      "path": "/workspace/work/video-revision-delivery/release_actions.py",
+      "sha256": "4a0dada242bde4334ec2c02d3b2de12474d56aa62ce64b2605532bbe7ae152ce"
+    },
+    "release_contract.py": {
+      "path": "/workspace/work/video-revision-delivery/release_contract.py",
+      "sha256": "31985e1489d94fd6fa8b625985c0ca82a4912d49950c3fa789bfadce3c17fdf1"
+    },
+    "publish-video-revisions.yml": {
+      "path": "/workspace/work/video-revision-delivery/publish-video-revisions.yml",
+      "sha256": "6c2555288af41f4c7e11ae7b6fdd94e910055635e1db17eadefb1ac4e8f16906"
+    },
+    "input.schema.json": {
+      "path": "/workspace/work/video-revision-delivery/input.schema.json",
+      "sha256": "4f6d048a465401e0c3abc32a1e71819d2d806fd49cf89b9ac50c7639ebff0309"
+    }
+  },
+  "contracts_retained": [
+    "whole validator requires exactly70 new actualV3 articles, no unchanged old videos",
+    "exact_assets creates complete PDF then video01–70 from actual validated reordered-path basename",
+    "frozen475 PDF original4parts reassembled and each part+whole SHA checked; Release only complete file",
+    "body/illustration60/summary60, actualAAC packet absolute-time identity and actual source provenance still required",
+    "release upload iterates only planned71 files, never output-directory glob; inventory/SHA/receipt remain repository records",
+    "original failed outer job kept for specifically approved missing-art recovery; upstream actual quality and final local V3 passed",
+    "safe cleanup exact repository/releaseID/tag/url only after final public71 and permanent dual receipts; no Git tag deletion"
+  ],
+  "confirmed_local_execution_gaps": [
+    {
+      "file": "release_actions.py",
+      "function": "publish",
+      "fact": "requires GITHUB_REPOSITORY primary and reads GITHUB_RUN_ID/GITHUB_SHA/ASSET_COMMIT; existing entry point is native Actions specific",
+      "required_local_handling": "Use real local gh publishing provenance and exact immutable archive commit; never fabricate workflow identifiers or set fake Actions environment"
+    },
+    {
+      "file": "delivery.py",
+      "function": "persist_release_receipt",
+      "fact": "ingress requires an actual publishing workflow and artifact ZIP",
+      "required_local_handling": "Accept an honestly labeled local-gh receipt, reverify actual public71/tags/inventory with shared checker and save same true receipt and hashes in both repositories; no fictional workflow artifact"
+    }
+  ],
+  "future_A21_contract_integration": "15/17/18/30 are pending formal acoustic QA integration, so final all70 source manifest must use their actual new reports rather than mislabel a nonexistent original four-article audio-qc.py result",
+  "whole_validation_not_run_reason": "46 actual new outputs remain pending. This is a known inventory gap, not a new optional quality gate. Do not run stage/publish or copy old MP4s to fill it.",
+  "no_code_changes_made_by_this_review": true,
+  "no_release_or_tag_mutation": true
+}

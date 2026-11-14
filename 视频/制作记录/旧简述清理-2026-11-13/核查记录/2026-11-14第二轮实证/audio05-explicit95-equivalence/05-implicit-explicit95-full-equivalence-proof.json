@@ -1,0 +1,770 @@
+{
+  "kind": "05-transparent-explicit-default95-original-function-sample-identity",
+  "article": "05",
+  "sentence": "S19",
+  "quality_acceptance": false,
+  "production_or_PAY_source_or_core_dictionary_or_cache_modified": false,
+  "TTS_model_inference": false,
+  "private_raw_arrays_WAV_GT_or_cache_bytes_exported": false,
+  "original_maker_SHA256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+  "original_clean_SHA256": "86b3872cbca83437e24da2c7ada5fffd916f06cacdd2b32fee2a78c9b134178d",
+  "original_G72_cache_repository_pin": "64621068034f8b6e09836a6d97210a0e9b2f1ed6",
+  "accepted_source_actual_native_warm_binding": {
+    "article": "05",
+    "accepted_anchor": {
+      "id": "05",
+      "accepted_video_path": "最终版4K视频/05 - The Fingerprint in the Blood - 血里的指纹.mp4",
+      "accepted_video_sha256": "216f567cca37e44bb5403d5b8d8aa7fcb0bf9aaf335f0c3d8516e996dcd42d9a",
+      "accepted_video_git_blob_sha1": "9311d0f1377c2fcab9eec4d6c450948a7add90ab",
+      "accepted_AAC_ADTS_SHA256": "5188374d44bb921341e7dec82349be693ff09da80704ae86bc2f1b12af1f5cc2",
+      "observed_native_status_file": "/workspace/work/video-audit70-20261113/ci63-diagnostics-43523430839/relay-files/05-status.json",
+      "observed_native_status_sha256": "0c2a84315a24430d71e55fd9375e194d107d530718d29d0b1292d3fdb25611d9"
+    },
+    "eligible_as_accepted_voice_source": true,
+    "source_present": true,
+    "source_file": "05-restored-cache-source-candidate.json",
+    "source_sha256": "0b301df1c24cbaed0f40962b03ce7c68566a67b271c2612b78ab62960fa37883",
+    "source_bytes": 34283,
+    "source_top_level_keys": [
+      "no",
+      "sentences",
+      "title_en",
+      "title_fx",
+      "title_zh",
+      "停顿删除区间",
+      "分段增益dB",
+      "区间声音指纹",
+      "术语",
+      "核对确认",
+      "结尾解说",
+      "词尾除阻",
+      "除阻加强",
+      "非人声区间",
+      "高亮开口门槛",
+      "高亮按实际开口"
+    ],
+    "existing_confirmation_counts": {
+      "合组": 0,
+      "对齐": 0,
+      "非人声": 13,
+      "高亮": 1,
+      "删除段": 13,
+      "停顿删除": 2,
+      "停顿位置": 1
+    },
+    "cached_video_present": true,
+    "cached_fingerprint_present": true,
+    "original_fingerprint_file_sha256": "86de7b2cb97894a417d59c0bcacc3001cccd50c8585e5777e843d78e4a824c27",
+    "original_fingerprint_scalars": {
+      "视频": "2188ef1293c4580e",
+      "脚本": "0b301df1c24cbaed",
+      "配音": "4c20eb528b935e7a",
+      "只出声音": false
+    },
+    "source_matches_original_fingerprint": true,
+    "cached_video_sha256": "2188ef1293c4580e898ad6729b597e43f2e4283eedef76758cc048fa40a787af",
+    "cached_video_AAC_ADTS_sha256": "5188374d44bb921341e7dec82349be693ff09da80704ae86bc2f1b12af1f5cc2",
+    "cached_video_matches_original_fingerprint": true,
+    "cached_video_full_bytes_equal_accepted_MP4": false,
+    "cached_AAC_exactly_equal_accepted_AAC": true,
+    "internal_producer_PCM_present": true,
+    "internal_producer_PCM_sha256": "4c20eb528b935e7a315e3f41b3f4168fe82cd5e26e0b33d16ea4bfce2609cb64",
+    "internal_producer_PCM_matches_original_fingerprint": true
+  },
+  "warm_binding_file_SHA256": "20c8afe120e896d9732e47d292a20967e58de9f6ac5b2ac7775f8ee60ecee27c",
+  "old_source_fullSHA256": "0b301df1c24cbaed0f40962b03ce7c68566a67b271c2612b78ab62960fa37883",
+  "source_title_and_all19_English_Chinese_highlight_note_summary_terms_fonts_or_controls_changed": false,
+  "only_hypothetical_private_data_delta": {
+    "path": "/结尾句/S19",
+    "implicit_original_default": {
+      "maker_SPEED": 0.95,
+      "no_ending_field": true
+    },
+    "transparent_explicit_equivalent": {
+      "整句语速": 0.95
+    }
+  },
+  "source_control_keys_retained": [
+    "非人声区间",
+    "分段增益dB",
+    "停顿删除区间",
+    "词尾除阻",
+    "除阻加强",
+    "区间声音指纹"
+  ],
+  "typed_deletion_confirmations_retained_exactly": true,
+  "old_S19_nonvoice_controls": [
+    [
+      1.802042,
+      2.00025,
+      "紧贴两头"
+    ],
+    [
+      3.81,
+      4.02
+    ]
+  ],
+  "old_S19_typed_deletion_records": {
+    "S19 raw 1.8121-2.0103": {
+      "类型": "紧贴两头的非人声",
+      "配音指纹": "ac01d01fcee3",
+      "依据": "2026-10-15 删除段对应 非人声区间 [[1.802042, 2.00025, '紧贴两头']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['post', 'pre'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"
+    }
+  },
+  "original_English": "The test's first beneficiary had been a blameless juvenile who had falsely admitted the offence.",
+  "original_number_spoken": "The test's first beneficiary had been a blameless juvenile who had falsely admitted the offence.",
+  "original_fixed_voice_file_SHA256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+  "model_identifiers": {
+    "kokoro-v1.0.onnx": "kokoro-v1.0.onnx:7d5df8ecf7d4b187",
+    "kokoro-v1.0-timed.onnx": "kokoro-v1.0-timed.onnx:beb0d1848dee9a49",
+    "voices-v1.0.bin": "voices-v1.0.bin:bca610b8308e8d99",
+    "small.en-encoder.int8.onnx": "small.en-encoder.int8.onnx:8bdac288f369aa94",
+    "small.en-decoder.int8.onnx": "small.en-decoder.int8.onnx:710ccf890e10f3fa",
+    "parakeet/encoder.int8.onnx": "encoder.int8.onnx:92a10bd9c23936ea",
+    "parakeet/decoder.int8.onnx": "decoder.int8.onnx:4d097bae3bac5c96",
+    "parakeet/joiner.int8.onnx": "joiner.int8.onnx:77a29f3e5ac7d370",
+    "parakeet/tokens.txt": "tokens.txt:ec182b70dd42113a"
+  },
+  "original_raw_mother_proof": {
+    "same_dtype": true,
+    "shape": [
+      144384
+    ],
+    "both_shape_equal": true,
+    "np_array_equal": true,
+    "implicit_SHA256": "392865e7d9fdd07565987063d8767c2e5871d26cfe320456645420e9a9667e25",
+    "explicit_SHA256": "392865e7d9fdd07565987063d8767c2e5871d26cfe320456645420e9a9667e25",
+    "max_abs_difference": 0.0
+  },
+  "original_timed_mother_proof": {
+    "same_dtype": true,
+    "shape": [
+      145408
+    ],
+    "both_shape_equal": true,
+    "np_array_equal": true,
+    "implicit_SHA256": "5280c68898b3c929b966a9e9c83acdd643022e9dadbc9907dc64ad4756b780a0",
+    "explicit_SHA256": "5280c68898b3c929b966a9e9c83acdd643022e9dadbc9907dc64ad4756b780a0",
+    "max_abs_difference": 0.0
+  },
+  "physical_phoneme_token_records_equal": true,
+  "physical_token_count": 98,
+  "physical_token_scalar_records": [
+    {
+      "phoneme": "ð",
+      "start_seconds": 0.10426056338028168,
+      "end_seconds": 0.12908450704225352
+    },
+    {
+      "phoneme": "ə",
+      "start_seconds": 0.12908450704225352,
+      "end_seconds": 0.17873239436619717
+    },
+    {
+      "phoneme": " ",
+      "start_seconds": 0.17873239436619717,
+      "end_seconds": 0.2532042253521127
+    },
+    {
+      "phoneme": "t",
+      "start_seconds": 0.2532042253521127,
+      "end_seconds": 0.3276760563380282
+    },
+    {
+      "phoneme": "ˈ",
+      "start_seconds": 0.3276760563380282,
+      "end_seconds": 0.4269718309859155
+    },
+    {
+      "phoneme": "ɛ",
+      "start_seconds": 0.4269718309859155,
+      "end_seconds": 0.501443661971831
+    },
+    {
+      "phoneme": "s",
+      "start_seconds": 0.501443661971831,
+      "end_seconds": 0.5759154929577465
+    },
+    {
+      "phoneme": "t",
+      "start_seconds": 0.5759154929577465,
+      "end_seconds": 0.6255633802816901
+    },
+    {
+      "phoneme": "s",
+      "start_seconds": 0.6255633802816901,
+      "end_seconds": 0.7000352112676056
+    },
+    {
+      "phoneme": " ",
+      "start_seconds": 0.7000352112676056,
+      "end_seconds": 0.799330985915493
+    },
+    {
+      "phoneme": "f",
+      "start_seconds": 0.799330985915493,
+      "end_seconds": 0.8489788732394367
+    },
+    {
+      "phoneme": "ˈ",
+      "start_seconds": 0.8489788732394367,
+      "end_seconds": 0.8986267605633803
+    },
+    {
+      "phoneme": "ɜ",
+      "start_seconds": 0.8986267605633803,
+      "end_seconds": 0.948274647887324
+    },
+    {
+      "phoneme": "ː",
+      "start_seconds": 0.948274647887324,
+      "end_seconds": 0.9979225352112675
+    },
+    {
+      "phoneme": "s",
+      "start_seconds": 0.9979225352112675,
+      "end_seconds": 1.0475704225352112
+    },
+    {
+      "phoneme": "t",
+      "start_seconds": 1.0475704225352112,
+      "end_seconds": 1.097218309859155
+    },
+    {
+      "phoneme": " ",
+      "start_seconds": 1.097218309859155,
+      "end_seconds": 1.1468661971830987
+    },
+    {
+      "phoneme": "b",
+      "start_seconds": 1.1468661971830987,
+      "end_seconds": 1.1716901408450704
+    },
+    {
+      "phoneme": "ˌ",
+      "start_seconds": 1.1716901408450704,
+      "end_seconds": 1.221338028169014
+    },
+    {
+      "phoneme": "ɛ",
+      "start_seconds": 1.221338028169014,
+      "end_seconds": 1.2461619718309858
+    },
+    {
+      "phoneme": "n",
+      "start_seconds": 1.2461619718309858,
+      "end_seconds": 1.2958098591549296
+    },
+    {
+      "phoneme": "ɪ",
+      "start_seconds": 1.2958098591549296,
+      "end_seconds": 1.395105633802817
+    },
+    {
+      "phoneme": "f",
+      "start_seconds": 1.395105633802817,
+      "end_seconds": 1.4447535211267606
+    },
+    {
+      "phoneme": "ˈ",
+      "start_seconds": 1.4447535211267606,
+      "end_seconds": 1.4944014084507042
+    },
+    {
+      "phoneme": "ɪ",
+      "start_seconds": 1.4944014084507042,
+      "end_seconds": 1.5688732394366198
+    },
+    {
+      "phoneme": "ʃ",
+      "start_seconds": 1.5688732394366198,
+      "end_seconds": 1.6433450704225352
+    },
+    {
+      "phoneme": "ɚ",
+      "start_seconds": 1.6433450704225352,
+      "end_seconds": 1.692992957746479
+    },
+    {
+      "phoneme": "ɹ",
+      "start_seconds": 1.692992957746479,
+      "end_seconds": 1.7674647887323944
+    },
+    {
+      "phoneme": "i",
+      "start_seconds": 1.7674647887323944,
+      "end_seconds": 1.9908802816901408
+    },
+    {
+      "phoneme": " ",
+      "start_seconds": 1.9908802816901408,
+      "end_seconds": 2.0653521126760563
+    },
+    {
+      "phoneme": "h",
+      "start_seconds": 2.0653521126760563,
+      "end_seconds": 2.1149999999999998
+    },
+    {
+      "phoneme": "ɐ",
+      "start_seconds": 2.1149999999999998,
+      "end_seconds": 2.1646478873239436
+    },
+    {
+      "phoneme": "d",
+      "start_seconds": 2.1646478873239436,
+      "end_seconds": 2.2391197183098592
+    },
+    {
+      "phoneme": "b",
+      "start_seconds": 2.2391197183098592,
+      "end_seconds": 2.288767605633803
+    },
+    {
+      "phoneme": "ɪ",
+      "start_seconds": 2.288767605633803,
+      "end_seconds": 2.3384154929577465
+    },
+    {
+      "phoneme": "n",
+      "start_seconds": 2.3384154929577465,
+      "end_seconds": 2.3632394366197182
+    },
+    {
+      "phoneme": " ",
+      "start_seconds": 2.3632394366197182,
+      "end_seconds": 2.412887323943662
+    },
+    {
+      "phoneme": "ɐ",
+      "start_seconds": 2.412887323943662,
+      "end_seconds": 2.4625352112676056
+    },
+    {
+      "phoneme": " ",
+      "start_seconds": 2.4625352112676056,
+      "end_seconds": 2.537007042253521
+    },
+    {
+      "phoneme": "b",
+      "start_seconds": 2.537007042253521,
+      "end_seconds": 2.6114788732394367
+    },
+    {
+      "phoneme": "l",
+      "start_seconds": 2.6114788732394367,
+      "end_seconds": 2.6611267605633806
+    },
+    {
+      "phoneme": "ˈ",
+      "start_seconds": 2.6611267605633806,
+      "end_seconds": 2.710774647887324
+    },
+    {
+      "phoneme": "e",
+      "start_seconds": 2.710774647887324,
+      "end_seconds": 2.7604225352112675
+    },
+    {
+      "phoneme": "ɪ",
+      "start_seconds": 2.7604225352112675,
+      "end_seconds": 2.8100704225352113
+    },
+    {
+      "phoneme": "m",
+      "start_seconds": 2.8100704225352113,
+      "end_seconds": 2.8845422535211265
+    },
+    {
+      "phoneme": "l",
+      "start_seconds": 2.8845422535211265,
+      "end_seconds": 2.9341901408450703
+    },
+    {
+      "phoneme": "ə",
+      "start_seconds": 2.9341901408450703,
+      "end_seconds": 2.9838380281690142
+    },
+    {
+      "phoneme": "s",
+      "start_seconds": 2.9838380281690142,
+      "end_seconds": 3.05830985915493
+    },
+    {
+      "phoneme": " ",
+      "start_seconds": 3.05830985915493,
+      "end_seconds": 3.132781690140845
+    },
+    {
+      "phoneme": "d",
+      "start_seconds": 3.132781690140845,
+      "end_seconds": 3.182429577464789
+    },
+    {
+      "phoneme": "ʒ",
+      "start_seconds": 3.182429577464789,
+      "end_seconds": 3.2072535211267605
+    },
+    {
+      "phoneme": "ˈ",
+      "start_seconds": 3.2072535211267605,
+      "end_seconds": 3.256901408450704
+    },
+    {
+      "phoneme": "u",
+      "start_seconds": 3.256901408450704,
+      "end_seconds": 3.281725352112676
+    },
+    {
+      "phoneme": "ː",
+      "start_seconds": 3.281725352112676,
+      "end_seconds": 3.3313732394366196
+    },
+    {
+      "phoneme": "v",
+      "start_seconds": 3.3313732394366196,
+      "end_seconds": 3.3810211267605634
+    },
+    {
+      "phoneme": "ə",
+      "start_seconds": 3.3810211267605634,
+      "end_seconds": 3.4306690140845073
+    },
+    {
+      "phoneme": "n",
+      "start_seconds": 3.4306690140845073,
+      "end_seconds": 3.5051408450704225
+    },
+    {
+      "phoneme": "ˌ",
+      "start_seconds": 3.5051408450704225,
+      "end_seconds": 3.6044366197183098
+    },
+    {
+      "phoneme": "a",
+      "start_seconds": 3.6044366197183098,
+      "end_seconds": 3.6789084507042253
+    },
+    {
+      "phoneme": "ɪ",
+      "start_seconds": 3.6789084507042253,
+      "end_seconds": 3.7533802816901405
+    },
+    {
+      "phoneme": "l",
+      "start_seconds": 3.7533802816901405,
+      "end_seconds": 4.026443661971831
+    },
+    {
+      "phoneme": " ",
+      "start_seconds": 4.026443661971831,
+      "end_seconds": 4.076091549295775
+    },
+    {
+      "phoneme": "h",
+      "start_seconds": 4.076091549295775,
+      "end_seconds": 4.100915492957746
+    },
+    {
+      "phoneme": "ˌ",
+      "start_seconds": 4.100915492957746,
+      "end_seconds": 4.125739436619718
+    },
+    {
+      "phoneme": "u",
+      "start_seconds": 4.125739436619718,
+      "end_seconds": 4.15056338028169
+    },
+    {
+      "phoneme": "ː",
+      "start_seconds": 4.15056338028169,
+      "end_seconds": 4.175387323943662
+    },
+    {
+      "phoneme": " ",
+      "start_seconds": 4.175387323943662,
+      "end_seconds": 4.200211267605634
+    },
+    {
+      "phoneme": "h",
+      "start_seconds": 4.200211267605634,
+      "end_seconds": 4.225035211267605
+    },
+    {
+      "phoneme": "æ",
+      "start_seconds": 4.225035211267605,
+      "end_seconds": 4.249859154929577
+    },
+    {
+      "phoneme": "d",
+      "start_seconds": 4.249859154929577,
+      "end_seconds": 4.299507042253521
+    },
+    {
+      "phoneme": " ",
+      "start_seconds": 4.299507042253521,
+      "end_seconds": 4.398802816901409
+    },
+    {
+      "phoneme": "f",
+      "start_seconds": 4.398802816901409,
+      "end_seconds": 4.448450704225353
+    },
+    {
+      "phoneme": "ˈ",
+      "start_seconds": 4.448450704225353,
+      "end_seconds": 4.522922535211268
+    },
+    {
+      "phoneme": "ɔ",
+      "start_seconds": 4.522922535211268,
+      "end_seconds": 4.572570422535212
+    },
+    {
+      "phoneme": "l",
+      "start_seconds": 4.572570422535212,
+      "end_seconds": 4.647042253521127
+    },
+    {
+      "phoneme": "s",
+      "start_seconds": 4.647042253521127,
+      "end_seconds": 4.721514084507042
+    },
+    {
+      "phoneme": "l",
+      "start_seconds": 4.721514084507042,
+      "end_seconds": 4.795985915492958
+    },
+    {
+      "phoneme": "i",
+      "start_seconds": 4.795985915492958,
+      "end_seconds": 4.845633802816901
+    },
+    {
+      "phoneme": " ",
+      "start_seconds": 4.845633802816901,
+      "end_seconds": 4.895281690140845
+    },
+    {
+      "phoneme": "ɐ",
+      "start_seconds": 4.895281690140845,
+      "end_seconds": 4.944929577464789
+    },
+    {
+      "phoneme": "d",
+      "start_seconds": 4.944929577464789,
+      "end_seconds": 5.019401408450704
+    },
+    {
+      "phoneme": "m",
+      "start_seconds": 5.019401408450704,
+      "end_seconds": 5.044225352112676
+    },
+    {
+      "phoneme": "ˈ",
+      "start_seconds": 5.044225352112676,
+      "end_seconds": 5.069049295774648
+    },
+    {
+      "phoneme": "ɪ",
+      "start_seconds": 5.069049295774648,
+      "end_seconds": 5.093873239436619
+    },
+    {
+      "phoneme": "ɾ",
+      "start_seconds": 5.093873239436619,
+      "end_seconds": 5.143521126760563
+    },
+    {
+      "phoneme": "ᵻ",
+      "start_seconds": 5.143521126760563,
+      "end_seconds": 5.193169014084508
+    },
+    {
+      "phoneme": "d",
+      "start_seconds": 5.193169014084508,
+      "end_seconds": 5.217992957746479
+    },
+    {
+      "phoneme": " ",
+      "start_seconds": 5.217992957746479,
+      "end_seconds": 5.267640845070423
+    },
+    {
+      "phoneme": "ð",
+      "start_seconds": 5.267640845070423,
+      "end_seconds": 5.317288732394367
+    },
+    {
+      "phoneme": "ɪ",
+      "start_seconds": 5.317288732394367,
+      "end_seconds": 5.36693661971831
+    },
+    {
+      "phoneme": " ",
+      "start_seconds": 5.36693661971831,
+      "end_seconds": 5.416584507042254
+    },
+    {
+      "phoneme": "ə",
+      "start_seconds": 5.416584507042254,
+      "end_seconds": 5.515880281690141
+    },
+    {
+      "phoneme": "f",
+      "start_seconds": 5.515880281690141,
+      "end_seconds": 5.565528169014085
+    },
+    {
+      "phoneme": "ˈ",
+      "start_seconds": 5.565528169014085,
+      "end_seconds": 5.64
+    },
+    {
+      "phoneme": "ɛ",
+      "start_seconds": 5.64,
+      "end_seconds": 5.714471830985915
+    },
+    {
+      "phoneme": "n",
+      "start_seconds": 5.714471830985915,
+      "end_seconds": 5.838591549295774
+    },
+    {
+      "phoneme": "s",
+      "start_seconds": 5.838591549295774,
+      "end_seconds": 6.016
+    },
+    {
+      "phoneme": ".",
+      "start_seconds": 6.016,
+      "end_seconds": 6.016
+    }
+  ],
+  "timing_representation_change_only": {
+    "implicit_native_token_scale": 0.9929577464788732,
+    "explicit_prescaled_token_scale": 1.0,
+    "all_physical_start_end_seconds_exactly_equal": true
+  },
+  "original_sentence_audio_plus_original_gain_stage_proof": {
+    "same_dtype": true,
+    "shape": [
+      140040
+    ],
+    "both_shape_equal": true,
+    "np_array_equal": true,
+    "implicit_SHA256": "a75278cb747175c48ae7deebd322bcd17086b76eeb04f87ad438f24050b749e3",
+    "explicit_SHA256": "a75278cb747175c48ae7deebd322bcd17086b76eeb04f87ad438f24050b749e3",
+    "max_abs_difference": 0.0
+  },
+  "original_each_clip_proof": [
+    {
+      "same_dtype": true,
+      "shape": [
+        140040
+      ],
+      "both_shape_equal": true,
+      "np_array_equal": true,
+      "implicit_SHA256": "a75278cb747175c48ae7deebd322bcd17086b76eeb04f87ad438f24050b749e3",
+      "explicit_SHA256": "a75278cb747175c48ae7deebd322bcd17086b76eeb04f87ad438f24050b749e3",
+      "max_abs_difference": 0.0
+    }
+  ],
+  "original_tmap_equal": true,
+  "original_tmap": [
+    [
+      0,
+      96,
+      0.0,
+      5.835
+    ]
+  ],
+  "original_LAST_edit_map_equal_except_internal_token_scale": true,
+  "original_LAST_public_scalar_edit_map": {
+    "head": 240,
+    "segs": [
+      [
+        0,
+        144144,
+        -0.02,
+        [
+          [
+            92760,
+            94920
+          ]
+        ]
+      ]
+    ],
+    "total": 5.835,
+    "cuts": [],
+    "grafts": [],
+    "gaps": [],
+    "fades": [],
+    "hs": 480
+  },
+  "original_chunk_highlight_times_equal": true,
+  "original_chunk_highlight_times": [
+    3.906458333333333
+  ],
+  "original_gain_stage": {
+    "automatic": {},
+    "scripted_piece": null
+  },
+  "original_pre_interval_sentence_fp": "c4c8839c2a4a",
+  "original_unprocessed_G72_mother_fullSHA_manifest": [
+    {
+      "key": "10bee0c628fc5a60bf23e6eeabe707b5b9e97e8b.pkl",
+      "method": "create",
+      "model_identifier": "kokoro-v1.0.onnx:7d5df8ecf7d4b187",
+      "input_sha256": "ab73caddeda1c01bc8dd6a68b2e8059df6a123c3922f37c08f60ee673a03a128",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kw": {},
+      "pkl_full_sha256": "7992285cafeb95dbc73f8886f501c51308c5e0b562d7c7a172e6c8abecb79c29",
+      "G72_basis": "original-old-entry-manifest",
+      "marker": null,
+      "schema": {
+        "tuple_length": 2,
+        "dtype": "float32",
+        "shape": [
+          144384
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "37a7150c92efa48507375138692e4bcfe7772806.pkl",
+      "method": "create_timed",
+      "model_identifier": "kokoro-v1.0-timed.onnx:beb0d1848dee9a49",
+      "input_sha256": "ab73caddeda1c01bc8dd6a68b2e8059df6a123c3922f37c08f60ee673a03a128",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kw": {
+        "clause_pause": 0,
+        "sentence_pause": 0
+      },
+      "pkl_full_sha256": "501b35ecc24ff7344a48a5bce4fb46cb8a041a4d2357f090e41c91852bd19628",
+      "G72_basis": "original-old-entry-manifest",
+      "marker": null,
+      "schema": {
+        "tuple_length": 3,
+        "dtype": "float32",
+        "shape": [
+          145408
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    }
+  ],
+  "required_followup": "Root-reviewed original keep-ending certification must preserve this explicit whole.95 mode. Native official05 complete gates plus finalAAC=actual accepted5188374d... are still mandatory; no local equivalence proof is a final video pass.",
+  "suggested_transparent_data_field": {
+    "S19": {
+      "整句语速": 0.95,
+      "依据": "旧验音轨的默认语速显式记录：05篇原已验源没有结尾句设置，原制作程序默认SPEED=0.95。2026-11-14以原G72核验母素材、原整句与带时长输出、原sentence_audio及原句增益后处理逐样本核实，显式整句0.95与该隐式默认结果完全相同；原非人声区间、切点、增益、词尾加强及逐处确认均保留。这里只透明记下既有语速，不新增双速或放慢。正式重制仍须原全部质量门通过，并与已验AAC逐字节相同。"
+    }
+  }
+}

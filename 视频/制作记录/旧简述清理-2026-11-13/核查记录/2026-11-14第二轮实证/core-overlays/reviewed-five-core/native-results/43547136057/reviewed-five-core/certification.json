@@ -1,0 +1,355 @@
+{
+  "variant": "reviewed-five-core",
+  "passed": true,
+  "production_audio_or_video_acceptance": false,
+  "official_main_commit": "fc0b56af9a0ac0e97015548b756d4e51d66dc2ea",
+  "stage": "independent-core-certification-passed",
+  "overlay_manifest": {
+    "base_repository": "alienalgorithm/postgraduate-vocabulary",
+    "immutable_main_HEAD": "fc0b56af9a0ac0e97015548b756d4e51d66dc2ea",
+    "mode_environment": {
+      "XG_KEEP_REVIEWED_GAIN": "1"
+    },
+    "CLI": "--保持已审增益",
+    "default_unchanged": true,
+    "files": [
+      {
+        "path": "视频/工具/草稿声音.sh",
+        "main_SHA256": "0ce3277812cf16ed30438509b6dc97db0c26725db4c5db5d9b058c3ef6531aa2",
+        "patch_SHA256": "c45c66e3cf68a380f5c829600cf6b0ed69f49f24c65e91c0330ed17d1a85475e",
+        "diff": "/workspace/work/video-audit70-20261113/core-overlays/keep-reviewed-ending/diff/草稿声音.sh.diff",
+        "certified_before_SHA256": "957d7eb1598698ea33ff77d83379256ecae258d84d588753d561a902284be439"
+      },
+      {
+        "path": "视频/工具/句内响度.py",
+        "main_SHA256": "58735b7173a3c03efa61fb300b4aed4039c164fa970e0593a40bae2a3f3cbd27",
+        "patch_SHA256": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea",
+        "diff": "/workspace/work/video-audit70-20261113/core-overlays/keep-reviewed-gain/句内响度.py.diff"
+      },
+      {
+        "path": "视频/工具/独立复核/synth.py",
+        "main_SHA256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+        "patch_SHA256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+        "diff": "/workspace/work/video-audit70-20261113/core-overlays/keep-reviewed-gain/synth.py.diff",
+        "root_approved_contract": {
+          "purpose": "Root-approved minimal raw mother reference reproducibility repair; diagnostic replay only",
+          "original_sha256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+          "patched_sha256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+          "proposal_patch_sha256": "bbf1295dbf1c66d26135ec84a4893e111886ce7acec311274e60e75bdb4e5268",
+          "actual_processed_pcm_is_not_reference": true,
+          "unchanged_audit_sha256": "bfe12dab6bec96c9b765faea286ae30a067589f6c5ef78461b21d12b955f1e22",
+          "original_2_2_LSB_and_five_bad_sample_selftests_unchanged": true
+        }
+      },
+      {
+        "path": "视频/工具/结尾句接点.py",
+        "main_SHA256": "15303682c605dd4544172c92d42c016d8d0536e0c6d1f9816d0d38dd5d2b9a61",
+        "patch_SHA256": "1a5d43c4f5483014b69bbea7ad43dddb0333a9a80e29bb2b4c8029d8915ff798",
+        "certified_before_SHA256": "15303682c605dd4544172c92d42c016d8d0536e0c6d1f9816d0d38dd5d2b9a61",
+        "diff": "/workspace/work/video-audit70-20261113/core-overlays/keep-reviewed-ending/diff/结尾句接点.py.diff"
+      },
+      {
+        "path": "视频/工具/读音核对.py",
+        "main_SHA256": "0a3b97e1179e47c0593f69286f4206eecc123cc7ec5d5adf4f5e62457c228a41",
+        "patch_SHA256": "50f4363bb2fc2930be59904cdccfa44fd46f14393a0385c7846028ee25b4e84c",
+        "scope": "selftest fault injection only; keep compound registry and inject actual uncorrected espeak IPA, finally restore; all normal checker AST unchanged"
+      }
+    ],
+    "final_integrated_program_count": 3,
+    "first_two_gain_program_SHAs_unchanged": true,
+    "scope": "Previously certified four-program repair plus real pronunciation selftest fault-injection repair. Original normal checker, producer, audit, thresholds and dictionaries unchanged."
+  },
+  "actual_dependency_observations": {
+    "formal_cache_map_present": true,
+    "formal_cache_map_SHA256": "91ccecd61ade5284de72f27235c82df3fdff6350576abfac02d2e0db0f346a9a",
+    "formal_legacy_entries": 2166,
+    "public_cache_JSON_count": 1337,
+    "existing_private_model_present": true,
+    "existing_private_ASR_directory_present": true,
+    "resources_are_original_not_invented_markers": true
+  },
+  "restored_original_07_resources": [
+    {
+      "cache_key": "5f93aa786be55c461e644507810b77990fa6e4da.pkl",
+      "full_SHA256": "d92e6ab085713243e61f92fc237677e1429e4bd5dd7d7cb1e187ab29ce18547e",
+      "prior_warm_cache_SHA256": "d92e6ab085713243e61f92fc237677e1429e4bd5dd7d7cb1e187ab29ce18547e",
+      "original_formal_G72_fingerprint_matches": true
+    },
+    {
+      "cache_key": "37112da59e215ce16f6352f7f133828c39d090a8.pkl",
+      "full_SHA256": "857ed318a2254d1b8971499cdc5c8d1c118957ef9978cd0653bfe7165b59fc74",
+      "prior_warm_cache_SHA256": "857ed318a2254d1b8971499cdc5c8d1c118957ef9978cd0653bfe7165b59fc74",
+      "original_formal_G72_fingerprint_matches": true
+    },
+    {
+      "cache_key": "d233608ddca4ac20f4479b70e048ff0cbf2618e1.pkl",
+      "full_SHA256": "ffe34ea21bb7717f79d3c0c5617fe948784ef7cdb0fa0032e4899dd20686a3cc",
+      "prior_warm_cache_SHA256": "ffe34ea21bb7717f79d3c0c5617fe948784ef7cdb0fa0032e4899dd20686a3cc",
+      "original_formal_G72_fingerprint_matches": true
+    },
+    {
+      "cache_key": "f001d896b4f92b9577f10482c220ac067fbb426b.pkl",
+      "full_SHA256": "8b6b7eb96acdd38d4afbcbd122990fa5fc29fc8b64e652cb98b882686fd2fa77",
+      "prior_warm_cache_SHA256": "8b6b7eb96acdd38d4afbcbd122990fa5fc29fc8b64e652cb98b882686fd2fa77",
+      "original_formal_G72_fingerprint_matches": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "current24-positive",
+      "exit": 0,
+      "seconds": 0.07,
+      "log_SHA256": "7cd565ff445526786b21ba9d4bea8809947abe15d05525dbffa0ca9a765bcdcf"
+    },
+    {
+      "name": "canonical-module-copy",
+      "exit": 0,
+      "seconds": 0.16,
+      "log_SHA256": "cf7fb1d94f674135fa89934bb399789885d339f95ddedd413e9c3296ac852013"
+    },
+    {
+      "name": "new-pronunciation-selftest-real-tests",
+      "exit": 0,
+      "seconds": 16.21,
+      "log_SHA256": "7dff53382a879300080dd5d8f43d958c8dbff091eb031b2fb702c29a556ee2ee"
+    },
+    {
+      "name": "new-ending-mode-real-tests",
+      "exit": 0,
+      "seconds": 20.76,
+      "log_SHA256": "d345084c9606f521d1b91754f7891b4067ab8a31f8908150d2a09e84378362da"
+    },
+    {
+      "name": "original-full-fastcheck",
+      "exit": 0,
+      "seconds": 554.94,
+      "log_SHA256": "b8345d5711ad66f567cd5d5415fd4abb3e32e364c0726b81b91d7c545b309900"
+    },
+    {
+      "name": "real-stamp-validation",
+      "exit": 0,
+      "seconds": 0.04,
+      "log_SHA256": "2b9ce913f6ca4e065681ca4d7870d6dc65329fee7c004e28680dfc0e9e41fabe"
+    },
+    {
+      "name": "new-mode-functional-tests",
+      "exit": 0,
+      "seconds": 3.6,
+      "log_SHA256": "d3fd58142c118be893a88051b4aaf2d77ded2afbff0a44d1d30659bc95ed8c9f"
+    },
+    {
+      "name": "real10-cached-audio",
+      "exit": 0,
+      "seconds": 6.21,
+      "log_SHA256": "ce0112c836fec8552609b60eb194925652034d3882620deea69ec8fc386e3f0b"
+    },
+    {
+      "name": "real10-readonly-measurement",
+      "exit": 0,
+      "seconds": 4.05,
+      "log_SHA256": "25f7b045a453fff9340e4b7fbe32b22f2417a922bb27c563929825b02833cfe6"
+    },
+    {
+      "name": "real10-unchanged-loudness-gate",
+      "exit": 1,
+      "seconds": 0.38,
+      "log_SHA256": "8096f438ae26ec9f04c71d1ac87481413788b41e3766194aac34dd24e662e7f5"
+    },
+    {
+      "name": "real11-cached-audio",
+      "exit": 0,
+      "seconds": 6.28,
+      "log_SHA256": "8691afaccc1f3dd0da38fcad0df1e7e6b8795138a37ab172f7867ee37fb098e2"
+    },
+    {
+      "name": "real11-readonly-measurement",
+      "exit": 0,
+      "seconds": 4.44,
+      "log_SHA256": "c98706355baf24bd3ed66281c0168b6514731634047b00c2123a2b928884d520"
+    },
+    {
+      "name": "real11-unchanged-loudness-gate",
+      "exit": 1,
+      "seconds": 0.39,
+      "log_SHA256": "fea83c5bc82405da9b008cfbda469cd3dd1fecdc8fdd589462fa00da2cd37284"
+    },
+    {
+      "name": "real12-cached-audio",
+      "exit": 0,
+      "seconds": 6.35,
+      "log_SHA256": "80f8b32e9440c5bd85aa2c6e6b0b1151ffbf7a7553632af25657e9cf81434fe9"
+    },
+    {
+      "name": "real12-readonly-measurement",
+      "exit": 0,
+      "seconds": 4.27,
+      "log_SHA256": "69779ef072e5f48d1806b412dc726fb918d957f76ed0ccd55dc65d199c9cad45"
+    },
+    {
+      "name": "real12-unchanged-loudness-gate",
+      "exit": 1,
+      "seconds": 0.37,
+      "log_SHA256": "48775bde26adb3edc82bcd77ac81d757595f284cbecfbb4d89db128c2d4a889f"
+    }
+  ],
+  "historical_fixture_provenance": {
+    "repository": "alienalgorithm/postgraduate-vocabulary",
+    "immutable_commit": "b24406d11f2ddd936f65bcc344aa9a7d32d074da",
+    "scope": "Complete historical10/24/27 regression data only in isolated original/patch test roots; no production source or invented confirmation",
+    "files": [
+      {
+        "path": "新版定稿/10-the-stolen-smile.md",
+        "Git_blob_SHA1": "8a45b3a4a41ba738506912293eecf078d1b30621",
+        "SHA256": "65d1563c2f82679afb9d509b96a50adb3e3bc67ac539d3081220a01e46bc5ee7"
+      },
+      {
+        "path": "新版定稿/24-survival-in-the-ice.md",
+        "Git_blob_SHA1": "77ece50906f32bf4a0c23fe1faf9eea7f072ad97",
+        "SHA256": "f5dc8a6a71ee6f8ba89c6a833f8e28abf8db15a681415d496b3c80548ef46ba5"
+      },
+      {
+        "path": "新版定稿/27-life-in-the-forbidden-zone.md",
+        "Git_blob_SHA1": "d707f43206ef13d284b1e9553f1130010c618ba1",
+        "SHA256": "3a01eb3cfc6dbdc568d7f492cb33e8a89171e885963c3da9c802e68fd9117f78"
+      },
+      {
+        "path": "视频/制作记录/10.md",
+        "Git_blob_SHA1": "a45b9d9e01eb4466886ba36af612724ec2d84dc8",
+        "SHA256": "c6d8652f7db0d0f8609d4e15f4b9659df999e80ebe9e8abf7b06cd6bc10e1a4d"
+      },
+      {
+        "path": "视频/制作记录/10_待改清单.md",
+        "Git_blob_SHA1": "b825883fb045f5f5ff62085c0533a92d0140f790",
+        "SHA256": "a5b75d58c8aef334b6361fb5754eea233b8b07017e1cba2653f2735ab1ab1078"
+      },
+      {
+        "path": "视频/制作记录/24.md",
+        "Git_blob_SHA1": "6197332a28d57ced7331921dd537df470b2bb906",
+        "SHA256": "7248afeb5739c9e9825d5b32092e33a7d5c588f1c3d7ab25ecc44045032f4f03"
+      },
+      {
+        "path": "视频/制作记录/24_待改清单.md",
+        "Git_blob_SHA1": "2f1d7197ded43cdfb5d0c264cfcde5896ecb6281",
+        "SHA256": "625c3fb509cb0af9d4d5ed0678d3c291708d6a53364cd63802eaeb7255fa2f2e"
+      },
+      {
+        "path": "视频/制作记录/27.md",
+        "Git_blob_SHA1": "075fa97e2f08803e69e1efffea47b524130642bd",
+        "SHA256": "2c7afc91bd97bc5fdb5f9e32080f615c72bf9d42b94560130c0885e60c7b5609"
+      },
+      {
+        "path": "视频/制作记录/27_待改清单.md",
+        "Git_blob_SHA1": "4b56c0906686d19c3f17e40fe1fd8dbccbf6bd23",
+        "SHA256": "42f4869576f0564bb2f4a88191a3211514bf1b58cfb7b54bfadc23f624ffd19a"
+      },
+      {
+        "path": "视频/制作记录/逐句确认/10.json",
+        "Git_blob_SHA1": "55c3ca340883a843f6bd511c877fe74090d6e369",
+        "SHA256": "a15795a07e663f7ddda954f9b0fd5430f31221f6f10feac313919dafab48a6a0"
+      },
+      {
+        "path": "视频/制作记录/逐句确认/24.json",
+        "Git_blob_SHA1": "e2a9591b636d317b49b190ccaa092ce834e3ea03",
+        "SHA256": "da1c1a25ca676ed8acef1560c06e17d256a72b30e725cd74a9e84b6d83d7d547"
+      },
+      {
+        "path": "视频/制作记录/逐句确认/27.json",
+        "Git_blob_SHA1": "16605da52cf803a58d99cd5ff333caedce0ec4ad",
+        "SHA256": "809d4b65f2826b2dfc558cae3ca908107557b303a2d7fd00c234bd8021145635"
+      },
+      {
+        "path": "视频/工具/初稿生成/gen10.py",
+        "Git_blob_SHA1": "449d5d6b4c5c1e6dd6f51b2f2a49d1df7fd79360",
+        "SHA256": "56af3e4ebb7ad5e11c35c99320886d0a0a0955dff2a991ac8265ef4de3bd4f66"
+      },
+      {
+        "path": "视频/工具/初稿生成/gen24.py",
+        "Git_blob_SHA1": "681a9ae6fdd93166c1f47b74c98418585283b9f4",
+        "SHA256": "a251d908fef75c5969923bcfcb1e826f06c9575a7b8b9449e5f7bb1e37f60df0"
+      },
+      {
+        "path": "视频/工具/初稿生成/gen27.py",
+        "Git_blob_SHA1": "56dd186a585d60545ba2e60313755e4c1e55f9b0",
+        "SHA256": "dd7d0b9715ce71e2f9e1708c1c49b548562e854c7623c975332a63d05177c55f"
+      },
+      {
+        "path": "视频/脚本/10.json",
+        "Git_blob_SHA1": "866377ecb1cd3bb214a854fd384492de9f334897",
+        "SHA256": "aebb5ef09fcd147b2be6dc056e4503678f9c1eb965b6de29d98eb57585701314"
+      },
+      {
+        "path": "视频/脚本/24.json",
+        "Git_blob_SHA1": "05ace590ad947c5b9d45e59537c04f7baf5bf0dc",
+        "SHA256": "186698a05b8eb2914eef1998e54ee3a39c897c1a47afc35ca2dafe4563d7f0d7"
+      },
+      {
+        "path": "视频/脚本/27.json",
+        "Git_blob_SHA1": "c19daf92fac1cc09fdf18060622e441222dd2f45",
+        "SHA256": "335a95b17cbd6da61d736f93b21e9db95aae645578e7e3b0b844aa791f0adaad"
+      }
+    ]
+  },
+  "approved_existing_visual_baseline": {
+    "scope": "Root-approved existing visual baseline resource, not newly recorded from gain or synth candidate",
+    "root_reviewed_and_approved": true,
+    "source_fixture_SHA256": "335a95b17cbd6da61d736f93b21e9db95aae645578e7e3b0b844aa791f0adaad",
+    "prior_independent_proof_run": 43321779244,
+    "prior_independent_proof_commit": "2b4b643b1cc9ca9603f2bc0f30d5e7225f659b92",
+    "source_Git_blob": "f1a08f141418357e5eec9f8574ae1232129ebc66",
+    "source_SHA256": "b8ddb4656ae27cbfc7ec8e3b99511983b4e568997bd4ad4ee33c364f3926ae94",
+    "baseline_path": "视频/工具/新管/回归基准_27.json",
+    "old_baseline_SHA256": "cce87e454d4fe941bc90cf6870c4b38b285775e6dddda6d4fa3aec9765af54b9",
+    "first64_visual_frames_exact": true,
+    "audio_MD5_unchanged": "79f315bb8b448052379b5929d9e19963",
+    "segments_MD5_unchanged": "f4275f9b9e571dd414e78a86dc6f1f1a",
+    "old_frame_count": 66,
+    "approved_frame_count": 67,
+    "stock_quickcheck_program_changed": false,
+    "audio_golden_or_thresholds_changed": false,
+    "candidate_record_baseline_flag_used": false
+  },
+  "actual_core_SHA256": {
+    "视频/工具/草稿声音.sh": "c45c66e3cf68a380f5c829600cf6b0ed69f49f24c65e91c0330ed17d1a85475e",
+    "视频/工具/句内响度.py": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea",
+    "视频/工具/独立复核/synth.py": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+    "视频/工具/结尾句接点.py": "1a5d43c4f5483014b69bbea7ad43dddb0333a9a80e29bb2b4c8029d8915ff798",
+    "视频/工具/读音核对.py": "50f4363bb2fc2930be59904cdccfa44fd46f14393a0385c7846028ee25b4e84c"
+  },
+  "fresh_reference_27_temporary_files_removed": [],
+  "unchanged_independent_audit_SHA256": "bfe12dab6bec96c9b765faea286ae30a067589f6c5ef78461b21d12b955f1e22",
+  "fresh_reference_is_original_raw_cache_not_processed_PCM": true,
+  "original_full_fastcheck_passed": true,
+  "real_fastcheck_stamp_SHA256": "95a51b15bb4b71b8842851da8d16bb4109231f1ba69e24826792f2a718ef4a4a",
+  "real_cached_source_measurements": [
+    {
+      "article": "10",
+      "actual_frozen_request_source_SHA256": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
+      "actual_cached_audio_PCM_file_SHA256": "394320a6392c001f2588adc922053d089b85329abfb5e369cacc20fb67bd8caf",
+      "source_JSON_and_approved_gain_byte_exact_after_measurement": true,
+      "actual_audio_file_byte_exact_after_measurement": true,
+      "original_loudness_gate_exit": 1,
+      "article_audio_quality_rejected": true,
+      "article_audio_or_video_acceptance": false
+    },
+    {
+      "article": "11",
+      "actual_frozen_request_source_SHA256": "665cbb80cc70b700ecc0cc5813209fd100ad4fa8f0eead3929b9e53778d9d07f",
+      "actual_cached_audio_PCM_file_SHA256": "28f545b4a90fadf05c4f94238e4ca0b867236902da08da6b25bb0e54583169aa",
+      "source_JSON_and_approved_gain_byte_exact_after_measurement": true,
+      "actual_audio_file_byte_exact_after_measurement": true,
+      "original_loudness_gate_exit": 1,
+      "article_audio_quality_rejected": true,
+      "article_audio_or_video_acceptance": false
+    },
+    {
+      "article": "12",
+      "actual_frozen_request_source_SHA256": "e3bfbcce6f1a8e14cfe451d656574353321e297c90c62f5a7b422f37478311d5",
+      "actual_cached_audio_PCM_file_SHA256": "4f6778860d7a9fb3cb577d0730b4f8efebe30920becde1663b2b4ea42b57bded",
+      "source_JSON_and_approved_gain_byte_exact_after_measurement": true,
+      "actual_audio_file_byte_exact_after_measurement": true,
+      "original_loudness_gate_exit": 1,
+      "article_audio_quality_rejected": true,
+      "article_audio_or_video_acceptance": false
+    }
+  ]
+}

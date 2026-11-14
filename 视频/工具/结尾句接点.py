@@ -3,7 +3,9 @@
 接点要求与出片程序 _ending_parts 相同：接点所在的 5 ms 帧和两侧各一帧都低于 -55 dB；取最后一个标点后、下一个词开口前最长的那段静音的正中间。
 标准语速那一遍逗号处连读、静音不足 15 ms 时，依次试相邻语速（前段 0.88、0.92、0.86，最后一段 0.80、0.76），写明用了哪个、为什么（02 结尾句 0.80→0.83 是先例）。08 之前是手工找的，09 起用本程序（现行做法：能交给程序的全交给程序）。
 在视频工作目录下运行：python3 <工具目录>/结尾句接点.py NN [前段语速 最后一段语速 最后一段前停顿]（默认 0.90 0.78 0.70，07 定下的标准）
-  --写入：把 结尾句 写进 scripts/NN.json（已有就覆盖这一句的设置）。"""
+  --写入：把 结尾句 写进 scripts/NN.json（已有就覆盖这一句的设置）。
+  --保持已审接点：修订重制时，已有接点先通过原 _ending_parts 静音门，再原样保留整条设置与文件；
+    已有坏点直接停止，不改成自动新点；没有既有接点才走原自动流程。已有整句语速模式也保持原样。"""
 import sys, os, re, json
 import numpy as np
 # G31（2026-10-24 25 草稿）：--写入 整句覆盖，把手写的“前段增益dB”（25 S17 -2.5 dB）冲掉了。只覆盖本程序算出的字段，别的原样保留；
@@ -14,6 +16,39 @@ def 合并(old, e):
     if old and old.get('接点') != e['接点'] and isinstance(keep.get('前段音调'), dict) and '范围' in keep['前段音调']:
         keep['前段音调'] = {k: v for k, v in keep['前段音调'].items() if k != '范围'}
     return {**e, **keep}
+def 保持已有接点(d, sent, parts):
+    """只读验证已有末句设置；parts 必须是原出片程序 _ending_parts，任何原门失败原样向上传递。"""
+    e = d.get('结尾句', {}).get(f"S{len(d['sentences'])}")
+    if not isinstance(e, dict): return False
+    if '整句语速' in e:
+        print('  保持已审整句语速：原设置和脚本文件未写入')
+        return True
+    if '接点' not in e: return False
+    parts(sent, e)   # 原三帧 -55 dB 接点门及原音调范围门；坏点绝不退回自动找点
+    print(f"  保持已审接点样本 {e['接点']}：原静音门通过，原设置和脚本文件未写入")
+    return True
+
+
+def 保持自检():
+    import copy
+    f = []; calls = []
+    d = {'sentences': [{}], '结尾句': {'S1': {'接点': [100, 200], '前段语速': .9, '最后一段语速': .78, '最后一段前停顿': .7, '前段增益dB': -2.5, '依据': '旧原话', '前段音调': {'范围': [.1, .4]}}}}
+    old = copy.deepcopy(d)
+    if not 保持已有接点(d, 'If so, yes.', lambda s, e: calls.append((s, copy.deepcopy(e)))) or len(calls) != 1 or d != old:
+        f.append('已有设置没经过原门，或被改写')
+    def bad(s, e): raise SystemExit('【停止】原门坏接点')
+    try:
+        保持已有接点(d, 'If so, yes.', bad); f.append('已有坏接点被放行或回退自动找点')
+    except SystemExit as x:
+        if '原门坏接点' not in str(x): f.append('没有保留原门错误')
+    if d != old: f.append('原门拒绝后仍改了设置')
+    if 保持已有接点({'sentences': [{}]}, 'If so, yes.', bad): f.append('无已有接点时没走原自动流程')
+    whole = {'sentences': [{}], '结尾句': {'S1': {'整句语速': .80, '依据': '原整句'}}}
+    prior = copy.deepcopy(whole)
+    if not 保持已有接点(whole, 'Yes.', bad) or whole != prior: f.append('整句语速被改写或错误要求接点')
+    return ['保持已审接点 自检：' + x for x in f]
+
+
 def 自检():
     f = []; e = {'前段语速': 0.9, '最后一段语速': 0.78, '最后一段前停顿': 0.7, '接点': [100, 200], '依据': '新'}
     old = {'前段语速': 0.88, '接点': [100, 200], '依据': '旧', '前段增益dB': -2.5, '前段单独合成': True, '前段音调': {'半音': -1, '范围': [0.1, 0.4]}}
@@ -75,13 +110,14 @@ def 前提自检():   # G79 门变异：这两道门以前只有载入配音模�
     if 句中标点('If so, its fame began.', '99') != [6]: f.append('误报：有逗号的结尾句也停了')
     return f
 if '--自检' in sys.argv:
-    e = 自检() + 前提自检() + ['结尾句接点 自检：' + x for x in 窗口自检()]; print('\n'.join(e) or '结尾句接点 自检通过（重跑 --写入 保留前段增益dB 等手写字段；接点变了作废前段音调范围）'); sys.exit(1 if e else 0)
+    e = 自检() + 保持自检() + 前提自检() + ['结尾句接点 自检：' + x for x in 窗口自检()]; print('\n'.join(e) or '结尾句接点 自检通过（重跑 --写入 保留前段增益dB 等手写字段；接点变了作废前段音调范围）'); sys.exit(1 if e else 0)
 sys.path.insert(0, '.')
 exec(open('make_video.py').read().split("if __name__")[0])
 args = [a for a in sys.argv[1:] if not a.startswith('--')]; no_ = args[0].zfill(2)
 spF, spS, gap_ = (float(x) for x in (args[1:4] if len(args) >= 4 else ('0.90', '0.78', '0.70')))
 js_ = f'scripts/{no_}.json'; d_ = json.load(open(js_)); si_ = len(d_['sentences'])
 sent_ = ' '.join(re.sub(r'\*\*', '', R.strip_gloss(c['en'])).strip() for c in d_['sentences'][-1]['chunks'])
+if '--保持已审接点' in sys.argv and 保持已有接点(d_, sent_, _ending_parts): sys.exit(0)
 puncts_ = 句中标点(sent_, no_)
 cut_ = puncts_[-1]; tail_ = sent_[cut_:].strip()
 F5 = int(0.005 * SR)

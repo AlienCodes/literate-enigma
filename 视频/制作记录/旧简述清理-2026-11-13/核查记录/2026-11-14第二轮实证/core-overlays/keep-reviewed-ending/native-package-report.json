@@ -1,0 +1,47 @@
+{
+  "status": "native_unique_full_certification_package_ready_not_launched",
+  "program_count": 4,
+  "programs": [
+    {
+      "path": "视频/工具/草稿声音.sh",
+      "main_SHA256": "0ce3277812cf16ed30438509b6dc97db0c26725db4c5db5d9b058c3ef6531aa2",
+      "patch_SHA256": "c45c66e3cf68a380f5c829600cf6b0ed69f49f24c65e91c0330ed17d1a85475e",
+      "diff": "/workspace/work/video-audit70-20261113/core-overlays/keep-reviewed-ending/diff/草稿声音.sh.diff",
+      "certified_before_SHA256": "957d7eb1598698ea33ff77d83379256ecae258d84d588753d561a902284be439"
+    },
+    {
+      "path": "视频/工具/句内响度.py",
+      "main_SHA256": "58735b7173a3c03efa61fb300b4aed4039c164fa970e0593a40bae2a3f3cbd27",
+      "patch_SHA256": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea",
+      "diff": "/workspace/work/video-audit70-20261113/core-overlays/keep-reviewed-gain/句内响度.py.diff"
+    },
+    {
+      "path": "视频/工具/独立复核/synth.py",
+      "main_SHA256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+      "patch_SHA256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+      "diff": "/workspace/work/video-audit70-20261113/core-overlays/keep-reviewed-gain/synth.py.diff",
+      "root_approved_contract": {
+        "purpose": "Root-approved minimal raw mother reference reproducibility repair; diagnostic replay only",
+        "original_sha256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+        "patched_sha256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+        "proposal_patch_sha256": "bbf1295dbf1c66d26135ec84a4893e111886ce7acec311274e60e75bdb4e5268",
+        "actual_processed_pcm_is_not_reference": true,
+        "unchanged_audit_sha256": "bfe12dab6bec96c9b765faea286ae30a067589f6c5ef78461b21d12b955f1e22",
+        "original_2_2_LSB_and_five_bad_sample_selftests_unchanged": true
+      }
+    },
+    {
+      "path": "视频/工具/结尾句接点.py",
+      "main_SHA256": "15303682c605dd4544172c92d42c016d8d0536e0c6d1f9816d0d38dd5d2b9a61",
+      "patch_SHA256": "1a5d43c4f5483014b69bbea7ad43dddb0333a9a80e29bb2b4c8029d8915ff798",
+      "certified_before_SHA256": "15303682c605dd4544172c92d42c016d8d0536e0c6d1f9816d0d38dd5d2b9a61",
+      "diff": "/workspace/work/video-audit70-20261113/core-overlays/keep-reviewed-ending/diff/结尾句接点.py.diff"
+    }
+  ],
+  "official_producer_SHA256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+  "approved_67gold_SHA256": "b8ddb4656ae27cbfc7ec8e3b99511983b4e568997bd4ad4ee33c364f3926ae94",
+  "historical_test_context_not_production_context": true,
+  "private_models_or_PCM_uploaded": false,
+  "existing_native_resource_set_reused_full": true,
+  "independent_workflow_does_not_mutate_production_workflow_or_runner": true
+}

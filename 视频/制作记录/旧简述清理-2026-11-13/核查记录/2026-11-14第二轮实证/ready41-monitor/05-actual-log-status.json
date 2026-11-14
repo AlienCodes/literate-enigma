@@ -1,0 +1,3701 @@
+{
+  "article": "05",
+  "passed": false,
+  "stage": "canonical-draft-00.log",
+  "original_audit_and_quality_thresholds_unchanged": true,
+  "original_maker_unchanged": true,
+  "core_repairs": [
+    {
+      "target": "视频/工具/草稿声音.sh",
+      "file": "files/视频/工具/草稿声音.sh",
+      "original_sha256": "0ce3277812cf16ed30438509b6dc97db0c26725db4c5db5d9b058c3ef6531aa2",
+      "patched_sha256": "957d7eb1598698ea33ff77d83379256ecae258d84d588753d561a902284be439",
+      "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+    },
+    {
+      "target": "视频/工具/句内响度.py",
+      "file": "files/视频/工具/句内响度.py",
+      "original_sha256": "58735b7173a3c03efa61fb300b4aed4039c164fa970e0593a40bae2a3f3cbd27",
+      "patched_sha256": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea",
+      "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+    },
+    {
+      "target": "视频/工具/独立复核/synth.py",
+      "file": "files/视频/工具/独立复核/synth.py",
+      "original_sha256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+      "patched_sha256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+      "repair_scope": "validated unprocessed raw-mother reference input only; independent transforms/audit/thresholds retained"
+    }
+  ],
+  "strict_production_cache": true,
+  "pdf_requested": false,
+  "check_summaries": {
+    "approved-illustration-resource.log": [],
+    "certified-core-original-stamp-verification.log": [],
+    "original-restored-stamp.log": [],
+    "canonical-module-copy.log": [],
+    "canonical-draft-00.log": [
+      "① 文本：通过，自动修 2 处",
+      "② 声音：05 纯人声核对（配音指纹 6c49620d81f1）问题数 38；问题数 2；05 句间停顿核对 问题数 0；问题数 0",
+      "【停】③ 出片前核查（114 秒；全文在 /home/runner/work/_temp/completion-machine/video/做_05/）：",
+      "05 S5 BAD A19 「ity of Leicester,」 停顿后有 0.28s 不是词的声音（吸气声），词到词比标准长：用实际声音找出切点写进“停顿删除区间”或“非人声区间”（纯人声，不留任何呼吸声）",
+      "05 S5 BAD 「ity of Leicester,」 标准 0.4s，实际听到 0.39s",
+      "05 S16 BAD A19 「9 September 1987,」 停顿后有 0.22s 不是词的声音（吸气声），词到词比标准长：用实际声音找出切点写进“停顿删除区间”或“非人声区间”（纯人声，不留任何呼吸声）",
+      "05 S16 BAD 「9 September 1987,」 标准 0.4s，实际听到 0.40s",
+      "✔ \u001b[0;93m2026-11-14 02:05:10.071181",
+      "✔ \u001b[0;93m2026-11-14 02:05:26.792065062 [W:onnxruntime:Default, device_discovery.cc:146 GetPciBusId] Skipping pci_bus_id for PCI path at \"/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/"
+    ]
+  },
+  "actual_native_core_certification": {
+    "run_id": 43535822030,
+    "job_id": 132264443476,
+    "commit": "395e8da264fafa2453a42ee70a3f7aed8303a769",
+    "actual_full_quickcheck_exit": 0,
+    "actual_full_quickcheck_seconds": 478.16,
+    "artifact_id": 14089812323,
+    "artifact_zip_sha256": "5e396c84e4a6fc7c6cc737ceb8648d7f15f397e9551806e032c93db8ab0963b8",
+    "full_original_quickcheck_log_sha256": "dbe7f6e08d2b7c3a5f9a2f925bb75a662aed725c780e1bc6714706807552a294",
+    "article_audio_or_video_passed_not_implied": true
+  },
+  "actual_native_fastcheck_stamp": {
+    "target": "视频/工具/新管/快测通过.json",
+    "file": "files/视频/工具/新管/快测通过.json",
+    "sha256": "6ebc7aa41f79f77258fa333b665af258e007daa36a4ea290de972cd3da7b42f2",
+    "origin": "actual unmodified original full quickcheck, native run43535822030"
+  },
+  "reviewed_regression_resource": {
+    "target": "视频/工具/新管/回归基准_27.json",
+    "file": "files/视频/工具/新管/回归基准_27.json",
+    "sha256": "b8ddb4656ae27cbfc7ec8e3b99511983b4e568997bd4ad4ee33c364f3926ae94",
+    "origin": "pre-existing root-reviewed 67-screen data; original voice/segment MD5 unchanged"
+  },
+  "core_repair_manifest_sha256": "1b1558108d15603e5711e200135651d6c7700a583d8bcf53ad8753683ed05a5e",
+  "reviewed_gain_preservation_mode": true,
+  "real_restored_stamp_validated": true,
+  "reviewed_cross_article_context": {
+    "provided": true,
+    "manifest_sha256": "eddfbdceea4e25f2398a2198f94d9852f1e30e35b35c4075c5a5ff0c8e32c096",
+    "files_sha256": {
+      "视频/脚本/01.json": "2be2f80a69af28703992204ac95f987c745362c326e62ad81b3cd8e0e0735d3a",
+      "新版定稿/01-the-robber-who-thought-lemon-juice-made-him-invisible.md": "572054065b5bb65446bf8939a21c789c1e9c7664d82da5117c43efdded894351",
+      "视频/脚本/02.json": "0403368c77fd3e0f91e1ee3780e1c7c147894ad13c16b5f14707d700a8f717c8",
+      "新版定稿/02-the-truth-about-one-marshmallow.md": "91b92505aad03f963861bec39e96f0a472c126d1d57c9fc538676c32f65e545c",
+      "视频/脚本/03.json": "527f3bf4a11843f4d606188dabc6ebce6830da3fb454a49c782e3a595cb47407",
+      "新版定稿/03-the-doctor-who-drank-bacteria-to-win-an-argument.md": "6dfb56504882e24854a3584fd740e7f6601e3f2532818aee3a56d5330d317aa3",
+      "视频/脚本/04.json": "93cc1ff58d65ebe43a65ecb2fb2dbd2da262d80877c05740bbdf4eab4eaca1e8",
+      "新版定稿/04-the-brain-that-learned-london.md": "a8ccb31ffff50aaae77de4b83de1847fafae1d585981cf960c5880c409f6cfc3",
+      "视频/脚本/05.json": "2282acbfa4b82825f93261ec6c18359eb47fd3f7c639319ac5058d126643e136",
+      "新版定稿/05-the-fingerprint-in-the-blood.md": "612deac4ed066489e04e214ca969f8f27dda05856e0ef0ed2e540e7a4a52ae34",
+      "视频/脚本/06.json": "2cbf1d6cd6e66a59285298ea830f5ef914590b64286d40b2ae5f3168aa27a2e9",
+      "新版定稿/06-the-horse-that-could-count.md": "7fd21ba491c7596c53c486f2bb0b0f2f6da8e67bac75461a4649a7caff822f74",
+      "视频/脚本/07.json": "842e44e5aa19fddcfa239cb6530c5152341cd86e11db959543d02d8670ca13e8",
+      "新版定稿/07-the-octopus-that-escaped.md": "b8544281bb2ada88fce9d1082cbc30233dcb63ee3e9c2bbefafc22cb28b8cb39",
+      "视频/脚本/08.json": "254832e09f12759d950384dd9f31f671ad5a3bc1590b7466065dd3ef5fe4b8d5",
+      "新版定稿/08-the-doctor-who-solved-the-cholera-mystery.md": "0b2bfa68070ce585a452f6b7034d03c3683e710dcabec5e86d7b221950dc7bab",
+      "视频/脚本/09.json": "fa3e429351d629de188c184d04e9986200e16e80606fcbec82332b6433301dae",
+      "新版定稿/09-the-great-emu-war.md": "af5c3e844bad15f94bfc43aeed6d7417c4bfae85f026b194da667a7a3bdb6196",
+      "视频/脚本/10.json": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
+      "新版定稿/10-the-stolen-smile.md": "ff63cf94e4d2c835e2e2f1ffd3e6c5642f0916f0b13c012f1f13c3dff716d47a",
+      "视频/脚本/11.json": "665cbb80cc70b700ecc0cc5813209fd100ad4fa8f0eead3929b9e53778d9d07f",
+      "新版定稿/11-move-37.md": "7e0b49b346c1fa3ab994a11a2301167c0d6a1bb00916508bdc0b1acf71e68053",
+      "视频/脚本/12.json": "e3bfbcce6f1a8e14cfe451d656574353321e297c90c62f5a7b422f37478311d5",
+      "新版定稿/12-the-79-days-of-new-coke.md": "5a23c1e0c81318527bcbf27573487d1845c5318905a2b1e020cc6e2eaf5d643f",
+      "视频/脚本/13.json": "3687b6c42a6d524d0d7e40a47ed02c37b18abe8d524db4f5914abad52019a63c",
+      "新版定稿/13-eleven-days-without-sleep.md": "72b842de127132e386e9e52a1719ec96765e94958f56687987f53e2801c69704",
+      "视频/脚本/14.json": "17141351875ddb8f0e308602c0b6ab85cbf5126a4d0118978c25c869db769fee",
+      "新版定稿/14-the-fungus-that-turns-ants-into-zombies.md": "e114c9e1783c80a2ffdb60af05e824f93a8ea8725905cb733560abe1c0ad01a8",
+      "视频/脚本/15.json": "0934aa067f19814028c398b0c70a400bb09e354f744bde4000742950d77f441e",
+      "新版定稿/15-the-myth-of-the-unsinkable.md": "68e236868c4b466928ff2a60358250b9592dfe9287b66561b1e5a80b4d14de4f",
+      "视频/脚本/16.json": "d25aa07f3fac316c26c2ae1006d3efa7eb82a396b66150432b50239c1628396d",
+      "新版定稿/16-the-bread-made-from-air.md": "4da63148111213f6d77451b0eb4193893e6fc2fc170400bc39ce5f5ffcaa0b20",
+      "视频/脚本/17.json": "2e9971ea5ce7857e119226fe95def06e6eb9c3ef9823d8e8c4f3456f46a3bbb0",
+      "新版定稿/17-the-curse-of-the-pharaoh.md": "a2e8d92f9136e1b22fcc0799f9a4d281092f0e547cc68242e090241d7b09e222",
+      "视频/脚本/18.json": "8cffbad6f0b8451e46ad1a65d5f629c450ceff2c771218445770c8cbfd77ebca",
+      "新版定稿/18-the-mould-that-changed-the-world.md": "ef41cea03f471fe3b9a53939c843e450da3325eb711f6414e108ae92a7518dd8",
+      "视频/脚本/19.json": "cc3c5eea0f7d9ec0712b2e58adba7e5ef8b61d6518a322f9b25a12fcc45282fb",
+      "新版定稿/19-tulip-mania.md": "3882d487383b759c31dda4785966091c362960cd873a5d83c530d08d52e2e97c",
+      "视频/脚本/20.json": "cc5ed6d7be8767e5e7e9b098e8f3836821c0b3f51c17581b2746722da1cf3001",
+      "新版定稿/20-the-5000-year-old-murder-in-the-ice.md": "8d55638070787f7ff5432c197292af1188c463a8b018e01bdefc32999b888e95",
+      "视频/脚本/21.json": "61c1569a26d7569ee0f586178be6b307b1c394c0a30c3cb02541c910038b0589",
+      "新版定稿/21-the-man-who-sold-the-eiffel-tower-twice.md": "e8e966b70f579235d696ba11fb01d3b2cae3fa26efb9071bbea95071be259e1f",
+      "视频/脚本/22.json": "e3027a42c532fee9935afcecdd0542713cbb907183802c2345b9472f93b75f59",
+      "新版定稿/22-the-building-that-melted-a-car.md": "49ae09483bc80bbc40a71551cd98aebec355d96d9ff7b2bcdea59a06fe599267",
+      "视频/脚本/23.json": "c4574a79fd3a58577a1402ce095ea9e4a0ea1f98883ce63e3cc60d126e819409",
+      "新版定稿/23-the-man-who-gave-machines-a-mind.md": "72ed3049e87fe75ce1e753d5e443bdbe6a7ab72f6e282e8467fbbb62be873169",
+      "视频/脚本/24.json": "f08620b534bb10b718f7515c805dcb541721427d855bd5a092b8954847a351b8",
+      "新版定稿/24-survival-in-the-ice.md": "cb7f810d9a74256e0c00625290be4f16207feb90f5719ca87d5d7c9912b91307",
+      "视频/脚本/25.json": "c73e854e052b3df9bd920d4a59fafb183dee19bd58765fa426af6ea3d7c9a329",
+      "新版定稿/25-apollo-13-the-successful-failure.md": "b6b7d55fe66e6e32116431ea955778fab779b8bda622df0ba1036c2f40a3969f",
+      "视频/脚本/26.json": "ab663b240eb5e27923f38e2ff296c0196e3d820766d0c909adb9faf19aa3cac9",
+      "新版定稿/26-the-language-the-children-invented.md": "9e9ad8021ddabc17157d73dc739383f9676df3583cf965e470fcd773e26a3761",
+      "视频/脚本/27.json": "61cd724c5fab6f07a46aa5ac069101617c4c8350311eb11a43f9fefdddb31d8b",
+      "新版定稿/27-life-in-the-forbidden-zone.md": "e276bcf76225b9ae16cd8cfda8c9b726b442fbd625d3718f532b47b09b21b16f",
+      "视频/脚本/28.json": "a6a4befc0291727f5cc3f8b50857ee954ef9f936738f014a978ebb4d37a28ea8",
+      "新版定稿/28-a-handful-of-wormwood-that-saved-millions.md": "b9817d3429767d07b6a2eb14cce5422a20cb4e3b89f8b03e6b3d5da2daf91d91",
+      "视频/脚本/29.json": "1e5f1d9f0c22b5d14b757f029be694c2a3969666d732ca79bb695282763de791",
+      "新版定稿/29-the-volcano-that-gave-us-frankenstein.md": "69045ee19a170c7ea9d0008b468c7e947bc28b639b834c0192dc0aeafc3ef4d0",
+      "视频/脚本/30.json": "cdf727cb4c6832063421df9da6ab8ae7729cf9df01d6be089a8981c92c360f06",
+      "新版定稿/30-the-stink-that-built-londons-sewers.md": "84dbf19cee0045ea2608b13ee0677cb9623dd8fbb371c67093bf50c64186137a",
+      "视频/脚本/31.json": "d81f8645a1e5663ba8c84668e817cdb218bc6689079fbfd51326b3a7fd3cd384",
+      "新版定稿/31-the-book-twelve-publishers-turned-down.md": "7abd20fed44918dcf01586c056e9d0acd9d2ad3b90aa7d3d403762d9f06d2659",
+      "视频/脚本/32.json": "357aa59bed62154f7302a5efcf528859b303004e028657b93058138fe931bf85",
+      "新版定稿/32-the-planet-that-was-demoted.md": "1421f2b0921e7e9478ebc48777e3e8b2c979172de63d0124015107c3750a3542",
+      "视频/脚本/33.json": "ca51103c1a9d45c9159322765efc86c81f61f6ec78975f160019d21a1d9ee0d7",
+      "新版定稿/33-thirteen-in-the-cave.md": "9862078044ce45a9f6d51aa7d165afdfcf90066d1de98cbb317dd7e8f980610d",
+      "视频/脚本/34.json": "74921848a6bb25a2ba631813f60d4756c9ff90c64c03a2fb936ce34f310ce509",
+      "新版定稿/34-the-game-that-escaped-the-soviet-union.md": "e3244b67b21e283e67f4e88e932a1dbb85bf273a48ee009b3f435e1c5814831c",
+      "视频/脚本/35.json": "d8439077dc2c909b1c6cbd1347f31e9625f25fffe447d6f5945c9492561f1a16",
+      "新版定稿/35-the-bird-that-beat-the-letter-home.md": "ba8c38e38b21a3345624e2d44fd352561d3096cfb6f62214b48ea9b6e66faead",
+      "视频/脚本/36.json": "76daa28f421bd40d8e2744d4e785a34bb8ee67da1403b4b1546db9465c535cef",
+      "新版定稿/36-the-company-that-invented-its-own-killer.md": "411eeb96c8641ee7082b49a5abf4c7343d3f1dbb7ef331064d7c0f3c630fe58f",
+      "视频/脚本/37.json": "b1b8945ccf3581df48ade5714a2d0e93e4cc6812708f95bef6f5e44439106c99",
+      "新版定稿/37-dynamite-for-the-heart.md": "4933e24d2384471a96d9c8c26c15d5224a85dae98d9971a3fed15b4978dafc51",
+      "视频/脚本/38.json": "8d0379032000967c9f72e550574874949f798eefbfbfb58ab2b38e4e23ecbc6b",
+      "新版定稿/38-the-web-beneath-the-woods.md": "abb7eead9f3da0b2b326ceed5a649cfbf71fc28dad22e0d52f7b19caa798c54f",
+      "视频/脚本/39.json": "6c3e9539f624b192335312912572a05fba2c7bcfb821b44c3c1dbb21b42527a7",
+      "新版定稿/39-y2k-the-crisis-that-success-erased.md": "abbc9804661126aa006595031ed8f201ce55e8eb5fd9e1ad5669c0c6fcdb80ab",
+      "视频/脚本/40.json": "1c50d1a47ee6f8528d0f7299e8a45bc8c30312622f3f465a964d21cc1395ee7f",
+      "新版定稿/40-the-glue-that-failed.md": "dce9f78f3a0828307843dd667b7eeebf3380a3630f03d234bd5824870aba61a1",
+      "视频/脚本/41.json": "6b6673ffc1db986f4c355f3685de6a0faf2272cee042c5e917f26a8b3057c2be",
+      "新版定稿/41-the-toad-that-invaded-australia.md": "eca590f97120f4e76d719e29aa07b094f9117cd462f5a70c029331a63b85f710",
+      "视频/脚本/42.json": "eceb10ae92aa4b9cd23180d1138149a7fa7b674385462c898bc0d2283c8739e7",
+      "新版定稿/42-the-telescope-that-needed-glasses.md": "d4aa049779a0eba06c555d76ca14103648378eef90465df424120126fa771280",
+      "视频/脚本/43.json": "aa9da1246e293c80408edf94a7c9bed65ef3178ae7cb5265a8273e8c4396687f",
+      "新版定稿/43-from-a-garage-to-the-top-of-the-world.md": "bd70c83e5ac867238ca179f3c9f3548eb9cbdcae1f6df40994aef0bda721ae54",
+      "视频/脚本/44.json": "87f531203ca38d88ae5e71ffd88190b1530715cdc0adba146c2a4a78ebe9b976",
+      "新版定稿/44-the-night-sweden-switched-sides.md": "d3f7ad2ac43f02aae9205a15b9808280ca3db597d6ef3b36aca8ca6176c5f74a",
+      "视频/脚本/45.json": "569406607d2bf18dce5e916052d6460509450d97fe17ac9820be524f59c2c3cc",
+      "新版定稿/45-the-record-humanity-threw-into-the-stars.md": "27deabec4a8478fe570f7f237a2fb850ffdce3deebfd952f512d82a60cf7314f",
+      "视频/脚本/46.json": "804ecfddb6060288b05eda0e1027c65e9bff0c08a9d010c201bf39306c769b62",
+      "新版定稿/46-lost-in-the-glare.md": "7aaa06e875fe56c5d78210b90a8769b8b2051714025ef10df37c2fe89db7a68c",
+      "视频/脚本/47.json": "0417489c8a672e7e63d46c2239d847acabda2d93160cabed3b0fb14f701ac39a",
+      "新版定稿/47-shadows-of-wolves-over-yellowstone.md": "34c68cf4d0f0ef3545ad68edf3367fcb76ab500174b11ae7f83b782cd5a80a2a",
+      "视频/脚本/48.json": "4f146ce6a70bb0bf5d2c6e1f6b47bd6a2bcc2f311be7a948092d7bde1a08f449",
+      "新版定稿/48-rice-for-the-world.md": "76416be21f857e8a05c37baa33ac90f5785812291485231c249e38a1d0edf15f",
+      "视频/脚本/49.json": "640168eb8a17c5d53d266c6604ffe287919314947371c2ee239eeea952d73b77",
+      "新版定稿/49-the-woman-who-won-two-nobels.md": "1e4fb068aa9ae4513d01b199a074b84dc9d819f57b2134df32588a0e4a4b6b6a",
+      "视频/脚本/50.json": "1d4a41824dfa5e8d11e5990b2a4b802ba2fcc3231d85b15ed6630396c6f027bf",
+      "新版定稿/50-microplastics.md": "5439589bacf1abb2abbb184eb658492bc02bcc5bdd8dfd8ababcd80ab93621cb",
+      "视频/脚本/51.json": "39886d83593a31fb575b124ecf6457190773dca695b6ff78f8434d52aebd6d7c",
+      "新版定稿/51-the-joke-that-became-ok.md": "8de30ea4846f4e88d8b71c8d5ced3ee63a73955e39b7dc3c5adad0971b854fd0",
+      "视频/脚本/52.json": "832249bb44617d38ede75560a5e57af6ba79ec284c9609407cb30ce879f6f862",
+      "新版定稿/52-the-killer-smog-of-1952.md": "179500361e4a837d7edb2e0497e08677d5abd425e8ad542f788205a6f7667b4b",
+      "视频/脚本/53.json": "28b604bfa72896534736293f79e9b3aabd8e3678672f4dc6c66337c02a8f1518",
+      "新版定稿/53-the-wind-that-kept-no-time.md": "6fab302dcadb5a2c509436f5fbf8d9ef925c008a36f5b422749bd405aa4701d3",
+      "视频/脚本/54.json": "b1fcb8ae86045b3d35ccfa0f52eb9594b8921d43063835769ee3ecc4543be75e",
+      "新版定稿/54-the-sound-that-shook-the-world.md": "abd5f4bfe11ed73bcc5326a92cf99b0a8e5ad70adaca1ce8d0c8f622b57fa519",
+      "视频/脚本/55.json": "06344fc0ad5975cba2f4dbe5262a9957dd7c024f9a05b9abbfa327f32ea8c719",
+      "新版定稿/55-the-secret-of-romes-undying-concrete.md": "a7759eddcc7ec06dfd6dab7912e06b3b5ef8576df0c025a97812006669d0be61",
+      "视频/脚本/56.json": "22ca3b4180a8ae6a37b4c8e25f5e357d5696d9b23bf148fb7064425d1403e59c",
+      "新版定稿/56-the-letter-that-startled-darwin.md": "aad1e2aab9ff28f534a510362e807ef401e0b502475240f4b2531e9e518a8d7a",
+      "视频/脚本/57.json": "a0ba65b769430289a33ec1f7bc6dbf91dad8d2c3b1d725348851de546563cd6f",
+      "新版定稿/57-a-change-of-anthem-in-the-deep.md": "0731d925a98bafc222718c111985362e166b38b9189c516219a481e36d0d4b6e",
+      "视频/脚本/58.json": "8b0bd3d7d39000518789e9907aec53bd52fab1b9d6b4f22a152d158635b6e8ee",
+      "新版定稿/58-from-a-scratch-to-a-world-without-smallpox.md": "1aa2a0d2c51da76f9c9ebb88d049dd1a55ab530791566fdbf6476e5aa48c15ee",
+      "视频/脚本/59.json": "df1db4174d942371166048b220ef6d55b0b700b2ce31c866edf6dfdf33b92f0c",
+      "新版定稿/59-saving-the-sky.md": "7bf9c4661e733e7af23dc2f11bc820b809ec93dad75a94fb6a12748226e8722c",
+      "视频/脚本/60.json": "eed1655c0919db32a3a016b24791b93d25683f287c7ccb2523e168a69bddc562",
+      "新版定稿/60-the-scientific-giant-who-changed-the-world.md": "9d1578e7af085559922394a3db01de4eb22dc1c520ca17de5cad68e5a38a31a8",
+      "视频/脚本/61.json": "72378937501769dfb3d934fe65ab1a69afeb5420a15e19890c161433717d2435",
+      "新版定稿/61-the-steel-box-that-remade-the-world.md": "135cc9cfbcbd68d957f831cf55558112a45b1cc3749366cb9a304507355c7d2c",
+      "视频/脚本/62.json": "4b3a97f2b6404e1b091537c21f01fc60088902f596803345983c38be52ec79eb",
+      "新版定稿/62-dolly-the-copied-sheep.md": "62817546ae33824b57255f941135c503e41a41f905331ed4af1e32850fa00960",
+      "视频/脚本/63.json": "5d266d80f9cf29cce6f7e34531449cf75191a42f180102685a5bcd04849e75c5",
+      "新版定稿/63-the-crowded-heavens.md": "6ef79d4310019dfefa7364b8a428411a6bc337678c69fa5cbc89b84689e253a4",
+      "视频/脚本/64.json": "12a36862765922d72ce6e5a4c5fe85f548364eed65fe3b3b284f0b38899a965f",
+      "新版定稿/64-the-day-zero-that-never-came.md": "e0c83cbe36745adbbffd33a156fa8d0671704ea976cb13215cabb612639b37a5",
+      "视频/脚本/65.json": "78e60dd231df4ac71df83e21a26f82bbf706dc0bef80bee156a36bc287661ede",
+      "新版定稿/65-the-day-the-doomsday-vault-opened.md": "71a50d32e25955e713e6ca108ab68422a4fd5b77c914a9074eece1dc33cbff89",
+      "视频/脚本/66.json": "ad5324af4270834186285a5e7273a90213094077adc6f9e1d5c7b0ebff9cf035",
+      "新版定稿/66-the-burrs-that-became-velcro.md": "75dbe6c148ca97a7780ac1737f33f58bf8ee27a51aa729a83315705655b12b2a",
+      "视频/脚本/67.json": "8897cc1c2df1e4672eec3bbff2776d0565afb9c9fe84087a1758ebb15b2a233e",
+      "新版定稿/67-the-cave-found-by-a-dog.md": "10e37b81eeef4e3289448a6b4fd679f34d495a4fc087c57747e6dca949e00cf1",
+      "视频/脚本/68.json": "568f72dacac48e206811d35a57c7fa22e3da428783f64e507c184f2090e579f3",
+      "新版定稿/68-the-last-flight-of-the-hindenburg.md": "c25f58ffb0e3748336767bb7470dd7cef10374c53cbb48af89dba26f65b2dd5c",
+      "视频/脚本/69.json": "09fd3fdbbc834badd16a9b38d8c14e425193a6849d7db87253f26a782a1c4137",
+      "新版定稿/69-the-trial-of-the-father-of-the-atomic-bomb.md": "570eda5b7d979d71e9bcad1c67e295ed326ecdb8b61e663aba33272c8a9451bd",
+      "视频/脚本/70.json": "0f6827f02cef0d2416f9d7d69b7e1c5553acee7cf6dc89f3379201264587236c",
+      "新版定稿/70-the-stamp-that-changed-the-post.md": "edfd85cea33730ba67e4210e756da1f2945f1a21bce55c7e75497cb5f0095d80"
+    },
+    "source_file_count": 140,
+    "working_script_count": 70,
+    "target_request_exactly_matches_context": true
+  },
+  "request_source_sha256": {
+    "视频/脚本/05.json": "2282acbfa4b82825f93261ec6c18359eb47fd3f7c639319ac5058d126643e136",
+    "视频/工具/初稿生成/gen05.py": "257b1979ea603b58a1368d3ef11213f5bfe0a18f1d0ab92267114bd325abdff6",
+    "新版定稿/05-the-fingerprint-in-the-blood.md": "612deac4ed066489e04e214ca969f8f27dda05856e0ef0ed2e540e7a4a52ae34",
+    "视频/制作记录/05_待改清单.md": "310b46b7d4fc1a5b24d36f1f9d351f5d7a5a90448855ecddfdbc74fa8bc8397a"
+  },
+  "accepted_source": {
+    "id": "05",
+    "path": "最终版4K视频/05 - The Fingerprint in the Blood - 血里的指纹.mp4",
+    "sha256": "216f567cca37e44bb5403d5b8d8aa7fcb0bf9aaf335f0c3d8516e996dcd42d9a",
+    "git_blob_sha": "9311d0f1377c2fcab9eec4d6c450948a7add90ab",
+    "bytes": 12373453,
+    "width": 3840,
+    "height": 2160,
+    "summary_frames": 60,
+    "aac_adts_sha256": "5188374d44bb921341e7dec82349be693ff09da80704ae86bc2f1b12af1f5cc2"
+  },
+  "checker_reference_preparation": {
+    "article": "05",
+    "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+    "reference_prepared": true,
+    "acceptance": false,
+    "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+    "source_sha256": "2282acbfa4b82825f93261ec6c18359eb47fd3f7c639319ac5058d126643e136",
+    "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+    "checker_program_sha256": {
+      "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+      "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+      "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+      "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+      "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+      "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+    },
+    "reference_calls": [
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-raw",
+        "method": "create",
+        "source_slice": "The Fingerprint in the Blood",
+        "exact_native_cache_key": "0ad1621366270134a18df565af1344a0328da655.pkl",
+        "cache_input_text_sha256": "e3587e2c54a31a58d3927e7fae2e23ddee7a45084176d7e1712e54e60c676141",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-timed",
+        "method": "create_timed",
+        "source_slice": "The Fingerprint in the Blood",
+        "exact_native_cache_key": "94478fc6b65b12eb5c8df869150e6ad297c84bc1.pkl",
+        "cache_input_text_sha256": "e3587e2c54a31a58d3927e7fae2e23ddee7a45084176d7e1712e54e60c676141",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "In November 1983 a 15-year-old girl was murdered in the Leicestershire village of Narborough, and the homicide went unsolved.",
+        "exact_native_cache_key": "baf289c2810f488b951d0eecfbaeb841db0b6f55.pkl",
+        "cache_input_text_sha256": "c38b9260060e82a618d0b46cce661c11a7e34f777a136bf8c5c7389e752ee929",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "In November 1983 a 15-year-old girl was murdered in the Leicestershire village of Narborough, and the homicide went unsolved.",
+        "exact_native_cache_key": "35e54a5532fbcbb9cdf278798b4b61ecdd95849c.pkl",
+        "cache_input_text_sha256": "c38b9260060e82a618d0b46cce661c11a7e34f777a136bf8c5c7389e752ee929",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "In November 1983 a 15-year-old girl",
+        "exact_native_cache_key": "b0184f2d6bbd9a8eea4fca08501c8113eb23fbbb.pkl",
+        "cache_input_text_sha256": "196cb399630ce62f783e49f76ac5d2e4c5678747da7d9df122c2402237adfcd7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "was murdered in the Leicestershire village of Narborough,",
+        "exact_native_cache_key": "34ac6d73cb0358dc2646e6ad39e8a86e51ee1818.pkl",
+        "cache_input_text_sha256": "2780bd4210858d8717173b447f4579def1ae82823426617c9da0ebf6fc530baa",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and the homicide went unsolved.",
+        "exact_native_cache_key": "7c849a3a7391e4c576df3384ec6fd44bc2488893.pkl",
+        "cache_input_text_sha256": "40e7b80aaf27eaf8951f2e9bd8b68a455b99ddc77833bea565e9e981fc3da17f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "In November 1983 a 15-year-old girl was murdered in the Leicestershire village of Narborough,",
+        "exact_native_cache_key": "eff3936f964761a149a77a1e1f79b4b27a386157.pkl",
+        "cache_input_text_sha256": "8fd538634e17cccdac8fedee0ffbf9d337ba3bec3e19ca0744d8b71a0e25b361",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and the homicide went unsolved.",
+        "exact_native_cache_key": "7c849a3a7391e4c576df3384ec6fd44bc2488893.pkl",
+        "cache_input_text_sha256": "40e7b80aaf27eaf8951f2e9bd8b68a455b99ddc77833bea565e9e981fc3da17f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "In the summer of 1986 a second 15-year-old was slain near neighbouring Enderby.",
+        "exact_native_cache_key": "8232c68e787077cef6724c40150a3832600e7798.pkl",
+        "cache_input_text_sha256": "a3a3a5dac477e18e1647f01ff01448fa6ff021f7d4b18ecc616774aab07cf81c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "In the summer of 1986 a second 15-year-old was slain near neighbouring Enderby.",
+        "exact_native_cache_key": "dd562ccc13117f4938ec1da19faae79cef372e8d.pkl",
+        "cache_input_text_sha256": "a3a3a5dac477e18e1647f01ff01448fa6ff021f7d4b18ecc616774aab07cf81c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "In the summer of 1986 a second 15-year-old",
+        "exact_native_cache_key": "9f5941cdc47fd077eab00e44e0b0eeae265b4a86.pkl",
+        "cache_input_text_sha256": "6ebafe35663e45043dfc479e6ebea27f85c0956e4d4badefca42a0fae8e6db02",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "was slain near neighbouring Enderby.",
+        "exact_native_cache_key": "28fa117a0d697c01011d70478091cfc786ff4f73.pkl",
+        "cache_input_text_sha256": "4ae3a4817a4d0d4b0c880719e2d5065c7d32ce846d7114d0272b5d6341949591",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "A 17-year-old local youth confessed to the second killing, and to detectives the perplexing investigation was seemingly resolved.",
+        "exact_native_cache_key": "d0a759511c2b327fe1bd98767010d8d183934324.pkl",
+        "cache_input_text_sha256": "9cae1f59e99cc1c053af1d7ede928b6b3f97ab04f9a870a3ceca7b0a3ae38380",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "A 17-year-old local youth confessed to the second killing, and to detectives the perplexing investigation was seemingly resolved.",
+        "exact_native_cache_key": "d061e58907236fe320a34a3b660fc1194e0598bd.pkl",
+        "cache_input_text_sha256": "9cae1f59e99cc1c053af1d7ede928b6b3f97ab04f9a870a3ceca7b0a3ae38380",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "A 17-year-old local youth confessed to the second killing,",
+        "exact_native_cache_key": "515c005a02d83f135ebf92eb26c853d4abc79592.pkl",
+        "cache_input_text_sha256": "ff79a07de15e2106810b34274e1d7d20465d1873cea34e4a87777902ab29c026",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and to detectives the perplexing investigation was seemingly resolved.",
+        "exact_native_cache_key": "ce46a7df9207daaf27fc209345eb440844405aa9.pkl",
+        "cache_input_text_sha256": "f3f4e1f75616eb14ac83b35954a36305a7dd3bf15597e7a822d0cf56b969944e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "A 17-year-old local youth confessed to the second killing,",
+        "exact_native_cache_key": "515c005a02d83f135ebf92eb26c853d4abc79592.pkl",
+        "cache_input_text_sha256": "ff79a07de15e2106810b34274e1d7d20465d1873cea34e4a87777902ab29c026",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and to detectives the perplexing investigation was seemingly resolved.",
+        "exact_native_cache_key": "ce46a7df9207daaf27fc209345eb440844405aa9.pkl",
+        "cache_input_text_sha256": "f3f4e1f75616eb14ac83b35954a36305a7dd3bf15597e7a822d0cf56b969944e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The revelation had come two years previously.",
+        "exact_native_cache_key": "ba77d95c4f146ac3299fb44f08e0e186f2a77fe3.pkl",
+        "cache_input_text_sha256": "c19335756126c784cf91648605600f6db1535ff4bd9f18a445f4594e7ccae11d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The revelation had come two years previously.",
+        "exact_native_cache_key": "7f1344fb8ae3657ab9d338b4638cce42248155a3.pkl",
+        "cache_input_text_sha256": "c19335756126c784cf91648605600f6db1535ff4bd9f18a445f4594e7ccae11d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "On 10 September 1984 Alec Jeffreys, a geneticist at the University of Leicester, discerned on an X-ray film molecular markers whose layout varied considerably from person to person.",
+        "exact_native_cache_key": "d92cd053cfc42b9048550ddbd32a2770a5350e08.pkl",
+        "cache_input_text_sha256": "45d58c746c5d6c7c12d106866bba13e26a2a9622cf1af4c69b6fb856c20a47de",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "On 10 September 1984 Alec Jeffreys, a geneticist at the University of Leicester, discerned on an X-ray film molecular markers whose layout varied considerably from person to person.",
+        "exact_native_cache_key": "2b3927bb8938bfd98a67c25a7bd4309abe6cc859.pkl",
+        "cache_input_text_sha256": "45d58c746c5d6c7c12d106866bba13e26a2a9622cf1af4c69b6fb856c20a47de",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "On 10 September 1984 Alec Jeffreys,",
+        "exact_native_cache_key": "bd594990c13f82d568ad9d30006ddac83d6cfcc0.pkl",
+        "cache_input_text_sha256": "2c52c429fd352f56257cde4a277eb56939d7d03d981c268b4c119dec667782b3",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "a geneticist at the University of Leicester,",
+        "exact_native_cache_key": "db1daeefe220b998ac26a3a8ec5b68ac271914c6.pkl",
+        "cache_input_text_sha256": "284fddd282d706cc1352b4e390b05ccf3dca4a196fad573b200fa8baacba7052",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "discerned on an X-ray film molecular markers",
+        "exact_native_cache_key": "21fc5ea19e7b245678177db9bb966950e0ad803b.pkl",
+        "cache_input_text_sha256": "e6fce1af790bf803af401bae1a065e33eff5092ee42b115c94f6e928c77d9f0d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 4,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "whose layout varied considerably from person to person.",
+        "exact_native_cache_key": "c7e890f7a343b10b816b2344f4cb24b328120c8c.pkl",
+        "cache_input_text_sha256": "75d2c43cd68383dd92edc2075ac3eada3d167291a81f59fe2ab75a184aadb2e9",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "On 10 September 1984 Alec Jeffreys,",
+        "exact_native_cache_key": "bd594990c13f82d568ad9d30006ddac83d6cfcc0.pkl",
+        "cache_input_text_sha256": "2c52c429fd352f56257cde4a277eb56939d7d03d981c268b4c119dec667782b3",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "a geneticist at the University of Leicester,",
+        "exact_native_cache_key": "db1daeefe220b998ac26a3a8ec5b68ac271914c6.pkl",
+        "cache_input_text_sha256": "284fddd282d706cc1352b4e390b05ccf3dca4a196fad573b200fa8baacba7052",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "discerned on an X-ray film molecular markers whose layout varied considerably from person to person.",
+        "exact_native_cache_key": "23ab62d2c18add2c9af48f7ff1ec3e8581c170d1.pkl",
+        "cache_input_text_sha256": "883ebd0ed640fbca8dd364aad7237766a377d28f3b4cc50ac0edfd18c4570ebc",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "He called them DNA fingerprints, since, like fingerprints, they differentiated individuals.",
+        "exact_native_cache_key": "77f3d33f7522e476bfd05780e852ee6ff73f5910.pkl",
+        "cache_input_text_sha256": "bdb095f3f95884e12d8ccb9ad394375405e942ec619f74830fee5fb583b5ee7c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "He called them DNA fingerprints, since, like fingerprints, they differentiated individuals.",
+        "exact_native_cache_key": "1c0ed651b268856138702309ef2085fd81088e4f.pkl",
+        "cache_input_text_sha256": "bdb095f3f95884e12d8ccb9ad394375405e942ec619f74830fee5fb583b5ee7c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "He called them DNA fingerprints,",
+        "exact_native_cache_key": "c02d73e4836646a0150a65238a0b8bf5c28c2501.pkl",
+        "cache_input_text_sha256": "b36f420fd8f47aae03e9ea2ceae42c3a0866779a9a4fdbfd6fe103c721fe609a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "since, like fingerprints, they differentiated individuals.",
+        "exact_native_cache_key": "8c8e5da3c58efa26253d48bfd47d1d554dccddc6.pkl",
+        "cache_input_text_sha256": "15d68ea25c8435692ca377d15d15e829fb5d929bedac586fcd662eb4959857b4",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "He called them DNA fingerprints,",
+        "exact_native_cache_key": "c02d73e4836646a0150a65238a0b8bf5c28c2501.pkl",
+        "cache_input_text_sha256": "b36f420fd8f47aae03e9ea2ceae42c3a0866779a9a4fdbfd6fe103c721fe609a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "since,",
+        "exact_native_cache_key": "d9f7d8f71e67be0dd89a4a80e28a8429ce94e55a.pkl",
+        "cache_input_text_sha256": "f5c10395c3d29cfbfc939abe6246e4228bee9167884da48540112a75d2272c48",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "like fingerprints,",
+        "exact_native_cache_key": "a8e65551a3b7d8f8e4a05088ac45df2d17edc5d3.pkl",
+        "cache_input_text_sha256": "5c7f4dc5f800d644afe2c37db6e41ad8d70ee149bce66244cd7437707e7c770e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "they differentiated individuals.",
+        "exact_native_cache_key": "ced50def6419d2dda436a168ef47c3079458b0fb.pkl",
+        "cache_input_text_sha256": "8daa47bd3da80ade42cfc20bc832330d4b435d626b47bcbcbec5925fb6589116",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The journal Nature promptly carried his paper in March 1985.",
+        "exact_native_cache_key": "7f4d32cac47b3361d38357a65d72b961138f9b95.pkl",
+        "cache_input_text_sha256": "e3755c80932ff4b507fce1381cd88d339b4063cc352999de5acd82ebf3843459",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The journal Nature promptly carried his paper in March 1985.",
+        "exact_native_cache_key": "9c5118ba4258b6a5000e6a5a1a6be6adb096c5c3.pkl",
+        "cache_input_text_sha256": "e3755c80932ff4b507fce1381cd88d339b4063cc352999de5acd82ebf3843459",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Police enlisted Jeffreys, and his genetic tests overturned the erroneous confession.",
+        "exact_native_cache_key": "25f6c4df1fb90767e26ce44cf77ebb0b99f993b6.pkl",
+        "cache_input_text_sha256": "757cfed20b37706b99adca59af00a4beee18592987767af6d67fcc49aea367b3",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Police enlisted Jeffreys, and his genetic tests overturned the erroneous confession.",
+        "exact_native_cache_key": "5c0d6f570ff9b1e472c9d8cd76c5651365064ffb.pkl",
+        "cache_input_text_sha256": "757cfed20b37706b99adca59af00a4beee18592987767af6d67fcc49aea367b3",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Police enlisted Jeffreys,",
+        "exact_native_cache_key": "589800a5645a8feffb132cdf225248c2de643d7e.pkl",
+        "cache_input_text_sha256": "7d9c929cad5826b26603de9d4d1e4e30c1164974e28553fce8dde637fbf131f2",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and his genetic tests overturned the erroneous confession.",
+        "exact_native_cache_key": "c21aed4c505c22809203ca5af549dd885e496656.pkl",
+        "cache_input_text_sha256": "836ca5b5a8beae13e8e0c8326b6c3273c378445a983dee406c8f791c24b5af6a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Police enlisted Jeffreys,",
+        "exact_native_cache_key": "589800a5645a8feffb132cdf225248c2de643d7e.pkl",
+        "cache_input_text_sha256": "7d9c929cad5826b26603de9d4d1e4e30c1164974e28553fce8dde637fbf131f2",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and his genetic tests overturned the erroneous confession.",
+        "exact_native_cache_key": "c21aed4c505c22809203ca5af549dd885e496656.pkl",
+        "cache_input_text_sha256": "836ca5b5a8beae13e8e0c8326b6c3273c378445a983dee406c8f791c24b5af6a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The youth was not the perpetrator, and the same attacker had killed both girls.",
+        "exact_native_cache_key": "6693794be41ca52f06210131487a5cf6d903d84b.pkl",
+        "cache_input_text_sha256": "6604ccfa08cc9116d0c9cebea4ba1f197847463fab6f40b3c0e5428490176b98",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The youth was not the perpetrator, and the same attacker had killed both girls.",
+        "exact_native_cache_key": "da17b73205a11568484ffbeca191e6a724347886.pkl",
+        "cache_input_text_sha256": "6604ccfa08cc9116d0c9cebea4ba1f197847463fab6f40b3c0e5428490176b98",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "The youth was not the perpetrator,",
+        "exact_native_cache_key": "25389006ae7342187ee3987cefefc08aebc15a9c.pkl",
+        "cache_input_text_sha256": "4127915b1e36841537d4910f7c4dd4d61891ae83a939739acb133d7e0313c56b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and the same attacker had killed both girls.",
+        "exact_native_cache_key": "87c1bcef7ecffe4b3b5fd78901cb57ffe9cc1fb1.pkl",
+        "cache_input_text_sha256": "0dfb5846c5ff6aeff6f46f3b729ac34f85f3676ae274c94c54beb3e9b62c4845",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "The youth was not the perpetrator,",
+        "exact_native_cache_key": "25389006ae7342187ee3987cefefc08aebc15a9c.pkl",
+        "cache_input_text_sha256": "4127915b1e36841537d4910f7c4dd4d61891ae83a939739acb133d7e0313c56b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and the same attacker had killed both girls.",
+        "exact_native_cache_key": "87c1bcef7ecffe4b3b5fd78901cb57ffe9cc1fb1.pkl",
+        "cache_input_text_sha256": "0dfb5846c5ff6aeff6f46f3b729ac34f85f3676ae274c94c54beb3e9b62c4845",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The youth became the first person known to be cleared by DNA evidence.",
+        "exact_native_cache_key": "30579bd109a4834f0e427396cc2baacecd51e1ec.pkl",
+        "cache_input_text_sha256": "987fb2748de999c69e49fc2f850966257fced80a166b4f64a2e8b1a7d08a2d32",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The youth became the first person known to be cleared by DNA evidence.",
+        "exact_native_cache_key": "a2e53978b38cc2ae039c35a86b51416a712fb716.pkl",
+        "cache_input_text_sha256": "987fb2748de999c69e49fc2f850966257fced80a166b4f64a2e8b1a7d08a2d32",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "The youth became",
+        "exact_native_cache_key": "6b4c2b6d696ed2b31966b3d1ddcb03bd3620d573.pkl",
+        "cache_input_text_sha256": "fb108b115247979be002ea5a1108d8f50a4676a55ec500839cda3ff85b25fb4a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "the first person known to be cleared by DNA evidence.",
+        "exact_native_cache_key": "bccf0a7916b951be11ecda040a3bdb14bab2ad5c.pkl",
+        "cache_input_text_sha256": "0389bcc0fe4f807b11474dc15a727cb4ef46aa5283d0f429a45cc0d42693caab",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The forensic innovation had freed an innocent before it implicated anyone.",
+        "exact_native_cache_key": "92234f52b8b2ee27a6a28aa32c48423da9455676.pkl",
+        "cache_input_text_sha256": "28b0ac95eef6f5054fe5b0c36cd73723fd1d861bbc849f8258bb7f4b2bd5e6ab",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The forensic innovation had freed an innocent before it implicated anyone.",
+        "exact_native_cache_key": "d14e04bda9c8cd2134b89b7ba6d0afc7be25f8d9.pkl",
+        "cache_input_text_sha256": "28b0ac95eef6f5054fe5b0c36cd73723fd1d861bbc849f8258bb7f4b2bd5e6ab",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "The forensic innovation had freed an innocent",
+        "exact_native_cache_key": "75b4bab547c6b6ab233a605f49d97a952c5274b7.pkl",
+        "cache_input_text_sha256": "5f2daa856f2b8d71b0334a9627a931d51493f038fbdf66279b345dc633c48d03",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "before it implicated anyone.",
+        "exact_native_cache_key": "830d78084366dd4ed1c49d2120babedb0bf1f61d.pkl",
+        "cache_input_text_sha256": "473bb20435be2157b548a1f3592d67d69213009783e1bd35c7e3c3a4a7db41f7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "In January 1987 police commenced the world's first large-scale DNA screening, asking more than 5,000 men in three villages for blood or saliva.",
+        "exact_native_cache_key": "1234e074974fc6734c5782414f5a6c6dfe836df1.pkl",
+        "cache_input_text_sha256": "f4dc6e9b6e7d6ad9066cefc21eaa3c28ec020d3333df47c492af4a258d71783e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "In January 1987 police commenced the world's first large-scale DNA screening, asking more than 5,000 men in three villages for blood or saliva.",
+        "exact_native_cache_key": "e0fadb5ace9c2b78a7789360bc6ec9015e6cdbfa.pkl",
+        "cache_input_text_sha256": "f4dc6e9b6e7d6ad9066cefc21eaa3c28ec020d3333df47c492af4a258d71783e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "In January 1987 police commenced",
+        "exact_native_cache_key": "ecf04c54e284bf961626088b6914c73436dd6b16.pkl",
+        "cache_input_text_sha256": "066e93a3cf79af3207bd1d58a60fab339fef283b5e805599d27f1377d6cb04de",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "the world's first large-scale DNA screening,",
+        "exact_native_cache_key": "d4d4c893d7daf7b3d4e2ff0f0ee7c44f781922e7.pkl",
+        "cache_input_text_sha256": "413527f3bcaf422a4fe9711164d859196641e92a8e3b9e8c42bd0f91e127a78c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "asking more than 5,000 men in three villages for blood or saliva.",
+        "exact_native_cache_key": "bf73103e2e5c8b7ec571d76b3a2dea388634c2b3.pkl",
+        "cache_input_text_sha256": "a87783334723d13e589832e5580f88f19d1c8840b65c5deae4290cc055f373a8",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "In January 1987 police commenced the world's first large-scale DNA screening,",
+        "exact_native_cache_key": "58b47a379021ab5b9874ac09796c9d1ff09b8e84.pkl",
+        "cache_input_text_sha256": "fd5f07bfb3ae4e0de95e52f67063cd35f6bf1a64254fbd860545a52258ad08bd",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "asking more than 5,000 men in three villages for blood or saliva.",
+        "exact_native_cache_key": "bf73103e2e5c8b7ec571d76b3a2dea388634c2b3.pkl",
+        "cache_input_text_sha256": "a87783334723d13e589832e5580f88f19d1c8840b65c5deae4290cc055f373a8",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "None matched.",
+        "exact_native_cache_key": "acae65763a51e53938d394a7a62f51cb237a08f0.pkl",
+        "cache_input_text_sha256": "52b7bd17843053b0f0cdfe7a778a947f41be4b402eb154f610b9e2bd8f0480ef",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "None matched.",
+        "exact_native_cache_key": "f14b42f605ac16d461479b6515107123c441ceea.pkl",
+        "cache_input_text_sha256": "52b7bd17843053b0f0cdfe7a778a947f41be4b402eb154f610b9e2bd8f0480ef",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The elusive killer, a local baker, had induced a co-worker to give a sample in his name, evading suspicion.",
+        "exact_native_cache_key": "2c10c14d43072b5ff40286c71a39c5ca88e946b5.pkl",
+        "cache_input_text_sha256": "eb3e7d74f6b077e9cb173f20daad4d79a0676da080bca308fc30617b132b38ca",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The elusive killer, a local baker, had induced a co-worker to give a sample in his name, evading suspicion.",
+        "exact_native_cache_key": "1dbc39f616fe20865b33deea0af1cd528b47613e.pkl",
+        "cache_input_text_sha256": "eb3e7d74f6b077e9cb173f20daad4d79a0676da080bca308fc30617b132b38ca",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "The elusive killer, a local baker,",
+        "exact_native_cache_key": "3d9d0e714c7bdc54ad2f117263bcff62c57b7a6b.pkl",
+        "cache_input_text_sha256": "e979fb5da013065bba77270f00e09fb10e749a27f54d225516b6c72a9dbc77e1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "had induced a co-worker to give a sample in his name,",
+        "exact_native_cache_key": "bae0fbced602e57f1652f74ca3afa0052f6b0ddc.pkl",
+        "cache_input_text_sha256": "e8ffd4991ee01ca1ec0c45554416dbb15c35ce42721ea200678abf49f1d3ddad",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "evading suspicion.",
+        "exact_native_cache_key": "3007e31db675f2067c3432ac7f0de1dddc87ac0a.pkl",
+        "cache_input_text_sha256": "6edac9b1a2a28215d30b18198a7b6e2dc7f2ca0002c78d1c1bb0cac501864515",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "The elusive killer,",
+        "exact_native_cache_key": "6d317f168f87dd81f72e33c8bfd16de03821d2fd.pkl",
+        "cache_input_text_sha256": "f1eab2e6ec7b93b2646605fa5bc07f7f3d05e783690d7a17694d726f6f2e2032",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "a local baker,",
+        "exact_native_cache_key": "c414d9125192df27e773c641f89eafdd46f9e5f1.pkl",
+        "cache_input_text_sha256": "dda94d9730eccea749b010f85fb068e31aeba3c5ae9848a855d27bf420655068",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "had induced a co-worker to give a sample in his name,",
+        "exact_native_cache_key": "bae0fbced602e57f1652f74ca3afa0052f6b0ddc.pkl",
+        "cache_input_text_sha256": "e8ffd4991ee01ca1ec0c45554416dbb15c35ce42721ea200678abf49f1d3ddad",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "evading suspicion.",
+        "exact_native_cache_key": "3007e31db675f2067c3432ac7f0de1dddc87ac0a.pkl",
+        "cache_input_text_sha256": "6edac9b1a2a28215d30b18198a7b6e2dc7f2ca0002c78d1c1bb0cac501864515",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "In August 1987 someone overheard the co-worker discussing the substitution and notified police.",
+        "exact_native_cache_key": "650677613a218ba61bacb4b0b8643c318b6405f5.pkl",
+        "cache_input_text_sha256": "1766f6349f9ef2da5f3689142e2e8d64778240534cf1df3f71083be660248600",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "In August 1987 someone overheard the co-worker discussing the substitution and notified police.",
+        "exact_native_cache_key": "53903905388212c19f9d37285b8cb6c810c62ce6.pkl",
+        "cache_input_text_sha256": "1766f6349f9ef2da5f3689142e2e8d64778240534cf1df3f71083be660248600",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "In August 1987 someone overheard",
+        "exact_native_cache_key": "953634caf40daa600f4a2842d631fe65638771a6.pkl",
+        "cache_input_text_sha256": "e8af9c3854d48f76556c2a3e9f1de1696fe25ee532ce84c9236a492af9477507",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "the co-worker discussing the substitution",
+        "exact_native_cache_key": "d58d5092d22703f1b827fc437681b6ef6d2c2fbe.pkl",
+        "cache_input_text_sha256": "460b468c7e9e8e23d5e3f6a168d2f892b8d17be230b77d96b0ffefa474c71254",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and notified police.",
+        "exact_native_cache_key": "f8d4abc63b7536ca1b6cd8d18fb0d229af250412.pkl",
+        "cache_input_text_sha256": "fda8d817a421ae26b145d44bc02cb851b6deed4969f5fb2eab4e7589324e4fd7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Colin Pitchfork was detained on 19 September 1987, and his DNA profile matched.",
+        "exact_native_cache_key": "62b91a949cbe4bf9950bf55af517e1aa5c546a81.pkl",
+        "cache_input_text_sha256": "3295b99b1921bcfbe67df6a22891ef19cc471d6c19da3fe3d89f9edacd76daba",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Colin Pitchfork was detained on 19 September 1987, and his DNA profile matched.",
+        "exact_native_cache_key": "166d22760f825de387a7f554993c71135ddf4cf5.pkl",
+        "cache_input_text_sha256": "3295b99b1921bcfbe67df6a22891ef19cc471d6c19da3fe3d89f9edacd76daba",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Colin Pitchfork was detained on 19 September 1987,",
+        "exact_native_cache_key": "b59ff195d2b6b2b6d2e7e79e3f212463cc14b3e3.pkl",
+        "cache_input_text_sha256": "704c9a10af0569ec5ff12a99d01369a67d6c35c41014e009b8ef3957bdf0c37d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and his DNA profile matched.",
+        "exact_native_cache_key": "c99982015434efefcff306c3f833821cbe9226e7.pkl",
+        "cache_input_text_sha256": "c9bf1f842889c928d91aa1403b75b11ffd241e18f9b2bf752243404677a99b30",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Colin Pitchfork was detained on 19 September 1987,",
+        "exact_native_cache_key": "b59ff195d2b6b2b6d2e7e79e3f212463cc14b3e3.pkl",
+        "cache_input_text_sha256": "704c9a10af0569ec5ff12a99d01369a67d6c35c41014e009b8ef3957bdf0c37d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and his DNA profile matched.",
+        "exact_native_cache_key": "c99982015434efefcff306c3f833821cbe9226e7.pkl",
+        "cache_input_text_sha256": "c9bf1f842889c928d91aa1403b75b11ffd241e18f9b2bf752243404677a99b30",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "In January 1988 he pleaded guilty and was jailed for life, the first person convicted of murder on the basis of DNA evidence.",
+        "exact_native_cache_key": "8cbfc8accd90e4ddac9fb1ce1d5df29d71394377.pkl",
+        "cache_input_text_sha256": "b6bc8a3d1174a6ddd33bb928d63162ae99e518d306e9e2c568356df37a97c16d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "In January 1988 he pleaded guilty and was jailed for life, the first person convicted of murder on the basis of DNA evidence.",
+        "exact_native_cache_key": "d98b323bde933f794dd4d64af3cf8c904aeadd9b.pkl",
+        "cache_input_text_sha256": "b6bc8a3d1174a6ddd33bb928d63162ae99e518d306e9e2c568356df37a97c16d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "In January 1988 he pleaded guilty",
+        "exact_native_cache_key": "a586fe0fe6f464410238221cc0d2826eadf2f62f.pkl",
+        "cache_input_text_sha256": "defce1c76fd2764cde83925715313ca7689534fd1c8d40ee268883c199a2ec21",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and was jailed for life,",
+        "exact_native_cache_key": "be2635e1162272b5dfb38b2cc3ec66d7e1ddcead.pkl",
+        "cache_input_text_sha256": "ea9176acf4c58585cc07b4d6076f52ac68eedf54a7990b1b42cc232eb17f3b76",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "the first person convicted of murder on the basis of DNA evidence.",
+        "exact_native_cache_key": "e8944af95620b55d2ff736be74d8a98fb2929562.pkl",
+        "cache_input_text_sha256": "78b50d6b7aa8c17131d86bc13214bf04c1dbd7fbde2a7b7270440e5a04e390de",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "In January 1988 he pleaded guilty and was jailed for life,",
+        "exact_native_cache_key": "94b78964e6dc3101475f5bfaaa6bdd422e17bd4e.pkl",
+        "cache_input_text_sha256": "1d7810f8c22b880a0e550a3381b99c1b97eaa4756f92418f168a3abb00eedfaa",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "the first person convicted of murder on the basis of DNA evidence.",
+        "exact_native_cache_key": "e8944af95620b55d2ff736be74d8a98fb2929562.pkl",
+        "cache_input_text_sha256": "78b50d6b7aa8c17131d86bc13214bf04c1dbd7fbde2a7b7270440e5a04e390de",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "A tip-off, not the screening, had unmasked him.",
+        "exact_native_cache_key": "8c59ddf82797dc7ad580c188543fcd22d5e8dd44.pkl",
+        "cache_input_text_sha256": "f6caf8d9c6c76034c941a7c5078af8f5023a8c19f0418018e2c71f4b6094a6ca",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "A tip-off, not the screening, had unmasked him.",
+        "exact_native_cache_key": "bc3a2d0e06036e8be36461bef79064df41470fed.pkl",
+        "cache_input_text_sha256": "f6caf8d9c6c76034c941a7c5078af8f5023a8c19f0418018e2c71f4b6094a6ca",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "A tip-off,",
+        "exact_native_cache_key": "0c9e7bc163339848961657f11fc4a7901f0a3dab.pkl",
+        "cache_input_text_sha256": "a10d2323dd10e557b443cacdc0a750f663d0f5d261b8ab2976dd124c0530bc95",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "not the screening,",
+        "exact_native_cache_key": "88c1cb95b0c12d539aee8fb3ffb19738d490f9c7.pkl",
+        "cache_input_text_sha256": "c33cb40ff46b901984f19653c562f23e378666ce162205571bff11db09c9fa6f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "had unmasked him.",
+        "exact_native_cache_key": "18750828c5ddcbf7c6da3d4b0954c42875b27340.pkl",
+        "cache_input_text_sha256": "86ae16e0b88f9ec094f55941735ab615ade55c7d882d998f7f025619e84734c4",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The test's first beneficiary had been a blameless juvenile who had falsely admitted the offence.",
+        "exact_native_cache_key": "10bee0c628fc5a60bf23e6eeabe707b5b9e97e8b.pkl",
+        "cache_input_text_sha256": "ab73caddeda1c01bc8dd6a68b2e8059df6a123c3922f37c08f60ee673a03a128",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The test's first beneficiary had been a blameless juvenile who had falsely admitted the offence.",
+        "exact_native_cache_key": "37a7150c92efa48507375138692e4bcfe7772806.pkl",
+        "cache_input_text_sha256": "ab73caddeda1c01bc8dd6a68b2e8059df6a123c3922f37c08f60ee673a03a128",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "The test's first beneficiary had been a blameless juvenile",
+        "exact_native_cache_key": "3d7a75e56ab07453fdf27398beb3262ac5f5d0e9.pkl",
+        "cache_input_text_sha256": "91e226fe10018fad308d0dad3cfcc723c8f478c6792967196aae392fac88563d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "who had falsely admitted the offence.",
+        "exact_native_cache_key": "a8d358322069918c47a50c2b07bc85aecd74d363.pkl",
+        "cache_input_text_sha256": "79a53e8878f2a622969b15d439cf346c6608eff8bbcd75636586a6ded424ffe7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      }
+    ],
+    "unique_reference_key_count": 89,
+    "raw_mother_cache_scalar_manifest": [
+      {
+        "exact_native_cache_key": "0ad1621366270134a18df565af1344a0328da655.pkl",
+        "pkl_sha256": "ef395028e2955353311872feeb5e0c8b5d081cd1f8b6fe41a3a5ef01fb0837b2",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "标题",
+            "piece": null,
+            "reference_kind": "title-default-raw",
+            "method": "create",
+            "source_slice": "The Fingerprint in the Blood",
+            "exact_native_cache_key": "0ad1621366270134a18df565af1344a0328da655.pkl",
+            "cache_input_text_sha256": "e3587e2c54a31a58d3927e7fae2e23ddee7a45084176d7e1712e54e60c676141",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          36352
+        ],
+        "unprocessed_array_sha256": "d1cd6a005ca426eeb613887387068bfc69a2ecac56cab2523f71cce689c5a011"
+      },
+      {
+        "exact_native_cache_key": "baf289c2810f488b951d0eecfbaeb841db0b6f55.pkl",
+        "pkl_sha256": "9409f317722e4f39a1c6e6c7648346057c0504292db449604bd1849939b1d296",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "In November 1983 a 15-year-old girl was murdered in the Leicestershire village of Narborough, and the homicide went unsolved.",
+            "exact_native_cache_key": "baf289c2810f488b951d0eecfbaeb841db0b6f55.pkl",
+            "cache_input_text_sha256": "c38b9260060e82a618d0b46cce661c11a7e34f777a136bf8c5c7389e752ee929",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "9409f317722e4f39",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          224768
+        ],
+        "unprocessed_array_sha256": "73d81e0c9412e33d5a0b72ccaaa4ca9c80f1e4194003f89640bc77651b781424"
+      },
+      {
+        "exact_native_cache_key": "b0184f2d6bbd9a8eea4fca08501c8113eb23fbbb.pkl",
+        "pkl_sha256": "b5810bafe72c64f4806d8970e2aaada0170fe019924f553609004af39bf1a05b",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "In November 1983 a 15-year-old girl",
+            "exact_native_cache_key": "b0184f2d6bbd9a8eea4fca08501c8113eb23fbbb.pkl",
+            "cache_input_text_sha256": "196cb399630ce62f783e49f76ac5d2e4c5678747da7d9df122c2402237adfcd7",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "b5810bafe72c64f4",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          82944
+        ],
+        "unprocessed_array_sha256": "70180e989436c71deb0835debd6d33a52308c205a3c9352f7effa56f0a480680"
+      },
+      {
+        "exact_native_cache_key": "34ac6d73cb0358dc2646e6ad39e8a86e51ee1818.pkl",
+        "pkl_sha256": "6d52e5d65f7e880d70f725d6187a33c71412f250ac4a4d68a1a041f250b48760",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "was murdered in the Leicestershire village of Narborough,",
+            "exact_native_cache_key": "34ac6d73cb0358dc2646e6ad39e8a86e51ee1818.pkl",
+            "cache_input_text_sha256": "2780bd4210858d8717173b447f4579def1ae82823426617c9da0ebf6fc530baa",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "6d52e5d65f7e880d",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          70656
+        ],
+        "unprocessed_array_sha256": "a5f24fc143b6ad504297bbded830df6dbbb7536930cbcfe4a7a13a302ff4a7a3"
+      },
+      {
+        "exact_native_cache_key": "7c849a3a7391e4c576df3384ec6fd44bc2488893.pkl",
+        "pkl_sha256": "51fe8e551c3368ca3ab95292ce35d87caa5b23a37899155f1b3eeb76f5cdd817",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and the homicide went unsolved.",
+            "exact_native_cache_key": "7c849a3a7391e4c576df3384ec6fd44bc2488893.pkl",
+            "cache_input_text_sha256": "40e7b80aaf27eaf8951f2e9bd8b68a455b99ddc77833bea565e9e981fc3da17f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S1",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and the homicide went unsolved.",
+            "exact_native_cache_key": "7c849a3a7391e4c576df3384ec6fd44bc2488893.pkl",
+            "cache_input_text_sha256": "40e7b80aaf27eaf8951f2e9bd8b68a455b99ddc77833bea565e9e981fc3da17f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          49664
+        ],
+        "unprocessed_array_sha256": "a243d3c79d7be635d1db7b0b34eb0699395b31ac1608683b3a866b84d063f7b7"
+      },
+      {
+        "exact_native_cache_key": "eff3936f964761a149a77a1e1f79b4b27a386157.pkl",
+        "pkl_sha256": "653ea13e2e5320eafa711e580c548a3e22e814ea02cb6072f5ca8fd0ece991f4",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "In November 1983 a 15-year-old girl was murdered in the Leicestershire village of Narborough,",
+            "exact_native_cache_key": "eff3936f964761a149a77a1e1f79b4b27a386157.pkl",
+            "cache_input_text_sha256": "8fd538634e17cccdac8fedee0ffbf9d337ba3bec3e19ca0744d8b71a0e25b361",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "653ea13e2e5320ea",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          163840
+        ],
+        "unprocessed_array_sha256": "946fec2552c219636409ce672ce2da007bb0289e40457902bc16c10fae1f2272"
+      },
+      {
+        "exact_native_cache_key": "8232c68e787077cef6724c40150a3832600e7798.pkl",
+        "pkl_sha256": "78aa2f1d8bf586c836606971b049adc02fcc8577cd38c7f996be3b7d2d5f745a",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "In the summer of 1986 a second 15-year-old was slain near neighbouring Enderby.",
+            "exact_native_cache_key": "8232c68e787077cef6724c40150a3832600e7798.pkl",
+            "cache_input_text_sha256": "a3a3a5dac477e18e1647f01ff01448fa6ff021f7d4b18ecc616774aab07cf81c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          146944
+        ],
+        "unprocessed_array_sha256": "906fe3f0a51a72ec1398d9023e394fe9db3c1d2a700d0032e8d5a4da70e05ee2"
+      },
+      {
+        "exact_native_cache_key": "9f5941cdc47fd077eab00e44e0b0eeae265b4a86.pkl",
+        "pkl_sha256": "62d75a517acfd655dae1daada4201807453b796ae286834649eca621f5ee3b30",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "In the summer of 1986 a second 15-year-old",
+            "exact_native_cache_key": "9f5941cdc47fd077eab00e44e0b0eeae265b4a86.pkl",
+            "cache_input_text_sha256": "6ebafe35663e45043dfc479e6ebea27f85c0956e4d4badefca42a0fae8e6db02",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "62d75a517acfd655",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          93184
+        ],
+        "unprocessed_array_sha256": "4b1e30a61a7aa0c62c38b7feefc557b28d30fa467fceecc73100f7a5da68c5ab"
+      },
+      {
+        "exact_native_cache_key": "28fa117a0d697c01011d70478091cfc786ff4f73.pkl",
+        "pkl_sha256": "f76731a7173efea7c872a13c2e85590a782856af7305f47d804bfbcc221dc5b0",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "was slain near neighbouring Enderby.",
+            "exact_native_cache_key": "28fa117a0d697c01011d70478091cfc786ff4f73.pkl",
+            "cache_input_text_sha256": "4ae3a4817a4d0d4b0c880719e2d5065c7d32ce846d7114d0272b5d6341949591",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "f76731a7173efea7",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          45568
+        ],
+        "unprocessed_array_sha256": "4ee994375994402c2d1b7796b7885dc081c5e5cf44f254bc10a3341fe4324866"
+      },
+      {
+        "exact_native_cache_key": "d0a759511c2b327fe1bd98767010d8d183934324.pkl",
+        "pkl_sha256": "460a4204bc3344f3cada3d73d9a3976350b6dfdeca508b465c37a61ed65afc58",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "A 17-year-old local youth confessed to the second killing, and to detectives the perplexing investigation was seemingly resolved.",
+            "exact_native_cache_key": "d0a759511c2b327fe1bd98767010d8d183934324.pkl",
+            "cache_input_text_sha256": "9cae1f59e99cc1c053af1d7ede928b6b3f97ab04f9a870a3ceca7b0a3ae38380",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          214016
+        ],
+        "unprocessed_array_sha256": "54f9077d3ee130bd314d268640505b7fc38f1e2f6c0b9d5b0e27b0f9ed2fec14"
+      },
+      {
+        "exact_native_cache_key": "515c005a02d83f135ebf92eb26c853d4abc79592.pkl",
+        "pkl_sha256": "fde70c3756a9b8eec9e4c0023ad68fd1b25d3cbac1aaa50e13715127268809d0",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "A 17-year-old local youth confessed to the second killing,",
+            "exact_native_cache_key": "515c005a02d83f135ebf92eb26c853d4abc79592.pkl",
+            "cache_input_text_sha256": "ff79a07de15e2106810b34274e1d7d20465d1873cea34e4a87777902ab29c026",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S3",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "A 17-year-old local youth confessed to the second killing,",
+            "exact_native_cache_key": "515c005a02d83f135ebf92eb26c853d4abc79592.pkl",
+            "cache_input_text_sha256": "ff79a07de15e2106810b34274e1d7d20465d1873cea34e4a87777902ab29c026",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          88576
+        ],
+        "unprocessed_array_sha256": "29660299af10baa2f8ac3139636356b4d026351b09f068e27a9a9a46c4eb4fb9"
+      },
+      {
+        "exact_native_cache_key": "ce46a7df9207daaf27fc209345eb440844405aa9.pkl",
+        "pkl_sha256": "d12cefded39bdd612973777173699876a6195c2a623d3506bbfeacacb1130781",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and to detectives the perplexing investigation was seemingly resolved.",
+            "exact_native_cache_key": "ce46a7df9207daaf27fc209345eb440844405aa9.pkl",
+            "cache_input_text_sha256": "f3f4e1f75616eb14ac83b35954a36305a7dd3bf15597e7a822d0cf56b969944e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S3",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and to detectives the perplexing investigation was seemingly resolved.",
+            "exact_native_cache_key": "ce46a7df9207daaf27fc209345eb440844405aa9.pkl",
+            "cache_input_text_sha256": "f3f4e1f75616eb14ac83b35954a36305a7dd3bf15597e7a822d0cf56b969944e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          107520
+        ],
+        "unprocessed_array_sha256": "47b83f9ba2b7814829a25e185db88e147520ceab09176604c4162456912d287d"
+      },
+      {
+        "exact_native_cache_key": "ba77d95c4f146ac3299fb44f08e0e186f2a77fe3.pkl",
+        "pkl_sha256": "e122c32a12f3d2f263cecc652c7443fa67cfd44fac8b5a23ee9b34d69d948d37",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The revelation had come two years previously.",
+            "exact_native_cache_key": "ba77d95c4f146ac3299fb44f08e0e186f2a77fe3.pkl",
+            "cache_input_text_sha256": "c19335756126c784cf91648605600f6db1535ff4bd9f18a445f4594e7ccae11d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          64000
+        ],
+        "unprocessed_array_sha256": "f58c0dcedfe1022bb81ef156ccc19d7f92c25bcd4c69f1842ebe86269dbb844b"
+      },
+      {
+        "exact_native_cache_key": "d92cd053cfc42b9048550ddbd32a2770a5350e08.pkl",
+        "pkl_sha256": "244225dc55e6a457d50a9a4bc24ff6d8138c76a37333b4bec10b165f7f6d2c49",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "On 10 September 1984 Alec Jeffreys, a geneticist at the University of Leicester, discerned on an X-ray film molecular markers whose layout varied considerably from person to person.",
+            "exact_native_cache_key": "d92cd053cfc42b9048550ddbd32a2770a5350e08.pkl",
+            "cache_input_text_sha256": "45d58c746c5d6c7c12d106866bba13e26a2a9622cf1af4c69b6fb856c20a47de",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          344064
+        ],
+        "unprocessed_array_sha256": "813adc71367a249570ec3f2591b29cb1287d10bbe959948895fde160c02fece6"
+      },
+      {
+        "exact_native_cache_key": "bd594990c13f82d568ad9d30006ddac83d6cfcc0.pkl",
+        "pkl_sha256": "d70c001898b2b4e2da392bd17c2ccef5037f84552c4c4e6336539205c2c3269f",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "On 10 September 1984 Alec Jeffreys,",
+            "exact_native_cache_key": "bd594990c13f82d568ad9d30006ddac83d6cfcc0.pkl",
+            "cache_input_text_sha256": "2c52c429fd352f56257cde4a277eb56939d7d03d981c268b4c119dec667782b3",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S5",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "On 10 September 1984 Alec Jeffreys,",
+            "exact_native_cache_key": "bd594990c13f82d568ad9d30006ddac83d6cfcc0.pkl",
+            "cache_input_text_sha256": "2c52c429fd352f56257cde4a277eb56939d7d03d981c268b4c119dec667782b3",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          88064
+        ],
+        "unprocessed_array_sha256": "e91b8f44f5f5cfd223be230cbdfe1478f9103d284678841317d4ebfe0adf0c17"
+      },
+      {
+        "exact_native_cache_key": "db1daeefe220b998ac26a3a8ec5b68ac271914c6.pkl",
+        "pkl_sha256": "2d2a0a28c74481d0ae0ffa6a7a1eda1eee2f473d876f81746cf5ff153dc36c08",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "a geneticist at the University of Leicester,",
+            "exact_native_cache_key": "db1daeefe220b998ac26a3a8ec5b68ac271914c6.pkl",
+            "cache_input_text_sha256": "284fddd282d706cc1352b4e390b05ccf3dca4a196fad573b200fa8baacba7052",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S5",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "a geneticist at the University of Leicester,",
+            "exact_native_cache_key": "db1daeefe220b998ac26a3a8ec5b68ac271914c6.pkl",
+            "cache_input_text_sha256": "284fddd282d706cc1352b4e390b05ccf3dca4a196fad573b200fa8baacba7052",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          68608
+        ],
+        "unprocessed_array_sha256": "cf734d59e379d56168b07c3603d5e013de60e8221a2e7cd05400476a81b61772"
+      },
+      {
+        "exact_native_cache_key": "21fc5ea19e7b245678177db9bb966950e0ad803b.pkl",
+        "pkl_sha256": "2cc9f180600fa801d414abd5325f85ddd55588b9c47705a3b94d762574af8744",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "discerned on an X-ray film molecular markers",
+            "exact_native_cache_key": "21fc5ea19e7b245678177db9bb966950e0ad803b.pkl",
+            "cache_input_text_sha256": "e6fce1af790bf803af401bae1a065e33eff5092ee42b115c94f6e928c77d9f0d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "2cc9f180600fa801",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          72192
+        ],
+        "unprocessed_array_sha256": "ed1abdd511b3fac51f680ae23dd502f35c1f18dc682ae4059f2124c06c587b55"
+      },
+      {
+        "exact_native_cache_key": "c7e890f7a343b10b816b2344f4cb24b328120c8c.pkl",
+        "pkl_sha256": "ae0526ed8f96a5502393dfceb6ae2bebfbe7f277be40645a5fadcd68934f7105",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 4,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "whose layout varied considerably from person to person.",
+            "exact_native_cache_key": "c7e890f7a343b10b816b2344f4cb24b328120c8c.pkl",
+            "cache_input_text_sha256": "75d2c43cd68383dd92edc2075ac3eada3d167291a81f59fe2ab75a184aadb2e9",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "ae0526ed8f96a550",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          82944
+        ],
+        "unprocessed_array_sha256": "9f16865b0335b3217b2010a24524a5102b376b8dc6a5b3834a9ce74f1f0f53f2"
+      },
+      {
+        "exact_native_cache_key": "23ab62d2c18add2c9af48f7ff1ec3e8581c170d1.pkl",
+        "pkl_sha256": "6820d10bd2e4c31c82c2e55c9a7cb2bc098d5e3b321bb1c0283813d885dbbca8",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "discerned on an X-ray film molecular markers whose layout varied considerably from person to person.",
+            "exact_native_cache_key": "23ab62d2c18add2c9af48f7ff1ec3e8581c170d1.pkl",
+            "cache_input_text_sha256": "883ebd0ed640fbca8dd364aad7237766a377d28f3b4cc50ac0edfd18c4570ebc",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          169472
+        ],
+        "unprocessed_array_sha256": "f562ae939ccfb97c1b66a2940b247992cc9e9a5b4a4ee2089eb36253df275eef"
+      },
+      {
+        "exact_native_cache_key": "77f3d33f7522e476bfd05780e852ee6ff73f5910.pkl",
+        "pkl_sha256": "f100e86d89beb3588ee2bcdf69a3c41ecbc337b601cf7796bae89f02dc652908",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "He called them DNA fingerprints, since, like fingerprints, they differentiated individuals.",
+            "exact_native_cache_key": "77f3d33f7522e476bfd05780e852ee6ff73f5910.pkl",
+            "cache_input_text_sha256": "bdb095f3f95884e12d8ccb9ad394375405e942ec619f74830fee5fb583b5ee7c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          152576
+        ],
+        "unprocessed_array_sha256": "d09c9fccbcd5bb5a130b8d66a4efd82b912471ab94b62b453933a2bcd9dc6983"
+      },
+      {
+        "exact_native_cache_key": "c02d73e4836646a0150a65238a0b8bf5c28c2501.pkl",
+        "pkl_sha256": "88f36fb5f11e5867734ea6040c274da24cb4fd322e3658385ec36ecd97b258a4",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "He called them DNA fingerprints,",
+            "exact_native_cache_key": "c02d73e4836646a0150a65238a0b8bf5c28c2501.pkl",
+            "cache_input_text_sha256": "b36f420fd8f47aae03e9ea2ceae42c3a0866779a9a4fdbfd6fe103c721fe609a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S6",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "He called them DNA fingerprints,",
+            "exact_native_cache_key": "c02d73e4836646a0150a65238a0b8bf5c28c2501.pkl",
+            "cache_input_text_sha256": "b36f420fd8f47aae03e9ea2ceae42c3a0866779a9a4fdbfd6fe103c721fe609a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          50688
+        ],
+        "unprocessed_array_sha256": "accac1f0b0b9c785ad0da454e57ab6ba9890379b14f1feb31bad8678ae1df316"
+      },
+      {
+        "exact_native_cache_key": "8c8e5da3c58efa26253d48bfd47d1d554dccddc6.pkl",
+        "pkl_sha256": "491f034c0526377f0752108603474b6c44a4c13f4555a7c66b986cd293714d39",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "since, like fingerprints, they differentiated individuals.",
+            "exact_native_cache_key": "8c8e5da3c58efa26253d48bfd47d1d554dccddc6.pkl",
+            "cache_input_text_sha256": "15d68ea25c8435692ca377d15d15e829fb5d929bedac586fcd662eb4959857b4",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "491f034c0526377f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          92160
+        ],
+        "unprocessed_array_sha256": "340dee7d8f7098b424cd4ddb6b30a910f0ec440fac5de870b1b2972d835a6719"
+      },
+      {
+        "exact_native_cache_key": "d9f7d8f71e67be0dd89a4a80e28a8429ce94e55a.pkl",
+        "pkl_sha256": "43b275e4c4f85e5ac8130eca0ffd9081b2d015321314598505c8be8ee42d3346",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "since,",
+            "exact_native_cache_key": "d9f7d8f71e67be0dd89a4a80e28a8429ce94e55a.pkl",
+            "cache_input_text_sha256": "f5c10395c3d29cfbfc939abe6246e4228bee9167884da48540112a75d2272c48",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          15872
+        ],
+        "unprocessed_array_sha256": "00c6cd13ffb37a15ae989e82a699e7448d99c415e4f6b001ee2f9ced6f830530"
+      },
+      {
+        "exact_native_cache_key": "a8e65551a3b7d8f8e4a05088ac45df2d17edc5d3.pkl",
+        "pkl_sha256": "52a19c1d2c8e3512181d4508f98ca8aa942bd18df5538ea1c451f3f266c93a77",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "like fingerprints,",
+            "exact_native_cache_key": "a8e65551a3b7d8f8e4a05088ac45df2d17edc5d3.pkl",
+            "cache_input_text_sha256": "5c7f4dc5f800d644afe2c37db6e41ad8d70ee149bce66244cd7437707e7c770e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          28672
+        ],
+        "unprocessed_array_sha256": "8a537be0eef9b37addfc7d11c64bf7d1ac834fd21b699fbcb6ad7589bc81ea91"
+      },
+      {
+        "exact_native_cache_key": "ced50def6419d2dda436a168ef47c3079458b0fb.pkl",
+        "pkl_sha256": "7f0e529363aba7bffe3aead21f144482de35edae094b25d334243006dd1ebbb0",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "they differentiated individuals.",
+            "exact_native_cache_key": "ced50def6419d2dda436a168ef47c3079458b0fb.pkl",
+            "cache_input_text_sha256": "8daa47bd3da80ade42cfc20bc832330d4b435d626b47bcbcbec5925fb6589116",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          51712
+        ],
+        "unprocessed_array_sha256": "6d6b61d6f55c7d912c77b9ac59aa9d6ce6b7e4e5f085c1ec1231eede710650e8"
+      },
+      {
+        "exact_native_cache_key": "7f4d32cac47b3361d38357a65d72b961138f9b95.pkl",
+        "pkl_sha256": "c833fc78264d034fae1d397c166f9d546629b3fe6f0aaf7b87c7a7bc4356888b",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The journal Nature promptly carried his paper in March 1985.",
+            "exact_native_cache_key": "7f4d32cac47b3361d38357a65d72b961138f9b95.pkl",
+            "cache_input_text_sha256": "e3755c80932ff4b507fce1381cd88d339b4063cc352999de5acd82ebf3843459",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          116736
+        ],
+        "unprocessed_array_sha256": "f72574c91b560bfb9a38a7c3fcf81d9c9196da2a92810ac792984c721e3cb9ce"
+      },
+      {
+        "exact_native_cache_key": "25f6c4df1fb90767e26ce44cf77ebb0b99f993b6.pkl",
+        "pkl_sha256": "06ec7be3e397a9c98e083f6642e8fd3bf0455bb98378f6ffa570978a49bb5a50",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Police enlisted Jeffreys, and his genetic tests overturned the erroneous confession.",
+            "exact_native_cache_key": "25f6c4df1fb90767e26ce44cf77ebb0b99f993b6.pkl",
+            "cache_input_text_sha256": "757cfed20b37706b99adca59af00a4beee18592987767af6d67fcc49aea367b3",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          133632
+        ],
+        "unprocessed_array_sha256": "0ec00a174316d8c5bec5382192edf251db46869a71a29c22b67ca8047518195f"
+      },
+      {
+        "exact_native_cache_key": "589800a5645a8feffb132cdf225248c2de643d7e.pkl",
+        "pkl_sha256": "44f658f9f6c3ead7b3858e757409e7219c5fe5ee697eb27c55558b244827b08b",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Police enlisted Jeffreys,",
+            "exact_native_cache_key": "589800a5645a8feffb132cdf225248c2de643d7e.pkl",
+            "cache_input_text_sha256": "7d9c929cad5826b26603de9d4d1e4e30c1164974e28553fce8dde637fbf131f2",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S8",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Police enlisted Jeffreys,",
+            "exact_native_cache_key": "589800a5645a8feffb132cdf225248c2de643d7e.pkl",
+            "cache_input_text_sha256": "7d9c929cad5826b26603de9d4d1e4e30c1164974e28553fce8dde637fbf131f2",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          43520
+        ],
+        "unprocessed_array_sha256": "cbf595558b073e879e7a978221fc79a408911c5b5e63f57cefc1a3d1aff16513"
+      },
+      {
+        "exact_native_cache_key": "c21aed4c505c22809203ca5af549dd885e496656.pkl",
+        "pkl_sha256": "7942476dcc3b55cf6c4ca3d8f5ea3d8281216ad1b799ededdecdc06a8d42b31b",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and his genetic tests overturned the erroneous confession.",
+            "exact_native_cache_key": "c21aed4c505c22809203ca5af549dd885e496656.pkl",
+            "cache_input_text_sha256": "836ca5b5a8beae13e8e0c8326b6c3273c378445a983dee406c8f791c24b5af6a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S8",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and his genetic tests overturned the erroneous confession.",
+            "exact_native_cache_key": "c21aed4c505c22809203ca5af549dd885e496656.pkl",
+            "cache_input_text_sha256": "836ca5b5a8beae13e8e0c8326b6c3273c378445a983dee406c8f791c24b5af6a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          89088
+        ],
+        "unprocessed_array_sha256": "f5923e016959afb1fcb9ed6d167707d778739fc0d156d9fd586f3710f5cae327"
+      },
+      {
+        "exact_native_cache_key": "6693794be41ca52f06210131487a5cf6d903d84b.pkl",
+        "pkl_sha256": "bc25e231076a4da07a11b6ef1d24d8767f39ca83be061a42dd10d78bfd69d4a6",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The youth was not the perpetrator, and the same attacker had killed both girls.",
+            "exact_native_cache_key": "6693794be41ca52f06210131487a5cf6d903d84b.pkl",
+            "cache_input_text_sha256": "6604ccfa08cc9116d0c9cebea4ba1f197847463fab6f40b3c0e5428490176b98",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          119808
+        ],
+        "unprocessed_array_sha256": "e88d457b8f229d0455d03710c64e8407a6733c8b5c39aa2c04c55ac46148feb7"
+      },
+      {
+        "exact_native_cache_key": "25389006ae7342187ee3987cefefc08aebc15a9c.pkl",
+        "pkl_sha256": "b0a65e2e8429438c37b0df5cbbbbde20d41147522edb3032dcf5f1d5ed095dff",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "The youth was not the perpetrator,",
+            "exact_native_cache_key": "25389006ae7342187ee3987cefefc08aebc15a9c.pkl",
+            "cache_input_text_sha256": "4127915b1e36841537d4910f7c4dd4d61891ae83a939739acb133d7e0313c56b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S9",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "The youth was not the perpetrator,",
+            "exact_native_cache_key": "25389006ae7342187ee3987cefefc08aebc15a9c.pkl",
+            "cache_input_text_sha256": "4127915b1e36841537d4910f7c4dd4d61891ae83a939739acb133d7e0313c56b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          50176
+        ],
+        "unprocessed_array_sha256": "a48453e5a5fd133745b5243fff353604b69ca7aadd92faf6eb891ab20d0e9c83"
+      },
+      {
+        "exact_native_cache_key": "87c1bcef7ecffe4b3b5fd78901cb57ffe9cc1fb1.pkl",
+        "pkl_sha256": "b7c88165a90fbfe8de6b1cf024c8a016b8708fa2ca003b3915e32ae9cc9ce417",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and the same attacker had killed both girls.",
+            "exact_native_cache_key": "87c1bcef7ecffe4b3b5fd78901cb57ffe9cc1fb1.pkl",
+            "cache_input_text_sha256": "0dfb5846c5ff6aeff6f46f3b729ac34f85f3676ae274c94c54beb3e9b62c4845",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S9",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and the same attacker had killed both girls.",
+            "exact_native_cache_key": "87c1bcef7ecffe4b3b5fd78901cb57ffe9cc1fb1.pkl",
+            "cache_input_text_sha256": "0dfb5846c5ff6aeff6f46f3b729ac34f85f3676ae274c94c54beb3e9b62c4845",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          60928
+        ],
+        "unprocessed_array_sha256": "7fa000653df21c87fd328cb798ee902a49ed2a5a9068f9b4b2bc2da63dbca64f"
+      },
+      {
+        "exact_native_cache_key": "30579bd109a4834f0e427396cc2baacecd51e1ec.pkl",
+        "pkl_sha256": "405fc79aa8f2923911ab513ec2f32f5e3a034754465b18bc1d9be813c3a118ae",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The youth became the first person known to be cleared by DNA evidence.",
+            "exact_native_cache_key": "30579bd109a4834f0e427396cc2baacecd51e1ec.pkl",
+            "cache_input_text_sha256": "987fb2748de999c69e49fc2f850966257fced80a166b4f64a2e8b1a7d08a2d32",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          107520
+        ],
+        "unprocessed_array_sha256": "5f8cf8145dc316a41495e01fd9160f77b75370200864cffd5c0be00a41796666"
+      },
+      {
+        "exact_native_cache_key": "6b4c2b6d696ed2b31966b3d1ddcb03bd3620d573.pkl",
+        "pkl_sha256": "102de811814c096a10a85c2a10644ed6ddf818fbac7f94f1d1c0b469690f6d56",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "The youth became",
+            "exact_native_cache_key": "6b4c2b6d696ed2b31966b3d1ddcb03bd3620d573.pkl",
+            "cache_input_text_sha256": "fb108b115247979be002ea5a1108d8f50a4676a55ec500839cda3ff85b25fb4a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "102de811814c096a",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          27648
+        ],
+        "unprocessed_array_sha256": "23207a591f68fdf8d48b7a55f6fe2cb832b4ebad82e4ab059f7e26c4dff722cd"
+      },
+      {
+        "exact_native_cache_key": "bccf0a7916b951be11ecda040a3bdb14bab2ad5c.pkl",
+        "pkl_sha256": "0eedac22fd8bc5547b8bd9f22eeccbd81379d222cf3824781476f52ec04ac244",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "the first person known to be cleared by DNA evidence.",
+            "exact_native_cache_key": "bccf0a7916b951be11ecda040a3bdb14bab2ad5c.pkl",
+            "cache_input_text_sha256": "0389bcc0fe4f807b11474dc15a727cb4ef46aa5283d0f429a45cc0d42693caab",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "0eedac22fd8bc554",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          80896
+        ],
+        "unprocessed_array_sha256": "eaa546104edbf4f640d6e19f2a9d7afb4b5b226e2a3d4668e73f279bf364e4e5"
+      },
+      {
+        "exact_native_cache_key": "92234f52b8b2ee27a6a28aa32c48423da9455676.pkl",
+        "pkl_sha256": "dfa3958f631f6de89a1482e174b1718ccc3d8b4e2446a73a7cb175115f820816",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The forensic innovation had freed an innocent before it implicated anyone.",
+            "exact_native_cache_key": "92234f52b8b2ee27a6a28aa32c48423da9455676.pkl",
+            "cache_input_text_sha256": "28b0ac95eef6f5054fe5b0c36cd73723fd1d861bbc849f8258bb7f4b2bd5e6ab",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          115712
+        ],
+        "unprocessed_array_sha256": "6a68616790773047295e928005284ff3706a50430b9d57d71b93c58dc90fa0b3"
+      },
+      {
+        "exact_native_cache_key": "75b4bab547c6b6ab233a605f49d97a952c5274b7.pkl",
+        "pkl_sha256": "b6869819eb2a4c72b622db743c4e31db0e0456285b9a9840e856af8ab7c7ca10",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "The forensic innovation had freed an innocent",
+            "exact_native_cache_key": "75b4bab547c6b6ab233a605f49d97a952c5274b7.pkl",
+            "cache_input_text_sha256": "5f2daa856f2b8d71b0334a9627a931d51493f038fbdf66279b345dc633c48d03",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "b6869819eb2a4c72",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          62976
+        ],
+        "unprocessed_array_sha256": "31c6ee63cc06c9f100e42935cd23c6cdaf399c3b7f4fa5a20f2f48787deec17f"
+      },
+      {
+        "exact_native_cache_key": "830d78084366dd4ed1c49d2120babedb0bf1f61d.pkl",
+        "pkl_sha256": "ceb7c43eee064b2f0015affad29a142fc95bb9ecc5bc62d85f6a4ea2e5337f9d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "before it implicated anyone.",
+            "exact_native_cache_key": "830d78084366dd4ed1c49d2120babedb0bf1f61d.pkl",
+            "cache_input_text_sha256": "473bb20435be2157b548a1f3592d67d69213009783e1bd35c7e3c3a4a7db41f7",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "ceb7c43eee064b2f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          47104
+        ],
+        "unprocessed_array_sha256": "96a0280dfff84da2ca333dd38b6feefaf019105b422f38b63c69229b4358c40d"
+      },
+      {
+        "exact_native_cache_key": "1234e074974fc6734c5782414f5a6c6dfe836df1.pkl",
+        "pkl_sha256": "5862ccdc5c24db753dd4a14269cbd38ba78953cf734a37da88c73a87f682efd5",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "In January 1987 police commenced the world's first large-scale DNA screening, asking more than 5,000 men in three villages for blood or saliva.",
+            "exact_native_cache_key": "1234e074974fc6734c5782414f5a6c6dfe836df1.pkl",
+            "cache_input_text_sha256": "f4dc6e9b6e7d6ad9066cefc21eaa3c28ec020d3333df47c492af4a258d71783e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          288768
+        ],
+        "unprocessed_array_sha256": "5f563bc04a2e38a1ba3480ec095c607ca7ffbeb28fdc34bbfbcef53d82166a15"
+      },
+      {
+        "exact_native_cache_key": "ecf04c54e284bf961626088b6914c73436dd6b16.pkl",
+        "pkl_sha256": "88e4a6bb8e7d3a7694c777aeae363e33e81a3959670895e1c4711248f2f0122b",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "In January 1987 police commenced",
+            "exact_native_cache_key": "ecf04c54e284bf961626088b6914c73436dd6b16.pkl",
+            "cache_input_text_sha256": "066e93a3cf79af3207bd1d58a60fab339fef283b5e805599d27f1377d6cb04de",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "88e4a6bb8e7d3a76",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          76800
+        ],
+        "unprocessed_array_sha256": "47ccee23feb085a9e0c0966da9b4f06cba817ba18dc1fe7a94cf4d543ff41b9a"
+      },
+      {
+        "exact_native_cache_key": "d4d4c893d7daf7b3d4e2ff0f0ee7c44f781922e7.pkl",
+        "pkl_sha256": "5a82c10c6995ddb3fee72fcd808e1d68e654c5d11dda316fb7a5e2fe1e507e48",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "the world's first large-scale DNA screening,",
+            "exact_native_cache_key": "d4d4c893d7daf7b3d4e2ff0f0ee7c44f781922e7.pkl",
+            "cache_input_text_sha256": "413527f3bcaf422a4fe9711164d859196641e92a8e3b9e8c42bd0f91e127a78c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "5a82c10c6995ddb3",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          68096
+        ],
+        "unprocessed_array_sha256": "6224de3e4eb4d2f87b356e2fc331572fabd080887d71a8e1486ad3cc59b72cab"
+      },
+      {
+        "exact_native_cache_key": "bf73103e2e5c8b7ec571d76b3a2dea388634c2b3.pkl",
+        "pkl_sha256": "524832e0d94b3d21fd5068e6cc2e9f05d319aceffb66b850a165ad66479f0c5e",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "asking more than 5,000 men in three villages for blood or saliva.",
+            "exact_native_cache_key": "bf73103e2e5c8b7ec571d76b3a2dea388634c2b3.pkl",
+            "cache_input_text_sha256": "a87783334723d13e589832e5580f88f19d1c8840b65c5deae4290cc055f373a8",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S12",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "asking more than 5,000 men in three villages for blood or saliva.",
+            "exact_native_cache_key": "bf73103e2e5c8b7ec571d76b3a2dea388634c2b3.pkl",
+            "cache_input_text_sha256": "a87783334723d13e589832e5580f88f19d1c8840b65c5deae4290cc055f373a8",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          123904
+        ],
+        "unprocessed_array_sha256": "f9f998b4f19cd4d998034e2a489b68099ac6c0f93647be31a3ea46c2713ce464"
+      },
+      {
+        "exact_native_cache_key": "58b47a379021ab5b9874ac09796c9d1ff09b8e84.pkl",
+        "pkl_sha256": "9e8934a971e7d637352885c228125810c3ea2f14f8d11d21abd8343f031c56ac",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "In January 1987 police commenced the world's first large-scale DNA screening,",
+            "exact_native_cache_key": "58b47a379021ab5b9874ac09796c9d1ff09b8e84.pkl",
+            "cache_input_text_sha256": "fd5f07bfb3ae4e0de95e52f67063cd35f6bf1a64254fbd860545a52258ad08bd",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          152576
+        ],
+        "unprocessed_array_sha256": "9d3130c7bf689d0988cfaeae26ef991294586c3af9b03c27a0824234d64f8d2c"
+      },
+      {
+        "exact_native_cache_key": "acae65763a51e53938d394a7a62f51cb237a08f0.pkl",
+        "pkl_sha256": "d21e1fc6047eecf29a27fd50deaaa41651b9de252c089c18bceaabd24b7acdb9",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "None matched.",
+            "exact_native_cache_key": "acae65763a51e53938d394a7a62f51cb237a08f0.pkl",
+            "cache_input_text_sha256": "52b7bd17843053b0f0cdfe7a778a947f41be4b402eb154f610b9e2bd8f0480ef",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          23040
+        ],
+        "unprocessed_array_sha256": "7ad1094491df1d2c311f6fa02e12900f93e0d500029bcafb6673d39e1a1d48e6"
+      },
+      {
+        "exact_native_cache_key": "2c10c14d43072b5ff40286c71a39c5ca88e946b5.pkl",
+        "pkl_sha256": "73873806bd01ff1e6cc1fbcf721ba8486d2f3cce1ef792cfc66f0b10804116d1",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The elusive killer, a local baker, had induced a co-worker to give a sample in his name, evading suspicion.",
+            "exact_native_cache_key": "2c10c14d43072b5ff40286c71a39c5ca88e946b5.pkl",
+            "cache_input_text_sha256": "eb3e7d74f6b077e9cb173f20daad4d79a0676da080bca308fc30617b132b38ca",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          175104
+        ],
+        "unprocessed_array_sha256": "354999c203b2c7f50306825a541618245cdb002f4fba1a6bae6ea35ae67dd55c"
+      },
+      {
+        "exact_native_cache_key": "3d9d0e714c7bdc54ad2f117263bcff62c57b7a6b.pkl",
+        "pkl_sha256": "f351040c01a2a9ebc05f13d9576a31588cf51fe0fe9a46ada46e6cca4fb71294",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "The elusive killer, a local baker,",
+            "exact_native_cache_key": "3d9d0e714c7bdc54ad2f117263bcff62c57b7a6b.pkl",
+            "cache_input_text_sha256": "e979fb5da013065bba77270f00e09fb10e749a27f54d225516b6c72a9dbc77e1",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "f351040c01a2a9eb",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          53248
+        ],
+        "unprocessed_array_sha256": "ea157be72ebfaaf0924e82a1fa7f07cbff80c8bec2dcdca166487ebdc1ccaf4c"
+      },
+      {
+        "exact_native_cache_key": "bae0fbced602e57f1652f74ca3afa0052f6b0ddc.pkl",
+        "pkl_sha256": "681a06971883e9551669e1a8c19d10b6b4207a62aa57bb6eaa97f921f774e27a",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "had induced a co-worker to give a sample in his name,",
+            "exact_native_cache_key": "bae0fbced602e57f1652f74ca3afa0052f6b0ddc.pkl",
+            "cache_input_text_sha256": "e8ffd4991ee01ca1ec0c45554416dbb15c35ce42721ea200678abf49f1d3ddad",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S14",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "had induced a co-worker to give a sample in his name,",
+            "exact_native_cache_key": "bae0fbced602e57f1652f74ca3afa0052f6b0ddc.pkl",
+            "cache_input_text_sha256": "e8ffd4991ee01ca1ec0c45554416dbb15c35ce42721ea200678abf49f1d3ddad",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          77824
+        ],
+        "unprocessed_array_sha256": "867faad1d10fb76448ac10d3d837982e3f2192544530db7607ea07cfcf021888"
+      },
+      {
+        "exact_native_cache_key": "3007e31db675f2067c3432ac7f0de1dddc87ac0a.pkl",
+        "pkl_sha256": "fb4145430a69015d149f58201196154fb03b6e1ac3fb51346209d84d31961129",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "evading suspicion.",
+            "exact_native_cache_key": "3007e31db675f2067c3432ac7f0de1dddc87ac0a.pkl",
+            "cache_input_text_sha256": "6edac9b1a2a28215d30b18198a7b6e2dc7f2ca0002c78d1c1bb0cac501864515",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S14",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "evading suspicion.",
+            "exact_native_cache_key": "3007e31db675f2067c3432ac7f0de1dddc87ac0a.pkl",
+            "cache_input_text_sha256": "6edac9b1a2a28215d30b18198a7b6e2dc7f2ca0002c78d1c1bb0cac501864515",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          31232
+        ],
+        "unprocessed_array_sha256": "9cd4f07d7fc02bf4dbd41247df4d3dc913ad826d79efa49384cab38240a5c5dc"
+      },
+      {
+        "exact_native_cache_key": "6d317f168f87dd81f72e33c8bfd16de03821d2fd.pkl",
+        "pkl_sha256": "43483a346313e6e05fc1e26494c729a3c74976ed2a9b602b51c81425b42ae0a1",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "The elusive killer,",
+            "exact_native_cache_key": "6d317f168f87dd81f72e33c8bfd16de03821d2fd.pkl",
+            "cache_input_text_sha256": "f1eab2e6ec7b93b2646605fa5bc07f7f3d05e783690d7a17694d726f6f2e2032",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          28672
+        ],
+        "unprocessed_array_sha256": "4c5a83a869d659726f92b7ed2a0b23ccaab534fb8704f86c045b3c23689f356b"
+      },
+      {
+        "exact_native_cache_key": "c414d9125192df27e773c641f89eafdd46f9e5f1.pkl",
+        "pkl_sha256": "a85bfd066698eed17f65fd8142bf393b2d1db0aacbaae2c5fa2d24fe5957ec6c",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "a local baker,",
+            "exact_native_cache_key": "c414d9125192df27e773c641f89eafdd46f9e5f1.pkl",
+            "cache_input_text_sha256": "dda94d9730eccea749b010f85fb068e31aeba3c5ae9848a855d27bf420655068",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          29184
+        ],
+        "unprocessed_array_sha256": "c10114c4dbc3613d8c6e67febaa5d8e73a5edcedeb08bca0e0975dbb17938093"
+      },
+      {
+        "exact_native_cache_key": "650677613a218ba61bacb4b0b8643c318b6405f5.pkl",
+        "pkl_sha256": "57061cf354657e628847597b7cf804202d709825f8f52436c202335e67a4da55",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "In August 1987 someone overheard the co-worker discussing the substitution and notified police.",
+            "exact_native_cache_key": "650677613a218ba61bacb4b0b8643c318b6405f5.pkl",
+            "cache_input_text_sha256": "1766f6349f9ef2da5f3689142e2e8d64778240534cf1df3f71083be660248600",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          184320
+        ],
+        "unprocessed_array_sha256": "726b1ec15b49756ea3241970370d71b2c6d096189d84f1ef15fb7ae5df272471"
+      },
+      {
+        "exact_native_cache_key": "953634caf40daa600f4a2842d631fe65638771a6.pkl",
+        "pkl_sha256": "fbf6b4fa52d6113b8604fbf0e2be3a9a50c46cf08bb2dcfabd650baad04ca902",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "In August 1987 someone overheard",
+            "exact_native_cache_key": "953634caf40daa600f4a2842d631fe65638771a6.pkl",
+            "cache_input_text_sha256": "e8af9c3854d48f76556c2a3e9f1de1696fe25ee532ce84c9236a492af9477507",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "fbf6b4fa52d6113b",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          75776
+        ],
+        "unprocessed_array_sha256": "b73b97679625599e0d419bcdecdb53bef80b8f4cfa91e5733e6d804e66b4163a"
+      },
+      {
+        "exact_native_cache_key": "d58d5092d22703f1b827fc437681b6ef6d2c2fbe.pkl",
+        "pkl_sha256": "2b1fe849b373f4ed653cc12ffa4b88cc67a72e6b5d62add63b3c5b6b421fea98",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "the co-worker discussing the substitution",
+            "exact_native_cache_key": "d58d5092d22703f1b827fc437681b6ef6d2c2fbe.pkl",
+            "cache_input_text_sha256": "460b468c7e9e8e23d5e3f6a168d2f892b8d17be230b77d96b0ffefa474c71254",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "2b1fe849b373f4ed",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          60416
+        ],
+        "unprocessed_array_sha256": "086d49d4263752ce1f20929dab8c1dc372afadd031e28897485ad2b9b3e8f95e"
+      },
+      {
+        "exact_native_cache_key": "f8d4abc63b7536ca1b6cd8d18fb0d229af250412.pkl",
+        "pkl_sha256": "8185a8ac202979b1be06ef22263f7f86382fe5e608795812d686d31a53d04778",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and notified police.",
+            "exact_native_cache_key": "f8d4abc63b7536ca1b6cd8d18fb0d229af250412.pkl",
+            "cache_input_text_sha256": "fda8d817a421ae26b145d44bc02cb851b6deed4969f5fb2eab4e7589324e4fd7",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "8185a8ac202979b1",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          35328
+        ],
+        "unprocessed_array_sha256": "4c9314664658cad59a0e623a077112de59fca24fef58a7e8dcf9a3e2c0addced"
+      },
+      {
+        "exact_native_cache_key": "62b91a949cbe4bf9950bf55af517e1aa5c546a81.pkl",
+        "pkl_sha256": "bb77a4ad257f3c890aca176689cf70aa3e50462c5c3ac7390029c9465a06d8f5",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Colin Pitchfork was detained on 19 September 1987, and his DNA profile matched.",
+            "exact_native_cache_key": "62b91a949cbe4bf9950bf55af517e1aa5c546a81.pkl",
+            "cache_input_text_sha256": "3295b99b1921bcfbe67df6a22891ef19cc471d6c19da3fe3d89f9edacd76daba",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          180736
+        ],
+        "unprocessed_array_sha256": "99f9a4f224f972092d61a630550a3b070fd95203e4892e2a8d63123db8aeada1"
+      },
+      {
+        "exact_native_cache_key": "b59ff195d2b6b2b6d2e7e79e3f212463cc14b3e3.pkl",
+        "pkl_sha256": "64a20c2a9f0c56b79c47dd024c6dcf5ac86ba2e478ad9cadb662f8bd9c420bf8",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Colin Pitchfork was detained on 19 September 1987,",
+            "exact_native_cache_key": "b59ff195d2b6b2b6d2e7e79e3f212463cc14b3e3.pkl",
+            "cache_input_text_sha256": "704c9a10af0569ec5ff12a99d01369a67d6c35c41014e009b8ef3957bdf0c37d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S16",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Colin Pitchfork was detained on 19 September 1987,",
+            "exact_native_cache_key": "b59ff195d2b6b2b6d2e7e79e3f212463cc14b3e3.pkl",
+            "cache_input_text_sha256": "704c9a10af0569ec5ff12a99d01369a67d6c35c41014e009b8ef3957bdf0c37d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          126976
+        ],
+        "unprocessed_array_sha256": "6bbbfde53deee17e36d67ca23c1e5112e7b2491a8cf77f2cdf4be5a208feda6b"
+      },
+      {
+        "exact_native_cache_key": "c99982015434efefcff306c3f833821cbe9226e7.pkl",
+        "pkl_sha256": "19d301d089dcb24ab79654ef0a2048d98253d1e0e5a0bc23926c1cabf00db257",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and his DNA profile matched.",
+            "exact_native_cache_key": "c99982015434efefcff306c3f833821cbe9226e7.pkl",
+            "cache_input_text_sha256": "c9bf1f842889c928d91aa1403b75b11ffd241e18f9b2bf752243404677a99b30",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S16",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and his DNA profile matched.",
+            "exact_native_cache_key": "c99982015434efefcff306c3f833821cbe9226e7.pkl",
+            "cache_input_text_sha256": "c9bf1f842889c928d91aa1403b75b11ffd241e18f9b2bf752243404677a99b30",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          49152
+        ],
+        "unprocessed_array_sha256": "9f00fe2f2e9284c1e1263f76a40aeeaa3299cc5a76f5522e89f55a9624a205e1"
+      },
+      {
+        "exact_native_cache_key": "8cbfc8accd90e4ddac9fb1ce1d5df29d71394377.pkl",
+        "pkl_sha256": "65aa2ed461b4256a86d606969ec1c9dca053181a6eb05c3c6bca5e833a6587c5",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "In January 1988 he pleaded guilty and was jailed for life, the first person convicted of murder on the basis of DNA evidence.",
+            "exact_native_cache_key": "8cbfc8accd90e4ddac9fb1ce1d5df29d71394377.pkl",
+            "cache_input_text_sha256": "b6bc8a3d1174a6ddd33bb928d63162ae99e518d306e9e2c568356df37a97c16d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          247296
+        ],
+        "unprocessed_array_sha256": "6060b66c2938c164708c0697c5db0822fca7a308cd93fdfaca6f9e63338743a7"
+      },
+      {
+        "exact_native_cache_key": "a586fe0fe6f464410238221cc0d2826eadf2f62f.pkl",
+        "pkl_sha256": "8376942c2429388a161d54209f39cabcf509852019c5524c33be47c272c490fb",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "In January 1988 he pleaded guilty",
+            "exact_native_cache_key": "a586fe0fe6f464410238221cc0d2826eadf2f62f.pkl",
+            "cache_input_text_sha256": "defce1c76fd2764cde83925715313ca7689534fd1c8d40ee268883c199a2ec21",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "8376942c2429388a",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          77824
+        ],
+        "unprocessed_array_sha256": "7c0eb705a6a9c3d0ae01ebc6ad8b914a6598b7beeee3f731fcb1867e2f0e2c4c"
+      },
+      {
+        "exact_native_cache_key": "be2635e1162272b5dfb38b2cc3ec66d7e1ddcead.pkl",
+        "pkl_sha256": "156f2e516c7cebf0f9a7df5797534379c56456c42ab01e1684bfb6d18175d10d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and was jailed for life,",
+            "exact_native_cache_key": "be2635e1162272b5dfb38b2cc3ec66d7e1ddcead.pkl",
+            "cache_input_text_sha256": "ea9176acf4c58585cc07b4d6076f52ac68eedf54a7990b1b42cc232eb17f3b76",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "156f2e516c7cebf0",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          35840
+        ],
+        "unprocessed_array_sha256": "783d0d90d69495c74092e5213a0a94301224b9a2c972b4c1082606dc6d37df89"
+      },
+      {
+        "exact_native_cache_key": "e8944af95620b55d2ff736be74d8a98fb2929562.pkl",
+        "pkl_sha256": "89209652032aea6d0667d028038b1deddbe14fa04131072c3c5cce63e7b92b9e",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "the first person convicted of murder on the basis of DNA evidence.",
+            "exact_native_cache_key": "e8944af95620b55d2ff736be74d8a98fb2929562.pkl",
+            "cache_input_text_sha256": "78b50d6b7aa8c17131d86bc13214bf04c1dbd7fbde2a7b7270440e5a04e390de",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S17",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "the first person convicted of murder on the basis of DNA evidence.",
+            "exact_native_cache_key": "e8944af95620b55d2ff736be74d8a98fb2929562.pkl",
+            "cache_input_text_sha256": "78b50d6b7aa8c17131d86bc13214bf04c1dbd7fbde2a7b7270440e5a04e390de",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          113664
+        ],
+        "unprocessed_array_sha256": "bdea70e07ca6b2420d32b676a1553bcf0f43cedef65e4f72bafc2a788e5c021d"
+      },
+      {
+        "exact_native_cache_key": "94b78964e6dc3101475f5bfaaa6bdd422e17bd4e.pkl",
+        "pkl_sha256": "00894070834c697d64c4cf953514a396d5e21f3d51c82ce9de4b228932d16276",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "In January 1988 he pleaded guilty and was jailed for life,",
+            "exact_native_cache_key": "94b78964e6dc3101475f5bfaaa6bdd422e17bd4e.pkl",
+            "cache_input_text_sha256": "1d7810f8c22b880a0e550a3381b99c1b97eaa4756f92418f168a3abb00eedfaa",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          116736
+        ],
+        "unprocessed_array_sha256": "30a6e15e217c02b97df64c094a00cf145c975d47a787303ee7e9a14c1fd20b35"
+      },
+      {
+        "exact_native_cache_key": "8c59ddf82797dc7ad580c188543fcd22d5e8dd44.pkl",
+        "pkl_sha256": "545b05ab402df58873bec1df7b9f0ff861d752003ac11c126662c3a9e96992b1",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "A tip-off, not the screening, had unmasked him.",
+            "exact_native_cache_key": "8c59ddf82797dc7ad580c188543fcd22d5e8dd44.pkl",
+            "cache_input_text_sha256": "f6caf8d9c6c76034c941a7c5078af8f5023a8c19f0418018e2c71f4b6094a6ca",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          70144
+        ],
+        "unprocessed_array_sha256": "77452cd520d07c8f5a20fd84ffa400594b7fa76fc065ba5ddf97ed9af6d8e455"
+      },
+      {
+        "exact_native_cache_key": "0c9e7bc163339848961657f11fc4a7901f0a3dab.pkl",
+        "pkl_sha256": "07cf4efab9eb5bf1f84338ef8ead330266c87754b471f0d8e7b800c013409ce5",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "A tip-off,",
+            "exact_native_cache_key": "0c9e7bc163339848961657f11fc4a7901f0a3dab.pkl",
+            "cache_input_text_sha256": "a10d2323dd10e557b443cacdc0a750f663d0f5d261b8ab2976dd124c0530bc95",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          20480
+        ],
+        "unprocessed_array_sha256": "4b3b41778a6a0e315bbefc798ba3c544e2e2a206f22d1b1a7a7de6b7645b8130"
+      },
+      {
+        "exact_native_cache_key": "88c1cb95b0c12d539aee8fb3ffb19738d490f9c7.pkl",
+        "pkl_sha256": "d49bc699e4cd1981da59669201be9720956116a423ca4aff5e61346a9216551f",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "not the screening,",
+            "exact_native_cache_key": "88c1cb95b0c12d539aee8fb3ffb19738d490f9c7.pkl",
+            "cache_input_text_sha256": "c33cb40ff46b901984f19653c562f23e378666ce162205571bff11db09c9fa6f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          26112
+        ],
+        "unprocessed_array_sha256": "2e9092fa3a9aeb9c80559716da83054f11ab57c404efa6608a6dba749c51980b"
+      },
+      {
+        "exact_native_cache_key": "18750828c5ddcbf7c6da3d4b0954c42875b27340.pkl",
+        "pkl_sha256": "adc859260996ce69a9b6ef6ab4c80418fa95df6588e8aa7d14427f69c97282bc",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "had unmasked him.",
+            "exact_native_cache_key": "18750828c5ddcbf7c6da3d4b0954c42875b27340.pkl",
+            "cache_input_text_sha256": "86ae16e0b88f9ec094f55941735ab615ade55c7d882d998f7f025619e84734c4",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          30208
+        ],
+        "unprocessed_array_sha256": "f2d02f54d741f2f43a8f08ec1c13b6890cf2789b7ad69698eb7656ca60f03dc2"
+      },
+      {
+        "exact_native_cache_key": "10bee0c628fc5a60bf23e6eeabe707b5b9e97e8b.pkl",
+        "pkl_sha256": "7992285cafeb95dbc73f8886f501c51308c5e0b562d7c7a172e6c8abecb79c29",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S19",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The test's first beneficiary had been a blameless juvenile who had falsely admitted the offence.",
+            "exact_native_cache_key": "10bee0c628fc5a60bf23e6eeabe707b5b9e97e8b.pkl",
+            "cache_input_text_sha256": "ab73caddeda1c01bc8dd6a68b2e8059df6a123c3922f37c08f60ee673a03a128",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          144384
+        ],
+        "unprocessed_array_sha256": "392865e7d9fdd07565987063d8767c2e5871d26cfe320456645420e9a9667e25"
+      },
+      {
+        "exact_native_cache_key": "3d7a75e56ab07453fdf27398beb3262ac5f5d0e9.pkl",
+        "pkl_sha256": "4072939bfc48149bf8f252f109794a5c31ace6eb9ed6d32c8804b6f01d39ea2f",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S19",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "The test's first beneficiary had been a blameless juvenile",
+            "exact_native_cache_key": "3d7a75e56ab07453fdf27398beb3262ac5f5d0e9.pkl",
+            "cache_input_text_sha256": "91e226fe10018fad308d0dad3cfcc723c8f478c6792967196aae392fac88563d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "4072939bfc48149b",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          89088
+        ],
+        "unprocessed_array_sha256": "dd6dc0b4d431a13683ce6254f65fa2bff28184744ab65fbd93f9503699e180fd"
+      },
+      {
+        "exact_native_cache_key": "a8d358322069918c47a50c2b07bc85aecd74d363.pkl",
+        "pkl_sha256": "9d800c308a3ee868dcd08408909941f69e1e162c9f6ea0a05f2c087baa2ed99a",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S19",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "who had falsely admitted the offence.",
+            "exact_native_cache_key": "a8d358322069918c47a50c2b07bc85aecd74d363.pkl",
+            "cache_input_text_sha256": "79a53e8878f2a622969b15d439cf346c6608eff8bbcd75636586a6ded424ffe7",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "9d800c308a3ee868",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          45568
+        ],
+        "unprocessed_array_sha256": "8b20c8be8717dc8ee4d67344c41557a0e370803c5a7ca17524016b4648461a21"
+      }
+    ],
+    "missing_reference_key_count": 0,
+    "observed_missing_keys_covered": [],
+    "new_private_cache_names": [],
+    "native_single_thread_marker_verified": true,
+    "single_thread_sessions": [
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      },
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      }
+    ],
+    "models_sha256": {
+      "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+      "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+      "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+    },
+    "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+    "existing_private_cache_count": 11514,
+    "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "existing_private_cache_bytes_unchanged": true,
+    "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+    "public_repository_cache_unchanged": true,
+    "producer_pcm_existed_before": true,
+    "producer_pcm_sha256_before": "4c20eb528b935e7a315e3f41b3f4168fe82cd5e26e0b33d16ea4bfce2609cb64",
+    "producer_pcm_sha256_after": "4c20eb528b935e7a315e3f41b3f4168fe82cd5e26e0b33d16ea4bfce2609cb64",
+    "accepted_aac_adts_sha256_before": "5188374d44bb921341e7dec82349be693ff09da80704ae86bc2f1b12af1f5cc2",
+    "accepted_aac_adts_sha256_after": "5188374d44bb921341e7dec82349be693ff09da80704ae86bc2f1b12af1f5cc2",
+    "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+    "private_cache_exported": false
+  },
+  "checker_reference_preparation_program_sha256": "f6f2a032e207085e7252d036e39430fb80b06e84a721c525b61196d021c5ca12",
+  "fresh_current_article_reference": {
+    "article": "05",
+    "removed_temporary_gt_files": [
+      {
+        "name": "05_00_5b10eef11c.npy",
+        "sha256": "228a4c48928857af97ae2a841a62f493f677ccf85d46e38e1ba138cda25cf1e7"
+      },
+      {
+        "name": "05_01_95fc1cfb85.npy",
+        "sha256": "20b833a9f64ab8831a54f8f039303172704026d38a4b5113fdc9228709dc167e"
+      },
+      {
+        "name": "05_02_05b56aed3a.npy",
+        "sha256": "179b234f125098389995ac8e966cbfad7e0571ccc55f273d8636ecefa795706d"
+      },
+      {
+        "name": "05_03_d5c54ad02a.npy",
+        "sha256": "0a09377a370cf9316b2a9be8ce0376b51afa660af92e59b3b1c3d35f3f95a8a5"
+      },
+      {
+        "name": "05_04_8b17cd01dd.npy",
+        "sha256": "931c45f275c36c50bea4f8ddd188d829f37c41a354cfc3f609523a629565ac66"
+      },
+      {
+        "name": "05_05_a286fa0f15.npy",
+        "sha256": "030195131ed32bc6a1c17b8d598f74c37243bb416962c5346cace49cea9afc4c"
+      },
+      {
+        "name": "05_06_35912d790c.npy",
+        "sha256": "adedf3de46a554ada4f723b8c44889e8f996b9e75864aad2a81ab8ceb506a8ad"
+      },
+      {
+        "name": "05_07_f1fe7939a6.npy",
+        "sha256": "b82f95d1aa070fe9ed6d3cb48e96f4df9e91c36f7acaccca2eee28dcaaf953d8"
+      },
+      {
+        "name": "05_08_d8172db857.npy",
+        "sha256": "324d32c329a8b27f737ddff99789140df6399f7d3614ed6fc2cfe163f22af467"
+      },
+      {
+        "name": "05_09_170025eb57.npy",
+        "sha256": "9e026c0fb5e73fd892476b5c48708b4ce3d271c925204c11db49a58e099b7df2"
+      },
+      {
+        "name": "05_10_9f8fb938b5.npy",
+        "sha256": "137e59d2bd340109348986796a9ea8fe1271b9af288dccfe7d5f7b5503a2524a"
+      },
+      {
+        "name": "05_11_a1e3852c24.npy",
+        "sha256": "a65cda98bebcdf3565f218da35835d365960bd6f333734231ea70b498d612db6"
+      },
+      {
+        "name": "05_12_e753681241.npy",
+        "sha256": "ffc869d192a3c582dc613b7d1c02925f841130aca24374d7841e584c0599dc95"
+      },
+      {
+        "name": "05_13_8910903faa.npy",
+        "sha256": "f2790ff99b70e1127981dd6b59dbe7094ed0f050702e694ffae4a98ffd99aa12"
+      },
+      {
+        "name": "05_14_8b0a1a182d.npy",
+        "sha256": "6b3e7b48da4dda815fd5460394d47f93b938452da820d589905b4cf5f2ead1d7"
+      },
+      {
+        "name": "05_15_1c360f1d3a.npy",
+        "sha256": "26be7489d9548302d57c0401bd988b71934cd231bd1ecb3556261366d714775d"
+      },
+      {
+        "name": "05_16_f4db8e0e20.npy",
+        "sha256": "2b43312679c109479815352c8ad8b56eb4ac2960a07977eaa93cbe4b5156c86d"
+      },
+      {
+        "name": "05_17_ab99b058c3.npy",
+        "sha256": "2a76d7b627ca444425f29576088cd794b6a68791659bf5e5e125e6c6526487c3"
+      },
+      {
+        "name": "05_18_5d6c14685f.npy",
+        "sha256": "42931ab8c9ee81bea86f9b7ccac8c5d0f771d10354ddb78305a0c9f22ac8789a"
+      },
+      {
+        "name": "05_T_06f4d49114.npy",
+        "sha256": "9d307c24b695974cba2efdfcb0ced05fed40a8ff07c3ba2d74d1955e592be4bf"
+      },
+      {
+        "name": "05_labels.json",
+        "sha256": "a4cdefba8d9dabbf8dd4f0152e83eab3d889703ef86a2cd1699d6794e09bc74f"
+      },
+      {
+        "name": "05_meta.json",
+        "sha256": "d5bbccfe67abda4f2da8149bbcfc4ae02f848de4d6145cdd030412100147266b"
+      }
+    ],
+    "processed_pcm_or_raw_mother_cache_modified": false,
+    "purpose": "Original synth/labels/audit rebuild fresh for this production; no old CPU GT reuse."
+  },
+  "temporary_output_reset": {
+    "removed": [
+      {
+        "name": "05.mp4",
+        "mtime_ns": 1794513642047131000,
+        "bytes": 7215227,
+        "was_symlink": false
+      },
+      {
+        "name": "05.mp4.指纹.json",
+        "mtime_ns": 1794513642165302800,
+        "bytes": 422,
+        "was_symlink": false
+      }
+    ],
+    "production_started_ns": 1794621816056012800,
+    "repository_outputs_modified": false
+  },
+  "failure_details": {
+    "step": "canonical-draft-00.log",
+    "exit": 1,
+    "tail": [
+      "① 文本：通过，自动修 2 处",
+      "② 声音：05 纯人声核对（配音指纹 6c49620d81f1）问题数 38；问题数 2；05 句间停顿核对 问题数 0；问题数 0",
+      "【停】③ 出片前核查（114 秒；全文在 /home/runner/work/_temp/completion-machine/video/做_05/）：",
+      "  ✘ 标点停顿核对（A9/A10：停顿时长、不切词；A19：停顿后不留吸气声）",
+      "    05 S5 BAD A19 「ity of Leicester,」 停顿后有 0.28s 不是词的声音（吸气声），词到词比标准长：用实际声音找出切点写进“停顿删除区间”或“非人声区间”（纯人声，不留任何呼吸声）",
+      "    05 S5 BAD 「ity of Leicester,」 标准 0.4s，实际听到 0.39s",
+      "    05 S16 BAD A19 「9 September 1987,」 停顿后有 0.22s 不是词的声音（吸气声），词到词比标准长：用实际声音找出切点写进“停顿删除区间”或“非人声区间”（纯人声，不留任何呼吸声）",
+      "    05 S16 BAD 「9 September 1987,」 标准 0.4s，实际听到 0.40s",
+      "✔ \u001b[0;93m2026-11-14 02:05:10.071181",
+      "  ✘ 停顿位置核对（A9/A15：停顿正好落在标点处两个词之间）",
+      "    05 S18 BAD（用实际声音核实后写进 核对确认.停顿位置：S18 tip-off, / not @0.650） 插入 「tip-off, | not」 段长比 前 0.79 后 0.92 ｜ 前词末音素起 0.604s 后词开头 0.724s ｜ 停顿 0.650–0.650s（离前词末音素起点 +46 ms，离后词 +74 ms）对齐代价 0.93",
+      "✔ \u001b[0;93m2026-11-14 02:05:26.792065062 [W:onnxruntime:Default, device_discovery.cc:146 GetPciBusId] Skipping pci_bus_id for PCI path at \"/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/",
+      "  已自动修：",
+      "    结尾简述整屏折行（G35）：S19 结尾简述：现在字号 30，整屏最大 58（简述折成 10 行）",
+      "    说明折行（L19）：S17 超宽 1894>1768：（the first person… 是 he 的同位语；convicted o… → 折成「（the first person… 是 he 的同"
+    ],
+    "public_checker_diagnostics": {
+      "做_05/出片前.log": [
+        "✘ 标点停顿核对（A9/A10：停顿时长、不切词；A19：停顿后不留吸气声）",
+        "    05 S5 BAD A19 「ity of Leicester,」 停顿后有 0.28s 不是词的声音（吸气声），词到词比标准长：用实际声音找出切点写进“停顿删除区间”或“非人声区间”（纯人声，不留任何呼吸声）",
+        "    05 S5 BAD 「ity of Leicester,」 标准 0.4s，实际听到 0.39s",
+        "    05 S16 BAD A19 「9 September 1987,」 停顿后有 0.22s 不是词的声音（吸气声），词到词比标准长：用实际声音找出切点写进“停顿删除区间”或“非人声区间”（纯人声，不留任何呼吸声）",
+        "    05 S16 BAD 「9 September 1987,」 标准 0.4s，实际听到 0.40s",
+        "✘ 停顿位置核对（A9/A15：停顿正好落在标点处两个词之间）",
+        "    05 S18 BAD（用实际声音核实后写进 核对确认.停顿位置：S18 tip-off, / not @0.650） 插入 「tip-off, | not」 段长比 前 0.79 后 0.92 ｜ 前词末音素起 0.604s 后词开头 0.724s ｜ 停顿 0.650–0.650s（离前词末音素起点 +46 ms，离后词 +74 ms）对齐代价 0.93"
+      ],
+      "做_05/声音.log": [
+        "05 纯人声核对（配音指纹 6c49620d81f1）问题数 38",
+        "问题数 2",
+        "05 句间停顿核对 问题数 0",
+        "问题数 0",
+        "KeyError: '核对确认'"
+      ],
+      "停顿位置精确核对.py": {
+        "exit": 0,
+        "actual_output": [
+          "05 S18 BAD（用实际声音核实后写进 核对确认.停顿位置：S18 tip-off, / not @0.650） 插入 「tip-off, | not」 段长比 前 0.79 后 0.92 ｜ 前词末音素起 0.604s 后词开头 0.724s ｜ 停顿 0.650–0.650s（离前词末音素起点 +46 ms，离后词 +74 ms）对齐代价 0.93",
+          "问题数 1"
+        ],
+        "actual_final_text_lines": [
+          "05 S1 OK  删静音 「Narborough, | and」 段长比 前 0.96 后 1.06 ｜ 前词末音素起 6.695s 后词开头 7.240s ｜ 停顿 6.755–7.170s（离前词末音素起点 +60 ms，离后词 +70 ms）对齐代价 1.53",
+          "05 S3 OK  删静音 「killing, | and」 段长比 前 1.05 后 1.04 ｜ 前词末音素起 3.830s 后词开头 4.380s ｜ 停顿 3.855–4.270s（离前词末音素起点 +25 ms，离后词 +110 ms）对齐代价 0.86",
+          "05 S5 OK  删静音 「Jeffreys, | a」 段长比 前 1.05 后 0.95 ｜ 前词末音素起 3.684s 后词开头 4.234s ｜ 停顿 3.760–4.155s（离前词末音素起点 +76 ms，离后词 +79 ms）对齐代价 1.32",
+          "05 S5 OK  删静音 「Leicester, | discerned」 段长比 前 0.95 后 1.01 ｜ 前词末音素起 6.709s 后词开头 7.284s ｜ 停顿 6.800–6.970s（离前词末音素起点 +91 ms，离后词 +314 ms）对齐代价 1.32",
+          "05 S6 OK  删静音 「fingerprints, | since,」 段长比 前 1.06 后 0.63 ｜ 前词末音素起 2.164s 后词开头 2.489s ｜ 停顿 2.240–2.365s（离前词末音素起点 +76 ms，离后词 +124 ms）对齐代价 0.75",
+          "05 S6 OK  删静音 「since, | like」 段长比 前 0.63 后 1.00 ｜ 前词末音素起 2.714s 后词开头 3.089s ｜ 停顿 2.775–3.010s（离前词末音素起点 +61 ms，离后词 +79 ms）对齐代价 0.75",
+          "05 S6 OK  删静音 「fingerprints, | they」 段长比 前 1.00 后 0.98 ｜ 前词末音素起 3.989s 后词开头 4.289s ｜ 停顿 4.165–4.230s（离前词末音素起点 +176 ms，离后词 +59 ms）对齐代价 0.75",
+          "05 S8 OK  删静音 「Jeffreys, | and」 段长比 前 0.93 后 0.95 ｜ 前词末音素起 1.636s 后词开头 2.136s ｜ 停顿 1.710–2.045s（离前词末音素起点 +74 ms，离后词 +91 ms）对齐代价 1.44",
+          "05 S9 OK  删静音 「perpetrator, | and」 段长比 前 0.92 后 1.12 ｜ 前词末音素起 1.838s 后词开头 2.313s ｜ 停顿 1.925–2.200s（离前词末音素起点 +87 ms，离后词 +113 ms）对齐代价 1.52",
+          "05 S12 OK  删静音 「screening, | asking」 段长比 前 1.02 后 0.97 ｜ 前词末音素起 6.475s 后词开头 7.040s ｜ 停顿 6.495–6.970s（离前词末音素起点 +20 ms，离后词 +70 ms）对齐代价 1.39",
+          "05 S14 OK  删静音 「killer, | a」 段长比 前 1.00 后 0.95 ｜ 前词末音素起 1.006s 后词开头 1.281s ｜ 停顿 1.165–1.195s（离前词末音素起点 +159 ms，离后词 +86 ms）对齐代价 0.96",
+          "05 S14 OK  删静音 「baker, | had」 段长比 前 0.95 后 0.96 ｜ 前词末音素起 2.156s 后词开头 2.681s ｜ 停顿 2.265–2.600s（离前词末音素起点 +109 ms，离后词 +81 ms）对齐代价 0.96",
+          "05 S14 OK  删静音 「name, | evading」 段长比 前 0.96 后 0.99 ｜ 前词末音素起 5.581s 后词开头 6.031s ｜ 停顿 5.640–5.945s（离前词末音素起点 +59 ms，离后词 +86 ms）对齐代价 0.96",
+          "05 S16 OK  删静音 「1987, | and」 段长比 前 0.92 后 1.22 ｜ 前词末音素起 4.849s 后词开头 5.374s ｜ 停顿 4.880–5.070s（离前词末音素起点 +31 ms，离后词 +304 ms）对齐代价 0.61",
+          "05 S17 OK  删静音 「life, | the」 段长比 前 1.05 后 0.96 ｜ 前词末音素起 5.230s 后词开头 5.801s ｜ 停顿 5.330–5.755s（离前词末音素起点 +100 ms，离后词 +46 ms）对齐代价 1.71",
+          "05 S18 BAD（用实际声音核实后写进 核对确认.停顿位置：S18 tip-off, / not @0.650） 插入 「tip-off, | not」 段长比 前 0.79 后 0.92 ｜ 前词末音素起 0.604s 后词开头 0.724s ｜ 停顿 0.650–0.650s（离前词末音素起点 +46 ms，离后词 +74 ms）对齐代价 0.93",
+          "05 S18 OK  删静音 「screening, | had」 段长比 前 0.92 后 0.95 ｜ 前词末音素起 1.424s 后词开头 1.724s ｜ 停顿 1.625–1.645s（离前词末音素起点 +201 ms，离后词 +79 ms）对齐代价 0.93",
+          "问题数 1",
+          ""
+        ]
+      },
+      "标点停顿核对.py": {
+        "exit": 0,
+        "actual_output": [
+          "05 S5 BAD A19 「ity of Leicester,」 停顿后有 0.28s 不是词的声音（吸气声），词到词比标准长：用实际声音找出切点写进“停顿删除区间”或“非人声区间”（纯人声，不留任何呼吸声）",
+          "05 S5 BAD 「ity of Leicester,」 标准 0.4s，实际听到 0.39s",
+          "05 S16 BAD A19 「9 September 1987,」 停顿后有 0.22s 不是词的声音（吸气声），词到词比标准长：用实际声音找出切点写进“停顿删除区间”或“非人声区间”（纯人声，不留任何呼吸声）",
+          "05 S16 BAD 「9 September 1987,」 标准 0.4s，实际听到 0.40s",
+          "问题数 2"
+        ],
+        "actual_final_text_lines": [
+          "05 S1 OK  「ge of Narborough,」 标准 0.4s，实际听到 0.40s",
+          "05 S3 OK  「e second killing,」 标准 0.4s，实际听到 0.39s",
+          "05 S5 OK  「84 Alec Jeffreys,」 标准 0.4s，实际听到 0.40s",
+          "05 S5 BAD A19 「ity of Leicester,」 停顿后有 0.28s 不是词的声音（吸气声），词到词比标准长：用实际声音找出切点写进“停顿删除区间”或“非人声区间”（纯人声，不留任何呼吸声）",
+          "05 S5 BAD 「ity of Leicester,」 标准 0.4s，实际听到 0.39s",
+          "05 S6 OK  「DNA fingerprints,」 标准 0.4s，实际听到 0.40s",
+          "05 S6 OK  「gerprints, since,」 标准 0.4s，实际听到 0.38s",
+          "05 S6 OK  「ike fingerprints,」 标准 0.4s，实际听到 0.40s",
+          "05 S8 OK  「nlisted Jeffreys,」 标准 0.4s，实际听到 0.40s",
+          "05 S9 OK  「 the perpetrator,」 标准 0.4s，实际听到 0.40s",
+          "05 S12 OK  「le DNA screening,」 标准 0.4s，实际听到 0.40s",
+          "05 S14 OK  「e elusive killer,」 标准 0.4s，实际听到 0.39s",
+          "05 S14 OK  「r, a local baker,」 标准 0.4s，实际听到 0.39s",
+          "05 S14 OK  「mple in his name,」 标准 0.4s，实际听到 0.40s",
+          "05 S16 BAD A19 「9 September 1987,」 停顿后有 0.22s 不是词的声音（吸气声），词到词比标准长：用实际声音找出切点写进“停顿删除区间”或“非人声区间”（纯人声，不留任何呼吸声）",
+          "05 S16 BAD 「9 September 1987,」 标准 0.4s，实际听到 0.40s",
+          "05 S17 OK  「 jailed for life,」 标准 0.4s，实际听到 0.40s",
+          "05 S18 OK  「A tip-off,」 标准 0.4s，实际听到 0.41s",
+          "05 S18 OK  「ot the screening,」 标准 0.4s，实际听到 0.39s",
+          "问题数 2",
+          ""
+        ]
+      }
+    }
+  },
+  "error": "canonical-draft: official quality check failed; see article status JSON",
+  "reference_gain_failure_diagnostic": {
+    "acceptance": false,
+    "diagnostic_only": true,
+    "program_present": true,
+    "reference_meta_present": false,
+    "actual_pcm_present": true,
+    "current_post_check_present": false
+  },
+  "failed_current_video": {
+    "exported": false,
+    "passed": false,
+    "acceptance": false,
+    "purpose": "failed current-attempt video for diagnosis; not a final deliverable",
+    "reason": "Official fingerprint is audio-only or does not match current video/source/PCM.",
+    "fingerprint_hash_format": "official SHA256 first 16 hex characters",
+    "mismatched_fingerprint_fields": [
+      "脚本"
+    ]
+  }
+}

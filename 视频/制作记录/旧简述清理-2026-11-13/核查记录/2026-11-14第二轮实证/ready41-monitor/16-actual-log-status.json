@@ -1,0 +1,3435 @@
+{
+  "article": "16",
+  "passed": false,
+  "stage": "canonical-draft-00.log",
+  "original_audit_and_quality_thresholds_unchanged": true,
+  "original_maker_unchanged": true,
+  "core_repairs": [
+    {
+      "target": "视频/工具/草稿声音.sh",
+      "file": "files/视频/工具/草稿声音.sh",
+      "original_sha256": "0ce3277812cf16ed30438509b6dc97db0c26725db4c5db5d9b058c3ef6531aa2",
+      "patched_sha256": "957d7eb1598698ea33ff77d83379256ecae258d84d588753d561a902284be439",
+      "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+    },
+    {
+      "target": "视频/工具/句内响度.py",
+      "file": "files/视频/工具/句内响度.py",
+      "original_sha256": "58735b7173a3c03efa61fb300b4aed4039c164fa970e0593a40bae2a3f3cbd27",
+      "patched_sha256": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea",
+      "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+    },
+    {
+      "target": "视频/工具/独立复核/synth.py",
+      "file": "files/视频/工具/独立复核/synth.py",
+      "original_sha256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+      "patched_sha256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+      "repair_scope": "validated unprocessed raw-mother reference input only; independent transforms/audit/thresholds retained"
+    }
+  ],
+  "strict_production_cache": true,
+  "pdf_requested": false,
+  "check_summaries": {
+    "approved-illustration-resource.log": [],
+    "certified-core-original-stamp-verification.log": [],
+    "original-restored-stamp.log": [],
+    "canonical-module-copy.log": [],
+    "canonical-draft-00.log": [
+      "① 文本：通过，自动修 1 处",
+      "② 声音：16 词尾辅音核对 问题数 0；16 纯人声核对（配音指纹 ac7d186000dd）问题数 17；问题数 0；16 句间停顿核对 问题数 0；问题数 0",
+      "【停】③ 出片前核查（108 秒；全文在 /home/runner/work/_temp/completion-machine/video/做_16/）：",
+      "【停止】读音改正没有全"
+    ]
+  },
+  "actual_native_core_certification": {
+    "run_id": 43535822030,
+    "job_id": 132264443476,
+    "commit": "395e8da264fafa2453a42ee70a3f7aed8303a769",
+    "actual_full_quickcheck_exit": 0,
+    "actual_full_quickcheck_seconds": 478.16,
+    "artifact_id": 14089812323,
+    "artifact_zip_sha256": "5e396c84e4a6fc7c6cc737ceb8648d7f15f397e9551806e032c93db8ab0963b8",
+    "full_original_quickcheck_log_sha256": "dbe7f6e08d2b7c3a5f9a2f925bb75a662aed725c780e1bc6714706807552a294",
+    "article_audio_or_video_passed_not_implied": true
+  },
+  "actual_native_fastcheck_stamp": {
+    "target": "视频/工具/新管/快测通过.json",
+    "file": "files/视频/工具/新管/快测通过.json",
+    "sha256": "6ebc7aa41f79f77258fa333b665af258e007daa36a4ea290de972cd3da7b42f2",
+    "origin": "actual unmodified original full quickcheck, native run43535822030"
+  },
+  "reviewed_regression_resource": {
+    "target": "视频/工具/新管/回归基准_27.json",
+    "file": "files/视频/工具/新管/回归基准_27.json",
+    "sha256": "b8ddb4656ae27cbfc7ec8e3b99511983b4e568997bd4ad4ee33c364f3926ae94",
+    "origin": "pre-existing root-reviewed 67-screen data; original voice/segment MD5 unchanged"
+  },
+  "core_repair_manifest_sha256": "1b1558108d15603e5711e200135651d6c7700a583d8bcf53ad8753683ed05a5e",
+  "reviewed_gain_preservation_mode": true,
+  "real_restored_stamp_validated": true,
+  "reviewed_cross_article_context": {
+    "provided": true,
+    "manifest_sha256": "eddfbdceea4e25f2398a2198f94d9852f1e30e35b35c4075c5a5ff0c8e32c096",
+    "files_sha256": {
+      "视频/脚本/01.json": "2be2f80a69af28703992204ac95f987c745362c326e62ad81b3cd8e0e0735d3a",
+      "新版定稿/01-the-robber-who-thought-lemon-juice-made-him-invisible.md": "572054065b5bb65446bf8939a21c789c1e9c7664d82da5117c43efdded894351",
+      "视频/脚本/02.json": "0403368c77fd3e0f91e1ee3780e1c7c147894ad13c16b5f14707d700a8f717c8",
+      "新版定稿/02-the-truth-about-one-marshmallow.md": "91b92505aad03f963861bec39e96f0a472c126d1d57c9fc538676c32f65e545c",
+      "视频/脚本/03.json": "527f3bf4a11843f4d606188dabc6ebce6830da3fb454a49c782e3a595cb47407",
+      "新版定稿/03-the-doctor-who-drank-bacteria-to-win-an-argument.md": "6dfb56504882e24854a3584fd740e7f6601e3f2532818aee3a56d5330d317aa3",
+      "视频/脚本/04.json": "93cc1ff58d65ebe43a65ecb2fb2dbd2da262d80877c05740bbdf4eab4eaca1e8",
+      "新版定稿/04-the-brain-that-learned-london.md": "a8ccb31ffff50aaae77de4b83de1847fafae1d585981cf960c5880c409f6cfc3",
+      "视频/脚本/05.json": "2282acbfa4b82825f93261ec6c18359eb47fd3f7c639319ac5058d126643e136",
+      "新版定稿/05-the-fingerprint-in-the-blood.md": "612deac4ed066489e04e214ca969f8f27dda05856e0ef0ed2e540e7a4a52ae34",
+      "视频/脚本/06.json": "2cbf1d6cd6e66a59285298ea830f5ef914590b64286d40b2ae5f3168aa27a2e9",
+      "新版定稿/06-the-horse-that-could-count.md": "7fd21ba491c7596c53c486f2bb0b0f2f6da8e67bac75461a4649a7caff822f74",
+      "视频/脚本/07.json": "842e44e5aa19fddcfa239cb6530c5152341cd86e11db959543d02d8670ca13e8",
+      "新版定稿/07-the-octopus-that-escaped.md": "b8544281bb2ada88fce9d1082cbc30233dcb63ee3e9c2bbefafc22cb28b8cb39",
+      "视频/脚本/08.json": "254832e09f12759d950384dd9f31f671ad5a3bc1590b7466065dd3ef5fe4b8d5",
+      "新版定稿/08-the-doctor-who-solved-the-cholera-mystery.md": "0b2bfa68070ce585a452f6b7034d03c3683e710dcabec5e86d7b221950dc7bab",
+      "视频/脚本/09.json": "fa3e429351d629de188c184d04e9986200e16e80606fcbec82332b6433301dae",
+      "新版定稿/09-the-great-emu-war.md": "af5c3e844bad15f94bfc43aeed6d7417c4bfae85f026b194da667a7a3bdb6196",
+      "视频/脚本/10.json": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
+      "新版定稿/10-the-stolen-smile.md": "ff63cf94e4d2c835e2e2f1ffd3e6c5642f0916f0b13c012f1f13c3dff716d47a",
+      "视频/脚本/11.json": "665cbb80cc70b700ecc0cc5813209fd100ad4fa8f0eead3929b9e53778d9d07f",
+      "新版定稿/11-move-37.md": "7e0b49b346c1fa3ab994a11a2301167c0d6a1bb00916508bdc0b1acf71e68053",
+      "视频/脚本/12.json": "e3bfbcce6f1a8e14cfe451d656574353321e297c90c62f5a7b422f37478311d5",
+      "新版定稿/12-the-79-days-of-new-coke.md": "5a23c1e0c81318527bcbf27573487d1845c5318905a2b1e020cc6e2eaf5d643f",
+      "视频/脚本/13.json": "3687b6c42a6d524d0d7e40a47ed02c37b18abe8d524db4f5914abad52019a63c",
+      "新版定稿/13-eleven-days-without-sleep.md": "72b842de127132e386e9e52a1719ec96765e94958f56687987f53e2801c69704",
+      "视频/脚本/14.json": "17141351875ddb8f0e308602c0b6ab85cbf5126a4d0118978c25c869db769fee",
+      "新版定稿/14-the-fungus-that-turns-ants-into-zombies.md": "e114c9e1783c80a2ffdb60af05e824f93a8ea8725905cb733560abe1c0ad01a8",
+      "视频/脚本/15.json": "0934aa067f19814028c398b0c70a400bb09e354f744bde4000742950d77f441e",
+      "新版定稿/15-the-myth-of-the-unsinkable.md": "68e236868c4b466928ff2a60358250b9592dfe9287b66561b1e5a80b4d14de4f",
+      "视频/脚本/16.json": "d25aa07f3fac316c26c2ae1006d3efa7eb82a396b66150432b50239c1628396d",
+      "新版定稿/16-the-bread-made-from-air.md": "4da63148111213f6d77451b0eb4193893e6fc2fc170400bc39ce5f5ffcaa0b20",
+      "视频/脚本/17.json": "2e9971ea5ce7857e119226fe95def06e6eb9c3ef9823d8e8c4f3456f46a3bbb0",
+      "新版定稿/17-the-curse-of-the-pharaoh.md": "a2e8d92f9136e1b22fcc0799f9a4d281092f0e547cc68242e090241d7b09e222",
+      "视频/脚本/18.json": "8cffbad6f0b8451e46ad1a65d5f629c450ceff2c771218445770c8cbfd77ebca",
+      "新版定稿/18-the-mould-that-changed-the-world.md": "ef41cea03f471fe3b9a53939c843e450da3325eb711f6414e108ae92a7518dd8",
+      "视频/脚本/19.json": "cc3c5eea0f7d9ec0712b2e58adba7e5ef8b61d6518a322f9b25a12fcc45282fb",
+      "新版定稿/19-tulip-mania.md": "3882d487383b759c31dda4785966091c362960cd873a5d83c530d08d52e2e97c",
+      "视频/脚本/20.json": "cc5ed6d7be8767e5e7e9b098e8f3836821c0b3f51c17581b2746722da1cf3001",
+      "新版定稿/20-the-5000-year-old-murder-in-the-ice.md": "8d55638070787f7ff5432c197292af1188c463a8b018e01bdefc32999b888e95",
+      "视频/脚本/21.json": "61c1569a26d7569ee0f586178be6b307b1c394c0a30c3cb02541c910038b0589",
+      "新版定稿/21-the-man-who-sold-the-eiffel-tower-twice.md": "e8e966b70f579235d696ba11fb01d3b2cae3fa26efb9071bbea95071be259e1f",
+      "视频/脚本/22.json": "e3027a42c532fee9935afcecdd0542713cbb907183802c2345b9472f93b75f59",
+      "新版定稿/22-the-building-that-melted-a-car.md": "49ae09483bc80bbc40a71551cd98aebec355d96d9ff7b2bcdea59a06fe599267",
+      "视频/脚本/23.json": "c4574a79fd3a58577a1402ce095ea9e4a0ea1f98883ce63e3cc60d126e819409",
+      "新版定稿/23-the-man-who-gave-machines-a-mind.md": "72ed3049e87fe75ce1e753d5e443bdbe6a7ab72f6e282e8467fbbb62be873169",
+      "视频/脚本/24.json": "f08620b534bb10b718f7515c805dcb541721427d855bd5a092b8954847a351b8",
+      "新版定稿/24-survival-in-the-ice.md": "cb7f810d9a74256e0c00625290be4f16207feb90f5719ca87d5d7c9912b91307",
+      "视频/脚本/25.json": "c73e854e052b3df9bd920d4a59fafb183dee19bd58765fa426af6ea3d7c9a329",
+      "新版定稿/25-apollo-13-the-successful-failure.md": "b6b7d55fe66e6e32116431ea955778fab779b8bda622df0ba1036c2f40a3969f",
+      "视频/脚本/26.json": "ab663b240eb5e27923f38e2ff296c0196e3d820766d0c909adb9faf19aa3cac9",
+      "新版定稿/26-the-language-the-children-invented.md": "9e9ad8021ddabc17157d73dc739383f9676df3583cf965e470fcd773e26a3761",
+      "视频/脚本/27.json": "61cd724c5fab6f07a46aa5ac069101617c4c8350311eb11a43f9fefdddb31d8b",
+      "新版定稿/27-life-in-the-forbidden-zone.md": "e276bcf76225b9ae16cd8cfda8c9b726b442fbd625d3718f532b47b09b21b16f",
+      "视频/脚本/28.json": "a6a4befc0291727f5cc3f8b50857ee954ef9f936738f014a978ebb4d37a28ea8",
+      "新版定稿/28-a-handful-of-wormwood-that-saved-millions.md": "b9817d3429767d07b6a2eb14cce5422a20cb4e3b89f8b03e6b3d5da2daf91d91",
+      "视频/脚本/29.json": "1e5f1d9f0c22b5d14b757f029be694c2a3969666d732ca79bb695282763de791",
+      "新版定稿/29-the-volcano-that-gave-us-frankenstein.md": "69045ee19a170c7ea9d0008b468c7e947bc28b639b834c0192dc0aeafc3ef4d0",
+      "视频/脚本/30.json": "cdf727cb4c6832063421df9da6ab8ae7729cf9df01d6be089a8981c92c360f06",
+      "新版定稿/30-the-stink-that-built-londons-sewers.md": "84dbf19cee0045ea2608b13ee0677cb9623dd8fbb371c67093bf50c64186137a",
+      "视频/脚本/31.json": "d81f8645a1e5663ba8c84668e817cdb218bc6689079fbfd51326b3a7fd3cd384",
+      "新版定稿/31-the-book-twelve-publishers-turned-down.md": "7abd20fed44918dcf01586c056e9d0acd9d2ad3b90aa7d3d403762d9f06d2659",
+      "视频/脚本/32.json": "357aa59bed62154f7302a5efcf528859b303004e028657b93058138fe931bf85",
+      "新版定稿/32-the-planet-that-was-demoted.md": "1421f2b0921e7e9478ebc48777e3e8b2c979172de63d0124015107c3750a3542",
+      "视频/脚本/33.json": "ca51103c1a9d45c9159322765efc86c81f61f6ec78975f160019d21a1d9ee0d7",
+      "新版定稿/33-thirteen-in-the-cave.md": "9862078044ce45a9f6d51aa7d165afdfcf90066d1de98cbb317dd7e8f980610d",
+      "视频/脚本/34.json": "74921848a6bb25a2ba631813f60d4756c9ff90c64c03a2fb936ce34f310ce509",
+      "新版定稿/34-the-game-that-escaped-the-soviet-union.md": "e3244b67b21e283e67f4e88e932a1dbb85bf273a48ee009b3f435e1c5814831c",
+      "视频/脚本/35.json": "d8439077dc2c909b1c6cbd1347f31e9625f25fffe447d6f5945c9492561f1a16",
+      "新版定稿/35-the-bird-that-beat-the-letter-home.md": "ba8c38e38b21a3345624e2d44fd352561d3096cfb6f62214b48ea9b6e66faead",
+      "视频/脚本/36.json": "76daa28f421bd40d8e2744d4e785a34bb8ee67da1403b4b1546db9465c535cef",
+      "新版定稿/36-the-company-that-invented-its-own-killer.md": "411eeb96c8641ee7082b49a5abf4c7343d3f1dbb7ef331064d7c0f3c630fe58f",
+      "视频/脚本/37.json": "b1b8945ccf3581df48ade5714a2d0e93e4cc6812708f95bef6f5e44439106c99",
+      "新版定稿/37-dynamite-for-the-heart.md": "4933e24d2384471a96d9c8c26c15d5224a85dae98d9971a3fed15b4978dafc51",
+      "视频/脚本/38.json": "8d0379032000967c9f72e550574874949f798eefbfbfb58ab2b38e4e23ecbc6b",
+      "新版定稿/38-the-web-beneath-the-woods.md": "abb7eead9f3da0b2b326ceed5a649cfbf71fc28dad22e0d52f7b19caa798c54f",
+      "视频/脚本/39.json": "6c3e9539f624b192335312912572a05fba2c7bcfb821b44c3c1dbb21b42527a7",
+      "新版定稿/39-y2k-the-crisis-that-success-erased.md": "abbc9804661126aa006595031ed8f201ce55e8eb5fd9e1ad5669c0c6fcdb80ab",
+      "视频/脚本/40.json": "1c50d1a47ee6f8528d0f7299e8a45bc8c30312622f3f465a964d21cc1395ee7f",
+      "新版定稿/40-the-glue-that-failed.md": "dce9f78f3a0828307843dd667b7eeebf3380a3630f03d234bd5824870aba61a1",
+      "视频/脚本/41.json": "6b6673ffc1db986f4c355f3685de6a0faf2272cee042c5e917f26a8b3057c2be",
+      "新版定稿/41-the-toad-that-invaded-australia.md": "eca590f97120f4e76d719e29aa07b094f9117cd462f5a70c029331a63b85f710",
+      "视频/脚本/42.json": "eceb10ae92aa4b9cd23180d1138149a7fa7b674385462c898bc0d2283c8739e7",
+      "新版定稿/42-the-telescope-that-needed-glasses.md": "d4aa049779a0eba06c555d76ca14103648378eef90465df424120126fa771280",
+      "视频/脚本/43.json": "aa9da1246e293c80408edf94a7c9bed65ef3178ae7cb5265a8273e8c4396687f",
+      "新版定稿/43-from-a-garage-to-the-top-of-the-world.md": "bd70c83e5ac867238ca179f3c9f3548eb9cbdcae1f6df40994aef0bda721ae54",
+      "视频/脚本/44.json": "87f531203ca38d88ae5e71ffd88190b1530715cdc0adba146c2a4a78ebe9b976",
+      "新版定稿/44-the-night-sweden-switched-sides.md": "d3f7ad2ac43f02aae9205a15b9808280ca3db597d6ef3b36aca8ca6176c5f74a",
+      "视频/脚本/45.json": "569406607d2bf18dce5e916052d6460509450d97fe17ac9820be524f59c2c3cc",
+      "新版定稿/45-the-record-humanity-threw-into-the-stars.md": "27deabec4a8478fe570f7f237a2fb850ffdce3deebfd952f512d82a60cf7314f",
+      "视频/脚本/46.json": "804ecfddb6060288b05eda0e1027c65e9bff0c08a9d010c201bf39306c769b62",
+      "新版定稿/46-lost-in-the-glare.md": "7aaa06e875fe56c5d78210b90a8769b8b2051714025ef10df37c2fe89db7a68c",
+      "视频/脚本/47.json": "0417489c8a672e7e63d46c2239d847acabda2d93160cabed3b0fb14f701ac39a",
+      "新版定稿/47-shadows-of-wolves-over-yellowstone.md": "34c68cf4d0f0ef3545ad68edf3367fcb76ab500174b11ae7f83b782cd5a80a2a",
+      "视频/脚本/48.json": "4f146ce6a70bb0bf5d2c6e1f6b47bd6a2bcc2f311be7a948092d7bde1a08f449",
+      "新版定稿/48-rice-for-the-world.md": "76416be21f857e8a05c37baa33ac90f5785812291485231c249e38a1d0edf15f",
+      "视频/脚本/49.json": "640168eb8a17c5d53d266c6604ffe287919314947371c2ee239eeea952d73b77",
+      "新版定稿/49-the-woman-who-won-two-nobels.md": "1e4fb068aa9ae4513d01b199a074b84dc9d819f57b2134df32588a0e4a4b6b6a",
+      "视频/脚本/50.json": "1d4a41824dfa5e8d11e5990b2a4b802ba2fcc3231d85b15ed6630396c6f027bf",
+      "新版定稿/50-microplastics.md": "5439589bacf1abb2abbb184eb658492bc02bcc5bdd8dfd8ababcd80ab93621cb",
+      "视频/脚本/51.json": "39886d83593a31fb575b124ecf6457190773dca695b6ff78f8434d52aebd6d7c",
+      "新版定稿/51-the-joke-that-became-ok.md": "8de30ea4846f4e88d8b71c8d5ced3ee63a73955e39b7dc3c5adad0971b854fd0",
+      "视频/脚本/52.json": "832249bb44617d38ede75560a5e57af6ba79ec284c9609407cb30ce879f6f862",
+      "新版定稿/52-the-killer-smog-of-1952.md": "179500361e4a837d7edb2e0497e08677d5abd425e8ad542f788205a6f7667b4b",
+      "视频/脚本/53.json": "28b604bfa72896534736293f79e9b3aabd8e3678672f4dc6c66337c02a8f1518",
+      "新版定稿/53-the-wind-that-kept-no-time.md": "6fab302dcadb5a2c509436f5fbf8d9ef925c008a36f5b422749bd405aa4701d3",
+      "视频/脚本/54.json": "b1fcb8ae86045b3d35ccfa0f52eb9594b8921d43063835769ee3ecc4543be75e",
+      "新版定稿/54-the-sound-that-shook-the-world.md": "abd5f4bfe11ed73bcc5326a92cf99b0a8e5ad70adaca1ce8d0c8f622b57fa519",
+      "视频/脚本/55.json": "06344fc0ad5975cba2f4dbe5262a9957dd7c024f9a05b9abbfa327f32ea8c719",
+      "新版定稿/55-the-secret-of-romes-undying-concrete.md": "a7759eddcc7ec06dfd6dab7912e06b3b5ef8576df0c025a97812006669d0be61",
+      "视频/脚本/56.json": "22ca3b4180a8ae6a37b4c8e25f5e357d5696d9b23bf148fb7064425d1403e59c",
+      "新版定稿/56-the-letter-that-startled-darwin.md": "aad1e2aab9ff28f534a510362e807ef401e0b502475240f4b2531e9e518a8d7a",
+      "视频/脚本/57.json": "a0ba65b769430289a33ec1f7bc6dbf91dad8d2c3b1d725348851de546563cd6f",
+      "新版定稿/57-a-change-of-anthem-in-the-deep.md": "0731d925a98bafc222718c111985362e166b38b9189c516219a481e36d0d4b6e",
+      "视频/脚本/58.json": "8b0bd3d7d39000518789e9907aec53bd52fab1b9d6b4f22a152d158635b6e8ee",
+      "新版定稿/58-from-a-scratch-to-a-world-without-smallpox.md": "1aa2a0d2c51da76f9c9ebb88d049dd1a55ab530791566fdbf6476e5aa48c15ee",
+      "视频/脚本/59.json": "df1db4174d942371166048b220ef6d55b0b700b2ce31c866edf6dfdf33b92f0c",
+      "新版定稿/59-saving-the-sky.md": "7bf9c4661e733e7af23dc2f11bc820b809ec93dad75a94fb6a12748226e8722c",
+      "视频/脚本/60.json": "eed1655c0919db32a3a016b24791b93d25683f287c7ccb2523e168a69bddc562",
+      "新版定稿/60-the-scientific-giant-who-changed-the-world.md": "9d1578e7af085559922394a3db01de4eb22dc1c520ca17de5cad68e5a38a31a8",
+      "视频/脚本/61.json": "72378937501769dfb3d934fe65ab1a69afeb5420a15e19890c161433717d2435",
+      "新版定稿/61-the-steel-box-that-remade-the-world.md": "135cc9cfbcbd68d957f831cf55558112a45b1cc3749366cb9a304507355c7d2c",
+      "视频/脚本/62.json": "4b3a97f2b6404e1b091537c21f01fc60088902f596803345983c38be52ec79eb",
+      "新版定稿/62-dolly-the-copied-sheep.md": "62817546ae33824b57255f941135c503e41a41f905331ed4af1e32850fa00960",
+      "视频/脚本/63.json": "5d266d80f9cf29cce6f7e34531449cf75191a42f180102685a5bcd04849e75c5",
+      "新版定稿/63-the-crowded-heavens.md": "6ef79d4310019dfefa7364b8a428411a6bc337678c69fa5cbc89b84689e253a4",
+      "视频/脚本/64.json": "12a36862765922d72ce6e5a4c5fe85f548364eed65fe3b3b284f0b38899a965f",
+      "新版定稿/64-the-day-zero-that-never-came.md": "e0c83cbe36745adbbffd33a156fa8d0671704ea976cb13215cabb612639b37a5",
+      "视频/脚本/65.json": "78e60dd231df4ac71df83e21a26f82bbf706dc0bef80bee156a36bc287661ede",
+      "新版定稿/65-the-day-the-doomsday-vault-opened.md": "71a50d32e25955e713e6ca108ab68422a4fd5b77c914a9074eece1dc33cbff89",
+      "视频/脚本/66.json": "ad5324af4270834186285a5e7273a90213094077adc6f9e1d5c7b0ebff9cf035",
+      "新版定稿/66-the-burrs-that-became-velcro.md": "75dbe6c148ca97a7780ac1737f33f58bf8ee27a51aa729a83315705655b12b2a",
+      "视频/脚本/67.json": "8897cc1c2df1e4672eec3bbff2776d0565afb9c9fe84087a1758ebb15b2a233e",
+      "新版定稿/67-the-cave-found-by-a-dog.md": "10e37b81eeef4e3289448a6b4fd679f34d495a4fc087c57747e6dca949e00cf1",
+      "视频/脚本/68.json": "568f72dacac48e206811d35a57c7fa22e3da428783f64e507c184f2090e579f3",
+      "新版定稿/68-the-last-flight-of-the-hindenburg.md": "c25f58ffb0e3748336767bb7470dd7cef10374c53cbb48af89dba26f65b2dd5c",
+      "视频/脚本/69.json": "09fd3fdbbc834badd16a9b38d8c14e425193a6849d7db87253f26a782a1c4137",
+      "新版定稿/69-the-trial-of-the-father-of-the-atomic-bomb.md": "570eda5b7d979d71e9bcad1c67e295ed326ecdb8b61e663aba33272c8a9451bd",
+      "视频/脚本/70.json": "0f6827f02cef0d2416f9d7d69b7e1c5553acee7cf6dc89f3379201264587236c",
+      "新版定稿/70-the-stamp-that-changed-the-post.md": "edfd85cea33730ba67e4210e756da1f2945f1a21bce55c7e75497cb5f0095d80"
+    },
+    "source_file_count": 140,
+    "working_script_count": 70,
+    "target_request_exactly_matches_context": true
+  },
+  "request_source_sha256": {
+    "视频/脚本/16.json": "d25aa07f3fac316c26c2ae1006d3efa7eb82a396b66150432b50239c1628396d",
+    "视频/工具/初稿生成/gen16.py": "dc5e9e26b0849893a8c930f9d44505c385ee99fe2259c6304927eae3d391bc91",
+    "新版定稿/16-the-bread-made-from-air.md": "4da63148111213f6d77451b0eb4193893e6fc2fc170400bc39ce5f5ffcaa0b20",
+    "视频/制作记录/16_待改清单.md": "6b051669a43fc6d72a6cdb65707a7a9d2d49cf6dc76993e93877dbf877963bdd"
+  },
+  "accepted_source": {
+    "id": "16",
+    "path": "最终版4K视频/16 - The Bread Made from Air - 从空气中造面包.mp4",
+    "sha256": "88f0e80e9efa58316356eff5194295a1014e4e89878a73be5bae7d7ca39f4005",
+    "git_blob_sha": "1088f82ed2b6d428ecbd2ef4d69f447ecf174c0b",
+    "bytes": 13219185,
+    "width": 3840,
+    "height": 2160,
+    "summary_frames": 60,
+    "aac_adts_sha256": "bbd43027b230cfd0e569c7d55c6c33737ad7c7a498f762a19d7f5c021007c4d6"
+  },
+  "checker_reference_preparation": {
+    "article": "16",
+    "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+    "reference_prepared": true,
+    "acceptance": false,
+    "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+    "source_sha256": "d25aa07f3fac316c26c2ae1006d3efa7eb82a396b66150432b50239c1628396d",
+    "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+    "checker_program_sha256": {
+      "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+      "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+      "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+      "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+      "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+      "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+    },
+    "reference_calls": [
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-raw",
+        "method": "create",
+        "source_slice": "The Bread Made from Air",
+        "exact_native_cache_key": "20800dc8a3eb3ca0701b4a84bf4f5d999788c547.pkl",
+        "cache_input_text_sha256": "b234b824c619fbeff1070f45ed5189592c60b4020586c2ef5160a697c0baa73a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-timed",
+        "method": "create_timed",
+        "source_slice": "The Bread Made from Air",
+        "exact_native_cache_key": "9ce582d59343894f9843554303a3f2f0fd22ce49.pkl",
+        "cache_input_text_sha256": "b234b824c619fbeff1070f45ed5189592c60b4020586c2ef5160a697c0baa73a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "In July 1909, BASF envoys gathered round a squat machine on a bench in Fritz Haber's Karlsruhe laboratory.",
+        "exact_native_cache_key": "5fb2b4e6ce19ad6bdcf42926fa9ccd78cd012202.pkl",
+        "cache_input_text_sha256": "4cc1a4a3c78d50d5bf1d4e299bc8523da08444277b34b9195976eb2c2eef45ea",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "In July 1909, BASF envoys gathered round a squat machine on a bench in Fritz Haber's Karlsruhe laboratory.",
+        "exact_native_cache_key": "9e9ea7b9dcdbbedd17993acfc15e553bd5f0ac38.pkl",
+        "cache_input_text_sha256": "4cc1a4a3c78d50d5bf1d4e299bc8523da08444277b34b9195976eb2c2eef45ea",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "In July 1909, BASF envoys gathered round a squat machine",
+        "exact_native_cache_key": "0a137ef53b585a64543438a2985c1fdc0d7ce180.pkl",
+        "cache_input_text_sha256": "678b8abb2bd2a480b33dbe4d80cfd75e9521f4e86b2d0f627775e2fb71bedee0",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "on a bench in Fritz Haber's Karlsruhe laboratory.",
+        "exact_native_cache_key": "5cc448a11159fbc16f5d326798065a51b68784b0.pkl",
+        "cache_input_text_sha256": "9c85af98a186d9f86338adac6705a615fb40b5b630738e2c22801aaeeadffec0",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "In July 1909,",
+        "exact_native_cache_key": "db3ed876e2bb8fbbea02cf924c9bde09f62225d0.pkl",
+        "cache_input_text_sha256": "cd0b415fc3edd1b45d79c20c66d134878493c849ff8f0ab94baabdf54de14231",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "BASF envoys gathered round a squat machine on a bench in Fritz Haber's Karlsruhe laboratory.",
+        "exact_native_cache_key": "85b44f6d0418dba35754dc6375424241c0fe8ea4.pkl",
+        "cache_input_text_sha256": "0356f8e5f5c3e7bfd674ddc9b7651d8c16f203d5cce9d988cff2de4b5613ef08",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Behind its gleaming, bolted valves, nitrogen and hydrogen met at crushing pressure and furnace heat, and transparent beads of ammonia began to drip slowly.",
+        "exact_native_cache_key": "fb9911f60b061370f162c13223338759bc86d09f.pkl",
+        "cache_input_text_sha256": "62b950e9ce9e4aca53cf40b7dac0ef913b7d2a3464df7c89d973c93105be251e",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Behind its gleaming, bolted valves, nitrogen and hydrogen met at crushing pressure and furnace heat, and transparent beads of ammonia began to drip slowly.",
+        "exact_native_cache_key": "341ce040d223002871b0cc195bf606639bfc3086.pkl",
+        "cache_input_text_sha256": "62b950e9ce9e4aca53cf40b7dac0ef913b7d2a3464df7c89d973c93105be251e",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Behind its gleaming, bolted valves,",
+        "exact_native_cache_key": "388b8fafc28262e5c848820a6e487a6b29126758.pkl",
+        "cache_input_text_sha256": "9d558e5cdd8362c900ea5d0bc0fd1a6650272f19f39ca113a976e8c0c4c60e9a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "nitrogen and hydrogen met at crushing pressure and furnace heat,",
+        "exact_native_cache_key": "2e759bc0c158715efcf8b9e8fface5e68ba083c1.pkl",
+        "cache_input_text_sha256": "94c0b0b51a0ab4b78facbbd7d627b0a9c767c1f54c43c862d4a7e37e3a858b4c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and transparent beads of ammonia began to drip slowly.",
+        "exact_native_cache_key": "b47970fd9f867b35c4be6f8a2100af14e06ea3c3.pkl",
+        "cache_input_text_sha256": "6a2cb24146ba75b5e1e14e3777cfeb3b70d2e502fa1ec014743635b57fd57481",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Behind its gleaming,",
+        "exact_native_cache_key": "b4a4da16d5b1c2694920da03a632befa7c5be6a4.pkl",
+        "cache_input_text_sha256": "11ec634103317cf0f2b04f586e5ff67dacf93214cb8704dd52490dba2ac4c764",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "bolted valves,",
+        "exact_native_cache_key": "3424d518a99c7b4d7e27f0951ef6f38a43e41db3.pkl",
+        "cache_input_text_sha256": "5819376b04f7c5b35650c861ff44fe2ee29477d1ee77407f977b2a58710979ef",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "nitrogen and hydrogen met at crushing pressure and furnace heat,",
+        "exact_native_cache_key": "2e759bc0c158715efcf8b9e8fface5e68ba083c1.pkl",
+        "cache_input_text_sha256": "94c0b0b51a0ab4b78facbbd7d627b0a9c767c1f54c43c862d4a7e37e3a858b4c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and transparent beads of ammonia began to drip slowly.",
+        "exact_native_cache_key": "b47970fd9f867b35c4be6f8a2100af14e06ea3c3.pkl",
+        "cache_input_text_sha256": "6a2cb24146ba75b5e1e14e3777cfeb3b70d2e502fa1ec014743635b57fd57481",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Haber had pried nourishment from the air.",
+        "exact_native_cache_key": "ef8defe4dd8cdfd9352593e15b1f79f8ee5bda71.pkl",
+        "cache_input_text_sha256": "a8dcec3fd4e413a0169d6d5d7e9e98227653438233517d2615ff9cb879220f45",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Haber had pried nourishment from the air.",
+        "exact_native_cache_key": "42114abcfdccd403f25d9579dc06f4443f9ac47c.pkl",
+        "cache_input_text_sha256": "a8dcec3fd4e413a0169d6d5d7e9e98227653438233517d2615ff9cb879220f45",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "BASF's Carl Bosch scaled the method up, and from 1913 a gigantic plant at Oppau mass-produced ammonia.",
+        "exact_native_cache_key": "c0d0a789655e8f0a6a04b5b1b024999faa7b6214.pkl",
+        "cache_input_text_sha256": "b798a65265d4ff44ba3561cc46c27ebb8b0970feb5b8f48cc404b0cb8165cde2",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "BASF's Carl Bosch scaled the method up, and from 1913 a gigantic plant at Oppau mass-produced ammonia.",
+        "exact_native_cache_key": "af5db5ff0a7e47cbde342e0c9896098cb239f4a9.pkl",
+        "cache_input_text_sha256": "b798a65265d4ff44ba3561cc46c27ebb8b0970feb5b8f48cc404b0cb8165cde2",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "BASF's Carl Bosch scaled the method up,",
+        "exact_native_cache_key": "3503cb804f07c55af20275ee10a1e71d5e339bf8.pkl",
+        "cache_input_text_sha256": "0b58118aff73988f9c0bf7a41cce7c1a3cd54b9ae5d68b495e5ab499c672b308",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and from 1913 a gigantic plant at Oppau mass-produced ammonia.",
+        "exact_native_cache_key": "0d51b02f427a5f57656a4f667a2bc53104f6e1d0.pkl",
+        "cache_input_text_sha256": "17c46600caa5380dad375fb67ae480c94b3234dfb741ce1c56b13a29936d4169",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "BASF's Carl Bosch scaled the method up,",
+        "exact_native_cache_key": "3503cb804f07c55af20275ee10a1e71d5e339bf8.pkl",
+        "cache_input_text_sha256": "0b58118aff73988f9c0bf7a41cce7c1a3cd54b9ae5d68b495e5ab499c672b308",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and from 1913 a gigantic plant at Oppau mass-produced ammonia.",
+        "exact_native_cache_key": "0d51b02f427a5f57656a4f667a2bc53104f6e1d0.pkl",
+        "cache_input_text_sha256": "17c46600caa5380dad375fb67ae480c94b3234dfb741ce1c56b13a29936d4169",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Hailed for making bread from air, Haber won the coveted 1918 Nobel Prize.",
+        "exact_native_cache_key": "e751524e1c6ba6dd08a4ebf0d27b251869c51544.pkl",
+        "cache_input_text_sha256": "39e62285ff130f929e3a803ecf9338d5d371713627222de938cd8a90b37989f7",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Hailed for making bread from air, Haber won the coveted 1918 Nobel Prize.",
+        "exact_native_cache_key": "af5e293af9fea11a3788824cc71f9635fc33a760.pkl",
+        "cache_input_text_sha256": "39e62285ff130f929e3a803ecf9338d5d371713627222de938cd8a90b37989f7",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Hailed for making bread from air,",
+        "exact_native_cache_key": "7474912bf0ee522feb38f8469bf503349e738f33.pkl",
+        "cache_input_text_sha256": "6d49c66ead18d5a12782effb7af33bd9784b78ca33ba0872d894bb40b7cffc42",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Haber won the coveted 1918 Nobel Prize.",
+        "exact_native_cache_key": "6a381fcdbc250ab8e89ca381c8ee4f6ca6ba60bb.pkl",
+        "cache_input_text_sha256": "ebe1725ad87bb1399a99fe483283681c540132fe4fe34e523b090c231caf6ad0",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Ploughed into stony soils as fertiliser, ammonia wards off famine as no manure heap could, bringing abundance.",
+        "exact_native_cache_key": "5573ec5e525b854327e8452e8ad2bd5e82cb7d3f.pkl",
+        "cache_input_text_sha256": "c5b7f8fc6980b19b4d05d9e9c012daf7be1f489e2ec0e60cebc9177bb4c4dccb",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Ploughed into stony soils as fertiliser, ammonia wards off famine as no manure heap could, bringing abundance.",
+        "exact_native_cache_key": "a2f1a782c38a8140a642f3fb7356b40c0cc43e12.pkl",
+        "cache_input_text_sha256": "c5b7f8fc6980b19b4d05d9e9c012daf7be1f489e2ec0e60cebc9177bb4c4dccb",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Ploughed into stony soils as fertiliser,",
+        "exact_native_cache_key": "abfbd003bc74d74bd24f186fd3419de1ecb7f2ec.pkl",
+        "cache_input_text_sha256": "dd1d7ec08cd84c050251182bdb8306791fcc5a9515b430f9ee9ae5111bbddcc1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "ammonia wards off famine as no manure heap could,",
+        "exact_native_cache_key": "d40f8b434ddbbae00ecd6376a83e6da1d043e911.pkl",
+        "cache_input_text_sha256": "82e68cc0d73ee679415f8331c892d77f8e121cc95fd32a66e9c57a6179802f66",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "bringing abundance.",
+        "exact_native_cache_key": "754eea5abf69455705f5b1c805d88527752d58fa.pkl",
+        "cache_input_text_sha256": "de704b1779641c7a8318efe4a44e04828fdbe62b85ced0e57f4b1f61e9cc233f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Ploughed into stony soils as fertiliser,",
+        "exact_native_cache_key": "abfbd003bc74d74bd24f186fd3419de1ecb7f2ec.pkl",
+        "cache_input_text_sha256": "dd1d7ec08cd84c050251182bdb8306791fcc5a9515b430f9ee9ae5111bbddcc1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "ammonia wards off famine as no manure heap could,",
+        "exact_native_cache_key": "d40f8b434ddbbae00ecd6376a83e6da1d043e911.pkl",
+        "cache_input_text_sha256": "82e68cc0d73ee679415f8331c892d77f8e121cc95fd32a66e9c57a6179802f66",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "bringing abundance.",
+        "exact_native_cache_key": "754eea5abf69455705f5b1c805d88527752d58fa.pkl",
+        "cache_input_text_sha256": "de704b1779641c7a8318efe4a44e04828fdbe62b85ced0e57f4b1f61e9cc233f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "By 2008 it was feeding nearly half of mankind.",
+        "exact_native_cache_key": "f82424b38eea7be943b10809ceed7d5e580f57b2.pkl",
+        "cache_input_text_sha256": "04ed88e029b48f33bc3fa68056de7b2fbbd08b67e59217338397b59cffa30668",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "By 2008 it was feeding nearly half of mankind.",
+        "exact_native_cache_key": "f5c1c91d259931ec7b66ee55eba9756904b1627b.pkl",
+        "cache_input_text_sha256": "04ed88e029b48f33bc3fa68056de7b2fbbd08b67e59217338397b59cffa30668",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Haber's ambition had a sinister side.",
+        "exact_native_cache_key": "59fa1cb8b5a21e983b33ac6d2e0800329a8f10c1.pkl",
+        "cache_input_text_sha256": "867b12916772872c588314bc584275da70abc7f568c9dbd3a59f6a7e8111b6ea",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Haber's ambition had a sinister side.",
+        "exact_native_cache_key": "3d04215fc23ebf2fd27fe068d69e8dcd3c9ac50e.pkl",
+        "cache_input_text_sha256": "867b12916772872c588314bc584275da70abc7f568c9dbd3a59f6a7e8111b6ea",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Ammonia stocked Germany's arsenal with nitrates for munitions despite a British blockade, and Captain Haber marshalled chemical warfare.",
+        "exact_native_cache_key": "4dce3c9cf0a990bf0a3f44dbd5d9b32cbff95e41.pkl",
+        "cache_input_text_sha256": "97552c072c170c3d2bbadedb99cc34d01769fcc065848919d89ed63fa7cba538",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Ammonia stocked Germany's arsenal with nitrates for munitions despite a British blockade, and Captain Haber marshalled chemical warfare.",
+        "exact_native_cache_key": "094489324895401eff545b8322d74635aa16055d.pkl",
+        "cache_input_text_sha256": "97552c072c170c3d2bbadedb99cc34d01769fcc065848919d89ed63fa7cba538",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Ammonia stocked Germany's arsenal with nitrates for munitions",
+        "exact_native_cache_key": "4ff9d21c0a8a27768fcc7393a7b58ea0c12e4977.pkl",
+        "cache_input_text_sha256": "5a20cb6938e1332418484a8fdefd9b4998a185560f4b03b9c605ee99470311ef",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "despite a British blockade,",
+        "exact_native_cache_key": "abe4193cbbab803199e6bbefae0c86ec2caee42a.pkl",
+        "cache_input_text_sha256": "be5296d8fd2b9de821b6f3083abfd77de0e5bacfded9c0acdc321673325f04f7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and Captain Haber marshalled chemical warfare.",
+        "exact_native_cache_key": "711b07b7a079c943a5fa1c0acba73742bdd64838.pkl",
+        "cache_input_text_sha256": "6860f301d2409ffee8ff5600b03723fb44c010e91fe976fb649ee8fa3dcc8bc9",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Ammonia stocked Germany's arsenal with nitrates for munitions despite a British blockade,",
+        "exact_native_cache_key": "20bd414273096a73bab50fc1ab4c8a0b6415a0d3.pkl",
+        "cache_input_text_sha256": "deb256cceeefef8502cac66e2843acf041aa742d5a39b665317166c438ce3a29",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and Captain Haber marshalled chemical warfare.",
+        "exact_native_cache_key": "711b07b7a079c943a5fa1c0acba73742bdd64838.pkl",
+        "cache_input_text_sha256": "6860f301d2409ffee8ff5600b03723fb44c010e91fe976fb649ee8fa3dcc8bc9",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "On 22 April 1915 at Ypres, troops vented about 168 tonnes of greenish, poisonous chlorine towards the Allied trenches, the first large-scale gas onslaught.",
+        "exact_native_cache_key": "6925e40881fa475dc54301a10c3b584db2c539c1.pkl",
+        "cache_input_text_sha256": "525eb80bd9dec982146665d0fa8139bf3d31bd3b621c376bf2073b1b047048ac",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "On 22 April 1915 at Ypres, troops vented about 168 tonnes of greenish, poisonous chlorine towards the Allied trenches, the first large-scale gas onslaught.",
+        "exact_native_cache_key": "218b99db62856e8b4c061eb83b71f83a72590a00.pkl",
+        "cache_input_text_sha256": "525eb80bd9dec982146665d0fa8139bf3d31bd3b621c376bf2073b1b047048ac",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "On 22 April 1915 at Ypres,",
+        "exact_native_cache_key": "4d956262b8d1cf9912036e8eb6c0cf678c9eebce.pkl",
+        "cache_input_text_sha256": "a30943779fc2ab4c7ca866313d2b254b516097d7bedadf2e9781cc29b337025e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "troops vented about 168 tonnes of greenish, poisonous chlorine towards the Allied trenches,",
+        "exact_native_cache_key": "99361dc9b9ec647a3af2aee4dc272fdb6986ae37.pkl",
+        "cache_input_text_sha256": "e18bac0ea6bc4eef685923ff9ae3c6cba3906066b7c14e7451085ea30b8e7a18",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "the first large-scale gas onslaught.",
+        "exact_native_cache_key": "e4a63a2550e87fafe3b17d6f4866dc3b572cb5b5.pkl",
+        "cache_input_text_sha256": "dd2492e38253581426424d18911df6dde286a17b8de1ab8df6b79f727045a857",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "On 22 April 1915 at Ypres,",
+        "exact_native_cache_key": "4d956262b8d1cf9912036e8eb6c0cf678c9eebce.pkl",
+        "cache_input_text_sha256": "a30943779fc2ab4c7ca866313d2b254b516097d7bedadf2e9781cc29b337025e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "troops vented about 168 tonnes of greenish,",
+        "exact_native_cache_key": "40136bd17914b963fb18f4b9d2b15e8e020b749e.pkl",
+        "cache_input_text_sha256": "bd7177ec77ac639db8e5f574335f8566ad82163a171f5e8246c0cd998a9c3dda",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "poisonous chlorine towards the Allied trenches,",
+        "exact_native_cache_key": "9c1d0e50447066d690d6f029a9e5507fee0325f4.pkl",
+        "cache_input_text_sha256": "8981bb7db4652ee40ea671c23f65b8aca9b68f577a5b1659238fa3574d6a087f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "the first large-scale gas onslaught.",
+        "exact_native_cache_key": "e4a63a2550e87fafe3b17d6f4866dc3b572cb5b5.pkl",
+        "cache_input_text_sha256": "dd2492e38253581426424d18911df6dde286a17b8de1ab8df6b79f727045a857",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Haber's wife, Clara Immerwahr, Germany's first woman with a doctoral degree in chemistry, voiced objections to his work.",
+        "exact_native_cache_key": "74eb78e8306287c65f41dfd9d5135ff8f41c2250.pkl",
+        "cache_input_text_sha256": "f2fb74721b23262825b801a407cd09b762fb61a98a80433127804c2ca5cc1f5f",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Haber's wife, Clara Immerwahr, Germany's first woman with a doctoral degree in chemistry, voiced objections to his work.",
+        "exact_native_cache_key": "9636187a50c7746fd07979b63b00979ecf0664e7.pkl",
+        "cache_input_text_sha256": "f2fb74721b23262825b801a407cd09b762fb61a98a80433127804c2ca5cc1f5f",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Haber's wife, Clara Immerwahr,",
+        "exact_native_cache_key": "948aec82a5fc2c258bd7a4d5105225e6636683b0.pkl",
+        "cache_input_text_sha256": "9b0b5d372ee4c4c1c904bd2b776d52bdff66988e0ed1fdd12529a78e59af5c02",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Germany's first woman with a doctoral degree in chemistry,",
+        "exact_native_cache_key": "4003f490b224fc3ce48fb628d1b5ff4b6d94fe4a.pkl",
+        "cache_input_text_sha256": "3f870ea9ab4009dafe4acafd4cefdb8e29f982b17b18a23f7ba6a304f9cff941",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "voiced objections to his work.",
+        "exact_native_cache_key": "d0679e559493614580bfd881be8ee47e305681c6.pkl",
+        "cache_input_text_sha256": "5368179c14b53415e2c9fbd9849993db4e2df43871fb15d6f2a67260c91198d7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Haber's wife,",
+        "exact_native_cache_key": "3857bb0f5074b09d2aa2c318a9ec3359b7a0e62c.pkl",
+        "cache_input_text_sha256": "3f0568b75489e2dc494dbb5936324ffd6de6dfc5bb5d805d38c376f1f53ad4b0",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Clara Immerwahr,",
+        "exact_native_cache_key": "bb832806c677a4d9be1d6f7f6ef7686b50724e03.pkl",
+        "cache_input_text_sha256": "a8452bc9b65bc856ac3fc41102a01a966d97ba483b4f3291d406cd11a9409581",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Germany's first woman with a doctoral degree in chemistry,",
+        "exact_native_cache_key": "4003f490b224fc3ce48fb628d1b5ff4b6d94fe4a.pkl",
+        "cache_input_text_sha256": "3f870ea9ab4009dafe4acafd4cefdb8e29f982b17b18a23f7ba6a304f9cff941",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "voiced objections to his work.",
+        "exact_native_cache_key": "d0679e559493614580bfd881be8ee47e305681c6.pkl",
+        "cache_input_text_sha256": "5368179c14b53415e2c9fbd9849993db4e2df43871fb15d6f2a67260c91198d7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "On 2 May 1915, after festivities in his honour, she shot herself in the garden with his service pistol.",
+        "exact_native_cache_key": "a4569d6d7e62bd28c42e898b76bec079f85ad1e0.pkl",
+        "cache_input_text_sha256": "dc29e435ade17a1ef0c0e60d39cdf63e8f782779cc9c71a75fdeb6dbeb924249",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "On 2 May 1915, after festivities in his honour, she shot herself in the garden with his service pistol.",
+        "exact_native_cache_key": "fa107ae41c8093a577712628eb4f2a251aab7914.pkl",
+        "cache_input_text_sha256": "dc29e435ade17a1ef0c0e60d39cdf63e8f782779cc9c71a75fdeb6dbeb924249",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "On 2 May 1915, after festivities in his honour,",
+        "exact_native_cache_key": "6a4e6dd9e14fd2256ec9a7018a542108f58a0ee3.pkl",
+        "cache_input_text_sha256": "5e5b434a7f69493ae0548d14d7f542c53f713cb6fe5eef0eb0c94629b20d2daa",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "she shot herself in the garden with his service pistol.",
+        "exact_native_cache_key": "38de5725fe1ee6b2c2c8ad7fb8e514fbc14db0c0.pkl",
+        "cache_input_text_sha256": "6ba1381218ca15f2953ff6cd3ca5cc35954a8f66d41139b71b9e9bcd85f49fad",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "On 2 May 1915,",
+        "exact_native_cache_key": "2ecb9fd415d44c1a7b78121c5a6e86136b8979f5.pkl",
+        "cache_input_text_sha256": "c28639d4e967eb02a806aa8e2ddf9b63734052223886061d0a1c303c97225f11",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "after festivities in his honour,",
+        "exact_native_cache_key": "ef1532e78da1986ba498c6ad3b296ca7a54ca318.pkl",
+        "cache_input_text_sha256": "b1d859a88b7336a6beb265670dfec7a42db1a04f990c8e72b462532730bd6a01",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "she shot herself in the garden with his service pistol.",
+        "exact_native_cache_key": "38de5725fe1ee6b2c2c8ad7fb8e514fbc14db0c0.pkl",
+        "cache_input_text_sha256": "6ba1381218ca15f2953ff6cd3ca5cc35954a8f66d41139b71b9e9bcd85f49fad",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The next day the widower left for the Eastern Front.",
+        "exact_native_cache_key": "91d819e20870d1a97bad7c558ebd07e7d964b456.pkl",
+        "cache_input_text_sha256": "6e4084322330c3cc6e3ec6ed92e0ae686ef41fb93667576e97136bc81583b853",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The next day the widower left for the Eastern Front.",
+        "exact_native_cache_key": "65c15018df9df38794ad18ab1ba3e93d1420af11.pkl",
+        "cache_input_text_sha256": "6e4084322330c3cc6e3ec6ed92e0ae686ef41fb93667576e97136bc81583b853",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Prestige offered no sanctuary.",
+        "exact_native_cache_key": "73146db514e4a90fc7889b481ede388aedb18455.pkl",
+        "cache_input_text_sha256": "b60ebac3811fed398d2a32cd450c985c111025547a103990081b6cce9443865b",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Prestige offered no sanctuary.",
+        "exact_native_cache_key": "01544ad4a1d83259a9ba837396ac8907246ce834.pkl",
+        "cache_input_text_sha256": "b60ebac3811fed398d2a32cd450c985c111025547a103990081b6cce9443865b",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Of Jewish origin, Haber left Germany an outcast after Hitler's regime seized power, dying in Basel in 1934.",
+        "exact_native_cache_key": "dce6d1ce3af5043cfc8b6d30acf416eab118b916.pkl",
+        "cache_input_text_sha256": "6b9bb1a229fbdbd8150ab8745b7e82d63e76fea334a2c6814f47ad9567e4d4a5",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S15",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Of Jewish origin, Haber left Germany an outcast after Hitler's regime seized power, dying in Basel in 1934.",
+        "exact_native_cache_key": "989b1c025c09eacfd989962aef8352fba7637aa6.pkl",
+        "cache_input_text_sha256": "6b9bb1a229fbdbd8150ab8745b7e82d63e76fea334a2c6814f47ad9567e4d4a5",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S15",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Of Jewish origin, Haber",
+        "exact_native_cache_key": "f6604bba99b151e1ba6bfdee494af0cbb05173be.pkl",
+        "cache_input_text_sha256": "95392e69755187ec5f9556b5495317bb5109b0b07320972db79f6ad15e742763",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S15",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "left Germany an outcast after Hitler's regime seized power,",
+        "exact_native_cache_key": "073930e2475e614e957cd96d2d32da1814a4a2e7.pkl",
+        "cache_input_text_sha256": "9fc0da32ba0a16d6c73abb80fc17c397279b2aefa86f0c5dd787d89fa76de629",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "dying in Basel in 1934.",
+        "exact_native_cache_key": "d4cae70bce22256e53488c2fdd177a09017eba53.pkl",
+        "cache_input_text_sha256": "fadd718512ea8648eda566db291f96d40bab7928349a45a0fbadffe2f485ee00",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Of Jewish origin,",
+        "exact_native_cache_key": "a5f798e956fb276daeb81783a17ae32e9623152a.pkl",
+        "cache_input_text_sha256": "162e3f22bb2bccc50e37da44f5613d3e770a0df1ccd29dba58159cbd4a53e46a",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S15",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Haber left Germany an outcast after Hitler's regime seized power,",
+        "exact_native_cache_key": "1ed751db5d029aa1c3c30789408998b9319de97e.pkl",
+        "cache_input_text_sha256": "fc4b91f3aa777879e027b0e26b749d72dd903ec70756b65f66943efa519ea0a9",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "dying in Basel in 1934.",
+        "exact_native_cache_key": "d4cae70bce22256e53488c2fdd177a09017eba53.pkl",
+        "cache_input_text_sha256": "fadd718512ea8648eda566db291f96d40bab7928349a45a0fbadffe2f485ee00",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "His institute's pesticide research had produced Zyklon.",
+        "exact_native_cache_key": "8c245309d1de8d710fbfd0a45d723372a4a7664a.pkl",
+        "cache_input_text_sha256": "e33c5eec58306121964a925b9a983e59439a2f6233d5daf848a89655feaf5aad",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "His institute's pesticide research had produced Zyklon.",
+        "exact_native_cache_key": "a72c353689b4ad2a3a6ac90e870ee227c273536c.pkl",
+        "cache_input_text_sha256": "e33c5eec58306121964a925b9a983e59439a2f6233d5daf848a89655feaf5aad",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "A later variant, Zyklon B, was used in Nazi death camps, where relatives of his died.",
+        "exact_native_cache_key": "d1a0192a7b2701cfcbac3cb9307145f4591b3190.pkl",
+        "cache_input_text_sha256": "964f1bd9321e5a2c95b20ed99aca317ef08adc36807693fb7ff535b998bd85ba",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "A later variant, Zyklon B, was used in Nazi death camps, where relatives of his died.",
+        "exact_native_cache_key": "c07b6349d1814625466e5a347587b5cbe4930f7d.pkl",
+        "cache_input_text_sha256": "964f1bd9321e5a2c95b20ed99aca317ef08adc36807693fb7ff535b998bd85ba",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "A later variant, Zyklon B, was used in Nazi death camps,",
+        "exact_native_cache_key": "f45f8b9c3a964b709dfbb0c6a687c8ec606c911e.pkl",
+        "cache_input_text_sha256": "f1f8b4395bd0d36b4652cf9f1092bf667f296c5ca9601c7e5a6b57b50fc6cafb",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "where relatives of his died.",
+        "exact_native_cache_key": "5ed47da8b7681761b791ff1484c579d7a9cecdc2.pkl",
+        "cache_input_text_sha256": "7d71018a4bd49a336632a128888c2b9ba982de8785b8bd77ecacd91201e88e2e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "A later variant,",
+        "exact_native_cache_key": "8d605795e53ed59a6b6d407cd22497a2c26e47b6.pkl",
+        "cache_input_text_sha256": "57748af79f243487a10505e07a195e19c07009589fc8f276d80b6657ef6d0631",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Zyklon B,",
+        "exact_native_cache_key": "765bc969e7d1b5885031c649292053540cf1e6d9.pkl",
+        "cache_input_text_sha256": "60fc28364c6f11953f4c2fb0cfb2b8ab27db3a0376d10148cae2118c80dfd1d1",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "was used in Nazi death camps,",
+        "exact_native_cache_key": "839f3d5f93248fee6ea5464e55c42681341bbe2b.pkl",
+        "cache_input_text_sha256": "5fae47808b77ded15913b76caaa77887c8eb7aafc6383c85c4a0d44c8215026b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "where relatives of his died.",
+        "exact_native_cache_key": "5ed47da8b7681761b791ff1484c579d7a9cecdc2.pkl",
+        "cache_input_text_sha256": "7d71018a4bd49a336632a128888c2b9ba982de8785b8bd77ecacd91201e88e2e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "About half the nitrogen in our proteins and DNA has passed through a Haber-Bosch factory, so each of us carries a little of Haber's chemistry.",
+        "exact_native_cache_key": "fe499637be0bc8b7f63a949f04a6488f63ed92d0.pkl",
+        "cache_input_text_sha256": "8a8e6572b6a071064f6600710451048af1ebef0fdef03115cd3ca32d9816a6a7",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "About half the nitrogen in our proteins and DNA has passed through a Haber-Bosch factory, so each of us carries a little of Haber's chemistry.",
+        "exact_native_cache_key": "76a3f79045ddee4c0d1c68912dd1cba4d3833fe2.pkl",
+        "cache_input_text_sha256": "8a8e6572b6a071064f6600710451048af1ebef0fdef03115cd3ca32d9816a6a7",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "About half the nitrogen in our proteins and DNA has passed through a Haber-Bosch factory,",
+        "exact_native_cache_key": "1115d77d45aba8c616a2fb9fca8555b6ab99c8e2.pkl",
+        "cache_input_text_sha256": "01200c9b7a4a3942ea0e7c2e63969e9b6fab1bb364f21c69cbaf342140c842c1",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "so each of us carries a little of Haber's chemistry.",
+        "exact_native_cache_key": "e89fcdf7add6a39722c56bdd412fa2a95ea09d74.pkl",
+        "cache_input_text_sha256": "05db807e7903987e3f458198b9bd18ae8f94b06e68312ab55fc34cdc3472d8fa",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "About half the nitrogen in our proteins and DNA has passed through a Haber-Bosch factory,",
+        "exact_native_cache_key": "1115d77d45aba8c616a2fb9fca8555b6ab99c8e2.pkl",
+        "cache_input_text_sha256": "01200c9b7a4a3942ea0e7c2e63969e9b6fab1bb364f21c69cbaf342140c842c1",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "so each of us carries a little of Haber's chemistry.",
+        "exact_native_cache_key": "e89fcdf7add6a39722c56bdd412fa2a95ea09d74.pkl",
+        "cache_input_text_sha256": "05db807e7903987e3f458198b9bd18ae8f94b06e68312ab55fc34cdc3472d8fa",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      }
+    ],
+    "unique_reference_key_count": 84,
+    "raw_mother_cache_scalar_manifest": [
+      {
+        "exact_native_cache_key": "20800dc8a3eb3ca0701b4a84bf4f5d999788c547.pkl",
+        "pkl_sha256": "378e92a48456f080ad764b78aece36333933f584548934d7f3c3b895e9e83ba7",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "标题",
+            "piece": null,
+            "reference_kind": "title-default-raw",
+            "method": "create",
+            "source_slice": "The Bread Made from Air",
+            "exact_native_cache_key": "20800dc8a3eb3ca0701b4a84bf4f5d999788c547.pkl",
+            "cache_input_text_sha256": "b234b824c619fbeff1070f45ed5189592c60b4020586c2ef5160a697c0baa73a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          32256
+        ],
+        "unprocessed_array_sha256": "f939a009500a474fea1da4fffcc50f06a2e9ea3dbcc5ebdf07306fffef0ab6ed"
+      },
+      {
+        "exact_native_cache_key": "5fb2b4e6ce19ad6bdcf42926fa9ccd78cd012202.pkl",
+        "pkl_sha256": "8b1cb89727dd6d131d47dc7f5ca20d2942bd244566339b3d19b1891ea0c182aa",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "In July 1909, BASF envoys gathered round a squat machine on a bench in Fritz Haber's Karlsruhe laboratory.",
+            "exact_native_cache_key": "5fb2b4e6ce19ad6bdcf42926fa9ccd78cd012202.pkl",
+            "cache_input_text_sha256": "4cc1a4a3c78d50d5bf1d4e299bc8523da08444277b34b9195976eb2c2eef45ea",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          204288
+        ],
+        "unprocessed_array_sha256": "b252d646a94fa766468a94e2085f245b88fd796413052f07a9fde59ac69fcf0e"
+      },
+      {
+        "exact_native_cache_key": "0a137ef53b585a64543438a2985c1fdc0d7ce180.pkl",
+        "pkl_sha256": "dc7012c2e681bd4e1353d298c7430907a7903d59e07915818504c650edbe9954",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "In July 1909, BASF envoys gathered round a squat machine",
+            "exact_native_cache_key": "0a137ef53b585a64543438a2985c1fdc0d7ce180.pkl",
+            "cache_input_text_sha256": "678b8abb2bd2a480b33dbe4d80cfd75e9521f4e86b2d0f627775e2fb71bedee0",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          116736
+        ],
+        "unprocessed_array_sha256": "f396a81de55b5610e8a91464514530c4da559d1d88217b2dc52830a6eb0c73bb"
+      },
+      {
+        "exact_native_cache_key": "5cc448a11159fbc16f5d326798065a51b68784b0.pkl",
+        "pkl_sha256": "7cbfc6353822965c8ff27b55727dad47964ae2e58c69fdcf5294bec01b49b22f",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "on a bench in Fritz Haber's Karlsruhe laboratory.",
+            "exact_native_cache_key": "5cc448a11159fbc16f5d326798065a51b68784b0.pkl",
+            "cache_input_text_sha256": "9c85af98a186d9f86338adac6705a615fb40b5b630738e2c22801aaeeadffec0",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          77312
+        ],
+        "unprocessed_array_sha256": "5bc726feafab481bc620b1169de7c375fb2e58792c2cc1b0481602a6cd307736"
+      },
+      {
+        "exact_native_cache_key": "db3ed876e2bb8fbbea02cf924c9bde09f62225d0.pkl",
+        "pkl_sha256": "3290449652c27d25beac8d7b1c1e99d6e716fa414481de9d2fdd5f2f80c80150",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "In July 1909,",
+            "exact_native_cache_key": "db3ed876e2bb8fbbea02cf924c9bde09f62225d0.pkl",
+            "cache_input_text_sha256": "cd0b415fc3edd1b45d79c20c66d134878493c849ff8f0ab94baabdf54de14231",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          40448
+        ],
+        "unprocessed_array_sha256": "00e5483c804b46fe45c154ecceec6c9cb433f560c848f9d78a160c8d26a0c891"
+      },
+      {
+        "exact_native_cache_key": "85b44f6d0418dba35754dc6375424241c0fe8ea4.pkl",
+        "pkl_sha256": "a1a48e1737a16819e71c0a6640355b9fa5a01a7cada06d27a212183654fea95e",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "BASF envoys gathered round a squat machine on a bench in Fritz Haber's Karlsruhe laboratory.",
+            "exact_native_cache_key": "85b44f6d0418dba35754dc6375424241c0fe8ea4.pkl",
+            "cache_input_text_sha256": "0356f8e5f5c3e7bfd674ddc9b7651d8c16f203d5cce9d988cff2de4b5613ef08",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          161792
+        ],
+        "unprocessed_array_sha256": "62b3a091bdff7a4cf6ab7781979aa9eb119ba4a13653284156bf8ab48fd4074e"
+      },
+      {
+        "exact_native_cache_key": "fb9911f60b061370f162c13223338759bc86d09f.pkl",
+        "pkl_sha256": "a5503dda097e7ff551da3d0ff25e4363035f87effb159ceb8956d62b6268d0b2",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Behind its gleaming, bolted valves, nitrogen and hydrogen met at crushing pressure and furnace heat, and transparent beads of ammonia began to drip slowly.",
+            "exact_native_cache_key": "fb9911f60b061370f162c13223338759bc86d09f.pkl",
+            "cache_input_text_sha256": "62b950e9ce9e4aca53cf40b7dac0ef913b7d2a3464df7c89d973c93105be251e",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          259072
+        ],
+        "unprocessed_array_sha256": "aae8ef8a1e47d9462af957d81268d7f4e3b84ca5d5bdc9471a89989224120ad1"
+      },
+      {
+        "exact_native_cache_key": "388b8fafc28262e5c848820a6e487a6b29126758.pkl",
+        "pkl_sha256": "dcfbb7681bd1c41d08b35442389a52f30cfdb2fc4e76b25a97d82fb7c9f64e00",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Behind its gleaming, bolted valves,",
+            "exact_native_cache_key": "388b8fafc28262e5c848820a6e487a6b29126758.pkl",
+            "cache_input_text_sha256": "9d558e5cdd8362c900ea5d0bc0fd1a6650272f19f39ca113a976e8c0c4c60e9a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          52224
+        ],
+        "unprocessed_array_sha256": "f563df0d669621904a40e607f3556a201be0125a269bb33fa582a220ca961568"
+      },
+      {
+        "exact_native_cache_key": "2e759bc0c158715efcf8b9e8fface5e68ba083c1.pkl",
+        "pkl_sha256": "98c37d18ae69540f317cf4b20684e000a939cfa549f99d38ebb6454ece6e23f6",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "nitrogen and hydrogen met at crushing pressure and furnace heat,",
+            "exact_native_cache_key": "2e759bc0c158715efcf8b9e8fface5e68ba083c1.pkl",
+            "cache_input_text_sha256": "94c0b0b51a0ab4b78facbbd7d627b0a9c767c1f54c43c862d4a7e37e3a858b4c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S2",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "nitrogen and hydrogen met at crushing pressure and furnace heat,",
+            "exact_native_cache_key": "2e759bc0c158715efcf8b9e8fface5e68ba083c1.pkl",
+            "cache_input_text_sha256": "94c0b0b51a0ab4b78facbbd7d627b0a9c767c1f54c43c862d4a7e37e3a858b4c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          99328
+        ],
+        "unprocessed_array_sha256": "2182b40b79aae0ece6a5e8bc054fe97b7d15490fe442e3bb59cc156794fc2f25"
+      },
+      {
+        "exact_native_cache_key": "b47970fd9f867b35c4be6f8a2100af14e06ea3c3.pkl",
+        "pkl_sha256": "5ec82a3e31d2125cce1e0c33a65a965fe9cb4cf144bbbb74bd0db069542eed64",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and transparent beads of ammonia began to drip slowly.",
+            "exact_native_cache_key": "b47970fd9f867b35c4be6f8a2100af14e06ea3c3.pkl",
+            "cache_input_text_sha256": "6a2cb24146ba75b5e1e14e3777cfeb3b70d2e502fa1ec014743635b57fd57481",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S2",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and transparent beads of ammonia began to drip slowly.",
+            "exact_native_cache_key": "b47970fd9f867b35c4be6f8a2100af14e06ea3c3.pkl",
+            "cache_input_text_sha256": "6a2cb24146ba75b5e1e14e3777cfeb3b70d2e502fa1ec014743635b57fd57481",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          86528
+        ],
+        "unprocessed_array_sha256": "967ba2c818b8247a54aa593cef36d2aa0f1a2025d743a8777e8c20b59c5129d5"
+      },
+      {
+        "exact_native_cache_key": "b4a4da16d5b1c2694920da03a632befa7c5be6a4.pkl",
+        "pkl_sha256": "668b8f208dfe3261d3bfb87071d956c0f810345f2094300be9b3aeeeffdf623c",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Behind its gleaming,",
+            "exact_native_cache_key": "b4a4da16d5b1c2694920da03a632befa7c5be6a4.pkl",
+            "cache_input_text_sha256": "11ec634103317cf0f2b04f586e5ff67dacf93214cb8704dd52490dba2ac4c764",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          29696
+        ],
+        "unprocessed_array_sha256": "1078e9db3299dacd3743e5714e0115a063f2839ad0d735b587653c258777df7d"
+      },
+      {
+        "exact_native_cache_key": "3424d518a99c7b4d7e27f0951ef6f38a43e41db3.pkl",
+        "pkl_sha256": "7f567eb2a9300441cf89d46256160125dfec79baf7115d4a945ecfa989fed5fc",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "bolted valves,",
+            "exact_native_cache_key": "3424d518a99c7b4d7e27f0951ef6f38a43e41db3.pkl",
+            "cache_input_text_sha256": "5819376b04f7c5b35650c861ff44fe2ee29477d1ee77407f977b2a58710979ef",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          27648
+        ],
+        "unprocessed_array_sha256": "e554c0459de3a803e3d4306d156ccf345c239edc0b611cd85109a430042ec037"
+      },
+      {
+        "exact_native_cache_key": "ef8defe4dd8cdfd9352593e15b1f79f8ee5bda71.pkl",
+        "pkl_sha256": "da53e9b005c28cacca1f2e09025387ea81c6c5b3b6aa955ba33b2b4dfe87d65b",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Haber had pried nourishment from the air.",
+            "exact_native_cache_key": "ef8defe4dd8cdfd9352593e15b1f79f8ee5bda71.pkl",
+            "cache_input_text_sha256": "a8dcec3fd4e413a0169d6d5d7e9e98227653438233517d2615ff9cb879220f45",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          54272
+        ],
+        "unprocessed_array_sha256": "d5072a113a4a3ac98b13d0f96e10b7aa7715d9f657074795e9e6868575f190c4"
+      },
+      {
+        "exact_native_cache_key": "c0d0a789655e8f0a6a04b5b1b024999faa7b6214.pkl",
+        "pkl_sha256": "0e5129402756222f9ac441c805809d950bd53d899373dc24b81646b91860f06d",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "BASF's Carl Bosch scaled the method up, and from 1913 a gigantic plant at Oppau mass-produced ammonia.",
+            "exact_native_cache_key": "c0d0a789655e8f0a6a04b5b1b024999faa7b6214.pkl",
+            "cache_input_text_sha256": "b798a65265d4ff44ba3561cc46c27ebb8b0970feb5b8f48cc404b0cb8165cde2",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          199168
+        ],
+        "unprocessed_array_sha256": "56d0ca102815c651fabf98a378fac79a03ca8d452ee33888061bc65f9db6aa71"
+      },
+      {
+        "exact_native_cache_key": "3503cb804f07c55af20275ee10a1e71d5e339bf8.pkl",
+        "pkl_sha256": "46976bb6ffd43ab1cb3b03f69a129e922bdbae7808687e4d93bb0d80fd929365",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "BASF's Carl Bosch scaled the method up,",
+            "exact_native_cache_key": "3503cb804f07c55af20275ee10a1e71d5e339bf8.pkl",
+            "cache_input_text_sha256": "0b58118aff73988f9c0bf7a41cce7c1a3cd54b9ae5d68b495e5ab499c672b308",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S4",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "BASF's Carl Bosch scaled the method up,",
+            "exact_native_cache_key": "3503cb804f07c55af20275ee10a1e71d5e339bf8.pkl",
+            "cache_input_text_sha256": "0b58118aff73988f9c0bf7a41cce7c1a3cd54b9ae5d68b495e5ab499c672b308",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          60928
+        ],
+        "unprocessed_array_sha256": "2a14dfe6d8d0367c98ea7e1bd2c383e9e7f3894d7ea1857cde4f98a966905ee2"
+      },
+      {
+        "exact_native_cache_key": "0d51b02f427a5f57656a4f667a2bc53104f6e1d0.pkl",
+        "pkl_sha256": "9a97fb306445b373aee585c96d81a5624ac17b5d880288b6a84fba49dc5c756b",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and from 1913 a gigantic plant at Oppau mass-produced ammonia.",
+            "exact_native_cache_key": "0d51b02f427a5f57656a4f667a2bc53104f6e1d0.pkl",
+            "cache_input_text_sha256": "17c46600caa5380dad375fb67ae480c94b3234dfb741ce1c56b13a29936d4169",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S4",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and from 1913 a gigantic plant at Oppau mass-produced ammonia.",
+            "exact_native_cache_key": "0d51b02f427a5f57656a4f667a2bc53104f6e1d0.pkl",
+            "cache_input_text_sha256": "17c46600caa5380dad375fb67ae480c94b3234dfb741ce1c56b13a29936d4169",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          123904
+        ],
+        "unprocessed_array_sha256": "7cdc7d20401d9ef7b9ef504c92712faba7247061697acf6582c8d19e057a7aed"
+      },
+      {
+        "exact_native_cache_key": "e751524e1c6ba6dd08a4ebf0d27b251869c51544.pkl",
+        "pkl_sha256": "600097f37543487b037ccc163a096170f0f9d57d594bafe817bc93488c6096e1",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Hailed for making bread from air, Haber won the coveted 1918 Nobel Prize.",
+            "exact_native_cache_key": "e751524e1c6ba6dd08a4ebf0d27b251869c51544.pkl",
+            "cache_input_text_sha256": "39e62285ff130f929e3a803ecf9338d5d371713627222de938cd8a90b37989f7",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          142848
+        ],
+        "unprocessed_array_sha256": "b0ec89c1d2af5f56fc5b8cb86014a727cdc6fa79bb6aabd9ac0cbe90bc4d3784"
+      },
+      {
+        "exact_native_cache_key": "7474912bf0ee522feb38f8469bf503349e738f33.pkl",
+        "pkl_sha256": "ea478c935de55532ac71444602d6dadd87721c596d934a3d62ba47272ed59e62",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Hailed for making bread from air,",
+            "exact_native_cache_key": "7474912bf0ee522feb38f8469bf503349e738f33.pkl",
+            "cache_input_text_sha256": "6d49c66ead18d5a12782effb7af33bd9784b78ca33ba0872d894bb40b7cffc42",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          46080
+        ],
+        "unprocessed_array_sha256": "21eb14f42848fbf06635dc71a1ceaf505b6c34548f43e41ceddad1b1a3dc20ee"
+      },
+      {
+        "exact_native_cache_key": "6a381fcdbc250ab8e89ca381c8ee4f6ca6ba60bb.pkl",
+        "pkl_sha256": "0f0098ce68757e5da214f75ced6fda84e55797f507ea888a10adf1f503254749",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Haber won the coveted 1918 Nobel Prize.",
+            "exact_native_cache_key": "6a381fcdbc250ab8e89ca381c8ee4f6ca6ba60bb.pkl",
+            "cache_input_text_sha256": "ebe1725ad87bb1399a99fe483283681c540132fe4fe34e523b090c231caf6ad0",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          87552
+        ],
+        "unprocessed_array_sha256": "e068c64a684536f514c715113c3463685f5f9835e6c429181a6a158db7005fc3"
+      },
+      {
+        "exact_native_cache_key": "5573ec5e525b854327e8452e8ad2bd5e82cb7d3f.pkl",
+        "pkl_sha256": "f7ab82a28c0e8f1948ab04384b6347814b7d0d6e8095b673143ab134e49c4d07",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Ploughed into stony soils as fertiliser, ammonia wards off famine as no manure heap could, bringing abundance.",
+            "exact_native_cache_key": "5573ec5e525b854327e8452e8ad2bd5e82cb7d3f.pkl",
+            "cache_input_text_sha256": "c5b7f8fc6980b19b4d05d9e9c012daf7be1f489e2ec0e60cebc9177bb4c4dccb",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          187392
+        ],
+        "unprocessed_array_sha256": "94403807e58d6a989dc94186c4e7df278806b7597728d259f5e538463cd70f5d"
+      },
+      {
+        "exact_native_cache_key": "abfbd003bc74d74bd24f186fd3419de1ecb7f2ec.pkl",
+        "pkl_sha256": "b60ad8734a62171d129bf8e7d3b8336672e340712a78a97f7aa36224cfe110b8",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Ploughed into stony soils as fertiliser,",
+            "exact_native_cache_key": "abfbd003bc74d74bd24f186fd3419de1ecb7f2ec.pkl",
+            "cache_input_text_sha256": "dd1d7ec08cd84c050251182bdb8306791fcc5a9515b430f9ee9ae5111bbddcc1",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S6",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Ploughed into stony soils as fertiliser,",
+            "exact_native_cache_key": "abfbd003bc74d74bd24f186fd3419de1ecb7f2ec.pkl",
+            "cache_input_text_sha256": "dd1d7ec08cd84c050251182bdb8306791fcc5a9515b430f9ee9ae5111bbddcc1",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          58880
+        ],
+        "unprocessed_array_sha256": "b6077098b8e67eb40e465db5308956595a6d7932893665a996dc8277f5787bde"
+      },
+      {
+        "exact_native_cache_key": "d40f8b434ddbbae00ecd6376a83e6da1d043e911.pkl",
+        "pkl_sha256": "591ff70ec3399261d9ccd77d6579d2f7620acea902c92cc9b02434747e694b04",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "ammonia wards off famine as no manure heap could,",
+            "exact_native_cache_key": "d40f8b434ddbbae00ecd6376a83e6da1d043e911.pkl",
+            "cache_input_text_sha256": "82e68cc0d73ee679415f8331c892d77f8e121cc95fd32a66e9c57a6179802f66",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S6",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "ammonia wards off famine as no manure heap could,",
+            "exact_native_cache_key": "d40f8b434ddbbae00ecd6376a83e6da1d043e911.pkl",
+            "cache_input_text_sha256": "82e68cc0d73ee679415f8331c892d77f8e121cc95fd32a66e9c57a6179802f66",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          75776
+        ],
+        "unprocessed_array_sha256": "663ed40a4a1199e9eeff83fb80a337853ce04c034540b679fa47d505a0ba9697"
+      },
+      {
+        "exact_native_cache_key": "754eea5abf69455705f5b1c805d88527752d58fa.pkl",
+        "pkl_sha256": "9c96ec03ffd7e9d1cb374b89ec5dfc39fb87e6e130faadcfb0f6db287282cf7e",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "bringing abundance.",
+            "exact_native_cache_key": "754eea5abf69455705f5b1c805d88527752d58fa.pkl",
+            "cache_input_text_sha256": "de704b1779641c7a8318efe4a44e04828fdbe62b85ced0e57f4b1f61e9cc233f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S6",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "bringing abundance.",
+            "exact_native_cache_key": "754eea5abf69455705f5b1c805d88527752d58fa.pkl",
+            "cache_input_text_sha256": "de704b1779641c7a8318efe4a44e04828fdbe62b85ced0e57f4b1f61e9cc233f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          28672
+        ],
+        "unprocessed_array_sha256": "1e13a13ad18e467064532cf53c7b4d5f5569dc479893d41a77ca07dee38933b2"
+      },
+      {
+        "exact_native_cache_key": "f82424b38eea7be943b10809ceed7d5e580f57b2.pkl",
+        "pkl_sha256": "6886c0f005c148c742360438cfec4adbe52dd8a1ccce2b298f98a91cad71a16b",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "By 2008 it was feeding nearly half of mankind.",
+            "exact_native_cache_key": "f82424b38eea7be943b10809ceed7d5e580f57b2.pkl",
+            "cache_input_text_sha256": "04ed88e029b48f33bc3fa68056de7b2fbbd08b67e59217338397b59cffa30668",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          92160
+        ],
+        "unprocessed_array_sha256": "49c6e871335b96ca91a4c5c59c2fb68eaf025cf8ec79009d8e7f936065d1186d"
+      },
+      {
+        "exact_native_cache_key": "59fa1cb8b5a21e983b33ac6d2e0800329a8f10c1.pkl",
+        "pkl_sha256": "5b0da56dea052eb69992d261b231aa32409a5ae81a93278903cf528b47bb03d9",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Haber's ambition had a sinister side.",
+            "exact_native_cache_key": "59fa1cb8b5a21e983b33ac6d2e0800329a8f10c1.pkl",
+            "cache_input_text_sha256": "867b12916772872c588314bc584275da70abc7f568c9dbd3a59f6a7e8111b6ea",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          55296
+        ],
+        "unprocessed_array_sha256": "2b90c7482dc3eac40c0185879c71f11eb98111cfb3c520a198572cb0138b6b9f"
+      },
+      {
+        "exact_native_cache_key": "4dce3c9cf0a990bf0a3f44dbd5d9b32cbff95e41.pkl",
+        "pkl_sha256": "2cc74310412ebe43de742281d88a307dc1399f4ed03ce3541207fdbd37e5c8ad",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Ammonia stocked Germany's arsenal with nitrates for munitions despite a British blockade, and Captain Haber marshalled chemical warfare.",
+            "exact_native_cache_key": "4dce3c9cf0a990bf0a3f44dbd5d9b32cbff95e41.pkl",
+            "cache_input_text_sha256": "97552c072c170c3d2bbadedb99cc34d01769fcc065848919d89ed63fa7cba538",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          213504
+        ],
+        "unprocessed_array_sha256": "132e3e93a362a37121c0dd5393e5faeba85f5dfbc79e15c25d45aecb16879a72"
+      },
+      {
+        "exact_native_cache_key": "4ff9d21c0a8a27768fcc7393a7b58ea0c12e4977.pkl",
+        "pkl_sha256": "47542b136e0eabb099d83a9b797e0c5932ac8afb7c55708384a6b4c7ec270f68",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Ammonia stocked Germany's arsenal with nitrates for munitions",
+            "exact_native_cache_key": "4ff9d21c0a8a27768fcc7393a7b58ea0c12e4977.pkl",
+            "cache_input_text_sha256": "5a20cb6938e1332418484a8fdefd9b4998a185560f4b03b9c605ee99470311ef",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          94208
+        ],
+        "unprocessed_array_sha256": "bb55b84308ecd83644888bd8bc292e770d9cb4bbaecb640c2471120a61b0cc52"
+      },
+      {
+        "exact_native_cache_key": "abe4193cbbab803199e6bbefae0c86ec2caee42a.pkl",
+        "pkl_sha256": "4f5651f373e9e4767ca649aff6c161c0bff6fce2fb9022a266e475f1ee511489",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "despite a British blockade,",
+            "exact_native_cache_key": "abe4193cbbab803199e6bbefae0c86ec2caee42a.pkl",
+            "cache_input_text_sha256": "be5296d8fd2b9de821b6f3083abfd77de0e5bacfded9c0acdc321673325f04f7",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          39424
+        ],
+        "unprocessed_array_sha256": "36e0560f7564f5864a638c5f5177ec85bd8b8da4ae08cf3f45a19eb72fb74135"
+      },
+      {
+        "exact_native_cache_key": "711b07b7a079c943a5fa1c0acba73742bdd64838.pkl",
+        "pkl_sha256": "143ee1c8b327a24926d9ce3b67045cc0a76402e7e33b3d9a45a1f2efe61d6c07",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and Captain Haber marshalled chemical warfare.",
+            "exact_native_cache_key": "711b07b7a079c943a5fa1c0acba73742bdd64838.pkl",
+            "cache_input_text_sha256": "6860f301d2409ffee8ff5600b03723fb44c010e91fe976fb649ee8fa3dcc8bc9",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S9",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and Captain Haber marshalled chemical warfare.",
+            "exact_native_cache_key": "711b07b7a079c943a5fa1c0acba73742bdd64838.pkl",
+            "cache_input_text_sha256": "6860f301d2409ffee8ff5600b03723fb44c010e91fe976fb649ee8fa3dcc8bc9",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          69632
+        ],
+        "unprocessed_array_sha256": "4fb2a2f466fbcdc93428102785f9c8183d11ed869de92453d38211190d9a0454"
+      },
+      {
+        "exact_native_cache_key": "20bd414273096a73bab50fc1ab4c8a0b6415a0d3.pkl",
+        "pkl_sha256": "ac5c604a639431501089a0873613049fd2c889d7bf7cfe0ca4eaf957d83c38c9",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Ammonia stocked Germany's arsenal with nitrates for munitions despite a British blockade,",
+            "exact_native_cache_key": "20bd414273096a73bab50fc1ab4c8a0b6415a0d3.pkl",
+            "cache_input_text_sha256": "deb256cceeefef8502cac66e2843acf041aa742d5a39b665317166c438ce3a29",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          139776
+        ],
+        "unprocessed_array_sha256": "1dc984d6e2bd3d6d750cf0b274724cc1715a1b8f6ce70f5622d38f7d6c98bac1"
+      },
+      {
+        "exact_native_cache_key": "6925e40881fa475dc54301a10c3b584db2c539c1.pkl",
+        "pkl_sha256": "e0c609ddecb79c84e35555fbb93188c8452f961a14b57a0562d11ccd4bd414ab",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "On 22 April 1915 at Ypres, troops vented about 168 tonnes of greenish, poisonous chlorine towards the Allied trenches, the first large-scale gas onslaught.",
+            "exact_native_cache_key": "6925e40881fa475dc54301a10c3b584db2c539c1.pkl",
+            "cache_input_text_sha256": "525eb80bd9dec982146665d0fa8139bf3d31bd3b621c376bf2073b1b047048ac",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          330240
+        ],
+        "unprocessed_array_sha256": "3401c21e66a62cd48ab5a6be02ae1ed367ce310ce5ab90b5ce1c6ad20b3d32af"
+      },
+      {
+        "exact_native_cache_key": "4d956262b8d1cf9912036e8eb6c0cf678c9eebce.pkl",
+        "pkl_sha256": "237a674c1bc5fd90a0931dcc51ae4a502f3ce36193240870c73ed5c3eba8a41e",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "On 22 April 1915 at Ypres,",
+            "exact_native_cache_key": "4d956262b8d1cf9912036e8eb6c0cf678c9eebce.pkl",
+            "cache_input_text_sha256": "a30943779fc2ab4c7ca866313d2b254b516097d7bedadf2e9781cc29b337025e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S10",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "On 22 April 1915 at Ypres,",
+            "exact_native_cache_key": "4d956262b8d1cf9912036e8eb6c0cf678c9eebce.pkl",
+            "cache_input_text_sha256": "a30943779fc2ab4c7ca866313d2b254b516097d7bedadf2e9781cc29b337025e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          80896
+        ],
+        "unprocessed_array_sha256": "9f22d2c0c67e22dd7b87c0481d6cda3ecd873faa6bf95a8651011bc016a05b4d"
+      },
+      {
+        "exact_native_cache_key": "99361dc9b9ec647a3af2aee4dc272fdb6986ae37.pkl",
+        "pkl_sha256": "c948a24bce849089383c46d0150c2facc9f48cbe30f56574dac335fc876586dd",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "troops vented about 168 tonnes of greenish, poisonous chlorine towards the Allied trenches,",
+            "exact_native_cache_key": "99361dc9b9ec647a3af2aee4dc272fdb6986ae37.pkl",
+            "cache_input_text_sha256": "e18bac0ea6bc4eef685923ff9ae3c6cba3906066b7c14e7451085ea30b8e7a18",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          171008
+        ],
+        "unprocessed_array_sha256": "93067e001be9db8efa853217c1486e89ed3c6eb570089005c12216070ac6d7ab"
+      },
+      {
+        "exact_native_cache_key": "e4a63a2550e87fafe3b17d6f4866dc3b572cb5b5.pkl",
+        "pkl_sha256": "ef2503a684ff8e69dbaa1a5f443edefd2d7bac8eb2c2052907711c8d61481ec3",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "the first large-scale gas onslaught.",
+            "exact_native_cache_key": "e4a63a2550e87fafe3b17d6f4866dc3b572cb5b5.pkl",
+            "cache_input_text_sha256": "dd2492e38253581426424d18911df6dde286a17b8de1ab8df6b79f727045a857",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S10",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "the first large-scale gas onslaught.",
+            "exact_native_cache_key": "e4a63a2550e87fafe3b17d6f4866dc3b572cb5b5.pkl",
+            "cache_input_text_sha256": "dd2492e38253581426424d18911df6dde286a17b8de1ab8df6b79f727045a857",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          54784
+        ],
+        "unprocessed_array_sha256": "f3df807bbb10df135881ce5a9b61223f3bb46a389b9bfc77c583178b4b91057a"
+      },
+      {
+        "exact_native_cache_key": "40136bd17914b963fb18f4b9d2b15e8e020b749e.pkl",
+        "pkl_sha256": "44d2bc39f6b53e11e13ef00237ed42271920840fc275ea5e0d1ca4fb7a2d95d4",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "troops vented about 168 tonnes of greenish,",
+            "exact_native_cache_key": "40136bd17914b963fb18f4b9d2b15e8e020b749e.pkl",
+            "cache_input_text_sha256": "bd7177ec77ac639db8e5f574335f8566ad82163a171f5e8246c0cd998a9c3dda",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          89088
+        ],
+        "unprocessed_array_sha256": "e4bf7fbca94358d4fcc5368779d35f116bfad65ab6bea279df14ec8a87e472e1"
+      },
+      {
+        "exact_native_cache_key": "9c1d0e50447066d690d6f029a9e5507fee0325f4.pkl",
+        "pkl_sha256": "3c569984fc9e7e443be9e5ba7298df17788f8a5ea4a1a7835c10128e9a8826f2",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "poisonous chlorine towards the Allied trenches,",
+            "exact_native_cache_key": "9c1d0e50447066d690d6f029a9e5507fee0325f4.pkl",
+            "cache_input_text_sha256": "8981bb7db4652ee40ea671c23f65b8aca9b68f577a5b1659238fa3574d6a087f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          65536
+        ],
+        "unprocessed_array_sha256": "ee6f97eb52c348051011bd265df357cb45858c156f5388255ec38e054341e048"
+      },
+      {
+        "exact_native_cache_key": "74eb78e8306287c65f41dfd9d5135ff8f41c2250.pkl",
+        "pkl_sha256": "8f9cdbe39e0f9afe6b731f8029c72785fb85e7e7d7beb09a36afbec5421a3a6e",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Haber's wife, Clara Immerwahr, Germany's first woman with a doctoral degree in chemistry, voiced objections to his work.",
+            "exact_native_cache_key": "74eb78e8306287c65f41dfd9d5135ff8f41c2250.pkl",
+            "cache_input_text_sha256": "f2fb74721b23262825b801a407cd09b762fb61a98a80433127804c2ca5cc1f5f",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          196608
+        ],
+        "unprocessed_array_sha256": "6a737bac077c56fdb12e0bb68f98d5358654ddef2bb8d292b3063aaf785d01c0"
+      },
+      {
+        "exact_native_cache_key": "948aec82a5fc2c258bd7a4d5105225e6636683b0.pkl",
+        "pkl_sha256": "3c9b81c63d05817f17d8b1fe2951a176c745ed5ad9a4f50e6459072b3d6b8e13",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Haber's wife, Clara Immerwahr,",
+            "exact_native_cache_key": "948aec82a5fc2c258bd7a4d5105225e6636683b0.pkl",
+            "cache_input_text_sha256": "9b0b5d372ee4c4c1c904bd2b776d52bdff66988e0ed1fdd12529a78e59af5c02",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          44032
+        ],
+        "unprocessed_array_sha256": "e96e2476e722e333aa3c13385dfe2e489deb9ae34ac6f3fe13dcf0cc7553c00e"
+      },
+      {
+        "exact_native_cache_key": "4003f490b224fc3ce48fb628d1b5ff4b6d94fe4a.pkl",
+        "pkl_sha256": "458d1dd7c4d6c695009584bfbb3440d6bb0bfdc71eb6ab1f9419693a41b1f2ed",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Germany's first woman with a doctoral degree in chemistry,",
+            "exact_native_cache_key": "4003f490b224fc3ce48fb628d1b5ff4b6d94fe4a.pkl",
+            "cache_input_text_sha256": "3f870ea9ab4009dafe4acafd4cefdb8e29f982b17b18a23f7ba6a304f9cff941",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S11",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Germany's first woman with a doctoral degree in chemistry,",
+            "exact_native_cache_key": "4003f490b224fc3ce48fb628d1b5ff4b6d94fe4a.pkl",
+            "cache_input_text_sha256": "3f870ea9ab4009dafe4acafd4cefdb8e29f982b17b18a23f7ba6a304f9cff941",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          85504
+        ],
+        "unprocessed_array_sha256": "47e5a87caea5821a6066d2f2bf58611c8c07d467f3e0ff65d345cdd88266e983"
+      },
+      {
+        "exact_native_cache_key": "d0679e559493614580bfd881be8ee47e305681c6.pkl",
+        "pkl_sha256": "0ef15dfb0883a7514803c0165ad197f53dc460a85aa9688225387c3d139a508f",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "voiced objections to his work.",
+            "exact_native_cache_key": "d0679e559493614580bfd881be8ee47e305681c6.pkl",
+            "cache_input_text_sha256": "5368179c14b53415e2c9fbd9849993db4e2df43871fb15d6f2a67260c91198d7",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S11",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "voiced objections to his work.",
+            "exact_native_cache_key": "d0679e559493614580bfd881be8ee47e305681c6.pkl",
+            "cache_input_text_sha256": "5368179c14b53415e2c9fbd9849993db4e2df43871fb15d6f2a67260c91198d7",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          45568
+        ],
+        "unprocessed_array_sha256": "d674ddc87c962511b52990741d19f1acc00438f97a2207d21c082cc0f04fb488"
+      },
+      {
+        "exact_native_cache_key": "3857bb0f5074b09d2aa2c318a9ec3359b7a0e62c.pkl",
+        "pkl_sha256": "4035b22dcc450cdbed14f51bbb74a803cf36648407045c62df09b0e2f9a44a56",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Haber's wife,",
+            "exact_native_cache_key": "3857bb0f5074b09d2aa2c318a9ec3359b7a0e62c.pkl",
+            "cache_input_text_sha256": "3f0568b75489e2dc494dbb5936324ffd6de6dfc5bb5d805d38c376f1f53ad4b0",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          24064
+        ],
+        "unprocessed_array_sha256": "9f8f4df938ba76e958683fd86f7ec5b650ce4d350cdaeab5e00e5285dbf7dc25"
+      },
+      {
+        "exact_native_cache_key": "bb832806c677a4d9be1d6f7f6ef7686b50724e03.pkl",
+        "pkl_sha256": "b79788bad3e8b91b0d38bae58c44113374daa96826377a5be2f2dd14678cf4bf",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Clara Immerwahr,",
+            "exact_native_cache_key": "bb832806c677a4d9be1d6f7f6ef7686b50724e03.pkl",
+            "cache_input_text_sha256": "a8452bc9b65bc856ac3fc41102a01a966d97ba483b4f3291d406cd11a9409581",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          27136
+        ],
+        "unprocessed_array_sha256": "f5e34b8fb1221325c0543ab4280291dbbfbd90a8924058bd891234152529dee7"
+      },
+      {
+        "exact_native_cache_key": "a4569d6d7e62bd28c42e898b76bec079f85ad1e0.pkl",
+        "pkl_sha256": "5a6e8700e6b08d43c0e11a6d9cde5eeba0b77b9f60ad9dcf475025f8e0875a74",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "On 2 May 1915, after festivities in his honour, she shot herself in the garden with his service pistol.",
+            "exact_native_cache_key": "a4569d6d7e62bd28c42e898b76bec079f85ad1e0.pkl",
+            "cache_input_text_sha256": "dc29e435ade17a1ef0c0e60d39cdf63e8f782779cc9c71a75fdeb6dbeb924249",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          184320
+        ],
+        "unprocessed_array_sha256": "40d7226259993592c75b2d3a063d39c7a5140a94196de07f0260f1091e9a2ca7"
+      },
+      {
+        "exact_native_cache_key": "6a4e6dd9e14fd2256ec9a7018a542108f58a0ee3.pkl",
+        "pkl_sha256": "ede5ff0e13cef5a42617b40c08e069b263a09187fc1e2203783c5aa1b92bf823",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "On 2 May 1915, after festivities in his honour,",
+            "exact_native_cache_key": "6a4e6dd9e14fd2256ec9a7018a542108f58a0ee3.pkl",
+            "cache_input_text_sha256": "5e5b434a7f69493ae0548d14d7f542c53f713cb6fe5eef0eb0c94629b20d2daa",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          104448
+        ],
+        "unprocessed_array_sha256": "8c8b99432e4ffdc214128bee9d4a609e286744b3725cd52290eb1b30512fccb7"
+      },
+      {
+        "exact_native_cache_key": "38de5725fe1ee6b2c2c8ad7fb8e514fbc14db0c0.pkl",
+        "pkl_sha256": "16b501d833327bb0d3dc26f3904943c26a12f7200b4bb0ac3d3190da3c5b0abd",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "she shot herself in the garden with his service pistol.",
+            "exact_native_cache_key": "38de5725fe1ee6b2c2c8ad7fb8e514fbc14db0c0.pkl",
+            "cache_input_text_sha256": "6ba1381218ca15f2953ff6cd3ca5cc35954a8f66d41139b71b9e9bcd85f49fad",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S12",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "she shot herself in the garden with his service pistol.",
+            "exact_native_cache_key": "38de5725fe1ee6b2c2c8ad7fb8e514fbc14db0c0.pkl",
+            "cache_input_text_sha256": "6ba1381218ca15f2953ff6cd3ca5cc35954a8f66d41139b71b9e9bcd85f49fad",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          73216
+        ],
+        "unprocessed_array_sha256": "a652ca31eecd18e1d55a101c8511d1ee0d42a3cefb6acfb648d72ad73d45c266"
+      },
+      {
+        "exact_native_cache_key": "2ecb9fd415d44c1a7b78121c5a6e86136b8979f5.pkl",
+        "pkl_sha256": "1f4d9d7ba50605976f70005b816c98e51d28537949efa4b94a0a2ec7dea72dcf",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "On 2 May 1915,",
+            "exact_native_cache_key": "2ecb9fd415d44c1a7b78121c5a6e86136b8979f5.pkl",
+            "cache_input_text_sha256": "c28639d4e967eb02a806aa8e2ddf9b63734052223886061d0a1c303c97225f11",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          52736
+        ],
+        "unprocessed_array_sha256": "e3992b4e6e19539cbdc3c671bb847469a0e5180661c64fd02266f7f52bfa5b3f"
+      },
+      {
+        "exact_native_cache_key": "ef1532e78da1986ba498c6ad3b296ca7a54ca318.pkl",
+        "pkl_sha256": "f23a992f23904ee216f3bbe99bb41573abb472d5f9dde69d185e176b0b8ff0a6",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "after festivities in his honour,",
+            "exact_native_cache_key": "ef1532e78da1986ba498c6ad3b296ca7a54ca318.pkl",
+            "cache_input_text_sha256": "b1d859a88b7336a6beb265670dfec7a42db1a04f990c8e72b462532730bd6a01",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          46080
+        ],
+        "unprocessed_array_sha256": "1be4a696a9be220c2b17c1f1c6260603a00bd1469bcc373b3a7c3dc159bd4286"
+      },
+      {
+        "exact_native_cache_key": "91d819e20870d1a97bad7c558ebd07e7d964b456.pkl",
+        "pkl_sha256": "10f67248bb9af9030be1c4ff53509b63cef1598fc766ff6997c5d35cd5cd8d83",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The next day the widower left for the Eastern Front.",
+            "exact_native_cache_key": "91d819e20870d1a97bad7c558ebd07e7d964b456.pkl",
+            "cache_input_text_sha256": "6e4084322330c3cc6e3ec6ed92e0ae686ef41fb93667576e97136bc81583b853",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "10f67248bb9af903",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          64000
+        ],
+        "unprocessed_array_sha256": "ba13b07a8ae24a6c651e5e3a108a0d283e7262e582925d0354985b2348a3d20f"
+      },
+      {
+        "exact_native_cache_key": "73146db514e4a90fc7889b481ede388aedb18455.pkl",
+        "pkl_sha256": "505222ffe758d6c34dbd2fa6f2b3d9a575cb25f98e4748c6d81e496e36f71dd3",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Prestige offered no sanctuary.",
+            "exact_native_cache_key": "73146db514e4a90fc7889b481ede388aedb18455.pkl",
+            "cache_input_text_sha256": "b60ebac3811fed398d2a32cd450c985c111025547a103990081b6cce9443865b",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          48640
+        ],
+        "unprocessed_array_sha256": "c16a790cf48412124717b4fd629ce492cb97a685fb346bd52c82087ff9315afc"
+      },
+      {
+        "exact_native_cache_key": "dce6d1ce3af5043cfc8b6d30acf416eab118b916.pkl",
+        "pkl_sha256": "79c17683e2379d53fd44fda36ea9e8708d5123b425a089ea3c7d3c66d4edcd43",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Of Jewish origin, Haber left Germany an outcast after Hitler's regime seized power, dying in Basel in 1934.",
+            "exact_native_cache_key": "dce6d1ce3af5043cfc8b6d30acf416eab118b916.pkl",
+            "cache_input_text_sha256": "6b9bb1a229fbdbd8150ab8745b7e82d63e76fea334a2c6814f47ad9567e4d4a5",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "79c17683e2379d53",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          213504
+        ],
+        "unprocessed_array_sha256": "9085903b024f884e76ed6a937393bb853962a7dc954a13e19790ff16493377a6"
+      },
+      {
+        "exact_native_cache_key": "f6604bba99b151e1ba6bfdee494af0cbb05173be.pkl",
+        "pkl_sha256": "bcf71452d12e55bc619aadf1905fac28a3f21b9b9e4feef3ef7dc6355a379072",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Of Jewish origin, Haber",
+            "exact_native_cache_key": "f6604bba99b151e1ba6bfdee494af0cbb05173be.pkl",
+            "cache_input_text_sha256": "95392e69755187ec5f9556b5495317bb5109b0b07320972db79f6ad15e742763",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "bcf71452d12e55bc",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          41984
+        ],
+        "unprocessed_array_sha256": "b0c48bb687cddf5e8184aff3090ea724633f6237d33cb5e4b247266faae267fb"
+      },
+      {
+        "exact_native_cache_key": "073930e2475e614e957cd96d2d32da1814a4a2e7.pkl",
+        "pkl_sha256": "294811be0db9ccb8b5f2d82460d49e06f374ce618a2609849cc02dd967eaa098",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "left Germany an outcast after Hitler's regime seized power,",
+            "exact_native_cache_key": "073930e2475e614e957cd96d2d32da1814a4a2e7.pkl",
+            "cache_input_text_sha256": "9fc0da32ba0a16d6c73abb80fc17c397279b2aefa86f0c5dd787d89fa76de629",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          93184
+        ],
+        "unprocessed_array_sha256": "b0e6849a5fa84cffdd59edd2fb156b234048d94503b4f5b35e860665fa9ba78d"
+      },
+      {
+        "exact_native_cache_key": "d4cae70bce22256e53488c2fdd177a09017eba53.pkl",
+        "pkl_sha256": "1db31afc47383d8cf4e9b02a091e09c7790ff8bb7f619e70ac9b67de58458706",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "dying in Basel in 1934.",
+            "exact_native_cache_key": "d4cae70bce22256e53488c2fdd177a09017eba53.pkl",
+            "cache_input_text_sha256": "fadd718512ea8648eda566db291f96d40bab7928349a45a0fbadffe2f485ee00",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S15",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "dying in Basel in 1934.",
+            "exact_native_cache_key": "d4cae70bce22256e53488c2fdd177a09017eba53.pkl",
+            "cache_input_text_sha256": "fadd718512ea8648eda566db291f96d40bab7928349a45a0fbadffe2f485ee00",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          60928
+        ],
+        "unprocessed_array_sha256": "b20e5224778618e9a5fa97d32ed67a20362bfe95cbc3937f7b2c47521c5be771"
+      },
+      {
+        "exact_native_cache_key": "a5f798e956fb276daeb81783a17ae32e9623152a.pkl",
+        "pkl_sha256": "3abcdbae725e16431b2fd92cf06ec3169f51464c8f12fcf67854ee816a5165ac",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Of Jewish origin,",
+            "exact_native_cache_key": "a5f798e956fb276daeb81783a17ae32e9623152a.pkl",
+            "cache_input_text_sha256": "162e3f22bb2bccc50e37da44f5613d3e770a0df1ccd29dba58159cbd4a53e46a",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "3abcdbae725e1643",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          32768
+        ],
+        "unprocessed_array_sha256": "adc78bb1c35aea35b2132dda84f677fac1569016502a2926f7bb3f6faa30d3d1"
+      },
+      {
+        "exact_native_cache_key": "1ed751db5d029aa1c3c30789408998b9319de97e.pkl",
+        "pkl_sha256": "f655d2106aa92ce5ea2d33827babb680e8f93708315471bbef8daaf0835e688c",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Haber left Germany an outcast after Hitler's regime seized power,",
+            "exact_native_cache_key": "1ed751db5d029aa1c3c30789408998b9319de97e.pkl",
+            "cache_input_text_sha256": "fc4b91f3aa777879e027b0e26b749d72dd903ec70756b65f66943efa519ea0a9",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          105984
+        ],
+        "unprocessed_array_sha256": "f5d5f6df171af1327b18ccc634e971885970c3ff9bf4d12a910ceb5832406a11"
+      },
+      {
+        "exact_native_cache_key": "8c245309d1de8d710fbfd0a45d723372a4a7664a.pkl",
+        "pkl_sha256": "8220361c5cb10c1b4c63f84dbbcac5ac09f187a89cc6ed4e7fa7735f74aa3633",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "His institute's pesticide research had produced Zyklon.",
+            "exact_native_cache_key": "8c245309d1de8d710fbfd0a45d723372a4a7664a.pkl",
+            "cache_input_text_sha256": "e33c5eec58306121964a925b9a983e59439a2f6233d5daf848a89655feaf5aad",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          86016
+        ],
+        "unprocessed_array_sha256": "4a2606724941a4f40118ec4c5b7089e67398a71840852485eb1581923c9f2ffb"
+      },
+      {
+        "exact_native_cache_key": "d1a0192a7b2701cfcbac3cb9307145f4591b3190.pkl",
+        "pkl_sha256": "4cfd25587138342d4a659f70fc21d82242c1fea44265af5c650ca20c229cc2cf",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "A later variant, Zyklon B, was used in Nazi death camps, where relatives of his died.",
+            "exact_native_cache_key": "d1a0192a7b2701cfcbac3cb9307145f4591b3190.pkl",
+            "cache_input_text_sha256": "964f1bd9321e5a2c95b20ed99aca317ef08adc36807693fb7ff535b998bd85ba",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          148480
+        ],
+        "unprocessed_array_sha256": "8fc3a8338dcbafc10fb9c3904074dbdbad33f80287318a79dfcad8028c277c46"
+      },
+      {
+        "exact_native_cache_key": "f45f8b9c3a964b709dfbb0c6a687c8ec606c911e.pkl",
+        "pkl_sha256": "a6fc8456bb377a7a1c7cc2e92163f8ea6a46a499c6a71bfc24d9ca1ae254ac43",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "A later variant, Zyklon B, was used in Nazi death camps,",
+            "exact_native_cache_key": "f45f8b9c3a964b709dfbb0c6a687c8ec606c911e.pkl",
+            "cache_input_text_sha256": "f1f8b4395bd0d36b4652cf9f1092bf667f296c5ca9601c7e5a6b57b50fc6cafb",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          104960
+        ],
+        "unprocessed_array_sha256": "eb14eb29f7f4b60bcba7e1b8c74e45695c8ce92c9ced3b0c78f83648745e4ce1"
+      },
+      {
+        "exact_native_cache_key": "5ed47da8b7681761b791ff1484c579d7a9cecdc2.pkl",
+        "pkl_sha256": "00d7124c6c0200a64045dc93d8eb5cf739d10f5fcf42e0bda94300937b75f93a",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "where relatives of his died.",
+            "exact_native_cache_key": "5ed47da8b7681761b791ff1484c579d7a9cecdc2.pkl",
+            "cache_input_text_sha256": "7d71018a4bd49a336632a128888c2b9ba982de8785b8bd77ecacd91201e88e2e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S17",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "where relatives of his died.",
+            "exact_native_cache_key": "5ed47da8b7681761b791ff1484c579d7a9cecdc2.pkl",
+            "cache_input_text_sha256": "7d71018a4bd49a336632a128888c2b9ba982de8785b8bd77ecacd91201e88e2e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          38912
+        ],
+        "unprocessed_array_sha256": "7575ed17bd7af13162088852e00286d5bcf18fc398744ff35745668b08771ad7"
+      },
+      {
+        "exact_native_cache_key": "8d605795e53ed59a6b6d407cd22497a2c26e47b6.pkl",
+        "pkl_sha256": "989bc8d6fac81ef210b98e4721219c4b53ff94fc79d400c11d54a6d75f923fda",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "A later variant,",
+            "exact_native_cache_key": "8d605795e53ed59a6b6d407cd22497a2c26e47b6.pkl",
+            "cache_input_text_sha256": "57748af79f243487a10505e07a195e19c07009589fc8f276d80b6657ef6d0631",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          28672
+        ],
+        "unprocessed_array_sha256": "a25abd3e7d7065ac1910780a9ec0cd159b9b4d5c4cd30ea2e2c969527b9e8873"
+      },
+      {
+        "exact_native_cache_key": "765bc969e7d1b5885031c649292053540cf1e6d9.pkl",
+        "pkl_sha256": "b3e0f68f45d9a4df4df405a39b3a7fd57fff99ce498627e57cd06ebe96777e68",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Zyklon B,",
+            "exact_native_cache_key": "765bc969e7d1b5885031c649292053540cf1e6d9.pkl",
+            "cache_input_text_sha256": "60fc28364c6f11953f4c2fb0cfb2b8ab27db3a0376d10148cae2118c80dfd1d1",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          26624
+        ],
+        "unprocessed_array_sha256": "afa42610690ff9e4d6040b87cf6982ba3407bf1cd7c1b985fff0dece95aa1915"
+      },
+      {
+        "exact_native_cache_key": "839f3d5f93248fee6ea5464e55c42681341bbe2b.pkl",
+        "pkl_sha256": "8586cb2ee45bd4a4c530a8218d8f6b04b74e9c7e6f43ff1644789869a6d2d140",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "was used in Nazi death camps,",
+            "exact_native_cache_key": "839f3d5f93248fee6ea5464e55c42681341bbe2b.pkl",
+            "cache_input_text_sha256": "5fae47808b77ded15913b76caaa77887c8eb7aafc6383c85c4a0d44c8215026b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          45568
+        ],
+        "unprocessed_array_sha256": "4602df90ed9f152f1ef583fed892f38f1b5f131acb731ec3ad0f0a534c70e674"
+      },
+      {
+        "exact_native_cache_key": "fe499637be0bc8b7f63a949f04a6488f63ed92d0.pkl",
+        "pkl_sha256": "ff87417a3a169b949d12ea4d45be5d3ab080e0f0cf1a2e8a66033a8e9f66cbf5",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "About half the nitrogen in our proteins and DNA has passed through a Haber-Bosch factory, so each of us carries a little of Haber's chemistry.",
+            "exact_native_cache_key": "fe499637be0bc8b7f63a949f04a6488f63ed92d0.pkl",
+            "cache_input_text_sha256": "8a8e6572b6a071064f6600710451048af1ebef0fdef03115cd3ca32d9816a6a7",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          225280
+        ],
+        "unprocessed_array_sha256": "85eebe95136dd281aa296b653180014ac14b8f34699ec42df87d50d6c00239ad"
+      },
+      {
+        "exact_native_cache_key": "1115d77d45aba8c616a2fb9fca8555b6ab99c8e2.pkl",
+        "pkl_sha256": "39106b875bd6a7b767c4269a973a57cd03b7941bc7c7ff083c15ad240703fd19",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "About half the nitrogen in our proteins and DNA has passed through a Haber-Bosch factory,",
+            "exact_native_cache_key": "1115d77d45aba8c616a2fb9fca8555b6ab99c8e2.pkl",
+            "cache_input_text_sha256": "01200c9b7a4a3942ea0e7c2e63969e9b6fab1bb364f21c69cbaf342140c842c1",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S18",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "About half the nitrogen in our proteins and DNA has passed through a Haber-Bosch factory,",
+            "exact_native_cache_key": "1115d77d45aba8c616a2fb9fca8555b6ab99c8e2.pkl",
+            "cache_input_text_sha256": "01200c9b7a4a3942ea0e7c2e63969e9b6fab1bb364f21c69cbaf342140c842c1",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          141312
+        ],
+        "unprocessed_array_sha256": "0e9ff7946a6140e9acce7fe81db23df01ea55ba34685b15fd6ef355ae03863e7"
+      },
+      {
+        "exact_native_cache_key": "e89fcdf7add6a39722c56bdd412fa2a95ea09d74.pkl",
+        "pkl_sha256": "c975de0fb746c1aeb2f099b966c25833a362bf88e528df81a30fd415cfcac64c",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "so each of us carries a little of Haber's chemistry.",
+            "exact_native_cache_key": "e89fcdf7add6a39722c56bdd412fa2a95ea09d74.pkl",
+            "cache_input_text_sha256": "05db807e7903987e3f458198b9bd18ae8f94b06e68312ab55fc34cdc3472d8fa",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S18",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "so each of us carries a little of Haber's chemistry.",
+            "exact_native_cache_key": "e89fcdf7add6a39722c56bdd412fa2a95ea09d74.pkl",
+            "cache_input_text_sha256": "05db807e7903987e3f458198b9bd18ae8f94b06e68312ab55fc34cdc3472d8fa",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          68608
+        ],
+        "unprocessed_array_sha256": "4b00021daf9744a80261e737a95c89fd4a6a9e35b67b0365eeb3c4147e083e3c"
+      }
+    ],
+    "missing_reference_key_count": 4,
+    "observed_missing_keys_covered": [],
+    "new_private_cache_names": [
+      "989b1c025c09eacfd989962aef8352fba7637aa6.pkl",
+      "989b1c025c09eacfd989962aef8352fba7637aa6.pkl.单线程",
+      "a5f798e956fb276daeb81783a17ae32e9623152a.pkl",
+      "a5f798e956fb276daeb81783a17ae32e9623152a.pkl.单线程",
+      "dce6d1ce3af5043cfc8b6d30acf416eab118b916.pkl",
+      "dce6d1ce3af5043cfc8b6d30acf416eab118b916.pkl.单线程",
+      "f6604bba99b151e1ba6bfdee494af0cbb05173be.pkl",
+      "f6604bba99b151e1ba6bfdee494af0cbb05173be.pkl.单线程"
+    ],
+    "native_single_thread_marker_verified": true,
+    "single_thread_sessions": [
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      },
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      }
+    ],
+    "models_sha256": {
+      "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+      "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+      "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+    },
+    "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+    "existing_private_cache_count": 11514,
+    "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "existing_private_cache_bytes_unchanged": true,
+    "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+    "public_repository_cache_unchanged": true,
+    "producer_pcm_existed_before": false,
+    "producer_pcm_sha256_before": null,
+    "producer_pcm_sha256_after": null,
+    "accepted_aac_adts_sha256_before": "bbd43027b230cfd0e569c7d55c6c33737ad7c7a498f762a19d7f5c021007c4d6",
+    "accepted_aac_adts_sha256_after": "bbd43027b230cfd0e569c7d55c6c33737ad7c7a498f762a19d7f5c021007c4d6",
+    "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+    "private_cache_exported": false
+  },
+  "checker_reference_preparation_program_sha256": "f6f2a032e207085e7252d036e39430fb80b06e84a721c525b61196d021c5ca12",
+  "fresh_current_article_reference": {
+    "article": "16",
+    "removed_temporary_gt_files": [],
+    "processed_pcm_or_raw_mother_cache_modified": false,
+    "purpose": "Original synth/labels/audit rebuild fresh for this production; no old CPU GT reuse."
+  },
+  "temporary_output_reset": {
+    "removed": [],
+    "production_started_ns": 1794621834429458700,
+    "repository_outputs_modified": false
+  },
+  "failure_details": {
+    "step": "canonical-draft-00.log",
+    "exit": 1,
+    "tail": [
+      "① 文本：通过，自动修 1 处",
+      "② 声音：16 词尾辅音核对 问题数 0；16 纯人声核对（配音指纹 ac7d186000dd）问题数 17；问题数 0；16 句间停顿核对 问题数 0；问题数 0",
+      "【停】③ 出片前核查（108 秒；全文在 /home/runner/work/_temp/completion-machine/video/做_16/）：",
+      "  ✘ 【停止】读音改正没有全部换到（A23）：Haber 出现 2 次，换了 1 次：About half the nitrogen in our proteins and DNA has passed t",
+      "    【核查程序失灵，下面的读音核对不可信】",
+      "      K102 ② ammonia：单独关掉改正 → 报 BAD（当样本）",
+      "  K102 ② sanctuary：单独关掉改正 → 报 BAD（当样本）",
+      "  K102 ② Karlsruhe：单独关掉改正 → 报 BAD（当样本）",
+      "  K102 ② Immerwahr：单独关掉改正 → 报 BAD（当样本）",
+      "  K102 ② Zyklon：单独关掉改正 → 报 BAD（当样本）",
+      "  K102 ② Clara：单独关掉改正 → 报 BAD（当样本）",
+      "  K102 ② Haber：单独关掉改正 → 报 BAD（当样本）",
+      "【停止】读音改正没有全",
+      "  已自动修：",
+      "    结尾简述整屏折行（G35）：S18 结尾简述：现在字号 30，整屏最大 58（简述折成 8 行）"
+    ],
+    "public_checker_diagnostics": {
+      "做_16/出片前.log": [
+        "✘ 【停止】读音改正没有全部换到（A23）：Haber 出现 2 次，换了 1 次：About half the nitrogen in our proteins and DNA has passed t",
+        "      K102 ② ammonia：单独关掉改正 → 报 BAD（当样本）",
+        "  K102 ② sanctuary：单独关掉改正 → 报 BAD（当样本）",
+        "  K102 ② Karlsruhe：单独关掉改正 → 报 BAD（当样本）",
+        "  K102 ② Immerwahr：单独关掉改正 → 报 BAD（当样本）",
+        "  K102 ② Zyklon：单独关掉改正 → 报 BAD（当样本）",
+        "  K102 ② Clara：单独关掉改正 → 报 BAD（当样本）",
+        "  K102 ② Haber：单独关掉改正 → 报 BAD（当样本）"
+      ],
+      "做_16/声音.log": [
+        "16 词尾辅音核对 问题数 0",
+        "16 纯人声核对（配音指纹 ac7d186000dd）问题数 17",
+        "问题数 0",
+        "16 句间停顿核对 问题数 0",
+        "问题数 0"
+      ],
+      "停顿位置精确核对.py": {
+        "exit": 0,
+        "actual_output": [
+          "16 S17 OK（已用实际声音核实） 插入 「camps, | where」 段长比 前 1.08 后 0.99 ｜ 前词末音素起 4.398s 后词开头 4.523s ｜ 停顿 4.475–4.475s（离前词末音素起点 +77 ms，离后词 +48 ms）对齐代价 0.82",
+          "问题数 0"
+        ],
+        "actual_final_text_lines": [
+          "16 S1 OK  删静音 「1909, | BASF」 段长比 前 1.02 后 0.96 ｜ 前词末音素起 1.599s 后词开头 2.124s ｜ 停顿 1.625–2.025s（离前词末音素起点 +26 ms，离后词 +99 ms）对齐代价 0.90",
+          "16 S2 OK  删静音 「gleaming, | bolted」 段长比 前 1.07 后 1.09 ｜ 前词末音素起 1.267s 后词开头 1.592s ｜ 停顿 1.325–1.465s（离前词末音素起点 +58 ms，离后词 +127 ms）对齐代价 1.49",
+          "16 S2 OK  删静音 「valves, | nitrogen」 段长比 前 1.09 后 0.96 ｜ 前词末音素起 2.617s 后词开头 3.042s ｜ 停顿 2.655–2.905s（离前词末音素起点 +38 ms，离后词 +137 ms）对齐代价 1.49",
+          "16 S2 OK  删静音 「heat, | and」 段长比 前 0.96 后 1.00 ｜ 前词末音素起 6.787s 后词开头 7.317s ｜ 停顿 6.810–7.200s（离前词末音素起点 +23 ms，离后词 +117 ms）对齐代价 1.49",
+          "16 S4 OK  删静音 「up, | and」 段长比 前 1.14 后 0.99 ｜ 前词末音素起 2.831s 后词开头 3.302s ｜ 停顿 2.865–3.210s（离前词末音素起点 +34 ms，离后词 +92 ms）对齐代价 1.46",
+          "16 S5 OK  删静音 「air, | Haber」 段长比 前 1.00 后 1.01 ｜ 前词末音素起 1.860s 后词开头 2.385s ｜ 停顿 1.930–2.285s（离前词末音素起点 +70 ms，离后词 +100 ms）对齐代价 0.64",
+          "16 S6 OK  删静音 「fertiliser, | ammonia」 段长比 前 1.09 后 1.05 ｜ 前词末音素起 2.615s 后词开头 3.190s ｜ 停顿 2.705–3.115s（离前词末音素起点 +90 ms，离后词 +75 ms）对齐代价 1.56",
+          "16 S6 OK  删静音 「could, | bringing」 段长比 前 1.05 后 0.94 ｜ 前词末音素起 6.272s 后词开头 6.690s ｜ 停顿 6.315–6.625s（离前词末音素起点 +43 ms，离后词 +65 ms）对齐代价 1.56",
+          "16 S9 OK  删静音 「blockade, | and」 段长比 前 0.97 后 0.99 ｜ 前词末音素起 5.623s 后词开头 6.151s ｜ 停顿 5.650–6.030s（离前词末音素起点 +27 ms，离后词 +121 ms）对齐代价 1.47",
+          "16 S10 OK  删静音 「Ypres, | troops」 段长比 前 0.97 后 1.07 ｜ 前词末音素起 3.105s 后词开头 3.680s ｜ 停顿 3.190–3.605s（离前词末音素起点 +85 ms，离后词 +75 ms）对齐代价 0.95",
+          "16 S10 OK  删静音 「greenish, | poisonous」 段长比 前 1.07 后 1.13 ｜ 前词末音素起 7.480s 后词开头 7.730s ｜ 停顿 7.565–7.670s（离前词末音素起点 +85 ms，离后词 +60 ms）对齐代价 0.95",
+          "16 S10 OK  删静音 「trenches, | the」 段长比 前 1.13 后 1.15 ｜ 前词末音素起 10.630s 后词开头 11.180s ｜ 停顿 10.710–11.125s（离前词末音素起点 +80 ms，离后词 +55 ms）对齐代价 0.95",
+          "16 S11 OK  删静音 「wife, | Clara」 段长比 前 0.97 后 0.96 ｜ 前词末音素起 0.889s 后词开头 1.114s ｜ 停顿 0.980–1.045s（离前词末音素起点 +91 ms，离后词 +69 ms）对齐代价 1.45",
+          "16 S11 OK  删静音 「Immerwahr, | Germany's」 段长比 前 0.96 后 0.94 ｜ 前词末音素起 2.024s 后词开头 2.539s ｜ 停顿 2.060–2.435s（离前词末音素起点 +36 ms，离后词 +104 ms）对齐代价 1.45",
+          "16 S11 OK  删静音 「chemistry, | voiced」 段长比 前 0.94 后 1.10 ｜ 前词末音素起 5.689s 后词开头 6.214s ｜ 停顿 5.790–6.075s（离前词末音素起点 +101 ms，离后词 +139 ms）对齐代价 1.45",
+          "16 S12 OK  删静音 「1915, | after」 段长比 前 1.06 后 0.96 ｜ 前词末音素起 2.203s 后词开头 2.728s ｜ 停顿 2.260–2.655s（离前词末音素起点 +57 ms，离后词 +73 ms）对齐代价 1.02",
+          "16 S12 OK  删静音 「honour, | she」 段长比 前 0.96 后 0.96 ｜ 前词末音素起 4.353s 后词开头 4.828s ｜ 停顿 4.445–4.720s（离前词末音素起点 +92 ms，离后词 +108 ms）对齐代价 1.02",
+          "16 S15 OK  删静音 「origin, | Haber」 段长比 前 0.94 后 0.98 ｜ 前词末音素起 1.180s 后词开头 1.605s ｜ 停顿 1.230–1.515s（离前词末音素起点 +50 ms，离后词 +90 ms）对齐代价 0.90",
+          "16 S15 OK  删静音 「power, | dying」 段长比 前 0.98 后 1.05 ｜ 前词末音素起 5.755s 后词开头 6.305s ｜ 停顿 5.830–6.190s（离前词末音素起点 +75 ms，离后词 +115 ms）对齐代价 0.90",
+          "16 S17 OK  删静音 「variant, | Zyklon」 段长比 前 0.87 后 0.98 ｜ 前词末音素起 0.890s 后词开头 1.148s ｜ 停顿 0.990–1.010s（离前词末音素起点 +100 ms，离后词 +138 ms）对齐代价 0.82",
+          "16 S17 OK  删静音 「B, | was」 段长比 前 0.98 后 1.08 ｜ 前词末音素起 2.048s 后词开头 2.523s ｜ 停顿 2.090–2.455s（离前词末音素起点 +42 ms，离后词 +68 ms）对齐代价 0.82",
+          "16 S17 OK（已用实际声音核实） 插入 「camps, | where」 段长比 前 1.08 后 0.99 ｜ 前词末音素起 4.398s 后词开头 4.523s ｜ 停顿 4.475–4.475s（离前词末音素起点 +77 ms，离后词 +48 ms）对齐代价 0.82",
+          "16 S18 OK  删静音 「factory, | so」 段长比 前 1.05 后 1.33 ｜ 前词末音素起 6.236s 后词开头 6.892s ｜ 停顿 6.300–6.770s（离前词末音素起点 +64 ms，离后词 +122 ms）对齐代价 1.63",
+          "问题数 0",
+          ""
+        ]
+      },
+      "标点停顿核对.py": {
+        "exit": 0,
+        "actual_output": [
+          "问题数 0"
+        ],
+        "actual_final_text_lines": [
+          "16 S1 OK  「In July 1909,」 标准 0.4s，实际听到 0.39s",
+          "16 S2 OK  「ind its gleaming,」 标准 0.4s，实际听到 0.40s",
+          "16 S2 OK  「g, bolted valves,」 标准 0.4s，实际听到 0.40s",
+          "16 S2 OK  「and furnace heat,」 标准 0.4s，实际听到 0.40s",
+          "16 S4 OK  「ed the method up,」 标准 0.4s，实际听到 0.40s",
+          "16 S5 OK  「g bread from air,」 标准 0.4s，实际听到 0.40s",
+          "16 S6 OK  「ls as fertiliser,」 标准 0.4s，实际听到 0.40s",
+          "16 S6 OK  「anure heap could,」 标准 0.4s，实际听到 0.40s",
+          "16 S9 OK  「British blockade,」 标准 0.4s，实际听到 0.40s",
+          "16 S10 OK  「il 1915 at Ypres,」 标准 0.4s，实际听到 0.40s",
+          "16 S10 OK  「nnes of greenish,」 标准 0.4s，实际听到 0.40s",
+          "16 S10 OK  「 Allied trenches,」 标准 0.4s，实际听到 0.40s",
+          "16 S11 OK  「Haber's wife,」 标准 0.4s，实际听到 0.39s",
+          "16 S11 OK  「 Clara Immerwahr,」 标准 0.4s，实际听到 0.39s",
+          "16 S11 OK  「ree in chemistry,」 标准 0.4s，实际听到 0.39s",
+          "16 S12 OK  「On 2 May 1915,」 标准 0.4s，实际听到 0.40s",
+          "16 S12 OK  「es in his honour,」 标准 0.4s，实际听到 0.40s",
+          "16 S15 OK  「Of Jewish origin,」 标准 0.4s，实际听到 0.39s",
+          "16 S15 OK  「ime seized power,」 标准 0.4s，实际听到 0.40s",
+          "16 S17 OK  「A later variant,」 标准 0.4s，实际听到 0.40s",
+          "16 S17 OK  「ariant, Zyklon B,」 标准 0.4s，实际听到 0.40s",
+          "16 S17 OK  「Nazi death camps,」 标准 0.4s，实际听到 0.40s",
+          "16 S18 OK  「er-Bosch factory,」 标准 0.7s，实际听到 0.70s",
+          "问题数 0",
+          ""
+        ]
+      }
+    }
+  },
+  "error": "canonical-draft: official quality check failed; see article status JSON",
+  "reference_gain_failure_diagnostic": {
+    "acceptance": false,
+    "diagnostic_only": true,
+    "program_present": true,
+    "reference_meta_present": false,
+    "actual_pcm_present": true,
+    "current_post_check_present": false
+  },
+  "failed_current_video": {
+    "exported": false,
+    "passed": false,
+    "acceptance": false,
+    "purpose": "failed current-attempt video for diagnosis; not a final deliverable",
+    "reason": "Official fingerprint is audio-only or does not match current video/source/PCM.",
+    "fingerprint_hash_format": "official SHA256 first 16 hex characters",
+    "mismatched_fingerprint_fields": [
+      "脚本"
+    ]
+  }
+}
