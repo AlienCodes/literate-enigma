@@ -1,0 +1,3843 @@
+{
+  "article": "43",
+  "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+  "reference_prepared": true,
+  "acceptance": false,
+  "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+  "source_sha256": "bacc7abafe824031e0d85349f80327b66947839472008a18bd679cf6cdc3b53e",
+  "maker_sha256": "23d886be9cf999eabc682159e1ab2fc2cf6c4ccb0597f32d60d5e90a34606c0e",
+  "checker_program_sha256": {
+    "停顿位置精确核对.py": "1c94b0b10a246ed85d380b3a744dc8398f0880de41f27139c49bf3700d378e64",
+    "高亮同步核对.py": "0041d8ef2f9d4a231c437d3b49cfcaa556ecd4a760b45c79ccf4abc6a7d02e0d",
+    "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+    "可闻声保全核对.py": "61a08806ca4c4470c94e0e137c506b052e9fe2ae9ef616015ce0717c83197ec9",
+    "词尾辅音核对.py": "e64ed781a2e27991e3ff8aa97e41e1cc1bc09515a4f61cbc943fec27e0e41508",
+    "疑点清单.py": "a3b7604fbcbdd31fecd0b548382426e70ddab810fc923ff895027c084f30eab2"
+  },
+  "reference_calls": [
+    {
+      "sentence": "标题",
+      "piece": null,
+      "reference_kind": "title-default-raw",
+      "method": "create",
+      "source_slice": "From a Garage to the Top of the World",
+      "exact_native_cache_key": "547b724c193e0b8d18864d66cbb7fb8e7975a4ea.pkl",
+      "cache_input_text_sha256": "aa09b2ba1aaf065d6b110c477974809d33a1b7444123531d6e0d17aace7ba6d7",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "标题",
+      "piece": null,
+      "reference_kind": "title-default-timed",
+      "method": "create_timed",
+      "source_slice": "From a Garage to the Top of the World",
+      "exact_native_cache_key": "644a2cecf3a5bfee3604cf8edd8125c0d4e966dc.pkl",
+      "cache_input_text_sha256": "aa09b2ba1aaf065d6b110c477974809d33a1b7444123531d6e0d17aace7ba6d7",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "In May 1985, after a bruising confrontation, Apple's board ultimately backed chief executive John Sculley.",
+      "exact_native_cache_key": "20efaded44138e8bbc96e635195a51c65db24af9.pkl",
+      "cache_input_text_sha256": "eb6fb2f1a8a96187ad0514e5aa6d83be021a246f607a280caa06d934bf34d0ff",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "In May 1985, after a bruising confrontation, Apple's board ultimately backed chief executive John Sculley.",
+      "exact_native_cache_key": "76e90b970b0fa5e874b15ff5e76e6315c11dd76a.pkl",
+      "cache_input_text_sha256": "eb6fb2f1a8a96187ad0514e5aa6d83be021a246f607a280caa06d934bf34d0ff",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "In May 1985, after a bruising confrontation,",
+      "exact_native_cache_key": "67257ec8cfe9e71f5453d1a453a52a68cd040ba1.pkl",
+      "cache_input_text_sha256": "dc060fc37a35b4f4e416345a03f8163537d92d77ecbb8c3f1c64983eac9fd3f6",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Apple's board ultimately backed chief executive John Sculley.",
+      "exact_native_cache_key": "76eb7ba523c24365700d573d9fa050830efe52e2.pkl",
+      "cache_input_text_sha256": "759f5f17d0b9c1097c1328ef074237060bb3d2859437b545f73b45e71e13fb65",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "In May 1985,",
+      "exact_native_cache_key": "abe49f40dbc9927ec15c98b75b4bc5976370ba53.pkl",
+      "cache_input_text_sha256": "a3895476f329e6d26fa51d5481a7702895da1d2e8c6d2d66519f4f5a5d271a86",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "after a bruising confrontation,",
+      "exact_native_cache_key": "16330a0d60aaf9a3d05a494c8a85e7a639247c30.pkl",
+      "cache_input_text_sha256": "fd4b7ff239f3f5b2ac8b58c7109b4e2c51d0cfbe3d8854fd7611764680e8fc0f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Apple's board ultimately backed chief executive John Sculley.",
+      "exact_native_cache_key": "76eb7ba523c24365700d573d9fa050830efe52e2.pkl",
+      "cache_input_text_sha256": "759f5f17d0b9c1097c1328ef074237060bb3d2859437b545f73b45e71e13fb65",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Steve Jobs, 30, was stripped of his managerial duties at the company he had co-founded.",
+      "exact_native_cache_key": "1a25681a6c542e4827e0d1cc942a7f16da50db9b.pkl",
+      "cache_input_text_sha256": "a413a79b46da3c1b9aeede74e71577a039c66e6230a8f74263df1d000be9d5e9",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Steve Jobs, 30, was stripped of his managerial duties at the company he had co-founded.",
+      "exact_native_cache_key": "fc7f61569f40333355c0c4eac5f29f0c78be973c.pkl",
+      "cache_input_text_sha256": "a413a79b46da3c1b9aeede74e71577a039c66e6230a8f74263df1d000be9d5e9",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Steve Jobs, 30,",
+      "exact_native_cache_key": "c497955fd611ccf5f59f64ea29f55e704162942f.pkl",
+      "cache_input_text_sha256": "918422a0f1d07958de4485ddd181b456d1b219386a7fa4888a9ab0847bd2528d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "was stripped of his managerial duties at the company he had co-founded.",
+      "exact_native_cache_key": "0cfdff6999bc53d77783aa0e7bffbeca454ecc3e.pkl",
+      "cache_input_text_sha256": "480edb93b2198f56a8becd807997cd3f2bc893cb79b636574294023b11dc3a16",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Steve Jobs,",
+      "exact_native_cache_key": "2a3ea6cea9c350cde6d94b323f2aa9f7c6c96181.pkl",
+      "cache_input_text_sha256": "8d74154bccab66082bf2dabfc565c500dc52b6611cfc6e3bfcaa8360aec44f39",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "30,",
+      "exact_native_cache_key": "49bce2cc6fc7eb4d69f0d10ee2e3039ef29c2893.pkl",
+      "cache_input_text_sha256": "150c5e86608de6da78b7057a5b9735c8e28e38870bd72a6abcaca1766627ff78",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "was stripped of his managerial duties at the company he had co-founded.",
+      "exact_native_cache_key": "0cfdff6999bc53d77783aa0e7bffbeca454ecc3e.pkl",
+      "cache_input_text_sha256": "480edb93b2198f56a8becd807997cd3f2bc893cb79b636574294023b11dc3a16",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "That September, sidelined and alienated, he resigned.",
+      "exact_native_cache_key": "fe3ee2d00a3554794f6bb1ecdf1711cd55144402.pkl",
+      "cache_input_text_sha256": "3ff91e75a796b1291fc3833f08da9ce0aca9526d3e593fae534acef4424370a0",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "That September, sidelined and alienated, he resigned.",
+      "exact_native_cache_key": "0938ca4f4154802bfd5396e2a19992c53ce437cd.pkl",
+      "cache_input_text_sha256": "3ff91e75a796b1291fc3833f08da9ce0aca9526d3e593fae534acef4424370a0",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "That September,",
+      "exact_native_cache_key": "2b2e2a851539c34b4936f59879d9f1564b07b6ba.pkl",
+      "cache_input_text_sha256": "c38da095cea257c1f74f92549bff7997f6920c072d6c1cb6e3dc64e649957c61",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "sidelined and alienated,",
+      "exact_native_cache_key": "052401e9ff2cd6ceb6c9e8e8479b4b910e9f65e3.pkl",
+      "cache_input_text_sha256": "3b0ba33f680e4cdeec4a790e42a2dfb041025307922f36f1c72f12bf7e94b027",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "he resigned.",
+      "exact_native_cache_key": "58c84c42c2f35bee5f0a98642fea3387b60d4e2e.pkl",
+      "cache_input_text_sha256": "3658b501af1444502a5d944f2b4abd0cceb67277f4d5a484a10d06ea326e4b39",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Rewind three decades.",
+      "exact_native_cache_key": "ec097b5349c9e696c28fa6f3240d95e6e9ba802f.pkl",
+      "cache_input_text_sha256": "0e7a1a587341cc4d0a7a110f6480a1d9a1a0d8292fc0ec4d07807df7bd0e8e2c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Rewind three decades.",
+      "exact_native_cache_key": "a0dd54a5f1d24427653b58aab64dbc5d4b08c7d1.pkl",
+      "cache_input_text_sha256": "0e7a1a587341cc4d0a7a110f6480a1d9a1a0d8292fc0ec4d07807df7bd0e8e2c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Born in San Francisco on 24 February 1955, Jobs was adopted as a newborn.",
+      "exact_native_cache_key": "971f971b156a58cdeb7fa082c4c5dba42b4a3ec0.pkl",
+      "cache_input_text_sha256": "0fe2a172eb538c83b22ea8be5da77fbd7251d0aee66554b21e64a93f5523d7bd",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Born in San Francisco on 24 February 1955, Jobs was adopted as a newborn.",
+      "exact_native_cache_key": "a50eeb33d2c8572bd5a7ec74ff69e55caa1d7612.pkl",
+      "cache_input_text_sha256": "0fe2a172eb538c83b22ea8be5da77fbd7251d0aee66554b21e64a93f5523d7bd",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Born in San Francisco on 24 February 1955, Jobs",
+      "exact_native_cache_key": "6eaa02862f627df92b6ba86596490cdf48f1e9f8.pkl",
+      "cache_input_text_sha256": "2301a1270e4b75f5c7a281976cf5093884bd72eb653c847da90d96b397e19426",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "was adopted as a newborn.",
+      "exact_native_cache_key": "f195364abd7a4dd2329a301faa98c70c3cb6a523.pkl",
+      "cache_input_text_sha256": "308fab8ad142231f823f47731128aeeb2b2f1c1524148a2207bac34820e5b851",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Born in San Francisco on 24 February 1955,",
+      "exact_native_cache_key": "8f3db3e1b7dd26186b9f41af3304c472591f20f4.pkl",
+      "cache_input_text_sha256": "1f3f43eacf3404ac88c112ac4728f018d3426eec784d19b7e21e33631e6db256",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Jobs was adopted as a newborn.",
+      "exact_native_cache_key": "539b5b8caaa0e5c6ba18ef68abb952bf9f2f21d5.pkl",
+      "cache_input_text_sha256": "a9aab34e549e9a2bea1f82d20082c84c9d9ce759220bfe28b92a2e524e10fd91",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "On 1 April 1976 he founded Apple with Steve Wozniak, the electronics engineer behind its first prototypes.",
+      "exact_native_cache_key": "0da812500153719730f52b0b73e59e0d83fb5c7f.pkl",
+      "cache_input_text_sha256": "ded846368a118ac84bf7c2bd7d7cfad37e3f6dd017b6ff896126ed534a962f98",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "On 1 April 1976 he founded Apple with Steve Wozniak, the electronics engineer behind its first prototypes.",
+      "exact_native_cache_key": "919b0443fb1401c9e3962b9aebe77de2fadd2c2d.pkl",
+      "cache_input_text_sha256": "ded846368a118ac84bf7c2bd7d7cfad37e3f6dd017b6ff896126ed534a962f98",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "On 1 April 1976 he founded Apple with Steve Wozniak,",
+      "exact_native_cache_key": "d90d4473d15c790c7aedb94bd94363fa8d74a44d.pkl",
+      "cache_input_text_sha256": "6897e24f056f7d5a3e8c9ee2148100c2f159d082be6154d57dd00e671034e773",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "the electronics engineer behind its first prototypes.",
+      "exact_native_cache_key": "67ad2597973dbab37fc436fa4a100ce726d42962.pkl",
+      "cache_input_text_sha256": "58a67cee4e8835664ad0d4a9e42f174de5ef0e81c96d429769e64f9fa9c0eaff",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "On 1 April 1976 he founded Apple with Steve Wozniak,",
+      "exact_native_cache_key": "d90d4473d15c790c7aedb94bd94363fa8d74a44d.pkl",
+      "cache_input_text_sha256": "6897e24f056f7d5a3e8c9ee2148100c2f159d082be6154d57dd00e671034e773",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "the electronics engineer behind its first prototypes.",
+      "exact_native_cache_key": "67ad2597973dbab37fc436fa4a100ce726d42962.pkl",
+      "cache_input_text_sha256": "58a67cee4e8835664ad0d4a9e42f174de5ef0e81c96d429769e64f9fa9c0eaff",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Apple's garage origins are largely symbolic; Wozniak calls their significance inflated.",
+      "exact_native_cache_key": "337bd76de42b6493146c88066f7116fd4fa0ccff.pkl",
+      "cache_input_text_sha256": "35b7c6af6c899c142e05f5e9aa6f93da48c9b3997977115c6b93cd235da21204",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Apple's garage origins are largely symbolic; Wozniak calls their significance inflated.",
+      "exact_native_cache_key": "b4bf3833de0bfcf173593f4376718d1890160c72.pkl",
+      "cache_input_text_sha256": "35b7c6af6c899c142e05f5e9aa6f93da48c9b3997977115c6b93cd235da21204",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Apple's garage origins are largely symbolic;",
+      "exact_native_cache_key": "d66d3484bd03fa660cf79cd559dfb107274127b7.pkl",
+      "cache_input_text_sha256": "968ba19ef01df6506ed5301dd31c744b1853b1363919634bf74bab8b14fc1e79",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Wozniak calls their significance inflated.",
+      "exact_native_cache_key": "69aefa24980cd9b3baba94a8d90b26d2ee131d50.pkl",
+      "cache_input_text_sha256": "03a8b373a7adf7a936f7822c4e59d58cbdc0741871e45ecbabf7a0c83454f237",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Apple's garage origins are largely symbolic;",
+      "exact_native_cache_key": "d66d3484bd03fa660cf79cd559dfb107274127b7.pkl",
+      "cache_input_text_sha256": "968ba19ef01df6506ed5301dd31c744b1853b1363919634bf74bab8b14fc1e79",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Wozniak calls their significance inflated.",
+      "exact_native_cache_key": "69aefa24980cd9b3baba94a8d90b26d2ee131d50.pkl",
+      "cache_input_text_sha256": "03a8b373a7adf7a936f7822c4e59d58cbdc0741871e45ecbabf7a0c83454f237",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Apple floated on 12 December 1980; the flagship Macintosh debuted on 24 January 1984.",
+      "exact_native_cache_key": "ca293a126c3d2c0af3ed62a93c82ea20acf93865.pkl",
+      "cache_input_text_sha256": "749b4c410ae822fed35a99086782b621064c85b168c4b820f4376b1f160cb383",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Apple floated on 12 December 1980; the flagship Macintosh debuted on 24 January 1984.",
+      "exact_native_cache_key": "1918d59f8623842ce2bcda5da65cfdb570a64f3e.pkl",
+      "cache_input_text_sha256": "749b4c410ae822fed35a99086782b621064c85b168c4b820f4376b1f160cb383",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Apple floated on 12 December 1980;",
+      "exact_native_cache_key": "828a31d9facea24d8115153f76dd722e6d465a11.pkl",
+      "cache_input_text_sha256": "27214e905350d2e386281d9dfccf2c1e1397170fe452ef3d5052c1a07b7528f1",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "the flagship Macintosh debuted on 24 January 1984.",
+      "exact_native_cache_key": "d1d4bfc276a01d8c88ebad26f4f3fdeba25c297c.pkl",
+      "cache_input_text_sha256": "b5f909cacdbe17ec23630406369b5e092641ae0bc29f45d2d5c129336404680d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Apple floated on 12 December 1980;",
+      "exact_native_cache_key": "828a31d9facea24d8115153f76dd722e6d465a11.pkl",
+      "cache_input_text_sha256": "27214e905350d2e386281d9dfccf2c1e1397170fe452ef3d5052c1a07b7528f1",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "the flagship Macintosh debuted on 24 January 1984.",
+      "exact_native_cache_key": "d1d4bfc276a01d8c88ebad26f4f3fdeba25c297c.pkl",
+      "cache_input_text_sha256": "b5f909cacdbe17ec23630406369b5e092641ae0bc29f45d2d5c129336404680d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Exile proved productive.",
+      "exact_native_cache_key": "6aa717321f7ff59755ec943f62e010d11310868b.pkl",
+      "cache_input_text_sha256": "8670e03e8229f2855de6b8343903ee3a0e1734744ecf045274b90643e81f21dc",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Exile proved productive.",
+      "exact_native_cache_key": "0c5dbb272b355037140f9dd47a145f5876b21de3.pkl",
+      "cache_input_text_sha256": "8670e03e8229f2855de6b8343903ee3a0e1734744ecf045274b90643e81f21dc",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Later in 1985 Jobs founded NeXT, a computer start-up.",
+      "exact_native_cache_key": "ba7216a50a0f7fb5a93af8b2a606aac5ed41e6b0.pkl",
+      "cache_input_text_sha256": "321863f118892657e07fbc82a2077ff87e438166fb2ffaeb55771f2268fb4f33",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Later in 1985 Jobs founded NeXT, a computer start-up.",
+      "exact_native_cache_key": "03ff5a8160d3cb33fc9e26343caf4dc4602d761d.pkl",
+      "cache_input_text_sha256": "321863f118892657e07fbc82a2077ff87e438166fb2ffaeb55771f2268fb4f33",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Later in 1985",
+      "exact_native_cache_key": "6a97a05dce31efa537224b90aaa01a8408ea027c.pkl",
+      "cache_input_text_sha256": "56538d4a276414561d8d6e2cccca5a65fcbae0664fdb0ac8304b25b6cd8cbbe7",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Jobs founded NeXT,",
+      "exact_native_cache_key": "422414c679c860bb46f7aea70668de50127e560d.pkl",
+      "cache_input_text_sha256": "2fb1f982c435f37cc64e9547d15200f94b16d48f3ae9c76db0f3fa7758d83987",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "a computer start-up.",
+      "exact_native_cache_key": "fda7a6fd281c923092dbd82d9d278c7a7ec81125.pkl",
+      "cache_input_text_sha256": "4fbacb68da462d3617a66dbb49a6f86bf5a8202984b11067e5c3592eb858c1d8",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Later in 1985 Jobs founded NeXT,",
+      "exact_native_cache_key": "6cda3d2cadb3bb8a0f2fde09c5758823960039ea.pkl",
+      "cache_input_text_sha256": "4ac6151aeb98b7c7f41bd84b5aa0d6583f2492d2850f1d2e2026c89e4cd810f4",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "a computer start-up.",
+      "exact_native_cache_key": "fda7a6fd281c923092dbd82d9d278c7a7ec81125.pkl",
+      "cache_input_text_sha256": "4fbacb68da462d3617a66dbb49a6f86bf5a8202984b11067e5c3592eb858c1d8",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "In February 1986 he acquired Lucasfilm's computer-graphics outfit, which became Pixar.",
+      "exact_native_cache_key": "7b081bad6927f67ededd415d1dc47ba7bedaa46b.pkl",
+      "cache_input_text_sha256": "8b09e6fae5bc0e0dc7cef4f387e120fbba325c66e228eeabd2a0b8631140c8eb",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "In February 1986 he acquired Lucasfilm's computer-graphics outfit, which became Pixar.",
+      "exact_native_cache_key": "ab342401a25af4783da343bf047b59d9aabb761e.pkl",
+      "cache_input_text_sha256": "8b09e6fae5bc0e0dc7cef4f387e120fbba325c66e228eeabd2a0b8631140c8eb",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "In February 1986 he acquired Lucasfilm's computer-graphics outfit,",
+      "exact_native_cache_key": "b584dcff147563ebcc75d34099ca722cede2c569.pkl",
+      "cache_input_text_sha256": "cf3fb4c0ed7a7710932e7cbfcf09f8e9597da591fcc92afc67b09ae1a64097aa",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "which became Pixar.",
+      "exact_native_cache_key": "4dca7e0155cbbaf0694f703aecc92e5f6de82841.pkl",
+      "cache_input_text_sha256": "f8835a1ceadf67a435fc1dbaa41242e4b2cdf61d63ad9679c6b51519115eaf49",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "In February 1986 he acquired Lucasfilm's computer-graphics outfit,",
+      "exact_native_cache_key": "b584dcff147563ebcc75d34099ca722cede2c569.pkl",
+      "cache_input_text_sha256": "cf3fb4c0ed7a7710932e7cbfcf09f8e9597da591fcc92afc67b09ae1a64097aa",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "which became Pixar.",
+      "exact_native_cache_key": "4dca7e0155cbbaf0694f703aecc92e5f6de82841.pkl",
+      "cache_input_text_sha256": "f8835a1ceadf67a435fc1dbaa41242e4b2cdf61d63ad9679c6b51519115eaf49",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "It began as a manufacturer of specialised hardware, not chiefly an animation studio.",
+      "exact_native_cache_key": "d665ca387c256cc1c73c0ac5bf9f787318304184.pkl",
+      "cache_input_text_sha256": "61ebcab032622684a841406389948f2e6a264344ad029294ce3869b45c0f59bd",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "It began as a manufacturer of specialised hardware, not chiefly an animation studio.",
+      "exact_native_cache_key": "fdff7a84898155f9d2cb114332115c0204aee2ee.pkl",
+      "cache_input_text_sha256": "61ebcab032622684a841406389948f2e6a264344ad029294ce3869b45c0f59bd",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "It began as a manufacturer of specialised hardware,",
+      "exact_native_cache_key": "8adf743a23f769c91dac9500c30dd8f865877eb9.pkl",
+      "cache_input_text_sha256": "ad50d2c27d6473f535f5b45f3c9f14b9f5ebdb8a423f9cb44a388845513840a0",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "not chiefly an animation studio.",
+      "exact_native_cache_key": "131595a2d190895f842b2dafd74ee46a69e94358.pkl",
+      "cache_input_text_sha256": "7fc6adf74cb6563ec44cd5a387efa59b9143a2227df281686ffc1d2f8805c5cd",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "It began as a manufacturer of specialised hardware,",
+      "exact_native_cache_key": "8adf743a23f769c91dac9500c30dd8f865877eb9.pkl",
+      "cache_input_text_sha256": "ad50d2c27d6473f535f5b45f3c9f14b9f5ebdb8a423f9cb44a388845513840a0",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "not chiefly an animation studio.",
+      "exact_native_cache_key": "131595a2d190895f842b2dafd74ee46a69e94358.pkl",
+      "cache_input_text_sha256": "7fc6adf74cb6563ec44cd5a387efa59b9143a2227df281686ffc1d2f8805c5cd",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Toy Story, released on 22 November 1995, was the first feature-length computer-animated film.",
+      "exact_native_cache_key": "47e9b31cea3fafb4775415e86caa76165e337b7b.pkl",
+      "cache_input_text_sha256": "08a7485b39730b841f88da08c6dbd93adf37273280c61f2b4b7ae9207c564320",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Toy Story, released on 22 November 1995, was the first feature-length computer-animated film.",
+      "exact_native_cache_key": "5ff017ef2633b3faaeb5656e72881c0fb18bcda2.pkl",
+      "cache_input_text_sha256": "08a7485b39730b841f88da08c6dbd93adf37273280c61f2b4b7ae9207c564320",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Toy Story, released on 22 November 1995,",
+      "exact_native_cache_key": "36f8b05ab1eb7f959f2f9f4f758ce59c190875f0.pkl",
+      "cache_input_text_sha256": "3a5aca987e0e5b24facc3e3954025c67b2bacfe9f27a008097e5e6af0fc3fee5",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "was the first feature-length computer-animated film.",
+      "exact_native_cache_key": "fb5a33dd5acb87cab7d5292a0cea435a96aa804a.pkl",
+      "cache_input_text_sha256": "b79e2fb87572ac98e05d255c88054d1b9bb10477fa355d7db7d8eaf958597018",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Toy Story,",
+      "exact_native_cache_key": "6acf1a3fda4f187d4ce3afdef4a70e5df58a1892.pkl",
+      "cache_input_text_sha256": "ae7ac8eb0f2f2abdec1121d34d5d6f898ea80e4c5eb8b2a0f6c05f82ba8114ea",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "released on 22 November 1995,",
+      "exact_native_cache_key": "831c5a6dcece418a669bb830ce4ce5b60e0406bc.pkl",
+      "cache_input_text_sha256": "c01aa545ebd576544295afef58e4f2adfa01bc76bacac1cd5646f60afef422e7",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "was the first feature-length computer-animated film.",
+      "exact_native_cache_key": "fb5a33dd5acb87cab7d5292a0cea435a96aa804a.pkl",
+      "cache_input_text_sha256": "b79e2fb87572ac98e05d255c88054d1b9bb10477fa355d7db7d8eaf958597018",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "The reversal came on 20 December 1996: Apple agreed to buy NeXT, gaining the core software of the eventual Mac OS X and reuniting with its estranged co-founder.",
+      "exact_native_cache_key": "ee099319d7c5c4159f256f049e8bcd8f1aef6c63.pkl",
+      "cache_input_text_sha256": "fe48ea0be805b75efbc23025f1f72e337bac51371c9fc7d0c3052ee283b7c6ae",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "The reversal came on 20 December 1996: Apple agreed to buy NeXT, gaining the core software of the eventual Mac OS X and reuniting with its estranged co-founder.",
+      "exact_native_cache_key": "ab2b8a7a9c8fd919c48522f5ffab778e63a95af1.pkl",
+      "cache_input_text_sha256": "fe48ea0be805b75efbc23025f1f72e337bac51371c9fc7d0c3052ee283b7c6ae",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "The reversal came on 20 December 1996:",
+      "exact_native_cache_key": "6a36855e6630201a7a352bbd89f136c7e131089e.pkl",
+      "cache_input_text_sha256": "79fbba8def396180db297593bb6e84c4340281ffbc2297bcfb61b12baa7d9dde",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Apple agreed to buy NeXT,",
+      "exact_native_cache_key": "5da440af01f777cf51bc0ad5bf762673f3348e9e.pkl",
+      "cache_input_text_sha256": "ef4f390fc48d472bb989697924033b327c6b1235c19f4225b42153f224d2a226",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "gaining the core software of the eventual Mac OS X",
+      "exact_native_cache_key": "854e8dc2030277334badff8e39b346dc28e7d7e6.pkl",
+      "cache_input_text_sha256": "2f158d796f806ee6b7be42b7fd00481c4b641432a2a79816be42acdb90964d91",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 4,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "and reuniting with its estranged co-founder.",
+      "exact_native_cache_key": "6cd0a79773fbe6f3ac566e2deb467d6afc7cadbd.pkl",
+      "cache_input_text_sha256": "c349a126ad3a71cc7f6c7678d9b71b7d0a6d0c431dc9d3da81d0ac247f87c252",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "The reversal came on 20 December 1996:",
+      "exact_native_cache_key": "6a36855e6630201a7a352bbd89f136c7e131089e.pkl",
+      "cache_input_text_sha256": "79fbba8def396180db297593bb6e84c4340281ffbc2297bcfb61b12baa7d9dde",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Apple agreed to buy NeXT,",
+      "exact_native_cache_key": "5da440af01f777cf51bc0ad5bf762673f3348e9e.pkl",
+      "cache_input_text_sha256": "ef4f390fc48d472bb989697924033b327c6b1235c19f4225b42153f224d2a226",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "gaining the core software of the eventual Mac OS X and reuniting with its estranged co-founder.",
+      "exact_native_cache_key": "4fb1708668b9985d9d07d4f4df544c1b02fb77db.pkl",
+      "cache_input_text_sha256": "3994160d5d6474b83a3a1b0c4d9e5125eabb4574dd7f19625306d24ceb8beff3",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "In August 1997 Microsoft invested $150 million in its distressed competitor; that September Jobs took the reins as interim chief.",
+      "exact_native_cache_key": "3564cabd466686c3d5867c1f4d67e7c39119445e.pkl",
+      "cache_input_text_sha256": "258897a3a67aa24f449531b43b87e21c3c45ee47ed0b511a063dede059fb4a15",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "In August 1997 Microsoft invested $150 million in its distressed competitor; that September Jobs took the reins as interim chief.",
+      "exact_native_cache_key": "f8c5dec8cbef44c92f06589ad46cd0b988442f04.pkl",
+      "cache_input_text_sha256": "258897a3a67aa24f449531b43b87e21c3c45ee47ed0b511a063dede059fb4a15",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "In August 1997 Microsoft invested $150 million in its distressed competitor;",
+      "exact_native_cache_key": "05a6014a321697bd7fefaac67ea07457c92750ea.pkl",
+      "cache_input_text_sha256": "f47eff15614a2265c812ea8cc43952659caa8d47c3ef6c1192ebb5daed702d2b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "that September Jobs took the reins as interim chief.",
+      "exact_native_cache_key": "0e924a08a28ca887f01a23fccd5a3165e97a9cf7.pkl",
+      "cache_input_text_sha256": "945eeb9a056ec3fa907251cc2a3d371a11a24237c9a3b285add2f826a1fea503",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "In August 1997 Microsoft invested $150 million in its distressed competitor;",
+      "exact_native_cache_key": "05a6014a321697bd7fefaac67ea07457c92750ea.pkl",
+      "cache_input_text_sha256": "f47eff15614a2265c812ea8cc43952659caa8d47c3ef6c1192ebb5daed702d2b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "that September Jobs took the reins as interim chief.",
+      "exact_native_cache_key": "0e924a08a28ca887f01a23fccd5a3165e97a9cf7.pkl",
+      "cache_input_text_sha256": "945eeb9a056ec3fa907251cc2a3d371a11a24237c9a3b285add2f826a1fea503",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Apple, he later said, had been weeks from ruin.",
+      "exact_native_cache_key": "ccb9fddc3511d31dff6cad74ca3efd8154964cef.pkl",
+      "cache_input_text_sha256": "a716195f3b1fe3058fa567811a35190d9b8bedfd455cae624572460314b30932",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Apple, he later said, had been weeks from ruin.",
+      "exact_native_cache_key": "500ce320ebdad6a292cb2cec9fb64782d3417a2e.pkl",
+      "cache_input_text_sha256": "a716195f3b1fe3058fa567811a35190d9b8bedfd455cae624572460314b30932",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Apple he later said,",
+      "exact_native_cache_key": "7aa9b077f84046a15819284969fb999b8bd009a2.pkl",
+      "cache_input_text_sha256": "45d19d13182d682f90cd5312e777e8ce6c3ad8c08bf15c4f82f5780d250582d7",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S16",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "had been weeks from ruin.",
+      "exact_native_cache_key": "3c96ecd7949afd273d10f6c7b7c45f4bef39600c.pkl",
+      "cache_input_text_sha256": "3bf75faa4f3b87979cfa1f11e75111162abc417162d7b36e12244cbf508fe3dc",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "The iMac, iPod, and iPhone followed, the iPhone showcased on 9 January 2007.",
+      "exact_native_cache_key": "ada54f93492c0b7f6d07d6d799bcb267ee32786d.pkl",
+      "cache_input_text_sha256": "83d1e7a2bb03a2a13ec4238c0b0676ffca7f985b487e82fd5ba45dfeef53f7ce",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "The iMac, iPod, and iPhone followed, the iPhone showcased on 9 January 2007.",
+      "exact_native_cache_key": "a878d3a74442e4b2f25b598e5aa2d3a58f061c0f.pkl",
+      "cache_input_text_sha256": "83d1e7a2bb03a2a13ec4238c0b0676ffca7f985b487e82fd5ba45dfeef53f7ce",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "The iMac, iPod, and iPhone followed,",
+      "exact_native_cache_key": "d6dab232cd3e360ed60b593d99a451e16500bf09.pkl",
+      "cache_input_text_sha256": "9cf8db198d6f867fae766374bd7cb2e33923355d7608a9d0f8e4d87fbe3bed9f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "the iPhone showcased on 9 January 2007.",
+      "exact_native_cache_key": "6b8aceb076375dc131def84ce6a45328844adb02.pkl",
+      "cache_input_text_sha256": "4567375c8dc2e4f38b2c0cac2bb9661acb3a9887921f971e5c3a26a942118d45",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "The iMac,",
+      "exact_native_cache_key": "e5052706604b56b53d2b7afc920251b7f11da766.pkl",
+      "cache_input_text_sha256": "f0dc0a57d421c1e412eb2ae4e35253d072fca0142e4854a835b37d53afd58781",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "iPod,",
+      "exact_native_cache_key": "eab2f5bebba35509fad9826d0f05c0702629a134.pkl",
+      "cache_input_text_sha256": "bcebc00ca4bcc96d0cc29e7e0ea1bf837b47a68130cdb7f89ebfa5ec6d774188",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "and iPhone followed,",
+      "exact_native_cache_key": "a0533e464281c3a608fde643212a4643e5166eab.pkl",
+      "cache_input_text_sha256": "4bde958956e8d2989b6091d5a2dda35c044fa2275771b125fad924d57220faa0",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": 4,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "the iPhone showcased on 9 January 2007.",
+      "exact_native_cache_key": "6b8aceb076375dc131def84ce6a45328844adb02.pkl",
+      "cache_input_text_sha256": "4567375c8dc2e4f38b2c0cac2bb9661acb3a9887921f971e5c3a26a942118d45",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S18",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "In October 2003 Jobs received a diagnosis: an uncommon, cancerous pancreatic tumour.",
+      "exact_native_cache_key": "7a80e76611abe67429222db1477f7819c2a9d483.pkl",
+      "cache_input_text_sha256": "e887842776952595acfaa7b127cb338705f9e7afe1d96360ec590c9657cdf365",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S18",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "In October 2003 Jobs received a diagnosis: an uncommon, cancerous pancreatic tumour.",
+      "exact_native_cache_key": "419c76eed9370f6edbf44b450d708fa0493ad50c.pkl",
+      "cache_input_text_sha256": "e887842776952595acfaa7b127cb338705f9e7afe1d96360ec590c9657cdf365",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S18",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "In October 2003 Jobs received a diagnosis:",
+      "exact_native_cache_key": "1a2c7d4d3c2ca95ce8e8253726d017a5abae1b9e.pkl",
+      "cache_input_text_sha256": "2ce408f40090692bae75bbedf48176dd0fa793568a9bd7e78f90ab8765862a07",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S18",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "an uncommon, cancerous pancreatic tumour.",
+      "exact_native_cache_key": "024cb929e31db01bd3cfc4b7c2eb52337e6ea0a5.pkl",
+      "cache_input_text_sha256": "e8f418e0463a9f3780d42abcf1e7622c749bcffd9c507c09aeaa03495608738a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S18",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "In October 2003 Jobs received a diagnosis:",
+      "exact_native_cache_key": "1a2c7d4d3c2ca95ce8e8253726d017a5abae1b9e.pkl",
+      "cache_input_text_sha256": "2ce408f40090692bae75bbedf48176dd0fa793568a9bd7e78f90ab8765862a07",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S18",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "an uncommon,",
+      "exact_native_cache_key": "bb331be19e297179f7317f6711f4004f12aa9cbe.pkl",
+      "cache_input_text_sha256": "f85bdd894b7b4b270adccdc9ea01c6fef078660ee584c69045263cc4ff9b7def",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S18",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "cancerous pancreatic tumour.",
+      "exact_native_cache_key": "04d3294e617f3acaf2f2fafd7b1dcf469539daec.pkl",
+      "cache_input_text_sha256": "98e7fe575d950e44889cf693c5dc2e4e0df581bc8037ad80da95ea6e76306709",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S19",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "In August 2011 Apple briefly overtook Exxon Mobil as the world's most valuable company.",
+      "exact_native_cache_key": "c4a07d2b1a9ccd8fe2b9759a5651fef94f954568.pkl",
+      "cache_input_text_sha256": "98c7863230a1800f69cb1d439859538726d2a60d68b8427f7c598c9cb46bc2e2",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S19",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "In August 2011 Apple briefly overtook Exxon Mobil as the world's most valuable company.",
+      "exact_native_cache_key": "d49d41dcda1f878d9b2e585397d32f72025df0b8.pkl",
+      "cache_input_text_sha256": "98c7863230a1800f69cb1d439859538726d2a60d68b8427f7c598c9cb46bc2e2",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S19",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "In August 2011 Apple briefly overtook Exxon Mobil",
+      "exact_native_cache_key": "a64ce9a04ab6036079ff3209d54c4c2eb1c86e09.pkl",
+      "cache_input_text_sha256": "cb6fa097adecaeae98326a0743ae51de01c73b2c9dd958564e767194282fa0d0",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S19",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "as the world's most valuable company.",
+      "exact_native_cache_key": "230ad8b55441fe4039d73aecea00fbd3fd494fee.pkl",
+      "cache_input_text_sha256": "3622067cc4d63295e45e67f2db3ba0ba87ec155529c4c04fe1b046e3677271fb",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S20",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "His tenure ended on 24 August 2011; he died on 5 October 2011, aged 56.",
+      "exact_native_cache_key": "8a131387aa7fc266229cd7c4ca89cb75d5dfc453.pkl",
+      "cache_input_text_sha256": "6a03907c55952f53700bba07e83a1f2142007d1a492f3311c2eebb3ac7610138",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S20",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "His tenure ended on 24 August 2011; he died on 5 October 2011, aged 56.",
+      "exact_native_cache_key": "5d706de2e14eb21193c9bb509dc3224eafb78e6d.pkl",
+      "cache_input_text_sha256": "6a03907c55952f53700bba07e83a1f2142007d1a492f3311c2eebb3ac7610138",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S20",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "His tenure ended on 24 August 2011;",
+      "exact_native_cache_key": "973f9e1601f8e3ec876851424762628cc7c03cb0.pkl",
+      "cache_input_text_sha256": "a206a115f50a64a03c5e4fd5e52b682b149aa040179d1e5191a96dff1c3a31a4",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S20",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "he died on 5 October 2011, aged 56.",
+      "exact_native_cache_key": "d777905e7aa7a44bd46ab4771df459e5a021c3b5.pkl",
+      "cache_input_text_sha256": "5a6ed81f2aa4aa3d15c2f66337bc25fc9c6671dd9ba8fd11fac113094b9d0171",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S20",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "His tenure ended on 24 August 2011;",
+      "exact_native_cache_key": "973f9e1601f8e3ec876851424762628cc7c03cb0.pkl",
+      "cache_input_text_sha256": "a206a115f50a64a03c5e4fd5e52b682b149aa040179d1e5191a96dff1c3a31a4",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S20",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "he died on 5 October 2011,",
+      "exact_native_cache_key": "1c6ff17bd6b046bb5b0cbc1ce94cba72e8e620e3.pkl",
+      "cache_input_text_sha256": "9c70c68d3780da66da3d05a80103b43dca1f914317e9c57681262ab50c946f71",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S20",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "aged 56.",
+      "exact_native_cache_key": "1ca5f2d0b24f66c98e16f5eed20ebefdb3d5695d.pkl",
+      "cache_input_text_sha256": "20ef74e8284a0a1962ebc705833c76de78de5a5e37f1203e3c73f11b09e36b24",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S21",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "He had spent nearly fourteen years at the helm of the company that ousted him.",
+      "exact_native_cache_key": "12d3128ecb639866d6f1f937fcb64fcbdd4ec7bd.pkl",
+      "cache_input_text_sha256": "d8410bfd4cb9029e4ebe8fa36b54ebc9b26549458889fd6b9a00664fc11a520a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S21",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "He had spent nearly fourteen years at the helm of the company that ousted him.",
+      "exact_native_cache_key": "9543664a17aea53c6bfd8210dbbfc6633105d04d.pkl",
+      "cache_input_text_sha256": "d8410bfd4cb9029e4ebe8fa36b54ebc9b26549458889fd6b9a00664fc11a520a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    }
+  ],
+  "unique_reference_key_count": 101,
+  "raw_mother_cache_scalar_manifest": [
+    {
+      "exact_native_cache_key": "547b724c193e0b8d18864d66cbb7fb8e7975a4ea.pkl",
+      "pkl_sha256": "c3a3644c0824f5d7b9b0634be337d9b4ad33b5a0f6701576a1fe8e9231dd4373",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "标题",
+          "piece": null,
+          "reference_kind": "title-default-raw",
+          "method": "create",
+          "source_slice": "From a Garage to the Top of the World",
+          "exact_native_cache_key": "547b724c193e0b8d18864d66cbb7fb8e7975a4ea.pkl",
+          "cache_input_text_sha256": "aa09b2ba1aaf065d6b110c477974809d33a1b7444123531d6e0d17aace7ba6d7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "c3a3644c0824f5d7",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        48128
+      ],
+      "unprocessed_array_sha256": "ec85f307fe928d6d33a20f3b9fbedfafb511b37868144d35dff72ea91b1e42be"
+    },
+    {
+      "exact_native_cache_key": "20efaded44138e8bbc96e635195a51c65db24af9.pkl",
+      "pkl_sha256": "24fcccb4675831c13db3d2839837e71701ae0b4d6eb2279ab21cf90bd57c25ed",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In May 1985, after a bruising confrontation, Apple's board ultimately backed chief executive John Sculley.",
+          "exact_native_cache_key": "20efaded44138e8bbc96e635195a51c65db24af9.pkl",
+          "cache_input_text_sha256": "eb6fb2f1a8a96187ad0514e5aa6d83be021a246f607a280caa06d934bf34d0ff",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "24fcccb4675831c1",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        205312
+      ],
+      "unprocessed_array_sha256": "5c6f9dbf0ede2f23b848b7f7bc0e7145c921b0b1b7752d0f05284ef67d7dddd3"
+    },
+    {
+      "exact_native_cache_key": "67257ec8cfe9e71f5453d1a453a52a68cd040ba1.pkl",
+      "pkl_sha256": "70c5673ace9131cf26e02a91759b0094ee32dae89cec1fd8853737c3708eda80",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In May 1985, after a bruising confrontation,",
+          "exact_native_cache_key": "67257ec8cfe9e71f5453d1a453a52a68cd040ba1.pkl",
+          "cache_input_text_sha256": "dc060fc37a35b4f4e416345a03f8163537d92d77ecbb8c3f1c64983eac9fd3f6",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "70c5673ace9131cf",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        97792
+      ],
+      "unprocessed_array_sha256": "54763ba21723de102b622ba3ab44cc99f9897ce61c310f731a460b4fad28e2a0"
+    },
+    {
+      "exact_native_cache_key": "76eb7ba523c24365700d573d9fa050830efe52e2.pkl",
+      "pkl_sha256": "297088caf26bb73fd4a2765eb8b2150f2f719f5b40342691940e0011c57dc1ab",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Apple's board ultimately backed chief executive John Sculley.",
+          "exact_native_cache_key": "76eb7ba523c24365700d573d9fa050830efe52e2.pkl",
+          "cache_input_text_sha256": "759f5f17d0b9c1097c1328ef074237060bb3d2859437b545f73b45e71e13fb65",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Apple's board ultimately backed chief executive John Sculley.",
+          "exact_native_cache_key": "76eb7ba523c24365700d573d9fa050830efe52e2.pkl",
+          "cache_input_text_sha256": "759f5f17d0b9c1097c1328ef074237060bb3d2859437b545f73b45e71e13fb65",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "297088caf26bb73f",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        93184
+      ],
+      "unprocessed_array_sha256": "efa3e74fb8f5e8a73539ea1576ea9d0b545896ca2990908c8ba180afc3ed040a"
+    },
+    {
+      "exact_native_cache_key": "abe49f40dbc9927ec15c98b75b4bc5976370ba53.pkl",
+      "pkl_sha256": "8e75b43af563448356999e0a2229f8badc7e3afd90089106da5e18e15319818b",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In May 1985,",
+          "exact_native_cache_key": "abe49f40dbc9927ec15c98b75b4bc5976370ba53.pkl",
+          "cache_input_text_sha256": "a3895476f329e6d26fa51d5481a7702895da1d2e8c6d2d66519f4f5a5d271a86",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "8e75b43af5634483",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        43008
+      ],
+      "unprocessed_array_sha256": "01096e425ceb43ca4b1cfe3a96798c8f81e24c7e83f2b79b88dc2273ff59911b"
+    },
+    {
+      "exact_native_cache_key": "16330a0d60aaf9a3d05a494c8a85e7a639247c30.pkl",
+      "pkl_sha256": "e4ab46df23c886b38f7217932a71919eaf31421a4c6d2780f0fbc3a81477fbca",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "after a bruising confrontation,",
+          "exact_native_cache_key": "16330a0d60aaf9a3d05a494c8a85e7a639247c30.pkl",
+          "cache_input_text_sha256": "fd4b7ff239f3f5b2ac8b58c7109b4e2c51d0cfbe3d8854fd7611764680e8fc0f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "e4ab46df23c886b3",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        47104
+      ],
+      "unprocessed_array_sha256": "862058527435bebd9d2a6de9289032756e748b158b827b6073f7a9de045bba39"
+    },
+    {
+      "exact_native_cache_key": "1a25681a6c542e4827e0d1cc942a7f16da50db9b.pkl",
+      "pkl_sha256": "9b6930e6905acf23fc4ca54ba901a74b482a706d2c658b1db399037bc2c4551e",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Steve Jobs, 30, was stripped of his managerial duties at the company he had co-founded.",
+          "exact_native_cache_key": "1a25681a6c542e4827e0d1cc942a7f16da50db9b.pkl",
+          "cache_input_text_sha256": "a413a79b46da3c1b9aeede74e71577a039c66e6230a8f74263df1d000be9d5e9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "9b6930e6905acf23",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        145920
+      ],
+      "unprocessed_array_sha256": "41f47963da4b3faf0a227f1a5078cc49e6d88dfbef408cc44b3d1a83bdabddd0"
+    },
+    {
+      "exact_native_cache_key": "c497955fd611ccf5f59f64ea29f55e704162942f.pkl",
+      "pkl_sha256": "12d2638d367dda7d64d7b71eb9664c1928e43cad26221be1e6feaf4fdb138399",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Steve Jobs, 30,",
+          "exact_native_cache_key": "c497955fd611ccf5f59f64ea29f55e704162942f.pkl",
+          "cache_input_text_sha256": "918422a0f1d07958de4485ddd181b456d1b219386a7fa4888a9ab0847bd2528d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "12d2638d367dda7d",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        35840
+      ],
+      "unprocessed_array_sha256": "659527fb573a568d8552747bddf5213a8a9180576838d2f5d13bc727e8793328"
+    },
+    {
+      "exact_native_cache_key": "0cfdff6999bc53d77783aa0e7bffbeca454ecc3e.pkl",
+      "pkl_sha256": "1d49fc83809124c24555568af9ca32d1e5342da80e17b2469fd684aef3a57200",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "was stripped of his managerial duties at the company he had co-founded.",
+          "exact_native_cache_key": "0cfdff6999bc53d77783aa0e7bffbeca454ecc3e.pkl",
+          "cache_input_text_sha256": "480edb93b2198f56a8becd807997cd3f2bc893cb79b636574294023b11dc3a16",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "was stripped of his managerial duties at the company he had co-founded.",
+          "exact_native_cache_key": "0cfdff6999bc53d77783aa0e7bffbeca454ecc3e.pkl",
+          "cache_input_text_sha256": "480edb93b2198f56a8becd807997cd3f2bc893cb79b636574294023b11dc3a16",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "1d49fc83809124c2",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        109056
+      ],
+      "unprocessed_array_sha256": "41e683d225f0a9f0f5f9536226132b6c0eb093d9b66cc3f9add5afc85bc08fe1"
+    },
+    {
+      "exact_native_cache_key": "2a3ea6cea9c350cde6d94b323f2aa9f7c6c96181.pkl",
+      "pkl_sha256": "feafc6e689c28fe0a43c0de9e30741524357bf6e58fe1bdf547f8300a6a55710",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Steve Jobs,",
+          "exact_native_cache_key": "2a3ea6cea9c350cde6d94b323f2aa9f7c6c96181.pkl",
+          "cache_input_text_sha256": "8d74154bccab66082bf2dabfc565c500dc52b6611cfc6e3bfcaa8360aec44f39",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "feafc6e689c28fe0",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        26624
+      ],
+      "unprocessed_array_sha256": "e570a78d6bd48cd82646ccabf0ad08cb802f2853793822d44e64f11e01e5cd3d"
+    },
+    {
+      "exact_native_cache_key": "49bce2cc6fc7eb4d69f0d10ee2e3039ef29c2893.pkl",
+      "pkl_sha256": "fcd3a77cfa90891d5b85b4967bd610267e2e5a73f52172754a04b4e6002b0e84",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "30,",
+          "exact_native_cache_key": "49bce2cc6fc7eb4d69f0d10ee2e3039ef29c2893.pkl",
+          "cache_input_text_sha256": "150c5e86608de6da78b7057a5b9735c8e28e38870bd72a6abcaca1766627ff78",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "fcd3a77cfa90891d",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        17408
+      ],
+      "unprocessed_array_sha256": "b6d3ea9dbfc3dec5bd697a91568f4881c3046160e4e248d7dde28d70bfd4a823"
+    },
+    {
+      "exact_native_cache_key": "fe3ee2d00a3554794f6bb1ecdf1711cd55144402.pkl",
+      "pkl_sha256": "8e2daa6da9f1e7a23985eb7ac323adbb17e3c4507b4169c8242a7874537b69f2",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "That September, sidelined and alienated, he resigned.",
+          "exact_native_cache_key": "fe3ee2d00a3554794f6bb1ecdf1711cd55144402.pkl",
+          "cache_input_text_sha256": "3ff91e75a796b1291fc3833f08da9ce0aca9526d3e593fae534acef4424370a0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "8e2daa6da9f1e7a2",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        82944
+      ],
+      "unprocessed_array_sha256": "4bd898df9c932813e03a3963f3060790bab678b791d27b6fba3e9cfddf1cd517"
+    },
+    {
+      "exact_native_cache_key": "2b2e2a851539c34b4936f59879d9f1564b07b6ba.pkl",
+      "pkl_sha256": "77692b5a7d14aa2ce3ba24e70aca5a75bc40e29662ea39cbbeefa2c454c1e14f",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "That September,",
+          "exact_native_cache_key": "2b2e2a851539c34b4936f59879d9f1564b07b6ba.pkl",
+          "cache_input_text_sha256": "c38da095cea257c1f74f92549bff7997f6920c072d6c1cb6e3dc64e649957c61",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "77692b5a7d14aa2c",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        25600
+      ],
+      "unprocessed_array_sha256": "05bc0d93e516de930838ae249cbcbf785f43b2b15ee48db4e0830d92bd59c389"
+    },
+    {
+      "exact_native_cache_key": "052401e9ff2cd6ceb6c9e8e8479b4b910e9f65e3.pkl",
+      "pkl_sha256": "4864937216e1338ac91aa3c49faa9c733d97f2d0d490381dfc84a0d7179e4d17",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "sidelined and alienated,",
+          "exact_native_cache_key": "052401e9ff2cd6ceb6c9e8e8479b4b910e9f65e3.pkl",
+          "cache_input_text_sha256": "3b0ba33f680e4cdeec4a790e42a2dfb041025307922f36f1c72f12bf7e94b027",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "4864937216e1338a",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        40448
+      ],
+      "unprocessed_array_sha256": "dac04570dbdace236b10895511353602ee5230d4d850c3a0e60017453c81a093"
+    },
+    {
+      "exact_native_cache_key": "58c84c42c2f35bee5f0a98642fea3387b60d4e2e.pkl",
+      "pkl_sha256": "53638d2ce6f08d9ba138b5031612667bb105d26a7663abf5bf37f07371f5c78a",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "he resigned.",
+          "exact_native_cache_key": "58c84c42c2f35bee5f0a98642fea3387b60d4e2e.pkl",
+          "cache_input_text_sha256": "3658b501af1444502a5d944f2b4abd0cceb67277f4d5a484a10d06ea326e4b39",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "53638d2ce6f08d9b",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        23552
+      ],
+      "unprocessed_array_sha256": "61a55eaa6918c5331b2ed12cb1b6038b0ab9635528c5968c68a56b1614cdae6a"
+    },
+    {
+      "exact_native_cache_key": "ec097b5349c9e696c28fa6f3240d95e6e9ba802f.pkl",
+      "pkl_sha256": "06dd142bc0713002d17c17a0185f50ddff25acb0744a0ed9ad5c1f1c75af961e",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Rewind three decades.",
+          "exact_native_cache_key": "ec097b5349c9e696c28fa6f3240d95e6e9ba802f.pkl",
+          "cache_input_text_sha256": "0e7a1a587341cc4d0a7a110f6480a1d9a1a0d8292fc0ec4d07807df7bd0e8e2c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "06dd142bc0713002",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        34816
+      ],
+      "unprocessed_array_sha256": "bfae1e43d9e4f9b81f6e28acb685471a8419253ddfe54e643238c70b46e4597c"
+    },
+    {
+      "exact_native_cache_key": "971f971b156a58cdeb7fa082c4c5dba42b4a3ec0.pkl",
+      "pkl_sha256": "c5475b4935dfe03b34d499fbc6786fa02e63bdb953b6331b1bd0d38f99aebc13",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Born in San Francisco on 24 February 1955, Jobs was adopted as a newborn.",
+          "exact_native_cache_key": "971f971b156a58cdeb7fa082c4c5dba42b4a3ec0.pkl",
+          "cache_input_text_sha256": "0fe2a172eb538c83b22ea8be5da77fbd7251d0aee66554b21e64a93f5523d7bd",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "c5475b4935dfe03b",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        182784
+      ],
+      "unprocessed_array_sha256": "dfcdaf42eb0b44d3d8f371a06fd11f253cf663aaea9e3f01357b762fb94082b8"
+    },
+    {
+      "exact_native_cache_key": "6eaa02862f627df92b6ba86596490cdf48f1e9f8.pkl",
+      "pkl_sha256": "7ce32ecebfd1661a4f2df9af54b4924a8ee22624b26bf86f955c89327359279c",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Born in San Francisco on 24 February 1955, Jobs",
+          "exact_native_cache_key": "6eaa02862f627df92b6ba86596490cdf48f1e9f8.pkl",
+          "cache_input_text_sha256": "2301a1270e4b75f5c7a281976cf5093884bd72eb653c847da90d96b397e19426",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "7ce32ecebfd1661a",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        136192
+      ],
+      "unprocessed_array_sha256": "e6623be92144d8afbb1acbfdc26c8ffad05fee727038c0076ec46bd996b87062"
+    },
+    {
+      "exact_native_cache_key": "f195364abd7a4dd2329a301faa98c70c3cb6a523.pkl",
+      "pkl_sha256": "1d9c43e476b5f1ad8d17d80782913745130557ce431938d40297d5bcc6143459",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "was adopted as a newborn.",
+          "exact_native_cache_key": "f195364abd7a4dd2329a301faa98c70c3cb6a523.pkl",
+          "cache_input_text_sha256": "308fab8ad142231f823f47731128aeeb2b2f1c1524148a2207bac34820e5b851",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "1d9c43e476b5f1ad",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        45056
+      ],
+      "unprocessed_array_sha256": "318c9e92e3330b9c356341cd2708f6a7e39651108d53e3eeb569b6e597479a8d"
+    },
+    {
+      "exact_native_cache_key": "8f3db3e1b7dd26186b9f41af3304c472591f20f4.pkl",
+      "pkl_sha256": "eea9ca7f4b5b03988a312b90bced52b76c08dab11ca69b325d08ed6117e3c08d",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Born in San Francisco on 24 February 1955,",
+          "exact_native_cache_key": "8f3db3e1b7dd26186b9f41af3304c472591f20f4.pkl",
+          "cache_input_text_sha256": "1f3f43eacf3404ac88c112ac4728f018d3426eec784d19b7e21e33631e6db256",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "eea9ca7f4b5b0398",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        121856
+      ],
+      "unprocessed_array_sha256": "9affd193b4af86c7ef0726eb6426312c984a4de28eceef94add607ef4f8a628a"
+    },
+    {
+      "exact_native_cache_key": "539b5b8caaa0e5c6ba18ef68abb952bf9f2f21d5.pkl",
+      "pkl_sha256": "22f614cc301dffc3b7f773fbbe02f7bd2907721a3f7d7f3267dca4281912213d",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Jobs was adopted as a newborn.",
+          "exact_native_cache_key": "539b5b8caaa0e5c6ba18ef68abb952bf9f2f21d5.pkl",
+          "cache_input_text_sha256": "a9aab34e549e9a2bea1f82d20082c84c9d9ce759220bfe28b92a2e524e10fd91",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "22f614cc301dffc3",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        54784
+      ],
+      "unprocessed_array_sha256": "aedb432adc12b3a7ef97f8c49cf8182f747889c8e810dcfc6af55a1af25e9faf"
+    },
+    {
+      "exact_native_cache_key": "0da812500153719730f52b0b73e59e0d83fb5c7f.pkl",
+      "pkl_sha256": "742316729598d27e1253f16db44c21e1ccfcc17f10db7a77d672c4d6eb1586b5",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "On 1 April 1976 he founded Apple with Steve Wozniak, the electronics engineer behind its first prototypes.",
+          "exact_native_cache_key": "0da812500153719730f52b0b73e59e0d83fb5c7f.pkl",
+          "cache_input_text_sha256": "ded846368a118ac84bf7c2bd7d7cfad37e3f6dd017b6ff896126ed534a962f98",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "742316729598d27e",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        231936
+      ],
+      "unprocessed_array_sha256": "ddbf099b23996da9cc7009ba1196d3de5ede9b2ae8e0a92d0761c13fb76e5f34"
+    },
+    {
+      "exact_native_cache_key": "d90d4473d15c790c7aedb94bd94363fa8d74a44d.pkl",
+      "pkl_sha256": "d96a724109de69858f7566c40d0ef65157abe08e2958bc8067416610804e7496",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "On 1 April 1976 he founded Apple with Steve Wozniak,",
+          "exact_native_cache_key": "d90d4473d15c790c7aedb94bd94363fa8d74a44d.pkl",
+          "cache_input_text_sha256": "6897e24f056f7d5a3e8c9ee2148100c2f159d082be6154d57dd00e671034e773",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "On 1 April 1976 he founded Apple with Steve Wozniak,",
+          "exact_native_cache_key": "d90d4473d15c790c7aedb94bd94363fa8d74a44d.pkl",
+          "cache_input_text_sha256": "6897e24f056f7d5a3e8c9ee2148100c2f159d082be6154d57dd00e671034e773",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "d96a724109de6985",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        131584
+      ],
+      "unprocessed_array_sha256": "c5b85aa375e666187bb5caf9becc75a83de28c290d2c807bde666cdc5d354013"
+    },
+    {
+      "exact_native_cache_key": "67ad2597973dbab37fc436fa4a100ce726d42962.pkl",
+      "pkl_sha256": "6e25b50f10b1cb137491a74c20ed31c01337ad90d1ff24ce25ddc213b826e0de",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "the electronics engineer behind its first prototypes.",
+          "exact_native_cache_key": "67ad2597973dbab37fc436fa4a100ce726d42962.pkl",
+          "cache_input_text_sha256": "58a67cee4e8835664ad0d4a9e42f174de5ef0e81c96d429769e64f9fa9c0eaff",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "the electronics engineer behind its first prototypes.",
+          "exact_native_cache_key": "67ad2597973dbab37fc436fa4a100ce726d42962.pkl",
+          "cache_input_text_sha256": "58a67cee4e8835664ad0d4a9e42f174de5ef0e81c96d429769e64f9fa9c0eaff",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "6e25b50f10b1cb13",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        81408
+      ],
+      "unprocessed_array_sha256": "58fcb63b19f37d61a3d5120618f8ffb0f64875e4c1f1f9c8b234a5a16844220f"
+    },
+    {
+      "exact_native_cache_key": "337bd76de42b6493146c88066f7116fd4fa0ccff.pkl",
+      "pkl_sha256": "59d42f9720a0dd1feacb85204046913a4caab3513d4d334c56f6cb4592558bd1",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Apple's garage origins are largely symbolic; Wozniak calls their significance inflated.",
+          "exact_native_cache_key": "337bd76de42b6493146c88066f7116fd4fa0ccff.pkl",
+          "cache_input_text_sha256": "35b7c6af6c899c142e05f5e9aa6f93da48c9b3997977115c6b93cd235da21204",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "59d42f9720a0dd1f",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        163840
+      ],
+      "unprocessed_array_sha256": "e7a186cd7f7c544abac558ac87946e6292c87e3deb8d5987bde29434d5e22e32"
+    },
+    {
+      "exact_native_cache_key": "d66d3484bd03fa660cf79cd559dfb107274127b7.pkl",
+      "pkl_sha256": "3a6a23237328a825174e1c996659786c0d03df4c7e763716cf4b28b5626526e6",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Apple's garage origins are largely symbolic;",
+          "exact_native_cache_key": "d66d3484bd03fa660cf79cd559dfb107274127b7.pkl",
+          "cache_input_text_sha256": "968ba19ef01df6506ed5301dd31c744b1853b1363919634bf74bab8b14fc1e79",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Apple's garage origins are largely symbolic;",
+          "exact_native_cache_key": "d66d3484bd03fa660cf79cd559dfb107274127b7.pkl",
+          "cache_input_text_sha256": "968ba19ef01df6506ed5301dd31c744b1853b1363919634bf74bab8b14fc1e79",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "3a6a23237328a825",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        79872
+      ],
+      "unprocessed_array_sha256": "ef9aaede45284c09d11a7f38c068e284aac9d0fda2d790ffa73d2b2c14f37396"
+    },
+    {
+      "exact_native_cache_key": "69aefa24980cd9b3baba94a8d90b26d2ee131d50.pkl",
+      "pkl_sha256": "c68479192147699d6c3337c874c70e0351f69e3e4af99ff64924443d0f9fc7cb",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Wozniak calls their significance inflated.",
+          "exact_native_cache_key": "69aefa24980cd9b3baba94a8d90b26d2ee131d50.pkl",
+          "cache_input_text_sha256": "03a8b373a7adf7a936f7822c4e59d58cbdc0741871e45ecbabf7a0c83454f237",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Wozniak calls their significance inflated.",
+          "exact_native_cache_key": "69aefa24980cd9b3baba94a8d90b26d2ee131d50.pkl",
+          "cache_input_text_sha256": "03a8b373a7adf7a936f7822c4e59d58cbdc0741871e45ecbabf7a0c83454f237",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "c68479192147699d",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        66048
+      ],
+      "unprocessed_array_sha256": "404ec49dc563aa2c70c05ede85fbb8695833160e481033dc44ebfa9fd4dfce24"
+    },
+    {
+      "exact_native_cache_key": "ca293a126c3d2c0af3ed62a93c82ea20acf93865.pkl",
+      "pkl_sha256": "9da1916a10522954af2f453bbbc9680c4a48d2e4cf07c436c01e715b504fe258",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Apple floated on 12 December 1980; the flagship Macintosh debuted on 24 January 1984.",
+          "exact_native_cache_key": "ca293a126c3d2c0af3ed62a93c82ea20acf93865.pkl",
+          "cache_input_text_sha256": "749b4c410ae822fed35a99086782b621064c85b168c4b820f4376b1f160cb383",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "9da1916a10522954",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        218112
+      ],
+      "unprocessed_array_sha256": "f6cba5b47abbf3ff40aec19d6b620aa3478e86b2400a4beafd040688f19e6ceb"
+    },
+    {
+      "exact_native_cache_key": "828a31d9facea24d8115153f76dd722e6d465a11.pkl",
+      "pkl_sha256": "c31a50aed4f096ae11c343662062237646d6b78d602185afbc348b8fbb00b57d",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Apple floated on 12 December 1980;",
+          "exact_native_cache_key": "828a31d9facea24d8115153f76dd722e6d465a11.pkl",
+          "cache_input_text_sha256": "27214e905350d2e386281d9dfccf2c1e1397170fe452ef3d5052c1a07b7528f1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Apple floated on 12 December 1980;",
+          "exact_native_cache_key": "828a31d9facea24d8115153f76dd722e6d465a11.pkl",
+          "cache_input_text_sha256": "27214e905350d2e386281d9dfccf2c1e1397170fe452ef3d5052c1a07b7528f1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "c31a50aed4f096ae",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        80896
+      ],
+      "unprocessed_array_sha256": "fcddb9b8fa71a22b6f40d1c895ce0daa8ed103f158cdcb00ba9ba79af2f2eab5"
+    },
+    {
+      "exact_native_cache_key": "d1d4bfc276a01d8c88ebad26f4f3fdeba25c297c.pkl",
+      "pkl_sha256": "321b728fba7ca891f73f685a8cd5a4a4c1bc6f8381bdc35889923b414297b45e",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "the flagship Macintosh debuted on 24 January 1984.",
+          "exact_native_cache_key": "d1d4bfc276a01d8c88ebad26f4f3fdeba25c297c.pkl",
+          "cache_input_text_sha256": "b5f909cacdbe17ec23630406369b5e092641ae0bc29f45d2d5c129336404680d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "the flagship Macintosh debuted on 24 January 1984.",
+          "exact_native_cache_key": "d1d4bfc276a01d8c88ebad26f4f3fdeba25c297c.pkl",
+          "cache_input_text_sha256": "b5f909cacdbe17ec23630406369b5e092641ae0bc29f45d2d5c129336404680d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "321b728fba7ca891",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        132608
+      ],
+      "unprocessed_array_sha256": "2fea36252f29b6742b220ccd37ecf3e90f90bdb8dd3bb67537a8703006c5a91d"
+    },
+    {
+      "exact_native_cache_key": "6aa717321f7ff59755ec943f62e010d11310868b.pkl",
+      "pkl_sha256": "f546f7c43ee2aec7e29e0debb91bada2b04064fc851603bc9b46765dfc45d0de",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Exile proved productive.",
+          "exact_native_cache_key": "6aa717321f7ff59755ec943f62e010d11310868b.pkl",
+          "cache_input_text_sha256": "8670e03e8229f2855de6b8343903ee3a0e1734744ecf045274b90643e81f21dc",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "f546f7c43ee2aec7",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        40960
+      ],
+      "unprocessed_array_sha256": "ad9a30b9e8af024917ab512e6c6f5cf26f091307ff734b745268ca3334c44e2d"
+    },
+    {
+      "exact_native_cache_key": "ba7216a50a0f7fb5a93af8b2a606aac5ed41e6b0.pkl",
+      "pkl_sha256": "65434bafe62f7684e8e3c97541f9adbab7dc115e5df8aebf494698a233ae6240",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Later in 1985 Jobs founded NeXT, a computer start-up.",
+          "exact_native_cache_key": "ba7216a50a0f7fb5a93af8b2a606aac5ed41e6b0.pkl",
+          "cache_input_text_sha256": "321863f118892657e07fbc82a2077ff87e438166fb2ffaeb55771f2268fb4f33",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "65434bafe62f7684",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        118784
+      ],
+      "unprocessed_array_sha256": "f8d0cfbb81566ef1019bc41e89f97b92ac0c49699cd403aa070038d602161440"
+    },
+    {
+      "exact_native_cache_key": "6a97a05dce31efa537224b90aaa01a8408ea027c.pkl",
+      "pkl_sha256": "75291abd027c73f7cafe2be54a75e81259370fe5e82d129e0203e842481c94e2",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Later in 1985",
+          "exact_native_cache_key": "6a97a05dce31efa537224b90aaa01a8408ea027c.pkl",
+          "cache_input_text_sha256": "56538d4a276414561d8d6e2cccca5a65fcbae0664fdb0ac8304b25b6cd8cbbe7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "75291abd027c73f7",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        47616
+      ],
+      "unprocessed_array_sha256": "23a0c424dea17bec6495daca74bc4d36bc447574e7a2cd3a6a8e4b9c51e50447"
+    },
+    {
+      "exact_native_cache_key": "422414c679c860bb46f7aea70668de50127e560d.pkl",
+      "pkl_sha256": "2e5ccdd5aacb5d132635b88101eea3922340d92eedee0f241b3b0e749ffe051d",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Jobs founded NeXT,",
+          "exact_native_cache_key": "422414c679c860bb46f7aea70668de50127e560d.pkl",
+          "cache_input_text_sha256": "2fb1f982c435f37cc64e9547d15200f94b16d48f3ae9c76db0f3fa7758d83987",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "2e5ccdd5aacb5d13",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        33792
+      ],
+      "unprocessed_array_sha256": "64fe4baddfa230d2d90670a5aeeb1714cb173b475a1986276eae224d6873994a"
+    },
+    {
+      "exact_native_cache_key": "fda7a6fd281c923092dbd82d9d278c7a7ec81125.pkl",
+      "pkl_sha256": "debf1900a6a6358af0c7779d482538753f5e219cd8872c7f3d8c8b8706c3e621",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "a computer start-up.",
+          "exact_native_cache_key": "fda7a6fd281c923092dbd82d9d278c7a7ec81125.pkl",
+          "cache_input_text_sha256": "4fbacb68da462d3617a66dbb49a6f86bf5a8202984b11067e5c3592eb858c1d8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a computer start-up.",
+          "exact_native_cache_key": "fda7a6fd281c923092dbd82d9d278c7a7ec81125.pkl",
+          "cache_input_text_sha256": "4fbacb68da462d3617a66dbb49a6f86bf5a8202984b11067e5c3592eb858c1d8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "debf1900a6a6358a",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        34816
+      ],
+      "unprocessed_array_sha256": "9337c88e789eaf7e2f01c10fdc5915001a455d58d8a91eb923535ed1e14fb5ca"
+    },
+    {
+      "exact_native_cache_key": "6cda3d2cadb3bb8a0f2fde09c5758823960039ea.pkl",
+      "pkl_sha256": "0fab3323bf913a664a2ab522eab369046581ea11016df309b54ca5ce787e1397",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Later in 1985 Jobs founded NeXT,",
+          "exact_native_cache_key": "6cda3d2cadb3bb8a0f2fde09c5758823960039ea.pkl",
+          "cache_input_text_sha256": "4ac6151aeb98b7c7f41bd84b5aa0d6583f2492d2850f1d2e2026c89e4cd810f4",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "0fab3323bf913a66",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        83456
+      ],
+      "unprocessed_array_sha256": "57f1bc67c4ad3645017892fa0bff2afbcc8dcac142d25e15979a5e775c31b388"
+    },
+    {
+      "exact_native_cache_key": "7b081bad6927f67ededd415d1dc47ba7bedaa46b.pkl",
+      "pkl_sha256": "acbb0f6b36a8866d7a89bcce254f16d751f9cd99e0571e00c66e6a53a1dabc50",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In February 1986 he acquired Lucasfilm's computer-graphics outfit, which became Pixar.",
+          "exact_native_cache_key": "7b081bad6927f67ededd415d1dc47ba7bedaa46b.pkl",
+          "cache_input_text_sha256": "8b09e6fae5bc0e0dc7cef4f387e120fbba325c66e228eeabd2a0b8631140c8eb",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "acbb0f6b36a8866d",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        173568
+      ],
+      "unprocessed_array_sha256": "1b9118fdbe09b5ac932f3de331f4cc6e7e8c148a95697133a1033479764e6616"
+    },
+    {
+      "exact_native_cache_key": "b584dcff147563ebcc75d34099ca722cede2c569.pkl",
+      "pkl_sha256": "1b4a8b0e5d119d25a7bba133050d2f0fcd157cbb2dc9af055ef7a6c4a08b7e31",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In February 1986 he acquired Lucasfilm's computer-graphics outfit,",
+          "exact_native_cache_key": "b584dcff147563ebcc75d34099ca722cede2c569.pkl",
+          "cache_input_text_sha256": "cf3fb4c0ed7a7710932e7cbfcf09f8e9597da591fcc92afc67b09ae1a64097aa",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In February 1986 he acquired Lucasfilm's computer-graphics outfit,",
+          "exact_native_cache_key": "b584dcff147563ebcc75d34099ca722cede2c569.pkl",
+          "cache_input_text_sha256": "cf3fb4c0ed7a7710932e7cbfcf09f8e9597da591fcc92afc67b09ae1a64097aa",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "1b4a8b0e5d119d25",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        132096
+      ],
+      "unprocessed_array_sha256": "1fef45b2607bf6000da3bdcf5befe6e74fd835077109e3aa85799552ea380ee5"
+    },
+    {
+      "exact_native_cache_key": "4dca7e0155cbbaf0694f703aecc92e5f6de82841.pkl",
+      "pkl_sha256": "5ce8e01da1eae73e639858a6061aa0b3f93192da0d4dadee6a14d1c420efbf54",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "which became Pixar.",
+          "exact_native_cache_key": "4dca7e0155cbbaf0694f703aecc92e5f6de82841.pkl",
+          "cache_input_text_sha256": "f8835a1ceadf67a435fc1dbaa41242e4b2cdf61d63ad9679c6b51519115eaf49",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "which became Pixar.",
+          "exact_native_cache_key": "4dca7e0155cbbaf0694f703aecc92e5f6de82841.pkl",
+          "cache_input_text_sha256": "f8835a1ceadf67a435fc1dbaa41242e4b2cdf61d63ad9679c6b51519115eaf49",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "5ce8e01da1eae73e",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        35328
+      ],
+      "unprocessed_array_sha256": "35b5afc6dce40293617b83de0bc11aad8d769330a4851cf7e73a81db95af97c6"
+    },
+    {
+      "exact_native_cache_key": "d665ca387c256cc1c73c0ac5bf9f787318304184.pkl",
+      "pkl_sha256": "ad65808fe502ddf01359da9bb98f11cf92e3cb98f846d0cbe9bd15f81a8d034a",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "It began as a manufacturer of specialised hardware, not chiefly an animation studio.",
+          "exact_native_cache_key": "d665ca387c256cc1c73c0ac5bf9f787318304184.pkl",
+          "cache_input_text_sha256": "61ebcab032622684a841406389948f2e6a264344ad029294ce3869b45c0f59bd",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "ad65808fe502ddf0",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        145920
+      ],
+      "unprocessed_array_sha256": "d97c87321040dece17e44b30783eef98e562a0d431d3a9ac9b4ffca6a0a48295"
+    },
+    {
+      "exact_native_cache_key": "8adf743a23f769c91dac9500c30dd8f865877eb9.pkl",
+      "pkl_sha256": "33dbfca5d59a6239ceb4bd4381062bade141491946349ce5a42c813fdbbe2e01",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "It began as a manufacturer of specialised hardware,",
+          "exact_native_cache_key": "8adf743a23f769c91dac9500c30dd8f865877eb9.pkl",
+          "cache_input_text_sha256": "ad50d2c27d6473f535f5b45f3c9f14b9f5ebdb8a423f9cb44a388845513840a0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "It began as a manufacturer of specialised hardware,",
+          "exact_native_cache_key": "8adf743a23f769c91dac9500c30dd8f865877eb9.pkl",
+          "cache_input_text_sha256": "ad50d2c27d6473f535f5b45f3c9f14b9f5ebdb8a423f9cb44a388845513840a0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "33dbfca5d59a6239",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        80896
+      ],
+      "unprocessed_array_sha256": "a83be2b1735a539a294df4a202698188b1dffa4cf31819d20a28f752cf02b0b5"
+    },
+    {
+      "exact_native_cache_key": "131595a2d190895f842b2dafd74ee46a69e94358.pkl",
+      "pkl_sha256": "dab7f56a240020a35339b3460d2f65692aed8f24fd8d8c712c66fd4b66e3f22f",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "not chiefly an animation studio.",
+          "exact_native_cache_key": "131595a2d190895f842b2dafd74ee46a69e94358.pkl",
+          "cache_input_text_sha256": "7fc6adf74cb6563ec44cd5a387efa59b9143a2227df281686ffc1d2f8805c5cd",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "not chiefly an animation studio.",
+          "exact_native_cache_key": "131595a2d190895f842b2dafd74ee46a69e94358.pkl",
+          "cache_input_text_sha256": "7fc6adf74cb6563ec44cd5a387efa59b9143a2227df281686ffc1d2f8805c5cd",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "dab7f56a240020a3",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        54784
+      ],
+      "unprocessed_array_sha256": "cfdfc9884e0f97e3e67c5b248fb22d965dda0e53ba2d649a6cdd461fbc9c5825"
+    },
+    {
+      "exact_native_cache_key": "47e9b31cea3fafb4775415e86caa76165e337b7b.pkl",
+      "pkl_sha256": "e3ceb8df567f08458308ae237a7ce5d494ebcf442cee42474e0f270feb6639b7",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Toy Story, released on 22 November 1995, was the first feature-length computer-animated film.",
+          "exact_native_cache_key": "47e9b31cea3fafb4775415e86caa76165e337b7b.pkl",
+          "cache_input_text_sha256": "08a7485b39730b841f88da08c6dbd93adf37273280c61f2b4b7ae9207c564320",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "e3ceb8df567f0845",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        209920
+      ],
+      "unprocessed_array_sha256": "20e273ba5737976ba6890684c44caff6cb3b37a9a7e6946d3d8abe8fac6efdd7"
+    },
+    {
+      "exact_native_cache_key": "36f8b05ab1eb7f959f2f9f4f758ce59c190875f0.pkl",
+      "pkl_sha256": "4a8c08f52b442e20f4646d552841dcdf56c3cf95e2754145162dd2ab0abe3b16",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Toy Story, released on 22 November 1995,",
+          "exact_native_cache_key": "36f8b05ab1eb7f959f2f9f4f758ce59c190875f0.pkl",
+          "cache_input_text_sha256": "3a5aca987e0e5b24facc3e3954025c67b2bacfe9f27a008097e5e6af0fc3fee5",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "4a8c08f52b442e20",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        115712
+      ],
+      "unprocessed_array_sha256": "65ede3f8f9f6692052acd2aadaa95bd71142babeda9068e90caa6d8b35ecce01"
+    },
+    {
+      "exact_native_cache_key": "fb5a33dd5acb87cab7d5292a0cea435a96aa804a.pkl",
+      "pkl_sha256": "eddf15d95e1dc0f8a4a00f653902f7a3165812a41ca4316af00475424609a245",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "was the first feature-length computer-animated film.",
+          "exact_native_cache_key": "fb5a33dd5acb87cab7d5292a0cea435a96aa804a.pkl",
+          "cache_input_text_sha256": "b79e2fb87572ac98e05d255c88054d1b9bb10477fa355d7db7d8eaf958597018",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "was the first feature-length computer-animated film.",
+          "exact_native_cache_key": "fb5a33dd5acb87cab7d5292a0cea435a96aa804a.pkl",
+          "cache_input_text_sha256": "b79e2fb87572ac98e05d255c88054d1b9bb10477fa355d7db7d8eaf958597018",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "eddf15d95e1dc0f8",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        73216
+      ],
+      "unprocessed_array_sha256": "8b94401d75bda201b5ecd9cb492656063ab08874643608b51b8bb54599f8ce01"
+    },
+    {
+      "exact_native_cache_key": "6acf1a3fda4f187d4ce3afdef4a70e5df58a1892.pkl",
+      "pkl_sha256": "0e4802a0fac27ff8afe136fc1a8480b22cac2c98f852e986144a40a82a841360",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Toy Story,",
+          "exact_native_cache_key": "6acf1a3fda4f187d4ce3afdef4a70e5df58a1892.pkl",
+          "cache_input_text_sha256": "ae7ac8eb0f2f2abdec1121d34d5d6f898ea80e4c5eb8b2a0f6c05f82ba8114ea",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "0e4802a0fac27ff8",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        23040
+      ],
+      "unprocessed_array_sha256": "2a08b2fffd4efad87c7ae682bbd002c57ef66d8e5ebb4636e5641b0ce242f6e6"
+    },
+    {
+      "exact_native_cache_key": "831c5a6dcece418a669bb830ce4ce5b60e0406bc.pkl",
+      "pkl_sha256": "9ff24e6c7c4ce5e492e63f7527634eecb0551e1439fa5f3103dfe7f73e4fdf0d",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "released on 22 November 1995,",
+          "exact_native_cache_key": "831c5a6dcece418a669bb830ce4ce5b60e0406bc.pkl",
+          "cache_input_text_sha256": "c01aa545ebd576544295afef58e4f2adfa01bc76bacac1cd5646f60afef422e7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "9ff24e6c7c4ce5e4",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        94720
+      ],
+      "unprocessed_array_sha256": "4ade21412ec540fe17a87c7c36f6fd7a810f7e2df5583bee353c28853ead2c57"
+    },
+    {
+      "exact_native_cache_key": "ee099319d7c5c4159f256f049e8bcd8f1aef6c63.pkl",
+      "pkl_sha256": "45df882abf5ac1508ea31d4a6f40979ee1d5ccb6faaf597afb85fed2f4557fd6",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The reversal came on 20 December 1996: Apple agreed to buy NeXT, gaining the core software of the eventual Mac OS X and reuniting with its estranged co-founder.",
+          "exact_native_cache_key": "ee099319d7c5c4159f256f049e8bcd8f1aef6c63.pkl",
+          "cache_input_text_sha256": "fe48ea0be805b75efbc23025f1f72e337bac51371c9fc7d0c3052ee283b7c6ae",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "45df882abf5ac150",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        329728
+      ],
+      "unprocessed_array_sha256": "ba7e68fe6f3c74b0563d9cd778a7d52452135aa3bfdbfee4f49a3090ecd9422e"
+    },
+    {
+      "exact_native_cache_key": "6a36855e6630201a7a352bbd89f136c7e131089e.pkl",
+      "pkl_sha256": "d500f23a50b17f4c1de9baebbc63258d12689f33fa946568363519b17023d5ac",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "The reversal came on 20 December 1996:",
+          "exact_native_cache_key": "6a36855e6630201a7a352bbd89f136c7e131089e.pkl",
+          "cache_input_text_sha256": "79fbba8def396180db297593bb6e84c4340281ffbc2297bcfb61b12baa7d9dde",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "The reversal came on 20 December 1996:",
+          "exact_native_cache_key": "6a36855e6630201a7a352bbd89f136c7e131089e.pkl",
+          "cache_input_text_sha256": "79fbba8def396180db297593bb6e84c4340281ffbc2297bcfb61b12baa7d9dde",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "d500f23a50b17f4c",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        98304
+      ],
+      "unprocessed_array_sha256": "aeb470bccfbdf4c94861886617057a74a4d91d3b6dfaefbffafae5c1f6cc4212"
+    },
+    {
+      "exact_native_cache_key": "5da440af01f777cf51bc0ad5bf762673f3348e9e.pkl",
+      "pkl_sha256": "524c03c6224bf2c05e50980ff529ad00d56edc75e07db14853513c7ff788f41f",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Apple agreed to buy NeXT,",
+          "exact_native_cache_key": "5da440af01f777cf51bc0ad5bf762673f3348e9e.pkl",
+          "cache_input_text_sha256": "ef4f390fc48d472bb989697924033b327c6b1235c19f4225b42153f224d2a226",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Apple agreed to buy NeXT,",
+          "exact_native_cache_key": "5da440af01f777cf51bc0ad5bf762673f3348e9e.pkl",
+          "cache_input_text_sha256": "ef4f390fc48d472bb989697924033b327c6b1235c19f4225b42153f224d2a226",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "524c03c6224bf2c0",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        40448
+      ],
+      "unprocessed_array_sha256": "6a4247f398f7b7e178e45d5009ed68388c072fe17b154fe89c84612231267eb2"
+    },
+    {
+      "exact_native_cache_key": "854e8dc2030277334badff8e39b346dc28e7d7e6.pkl",
+      "pkl_sha256": "0fc319dd0860106194cdaade5db4c26c293caaa64f45e607aab403d272ab7030",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "gaining the core software of the eventual Mac OS X",
+          "exact_native_cache_key": "854e8dc2030277334badff8e39b346dc28e7d7e6.pkl",
+          "cache_input_text_sha256": "2f158d796f806ee6b7be42b7fd00481c4b641432a2a79816be42acdb90964d91",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "0fc319dd08601061",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        81408
+      ],
+      "unprocessed_array_sha256": "328fec410a1e639973ec92db65fa66d4e8acc6bdc02be3b2ddc8c4f0fa7f10d2"
+    },
+    {
+      "exact_native_cache_key": "6cd0a79773fbe6f3ac566e2deb467d6afc7cadbd.pkl",
+      "pkl_sha256": "485790200dd5d4431d495910a54ef14257eaef007e6db5fd8e8f746d1eb27a46",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": 4,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and reuniting with its estranged co-founder.",
+          "exact_native_cache_key": "6cd0a79773fbe6f3ac566e2deb467d6afc7cadbd.pkl",
+          "cache_input_text_sha256": "c349a126ad3a71cc7f6c7678d9b71b7d0a6d0c431dc9d3da81d0ac247f87c252",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "485790200dd5d443",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        68608
+      ],
+      "unprocessed_array_sha256": "12d7ce9cdb6e24039b80e3372aec0c196ef5f5866bdee8c342b6f9704d45f171"
+    },
+    {
+      "exact_native_cache_key": "4fb1708668b9985d9d07d4f4df544c1b02fb77db.pkl",
+      "pkl_sha256": "e706a77b8cc29709b1c33e42fcfe9b88acea4188fdcf28e9bdc2b7e4947ac9cb",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "gaining the core software of the eventual Mac OS X and reuniting with its estranged co-founder.",
+          "exact_native_cache_key": "4fb1708668b9985d9d07d4f4df544c1b02fb77db.pkl",
+          "cache_input_text_sha256": "3994160d5d6474b83a3a1b0c4d9e5125eabb4574dd7f19625306d24ceb8beff3",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "e706a77b8cc29709",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        167936
+      ],
+      "unprocessed_array_sha256": "c8d1c62e50f40892a4edff8d58b5c6e811e759fe9c1150beacd2455171e8b849"
+    },
+    {
+      "exact_native_cache_key": "3564cabd466686c3d5867c1f4d67e7c39119445e.pkl",
+      "pkl_sha256": "22a82be8861e9744a8fc743f849ad8a87eac5fcd2ea754637e8314c585339c64",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In August 1997 Microsoft invested $150 million in its distressed competitor; that September Jobs took the reins as interim chief.",
+          "exact_native_cache_key": "3564cabd466686c3d5867c1f4d67e7c39119445e.pkl",
+          "cache_input_text_sha256": "258897a3a67aa24f449531b43b87e21c3c45ee47ed0b511a063dede059fb4a15",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "22a82be8861e9744",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        281600
+      ],
+      "unprocessed_array_sha256": "7d7261d6fbefb03495a08b26b5a0f76f3d2902ca41b735e4807fad415f3e435c"
+    },
+    {
+      "exact_native_cache_key": "05a6014a321697bd7fefaac67ea07457c92750ea.pkl",
+      "pkl_sha256": "f79278815a0557e32b14a14d736e2fc67e42cb91214ca4244f6bcb150e01d42f",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In August 1997 Microsoft invested $150 million in its distressed competitor;",
+          "exact_native_cache_key": "05a6014a321697bd7fefaac67ea07457c92750ea.pkl",
+          "cache_input_text_sha256": "f47eff15614a2265c812ea8cc43952659caa8d47c3ef6c1192ebb5daed702d2b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In August 1997 Microsoft invested $150 million in its distressed competitor;",
+          "exact_native_cache_key": "05a6014a321697bd7fefaac67ea07457c92750ea.pkl",
+          "cache_input_text_sha256": "f47eff15614a2265c812ea8cc43952659caa8d47c3ef6c1192ebb5daed702d2b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "f79278815a0557e3",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        191488
+      ],
+      "unprocessed_array_sha256": "c2c10213a84fb44752ea3a661b207c438880110317579831cf442eef146ecfc4"
+    },
+    {
+      "exact_native_cache_key": "0e924a08a28ca887f01a23fccd5a3165e97a9cf7.pkl",
+      "pkl_sha256": "1dfbf87317c97a6ef67b986d7e18addd3ec3874725b51dbc60ef112b377ff629",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "that September Jobs took the reins as interim chief.",
+          "exact_native_cache_key": "0e924a08a28ca887f01a23fccd5a3165e97a9cf7.pkl",
+          "cache_input_text_sha256": "945eeb9a056ec3fa907251cc2a3d371a11a24237c9a3b285add2f826a1fea503",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "that September Jobs took the reins as interim chief.",
+          "exact_native_cache_key": "0e924a08a28ca887f01a23fccd5a3165e97a9cf7.pkl",
+          "cache_input_text_sha256": "945eeb9a056ec3fa907251cc2a3d371a11a24237c9a3b285add2f826a1fea503",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "1dfbf87317c97a6e",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        78848
+      ],
+      "unprocessed_array_sha256": "37827b02b7a4b22af10f6b8e1ff221f50bd1a04faacd77206d8c16f8671ba919"
+    },
+    {
+      "exact_native_cache_key": "ccb9fddc3511d31dff6cad74ca3efd8154964cef.pkl",
+      "pkl_sha256": "f4f234e5cd985990d63c901d2d07396cd216d29d08a5d8edec8d8534f5f6599a",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S16",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Apple, he later said, had been weeks from ruin.",
+          "exact_native_cache_key": "ccb9fddc3511d31dff6cad74ca3efd8154964cef.pkl",
+          "cache_input_text_sha256": "a716195f3b1fe3058fa567811a35190d9b8bedfd455cae624572460314b30932",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "f4f234e5cd985990",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        66560
+      ],
+      "unprocessed_array_sha256": "d73fcb82bb9611504cd3a2e47c0ff14356aafa2f0f202da2d1d1a68128dad8d5"
+    },
+    {
+      "exact_native_cache_key": "7aa9b077f84046a15819284969fb999b8bd009a2.pkl",
+      "pkl_sha256": "95dc0f50ede28bea99123b4cb18bbbb607d01648dc50335b4e682094784bab0f",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S16",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Apple he later said,",
+          "exact_native_cache_key": "7aa9b077f84046a15819284969fb999b8bd009a2.pkl",
+          "cache_input_text_sha256": "45d19d13182d682f90cd5312e777e8ce6c3ad8c08bf15c4f82f5780d250582d7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "95dc0f50ede28bea",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        30720
+      ],
+      "unprocessed_array_sha256": "30d3d9473385068f26ae62b8448fa50ceca757febc7675ec6d197837742f0319"
+    },
+    {
+      "exact_native_cache_key": "3c96ecd7949afd273d10f6c7b7c45f4bef39600c.pkl",
+      "pkl_sha256": "37b38ad0852143b5df732f5b8f1ac3519066b128a7e4c12fd605f0dcb37a077f",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S16",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "had been weeks from ruin.",
+          "exact_native_cache_key": "3c96ecd7949afd273d10f6c7b7c45f4bef39600c.pkl",
+          "cache_input_text_sha256": "3bf75faa4f3b87979cfa1f11e75111162abc417162d7b36e12244cbf508fe3dc",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "37b38ad0852143b5",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        34816
+      ],
+      "unprocessed_array_sha256": "74e0c14a86a8348cbdeba733ea1c73aca90cc87d68bce86137563ed98d934eda"
+    },
+    {
+      "exact_native_cache_key": "ada54f93492c0b7f6d07d6d799bcb267ee32786d.pkl",
+      "pkl_sha256": "2dae025a9db851cf478a8b617ac4a947cf3ef47c3301a6abf40e15f32dcd0f39",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The iMac, iPod, and iPhone followed, the iPhone showcased on 9 January 2007.",
+          "exact_native_cache_key": "ada54f93492c0b7f6d07d6d799bcb267ee32786d.pkl",
+          "cache_input_text_sha256": "83d1e7a2bb03a2a13ec4238c0b0676ffca7f985b487e82fd5ba45dfeef53f7ce",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "2dae025a9db851cf",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        183808
+      ],
+      "unprocessed_array_sha256": "e750483bbe4ab031f5b13d7e255aae7dcf3c1904bccb54e17ed29015dd292c92"
+    },
+    {
+      "exact_native_cache_key": "d6dab232cd3e360ed60b593d99a451e16500bf09.pkl",
+      "pkl_sha256": "f22cb18d2bbad9d1b0fd41adc578d090df29853513144c2935ec696b9ac2debc",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "The iMac, iPod, and iPhone followed,",
+          "exact_native_cache_key": "d6dab232cd3e360ed60b593d99a451e16500bf09.pkl",
+          "cache_input_text_sha256": "9cf8db198d6f867fae766374bd7cb2e33923355d7608a9d0f8e4d87fbe3bed9f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "f22cb18d2bbad9d1",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        65024
+      ],
+      "unprocessed_array_sha256": "de43a722ac50a573528a23440b8995c21b1bc8a18ac0b69e819c608b2017b3c7"
+    },
+    {
+      "exact_native_cache_key": "6b8aceb076375dc131def84ce6a45328844adb02.pkl",
+      "pkl_sha256": "648775f71bb4bc5ae5d76144bdc84dfd694f3b6f5bc14ea58e5eeae35d9a7192",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "the iPhone showcased on 9 January 2007.",
+          "exact_native_cache_key": "6b8aceb076375dc131def84ce6a45328844adb02.pkl",
+          "cache_input_text_sha256": "4567375c8dc2e4f38b2c0cac2bb9661acb3a9887921f971e5c3a26a942118d45",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "the iPhone showcased on 9 January 2007.",
+          "exact_native_cache_key": "6b8aceb076375dc131def84ce6a45328844adb02.pkl",
+          "cache_input_text_sha256": "4567375c8dc2e4f38b2c0cac2bb9661acb3a9887921f971e5c3a26a942118d45",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "648775f71bb4bc5a",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        104448
+      ],
+      "unprocessed_array_sha256": "a0108dfa5b8ac44fbb974ae2a7b3ae0f3399457331d7c6b3a7326d0bd0581acc"
+    },
+    {
+      "exact_native_cache_key": "e5052706604b56b53d2b7afc920251b7f11da766.pkl",
+      "pkl_sha256": "b339f1f77d2bb643456e4e1d1bb4815c9dc80eff486b2a9eff18591c5302c291",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "The iMac,",
+          "exact_native_cache_key": "e5052706604b56b53d2b7afc920251b7f11da766.pkl",
+          "cache_input_text_sha256": "f0dc0a57d421c1e412eb2ae4e35253d072fca0142e4854a835b37d53afd58781",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "b339f1f77d2bb643",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        23552
+      ],
+      "unprocessed_array_sha256": "0a5916eb216152693c99b477920c3ab334d8de60c454fa18e8c528c4ccf131e5"
+    },
+    {
+      "exact_native_cache_key": "eab2f5bebba35509fad9826d0f05c0702629a134.pkl",
+      "pkl_sha256": "4dfdc42b03d8c3a53b9193fba03fccb4c95625b0933d508b4d6dd802c1170e74",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "iPod,",
+          "exact_native_cache_key": "eab2f5bebba35509fad9826d0f05c0702629a134.pkl",
+          "cache_input_text_sha256": "bcebc00ca4bcc96d0cc29e7e0ea1bf837b47a68130cdb7f89ebfa5ec6d774188",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "4dfdc42b03d8c3a5",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        23040
+      ],
+      "unprocessed_array_sha256": "e2044150eea258650b7fceb2877fdc51076ced325e9735e61d5250f8f0170e7c"
+    },
+    {
+      "exact_native_cache_key": "a0533e464281c3a608fde643212a4643e5166eab.pkl",
+      "pkl_sha256": "62d30740f5baf2b5f7c92ab3f47650934e076b50ce06dde01746f93368a74499",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and iPhone followed,",
+          "exact_native_cache_key": "a0533e464281c3a608fde643212a4643e5166eab.pkl",
+          "cache_input_text_sha256": "4bde958956e8d2989b6091d5a2dda35c044fa2275771b125fad924d57220faa0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "62d30740f5baf2b5",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        35840
+      ],
+      "unprocessed_array_sha256": "637a224b5ec714fe1f37709f989f921936447b9cfc8faaaaa66f1160afda972f"
+    },
+    {
+      "exact_native_cache_key": "7a80e76611abe67429222db1477f7819c2a9d483.pkl",
+      "pkl_sha256": "751210f0bb41d8d6a0c10602489e42ae330a3fdf518687c00b5d806eb0ba2914",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S18",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In October 2003 Jobs received a diagnosis: an uncommon, cancerous pancreatic tumour.",
+          "exact_native_cache_key": "7a80e76611abe67429222db1477f7819c2a9d483.pkl",
+          "cache_input_text_sha256": "e887842776952595acfaa7b127cb338705f9e7afe1d96360ec590c9657cdf365",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "751210f0bb41d8d6",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        179200
+      ],
+      "unprocessed_array_sha256": "ecbfc28680bcae4ffd678da8bf5d4d3a4fea3a54a53e8371267af7d93c079fb5"
+    },
+    {
+      "exact_native_cache_key": "1a2c7d4d3c2ca95ce8e8253726d017a5abae1b9e.pkl",
+      "pkl_sha256": "37aa5ca423a6067f3f6abbdaa097a54ae340913ab70b0a042507c33c2dc8347f",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S18",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In October 2003 Jobs received a diagnosis:",
+          "exact_native_cache_key": "1a2c7d4d3c2ca95ce8e8253726d017a5abae1b9e.pkl",
+          "cache_input_text_sha256": "2ce408f40090692bae75bbedf48176dd0fa793568a9bd7e78f90ab8765862a07",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S18",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In October 2003 Jobs received a diagnosis:",
+          "exact_native_cache_key": "1a2c7d4d3c2ca95ce8e8253726d017a5abae1b9e.pkl",
+          "cache_input_text_sha256": "2ce408f40090692bae75bbedf48176dd0fa793568a9bd7e78f90ab8765862a07",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "37aa5ca423a6067f",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        98304
+      ],
+      "unprocessed_array_sha256": "6c7d016094c5784aa269a61fcf7f9ad3210f328ec47aa6afc8bc00c049b484a2"
+    },
+    {
+      "exact_native_cache_key": "024cb929e31db01bd3cfc4b7c2eb52337e6ea0a5.pkl",
+      "pkl_sha256": "9a27536df9fcba9514b293a86088f76d6b5b60370cbbd1cbf96fdb792ca3d656",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S18",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "an uncommon, cancerous pancreatic tumour.",
+          "exact_native_cache_key": "024cb929e31db01bd3cfc4b7c2eb52337e6ea0a5.pkl",
+          "cache_input_text_sha256": "e8f418e0463a9f3780d42abcf1e7622c749bcffd9c507c09aeaa03495608738a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "9a27536df9fcba95",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        65536
+      ],
+      "unprocessed_array_sha256": "ddf0eb73c645f8ae3e433f3f633e66e7d360a89cdfb89e8828f13968dfb69588"
+    },
+    {
+      "exact_native_cache_key": "bb331be19e297179f7317f6711f4004f12aa9cbe.pkl",
+      "pkl_sha256": "23c7a7eeb5e12ca971a441fe5e40b8cde8b79d078eb7e3b42736bc8ddc164522",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S18",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "an uncommon,",
+          "exact_native_cache_key": "bb331be19e297179f7317f6711f4004f12aa9cbe.pkl",
+          "cache_input_text_sha256": "f85bdd894b7b4b270adccdc9ea01c6fef078660ee584c69045263cc4ff9b7def",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "23c7a7eeb5e12ca9",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        25088
+      ],
+      "unprocessed_array_sha256": "e7616cc6309cc089ed8b0220ccc6b0d07778397387ec01f5cea6bcc10f05a355"
+    },
+    {
+      "exact_native_cache_key": "04d3294e617f3acaf2f2fafd7b1dcf469539daec.pkl",
+      "pkl_sha256": "7351baad2d7fcaf047d0543d3a178610c23d95eb4cdc31f619a4f55a631dd622",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S18",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "cancerous pancreatic tumour.",
+          "exact_native_cache_key": "04d3294e617f3acaf2f2fafd7b1dcf469539daec.pkl",
+          "cache_input_text_sha256": "98e7fe575d950e44889cf693c5dc2e4e0df581bc8037ad80da95ea6e76306709",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "7351baad2d7fcaf0",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        44544
+      ],
+      "unprocessed_array_sha256": "08f091c7359319d7a3a99746859e203638fa7b5572e535dfdf834d6642c2b68c"
+    },
+    {
+      "exact_native_cache_key": "c4a07d2b1a9ccd8fe2b9759a5651fef94f954568.pkl",
+      "pkl_sha256": "0644e6cd9feafb6725374336695f20b02985f65c52e453e81db6879df96f2201",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S19",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In August 2011 Apple briefly overtook Exxon Mobil as the world's most valuable company.",
+          "exact_native_cache_key": "c4a07d2b1a9ccd8fe2b9759a5651fef94f954568.pkl",
+          "cache_input_text_sha256": "98c7863230a1800f69cb1d439859538726d2a60d68b8427f7c598c9cb46bc2e2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "0644e6cd9feafb67",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        173056
+      ],
+      "unprocessed_array_sha256": "2585b0df0b9b9b560623cbea0186e9ae08e7ee8831ab7e407ddc8a543d15eacc"
+    },
+    {
+      "exact_native_cache_key": "a64ce9a04ab6036079ff3209d54c4c2eb1c86e09.pkl",
+      "pkl_sha256": "0b8f6d8be0c2c7b8f29db7c89c0afdcc717778b6b8c2be2259b1bfade6da149d",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S19",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In August 2011 Apple briefly overtook Exxon Mobil",
+          "exact_native_cache_key": "a64ce9a04ab6036079ff3209d54c4c2eb1c86e09.pkl",
+          "cache_input_text_sha256": "cb6fa097adecaeae98326a0743ae51de01c73b2c9dd958564e767194282fa0d0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "0b8f6d8be0c2c7b8",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        106496
+      ],
+      "unprocessed_array_sha256": "004941680cad94730a087c4599684edc2c819f521a70f05c68822889fa601121"
+    },
+    {
+      "exact_native_cache_key": "230ad8b55441fe4039d73aecea00fbd3fd494fee.pkl",
+      "pkl_sha256": "df654a016dfd75821ae6b2014656329bc8ccb0a773448c5b91dd5d78bbedcded",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S19",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "as the world's most valuable company.",
+          "exact_native_cache_key": "230ad8b55441fe4039d73aecea00fbd3fd494fee.pkl",
+          "cache_input_text_sha256": "3622067cc4d63295e45e67f2db3ba0ba87ec155529c4c04fe1b046e3677271fb",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "df654a016dfd7582",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        56832
+      ],
+      "unprocessed_array_sha256": "6bedc4109861295de5b316d45485b57f4ebe9814ebfa670a579a55f050765d40"
+    },
+    {
+      "exact_native_cache_key": "8a131387aa7fc266229cd7c4ca89cb75d5dfc453.pkl",
+      "pkl_sha256": "01c1d2af3d278180a8ee6b2b645c9798087546e3c8e1b866232ec47c7bca5e5b",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S20",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "His tenure ended on 24 August 2011; he died on 5 October 2011, aged 56.",
+          "exact_native_cache_key": "8a131387aa7fc266229cd7c4ca89cb75d5dfc453.pkl",
+          "cache_input_text_sha256": "6a03907c55952f53700bba07e83a1f2142007d1a492f3311c2eebb3ac7610138",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "01c1d2af3d278180",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        222208
+      ],
+      "unprocessed_array_sha256": "95d3e48f8d88d7f2a624456aa599d34b596f7cdbeed0dabc3c683572f09a7067"
+    },
+    {
+      "exact_native_cache_key": "973f9e1601f8e3ec876851424762628cc7c03cb0.pkl",
+      "pkl_sha256": "abf10a443dde9946bff59fb40395f2d2427ef6eb82d22711cff5495bf9434614",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S20",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "His tenure ended on 24 August 2011;",
+          "exact_native_cache_key": "973f9e1601f8e3ec876851424762628cc7c03cb0.pkl",
+          "cache_input_text_sha256": "a206a115f50a64a03c5e4fd5e52b682b149aa040179d1e5191a96dff1c3a31a4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S20",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "His tenure ended on 24 August 2011;",
+          "exact_native_cache_key": "973f9e1601f8e3ec876851424762628cc7c03cb0.pkl",
+          "cache_input_text_sha256": "a206a115f50a64a03c5e4fd5e52b682b149aa040179d1e5191a96dff1c3a31a4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "abf10a443dde9946",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        98304
+      ],
+      "unprocessed_array_sha256": "fdd87d0ebb491d38174e7f16b75979ca693d172e70518b92b844d2182991435e"
+    },
+    {
+      "exact_native_cache_key": "d777905e7aa7a44bd46ab4771df459e5a021c3b5.pkl",
+      "pkl_sha256": "d64170b4cd94ddefa21b7244fba904a48b705d47faf86607b24dc96e5edb4dee",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S20",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "he died on 5 October 2011, aged 56.",
+          "exact_native_cache_key": "d777905e7aa7a44bd46ab4771df459e5a021c3b5.pkl",
+          "cache_input_text_sha256": "5a6ed81f2aa4aa3d15c2f66337bc25fc9c6671dd9ba8fd11fac113094b9d0171",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "d64170b4cd94ddef",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        108544
+      ],
+      "unprocessed_array_sha256": "528c8974e80b3508a9154912ffa46b5290363ebd41c82eb0a3bb4494f5cf078c"
+    },
+    {
+      "exact_native_cache_key": "1c6ff17bd6b046bb5b0cbc1ce94cba72e8e620e3.pkl",
+      "pkl_sha256": "680dfe14e0d8ec02f0b52207f5357ca71947aaa06eea9fd6a7a24d8ce6127b3b",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S20",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "he died on 5 October 2011,",
+          "exact_native_cache_key": "1c6ff17bd6b046bb5b0cbc1ce94cba72e8e620e3.pkl",
+          "cache_input_text_sha256": "9c70c68d3780da66da3d05a80103b43dca1f914317e9c57681262ab50c946f71",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "680dfe14e0d8ec02",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        76288
+      ],
+      "unprocessed_array_sha256": "413a531ccf4223a87904670a94ed0ecfa4bd28b4909fdf7165d1e12d41a2ebd4"
+    },
+    {
+      "exact_native_cache_key": "1ca5f2d0b24f66c98e16f5eed20ebefdb3d5695d.pkl",
+      "pkl_sha256": "d0cef5d960e0709f85580b49b3ad92839153e7bb386a029f0675cf88f9739817",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S20",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "aged 56.",
+          "exact_native_cache_key": "1ca5f2d0b24f66c98e16f5eed20ebefdb3d5695d.pkl",
+          "cache_input_text_sha256": "20ef74e8284a0a1962ebc705833c76de78de5a5e37f1203e3c73f11b09e36b24",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "d0cef5d960e0709f",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        29696
+      ],
+      "unprocessed_array_sha256": "d6e3bba77b15dca70adbea4f56233f2a0d357b760a30867e445a39d6c5848557"
+    },
+    {
+      "exact_native_cache_key": "12d3128ecb639866d6f1f937fcb64fcbdd4ec7bd.pkl",
+      "pkl_sha256": "8d05389009fb1be91fea7458c47b454b9dde79b4fdd53bd4cbb66c9479c8ba93",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S21",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "He had spent nearly fourteen years at the helm of the company that ousted him.",
+          "exact_native_cache_key": "12d3128ecb639866d6f1f937fcb64fcbdd4ec7bd.pkl",
+          "cache_input_text_sha256": "d8410bfd4cb9029e4ebe8fa36b54ebc9b26549458889fd6b9a00664fc11a520a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "8d05389009fb1be9",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        108544
+      ],
+      "unprocessed_array_sha256": "8103dfc0cf4ffd899c35ac131c8cd5d3608d6052ed22feebc259116b3acf4c17"
+    }
+  ],
+  "missing_reference_key_count": 1,
+  "observed_missing_keys_covered": [],
+  "new_private_cache_names": [
+    "7aa9b077f84046a15819284969fb999b8bd009a2.pkl",
+    "7aa9b077f84046a15819284969fb999b8bd009a2.pkl.单线程"
+  ],
+  "native_single_thread_marker_verified": true,
+  "single_thread_sessions": [
+    {
+      "intra_op_num_threads": 1,
+      "inter_op_num_threads": 1
+    },
+    {
+      "intra_op_num_threads": 1,
+      "inter_op_num_threads": 1
+    }
+  ],
+  "models_sha256": {
+    "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+    "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+    "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+  },
+  "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+  "existing_private_cache_count": 11528,
+  "existing_private_cache_inventory_sha256_before": "ad86f5be2512a4bfbd4c989f17c0b57be931dee51758885a45a0bddda1c9cc82",
+  "existing_private_cache_inventory_sha256_after": "ad86f5be2512a4bfbd4c989f17c0b57be931dee51758885a45a0bddda1c9cc82",
+  "existing_private_cache_bytes_unchanged": true,
+  "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+  "public_repository_cache_unchanged": true,
+  "producer_pcm_existed_before": false,
+  "producer_pcm_sha256_before": null,
+  "producer_pcm_sha256_after": null,
+  "accepted_aac_adts_sha256_before": "e68a0dd1514bb41bbf798893ad6b8855212c6755bd19efc6b580af26ec816b3a",
+  "accepted_aac_adts_sha256_after": "e68a0dd1514bb41bbf798893ad6b8855212c6755bd19efc6b580af26ec816b3a",
+  "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+  "private_cache_exported": false
+}

@@ -1,0 +1,212 @@
+{
+  "kind": "actual-three-specific-spoken-comma-original-six-mother-cache-readback-contract",
+  "actual_native_run": 43638178374,
+  "cache_key": "Linux-three-spoken-comma-reference-43638178374",
+  "cache_key_same_bytes_prior_failed_run": "Linux-three-spoken-comma-reference-43636394776",
+  "models": {
+    "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+    "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+    "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+  },
+  "case_evidence": [
+    {
+      "source_id": 43,
+      "sentence": "S16",
+      "display_EN": "Apple, he later said, had been weeks from ruin.",
+      "actual_spoken_projection": "Apple he later said, had been weeks from ruin.",
+      "removed_comma_ordinals": [
+        1
+      ],
+      "actual_processed_tmap": [
+        [
+          0,
+          21,
+          0.0,
+          1.275
+        ],
+        [
+          22,
+          47,
+          1.66,
+          2.985
+        ]
+      ],
+      "actual_processed_chunk_times": [],
+      "actual_processed_cuts": [
+        [
+          31080,
+          31080,
+          0.385
+        ]
+      ],
+      "actual_raw_fingerprint": "4c97c3273743",
+      "model_inputs": [
+        {
+          "method": "create",
+          "actual_input_text_SHA256": "a716195f3b1fe3058fa567811a35190d9b8bedfd455cae624572460314b30932",
+          "actual_input_is_phonemes": false,
+          "actual_kwargs": {},
+          "cache_key": "ccb9fddc3511d31dff6cad74ca3efd8154964cef.pkl",
+          "actual_mid": "kokoro-v1.0.onnx:7d5df8ecf7d4b187",
+          "cache_PKL_SHA256": "f4f234e5cd985990d63c901d2d07396cd216d29d08a5d8edec8d8534f5f6599a",
+          "cache_PKL_bytes": 266408,
+          "single_thread_marker_SHA256": "82fb007c6c95ec28d031dbf2a91eee2a16d60e0a0fa852737f7f9b5ca0a62a1b",
+          "single_thread_marker_value": "f4f234e5cd985990",
+          "existing_cache_hit_before_test": true
+        },
+        {
+          "method": "create_timed",
+          "actual_input_text_SHA256": "a716195f3b1fe3058fa567811a35190d9b8bedfd455cae624572460314b30932",
+          "actual_input_is_phonemes": false,
+          "actual_kwargs": {
+            "clause_pause": 0,
+            "sentence_pause": 0
+          },
+          "cache_key": "500ce320ebdad6a292cb2cec9fb64782d3417a2e.pkl",
+          "actual_mid": "kokoro-v1.0-timed.onnx:beb0d1848dee9a49",
+          "cache_PKL_SHA256": "d5cbc1f52cb73d7ca469bf84880b4092b58d1742519f24adfb47cdbb4e026dd2",
+          "cache_PKL_bytes": 278559,
+          "single_thread_marker_SHA256": "35be90d6b8033746ab790064bb06fc37fa309f487b0aa842249a154713ef9e72",
+          "single_thread_marker_value": "d5cbc1f52cb73d7c",
+          "existing_cache_hit_before_test": true
+        }
+      ]
+    },
+    {
+      "source_id": 52,
+      "sentence": "S4",
+      "display_EN": "This time, though, the capital's smoke was trapped too, thickening into a choking smog, a mix of smoke and fog.",
+      "actual_spoken_projection": "This time though the capital's smoke was trapped too, thickening into a choking smog, a mix of smoke and fog.",
+      "removed_comma_ordinals": [
+        1,
+        2
+      ],
+      "actual_processed_tmap": [
+        [
+          0,
+          55,
+          0.0,
+          2.77
+        ],
+        [
+          56,
+          87,
+          3.15,
+          5.045
+        ],
+        [
+          88,
+          111,
+          5.425,
+          7.35
+        ]
+      ],
+      "actual_processed_chunk_times": [
+        3.2060833333333334
+      ],
+      "actual_processed_cuts": [
+        [
+          66960,
+          74040,
+          0.38
+        ],
+        [
+          119520,
+          119520,
+          0.38
+        ]
+      ],
+      "actual_raw_fingerprint": "f2954ac315f1",
+      "model_inputs": [
+        {
+          "method": "create",
+          "actual_input_text_SHA256": "fe602f6d1ce4f1f6ff7508c7f7cc5eb038f0803c236f0b2ff2ed510f5a0e6d8c",
+          "actual_input_is_phonemes": false,
+          "actual_kwargs": {},
+          "cache_key": "626269a6aa2d824c4cd3922d6c9aea1cd91e2aad.pkl",
+          "actual_mid": "kokoro-v1.0.onnx:7d5df8ecf7d4b187",
+          "cache_PKL_SHA256": "c1e5fe1ba457b0589c29a72819da56ec8c9511899edf9c5971fe3e4287a10cd2",
+          "cache_PKL_bytes": 669864,
+          "single_thread_marker_SHA256": "5b3db3912651bf8bc63c08667799599c3667fdd271b0bab325f6783d3ce6cff6",
+          "single_thread_marker_value": "c1e5fe1ba457b058",
+          "existing_cache_hit_before_test": true
+        },
+        {
+          "method": "create_timed",
+          "actual_input_text_SHA256": "fe602f6d1ce4f1f6ff7508c7f7cc5eb038f0803c236f0b2ff2ed510f5a0e6d8c",
+          "actual_input_is_phonemes": false,
+          "actual_kwargs": {
+            "clause_pause": 0,
+            "sentence_pause": 0
+          },
+          "cache_key": "5033658f57d8e204ccb64b3d53b4cd8d3908fc87.pkl",
+          "actual_mid": "kokoro-v1.0-timed.onnx:beb0d1848dee9a49",
+          "cache_PKL_SHA256": "eba87320de4f861a31d7d43c80349a99ffc5c054201a6e2e80e5146f178c539a",
+          "cache_PKL_bytes": 680345,
+          "single_thread_marker_SHA256": "5a92819dd15dc4c72ccd9f014e035b2377fa2311c6d4c919e39919bb8a8329d7",
+          "single_thread_marker_value": "eba87320de4f861a",
+          "existing_cache_hit_before_test": true
+        }
+      ]
+    },
+    {
+      "source_id": 52,
+      "sentence": "S18",
+      "display_EN": "The cosy hearth, beloved of British families, had, all along, been among the chief offenders.",
+      "actual_spoken_projection": "The cosy hearth beloved of British families had all along been among the chief offenders.",
+      "removed_comma_ordinals": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "actual_processed_tmap": [
+        [
+          0,
+          93,
+          0.0,
+          5.54
+        ]
+      ],
+      "actual_processed_chunk_times": [
+        3.0069583333333334
+      ],
+      "actual_processed_cuts": [],
+      "actual_raw_fingerprint": "88dadf11eead",
+      "model_inputs": [
+        {
+          "method": "create",
+          "actual_input_text_SHA256": "f2d2488edea39c769c9c8bd1e73d343640ec2187d9ba9a7336386fbf5d6eae62",
+          "actual_input_is_phonemes": false,
+          "actual_kwargs": {},
+          "cache_key": "6940455e9f7664736554b2e950b3628c9e32befd.pkl",
+          "actual_mid": "kokoro-v1.0.onnx:7d5df8ecf7d4b187",
+          "cache_PKL_SHA256": "9d5d272e573a926c949578e2220cee561a07ac4f7f0601785a96a6451eae4f8e",
+          "cache_PKL_bytes": 538792,
+          "single_thread_marker_SHA256": "676e84873f1406513f29591451c85087601d9c86df6524e7f32d458c82c939ad",
+          "single_thread_marker_value": "9d5d272e573a926c",
+          "existing_cache_hit_before_test": true
+        },
+        {
+          "method": "create_timed",
+          "actual_input_text_SHA256": "f2d2488edea39c769c9c8bd1e73d343640ec2187d9ba9a7336386fbf5d6eae62",
+          "actual_input_is_phonemes": false,
+          "actual_kwargs": {
+            "clause_pause": 0,
+            "sentence_pause": 0
+          },
+          "cache_key": "6c861948342a1c639e9b762e441198355c5b3326.pkl",
+          "actual_mid": "kokoro-v1.0-timed.onnx:beb0d1848dee9a49",
+          "cache_PKL_SHA256": "15dd7ea8f66599dff69377a269ceb27077d85515ea5882bda84c4028ce31c0e4",
+          "cache_PKL_bytes": 546341,
+          "single_thread_marker_SHA256": "26420a40d9ef031e9f5e7d4417d8b4b6bff86df74b6038225b57ab01a3075d0e",
+          "single_thread_marker_value": "15dd7ea8f66599df",
+          "existing_cache_hit_before_test": true
+        }
+      ]
+    }
+  ],
+  "actual_all_six_cached_readback_true": true,
+  "old_controls_timing_or_ASR_confirmation_reuse_not_authorized": true,
+  "original_article_full_two_ASR_health_cut_highlight_and_final_media_QA_still_required": true
+}
