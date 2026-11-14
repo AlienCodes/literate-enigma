@@ -1,0 +1,83 @@
+name: Source16 original strict cached failed-reference and S15 scalar diagnosis
+on:
+  push:
+    branches: [codex/finish-05-and-summaries-20261112]
+    paths: ['.github/native16-cached-failure-diagnostic/**', '.github/workflows/native16-cached-failure-diagnostic.yml']
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github/native16-cached-failure-diagnostic
+      - uses: actions/checkout@v4
+        with:
+          repository: alienalgorithm/postgraduate-vocabulary
+          ref: fc0b56af9a0ac0e97015548b756d4e51d66dc2ea
+          path: official-main
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /视频/工具/
+            /视频/配音缓存/*.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/cache/restore@v4
+        id: original-cache
+        with:
+          path: |
+            ${{ runner.temp }}/completion-machine
+            ~/asr
+          key: completion-05-machine-43294745262
+      - uses: actions/cache/restore@v4
+        id: exact-origin-cache
+        with:
+          path: |
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/dce6d1ce3af5043cfc8b6d30acf416eab118b916.pkl
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/dce6d1ce3af5043cfc8b6d30acf416eab118b916.pkl.单线程
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/989b1c025c09eacfd989962aef8352fba7637aa6.pkl
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/989b1c025c09eacfd989962aef8352fba7637aa6.pkl.单线程
+          key: Linux-native16-origin-dce6d1-989b1c-43562710640
+      - name: Assert original and exact origin private cache restoration
+        env:
+          ORIGINAL_HIT: ${{ steps.original-cache.outputs.cache-hit }}
+          ORIGIN_HIT: ${{ steps.exact-origin-cache.outputs.cache-hit }}
+        run: |
+          test "$ORIGINAL_HIT" = true
+          test "$ORIGIN_HIT" = true
+      - name: Original dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg espeak-ng
+          python -m pip install --quiet -r official-main/视频/工具/环境/requirements.txt
+      - name: Verify original certified6 modules stamp and exact four cached files
+        env:
+          XG_NOPUSH: '1'
+          STRICT_CACHE: '1'
+        run: |
+          mkdir -p native16-public
+          python -u .github/native16-cached-failure-diagnostic/setup_exact_sixcore.py
+      - name: Strict existing cached old and current voice GT and S15 scalar diagnostic only
+        env:
+          XG_NOPUSH: '1'
+          STRICT_CACHE: '1'
+        run: >-
+          python -u .github/native16-cached-failure-diagnostic/diagnose16_cached.py
+          --video-root "$RUNNER_TEMP/completion-machine" --repo "$GITHUB_WORKSPACE/official-main"
+          --task "$GITHUB_WORKSPACE/.github/native16-cached-failure-diagnostic"
+          --current-source "$GITHUB_WORKSPACE/.github/native16-cached-failure-diagnostic/16-failed-working-source.json"
+          --profile "$GITHUB_WORKSPACE/.github/native16-cached-failure-diagnostic/PROFILE.json"
+          --output "$GITHUB_WORKSPACE/native16-public"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: source16-strict-cached-original-diagnostic
+          path: |
+            native16-public/*.json
+            native16-public/*.log
+          if-no-files-found: error
+          retention-days: 30
