@@ -1,0 +1,42 @@
+65 S1 ok
+65 S2 ok
+65 S3 ok
+65 S4 ok
+65 S5 ok
+65 S6 ok
+65 S7 ok
+65 S8 ok
+65 S9 ok
+65 S10 ok
+Traceback (most recent call last):
+  File "/workspace/work/video-audit70-20261113/audio65-69-source-readonly/replay_original_sources.py", line 74, in main
+    d=json.loads(p.read_text());x,parts=build(d,cache);wav=td/(label+'.wav');out=td/(label+'.m4a');sf.write(wav,x,24000)
+                                        ^^^^^^^^^^^^^^
+  File "/workspace/work/video-audit70-20261113/audio65-69-source-readonly/replay_original_sources.py", line 57, in build
+    clips,a,agn,pgn=n['句增益'](d,d['no'],si-1,t,pieces,gaps,clips,tmap,np.concatenate(clips))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/audit-repo/视频/工具/make_video.py#original-functions-only", line 764, in 句增益
+  File "/workspace/work/video-audit70-20261113/audio65-69-source-readonly/replay_original_sources.py", line 39, in exact_level
+    raw=m.git('视频/配音缓存/'+name);value=json.loads(raw)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/video-audit70-20261113/audio-a21-15-17-18-30-readonly/reproduce_a21_cache_only.py", line 11, in git
+    def git(path):return subprocess.check_output(['git','cat-file','blob',PIN+':'+path],cwd=RPO,stderr=subprocess.PIPE)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 466, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'cat-file', 'blob', '64621068034f8b6e09836a6d97210a0e9b2f1ed6:视频/配音缓存/调平_f6fd11093c1857baf30e7d7807d0a41ee6648fff.json']' returned non-zero exit status 128.
+
+Traceback (most recent call last):
+  File "/workspace/work/video-audit70-20261113/audio65-69-source-readonly/replay_original_sources.py", line 71, in main
+    with tempfile.TemporaryDirectory(prefix=f'{no}-exact-source-diagnostic-',dir='/workspace/work/video-private-reference-analysis') as td:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/tempfile.py", line 886, in __init__
+    self.name = mkdtemp(suffix, prefix, dir)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/tempfile.py", line 384, in mkdtemp
+    _os.mkdir(file, 0o700)
+OSError: [Errno 28] No space left on device: '/workspace/work/video-private-reference-analysis/69-exact-source-diagnostic-42qqoipv'
+

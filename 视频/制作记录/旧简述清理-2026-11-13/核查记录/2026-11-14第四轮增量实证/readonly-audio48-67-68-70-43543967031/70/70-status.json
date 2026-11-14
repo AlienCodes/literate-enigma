@@ -1,0 +1,3328 @@
+{
+  "article": "70",
+  "passed": false,
+  "stage": "original-stamp-after-production.log",
+  "original_audit_and_quality_thresholds_unchanged": true,
+  "original_maker_unchanged": true,
+  "core_repairs": [
+    {
+      "target": "视频/工具/草稿声音.sh",
+      "file": "files/视频/工具/草稿声音.sh",
+      "original_sha256": "0ce3277812cf16ed30438509b6dc97db0c26725db4c5db5d9b058c3ef6531aa2",
+      "patched_sha256": "957d7eb1598698ea33ff77d83379256ecae258d84d588753d561a902284be439",
+      "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+    },
+    {
+      "target": "视频/工具/句内响度.py",
+      "file": "files/视频/工具/句内响度.py",
+      "original_sha256": "58735b7173a3c03efa61fb300b4aed4039c164fa970e0593a40bae2a3f3cbd27",
+      "patched_sha256": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea",
+      "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+    },
+    {
+      "target": "视频/工具/独立复核/synth.py",
+      "file": "files/视频/工具/独立复核/synth.py",
+      "original_sha256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+      "patched_sha256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+      "repair_scope": "validated unprocessed raw-mother reference input only; independent transforms/audit/thresholds retained"
+    }
+  ],
+  "strict_production_cache": true,
+  "pdf_requested": false,
+  "check_summaries": {
+    "approved-illustration-resource.log": [],
+    "certified-core-original-stamp-verification.log": [],
+    "original-restored-stamp.log": [],
+    "canonical-module-copy.log": [],
+    "canonical-draft-00.log": [
+      "第70篇 做完（340 秒）：修了 1 处、疑点 21 处",
+      "① 文本：通过，自动修 1 处",
+      "② 声音：70 词尾辅音核对 问题数 0；70 纯人声核对（配音指纹 32091a72a354）问题数 0；问题数 0；70 句间停顿核对 问题数 0；问题数 0",
+      "③ 出片前核查：通过",
+      "⑤ 出片后核查：全部通过",
+      "⑥ 已拷 视频/视频/草稿1080p/70_1080p.mp4（--不推）"
+    ],
+    "canonical-final4K-00.log": [
+      "第70篇 用户定稿原话：有"
+    ],
+    "original-stamp-after-production.log": []
+  },
+  "actual_native_core_certification": {
+    "run_id": 43535822030,
+    "job_id": 132264443476,
+    "commit": "395e8da264fafa2453a42ee70a3f7aed8303a769",
+    "actual_full_quickcheck_exit": 0,
+    "actual_full_quickcheck_seconds": 478.16,
+    "artifact_id": 14089812323,
+    "artifact_zip_sha256": "5e396c84e4a6fc7c6cc737ceb8648d7f15f397e9551806e032c93db8ab0963b8",
+    "full_original_quickcheck_log_sha256": "dbe7f6e08d2b7c3a5f9a2f925bb75a662aed725c780e1bc6714706807552a294",
+    "article_audio_or_video_passed_not_implied": true
+  },
+  "actual_native_fastcheck_stamp": {
+    "target": "视频/工具/新管/快测通过.json",
+    "file": "files/视频/工具/新管/快测通过.json",
+    "sha256": "6ebc7aa41f79f77258fa333b665af258e007daa36a4ea290de972cd3da7b42f2",
+    "origin": "actual unmodified original full quickcheck, native run43535822030"
+  },
+  "reviewed_regression_resource": {
+    "target": "视频/工具/新管/回归基准_27.json",
+    "file": "files/视频/工具/新管/回归基准_27.json",
+    "sha256": "b8ddb4656ae27cbfc7ec8e3b99511983b4e568997bd4ad4ee33c364f3926ae94",
+    "origin": "pre-existing root-reviewed 67-screen data; original voice/segment MD5 unchanged"
+  },
+  "core_repair_manifest_sha256": "1b1558108d15603e5711e200135651d6c7700a583d8bcf53ad8753683ed05a5e",
+  "reviewed_gain_preservation_mode": true,
+  "real_restored_stamp_validated": true,
+  "reviewed_cross_article_context": {
+    "provided": true,
+    "manifest_sha256": "eddfbdceea4e25f2398a2198f94d9852f1e30e35b35c4075c5a5ff0c8e32c096",
+    "files_sha256": {
+      "视频/脚本/01.json": "2be2f80a69af28703992204ac95f987c745362c326e62ad81b3cd8e0e0735d3a",
+      "新版定稿/01-the-robber-who-thought-lemon-juice-made-him-invisible.md": "572054065b5bb65446bf8939a21c789c1e9c7664d82da5117c43efdded894351",
+      "视频/脚本/02.json": "0403368c77fd3e0f91e1ee3780e1c7c147894ad13c16b5f14707d700a8f717c8",
+      "新版定稿/02-the-truth-about-one-marshmallow.md": "91b92505aad03f963861bec39e96f0a472c126d1d57c9fc538676c32f65e545c",
+      "视频/脚本/03.json": "527f3bf4a11843f4d606188dabc6ebce6830da3fb454a49c782e3a595cb47407",
+      "新版定稿/03-the-doctor-who-drank-bacteria-to-win-an-argument.md": "6dfb56504882e24854a3584fd740e7f6601e3f2532818aee3a56d5330d317aa3",
+      "视频/脚本/04.json": "93cc1ff58d65ebe43a65ecb2fb2dbd2da262d80877c05740bbdf4eab4eaca1e8",
+      "新版定稿/04-the-brain-that-learned-london.md": "a8ccb31ffff50aaae77de4b83de1847fafae1d585981cf960c5880c409f6cfc3",
+      "视频/脚本/05.json": "2282acbfa4b82825f93261ec6c18359eb47fd3f7c639319ac5058d126643e136",
+      "新版定稿/05-the-fingerprint-in-the-blood.md": "612deac4ed066489e04e214ca969f8f27dda05856e0ef0ed2e540e7a4a52ae34",
+      "视频/脚本/06.json": "2cbf1d6cd6e66a59285298ea830f5ef914590b64286d40b2ae5f3168aa27a2e9",
+      "新版定稿/06-the-horse-that-could-count.md": "7fd21ba491c7596c53c486f2bb0b0f2f6da8e67bac75461a4649a7caff822f74",
+      "视频/脚本/07.json": "842e44e5aa19fddcfa239cb6530c5152341cd86e11db959543d02d8670ca13e8",
+      "新版定稿/07-the-octopus-that-escaped.md": "b8544281bb2ada88fce9d1082cbc30233dcb63ee3e9c2bbefafc22cb28b8cb39",
+      "视频/脚本/08.json": "254832e09f12759d950384dd9f31f671ad5a3bc1590b7466065dd3ef5fe4b8d5",
+      "新版定稿/08-the-doctor-who-solved-the-cholera-mystery.md": "0b2bfa68070ce585a452f6b7034d03c3683e710dcabec5e86d7b221950dc7bab",
+      "视频/脚本/09.json": "fa3e429351d629de188c184d04e9986200e16e80606fcbec82332b6433301dae",
+      "新版定稿/09-the-great-emu-war.md": "af5c3e844bad15f94bfc43aeed6d7417c4bfae85f026b194da667a7a3bdb6196",
+      "视频/脚本/10.json": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
+      "新版定稿/10-the-stolen-smile.md": "ff63cf94e4d2c835e2e2f1ffd3e6c5642f0916f0b13c012f1f13c3dff716d47a",
+      "视频/脚本/11.json": "665cbb80cc70b700ecc0cc5813209fd100ad4fa8f0eead3929b9e53778d9d07f",
+      "新版定稿/11-move-37.md": "7e0b49b346c1fa3ab994a11a2301167c0d6a1bb00916508bdc0b1acf71e68053",
+      "视频/脚本/12.json": "e3bfbcce6f1a8e14cfe451d656574353321e297c90c62f5a7b422f37478311d5",
+      "新版定稿/12-the-79-days-of-new-coke.md": "5a23c1e0c81318527bcbf27573487d1845c5318905a2b1e020cc6e2eaf5d643f",
+      "视频/脚本/13.json": "3687b6c42a6d524d0d7e40a47ed02c37b18abe8d524db4f5914abad52019a63c",
+      "新版定稿/13-eleven-days-without-sleep.md": "72b842de127132e386e9e52a1719ec96765e94958f56687987f53e2801c69704",
+      "视频/脚本/14.json": "17141351875ddb8f0e308602c0b6ab85cbf5126a4d0118978c25c869db769fee",
+      "新版定稿/14-the-fungus-that-turns-ants-into-zombies.md": "e114c9e1783c80a2ffdb60af05e824f93a8ea8725905cb733560abe1c0ad01a8",
+      "视频/脚本/15.json": "0934aa067f19814028c398b0c70a400bb09e354f744bde4000742950d77f441e",
+      "新版定稿/15-the-myth-of-the-unsinkable.md": "68e236868c4b466928ff2a60358250b9592dfe9287b66561b1e5a80b4d14de4f",
+      "视频/脚本/16.json": "d25aa07f3fac316c26c2ae1006d3efa7eb82a396b66150432b50239c1628396d",
+      "新版定稿/16-the-bread-made-from-air.md": "4da63148111213f6d77451b0eb4193893e6fc2fc170400bc39ce5f5ffcaa0b20",
+      "视频/脚本/17.json": "2e9971ea5ce7857e119226fe95def06e6eb9c3ef9823d8e8c4f3456f46a3bbb0",
+      "新版定稿/17-the-curse-of-the-pharaoh.md": "a2e8d92f9136e1b22fcc0799f9a4d281092f0e547cc68242e090241d7b09e222",
+      "视频/脚本/18.json": "8cffbad6f0b8451e46ad1a65d5f629c450ceff2c771218445770c8cbfd77ebca",
+      "新版定稿/18-the-mould-that-changed-the-world.md": "ef41cea03f471fe3b9a53939c843e450da3325eb711f6414e108ae92a7518dd8",
+      "视频/脚本/19.json": "cc3c5eea0f7d9ec0712b2e58adba7e5ef8b61d6518a322f9b25a12fcc45282fb",
+      "新版定稿/19-tulip-mania.md": "3882d487383b759c31dda4785966091c362960cd873a5d83c530d08d52e2e97c",
+      "视频/脚本/20.json": "cc5ed6d7be8767e5e7e9b098e8f3836821c0b3f51c17581b2746722da1cf3001",
+      "新版定稿/20-the-5000-year-old-murder-in-the-ice.md": "8d55638070787f7ff5432c197292af1188c463a8b018e01bdefc32999b888e95",
+      "视频/脚本/21.json": "61c1569a26d7569ee0f586178be6b307b1c394c0a30c3cb02541c910038b0589",
+      "新版定稿/21-the-man-who-sold-the-eiffel-tower-twice.md": "e8e966b70f579235d696ba11fb01d3b2cae3fa26efb9071bbea95071be259e1f",
+      "视频/脚本/22.json": "e3027a42c532fee9935afcecdd0542713cbb907183802c2345b9472f93b75f59",
+      "新版定稿/22-the-building-that-melted-a-car.md": "49ae09483bc80bbc40a71551cd98aebec355d96d9ff7b2bcdea59a06fe599267",
+      "视频/脚本/23.json": "c4574a79fd3a58577a1402ce095ea9e4a0ea1f98883ce63e3cc60d126e819409",
+      "新版定稿/23-the-man-who-gave-machines-a-mind.md": "72ed3049e87fe75ce1e753d5e443bdbe6a7ab72f6e282e8467fbbb62be873169",
+      "视频/脚本/24.json": "f08620b534bb10b718f7515c805dcb541721427d855bd5a092b8954847a351b8",
+      "新版定稿/24-survival-in-the-ice.md": "cb7f810d9a74256e0c00625290be4f16207feb90f5719ca87d5d7c9912b91307",
+      "视频/脚本/25.json": "c73e854e052b3df9bd920d4a59fafb183dee19bd58765fa426af6ea3d7c9a329",
+      "新版定稿/25-apollo-13-the-successful-failure.md": "b6b7d55fe66e6e32116431ea955778fab779b8bda622df0ba1036c2f40a3969f",
+      "视频/脚本/26.json": "ab663b240eb5e27923f38e2ff296c0196e3d820766d0c909adb9faf19aa3cac9",
+      "新版定稿/26-the-language-the-children-invented.md": "9e9ad8021ddabc17157d73dc739383f9676df3583cf965e470fcd773e26a3761",
+      "视频/脚本/27.json": "61cd724c5fab6f07a46aa5ac069101617c4c8350311eb11a43f9fefdddb31d8b",
+      "新版定稿/27-life-in-the-forbidden-zone.md": "e276bcf76225b9ae16cd8cfda8c9b726b442fbd625d3718f532b47b09b21b16f",
+      "视频/脚本/28.json": "a6a4befc0291727f5cc3f8b50857ee954ef9f936738f014a978ebb4d37a28ea8",
+      "新版定稿/28-a-handful-of-wormwood-that-saved-millions.md": "b9817d3429767d07b6a2eb14cce5422a20cb4e3b89f8b03e6b3d5da2daf91d91",
+      "视频/脚本/29.json": "1e5f1d9f0c22b5d14b757f029be694c2a3969666d732ca79bb695282763de791",
+      "新版定稿/29-the-volcano-that-gave-us-frankenstein.md": "69045ee19a170c7ea9d0008b468c7e947bc28b639b834c0192dc0aeafc3ef4d0",
+      "视频/脚本/30.json": "cdf727cb4c6832063421df9da6ab8ae7729cf9df01d6be089a8981c92c360f06",
+      "新版定稿/30-the-stink-that-built-londons-sewers.md": "84dbf19cee0045ea2608b13ee0677cb9623dd8fbb371c67093bf50c64186137a",
+      "视频/脚本/31.json": "d81f8645a1e5663ba8c84668e817cdb218bc6689079fbfd51326b3a7fd3cd384",
+      "新版定稿/31-the-book-twelve-publishers-turned-down.md": "7abd20fed44918dcf01586c056e9d0acd9d2ad3b90aa7d3d403762d9f06d2659",
+      "视频/脚本/32.json": "357aa59bed62154f7302a5efcf528859b303004e028657b93058138fe931bf85",
+      "新版定稿/32-the-planet-that-was-demoted.md": "1421f2b0921e7e9478ebc48777e3e8b2c979172de63d0124015107c3750a3542",
+      "视频/脚本/33.json": "ca51103c1a9d45c9159322765efc86c81f61f6ec78975f160019d21a1d9ee0d7",
+      "新版定稿/33-thirteen-in-the-cave.md": "9862078044ce45a9f6d51aa7d165afdfcf90066d1de98cbb317dd7e8f980610d",
+      "视频/脚本/34.json": "74921848a6bb25a2ba631813f60d4756c9ff90c64c03a2fb936ce34f310ce509",
+      "新版定稿/34-the-game-that-escaped-the-soviet-union.md": "e3244b67b21e283e67f4e88e932a1dbb85bf273a48ee009b3f435e1c5814831c",
+      "视频/脚本/35.json": "d8439077dc2c909b1c6cbd1347f31e9625f25fffe447d6f5945c9492561f1a16",
+      "新版定稿/35-the-bird-that-beat-the-letter-home.md": "ba8c38e38b21a3345624e2d44fd352561d3096cfb6f62214b48ea9b6e66faead",
+      "视频/脚本/36.json": "76daa28f421bd40d8e2744d4e785a34bb8ee67da1403b4b1546db9465c535cef",
+      "新版定稿/36-the-company-that-invented-its-own-killer.md": "411eeb96c8641ee7082b49a5abf4c7343d3f1dbb7ef331064d7c0f3c630fe58f",
+      "视频/脚本/37.json": "b1b8945ccf3581df48ade5714a2d0e93e4cc6812708f95bef6f5e44439106c99",
+      "新版定稿/37-dynamite-for-the-heart.md": "4933e24d2384471a96d9c8c26c15d5224a85dae98d9971a3fed15b4978dafc51",
+      "视频/脚本/38.json": "8d0379032000967c9f72e550574874949f798eefbfbfb58ab2b38e4e23ecbc6b",
+      "新版定稿/38-the-web-beneath-the-woods.md": "abb7eead9f3da0b2b326ceed5a649cfbf71fc28dad22e0d52f7b19caa798c54f",
+      "视频/脚本/39.json": "6c3e9539f624b192335312912572a05fba2c7bcfb821b44c3c1dbb21b42527a7",
+      "新版定稿/39-y2k-the-crisis-that-success-erased.md": "abbc9804661126aa006595031ed8f201ce55e8eb5fd9e1ad5669c0c6fcdb80ab",
+      "视频/脚本/40.json": "1c50d1a47ee6f8528d0f7299e8a45bc8c30312622f3f465a964d21cc1395ee7f",
+      "新版定稿/40-the-glue-that-failed.md": "dce9f78f3a0828307843dd667b7eeebf3380a3630f03d234bd5824870aba61a1",
+      "视频/脚本/41.json": "6b6673ffc1db986f4c355f3685de6a0faf2272cee042c5e917f26a8b3057c2be",
+      "新版定稿/41-the-toad-that-invaded-australia.md": "eca590f97120f4e76d719e29aa07b094f9117cd462f5a70c029331a63b85f710",
+      "视频/脚本/42.json": "eceb10ae92aa4b9cd23180d1138149a7fa7b674385462c898bc0d2283c8739e7",
+      "新版定稿/42-the-telescope-that-needed-glasses.md": "d4aa049779a0eba06c555d76ca14103648378eef90465df424120126fa771280",
+      "视频/脚本/43.json": "aa9da1246e293c80408edf94a7c9bed65ef3178ae7cb5265a8273e8c4396687f",
+      "新版定稿/43-from-a-garage-to-the-top-of-the-world.md": "bd70c83e5ac867238ca179f3c9f3548eb9cbdcae1f6df40994aef0bda721ae54",
+      "视频/脚本/44.json": "87f531203ca38d88ae5e71ffd88190b1530715cdc0adba146c2a4a78ebe9b976",
+      "新版定稿/44-the-night-sweden-switched-sides.md": "d3f7ad2ac43f02aae9205a15b9808280ca3db597d6ef3b36aca8ca6176c5f74a",
+      "视频/脚本/45.json": "569406607d2bf18dce5e916052d6460509450d97fe17ac9820be524f59c2c3cc",
+      "新版定稿/45-the-record-humanity-threw-into-the-stars.md": "27deabec4a8478fe570f7f237a2fb850ffdce3deebfd952f512d82a60cf7314f",
+      "视频/脚本/46.json": "804ecfddb6060288b05eda0e1027c65e9bff0c08a9d010c201bf39306c769b62",
+      "新版定稿/46-lost-in-the-glare.md": "7aaa06e875fe56c5d78210b90a8769b8b2051714025ef10df37c2fe89db7a68c",
+      "视频/脚本/47.json": "0417489c8a672e7e63d46c2239d847acabda2d93160cabed3b0fb14f701ac39a",
+      "新版定稿/47-shadows-of-wolves-over-yellowstone.md": "34c68cf4d0f0ef3545ad68edf3367fcb76ab500174b11ae7f83b782cd5a80a2a",
+      "视频/脚本/48.json": "4f146ce6a70bb0bf5d2c6e1f6b47bd6a2bcc2f311be7a948092d7bde1a08f449",
+      "新版定稿/48-rice-for-the-world.md": "76416be21f857e8a05c37baa33ac90f5785812291485231c249e38a1d0edf15f",
+      "视频/脚本/49.json": "640168eb8a17c5d53d266c6604ffe287919314947371c2ee239eeea952d73b77",
+      "新版定稿/49-the-woman-who-won-two-nobels.md": "1e4fb068aa9ae4513d01b199a074b84dc9d819f57b2134df32588a0e4a4b6b6a",
+      "视频/脚本/50.json": "1d4a41824dfa5e8d11e5990b2a4b802ba2fcc3231d85b15ed6630396c6f027bf",
+      "新版定稿/50-microplastics.md": "5439589bacf1abb2abbb184eb658492bc02bcc5bdd8dfd8ababcd80ab93621cb",
+      "视频/脚本/51.json": "39886d83593a31fb575b124ecf6457190773dca695b6ff78f8434d52aebd6d7c",
+      "新版定稿/51-the-joke-that-became-ok.md": "8de30ea4846f4e88d8b71c8d5ced3ee63a73955e39b7dc3c5adad0971b854fd0",
+      "视频/脚本/52.json": "832249bb44617d38ede75560a5e57af6ba79ec284c9609407cb30ce879f6f862",
+      "新版定稿/52-the-killer-smog-of-1952.md": "179500361e4a837d7edb2e0497e08677d5abd425e8ad542f788205a6f7667b4b",
+      "视频/脚本/53.json": "28b604bfa72896534736293f79e9b3aabd8e3678672f4dc6c66337c02a8f1518",
+      "新版定稿/53-the-wind-that-kept-no-time.md": "6fab302dcadb5a2c509436f5fbf8d9ef925c008a36f5b422749bd405aa4701d3",
+      "视频/脚本/54.json": "b1fcb8ae86045b3d35ccfa0f52eb9594b8921d43063835769ee3ecc4543be75e",
+      "新版定稿/54-the-sound-that-shook-the-world.md": "abd5f4bfe11ed73bcc5326a92cf99b0a8e5ad70adaca1ce8d0c8f622b57fa519",
+      "视频/脚本/55.json": "06344fc0ad5975cba2f4dbe5262a9957dd7c024f9a05b9abbfa327f32ea8c719",
+      "新版定稿/55-the-secret-of-romes-undying-concrete.md": "a7759eddcc7ec06dfd6dab7912e06b3b5ef8576df0c025a97812006669d0be61",
+      "视频/脚本/56.json": "22ca3b4180a8ae6a37b4c8e25f5e357d5696d9b23bf148fb7064425d1403e59c",
+      "新版定稿/56-the-letter-that-startled-darwin.md": "aad1e2aab9ff28f534a510362e807ef401e0b502475240f4b2531e9e518a8d7a",
+      "视频/脚本/57.json": "a0ba65b769430289a33ec1f7bc6dbf91dad8d2c3b1d725348851de546563cd6f",
+      "新版定稿/57-a-change-of-anthem-in-the-deep.md": "0731d925a98bafc222718c111985362e166b38b9189c516219a481e36d0d4b6e",
+      "视频/脚本/58.json": "8b0bd3d7d39000518789e9907aec53bd52fab1b9d6b4f22a152d158635b6e8ee",
+      "新版定稿/58-from-a-scratch-to-a-world-without-smallpox.md": "1aa2a0d2c51da76f9c9ebb88d049dd1a55ab530791566fdbf6476e5aa48c15ee",
+      "视频/脚本/59.json": "df1db4174d942371166048b220ef6d55b0b700b2ce31c866edf6dfdf33b92f0c",
+      "新版定稿/59-saving-the-sky.md": "7bf9c4661e733e7af23dc2f11bc820b809ec93dad75a94fb6a12748226e8722c",
+      "视频/脚本/60.json": "eed1655c0919db32a3a016b24791b93d25683f287c7ccb2523e168a69bddc562",
+      "新版定稿/60-the-scientific-giant-who-changed-the-world.md": "9d1578e7af085559922394a3db01de4eb22dc1c520ca17de5cad68e5a38a31a8",
+      "视频/脚本/61.json": "72378937501769dfb3d934fe65ab1a69afeb5420a15e19890c161433717d2435",
+      "新版定稿/61-the-steel-box-that-remade-the-world.md": "135cc9cfbcbd68d957f831cf55558112a45b1cc3749366cb9a304507355c7d2c",
+      "视频/脚本/62.json": "4b3a97f2b6404e1b091537c21f01fc60088902f596803345983c38be52ec79eb",
+      "新版定稿/62-dolly-the-copied-sheep.md": "62817546ae33824b57255f941135c503e41a41f905331ed4af1e32850fa00960",
+      "视频/脚本/63.json": "5d266d80f9cf29cce6f7e34531449cf75191a42f180102685a5bcd04849e75c5",
+      "新版定稿/63-the-crowded-heavens.md": "6ef79d4310019dfefa7364b8a428411a6bc337678c69fa5cbc89b84689e253a4",
+      "视频/脚本/64.json": "12a36862765922d72ce6e5a4c5fe85f548364eed65fe3b3b284f0b38899a965f",
+      "新版定稿/64-the-day-zero-that-never-came.md": "e0c83cbe36745adbbffd33a156fa8d0671704ea976cb13215cabb612639b37a5",
+      "视频/脚本/65.json": "78e60dd231df4ac71df83e21a26f82bbf706dc0bef80bee156a36bc287661ede",
+      "新版定稿/65-the-day-the-doomsday-vault-opened.md": "71a50d32e25955e713e6ca108ab68422a4fd5b77c914a9074eece1dc33cbff89",
+      "视频/脚本/66.json": "ad5324af4270834186285a5e7273a90213094077adc6f9e1d5c7b0ebff9cf035",
+      "新版定稿/66-the-burrs-that-became-velcro.md": "75dbe6c148ca97a7780ac1737f33f58bf8ee27a51aa729a83315705655b12b2a",
+      "视频/脚本/67.json": "8897cc1c2df1e4672eec3bbff2776d0565afb9c9fe84087a1758ebb15b2a233e",
+      "新版定稿/67-the-cave-found-by-a-dog.md": "10e37b81eeef4e3289448a6b4fd679f34d495a4fc087c57747e6dca949e00cf1",
+      "视频/脚本/68.json": "568f72dacac48e206811d35a57c7fa22e3da428783f64e507c184f2090e579f3",
+      "新版定稿/68-the-last-flight-of-the-hindenburg.md": "c25f58ffb0e3748336767bb7470dd7cef10374c53cbb48af89dba26f65b2dd5c",
+      "视频/脚本/69.json": "09fd3fdbbc834badd16a9b38d8c14e425193a6849d7db87253f26a782a1c4137",
+      "新版定稿/69-the-trial-of-the-father-of-the-atomic-bomb.md": "570eda5b7d979d71e9bcad1c67e295ed326ecdb8b61e663aba33272c8a9451bd",
+      "视频/脚本/70.json": "0f6827f02cef0d2416f9d7d69b7e1c5553acee7cf6dc89f3379201264587236c",
+      "新版定稿/70-the-stamp-that-changed-the-post.md": "edfd85cea33730ba67e4210e756da1f2945f1a21bce55c7e75497cb5f0095d80"
+    },
+    "source_file_count": 140,
+    "working_script_count": 70,
+    "target_request_exactly_matches_context": true
+  },
+  "request_source_sha256": {
+    "视频/脚本/70.json": "0f6827f02cef0d2416f9d7d69b7e1c5553acee7cf6dc89f3379201264587236c",
+    "视频/工具/初稿生成/gen70.py": "d44d996f471b6d640ecc35f3c255fa919ddd87ef6f9bae22bfd4db745b6761c1",
+    "新版定稿/70-the-stamp-that-changed-the-post.md": "edfd85cea33730ba67e4210e756da1f2945f1a21bce55c7e75497cb5f0095d80",
+    "视频/制作记录/70_待改清单.md": "f9bb3346da3226c1f8a9c1419d1494fe379317ace8835c9ffa65604e39d2a5c6",
+    "视频/制作记录/逐句确认/70.json": "f3f2acd8907bbda181414cdb43b591c55ec5deb4069b6610d78af30da3313a0a"
+  },
+  "accepted_source": {
+    "id": "70",
+    "path": "最终版4K视频/70 - The Stamp That Changed the Post - 一枚邮票改变通信.mp4",
+    "sha256": "b7a37a1ccb0e6c12229da9a0e1c6ff8c3df941f7dd15105e469859c5ff162985",
+    "git_blob_sha": "a759b728187300bc13f2e4745e719e73298fd51a",
+    "bytes": 11641621,
+    "width": 3840,
+    "height": 2160,
+    "summary_frames": 60,
+    "aac_adts_sha256": "ac0fcb5c0a8583e310ce129b8e6bec1841677519acd8b4c6516c033fbea82250"
+  },
+  "checker_reference_preparation": {
+    "article": "70",
+    "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+    "reference_prepared": true,
+    "acceptance": false,
+    "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+    "source_sha256": "0f6827f02cef0d2416f9d7d69b7e1c5553acee7cf6dc89f3379201264587236c",
+    "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+    "checker_program_sha256": {
+      "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+      "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+      "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+      "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+      "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+      "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+    },
+    "reference_calls": [
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-raw",
+        "method": "create",
+        "source_slice": "The Stamp That Changed the Post",
+        "exact_native_cache_key": "fca4535e45f03b944ee2f1a724b4bb71fae05086.pkl",
+        "cache_input_text_sha256": "796413f43bfeda2b8af3be09cc5fd49d8f643c30ffca32758e24d43ed5b8580a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-timed",
+        "method": "create_timed",
+        "source_slice": "The Stamp That Changed the Post",
+        "exact_native_cache_key": "c44781f930194a1ecf465fa8a0181647435e055b.pkl",
+        "cache_input_text_sha256": "796413f43bfeda2b8af3be09cc5fd49d8f643c30ffca32758e24d43ed5b8580a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Before 1840, British postage was levied according to the number of sheets in a letter and the mileage of its carriage.",
+        "exact_native_cache_key": "62f9a6d72beacd6347a7a9475f38f689e2ff469a.pkl",
+        "cache_input_text_sha256": "f8ad35cf7ad31efbe48ece5241b2254515be02e7c9310f55f234e8bdd58728fa",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Before 1840, British postage was levied according to the number of sheets in a letter and the mileage of its carriage.",
+        "exact_native_cache_key": "50d48bff6fb7ea24591b3af9ea7b9ded70ad3e60.pkl",
+        "cache_input_text_sha256": "f8ad35cf7ad31efbe48ece5241b2254515be02e7c9310f55f234e8bdd58728fa",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Before 1840,",
+        "exact_native_cache_key": "5ad372864e383e8a8296c553b26bd2ab051f71f6.pkl",
+        "cache_input_text_sha256": "b01837ce55b996c24b2f5275607bc9b59d3fe6c486cb3ce3f9e1044147d8d73a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "British postage was levied according to the number of sheets in a letter and the mileage of its carriage.",
+        "exact_native_cache_key": "f08718581ee1157128cced35b9e3d9630a8d7475.pkl",
+        "cache_input_text_sha256": "8c00ae141a194093f4ad14aac2684dc1a131fc8e78d6d8a9fcb2e95799cb6656",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The sum was usually payable on delivery, so the person receiving the correspondence, not the sender, settled it.",
+        "exact_native_cache_key": "d434f2f43bfb297ef9ed788ea4181bc987ba3f07.pkl",
+        "cache_input_text_sha256": "e0cb452de39f060b1427b77d9de00cc9e2c11ab52b5137b0d64809947a36639a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The sum was usually payable on delivery, so the person receiving the correspondence, not the sender, settled it.",
+        "exact_native_cache_key": "7d8ff244ac34457cc2c7bef187b646fd07f37579.pkl",
+        "cache_input_text_sha256": "e0cb452de39f060b1427b77d9de00cc9e2c11ab52b5137b0d64809947a36639a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "The sum was usually payable on delivery,",
+        "exact_native_cache_key": "c93e674bba3457db9532db1d007ed6248cbe8e67.pkl",
+        "cache_input_text_sha256": "0619969d1da4c7806d6e53cd962a209f8cfa7be9470532068df0313c63055f6b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "so the person receiving the correspondence, not the sender, settled it.",
+        "exact_native_cache_key": "96fcec8d1ee9f8c3ee623e733eb458d8e990a0c6.pkl",
+        "cache_input_text_sha256": "1d7711081eba3bad093665b2ca9152a291adc91562e8a52c9d4815a4c22598a7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "The sum was usually payable on delivery,",
+        "exact_native_cache_key": "c93e674bba3457db9532db1d007ed6248cbe8e67.pkl",
+        "cache_input_text_sha256": "0619969d1da4c7806d6e53cd962a209f8cfa7be9470532068df0313c63055f6b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "so the person receiving the correspondence,",
+        "exact_native_cache_key": "27425486f9e56495a7bd023b5a6515b27dc39206.pkl",
+        "cache_input_text_sha256": "88c27c21a2b93a6f43ce5c86edb0b055a0f4483c026b000bbe9bee0fdb44b52d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "not the sender,",
+        "exact_native_cache_key": "94e12cf12fdeaeb1484f4a26cc7cd3af7a46c279.pkl",
+        "cache_input_text_sha256": "75ad99b7e781072643b22f0f1867a897efc4704b5a28cdb41773752d91a513f1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "settled it.",
+        "exact_native_cache_key": "f363005c8f89fc7311d9e23af981056a1fe5bb8f.pkl",
+        "cache_input_text_sha256": "31023e47e1396d9574513547e92fd1de6d2c6a56108420835ddf8efe9dcf3cb4",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Prices thus fluctuated from one postal item to the next.",
+        "exact_native_cache_key": "66cac62139cce066c11edac0b9881003d31ae806.pkl",
+        "cache_input_text_sha256": "dbf845b39c78356adb505d9a52dacd08eb60729b68e86212f034bb2e512f9255",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Prices thus fluctuated from one postal item to the next.",
+        "exact_native_cache_key": "2ee01b6596b8f4588ec719e20069a5f8195c2a83.pkl",
+        "cache_input_text_sha256": "dbf845b39c78356adb505d9a52dacd08eb60729b68e86212f034bb2e512f9255",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "In 1837 Rowland Hill published a booklet urging reform.",
+        "exact_native_cache_key": "3d76088ec1f6c1e7779b4cff8a5f011878caf8de.pkl",
+        "cache_input_text_sha256": "12a99ad75a5b4a215727b1a5bdbf4dbc2cdf7e9f75a6e615ecbb263e75c0f1cc",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "In 1837 Rowland Hill published a booklet urging reform.",
+        "exact_native_cache_key": "e2eba29a57bd6d6335692f1aeca41b4aa3545592.pkl",
+        "cache_input_text_sha256": "12a99ad75a5b4a215727b1a5bdbf4dbc2cdf7e9f75a6e615ecbb263e75c0f1cc",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Parliament enacted the campaigner's proposal in 1839, and on 10 January 1840 the Uniform Penny Post began.",
+        "exact_native_cache_key": "18330cfdf73ea971001d874a09833b887bf6bb1e.pkl",
+        "cache_input_text_sha256": "9faf0704b5510819d634f732e535811ddd814b35f84b180d20eed1471f0b2f69",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Parliament enacted the campaigner's proposal in 1839, and on 10 January 1840 the Uniform Penny Post began.",
+        "exact_native_cache_key": "c4011d259b42e3d7b8a179d5882e956501726d0d.pkl",
+        "cache_input_text_sha256": "9faf0704b5510819d634f732e535811ddd814b35f84b180d20eed1471f0b2f69",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Parliament enacted the campaigner's proposal in 1839,",
+        "exact_native_cache_key": "a974b1e7eb72a78b9101a83f30afbfd78e9d1945.pkl",
+        "cache_input_text_sha256": "0aa6eddea28745bf916e934121371cb65182aeb40608108704fcbd9ed0401211",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and on 10 January 1840 the Uniform Penny Post began.",
+        "exact_native_cache_key": "0fb0db0038b16417e075c0245eb0aa092326c4c2.pkl",
+        "cache_input_text_sha256": "3ef43af6ef370dd7ec4a64e1f6e72edd8a83e7482467928a66a346162905bebe",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Parliament enacted the campaigner's proposal in 1839,",
+        "exact_native_cache_key": "a974b1e7eb72a78b9101a83f30afbfd78e9d1945.pkl",
+        "cache_input_text_sha256": "0aa6eddea28745bf916e934121371cb65182aeb40608108704fcbd9ed0401211",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and on 10 January 1840 the Uniform Penny Post began.",
+        "exact_native_cache_key": "0fb0db0038b16417e075c0245eb0aa092326c4c2.pkl",
+        "cache_input_text_sha256": "3ef43af6ef370dd7ec4a64e1f6e72edd8a83e7482467928a66a346162905bebe",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "A letter of up to half an ounce now cost one penny to any destination in Britain, and the fee was prepaid by whoever sent it.",
+        "exact_native_cache_key": "2dd025ad9c5bd141f1af0f477cca4a37261bce9b.pkl",
+        "cache_input_text_sha256": "bb6e1f689e51402074eedb5ed238546096724dea4bac3f5c7e5b11ea8538e16c",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "A letter of up to half an ounce now cost one penny to any destination in Britain, and the fee was prepaid by whoever sent it.",
+        "exact_native_cache_key": "e8c716452fc9b355242b0929d792a23e3bf601ba.pkl",
+        "cache_input_text_sha256": "bb6e1f689e51402074eedb5ed238546096724dea4bac3f5c7e5b11ea8538e16c",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "A letter of up to half an ounce now cost one penny to any destination in Britain,",
+        "exact_native_cache_key": "0b32f233bc9f051599a44a780a9877bcb7ee1a41.pkl",
+        "cache_input_text_sha256": "58ac83e696575ce89f8b21b19297b03ac7e079c78db7a0e5470deee24b689310",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and the fee was prepaid by whoever sent it.",
+        "exact_native_cache_key": "0c4d7793064fbe8efe0a109ef1e47b53ee942eb0.pkl",
+        "cache_input_text_sha256": "26a20239284296c20f6f97a031766219f13737c14e072b8e4aa9400c532f3b47",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "A letter of up to half an ounce now cost one penny to any destination in Britain,",
+        "exact_native_cache_key": "0b32f233bc9f051599a44a780a9877bcb7ee1a41.pkl",
+        "cache_input_text_sha256": "58ac83e696575ce89f8b21b19297b03ac7e079c78db7a0e5470deee24b689310",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and the fee was prepaid by whoever sent it.",
+        "exact_native_cache_key": "0c4d7793064fbe8efe0a109ef1e47b53ee942eb0.pkl",
+        "cache_input_text_sha256": "26a20239284296c20f6f97a031766219f13737c14e072b8e4aa9400c532f3b47",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "One flat-rate charge replaced variation with simplicity.",
+        "exact_native_cache_key": "8158b48885d61421c5bb30665707740e4ae9644b.pkl",
+        "cache_input_text_sha256": "2b3ec8a5fcd54adfd1d79a677dd02ee823e7a58460b46823f01d63fe5410fe9f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "One flat-rate charge replaced variation with simplicity.",
+        "exact_native_cache_key": "d8458ff5816e12d6f887bf16ea5636bcdd778ded.pkl",
+        "cache_input_text_sha256": "2b3ec8a5fcd54adfd1d79a677dd02ee823e7a58460b46823f01d63fe5410fe9f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The Penny Black, a one-penny denomination, was released on 1 May 1840, its validity starting on 6 May.",
+        "exact_native_cache_key": "be7859fbec9e9d0e849b66097ccb704209f9dbef.pkl",
+        "cache_input_text_sha256": "6553de16598db2b8d64c3ebc7819001a0b1ff065e0f6b79b3fb692a7d95c1d30",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The Penny Black, a one-penny denomination, was released on 1 May 1840, its validity starting on 6 May.",
+        "exact_native_cache_key": "1c361706dd2bcdf40a883c3ff21e02d4b2d9754b.pkl",
+        "cache_input_text_sha256": "6553de16598db2b8d64c3ebc7819001a0b1ff065e0f6b79b3fb692a7d95c1d30",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "The Penny Black, a one-penny denomination,",
+        "exact_native_cache_key": "78e251ac9f1110432a1a9827dec858f0ef8beaff.pkl",
+        "cache_input_text_sha256": "43153cb46cc403b6fd285cf3ec7fd300f614ccacc8cce574e746ab0ead9351fc",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "was released on 1 May 1840,",
+        "exact_native_cache_key": "f4e392078bbba01703886d7c115bcf8bf842ee6e.pkl",
+        "cache_input_text_sha256": "7a42cee14758143d3c0a6282660105f8ae35f09c90d3c7b1105207d52107c72d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "its validity starting on 6 May.",
+        "exact_native_cache_key": "e92996d3f374f60301dcaee8cac8da31ec89af1a.pkl",
+        "cache_input_text_sha256": "1b47ce2eb500a19e771753db9d7f7ae9b1ff84468a84b1c88c5671786305167e",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "The Penny Black,",
+        "exact_native_cache_key": "31a001bb70d9aaabdacb1500fae831b1a0cf0509.pkl",
+        "cache_input_text_sha256": "58c136a28d5727593dd2bbcc160f32da51b7de0cd088ef54097ddd7a749e71a5",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "a one-penny denomination,",
+        "exact_native_cache_key": "a697043f5be18f9d30da638c36d2f2ea81f6d4aa.pkl",
+        "cache_input_text_sha256": "8d93f0113505e8885797c2e6444cc981e7f6f4e901dd94d92d0918e29dc9693a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "was released on 1 May 1840,",
+        "exact_native_cache_key": "f4e392078bbba01703886d7c115bcf8bf842ee6e.pkl",
+        "cache_input_text_sha256": "7a42cee14758143d3c0a6282660105f8ae35f09c90d3c7b1105207d52107c72d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "its validity starting on 6 May.",
+        "exact_native_cache_key": "e92996d3f374f60301dcaee8cac8da31ec89af1a.pkl",
+        "cache_input_text_sha256": "1b47ce2eb500a19e771753db9d7f7ae9b1ff84468a84b1c88c5671786305167e",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Engraved on it was a youthful likeness of Queen Victoria, the reigning monarch.",
+        "exact_native_cache_key": "966eb571c37ceb54896af5e6f4fffd623e94e9cd.pkl",
+        "cache_input_text_sha256": "61a423bd25f4b4f8517ea5380c8b7fcaa4bb0f62ec073688e241a45cd882309f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Engraved on it was a youthful likeness of Queen Victoria, the reigning monarch.",
+        "exact_native_cache_key": "6f0ae2e51b4455b4896209336a80320ea4d5a359.pkl",
+        "cache_input_text_sha256": "61a423bd25f4b4f8517ea5380c8b7fcaa4bb0f62ec073688e241a45cd882309f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Engraved on it was",
+        "exact_native_cache_key": "1bc34de4828f84f59175be31f4f13039a6fda5d8.pkl",
+        "cache_input_text_sha256": "801331528c3f458b682559f97ef40300a125310b2a35c66d798c6dce0db7c82d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "a youthful likeness of Queen Victoria,",
+        "exact_native_cache_key": "a7f6e6bf0c76cbbbc15becf161718b82317d9ba3.pkl",
+        "cache_input_text_sha256": "b0b4e08ce542c3fa94d63c79d54a70b5854e6abed872b294eaf29ffb0dd5028a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "the reigning monarch.",
+        "exact_native_cache_key": "313aba3d3eeb4b900dc0749fc3db2ea7ab0dedb8.pkl",
+        "cache_input_text_sha256": "a2a42529d28b355087ab161e49fc585b28b807cb0192a6bb97b4361de8b751ad",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Engraved on it was a youthful likeness of Queen Victoria,",
+        "exact_native_cache_key": "1e88f57e56cb9a3d7edf6a9d305b86569326c975.pkl",
+        "cache_input_text_sha256": "ec18e4d56a2fe4fb97387f87bb38a9f4c87bfbc3fc3c1ecc2e21e3fa95808bda",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "the reigning monarch.",
+        "exact_native_cache_key": "313aba3d3eeb4b900dc0749fc3db2ea7ab0dedb8.pkl",
+        "cache_input_text_sha256": "a2a42529d28b355087ab161e49fc585b28b807cb0192a6bb97b4361de8b751ad",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "An aggregate of 68,808,000 were printed.",
+        "exact_native_cache_key": "5c2ee4cf6ce4c2bc1279ad1d43ea20a41489769f.pkl",
+        "cache_input_text_sha256": "2e9072b41b6af5ab94b3e77035db0d707e374fb2632e377f8e2b12e518c685bb",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "An aggregate of 68,808,000 were printed.",
+        "exact_native_cache_key": "35e81f7c71c844b684fff66b06c5b8f9b355f9d4.pkl",
+        "cache_input_text_sha256": "2e9072b41b6af5ab94b3e77035db0d707e374fb2632e377f8e2b12e518c685bb",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The sheets had no holes for separation, so each stamp was cut out individually with scissors.",
+        "exact_native_cache_key": "ba0e84ffd4d1360bc07cebe508fe68bb691e8655.pkl",
+        "cache_input_text_sha256": "e6ed2c792a744ed7286ddd161a799402f1b8c67c91c3bb4b7ae5313af9c29401",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The sheets had no holes for separation, so each stamp was cut out individually with scissors.",
+        "exact_native_cache_key": "e9cd25917e8c9993930b176fed3387892c03dbaa.pkl",
+        "cache_input_text_sha256": "e6ed2c792a744ed7286ddd161a799402f1b8c67c91c3bb4b7ae5313af9c29401",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "The sheets had no holes for separation,",
+        "exact_native_cache_key": "bce93a9e9c75dc9efe5c60e8cb2056862540f594.pkl",
+        "cache_input_text_sha256": "18634856cc79f03ec72379ca39396a9187db022572aff46ad19f68236951b76c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "so each stamp was cut out individually with scissors.",
+        "exact_native_cache_key": "8244f68c0d7d7bbe5a2e83a753a2909e0727d6e2.pkl",
+        "cache_input_text_sha256": "6f0a5501660b7e99b6a885a77327f1b7b96b8ce60a42f421d848adc6b49f0ab6",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "The sheets had no holes for separation,",
+        "exact_native_cache_key": "bce93a9e9c75dc9efe5c60e8cb2056862540f594.pkl",
+        "cache_input_text_sha256": "18634856cc79f03ec72379ca39396a9187db022572aff46ad19f68236951b76c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "so each stamp was cut out individually with scissors.",
+        "exact_native_cache_key": "8244f68c0d7d7bbe5a2e83a753a2909e0727d6e2.pkl",
+        "cache_input_text_sha256": "6f0a5501660b7e99b6a885a77327f1b7b96b8ce60a42f421d848adc6b49f0ab6",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Mailings doubled, from about 80 million items in 1839 to over 169 million in 1840.",
+        "exact_native_cache_key": "b3825dc27970e4cf88053770a61dd200627aa88b.pkl",
+        "cache_input_text_sha256": "2a50080f57f5a60878cc9059c5179060906a0dbc20e09e8105432fdf69b125bd",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Mailings doubled, from about 80 million items in 1839 to over 169 million in 1840.",
+        "exact_native_cache_key": "f39b38638a0769e9205ee876e34052727cccede8.pkl",
+        "cache_input_text_sha256": "2a50080f57f5a60878cc9059c5179060906a0dbc20e09e8105432fdf69b125bd",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Mailings doubled,",
+        "exact_native_cache_key": "69b831a6319ccaff52807c40a13777ce54b57674.pkl",
+        "cache_input_text_sha256": "9e6f7729bf809096f9abddea7bd0c8badc869882dce95e0c370c56c0bb8005ad",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "from about 80 million items in 1839 to over 169 million in 1840.",
+        "exact_native_cache_key": "d64b4b20fba97ae5654819793f9a12ad976ddf6b.pkl",
+        "cache_input_text_sha256": "50546aab01668fbc68d7bc64a6b8595d0be671e865f4621680b41292ff83c353",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Mailings doubled,",
+        "exact_native_cache_key": "69b831a6319ccaff52807c40a13777ce54b57674.pkl",
+        "cache_input_text_sha256": "9e6f7729bf809096f9abddea7bd0c8badc869882dce95e0c370c56c0bb8005ad",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "from about 80 million items in 1839 to over 169 million in 1840.",
+        "exact_native_cache_key": "d64b4b20fba97ae5654819793f9a12ad976ddf6b.pkl",
+        "cache_input_text_sha256": "50546aab01668fbc68d7bc64a6b8595d0be671e865f4621680b41292ff83c353",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The design had a drawback.",
+        "exact_native_cache_key": "f97292bfd5f0a20be79e794f89c2d323d7e9d555.pkl",
+        "cache_input_text_sha256": "e41e3bb0f7cdf099e7fa89e3492c9daa30408465ffdb6317f746b0f9ef9c7717",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The design had a drawback.",
+        "exact_native_cache_key": "4ed72c2c55d915d2d75c18c77dde6b3ff698da8d.pkl",
+        "cache_input_text_sha256": "e41e3bb0f7cdf099e7fa89e3492c9daa30408465ffdb6317f746b0f9ef9c7717",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Against black, the red cancelling mark was barely noticeable, lacking contrast, and the ink could be erased, leaving stamps vulnerable to reuse.",
+        "exact_native_cache_key": "cd1aa770f4a9bda724ecf20613dc0b31c81bef88.pkl",
+        "cache_input_text_sha256": "ba0b09f86613d6b0d0586efc98b9b7c62b1c64d66435c6a5a3eb0fa8acdb1656",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Against black, the red cancelling mark was barely noticeable, lacking contrast, and the ink could be erased, leaving stamps vulnerable to reuse.",
+        "exact_native_cache_key": "ffdffb00dedc4b4a4e0d72c5f6a05ca49cdc1177.pkl",
+        "cache_input_text_sha256": "ba0b09f86613d6b0d0586efc98b9b7c62b1c64d66435c6a5a3eb0fa8acdb1656",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Against black, the red cancelling mark was barely noticeable, lacking contrast,",
+        "exact_native_cache_key": "6b804e17f972d17c42683e03cf7ef5ae3e0ce413.pkl",
+        "cache_input_text_sha256": "f66583f1041a4dfc70f4cff44322848b2ad90839d3a16e85ca0bbcccbdc95965",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and the ink could be erased,",
+        "exact_native_cache_key": "6847e78b764bb436aae476c16ba2d285fcbfd66c.pkl",
+        "cache_input_text_sha256": "64420e92212b0ef17e3d27647f10b168f8ddbaa5880b2ecb95e9fc5fe6d6d9f0",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "leaving stamps vulnerable to reuse.",
+        "exact_native_cache_key": "455e3986f5fbe61bd25c88982baca4acd830550d.pkl",
+        "cache_input_text_sha256": "c37d34b37d8ab808ab061a9db673b3af620df05dc0cebd25d81fae803314b67c",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Against black,",
+        "exact_native_cache_key": "4e8e0cef4ecfcc201b29bd2f949b88ae1a21df34.pkl",
+        "cache_input_text_sha256": "79f7136dfe88df283a418862d1fc8576c95f35d10264165c14fb70b79a369fb5",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "the red cancelling mark was barely noticeable,",
+        "exact_native_cache_key": "543b71e4cca680e8f206c191bcc0ab2d8fb9f3c1.pkl",
+        "cache_input_text_sha256": "5acab6ace86eb2a2f5211ae0d44301a4232a7d31b38a68b30abdda0b511c02a6",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "lacking contrast,",
+        "exact_native_cache_key": "d24d4decf8c2a2c6fb60c24c83783f7dd9884bdb.pkl",
+        "cache_input_text_sha256": "30812d386c5fa792d3963fca31c29d544cc034fe8c88b85f95f06d878ca0a4f6",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and the ink could be erased,",
+        "exact_native_cache_key": "6847e78b764bb436aae476c16ba2d285fcbfd66c.pkl",
+        "cache_input_text_sha256": "64420e92212b0ef17e3d27647f10b168f8ddbaa5880b2ecb95e9fc5fe6d6d9f0",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 5,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "leaving stamps vulnerable to reuse.",
+        "exact_native_cache_key": "455e3986f5fbe61bd25c88982baca4acd830550d.pkl",
+        "cache_input_text_sha256": "c37d34b37d8ab808ab061a9db673b3af620df05dc0cebd25d81fae803314b67c",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "In February 1841 the Penny Red, cancelled in black ink, arrived to deter tampering and fraud.",
+        "exact_native_cache_key": "7dd3bec0c75eb1b830cd23d3e68dcdf625fa8288.pkl",
+        "cache_input_text_sha256": "f866f691c6be29843a2c84636af4b6e90b234c318932e453707461d362f8e0f6",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "In February 1841 the Penny Red, cancelled in black ink, arrived to deter tampering and fraud.",
+        "exact_native_cache_key": "8d641dec45692ab91cd1854c35de4eb79970c701.pkl",
+        "cache_input_text_sha256": "f866f691c6be29843a2c84636af4b6e90b234c318932e453707461d362f8e0f6",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "In February 1841 the Penny Red, cancelled in black ink,",
+        "exact_native_cache_key": "9ca9f5217617ead20b17025c812e22c645f16b51.pkl",
+        "cache_input_text_sha256": "36be5a1290b9e30336f6b0305226dab241d3dfd1d108c20f182ddd6caf8a8cc8",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "arrived to deter tampering and fraud.",
+        "exact_native_cache_key": "490e3c2abf8be3ef63e17d5b144cbebb0012ad39.pkl",
+        "cache_input_text_sha256": "006ce9e254f4917a9ea51891b7fb7e4efc7e390bdd81554e8b93259aeed65079",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "In February 1841 the Penny Red,",
+        "exact_native_cache_key": "346841149c54df978ec41fc2b319b389d8f42c0d.pkl",
+        "cache_input_text_sha256": "09dbdbb21f6b4fa705a6fc3c5e7ecef15be84a0d22d89a6d82d9d5b36beae2b3",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "cancelled in black ink,",
+        "exact_native_cache_key": "f1cb50dab181cbeceb191b3d3dc3c4c6ccad3a94.pkl",
+        "cache_input_text_sha256": "9e22a38811ebc7b6db986abf0a5a36442dc28a09f18bca951a623986eaba8d08",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "arrived to deter tampering and fraud.",
+        "exact_native_cache_key": "490e3c2abf8be3ef63e17d5b144cbebb0012ad39.pkl",
+        "cache_input_text_sha256": "006ce9e254f4917a9ea51891b7fb7e4efc7e390bdd81554e8b93259aeed65079",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "As the initiator of postage stamps, Britain set a precedent and earned an exemption.",
+        "exact_native_cache_key": "6d2c850b9e8d3ed4e53cdb5a4ce3475b4d17e50e.pkl",
+        "cache_input_text_sha256": "640b05bd114fd58a444c55884ba1eb3ec8d7167f419f6b750746ffed312e98aa",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "As the initiator of postage stamps, Britain set a precedent and earned an exemption.",
+        "exact_native_cache_key": "0b7adf6bd32fd7254e59dda1815e1c2a0276fd67.pkl",
+        "cache_input_text_sha256": "640b05bd114fd58a444c55884ba1eb3ec8d7167f419f6b750746ffed312e98aa",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "As the initiator of postage stamps,",
+        "exact_native_cache_key": "846dc432e5e41670a96da6cc7cf5a7bdfb8f24f0.pkl",
+        "cache_input_text_sha256": "2378968d02194854372e752729f98368743070b189b1afeca98a107c1a9c73cc",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Britain set a precedent and earned an exemption.",
+        "exact_native_cache_key": "98501437b60e8e4c20bca3532f5ab68dfc80749a.pkl",
+        "cache_input_text_sha256": "f890cd8a047b74fd7df788f9ecf53959057a635ec69560ee89a733f0870543b6",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Its stamps are nameless, with no country inscribed on them.",
+        "exact_native_cache_key": "09439149a10deef67299dd4bfd6f92e0c8aaad93.pkl",
+        "cache_input_text_sha256": "99344c7f453f7e1a0f862aa01a6b08b50d184a54f0ba95bb4983da09bb16984a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Its stamps are nameless, with no country inscribed on them.",
+        "exact_native_cache_key": "5652be2e94a62111aeabbd2b1e3c3665da515921.pkl",
+        "cache_input_text_sha256": "99344c7f453f7e1a0f862aa01a6b08b50d184a54f0ba95bb4983da09bb16984a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Its stamps are nameless,",
+        "exact_native_cache_key": "e61579f5542389fa7bc21b7774ab661a3a57bc56.pkl",
+        "cache_input_text_sha256": "cca5f765367fdb67b4826010d88708d8e0bf141afb2c241bb633659e641a1f69",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "with no country inscribed on them.",
+        "exact_native_cache_key": "338903df11784e0d17759d4a527a65dbcee280ca.pkl",
+        "cache_input_text_sha256": "6e7cbf3370ba486d132cc3a823b718e2844d4be4507653f43964c0308aaf90c6",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "By international agreement, the sovereign's head suffices for identification, an implicit designation that other countries spell out in print.",
+        "exact_native_cache_key": "a9ab39eaf3d6414403daf0c035e54007b2eece36.pkl",
+        "cache_input_text_sha256": "7f829de63138298fadb1eb882b676c5fadff283956619b49900077b33f5ed4ab",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "By international agreement, the sovereign's head suffices for identification, an implicit designation that other countries spell out in print.",
+        "exact_native_cache_key": "55adf84848cdccd4686e6d0a4786def8abcd455f.pkl",
+        "cache_input_text_sha256": "7f829de63138298fadb1eb882b676c5fadff283956619b49900077b33f5ed4ab",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "By international agreement, the sovereign's head suffices for identification,",
+        "exact_native_cache_key": "8305bb47c03616c6545d0614ba0102d30826057b.pkl",
+        "cache_input_text_sha256": "6b0983b7eeaf812b2a6eab31723399c85aace5fdf9f45a29a931194689614a0e",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "an implicit designation that other countries spell out in print.",
+        "exact_native_cache_key": "f56caa5fe5a2552a79f930bf6604af79616ded49.pkl",
+        "cache_input_text_sha256": "7c451f09cafc34a6fff3c17906c0a3006681bfc8e858c743fcdc746afc9c16e5",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "By international agreement,",
+        "exact_native_cache_key": "68fd05efd7d035ea80c3e514eb2fbc5ace36039c.pkl",
+        "cache_input_text_sha256": "b5530e64b9d037118eea033e8ffba8aed17682074d2dd935525317f942843ff8",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "the sovereign's head suffices for identification,",
+        "exact_native_cache_key": "793c9763a0e5168b1d96caad18d6113c3a76a9e0.pkl",
+        "cache_input_text_sha256": "f6fc88bd1f3f988ec1e722e860dca928775f69e9f2ef5f3206152f69f9613a6a",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "an implicit designation that other countries spell out in print.",
+        "exact_native_cache_key": "f56caa5fe5a2552a79f930bf6604af79616ded49.pkl",
+        "cache_input_text_sha256": "7c451f09cafc34a6fff3c17906c0a3006681bfc8e858c743fcdc746afc9c16e5",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      }
+    ],
+    "unique_reference_key_count": 80,
+    "raw_mother_cache_scalar_manifest": [
+      {
+        "exact_native_cache_key": "fca4535e45f03b944ee2f1a724b4bb71fae05086.pkl",
+        "pkl_sha256": "926317935fce454895cd39e54a82e7183da6ec47a0fe27ddecb41a85a81db256",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "标题",
+            "piece": null,
+            "reference_kind": "title-default-raw",
+            "method": "create",
+            "source_slice": "The Stamp That Changed the Post",
+            "exact_native_cache_key": "fca4535e45f03b944ee2f1a724b4bb71fae05086.pkl",
+            "cache_input_text_sha256": "796413f43bfeda2b8af3be09cc5fd49d8f643c30ffca32758e24d43ed5b8580a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "926317935fce4548",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          39424
+        ],
+        "unprocessed_array_sha256": "ca4f9da245d2ca44b6099743cec54015b3db6dfcb431f8860caae69ea993d4d0"
+      },
+      {
+        "exact_native_cache_key": "62f9a6d72beacd6347a7a9475f38f689e2ff469a.pkl",
+        "pkl_sha256": "916139a4fa0c965f594aa63889b21464d83e43a7375d7ef27ee1b57ef5d58a6c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Before 1840, British postage was levied according to the number of sheets in a letter and the mileage of its carriage.",
+            "exact_native_cache_key": "62f9a6d72beacd6347a7a9475f38f689e2ff469a.pkl",
+            "cache_input_text_sha256": "f8ad35cf7ad31efbe48ece5241b2254515be02e7c9310f55f234e8bdd58728fa",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "916139a4fa0c965f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          188928
+        ],
+        "unprocessed_array_sha256": "d93dddeddad7605e94b221dc84d514c50d290f5559efcd8db132131a5e3ed1bf"
+      },
+      {
+        "exact_native_cache_key": "5ad372864e383e8a8296c553b26bd2ab051f71f6.pkl",
+        "pkl_sha256": "0b86d6cb63594bab8b7e3ce78546d1456086470e04f4177bcf424f180a03c71c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Before 1840,",
+            "exact_native_cache_key": "5ad372864e383e8a8296c553b26bd2ab051f71f6.pkl",
+            "cache_input_text_sha256": "b01837ce55b996c24b2f5275607bc9b59d3fe6c486cb3ce3f9e1044147d8d73a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "0b86d6cb63594bab",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          33280
+        ],
+        "unprocessed_array_sha256": "54366acccb71df89358196d26c1c43bbcf0109e34dd703c89b486f88207891ca"
+      },
+      {
+        "exact_native_cache_key": "f08718581ee1157128cced35b9e3d9630a8d7475.pkl",
+        "pkl_sha256": "8b9b3733b7f8d75f47f6f2e697edb42ef1c9a92615ac1ebe60161884b39acdfd",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "British postage was levied according to the number of sheets in a letter and the mileage of its carriage.",
+            "exact_native_cache_key": "f08718581ee1157128cced35b9e3d9630a8d7475.pkl",
+            "cache_input_text_sha256": "8c00ae141a194093f4ad14aac2684dc1a131fc8e78d6d8a9fcb2e95799cb6656",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "8b9b3733b7f8d75f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          147968
+        ],
+        "unprocessed_array_sha256": "71b755d916a1d57bc13a3bfd266fc75668e176ec19e3f3c24aeb506ac8d90b05"
+      },
+      {
+        "exact_native_cache_key": "d434f2f43bfb297ef9ed788ea4181bc987ba3f07.pkl",
+        "pkl_sha256": "93920d6b697e5c05aa2821970c635c092251aca92dddcba54d55604d2ea8724a",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The sum was usually payable on delivery, so the person receiving the correspondence, not the sender, settled it.",
+            "exact_native_cache_key": "d434f2f43bfb297ef9ed788ea4181bc987ba3f07.pkl",
+            "cache_input_text_sha256": "e0cb452de39f060b1427b77d9de00cc9e2c11ab52b5137b0d64809947a36639a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "93920d6b697e5c05",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          175616
+        ],
+        "unprocessed_array_sha256": "c2ec004735b21c9ed052b5fb259eab0ee1ce62ff1a9059bd1f0ee4c5aee34df6"
+      },
+      {
+        "exact_native_cache_key": "c93e674bba3457db9532db1d007ed6248cbe8e67.pkl",
+        "pkl_sha256": "e05f8fd1cfb94bdabb50d1ffc7663babb48dd8c8f1ebb232bf1eecb16ddd737b",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "The sum was usually payable on delivery,",
+            "exact_native_cache_key": "c93e674bba3457db9532db1d007ed6248cbe8e67.pkl",
+            "cache_input_text_sha256": "0619969d1da4c7806d6e53cd962a209f8cfa7be9470532068df0313c63055f6b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S2",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "The sum was usually payable on delivery,",
+            "exact_native_cache_key": "c93e674bba3457db9532db1d007ed6248cbe8e67.pkl",
+            "cache_input_text_sha256": "0619969d1da4c7806d6e53cd962a209f8cfa7be9470532068df0313c63055f6b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "e05f8fd1cfb94bda",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          60928
+        ],
+        "unprocessed_array_sha256": "65802f95dd746af8bd249b5b07d24ab0946f724d5459d0eb03cbbcc60824fd04"
+      },
+      {
+        "exact_native_cache_key": "96fcec8d1ee9f8c3ee623e733eb458d8e990a0c6.pkl",
+        "pkl_sha256": "33dde1704818d8f14584bd0f6817c445bbb0b9d598b58e92efd4210b74767ad2",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "so the person receiving the correspondence, not the sender, settled it.",
+            "exact_native_cache_key": "96fcec8d1ee9f8c3ee623e733eb458d8e990a0c6.pkl",
+            "cache_input_text_sha256": "1d7711081eba3bad093665b2ca9152a291adc91562e8a52c9d4815a4c22598a7",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "33dde1704818d8f1",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          99840
+        ],
+        "unprocessed_array_sha256": "1e783af29f0dbddfd33f2321925fed0373d9dfbae891f18a6dc12a7f9d4d9f1f"
+      },
+      {
+        "exact_native_cache_key": "27425486f9e56495a7bd023b5a6515b27dc39206.pkl",
+        "pkl_sha256": "b705d230a1064517693816ee79c594a8ec6e18ead01dd3f5751ddf193af33d32",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "so the person receiving the correspondence,",
+            "exact_native_cache_key": "27425486f9e56495a7bd023b5a6515b27dc39206.pkl",
+            "cache_input_text_sha256": "88c27c21a2b93a6f43ce5c86edb0b055a0f4483c026b000bbe9bee0fdb44b52d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "b705d230a1064517",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          60416
+        ],
+        "unprocessed_array_sha256": "076c81eba42af74c4b8def3af35013db7e00e3580657033347d8772c9ed862d8"
+      },
+      {
+        "exact_native_cache_key": "94e12cf12fdeaeb1484f4a26cc7cd3af7a46c279.pkl",
+        "pkl_sha256": "6bc2b3248b61c1b5ce8aa4d8895fdde37b42889c46637d3d816a970753d573fb",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "not the sender,",
+            "exact_native_cache_key": "94e12cf12fdeaeb1484f4a26cc7cd3af7a46c279.pkl",
+            "cache_input_text_sha256": "75ad99b7e781072643b22f0f1867a897efc4704b5a28cdb41773752d91a513f1",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "6bc2b3248b61c1b5",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          24576
+        ],
+        "unprocessed_array_sha256": "52decf89313e683429a53eb739f869455bcdfb1dd380667a10d28b788e539b68"
+      },
+      {
+        "exact_native_cache_key": "f363005c8f89fc7311d9e23af981056a1fe5bb8f.pkl",
+        "pkl_sha256": "564177492c07b236ef8176353ddfd2ecd53ffe4df76966532d9357b90ddced8a",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "settled it.",
+            "exact_native_cache_key": "f363005c8f89fc7311d9e23af981056a1fe5bb8f.pkl",
+            "cache_input_text_sha256": "31023e47e1396d9574513547e92fd1de6d2c6a56108420835ddf8efe9dcf3cb4",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "564177492c07b236",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          21504
+        ],
+        "unprocessed_array_sha256": "76890935b2a9175b71e95c78055b573145b5011b982a3337a072136db7eb0427"
+      },
+      {
+        "exact_native_cache_key": "66cac62139cce066c11edac0b9881003d31ae806.pkl",
+        "pkl_sha256": "1324aeda334d24ae47902779b88ce64c029924414ed5b331e5ceb09e6fc985a9",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Prices thus fluctuated from one postal item to the next.",
+            "exact_native_cache_key": "66cac62139cce066c11edac0b9881003d31ae806.pkl",
+            "cache_input_text_sha256": "dbf845b39c78356adb505d9a52dacd08eb60729b68e86212f034bb2e512f9255",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "1324aeda334d24ae",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          89600
+        ],
+        "unprocessed_array_sha256": "3ed25c5396b2e2d83c4100c77ea494e7210face50c406402d39ffca8f05567ec"
+      },
+      {
+        "exact_native_cache_key": "3d76088ec1f6c1e7779b4cff8a5f011878caf8de.pkl",
+        "pkl_sha256": "6d31f025248acfb80d2b8b54863f993c413627aa3e7c5b75a312f591d8561424",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "In 1837 Rowland Hill published a booklet urging reform.",
+            "exact_native_cache_key": "3d76088ec1f6c1e7779b4cff8a5f011878caf8de.pkl",
+            "cache_input_text_sha256": "12a99ad75a5b4a215727b1a5bdbf4dbc2cdf7e9f75a6e615ecbb263e75c0f1cc",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "6d31f025248acfb8",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          114688
+        ],
+        "unprocessed_array_sha256": "e96d23227e853c72e436f3b478a25bbebcdc7be412f6890f7af559980289a103"
+      },
+      {
+        "exact_native_cache_key": "18330cfdf73ea971001d874a09833b887bf6bb1e.pkl",
+        "pkl_sha256": "c1711fe9917f95d00629df1f2828664f238538bcafc1876b2d7b21ca5f0ca301",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Parliament enacted the campaigner's proposal in 1839, and on 10 January 1840 the Uniform Penny Post began.",
+            "exact_native_cache_key": "18330cfdf73ea971001d874a09833b887bf6bb1e.pkl",
+            "cache_input_text_sha256": "9faf0704b5510819d634f732e535811ddd814b35f84b180d20eed1471f0b2f69",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "c1711fe9917f95d0",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          237056
+        ],
+        "unprocessed_array_sha256": "529e676d24347a5601e40e7b526f48f2cf7543513bf4b0d2e83bffc1325df0a4"
+      },
+      {
+        "exact_native_cache_key": "a974b1e7eb72a78b9101a83f30afbfd78e9d1945.pkl",
+        "pkl_sha256": "2da1ecde4fa305a855ee6443f14b3d02f610386c1a3a1447572e7dae3b847939",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Parliament enacted the campaigner's proposal in 1839,",
+            "exact_native_cache_key": "a974b1e7eb72a78b9101a83f30afbfd78e9d1945.pkl",
+            "cache_input_text_sha256": "0aa6eddea28745bf916e934121371cb65182aeb40608108704fcbd9ed0401211",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S5",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Parliament enacted the campaigner's proposal in 1839,",
+            "exact_native_cache_key": "a974b1e7eb72a78b9101a83f30afbfd78e9d1945.pkl",
+            "cache_input_text_sha256": "0aa6eddea28745bf916e934121371cb65182aeb40608108704fcbd9ed0401211",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "2da1ecde4fa305a8",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          102400
+        ],
+        "unprocessed_array_sha256": "12d87e74cd1693dc9b4987f507de7d4ca9bb319809d54cd6c7ca633076899b46"
+      },
+      {
+        "exact_native_cache_key": "0fb0db0038b16417e075c0245eb0aa092326c4c2.pkl",
+        "pkl_sha256": "917d9e0d2d9b2bf4f0e7afc065df9c610865d8576a4a238f89d2f7932bdd9b52",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and on 10 January 1840 the Uniform Penny Post began.",
+            "exact_native_cache_key": "0fb0db0038b16417e075c0245eb0aa092326c4c2.pkl",
+            "cache_input_text_sha256": "3ef43af6ef370dd7ec4a64e1f6e72edd8a83e7482467928a66a346162905bebe",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S5",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and on 10 January 1840 the Uniform Penny Post began.",
+            "exact_native_cache_key": "0fb0db0038b16417e075c0245eb0aa092326c4c2.pkl",
+            "cache_input_text_sha256": "3ef43af6ef370dd7ec4a64e1f6e72edd8a83e7482467928a66a346162905bebe",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "917d9e0d2d9b2bf4",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          120320
+        ],
+        "unprocessed_array_sha256": "b93332e230b10b24f39a305a92e3142f54d315c2f11ae6dd863990596d829b0c"
+      },
+      {
+        "exact_native_cache_key": "2dd025ad9c5bd141f1af0f477cca4a37261bce9b.pkl",
+        "pkl_sha256": "12271ce61a95e5894b2be719f4abd8c92fcc574e34e37537fac32304799f460b",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "A letter of up to half an ounce now cost one penny to any destination in Britain, and the fee was prepaid by whoever sent it.",
+            "exact_native_cache_key": "2dd025ad9c5bd141f1af0f477cca4a37261bce9b.pkl",
+            "cache_input_text_sha256": "bb6e1f689e51402074eedb5ed238546096724dea4bac3f5c7e5b11ea8538e16c",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "12271ce61a95e589",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          196096
+        ],
+        "unprocessed_array_sha256": "aceeecc6579963687c5d6ac26e0a48d03b97c247e0a9f02083892e694804305c"
+      },
+      {
+        "exact_native_cache_key": "0b32f233bc9f051599a44a780a9877bcb7ee1a41.pkl",
+        "pkl_sha256": "75347115412d626deac3c60cfe48cdeb7e9d3af6dfb556f777b342b67d318c40",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "A letter of up to half an ounce now cost one penny to any destination in Britain,",
+            "exact_native_cache_key": "0b32f233bc9f051599a44a780a9877bcb7ee1a41.pkl",
+            "cache_input_text_sha256": "58ac83e696575ce89f8b21b19297b03ac7e079c78db7a0e5470deee24b689310",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S6",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "A letter of up to half an ounce now cost one penny to any destination in Britain,",
+            "exact_native_cache_key": "0b32f233bc9f051599a44a780a9877bcb7ee1a41.pkl",
+            "cache_input_text_sha256": "58ac83e696575ce89f8b21b19297b03ac7e079c78db7a0e5470deee24b689310",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "75347115412d626d",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          129024
+        ],
+        "unprocessed_array_sha256": "af6daf3bf41984ac8c1e174899fb655a5222aefa89cedc4809cd1b848d431151"
+      },
+      {
+        "exact_native_cache_key": "0c4d7793064fbe8efe0a109ef1e47b53ee942eb0.pkl",
+        "pkl_sha256": "0fdb9093924ba2daf1cb55650c84d7d140f3cccfb0011a06d0cf74693b0d84ec",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and the fee was prepaid by whoever sent it.",
+            "exact_native_cache_key": "0c4d7793064fbe8efe0a109ef1e47b53ee942eb0.pkl",
+            "cache_input_text_sha256": "26a20239284296c20f6f97a031766219f13737c14e072b8e4aa9400c532f3b47",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S6",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and the fee was prepaid by whoever sent it.",
+            "exact_native_cache_key": "0c4d7793064fbe8efe0a109ef1e47b53ee942eb0.pkl",
+            "cache_input_text_sha256": "26a20239284296c20f6f97a031766219f13737c14e072b8e4aa9400c532f3b47",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "0fdb9093924ba2da",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          60928
+        ],
+        "unprocessed_array_sha256": "2379fdea7a34bac00cf11bf51d5ac9497347f89c3155795988f19aa078f1e8cd"
+      },
+      {
+        "exact_native_cache_key": "8158b48885d61421c5bb30665707740e4ae9644b.pkl",
+        "pkl_sha256": "520d0444b128e9ede45f1fbcca563ecee516b16f26cc4cc423a46125cd509ea8",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "One flat-rate charge replaced variation with simplicity.",
+            "exact_native_cache_key": "8158b48885d61421c5bb30665707740e4ae9644b.pkl",
+            "cache_input_text_sha256": "2b3ec8a5fcd54adfd1d79a677dd02ee823e7a58460b46823f01d63fe5410fe9f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "520d0444b128e9ed",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          91648
+        ],
+        "unprocessed_array_sha256": "e8ac4f7cb544a3129857948b48b072c7c38bded0f3044e32b6f733171180272a"
+      },
+      {
+        "exact_native_cache_key": "be7859fbec9e9d0e849b66097ccb704209f9dbef.pkl",
+        "pkl_sha256": "030504a2fad5b18c4637109aed12a1bcd507fc051e2cfe46c088d49d65077872",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The Penny Black, a one-penny denomination, was released on 1 May 1840, its validity starting on 6 May.",
+            "exact_native_cache_key": "be7859fbec9e9d0e849b66097ccb704209f9dbef.pkl",
+            "cache_input_text_sha256": "6553de16598db2b8d64c3ebc7819001a0b1ff065e0f6b79b3fb692a7d95c1d30",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "030504a2fad5b18c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          212480
+        ],
+        "unprocessed_array_sha256": "ad08d071ef6abc2b93e9f89dc674667f2d699d726284df907b3cad9084ddb89c"
+      },
+      {
+        "exact_native_cache_key": "78e251ac9f1110432a1a9827dec858f0ef8beaff.pkl",
+        "pkl_sha256": "30638b948c2dca7c7eb8e07ac01d1ef592c7e4291b255ae8c5791f94adf9fa38",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "The Penny Black, a one-penny denomination,",
+            "exact_native_cache_key": "78e251ac9f1110432a1a9827dec858f0ef8beaff.pkl",
+            "cache_input_text_sha256": "43153cb46cc403b6fd285cf3ec7fd300f614ccacc8cce574e746ab0ead9351fc",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "30638b948c2dca7c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          65536
+        ],
+        "unprocessed_array_sha256": "22a3e8ff76f5f5d54a52ecab9ec10a0de18cb940484ca3b531f983639a654c9d"
+      },
+      {
+        "exact_native_cache_key": "f4e392078bbba01703886d7c115bcf8bf842ee6e.pkl",
+        "pkl_sha256": "67d02b5ddfe3dcf5f9f2b54b89778a5b3690aebcafaa132f5978f95a2c534e20",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "was released on 1 May 1840,",
+            "exact_native_cache_key": "f4e392078bbba01703886d7c115bcf8bf842ee6e.pkl",
+            "cache_input_text_sha256": "7a42cee14758143d3c0a6282660105f8ae35f09c90d3c7b1105207d52107c72d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S8",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "was released on 1 May 1840,",
+            "exact_native_cache_key": "f4e392078bbba01703886d7c115bcf8bf842ee6e.pkl",
+            "cache_input_text_sha256": "7a42cee14758143d3c0a6282660105f8ae35f09c90d3c7b1105207d52107c72d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "67d02b5ddfe3dcf5",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          69120
+        ],
+        "unprocessed_array_sha256": "70eebe74149a271f4d88f10ab649564f6a2a077fb4531bb258fcda27a00840d8"
+      },
+      {
+        "exact_native_cache_key": "e92996d3f374f60301dcaee8cac8da31ec89af1a.pkl",
+        "pkl_sha256": "c00def5364ff20e12a366db219c19749aadeee961beb182f5a714122f8593552",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "its validity starting on 6 May.",
+            "exact_native_cache_key": "e92996d3f374f60301dcaee8cac8da31ec89af1a.pkl",
+            "cache_input_text_sha256": "1b47ce2eb500a19e771753db9d7f7ae9b1ff84468a84b1c88c5671786305167e",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S8",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "its validity starting on 6 May.",
+            "exact_native_cache_key": "e92996d3f374f60301dcaee8cac8da31ec89af1a.pkl",
+            "cache_input_text_sha256": "1b47ce2eb500a19e771753db9d7f7ae9b1ff84468a84b1c88c5671786305167e",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "c00def5364ff20e1",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          57344
+        ],
+        "unprocessed_array_sha256": "3f81792745ec43bb74fea84b62690e60c5bd81d09600a49f3e0334f4baede6f0"
+      },
+      {
+        "exact_native_cache_key": "31a001bb70d9aaabdacb1500fae831b1a0cf0509.pkl",
+        "pkl_sha256": "787827995ad481239ebefc2b05b3cabd62f9c99b1b25ad3c6a86e4e025715fc7",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "The Penny Black,",
+            "exact_native_cache_key": "31a001bb70d9aaabdacb1500fae831b1a0cf0509.pkl",
+            "cache_input_text_sha256": "58c136a28d5727593dd2bbcc160f32da51b7de0cd088ef54097ddd7a749e71a5",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "787827995ad48123",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          26624
+        ],
+        "unprocessed_array_sha256": "9f69e19a32b18746992749e18c11bee9056f0017d29a659011a52251048bd30a"
+      },
+      {
+        "exact_native_cache_key": "a697043f5be18f9d30da638c36d2f2ea81f6d4aa.pkl",
+        "pkl_sha256": "80b6403f1131d9486a38abb2645751cb2bd4504197e569ccd136ca2bab155dd6",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "a one-penny denomination,",
+            "exact_native_cache_key": "a697043f5be18f9d30da638c36d2f2ea81f6d4aa.pkl",
+            "cache_input_text_sha256": "8d93f0113505e8885797c2e6444cc981e7f6f4e901dd94d92d0918e29dc9693a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "80b6403f1131d948",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          40448
+        ],
+        "unprocessed_array_sha256": "1c6b804d11978a001216e4e231f3b2dff833cb727d9ffd2bcb50940d32546796"
+      },
+      {
+        "exact_native_cache_key": "966eb571c37ceb54896af5e6f4fffd623e94e9cd.pkl",
+        "pkl_sha256": "fb42ea569afd1b2c9d948a6c91f1b0664e9bfcac6a1c85f06777a1ecc9a00781",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Engraved on it was a youthful likeness of Queen Victoria, the reigning monarch.",
+            "exact_native_cache_key": "966eb571c37ceb54896af5e6f4fffd623e94e9cd.pkl",
+            "cache_input_text_sha256": "61a423bd25f4b4f8517ea5380c8b7fcaa4bb0f62ec073688e241a45cd882309f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "fb42ea569afd1b2c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          122368
+        ],
+        "unprocessed_array_sha256": "fea9a0fc2f80a3360a3aaa247ddbcd0e6921aac8c2c452945fc7883415410037"
+      },
+      {
+        "exact_native_cache_key": "1bc34de4828f84f59175be31f4f13039a6fda5d8.pkl",
+        "pkl_sha256": "a9e008739e81b6d3c6829280cfd63200fca196a2b663fddd6b889293dbb2f038",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Engraved on it was",
+            "exact_native_cache_key": "1bc34de4828f84f59175be31f4f13039a6fda5d8.pkl",
+            "cache_input_text_sha256": "801331528c3f458b682559f97ef40300a125310b2a35c66d798c6dce0db7c82d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "a9e008739e81b6d3",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          30208
+        ],
+        "unprocessed_array_sha256": "8cd017f89b14d0609f108598c179ba239800fdc0abaf08d15b0ab4b60aba58a7"
+      },
+      {
+        "exact_native_cache_key": "a7f6e6bf0c76cbbbc15becf161718b82317d9ba3.pkl",
+        "pkl_sha256": "224337ac1a59719912891efb498455af573262be5d019f5c12dcf6895165e472",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "a youthful likeness of Queen Victoria,",
+            "exact_native_cache_key": "a7f6e6bf0c76cbbbc15becf161718b82317d9ba3.pkl",
+            "cache_input_text_sha256": "b0b4e08ce542c3fa94d63c79d54a70b5854e6abed872b294eaf29ffb0dd5028a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "224337ac1a597199",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          60928
+        ],
+        "unprocessed_array_sha256": "0bf8f9852f18bf6fb3770c96a29345e8eb128722d0097557757352183dbe2db9"
+      },
+      {
+        "exact_native_cache_key": "313aba3d3eeb4b900dc0749fc3db2ea7ab0dedb8.pkl",
+        "pkl_sha256": "0c55bb8f080f307f0af7ce8f47f7b2cf2bf11a8fd3f71aeb24a2400e2d1872ae",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "the reigning monarch.",
+            "exact_native_cache_key": "313aba3d3eeb4b900dc0749fc3db2ea7ab0dedb8.pkl",
+            "cache_input_text_sha256": "a2a42529d28b355087ab161e49fc585b28b807cb0192a6bb97b4361de8b751ad",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S9",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "the reigning monarch.",
+            "exact_native_cache_key": "313aba3d3eeb4b900dc0749fc3db2ea7ab0dedb8.pkl",
+            "cache_input_text_sha256": "a2a42529d28b355087ab161e49fc585b28b807cb0192a6bb97b4361de8b751ad",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "0c55bb8f080f307f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          28672
+        ],
+        "unprocessed_array_sha256": "a6e94e103521d94c506afe9e11351647cc116745636381fc8a7c5024829d0f54"
+      },
+      {
+        "exact_native_cache_key": "1e88f57e56cb9a3d7edf6a9d305b86569326c975.pkl",
+        "pkl_sha256": "c65cc70242031566b98310e67b287b9b396f600c5f2b19276fc42d4ea771d3e1",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Engraved on it was a youthful likeness of Queen Victoria,",
+            "exact_native_cache_key": "1e88f57e56cb9a3d7edf6a9d305b86569326c975.pkl",
+            "cache_input_text_sha256": "ec18e4d56a2fe4fb97387f87bb38a9f4c87bfbc3fc3c1ecc2e21e3fa95808bda",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "c65cc70242031566",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          90112
+        ],
+        "unprocessed_array_sha256": "e17d61e85257b39a557870648a88b3ee86301683e790efec99e95c558235dbaf"
+      },
+      {
+        "exact_native_cache_key": "5c2ee4cf6ce4c2bc1279ad1d43ea20a41489769f.pkl",
+        "pkl_sha256": "b26827cdcc6b1ac4eb4daa42d088d5931c2e569560cf0ce4472d9108175cb6b1",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "An aggregate of 68,808,000 were printed.",
+            "exact_native_cache_key": "5c2ee4cf6ce4c2bc1279ad1d43ea20a41489769f.pkl",
+            "cache_input_text_sha256": "2e9072b41b6af5ab94b3e77035db0d707e374fb2632e377f8e2b12e518c685bb",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "b26827cdcc6b1ac4",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          105984
+        ],
+        "unprocessed_array_sha256": "b5af977be38018665b8477a86b653cc073b1876e05204b8dc286b6203dcbfec0"
+      },
+      {
+        "exact_native_cache_key": "ba0e84ffd4d1360bc07cebe508fe68bb691e8655.pkl",
+        "pkl_sha256": "2818d3c60393ebeaff60122e339a0e2d68c9bafe86eba014483db5a0a984f95a",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The sheets had no holes for separation, so each stamp was cut out individually with scissors.",
+            "exact_native_cache_key": "ba0e84ffd4d1360bc07cebe508fe68bb691e8655.pkl",
+            "cache_input_text_sha256": "e6ed2c792a744ed7286ddd161a799402f1b8c67c91c3bb4b7ae5313af9c29401",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "2818d3c60393ebea",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          147968
+        ],
+        "unprocessed_array_sha256": "33d83ac4b5beb5d0d07782e980a9aff0334142b004ca0aee71ced4eb71d4e590"
+      },
+      {
+        "exact_native_cache_key": "bce93a9e9c75dc9efe5c60e8cb2056862540f594.pkl",
+        "pkl_sha256": "797ff09c9accb5c3ff2182058226dcd279b9152170f9bcfde1f603fb43e37ecf",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "The sheets had no holes for separation,",
+            "exact_native_cache_key": "bce93a9e9c75dc9efe5c60e8cb2056862540f594.pkl",
+            "cache_input_text_sha256": "18634856cc79f03ec72379ca39396a9187db022572aff46ad19f68236951b76c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S11",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "The sheets had no holes for separation,",
+            "exact_native_cache_key": "bce93a9e9c75dc9efe5c60e8cb2056862540f594.pkl",
+            "cache_input_text_sha256": "18634856cc79f03ec72379ca39396a9187db022572aff46ad19f68236951b76c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "797ff09c9accb5c3",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          56832
+        ],
+        "unprocessed_array_sha256": "07bc9b6216803fca3b96a97575903676f6e5867eb9546bf11b970aa433944bfe"
+      },
+      {
+        "exact_native_cache_key": "8244f68c0d7d7bbe5a2e83a753a2909e0727d6e2.pkl",
+        "pkl_sha256": "47c39d277bd921a51c677a4045222d4d936324e1c0834b5cd0d0c747dabc4337",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "so each stamp was cut out individually with scissors.",
+            "exact_native_cache_key": "8244f68c0d7d7bbe5a2e83a753a2909e0727d6e2.pkl",
+            "cache_input_text_sha256": "6f0a5501660b7e99b6a885a77327f1b7b96b8ce60a42f421d848adc6b49f0ab6",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S11",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "so each stamp was cut out individually with scissors.",
+            "exact_native_cache_key": "8244f68c0d7d7bbe5a2e83a753a2909e0727d6e2.pkl",
+            "cache_input_text_sha256": "6f0a5501660b7e99b6a885a77327f1b7b96b8ce60a42f421d848adc6b49f0ab6",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "47c39d277bd921a5",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          74240
+        ],
+        "unprocessed_array_sha256": "4e5fcecfe05f53b633dfcd19cce2e74098d2f42a3649c43d0bd2d93f3a240852"
+      },
+      {
+        "exact_native_cache_key": "b3825dc27970e4cf88053770a61dd200627aa88b.pkl",
+        "pkl_sha256": "35505dead7445544e0f8f596a260e8f71c846398e96d7061b3d4500da6c6dfb8",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Mailings doubled, from about 80 million items in 1839 to over 169 million in 1840.",
+            "exact_native_cache_key": "b3825dc27970e4cf88053770a61dd200627aa88b.pkl",
+            "cache_input_text_sha256": "2a50080f57f5a60878cc9059c5179060906a0dbc20e09e8105432fdf69b125bd",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "35505dead7445544",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          209920
+        ],
+        "unprocessed_array_sha256": "1ed8c03d0072f7e54d3faf394c9712adb778426dad140dd6d4d8e3f5d185c7ed"
+      },
+      {
+        "exact_native_cache_key": "69b831a6319ccaff52807c40a13777ce54b57674.pkl",
+        "pkl_sha256": "633de7b923b21b6a10b480836437e6fbee283e9134fc53869a49d980ea8c3ca2",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Mailings doubled,",
+            "exact_native_cache_key": "69b831a6319ccaff52807c40a13777ce54b57674.pkl",
+            "cache_input_text_sha256": "9e6f7729bf809096f9abddea7bd0c8badc869882dce95e0c370c56c0bb8005ad",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S12",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Mailings doubled,",
+            "exact_native_cache_key": "69b831a6319ccaff52807c40a13777ce54b57674.pkl",
+            "cache_input_text_sha256": "9e6f7729bf809096f9abddea7bd0c8badc869882dce95e0c370c56c0bb8005ad",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "633de7b923b21b6a",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          28160
+        ],
+        "unprocessed_array_sha256": "2a6b3b495f90aee8e561eb02df015936a6a271ce651345242c8e3b196f127d16"
+      },
+      {
+        "exact_native_cache_key": "d64b4b20fba97ae5654819793f9a12ad976ddf6b.pkl",
+        "pkl_sha256": "c2991141abb4c05cdf4bf0998811a467e34854ec98a19e0d29661d16ff1ed7e6",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "from about 80 million items in 1839 to over 169 million in 1840.",
+            "exact_native_cache_key": "d64b4b20fba97ae5654819793f9a12ad976ddf6b.pkl",
+            "cache_input_text_sha256": "50546aab01668fbc68d7bc64a6b8595d0be671e865f4621680b41292ff83c353",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S12",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "from about 80 million items in 1839 to over 169 million in 1840.",
+            "exact_native_cache_key": "d64b4b20fba97ae5654819793f9a12ad976ddf6b.pkl",
+            "cache_input_text_sha256": "50546aab01668fbc68d7bc64a6b8595d0be671e865f4621680b41292ff83c353",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "c2991141abb4c05c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          177152
+        ],
+        "unprocessed_array_sha256": "c278ac997434cae3292163c0ccdbaf59f8c2b72653b81b6e86c120c077e1bb62"
+      },
+      {
+        "exact_native_cache_key": "f97292bfd5f0a20be79e794f89c2d323d7e9d555.pkl",
+        "pkl_sha256": "e7d86f21b791bab14de644b657114345085fc474cf7439103405deabcc5db7da",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The design had a drawback.",
+            "exact_native_cache_key": "f97292bfd5f0a20be79e794f89c2d323d7e9d555.pkl",
+            "cache_input_text_sha256": "e41e3bb0f7cdf099e7fa89e3492c9daa30408465ffdb6317f746b0f9ef9c7717",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "e7d86f21b791bab1",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          38912
+        ],
+        "unprocessed_array_sha256": "65045cfd1007657d0251b124dd350eb077b0856a2d4ef91449a31e2060154dd0"
+      },
+      {
+        "exact_native_cache_key": "cd1aa770f4a9bda724ecf20613dc0b31c81bef88.pkl",
+        "pkl_sha256": "eb95a4d759093f11bdc8be8d44b717878abc1859d085e0f2bf061722c514fa57",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Against black, the red cancelling mark was barely noticeable, lacking contrast, and the ink could be erased, leaving stamps vulnerable to reuse.",
+            "exact_native_cache_key": "cd1aa770f4a9bda724ecf20613dc0b31c81bef88.pkl",
+            "cache_input_text_sha256": "ba0b09f86613d6b0d0586efc98b9b7c62b1c64d66435c6a5a3eb0fa8acdb1656",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "eb95a4d759093f11",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          239104
+        ],
+        "unprocessed_array_sha256": "4e89461e364320e8d6434142c17d2a42e1727c2af4057c45e5f1a72c04c4acdc"
+      },
+      {
+        "exact_native_cache_key": "6b804e17f972d17c42683e03cf7ef5ae3e0ce413.pkl",
+        "pkl_sha256": "44af9604d0706d8f19bb78b2d58d2868eec0feaf87cf17d0a99a2a8fcd56b070",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Against black, the red cancelling mark was barely noticeable, lacking contrast,",
+            "exact_native_cache_key": "6b804e17f972d17c42683e03cf7ef5ae3e0ce413.pkl",
+            "cache_input_text_sha256": "f66583f1041a4dfc70f4cff44322848b2ad90839d3a16e85ca0bbcccbdc95965",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "44af9604d0706d8f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          126464
+        ],
+        "unprocessed_array_sha256": "dbf63122bce60abcbf83653ebe945f49ff526a6e6091686d67f727c1acf27c98"
+      },
+      {
+        "exact_native_cache_key": "6847e78b764bb436aae476c16ba2d285fcbfd66c.pkl",
+        "pkl_sha256": "85208e3852446ea2cb97d5f3028d6eaf9bf8262d472535b0632237577e6ec612",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and the ink could be erased,",
+            "exact_native_cache_key": "6847e78b764bb436aae476c16ba2d285fcbfd66c.pkl",
+            "cache_input_text_sha256": "64420e92212b0ef17e3d27647f10b168f8ddbaa5880b2ecb95e9fc5fe6d6d9f0",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S14",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and the ink could be erased,",
+            "exact_native_cache_key": "6847e78b764bb436aae476c16ba2d285fcbfd66c.pkl",
+            "cache_input_text_sha256": "64420e92212b0ef17e3d27647f10b168f8ddbaa5880b2ecb95e9fc5fe6d6d9f0",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "85208e3852446ea2",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          38400
+        ],
+        "unprocessed_array_sha256": "1f90867e892c2123aa1215a4972684d2a0baa91c008ca5a8410bedc5137399de"
+      },
+      {
+        "exact_native_cache_key": "455e3986f5fbe61bd25c88982baca4acd830550d.pkl",
+        "pkl_sha256": "39cad9e386bc7ceb57432e19f930bcf168d5ad73fcfdab2ee2f40049392a716a",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "leaving stamps vulnerable to reuse.",
+            "exact_native_cache_key": "455e3986f5fbe61bd25c88982baca4acd830550d.pkl",
+            "cache_input_text_sha256": "c37d34b37d8ab808ab061a9db673b3af620df05dc0cebd25d81fae803314b67c",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S14",
+            "piece": 5,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "leaving stamps vulnerable to reuse.",
+            "exact_native_cache_key": "455e3986f5fbe61bd25c88982baca4acd830550d.pkl",
+            "cache_input_text_sha256": "c37d34b37d8ab808ab061a9db673b3af620df05dc0cebd25d81fae803314b67c",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "39cad9e386bc7ceb",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          54272
+        ],
+        "unprocessed_array_sha256": "167fd5e4f8f567f367142e71929002b846c9f1afd3d237fefab3b9c92122eb16"
+      },
+      {
+        "exact_native_cache_key": "4e8e0cef4ecfcc201b29bd2f949b88ae1a21df34.pkl",
+        "pkl_sha256": "cdb132ae7def6b6b7aef00104ddde1fef4c54aa4694b6223de39f8a6d4120885",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Against black,",
+            "exact_native_cache_key": "4e8e0cef4ecfcc201b29bd2f949b88ae1a21df34.pkl",
+            "cache_input_text_sha256": "79f7136dfe88df283a418862d1fc8576c95f35d10264165c14fb70b79a369fb5",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "cdb132ae7def6b6b",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          25600
+        ],
+        "unprocessed_array_sha256": "50b26c9146077ddc7bedfbba735d26b97fba6b849046c7bd32cfcdfe0e7e1009"
+      },
+      {
+        "exact_native_cache_key": "543b71e4cca680e8f206c191bcc0ab2d8fb9f3c1.pkl",
+        "pkl_sha256": "da7b8d9b661b2b418fc326225279842324885fc3a9cbf86fa22bac88226f9a89",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "the red cancelling mark was barely noticeable,",
+            "exact_native_cache_key": "543b71e4cca680e8f206c191bcc0ab2d8fb9f3c1.pkl",
+            "cache_input_text_sha256": "5acab6ace86eb2a2f5211ae0d44301a4232a7d31b38a68b30abdda0b511c02a6",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "da7b8d9b661b2b41",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          71168
+        ],
+        "unprocessed_array_sha256": "c42fed9dd2326f0a1c7f588d6d51632cbf73202e29b1601a4edea4d4c0c0b907"
+      },
+      {
+        "exact_native_cache_key": "d24d4decf8c2a2c6fb60c24c83783f7dd9884bdb.pkl",
+        "pkl_sha256": "c823f5d1609f12723b6cecaa6bdc90bbbab76bfad23518424798efb29b2d0632",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "lacking contrast,",
+            "exact_native_cache_key": "d24d4decf8c2a2c6fb60c24c83783f7dd9884bdb.pkl",
+            "cache_input_text_sha256": "30812d386c5fa792d3963fca31c29d544cc034fe8c88b85f95f06d878ca0a4f6",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "c823f5d1609f1272",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          30720
+        ],
+        "unprocessed_array_sha256": "efcb4c7f58f2d6127559646f1e05b61dd496a63937bd8e345babc4bbf00c2f7b"
+      },
+      {
+        "exact_native_cache_key": "7dd3bec0c75eb1b830cd23d3e68dcdf625fa8288.pkl",
+        "pkl_sha256": "ba5d845ed0a2599ee801a603cf04b792d03eb812a4f240ff37836ec20a2dfc6f",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "In February 1841 the Penny Red, cancelled in black ink, arrived to deter tampering and fraud.",
+            "exact_native_cache_key": "7dd3bec0c75eb1b830cd23d3e68dcdf625fa8288.pkl",
+            "cache_input_text_sha256": "f866f691c6be29843a2c84636af4b6e90b234c318932e453707461d362f8e0f6",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "ba5d845ed0a2599e",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          179712
+        ],
+        "unprocessed_array_sha256": "85e8d43ebd7568642f88ad4ea0445871ec205bb5c6f58a82b4458451aa551a27"
+      },
+      {
+        "exact_native_cache_key": "9ca9f5217617ead20b17025c812e22c645f16b51.pkl",
+        "pkl_sha256": "7c33ce17f3274ddd29d385402bf0e126832221351d8d3416cbed19244a1bac49",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "In February 1841 the Penny Red, cancelled in black ink,",
+            "exact_native_cache_key": "9ca9f5217617ead20b17025c812e22c645f16b51.pkl",
+            "cache_input_text_sha256": "36be5a1290b9e30336f6b0305226dab241d3dfd1d108c20f182ddd6caf8a8cc8",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "7c33ce17f3274ddd",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          109568
+        ],
+        "unprocessed_array_sha256": "5943cb63534bf7089c2014c23564114b63b81d8bcfa31af6de4132d581a2313f"
+      },
+      {
+        "exact_native_cache_key": "490e3c2abf8be3ef63e17d5b144cbebb0012ad39.pkl",
+        "pkl_sha256": "e1d3eea8ecf3afc77aca4938ebbc086a450ea50f5f08991766e8137ed46b81e1",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "arrived to deter tampering and fraud.",
+            "exact_native_cache_key": "490e3c2abf8be3ef63e17d5b144cbebb0012ad39.pkl",
+            "cache_input_text_sha256": "006ce9e254f4917a9ea51891b7fb7e4efc7e390bdd81554e8b93259aeed65079",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S15",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "arrived to deter tampering and fraud.",
+            "exact_native_cache_key": "490e3c2abf8be3ef63e17d5b144cbebb0012ad39.pkl",
+            "cache_input_text_sha256": "006ce9e254f4917a9ea51891b7fb7e4efc7e390bdd81554e8b93259aeed65079",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "e1d3eea8ecf3afc7",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          54784
+        ],
+        "unprocessed_array_sha256": "05cdea47ae56ac2c0e199a718716e537fd273d7c4ac7100b11a8dbc500241b0c"
+      },
+      {
+        "exact_native_cache_key": "346841149c54df978ec41fc2b319b389d8f42c0d.pkl",
+        "pkl_sha256": "f522826f5ad825ed92334b6eb0b70cafe6046587a0c045787464b06ed415ef36",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "In February 1841 the Penny Red,",
+            "exact_native_cache_key": "346841149c54df978ec41fc2b319b389d8f42c0d.pkl",
+            "cache_input_text_sha256": "09dbdbb21f6b4fa705a6fc3c5e7ecef15be84a0d22d89a6d82d9d5b36beae2b3",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "f522826f5ad825ed",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          72192
+        ],
+        "unprocessed_array_sha256": "130cf073483b8532a7f9cb9889cb3712da51ecb58cac4548625e3a56d5b9417a"
+      },
+      {
+        "exact_native_cache_key": "f1cb50dab181cbeceb191b3d3dc3c4c6ccad3a94.pkl",
+        "pkl_sha256": "cd18f5612b0f696283095e9882a76b1d7493fcc2c4d71b5197232d7f8826832b",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "cancelled in black ink,",
+            "exact_native_cache_key": "f1cb50dab181cbeceb191b3d3dc3c4c6ccad3a94.pkl",
+            "cache_input_text_sha256": "9e22a38811ebc7b6db986abf0a5a36442dc28a09f18bca951a623986eaba8d08",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "cd18f5612b0f6962",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          34304
+        ],
+        "unprocessed_array_sha256": "d44cff2534fc32f364e51abad841a3520248763bae6496a8ffa04292b07d6ad4"
+      },
+      {
+        "exact_native_cache_key": "6d2c850b9e8d3ed4e53cdb5a4ce3475b4d17e50e.pkl",
+        "pkl_sha256": "1d1ead277bab8ebcc52fcb99f2c3f31b155245c744f8166865f5f57fdd710696",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "As the initiator of postage stamps, Britain set a precedent and earned an exemption.",
+            "exact_native_cache_key": "6d2c850b9e8d3ed4e53cdb5a4ce3475b4d17e50e.pkl",
+            "cache_input_text_sha256": "640b05bd114fd58a444c55884ba1eb3ec8d7167f419f6b750746ffed312e98aa",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "1d1ead277bab8ebc",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          130048
+        ],
+        "unprocessed_array_sha256": "5979e05765772814d21ec22a7588e531dda23f226f62b04a0d50eddcb0b5c5c6"
+      },
+      {
+        "exact_native_cache_key": "846dc432e5e41670a96da6cc7cf5a7bdfb8f24f0.pkl",
+        "pkl_sha256": "a3672e4d01cd2d47f2a5c8f2f3674a84c0b19355346c061d579624487119cb74",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "As the initiator of postage stamps,",
+            "exact_native_cache_key": "846dc432e5e41670a96da6cc7cf5a7bdfb8f24f0.pkl",
+            "cache_input_text_sha256": "2378968d02194854372e752729f98368743070b189b1afeca98a107c1a9c73cc",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "a3672e4d01cd2d47",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          54272
+        ],
+        "unprocessed_array_sha256": "d61c6f1a95980b5d4be7506c0f31d7cc383b77ef02234b13b4c5b16e51bdb679"
+      },
+      {
+        "exact_native_cache_key": "98501437b60e8e4c20bca3532f5ab68dfc80749a.pkl",
+        "pkl_sha256": "333e77990019597fb82417b6edaea5b9ab4dff41fd423cea30d70a3d86137e6b",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Britain set a precedent and earned an exemption.",
+            "exact_native_cache_key": "98501437b60e8e4c20bca3532f5ab68dfc80749a.pkl",
+            "cache_input_text_sha256": "f890cd8a047b74fd7df788f9ecf53959057a635ec69560ee89a733f0870543b6",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "333e77990019597f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          67584
+        ],
+        "unprocessed_array_sha256": "33ce29d4e0d91eccac6cebc1d1e116e9495f8f393ca32b99b73e7c3245caa63c"
+      },
+      {
+        "exact_native_cache_key": "09439149a10deef67299dd4bfd6f92e0c8aaad93.pkl",
+        "pkl_sha256": "a005c6f721c682872d6dcfd921d0ec84668cdec6902d48d96726ebbdcd4da838",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Its stamps are nameless, with no country inscribed on them.",
+            "exact_native_cache_key": "09439149a10deef67299dd4bfd6f92e0c8aaad93.pkl",
+            "cache_input_text_sha256": "99344c7f453f7e1a0f862aa01a6b08b50d184a54f0ba95bb4983da09bb16984a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "a005c6f721c68287",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          92160
+        ],
+        "unprocessed_array_sha256": "1be6d3490e924bb354d687857689888f3096fbd4afdf87e1d786f294afc0db69"
+      },
+      {
+        "exact_native_cache_key": "e61579f5542389fa7bc21b7774ab661a3a57bc56.pkl",
+        "pkl_sha256": "a8964cd2ba8f7570184ad18631de747e4defc7c3ecf5336108314e4412ce2da9",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Its stamps are nameless,",
+            "exact_native_cache_key": "e61579f5542389fa7bc21b7774ab661a3a57bc56.pkl",
+            "cache_input_text_sha256": "cca5f765367fdb67b4826010d88708d8e0bf141afb2c241bb633659e641a1f69",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "a8964cd2ba8f7570",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          34816
+        ],
+        "unprocessed_array_sha256": "926d533a373240a553d52fa698ec4523f45e1fbeef7623c7e46a3ba8f49ab10e"
+      },
+      {
+        "exact_native_cache_key": "338903df11784e0d17759d4a527a65dbcee280ca.pkl",
+        "pkl_sha256": "eedb9a2faa237914e5c00e7ae4df7b77aa0d3fa09c09de932a7b411ce0a493d3",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "with no country inscribed on them.",
+            "exact_native_cache_key": "338903df11784e0d17759d4a527a65dbcee280ca.pkl",
+            "cache_input_text_sha256": "6e7cbf3370ba486d132cc3a823b718e2844d4be4507653f43964c0308aaf90c6",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "eedb9a2faa237914",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          52224
+        ],
+        "unprocessed_array_sha256": "b85e298cd5ef8d007478312e88e3204126d9ae2e7a3c32c86eac996df5a32067"
+      },
+      {
+        "exact_native_cache_key": "a9ab39eaf3d6414403daf0c035e54007b2eece36.pkl",
+        "pkl_sha256": "6580d4c8101f4ff49ef1f385a3bd585ab3bbaf40dd9eb06f8167bc8ffe1cf152",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "By international agreement, the sovereign's head suffices for identification, an implicit designation that other countries spell out in print.",
+            "exact_native_cache_key": "a9ab39eaf3d6414403daf0c035e54007b2eece36.pkl",
+            "cache_input_text_sha256": "7f829de63138298fadb1eb882b676c5fadff283956619b49900077b33f5ed4ab",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "6580d4c8101f4ff4",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          221696
+        ],
+        "unprocessed_array_sha256": "f84d904d4010cc40e78b4f5c9e31841d664f984cd6b4a3b247bfa5fa8ebb126f"
+      },
+      {
+        "exact_native_cache_key": "8305bb47c03616c6545d0614ba0102d30826057b.pkl",
+        "pkl_sha256": "0de8cd453c74745a3bd363aa0a0444a831620f8393e53b61de76729e2e3563ba",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "By international agreement, the sovereign's head suffices for identification,",
+            "exact_native_cache_key": "8305bb47c03616c6545d0614ba0102d30826057b.pkl",
+            "cache_input_text_sha256": "6b0983b7eeaf812b2a6eab31723399c85aace5fdf9f45a29a931194689614a0e",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "0de8cd453c74745a",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          117248
+        ],
+        "unprocessed_array_sha256": "c512507e67fd7d4c149c4ce06f5713a4f3918b4e1f466bfc9ff290bc8cb12e7b"
+      },
+      {
+        "exact_native_cache_key": "f56caa5fe5a2552a79f930bf6604af79616ded49.pkl",
+        "pkl_sha256": "328eb030cbda2bcaad901e8d7b90c63c34640a28dd3896b67c59df1e57dbb45c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "an implicit designation that other countries spell out in print.",
+            "exact_native_cache_key": "f56caa5fe5a2552a79f930bf6604af79616ded49.pkl",
+            "cache_input_text_sha256": "7c451f09cafc34a6fff3c17906c0a3006681bfc8e858c743fcdc746afc9c16e5",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S18",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "an implicit designation that other countries spell out in print.",
+            "exact_native_cache_key": "f56caa5fe5a2552a79f930bf6604af79616ded49.pkl",
+            "cache_input_text_sha256": "7c451f09cafc34a6fff3c17906c0a3006681bfc8e858c743fcdc746afc9c16e5",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "328eb030cbda2bca",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          97280
+        ],
+        "unprocessed_array_sha256": "59f283c9b55e2f27e9b07bb20c358c3cac55de299aeffa5005d58c1f096da2fb"
+      },
+      {
+        "exact_native_cache_key": "68fd05efd7d035ea80c3e514eb2fbc5ace36039c.pkl",
+        "pkl_sha256": "884df09116b61ef386c0fd151980b6b7049e8f260ec2e116e579a3e9cd308695",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "By international agreement,",
+            "exact_native_cache_key": "68fd05efd7d035ea80c3e514eb2fbc5ace36039c.pkl",
+            "cache_input_text_sha256": "b5530e64b9d037118eea033e8ffba8aed17682074d2dd935525317f942843ff8",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "884df09116b61ef3",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          38400
+        ],
+        "unprocessed_array_sha256": "8d1a6d725bb2e26813015ce29187d3bcf265728eb8e1d94495d0e7b0cdf10fa7"
+      },
+      {
+        "exact_native_cache_key": "793c9763a0e5168b1d96caad18d6113c3a76a9e0.pkl",
+        "pkl_sha256": "7b4fbc4a57b5ad04a222998e972e8c01c89d6f73427bb573e59bbad9d7d8f01c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "the sovereign's head suffices for identification,",
+            "exact_native_cache_key": "793c9763a0e5168b1d96caad18d6113c3a76a9e0.pkl",
+            "cache_input_text_sha256": "f6fc88bd1f3f988ec1e722e860dca928775f69e9f2ef5f3206152f69f9613a6a",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "7b4fbc4a57b5ad04",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          70656
+        ],
+        "unprocessed_array_sha256": "c4eb04948c15a796719432e8a15e42622e1b110de40a795952afaa9a0620629d"
+      }
+    ],
+    "missing_reference_key_count": 0,
+    "observed_missing_keys_covered": [],
+    "new_private_cache_names": [],
+    "native_single_thread_marker_verified": true,
+    "single_thread_sessions": [
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      },
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      }
+    ],
+    "models_sha256": {
+      "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+      "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+      "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+    },
+    "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+    "existing_private_cache_count": 11514,
+    "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "existing_private_cache_bytes_unchanged": true,
+    "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+    "public_repository_cache_unchanged": true,
+    "producer_pcm_existed_before": false,
+    "producer_pcm_sha256_before": null,
+    "producer_pcm_sha256_after": null,
+    "accepted_aac_adts_sha256_before": "ac0fcb5c0a8583e310ce129b8e6bec1841677519acd8b4c6516c033fbea82250",
+    "accepted_aac_adts_sha256_after": "ac0fcb5c0a8583e310ce129b8e6bec1841677519acd8b4c6516c033fbea82250",
+    "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+    "private_cache_exported": false
+  },
+  "checker_reference_preparation_program_sha256": "f6f2a032e207085e7252d036e39430fb80b06e84a721c525b61196d021c5ca12",
+  "fresh_current_article_reference": {
+    "article": "70",
+    "removed_temporary_gt_files": [],
+    "processed_pcm_or_raw_mother_cache_modified": false,
+    "purpose": "Original synth/labels/audit rebuild fresh for this production; no old CPU GT reuse."
+  },
+  "temporary_output_reset": {
+    "removed": [],
+    "production_started_ns": 1794623893063251856,
+    "repository_outputs_modified": false
+  },
+  "reviewed_gain_control_preservation": [
+    {
+      "stage": "canonical-draft",
+      "requested_gain_controls": {
+        "/分段增益dB": {
+          "S14": {
+            "1": -3.0
+          }
+        }
+      },
+      "actual_gain_controls": {
+        "/分段增益dB": {
+          "S14": {
+            "1": -3.0
+          }
+        }
+      },
+      "exactly_preserved": true
+    },
+    {
+      "stage": "canonical-final4K",
+      "requested_gain_controls": {
+        "/分段增益dB": {
+          "S14": {
+            "1": -3.0
+          }
+        }
+      },
+      "actual_gain_controls": {
+        "/分段增益dB": {
+          "S14": {
+            "1": -3.0
+          }
+        }
+      },
+      "exactly_preserved": true
+    }
+  ],
+  "canonical_video_sha256": "e35b011061961fb759f00639d331912e04cc77d499db697a398dd8ef5cb1b40a",
+  "canonical_aac_adts_sha256": "6b3fa39185d897196cd171ad04d0565aa1384518e8388c27bf9c68bee3df7ec9",
+  "canonical_pipeline_passed": true,
+  "cached_input_wav_sha256": null,
+  "final_wav_sha256": "950829b17bedc5ac103b93bb9b488a712163800bbf5c392bf1163b381cd61f34",
+  "error": "Canonical AAC differs from the accepted prior voice.",
+  "reference_gain_failure_diagnostic": {
+    "acceptance": false,
+    "diagnostic_only": true,
+    "program_present": true,
+    "reference_meta_present": true,
+    "actual_pcm_present": true,
+    "current_post_check_present": true,
+    "exit": 0,
+    "program_sha256": "e9c6fa0ad2147ab6227919c2039406b87a4865567d1c0ceaa70c456c1bd02e60",
+    "file": "70-reference-gain-diagnostic.json",
+    "sha256": "3a457af8b2520206fa06d7ed55f9335d79f2f2006a95712c923e50ba1d8034be",
+    "anchor_summary": {
+      "count": 304,
+      "same_waveform_candidates": 289,
+      "median_fitted_gain": 0.916032943611071,
+      "median_fitted_to_default_gain": 1.0000009463894146,
+      "fitted_gain_min": 0.9160036866365864,
+      "fitted_gain_max": 0.9160641860878264,
+      "inferred_kept_input_peak": 0.9715807779702255,
+      "default_gain_fails_original_2_2_lsb_limit_count": 0
+    },
+    "diagnostic_error": null
+  },
+  "failed_current_video": {
+    "exported": false,
+    "passed": false,
+    "acceptance": false,
+    "purpose": "failed current-attempt video for diagnosis; not a final deliverable",
+    "reason": "Official fingerprint is audio-only or does not match current video/source/PCM.",
+    "fingerprint_hash_format": "official SHA256 first 16 hex characters",
+    "mismatched_fingerprint_fields": [
+      "脚本"
+    ]
+  }
+}

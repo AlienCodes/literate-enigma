@@ -1,0 +1,21 @@
+{
+  "kind": "05-evidence-version-preservation-and-exact-added-fields-diff",
+  "version1_SHA256": "cef590e29a1e27b7237ba60a4cdd6a140935f804b0293fb8f3513d2a1df90b0f",
+  "version2_SHA256": "593091df1101cbd4c37665d6dd5b72ab44c0e4cbd8800d15aebef6513d6422ba",
+  "version1_recovery_method": "No pre-existing original-file backup was found. Deterministically removed exactly the newly added original_scan_on_actual_sentence_only fields and S15 raw_5ms_boundary_frames from version2, serialized in the identical original indent2/order, then verified fullSHA equals the previously recorded original cef590... byte hash before writing version1. No fields or hash invented.",
+  "exact_field_diff": [
+    {
+      "path": "/alarms/0/original_scan_on_actual_sentence_only",
+      "kind": "added"
+    },
+    {
+      "path": "/alarms/1/S15_raw_deletion_diagnostic/raw_5ms_boundary_frames",
+      "kind": "added"
+    },
+    {
+      "path": "/alarms/1/original_scan_on_actual_sentence_only",
+      "kind": "added"
+    }
+  ],
+  "any_previous_existing_field_changed": false
+}

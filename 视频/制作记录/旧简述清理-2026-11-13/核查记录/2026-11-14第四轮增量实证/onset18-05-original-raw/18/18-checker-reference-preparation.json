@@ -1,0 +1,3221 @@
+{
+  "article": "18",
+  "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+  "reference_prepared": true,
+  "acceptance": false,
+  "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+  "source_sha256": "8cffbad6f0b8451e46ad1a65d5f629c450ceff2c771218445770c8cbfd77ebca",
+  "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+  "checker_program_sha256": {
+    "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+    "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+    "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+    "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+    "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+    "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+  },
+  "reference_calls": [
+    {
+      "sentence": "标题",
+      "piece": null,
+      "reference_kind": "title-default-raw",
+      "method": "create",
+      "source_slice": "The Mould That Changed the World",
+      "exact_native_cache_key": "ddc9d0d05a688a442acf56b778b18efc5ea65718.pkl",
+      "cache_input_text_sha256": "8705752b1a623b92cb480f95ad1171f092fc492f1802d70143201e9a5cb1f08f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "标题",
+      "piece": null,
+      "reference_kind": "title-default-timed",
+      "method": "create_timed",
+      "source_slice": "The Mould That Changed the World",
+      "exact_native_cache_key": "d1391da1d6cefc6aae8b1dd4de018e4e26a2036f.pkl",
+      "cache_input_text_sha256": "8705752b1a623b92cb480f95ad1171f092fc492f1802d70143201e9a5cb1f08f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "In September 1928 Alexander Fleming, a bacteriologist at St Mary's Hospital, London, returned from holiday to find that a stray mould had contaminated a dish of staphylococcus bacteria.",
+      "exact_native_cache_key": "a7772fb91478c8a30a8c51afb863cd9fb59b1822.pkl",
+      "cache_input_text_sha256": "ec639c1f74b9276f39b2d962895ac0f4763d4fd48c8b19c6523acd15298804f5",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "In September 1928 Alexander Fleming, a bacteriologist at St Mary's Hospital, London, returned from holiday to find that a stray mould had contaminated a dish of staphylococcus bacteria.",
+      "exact_native_cache_key": "77e5acf919d58ee125bea22b32f842ab40eb191e.pkl",
+      "cache_input_text_sha256": "ec639c1f74b9276f39b2d962895ac0f4763d4fd48c8b19c6523acd15298804f5",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "In September 1928 Alexander Fleming, a bacteriologist at St Mary's Hospital, London,",
+      "exact_native_cache_key": "60121656f22d21e31c978ac76b3536d805480fd2.pkl",
+      "cache_input_text_sha256": "2cf5f2d3192036712a1d0591e8e20e2a0064d8747937f7540c8cf678ec56b44a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "returned from holiday to find that",
+      "exact_native_cache_key": "a2820ac9263bde0518f9319d6cd208b259f68058.pkl",
+      "cache_input_text_sha256": "436427fae13e3de049683181b87675d8164cf2dc71b4d3f683d63d69bfcf6237",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "a stray mould had contaminated a dish of staphylococcus bacteria.",
+      "exact_native_cache_key": "ea1f0ba64249a67ca77285d534e6018babef1508.pkl",
+      "cache_input_text_sha256": "f1118b9bfe3e0ecfeebaf641c316584f4473c2c58867c25ff12bf2a147eccfd7",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "In September 1928 Alexander Fleming,",
+      "exact_native_cache_key": "6a7534f306c2b9e542934196f5a3d50c5a315777.pkl",
+      "cache_input_text_sha256": "55103232fba6475558f8d2521f922c218d03af86b64dc6079fe60576421f45e8",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "a bacteriologist at St Mary's Hospital,",
+      "exact_native_cache_key": "1a0c82d71fb51dcf8e3c25d68274ccb409280650.pkl",
+      "cache_input_text_sha256": "f0e58b971be93832020eded0490d637a115e53055acd4459c925589e05aa63a8",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "London,",
+      "exact_native_cache_key": "d73237dcbf973a617fb22654b38726ead9d15e53.pkl",
+      "cache_input_text_sha256": "520015561e7eb5d3faa0da7b9c90c1c7ac291de5040610328fae7122e34d8b7d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 4,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "returned from holiday to find that a stray mould had contaminated a dish of staphylococcus bacteria.",
+      "exact_native_cache_key": "47186d89489a36ce3e0603e64e90ab5c7bc3dabf.pkl",
+      "cache_input_text_sha256": "e5e76f2e865b68929cac2955006945c272d455bc13e42b26cafa548143cb442a",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Nothing grew around it.",
+      "exact_native_cache_key": "4f10427de72ffc4614c6f039458550611d00a6a1.pkl",
+      "cache_input_text_sha256": "60cf67483d2438e3aef449eb415889c273caf02caa5f9027ffbe5b57b45300b6",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Nothing grew around it.",
+      "exact_native_cache_key": "1545c5300cbd4c0533f1877d963ab2d547f02854.pkl",
+      "cache_input_text_sha256": "60cf67483d2438e3aef449eb415889c273caf02caa5f9027ffbe5b57b45300b6",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Popular mythology blames an open window; the spores probably originated in a laboratory downstairs, where a colleague cultivated moulds.",
+      "exact_native_cache_key": "a97582851f399d835730f1c50b568656330dece8.pkl",
+      "cache_input_text_sha256": "95a940801d3e3a9b0ab787b43679683f44be19d220146539dabd88d86fb2ed81",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Popular mythology blames an open window; the spores probably originated in a laboratory downstairs, where a colleague cultivated moulds.",
+      "exact_native_cache_key": "490289e30503933d8b72fe5a9bde5b0c175549e4.pkl",
+      "cache_input_text_sha256": "95a940801d3e3a9b0ab787b43679683f44be19d220146539dabd88d86fb2ed81",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Popular mythology blames an open window;",
+      "exact_native_cache_key": "0fc07f62972ff7a45684007efa540bbef9cc8aac.pkl",
+      "cache_input_text_sha256": "067bcc13d8cc809b467b44b284ec8101b0ab4c35dc9475e5a9071359953644f1",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "the spores probably originated in a laboratory downstairs,",
+      "exact_native_cache_key": "ce8dcdaeba597ecdc6194c93b3beeb981215973d.pkl",
+      "cache_input_text_sha256": "bd41b8e6789761ec0598bac32a7fef65236f998d9b50e4d64bac9eab7766a8c4",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "where a colleague cultivated moulds.",
+      "exact_native_cache_key": "bdd502b437296a60f316d6d322b511255516ee1f.pkl",
+      "cache_input_text_sha256": "807154d5f2a99833633964c9e4e4c0fb605015f7eb73aead3143624834f0b7ff",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Popular mythology blames an open window;",
+      "exact_native_cache_key": "0fc07f62972ff7a45684007efa540bbef9cc8aac.pkl",
+      "cache_input_text_sha256": "067bcc13d8cc809b467b44b284ec8101b0ab4c35dc9475e5a9071359953644f1",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "the spores probably originated in a laboratory downstairs,",
+      "exact_native_cache_key": "ce8dcdaeba597ecdc6194c93b3beeb981215973d.pkl",
+      "cache_input_text_sha256": "bd41b8e6789761ec0598bac32a7fef65236f998d9b50e4d64bac9eab7766a8c4",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "where a colleague cultivated moulds.",
+      "exact_native_cache_key": "bdd502b437296a60f316d6d322b511255516ee1f.pkl",
+      "cache_input_text_sha256": "807154d5f2a99833633964c9e4e4c0fb605015f7eb73aead3143624834f0b7ff",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Fleming called the mould's juice penicillin and published in June 1929.",
+      "exact_native_cache_key": "6518baea60dbf686f1f16c8ece333d1003f4a1da.pkl",
+      "cache_input_text_sha256": "2cc18bd3081ab00f0c7b2f3b0503fc33a2031716be16ae307eb011b230b8f93e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Fleming called the mould's juice penicillin and published in June 1929.",
+      "exact_native_cache_key": "5a33afe45c3f823679497244680e1220d787967a.pkl",
+      "cache_input_text_sha256": "2cc18bd3081ab00f0c7b2f3b0503fc33a2031716be16ae307eb011b230b8f93e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Yet the crude juice was unstable and stubbornly hard to purify, and he and the chemists he enlisted lacked the expertise to refine it.",
+      "exact_native_cache_key": "880222e1804ab0ab930d71428ab788d7b4466fd5.pkl",
+      "cache_input_text_sha256": "f66bb9d38bf21040cbb676503f3921d9f09db000d42323f3674a67bcf2240ef5",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Yet the crude juice was unstable and stubbornly hard to purify, and he and the chemists he enlisted lacked the expertise to refine it.",
+      "exact_native_cache_key": "e5c0478f1c6707a5c409244e5e0f1df02f71821b.pkl",
+      "cache_input_text_sha256": "f66bb9d38bf21040cbb676503f3921d9f09db000d42323f3674a67bcf2240ef5",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Yet the crude juice was unstable",
+      "exact_native_cache_key": "4596e79d6120250069412eaa7d0cbc9ef4a3e1f3.pkl",
+      "cache_input_text_sha256": "e392d41919cfbc0c33e98a75e80e9ecf0a65e1a0f8b3ac8d0f46fd6c14662301",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "and stubbornly hard to purify,",
+      "exact_native_cache_key": "b2b311f159863cf7dd9718b154a45dc1aa2d6471.pkl",
+      "cache_input_text_sha256": "560254aa63c52cba998af3e88bf1755c48b82b5e0c7fd850c9ecf10b6529d826",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "and he and the chemists he enlisted lacked the expertise to refine it.",
+      "exact_native_cache_key": "75ffa8233bf4b1cd0d6768e97d1c0a276578880c.pkl",
+      "cache_input_text_sha256": "ca781dec038c30a28fd30152a2986585c218d8bf0a5f0c24842e78d2479ca8da",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Yet the crude juice was unstable and stubbornly hard to purify,",
+      "exact_native_cache_key": "30daac3314a2da39046d6d4c8f4a4f0ea7f08736.pkl",
+      "cache_input_text_sha256": "4081fdb882e35b4057ee273ef43e0698b10d99c34e604873f46327b20b540c0e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "and he and the chemists he enlisted lacked the expertise to refine it.",
+      "exact_native_cache_key": "75ffa8233bf4b1cd0d6768e97d1c0a276578880c.pkl",
+      "cache_input_text_sha256": "ca781dec038c30a28fd30152a2986585c218d8bf0a5f0c24842e78d2479ca8da",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "He used it chiefly to isolate other microbes, and penicillin lay dormant, a curiosity rather than a cure.",
+      "exact_native_cache_key": "5bba34a1193167f7343eefe2f381564f1fd332be.pkl",
+      "cache_input_text_sha256": "78b26236f8bbf297f25d073363e2699cef07e7b6e37b3c2fc9fcf0474b7885d0",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "He used it chiefly to isolate other microbes, and penicillin lay dormant, a curiosity rather than a cure.",
+      "exact_native_cache_key": "473795e402f264d4592a7ba153f5edeb59512b43.pkl",
+      "cache_input_text_sha256": "78b26236f8bbf297f25d073363e2699cef07e7b6e37b3c2fc9fcf0474b7885d0",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "He used it chiefly to isolate other microbes,",
+      "exact_native_cache_key": "5926b6b9a52621267226cfcf47299520028cb571.pkl",
+      "cache_input_text_sha256": "1ad6c855c450bb1f473d6413c33d96cb10377d066ac963e418b2b9e557531dd8",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "and penicillin lay dormant,",
+      "exact_native_cache_key": "cce94682ebd37acef3995331484f347ffdf427b9.pkl",
+      "cache_input_text_sha256": "2dccd5934d17f070483434eb70c7efb264f9c6bd2ad0a65a0384685abc76c0aa",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "a curiosity rather than a cure.",
+      "exact_native_cache_key": "7749563a7301c7f480d2cddca311d2171ed3e10e.pkl",
+      "cache_input_text_sha256": "24c627a6845e1ee931ea1e2bc651ff2a16e587cf956e5cb0af187433b7e67861",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "He used it chiefly to isolate other microbes,",
+      "exact_native_cache_key": "5926b6b9a52621267226cfcf47299520028cb571.pkl",
+      "cache_input_text_sha256": "1ad6c855c450bb1f473d6413c33d96cb10377d066ac963e418b2b9e557531dd8",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "and penicillin lay dormant,",
+      "exact_native_cache_key": "cce94682ebd37acef3995331484f347ffdf427b9.pkl",
+      "cache_input_text_sha256": "2dccd5934d17f070483434eb70c7efb264f9c6bd2ad0a65a0384685abc76c0aa",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "a curiosity rather than a cure.",
+      "exact_native_cache_key": "7749563a7301c7f480d2cddca311d2171ed3e10e.pkl",
+      "cache_input_text_sha256": "24c627a6845e1ee931ea1e2bc651ff2a16e587cf956e5cb0af187433b7e67861",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "A decade later, in Oxford, Howard Florey, an Australian pathologist, revived the work with Ernst Chain, a German-born chemist and Jewish refugee.",
+      "exact_native_cache_key": "9f62a8c5405f98421e6824ba43ef4dc11e1a842b.pkl",
+      "cache_input_text_sha256": "0d6e0dff42382819ce6bc2c1e55579a930b7f035f91f78b6522acf429c6d5594",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "A decade later, in Oxford, Howard Florey, an Australian pathologist, revived the work with Ernst Chain, a German-born chemist and Jewish refugee.",
+      "exact_native_cache_key": "1c1a10a35447e4c9c31944e497157fa7f73f8b11.pkl",
+      "cache_input_text_sha256": "0d6e0dff42382819ce6bc2c1e55579a930b7f035f91f78b6522acf429c6d5594",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "A decade later, in Oxford, Howard Florey, an Australian pathologist,",
+      "exact_native_cache_key": "8559bdf70ae25259d002485a12e1f182bd74b6e7.pkl",
+      "cache_input_text_sha256": "47623034911dd91e2b2a3bbdf9394b69c3378135ff8fc92b3e505565e6fdee8a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "revived the work with Ernst Chain,",
+      "exact_native_cache_key": "cc9f7583e4b73c3bc362a45c34ebd8c47cb3531e.pkl",
+      "cache_input_text_sha256": "fcd47edf47de98591dedc472717dd0afb5089c13073dee362aa5bcad40e7395a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "a German-born chemist and Jewish refugee.",
+      "exact_native_cache_key": "6ddbf65a0ec8fad933fa73d06d9a43523999cf24.pkl",
+      "cache_input_text_sha256": "4acd1ab7fc5d493b4df6cfd15714bd445baa3d59010fcd3541dd4ad88f5d0bb9",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "A decade later,",
+      "exact_native_cache_key": "0fefa1ba8ce696af6c3bf3c73557672c0b585234.pkl",
+      "cache_input_text_sha256": "73850f97229397db51584369711f77a256252ff70ce633aae50669bd9c2a5fb4",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "in Oxford,",
+      "exact_native_cache_key": "42f8520ce407b031bd8e1a9037ea45202ad29909.pkl",
+      "cache_input_text_sha256": "9d4ec95f761802041cc4e89f5e3185141410e850c930f2dde945eb510e502ec2",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Howard Florey,",
+      "exact_native_cache_key": "13f385e55768b165c625aa195591b9dac25bb2e5.pkl",
+      "cache_input_text_sha256": "ac22dad3bf657dd87161e2819a62798753cf842d7b125a0278542e7065d9b3f8",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 4,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "an Australian pathologist,",
+      "exact_native_cache_key": "7d60d37f3c4183911f2a549a86cc4c7158eb0e4f.pkl",
+      "cache_input_text_sha256": "b818b01f9bee093b601c43fc489c2c3454d5d70c5541d81a5a88c4f54640808a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 5,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "revived the work with Ernst Chain,",
+      "exact_native_cache_key": "cc9f7583e4b73c3bc362a45c34ebd8c47cb3531e.pkl",
+      "cache_input_text_sha256": "fcd47edf47de98591dedc472717dd0afb5089c13073dee362aa5bcad40e7395a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 6,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "a German-born chemist and Jewish refugee.",
+      "exact_native_cache_key": "6ddbf65a0ec8fad933fa73d06d9a43523999cf24.pkl",
+      "cache_input_text_sha256": "4acd1ab7fc5d493b4df6cfd15714bd445baa3d59010fcd3541dd4ad88f5d0bb9",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Their colleague Norman Heatley improvised an ingenious apparatus to extract the compound.",
+      "exact_native_cache_key": "b701fb42c88901966c4db54b699c397cd0d10359.pkl",
+      "cache_input_text_sha256": "08a50ae230ce51bec1e4e9c6ecda55813f9c16ae1050259fa7d978cc939218d0",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Their colleague Norman Heatley improvised an ingenious apparatus to extract the compound.",
+      "exact_native_cache_key": "3ffecccb332e0280bb3a5e5c4a31ae9b20bb71bb.pkl",
+      "cache_input_text_sha256": "08a50ae230ce51bec1e4e9c6ecda55813f9c16ae1050259fa7d978cc939218d0",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Their colleague Norman Heatley improvised an ingenious apparatus",
+      "exact_native_cache_key": "38667f1481795cb6057e8a87e0c2aae3f7a46db1.pkl",
+      "cache_input_text_sha256": "99063a00a3f87e2e1625bc06f5c0901c23b5afa6dbac2d53712366846a6fa1ef",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "to extract the compound.",
+      "exact_native_cache_key": "ffeadcc79ca2b0b1a2b70d900ae2b7ac97f8bf7e.pkl",
+      "cache_input_text_sha256": "7e8ea0c260d3f0f1bf4587f5fd86167e2fd218acc58cb3dcfbe395c00b4c8a29",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "On 25 May 1940 eight mice received a lethal dose of bacteria; only the four also injected with penicillin lived.",
+      "exact_native_cache_key": "44a7120835134c6514df9269a4441f4e4e256fc4.pkl",
+      "cache_input_text_sha256": "e15e5c0d8ae3cdc9f7031c5b722a124a031ebec4478b8b8dafee0c30f8453b08",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "On 25 May 1940 eight mice received a lethal dose of bacteria; only the four also injected with penicillin lived.",
+      "exact_native_cache_key": "437eb9b24015c22122aac7a3bdd28dace26a14a6.pkl",
+      "cache_input_text_sha256": "e15e5c0d8ae3cdc9f7031c5b722a124a031ebec4478b8b8dafee0c30f8453b08",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "On 25 May 1940 eight mice received a lethal dose of bacteria;",
+      "exact_native_cache_key": "de96dc073d84753ecdd47fea68cfd496aa9c26b9.pkl",
+      "cache_input_text_sha256": "aa23a8201f480a9d1c6691c4696a1b9b1309a4651329d9cb3fcd8b61a296e3e2",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "only the four also injected with penicillin lived.",
+      "exact_native_cache_key": "f32c8c36ac3b05ca17a58cc146c562aed534f3ab.pkl",
+      "cache_input_text_sha256": "7ca2b6662831cbdb92c3433c92b5ecde2c2b9a0db52b4275eb2b46638a74fcb4",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "On 25 May 1940 eight mice received a lethal dose of bacteria;",
+      "exact_native_cache_key": "de96dc073d84753ecdd47fea68cfd496aa9c26b9.pkl",
+      "cache_input_text_sha256": "aa23a8201f480a9d1c6691c4696a1b9b1309a4651329d9cb3fcd8b61a296e3e2",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "only the four also injected with penicillin lived.",
+      "exact_native_cache_key": "f32c8c36ac3b05ca17a58cc146c562aed534f3ab.pkl",
+      "cache_input_text_sha256": "7ca2b6662831cbdb92c3433c92b5ecde2c2b9a0db52b4275eb2b46638a74fcb4",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "The Lancet, a prestigious journal, printed the outcome that August.",
+      "exact_native_cache_key": "24943c5ba50131fd9bed77e0516085e4485ba98b.pkl",
+      "cache_input_text_sha256": "8fcfddaead9e53f0232ea0eee4734a9c06122722a098ebaae4921c2209e99c7c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "The Lancet, a prestigious journal, printed the outcome that August.",
+      "exact_native_cache_key": "747ff5ccd217d0697ec24d9c9cad94fa6eca881a.pkl",
+      "cache_input_text_sha256": "8fcfddaead9e53f0232ea0eee4734a9c06122722a098ebaae4921c2209e99c7c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "The Lancet,",
+      "exact_native_cache_key": "982ff1ddf88ea5647f02a269483e5d343ce7bc19.pkl",
+      "cache_input_text_sha256": "91a9221c9217582b5d8ea9bfecf56a7553d894bd8a7fc185a5fa4719f9bd2716",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "a prestigious journal,",
+      "exact_native_cache_key": "2cb8bc2ddbf7c26b3a0de7e48f98e9d80aaf6286.pkl",
+      "cache_input_text_sha256": "a33b16d8535f77f8f79f74375126dd6fc42be9ffa24a46ec7a04f18506128031",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "printed the outcome that August.",
+      "exact_native_cache_key": "8d30ca6f00599e4fdd6e70db98d1bd141030dbe2.pkl",
+      "cache_input_text_sha256": "0bdd59984a656074bc9d848942d8e135f6e9a96f66185fac25402ecfd07d141d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "In February 1941 Albert Alexander, an Oxford constable gravely ill with infection, rallied on penicillin.",
+      "exact_native_cache_key": "c2d51a368e575e3d8f998e919fb032d20fdeecf5.pkl",
+      "cache_input_text_sha256": "4a60d9b71181fc76257f81fc15e5255363150a49a82917556d48f9776f9671c0",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "In February 1941 Albert Alexander, an Oxford constable gravely ill with infection, rallied on penicillin.",
+      "exact_native_cache_key": "e0d29c7bd5ed3c15361986580c5c361f93569327.pkl",
+      "cache_input_text_sha256": "4a60d9b71181fc76257f81fc15e5255363150a49a82917556d48f9776f9671c0",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "In February 1941 Albert Alexander, an Oxford constable",
+      "exact_native_cache_key": "f5d01b633b276b1a897c025b4150526dfad8f5fc.pkl",
+      "cache_input_text_sha256": "888fa2e445337386722d5549f3f7e1fc61af90affb94b4012db7bb6a8049418d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "gravely ill with infection, rallied on penicillin.",
+      "exact_native_cache_key": "375b32b454e6f7e36ce59f01d3977dad010c740c.pkl",
+      "cache_input_text_sha256": "908cc36eced3c6cf4e1b4aec6486306c4d982521c92258e1e7f38d916ca823c8",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "In February 1941 Albert Alexander,",
+      "exact_native_cache_key": "6f0b26b2e7f10d880222117d60846adf288da077.pkl",
+      "cache_input_text_sha256": "c90168631c29c5a27a70f14f774c04e5f1eecb26cc49cbe79927749711dd9a28",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "an Oxford constable gravely ill with infection,",
+      "exact_native_cache_key": "a29e083fccb815188142eadfccb1ab4b43ee7ebe.pkl",
+      "cache_input_text_sha256": "1d389d3f9d10ed608b950da8d783b8c14fd7c5aa6cc5410130986af62a2cc772",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "rallied on penicillin.",
+      "exact_native_cache_key": "b4407c0d1283a463b93078252d963ad0f63a7b79.pkl",
+      "cache_input_text_sha256": "13401ed98f259d78be594384627ab1eefc4c7d2f50ecf30497be8dcce0747d43",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "When the scarce supply ran out, he died in March: the obstacle was quantity.",
+      "exact_native_cache_key": "6925f650b582402096881a5974e1879aa83fde86.pkl",
+      "cache_input_text_sha256": "e24f8174cd43a41d90d6853c903f20e5b68832e8bf3d2d957f63ed513eeb9960",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "When the scarce supply ran out, he died in March: the obstacle was quantity.",
+      "exact_native_cache_key": "b7a5ddf94a1a27260aa458aa3068b037e9817db9.pkl",
+      "cache_input_text_sha256": "e24f8174cd43a41d90d6853c903f20e5b68832e8bf3d2d957f63ed513eeb9960",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "When the scarce supply ran out, he died in March:",
+      "exact_native_cache_key": "1ce05195109e939c225db4b2b9152a17fc2278cd.pkl",
+      "cache_input_text_sha256": "60079dfb72c7c8333d132501d42a6f30c5f630ca4a9647658d389ce16208d93b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "the obstacle was quantity.",
+      "exact_native_cache_key": "7c4ffc05fc16a870b1c871272e45d7288f283d36.pkl",
+      "cache_input_text_sha256": "1e873e1b0bf9c67dd7737e8d5f625f4017134bce21ace80d147b4e315eab952b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "When the scarce supply ran out,",
+      "exact_native_cache_key": "1159775ec0f949c47bbf96aa4929945bae0f162d.pkl",
+      "cache_input_text_sha256": "5103a765eee9f1eddae8819856309936715e61c2a0c1d96b8946df35b1ce7357",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "he died in March:",
+      "exact_native_cache_key": "617d980e45b2e0fd7e991939cd8b5f0c8f76f70e.pkl",
+      "cache_input_text_sha256": "23e80eecb622b0075b6ec3f72aa7e094d97ad2c2d24bd58bcc7d2d1e24259c36",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "the obstacle was quantity.",
+      "exact_native_cache_key": "7c4ffc05fc16a870b1c871272e45d7288f283d36.pkl",
+      "cache_input_text_sha256": "1e873e1b0bf9c67dd7737e8d5f625f4017134bce21ace80d147b4e315eab952b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "From July 1941 a government laboratory in Peoria, Illinois, boosted yields about tenfold with corn-steep liquor, a starch by-product; later a mouldy market melon furnished the laboratory with a more prolific strain.",
+      "exact_native_cache_key": "b3f3f3fdf628603f964deca88300ab6c96e4865e.pkl",
+      "cache_input_text_sha256": "d61deb1636547f1907d76ff0f8d5c4f67b4dee593a7c0eedfa8f840a091a8cd7",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "From July 1941 a government laboratory in Peoria, Illinois, boosted yields about tenfold with corn-steep liquor, a starch by-product; later a mouldy market melon furnished the laboratory with a more prolific strain.",
+      "exact_native_cache_key": "10ed5673eee902d9e23d4646412387ad56a2dc41.pkl",
+      "cache_input_text_sha256": "d61deb1636547f1907d76ff0f8d5c4f67b4dee593a7c0eedfa8f840a091a8cd7",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "From July 1941 a government laboratory in Peoria, Illinois,",
+      "exact_native_cache_key": "091a1b3faccd6d5ec41a8967d6187465c463fa52.pkl",
+      "cache_input_text_sha256": "1c29c7e369b0e6e564f11b962ba1d4bda53f0fb7ac152761eb30725689aa7a4c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "boosted yields about tenfold with corn-steep liquor, a starch by-product;",
+      "exact_native_cache_key": "faf2192cdcdfd5dec9ea7db3cfd967a429e308ef.pkl",
+      "cache_input_text_sha256": "edc41f625762de3c2eefcb98db1e77be9e337c14e7873b42592ab4c1a67a508a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "later a mouldy market melon furnished the laboratory with a more prolific strain.",
+      "exact_native_cache_key": "7b5f46228569fee196e0199bdb74bf4d815ea1b3.pkl",
+      "cache_input_text_sha256": "ce4e99ef278ff68dc679dfbf96435dc982f67cf9865c52bfde411ba8b9ed4b97",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "From July 1941 a government laboratory in Peoria,",
+      "exact_native_cache_key": "6cbc210766c13125d74251ff1f9e828009d41d9a.pkl",
+      "cache_input_text_sha256": "af1a86d8998d37a0ad882476c713440ac2c32091825deb73d51994fc9b26819d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Illinois,",
+      "exact_native_cache_key": "b8dcc36dafe5024060a9cecccb2a2ed2390f89ca.pkl",
+      "cache_input_text_sha256": "53d295846eed770fc84aa359ef7bb971e90e5eb3cab69391c46a033f491b003b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "boosted yields about tenfold with corn-steep liquor,",
+      "exact_native_cache_key": "2068202cb03ffda51e8e8bd54f1f3ae775898521.pkl",
+      "cache_input_text_sha256": "33b1b604924ff51c4d89aa4bc81991a600cf9290267b2e89b5e488cf042e4189",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 4,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "a starch by-product;",
+      "exact_native_cache_key": "da5b863ff85377532499b943ecafa2dc63170743.pkl",
+      "cache_input_text_sha256": "9f401fa45b2a1e88899d53cd1caf7279d75c55e960dd680b729535c3683f0e8c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 5,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "later a mouldy market melon furnished the laboratory with a more prolific strain.",
+      "exact_native_cache_key": "7b5f46228569fee196e0199bdb74bf4d815ea1b3.pkl",
+      "cache_input_text_sha256": "ce4e99ef278ff68dc679dfbf96435dc982f67cf9865c52bfde411ba8b9ed4b97",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "By D-Day in June 1944 industrial fermentation met Allied needs.",
+      "exact_native_cache_key": "8be37419974367e11a837255c3ead8e081f0239c.pkl",
+      "cache_input_text_sha256": "2a8d777f36c5c45563e4b5632254bedb4cc392374c425106dcc7860cdbbd463d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "By D-Day in June 1944 industrial fermentation met Allied needs.",
+      "exact_native_cache_key": "12eed4e6abdd3e5f3b6e73995cdd48aaff2c1228.pkl",
+      "cache_input_text_sha256": "2a8d777f36c5c45563e4b5632254bedb4cc392374c425106dcc7860cdbbd463d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "In October 1945 Fleming, Florey, and Chain shared the Nobel prize; Heatley was overlooked.",
+      "exact_native_cache_key": "4f76df452bc125a00cf48118f6c625642922e16d.pkl",
+      "cache_input_text_sha256": "a8ffb039933de5aa676fc2a64c5e025a51fd6223ca55721d377c683056af2d30",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "In October 1945 Fleming, Florey, and Chain shared the Nobel prize; Heatley was overlooked.",
+      "exact_native_cache_key": "656596e99a5cf1fd0921bf4bb6e0c436f118d8e9.pkl",
+      "cache_input_text_sha256": "a8ffb039933de5aa676fc2a64c5e025a51fd6223ca55721d377c683056af2d30",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "In October 1945 Fleming, Florey, and Chain shared the Nobel prize;",
+      "exact_native_cache_key": "e7dcbe476c373f4e9a8b07ed0d487777c5e4f937.pkl",
+      "cache_input_text_sha256": "bb5c98bc84d2b8281dbb0170743650ef1fa06d689b8c87a1deac09940283fa59",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Heatley was overlooked.",
+      "exact_native_cache_key": "c8252c96b9a0ecefbfa17828af8f5fc92d6a78ff.pkl",
+      "cache_input_text_sha256": "7b2cc65b35947005901cac09abf72200ee25c52ad974dd547966509dfa19513b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "In October 1945 Fleming,",
+      "exact_native_cache_key": "55852f56a6d9d568fd414def9627445705243d37.pkl",
+      "cache_input_text_sha256": "0e65e9b8a60c360a67008367c9b1c60e8125cc2536b203f382e6f01fce9ac72e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Florey,",
+      "exact_native_cache_key": "c3f6fad5af037cdb3536b9f945585bfd97afbdd1.pkl",
+      "cache_input_text_sha256": "9e9fd18fa60eb9f283bb8a92c49d5a57e4021f104814bd5e51b052c592dcea11",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "and Chain shared the Nobel prize;",
+      "exact_native_cache_key": "d78278348c7e602ed072aced50fe7f1be3eaf9f3.pkl",
+      "cache_input_text_sha256": "28474952615fba0fa96fa3f0f0149ea9c3ec35d95c95684aa9799870b70924cf",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 4,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Heatley was overlooked.",
+      "exact_native_cache_key": "c8252c96b9a0ecefbfa17828af8f5fc92d6a78ff.pkl",
+      "cache_input_text_sha256": "7b2cc65b35947005901cac09abf72200ee25c52ad974dd547966509dfa19513b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Fortune put the mould in Fleming's dish; tenacious teams and years of toil transformed it into a remedy.",
+      "exact_native_cache_key": "c94caa3bc39cb0f20bca48738f80dae1ccec2922.pkl",
+      "cache_input_text_sha256": "eeb4d9dc630cbfdfec365d27915aaa61335f35ff4c7c673c33e24a0d2e58a0d4",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Fortune put the mould in Fleming's dish; tenacious teams and years of toil transformed it into a remedy.",
+      "exact_native_cache_key": "c02915888d3058c73cc82fe70488a1e85c9afee1.pkl",
+      "cache_input_text_sha256": "eeb4d9dc630cbfdfec365d27915aaa61335f35ff4c7c673c33e24a0d2e58a0d4",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Fortune put the mould in Fleming's dish;",
+      "exact_native_cache_key": "ebcc2265e4b5d8acc83be297bdd6470460bd0b23.pkl",
+      "cache_input_text_sha256": "d06e45bcee907d5e934b49918340b9fdb80e2110ff925ada5f250ab85687299c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "tenacious teams and years of toil transformed it into a remedy.",
+      "exact_native_cache_key": "151116b6f0afb91aa66d5446c579ecc0a1f1450e.pkl",
+      "cache_input_text_sha256": "6a9995599cfcaea318abc2867fe1b0600ca165ee38b71311bd5ab5f20bbefbe8",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Fortune put the mould in Fleming's dish;",
+      "exact_native_cache_key": "ebcc2265e4b5d8acc83be297bdd6470460bd0b23.pkl",
+      "cache_input_text_sha256": "d06e45bcee907d5e934b49918340b9fdb80e2110ff925ada5f250ab85687299c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "tenacious teams and years of toil transformed it into a remedy.",
+      "exact_native_cache_key": "151116b6f0afb91aa66d5446c579ecc0a1f1450e.pkl",
+      "cache_input_text_sha256": "6a9995599cfcaea318abc2867fe1b0600ca165ee38b71311bd5ab5f20bbefbe8",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    }
+  ],
+  "unique_reference_key_count": 88,
+  "raw_mother_cache_scalar_manifest": [
+    {
+      "exact_native_cache_key": "ddc9d0d05a688a442acf56b778b18efc5ea65718.pkl",
+      "pkl_sha256": "e586fa7025e9a293b2209517b12c8b6ba97eddacd041c491a964d434890257a9",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "标题",
+          "piece": null,
+          "reference_kind": "title-default-raw",
+          "method": "create",
+          "source_slice": "The Mould That Changed the World",
+          "exact_native_cache_key": "ddc9d0d05a688a442acf56b778b18efc5ea65718.pkl",
+          "cache_input_text_sha256": "8705752b1a623b92cb480f95ad1171f092fc492f1802d70143201e9a5cb1f08f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        38912
+      ],
+      "unprocessed_array_sha256": "058c5aa12c0fbde7ff79a2c40863af9208038b7b01e23b998723f959dfb003d3"
+    },
+    {
+      "exact_native_cache_key": "a7772fb91478c8a30a8c51afb863cd9fb59b1822.pkl",
+      "pkl_sha256": "7bcda09923b22e3765b2112118c942a8f086316b7a0e151b3d9c15981f4fadac",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In September 1928 Alexander Fleming, a bacteriologist at St Mary's Hospital, London, returned from holiday to find that a stray mould had contaminated a dish of staphylococcus bacteria.",
+          "exact_native_cache_key": "a7772fb91478c8a30a8c51afb863cd9fb59b1822.pkl",
+          "cache_input_text_sha256": "ec639c1f74b9276f39b2d962895ac0f4763d4fd48c8b19c6523acd15298804f5",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        344576
+      ],
+      "unprocessed_array_sha256": "84b0fe238a2ac3246379b26770a66303390ed743bb4e82397931d65642f0ce3b"
+    },
+    {
+      "exact_native_cache_key": "60121656f22d21e31c978ac76b3536d805480fd2.pkl",
+      "pkl_sha256": "c031a4d5a685a08a5151343fd6c34c66b0e1fa2025c9f48c58524e62f453cc13",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In September 1928 Alexander Fleming, a bacteriologist at St Mary's Hospital, London,",
+          "exact_native_cache_key": "60121656f22d21e31c978ac76b3536d805480fd2.pkl",
+          "cache_input_text_sha256": "2cf5f2d3192036712a1d0591e8e20e2a0064d8747937f7540c8cf678ec56b44a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        172032
+      ],
+      "unprocessed_array_sha256": "69c666e555aa8c71c18943208b4c90321931f3b7c9ab17f030cad17f35d98370"
+    },
+    {
+      "exact_native_cache_key": "a2820ac9263bde0518f9319d6cd208b259f68058.pkl",
+      "pkl_sha256": "13dada7bbcc1fc6f0578583d41fb501e2832641ce9c4540125ce10b0f6d51a98",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "returned from holiday to find that",
+          "exact_native_cache_key": "a2820ac9263bde0518f9319d6cd208b259f68058.pkl",
+          "cache_input_text_sha256": "436427fae13e3de049683181b87675d8164cf2dc71b4d3f683d63d69bfcf6237",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        47104
+      ],
+      "unprocessed_array_sha256": "276cb5f5b97b32c0df3a17d76c08d9c98a1dde38ef34d208de79f3607109b7cf"
+    },
+    {
+      "exact_native_cache_key": "ea1f0ba64249a67ca77285d534e6018babef1508.pkl",
+      "pkl_sha256": "00cf9054a4cd7f567b66f6459be87e78955b10e3dfa542deecbce47793f03f95",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "a stray mould had contaminated a dish of staphylococcus bacteria.",
+          "exact_native_cache_key": "ea1f0ba64249a67ca77285d534e6018babef1508.pkl",
+          "cache_input_text_sha256": "f1118b9bfe3e0ecfeebaf641c316584f4473c2c58867c25ff12bf2a147eccfd7",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        117760
+      ],
+      "unprocessed_array_sha256": "2b82bba2479e6dc741ad42466ac055642163c50ad88a3f14e74f1be8f2c10ebc"
+    },
+    {
+      "exact_native_cache_key": "6a7534f306c2b9e542934196f5a3d50c5a315777.pkl",
+      "pkl_sha256": "ba21c1df61808d29089c2d18241f724e6c5e2618ae32c71f7f91d6a1f0d30eae",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In September 1928 Alexander Fleming,",
+          "exact_native_cache_key": "6a7534f306c2b9e542934196f5a3d50c5a315777.pkl",
+          "cache_input_text_sha256": "55103232fba6475558f8d2521f922c218d03af86b64dc6079fe60576421f45e8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        80384
+      ],
+      "unprocessed_array_sha256": "b54afa71a778be995c4c5ed8c5c2c61ef9f3707b3091ccc7670e1d6aea1b7b38"
+    },
+    {
+      "exact_native_cache_key": "1a0c82d71fb51dcf8e3c25d68274ccb409280650.pkl",
+      "pkl_sha256": "3ef32aaef376a60b3a051f7f20c39fa936530bc0d19743b1fa75eb6db80aa0e6",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a bacteriologist at St Mary's Hospital,",
+          "exact_native_cache_key": "1a0c82d71fb51dcf8e3c25d68274ccb409280650.pkl",
+          "cache_input_text_sha256": "f0e58b971be93832020eded0490d637a115e53055acd4459c925589e05aa63a8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        64512
+      ],
+      "unprocessed_array_sha256": "5efd8a0a1183e3838fce38b3f12281c4dbd30db3639beb987a3c054616c8efb1"
+    },
+    {
+      "exact_native_cache_key": "d73237dcbf973a617fb22654b38726ead9d15e53.pkl",
+      "pkl_sha256": "999df91216bf43f2e54ef8be59325f1daed3fbedbe8074d93ac7ac9fc8294759",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "London,",
+          "exact_native_cache_key": "d73237dcbf973a617fb22654b38726ead9d15e53.pkl",
+          "cache_input_text_sha256": "520015561e7eb5d3faa0da7b9c90c1c7ac291de5040610328fae7122e34d8b7d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        18944
+      ],
+      "unprocessed_array_sha256": "220590a42c715f7c0d08b312c7cee3f48c67ea26eb6f6747df3df5d026f1173e"
+    },
+    {
+      "exact_native_cache_key": "47186d89489a36ce3e0603e64e90ab5c7bc3dabf.pkl",
+      "pkl_sha256": "8ee8f5fa3e087279f54610bb0804b8c4d559ea86adbcf3eb75afce07545986ca",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "returned from holiday to find that a stray mould had contaminated a dish of staphylococcus bacteria.",
+          "exact_native_cache_key": "47186d89489a36ce3e0603e64e90ab5c7bc3dabf.pkl",
+          "cache_input_text_sha256": "e5e76f2e865b68929cac2955006945c272d455bc13e42b26cafa548143cb442a",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        169472
+      ],
+      "unprocessed_array_sha256": "0111eecd0282c79042fa3c1e490be7bf46468bb2ab6f4fbfaff1b444fd9b1add"
+    },
+    {
+      "exact_native_cache_key": "4f10427de72ffc4614c6f039458550611d00a6a1.pkl",
+      "pkl_sha256": "285800f403ed5bb0fd04d5560b1bd8b54064b3fc78f0c088198f0303099b83dd",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Nothing grew around it.",
+          "exact_native_cache_key": "4f10427de72ffc4614c6f039458550611d00a6a1.pkl",
+          "cache_input_text_sha256": "60cf67483d2438e3aef449eb415889c273caf02caa5f9027ffbe5b57b45300b6",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        32768
+      ],
+      "unprocessed_array_sha256": "2067ea6df6033a28efd716768c0292b3b5709743a0734b6c6a3c07081792dbd0"
+    },
+    {
+      "exact_native_cache_key": "a97582851f399d835730f1c50b568656330dece8.pkl",
+      "pkl_sha256": "a5577c0aeef2cae60ba344a689a3292b06e3e19316df87170aa4351925480646",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Popular mythology blames an open window; the spores probably originated in a laboratory downstairs, where a colleague cultivated moulds.",
+          "exact_native_cache_key": "a97582851f399d835730f1c50b568656330dece8.pkl",
+          "cache_input_text_sha256": "95a940801d3e3a9b0ab787b43679683f44be19d220146539dabd88d86fb2ed81",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        237568
+      ],
+      "unprocessed_array_sha256": "6fece3355da7b3ad5ebd4dabea1cccbeda60f61d2de061a5ed0ee581f4188ad8"
+    },
+    {
+      "exact_native_cache_key": "0fc07f62972ff7a45684007efa540bbef9cc8aac.pkl",
+      "pkl_sha256": "545bed11c1d9ecc4c43eba06564ee454b1dc0df38345344ed4015253a8f82295",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Popular mythology blames an open window;",
+          "exact_native_cache_key": "0fc07f62972ff7a45684007efa540bbef9cc8aac.pkl",
+          "cache_input_text_sha256": "067bcc13d8cc809b467b44b284ec8101b0ab4c35dc9475e5a9071359953644f1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Popular mythology blames an open window;",
+          "exact_native_cache_key": "0fc07f62972ff7a45684007efa540bbef9cc8aac.pkl",
+          "cache_input_text_sha256": "067bcc13d8cc809b467b44b284ec8101b0ab4c35dc9475e5a9071359953644f1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        66048
+      ],
+      "unprocessed_array_sha256": "89a53e87de83ff19eed5b86681377f8fe8e29d6bd82b4e398e9da7a6b7304003"
+    },
+    {
+      "exact_native_cache_key": "ce8dcdaeba597ecdc6194c93b3beeb981215973d.pkl",
+      "pkl_sha256": "74d8c01e27042f8852d68a7776f5152589cf97f08f80b2164731b18a4812cc7a",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "the spores probably originated in a laboratory downstairs,",
+          "exact_native_cache_key": "ce8dcdaeba597ecdc6194c93b3beeb981215973d.pkl",
+          "cache_input_text_sha256": "bd41b8e6789761ec0598bac32a7fef65236f998d9b50e4d64bac9eab7766a8c4",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "the spores probably originated in a laboratory downstairs,",
+          "exact_native_cache_key": "ce8dcdaeba597ecdc6194c93b3beeb981215973d.pkl",
+          "cache_input_text_sha256": "bd41b8e6789761ec0598bac32a7fef65236f998d9b50e4d64bac9eab7766a8c4",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        97792
+      ],
+      "unprocessed_array_sha256": "d512cb3ce2444ec9c1269a659916bb39d7087df63f16be137fb801dd5a686358"
+    },
+    {
+      "exact_native_cache_key": "bdd502b437296a60f316d6d322b511255516ee1f.pkl",
+      "pkl_sha256": "1ef94b653b7ae03d40312b709fb5e3d7fc424209f75a10cced1057aec63d5cd3",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "where a colleague cultivated moulds.",
+          "exact_native_cache_key": "bdd502b437296a60f316d6d322b511255516ee1f.pkl",
+          "cache_input_text_sha256": "807154d5f2a99833633964c9e4e4c0fb605015f7eb73aead3143624834f0b7ff",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "where a colleague cultivated moulds.",
+          "exact_native_cache_key": "bdd502b437296a60f316d6d322b511255516ee1f.pkl",
+          "cache_input_text_sha256": "807154d5f2a99833633964c9e4e4c0fb605015f7eb73aead3143624834f0b7ff",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        51200
+      ],
+      "unprocessed_array_sha256": "4593b9e79729840a9a9c905049ba5371704295c25ce6825b2f62d4dfba048667"
+    },
+    {
+      "exact_native_cache_key": "6518baea60dbf686f1f16c8ece333d1003f4a1da.pkl",
+      "pkl_sha256": "0141ab155fb78db6161a1964c8684f52961c328fef55e38c988e05b73f533057",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Fleming called the mould's juice penicillin and published in June 1929.",
+          "exact_native_cache_key": "6518baea60dbf686f1f16c8ece333d1003f4a1da.pkl",
+          "cache_input_text_sha256": "2cc18bd3081ab00f0c7b2f3b0503fc33a2031716be16ae307eb011b230b8f93e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        133120
+      ],
+      "unprocessed_array_sha256": "dc72e38d5f323063be4e6f67e398a175b349f22966ced2c82ebfed138c48578c"
+    },
+    {
+      "exact_native_cache_key": "880222e1804ab0ab930d71428ab788d7b4466fd5.pkl",
+      "pkl_sha256": "068659da916f0c9f62547fe511fc074434bae9ec8046f1c79f355fa776b14354",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Yet the crude juice was unstable and stubbornly hard to purify, and he and the chemists he enlisted lacked the expertise to refine it.",
+          "exact_native_cache_key": "880222e1804ab0ab930d71428ab788d7b4466fd5.pkl",
+          "cache_input_text_sha256": "f66bb9d38bf21040cbb676503f3921d9f09db000d42323f3674a67bcf2240ef5",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        223744
+      ],
+      "unprocessed_array_sha256": "d3ad2ef8769080c78881712a1c59f186350191f466f90b9a16a23b514efb263c"
+    },
+    {
+      "exact_native_cache_key": "4596e79d6120250069412eaa7d0cbc9ef4a3e1f3.pkl",
+      "pkl_sha256": "56aab5276de1eed9abd8f34e192b6a26fc77df3ef7b82f149b44136dd44cf1da",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Yet the crude juice was unstable",
+          "exact_native_cache_key": "4596e79d6120250069412eaa7d0cbc9ef4a3e1f3.pkl",
+          "cache_input_text_sha256": "e392d41919cfbc0c33e98a75e80e9ecf0a65e1a0f8b3ac8d0f46fd6c14662301",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        48128
+      ],
+      "unprocessed_array_sha256": "8564486cc62df876b96b5058c62ea29f06cafcdb048ee45d7b0e26b5c1d559f7"
+    },
+    {
+      "exact_native_cache_key": "b2b311f159863cf7dd9718b154a45dc1aa2d6471.pkl",
+      "pkl_sha256": "14085baa5141d33804101344209f21fd17b703e2cb8435ed15cd0bb1b2ac1ffb",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and stubbornly hard to purify,",
+          "exact_native_cache_key": "b2b311f159863cf7dd9718b154a45dc1aa2d6471.pkl",
+          "cache_input_text_sha256": "560254aa63c52cba998af3e88bf1755c48b82b5e0c7fd850c9ecf10b6529d826",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        46592
+      ],
+      "unprocessed_array_sha256": "0c31f360d02feca0b1e7d4ee457674703069e4f346002c99ba9d9799d5875940"
+    },
+    {
+      "exact_native_cache_key": "75ffa8233bf4b1cd0d6768e97d1c0a276578880c.pkl",
+      "pkl_sha256": "b5d4c5067a844399cffd6b65d59c00dab06b6e3faaeb6d18b8a4675ef4f87866",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and he and the chemists he enlisted lacked the expertise to refine it.",
+          "exact_native_cache_key": "75ffa8233bf4b1cd0d6768e97d1c0a276578880c.pkl",
+          "cache_input_text_sha256": "ca781dec038c30a28fd30152a2986585c218d8bf0a5f0c24842e78d2479ca8da",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and he and the chemists he enlisted lacked the expertise to refine it.",
+          "exact_native_cache_key": "75ffa8233bf4b1cd0d6768e97d1c0a276578880c.pkl",
+          "cache_input_text_sha256": "ca781dec038c30a28fd30152a2986585c218d8bf0a5f0c24842e78d2479ca8da",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        105984
+      ],
+      "unprocessed_array_sha256": "c5e46869cc84395c8165a64b1fa03ca19849751e247451783369f74305032e6a"
+    },
+    {
+      "exact_native_cache_key": "30daac3314a2da39046d6d4c8f4a4f0ea7f08736.pkl",
+      "pkl_sha256": "db533c1588b044a5eff987aee4d4c94e625de180c4cf5c4e3b6cc1ed7e93143f",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Yet the crude juice was unstable and stubbornly hard to purify,",
+          "exact_native_cache_key": "30daac3314a2da39046d6d4c8f4a4f0ea7f08736.pkl",
+          "cache_input_text_sha256": "4081fdb882e35b4057ee273ef43e0698b10d99c34e604873f46327b20b540c0e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        107520
+      ],
+      "unprocessed_array_sha256": "14c876e8cdd34d3d8e09d4d305780a42b6953895fcaba141b79757b961653d44"
+    },
+    {
+      "exact_native_cache_key": "5bba34a1193167f7343eefe2f381564f1fd332be.pkl",
+      "pkl_sha256": "ab1eb7ebf16a6e93f0c3d8bb2db1955eb7ab92746a0045fb0422ff2d95e55b90",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "He used it chiefly to isolate other microbes, and penicillin lay dormant, a curiosity rather than a cure.",
+          "exact_native_cache_key": "5bba34a1193167f7343eefe2f381564f1fd332be.pkl",
+          "cache_input_text_sha256": "78b26236f8bbf297f25d073363e2699cef07e7b6e37b3c2fc9fcf0474b7885d0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        179200
+      ],
+      "unprocessed_array_sha256": "6ad38811470aa2480e169b977d080b92994d19654cb9d99589ecd430f4657819"
+    },
+    {
+      "exact_native_cache_key": "5926b6b9a52621267226cfcf47299520028cb571.pkl",
+      "pkl_sha256": "88e90f79ed7dd7cc1af4b9757d89d9be2cf5ac9d8cd119633d62f77536e6f8c4",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "He used it chiefly to isolate other microbes,",
+          "exact_native_cache_key": "5926b6b9a52621267226cfcf47299520028cb571.pkl",
+          "cache_input_text_sha256": "1ad6c855c450bb1f473d6413c33d96cb10377d066ac963e418b2b9e557531dd8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "He used it chiefly to isolate other microbes,",
+          "exact_native_cache_key": "5926b6b9a52621267226cfcf47299520028cb571.pkl",
+          "cache_input_text_sha256": "1ad6c855c450bb1f473d6413c33d96cb10377d066ac963e418b2b9e557531dd8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        72192
+      ],
+      "unprocessed_array_sha256": "01e2f5d86b4ca87e2e9c68698038881fe5d7d84ee91a482e0935a5cfe326a4f1"
+    },
+    {
+      "exact_native_cache_key": "cce94682ebd37acef3995331484f347ffdf427b9.pkl",
+      "pkl_sha256": "b35f2ee180cf05dd39a937f5898db967401b808bfa184d5d702e67e6ae5e01b2",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and penicillin lay dormant,",
+          "exact_native_cache_key": "cce94682ebd37acef3995331484f347ffdf427b9.pkl",
+          "cache_input_text_sha256": "2dccd5934d17f070483434eb70c7efb264f9c6bd2ad0a65a0384685abc76c0aa",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and penicillin lay dormant,",
+          "exact_native_cache_key": "cce94682ebd37acef3995331484f347ffdf427b9.pkl",
+          "cache_input_text_sha256": "2dccd5934d17f070483434eb70c7efb264f9c6bd2ad0a65a0384685abc76c0aa",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        41472
+      ],
+      "unprocessed_array_sha256": "af20ec9522b410224bb622420f0bf46ef61f2f85ba3f2ace56ca8f3178a7f559"
+    },
+    {
+      "exact_native_cache_key": "7749563a7301c7f480d2cddca311d2171ed3e10e.pkl",
+      "pkl_sha256": "6abbac8d0669210cafacec9132325d6a78138154ae88c5f5ca0f6d09fcfbdcb3",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "a curiosity rather than a cure.",
+          "exact_native_cache_key": "7749563a7301c7f480d2cddca311d2171ed3e10e.pkl",
+          "cache_input_text_sha256": "24c627a6845e1ee931ea1e2bc651ff2a16e587cf956e5cb0af187433b7e67861",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a curiosity rather than a cure.",
+          "exact_native_cache_key": "7749563a7301c7f480d2cddca311d2171ed3e10e.pkl",
+          "cache_input_text_sha256": "24c627a6845e1ee931ea1e2bc651ff2a16e587cf956e5cb0af187433b7e67861",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        49664
+      ],
+      "unprocessed_array_sha256": "e25e579792fd5f6c5ae9f5a850267b0849968c0d5d3b61cc4fbc61fcec95a772"
+    },
+    {
+      "exact_native_cache_key": "9f62a8c5405f98421e6824ba43ef4dc11e1a842b.pkl",
+      "pkl_sha256": "3ab7a61ff1a17a4a506d8d55761499d88f90857d6296b93570ad7b917eba6c78",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "A decade later, in Oxford, Howard Florey, an Australian pathologist, revived the work with Ernst Chain, a German-born chemist and Jewish refugee.",
+          "exact_native_cache_key": "9f62a8c5405f98421e6824ba43ef4dc11e1a842b.pkl",
+          "cache_input_text_sha256": "0d6e0dff42382819ce6bc2c1e55579a930b7f035f91f78b6522acf429c6d5594",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        260608
+      ],
+      "unprocessed_array_sha256": "bc13388813344e2f7ba9de994e39e4434da03f08484cacac9ce7cb0bb33c1a4d"
+    },
+    {
+      "exact_native_cache_key": "8559bdf70ae25259d002485a12e1f182bd74b6e7.pkl",
+      "pkl_sha256": "d734ec9d31ae158e6907ca58729300b12c3826f89a94ee8692e6e6bc74bdefb0",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "A decade later, in Oxford, Howard Florey, an Australian pathologist,",
+          "exact_native_cache_key": "8559bdf70ae25259d002485a12e1f182bd74b6e7.pkl",
+          "cache_input_text_sha256": "47623034911dd91e2b2a3bbdf9394b69c3378135ff8fc92b3e505565e6fdee8a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        119808
+      ],
+      "unprocessed_array_sha256": "2cff94e329611e5f0b36ec6fb1aa70c46ffb96dc8896d89c5256b9810bdfed22"
+    },
+    {
+      "exact_native_cache_key": "cc9f7583e4b73c3bc362a45c34ebd8c47cb3531e.pkl",
+      "pkl_sha256": "522cd43d682f9cf14af0ce04f76bc56468b9b01464c829a3063e317fb3b2bea5",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "revived the work with Ernst Chain,",
+          "exact_native_cache_key": "cc9f7583e4b73c3bc362a45c34ebd8c47cb3531e.pkl",
+          "cache_input_text_sha256": "fcd47edf47de98591dedc472717dd0afb5089c13073dee362aa5bcad40e7395a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": 5,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "revived the work with Ernst Chain,",
+          "exact_native_cache_key": "cc9f7583e4b73c3bc362a45c34ebd8c47cb3531e.pkl",
+          "cache_input_text_sha256": "fcd47edf47de98591dedc472717dd0afb5089c13073dee362aa5bcad40e7395a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        44032
+      ],
+      "unprocessed_array_sha256": "4f9ae1e786cd9a59468a921fb41ebaf879fdc51e8fb3cbd82b601e0a616a0d00"
+    },
+    {
+      "exact_native_cache_key": "6ddbf65a0ec8fad933fa73d06d9a43523999cf24.pkl",
+      "pkl_sha256": "ebcda05c369320760843e348154654445f00028a6c90224da8687e749ccec0d1",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "a German-born chemist and Jewish refugee.",
+          "exact_native_cache_key": "6ddbf65a0ec8fad933fa73d06d9a43523999cf24.pkl",
+          "cache_input_text_sha256": "4acd1ab7fc5d493b4df6cfd15714bd445baa3d59010fcd3541dd4ad88f5d0bb9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": 6,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a German-born chemist and Jewish refugee.",
+          "exact_native_cache_key": "6ddbf65a0ec8fad933fa73d06d9a43523999cf24.pkl",
+          "cache_input_text_sha256": "4acd1ab7fc5d493b4df6cfd15714bd445baa3d59010fcd3541dd4ad88f5d0bb9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        68608
+      ],
+      "unprocessed_array_sha256": "2f545888e35e5989e6fd8833e74a8ea8a2e2f9388a7877db0f55995e12622d09"
+    },
+    {
+      "exact_native_cache_key": "0fefa1ba8ce696af6c3bf3c73557672c0b585234.pkl",
+      "pkl_sha256": "835c83a62c9acce415f0e18eacf9f70549a90c8f44fce37499b82762ee81a859",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "A decade later,",
+          "exact_native_cache_key": "0fefa1ba8ce696af6c3bf3c73557672c0b585234.pkl",
+          "cache_input_text_sha256": "73850f97229397db51584369711f77a256252ff70ce633aae50669bd9c2a5fb4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        27648
+      ],
+      "unprocessed_array_sha256": "550ec3213b623fc32acbae29fd93875a829d18085a6d51931e5cd2073d923afa"
+    },
+    {
+      "exact_native_cache_key": "42f8520ce407b031bd8e1a9037ea45202ad29909.pkl",
+      "pkl_sha256": "6d3f18cb25687316924f48d0bea6ff67215cf08cecb3d722cde42fddc60b15e6",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "in Oxford,",
+          "exact_native_cache_key": "42f8520ce407b031bd8e1a9037ea45202ad29909.pkl",
+          "cache_input_text_sha256": "9d4ec95f761802041cc4e89f5e3185141410e850c930f2dde945eb510e502ec2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        24576
+      ],
+      "unprocessed_array_sha256": "e9f79763d691a542c7b1a61cfa2f857418c84703189977af322ea79dde28ce49"
+    },
+    {
+      "exact_native_cache_key": "13f385e55768b165c625aa195591b9dac25bb2e5.pkl",
+      "pkl_sha256": "204047f821744ebdfc6181721c504690d1d4e03272225fabb1e9f8f6f0a95ae8",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Howard Florey,",
+          "exact_native_cache_key": "13f385e55768b165c625aa195591b9dac25bb2e5.pkl",
+          "cache_input_text_sha256": "ac22dad3bf657dd87161e2819a62798753cf842d7b125a0278542e7065d9b3f8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        27136
+      ],
+      "unprocessed_array_sha256": "fc3cca018ea06e97e73017f1f652f188e0266721da5435fd46e8b7f9c7d1e5f1"
+    },
+    {
+      "exact_native_cache_key": "7d60d37f3c4183911f2a549a86cc4c7158eb0e4f.pkl",
+      "pkl_sha256": "14bc84ebfa0089c5c9641f0f6fb5b7d863c3cba32c5a0e462a7ec8ba7a8b1111",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "an Australian pathologist,",
+          "exact_native_cache_key": "7d60d37f3c4183911f2a549a86cc4c7158eb0e4f.pkl",
+          "cache_input_text_sha256": "b818b01f9bee093b601c43fc489c2c3454d5d70c5541d81a5a88c4f54640808a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        45568
+      ],
+      "unprocessed_array_sha256": "025891874affceedba13021827bd0013f837268ee2e8fd7a9d147929477c468e"
+    },
+    {
+      "exact_native_cache_key": "b701fb42c88901966c4db54b699c397cd0d10359.pkl",
+      "pkl_sha256": "612391d39c7e43663b940a2e84e095488e2ae20dca9d90e92f9ff738b3468301",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Their colleague Norman Heatley improvised an ingenious apparatus to extract the compound.",
+          "exact_native_cache_key": "b701fb42c88901966c4db54b699c397cd0d10359.pkl",
+          "cache_input_text_sha256": "08a50ae230ce51bec1e4e9c6ecda55813f9c16ae1050259fa7d978cc939218d0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        145408
+      ],
+      "unprocessed_array_sha256": "23a2e8e888bd51f6bd24bf3cf61459c68626894dc2343b85ee24d32f805afd71"
+    },
+    {
+      "exact_native_cache_key": "38667f1481795cb6057e8a87e0c2aae3f7a46db1.pkl",
+      "pkl_sha256": "1887ac4af91db422f27c61c77b976c1cdf5fbaf1b9726f2fc033d049064f031d",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Their colleague Norman Heatley improvised an ingenious apparatus",
+          "exact_native_cache_key": "38667f1481795cb6057e8a87e0c2aae3f7a46db1.pkl",
+          "cache_input_text_sha256": "99063a00a3f87e2e1625bc06f5c0901c23b5afa6dbac2d53712366846a6fa1ef",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        96768
+      ],
+      "unprocessed_array_sha256": "109841b2b50c4029d54541016f135857a86d66d2b491097a0bc941818c392ae9"
+    },
+    {
+      "exact_native_cache_key": "ffeadcc79ca2b0b1a2b70d900ae2b7ac97f8bf7e.pkl",
+      "pkl_sha256": "fb0e0c704e589640773bf23ea9c6693796239b29594cc964ab946333aef5fc8d",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "to extract the compound.",
+          "exact_native_cache_key": "ffeadcc79ca2b0b1a2b70d900ae2b7ac97f8bf7e.pkl",
+          "cache_input_text_sha256": "7e8ea0c260d3f0f1bf4587f5fd86167e2fd218acc58cb3dcfbe395c00b4c8a29",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        38400
+      ],
+      "unprocessed_array_sha256": "22c45374c2d8c3d1a969a190ff6a194a695f6c527ae4bc603f7db2182c345581"
+    },
+    {
+      "exact_native_cache_key": "44a7120835134c6514df9269a4441f4e4e256fc4.pkl",
+      "pkl_sha256": "f57b2859d3099f43c729366c49d18f611fa4a405fc19443c25b41ea9ec686681",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "On 25 May 1940 eight mice received a lethal dose of bacteria; only the four also injected with penicillin lived.",
+          "exact_native_cache_key": "44a7120835134c6514df9269a4441f4e4e256fc4.pkl",
+          "cache_input_text_sha256": "e15e5c0d8ae3cdc9f7031c5b722a124a031ebec4478b8b8dafee0c30f8453b08",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        236544
+      ],
+      "unprocessed_array_sha256": "a24e6efd1b9e081a8a96c0a84f3d1b774c4329f696da67ed23ae082be28a6a2c"
+    },
+    {
+      "exact_native_cache_key": "de96dc073d84753ecdd47fea68cfd496aa9c26b9.pkl",
+      "pkl_sha256": "55b7302e5c0aa6e175948287b9dcc6c3d682d5fbe3491d4ee74b01bb5acac7b4",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "On 25 May 1940 eight mice received a lethal dose of bacteria;",
+          "exact_native_cache_key": "de96dc073d84753ecdd47fea68cfd496aa9c26b9.pkl",
+          "cache_input_text_sha256": "aa23a8201f480a9d1c6691c4696a1b9b1309a4651329d9cb3fcd8b61a296e3e2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "On 25 May 1940 eight mice received a lethal dose of bacteria;",
+          "exact_native_cache_key": "de96dc073d84753ecdd47fea68cfd496aa9c26b9.pkl",
+          "cache_input_text_sha256": "aa23a8201f480a9d1c6691c4696a1b9b1309a4651329d9cb3fcd8b61a296e3e2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        138752
+      ],
+      "unprocessed_array_sha256": "a43cb1b6197a67b6afe4f4ebe154a2b17182b4a3a8bcb2d465252e9753619009"
+    },
+    {
+      "exact_native_cache_key": "f32c8c36ac3b05ca17a58cc146c562aed534f3ab.pkl",
+      "pkl_sha256": "f441b1f7f9a4b39971c26e1e329a851caa6b39a22aef9871063313cb4b166ab5",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "only the four also injected with penicillin lived.",
+          "exact_native_cache_key": "f32c8c36ac3b05ca17a58cc146c562aed534f3ab.pkl",
+          "cache_input_text_sha256": "7ca2b6662831cbdb92c3433c92b5ecde2c2b9a0db52b4275eb2b46638a74fcb4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "only the four also injected with penicillin lived.",
+          "exact_native_cache_key": "f32c8c36ac3b05ca17a58cc146c562aed534f3ab.pkl",
+          "cache_input_text_sha256": "7ca2b6662831cbdb92c3433c92b5ecde2c2b9a0db52b4275eb2b46638a74fcb4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        87040
+      ],
+      "unprocessed_array_sha256": "907812af86a94d900ed651aa40c6bbbf2f9ace2dd9f7b6c787928a2e379abb6e"
+    },
+    {
+      "exact_native_cache_key": "24943c5ba50131fd9bed77e0516085e4485ba98b.pkl",
+      "pkl_sha256": "476705c3916a14f28e987ac47b08a3ed9095bd988a5da1bcdc623752061ff57f",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The Lancet, a prestigious journal, printed the outcome that August.",
+          "exact_native_cache_key": "24943c5ba50131fd9bed77e0516085e4485ba98b.pkl",
+          "cache_input_text_sha256": "8fcfddaead9e53f0232ea0eee4734a9c06122722a098ebaae4921c2209e99c7c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        98816
+      ],
+      "unprocessed_array_sha256": "a15b3f4a0ad4aafb460716569a2bc6ac895b81c2c54cf2c28565f21943130eca"
+    },
+    {
+      "exact_native_cache_key": "982ff1ddf88ea5647f02a269483e5d343ce7bc19.pkl",
+      "pkl_sha256": "109a0b99ea9bea9e7cbe347929a2083f235863118951d8b49e67a54cf24d581c",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "The Lancet,",
+          "exact_native_cache_key": "982ff1ddf88ea5647f02a269483e5d343ce7bc19.pkl",
+          "cache_input_text_sha256": "91a9221c9217582b5d8ea9bfecf56a7553d894bd8a7fc185a5fa4719f9bd2716",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        22528
+      ],
+      "unprocessed_array_sha256": "80be391403790e1426f007da0ab044d7ca646782f047cb0f0cd973b0732512be"
+    },
+    {
+      "exact_native_cache_key": "2cb8bc2ddbf7c26b3a0de7e48f98e9d80aaf6286.pkl",
+      "pkl_sha256": "e0d48707baf4646da195e8d7cf83d3184a47e65c5509b981877cbb0d7c8c0a67",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a prestigious journal,",
+          "exact_native_cache_key": "2cb8bc2ddbf7c26b3a0de7e48f98e9d80aaf6286.pkl",
+          "cache_input_text_sha256": "a33b16d8535f77f8f79f74375126dd6fc42be9ffa24a46ec7a04f18506128031",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        33792
+      ],
+      "unprocessed_array_sha256": "7944637b03fd7f3401db1c20fbb14965b8810a2b683c765b447d1343955c1345"
+    },
+    {
+      "exact_native_cache_key": "8d30ca6f00599e4fdd6e70db98d1bd141030dbe2.pkl",
+      "pkl_sha256": "a343acb7f0a13e09976f061941987ac8696a49a1acb6bf8904278f775dcff13d",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "printed the outcome that August.",
+          "exact_native_cache_key": "8d30ca6f00599e4fdd6e70db98d1bd141030dbe2.pkl",
+          "cache_input_text_sha256": "0bdd59984a656074bc9d848942d8e135f6e9a96f66185fac25402ecfd07d141d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        43520
+      ],
+      "unprocessed_array_sha256": "675530ef28407a33fb43731e22f9d2ac72ea4e9d0bf1a4041180d7356626a2bd"
+    },
+    {
+      "exact_native_cache_key": "c2d51a368e575e3d8f998e919fb032d20fdeecf5.pkl",
+      "pkl_sha256": "daae0e27eec3a9532512c1de1e02115ed36bc31bff61a489f451c5a7b0669243",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In February 1941 Albert Alexander, an Oxford constable gravely ill with infection, rallied on penicillin.",
+          "exact_native_cache_key": "c2d51a368e575e3d8f998e919fb032d20fdeecf5.pkl",
+          "cache_input_text_sha256": "4a60d9b71181fc76257f81fc15e5255363150a49a82917556d48f9776f9671c0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        212480
+      ],
+      "unprocessed_array_sha256": "cf0f72952c7077827008dfaa57e38bb651fafee85ce50225f6357509edbd1f18"
+    },
+    {
+      "exact_native_cache_key": "f5d01b633b276b1a897c025b4150526dfad8f5fc.pkl",
+      "pkl_sha256": "253c2720c85952349ad0c4eee15b21b7612f5cfa4f90f46caaf9be67e7713872",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In February 1941 Albert Alexander, an Oxford constable",
+          "exact_native_cache_key": "f5d01b633b276b1a897c025b4150526dfad8f5fc.pkl",
+          "cache_input_text_sha256": "888fa2e445337386722d5549f3f7e1fc61af90affb94b4012db7bb6a8049418d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        115712
+      ],
+      "unprocessed_array_sha256": "bb536f2a68ce969eac390342c7cd52a5add632374d7f5374aee577dc1562554a"
+    },
+    {
+      "exact_native_cache_key": "375b32b454e6f7e36ce59f01d3977dad010c740c.pkl",
+      "pkl_sha256": "f4ee78360c3274b19e3ca10844d1dd4b589ec240c023c6c885c554196b3b924a",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "gravely ill with infection, rallied on penicillin.",
+          "exact_native_cache_key": "375b32b454e6f7e36ce59f01d3977dad010c740c.pkl",
+          "cache_input_text_sha256": "908cc36eced3c6cf4e1b4aec6486306c4d982521c92258e1e7f38d916ca823c8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        80384
+      ],
+      "unprocessed_array_sha256": "7ee571e9306e166e8bd58562571d64c1d62d09405cabe82cbf2355899e6aafe4"
+    },
+    {
+      "exact_native_cache_key": "6f0b26b2e7f10d880222117d60846adf288da077.pkl",
+      "pkl_sha256": "2ab2fc790c3f928b30213f3ab392915aea2a2a2d6f74b53402e83467eeb1653c",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In February 1941 Albert Alexander,",
+          "exact_native_cache_key": "6f0b26b2e7f10d880222117d60846adf288da077.pkl",
+          "cache_input_text_sha256": "c90168631c29c5a27a70f14f774c04e5f1eecb26cc49cbe79927749711dd9a28",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        81408
+      ],
+      "unprocessed_array_sha256": "ad91dc4ad58cca1e4d58f7fcdcdd572da20b41ecfafdd67b5cc99c3a91152947"
+    },
+    {
+      "exact_native_cache_key": "a29e083fccb815188142eadfccb1ab4b43ee7ebe.pkl",
+      "pkl_sha256": "0376a8042a498efa3a59c8ea04b71a14a2cc6c753b394c22384d05c87c7ce64b",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "an Oxford constable gravely ill with infection,",
+          "exact_native_cache_key": "a29e083fccb815188142eadfccb1ab4b43ee7ebe.pkl",
+          "cache_input_text_sha256": "1d389d3f9d10ed608b950da8d783b8c14fd7c5aa6cc5410130986af62a2cc772",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        73728
+      ],
+      "unprocessed_array_sha256": "ad695dc2170777279c3383ec0eb48335443955555a427e405bea183d5e642946"
+    },
+    {
+      "exact_native_cache_key": "b4407c0d1283a463b93078252d963ad0f63a7b79.pkl",
+      "pkl_sha256": "51e011c07614da48fb5ed4da4632218bc5e4e1b3af736336a4948ebeb7ba769c",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "rallied on penicillin.",
+          "exact_native_cache_key": "b4407c0d1283a463b93078252d963ad0f63a7b79.pkl",
+          "cache_input_text_sha256": "13401ed98f259d78be594384627ab1eefc4c7d2f50ecf30497be8dcce0747d43",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        32768
+      ],
+      "unprocessed_array_sha256": "e2ec446dcc9a209c10f8f27adcacb809e6df7a2ec8e84bdc462fa93398adc72f"
+    },
+    {
+      "exact_native_cache_key": "6925f650b582402096881a5974e1879aa83fde86.pkl",
+      "pkl_sha256": "4f2076370d36f16c9f6b82b7e7286792f5b56a814eeea1347e946654cc98b088",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "When the scarce supply ran out, he died in March: the obstacle was quantity.",
+          "exact_native_cache_key": "6925f650b582402096881a5974e1879aa83fde86.pkl",
+          "cache_input_text_sha256": "e24f8174cd43a41d90d6853c903f20e5b68832e8bf3d2d957f63ed513eeb9960",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        116736
+      ],
+      "unprocessed_array_sha256": "b056d1165509da375ec2b6057e61f517cb6a4214b801149c24e725eb710b7992"
+    },
+    {
+      "exact_native_cache_key": "1ce05195109e939c225db4b2b9152a17fc2278cd.pkl",
+      "pkl_sha256": "b793205f3204f5eb0693192a3bbdd010dc223dd2313fe3d2d053e06e14c556d3",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "When the scarce supply ran out, he died in March:",
+          "exact_native_cache_key": "1ce05195109e939c225db4b2b9152a17fc2278cd.pkl",
+          "cache_input_text_sha256": "60079dfb72c7c8333d132501d42a6f30c5f630ca4a9647658d389ce16208d93b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        73728
+      ],
+      "unprocessed_array_sha256": "7a5c572036f650c94d824ffc62bbcc7b3a78dbe17aaeb7c253ad7eaa2caecf46"
+    },
+    {
+      "exact_native_cache_key": "7c4ffc05fc16a870b1c871272e45d7288f283d36.pkl",
+      "pkl_sha256": "e65421c49b93f82622d1796f9bf350285ad1112ed1ed6ac8c8ed6615e62235ce",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "the obstacle was quantity.",
+          "exact_native_cache_key": "7c4ffc05fc16a870b1c871272e45d7288f283d36.pkl",
+          "cache_input_text_sha256": "1e873e1b0bf9c67dd7737e8d5f625f4017134bce21ace80d147b4e315eab952b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "the obstacle was quantity.",
+          "exact_native_cache_key": "7c4ffc05fc16a870b1c871272e45d7288f283d36.pkl",
+          "cache_input_text_sha256": "1e873e1b0bf9c67dd7737e8d5f625f4017134bce21ace80d147b4e315eab952b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        40448
+      ],
+      "unprocessed_array_sha256": "20226032f05f1997dccc77ff63a17477d00918f6efe88cf206b4b9ccd5cdb671"
+    },
+    {
+      "exact_native_cache_key": "1159775ec0f949c47bbf96aa4929945bae0f162d.pkl",
+      "pkl_sha256": "f275d677708146d8f70fb3a21976a69704e37052d99db69efd207e5493774664",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "When the scarce supply ran out,",
+          "exact_native_cache_key": "1159775ec0f949c47bbf96aa4929945bae0f162d.pkl",
+          "cache_input_text_sha256": "5103a765eee9f1eddae8819856309936715e61c2a0c1d96b8946df35b1ce7357",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        40960
+      ],
+      "unprocessed_array_sha256": "e5bdfc2a1bea7c7f15537cf46771aec877b504e8d82b97c40b3f23b4d66e78b9"
+    },
+    {
+      "exact_native_cache_key": "617d980e45b2e0fd7e991939cd8b5f0c8f76f70e.pkl",
+      "pkl_sha256": "668f5d7c897fc5bd251af3fdec0ab53ec502059f3e64f71830566163b25e24b8",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "he died in March:",
+          "exact_native_cache_key": "617d980e45b2e0fd7e991939cd8b5f0c8f76f70e.pkl",
+          "cache_input_text_sha256": "23e80eecb622b0075b6ec3f72aa7e094d97ad2c2d24bd58bcc7d2d1e24259c36",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        30208
+      ],
+      "unprocessed_array_sha256": "13c91ca34ce97281830232fd3a48575b8343f14e5f20445a93f18ee5988f5855"
+    },
+    {
+      "exact_native_cache_key": "b3f3f3fdf628603f964deca88300ab6c96e4865e.pkl",
+      "pkl_sha256": "65e2fb424aad091ce25bfd3e1f1004bbf8da599be9affc1dc4c7a5480982a8ca",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "From July 1941 a government laboratory in Peoria, Illinois, boosted yields about tenfold with corn-steep liquor, a starch by-product; later a mouldy market melon furnished the laboratory with a more prolific strain.",
+          "exact_native_cache_key": "b3f3f3fdf628603f964deca88300ab6c96e4865e.pkl",
+          "cache_input_text_sha256": "d61deb1636547f1907d76ff0f8d5c4f67b4dee593a7c0eedfa8f840a091a8cd7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        387072
+      ],
+      "unprocessed_array_sha256": "ea058cf39b760988d5e2c064a3f37755303b022ed2e304681ebced9e0783cb07"
+    },
+    {
+      "exact_native_cache_key": "091a1b3faccd6d5ec41a8967d6187465c463fa52.pkl",
+      "pkl_sha256": "a70412e433ebdcf80b23c1209175ba91563f32745ec2d08b99dd18b85d50696f",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "From July 1941 a government laboratory in Peoria, Illinois,",
+          "exact_native_cache_key": "091a1b3faccd6d5ec41a8967d6187465c463fa52.pkl",
+          "cache_input_text_sha256": "1c29c7e369b0e6e564f11b962ba1d4bda53f0fb7ac152761eb30725689aa7a4c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        128000
+      ],
+      "unprocessed_array_sha256": "4eb55967b7d2ef11ddcaedfb43af211baf337a7055f37239c3d7a4b5374ff90b"
+    },
+    {
+      "exact_native_cache_key": "faf2192cdcdfd5dec9ea7db3cfd967a429e308ef.pkl",
+      "pkl_sha256": "0ee042d68eb18dee65d3d6fabc544049cedca9990826d6b8cae0eaafdb4c304d",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "boosted yields about tenfold with corn-steep liquor, a starch by-product;",
+          "exact_native_cache_key": "faf2192cdcdfd5dec9ea7db3cfd967a429e308ef.pkl",
+          "cache_input_text_sha256": "edc41f625762de3c2eefcb98db1e77be9e337c14e7873b42592ab4c1a67a508a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        122368
+      ],
+      "unprocessed_array_sha256": "64b849257492c019f5c238545de3dc1e205cc4047ecc5143d7514fda1958290b"
+    },
+    {
+      "exact_native_cache_key": "7b5f46228569fee196e0199bdb74bf4d815ea1b3.pkl",
+      "pkl_sha256": "f20e4122b0db6b76a3c8227fbed0df2f820048080f62a5fe3c95324e00abfd31",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "later a mouldy market melon furnished the laboratory with a more prolific strain.",
+          "exact_native_cache_key": "7b5f46228569fee196e0199bdb74bf4d815ea1b3.pkl",
+          "cache_input_text_sha256": "ce4e99ef278ff68dc679dfbf96435dc982f67cf9865c52bfde411ba8b9ed4b97",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 5,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "later a mouldy market melon furnished the laboratory with a more prolific strain.",
+          "exact_native_cache_key": "7b5f46228569fee196e0199bdb74bf4d815ea1b3.pkl",
+          "cache_input_text_sha256": "ce4e99ef278ff68dc679dfbf96435dc982f67cf9865c52bfde411ba8b9ed4b97",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        121856
+      ],
+      "unprocessed_array_sha256": "1d7cff5337a641c2acb2df54628d9ed57280f63200222fdee2166cfff40dd49f"
+    },
+    {
+      "exact_native_cache_key": "6cbc210766c13125d74251ff1f9e828009d41d9a.pkl",
+      "pkl_sha256": "142bdbf8d5c3def5770e4e73c0ca7d415143e6929fe2a4b650a29b5486540702",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "From July 1941 a government laboratory in Peoria,",
+          "exact_native_cache_key": "6cbc210766c13125d74251ff1f9e828009d41d9a.pkl",
+          "cache_input_text_sha256": "af1a86d8998d37a0ad882476c713440ac2c32091825deb73d51994fc9b26819d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        112128
+      ],
+      "unprocessed_array_sha256": "8ed6e4c84bc8f04852c6142aad60e1a22aa4a673c9b84b58effcbf6d812f5874"
+    },
+    {
+      "exact_native_cache_key": "b8dcc36dafe5024060a9cecccb2a2ed2390f89ca.pkl",
+      "pkl_sha256": "121dacfaf5d3af0f0b1552dbf33cc54397e4623a6c7204c010cbd5841a3a127c",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Illinois,",
+          "exact_native_cache_key": "b8dcc36dafe5024060a9cecccb2a2ed2390f89ca.pkl",
+          "cache_input_text_sha256": "53d295846eed770fc84aa359ef7bb971e90e5eb3cab69391c46a033f491b003b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        19456
+      ],
+      "unprocessed_array_sha256": "ad98981eea7d17fd0818751227fb03fdf83e695cf695d499fac943fea9ac0b2d"
+    },
+    {
+      "exact_native_cache_key": "2068202cb03ffda51e8e8bd54f1f3ae775898521.pkl",
+      "pkl_sha256": "af0883ea7dec84d1b368fbe08656819b0dbb3eb9d929cec107ff9dd3d35e5967",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "boosted yields about tenfold with corn-steep liquor,",
+          "exact_native_cache_key": "2068202cb03ffda51e8e8bd54f1f3ae775898521.pkl",
+          "cache_input_text_sha256": "33b1b604924ff51c4d89aa4bc81991a600cf9290267b2e89b5e488cf042e4189",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        77824
+      ],
+      "unprocessed_array_sha256": "354c4b85db2946cec391c6433da8144c7fed671f25ca59b25f6259ac51af301c"
+    },
+    {
+      "exact_native_cache_key": "da5b863ff85377532499b943ecafa2dc63170743.pkl",
+      "pkl_sha256": "2d5d269a42b8891330f79ce4ed3a2f33191d29c4129717e91f0d3e36d86022e9",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a starch by-product;",
+          "exact_native_cache_key": "da5b863ff85377532499b943ecafa2dc63170743.pkl",
+          "cache_input_text_sha256": "9f401fa45b2a1e88899d53cd1caf7279d75c55e960dd680b729535c3683f0e8c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        35328
+      ],
+      "unprocessed_array_sha256": "b9728a056557d0e25d3f67df606c190805dc07fe44a851b3ad33bacb260bb9b9"
+    },
+    {
+      "exact_native_cache_key": "8be37419974367e11a837255c3ead8e081f0239c.pkl",
+      "pkl_sha256": "a0155a791bf171ed62c10cbfe1328a6e0629ebaf861edec0ffd95002c2389c93",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "By D-Day in June 1944 industrial fermentation met Allied needs.",
+          "exact_native_cache_key": "8be37419974367e11a837255c3ead8e081f0239c.pkl",
+          "cache_input_text_sha256": "2a8d777f36c5c45563e4b5632254bedb4cc392374c425106dcc7860cdbbd463d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        143872
+      ],
+      "unprocessed_array_sha256": "30b54bd10fe8e63917ca5fc22281d9eabd1a65b4cfbbed059e0167f47d4c78ad"
+    },
+    {
+      "exact_native_cache_key": "4f76df452bc125a00cf48118f6c625642922e16d.pkl",
+      "pkl_sha256": "00b20d724e67badceef593b6f7d95391e99da9ee36571f8a91f126336b3dd063",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In October 1945 Fleming, Florey, and Chain shared the Nobel prize; Heatley was overlooked.",
+          "exact_native_cache_key": "4f76df452bc125a00cf48118f6c625642922e16d.pkl",
+          "cache_input_text_sha256": "a8ffb039933de5aa676fc2a64c5e025a51fd6223ca55721d377c683056af2d30",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        167936
+      ],
+      "unprocessed_array_sha256": "124d0a650eb9e9f0dbf8205ce6194985caa04497839331a7959dd1bace40ae28"
+    },
+    {
+      "exact_native_cache_key": "e7dcbe476c373f4e9a8b07ed0d487777c5e4f937.pkl",
+      "pkl_sha256": "ee7bb3f907079c15308ee8a68885d80d60546dc7327148dc345b35369fd60920",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In October 1945 Fleming, Florey, and Chain shared the Nobel prize;",
+          "exact_native_cache_key": "e7dcbe476c373f4e9a8b07ed0d487777c5e4f937.pkl",
+          "cache_input_text_sha256": "bb5c98bc84d2b8281dbb0170743650ef1fa06d689b8c87a1deac09940283fa59",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        130048
+      ],
+      "unprocessed_array_sha256": "8053290b16000ea49609fca7ec99a00df4a243c5f053c6813c5f1303c85fd55d"
+    },
+    {
+      "exact_native_cache_key": "c8252c96b9a0ecefbfa17828af8f5fc92d6a78ff.pkl",
+      "pkl_sha256": "4c354179582f11e8fa6db10f1975d8865af65e040e5b24cf3b065759eb2a3ea3",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Heatley was overlooked.",
+          "exact_native_cache_key": "c8252c96b9a0ecefbfa17828af8f5fc92d6a78ff.pkl",
+          "cache_input_text_sha256": "7b2cc65b35947005901cac09abf72200ee25c52ad974dd547966509dfa19513b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Heatley was overlooked.",
+          "exact_native_cache_key": "c8252c96b9a0ecefbfa17828af8f5fc92d6a78ff.pkl",
+          "cache_input_text_sha256": "7b2cc65b35947005901cac09abf72200ee25c52ad974dd547966509dfa19513b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        35840
+      ],
+      "unprocessed_array_sha256": "2748d24366f1fd2ccbd479acb42b26cfd7d7d0790274ffa57f0b31022887ed0a"
+    },
+    {
+      "exact_native_cache_key": "55852f56a6d9d568fd414def9627445705243d37.pkl",
+      "pkl_sha256": "8bc9c6ea1f2a8a55b8a354928a96c9919bb765412ae80cfe4d7d54fbc68b8f53",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In October 1945 Fleming,",
+          "exact_native_cache_key": "55852f56a6d9d568fd414def9627445705243d37.pkl",
+          "cache_input_text_sha256": "0e65e9b8a60c360a67008367c9b1c60e8125cc2536b203f382e6f01fce9ac72e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        58880
+      ],
+      "unprocessed_array_sha256": "17a2d421bf55472a370b1fc02023030add334345f3dbbe80277155a95f75887c"
+    },
+    {
+      "exact_native_cache_key": "c3f6fad5af037cdb3536b9f945585bfd97afbdd1.pkl",
+      "pkl_sha256": "94fd133aceaf339831de923727cdd8f0f67e54ea6771c82df4d6994268e36a90",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Florey,",
+          "exact_native_cache_key": "c3f6fad5af037cdb3536b9f945585bfd97afbdd1.pkl",
+          "cache_input_text_sha256": "9e9fd18fa60eb9f283bb8a92c49d5a57e4021f104814bd5e51b052c592dcea11",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        19456
+      ],
+      "unprocessed_array_sha256": "c9a28121496023455d5926594ebf3a391f38159f8e520a48d6c81834f1c04667"
+    },
+    {
+      "exact_native_cache_key": "d78278348c7e602ed072aced50fe7f1be3eaf9f3.pkl",
+      "pkl_sha256": "b9abc23fe71297777c4ad5e7a470d8b706550cf2f710c54dbdc70d141e2544b5",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and Chain shared the Nobel prize;",
+          "exact_native_cache_key": "d78278348c7e602ed072aced50fe7f1be3eaf9f3.pkl",
+          "cache_input_text_sha256": "28474952615fba0fa96fa3f0f0149ea9c3ec35d95c95684aa9799870b70924cf",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        48128
+      ],
+      "unprocessed_array_sha256": "88d2117bbc1e63a22953c5fad6ace2620991ea72b5cc810c2a151f641acdd7f3"
+    },
+    {
+      "exact_native_cache_key": "c94caa3bc39cb0f20bca48738f80dae1ccec2922.pkl",
+      "pkl_sha256": "af640e46816c3f278ec36d27cbfafc2541cddfc671df7170264545d82120b1ee",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S16",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Fortune put the mould in Fleming's dish; tenacious teams and years of toil transformed it into a remedy.",
+          "exact_native_cache_key": "c94caa3bc39cb0f20bca48738f80dae1ccec2922.pkl",
+          "cache_input_text_sha256": "eeb4d9dc630cbfdfec365d27915aaa61335f35ff4c7c673c33e24a0d2e58a0d4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        165376
+      ],
+      "unprocessed_array_sha256": "edec6f04d58978bb139d5e9ece3365424c036034c59ec5a12345334dcfb0539e"
+    },
+    {
+      "exact_native_cache_key": "ebcc2265e4b5d8acc83be297bdd6470460bd0b23.pkl",
+      "pkl_sha256": "216a489d4fd8335f34848f9937dbcb7d8955a3f75aebb2e7bc78f74b04bae9b2",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S16",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Fortune put the mould in Fleming's dish;",
+          "exact_native_cache_key": "ebcc2265e4b5d8acc83be297bdd6470460bd0b23.pkl",
+          "cache_input_text_sha256": "d06e45bcee907d5e934b49918340b9fdb80e2110ff925ada5f250ab85687299c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Fortune put the mould in Fleming's dish;",
+          "exact_native_cache_key": "ebcc2265e4b5d8acc83be297bdd6470460bd0b23.pkl",
+          "cache_input_text_sha256": "d06e45bcee907d5e934b49918340b9fdb80e2110ff925ada5f250ab85687299c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        55296
+      ],
+      "unprocessed_array_sha256": "f2584a867797aa3eb1a3e3753b534a5666ab01e89103e740cc957b027ab30001"
+    },
+    {
+      "exact_native_cache_key": "151116b6f0afb91aa66d5446c579ecc0a1f1450e.pkl",
+      "pkl_sha256": "bf2f7b157d53bd7e270afac37b69f3c0c22ec547fb48980e5d740c48b16f34fd",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S16",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "tenacious teams and years of toil transformed it into a remedy.",
+          "exact_native_cache_key": "151116b6f0afb91aa66d5446c579ecc0a1f1450e.pkl",
+          "cache_input_text_sha256": "6a9995599cfcaea318abc2867fe1b0600ca165ee38b71311bd5ab5f20bbefbe8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "tenacious teams and years of toil transformed it into a remedy.",
+          "exact_native_cache_key": "151116b6f0afb91aa66d5446c579ecc0a1f1450e.pkl",
+          "cache_input_text_sha256": "6a9995599cfcaea318abc2867fe1b0600ca165ee38b71311bd5ab5f20bbefbe8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        100864
+      ],
+      "unprocessed_array_sha256": "f2201ec0076dbe0005ac731972b89268a766661d5d91627d475f35fc472ca858"
+    }
+  ],
+  "missing_reference_key_count": 0,
+  "observed_missing_keys_covered": [],
+  "new_private_cache_names": [],
+  "native_single_thread_marker_verified": true,
+  "single_thread_sessions": [
+    {
+      "intra_op_num_threads": 1,
+      "inter_op_num_threads": 1
+    },
+    {
+      "intra_op_num_threads": 1,
+      "inter_op_num_threads": 1
+    }
+  ],
+  "models_sha256": {
+    "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+    "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+    "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+  },
+  "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+  "existing_private_cache_count": 11514,
+  "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+  "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+  "existing_private_cache_bytes_unchanged": true,
+  "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+  "public_repository_cache_unchanged": true,
+  "producer_pcm_existed_before": false,
+  "producer_pcm_sha256_before": null,
+  "producer_pcm_sha256_after": null,
+  "accepted_aac_adts_sha256_before": "acc84527d7919648f714baf22baa07858154d1f184682b6d357045b096da5289",
+  "accepted_aac_adts_sha256_after": "acc84527d7919648f714baf22baa07858154d1f184682b6d357045b096da5289",
+  "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+  "private_cache_exported": false
+}

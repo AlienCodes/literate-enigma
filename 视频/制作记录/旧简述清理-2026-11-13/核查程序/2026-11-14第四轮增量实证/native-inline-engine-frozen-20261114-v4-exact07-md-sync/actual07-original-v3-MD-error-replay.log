@@ -1,0 +1,9 @@
+Actual replay of the prior v3 MD comparison; not a contemporaneous copy of the first failed process stderr.
+Traceback (most recent call last):
+  File "/workspace/work/video-revision-delivery/native-inline-engine-frozen-20261114-v4-exact07-md-sync/test_exact07_reconciliation.py", line 71, in <module>
+    original.markdown_prose_equivalence(*pair, '07', original.visible_tokens, original.require)
+  File "/workspace/work/video-revision-delivery/native-inline-engine-frozen-20261114-v3-voice-and-approved-summary-sync/delivery.py", line 162, in markdown_prose_equivalence
+    require(visible_tokens(old_prefix, True) == visible_tokens(new_prefix, True),
+  File "/workspace/work/video-revision-delivery/native-inline-engine-frozen-20261114-v3-voice-and-approved-summary-sync/delivery.py", line 23, in require
+    raise ValueError(message)
+ValueError: Markdown Chinese body/note prose changed: 07

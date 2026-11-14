@@ -1,0 +1,3096 @@
+{
+  "article": "48",
+  "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+  "reference_prepared": true,
+  "acceptance": false,
+  "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+  "source_sha256": "4f146ce6a70bb0bf5d2c6e1f6b47bd6a2bcc2f311be7a948092d7bde1a08f449",
+  "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+  "checker_program_sha256": {
+    "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+    "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+    "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+    "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+    "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+    "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+  },
+  "reference_calls": [
+    {
+      "sentence": "标题",
+      "piece": null,
+      "reference_kind": "title-default-raw",
+      "method": "create",
+      "source_slice": "Rice for the World",
+      "exact_native_cache_key": "37ad185b644c85130d15b49d9ddc6ac66635b22a.pkl",
+      "cache_input_text_sha256": "541b28a1337b48b39ec3a2f9185d3e3ea1d658c5b39663c36a25d779920c45dd",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "标题",
+      "piece": null,
+      "reference_kind": "title-default-timed",
+      "method": "create_timed",
+      "source_slice": "Rice for the World",
+      "exact_native_cache_key": "26180f6c7c8391270ea907f366810c3fac34b802.pkl",
+      "cache_input_text_sha256": "541b28a1337b48b39ec3a2f9185d3e3ea1d658c5b39663c36a25d779920c45dd",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "In July 1964, inspecting rice ear by ear in a paddy at Anjiang Agricultural School in Hunan province, the instructor Yuan Longping spotted a peculiar plant.",
+      "exact_native_cache_key": "c2cc66ad61d7ce04743bc27ec176232b67717f55.pkl",
+      "cache_input_text_sha256": "f9aa47792e6f3feb79da9ef467a1c8364379c7011ff88a027566bcc96ceabafc",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "In July 1964, inspecting rice ear by ear in a paddy at Anjiang Agricultural School in Hunan province, the instructor Yuan Longping spotted a peculiar plant.",
+      "exact_native_cache_key": "931f4307cff9df446ab210c3323edc468f95c80d.pkl",
+      "cache_input_text_sha256": "f9aa47792e6f3feb79da9ef467a1c8364379c7011ff88a027566bcc96ceabafc",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "In July 1964,",
+      "exact_native_cache_key": "65744273d4b54a64d0a04e0c12168ea612a7709d.pkl",
+      "cache_input_text_sha256": "5a905eac962b84774200dbb155612090d4dc7436e615932c1804e06ddcbbecf3",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "inspecting rice ear by ear",
+      "exact_native_cache_key": "a8d68f2abee08098f840500fca5e4ef7cce2beda.pkl",
+      "cache_input_text_sha256": "f301ba3de887159ff30291448bf6704339f5e8f65ba32169bcc1f498ce1ba731",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "in a paddy at Anjiang Agricultural School in Hunan province,",
+      "exact_native_cache_key": "716e796b14255d4e8d9196126998c08faea94cbe.pkl",
+      "cache_input_text_sha256": "c4d93441e90658f38be76879eaac433a63f31865830eea32adbf4ef4235ddcd3",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 4,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "the instructor Yuan Longping spotted a peculiar plant.",
+      "exact_native_cache_key": "b1f2d8525a0f97f3a753f127580ae47cb5913fa0.pkl",
+      "cache_input_text_sha256": "22062de7ff16427a1d47bdaa62f4777cb8445685c740f1cf3c41e240f61219e7",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "In July 1964,",
+      "exact_native_cache_key": "65744273d4b54a64d0a04e0c12168ea612a7709d.pkl",
+      "cache_input_text_sha256": "5a905eac962b84774200dbb155612090d4dc7436e615932c1804e06ddcbbecf3",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "inspecting rice ear by ear in a paddy at Anjiang Agricultural School in Hunan province,",
+      "exact_native_cache_key": "8843fe6ff2e85380d887911620edbc649ec0a1eb.pkl",
+      "cache_input_text_sha256": "48db391470e81477cf7aeb77a3d72d9420ec3982e68890621f80c4ac20cf3d9b",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "the instructor Yuan Longping spotted a peculiar plant.",
+      "exact_native_cache_key": "b1f2d8525a0f97f3a753f127580ae47cb5913fa0.pkl",
+      "cache_input_text_sha256": "22062de7ff16427a1d47bdaa62f4777cb8445685c740f1cf3c41e240f61219e7",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "It was male-sterile, shedding no viable pollen.",
+      "exact_native_cache_key": "aa6092666eb5e654c6e8a359d5682387e7520669.pkl",
+      "cache_input_text_sha256": "bb825a8cf19fbd653822923e5fa100acfa97714df11fb3dbdbdb8e92903bf107",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "It was male-sterile, shedding no viable pollen.",
+      "exact_native_cache_key": "254b638380db183b45d103b3616f0ee81ce731a0.pkl",
+      "cache_input_text_sha256": "bb825a8cf19fbd653822923e5fa100acfa97714df11fb3dbdbdb8e92903bf107",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "It was male-sterile,",
+      "exact_native_cache_key": "fd2dfdf3b9833c056eb95918a88d9aa55f746a10.pkl",
+      "cache_input_text_sha256": "17dfc5379993fbf0682e511f3f817dcb9f4b1b680abdcad0a53eaa7aa878a476",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "shedding no viable pollen.",
+      "exact_native_cache_key": "32b374c305f4e630f3278315757370d6ea340e15.pkl",
+      "cache_input_text_sha256": "6ac447fcaf50baab7a9185e49aa312324e18a87d23cf5ff5d1d2ec0b70efeda9",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Rice pollinates itself, so breeding hybrid seed in bulk depends on such plants.",
+      "exact_native_cache_key": "3c430450fd2756bbdacd5b8d86eb25c22515a9bb.pkl",
+      "cache_input_text_sha256": "4a389343e898cc6b948e599c33e50fd8278054a3b11d614405d3c57b191d334c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Rice pollinates itself, so breeding hybrid seed in bulk depends on such plants.",
+      "exact_native_cache_key": "92c5f5d4c9c8a0dec244a1748408d8151e92afed.pkl",
+      "cache_input_text_sha256": "4a389343e898cc6b948e599c33e50fd8278054a3b11d614405d3c57b191d334c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Rice pollinates itself,",
+      "exact_native_cache_key": "6556e45b712339a19ece167caf78564bc363e5df.pkl",
+      "cache_input_text_sha256": "7aa876bdaeaaf45b714cfa05b85903b341ebd833e1f933f8604ccb6cf1d6eb96",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "so breeding hybrid seed in bulk depends on such plants.",
+      "exact_native_cache_key": "dbbc5bc8a45eb717b033666483d0a27e0acfb182.pkl",
+      "cache_input_text_sha256": "0c01ec49d1115c3bb25f971f7f135dfa65140a5efb2d06c89d0d19553bb4831e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Rice pollinates itself,",
+      "exact_native_cache_key": "6556e45b712339a19ece167caf78564bc363e5df.pkl",
+      "cache_input_text_sha256": "7aa876bdaeaaf45b714cfa05b85903b341ebd833e1f933f8604ccb6cf1d6eb96",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "so breeding hybrid seed in bulk depends on such plants.",
+      "exact_native_cache_key": "dbbc5bc8a45eb717b033666483d0a27e0acfb182.pkl",
+      "cache_input_text_sha256": "0c01ec49d1115c3bb25f971f7f135dfa65140a5efb2d06c89d0d19553bb4831e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "In February 1966 he detailed the anomaly in the journal Chinese Science Bulletin.",
+      "exact_native_cache_key": "fdcba295c9a13ad68e019a2c7334bb5646e0746b.pkl",
+      "cache_input_text_sha256": "b1a76831d995fef2e731f4665ce2bbfe10554fef42f21ee72747575999a45082",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "In February 1966 he detailed the anomaly in the journal Chinese Science Bulletin.",
+      "exact_native_cache_key": "5c80111b495cd0e9fac35479573becf6cdf10cf9.pkl",
+      "cache_input_text_sha256": "b1a76831d995fef2e731f4665ce2bbfe10554fef42f21ee72747575999a45082",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "The specimen launched a six-year hunt: Yuan and his colleagues could not breed a sterile line whose offspring reliably inherited the trait.",
+      "exact_native_cache_key": "c909189428e5b5451cc1e7fdbad7de88ce156168.pkl",
+      "cache_input_text_sha256": "aa7905d5f98f43460da59148d1b1d80b00ae3e90ccbea589f016c875a102e9bd",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "The specimen launched a six-year hunt: Yuan and his colleagues could not breed a sterile line whose offspring reliably inherited the trait.",
+      "exact_native_cache_key": "1be92e6868864702917726d029368ab816f5031f.pkl",
+      "cache_input_text_sha256": "aa7905d5f98f43460da59148d1b1d80b00ae3e90ccbea589f016c875a102e9bd",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "The specimen launched a six-year hunt:",
+      "exact_native_cache_key": "a2336cd4c17e2d9beb85b0ea57f94bbba968f09f.pkl",
+      "cache_input_text_sha256": "4911be642ba58da5330c199744addb61498132d6753c432ff82760070d353f7a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Yuan and his colleagues could not breed a sterile line",
+      "exact_native_cache_key": "77287419ba9e584af3fccc3ec141ac70ae951d73.pkl",
+      "cache_input_text_sha256": "12ac70c0e5d0bd02d497796d6d209d4aa282110b8bb073a2d87268e008d0f62a",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "whose offspring reliably inherited the trait.",
+      "exact_native_cache_key": "de835880e7dd65088acddf85db8af105e961d168.pkl",
+      "cache_input_text_sha256": "ab8d80e7aa332e056834f6ffd6b87ccc358539221405a23161f0b9957eb60fc7",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "The specimen launched a six-year hunt:",
+      "exact_native_cache_key": "a2336cd4c17e2d9beb85b0ea57f94bbba968f09f.pkl",
+      "cache_input_text_sha256": "4911be642ba58da5330c199744addb61498132d6753c432ff82760070d353f7a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Yuan and his colleagues could not breed a sterile line whose offspring reliably inherited the trait.",
+      "exact_native_cache_key": "e2b29efa1d8df86cbc2daf59c43b9d007df4bb5a.pkl",
+      "cache_input_text_sha256": "41bae9fac47379d6a2742b3197c943eb6e51f5fde1d370b522ace1f264eba884",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "The breakthrough came on 23 November 1970, in a marsh near Nanhong Farm in Sanya, Hainan.",
+      "exact_native_cache_key": "a59abcbe6d160f03dd247bf787eb6fb9d5f99f31.pkl",
+      "cache_input_text_sha256": "1efac2dc929dcfd5e2af5097a671a82e0a9bcf3c81f6e7fa0d9acf1d1f9f9bcd",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "The breakthrough came on 23 November 1970, in a marsh near Nanhong Farm in Sanya, Hainan.",
+      "exact_native_cache_key": "95058a2364968ab861bb5395e9c4846ebdc79db0.pkl",
+      "cache_input_text_sha256": "1efac2dc929dcfd5e2af5097a671a82e0a9bcf3c81f6e7fa0d9acf1d1f9f9bcd",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "The breakthrough came on 23 November 1970,",
+      "exact_native_cache_key": "e10dae380a6ad5af91cdb3f9dd627c35762ab185.pkl",
+      "cache_input_text_sha256": "1ef65e631f0dad361c5b59cb25e14c29a5a865b3c91f980d812e6db44a37ed1b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "in a marsh near Nanhong Farm in Sanya, Hainan.",
+      "exact_native_cache_key": "d870c5b79ff3303dd62ac068f13c422fcc44fd77.pkl",
+      "cache_input_text_sha256": "2e0a587bca8364da512ff982484ce5ab3e961dd55f1f23de1ecf3a3fc62c80df",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "The breakthrough came on 23 November 1970,",
+      "exact_native_cache_key": "e10dae380a6ad5af91cdb3f9dd627c35762ab185.pkl",
+      "cache_input_text_sha256": "1ef65e631f0dad361c5b59cb25e14c29a5a865b3c91f980d812e6db44a37ed1b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "in a marsh near Nanhong Farm in Sanya,",
+      "exact_native_cache_key": "789a590850c6be67e2862c2a606c01ba5f7c862f.pkl",
+      "cache_input_text_sha256": "4dc2f9fd44e1e3c2375f1c45aa0255d29310438a28f3382a77af50b3d83162e3",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Hainan.",
+      "exact_native_cache_key": "34722f0b2c8dd299249b4b8750aeda65885cb87b.pkl",
+      "cache_input_text_sha256": "4590fed4b831fff4c347467fddfc0dc9df0fd9812bfcbdcf6c1ce084c394530d",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Yuan's assistant, Li Bihu, and Feng Keshan, a farm technician, found wild rice whose pollen was abortive.",
+      "exact_native_cache_key": "d745e8bf400becc2993c6345ec629e352b616e45.pkl",
+      "cache_input_text_sha256": "57157cc800c6767cd043b5ebb97e9419cc3ac83eecc67312094528170f9fcd70",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Yuan's assistant, Li Bihu, and Feng Keshan, a farm technician, found wild rice whose pollen was abortive.",
+      "exact_native_cache_key": "e9e31b87f8296979a15d94979bd0a186a31f85f0.pkl",
+      "cache_input_text_sha256": "57157cc800c6767cd043b5ebb97e9419cc3ac83eecc67312094528170f9fcd70",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Yuan's assistant, Li Bihu, and Feng Keshan, a farm technician,",
+      "exact_native_cache_key": "334da10aeb941fb843eb1f41fd7accd434d30baf.pkl",
+      "cache_input_text_sha256": "6416c77b681bcd7e9f0eac175c6a2b4c9c0320da1888ab5ff6f3776896392d09",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "found wild rice whose pollen was abortive.",
+      "exact_native_cache_key": "95e36b0ceb4c10ceefb82a175305fe9fd48ba881.pkl",
+      "cache_input_text_sha256": "e6b3d1a47e7af175b63c0bbb5ac1857ea206b200ffa3335a5593eb0a1c8e4570",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Yuan's assistant,",
+      "exact_native_cache_key": "4df59c6d6a9052cbb56992bc3c7e4260ace606e6.pkl",
+      "cache_input_text_sha256": "cce478ee9635bd12d274fab2973d0964e8b35cb4d1e22788144957b1e5d4765f",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Li Bihu,",
+      "exact_native_cache_key": "fc87e676f903affc2e694dae7d6055ea4e7d046d.pkl",
+      "cache_input_text_sha256": "13d34d04da5178717daea9dca5d588c59fcd14433e14f4b1ff51c91884e1d101",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "and Feng Keshan,",
+      "exact_native_cache_key": "ea74457a4ba5cdb2e37bd03dc2203b6a82beed0c.pkl",
+      "cache_input_text_sha256": "35fbca04ed55e1cb35a3c2661bb87b140534b6c73f279aca834b5aba3138c0bb",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 4,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "a farm technician,",
+      "exact_native_cache_key": "1cbd844bad12a77bc033f8fcd604ccfe5d84aeeb.pkl",
+      "cache_input_text_sha256": "75efd25c7b0c3bcd2efd4c69fef19e03354bbb9fa6cb99aeda511eb4974b3f0b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 5,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "found wild rice whose pollen was abortive.",
+      "exact_native_cache_key": "95e36b0ceb4c10ceefb82a175305fe9fd48ba881.pkl",
+      "cache_input_text_sha256": "e6b3d1a47e7af175b63c0bbb5ac1857ea206b200ffa3335a5593eb0a1c8e4570",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Then came Yuan's decisive move: rather than withhold the strain, he distributed it to collaborators nationwide.",
+      "exact_native_cache_key": "e36736a3dc69c99fbc8d33083a2a8ef9c5fbe7ef.pkl",
+      "cache_input_text_sha256": "1f91344470a8bad16fc4a3f4f032a3529ee3f78065651c9bc0aab0475d685d7f",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Then came Yuan's decisive move: rather than withhold the strain, he distributed it to collaborators nationwide.",
+      "exact_native_cache_key": "c1065f5b4443bc76f52d6b1d8990f68bc5a7667d.pkl",
+      "cache_input_text_sha256": "1f91344470a8bad16fc4a3f4f032a3529ee3f78065651c9bc0aab0475d685d7f",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Then came Yuan's decisive move:",
+      "exact_native_cache_key": "050f36c9fd7ba6422d349727f29b6ac2c2d12b59.pkl",
+      "cache_input_text_sha256": "49182508e6a7bdebb3a439530b1c9b6d03f594aa081d4cde0095b24ab0457b80",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "rather than withhold the strain,",
+      "exact_native_cache_key": "a8845de72e6ec9f7cc61836bf9db3276b1fcb3f4.pkl",
+      "cache_input_text_sha256": "65d2c94803f948a2332694f85854abdf6da19d4eb23fbee66ab48259e742dded",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "he distributed it to collaborators nationwide.",
+      "exact_native_cache_key": "613d30fa35c6f7f1ca0337565134f11a9cf806e9.pkl",
+      "cache_input_text_sha256": "65d9b915d62ac1393ac449f1dbb07987c8842b27e138769819214bda7f4f4b8a",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Then came Yuan's decisive move:",
+      "exact_native_cache_key": "050f36c9fd7ba6422d349727f29b6ac2c2d12b59.pkl",
+      "cache_input_text_sha256": "49182508e6a7bdebb3a439530b1c9b6d03f594aa081d4cde0095b24ab0457b80",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "rather than withhold the strain,",
+      "exact_native_cache_key": "a8845de72e6ec9f7cc61836bf9db3276b1fcb3f4.pkl",
+      "cache_input_text_sha256": "65d2c94803f948a2332694f85854abdf6da19d4eb23fbee66ab48259e742dded",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "he distributed it to collaborators nationwide.",
+      "exact_native_cache_key": "613d30fa35c6f7f1ca0337565134f11a9cf806e9.pkl",
+      "cache_input_text_sha256": "65d9b915d62ac1393ac449f1dbb07987c8842b27e138769819214bda7f4f4b8a",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Hybrids need three distinct lines: a sterile line, one to maintain its sterility, and one to restore fertility in the hybrids.",
+      "exact_native_cache_key": "3b35c5a80e9bd5569823fe02417cf34e94e1b9b0.pkl",
+      "cache_input_text_sha256": "735f7509d71e1d1165596de20798c6a68b47e2bd109a1fcd29ac0b4099407803",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Hybrids need three distinct lines: a sterile line, one to maintain its sterility, and one to restore fertility in the hybrids.",
+      "exact_native_cache_key": "277ad8768c97fec2173baad4de59159d35702d89.pkl",
+      "cache_input_text_sha256": "735f7509d71e1d1165596de20798c6a68b47e2bd109a1fcd29ac0b4099407803",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Hybrids need three distinct lines:",
+      "exact_native_cache_key": "bc5e7bcb367cb8c3e8ff2d49632daf72f18b9358.pkl",
+      "cache_input_text_sha256": "168c3f462f4a6a3ed597852b5c9b82a5290e8feeda08ae1bfdb1aecbc7bdc73d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "a sterile line, one to maintain its sterility, and one to restore fertility in the hybrids.",
+      "exact_native_cache_key": "20e4c51a9cd061d5620690736f8d6b86ac2ee874.pkl",
+      "cache_input_text_sha256": "526406c819bed6f9ba662079b701ff60624dc9eb8d6f2a1aeb2ea56236f1298c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Hybrids need three distinct lines:",
+      "exact_native_cache_key": "bc5e7bcb367cb8c3e8ff2d49632daf72f18b9358.pkl",
+      "cache_input_text_sha256": "168c3f462f4a6a3ed597852b5c9b82a5290e8feeda08ae1bfdb1aecbc7bdc73d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "a sterile line,",
+      "exact_native_cache_key": "6ead726518fed8a62a9de9b321f8977150ab6ce2.pkl",
+      "cache_input_text_sha256": "cee496e606b4549799df81bd38f8e523fb61f90fefad6e5072bafbe2da3bfa39",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "one to maintain its sterility,",
+      "exact_native_cache_key": "4483808e0904470c40f821a980177a06c36a5e25.pkl",
+      "cache_input_text_sha256": "fa7f35dd16607ac2dec45caeac65786ab07d1ae156c61199cc4ae1778704ccb8",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": 4,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "and one to restore fertility in the hybrids.",
+      "exact_native_cache_key": "16a4e8bad80ae6a907ef5bb47fb8a4277cd6b9df.pkl",
+      "cache_input_text_sha256": "7927694605f16bc17415b25723452fc74594dcf27194315271f930e71ae39b6b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Yan Longan's team in Jiangxi bred sterile lines and Zhang Xiancheng in Guangxi first identified a restorer line.",
+      "exact_native_cache_key": "0fb47dfb2982903b253fede77036702f8c138ef0.pkl",
+      "cache_input_text_sha256": "b544f2d7575abe75b6161fb42ad7c4a8891f797f54fab380b3d7ad44da0d19a6",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Yan Longan's team in Jiangxi bred sterile lines and Zhang Xiancheng in Guangxi first identified a restorer line.",
+      "exact_native_cache_key": "65779bad9e091760e33a6d25835ccdb0b66d0ea1.pkl",
+      "cache_input_text_sha256": "b544f2d7575abe75b6161fb42ad7c4a8891f797f54fab380b3d7ad44da0d19a6",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Yan Longan's team in Jiangxi bred sterile lines",
+      "exact_native_cache_key": "e951533636eb8c35e759ec2483762d7b09e14ffd.pkl",
+      "cache_input_text_sha256": "0f9ab26603f0cc943a3c8183acb23b48dafab3c82e8ce03542cd9e104a7d1160",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "and Zhang Xiancheng in Guangxi first identified a restorer line.",
+      "exact_native_cache_key": "eddd4a63f6513b4220b65ee180bf9da3349b6e9d.pkl",
+      "cache_input_text_sha256": "a9449e1eb8e2fa50d68ce44b155fc2b1b85191376b971d1b2ef5d5972f9e8710",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "In October 1973, at a national conference in Suzhou, Yuan declared the three-line system complete.",
+      "exact_native_cache_key": "7390f4cf6034a1d6b8189f066045356560bf2814.pkl",
+      "cache_input_text_sha256": "7ed891de79c0528d01ab280252974441f7b27ca9a3c61aec6f663921b3fa1148",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "In October 1973, at a national conference in Suzhou, Yuan declared the three-line system complete.",
+      "exact_native_cache_key": "91e2ded004a5c1b3c8836c7a6f60f3bd6898b526.pkl",
+      "cache_input_text_sha256": "7ed891de79c0528d01ab280252974441f7b27ca9a3c61aec6f663921b3fa1148",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "In October 1973, at a national conference in Suzhou,",
+      "exact_native_cache_key": "09b00c3effe8eddbab72c8481ca31f6ebcc58bb0.pkl",
+      "cache_input_text_sha256": "4b768b154f56775b0009bea84f8cb459364ce8e53319950e0d5e2fb0f8eb3920",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Yuan declared the three-line system complete.",
+      "exact_native_cache_key": "a7b1f0e8ea761563f1e3f8e1603085fe8b91045e.pkl",
+      "cache_input_text_sha256": "8aed1716b553a9ef9830df1fbf3d9bcab2d6a2f34b8538927e1af59797104ee8",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "In October 1973,",
+      "exact_native_cache_key": "a60e9b135692166bdfb0911a6ad76d20a557becb.pkl",
+      "cache_input_text_sha256": "e381a66899d53211f817d92588ee893dbd0cbfa2ed696278a4a4c486ad1bdc7b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "at a national conference in Suzhou,",
+      "exact_native_cache_key": "f06e7a60824ce4f934eb975f0d258ef61c941329.pkl",
+      "cache_input_text_sha256": "afbeae588f31dc20e3f0c1a003592313552a6ee993d2953b2672a2a7f89b38e7",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Yuan declared the three-line system complete.",
+      "exact_native_cache_key": "a7b1f0e8ea761563f1e3f8e1603085fe8b91045e.pkl",
+      "cache_input_text_sha256": "8aed1716b553a9ef9830df1fbf3d9bcab2d6a2f34b8538927e1af59797104ee8",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "By 1976 hybrids were under cultivation on about 140,000 hectares.",
+      "exact_native_cache_key": "29cb84ba8662aed01f3777769144f8045ff89d34.pkl",
+      "cache_input_text_sha256": "9d23b91991119e5554604836988c94a1d1222333295abff77e07e35fcb8191cf",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "By 1976 hybrids were under cultivation on about 140,000 hectares.",
+      "exact_native_cache_key": "84bf3249875d062c5008c08b47065e7e168fa4c2.pkl",
+      "cache_input_text_sha256": "9d23b91991119e5554604836988c94a1d1222333295abff77e07e35fcb8191cf",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "The World Food Prize Foundation estimates that hybrid rice can yield up to a fifth more grain than conventional varieties.",
+      "exact_native_cache_key": "1476e47bd795edbf4f6d6bc123301dfd3a7bf80a.pkl",
+      "cache_input_text_sha256": "72e1c42983c26bb4ef38fd66f3535c30bc6695747c0040efe19ef47862ef7fa6",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "The World Food Prize Foundation estimates that hybrid rice can yield up to a fifth more grain than conventional varieties.",
+      "exact_native_cache_key": "da9a0af825beb9c2151d5c0312e69fd60a8be341.pkl",
+      "cache_input_text_sha256": "72e1c42983c26bb4ef38fd66f3535c30bc6695747c0040efe19ef47862ef7fa6",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "The World Food Prize Foundation estimates",
+      "exact_native_cache_key": "444bd97bb65255869e487bae70bc8780a0cd784a.pkl",
+      "cache_input_text_sha256": "ff45af91c34863e462125228793b46bf5394099f37b4a8b25dac002f2bab489c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "that hybrid rice can yield up to a fifth more grain than conventional varieties.",
+      "exact_native_cache_key": "810fdff220f9e11831855ea994266400535ec4ce.pkl",
+      "cache_input_text_sha256": "9cf85ad363761f45a5851bf7b7af67a7b3f9fba6dc23b930add6701d3e9fc973",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "By the early 2000s it covered almost half of China's rice fields.",
+      "exact_native_cache_key": "09d2c636ee751dc236d996fe265a8a9ef584ddeb.pkl",
+      "cache_input_text_sha256": "f82d4dc5e4aaca6e58c3589d895442d944c9650d1e4c2003adc1d83f340f1f06",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "By the early 2000s it covered almost half of China's rice fields.",
+      "exact_native_cache_key": "a8774bc8d329f0cdbf4057a5307651d68e279e41.pkl",
+      "cache_input_text_sha256": "f82d4dc5e4aaca6e58c3589d895442d944c9650d1e4c2003adc1d83f340f1f06",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Yuan, who shared the 2004 World Food Prize with Sierra Leone's Monty Jones, died in Changsha on 22 May 2021, aged 91.",
+      "exact_native_cache_key": "a5337f2de31a3c6257ec53ccbb99d556675b2970.pkl",
+      "cache_input_text_sha256": "9a605bc0c19c3242792d4753b9294b5ecf3978416f8ac043dc09f231df42a2bb",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Yuan, who shared the 2004 World Food Prize with Sierra Leone's Monty Jones, died in Changsha on 22 May 2021, aged 91.",
+      "exact_native_cache_key": "7ce55f0807e7bda6720e879796398bff99ef7aff.pkl",
+      "cache_input_text_sha256": "9a605bc0c19c3242792d4753b9294b5ecf3978416f8ac043dc09f231df42a2bb",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Yuan, who shared the 2004 World Food Prize with Sierra Leone's Monty Jones,",
+      "exact_native_cache_key": "089c96e0789bc998bbe565af74d24e482be74428.pkl",
+      "cache_input_text_sha256": "0e75c78740cf0cb9e94e4f430b1b9915160a14ab8c60acf3fa65db926e2914ad",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "died in Changsha on 22 May 2021, aged 91.",
+      "exact_native_cache_key": "882edd9422a94206256b4dc669c3eaf06b74ae4f.pkl",
+      "cache_input_text_sha256": "061466046c6f36c2e514702d9782adef72a5907203ee30dd55b63205ea96abbd",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Yuan,",
+      "exact_native_cache_key": "bb148c6f6bf643b74f0b9008f326e4864917ad6e.pkl",
+      "cache_input_text_sha256": "878f3edf46676eda2a4e45fec88fec024591dbbf89dc83250747450d1451fad5",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "who shared the 2004 World Food Prize with Sierra Leone's Monty Jones,",
+      "exact_native_cache_key": "f4059ae856be8d718d381af0d6fd0eafe7142d45.pkl",
+      "cache_input_text_sha256": "ba9fc3ad761e16fcfdd05cb9f5aef282a4e5b83f04c311f3c071993551edfdbd",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "died in Changsha on 22 May 2021,",
+      "exact_native_cache_key": "a6a7db2455ae361a9b497c045ccb7615bef0886a.pkl",
+      "cache_input_text_sha256": "f32ea6e0460ce2ac1aa86897dfc62ed11abfda9ec4b29e4064a0cf10846fd2dd",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 4,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "aged 91.",
+      "exact_native_cache_key": "550ef9bb884fddecf150e3afa7cc8b022666ddc5.pkl",
+      "cache_input_text_sha256": "f9c80b27a89363666a52d00d6a2b8224a28f6ad97656b8db04af8cad0fc6a6e5",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Yet popular myth portrays him as a solitary genius.",
+      "exact_native_cache_key": "7d78e727e1fae5197e7b1271faff3b36a5d7c29f.pkl",
+      "cache_input_text_sha256": "d9b24a9753e165b1afe9bcf7f69a9624800431818fd5e4aba08e32a918ed84bc",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Yet popular myth portrays him as a solitary genius.",
+      "exact_native_cache_key": "e82d1653c8c01ddf07826de79ad82707522fc84d.pkl",
+      "cache_input_text_sha256": "d9b24a9753e165b1afe9bcf7f69a9624800431818fd5e4aba08e32a918ed84bc",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "His eye began the search; his generosity let many hands bring in the harvest.",
+      "exact_native_cache_key": "ad218b6b6d632a598218d68c7df64e68274dea30.pkl",
+      "cache_input_text_sha256": "459e7cfd48baa3312dcbec00a27f7e296580c7aeae975cd21b1420bd1be4b058",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "His eye began the search; his generosity let many hands bring in the harvest.",
+      "exact_native_cache_key": "8b1d2e2e4e618dc98c5a002753e40983f885d90f.pkl",
+      "cache_input_text_sha256": "459e7cfd48baa3312dcbec00a27f7e296580c7aeae975cd21b1420bd1be4b058",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "His eye began the search;",
+      "exact_native_cache_key": "d3bbf799a017883a8e0c2935bcdd3f523a3b819d.pkl",
+      "cache_input_text_sha256": "c088e6ee0f91f391e5e06a3231463d159599ac93efeea479ce32cb91eccb37cf",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "his generosity let many hands bring in the harvest.",
+      "exact_native_cache_key": "1c0b609a63760831aaee1791add61bf788f3ee92.pkl",
+      "cache_input_text_sha256": "62f3521ef72f9eaa8cf5ff01f941c0b0ace20d7b65ce3a48f149c9c60026186e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "His eye began the search;",
+      "exact_native_cache_key": "d3bbf799a017883a8e0c2935bcdd3f523a3b819d.pkl",
+      "cache_input_text_sha256": "c088e6ee0f91f391e5e06a3231463d159599ac93efeea479ce32cb91eccb37cf",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "his generosity let many hands bring in the harvest.",
+      "exact_native_cache_key": "1c0b609a63760831aaee1791add61bf788f3ee92.pkl",
+      "cache_input_text_sha256": "62f3521ef72f9eaa8cf5ff01f941c0b0ace20d7b65ce3a48f149c9c60026186e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    }
+  ],
+  "unique_reference_key_count": 83,
+  "raw_mother_cache_scalar_manifest": [
+    {
+      "exact_native_cache_key": "37ad185b644c85130d15b49d9ddc6ac66635b22a.pkl",
+      "pkl_sha256": "fdb545f2e853b39d48edb79deaa69c6e51d8b34699f968f277894cf0b01b7187",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "标题",
+          "piece": null,
+          "reference_kind": "title-default-raw",
+          "method": "create",
+          "source_slice": "Rice for the World",
+          "exact_native_cache_key": "37ad185b644c85130d15b49d9ddc6ac66635b22a.pkl",
+          "cache_input_text_sha256": "541b28a1337b48b39ec3a2f9185d3e3ea1d658c5b39663c36a25d779920c45dd",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "fdb545f2e853b39d",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        26624
+      ],
+      "unprocessed_array_sha256": "90178aaa6f2bc0a3a7626ce9806af69b5c300fefa3f95b2ff618f218bacd5059"
+    },
+    {
+      "exact_native_cache_key": "c2cc66ad61d7ce04743bc27ec176232b67717f55.pkl",
+      "pkl_sha256": "bcd0f6bf0d77b9a2356ccb745b4200e69e4216679639b0bc8568a518f6f86c09",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In July 1964, inspecting rice ear by ear in a paddy at Anjiang Agricultural School in Hunan province, the instructor Yuan Longping spotted a peculiar plant.",
+          "exact_native_cache_key": "c2cc66ad61d7ce04743bc27ec176232b67717f55.pkl",
+          "cache_input_text_sha256": "f9aa47792e6f3feb79da9ef467a1c8364379c7011ff88a027566bcc96ceabafc",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "bcd0f6bf0d77b9a2",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        302592
+      ],
+      "unprocessed_array_sha256": "3266274ad4d28ca1b0966c26866240a168f19b61aa8fbc684109073d76a1edf3"
+    },
+    {
+      "exact_native_cache_key": "65744273d4b54a64d0a04e0c12168ea612a7709d.pkl",
+      "pkl_sha256": "ff1537cee0e229ab5c3e7a92ea05b2bb1ef8a996794240be37d840dde7545ffc",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In July 1964,",
+          "exact_native_cache_key": "65744273d4b54a64d0a04e0c12168ea612a7709d.pkl",
+          "cache_input_text_sha256": "5a905eac962b84774200dbb155612090d4dc7436e615932c1804e06ddcbbecf3",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In July 1964,",
+          "exact_native_cache_key": "65744273d4b54a64d0a04e0c12168ea612a7709d.pkl",
+          "cache_input_text_sha256": "5a905eac962b84774200dbb155612090d4dc7436e615932c1804e06ddcbbecf3",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "ff1537cee0e229ab",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        48128
+      ],
+      "unprocessed_array_sha256": "f9d4495633feb639bbf2606041f75bbe97ab6410bd6539c3386f4b7fb183a170"
+    },
+    {
+      "exact_native_cache_key": "a8d68f2abee08098f840500fca5e4ef7cce2beda.pkl",
+      "pkl_sha256": "dba3454221027476f81f9d9ee24e4c0e6c934d39e4157a377e872afb2a521a5a",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "inspecting rice ear by ear",
+          "exact_native_cache_key": "a8d68f2abee08098f840500fca5e4ef7cce2beda.pkl",
+          "cache_input_text_sha256": "f301ba3de887159ff30291448bf6704339f5e8f65ba32169bcc1f498ce1ba731",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "dba3454221027476",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        40960
+      ],
+      "unprocessed_array_sha256": "371ed954516cedf141eb6a959188425bffc30be27b546b4d1c1ea81c177072fa"
+    },
+    {
+      "exact_native_cache_key": "716e796b14255d4e8d9196126998c08faea94cbe.pkl",
+      "pkl_sha256": "b42bca8578fa450d09ab39c2402503135c584f0af07925c7278a45734e1471e0",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "in a paddy at Anjiang Agricultural School in Hunan province,",
+          "exact_native_cache_key": "716e796b14255d4e8d9196126998c08faea94cbe.pkl",
+          "cache_input_text_sha256": "c4d93441e90658f38be76879eaac433a63f31865830eea32adbf4ef4235ddcd3",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "b42bca8578fa450d",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        104960
+      ],
+      "unprocessed_array_sha256": "0813b41be1188eefb176c61a71f06a4a0d83aee532443ba296efa2050765bb22"
+    },
+    {
+      "exact_native_cache_key": "b1f2d8525a0f97f3a753f127580ae47cb5913fa0.pkl",
+      "pkl_sha256": "cc21161e364e5c39ddfd82c1643b96c6c78e254122fb2dce90dd68a08479b5d7",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 4,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "the instructor Yuan Longping spotted a peculiar plant.",
+          "exact_native_cache_key": "b1f2d8525a0f97f3a753f127580ae47cb5913fa0.pkl",
+          "cache_input_text_sha256": "22062de7ff16427a1d47bdaa62f4777cb8445685c740f1cf3c41e240f61219e7",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "the instructor Yuan Longping spotted a peculiar plant.",
+          "exact_native_cache_key": "b1f2d8525a0f97f3a753f127580ae47cb5913fa0.pkl",
+          "cache_input_text_sha256": "22062de7ff16427a1d47bdaa62f4777cb8445685c740f1cf3c41e240f61219e7",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "cc21161e364e5c39",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        80384
+      ],
+      "unprocessed_array_sha256": "029cdad6e05a63895436c2ed3ab33a38e9bf23c56bd47f2497c492f8be35fdb6"
+    },
+    {
+      "exact_native_cache_key": "8843fe6ff2e85380d887911620edbc649ec0a1eb.pkl",
+      "pkl_sha256": "bb0f77161a44b76c47135f9e13f86b9b82fb066e1d50e92d5e4968a1aa067702",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "inspecting rice ear by ear in a paddy at Anjiang Agricultural School in Hunan province,",
+          "exact_native_cache_key": "8843fe6ff2e85380d887911620edbc649ec0a1eb.pkl",
+          "cache_input_text_sha256": "48db391470e81477cf7aeb77a3d72d9420ec3982e68890621f80c4ac20cf3d9b",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "bb0f77161a44b76c",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        151040
+      ],
+      "unprocessed_array_sha256": "b1c0bb86c4cb648e9ecc1ba759c8dfb6213c33787c60a12bf25c5ccddb311943"
+    },
+    {
+      "exact_native_cache_key": "aa6092666eb5e654c6e8a359d5682387e7520669.pkl",
+      "pkl_sha256": "a6f2980ee2856a94dd4f563bd7aa00a72a944845748ea0d44d5b919c1d04725e",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "It was male-sterile, shedding no viable pollen.",
+          "exact_native_cache_key": "aa6092666eb5e654c6e8a359d5682387e7520669.pkl",
+          "cache_input_text_sha256": "bb825a8cf19fbd653822923e5fa100acfa97714df11fb3dbdbdb8e92903bf107",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "a6f2980ee2856a94",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        73216
+      ],
+      "unprocessed_array_sha256": "43719a3aa6aefc7e814851f4302371cabd24a5cd2e4c6eac866df57d1e92ee70"
+    },
+    {
+      "exact_native_cache_key": "fd2dfdf3b9833c056eb95918a88d9aa55f746a10.pkl",
+      "pkl_sha256": "7b76bd692da25a3cf9ef574e86bc919311fe8fa9f39cb0f98f3f6b82b4342288",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "It was male-sterile,",
+          "exact_native_cache_key": "fd2dfdf3b9833c056eb95918a88d9aa55f746a10.pkl",
+          "cache_input_text_sha256": "17dfc5379993fbf0682e511f3f817dcb9f4b1b680abdcad0a53eaa7aa878a476",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "7b76bd692da25a3c",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        31232
+      ],
+      "unprocessed_array_sha256": "e50ca1318493a76f2a22f6d33bf8ab99fbd187af5d79125184799ef187072b2b"
+    },
+    {
+      "exact_native_cache_key": "32b374c305f4e630f3278315757370d6ea340e15.pkl",
+      "pkl_sha256": "8fa4f75d671c3765dd8325a8ea9f9497b8b7d9d0972e73368f4c5dd04704e91f",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "shedding no viable pollen.",
+          "exact_native_cache_key": "32b374c305f4e630f3278315757370d6ea340e15.pkl",
+          "cache_input_text_sha256": "6ac447fcaf50baab7a9185e49aa312324e18a87d23cf5ff5d1d2ec0b70efeda9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "8fa4f75d671c3765",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        41984
+      ],
+      "unprocessed_array_sha256": "f5fad967830ebc2149ab23422299ee46f3630920bb9a78a87090144142868be5"
+    },
+    {
+      "exact_native_cache_key": "3c430450fd2756bbdacd5b8d86eb25c22515a9bb.pkl",
+      "pkl_sha256": "b490934c3d428dedbfc62a5a3fbfe12f588b768c2218ba9fb05562c7a62224e4",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Rice pollinates itself, so breeding hybrid seed in bulk depends on such plants.",
+          "exact_native_cache_key": "3c430450fd2756bbdacd5b8d86eb25c22515a9bb.pkl",
+          "cache_input_text_sha256": "4a389343e898cc6b948e599c33e50fd8278054a3b11d614405d3c57b191d334c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "b490934c3d428ded",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        135168
+      ],
+      "unprocessed_array_sha256": "22d04a737d1e1f56d9462ef45e267997234875b355e284948063cffd990fdb2e"
+    },
+    {
+      "exact_native_cache_key": "6556e45b712339a19ece167caf78564bc363e5df.pkl",
+      "pkl_sha256": "0ece03033dd6428dd25a72914dbac308e583eb3335a3571e3f2c52b8b155f948",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Rice pollinates itself,",
+          "exact_native_cache_key": "6556e45b712339a19ece167caf78564bc363e5df.pkl",
+          "cache_input_text_sha256": "7aa876bdaeaaf45b714cfa05b85903b341ebd833e1f933f8604ccb6cf1d6eb96",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Rice pollinates itself,",
+          "exact_native_cache_key": "6556e45b712339a19ece167caf78564bc363e5df.pkl",
+          "cache_input_text_sha256": "7aa876bdaeaaf45b714cfa05b85903b341ebd833e1f933f8604ccb6cf1d6eb96",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "0ece03033dd6428d",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        39936
+      ],
+      "unprocessed_array_sha256": "850a14c6ce549b689243dc7db93bca72b84faacc67c5ea5284684611f950c61c"
+    },
+    {
+      "exact_native_cache_key": "dbbc5bc8a45eb717b033666483d0a27e0acfb182.pkl",
+      "pkl_sha256": "b86b3b0ea0fb7a28bbb3c25610776d67882cd051eb7bb75c395f21862064ab1e",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "so breeding hybrid seed in bulk depends on such plants.",
+          "exact_native_cache_key": "dbbc5bc8a45eb717b033666483d0a27e0acfb182.pkl",
+          "cache_input_text_sha256": "0c01ec49d1115c3bb25f971f7f135dfa65140a5efb2d06c89d0d19553bb4831e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "so breeding hybrid seed in bulk depends on such plants.",
+          "exact_native_cache_key": "dbbc5bc8a45eb717b033666483d0a27e0acfb182.pkl",
+          "cache_input_text_sha256": "0c01ec49d1115c3bb25f971f7f135dfa65140a5efb2d06c89d0d19553bb4831e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "b86b3b0ea0fb7a28",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        86528
+      ],
+      "unprocessed_array_sha256": "6057026e5044f9c5fcd76525ce6b604e585172469abcbda7bc5c42b147b7aaa3"
+    },
+    {
+      "exact_native_cache_key": "fdcba295c9a13ad68e019a2c7334bb5646e0746b.pkl",
+      "pkl_sha256": "2a9f3e3d28044b0e56640017b065fb5da00115743d6d43a1df43ebe417d3cade",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In February 1966 he detailed the anomaly in the journal Chinese Science Bulletin.",
+          "exact_native_cache_key": "fdcba295c9a13ad68e019a2c7334bb5646e0746b.pkl",
+          "cache_input_text_sha256": "b1a76831d995fef2e731f4665ce2bbfe10554fef42f21ee72747575999a45082",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "2a9f3e3d28044b0e",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        160768
+      ],
+      "unprocessed_array_sha256": "0bc06014035ed8d940ea2f75f474405291fcc6c19288ffce4928f8cebbdb584e"
+    },
+    {
+      "exact_native_cache_key": "c909189428e5b5451cc1e7fdbad7de88ce156168.pkl",
+      "pkl_sha256": "8e74acd747b5012dd0ed1cc1b48b5143ba4cc7fd82c7860f6dad6fbec2b257a1",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The specimen launched a six-year hunt: Yuan and his colleagues could not breed a sterile line whose offspring reliably inherited the trait.",
+          "exact_native_cache_key": "c909189428e5b5451cc1e7fdbad7de88ce156168.pkl",
+          "cache_input_text_sha256": "aa7905d5f98f43460da59148d1b1d80b00ae3e90ccbea589f016c875a102e9bd",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "8e74acd747b5012d",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        217600
+      ],
+      "unprocessed_array_sha256": "8e66c0953844c10986cc7502b47829ce5ba008c3be3e5737856c5f64dbc2aeb6"
+    },
+    {
+      "exact_native_cache_key": "a2336cd4c17e2d9beb85b0ea57f94bbba968f09f.pkl",
+      "pkl_sha256": "39bc6a1f845ed21a5c44e81634fbcbfa5f4be1b53d41499e0640cf87ea51f960",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "The specimen launched a six-year hunt:",
+          "exact_native_cache_key": "a2336cd4c17e2d9beb85b0ea57f94bbba968f09f.pkl",
+          "cache_input_text_sha256": "4911be642ba58da5330c199744addb61498132d6753c432ff82760070d353f7a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "The specimen launched a six-year hunt:",
+          "exact_native_cache_key": "a2336cd4c17e2d9beb85b0ea57f94bbba968f09f.pkl",
+          "cache_input_text_sha256": "4911be642ba58da5330c199744addb61498132d6753c432ff82760070d353f7a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "39bc6a1f845ed21a",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        50176
+      ],
+      "unprocessed_array_sha256": "f061e14212c62c8882f0bc49c7386d57aa2dbfc696a00d68dce91a6ecf6f6ab5"
+    },
+    {
+      "exact_native_cache_key": "77287419ba9e584af3fccc3ec141ac70ae951d73.pkl",
+      "pkl_sha256": "814d6697b34c55d087f44af27234a61404e9d2868ab0ccfaa56c57885e79eef1",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Yuan and his colleagues could not breed a sterile line",
+          "exact_native_cache_key": "77287419ba9e584af3fccc3ec141ac70ae951d73.pkl",
+          "cache_input_text_sha256": "12ac70c0e5d0bd02d497796d6d209d4aa282110b8bb073a2d87268e008d0f62a",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "814d6697b34c55d0",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        76800
+      ],
+      "unprocessed_array_sha256": "abec9f25ab718112e1ffc56a775de659f064acdc2206e3335799658a1733f97f"
+    },
+    {
+      "exact_native_cache_key": "de835880e7dd65088acddf85db8af105e961d168.pkl",
+      "pkl_sha256": "c9bd2dc2e2cb3cacadc8ea45460e3a478dc47c51bde8f0c89416a13448e7485a",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "whose offspring reliably inherited the trait.",
+          "exact_native_cache_key": "de835880e7dd65088acddf85db8af105e961d168.pkl",
+          "cache_input_text_sha256": "ab8d80e7aa332e056834f6ffd6b87ccc358539221405a23161f0b9957eb60fc7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "c9bd2dc2e2cb3cac",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        66560
+      ],
+      "unprocessed_array_sha256": "97059d886e7f720f38e30ffdf31bed8bb30c4ee2ba9fd2173dc2297da2424c53"
+    },
+    {
+      "exact_native_cache_key": "e2b29efa1d8df86cbc2daf59c43b9d007df4bb5a.pkl",
+      "pkl_sha256": "f7e4278d33d8e9786a16a281212d9e22b91c3d238bc5dc888d5ab75ded6e4d09",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Yuan and his colleagues could not breed a sterile line whose offspring reliably inherited the trait.",
+          "exact_native_cache_key": "e2b29efa1d8df86cbc2daf59c43b9d007df4bb5a.pkl",
+          "cache_input_text_sha256": "41bae9fac47379d6a2742b3197c943eb6e51f5fde1d370b522ace1f264eba884",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "f7e4278d33d8e978",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        153600
+      ],
+      "unprocessed_array_sha256": "e54386dc9ff5c6c5ecb7f9f8c8576bb52c07b5982a4a4a51c08a945d23ca4c97"
+    },
+    {
+      "exact_native_cache_key": "a59abcbe6d160f03dd247bf787eb6fb9d5f99f31.pkl",
+      "pkl_sha256": "da58c71ec35b8bd2c16c0150a575b99f8015d2149e941e591df3fc0d5fc6655d",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The breakthrough came on 23 November 1970, in a marsh near Nanhong Farm in Sanya, Hainan.",
+          "exact_native_cache_key": "a59abcbe6d160f03dd247bf787eb6fb9d5f99f31.pkl",
+          "cache_input_text_sha256": "1efac2dc929dcfd5e2af5097a671a82e0a9bcf3c81f6e7fa0d9acf1d1f9f9bcd",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "da58c71ec35b8bd2",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        189952
+      ],
+      "unprocessed_array_sha256": "f19f6c11982ac52fe1b71fa8b36be7827097476e90e2684288ad973ad0c4b242"
+    },
+    {
+      "exact_native_cache_key": "e10dae380a6ad5af91cdb3f9dd627c35762ab185.pkl",
+      "pkl_sha256": "05a284a03e80bdefe912a0470f709093d4e26a14ac19818360bbef7d11efc8af",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "The breakthrough came on 23 November 1970,",
+          "exact_native_cache_key": "e10dae380a6ad5af91cdb3f9dd627c35762ab185.pkl",
+          "cache_input_text_sha256": "1ef65e631f0dad361c5b59cb25e14c29a5a865b3c91f980d812e6db44a37ed1b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "The breakthrough came on 23 November 1970,",
+          "exact_native_cache_key": "e10dae380a6ad5af91cdb3f9dd627c35762ab185.pkl",
+          "cache_input_text_sha256": "1ef65e631f0dad361c5b59cb25e14c29a5a865b3c91f980d812e6db44a37ed1b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "05a284a03e80bdef",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        91648
+      ],
+      "unprocessed_array_sha256": "3ad8b8eef164d92cc78db228ef0b3f02b57bc482486c4f8ba1cf88cd9f78c4da"
+    },
+    {
+      "exact_native_cache_key": "d870c5b79ff3303dd62ac068f13c422fcc44fd77.pkl",
+      "pkl_sha256": "8f4a121681e0e4e227677021f93f03e459025db1aa45b1cb97fdb65ee5359609",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "in a marsh near Nanhong Farm in Sanya, Hainan.",
+          "exact_native_cache_key": "d870c5b79ff3303dd62ac068f13c422fcc44fd77.pkl",
+          "cache_input_text_sha256": "2e0a587bca8364da512ff982484ce5ab3e961dd55f1f23de1ecf3a3fc62c80df",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "8f4a121681e0e4e2",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        79872
+      ],
+      "unprocessed_array_sha256": "0a68fbd6b8c4c639f91b496d1714645ef4a4a2a7c6891385327a60f98a45b5d9"
+    },
+    {
+      "exact_native_cache_key": "789a590850c6be67e2862c2a606c01ba5f7c862f.pkl",
+      "pkl_sha256": "e469a78a245b475972900e2d3e59234bdd9c338405f37dfc5b8e22d51a70a5ff",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "in a marsh near Nanhong Farm in Sanya,",
+          "exact_native_cache_key": "789a590850c6be67e2862c2a606c01ba5f7c862f.pkl",
+          "cache_input_text_sha256": "4dc2f9fd44e1e3c2375f1c45aa0255d29310438a28f3382a77af50b3d83162e3",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "e469a78a245b4759",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        59392
+      ],
+      "unprocessed_array_sha256": "623f00705b45ad278c3ec920eef0cf857bc8326ad1fd7752d02f123f0d85df98"
+    },
+    {
+      "exact_native_cache_key": "34722f0b2c8dd299249b4b8750aeda65885cb87b.pkl",
+      "pkl_sha256": "2e03aadd22ad137a34d9a9d46f2f49b05ec84f60906df78533daf53a5f5d750a",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Hainan.",
+          "exact_native_cache_key": "34722f0b2c8dd299249b4b8750aeda65885cb87b.pkl",
+          "cache_input_text_sha256": "4590fed4b831fff4c347467fddfc0dc9df0fd9812bfcbdcf6c1ce084c394530d",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "2e03aadd22ad137a",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        22528
+      ],
+      "unprocessed_array_sha256": "9c279a7d5eb2fa28c09ebb5e3e76960aad98fe000e851f0c4f5e2c425307e7c8"
+    },
+    {
+      "exact_native_cache_key": "d745e8bf400becc2993c6345ec629e352b616e45.pkl",
+      "pkl_sha256": "2b8de411da4168a1dd3105f7a6576e95b53ea530338851bbbf384c392fab2220",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Yuan's assistant, Li Bihu, and Feng Keshan, a farm technician, found wild rice whose pollen was abortive.",
+          "exact_native_cache_key": "d745e8bf400becc2993c6345ec629e352b616e45.pkl",
+          "cache_input_text_sha256": "57157cc800c6767cd043b5ebb97e9419cc3ac83eecc67312094528170f9fcd70",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "2b8de411da4168a1",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        191488
+      ],
+      "unprocessed_array_sha256": "ad98a3336e76ca75e163286b92a39ec261f34c2f0a10eefe7d0732a20298780e"
+    },
+    {
+      "exact_native_cache_key": "334da10aeb941fb843eb1f41fd7accd434d30baf.pkl",
+      "pkl_sha256": "a2be05b0e09b257b1e1c01689045334a57ac3eb86ba7313221a67a5feaa1c040",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Yuan's assistant, Li Bihu, and Feng Keshan, a farm technician,",
+          "exact_native_cache_key": "334da10aeb941fb843eb1f41fd7accd434d30baf.pkl",
+          "cache_input_text_sha256": "6416c77b681bcd7e9f0eac175c6a2b4c9c0320da1888ab5ff6f3776896392d09",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "a2be05b0e09b257b",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        103424
+      ],
+      "unprocessed_array_sha256": "db3b200c578af22b1ed7f47c10f5529e6c989d2fb3f3c6feadce342f5ada09d8"
+    },
+    {
+      "exact_native_cache_key": "95e36b0ceb4c10ceefb82a175305fe9fd48ba881.pkl",
+      "pkl_sha256": "a94c8d4a1165a2e28f07d40defcaebacdada9faa6e0e02feeec1953e0eb412f6",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "found wild rice whose pollen was abortive.",
+          "exact_native_cache_key": "95e36b0ceb4c10ceefb82a175305fe9fd48ba881.pkl",
+          "cache_input_text_sha256": "e6b3d1a47e7af175b63c0bbb5ac1857ea206b200ffa3335a5593eb0a1c8e4570",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": 5,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "found wild rice whose pollen was abortive.",
+          "exact_native_cache_key": "95e36b0ceb4c10ceefb82a175305fe9fd48ba881.pkl",
+          "cache_input_text_sha256": "e6b3d1a47e7af175b63c0bbb5ac1857ea206b200ffa3335a5593eb0a1c8e4570",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "a94c8d4a1165a2e2",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        67584
+      ],
+      "unprocessed_array_sha256": "af31cf4130a30087aa757a860b43caff325b0f4eece7ff5070c993d26142d1bc"
+    },
+    {
+      "exact_native_cache_key": "4df59c6d6a9052cbb56992bc3c7e4260ace606e6.pkl",
+      "pkl_sha256": "d966bc27a2e2fff5bc7bd1f02a872b0100287e4f982b4705d6d42281f3dd92f4",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Yuan's assistant,",
+          "exact_native_cache_key": "4df59c6d6a9052cbb56992bc3c7e4260ace606e6.pkl",
+          "cache_input_text_sha256": "cce478ee9635bd12d274fab2973d0964e8b35cb4d1e22788144957b1e5d4765f",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "d966bc27a2e2fff5",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        30720
+      ],
+      "unprocessed_array_sha256": "ce6e4b1e512a369fb0dd612712b8a656b52a06398d037e00e7a7070a084a83ed"
+    },
+    {
+      "exact_native_cache_key": "fc87e676f903affc2e694dae7d6055ea4e7d046d.pkl",
+      "pkl_sha256": "4df2960e4edbff7c0b9fa76199ab1b4048549c756308a85cbd681b26b2c44edd",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Li Bihu,",
+          "exact_native_cache_key": "fc87e676f903affc2e694dae7d6055ea4e7d046d.pkl",
+          "cache_input_text_sha256": "13d34d04da5178717daea9dca5d588c59fcd14433e14f4b1ff51c91884e1d101",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "4df2960e4edbff7c",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        23552
+      ],
+      "unprocessed_array_sha256": "1b86535213d7cd94111f38a20a32c07c7cd513fd012b11f216b0bd98f805b3f1"
+    },
+    {
+      "exact_native_cache_key": "ea74457a4ba5cdb2e37bd03dc2203b6a82beed0c.pkl",
+      "pkl_sha256": "1761e9225277ad4d53511123ae781d87311a4b9ff87c8fd62dd9edfcf847bcf7",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and Feng Keshan,",
+          "exact_native_cache_key": "ea74457a4ba5cdb2e37bd03dc2203b6a82beed0c.pkl",
+          "cache_input_text_sha256": "35fbca04ed55e1cb35a3c2661bb87b140534b6c73f279aca834b5aba3138c0bb",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "1761e9225277ad4d",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        30208
+      ],
+      "unprocessed_array_sha256": "104766e24dfd07202f2ec2a5cc3f81459889b5e34eda0b1342b0b575261525f7"
+    },
+    {
+      "exact_native_cache_key": "1cbd844bad12a77bc033f8fcd604ccfe5d84aeeb.pkl",
+      "pkl_sha256": "2a4b874275566d8461718252417b32a814f5cd9a2662b0e7a2f402e37e8b16a0",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a farm technician,",
+          "exact_native_cache_key": "1cbd844bad12a77bc033f8fcd604ccfe5d84aeeb.pkl",
+          "cache_input_text_sha256": "75efd25c7b0c3bcd2efd4c69fef19e03354bbb9fa6cb99aeda511eb4974b3f0b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "2a4b874275566d84",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        29696
+      ],
+      "unprocessed_array_sha256": "f650e42444c45e431ddd33a9b7c0f6db21a6d8d49596f7a9d298319037c15328"
+    },
+    {
+      "exact_native_cache_key": "e36736a3dc69c99fbc8d33083a2a8ef9c5fbe7ef.pkl",
+      "pkl_sha256": "b6fa8233b856d0388902180e8eef0a92469a22090f0e4025a70fd6c8f4a86867",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Then came Yuan's decisive move: rather than withhold the strain, he distributed it to collaborators nationwide.",
+          "exact_native_cache_key": "e36736a3dc69c99fbc8d33083a2a8ef9c5fbe7ef.pkl",
+          "cache_input_text_sha256": "1f91344470a8bad16fc4a3f4f032a3529ee3f78065651c9bc0aab0475d685d7f",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "b6fa8233b856d038",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        183808
+      ],
+      "unprocessed_array_sha256": "54f5de3dcb4fcc81b2f228a31f21141c4773d7c648cbc1b88e5d890646850896"
+    },
+    {
+      "exact_native_cache_key": "050f36c9fd7ba6422d349727f29b6ac2c2d12b59.pkl",
+      "pkl_sha256": "556018fc36a6a724863c0a39006d7866f38ac33adbffa71a4ddf125666cd4d95",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Then came Yuan's decisive move:",
+          "exact_native_cache_key": "050f36c9fd7ba6422d349727f29b6ac2c2d12b59.pkl",
+          "cache_input_text_sha256": "49182508e6a7bdebb3a439530b1c9b6d03f594aa081d4cde0095b24ab0457b80",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Then came Yuan's decisive move:",
+          "exact_native_cache_key": "050f36c9fd7ba6422d349727f29b6ac2c2d12b59.pkl",
+          "cache_input_text_sha256": "49182508e6a7bdebb3a439530b1c9b6d03f594aa081d4cde0095b24ab0457b80",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "556018fc36a6a724",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        52224
+      ],
+      "unprocessed_array_sha256": "787610b0a29e47ec110468dc47ffb449f882ad650b1a41a87cd2787ede2dc5a7"
+    },
+    {
+      "exact_native_cache_key": "a8845de72e6ec9f7cc61836bf9db3276b1fcb3f4.pkl",
+      "pkl_sha256": "207720bafd57110cd0e58c52536d947f3157c6d8c16fcc83f88a077e3f7d1153",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "rather than withhold the strain,",
+          "exact_native_cache_key": "a8845de72e6ec9f7cc61836bf9db3276b1fcb3f4.pkl",
+          "cache_input_text_sha256": "65d2c94803f948a2332694f85854abdf6da19d4eb23fbee66ab48259e742dded",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "rather than withhold the strain,",
+          "exact_native_cache_key": "a8845de72e6ec9f7cc61836bf9db3276b1fcb3f4.pkl",
+          "cache_input_text_sha256": "65d2c94803f948a2332694f85854abdf6da19d4eb23fbee66ab48259e742dded",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "207720bafd57110c",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        43008
+      ],
+      "unprocessed_array_sha256": "11cf60fe4327cb392ea0c49feba92b9ac5a2f44182938ae592e0f2e5159f7888"
+    },
+    {
+      "exact_native_cache_key": "613d30fa35c6f7f1ca0337565134f11a9cf806e9.pkl",
+      "pkl_sha256": "f13a0233087aece3a4663ecf52f2ae031eb2b119515a0bdcd91f4230c6ed9a94",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "he distributed it to collaborators nationwide.",
+          "exact_native_cache_key": "613d30fa35c6f7f1ca0337565134f11a9cf806e9.pkl",
+          "cache_input_text_sha256": "65d9b915d62ac1393ac449f1dbb07987c8842b27e138769819214bda7f4f4b8a",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "he distributed it to collaborators nationwide.",
+          "exact_native_cache_key": "613d30fa35c6f7f1ca0337565134f11a9cf806e9.pkl",
+          "cache_input_text_sha256": "65d9b915d62ac1393ac449f1dbb07987c8842b27e138769819214bda7f4f4b8a",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "f13a0233087aece3",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        68608
+      ],
+      "unprocessed_array_sha256": "bc26d25c50e5d6b2cfe20be387c6067ca284a4cbea91506e610669d21679c004"
+    },
+    {
+      "exact_native_cache_key": "3b35c5a80e9bd5569823fe02417cf34e94e1b9b0.pkl",
+      "pkl_sha256": "6144d32fff798eb4f0f50a3fa6068551ff2656db58a91a29ac09463853cd4fcd",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Hybrids need three distinct lines: a sterile line, one to maintain its sterility, and one to restore fertility in the hybrids.",
+          "exact_native_cache_key": "3b35c5a80e9bd5569823fe02417cf34e94e1b9b0.pkl",
+          "cache_input_text_sha256": "735f7509d71e1d1165596de20798c6a68b47e2bd109a1fcd29ac0b4099407803",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "6144d32fff798eb4",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        218112
+      ],
+      "unprocessed_array_sha256": "e5e311e49eea2921370fa5c6e3bbb3bcf93315078e523c662359ba94eaa3b892"
+    },
+    {
+      "exact_native_cache_key": "bc5e7bcb367cb8c3e8ff2d49632daf72f18b9358.pkl",
+      "pkl_sha256": "30b43b11bc602fc79a8581409c04a0eb4795f2b20413793af6c1d51c3648fe52",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Hybrids need three distinct lines:",
+          "exact_native_cache_key": "bc5e7bcb367cb8c3e8ff2d49632daf72f18b9358.pkl",
+          "cache_input_text_sha256": "168c3f462f4a6a3ed597852b5c9b82a5290e8feeda08ae1bfdb1aecbc7bdc73d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Hybrids need three distinct lines:",
+          "exact_native_cache_key": "bc5e7bcb367cb8c3e8ff2d49632daf72f18b9358.pkl",
+          "cache_input_text_sha256": "168c3f462f4a6a3ed597852b5c9b82a5290e8feeda08ae1bfdb1aecbc7bdc73d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "30b43b11bc602fc7",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        54784
+      ],
+      "unprocessed_array_sha256": "efe2f0db1fdb0a8bad5523ee80f3baf7c502d790f229b3766a8871f24f70e8c3"
+    },
+    {
+      "exact_native_cache_key": "20e4c51a9cd061d5620690736f8d6b86ac2ee874.pkl",
+      "pkl_sha256": "1161d66fec45b7a445abe535c2646b0e7b0bbc890fce3f16550f7164ec23c02a",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "a sterile line, one to maintain its sterility, and one to restore fertility in the hybrids.",
+          "exact_native_cache_key": "20e4c51a9cd061d5620690736f8d6b86ac2ee874.pkl",
+          "cache_input_text_sha256": "526406c819bed6f9ba662079b701ff60624dc9eb8d6f2a1aeb2ea56236f1298c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "1161d66fec45b7a4",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        150016
+      ],
+      "unprocessed_array_sha256": "3599240e140332e8323ad7a8c8765a9399c7a67bed5e6d92744948d18c702b16"
+    },
+    {
+      "exact_native_cache_key": "6ead726518fed8a62a9de9b321f8977150ab6ce2.pkl",
+      "pkl_sha256": "0c9fb7cd94fea02a8d9276fa627f696336e03000b7e95489ed144a409f50d51d",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a sterile line,",
+          "exact_native_cache_key": "6ead726518fed8a62a9de9b321f8977150ab6ce2.pkl",
+          "cache_input_text_sha256": "cee496e606b4549799df81bd38f8e523fb61f90fefad6e5072bafbe2da3bfa39",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "0c9fb7cd94fea02a",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        27648
+      ],
+      "unprocessed_array_sha256": "5210e1d2588795a95185ecad59b339697a28ff94e1b8eda97c81c57466b76e6b"
+    },
+    {
+      "exact_native_cache_key": "4483808e0904470c40f821a980177a06c36a5e25.pkl",
+      "pkl_sha256": "9eec1d1ef2284f54b79595cef3ee4ceb8eb91122a41dbfddada0e319b2b18003",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "one to maintain its sterility,",
+          "exact_native_cache_key": "4483808e0904470c40f821a980177a06c36a5e25.pkl",
+          "cache_input_text_sha256": "fa7f35dd16607ac2dec45caeac65786ab07d1ae156c61199cc4ae1778704ccb8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "9eec1d1ef2284f54",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        42496
+      ],
+      "unprocessed_array_sha256": "561c0869db09a8c22e59af1910428c424e9e207bf4f3b5806661ba5850cccc0e"
+    },
+    {
+      "exact_native_cache_key": "16a4e8bad80ae6a907ef5bb47fb8a4277cd6b9df.pkl",
+      "pkl_sha256": "844e4d3a1ade679b38df0091fb72e3fb03beada23787196f60ad1b54bb974cee",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and one to restore fertility in the hybrids.",
+          "exact_native_cache_key": "16a4e8bad80ae6a907ef5bb47fb8a4277cd6b9df.pkl",
+          "cache_input_text_sha256": "7927694605f16bc17415b25723452fc74594dcf27194315271f930e71ae39b6b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "844e4d3a1ade679b",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        65536
+      ],
+      "unprocessed_array_sha256": "31af6c007a54fe2b72b2e2aca85899a7f91927cf6c317d0f3e3dd157355f506b"
+    },
+    {
+      "exact_native_cache_key": "0fb47dfb2982903b253fede77036702f8c138ef0.pkl",
+      "pkl_sha256": "5c9da25eb8f83a156d790f9fa821988a5f0c6934d793da26b94224b64a42cc80",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Yan Longan's team in Jiangxi bred sterile lines and Zhang Xiancheng in Guangxi first identified a restorer line.",
+          "exact_native_cache_key": "0fb47dfb2982903b253fede77036702f8c138ef0.pkl",
+          "cache_input_text_sha256": "b544f2d7575abe75b6161fb42ad7c4a8891f797f54fab380b3d7ad44da0d19a6",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "5c9da25eb8f83a15",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        209920
+      ],
+      "unprocessed_array_sha256": "8659449f9bd6ea1ba68f45c63431a287acaf9ab368fe4c65a07960b12f7ac35f"
+    },
+    {
+      "exact_native_cache_key": "e951533636eb8c35e759ec2483762d7b09e14ffd.pkl",
+      "pkl_sha256": "cf41dfd93362c254cccc9a2130b4f9f03d3ccf53d99e6d189191358c43b0df45",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Yan Longan's team in Jiangxi bred sterile lines",
+          "exact_native_cache_key": "e951533636eb8c35e759ec2483762d7b09e14ffd.pkl",
+          "cache_input_text_sha256": "0f9ab26603f0cc943a3c8183acb23b48dafab3c82e8ce03542cd9e104a7d1160",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "cf41dfd93362c254",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        75776
+      ],
+      "unprocessed_array_sha256": "16043f93e092398a7ace2f8c74d2cfc23dc25bcad3607f9fdc96d22ff2db7a00"
+    },
+    {
+      "exact_native_cache_key": "eddd4a63f6513b4220b65ee180bf9da3349b6e9d.pkl",
+      "pkl_sha256": "d36a013cf724802b1ab6875412b1a4db8ee3ff9dcf519440f648c540158b7767",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and Zhang Xiancheng in Guangxi first identified a restorer line.",
+          "exact_native_cache_key": "eddd4a63f6513b4220b65ee180bf9da3349b6e9d.pkl",
+          "cache_input_text_sha256": "a9449e1eb8e2fa50d68ce44b155fc2b1b85191376b971d1b2ef5d5972f9e8710",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "d36a013cf724802b",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        113152
+      ],
+      "unprocessed_array_sha256": "56c300428efa1d0c8faf6a78b8f1840c6ce9609a0f0296d25066a85e1d58b913"
+    },
+    {
+      "exact_native_cache_key": "7390f4cf6034a1d6b8189f066045356560bf2814.pkl",
+      "pkl_sha256": "05047df1627fadacce51ebf1147a5d3404c54fbb941087979cf26a56ab4d30a1",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In October 1973, at a national conference in Suzhou, Yuan declared the three-line system complete.",
+          "exact_native_cache_key": "7390f4cf6034a1d6b8189f066045356560bf2814.pkl",
+          "cache_input_text_sha256": "7ed891de79c0528d01ab280252974441f7b27ca9a3c61aec6f663921b3fa1148",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "05047df1627fadac",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        197632
+      ],
+      "unprocessed_array_sha256": "ad87c911cd8b3e18007a0029cf6ed413b662c9c3d81ae07a8ed6735b245192a4"
+    },
+    {
+      "exact_native_cache_key": "09b00c3effe8eddbab72c8481ca31f6ebcc58bb0.pkl",
+      "pkl_sha256": "4fedee784b89b22693b27be865fabce1e36911f00d2d9b494326d4b8cccb3adf",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In October 1973, at a national conference in Suzhou,",
+          "exact_native_cache_key": "09b00c3effe8eddbab72c8481ca31f6ebcc58bb0.pkl",
+          "cache_input_text_sha256": "4b768b154f56775b0009bea84f8cb459364ce8e53319950e0d5e2fb0f8eb3920",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "4fedee784b89b226",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        115712
+      ],
+      "unprocessed_array_sha256": "822b05c933680b187582b1771d254c70c091f2cc989773c2fd1a2414cd0435b9"
+    },
+    {
+      "exact_native_cache_key": "a7b1f0e8ea761563f1e3f8e1603085fe8b91045e.pkl",
+      "pkl_sha256": "ea6ea672f4d9a4c3360803959234f0e2026fdf97b61ad20786dad5e9166704e4",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Yuan declared the three-line system complete.",
+          "exact_native_cache_key": "a7b1f0e8ea761563f1e3f8e1603085fe8b91045e.pkl",
+          "cache_input_text_sha256": "8aed1716b553a9ef9830df1fbf3d9bcab2d6a2f34b8538927e1af59797104ee8",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Yuan declared the three-line system complete.",
+          "exact_native_cache_key": "a7b1f0e8ea761563f1e3f8e1603085fe8b91045e.pkl",
+          "cache_input_text_sha256": "8aed1716b553a9ef9830df1fbf3d9bcab2d6a2f34b8538927e1af59797104ee8",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "ea6ea672f4d9a4c3",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        68096
+      ],
+      "unprocessed_array_sha256": "9c0d0103cad55334b9962e92c5aac15526c153aeba572ab008aeec17a4699292"
+    },
+    {
+      "exact_native_cache_key": "a60e9b135692166bdfb0911a6ad76d20a557becb.pkl",
+      "pkl_sha256": "b10a7e5b5fe99b3b1103b27c5cc5563fbf6b388953556d4301f0c15eb8774544",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In October 1973,",
+          "exact_native_cache_key": "a60e9b135692166bdfb0911a6ad76d20a557becb.pkl",
+          "cache_input_text_sha256": "e381a66899d53211f817d92588ee893dbd0cbfa2ed696278a4a4c486ad1bdc7b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "b10a7e5b5fe99b3b",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        50688
+      ],
+      "unprocessed_array_sha256": "d46abeb1a8eb52c937342b4bf56e033ddac9f2f72b13d02034790a8cb7549c37"
+    },
+    {
+      "exact_native_cache_key": "f06e7a60824ce4f934eb975f0d258ef61c941329.pkl",
+      "pkl_sha256": "9a5946970fe7db9c16cb5c98734340ea9407263841e4f92ebee8a2708b00cb92",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "at a national conference in Suzhou,",
+          "exact_native_cache_key": "f06e7a60824ce4f934eb975f0d258ef61c941329.pkl",
+          "cache_input_text_sha256": "afbeae588f31dc20e3f0c1a003592313552a6ee993d2953b2672a2a7f89b38e7",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "9a5946970fe7db9c",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        53760
+      ],
+      "unprocessed_array_sha256": "ae8ebbf2501ab29125ab9d9440b478016ad577f7a3e825b3799c895bf2f47b4c"
+    },
+    {
+      "exact_native_cache_key": "29cb84ba8662aed01f3777769144f8045ff89d34.pkl",
+      "pkl_sha256": "eb724c953e46825d67b9102aab342a342f5310f04cd7795877c8263cd90cbda3",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "By 1976 hybrids were under cultivation on about 140,000 hectares.",
+          "exact_native_cache_key": "29cb84ba8662aed01f3777769144f8045ff89d34.pkl",
+          "cache_input_text_sha256": "9d23b91991119e5554604836988c94a1d1222333295abff77e07e35fcb8191cf",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "eb724c953e46825d",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        171008
+      ],
+      "unprocessed_array_sha256": "c3e2aa9be6922702d3773d9157950a4fac8fcdfb6ab4cdc26936ef217eee87e4"
+    },
+    {
+      "exact_native_cache_key": "1476e47bd795edbf4f6d6bc123301dfd3a7bf80a.pkl",
+      "pkl_sha256": "289feaf62da164d6bfd61f2fabecea02cfc7b5230a26fcca0771791b1f857d0a",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The World Food Prize Foundation estimates that hybrid rice can yield up to a fifth more grain than conventional varieties.",
+          "exact_native_cache_key": "1476e47bd795edbf4f6d6bc123301dfd3a7bf80a.pkl",
+          "cache_input_text_sha256": "72e1c42983c26bb4ef38fd66f3535c30bc6695747c0040efe19ef47862ef7fa6",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "289feaf62da164d6",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        205312
+      ],
+      "unprocessed_array_sha256": "eda8d838ea83401e900e7ff7d4f9920b747e49700fdfe388f2e319dc715ef550"
+    },
+    {
+      "exact_native_cache_key": "444bd97bb65255869e487bae70bc8780a0cd784a.pkl",
+      "pkl_sha256": "2c57bae0e4bc658ee3529b294107e0bd9f64355a98806cdc111c7c6904fd797c",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "The World Food Prize Foundation estimates",
+          "exact_native_cache_key": "444bd97bb65255869e487bae70bc8780a0cd784a.pkl",
+          "cache_input_text_sha256": "ff45af91c34863e462125228793b46bf5394099f37b4a8b25dac002f2bab489c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "2c57bae0e4bc658e",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        60416
+      ],
+      "unprocessed_array_sha256": "161463fa0ac5c38bb5cbf77cf767c74cd53f64dd47124ec8d65c7c2285f8fffc"
+    },
+    {
+      "exact_native_cache_key": "810fdff220f9e11831855ea994266400535ec4ce.pkl",
+      "pkl_sha256": "648e53146dd69bb1b336bd34c6af11599e910ad9aa1129deefff863d5e050906",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "that hybrid rice can yield up to a fifth more grain than conventional varieties.",
+          "exact_native_cache_key": "810fdff220f9e11831855ea994266400535ec4ce.pkl",
+          "cache_input_text_sha256": "9cf85ad363761f45a5851bf7b7af67a7b3f9fba6dc23b930add6701d3e9fc973",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "648e53146dd69bb1",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        137216
+      ],
+      "unprocessed_array_sha256": "6ec0316d2afab5e31fd51e1fbfd02d92162326d83d10406424cbe1ed3cf1dab5"
+    },
+    {
+      "exact_native_cache_key": "09d2c636ee751dc236d996fe265a8a9ef584ddeb.pkl",
+      "pkl_sha256": "6af3bbecf7138062faf923fcd556d1104bdf4a7c4200d27c413a8b81c21d37aa",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "By the early 2000s it covered almost half of China's rice fields.",
+          "exact_native_cache_key": "09d2c636ee751dc236d996fe265a8a9ef584ddeb.pkl",
+          "cache_input_text_sha256": "f82d4dc5e4aaca6e58c3589d895442d944c9650d1e4c2003adc1d83f340f1f06",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "6af3bbecf7138062",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        113664
+      ],
+      "unprocessed_array_sha256": "c044638147cd782d8ea76d8d91e005f7ec123e2349d1962577cc5ee162b4bff5"
+    },
+    {
+      "exact_native_cache_key": "a5337f2de31a3c6257ec53ccbb99d556675b2970.pkl",
+      "pkl_sha256": "040b0aeee90c6c365c40b5466f955fa939215b088a795eb3635cabb8d62a753b",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Yuan, who shared the 2004 World Food Prize with Sierra Leone's Monty Jones, died in Changsha on 22 May 2021, aged 91.",
+          "exact_native_cache_key": "a5337f2de31a3c6257ec53ccbb99d556675b2970.pkl",
+          "cache_input_text_sha256": "9a605bc0c19c3242792d4753b9294b5ecf3978416f8ac043dc09f231df42a2bb",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "040b0aeee90c6c36",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        299008
+      ],
+      "unprocessed_array_sha256": "1b1546e06da4d5cb923980ccfabe44f068a5a4a106925593c800011197b935f8"
+    },
+    {
+      "exact_native_cache_key": "089c96e0789bc998bbe565af74d24e482be74428.pkl",
+      "pkl_sha256": "aa751a5227144e45230a6e6a5e617cb3291a101f9209c9813268c35cd02a5f9b",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Yuan, who shared the 2004 World Food Prize with Sierra Leone's Monty Jones,",
+          "exact_native_cache_key": "089c96e0789bc998bbe565af74d24e482be74428.pkl",
+          "cache_input_text_sha256": "0e75c78740cf0cb9e94e4f430b1b9915160a14ab8c60acf3fa65db926e2914ad",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "aa751a5227144e45",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        140288
+      ],
+      "unprocessed_array_sha256": "4de59187b35050ee42940d7963046b236ecc2a9ec944342524cccc0968fae153"
+    },
+    {
+      "exact_native_cache_key": "882edd9422a94206256b4dc669c3eaf06b74ae4f.pkl",
+      "pkl_sha256": "064cecb72855194d986fa760b23ca0c325874e0dcd99e7435a432b8facab702d",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "died in Changsha on 22 May 2021, aged 91.",
+          "exact_native_cache_key": "882edd9422a94206256b4dc669c3eaf06b74ae4f.pkl",
+          "cache_input_text_sha256": "061466046c6f36c2e514702d9782adef72a5907203ee30dd55b63205ea96abbd",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "064cecb72855194d",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        139776
+      ],
+      "unprocessed_array_sha256": "d82d6a33768bb43e7f2f7468675233b263e7a3d4baa839ca47ba253282f98797"
+    },
+    {
+      "exact_native_cache_key": "bb148c6f6bf643b74f0b9008f326e4864917ad6e.pkl",
+      "pkl_sha256": "450ae623b52f34fbe02cd00b02a925b3c51d3bcf28c9f5c4b1851035764f78ce",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Yuan,",
+          "exact_native_cache_key": "bb148c6f6bf643b74f0b9008f326e4864917ad6e.pkl",
+          "cache_input_text_sha256": "878f3edf46676eda2a4e45fec88fec024591dbbf89dc83250747450d1451fad5",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "450ae623b52f34fb",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        19456
+      ],
+      "unprocessed_array_sha256": "1f3a0c041b9e7321cabf394652450eac7c347063b9afce964db5b565f4087557"
+    },
+    {
+      "exact_native_cache_key": "f4059ae856be8d718d381af0d6fd0eafe7142d45.pkl",
+      "pkl_sha256": "3772d62be23353b9db1828902fa5d50b465e359cf7e858691aea13c14ec29be4",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "who shared the 2004 World Food Prize with Sierra Leone's Monty Jones,",
+          "exact_native_cache_key": "f4059ae856be8d718d381af0d6fd0eafe7142d45.pkl",
+          "cache_input_text_sha256": "ba9fc3ad761e16fcfdd05cb9f5aef282a4e5b83f04c311f3c071993551edfdbd",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "3772d62be23353b9",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        128000
+      ],
+      "unprocessed_array_sha256": "6d300945742747e43e1b20d608720012bc8c26d6ab07c6a85faaba7b9f62fa6e"
+    },
+    {
+      "exact_native_cache_key": "a6a7db2455ae361a9b497c045ccb7615bef0886a.pkl",
+      "pkl_sha256": "0d1749b860d7abdeba5b87ae0ba154c336347dc423818b6e5f4affeeb1dcb357",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "died in Changsha on 22 May 2021,",
+          "exact_native_cache_key": "a6a7db2455ae361a9b497c045ccb7615bef0886a.pkl",
+          "cache_input_text_sha256": "f32ea6e0460ce2ac1aa86897dfc62ed11abfda9ec4b29e4064a0cf10846fd2dd",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "0d1749b860d7abde",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        103936
+      ],
+      "unprocessed_array_sha256": "b8069402beaa632830ed83f3f2a9c32437da6f102525aae6edd93ffdd3cb6a96"
+    },
+    {
+      "exact_native_cache_key": "550ef9bb884fddecf150e3afa7cc8b022666ddc5.pkl",
+      "pkl_sha256": "7ea1f91491cfb1d49426e84cbc627978e1bc37f6cb7977ce210158e58daee9fe",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "aged 91.",
+          "exact_native_cache_key": "550ef9bb884fddecf150e3afa7cc8b022666ddc5.pkl",
+          "cache_input_text_sha256": "f9c80b27a89363666a52d00d6a2b8224a28f6ad97656b8db04af8cad0fc6a6e5",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "7ea1f91491cfb1d4",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        29696
+      ],
+      "unprocessed_array_sha256": "55ad4243653055a38662aab947560c9d2f21ee17f602f0af176fec22c8f7fd31"
+    },
+    {
+      "exact_native_cache_key": "7d78e727e1fae5197e7b1271faff3b36a5d7c29f.pkl",
+      "pkl_sha256": "0c7c43e576b295b3cd6d17031da71f359e767562b93764f02808ce3cfce9893b",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S16",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Yet popular myth portrays him as a solitary genius.",
+          "exact_native_cache_key": "7d78e727e1fae5197e7b1271faff3b36a5d7c29f.pkl",
+          "cache_input_text_sha256": "d9b24a9753e165b1afe9bcf7f69a9624800431818fd5e4aba08e32a918ed84bc",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "0c7c43e576b295b3",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        89600
+      ],
+      "unprocessed_array_sha256": "57bee716a9ff7edaeaaf6f1944711a26aa050dff68a436a12db7e1d712ca4926"
+    },
+    {
+      "exact_native_cache_key": "ad218b6b6d632a598218d68c7df64e68274dea30.pkl",
+      "pkl_sha256": "b17a80172c8e669b26ae46af66669011b9909526d260fef2581fbdef8283bdb5",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "His eye began the search; his generosity let many hands bring in the harvest.",
+          "exact_native_cache_key": "ad218b6b6d632a598218d68c7df64e68274dea30.pkl",
+          "cache_input_text_sha256": "459e7cfd48baa3312dcbec00a27f7e296580c7aeae975cd21b1420bd1be4b058",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "b17a80172c8e669b",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        126976
+      ],
+      "unprocessed_array_sha256": "575ad07701ace3308e3d2c768d717b368d952914c3370df4702ae48a23d2ec70"
+    },
+    {
+      "exact_native_cache_key": "d3bbf799a017883a8e0c2935bcdd3f523a3b819d.pkl",
+      "pkl_sha256": "28dbad6ca6e72cdb0bcf5eb94c1a29c4f2068b8d1fadc0166cd9547abae5b53d",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "His eye began the search;",
+          "exact_native_cache_key": "d3bbf799a017883a8e0c2935bcdd3f523a3b819d.pkl",
+          "cache_input_text_sha256": "c088e6ee0f91f391e5e06a3231463d159599ac93efeea479ce32cb91eccb37cf",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "His eye began the search;",
+          "exact_native_cache_key": "d3bbf799a017883a8e0c2935bcdd3f523a3b819d.pkl",
+          "cache_input_text_sha256": "c088e6ee0f91f391e5e06a3231463d159599ac93efeea479ce32cb91eccb37cf",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "28dbad6ca6e72cdb",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        36864
+      ],
+      "unprocessed_array_sha256": "fdedd241386c368ee960f12bf4e36b3c2357759d1e650526944fb1acd3448596"
+    },
+    {
+      "exact_native_cache_key": "1c0b609a63760831aaee1791add61bf788f3ee92.pkl",
+      "pkl_sha256": "a430d72d938cea528b92d9d5d9c7f3e00dd27005ccdbaf8a6ca3ed0acb797c62",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "his generosity let many hands bring in the harvest.",
+          "exact_native_cache_key": "1c0b609a63760831aaee1791add61bf788f3ee92.pkl",
+          "cache_input_text_sha256": "62f3521ef72f9eaa8cf5ff01f941c0b0ace20d7b65ce3a48f149c9c60026186e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "his generosity let many hands bring in the harvest.",
+          "exact_native_cache_key": "1c0b609a63760831aaee1791add61bf788f3ee92.pkl",
+          "cache_input_text_sha256": "62f3521ef72f9eaa8cf5ff01f941c0b0ace20d7b65ce3a48f149c9c60026186e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "a430d72d938cea52",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        82432
+      ],
+      "unprocessed_array_sha256": "ada3438a606c7c6b7b56b46c29e8202703c07be9f2bcfe0a723448dec66f793f"
+    }
+  ],
+  "missing_reference_key_count": 0,
+  "observed_missing_keys_covered": [],
+  "new_private_cache_names": [],
+  "native_single_thread_marker_verified": true,
+  "single_thread_sessions": [
+    {
+      "intra_op_num_threads": 1,
+      "inter_op_num_threads": 1
+    },
+    {
+      "intra_op_num_threads": 1,
+      "inter_op_num_threads": 1
+    }
+  ],
+  "models_sha256": {
+    "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+    "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+    "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+  },
+  "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+  "existing_private_cache_count": 11514,
+  "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+  "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+  "existing_private_cache_bytes_unchanged": true,
+  "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+  "public_repository_cache_unchanged": true,
+  "producer_pcm_existed_before": false,
+  "producer_pcm_sha256_before": null,
+  "producer_pcm_sha256_after": null,
+  "accepted_aac_adts_sha256_before": "ccb1a96714df8492cca363cfe48a07cd5d9bf6a5f59741f51e578ce801c91817",
+  "accepted_aac_adts_sha256_after": "ccb1a96714df8492cca363cfe48a07cd5d9bf6a5f59741f51e578ce801c91817",
+  "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+  "private_cache_exported": false
+}
