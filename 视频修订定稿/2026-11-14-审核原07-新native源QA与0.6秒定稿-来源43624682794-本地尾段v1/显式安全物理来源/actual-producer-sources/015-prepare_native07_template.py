@@ -1,0 +1,21 @@
+from pathlib import Path
+import ast,hashlib,json,shutil
+W=Path(__file__).resolve().parent;OLD=Path('/dev/shm/video-official53-book35-user061-core5-current-accepted-voice-20261114');F=Path('/dev/shm/video-official07-user090-current-first34-voice-core5-20261114');sha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest()
+assert not F.exists();shutil.copytree(OLD,F,symlinks=True,ignore=lambda p,ns:[n for n in ns if n in {'request-assets','__pycache__'}]);T=F/'.github/video-revision-batch'
+for n in ['TASK-STATE.json','launch-response.json','launch.log','program-freeze-manifest.json','after-start-actual-program-binding.json']:
+ if(F/n).exists():(F/n).unlink()
+ready=json.loads(Path('/workspace/work/first34-hold06-20261114/ready-book03-source07.json').read_text());media=Path(ready['actual_final_MP4']);assert sha(media)==ready['sha256']=='3ba931446468d28e2d1eea2fa57ddf1c79b24bad52be4fbd697a828c7865dede'
+dest=T/'accepted-reviewed07/07-current.mp4';dest.parent.mkdir(exist_ok=True);shutil.copyfile(media,dest)
+p=T/'accepted-videos.json';j=json.loads(p.read_text());r=next(x for x in j['videos']if x['id']=='07');prior=dict(r)
+r.update(path=str(dest.relative_to(F)),sha256=sha(dest),git_blob_sha=hashlib.sha1(b'blob '+str(dest.stat().st_size).encode()+b'\0'+dest.read_bytes()).hexdigest(),bytes=dest.stat().st_size,current_accepted_review_source_run=43548189084,current_accepted_first34_hold18_container=True)
+p.write_text(json.dumps(j,ensure_ascii=False,indent=2)+'\n')
+s=(F/'start.py').read_text();s=s.replace("assert selected == ['53'], 'Only user061 book35/source53.'", "assert selected == ['07'], 'Only user090 source07; existing quality resource book03, requested video order01.'")
+s=s.replace("LOCAL = Path('/workspace/work/github-publication/target')", "LOCAL = Path('/workspace/work/github-publication/target')\nCANDIDATE = Path('/dev/shm/article07-user-review-draft-20261114/candidate-payload')").replace('for folder in (PAY, LOCAL):','for folder in (CANDIDATE, PAY, LOCAL):')
+s=s.replace("if (PAY / pending).is_file():", "if any((folder / pending).is_file() for folder in (CANDIDATE,PAY)):").replace("if (PAY / confirmations).is_file():", "if any((folder / confirmations).is_file() for folder in (CANDIDATE,PAY)):")
+lo=s.index('    authorization = ');hi=s.index("    (request / 'user-authorization.json')",lo)
+s=s[:lo]+"    raise RuntimeError('Wait for sole source07 writer final090 freeze and actual authorization before launch.')\n"+s[hi:];ast.parse(s);(F/'start.py').write_text(s)
+s=(T/'run.py').read_text();needle="    status['canonical_pipeline_passed'] = True\n";assert s.count(needle)==1
+s=s.replace(needle,"    if NO == '07':\n        assert status['canonical_aac_adts_sha256'] == '16b6293adfc7a3c35224408ae39d831317e1932f8d47876824e129129c9115d8'\n        assert sha(W / 'work_07/a.wav') == '11edc969af0797bcd7121034f43de130d72ca9186508e64e3330aff6c4069643'\n"+needle);ast.parse(s);(T/'run.py').write_text(s)
+(F/'request-assets').symlink_to('/dev/shm/asset47-34-20261114',target_is_directory=True)
+report={'kind':'source07-user090-pure-original-current-voice-native-template-before-writer-freeze','F':str(F),'source_id':'07','frozen_quality_resource_book_order':'03','requested_video_order':'01','original_book_PDF_map_not_modified':True,'source_run_of_current_accepted_voice':43548189084,'current_accepted_MP4_sha256':sha(media),'original_current_AAC_SHA256':'16b6293adfc7a3c35224408ae39d831317e1932f8d47876824e129129c9115d8','original_current_RAW_SHA256':'11edc969af0797bcd7121034f43de130d72ca9186508e64e3330aff6c4069643','actual_accepted_working_source_sha256':'70202897bd8568697e1dbbca36076e6089aaf20b1aebecb29b4a39a62d7a5d69','old_catalog_reference_kept_for_history':prior,'current_comparison_reference':r,'original_core5_manifest_sha256':sha(T/'certified-core/manifest.json'),'voice_repair_authorized':False,'native_launch_locked_until_writer_freeze':True,'original_formal_all_quality_gates_required':True,'user079_cloud_dual_only':True}
+(W/'native07-template-ready-before-freeze.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n');print(json.dumps({k:report[k]for k in ['F','source_id','frozen_quality_resource_book_order','requested_video_order','native_launch_locked_until_writer_freeze']}))

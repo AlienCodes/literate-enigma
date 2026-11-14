@@ -1,0 +1,107 @@
+{
+  "kind": "user090-exact-source07-old-qualitybook03-new-video-order01-scope-tests",
+  "passed": true,
+  "actual_new_video_pass_claimed": false,
+  "scope_cases": [
+    {
+      "case": "exact090_source07_qualitybook03_18_positive",
+      "passed": true
+    },
+    {
+      "case": "wrong_source01_lemon",
+      "rejected": true
+    },
+    {
+      "case": "wrong_qualitybook01_even_if_new_video_order01",
+      "rejected": true
+    },
+    {
+      "case": "wrong_policy",
+      "rejected": true
+    },
+    {
+      "case": "wrong_auth",
+      "rejected": true
+    },
+    {
+      "case": "missing_auth",
+      "rejected": true
+    },
+    {
+      "case": "hold0_with_auth",
+      "rejected": true
+    },
+    {
+      "case": "hold9",
+      "rejected": true
+    },
+    {
+      "case": "hold17",
+      "rejected": true
+    },
+    {
+      "case": "hold19",
+      "rejected": true
+    },
+    {
+      "case": "preview_mode",
+      "rejected": true
+    },
+    {
+      "case": "preview_metadata",
+      "rejected": true
+    },
+    {
+      "case": "missing_finalization",
+      "rejected": true
+    },
+    {
+      "case": "wrong_kind",
+      "rejected": true
+    },
+    {
+      "case": "wrong_declared_count",
+      "rejected": true
+    },
+    {
+      "case": "wrong_boundary",
+      "rejected": true
+    },
+    {
+      "case": "synthetic_fixture",
+      "rejected": true
+    }
+  ],
+  "unchanged_original_physical_source_packet_and_decoder_functions_AST_identical": [
+    "run",
+    "digest_bytes",
+    "sha",
+    "probe",
+    "packets",
+    "packet_timing",
+    "coded_pictures_sha",
+    "boundary_is_idr",
+    "aac_sha",
+    "rgb_sha",
+    "source_layout_digest",
+    "source_layout_binding",
+    "approved_inputs",
+    "compose_illustration",
+    "preview_hold_contract",
+    "verify_preview_hold",
+    "verify_final_hold",
+    "provenance",
+    "verify_static_pages"
+  ],
+  "upstream_transform_tests": {
+    "default_all70_bytes_identical": true,
+    "only090_qualitybook03_source07_hold18": true,
+    "seven_wrong_scope_or_count_rejected": true
+  },
+  "helper": "/dev/shm/book07-source07-production090-20261114/illustrated_tail090.py",
+  "helper_sha256": "068d93f70af7027371641ec2079cd58ea161ef8c876c0d0cd410af665b23202f",
+  "authorization090_sha256": "3120efc6893981436cb81458ce57f6aca7601edc5e7326cce1388b68de959001",
+  "requested_video_order": "01",
+  "quality_book_order": "03",
+  "book_PDF_shared_maps_modified": false
+}

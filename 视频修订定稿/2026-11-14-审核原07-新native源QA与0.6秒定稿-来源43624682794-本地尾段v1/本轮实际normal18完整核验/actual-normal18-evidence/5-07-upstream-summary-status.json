@@ -1,0 +1,3201 @@
+{
+  "article": "07",
+  "passed": true,
+  "stage": "final4K-passed",
+  "original_audit_and_quality_thresholds_unchanged": true,
+  "original_maker_unchanged": true,
+  "core_repairs": [
+    {
+      "target": "视频/工具/草稿声音.sh",
+      "file": "files/视频/工具/草稿声音.sh",
+      "original_sha256": "0ce3277812cf16ed30438509b6dc97db0c26725db4c5db5d9b058c3ef6531aa2",
+      "patched_sha256": "43fc6a1acdae6bb1c2252178bf034407400bbbe92eb1752053f3047da9760491",
+      "repair_scope": "explicit revision flags keep reviewed gain, existing valid ending and reviewed physical cuts; automatic cuts still measured/proposed without --写入 in CUTS=1 mode; default full JSON/PCM/AAC exact to prior5; all original later quality checks retained"
+    },
+    {
+      "target": "视频/工具/句内响度.py",
+      "file": "files/视频/工具/句内响度.py",
+      "original_sha256": "58735b7173a3c03efa61fb300b4aed4039c164fa970e0593a40bae2a3f3cbd27",
+      "patched_sha256": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea",
+      "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+    },
+    {
+      "target": "视频/工具/独立复核/synth.py",
+      "file": "files/视频/工具/独立复核/synth.py",
+      "original_sha256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+      "patched_sha256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+      "repair_scope": "validated unprocessed raw-mother reference input only; independent transforms/audit/thresholds retained"
+    },
+    {
+      "target": "视频/工具/结尾句接点.py",
+      "file": "files/视频/工具/结尾句接点.py",
+      "original_sha256": "15303682c605dd4544172c92d42c016d8d0536e0c6d1f9816d0d38dd5d2b9a61",
+      "patched_sha256": "1a5d43c4f5483014b69bbea7ad43dddb0333a9a80e29bb2b4c8029d8915ff798",
+      "repair_scope": "validate existing ending entry with original producer guard then keep it; bad points fail, missing points use original algorithm; default unchanged"
+    },
+    {
+      "target": "视频/工具/读音核对.py",
+      "file": "files/视频/工具/读音核对.py",
+      "original_sha256": "0a3b97e1179e47c0593f69286f4206eecc123cc7ec5d5adf4f5e62457c228a41",
+      "patched_sha256": "50f4363bb2fc2930be59904cdccfa44fd46f14393a0385c7846028ee25b4e84c",
+      "repair_scope": "selftest-only fault injection keeps compound registry and injects actual uncorrected espeak IPA; normal checker AST/output and dictionaries unchanged; unrelated exceptions propagate with restoration"
+    }
+  ],
+  "strict_production_cache": true,
+  "pdf_requested": false,
+  "check_summaries": {
+    "approved-illustration-resource.log": [],
+    "certified-core-original-stamp-verification.log": [],
+    "original-restored-stamp.log": [],
+    "canonical-module-copy.log": [],
+    "canonical-draft-00.log": [
+      "第07篇 做完（314 秒）：修了 0 处、疑点 60 处",
+      "① 文本：通过",
+      "② 声音：07 词尾辅音核对 问题数 0；07 纯人声核对（配音指纹 8374149bd3cc）问题数 0；问题数 0；07 句间停顿核对 问题数 0；问题数 0",
+      "③ 出片前核查：通过",
+      "⑤ 出片后核查：全部通过",
+      "⑥ 已拷 视频/视频/草稿1080p/07_1080p.mp4（--不推）"
+    ],
+    "canonical-final4K-00.log": [
+      "第07篇 用户定稿原话：有"
+    ],
+    "original-stamp-after-production.log": []
+  },
+  "actual_native_core_certification": {
+    "run_id": 43550422832,
+    "job_id": 132311381738,
+    "commit": "5ecda5ba57c151cb74fc3d36193b60fa59f51c26",
+    "actual_full_quickcheck_exit": 0,
+    "actual_full_quickcheck_seconds": 384.1,
+    "artifact_id": 14096681983,
+    "artifact_zip_sha256": "19dee7da557610e78f39567446bd7dd17ee2c1fe58a0070bb2d6f2c11c22b347",
+    "full_original_quickcheck_log_sha256": "43e1f723087d59c15e78593b23dc37cd2360ba3526474cc5484fbe80edc253d8",
+    "article_audio_or_video_passed_not_implied": true
+  },
+  "actual_native_fastcheck_stamp": {
+    "target": "视频/工具/新管/快测通过.json",
+    "file": "files/视频/工具/新管/快测通过.json",
+    "sha256": "bb75875985ff106abe142caf7ecbf0a5eb76a1412309bf78d77bf146f64512af",
+    "origin": "actual unmodified original full quickcheck, native run43550422832"
+  },
+  "reviewed_regression_resource": {
+    "target": "视频/工具/新管/回归基准_27.json",
+    "file": "files/视频/工具/新管/回归基准_27.json",
+    "sha256": "b8ddb4656ae27cbfc7ec8e3b99511983b4e568997bd4ad4ee33c364f3926ae94",
+    "origin": "pre-existing root-reviewed 67-screen data; original voice/segment MD5 unchanged"
+  },
+  "core_repair_manifest_sha256": "24766577a0001a4920f21cf4887c4cff080d233c34d57cf45a83b7ac660cdcac",
+  "reviewed_gain_preservation_mode": true,
+  "reviewed_existing_ending_preservation_mode": true,
+  "reviewed_existing_physical_cuts_preservation_mode": true,
+  "real_restored_stamp_validated": true,
+  "reviewed_cross_article_context": {
+    "provided": true,
+    "manifest_sha256": "acb4bac588775270be34d2b090443cad321b1c25003d865ab27384541f82ee5b",
+    "files_sha256": {
+      "视频/脚本/01.json": "2be2f80a69af28703992204ac95f987c745362c326e62ad81b3cd8e0e0735d3a",
+      "新版定稿/01-the-robber-who-thought-lemon-juice-made-him-invisible.md": "572054065b5bb65446bf8939a21c789c1e9c7664d82da5117c43efdded894351",
+      "视频/脚本/02.json": "0403368c77fd3e0f91e1ee3780e1c7c147894ad13c16b5f14707d700a8f717c8",
+      "新版定稿/02-the-truth-about-one-marshmallow.md": "91b92505aad03f963861bec39e96f0a472c126d1d57c9fc538676c32f65e545c",
+      "视频/脚本/03.json": "527f3bf4a11843f4d606188dabc6ebce6830da3fb454a49c782e3a595cb47407",
+      "新版定稿/03-the-doctor-who-drank-bacteria-to-win-an-argument.md": "6dfb56504882e24854a3584fd740e7f6601e3f2532818aee3a56d5330d317aa3",
+      "视频/脚本/04.json": "93cc1ff58d65ebe43a65ecb2fb2dbd2da262d80877c05740bbdf4eab4eaca1e8",
+      "新版定稿/04-the-brain-that-learned-london.md": "a8ccb31ffff50aaae77de4b83de1847fafae1d585981cf960c5880c409f6cfc3",
+      "视频/脚本/05.json": "96116f6806b8783cc8abe9583424047683505025dab6c3bc5b38629bbafb418b",
+      "新版定稿/05-the-fingerprint-in-the-blood.md": "612deac4ed066489e04e214ca969f8f27dda05856e0ef0ed2e540e7a4a52ae34",
+      "视频/脚本/06.json": "2cbf1d6cd6e66a59285298ea830f5ef914590b64286d40b2ae5f3168aa27a2e9",
+      "新版定稿/06-the-horse-that-could-count.md": "7fd21ba491c7596c53c486f2bb0b0f2f6da8e67bac75461a4649a7caff822f74",
+      "视频/脚本/07.json": "b9b4ec0b90a4d1070b193fe42f5c30e1a3717560b03746a06d4b16388a83047f",
+      "新版定稿/07-the-octopus-that-escaped.md": "c8a55f3a7e3e0ceccdaa047f1da6a7d58abf82ae627763bd299e86afdb53ddc7",
+      "视频/脚本/08.json": "254832e09f12759d950384dd9f31f671ad5a3bc1590b7466065dd3ef5fe4b8d5",
+      "新版定稿/08-the-doctor-who-solved-the-cholera-mystery.md": "0b2bfa68070ce585a452f6b7034d03c3683e710dcabec5e86d7b221950dc7bab",
+      "视频/脚本/09.json": "fa3e429351d629de188c184d04e9986200e16e80606fcbec82332b6433301dae",
+      "新版定稿/09-the-great-emu-war.md": "af5c3e844bad15f94bfc43aeed6d7417c4bfae85f026b194da667a7a3bdb6196",
+      "视频/脚本/10.json": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
+      "新版定稿/10-the-stolen-smile.md": "ff63cf94e4d2c835e2e2f1ffd3e6c5642f0916f0b13c012f1f13c3dff716d47a",
+      "视频/脚本/11.json": "665cbb80cc70b700ecc0cc5813209fd100ad4fa8f0eead3929b9e53778d9d07f",
+      "新版定稿/11-move-37.md": "7e0b49b346c1fa3ab994a11a2301167c0d6a1bb00916508bdc0b1acf71e68053",
+      "视频/脚本/12.json": "e3bfbcce6f1a8e14cfe451d656574353321e297c90c62f5a7b422f37478311d5",
+      "新版定稿/12-the-79-days-of-new-coke.md": "5a23c1e0c81318527bcbf27573487d1845c5318905a2b1e020cc6e2eaf5d643f",
+      "视频/脚本/13.json": "c22ccc9eb34a92380ecbd2ea72189db492264c4730141c73024685b3fca5fd1e",
+      "新版定稿/13-eleven-days-without-sleep.md": "41998b355721703f761685dd351fbf4628b2be67dfed8b3d37276f9e8f929ecb",
+      "视频/脚本/14.json": "2889a9b31bc7945ee55c306d3507b8557bf1efe371af8a97483a61172be800b8",
+      "新版定稿/14-the-fungus-that-turns-ants-into-zombies.md": "618900d05bd2cecc8d577c446146e4df98d71e070c0b779b40992820d1fdd332",
+      "视频/脚本/15.json": "9b42f089b79e4e0c54c254c948ac4d9ae28d224585095a373607122a0d7c6898",
+      "新版定稿/15-the-myth-of-the-unsinkable.md": "bc2d0c8613437b39149cd6e66729104b26efceb8681fb645f782a97b40007584",
+      "视频/脚本/16.json": "d25aa07f3fac316c26c2ae1006d3efa7eb82a396b66150432b50239c1628396d",
+      "新版定稿/16-the-bread-made-from-air.md": "4da63148111213f6d77451b0eb4193893e6fc2fc170400bc39ce5f5ffcaa0b20",
+      "视频/脚本/17.json": "9750857c3e2c67e6abe5ea6913cb0602347be8b58836bbbc03e2c4153bb12e1b",
+      "新版定稿/17-the-curse-of-the-pharaoh.md": "0dc7b6ee7f4ef05d5e4382beeb077d57578d0bb6a6b69415485008facae98717",
+      "视频/脚本/18.json": "5192b78e582c36fd7d5a34973d8314c5b23e13b8313c8960ac29653bd7fa5d8c",
+      "新版定稿/18-the-mould-that-changed-the-world.md": "ef41cea03f471fe3b9a53939c843e450da3325eb711f6414e108ae92a7518dd8",
+      "视频/脚本/19.json": "cc3c5eea0f7d9ec0712b2e58adba7e5ef8b61d6518a322f9b25a12fcc45282fb",
+      "新版定稿/19-tulip-mania.md": "3882d487383b759c31dda4785966091c362960cd873a5d83c530d08d52e2e97c",
+      "视频/脚本/20.json": "cc5ed6d7be8767e5e7e9b098e8f3836821c0b3f51c17581b2746722da1cf3001",
+      "新版定稿/20-the-5000-year-old-murder-in-the-ice.md": "8d55638070787f7ff5432c197292af1188c463a8b018e01bdefc32999b888e95",
+      "视频/脚本/21.json": "61c1569a26d7569ee0f586178be6b307b1c394c0a30c3cb02541c910038b0589",
+      "新版定稿/21-the-man-who-sold-the-eiffel-tower-twice.md": "e8e966b70f579235d696ba11fb01d3b2cae3fa26efb9071bbea95071be259e1f",
+      "视频/脚本/22.json": "e3027a42c532fee9935afcecdd0542713cbb907183802c2345b9472f93b75f59",
+      "新版定稿/22-the-building-that-melted-a-car.md": "49ae09483bc80bbc40a71551cd98aebec355d96d9ff7b2bcdea59a06fe599267",
+      "视频/脚本/23.json": "c4574a79fd3a58577a1402ce095ea9e4a0ea1f98883ce63e3cc60d126e819409",
+      "新版定稿/23-the-man-who-gave-machines-a-mind.md": "72ed3049e87fe75ce1e753d5e443bdbe6a7ab72f6e282e8467fbbb62be873169",
+      "视频/脚本/24.json": "f08620b534bb10b718f7515c805dcb541721427d855bd5a092b8954847a351b8",
+      "新版定稿/24-survival-in-the-ice.md": "cb7f810d9a74256e0c00625290be4f16207feb90f5719ca87d5d7c9912b91307",
+      "视频/脚本/25.json": "c73e854e052b3df9bd920d4a59fafb183dee19bd58765fa426af6ea3d7c9a329",
+      "新版定稿/25-apollo-13-the-successful-failure.md": "b6b7d55fe66e6e32116431ea955778fab779b8bda622df0ba1036c2f40a3969f",
+      "视频/脚本/26.json": "22349b0a29f05689aae5bd5e9d0907846a68e6ad42949eb0b8cc392d6dce18d6",
+      "新版定稿/26-the-language-the-children-invented.md": "f64089bc9487e756522746058fba2e27c45e56ffc339d8590038643012eb496d",
+      "视频/脚本/27.json": "e1214d8e9314a1cb54da82e2532889198bec555d6be9189fbfb43b5fdedcd728",
+      "新版定稿/27-life-in-the-forbidden-zone.md": "c592b44a8e6ec26f3c2e96ed19191958e57c81d31e54329c20d726e538c10e52",
+      "视频/脚本/28.json": "e0c8e6c644ab0c5d52d99c23461b99e9ae1574aa574369e56feb35e2ac20698b",
+      "新版定稿/28-a-handful-of-wormwood-that-saved-millions.md": "d609cd99ab982365c6f0167e211c55b31e52a354d50918780f3da66ef702a5bb",
+      "视频/脚本/29.json": "1e5f1d9f0c22b5d14b757f029be694c2a3969666d732ca79bb695282763de791",
+      "新版定稿/29-the-volcano-that-gave-us-frankenstein.md": "69045ee19a170c7ea9d0008b468c7e947bc28b639b834c0192dc0aeafc3ef4d0",
+      "视频/脚本/30.json": "34eb48747f1ea7d14b41ccc0cf45aa1592907aacf6618999b3506944e2ff4a0c",
+      "新版定稿/30-the-stink-that-built-londons-sewers.md": "84dbf19cee0045ea2608b13ee0677cb9623dd8fbb371c67093bf50c64186137a",
+      "视频/脚本/31.json": "d81f8645a1e5663ba8c84668e817cdb218bc6689079fbfd51326b3a7fd3cd384",
+      "新版定稿/31-the-book-twelve-publishers-turned-down.md": "7abd20fed44918dcf01586c056e9d0acd9d2ad3b90aa7d3d403762d9f06d2659",
+      "视频/脚本/32.json": "357aa59bed62154f7302a5efcf528859b303004e028657b93058138fe931bf85",
+      "新版定稿/32-the-planet-that-was-demoted.md": "1421f2b0921e7e9478ebc48777e3e8b2c979172de63d0124015107c3750a3542",
+      "视频/脚本/33.json": "da87d68fdee3401e499aa145c23d9b2c663ce3b27f79feec5eca1ddb0d794e72",
+      "新版定稿/33-thirteen-in-the-cave.md": "b96faac786ace911140b835d9f9c6e37eeb0c5f3e7a077b913805b8942c56067",
+      "视频/脚本/34.json": "5350c08cdc6dfa5579f0bdc6960805cbe079a1c471c46bb2250f11b32da34868",
+      "新版定稿/34-the-game-that-escaped-the-soviet-union.md": "fdfd966f8624bc506b7cfe16da04f2f7382ce5566fab3bcb35c3d99dd6d4a5f2",
+      "视频/脚本/35.json": "d8439077dc2c909b1c6cbd1347f31e9625f25fffe447d6f5945c9492561f1a16",
+      "新版定稿/35-the-bird-that-beat-the-letter-home.md": "ba8c38e38b21a3345624e2d44fd352561d3096cfb6f62214b48ea9b6e66faead",
+      "视频/脚本/36.json": "e35a3dcb2ff0f0c7054493331370c0364190771ecf56e0dad6dbee3af860a628",
+      "新版定稿/36-the-company-that-invented-its-own-killer.md": "4b0f1d016d3e94bd7f77d3a36bfc423700006c7a23c0b0cae5ca68d5c5af883f",
+      "视频/脚本/37.json": "b1b8945ccf3581df48ade5714a2d0e93e4cc6812708f95bef6f5e44439106c99",
+      "新版定稿/37-dynamite-for-the-heart.md": "4933e24d2384471a96d9c8c26c15d5224a85dae98d9971a3fed15b4978dafc51",
+      "视频/脚本/38.json": "8d0379032000967c9f72e550574874949f798eefbfbfb58ab2b38e4e23ecbc6b",
+      "新版定稿/38-the-web-beneath-the-woods.md": "abb7eead9f3da0b2b326ceed5a649cfbf71fc28dad22e0d52f7b19caa798c54f",
+      "视频/脚本/39.json": "6c3e9539f624b192335312912572a05fba2c7bcfb821b44c3c1dbb21b42527a7",
+      "新版定稿/39-y2k-the-crisis-that-success-erased.md": "abbc9804661126aa006595031ed8f201ce55e8eb5fd9e1ad5669c0c6fcdb80ab",
+      "视频/脚本/40.json": "1c50d1a47ee6f8528d0f7299e8a45bc8c30312622f3f465a964d21cc1395ee7f",
+      "新版定稿/40-the-glue-that-failed.md": "dce9f78f3a0828307843dd667b7eeebf3380a3630f03d234bd5824870aba61a1",
+      "视频/脚本/41.json": "6b6673ffc1db986f4c355f3685de6a0faf2272cee042c5e917f26a8b3057c2be",
+      "新版定稿/41-the-toad-that-invaded-australia.md": "eca590f97120f4e76d719e29aa07b094f9117cd462f5a70c029331a63b85f710",
+      "视频/脚本/42.json": "eceb10ae92aa4b9cd23180d1138149a7fa7b674385462c898bc0d2283c8739e7",
+      "新版定稿/42-the-telescope-that-needed-glasses.md": "d4aa049779a0eba06c555d76ca14103648378eef90465df424120126fa771280",
+      "视频/脚本/43.json": "aa9da1246e293c80408edf94a7c9bed65ef3178ae7cb5265a8273e8c4396687f",
+      "新版定稿/43-from-a-garage-to-the-top-of-the-world.md": "bd70c83e5ac867238ca179f3c9f3548eb9cbdcae1f6df40994aef0bda721ae54",
+      "视频/脚本/44.json": "87f531203ca38d88ae5e71ffd88190b1530715cdc0adba146c2a4a78ebe9b976",
+      "新版定稿/44-the-night-sweden-switched-sides.md": "d3f7ad2ac43f02aae9205a15b9808280ca3db597d6ef3b36aca8ca6176c5f74a",
+      "视频/脚本/45.json": "569406607d2bf18dce5e916052d6460509450d97fe17ac9820be524f59c2c3cc",
+      "新版定稿/45-the-record-humanity-threw-into-the-stars.md": "27deabec4a8478fe570f7f237a2fb850ffdce3deebfd952f512d82a60cf7314f",
+      "视频/脚本/46.json": "c8c7ce7a76226f5274a91af693d24410d5eacfa59206b085a70d133f3634c12b",
+      "新版定稿/46-lost-in-the-glare.md": "7aaa06e875fe56c5d78210b90a8769b8b2051714025ef10df37c2fe89db7a68c",
+      "视频/脚本/47.json": "4c33bb0764a9b98e914a55806486ce841a1503efda1ff001cd2f8c9bb1626c06",
+      "新版定稿/47-shadows-of-wolves-over-yellowstone.md": "6b51ae76b8ec4ffd0ff1748c5902ef59754fa446479fc40357e9946a9aaac7a1",
+      "视频/脚本/48.json": "4f146ce6a70bb0bf5d2c6e1f6b47bd6a2bcc2f311be7a948092d7bde1a08f449",
+      "新版定稿/48-rice-for-the-world.md": "76416be21f857e8a05c37baa33ac90f5785812291485231c249e38a1d0edf15f",
+      "视频/脚本/49.json": "fdcc3a438e50a32fdf8c7bcbe27a97d20fc101b6169ca305f920fedbd3303c3c",
+      "新版定稿/49-the-woman-who-won-two-nobels.md": "1e4fb068aa9ae4513d01b199a074b84dc9d819f57b2134df32588a0e4a4b6b6a",
+      "视频/脚本/50.json": "1d4a41824dfa5e8d11e5990b2a4b802ba2fcc3231d85b15ed6630396c6f027bf",
+      "新版定稿/50-microplastics.md": "5439589bacf1abb2abbb184eb658492bc02bcc5bdd8dfd8ababcd80ab93621cb",
+      "视频/脚本/51.json": "39886d83593a31fb575b124ecf6457190773dca695b6ff78f8434d52aebd6d7c",
+      "新版定稿/51-the-joke-that-became-ok.md": "8de30ea4846f4e88d8b71c8d5ced3ee63a73955e39b7dc3c5adad0971b854fd0",
+      "视频/脚本/52.json": "832249bb44617d38ede75560a5e57af6ba79ec284c9609407cb30ce879f6f862",
+      "新版定稿/52-the-killer-smog-of-1952.md": "179500361e4a837d7edb2e0497e08677d5abd425e8ad542f788205a6f7667b4b",
+      "视频/脚本/53.json": "73393dad5d67261f2ec7819f3749a6589278900e2f214a1da06b0dbde55fe31b",
+      "新版定稿/53-the-wind-that-kept-no-time.md": "5d8007a8c953bc0dd47bfb2536e6f3b3308c0bcf93ca607d6f1c6d02dcac457f",
+      "视频/脚本/54.json": "b1fcb8ae86045b3d35ccfa0f52eb9594b8921d43063835769ee3ecc4543be75e",
+      "新版定稿/54-the-sound-that-shook-the-world.md": "abd5f4bfe11ed73bcc5326a92cf99b0a8e5ad70adaca1ce8d0c8f622b57fa519",
+      "视频/脚本/55.json": "06344fc0ad5975cba2f4dbe5262a9957dd7c024f9a05b9abbfa327f32ea8c719",
+      "新版定稿/55-the-secret-of-romes-undying-concrete.md": "a7759eddcc7ec06dfd6dab7912e06b3b5ef8576df0c025a97812006669d0be61",
+      "视频/脚本/56.json": "22ca3b4180a8ae6a37b4c8e25f5e357d5696d9b23bf148fb7064425d1403e59c",
+      "新版定稿/56-the-letter-that-startled-darwin.md": "aad1e2aab9ff28f534a510362e807ef401e0b502475240f4b2531e9e518a8d7a",
+      "视频/脚本/57.json": "a0ba65b769430289a33ec1f7bc6dbf91dad8d2c3b1d725348851de546563cd6f",
+      "新版定稿/57-a-change-of-anthem-in-the-deep.md": "0731d925a98bafc222718c111985362e166b38b9189c516219a481e36d0d4b6e",
+      "视频/脚本/58.json": "8b0bd3d7d39000518789e9907aec53bd52fab1b9d6b4f22a152d158635b6e8ee",
+      "新版定稿/58-from-a-scratch-to-a-world-without-smallpox.md": "1aa2a0d2c51da76f9c9ebb88d049dd1a55ab530791566fdbf6476e5aa48c15ee",
+      "视频/脚本/59.json": "df1db4174d942371166048b220ef6d55b0b700b2ce31c866edf6dfdf33b92f0c",
+      "新版定稿/59-saving-the-sky.md": "7bf9c4661e733e7af23dc2f11bc820b809ec93dad75a94fb6a12748226e8722c",
+      "视频/脚本/60.json": "cd10eb60e8ea365ce653938ba4339901001cf8d6535c50096c2e736a385b844e",
+      "新版定稿/60-the-scientific-giant-who-changed-the-world.md": "130158a4a5cd0bb680bf8ebaa83fb309e3ae3b41e1818bfd3179eadb13c26810",
+      "视频/脚本/61.json": "2d08704376faff25b06d334d7567a381460975a56a4cef6b4ae97b3580ea8dbc",
+      "新版定稿/61-the-steel-box-that-remade-the-world.md": "135cc9cfbcbd68d957f831cf55558112a45b1cc3749366cb9a304507355c7d2c",
+      "视频/脚本/62.json": "0779c44ccd17679ec853adc3fcc733623fc774e3cb6f68e59c7bb2c4ae62d541",
+      "新版定稿/62-dolly-the-copied-sheep.md": "9edfbd3ebacdecc8c3aa3034d38dd371a105c19382282e8c0de2d08a1713f863",
+      "视频/脚本/63.json": "5d266d80f9cf29cce6f7e34531449cf75191a42f180102685a5bcd04849e75c5",
+      "新版定稿/63-the-crowded-heavens.md": "6ef79d4310019dfefa7364b8a428411a6bc337678c69fa5cbc89b84689e253a4",
+      "视频/脚本/64.json": "12a36862765922d72ce6e5a4c5fe85f548364eed65fe3b3b284f0b38899a965f",
+      "新版定稿/64-the-day-zero-that-never-came.md": "e0c83cbe36745adbbffd33a156fa8d0671704ea976cb13215cabb612639b37a5",
+      "视频/脚本/65.json": "78e60dd231df4ac71df83e21a26f82bbf706dc0bef80bee156a36bc287661ede",
+      "新版定稿/65-the-day-the-doomsday-vault-opened.md": "71a50d32e25955e713e6ca108ab68422a4fd5b77c914a9074eece1dc33cbff89",
+      "视频/脚本/66.json": "ad5324af4270834186285a5e7273a90213094077adc6f9e1d5c7b0ebff9cf035",
+      "新版定稿/66-the-burrs-that-became-velcro.md": "75dbe6c148ca97a7780ac1737f33f58bf8ee27a51aa729a83315705655b12b2a",
+      "视频/脚本/67.json": "6839a46ebdb51cdcff6a65ca238efc228f1e114efd1734cee6c994ca659a29cb",
+      "新版定稿/67-the-cave-found-by-a-dog.md": "10e37b81eeef4e3289448a6b4fd679f34d495a4fc087c57747e6dca949e00cf1",
+      "视频/脚本/68.json": "568f72dacac48e206811d35a57c7fa22e3da428783f64e507c184f2090e579f3",
+      "新版定稿/68-the-last-flight-of-the-hindenburg.md": "c25f58ffb0e3748336767bb7470dd7cef10374c53cbb48af89dba26f65b2dd5c",
+      "视频/脚本/69.json": "c493528f054e2d572e56b8ea15be0950158e86e3d3271b0f94237e8d296163ff",
+      "新版定稿/69-the-trial-of-the-father-of-the-atomic-bomb.md": "570eda5b7d979d71e9bcad1c67e295ed326ecdb8b61e663aba33272c8a9451bd",
+      "视频/脚本/70.json": "0f6827f02cef0d2416f9d7d69b7e1c5553acee7cf6dc89f3379201264587236c",
+      "新版定稿/70-the-stamp-that-changed-the-post.md": "edfd85cea33730ba67e4210e756da1f2945f1a21bce55c7e75497cb5f0095d80"
+    },
+    "source_file_count": 140,
+    "working_script_count": 70,
+    "target_request_exactly_matches_context": true
+  },
+  "request_source_sha256": {
+    "视频/脚本/07.json": "b9b4ec0b90a4d1070b193fe42f5c30e1a3717560b03746a06d4b16388a83047f",
+    "视频/工具/初稿生成/gen07.py": "63096b6215488d1534827116c2cdfd3ee20e694f38c8df66b393ef3893b38674",
+    "新版定稿/07-the-octopus-that-escaped.md": "c8a55f3a7e3e0ceccdaa047f1da6a7d58abf82ae627763bd299e86afdb53ddc7",
+    "视频/制作记录/07_待改清单.md": "b006844fa50b8f92ead2f248673cbbd6f349389d4cb57270af9c29db70eab5d8",
+    "视频/制作记录/逐句确认/07.json": "afbe96dfe17bea1d5ef249cde6ea911f31c9b058d2de975ffc6bbe97b104cef9"
+  },
+  "accepted_source": {
+    "id": "07",
+    "path": ".github/video-revision-batch/accepted-reviewed07/07-current.mp4",
+    "sha256": "3ba931446468d28e2d1eea2fa57ddf1c79b24bad52be4fbd697a828c7865dede",
+    "git_blob_sha": "c12157cb4f8acab2a26a604c1f31866cb34571ca",
+    "bytes": 14781446,
+    "width": 3840,
+    "height": 2160,
+    "summary_frames": 60,
+    "current_accepted_review_source_run": 43548189084,
+    "current_accepted_first34_hold18_container": true,
+    "aac_adts_sha256": "16b6293adfc7a3c35224408ae39d831317e1932f8d47876824e129129c9115d8"
+  },
+  "checker_reference_preparation": {
+    "article": "07",
+    "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+    "reference_prepared": true,
+    "acceptance": false,
+    "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+    "source_sha256": "b9b4ec0b90a4d1070b193fe42f5c30e1a3717560b03746a06d4b16388a83047f",
+    "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+    "checker_program_sha256": {
+      "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+      "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+      "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+      "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+      "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+      "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+    },
+    "reference_calls": [
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-raw",
+        "method": "create",
+        "source_slice": "The Octopus That Escaped",
+        "exact_native_cache_key": "06f9cd3fb3018b3fa5ca5e5583cdccb21b5e8cf3.pkl",
+        "cache_input_text_sha256": "477f0034c5044ba9d512e4c5c22e15e392f8ddeaaa6c4376075d8c3a224040a3",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-timed",
+        "method": "create_timed",
+        "source_slice": "The Octopus That Escaped",
+        "exact_native_cache_key": "0014e593c704a02cfc91b7e1702d6ac0aebe4d8a.pkl",
+        "cache_input_text_sha256": "477f0034c5044ba9d512e4c5c22e15e392f8ddeaaa6c4376075d8c3a224040a3",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "One night in early 2016, after keepers at New Zealand's National Aquarium in Napier had left, an octopus named Inky crept through an aperture in the mesh atop its tank.",
+        "exact_native_cache_key": "e6c2cbace2b273164dd4dbd0d6ca4604c07b4473.pkl",
+        "cache_input_text_sha256": "8af1365cd51ea34d5ff6782c5fbeb52d546b87ab8e66f9bba56c7fb0f8b3c4a3",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "One night in early 2016, after keepers at New Zealand's National Aquarium in Napier had left, an octopus named Inky crept through an aperture in the mesh atop its tank.",
+        "exact_native_cache_key": "5be888737fbbb263809986a3c85489e494d815a4.pkl",
+        "cache_input_text_sha256": "8af1365cd51ea34d5ff6782c5fbeb52d546b87ab8e66f9bba56c7fb0f8b3c4a3",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "One night in early 2016,",
+        "exact_native_cache_key": "926c0a75752173b68cc977895d5fe31b63cf2ca1.pkl",
+        "cache_input_text_sha256": "500d5061ff81377a0ae79db63c832073cb7616624929bc7f3fbf5a96f6244457",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S1",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "after keepers at New Zealand's National Aquarium in Napier had left,",
+        "exact_native_cache_key": "6bc31a88a40c295cf1e8d42e701547445a6f2b31.pkl",
+        "cache_input_text_sha256": "1cc58d4326ab82b4d3eaea5a0a17898b949a1d58bfb90562ef499eae679e9ea3",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S1",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "an octopus named Inky",
+        "exact_native_cache_key": "d92b388bcc27dba0d17afdec74be446012670bde.pkl",
+        "cache_input_text_sha256": "f49b3f3b2326d114c87f3c0ee77844dc816a628bd59b1ee82031d52e1f5d8933",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S1",
+        "piece": 4,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "crept through an aperture in the mesh atop its tank.",
+        "exact_native_cache_key": "cc57e4f9b875e23e6618a2d1b113e736642ec3f2.pkl",
+        "cache_input_text_sha256": "49b28b371097515c428d516f914da85860f47f308cbb1a4a75f690a8d704ddf6",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S1",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "One night in early 2016,",
+        "exact_native_cache_key": "926c0a75752173b68cc977895d5fe31b63cf2ca1.pkl",
+        "cache_input_text_sha256": "500d5061ff81377a0ae79db63c832073cb7616624929bc7f3fbf5a96f6244457",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S1",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "after keepers at New Zealand's National Aquarium in Napier had left,",
+        "exact_native_cache_key": "6bc31a88a40c295cf1e8d42e701547445a6f2b31.pkl",
+        "cache_input_text_sha256": "1cc58d4326ab82b4d3eaea5a0a17898b949a1d58bfb90562ef499eae679e9ea3",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S1",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "an octopus named Inky crept through an aperture in the mesh atop its tank.",
+        "exact_native_cache_key": "c589929d0a14afed26734a119bab49da161f8016.pkl",
+        "cache_input_text_sha256": "fb86cca761e8d1860b6d6b558b5edfd37241757e0047489c852695e15e6b4a4e",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The fugitive presumably dropped to the floor, crossed the room, and compressed its elastic body into a drain, whose pipe stretched some 50 metres to the Pacific.",
+        "exact_native_cache_key": "95bfb3c6c523d36f53399bb6ffb59007a7d74226.pkl",
+        "cache_input_text_sha256": "5e689cfb23b7198ca460bdc661d41ed3ec78199e97c16dc42cfbee7c79566c23",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The fugitive presumably dropped to the floor, crossed the room, and compressed its elastic body into a drain, whose pipe stretched some 50 metres to the Pacific.",
+        "exact_native_cache_key": "077bd40ebb119385274cce233636006791307155.pkl",
+        "cache_input_text_sha256": "5e689cfb23b7198ca460bdc661d41ed3ec78199e97c16dc42cfbee7c79566c23",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "The fugitive presumably dropped to the floor,",
+        "exact_native_cache_key": "20d66a586d9cfe850d4a7e337ce7581b017b3203.pkl",
+        "cache_input_text_sha256": "b23d026741331e8434bcd96318d5b10cac23b1292de2eb80519fd9027d700450",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S2",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "crossed the room,",
+        "exact_native_cache_key": "eb3ca69a94eed6790f2f7467d5fa8f7ff700c0cf.pkl",
+        "cache_input_text_sha256": "b2079773af1d9b0be0bc3aa4bd0043232b1dc29f4bf530d2825a13920f35d9dc",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S2",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and compressed its elastic body into a drain,",
+        "exact_native_cache_key": "6dcf5c0e296c5f90ceb167d38ddea820d6db2e60.pkl",
+        "cache_input_text_sha256": "a1a0321f8ca1bc6bc9b21e0b3e0c916d11dfaddae95f728da89864e210aa38c0",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S2",
+        "piece": 4,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "whose pipe stretched some 50 metres to the Pacific.",
+        "exact_native_cache_key": "bd79f9e4ac2ea36664f316330ad22d29b7da2347.pkl",
+        "cache_input_text_sha256": "3adc0644dbf4e82feac46ce94393bbf8a944b9e32dbec307be7772b9b4a5d91c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S2",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "The fugitive presumably dropped to the floor,",
+        "exact_native_cache_key": "20d66a586d9cfe850d4a7e337ce7581b017b3203.pkl",
+        "cache_input_text_sha256": "b23d026741331e8434bcd96318d5b10cac23b1292de2eb80519fd9027d700450",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S2",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "crossed the room,",
+        "exact_native_cache_key": "eb3ca69a94eed6790f2f7467d5fa8f7ff700c0cf.pkl",
+        "cache_input_text_sha256": "b2079773af1d9b0be0bc3aa4bd0043232b1dc29f4bf530d2825a13920f35d9dc",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S2",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and compressed its elastic body into a drain,",
+        "exact_native_cache_key": "6dcf5c0e296c5f90ceb167d38ddea820d6db2e60.pkl",
+        "cache_input_text_sha256": "a1a0321f8ca1bc6bc9b21e0b3e0c916d11dfaddae95f728da89864e210aa38c0",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S2",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "whose pipe stretched some 50 metres to the Pacific.",
+        "exact_native_cache_key": "bd79f9e4ac2ea36664f316330ad22d29b7da2347.pkl",
+        "cache_input_text_sha256": "3adc0644dbf4e82feac46ce94393bbf8a944b9e32dbec307be7772b9b4a5d91c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Staff reconstructed that route from the slime residue it deposited.",
+        "exact_native_cache_key": "352325e617c04b7beec168212267d59d5f40b056.pkl",
+        "cache_input_text_sha256": "24765039cf7d35d3796fb7d493d1b204210ad6d11437bd6e4d5af067fbf56f5c",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Staff reconstructed that route from the slime residue it deposited.",
+        "exact_native_cache_key": "603b24db703b7f7bf3e80f69b1227b35ca9f69fb.pkl",
+        "cache_input_text_sha256": "24765039cf7d35d3796fb7d493d1b204210ad6d11437bd6e4d5af067fbf56f5c",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Inky had resided in captivity since 2014, when a fisherman retrieved it from a crayfish pot off Napier.",
+        "exact_native_cache_key": "0c52a6dc2db0ae780e2d5afe9e62ae17dbc7248f.pkl",
+        "cache_input_text_sha256": "a0b49d83f03ba2b9c6012e5201f1258bc47637f08871bfabd3541b9a35eec077",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Inky had resided in captivity since 2014, when a fisherman retrieved it from a crayfish pot off Napier.",
+        "exact_native_cache_key": "55c838f941f38b51b71fb5a6f0f33e579d775edb.pkl",
+        "cache_input_text_sha256": "a0b49d83f03ba2b9c6012e5201f1258bc47637f08871bfabd3541b9a35eec077",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Inky had resided in captivity since 2014,",
+        "exact_native_cache_key": "da0142ed56c777489268aba0bd13712cccb24b05.pkl",
+        "cache_input_text_sha256": "7f73339552e1dd60f59f8919baab30b2e3895e74597a486d51568751399c3fd3",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S4",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "when a fisherman retrieved it from a crayfish pot off Napier.",
+        "exact_native_cache_key": "af7129b7c55649ff03ccc6ae04aa9256978fe013.pkl",
+        "cache_input_text_sha256": "62a49b4a3d1a693e316378717516c43b8cc2a09a08f6232546a636a137b626ba",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S4",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Inky had resided in captivity since 2014,",
+        "exact_native_cache_key": "da0142ed56c777489268aba0bd13712cccb24b05.pkl",
+        "cache_input_text_sha256": "7f73339552e1dd60f59f8919baab30b2e3895e74597a486d51568751399c3fd3",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S4",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "when a fisherman retrieved it from a crayfish pot off Napier.",
+        "exact_native_cache_key": "af7129b7c55649ff03ccc6ae04aa9256978fe013.pkl",
+        "cache_input_text_sha256": "62a49b4a3d1a693e316378717516c43b8cc2a09a08f6232546a636a137b626ba",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The breakout went unreported for about three months.",
+        "exact_native_cache_key": "e7cee9413b6138399aa36dda759afb1b67a416e0.pkl",
+        "cache_input_text_sha256": "a0b804649a277007d42471b4d58371d277b58015258bc5e169fe67d7390aa83b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The breakout went unreported for about three months.",
+        "exact_native_cache_key": "3b35e11ce8d4d4a5cfc7de95f99d563e40629d41.pkl",
+        "cache_input_text_sha256": "a0b804649a277007d42471b4d58371d277b58015258bc5e169fe67d7390aa83b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Made public in April 2016, the story travelled the globe.",
+        "exact_native_cache_key": "ae9bcf7cafcf50047120ab95d4b916d57c3c15b3.pkl",
+        "cache_input_text_sha256": "94e37b76380cc7fa11bf1d79c9c7ef63b2eafa50e0073eb4977c594bf3347254",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Made public in April 2016, the story travelled the globe.",
+        "exact_native_cache_key": "31a0b3fa272db08f9fe05b0ecc00ecb5bdbe7cf2.pkl",
+        "cache_input_text_sha256": "94e37b76380cc7fa11bf1d79c9c7ef63b2eafa50e0073eb4977c594bf3347254",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Made public in April 2016,",
+        "exact_native_cache_key": "31d08f34c92304390bf3989b7f1b9bebfdad8ba1.pkl",
+        "cache_input_text_sha256": "9cda6b53276dcec1dea96babe184b75b8d987040a5f682e6db7eb376d21aaf84",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S6",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "the story travelled the globe.",
+        "exact_native_cache_key": "9b2cb059f54f4ebba00d4aeeed489cbe0ab09a3e.pkl",
+        "cache_input_text_sha256": "0b767f77127619957eb76841c2497b4281aef8ee735962a4a301fea961961eff",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Such agility stems from an octopus's pliable body, which has no skeleton or shell.",
+        "exact_native_cache_key": "0328ce9e538ac51281f35f9532a35cff46ffb06d.pkl",
+        "cache_input_text_sha256": "1b9758bd1771e59190a241f48637df7114642c43d60eaba6383e40fd4f534978",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Such agility stems from an octopus's pliable body, which has no skeleton or shell.",
+        "exact_native_cache_key": "b74813eb85ad554004f69e9c4fd87c869d9d87fd.pkl",
+        "cache_input_text_sha256": "1b9758bd1771e59190a241f48637df7114642c43d60eaba6383e40fd4f534978",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Such agility stems from an octopus's pliable body,",
+        "exact_native_cache_key": "48841f8227954a2a4340a3d2abd7b34c7c4009fc.pkl",
+        "cache_input_text_sha256": "40b0665d3845745ee3c13acbcdcea3f615f65708da17301c5262f57bac0dbb6d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S7",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "which has no skeleton or shell.",
+        "exact_native_cache_key": "556b86181bc608c7ed618104873780bf0a9ee637.pkl",
+        "cache_input_text_sha256": "d2de52e15ed08566712984959636dedf5c1ff878cc1926df3cba18bde87db869",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S7",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Such agility stems from an octopus's pliable body,",
+        "exact_native_cache_key": "48841f8227954a2a4340a3d2abd7b34c7c4009fc.pkl",
+        "cache_input_text_sha256": "40b0665d3845745ee3c13acbcdcea3f615f65708da17301c5262f57bac0dbb6d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S7",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "which has no skeleton or shell.",
+        "exact_native_cache_key": "556b86181bc608c7ed618104873780bf0a9ee637.pkl",
+        "cache_input_text_sha256": "d2de52e15ed08566712984959636dedf5c1ff878cc1926df3cba18bde87db869",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Its only hard part is its beak, so any crevice that accommodates the beak will do.",
+        "exact_native_cache_key": "d9f2af30b2d2314f76c079788705dd91ceff5ca1.pkl",
+        "cache_input_text_sha256": "14b05cfb19fcfeabd95bd1f4fa732b76cc0494cd327f0534efd6cf713eed7f20",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Its only hard part is its beak, so any crevice that accommodates the beak will do.",
+        "exact_native_cache_key": "0f546816e972c97d82d00a210051bdcf5e52b014.pkl",
+        "cache_input_text_sha256": "14b05cfb19fcfeabd95bd1f4fa732b76cc0494cd327f0534efd6cf713eed7f20",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Its only hard part is its beak,",
+        "exact_native_cache_key": "a907bb972e7b41f75e57d36489df91b91afb8f70.pkl",
+        "cache_input_text_sha256": "f76220874a4755312e5ec4b759488d8a131c876a6efb7e4f5e46f4d3135bfd0b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S8",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "so any crevice that accommodates the beak will do.",
+        "exact_native_cache_key": "fbce66e8c82d859b3fad16b35daf1294182188b1.pkl",
+        "cache_input_text_sha256": "447797e51e287c917cd436280ffdc0597c42a904c27df2087c0a85684593d8da",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S8",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Its only hard part is its beak,",
+        "exact_native_cache_key": "a907bb972e7b41f75e57d36489df91b91afb8f70.pkl",
+        "cache_input_text_sha256": "f76220874a4755312e5ec4b759488d8a131c876a6efb7e4f5e46f4d3135bfd0b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S8",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "so any crevice that accommodates the beak will do.",
+        "exact_native_cache_key": "fbce66e8c82d859b3fad16b35daf1294182188b1.pkl",
+        "cache_input_text_sha256": "447797e51e287c917cd436280ffdc0597c42a904c27df2087c0a85684593d8da",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Roughly two-thirds of its 500 million neurons lie in the limbs, which handle sensory input and react with some autonomy.",
+        "exact_native_cache_key": "0a11e33f2c269ce63e29e4c9cf6694643dd3db97.pkl",
+        "cache_input_text_sha256": "f176a9106af8ac7081d96e028711c2a014311d0093a582214f015b0353a29431",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Roughly two-thirds of its 500 million neurons lie in the limbs, which handle sensory input and react with some autonomy.",
+        "exact_native_cache_key": "45f21dfdec528d8830d3fc8f7984300e4b6603b5.pkl",
+        "cache_input_text_sha256": "f176a9106af8ac7081d96e028711c2a014311d0093a582214f015b0353a29431",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Roughly two-thirds of its 500 million neurons lie in the limbs,",
+        "exact_native_cache_key": "7abba129b1ae3cffe5198b8c51799d9682f333f3.pkl",
+        "cache_input_text_sha256": "685d906e85659ceaf08af64a678160c79f9a9d3f3b0a3c3281709373ea203790",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S9",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "which handle sensory input",
+        "exact_native_cache_key": "d11c254d596e2187beb32434a63d57dbfd865e5d.pkl",
+        "cache_input_text_sha256": "5308d0d50aef6f9ba64cb7b79c18ba8a524b8abc575b1a169aedb8a062b9e519",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S9",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and react with some autonomy.",
+        "exact_native_cache_key": "48a83fb0dce69f0c9de89023006c8f2252f2f4ae.pkl",
+        "cache_input_text_sha256": "d999a2cef3d0189220067682242f514d1dd06e2c728c00e4037460fed22724a4",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S9",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Roughly two-thirds of its 500 million neurons lie in the limbs,",
+        "exact_native_cache_key": "7abba129b1ae3cffe5198b8c51799d9682f333f3.pkl",
+        "cache_input_text_sha256": "685d906e85659ceaf08af64a678160c79f9a9d3f3b0a3c3281709373ea203790",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S9",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "which handle sensory input and react with some autonomy.",
+        "exact_native_cache_key": "8e28b6a07fd0828290aff9c01f191eafc39355d7.pkl",
+        "cache_input_text_sha256": "c0e1f7a4bf5ea96adbb34f62e8000b2478587bdc11f65daa06e93d147ab23fa8",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Its wits are as versatile as its anatomy.",
+        "exact_native_cache_key": "da9547f0117d481b6687282f45c7ecfcedbbaa61.pkl",
+        "cache_input_text_sha256": "c0053e3e641ed77c444c09ea0fb2b8f9454f47e05a409ba67dcf756d0ff4d25f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Its wits are as versatile as its anatomy.",
+        "exact_native_cache_key": "71b5a26d39c26e9ea1b2092d86473a5b169482fb.pkl",
+        "cache_input_text_sha256": "c0053e3e641ed77c444c09ea0fb2b8f9454f47e05a409ba67dcf756d0ff4d25f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "A giant Pacific octopus in Seattle learned to open screw-top jars, needing 15 minutes at the outset, later about two.",
+        "exact_native_cache_key": "0d43a1d9a61785d5f6b4cacc1cea338980714ffe.pkl",
+        "cache_input_text_sha256": "ca8ca5037e0c73c7b9d00c5e362a62dbf4e83455af133e4328205293c35b8b62",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "A giant Pacific octopus in Seattle learned to open screw-top jars, needing 15 minutes at the outset, later about two.",
+        "exact_native_cache_key": "a24f34288ab81243ae4c78b1aae328a2a75b1fa0.pkl",
+        "cache_input_text_sha256": "ca8ca5037e0c73c7b9d00c5e362a62dbf4e83455af133e4328205293c35b8b62",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "A giant Pacific octopus in Seattle learned to open screw-top jars,",
+        "exact_native_cache_key": "3868a1c4daee393baee5659ad2f69a7e1937b65e.pkl",
+        "cache_input_text_sha256": "726e6fb6cbb2c1532c335dc403e93d9c77d4290edd58daf2bb791bdf388f95be",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S11",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "needing 15 minutes at the outset, later about two.",
+        "exact_native_cache_key": "ac8212ad9ce3accf7177a9c537062a1ee0461741.pkl",
+        "cache_input_text_sha256": "1861d116ae447763c6f8c7281463425ac87d0473a3e54e7f5a35088a5d7ab5d9",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S11",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "A giant Pacific octopus in Seattle learned to open screw-top jars,",
+        "exact_native_cache_key": "3868a1c4daee393baee5659ad2f69a7e1937b65e.pkl",
+        "cache_input_text_sha256": "726e6fb6cbb2c1532c335dc403e93d9c77d4290edd58daf2bb791bdf388f95be",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S11",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "needing 15 minutes at the outset,",
+        "exact_native_cache_key": "a6b22e8c31ed34780392f99126d364f25f154406.pkl",
+        "cache_input_text_sha256": "7622c8bbe9ff261ba7b3c1407c6636421f3cf69cfd8d884da83357486b616f22",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S11",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "later about two.",
+        "exact_native_cache_key": "e21b01fafd2bb3860b9e7a08351024b93c6b1454.pkl",
+        "cache_input_text_sha256": "5ccc010942d25b654fdce99879a09ce246985fc23bf06078469dc4d039562003",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "In a 2010 study, octopuses came to discriminate between two strangers, a feeder and one who touched them with a bristly stick, adopting a different hue and posture for each.",
+        "exact_native_cache_key": "8dd0e5d767ad5fd32c378901ed1de8740e7a545e.pkl",
+        "cache_input_text_sha256": "be8e23980e5deae5ea35e8d0056c36440f1428278ad152465f2a301fff2003f4",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "In a 2010 study, octopuses came to discriminate between two strangers, a feeder and one who touched them with a bristly stick, adopting a different hue and posture for each.",
+        "exact_native_cache_key": "4b7dad7d5a61d24cc3c7e1e7609b3587366d7f35.pkl",
+        "cache_input_text_sha256": "be8e23980e5deae5ea35e8d0056c36440f1428278ad152465f2a301fff2003f4",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "In a 2010 study, octopuses came to discriminate between two strangers,",
+        "exact_native_cache_key": "8d53e6ee2ddddf4119df5337b2e4df4d79685881.pkl",
+        "cache_input_text_sha256": "d0d46acf6be1500f04482bd15ca9b0f81aa6315eec2295560296b902eaaac507",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S12",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "a feeder and one who touched them with a bristly stick,",
+        "exact_native_cache_key": "be59c333fb9ea3fdf6446ca38e74321849b6d586.pkl",
+        "cache_input_text_sha256": "bb644dfd2e0b605f344966b8f52bb71b5a7a4c2e5066a67862d454e883de6435",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S12",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "adopting a different hue and posture for each.",
+        "exact_native_cache_key": "8191a22cbb26540b8c9bde3fc9ac2b3300ae0e12.pkl",
+        "cache_input_text_sha256": "059b2e7f775aa46562fb55f1685e949829aca683d71bf9fb9d1ebc8bb8f2d6ee",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S12",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "In a 2010 study,",
+        "exact_native_cache_key": "2b67c51c08729c7a35749914a95bf290aa11c227.pkl",
+        "cache_input_text_sha256": "6d6049ca9b3f8eed453f7d90b2a20c9c529c7e3bfa9948644a89e1d02aa3ba35",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S12",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "octopuses came to discriminate between two strangers,",
+        "exact_native_cache_key": "78b4ee9a356297b52775f2028e2df908f0dbd1f6.pkl",
+        "cache_input_text_sha256": "313e9ec5e31a60dd3b32419362779a7f22a41b1548359f701f3e6c804b19332d",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S12",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "a feeder and one who touched them with a bristly stick,",
+        "exact_native_cache_key": "be59c333fb9ea3fdf6446ca38e74321849b6d586.pkl",
+        "cache_input_text_sha256": "bb644dfd2e0b605f344966b8f52bb71b5a7a4c2e5066a67862d454e883de6435",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S12",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "adopting a different hue and posture for each.",
+        "exact_native_cache_key": "8191a22cbb26540b8c9bde3fc9ac2b3300ae0e12.pkl",
+        "cache_input_text_sha256": "059b2e7f775aa46562fb55f1685e949829aca683d71bf9fb9d1ebc8bb8f2d6ee",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "In July 2012 the Cambridge Declaration on Consciousness listed octopuses among animals possessing the neurological substrates for conscious awareness.",
+        "exact_native_cache_key": "31de23ddb515bde2897bcf24dcd62e803a20fdac.pkl",
+        "cache_input_text_sha256": "709d4dadc0c33940bcb2b2fe22831bf463fc4949265a6a931200bb7afe91576c",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "In July 2012 the Cambridge Declaration on Consciousness listed octopuses among animals possessing the neurological substrates for conscious awareness.",
+        "exact_native_cache_key": "210a63a0d1ed9bcdd58f780c876ffbf8310f664e.pkl",
+        "cache_input_text_sha256": "709d4dadc0c33940bcb2b2fe22831bf463fc4949265a6a931200bb7afe91576c",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "In July 2012 the Cambridge Declaration on Consciousness listed octopuses",
+        "exact_native_cache_key": "84b58196f994825096ee4893460613d26f789f66.pkl",
+        "cache_input_text_sha256": "821c91351a107992b3eed3add278aafd81e24c6a7b407fdc05e2fde464a7ec62",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S13",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "among animals possessing the neurological substrates for conscious awareness.",
+        "exact_native_cache_key": "a30368eff70cdc4db5d5d9b1ca77fe54b1c22d7c.pkl",
+        "cache_input_text_sha256": "13c306f9b9fbe143cb81bd3402982776d7d49f9e6946fbfce594e0a4c66490f2",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "A November 2021 UK government review recommended treating them as sentient, and the Animal Welfare (Sentience) Act encompassed them in April 2022.",
+        "exact_native_cache_key": "de887c080c359f00271ff93b1d5d542b6b5c0924.pkl",
+        "cache_input_text_sha256": "66da4785947c9aba0be562ad9453070ada995b8190799ad0f3f24c17a74ca048",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "A November 2021 UK government review recommended treating them as sentient, and the Animal Welfare (Sentience) Act encompassed them in April 2022.",
+        "exact_native_cache_key": "592055624013c6ee2c269be18317029424c46d33.pkl",
+        "cache_input_text_sha256": "66da4785947c9aba0be562ad9453070ada995b8190799ad0f3f24c17a74ca048",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "A November 2021 UK government review recommended treating them as sentient,",
+        "exact_native_cache_key": "bb095e7078feae75ce2f77f653f3988b02a3cc44.pkl",
+        "cache_input_text_sha256": "f59eee8115d126a8dee6a015d378516707db8e4e1ddda594f6f3cf01f8341292",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S14",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and the Animal Welfare (Sentience) Act encompassed them in April 2022.",
+        "exact_native_cache_key": "9a650654a49ba319fc982056689e75eb8805f4f5.pkl",
+        "cache_input_text_sha256": "f8808a55b0c2277a98fda49ef8183358113ad894a0e0a6a6a1db09c2b31c3acf",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S14",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "A November 2021 UK government review recommended treating them as sentient,",
+        "exact_native_cache_key": "bb095e7078feae75ce2f77f653f3988b02a3cc44.pkl",
+        "cache_input_text_sha256": "f59eee8115d126a8dee6a015d378516707db8e4e1ddda594f6f3cf01f8341292",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S14",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and the Animal Welfare (Sentience) Act encompassed them in April 2022.",
+        "exact_native_cache_key": "9a650654a49ba319fc982056689e75eb8805f4f5.pkl",
+        "cache_input_text_sha256": "f8808a55b0c2277a98fda49ef8183358113ad894a0e0a6a6a1db09c2b31c3acf",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S15",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "None of this proves an inner life.",
+        "exact_native_cache_key": "2171b05a2e0faf5480e38f00ce1c04e29c5f0422.pkl",
+        "cache_input_text_sha256": "24ae30ea096e82e1bd674aace610566e673fc68f5ea0a86970e8d669ad93abbf",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "None of this proves an inner life.",
+        "exact_native_cache_key": "b6d4f28b9d7ca40dcd25a7b2485812aae75bc723.pkl",
+        "cache_input_text_sha256": "24ae30ea096e82e1bd674aace610566e673fc68f5ea0a86970e8d669ad93abbf",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Inky, somewhere beyond the pipe, remained wholly oblivious to the debate.",
+        "exact_native_cache_key": "c82cbf6e23707680dd65319445badde4aaf78237.pkl",
+        "cache_input_text_sha256": "602a8906de76f3529fc4df0322bc77c92a1a9292e43be7bd6a0d80abb4428dbc",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Inky, somewhere beyond the pipe, remained wholly oblivious to the debate.",
+        "exact_native_cache_key": "e9b1c2b313edaf41e8199fecdf5f30abe7ae2d8f.pkl",
+        "cache_input_text_sha256": "602a8906de76f3529fc4df0322bc77c92a1a9292e43be7bd6a0d80abb4428dbc",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Inky, somewhere beyond the pipe,",
+        "exact_native_cache_key": "a338f69fd05773dd5d1fbc7026afb83d8686b459.pkl",
+        "cache_input_text_sha256": "9228cf7a05dea3df9994edd6ff5bb187ac5294786f19d53bc5df2d467c97d2df",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S16",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "remained wholly oblivious to the debate.",
+        "exact_native_cache_key": "dbdb186c9685bc86db28fc4672e8d3cc278e83c5.pkl",
+        "cache_input_text_sha256": "0bacb17994f2ddb0b3f4ab6b018d9f6ae93e9af58d82491a81e48808abfe1d38",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S16",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Inky,",
+        "exact_native_cache_key": "1ad02aadf36e77834e2301e6f40be35991df6047.pkl",
+        "cache_input_text_sha256": "3066e03e8ac7346e517825fd8f8fdaf788b42498dcc0091d6589a561ee32e9bc",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S16",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "somewhere beyond the pipe,",
+        "exact_native_cache_key": "28e8fcee9658c41a163d6c721e4a47cb25c789a5.pkl",
+        "cache_input_text_sha256": "77daed5456594ac599703703305be2583727acffcbe0e076d3cd483c1ff20d43",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S16",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "remained wholly oblivious to the debate.",
+        "exact_native_cache_key": "dbdb186c9685bc86db28fc4672e8d3cc278e83c5.pkl",
+        "cache_input_text_sha256": "0bacb17994f2ddb0b3f4ab6b018d9f6ae93e9af58d82491a81e48808abfe1d38",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      }
+    ],
+    "unique_reference_key_count": 72,
+    "raw_mother_cache_scalar_manifest": [
+      {
+        "exact_native_cache_key": "06f9cd3fb3018b3fa5ca5e5583cdccb21b5e8cf3.pkl",
+        "pkl_sha256": "123f5f225f6c873ce83435d0176341df44117fe0878672a28354a75ab0bd2a23",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "标题",
+            "piece": null,
+            "reference_kind": "title-default-raw",
+            "method": "create",
+            "source_slice": "The Octopus That Escaped",
+            "exact_native_cache_key": "06f9cd3fb3018b3fa5ca5e5583cdccb21b5e8cf3.pkl",
+            "cache_input_text_sha256": "477f0034c5044ba9d512e4c5c22e15e392f8ddeaaa6c4376075d8c3a224040a3",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          36352
+        ],
+        "unprocessed_array_sha256": "3dd44efe91e060b7049dbe8988b5d7072528d93dd2899338ad1b0398a58e2441"
+      },
+      {
+        "exact_native_cache_key": "e6c2cbace2b273164dd4dbd0d6ca4604c07b4473.pkl",
+        "pkl_sha256": "1c9a67ffa4d7510f8e352533da6e6ceab320c49028ec10cf9a6bad11fc2afbc7",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "One night in early 2016, after keepers at New Zealand's National Aquarium in Napier had left, an octopus named Inky crept through an aperture in the mesh atop its tank.",
+            "exact_native_cache_key": "e6c2cbace2b273164dd4dbd0d6ca4604c07b4473.pkl",
+            "cache_input_text_sha256": "8af1365cd51ea34d5ff6782c5fbeb52d546b87ab8e66f9bba56c7fb0f8b3c4a3",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          302592
+        ],
+        "unprocessed_array_sha256": "919275b06998f9f02d7f295834b21d5245d5d7e6e92fe850b2b51991664c3d1b"
+      },
+      {
+        "exact_native_cache_key": "926c0a75752173b68cc977895d5fe31b63cf2ca1.pkl",
+        "pkl_sha256": "61d8a4116b4ff1f8b5e4f8aeece477f330da2ad6f32c719a2ed0fe7668381597",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "One night in early 2016,",
+            "exact_native_cache_key": "926c0a75752173b68cc977895d5fe31b63cf2ca1.pkl",
+            "cache_input_text_sha256": "500d5061ff81377a0ae79db63c832073cb7616624929bc7f3fbf5a96f6244457",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S1",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "One night in early 2016,",
+            "exact_native_cache_key": "926c0a75752173b68cc977895d5fe31b63cf2ca1.pkl",
+            "cache_input_text_sha256": "500d5061ff81377a0ae79db63c832073cb7616624929bc7f3fbf5a96f6244457",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "61d8a4116b4ff1f8",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          59904
+        ],
+        "unprocessed_array_sha256": "eec3eac6b0784506f1396073e488a9facfe12ba8f8554cd32ede5c34b4661369"
+      },
+      {
+        "exact_native_cache_key": "6bc31a88a40c295cf1e8d42e701547445a6f2b31.pkl",
+        "pkl_sha256": "de650fdde9b8780fc484598b7b2dc2750b99dc1c1785f8f6c8f6362f7939db65",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "after keepers at New Zealand's National Aquarium in Napier had left,",
+            "exact_native_cache_key": "6bc31a88a40c295cf1e8d42e701547445a6f2b31.pkl",
+            "cache_input_text_sha256": "1cc58d4326ab82b4d3eaea5a0a17898b949a1d58bfb90562ef499eae679e9ea3",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S1",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "after keepers at New Zealand's National Aquarium in Napier had left,",
+            "exact_native_cache_key": "6bc31a88a40c295cf1e8d42e701547445a6f2b31.pkl",
+            "cache_input_text_sha256": "1cc58d4326ab82b4d3eaea5a0a17898b949a1d58bfb90562ef499eae679e9ea3",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "de650fdde9b8780f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          108544
+        ],
+        "unprocessed_array_sha256": "0e704670faa4394292ae08a58e88a6f29d964bd02be32d51d106301cd4b06b3d"
+      },
+      {
+        "exact_native_cache_key": "d92b388bcc27dba0d17afdec74be446012670bde.pkl",
+        "pkl_sha256": "3d0b50a7855da096fefd31f46a85f78ea64e044c71e95e19afc79d90e1ae97a4",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "an octopus named Inky",
+            "exact_native_cache_key": "d92b388bcc27dba0d17afdec74be446012670bde.pkl",
+            "cache_input_text_sha256": "f49b3f3b2326d114c87f3c0ee77844dc816a628bd59b1ee82031d52e1f5d8933",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "3d0b50a7855da096",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          38400
+        ],
+        "unprocessed_array_sha256": "b66587afad399f5647df9d59622b8de62e99b3a863c6995565c68d5cdb112d19"
+      },
+      {
+        "exact_native_cache_key": "cc57e4f9b875e23e6618a2d1b113e736642ec3f2.pkl",
+        "pkl_sha256": "10fbb3f3f4a934ef7185c908a62b7b20b6d22128deebc3fb69f0ef5ae41fec60",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 4,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "crept through an aperture in the mesh atop its tank.",
+            "exact_native_cache_key": "cc57e4f9b875e23e6618a2d1b113e736642ec3f2.pkl",
+            "cache_input_text_sha256": "49b28b371097515c428d516f914da85860f47f308cbb1a4a75f690a8d704ddf6",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "10fbb3f3f4a934ef",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          67072
+        ],
+        "unprocessed_array_sha256": "997b5d74cfbae9a0655174ef8e0cf026a05ef3be72bed16a9715abf02badbad4"
+      },
+      {
+        "exact_native_cache_key": "c589929d0a14afed26734a119bab49da161f8016.pkl",
+        "pkl_sha256": "98d7a64704f81d9bb4fd5ddd65debc2bffd123f669f186457d8939f46b683384",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "an octopus named Inky crept through an aperture in the mesh atop its tank.",
+            "exact_native_cache_key": "c589929d0a14afed26734a119bab49da161f8016.pkl",
+            "cache_input_text_sha256": "fb86cca761e8d1860b6d6b558b5edfd37241757e0047489c852695e15e6b4a4e",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "98d7a64704f81d9b",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          116224
+        ],
+        "unprocessed_array_sha256": "bf2d5ab84c210c498891938002ba74c370920b115be548af8dadfc7cadc5f929"
+      },
+      {
+        "exact_native_cache_key": "95bfb3c6c523d36f53399bb6ffb59007a7d74226.pkl",
+        "pkl_sha256": "a2646496ac1a70d2a91c8d5e3ab4621e019d2fea5719df1a1691c237062f9ee9",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The fugitive presumably dropped to the floor, crossed the room, and compressed its elastic body into a drain, whose pipe stretched some 50 metres to the Pacific.",
+            "exact_native_cache_key": "95bfb3c6c523d36f53399bb6ffb59007a7d74226.pkl",
+            "cache_input_text_sha256": "5e689cfb23b7198ca460bdc661d41ed3ec78199e97c16dc42cfbee7c79566c23",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          259584
+        ],
+        "unprocessed_array_sha256": "34bafe0d3295e148ba4c93a7b91c5956439f88ea06cf279bd90aea102883e4cf"
+      },
+      {
+        "exact_native_cache_key": "20d66a586d9cfe850d4a7e337ce7581b017b3203.pkl",
+        "pkl_sha256": "3b8a2fbb3dea4425cd27e4a502e41592114544e9ff69ca05cbc4e6cca0b167c2",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "The fugitive presumably dropped to the floor,",
+            "exact_native_cache_key": "20d66a586d9cfe850d4a7e337ce7581b017b3203.pkl",
+            "cache_input_text_sha256": "b23d026741331e8434bcd96318d5b10cac23b1292de2eb80519fd9027d700450",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S2",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "The fugitive presumably dropped to the floor,",
+            "exact_native_cache_key": "20d66a586d9cfe850d4a7e337ce7581b017b3203.pkl",
+            "cache_input_text_sha256": "b23d026741331e8434bcd96318d5b10cac23b1292de2eb80519fd9027d700450",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "3b8a2fbb3dea4425",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          63488
+        ],
+        "unprocessed_array_sha256": "d46d365574ae15115dd58d40270137a6f9e62097cfb5525f285bd580701b1486"
+      },
+      {
+        "exact_native_cache_key": "eb3ca69a94eed6790f2f7467d5fa8f7ff700c0cf.pkl",
+        "pkl_sha256": "f2d0d0f55b2f3ec9658bf1a01dab8bc999dea21b58250fc3391e98cf3e5f033e",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "crossed the room,",
+            "exact_native_cache_key": "eb3ca69a94eed6790f2f7467d5fa8f7ff700c0cf.pkl",
+            "cache_input_text_sha256": "b2079773af1d9b0be0bc3aa4bd0043232b1dc29f4bf530d2825a13920f35d9dc",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S2",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "crossed the room,",
+            "exact_native_cache_key": "eb3ca69a94eed6790f2f7467d5fa8f7ff700c0cf.pkl",
+            "cache_input_text_sha256": "b2079773af1d9b0be0bc3aa4bd0043232b1dc29f4bf530d2825a13920f35d9dc",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "f2d0d0f55b2f3ec9",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          24576
+        ],
+        "unprocessed_array_sha256": "9c7cc9250254e029667be3660cc3964e2606a67c5374cf9b6eea3cf9d2e8a2ab"
+      },
+      {
+        "exact_native_cache_key": "6dcf5c0e296c5f90ceb167d38ddea820d6db2e60.pkl",
+        "pkl_sha256": "8e737925daecb44fd06d3e12650de4f4dc49198085178604787432b9e6b583a9",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and compressed its elastic body into a drain,",
+            "exact_native_cache_key": "6dcf5c0e296c5f90ceb167d38ddea820d6db2e60.pkl",
+            "cache_input_text_sha256": "a1a0321f8ca1bc6bc9b21e0b3e0c916d11dfaddae95f728da89864e210aa38c0",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S2",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and compressed its elastic body into a drain,",
+            "exact_native_cache_key": "6dcf5c0e296c5f90ceb167d38ddea820d6db2e60.pkl",
+            "cache_input_text_sha256": "a1a0321f8ca1bc6bc9b21e0b3e0c916d11dfaddae95f728da89864e210aa38c0",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "8e737925daecb44f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          67584
+        ],
+        "unprocessed_array_sha256": "7e614efabd5fd1c29fc6ac66f7e7d666e9808cae4f7b3003e36e755c3e7f7f43"
+      },
+      {
+        "exact_native_cache_key": "bd79f9e4ac2ea36664f316330ad22d29b7da2347.pkl",
+        "pkl_sha256": "534d8be04379b763bed56305e0475f0d9a165e8a23b0f468276581b3989d7124",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 4,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "whose pipe stretched some 50 metres to the Pacific.",
+            "exact_native_cache_key": "bd79f9e4ac2ea36664f316330ad22d29b7da2347.pkl",
+            "cache_input_text_sha256": "3adc0644dbf4e82feac46ce94393bbf8a944b9e32dbec307be7772b9b4a5d91c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S2",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "whose pipe stretched some 50 metres to the Pacific.",
+            "exact_native_cache_key": "bd79f9e4ac2ea36664f316330ad22d29b7da2347.pkl",
+            "cache_input_text_sha256": "3adc0644dbf4e82feac46ce94393bbf8a944b9e32dbec307be7772b9b4a5d91c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "534d8be04379b763",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          68608
+        ],
+        "unprocessed_array_sha256": "672f265b0efc08fbe398c0c7815fab9d84bbdc5423cd09d6e6b97829754acead"
+      },
+      {
+        "exact_native_cache_key": "352325e617c04b7beec168212267d59d5f40b056.pkl",
+        "pkl_sha256": "7f2f4ddab08a54e40a484990933da50f82684b7625d93f2cc98c21f981682160",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Staff reconstructed that route from the slime residue it deposited.",
+            "exact_native_cache_key": "352325e617c04b7beec168212267d59d5f40b056.pkl",
+            "cache_input_text_sha256": "24765039cf7d35d3796fb7d493d1b204210ad6d11437bd6e4d5af067fbf56f5c",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          106496
+        ],
+        "unprocessed_array_sha256": "4e6f99ab0931f7b648f670cd88a102b35ef9ce0aef5d395f6d7ec8df0c3265c6"
+      },
+      {
+        "exact_native_cache_key": "0c52a6dc2db0ae780e2d5afe9e62ae17dbc7248f.pkl",
+        "pkl_sha256": "9e4648e89bc0ac83235dc810da001dbfc0c1758e57173c9ce57a0142f785a83d",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Inky had resided in captivity since 2014, when a fisherman retrieved it from a crayfish pot off Napier.",
+            "exact_native_cache_key": "0c52a6dc2db0ae780e2d5afe9e62ae17dbc7248f.pkl",
+            "cache_input_text_sha256": "a0b49d83f03ba2b9c6012e5201f1258bc47637f08871bfabd3541b9a35eec077",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          182272
+        ],
+        "unprocessed_array_sha256": "1f6d1235c10f9ebfe11e0034c9417d2d9de8c6578d42ad0da496bf41e691f587"
+      },
+      {
+        "exact_native_cache_key": "da0142ed56c777489268aba0bd13712cccb24b05.pkl",
+        "pkl_sha256": "925a39e0ba413136ce3317e871b9192e4a8c5850982ef49a0dcc5601781549a8",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Inky had resided in captivity since 2014,",
+            "exact_native_cache_key": "da0142ed56c777489268aba0bd13712cccb24b05.pkl",
+            "cache_input_text_sha256": "7f73339552e1dd60f59f8919baab30b2e3895e74597a486d51568751399c3fd3",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S4",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Inky had resided in captivity since 2014,",
+            "exact_native_cache_key": "da0142ed56c777489268aba0bd13712cccb24b05.pkl",
+            "cache_input_text_sha256": "7f73339552e1dd60f59f8919baab30b2e3895e74597a486d51568751399c3fd3",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "925a39e0ba413136",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          93184
+        ],
+        "unprocessed_array_sha256": "1bff2785d1af2ee664d076a448749afbf4557c86e7a7345205cc6fad3f633a67"
+      },
+      {
+        "exact_native_cache_key": "af7129b7c55649ff03ccc6ae04aa9256978fe013.pkl",
+        "pkl_sha256": "1c6d204075b0d3a283907e23cbaea839a9723d8d60d14deb148d91b731aab548",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "when a fisherman retrieved it from a crayfish pot off Napier.",
+            "exact_native_cache_key": "af7129b7c55649ff03ccc6ae04aa9256978fe013.pkl",
+            "cache_input_text_sha256": "62a49b4a3d1a693e316378717516c43b8cc2a09a08f6232546a636a137b626ba",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S4",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "when a fisherman retrieved it from a crayfish pot off Napier.",
+            "exact_native_cache_key": "af7129b7c55649ff03ccc6ae04aa9256978fe013.pkl",
+            "cache_input_text_sha256": "62a49b4a3d1a693e316378717516c43b8cc2a09a08f6232546a636a137b626ba",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "1c6d204075b0d3a2",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          81920
+        ],
+        "unprocessed_array_sha256": "1d742b45db0950baa78e39305937f30532d3f211c57a6068f759c3eaca207919"
+      },
+      {
+        "exact_native_cache_key": "e7cee9413b6138399aa36dda759afb1b67a416e0.pkl",
+        "pkl_sha256": "ee86fd81f11225ec06850fce9605a2d9b7ad20d85bf96b5ff6c8ee375a43e94c",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The breakout went unreported for about three months.",
+            "exact_native_cache_key": "e7cee9413b6138399aa36dda759afb1b67a416e0.pkl",
+            "cache_input_text_sha256": "a0b804649a277007d42471b4d58371d277b58015258bc5e169fe67d7390aa83b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          73728
+        ],
+        "unprocessed_array_sha256": "9b7ca1629a48f40416e9d1b179bc39d70fa0efa41a88fc54562981750321efd6"
+      },
+      {
+        "exact_native_cache_key": "ae9bcf7cafcf50047120ab95d4b916d57c3c15b3.pkl",
+        "pkl_sha256": "f769a54d8311e9c69e8f6ed149d706f7c6010c5479d84f07e1060a26c9336200",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Made public in April 2016, the story travelled the globe.",
+            "exact_native_cache_key": "ae9bcf7cafcf50047120ab95d4b916d57c3c15b3.pkl",
+            "cache_input_text_sha256": "94e37b76380cc7fa11bf1d79c9c7ef63b2eafa50e0073eb4977c594bf3347254",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          118272
+        ],
+        "unprocessed_array_sha256": "00d6c1aeb60c235c1aba84935d06303cd3e4d8c586507b33dead6eff97df3ffe"
+      },
+      {
+        "exact_native_cache_key": "31d08f34c92304390bf3989b7f1b9bebfdad8ba1.pkl",
+        "pkl_sha256": "edb07313a7ec929edf246c61aafba8abf67ae71d3d16040906cbf10591b41bd8",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Made public in April 2016,",
+            "exact_native_cache_key": "31d08f34c92304390bf3989b7f1b9bebfdad8ba1.pkl",
+            "cache_input_text_sha256": "9cda6b53276dcec1dea96babe184b75b8d987040a5f682e6db7eb376d21aaf84",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "edb07313a7ec929e",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          67072
+        ],
+        "unprocessed_array_sha256": "812ed9e8a8769a8b0762758f530ca1e6a20fb42d9b3230bc9d7e39c39b19693c"
+      },
+      {
+        "exact_native_cache_key": "9b2cb059f54f4ebba00d4aeeed489cbe0ab09a3e.pkl",
+        "pkl_sha256": "eedb6dbf9846073075637ca640cc827e3933e78281c4d0988e5ccb5673cd45e9",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "the story travelled the globe.",
+            "exact_native_cache_key": "9b2cb059f54f4ebba00d4aeeed489cbe0ab09a3e.pkl",
+            "cache_input_text_sha256": "0b767f77127619957eb76841c2497b4281aef8ee735962a4a301fea961961eff",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "eedb6dbf98460730",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          41472
+        ],
+        "unprocessed_array_sha256": "eb033ec9a61face6698315d823936b793f5cc394336b77a4d465614f47b325df"
+      },
+      {
+        "exact_native_cache_key": "0328ce9e538ac51281f35f9532a35cff46ffb06d.pkl",
+        "pkl_sha256": "b18a0ab1cfd315f7c78688be42f6ba8df4ecbaf1cd778e2ee7953557efe025fc",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Such agility stems from an octopus's pliable body, which has no skeleton or shell.",
+            "exact_native_cache_key": "0328ce9e538ac51281f35f9532a35cff46ffb06d.pkl",
+            "cache_input_text_sha256": "1b9758bd1771e59190a241f48637df7114642c43d60eaba6383e40fd4f534978",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          141312
+        ],
+        "unprocessed_array_sha256": "a1950818efc904dc86c39ff8eece3bd2d22d5f95877011dd319c8575da5c6093"
+      },
+      {
+        "exact_native_cache_key": "48841f8227954a2a4340a3d2abd7b34c7c4009fc.pkl",
+        "pkl_sha256": "b684005df61905cbc34f03d459335bb59b241b73922a532740ad2452643284ab",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Such agility stems from an octopus's pliable body,",
+            "exact_native_cache_key": "48841f8227954a2a4340a3d2abd7b34c7c4009fc.pkl",
+            "cache_input_text_sha256": "40b0665d3845745ee3c13acbcdcea3f615f65708da17301c5262f57bac0dbb6d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S7",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Such agility stems from an octopus's pliable body,",
+            "exact_native_cache_key": "48841f8227954a2a4340a3d2abd7b34c7c4009fc.pkl",
+            "cache_input_text_sha256": "40b0665d3845745ee3c13acbcdcea3f615f65708da17301c5262f57bac0dbb6d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "b684005df61905cb",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          84480
+        ],
+        "unprocessed_array_sha256": "3f65292cc335de003089f32e905f9f9ab2c9594e748d10d184e2b2f0887c85b6"
+      },
+      {
+        "exact_native_cache_key": "556b86181bc608c7ed618104873780bf0a9ee637.pkl",
+        "pkl_sha256": "bec01c1c18ee530c5b379fecc9a46d108317de72c75fdcb2a8bd2068b3e8896c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "which has no skeleton or shell.",
+            "exact_native_cache_key": "556b86181bc608c7ed618104873780bf0a9ee637.pkl",
+            "cache_input_text_sha256": "d2de52e15ed08566712984959636dedf5c1ff878cc1926df3cba18bde87db869",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S7",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "which has no skeleton or shell.",
+            "exact_native_cache_key": "556b86181bc608c7ed618104873780bf0a9ee637.pkl",
+            "cache_input_text_sha256": "d2de52e15ed08566712984959636dedf5c1ff878cc1926df3cba18bde87db869",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "bec01c1c18ee530c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          44544
+        ],
+        "unprocessed_array_sha256": "7e650f7f17bf6e702ead96e3e9ef6ff8ec09ce987d5a4f402abd48988ab3b2fe"
+      },
+      {
+        "exact_native_cache_key": "d9f2af30b2d2314f76c079788705dd91ceff5ca1.pkl",
+        "pkl_sha256": "baab9b8f8dac8116199d7d98da33e046265e2f76ebaddb416d669e7fe1a35f40",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Its only hard part is its beak, so any crevice that accommodates the beak will do.",
+            "exact_native_cache_key": "d9f2af30b2d2314f76c079788705dd91ceff5ca1.pkl",
+            "cache_input_text_sha256": "14b05cfb19fcfeabd95bd1f4fa732b76cc0494cd327f0534efd6cf713eed7f20",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          129536
+        ],
+        "unprocessed_array_sha256": "8712e71eb668ddd79f9a55458529b9b0f697650c50dcf45edf2d195c0ac9f80b"
+      },
+      {
+        "exact_native_cache_key": "a907bb972e7b41f75e57d36489df91b91afb8f70.pkl",
+        "pkl_sha256": "0e3de6c4b7307290afea8fc56724a5098d2d2982d41720cc0f8ef34dddbf9d4d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Its only hard part is its beak,",
+            "exact_native_cache_key": "a907bb972e7b41f75e57d36489df91b91afb8f70.pkl",
+            "cache_input_text_sha256": "f76220874a4755312e5ec4b759488d8a131c876a6efb7e4f5e46f4d3135bfd0b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S8",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Its only hard part is its beak,",
+            "exact_native_cache_key": "a907bb972e7b41f75e57d36489df91b91afb8f70.pkl",
+            "cache_input_text_sha256": "f76220874a4755312e5ec4b759488d8a131c876a6efb7e4f5e46f4d3135bfd0b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "0e3de6c4b7307290",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          50176
+        ],
+        "unprocessed_array_sha256": "6a4b7b5afd6a83143bb2ac42e59e07ed30644342670766c2ab4688734f2e2d5d"
+      },
+      {
+        "exact_native_cache_key": "fbce66e8c82d859b3fad16b35daf1294182188b1.pkl",
+        "pkl_sha256": "41cf330e752aeb586d2b410377066636b6a4be79ed1b995b99838c1844642bee",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "so any crevice that accommodates the beak will do.",
+            "exact_native_cache_key": "fbce66e8c82d859b3fad16b35daf1294182188b1.pkl",
+            "cache_input_text_sha256": "447797e51e287c917cd436280ffdc0597c42a904c27df2087c0a85684593d8da",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S8",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "so any crevice that accommodates the beak will do.",
+            "exact_native_cache_key": "fbce66e8c82d859b3fad16b35daf1294182188b1.pkl",
+            "cache_input_text_sha256": "447797e51e287c917cd436280ffdc0597c42a904c27df2087c0a85684593d8da",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "41cf330e752aeb58",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          69120
+        ],
+        "unprocessed_array_sha256": "bd348c414e93c361150c018c3a1cd4c7009a532b988da88d559fde06bb53d296"
+      },
+      {
+        "exact_native_cache_key": "0a11e33f2c269ce63e29e4c9cf6694643dd3db97.pkl",
+        "pkl_sha256": "5364eaaad205d27fea2a7f1d4aea41ac4dab1e6e810ac3a2370d61b095511951",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Roughly two-thirds of its 500 million neurons lie in the limbs, which handle sensory input and react with some autonomy.",
+            "exact_native_cache_key": "0a11e33f2c269ce63e29e4c9cf6694643dd3db97.pkl",
+            "cache_input_text_sha256": "f176a9106af8ac7081d96e028711c2a014311d0093a582214f015b0353a29431",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          210944
+        ],
+        "unprocessed_array_sha256": "5df7e38a90ba721e4a7e4e1c0df2b92d573464bdd744fb958c1e564849bf7742"
+      },
+      {
+        "exact_native_cache_key": "7abba129b1ae3cffe5198b8c51799d9682f333f3.pkl",
+        "pkl_sha256": "aa7465bdecf4ccadfe874aacd9bd4eb5833420c9e2e36e22d0f4565863aee45f",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Roughly two-thirds of its 500 million neurons lie in the limbs,",
+            "exact_native_cache_key": "7abba129b1ae3cffe5198b8c51799d9682f333f3.pkl",
+            "cache_input_text_sha256": "685d906e85659ceaf08af64a678160c79f9a9d3f3b0a3c3281709373ea203790",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S9",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Roughly two-thirds of its 500 million neurons lie in the limbs,",
+            "exact_native_cache_key": "7abba129b1ae3cffe5198b8c51799d9682f333f3.pkl",
+            "cache_input_text_sha256": "685d906e85659ceaf08af64a678160c79f9a9d3f3b0a3c3281709373ea203790",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "aa7465bdecf4ccad",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          107008
+        ],
+        "unprocessed_array_sha256": "125007749e1a46ca9b8d4cbdbc53f8fd1e8f895d103c3c6af043c5a03534e377"
+      },
+      {
+        "exact_native_cache_key": "d11c254d596e2187beb32434a63d57dbfd865e5d.pkl",
+        "pkl_sha256": "64fcb210dcc2c297c14bd8d1a4a9c76bfb0531207907a2300a2644afcacfbbc8",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "which handle sensory input",
+            "exact_native_cache_key": "d11c254d596e2187beb32434a63d57dbfd865e5d.pkl",
+            "cache_input_text_sha256": "5308d0d50aef6f9ba64cb7b79c18ba8a524b8abc575b1a169aedb8a062b9e519",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "64fcb210dcc2c297",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          40448
+        ],
+        "unprocessed_array_sha256": "b9ad1cf9d5121b352b4171d87fd92a1a733349b893517ad5f576d6a4df268d81"
+      },
+      {
+        "exact_native_cache_key": "48a83fb0dce69f0c9de89023006c8f2252f2f4ae.pkl",
+        "pkl_sha256": "43eedd133ccc51abe42eb28558f5c9e163ef6a548e2a8c5ef1c2eaa3518040df",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and react with some autonomy.",
+            "exact_native_cache_key": "48a83fb0dce69f0c9de89023006c8f2252f2f4ae.pkl",
+            "cache_input_text_sha256": "d999a2cef3d0189220067682242f514d1dd06e2c728c00e4037460fed22724a4",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "43eedd133ccc51ab",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          42496
+        ],
+        "unprocessed_array_sha256": "7af7cdd13f5801597d705fd2fdb9c897e56dbc380f909f5814a5230d21803e88"
+      },
+      {
+        "exact_native_cache_key": "8e28b6a07fd0828290aff9c01f191eafc39355d7.pkl",
+        "pkl_sha256": "4c37c741e485bdadc759912b948cb8c8dd6bd98cb8c15d91b3feeff8201847f5",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "which handle sensory input and react with some autonomy.",
+            "exact_native_cache_key": "8e28b6a07fd0828290aff9c01f191eafc39355d7.pkl",
+            "cache_input_text_sha256": "c0e1f7a4bf5ea96adbb34f62e8000b2478587bdc11f65daa06e93d147ab23fa8",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "4c37c741e485bdad",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          91136
+        ],
+        "unprocessed_array_sha256": "df4daa5bf5fc0f9083caf63c14ad20dff99c3b2cc80c10faf1e94aabcb1aefc1"
+      },
+      {
+        "exact_native_cache_key": "da9547f0117d481b6687282f45c7ecfcedbbaa61.pkl",
+        "pkl_sha256": "d479efef953a409d74266c60db7ff29aba816ea19325a861389150dc4b3654c9",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Its wits are as versatile as its anatomy.",
+            "exact_native_cache_key": "da9547f0117d481b6687282f45c7ecfcedbbaa61.pkl",
+            "cache_input_text_sha256": "c0053e3e641ed77c444c09ea0fb2b8f9454f47e05a409ba67dcf756d0ff4d25f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          60416
+        ],
+        "unprocessed_array_sha256": "c62f63e8df5fd16e9e62b7371eecccc724e5416ad2bba0576b1e12457c850cf3"
+      },
+      {
+        "exact_native_cache_key": "0d43a1d9a61785d5f6b4cacc1cea338980714ffe.pkl",
+        "pkl_sha256": "b441b8b890045be98e91e59d79edb51ccb1de7942ed6749e0b14fc1cd9cccf34",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "A giant Pacific octopus in Seattle learned to open screw-top jars, needing 15 minutes at the outset, later about two.",
+            "exact_native_cache_key": "0d43a1d9a61785d5f6b4cacc1cea338980714ffe.pkl",
+            "cache_input_text_sha256": "ca8ca5037e0c73c7b9d00c5e362a62dbf4e83455af133e4328205293c35b8b62",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          207872
+        ],
+        "unprocessed_array_sha256": "12da013626952b308486830b61c80629418d526a88f6aa707d052b0927f406ad"
+      },
+      {
+        "exact_native_cache_key": "3868a1c4daee393baee5659ad2f69a7e1937b65e.pkl",
+        "pkl_sha256": "5db464a16ee37c22ab29a6268fb836bbc7a5e3756b7a2cd92f6ead690af00bb9",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "A giant Pacific octopus in Seattle learned to open screw-top jars,",
+            "exact_native_cache_key": "3868a1c4daee393baee5659ad2f69a7e1937b65e.pkl",
+            "cache_input_text_sha256": "726e6fb6cbb2c1532c335dc403e93d9c77d4290edd58daf2bb791bdf388f95be",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S11",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "A giant Pacific octopus in Seattle learned to open screw-top jars,",
+            "exact_native_cache_key": "3868a1c4daee393baee5659ad2f69a7e1937b65e.pkl",
+            "cache_input_text_sha256": "726e6fb6cbb2c1532c335dc403e93d9c77d4290edd58daf2bb791bdf388f95be",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "5db464a16ee37c22",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          118784
+        ],
+        "unprocessed_array_sha256": "d0606403c9da0b689223887ff2e108c97cdce7571ec96140cab50fd1b78d88df"
+      },
+      {
+        "exact_native_cache_key": "ac8212ad9ce3accf7177a9c537062a1ee0461741.pkl",
+        "pkl_sha256": "643f31f6138d985a65841bc35e7ca0943c3b563d82974ec9632e62e69ec3bdc5",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "needing 15 minutes at the outset, later about two.",
+            "exact_native_cache_key": "ac8212ad9ce3accf7177a9c537062a1ee0461741.pkl",
+            "cache_input_text_sha256": "1861d116ae447763c6f8c7281463425ac87d0473a3e54e7f5a35088a5d7ab5d9",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "643f31f6138d985a",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          81920
+        ],
+        "unprocessed_array_sha256": "f0440393b98cc1aa31b2f3583687eb6565230ed4d1499bd3eafea4075c218ac6"
+      },
+      {
+        "exact_native_cache_key": "a6b22e8c31ed34780392f99126d364f25f154406.pkl",
+        "pkl_sha256": "bc8fbfff0e19554ec7bc2dad91149a7038ce46e3b8357cd69aa38db95278f11e",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "needing 15 minutes at the outset,",
+            "exact_native_cache_key": "a6b22e8c31ed34780392f99126d364f25f154406.pkl",
+            "cache_input_text_sha256": "7622c8bbe9ff261ba7b3c1407c6636421f3cf69cfd8d884da83357486b616f22",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "bc8fbfff0e19554e",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          49152
+        ],
+        "unprocessed_array_sha256": "d2b2c0a7bf0e4e266a80fa327b491836c7ee57122f7367d926c2d80861c3166b"
+      },
+      {
+        "exact_native_cache_key": "e21b01fafd2bb3860b9e7a08351024b93c6b1454.pkl",
+        "pkl_sha256": "0e0fabdabcbe8d62b8ed2994492c0dcf4989f261f850d37d48697c4b5d328d93",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "later about two.",
+            "exact_native_cache_key": "e21b01fafd2bb3860b9e7a08351024b93c6b1454.pkl",
+            "cache_input_text_sha256": "5ccc010942d25b654fdce99879a09ce246985fc23bf06078469dc4d039562003",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "0e0fabdabcbe8d62",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          31232
+        ],
+        "unprocessed_array_sha256": "2d1291346c97889d99efbad97ddfbed641e0fa949ea4a05f3a75e433de617b51"
+      },
+      {
+        "exact_native_cache_key": "8dd0e5d767ad5fd32c378901ed1de8740e7a545e.pkl",
+        "pkl_sha256": "725a4e4f1a17930f368c5288b296dc5b2756cac50212a2c510cf2ef42610ba90",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "In a 2010 study, octopuses came to discriminate between two strangers, a feeder and one who touched them with a bristly stick, adopting a different hue and posture for each.",
+            "exact_native_cache_key": "8dd0e5d767ad5fd32c378901ed1de8740e7a545e.pkl",
+            "cache_input_text_sha256": "be8e23980e5deae5ea35e8d0056c36440f1428278ad152465f2a301fff2003f4",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          301568
+        ],
+        "unprocessed_array_sha256": "bad721c160d86f499d448554fd58d272a94282943821b60ec51e8327d0bf99c7"
+      },
+      {
+        "exact_native_cache_key": "8d53e6ee2ddddf4119df5337b2e4df4d79685881.pkl",
+        "pkl_sha256": "991cb698a711bf577c99caafa9afcd0f528fba46924591818c18de36b585475e",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "In a 2010 study, octopuses came to discriminate between two strangers,",
+            "exact_native_cache_key": "8d53e6ee2ddddf4119df5337b2e4df4d79685881.pkl",
+            "cache_input_text_sha256": "d0d46acf6be1500f04482bd15ca9b0f81aa6315eec2295560296b902eaaac507",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "991cb698a711bf57",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          132608
+        ],
+        "unprocessed_array_sha256": "3e57661052c161128c278f1b81bbb93f33f60da01ac1fd2f47c40877d0109584"
+      },
+      {
+        "exact_native_cache_key": "be59c333fb9ea3fdf6446ca38e74321849b6d586.pkl",
+        "pkl_sha256": "bd3e58e4b0e23248b73f2ef22412c1a5917d8cc1b4b4b56ecedc86fd4d4ba3e5",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "a feeder and one who touched them with a bristly stick,",
+            "exact_native_cache_key": "be59c333fb9ea3fdf6446ca38e74321849b6d586.pkl",
+            "cache_input_text_sha256": "bb644dfd2e0b605f344966b8f52bb71b5a7a4c2e5066a67862d454e883de6435",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S12",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "a feeder and one who touched them with a bristly stick,",
+            "exact_native_cache_key": "be59c333fb9ea3fdf6446ca38e74321849b6d586.pkl",
+            "cache_input_text_sha256": "bb644dfd2e0b605f344966b8f52bb71b5a7a4c2e5066a67862d454e883de6435",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "bd3e58e4b0e23248",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          73216
+        ],
+        "unprocessed_array_sha256": "90bd880eb9f3dda215e20ae6b7c5d74c37cced987db3a1216ea3af528b78fe70"
+      },
+      {
+        "exact_native_cache_key": "8191a22cbb26540b8c9bde3fc9ac2b3300ae0e12.pkl",
+        "pkl_sha256": "4ad3c4d2d97a4fb847149d0751fe20e98fcfb8cf5a06f9b8aec64150763127a1",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "adopting a different hue and posture for each.",
+            "exact_native_cache_key": "8191a22cbb26540b8c9bde3fc9ac2b3300ae0e12.pkl",
+            "cache_input_text_sha256": "059b2e7f775aa46562fb55f1685e949829aca683d71bf9fb9d1ebc8bb8f2d6ee",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S12",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "adopting a different hue and posture for each.",
+            "exact_native_cache_key": "8191a22cbb26540b8c9bde3fc9ac2b3300ae0e12.pkl",
+            "cache_input_text_sha256": "059b2e7f775aa46562fb55f1685e949829aca683d71bf9fb9d1ebc8bb8f2d6ee",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "4ad3c4d2d97a4fb8",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          62976
+        ],
+        "unprocessed_array_sha256": "71007bc43fceb6c96930e38f272df96a054529e2f1f01c7bf1a958a2a9ac8210"
+      },
+      {
+        "exact_native_cache_key": "2b67c51c08729c7a35749914a95bf290aa11c227.pkl",
+        "pkl_sha256": "55534ffa273af1f5792eee6d60e996674803285bd774966a92a71d84305effcb",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "In a 2010 study,",
+            "exact_native_cache_key": "2b67c51c08729c7a35749914a95bf290aa11c227.pkl",
+            "cache_input_text_sha256": "6d6049ca9b3f8eed453f7d90b2a20c9c529c7e3bfa9948644a89e1d02aa3ba35",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "55534ffa273af1f5",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          40448
+        ],
+        "unprocessed_array_sha256": "60d8b2c6b2ed432d089269ce47bcada1ddc34d5025bbf64298ec0826b4353d8e"
+      },
+      {
+        "exact_native_cache_key": "78b4ee9a356297b52775f2028e2df908f0dbd1f6.pkl",
+        "pkl_sha256": "fcac552077060a9bc9d77f37c232860fa7ac98f3a4453c352c384a5bfa2bdd05",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "octopuses came to discriminate between two strangers,",
+            "exact_native_cache_key": "78b4ee9a356297b52775f2028e2df908f0dbd1f6.pkl",
+            "cache_input_text_sha256": "313e9ec5e31a60dd3b32419362779a7f22a41b1548359f701f3e6c804b19332d",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "fcac552077060a9b",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          80384
+        ],
+        "unprocessed_array_sha256": "b21a52d191bd7f913a81bb14225aac9da008c1aa58b06f83f8c5c4c9e1333831"
+      },
+      {
+        "exact_native_cache_key": "31de23ddb515bde2897bcf24dcd62e803a20fdac.pkl",
+        "pkl_sha256": "83e4d1c464f47dea53917da4967ae8060f84d34f144ec2f9c5106b8deba731f5",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "In July 2012 the Cambridge Declaration on Consciousness listed octopuses among animals possessing the neurological substrates for conscious awareness.",
+            "exact_native_cache_key": "31de23ddb515bde2897bcf24dcd62e803a20fdac.pkl",
+            "cache_input_text_sha256": "709d4dadc0c33940bcb2b2fe22831bf463fc4949265a6a931200bb7afe91576c",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          272384
+        ],
+        "unprocessed_array_sha256": "1d891ceec3131311ea3e52a7091f725f4a35c326384eff38b6526c409ffe6a30"
+      },
+      {
+        "exact_native_cache_key": "84b58196f994825096ee4893460613d26f789f66.pkl",
+        "pkl_sha256": "d7a54c5e01965afb303723d3d0b41db4a86d17f11d51549dd80eebaa7ff2e76c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "In July 2012 the Cambridge Declaration on Consciousness listed octopuses",
+            "exact_native_cache_key": "84b58196f994825096ee4893460613d26f789f66.pkl",
+            "cache_input_text_sha256": "821c91351a107992b3eed3add278aafd81e24c6a7b407fdc05e2fde464a7ec62",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "d7a54c5e01965afb",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          152064
+        ],
+        "unprocessed_array_sha256": "b54945aa66e29f2f24207008875c77649cbaf17fd372bf3991dbee66ce9d671a"
+      },
+      {
+        "exact_native_cache_key": "a30368eff70cdc4db5d5d9b1ca77fe54b1c22d7c.pkl",
+        "pkl_sha256": "3fb3f3c693d5f84bbe0be7e58442991af11d523b1ee7db2daf062c02ed6dce0d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "among animals possessing the neurological substrates for conscious awareness.",
+            "exact_native_cache_key": "a30368eff70cdc4db5d5d9b1ca77fe54b1c22d7c.pkl",
+            "cache_input_text_sha256": "13c306f9b9fbe143cb81bd3402982776d7d49f9e6946fbfce594e0a4c66490f2",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "3fb3f3c693d5f84b",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          114688
+        ],
+        "unprocessed_array_sha256": "651f896423759cd54132a6c793a158a94338b9cb900d1f5d965672f0589201b2"
+      },
+      {
+        "exact_native_cache_key": "de887c080c359f00271ff93b1d5d542b6b5c0924.pkl",
+        "pkl_sha256": "f4107a287a268a32a67455dee099a42e237f36e0bb6d0701aafd6d7c35d9eac8",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "A November 2021 UK government review recommended treating them as sentient, and the Animal Welfare (Sentience) Act encompassed them in April 2022.",
+            "exact_native_cache_key": "de887c080c359f00271ff93b1d5d542b6b5c0924.pkl",
+            "cache_input_text_sha256": "66da4785947c9aba0be562ad9453070ada995b8190799ad0f3f24c17a74ca048",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          296960
+        ],
+        "unprocessed_array_sha256": "f7d1f344218de5d4539096d0ede5e9b8efe18dfa860c2c956b18c6b23020cc92"
+      },
+      {
+        "exact_native_cache_key": "bb095e7078feae75ce2f77f653f3988b02a3cc44.pkl",
+        "pkl_sha256": "8a4fc4c627da8f7e10bf5de333290c7643aa8d51b024be410e37479d6539f9ca",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "A November 2021 UK government review recommended treating them as sentient,",
+            "exact_native_cache_key": "bb095e7078feae75ce2f77f653f3988b02a3cc44.pkl",
+            "cache_input_text_sha256": "f59eee8115d126a8dee6a015d378516707db8e4e1ddda594f6f3cf01f8341292",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S14",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "A November 2021 UK government review recommended treating them as sentient,",
+            "exact_native_cache_key": "bb095e7078feae75ce2f77f653f3988b02a3cc44.pkl",
+            "cache_input_text_sha256": "f59eee8115d126a8dee6a015d378516707db8e4e1ddda594f6f3cf01f8341292",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "8a4fc4c627da8f7e",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          158208
+        ],
+        "unprocessed_array_sha256": "935cb1bf7e2bb6eef045ad1ca72c80228db40773d03fb5d49ddbe9e42200c300"
+      },
+      {
+        "exact_native_cache_key": "9a650654a49ba319fc982056689e75eb8805f4f5.pkl",
+        "pkl_sha256": "8728f31843753681016d44350d235e3477838a92f18cb77885d5bf0021be72e5",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and the Animal Welfare (Sentience) Act encompassed them in April 2022.",
+            "exact_native_cache_key": "9a650654a49ba319fc982056689e75eb8805f4f5.pkl",
+            "cache_input_text_sha256": "f8808a55b0c2277a98fda49ef8183358113ad894a0e0a6a6a1db09c2b31c3acf",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S14",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and the Animal Welfare (Sentience) Act encompassed them in April 2022.",
+            "exact_native_cache_key": "9a650654a49ba319fc982056689e75eb8805f4f5.pkl",
+            "cache_input_text_sha256": "f8808a55b0c2277a98fda49ef8183358113ad894a0e0a6a6a1db09c2b31c3acf",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "8728f31843753681",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          142336
+        ],
+        "unprocessed_array_sha256": "1082a67d0e8774984ab169cdc283de5f6bbff5da73fff5934274a4ed423863c5"
+      },
+      {
+        "exact_native_cache_key": "2171b05a2e0faf5480e38f00ce1c04e29c5f0422.pkl",
+        "pkl_sha256": "75e139ca48854f138405dfbf7d8e254a500b1c079805d10ec04ac14c51e63d18",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "None of this proves an inner life.",
+            "exact_native_cache_key": "2171b05a2e0faf5480e38f00ce1c04e29c5f0422.pkl",
+            "cache_input_text_sha256": "24ae30ea096e82e1bd674aace610566e673fc68f5ea0a86970e8d669ad93abbf",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          45568
+        ],
+        "unprocessed_array_sha256": "4eac45303fb85b2e5eabd28de78ccc98322d7d46b24f69e45bdbe8cd2bb892b2"
+      },
+      {
+        "exact_native_cache_key": "c82cbf6e23707680dd65319445badde4aaf78237.pkl",
+        "pkl_sha256": "33ff1c7c63ae99bce01cfaf7af1a555b3af24cb964b5424ba1867115c3cb7451",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Inky, somewhere beyond the pipe, remained wholly oblivious to the debate.",
+            "exact_native_cache_key": "c82cbf6e23707680dd65319445badde4aaf78237.pkl",
+            "cache_input_text_sha256": "602a8906de76f3529fc4df0322bc77c92a1a9292e43be7bd6a0d80abb4428dbc",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          108032
+        ],
+        "unprocessed_array_sha256": "c6eb03d183e0ae212a90861b4d57c62154e8f78d559c9ed1034bca6dc1483ab4"
+      },
+      {
+        "exact_native_cache_key": "a338f69fd05773dd5d1fbc7026afb83d8686b459.pkl",
+        "pkl_sha256": "2cb96a45e37b8b20a6be35343f3ae7070ec45cede16259bb12b4af8d11c39645",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Inky, somewhere beyond the pipe,",
+            "exact_native_cache_key": "a338f69fd05773dd5d1fbc7026afb83d8686b459.pkl",
+            "cache_input_text_sha256": "9228cf7a05dea3df9994edd6ff5bb187ac5294786f19d53bc5df2d467c97d2df",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "2cb96a45e37b8b20",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          44544
+        ],
+        "unprocessed_array_sha256": "59e2933edacc33c08c0033dc9c6fe1bea43ef70d826cc346593bb64e86eb704c"
+      },
+      {
+        "exact_native_cache_key": "dbdb186c9685bc86db28fc4672e8d3cc278e83c5.pkl",
+        "pkl_sha256": "ba9a59b3265601b378e7182ef63147a3cebc5a0ba4fd159c2fbaec6d1e5fd7e0",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "remained wholly oblivious to the debate.",
+            "exact_native_cache_key": "dbdb186c9685bc86db28fc4672e8d3cc278e83c5.pkl",
+            "cache_input_text_sha256": "0bacb17994f2ddb0b3f4ab6b018d9f6ae93e9af58d82491a81e48808abfe1d38",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S16",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "remained wholly oblivious to the debate.",
+            "exact_native_cache_key": "dbdb186c9685bc86db28fc4672e8d3cc278e83c5.pkl",
+            "cache_input_text_sha256": "0bacb17994f2ddb0b3f4ab6b018d9f6ae93e9af58d82491a81e48808abfe1d38",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "ba9a59b3265601b3",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          53760
+        ],
+        "unprocessed_array_sha256": "de3810d75c09f315cb5f5ad79b8baafadb8a35dadf5ed8aea8717be82d8ec049"
+      },
+      {
+        "exact_native_cache_key": "1ad02aadf36e77834e2301e6f40be35991df6047.pkl",
+        "pkl_sha256": "635b24c4a3c621374a0b57ba0a66bd70b493cfd709666a38bed684f4891be5a3",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Inky,",
+            "exact_native_cache_key": "1ad02aadf36e77834e2301e6f40be35991df6047.pkl",
+            "cache_input_text_sha256": "3066e03e8ac7346e517825fd8f8fdaf788b42498dcc0091d6589a561ee32e9bc",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "635b24c4a3c62137",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          16896
+        ],
+        "unprocessed_array_sha256": "b9083d76f73dea2ec0d25fe12170444024085f6d508616f4971111a8d1791fd5"
+      },
+      {
+        "exact_native_cache_key": "28e8fcee9658c41a163d6c721e4a47cb25c789a5.pkl",
+        "pkl_sha256": "483025280bbfcfb8e453bcedc6803a07f8c777b48273cef5383aaf94587b6c72",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "somewhere beyond the pipe,",
+            "exact_native_cache_key": "28e8fcee9658c41a163d6c721e4a47cb25c789a5.pkl",
+            "cache_input_text_sha256": "77daed5456594ac599703703305be2583727acffcbe0e076d3cd483c1ff20d43",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "483025280bbfcfb8",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          35840
+        ],
+        "unprocessed_array_sha256": "462f97450079a5a106e09a4b96f059a8c2bd83d3886bb3c4b73fa3add4ca457b"
+      }
+    ],
+    "missing_reference_key_count": 38,
+    "observed_missing_keys_covered": [],
+    "new_private_cache_names": [
+      "1ad02aadf36e77834e2301e6f40be35991df6047.pkl",
+      "1ad02aadf36e77834e2301e6f40be35991df6047.pkl.单线程",
+      "20d66a586d9cfe850d4a7e337ce7581b017b3203.pkl",
+      "20d66a586d9cfe850d4a7e337ce7581b017b3203.pkl.单线程",
+      "28e8fcee9658c41a163d6c721e4a47cb25c789a5.pkl",
+      "28e8fcee9658c41a163d6c721e4a47cb25c789a5.pkl.单线程",
+      "2b67c51c08729c7a35749914a95bf290aa11c227.pkl",
+      "2b67c51c08729c7a35749914a95bf290aa11c227.pkl.单线程",
+      "31d08f34c92304390bf3989b7f1b9bebfdad8ba1.pkl",
+      "31d08f34c92304390bf3989b7f1b9bebfdad8ba1.pkl.单线程",
+      "3868a1c4daee393baee5659ad2f69a7e1937b65e.pkl",
+      "3868a1c4daee393baee5659ad2f69a7e1937b65e.pkl.单线程",
+      "48841f8227954a2a4340a3d2abd7b34c7c4009fc.pkl",
+      "48841f8227954a2a4340a3d2abd7b34c7c4009fc.pkl.单线程",
+      "48a83fb0dce69f0c9de89023006c8f2252f2f4ae.pkl",
+      "48a83fb0dce69f0c9de89023006c8f2252f2f4ae.pkl.单线程",
+      "556b86181bc608c7ed618104873780bf0a9ee637.pkl",
+      "556b86181bc608c7ed618104873780bf0a9ee637.pkl.单线程",
+      "6bc31a88a40c295cf1e8d42e701547445a6f2b31.pkl",
+      "6bc31a88a40c295cf1e8d42e701547445a6f2b31.pkl.单线程",
+      "6dcf5c0e296c5f90ceb167d38ddea820d6db2e60.pkl",
+      "6dcf5c0e296c5f90ceb167d38ddea820d6db2e60.pkl.单线程",
+      "78b4ee9a356297b52775f2028e2df908f0dbd1f6.pkl",
+      "78b4ee9a356297b52775f2028e2df908f0dbd1f6.pkl.单线程",
+      "7abba129b1ae3cffe5198b8c51799d9682f333f3.pkl",
+      "7abba129b1ae3cffe5198b8c51799d9682f333f3.pkl.单线程",
+      "8191a22cbb26540b8c9bde3fc9ac2b3300ae0e12.pkl",
+      "8191a22cbb26540b8c9bde3fc9ac2b3300ae0e12.pkl.单线程",
+      "84b58196f994825096ee4893460613d26f789f66.pkl",
+      "84b58196f994825096ee4893460613d26f789f66.pkl.单线程",
+      "8d53e6ee2ddddf4119df5337b2e4df4d79685881.pkl",
+      "8d53e6ee2ddddf4119df5337b2e4df4d79685881.pkl.单线程",
+      "8e28b6a07fd0828290aff9c01f191eafc39355d7.pkl",
+      "8e28b6a07fd0828290aff9c01f191eafc39355d7.pkl.单线程",
+      "926c0a75752173b68cc977895d5fe31b63cf2ca1.pkl",
+      "926c0a75752173b68cc977895d5fe31b63cf2ca1.pkl.单线程",
+      "9a650654a49ba319fc982056689e75eb8805f4f5.pkl",
+      "9a650654a49ba319fc982056689e75eb8805f4f5.pkl.单线程",
+      "9b2cb059f54f4ebba00d4aeeed489cbe0ab09a3e.pkl",
+      "9b2cb059f54f4ebba00d4aeeed489cbe0ab09a3e.pkl.单线程",
+      "a30368eff70cdc4db5d5d9b1ca77fe54b1c22d7c.pkl",
+      "a30368eff70cdc4db5d5d9b1ca77fe54b1c22d7c.pkl.单线程",
+      "a338f69fd05773dd5d1fbc7026afb83d8686b459.pkl",
+      "a338f69fd05773dd5d1fbc7026afb83d8686b459.pkl.单线程",
+      "a6b22e8c31ed34780392f99126d364f25f154406.pkl",
+      "a6b22e8c31ed34780392f99126d364f25f154406.pkl.单线程",
+      "a907bb972e7b41f75e57d36489df91b91afb8f70.pkl",
+      "a907bb972e7b41f75e57d36489df91b91afb8f70.pkl.单线程",
+      "ac8212ad9ce3accf7177a9c537062a1ee0461741.pkl",
+      "ac8212ad9ce3accf7177a9c537062a1ee0461741.pkl.单线程",
+      "af7129b7c55649ff03ccc6ae04aa9256978fe013.pkl",
+      "af7129b7c55649ff03ccc6ae04aa9256978fe013.pkl.单线程",
+      "bb095e7078feae75ce2f77f653f3988b02a3cc44.pkl",
+      "bb095e7078feae75ce2f77f653f3988b02a3cc44.pkl.单线程",
+      "bd79f9e4ac2ea36664f316330ad22d29b7da2347.pkl",
+      "bd79f9e4ac2ea36664f316330ad22d29b7da2347.pkl.单线程",
+      "be59c333fb9ea3fdf6446ca38e74321849b6d586.pkl",
+      "be59c333fb9ea3fdf6446ca38e74321849b6d586.pkl.单线程",
+      "c589929d0a14afed26734a119bab49da161f8016.pkl",
+      "c589929d0a14afed26734a119bab49da161f8016.pkl.单线程",
+      "cc57e4f9b875e23e6618a2d1b113e736642ec3f2.pkl",
+      "cc57e4f9b875e23e6618a2d1b113e736642ec3f2.pkl.单线程",
+      "d11c254d596e2187beb32434a63d57dbfd865e5d.pkl",
+      "d11c254d596e2187beb32434a63d57dbfd865e5d.pkl.单线程",
+      "d92b388bcc27dba0d17afdec74be446012670bde.pkl",
+      "d92b388bcc27dba0d17afdec74be446012670bde.pkl.单线程",
+      "da0142ed56c777489268aba0bd13712cccb24b05.pkl",
+      "da0142ed56c777489268aba0bd13712cccb24b05.pkl.单线程",
+      "dbdb186c9685bc86db28fc4672e8d3cc278e83c5.pkl",
+      "dbdb186c9685bc86db28fc4672e8d3cc278e83c5.pkl.单线程",
+      "e21b01fafd2bb3860b9e7a08351024b93c6b1454.pkl",
+      "e21b01fafd2bb3860b9e7a08351024b93c6b1454.pkl.单线程",
+      "eb3ca69a94eed6790f2f7467d5fa8f7ff700c0cf.pkl",
+      "eb3ca69a94eed6790f2f7467d5fa8f7ff700c0cf.pkl.单线程",
+      "fbce66e8c82d859b3fad16b35daf1294182188b1.pkl",
+      "fbce66e8c82d859b3fad16b35daf1294182188b1.pkl.单线程"
+    ],
+    "native_single_thread_marker_verified": true,
+    "single_thread_sessions": [
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      },
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      }
+    ],
+    "models_sha256": {
+      "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+      "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+      "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+    },
+    "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+    "existing_private_cache_count": 11514,
+    "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "existing_private_cache_bytes_unchanged": true,
+    "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+    "public_repository_cache_unchanged": true,
+    "producer_pcm_existed_before": false,
+    "producer_pcm_sha256_before": null,
+    "producer_pcm_sha256_after": null,
+    "accepted_aac_adts_sha256_before": "16b6293adfc7a3c35224408ae39d831317e1932f8d47876824e129129c9115d8",
+    "accepted_aac_adts_sha256_after": "16b6293adfc7a3c35224408ae39d831317e1932f8d47876824e129129c9115d8",
+    "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+    "private_cache_exported": false
+  },
+  "checker_reference_preparation_program_sha256": "f6f2a032e207085e7252d036e39430fb80b06e84a721c525b61196d021c5ca12",
+  "fresh_current_article_reference": {
+    "article": "07",
+    "removed_temporary_gt_files": [],
+    "processed_pcm_or_raw_mother_cache_modified": false,
+    "purpose": "Original synth/labels/audit rebuild fresh for this production; no old CPU GT reuse."
+  },
+  "temporary_output_reset": {
+    "removed": [],
+    "production_started_ns": 1794679805080177907,
+    "repository_outputs_modified": false
+  },
+  "reviewed_gain_control_preservation": [
+    {
+      "stage": "canonical-draft",
+      "requested_gain_controls": {},
+      "actual_gain_controls": {},
+      "exactly_preserved": true
+    },
+    {
+      "stage": "canonical-final4K",
+      "requested_gain_controls": {},
+      "actual_gain_controls": {},
+      "exactly_preserved": true
+    }
+  ],
+  "canonical_video_sha256": "7fe8d9e7213154937893ab585260bd95a1f4a51aac74d03af102d90da5007ca8",
+  "canonical_aac_adts_sha256": "16b6293adfc7a3c35224408ae39d831317e1932f8d47876824e129129c9115d8",
+  "canonical_pipeline_passed": true,
+  "cached_input_wav_sha256": null,
+  "final_wav_sha256": "11edc969af0797bcd7121034f43de130d72ca9186508e64e3330aff6c4069643",
+  "accepted_prior_aac_identical": true,
+  "video_sha256": "1e5d3d84f23d142cb0b7e7bf10e6d47392f6a351623ee7af09f6fceef441bcb2",
+  "width": 3840,
+  "height": 2160,
+  "summary_seconds": 2,
+  "summary_frames": 60,
+  "summary_start_seconds": 136.06666666666666,
+  "delay_after_voice_seconds": 0.6216666666666667,
+  "actual_source_collection": {
+    "article": "07",
+    "kind": "actual-production-source-collection",
+    "new_quality_gate": false,
+    "files": {
+      "request_json": {
+        "file": "07-request-source.json",
+        "sha256": "b9b4ec0b90a4d1070b193fe42f5c30e1a3717560b03746a06d4b16388a83047f",
+        "origin": "immutable_request"
+      },
+      "request_generator": {
+        "file": "07-request-gen.py",
+        "sha256": "63096b6215488d1534827116c2cdfd3ee20e694f38c8df66b393ef3893b38674",
+        "origin": "immutable_request"
+      },
+      "used_generator": {
+        "file": "07-used-gen.py",
+        "sha256": "63096b6215488d1534827116c2cdfd3ee20e694f38c8df66b393ef3893b38674",
+        "origin": "actual_production_filesystem"
+      },
+      "actual_working_source": {
+        "file": "07-actual-working-source.json",
+        "sha256": "5693a12fee59b5c03f3215f117072c86ecbf308f4764a19e8aaf08200f773fb0",
+        "origin": "actual_production_filesystem"
+      },
+      "request_manuscript": {
+        "file": "07-request-manuscript.md",
+        "sha256": "c8a55f3a7e3e0ceccdaa047f1da6a7d58abf82ae627763bd299e86afdb53ddc7",
+        "origin": "immutable_request"
+      },
+      "actual_working_manuscript": {
+        "file": "07-actual-working-manuscript.md",
+        "sha256": "c8a55f3a7e3e0ceccdaa047f1da6a7d58abf82ae627763bd299e86afdb53ddc7",
+        "origin": "actual_production_filesystem"
+      }
+    },
+    "generator_execution_observed": false,
+    "generator_execution_evidence": "No fresh generator execution log; do not claim this GEN was executed during rendering.",
+    "source_differences": {
+      "file": "07-actual-source-differences.json",
+      "sha256": "3e120b921b6d89113553394772745fec923cf88a2c49f4e23137ce315d2b6825"
+    }
+  },
+  "preview_only": false,
+  "finalization_authorized": true,
+  "last_body_hold_frames": 18,
+  "last_body_hold_seconds": 0.6,
+  "summary_start_frame": 4082,
+  "postprocessing_only": true,
+  "original_producer_or_TTS_repeated": false,
+  "true_original_native_full_QA_run": 43624682794,
+  "inherited_original_summary_status_sha256": "d8d45dc5918dd91ba1c17140019d868a938589098029dca4f6e05fea36dfd4b4",
+  "final_hold_policy_sha256": "4bcae46b68b9584f107966f683af580b474fa9835f101834fe55ed6968dfc36b"
+}
