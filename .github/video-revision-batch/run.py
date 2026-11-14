@@ -17,7 +17,7 @@ TASK = ROOT / '.github/video-revision-batch'
 NO = os.environ.get('ARTICLE_NO', '12').zfill(2)
 ALLOWED = {f'{n:02d}' for n in range(1, 71)}
 A21_AUDIO_REPAIRS = {'15', '17', '18', '30'}
-CONTROLLED_AUDIO_REPAIRS = {'05', '67', '37'}
+CONTROLLED_AUDIO_REPAIRS = {'05', '67'}
 APPROVED_AUDIO_REPAIRS = {'10', '12', '44', '51'} | A21_AUDIO_REPAIRS | CONTROLLED_AUDIO_REPAIRS
 SELECTED = json.loads((TASK / 'articles.json').read_text())
 assert NO in ALLOWED and NO in SELECTED, f'Article {NO} is outside the pinned revision scope.'
@@ -111,13 +111,13 @@ def install_certified_core_repairs():
 def prepare_accepted_pcm_continuity(baseline_bytes, accepted_aac):
     """Rebuild genuine old PCM privately for exact confirmation comparisons."""
     global BASELINE_AUDIO_FILES
-    expected = {'37':'80d414efeeed','10':'15f47fa51add', '11':'5da69def8d01', '12':'04f94362f377',
+    expected = {'10':'15f47fa51add', '11':'5da69def8d01', '12':'04f94362f377',
                 '44':'21efe6263229', '51':'ff0728857c2d',
                 '15':'7e5ea2bdb6d3', '17':'0ef19e50999f',
                 '18':'76b99c620981', '30':'93a277750d35', '02':None,
                 '69':'8b8618454b80', '05':'1e25fbe69f6f',
                 '67':'c34294a522a7', '16':'630cbdf1eae2'}
-    exact_old_pcm = {'37':'e7a06c4300cb662793594b8c013b7e87442d38e529afe62f964bfe832771ef0c','02':'c21872d4db894f37b1b8b5db752917f9f6ef60680834ca4cccef9b806b5c1c52',
+    exact_old_pcm = {'02':'c21872d4db894f37b1b8b5db752917f9f6ef60680834ca4cccef9b806b5c1c52',
                      '69':'d04e5e1b057dfaa788bf86dcd6fe7da7b88fc1a254f8abd0a695621f074c2837',
                      '05':'4c20eb528b935e7a315e3f41b3f4168fe82cd5e26e0b33d16ea4bfce2609cb64',
                      '67':'39f7defdcfad7a4dae00c9677c7998d8f70c984247583e136e09e6efe9392bae',
@@ -140,10 +140,6 @@ def prepare_accepted_pcm_continuity(baseline_bytes, accepted_aac):
     if NO == '67':
         exact_prior = TASK / 'accepted-pcm-source-reference/67-prior-native.json'
         assert sha(exact_prior) == '8897cc1c2df1e4672eec3bbff2776d0565afb9c9fe84087a1758ebb15b2a233e'
-        baseline_bytes = exact_prior.read_bytes()
-    if NO == '37':
-        exact_prior = TASK / 'accepted-pcm-source-reference/37-current-accepted.json'
-        assert sha(exact_prior) == 'cf4d7618f46155f222d9ce016c5411fbd3904aa6296834048c486c286ed2e40d'
         baseline_bytes = exact_prior.read_bytes()
     script = W / f'scripts/{NO}.json'
     current = script.read_bytes()
@@ -990,10 +986,9 @@ try:
             assert actual_record['篇'] == NO
             if actual_record not in records['记录']:
                 records['记录'].append(actual_record)
-    if NO == '37':
+    if NO == '40':
         supplement = request / '真实用户同意补充.json'
-        assert sha(supplement) == '3d8f26a5d319e3f59b50f4945e3f4351bc5b785a906b64f2a867dd8eb3fd9878'
-        assert sha(request / 'root-source37-measured-minimum-two-opening-gain-selection.json') == '6f90b3619129ce7012d05e7326d8865edd45e6b1ae2a1209b4792606298b6fb1'
+        assert sha(supplement) == '78717987b388111980f3ca5a9db991dc0b121b5ce854f003216a7c3da59b916c'
         for actual_record in json.loads(supplement.read_text())['records']:
             assert actual_record['篇'] == NO
             if actual_record not in records['记录']:
@@ -1055,6 +1050,20 @@ try:
         status['checker_reference_preparation'] = evidence
         status['checker_reference_preparation_program_sha256'] = sha(reference_helper)
         save()
+    if NO == '40':
+        assert sha(request / 'root-source40-exact-no-ending-entry-original-default-mode-compatibility-decision.json') == 'c61d580e231e77f3baa411eb4fffd0b5c8b201bcbb29849895a91dfc8066df4c'
+        assert sha(request / '视频/脚本/40.json') == '66f6b6206d38e4cbcb5fd92faf9e3c5118b8749962eb52e68121204070ddb7ec'
+        assert '结尾句' not in requested
+        exact_last = ' '.join(re.sub(r'\{\{.*?\}\}|\*\*','',c['en']).strip() for c in requested['sentences'][-1]['chunks'])
+        assert exact_last == 'The laboratory next door had only leftover yellow paper.'
+        assert not re.search(r'[,;:](?=\s)',exact_last)
+        # The same original default branch actually used for this previously QA-passed absent-entry/no-joint sentence.
+        # The original joint finder still runs and its no-joint exit remains in the log. No actual joint is falsely accepted.
+        ENV['XG_KEEP_REVIEWED_ENDING'] = '0'
+        assert ENV['XG_KEEP_REVIEWED_GAIN'] == ENV['XG_KEEP_REVIEWED_CUTS'] == '1'
+        status['reviewed_existing_ending_preservation_mode'] = False
+        status['source40_exact_original_ending_absence_registered'] = {'root_decision_sha256':'c61d580e231e77f3baa411eb4fffd0b5c8b201bcbb29849895a91dfc8066df4c','no_existing_ending_entry':True,'no_internal_last_sentence_punctuation':True,'same_original_default_branch':True,'joint_finder_pass_not_claimed':True,'no_speed_pitch_or_timing_changes_authorized':True,'whole_original_WAV_AAC_and_clock_still_required':True}
+        save()
     prepare_approved_a21_derived_level(source_video, accepted_aac)
     prepare_accepted_pcm_continuity(baseline_bytes, accepted_aac)
     if NO == '67':
@@ -1078,22 +1087,6 @@ try:
             'file':exact_transfer.name, 'sha256':sha(exact_transfer),
             'program_sha256':sha(installer), 'does_not_change_audio_or_ASR_rules':True}
         save()
-    if NO == '37':
-        installer = TASK / 'install37-exact-unchanged-machine-confirmations.py'
-        assert sha(installer) == 'a8205430f8529f598814267f0af581f086a6068cd278d899e79131708e8c873c'
-        assert sha(installer.with_name('install37-exact-unchanged-machine-confirmations-reference.json')) == '659c7639a1c723baefd017ea8d6eb2edfc9474879ac396bcc06edbfecdecf129'
-        assert sha(request / 'root-source37-specific-S5-existing-machine-confirmation-continuity-decision.json') == '9307939883cf5316f94855cdc7b7f691ae70d0bfa0579ec3bdd17f7a0d4b5c4d'
-        target = OUT / '37-only-S5-exact-unchanged-machine-confirmation-transfer.json'
-        checked(['python3', installer, '--work', W, '--request', request,
-                 '--old-source', LOG / 'accepted-prior-source.json', '--old-wav', LOG / 'accepted-prior-a.wav',
-                 '--old-audio', W / '_accepted-prior-diagnostic-37.m4a', '--actual-audio', W / '37.mp4',
-                 '--baseline-proof', OUT / '37-accepted-prior-pcm-probe.json', '--write-runtime', '--output', target],
-                 '37-only-S5-exact-unchanged-machine-confirmation-transfer.log', W)
-        transfer = json.loads(target.read_text())
-        assert transfer['passed'] and transfer['runtime_confirmation_transfer_applied']
-        assert transfer['S10_S13_confirmations_unchanged'] and transfer['all_other_source_fields_exact']
-        status['root_approved_one_S5_same_sentence_machine_confirmation_transfer'] = {'file':target.name,'sha256':sha(target),'program_sha256':sha(installer),'source_request_and_audio_unchanged':True}
-        save()
     clear_current_reference_cache()
     clear_temporary_video()
     activate_read_only_failure_probe()
@@ -1115,9 +1108,9 @@ try:
     if NO == '07':
         assert status['canonical_aac_adts_sha256'] == '16b6293adfc7a3c35224408ae39d831317e1932f8d47876824e129129c9115d8'
         assert sha(W / 'work_07/a.wav') == '11edc969af0797bcd7121034f43de130d72ca9186508e64e3330aff6c4069643'
-    if NO == '37':
-        assert status['canonical_aac_adts_sha256'] == '408fce7746df68c8fe6aaf54dd09bea7466d7700d2491e8f647cec6db64cf1fd'
-        assert sha(W / 'work_37/a.wav') == '7467340d87a8dfc67ca7ab9c8dea7f2ce9d5ca5d895e85651836a5fcf10f3c1b'
+    if NO == '40':
+        assert status['canonical_aac_adts_sha256'] == 'a7171c1d7bfd7e430a05b62b8cdb096ed860a6877c96446cbf587996c55d5c68'
+        assert sha(W / 'work_40/a.wav') == '566d57bd6ccdb1b01e2bce4be799c454016f399f0ce985b8bf79755453c0c431'
     status['canonical_pipeline_passed'] = True
     status['cached_input_wav_sha256'] = start_wav
     status['final_wav_sha256'] = sha(W / f'work_{NO}/a.wav')
@@ -1125,7 +1118,7 @@ try:
     canonical_aac = aac_hash(canonical)
     if NO in APPROVED_AUDIO_REPAIRS:
         # Root supplies actual approved audio-change validation. No gain/overlay implementation is assumed here.
-        helper_name = ('audio37-controlled-qc.py' if NO == '37' else 'audio05-tail-qc.py' if NO == '05' else
+        helper_name = ('audio05-tail-qc.py' if NO == '05' else
                        'audio67-controlled-qc.py' if NO == '67' else
                        'audio-controlled-qc.py' if NO in CONTROLLED_AUDIO_REPAIRS else
                        'audio-a21-qc.py' if NO in A21_AUDIO_REPAIRS else 'audio-qc.py')
@@ -1153,7 +1146,7 @@ try:
             if NO != '05':
                 assert audio_evidence.get('diagnostic_only') is False
                 assert audio_evidence.get('production_delivery_eligible') is True
-            reference_file = TASK / ('audio37-controlled-qc-reference.json' if NO == '37' else 'audio05-tail-qc-reference.json' if NO == '05' else
+            reference_file = TASK / ('audio05-tail-qc-reference.json' if NO == '05' else
                                      'audio67-controlled-qc-reference.json' if NO == '67' else
                                      'audio-controlled-qc-reference.json')
             status['approved_audio_repair_scope'] = {
