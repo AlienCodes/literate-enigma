@@ -1,0 +1,3083 @@
+{
+  "article": "17",
+  "passed": true,
+  "stage": "final4K-passed",
+  "original_audit_and_quality_thresholds_unchanged": true,
+  "original_maker_unchanged": true,
+  "core_repairs": [
+    {
+      "target": "视频/工具/草稿声音.sh",
+      "file": "files/视频/工具/草稿声音.sh",
+      "original_sha256": "0ce3277812cf16ed30438509b6dc97db0c26725db4c5db5d9b058c3ef6531aa2",
+      "patched_sha256": "43fc6a1acdae6bb1c2252178bf034407400bbbe92eb1752053f3047da9760491",
+      "repair_scope": "explicit revision flags keep reviewed gain, existing valid ending and reviewed physical cuts; automatic cuts still measured/proposed without --写入 in CUTS=1 mode; default full JSON/PCM/AAC exact to prior5; all original later quality checks retained"
+    },
+    {
+      "target": "视频/工具/句内响度.py",
+      "file": "files/视频/工具/句内响度.py",
+      "original_sha256": "58735b7173a3c03efa61fb300b4aed4039c164fa970e0593a40bae2a3f3cbd27",
+      "patched_sha256": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea",
+      "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+    },
+    {
+      "target": "视频/工具/独立复核/synth.py",
+      "file": "files/视频/工具/独立复核/synth.py",
+      "original_sha256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+      "patched_sha256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+      "repair_scope": "validated unprocessed raw-mother reference input only; independent transforms/audit/thresholds retained"
+    },
+    {
+      "target": "视频/工具/结尾句接点.py",
+      "file": "files/视频/工具/结尾句接点.py",
+      "original_sha256": "15303682c605dd4544172c92d42c016d8d0536e0c6d1f9816d0d38dd5d2b9a61",
+      "patched_sha256": "1a5d43c4f5483014b69bbea7ad43dddb0333a9a80e29bb2b4c8029d8915ff798",
+      "repair_scope": "validate existing ending entry with original producer guard then keep it; bad points fail, missing points use original algorithm; default unchanged"
+    },
+    {
+      "target": "视频/工具/读音核对.py",
+      "file": "files/视频/工具/读音核对.py",
+      "original_sha256": "0a3b97e1179e47c0593f69286f4206eecc123cc7ec5d5adf4f5e62457c228a41",
+      "patched_sha256": "50f4363bb2fc2930be59904cdccfa44fd46f14393a0385c7846028ee25b4e84c",
+      "repair_scope": "selftest-only fault injection keeps compound registry and injects actual uncorrected espeak IPA; normal checker AST/output and dictionaries unchanged; unrelated exceptions propagate with restoration"
+    }
+  ],
+  "strict_production_cache": true,
+  "pdf_requested": false,
+  "check_summaries": {
+    "approved-illustration-resource.log": [],
+    "certified-core-original-stamp-verification.log": [],
+    "original-restored-stamp.log": [],
+    "canonical-module-copy.log": [],
+    "canonical-draft-00.log": [
+      "第17篇 做完（252 秒）：修了 1 处、疑点 36 处",
+      "① 文本：通过，自动修 1 处",
+      "② 声音：17 词尾辅音核对 问题数 0；17 纯人声核对（配音指纹 04c1b62ad507）问题数 0；问题数 0；17 句间停顿核对 问题数 0；问题数 0",
+      "③ 出片前核查：通过",
+      "⑤ 出片后核查：全部通过",
+      "⑥ 已拷 视频/视频/草稿1080p/17_1080p.mp4（--不推）"
+    ],
+    "canonical-final4K-00.log": [
+      "第17篇 用户定稿原话：有"
+    ],
+    "original-stamp-after-production.log": [],
+    "approved-illustrated-tail.log": []
+  },
+  "actual_native_core_certification": {
+    "run_id": 43550422832,
+    "job_id": 132311381738,
+    "commit": "5ecda5ba57c151cb74fc3d36193b60fa59f51c26",
+    "actual_full_quickcheck_exit": 0,
+    "actual_full_quickcheck_seconds": 384.1,
+    "artifact_id": 14096681983,
+    "artifact_zip_sha256": "19dee7da557610e78f39567446bd7dd17ee2c1fe58a0070bb2d6f2c11c22b347",
+    "full_original_quickcheck_log_sha256": "43e1f723087d59c15e78593b23dc37cd2360ba3526474cc5484fbe80edc253d8",
+    "article_audio_or_video_passed_not_implied": true
+  },
+  "actual_native_fastcheck_stamp": {
+    "target": "视频/工具/新管/快测通过.json",
+    "file": "files/视频/工具/新管/快测通过.json",
+    "sha256": "bb75875985ff106abe142caf7ecbf0a5eb76a1412309bf78d77bf146f64512af",
+    "origin": "actual unmodified original full quickcheck, native run43550422832"
+  },
+  "reviewed_regression_resource": {
+    "target": "视频/工具/新管/回归基准_27.json",
+    "file": "files/视频/工具/新管/回归基准_27.json",
+    "sha256": "b8ddb4656ae27cbfc7ec8e3b99511983b4e568997bd4ad4ee33c364f3926ae94",
+    "origin": "pre-existing root-reviewed 67-screen data; original voice/segment MD5 unchanged"
+  },
+  "core_repair_manifest_sha256": "24766577a0001a4920f21cf4887c4cff080d233c34d57cf45a83b7ac660cdcac",
+  "reviewed_gain_preservation_mode": true,
+  "reviewed_existing_ending_preservation_mode": true,
+  "reviewed_existing_physical_cuts_preservation_mode": true,
+  "real_restored_stamp_validated": true,
+  "reviewed_cross_article_context": {
+    "provided": true,
+    "manifest_sha256": "acb6b42c5a1fa4906359bdedd4b8bb96c2a4a315cdc2f18bc76eebd270784c3c",
+    "files_sha256": {
+      "视频/脚本/01.json": "2be2f80a69af28703992204ac95f987c745362c326e62ad81b3cd8e0e0735d3a",
+      "新版定稿/01-the-robber-who-thought-lemon-juice-made-him-invisible.md": "572054065b5bb65446bf8939a21c789c1e9c7664d82da5117c43efdded894351",
+      "视频/脚本/02.json": "0403368c77fd3e0f91e1ee3780e1c7c147894ad13c16b5f14707d700a8f717c8",
+      "新版定稿/02-the-truth-about-one-marshmallow.md": "91b92505aad03f963861bec39e96f0a472c126d1d57c9fc538676c32f65e545c",
+      "视频/脚本/03.json": "527f3bf4a11843f4d606188dabc6ebce6830da3fb454a49c782e3a595cb47407",
+      "新版定稿/03-the-doctor-who-drank-bacteria-to-win-an-argument.md": "6dfb56504882e24854a3584fd740e7f6601e3f2532818aee3a56d5330d317aa3",
+      "视频/脚本/04.json": "93cc1ff58d65ebe43a65ecb2fb2dbd2da262d80877c05740bbdf4eab4eaca1e8",
+      "新版定稿/04-the-brain-that-learned-london.md": "a8ccb31ffff50aaae77de4b83de1847fafae1d585981cf960c5880c409f6cfc3",
+      "视频/脚本/05.json": "fa9b957b54271d144712ec503c628dae4e0d726eefc348d54a08d89d0f179d87",
+      "新版定稿/05-the-fingerprint-in-the-blood.md": "612deac4ed066489e04e214ca969f8f27dda05856e0ef0ed2e540e7a4a52ae34",
+      "视频/脚本/06.json": "2cbf1d6cd6e66a59285298ea830f5ef914590b64286d40b2ae5f3168aa27a2e9",
+      "新版定稿/06-the-horse-that-could-count.md": "7fd21ba491c7596c53c486f2bb0b0f2f6da8e67bac75461a4649a7caff822f74",
+      "视频/脚本/07.json": "842e44e5aa19fddcfa239cb6530c5152341cd86e11db959543d02d8670ca13e8",
+      "新版定稿/07-the-octopus-that-escaped.md": "b8544281bb2ada88fce9d1082cbc30233dcb63ee3e9c2bbefafc22cb28b8cb39",
+      "视频/脚本/08.json": "254832e09f12759d950384dd9f31f671ad5a3bc1590b7466065dd3ef5fe4b8d5",
+      "新版定稿/08-the-doctor-who-solved-the-cholera-mystery.md": "0b2bfa68070ce585a452f6b7034d03c3683e710dcabec5e86d7b221950dc7bab",
+      "视频/脚本/09.json": "fa3e429351d629de188c184d04e9986200e16e80606fcbec82332b6433301dae",
+      "新版定稿/09-the-great-emu-war.md": "af5c3e844bad15f94bfc43aeed6d7417c4bfae85f026b194da667a7a3bdb6196",
+      "视频/脚本/10.json": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
+      "新版定稿/10-the-stolen-smile.md": "ff63cf94e4d2c835e2e2f1ffd3e6c5642f0916f0b13c012f1f13c3dff716d47a",
+      "视频/脚本/11.json": "665cbb80cc70b700ecc0cc5813209fd100ad4fa8f0eead3929b9e53778d9d07f",
+      "新版定稿/11-move-37.md": "7e0b49b346c1fa3ab994a11a2301167c0d6a1bb00916508bdc0b1acf71e68053",
+      "视频/脚本/12.json": "e3bfbcce6f1a8e14cfe451d656574353321e297c90c62f5a7b422f37478311d5",
+      "新版定稿/12-the-79-days-of-new-coke.md": "5a23c1e0c81318527bcbf27573487d1845c5318905a2b1e020cc6e2eaf5d643f",
+      "视频/脚本/13.json": "c22ccc9eb34a92380ecbd2ea72189db492264c4730141c73024685b3fca5fd1e",
+      "新版定稿/13-eleven-days-without-sleep.md": "41998b355721703f761685dd351fbf4628b2be67dfed8b3d37276f9e8f929ecb",
+      "视频/脚本/14.json": "2889a9b31bc7945ee55c306d3507b8557bf1efe371af8a97483a61172be800b8",
+      "新版定稿/14-the-fungus-that-turns-ants-into-zombies.md": "618900d05bd2cecc8d577c446146e4df98d71e070c0b779b40992820d1fdd332",
+      "视频/脚本/15.json": "9b42f089b79e4e0c54c254c948ac4d9ae28d224585095a373607122a0d7c6898",
+      "新版定稿/15-the-myth-of-the-unsinkable.md": "bc2d0c8613437b39149cd6e66729104b26efceb8681fb645f782a97b40007584",
+      "视频/脚本/16.json": "d25aa07f3fac316c26c2ae1006d3efa7eb82a396b66150432b50239c1628396d",
+      "新版定稿/16-the-bread-made-from-air.md": "4da63148111213f6d77451b0eb4193893e6fc2fc170400bc39ce5f5ffcaa0b20",
+      "视频/脚本/17.json": "9750857c3e2c67e6abe5ea6913cb0602347be8b58836bbbc03e2c4153bb12e1b",
+      "新版定稿/17-the-curse-of-the-pharaoh.md": "0dc7b6ee7f4ef05d5e4382beeb077d57578d0bb6a6b69415485008facae98717",
+      "视频/脚本/18.json": "5192b78e582c36fd7d5a34973d8314c5b23e13b8313c8960ac29653bd7fa5d8c",
+      "新版定稿/18-the-mould-that-changed-the-world.md": "ef41cea03f471fe3b9a53939c843e450da3325eb711f6414e108ae92a7518dd8",
+      "视频/脚本/19.json": "cc3c5eea0f7d9ec0712b2e58adba7e5ef8b61d6518a322f9b25a12fcc45282fb",
+      "新版定稿/19-tulip-mania.md": "3882d487383b759c31dda4785966091c362960cd873a5d83c530d08d52e2e97c",
+      "视频/脚本/20.json": "cc5ed6d7be8767e5e7e9b098e8f3836821c0b3f51c17581b2746722da1cf3001",
+      "新版定稿/20-the-5000-year-old-murder-in-the-ice.md": "8d55638070787f7ff5432c197292af1188c463a8b018e01bdefc32999b888e95",
+      "视频/脚本/21.json": "61c1569a26d7569ee0f586178be6b307b1c394c0a30c3cb02541c910038b0589",
+      "新版定稿/21-the-man-who-sold-the-eiffel-tower-twice.md": "e8e966b70f579235d696ba11fb01d3b2cae3fa26efb9071bbea95071be259e1f",
+      "视频/脚本/22.json": "e3027a42c532fee9935afcecdd0542713cbb907183802c2345b9472f93b75f59",
+      "新版定稿/22-the-building-that-melted-a-car.md": "49ae09483bc80bbc40a71551cd98aebec355d96d9ff7b2bcdea59a06fe599267",
+      "视频/脚本/23.json": "c4574a79fd3a58577a1402ce095ea9e4a0ea1f98883ce63e3cc60d126e819409",
+      "新版定稿/23-the-man-who-gave-machines-a-mind.md": "72ed3049e87fe75ce1e753d5e443bdbe6a7ab72f6e282e8467fbbb62be873169",
+      "视频/脚本/24.json": "f08620b534bb10b718f7515c805dcb541721427d855bd5a092b8954847a351b8",
+      "新版定稿/24-survival-in-the-ice.md": "cb7f810d9a74256e0c00625290be4f16207feb90f5719ca87d5d7c9912b91307",
+      "视频/脚本/25.json": "c73e854e052b3df9bd920d4a59fafb183dee19bd58765fa426af6ea3d7c9a329",
+      "新版定稿/25-apollo-13-the-successful-failure.md": "b6b7d55fe66e6e32116431ea955778fab779b8bda622df0ba1036c2f40a3969f",
+      "视频/脚本/26.json": "22349b0a29f05689aae5bd5e9d0907846a68e6ad42949eb0b8cc392d6dce18d6",
+      "新版定稿/26-the-language-the-children-invented.md": "f64089bc9487e756522746058fba2e27c45e56ffc339d8590038643012eb496d",
+      "视频/脚本/27.json": "e1214d8e9314a1cb54da82e2532889198bec555d6be9189fbfb43b5fdedcd728",
+      "新版定稿/27-life-in-the-forbidden-zone.md": "c592b44a8e6ec26f3c2e96ed19191958e57c81d31e54329c20d726e538c10e52",
+      "视频/脚本/28.json": "e0c8e6c644ab0c5d52d99c23461b99e9ae1574aa574369e56feb35e2ac20698b",
+      "新版定稿/28-a-handful-of-wormwood-that-saved-millions.md": "d609cd99ab982365c6f0167e211c55b31e52a354d50918780f3da66ef702a5bb",
+      "视频/脚本/29.json": "1e5f1d9f0c22b5d14b757f029be694c2a3969666d732ca79bb695282763de791",
+      "新版定稿/29-the-volcano-that-gave-us-frankenstein.md": "69045ee19a170c7ea9d0008b468c7e947bc28b639b834c0192dc0aeafc3ef4d0",
+      "视频/脚本/30.json": "34eb48747f1ea7d14b41ccc0cf45aa1592907aacf6618999b3506944e2ff4a0c",
+      "新版定稿/30-the-stink-that-built-londons-sewers.md": "84dbf19cee0045ea2608b13ee0677cb9623dd8fbb371c67093bf50c64186137a",
+      "视频/脚本/31.json": "d81f8645a1e5663ba8c84668e817cdb218bc6689079fbfd51326b3a7fd3cd384",
+      "新版定稿/31-the-book-twelve-publishers-turned-down.md": "7abd20fed44918dcf01586c056e9d0acd9d2ad3b90aa7d3d403762d9f06d2659",
+      "视频/脚本/32.json": "357aa59bed62154f7302a5efcf528859b303004e028657b93058138fe931bf85",
+      "新版定稿/32-the-planet-that-was-demoted.md": "1421f2b0921e7e9478ebc48777e3e8b2c979172de63d0124015107c3750a3542",
+      "视频/脚本/33.json": "da87d68fdee3401e499aa145c23d9b2c663ce3b27f79feec5eca1ddb0d794e72",
+      "新版定稿/33-thirteen-in-the-cave.md": "b96faac786ace911140b835d9f9c6e37eeb0c5f3e7a077b913805b8942c56067",
+      "视频/脚本/34.json": "74921848a6bb25a2ba631813f60d4756c9ff90c64c03a2fb936ce34f310ce509",
+      "新版定稿/34-the-game-that-escaped-the-soviet-union.md": "e3244b67b21e283e67f4e88e932a1dbb85bf273a48ee009b3f435e1c5814831c",
+      "视频/脚本/35.json": "d8439077dc2c909b1c6cbd1347f31e9625f25fffe447d6f5945c9492561f1a16",
+      "新版定稿/35-the-bird-that-beat-the-letter-home.md": "ba8c38e38b21a3345624e2d44fd352561d3096cfb6f62214b48ea9b6e66faead",
+      "视频/脚本/36.json": "e35a3dcb2ff0f0c7054493331370c0364190771ecf56e0dad6dbee3af860a628",
+      "新版定稿/36-the-company-that-invented-its-own-killer.md": "4b0f1d016d3e94bd7f77d3a36bfc423700006c7a23c0b0cae5ca68d5c5af883f",
+      "视频/脚本/37.json": "b1b8945ccf3581df48ade5714a2d0e93e4cc6812708f95bef6f5e44439106c99",
+      "新版定稿/37-dynamite-for-the-heart.md": "4933e24d2384471a96d9c8c26c15d5224a85dae98d9971a3fed15b4978dafc51",
+      "视频/脚本/38.json": "8d0379032000967c9f72e550574874949f798eefbfbfb58ab2b38e4e23ecbc6b",
+      "新版定稿/38-the-web-beneath-the-woods.md": "abb7eead9f3da0b2b326ceed5a649cfbf71fc28dad22e0d52f7b19caa798c54f",
+      "视频/脚本/39.json": "6c3e9539f624b192335312912572a05fba2c7bcfb821b44c3c1dbb21b42527a7",
+      "新版定稿/39-y2k-the-crisis-that-success-erased.md": "abbc9804661126aa006595031ed8f201ce55e8eb5fd9e1ad5669c0c6fcdb80ab",
+      "视频/脚本/40.json": "1c50d1a47ee6f8528d0f7299e8a45bc8c30312622f3f465a964d21cc1395ee7f",
+      "新版定稿/40-the-glue-that-failed.md": "dce9f78f3a0828307843dd667b7eeebf3380a3630f03d234bd5824870aba61a1",
+      "视频/脚本/41.json": "6b6673ffc1db986f4c355f3685de6a0faf2272cee042c5e917f26a8b3057c2be",
+      "新版定稿/41-the-toad-that-invaded-australia.md": "eca590f97120f4e76d719e29aa07b094f9117cd462f5a70c029331a63b85f710",
+      "视频/脚本/42.json": "eceb10ae92aa4b9cd23180d1138149a7fa7b674385462c898bc0d2283c8739e7",
+      "新版定稿/42-the-telescope-that-needed-glasses.md": "d4aa049779a0eba06c555d76ca14103648378eef90465df424120126fa771280",
+      "视频/脚本/43.json": "aa9da1246e293c80408edf94a7c9bed65ef3178ae7cb5265a8273e8c4396687f",
+      "新版定稿/43-from-a-garage-to-the-top-of-the-world.md": "bd70c83e5ac867238ca179f3c9f3548eb9cbdcae1f6df40994aef0bda721ae54",
+      "视频/脚本/44.json": "87f531203ca38d88ae5e71ffd88190b1530715cdc0adba146c2a4a78ebe9b976",
+      "新版定稿/44-the-night-sweden-switched-sides.md": "d3f7ad2ac43f02aae9205a15b9808280ca3db597d6ef3b36aca8ca6176c5f74a",
+      "视频/脚本/45.json": "569406607d2bf18dce5e916052d6460509450d97fe17ac9820be524f59c2c3cc",
+      "新版定稿/45-the-record-humanity-threw-into-the-stars.md": "27deabec4a8478fe570f7f237a2fb850ffdce3deebfd952f512d82a60cf7314f",
+      "视频/脚本/46.json": "c8c7ce7a76226f5274a91af693d24410d5eacfa59206b085a70d133f3634c12b",
+      "新版定稿/46-lost-in-the-glare.md": "7aaa06e875fe56c5d78210b90a8769b8b2051714025ef10df37c2fe89db7a68c",
+      "视频/脚本/47.json": "0417489c8a672e7e63d46c2239d847acabda2d93160cabed3b0fb14f701ac39a",
+      "新版定稿/47-shadows-of-wolves-over-yellowstone.md": "34c68cf4d0f0ef3545ad68edf3367fcb76ab500174b11ae7f83b782cd5a80a2a",
+      "视频/脚本/48.json": "4f146ce6a70bb0bf5d2c6e1f6b47bd6a2bcc2f311be7a948092d7bde1a08f449",
+      "新版定稿/48-rice-for-the-world.md": "76416be21f857e8a05c37baa33ac90f5785812291485231c249e38a1d0edf15f",
+      "视频/脚本/49.json": "fdcc3a438e50a32fdf8c7bcbe27a97d20fc101b6169ca305f920fedbd3303c3c",
+      "新版定稿/49-the-woman-who-won-two-nobels.md": "1e4fb068aa9ae4513d01b199a074b84dc9d819f57b2134df32588a0e4a4b6b6a",
+      "视频/脚本/50.json": "1d4a41824dfa5e8d11e5990b2a4b802ba2fcc3231d85b15ed6630396c6f027bf",
+      "新版定稿/50-microplastics.md": "5439589bacf1abb2abbb184eb658492bc02bcc5bdd8dfd8ababcd80ab93621cb",
+      "视频/脚本/51.json": "39886d83593a31fb575b124ecf6457190773dca695b6ff78f8434d52aebd6d7c",
+      "新版定稿/51-the-joke-that-became-ok.md": "8de30ea4846f4e88d8b71c8d5ced3ee63a73955e39b7dc3c5adad0971b854fd0",
+      "视频/脚本/52.json": "832249bb44617d38ede75560a5e57af6ba79ec284c9609407cb30ce879f6f862",
+      "新版定稿/52-the-killer-smog-of-1952.md": "179500361e4a837d7edb2e0497e08677d5abd425e8ad542f788205a6f7667b4b",
+      "视频/脚本/53.json": "28b604bfa72896534736293f79e9b3aabd8e3678672f4dc6c66337c02a8f1518",
+      "新版定稿/53-the-wind-that-kept-no-time.md": "6fab302dcadb5a2c509436f5fbf8d9ef925c008a36f5b422749bd405aa4701d3",
+      "视频/脚本/54.json": "b1fcb8ae86045b3d35ccfa0f52eb9594b8921d43063835769ee3ecc4543be75e",
+      "新版定稿/54-the-sound-that-shook-the-world.md": "abd5f4bfe11ed73bcc5326a92cf99b0a8e5ad70adaca1ce8d0c8f622b57fa519",
+      "视频/脚本/55.json": "06344fc0ad5975cba2f4dbe5262a9957dd7c024f9a05b9abbfa327f32ea8c719",
+      "新版定稿/55-the-secret-of-romes-undying-concrete.md": "a7759eddcc7ec06dfd6dab7912e06b3b5ef8576df0c025a97812006669d0be61",
+      "视频/脚本/56.json": "22ca3b4180a8ae6a37b4c8e25f5e357d5696d9b23bf148fb7064425d1403e59c",
+      "新版定稿/56-the-letter-that-startled-darwin.md": "aad1e2aab9ff28f534a510362e807ef401e0b502475240f4b2531e9e518a8d7a",
+      "视频/脚本/57.json": "a0ba65b769430289a33ec1f7bc6dbf91dad8d2c3b1d725348851de546563cd6f",
+      "新版定稿/57-a-change-of-anthem-in-the-deep.md": "0731d925a98bafc222718c111985362e166b38b9189c516219a481e36d0d4b6e",
+      "视频/脚本/58.json": "8b0bd3d7d39000518789e9907aec53bd52fab1b9d6b4f22a152d158635b6e8ee",
+      "新版定稿/58-from-a-scratch-to-a-world-without-smallpox.md": "1aa2a0d2c51da76f9c9ebb88d049dd1a55ab530791566fdbf6476e5aa48c15ee",
+      "视频/脚本/59.json": "df1db4174d942371166048b220ef6d55b0b700b2ce31c866edf6dfdf33b92f0c",
+      "新版定稿/59-saving-the-sky.md": "7bf9c4661e733e7af23dc2f11bc820b809ec93dad75a94fb6a12748226e8722c",
+      "视频/脚本/60.json": "eed1655c0919db32a3a016b24791b93d25683f287c7ccb2523e168a69bddc562",
+      "新版定稿/60-the-scientific-giant-who-changed-the-world.md": "9d1578e7af085559922394a3db01de4eb22dc1c520ca17de5cad68e5a38a31a8",
+      "视频/脚本/61.json": "2d08704376faff25b06d334d7567a381460975a56a4cef6b4ae97b3580ea8dbc",
+      "新版定稿/61-the-steel-box-that-remade-the-world.md": "135cc9cfbcbd68d957f831cf55558112a45b1cc3749366cb9a304507355c7d2c",
+      "视频/脚本/62.json": "4b3a97f2b6404e1b091537c21f01fc60088902f596803345983c38be52ec79eb",
+      "新版定稿/62-dolly-the-copied-sheep.md": "62817546ae33824b57255f941135c503e41a41f905331ed4af1e32850fa00960",
+      "视频/脚本/63.json": "5d266d80f9cf29cce6f7e34531449cf75191a42f180102685a5bcd04849e75c5",
+      "新版定稿/63-the-crowded-heavens.md": "6ef79d4310019dfefa7364b8a428411a6bc337678c69fa5cbc89b84689e253a4",
+      "视频/脚本/64.json": "12a36862765922d72ce6e5a4c5fe85f548364eed65fe3b3b284f0b38899a965f",
+      "新版定稿/64-the-day-zero-that-never-came.md": "e0c83cbe36745adbbffd33a156fa8d0671704ea976cb13215cabb612639b37a5",
+      "视频/脚本/65.json": "78e60dd231df4ac71df83e21a26f82bbf706dc0bef80bee156a36bc287661ede",
+      "新版定稿/65-the-day-the-doomsday-vault-opened.md": "71a50d32e25955e713e6ca108ab68422a4fd5b77c914a9074eece1dc33cbff89",
+      "视频/脚本/66.json": "ad5324af4270834186285a5e7273a90213094077adc6f9e1d5c7b0ebff9cf035",
+      "新版定稿/66-the-burrs-that-became-velcro.md": "75dbe6c148ca97a7780ac1737f33f58bf8ee27a51aa729a83315705655b12b2a",
+      "视频/脚本/67.json": "6839a46ebdb51cdcff6a65ca238efc228f1e114efd1734cee6c994ca659a29cb",
+      "新版定稿/67-the-cave-found-by-a-dog.md": "10e37b81eeef4e3289448a6b4fd679f34d495a4fc087c57747e6dca949e00cf1",
+      "视频/脚本/68.json": "568f72dacac48e206811d35a57c7fa22e3da428783f64e507c184f2090e579f3",
+      "新版定稿/68-the-last-flight-of-the-hindenburg.md": "c25f58ffb0e3748336767bb7470dd7cef10374c53cbb48af89dba26f65b2dd5c",
+      "视频/脚本/69.json": "c493528f054e2d572e56b8ea15be0950158e86e3d3271b0f94237e8d296163ff",
+      "新版定稿/69-the-trial-of-the-father-of-the-atomic-bomb.md": "570eda5b7d979d71e9bcad1c67e295ed326ecdb8b61e663aba33272c8a9451bd",
+      "视频/脚本/70.json": "0f6827f02cef0d2416f9d7d69b7e1c5553acee7cf6dc89f3379201264587236c",
+      "新版定稿/70-the-stamp-that-changed-the-post.md": "edfd85cea33730ba67e4210e756da1f2945f1a21bce55c7e75497cb5f0095d80"
+    },
+    "source_file_count": 140,
+    "working_script_count": 70,
+    "target_request_exactly_matches_context": true
+  },
+  "request_source_sha256": {
+    "视频/脚本/17.json": "9750857c3e2c67e6abe5ea6913cb0602347be8b58836bbbc03e2c4153bb12e1b",
+    "视频/工具/初稿生成/gen17.py": "f20f96824c759b49fb15d8df14ab0083c84de5dc81e01bf77e7eb74168cc1127",
+    "新版定稿/17-the-curse-of-the-pharaoh.md": "0dc7b6ee7f4ef05d5e4382beeb077d57578d0bb6a6b69415485008facae98717",
+    "视频/制作记录/17_待改清单.md": "9327287c9c661012c0cac5066f04a8cf0ff6f907716ca0810886eb00dbf304c5",
+    "视频/制作记录/逐句确认/17.json": "d13f480d2fb0fcb72d3b0c81361068752e5392b97bd3af44e92904c8ed85d983"
+  },
+  "accepted_source": {
+    "id": "17",
+    "path": ".github/video-revision-batch/latest-accepted-reviews/17.mp4",
+    "sha256": "3a28679efead092857197a17b6205b1e5577616f6be808ef5de9c236d200c7ee",
+    "git_blob_sha": "c20d0642bd2b68637d8c7d03e7b89dd3ad43cc88",
+    "bytes": 15171550,
+    "width": 3840,
+    "height": 2160,
+    "summary_frames": 60,
+    "actual_quality_passed_source_run": 43562525001,
+    "reference_role": "latest-accepted-A21-plus6-voice-for-pure-text-review",
+    "aac_adts_sha256": "e60811a051e70f7b4056df03bf6222f75c86ab3adc6c4d26c64fc619bb2e4324"
+  },
+  "checker_reference_preparation": {
+    "article": "17",
+    "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+    "reference_prepared": true,
+    "acceptance": false,
+    "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+    "source_sha256": "9750857c3e2c67e6abe5ea6913cb0602347be8b58836bbbc03e2c4153bb12e1b",
+    "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+    "checker_program_sha256": {
+      "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+      "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+      "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+      "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+      "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+      "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+    },
+    "reference_calls": [
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-raw",
+        "method": "create",
+        "source_slice": "The Curse of the Pharaoh",
+        "exact_native_cache_key": "6b74260fc06eee49d3eef93dbb7ea5ca33d1e2fe.pkl",
+        "cache_input_text_sha256": "13eae47cdadcfca2da2219451428fea0a8cc0bd255e54cf40b3ffd7370f102dc",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-timed",
+        "method": "create_timed",
+        "source_slice": "The Curse of the Pharaoh",
+        "exact_native_cache_key": "df3898833af39ea2aff0ab7582a62a6817c67c25.pkl",
+        "cache_input_text_sha256": "13eae47cdadcfca2da2219451428fea0a8cc0bd255e54cf40b3ffd7370f102dc",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "On 4 November 1922, in the Valley of the Kings, labourers engaged by the archaeologist Howard Carter uncovered a staircase carved into the rock.",
+        "exact_native_cache_key": "bc17c4590e9d7837cdfe2a67237b62f4c2e9d95f.pkl",
+        "cache_input_text_sha256": "0a7db912678aade9f048b6913a0c246aecbcd6c06118ba00ca7ecbb34dc3dadb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "On 4 November 1922, in the Valley of the Kings, labourers engaged by the archaeologist Howard Carter uncovered a staircase carved into the rock.",
+        "exact_native_cache_key": "942bb3f44a253486ed7ea37e9e6acb01de69dd8a.pkl",
+        "cache_input_text_sha256": "0a7db912678aade9f048b6913a0c246aecbcd6c06118ba00ca7ecbb34dc3dadb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "On 4 November 1922, in the Valley of the Kings,",
+        "exact_native_cache_key": "5e911c80f12ffdc3147f8bf7899781ea04346207.pkl",
+        "cache_input_text_sha256": "171bc2d17ade5785a92faaac5c6d20d87d93da6bdb80b799332bdfc34b0675ee",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "labourers engaged by the archaeologist Howard Carter",
+        "exact_native_cache_key": "15d9524da8646007749497ed07f5581fcd69217d.pkl",
+        "cache_input_text_sha256": "9148b8ea951305555cb45d02e976e2a685d883c4daa0d5c6684b12d19468046e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "uncovered a staircase carved into the rock.",
+        "exact_native_cache_key": "3bbb26e26a1b6afaf846e9cafdbd420ce18e65a3.pkl",
+        "cache_input_text_sha256": "ba374d2b1c5efcef9008a976ee66d93145f142cef1af08e1235aa6c82d1f0aa8",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "On 4 November 1922,",
+        "exact_native_cache_key": "06ea86172dbb058a1a23f55177961ec566100937.pkl",
+        "cache_input_text_sha256": "b00cbbe403905c840dcfcdc1473ed56367a5fda87ad1fffb607b00db14f13c8a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "in the Valley of the Kings,",
+        "exact_native_cache_key": "8061ba1dbbb9cdf2a2abc809eea30c3362adf341.pkl",
+        "cache_input_text_sha256": "18bee68c328932859c3f2aeac864adac5b0986ef7bde1f346cb093300018036d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "labourers engaged by the archaeologist Howard Carter uncovered a staircase carved into the rock.",
+        "exact_native_cache_key": "467a0ded67e11f1b35bb56c6dd644bed147731a8.pkl",
+        "cache_input_text_sha256": "e3d13a351aabad95af6f66ea91d876843c1c24bb2107618773c06e9336a46982",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "On 26 November, with his wealthy sponsor Lord Carnarvon beside him, Carter made a small hole in the sealed doorway and glimpsed the glittering gold of the boy king Tutankhamun.",
+        "exact_native_cache_key": "db018d0b381610a3b6a40100ae53d0d41ec78924.pkl",
+        "cache_input_text_sha256": "2f333cbc6262b9244f56bb6a0cac6dba2c133cd19eea2d86c10a75c526808847",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "On 26 November, with his wealthy sponsor Lord Carnarvon beside him, Carter made a small hole in the sealed doorway and glimpsed the glittering gold of the boy king Tutankhamun.",
+        "exact_native_cache_key": "565eff87fcc6407cdd522bde222582625ae9772d.pkl",
+        "cache_input_text_sha256": "2f333cbc6262b9244f56bb6a0cac6dba2c133cd19eea2d86c10a75c526808847",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "On 26 November, with his wealthy sponsor Lord Carnarvon beside him,",
+        "exact_native_cache_key": "e72d9ca83a22d33a1f71e7dfe97514d7484b1954.pkl",
+        "cache_input_text_sha256": "829f3a6e6baa18fc1619ab6372901702156328ddc244e9ab90e41bf5faf2f2ce",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Carter made a small hole in the sealed doorway",
+        "exact_native_cache_key": "580fa41ff4f6feaad1f599cb5dedc9b8c2fe19d2.pkl",
+        "cache_input_text_sha256": "9133f583995125ce54ffb3796f53e2149c52fe265fe1ad80de2efafb7e20f77b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and glimpsed the glittering gold of the boy king Tutankhamun.",
+        "exact_native_cache_key": "e490c0fe3477823fbbb3d234cec021c62c9a7fda.pkl",
+        "cache_input_text_sha256": "a27ba066c1b019c62904678c022d4821b5f71e14b07e5b1b704c6817a1c3af86",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "On 26 November,",
+        "exact_native_cache_key": "a1e5296ff23cbe1df37ba25570e587068af5630f.pkl",
+        "cache_input_text_sha256": "85e5eaadd6a75faeb0f8337f8960308335987e719411abac5bbbb2689d9cd248",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "with his wealthy sponsor Lord Carnarvon beside him,",
+        "exact_native_cache_key": "925d3561934b133c987d6267a141e85b92a7d448.pkl",
+        "cache_input_text_sha256": "249495b06a511467424f1c6f68a78d2c5d4c1c06184c2bd719212c0c6b6f7096",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Carter made a small hole in the sealed doorway and glimpsed the glittering gold of the boy king Tutankhamun.",
+        "exact_native_cache_key": "9f4fd4c755c31aef00761439f710a0fba9941ca5.pkl",
+        "cache_input_text_sha256": "019efd0c88a77b080914e28b398f2446862c072fdd444344fa33d11aea6c8cc0",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The spectacular find riveted the world.",
+        "exact_native_cache_key": "c46d7a7ec21b04a3368d2436583b0dc16bb53d04.pkl",
+        "cache_input_text_sha256": "102d27b700fd147054ea0218f724336af1c75f9e2d01647251d539263d7d31c6",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The spectacular find riveted the world.",
+        "exact_native_cache_key": "da8278c58e37095d467859c481ee4e66c8d0dc05.pkl",
+        "cache_input_text_sha256": "102d27b700fd147054ea0218f724336af1c75f9e2d01647251d539263d7d31c6",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Carnarvon sold exclusive rights to The Times, a monopoly that left competing reporters starved of news.",
+        "exact_native_cache_key": "87c1b34c77bc8acaa3c73cdafd771a3857e7ac46.pkl",
+        "cache_input_text_sha256": "0fd852cd9b7ca9bbc5da43c75d2f947b67ec99e921329ee7353f5cb4756b9cf7",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Carnarvon sold exclusive rights to The Times, a monopoly that left competing reporters starved of news.",
+        "exact_native_cache_key": "97ee108b0e37bfe09843fe0a16fb4103e9b68376.pkl",
+        "cache_input_text_sha256": "0fd852cd9b7ca9bbc5da43c75d2f947b67ec99e921329ee7353f5cb4756b9cf7",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Carnarvon sold exclusive rights to The Times,",
+        "exact_native_cache_key": "be30365785c0ea23e5b668af7e95ca796678eb08.pkl",
+        "cache_input_text_sha256": "058bed3ce3740e51c276ede5a2a2014c3bbfaa3e73e2cfb05c8e0cb72810df2e",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "a monopoly that left competing reporters starved of news.",
+        "exact_native_cache_key": "b015de86c184857ea1196cd46ea4f256d7660f90.pkl",
+        "cache_input_text_sha256": "58d66c12822a6ced458bff2a0b7acff13a7a1540707bd853e40e1584dc93b153",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Carnarvon sold exclusive rights to The Times,",
+        "exact_native_cache_key": "be30365785c0ea23e5b668af7e95ca796678eb08.pkl",
+        "cache_input_text_sha256": "058bed3ce3740e51c276ede5a2a2014c3bbfaa3e73e2cfb05c8e0cb72810df2e",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "a monopoly that left competing reporters starved of news.",
+        "exact_native_cache_key": "b015de86c184857ea1196cd46ea4f256d7660f90.pkl",
+        "cache_input_text_sha256": "58d66c12822a6ced458bff2a0b7acff13a7a1540707bd853e40e1584dc93b153",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Many resorted to speculation or sought outside commentators.",
+        "exact_native_cache_key": "6d74e727e44daac24376419fa3ecb8cfc12601ed.pkl",
+        "cache_input_text_sha256": "2c222d39f885dc47e43f72deb112e7ffd46cd24f7d19e7097bc4b3460dd14e35",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Many resorted to speculation or sought outside commentators.",
+        "exact_native_cache_key": "b3538c1ed89addca039d43d64da6707612570eab.pkl",
+        "cache_input_text_sha256": "2c222d39f885dc47e43f72deb112e7ffd46cd24f7d19e7097bc4b3460dd14e35",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "In March 1923 the best-selling novelist Marie Corelli warned publicly that dire punishment awaited anyone who entered a sealed tomb.",
+        "exact_native_cache_key": "524a70abc2040b249c24176837ac2e7b33ec848a.pkl",
+        "cache_input_text_sha256": "aa3cb226e226fb7c0c594631e84da3b014b84d68fe1c214777e51d8ce71891e7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "In March 1923 the best-selling novelist Marie Corelli warned publicly that dire punishment awaited anyone who entered a sealed tomb.",
+        "exact_native_cache_key": "c4d4d6703bbecb964d11d956b3fc62db9176ec5c.pkl",
+        "cache_input_text_sha256": "aa3cb226e226fb7c0c594631e84da3b014b84d68fe1c214777e51d8ce71891e7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "In March 1923 the best-selling novelist Marie Corelli warned publicly",
+        "exact_native_cache_key": "ccef85db50206d67064d7ad7bdd39d5c56c6443b.pkl",
+        "cache_input_text_sha256": "8994a4935d5e099f7c21f05e73615dceb63b46339478b7eccd6f2d0ac03fb63d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "that dire punishment awaited anyone who entered a sealed tomb.",
+        "exact_native_cache_key": "92f556c9f1c3572ad0099a88aaf61d43a2d58792.pkl",
+        "cache_input_text_sha256": "1b70cbb50266c6d57e925921aff95859b0ae886b1102dbcd212ab4ca6dabbcab",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Within a fortnight, her words would seem uncanny.",
+        "exact_native_cache_key": "5fbfbda5e6c6f469c946a8c44faa2e6e728657dd.pkl",
+        "cache_input_text_sha256": "c2f24f13b31c73a5836569ab05756ea911aab8287a6dd9694b450e74f387177b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Within a fortnight, her words would seem uncanny.",
+        "exact_native_cache_key": "153df16944f8ab27aab6e63b7b2c9ba965dcbbd9.pkl",
+        "cache_input_text_sha256": "c2f24f13b31c73a5836569ab05756ea911aab8287a6dd9694b450e74f387177b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Within a fortnight,",
+        "exact_native_cache_key": "f8829accdf97a1b9ce808a65b7cd633f48e73803.pkl",
+        "cache_input_text_sha256": "b02578c75c563488900e44d068d88521e08bbea5a14f1745cd81fc5544a95738",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "her words would seem uncanny.",
+        "exact_native_cache_key": "e8a09843b3e67d56a5cf9e7ad428f146d9947c08.pkl",
+        "cache_input_text_sha256": "b14f3329045870155269b434aad58caa38004d6ffd43ba439dfc909c86ee0b10",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "That month a mosquito bit Carnarvon.",
+        "exact_native_cache_key": "12149a8cb96153b4202b6c97a517d9073015bdbd.pkl",
+        "cache_input_text_sha256": "4d613edbf26c48e7c1f3b83e014298ccf4c71892cd42305db2328d11d33b09b4",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "That month a mosquito bit Carnarvon.",
+        "exact_native_cache_key": "24fdca8f2cb309f0fd57a9ee2d80b214860f660e.pkl",
+        "cache_input_text_sha256": "4d613edbf26c48e7c1f3b83e014298ccf4c71892cd42305db2328d11d33b09b4",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "He nicked the bite with a razor while shaving, it turned septic, and blood poisoning led to pneumonia.",
+        "exact_native_cache_key": "54ee4ed4cdff1aa23474a8aa46aa313b16ea46bb.pkl",
+        "cache_input_text_sha256": "35276fb7b1f5eae5d89d474308faf888a6f83eac6f1d9e3851cdde3d40333658",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "He nicked the bite with a razor while shaving, it turned septic, and blood poisoning led to pneumonia.",
+        "exact_native_cache_key": "d1b6f77356029378459355d87025b6c36eb231b4.pkl",
+        "cache_input_text_sha256": "35276fb7b1f5eae5d89d474308faf888a6f83eac6f1d9e3851cdde3d40333658",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "He nicked the bite with a razor while shaving,",
+        "exact_native_cache_key": "f49c15a6ad1bca128078aa5be3963e3b1db735c6.pkl",
+        "cache_input_text_sha256": "e9d55f3f8eaf9127c0b5a2d179552cdf2a014016456edc94efeb76cf9cb12c9a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "it turned septic, and blood poisoning led to pneumonia.",
+        "exact_native_cache_key": "f8417eed1330d62c382ba482dbef8a1668a66578.pkl",
+        "cache_input_text_sha256": "f87b5817d6f254ebd1f8416c47b21a24bfe93a6e19470c60fdc18081982e3209",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "He nicked the bite with a razor while shaving,",
+        "exact_native_cache_key": "f49c15a6ad1bca128078aa5be3963e3b1db735c6.pkl",
+        "cache_input_text_sha256": "e9d55f3f8eaf9127c0b5a2d179552cdf2a014016456edc94efeb76cf9cb12c9a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "it turned septic,",
+        "exact_native_cache_key": "a04eed28590caa018ccb159f5982e1d4e619ebfa.pkl",
+        "cache_input_text_sha256": "97c980a2cae11713dcc0a1106a353783fb7ebe4a798f12b863045a354c57d58e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and blood poisoning led to pneumonia.",
+        "exact_native_cache_key": "f24f29992b7b58231f34a4561a63a9dbb612c67a.pkl",
+        "cache_input_text_sha256": "0fa73590637411b8c4cfe9dc67830552d1edc2786116605ecdfce440cd4cbd62",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "He died in Cairo on 5 April 1923.",
+        "exact_native_cache_key": "14420c285786e42aed37bc5fa4f1762f9a2b0178.pkl",
+        "cache_input_text_sha256": "48b665f45751388391e8bebdf98ec3fe1f2a545b1caf0a6c7d0138631632663e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "He died in Cairo on 5 April 1923.",
+        "exact_native_cache_key": "56d30ed23249443cdc4d43ba46fe783965095700.pkl",
+        "cache_input_text_sha256": "48b665f45751388391e8bebdf98ec3fe1f2a545b1caf0a6c7d0138631632663e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Newspapers reported that the city's lights failed at that instant and that his dog in England howled and died.",
+        "exact_native_cache_key": "0b54d14ee8fc3ea941072c315a2fcebea14c11d4.pkl",
+        "cache_input_text_sha256": "12a672e8fd9d3b71919e61f4f3dc452afe14a5ab54e770074764bd39ffd29845",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Newspapers reported that the city's lights failed at that instant and that his dog in England howled and died.",
+        "exact_native_cache_key": "392a7eb2ee634d0c30e84b09ae667a0e2a602ea2.pkl",
+        "cache_input_text_sha256": "12a672e8fd9d3b71919e61f4f3dc452afe14a5ab54e770074764bd39ffd29845",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Newspapers reported",
+        "exact_native_cache_key": "78f7743a5ab2fe6380e502ce41c155b85de2d935.pkl",
+        "cache_input_text_sha256": "3e7a2c32a8297076f77e386c8639f090f8435adba04e5e773b32aa0eead33d42",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "that the city's lights failed at that instant",
+        "exact_native_cache_key": "bd4a022edd856acb85ff7378d8473f823564ff86.pkl",
+        "cache_input_text_sha256": "12cd9d985615c1769bbca6bba9d9f6cef3c3ec5f12c2deb86da0a85233c47f61",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and that his dog in England howled and died.",
+        "exact_native_cache_key": "38590422f2c2f27e732ff14c7ee611291d654183.pkl",
+        "cache_input_text_sha256": "990f91f3bb5461b6320bde23193ecb39cdf6facb6c95d0f39c0c531e6bea6897",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Yet blackouts were almost a daily occurrence in Cairo.",
+        "exact_native_cache_key": "5566083dc802a18ae7a242012224cb5b137a0136.pkl",
+        "cache_input_text_sha256": "2ef0ebb23e9f8386da46b35c3021c9da278ab57ad5c7c477f791f46402e560ea",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Yet blackouts were almost a daily occurrence in Cairo.",
+        "exact_native_cache_key": "8caf7d1cb3d6d7ff184b62c7b921448f9aeb8ede.pkl",
+        "cache_input_text_sha256": "2ef0ebb23e9f8386da46b35c3021c9da278ab57ad5c7c477f791f46402e560ea",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "No curse inscription was ever found in the tomb.",
+        "exact_native_cache_key": "497e8210626e265cf663fcc4579519c2666696f9.pkl",
+        "cache_input_text_sha256": "2e2c2c9f98851792044426bac4efcba57c6d476ef37bb61286c6c740cb4d50e9",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "No curse inscription was ever found in the tomb.",
+        "exact_native_cache_key": "6a419f02a399f874ce5dac43105b242974d532d6.pkl",
+        "cache_input_text_sha256": "2e2c2c9f98851792044426bac4efcba57c6d476ef37bb61286c6c740cb4d50e9",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "In December 2002 a British Medical Journal study traced the fate of 44 Westerners in Egypt at the time.",
+        "exact_native_cache_key": "2dac53ec28e7c77aed7d653f2811f52808b42921.pkl",
+        "cache_input_text_sha256": "833203d8e9fd639781601483feab3a725adbc2d084703f55980dbcfb8c6fdb5d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "In December 2002 a British Medical Journal study traced the fate of 44 Westerners in Egypt at the time.",
+        "exact_native_cache_key": "7f01452d01342561abafd787abc587026dbe5745.pkl",
+        "cache_input_text_sha256": "833203d8e9fd639781601483feab3a725adbc2d084703f55980dbcfb8c6fdb5d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "In December 2002 a British Medical Journal study traced",
+        "exact_native_cache_key": "6baccfdef67fa03461a95e048f3af8654013ca15.pkl",
+        "cache_input_text_sha256": "a9b430136b76d7604169fdfce8c0f259916bc78c8c38f80ff722b1b7796d505a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "the fate of 44 Westerners in Egypt at the time.",
+        "exact_native_cache_key": "e68ff960054b4a1da3d98f8b1632e4d09c22f31f.pkl",
+        "cache_input_text_sha256": "eddf88cfce057f556b4a53d83e7cfabf74f964750e7f5dd56fea8394be78a36f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The 25 exposed to the tomb died at an average age of 70, versus 75 for the rest, a margin not statistically significant.",
+        "exact_native_cache_key": "6088369a74632ef46f4fa1309f0bcf30c919ef6a.pkl",
+        "cache_input_text_sha256": "fec81882cf8aba9b1f8ec842cee094fdb735976b49e8c586309c795b795ef46f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The 25 exposed to the tomb died at an average age of 70, versus 75 for the rest, a margin not statistically significant.",
+        "exact_native_cache_key": "1a50633a17008d0f74db7b9f9c4b1b7fb8178ca7.pkl",
+        "cache_input_text_sha256": "fec81882cf8aba9b1f8ec842cee094fdb735976b49e8c586309c795b795ef46f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "The 25 exposed to the tomb died at an average age of 70,",
+        "exact_native_cache_key": "ed429d91089e1ddfbc1e1ba1e9e498f03e9723aa.pkl",
+        "cache_input_text_sha256": "638e89ec6a75bbab75d42b6562aa270a7db40a85a6e31d7d73da5b5dfc85654c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "versus 75 for the rest, a margin not statistically significant.",
+        "exact_native_cache_key": "ced716437c4c1e4e66633786490d2ac75f06f87d.pkl",
+        "cache_input_text_sha256": "3964294981845ec559575c23cfa60cb44f1e8bb4e149aec5110fee39b6d3a2bc",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "The 25 exposed to the tomb died at an average age of 70,",
+        "exact_native_cache_key": "ed429d91089e1ddfbc1e1ba1e9e498f03e9723aa.pkl",
+        "cache_input_text_sha256": "638e89ec6a75bbab75d42b6562aa270a7db40a85a6e31d7d73da5b5dfc85654c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "versus 75 for the rest,",
+        "exact_native_cache_key": "a7df6b856c538b18302fd9002cc11b873a54d24f.pkl",
+        "cache_input_text_sha256": "9d8cf9d92633d94f5f929d86227b00d20b7063bd5c0bc67a77e0f5db688415ea",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "a margin not statistically significant.",
+        "exact_native_cache_key": "5ab7551a031a87863ce5a9c3ca38d4e14f68efa6.pkl",
+        "cache_input_text_sha256": "066f4977b178866f0b29fba678a45c854021ecbf1f6e21b35aba1edabaf3e42c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The mortality figures lent the ominous rumour no credibility.",
+        "exact_native_cache_key": "a545c658cf43bbfc024c25f03f0732c235c00d2d.pkl",
+        "cache_input_text_sha256": "4eb44ede8e374b83a960dc9258424b5afbd670dac4446b773afd16eb97c7906f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The mortality figures lent the ominous rumour no credibility.",
+        "exact_native_cache_key": "bbb99941b2a4f09b7d51bf137daf68ca9cd0a0d3.pkl",
+        "cache_input_text_sha256": "4eb44ede8e374b83a960dc9258424b5afbd670dac4446b773afd16eb97c7906f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Carnarvon's untimely demise had fuelled the tale, giving it impetus.",
+        "exact_native_cache_key": "13f31ceedb01624e20b4f70bd59d74586393519b.pkl",
+        "cache_input_text_sha256": "5f2bc07a46de636d5072f508240f2b41ddb3a78e149302ad2ee169406ac9a2a7",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Carnarvon's untimely demise had fuelled the tale, giving it impetus.",
+        "exact_native_cache_key": "57a04a4ef45d47b4384434c1d3419f5ff97426fa.pkl",
+        "cache_input_text_sha256": "5f2bc07a46de636d5072f508240f2b41ddb3a78e149302ad2ee169406ac9a2a7",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Carnarvon's untimely demise had fuelled the tale,",
+        "exact_native_cache_key": "bff05682ad03fe9e083b21f8842eacdf7fbb5f55.pkl",
+        "cache_input_text_sha256": "3e0c60e4e86fcc43249d8160692ce85b435e0fd89fe022fc530ecf371b536a36",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "giving it impetus.",
+        "exact_native_cache_key": "a5c20d5843fc4aa3ad22f574d29a7b90e1f74e10.pkl",
+        "cache_input_text_sha256": "b8005dff91deadbba2eb3797436f4faf2ed5f2c361bf659fd8c2c5622cd8bef3",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Carter, the excavator who had unsealed the burial place, died in March 1939, aged 64, almost sixteen years after his patron.",
+        "exact_native_cache_key": "b2816c1b46a0f64fc3dbd9af604484b9dd8f9ceb.pkl",
+        "cache_input_text_sha256": "08a89aed9e2940875f241f66f03c5d3135ed60a738fe19fe53f36c86ea7e2845",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Carter, the excavator who had unsealed the burial place, died in March 1939, aged 64, almost sixteen years after his patron.",
+        "exact_native_cache_key": "c8152876cfd185e581403598abe5a5f3ccf29265.pkl",
+        "cache_input_text_sha256": "08a89aed9e2940875f241f66f03c5d3135ed60a738fe19fe53f36c86ea7e2845",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Carter, the excavator who had unsealed the burial place,",
+        "exact_native_cache_key": "81050e394b3f55fcc23769adf7878239a5bef405.pkl",
+        "cache_input_text_sha256": "a976110f9161466f38dbb27af582bbf767eb51e8962a44c7277a5fb6dce05d4f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "died in March 1939, aged 64, almost sixteen years after his patron.",
+        "exact_native_cache_key": "eba58288130a0e4df473fe46865a57b10f247cf3.pkl",
+        "cache_input_text_sha256": "1ce622620dbdfcf21293238bfc00d2f97453a727498856a529db734ef2da32b6",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Carter,",
+        "exact_native_cache_key": "5e80177e619714fa39c64978eaf4bb18d3e73add.pkl",
+        "cache_input_text_sha256": "0c62430168ab75c1fb4ce6cb794a504693c4eef4f3c0f258734915bd848f7446",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "the excavator who had unsealed the burial place,",
+        "exact_native_cache_key": "70c39e30630527f7a8a4b9b6e8dffc18cb859bb1.pkl",
+        "cache_input_text_sha256": "9fc933734fe1bcd23d38dafae6e9abe6ce83ad1d7fa2605e141745eb98d4f7d8",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "died in March 1939,",
+        "exact_native_cache_key": "30956bc602faf94dda40f9f86d6fc92ecf663135.pkl",
+        "cache_input_text_sha256": "56bab2719f179ecf5388a3da46f0f1135b53eaff663e57e26bf05d60784bcf96",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "aged 64,",
+        "exact_native_cache_key": "efd01b2047c21f3c533095d80ffff5b5307757c2.pkl",
+        "cache_input_text_sha256": "a19eff70ff733d5e072aa4cc027dca3b224efa3b2c6f5e185af6acca9ea3dd69",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": 5,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "almost sixteen years after his patron.",
+        "exact_native_cache_key": "6c80b8b07d6b1e856fe933aced82ec89926109e4.pkl",
+        "cache_input_text_sha256": "9883bc8fbb5301ff63c397e48afec1ce26c4958e6220bf55feb037599c28a038",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The legend had left him conspicuously unharmed.",
+        "exact_native_cache_key": "75996cbf0e7370a179f42ee24f9cfef79e36473c.pkl",
+        "cache_input_text_sha256": "90c04268e3f9971bed10f19e68e0cf82bf0e9d40a8a5255db8c32087edc0a37e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The legend had left him conspicuously unharmed.",
+        "exact_native_cache_key": "82b684b1a4aed6c30bf0c879fa1e8a8ad055667d.pkl",
+        "cache_input_text_sha256": "90c04268e3f9971bed10f19e68e0cf82bf0e9d40a8a5255db8c32087edc0a37e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      }
+    ],
+    "unique_reference_key_count": 80,
+    "raw_mother_cache_scalar_manifest": [
+      {
+        "exact_native_cache_key": "6b74260fc06eee49d3eef93dbb7ea5ca33d1e2fe.pkl",
+        "pkl_sha256": "8dc682f7ddedc768288b300a83c92b5494e02d5e5b0775565e4464f945404d7f",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "标题",
+            "piece": null,
+            "reference_kind": "title-default-raw",
+            "method": "create",
+            "source_slice": "The Curse of the Pharaoh",
+            "exact_native_cache_key": "6b74260fc06eee49d3eef93dbb7ea5ca33d1e2fe.pkl",
+            "cache_input_text_sha256": "13eae47cdadcfca2da2219451428fea0a8cc0bd255e54cf40b3ffd7370f102dc",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          31744
+        ],
+        "unprocessed_array_sha256": "286fd4fbd4cb992b6567ddaba539a10cd348b4c9b87c0bd9e8a8d9430cf7e468"
+      },
+      {
+        "exact_native_cache_key": "bc17c4590e9d7837cdfe2a67237b62f4c2e9d95f.pkl",
+        "pkl_sha256": "0450852b6513fb32f5133408a72492aeef70e188f787e3d894fe48c592220b4b",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "On 4 November 1922, in the Valley of the Kings, labourers engaged by the archaeologist Howard Carter uncovered a staircase carved into the rock.",
+            "exact_native_cache_key": "bc17c4590e9d7837cdfe2a67237b62f4c2e9d95f.pkl",
+            "cache_input_text_sha256": "0a7db912678aade9f048b6913a0c246aecbcd6c06118ba00ca7ecbb34dc3dadb",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          273408
+        ],
+        "unprocessed_array_sha256": "d7753582ec3fa3b3168fc5b68793b052328bcde56ac4634bbb46d0a1f0bafe7f"
+      },
+      {
+        "exact_native_cache_key": "5e911c80f12ffdc3147f8bf7899781ea04346207.pkl",
+        "pkl_sha256": "bed7f56dc7f86321c6bc04b97bf66af86c26bdd8c49e9a713817dce1b94986ff",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "On 4 November 1922, in the Valley of the Kings,",
+            "exact_native_cache_key": "5e911c80f12ffdc3147f8bf7899781ea04346207.pkl",
+            "cache_input_text_sha256": "171bc2d17ade5785a92faaac5c6d20d87d93da6bdb80b799332bdfc34b0675ee",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          107520
+        ],
+        "unprocessed_array_sha256": "d726752e51198b1ec9a6167d93d4036e3556b3f8fe910ea8f5111bfaf0c212c1"
+      },
+      {
+        "exact_native_cache_key": "15d9524da8646007749497ed07f5581fcd69217d.pkl",
+        "pkl_sha256": "1789b5f2bd6d7dfec9a83cd9703a7b9ac5ee88e29ed5ede7b7766b0673b94f83",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "labourers engaged by the archaeologist Howard Carter",
+            "exact_native_cache_key": "15d9524da8646007749497ed07f5581fcd69217d.pkl",
+            "cache_input_text_sha256": "9148b8ea951305555cb45d02e976e2a685d883c4daa0d5c6684b12d19468046e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          81408
+        ],
+        "unprocessed_array_sha256": "134676ab68950c9af4a70ffc684cbd282b658c4a844c40bd357e8271c366c3a0"
+      },
+      {
+        "exact_native_cache_key": "3bbb26e26a1b6afaf846e9cafdbd420ce18e65a3.pkl",
+        "pkl_sha256": "47f9c4e0849c1984b2e0e1aa869f8c1c74573945a0a9d81814ea55ae0e4f2a7a",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "uncovered a staircase carved into the rock.",
+            "exact_native_cache_key": "3bbb26e26a1b6afaf846e9cafdbd420ce18e65a3.pkl",
+            "cache_input_text_sha256": "ba374d2b1c5efcef9008a976ee66d93145f142cef1af08e1235aa6c82d1f0aa8",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          59392
+        ],
+        "unprocessed_array_sha256": "e790e36ce4a336903b6b43061373f76858a6d485b353e181c61b344d9758fc48"
+      },
+      {
+        "exact_native_cache_key": "06ea86172dbb058a1a23f55177961ec566100937.pkl",
+        "pkl_sha256": "bdaee8691d241273756546e414d1d27eb41fa183637243860ae72f620bac58ed",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "On 4 November 1922,",
+            "exact_native_cache_key": "06ea86172dbb058a1a23f55177961ec566100937.pkl",
+            "cache_input_text_sha256": "b00cbbe403905c840dcfcdc1473ed56367a5fda87ad1fffb607b00db14f13c8a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          64000
+        ],
+        "unprocessed_array_sha256": "3985509bd4864e6069795f8b0528674cccea0f126b32481a6661f11aad5186c3"
+      },
+      {
+        "exact_native_cache_key": "8061ba1dbbb9cdf2a2abc809eea30c3362adf341.pkl",
+        "pkl_sha256": "d3f4d20e51835345989e81abfdff998966a6c84dc4d0dd158800ee0c6b07a7d1",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "in the Valley of the Kings,",
+            "exact_native_cache_key": "8061ba1dbbb9cdf2a2abc809eea30c3362adf341.pkl",
+            "cache_input_text_sha256": "18bee68c328932859c3f2aeac864adac5b0986ef7bde1f346cb093300018036d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          34304
+        ],
+        "unprocessed_array_sha256": "00cbe80e8e6697be77d89a1e636a2bd9056b174d376ae41073040ee931c7fe8c"
+      },
+      {
+        "exact_native_cache_key": "467a0ded67e11f1b35bb56c6dd644bed147731a8.pkl",
+        "pkl_sha256": "97cabb73ca1d077e7d933f1a586332a53422e0acddabb54c559df10b2f3daa7f",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "labourers engaged by the archaeologist Howard Carter uncovered a staircase carved into the rock.",
+            "exact_native_cache_key": "467a0ded67e11f1b35bb56c6dd644bed147731a8.pkl",
+            "cache_input_text_sha256": "e3d13a351aabad95af6f66ea91d876843c1c24bb2107618773c06e9336a46982",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          156160
+        ],
+        "unprocessed_array_sha256": "c5c40403e526e4e110d4843d4d8bdafa6b2b7c0ec29c4bb7ba46b85c133a1f95"
+      },
+      {
+        "exact_native_cache_key": "db018d0b381610a3b6a40100ae53d0d41ec78924.pkl",
+        "pkl_sha256": "33798cb2e0fe907c9ff54123c52bf9a14e483ac337a4252702edbe3ac5dae9f7",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "On 26 November, with his wealthy sponsor Lord Carnarvon beside him, Carter made a small hole in the sealed doorway and glimpsed the glittering gold of the boy king Tutankhamun.",
+            "exact_native_cache_key": "db018d0b381610a3b6a40100ae53d0d41ec78924.pkl",
+            "cache_input_text_sha256": "2f333cbc6262b9244f56bb6a0cac6dba2c133cd19eea2d86c10a75c526808847",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          298496
+        ],
+        "unprocessed_array_sha256": "e67f5c329624c6e0f686ff5eece8ea524a2f6c0d5e889a597f3fb9770a78f815"
+      },
+      {
+        "exact_native_cache_key": "e72d9ca83a22d33a1f71e7dfe97514d7484b1954.pkl",
+        "pkl_sha256": "6b6004b5c363602df6811e393284ab125d09f99e9f961129c27c6e574cf8bdc5",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "On 26 November, with his wealthy sponsor Lord Carnarvon beside him,",
+            "exact_native_cache_key": "e72d9ca83a22d33a1f71e7dfe97514d7484b1954.pkl",
+            "cache_input_text_sha256": "829f3a6e6baa18fc1619ab6372901702156328ddc244e9ab90e41bf5faf2f2ce",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          126464
+        ],
+        "unprocessed_array_sha256": "1a75098d6a53ab76f951ecc5c83dddaa3c819ba9c90351ec709a5cdf31dd747d"
+      },
+      {
+        "exact_native_cache_key": "580fa41ff4f6feaad1f599cb5dedc9b8c2fe19d2.pkl",
+        "pkl_sha256": "e0b599699d36cc58eab804799839c716225b9b50736c4765fc60f205fd6364e0",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Carter made a small hole in the sealed doorway",
+            "exact_native_cache_key": "580fa41ff4f6feaad1f599cb5dedc9b8c2fe19d2.pkl",
+            "cache_input_text_sha256": "9133f583995125ce54ffb3796f53e2149c52fe265fe1ad80de2efafb7e20f77b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          56832
+        ],
+        "unprocessed_array_sha256": "116f46a1f88e83ad12c2e5216d77e74fad2ef3ddc5c3d3e20ce3422c772d4202"
+      },
+      {
+        "exact_native_cache_key": "e490c0fe3477823fbbb3d234cec021c62c9a7fda.pkl",
+        "pkl_sha256": "748b9fdce3ec7a85cc81811f4d79b679eb6a5dd95e7b1066aab2c4fabeeea7ac",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and glimpsed the glittering gold of the boy king Tutankhamun.",
+            "exact_native_cache_key": "e490c0fe3477823fbbb3d234cec021c62c9a7fda.pkl",
+            "cache_input_text_sha256": "a27ba066c1b019c62904678c022d4821b5f71e14b07e5b1b704c6817a1c3af86",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          88576
+        ],
+        "unprocessed_array_sha256": "fb7293f5c39e3980f67664aa9e4e74af4887ebf763f486c817b3faf521e958e9"
+      },
+      {
+        "exact_native_cache_key": "a1e5296ff23cbe1df37ba25570e587068af5630f.pkl",
+        "pkl_sha256": "a4d9e41967de2d7c62f28b90021776c692088d83eab56cc1bc0184acc09560bf",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "On 26 November,",
+            "exact_native_cache_key": "a1e5296ff23cbe1df37ba25570e587068af5630f.pkl",
+            "cache_input_text_sha256": "85e5eaadd6a75faeb0f8337f8960308335987e719411abac5bbbb2689d9cd248",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          42496
+        ],
+        "unprocessed_array_sha256": "670ce70d6bee506076e08267ba67e352900baf99cf3d254f363df4cfa73efe21"
+      },
+      {
+        "exact_native_cache_key": "925d3561934b133c987d6267a141e85b92a7d448.pkl",
+        "pkl_sha256": "f959c555ffd3ac13cce331fb2ae5069a5c2419fd9abfd0c102112caccadb8d12",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "with his wealthy sponsor Lord Carnarvon beside him,",
+            "exact_native_cache_key": "925d3561934b133c987d6267a141e85b92a7d448.pkl",
+            "cache_input_text_sha256": "249495b06a511467424f1c6f68a78d2c5d4c1c06184c2bd719212c0c6b6f7096",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          76288
+        ],
+        "unprocessed_array_sha256": "1c6ea5b4a1b739255a6faa551763ba9610c0b108e4a12b38694c1a27e01de941"
+      },
+      {
+        "exact_native_cache_key": "9f4fd4c755c31aef00761439f710a0fba9941ca5.pkl",
+        "pkl_sha256": "3e94987f155d6b99c900548c867069cfe9272c3266b2e1aba81fa0656992c6fb",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Carter made a small hole in the sealed doorway and glimpsed the glittering gold of the boy king Tutankhamun.",
+            "exact_native_cache_key": "9f4fd4c755c31aef00761439f710a0fba9941ca5.pkl",
+            "cache_input_text_sha256": "019efd0c88a77b080914e28b398f2446862c072fdd444344fa33d11aea6c8cc0",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          161280
+        ],
+        "unprocessed_array_sha256": "ed0c0601c9ea7af541e8e4e8de56866109e1b4ce7765654fa0ef8dee9ff19527"
+      },
+      {
+        "exact_native_cache_key": "c46d7a7ec21b04a3368d2436583b0dc16bb53d04.pkl",
+        "pkl_sha256": "4ecb7488639eff2ac924d6236cb42437d915d08004bf61956d8e5814efc9fec8",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The spectacular find riveted the world.",
+            "exact_native_cache_key": "c46d7a7ec21b04a3368d2436583b0dc16bb53d04.pkl",
+            "cache_input_text_sha256": "102d27b700fd147054ea0218f724336af1c75f9e2d01647251d539263d7d31c6",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          57856
+        ],
+        "unprocessed_array_sha256": "4d8eddf7a696228d91ed185ffcd4155182f821387fa034cd3cc4ebe2fc2535b1"
+      },
+      {
+        "exact_native_cache_key": "87c1b34c77bc8acaa3c73cdafd771a3857e7ac46.pkl",
+        "pkl_sha256": "5ed49d5646464a5c823f0f94e0f1b845bedef5f93c155c6f105ac571725b8b74",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Carnarvon sold exclusive rights to The Times, a monopoly that left competing reporters starved of news.",
+            "exact_native_cache_key": "87c1b34c77bc8acaa3c73cdafd771a3857e7ac46.pkl",
+            "cache_input_text_sha256": "0fd852cd9b7ca9bbc5da43c75d2f947b67ec99e921329ee7353f5cb4756b9cf7",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          172544
+        ],
+        "unprocessed_array_sha256": "2f6c070f7ce4155128f30559ae0f2a41eb1174b83d14410bc9665c14f8a7f802"
+      },
+      {
+        "exact_native_cache_key": "be30365785c0ea23e5b668af7e95ca796678eb08.pkl",
+        "pkl_sha256": "228a783c0b2172c31e22d677e092b8d1db8b8643cf223ab1a11707f82c153840",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Carnarvon sold exclusive rights to The Times,",
+            "exact_native_cache_key": "be30365785c0ea23e5b668af7e95ca796678eb08.pkl",
+            "cache_input_text_sha256": "058bed3ce3740e51c276ede5a2a2014c3bbfaa3e73e2cfb05c8e0cb72810df2e",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S4",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Carnarvon sold exclusive rights to The Times,",
+            "exact_native_cache_key": "be30365785c0ea23e5b668af7e95ca796678eb08.pkl",
+            "cache_input_text_sha256": "058bed3ce3740e51c276ede5a2a2014c3bbfaa3e73e2cfb05c8e0cb72810df2e",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          66048
+        ],
+        "unprocessed_array_sha256": "1d46f14cc6246072848c0f512ad76df2efd359f2fb57ace360015e68ba755f17"
+      },
+      {
+        "exact_native_cache_key": "b015de86c184857ea1196cd46ea4f256d7660f90.pkl",
+        "pkl_sha256": "80c6b4ae4f66ae291f688fc0b6bbc43250137fb49082434c1460524c2b6a0994",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "a monopoly that left competing reporters starved of news.",
+            "exact_native_cache_key": "b015de86c184857ea1196cd46ea4f256d7660f90.pkl",
+            "cache_input_text_sha256": "58d66c12822a6ced458bff2a0b7acff13a7a1540707bd853e40e1584dc93b153",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S4",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "a monopoly that left competing reporters starved of news.",
+            "exact_native_cache_key": "b015de86c184857ea1196cd46ea4f256d7660f90.pkl",
+            "cache_input_text_sha256": "58d66c12822a6ced458bff2a0b7acff13a7a1540707bd853e40e1584dc93b153",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          86016
+        ],
+        "unprocessed_array_sha256": "95000674a6559e82c5276bd944b8f8bb11d8c251b300dc4a6bb9183cc07339ce"
+      },
+      {
+        "exact_native_cache_key": "6d74e727e44daac24376419fa3ecb8cfc12601ed.pkl",
+        "pkl_sha256": "0eab951b3c9c9d19e4c19ad24b2c41b6655f4c29767b7e5fcdd76e61aafa831e",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Many resorted to speculation or sought outside commentators.",
+            "exact_native_cache_key": "6d74e727e44daac24376419fa3ecb8cfc12601ed.pkl",
+            "cache_input_text_sha256": "2c222d39f885dc47e43f72deb112e7ffd46cd24f7d19e7097bc4b3460dd14e35",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          104448
+        ],
+        "unprocessed_array_sha256": "53e09f46bb67c40ba4e34c3ed00f8e78098d9bfc2ceee6bae585d1402eb8cd0e"
+      },
+      {
+        "exact_native_cache_key": "524a70abc2040b249c24176837ac2e7b33ec848a.pkl",
+        "pkl_sha256": "7dcd91e9e1544840108de479c78f1655fab6ea98068833345772f6990326aa52",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "In March 1923 the best-selling novelist Marie Corelli warned publicly that dire punishment awaited anyone who entered a sealed tomb.",
+            "exact_native_cache_key": "524a70abc2040b249c24176837ac2e7b33ec848a.pkl",
+            "cache_input_text_sha256": "aa3cb226e226fb7c0c594631e84da3b014b84d68fe1c214777e51d8ce71891e7",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          243712
+        ],
+        "unprocessed_array_sha256": "cf5fbeace017538445336e45d69ddc744a2f734dc6608bd296fb80467ab2fc8f"
+      },
+      {
+        "exact_native_cache_key": "ccef85db50206d67064d7ad7bdd39d5c56c6443b.pkl",
+        "pkl_sha256": "feabf0342b5b1809a7490f532a073774bcec701a64c42b9e1c5075e112c68297",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "In March 1923 the best-selling novelist Marie Corelli warned publicly",
+            "exact_native_cache_key": "ccef85db50206d67064d7ad7bdd39d5c56c6443b.pkl",
+            "cache_input_text_sha256": "8994a4935d5e099f7c21f05e73615dceb63b46339478b7eccd6f2d0ac03fb63d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          140288
+        ],
+        "unprocessed_array_sha256": "a75f325cc26a458dc9e4ccc02294a545d9072134a6719f65d41942fe28b63db6"
+      },
+      {
+        "exact_native_cache_key": "92f556c9f1c3572ad0099a88aaf61d43a2d58792.pkl",
+        "pkl_sha256": "c42ce3ba0f6521404411fa0d62fad8a2006106d3e3eb70f54eeb775f1e799c25",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "that dire punishment awaited anyone who entered a sealed tomb.",
+            "exact_native_cache_key": "92f556c9f1c3572ad0099a88aaf61d43a2d58792.pkl",
+            "cache_input_text_sha256": "1b70cbb50266c6d57e925921aff95859b0ae886b1102dbcd212ab4ca6dabbcab",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          94208
+        ],
+        "unprocessed_array_sha256": "c2afb659cf5f44721c729470e59604101c190d06fa45ddc7fb6b92668865fc45"
+      },
+      {
+        "exact_native_cache_key": "5fbfbda5e6c6f469c946a8c44faa2e6e728657dd.pkl",
+        "pkl_sha256": "5cbbacad8d4a3d0f2bab5539c768e9dc5e20a122daa74b84767ca14591e9b6aa",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Within a fortnight, her words would seem uncanny.",
+            "exact_native_cache_key": "5fbfbda5e6c6f469c946a8c44faa2e6e728657dd.pkl",
+            "cache_input_text_sha256": "c2f24f13b31c73a5836569ab05756ea911aab8287a6dd9694b450e74f387177b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          68608
+        ],
+        "unprocessed_array_sha256": "d0acd564d95fb80c0bcb9435e9fe958fc9bdcad73a9f9898cb6e3d0463a00ab8"
+      },
+      {
+        "exact_native_cache_key": "f8829accdf97a1b9ce808a65b7cd633f48e73803.pkl",
+        "pkl_sha256": "b6e56cfe5812a6c1756dd7e21a43c8e2debf68935b6bc578b3ee8c784bcd4289",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Within a fortnight,",
+            "exact_native_cache_key": "f8829accdf97a1b9ce808a65b7cd633f48e73803.pkl",
+            "cache_input_text_sha256": "b02578c75c563488900e44d068d88521e08bbea5a14f1745cd81fc5544a95738",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          27648
+        ],
+        "unprocessed_array_sha256": "15703ed3821c2f65a991154031d38fa14a7e49811158fa9ca660aff8ea46bc81"
+      },
+      {
+        "exact_native_cache_key": "e8a09843b3e67d56a5cf9e7ad428f146d9947c08.pkl",
+        "pkl_sha256": "edec3ad038b82861b09cd0fdaac3502ba00271d2c1e58bdb047af330c0c9f695",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "her words would seem uncanny.",
+            "exact_native_cache_key": "e8a09843b3e67d56a5cf9e7ad428f146d9947c08.pkl",
+            "cache_input_text_sha256": "b14f3329045870155269b434aad58caa38004d6ffd43ba439dfc909c86ee0b10",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          40960
+        ],
+        "unprocessed_array_sha256": "cc9f5270918d86fd9624ed09a387dfce3c08a81c561809e800f26e379380db12"
+      },
+      {
+        "exact_native_cache_key": "12149a8cb96153b4202b6c97a517d9073015bdbd.pkl",
+        "pkl_sha256": "ae2dabd383fcdade8e1cd03780dd39a11f69b67b91d7fd3921c6d350cb7d1e4d",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "That month a mosquito bit Carnarvon.",
+            "exact_native_cache_key": "12149a8cb96153b4202b6c97a517d9073015bdbd.pkl",
+            "cache_input_text_sha256": "4d613edbf26c48e7c1f3b83e014298ccf4c71892cd42305db2328d11d33b09b4",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          55808
+        ],
+        "unprocessed_array_sha256": "028a392b89b533e3bcacb8efd69a2d5d4d3c2a21ba023e794ae564acf3ba0856"
+      },
+      {
+        "exact_native_cache_key": "54ee4ed4cdff1aa23474a8aa46aa313b16ea46bb.pkl",
+        "pkl_sha256": "2899613a9dd9b345b81a593bbd5cb5032f84b2574720f55848a8f0669223e23c",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "He nicked the bite with a razor while shaving, it turned septic, and blood poisoning led to pneumonia.",
+            "exact_native_cache_key": "54ee4ed4cdff1aa23474a8aa46aa313b16ea46bb.pkl",
+            "cache_input_text_sha256": "35276fb7b1f5eae5d89d474308faf888a6f83eac6f1d9e3851cdde3d40333658",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          158720
+        ],
+        "unprocessed_array_sha256": "c724d5d0ae36a0f244de2f94f09d92ba34e89b37844d7022f6b4004476dc5964"
+      },
+      {
+        "exact_native_cache_key": "f49c15a6ad1bca128078aa5be3963e3b1db735c6.pkl",
+        "pkl_sha256": "36cb6b21745b0e3d577e87f4fa6f70ba4ad4ab00a797b84ead211c94907a3f19",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "He nicked the bite with a razor while shaving,",
+            "exact_native_cache_key": "f49c15a6ad1bca128078aa5be3963e3b1db735c6.pkl",
+            "cache_input_text_sha256": "e9d55f3f8eaf9127c0b5a2d179552cdf2a014016456edc94efeb76cf9cb12c9a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S9",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "He nicked the bite with a razor while shaving,",
+            "exact_native_cache_key": "f49c15a6ad1bca128078aa5be3963e3b1db735c6.pkl",
+            "cache_input_text_sha256": "e9d55f3f8eaf9127c0b5a2d179552cdf2a014016456edc94efeb76cf9cb12c9a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          56320
+        ],
+        "unprocessed_array_sha256": "882fcffdc3dd90f1d0fad0deb41e90fafb26f17abd4bed7c558885c1b1deea15"
+      },
+      {
+        "exact_native_cache_key": "f8417eed1330d62c382ba482dbef8a1668a66578.pkl",
+        "pkl_sha256": "dbf61657bcd7e9a7c74747eb5a3844f3ba5ce5b0a8fe23b5458f66f19d576a3e",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "it turned septic, and blood poisoning led to pneumonia.",
+            "exact_native_cache_key": "f8417eed1330d62c382ba482dbef8a1668a66578.pkl",
+            "cache_input_text_sha256": "f87b5817d6f254ebd1f8416c47b21a24bfe93a6e19470c60fdc18081982e3209",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          82944
+        ],
+        "unprocessed_array_sha256": "ef63a6c610da67fe1d72b8cc9f04298c4cafc350c0d47a13a75e223a955dd203"
+      },
+      {
+        "exact_native_cache_key": "a04eed28590caa018ccb159f5982e1d4e619ebfa.pkl",
+        "pkl_sha256": "ac9f0d6e30327c5c11be7e133a30a8c20b579c4c45cd2fb4a19ed4cc9edd800e",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "it turned septic,",
+            "exact_native_cache_key": "a04eed28590caa018ccb159f5982e1d4e619ebfa.pkl",
+            "cache_input_text_sha256": "97c980a2cae11713dcc0a1106a353783fb7ebe4a798f12b863045a354c57d58e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          29696
+        ],
+        "unprocessed_array_sha256": "9ac7add05e4dc404a078c10039e4727fe1434b4d775c9329a4a8a7a578c7146e"
+      },
+      {
+        "exact_native_cache_key": "f24f29992b7b58231f34a4561a63a9dbb612c67a.pkl",
+        "pkl_sha256": "1aed5a7fefe15bc0e508963ee8f450d6d7692991de794e64d03dde807f435b09",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and blood poisoning led to pneumonia.",
+            "exact_native_cache_key": "f24f29992b7b58231f34a4561a63a9dbb612c67a.pkl",
+            "cache_input_text_sha256": "0fa73590637411b8c4cfe9dc67830552d1edc2786116605ecdfce440cd4cbd62",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          58368
+        ],
+        "unprocessed_array_sha256": "96159e3e81181aa8d821eeb0d4ae718a8f0065a45ce4dad226a99d2b7a991b11"
+      },
+      {
+        "exact_native_cache_key": "14420c285786e42aed37bc5fa4f1762f9a2b0178.pkl",
+        "pkl_sha256": "8f7071658de18aa924d9e1a2219247ff7a3f9dc35aa5ef5df932ba5796805606",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "He died in Cairo on 5 April 1923.",
+            "exact_native_cache_key": "14420c285786e42aed37bc5fa4f1762f9a2b0178.pkl",
+            "cache_input_text_sha256": "48b665f45751388391e8bebdf98ec3fe1f2a545b1caf0a6c7d0138631632663e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          93696
+        ],
+        "unprocessed_array_sha256": "abd05d71fcf0dbbc04785ce99f4653fbab03188a96fea1c5f60e50afbd9404df"
+      },
+      {
+        "exact_native_cache_key": "0b54d14ee8fc3ea941072c315a2fcebea14c11d4.pkl",
+        "pkl_sha256": "acc6118f7a6618b625dbc3f10b7bfa2c0e6eea1481f06f4df6bf579baf0653d4",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Newspapers reported that the city's lights failed at that instant and that his dog in England howled and died.",
+            "exact_native_cache_key": "0b54d14ee8fc3ea941072c315a2fcebea14c11d4.pkl",
+            "cache_input_text_sha256": "12a672e8fd9d3b71919e61f4f3dc452afe14a5ab54e770074764bd39ffd29845",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          167936
+        ],
+        "unprocessed_array_sha256": "0c2bb93c0744602c33fe027925635280e401ad51096f3946ec25698109ed1e8b"
+      },
+      {
+        "exact_native_cache_key": "78f7743a5ab2fe6380e502ce41c155b85de2d935.pkl",
+        "pkl_sha256": "82cf7fd44b27727b14f2429c10d4779eda1b4924fee94ad2162a97793adb3aba",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Newspapers reported",
+            "exact_native_cache_key": "78f7743a5ab2fe6380e502ce41c155b85de2d935.pkl",
+            "cache_input_text_sha256": "3e7a2c32a8297076f77e386c8639f090f8435adba04e5e773b32aa0eead33d42",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          35328
+        ],
+        "unprocessed_array_sha256": "477772da8a59a5f092f5b89695d52c8ec3f583968de28db56ae6b44284c73e26"
+      },
+      {
+        "exact_native_cache_key": "bd4a022edd856acb85ff7378d8473f823564ff86.pkl",
+        "pkl_sha256": "dd54f8d9c49ec193eecc5a3646082a683dbc460bcb43f6b0928148290c217c81",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "that the city's lights failed at that instant",
+            "exact_native_cache_key": "bd4a022edd856acb85ff7378d8473f823564ff86.pkl",
+            "cache_input_text_sha256": "12cd9d985615c1769bbca6bba9d9f6cef3c3ec5f12c2deb86da0a85233c47f61",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          51712
+        ],
+        "unprocessed_array_sha256": "81d96d7a04918f4b38e2908ff0f38f35c64c3cb5f61b2f667c2a6282e789ff4d"
+      },
+      {
+        "exact_native_cache_key": "38590422f2c2f27e732ff14c7ee611291d654183.pkl",
+        "pkl_sha256": "7b800de2e43327c126947b4d84d414ca70152e1dac0617be275d0eea9dbed765",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and that his dog in England howled and died.",
+            "exact_native_cache_key": "38590422f2c2f27e732ff14c7ee611291d654183.pkl",
+            "cache_input_text_sha256": "990f91f3bb5461b6320bde23193ecb39cdf6facb6c95d0f39c0c531e6bea6897",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          61440
+        ],
+        "unprocessed_array_sha256": "8311bf01645021b0bbad12749362ac58b1bca820545a1e95eaeb866ae11cbcc2"
+      },
+      {
+        "exact_native_cache_key": "5566083dc802a18ae7a242012224cb5b137a0136.pkl",
+        "pkl_sha256": "82c6529dd05f5d97fa3f6c194f2ed08ac9a04cf5b32c4dae05120ec55d574068",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Yet blackouts were almost a daily occurrence in Cairo.",
+            "exact_native_cache_key": "5566083dc802a18ae7a242012224cb5b137a0136.pkl",
+            "cache_input_text_sha256": "2ef0ebb23e9f8386da46b35c3021c9da278ab57ad5c7c477f791f46402e560ea",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          80896
+        ],
+        "unprocessed_array_sha256": "3af03357d0586d0a1ed4a5a9ed3ace2ae4d1295ae18df09db2e4b70fbd4282f5"
+      },
+      {
+        "exact_native_cache_key": "497e8210626e265cf663fcc4579519c2666696f9.pkl",
+        "pkl_sha256": "d95e6528b1048aeb62c644f2b09e46abc25fdcc4fba4e36309c8059113afaeb1",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "No curse inscription was ever found in the tomb.",
+            "exact_native_cache_key": "497e8210626e265cf663fcc4579519c2666696f9.pkl",
+            "cache_input_text_sha256": "2e2c2c9f98851792044426bac4efcba57c6d476ef37bb61286c6c740cb4d50e9",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          71680
+        ],
+        "unprocessed_array_sha256": "338d0bc45bc521344e99f52266100e17083ab6fa52a7b4a24065b6b797c0da17"
+      },
+      {
+        "exact_native_cache_key": "2dac53ec28e7c77aed7d653f2811f52808b42921.pkl",
+        "pkl_sha256": "768576954ec572290396cc3e4b1678a824db8482207434d4a202d55ff93767da",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "In December 2002 a British Medical Journal study traced the fate of 44 Westerners in Egypt at the time.",
+            "exact_native_cache_key": "2dac53ec28e7c77aed7d653f2811f52808b42921.pkl",
+            "cache_input_text_sha256": "833203d8e9fd639781601483feab3a725adbc2d084703f55980dbcfb8c6fdb5d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          196608
+        ],
+        "unprocessed_array_sha256": "d0eaf0ddf9738256e3b0a8ca5543ea4f1aba42a699380ad5691a79c4ce48945a"
+      },
+      {
+        "exact_native_cache_key": "6baccfdef67fa03461a95e048f3af8654013ca15.pkl",
+        "pkl_sha256": "f8bd6034a860c018208dad1570f76d5bf2ec530ad416e60e75f98257fb46d059",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "In December 2002 a British Medical Journal study traced",
+            "exact_native_cache_key": "6baccfdef67fa03461a95e048f3af8654013ca15.pkl",
+            "cache_input_text_sha256": "a9b430136b76d7604169fdfce8c0f259916bc78c8c38f80ff722b1b7796d505a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          105472
+        ],
+        "unprocessed_array_sha256": "9f66c25766c032c55775bf8df4143eb5636963573101af091f4652d7465f631e"
+      },
+      {
+        "exact_native_cache_key": "e68ff960054b4a1da3d98f8b1632e4d09c22f31f.pkl",
+        "pkl_sha256": "6ac55cabf7fd88ddab0c4e2a30aed5394de94258c0c6f5bd1571efa8333c93ff",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "the fate of 44 Westerners in Egypt at the time.",
+            "exact_native_cache_key": "e68ff960054b4a1da3d98f8b1632e4d09c22f31f.pkl",
+            "cache_input_text_sha256": "eddf88cfce057f556b4a53d83e7cfabf74f964750e7f5dd56fea8394be78a36f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          82944
+        ],
+        "unprocessed_array_sha256": "533f1013ac091f2497d341fac968037ca1b06298450f6bb5c84f980fbc5efd8b"
+      },
+      {
+        "exact_native_cache_key": "6088369a74632ef46f4fa1309f0bcf30c919ef6a.pkl",
+        "pkl_sha256": "fc68a046f7de6f57aa70993efb8ebb3e6fad3e6f5013fe55e4154ddf5acba237",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The 25 exposed to the tomb died at an average age of 70, versus 75 for the rest, a margin not statistically significant.",
+            "exact_native_cache_key": "6088369a74632ef46f4fa1309f0bcf30c919ef6a.pkl",
+            "cache_input_text_sha256": "fec81882cf8aba9b1f8ec842cee094fdb735976b49e8c586309c795b795ef46f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          246272
+        ],
+        "unprocessed_array_sha256": "62f3b35dac44c5d65789dd24a736bca7f31e07a4e17786a6ca793a59dc2cd237"
+      },
+      {
+        "exact_native_cache_key": "ed429d91089e1ddfbc1e1ba1e9e498f03e9723aa.pkl",
+        "pkl_sha256": "37927f1ce6b8f12f234f4d41152e5ae131e655c5c1f0a222aad565ee492ab9fb",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "The 25 exposed to the tomb died at an average age of 70,",
+            "exact_native_cache_key": "ed429d91089e1ddfbc1e1ba1e9e498f03e9723aa.pkl",
+            "cache_input_text_sha256": "638e89ec6a75bbab75d42b6562aa270a7db40a85a6e31d7d73da5b5dfc85654c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S15",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "The 25 exposed to the tomb died at an average age of 70,",
+            "exact_native_cache_key": "ed429d91089e1ddfbc1e1ba1e9e498f03e9723aa.pkl",
+            "cache_input_text_sha256": "638e89ec6a75bbab75d42b6562aa270a7db40a85a6e31d7d73da5b5dfc85654c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          114688
+        ],
+        "unprocessed_array_sha256": "a4be7e7bb56cd8f8cee7f40ab33d30323418f9640bf1ea40cf34090d36b9b486"
+      },
+      {
+        "exact_native_cache_key": "ced716437c4c1e4e66633786490d2ac75f06f87d.pkl",
+        "pkl_sha256": "da35f6aaf494bcc2d4ad65593ff75178646d8807a3cae8823bbbc630fd8a50cc",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "versus 75 for the rest, a margin not statistically significant.",
+            "exact_native_cache_key": "ced716437c4c1e4e66633786490d2ac75f06f87d.pkl",
+            "cache_input_text_sha256": "3964294981845ec559575c23cfa60cb44f1e8bb4e149aec5110fee39b6d3a2bc",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          120320
+        ],
+        "unprocessed_array_sha256": "fc7ac99c4e72f786c2334c115cbf2eb968c9184b2c2567c0e254519e9ec562e9"
+      },
+      {
+        "exact_native_cache_key": "a7df6b856c538b18302fd9002cc11b873a54d24f.pkl",
+        "pkl_sha256": "cb6d491d35eb1645c6cb1d213dafe1cd46370fb65ce0172f11d66a15e2be8da9",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "versus 75 for the rest,",
+            "exact_native_cache_key": "a7df6b856c538b18302fd9002cc11b873a54d24f.pkl",
+            "cache_input_text_sha256": "9d8cf9d92633d94f5f929d86227b00d20b7063bd5c0bc67a77e0f5db688415ea",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          47104
+        ],
+        "unprocessed_array_sha256": "b0098ed169503e4013a9b7ac106e89aeab5b7c80a0ba558e1eb094a99182fc2c"
+      },
+      {
+        "exact_native_cache_key": "5ab7551a031a87863ce5a9c3ca38d4e14f68efa6.pkl",
+        "pkl_sha256": "e7c02a7db922b51d4d21fdec1b71dfef7088d418feca174debbcad77fa5e735f",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "a margin not statistically significant.",
+            "exact_native_cache_key": "5ab7551a031a87863ce5a9c3ca38d4e14f68efa6.pkl",
+            "cache_input_text_sha256": "066f4977b178866f0b29fba678a45c854021ecbf1f6e21b35aba1edabaf3e42c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          62976
+        ],
+        "unprocessed_array_sha256": "6f48506dc235fdb449989f9b21ee560c9fb8f25f5b0c4c233c56b2df91417e76"
+      },
+      {
+        "exact_native_cache_key": "a545c658cf43bbfc024c25f03f0732c235c00d2d.pkl",
+        "pkl_sha256": "2ade3a53aa2c612dd86c4d1fdca2bd094c82e33cbedb4a15ba6879b3f632657a",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The mortality figures lent the ominous rumour no credibility.",
+            "exact_native_cache_key": "a545c658cf43bbfc024c25f03f0732c235c00d2d.pkl",
+            "cache_input_text_sha256": "4eb44ede8e374b83a960dc9258424b5afbd670dac4446b773afd16eb97c7906f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          97792
+        ],
+        "unprocessed_array_sha256": "f88925d78f66186d6db6ed498e23c0a48200714763fcfb0e6011a9e86991e455"
+      },
+      {
+        "exact_native_cache_key": "13f31ceedb01624e20b4f70bd59d74586393519b.pkl",
+        "pkl_sha256": "3d5b8d2fd7a64861b30980db696f72cd7bcc62efc9825b64afeb142172555d14",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Carnarvon's untimely demise had fuelled the tale, giving it impetus.",
+            "exact_native_cache_key": "13f31ceedb01624e20b4f70bd59d74586393519b.pkl",
+            "cache_input_text_sha256": "5f2bc07a46de636d5072f508240f2b41ddb3a78e149302ad2ee169406ac9a2a7",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          112640
+        ],
+        "unprocessed_array_sha256": "97dbe8c57063ea8f15f9630b54e2c8f0fdb66705d4778f8763d7ddc759b84760"
+      },
+      {
+        "exact_native_cache_key": "bff05682ad03fe9e083b21f8842eacdf7fbb5f55.pkl",
+        "pkl_sha256": "34c5cbc27dcec2ffeba13d7596cba19191b84358986dc8c56b4866b061997426",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Carnarvon's untimely demise had fuelled the tale,",
+            "exact_native_cache_key": "bff05682ad03fe9e083b21f8842eacdf7fbb5f55.pkl",
+            "cache_input_text_sha256": "3e0c60e4e86fcc43249d8160692ce85b435e0fd89fe022fc530ecf371b536a36",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          75776
+        ],
+        "unprocessed_array_sha256": "63d5d902de37d6085a17480db4d2c3ce78573cfc50a6f2086cfe71a5da051455"
+      },
+      {
+        "exact_native_cache_key": "a5c20d5843fc4aa3ad22f574d29a7b90e1f74e10.pkl",
+        "pkl_sha256": "1d83e1bb1f024efb02e53aea30adc09f30fa6b91bc9099d7fa9a0d01206c524e",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "giving it impetus.",
+            "exact_native_cache_key": "a5c20d5843fc4aa3ad22f574d29a7b90e1f74e10.pkl",
+            "cache_input_text_sha256": "b8005dff91deadbba2eb3797436f4faf2ed5f2c361bf659fd8c2c5622cd8bef3",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          30720
+        ],
+        "unprocessed_array_sha256": "8734a62cd75c46d5f487293e39009baca7daa251ec17da3927c96e4ddcf4e0ae"
+      },
+      {
+        "exact_native_cache_key": "b2816c1b46a0f64fc3dbd9af604484b9dd8f9ceb.pkl",
+        "pkl_sha256": "af53996fa315f72f0d56859db98caa6027f211da8f27b73835ebb9eb5b681af1",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Carter, the excavator who had unsealed the burial place, died in March 1939, aged 64, almost sixteen years after his patron.",
+            "exact_native_cache_key": "b2816c1b46a0f64fc3dbd9af604484b9dd8f9ceb.pkl",
+            "cache_input_text_sha256": "08a89aed9e2940875f241f66f03c5d3135ed60a738fe19fe53f36c86ea7e2845",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          258048
+        ],
+        "unprocessed_array_sha256": "6c2308bfca2ee0d51f824ee55bc8a337b1486c5b5c7bd0d4b90fa38407356f49"
+      },
+      {
+        "exact_native_cache_key": "81050e394b3f55fcc23769adf7878239a5bef405.pkl",
+        "pkl_sha256": "e14170428376aede55d2e2ace96d3895c795257c044814d72764689126021379",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Carter, the excavator who had unsealed the burial place,",
+            "exact_native_cache_key": "81050e394b3f55fcc23769adf7878239a5bef405.pkl",
+            "cache_input_text_sha256": "a976110f9161466f38dbb27af582bbf767eb51e8962a44c7277a5fb6dce05d4f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          80896
+        ],
+        "unprocessed_array_sha256": "5566d2cedfc519d03388f885f0ce05982173d1d4e514184cd7195b101dd1a0db"
+      },
+      {
+        "exact_native_cache_key": "eba58288130a0e4df473fe46865a57b10f247cf3.pkl",
+        "pkl_sha256": "4abf94a380fa6149becbdf3bbec258c773a7dca409f05007898f1986a592bb6b",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "died in March 1939, aged 64, almost sixteen years after his patron.",
+            "exact_native_cache_key": "eba58288130a0e4df473fe46865a57b10f247cf3.pkl",
+            "cache_input_text_sha256": "1ce622620dbdfcf21293238bfc00d2f97453a727498856a529db734ef2da32b6",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          158720
+        ],
+        "unprocessed_array_sha256": "d963986948e8b89d6664411da543b219c22335d9e0becf054e9383dfd4508c68"
+      },
+      {
+        "exact_native_cache_key": "5e80177e619714fa39c64978eaf4bb18d3e73add.pkl",
+        "pkl_sha256": "7c3e2abe6a08fa241f1b6e89d6389a6f55714b20a19ab6f4f46cd7f87725c748",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Carter,",
+            "exact_native_cache_key": "5e80177e619714fa39c64978eaf4bb18d3e73add.pkl",
+            "cache_input_text_sha256": "0c62430168ab75c1fb4ce6cb794a504693c4eef4f3c0f258734915bd848f7446",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          17408
+        ],
+        "unprocessed_array_sha256": "bbd3447a8a19e5452823cfc58495737fb4edaffa9467d848714451944f0fdcdb"
+      },
+      {
+        "exact_native_cache_key": "70c39e30630527f7a8a4b9b6e8dffc18cb859bb1.pkl",
+        "pkl_sha256": "bc4436a8d71ea370d4860327d5b56925c6ade8a4aec781cb5a974524a59fe99f",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "the excavator who had unsealed the burial place,",
+            "exact_native_cache_key": "70c39e30630527f7a8a4b9b6e8dffc18cb859bb1.pkl",
+            "cache_input_text_sha256": "9fc933734fe1bcd23d38dafae6e9abe6ce83ad1d7fa2605e141745eb98d4f7d8",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          68096
+        ],
+        "unprocessed_array_sha256": "8154244afab04137afd74e4acf5ace75e0049d4146cca600d08e515304fafee2"
+      },
+      {
+        "exact_native_cache_key": "30956bc602faf94dda40f9f86d6fc92ecf663135.pkl",
+        "pkl_sha256": "e186a752e92a94dbfeac86c77ae8d18fbc06217dde7fd1cbc946fd100f3499d5",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "died in March 1939,",
+            "exact_native_cache_key": "30956bc602faf94dda40f9f86d6fc92ecf663135.pkl",
+            "cache_input_text_sha256": "56bab2719f179ecf5388a3da46f0f1135b53eaff663e57e26bf05d60784bcf96",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          50176
+        ],
+        "unprocessed_array_sha256": "b1577e9054c060b7df3539e7f44c7730da43ce30b44fefe95f6fde07c3827fdd"
+      },
+      {
+        "exact_native_cache_key": "efd01b2047c21f3c533095d80ffff5b5307757c2.pkl",
+        "pkl_sha256": "a19a934ee1dbe0d5fd65b886d04fadb926691bc63036347f7f83026e9a193227",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "aged 64,",
+            "exact_native_cache_key": "efd01b2047c21f3c533095d80ffff5b5307757c2.pkl",
+            "cache_input_text_sha256": "a19eff70ff733d5e072aa4cc027dca3b224efa3b2c6f5e185af6acca9ea3dd69",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          31744
+        ],
+        "unprocessed_array_sha256": "3c38a431712cfe7d1202c03b4525241a85a4b948a7e437a05434787374d643e4"
+      },
+      {
+        "exact_native_cache_key": "6c80b8b07d6b1e856fe933aced82ec89926109e4.pkl",
+        "pkl_sha256": "4128b49caba15a2e58b41950a868da3a7ba5a97419d31eb518fe72c62bcb5602",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": 5,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "almost sixteen years after his patron.",
+            "exact_native_cache_key": "6c80b8b07d6b1e856fe933aced82ec89926109e4.pkl",
+            "cache_input_text_sha256": "9883bc8fbb5301ff63c397e48afec1ce26c4958e6220bf55feb037599c28a038",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          57856
+        ],
+        "unprocessed_array_sha256": "3b29a5923bf596ed19eec2bc5411880c5f41abc92e0771b0a48df35282045d7c"
+      },
+      {
+        "exact_native_cache_key": "75996cbf0e7370a179f42ee24f9cfef79e36473c.pkl",
+        "pkl_sha256": "c4ba0a0286fa3a25a1d629ac65d9c183522fb57a7831cc7de3a4ea856deddbd2",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S19",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The legend had left him conspicuously unharmed.",
+            "exact_native_cache_key": "75996cbf0e7370a179f42ee24f9cfef79e36473c.pkl",
+            "cache_input_text_sha256": "90c04268e3f9971bed10f19e68e0cf82bf0e9d40a8a5255db8c32087edc0a37e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          71168
+        ],
+        "unprocessed_array_sha256": "b39ad3039347293c754958524c1c0368b7ec546914a77f91637e00e0bc75603a"
+      }
+    ],
+    "missing_reference_key_count": 0,
+    "observed_missing_keys_covered": [],
+    "new_private_cache_names": [],
+    "native_single_thread_marker_verified": true,
+    "single_thread_sessions": [
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      },
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      }
+    ],
+    "models_sha256": {
+      "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+      "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+      "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+    },
+    "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+    "existing_private_cache_count": 11514,
+    "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "existing_private_cache_bytes_unchanged": true,
+    "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+    "public_repository_cache_unchanged": true,
+    "producer_pcm_existed_before": false,
+    "producer_pcm_sha256_before": null,
+    "producer_pcm_sha256_after": null,
+    "accepted_aac_adts_sha256_before": "e60811a051e70f7b4056df03bf6222f75c86ab3adc6c4d26c64fc619bb2e4324",
+    "accepted_aac_adts_sha256_after": "e60811a051e70f7b4056df03bf6222f75c86ab3adc6c4d26c64fc619bb2e4324",
+    "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+    "private_cache_exported": false
+  },
+  "checker_reference_preparation_program_sha256": "f6f2a032e207085e7252d036e39430fb80b06e84a721c525b61196d021c5ca12",
+  "accepted_prior_pcm_probe": {
+    "article": "17",
+    "purpose": "diagnostic exact prior public native PCM for original confirmation migration; not a QC verdict",
+    "quality_acceptance": false,
+    "old_source_sha256": "fbd53b02b1dfed0fe5a10953a2428b3091839510f7f3332bccc53bb7857bc617",
+    "expected_accepted_pcm_md5_first12": null,
+    "expected_accepted_pcm_sha256": null,
+    "old_pcm_matches_accepted_confirmation_fingerprint": false,
+    "private_PCM_or_cache_exported": false,
+    "reference_kind": "actual_prior_public_native_render_not_the_accepted_voice",
+    "original_public_run_id": null,
+    "historical_accepted_confirmation_reference": true,
+    "expected_prior_public_native_pcm_md5_first12": "0ef19e50999f",
+    "expected_prior_public_native_pcm_sha256": "ca5fb9ebaa8cc1bdf386cc048aa315f7301cf0c423db17cbfcec4826d9667e46",
+    "expected_prior_public_native_aac_adts_sha256": "67cfce1c3eca849174a5a53342241980a3dd24e6e08ef4e1494eb1de7475460a",
+    "original_maker_exit": 0,
+    "actual_old_pcm_md5_first12": "0ef19e50999f",
+    "actual_old_pcm_sha256": "ca5fb9ebaa8cc1bdf386cc048aa315f7301cf0c423db17cbfcec4826d9667e46",
+    "old_pcm_matches_existing_confirmation_fingerprint": true,
+    "old_reconstructed_aac_adts_sha256": "67cfce1c3eca849174a5a53342241980a3dd24e6e08ef4e1494eb1de7475460a",
+    "accepted_prior_aac_adts_sha256": "e60811a051e70f7b4056df03bf6222f75c86ab3adc6c4d26c64fc619bb2e4324",
+    "old_reconstructed_aac_exactly_matches_accepted": false,
+    "old_segment_metadata_sha256": "d95df8c3f3c7cc04563da35c68b532de653ff0e4735eaf505323a6fe06ed2b09",
+    "old_pcm_matches_independently_bound_reference": true,
+    "old_pcm_matches_independently_bound_accepted_reference": false,
+    "old_reconstructed_aac_exactly_matches_prior_public_native": true
+  },
+  "original_confirmation_migration": {
+    "actual_current_audio_only_exit": 0,
+    "unchanged_original_program_sha256": "8d12b72841efba01ee1d8855158f56c4cbc4370d151bccf87ab770ece6ba6fde",
+    "attempts": [
+      {
+        "old_pcm_md5_first12": "0ef19e50999f",
+        "actual_pcm_md5_first12": "04c1b62ad507",
+        "exit": 0
+      }
+    ],
+    "new_quality_gate": false,
+    "audio_modified_by_migration": false
+  },
+  "fresh_current_article_reference": {
+    "article": "17",
+    "removed_temporary_gt_files": [],
+    "processed_pcm_or_raw_mother_cache_modified": false,
+    "purpose": "Original synth/labels/audit rebuild fresh for this production; no old CPU GT reuse."
+  },
+  "temporary_output_reset": {
+    "removed": [
+      {
+        "name": "17.mp4",
+        "mtime_ns": 1794644959916375500,
+        "bytes": 2178201,
+        "was_symlink": false
+      },
+      {
+        "name": "17.mp4.指纹.json",
+        "mtime_ns": 1794644960025772621,
+        "bytes": 421,
+        "was_symlink": false
+      }
+    ],
+    "production_started_ns": 1794644961279160442,
+    "repository_outputs_modified": false
+  },
+  "reviewed_gain_control_preservation": [
+    {
+      "stage": "canonical-draft",
+      "requested_gain_controls": {},
+      "actual_gain_controls": {},
+      "exactly_preserved": true
+    },
+    {
+      "stage": "canonical-final4K",
+      "requested_gain_controls": {},
+      "actual_gain_controls": {},
+      "exactly_preserved": true
+    }
+  ],
+  "confirmation_continuity": {
+    "diagnostic_only": true,
+    "automatic_renewals": false,
+    "exit": 0,
+    "file": "17-confirmation-continuity.json",
+    "sha256": "ea770baf85494f8cfc7e923caa0efbfdbd58fc463354d67647f43511f1a0cd46"
+  },
+  "canonical_video_sha256": "254fecd2d475264d3dd580c1061ccbc1e45f669ee01a55fc248a5e439657232b",
+  "canonical_aac_adts_sha256": "e60811a051e70f7b4056df03bf6222f75c86ab3adc6c4d26c64fc619bb2e4324",
+  "canonical_pipeline_passed": true,
+  "cached_input_wav_sha256": null,
+  "final_wav_sha256": "44559a7e5b57da714a5aa20a9f001549dafaf80739561d85b5a59d8ac9db38c4",
+  "accepted_prior_audio_packet_preservation": {
+    "file": "17-accepted-audio-packet-preservation.json",
+    "sha256": "0418dd150a0bceea2cbf4ec27c6a728d74949264c6e9493a408a6fd412003f09",
+    "article": "17",
+    "scope": "This17 revision changes focus colours and Chinese explanations only.",
+    "accepted_video_sha256": "3a28679efead092857197a17b6205b1e5577616f6be808ef5de9c236d200c7ee",
+    "canonical_video_sha256": "254fecd2d475264d3dd580c1061ccbc1e45f669ee01a55fc248a5e439657232b",
+    "accepted_packet_count": 6575,
+    "canonical_packet_count": 6575,
+    "accepted_packet_records_sha256": "45f368e51144d120cbca72ddeb4513d113b7ee412398ac1a00de177d61d5b612",
+    "canonical_packet_records_sha256": "45f368e51144d120cbca72ddeb4513d113b7ee412398ac1a00de177d61d5b612",
+    "AAC_payload_side_data_and_absolute_PTS_DTS_duration_identical": true,
+    "codec_parameters_identical": true,
+    "codec_parameters": [
+      {
+        "codec_name": "aac",
+        "profile": "LC",
+        "codec_tag_string": "mp4a",
+        "sample_fmt": "fltp",
+        "sample_rate": "48000",
+        "channels": 1,
+        "channel_layout": "mono",
+        "time_base": "1/48000"
+      },
+      {
+        "codec_name": "aac",
+        "profile": "LC",
+        "codec_tag_string": "mp4a",
+        "sample_fmt": "fltp",
+        "sample_rate": "48000",
+        "channels": 1,
+        "channel_layout": "mono",
+        "time_base": "1/48000"
+      }
+    ],
+    "existing_packet_reader_sha256": "dc204b91415e28297b844e9666087b0e23e67194944b359cb5fb5ddbca0f1208",
+    "private_PCM_or_cache_read": false
+  },
+  "accepted_prior_aac_identical": true,
+  "video_sha256": "8bcf4238b8cabd83043a2142269acad0a5b3d771b43e7c27a9a0cb4ad78d979a",
+  "width": 3840,
+  "height": 2160,
+  "summary_seconds": 2,
+  "summary_frames": 60,
+  "summary_start_seconds": 140.3,
+  "delay_after_voice_seconds": 0.030000000000001137,
+  "actual_source_collection": {
+    "article": "17",
+    "kind": "actual-production-source-collection",
+    "new_quality_gate": false,
+    "files": {
+      "request_json": {
+        "file": "17-request-source.json",
+        "sha256": "9750857c3e2c67e6abe5ea6913cb0602347be8b58836bbbc03e2c4153bb12e1b",
+        "origin": "immutable_request"
+      },
+      "request_generator": {
+        "file": "17-request-gen.py",
+        "sha256": "f20f96824c759b49fb15d8df14ab0083c84de5dc81e01bf77e7eb74168cc1127",
+        "origin": "immutable_request"
+      },
+      "used_generator": {
+        "file": "17-used-gen.py",
+        "sha256": "f20f96824c759b49fb15d8df14ab0083c84de5dc81e01bf77e7eb74168cc1127",
+        "origin": "actual_production_filesystem"
+      },
+      "actual_working_source": {
+        "file": "17-actual-working-source.json",
+        "sha256": "c13366f7d8538da7a74a622a3ff3d7230b225dfad65d98bd4e24369daabecd46",
+        "origin": "actual_production_filesystem"
+      },
+      "request_manuscript": {
+        "file": "17-request-manuscript.md",
+        "sha256": "0dc7b6ee7f4ef05d5e4382beeb077d57578d0bb6a6b69415485008facae98717",
+        "origin": "immutable_request"
+      },
+      "actual_working_manuscript": {
+        "file": "17-actual-working-manuscript.md",
+        "sha256": "a3f7b45013cd157e1525085c82bd57fb14b195f7f7ad8114af22a68c495f53ed",
+        "origin": "actual_production_filesystem"
+      }
+    },
+    "generator_execution_observed": false,
+    "generator_execution_evidence": "No fresh generator execution log; do not claim this GEN was executed during rendering.",
+    "source_differences": {
+      "file": "17-actual-source-differences.json",
+      "sha256": "581f7a1ad0757ba26d63363412f694dd24cfa96a2d33b1456203aac26cb5347c"
+    }
+  },
+  "approved_illustration_resource": {
+    "kind": "exact-approved-illustrations-from-pinned-publication",
+    "source_id": "17",
+    "resource_verified": true,
+    "repository": "alienalgorithm/postgraduate-vocabulary",
+    "ref": "64621068034f8b6e09836a6d97210a0e9b2f1ed6",
+    "path": "插图阅读小册/illustrations/17.png",
+    "sha256": "632e25177219d0d0573d0808ebd57be4422c8dd6e7595d9cc7a4faa30bac68c1",
+    "git_blob_sha1": "e7e4ea090c8ef3c8ab41bde93e598f2f8d99e7eb",
+    "bytes": 3111495,
+    "approved_manifest_sha256": "98f4601ef3c40ed141834505bfc8392fb195a8a2d6a7658eeae0c5e0dde758ec",
+    "resource_contract_sha256": "d94fa43499c6feb097508fe747231c85daf57d44dd92ef9c0197b2334909b86b"
+  },
+  "final_video_file": "17-4K-正文-书中插图2秒-简述2秒.mp4",
+  "illustration_frames": 60,
+  "illustration_seconds": 2,
+  "illustration_start_frame": 4149,
+  "illustration_start_seconds": 138.3,
+  "summary_start_frame": 4209,
+  "output_frames": 4269,
+  "output_seconds": 142.3,
+  "first_tail_page": "illustration",
+  "final_decoded_frame_previews": [
+    {
+      "frame": 4148,
+      "label": "body-last",
+      "path": "/home/runner/work/literate-enigma/literate-enigma/article17-delivery/17-illustrated-tail-previews/17-body-last.jpg",
+      "sha256": "238fc0ac3a05cf08c0fe4f6a34af82c76804105eff91bb65f05a277493147ee4"
+    },
+    {
+      "frame": 4149,
+      "label": "illustration-first",
+      "path": "/home/runner/work/literate-enigma/literate-enigma/article17-delivery/17-illustrated-tail-previews/17-illustration-first.jpg",
+      "sha256": "05c6f93103677b5b146bf789989ea91c9d7580c0946de928994c4cecbe8b96c0"
+    },
+    {
+      "frame": 4208,
+      "label": "illustration-last",
+      "path": "/home/runner/work/literate-enigma/literate-enigma/article17-delivery/17-illustrated-tail-previews/17-illustration-last.jpg",
+      "sha256": "b8894bbfd40a4cc999130b0a4e39a2a601328f19a3f0d3ca7b0951e4da7e75a5"
+    },
+    {
+      "frame": 4209,
+      "label": "summary-first",
+      "path": "/home/runner/work/literate-enigma/literate-enigma/article17-delivery/17-illustrated-tail-previews/17-summary-first.jpg",
+      "sha256": "9a948e65475aa0ada5b67351c2a05176cb92f3bea97f8fb396c8705faa26cfa6"
+    },
+    {
+      "frame": 4268,
+      "label": "summary-last",
+      "path": "/home/runner/work/literate-enigma/literate-enigma/article17-delivery/17-illustrated-tail-previews/17-summary-last.jpg",
+      "sha256": "4c559bf3bd9070331aa3b314ab83bef1b877df25d78d50524b66efcea8790b0c"
+    }
+  ],
+  "illustrated_tail_verification": {
+    "file": "17-illustrated-tail-verification.json",
+    "sha256": "ca7ce81f5fe34c88a1c5913ab7da1622f1a7309a52e2e9f3d05b26767a702c1e"
+  }
+}
