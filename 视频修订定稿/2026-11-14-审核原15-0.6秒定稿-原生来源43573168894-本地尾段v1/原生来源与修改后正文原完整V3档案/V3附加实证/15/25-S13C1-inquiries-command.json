@@ -1,0 +1,22 @@
+{
+  "command": [
+    "ffmpeg",
+    "-hide_banner",
+    "-nostdin",
+    "-copyts",
+    "-ss",
+    "100",
+    "-i",
+    "/workspace/work/video-audit70-20261113/next-passed-native/43573168894/15/15-4K-\u6b63\u6587\u540e\u63d2\u56fe2\u79d2-\u7b80\u8ff02\u79d2.mp4",
+    "-map",
+    "0:v:0",
+    "-frames:v",
+    "1",
+    "-vf",
+    "showinfo",
+    "-fps_mode",
+    "passthrough",
+    "/workspace/work/video-audit70-20261113/next-passed-native/43573168894/15/actual-new-vocabulary-frames/S13C1-inquiries-active-4K.png"
+  ],
+  "exit_code": 0
+}
