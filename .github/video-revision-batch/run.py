@@ -56,12 +56,15 @@ def install_certified_core_repairs():
     manifest = json.loads(manifest_file.read_text())
     assert manifest['kind'] in {'actual-original-fastcheck-certified-three-core-repair',
                                 'actual-original-fastcheck-certified-four-core-repair',
-                                'actual-original-fastcheck-certified-five-core-repair'}
+                                'actual-original-fastcheck-certified-five-core-repair',
+                                'actual-original-fastcheck-certified-five-core-reviewed-cuts-repair'}
     allowed = {'视频/工具/草稿声音.sh','视频/工具/句内响度.py','视频/工具/独立复核/synth.py'}
     keep_ending = manifest['kind'] != 'actual-original-fastcheck-certified-three-core-repair'
     if keep_ending:
         allowed.add('视频/工具/结尾句接点.py')
-    if manifest['kind'] == 'actual-original-fastcheck-certified-five-core-repair':
+    keep_cuts = manifest['kind'] == 'actual-original-fastcheck-certified-five-core-reviewed-cuts-repair'
+    if manifest['kind'] in {'actual-original-fastcheck-certified-five-core-repair',
+                            'actual-original-fastcheck-certified-five-core-reviewed-cuts-repair'}:
         allowed.add('视频/工具/读音核对.py')
     assert {item['target'] for item in manifest['core_files']} == allowed
     for item in manifest['core_files']:
@@ -83,6 +86,9 @@ def install_certified_core_repairs():
     ENV['XG_KEEP_REVIEWED_GAIN'] = '1'
     if keep_ending:
         ENV['XG_KEEP_REVIEWED_ENDING'] = '1'
+    if keep_cuts:
+        assert manifest['environment_for_revision_jobs']['XG_KEEP_REVIEWED_CUTS'] == '1'
+        ENV['XG_KEEP_REVIEWED_CUTS'] = '1'
     status['core_repairs'] = manifest['core_files']
     status['actual_native_core_certification'] = manifest['actual_native_certification']
     status['actual_native_fastcheck_stamp'] = stamp
@@ -90,6 +96,7 @@ def install_certified_core_repairs():
     status['core_repair_manifest_sha256'] = sha(manifest_file)
     status['reviewed_gain_preservation_mode'] = True
     status['reviewed_existing_ending_preservation_mode'] = keep_ending
+    status['reviewed_existing_physical_cuts_preservation_mode'] = keep_cuts
     save()
 
 
@@ -97,7 +104,10 @@ def prepare_accepted_pcm_continuity(baseline_bytes, accepted_aac):
     """Rebuild genuine old PCM privately for exact confirmation comparisons."""
     global BASELINE_AUDIO_FILES
     expected = {'10':'15f47fa51add', '11':'5da69def8d01', '12':'04f94362f377',
-                '44':'21efe6263229', '51':'ff0728857c2d'}
+                '44':'21efe6263229', '51':'ff0728857c2d',
+                '15':'7e5ea2bdb6d3', '17':'0ef19e50999f',
+                '18':'76b99c620981', '30':'93a277750d35', '02':None}
+    exact_old_pcm = {'02':'c21872d4db894f37b1b8b5db752917f9f6ef60680834ca4cccef9b806b5c1c52'}
     if NO not in expected:
         return
     script = W / f'scripts/{NO}.json'
@@ -107,6 +117,7 @@ def prepare_accepted_pcm_continuity(baseline_bytes, accepted_aac):
     proof = {'article':NO, 'purpose':'diagnostic old accepted PCM reconstruction only; not a QC verdict',
              'quality_acceptance':False, 'old_source_sha256':sha(old_source),
              'expected_accepted_pcm_md5_first12':expected[NO],
+             'expected_accepted_pcm_sha256':exact_old_pcm.get(NO),
              'old_pcm_matches_accepted_confirmation_fingerprint':False,
              'private_PCM_or_cache_exported':False}
     proof_file = OUT / f'{NO}-accepted-prior-pcm-probe.json'
@@ -129,6 +140,8 @@ def prepare_accepted_pcm_continuity(baseline_bytes, accepted_aac):
                           'accepted_prior_aac_adts_sha256':accepted_aac,
                           'old_reconstructed_aac_exactly_matches_accepted':aac_hash(output) == accepted_aac,
                           'old_segment_metadata_sha256':sha(old_segments)})
+            old_pcm_bound = (sha(old_wav) == exact_old_pcm[NO]) if NO in exact_old_pcm else actual_fp == expected[NO]
+            proof['old_pcm_matches_independently_bound_accepted_reference'] = old_pcm_bound
             BASELINE_AUDIO_FILES = {'old_wav':old_wav, 'old_source':old_source,
                                     'old_segments':old_segments, 'proof':proof_file}
     except Exception as exc:
@@ -138,7 +151,12 @@ def prepare_accepted_pcm_continuity(baseline_bytes, accepted_aac):
         proof_file.write_text(json.dumps(proof, ensure_ascii=False, indent=2) + '\n')
         status['accepted_prior_pcm_probe'] = proof
         save()
-    if not BASELINE_AUDIO_FILES or not proof['old_pcm_matches_accepted_confirmation_fingerprint']:
+    if not BASELINE_AUDIO_FILES or not proof.get('old_pcm_matches_independently_bound_accepted_reference', False):
+        return
+    if NO in A21_AUDIO_REPAIRS | {'02'} and not proof.get('old_reconstructed_aac_exactly_matches_accepted', False):
+        proof['migration_not_attempted'] = 'Old reconstruction did not exactly reproduce the accepted AAC.'
+        proof_file.write_text(json.dumps(proof, ensure_ascii=False, indent=2) + '\n')
+        save()
         return
     # Original precise confirmations may refer to a previously public failed
     # draft (12's reviewed highlight), as well as the accepted prior voice.
@@ -692,6 +710,14 @@ def official(args, label):
             for group in (f'做_{NO}', f'定稿_{NO}'):
                 for source in (W / group).glob('*.log'):
                     lines = source.read_text(errors='replace').splitlines()
+                    if source.name == '声音.log':
+                        # Preserve actual early exits (for example a final sentence
+                        # without an inner comma) even when the legacy summary
+                        # only prints lines containing a QA counter.
+                        diagnostics[f'{group}/{source.name}:actual_text_tail'] = [
+                            line[:2000].replace(str(M), '<private-machine>') for line in lines[-180:]
+                            if not any(marker in line for marker in
+                                       ('onnxruntime:', 'VerifyEachNodeIsAssignedToAnEp'))]
                     selected = [line[:1600] for line in lines
                                 if any(mark in line for mark in
                                        ('✘', 'BAD', 'FAIL', 'Error', 'Exception',

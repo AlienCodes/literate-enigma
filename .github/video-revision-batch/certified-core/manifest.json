@@ -1,12 +1,12 @@
 {
-  "kind": "actual-original-fastcheck-certified-five-core-repair",
+  "kind": "actual-original-fastcheck-certified-five-core-reviewed-cuts-repair",
   "core_files": [
     {
       "target": "视频/工具/草稿声音.sh",
       "file": "files/视频/工具/草稿声音.sh",
       "original_sha256": "0ce3277812cf16ed30438509b6dc97db0c26725db4c5db5d9b058c3ef6531aa2",
-      "patched_sha256": "c45c66e3cf68a380f5c829600cf6b0ed69f49f24c65e91c0330ed17d1a85475e",
-      "repair_scope": "explicit revision flags keep reviewed gain and existing valid ending entry; original pipeline and quality gates retained; bad ending failures propagate"
+      "patched_sha256": "43fc6a1acdae6bb1c2252178bf034407400bbbe92eb1752053f3047da9760491",
+      "repair_scope": "explicit revision flags keep reviewed gain, existing valid ending and reviewed physical cuts; automatic cuts still measured/proposed without --写入 in CUTS=1 mode; default full JSON/PCM/AAC exact to prior5; all original later quality checks retained"
     },
     {
       "target": "视频/工具/句内响度.py",
@@ -46,30 +46,31 @@
   "actual_native_fastcheck_stamp": {
     "target": "视频/工具/新管/快测通过.json",
     "file": "files/视频/工具/新管/快测通过.json",
-    "sha256": "95a51b15bb4b71b8842851da8d16bb4109231f1ba69e24826792f2a718ef4a4a",
-    "origin": "actual unmodified original full quickcheck, native run43547136057"
+    "sha256": "bb75875985ff106abe142caf7ecbf0a5eb76a1412309bf78d77bf146f64512af",
+    "origin": "actual unmodified original full quickcheck, native run43550422832"
   },
   "actual_native_certification": {
-    "run_id": 43547136057,
-    "job_id": 132300968704,
-    "commit": "d14c0b19b391974a6766255c18591a4e60909bbf",
+    "run_id": 43550422832,
+    "job_id": 132311381738,
+    "commit": "5ecda5ba57c151cb74fc3d36193b60fa59f51c26",
     "actual_full_quickcheck_exit": 0,
-    "actual_full_quickcheck_seconds": 554.94,
-    "artifact_id": 14094801836,
-    "artifact_zip_sha256": "80ff77c6637b57144dae07651e115df440b0845ffc4fca1c357f72547c5bfb7f",
-    "full_original_quickcheck_log_sha256": "b8345d5711ad66f567cd5d5415fd4abb3e32e364c0726b81b91d7c545b309900",
+    "actual_full_quickcheck_seconds": 384.1,
+    "artifact_id": 14096681983,
+    "artifact_zip_sha256": "19dee7da557610e78f39567446bd7dd17ee2c1fe58a0070bb2d6f2c11c22b347",
+    "full_original_quickcheck_log_sha256": "43e1f723087d59c15e78593b23dc37cd2360ba3526474cc5484fbe80edc253d8",
     "article_audio_or_video_passed_not_implied": true
   },
   "environment_for_revision_jobs": {
     "XG_KEEP_REVIEWED_GAIN": "1",
-    "XG_KEEP_REVIEWED_ENDING": "1"
+    "XG_KEEP_REVIEWED_ENDING": "1",
+    "XG_KEEP_REVIEWED_CUTS": "1"
   },
   "whole_production_T_compatibility": {
     "source_ref": "e5446f35ffc522e96cf8cabdf36d1a182551a6a9",
     "all_program_count": 110,
     "original_stamp_exit": 0,
     "all_program_map_exact": true,
-    "proof_SHA256": "b1acea5fc066a9620c9e5fcd7b8ef91ab75376ade6eaaedab48cd134675ba2df"
+    "proof_SHA256": "cac2792ddcfec6833e165033d43c812c673d0b17c80df665e63cdcc0e52d2480"
   },
   "actual_native_pronunciation_tests": {
     "original16_bug_reproduced": true,
@@ -77,12 +78,24 @@
     "all_non_selftest_AST_unchanged": true,
     "normal_check_output_exact": true,
     "unrelated_exception_propagated_and_dict_restored": true,
-    "report_SHA256": "84f143db8045ecf6f9cec6e0e711bd80faa705afc80950e6d448dbfaadf3d7f6"
+    "report_SHA256": "cbb5a935e2ae1ae2b42be4ab54c6ff9f718e5d80b41366c1e8faf7a361d77370"
   },
   "default_behavior_unchanged": true,
   "quality_thresholds_lowered": false,
   "all_checkers_unchanged_claim": false,
   "producer_unchanged_SHA256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
   "independent_audit_unchanged_SHA256": "bfe12dab6bec96c9b765faea286ae30a067589f6c5ef78461b21d12b955f1e22",
-  "historical_test_article_data_not_to_install": true
+  "historical_test_article_data_not_to_install": true,
+  "actual_native_complete02_cuts_tests": {
+    "default_original5_and_candidate_actual_PCM_AAC_JSON_exact": true,
+    "mode1_NV_retained": true,
+    "mode1_actual_AAC_matches_old_accepted": "c026dfff1f9591a3e11539cc40e87e3da0ed247cec3bf883d265011126e094d3",
+    "original_four_new_noise_selftests_passed": true,
+    "bad_existing_NV_rejected_by_original_producer": true,
+    "automatic_cut_algorithm_SHA256_unchanged": "c3d2e6a911a33e57fbe629bc97ca332cbb2cce73d6aec9f3dbebd731aa1e6562",
+    "full_report_SHA256": "818d3a1d8d70904965f6617af8fa3105627056c41d591d1e5eab4a5a2d1c4a12",
+    "article_QA_not_implied": true
+  },
+  "program_count": 5,
+  "runtime_file_count": 7
 }
