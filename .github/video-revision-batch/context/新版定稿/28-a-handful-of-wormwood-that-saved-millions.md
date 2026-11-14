@@ -2,7 +2,7 @@
 # ZH: 青蒿一握，济世千万
 
 ## 英文
-Project 523, a **covert** **military** **mission** involving many institutes, was named after its launch date, 23 May 1967. Its **urgent** target was the chloroquine-**resistant** **malaria** **weakening** **troops** in the **Vietnam War**. In January 1969 Tu Youyou was **entrusted with** leading her institute's research group, **despite** having no **doctorate** or foreign training.
+Project 523, a **covert** **military** **mission** involving many institutes, **was named after** its launch date, 23 May 1967. Its **urgent** target was the chloroquine-**resistant** **malaria** **weakening** **troops** in the **Vietnam War**. In January 1969 Tu Youyou was **entrusted with** leading her institute's research group, **despite** having no **doctorate** or foreign training.
 
 In an **exhaustive** search, her team **combed** over 2,000 **folk** recipes, **compiled** 640 **prescriptions**, and **evaluated** about 380 **extracts** from some 200 **medicinal** **herbs**. Qinghao, or **sweet wormwood**, showed **flashes** of **promise**, yet its results were **erratic**. Seeking a **clue**, Tu **revisited** the **classical** texts.
 
@@ -10,11 +10,11 @@ Around AD 340, the physician Ge Hong's **handbook** advised taking "a handful of
 
 **Efficacy** in mice **indicated** nothing about human safety. In July 1972, to **assess** its **toxicity**, Tu and two colleagues **voluntarily** took the extract. **Thereafter**, from August to October, it was **administered to** 21 malaria **patients** in Hainan, and on 8 November her team **obtained** pure **crystals** of the **substance** later named artemisinin.
 
-In September 2011 Tu was named a Lasker Award **recipient**; its **jury** credited the drug with saving millions. On 5 October 2015 she won half the Nobel Prize in **Physiology** or Medicine, the first Chinese woman Nobel **laureate**. Since 2006 WHO **guidelines** have **endorsed** artemisinin-based **combination** **therapies** against malaria's **deadliest** form. The **essence** of Ge Hong's line lay in the boiling it **skipped**.
+In September 2011 Tu was named a Lasker Award **recipient**; its **jury** **credited** the drug **with** saving millions. On 5 October 2015 she won half the Nobel Prize in **Physiology** or Medicine, the first Chinese woman Nobel **laureate**. Since 2006 WHO **guidelines** have **endorsed** artemisinin-based **combination** **therapies** against malaria's **deadliest** form. The **essence** of Ge Hong's line lay in the boiling it **skipped**.
 
 ## 中文
 
-523项目是一项**秘密的/隐秘的**(covert)**军事**(military)**任务**(mission)，涉及多家机构，得名于它的启动日期，1967年5月23日。（a covert military mission…：同位语，补充说明 Project 523；involving many institutes：现在分词短语作后置定语）（be named after…：以……命名）它的**紧迫**(urgent)目标是对氯喹**产生耐药性的**(resistant)**疟疾**(malaria)，它**削弱了**(weakening)**越南战争**(Vietnam War)中的**部队**(troops)。（chloroquine-resistant：对氯喹产生耐药性的，chloroquine 是氯喹）（weakening troops…：现在分词短语作后置定语，修饰 malaria）1969年1月，屠呦呦**受命**(entrusted with)领导她所在研究所的研究组，**尽管**(despite)她既没有**博士学位**(doctorate)，也没有在国外受过训练。（be entrusted with doing…：被委以做……的重任，受命做……）（despite doing…：尽管……，despite 是介词，后面接动名词）
+523项目是一项**秘密的/隐秘的**(covert)**军事**(military)**任务**(mission)，涉及多家机构，**得名于**(was named after)它的启动日期，1967年5月23日。（a covert military mission…：同位语，补充说明 Project 523；involving many institutes：现在分词短语作后置定语）（be named after…：以……命名）它的**紧迫**(urgent)目标是对氯喹**产生耐药性的**(resistant)**疟疾**(malaria)，它**削弱了**(weakening)**越南战争**(Vietnam War)中的**部队**(troops)。（chloroquine-resistant：对氯喹产生耐药性的，chloroquine 是氯喹）（weakening troops…：现在分词短语作后置定语，修饰 malaria）1969年1月，屠呦呦**受命**(entrusted with)领导她所在研究所的研究组，**尽管**(despite)她既没有**博士学位**(doctorate)，也没有在国外受过训练。（be entrusted with doing…：被委以做……的重任，受命做……）（despite doing…：尽管……，despite 是介词，后面接动名词）
 
 在一次**彻底的**(exhaustive)搜寻中，她的团队**仔细翻检了**(combed)2,000多个**民间**(folk)药方，**编纂/汇编了**(compiled)640个**处方/药方**(prescriptions)，并**评估了**(evaluated)约380种**提取物**(extracts)，它们来自200种左右的**药用的**(medicinal)**草药**(herbs)。（comb：梳理，这里指仔细翻检；over 2,000：2,000多个）（some 200：大约200，some 表示“大约”）青蒿，也就是**黄花蒿**(sweet wormwood)，展现出几丝**成功迹象**(promise)的**闪光/闪现**(flashes)，然而它的效果却**并不稳定/时好时坏的**(erratic)。（or：也就是，引出同一种植物的另一个名称；show flashes of promise：不时显出希望）为了寻找**线索**(clue)，屠呦呦**重新审阅了**(revisited)**古典**(classical)文献。（Seeking a clue：现在分词短语作状语，表示目的）
 
@@ -22,7 +22,7 @@ In September 2011 Tu was named a Lasker Award **recipient**; its **jury** credit
 
 在小鼠身上有**药效**(Efficacy)，并不能**说明**(indicated)人是否安全。（indicate nothing about…：对……什么也说明不了）1972年7月，为了**评估**(assess)它的**毒性**(toxicity)，屠呦呦和两名同事**自愿地**(voluntarily)服下了这种提取物。（to assess…：不定式作目的状语）**此后**(Thereafter)，从8月到10月，这种提取物**用于治疗**(administered to)21名疟疾**病人**(patients)，在海南，而在11月8日，她的团队**得到了**(obtained)这种**物质**(substance)的纯净**晶体**(crystals)，它后来被命名为青蒿素。（administer A to B：给 B 施用 A，这里指给病人用药）（later named artemisinin：过去分词短语作后置定语，修饰 the substance）
 
-2011年9月，屠呦呦被评为拉斯克奖**得主**(recipient)；该奖的**评审团**(jury)将挽救了数百万人的功劳归功于这种药物。（recipient 就是“接受者 / 接收者”（在奖项里特指“得主”）。奖项/荣誉场景：award recipient = 获奖者 / 得主物品/信息场景：email recipient = 邮件收件人；welfare recipient = 福利领取者）（credit A with B：把 B 的功劳归于 A（或：认为 B 是 A 的成就））2015年10月5日，她获得了一半的诺贝尔**生理学**(Physiology)或医学奖，成为第一位中国女性诺贝尔奖**获得者**(laureate)。（won half the Nobel Prize：获得了诺贝尔奖的一半，另一半由另外两位学者分享）（the first Chinese woman Nobel laureate：同位语，补充说明 she）自2006年起，世界卫生组织的**指南**(guidelines)一直**公开支持/赞同**(endorsed)以青蒿素为基础的**联合**(combination)**疗法**(therapies)，用来对付疟疾中**最致命的**(deadliest)一种。（WHO：世界卫生组织；artemisinin-based：以青蒿素为基础的；have endorsed：现在完成时，表示从2006年一直到现在）葛洪那句话的**精髓**(essence)，正在于它**略去**(skipped)的煮沸。（lie in…：在于……，lay 是 lie 的过去式；it skipped：定语从句，修饰 the boiling，省略了 that）（简述：▸寻药：部分疟疾已对旧药氯喹产生抗药性，中国启动523联合研究项目寻找新药。屠呦呦团队查古方、测试多种草药提取物。▸线索：青蒿有时有效、有时无效。葛洪古方只说浸泡、不说煮沸，屠呦呦怀疑提取时的高温破坏了有效成分。▸突破：团队改用低温乙醚提取，1971年的样品完全抑制了感染小鼠体内的疟原虫，但小鼠有效仍不能证明人服用安全。▸验证：1972年，她与两名同事先试服，随后给21名疟疾患者使用；团队又分离出纯晶体，后来命名为青蒿素。▸影响：以青蒿素为基础、与其他药物合用的疗法获世卫推荐，挽救众多生命；屠呦呦于2015年获诺贝尔奖。）
+2011年9月，屠呦呦被评为拉斯克奖**得主**(recipient)；该奖的**评审团**(jury)**将**(credited with)挽救了数百万人的功劳**归功于**(credited with)这种药物。（recipient 就是“接受者 / 接收者”（在奖项里特指“得主”）。奖项/荣誉场景：award recipient = 获奖者 / 得主物品/信息场景：email recipient = 邮件收件人；welfare recipient = 福利领取者）（credit A with B：把 B 的功劳归于 A（或：认为 B 是 A 的成就））2015年10月5日，她获得了一半的诺贝尔**生理学**(Physiology)或医学奖，成为第一位中国女性诺贝尔奖**获得者**(laureate)。（won half the Nobel Prize：获得了诺贝尔奖的一半，另一半由另外两位学者分享）（the first Chinese woman Nobel laureate：同位语，补充说明 she）自2006年起，世界卫生组织的**指南**(guidelines)一直**公开支持/赞同**(endorsed)以青蒿素为基础的**联合**(combination)**疗法**(therapies)，用来对付疟疾中**最致命的**(deadliest)一种。（WHO：世界卫生组织；artemisinin-based：以青蒿素为基础的；have endorsed：现在完成时，表示从2006年一直到现在）葛洪那句话的**精髓**(essence)，正在于它**略去**(skipped)的煮沸。（lie in…：在于……，lay 是 lie 的过去式；it skipped：定语从句，修饰 the boiling，省略了 that）（简述：▸寻药：部分疟疾已对旧药氯喹产生抗药性，中国启动523联合研究项目寻找新药。屠呦呦团队查古方、测试多种草药提取物。▸线索：青蒿有时有效、有时无效。葛洪古方只说浸泡、不说煮沸，屠呦呦怀疑提取时的高温破坏了有效成分。▸突破：团队改用低温乙醚提取，1971年的样品完全抑制了感染小鼠体内的疟原虫，但小鼠有效仍不能证明人服用安全。▸验证：1972年，她与两名同事先试服，随后给21名疟疾患者使用；团队又分离出纯晶体，后来命名为青蒿素。▸影响：以青蒿素为基础、与其他药物合用的疗法获世卫推荐，挽救众多生命；屠呦呦于2015年获诺贝尔奖。）
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -30,6 +30,7 @@ In September 2011 Tu was named a Lasker Award **recipient**; its **jury** credit
 | covert | 本文：秘密的/隐秘的；adj. 秘密的，隐蔽的（a covert operation/mission；covert surveillance） | 1 |
 | military | 本文：军事；adj. 军事的，军队的（a military base/operation；military service）；n. 军队 | 1 |
 | mission | 本文：任务；n. 任务，使命（a secret/rescue mission；be sent on a mission）；使团 | 1 |
+| was named after | 本文：得名于；v. phr. (be named after) 以……命名，得名于（be named after a person/date） | 1 |
 | urgent | 本文：紧迫；adj. 紧迫的，急迫的（an urgent need/task；in urgent need of help） | 1 |
 | resistant | 本文：产生耐药性的；adj. 有抵抗力的，耐药的（drug-resistant bacteria；resistant to antibiotics）；抵制的（resistant to change） | 1 |
 | malaria | 本文：疟疾；n. 疟疾（catch/contract malaria；malaria-carrying mosquitoes） | 1 |
@@ -84,6 +85,7 @@ In September 2011 Tu was named a Lasker Award **recipient**; its **jury** credit
 | crystals | 本文：晶体；n. (crystal) 晶体，结晶（salt/ice crystals；form crystals） | 4 |
 | recipient | 本文：得主；n. 接受者，获得者（a recipient of an award；the recipient of a donation） | 5 |
 | jury | 本文：评审团；n. 评审团；陪审团（the competition jury；the jury awarded the prize to…；the jury reached a verdict） | 5 |
+| credited with | 本文：将……归功于；v. phr. (credit A with B) 把 B 的功劳归于 A，认为 B 是 A 的成就（credited the drug with saving millions） | 5 |
 | Physiology | 本文：生理学；n. 生理学；生理机能（the Nobel Prize in Physiology or Medicine；human/plant physiology） | 5 |
 | laureate | 本文：获得者；n. 获奖者，获得者（a Nobel laureate）；桂冠诗人（poet laureate） | 5 |
 | guidelines | 本文：指南；n. (guideline) 指导方针，指南（issue/follow guidelines；treatment guidelines） | 5 |
