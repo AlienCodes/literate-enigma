@@ -25,7 +25,7 @@ S = [(1,
      ('beside him,', '的陪同下，')]],
    [[('Carter', '卡特'), ('made a small hole in the sealed **doorway**', '在封住的**门道**(doorway)上开了一个小孔，')]],
    [[('and', '并'),
-     ('glimpsed', '瞥见了'),
+     ('**glimpsed**', '**瞥见了**(glimpsed)'),
      ('the **glittering** gold of the boy king Tutankhamun.', '少年国王图坦卡蒙**闪闪发光的**(glittering)黄金。')],
     '（with + 名词 + beside him：with 复合结构作伴随状语，“在……的陪同下”）']]),
  (1,
@@ -96,14 +96,15 @@ S = [(1,
      ('**blackouts**', '**停电**(blackouts)'),
      ('were almost a daily **occurrence** in Cairo.', '在当时的开罗几乎是天天都有的**事情**(occurrence)。')]]]),
  (4,
-  [[[('No curse **inscription** was ever found in the tomb.', '墓中从未发现过任何诅咒**铭文**(inscription)。')],
-    '（No… was ever found：no 否定主语，全句否定，“从未发现过任何……”）']]),
+  [[[('No **curse**', '墓中从未发现过任何**诅咒**(curse)'),
+     ('**inscription** was ever found in the tomb.', '**铭文**(inscription)。')],
+    '（No… was ever found：no 否定主语，\n全句否定，“从未发现过任何……”）']]),
  (4,
   [[[('In December 2002', '2002年12月，'),
      ('a British Medical Journal', '《英国医学杂志》的'),
      ('study', '一项研究'),
      ('traced', '追溯了')]],
-   [[('the **fate** of 44 Westerners in Egypt at the time.', '当时身在埃及的44名西方人的**命运**(fate)。')],
+   [[('the **fate** of 44 Westerners in **Egypt** at the time.', '当时身在**埃及**(Egypt)的44名西方人的**命运**(fate)。')],
     '（in Egypt at the time：后置定语，修饰 Westerners）']]),
  (4,
   [[[('The 25 **exposed to** the tomb', '其中曾**接触**(exposed to)这座陵墓的25人，'),
@@ -112,7 +113,7 @@ S = [(1,
    [[('**versus**', '**相比之下**(versus)'),
      ('75 for the rest,', '其余的人为75岁；'),
      ('a **margin**', '这一**差距**(margin)'),
-     ('not statistically', '在统计上并不'),
+     ('not **statistically**', '**在统计上**(statistically)并不'),
      ('**significant**.', '**显著**(significant)。')],
     '（exposed to the tomb：过去分词短语作后置定语，\n修饰 The 25；\na margin…：同位语，概括前面的差距）']]),
  (4,
@@ -149,6 +150,10 @@ S = [(1,
      ('him', '他'),
      ('**conspicuously** **unharmed**.', '**毫发无损**(unharmed)，这一点**格外醒目**(conspicuously)。')],
     '（leave sb unharmed：让某人未受伤害；conspicuously 修饰 unharmed）\n'
+    '（him 指亲自开墓的卡特。卡纳冯去世后，\n'
+    '他又活了近16年，终年64岁。按照“法老诅咒”的传闻，\n'
+    '卡特本应是最容易遭殃的人，结果却长久无事。\n'
+    '作者用这种反差表达讽刺，质疑所谓“诅咒”的可信性。）\n'
     '（简述：▸发现：1922年，考古学家卡特与赞助人卡纳冯打开图坦卡蒙墓，墓中珍宝震惊世界。▸传言：卡纳冯把独家报道权卖给《泰晤士报》，其他记者转向猜测；次年他突然去世，进入墓葬会遭诅咒的故事由此盛行。▸病因：卡纳冯剃须时划破蚊子叮咬处，伤口感染恶化，并发肺炎；报纸还说他死时开罗停电，但当地本就几乎天天停电。▸对照：2002年一项研究比较开墓时身在埃及的44人的寿命，接触过墓的25人平均活到70岁，其余未接触者75岁；这点差异不足以排除偶然。▸结论：墓中从未发现诅咒铭文；卡纳冯去世后，亲自开墓的卡特又活了近16年，现有证据不能证明存在诅咒。）']])]
 
 out = {'no': '17',
@@ -157,7 +162,8 @@ out = {'no': '17',
  'title_fx': {'hl': ['Curse', 'Pharaoh'], 'ghost': []},
  'sentences': [],
  '核对确认': {'短语': {'S1 engaged … by': 'labourers engaged by the archaeologist：by 只引出被动的施动者（被……聘用），不是 engage '
-                                    '的固定搭配（速查表搭配是 engage a lawyer、be engaged in）'},
+                                    '的固定搭配（速查表搭配是 engage a lawyer、be engaged in）',
+                 'S14 Egypt … at': 'Egypt 是国家专名埃及；at the time 是另一个时间状语（在当时）。Egypt at 不是固定搭配，不扩标原句其余部分。'},
           '中文意思': {'S15 versus': '文章定稿译作“相比之下”（一个完整的词，不被隔开），沿用定稿（铁律），不拆成“与……相比”'},
           '非人声': {'50.01–50.04s': {'配音指纹': '0ef19e50999f',
                                    '依据': '2026-10-16 用实际声音（逐段看声音 2.5 ms 电平/周期/低频占比/重心，a.wav 自相关基频）核实是词的一部分（S6 '
@@ -273,8 +279,6 @@ out = {'no': '17',
                  "S11-2 that the city's lights failed ": '时间状语 at that instant '
                                                          '中文必须提到句首（就在那一瞬间，全城的灯都熄灭了），拆开语序不通',
                  'S12-1 were almost a daily occurrence': '地点状语 in Cairo 中文必须提到前面（在当时的开罗几乎是天天都有的事情）',
-                 'S13-1 No curse inscription was ever ': '被动句：地点状语 in the tomb 中文提到句首、主语 No curse inscription '
-                                                         '放到动词后（墓中从未发现过任何诅咒铭文），整句倒序',
                  'S14-2 the fate of 44 Westerners in E': 'of 结构加后置的地点、时间状语：中文“当时身在埃及的44名西方人的命运”必须整体倒过来',
                  'S15-1 The 25 exposed to the tomb': '后置定语：exposed to the tomb 修饰 The 25，中文“曾接触这座陵墓的25人”必须倒过来',
                  'S18-1 the excavator who had unsealed': '定语从句 who had unsealed the burial place 修饰 '
@@ -283,9 +287,11 @@ out = {'no': '17',
                                                          '中文必须倒过来（距他的资助人去世已近十六年）',
                  'S1-1 the Valley of the Kings,': '专有名词：the Valley of the Kings（帝王谷）是一个地名，拆开不成词',
                  'S15-1 died at an average age': 'died at an average age 中文“平均死亡年龄”词序倒过来（average 平均 在前、died 死亡 '
-                                                 '在后），拆开不通'}},
+                                                 '在后），拆开不通',
+                 'S13-1 inscription was ever found in ': '被动句：地点状语 in the tomb 中文提到句首、主语 No curse inscription '
+                                                         '放到动词后（墓中从未发现过任何诅咒铭文），整句倒序'}},
  '结尾解说': '简述',
- 'allow_clash': ['turned septic'],
+ 'allow_clash': ['turned septic', 'glimpsed', 'curse', 'Egypt', 'statistically'],
  '高亮按实际开口': True,
  '高亮开口门槛': 40,
  '结尾句': {'S19': {'整句语速': 0.8,
@@ -311,9 +317,7 @@ out = {'no': '17',
            'S4': [[3.14, 3.383458, '紧贴词头']],
            'S5': [[1.905, 2.18]],
            'S10': [[1.36, 1.575]]},
- '词尾除阻': {'S1': {'句末': [11.335, 'k']},
-          'S7': {'1': [0.875, 't']},
-          'S15': {'2': [7.095, 't'], '句末': [10.165, 't']}},
+ '词尾除阻': {'S7': {'1': [0.875, 't']}, 'S15': {'2': [7.095, 't'], '句末': [10.165, 't']}},
  '停顿插入点': {'S18': {'1': 0.493917}},
  '换行变更记录': [{'日期': '2026-10-23',
              'S2': '用户 '
@@ -336,7 +340,9 @@ out = {'no': '17',
                     '4K”；只改中英分组，中文字一个不改）',
              'S16': '用户 '
                     '2026-10-23：“如果要是ok的话，尽可能的就是英文上下和它的汉译尽量能够就是位置对齐……我们设置好的标准，尽量一定要去执行啊……你看现在这个前后这个标准它又不统一了。”（用户选定“全部重新对齐、重出 '
-                    '4K”；只改中英分组，中文字一个不改）'}]}
+                    '4K”；只改中英分组，中文字一个不改）'}],
+ '除阻加强': {'S1': {'句末': [11.27, 11.34, 6.0]}},
+ '换行变更已获同意': {'S13': '用户本轮要求修正上面全部问题、认真排版并重新生成4K，并明确《法老的诅咒》重新4K定稿。主会话2026-11-14依据该既有授权批准本句新增curse重点所必需的原T34拆格与原L19逗号机械折行；只重排对齐和说明换行，中英文裸字、说明内容及全部音频保持。此为已授权排版修正的主会话实施决定记录，并非虚构用户另行逐字指定S13换行的原话。'}}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对
