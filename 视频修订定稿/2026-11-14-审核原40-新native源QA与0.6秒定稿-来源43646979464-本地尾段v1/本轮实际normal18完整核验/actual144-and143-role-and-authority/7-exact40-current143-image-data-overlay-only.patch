@@ -1,0 +1,65 @@
+--- 
++++ 
+@@ -1,3 +1,4 @@
++from exact40_video143_overlay import verify as verify143_overlay, current_illustration as current143_illustration, P as VIDEO143_FILES
+ """Strict actual normal18 local tail validation over an unchanged full-V3 body.
+ 
+ Existing native/source/audio QA is inherited honestly, never claimed rerun.
+@@ -6,7 +7,7 @@
+ import argparse,copy,hashlib,importlib.util,json,shutil,sys
+ from pathlib import Path
+ HERE=Path(__file__).resolve().parent
+-BASE=Path('/dev/shm/native-inline-engine-reviewed16-v30-actual137-Origin')
++BASE=Path('/dev/shm/native-inline-engine-reviewed40-v31-honest-postonly144')
+ sys.path.insert(0,str(BASE))
+ import delivery as D
+ from normal18_contract import actual_normal_tail,current_stills,fresh_derived_record
+@@ -40,11 +41,12 @@
+     require(timing['body_outside_summary_min_ssim']>.995 and timing['old_summary_pixel_verification']['held_body_frame_match_error']<2,'Actual original end-card visual bounds failed')
+     layout=next(r for r in D.load(checked(prior['global_approved_evidence']['video_layout_approval']))['articles']if r['source_id']==n)
+     book=next(r for r in D.load(checked(prior['global_approved_evidence']['book_illustrations']))['illustrations']if r['source_id']==n)
++    book, video143_overlay=verify143_overlay(prior,raw,load_module(helper))
+     decoded=raw['output_final_hold_validation'];normalized={k:decoded[v]for k,v in profile['decoder_keys'].items()}
+     g=actual_normal_tail(raw,article=n,new_id=original['new_id'],expected_kind=profile['output_kind'],expected_program_sha=profile['helper']['sha256'],actual_hold=normalized,layout_row=layout,book_row=book,request_json_sha256=oq['source_sha256']['request']['json'])
+     require(timing['unheld_voice_ceiling_frame']==g['speech_ceiling_frame']and timing['source_voice_endpoint_seconds']==raw['source_voice_endpoint_seconds'],'Actual measured speech endpoint changed')
+     current=load_module(helper);require(current.verify_final_hold(movie,raw['body_frames'])==decoded,'Independent actual18 decoder differs')
+-    require(raw['illustration_composed_4k_rgb_sha256']==oq['illustration']['preparation']['prepared_rgb_sha256'],'Approved illustration RGB changed')
++    require(raw['illustration_composed_4k_rgb_sha256']==video143_overlay['prepared_rgb_sha256'],'Approved illustration RGB changed')
+     prepared=raw['illustration_preparation'];require(current.sha(prepared['prepared_image_path'])==prepared['prepared_png_sha256']and current.rgb_sha(prepared['prepared_image_path'])==prepared['prepared_rgb_sha256'],'Actual prepared image identity differs')
+     audio=[D.actual_aac(p)for p in(canonical,up,movie)];require(audio[0]==audio[1]==audio[2],'Actual original→held18→final AAC/codec/side-data/absolute clock differs')
+     probe=D.probe(movie);require(probe['frames']==g['held_body_end_frame_exclusive']+120,'Actual output frame count differs')
+@@ -60,22 +62,31 @@
+     qc['summary'].update(start_frame=raw['summary_start_frame'])
+     qc['audio']['lossless_copy'].update(final_video_sha256=D.digest(movie),final_aac_adts_sha256=audio[2]['aac_adts_sha256'],final_packet_projection_sha256=audio[2]['packet_projection_sha256'],final_packet_count=audio[2]['packet_count'])
+     qc['audio_repair_applied_in_this_tail_postprocess']=False
++    qc['illustration'].update(approved_illustration_sha256=video143_overlay['native_image']['sha256'],book_source_sha256='5b1aabe5efdc4543a1989bfac2dd27a8e1f3dbd0f5db232f32c5800ef9e496e1',video_only_user143_replacement=True,video_illustration_authority=video143_overlay)
++    qc['illustration']['frame_comparison']['reference_sha256']=prepared['prepared_png_sha256']
+     record=fresh_derived_record(old,mp4_spec=spec(movie),actual_probe=probe,current_qc=qc,actual_audio_chain=compact_audio(audio[2]),actual_geometry=g)
+     record.update(local_postprocessing_only=True,new_native_job_claimed=False)
++    record['inherited_original_book_illustration']=copy.deepcopy(old['illustration'])
++    record['illustration']=current143_illustration(original['section']['illustration'],raw,video143_overlay)
+     D.write(out/'validated-article-record.json',record);D.write(out/'actual-current-QC.json',qc)
+     item=copy.deepcopy(original['section']);item.update(mp4=spec(movie),qc=spec(out/'actual-current-QC.json'),stills=stills)
+-    item['evidence'].extend(spec(p)for p in(raw_path,review_path,ufile,profile_path,Path('/workspace/work/first50-review-release/USER-REVIEW-2026-11-14-137.json')))
++    item['illustration']=record['illustration']
++    item['evidence'].extend(spec(p)for p in(raw_path,review_path,ufile,profile_path,Path('/workspace/work/first50-review-release/USER-REVIEW-2026-11-14-144.json')))
+     report={'status':'passed_actual_normal18_post_only','source_id':n,'new_id':original['new_id'],'source_run':prior['source_run'],'local_postprocessing_only':True,'new_native_job_or_TTS_claimed':False,'actual_MP4':spec(movie),'actual_probe':probe,'actual_geometry':g,'actual_audio_chain':[compact_audio(x)for x in audio],'inherited_full_V3':spec(prior_path),'actual_new_tail_proof':spec(raw_path),'actual_visual_review':spec(review_path),'production_delivery_eligible':True,'preview_only':False,'original_source_GEN_MD_voice_QA_unchanged':True}
+     D.write(out/'report.json',report);D.write(out/'actual-sample-input.json',{'kind':'normal18-post-only-inheriting-real-full-V3','articles':[item]})
+     snapshot=out/'code-snapshot';snapshot.mkdir(exist_ok=True);hashes={}
+-    for p in(Path(__file__),HERE/'normal18_contract.py',HERE/'hold18_geometry.py',profile_path,helper,BASE/'delivery.py',BASE/'release_contract.py'):
++    for p in(Path(__file__),HERE/'normal18_contract.py',HERE/'hold18_geometry.py',profile_path,helper,BASE/'delivery.py',BASE/'release_contract.py',HERE/'exact40_video143_overlay.py',HERE/'exact40-video143-overlay-reference.json'):
+         target=snapshot/p.name;shutil.copyfile(p,target);hashes[p.name]=D.digest(target)
+     validation=[{**r,'relative_validation_path':'inherited-full-V3/'+r['relative_validation_path']}for r in prior['validation_files']]
+     require(D.digest(profile['composition_bridge']['path'])==profile['composition_bridge']['sha256'],'Actual composition bridge differs')
+-    extras=[ufile,raw_path,review_path,timing_path,adapted_path,status_path,profile_path,Path('/workspace/work/first50-review-release/USER-REVIEW-2026-11-14-137.json'),Path(profile['composition_bridge']['path']),*folder.glob('*.png'),*[Path(r['path'])for r in raw['decoded_frame_previews']]]
++    extras=[ufile,raw_path,review_path,timing_path,adapted_path,status_path,profile_path,Path('/workspace/work/first50-review-release/USER-REVIEW-2026-11-14-144.json'),Path(profile['composition_bridge']['path']),*folder.glob('*.png'),*[Path(r['path'])for r in raw['decoded_frame_previews']]]
++    extras.extend(Path(x['path'])for x in VIDEO143_FILES.values())
++    extras.extend([HERE/'exact40_video143_overlay.py',HERE/'exact40-video143-overlay-reference.json'])
+     validation +=[{**spec(p),'relative_validation_path':'actual-normal18-evidence/'+str(i)+'-'+p.name}for i,p in enumerate(dict.fromkeys(extras))]
+     validation +=[{**spec(p),'relative_validation_path':str(p.relative_to(out))}for p in out.rglob('*')if p.is_file()and p.name!='archive-handoff.json']
+     hand={'status':'passed_actual_normal18_post_only_for_permanent_archive','kind':'authorized-normal18-local-tail-derivative','source_run':prior['source_run'],'local_postprocessing_only':True,'new_native_job_or_TTS_claimed':False,'complete70_release_validated':False,'publishing_or_remote_mutation_executed':False,'preview_only':False,'production_delivery_eligible':True,'articles':[{'source_id':n,'new_id':original['new_id'],'passed_per_article':True,'final_mp4':spec(movie),'canonical_source_mp4':original['canonical_source_mp4'],'immutable_native_zip':original['immutable_native_zip'],'validated_record':str(out/'validated-article-record.json'),'section':item}],'additional_public_media_inputs':[spec(up)],'report_path':str(out/'report.json'),'input_path':str(out/'actual-sample-input.json'),'validation_files':validation,'global_approved_evidence':prior['global_approved_evidence'],'tool_source_sha256':hashes,'code_snapshot_path':str(snapshot),'native_root':prior['native_root'],'inherited_full_V3':spec(prior_path)}
++    hand['video_only_illustration_authorization']=video143_overlay
++    hand['shared_book_illustrations_reference_unchanged']=True
+     D.write(out/'archive-handoff.json',hand)
+     for row in validation:checked(row)
+     require(record['actual_probe']==qc['actual_probe']and all(s['video_sha256']==record['sha256']for s in item['stills']),'Current record/QC/stills disagree')

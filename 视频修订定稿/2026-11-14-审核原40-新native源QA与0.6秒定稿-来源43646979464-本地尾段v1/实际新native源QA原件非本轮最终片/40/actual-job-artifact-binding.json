@@ -1,0 +1,3741 @@
+{
+  "actual_successful_job_verified": true,
+  "actual_genuine_upstream_pass_with_missing_art_recovery": false,
+  "actual_job_uploaded_selected_artifact": false,
+  "overall_matrix_success_required": false,
+  "acceptance_basis": "actual successful article job + immutable run artifact + actual native passed article/media/source identity; upload log is auxiliary",
+  "run": {
+    "id": 43646979464,
+    "name": "本轮改动篇目原缓存正式4K",
+    "node_id": "WFR_kwLODJcpM88AAAAKKZANiA",
+    "head_branch": "codex/finish-05-and-summaries-20261112",
+    "head_sha": "77c136ecf936bdf86ab8ef03fabf957b98ac70ac",
+    "path": ".github/workflows/produce-revision-batch4K.yml",
+    "display_title": "Rebuild revised articles in official4K: 40",
+    "run_number": 67,
+    "event": "push",
+    "status": "completed",
+    "conclusion": "success",
+    "workflow_id": 417752518,
+    "check_suite_id": 118177015787,
+    "check_suite_node_id": "CS_kwDODJcpM88AAAAbg-Yn6w",
+    "url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43646979464",
+    "html_url": "https://github.com/AlienCodes/literate-enigma/actions/runs/43646979464",
+    "pull_requests": [],
+    "created_at": "2026-11-14T22:13:47Z",
+    "updated_at": "2026-11-14T22:16:46Z",
+    "actor": {
+      "login": "AlienCodes",
+      "id": 52247027,
+      "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/AlienCodes",
+      "html_url": "https://github.com/AlienCodes",
+      "followers_url": "https://api.github.com/users/AlienCodes/followers",
+      "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+      "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+      "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+      "repos_url": "https://api.github.com/users/AlienCodes/repos",
+      "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "run_attempt": 1,
+    "referenced_workflows": [],
+    "run_started_at": "2026-11-14T22:13:47Z",
+    "triggering_actor": {
+      "login": "AlienCodes",
+      "id": 52247027,
+      "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/AlienCodes",
+      "html_url": "https://github.com/AlienCodes",
+      "followers_url": "https://api.github.com/users/AlienCodes/followers",
+      "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+      "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+      "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+      "repos_url": "https://api.github.com/users/AlienCodes/repos",
+      "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "jobs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43646979464/attempts/1/jobs",
+    "logs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43646979464/attempts/1/logs",
+    "check_suite_url": "https://api.github.com/repos/AlienCodes/literate-enigma/check-suites/118177015787",
+    "artifacts_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43646979464/artifacts",
+    "cancel_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43646979464/cancel",
+    "rerun_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43646979464/rerun",
+    "previous_attempt_url": null,
+    "workflow_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/workflows/417752518",
+    "head_commit": {
+      "id": "77c136ecf936bdf86ab8ef03fabf957b98ac70ac",
+      "tree_id": "cb71b34fca98fbf278c903724455f0e61051c646",
+      "message": "Rebuild revised articles in official4K: 40",
+      "timestamp": "2026-11-14T22:13:44Z",
+      "author": {
+        "name": "the Sword God",
+        "email": "52247027+AlienCodes@users.noreply.github.com"
+      },
+      "committer": {
+        "name": "the Sword God",
+        "email": "52247027+AlienCodes@users.noreply.github.com"
+      }
+    },
+    "repository": {
+      "id": 211233075,
+      "node_id": "MDEwOlJlcG9zaXRvcnkyMTEyMzMwNzU=",
+      "name": "literate-enigma",
+      "full_name": "AlienCodes/literate-enigma",
+      "private": false,
+      "owner": {
+        "login": "AlienCodes",
+        "id": 52247027,
+        "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+        "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/AlienCodes",
+        "html_url": "https://github.com/AlienCodes",
+        "followers_url": "https://api.github.com/users/AlienCodes/followers",
+        "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+        "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+        "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+        "repos_url": "https://api.github.com/users/AlienCodes/repos",
+        "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/AlienCodes/literate-enigma",
+      "description": "I am exploring this world!",
+      "fork": false,
+      "url": "https://api.github.com/repos/AlienCodes/literate-enigma",
+      "forks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/forks",
+      "keys_url": "https://api.github.com/repos/AlienCodes/literate-enigma/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/AlienCodes/literate-enigma/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/AlienCodes/literate-enigma/teams",
+      "hooks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/hooks",
+      "issue_events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/events",
+      "assignees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/AlienCodes/literate-enigma/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/tags",
+      "blobs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/AlienCodes/literate-enigma/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/AlienCodes/literate-enigma/languages",
+      "stargazers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/stargazers",
+      "contributors_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contributors",
+      "subscribers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscribers",
+      "subscription_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscription",
+      "commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/AlienCodes/literate-enigma/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/AlienCodes/literate-enigma/merges",
+      "archive_url": "https://api.github.com/repos/AlienCodes/literate-enigma/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/AlienCodes/literate-enigma/downloads",
+      "issues_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/AlienCodes/literate-enigma/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/AlienCodes/literate-enigma/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/AlienCodes/literate-enigma/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/AlienCodes/literate-enigma/labels{/name}",
+      "releases_url": "https://api.github.com/repos/AlienCodes/literate-enigma/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/deployments"
+    },
+    "head_repository": {
+      "id": 211233075,
+      "node_id": "MDEwOlJlcG9zaXRvcnkyMTEyMzMwNzU=",
+      "name": "literate-enigma",
+      "full_name": "AlienCodes/literate-enigma",
+      "private": false,
+      "owner": {
+        "login": "AlienCodes",
+        "id": 52247027,
+        "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+        "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/AlienCodes",
+        "html_url": "https://github.com/AlienCodes",
+        "followers_url": "https://api.github.com/users/AlienCodes/followers",
+        "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+        "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+        "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+        "repos_url": "https://api.github.com/users/AlienCodes/repos",
+        "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/AlienCodes/literate-enigma",
+      "description": "I am exploring this world!",
+      "fork": false,
+      "url": "https://api.github.com/repos/AlienCodes/literate-enigma",
+      "forks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/forks",
+      "keys_url": "https://api.github.com/repos/AlienCodes/literate-enigma/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/AlienCodes/literate-enigma/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/AlienCodes/literate-enigma/teams",
+      "hooks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/hooks",
+      "issue_events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/events",
+      "assignees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/AlienCodes/literate-enigma/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/tags",
+      "blobs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/AlienCodes/literate-enigma/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/AlienCodes/literate-enigma/languages",
+      "stargazers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/stargazers",
+      "contributors_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contributors",
+      "subscribers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscribers",
+      "subscription_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscription",
+      "commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/AlienCodes/literate-enigma/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/AlienCodes/literate-enigma/merges",
+      "archive_url": "https://api.github.com/repos/AlienCodes/literate-enigma/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/AlienCodes/literate-enigma/downloads",
+      "issues_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/AlienCodes/literate-enigma/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/AlienCodes/literate-enigma/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/AlienCodes/literate-enigma/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/AlienCodes/literate-enigma/labels{/name}",
+      "releases_url": "https://api.github.com/repos/AlienCodes/literate-enigma/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/deployments"
+    }
+  },
+  "job": {
+    "id": 132606945884,
+    "run_id": 43646979464,
+    "workflow_name": "本轮改动篇目原缓存正式4K",
+    "head_branch": "codex/finish-05-and-summaries-20261112",
+    "run_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43646979464",
+    "run_attempt": 1,
+    "node_id": "CR_kwDODJcpM88AAAAe3_1qXA",
+    "head_sha": "77c136ecf936bdf86ab8ef03fabf957b98ac70ac",
+    "url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/jobs/132606945884",
+    "html_url": "https://github.com/AlienCodes/literate-enigma/actions/runs/43646979464/job/132606945884",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-11-14T22:14:08Z",
+    "started_at": "2026-11-14T22:14:10Z",
+    "completed_at": "2026-11-14T22:16:45Z",
+    "name": "produce (40)",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-11-14T22:14:11Z",
+        "completed_at": "2026-11-14T22:14:11Z"
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-11-14T22:14:11Z",
+        "completed_at": "2026-11-14T22:14:33Z"
+      },
+      {
+        "name": "按批准的原图清单解析本篇原生文件名",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3,
+        "started_at": "2026-11-14T22:14:33Z",
+        "completed_at": "2026-11-14T22:14:33Z"
+      },
+      {
+        "name": "取固定主仓中已批准的本篇书中原图",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4,
+        "started_at": "2026-11-14T22:14:33Z",
+        "completed_at": "2026-11-14T22:14:34Z"
+      },
+      {
+        "name": "先验本篇原图的主仓提交、原生blob和批准SHA",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5,
+        "started_at": "2026-11-14T22:14:34Z",
+        "completed_at": "2026-11-14T22:14:34Z"
+      },
+      {
+        "name": "Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6,
+        "started_at": "2026-11-14T22:14:34Z",
+        "completed_at": "2026-11-14T22:14:35Z"
+      },
+      {
+        "name": "Run actions/cache/restore@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7,
+        "started_at": "2026-11-14T22:14:35Z",
+        "completed_at": "2026-11-14T22:15:12Z"
+      },
+      {
+        "name": "确认恢复既有机器缓存",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8,
+        "started_at": "2026-11-14T22:15:12Z",
+        "completed_at": "2026-11-14T22:15:13Z"
+      },
+      {
+        "name": "准备原有核查工具",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 9,
+        "started_at": "2026-11-14T22:15:13Z",
+        "completed_at": "2026-11-14T22:15:47Z"
+      },
+      {
+        "name": "Run actions/cache/restore@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 10,
+        "started_at": "2026-11-14T22:15:47Z",
+        "completed_at": "2026-11-14T22:15:48Z"
+      },
+      {
+        "name": "确认原快测印章缓存命中",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 11,
+        "started_at": "2026-11-14T22:15:48Z",
+        "completed_at": "2026-11-14T22:15:48Z"
+      },
+      {
+        "name": "解包唯一真实40原failed胶囊并核完整原ZIP身份",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 12,
+        "started_at": "2026-11-14T22:15:48Z",
+        "completed_at": "2026-11-14T22:15:48Z"
+      },
+      {
+        "name": "原程序做稿并正式定稿4K",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 13,
+        "started_at": "2026-11-14T22:15:48Z",
+        "completed_at": "2026-11-14T22:16:39Z"
+      },
+      {
+        "name": "仅保留本篇公开成片和核验材料",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 14,
+        "started_at": "2026-11-14T22:16:39Z",
+        "completed_at": "2026-11-14T22:16:41Z"
+      },
+      {
+        "name": "Post Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 26,
+        "started_at": "2026-11-14T22:16:41Z",
+        "completed_at": "2026-11-14T22:16:41Z"
+      },
+      {
+        "name": "Post 取固定主仓中已批准的本篇书中原图",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 27,
+        "started_at": "2026-11-14T22:16:41Z",
+        "completed_at": "2026-11-14T22:16:42Z"
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 28,
+        "started_at": "2026-11-14T22:16:42Z",
+        "completed_at": "2026-11-14T22:16:42Z"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 29,
+        "started_at": "2026-11-14T22:16:42Z",
+        "completed_at": "2026-11-14T22:16:42Z"
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/AlienCodes/literate-enigma/check-runs/132606945884",
+    "labels": [
+      "ubuntu-latest"
+    ],
+    "runner_id": 1000008683,
+    "runner_name": "GitHub Actions 1000008683",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  "artifact": {
+    "id": 14134418500,
+    "node_id": "MDg6QXJ0aWZhY3QxNDEzNDQxODUwMA==",
+    "name": "article40-revised-canonical-4K-final",
+    "size_in_bytes": 39214666,
+    "url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/artifacts/14134418500",
+    "archive_download_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/artifacts/14134418500/zip",
+    "expired": false,
+    "digest": "sha256:48102a4c4b51b924ad0cff11e622598fe25e85b5c12d47df38c17c28804865ff",
+    "created_at": "2026-11-14T22:16:41Z",
+    "updated_at": "2026-11-14T22:16:41Z",
+    "expires_at": "2026-12-14T22:16:39Z",
+    "workflow_run": {
+      "id": 43646979464,
+      "repository_id": 211233075,
+      "head_repository_id": 211233075,
+      "head_branch": "codex/finish-05-and-summaries-20261112",
+      "head_sha": "77c136ecf936bdf86ab8ef03fabf957b98ac70ac"
+    }
+  },
+  "upload_step_proof": {
+    "unambiguous_selected_step_upload": false,
+    "auxiliary_only": true,
+    "reason": "Upload action log block is missing or ambiguous in selected API step interval",
+    "acceptance_blocked_by_log": false
+  },
+  "native_status": {
+    "article": "40",
+    "original_audit_and_quality_thresholds_unchanged": true,
+    "original_maker_unchanged": true,
+    "core_repairs": [
+      {
+        "target": "视频/工具/草稿声音.sh",
+        "file": "files/视频/工具/草稿声音.sh",
+        "original_sha256": "0ce3277812cf16ed30438509b6dc97db0c26725db4c5db5d9b058c3ef6531aa2",
+        "patched_sha256": "43fc6a1acdae6bb1c2252178bf034407400bbbe92eb1752053f3047da9760491",
+        "repair_scope": "explicit revision flags keep reviewed gain, existing valid ending and reviewed physical cuts; automatic cuts still measured/proposed without --写入 in CUTS=1 mode; default full JSON/PCM/AAC exact to prior5; all original later quality checks retained"
+      },
+      {
+        "target": "视频/工具/句内响度.py",
+        "file": "files/视频/工具/句内响度.py",
+        "original_sha256": "58735b7173a3c03efa61fb300b4aed4039c164fa970e0593a40bae2a3f3cbd27",
+        "patched_sha256": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea",
+        "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+      },
+      {
+        "target": "视频/工具/独立复核/synth.py",
+        "file": "files/视频/工具/独立复核/synth.py",
+        "original_sha256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+        "patched_sha256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+        "repair_scope": "validated unprocessed raw-mother reference input only; independent transforms/audit/thresholds retained"
+      },
+      {
+        "target": "视频/工具/结尾句接点.py",
+        "file": "files/视频/工具/结尾句接点.py",
+        "original_sha256": "15303682c605dd4544172c92d42c016d8d0536e0c6d1f9816d0d38dd5d2b9a61",
+        "patched_sha256": "1a5d43c4f5483014b69bbea7ad43dddb0333a9a80e29bb2b4c8029d8915ff798",
+        "repair_scope": "validate existing ending entry with original producer guard then keep it; bad points fail, missing points use original algorithm; default unchanged"
+      },
+      {
+        "target": "视频/工具/读音核对.py",
+        "file": "files/视频/工具/读音核对.py",
+        "original_sha256": "0a3b97e1179e47c0593f69286f4206eecc123cc7ec5d5adf4f5e62457c228a41",
+        "patched_sha256": "50f4363bb2fc2930be59904cdccfa44fd46f14393a0385c7846028ee25b4e84c",
+        "repair_scope": "selftest-only fault injection keeps compound registry and injects actual uncorrected espeak IPA; normal checker AST/output and dictionaries unchanged; unrelated exceptions propagate with restoration"
+      }
+    ],
+    "strict_production_cache": true,
+    "pdf_requested": false,
+    "actual_native_core_certification": {
+      "run_id": 43550422832,
+      "job_id": 132311381738,
+      "commit": "5ecda5ba57c151cb74fc3d36193b60fa59f51c26",
+      "actual_full_quickcheck_exit": 0,
+      "actual_full_quickcheck_seconds": 384.1,
+      "artifact_id": 14096681983,
+      "artifact_zip_sha256": "19dee7da557610e78f39567446bd7dd17ee2c1fe58a0070bb2d6f2c11c22b347",
+      "full_original_quickcheck_log_sha256": "43e1f723087d59c15e78593b23dc37cd2360ba3526474cc5484fbe80edc253d8",
+      "article_audio_or_video_passed_not_implied": true
+    },
+    "actual_native_fastcheck_stamp": {
+      "target": "视频/工具/新管/快测通过.json",
+      "file": "files/视频/工具/新管/快测通过.json",
+      "sha256": "bb75875985ff106abe142caf7ecbf0a5eb76a1412309bf78d77bf146f64512af",
+      "origin": "actual unmodified original full quickcheck, native run43550422832"
+    },
+    "reviewed_regression_resource": {
+      "target": "视频/工具/新管/回归基准_27.json",
+      "file": "files/视频/工具/新管/回归基准_27.json",
+      "sha256": "b8ddb4656ae27cbfc7ec8e3b99511983b4e568997bd4ad4ee33c364f3926ae94",
+      "origin": "pre-existing root-reviewed 67-screen data; original voice/segment MD5 unchanged"
+    },
+    "core_repair_manifest_sha256": "24766577a0001a4920f21cf4887c4cff080d233c34d57cf45a83b7ac660cdcac",
+    "reviewed_gain_preservation_mode": true,
+    "reviewed_existing_ending_preservation_mode": false,
+    "reviewed_existing_physical_cuts_preservation_mode": true,
+    "real_restored_stamp_validated": true,
+    "reviewed_cross_article_context": {
+      "provided": true,
+      "manifest_sha256": "5471406d6ac20be6d293f2b190c7b8b7ab041e21eb2c819620d14b74debe0d19",
+      "files_sha256": {
+        "视频/脚本/01.json": "2be2f80a69af28703992204ac95f987c745362c326e62ad81b3cd8e0e0735d3a",
+        "新版定稿/01-the-robber-who-thought-lemon-juice-made-him-invisible.md": "572054065b5bb65446bf8939a21c789c1e9c7664d82da5117c43efdded894351",
+        "视频/脚本/02.json": "0403368c77fd3e0f91e1ee3780e1c7c147894ad13c16b5f14707d700a8f717c8",
+        "新版定稿/02-the-truth-about-one-marshmallow.md": "91b92505aad03f963861bec39e96f0a472c126d1d57c9fc538676c32f65e545c",
+        "视频/脚本/03.json": "527f3bf4a11843f4d606188dabc6ebce6830da3fb454a49c782e3a595cb47407",
+        "新版定稿/03-the-doctor-who-drank-bacteria-to-win-an-argument.md": "6dfb56504882e24854a3584fd740e7f6601e3f2532818aee3a56d5330d317aa3",
+        "视频/脚本/04.json": "93cc1ff58d65ebe43a65ecb2fb2dbd2da262d80877c05740bbdf4eab4eaca1e8",
+        "新版定稿/04-the-brain-that-learned-london.md": "a8ccb31ffff50aaae77de4b83de1847fafae1d585981cf960c5880c409f6cfc3",
+        "视频/脚本/05.json": "96116f6806b8783cc8abe9583424047683505025dab6c3bc5b38629bbafb418b",
+        "新版定稿/05-the-fingerprint-in-the-blood.md": "612deac4ed066489e04e214ca969f8f27dda05856e0ef0ed2e540e7a4a52ae34",
+        "视频/脚本/06.json": "2cbf1d6cd6e66a59285298ea830f5ef914590b64286d40b2ae5f3168aa27a2e9",
+        "新版定稿/06-the-horse-that-could-count.md": "7fd21ba491c7596c53c486f2bb0b0f2f6da8e67bac75461a4649a7caff822f74",
+        "视频/脚本/07.json": "842e44e5aa19fddcfa239cb6530c5152341cd86e11db959543d02d8670ca13e8",
+        "新版定稿/07-the-octopus-that-escaped.md": "b8544281bb2ada88fce9d1082cbc30233dcb63ee3e9c2bbefafc22cb28b8cb39",
+        "视频/脚本/08.json": "254832e09f12759d950384dd9f31f671ad5a3bc1590b7466065dd3ef5fe4b8d5",
+        "新版定稿/08-the-doctor-who-solved-the-cholera-mystery.md": "0b2bfa68070ce585a452f6b7034d03c3683e710dcabec5e86d7b221950dc7bab",
+        "视频/脚本/09.json": "fa3e429351d629de188c184d04e9986200e16e80606fcbec82332b6433301dae",
+        "新版定稿/09-the-great-emu-war.md": "af5c3e844bad15f94bfc43aeed6d7417c4bfae85f026b194da667a7a3bdb6196",
+        "视频/脚本/10.json": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
+        "新版定稿/10-the-stolen-smile.md": "ff63cf94e4d2c835e2e2f1ffd3e6c5642f0916f0b13c012f1f13c3dff716d47a",
+        "视频/脚本/11.json": "665cbb80cc70b700ecc0cc5813209fd100ad4fa8f0eead3929b9e53778d9d07f",
+        "新版定稿/11-move-37.md": "7e0b49b346c1fa3ab994a11a2301167c0d6a1bb00916508bdc0b1acf71e68053",
+        "视频/脚本/12.json": "e3bfbcce6f1a8e14cfe451d656574353321e297c90c62f5a7b422f37478311d5",
+        "新版定稿/12-the-79-days-of-new-coke.md": "5a23c1e0c81318527bcbf27573487d1845c5318905a2b1e020cc6e2eaf5d643f",
+        "视频/脚本/13.json": "c22ccc9eb34a92380ecbd2ea72189db492264c4730141c73024685b3fca5fd1e",
+        "新版定稿/13-eleven-days-without-sleep.md": "41998b355721703f761685dd351fbf4628b2be67dfed8b3d37276f9e8f929ecb",
+        "视频/脚本/14.json": "2889a9b31bc7945ee55c306d3507b8557bf1efe371af8a97483a61172be800b8",
+        "新版定稿/14-the-fungus-that-turns-ants-into-zombies.md": "618900d05bd2cecc8d577c446146e4df98d71e070c0b779b40992820d1fdd332",
+        "视频/脚本/15.json": "9b42f089b79e4e0c54c254c948ac4d9ae28d224585095a373607122a0d7c6898",
+        "新版定稿/15-the-myth-of-the-unsinkable.md": "bc2d0c8613437b39149cd6e66729104b26efceb8681fb645f782a97b40007584",
+        "视频/脚本/16.json": "d25aa07f3fac316c26c2ae1006d3efa7eb82a396b66150432b50239c1628396d",
+        "新版定稿/16-the-bread-made-from-air.md": "4da63148111213f6d77451b0eb4193893e6fc2fc170400bc39ce5f5ffcaa0b20",
+        "视频/脚本/17.json": "9750857c3e2c67e6abe5ea6913cb0602347be8b58836bbbc03e2c4153bb12e1b",
+        "新版定稿/17-the-curse-of-the-pharaoh.md": "0dc7b6ee7f4ef05d5e4382beeb077d57578d0bb6a6b69415485008facae98717",
+        "视频/脚本/18.json": "5192b78e582c36fd7d5a34973d8314c5b23e13b8313c8960ac29653bd7fa5d8c",
+        "新版定稿/18-the-mould-that-changed-the-world.md": "ef41cea03f471fe3b9a53939c843e450da3325eb711f6414e108ae92a7518dd8",
+        "视频/脚本/19.json": "cc3c5eea0f7d9ec0712b2e58adba7e5ef8b61d6518a322f9b25a12fcc45282fb",
+        "新版定稿/19-tulip-mania.md": "3882d487383b759c31dda4785966091c362960cd873a5d83c530d08d52e2e97c",
+        "视频/脚本/20.json": "cc5ed6d7be8767e5e7e9b098e8f3836821c0b3f51c17581b2746722da1cf3001",
+        "新版定稿/20-the-5000-year-old-murder-in-the-ice.md": "8d55638070787f7ff5432c197292af1188c463a8b018e01bdefc32999b888e95",
+        "视频/脚本/21.json": "61c1569a26d7569ee0f586178be6b307b1c394c0a30c3cb02541c910038b0589",
+        "新版定稿/21-the-man-who-sold-the-eiffel-tower-twice.md": "e8e966b70f579235d696ba11fb01d3b2cae3fa26efb9071bbea95071be259e1f",
+        "视频/脚本/22.json": "e3027a42c532fee9935afcecdd0542713cbb907183802c2345b9472f93b75f59",
+        "新版定稿/22-the-building-that-melted-a-car.md": "49ae09483bc80bbc40a71551cd98aebec355d96d9ff7b2bcdea59a06fe599267",
+        "视频/脚本/23.json": "c4574a79fd3a58577a1402ce095ea9e4a0ea1f98883ce63e3cc60d126e819409",
+        "新版定稿/23-the-man-who-gave-machines-a-mind.md": "72ed3049e87fe75ce1e753d5e443bdbe6a7ab72f6e282e8467fbbb62be873169",
+        "视频/脚本/24.json": "f08620b534bb10b718f7515c805dcb541721427d855bd5a092b8954847a351b8",
+        "新版定稿/24-survival-in-the-ice.md": "cb7f810d9a74256e0c00625290be4f16207feb90f5719ca87d5d7c9912b91307",
+        "视频/脚本/25.json": "c73e854e052b3df9bd920d4a59fafb183dee19bd58765fa426af6ea3d7c9a329",
+        "新版定稿/25-apollo-13-the-successful-failure.md": "b6b7d55fe66e6e32116431ea955778fab779b8bda622df0ba1036c2f40a3969f",
+        "视频/脚本/26.json": "22349b0a29f05689aae5bd5e9d0907846a68e6ad42949eb0b8cc392d6dce18d6",
+        "新版定稿/26-the-language-the-children-invented.md": "f64089bc9487e756522746058fba2e27c45e56ffc339d8590038643012eb496d",
+        "视频/脚本/27.json": "e1214d8e9314a1cb54da82e2532889198bec555d6be9189fbfb43b5fdedcd728",
+        "新版定稿/27-life-in-the-forbidden-zone.md": "c592b44a8e6ec26f3c2e96ed19191958e57c81d31e54329c20d726e538c10e52",
+        "视频/脚本/28.json": "e0c8e6c644ab0c5d52d99c23461b99e9ae1574aa574369e56feb35e2ac20698b",
+        "新版定稿/28-a-handful-of-wormwood-that-saved-millions.md": "d609cd99ab982365c6f0167e211c55b31e52a354d50918780f3da66ef702a5bb",
+        "视频/脚本/29.json": "1e5f1d9f0c22b5d14b757f029be694c2a3969666d732ca79bb695282763de791",
+        "新版定稿/29-the-volcano-that-gave-us-frankenstein.md": "69045ee19a170c7ea9d0008b468c7e947bc28b639b834c0192dc0aeafc3ef4d0",
+        "视频/脚本/30.json": "34eb48747f1ea7d14b41ccc0cf45aa1592907aacf6618999b3506944e2ff4a0c",
+        "新版定稿/30-the-stink-that-built-londons-sewers.md": "84dbf19cee0045ea2608b13ee0677cb9623dd8fbb371c67093bf50c64186137a",
+        "视频/脚本/31.json": "d81f8645a1e5663ba8c84668e817cdb218bc6689079fbfd51326b3a7fd3cd384",
+        "新版定稿/31-the-book-twelve-publishers-turned-down.md": "7abd20fed44918dcf01586c056e9d0acd9d2ad3b90aa7d3d403762d9f06d2659",
+        "视频/脚本/32.json": "357aa59bed62154f7302a5efcf528859b303004e028657b93058138fe931bf85",
+        "新版定稿/32-the-planet-that-was-demoted.md": "1421f2b0921e7e9478ebc48777e3e8b2c979172de63d0124015107c3750a3542",
+        "视频/脚本/33.json": "da87d68fdee3401e499aa145c23d9b2c663ce3b27f79feec5eca1ddb0d794e72",
+        "新版定稿/33-thirteen-in-the-cave.md": "b96faac786ace911140b835d9f9c6e37eeb0c5f3e7a077b913805b8942c56067",
+        "视频/脚本/34.json": "5350c08cdc6dfa5579f0bdc6960805cbe079a1c471c46bb2250f11b32da34868",
+        "新版定稿/34-the-game-that-escaped-the-soviet-union.md": "fdfd966f8624bc506b7cfe16da04f2f7382ce5566fab3bcb35c3d99dd6d4a5f2",
+        "视频/脚本/35.json": "d8439077dc2c909b1c6cbd1347f31e9625f25fffe447d6f5945c9492561f1a16",
+        "新版定稿/35-the-bird-that-beat-the-letter-home.md": "ba8c38e38b21a3345624e2d44fd352561d3096cfb6f62214b48ea9b6e66faead",
+        "视频/脚本/36.json": "e35a3dcb2ff0f0c7054493331370c0364190771ecf56e0dad6dbee3af860a628",
+        "新版定稿/36-the-company-that-invented-its-own-killer.md": "4b0f1d016d3e94bd7f77d3a36bfc423700006c7a23c0b0cae5ca68d5c5af883f",
+        "视频/脚本/37.json": "b1b8945ccf3581df48ade5714a2d0e93e4cc6812708f95bef6f5e44439106c99",
+        "新版定稿/37-dynamite-for-the-heart.md": "4933e24d2384471a96d9c8c26c15d5224a85dae98d9971a3fed15b4978dafc51",
+        "视频/脚本/38.json": "8d0379032000967c9f72e550574874949f798eefbfbfb58ab2b38e4e23ecbc6b",
+        "新版定稿/38-the-web-beneath-the-woods.md": "abb7eead9f3da0b2b326ceed5a649cfbf71fc28dad22e0d52f7b19caa798c54f",
+        "视频/脚本/39.json": "6c3e9539f624b192335312912572a05fba2c7bcfb821b44c3c1dbb21b42527a7",
+        "新版定稿/39-y2k-the-crisis-that-success-erased.md": "abbc9804661126aa006595031ed8f201ce55e8eb5fd9e1ad5669c0c6fcdb80ab",
+        "视频/脚本/40.json": "66f6b6206d38e4cbcb5fd92faf9e3c5118b8749962eb52e68121204070ddb7ec",
+        "新版定稿/40-the-glue-that-failed.md": "0cbffe50e12e13764ab93ff7666f64024e26ba1d488f56c328a1864da984dc02",
+        "视频/脚本/41.json": "6b6673ffc1db986f4c355f3685de6a0faf2272cee042c5e917f26a8b3057c2be",
+        "新版定稿/41-the-toad-that-invaded-australia.md": "eca590f97120f4e76d719e29aa07b094f9117cd462f5a70c029331a63b85f710",
+        "视频/脚本/42.json": "eceb10ae92aa4b9cd23180d1138149a7fa7b674385462c898bc0d2283c8739e7",
+        "新版定稿/42-the-telescope-that-needed-glasses.md": "d4aa049779a0eba06c555d76ca14103648378eef90465df424120126fa771280",
+        "视频/脚本/43.json": "aa9da1246e293c80408edf94a7c9bed65ef3178ae7cb5265a8273e8c4396687f",
+        "新版定稿/43-from-a-garage-to-the-top-of-the-world.md": "bd70c83e5ac867238ca179f3c9f3548eb9cbdcae1f6df40994aef0bda721ae54",
+        "视频/脚本/44.json": "87f531203ca38d88ae5e71ffd88190b1530715cdc0adba146c2a4a78ebe9b976",
+        "新版定稿/44-the-night-sweden-switched-sides.md": "d3f7ad2ac43f02aae9205a15b9808280ca3db597d6ef3b36aca8ca6176c5f74a",
+        "视频/脚本/45.json": "569406607d2bf18dce5e916052d6460509450d97fe17ac9820be524f59c2c3cc",
+        "新版定稿/45-the-record-humanity-threw-into-the-stars.md": "27deabec4a8478fe570f7f237a2fb850ffdce3deebfd952f512d82a60cf7314f",
+        "视频/脚本/46.json": "c8c7ce7a76226f5274a91af693d24410d5eacfa59206b085a70d133f3634c12b",
+        "新版定稿/46-lost-in-the-glare.md": "7aaa06e875fe56c5d78210b90a8769b8b2051714025ef10df37c2fe89db7a68c",
+        "视频/脚本/47.json": "4c33bb0764a9b98e914a55806486ce841a1503efda1ff001cd2f8c9bb1626c06",
+        "新版定稿/47-shadows-of-wolves-over-yellowstone.md": "6b51ae76b8ec4ffd0ff1748c5902ef59754fa446479fc40357e9946a9aaac7a1",
+        "视频/脚本/48.json": "4f146ce6a70bb0bf5d2c6e1f6b47bd6a2bcc2f311be7a948092d7bde1a08f449",
+        "新版定稿/48-rice-for-the-world.md": "76416be21f857e8a05c37baa33ac90f5785812291485231c249e38a1d0edf15f",
+        "视频/脚本/49.json": "fdcc3a438e50a32fdf8c7bcbe27a97d20fc101b6169ca305f920fedbd3303c3c",
+        "新版定稿/49-the-woman-who-won-two-nobels.md": "1e4fb068aa9ae4513d01b199a074b84dc9d819f57b2134df32588a0e4a4b6b6a",
+        "视频/脚本/50.json": "1d4a41824dfa5e8d11e5990b2a4b802ba2fcc3231d85b15ed6630396c6f027bf",
+        "新版定稿/50-microplastics.md": "5439589bacf1abb2abbb184eb658492bc02bcc5bdd8dfd8ababcd80ab93621cb",
+        "视频/脚本/51.json": "39886d83593a31fb575b124ecf6457190773dca695b6ff78f8434d52aebd6d7c",
+        "新版定稿/51-the-joke-that-became-ok.md": "8de30ea4846f4e88d8b71c8d5ced3ee63a73955e39b7dc3c5adad0971b854fd0",
+        "视频/脚本/52.json": "832249bb44617d38ede75560a5e57af6ba79ec284c9609407cb30ce879f6f862",
+        "新版定稿/52-the-killer-smog-of-1952.md": "179500361e4a837d7edb2e0497e08677d5abd425e8ad542f788205a6f7667b4b",
+        "视频/脚本/53.json": "73393dad5d67261f2ec7819f3749a6589278900e2f214a1da06b0dbde55fe31b",
+        "新版定稿/53-the-wind-that-kept-no-time.md": "5d8007a8c953bc0dd47bfb2536e6f3b3308c0bcf93ca607d6f1c6d02dcac457f",
+        "视频/脚本/54.json": "b1fcb8ae86045b3d35ccfa0f52eb9594b8921d43063835769ee3ecc4543be75e",
+        "新版定稿/54-the-sound-that-shook-the-world.md": "abd5f4bfe11ed73bcc5326a92cf99b0a8e5ad70adaca1ce8d0c8f622b57fa519",
+        "视频/脚本/55.json": "06344fc0ad5975cba2f4dbe5262a9957dd7c024f9a05b9abbfa327f32ea8c719",
+        "新版定稿/55-the-secret-of-romes-undying-concrete.md": "a7759eddcc7ec06dfd6dab7912e06b3b5ef8576df0c025a97812006669d0be61",
+        "视频/脚本/56.json": "22ca3b4180a8ae6a37b4c8e25f5e357d5696d9b23bf148fb7064425d1403e59c",
+        "新版定稿/56-the-letter-that-startled-darwin.md": "aad1e2aab9ff28f534a510362e807ef401e0b502475240f4b2531e9e518a8d7a",
+        "视频/脚本/57.json": "a0ba65b769430289a33ec1f7bc6dbf91dad8d2c3b1d725348851de546563cd6f",
+        "新版定稿/57-a-change-of-anthem-in-the-deep.md": "0731d925a98bafc222718c111985362e166b38b9189c516219a481e36d0d4b6e",
+        "视频/脚本/58.json": "8b0bd3d7d39000518789e9907aec53bd52fab1b9d6b4f22a152d158635b6e8ee",
+        "新版定稿/58-from-a-scratch-to-a-world-without-smallpox.md": "1aa2a0d2c51da76f9c9ebb88d049dd1a55ab530791566fdbf6476e5aa48c15ee",
+        "视频/脚本/59.json": "df1db4174d942371166048b220ef6d55b0b700b2ce31c866edf6dfdf33b92f0c",
+        "新版定稿/59-saving-the-sky.md": "7bf9c4661e733e7af23dc2f11bc820b809ec93dad75a94fb6a12748226e8722c",
+        "视频/脚本/60.json": "cd10eb60e8ea365ce653938ba4339901001cf8d6535c50096c2e736a385b844e",
+        "新版定稿/60-the-scientific-giant-who-changed-the-world.md": "130158a4a5cd0bb680bf8ebaa83fb309e3ae3b41e1818bfd3179eadb13c26810",
+        "视频/脚本/61.json": "2d08704376faff25b06d334d7567a381460975a56a4cef6b4ae97b3580ea8dbc",
+        "新版定稿/61-the-steel-box-that-remade-the-world.md": "135cc9cfbcbd68d957f831cf55558112a45b1cc3749366cb9a304507355c7d2c",
+        "视频/脚本/62.json": "0779c44ccd17679ec853adc3fcc733623fc774e3cb6f68e59c7bb2c4ae62d541",
+        "新版定稿/62-dolly-the-copied-sheep.md": "9edfbd3ebacdecc8c3aa3034d38dd371a105c19382282e8c0de2d08a1713f863",
+        "视频/脚本/63.json": "5d266d80f9cf29cce6f7e34531449cf75191a42f180102685a5bcd04849e75c5",
+        "新版定稿/63-the-crowded-heavens.md": "6ef79d4310019dfefa7364b8a428411a6bc337678c69fa5cbc89b84689e253a4",
+        "视频/脚本/64.json": "12a36862765922d72ce6e5a4c5fe85f548364eed65fe3b3b284f0b38899a965f",
+        "新版定稿/64-the-day-zero-that-never-came.md": "e0c83cbe36745adbbffd33a156fa8d0671704ea976cb13215cabb612639b37a5",
+        "视频/脚本/65.json": "875ecf68f5e196bb02c198533c5b5928852a1c1083419f92acccc65617b3f670",
+        "新版定稿/65-the-day-the-doomsday-vault-opened.md": "24b59a22149441c5cf39b4295ca0c2296eb4aec18e7eb3f10011df8a2e76fa23",
+        "视频/脚本/66.json": "ad5324af4270834186285a5e7273a90213094077adc6f9e1d5c7b0ebff9cf035",
+        "新版定稿/66-the-burrs-that-became-velcro.md": "75dbe6c148ca97a7780ac1737f33f58bf8ee27a51aa729a83315705655b12b2a",
+        "视频/脚本/67.json": "6839a46ebdb51cdcff6a65ca238efc228f1e114efd1734cee6c994ca659a29cb",
+        "新版定稿/67-the-cave-found-by-a-dog.md": "10e37b81eeef4e3289448a6b4fd679f34d495a4fc087c57747e6dca949e00cf1",
+        "视频/脚本/68.json": "568f72dacac48e206811d35a57c7fa22e3da428783f64e507c184f2090e579f3",
+        "新版定稿/68-the-last-flight-of-the-hindenburg.md": "c25f58ffb0e3748336767bb7470dd7cef10374c53cbb48af89dba26f65b2dd5c",
+        "视频/脚本/69.json": "c493528f054e2d572e56b8ea15be0950158e86e3d3271b0f94237e8d296163ff",
+        "新版定稿/69-the-trial-of-the-father-of-the-atomic-bomb.md": "570eda5b7d979d71e9bcad1c67e295ed326ecdb8b61e663aba33272c8a9451bd",
+        "视频/脚本/70.json": "0f6827f02cef0d2416f9d7d69b7e1c5553acee7cf6dc89f3379201264587236c",
+        "新版定稿/70-the-stamp-that-changed-the-post.md": "edfd85cea33730ba67e4210e756da1f2945f1a21bce55c7e75497cb5f0095d80"
+      },
+      "source_file_count": 140,
+      "working_script_count": 70,
+      "target_request_exactly_matches_context": true
+    },
+    "request_source_sha256": {
+      "视频/脚本/40.json": "66f6b6206d38e4cbcb5fd92faf9e3c5118b8749962eb52e68121204070ddb7ec",
+      "视频/工具/初稿生成/gen40.py": "9334ab505726068c08e7dd9c6f673bd2c0b0e5403d8ae9a119d89ab1087bcf1c",
+      "新版定稿/40-the-glue-that-failed.md": "0cbffe50e12e13764ab93ff7666f64024e26ba1d488f56c328a1864da984dc02",
+      "视频/制作记录/40_待改清单.md": "27d5499df02cd980eb94bb73620a986998264cfba69ce66692b53726e07ff518",
+      "视频/制作记录/逐句确认/40.json": "335d0e528daa824b349929ff54e7f3406820bec8a5accbe7d732c06c053d4f66"
+    },
+    "accepted_source": {
+      "id": "40",
+      "path": ".github/video-revision-batch/accepted-reviewed40/40-current.mp4",
+      "sha256": "fa7e1127ad28a778c4f8f788318e05d829692b58cca5289b2f993c0155e01498",
+      "git_blob_sha": "0e834a3cdd7ec8d7bdf17ba94b6aadffe7356477",
+      "bytes": 15078345,
+      "width": 3840,
+      "height": 2160,
+      "summary_frames": 60,
+      "current_accepted_full_V3_handoff_sha256": "b744818a16be6a6f5c974a3df38fa955d6046b598ed1a8009427739c26f2a773",
+      "current_accepted_source_run": 43533004625,
+      "aac_adts_sha256": "a7171c1d7bfd7e430a05b62b8cdb096ed860a6877c96446cbf587996c55d5c68"
+    },
+    "checker_reference_preparation": {
+      "article": "40",
+      "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+      "reference_prepared": true,
+      "acceptance": false,
+      "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+      "source_sha256": "66f6b6206d38e4cbcb5fd92faf9e3c5118b8749962eb52e68121204070ddb7ec",
+      "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+      "checker_program_sha256": {
+        "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+        "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+        "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+        "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+        "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+        "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+      },
+      "reference_calls": [
+        {
+          "sentence": "标题",
+          "piece": null,
+          "reference_kind": "title-default-raw",
+          "method": "create",
+          "source_slice": "The Glue That Failed Its Way to Success",
+          "exact_native_cache_key": "5a815fe6ec83317616c663e9aad7095636281c5b.pkl",
+          "cache_input_text_sha256": "fdcc884985e998abeb304ba6d0220d0f6622369f7e07069f42852c8fe816db1f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "标题",
+          "piece": null,
+          "reference_kind": "title-default-timed",
+          "method": "create_timed",
+          "source_slice": "The Glue That Failed Its Way to Success",
+          "exact_native_cache_key": "d50de21f7d074317527975d531dc20e5147f5b5b.pkl",
+          "cache_input_text_sha256": "fdcc884985e998abeb304ba6d0220d0f6622369f7e07069f42852c8fe816db1f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In 1968 Spencer Silver, a scientist at 3M, set out to make a super-strong adhesive.",
+          "exact_native_cache_key": "0eabbb68db443899291b655fbffe8d248b983552.pkl",
+          "cache_input_text_sha256": "b259c06616986838c3689ad239bba2e4b088c4693bf0799d8855272831006547",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "In 1968 Spencer Silver, a scientist at 3M, set out to make a super-strong adhesive.",
+          "exact_native_cache_key": "3ddf5e2ff82a6f24c784301c036ba9938da09fcd.pkl",
+          "cache_input_text_sha256": "b259c06616986838c3689ad239bba2e4b088c4693bf0799d8855272831006547",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In 1968 Spencer Silver, a scientist at 3M,",
+          "exact_native_cache_key": "c93be486731cada7ced2c3c88ba5852a80caf397.pkl",
+          "cache_input_text_sha256": "b423a36abc6863d289c45c56c1896611671c653bd193fe6af219cfdb90b1b819",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "set out to make a super-strong adhesive.",
+          "exact_native_cache_key": "82b090fc4618efb0c915e16cec59ed9ea2dc5ae9.pkl",
+          "cache_input_text_sha256": "5aaccb83246eeb160846ec40c317c6947f5063e152acc0cdede2b1913d9d6d2b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In 1968 Spencer Silver,",
+          "exact_native_cache_key": "1c37ba9b350c0a7e069dbee4d90a050d85d51bf4.pkl",
+          "cache_input_text_sha256": "5a312349ae40eed73c6c3c51a23a270012b8c0a0550fd7edace37d8d23bfe58f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a scientist at 3M,",
+          "exact_native_cache_key": "42d1820ae3ea065cbbfffc3f0f484812fa50aee9.pkl",
+          "cache_input_text_sha256": "81787928db2a8292e454f080d5538c59ef5a620d564ca5e0e020d55fcfd2cc50",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "set out to make a super-strong adhesive.",
+          "exact_native_cache_key": "82b090fc4618efb0c915e16cec59ed9ea2dc5ae9.pkl",
+          "cache_input_text_sha256": "5aaccb83246eeb160846ec40c317c6947f5063e152acc0cdede2b1913d9d6d2b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The polymer he produced did something else.",
+          "exact_native_cache_key": "f445c497d6ef61a0dad1279d60836933929409cb.pkl",
+          "cache_input_text_sha256": "46826c2d4a3f36d1ff83e70c58a9234902c1261bb896174ef472bd82576a13f2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "The polymer he produced did something else.",
+          "exact_native_cache_key": "26445279ac7414c9e52f8c4e42a5ca54dea25bad.pkl",
+          "cache_input_text_sha256": "46826c2d4a3f36d1ff83e70c58a9234902c1261bb896174ef472bd82576a13f2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Its tiny spheres formed a layer with little tack, giving paper a temporary hold, so it would adhere, peel off, and be reapplied.",
+          "exact_native_cache_key": "f2ad462ed70baecbefedf753fb795782dcb7bd02.pkl",
+          "cache_input_text_sha256": "1b7a1d181e9bda710f208e412191263827c8932fccb03281eb6c71134c1616f8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Its tiny spheres formed a layer with little tack, giving paper a temporary hold, so it would adhere, peel off, and be reapplied.",
+          "exact_native_cache_key": "0276f70e79c24b48e2fe610e99dd0126b88fc167.pkl",
+          "cache_input_text_sha256": "1b7a1d181e9bda710f208e412191263827c8932fccb03281eb6c71134c1616f8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Its tiny spheres formed a layer with little tack,",
+          "exact_native_cache_key": "9d30a15086718872d7b2abad2bcf56b949d7ff3d.pkl",
+          "cache_input_text_sha256": "d29c524886b96b9fc2ca4bf7e0b1d76ec24e47304a59161601fa81706f17845b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "giving paper a temporary hold,",
+          "exact_native_cache_key": "72714babdb67ec0d238ae19a8e9ba71c687f80f8.pkl",
+          "cache_input_text_sha256": "609275e7393efe6546acbcb87aa318495cf5c76ac95527474bc671454a326707",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "so it would adhere, peel off, and be reapplied.",
+          "exact_native_cache_key": "c8be063741541764a7b467c67fc23ac23d440df6.pkl",
+          "cache_input_text_sha256": "ed628908085767332844546ed2dec0ce186f3c5b23e478cd7deafc2817c44264",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Its tiny spheres formed a layer with little tack,",
+          "exact_native_cache_key": "9d30a15086718872d7b2abad2bcf56b949d7ff3d.pkl",
+          "cache_input_text_sha256": "d29c524886b96b9fc2ca4bf7e0b1d76ec24e47304a59161601fa81706f17845b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "giving paper a temporary hold,",
+          "exact_native_cache_key": "72714babdb67ec0d238ae19a8e9ba71c687f80f8.pkl",
+          "cache_input_text_sha256": "609275e7393efe6546acbcb87aa318495cf5c76ac95527474bc671454a326707",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "so it would adhere,",
+          "exact_native_cache_key": "6f67e7bf1dafb4247d861f57732237083276a75a.pkl",
+          "cache_input_text_sha256": "3cf22a8602df69222363768390a882fbebe565001b1e025f0f237fef4f1c67f0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "peel off,",
+          "exact_native_cache_key": "c662697e3f2b3a400d76763a95b298da867c8ca2.pkl",
+          "cache_input_text_sha256": "ab3cdee057aa49f14e49f0d3e1681a2418cb7fb1223c8381e92e6c82d2a1a6a1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 5,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and be reapplied.",
+          "exact_native_cache_key": "79895f9de0a01266e0c56ccb31be95790b0fd919.pkl",
+          "cache_input_text_sha256": "222c89a60831a838923f6e9a77bb8e92e1826238a59da78a401a6b9788a9e79b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "To an inventor chasing strength, the formulation was a setback.",
+          "exact_native_cache_key": "ac605eab24c0594ef36bbb093bb78e565eb61442.pkl",
+          "cache_input_text_sha256": "a25da5257873b61cd4064a0580d422c2180e649c3fcbedfeed6d65aaf37b3ded",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "To an inventor chasing strength, the formulation was a setback.",
+          "exact_native_cache_key": "cee110945f3b22c7cade9c32d197cdb5035616fb.pkl",
+          "cache_input_text_sha256": "a25da5257873b61cd4064a0580d422c2180e649c3fcbedfeed6d65aaf37b3ded",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "To an inventor chasing strength,",
+          "exact_native_cache_key": "41112e9648f397b95aa0103b708dea2f70e5ba22.pkl",
+          "cache_input_text_sha256": "198e37b1aa600250149c64609fa9da9e0a4f46f0500e6ca0876d4d057fef7f1a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "the formulation was a setback.",
+          "exact_native_cache_key": "e55529552ebf966cd312d733a0b1e6a1b7d89006.pkl",
+          "cache_input_text_sha256": "374d14e1e29ad72993f3b7abfaab44ce5d1a5541e3c8e12a937797de36b6b3df",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "For five years Silver acted as its promoter within 3M's corporate ranks, in informal chats and at seminars.",
+          "exact_native_cache_key": "2b7fe134fd3cb917a21093b30f308cc573e60a4a.pkl",
+          "cache_input_text_sha256": "1740962d3bb308e4601680de078aa397861261333082feff7bfedbfaa7076586",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "For five years Silver acted as its promoter within 3M's corporate ranks, in informal chats and at seminars.",
+          "exact_native_cache_key": "c15fe2057f9df89ab454c55e3d5a59723dd878c4.pkl",
+          "cache_input_text_sha256": "1740962d3bb308e4601680de078aa397861261333082feff7bfedbfaa7076586",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "For five years Silver acted as its promoter within 3M's corporate ranks,",
+          "exact_native_cache_key": "85392c8ce5bb23c708e412adde27aa0d53565588.pkl",
+          "cache_input_text_sha256": "2cbfb681e816776359c9ff91b257123d2af6a952f886f85509472ed6c77a6b7f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "in informal chats and at seminars.",
+          "exact_native_cache_key": "3a075f465f9f3e9f90425d56b243c6cffe1075e4.pkl",
+          "cache_input_text_sha256": "0f51141e05564721c158c89198860147768c9345bf2b905da3d4c66b26b96b0e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "For five years Silver acted as its promoter within 3M's corporate ranks,",
+          "exact_native_cache_key": "85392c8ce5bb23c708e412adde27aa0d53565588.pkl",
+          "cache_input_text_sha256": "2cbfb681e816776359c9ff91b257123d2af6a952f886f85509472ed6c77a6b7f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "in informal chats and at seminars.",
+          "exact_native_cache_key": "3a075f465f9f3e9f90425d56b243c6cffe1075e4.pkl",
+          "cache_input_text_sha256": "0f51141e05564721c158c89198860147768c9345bf2b905da3d4c66b26b96b0e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In his own summary, it was a solution without a problem.",
+          "exact_native_cache_key": "5797e610607e96517eb8aa1c225452aa7f14b42d.pkl",
+          "cache_input_text_sha256": "732466425706b39f8d8a6caecc6b548458b8ed3ecc0a3ae23092514def218954",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "In his own summary, it was a solution without a problem.",
+          "exact_native_cache_key": "144d52585cb2005b403f54338e50ca9af57de7da.pkl",
+          "cache_input_text_sha256": "732466425706b39f8d8a6caecc6b548458b8ed3ecc0a3ae23092514def218954",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In his own summary,",
+          "exact_native_cache_key": "fbfff0d1d54b654ef038c7c5699365b047a2cceb.pkl",
+          "cache_input_text_sha256": "56e92068eb3e65c27eae8102ed6520d92b8624cf6869b6629c327cf24998032e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "it was a solution without a problem.",
+          "exact_native_cache_key": "c49ed0dd6437aed0e230b8329e9d4e955f60e075.pkl",
+          "cache_input_text_sha256": "34b68856f223d42c0f7a970ab9de82eae794d1e54a70c129032dd35372bd8b0a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "His perseverance met indifference.",
+          "exact_native_cache_key": "346c4bae1c65c2bcbe34b5348b661f2ff3a1b87e.pkl",
+          "cache_input_text_sha256": "dc7fc80055ca46565b43056a3e86b4056fb09ac50dad5863447d6f5157477b77",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "His perseverance met indifference.",
+          "exact_native_cache_key": "4733b008563a33fdc97c4a3a4c5443750fe792c7.pkl",
+          "cache_input_text_sha256": "dc7fc80055ca46565b43056a3e86b4056fb09ac50dad5863447d6f5157477b77",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The unconventional material found no use, and the pursuit proved fruitless.",
+          "exact_native_cache_key": "4ddb5fc13e677f2d8022fa2b4a80f57387a398cf.pkl",
+          "cache_input_text_sha256": "dedcb7c9ae9012f0ee2b63c76b011f5da9eb66b5a2ecfbe30426aa0b2fc4afe6",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "The unconventional material found no use, and the pursuit proved fruitless.",
+          "exact_native_cache_key": "534c8d0bdfb383a12d2ab6d2d5b447983ecdcb4e.pkl",
+          "cache_input_text_sha256": "dedcb7c9ae9012f0ee2b63c76b011f5da9eb66b5a2ecfbe30426aa0b2fc4afe6",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "The unconventional material found no use,",
+          "exact_native_cache_key": "2647d083699a9183bcced5f62f02948887fa53cb.pkl",
+          "cache_input_text_sha256": "879b245090bd60f16feca0142ae81e41dbb13f8b5d4d28a1c7e20171a88035a3",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and the pursuit proved fruitless.",
+          "exact_native_cache_key": "4cb1cba9e6fcfe6f461ca41d9e6af83b85958a18.pkl",
+          "cache_input_text_sha256": "35405740b885be20e4b52dc4990e62c56281d552ab16cd33317cacee6f6840f1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "The unconventional material found no use,",
+          "exact_native_cache_key": "2647d083699a9183bcced5f62f02948887fa53cb.pkl",
+          "cache_input_text_sha256": "879b245090bd60f16feca0142ae81e41dbb13f8b5d4d28a1c7e20171a88035a3",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and the pursuit proved fruitless.",
+          "exact_native_cache_key": "4cb1cba9e6fcfe6f461ca41d9e6af83b85958a18.pkl",
+          "cache_input_text_sha256": "35405740b885be20e4b52dc4990e62c56281d552ab16cd33317cacee6f6840f1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In 1974 Art Fry, a colleague who had heard one of those talks, faced a small annoyance at church.",
+          "exact_native_cache_key": "44c4ee1354034cf24e5f92fb132947231f775e25.pkl",
+          "cache_input_text_sha256": "05d6066349eb02b7013684a496f447ac29384a22573483e28366950e129d9b8f",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "In 1974 Art Fry, a colleague who had heard one of those talks, faced a small annoyance at church.",
+          "exact_native_cache_key": "72c3c4608ebb5b42b44c4ec9c29f9b365f03a4a7.pkl",
+          "cache_input_text_sha256": "05d6066349eb02b7013684a496f447ac29384a22573483e28366950e129d9b8f",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In 1974 Art Fry, a colleague who had heard one of those talks,",
+          "exact_native_cache_key": "4abe1cfdaf2562c781eec0b51f1eb8f6f8072476.pkl",
+          "cache_input_text_sha256": "3ba838cac9f7913f5e2d31681356f7a536ff5d3f8c9cbdb6af22b74a389fa4f6",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "faced a small annoyance at church.",
+          "exact_native_cache_key": "7536553e7c926040bbd45a3855fe523fd7c7797d.pkl",
+          "cache_input_text_sha256": "af1b7ed7e7e0745c499a9093198b4a961bfed35e24c09c22884b67d33191639a",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In 1974 Art Fry,",
+          "exact_native_cache_key": "bcbd521419356806741f5814382c3f3bad086f1f.pkl",
+          "cache_input_text_sha256": "c9eb4a0f117001a0dd95b09a3fa30e6c09effd3a05c4df071d799b482996e85b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a colleague who had heard one of those talks,",
+          "exact_native_cache_key": "4d6f8836ff7640931d7d5f6e3ed86f79bcb6f417.pkl",
+          "cache_input_text_sha256": "8bb4d1aeee1675eba693c506d176cc64fe75a67fbc76da827cdbd1eb667dd8da",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "faced a small annoyance at church.",
+          "exact_native_cache_key": "7536553e7c926040bbd45a3855fe523fd7c7797d.pkl",
+          "cache_input_text_sha256": "af1b7ed7e7e0745c499a9093198b4a961bfed35e24c09c22884b67d33191639a",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The paper bookmarks wedged in his choir's hymn book kept getting dislodged and falling out.",
+          "exact_native_cache_key": "cdc72ca2a8521f7f60dc9cd6b591067a2e96a3ab.pkl",
+          "cache_input_text_sha256": "fcc22163c126a8bae21e38ff0941bbcd8a9ed92466d4aac8a7ee17b9f96289e3",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "The paper bookmarks wedged in his choir's hymn book kept getting dislodged and falling out.",
+          "exact_native_cache_key": "234b356019db7fd4a9adbb6457a2c78b44bc292d.pkl",
+          "cache_input_text_sha256": "fcc22163c126a8bae21e38ff0941bbcd8a9ed92466d4aac8a7ee17b9f96289e3",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "The paper bookmarks wedged in his choir's hymn book",
+          "exact_native_cache_key": "aca7bd515f12b87e9fc6e68ff5383ebfce1a80ae.pkl",
+          "cache_input_text_sha256": "7320a5e10dfa1a81c5e60b2256f7a4c57266ce8041deb3a00a935cf7af112a2e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "kept getting dislodged and falling out.",
+          "exact_native_cache_key": "8d815afee40545bd1f0e084b419c8f56e404a577.pkl",
+          "cache_input_text_sha256": "959c402a96721148643f5f0e6d0e15c44b76f80d3495523b587c6ec0ed5cc7e0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The frustration gave Fry an idea.",
+          "exact_native_cache_key": "4f15186cbf3c8fc767840bb76b728f2215bb68de.pkl",
+          "cache_input_text_sha256": "efbf2802c3fc2517c99ec59892abbf12809c8c1e43da5b52fdbf9166f6c03f29",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "The frustration gave Fry an idea.",
+          "exact_native_cache_key": "b90c18c7f1926fbc6395c1189ba88dd4dc2063a0.pkl",
+          "cache_input_text_sha256": "efbf2802c3fc2517c99ec59892abbf12809c8c1e43da5b52fdbf9166f6c03f29",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The unwanted adhesive could make a marker that would cling to a page, stay put, and leave it undamaged.",
+          "exact_native_cache_key": "b5057a1e1efc0dc01ccbf1f98c62a30b801ad785.pkl",
+          "cache_input_text_sha256": "18e75bdbbec6904ae1a0957ee16dc47751cb221eda63f699d1f1016e97107375",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "The unwanted adhesive could make a marker that would cling to a page, stay put, and leave it undamaged.",
+          "exact_native_cache_key": "06a82de1023f2c07e94584ecc07b41d3fe08e908.pkl",
+          "cache_input_text_sha256": "18e75bdbbec6904ae1a0957ee16dc47751cb221eda63f699d1f1016e97107375",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "The unwanted adhesive could make a marker",
+          "exact_native_cache_key": "c4ff704f7e5507437a794b49d07a08f29f5c6da2.pkl",
+          "cache_input_text_sha256": "015f65c82a02d4c903406bbf124932a9bf0a15d674879aefd390e93031c3020c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "that would cling to a page, stay put, and leave it undamaged.",
+          "exact_native_cache_key": "abcda0f6357ce2c9ec74e7814940494a27645b78.pkl",
+          "cache_input_text_sha256": "ae18852de97636050bec6cd842eff54ee0cf9932839d51522f9096be82ad31f4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "The unwanted adhesive could make a marker that would cling to a page,",
+          "exact_native_cache_key": "04eeb59dd6e99952a7622a0fd22842db676df2cf.pkl",
+          "cache_input_text_sha256": "1519d28dad176acbcd7dca21ed3c192b31171c8afd40522923fdce8facca1482",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "stay put,",
+          "exact_native_cache_key": "4085c455b7fb32ffc0bf07197e16becc455f83be.pkl",
+          "cache_input_text_sha256": "dd26023dc04bd7155660c33ae767aa772e67719ac083e91962d0f1f7610707cc",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and leave it undamaged.",
+          "exact_native_cache_key": "05d8e701177fdc17c106c3eaee350808f2234261.pkl",
+          "cache_input_text_sha256": "1eed401a2827120bc624de23056e6002cfbdd3e0b173c478336f7befe5af13c7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In 1977 the notes were test-marketed as Press 'n Peel in four American cities, where purchasers showed little enthusiasm.",
+          "exact_native_cache_key": "2c84b8f8d52c66a113808d7ed8c94c125104817c.pkl",
+          "cache_input_text_sha256": "866261d84f7c3053fa3267b7f43718a51c74f419fbc8ceb641da0ea3769bc7ef",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "In 1977 the notes were test-marketed as Press 'n Peel in four American cities, where purchasers showed little enthusiasm.",
+          "exact_native_cache_key": "a16fa7eb3735d47fa2aff21f2bd827982e0a90b1.pkl",
+          "cache_input_text_sha256": "866261d84f7c3053fa3267b7f43718a51c74f419fbc8ceb641da0ea3769bc7ef",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In 1977 the notes were test-marketed as Press 'n Peel in four American cities,",
+          "exact_native_cache_key": "cf3a7e66fbe917295c0fd145391ed34a0739f3de.pkl",
+          "cache_input_text_sha256": "0963e38d8dd871ce12061a8ff16e047db886cd05082cd538112c5b4a25736db8",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "where purchasers showed little enthusiasm.",
+          "exact_native_cache_key": "7509804ad2a5e4aae3e7b6a0690bf6eb5b22c058.pkl",
+          "cache_input_text_sha256": "86b076430e66ea0e0bd580509030b32361e6940ebd6dde3d548dcdf13020c02c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In 1977 the notes were test-marketed as Press 'n Peel in four American cities,",
+          "exact_native_cache_key": "cf3a7e66fbe917295c0fd145391ed34a0739f3de.pkl",
+          "cache_input_text_sha256": "0963e38d8dd871ce12061a8ff16e047db886cd05082cd538112c5b4a25736db8",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "where purchasers showed little enthusiasm.",
+          "exact_native_cache_key": "7509804ad2a5e4aae3e7b6a0690bf6eb5b22c058.pkl",
+          "cache_input_text_sha256": "86b076430e66ea0e0bd580509030b32361e6940ebd6dde3d548dcdf13020c02c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In 1978 3M's marketers staged a blitz in Boise, Idaho, and dispensed complimentary packets of notes to offices.",
+          "exact_native_cache_key": "aa6e2ec8a1d9058e821819c8b57a4ac5d223445b.pkl",
+          "cache_input_text_sha256": "65df3cbc88a5c81eb56e1442c11b0a568e9e0f67c66261b4b8ca1cfa6de44e93",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "In 1978 3M's marketers staged a blitz in Boise, Idaho, and dispensed complimentary packets of notes to offices.",
+          "exact_native_cache_key": "bd2ac272bf67e3cef3511504c6b465995baa4e85.pkl",
+          "cache_input_text_sha256": "65df3cbc88a5c81eb56e1442c11b0a568e9e0f67c66261b4b8ca1cfa6de44e93",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In 1978 3M's marketers staged a blitz in Boise, Idaho,",
+          "exact_native_cache_key": "062ee25c1ca33a4ade6081633948b1320c05f8f9.pkl",
+          "cache_input_text_sha256": "53111561d7e3b36ad7a284bbacb74178a16427711bc460d3c220807020b61313",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and dispensed complimentary packets of notes to offices.",
+          "exact_native_cache_key": "d10fc276b8c14f12c37554d27d4564308f1e652c.pkl",
+          "cache_input_text_sha256": "a3927f36856360f8bb16a7b60d25bfc9254b174b2337cc15025fba7e3e903b20",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In 1978 3M's marketers staged a blitz in Boise,",
+          "exact_native_cache_key": "46c1158678f5a4b6bfbdbd5a5c7b54df73598129.pkl",
+          "cache_input_text_sha256": "ae1312b8cb8fd6931a8b25e55601237bb85a5703032e4bed1a54f5ebe84b11f0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Idaho,",
+          "exact_native_cache_key": "2009d41f0746cf5cfc7a272ef61d8b98fa16095d.pkl",
+          "cache_input_text_sha256": "ee071bb487d191215a49fe5d8f61b27d3fa4f32073a99eff2fce4dfa42fc3e84",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and dispensed complimentary packets of notes to offices.",
+          "exact_native_cache_key": "d10fc276b8c14f12c37554d27d4564308f1e652c.pkl",
+          "cache_input_text_sha256": "a3927f36856360f8bb16a7b60d25bfc9254b174b2337cc15025fba7e3e903b20",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "More than 90 per cent of respondents who tried them said they would buy.",
+          "exact_native_cache_key": "1f3332e9d4ac1deec5a3877f873160e190cfb698.pkl",
+          "cache_input_text_sha256": "c88f4b96b6d9d320d3fc771fb1ee8cc5b18d6a9c2280a03342d9033b984582a0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "More than 90 per cent of respondents who tried them said they would buy.",
+          "exact_native_cache_key": "49b9c18c3bbc3d1e1a063559fc6c16b0e6962bdf.pkl",
+          "cache_input_text_sha256": "c88f4b96b6d9d320d3fc771fb1ee8cc5b18d6a9c2280a03342d9033b984582a0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "After the coolness came a turnaround.",
+          "exact_native_cache_key": "f56f50c231e8f6cd3b5d5ca213450647839166ab.pkl",
+          "cache_input_text_sha256": "75d57284da0a84896fd9a8ec39154d0ea8969d243f35349820aa418e69b2010b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "After the coolness came a turnaround.",
+          "exact_native_cache_key": "ffc6e5970cafb4a7b12b40bccc27b2c36c261876.pkl",
+          "cache_input_text_sha256": "75d57284da0a84896fd9a8ec39154d0ea8969d243f35349820aa418e69b2010b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "On 6 April 1980 the pads, rebranded as Post-it Notes, went on sale nationally in the US, and Canada and Europe followed in 1981.",
+          "exact_native_cache_key": "15ad1d985864238ef034e926e67be00ba8beeb7c.pkl",
+          "cache_input_text_sha256": "6169f570a53b24d70e10d59cca2f7056cd4fed5c8b59c0327816719233a309b6",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "On 6 April 1980 the pads, rebranded as Post-it Notes, went on sale nationally in the US, and Canada and Europe followed in 1981.",
+          "exact_native_cache_key": "695a402098eb46067d1e3256dd6ee105035044f4.pkl",
+          "cache_input_text_sha256": "6169f570a53b24d70e10d59cca2f7056cd4fed5c8b59c0327816719233a309b6",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "On 6 April 1980 the pads, rebranded as Post-it Notes,",
+          "exact_native_cache_key": "41138e23bc5399357aca574587fc24a0da73db55.pkl",
+          "cache_input_text_sha256": "6e42c34260247a293a36b21eca52e6300dac6d78d27d9f3113bea5ae3c02709d",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "went on sale nationally in the US,",
+          "exact_native_cache_key": "20cb4b9cfd7cc50de110e291a1d73879dcc42c55.pkl",
+          "cache_input_text_sha256": "5ad03ec00db07abd32d578624724b9409a3b0efe04753068b4738f3f48b6085b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and Canada and Europe followed in 1981.",
+          "exact_native_cache_key": "4162b26c44449cf13c87183e60e73ee614c48543.pkl",
+          "cache_input_text_sha256": "c15996c68b79a0fb9f086b4599cbf8eb4225578f66da6e8265f8770080f3a844",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "On 6 April 1980 the pads,",
+          "exact_native_cache_key": "684e475f54f713e23b7c7647e430bfcacbd713e2.pkl",
+          "cache_input_text_sha256": "40a263e0aca5ab863ddf4a197c7c4fa492d388bfd2f8792605bbeb28d93f7109",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "rebranded as Post-it Notes,",
+          "exact_native_cache_key": "73bac569443ffe8d40231ff0b2a9260e7e7debf1.pkl",
+          "cache_input_text_sha256": "4e5f760ae1bd585b4b674f9623b1b725b068260616891e051b811a0bb7267e1c",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "went on sale nationally in the US,",
+          "exact_native_cache_key": "20cb4b9cfd7cc50de110e291a1d73879dcc42c55.pkl",
+          "cache_input_text_sha256": "5ad03ec00db07abd32d578624724b9409a3b0efe04753068b4738f3f48b6085b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and Canada and Europe followed in 1981.",
+          "exact_native_cache_key": "4162b26c44449cf13c87183e60e73ee614c48543.pkl",
+          "cache_input_text_sha256": "c15996c68b79a0fb9f086b4599cbf8eb4225578f66da6e8265f8770080f3a844",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S18",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The stationery staple owes its signature canary tone to an unplanned twist.",
+          "exact_native_cache_key": "aa21e2473cb5e0d29f3cdb329eb5fd4db34589ee.pkl",
+          "cache_input_text_sha256": "8634cb4b89667b5ff46db425effd2e6729f32f3875ab347fcc7c325e44aceae3",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S18",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "The stationery staple owes its signature canary tone to an unplanned twist.",
+          "exact_native_cache_key": "e86eefc2ea9b47001699e274921084d8e5b36628.pkl",
+          "cache_input_text_sha256": "8634cb4b89667b5ff46db425effd2e6729f32f3875ab347fcc7c325e44aceae3",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S19",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The laboratory next door had only leftover yellow paper.",
+          "exact_native_cache_key": "773d89811ee0db3a90152d7419526bbf67ac9f68.pkl",
+          "cache_input_text_sha256": "674573c33aa27515f1960d2a527b397372b79b1d03b56c74f3368813f4af8628",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S19",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "The laboratory next door had only leftover yellow paper.",
+          "exact_native_cache_key": "233d9dff6688cc3fe1ec5f8096e6c961b39fe2e8.pkl",
+          "cache_input_text_sha256": "674573c33aa27515f1960d2a527b397372b79b1d03b56c74f3368813f4af8628",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "unique_reference_key_count": 80,
+      "raw_mother_cache_scalar_manifest": [
+        {
+          "exact_native_cache_key": "5a815fe6ec83317616c663e9aad7095636281c5b.pkl",
+          "pkl_sha256": "8bca6334bb1e596f4f741354143d59efa6d93e60fa5da7eb8f06f599d930d020",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "标题",
+              "piece": null,
+              "reference_kind": "title-default-raw",
+              "method": "create",
+              "source_slice": "The Glue That Failed Its Way to Success",
+              "exact_native_cache_key": "5a815fe6ec83317616c663e9aad7095636281c5b.pkl",
+              "cache_input_text_sha256": "fdcc884985e998abeb304ba6d0220d0f6622369f7e07069f42852c8fe816db1f",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "8bca6334bb1e596f",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            52224
+          ],
+          "unprocessed_array_sha256": "7d21de62952794f9f3bf451fbdd0a7cd47628c6cb32df3e9922143e4538cf74d"
+        },
+        {
+          "exact_native_cache_key": "0eabbb68db443899291b655fbffe8d248b983552.pkl",
+          "pkl_sha256": "efb4a26790927daac53a0706e1f566474ce0fd95319380ff4c17382ac39c5eb5",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "In 1968 Spencer Silver, a scientist at 3M, set out to make a super-strong adhesive.",
+              "exact_native_cache_key": "0eabbb68db443899291b655fbffe8d248b983552.pkl",
+              "cache_input_text_sha256": "b259c06616986838c3689ad239bba2e4b088c4693bf0799d8855272831006547",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "efb4a26790927daa",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            177152
+          ],
+          "unprocessed_array_sha256": "4ab3de0d57a06fc4cfd7634e8a57e22c3583a114d1a4b7551b4f947947fafc72"
+        },
+        {
+          "exact_native_cache_key": "c93be486731cada7ced2c3c88ba5852a80caf397.pkl",
+          "pkl_sha256": "cd76fe6a287caf2dcf3466f20974cb63b972791bd14c1ca170019008850606a5",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "In 1968 Spencer Silver, a scientist at 3M,",
+              "exact_native_cache_key": "c93be486731cada7ced2c3c88ba5852a80caf397.pkl",
+              "cache_input_text_sha256": "b423a36abc6863d289c45c56c1896611671c653bd193fe6af219cfdb90b1b819",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "cd76fe6a287caf2d",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            105472
+          ],
+          "unprocessed_array_sha256": "ca36cfed7b07ab3ef18faf4aaf366daeb1c18f4c66755464d3a7939e7869caaf"
+        },
+        {
+          "exact_native_cache_key": "82b090fc4618efb0c915e16cec59ed9ea2dc5ae9.pkl",
+          "pkl_sha256": "09a4e66614973bf70bb2132c2becff5d565c26097643ff875cf9a496157e9d71",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "set out to make a super-strong adhesive.",
+              "exact_native_cache_key": "82b090fc4618efb0c915e16cec59ed9ea2dc5ae9.pkl",
+              "cache_input_text_sha256": "5aaccb83246eeb160846ec40c317c6947f5063e152acc0cdede2b1913d9d6d2b",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S1",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "set out to make a super-strong adhesive.",
+              "exact_native_cache_key": "82b090fc4618efb0c915e16cec59ed9ea2dc5ae9.pkl",
+              "cache_input_text_sha256": "5aaccb83246eeb160846ec40c317c6947f5063e152acc0cdede2b1913d9d6d2b",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "09a4e66614973bf7",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            57344
+          ],
+          "unprocessed_array_sha256": "909e4b1054d4a235c55c4787db984a41225af37076657172875e9c4da5c602d4"
+        },
+        {
+          "exact_native_cache_key": "1c37ba9b350c0a7e069dbee4d90a050d85d51bf4.pkl",
+          "pkl_sha256": "c571f46ea84ee71420ec9f02d325f5a4f0c7610d2e212b1357f6680d862f3768",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "In 1968 Spencer Silver,",
+              "exact_native_cache_key": "1c37ba9b350c0a7e069dbee4d90a050d85d51bf4.pkl",
+              "cache_input_text_sha256": "5a312349ae40eed73c6c3c51a23a270012b8c0a0550fd7edace37d8d23bfe58f",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "c571f46ea84ee714",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            54784
+          ],
+          "unprocessed_array_sha256": "71fb05522bdb77c150793423b0b43881c29cd94dbf68eb5516804582c634c916"
+        },
+        {
+          "exact_native_cache_key": "42d1820ae3ea065cbbfffc3f0f484812fa50aee9.pkl",
+          "pkl_sha256": "de3b92a222a723b4cb020237788e017176798580326578214b0b60a20ff717e1",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "a scientist at 3M,",
+              "exact_native_cache_key": "42d1820ae3ea065cbbfffc3f0f484812fa50aee9.pkl",
+              "cache_input_text_sha256": "81787928db2a8292e454f080d5538c59ef5a620d564ca5e0e020d55fcfd2cc50",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "de3b92a222a723b4",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            37888
+          ],
+          "unprocessed_array_sha256": "51892b7e2c2ac0cbae1ae8c47f82d80dfff3ee85c664e2254a9cb466423074e1"
+        },
+        {
+          "exact_native_cache_key": "f445c497d6ef61a0dad1279d60836933929409cb.pkl",
+          "pkl_sha256": "bdf3d742073e3527666361cd25cd8304877e78c12de95bee411156d7c164a118",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S2",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "The polymer he produced did something else.",
+              "exact_native_cache_key": "f445c497d6ef61a0dad1279d60836933929409cb.pkl",
+              "cache_input_text_sha256": "46826c2d4a3f36d1ff83e70c58a9234902c1261bb896174ef472bd82576a13f2",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "bdf3d742073e3527",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            63488
+          ],
+          "unprocessed_array_sha256": "e7cf1941d7d729dcb93d784a5379a3f2c9cb35ebbf725d9915c201127a6686dc"
+        },
+        {
+          "exact_native_cache_key": "f2ad462ed70baecbefedf753fb795782dcb7bd02.pkl",
+          "pkl_sha256": "1b5ca6cdb4d9b9dd56065b6fb8cb50bd3cc55b7391818c4691028758a78ff08f",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S3",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Its tiny spheres formed a layer with little tack, giving paper a temporary hold, so it would adhere, peel off, and be reapplied.",
+              "exact_native_cache_key": "f2ad462ed70baecbefedf753fb795782dcb7bd02.pkl",
+              "cache_input_text_sha256": "1b7a1d181e9bda710f208e412191263827c8932fccb03281eb6c71134c1616f8",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "1b5ca6cdb4d9b9dd",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            205824
+          ],
+          "unprocessed_array_sha256": "30b4a4132d83c7bd3c4ca4e2a527945869fcede088d31a8630b721db454f9877"
+        },
+        {
+          "exact_native_cache_key": "9d30a15086718872d7b2abad2bcf56b949d7ff3d.pkl",
+          "pkl_sha256": "a914776b88c9a803bb51618319e1f9f95f1c4fa84bb02f6a0f72722a44e7e451",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S3",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Its tiny spheres formed a layer with little tack,",
+              "exact_native_cache_key": "9d30a15086718872d7b2abad2bcf56b949d7ff3d.pkl",
+              "cache_input_text_sha256": "d29c524886b96b9fc2ca4bf7e0b1d76ec24e47304a59161601fa81706f17845b",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S3",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Its tiny spheres formed a layer with little tack,",
+              "exact_native_cache_key": "9d30a15086718872d7b2abad2bcf56b949d7ff3d.pkl",
+              "cache_input_text_sha256": "d29c524886b96b9fc2ca4bf7e0b1d76ec24e47304a59161601fa81706f17845b",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "a914776b88c9a803",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            66048
+          ],
+          "unprocessed_array_sha256": "5c8e1ebd43cdbdfe4add9dcb6cd3b7851472b4ffe44f334fd9286f7302e7b0b1"
+        },
+        {
+          "exact_native_cache_key": "72714babdb67ec0d238ae19a8e9ba71c687f80f8.pkl",
+          "pkl_sha256": "a9580b6bf09ea494b30f0a1933480198cf025cd9d3f34d5ef3042177d15a54e8",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S3",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "giving paper a temporary hold,",
+              "exact_native_cache_key": "72714babdb67ec0d238ae19a8e9ba71c687f80f8.pkl",
+              "cache_input_text_sha256": "609275e7393efe6546acbcb87aa318495cf5c76ac95527474bc671454a326707",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S3",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "giving paper a temporary hold,",
+              "exact_native_cache_key": "72714babdb67ec0d238ae19a8e9ba71c687f80f8.pkl",
+              "cache_input_text_sha256": "609275e7393efe6546acbcb87aa318495cf5c76ac95527474bc671454a326707",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "a9580b6bf09ea494",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            47104
+          ],
+          "unprocessed_array_sha256": "4963b6a15f459a98042d1a6e54cda397de24cb3cf7c5da2d329dfa0da1fa778b"
+        },
+        {
+          "exact_native_cache_key": "c8be063741541764a7b467c67fc23ac23d440df6.pkl",
+          "pkl_sha256": "6f5d2fd9042fd4bd96244f9ef5607d6e2a7038cb5bb5d7226eaf27a6d87b10d9",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S3",
+              "piece": 3,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "so it would adhere, peel off, and be reapplied.",
+              "exact_native_cache_key": "c8be063741541764a7b467c67fc23ac23d440df6.pkl",
+              "cache_input_text_sha256": "ed628908085767332844546ed2dec0ce186f3c5b23e478cd7deafc2817c44264",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "6f5d2fd9042fd4bd",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            64512
+          ],
+          "unprocessed_array_sha256": "3439fcabf6a910b4c6a79b102d9d48f28528da6abf444d8d86ce542d94986953"
+        },
+        {
+          "exact_native_cache_key": "6f67e7bf1dafb4247d861f57732237083276a75a.pkl",
+          "pkl_sha256": "a2999b29c462a4f92613de95454d026a0bbf08a40e826b4f35e06f11d301189d",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S3",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "so it would adhere,",
+              "exact_native_cache_key": "6f67e7bf1dafb4247d861f57732237083276a75a.pkl",
+              "cache_input_text_sha256": "3cf22a8602df69222363768390a882fbebe565001b1e025f0f237fef4f1c67f0",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "a2999b29c462a4f9",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            27136
+          ],
+          "unprocessed_array_sha256": "2b0cad8fa20316129f904984048c9219d5d33008d3acd9870623011c5d6db8d3"
+        },
+        {
+          "exact_native_cache_key": "c662697e3f2b3a400d76763a95b298da867c8ca2.pkl",
+          "pkl_sha256": "500bf6c954b5374964a24dad43f9bef9bafce3749b9981cbe12d29fa3d657a9a",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S3",
+              "piece": 4,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "peel off,",
+              "exact_native_cache_key": "c662697e3f2b3a400d76763a95b298da867c8ca2.pkl",
+              "cache_input_text_sha256": "ab3cdee057aa49f14e49f0d3e1681a2418cb7fb1223c8381e92e6c82d2a1a6a1",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "500bf6c954b53749",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            19456
+          ],
+          "unprocessed_array_sha256": "16e508cf50da15a6a57e35718784eeb11e70bf7dbac517c472306cea2e6208ed"
+        },
+        {
+          "exact_native_cache_key": "79895f9de0a01266e0c56ccb31be95790b0fd919.pkl",
+          "pkl_sha256": "4e05bddf59f90a929b34d8995377a60dd21aaf51826cd227a58dac1fa9d37e12",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S3",
+              "piece": 5,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "and be reapplied.",
+              "exact_native_cache_key": "79895f9de0a01266e0c56ccb31be95790b0fd919.pkl",
+              "cache_input_text_sha256": "222c89a60831a838923f6e9a77bb8e92e1826238a59da78a401a6b9788a9e79b",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "4e05bddf59f90a92",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            30720
+          ],
+          "unprocessed_array_sha256": "dbe1980b5cb36e4b4416b84b801fe40d0f9139f248f86e7ceafa66dcc08f28b2"
+        },
+        {
+          "exact_native_cache_key": "ac605eab24c0594ef36bbb093bb78e565eb61442.pkl",
+          "pkl_sha256": "bb6f26cf0cc0d9c2df79daa7115d84e1a05939fd0a0afbd657350c8f4a99a739",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "To an inventor chasing strength, the formulation was a setback.",
+              "exact_native_cache_key": "ac605eab24c0594ef36bbb093bb78e565eb61442.pkl",
+              "cache_input_text_sha256": "a25da5257873b61cd4064a0580d422c2180e649c3fcbedfeed6d65aaf37b3ded",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "bb6f26cf0cc0d9c2",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            96768
+          ],
+          "unprocessed_array_sha256": "7bc267d492eafd9e74bdeed9952f25267061db755e025c0b4949a1bdac127c43"
+        },
+        {
+          "exact_native_cache_key": "41112e9648f397b95aa0103b708dea2f70e5ba22.pkl",
+          "pkl_sha256": "b4ca6bf72f166b096267dd26cf3ea47b66cfaaf5920bfe75f21bdfbf2be8121c",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "To an inventor chasing strength,",
+              "exact_native_cache_key": "41112e9648f397b95aa0103b708dea2f70e5ba22.pkl",
+              "cache_input_text_sha256": "198e37b1aa600250149c64609fa9da9e0a4f46f0500e6ca0876d4d057fef7f1a",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "b4ca6bf72f166b09",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            43520
+          ],
+          "unprocessed_array_sha256": "1dce84bc0c2e51e7f061140198d8ebf3c3fdc95e76e8e530c9ea6ccb92a4c01b"
+        },
+        {
+          "exact_native_cache_key": "e55529552ebf966cd312d733a0b1e6a1b7d89006.pkl",
+          "pkl_sha256": "617467191b5f60d9e5a949c98c729b3c08bb7e5552f75b5bdb09758be2d337fc",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "the formulation was a setback.",
+              "exact_native_cache_key": "e55529552ebf966cd312d733a0b1e6a1b7d89006.pkl",
+              "cache_input_text_sha256": "374d14e1e29ad72993f3b7abfaab44ce5d1a5541e3c8e12a937797de36b6b3df",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "617467191b5f60d9",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            45056
+          ],
+          "unprocessed_array_sha256": "8aea3a7082ec9d5f7adab713c39d0ad978fb73769b3d6e649e2ee65b8af338f5"
+        },
+        {
+          "exact_native_cache_key": "2b7fe134fd3cb917a21093b30f308cc573e60a4a.pkl",
+          "pkl_sha256": "a9434b32cd837f04541568ac9860872b63c4fc2d3087b919ce5c124e650f1737",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "For five years Silver acted as its promoter within 3M's corporate ranks, in informal chats and at seminars.",
+              "exact_native_cache_key": "2b7fe134fd3cb917a21093b30f308cc573e60a4a.pkl",
+              "cache_input_text_sha256": "1740962d3bb308e4601680de078aa397861261333082feff7bfedbfaa7076586",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "a9434b32cd837f04",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            185856
+          ],
+          "unprocessed_array_sha256": "ad4b7d253e05e66dfc3bdec894c3283d8ec8dfdb09758f1add1033d6a37daff4"
+        },
+        {
+          "exact_native_cache_key": "85392c8ce5bb23c708e412adde27aa0d53565588.pkl",
+          "pkl_sha256": "ee886634497bd1daeb0c4a8e9b28e299fbe8fb65a22bc84bc76865615d6c690f",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "For five years Silver acted as its promoter within 3M's corporate ranks,",
+              "exact_native_cache_key": "85392c8ce5bb23c708e412adde27aa0d53565588.pkl",
+              "cache_input_text_sha256": "2cbfb681e816776359c9ff91b257123d2af6a952f886f85509472ed6c77a6b7f",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S5",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "For five years Silver acted as its promoter within 3M's corporate ranks,",
+              "exact_native_cache_key": "85392c8ce5bb23c708e412adde27aa0d53565588.pkl",
+              "cache_input_text_sha256": "2cbfb681e816776359c9ff91b257123d2af6a952f886f85509472ed6c77a6b7f",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "ee886634497bd1da",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            117760
+          ],
+          "unprocessed_array_sha256": "1b0f2790bc4eb6374c7fc3e48f50ab2714488f16d1f026ff09adf78b525869f5"
+        },
+        {
+          "exact_native_cache_key": "3a075f465f9f3e9f90425d56b243c6cffe1075e4.pkl",
+          "pkl_sha256": "104afed52d953d63bd8788d785dff511285c10290b61a3cb1ab22a25e3885587",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "in informal chats and at seminars.",
+              "exact_native_cache_key": "3a075f465f9f3e9f90425d56b243c6cffe1075e4.pkl",
+              "cache_input_text_sha256": "0f51141e05564721c158c89198860147768c9345bf2b905da3d4c66b26b96b0e",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S5",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "in informal chats and at seminars.",
+              "exact_native_cache_key": "3a075f465f9f3e9f90425d56b243c6cffe1075e4.pkl",
+              "cache_input_text_sha256": "0f51141e05564721c158c89198860147768c9345bf2b905da3d4c66b26b96b0e",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "104afed52d953d63",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            53248
+          ],
+          "unprocessed_array_sha256": "bc2fbd5f6603e7817663c793a76f218e1e65b0885bcd9ebd0099e3e2e9266d18"
+        },
+        {
+          "exact_native_cache_key": "5797e610607e96517eb8aa1c225452aa7f14b42d.pkl",
+          "pkl_sha256": "e62bc78339e6b24355f3733a6aac10d7a2981202e218401d22614646879c16de",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "In his own summary, it was a solution without a problem.",
+              "exact_native_cache_key": "5797e610607e96517eb8aa1c225452aa7f14b42d.pkl",
+              "cache_input_text_sha256": "732466425706b39f8d8a6caecc6b548458b8ed3ecc0a3ae23092514def218954",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "e62bc78339e6b243",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            82432
+          ],
+          "unprocessed_array_sha256": "11dadaf7d4633acb38027ef15601a3ce01e63073566925ff776f05defc8fed4d"
+        },
+        {
+          "exact_native_cache_key": "fbfff0d1d54b654ef038c7c5699365b047a2cceb.pkl",
+          "pkl_sha256": "358919d8694c53c08ec329f7377e7b201c1969da9078724c51bb84fe72e05541",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "In his own summary,",
+              "exact_native_cache_key": "fbfff0d1d54b654ef038c7c5699365b047a2cceb.pkl",
+              "cache_input_text_sha256": "56e92068eb3e65c27eae8102ed6520d92b8624cf6869b6629c327cf24998032e",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "358919d8694c53c0",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            30720
+          ],
+          "unprocessed_array_sha256": "5825b012916ef61c0926e9cf0917a82d3c41e32501c7f0d6b951acb2b9848dea"
+        },
+        {
+          "exact_native_cache_key": "c49ed0dd6437aed0e230b8329e9d4e955f60e075.pkl",
+          "pkl_sha256": "db7d860a5ab654cc5cfde681cbdb5c0b46d8c78b706b2a04782bf80713228f34",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "it was a solution without a problem.",
+              "exact_native_cache_key": "c49ed0dd6437aed0e230b8329e9d4e955f60e075.pkl",
+              "cache_input_text_sha256": "34b68856f223d42c0f7a970ab9de82eae794d1e54a70c129032dd35372bd8b0a",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "db7d860a5ab654cc",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            53760
+          ],
+          "unprocessed_array_sha256": "33003473e72ca0970a932f934769803b8834d69fcae6e7bd17f0ce6a3a46c420"
+        },
+        {
+          "exact_native_cache_key": "346c4bae1c65c2bcbe34b5348b661f2ff3a1b87e.pkl",
+          "pkl_sha256": "abffef2c5567feed9cd84a2d6978c2ec87ad9da1c11ea69788b9fb5ed916401d",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S7",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "His perseverance met indifference.",
+              "exact_native_cache_key": "346c4bae1c65c2bcbe34b5348b661f2ff3a1b87e.pkl",
+              "cache_input_text_sha256": "dc7fc80055ca46565b43056a3e86b4056fb09ac50dad5863447d6f5157477b77",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "abffef2c5567feed",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            50176
+          ],
+          "unprocessed_array_sha256": "476f63d575a7d4ec98c92b2c4d092fc7c28e5dd0af6a462b563adfa6ea54bb23"
+        },
+        {
+          "exact_native_cache_key": "4ddb5fc13e677f2d8022fa2b4a80f57387a398cf.pkl",
+          "pkl_sha256": "f2692efd23be466ded9102f3b57f0c5ab87097171d9ff926e5b8a1b690f0ea18",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "The unconventional material found no use, and the pursuit proved fruitless.",
+              "exact_native_cache_key": "4ddb5fc13e677f2d8022fa2b4a80f57387a398cf.pkl",
+              "cache_input_text_sha256": "dedcb7c9ae9012f0ee2b63c76b011f5da9eb66b5a2ecfbe30426aa0b2fc4afe6",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "f2692efd23be466d",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            114688
+          ],
+          "unprocessed_array_sha256": "e6d645426669a1d97e91b992d966495cfd4c08cea326bba37e8d5b5990687e58"
+        },
+        {
+          "exact_native_cache_key": "2647d083699a9183bcced5f62f02948887fa53cb.pkl",
+          "pkl_sha256": "d0fcf7ccd280a02f93803216da53f6e4cdec51721ebdda6b3c7dd428912f5ab5",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "The unconventional material found no use,",
+              "exact_native_cache_key": "2647d083699a9183bcced5f62f02948887fa53cb.pkl",
+              "cache_input_text_sha256": "879b245090bd60f16feca0142ae81e41dbb13f8b5d4d28a1c7e20171a88035a3",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S8",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "The unconventional material found no use,",
+              "exact_native_cache_key": "2647d083699a9183bcced5f62f02948887fa53cb.pkl",
+              "cache_input_text_sha256": "879b245090bd60f16feca0142ae81e41dbb13f8b5d4d28a1c7e20171a88035a3",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "d0fcf7ccd280a02f",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            61952
+          ],
+          "unprocessed_array_sha256": "05ad69fe90b64cf8a614ad4bbfddb760d937339263b3dbb5c3d7e7d49cfb9b02"
+        },
+        {
+          "exact_native_cache_key": "4cb1cba9e6fcfe6f461ca41d9e6af83b85958a18.pkl",
+          "pkl_sha256": "8ac169efb3b5253a4933d19d827d9017aceac3bcff389d8b7e48ac4f3e177249",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "and the pursuit proved fruitless.",
+              "exact_native_cache_key": "4cb1cba9e6fcfe6f461ca41d9e6af83b85958a18.pkl",
+              "cache_input_text_sha256": "35405740b885be20e4b52dc4990e62c56281d552ab16cd33317cacee6f6840f1",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S8",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "and the pursuit proved fruitless.",
+              "exact_native_cache_key": "4cb1cba9e6fcfe6f461ca41d9e6af83b85958a18.pkl",
+              "cache_input_text_sha256": "35405740b885be20e4b52dc4990e62c56281d552ab16cd33317cacee6f6840f1",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "8ac169efb3b5253a",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            45056
+          ],
+          "unprocessed_array_sha256": "f973e77efe16e836dfce3a3fa5696695857f0935343aac25351abefb18e2d356"
+        },
+        {
+          "exact_native_cache_key": "44c4ee1354034cf24e5f92fb132947231f775e25.pkl",
+          "pkl_sha256": "e7708231904a08af7923e1105a4ac994b3946b82a396b0927dbc4bc3222f72bb",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S9",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "In 1974 Art Fry, a colleague who had heard one of those talks, faced a small annoyance at church.",
+              "exact_native_cache_key": "44c4ee1354034cf24e5f92fb132947231f775e25.pkl",
+              "cache_input_text_sha256": "05d6066349eb02b7013684a496f447ac29384a22573483e28366950e129d9b8f",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "e7708231904a08af",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            181760
+          ],
+          "unprocessed_array_sha256": "19640524d475feaa4db0fc9d29f3a3b50ef069d68d836f8ad6417f0f9f45e028"
+        },
+        {
+          "exact_native_cache_key": "4abe1cfdaf2562c781eec0b51f1eb8f6f8072476.pkl",
+          "pkl_sha256": "59b18c919dcd13f1aeeb74bfc611b85d30e2f1daabd17b478506c9826399f217",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S9",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "In 1974 Art Fry, a colleague who had heard one of those talks,",
+              "exact_native_cache_key": "4abe1cfdaf2562c781eec0b51f1eb8f6f8072476.pkl",
+              "cache_input_text_sha256": "3ba838cac9f7913f5e2d31681356f7a536ff5d3f8c9cbdb6af22b74a389fa4f6",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "59b18c919dcd13f1",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            118272
+          ],
+          "unprocessed_array_sha256": "e498252595150d57d7e1f361eecd620035a697d223a4b0b9dd161083fbbec369"
+        },
+        {
+          "exact_native_cache_key": "7536553e7c926040bbd45a3855fe523fd7c7797d.pkl",
+          "pkl_sha256": "4d62258742e4e09390c8b7010caa72f7c419b12e9f9aad6669d5500f7b9a9d7d",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S9",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "faced a small annoyance at church.",
+              "exact_native_cache_key": "7536553e7c926040bbd45a3855fe523fd7c7797d.pkl",
+              "cache_input_text_sha256": "af1b7ed7e7e0745c499a9093198b4a961bfed35e24c09c22884b67d33191639a",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S9",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "faced a small annoyance at church.",
+              "exact_native_cache_key": "7536553e7c926040bbd45a3855fe523fd7c7797d.pkl",
+              "cache_input_text_sha256": "af1b7ed7e7e0745c499a9093198b4a961bfed35e24c09c22884b67d33191639a",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "4d62258742e4e093",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            47104
+          ],
+          "unprocessed_array_sha256": "a7c9fc1e724d0898efe3b8acdbf17b7663665b4fa94201f8c63107057d7b2ebd"
+        },
+        {
+          "exact_native_cache_key": "bcbd521419356806741f5814382c3f3bad086f1f.pkl",
+          "pkl_sha256": "37d9f1c8f081a5342bbad30c12c91c048aa172ac7ea86089588e061426a19205",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S9",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "In 1974 Art Fry,",
+              "exact_native_cache_key": "bcbd521419356806741f5814382c3f3bad086f1f.pkl",
+              "cache_input_text_sha256": "c9eb4a0f117001a0dd95b09a3fa30e6c09effd3a05c4df071d799b482996e85b",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "37d9f1c8f081a534",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            55808
+          ],
+          "unprocessed_array_sha256": "cd6f79a51b4c090a3c31adad7f11a66a079568f94e684fef5c0e39d7d996dd56"
+        },
+        {
+          "exact_native_cache_key": "4d6f8836ff7640931d7d5f6e3ed86f79bcb6f417.pkl",
+          "pkl_sha256": "8957046b9f3ef3a94d9d1076ae95c0304329b4517a01731b665212c042113247",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S9",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "a colleague who had heard one of those talks,",
+              "exact_native_cache_key": "4d6f8836ff7640931d7d5f6e3ed86f79bcb6f417.pkl",
+              "cache_input_text_sha256": "8bb4d1aeee1675eba693c506d176cc64fe75a67fbc76da827cdbd1eb667dd8da",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "8957046b9f3ef3a9",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            55808
+          ],
+          "unprocessed_array_sha256": "f082b6f330cdbe07d4e540f871fa4f48dd8b3a8a7ce8dbddf5222a31dd5729f7"
+        },
+        {
+          "exact_native_cache_key": "cdc72ca2a8521f7f60dc9cd6b591067a2e96a3ab.pkl",
+          "pkl_sha256": "0330dce69a5047cdc20039438de08dd1569776c87033d59b8f5b6c78146b82b3",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S10",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "The paper bookmarks wedged in his choir's hymn book kept getting dislodged and falling out.",
+              "exact_native_cache_key": "cdc72ca2a8521f7f60dc9cd6b591067a2e96a3ab.pkl",
+              "cache_input_text_sha256": "fcc22163c126a8bae21e38ff0941bbcd8a9ed92466d4aac8a7ee17b9f96289e3",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "0330dce69a5047cd",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            139776
+          ],
+          "unprocessed_array_sha256": "87764ef0f82202d2702d52dcd394a53252c5461a7e7aabcfbeea486d37fdc8e5"
+        },
+        {
+          "exact_native_cache_key": "aca7bd515f12b87e9fc6e68ff5383ebfce1a80ae.pkl",
+          "pkl_sha256": "b6a3b259d91d17ee6948fc21879e8ec1b1c6a2d45f766c8ab65183c737fb5e4d",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S10",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "The paper bookmarks wedged in his choir's hymn book",
+              "exact_native_cache_key": "aca7bd515f12b87e9fc6e68ff5383ebfce1a80ae.pkl",
+              "cache_input_text_sha256": "7320a5e10dfa1a81c5e60b2256f7a4c57266ce8041deb3a00a935cf7af112a2e",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "b6a3b259d91d17ee",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            68608
+          ],
+          "unprocessed_array_sha256": "cac6b82d5cb7df069b868dc7be94003e2760fa9af8c5eaf2c5a7c7e029c8c5ee"
+        },
+        {
+          "exact_native_cache_key": "8d815afee40545bd1f0e084b419c8f56e404a577.pkl",
+          "pkl_sha256": "829c00639a8335cc9be6cf60eda6e14eb254eadf8468b843a40e0013b4e039ad",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S10",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "kept getting dislodged and falling out.",
+              "exact_native_cache_key": "8d815afee40545bd1f0e084b419c8f56e404a577.pkl",
+              "cache_input_text_sha256": "959c402a96721148643f5f0e6d0e15c44b76f80d3495523b587c6ec0ed5cc7e0",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "829c00639a8335cc",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            53760
+          ],
+          "unprocessed_array_sha256": "5bcf26955238f95bd560c129d1ff8157f1abf5a43e233b400cc272104cb24895"
+        },
+        {
+          "exact_native_cache_key": "4f15186cbf3c8fc767840bb76b728f2215bb68de.pkl",
+          "pkl_sha256": "3d02867b54fd347e0585a85218251176add61b4f2e2460ab437a66fb555f1a68",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "The frustration gave Fry an idea.",
+              "exact_native_cache_key": "4f15186cbf3c8fc767840bb76b728f2215bb68de.pkl",
+              "cache_input_text_sha256": "efbf2802c3fc2517c99ec59892abbf12809c8c1e43da5b52fdbf9166f6c03f29",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "3d02867b54fd347e",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            51712
+          ],
+          "unprocessed_array_sha256": "02e3282792c886e12429ff46a4184e28d947bc6d8f961e359198f95396e88607"
+        },
+        {
+          "exact_native_cache_key": "b5057a1e1efc0dc01ccbf1f98c62a30b801ad785.pkl",
+          "pkl_sha256": "a08aaddac0e1e7b36d1a8331f8d2de2d45910d79b38819c0baa3f3f8f68f4681",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S12",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "The unwanted adhesive could make a marker that would cling to a page, stay put, and leave it undamaged.",
+              "exact_native_cache_key": "b5057a1e1efc0dc01ccbf1f98c62a30b801ad785.pkl",
+              "cache_input_text_sha256": "18e75bdbbec6904ae1a0957ee16dc47751cb221eda63f699d1f1016e97107375",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "a08aaddac0e1e7b3",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            165888
+          ],
+          "unprocessed_array_sha256": "3b7fcfd900547cce11e54cae86f27e0059ec724338fbc37faf8e0585257fb18f"
+        },
+        {
+          "exact_native_cache_key": "c4ff704f7e5507437a794b49d07a08f29f5c6da2.pkl",
+          "pkl_sha256": "f296146dfeae5675d6b4450fc8fe59cad9835869689df7ca14aae5788ac7755c",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S12",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "The unwanted adhesive could make a marker",
+              "exact_native_cache_key": "c4ff704f7e5507437a794b49d07a08f29f5c6da2.pkl",
+              "cache_input_text_sha256": "015f65c82a02d4c903406bbf124932a9bf0a15d674879aefd390e93031c3020c",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "f296146dfeae5675",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            59392
+          ],
+          "unprocessed_array_sha256": "f766e682911ff3d58a2af757324b37c457d2f157c2e435f6c4c71948c5b97a4f"
+        },
+        {
+          "exact_native_cache_key": "abcda0f6357ce2c9ec74e7814940494a27645b78.pkl",
+          "pkl_sha256": "3efb16c6232d79721120c5ed9a3d7e49e5d242bb35c9ca585b52d59104e8a581",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S12",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "that would cling to a page, stay put, and leave it undamaged.",
+              "exact_native_cache_key": "abcda0f6357ce2c9ec74e7814940494a27645b78.pkl",
+              "cache_input_text_sha256": "ae18852de97636050bec6cd842eff54ee0cf9932839d51522f9096be82ad31f4",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "3efb16c6232d7972",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            92160
+          ],
+          "unprocessed_array_sha256": "c2978bd37ce7b16b0d2185378fca4a65f552b51f259aa15be0b052c8a0f5e888"
+        },
+        {
+          "exact_native_cache_key": "04eeb59dd6e99952a7622a0fd22842db676df2cf.pkl",
+          "pkl_sha256": "c7dfa9f9b9d18a162206746d110f95923d999f2efd738f3eff8e7a998dbabc96",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S12",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "The unwanted adhesive could make a marker that would cling to a page,",
+              "exact_native_cache_key": "04eeb59dd6e99952a7622a0fd22842db676df2cf.pkl",
+              "cache_input_text_sha256": "1519d28dad176acbcd7dca21ed3c192b31171c8afd40522923fdce8facca1482",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "c7dfa9f9b9d18a16",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            103936
+          ],
+          "unprocessed_array_sha256": "b1ec04647453db0cd2a9e0a4246747fd9a5d807c6924376f3f1bc697b5a1a7be"
+        },
+        {
+          "exact_native_cache_key": "4085c455b7fb32ffc0bf07197e16becc455f83be.pkl",
+          "pkl_sha256": "4d52367b37e0ad7791c52fb2fec39ec73b78d2db39f60b0d0b1e8dd9efef6df9",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S12",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "stay put,",
+              "exact_native_cache_key": "4085c455b7fb32ffc0bf07197e16becc455f83be.pkl",
+              "cache_input_text_sha256": "dd26023dc04bd7155660c33ae767aa772e67719ac083e91962d0f1f7610707cc",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "4d52367b37e0ad77",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            22528
+          ],
+          "unprocessed_array_sha256": "ec69f582a5e55b457443427975b68db4c6d5b88013f2085ab04ff4d2c97a04bb"
+        },
+        {
+          "exact_native_cache_key": "05d8e701177fdc17c106c3eaee350808f2234261.pkl",
+          "pkl_sha256": "25f2c36a5d6a4a96cd0dd383a6a9c791943fce4bd6a4839c82a016d94a00e5e2",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S12",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "and leave it undamaged.",
+              "exact_native_cache_key": "05d8e701177fdc17c106c3eaee350808f2234261.pkl",
+              "cache_input_text_sha256": "1eed401a2827120bc624de23056e6002cfbdd3e0b173c478336f7befe5af13c7",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "25f2c36a5d6a4a96",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            38912
+          ],
+          "unprocessed_array_sha256": "20dedb2cd1ba18cb531bdf2a6b00dccacb51bb79cfa6c1c960b84080bcadd0e6"
+        },
+        {
+          "exact_native_cache_key": "2c84b8f8d52c66a113808d7ed8c94c125104817c.pkl",
+          "pkl_sha256": "342c68e072e6ec133139f42500117e15de836b79b94ce205e8e090ab457927ae",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S13",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "In 1977 the notes were test-marketed as Press 'n Peel in four American cities, where purchasers showed little enthusiasm.",
+              "exact_native_cache_key": "2c84b8f8d52c66a113808d7ed8c94c125104817c.pkl",
+              "cache_input_text_sha256": "866261d84f7c3053fa3267b7f43718a51c74f419fbc8ceb641da0ea3769bc7ef",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "342c68e072e6ec13",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            226816
+          ],
+          "unprocessed_array_sha256": "31b1f11f0f0b457c935d4df974e7f39793f93e8c9c0e780f9dbb21a52dc6ae18"
+        },
+        {
+          "exact_native_cache_key": "cf3a7e66fbe917295c0fd145391ed34a0739f3de.pkl",
+          "pkl_sha256": "faf509c5e3cbe00ebc8d85a583168d0b55b8a8a818c3c6e0d528cc53e20e1704",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S13",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "In 1977 the notes were test-marketed as Press 'n Peel in four American cities,",
+              "exact_native_cache_key": "cf3a7e66fbe917295c0fd145391ed34a0739f3de.pkl",
+              "cache_input_text_sha256": "0963e38d8dd871ce12061a8ff16e047db886cd05082cd538112c5b4a25736db8",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S13",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "In 1977 the notes were test-marketed as Press 'n Peel in four American cities,",
+              "exact_native_cache_key": "cf3a7e66fbe917295c0fd145391ed34a0739f3de.pkl",
+              "cache_input_text_sha256": "0963e38d8dd871ce12061a8ff16e047db886cd05082cd538112c5b4a25736db8",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "faf509c5e3cbe00e",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            158720
+          ],
+          "unprocessed_array_sha256": "0b7b99cf7e96f4e8bf219bca995de6cf695e10031a780cde291c0996f5bf094f"
+        },
+        {
+          "exact_native_cache_key": "7509804ad2a5e4aae3e7b6a0690bf6eb5b22c058.pkl",
+          "pkl_sha256": "31d59c8e85edec076e560acc77ade353d8c7ea191350492460f590d329613e20",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S13",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "where purchasers showed little enthusiasm.",
+              "exact_native_cache_key": "7509804ad2a5e4aae3e7b6a0690bf6eb5b22c058.pkl",
+              "cache_input_text_sha256": "86b076430e66ea0e0bd580509030b32361e6940ebd6dde3d548dcdf13020c02c",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S13",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "where purchasers showed little enthusiasm.",
+              "exact_native_cache_key": "7509804ad2a5e4aae3e7b6a0690bf6eb5b22c058.pkl",
+              "cache_input_text_sha256": "86b076430e66ea0e0bd580509030b32361e6940ebd6dde3d548dcdf13020c02c",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "31d59c8e85edec07",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            57344
+          ],
+          "unprocessed_array_sha256": "9cd2800b1df208926929a20a6694eb271de3f1ebc2738c64ff4a9ab5d8ff1892"
+        },
+        {
+          "exact_native_cache_key": "aa6e2ec8a1d9058e821819c8b57a4ac5d223445b.pkl",
+          "pkl_sha256": "f710e35fe2bc727e689aaff00198b1b47112d21ec7235e25fee5dc880ef54e7a",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S14",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "In 1978 3M's marketers staged a blitz in Boise, Idaho, and dispensed complimentary packets of notes to offices.",
+              "exact_native_cache_key": "aa6e2ec8a1d9058e821819c8b57a4ac5d223445b.pkl",
+              "cache_input_text_sha256": "65df3cbc88a5c81eb56e1442c11b0a568e9e0f67c66261b4b8ca1cfa6de44e93",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "f710e35fe2bc727e",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            233984
+          ],
+          "unprocessed_array_sha256": "88f8f61233d5ce27bb34297f80345d73dbc0a01c804abdee86330b61abdbed30"
+        },
+        {
+          "exact_native_cache_key": "062ee25c1ca33a4ade6081633948b1320c05f8f9.pkl",
+          "pkl_sha256": "4ef837d7f84d0362083db5ecd94cee8be0b4cf2a220113704911aaaaeb187cda",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S14",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "In 1978 3M's marketers staged a blitz in Boise, Idaho,",
+              "exact_native_cache_key": "062ee25c1ca33a4ade6081633948b1320c05f8f9.pkl",
+              "cache_input_text_sha256": "53111561d7e3b36ad7a284bbacb74178a16427711bc460d3c220807020b61313",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "4ef837d7f84d0362",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            130560
+          ],
+          "unprocessed_array_sha256": "eeaf55f6b29b8374e1a39cc44702c9423a4b298ed0a508e9b3befb91849631f2"
+        },
+        {
+          "exact_native_cache_key": "d10fc276b8c14f12c37554d27d4564308f1e652c.pkl",
+          "pkl_sha256": "4034510cd5e432538f5faed178fbe582a34c7eee80a3116f8b59bedbe5aadd21",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S14",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "and dispensed complimentary packets of notes to offices.",
+              "exact_native_cache_key": "d10fc276b8c14f12c37554d27d4564308f1e652c.pkl",
+              "cache_input_text_sha256": "a3927f36856360f8bb16a7b60d25bfc9254b174b2337cc15025fba7e3e903b20",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S14",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "and dispensed complimentary packets of notes to offices.",
+              "exact_native_cache_key": "d10fc276b8c14f12c37554d27d4564308f1e652c.pkl",
+              "cache_input_text_sha256": "a3927f36856360f8bb16a7b60d25bfc9254b174b2337cc15025fba7e3e903b20",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "4034510cd5e43253",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            85504
+          ],
+          "unprocessed_array_sha256": "319f25e148e6296d1c68828a5b2a3ef595568ef1c3f1edfee54d3f0c6e9fc717"
+        },
+        {
+          "exact_native_cache_key": "46c1158678f5a4b6bfbdbd5a5c7b54df73598129.pkl",
+          "pkl_sha256": "b0694b98c3c1391c2d1c8c3f5028093db796eab1bcc6719db04873d3d11c6667",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S14",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "In 1978 3M's marketers staged a blitz in Boise,",
+              "exact_native_cache_key": "46c1158678f5a4b6bfbdbd5a5c7b54df73598129.pkl",
+              "cache_input_text_sha256": "ae1312b8cb8fd6931a8b25e55601237bb85a5703032e4bed1a54f5ebe84b11f0",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "b0694b98c3c1391c",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            110592
+          ],
+          "unprocessed_array_sha256": "6422c921581119ad81e4da583b9f6f4012939f7c4e054cc1a83e4b2859ea6454"
+        },
+        {
+          "exact_native_cache_key": "2009d41f0746cf5cfc7a272ef61d8b98fa16095d.pkl",
+          "pkl_sha256": "fc344f1666f82246bb88d6e584ea99102d616d356ca88c769dbfcbd25607d840",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S14",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Idaho,",
+              "exact_native_cache_key": "2009d41f0746cf5cfc7a272ef61d8b98fa16095d.pkl",
+              "cache_input_text_sha256": "ee071bb487d191215a49fe5d8f61b27d3fa4f32073a99eff2fce4dfa42fc3e84",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "fc344f1666f82246",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            20480
+          ],
+          "unprocessed_array_sha256": "ae27bd60d0ed8d623b14cd581fc08b86bf782902100d2f70ce951741501e7688"
+        },
+        {
+          "exact_native_cache_key": "1f3332e9d4ac1deec5a3877f873160e190cfb698.pkl",
+          "pkl_sha256": "dfeffab3ed8d53f90c2c2bdbbab272fc2224357d90d4b55007be466faa90f561",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S15",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "More than 90 per cent of respondents who tried them said they would buy.",
+              "exact_native_cache_key": "1f3332e9d4ac1deec5a3877f873160e190cfb698.pkl",
+              "cache_input_text_sha256": "c88f4b96b6d9d320d3fc771fb1ee8cc5b18d6a9c2280a03342d9033b984582a0",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "dfeffab3ed8d53f9",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            110080
+          ],
+          "unprocessed_array_sha256": "d05a3a5000709e3ddce0e7adf7160fbed254e72bc84e04aa5fcefac7ed8cd90a"
+        },
+        {
+          "exact_native_cache_key": "f56f50c231e8f6cd3b5d5ca213450647839166ab.pkl",
+          "pkl_sha256": "60d1b6577b1a5fc3ea3f4e615b0023407326608b80da473008ba138f1bad245f",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S16",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "After the coolness came a turnaround.",
+              "exact_native_cache_key": "f56f50c231e8f6cd3b5d5ca213450647839166ab.pkl",
+              "cache_input_text_sha256": "75d57284da0a84896fd9a8ec39154d0ea8969d243f35349820aa418e69b2010b",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "60d1b6577b1a5fc3",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            52736
+          ],
+          "unprocessed_array_sha256": "012ef60a810461557ce3a165de247f74c1eeacc5ff9f71850c6c4848421c0f12"
+        },
+        {
+          "exact_native_cache_key": "15ad1d985864238ef034e926e67be00ba8beeb7c.pkl",
+          "pkl_sha256": "a5de89b6f2f6c1ae0f24cf94773594320557fa26b49bacc35c5bbacf4ddb2167",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S17",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "On 6 April 1980 the pads, rebranded as Post-it Notes, went on sale nationally in the US, and Canada and Europe followed in 1981.",
+              "exact_native_cache_key": "15ad1d985864238ef034e926e67be00ba8beeb7c.pkl",
+              "cache_input_text_sha256": "6169f570a53b24d70e10d59cca2f7056cd4fed5c8b59c0327816719233a309b6",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "a5de89b6f2f6c1ae",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            274432
+          ],
+          "unprocessed_array_sha256": "c20d1bbde30cbda9f86f41cad660f05c7223316905064c52342ab96b83bd29bb"
+        },
+        {
+          "exact_native_cache_key": "41138e23bc5399357aca574587fc24a0da73db55.pkl",
+          "pkl_sha256": "7bea815f21646804631ddd37560f29ab66778bb8815635f1b7ac3424862af552",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S17",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "On 6 April 1980 the pads, rebranded as Post-it Notes,",
+              "exact_native_cache_key": "41138e23bc5399357aca574587fc24a0da73db55.pkl",
+              "cache_input_text_sha256": "6e42c34260247a293a36b21eca52e6300dac6d78d27d9f3113bea5ae3c02709d",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "7bea815f21646804",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            119808
+          ],
+          "unprocessed_array_sha256": "27a5f680e82e13f8e29ec4e8d9ee4c3ebfbe761835dbd56256ae5e7a46952aaf"
+        },
+        {
+          "exact_native_cache_key": "20cb4b9cfd7cc50de110e291a1d73879dcc42c55.pkl",
+          "pkl_sha256": "63998e923ee55e188f553be6f186a606f771bbdaf520e1456ba49f8787b34277",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S17",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "went on sale nationally in the US,",
+              "exact_native_cache_key": "20cb4b9cfd7cc50de110e291a1d73879dcc42c55.pkl",
+              "cache_input_text_sha256": "5ad03ec00db07abd32d578624724b9409a3b0efe04753068b4738f3f48b6085b",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S17",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "went on sale nationally in the US,",
+              "exact_native_cache_key": "20cb4b9cfd7cc50de110e291a1d73879dcc42c55.pkl",
+              "cache_input_text_sha256": "5ad03ec00db07abd32d578624724b9409a3b0efe04753068b4738f3f48b6085b",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "63998e923ee55e18",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            50176
+          ],
+          "unprocessed_array_sha256": "f13b38961d9f79f174118c13dee67558cd06c3d2bbefeedffda5a55fc5e961bb"
+        },
+        {
+          "exact_native_cache_key": "4162b26c44449cf13c87183e60e73ee614c48543.pkl",
+          "pkl_sha256": "3a360c7405df84e94d9ae9670c25291f7f405a684669762f4ed9f8d47a8290bf",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S17",
+              "piece": 3,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "and Canada and Europe followed in 1981.",
+              "exact_native_cache_key": "4162b26c44449cf13c87183e60e73ee614c48543.pkl",
+              "cache_input_text_sha256": "c15996c68b79a0fb9f086b4599cbf8eb4225578f66da6e8265f8770080f3a844",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S17",
+              "piece": 4,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "and Canada and Europe followed in 1981.",
+              "exact_native_cache_key": "4162b26c44449cf13c87183e60e73ee614c48543.pkl",
+              "cache_input_text_sha256": "c15996c68b79a0fb9f086b4599cbf8eb4225578f66da6e8265f8770080f3a844",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "3a360c7405df84e9",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            74240
+          ],
+          "unprocessed_array_sha256": "14997343599e291068487668549d5cf8551895d45e4f2e803ca3a335a96da317"
+        },
+        {
+          "exact_native_cache_key": "684e475f54f713e23b7c7647e430bfcacbd713e2.pkl",
+          "pkl_sha256": "19c64b97a53dd64e30d5ec61ca7b0a55afbe9b076808c515fac8a2a8611278af",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S17",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "On 6 April 1980 the pads,",
+              "exact_native_cache_key": "684e475f54f713e23b7c7647e430bfcacbd713e2.pkl",
+              "cache_input_text_sha256": "40a263e0aca5ab863ddf4a197c7c4fa492d388bfd2f8792605bbeb28d93f7109",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "19c64b97a53dd64e",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            68096
+          ],
+          "unprocessed_array_sha256": "1794535a494f609e7b17b4e653968a15f98ab474c0dd3056891333b158fa4393"
+        },
+        {
+          "exact_native_cache_key": "73bac569443ffe8d40231ff0b2a9260e7e7debf1.pkl",
+          "pkl_sha256": "350c084e2034380c1a5c4ebfa41668558215a7b361115078dec18af31b78a03b",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S17",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "rebranded as Post-it Notes,",
+              "exact_native_cache_key": "73bac569443ffe8d40231ff0b2a9260e7e7debf1.pkl",
+              "cache_input_text_sha256": "4e5f760ae1bd585b4b674f9623b1b725b068260616891e051b811a0bb7267e1c",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "350c084e2034380c",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            45056
+          ],
+          "unprocessed_array_sha256": "6debd3afa7030909ba1f25c14f3fdbdda37f73b057d1b35e239ba309e1c1a25c"
+        },
+        {
+          "exact_native_cache_key": "aa21e2473cb5e0d29f3cdb329eb5fd4db34589ee.pkl",
+          "pkl_sha256": "6fae76588cf2f45e56e799566f166dc5a2f85107d1227f46f768f68c5fc531df",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S18",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "The stationery staple owes its signature canary tone to an unplanned twist.",
+              "exact_native_cache_key": "aa21e2473cb5e0d29f3cdb329eb5fd4db34589ee.pkl",
+              "cache_input_text_sha256": "8634cb4b89667b5ff46db425effd2e6729f32f3875ab347fcc7c325e44aceae3",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "6fae76588cf2f45e",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            122368
+          ],
+          "unprocessed_array_sha256": "83c11ba96fc0c1c2b9e602f1c54cdba601dc6696efddc8e9772e457b6696b289"
+        },
+        {
+          "exact_native_cache_key": "773d89811ee0db3a90152d7419526bbf67ac9f68.pkl",
+          "pkl_sha256": "2dc181e6374eb50953b8beb021f05e53b46ac7786cfe12175884daf8ad2cc1fa",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S19",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "The laboratory next door had only leftover yellow paper.",
+              "exact_native_cache_key": "773d89811ee0db3a90152d7419526bbf67ac9f68.pkl",
+              "cache_input_text_sha256": "674573c33aa27515f1960d2a527b397372b79b1d03b56c74f3368813f4af8628",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "2dc181e6374eb509",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            88576
+          ],
+          "unprocessed_array_sha256": "185b6ee4776822a4bb2bc4df4618d25ddd3d09871286accb5e75c5527cfbec01"
+        }
+      ],
+      "missing_reference_key_count": 0,
+      "observed_missing_keys_covered": [],
+      "new_private_cache_names": [],
+      "native_single_thread_marker_verified": true,
+      "single_thread_sessions": [
+        {
+          "intra_op_num_threads": 1,
+          "inter_op_num_threads": 1
+        },
+        {
+          "intra_op_num_threads": 1,
+          "inter_op_num_threads": 1
+        }
+      ],
+      "models_sha256": {
+        "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+        "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+        "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+      },
+      "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+      "existing_private_cache_count": 11514,
+      "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+      "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+      "existing_private_cache_bytes_unchanged": true,
+      "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+      "public_repository_cache_unchanged": true,
+      "producer_pcm_existed_before": false,
+      "producer_pcm_sha256_before": null,
+      "producer_pcm_sha256_after": null,
+      "accepted_aac_adts_sha256_before": "a7171c1d7bfd7e430a05b62b8cdb096ed860a6877c96446cbf587996c55d5c68",
+      "accepted_aac_adts_sha256_after": "a7171c1d7bfd7e430a05b62b8cdb096ed860a6877c96446cbf587996c55d5c68",
+      "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+      "private_cache_exported": false
+    },
+    "checker_reference_preparation_program_sha256": "f6f2a032e207085e7252d036e39430fb80b06e84a721c525b61196d021c5ca12",
+    "source40_exact_original_ending_absence_registered": {
+      "root_decision_sha256": "c61d580e231e77f3baa411eb4fffd0b5c8b201bcbb29849895a91dfc8066df4c",
+      "no_existing_ending_entry": true,
+      "no_internal_last_sentence_punctuation": true,
+      "same_original_default_branch": true,
+      "joint_finder_pass_not_claimed": true,
+      "no_speed_pitch_or_timing_changes_authorized": true,
+      "whole_original_WAV_AAC_and_clock_still_required": true
+    },
+    "fresh_current_article_reference": {
+      "article": "40",
+      "removed_temporary_gt_files": [],
+      "processed_pcm_or_raw_mother_cache_modified": false,
+      "purpose": "Original synth/labels/audit rebuild fresh for this production; no old CPU GT reuse."
+    },
+    "temporary_output_reset": {
+      "removed": [],
+      "production_started_ns": 1794690424835943085,
+      "repository_outputs_modified": false
+    },
+    "reviewed_gain_control_preservation": [
+      {
+        "stage": "canonical-draft",
+        "requested_gain_controls": {
+          "/分段增益dB": {
+            "S8": {
+              "2": 0.5
+            }
+          }
+        },
+        "actual_gain_controls": {
+          "/分段增益dB": {
+            "S8": {
+              "2": 0.5
+            }
+          }
+        },
+        "exactly_preserved": true
+      },
+      {
+        "stage": "canonical-final4K",
+        "requested_gain_controls": {
+          "/分段增益dB": {
+            "S8": {
+              "2": 0.5
+            }
+          }
+        },
+        "actual_gain_controls": {
+          "/分段增益dB": {
+            "S8": {
+              "2": 0.5
+            }
+          }
+        },
+        "exactly_preserved": true
+      }
+    ],
+    "passed": true,
+    "stage": "final4K-passed",
+    "postprocessing_only": true,
+    "new_TTS_or_original_body_render": false,
+    "new_native_full_original_pipeline_rerun": false,
+    "actual_new_native_post_only_completion": true,
+    "completion_native_run": 43646979464,
+    "original_failed_native_run": 43640848824,
+    "original_failed_native_HEAD": "a2c0aa473654d24448ec9077aa1af75ee5fb81e3",
+    "original_failed_status_SHA256": "1b5dc5b62c77907eee2fa93f326f6804fc0e4c83a8296b11370d97387e85473d",
+    "original_run_and_false_status_preserved": true,
+    "inherited_original_check_summaries": {
+      "approved-illustration-resource.log": [],
+      "certified-core-original-stamp-verification.log": [],
+      "original-restored-stamp.log": [],
+      "canonical-module-copy.log": [],
+      "canonical-draft-00.log": [
+        "第40篇 做完（219 秒）：修了 1 处、疑点 77 处",
+        "① 文本：通过，自动修 1 处",
+        "② 声音：40 词尾辅音核对 问题数 0；40 纯人声核对（配音指纹 01e55201e44a）问题数 0；问题数 0；40 句间停顿核对 问题数 0；问题数 0",
+        "③ 出片前核查：通过",
+        "⑤ 出片后核查：全部通过",
+        "⑥ 已拷 视频/视频/草稿1080p/40_1080p.mp4（--不推）"
+      ],
+      "canonical-final4K-00.log": [
+        "第40篇 用户定稿原话：有"
+      ],
+      "original-stamp-after-production.log": []
+    },
+    "check_summaries": {
+      "certified-core-original-stamp-verification.log": [],
+      "resume-original-stamp-before-outer.log": []
+    },
+    "inherited_original_voice_text_ASR_4K_gates_exit0": true,
+    "inherited_original_gate_control_flow_binding": {
+      "input_contract_passed": true,
+      "source_id": "40",
+      "original_source_run_remains_failed": true,
+      "original_gate_exit_zero_inherited_from_pinned_control_flow": true,
+      "inherited_PCM_sha256": "566d57bd6ccdb1b01e2bce4be799c454016f399f0ce985b8bf79755453c0c431",
+      "new_private_PCM_recomputed": false,
+      "source_and_canonical": "4817dc6eec1d2fcc11ba706b082ddea9d8c6588da456da3b03ee1a7f8050e1ad",
+      "formal_completion_or_final_media_pass_claimed": false,
+      "actual_audio": {
+        "aac_adts_sha256": "a7171c1d7bfd7e430a05b62b8cdb096ed860a6877c96446cbf587996c55d5c68",
+        "packet_projection_sha256": "bead7e027129e10f8243f1e469593fea83209ac2ec97725683ac56ffeb9e3f7b",
+        "packet_count": 6176
+      }
+    },
+    "final_wav_sha256_origin": "inherited actual original PCM proof + official fingerprint; not a newly materialized or measured WAV",
+    "original_current_PCM_recomputed": false,
+    "remaining_hold18_and_independent_fullV3_required": true,
+    "production_delivery_eligible": false,
+    "completion_entrypoint": "resume40_post_only.py",
+    "canonical_video_sha256": "4817dc6eec1d2fcc11ba706b082ddea9d8c6588da456da3b03ee1a7f8050e1ad",
+    "canonical_aac_adts_sha256": "a7171c1d7bfd7e430a05b62b8cdb096ed860a6877c96446cbf587996c55d5c68",
+    "canonical_pipeline_passed": true,
+    "cached_input_wav_sha256": null,
+    "final_wav_sha256": "566d57bd6ccdb1b01e2bce4be799c454016f399f0ce985b8bf79755453c0c431",
+    "accepted_prior_aac_identical": true,
+    "video_sha256": "63ebf9aadc004a64dc41ab53f9da3825cb2ac03faa539fb2dbe763a373c61103",
+    "width": 3840,
+    "height": 2160,
+    "summary_seconds": 2,
+    "summary_frames": 60,
+    "summary_start_seconds": 129.76666666666668,
+    "delay_after_voice_seconds": 0.011666666666684478,
+    "actual_source_collection": {
+      "article": "40",
+      "kind": "actual-production-source-collection",
+      "new_quality_gate": false,
+      "files": {
+        "request_json": {
+          "file": "40-request-source.json",
+          "sha256": "66f6b6206d38e4cbcb5fd92faf9e3c5118b8749962eb52e68121204070ddb7ec",
+          "origin": "immutable_request"
+        },
+        "request_generator": {
+          "file": "40-request-gen.py",
+          "sha256": "9334ab505726068c08e7dd9c6f673bd2c0b0e5403d8ae9a119d89ab1087bcf1c",
+          "origin": "immutable_request"
+        },
+        "used_generator": {
+          "file": "40-used-gen.py",
+          "sha256": "9334ab505726068c08e7dd9c6f673bd2c0b0e5403d8ae9a119d89ab1087bcf1c",
+          "origin": "actual_production_filesystem"
+        },
+        "actual_working_source": {
+          "file": "40-actual-working-source.json",
+          "sha256": "362e802d79a67364da0392f0af44b855688210cbb3b7393478faad91c877809d",
+          "origin": "actual_production_filesystem"
+        },
+        "request_manuscript": {
+          "file": "40-request-manuscript.md",
+          "sha256": "0cbffe50e12e13764ab93ff7666f64024e26ba1d488f56c328a1864da984dc02",
+          "origin": "immutable_request"
+        },
+        "actual_working_manuscript": {
+          "file": "40-actual-working-manuscript.md",
+          "sha256": "0cbffe50e12e13764ab93ff7666f64024e26ba1d488f56c328a1864da984dc02",
+          "origin": "actual_production_filesystem"
+        }
+      },
+      "generator_execution_observed": false,
+      "generator_execution_evidence": "No fresh generator execution log; do not claim this GEN was executed during rendering.",
+      "source_differences": {
+        "file": "40-actual-source-differences.json",
+        "sha256": "8e611cc39777c768831b2cead34832f39dcbcf41a8e580d6da66df1f8100efa2"
+      }
+    }
+  },
+  "native_status_sha256": "ae4826ef6489ee72a28287a88c78cac8785e3bf31a0cee6469609e55b3a464c6"
+}
