@@ -1,0 +1,3969 @@
+{
+  "article": "06",
+  "passed": true,
+  "stage": "final4K-passed",
+  "original_audit_and_quality_thresholds_unchanged": true,
+  "original_maker_unchanged": true,
+  "core_repairs": [
+    {
+      "target": "视频/工具/草稿声音.sh",
+      "file": "files/视频/工具/草稿声音.sh",
+      "original_sha256": "0ce3277812cf16ed30438509b6dc97db0c26725db4c5db5d9b058c3ef6531aa2",
+      "patched_sha256": "c45c66e3cf68a380f5c829600cf6b0ed69f49f24c65e91c0330ed17d1a85475e",
+      "repair_scope": "explicit revision flags keep reviewed gain and existing valid ending entry; original pipeline and quality gates retained; bad ending check failures propagate"
+    },
+    {
+      "target": "视频/工具/句内响度.py",
+      "file": "files/视频/工具/句内响度.py",
+      "original_sha256": "58735b7173a3c03efa61fb300b4aed4039c164fa970e0593a40bae2a3f3cbd27",
+      "patched_sha256": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea",
+      "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+    },
+    {
+      "target": "视频/工具/独立复核/synth.py",
+      "file": "files/视频/工具/独立复核/synth.py",
+      "original_sha256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+      "patched_sha256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+      "repair_scope": "validated unprocessed raw-mother reference input only; independent transforms/audit/thresholds retained"
+    },
+    {
+      "target": "视频/工具/结尾句接点.py",
+      "file": "files/视频/工具/结尾句接点.py",
+      "original_sha256": "15303682c605dd4544172c92d42c016d8d0536e0c6d1f9816d0d38dd5d2b9a61",
+      "patched_sha256": "1a5d43c4f5483014b69bbea7ad43dddb0333a9a80e29bb2b4c8029d8915ff798",
+      "repair_scope": "explicit keep-reviewed-ending CLI validates existing points with original producer guard and preserves entire JSON entry; bad points fail, missing points use original algorithm; default unchanged"
+    }
+  ],
+  "strict_production_cache": true,
+  "pdf_requested": false,
+  "check_summaries": {
+    "approved-illustration-resource.log": [],
+    "certified-core-original-stamp-verification.log": [],
+    "original-restored-stamp.log": [],
+    "canonical-module-copy.log": [],
+    "canonical-draft-00.log": [
+      "第06篇 做完（284 秒）：修了 5 处、疑点 13 处",
+      "① 文本：通过，自动修 5 处",
+      "② 声音：06 词尾辅音核对 问题数 0；06 纯人声核对（配音指纹 eb1f501e945c）问题数 0；问题数 0；06 句间停顿核对 问题数 0；问题数 0",
+      "③ 出片前核查：通过",
+      "⑤ 出片后核查：全部通过",
+      "⑥ 已拷 视频/视频/草稿1080p/06_1080p.mp4（--不推）"
+    ],
+    "canonical-final4K-00.log": [
+      "第06篇 用户定稿原话：有"
+    ],
+    "original-stamp-after-production.log": [],
+    "approved-illustrated-tail.log": []
+  },
+  "actual_native_core_certification": {
+    "run_id": 43544532286,
+    "job_id": 132292612475,
+    "commit": "cc3ee0b02f42f70fb3f4041501dc6036d3240a89",
+    "actual_full_quickcheck_exit": 0,
+    "actual_full_quickcheck_seconds": 443.33,
+    "artifact_id": 14093828857,
+    "artifact_zip_sha256": "58b2f09c8296480fdc43e9acf1cbf9d3a4ca7ed5e90b7f98e872175f94530855",
+    "full_original_quickcheck_log_sha256": "54e94a2e495e11e57a3decbd9fda2fff5c8950f5765cb055e89b6f13c0d071e6",
+    "article_audio_or_video_passed_not_implied": true
+  },
+  "actual_native_fastcheck_stamp": {
+    "target": "视频/工具/新管/快测通过.json",
+    "file": "files/视频/工具/新管/快测通过.json",
+    "sha256": "8a46440dad43db2cb7016071a67f32dc17f11c42149ecbc13d992f32376b5ed7",
+    "origin": "actual unmodified original full quickcheck, native run43544532286"
+  },
+  "reviewed_regression_resource": {
+    "target": "视频/工具/新管/回归基准_27.json",
+    "file": "files/视频/工具/新管/回归基准_27.json",
+    "sha256": "b8ddb4656ae27cbfc7ec8e3b99511983b4e568997bd4ad4ee33c364f3926ae94",
+    "origin": "pre-existing root-reviewed 67-screen data; original voice/segment MD5 unchanged"
+  },
+  "core_repair_manifest_sha256": "a97f0471eca4cbbde24b98afdba3b0017feed5f8d953e58ce51d031d93ce3d4b",
+  "reviewed_gain_preservation_mode": true,
+  "reviewed_existing_ending_preservation_mode": true,
+  "real_restored_stamp_validated": true,
+  "reviewed_cross_article_context": {
+    "provided": true,
+    "manifest_sha256": "01220c8180bd46b8852e7eac80e73b2ce087e24bc6416a57908210f060a55d6d",
+    "files_sha256": {
+      "视频/脚本/01.json": "2be2f80a69af28703992204ac95f987c745362c326e62ad81b3cd8e0e0735d3a",
+      "新版定稿/01-the-robber-who-thought-lemon-juice-made-him-invisible.md": "572054065b5bb65446bf8939a21c789c1e9c7664d82da5117c43efdded894351",
+      "视频/脚本/02.json": "0403368c77fd3e0f91e1ee3780e1c7c147894ad13c16b5f14707d700a8f717c8",
+      "新版定稿/02-the-truth-about-one-marshmallow.md": "91b92505aad03f963861bec39e96f0a472c126d1d57c9fc538676c32f65e545c",
+      "视频/脚本/03.json": "527f3bf4a11843f4d606188dabc6ebce6830da3fb454a49c782e3a595cb47407",
+      "新版定稿/03-the-doctor-who-drank-bacteria-to-win-an-argument.md": "6dfb56504882e24854a3584fd740e7f6601e3f2532818aee3a56d5330d317aa3",
+      "视频/脚本/04.json": "93cc1ff58d65ebe43a65ecb2fb2dbd2da262d80877c05740bbdf4eab4eaca1e8",
+      "新版定稿/04-the-brain-that-learned-london.md": "a8ccb31ffff50aaae77de4b83de1847fafae1d585981cf960c5880c409f6cfc3",
+      "视频/脚本/05.json": "47fa4c8746deecb0583e08633d1b52751ed3e6046ee5c1e46d032c443d220fba",
+      "新版定稿/05-the-fingerprint-in-the-blood.md": "612deac4ed066489e04e214ca969f8f27dda05856e0ef0ed2e540e7a4a52ae34",
+      "视频/脚本/06.json": "2cbf1d6cd6e66a59285298ea830f5ef914590b64286d40b2ae5f3168aa27a2e9",
+      "新版定稿/06-the-horse-that-could-count.md": "7fd21ba491c7596c53c486f2bb0b0f2f6da8e67bac75461a4649a7caff822f74",
+      "视频/脚本/07.json": "842e44e5aa19fddcfa239cb6530c5152341cd86e11db959543d02d8670ca13e8",
+      "新版定稿/07-the-octopus-that-escaped.md": "b8544281bb2ada88fce9d1082cbc30233dcb63ee3e9c2bbefafc22cb28b8cb39",
+      "视频/脚本/08.json": "254832e09f12759d950384dd9f31f671ad5a3bc1590b7466065dd3ef5fe4b8d5",
+      "新版定稿/08-the-doctor-who-solved-the-cholera-mystery.md": "0b2bfa68070ce585a452f6b7034d03c3683e710dcabec5e86d7b221950dc7bab",
+      "视频/脚本/09.json": "fa3e429351d629de188c184d04e9986200e16e80606fcbec82332b6433301dae",
+      "新版定稿/09-the-great-emu-war.md": "af5c3e844bad15f94bfc43aeed6d7417c4bfae85f026b194da667a7a3bdb6196",
+      "视频/脚本/10.json": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
+      "新版定稿/10-the-stolen-smile.md": "ff63cf94e4d2c835e2e2f1ffd3e6c5642f0916f0b13c012f1f13c3dff716d47a",
+      "视频/脚本/11.json": "665cbb80cc70b700ecc0cc5813209fd100ad4fa8f0eead3929b9e53778d9d07f",
+      "新版定稿/11-move-37.md": "7e0b49b346c1fa3ab994a11a2301167c0d6a1bb00916508bdc0b1acf71e68053",
+      "视频/脚本/12.json": "e3bfbcce6f1a8e14cfe451d656574353321e297c90c62f5a7b422f37478311d5",
+      "新版定稿/12-the-79-days-of-new-coke.md": "5a23c1e0c81318527bcbf27573487d1845c5318905a2b1e020cc6e2eaf5d643f",
+      "视频/脚本/13.json": "3687b6c42a6d524d0d7e40a47ed02c37b18abe8d524db4f5914abad52019a63c",
+      "新版定稿/13-eleven-days-without-sleep.md": "72b842de127132e386e9e52a1719ec96765e94958f56687987f53e2801c69704",
+      "视频/脚本/14.json": "17141351875ddb8f0e308602c0b6ab85cbf5126a4d0118978c25c869db769fee",
+      "新版定稿/14-the-fungus-that-turns-ants-into-zombies.md": "e114c9e1783c80a2ffdb60af05e824f93a8ea8725905cb733560abe1c0ad01a8",
+      "视频/脚本/15.json": "0934aa067f19814028c398b0c70a400bb09e354f744bde4000742950d77f441e",
+      "新版定稿/15-the-myth-of-the-unsinkable.md": "68e236868c4b466928ff2a60358250b9592dfe9287b66561b1e5a80b4d14de4f",
+      "视频/脚本/16.json": "d25aa07f3fac316c26c2ae1006d3efa7eb82a396b66150432b50239c1628396d",
+      "新版定稿/16-the-bread-made-from-air.md": "4da63148111213f6d77451b0eb4193893e6fc2fc170400bc39ce5f5ffcaa0b20",
+      "视频/脚本/17.json": "2e9971ea5ce7857e119226fe95def06e6eb9c3ef9823d8e8c4f3456f46a3bbb0",
+      "新版定稿/17-the-curse-of-the-pharaoh.md": "a2e8d92f9136e1b22fcc0799f9a4d281092f0e547cc68242e090241d7b09e222",
+      "视频/脚本/18.json": "8cffbad6f0b8451e46ad1a65d5f629c450ceff2c771218445770c8cbfd77ebca",
+      "新版定稿/18-the-mould-that-changed-the-world.md": "ef41cea03f471fe3b9a53939c843e450da3325eb711f6414e108ae92a7518dd8",
+      "视频/脚本/19.json": "cc3c5eea0f7d9ec0712b2e58adba7e5ef8b61d6518a322f9b25a12fcc45282fb",
+      "新版定稿/19-tulip-mania.md": "3882d487383b759c31dda4785966091c362960cd873a5d83c530d08d52e2e97c",
+      "视频/脚本/20.json": "cc5ed6d7be8767e5e7e9b098e8f3836821c0b3f51c17581b2746722da1cf3001",
+      "新版定稿/20-the-5000-year-old-murder-in-the-ice.md": "8d55638070787f7ff5432c197292af1188c463a8b018e01bdefc32999b888e95",
+      "视频/脚本/21.json": "61c1569a26d7569ee0f586178be6b307b1c394c0a30c3cb02541c910038b0589",
+      "新版定稿/21-the-man-who-sold-the-eiffel-tower-twice.md": "e8e966b70f579235d696ba11fb01d3b2cae3fa26efb9071bbea95071be259e1f",
+      "视频/脚本/22.json": "e3027a42c532fee9935afcecdd0542713cbb907183802c2345b9472f93b75f59",
+      "新版定稿/22-the-building-that-melted-a-car.md": "49ae09483bc80bbc40a71551cd98aebec355d96d9ff7b2bcdea59a06fe599267",
+      "视频/脚本/23.json": "c4574a79fd3a58577a1402ce095ea9e4a0ea1f98883ce63e3cc60d126e819409",
+      "新版定稿/23-the-man-who-gave-machines-a-mind.md": "72ed3049e87fe75ce1e753d5e443bdbe6a7ab72f6e282e8467fbbb62be873169",
+      "视频/脚本/24.json": "f08620b534bb10b718f7515c805dcb541721427d855bd5a092b8954847a351b8",
+      "新版定稿/24-survival-in-the-ice.md": "cb7f810d9a74256e0c00625290be4f16207feb90f5719ca87d5d7c9912b91307",
+      "视频/脚本/25.json": "c73e854e052b3df9bd920d4a59fafb183dee19bd58765fa426af6ea3d7c9a329",
+      "新版定稿/25-apollo-13-the-successful-failure.md": "b6b7d55fe66e6e32116431ea955778fab779b8bda622df0ba1036c2f40a3969f",
+      "视频/脚本/26.json": "ab663b240eb5e27923f38e2ff296c0196e3d820766d0c909adb9faf19aa3cac9",
+      "新版定稿/26-the-language-the-children-invented.md": "9e9ad8021ddabc17157d73dc739383f9676df3583cf965e470fcd773e26a3761",
+      "视频/脚本/27.json": "61cd724c5fab6f07a46aa5ac069101617c4c8350311eb11a43f9fefdddb31d8b",
+      "新版定稿/27-life-in-the-forbidden-zone.md": "e276bcf76225b9ae16cd8cfda8c9b726b442fbd625d3718f532b47b09b21b16f",
+      "视频/脚本/28.json": "a6a4befc0291727f5cc3f8b50857ee954ef9f936738f014a978ebb4d37a28ea8",
+      "新版定稿/28-a-handful-of-wormwood-that-saved-millions.md": "b9817d3429767d07b6a2eb14cce5422a20cb4e3b89f8b03e6b3d5da2daf91d91",
+      "视频/脚本/29.json": "1e5f1d9f0c22b5d14b757f029be694c2a3969666d732ca79bb695282763de791",
+      "新版定稿/29-the-volcano-that-gave-us-frankenstein.md": "69045ee19a170c7ea9d0008b468c7e947bc28b639b834c0192dc0aeafc3ef4d0",
+      "视频/脚本/30.json": "cdf727cb4c6832063421df9da6ab8ae7729cf9df01d6be089a8981c92c360f06",
+      "新版定稿/30-the-stink-that-built-londons-sewers.md": "84dbf19cee0045ea2608b13ee0677cb9623dd8fbb371c67093bf50c64186137a",
+      "视频/脚本/31.json": "d81f8645a1e5663ba8c84668e817cdb218bc6689079fbfd51326b3a7fd3cd384",
+      "新版定稿/31-the-book-twelve-publishers-turned-down.md": "7abd20fed44918dcf01586c056e9d0acd9d2ad3b90aa7d3d403762d9f06d2659",
+      "视频/脚本/32.json": "357aa59bed62154f7302a5efcf528859b303004e028657b93058138fe931bf85",
+      "新版定稿/32-the-planet-that-was-demoted.md": "1421f2b0921e7e9478ebc48777e3e8b2c979172de63d0124015107c3750a3542",
+      "视频/脚本/33.json": "ca51103c1a9d45c9159322765efc86c81f61f6ec78975f160019d21a1d9ee0d7",
+      "新版定稿/33-thirteen-in-the-cave.md": "9862078044ce45a9f6d51aa7d165afdfcf90066d1de98cbb317dd7e8f980610d",
+      "视频/脚本/34.json": "74921848a6bb25a2ba631813f60d4756c9ff90c64c03a2fb936ce34f310ce509",
+      "新版定稿/34-the-game-that-escaped-the-soviet-union.md": "e3244b67b21e283e67f4e88e932a1dbb85bf273a48ee009b3f435e1c5814831c",
+      "视频/脚本/35.json": "d8439077dc2c909b1c6cbd1347f31e9625f25fffe447d6f5945c9492561f1a16",
+      "新版定稿/35-the-bird-that-beat-the-letter-home.md": "ba8c38e38b21a3345624e2d44fd352561d3096cfb6f62214b48ea9b6e66faead",
+      "视频/脚本/36.json": "76daa28f421bd40d8e2744d4e785a34bb8ee67da1403b4b1546db9465c535cef",
+      "新版定稿/36-the-company-that-invented-its-own-killer.md": "411eeb96c8641ee7082b49a5abf4c7343d3f1dbb7ef331064d7c0f3c630fe58f",
+      "视频/脚本/37.json": "b1b8945ccf3581df48ade5714a2d0e93e4cc6812708f95bef6f5e44439106c99",
+      "新版定稿/37-dynamite-for-the-heart.md": "4933e24d2384471a96d9c8c26c15d5224a85dae98d9971a3fed15b4978dafc51",
+      "视频/脚本/38.json": "8d0379032000967c9f72e550574874949f798eefbfbfb58ab2b38e4e23ecbc6b",
+      "新版定稿/38-the-web-beneath-the-woods.md": "abb7eead9f3da0b2b326ceed5a649cfbf71fc28dad22e0d52f7b19caa798c54f",
+      "视频/脚本/39.json": "6c3e9539f624b192335312912572a05fba2c7bcfb821b44c3c1dbb21b42527a7",
+      "新版定稿/39-y2k-the-crisis-that-success-erased.md": "abbc9804661126aa006595031ed8f201ce55e8eb5fd9e1ad5669c0c6fcdb80ab",
+      "视频/脚本/40.json": "1c50d1a47ee6f8528d0f7299e8a45bc8c30312622f3f465a964d21cc1395ee7f",
+      "新版定稿/40-the-glue-that-failed.md": "dce9f78f3a0828307843dd667b7eeebf3380a3630f03d234bd5824870aba61a1",
+      "视频/脚本/41.json": "6b6673ffc1db986f4c355f3685de6a0faf2272cee042c5e917f26a8b3057c2be",
+      "新版定稿/41-the-toad-that-invaded-australia.md": "eca590f97120f4e76d719e29aa07b094f9117cd462f5a70c029331a63b85f710",
+      "视频/脚本/42.json": "eceb10ae92aa4b9cd23180d1138149a7fa7b674385462c898bc0d2283c8739e7",
+      "新版定稿/42-the-telescope-that-needed-glasses.md": "d4aa049779a0eba06c555d76ca14103648378eef90465df424120126fa771280",
+      "视频/脚本/43.json": "aa9da1246e293c80408edf94a7c9bed65ef3178ae7cb5265a8273e8c4396687f",
+      "新版定稿/43-from-a-garage-to-the-top-of-the-world.md": "bd70c83e5ac867238ca179f3c9f3548eb9cbdcae1f6df40994aef0bda721ae54",
+      "视频/脚本/44.json": "87f531203ca38d88ae5e71ffd88190b1530715cdc0adba146c2a4a78ebe9b976",
+      "新版定稿/44-the-night-sweden-switched-sides.md": "d3f7ad2ac43f02aae9205a15b9808280ca3db597d6ef3b36aca8ca6176c5f74a",
+      "视频/脚本/45.json": "569406607d2bf18dce5e916052d6460509450d97fe17ac9820be524f59c2c3cc",
+      "新版定稿/45-the-record-humanity-threw-into-the-stars.md": "27deabec4a8478fe570f7f237a2fb850ffdce3deebfd952f512d82a60cf7314f",
+      "视频/脚本/46.json": "804ecfddb6060288b05eda0e1027c65e9bff0c08a9d010c201bf39306c769b62",
+      "新版定稿/46-lost-in-the-glare.md": "7aaa06e875fe56c5d78210b90a8769b8b2051714025ef10df37c2fe89db7a68c",
+      "视频/脚本/47.json": "0417489c8a672e7e63d46c2239d847acabda2d93160cabed3b0fb14f701ac39a",
+      "新版定稿/47-shadows-of-wolves-over-yellowstone.md": "34c68cf4d0f0ef3545ad68edf3367fcb76ab500174b11ae7f83b782cd5a80a2a",
+      "视频/脚本/48.json": "4f146ce6a70bb0bf5d2c6e1f6b47bd6a2bcc2f311be7a948092d7bde1a08f449",
+      "新版定稿/48-rice-for-the-world.md": "76416be21f857e8a05c37baa33ac90f5785812291485231c249e38a1d0edf15f",
+      "视频/脚本/49.json": "640168eb8a17c5d53d266c6604ffe287919314947371c2ee239eeea952d73b77",
+      "新版定稿/49-the-woman-who-won-two-nobels.md": "1e4fb068aa9ae4513d01b199a074b84dc9d819f57b2134df32588a0e4a4b6b6a",
+      "视频/脚本/50.json": "1d4a41824dfa5e8d11e5990b2a4b802ba2fcc3231d85b15ed6630396c6f027bf",
+      "新版定稿/50-microplastics.md": "5439589bacf1abb2abbb184eb658492bc02bcc5bdd8dfd8ababcd80ab93621cb",
+      "视频/脚本/51.json": "39886d83593a31fb575b124ecf6457190773dca695b6ff78f8434d52aebd6d7c",
+      "新版定稿/51-the-joke-that-became-ok.md": "8de30ea4846f4e88d8b71c8d5ced3ee63a73955e39b7dc3c5adad0971b854fd0",
+      "视频/脚本/52.json": "832249bb44617d38ede75560a5e57af6ba79ec284c9609407cb30ce879f6f862",
+      "新版定稿/52-the-killer-smog-of-1952.md": "179500361e4a837d7edb2e0497e08677d5abd425e8ad542f788205a6f7667b4b",
+      "视频/脚本/53.json": "28b604bfa72896534736293f79e9b3aabd8e3678672f4dc6c66337c02a8f1518",
+      "新版定稿/53-the-wind-that-kept-no-time.md": "6fab302dcadb5a2c509436f5fbf8d9ef925c008a36f5b422749bd405aa4701d3",
+      "视频/脚本/54.json": "b1fcb8ae86045b3d35ccfa0f52eb9594b8921d43063835769ee3ecc4543be75e",
+      "新版定稿/54-the-sound-that-shook-the-world.md": "abd5f4bfe11ed73bcc5326a92cf99b0a8e5ad70adaca1ce8d0c8f622b57fa519",
+      "视频/脚本/55.json": "06344fc0ad5975cba2f4dbe5262a9957dd7c024f9a05b9abbfa327f32ea8c719",
+      "新版定稿/55-the-secret-of-romes-undying-concrete.md": "a7759eddcc7ec06dfd6dab7912e06b3b5ef8576df0c025a97812006669d0be61",
+      "视频/脚本/56.json": "22ca3b4180a8ae6a37b4c8e25f5e357d5696d9b23bf148fb7064425d1403e59c",
+      "新版定稿/56-the-letter-that-startled-darwin.md": "aad1e2aab9ff28f534a510362e807ef401e0b502475240f4b2531e9e518a8d7a",
+      "视频/脚本/57.json": "a0ba65b769430289a33ec1f7bc6dbf91dad8d2c3b1d725348851de546563cd6f",
+      "新版定稿/57-a-change-of-anthem-in-the-deep.md": "0731d925a98bafc222718c111985362e166b38b9189c516219a481e36d0d4b6e",
+      "视频/脚本/58.json": "8b0bd3d7d39000518789e9907aec53bd52fab1b9d6b4f22a152d158635b6e8ee",
+      "新版定稿/58-from-a-scratch-to-a-world-without-smallpox.md": "1aa2a0d2c51da76f9c9ebb88d049dd1a55ab530791566fdbf6476e5aa48c15ee",
+      "视频/脚本/59.json": "df1db4174d942371166048b220ef6d55b0b700b2ce31c866edf6dfdf33b92f0c",
+      "新版定稿/59-saving-the-sky.md": "7bf9c4661e733e7af23dc2f11bc820b809ec93dad75a94fb6a12748226e8722c",
+      "视频/脚本/60.json": "eed1655c0919db32a3a016b24791b93d25683f287c7ccb2523e168a69bddc562",
+      "新版定稿/60-the-scientific-giant-who-changed-the-world.md": "9d1578e7af085559922394a3db01de4eb22dc1c520ca17de5cad68e5a38a31a8",
+      "视频/脚本/61.json": "72378937501769dfb3d934fe65ab1a69afeb5420a15e19890c161433717d2435",
+      "新版定稿/61-the-steel-box-that-remade-the-world.md": "135cc9cfbcbd68d957f831cf55558112a45b1cc3749366cb9a304507355c7d2c",
+      "视频/脚本/62.json": "4b3a97f2b6404e1b091537c21f01fc60088902f596803345983c38be52ec79eb",
+      "新版定稿/62-dolly-the-copied-sheep.md": "62817546ae33824b57255f941135c503e41a41f905331ed4af1e32850fa00960",
+      "视频/脚本/63.json": "5d266d80f9cf29cce6f7e34531449cf75191a42f180102685a5bcd04849e75c5",
+      "新版定稿/63-the-crowded-heavens.md": "6ef79d4310019dfefa7364b8a428411a6bc337678c69fa5cbc89b84689e253a4",
+      "视频/脚本/64.json": "12a36862765922d72ce6e5a4c5fe85f548364eed65fe3b3b284f0b38899a965f",
+      "新版定稿/64-the-day-zero-that-never-came.md": "e0c83cbe36745adbbffd33a156fa8d0671704ea976cb13215cabb612639b37a5",
+      "视频/脚本/65.json": "78e60dd231df4ac71df83e21a26f82bbf706dc0bef80bee156a36bc287661ede",
+      "新版定稿/65-the-day-the-doomsday-vault-opened.md": "71a50d32e25955e713e6ca108ab68422a4fd5b77c914a9074eece1dc33cbff89",
+      "视频/脚本/66.json": "ad5324af4270834186285a5e7273a90213094077adc6f9e1d5c7b0ebff9cf035",
+      "新版定稿/66-the-burrs-that-became-velcro.md": "75dbe6c148ca97a7780ac1737f33f58bf8ee27a51aa729a83315705655b12b2a",
+      "视频/脚本/67.json": "8897cc1c2df1e4672eec3bbff2776d0565afb9c9fe84087a1758ebb15b2a233e",
+      "新版定稿/67-the-cave-found-by-a-dog.md": "10e37b81eeef4e3289448a6b4fd679f34d495a4fc087c57747e6dca949e00cf1",
+      "视频/脚本/68.json": "568f72dacac48e206811d35a57c7fa22e3da428783f64e507c184f2090e579f3",
+      "新版定稿/68-the-last-flight-of-the-hindenburg.md": "c25f58ffb0e3748336767bb7470dd7cef10374c53cbb48af89dba26f65b2dd5c",
+      "视频/脚本/69.json": "09fd3fdbbc834badd16a9b38d8c14e425193a6849d7db87253f26a782a1c4137",
+      "新版定稿/69-the-trial-of-the-father-of-the-atomic-bomb.md": "570eda5b7d979d71e9bcad1c67e295ed326ecdb8b61e663aba33272c8a9451bd",
+      "视频/脚本/70.json": "0f6827f02cef0d2416f9d7d69b7e1c5553acee7cf6dc89f3379201264587236c",
+      "新版定稿/70-the-stamp-that-changed-the-post.md": "edfd85cea33730ba67e4210e756da1f2945f1a21bce55c7e75497cb5f0095d80"
+    },
+    "source_file_count": 140,
+    "working_script_count": 70,
+    "target_request_exactly_matches_context": true
+  },
+  "request_source_sha256": {
+    "视频/脚本/06.json": "2cbf1d6cd6e66a59285298ea830f5ef914590b64286d40b2ae5f3168aa27a2e9",
+    "视频/工具/初稿生成/gen06.py": "b225d08fe461f509a0542d7fc98d91d9b4479db9e34bdec0664eedeb0b431ff9",
+    "新版定稿/06-the-horse-that-could-count.md": "7fd21ba491c7596c53c486f2bb0b0f2f6da8e67bac75461a4649a7caff822f74",
+    "视频/制作记录/06_待改清单.md": "d7f045123fc101cb64b8e119dc53659af08f913f4d072f96f037d93c6f0e0ad1"
+  },
+  "accepted_source": {
+    "id": "06",
+    "path": "最终版4K视频/06 - The Horse That Could Count - 会算术的马.mp4",
+    "sha256": "c0e6474556ed50dfdaf1f8f8f5c47fd16975cd285e6b900d0917c356d876c443",
+    "git_blob_sha": "531288d00ee273d423a69be5301641883976abe9",
+    "bytes": 12336392,
+    "width": 3840,
+    "height": 2160,
+    "summary_frames": 60,
+    "aac_adts_sha256": "77780136fa190958abc44a04ea1b3a4d8734e664611c51e12017a1ef47e4fd2d"
+  },
+  "checker_reference_preparation": {
+    "article": "06",
+    "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+    "reference_prepared": true,
+    "acceptance": false,
+    "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+    "source_sha256": "2cbf1d6cd6e66a59285298ea830f5ef914590b64286d40b2ae5f3168aa27a2e9",
+    "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+    "checker_program_sha256": {
+      "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+      "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+      "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+      "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+      "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+      "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+    },
+    "reference_calls": [
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-raw",
+        "method": "create",
+        "source_slice": "The Horse That Could Count",
+        "exact_native_cache_key": "20abb0b916a5f305547d00bdde69c999c2acd0df.pkl",
+        "cache_input_text_sha256": "d3a608d326e64df0d678d4590096baf21be206fe5d17aeda0f9bd3378f1c4d53",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-timed",
+        "method": "create_timed",
+        "source_slice": "The Horse That Could Count",
+        "exact_native_cache_key": "bb88611f6338412fe9abe3edc6b5ea2b30f6d98c.pkl",
+        "cache_input_text_sha256": "d3a608d326e64df0d678d4590096baf21be206fe5d17aeda0f9bd3378f1c4d53",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Wilhelm von Osten, a mathematics teacher and trainer in Berlin, owned a stallion, Hans.",
+        "exact_native_cache_key": "69e33c5497ea573e807be02e11675cb9b162f610.pkl",
+        "cache_input_text_sha256": "14d9d8977dcf150cb17b070f15462601696aae7e9561c961076aa9103094a46d",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Wilhelm von Osten, a mathematics teacher and trainer in Berlin, owned a stallion, Hans.",
+        "exact_native_cache_key": "ace594d4e618a34fafd9f32ea353e8a0b7729600.pkl",
+        "cache_input_text_sha256": "14d9d8977dcf150cb17b070f15462601696aae7e9561c961076aa9103094a46d",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Wilhelm von Osten, a mathematics teacher and trainer in Berlin,",
+        "exact_native_cache_key": "f6c062a342860a5b7b7aa29a6284c42f4ae6370c.pkl",
+        "cache_input_text_sha256": "7ccb3ad1d4cb0913ba15572901ec448b0d6389ba4c8c6670a2b8bffa0313bece",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S1",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "owned a stallion, Hans.",
+        "exact_native_cache_key": "8a461fa063a6e3035ee0e5679fdceb217b6ddcb2.pkl",
+        "cache_input_text_sha256": "32dd2f57ac1c3d7b7c799f45628d4bb1c742d73fbf02dbeab99ed4f4f3cfdd5f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S1",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Wilhelm von Osten,",
+        "exact_native_cache_key": "8aa6d2b5ad6574b85da7225d640964c56e3f3318.pkl",
+        "cache_input_text_sha256": "1d0f86003fb75c49550437c2a0154b6e3956f2afadcb5ee0cbac85ba048e962c",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "a mathematics teacher and trainer in Berlin,",
+        "exact_native_cache_key": "af967dbd7aef829df0f87fdf2dda66c75acdc52b.pkl",
+        "cache_input_text_sha256": "72c752adfffae05c223f0202e374175d7028c934bbce67fcb30b23840fc69e8a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "owned a stallion,",
+        "exact_native_cache_key": "6d20b8a98043b275bf9b677843357668105108f7.pkl",
+        "cache_input_text_sha256": "46c66a79719b7480737a406493bbf810687879f8c7ff71b4e5ee8971e37ba22e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Hans.",
+        "exact_native_cache_key": "0cbb49a173164c0488a3d9cefb891b5fb6cfd4c7.pkl",
+        "cache_input_text_sha256": "67421c92e7827df8bbd8991338c151d3d03967183510cb5946b554e93c46a357",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Asked to calculate a sum, attempt subtraction, or name a date, Hans tapped out the answer with a hoof.",
+        "exact_native_cache_key": "9923e5f9dc87822f5c0e62fb879eab02ce783488.pkl",
+        "cache_input_text_sha256": "27c6b84391668a55144d4460f626bc9e0d815add0744ef71e86d5a6f509e66a2",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Asked to calculate a sum, attempt subtraction, or name a date, Hans tapped out the answer with a hoof.",
+        "exact_native_cache_key": "1d1848a9c8ba5bb3cc6bf4a5d6cb3e2044fde313.pkl",
+        "cache_input_text_sha256": "27c6b84391668a55144d4460f626bc9e0d815add0744ef71e86d5a6f509e66a2",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Asked to calculate a sum,",
+        "exact_native_cache_key": "68645910836c95630ca556f66b16004134c48ef0.pkl",
+        "cache_input_text_sha256": "9af7b031184c0f2137542be4094fcc65b822f71aefdb8aae27deec5d51c10135",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "attempt subtraction, or name a date,",
+        "exact_native_cache_key": "d38264a63c2fb049aafe8e7b1347d6849f4fec40.pkl",
+        "cache_input_text_sha256": "bc9103fbe503c088b725afaa0c339a6d9c8e481bb972b672253b5877bb566ecb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S2",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Hans tapped out the answer with a hoof.",
+        "exact_native_cache_key": "028d2b1ec01ce91b0a818cc0b3a8156dab36604b.pkl",
+        "cache_input_text_sha256": "4ae8a8765f99bce4ab1e52507069f7f1c652e32c90df058347e27783e8091fe0",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Asked to calculate a sum,",
+        "exact_native_cache_key": "68645910836c95630ca556f66b16004134c48ef0.pkl",
+        "cache_input_text_sha256": "9af7b031184c0f2137542be4094fcc65b822f71aefdb8aae27deec5d51c10135",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "attempt subtraction,",
+        "exact_native_cache_key": "5105623c9ac511cbdb727b4b6be1745cbc9ff1cc.pkl",
+        "cache_input_text_sha256": "0585f230f45d7446312efe8481913db343a342e96818c5b55e2a72a946caea25",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "or name a date,",
+        "exact_native_cache_key": "da4f61f12435e80ca9930d4d9dde1eb2785cedd0.pkl",
+        "cache_input_text_sha256": "33d7ee0de5713d5160b60b48aba106c5909b87f12c2e3a6f42bb9230b0d3d930",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Hans tapped out the answer with a hoof.",
+        "exact_native_cache_key": "028d2b1ec01ce91b0a818cc0b3a8156dab36604b.pkl",
+        "cache_input_text_sha256": "4ae8a8765f99bce4ab1e52507069f7f1c652e32c90df058347e27783e8091fe0",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Such aptitude suggested brilliance, and demonstrations in his owner's courtyard made him seem intelligent.",
+        "exact_native_cache_key": "bf7ff4730e281df056aaee4034456ecdded6b519.pkl",
+        "cache_input_text_sha256": "5b841a0e659f3221eb6be772f64c3e2ebc6b09a0eef3cfca0e490c0f4c473001",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Such aptitude suggested brilliance, and demonstrations in his owner's courtyard made him seem intelligent.",
+        "exact_native_cache_key": "c80cba2f1009a9858a32bc9d69dd02096db0941c.pkl",
+        "cache_input_text_sha256": "5b841a0e659f3221eb6be772f64c3e2ebc6b09a0eef3cfca0e490c0f4c473001",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Such aptitude suggested brilliance,",
+        "exact_native_cache_key": "acd1680ad94c1f20401c39b056e374a0c38c158e.pkl",
+        "cache_input_text_sha256": "d60b7dea5787a4c2d9c3a30c39ba75cd019b340c08f03972ec004e99946d8265",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and demonstrations in his owner's courtyard made him seem intelligent.",
+        "exact_native_cache_key": "a00089f3b02e9be6289884b091f7d136525aa21c.pkl",
+        "cache_input_text_sha256": "43d19503c8efad8d7e2793bd7ff726030b1aaacb47a2dea5c18b2cf4cf57603a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Such aptitude suggested brilliance,",
+        "exact_native_cache_key": "acd1680ad94c1f20401c39b056e374a0c38c158e.pkl",
+        "cache_input_text_sha256": "d60b7dea5787a4c2d9c3a30c39ba75cd019b340c08f03972ec004e99946d8265",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and demonstrations in his owner's courtyard made him seem intelligent.",
+        "exact_native_cache_key": "a00089f3b02e9be6289884b091f7d136525aa21c.pkl",
+        "cache_input_text_sha256": "43d19503c8efad8d7e2793bd7ff726030b1aaacb47a2dea5c18b2cf4cf57603a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The New York Times reported the stunning act in 1904.",
+        "exact_native_cache_key": "752af332d182958085a68b24a9c461398f1c9767.pkl",
+        "cache_input_text_sha256": "16911291be84e7eef8803dfc374e90c428c27a9130d1417ccf939c4904f17d75",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The New York Times reported the stunning act in 1904.",
+        "exact_native_cache_key": "2454f580a11ac20e73b199b35f9eb359694420fe.pkl",
+        "cache_input_text_sha256": "16911291be84e7eef8803dfc374e90c428c27a9130d1417ccf939c4904f17d75",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "A commission of thirteen was formed to investigate.",
+        "exact_native_cache_key": "aa905459f13615b7ccbcf13e4fce0834cae33ca5.pkl",
+        "cache_input_text_sha256": "a9b7355583b90eeede831f0c8cbb173bd145eb796c9440838595bf06fab371b1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "A commission of thirteen was formed to investigate.",
+        "exact_native_cache_key": "364804c5743b560c1a930052f8eb999486c667c3.pkl",
+        "cache_input_text_sha256": "a9b7355583b90eeede831f0c8cbb173bd145eb796c9440838595bf06fab371b1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "It included a veterinarian, a circus manager, a cavalry officer, schoolteachers, and the director of the Berlin zoological garden.",
+        "exact_native_cache_key": "1ba2315c9d37804114a6de827035bb37d0e2a777.pkl",
+        "cache_input_text_sha256": "d0862865f18acf6d587b561626d5e15af40e7abea99e4eb60d6c820b9fe051ad",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "It included a veterinarian, a circus manager, a cavalry officer, schoolteachers, and the director of the Berlin zoological garden.",
+        "exact_native_cache_key": "1a7ba2110fcf1c1d40dc3826abeb613ac97dfecc.pkl",
+        "cache_input_text_sha256": "d0862865f18acf6d587b561626d5e15af40e7abea99e4eb60d6c820b9fe051ad",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "It included a veterinarian, a circus manager,",
+        "exact_native_cache_key": "768035c82b4067310bc10b569907cab691449a26.pkl",
+        "cache_input_text_sha256": "ab338b30978c84655b2343b81d4482a82a009569e24d93a5f070655a9d1f4f9b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S6",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "a cavalry officer, schoolteachers,",
+        "exact_native_cache_key": "83aa0af4614fe3666fd81a6a6f0fa74c35798b4b.pkl",
+        "cache_input_text_sha256": "344ea1a3ef9c1b120954e8047917d01101ae6751d325536fae7e1d924a9651fc",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S6",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and the director of the Berlin zoological garden.",
+        "exact_native_cache_key": "aef057a73f3da8524074c3b6175b4790fa084495.pkl",
+        "cache_input_text_sha256": "c6433d8b8363aba22c00688f76af3709acb1ecdad63931e241c8c572b4e1a22d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "It included a veterinarian,",
+        "exact_native_cache_key": "3b265c9a468ef2fc8b79076429160d12817df5f6.pkl",
+        "cache_input_text_sha256": "b19ad1852db39591d7cdbc97ef2a99ac9737bc7e92833c05c96bf6d519f731be",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "a circus manager,",
+        "exact_native_cache_key": "24225e919e04f74c64468e2536aa69cd096632bf.pkl",
+        "cache_input_text_sha256": "86b75d4a6c0f70cd53e22440a9365315721372c8415d06472b666a4cf116622b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "a cavalry officer,",
+        "exact_native_cache_key": "60bb9f10f060e2e3be6057a7100317c530ebe895.pkl",
+        "cache_input_text_sha256": "510584568a07ab7c95dcbd016075fe5a79c670b3aac06bd9be1ed6fc39ea28b9",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "schoolteachers,",
+        "exact_native_cache_key": "58931904343ac0d69c18290a69ddd370b2389342.pkl",
+        "cache_input_text_sha256": "2ba9d7280a03ee9b828d1ffedfb71fdd52f760400e538b211d3f6dbbb9c78d65",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 5,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and the director of the Berlin zoological garden.",
+        "exact_native_cache_key": "aef057a73f3da8524074c3b6175b4790fa084495.pkl",
+        "cache_input_text_sha256": "c6433d8b8363aba22c00688f76af3709acb1ecdad63931e241c8c572b4e1a22d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Its members looked for trickery and collusion.",
+        "exact_native_cache_key": "f6dd2799ee7a926aa23d8dd9cc0ffa68aad25138.pkl",
+        "cache_input_text_sha256": "355675c51a69d1f91e1a8fc4706912e56e7edd453a8291864727fbdae7be299a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Its members looked for trickery and collusion.",
+        "exact_native_cache_key": "a2b5a188d08c91ebe1242dcbd4559088b4f8cfe5.pkl",
+        "cache_input_text_sha256": "355675c51a69d1f91e1a8fc4706912e56e7edd453a8291864727fbdae7be299a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "In September 1904 they found no deception, in effect certifying the act authentic.",
+        "exact_native_cache_key": "63b6fb153f3bd2d80fa43c2a30bf4f2ae02736fb.pkl",
+        "cache_input_text_sha256": "2ef25222d658becbdd33cb85389f0d14b628d153fbf480182abfa7e9e0794e4d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "In September 1904 they found no deception, in effect certifying the act authentic.",
+        "exact_native_cache_key": "0391e8b44c3828dedfba71e9c52fa37722b434f2.pkl",
+        "cache_input_text_sha256": "2ef25222d658becbdd33cb85389f0d14b628d153fbf480182abfa7e9e0794e4d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "In September 1904 they found no deception,",
+        "exact_native_cache_key": "f7de8559292e24cb9d6274fbecaef281095d7ae0.pkl",
+        "cache_input_text_sha256": "c8e350332aa98573f4ca1daa81003c172cfbacb02b44e7f35e3fbadc34f951d6",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "in effect certifying the act authentic.",
+        "exact_native_cache_key": "56030bd450138fa996c37c4bdcddd833b854eae8.pkl",
+        "cache_input_text_sha256": "7ffc4cc7de361521b5526c9ee33782daaa2da66d84c4a066e30505d02f47e165",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "In September 1904 they found no deception,",
+        "exact_native_cache_key": "f7de8559292e24cb9d6274fbecaef281095d7ae0.pkl",
+        "cache_input_text_sha256": "c8e350332aa98573f4ca1daa81003c172cfbacb02b44e7f35e3fbadc34f951d6",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "in effect certifying the act authentic.",
+        "exact_native_cache_key": "56030bd450138fa996c37c4bdcddd833b854eae8.pkl",
+        "cache_input_text_sha256": "7ffc4cc7de361521b5526c9ee33782daaa2da66d84c4a066e30505d02f47e165",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "In 1907 the psychologist Oskar Pfungst tested the act systematically, altering one variable after another.",
+        "exact_native_cache_key": "cbc5a8d16de9b454af1630250de5b3babe186895.pkl",
+        "cache_input_text_sha256": "00fd264f2f8b5f0c8ccf22c733a64b0451023f27c8ae1e3863c8e2f6866a578d",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "In 1907 the psychologist Oskar Pfungst tested the act systematically, altering one variable after another.",
+        "exact_native_cache_key": "4a60f21b2d8e0c6dd479dbdb9eff1559ec67a861.pkl",
+        "cache_input_text_sha256": "00fd264f2f8b5f0c8ccf22c733a64b0451023f27c8ae1e3863c8e2f6866a578d",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "In 1907 the psychologist Oskar Pfungst",
+        "exact_native_cache_key": "b99f27450b9225ee9b39296e7ad494ff34a7b470.pkl",
+        "cache_input_text_sha256": "90752caeb2a8a243d153bcd9a50a5230f6fb5b60f0021545891023b541879771",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S9",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "tested the act systematically,",
+        "exact_native_cache_key": "3231feb56800a283ceebdc126b53d8dd998185d2.pkl",
+        "cache_input_text_sha256": "8dd0f00a0a02676dc8007c1192029c64eba0aba573508ad0790fe0c2332c6e7f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S9",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "altering one variable after another.",
+        "exact_native_cache_key": "7f360bfcfd5a3d13ca4414d4e1560660efa29115.pkl",
+        "cache_input_text_sha256": "cd4bfe8a39265d604f7e231651b9faa488ab311fd3c351e3ee465e58ad35d3df",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "In 1907 the psychologist Oskar Pfungst tested the act systematically,",
+        "exact_native_cache_key": "d5b26a358c30c9af2584cd801937f1e2f9c75974.pkl",
+        "cache_input_text_sha256": "ac7e936e5d150611e580e523e7887e7057448a9b37d6e2016778395f6e03eade",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "altering one variable after another.",
+        "exact_native_cache_key": "7f360bfcfd5a3d13ca4414d4e1560660efa29115.pkl",
+        "cache_input_text_sha256": "cd4bfe8a39265d604f7e231651b9faa488ab311fd3c351e3ee465e58ad35d3df",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "He kept onlookers away, rotated questioners, fitted blinders, and sometimes used people ignorant of the answer.",
+        "exact_native_cache_key": "ae77c2be44bcb46c11c9ce0182e8c100574998d3.pkl",
+        "cache_input_text_sha256": "461217335fea3649d3bb99c2b131d40692058a1e060be6465ff6caaafa3bbb8b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "He kept onlookers away, rotated questioners, fitted blinders, and sometimes used people ignorant of the answer.",
+        "exact_native_cache_key": "d024e2f6db27305a631a5bd01081ed65796cbd13.pkl",
+        "cache_input_text_sha256": "461217335fea3649d3bb99c2b131d40692058a1e060be6465ff6caaafa3bbb8b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "He kept onlookers away, rotated questioners,",
+        "exact_native_cache_key": "edb13bed72b2e93ae5ed9ba89dd85f0159803bfb.pkl",
+        "cache_input_text_sha256": "493eaec212d98a07f078cc5a7c57ab9b4ad2b85310ca5c43dd454a76fb7bb6b2",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S10",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "fitted blinders, and sometimes used people ignorant of the answer.",
+        "exact_native_cache_key": "932fefaf9d642f5b7cb72e7e9cc80cb9d4b90808.pkl",
+        "cache_input_text_sha256": "f62b22946c831af16a00d99c1201dbcfcffd45ea6950a516823135e4d8083834",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S10",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "He kept onlookers away,",
+        "exact_native_cache_key": "c92def730dfddd2fa80ff41755c566c0b5170fab.pkl",
+        "cache_input_text_sha256": "0d6df85c3faa757b019a0775aad06b79d142bff0955c66678fd7f017d2d2ebb6",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "rotated questioners,",
+        "exact_native_cache_key": "8dbf3b17655e3b0d192b42eeb53b960424b507b9.pkl",
+        "cache_input_text_sha256": "ddace0caecf459a56e575005596940926bb7dff5bd713fd35a5301fb2924abe4",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "fitted blinders,",
+        "exact_native_cache_key": "620c2d324de572806e04339c73f222da5240b46e.pkl",
+        "cache_input_text_sha256": "734176d3c80438113fcc0a1d56f6d8c1d1ed565363f7f95d2977d251536d700b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and sometimes used people ignorant of the answer.",
+        "exact_native_cache_key": "122acc2f9bafe2474782a6cea6b48eb604e702fa.pkl",
+        "cache_input_text_sha256": "420d92dde2e669a034fd7b29c5e29bd9e72ff95aa4505195589c630421cf78f3",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "When Hans could see the questioner, he answered correctly 50 times in 56.",
+        "exact_native_cache_key": "00ea8c7aa059615f69d920ab66d239dc87bc211e.pkl",
+        "cache_input_text_sha256": "1cbb3d8b4b73475573cbc642a57dc7b4f661b5e220a58f4627e91059e1d98c45",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "When Hans could see the questioner, he answered correctly 50 times in 56.",
+        "exact_native_cache_key": "0d883a2a4181991886e16ac8135d132761d1ad1b.pkl",
+        "cache_input_text_sha256": "1cbb3d8b4b73475573cbc642a57dc7b4f661b5e220a58f4627e91059e1d98c45",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "When Hans could see the questioner,",
+        "exact_native_cache_key": "2a63b91c95dc962409739ed9e83d2539aca42c1a.pkl",
+        "cache_input_text_sha256": "7cb9387285a045ef605f69ebcab91177315072aae070f372349c86b9a95b8e67",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "he answered correctly 50 times in 56.",
+        "exact_native_cache_key": "62ca7a4de69e10d9d55eb90ade71ea984e0a923c.pkl",
+        "cache_input_text_sha256": "c8ce06968281f24e5152ca94731fe8c7625f3b11d671163df3941419e5cb5965",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "When Hans could see the questioner,",
+        "exact_native_cache_key": "2a63b91c95dc962409739ed9e83d2539aca42c1a.pkl",
+        "cache_input_text_sha256": "7cb9387285a045ef605f69ebcab91177315072aae070f372349c86b9a95b8e67",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "he answered correctly 50 times in 56.",
+        "exact_native_cache_key": "62ca7a4de69e10d9d55eb90ade71ea984e0a923c.pkl",
+        "cache_input_text_sha256": "c8ce06968281f24e5152ca94731fe8c7625f3b11d671163df3941419e5cb5965",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "With the questioner invisible, his accuracy fell to two in 35.",
+        "exact_native_cache_key": "1e7c0201791db4e6ac869bf015021dc70b7935f1.pkl",
+        "cache_input_text_sha256": "ebd1d681cdeef1a36dda17e3fcd5190d525a3e49bf0a2838ebdca68672738a56",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "With the questioner invisible, his accuracy fell to two in 35.",
+        "exact_native_cache_key": "98c22397bbb2819b2bd7ebf606bff3cbcf9957be.pkl",
+        "cache_input_text_sha256": "ebd1d681cdeef1a36dda17e3fcd5190d525a3e49bf0a2838ebdca68672738a56",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "With the questioner invisible,",
+        "exact_native_cache_key": "4a167cf7ba398ab09c68e36dcf2c21b780445bce.pkl",
+        "cache_input_text_sha256": "bdb69572c54fbdecdb7f63873c139646e92de60529026896edc272e990a6a5cb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "his accuracy fell to two in 35.",
+        "exact_native_cache_key": "8578a9f209f4d64096213058018db080f49cbb8f.pkl",
+        "cache_input_text_sha256": "008cfb01917132e1b681a2fc9398083556fac9356f1f7489ee410911f8988611",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "With the questioner invisible,",
+        "exact_native_cache_key": "4a167cf7ba398ab09c68e36dcf2c21b780445bce.pkl",
+        "cache_input_text_sha256": "bdb69572c54fbdecdb7f63873c139646e92de60529026896edc272e990a6a5cb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "his accuracy fell to two in 35.",
+        "exact_native_cache_key": "8578a9f209f4d64096213058018db080f49cbb8f.pkl",
+        "cache_input_text_sha256": "008cfb01917132e1b681a2fc9398083556fac9356f1f7489ee410911f8988611",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The cues came from the questioners.",
+        "exact_native_cache_key": "d86a018afa656564bdea4a36ae2690da4592f144.pkl",
+        "cache_input_text_sha256": "169a1d14b94d408f3cb2cc28dadde62d9ef169fc474dc325f3bcec4161481aca",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The cues came from the questioners.",
+        "exact_native_cache_key": "21e99467edf78ce8fa1ee323166eeeea0a05bec0.pkl",
+        "cache_input_text_sha256": "169a1d14b94d408f3cb2cc28dadde62d9ef169fc474dc325f3bcec4161481aca",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Each would lean forward as tapping began, and tension rose as the taps neared the answer.",
+        "exact_native_cache_key": "9a9d4cafd00555d76fe36534ea0a2fd15210037c.pkl",
+        "cache_input_text_sha256": "7d94606cb8108c0e1082d5f9355355ad2237a743cf64aaae391fb7bde8307c8c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Each would lean forward as tapping began, and tension rose as the taps neared the answer.",
+        "exact_native_cache_key": "5613bb489c29f1efb9308c3f2069da995ae3e594.pkl",
+        "cache_input_text_sha256": "7d94606cb8108c0e1082d5f9355355ad2237a743cf64aaae391fb7bde8307c8c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Each would lean forward as tapping began,",
+        "exact_native_cache_key": "e512e221f617595aedd7267e22962544d1226402.pkl",
+        "cache_input_text_sha256": "fedcf4d1fa6754dc08aa717f5df6599d614f496648d3fc209c3da2d1e78ab40c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and tension rose as the taps neared the answer.",
+        "exact_native_cache_key": "a42929bf1ff2a22e02f006b362ed14770a07f2a0.pkl",
+        "cache_input_text_sha256": "fd6b170eda5e9b3e1e7578adf3eb76dd5575bfe2b42ac62b18816eeea0594295",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Each would lean forward as tapping began,",
+        "exact_native_cache_key": "e512e221f617595aedd7267e22962544d1226402.pkl",
+        "cache_input_text_sha256": "fedcf4d1fa6754dc08aa717f5df6599d614f496648d3fc209c3da2d1e78ab40c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and tension rose as the taps neared the answer.",
+        "exact_native_cache_key": "a42929bf1ff2a22e02f006b362ed14770a07f2a0.pkl",
+        "cache_input_text_sha256": "fd6b170eda5e9b3e1e7578adf3eb76dd5575bfe2b42ac62b18816eeea0594295",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "At the right tap it eased, and the questioner would straighten or jerk the head upward.",
+        "exact_native_cache_key": "4c5ea080eacc2d4263e28c998f0858d785bd91c7.pkl",
+        "cache_input_text_sha256": "8459634e93977272aad2aec29465c30585f6649f41ca7e50a89e8f7c9620fdf1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "At the right tap it eased, and the questioner would straighten or jerk the head upward.",
+        "exact_native_cache_key": "45b7c0a9d7bc6b6f31e9b0fbe3a04a839a60e9f1.pkl",
+        "cache_input_text_sha256": "8459634e93977272aad2aec29465c30585f6649f41ca7e50a89e8f7c9620fdf1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "At the right tap it eased,",
+        "exact_native_cache_key": "347e78d9ae0346408e95385d208a26a46905dcd1.pkl",
+        "cache_input_text_sha256": "5aa11324b108f85586a5024a7da51ddc7152a99cf887cc44aa076bf93a958060",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and the questioner would straighten or jerk the head upward.",
+        "exact_native_cache_key": "fce549e8a86ea1a8e4dc979b5701ac50667c4ea2.pkl",
+        "cache_input_text_sha256": "c982b9b8ad48c015a3a337839c37cdb1d6d8a92e0e2ca1a36a0612ca60e23518",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "At the right tap it eased,",
+        "exact_native_cache_key": "347e78d9ae0346408e95385d208a26a46905dcd1.pkl",
+        "cache_input_text_sha256": "5aa11324b108f85586a5024a7da51ddc7152a99cf887cc44aa076bf93a958060",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and the questioner would straighten or jerk the head upward.",
+        "exact_native_cache_key": "fce549e8a86ea1a8e4dc979b5701ac50667c4ea2.pkl",
+        "cache_input_text_sha256": "c982b9b8ad48c015a3a337839c37cdb1d6d8a92e0e2ca1a36a0612ca60e23518",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Every gesture and motion was subconscious, made unwittingly by people with no wish to deceive.",
+        "exact_native_cache_key": "ff15143bf01974b9dcf0338e54a8a1b7ab4e6aac.pkl",
+        "cache_input_text_sha256": "c283a2bad387ce56258bff167ad309c92923d7a0900895211008abb6f421aa4a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Every gesture and motion was subconscious, made unwittingly by people with no wish to deceive.",
+        "exact_native_cache_key": "cf3a39154a85c8ad0b331f859cbb6741803961b7.pkl",
+        "cache_input_text_sha256": "c283a2bad387ce56258bff167ad309c92923d7a0900895211008abb6f421aa4a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Every gesture and motion was subconscious,",
+        "exact_native_cache_key": "1ad4325232e76bef306ba442a192983c4a4d4a44.pkl",
+        "cache_input_text_sha256": "07ca1209dc0e834d8d2d2e2d0ae841482502d1abfba22ffb278847b871a7d979",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "made unwittingly by people with no wish to deceive.",
+        "exact_native_cache_key": "ebe94a967fdad03748b8fa38e45b7326cb36e20a.pkl",
+        "cache_input_text_sha256": "4b67f59443cc3cad5ab373c8d622e50a642c0302ee683b4780effa4799317854",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Every gesture and motion was subconscious,",
+        "exact_native_cache_key": "1ad4325232e76bef306ba442a192983c4a4d4a44.pkl",
+        "cache_input_text_sha256": "07ca1209dc0e834d8d2d2e2d0ae841482502d1abfba22ffb278847b871a7d979",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "made unwittingly by people with no wish to deceive.",
+        "exact_native_cache_key": "ebe94a967fdad03748b8fa38e45b7326cb36e20a.pkl",
+        "cache_input_text_sha256": "4b67f59443cc3cad5ab373c8d622e50a642c0302ee683b4780effa4799317854",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Double-blind designs in psychology and animal cognition guard against the Clever Hans effect, a phenomenon of bias in which expectancy shapes behavioural results.",
+        "exact_native_cache_key": "efeceb2da6a0541dd8ddfdceac31d68cc45121b3.pkl",
+        "cache_input_text_sha256": "18659deb396d6ea0b8f8a597425ed00ed55b5c82eb80738669658c4b523b739e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Double-blind designs in psychology and animal cognition guard against the Clever Hans effect, a phenomenon of bias in which expectancy shapes behavioural results.",
+        "exact_native_cache_key": "45b8aa689fae322e8376bd20e592ac442153061b.pkl",
+        "cache_input_text_sha256": "18659deb396d6ea0b8f8a597425ed00ed55b5c82eb80738669658c4b523b739e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Double-blind designs in psychology and animal cognition",
+        "exact_native_cache_key": "d143a3f77f2ba274235ecb86ef5ef82640fb9cb9.pkl",
+        "cache_input_text_sha256": "6e5dc06f1cc52599ec14ed7201ba7fbcb725cb768a9ae49159868cb61b5f3920",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S17",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "guard against the Clever Hans effect,",
+        "exact_native_cache_key": "3e8b013d862fc93053a03a0d99a92aa2006ba41f.pkl",
+        "cache_input_text_sha256": "2ec2159d1cf54ba38ef0104cac6ec5dec656ceb2db801349f46b169a5e14e438",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S17",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "a phenomenon of bias",
+        "exact_native_cache_key": "13ea6ae009ef04b219f0bd4184d282a46fa82335.pkl",
+        "cache_input_text_sha256": "7490f145ef0cd37d89b1367bc47c39ac516646c2fea29bd13f6b860aa9b18750",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S17",
+        "piece": 4,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "in which expectancy shapes behavioural results.",
+        "exact_native_cache_key": "f5f704627da4b8abda1e4d447e34eafdda713029.pkl",
+        "cache_input_text_sha256": "a3160ddb716cea2a25007c05ff8da19be7d2c51662304023bf186c874e9b6b04",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S17",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Double-blind designs in psychology and animal cognition guard against the Clever Hans effect,",
+        "exact_native_cache_key": "5f245d6d49a338f35e3dcedd25d24e2c8b0b6523.pkl",
+        "cache_input_text_sha256": "18314b44815e7a82d6b6759bb02e95c3ccfb37c3d5775783c8f7e03331fe44fb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "a phenomenon of bias in which expectancy shapes behavioural results.",
+        "exact_native_cache_key": "3f70332be1c69edb579014098f8826141aa22c4b.pkl",
+        "cache_input_text_sha256": "c09e9c7961447b4c3abfef908497361e1ca639929331c93012b030e0b147c2bf",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "In the laboratory, Pfungst took the animal's place and proved sensitive to the cues of attentive volunteers.",
+        "exact_native_cache_key": "34a06c6e6955fd5cfa090fa0fc953d1ef40c10e8.pkl",
+        "cache_input_text_sha256": "4145f19c622f1e5db224a198786c1e7dce78a1005f08ff81bcdf045b8dcd742b",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "In the laboratory, Pfungst took the animal's place and proved sensitive to the cues of attentive volunteers.",
+        "exact_native_cache_key": "26e855926227cdbb3c6575107f196912d8b0796d.pkl",
+        "cache_input_text_sha256": "4145f19c622f1e5db224a198786c1e7dce78a1005f08ff81bcdf045b8dcd742b",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "In the laboratory, Pfungst took the animal's place",
+        "exact_native_cache_key": "a74f4ad970a29b09add655ac1a5bb0204b74b587.pkl",
+        "cache_input_text_sha256": "d28ceeef1b1cd8112155cf0f732f22e620910163654e84549c10e4b3ea438237",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S18",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and proved sensitive to the cues of attentive volunteers.",
+        "exact_native_cache_key": "163329921735d332815bb05566e14e2084b1e1f6.pkl",
+        "cache_input_text_sha256": "7eed835bbd23a4f53d3c715fd10c7f36d14d6745447cd118de048376f2faa1b1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S18",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "In the laboratory,",
+        "exact_native_cache_key": "89cfd0bab7b848b27870621b376296e90a1337f0.pkl",
+        "cache_input_text_sha256": "3f4657f63739f44247948bde0a7e67bec1eff53a7ac7dddc8a427a30e199d30b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Pfungst took the animal's place and proved sensitive to the cues of attentive volunteers.",
+        "exact_native_cache_key": "339ecca5b2803c2aba0713e64084eccf679a54ec.pkl",
+        "cache_input_text_sha256": "195e38369876cac37c72ba0113f6a5909734b1d3aaeb569a695f5e6757a059d1",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Hans went, on his owner's death in June 1909, to a jeweller still convinced that such animals reasoned.",
+        "exact_native_cache_key": "fbad1721d9c2ad4ca4c1b0d46f24092eb6e80167.pkl",
+        "cache_input_text_sha256": "d6059ad6ccf9ce6515d1caf8fba5f32d1f7585e32e563ed3ba7cfd637e7629bb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Hans went, on his owner's death in June 1909, to a jeweller still convinced that such animals reasoned.",
+        "exact_native_cache_key": "668c4516a95850f68d8c9bd0de3b89ef5b35a60a.pkl",
+        "cache_input_text_sha256": "d6059ad6ccf9ce6515d1caf8fba5f32d1f7585e32e563ed3ba7cfd637e7629bb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Hans went, on his owner's death in June 1909,",
+        "exact_native_cache_key": "8716ccc961c0dc4b04d0df6d25bfa74ef404b2aa.pkl",
+        "cache_input_text_sha256": "c30051fbc2acc94b085a4a853e03a491f9105613c7461d1c7acc8e0838823cdb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S19",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "to a jeweller still convinced that such animals reasoned.",
+        "exact_native_cache_key": "f8b5bc6330a9f17f63a76a399b5cd623044aafa0.pkl",
+        "cache_input_text_sha256": "816b280899129cccb5e741aae1e30134cfaddf2c2d6f41aab98acb77c12310db",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Hans went,",
+        "exact_native_cache_key": "c1bf4ba0daf12cd5dd4f796b3ce29fd015d0fff3.pkl",
+        "cache_input_text_sha256": "f55aa8efd8b05e55312fce5dd48d9da88b0294e141b70514b15dcd3120b4d184",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "on his owner's death in June 1909,",
+        "exact_native_cache_key": "c14bf12ace95cd6cf880b65a647320d4f82db2a7.pkl",
+        "cache_input_text_sha256": "2e1052b0ae08fb2f24b4629be972b181a303baa0c28060937983e367caae549a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "to a jeweller still convinced that such animals reasoned.",
+        "exact_native_cache_key": "f8b5bc6330a9f17f63a76a399b5cd623044aafa0.pkl",
+        "cache_input_text_sha256": "816b280899129cccb5e741aae1e30134cfaddf2c2d6f41aab98acb77c12310db",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      }
+    ],
+    "unique_reference_key_count": 96,
+    "raw_mother_cache_scalar_manifest": [
+      {
+        "exact_native_cache_key": "20abb0b916a5f305547d00bdde69c999c2acd0df.pkl",
+        "pkl_sha256": "e9d88cdba2ffce0bc50df57f2dcb219c6d6d42d4ae88366a9e5bcd2ef13d9731",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "标题",
+            "piece": null,
+            "reference_kind": "title-default-raw",
+            "method": "create",
+            "source_slice": "The Horse That Could Count",
+            "exact_native_cache_key": "20abb0b916a5f305547d00bdde69c999c2acd0df.pkl",
+            "cache_input_text_sha256": "d3a608d326e64df0d678d4590096baf21be206fe5d17aeda0f9bd3378f1c4d53",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          35328
+        ],
+        "unprocessed_array_sha256": "693dca4671243da088c64680575e48f85c8be86de98ee8457e03414050ae38d5"
+      },
+      {
+        "exact_native_cache_key": "69e33c5497ea573e807be02e11675cb9b162f610.pkl",
+        "pkl_sha256": "c65af6a64a1a6ede035c6d17443a9e9957260cec9bb71f506b0f736639e0bd45",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Wilhelm von Osten, a mathematics teacher and trainer in Berlin, owned a stallion, Hans.",
+            "exact_native_cache_key": "69e33c5497ea573e807be02e11675cb9b162f610.pkl",
+            "cache_input_text_sha256": "14d9d8977dcf150cb17b070f15462601696aae7e9561c961076aa9103094a46d",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          151040
+        ],
+        "unprocessed_array_sha256": "667a21a637f3ab8236879e6efd006d5dae77c3a64a001a3189513eff15dbbdf7"
+      },
+      {
+        "exact_native_cache_key": "f6c062a342860a5b7b7aa29a6284c42f4ae6370c.pkl",
+        "pkl_sha256": "839662ab030f3e034838c41afb84dd370b554d6e496183af8a640b12e44dc53b",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Wilhelm von Osten, a mathematics teacher and trainer in Berlin,",
+            "exact_native_cache_key": "f6c062a342860a5b7b7aa29a6284c42f4ae6370c.pkl",
+            "cache_input_text_sha256": "7ccb3ad1d4cb0913ba15572901ec448b0d6389ba4c8c6670a2b8bffa0313bece",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "839662ab030f3e03",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          108544
+        ],
+        "unprocessed_array_sha256": "a652c572b9ee6023dfe5f138d07cfef7be895b9e953ecc2893b4adf420b49aee"
+      },
+      {
+        "exact_native_cache_key": "8a461fa063a6e3035ee0e5679fdceb217b6ddcb2.pkl",
+        "pkl_sha256": "4633ff183211785304c924c60f016e35837690a43461422dd9d59db45b04bb47",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "owned a stallion, Hans.",
+            "exact_native_cache_key": "8a461fa063a6e3035ee0e5679fdceb217b6ddcb2.pkl",
+            "cache_input_text_sha256": "32dd2f57ac1c3d7b7c799f45628d4bb1c742d73fbf02dbeab99ed4f4f3cfdd5f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "4633ff1832117853",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          34304
+        ],
+        "unprocessed_array_sha256": "4c8ac598837605f315a6b70567d13b9127f008dd6da6d4a36c2a5f0468bd2bbc"
+      },
+      {
+        "exact_native_cache_key": "8aa6d2b5ad6574b85da7225d640964c56e3f3318.pkl",
+        "pkl_sha256": "c1f5904a69653f30d80ceef6e664ccf10a3f9c5ae0d31b09ea7e5e43d248a25b",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Wilhelm von Osten,",
+            "exact_native_cache_key": "8aa6d2b5ad6574b85da7225d640964c56e3f3318.pkl",
+            "cache_input_text_sha256": "1d0f86003fb75c49550437c2a0154b6e3956f2afadcb5ee0cbac85ba048e962c",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          34304
+        ],
+        "unprocessed_array_sha256": "0451f729478b493c33f31fb6a07648941a2d7bee7875718c7ba77307e9dd6399"
+      },
+      {
+        "exact_native_cache_key": "af967dbd7aef829df0f87fdf2dda66c75acdc52b.pkl",
+        "pkl_sha256": "4e5605f28980ed778508c26b1dd0c658156e0337b6db966842760b0b52f0b32c",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "a mathematics teacher and trainer in Berlin,",
+            "exact_native_cache_key": "af967dbd7aef829df0f87fdf2dda66c75acdc52b.pkl",
+            "cache_input_text_sha256": "72c752adfffae05c223f0202e374175d7028c934bbce67fcb30b23840fc69e8a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          66048
+        ],
+        "unprocessed_array_sha256": "d51c8b1cc2051ded491aacbaf7286689888e7ef1af3b74419b55e817814b3a5d"
+      },
+      {
+        "exact_native_cache_key": "6d20b8a98043b275bf9b677843357668105108f7.pkl",
+        "pkl_sha256": "10c091d4edf2731a35a29559bf45b460a484e23468604ecd6c03da3135dd6d43",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "owned a stallion,",
+            "exact_native_cache_key": "6d20b8a98043b275bf9b677843357668105108f7.pkl",
+            "cache_input_text_sha256": "46c66a79719b7480737a406493bbf810687879f8c7ff71b4e5ee8971e37ba22e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          27648
+        ],
+        "unprocessed_array_sha256": "fd7d50a57e2a569ae30610222405e3f894ab59bdc43f1719d68c393bfae78ec1"
+      },
+      {
+        "exact_native_cache_key": "0cbb49a173164c0488a3d9cefb891b5fb6cfd4c7.pkl",
+        "pkl_sha256": "132762e76039c66d89440cc7e7c3a0f26e4443a573b9f577eeb352845365f7cd",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Hans.",
+            "exact_native_cache_key": "0cbb49a173164c0488a3d9cefb891b5fb6cfd4c7.pkl",
+            "cache_input_text_sha256": "67421c92e7827df8bbd8991338c151d3d03967183510cb5946b554e93c46a357",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          17920
+        ],
+        "unprocessed_array_sha256": "12b7a86f249f449e21a2b22313221f0561dc4de8e725b790b9a4568e1ac1a14e"
+      },
+      {
+        "exact_native_cache_key": "9923e5f9dc87822f5c0e62fb879eab02ce783488.pkl",
+        "pkl_sha256": "0be7833866846ed0bc117a91284c02471e5acc48bf0d10e6fccb62579b4a977a",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Asked to calculate a sum, attempt subtraction, or name a date, Hans tapped out the answer with a hoof.",
+            "exact_native_cache_key": "9923e5f9dc87822f5c0e62fb879eab02ce783488.pkl",
+            "cache_input_text_sha256": "27c6b84391668a55144d4460f626bc9e0d815add0744ef71e86d5a6f509e66a2",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          163840
+        ],
+        "unprocessed_array_sha256": "b71be4649d57a486c11aec495a4b47b0f97aaf5a5a1b3fe7b4d5a3bec11ebf82"
+      },
+      {
+        "exact_native_cache_key": "68645910836c95630ca556f66b16004134c48ef0.pkl",
+        "pkl_sha256": "361cb3567dd89a1706443451beea7ebd6a95a30e9132229f594f67143efb68b0",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Asked to calculate a sum,",
+            "exact_native_cache_key": "68645910836c95630ca556f66b16004134c48ef0.pkl",
+            "cache_input_text_sha256": "9af7b031184c0f2137542be4094fcc65b822f71aefdb8aae27deec5d51c10135",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S2",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Asked to calculate a sum,",
+            "exact_native_cache_key": "68645910836c95630ca556f66b16004134c48ef0.pkl",
+            "cache_input_text_sha256": "9af7b031184c0f2137542be4094fcc65b822f71aefdb8aae27deec5d51c10135",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          40960
+        ],
+        "unprocessed_array_sha256": "0de76d2121b0818437d2175e2dcceebebb9f2d01f7c80dd04f82e5d64d08a1f8"
+      },
+      {
+        "exact_native_cache_key": "d38264a63c2fb049aafe8e7b1347d6849f4fec40.pkl",
+        "pkl_sha256": "73f0beca8e5d1497b14cadb094badceb448e1b6499c28ff1f6ac66339f433be7",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "attempt subtraction, or name a date,",
+            "exact_native_cache_key": "d38264a63c2fb049aafe8e7b1347d6849f4fec40.pkl",
+            "cache_input_text_sha256": "bc9103fbe503c088b725afaa0c339a6d9c8e481bb972b672253b5877bb566ecb",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "73f0beca8e5d1497",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          51200
+        ],
+        "unprocessed_array_sha256": "1de27d5c8418ef3237e30b010420982f2b5b9c44c0e686bb5375d7d0f7f8d8ea"
+      },
+      {
+        "exact_native_cache_key": "028d2b1ec01ce91b0a818cc0b3a8156dab36604b.pkl",
+        "pkl_sha256": "7111c1130d1720e4df622b5aacc826f3e1127991485793d5768b739095d2b4ae",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Hans tapped out the answer with a hoof.",
+            "exact_native_cache_key": "028d2b1ec01ce91b0a818cc0b3a8156dab36604b.pkl",
+            "cache_input_text_sha256": "4ae8a8765f99bce4ab1e52507069f7f1c652e32c90df058347e27783e8091fe0",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S2",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Hans tapped out the answer with a hoof.",
+            "exact_native_cache_key": "028d2b1ec01ce91b0a818cc0b3a8156dab36604b.pkl",
+            "cache_input_text_sha256": "4ae8a8765f99bce4ab1e52507069f7f1c652e32c90df058347e27783e8091fe0",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          52224
+        ],
+        "unprocessed_array_sha256": "76d2f56004a0eabf0c5554c0dcb21d37987a21eb1e404e4457c3b3889ec44cae"
+      },
+      {
+        "exact_native_cache_key": "5105623c9ac511cbdb727b4b6be1745cbc9ff1cc.pkl",
+        "pkl_sha256": "fb3a123f4b0ff6e54db18fe21a2091aa8fe3835b35d7dad5e46f9d65b2d2e744",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "attempt subtraction,",
+            "exact_native_cache_key": "5105623c9ac511cbdb727b4b6be1745cbc9ff1cc.pkl",
+            "cache_input_text_sha256": "0585f230f45d7446312efe8481913db343a342e96818c5b55e2a72a946caea25",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          30208
+        ],
+        "unprocessed_array_sha256": "b5983bd08adfcb2f3a77d7cf5a70fd489b2bfa4b3e7bb6714a882c582e437dec"
+      },
+      {
+        "exact_native_cache_key": "da4f61f12435e80ca9930d4d9dde1eb2785cedd0.pkl",
+        "pkl_sha256": "fb799c3da5a3dede9a6b9d28d051a213af4b1b38601bda23a50ed49c157c4a24",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "or name a date,",
+            "exact_native_cache_key": "da4f61f12435e80ca9930d4d9dde1eb2785cedd0.pkl",
+            "cache_input_text_sha256": "33d7ee0de5713d5160b60b48aba106c5909b87f12c2e3a6f42bb9230b0d3d930",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          28160
+        ],
+        "unprocessed_array_sha256": "a948ea8a2a6e2290b2eaf0d77ca74d40d096f361f5588a29ceaa47a0498750cf"
+      },
+      {
+        "exact_native_cache_key": "bf7ff4730e281df056aaee4034456ecdded6b519.pkl",
+        "pkl_sha256": "1de05fbc014272fcbc51888e1ff9cc5e2e204d685d5ef319a9de189ecf39f2c8",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Such aptitude suggested brilliance, and demonstrations in his owner's courtyard made him seem intelligent.",
+            "exact_native_cache_key": "bf7ff4730e281df056aaee4034456ecdded6b519.pkl",
+            "cache_input_text_sha256": "5b841a0e659f3221eb6be772f64c3e2ebc6b09a0eef3cfca0e490c0f4c473001",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          172032
+        ],
+        "unprocessed_array_sha256": "882f795ec8b03430a2654813a461fc6f894332056fe409ed7fc6a71844503329"
+      },
+      {
+        "exact_native_cache_key": "acd1680ad94c1f20401c39b056e374a0c38c158e.pkl",
+        "pkl_sha256": "d362e0f977fa4f22f192402377225671e185a309a9d2b2e30a257d69538ccd1f",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Such aptitude suggested brilliance,",
+            "exact_native_cache_key": "acd1680ad94c1f20401c39b056e374a0c38c158e.pkl",
+            "cache_input_text_sha256": "d60b7dea5787a4c2d9c3a30c39ba75cd019b340c08f03972ec004e99946d8265",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S3",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Such aptitude suggested brilliance,",
+            "exact_native_cache_key": "acd1680ad94c1f20401c39b056e374a0c38c158e.pkl",
+            "cache_input_text_sha256": "d60b7dea5787a4c2d9c3a30c39ba75cd019b340c08f03972ec004e99946d8265",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          53248
+        ],
+        "unprocessed_array_sha256": "d7ef8041268b98cdfaffcf5655c0535f755e6b8541233abfbfd35a777c39c7bf"
+      },
+      {
+        "exact_native_cache_key": "a00089f3b02e9be6289884b091f7d136525aa21c.pkl",
+        "pkl_sha256": "21665044cb13c4eaa50e496b1abf3ffce982e8a828f270c297be8a9523fc39ba",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and demonstrations in his owner's courtyard made him seem intelligent.",
+            "exact_native_cache_key": "a00089f3b02e9be6289884b091f7d136525aa21c.pkl",
+            "cache_input_text_sha256": "43d19503c8efad8d7e2793bd7ff726030b1aaacb47a2dea5c18b2cf4cf57603a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S3",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and demonstrations in his owner's courtyard made him seem intelligent.",
+            "exact_native_cache_key": "a00089f3b02e9be6289884b091f7d136525aa21c.pkl",
+            "cache_input_text_sha256": "43d19503c8efad8d7e2793bd7ff726030b1aaacb47a2dea5c18b2cf4cf57603a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          105984
+        ],
+        "unprocessed_array_sha256": "f24edc2b0785c8b55523a1155969abedbb197e2decfcbb81305d1e75907d8982"
+      },
+      {
+        "exact_native_cache_key": "752af332d182958085a68b24a9c461398f1c9767.pkl",
+        "pkl_sha256": "003aeea9af51807530f60029dad5423f2600b7b079da1383d8dc2ecf56037a2e",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The New York Times reported the stunning act in 1904.",
+            "exact_native_cache_key": "752af332d182958085a68b24a9c461398f1c9767.pkl",
+            "cache_input_text_sha256": "16911291be84e7eef8803dfc374e90c428c27a9130d1417ccf939c4904f17d75",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          92160
+        ],
+        "unprocessed_array_sha256": "f495e3e5839fd186267fed5dc7d5aa32fcf437409000bd191555942e5d85f77f"
+      },
+      {
+        "exact_native_cache_key": "aa905459f13615b7ccbcf13e4fce0834cae33ca5.pkl",
+        "pkl_sha256": "113d24ea49c9ab67cb80df771b9247bb12f43a8c087e1fa4e4a77a38dfa7d3f0",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "A commission of thirteen was formed to investigate.",
+            "exact_native_cache_key": "aa905459f13615b7ccbcf13e4fce0834cae33ca5.pkl",
+            "cache_input_text_sha256": "a9b7355583b90eeede831f0c8cbb173bd145eb796c9440838595bf06fab371b1",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          71168
+        ],
+        "unprocessed_array_sha256": "3758afe765e968dc3ec051c9e3857f2b958267a55947a424d891f8aacf44f071"
+      },
+      {
+        "exact_native_cache_key": "1ba2315c9d37804114a6de827035bb37d0e2a777.pkl",
+        "pkl_sha256": "ef3a4731c2b332abe967f12c565b27664254eb063d143c562663032765551df1",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "It included a veterinarian, a circus manager, a cavalry officer, schoolteachers, and the director of the Berlin zoological garden.",
+            "exact_native_cache_key": "1ba2315c9d37804114a6de827035bb37d0e2a777.pkl",
+            "cache_input_text_sha256": "d0862865f18acf6d587b561626d5e15af40e7abea99e4eb60d6c820b9fe051ad",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          224768
+        ],
+        "unprocessed_array_sha256": "b204357e1b5a84321cb999b04850f41d6d06ae16aadd3e7f4c2d57f23e32d88a"
+      },
+      {
+        "exact_native_cache_key": "768035c82b4067310bc10b569907cab691449a26.pkl",
+        "pkl_sha256": "10ed74d309859aa465605ea5b58bae0f285e6fb6eb31f9dae73f05d2fb7741fa",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "It included a veterinarian, a circus manager,",
+            "exact_native_cache_key": "768035c82b4067310bc10b569907cab691449a26.pkl",
+            "cache_input_text_sha256": "ab338b30978c84655b2343b81d4482a82a009569e24d93a5f070655a9d1f4f9b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "10ed74d309859aa4",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          78336
+        ],
+        "unprocessed_array_sha256": "24d76320d092a3adee72ec7193c448257a6e59393e0c0437c57e868c2cc5d971"
+      },
+      {
+        "exact_native_cache_key": "83aa0af4614fe3666fd81a6a6f0fa74c35798b4b.pkl",
+        "pkl_sha256": "5d41bc91209fc31ce54a8bc5e874439f14da6ec861dd85aec7f0c20ddb5fa310",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "a cavalry officer, schoolteachers,",
+            "exact_native_cache_key": "83aa0af4614fe3666fd81a6a6f0fa74c35798b4b.pkl",
+            "cache_input_text_sha256": "344ea1a3ef9c1b120954e8047917d01101ae6751d325536fae7e1d924a9651fc",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "5d41bc91209fc31c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          51712
+        ],
+        "unprocessed_array_sha256": "af247569f51407c7c5a5f97d550a46f2c31074276b3c48e2b67bae46f3a92eda"
+      },
+      {
+        "exact_native_cache_key": "aef057a73f3da8524074c3b6175b4790fa084495.pkl",
+        "pkl_sha256": "e828f596d4742a22aa0259eb5c2101b67a1d53e4e141e1aacfb8281bf817a483",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and the director of the Berlin zoological garden.",
+            "exact_native_cache_key": "aef057a73f3da8524074c3b6175b4790fa084495.pkl",
+            "cache_input_text_sha256": "c6433d8b8363aba22c00688f76af3709acb1ecdad63931e241c8c572b4e1a22d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S6",
+            "piece": 5,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and the director of the Berlin zoological garden.",
+            "exact_native_cache_key": "aef057a73f3da8524074c3b6175b4790fa084495.pkl",
+            "cache_input_text_sha256": "c6433d8b8363aba22c00688f76af3709acb1ecdad63931e241c8c572b4e1a22d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          79360
+        ],
+        "unprocessed_array_sha256": "7b964884f867056d77753bec86ea89ce092e651ac1f4624873a61af718467070"
+      },
+      {
+        "exact_native_cache_key": "3b265c9a468ef2fc8b79076429160d12817df5f6.pkl",
+        "pkl_sha256": "8035e9dc4ea809e41b75ad83d2a0ad0b12df33302477c4f72a9cb883e3eaeb99",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "It included a veterinarian,",
+            "exact_native_cache_key": "3b265c9a468ef2fc8b79076429160d12817df5f6.pkl",
+            "cache_input_text_sha256": "b19ad1852db39591d7cdbc97ef2a99ac9737bc7e92833c05c96bf6d519f731be",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          45056
+        ],
+        "unprocessed_array_sha256": "869023fb4ac5d4b1cc1b3062a6a033af80e476d1e5a4a9d5f5292e738ab6593a"
+      },
+      {
+        "exact_native_cache_key": "24225e919e04f74c64468e2536aa69cd096632bf.pkl",
+        "pkl_sha256": "55b421a5c8119d99c529fc88e7994db6841fec7f3ecf7e5cb754f73906f003a0",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "a circus manager,",
+            "exact_native_cache_key": "24225e919e04f74c64468e2536aa69cd096632bf.pkl",
+            "cache_input_text_sha256": "86b75d4a6c0f70cd53e22440a9365315721372c8415d06472b666a4cf116622b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          30720
+        ],
+        "unprocessed_array_sha256": "e3f59024f08d5adfc94838bc95385d96812def8a0a377587513c23e069ff275b"
+      },
+      {
+        "exact_native_cache_key": "60bb9f10f060e2e3be6057a7100317c530ebe895.pkl",
+        "pkl_sha256": "30df9cc7c0777846ab0fc133a81d72794f6d845da36bff705ef1bc0a8de4035a",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "a cavalry officer,",
+            "exact_native_cache_key": "60bb9f10f060e2e3be6057a7100317c530ebe895.pkl",
+            "cache_input_text_sha256": "510584568a07ab7c95dcbd016075fe5a79c670b3aac06bd9be1ed6fc39ea28b9",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          33792
+        ],
+        "unprocessed_array_sha256": "90faf100f5e989ecd5c3a0e393723f250da230f6b235c74648ae2e963890b209"
+      },
+      {
+        "exact_native_cache_key": "58931904343ac0d69c18290a69ddd370b2389342.pkl",
+        "pkl_sha256": "3226defe6e6ab71768bc07b57b5e9d02d928bba876d41c8396ee27310097c5b5",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "schoolteachers,",
+            "exact_native_cache_key": "58931904343ac0d69c18290a69ddd370b2389342.pkl",
+            "cache_input_text_sha256": "2ba9d7280a03ee9b828d1ffedfb71fdd52f760400e538b211d3f6dbbb9c78d65",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          26624
+        ],
+        "unprocessed_array_sha256": "652989316a369f24b744f69712a462b931c1112ce607c7ddec0dcfdd43e13733"
+      },
+      {
+        "exact_native_cache_key": "f6dd2799ee7a926aa23d8dd9cc0ffa68aad25138.pkl",
+        "pkl_sha256": "a956b8053642cc42f76a1946a5a0279ae915a4740f6856d44fa0d2ec5f3c4850",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Its members looked for trickery and collusion.",
+            "exact_native_cache_key": "f6dd2799ee7a926aa23d8dd9cc0ffa68aad25138.pkl",
+            "cache_input_text_sha256": "355675c51a69d1f91e1a8fc4706912e56e7edd453a8291864727fbdae7be299a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          57344
+        ],
+        "unprocessed_array_sha256": "bbe93e095bbbbb6a1ed077c60dfb5f4f165e8f414cc8e55b200acb9d18e50cb3"
+      },
+      {
+        "exact_native_cache_key": "63b6fb153f3bd2d80fa43c2a30bf4f2ae02736fb.pkl",
+        "pkl_sha256": "68ce6a6ffde4b89cd81d389baa79fd67c25f5a5d55b5ed06302e0eb2d7739427",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "In September 1904 they found no deception, in effect certifying the act authentic.",
+            "exact_native_cache_key": "63b6fb153f3bd2d80fa43c2a30bf4f2ae02736fb.pkl",
+            "cache_input_text_sha256": "2ef25222d658becbdd33cb85389f0d14b628d153fbf480182abfa7e9e0794e4d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          149504
+        ],
+        "unprocessed_array_sha256": "ae30e8d77f0abb1f980c206569b9c92665241569b96a9d497dfdea07426031b9"
+      },
+      {
+        "exact_native_cache_key": "f7de8559292e24cb9d6274fbecaef281095d7ae0.pkl",
+        "pkl_sha256": "840ee13d28cf4739b90906b971be59396aafe3b12dacf31b29c578ad84d32413",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "In September 1904 they found no deception,",
+            "exact_native_cache_key": "f7de8559292e24cb9d6274fbecaef281095d7ae0.pkl",
+            "cache_input_text_sha256": "c8e350332aa98573f4ca1daa81003c172cfbacb02b44e7f35e3fbadc34f951d6",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S8",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "In September 1904 they found no deception,",
+            "exact_native_cache_key": "f7de8559292e24cb9d6274fbecaef281095d7ae0.pkl",
+            "cache_input_text_sha256": "c8e350332aa98573f4ca1daa81003c172cfbacb02b44e7f35e3fbadc34f951d6",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          83456
+        ],
+        "unprocessed_array_sha256": "6b87a6e328b76c689a2813ae721a87b58005f5e3a07182e46a73bfd8afa9d53e"
+      },
+      {
+        "exact_native_cache_key": "56030bd450138fa996c37c4bdcddd833b854eae8.pkl",
+        "pkl_sha256": "d5896df969b8a3b919c1a1139dffd9f85a11a06f2526c96577c0027c78a19c90",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "in effect certifying the act authentic.",
+            "exact_native_cache_key": "56030bd450138fa996c37c4bdcddd833b854eae8.pkl",
+            "cache_input_text_sha256": "7ffc4cc7de361521b5526c9ee33782daaa2da66d84c4a066e30505d02f47e165",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S8",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "in effect certifying the act authentic.",
+            "exact_native_cache_key": "56030bd450138fa996c37c4bdcddd833b854eae8.pkl",
+            "cache_input_text_sha256": "7ffc4cc7de361521b5526c9ee33782daaa2da66d84c4a066e30505d02f47e165",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          55808
+        ],
+        "unprocessed_array_sha256": "1a15c9ace40994b9290e9d278e88efab7d59c1a9af89913bd1990a6750e3e0d5"
+      },
+      {
+        "exact_native_cache_key": "cbc5a8d16de9b454af1630250de5b3babe186895.pkl",
+        "pkl_sha256": "3786e1ee83578f3b3fc1abe57f1cf5c72a22d894d36ddfdd6a199009bb34e0ef",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "In 1907 the psychologist Oskar Pfungst tested the act systematically, altering one variable after another.",
+            "exact_native_cache_key": "cbc5a8d16de9b454af1630250de5b3babe186895.pkl",
+            "cache_input_text_sha256": "00fd264f2f8b5f0c8ccf22c733a64b0451023f27c8ae1e3863c8e2f6866a578d",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          201216
+        ],
+        "unprocessed_array_sha256": "ae2db0648e8f49674252373801353dd509ad086f5ab7a27ab78cc2c35c55e67d"
+      },
+      {
+        "exact_native_cache_key": "b99f27450b9225ee9b39296e7ad494ff34a7b470.pkl",
+        "pkl_sha256": "fa6cc3eeb387b410ca261854c3b77aad325ba4d5f897a54aea64215c4664e418",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "In 1907 the psychologist Oskar Pfungst",
+            "exact_native_cache_key": "b99f27450b9225ee9b39296e7ad494ff34a7b470.pkl",
+            "cache_input_text_sha256": "90752caeb2a8a243d153bcd9a50a5230f6fb5b60f0021545891023b541879771",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "fa6cc3eeb387b410",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          83968
+        ],
+        "unprocessed_array_sha256": "b48cfaf9d540e3f3ae686c0f7cd85dfd79b1760a8773fc4925504acbd1a0d154"
+      },
+      {
+        "exact_native_cache_key": "3231feb56800a283ceebdc126b53d8dd998185d2.pkl",
+        "pkl_sha256": "a09588a8c20aacf59a565fce746d29ece15d8cc1375a360fde80f815d1e69292",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "tested the act systematically,",
+            "exact_native_cache_key": "3231feb56800a283ceebdc126b53d8dd998185d2.pkl",
+            "cache_input_text_sha256": "8dd0f00a0a02676dc8007c1192029c64eba0aba573508ad0790fe0c2332c6e7f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "a09588a8c20aacf5",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          43008
+        ],
+        "unprocessed_array_sha256": "0fdc91776a64034d989223c91b0c263962ed1d873b9dabb905e5fef209879d77"
+      },
+      {
+        "exact_native_cache_key": "7f360bfcfd5a3d13ca4414d4e1560660efa29115.pkl",
+        "pkl_sha256": "a019a017a0c8fcec141e893c369002753a6d72ef1e9fe7db0fce0a367ca21326",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "altering one variable after another.",
+            "exact_native_cache_key": "7f360bfcfd5a3d13ca4414d4e1560660efa29115.pkl",
+            "cache_input_text_sha256": "cd4bfe8a39265d604f7e231651b9faa488ab311fd3c351e3ee465e58ad35d3df",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S9",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "altering one variable after another.",
+            "exact_native_cache_key": "7f360bfcfd5a3d13ca4414d4e1560660efa29115.pkl",
+            "cache_input_text_sha256": "cd4bfe8a39265d604f7e231651b9faa488ab311fd3c351e3ee465e58ad35d3df",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          56320
+        ],
+        "unprocessed_array_sha256": "4859136c9345ca8466a15a6644fe5c9cdef3475e41207a8a3c98181a4630b286"
+      },
+      {
+        "exact_native_cache_key": "d5b26a358c30c9af2584cd801937f1e2f9c75974.pkl",
+        "pkl_sha256": "94660c15b5ee70b818f88f31d187a42c6a6e273be99f3217449bfc42ba461408",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "In 1907 the psychologist Oskar Pfungst tested the act systematically,",
+            "exact_native_cache_key": "d5b26a358c30c9af2584cd801937f1e2f9c75974.pkl",
+            "cache_input_text_sha256": "ac7e936e5d150611e580e523e7887e7057448a9b37d6e2016778395f6e03eade",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          136192
+        ],
+        "unprocessed_array_sha256": "f0a20befe55819e67d8d57b95260b6645d43551a38e2b6c0381de92dd5e68460"
+      },
+      {
+        "exact_native_cache_key": "ae77c2be44bcb46c11c9ce0182e8c100574998d3.pkl",
+        "pkl_sha256": "a13558eb15de4cd3495c30e126f95a6b84b80032aa2767e243aa587305795215",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "He kept onlookers away, rotated questioners, fitted blinders, and sometimes used people ignorant of the answer.",
+            "exact_native_cache_key": "ae77c2be44bcb46c11c9ce0182e8c100574998d3.pkl",
+            "cache_input_text_sha256": "461217335fea3649d3bb99c2b131d40692058a1e060be6465ff6caaafa3bbb8b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          185344
+        ],
+        "unprocessed_array_sha256": "f58f35153f85d0cb9828b7067e6b454140a650724ea8a16d9f2ef14780114ccf"
+      },
+      {
+        "exact_native_cache_key": "edb13bed72b2e93ae5ed9ba89dd85f0159803bfb.pkl",
+        "pkl_sha256": "716e04f814995cffa9c0ecb0137d1f8c39d37321a39e1a7c519e516f5706d725",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "He kept onlookers away, rotated questioners,",
+            "exact_native_cache_key": "edb13bed72b2e93ae5ed9ba89dd85f0159803bfb.pkl",
+            "cache_input_text_sha256": "493eaec212d98a07f078cc5a7c57ab9b4ad2b85310ca5c43dd454a76fb7bb6b2",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "716e04f814995cff",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          72192
+        ],
+        "unprocessed_array_sha256": "ee6752587ab5c3d1bde49909c27876bfc3c580501526da9422d7dba8ecfc679b"
+      },
+      {
+        "exact_native_cache_key": "932fefaf9d642f5b7cb72e7e9cc80cb9d4b90808.pkl",
+        "pkl_sha256": "9361308f4f559fc222aaa2adbab03bbb97cfc30e9e468c42daf550871dca44d9",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "fitted blinders, and sometimes used people ignorant of the answer.",
+            "exact_native_cache_key": "932fefaf9d642f5b7cb72e7e9cc80cb9d4b90808.pkl",
+            "cache_input_text_sha256": "f62b22946c831af16a00d99c1201dbcfcffd45ea6950a516823135e4d8083834",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "9361308f4f559fc2",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          100352
+        ],
+        "unprocessed_array_sha256": "dba8a52ab63dba3db94f68327449238f5c5f8bba9b2935e7add63ffc554a6b39"
+      },
+      {
+        "exact_native_cache_key": "c92def730dfddd2fa80ff41755c566c0b5170fab.pkl",
+        "pkl_sha256": "d6617b3e3d7540b865e5f869e18e7a8681cc6e969757f81b7148a4334183006c",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "He kept onlookers away,",
+            "exact_native_cache_key": "c92def730dfddd2fa80ff41755c566c0b5170fab.pkl",
+            "cache_input_text_sha256": "0d6df85c3faa757b019a0775aad06b79d142bff0955c66678fd7f017d2d2ebb6",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          38400
+        ],
+        "unprocessed_array_sha256": "a7d2ed21eb5833eafb795d085c7918000ee4c14c62cf40b117c2eada5630e06a"
+      },
+      {
+        "exact_native_cache_key": "8dbf3b17655e3b0d192b42eeb53b960424b507b9.pkl",
+        "pkl_sha256": "a36b8ffce8b8a0f153160e2c5b07f8760abb174eb60f53f1ddff0c7e9b0a70f2",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "rotated questioners,",
+            "exact_native_cache_key": "8dbf3b17655e3b0d192b42eeb53b960424b507b9.pkl",
+            "cache_input_text_sha256": "ddace0caecf459a56e575005596940926bb7dff5bd713fd35a5301fb2924abe4",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          34304
+        ],
+        "unprocessed_array_sha256": "d324f7af6527c83f532bc876667a86bb6c940220b88f62a607beeeef7fdd89a3"
+      },
+      {
+        "exact_native_cache_key": "620c2d324de572806e04339c73f222da5240b46e.pkl",
+        "pkl_sha256": "a3c750f79f1f136041f3516f9558d8e47d11867e9e3aedf309a2af1e4fd01fe2",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "fitted blinders,",
+            "exact_native_cache_key": "620c2d324de572806e04339c73f222da5240b46e.pkl",
+            "cache_input_text_sha256": "734176d3c80438113fcc0a1d56f6d8c1d1ed565363f7f95d2977d251536d700b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          29184
+        ],
+        "unprocessed_array_sha256": "a0bb1971b71a3a153cb57077cad152ae9e39b77187f1c2f31e853dd8b2438c1b"
+      },
+      {
+        "exact_native_cache_key": "122acc2f9bafe2474782a6cea6b48eb604e702fa.pkl",
+        "pkl_sha256": "6295fa7e54509423cd5a721187f6fd474dce29cd72fb71914f62ec05171f6f01",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and sometimes used people ignorant of the answer.",
+            "exact_native_cache_key": "122acc2f9bafe2474782a6cea6b48eb604e702fa.pkl",
+            "cache_input_text_sha256": "420d92dde2e669a034fd7b29c5e29bd9e72ff95aa4505195589c630421cf78f3",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          69120
+        ],
+        "unprocessed_array_sha256": "fc4e9a56a1efd032052e1deb63278375c032f6769a3c01ad31e9db2deaba1bd2"
+      },
+      {
+        "exact_native_cache_key": "00ea8c7aa059615f69d920ab66d239dc87bc211e.pkl",
+        "pkl_sha256": "86f9cb7cdb5513bbbc9adb418e55c589ed2b0a7d47c58e706ecc4490f2103e11",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "When Hans could see the questioner, he answered correctly 50 times in 56.",
+            "exact_native_cache_key": "00ea8c7aa059615f69d920ab66d239dc87bc211e.pkl",
+            "cache_input_text_sha256": "1cbb3d8b4b73475573cbc642a57dc7b4f661b5e220a58f4627e91059e1d98c45",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          125440
+        ],
+        "unprocessed_array_sha256": "5cdd6208ff662df32c90289036acbc6b23aba3e0b4879e2cc5dc326ebabe8a48"
+      },
+      {
+        "exact_native_cache_key": "2a63b91c95dc962409739ed9e83d2539aca42c1a.pkl",
+        "pkl_sha256": "8782e8e13095886be0f38201344535cd67d3a80e4c9f8d7d96fa0d56e152a6a4",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "When Hans could see the questioner,",
+            "exact_native_cache_key": "2a63b91c95dc962409739ed9e83d2539aca42c1a.pkl",
+            "cache_input_text_sha256": "7cb9387285a045ef605f69ebcab91177315072aae070f372349c86b9a95b8e67",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S11",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "When Hans could see the questioner,",
+            "exact_native_cache_key": "2a63b91c95dc962409739ed9e83d2539aca42c1a.pkl",
+            "cache_input_text_sha256": "7cb9387285a045ef605f69ebcab91177315072aae070f372349c86b9a95b8e67",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          44544
+        ],
+        "unprocessed_array_sha256": "31120c89cac0048ebdc5108cfd5a2d7eb7b8b936a75a323a962db59b906eadba"
+      },
+      {
+        "exact_native_cache_key": "62ca7a4de69e10d9d55eb90ade71ea984e0a923c.pkl",
+        "pkl_sha256": "47eb9d319071481e3c1e47bcc1683afee3dea58a4608146c637966c155adae20",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "he answered correctly 50 times in 56.",
+            "exact_native_cache_key": "62ca7a4de69e10d9d55eb90ade71ea984e0a923c.pkl",
+            "cache_input_text_sha256": "c8ce06968281f24e5152ca94731fe8c7625f3b11d671163df3941419e5cb5965",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S11",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "he answered correctly 50 times in 56.",
+            "exact_native_cache_key": "62ca7a4de69e10d9d55eb90ade71ea984e0a923c.pkl",
+            "cache_input_text_sha256": "c8ce06968281f24e5152ca94731fe8c7625f3b11d671163df3941419e5cb5965",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          72704
+        ],
+        "unprocessed_array_sha256": "28fd31a3dcf24a4bc5a331ad77d806a22692044de16d5678f14ba41b1e1d317c"
+      },
+      {
+        "exact_native_cache_key": "1e7c0201791db4e6ac869bf015021dc70b7935f1.pkl",
+        "pkl_sha256": "7544d85f0337895f95954ccfd8a57b4d3e2c1e96ca26c1502cd1f0264c4e6a87",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "With the questioner invisible, his accuracy fell to two in 35.",
+            "exact_native_cache_key": "1e7c0201791db4e6ac869bf015021dc70b7935f1.pkl",
+            "cache_input_text_sha256": "ebd1d681cdeef1a36dda17e3fcd5190d525a3e49bf0a2838ebdca68672738a56",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          111616
+        ],
+        "unprocessed_array_sha256": "63d24b2835bedf9d543a90315806a86f3bdaf22323b58c5ed891b0f468c48def"
+      },
+      {
+        "exact_native_cache_key": "4a167cf7ba398ab09c68e36dcf2c21b780445bce.pkl",
+        "pkl_sha256": "6f4e184e56795ca5e24bb2cf0a1397fa58400fa97370da2726fe6256ed234042",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "With the questioner invisible,",
+            "exact_native_cache_key": "4a167cf7ba398ab09c68e36dcf2c21b780445bce.pkl",
+            "cache_input_text_sha256": "bdb69572c54fbdecdb7f63873c139646e92de60529026896edc272e990a6a5cb",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S12",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "With the questioner invisible,",
+            "exact_native_cache_key": "4a167cf7ba398ab09c68e36dcf2c21b780445bce.pkl",
+            "cache_input_text_sha256": "bdb69572c54fbdecdb7f63873c139646e92de60529026896edc272e990a6a5cb",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          38912
+        ],
+        "unprocessed_array_sha256": "11b5343fc0df572d8cc1ae6131889de459b34d7f5d2b9e70d420d38d59d36566"
+      },
+      {
+        "exact_native_cache_key": "8578a9f209f4d64096213058018db080f49cbb8f.pkl",
+        "pkl_sha256": "fea4b7abad4137e9e80b38d167cc6e71fdf234efd263efb284539b5970aa2bee",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "his accuracy fell to two in 35.",
+            "exact_native_cache_key": "8578a9f209f4d64096213058018db080f49cbb8f.pkl",
+            "cache_input_text_sha256": "008cfb01917132e1b681a2fc9398083556fac9356f1f7489ee410911f8988611",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S12",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "his accuracy fell to two in 35.",
+            "exact_native_cache_key": "8578a9f209f4d64096213058018db080f49cbb8f.pkl",
+            "cache_input_text_sha256": "008cfb01917132e1b681a2fc9398083556fac9356f1f7489ee410911f8988611",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          64000
+        ],
+        "unprocessed_array_sha256": "058e3d9fc23150971a519cc6806def3b1d298bb77ff6c9afaca48b017be54761"
+      },
+      {
+        "exact_native_cache_key": "d86a018afa656564bdea4a36ae2690da4592f144.pkl",
+        "pkl_sha256": "46d9afa405a45c75bcc21bf6865cce1f668e8b474164b03c32fb5f05fd33e82e",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The cues came from the questioners.",
+            "exact_native_cache_key": "d86a018afa656564bdea4a36ae2690da4592f144.pkl",
+            "cache_input_text_sha256": "169a1d14b94d408f3cb2cc28dadde62d9ef169fc474dc325f3bcec4161481aca",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          47616
+        ],
+        "unprocessed_array_sha256": "110460d85d569ea26bf2d2a3945fab3f6c060a44b1b0a6ffd7d94670b95cce1c"
+      },
+      {
+        "exact_native_cache_key": "9a9d4cafd00555d76fe36534ea0a2fd15210037c.pkl",
+        "pkl_sha256": "ee26c158195e47584ced3c7aefa8e3f6e6914fbc543ad1445c8c08ec46b04074",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Each would lean forward as tapping began, and tension rose as the taps neared the answer.",
+            "exact_native_cache_key": "9a9d4cafd00555d76fe36534ea0a2fd15210037c.pkl",
+            "cache_input_text_sha256": "7d94606cb8108c0e1082d5f9355355ad2237a743cf64aaae391fb7bde8307c8c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          137216
+        ],
+        "unprocessed_array_sha256": "0e6832e1a113cfce64e0870ba16bb8d9c25655f9f36f34e857841813cf24f005"
+      },
+      {
+        "exact_native_cache_key": "e512e221f617595aedd7267e22962544d1226402.pkl",
+        "pkl_sha256": "953303aa380116143e43e4c52b5b2fb5bf858fcb12490c0ce5615b3a8b2e51c3",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Each would lean forward as tapping began,",
+            "exact_native_cache_key": "e512e221f617595aedd7267e22962544d1226402.pkl",
+            "cache_input_text_sha256": "fedcf4d1fa6754dc08aa717f5df6599d614f496648d3fc209c3da2d1e78ab40c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S14",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Each would lean forward as tapping began,",
+            "exact_native_cache_key": "e512e221f617595aedd7267e22962544d1226402.pkl",
+            "cache_input_text_sha256": "fedcf4d1fa6754dc08aa717f5df6599d614f496648d3fc209c3da2d1e78ab40c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          56832
+        ],
+        "unprocessed_array_sha256": "cc99fb7be218fc2d08f03e5688d41cb466ffeb25309ac4fdbabb8be67a768328"
+      },
+      {
+        "exact_native_cache_key": "a42929bf1ff2a22e02f006b362ed14770a07f2a0.pkl",
+        "pkl_sha256": "f968d7f84ed01971869ccbe59ff06a774c43c1ebab7892b0291670792b787fbd",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and tension rose as the taps neared the answer.",
+            "exact_native_cache_key": "a42929bf1ff2a22e02f006b362ed14770a07f2a0.pkl",
+            "cache_input_text_sha256": "fd6b170eda5e9b3e1e7578adf3eb76dd5575bfe2b42ac62b18816eeea0594295",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S14",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and tension rose as the taps neared the answer.",
+            "exact_native_cache_key": "a42929bf1ff2a22e02f006b362ed14770a07f2a0.pkl",
+            "cache_input_text_sha256": "fd6b170eda5e9b3e1e7578adf3eb76dd5575bfe2b42ac62b18816eeea0594295",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          66560
+        ],
+        "unprocessed_array_sha256": "95d2046dc1079c34dc9e1cb5b56c0c03a170fe96e21e97716c62c0f6238f4a28"
+      },
+      {
+        "exact_native_cache_key": "4c5ea080eacc2d4263e28c998f0858d785bd91c7.pkl",
+        "pkl_sha256": "3b6e4e5c339eaf328e96057e3ab51b1194a5dce91a77e74b7bbc50ef73f3fe23",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "At the right tap it eased, and the questioner would straighten or jerk the head upward.",
+            "exact_native_cache_key": "4c5ea080eacc2d4263e28c998f0858d785bd91c7.pkl",
+            "cache_input_text_sha256": "8459634e93977272aad2aec29465c30585f6649f41ca7e50a89e8f7c9620fdf1",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          122880
+        ],
+        "unprocessed_array_sha256": "792ecccc304a2307938f12943e559cd21f1c1c8eaa4b4e035c0beb19d667bfdd"
+      },
+      {
+        "exact_native_cache_key": "347e78d9ae0346408e95385d208a26a46905dcd1.pkl",
+        "pkl_sha256": "b52e02f184500ce24727e679db4b75d71c55f7dcb602ef41b75a4c21b7a77c88",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "At the right tap it eased,",
+            "exact_native_cache_key": "347e78d9ae0346408e95385d208a26a46905dcd1.pkl",
+            "cache_input_text_sha256": "5aa11324b108f85586a5024a7da51ddc7152a99cf887cc44aa076bf93a958060",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S15",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "At the right tap it eased,",
+            "exact_native_cache_key": "347e78d9ae0346408e95385d208a26a46905dcd1.pkl",
+            "cache_input_text_sha256": "5aa11324b108f85586a5024a7da51ddc7152a99cf887cc44aa076bf93a958060",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          37376
+        ],
+        "unprocessed_array_sha256": "c42bef66ccae25e700af9953164a60a7ba0b03f8b72566b1c3c5d84bc0524043"
+      },
+      {
+        "exact_native_cache_key": "fce549e8a86ea1a8e4dc979b5701ac50667c4ea2.pkl",
+        "pkl_sha256": "4a6a821813a0f3800641666a8cce7bb805c54363df2047eb3af3003dee0327d7",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and the questioner would straighten or jerk the head upward.",
+            "exact_native_cache_key": "fce549e8a86ea1a8e4dc979b5701ac50667c4ea2.pkl",
+            "cache_input_text_sha256": "c982b9b8ad48c015a3a337839c37cdb1d6d8a92e0e2ca1a36a0612ca60e23518",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S15",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and the questioner would straighten or jerk the head upward.",
+            "exact_native_cache_key": "fce549e8a86ea1a8e4dc979b5701ac50667c4ea2.pkl",
+            "cache_input_text_sha256": "c982b9b8ad48c015a3a337839c37cdb1d6d8a92e0e2ca1a36a0612ca60e23518",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          81408
+        ],
+        "unprocessed_array_sha256": "ecb0fbab276c5b5b431c0506c6979a9051696f5f6825d21a56cfc446164db1c3"
+      },
+      {
+        "exact_native_cache_key": "ff15143bf01974b9dcf0338e54a8a1b7ab4e6aac.pkl",
+        "pkl_sha256": "f0a0fe39dd9c4701e819aca24ab528470e1fbe2038ef3c889472085d98874abc",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Every gesture and motion was subconscious, made unwittingly by people with no wish to deceive.",
+            "exact_native_cache_key": "ff15143bf01974b9dcf0338e54a8a1b7ab4e6aac.pkl",
+            "cache_input_text_sha256": "c283a2bad387ce56258bff167ad309c92923d7a0900895211008abb6f421aa4a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          153088
+        ],
+        "unprocessed_array_sha256": "ba3d6ddd76daca23219142443e960024095870917792f43d5b6932351eb38d29"
+      },
+      {
+        "exact_native_cache_key": "1ad4325232e76bef306ba442a192983c4a4d4a44.pkl",
+        "pkl_sha256": "55bc4fd0afd8e035c8de709dbca146945d0dbecb6ae828067e9d2bb382d9d3b0",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Every gesture and motion was subconscious,",
+            "exact_native_cache_key": "1ad4325232e76bef306ba442a192983c4a4d4a44.pkl",
+            "cache_input_text_sha256": "07ca1209dc0e834d8d2d2e2d0ae841482502d1abfba22ffb278847b871a7d979",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S16",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Every gesture and motion was subconscious,",
+            "exact_native_cache_key": "1ad4325232e76bef306ba442a192983c4a4d4a44.pkl",
+            "cache_input_text_sha256": "07ca1209dc0e834d8d2d2e2d0ae841482502d1abfba22ffb278847b871a7d979",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          58880
+        ],
+        "unprocessed_array_sha256": "aa16c4698533358c9d31bb71c73f5cd3775a22066e90e0bde4c4264a3c235dda"
+      },
+      {
+        "exact_native_cache_key": "ebe94a967fdad03748b8fa38e45b7326cb36e20a.pkl",
+        "pkl_sha256": "f63cff2d8b2491064b50e7c787a6fb202720adab2435ce9f4d64215b5b3f4dee",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "made unwittingly by people with no wish to deceive.",
+            "exact_native_cache_key": "ebe94a967fdad03748b8fa38e45b7326cb36e20a.pkl",
+            "cache_input_text_sha256": "4b67f59443cc3cad5ab373c8d622e50a642c0302ee683b4780effa4799317854",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S16",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "made unwittingly by people with no wish to deceive.",
+            "exact_native_cache_key": "ebe94a967fdad03748b8fa38e45b7326cb36e20a.pkl",
+            "cache_input_text_sha256": "4b67f59443cc3cad5ab373c8d622e50a642c0302ee683b4780effa4799317854",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          76800
+        ],
+        "unprocessed_array_sha256": "506eada18f02cdda3164d71998fb67b2179d3500ca65d2db9991c9115e4c8eaa"
+      },
+      {
+        "exact_native_cache_key": "efeceb2da6a0541dd8ddfdceac31d68cc45121b3.pkl",
+        "pkl_sha256": "2390d6bdc9e8ec54267d2c0d005e183f9af39b32a6cc0ce8752b2d97f3795ee9",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Double-blind designs in psychology and animal cognition guard against the Clever Hans effect, a phenomenon of bias in which expectancy shapes behavioural results.",
+            "exact_native_cache_key": "efeceb2da6a0541dd8ddfdceac31d68cc45121b3.pkl",
+            "cache_input_text_sha256": "18659deb396d6ea0b8f8a597425ed00ed55b5c82eb80738669658c4b523b739e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          288256
+        ],
+        "unprocessed_array_sha256": "10e242de472b67e0faaca9b1318c8757369c8d263c15f0bd99bc5c6d10112ff6"
+      },
+      {
+        "exact_native_cache_key": "d143a3f77f2ba274235ecb86ef5ef82640fb9cb9.pkl",
+        "pkl_sha256": "99c1247bcd975d851a04f6417b3ac6c903975fea575714493ac135ed4df48a4a",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Double-blind designs in psychology and animal cognition",
+            "exact_native_cache_key": "d143a3f77f2ba274235ecb86ef5ef82640fb9cb9.pkl",
+            "cache_input_text_sha256": "6e5dc06f1cc52599ec14ed7201ba7fbcb725cb768a9ae49159868cb61b5f3920",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "99c1247bcd975d85",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          99328
+        ],
+        "unprocessed_array_sha256": "0212e558440b7c0012c07504352e0dd3cb55b1d90de723b6371a27f5c1b59732"
+      },
+      {
+        "exact_native_cache_key": "3e8b013d862fc93053a03a0d99a92aa2006ba41f.pkl",
+        "pkl_sha256": "051598a62e896a48b49551ba375955876898e565f3f41aea9da67ab00101d419",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "guard against the Clever Hans effect,",
+            "exact_native_cache_key": "3e8b013d862fc93053a03a0d99a92aa2006ba41f.pkl",
+            "cache_input_text_sha256": "2ec2159d1cf54ba38ef0104cac6ec5dec656ceb2db801349f46b169a5e14e438",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "051598a62e896a48",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          50176
+        ],
+        "unprocessed_array_sha256": "b4688dd4469070825407a61482cb7f5d202a7deaa8543c6612e580823f2331d3"
+      },
+      {
+        "exact_native_cache_key": "13ea6ae009ef04b219f0bd4184d282a46fa82335.pkl",
+        "pkl_sha256": "c6bec83fbc04beade9db1b4741550e6bce78eddf89fce7107d36b52b7b99e38a",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "a phenomenon of bias",
+            "exact_native_cache_key": "13ea6ae009ef04b219f0bd4184d282a46fa82335.pkl",
+            "cache_input_text_sha256": "7490f145ef0cd37d89b1367bc47c39ac516646c2fea29bd13f6b860aa9b18750",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "c6bec83fbc04bead",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          37376
+        ],
+        "unprocessed_array_sha256": "2ca4904eda03f891b3bdce0e0b283c00fdb1cad14d3a5161d1ee55dbec7577af"
+      },
+      {
+        "exact_native_cache_key": "f5f704627da4b8abda1e4d447e34eafdda713029.pkl",
+        "pkl_sha256": "93bd0ec367644317738b198d4a17b8eb3188c5564d10b7d22af02fb2f77a7ce3",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 4,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "in which expectancy shapes behavioural results.",
+            "exact_native_cache_key": "f5f704627da4b8abda1e4d447e34eafdda713029.pkl",
+            "cache_input_text_sha256": "a3160ddb716cea2a25007c05ff8da19be7d2c51662304023bf186c874e9b6b04",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "93bd0ec367644317",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          70144
+        ],
+        "unprocessed_array_sha256": "084dcb4f0bdf16bfe1763d8a79804c01348594b2cf5f7546e0460e8349a02155"
+      },
+      {
+        "exact_native_cache_key": "5f245d6d49a338f35e3dcedd25d24e2c8b0b6523.pkl",
+        "pkl_sha256": "31871eda54ed4b62cfab9061238c7076f463d326c82b34e6d20b98cdd6d76bd2",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Double-blind designs in psychology and animal cognition guard against the Clever Hans effect,",
+            "exact_native_cache_key": "5f245d6d49a338f35e3dcedd25d24e2c8b0b6523.pkl",
+            "cache_input_text_sha256": "18314b44815e7a82d6b6759bb02e95c3ccfb37c3d5775783c8f7e03331fe44fb",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          162816
+        ],
+        "unprocessed_array_sha256": "ffc8e7b36cf257b9c56f58eddb7e6da39115c2d28a6205481be73ec8f788b761"
+      },
+      {
+        "exact_native_cache_key": "3f70332be1c69edb579014098f8826141aa22c4b.pkl",
+        "pkl_sha256": "929b51d696ea345221b01eed0b81faaf4129473f70d3542ba6e7941af1369314",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "a phenomenon of bias in which expectancy shapes behavioural results.",
+            "exact_native_cache_key": "3f70332be1c69edb579014098f8826141aa22c4b.pkl",
+            "cache_input_text_sha256": "c09e9c7961447b4c3abfef908497361e1ca639929331c93012b030e0b147c2bf",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          113664
+        ],
+        "unprocessed_array_sha256": "891c8d0b8008d946e56737c58bba6a28a0422b7c0ef83b1dcb963871b1f8865d"
+      },
+      {
+        "exact_native_cache_key": "34a06c6e6955fd5cfa090fa0fc953d1ef40c10e8.pkl",
+        "pkl_sha256": "f7b13d99525248524795b564aa3ff0674c80f70b9f81dd2f13c3d19c4904f3c2",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "In the laboratory, Pfungst took the animal's place and proved sensitive to the cues of attentive volunteers.",
+            "exact_native_cache_key": "34a06c6e6955fd5cfa090fa0fc953d1ef40c10e8.pkl",
+            "cache_input_text_sha256": "4145f19c622f1e5db224a198786c1e7dce78a1005f08ff81bcdf045b8dcd742b",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          165888
+        ],
+        "unprocessed_array_sha256": "182618938f4cab5f5029a6d1e8711d49b47311b4e678c61a01a9b0d769110969"
+      },
+      {
+        "exact_native_cache_key": "a74f4ad970a29b09add655ac1a5bb0204b74b587.pkl",
+        "pkl_sha256": "21e2ec03bb594674eabad0dbe9b815296cf5c6c54f00c4d0eb7fe2338998296e",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "In the laboratory, Pfungst took the animal's place",
+            "exact_native_cache_key": "a74f4ad970a29b09add655ac1a5bb0204b74b587.pkl",
+            "cache_input_text_sha256": "d28ceeef1b1cd8112155cf0f732f22e620910163654e84549c10e4b3ea438237",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "21e2ec03bb594674",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          68096
+        ],
+        "unprocessed_array_sha256": "4733608356831360578c6fca13f6c5d9253489d34517d80ce26424bbc2b243b1"
+      },
+      {
+        "exact_native_cache_key": "163329921735d332815bb05566e14e2084b1e1f6.pkl",
+        "pkl_sha256": "091e62a00b1e9cdca88c21ff304d254ac32ea3d75247a7f06267d83dfaf096a6",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and proved sensitive to the cues of attentive volunteers.",
+            "exact_native_cache_key": "163329921735d332815bb05566e14e2084b1e1f6.pkl",
+            "cache_input_text_sha256": "7eed835bbd23a4f53d3c715fd10c7f36d14d6745447cd118de048376f2faa1b1",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "091e62a00b1e9cdc",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          85504
+        ],
+        "unprocessed_array_sha256": "ffd1214fa97217f636ef52891c097a098e0433dac9e46f46c9d2d6ab0526ab0d"
+      },
+      {
+        "exact_native_cache_key": "89cfd0bab7b848b27870621b376296e90a1337f0.pkl",
+        "pkl_sha256": "4a60fb2fdfbfcfd3e9cf2f77606f03f936d54cd23f04e0841d5800e1697ac67f",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "In the laboratory,",
+            "exact_native_cache_key": "89cfd0bab7b848b27870621b376296e90a1337f0.pkl",
+            "cache_input_text_sha256": "3f4657f63739f44247948bde0a7e67bec1eff53a7ac7dddc8a427a30e199d30b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          28672
+        ],
+        "unprocessed_array_sha256": "9548352747a2de3b9a6c8951bdf621df1cc5bbe3d2e8df00aaf52f76d5ee32b2"
+      },
+      {
+        "exact_native_cache_key": "339ecca5b2803c2aba0713e64084eccf679a54ec.pkl",
+        "pkl_sha256": "a5d9fa58c95178ae35b99ebacc7cab1c0ebc9cbf53e2cb9cabc179e7a59af710",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Pfungst took the animal's place and proved sensitive to the cues of attentive volunteers.",
+            "exact_native_cache_key": "339ecca5b2803c2aba0713e64084eccf679a54ec.pkl",
+            "cache_input_text_sha256": "195e38369876cac37c72ba0113f6a5909734b1d3aaeb569a695f5e6757a059d1",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          134144
+        ],
+        "unprocessed_array_sha256": "75c28ac9286a66bce6e3f62e921047f46cd5a9a3333d638edfe64554fa464d1f"
+      },
+      {
+        "exact_native_cache_key": "fbad1721d9c2ad4ca4c1b0d46f24092eb6e80167.pkl",
+        "pkl_sha256": "b9c76987cc758bbaba5788aec720c8a5963b3139123081aaa71819bc318f730c",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S19",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Hans went, on his owner's death in June 1909, to a jeweller still convinced that such animals reasoned.",
+            "exact_native_cache_key": "fbad1721d9c2ad4ca4c1b0d46f24092eb6e80167.pkl",
+            "cache_input_text_sha256": "d6059ad6ccf9ce6515d1caf8fba5f32d1f7585e32e563ed3ba7cfd637e7629bb",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          178688
+        ],
+        "unprocessed_array_sha256": "6020aef8587753c832598e849afca1ecfffee0e6ee5c6c6deef0b5791d043286"
+      },
+      {
+        "exact_native_cache_key": "8716ccc961c0dc4b04d0df6d25bfa74ef404b2aa.pkl",
+        "pkl_sha256": "8bd670eb35f49336b7017fec9bf3ad8a03bc806434f1c522efb02351d8e080ac",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S19",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Hans went, on his owner's death in June 1909,",
+            "exact_native_cache_key": "8716ccc961c0dc4b04d0df6d25bfa74ef404b2aa.pkl",
+            "cache_input_text_sha256": "c30051fbc2acc94b085a4a853e03a491f9105613c7461d1c7acc8e0838823cdb",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "8bd670eb35f49336",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          86528
+        ],
+        "unprocessed_array_sha256": "7aefea91dd8a1984fae19deab977497aec41ededb6dcf7dfc811fe3bade06683"
+      },
+      {
+        "exact_native_cache_key": "f8b5bc6330a9f17f63a76a399b5cd623044aafa0.pkl",
+        "pkl_sha256": "90da05828c74d57a848affefe3ec3c08b2afc641ab610daee785d63bcf2dabb8",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S19",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "to a jeweller still convinced that such animals reasoned.",
+            "exact_native_cache_key": "f8b5bc6330a9f17f63a76a399b5cd623044aafa0.pkl",
+            "cache_input_text_sha256": "816b280899129cccb5e741aae1e30134cfaddf2c2d6f41aab98acb77c12310db",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S19",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "to a jeweller still convinced that such animals reasoned.",
+            "exact_native_cache_key": "f8b5bc6330a9f17f63a76a399b5cd623044aafa0.pkl",
+            "cache_input_text_sha256": "816b280899129cccb5e741aae1e30134cfaddf2c2d6f41aab98acb77c12310db",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          78336
+        ],
+        "unprocessed_array_sha256": "4c7ecf9b33478549b8e8c9e0fa5df8939088337263a20d8d3aba8623f8d8a3c2"
+      },
+      {
+        "exact_native_cache_key": "c1bf4ba0daf12cd5dd4f796b3ce29fd015d0fff3.pkl",
+        "pkl_sha256": "0ca53778d7e86c039b0e338c0b15ad2c128aa17d90ced55406034e7c6df5abff",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S19",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Hans went,",
+            "exact_native_cache_key": "c1bf4ba0daf12cd5dd4f796b3ce29fd015d0fff3.pkl",
+            "cache_input_text_sha256": "f55aa8efd8b05e55312fce5dd48d9da88b0294e141b70514b15dcd3120b4d184",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          23040
+        ],
+        "unprocessed_array_sha256": "e07a3c3639c8aee4fabb7a1ddd61df25cca0d889f8870d3e394038ff6931bb1d"
+      },
+      {
+        "exact_native_cache_key": "c14bf12ace95cd6cf880b65a647320d4f82db2a7.pkl",
+        "pkl_sha256": "e2656345be2bd52bfd370da4e29d642ed1dfdfeff1a14c24e92fc9068e018b98",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S19",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "on his owner's death in June 1909,",
+            "exact_native_cache_key": "c14bf12ace95cd6cf880b65a647320d4f82db2a7.pkl",
+            "cache_input_text_sha256": "2e1052b0ae08fb2f24b4629be972b181a303baa0c28060937983e367caae549a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          65024
+        ],
+        "unprocessed_array_sha256": "16e831c83dda13cc930f8bdf38f992c9348fd6d07f9bab4fd04f0d6109cbc5a4"
+      }
+    ],
+    "missing_reference_key_count": 16,
+    "observed_missing_keys_covered": [],
+    "new_private_cache_names": [
+      "13ea6ae009ef04b219f0bd4184d282a46fa82335.pkl",
+      "13ea6ae009ef04b219f0bd4184d282a46fa82335.pkl.单线程",
+      "163329921735d332815bb05566e14e2084b1e1f6.pkl",
+      "163329921735d332815bb05566e14e2084b1e1f6.pkl.单线程",
+      "3231feb56800a283ceebdc126b53d8dd998185d2.pkl",
+      "3231feb56800a283ceebdc126b53d8dd998185d2.pkl.单线程",
+      "3e8b013d862fc93053a03a0d99a92aa2006ba41f.pkl",
+      "3e8b013d862fc93053a03a0d99a92aa2006ba41f.pkl.单线程",
+      "768035c82b4067310bc10b569907cab691449a26.pkl",
+      "768035c82b4067310bc10b569907cab691449a26.pkl.单线程",
+      "83aa0af4614fe3666fd81a6a6f0fa74c35798b4b.pkl",
+      "83aa0af4614fe3666fd81a6a6f0fa74c35798b4b.pkl.单线程",
+      "8716ccc961c0dc4b04d0df6d25bfa74ef404b2aa.pkl",
+      "8716ccc961c0dc4b04d0df6d25bfa74ef404b2aa.pkl.单线程",
+      "8a461fa063a6e3035ee0e5679fdceb217b6ddcb2.pkl",
+      "8a461fa063a6e3035ee0e5679fdceb217b6ddcb2.pkl.单线程",
+      "932fefaf9d642f5b7cb72e7e9cc80cb9d4b90808.pkl",
+      "932fefaf9d642f5b7cb72e7e9cc80cb9d4b90808.pkl.单线程",
+      "a74f4ad970a29b09add655ac1a5bb0204b74b587.pkl",
+      "a74f4ad970a29b09add655ac1a5bb0204b74b587.pkl.单线程",
+      "b99f27450b9225ee9b39296e7ad494ff34a7b470.pkl",
+      "b99f27450b9225ee9b39296e7ad494ff34a7b470.pkl.单线程",
+      "d143a3f77f2ba274235ecb86ef5ef82640fb9cb9.pkl",
+      "d143a3f77f2ba274235ecb86ef5ef82640fb9cb9.pkl.单线程",
+      "d38264a63c2fb049aafe8e7b1347d6849f4fec40.pkl",
+      "d38264a63c2fb049aafe8e7b1347d6849f4fec40.pkl.单线程",
+      "edb13bed72b2e93ae5ed9ba89dd85f0159803bfb.pkl",
+      "edb13bed72b2e93ae5ed9ba89dd85f0159803bfb.pkl.单线程",
+      "f5f704627da4b8abda1e4d447e34eafdda713029.pkl",
+      "f5f704627da4b8abda1e4d447e34eafdda713029.pkl.单线程",
+      "f6c062a342860a5b7b7aa29a6284c42f4ae6370c.pkl",
+      "f6c062a342860a5b7b7aa29a6284c42f4ae6370c.pkl.单线程"
+    ],
+    "native_single_thread_marker_verified": true,
+    "single_thread_sessions": [
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      },
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      }
+    ],
+    "models_sha256": {
+      "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+      "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+      "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+    },
+    "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+    "existing_private_cache_count": 11514,
+    "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "existing_private_cache_bytes_unchanged": true,
+    "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+    "public_repository_cache_unchanged": true,
+    "producer_pcm_existed_before": false,
+    "producer_pcm_sha256_before": null,
+    "producer_pcm_sha256_after": null,
+    "accepted_aac_adts_sha256_before": "77780136fa190958abc44a04ea1b3a4d8734e664611c51e12017a1ef47e4fd2d",
+    "accepted_aac_adts_sha256_after": "77780136fa190958abc44a04ea1b3a4d8734e664611c51e12017a1ef47e4fd2d",
+    "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+    "private_cache_exported": false
+  },
+  "checker_reference_preparation_program_sha256": "f6f2a032e207085e7252d036e39430fb80b06e84a721c525b61196d021c5ca12",
+  "fresh_current_article_reference": {
+    "article": "06",
+    "removed_temporary_gt_files": [],
+    "processed_pcm_or_raw_mother_cache_modified": false,
+    "purpose": "Original synth/labels/audit rebuild fresh for this production; no old CPU GT reuse."
+  },
+  "temporary_output_reset": {
+    "removed": [],
+    "production_started_ns": 1794624608947247106,
+    "repository_outputs_modified": false
+  },
+  "read_only_failure_scalar_probe": {
+    "enabled": true,
+    "no_original_exception_or_result_changed": true,
+    "hook_sha256": {
+      "sitecustomize.py": "f981dfb191e82190450402f7221798832d00a530db42cac136f4574ea69d13d3",
+      "safe_scalar_probe.py": "f1a293eb432c14ea8d1f8c9819cc83ca6ab06daa14040eca8de54a1773b3eb55"
+    }
+  },
+  "reviewed_gain_control_preservation": [
+    {
+      "stage": "canonical-draft",
+      "requested_gain_controls": {},
+      "actual_gain_controls": {},
+      "exactly_preserved": true
+    },
+    {
+      "stage": "canonical-final4K",
+      "requested_gain_controls": {},
+      "actual_gain_controls": {},
+      "exactly_preserved": true
+    }
+  ],
+  "canonical_video_sha256": "b1ee06febfc1e21a53f2053c181cd946adaa487e7097d8e42d29e0539b7b5e54",
+  "canonical_aac_adts_sha256": "77780136fa190958abc44a04ea1b3a4d8734e664611c51e12017a1ef47e4fd2d",
+  "canonical_pipeline_passed": true,
+  "cached_input_wav_sha256": null,
+  "final_wav_sha256": "04d4a55abdfa0393037f4388e060ef68715906371330e1efae7ad5dc3be95ddf",
+  "accepted_prior_aac_identical": true,
+  "video_sha256": "9f5a5c4caf95ddcb8ea75d83e42a17973955b2a4b4dde29f489a1ae72de61870",
+  "width": 3840,
+  "height": 2160,
+  "summary_seconds": 2,
+  "summary_frames": 60,
+  "summary_start_seconds": 140.43333333333334,
+  "delay_after_voice_seconds": 0.013333333333349628,
+  "actual_source_collection": {
+    "article": "06",
+    "kind": "actual-production-source-collection",
+    "new_quality_gate": false,
+    "files": {
+      "request_json": {
+        "file": "06-request-source.json",
+        "sha256": "2cbf1d6cd6e66a59285298ea830f5ef914590b64286d40b2ae5f3168aa27a2e9",
+        "origin": "immutable_request"
+      },
+      "request_generator": {
+        "file": "06-request-gen.py",
+        "sha256": "b225d08fe461f509a0542d7fc98d91d9b4479db9e34bdec0664eedeb0b431ff9",
+        "origin": "immutable_request"
+      },
+      "used_generator": {
+        "file": "06-used-gen.py",
+        "sha256": "4df3226ab91c2df49fc393dad410eb5959b8b8c4d30b6bd22e17a7c98c0dbd69",
+        "origin": "actual_production_filesystem"
+      },
+      "actual_working_source": {
+        "file": "06-actual-working-source.json",
+        "sha256": "b1cc160c5073c5d4baf67acf4b6d53d2c894580675865e29fe0c0dedca4db81b",
+        "origin": "actual_production_filesystem"
+      },
+      "request_manuscript": {
+        "file": "06-request-manuscript.md",
+        "sha256": "7fd21ba491c7596c53c486f2bb0b0f2f6da8e67bac75461a4649a7caff822f74",
+        "origin": "immutable_request"
+      },
+      "actual_working_manuscript": {
+        "file": "06-actual-working-manuscript.md",
+        "sha256": "61e67b8c8f685b070c810f1a97e5d2cf33fe363cbabc570a6459efca762ec9e9",
+        "origin": "actual_production_filesystem"
+      }
+    },
+    "generator_execution_observed": false,
+    "generator_execution_evidence": "No fresh generator execution log; do not claim this GEN was executed during rendering.",
+    "source_differences": {
+      "file": "06-actual-source-differences.json",
+      "sha256": "f62aca3e7ce095284ec3e62fc916948351fd5b45c1975d3a93c1f49473752004"
+    }
+  },
+  "approved_illustration_resource": {
+    "kind": "exact-approved-illustrations-from-pinned-publication",
+    "source_id": "06",
+    "resource_verified": true,
+    "repository": "alienalgorithm/postgraduate-vocabulary",
+    "ref": "64621068034f8b6e09836a6d97210a0e9b2f1ed6",
+    "path": "插图阅读小册/illustrations/06.png",
+    "sha256": "66688b60aaf6e0466bcc757ddc386c7079c1773d8c39a9d3456c426c97405606",
+    "git_blob_sha1": "3cf3a9426a8abb2d9690c33239397b19dc92230d",
+    "bytes": 2959016,
+    "approved_manifest_sha256": "98f4601ef3c40ed141834505bfc8392fb195a8a2d6a7658eeae0c5e0dde758ec",
+    "resource_contract_sha256": "d94fa43499c6feb097508fe747231c85daf57d44dd92ef9c0197b2334909b86b"
+  },
+  "final_video_file": "06-4K-正文-书中插图2秒-简述2秒.mp4",
+  "illustration_frames": 60,
+  "illustration_seconds": 2,
+  "illustration_start_frame": 4153,
+  "illustration_start_seconds": 138.43333333333334,
+  "summary_start_frame": 4213,
+  "output_frames": 4273,
+  "output_seconds": 142.43333333333334,
+  "first_tail_page": "illustration",
+  "final_decoded_frame_previews": [
+    {
+      "frame": 4152,
+      "label": "body-last",
+      "path": "/home/runner/work/literate-enigma/literate-enigma/article06-delivery/06-illustrated-tail-previews/06-body-last.jpg",
+      "sha256": "f827943f8916e395648ac7c5b44615fad0d58978c2ad9f7c22bb289ebbcf54b1"
+    },
+    {
+      "frame": 4153,
+      "label": "illustration-first",
+      "path": "/home/runner/work/literate-enigma/literate-enigma/article06-delivery/06-illustrated-tail-previews/06-illustration-first.jpg",
+      "sha256": "eb834d88bf5b4fa14fec7966eaf4d916153b05a4fc5627aaedec0f89155d665b"
+    },
+    {
+      "frame": 4212,
+      "label": "illustration-last",
+      "path": "/home/runner/work/literate-enigma/literate-enigma/article06-delivery/06-illustrated-tail-previews/06-illustration-last.jpg",
+      "sha256": "b2ec4904841ef12f4b5484735878e7e64d05b0cf067856c77aa7b0d97ab03539"
+    },
+    {
+      "frame": 4213,
+      "label": "summary-first",
+      "path": "/home/runner/work/literate-enigma/literate-enigma/article06-delivery/06-illustrated-tail-previews/06-summary-first.jpg",
+      "sha256": "de5e83cfde6cdfa0fa182701a6c71fc5c203f330293ea1f029621c63dd7ce7ac"
+    },
+    {
+      "frame": 4272,
+      "label": "summary-last",
+      "path": "/home/runner/work/literate-enigma/literate-enigma/article06-delivery/06-illustrated-tail-previews/06-summary-last.jpg",
+      "sha256": "880eedfeffe6e8ae4148efb0ad7285def3dcbbadb67c85708df49495e9243de5"
+    }
+  ],
+  "illustrated_tail_verification": {
+    "file": "06-illustrated-tail-verification.json",
+    "sha256": "0eccd3e66cc8c59538187d417843454717575d8240815b6213ca8121845c4345"
+  }
+}

@@ -1,0 +1,3692 @@
+{
+  "actual_successful_job_verified": true,
+  "actual_genuine_upstream_pass_with_missing_art_recovery": false,
+  "actual_job_uploaded_selected_artifact": false,
+  "overall_matrix_success_required": false,
+  "acceptance_basis": "actual successful article job + immutable run artifact + actual native passed article/media/source identity; upload log is auxiliary",
+  "run": {
+    "id": 43543967031,
+    "name": "本轮改动篇目原缓存正式4K",
+    "node_id": "WFR_kwLODJcpM88AAAAKI2w1Nw",
+    "head_branch": "codex/finish-05-and-summaries-20261112",
+    "head_sha": "751cbb58491b7918c7437f9cd91efe28d90fa32e",
+    "path": ".github/workflows/produce-revision-batch4K.yml",
+    "display_title": "Rebuild revised articles in official4K: 01,02,03,04,05,06,08,09,13,14…",
+    "run_number": 14,
+    "event": "push",
+    "status": "completed",
+    "conclusion": "failure",
+    "workflow_id": 417752518,
+    "check_suite_id": 117906846498,
+    "check_suite_node_id": "CS_kwDODJcpM88AAAAbc8uzIg",
+    "url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43543967031",
+    "html_url": "https://github.com/AlienCodes/literate-enigma/actions/runs/43543967031",
+    "pull_requests": [],
+    "created_at": "2026-11-14T02:01:39Z",
+    "updated_at": "2026-11-14T02:50:52Z",
+    "actor": {
+      "login": "AlienCodes",
+      "id": 52247027,
+      "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/AlienCodes",
+      "html_url": "https://github.com/AlienCodes",
+      "followers_url": "https://api.github.com/users/AlienCodes/followers",
+      "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+      "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+      "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+      "repos_url": "https://api.github.com/users/AlienCodes/repos",
+      "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "run_attempt": 1,
+    "referenced_workflows": [],
+    "run_started_at": "2026-11-14T02:01:39Z",
+    "triggering_actor": {
+      "login": "AlienCodes",
+      "id": 52247027,
+      "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/AlienCodes",
+      "html_url": "https://github.com/AlienCodes",
+      "followers_url": "https://api.github.com/users/AlienCodes/followers",
+      "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+      "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+      "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+      "repos_url": "https://api.github.com/users/AlienCodes/repos",
+      "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "jobs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43543967031/attempts/1/jobs",
+    "logs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43543967031/attempts/1/logs",
+    "check_suite_url": "https://api.github.com/repos/AlienCodes/literate-enigma/check-suites/117906846498",
+    "artifacts_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43543967031/artifacts",
+    "cancel_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43543967031/cancel",
+    "rerun_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43543967031/rerun",
+    "previous_attempt_url": null,
+    "workflow_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/workflows/417752518",
+    "head_commit": {
+      "id": "751cbb58491b7918c7437f9cd91efe28d90fa32e",
+      "tree_id": "0914f9e0bf4e159fafeea9ae61cad85548219250",
+      "message": "Rebuild revised articles in official4K: 01,02,03,04,05,06,08,09,13,14,16,19,20,21,22,23,24,28,32,33,36,37,41,44,46,48,49,54,55,57,59,60,61,62,63,65,66,67,68,69,70",
+      "timestamp": "2026-11-14T02:01:37Z",
+      "author": {
+        "name": "the Sword God",
+        "email": "52247027+AlienCodes@users.noreply.github.com"
+      },
+      "committer": {
+        "name": "the Sword God",
+        "email": "52247027+AlienCodes@users.noreply.github.com"
+      }
+    },
+    "repository": {
+      "id": 211233075,
+      "node_id": "MDEwOlJlcG9zaXRvcnkyMTEyMzMwNzU=",
+      "name": "literate-enigma",
+      "full_name": "AlienCodes/literate-enigma",
+      "private": false,
+      "owner": {
+        "login": "AlienCodes",
+        "id": 52247027,
+        "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+        "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/AlienCodes",
+        "html_url": "https://github.com/AlienCodes",
+        "followers_url": "https://api.github.com/users/AlienCodes/followers",
+        "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+        "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+        "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+        "repos_url": "https://api.github.com/users/AlienCodes/repos",
+        "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/AlienCodes/literate-enigma",
+      "description": "I am exploring this world!",
+      "fork": false,
+      "url": "https://api.github.com/repos/AlienCodes/literate-enigma",
+      "forks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/forks",
+      "keys_url": "https://api.github.com/repos/AlienCodes/literate-enigma/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/AlienCodes/literate-enigma/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/AlienCodes/literate-enigma/teams",
+      "hooks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/hooks",
+      "issue_events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/events",
+      "assignees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/AlienCodes/literate-enigma/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/tags",
+      "blobs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/AlienCodes/literate-enigma/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/AlienCodes/literate-enigma/languages",
+      "stargazers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/stargazers",
+      "contributors_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contributors",
+      "subscribers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscribers",
+      "subscription_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscription",
+      "commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/AlienCodes/literate-enigma/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/AlienCodes/literate-enigma/merges",
+      "archive_url": "https://api.github.com/repos/AlienCodes/literate-enigma/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/AlienCodes/literate-enigma/downloads",
+      "issues_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/AlienCodes/literate-enigma/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/AlienCodes/literate-enigma/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/AlienCodes/literate-enigma/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/AlienCodes/literate-enigma/labels{/name}",
+      "releases_url": "https://api.github.com/repos/AlienCodes/literate-enigma/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/deployments"
+    },
+    "head_repository": {
+      "id": 211233075,
+      "node_id": "MDEwOlJlcG9zaXRvcnkyMTEyMzMwNzU=",
+      "name": "literate-enigma",
+      "full_name": "AlienCodes/literate-enigma",
+      "private": false,
+      "owner": {
+        "login": "AlienCodes",
+        "id": 52247027,
+        "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+        "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/AlienCodes",
+        "html_url": "https://github.com/AlienCodes",
+        "followers_url": "https://api.github.com/users/AlienCodes/followers",
+        "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+        "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+        "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+        "repos_url": "https://api.github.com/users/AlienCodes/repos",
+        "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/AlienCodes/literate-enigma",
+      "description": "I am exploring this world!",
+      "fork": false,
+      "url": "https://api.github.com/repos/AlienCodes/literate-enigma",
+      "forks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/forks",
+      "keys_url": "https://api.github.com/repos/AlienCodes/literate-enigma/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/AlienCodes/literate-enigma/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/AlienCodes/literate-enigma/teams",
+      "hooks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/hooks",
+      "issue_events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/events",
+      "assignees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/AlienCodes/literate-enigma/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/tags",
+      "blobs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/AlienCodes/literate-enigma/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/AlienCodes/literate-enigma/languages",
+      "stargazers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/stargazers",
+      "contributors_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contributors",
+      "subscribers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscribers",
+      "subscription_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscription",
+      "commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/AlienCodes/literate-enigma/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/AlienCodes/literate-enigma/merges",
+      "archive_url": "https://api.github.com/repos/AlienCodes/literate-enigma/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/AlienCodes/literate-enigma/downloads",
+      "issues_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/AlienCodes/literate-enigma/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/AlienCodes/literate-enigma/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/AlienCodes/literate-enigma/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/AlienCodes/literate-enigma/labels{/name}",
+      "releases_url": "https://api.github.com/repos/AlienCodes/literate-enigma/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/deployments"
+    }
+  },
+  "job": {
+    "id": 132290749556,
+    "run_id": 43543967031,
+    "workflow_name": "本轮改动篇目原缓存正式4K",
+    "head_branch": "codex/finish-05-and-summaries-20261112",
+    "run_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43543967031",
+    "run_attempt": 1,
+    "node_id": "CR_kwDODJcpM88AAAAezSSkdA",
+    "head_sha": "751cbb58491b7918c7437f9cd91efe28d90fa32e",
+    "url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/jobs/132290749556",
+    "html_url": "https://github.com/AlienCodes/literate-enigma/actions/runs/43543967031/job/132290749556",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-11-14T02:01:45Z",
+    "started_at": "2026-11-14T02:26:08Z",
+    "completed_at": "2026-11-14T02:44:12Z",
+    "name": "produce (55)",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-11-14T02:26:09Z",
+        "completed_at": "2026-11-14T02:26:10Z"
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-11-14T02:26:10Z",
+        "completed_at": "2026-11-14T02:26:20Z"
+      },
+      {
+        "name": "按批准的原图清单解析本篇原生文件名",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3,
+        "started_at": "2026-11-14T02:26:20Z",
+        "completed_at": "2026-11-14T02:26:20Z"
+      },
+      {
+        "name": "取固定主仓中已批准的本篇书中原图",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4,
+        "started_at": "2026-11-14T02:26:20Z",
+        "completed_at": "2026-11-14T02:26:21Z"
+      },
+      {
+        "name": "先验本篇原图的主仓提交、原生blob和批准SHA",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5,
+        "started_at": "2026-11-14T02:26:21Z",
+        "completed_at": "2026-11-14T02:26:22Z"
+      },
+      {
+        "name": "Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6,
+        "started_at": "2026-11-14T02:26:22Z",
+        "completed_at": "2026-11-14T02:26:22Z"
+      },
+      {
+        "name": "Run actions/cache/restore@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7,
+        "started_at": "2026-11-14T02:26:22Z",
+        "completed_at": "2026-11-14T02:27:13Z"
+      },
+      {
+        "name": "确认恢复既有机器缓存",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8,
+        "started_at": "2026-11-14T02:27:13Z",
+        "completed_at": "2026-11-14T02:27:13Z"
+      },
+      {
+        "name": "准备原有核查工具",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 9,
+        "started_at": "2026-11-14T02:27:13Z",
+        "completed_at": "2026-11-14T02:28:18Z"
+      },
+      {
+        "name": "Run actions/cache/restore@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 10,
+        "started_at": "2026-11-14T02:28:18Z",
+        "completed_at": "2026-11-14T02:28:19Z"
+      },
+      {
+        "name": "确认原快测印章缓存命中",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 11,
+        "started_at": "2026-11-14T02:28:19Z",
+        "completed_at": "2026-11-14T02:28:19Z"
+      },
+      {
+        "name": "原程序做稿并正式定稿4K",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 12,
+        "started_at": "2026-11-14T02:28:19Z",
+        "completed_at": "2026-11-14T02:44:04Z"
+      },
+      {
+        "name": "仅保留本篇公开成片和核验材料",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 13,
+        "started_at": "2026-11-14T02:44:04Z",
+        "completed_at": "2026-11-14T02:44:08Z"
+      },
+      {
+        "name": "Post Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 24,
+        "started_at": "2026-11-14T02:44:08Z",
+        "completed_at": "2026-11-14T02:44:08Z"
+      },
+      {
+        "name": "Post 取固定主仓中已批准的本篇书中原图",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 25,
+        "started_at": "2026-11-14T02:44:08Z",
+        "completed_at": "2026-11-14T02:44:08Z"
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 26,
+        "started_at": "2026-11-14T02:44:08Z",
+        "completed_at": "2026-11-14T02:44:08Z"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 27,
+        "started_at": "2026-11-14T02:44:08Z",
+        "completed_at": "2026-11-14T02:44:08Z"
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/AlienCodes/literate-enigma/check-runs/132290749556",
+    "labels": [
+      "ubuntu-latest"
+    ],
+    "runner_id": 1000008434,
+    "runner_name": "GitHub Actions 1000008434",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  "artifact": {
+    "id": 14094429847,
+    "node_id": "MDg6QXJ0aWZhY3QxNDA5NDQyOTg0Nw==",
+    "name": "article55-revised-canonical-4K-final",
+    "size_in_bytes": 39923389,
+    "url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/artifacts/14094429847",
+    "archive_download_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/artifacts/14094429847/zip",
+    "expired": false,
+    "digest": "sha256:bf17cc9635bff7b50da0870767263fecaa9fb53e003154b17a62aaf362aa8317",
+    "created_at": "2026-11-14T02:44:07Z",
+    "updated_at": "2026-11-14T02:44:07Z",
+    "expires_at": "2026-12-14T02:44:04Z",
+    "workflow_run": {
+      "id": 43543967031,
+      "repository_id": 211233075,
+      "head_repository_id": 211233075,
+      "head_branch": "codex/finish-05-and-summaries-20261112",
+      "head_sha": "751cbb58491b7918c7437f9cd91efe28d90fa32e"
+    }
+  },
+  "upload_step_proof": {
+    "unambiguous_selected_step_upload": false,
+    "auxiliary_only": true,
+    "reason": "Upload action log block is missing or ambiguous in selected API step interval",
+    "acceptance_blocked_by_log": false
+  },
+  "native_status": {
+    "article": "55",
+    "passed": true,
+    "stage": "final4K-passed",
+    "original_audit_and_quality_thresholds_unchanged": true,
+    "original_maker_unchanged": true,
+    "core_repairs": [
+      {
+        "target": "视频/工具/草稿声音.sh",
+        "file": "files/视频/工具/草稿声音.sh",
+        "original_sha256": "0ce3277812cf16ed30438509b6dc97db0c26725db4c5db5d9b058c3ef6531aa2",
+        "patched_sha256": "957d7eb1598698ea33ff77d83379256ecae258d84d588753d561a902284be439",
+        "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+      },
+      {
+        "target": "视频/工具/句内响度.py",
+        "file": "files/视频/工具/句内响度.py",
+        "original_sha256": "58735b7173a3c03efa61fb300b4aed4039c164fa970e0593a40bae2a3f3cbd27",
+        "patched_sha256": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea",
+        "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+      },
+      {
+        "target": "视频/工具/独立复核/synth.py",
+        "file": "files/视频/工具/独立复核/synth.py",
+        "original_sha256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+        "patched_sha256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+        "repair_scope": "validated unprocessed raw-mother reference input only; independent transforms/audit/thresholds retained"
+      }
+    ],
+    "strict_production_cache": true,
+    "pdf_requested": false,
+    "check_summaries": {
+      "approved-illustration-resource.log": [],
+      "certified-core-original-stamp-verification.log": [],
+      "original-restored-stamp.log": [],
+      "canonical-module-copy.log": [],
+      "canonical-draft-00.log": [
+        "第55篇 做完（429 秒）：修了 1 处、疑点 26 处",
+        "① 文本：通过，自动修 1 处",
+        "② 声音：55 词尾辅音核对 问题数 0；55 纯人声核对（配音指纹 ed59953f5c3d）问题数 0；问题数 0；55 句间停顿核对 问题数 0；问题数 0",
+        "③ 出片前核查：通过",
+        "⑤ 出片后核查：全部通过",
+        "⑥ 已拷 视频/视频/草稿1080p/55_1080p.mp4（--不推）"
+      ],
+      "canonical-final4K-00.log": [
+        "第55篇 用户定稿原话：有"
+      ],
+      "original-stamp-after-production.log": []
+    },
+    "actual_native_core_certification": {
+      "run_id": 43535822030,
+      "job_id": 132264443476,
+      "commit": "395e8da264fafa2453a42ee70a3f7aed8303a769",
+      "actual_full_quickcheck_exit": 0,
+      "actual_full_quickcheck_seconds": 478.16,
+      "artifact_id": 14089812323,
+      "artifact_zip_sha256": "5e396c84e4a6fc7c6cc737ceb8648d7f15f397e9551806e032c93db8ab0963b8",
+      "full_original_quickcheck_log_sha256": "dbe7f6e08d2b7c3a5f9a2f925bb75a662aed725c780e1bc6714706807552a294",
+      "article_audio_or_video_passed_not_implied": true
+    },
+    "actual_native_fastcheck_stamp": {
+      "target": "视频/工具/新管/快测通过.json",
+      "file": "files/视频/工具/新管/快测通过.json",
+      "sha256": "6ebc7aa41f79f77258fa333b665af258e007daa36a4ea290de972cd3da7b42f2",
+      "origin": "actual unmodified original full quickcheck, native run43535822030"
+    },
+    "reviewed_regression_resource": {
+      "target": "视频/工具/新管/回归基准_27.json",
+      "file": "files/视频/工具/新管/回归基准_27.json",
+      "sha256": "b8ddb4656ae27cbfc7ec8e3b99511983b4e568997bd4ad4ee33c364f3926ae94",
+      "origin": "pre-existing root-reviewed 67-screen data; original voice/segment MD5 unchanged"
+    },
+    "core_repair_manifest_sha256": "1b1558108d15603e5711e200135651d6c7700a583d8bcf53ad8753683ed05a5e",
+    "reviewed_gain_preservation_mode": true,
+    "real_restored_stamp_validated": true,
+    "reviewed_cross_article_context": {
+      "provided": true,
+      "manifest_sha256": "eddfbdceea4e25f2398a2198f94d9852f1e30e35b35c4075c5a5ff0c8e32c096",
+      "files_sha256": {
+        "视频/脚本/01.json": "2be2f80a69af28703992204ac95f987c745362c326e62ad81b3cd8e0e0735d3a",
+        "新版定稿/01-the-robber-who-thought-lemon-juice-made-him-invisible.md": "572054065b5bb65446bf8939a21c789c1e9c7664d82da5117c43efdded894351",
+        "视频/脚本/02.json": "0403368c77fd3e0f91e1ee3780e1c7c147894ad13c16b5f14707d700a8f717c8",
+        "新版定稿/02-the-truth-about-one-marshmallow.md": "91b92505aad03f963861bec39e96f0a472c126d1d57c9fc538676c32f65e545c",
+        "视频/脚本/03.json": "527f3bf4a11843f4d606188dabc6ebce6830da3fb454a49c782e3a595cb47407",
+        "新版定稿/03-the-doctor-who-drank-bacteria-to-win-an-argument.md": "6dfb56504882e24854a3584fd740e7f6601e3f2532818aee3a56d5330d317aa3",
+        "视频/脚本/04.json": "93cc1ff58d65ebe43a65ecb2fb2dbd2da262d80877c05740bbdf4eab4eaca1e8",
+        "新版定稿/04-the-brain-that-learned-london.md": "a8ccb31ffff50aaae77de4b83de1847fafae1d585981cf960c5880c409f6cfc3",
+        "视频/脚本/05.json": "2282acbfa4b82825f93261ec6c18359eb47fd3f7c639319ac5058d126643e136",
+        "新版定稿/05-the-fingerprint-in-the-blood.md": "612deac4ed066489e04e214ca969f8f27dda05856e0ef0ed2e540e7a4a52ae34",
+        "视频/脚本/06.json": "2cbf1d6cd6e66a59285298ea830f5ef914590b64286d40b2ae5f3168aa27a2e9",
+        "新版定稿/06-the-horse-that-could-count.md": "7fd21ba491c7596c53c486f2bb0b0f2f6da8e67bac75461a4649a7caff822f74",
+        "视频/脚本/07.json": "842e44e5aa19fddcfa239cb6530c5152341cd86e11db959543d02d8670ca13e8",
+        "新版定稿/07-the-octopus-that-escaped.md": "b8544281bb2ada88fce9d1082cbc30233dcb63ee3e9c2bbefafc22cb28b8cb39",
+        "视频/脚本/08.json": "254832e09f12759d950384dd9f31f671ad5a3bc1590b7466065dd3ef5fe4b8d5",
+        "新版定稿/08-the-doctor-who-solved-the-cholera-mystery.md": "0b2bfa68070ce585a452f6b7034d03c3683e710dcabec5e86d7b221950dc7bab",
+        "视频/脚本/09.json": "fa3e429351d629de188c184d04e9986200e16e80606fcbec82332b6433301dae",
+        "新版定稿/09-the-great-emu-war.md": "af5c3e844bad15f94bfc43aeed6d7417c4bfae85f026b194da667a7a3bdb6196",
+        "视频/脚本/10.json": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
+        "新版定稿/10-the-stolen-smile.md": "ff63cf94e4d2c835e2e2f1ffd3e6c5642f0916f0b13c012f1f13c3dff716d47a",
+        "视频/脚本/11.json": "665cbb80cc70b700ecc0cc5813209fd100ad4fa8f0eead3929b9e53778d9d07f",
+        "新版定稿/11-move-37.md": "7e0b49b346c1fa3ab994a11a2301167c0d6a1bb00916508bdc0b1acf71e68053",
+        "视频/脚本/12.json": "e3bfbcce6f1a8e14cfe451d656574353321e297c90c62f5a7b422f37478311d5",
+        "新版定稿/12-the-79-days-of-new-coke.md": "5a23c1e0c81318527bcbf27573487d1845c5318905a2b1e020cc6e2eaf5d643f",
+        "视频/脚本/13.json": "3687b6c42a6d524d0d7e40a47ed02c37b18abe8d524db4f5914abad52019a63c",
+        "新版定稿/13-eleven-days-without-sleep.md": "72b842de127132e386e9e52a1719ec96765e94958f56687987f53e2801c69704",
+        "视频/脚本/14.json": "17141351875ddb8f0e308602c0b6ab85cbf5126a4d0118978c25c869db769fee",
+        "新版定稿/14-the-fungus-that-turns-ants-into-zombies.md": "e114c9e1783c80a2ffdb60af05e824f93a8ea8725905cb733560abe1c0ad01a8",
+        "视频/脚本/15.json": "0934aa067f19814028c398b0c70a400bb09e354f744bde4000742950d77f441e",
+        "新版定稿/15-the-myth-of-the-unsinkable.md": "68e236868c4b466928ff2a60358250b9592dfe9287b66561b1e5a80b4d14de4f",
+        "视频/脚本/16.json": "d25aa07f3fac316c26c2ae1006d3efa7eb82a396b66150432b50239c1628396d",
+        "新版定稿/16-the-bread-made-from-air.md": "4da63148111213f6d77451b0eb4193893e6fc2fc170400bc39ce5f5ffcaa0b20",
+        "视频/脚本/17.json": "2e9971ea5ce7857e119226fe95def06e6eb9c3ef9823d8e8c4f3456f46a3bbb0",
+        "新版定稿/17-the-curse-of-the-pharaoh.md": "a2e8d92f9136e1b22fcc0799f9a4d281092f0e547cc68242e090241d7b09e222",
+        "视频/脚本/18.json": "8cffbad6f0b8451e46ad1a65d5f629c450ceff2c771218445770c8cbfd77ebca",
+        "新版定稿/18-the-mould-that-changed-the-world.md": "ef41cea03f471fe3b9a53939c843e450da3325eb711f6414e108ae92a7518dd8",
+        "视频/脚本/19.json": "cc3c5eea0f7d9ec0712b2e58adba7e5ef8b61d6518a322f9b25a12fcc45282fb",
+        "新版定稿/19-tulip-mania.md": "3882d487383b759c31dda4785966091c362960cd873a5d83c530d08d52e2e97c",
+        "视频/脚本/20.json": "cc5ed6d7be8767e5e7e9b098e8f3836821c0b3f51c17581b2746722da1cf3001",
+        "新版定稿/20-the-5000-year-old-murder-in-the-ice.md": "8d55638070787f7ff5432c197292af1188c463a8b018e01bdefc32999b888e95",
+        "视频/脚本/21.json": "61c1569a26d7569ee0f586178be6b307b1c394c0a30c3cb02541c910038b0589",
+        "新版定稿/21-the-man-who-sold-the-eiffel-tower-twice.md": "e8e966b70f579235d696ba11fb01d3b2cae3fa26efb9071bbea95071be259e1f",
+        "视频/脚本/22.json": "e3027a42c532fee9935afcecdd0542713cbb907183802c2345b9472f93b75f59",
+        "新版定稿/22-the-building-that-melted-a-car.md": "49ae09483bc80bbc40a71551cd98aebec355d96d9ff7b2bcdea59a06fe599267",
+        "视频/脚本/23.json": "c4574a79fd3a58577a1402ce095ea9e4a0ea1f98883ce63e3cc60d126e819409",
+        "新版定稿/23-the-man-who-gave-machines-a-mind.md": "72ed3049e87fe75ce1e753d5e443bdbe6a7ab72f6e282e8467fbbb62be873169",
+        "视频/脚本/24.json": "f08620b534bb10b718f7515c805dcb541721427d855bd5a092b8954847a351b8",
+        "新版定稿/24-survival-in-the-ice.md": "cb7f810d9a74256e0c00625290be4f16207feb90f5719ca87d5d7c9912b91307",
+        "视频/脚本/25.json": "c73e854e052b3df9bd920d4a59fafb183dee19bd58765fa426af6ea3d7c9a329",
+        "新版定稿/25-apollo-13-the-successful-failure.md": "b6b7d55fe66e6e32116431ea955778fab779b8bda622df0ba1036c2f40a3969f",
+        "视频/脚本/26.json": "ab663b240eb5e27923f38e2ff296c0196e3d820766d0c909adb9faf19aa3cac9",
+        "新版定稿/26-the-language-the-children-invented.md": "9e9ad8021ddabc17157d73dc739383f9676df3583cf965e470fcd773e26a3761",
+        "视频/脚本/27.json": "61cd724c5fab6f07a46aa5ac069101617c4c8350311eb11a43f9fefdddb31d8b",
+        "新版定稿/27-life-in-the-forbidden-zone.md": "e276bcf76225b9ae16cd8cfda8c9b726b442fbd625d3718f532b47b09b21b16f",
+        "视频/脚本/28.json": "a6a4befc0291727f5cc3f8b50857ee954ef9f936738f014a978ebb4d37a28ea8",
+        "新版定稿/28-a-handful-of-wormwood-that-saved-millions.md": "b9817d3429767d07b6a2eb14cce5422a20cb4e3b89f8b03e6b3d5da2daf91d91",
+        "视频/脚本/29.json": "1e5f1d9f0c22b5d14b757f029be694c2a3969666d732ca79bb695282763de791",
+        "新版定稿/29-the-volcano-that-gave-us-frankenstein.md": "69045ee19a170c7ea9d0008b468c7e947bc28b639b834c0192dc0aeafc3ef4d0",
+        "视频/脚本/30.json": "cdf727cb4c6832063421df9da6ab8ae7729cf9df01d6be089a8981c92c360f06",
+        "新版定稿/30-the-stink-that-built-londons-sewers.md": "84dbf19cee0045ea2608b13ee0677cb9623dd8fbb371c67093bf50c64186137a",
+        "视频/脚本/31.json": "d81f8645a1e5663ba8c84668e817cdb218bc6689079fbfd51326b3a7fd3cd384",
+        "新版定稿/31-the-book-twelve-publishers-turned-down.md": "7abd20fed44918dcf01586c056e9d0acd9d2ad3b90aa7d3d403762d9f06d2659",
+        "视频/脚本/32.json": "357aa59bed62154f7302a5efcf528859b303004e028657b93058138fe931bf85",
+        "新版定稿/32-the-planet-that-was-demoted.md": "1421f2b0921e7e9478ebc48777e3e8b2c979172de63d0124015107c3750a3542",
+        "视频/脚本/33.json": "ca51103c1a9d45c9159322765efc86c81f61f6ec78975f160019d21a1d9ee0d7",
+        "新版定稿/33-thirteen-in-the-cave.md": "9862078044ce45a9f6d51aa7d165afdfcf90066d1de98cbb317dd7e8f980610d",
+        "视频/脚本/34.json": "74921848a6bb25a2ba631813f60d4756c9ff90c64c03a2fb936ce34f310ce509",
+        "新版定稿/34-the-game-that-escaped-the-soviet-union.md": "e3244b67b21e283e67f4e88e932a1dbb85bf273a48ee009b3f435e1c5814831c",
+        "视频/脚本/35.json": "d8439077dc2c909b1c6cbd1347f31e9625f25fffe447d6f5945c9492561f1a16",
+        "新版定稿/35-the-bird-that-beat-the-letter-home.md": "ba8c38e38b21a3345624e2d44fd352561d3096cfb6f62214b48ea9b6e66faead",
+        "视频/脚本/36.json": "76daa28f421bd40d8e2744d4e785a34bb8ee67da1403b4b1546db9465c535cef",
+        "新版定稿/36-the-company-that-invented-its-own-killer.md": "411eeb96c8641ee7082b49a5abf4c7343d3f1dbb7ef331064d7c0f3c630fe58f",
+        "视频/脚本/37.json": "b1b8945ccf3581df48ade5714a2d0e93e4cc6812708f95bef6f5e44439106c99",
+        "新版定稿/37-dynamite-for-the-heart.md": "4933e24d2384471a96d9c8c26c15d5224a85dae98d9971a3fed15b4978dafc51",
+        "视频/脚本/38.json": "8d0379032000967c9f72e550574874949f798eefbfbfb58ab2b38e4e23ecbc6b",
+        "新版定稿/38-the-web-beneath-the-woods.md": "abb7eead9f3da0b2b326ceed5a649cfbf71fc28dad22e0d52f7b19caa798c54f",
+        "视频/脚本/39.json": "6c3e9539f624b192335312912572a05fba2c7bcfb821b44c3c1dbb21b42527a7",
+        "新版定稿/39-y2k-the-crisis-that-success-erased.md": "abbc9804661126aa006595031ed8f201ce55e8eb5fd9e1ad5669c0c6fcdb80ab",
+        "视频/脚本/40.json": "1c50d1a47ee6f8528d0f7299e8a45bc8c30312622f3f465a964d21cc1395ee7f",
+        "新版定稿/40-the-glue-that-failed.md": "dce9f78f3a0828307843dd667b7eeebf3380a3630f03d234bd5824870aba61a1",
+        "视频/脚本/41.json": "6b6673ffc1db986f4c355f3685de6a0faf2272cee042c5e917f26a8b3057c2be",
+        "新版定稿/41-the-toad-that-invaded-australia.md": "eca590f97120f4e76d719e29aa07b094f9117cd462f5a70c029331a63b85f710",
+        "视频/脚本/42.json": "eceb10ae92aa4b9cd23180d1138149a7fa7b674385462c898bc0d2283c8739e7",
+        "新版定稿/42-the-telescope-that-needed-glasses.md": "d4aa049779a0eba06c555d76ca14103648378eef90465df424120126fa771280",
+        "视频/脚本/43.json": "aa9da1246e293c80408edf94a7c9bed65ef3178ae7cb5265a8273e8c4396687f",
+        "新版定稿/43-from-a-garage-to-the-top-of-the-world.md": "bd70c83e5ac867238ca179f3c9f3548eb9cbdcae1f6df40994aef0bda721ae54",
+        "视频/脚本/44.json": "87f531203ca38d88ae5e71ffd88190b1530715cdc0adba146c2a4a78ebe9b976",
+        "新版定稿/44-the-night-sweden-switched-sides.md": "d3f7ad2ac43f02aae9205a15b9808280ca3db597d6ef3b36aca8ca6176c5f74a",
+        "视频/脚本/45.json": "569406607d2bf18dce5e916052d6460509450d97fe17ac9820be524f59c2c3cc",
+        "新版定稿/45-the-record-humanity-threw-into-the-stars.md": "27deabec4a8478fe570f7f237a2fb850ffdce3deebfd952f512d82a60cf7314f",
+        "视频/脚本/46.json": "804ecfddb6060288b05eda0e1027c65e9bff0c08a9d010c201bf39306c769b62",
+        "新版定稿/46-lost-in-the-glare.md": "7aaa06e875fe56c5d78210b90a8769b8b2051714025ef10df37c2fe89db7a68c",
+        "视频/脚本/47.json": "0417489c8a672e7e63d46c2239d847acabda2d93160cabed3b0fb14f701ac39a",
+        "新版定稿/47-shadows-of-wolves-over-yellowstone.md": "34c68cf4d0f0ef3545ad68edf3367fcb76ab500174b11ae7f83b782cd5a80a2a",
+        "视频/脚本/48.json": "4f146ce6a70bb0bf5d2c6e1f6b47bd6a2bcc2f311be7a948092d7bde1a08f449",
+        "新版定稿/48-rice-for-the-world.md": "76416be21f857e8a05c37baa33ac90f5785812291485231c249e38a1d0edf15f",
+        "视频/脚本/49.json": "640168eb8a17c5d53d266c6604ffe287919314947371c2ee239eeea952d73b77",
+        "新版定稿/49-the-woman-who-won-two-nobels.md": "1e4fb068aa9ae4513d01b199a074b84dc9d819f57b2134df32588a0e4a4b6b6a",
+        "视频/脚本/50.json": "1d4a41824dfa5e8d11e5990b2a4b802ba2fcc3231d85b15ed6630396c6f027bf",
+        "新版定稿/50-microplastics.md": "5439589bacf1abb2abbb184eb658492bc02bcc5bdd8dfd8ababcd80ab93621cb",
+        "视频/脚本/51.json": "39886d83593a31fb575b124ecf6457190773dca695b6ff78f8434d52aebd6d7c",
+        "新版定稿/51-the-joke-that-became-ok.md": "8de30ea4846f4e88d8b71c8d5ced3ee63a73955e39b7dc3c5adad0971b854fd0",
+        "视频/脚本/52.json": "832249bb44617d38ede75560a5e57af6ba79ec284c9609407cb30ce879f6f862",
+        "新版定稿/52-the-killer-smog-of-1952.md": "179500361e4a837d7edb2e0497e08677d5abd425e8ad542f788205a6f7667b4b",
+        "视频/脚本/53.json": "28b604bfa72896534736293f79e9b3aabd8e3678672f4dc6c66337c02a8f1518",
+        "新版定稿/53-the-wind-that-kept-no-time.md": "6fab302dcadb5a2c509436f5fbf8d9ef925c008a36f5b422749bd405aa4701d3",
+        "视频/脚本/54.json": "b1fcb8ae86045b3d35ccfa0f52eb9594b8921d43063835769ee3ecc4543be75e",
+        "新版定稿/54-the-sound-that-shook-the-world.md": "abd5f4bfe11ed73bcc5326a92cf99b0a8e5ad70adaca1ce8d0c8f622b57fa519",
+        "视频/脚本/55.json": "06344fc0ad5975cba2f4dbe5262a9957dd7c024f9a05b9abbfa327f32ea8c719",
+        "新版定稿/55-the-secret-of-romes-undying-concrete.md": "a7759eddcc7ec06dfd6dab7912e06b3b5ef8576df0c025a97812006669d0be61",
+        "视频/脚本/56.json": "22ca3b4180a8ae6a37b4c8e25f5e357d5696d9b23bf148fb7064425d1403e59c",
+        "新版定稿/56-the-letter-that-startled-darwin.md": "aad1e2aab9ff28f534a510362e807ef401e0b502475240f4b2531e9e518a8d7a",
+        "视频/脚本/57.json": "a0ba65b769430289a33ec1f7bc6dbf91dad8d2c3b1d725348851de546563cd6f",
+        "新版定稿/57-a-change-of-anthem-in-the-deep.md": "0731d925a98bafc222718c111985362e166b38b9189c516219a481e36d0d4b6e",
+        "视频/脚本/58.json": "8b0bd3d7d39000518789e9907aec53bd52fab1b9d6b4f22a152d158635b6e8ee",
+        "新版定稿/58-from-a-scratch-to-a-world-without-smallpox.md": "1aa2a0d2c51da76f9c9ebb88d049dd1a55ab530791566fdbf6476e5aa48c15ee",
+        "视频/脚本/59.json": "df1db4174d942371166048b220ef6d55b0b700b2ce31c866edf6dfdf33b92f0c",
+        "新版定稿/59-saving-the-sky.md": "7bf9c4661e733e7af23dc2f11bc820b809ec93dad75a94fb6a12748226e8722c",
+        "视频/脚本/60.json": "eed1655c0919db32a3a016b24791b93d25683f287c7ccb2523e168a69bddc562",
+        "新版定稿/60-the-scientific-giant-who-changed-the-world.md": "9d1578e7af085559922394a3db01de4eb22dc1c520ca17de5cad68e5a38a31a8",
+        "视频/脚本/61.json": "72378937501769dfb3d934fe65ab1a69afeb5420a15e19890c161433717d2435",
+        "新版定稿/61-the-steel-box-that-remade-the-world.md": "135cc9cfbcbd68d957f831cf55558112a45b1cc3749366cb9a304507355c7d2c",
+        "视频/脚本/62.json": "4b3a97f2b6404e1b091537c21f01fc60088902f596803345983c38be52ec79eb",
+        "新版定稿/62-dolly-the-copied-sheep.md": "62817546ae33824b57255f941135c503e41a41f905331ed4af1e32850fa00960",
+        "视频/脚本/63.json": "5d266d80f9cf29cce6f7e34531449cf75191a42f180102685a5bcd04849e75c5",
+        "新版定稿/63-the-crowded-heavens.md": "6ef79d4310019dfefa7364b8a428411a6bc337678c69fa5cbc89b84689e253a4",
+        "视频/脚本/64.json": "12a36862765922d72ce6e5a4c5fe85f548364eed65fe3b3b284f0b38899a965f",
+        "新版定稿/64-the-day-zero-that-never-came.md": "e0c83cbe36745adbbffd33a156fa8d0671704ea976cb13215cabb612639b37a5",
+        "视频/脚本/65.json": "78e60dd231df4ac71df83e21a26f82bbf706dc0bef80bee156a36bc287661ede",
+        "新版定稿/65-the-day-the-doomsday-vault-opened.md": "71a50d32e25955e713e6ca108ab68422a4fd5b77c914a9074eece1dc33cbff89",
+        "视频/脚本/66.json": "ad5324af4270834186285a5e7273a90213094077adc6f9e1d5c7b0ebff9cf035",
+        "新版定稿/66-the-burrs-that-became-velcro.md": "75dbe6c148ca97a7780ac1737f33f58bf8ee27a51aa729a83315705655b12b2a",
+        "视频/脚本/67.json": "8897cc1c2df1e4672eec3bbff2776d0565afb9c9fe84087a1758ebb15b2a233e",
+        "新版定稿/67-the-cave-found-by-a-dog.md": "10e37b81eeef4e3289448a6b4fd679f34d495a4fc087c57747e6dca949e00cf1",
+        "视频/脚本/68.json": "568f72dacac48e206811d35a57c7fa22e3da428783f64e507c184f2090e579f3",
+        "新版定稿/68-the-last-flight-of-the-hindenburg.md": "c25f58ffb0e3748336767bb7470dd7cef10374c53cbb48af89dba26f65b2dd5c",
+        "视频/脚本/69.json": "09fd3fdbbc834badd16a9b38d8c14e425193a6849d7db87253f26a782a1c4137",
+        "新版定稿/69-the-trial-of-the-father-of-the-atomic-bomb.md": "570eda5b7d979d71e9bcad1c67e295ed326ecdb8b61e663aba33272c8a9451bd",
+        "视频/脚本/70.json": "0f6827f02cef0d2416f9d7d69b7e1c5553acee7cf6dc89f3379201264587236c",
+        "新版定稿/70-the-stamp-that-changed-the-post.md": "edfd85cea33730ba67e4210e756da1f2945f1a21bce55c7e75497cb5f0095d80"
+      },
+      "source_file_count": 140,
+      "working_script_count": 70,
+      "target_request_exactly_matches_context": true
+    },
+    "request_source_sha256": {
+      "视频/脚本/55.json": "06344fc0ad5975cba2f4dbe5262a9957dd7c024f9a05b9abbfa327f32ea8c719",
+      "视频/工具/初稿生成/gen55.py": "9efeae29614fe306632ed9639ad05722ba60d88ddb12000a44043379e3929898",
+      "新版定稿/55-the-secret-of-romes-undying-concrete.md": "a7759eddcc7ec06dfd6dab7912e06b3b5ef8576df0c025a97812006669d0be61",
+      "视频/制作记录/55_待改清单.md": "1793a8dae4915bec83a0056c377fc8ee0f881e49f99902166e10309a246f40f2",
+      "视频/制作记录/逐句确认/55.json": "94da88fd15e47d1fffa84642af90328e1fdbccdbd739cbb68e1df1a8ab7583c7"
+    },
+    "accepted_source": {
+      "id": "55",
+      "path": "最终版4K视频/55 - The Secret of Rome's Undying Concrete - 罗马混凝土的千年之谜.mp4",
+      "sha256": "003c6caf7dcd5aee70bcd5cfc9cca51f5602e6ec4e7f2f3567a0d00c63299e32",
+      "git_blob_sha": "46edc8debbb3789adf4156851efacfd5b4798f9d",
+      "bytes": 12719664,
+      "width": 3840,
+      "height": 2160,
+      "summary_frames": 60,
+      "aac_adts_sha256": "19a859a60cee1bde5060d52f78072c444cf65da68845f196fce2502f97d02cd8"
+    },
+    "checker_reference_preparation": {
+      "article": "55",
+      "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+      "reference_prepared": true,
+      "acceptance": false,
+      "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+      "source_sha256": "06344fc0ad5975cba2f4dbe5262a9957dd7c024f9a05b9abbfa327f32ea8c719",
+      "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+      "checker_program_sha256": {
+        "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+        "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+        "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+        "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+        "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+        "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+      },
+      "reference_calls": [
+        {
+          "sentence": "标题",
+          "piece": null,
+          "reference_kind": "title-default-raw",
+          "method": "create",
+          "source_slice": "The Secret of Rome's Undying Concrete",
+          "exact_native_cache_key": "eff22f2a2d56ede26ad0548c4c5d22ac322d0203.pkl",
+          "cache_input_text_sha256": "753918d65e1c0475dd82b0a7ea9ca253e9bce3237b33445c626fb9d0bee3c2d0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "标题",
+          "piece": null,
+          "reference_kind": "title-default-timed",
+          "method": "create_timed",
+          "source_slice": "The Secret of Rome's Undying Concrete",
+          "exact_native_cache_key": "ed9923b39219019a6729c92f2ff6a1cd62c024ff.pkl",
+          "cache_input_text_sha256": "753918d65e1c0475dd82b0a7ea9ca253e9bce3237b33445c626fb9d0bee3c2d0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Nearly 1,900 years after its completion, in about AD 125–128, the Pantheon's dome still crowns the vast chamber below.",
+          "exact_native_cache_key": "7468d89ce01c7b387c7e67f9dc86574a57f6ec4e.pkl",
+          "cache_input_text_sha256": "fa3abb83b6acd5930be11f906e24848162e607ad94cc57cc491dd2cc347e2713",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Nearly 1,900 years after its completion, in about AD 125–128, the Pantheon's dome still crowns the vast chamber below.",
+          "exact_native_cache_key": "53b044f6ec33c2382d58311cecc4eabe7bf0c769.pkl",
+          "cache_input_text_sha256": "fa3abb83b6acd5930be11f906e24848162e607ad94cc57cc491dd2cc347e2713",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Nearly 1,900 years after its completion, in about AD 125–128,",
+          "exact_native_cache_key": "177030e6bb1828557ffd798ff6f588f442d56b35.pkl",
+          "cache_input_text_sha256": "c81736e18bfa83bb639fde20eaca91763bbf0d1476aea0e90c558b3209224e7b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "the Pantheon's dome still crowns the vast chamber below.",
+          "exact_native_cache_key": "475058e9acdf9148700d8a2bcf08e4413ff48375.pkl",
+          "cache_input_text_sha256": "afe85eb054b6c44c828a6aa3813dffe963aa73e39b9cb815af15b8636da0aaae",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Nearly 1,900 years after its completion,",
+          "exact_native_cache_key": "f35e55d162730bc8f54d407a5eaf539ea91128c8.pkl",
+          "cache_input_text_sha256": "7a912ef69853568b0497e7e5258da1d7e02e03e746fdeae412e477b6970bb235",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "in about AD 125–128,",
+          "exact_native_cache_key": "97c2c9ae9b247c9c6fe5a977945a02f93e2309f7.pkl",
+          "cache_input_text_sha256": "8fbbc76d669d3dddf3b16dcc210fc0f6014b8876a4f22c327f3130e14004df2b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "the Pantheon's dome still crowns the vast chamber below.",
+          "exact_native_cache_key": "475058e9acdf9148700d8a2bcf08e4413ff48375.pkl",
+          "cache_input_text_sha256": "afe85eb054b6c44c828a6aa3813dffe963aa73e39b9cb815af15b8636da0aaae",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "About 43 metres in diameter, it remains the world's largest unreinforced concrete dome.",
+          "exact_native_cache_key": "4e03b3897c60dbba0ed61377d4cfaad021f2deb7.pkl",
+          "cache_input_text_sha256": "bb11b4fbae207441626155a3030f25835ada43bdb019d4472cfa9344c58d8039",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "About 43 metres in diameter, it remains the world's largest unreinforced concrete dome.",
+          "exact_native_cache_key": "941408c808cdb324aca9c515b37203ac4bc16ad4.pkl",
+          "cache_input_text_sha256": "bb11b4fbae207441626155a3030f25835ada43bdb019d4472cfa9344c58d8039",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "About 43 metres in diameter,",
+          "exact_native_cache_key": "da22a5eb7ffb5aa7eac47dbaac3204ebe3081a12.pkl",
+          "cache_input_text_sha256": "6cd6076ea61829248b78ca500beb4fea0321637d1bad9ec20d59db3cd7607920",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "it remains the world's largest unreinforced concrete dome.",
+          "exact_native_cache_key": "a3587c5c809e7164f3a5a4990f69fa5790dcf930.pkl",
+          "cache_input_text_sha256": "437fcd442a115724034890b3c3f434e10dd9341033902c1c50c96d1807a98dff",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "It is an astonishing feat of architecture, and a stubborn puzzle.",
+          "exact_native_cache_key": "48f004e0e575389101787e68c762e0ad25f1b8b8.pkl",
+          "cache_input_text_sha256": "088d02d16372121fb3f45984d8927029b9491e80087469d7787d1e07899565f4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "It is an astonishing feat of architecture, and a stubborn puzzle.",
+          "exact_native_cache_key": "a8df3e97dfc014e0e4534d0ef953ae9e9ce38483.pkl",
+          "cache_input_text_sha256": "088d02d16372121fb3f45984d8927029b9491e80087469d7787d1e07899565f4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "It is an astonishing feat of architecture,",
+          "exact_native_cache_key": "8b81bb19f25e524f63d8859f85ce7fe1f69e0db4.pkl",
+          "cache_input_text_sha256": "c5cdf72d761c054175196acf1408708c5b8e3d09b997f785e762b7163db6e840",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and a stubborn puzzle.",
+          "exact_native_cache_key": "74004ea1465cf7fad70d2ac3fcfd926a7ce2c8d6.pkl",
+          "cache_input_text_sha256": "0d97867c51e8e9099456fbdb0024ae63e4c83c60b7105fe1f3e3a98a04e3f747",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Modern concrete is usually reinforced with embedded steel bars, which are prone to corrosion.",
+          "exact_native_cache_key": "a7148eb058b73d1ed55c8b1da9a840a24e6dfe8e.pkl",
+          "cache_input_text_sha256": "aaf7bb1d83efbf068e7eb65e8a49afd2f6955ecb531df286f6c9280259bdb4fc",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Modern concrete is usually reinforced with embedded steel bars, which are prone to corrosion.",
+          "exact_native_cache_key": "22611fef260bb1b2183450c8a607182d06f8bd12.pkl",
+          "cache_input_text_sha256": "aaf7bb1d83efbf068e7eb65e8a49afd2f6955ecb531df286f6c9280259bdb4fc",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Modern concrete is usually reinforced with embedded steel bars,",
+          "exact_native_cache_key": "da74a3ff39a08452d2b7c8243af9eeabe5070663.pkl",
+          "cache_input_text_sha256": "9893c18aa5d5f55163e892448baee8c5a83a34cfc146b85108530230ab3a02f1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "which are prone to corrosion.",
+          "exact_native_cache_key": "787bb548eec10038e39745f02e631f548d231201.pkl",
+          "cache_input_text_sha256": "e73bf72bc82470addabe7c93bff9abed0cf1339f0ad6cb2df5a06211cc3a4b99",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Modern concrete is usually reinforced with embedded steel bars,",
+          "exact_native_cache_key": "da74a3ff39a08452d2b7c8243af9eeabe5070663.pkl",
+          "cache_input_text_sha256": "9893c18aa5d5f55163e892448baee8c5a83a34cfc146b85108530230ab3a02f1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "which are prone to corrosion.",
+          "exact_native_cache_key": "787bb548eec10038e39745f02e631f548d231201.pkl",
+          "cache_input_text_sha256": "e73bf72bc82470addabe7c93bff9abed0cf1339f0ad6cb2df5a06211cc3a4b99",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "As the steel rusts, it swells and fractures the concrete around it, and many structures are designed for a lifespan of around 50 years.",
+          "exact_native_cache_key": "0eea3eece26de3b99eeac3589afeaaa8b5625f28.pkl",
+          "cache_input_text_sha256": "6ab261a57426089c0d1bc997f81803cdf6a6ba0b13a486b18837796ddffd5f85",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "As the steel rusts, it swells and fractures the concrete around it, and many structures are designed for a lifespan of around 50 years.",
+          "exact_native_cache_key": "816dd44088302692f36749604b8ffcf39e0ccfab.pkl",
+          "cache_input_text_sha256": "6ab261a57426089c0d1bc997f81803cdf6a6ba0b13a486b18837796ddffd5f85",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "As the steel rusts, it swells and fractures the concrete around it,",
+          "exact_native_cache_key": "214c7888e8238ecf7f37dabff37143f905deb420.pkl",
+          "cache_input_text_sha256": "338a24d08dd6213e01665faeddbfbdd584ded804a383875fac3a5263fed266b1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and many structures are designed for a lifespan of around 50 years.",
+          "exact_native_cache_key": "42646e0ec9991ad5786c1e5e785b9ddbbbcac04a.pkl",
+          "cache_input_text_sha256": "8fcd4e22042899b2025175a4e7d1508ab3222f37cf216586ceee467f0088c54a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "As the steel rusts,",
+          "exact_native_cache_key": "0e65db92475156e35f198a7076391365a860b0e2.pkl",
+          "cache_input_text_sha256": "8c384c0813f888fe9b6470bc19ff7d510deca47495b30d3bb629163a2976148c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "it swells and fractures the concrete around it,",
+          "exact_native_cache_key": "41a6d4869e22b933bb76cec1cd23f4b23b58c356.pkl",
+          "cache_input_text_sha256": "4585141ab62e283850b3224486dbed575600d8f5c8bf07d9eb2aaf2e236d5494",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and many structures are designed for a lifespan of around 50 years.",
+          "exact_native_cache_key": "42646e0ec9991ad5786c1e5e785b9ddbbbcac04a.pkl",
+          "cache_input_text_sha256": "8fcd4e22042899b2025175a4e7d1508ab3222f37cf216586ceee467f0088c54a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Roman concrete is not stronger than its modern counterpart; its merit lies in durability.",
+          "exact_native_cache_key": "a3c1051c917ac5cab496b25a056ed731e17dd16e.pkl",
+          "cache_input_text_sha256": "d550d58e84baf30dd2263752b2c45adca58f0104734e38d377cf8f10d920ecd7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Roman concrete is not stronger than its modern counterpart; its merit lies in durability.",
+          "exact_native_cache_key": "7e22fe3d4685529bd3625a376fbf52da65004145.pkl",
+          "cache_input_text_sha256": "d550d58e84baf30dd2263752b2c45adca58f0104734e38d377cf8f10d920ecd7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Roman concrete is not stronger than its modern counterpart;",
+          "exact_native_cache_key": "26b670812a9ae94f704a0ad5dc2dd76c8bc5f1d9.pkl",
+          "cache_input_text_sha256": "0e33fbd396ffbc14f1f92caa06195e69fc4dbf22534da89a3dedf9091f644207",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "its merit lies in durability.",
+          "exact_native_cache_key": "4a6318730a06902830b53b72aaf92b9e6436c7cf.pkl",
+          "cache_input_text_sha256": "cca4ef6fa267ac7ebfcc2bff3d416b6dc862a2333cae41136df69285befeb766",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Roman concrete is not stronger than its modern counterpart;",
+          "exact_native_cache_key": "26b670812a9ae94f704a0ad5dc2dd76c8bc5f1d9.pkl",
+          "cache_input_text_sha256": "0e33fbd396ffbc14f1f92caa06195e69fc4dbf22534da89a3dedf9091f644207",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "its merit lies in durability.",
+          "exact_native_cache_key": "4a6318730a06902830b53b72aaf92b9e6436c7cf.pkl",
+          "cache_input_text_sha256": "cca4ef6fa267ac7ebfcc2bff3d416b6dc862a2333cae41136df69285befeb766",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Yet the ancient material seemed to have a shortcoming.",
+          "exact_native_cache_key": "7df44d7ce79dbb04e03cb7f98f24594e609b5c7b.pkl",
+          "cache_input_text_sha256": "4eb67caf60deed63490ab91a3f568adb19425073bbe0d290fcc53cac67e81865",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Yet the ancient material seemed to have a shortcoming.",
+          "exact_native_cache_key": "596cb177517566471efab139d67e77a7746e7dee.pkl",
+          "cache_input_text_sha256": "4eb67caf60deed63490ab91a3f568adb19425073bbe0d290fcc53cac67e81865",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "It is dotted with white chunks of lime, known as lime clasts.",
+          "exact_native_cache_key": "a8164f11ec4312ffb3611b0f3356196c3d15e3d1.pkl",
+          "cache_input_text_sha256": "098a8a07f5b21f061afa710d5b004100778e7c3ac6676781155b4a61aed33b96",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "It is dotted with white chunks of lime, known as lime clasts.",
+          "exact_native_cache_key": "47a80dc0157970a1a919260818ec9b16b42db346.pkl",
+          "cache_input_text_sha256": "098a8a07f5b21f061afa710d5b004100778e7c3ac6676781155b4a61aed33b96",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "It is dotted with white chunks of lime,",
+          "exact_native_cache_key": "943af748cd04fd22df44da9a6c2f220b51f13305.pkl",
+          "cache_input_text_sha256": "62fdca21b0504c3e4f08b5429008bf50bfacb6527db92000f20d2835f708b225",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "known as lime clasts.",
+          "exact_native_cache_key": "47c1befcbd21e2f75778ed5485fd2f135708ed5e.pkl",
+          "cache_input_text_sha256": "62023c284cff3836115354958cd460411259e9afeb51db947cb5854470e6c640",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "It is dotted with white chunks of lime,",
+          "exact_native_cache_key": "943af748cd04fd22df44da9a6c2f220b51f13305.pkl",
+          "cache_input_text_sha256": "62fdca21b0504c3e4f08b5429008bf50bfacb6527db92000f20d2835f708b225",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "known as lime clasts.",
+          "exact_native_cache_key": "47c1befcbd21e2f75778ed5485fd2f135708ed5e.pkl",
+          "cache_input_text_sha256": "62023c284cff3836115354958cd460411259e9afeb51db947cb5854470e6c640",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Experts long ascribed these lumps to sloppy mixing or inferior raw ingredients, a defect that, they assumed, a more conscientious builder would have avoided.",
+          "exact_native_cache_key": "f6d36846464f48d17706a7e97062eec129b9a5e2.pkl",
+          "cache_input_text_sha256": "c6508af7a251d583c82a8f0bef868724b0c376d6a9912bfef7917ba4015f47e9",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Experts long ascribed these lumps to sloppy mixing or inferior raw ingredients, a defect that, they assumed, a more conscientious builder would have avoided.",
+          "exact_native_cache_key": "c2adba085f5d543fd5fe89c68852de88c261c263.pkl",
+          "cache_input_text_sha256": "c6508af7a251d583c82a8f0bef868724b0c376d6a9912bfef7917ba4015f47e9",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Experts long ascribed these lumps to sloppy mixing or inferior raw ingredients,",
+          "exact_native_cache_key": "8979cfa7c8b42ebf9924fb17fd79e04b8434f47a.pkl",
+          "cache_input_text_sha256": "4c90fdfc35b8125e545cae44f2970b0f61aef4e985b576a5307732cd9ccad6ce",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "a defect that, they assumed, a more conscientious builder would have avoided.",
+          "exact_native_cache_key": "c43b1445d83666984875dad07b2d1553e366bfea.pkl",
+          "cache_input_text_sha256": "22d829a434d63d9758e1183b4f40ad01e971c5245aed8b36f5999212238e4286",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Experts long ascribed these lumps to sloppy mixing or inferior raw ingredients,",
+          "exact_native_cache_key": "8979cfa7c8b42ebf9924fb17fd79e04b8434f47a.pkl",
+          "cache_input_text_sha256": "4c90fdfc35b8125e545cae44f2970b0f61aef4e985b576a5307732cd9ccad6ce",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a defect that,",
+          "exact_native_cache_key": "c20b494865d53336afe1eab454d86ead37f8ecab.pkl",
+          "cache_input_text_sha256": "cba448020eeb075b32aca0c3913d9f3d2636b6d1bf9d1315a9a4d169c4afa9cb",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "they assumed,",
+          "exact_native_cache_key": "d44f0ada5aa7630e5a039ee923a78d370a637564.pkl",
+          "cache_input_text_sha256": "2f20a7b13195fda6a8dabee528932d2da465d2451ebd4deffc950fe36483f096",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a more conscientious builder would have avoided.",
+          "exact_native_cache_key": "604570a4f20ecbff963fceb5e1124c191bba6f25.pkl",
+          "cache_input_text_sha256": "cb148b29ec250df6dbdaa09360c13947ecff4ce48ff8f2c0399ed9ccc8747bf5",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "A study published in Science Advances in January 2023 offered a different interpretation.",
+          "exact_native_cache_key": "0554ef068c3e0459173487d0758643f918cbb733.pkl",
+          "cache_input_text_sha256": "cb2c6f7ebf002e2a493b8371c10428654b2e3f908a6792a9522a4291f0198ddb",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "A study published in Science Advances in January 2023 offered a different interpretation.",
+          "exact_native_cache_key": "1f534c2791849b450b219ad8af564f5aabb5b7ea.pkl",
+          "cache_input_text_sha256": "cb2c6f7ebf002e2a493b8371c10428654b2e3f908a6792a9522a4291f0198ddb",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The clasts, it suggested, were a by-product of \"hot mixing\" with quicklime, a reactive lime that heats up in water.",
+          "exact_native_cache_key": "f84438179c7f9bc36c170ea22ecc6a4ab4ab2895.pkl",
+          "cache_input_text_sha256": "b392a04fcfb67581105e951103f6612826d8a17e34f9f3072e6c16258015d9ba",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "The clasts, it suggested, were a by-product of \"hot mixing\" with quicklime, a reactive lime that heats up in water.",
+          "exact_native_cache_key": "f1198c4bfc2cfbf7a1a0169d6779be09399e0195.pkl",
+          "cache_input_text_sha256": "b392a04fcfb67581105e951103f6612826d8a17e34f9f3072e6c16258015d9ba",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "The clasts, it suggested, were a by-product of \"hot mixing\" with quicklime,",
+          "exact_native_cache_key": "dd290bc4cfc19d719481d5b0995bf411f2337619.pkl",
+          "cache_input_text_sha256": "d4e98fc371ad0815f1fcf89c2fa28a42783adcdbdc4c423f5883dd6c09786159",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "a reactive lime that heats up in water.",
+          "exact_native_cache_key": "96da1526b3384c0468d2debc16190f5a2596b903.pkl",
+          "cache_input_text_sha256": "81372eef8c2c490df2b2af1c8b57c29c88c8153d4ec13ed8715370bd9b8950e8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "The clasts,",
+          "exact_native_cache_key": "fd5e9e0852e5911f0515d6c73346174310bb0182.pkl",
+          "cache_input_text_sha256": "86c88f51e057f347ef3add2e2d512714e1d87cbcf769820993195e390eac40ca",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "it suggested,",
+          "exact_native_cache_key": "caacd5e8521afbdd5080d5b7d5dea41c64027e4e.pkl",
+          "cache_input_text_sha256": "256ab2eec8f498cb4ab9fc0cc25c87cca5ad29dc3d97f92a6b9a9872014d34f8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "were a by-product of \"hot mixing\" with quicklime,",
+          "exact_native_cache_key": "4360e1a4c902f219b7ff435d842e0d4c4487fe07.pkl",
+          "cache_input_text_sha256": "b62760b2c6bcf2e6bb7cfe8b923fe9861d0d99b8929b3d81e89f8bc7f7052f84",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a reactive lime that heats up in water.",
+          "exact_native_cache_key": "96da1526b3384c0468d2debc16190f5a2596b903.pkl",
+          "cache_input_text_sha256": "81372eef8c2c490df2b2af1c8b57c29c88c8153d4ec13ed8715370bd9b8950e8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "When water seeps into a crack, the clasts dissolve and their calcium recrystallises as calcium carbonate, plugging the gap.",
+          "exact_native_cache_key": "d629201d674b1330125b6d01d16d6b400857836c.pkl",
+          "cache_input_text_sha256": "cb100fb1b020575f10fd30fd571bf8bb15c5ed779e69dd23f955554030ebf237",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "When water seeps into a crack, the clasts dissolve and their calcium recrystallises as calcium carbonate, plugging the gap.",
+          "exact_native_cache_key": "c7ddc12a8e505aaf48535ac98330567c90a808b7.pkl",
+          "cache_input_text_sha256": "cb100fb1b020575f10fd30fd571bf8bb15c5ed779e69dd23f955554030ebf237",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "When water seeps into a crack,",
+          "exact_native_cache_key": "c707895ebae97eeccef499afda30434ca88e4a6b.pkl",
+          "cache_input_text_sha256": "b4fc9241abaa6aa753dc6550960c7abfcdea3859ad9ad5cae73a63726040f4c3",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "the clasts dissolve and their calcium recrystallises as calcium carbonate, plugging the gap.",
+          "exact_native_cache_key": "1a763d69411d534089d9d5785c3ee62b4ba82aae.pkl",
+          "cache_input_text_sha256": "40c9f34093548bef2108bfc00cec792bde24e71dd4e3ea9bd047925b6a9b8678",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "When water seeps into a crack,",
+          "exact_native_cache_key": "c707895ebae97eeccef499afda30434ca88e4a6b.pkl",
+          "cache_input_text_sha256": "b4fc9241abaa6aa753dc6550960c7abfcdea3859ad9ad5cae73a63726040f4c3",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "the clasts dissolve and their calcium recrystallises as calcium carbonate,",
+          "exact_native_cache_key": "23410e7c136be6b04eaabeeb3d9c0a08d5e51b2e.pkl",
+          "cache_input_text_sha256": "9306f9686299a29458e280a0c333d61d3f3a43082f22a0a1ffeba999235f77d1",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "plugging the gap.",
+          "exact_native_cache_key": "327288178df43a5d5e5fe859b39f355587f9bc7c.pkl",
+          "cache_input_text_sha256": "7517e70c2d5b59af306aaceaf181fe4c155528a6ec5a21a0f116df42c7fffa32",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In tests, water ceased to trickle through cracked hot-mixed samples within weeks, but kept flowing through samples without quicklime.",
+          "exact_native_cache_key": "480dc90709394cb06e43bbd3010ebf2303970c61.pkl",
+          "cache_input_text_sha256": "fa3d66329d73e7257a2281806ffe081b64b049a910c6eb570fb4f21772b11aae",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "In tests, water ceased to trickle through cracked hot-mixed samples within weeks, but kept flowing through samples without quicklime.",
+          "exact_native_cache_key": "c6829314f43a506221cbae44852b13b934314a03.pkl",
+          "cache_input_text_sha256": "fa3d66329d73e7257a2281806ffe081b64b049a910c6eb570fb4f21772b11aae",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In tests, water ceased to trickle through cracked hot-mixed samples within weeks,",
+          "exact_native_cache_key": "6a8d9d303497d8c35bae6e0a73bf96e700eb9c6d.pkl",
+          "cache_input_text_sha256": "73fe318c1a70ee2aec9087cf4ac54487dd0290f4fc91247370332db294567cd4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "but kept flowing through samples without quicklime.",
+          "exact_native_cache_key": "243291a613c6cfc6e796cc3cd65cf75b3221f6e7.pkl",
+          "cache_input_text_sha256": "1a9b350abdac4f592fea30937de54c05c5b999eb1e3dab880f4f2e4c55fe73b2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In tests,",
+          "exact_native_cache_key": "889539d9d1cf0ea250bc0e6968c24351944ed3ed.pkl",
+          "cache_input_text_sha256": "58a1178ecfdd1e5ccf32e302468cfee790a41dce46306ff71c70372a46e2b830",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "water ceased to trickle through cracked hot-mixed samples within weeks,",
+          "exact_native_cache_key": "1466a4b96b4bb88e5be7df5e85385b4e0ca67e34.pkl",
+          "cache_input_text_sha256": "ac8cb8645d7b8f9bb71bba4d2ea1306235778c3fd18085a8bae638ade0283daf",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "but kept flowing through samples without quicklime.",
+          "exact_native_cache_key": "243291a613c6cfc6e796cc3cd65cf75b3221f6e7.pkl",
+          "cache_input_text_sha256": "1a9b350abdac4f592fea30937de54c05c5b999eb1e3dab880f4f2e4c55fe73b2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The implications extend beyond archaeology.",
+          "exact_native_cache_key": "199601df6a22b8a60bbfa5e772c55ce726f4a1a6.pkl",
+          "cache_input_text_sha256": "b33577556d417694e6aea927e929e7e0081cafe78c7344d8a72b0b18adfcb95b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "The implications extend beyond archaeology.",
+          "exact_native_cache_key": "274124b8a5b7642640647ce261f3b19862aca47c.pkl",
+          "cache_input_text_sha256": "b33577556d417694e6aea927e929e7e0081cafe78c7344d8a72b0b18adfcb95b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Cement manufacture accounts for about 8 per cent of global carbon dioxide emissions, the think-tank Chatham House reported in June 2018.",
+          "exact_native_cache_key": "7cf071fb0b3990492ccadffa80234a68ebd7d525.pkl",
+          "cache_input_text_sha256": "089050ec3a61f21e02d698aeab07cebc8f8c70f9a2a15ef99eea3b14f790b522",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Cement manufacture accounts for about 8 per cent of global carbon dioxide emissions, the think-tank Chatham House reported in June 2018.",
+          "exact_native_cache_key": "9e50c06f918a027e9f93f92aa29d122efa05613d.pkl",
+          "cache_input_text_sha256": "089050ec3a61f21e02d698aeab07cebc8f8c70f9a2a15ef99eea3b14f790b522",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Cement manufacture accounts for about 8 per cent of global carbon dioxide emissions,",
+          "exact_native_cache_key": "c70ce8681abfde62c20b16088b124638c977e9d0.pkl",
+          "cache_input_text_sha256": "c6b82d51614ca493d8f4a228a681b2997e3834d85f3ad7a858af623a07963f7e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "the think-tank Chatham House reported in June 2018.",
+          "exact_native_cache_key": "948bb8dfa1980d33f9a457020bf9751610bbf7ae.pkl",
+          "cache_input_text_sha256": "d96fe1a6a8f9011385ffb05bae1997fcb9166f4758f53665cd13d91e00aa83e3",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Cement manufacture accounts for about 8 per cent of global carbon dioxide emissions,",
+          "exact_native_cache_key": "c70ce8681abfde62c20b16088b124638c977e9d0.pkl",
+          "cache_input_text_sha256": "c6b82d51614ca493d8f4a228a681b2997e3834d85f3ad7a858af623a07963f7e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "the think-tank Chatham House reported in June 2018.",
+          "exact_native_cache_key": "948bb8dfa1980d33f9a457020bf9751610bbf7ae.pkl",
+          "cache_input_text_sha256": "d96fe1a6a8f9011385ffb05bae1997fcb9166f4758f53665cd13d91e00aa83e3",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Concrete that mends its cracks could last longer, making demolition and rebuilding rarer and trimming emissions.",
+          "exact_native_cache_key": "0e37448722fa9dc8155a9f73ef1c1c41814afef0.pkl",
+          "cache_input_text_sha256": "ae78ffc068fa21a46434d7f05581d0c9dc504738fcb00cce32853b95cd3260a7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Concrete that mends its cracks could last longer, making demolition and rebuilding rarer and trimming emissions.",
+          "exact_native_cache_key": "6114901afd6a833bf6c17c34c80222b05f50fa5e.pkl",
+          "cache_input_text_sha256": "ae78ffc068fa21a46434d7f05581d0c9dc504738fcb00cce32853b95cd3260a7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Concrete that mends its cracks could last longer,",
+          "exact_native_cache_key": "0ab52d15f71452f1b4309885432f0fc9ddfe28d8.pkl",
+          "cache_input_text_sha256": "efaacdd80baf79adddbd12824e05fd11bba4f386bd69301d26e1b5a8f1d9ec0c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "making demolition and rebuilding rarer and trimming emissions.",
+          "exact_native_cache_key": "256da464c76ad537c0b39f3214e75b724b66186e.pkl",
+          "cache_input_text_sha256": "e9500cd1529f1acf677b8eefb9e00f5a7a255bf3dd616352676c6eafcae66a4b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Concrete that mends its cracks could last longer,",
+          "exact_native_cache_key": "0ab52d15f71452f1b4309885432f0fc9ddfe28d8.pkl",
+          "cache_input_text_sha256": "efaacdd80baf79adddbd12824e05fd11bba4f386bd69301d26e1b5a8f1d9ec0c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "making demolition and rebuilding rarer and trimming emissions.",
+          "exact_native_cache_key": "256da464c76ad537c0b39f3214e75b724b66186e.pkl",
+          "cache_input_text_sha256": "e9500cd1529f1acf677b8eefb9e00f5a7a255bf3dd616352676c6eafcae66a4b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The white lumps once scorned as signs of clumsy workmanship have prompted a rethink of construction.",
+          "exact_native_cache_key": "3237ba968c59c0507ce37c029aa41539fe954e75.pkl",
+          "cache_input_text_sha256": "b0383d9a53db589c4c59372d6ebacc88a15f991aa84c2e5478440366d9e9341f",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "The white lumps once scorned as signs of clumsy workmanship have prompted a rethink of construction.",
+          "exact_native_cache_key": "519592875d2928bd80de64fcc267c26882a00fab.pkl",
+          "cache_input_text_sha256": "b0383d9a53db589c4c59372d6ebacc88a15f991aa84c2e5478440366d9e9341f",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "The white lumps once scorned as signs of clumsy workmanship",
+          "exact_native_cache_key": "fad7beec1db273c151df531849c7ccdf1f4a2288.pkl",
+          "cache_input_text_sha256": "5c4d5b916ab9cfd417fb3371a868ce932603928a19050cf18a22f27a29f6e937",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "have prompted a rethink of construction.",
+          "exact_native_cache_key": "269fc0b212e49c8ff03704d08f6e037b0daff6d2.pkl",
+          "cache_input_text_sha256": "d7a569787afd97da8f0a8743aa092c864b00509b9769fa99e154691b38e89d2f",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "unique_reference_key_count": 78,
+      "raw_mother_cache_scalar_manifest": [
+        {
+          "exact_native_cache_key": "eff22f2a2d56ede26ad0548c4c5d22ac322d0203.pkl",
+          "pkl_sha256": "f77dbe57862be9f80a085dfb46c1785f22c1337891068771eb85d17fea5305ed",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "标题",
+              "piece": null,
+              "reference_kind": "title-default-raw",
+              "method": "create",
+              "source_slice": "The Secret of Rome's Undying Concrete",
+              "exact_native_cache_key": "eff22f2a2d56ede26ad0548c4c5d22ac322d0203.pkl",
+              "cache_input_text_sha256": "753918d65e1c0475dd82b0a7ea9ca253e9bce3237b33445c626fb9d0bee3c2d0",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "f77dbe57862be9f8",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            56320
+          ],
+          "unprocessed_array_sha256": "48322c1f2082c811fbdb42512845e51f36efec325edc36195b37febd13f9114a"
+        },
+        {
+          "exact_native_cache_key": "7468d89ce01c7b387c7e67f9dc86574a57f6ec4e.pkl",
+          "pkl_sha256": "5b269ca762ae5524018341bbf19b26b8de019a7062230f52bc8d258d4bfef77b",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Nearly 1,900 years after its completion, in about AD 125–128, the Pantheon's dome still crowns the vast chamber below.",
+              "exact_native_cache_key": "7468d89ce01c7b387c7e67f9dc86574a57f6ec4e.pkl",
+              "cache_input_text_sha256": "fa3abb83b6acd5930be11f906e24848162e607ad94cc57cc491dd2cc347e2713",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "5b269ca762ae5524",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            292864
+          ],
+          "unprocessed_array_sha256": "2f4f2c487e84bbf61ddfd9856349ef5101b413ecad774e7217d288f51868d69a"
+        },
+        {
+          "exact_native_cache_key": "177030e6bb1828557ffd798ff6f588f442d56b35.pkl",
+          "pkl_sha256": "2fc0839d6574ece230ea473abc0c5b287bd40567eda0f15b5e40249864b4718e",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Nearly 1,900 years after its completion, in about AD 125–128,",
+              "exact_native_cache_key": "177030e6bb1828557ffd798ff6f588f442d56b35.pkl",
+              "cache_input_text_sha256": "c81736e18bfa83bb639fde20eaca91763bbf0d1476aea0e90c558b3209224e7b",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "2fc0839d6574ece2",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            195072
+          ],
+          "unprocessed_array_sha256": "f7cf5cd1680d237113c41bceb066107caf963acf4733751f78bc71c80ae970cc"
+        },
+        {
+          "exact_native_cache_key": "475058e9acdf9148700d8a2bcf08e4413ff48375.pkl",
+          "pkl_sha256": "e7cf6673e1269c54a25b38357a07920b8287a49fa361f5d2c7d4559a8f03c186",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "the Pantheon's dome still crowns the vast chamber below.",
+              "exact_native_cache_key": "475058e9acdf9148700d8a2bcf08e4413ff48375.pkl",
+              "cache_input_text_sha256": "afe85eb054b6c44c828a6aa3813dffe963aa73e39b9cb815af15b8636da0aaae",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S1",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "the Pantheon's dome still crowns the vast chamber below.",
+              "exact_native_cache_key": "475058e9acdf9148700d8a2bcf08e4413ff48375.pkl",
+              "cache_input_text_sha256": "afe85eb054b6c44c828a6aa3813dffe963aa73e39b9cb815af15b8636da0aaae",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "e7cf6673e1269c54",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            80896
+          ],
+          "unprocessed_array_sha256": "fbdb7508819575ed11d9248ec0e792ad7145e0f1cfa2403b63a92d93d1825577"
+        },
+        {
+          "exact_native_cache_key": "f35e55d162730bc8f54d407a5eaf539ea91128c8.pkl",
+          "pkl_sha256": "81dd62b420c6a2d4090a6570cde5d8768dd5df3d77fd134bfb6fdaba3e4fa834",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Nearly 1,900 years after its completion,",
+              "exact_native_cache_key": "f35e55d162730bc8f54d407a5eaf539ea91128c8.pkl",
+              "cache_input_text_sha256": "7a912ef69853568b0497e7e5258da1d7e02e03e746fdeae412e477b6970bb235",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "81dd62b420c6a2d4",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            78848
+          ],
+          "unprocessed_array_sha256": "b0190648d063dfec23131446207aa264c4dd25718c65c063c1f13d2f2fcf231a"
+        },
+        {
+          "exact_native_cache_key": "97c2c9ae9b247c9c6fe5a977945a02f93e2309f7.pkl",
+          "pkl_sha256": "c9b44f62ff5d608d10407bf8b4a2bc6077a435c80722f78e900cca7e28bca519",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "in about AD 125–128,",
+              "exact_native_cache_key": "97c2c9ae9b247c9c6fe5a977945a02f93e2309f7.pkl",
+              "cache_input_text_sha256": "8fbbc76d669d3dddf3b16dcc210fc0f6014b8876a4f22c327f3130e14004df2b",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "c9b44f62ff5d608d",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            90624
+          ],
+          "unprocessed_array_sha256": "2f167097ff26b0effd90761c0247af927e2cb3ffcfc0a295c8aacfdba4f3e478"
+        },
+        {
+          "exact_native_cache_key": "4e03b3897c60dbba0ed61377d4cfaad021f2deb7.pkl",
+          "pkl_sha256": "42879b6d824e3b91899f44f0c64f2df6e39284fab3f776ed16474ad4b0244ff7",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S2",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "About 43 metres in diameter, it remains the world's largest unreinforced concrete dome.",
+              "exact_native_cache_key": "4e03b3897c60dbba0ed61377d4cfaad021f2deb7.pkl",
+              "cache_input_text_sha256": "bb11b4fbae207441626155a3030f25835ada43bdb019d4472cfa9344c58d8039",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "42879b6d824e3b91",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            169984
+          ],
+          "unprocessed_array_sha256": "6bb3caacafe8fe2ebeca47387c88178f91372843b94a06f81ecb7eb8217f79d2"
+        },
+        {
+          "exact_native_cache_key": "da22a5eb7ffb5aa7eac47dbaac3204ebe3081a12.pkl",
+          "pkl_sha256": "948b22d4aca92f76f98bea9178c2fdda43d2c055cce2790bf28a0dd7362eeb24",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S2",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "About 43 metres in diameter,",
+              "exact_native_cache_key": "da22a5eb7ffb5aa7eac47dbaac3204ebe3081a12.pkl",
+              "cache_input_text_sha256": "6cd6076ea61829248b78ca500beb4fea0321637d1bad9ec20d59db3cd7607920",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "948b22d4aca92f76",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            54272
+          ],
+          "unprocessed_array_sha256": "04f4f9f0705681b009c0b179223d468c6e2b8aa6c3cbb44d3647cd518f44b7f7"
+        },
+        {
+          "exact_native_cache_key": "a3587c5c809e7164f3a5a4990f69fa5790dcf930.pkl",
+          "pkl_sha256": "5dcb8d134bcc98d0199968aeb251808d26177980b7ee314d2887a29686e6bc98",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S2",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "it remains the world's largest unreinforced concrete dome.",
+              "exact_native_cache_key": "a3587c5c809e7164f3a5a4990f69fa5790dcf930.pkl",
+              "cache_input_text_sha256": "437fcd442a115724034890b3c3f434e10dd9341033902c1c50c96d1807a98dff",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "5dcb8d134bcc98d0",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            96256
+          ],
+          "unprocessed_array_sha256": "b905d89f43a2b99253ce5077148557cb5bc747c47362093b5ffa3dea362f29f9"
+        },
+        {
+          "exact_native_cache_key": "48f004e0e575389101787e68c762e0ad25f1b8b8.pkl",
+          "pkl_sha256": "71de916e8628c0ff1732bcbc97c13cb1ad61865ffb429676fecdd80df95154c5",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S3",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "It is an astonishing feat of architecture, and a stubborn puzzle.",
+              "exact_native_cache_key": "48f004e0e575389101787e68c762e0ad25f1b8b8.pkl",
+              "cache_input_text_sha256": "088d02d16372121fb3f45984d8927029b9491e80087469d7787d1e07899565f4",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "71de916e8628c0ff",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            97792
+          ],
+          "unprocessed_array_sha256": "f417708a90a00e1b249c5dc605fdb1bb27eab136070ceee0b58a5c0ef61936d6"
+        },
+        {
+          "exact_native_cache_key": "8b81bb19f25e524f63d8859f85ce7fe1f69e0db4.pkl",
+          "pkl_sha256": "b300936c180752cb3b6ec8355d3da6ef33a8eaa1dbb1558869dddef5d65b07c6",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S3",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "It is an astonishing feat of architecture,",
+              "exact_native_cache_key": "8b81bb19f25e524f63d8859f85ce7fe1f69e0db4.pkl",
+              "cache_input_text_sha256": "c5cdf72d761c054175196acf1408708c5b8e3d09b997f785e762b7163db6e840",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "b300936c180752cb",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            59392
+          ],
+          "unprocessed_array_sha256": "4e2861b1759e623b4119a1e210192c9ea8e29019afc6c57c0a618f64bfad64c8"
+        },
+        {
+          "exact_native_cache_key": "74004ea1465cf7fad70d2ac3fcfd926a7ce2c8d6.pkl",
+          "pkl_sha256": "2d2dee36b9f8cde3b98585b53a771bf5260032e6bc0924ec7a6f271d9d080fba",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S3",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "and a stubborn puzzle.",
+              "exact_native_cache_key": "74004ea1465cf7fad70d2ac3fcfd926a7ce2c8d6.pkl",
+              "cache_input_text_sha256": "0d97867c51e8e9099456fbdb0024ae63e4c83c60b7105fe1f3e3a98a04e3f747",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "2d2dee36b9f8cde3",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            32256
+          ],
+          "unprocessed_array_sha256": "dbe9cf282bf154be9e21b4aca2c1235cc35dd5de43605c304d5a7f68e6b48c57"
+        },
+        {
+          "exact_native_cache_key": "a7148eb058b73d1ed55c8b1da9a840a24e6dfe8e.pkl",
+          "pkl_sha256": "121c7a1ebd56db89021d44b95cd490a31ed50499c8e5c27e55e52b04f6c8fa98",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Modern concrete is usually reinforced with embedded steel bars, which are prone to corrosion.",
+              "exact_native_cache_key": "a7148eb058b73d1ed55c8b1da9a840a24e6dfe8e.pkl",
+              "cache_input_text_sha256": "aaf7bb1d83efbf068e7eb65e8a49afd2f6955ecb531df286f6c9280259bdb4fc",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "121c7a1ebd56db89",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            155136
+          ],
+          "unprocessed_array_sha256": "9709e60544579466ee315efb2cd1c88e482999f14ad009546fee41f2ea1ae1be"
+        },
+        {
+          "exact_native_cache_key": "da74a3ff39a08452d2b7c8243af9eeabe5070663.pkl",
+          "pkl_sha256": "eb7d38d2345e51b558f5280fdb75f499b95e59b8d982aa6b283dacab8cbc7e21",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Modern concrete is usually reinforced with embedded steel bars,",
+              "exact_native_cache_key": "da74a3ff39a08452d2b7c8243af9eeabe5070663.pkl",
+              "cache_input_text_sha256": "9893c18aa5d5f55163e892448baee8c5a83a34cfc146b85108530230ab3a02f1",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S4",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Modern concrete is usually reinforced with embedded steel bars,",
+              "exact_native_cache_key": "da74a3ff39a08452d2b7c8243af9eeabe5070663.pkl",
+              "cache_input_text_sha256": "9893c18aa5d5f55163e892448baee8c5a83a34cfc146b85108530230ab3a02f1",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "eb7d38d2345e51b5",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            108544
+          ],
+          "unprocessed_array_sha256": "abae98f4c11a28a485f648ced4da49b92a40761350df6cdbbd2f33c185168d23"
+        },
+        {
+          "exact_native_cache_key": "787bb548eec10038e39745f02e631f548d231201.pkl",
+          "pkl_sha256": "11781cd8a588af6459eeb2b21b4e2ff4fcec01b91528b5e3beab935c32b0d04f",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "which are prone to corrosion.",
+              "exact_native_cache_key": "787bb548eec10038e39745f02e631f548d231201.pkl",
+              "cache_input_text_sha256": "e73bf72bc82470addabe7c93bff9abed0cf1339f0ad6cb2df5a06211cc3a4b99",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S4",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "which are prone to corrosion.",
+              "exact_native_cache_key": "787bb548eec10038e39745f02e631f548d231201.pkl",
+              "cache_input_text_sha256": "e73bf72bc82470addabe7c93bff9abed0cf1339f0ad6cb2df5a06211cc3a4b99",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "11781cd8a588af64",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            38400
+          ],
+          "unprocessed_array_sha256": "d2bc0b5c6107bdcb3a36f1bba8e462aa4dec189dd555aac8458eca5b8c207863"
+        },
+        {
+          "exact_native_cache_key": "0eea3eece26de3b99eeac3589afeaaa8b5625f28.pkl",
+          "pkl_sha256": "4397daf3ef633ceb8ff99174e57676b3a4ad35b99828e145cc87136b734f4b88",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "As the steel rusts, it swells and fractures the concrete around it, and many structures are designed for a lifespan of around 50 years.",
+              "exact_native_cache_key": "0eea3eece26de3b99eeac3589afeaaa8b5625f28.pkl",
+              "cache_input_text_sha256": "6ab261a57426089c0d1bc997f81803cdf6a6ba0b13a486b18837796ddffd5f85",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "4397daf3ef633ceb",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            221184
+          ],
+          "unprocessed_array_sha256": "a1178a405ee3cdee6574584cc85d80c4d0756cb2e991a23c9ff7cb80f31a08a8"
+        },
+        {
+          "exact_native_cache_key": "214c7888e8238ecf7f37dabff37143f905deb420.pkl",
+          "pkl_sha256": "f0ac48fe94593e5cf43bb20c60dfc807ebbfba38f2aa6040a894a2142c757ace",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "As the steel rusts, it swells and fractures the concrete around it,",
+              "exact_native_cache_key": "214c7888e8238ecf7f37dabff37143f905deb420.pkl",
+              "cache_input_text_sha256": "338a24d08dd6213e01665faeddbfbdd584ded804a383875fac3a5263fed266b1",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "f0ac48fe94593e5c",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            104448
+          ],
+          "unprocessed_array_sha256": "c47a7f43b6d9e451c20195d2f0a06ef80d0d889b57bb4af6a2546a71ddce2f01"
+        },
+        {
+          "exact_native_cache_key": "42646e0ec9991ad5786c1e5e785b9ddbbbcac04a.pkl",
+          "pkl_sha256": "fad951337e5b096db70687d1aa8e13ee309ec8d4e8e35de965c768b8b5bcc34a",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "and many structures are designed for a lifespan of around 50 years.",
+              "exact_native_cache_key": "42646e0ec9991ad5786c1e5e785b9ddbbbcac04a.pkl",
+              "cache_input_text_sha256": "8fcd4e22042899b2025175a4e7d1508ab3222f37cf216586ceee467f0088c54a",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S5",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "and many structures are designed for a lifespan of around 50 years.",
+              "exact_native_cache_key": "42646e0ec9991ad5786c1e5e785b9ddbbbcac04a.pkl",
+              "cache_input_text_sha256": "8fcd4e22042899b2025175a4e7d1508ab3222f37cf216586ceee467f0088c54a",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "fad951337e5b096d",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            105472
+          ],
+          "unprocessed_array_sha256": "d8c886c57a9cae1d154de873a545302f7073fdff726f867ae806eb28a01e7d8c"
+        },
+        {
+          "exact_native_cache_key": "0e65db92475156e35f198a7076391365a860b0e2.pkl",
+          "pkl_sha256": "b48591837be8eea7e402fd47812ad67409ca2e3af5b5791778a547417e572eeb",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "As the steel rusts,",
+              "exact_native_cache_key": "0e65db92475156e35f198a7076391365a860b0e2.pkl",
+              "cache_input_text_sha256": "8c384c0813f888fe9b6470bc19ff7d510deca47495b30d3bb629163a2976148c",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "b48591837be8eea7",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            33280
+          ],
+          "unprocessed_array_sha256": "31c20ae7ceb38eea8483fde037c0fc34de0a0aa693d36cd6fdfddab69479f768"
+        },
+        {
+          "exact_native_cache_key": "41a6d4869e22b933bb76cec1cd23f4b23b58c356.pkl",
+          "pkl_sha256": "f47e706b5a3dd7a8be60cc4e05b7360418919ee8680ee2fe4fc4310cf3916499",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "it swells and fractures the concrete around it,",
+              "exact_native_cache_key": "41a6d4869e22b933bb76cec1cd23f4b23b58c356.pkl",
+              "cache_input_text_sha256": "4585141ab62e283850b3224486dbed575600d8f5c8bf07d9eb2aaf2e236d5494",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "f47e706b5a3dd7a8",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            65024
+          ],
+          "unprocessed_array_sha256": "7b6dd6c12bdc0ee7415c633749216acd113748b6600c952f80e046eb461b599d"
+        },
+        {
+          "exact_native_cache_key": "a3c1051c917ac5cab496b25a056ed731e17dd16e.pkl",
+          "pkl_sha256": "a257fcb4c608c4a7a97fd1a2f9fc8198634b93e998ecf3f9dad5c12cc81b0338",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Roman concrete is not stronger than its modern counterpart; its merit lies in durability.",
+              "exact_native_cache_key": "a3c1051c917ac5cab496b25a056ed731e17dd16e.pkl",
+              "cache_input_text_sha256": "d550d58e84baf30dd2263752b2c45adca58f0104734e38d377cf8f10d920ecd7",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "a257fcb4c608c4a7",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            154624
+          ],
+          "unprocessed_array_sha256": "7b5274a3875f4d8b67bd3f91a1299b03c1df99924ef0f931fd12aafeaacbfa72"
+        },
+        {
+          "exact_native_cache_key": "26b670812a9ae94f704a0ad5dc2dd76c8bc5f1d9.pkl",
+          "pkl_sha256": "f6d7e328b779ea7749b37307b6c7e9881510f393408f81055d50d665cf26bb06",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Roman concrete is not stronger than its modern counterpart;",
+              "exact_native_cache_key": "26b670812a9ae94f704a0ad5dc2dd76c8bc5f1d9.pkl",
+              "cache_input_text_sha256": "0e33fbd396ffbc14f1f92caa06195e69fc4dbf22534da89a3dedf9091f644207",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S6",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Roman concrete is not stronger than its modern counterpart;",
+              "exact_native_cache_key": "26b670812a9ae94f704a0ad5dc2dd76c8bc5f1d9.pkl",
+              "cache_input_text_sha256": "0e33fbd396ffbc14f1f92caa06195e69fc4dbf22534da89a3dedf9091f644207",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "f6d7e328b779ea77",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            97792
+          ],
+          "unprocessed_array_sha256": "9b11351934eb90058ced5aea7c0f9867da9d3f03b5536654dc0767b9284bd771"
+        },
+        {
+          "exact_native_cache_key": "4a6318730a06902830b53b72aaf92b9e6436c7cf.pkl",
+          "pkl_sha256": "5200e8021915eeeb6b6b1e8a43e0a6b7ebe6549bbb51f64e02498b7a71a6b8a4",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "its merit lies in durability.",
+              "exact_native_cache_key": "4a6318730a06902830b53b72aaf92b9e6436c7cf.pkl",
+              "cache_input_text_sha256": "cca4ef6fa267ac7ebfcc2bff3d416b6dc862a2333cae41136df69285befeb766",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S6",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "its merit lies in durability.",
+              "exact_native_cache_key": "4a6318730a06902830b53b72aaf92b9e6436c7cf.pkl",
+              "cache_input_text_sha256": "cca4ef6fa267ac7ebfcc2bff3d416b6dc862a2333cae41136df69285befeb766",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "5200e8021915eeeb",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            49664
+          ],
+          "unprocessed_array_sha256": "8559132cabaec77344108b1969e8f82123ae4f347c0719a7df8b7b09e4dd9a9d"
+        },
+        {
+          "exact_native_cache_key": "7df44d7ce79dbb04e03cb7f98f24594e609b5c7b.pkl",
+          "pkl_sha256": "edde7a5d5cd93e3390ef7dbb98b982a697adbd2d010f83923eabc59184353dd5",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S7",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Yet the ancient material seemed to have a shortcoming.",
+              "exact_native_cache_key": "7df44d7ce79dbb04e03cb7f98f24594e609b5c7b.pkl",
+              "cache_input_text_sha256": "4eb67caf60deed63490ab91a3f568adb19425073bbe0d290fcc53cac67e81865",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "edde7a5d5cd93e33",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            67584
+          ],
+          "unprocessed_array_sha256": "5bb55882f50c687c13289d823b2cba4237370b9c483a1d080b90685193b34f31"
+        },
+        {
+          "exact_native_cache_key": "a8164f11ec4312ffb3611b0f3356196c3d15e3d1.pkl",
+          "pkl_sha256": "2eb1bbf922d6961b72b50155d88ca0f15403d70085ed945a87f5f7e63f8d3199",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "It is dotted with white chunks of lime, known as lime clasts.",
+              "exact_native_cache_key": "a8164f11ec4312ffb3611b0f3356196c3d15e3d1.pkl",
+              "cache_input_text_sha256": "098a8a07f5b21f061afa710d5b004100778e7c3ac6676781155b4a61aed33b96",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "2eb1bbf922d6961b",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            97280
+          ],
+          "unprocessed_array_sha256": "71873257be34030feca2eaa145a453578ac84692679bbf2b6c4efee21b08b789"
+        },
+        {
+          "exact_native_cache_key": "943af748cd04fd22df44da9a6c2f220b51f13305.pkl",
+          "pkl_sha256": "b1b73bba5b3164de3604c420c8eee948fc0eefc1bdcf1c16f8a1b9b8e8b426b9",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "It is dotted with white chunks of lime,",
+              "exact_native_cache_key": "943af748cd04fd22df44da9a6c2f220b51f13305.pkl",
+              "cache_input_text_sha256": "62fdca21b0504c3e4f08b5429008bf50bfacb6527db92000f20d2835f708b225",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S8",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "It is dotted with white chunks of lime,",
+              "exact_native_cache_key": "943af748cd04fd22df44da9a6c2f220b51f13305.pkl",
+              "cache_input_text_sha256": "62fdca21b0504c3e4f08b5429008bf50bfacb6527db92000f20d2835f708b225",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "b1b73bba5b3164de",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            55296
+          ],
+          "unprocessed_array_sha256": "fadd53cc7f76e2ffb1795600da49b05e57eb4d8637bd1dd55628942dbac0fcaa"
+        },
+        {
+          "exact_native_cache_key": "47c1befcbd21e2f75778ed5485fd2f135708ed5e.pkl",
+          "pkl_sha256": "11dd31937e5d1b353773d19c83f5b612838b75dc77ab426794dc05a3ef7b3fdd",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "known as lime clasts.",
+              "exact_native_cache_key": "47c1befcbd21e2f75778ed5485fd2f135708ed5e.pkl",
+              "cache_input_text_sha256": "62023c284cff3836115354958cd460411259e9afeb51db947cb5854470e6c640",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S8",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "known as lime clasts.",
+              "exact_native_cache_key": "47c1befcbd21e2f75778ed5485fd2f135708ed5e.pkl",
+              "cache_input_text_sha256": "62023c284cff3836115354958cd460411259e9afeb51db947cb5854470e6c640",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "11dd31937e5d1b35",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            35840
+          ],
+          "unprocessed_array_sha256": "5e16557411b9d9c45d5dda84f9c931c17421ce9cdb8864ab7a9888651ab82fe7"
+        },
+        {
+          "exact_native_cache_key": "f6d36846464f48d17706a7e97062eec129b9a5e2.pkl",
+          "pkl_sha256": "9227e2203a561fbce963fea843df801e30acdfd01a5e23766f1a52223b7a87dc",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S9",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Experts long ascribed these lumps to sloppy mixing or inferior raw ingredients, a defect that, they assumed, a more conscientious builder would have avoided.",
+              "exact_native_cache_key": "f6d36846464f48d17706a7e97062eec129b9a5e2.pkl",
+              "cache_input_text_sha256": "c6508af7a251d583c82a8f0bef868724b0c376d6a9912bfef7917ba4015f47e9",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "9227e2203a561fbc",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            261120
+          ],
+          "unprocessed_array_sha256": "b1030cb57a4fb02074475cc1e5aa61eb903b504b54445a9d8a290b7fc31796d8"
+        },
+        {
+          "exact_native_cache_key": "8979cfa7c8b42ebf9924fb17fd79e04b8434f47a.pkl",
+          "pkl_sha256": "42ffa7c725063ed16308f07c3336af6e7ecc02ad83e960b488a7e4c6ac2c0131",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S9",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Experts long ascribed these lumps to sloppy mixing or inferior raw ingredients,",
+              "exact_native_cache_key": "8979cfa7c8b42ebf9924fb17fd79e04b8434f47a.pkl",
+              "cache_input_text_sha256": "4c90fdfc35b8125e545cae44f2970b0f61aef4e985b576a5307732cd9ccad6ce",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S9",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Experts long ascribed these lumps to sloppy mixing or inferior raw ingredients,",
+              "exact_native_cache_key": "8979cfa7c8b42ebf9924fb17fd79e04b8434f47a.pkl",
+              "cache_input_text_sha256": "4c90fdfc35b8125e545cae44f2970b0f61aef4e985b576a5307732cd9ccad6ce",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "42ffa7c725063ed1",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            133120
+          ],
+          "unprocessed_array_sha256": "7c713d4f575b74482121396170291e3c11325ec3132effaf54f9b404d415b9fd"
+        },
+        {
+          "exact_native_cache_key": "c43b1445d83666984875dad07b2d1553e366bfea.pkl",
+          "pkl_sha256": "41e31bdc8da1eecfb7fd7e8ee01726884b5128a55f2894da5d2ed27d0630aee4",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S9",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "a defect that, they assumed, a more conscientious builder would have avoided.",
+              "exact_native_cache_key": "c43b1445d83666984875dad07b2d1553e366bfea.pkl",
+              "cache_input_text_sha256": "22d829a434d63d9758e1183b4f40ad01e971c5245aed8b36f5999212238e4286",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "41e31bdc8da1eecf",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            109568
+          ],
+          "unprocessed_array_sha256": "64d1650837619de9d2b2760059367cdbaa387d2c95b230e2843dd8cf4338c137"
+        },
+        {
+          "exact_native_cache_key": "c20b494865d53336afe1eab454d86ead37f8ecab.pkl",
+          "pkl_sha256": "0a2d643d5159e54b983a44d9fed961dc8b9503ef54deae77fa9e5722dd25e1d9",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S9",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "a defect that,",
+              "exact_native_cache_key": "c20b494865d53336afe1eab454d86ead37f8ecab.pkl",
+              "cache_input_text_sha256": "cba448020eeb075b32aca0c3913d9f3d2636b6d1bf9d1315a9a4d169c4afa9cb",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "0a2d643d5159e54b",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            26624
+          ],
+          "unprocessed_array_sha256": "f0d8abfe2067d109ad2c729a986d4a96593c1a7dd4bbd6dde5ae9091dcbd7652"
+        },
+        {
+          "exact_native_cache_key": "d44f0ada5aa7630e5a039ee923a78d370a637564.pkl",
+          "pkl_sha256": "07c3cab2ed6dc71178e834d37c06ccfe7d692bdd00271fc733ceaeea96173b16",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S9",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "they assumed,",
+              "exact_native_cache_key": "d44f0ada5aa7630e5a039ee923a78d370a637564.pkl",
+              "cache_input_text_sha256": "2f20a7b13195fda6a8dabee528932d2da465d2451ebd4deffc950fe36483f096",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "07c3cab2ed6dc711",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            23552
+          ],
+          "unprocessed_array_sha256": "e684ff902f363657d076dcb7d1dc52445ce6b8803416716689228ddfc4220c57"
+        },
+        {
+          "exact_native_cache_key": "604570a4f20ecbff963fceb5e1124c191bba6f25.pkl",
+          "pkl_sha256": "d65cdd8f37276c92249f9f4e232788443b1c86af920cadaa772559dfcd0d4a5e",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S9",
+              "piece": 4,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "a more conscientious builder would have avoided.",
+              "exact_native_cache_key": "604570a4f20ecbff963fceb5e1124c191bba6f25.pkl",
+              "cache_input_text_sha256": "cb148b29ec250df6dbdaa09360c13947ecff4ce48ff8f2c0399ed9ccc8747bf5",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "d65cdd8f37276c92",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            61440
+          ],
+          "unprocessed_array_sha256": "8131adcc6909e8c14c1fc5d046a5cba800fa5fe34643b7ddf64b11f6f008a066"
+        },
+        {
+          "exact_native_cache_key": "0554ef068c3e0459173487d0758643f918cbb733.pkl",
+          "pkl_sha256": "0b291f23c9cff339181bea7cdead8fd6075f5b4c49b94f32dbbcee011bb78245",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S10",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "A study published in Science Advances in January 2023 offered a different interpretation.",
+              "exact_native_cache_key": "0554ef068c3e0459173487d0758643f918cbb733.pkl",
+              "cache_input_text_sha256": "cb2c6f7ebf002e2a493b8371c10428654b2e3f908a6792a9522a4291f0198ddb",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "0b291f23c9cff339",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            173568
+          ],
+          "unprocessed_array_sha256": "269a0faa32ad7f5459b1b1760cd4f6d11db75b06a121cc9ff4d7bbd40fa28df9"
+        },
+        {
+          "exact_native_cache_key": "f84438179c7f9bc36c170ea22ecc6a4ab4ab2895.pkl",
+          "pkl_sha256": "4422c62eedc306bf7981e6438378b1aa181eb6a7fa0f9a984c8394fec7c879a1",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "The clasts, it suggested, were a by-product of \"hot mixing\" with quicklime, a reactive lime that heats up in water.",
+              "exact_native_cache_key": "f84438179c7f9bc36c170ea22ecc6a4ab4ab2895.pkl",
+              "cache_input_text_sha256": "b392a04fcfb67581105e951103f6612826d8a17e34f9f3072e6c16258015d9ba",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "4422c62eedc306bf",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            184320
+          ],
+          "unprocessed_array_sha256": "fae080e36f7df3315e1c0f45b35f9f6fef20bc9d12049d2631add0390741a179"
+        },
+        {
+          "exact_native_cache_key": "dd290bc4cfc19d719481d5b0995bf411f2337619.pkl",
+          "pkl_sha256": "85eaba7bb6fa4a7bb1148b79881595413c06566b25d624d3749af8a334c5e1d0",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "The clasts, it suggested, were a by-product of \"hot mixing\" with quicklime,",
+              "exact_native_cache_key": "dd290bc4cfc19d719481d5b0995bf411f2337619.pkl",
+              "cache_input_text_sha256": "d4e98fc371ad0815f1fcf89c2fa28a42783adcdbdc4c423f5883dd6c09786159",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "85eaba7bb6fa4a7b",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            111104
+          ],
+          "unprocessed_array_sha256": "3c1fda6614cf7d2fb1628d7bb2a06e01e61df7388c274f26e8fc0b8b5d44da7e"
+        },
+        {
+          "exact_native_cache_key": "96da1526b3384c0468d2debc16190f5a2596b903.pkl",
+          "pkl_sha256": "fb28506a70c8a5b89bd35513343a77733fad5886187259aea984a818e798d052",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "a reactive lime that heats up in water.",
+              "exact_native_cache_key": "96da1526b3384c0468d2debc16190f5a2596b903.pkl",
+              "cache_input_text_sha256": "81372eef8c2c490df2b2af1c8b57c29c88c8153d4ec13ed8715370bd9b8950e8",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S11",
+              "piece": 4,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "a reactive lime that heats up in water.",
+              "exact_native_cache_key": "96da1526b3384c0468d2debc16190f5a2596b903.pkl",
+              "cache_input_text_sha256": "81372eef8c2c490df2b2af1c8b57c29c88c8153d4ec13ed8715370bd9b8950e8",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "fb28506a70c8a5b8",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            55808
+          ],
+          "unprocessed_array_sha256": "cf584f0c53d19e23dd15617690e0011bc465b354743a7102eb9cf8951051889c"
+        },
+        {
+          "exact_native_cache_key": "fd5e9e0852e5911f0515d6c73346174310bb0182.pkl",
+          "pkl_sha256": "690709804ea78d4ad6753b9f0e6483339eda70dfc5d4a655ba297426995cdf1c",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "The clasts,",
+              "exact_native_cache_key": "fd5e9e0852e5911f0515d6c73346174310bb0182.pkl",
+              "cache_input_text_sha256": "86c88f51e057f347ef3add2e2d512714e1d87cbcf769820993195e390eac40ca",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "690709804ea78d4a",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            22016
+          ],
+          "unprocessed_array_sha256": "f59ca1d98f2e395ccbcee84a7890c74237028fa8ec11df230509d857a8f2ebf9"
+        },
+        {
+          "exact_native_cache_key": "caacd5e8521afbdd5080d5b7d5dea41c64027e4e.pkl",
+          "pkl_sha256": "ffd97ff51778b3d18b548adf80e6931cc0efcb291000f3b72876d36f90904cfc",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "it suggested,",
+              "exact_native_cache_key": "caacd5e8521afbdd5080d5b7d5dea41c64027e4e.pkl",
+              "cache_input_text_sha256": "256ab2eec8f498cb4ab9fc0cc25c87cca5ad29dc3d97f92a6b9a9872014d34f8",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "ffd97ff51778b3d1",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            25088
+          ],
+          "unprocessed_array_sha256": "02a6d10534cf64c094183dcddf69fb406e254d8a49dc6da3ed06bb59af9fa857"
+        },
+        {
+          "exact_native_cache_key": "4360e1a4c902f219b7ff435d842e0d4c4487fe07.pkl",
+          "pkl_sha256": "516e1cac5a56f8d6f96e2622d6d335ab3fe5d32463cd8c8c8cea593e114d513e",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "were a by-product of \"hot mixing\" with quicklime,",
+              "exact_native_cache_key": "4360e1a4c902f219b7ff435d842e0d4c4487fe07.pkl",
+              "cache_input_text_sha256": "b62760b2c6bcf2e6bb7cfe8b923fe9861d0d99b8929b3d81e89f8bc7f7052f84",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "516e1cac5a56f8d6",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            63488
+          ],
+          "unprocessed_array_sha256": "64ebfe879149106f95d7093e016e71e2a988eae30fa080c1b983b4afee045dd0"
+        },
+        {
+          "exact_native_cache_key": "d629201d674b1330125b6d01d16d6b400857836c.pkl",
+          "pkl_sha256": "c81b1592cb755e6c8eb794dfe52927e4027140e3f054189de037a32eb1211f98",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S12",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "When water seeps into a crack, the clasts dissolve and their calcium recrystallises as calcium carbonate, plugging the gap.",
+              "exact_native_cache_key": "d629201d674b1330125b6d01d16d6b400857836c.pkl",
+              "cache_input_text_sha256": "cb100fb1b020575f10fd30fd571bf8bb15c5ed779e69dd23f955554030ebf237",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "c81b1592cb755e6c",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            200192
+          ],
+          "unprocessed_array_sha256": "1f2dc12f031ec6e495a1a10be0f5b33edd282eb9b2e1341bb0c67086cb3e8865"
+        },
+        {
+          "exact_native_cache_key": "c707895ebae97eeccef499afda30434ca88e4a6b.pkl",
+          "pkl_sha256": "4ba56871ac123df44f2c349dd997a4ef2b59b5bab9897cda4fb687ecbe17b7e4",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S12",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "When water seeps into a crack,",
+              "exact_native_cache_key": "c707895ebae97eeccef499afda30434ca88e4a6b.pkl",
+              "cache_input_text_sha256": "b4fc9241abaa6aa753dc6550960c7abfcdea3859ad9ad5cae73a63726040f4c3",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S12",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "When water seeps into a crack,",
+              "exact_native_cache_key": "c707895ebae97eeccef499afda30434ca88e4a6b.pkl",
+              "cache_input_text_sha256": "b4fc9241abaa6aa753dc6550960c7abfcdea3859ad9ad5cae73a63726040f4c3",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "4ba56871ac123df4",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            43008
+          ],
+          "unprocessed_array_sha256": "7dde25a8ca877b362b0206eb864f9c5b45e749010054c30f0899fbc6173cd950"
+        },
+        {
+          "exact_native_cache_key": "1a763d69411d534089d9d5785c3ee62b4ba82aae.pkl",
+          "pkl_sha256": "bd27c5dc29a60f9d02a19252d5f21ba79339883f7e199421ab20ab87f27ecef4",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S12",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "the clasts dissolve and their calcium recrystallises as calcium carbonate, plugging the gap.",
+              "exact_native_cache_key": "1a763d69411d534089d9d5785c3ee62b4ba82aae.pkl",
+              "cache_input_text_sha256": "40c9f34093548bef2108bfc00cec792bde24e71dd4e3ea9bd047925b6a9b8678",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "bd27c5dc29a60f9d",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            149504
+          ],
+          "unprocessed_array_sha256": "b4f969a1b4bab4633c1a043b3319acb7eebae2a59d447c0eedfb922ff5800d7d"
+        },
+        {
+          "exact_native_cache_key": "23410e7c136be6b04eaabeeb3d9c0a08d5e51b2e.pkl",
+          "pkl_sha256": "5bda94ce247ce4c87d5f4d05e9a6e43ced1ead456a1a69ca39145794896d4505",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S12",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "the clasts dissolve and their calcium recrystallises as calcium carbonate,",
+              "exact_native_cache_key": "23410e7c136be6b04eaabeeb3d9c0a08d5e51b2e.pkl",
+              "cache_input_text_sha256": "9306f9686299a29458e280a0c333d61d3f3a43082f22a0a1ffeba999235f77d1",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "5bda94ce247ce4c8",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            123392
+          ],
+          "unprocessed_array_sha256": "cd12cf549a5e60b7e239748e2ab01ca607f5a0f346fc6852902a8a27519ae4b7"
+        },
+        {
+          "exact_native_cache_key": "327288178df43a5d5e5fe859b39f355587f9bc7c.pkl",
+          "pkl_sha256": "6744f3092f7d724febec92d4e009647b93f7779be9421f48c14fb84d7611a41d",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S12",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "plugging the gap.",
+              "exact_native_cache_key": "327288178df43a5d5e5fe859b39f355587f9bc7c.pkl",
+              "cache_input_text_sha256": "7517e70c2d5b59af306aaceaf181fe4c155528a6ec5a21a0f116df42c7fffa32",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "6744f3092f7d724f",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            24576
+          ],
+          "unprocessed_array_sha256": "23fcbef66ea49f7bc8450c3481c6287f77bec962a44c0857015efd9d33d22f62"
+        },
+        {
+          "exact_native_cache_key": "480dc90709394cb06e43bbd3010ebf2303970c61.pkl",
+          "pkl_sha256": "2656e1fc12b290c83173915d45fde2a4ca5d79bc9d56ee8434ad32aa6ef51cf6",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S13",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "In tests, water ceased to trickle through cracked hot-mixed samples within weeks, but kept flowing through samples without quicklime.",
+              "exact_native_cache_key": "480dc90709394cb06e43bbd3010ebf2303970c61.pkl",
+              "cache_input_text_sha256": "fa3d66329d73e7257a2281806ffe081b64b049a910c6eb570fb4f21772b11aae",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "2656e1fc12b290c8",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            197120
+          ],
+          "unprocessed_array_sha256": "e7e7a98972fb620f2940ab4134f00d12a0ea0691cfa0d3b718656b78a2ce52e7"
+        },
+        {
+          "exact_native_cache_key": "6a8d9d303497d8c35bae6e0a73bf96e700eb9c6d.pkl",
+          "pkl_sha256": "aed2f31f08b9506d5e2ac3fc2232ffad6353597a58336632dde8a2ab3118065a",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S13",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "In tests, water ceased to trickle through cracked hot-mixed samples within weeks,",
+              "exact_native_cache_key": "6a8d9d303497d8c35bae6e0a73bf96e700eb9c6d.pkl",
+              "cache_input_text_sha256": "73fe318c1a70ee2aec9087cf4ac54487dd0290f4fc91247370332db294567cd4",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "aed2f31f08b9506d",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            111616
+          ],
+          "unprocessed_array_sha256": "8ed5a4d6b785fff476508a1945d7d5018642affd1898728d2a6ae68efa96fbc0"
+        },
+        {
+          "exact_native_cache_key": "243291a613c6cfc6e796cc3cd65cf75b3221f6e7.pkl",
+          "pkl_sha256": "6b341adebd37888e1eadd0f607b196771c484f572b787f6090d025ff0ec79a13",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S13",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "but kept flowing through samples without quicklime.",
+              "exact_native_cache_key": "243291a613c6cfc6e796cc3cd65cf75b3221f6e7.pkl",
+              "cache_input_text_sha256": "1a9b350abdac4f592fea30937de54c05c5b999eb1e3dab880f4f2e4c55fe73b2",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S13",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "but kept flowing through samples without quicklime.",
+              "exact_native_cache_key": "243291a613c6cfc6e796cc3cd65cf75b3221f6e7.pkl",
+              "cache_input_text_sha256": "1a9b350abdac4f592fea30937de54c05c5b999eb1e3dab880f4f2e4c55fe73b2",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "6b341adebd37888e",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            65024
+          ],
+          "unprocessed_array_sha256": "de69d25ca10af799f116a4e533d3dfa8a566470e35187d05ad361e1f1f461edb"
+        },
+        {
+          "exact_native_cache_key": "889539d9d1cf0ea250bc0e6968c24351944ed3ed.pkl",
+          "pkl_sha256": "97ba0845f133771e74f57ccffb100e2ca612e318fd4a8034308dd0bb2c2d632d",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S13",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "In tests,",
+              "exact_native_cache_key": "889539d9d1cf0ea250bc0e6968c24351944ed3ed.pkl",
+              "cache_input_text_sha256": "58a1178ecfdd1e5ccf32e302468cfee790a41dce46306ff71c70372a46e2b830",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "97ba0845f133771e",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            20992
+          ],
+          "unprocessed_array_sha256": "ff8492fecaeea77a22075e9c14c77acd041605cb4e17b8b6c9e7306d70908c24"
+        },
+        {
+          "exact_native_cache_key": "1466a4b96b4bb88e5be7df5e85385b4e0ca67e34.pkl",
+          "pkl_sha256": "017fd79ffede1343ce7dd14eb52afb1984e3a8223ff85a753df7b3b51b88b4d0",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S13",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "water ceased to trickle through cracked hot-mixed samples within weeks,",
+              "exact_native_cache_key": "1466a4b96b4bb88e5be7df5e85385b4e0ca67e34.pkl",
+              "cache_input_text_sha256": "ac8cb8645d7b8f9bb71bba4d2ea1306235778c3fd18085a8bae638ade0283daf",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "017fd79ffede1343",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            92160
+          ],
+          "unprocessed_array_sha256": "3721c437e04b12d21ec7c42d54d92c8d07f3e176c2e06173cfae5e6d036c1671"
+        },
+        {
+          "exact_native_cache_key": "199601df6a22b8a60bbfa5e772c55ce726f4a1a6.pkl",
+          "pkl_sha256": "9a64c886f157e764b23a8992f70fd12231e2ae226c8a7103ba66a5d151ed4f3d",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S14",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "The implications extend beyond archaeology.",
+              "exact_native_cache_key": "199601df6a22b8a60bbfa5e772c55ce726f4a1a6.pkl",
+              "cache_input_text_sha256": "b33577556d417694e6aea927e929e7e0081cafe78c7344d8a72b0b18adfcb95b",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "9a64c886f157e764",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            76288
+          ],
+          "unprocessed_array_sha256": "303ecb1437b2dac7ba2601d9886b1e27767f62e63a49728564160c7ea5e1ff59"
+        },
+        {
+          "exact_native_cache_key": "7cf071fb0b3990492ccadffa80234a68ebd7d525.pkl",
+          "pkl_sha256": "5a20b49e995bb32e4fb716d442ada357f7b00195b5c561760fc34419c031494d",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S15",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Cement manufacture accounts for about 8 per cent of global carbon dioxide emissions, the think-tank Chatham House reported in June 2018.",
+              "exact_native_cache_key": "7cf071fb0b3990492ccadffa80234a68ebd7d525.pkl",
+              "cache_input_text_sha256": "089050ec3a61f21e02d698aeab07cebc8f8c70f9a2a15ef99eea3b14f790b522",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "5a20b49e995bb32e",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            252928
+          ],
+          "unprocessed_array_sha256": "f1ee6ee4af020c9962d6aabc0dc23b6259f7255e2f5265364eb8b61b7daba67a"
+        },
+        {
+          "exact_native_cache_key": "c70ce8681abfde62c20b16088b124638c977e9d0.pkl",
+          "pkl_sha256": "087a38bc8cfc588bf9bb252605551b329f45b21d35737d8e74aeae4b2ff7452f",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S15",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Cement manufacture accounts for about 8 per cent of global carbon dioxide emissions,",
+              "exact_native_cache_key": "c70ce8681abfde62c20b16088b124638c977e9d0.pkl",
+              "cache_input_text_sha256": "c6b82d51614ca493d8f4a228a681b2997e3834d85f3ad7a858af623a07963f7e",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S15",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Cement manufacture accounts for about 8 per cent of global carbon dioxide emissions,",
+              "exact_native_cache_key": "c70ce8681abfde62c20b16088b124638c977e9d0.pkl",
+              "cache_input_text_sha256": "c6b82d51614ca493d8f4a228a681b2997e3834d85f3ad7a858af623a07963f7e",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "087a38bc8cfc588b",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            147456
+          ],
+          "unprocessed_array_sha256": "3d8bffa426d63e6dad84015da038f57a14718f4fd4cdbe0bbd7372ef3d97fe3c"
+        },
+        {
+          "exact_native_cache_key": "948bb8dfa1980d33f9a457020bf9751610bbf7ae.pkl",
+          "pkl_sha256": "bf5e26ac1122e4ce3acea63ce929e4d4285eccd4739566ed8473cade7d20be10",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S15",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "the think-tank Chatham House reported in June 2018.",
+              "exact_native_cache_key": "948bb8dfa1980d33f9a457020bf9751610bbf7ae.pkl",
+              "cache_input_text_sha256": "d96fe1a6a8f9011385ffb05bae1997fcb9166f4758f53665cd13d91e00aa83e3",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S15",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "the think-tank Chatham House reported in June 2018.",
+              "exact_native_cache_key": "948bb8dfa1980d33f9a457020bf9751610bbf7ae.pkl",
+              "cache_input_text_sha256": "d96fe1a6a8f9011385ffb05bae1997fcb9166f4758f53665cd13d91e00aa83e3",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "bf5e26ac1122e4ce",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            98816
+          ],
+          "unprocessed_array_sha256": "63302a9977f9f053fab3215bff1ba9cfbbef26ec68d8621111ad2ee14cede832"
+        },
+        {
+          "exact_native_cache_key": "0e37448722fa9dc8155a9f73ef1c1c41814afef0.pkl",
+          "pkl_sha256": "aeb421ccd63654f2acb3f7f64714c8bb7a4a1b3619e7132198e237a06bd34712",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S16",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Concrete that mends its cracks could last longer, making demolition and rebuilding rarer and trimming emissions.",
+              "exact_native_cache_key": "0e37448722fa9dc8155a9f73ef1c1c41814afef0.pkl",
+              "cache_input_text_sha256": "ae78ffc068fa21a46434d7f05581d0c9dc504738fcb00cce32853b95cd3260a7",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "aeb421ccd63654f2",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            172544
+          ],
+          "unprocessed_array_sha256": "983b31bc90562bf4959f29e309231bc6458352595697e2faa61141a289afae44"
+        },
+        {
+          "exact_native_cache_key": "0ab52d15f71452f1b4309885432f0fc9ddfe28d8.pkl",
+          "pkl_sha256": "ce9b01e4170525f6e32dd98414ba97829ad330f1dc0530276bdccaefef95b1f1",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S16",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Concrete that mends its cracks could last longer,",
+              "exact_native_cache_key": "0ab52d15f71452f1b4309885432f0fc9ddfe28d8.pkl",
+              "cache_input_text_sha256": "efaacdd80baf79adddbd12824e05fd11bba4f386bd69301d26e1b5a8f1d9ec0c",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S16",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Concrete that mends its cracks could last longer,",
+              "exact_native_cache_key": "0ab52d15f71452f1b4309885432f0fc9ddfe28d8.pkl",
+              "cache_input_text_sha256": "efaacdd80baf79adddbd12824e05fd11bba4f386bd69301d26e1b5a8f1d9ec0c",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "ce9b01e4170525f6",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            68096
+          ],
+          "unprocessed_array_sha256": "ad7eb2976e4806755d1e53247b21b7667634ba78162be93f81453e32624773ae"
+        },
+        {
+          "exact_native_cache_key": "256da464c76ad537c0b39f3214e75b724b66186e.pkl",
+          "pkl_sha256": "f5b1de873d353d7e4e886115f60ecce8fe57cdc58f5f2f631d70a8e5355f1ad7",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S16",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "making demolition and rebuilding rarer and trimming emissions.",
+              "exact_native_cache_key": "256da464c76ad537c0b39f3214e75b724b66186e.pkl",
+              "cache_input_text_sha256": "e9500cd1529f1acf677b8eefb9e00f5a7a255bf3dd616352676c6eafcae66a4b",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S16",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "making demolition and rebuilding rarer and trimming emissions.",
+              "exact_native_cache_key": "256da464c76ad537c0b39f3214e75b724b66186e.pkl",
+              "cache_input_text_sha256": "e9500cd1529f1acf677b8eefb9e00f5a7a255bf3dd616352676c6eafcae66a4b",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "f5b1de873d353d7e",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            95232
+          ],
+          "unprocessed_array_sha256": "bcf65808043a6eb52f026614507761cfb0fc4afd3f86f3e2a696a5a891f05288"
+        },
+        {
+          "exact_native_cache_key": "3237ba968c59c0507ce37c029aa41539fe954e75.pkl",
+          "pkl_sha256": "00d6ba6975c6c9e5880d2426b2a0243aaa95b79b0b335e7526daed5a826c1be3",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S17",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "The white lumps once scorned as signs of clumsy workmanship have prompted a rethink of construction.",
+              "exact_native_cache_key": "3237ba968c59c0507ce37c029aa41539fe954e75.pkl",
+              "cache_input_text_sha256": "b0383d9a53db589c4c59372d6ebacc88a15f991aa84c2e5478440366d9e9341f",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "00d6ba6975c6c9e5",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            151552
+          ],
+          "unprocessed_array_sha256": "723972a777faf111b9027c79121f953b56389956ab63c6a0f5e250087f855ad2"
+        },
+        {
+          "exact_native_cache_key": "fad7beec1db273c151df531849c7ccdf1f4a2288.pkl",
+          "pkl_sha256": "cf31e8171b7a0056440de8f2306167205fb3c4eb9dbd18a72efcf58e5de04d5c",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S17",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "The white lumps once scorned as signs of clumsy workmanship",
+              "exact_native_cache_key": "fad7beec1db273c151df531849c7ccdf1f4a2288.pkl",
+              "cache_input_text_sha256": "5c4d5b916ab9cfd417fb3371a868ce932603928a19050cf18a22f27a29f6e937",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "cf31e8171b7a0056",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            88064
+          ],
+          "unprocessed_array_sha256": "21521f636d0435f741ba51c6f9040696af98d7ac6083f0fc63dcdbae95bbc8a2"
+        },
+        {
+          "exact_native_cache_key": "269fc0b212e49c8ff03704d08f6e037b0daff6d2.pkl",
+          "pkl_sha256": "4e305f71b0e1ab0b6e79236d31d237f2739f732927fd8321a800dc49c9a03969",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S17",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "have prompted a rethink of construction.",
+              "exact_native_cache_key": "269fc0b212e49c8ff03704d08f6e037b0daff6d2.pkl",
+              "cache_input_text_sha256": "d7a569787afd97da8f0a8743aa092c864b00509b9769fa99e154691b38e89d2f",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "4e305f71b0e1ab0b",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            57856
+          ],
+          "unprocessed_array_sha256": "304757e49b8243d878e7c889269726b02630ceba191bb317177f6a0e9c16f099"
+        }
+      ],
+      "missing_reference_key_count": 0,
+      "observed_missing_keys_covered": [],
+      "new_private_cache_names": [],
+      "native_single_thread_marker_verified": true,
+      "single_thread_sessions": [
+        {
+          "intra_op_num_threads": 1,
+          "inter_op_num_threads": 1
+        },
+        {
+          "intra_op_num_threads": 1,
+          "inter_op_num_threads": 1
+        }
+      ],
+      "models_sha256": {
+        "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+        "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+        "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+      },
+      "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+      "existing_private_cache_count": 11514,
+      "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+      "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+      "existing_private_cache_bytes_unchanged": true,
+      "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+      "public_repository_cache_unchanged": true,
+      "producer_pcm_existed_before": false,
+      "producer_pcm_sha256_before": null,
+      "producer_pcm_sha256_after": null,
+      "accepted_aac_adts_sha256_before": "19a859a60cee1bde5060d52f78072c444cf65da68845f196fce2502f97d02cd8",
+      "accepted_aac_adts_sha256_after": "19a859a60cee1bde5060d52f78072c444cf65da68845f196fce2502f97d02cd8",
+      "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+      "private_cache_exported": false
+    },
+    "checker_reference_preparation_program_sha256": "f6f2a032e207085e7252d036e39430fb80b06e84a721c525b61196d021c5ca12",
+    "fresh_current_article_reference": {
+      "article": "55",
+      "removed_temporary_gt_files": [],
+      "processed_pcm_or_raw_mother_cache_modified": false,
+      "purpose": "Original synth/labels/audit rebuild fresh for this production; no old CPU GT reuse."
+    },
+    "temporary_output_reset": {
+      "removed": [],
+      "production_started_ns": 1794623310757775344,
+      "repository_outputs_modified": false
+    },
+    "reviewed_gain_control_preservation": [
+      {
+        "stage": "canonical-draft",
+        "requested_gain_controls": {},
+        "actual_gain_controls": {},
+        "exactly_preserved": true
+      },
+      {
+        "stage": "canonical-final4K",
+        "requested_gain_controls": {},
+        "actual_gain_controls": {},
+        "exactly_preserved": true
+      }
+    ],
+    "canonical_video_sha256": "78726ff99ee341c25683c1cd4d014596bc96648ce5936d4eac8c24962425f182",
+    "canonical_aac_adts_sha256": "19a859a60cee1bde5060d52f78072c444cf65da68845f196fce2502f97d02cd8",
+    "canonical_pipeline_passed": true,
+    "cached_input_wav_sha256": null,
+    "final_wav_sha256": "988234c739981e87d049a6658c2072e1bce70a2539f56254d2b43ccdc0737d4b",
+    "accepted_prior_aac_identical": true,
+    "video_sha256": "ca6b6cae668bbf89c103b6b7d77d749ac2bb1eacca2d66eb43a2e6351344d51e",
+    "width": 3840,
+    "height": 2160,
+    "summary_seconds": 2,
+    "summary_frames": 60,
+    "summary_start_seconds": 141.96666666666667,
+    "delay_after_voice_seconds": 0.0016666666666651508,
+    "actual_source_collection": {
+      "article": "55",
+      "kind": "actual-production-source-collection",
+      "new_quality_gate": false,
+      "files": {
+        "request_json": {
+          "file": "55-request-source.json",
+          "sha256": "06344fc0ad5975cba2f4dbe5262a9957dd7c024f9a05b9abbfa327f32ea8c719",
+          "origin": "immutable_request"
+        },
+        "request_generator": {
+          "file": "55-request-gen.py",
+          "sha256": "9efeae29614fe306632ed9639ad05722ba60d88ddb12000a44043379e3929898",
+          "origin": "immutable_request"
+        },
+        "used_generator": {
+          "file": "55-used-gen.py",
+          "sha256": "9efeae29614fe306632ed9639ad05722ba60d88ddb12000a44043379e3929898",
+          "origin": "actual_production_filesystem"
+        },
+        "actual_working_source": {
+          "file": "55-actual-working-source.json",
+          "sha256": "f4f847693ddf838cedc745c31c3828a337d7e16142885cf6e22e441409629a2d",
+          "origin": "actual_production_filesystem"
+        },
+        "request_manuscript": {
+          "file": "55-request-manuscript.md",
+          "sha256": "a7759eddcc7ec06dfd6dab7912e06b3b5ef8576df0c025a97812006669d0be61",
+          "origin": "immutable_request"
+        },
+        "actual_working_manuscript": {
+          "file": "55-actual-working-manuscript.md",
+          "sha256": "1a020dd184bce36978bfe29232a6a4fd52a5825797fa82ad074a92af53c07066",
+          "origin": "actual_production_filesystem"
+        }
+      },
+      "generator_execution_observed": false,
+      "generator_execution_evidence": "No fresh generator execution log; do not claim this GEN was executed during rendering.",
+      "source_differences": {
+        "file": "55-actual-source-differences.json",
+        "sha256": "160846577641e18de6341d1302040224e68e1c01eaeed4fc327bc0d1f8583aed"
+      }
+    }
+  },
+  "native_status_sha256": "8d41a16269064c4d34f2df51ba6b978fcb8fccb091886338a89c126276815ae5"
+}

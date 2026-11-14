@@ -1,0 +1,2802 @@
+{
+  "article": "21",
+  "passed": true,
+  "stage": "final4K-passed",
+  "original_audit_and_quality_thresholds_unchanged": true,
+  "original_maker_unchanged": true,
+  "core_repairs": [
+    {
+      "target": "视频/工具/草稿声音.sh",
+      "file": "files/视频/工具/草稿声音.sh",
+      "original_sha256": "0ce3277812cf16ed30438509b6dc97db0c26725db4c5db5d9b058c3ef6531aa2",
+      "patched_sha256": "957d7eb1598698ea33ff77d83379256ecae258d84d588753d561a902284be439",
+      "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+    },
+    {
+      "target": "视频/工具/句内响度.py",
+      "file": "files/视频/工具/句内响度.py",
+      "original_sha256": "58735b7173a3c03efa61fb300b4aed4039c164fa970e0593a40bae2a3f3cbd27",
+      "patched_sha256": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea",
+      "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+    },
+    {
+      "target": "视频/工具/独立复核/synth.py",
+      "file": "files/视频/工具/独立复核/synth.py",
+      "original_sha256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+      "patched_sha256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+      "repair_scope": "validated unprocessed raw-mother reference input only; independent transforms/audit/thresholds retained"
+    }
+  ],
+  "strict_production_cache": true,
+  "pdf_requested": false,
+  "check_summaries": {
+    "approved-illustration-resource.log": [],
+    "certified-core-original-stamp-verification.log": [],
+    "original-restored-stamp.log": [],
+    "canonical-module-copy.log": [],
+    "canonical-draft-00.log": [
+      "第21篇 做完（244 秒）：修了 1 处、疑点 25 处",
+      "① 文本：通过，自动修 1 处",
+      "② 声音：21 词尾辅音核对 问题数 0；21 纯人声核对（配音指纹 560e332deeef）问题数 0；问题数 0；21 句间停顿核对 问题数 0；问题数 0",
+      "③ 出片前核查：通过",
+      "⑤ 出片后核查：全部通过",
+      "⑥ 已拷 视频/视频/草稿1080p/21_1080p.mp4（--不推）"
+    ],
+    "canonical-final4K-00.log": [
+      "第21篇 用户定稿原话：有"
+    ],
+    "original-stamp-after-production.log": []
+  },
+  "actual_native_core_certification": {
+    "run_id": 43535822030,
+    "job_id": 132264443476,
+    "commit": "395e8da264fafa2453a42ee70a3f7aed8303a769",
+    "actual_full_quickcheck_exit": 0,
+    "actual_full_quickcheck_seconds": 478.16,
+    "artifact_id": 14089812323,
+    "artifact_zip_sha256": "5e396c84e4a6fc7c6cc737ceb8648d7f15f397e9551806e032c93db8ab0963b8",
+    "full_original_quickcheck_log_sha256": "dbe7f6e08d2b7c3a5f9a2f925bb75a662aed725c780e1bc6714706807552a294",
+    "article_audio_or_video_passed_not_implied": true
+  },
+  "actual_native_fastcheck_stamp": {
+    "target": "视频/工具/新管/快测通过.json",
+    "file": "files/视频/工具/新管/快测通过.json",
+    "sha256": "6ebc7aa41f79f77258fa333b665af258e007daa36a4ea290de972cd3da7b42f2",
+    "origin": "actual unmodified original full quickcheck, native run43535822030"
+  },
+  "reviewed_regression_resource": {
+    "target": "视频/工具/新管/回归基准_27.json",
+    "file": "files/视频/工具/新管/回归基准_27.json",
+    "sha256": "b8ddb4656ae27cbfc7ec8e3b99511983b4e568997bd4ad4ee33c364f3926ae94",
+    "origin": "pre-existing root-reviewed 67-screen data; original voice/segment MD5 unchanged"
+  },
+  "core_repair_manifest_sha256": "1b1558108d15603e5711e200135651d6c7700a583d8bcf53ad8753683ed05a5e",
+  "reviewed_gain_preservation_mode": true,
+  "real_restored_stamp_validated": true,
+  "reviewed_cross_article_context": {
+    "provided": true,
+    "manifest_sha256": "eddfbdceea4e25f2398a2198f94d9852f1e30e35b35c4075c5a5ff0c8e32c096",
+    "files_sha256": {
+      "视频/脚本/01.json": "2be2f80a69af28703992204ac95f987c745362c326e62ad81b3cd8e0e0735d3a",
+      "新版定稿/01-the-robber-who-thought-lemon-juice-made-him-invisible.md": "572054065b5bb65446bf8939a21c789c1e9c7664d82da5117c43efdded894351",
+      "视频/脚本/02.json": "0403368c77fd3e0f91e1ee3780e1c7c147894ad13c16b5f14707d700a8f717c8",
+      "新版定稿/02-the-truth-about-one-marshmallow.md": "91b92505aad03f963861bec39e96f0a472c126d1d57c9fc538676c32f65e545c",
+      "视频/脚本/03.json": "527f3bf4a11843f4d606188dabc6ebce6830da3fb454a49c782e3a595cb47407",
+      "新版定稿/03-the-doctor-who-drank-bacteria-to-win-an-argument.md": "6dfb56504882e24854a3584fd740e7f6601e3f2532818aee3a56d5330d317aa3",
+      "视频/脚本/04.json": "93cc1ff58d65ebe43a65ecb2fb2dbd2da262d80877c05740bbdf4eab4eaca1e8",
+      "新版定稿/04-the-brain-that-learned-london.md": "a8ccb31ffff50aaae77de4b83de1847fafae1d585981cf960c5880c409f6cfc3",
+      "视频/脚本/05.json": "2282acbfa4b82825f93261ec6c18359eb47fd3f7c639319ac5058d126643e136",
+      "新版定稿/05-the-fingerprint-in-the-blood.md": "612deac4ed066489e04e214ca969f8f27dda05856e0ef0ed2e540e7a4a52ae34",
+      "视频/脚本/06.json": "2cbf1d6cd6e66a59285298ea830f5ef914590b64286d40b2ae5f3168aa27a2e9",
+      "新版定稿/06-the-horse-that-could-count.md": "7fd21ba491c7596c53c486f2bb0b0f2f6da8e67bac75461a4649a7caff822f74",
+      "视频/脚本/07.json": "842e44e5aa19fddcfa239cb6530c5152341cd86e11db959543d02d8670ca13e8",
+      "新版定稿/07-the-octopus-that-escaped.md": "b8544281bb2ada88fce9d1082cbc30233dcb63ee3e9c2bbefafc22cb28b8cb39",
+      "视频/脚本/08.json": "254832e09f12759d950384dd9f31f671ad5a3bc1590b7466065dd3ef5fe4b8d5",
+      "新版定稿/08-the-doctor-who-solved-the-cholera-mystery.md": "0b2bfa68070ce585a452f6b7034d03c3683e710dcabec5e86d7b221950dc7bab",
+      "视频/脚本/09.json": "fa3e429351d629de188c184d04e9986200e16e80606fcbec82332b6433301dae",
+      "新版定稿/09-the-great-emu-war.md": "af5c3e844bad15f94bfc43aeed6d7417c4bfae85f026b194da667a7a3bdb6196",
+      "视频/脚本/10.json": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
+      "新版定稿/10-the-stolen-smile.md": "ff63cf94e4d2c835e2e2f1ffd3e6c5642f0916f0b13c012f1f13c3dff716d47a",
+      "视频/脚本/11.json": "665cbb80cc70b700ecc0cc5813209fd100ad4fa8f0eead3929b9e53778d9d07f",
+      "新版定稿/11-move-37.md": "7e0b49b346c1fa3ab994a11a2301167c0d6a1bb00916508bdc0b1acf71e68053",
+      "视频/脚本/12.json": "e3bfbcce6f1a8e14cfe451d656574353321e297c90c62f5a7b422f37478311d5",
+      "新版定稿/12-the-79-days-of-new-coke.md": "5a23c1e0c81318527bcbf27573487d1845c5318905a2b1e020cc6e2eaf5d643f",
+      "视频/脚本/13.json": "3687b6c42a6d524d0d7e40a47ed02c37b18abe8d524db4f5914abad52019a63c",
+      "新版定稿/13-eleven-days-without-sleep.md": "72b842de127132e386e9e52a1719ec96765e94958f56687987f53e2801c69704",
+      "视频/脚本/14.json": "17141351875ddb8f0e308602c0b6ab85cbf5126a4d0118978c25c869db769fee",
+      "新版定稿/14-the-fungus-that-turns-ants-into-zombies.md": "e114c9e1783c80a2ffdb60af05e824f93a8ea8725905cb733560abe1c0ad01a8",
+      "视频/脚本/15.json": "0934aa067f19814028c398b0c70a400bb09e354f744bde4000742950d77f441e",
+      "新版定稿/15-the-myth-of-the-unsinkable.md": "68e236868c4b466928ff2a60358250b9592dfe9287b66561b1e5a80b4d14de4f",
+      "视频/脚本/16.json": "d25aa07f3fac316c26c2ae1006d3efa7eb82a396b66150432b50239c1628396d",
+      "新版定稿/16-the-bread-made-from-air.md": "4da63148111213f6d77451b0eb4193893e6fc2fc170400bc39ce5f5ffcaa0b20",
+      "视频/脚本/17.json": "2e9971ea5ce7857e119226fe95def06e6eb9c3ef9823d8e8c4f3456f46a3bbb0",
+      "新版定稿/17-the-curse-of-the-pharaoh.md": "a2e8d92f9136e1b22fcc0799f9a4d281092f0e547cc68242e090241d7b09e222",
+      "视频/脚本/18.json": "8cffbad6f0b8451e46ad1a65d5f629c450ceff2c771218445770c8cbfd77ebca",
+      "新版定稿/18-the-mould-that-changed-the-world.md": "ef41cea03f471fe3b9a53939c843e450da3325eb711f6414e108ae92a7518dd8",
+      "视频/脚本/19.json": "cc3c5eea0f7d9ec0712b2e58adba7e5ef8b61d6518a322f9b25a12fcc45282fb",
+      "新版定稿/19-tulip-mania.md": "3882d487383b759c31dda4785966091c362960cd873a5d83c530d08d52e2e97c",
+      "视频/脚本/20.json": "cc5ed6d7be8767e5e7e9b098e8f3836821c0b3f51c17581b2746722da1cf3001",
+      "新版定稿/20-the-5000-year-old-murder-in-the-ice.md": "8d55638070787f7ff5432c197292af1188c463a8b018e01bdefc32999b888e95",
+      "视频/脚本/21.json": "61c1569a26d7569ee0f586178be6b307b1c394c0a30c3cb02541c910038b0589",
+      "新版定稿/21-the-man-who-sold-the-eiffel-tower-twice.md": "e8e966b70f579235d696ba11fb01d3b2cae3fa26efb9071bbea95071be259e1f",
+      "视频/脚本/22.json": "e3027a42c532fee9935afcecdd0542713cbb907183802c2345b9472f93b75f59",
+      "新版定稿/22-the-building-that-melted-a-car.md": "49ae09483bc80bbc40a71551cd98aebec355d96d9ff7b2bcdea59a06fe599267",
+      "视频/脚本/23.json": "c4574a79fd3a58577a1402ce095ea9e4a0ea1f98883ce63e3cc60d126e819409",
+      "新版定稿/23-the-man-who-gave-machines-a-mind.md": "72ed3049e87fe75ce1e753d5e443bdbe6a7ab72f6e282e8467fbbb62be873169",
+      "视频/脚本/24.json": "f08620b534bb10b718f7515c805dcb541721427d855bd5a092b8954847a351b8",
+      "新版定稿/24-survival-in-the-ice.md": "cb7f810d9a74256e0c00625290be4f16207feb90f5719ca87d5d7c9912b91307",
+      "视频/脚本/25.json": "c73e854e052b3df9bd920d4a59fafb183dee19bd58765fa426af6ea3d7c9a329",
+      "新版定稿/25-apollo-13-the-successful-failure.md": "b6b7d55fe66e6e32116431ea955778fab779b8bda622df0ba1036c2f40a3969f",
+      "视频/脚本/26.json": "ab663b240eb5e27923f38e2ff296c0196e3d820766d0c909adb9faf19aa3cac9",
+      "新版定稿/26-the-language-the-children-invented.md": "9e9ad8021ddabc17157d73dc739383f9676df3583cf965e470fcd773e26a3761",
+      "视频/脚本/27.json": "61cd724c5fab6f07a46aa5ac069101617c4c8350311eb11a43f9fefdddb31d8b",
+      "新版定稿/27-life-in-the-forbidden-zone.md": "e276bcf76225b9ae16cd8cfda8c9b726b442fbd625d3718f532b47b09b21b16f",
+      "视频/脚本/28.json": "a6a4befc0291727f5cc3f8b50857ee954ef9f936738f014a978ebb4d37a28ea8",
+      "新版定稿/28-a-handful-of-wormwood-that-saved-millions.md": "b9817d3429767d07b6a2eb14cce5422a20cb4e3b89f8b03e6b3d5da2daf91d91",
+      "视频/脚本/29.json": "1e5f1d9f0c22b5d14b757f029be694c2a3969666d732ca79bb695282763de791",
+      "新版定稿/29-the-volcano-that-gave-us-frankenstein.md": "69045ee19a170c7ea9d0008b468c7e947bc28b639b834c0192dc0aeafc3ef4d0",
+      "视频/脚本/30.json": "cdf727cb4c6832063421df9da6ab8ae7729cf9df01d6be089a8981c92c360f06",
+      "新版定稿/30-the-stink-that-built-londons-sewers.md": "84dbf19cee0045ea2608b13ee0677cb9623dd8fbb371c67093bf50c64186137a",
+      "视频/脚本/31.json": "d81f8645a1e5663ba8c84668e817cdb218bc6689079fbfd51326b3a7fd3cd384",
+      "新版定稿/31-the-book-twelve-publishers-turned-down.md": "7abd20fed44918dcf01586c056e9d0acd9d2ad3b90aa7d3d403762d9f06d2659",
+      "视频/脚本/32.json": "357aa59bed62154f7302a5efcf528859b303004e028657b93058138fe931bf85",
+      "新版定稿/32-the-planet-that-was-demoted.md": "1421f2b0921e7e9478ebc48777e3e8b2c979172de63d0124015107c3750a3542",
+      "视频/脚本/33.json": "ca51103c1a9d45c9159322765efc86c81f61f6ec78975f160019d21a1d9ee0d7",
+      "新版定稿/33-thirteen-in-the-cave.md": "9862078044ce45a9f6d51aa7d165afdfcf90066d1de98cbb317dd7e8f980610d",
+      "视频/脚本/34.json": "74921848a6bb25a2ba631813f60d4756c9ff90c64c03a2fb936ce34f310ce509",
+      "新版定稿/34-the-game-that-escaped-the-soviet-union.md": "e3244b67b21e283e67f4e88e932a1dbb85bf273a48ee009b3f435e1c5814831c",
+      "视频/脚本/35.json": "d8439077dc2c909b1c6cbd1347f31e9625f25fffe447d6f5945c9492561f1a16",
+      "新版定稿/35-the-bird-that-beat-the-letter-home.md": "ba8c38e38b21a3345624e2d44fd352561d3096cfb6f62214b48ea9b6e66faead",
+      "视频/脚本/36.json": "76daa28f421bd40d8e2744d4e785a34bb8ee67da1403b4b1546db9465c535cef",
+      "新版定稿/36-the-company-that-invented-its-own-killer.md": "411eeb96c8641ee7082b49a5abf4c7343d3f1dbb7ef331064d7c0f3c630fe58f",
+      "视频/脚本/37.json": "b1b8945ccf3581df48ade5714a2d0e93e4cc6812708f95bef6f5e44439106c99",
+      "新版定稿/37-dynamite-for-the-heart.md": "4933e24d2384471a96d9c8c26c15d5224a85dae98d9971a3fed15b4978dafc51",
+      "视频/脚本/38.json": "8d0379032000967c9f72e550574874949f798eefbfbfb58ab2b38e4e23ecbc6b",
+      "新版定稿/38-the-web-beneath-the-woods.md": "abb7eead9f3da0b2b326ceed5a649cfbf71fc28dad22e0d52f7b19caa798c54f",
+      "视频/脚本/39.json": "6c3e9539f624b192335312912572a05fba2c7bcfb821b44c3c1dbb21b42527a7",
+      "新版定稿/39-y2k-the-crisis-that-success-erased.md": "abbc9804661126aa006595031ed8f201ce55e8eb5fd9e1ad5669c0c6fcdb80ab",
+      "视频/脚本/40.json": "1c50d1a47ee6f8528d0f7299e8a45bc8c30312622f3f465a964d21cc1395ee7f",
+      "新版定稿/40-the-glue-that-failed.md": "dce9f78f3a0828307843dd667b7eeebf3380a3630f03d234bd5824870aba61a1",
+      "视频/脚本/41.json": "6b6673ffc1db986f4c355f3685de6a0faf2272cee042c5e917f26a8b3057c2be",
+      "新版定稿/41-the-toad-that-invaded-australia.md": "eca590f97120f4e76d719e29aa07b094f9117cd462f5a70c029331a63b85f710",
+      "视频/脚本/42.json": "eceb10ae92aa4b9cd23180d1138149a7fa7b674385462c898bc0d2283c8739e7",
+      "新版定稿/42-the-telescope-that-needed-glasses.md": "d4aa049779a0eba06c555d76ca14103648378eef90465df424120126fa771280",
+      "视频/脚本/43.json": "aa9da1246e293c80408edf94a7c9bed65ef3178ae7cb5265a8273e8c4396687f",
+      "新版定稿/43-from-a-garage-to-the-top-of-the-world.md": "bd70c83e5ac867238ca179f3c9f3548eb9cbdcae1f6df40994aef0bda721ae54",
+      "视频/脚本/44.json": "87f531203ca38d88ae5e71ffd88190b1530715cdc0adba146c2a4a78ebe9b976",
+      "新版定稿/44-the-night-sweden-switched-sides.md": "d3f7ad2ac43f02aae9205a15b9808280ca3db597d6ef3b36aca8ca6176c5f74a",
+      "视频/脚本/45.json": "569406607d2bf18dce5e916052d6460509450d97fe17ac9820be524f59c2c3cc",
+      "新版定稿/45-the-record-humanity-threw-into-the-stars.md": "27deabec4a8478fe570f7f237a2fb850ffdce3deebfd952f512d82a60cf7314f",
+      "视频/脚本/46.json": "804ecfddb6060288b05eda0e1027c65e9bff0c08a9d010c201bf39306c769b62",
+      "新版定稿/46-lost-in-the-glare.md": "7aaa06e875fe56c5d78210b90a8769b8b2051714025ef10df37c2fe89db7a68c",
+      "视频/脚本/47.json": "0417489c8a672e7e63d46c2239d847acabda2d93160cabed3b0fb14f701ac39a",
+      "新版定稿/47-shadows-of-wolves-over-yellowstone.md": "34c68cf4d0f0ef3545ad68edf3367fcb76ab500174b11ae7f83b782cd5a80a2a",
+      "视频/脚本/48.json": "4f146ce6a70bb0bf5d2c6e1f6b47bd6a2bcc2f311be7a948092d7bde1a08f449",
+      "新版定稿/48-rice-for-the-world.md": "76416be21f857e8a05c37baa33ac90f5785812291485231c249e38a1d0edf15f",
+      "视频/脚本/49.json": "640168eb8a17c5d53d266c6604ffe287919314947371c2ee239eeea952d73b77",
+      "新版定稿/49-the-woman-who-won-two-nobels.md": "1e4fb068aa9ae4513d01b199a074b84dc9d819f57b2134df32588a0e4a4b6b6a",
+      "视频/脚本/50.json": "1d4a41824dfa5e8d11e5990b2a4b802ba2fcc3231d85b15ed6630396c6f027bf",
+      "新版定稿/50-microplastics.md": "5439589bacf1abb2abbb184eb658492bc02bcc5bdd8dfd8ababcd80ab93621cb",
+      "视频/脚本/51.json": "39886d83593a31fb575b124ecf6457190773dca695b6ff78f8434d52aebd6d7c",
+      "新版定稿/51-the-joke-that-became-ok.md": "8de30ea4846f4e88d8b71c8d5ced3ee63a73955e39b7dc3c5adad0971b854fd0",
+      "视频/脚本/52.json": "832249bb44617d38ede75560a5e57af6ba79ec284c9609407cb30ce879f6f862",
+      "新版定稿/52-the-killer-smog-of-1952.md": "179500361e4a837d7edb2e0497e08677d5abd425e8ad542f788205a6f7667b4b",
+      "视频/脚本/53.json": "28b604bfa72896534736293f79e9b3aabd8e3678672f4dc6c66337c02a8f1518",
+      "新版定稿/53-the-wind-that-kept-no-time.md": "6fab302dcadb5a2c509436f5fbf8d9ef925c008a36f5b422749bd405aa4701d3",
+      "视频/脚本/54.json": "b1fcb8ae86045b3d35ccfa0f52eb9594b8921d43063835769ee3ecc4543be75e",
+      "新版定稿/54-the-sound-that-shook-the-world.md": "abd5f4bfe11ed73bcc5326a92cf99b0a8e5ad70adaca1ce8d0c8f622b57fa519",
+      "视频/脚本/55.json": "06344fc0ad5975cba2f4dbe5262a9957dd7c024f9a05b9abbfa327f32ea8c719",
+      "新版定稿/55-the-secret-of-romes-undying-concrete.md": "a7759eddcc7ec06dfd6dab7912e06b3b5ef8576df0c025a97812006669d0be61",
+      "视频/脚本/56.json": "22ca3b4180a8ae6a37b4c8e25f5e357d5696d9b23bf148fb7064425d1403e59c",
+      "新版定稿/56-the-letter-that-startled-darwin.md": "aad1e2aab9ff28f534a510362e807ef401e0b502475240f4b2531e9e518a8d7a",
+      "视频/脚本/57.json": "a0ba65b769430289a33ec1f7bc6dbf91dad8d2c3b1d725348851de546563cd6f",
+      "新版定稿/57-a-change-of-anthem-in-the-deep.md": "0731d925a98bafc222718c111985362e166b38b9189c516219a481e36d0d4b6e",
+      "视频/脚本/58.json": "8b0bd3d7d39000518789e9907aec53bd52fab1b9d6b4f22a152d158635b6e8ee",
+      "新版定稿/58-from-a-scratch-to-a-world-without-smallpox.md": "1aa2a0d2c51da76f9c9ebb88d049dd1a55ab530791566fdbf6476e5aa48c15ee",
+      "视频/脚本/59.json": "df1db4174d942371166048b220ef6d55b0b700b2ce31c866edf6dfdf33b92f0c",
+      "新版定稿/59-saving-the-sky.md": "7bf9c4661e733e7af23dc2f11bc820b809ec93dad75a94fb6a12748226e8722c",
+      "视频/脚本/60.json": "eed1655c0919db32a3a016b24791b93d25683f287c7ccb2523e168a69bddc562",
+      "新版定稿/60-the-scientific-giant-who-changed-the-world.md": "9d1578e7af085559922394a3db01de4eb22dc1c520ca17de5cad68e5a38a31a8",
+      "视频/脚本/61.json": "72378937501769dfb3d934fe65ab1a69afeb5420a15e19890c161433717d2435",
+      "新版定稿/61-the-steel-box-that-remade-the-world.md": "135cc9cfbcbd68d957f831cf55558112a45b1cc3749366cb9a304507355c7d2c",
+      "视频/脚本/62.json": "4b3a97f2b6404e1b091537c21f01fc60088902f596803345983c38be52ec79eb",
+      "新版定稿/62-dolly-the-copied-sheep.md": "62817546ae33824b57255f941135c503e41a41f905331ed4af1e32850fa00960",
+      "视频/脚本/63.json": "5d266d80f9cf29cce6f7e34531449cf75191a42f180102685a5bcd04849e75c5",
+      "新版定稿/63-the-crowded-heavens.md": "6ef79d4310019dfefa7364b8a428411a6bc337678c69fa5cbc89b84689e253a4",
+      "视频/脚本/64.json": "12a36862765922d72ce6e5a4c5fe85f548364eed65fe3b3b284f0b38899a965f",
+      "新版定稿/64-the-day-zero-that-never-came.md": "e0c83cbe36745adbbffd33a156fa8d0671704ea976cb13215cabb612639b37a5",
+      "视频/脚本/65.json": "78e60dd231df4ac71df83e21a26f82bbf706dc0bef80bee156a36bc287661ede",
+      "新版定稿/65-the-day-the-doomsday-vault-opened.md": "71a50d32e25955e713e6ca108ab68422a4fd5b77c914a9074eece1dc33cbff89",
+      "视频/脚本/66.json": "ad5324af4270834186285a5e7273a90213094077adc6f9e1d5c7b0ebff9cf035",
+      "新版定稿/66-the-burrs-that-became-velcro.md": "75dbe6c148ca97a7780ac1737f33f58bf8ee27a51aa729a83315705655b12b2a",
+      "视频/脚本/67.json": "8897cc1c2df1e4672eec3bbff2776d0565afb9c9fe84087a1758ebb15b2a233e",
+      "新版定稿/67-the-cave-found-by-a-dog.md": "10e37b81eeef4e3289448a6b4fd679f34d495a4fc087c57747e6dca949e00cf1",
+      "视频/脚本/68.json": "568f72dacac48e206811d35a57c7fa22e3da428783f64e507c184f2090e579f3",
+      "新版定稿/68-the-last-flight-of-the-hindenburg.md": "c25f58ffb0e3748336767bb7470dd7cef10374c53cbb48af89dba26f65b2dd5c",
+      "视频/脚本/69.json": "09fd3fdbbc834badd16a9b38d8c14e425193a6849d7db87253f26a782a1c4137",
+      "新版定稿/69-the-trial-of-the-father-of-the-atomic-bomb.md": "570eda5b7d979d71e9bcad1c67e295ed326ecdb8b61e663aba33272c8a9451bd",
+      "视频/脚本/70.json": "0f6827f02cef0d2416f9d7d69b7e1c5553acee7cf6dc89f3379201264587236c",
+      "新版定稿/70-the-stamp-that-changed-the-post.md": "edfd85cea33730ba67e4210e756da1f2945f1a21bce55c7e75497cb5f0095d80"
+    },
+    "source_file_count": 140,
+    "working_script_count": 70,
+    "target_request_exactly_matches_context": true
+  },
+  "request_source_sha256": {
+    "视频/脚本/21.json": "61c1569a26d7569ee0f586178be6b307b1c394c0a30c3cb02541c910038b0589",
+    "视频/工具/初稿生成/gen21.py": "7c757dae9d452376ef38b72aa09a136d06c0a27150a4817c65507b4a888320ea",
+    "新版定稿/21-the-man-who-sold-the-eiffel-tower-twice.md": "e8e966b70f579235d696ba11fb01d3b2cae3fa26efb9071bbea95071be259e1f",
+    "视频/制作记录/21_待改清单.md": "145acf99ad06850213fdbfe03b12ed6e8e19080bba46b7df79472dfb5e185a8c",
+    "视频/制作记录/逐句确认/21.json": "a00d47052c4d2d5308b6e4ad2212e27ff9d46b502702c17061c4b56129e0d1ce"
+  },
+  "accepted_source": {
+    "id": "21",
+    "path": "最终版4K视频/21 - The Man Who Sold the Eiffel Tower Twice - 两次卖掉埃菲尔铁塔的骗子.mp4",
+    "sha256": "2e5fd909686dbdebe21fa7fc47bbbe90232150586acb67963271dabae78dd38c",
+    "git_blob_sha": "8c7210aa01a568dedb08d596d2d462121df8b139",
+    "bytes": 11187949,
+    "width": 3840,
+    "height": 2160,
+    "summary_frames": 60,
+    "aac_adts_sha256": "08b1daf0cf520fc9999f34fa6a4fc6c04dcc94a4c962e5c8c05226d3010ffcee"
+  },
+  "checker_reference_preparation": {
+    "article": "21",
+    "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+    "reference_prepared": true,
+    "acceptance": false,
+    "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+    "source_sha256": "61c1569a26d7569ee0f586178be6b307b1c394c0a30c3cb02541c910038b0589",
+    "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+    "checker_program_sha256": {
+      "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+      "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+      "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+      "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+      "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+      "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+    },
+    "reference_calls": [
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-raw",
+        "method": "create",
+        "source_slice": "The Man Who Sold the Eiffel Tower Twice",
+        "exact_native_cache_key": "393109ff657e12a6956c04bc1fb2c516b739a8b1.pkl",
+        "cache_input_text_sha256": "8db50b3d6c5822f141018147550108f2b7552a43bafe26a4e6027eb47773d9d7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-timed",
+        "method": "create_timed",
+        "source_slice": "The Man Who Sold the Eiffel Tower Twice",
+        "exact_native_cache_key": "5a88b91567d7cef710f70a018fe767f18b1660aa.pkl",
+        "cache_input_text_sha256": "8db50b3d6c5822f141018147550108f2b7552a43bafe26a4e6027eb47773d9d7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "In 1925 six scrap-metal traders met secretly at the Hôtel de Crillon in Paris.",
+        "exact_native_cache_key": "2964814b5e8e158bb7763c8469849213d85d068a.pkl",
+        "cache_input_text_sha256": "44b107b343f5db093b47b4ede7857e1e40ada4cd16de2b651f9a0ae9f3ca571c",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "In 1925 six scrap-metal traders met secretly at the Hôtel de Crillon in Paris.",
+        "exact_native_cache_key": "8d9bbaf97e723a85ed061c2ccb01887bd6445b4f.pkl",
+        "cache_input_text_sha256": "44b107b343f5db093b47b4ede7857e1e40ada4cd16de2b651f9a0ae9f3ca571c",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "A deputy director-general of the Ministry of Posts and Telegraphs shared the momentous news, confidentially, that the Eiffel Tower was to be sold for scrap.",
+        "exact_native_cache_key": "96673f78f3a8064301bdcb8aa335d28ef87d192a.pkl",
+        "cache_input_text_sha256": "594336a8d02886bcc0dbbd3b4c9dd5740d19b5b819a12ffda0cf0655a4a75dc8",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "A deputy director-general of the Ministry of Posts and Telegraphs shared the momentous news, confidentially, that the Eiffel Tower was to be sold for scrap.",
+        "exact_native_cache_key": "0f67b031c2728d98c7c2cf08a7f9467eb5e68194.pkl",
+        "cache_input_text_sha256": "594336a8d02886bcc0dbbd3b4c9dd5740d19b5b819a12ffda0cf0655a4a75dc8",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "A deputy director-general of the Ministry of Posts and Telegraphs shared the momentous news, confidentially,",
+        "exact_native_cache_key": "ff2dd75d18f422f422ebc892a716141cf4331354.pkl",
+        "cache_input_text_sha256": "25782866fec0131f800efaadfad1561ced8802f6b9bc125bdeef5f50595e8c46",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "that the Eiffel Tower was to be sold for scrap.",
+        "exact_native_cache_key": "e881dd46d7160e03379d7489357b1b75d6e675a0.pkl",
+        "cache_input_text_sha256": "6f37301ac75c47c532e182fbbf82044ff834839dcfea2266a183b6501e3a576e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "A deputy director-general of the Ministry of Posts and Telegraphs shared the momentous news,",
+        "exact_native_cache_key": "3af5d03aa664e177c89d529d8786b04bd179e266.pkl",
+        "cache_input_text_sha256": "3571f71bca41aadaa345ad5191001925cace3fba7445a96496f0a09b2461040a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "confidentially,",
+        "exact_native_cache_key": "ff73f6e375922e7ad51abc3fa0c4773fbcecf227.pkl",
+        "cache_input_text_sha256": "71c20ca4a18e390f38b3c26c9741ce666aa8bee9e89dfc314c5da87a95615d24",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "that the Eiffel Tower was to be sold for scrap.",
+        "exact_native_cache_key": "e881dd46d7160e03379d7489357b1b75d6e675a0.pkl",
+        "cache_input_text_sha256": "6f37301ac75c47c532e182fbbf82044ff834839dcfea2266a183b6501e3a576e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "He invited tenders and made each dealer solemnly vow secrecy, ostensibly to spare the public indignation.",
+        "exact_native_cache_key": "147e82c61d91e50d809f0dc07ec0f73189171ada.pkl",
+        "cache_input_text_sha256": "80afc5a1c78c23ae2b057f9b8d0c25b0d6a7b1c5a8337f7621b4a89cbd89fb0d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "He invited tenders and made each dealer solemnly vow secrecy, ostensibly to spare the public indignation.",
+        "exact_native_cache_key": "9a0a43a408afb12d8faf6cf9658d714f0f1467d7.pkl",
+        "cache_input_text_sha256": "80afc5a1c78c23ae2b057f9b8d0c25b0d6a7b1c5a8337f7621b4a89cbd89fb0d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "He invited tenders and made each dealer solemnly vow secrecy,",
+        "exact_native_cache_key": "57cc37dccc676b54a9a689f207f7aef253f17191.pkl",
+        "cache_input_text_sha256": "23c19a35fba38116e402e8a983c1ebe8fbd4a8b9b4b599e27c89767b19e168bc",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "ostensibly to spare the public indignation.",
+        "exact_native_cache_key": "e0f6cba121a74376e941e44df265b5b701cdbde7.pkl",
+        "cache_input_text_sha256": "436afe0f3792840ee8103f3b703cde651cbc589b7f8d91d27e87c61e1ad0a9b4",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "He invited tenders and made each dealer solemnly vow secrecy,",
+        "exact_native_cache_key": "57cc37dccc676b54a9a689f207f7aef253f17191.pkl",
+        "cache_input_text_sha256": "23c19a35fba38116e402e8a983c1ebe8fbd4a8b9b4b599e27c89767b19e168bc",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "ostensibly to spare the public indignation.",
+        "exact_native_cache_key": "e0f6cba121a74376e941e44df265b5b701cdbde7.pkl",
+        "cache_input_text_sha256": "436afe0f3792840ee8103f3b703cde651cbc589b7f8d91d27e87c61e1ad0a9b4",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The pretext was not absurd.",
+        "exact_native_cache_key": "8db1860a76eefb2354147273d5f0a5aecda19837.pkl",
+        "cache_input_text_sha256": "f93403f9acaedbc6b5d2fa49ad69259adb4e47578eed36c280cd79b949854f1f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The pretext was not absurd.",
+        "exact_native_cache_key": "4368a4f976f1ea6b85975c4de02bb92a4e608087.pkl",
+        "cache_input_text_sha256": "f93403f9acaedbc6b5d2fa49ad69259adb4e47578eed36c280cd79b949854f1f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Built for the 1889 World's Fair, the monument had originally been destined to come down after twenty years.",
+        "exact_native_cache_key": "6e9c87e8f9239e79f9cb5afb180d3d17c25a8e1a.pkl",
+        "cache_input_text_sha256": "3ac19aded157976db80aa64e02766a4eec66a208af48497da1d6d92899b110ba",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Built for the 1889 World's Fair, the monument had originally been destined to come down after twenty years.",
+        "exact_native_cache_key": "f3a627f0c9b6909701ff9e19e6fffd45b2a0f176.pkl",
+        "cache_input_text_sha256": "3ac19aded157976db80aa64e02766a4eec66a208af48497da1d6d92899b110ba",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Built for the 1889 World's Fair, the monument",
+        "exact_native_cache_key": "85a1ab507e72ba421b13b375ad4cd16e1c610273.pkl",
+        "cache_input_text_sha256": "f2245d0daae1900932fa4159d470a00c62c22522df515b820389ef4db76b89d6",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "had originally been destined to come down after twenty years.",
+        "exact_native_cache_key": "1c9bb928856b918d33f9bfa8645a995cd1160bcb.pkl",
+        "cache_input_text_sha256": "2e2d347d640267be3fb2931ce1dc4494a76c500d3f7e975601a5a4deadd39b20",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Built for the 1889 World's Fair,",
+        "exact_native_cache_key": "18622621d24ec072359f71833071312265d77667.pkl",
+        "cache_input_text_sha256": "3bc0c17eaf9560c17825e4a7bde27bb84f8d1686a17f991a36553d07876349cc",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "the monument had originally been destined to come down after twenty years.",
+        "exact_native_cache_key": "038563c7b73143861aa08742f054e64e0609e9ab.pkl",
+        "cache_input_text_sha256": "1f7f7d3473772bb0f373000f6310b6a7437b3256ef4bbb0debbcaa101c78907f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The high-ranking deputy was Victor Lustig, a crook whose ministerial stationery was a forgery.",
+        "exact_native_cache_key": "1e0d3b72107b923e54c9b34ffac302d2ead5cb08.pkl",
+        "cache_input_text_sha256": "b531cedab32e59a05649a39cf0b5ca322b67491c7c1552e98e75510ccfbc1984",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The high-ranking deputy was Victor Lustig, a crook whose ministerial stationery was a forgery.",
+        "exact_native_cache_key": "03bf0598b799ea8b74cce2f4f7ccc3bc2439b1b8.pkl",
+        "cache_input_text_sha256": "b531cedab32e59a05649a39cf0b5ca322b67491c7c1552e98e75510ccfbc1984",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "The high-ranking deputy was Victor Lustig,",
+        "exact_native_cache_key": "7e73e8643114bb8b3459df92053fd97a964a18ce.pkl",
+        "cache_input_text_sha256": "81fdfaa4a1f056c7f3cd87a6a741050dc0eafeb395e88c6e5bf194da8e420c3a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "a crook whose ministerial stationery was a forgery.",
+        "exact_native_cache_key": "a517b50510405314f3b6fae6e095af0dfdf6b05e.pkl",
+        "cache_input_text_sha256": "94229a8d87a91179ff89515d55fb567637eb1b2e1ddcee8e2da76bce9e85f58b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "The high-ranking deputy was Victor Lustig,",
+        "exact_native_cache_key": "7e73e8643114bb8b3459df92053fd97a964a18ce.pkl",
+        "cache_input_text_sha256": "81fdfaa4a1f056c7f3cd87a6a741050dc0eafeb395e88c6e5bf194da8e420c3a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "a crook whose ministerial stationery was a forgery.",
+        "exact_native_cache_key": "a517b50510405314f3b6fae6e095af0dfdf6b05e.pkl",
+        "cache_input_text_sha256": "94229a8d87a91179ff89515d55fb567637eb1b2e1ddcee8e2da76bce9e85f58b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "He had read a newspaper article in which the authorities lamented the hefty cost of the tower's upkeep.",
+        "exact_native_cache_key": "f3d4f0d8ce1cc0017bfa988b9bbdbc4175ccd3ff.pkl",
+        "cache_input_text_sha256": "ca1a38d3b3f09d156018aa2927e2c0d71d021358d4dbc33bed467cae8a85419c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "He had read a newspaper article in which the authorities lamented the hefty cost of the tower's upkeep.",
+        "exact_native_cache_key": "07b74c6062b69db933cf08b9eb73046c1f43b29c.pkl",
+        "cache_input_text_sha256": "ca1a38d3b3f09d156018aa2927e2c0d71d021358d4dbc33bed467cae8a85419c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "He had read a newspaper article in which the authorities lamented",
+        "exact_native_cache_key": "2bd5d95c4685e1ca04a3614ed8871f1561d0030b.pkl",
+        "cache_input_text_sha256": "3f9978f8361de407a8d797f7dad00ec7186fd30a93110a363cf62e7e4a33d075",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "the hefty cost of the tower's upkeep.",
+        "exact_native_cache_key": "88a0954655e750d24a9e4029010c81688424b289.pkl",
+        "cache_input_text_sha256": "4ee5d3e18118474907c73b2421a1521bb02df9f7a9ce71044c9dab481ef21d8e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "André Poisson, a businessman impatient to gain a foothold in Paris, won.",
+        "exact_native_cache_key": "bd022befeb8b6115dd600f843ea369ed0de8165a.pkl",
+        "cache_input_text_sha256": "4bbfd4d90be33cfa7d748f73e38bb6feb11fc7351a2183e6dffac133728f14e7",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "André Poisson, a businessman impatient to gain a foothold in Paris, won.",
+        "exact_native_cache_key": "4b1496aaed1f3a1821bb02914a1dcd105ad4f87b.pkl",
+        "cache_input_text_sha256": "4bbfd4d90be33cfa7d748f73e38bb6feb11fc7351a2183e6dffac133728f14e7",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "André Poisson,",
+        "exact_native_cache_key": "8dde4e478d003bbc080814c2ba0f72a332676694.pkl",
+        "cache_input_text_sha256": "95485f4eb5f727ee1fce4a18e5f01719786cfd78d9d19042735dc001eeaac883",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "a businessman impatient to gain a foothold in Paris,",
+        "exact_native_cache_key": "b207aaa6d1b1e18c92ba6b6f49b320feec966776.pkl",
+        "cache_input_text_sha256": "5bd6f3878b0c58f7b067556fc8654dc19b710e419bb001608a4eb6a6ba885ddb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "won.",
+        "exact_native_cache_key": "83c9b0044691bd03f6dd2de477916ad485eb8434.pkl",
+        "cache_input_text_sha256": "6cb1c45a1a626a4b1c589bd6dfe8bd3fd3d42edd676b763cbf42ad3954d6a99a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Lustig intimated that his modest civil-service remuneration needed supplementing, and Poisson paid an additional bribe.",
+        "exact_native_cache_key": "825c1156700a443209bd826755c68ecfe3c30d14.pkl",
+        "cache_input_text_sha256": "5aa7d3c2ccbd52992bf09482b4e730462e399467bdbfcb4198006727056f1d92",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Lustig intimated that his modest civil-service remuneration needed supplementing, and Poisson paid an additional bribe.",
+        "exact_native_cache_key": "ca4bf135508ffbcde39527c374ff9d9072684815.pkl",
+        "cache_input_text_sha256": "5aa7d3c2ccbd52992bf09482b4e730462e399467bdbfcb4198006727056f1d92",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Lustig intimated that his modest civil-service remuneration needed supplementing,",
+        "exact_native_cache_key": "85355273eebfc1f8e358fda6a8c8c6ec2d61105a.pkl",
+        "cache_input_text_sha256": "7a97368037aadccab32fbd5cc6dde061ccde86e4cc9c422c07c606538422627e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and Poisson paid an additional bribe.",
+        "exact_native_cache_key": "50c2ffa2491251250e05891c3f7779d7ac0bbbb9.pkl",
+        "cache_input_text_sha256": "3334a8fcada9512510648cbbc787f02d33174d477cddfeb993e53a0c607d916f",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Lustig intimated that his modest civil-service remuneration needed supplementing,",
+        "exact_native_cache_key": "85355273eebfc1f8e358fda6a8c8c6ec2d61105a.pkl",
+        "cache_input_text_sha256": "7a97368037aadccab32fbd5cc6dde061ccde86e4cc9c422c07c606538422627e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and Poisson paid an additional bribe.",
+        "exact_native_cache_key": "50c2ffa2491251250e05891c3f7779d7ac0bbbb9.pkl",
+        "cache_input_text_sha256": "3334a8fcada9512510648cbbc787f02d33174d477cddfeb993e53a0c607d916f",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Lustig left for Vienna with the takings.",
+        "exact_native_cache_key": "b3e078464599343517506ddd95c921f017ac5b4c.pkl",
+        "cache_input_text_sha256": "ce855b131542f921d2673e74e24777d49dabf601dddf1d0f9f88700ddd259231",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Lustig left for Vienna with the takings.",
+        "exact_native_cache_key": "60be75facc6cf3153dba3a0ebe93245eeced089f.pkl",
+        "cache_input_text_sha256": "ce855b131542f921d2673e74e24777d49dabf601dddf1d0f9f88700ddd259231",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Fleeced and too ashamed to go to the police, Poisson swallowed the loss quietly.",
+        "exact_native_cache_key": "ae6599c1d3c775c88cf48308b73e06e48b56fced.pkl",
+        "cache_input_text_sha256": "b447a83913252f2adf695e5154c80e4df3998856c8c8d76c44a0cf8ba9b6e946",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Fleeced and too ashamed to go to the police, Poisson swallowed the loss quietly.",
+        "exact_native_cache_key": "72f800c644cb84ac3f7d6358f7e33ad7ede0854c.pkl",
+        "cache_input_text_sha256": "b447a83913252f2adf695e5154c80e4df3998856c8c8d76c44a0cf8ba9b6e946",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Fleeced and too ashamed to go to the police,",
+        "exact_native_cache_key": "418f6a0f870eb7edb24e44643b35abf082859453.pkl",
+        "cache_input_text_sha256": "6faa6619e245f4eb14698bb43d0f9b5e0ce689cc22581ea8f2bf6f5bd886ce40",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Poisson swallowed the loss quietly.",
+        "exact_native_cache_key": "d847a5fb231186afbf5a5c37fa036eb9b9b31171.pkl",
+        "cache_input_text_sha256": "da5a0634ddedd603427beeeebef797f71ec9f2589ec4f5b86864d3f335367e3f",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Fleeced and too ashamed to go to the police,",
+        "exact_native_cache_key": "418f6a0f870eb7edb24e44643b35abf082859453.pkl",
+        "cache_input_text_sha256": "6faa6619e245f4eb14698bb43d0f9b5e0ce689cc22581ea8f2bf6f5bd886ce40",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Poisson swallowed the loss quietly.",
+        "exact_native_cache_key": "d847a5fb231186afbf5a5c37fa036eb9b9b31171.pkl",
+        "cache_input_text_sha256": "da5a0634ddedd603427beeeebef797f71ec9f2589ec4f5b86864d3f335367e3f",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Not a whisper of the deceit appeared in print.",
+        "exact_native_cache_key": "d94b8c9120f354b3a246f0cea3f24f095f00368e.pkl",
+        "cache_input_text_sha256": "76333adff374614ecfcf7847de66244bd07c2398223cd3e47255891df2580adb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Not a whisper of the deceit appeared in print.",
+        "exact_native_cache_key": "b8165034a01c8faf16a927acc63d62df473dc8c5.pkl",
+        "cache_input_text_sha256": "76333adff374614ecfcf7847de66244bd07c2398223cd3e47255891df2580adb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "About a month later Lustig had the gall to reappear with an encore of his script for new dealers.",
+        "exact_native_cache_key": "db44b78e15429474963f9d699ff68106931ad271.pkl",
+        "cache_input_text_sha256": "55188d7424a919945b15812096bfa497a93d7651baa9b1c7003b9d43fe08d844",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "About a month later Lustig had the gall to reappear with an encore of his script for new dealers.",
+        "exact_native_cache_key": "43b70e316c30e59c0c209896b94b4eff41626b03.pkl",
+        "cache_input_text_sha256": "55188d7424a919945b15812096bfa497a93d7651baa9b1c7003b9d43fe08d844",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "About a month later Lustig had the gall to reappear",
+        "exact_native_cache_key": "337993b59bf1d098f1d5b893e9e8e542449a00dd.pkl",
+        "cache_input_text_sha256": "0bcfe5324b69e3f2182366376320cf1d3663263c74319a3d1872d3afb4a1caee",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "with an encore of his script for new dealers.",
+        "exact_native_cache_key": "74439a8fbe1ba03dc122d20197e09eabfb37ca42.pkl",
+        "cache_input_text_sha256": "7d1bc383e14be85684e6352755c4f72a1efbfdd323023b7ae0ec01ece8c19b8c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "This time the winner grew distrustful and went to the police.",
+        "exact_native_cache_key": "7a685f42dbd691785a63dabda45f69a1a65832ae.pkl",
+        "cache_input_text_sha256": "bc876c401319f796aa8bbb60b4a6cb3cf4630f09e6de8d31852f0fec43585448",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "This time the winner grew distrustful and went to the police.",
+        "exact_native_cache_key": "354813dd6f037043387755eb54c69d1591588439.pkl",
+        "cache_input_text_sha256": "bc876c401319f796aa8bbb60b4a6cb3cf4630f09e6de8d31852f0fec43585448",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The affair made the papers, and Lustig made his getaway.",
+        "exact_native_cache_key": "b237cbca67f336e6cc45c20a6fcc383cc2c80730.pkl",
+        "cache_input_text_sha256": "1454cdda942aaff06cdbb77455f0f9d81572dbc434390ad9c00904e0f25764f7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The affair made the papers, and Lustig made his getaway.",
+        "exact_native_cache_key": "e87fe87ef02180c080ebb38f13ecafafc974b829.pkl",
+        "cache_input_text_sha256": "1454cdda942aaff06cdbb77455f0f9d81572dbc434390ad9c00904e0f25764f7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "The affair made the papers,",
+        "exact_native_cache_key": "f4c23225267b96a23cbc1395f34b3d109a7291c8.pkl",
+        "cache_input_text_sha256": "d191759e64ca27c880e2a77ff0c1ec027af1c7f2e5ea3c2a5a7b6d0c3951e932",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and Lustig made his getaway.",
+        "exact_native_cache_key": "4d77618de9e77be888ea245f1d04e89630bfc647.pkl",
+        "cache_input_text_sha256": "841d2ee6475b4dbd361e5c17b74e043ba1eea5d90b12e00717907aad19c3a70e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The much-repeated second sale is a fairy tale.",
+        "exact_native_cache_key": "873ccb5e17c8168a695b2dfa5b6605da698bc314.pkl",
+        "cache_input_text_sha256": "9b32095618f899effbb2ed9c280941dfba643addb45d26fbf298283c25835db5",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The much-repeated second sale is a fairy tale.",
+        "exact_native_cache_key": "e4c7e07e907fa1e1d4aca4dc3e4ad4799ade1523.pkl",
+        "cache_input_text_sha256": "9b32095618f899effbb2ed9c280941dfba643addb45d26fbf298283c25835db5",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Later arrested in the United States for making fake money, Lustig broke out of detention, was recaptured 27 days later and served time on the penal island of Alcatraz.",
+        "exact_native_cache_key": "88abb18c87f261e2b9033281b9cbc7b04a3aa526.pkl",
+        "cache_input_text_sha256": "d8cf24d381f16c44ca49fc03e023bd608971bdad13dd38fb7cc19049bd8d5364",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Later arrested in the United States for making fake money, Lustig broke out of detention, was recaptured 27 days later and served time on the penal island of Alcatraz.",
+        "exact_native_cache_key": "f4692049c7844665f85f09134743ac6272528d3e.pkl",
+        "cache_input_text_sha256": "d8cf24d381f16c44ca49fc03e023bd608971bdad13dd38fb7cc19049bd8d5364",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Later arrested in the United States for making fake money,",
+        "exact_native_cache_key": "2ba3b3fee85e9865ea31cf490c555c4b682463ba.pkl",
+        "cache_input_text_sha256": "9ff9ed976a00ae7e1808ff9724a648485788f77e4f729256759143900f0d5015",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Lustig broke out of detention, was recaptured 27 days later and served time on the penal island of Alcatraz.",
+        "exact_native_cache_key": "fa480b0e2c9a63636b3d78d64ac3c43964de3c10.pkl",
+        "cache_input_text_sha256": "d370a49d8c743416c2a973fa1ba06802576414e4dda374d232da947d3d7df76e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Later arrested in the United States for making fake money,",
+        "exact_native_cache_key": "2ba3b3fee85e9865ea31cf490c555c4b682463ba.pkl",
+        "cache_input_text_sha256": "9ff9ed976a00ae7e1808ff9724a648485788f77e4f729256759143900f0d5015",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Lustig broke out of detention,",
+        "exact_native_cache_key": "65804332581030690a9f8306e4a08cb7c00227a7.pkl",
+        "cache_input_text_sha256": "3ca0aea99402e53f48b4e11b2da61c470c79fef15a3bc98b64f31253ba846a52",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "was recaptured 27 days later and served time on the penal island of Alcatraz.",
+        "exact_native_cache_key": "0f8e82124805b3a097e598ef5c2ebeb3a73eb79a.pkl",
+        "cache_input_text_sha256": "d595b0f63dd68782cfd894de347d6e028e63ed3d3210afaf94a8280b8b74306c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "He died of pneumonia in 1947.",
+        "exact_native_cache_key": "d384b03358bb8aa3cee14897bb68aa8575af6e56.pkl",
+        "cache_input_text_sha256": "4f9691d52da78b8f53d73a2d3a2446fab678009fb18e0e61e1dd23a5f84fc486",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "He died of pneumonia in 1947.",
+        "exact_native_cache_key": "179b8859944d83a34f8d1b7339d0ffa709938e18.pkl",
+        "cache_input_text_sha256": "4f9691d52da78b8f53d73a2d3a2446fab678009fb18e0e61e1dd23a5f84fc486",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Of Lustig's two marks, the one who paid kept mum and the one who kept his money went to the police.",
+        "exact_native_cache_key": "f3a0838b04f488599040de8df5e896be34a6d0cb.pkl",
+        "cache_input_text_sha256": "76a8c9faa493c0f415d773e1115d78b9d322ed13141f07c18d3d0d63b6ee98d0",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Of Lustig's two marks, the one who paid kept mum and the one who kept his money went to the police.",
+        "exact_native_cache_key": "539db6e4c585c1bec98d4ece4c308beb82caa8ce.pkl",
+        "cache_input_text_sha256": "76a8c9faa493c0f415d773e1115d78b9d322ed13141f07c18d3d0d63b6ee98d0",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Of Lustig's two marks, the one who paid kept mum",
+        "exact_native_cache_key": "78fd61535b86e7a69d286174fca9d4f6aaa17bd1.pkl",
+        "cache_input_text_sha256": "8ec01c42dd4f048c40a1f2eb635a492283d8f148ce0e8400a4db5c4ade7f50e2",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and the one who kept his money went to the police.",
+        "exact_native_cache_key": "f19b4d7c246059ced7b44d37bd911653ff1c31ba.pkl",
+        "cache_input_text_sha256": "e6b70189e5f906d8d9196a856261a6850b9917c71b07623ece2cc011f42a083d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Of Lustig's two marks,",
+        "exact_native_cache_key": "595faa47ab5e9b10807b5b2fa310b365e33fa288.pkl",
+        "cache_input_text_sha256": "1874f9b2e76553a64e8aba6fb4121b11f0b7fa259a5a2291d23e94290d5ec9fd",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "the one who paid kept mum and the one who kept his money went to the police.",
+        "exact_native_cache_key": "8f965c271269754a1464de1846af1da900f66ad3.pkl",
+        "cache_input_text_sha256": "b37a7be6a868ccd065801ec0056536c72ae99dc3268896146550d3dbc65fba8f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      }
+    ],
+    "unique_reference_key_count": 73,
+    "raw_mother_cache_scalar_manifest": [
+      {
+        "exact_native_cache_key": "393109ff657e12a6956c04bc1fb2c516b739a8b1.pkl",
+        "pkl_sha256": "747ed4334f779eb50ea87ea1968c0d2fa432c99f71309328020426ab5813c121",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "标题",
+            "piece": null,
+            "reference_kind": "title-default-raw",
+            "method": "create",
+            "source_slice": "The Man Who Sold the Eiffel Tower Twice",
+            "exact_native_cache_key": "393109ff657e12a6956c04bc1fb2c516b739a8b1.pkl",
+            "cache_input_text_sha256": "8db50b3d6c5822f141018147550108f2b7552a43bafe26a4e6027eb47773d9d7",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          55296
+        ],
+        "unprocessed_array_sha256": "4b10f3e7c25ef0736ea182b180023fa8f01d29770ad0d594f4a8108300981c84"
+      },
+      {
+        "exact_native_cache_key": "2964814b5e8e158bb7763c8469849213d85d068a.pkl",
+        "pkl_sha256": "de9ab6a63479b51bc661602455829d47712e33a4c1f4649fba9402c28a732dd0",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "In 1925 six scrap-metal traders met secretly at the Hôtel de Crillon in Paris.",
+            "exact_native_cache_key": "2964814b5e8e158bb7763c8469849213d85d068a.pkl",
+            "cache_input_text_sha256": "44b107b343f5db093b47b4ede7857e1e40ada4cd16de2b651f9a0ae9f3ca571c",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          157696
+        ],
+        "unprocessed_array_sha256": "ebfce60e6705c0f52640fd52a20046d18de1608442a673575ad9f1798c61b54e"
+      },
+      {
+        "exact_native_cache_key": "96673f78f3a8064301bdcb8aa335d28ef87d192a.pkl",
+        "pkl_sha256": "ed0fcd145e89b263953bcb6869b8c4b318b8c80735540fd8d8617fe90faddc0e",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "A deputy director-general of the Ministry of Posts and Telegraphs shared the momentous news, confidentially, that the Eiffel Tower was to be sold for scrap.",
+            "exact_native_cache_key": "96673f78f3a8064301bdcb8aa335d28ef87d192a.pkl",
+            "cache_input_text_sha256": "594336a8d02886bcc0dbbd3b4c9dd5740d19b5b819a12ffda0cf0655a4a75dc8",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          263168
+        ],
+        "unprocessed_array_sha256": "a68ce033a723f1242c8fdb14105052239bfb504ee686e64d466050622422fbb2"
+      },
+      {
+        "exact_native_cache_key": "ff2dd75d18f422f422ebc892a716141cf4331354.pkl",
+        "pkl_sha256": "4500028a5cd13d3e9344257b659158e3e89f2a554b30b380e72fe38939925934",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "A deputy director-general of the Ministry of Posts and Telegraphs shared the momentous news, confidentially,",
+            "exact_native_cache_key": "ff2dd75d18f422f422ebc892a716141cf4331354.pkl",
+            "cache_input_text_sha256": "25782866fec0131f800efaadfad1561ced8802f6b9bc125bdeef5f50595e8c46",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          183296
+        ],
+        "unprocessed_array_sha256": "33cfd98df972f5fd229131f291b2d675e4a7e76d4bcff8ae31a826b0acb35582"
+      },
+      {
+        "exact_native_cache_key": "e881dd46d7160e03379d7489357b1b75d6e675a0.pkl",
+        "pkl_sha256": "594bd0ccf10a58a86db88e378bc6e9f839de5f13986a0f431a1ad788ea12be68",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "that the Eiffel Tower was to be sold for scrap.",
+            "exact_native_cache_key": "e881dd46d7160e03379d7489357b1b75d6e675a0.pkl",
+            "cache_input_text_sha256": "6f37301ac75c47c532e182fbbf82044ff834839dcfea2266a183b6501e3a576e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S2",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "that the Eiffel Tower was to be sold for scrap.",
+            "exact_native_cache_key": "e881dd46d7160e03379d7489357b1b75d6e675a0.pkl",
+            "cache_input_text_sha256": "6f37301ac75c47c532e182fbbf82044ff834839dcfea2266a183b6501e3a576e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          66048
+        ],
+        "unprocessed_array_sha256": "bf5db0ec96d56044ff2be2757981cda96c8e999a4d1f4fb3bb8904717696bee4"
+      },
+      {
+        "exact_native_cache_key": "3af5d03aa664e177c89d529d8786b04bd179e266.pkl",
+        "pkl_sha256": "aa0e36cff92a0cdd2af60cb72c9973f84d380c3f88380d4e14ed31818c6c6d7b",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "A deputy director-general of the Ministry of Posts and Telegraphs shared the momentous news,",
+            "exact_native_cache_key": "3af5d03aa664e177c89d529d8786b04bd179e266.pkl",
+            "cache_input_text_sha256": "3571f71bca41aadaa345ad5191001925cace3fba7445a96496f0a09b2461040a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          155136
+        ],
+        "unprocessed_array_sha256": "2e2c661a06f54058fc3da28064e96c5b3ba2332f9e0b5c1eaf0d9167891b9c23"
+      },
+      {
+        "exact_native_cache_key": "ff73f6e375922e7ad51abc3fa0c4773fbcecf227.pkl",
+        "pkl_sha256": "5793f08fae1ddd7d4a03b314cbb873f75c48611449fd7889c950e62abf9b096e",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "confidentially,",
+            "exact_native_cache_key": "ff73f6e375922e7ad51abc3fa0c4773fbcecf227.pkl",
+            "cache_input_text_sha256": "71c20ca4a18e390f38b3c26c9741ce666aa8bee9e89dfc314c5da87a95615d24",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          26624
+        ],
+        "unprocessed_array_sha256": "cb21364186bea5215aafac9104e5e8792bbbeab2b193dccc37d2490e04d4b696"
+      },
+      {
+        "exact_native_cache_key": "147e82c61d91e50d809f0dc07ec0f73189171ada.pkl",
+        "pkl_sha256": "3c035a52658fa90b0e4a79b1b59c6617f142d75cd3943d6a3aa878be78e15a6c",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "He invited tenders and made each dealer solemnly vow secrecy, ostensibly to spare the public indignation.",
+            "exact_native_cache_key": "147e82c61d91e50d809f0dc07ec0f73189171ada.pkl",
+            "cache_input_text_sha256": "80afc5a1c78c23ae2b057f9b8d0c25b0d6a7b1c5a8337f7621b4a89cbd89fb0d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          178176
+        ],
+        "unprocessed_array_sha256": "8a015bd4b15242e33b40c1e59eee8b119e85fe8e3cec61217187db27bb3226e0"
+      },
+      {
+        "exact_native_cache_key": "57cc37dccc676b54a9a689f207f7aef253f17191.pkl",
+        "pkl_sha256": "b764b98a7199bdd117ff1e83d73c4d9c7680012e0ffd59cc3750bab6da361b57",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "He invited tenders and made each dealer solemnly vow secrecy,",
+            "exact_native_cache_key": "57cc37dccc676b54a9a689f207f7aef253f17191.pkl",
+            "cache_input_text_sha256": "23c19a35fba38116e402e8a983c1ebe8fbd4a8b9b4b599e27c89767b19e168bc",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S3",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "He invited tenders and made each dealer solemnly vow secrecy,",
+            "exact_native_cache_key": "57cc37dccc676b54a9a689f207f7aef253f17191.pkl",
+            "cache_input_text_sha256": "23c19a35fba38116e402e8a983c1ebe8fbd4a8b9b4b599e27c89767b19e168bc",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          101888
+        ],
+        "unprocessed_array_sha256": "25387dc12647489ba5d710f56c77690f1abdf177e99b8ccfd90a98a9525c8007"
+      },
+      {
+        "exact_native_cache_key": "e0f6cba121a74376e941e44df265b5b701cdbde7.pkl",
+        "pkl_sha256": "b91be67fe09dd173ca9bc096ab1aaa98dd4fac008177a5f2a354fd3b5a7ccdcb",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "ostensibly to spare the public indignation.",
+            "exact_native_cache_key": "e0f6cba121a74376e941e44df265b5b701cdbde7.pkl",
+            "cache_input_text_sha256": "436afe0f3792840ee8103f3b703cde651cbc589b7f8d91d27e87c61e1ad0a9b4",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S3",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "ostensibly to spare the public indignation.",
+            "exact_native_cache_key": "e0f6cba121a74376e941e44df265b5b701cdbde7.pkl",
+            "cache_input_text_sha256": "436afe0f3792840ee8103f3b703cde651cbc589b7f8d91d27e87c61e1ad0a9b4",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          67584
+        ],
+        "unprocessed_array_sha256": "237b1ea50c0d9e91aa2d177698e7656f2bba641095428f8ccac218551f3d0c7c"
+      },
+      {
+        "exact_native_cache_key": "8db1860a76eefb2354147273d5f0a5aecda19837.pkl",
+        "pkl_sha256": "330cd4c6d197b80ffd79bc7e824cad1dbff874d135ebb1e6c44fd395898f3b16",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The pretext was not absurd.",
+            "exact_native_cache_key": "8db1860a76eefb2354147273d5f0a5aecda19837.pkl",
+            "cache_input_text_sha256": "f93403f9acaedbc6b5d2fa49ad69259adb4e47578eed36c280cd79b949854f1f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          43520
+        ],
+        "unprocessed_array_sha256": "c0de226d41fc01c5bcca692b7487ee590dc419703af26286a70095e0944d9890"
+      },
+      {
+        "exact_native_cache_key": "6e9c87e8f9239e79f9cb5afb180d3d17c25a8e1a.pkl",
+        "pkl_sha256": "c51694be98d2c1982154c61e7d806eed4a3370efb835951e1bc93c609c5d7bd7",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Built for the 1889 World's Fair, the monument had originally been destined to come down after twenty years.",
+            "exact_native_cache_key": "6e9c87e8f9239e79f9cb5afb180d3d17c25a8e1a.pkl",
+            "cache_input_text_sha256": "3ac19aded157976db80aa64e02766a4eec66a208af48497da1d6d92899b110ba",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          188416
+        ],
+        "unprocessed_array_sha256": "9811e3dcf5cd3f534985c13c3aea6433699b5c9c8b9f3e3e144bb385ed5b7971"
+      },
+      {
+        "exact_native_cache_key": "85a1ab507e72ba421b13b375ad4cd16e1c610273.pkl",
+        "pkl_sha256": "ab45be6d87f01ec2ac54e8fd4c84320e5a7ef7683434bdc8c402e80bbcbed5e5",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Built for the 1889 World's Fair, the monument",
+            "exact_native_cache_key": "85a1ab507e72ba421b13b375ad4cd16e1c610273.pkl",
+            "cache_input_text_sha256": "f2245d0daae1900932fa4159d470a00c62c22522df515b820389ef4db76b89d6",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          87552
+        ],
+        "unprocessed_array_sha256": "fca23aa380aee30f1d9a8da48a8071b586efd59220078f2ebcc2d482bdcfbf83"
+      },
+      {
+        "exact_native_cache_key": "1c9bb928856b918d33f9bfa8645a995cd1160bcb.pkl",
+        "pkl_sha256": "edac8db339bf95801929ded1c4ee44bdd967ce006518ffb90a2e12d16e3c52bd",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "had originally been destined to come down after twenty years.",
+            "exact_native_cache_key": "1c9bb928856b918d33f9bfa8645a995cd1160bcb.pkl",
+            "cache_input_text_sha256": "2e2d347d640267be3fb2931ce1dc4494a76c500d3f7e975601a5a4deadd39b20",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          90112
+        ],
+        "unprocessed_array_sha256": "0051aac7925ed43f35d51c8ffce61c03f9519a9a045b746014cde70e56a43e71"
+      },
+      {
+        "exact_native_cache_key": "18622621d24ec072359f71833071312265d77667.pkl",
+        "pkl_sha256": "b30c23e4deaf5653f520fb57c49e581d6996e3a327b55be4039291bcd4af941a",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Built for the 1889 World's Fair,",
+            "exact_native_cache_key": "18622621d24ec072359f71833071312265d77667.pkl",
+            "cache_input_text_sha256": "3bc0c17eaf9560c17825e4a7bde27bb84f8d1686a17f991a36553d07876349cc",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          60928
+        ],
+        "unprocessed_array_sha256": "ca7eaffe1eb77c4d59e5ac4674db7a2b0878cd5b14318a6224aac61092b67845"
+      },
+      {
+        "exact_native_cache_key": "038563c7b73143861aa08742f054e64e0609e9ab.pkl",
+        "pkl_sha256": "fb329c4693890aacb2d780765475693e8f49b6d4a2d8f393215968a117d0898d",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "the monument had originally been destined to come down after twenty years.",
+            "exact_native_cache_key": "038563c7b73143861aa08742f054e64e0609e9ab.pkl",
+            "cache_input_text_sha256": "1f7f7d3473772bb0f373000f6310b6a7437b3256ef4bbb0debbcaa101c78907f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          111104
+        ],
+        "unprocessed_array_sha256": "07f0192809b5c5f734a4e0d525954def110c3b9fb463e8fbc61638e8286074e7"
+      },
+      {
+        "exact_native_cache_key": "1e0d3b72107b923e54c9b34ffac302d2ead5cb08.pkl",
+        "pkl_sha256": "658bba219bcf24730862a6601b57d99409618b02018ac0d0d3c7b198a73dc43e",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The high-ranking deputy was Victor Lustig, a crook whose ministerial stationery was a forgery.",
+            "exact_native_cache_key": "1e0d3b72107b923e54c9b34ffac302d2ead5cb08.pkl",
+            "cache_input_text_sha256": "b531cedab32e59a05649a39cf0b5ca322b67491c7c1552e98e75510ccfbc1984",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          156672
+        ],
+        "unprocessed_array_sha256": "190d77a3e2aceac46beb6ab451aba1f2d369ca1c4c76b72b570d2bbd887959ac"
+      },
+      {
+        "exact_native_cache_key": "7e73e8643114bb8b3459df92053fd97a964a18ce.pkl",
+        "pkl_sha256": "8538320c1be298512d261ba864a361fc205e09d0d1164abb36e679880e23e39a",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "The high-ranking deputy was Victor Lustig,",
+            "exact_native_cache_key": "7e73e8643114bb8b3459df92053fd97a964a18ce.pkl",
+            "cache_input_text_sha256": "81fdfaa4a1f056c7f3cd87a6a741050dc0eafeb395e88c6e5bf194da8e420c3a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S6",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "The high-ranking deputy was Victor Lustig,",
+            "exact_native_cache_key": "7e73e8643114bb8b3459df92053fd97a964a18ce.pkl",
+            "cache_input_text_sha256": "81fdfaa4a1f056c7f3cd87a6a741050dc0eafeb395e88c6e5bf194da8e420c3a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          67584
+        ],
+        "unprocessed_array_sha256": "587d69d1ef65c4694a2aaac3ff319a1a6a6dae9c549d52ccfd43a4ab9ae8222a"
+      },
+      {
+        "exact_native_cache_key": "a517b50510405314f3b6fae6e095af0dfdf6b05e.pkl",
+        "pkl_sha256": "419a8070fbfa44d0ee2bf15a4f8053d0f11d070fc251054a9b158a48524374bb",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "a crook whose ministerial stationery was a forgery.",
+            "exact_native_cache_key": "a517b50510405314f3b6fae6e095af0dfdf6b05e.pkl",
+            "cache_input_text_sha256": "94229a8d87a91179ff89515d55fb567637eb1b2e1ddcee8e2da76bce9e85f58b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S6",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "a crook whose ministerial stationery was a forgery.",
+            "exact_native_cache_key": "a517b50510405314f3b6fae6e095af0dfdf6b05e.pkl",
+            "cache_input_text_sha256": "94229a8d87a91179ff89515d55fb567637eb1b2e1ddcee8e2da76bce9e85f58b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          80896
+        ],
+        "unprocessed_array_sha256": "e0bcbefdc4d3d488fc0cf431e2eed7f8645d3f2498f85c26e80a2a3a75fcc349"
+      },
+      {
+        "exact_native_cache_key": "f3d4f0d8ce1cc0017bfa988b9bbdbc4175ccd3ff.pkl",
+        "pkl_sha256": "4c0df76343243593d5a8396470c9366046ada03ec93e96db305c74182bb4e4fc",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "He had read a newspaper article in which the authorities lamented the hefty cost of the tower's upkeep.",
+            "exact_native_cache_key": "f3d4f0d8ce1cc0017bfa988b9bbdbc4175ccd3ff.pkl",
+            "cache_input_text_sha256": "ca1a38d3b3f09d156018aa2927e2c0d71d021358d4dbc33bed467cae8a85419c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          158208
+        ],
+        "unprocessed_array_sha256": "f3f3668fa1ac7a8a7a1513980c933ad0257d0a315904361e16c90ef7e8597280"
+      },
+      {
+        "exact_native_cache_key": "2bd5d95c4685e1ca04a3614ed8871f1561d0030b.pkl",
+        "pkl_sha256": "6b2ac32d85997e5938b498dd0d966b3b9d0b77f01d0b97ad2942a8fedb510170",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "He had read a newspaper article in which the authorities lamented",
+            "exact_native_cache_key": "2bd5d95c4685e1ca04a3614ed8871f1561d0030b.pkl",
+            "cache_input_text_sha256": "3f9978f8361de407a8d797f7dad00ec7186fd30a93110a363cf62e7e4a33d075",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          98304
+        ],
+        "unprocessed_array_sha256": "ab42462f3f503ef2344948f2eff09816282fbe5ea1830ac0743b3b4397dcea8c"
+      },
+      {
+        "exact_native_cache_key": "88a0954655e750d24a9e4029010c81688424b289.pkl",
+        "pkl_sha256": "71cfeec3c9b5deab691ffcfbf43e46e189c3bfbf2fe20393650005004e28d374",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "the hefty cost of the tower's upkeep.",
+            "exact_native_cache_key": "88a0954655e750d24a9e4029010c81688424b289.pkl",
+            "cache_input_text_sha256": "4ee5d3e18118474907c73b2421a1521bb02df9f7a9ce71044c9dab481ef21d8e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          49152
+        ],
+        "unprocessed_array_sha256": "40f72dc40b679236be763f6ce31471fdab4c99e3da52c7abce26a463bbc2e79d"
+      },
+      {
+        "exact_native_cache_key": "bd022befeb8b6115dd600f843ea369ed0de8165a.pkl",
+        "pkl_sha256": "6ad93b3301ec2b345c231cb41e95db05d42d3d7623ec0a690cc4ad821563c8d7",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "André Poisson, a businessman impatient to gain a foothold in Paris, won.",
+            "exact_native_cache_key": "bd022befeb8b6115dd600f843ea369ed0de8165a.pkl",
+            "cache_input_text_sha256": "4bbfd4d90be33cfa7d748f73e38bb6feb11fc7351a2183e6dffac133728f14e7",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          130560
+        ],
+        "unprocessed_array_sha256": "3478d508a3fc053bebd36627ec0b665f269c55f0ed8c342eefb4c873235138b8"
+      },
+      {
+        "exact_native_cache_key": "8dde4e478d003bbc080814c2ba0f72a332676694.pkl",
+        "pkl_sha256": "57196de172f6710a0215d92191802fc64f740edd3c6be11e3a7ed5bd0373a8e9",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "André Poisson,",
+            "exact_native_cache_key": "8dde4e478d003bbc080814c2ba0f72a332676694.pkl",
+            "cache_input_text_sha256": "95485f4eb5f727ee1fce4a18e5f01719786cfd78d9d19042735dc001eeaac883",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          31744
+        ],
+        "unprocessed_array_sha256": "fc8c06ace0dc436251414a3076469545ab016a913caeb1f9e73cb892195808dd"
+      },
+      {
+        "exact_native_cache_key": "b207aaa6d1b1e18c92ba6b6f49b320feec966776.pkl",
+        "pkl_sha256": "d7d2ee7b33b93ec86dbfcff9e6fb93312e6e68fb73e05dd65fd5c3a59f834c98",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "a businessman impatient to gain a foothold in Paris,",
+            "exact_native_cache_key": "b207aaa6d1b1e18c92ba6b6f49b320feec966776.pkl",
+            "cache_input_text_sha256": "5bd6f3878b0c58f7b067556fc8654dc19b710e419bb001608a4eb6a6ba885ddb",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          75776
+        ],
+        "unprocessed_array_sha256": "af8d217fb2072eed8efebac12847d8a6a85955b321139d7f18a7f9f2a2c98a27"
+      },
+      {
+        "exact_native_cache_key": "83c9b0044691bd03f6dd2de477916ad485eb8434.pkl",
+        "pkl_sha256": "f68be922b1e0a961af154aeed4324881403869c01b29bf506adcc389e92f8ec9",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "won.",
+            "exact_native_cache_key": "83c9b0044691bd03f6dd2de477916ad485eb8434.pkl",
+            "cache_input_text_sha256": "6cb1c45a1a626a4b1c589bd6dfe8bd3fd3d42edd676b763cbf42ad3954d6a99a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          14848
+        ],
+        "unprocessed_array_sha256": "1c5eab31c9bc71dca07aa1720ba12e839e0e189f92e0bdbb8803cc5e3dd79ca4"
+      },
+      {
+        "exact_native_cache_key": "825c1156700a443209bd826755c68ecfe3c30d14.pkl",
+        "pkl_sha256": "1cdd16f340a05202dfc5fe8194df35902d42c156a42b1b0174fa4fa8720f309a",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Lustig intimated that his modest civil-service remuneration needed supplementing, and Poisson paid an additional bribe.",
+            "exact_native_cache_key": "825c1156700a443209bd826755c68ecfe3c30d14.pkl",
+            "cache_input_text_sha256": "5aa7d3c2ccbd52992bf09482b4e730462e399467bdbfcb4198006727056f1d92",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          194560
+        ],
+        "unprocessed_array_sha256": "45656ec96f0a34ce71a4ab4b5ba69e6d428463fa7fbe965353cf5d63334289cd"
+      },
+      {
+        "exact_native_cache_key": "85355273eebfc1f8e358fda6a8c8c6ec2d61105a.pkl",
+        "pkl_sha256": "e532cf785cdd79eff290adb1c4d6cfaf07f0ebfed704d3bb27b4b8b15d9fa6c9",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Lustig intimated that his modest civil-service remuneration needed supplementing,",
+            "exact_native_cache_key": "85355273eebfc1f8e358fda6a8c8c6ec2d61105a.pkl",
+            "cache_input_text_sha256": "7a97368037aadccab32fbd5cc6dde061ccde86e4cc9c422c07c606538422627e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S9",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Lustig intimated that his modest civil-service remuneration needed supplementing,",
+            "exact_native_cache_key": "85355273eebfc1f8e358fda6a8c8c6ec2d61105a.pkl",
+            "cache_input_text_sha256": "7a97368037aadccab32fbd5cc6dde061ccde86e4cc9c422c07c606538422627e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          127488
+        ],
+        "unprocessed_array_sha256": "3b72fa440ae69e970c7a3bdfdcf97e1a1c706a52f729ea16dc173a94a2761253"
+      },
+      {
+        "exact_native_cache_key": "50c2ffa2491251250e05891c3f7779d7ac0bbbb9.pkl",
+        "pkl_sha256": "f61b0fc59cfe7ac3645fe012400fbe21f95e5d6e36a4b288ab2329b6055f61d4",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and Poisson paid an additional bribe.",
+            "exact_native_cache_key": "50c2ffa2491251250e05891c3f7779d7ac0bbbb9.pkl",
+            "cache_input_text_sha256": "3334a8fcada9512510648cbbc787f02d33174d477cddfeb993e53a0c607d916f",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S9",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and Poisson paid an additional bribe.",
+            "exact_native_cache_key": "50c2ffa2491251250e05891c3f7779d7ac0bbbb9.pkl",
+            "cache_input_text_sha256": "3334a8fcada9512510648cbbc787f02d33174d477cddfeb993e53a0c607d916f",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          53760
+        ],
+        "unprocessed_array_sha256": "913a65a2cd1bbe251629c800970e691a6b14613609130904760ee7c1a6550c31"
+      },
+      {
+        "exact_native_cache_key": "b3e078464599343517506ddd95c921f017ac5b4c.pkl",
+        "pkl_sha256": "c0fc15453bc1c10b11b22f0dca9ddf52c514c4fa2e60e2484c4ab1f6f8b99cba",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Lustig left for Vienna with the takings.",
+            "exact_native_cache_key": "b3e078464599343517506ddd95c921f017ac5b4c.pkl",
+            "cache_input_text_sha256": "ce855b131542f921d2673e74e24777d49dabf601dddf1d0f9f88700ddd259231",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          57344
+        ],
+        "unprocessed_array_sha256": "4a0ab22f26f0fde064341fee93758264953aa99dfb6fe9e87dec8f69afc60536"
+      },
+      {
+        "exact_native_cache_key": "ae6599c1d3c775c88cf48308b73e06e48b56fced.pkl",
+        "pkl_sha256": "3c1ccd8a42d1e09ac4f72f665fbc160df0fb148dd9142f40a0a3c058c5df7431",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Fleeced and too ashamed to go to the police, Poisson swallowed the loss quietly.",
+            "exact_native_cache_key": "ae6599c1d3c775c88cf48308b73e06e48b56fced.pkl",
+            "cache_input_text_sha256": "b447a83913252f2adf695e5154c80e4df3998856c8c8d76c44a0cf8ba9b6e946",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          125440
+        ],
+        "unprocessed_array_sha256": "9cc8b94cae34201629917563c03f3e9a733978688a04c4287e59ee64b9d772ca"
+      },
+      {
+        "exact_native_cache_key": "418f6a0f870eb7edb24e44643b35abf082859453.pkl",
+        "pkl_sha256": "346b7dc232dbe4570b50302000f0a3bdc12faaf52befc0a53b1be00d0b3021b2",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Fleeced and too ashamed to go to the police,",
+            "exact_native_cache_key": "418f6a0f870eb7edb24e44643b35abf082859453.pkl",
+            "cache_input_text_sha256": "6faa6619e245f4eb14698bb43d0f9b5e0ce689cc22581ea8f2bf6f5bd886ce40",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S11",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Fleeced and too ashamed to go to the police,",
+            "exact_native_cache_key": "418f6a0f870eb7edb24e44643b35abf082859453.pkl",
+            "cache_input_text_sha256": "6faa6619e245f4eb14698bb43d0f9b5e0ce689cc22581ea8f2bf6f5bd886ce40",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          63488
+        ],
+        "unprocessed_array_sha256": "bff36ff736b546484574f9d6a2da87c83fea7410091136d0c1e362925a8748d8"
+      },
+      {
+        "exact_native_cache_key": "d847a5fb231186afbf5a5c37fa036eb9b9b31171.pkl",
+        "pkl_sha256": "bc13b8dea4638d011a536743020d83821357821944ba55fe0da59253e0fbabdc",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Poisson swallowed the loss quietly.",
+            "exact_native_cache_key": "d847a5fb231186afbf5a5c37fa036eb9b9b31171.pkl",
+            "cache_input_text_sha256": "da5a0634ddedd603427beeeebef797f71ec9f2589ec4f5b86864d3f335367e3f",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S11",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Poisson swallowed the loss quietly.",
+            "exact_native_cache_key": "d847a5fb231186afbf5a5c37fa036eb9b9b31171.pkl",
+            "cache_input_text_sha256": "da5a0634ddedd603427beeeebef797f71ec9f2589ec4f5b86864d3f335367e3f",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          50176
+        ],
+        "unprocessed_array_sha256": "ba5b86a45245423fff36b137bfeb00587e95ce5988edc019ea6154d6ba2ea5ff"
+      },
+      {
+        "exact_native_cache_key": "d94b8c9120f354b3a246f0cea3f24f095f00368e.pkl",
+        "pkl_sha256": "311e6285d168dd760262f5db3f84593373a985057d1565df903233ef571dc909",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Not a whisper of the deceit appeared in print.",
+            "exact_native_cache_key": "d94b8c9120f354b3a246f0cea3f24f095f00368e.pkl",
+            "cache_input_text_sha256": "76333adff374614ecfcf7847de66244bd07c2398223cd3e47255891df2580adb",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          65024
+        ],
+        "unprocessed_array_sha256": "b59d52a4287259318673ee002d44c3249abfa00e5ceba63adcdfea0570f0d7e6"
+      },
+      {
+        "exact_native_cache_key": "db44b78e15429474963f9d699ff68106931ad271.pkl",
+        "pkl_sha256": "7f46dec162a2d3a45bdb81906d58b4e1b815ba8d57449f98c57d42501994620f",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "About a month later Lustig had the gall to reappear with an encore of his script for new dealers.",
+            "exact_native_cache_key": "db44b78e15429474963f9d699ff68106931ad271.pkl",
+            "cache_input_text_sha256": "55188d7424a919945b15812096bfa497a93d7651baa9b1c7003b9d43fe08d844",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          142336
+        ],
+        "unprocessed_array_sha256": "2ec56a8c023a5cdaabd8909ba83a763a1a1bb7430ba37411753e3bee7212fe2c"
+      },
+      {
+        "exact_native_cache_key": "337993b59bf1d098f1d5b893e9e8e542449a00dd.pkl",
+        "pkl_sha256": "6f6d0f8839759f0c065b0ab0c3b5ca0a16d41e7d88b678ada182da67805862b2",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "About a month later Lustig had the gall to reappear",
+            "exact_native_cache_key": "337993b59bf1d098f1d5b893e9e8e542449a00dd.pkl",
+            "cache_input_text_sha256": "0bcfe5324b69e3f2182366376320cf1d3663263c74319a3d1872d3afb4a1caee",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          71168
+        ],
+        "unprocessed_array_sha256": "005ee960934483727783dfe4547b0b3a81630de4d9df5dc9c866a7da08a28436"
+      },
+      {
+        "exact_native_cache_key": "74439a8fbe1ba03dc122d20197e09eabfb37ca42.pkl",
+        "pkl_sha256": "189453d9a75fcf37ee58c0a35bbd1284d54e00b810564a50b1efc971554d2556",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "with an encore of his script for new dealers.",
+            "exact_native_cache_key": "74439a8fbe1ba03dc122d20197e09eabfb37ca42.pkl",
+            "cache_input_text_sha256": "7d1bc383e14be85684e6352755c4f72a1efbfdd323023b7ae0ec01ece8c19b8c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          60416
+        ],
+        "unprocessed_array_sha256": "f938ea00579a30753096634a78813ccab4e2a492747d4ec2994b3d1119748ea8"
+      },
+      {
+        "exact_native_cache_key": "7a685f42dbd691785a63dabda45f69a1a65832ae.pkl",
+        "pkl_sha256": "acb13e28f19ed93949855172082e7ae5a3419ab1ee0ce4efb08244a8acaf4ed9",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "This time the winner grew distrustful and went to the police.",
+            "exact_native_cache_key": "7a685f42dbd691785a63dabda45f69a1a65832ae.pkl",
+            "cache_input_text_sha256": "bc876c401319f796aa8bbb60b4a6cb3cf4630f09e6de8d31852f0fec43585448",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          82944
+        ],
+        "unprocessed_array_sha256": "c83f7828353b764e3e0398a57d06640b27a576662053103732414f7bc1a5561b"
+      },
+      {
+        "exact_native_cache_key": "b237cbca67f336e6cc45c20a6fcc383cc2c80730.pkl",
+        "pkl_sha256": "e76471d853acde39fc9e97c4d1e5a84f24d71132dba0811eae2858d5d0a6c68d",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The affair made the papers, and Lustig made his getaway.",
+            "exact_native_cache_key": "b237cbca67f336e6cc45c20a6fcc383cc2c80730.pkl",
+            "cache_input_text_sha256": "1454cdda942aaff06cdbb77455f0f9d81572dbc434390ad9c00904e0f25764f7",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          82432
+        ],
+        "unprocessed_array_sha256": "b8591252ddc92752c33a72f06cc47189cc8a02a1924d474486257b9a8b7b643b"
+      },
+      {
+        "exact_native_cache_key": "f4c23225267b96a23cbc1395f34b3d109a7291c8.pkl",
+        "pkl_sha256": "b501d2766e169670643e8d40358ea728f0cbbe887f4fce34cce865bb72195fdb",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "The affair made the papers,",
+            "exact_native_cache_key": "f4c23225267b96a23cbc1395f34b3d109a7291c8.pkl",
+            "cache_input_text_sha256": "d191759e64ca27c880e2a77ff0c1ec027af1c7f2e5ea3c2a5a7b6d0c3951e932",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          36352
+        ],
+        "unprocessed_array_sha256": "f15981484af50724a46f127bf03dce13e9aae4899cd3908a7fb0bf11aae39ffe"
+      },
+      {
+        "exact_native_cache_key": "4d77618de9e77be888ea245f1d04e89630bfc647.pkl",
+        "pkl_sha256": "bc4d26eb094531e7f91e78541ef026e95325abc8cccbab140b89eb1611780e43",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and Lustig made his getaway.",
+            "exact_native_cache_key": "4d77618de9e77be888ea245f1d04e89630bfc647.pkl",
+            "cache_input_text_sha256": "841d2ee6475b4dbd361e5c17b74e043ba1eea5d90b12e00717907aad19c3a70e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          44032
+        ],
+        "unprocessed_array_sha256": "3ec5935d0c318c4eceb28e3b24a6413e855205d00eb5f0929b6c983c754618ce"
+      },
+      {
+        "exact_native_cache_key": "873ccb5e17c8168a695b2dfa5b6605da698bc314.pkl",
+        "pkl_sha256": "1826db4a337d1b2e06dafcc6afdbc46121769e5a8d60140e81a05dfdea4000fc",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The much-repeated second sale is a fairy tale.",
+            "exact_native_cache_key": "873ccb5e17c8168a695b2dfa5b6605da698bc314.pkl",
+            "cache_input_text_sha256": "9b32095618f899effbb2ed9c280941dfba643addb45d26fbf298283c25835db5",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          71680
+        ],
+        "unprocessed_array_sha256": "de849e65502270733e3e350b84449028b3d18d09d743636ebc960b032082633d"
+      },
+      {
+        "exact_native_cache_key": "88abb18c87f261e2b9033281b9cbc7b04a3aa526.pkl",
+        "pkl_sha256": "e5f5bbb092e1ec545fbedf7a616e66019575c6d57e6ddece6d264f0deb0f13d3",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Later arrested in the United States for making fake money, Lustig broke out of detention, was recaptured 27 days later and served time on the penal island of Alcatraz.",
+            "exact_native_cache_key": "88abb18c87f261e2b9033281b9cbc7b04a3aa526.pkl",
+            "cache_input_text_sha256": "d8cf24d381f16c44ca49fc03e023bd608971bdad13dd38fb7cc19049bd8d5364",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          288256
+        ],
+        "unprocessed_array_sha256": "25efc0c659a221a3a8285f98862479ea05689d39bfd69b725dcf15158fd98b91"
+      },
+      {
+        "exact_native_cache_key": "2ba3b3fee85e9865ea31cf490c555c4b682463ba.pkl",
+        "pkl_sha256": "378bbf368ce161384bb59efd8e87df0225a39bf120708604eeab49fbeb1d03f5",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Later arrested in the United States for making fake money,",
+            "exact_native_cache_key": "2ba3b3fee85e9865ea31cf490c555c4b682463ba.pkl",
+            "cache_input_text_sha256": "9ff9ed976a00ae7e1808ff9724a648485788f77e4f729256759143900f0d5015",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S17",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Later arrested in the United States for making fake money,",
+            "exact_native_cache_key": "2ba3b3fee85e9865ea31cf490c555c4b682463ba.pkl",
+            "cache_input_text_sha256": "9ff9ed976a00ae7e1808ff9724a648485788f77e4f729256759143900f0d5015",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          90624
+        ],
+        "unprocessed_array_sha256": "0b4a5df4a393e1b1655e60665712a719691559d26ea42ec5e6f9fef4f143a969"
+      },
+      {
+        "exact_native_cache_key": "fa480b0e2c9a63636b3d78d64ac3c43964de3c10.pkl",
+        "pkl_sha256": "2665fd2078d411577ba11f4a8aa881478433818591bebc46176e66fb4dcdd2ba",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Lustig broke out of detention, was recaptured 27 days later and served time on the penal island of Alcatraz.",
+            "exact_native_cache_key": "fa480b0e2c9a63636b3d78d64ac3c43964de3c10.pkl",
+            "cache_input_text_sha256": "d370a49d8c743416c2a973fa1ba06802576414e4dda374d232da947d3d7df76e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          191488
+        ],
+        "unprocessed_array_sha256": "4541f03882d2d132d6d16bd7d89b2644484884d37b573ab6f59bb99204def938"
+      },
+      {
+        "exact_native_cache_key": "65804332581030690a9f8306e4a08cb7c00227a7.pkl",
+        "pkl_sha256": "0ec2ac68c7ba31dea4bdc5eddab59152a0cb12ffebd204672b1425b0d4a84612",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Lustig broke out of detention,",
+            "exact_native_cache_key": "65804332581030690a9f8306e4a08cb7c00227a7.pkl",
+            "cache_input_text_sha256": "3ca0aea99402e53f48b4e11b2da61c470c79fef15a3bc98b64f31253ba846a52",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          43008
+        ],
+        "unprocessed_array_sha256": "c82830d98d3a7471ae0f89caaeb1280f2fba96541f66fc9a5960d2cccf338572"
+      },
+      {
+        "exact_native_cache_key": "0f8e82124805b3a097e598ef5c2ebeb3a73eb79a.pkl",
+        "pkl_sha256": "aca27cfc1364a4c31c836510b596e88b0d6f9d0c747a491a234ed1a4b3e936dd",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "was recaptured 27 days later and served time on the penal island of Alcatraz.",
+            "exact_native_cache_key": "0f8e82124805b3a097e598ef5c2ebeb3a73eb79a.pkl",
+            "cache_input_text_sha256": "d595b0f63dd68782cfd894de347d6e028e63ed3d3210afaf94a8280b8b74306c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          143872
+        ],
+        "unprocessed_array_sha256": "e1546548ac7e69868a9c583ec6d5ca6d829af515174852207a00a5cf69558d15"
+      },
+      {
+        "exact_native_cache_key": "d384b03358bb8aa3cee14897bb68aa8575af6e56.pkl",
+        "pkl_sha256": "0a61c9ae1d245ea6c5a3a5fb6fe35bbc3e18264b4b87b23fee6a992aaa7c2cda",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "He died of pneumonia in 1947.",
+            "exact_native_cache_key": "d384b03358bb8aa3cee14897bb68aa8575af6e56.pkl",
+            "cache_input_text_sha256": "4f9691d52da78b8f53d73a2d3a2446fab678009fb18e0e61e1dd23a5f84fc486",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          73728
+        ],
+        "unprocessed_array_sha256": "c273e2bde53e9aa985a54c6c22a54984ea5f169a5940d875475cfc2ca83f3a3c"
+      },
+      {
+        "exact_native_cache_key": "f3a0838b04f488599040de8df5e896be34a6d0cb.pkl",
+        "pkl_sha256": "63ca4498a96dac6a4f3a03be8bc98ed6a1552dfec052b659c28ed36859d6cd14",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S19",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Of Lustig's two marks, the one who paid kept mum and the one who kept his money went to the police.",
+            "exact_native_cache_key": "f3a0838b04f488599040de8df5e896be34a6d0cb.pkl",
+            "cache_input_text_sha256": "76a8c9faa493c0f415d773e1115d78b9d322ed13141f07c18d3d0d63b6ee98d0",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          150528
+        ],
+        "unprocessed_array_sha256": "59d90011a1831f45640d3858258d70f00440219bdb17711ddf2f414750db00c2"
+      },
+      {
+        "exact_native_cache_key": "78fd61535b86e7a69d286174fca9d4f6aaa17bd1.pkl",
+        "pkl_sha256": "ab8ed1e6997e85ae2ccfce06f8e2488db9a2d8dfd460f56a625e7071899f3d2c",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S19",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Of Lustig's two marks, the one who paid kept mum",
+            "exact_native_cache_key": "78fd61535b86e7a69d286174fca9d4f6aaa17bd1.pkl",
+            "cache_input_text_sha256": "8ec01c42dd4f048c40a1f2eb635a492283d8f148ce0e8400a4db5c4ade7f50e2",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          77824
+        ],
+        "unprocessed_array_sha256": "205af397714ead5a21c3beb15b8450cd8bc93e0a49ef24d9786a9f8ab81d71c3"
+      },
+      {
+        "exact_native_cache_key": "f19b4d7c246059ced7b44d37bd911653ff1c31ba.pkl",
+        "pkl_sha256": "9f936c3f27f8a089e06514f49d3b86361d55f839d0562cccee31f188a07fd975",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S19",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and the one who kept his money went to the police.",
+            "exact_native_cache_key": "f19b4d7c246059ced7b44d37bd911653ff1c31ba.pkl",
+            "cache_input_text_sha256": "e6b70189e5f906d8d9196a856261a6850b9917c71b07623ece2cc011f42a083d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          62976
+        ],
+        "unprocessed_array_sha256": "da6263cc150a60546b79963b8dfc7fc1e45fedb2140ec1478f00c6a798d56826"
+      },
+      {
+        "exact_native_cache_key": "595faa47ab5e9b10807b5b2fa310b365e33fa288.pkl",
+        "pkl_sha256": "4ee93562eda5930f2252bb03c98497f57a832766f948339bc8be39398c1ade54",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S19",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Of Lustig's two marks,",
+            "exact_native_cache_key": "595faa47ab5e9b10807b5b2fa310b365e33fa288.pkl",
+            "cache_input_text_sha256": "1874f9b2e76553a64e8aba6fb4121b11f0b7fa259a5a2291d23e94290d5ec9fd",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          37376
+        ],
+        "unprocessed_array_sha256": "2148695a0187f094adc9c8e95d10827c84196f352cf79024b1371dd8a46cf97b"
+      },
+      {
+        "exact_native_cache_key": "8f965c271269754a1464de1846af1da900f66ad3.pkl",
+        "pkl_sha256": "8d0fbca06fadfbc3654d8ec62c0e1d59299b8bb95b48da721d1b6699bc300eff",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S19",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "the one who paid kept mum and the one who kept his money went to the police.",
+            "exact_native_cache_key": "8f965c271269754a1464de1846af1da900f66ad3.pkl",
+            "cache_input_text_sha256": "b37a7be6a868ccd065801ec0056536c72ae99dc3268896146550d3dbc65fba8f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          107520
+        ],
+        "unprocessed_array_sha256": "513bd6e51eef6d902519ab3850937bc5980771e9c6c160fbd6c4f274c9b2ffb7"
+      }
+    ],
+    "missing_reference_key_count": 0,
+    "observed_missing_keys_covered": [],
+    "new_private_cache_names": [],
+    "native_single_thread_marker_verified": true,
+    "single_thread_sessions": [
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      },
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      }
+    ],
+    "models_sha256": {
+      "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+      "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+      "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+    },
+    "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+    "existing_private_cache_count": 11514,
+    "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "existing_private_cache_bytes_unchanged": true,
+    "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+    "public_repository_cache_unchanged": true,
+    "producer_pcm_existed_before": false,
+    "producer_pcm_sha256_before": null,
+    "producer_pcm_sha256_after": null,
+    "accepted_aac_adts_sha256_before": "08b1daf0cf520fc9999f34fa6a4fc6c04dcc94a4c962e5c8c05226d3010ffcee",
+    "accepted_aac_adts_sha256_after": "08b1daf0cf520fc9999f34fa6a4fc6c04dcc94a4c962e5c8c05226d3010ffcee",
+    "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+    "private_cache_exported": false
+  },
+  "checker_reference_preparation_program_sha256": "f6f2a032e207085e7252d036e39430fb80b06e84a721c525b61196d021c5ca12",
+  "fresh_current_article_reference": {
+    "article": "21",
+    "removed_temporary_gt_files": [],
+    "processed_pcm_or_raw_mother_cache_modified": false,
+    "purpose": "Original synth/labels/audit rebuild fresh for this production; no old CPU GT reuse."
+  },
+  "temporary_output_reset": {
+    "removed": [],
+    "production_started_ns": 1794622051344205093,
+    "repository_outputs_modified": false
+  },
+  "reviewed_gain_control_preservation": [
+    {
+      "stage": "canonical-draft",
+      "requested_gain_controls": {
+        "/结尾句/S19/前段增益dB": -1.0
+      },
+      "actual_gain_controls": {
+        "/结尾句/S19/前段增益dB": -1.0
+      },
+      "exactly_preserved": true
+    },
+    {
+      "stage": "canonical-final4K",
+      "requested_gain_controls": {
+        "/结尾句/S19/前段增益dB": -1.0
+      },
+      "actual_gain_controls": {
+        "/结尾句/S19/前段增益dB": -1.0
+      },
+      "exactly_preserved": true
+    }
+  ],
+  "canonical_video_sha256": "abd68fcb89d8341511cbf6ebe8479e505906cb884f41ef6737d01b9da1d4651c",
+  "canonical_aac_adts_sha256": "08b1daf0cf520fc9999f34fa6a4fc6c04dcc94a4c962e5c8c05226d3010ffcee",
+  "canonical_pipeline_passed": true,
+  "cached_input_wav_sha256": null,
+  "final_wav_sha256": "1746448023bf239024645b11dbd8605e99182a016fbb8a67b07d3f4bf23d16d5",
+  "accepted_prior_aac_identical": true,
+  "video_sha256": "90df475308a1f9c06ff13ead2a8e932f2ef9034fb3cd6f2cb821e79de0d3926a",
+  "width": 3840,
+  "height": 2160,
+  "summary_seconds": 2,
+  "summary_frames": 60,
+  "summary_start_seconds": 131.7,
+  "delay_after_voice_seconds": 0.6,
+  "actual_source_collection": {
+    "article": "21",
+    "kind": "actual-production-source-collection",
+    "new_quality_gate": false,
+    "files": {
+      "request_json": {
+        "file": "21-request-source.json",
+        "sha256": "61c1569a26d7569ee0f586178be6b307b1c394c0a30c3cb02541c910038b0589",
+        "origin": "immutable_request"
+      },
+      "request_generator": {
+        "file": "21-request-gen.py",
+        "sha256": "7c757dae9d452376ef38b72aa09a136d06c0a27150a4817c65507b4a888320ea",
+        "origin": "immutable_request"
+      },
+      "used_generator": {
+        "file": "21-used-gen.py",
+        "sha256": "7c757dae9d452376ef38b72aa09a136d06c0a27150a4817c65507b4a888320ea",
+        "origin": "actual_production_filesystem"
+      },
+      "actual_working_source": {
+        "file": "21-actual-working-source.json",
+        "sha256": "79148437ac0c62e3a9cdcf2579b389ad5ae2822996da6da253d5971b917d1c5a",
+        "origin": "actual_production_filesystem"
+      },
+      "request_manuscript": {
+        "file": "21-request-manuscript.md",
+        "sha256": "e8e966b70f579235d696ba11fb01d3b2cae3fa26efb9071bbea95071be259e1f",
+        "origin": "immutable_request"
+      },
+      "actual_working_manuscript": {
+        "file": "21-actual-working-manuscript.md",
+        "sha256": "51ccf92096fd50ff07601b4b0f4bdcea77ab8cf3616cc23670ac08cfcdfadd07",
+        "origin": "actual_production_filesystem"
+      }
+    },
+    "generator_execution_observed": false,
+    "generator_execution_evidence": "No fresh generator execution log; do not claim this GEN was executed during rendering.",
+    "source_differences": {
+      "file": "21-actual-source-differences.json",
+      "sha256": "5de5aba9b103a9d868645eec000da0b49ff841275db097c406fa6ce6fde1a5d4"
+    }
+  },
+  "derived_role_alias_only": true,
+  "inherited_actual_passed_V3_handoff_sha256": "5087cc4d0d098e68635ff13cbf00f5b4a4355fd41848d7eb8471a193521b1de9",
+  "original_raw_status_sha256": "b185f2e7eeaeadba955fffe2c5c5620e00b531f87fad06d903215636b39ef868",
+  "preview_only": false,
+  "finalization_authorized": true,
+  "last_body_hold_frames": 18,
+  "last_body_hold_seconds": 0.6,
+  "summary_start_frame": 3951,
+  "postprocessing_only": true,
+  "original_producer_or_TTS_repeated": false,
+  "true_original_native_full_QA_run": 43543967031,
+  "inherited_original_summary_status_sha256": "2aa75fb4919525bdf4a435ac7c3f7b907d0f52eab5ec3f7c84bc817a40f1494b",
+  "final_hold_policy_sha256": "4bcae46b68b9584f107966f683af580b474fa9835f101834fe55ed6968dfc36b"
+}

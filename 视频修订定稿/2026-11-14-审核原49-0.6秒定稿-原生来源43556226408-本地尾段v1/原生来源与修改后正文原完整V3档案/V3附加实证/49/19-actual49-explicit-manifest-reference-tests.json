@@ -1,0 +1,37 @@
+{
+  "scope": "Actual approved reference/copy identity and negative controls only; not a full49 V3 pass",
+  "passed": true,
+  "cases": [
+    {
+      "case": "actual_frozen49_manifest_copied_exactly",
+      "passed": true
+    },
+    {
+      "case": "wrong_article",
+      "rejected": true,
+      "reason": "Only the root-reviewed immutable49 layout manifest is approved here"
+    },
+    {
+      "case": "wrong_SHA",
+      "rejected": true,
+      "reason": "Only the root-reviewed immutable49 layout manifest is approved here"
+    },
+    {
+      "case": "wrong_size",
+      "rejected": true,
+      "reason": "Byte count mismatch: /workspace/work/video-revision-delivery/native-inline-engine-frozen-20261114-v5-explicit-approved-layout-reference/approved-video-layouts70-frozen49.json"
+    },
+    {
+      "case": "default53_original_manifest_unchanged",
+      "passed": true
+    },
+    {
+      "case": "conflicting_fixed_article_copy",
+      "rejected": true,
+      "reason": "Frozen per-article layout reference already differs"
+    }
+  ],
+  "delivery_program_sha256": "1a5a8c9e8b3637b5ee9cb4c90abbe0158ac1c01dd3c423e0611038ab47f96d0b",
+  "importer_program_sha256": "7222ed5ec06123a8190ae5faa8cb8d36635704f6de8353c0cb5f34e71ee5f8b7",
+  "media_or_original_common_approval_modified": false
+}

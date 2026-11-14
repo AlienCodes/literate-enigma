@@ -1,0 +1,3143 @@
+{
+  "article": "11",
+  "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+  "reference_prepared": true,
+  "acceptance": false,
+  "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+  "source_sha256": "665cbb80cc70b700ecc0cc5813209fd100ad4fa8f0eead3929b9e53778d9d07f",
+  "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+  "checker_program_sha256": {
+    "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+    "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+    "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+    "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+    "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+    "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+  },
+  "reference_calls": [
+    {
+      "sentence": "标题",
+      "piece": null,
+      "reference_kind": "title-default-raw",
+      "method": "create",
+      "source_slice": "Move 37",
+      "exact_native_cache_key": "531aa04275a74c9397d4d2f74bf1f671ef6f2504.pkl",
+      "cache_input_text_sha256": "20e8ff1e90fbbc494a0fc20c72c64312a185c47169938937f4cd99ce6d4c9a0e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "标题",
+      "piece": null,
+      "reference_kind": "title-default-timed",
+      "method": "create_timed",
+      "source_slice": "Move 37",
+      "exact_native_cache_key": "13ec58f90c75c56b0c003f6007d350b956593c2c.pkl",
+      "cache_input_text_sha256": "20e8ff1e90fbbc494a0fc20c72c64312a185c47169938937f4cd99ce6d4c9a0e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Go is said to allow more configurations than the universe has atoms, a daunting computational challenge.",
+      "exact_native_cache_key": "b9b2f1361faf412b86036eeb001e12f54f6c52b2.pkl",
+      "cache_input_text_sha256": "c7e95098b815e889166f1961017028c1f68b2d1b2322673b40ec351a38fa5d31",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Go is said to allow more configurations than the universe has atoms, a daunting computational challenge.",
+      "exact_native_cache_key": "a0411b6ea16baefe1e31dcf308cd912b7de23986.pkl",
+      "cache_input_text_sha256": "c7e95098b815e889166f1961017028c1f68b2d1b2322673b40ec351a38fa5d31",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Go is said to allow more configurations than the universe has atoms,",
+      "exact_native_cache_key": "e4439b8ee6b2194812f91d988de7976fd5567207.pkl",
+      "cache_input_text_sha256": "6dcff1430d02b223addfbfae83d3f1931fd4e113c082c03f26894f847a548f6e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S1",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "a daunting computational challenge.",
+      "exact_native_cache_key": "028265e74b4cc25c104edcc89ac79b6c02454ede.pkl",
+      "cache_input_text_sha256": "64d885816d06005413e6a682c682f7c4dfb4a4ac6d8cdb45b351e1a28832f12f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S1",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Go is said to allow more configurations than the universe has atoms,",
+      "exact_native_cache_key": "e4439b8ee6b2194812f91d988de7976fd5567207.pkl",
+      "cache_input_text_sha256": "6dcff1430d02b223addfbfae83d3f1931fd4e113c082c03f26894f847a548f6e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S1",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "a daunting computational challenge.",
+      "exact_native_cache_key": "028265e74b4cc25c104edcc89ac79b6c02454ede.pkl",
+      "cache_input_text_sha256": "64d885816d06005413e6a682c682f7c4dfb4a4ac6d8cdb45b351e1a28832f12f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S2",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "In October 2015 DeepMind's AlphaGo reached a milestone, becoming the first program to beat a professional on a full board without a handicap.",
+      "exact_native_cache_key": "35db43acab1386f1ba3118947b7657f7c11b9749.pkl",
+      "cache_input_text_sha256": "1132a8b88fcec2ca99c604fdbf1d4efba0d8fd2724c97b21adc20cb04d495122",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "In October 2015 DeepMind's AlphaGo reached a milestone, becoming the first program to beat a professional on a full board without a handicap.",
+      "exact_native_cache_key": "70e65d154616acb56b2fe93c63ef7992b8260dbd.pkl",
+      "cache_input_text_sha256": "1132a8b88fcec2ca99c604fdbf1d4efba0d8fd2724c97b21adc20cb04d495122",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "In October 2015 DeepMind's AlphaGo reached a milestone,",
+      "exact_native_cache_key": "01d118b6d228d4bc5ee05457e45219b974df701c.pkl",
+      "cache_input_text_sha256": "188d9328ee7c94eeb107a90e20a47272a86260ee9b44aafdad3c2a322b960adf",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S2",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "becoming the first program to beat a professional on a full board without a handicap.",
+      "exact_native_cache_key": "a4530fdc60bc97f78fe4ab10e8deb86ccb8b95bc.pkl",
+      "cache_input_text_sha256": "3e81f8e007e8bc33f12b773c610301cd3f7be876a5da2da604a2d598a368117f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S2",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "In October 2015 DeepMind's AlphaGo reached a milestone,",
+      "exact_native_cache_key": "01d118b6d228d4bc5ee05457e45219b974df701c.pkl",
+      "cache_input_text_sha256": "188d9328ee7c94eeb107a90e20a47272a86260ee9b44aafdad3c2a322b960adf",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S2",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "becoming the first program to beat a professional on a full board without a handicap.",
+      "exact_native_cache_key": "a4530fdc60bc97f78fe4ab10e8deb86ccb8b95bc.pkl",
+      "cache_input_text_sha256": "3e81f8e007e8bc33f12b773c610301cd3f7be876a5da2da604a2d598a368117f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S3",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "In March 2016 its opponent in a televised Seoul showdown was Lee Sedol, a South Korean strategist with 18 international titles.",
+      "exact_native_cache_key": "a530a994ad20f3c0adacb9f84181e609e2f1c292.pkl",
+      "cache_input_text_sha256": "3b0d0ef502e8b5895b3dcd65f261782d57e0dcb4a87bff12ee6af05bfbbd1443",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "In March 2016 its opponent in a televised Seoul showdown was Lee Sedol, a South Korean strategist with 18 international titles.",
+      "exact_native_cache_key": "24b01a503727d41cbd260871ffdef525b3b7aa72.pkl",
+      "cache_input_text_sha256": "3b0d0ef502e8b5895b3dcd65f261782d57e0dcb4a87bff12ee6af05bfbbd1443",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "In March 2016 its opponent in a televised Seoul showdown",
+      "exact_native_cache_key": "54174f758622cfdd5771023fffb879634fac1f6a.pkl",
+      "cache_input_text_sha256": "42c0147266adf086cbede7c50588e43b40f37d0ccdd342a1be0df13858539528",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S3",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "was Lee Sedol, a South Korean strategist with 18 international titles.",
+      "exact_native_cache_key": "dfd39497db28f0d0704cfabdb04b2e0b392eade3.pkl",
+      "cache_input_text_sha256": "0f33d2589a91f8183364b5614ad20b447adb9547e4839d17b0c8d502ba363e8b",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S3",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "In March 2016 its opponent in a televised Seoul showdown was Lee Sedol,",
+      "exact_native_cache_key": "fa902f1beb184c77a42cad72e924b9e67874dc93.pkl",
+      "cache_input_text_sha256": "86e3df647e28c29ebb2ed6b620548c6e618f9a611a77c8e41c86e7479a11842f",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S3",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "a South Korean strategist with 18 international titles.",
+      "exact_native_cache_key": "84c7610894d029935a6a2da03ea1436a7a6212ed.pkl",
+      "cache_input_text_sha256": "99185ecd38dfc54060434aad816a31135b42e9f31913e9caf17a66e20294e099",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S4",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "In game two, on 10 March, AlphaGo's 37th move was a shoulder hit, a tactic placing a stone adjacent to an opponent's on the diagonal.",
+      "exact_native_cache_key": "f9084d11e30d526cf31722bd2ae6a5023bd4a791.pkl",
+      "cache_input_text_sha256": "b0dcf3b6bcd660ac0c86f876e9f0231bf1ffa37b34b98d56e69cf2e6eb074886",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "In game two, on 10 March, AlphaGo's 37th move was a shoulder hit, a tactic placing a stone adjacent to an opponent's on the diagonal.",
+      "exact_native_cache_key": "85f46bc6481c5734936bfa6f2e79c90e46f71a0a.pkl",
+      "cache_input_text_sha256": "b0dcf3b6bcd660ac0c86f876e9f0231bf1ffa37b34b98d56e69cf2e6eb074886",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "In game two, on 10 March, AlphaGo's 37th move was a shoulder hit,",
+      "exact_native_cache_key": "66fb53965a2b2a57cb4ffcfa10595481442df919.pkl",
+      "cache_input_text_sha256": "ed3ef702785ec233114b5772a5b4b856493d1937b169c69241bccd162b8429e5",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S4",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "a tactic placing a stone adjacent to an opponent's on the diagonal.",
+      "exact_native_cache_key": "b8ceb35e721e279645cfb8bbc1486a286c5700d8.pkl",
+      "cache_input_text_sha256": "b69791dbd7fbc8378d2fed00a9c8017275b46fa39881e3e5981800c5f5e5adc7",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S4",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "In game two,",
+      "exact_native_cache_key": "36a0acbcea8317e6d94f7ee90c4aad6af0cab282.pkl",
+      "cache_input_text_sha256": "d45b20c479a0c9cbcd23a1c13e39cdbb0e9229d6f32c315cfdba292f490e0d30",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S4",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "on 10 March,",
+      "exact_native_cache_key": "66b992048d83d8ec357346a6d815ba7bd307efd0.pkl",
+      "cache_input_text_sha256": "49e15c759ea6a526b1445b2634e77d6844d64e360aa03afede1352bec185b2c0",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S4",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "AlphaGo's 37th move was a shoulder hit,",
+      "exact_native_cache_key": "44d746b1cf2d9a386e7e3a73daecaf57241446ec.pkl",
+      "cache_input_text_sha256": "8765ab91a796f26218d5985f1845aa50954af48d2bee4b2e814835b34d7d489d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S4",
+      "piece": 4,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "a tactic placing a stone adjacent to an opponent's on the diagonal.",
+      "exact_native_cache_key": "b8ceb35e721e279645cfb8bbc1486a286c5700d8.pkl",
+      "cache_input_text_sha256": "b69791dbd7fbc8378d2fed00a9c8017275b46fa39881e3e5981800c5f5e5adc7",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S5",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "On the grid's fifth line, it was hardly orthodox.",
+      "exact_native_cache_key": "920ea30bc111b2b8f234ab304aedcd24ee5460d5.pkl",
+      "cache_input_text_sha256": "bd6f12e8215cdc67f97be013fb26c10c5eff2a970430a80bb66480342de1bfc5",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "On the grid's fifth line, it was hardly orthodox.",
+      "exact_native_cache_key": "145672f455e9f329e5a3c088c85c84bde128d40b.pkl",
+      "cache_input_text_sha256": "bd6f12e8215cdc67f97be013fb26c10c5eff2a970430a80bb66480342de1bfc5",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "On the grid's fifth line,",
+      "exact_native_cache_key": "99cc458a628d7b53cd25e623f55212b9c0f93384.pkl",
+      "cache_input_text_sha256": "312a3d7779ca6b8ad21e0e1983ab2f9f3bf35dc70537523dd38fc7f6bc35a42a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S5",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "it was hardly orthodox.",
+      "exact_native_cache_key": "c92d6bed94a05913e59f126f30c3db48eff2facd.pkl",
+      "cache_input_text_sha256": "905e6dc9ff1143f5baed629b688c1ce4b4994285347df1e83babb4964704e377",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S6",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Commentators found the unexpected placement bizarre; one took it for a mistake.",
+      "exact_native_cache_key": "39db4ebecf4d9e158555346d491a567040d4b3bc.pkl",
+      "cache_input_text_sha256": "8f5a4b10212cd509b72bdfcb7af90bc56e73b0eb31dfa3d4ff29f8ca05c1dcfe",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Commentators found the unexpected placement bizarre; one took it for a mistake.",
+      "exact_native_cache_key": "8bbc44dd9ca2db9561a839de58c673c6db4e28f5.pkl",
+      "cache_input_text_sha256": "8f5a4b10212cd509b72bdfcb7af90bc56e73b0eb31dfa3d4ff29f8ca05c1dcfe",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Commentators found the unexpected placement bizarre;",
+      "exact_native_cache_key": "49547ace3c33b2bac47fc9172b121518498afb0a.pkl",
+      "cache_input_text_sha256": "e02e3ee01110fb6a1b5ad555dd6b4bcbe45bc44595cfff3105ac116acdd6a21c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S6",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "one took it for a mistake.",
+      "exact_native_cache_key": "63ac20f877c413738b1fc138893a1e4fb8e6f80b.pkl",
+      "cache_input_text_sha256": "3434bbd86a79a6ae45d3b884f79012ee0fc0ad19537a06c5631caf7bd9cf3195",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S6",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Commentators found the unexpected placement bizarre;",
+      "exact_native_cache_key": "49547ace3c33b2bac47fc9172b121518498afb0a.pkl",
+      "cache_input_text_sha256": "e02e3ee01110fb6a1b5ad555dd6b4bcbe45bc44595cfff3105ac116acdd6a21c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S6",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "one took it for a mistake.",
+      "exact_native_cache_key": "63ac20f877c413738b1fc138893a1e4fb8e6f80b.pkl",
+      "cache_input_text_sha256": "3434bbd86a79a6ae45d3b884f79012ee0fc0ad19537a06c5631caf7bd9cf3195",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S7",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Lee left the room, his pause for deliberation lasting over ten minutes.",
+      "exact_native_cache_key": "fab40bc1bf37bc54d601bbba0eb05e0046ea9b04.pkl",
+      "cache_input_text_sha256": "d133cf4d778d47c3fbb259d99e2a5582426ce3124f1689243143662990b7b005",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Lee left the room, his pause for deliberation lasting over ten minutes.",
+      "exact_native_cache_key": "f9fdcf2f6b1074a556d952e19d2877a2321e490c.pkl",
+      "cache_input_text_sha256": "d133cf4d778d47c3fbb259d99e2a5582426ce3124f1689243143662990b7b005",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Lee left the room,",
+      "exact_native_cache_key": "4de11b517234990bb14eda3de7bfdedb990a8252.pkl",
+      "cache_input_text_sha256": "e95f69d5817b53e08115752b75782f2d0e7b49388c95d758104f05fa3303302e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S7",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "his pause for deliberation lasting over ten minutes.",
+      "exact_native_cache_key": "e0b3d72ba1f53458beceb93b2d58748d8edcc77a.pkl",
+      "cache_input_text_sha256": "b0579e5be3b60748e7ad78e05c4825c4ae21f17ea524cc4ef2db06045933f2fd",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S7",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Lee left the room,",
+      "exact_native_cache_key": "4de11b517234990bb14eda3de7bfdedb990a8252.pkl",
+      "cache_input_text_sha256": "e95f69d5817b53e08115752b75782f2d0e7b49388c95d758104f05fa3303302e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S7",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "his pause for deliberation lasting over ten minutes.",
+      "exact_native_cache_key": "e0b3d72ba1f53458beceb93b2d58748d8edcc77a.pkl",
+      "cache_input_text_sha256": "b0579e5be3b60748e7ad78e05c4825c4ae21f17ea524cc4ef2db06045933f2fd",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S8",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "DeepMind's diagnostic tools showed AlphaGo had put the odds of a human playing that stone at one in 10,000, a staggering rarity.",
+      "exact_native_cache_key": "56598dbf0162efc3643a2ea0ba657c6c30ee93c9.pkl",
+      "cache_input_text_sha256": "149664a458bc03b2906e2ddc5312d8fbeb75f75dd3aa5d53d4e3081beb19f650",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "DeepMind's diagnostic tools showed AlphaGo had put the odds of a human playing that stone at one in 10,000, a staggering rarity.",
+      "exact_native_cache_key": "8bcf7ae5692f4a789e2ccc4e836df0e9110ef063.pkl",
+      "cache_input_text_sha256": "149664a458bc03b2906e2ddc5312d8fbeb75f75dd3aa5d53d4e3081beb19f650",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "DeepMind's diagnostic tools showed",
+      "exact_native_cache_key": "26aa01e0ad99c64f457be541c354e63598e6dc24.pkl",
+      "cache_input_text_sha256": "a29bcb7fcc1df9d1d498f948b2a2f27b82fd769a912c47631e91aa8c1fc1d961",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S8",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "AlphaGo had put the odds of a human playing that stone at one in 10,000,",
+      "exact_native_cache_key": "bec5bc1c8c7a87f0ec299a303ed688ae4bed5560.pkl",
+      "cache_input_text_sha256": "3eda19f7372c134d69de6d67b4106b19ec19ce12a4aa8dffba2b3610c8305af5",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S8",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "a staggering rarity.",
+      "exact_native_cache_key": "66a6b4f4fa5c889628966999784357d67a7529e4.pkl",
+      "cache_input_text_sha256": "a9ccadc026a488ab681908af304fb3ee60fa190a5ad95407f0ffc779eb52ed19",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S8",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "DeepMind's diagnostic tools showed AlphaGo had put the odds of a human playing that stone at one in 10,000,",
+      "exact_native_cache_key": "40bbe20d193a5216dc8b775d530dbada518c98f4.pkl",
+      "cache_input_text_sha256": "3a434411fa0cd80f019a33f0ee41c1ddd42a766e7a1829127f19752af5f975a3",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S8",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "a staggering rarity.",
+      "exact_native_cache_key": "66a6b4f4fa5c889628966999784357d67a7529e4.pkl",
+      "cache_input_text_sha256": "a9ccadc026a488ab681908af304fb3ee60fa190a5ad95407f0ffc779eb52ed19",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S9",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "AlphaGo had first learned to imitate strong amateurs online, then sharpened its play over tens of millions of simulated games against itself.",
+      "exact_native_cache_key": "ed83b3f3bab2ec603cb06782fc997cbdd2ead9a5.pkl",
+      "cache_input_text_sha256": "cba75a3e973f03371d8d07b365998be2e698f521bece6d025fa2e0735f65b280",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "AlphaGo had first learned to imitate strong amateurs online, then sharpened its play over tens of millions of simulated games against itself.",
+      "exact_native_cache_key": "7cea1b5b52abca277de9aa6a1618d580b5307050.pkl",
+      "cache_input_text_sha256": "cba75a3e973f03371d8d07b365998be2e698f521bece6d025fa2e0735f65b280",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "AlphaGo had first learned to imitate strong amateurs online,",
+      "exact_native_cache_key": "cf48ea080089021cfe3f12f6b76b10fec92443dd.pkl",
+      "cache_input_text_sha256": "71914efd6eec02438ace456fabe441477dda2fbaa90e5de9ab0d76d4107a05da",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S9",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "then sharpened its play over tens of millions of simulated games against itself.",
+      "exact_native_cache_key": "6ad88cf1b3b283da3455d7872136336c805639b4.pkl",
+      "cache_input_text_sha256": "e2c5a7fadd7ff324a3409d99b499b4d123e9cd067c1d22b36dac0acc132d0373",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S9",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "AlphaGo had first learned to imitate strong amateurs online,",
+      "exact_native_cache_key": "cf48ea080089021cfe3f12f6b76b10fec92443dd.pkl",
+      "cache_input_text_sha256": "71914efd6eec02438ace456fabe441477dda2fbaa90e5de9ab0d76d4107a05da",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S9",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "then sharpened its play over tens of millions of simulated games against itself.",
+      "exact_native_cache_key": "6ad88cf1b3b283da3455d7872136336c805639b4.pkl",
+      "cache_input_text_sha256": "e2c5a7fadd7ff324a3409d99b499b4d123e9cd067c1d22b36dac0acc132d0373",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S10",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Lee later acknowledged the stone's originality and beauty.",
+      "exact_native_cache_key": "f12ffb30cd687dc99990c317b737f486d65379a0.pkl",
+      "cache_input_text_sha256": "dedf300c1c7a0508ac1c696f90d5f2131d075fc6c615c34ef192b935f7243af0",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Lee later acknowledged the stone's originality and beauty.",
+      "exact_native_cache_key": "f666ac858b3c1c4c12af501594459b80c40eb215.pkl",
+      "cache_input_text_sha256": "dedf300c1c7a0508ac1c696f90d5f2131d075fc6c615c34ef192b935f7243af0",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "The fourth game, on 13 March, reversed the roles in neat symmetry.",
+      "exact_native_cache_key": "4c3a20670ed238ab3b7bb2de586479c88a0732aa.pkl",
+      "cache_input_text_sha256": "f76b0fb496349cbff70dd96d3e0f642d63c2249caa0b6cad9c2c087f44fbc497",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "The fourth game, on 13 March, reversed the roles in neat symmetry.",
+      "exact_native_cache_key": "bcb2ba47a755b6b99b4e78a0394d873e86418e5e.pkl",
+      "cache_input_text_sha256": "f76b0fb496349cbff70dd96d3e0f642d63c2249caa0b6cad9c2c087f44fbc497",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "The fourth game,",
+      "exact_native_cache_key": "92ce806e89d1e4b5ad27aa2bd653a8e29dc307d9.pkl",
+      "cache_input_text_sha256": "ecac589830ff5fe4f67aefe1cb230d1a71bafe7c7a6a18f642290c25a9c93aa5",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S11",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "on 13 March,",
+      "exact_native_cache_key": "cd036ffd028ebe4c7edc3359f4a712421576e0e1.pkl",
+      "cache_input_text_sha256": "2b16b6ae687ada0552537e0f077e71a9f385076c129b0c51f1e6a08784711fab",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S11",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "reversed the roles in neat symmetry.",
+      "exact_native_cache_key": "bc7bab6c03cea467d9e99c7c26a7c28db55cdbc9.pkl",
+      "cache_input_text_sha256": "c60c02423437ccd803872b09071334d23389466d45eafd975d49cee0a4a8f496",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S12",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Lee's 78th move turned the tide, and many professionals heralded it as divine.",
+      "exact_native_cache_key": "14dca0504476b04785fe85f18702638d73c951e3.pkl",
+      "cache_input_text_sha256": "5c84c025b24158605c78e846a4fbfa0e5c918854ccb4f86c1197b46c552b2917",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Lee's 78th move turned the tide, and many professionals heralded it as divine.",
+      "exact_native_cache_key": "f0419a91f0adb450e8e49bd9c08917417ec88427.pkl",
+      "cache_input_text_sha256": "5c84c025b24158605c78e846a4fbfa0e5c918854ccb4f86c1197b46c552b2917",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Lee's 78th move turned the tide,",
+      "exact_native_cache_key": "94adc9f744421b3b12172b9535e7eaaf02a937a1.pkl",
+      "cache_input_text_sha256": "4daad6da5a53c0c150526a993e4028c0fd3af82826036d573caaabee1fdc3e20",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S12",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "and many professionals heralded it as divine.",
+      "exact_native_cache_key": "35de1a7bf4c12604d57dfbdd45dc774f8a08b2e0.pkl",
+      "cache_input_text_sha256": "f764897b4ce1e1c06622fc0b18971aeae19d02c313221414ee76924ee997b75f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S12",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Lee's 78th move turned the tide,",
+      "exact_native_cache_key": "94adc9f744421b3b12172b9535e7eaaf02a937a1.pkl",
+      "cache_input_text_sha256": "4daad6da5a53c0c150526a993e4028c0fd3af82826036d573caaabee1fdc3e20",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S12",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "and many professionals heralded it as divine.",
+      "exact_native_cache_key": "35de1a7bf4c12604d57dfbdd45dc774f8a08b2e0.pkl",
+      "cache_input_text_sha256": "f764897b4ce1e1c06622fc0b18971aeae19d02c313221414ee76924ee997b75f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S13",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "DeepMind's team computed a professional's likelihood of finding it: about one in 10,000.",
+      "exact_native_cache_key": "e0bce5d93b0825500c4b6e3bffa6647ec57f5115.pkl",
+      "cache_input_text_sha256": "7190a6833b91a68b377b7924e7f76cbecd12f9a4520ab718266d15234181252e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "DeepMind's team computed a professional's likelihood of finding it: about one in 10,000.",
+      "exact_native_cache_key": "564e8ce58ecf820d405e40be7dcd838eab8aaf0b.pkl",
+      "cache_input_text_sha256": "7190a6833b91a68b377b7924e7f76cbecd12f9a4520ab718266d15234181252e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "DeepMind's team computed",
+      "exact_native_cache_key": "664dd4c3d718cfc87e328dbd424b47a59472e7ff.pkl",
+      "cache_input_text_sha256": "aeff264e3737191f70beec8c2808ca29444b71505643bdf7a3e283526b8fbd1a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S13",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "a professional's likelihood of finding it: about one in 10,000.",
+      "exact_native_cache_key": "bf13447dc4f1a687bdd977f29d81757b98a87dc7.pkl",
+      "cache_input_text_sha256": "6755cc3809b780fc60157820b9e220881ec586cb98a8b900d9ed794fd27d612b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S13",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "DeepMind's team computed a professional's likelihood of finding it:",
+      "exact_native_cache_key": "fd69b4f228c380473febd3bcbabde3605335959a.pkl",
+      "cache_input_text_sha256": "61cdd2b4061ef2c82685e2d45acec29c8f2e926541e1a7bfc7d81762b2a0cbe9",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S13",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "about one in 10,000.",
+      "exact_native_cache_key": "c8679099b39ac2d1c7542369997cbe26c7e1cdd5.pkl",
+      "cache_input_text_sha256": "59d1f8cc4a93a49008c75199aec44bd3dc35422cfa29facb5a1704db22b58755",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S14",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Lee's only win was a consolation amid AlphaGo's overwhelming 4–1 victory.",
+      "exact_native_cache_key": "f853387dfa5ed72465ccc65e50ba792280505b73.pkl",
+      "cache_input_text_sha256": "8a5a56066df8159cdf8a7e31156fd627f605cd767e710c4de293d803e6310fd6",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Lee's only win was a consolation amid AlphaGo's overwhelming 4–1 victory.",
+      "exact_native_cache_key": "afebae249669a7936ef8a0692ee5c6711c1b631d.pkl",
+      "cache_input_text_sha256": "8a5a56066df8159cdf8a7e31156fd627f605cd767e710c4de293d803e6310fd6",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Lee's only win",
+      "exact_native_cache_key": "f383862416adfd43c187a475c6b630a8cb07e325.pkl",
+      "cache_input_text_sha256": "3ed34ca5be5a1410df4e975e298ee40a94ed3ba04e754df7d05a9d65cd648f70",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S14",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "was a consolation amid AlphaGo's overwhelming 4–1 victory.",
+      "exact_native_cache_key": "06dbe3bae207e4ed5aa159cbe207b2706eadcced.pkl",
+      "cache_input_text_sha256": "35d11137ae816b689501eebbaab133745b92906659d97ccb882243059c5aa312",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S15",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "In November 2019 Lee withdrew from the professional circuit, a farewell he tied to AI's unrivalled dominance.",
+      "exact_native_cache_key": "bb348dc2353c5ce762708cb263d803ffd8e9d652.pkl",
+      "cache_input_text_sha256": "0c6b4b8845045b179107a02acb181ffc221e3b399d9957e387f5c94fd90baedf",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "In November 2019 Lee withdrew from the professional circuit, a farewell he tied to AI's unrivalled dominance.",
+      "exact_native_cache_key": "dade4f93cb35ea126c180d244029d0c1ce69ab94.pkl",
+      "cache_input_text_sha256": "0c6b4b8845045b179107a02acb181ffc221e3b399d9957e387f5c94fd90baedf",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "In November 2019 Lee withdrew from the professional circuit,",
+      "exact_native_cache_key": "0086cb7c4c6478a0b7f9ad8065e6d3d6a5168138.pkl",
+      "cache_input_text_sha256": "3ff1a8a1155a05a0ab720a566248e9e7954109cba2ada104945160e961a003ce",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S15",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "a farewell he tied to AI's unrivalled dominance.",
+      "exact_native_cache_key": "f18d73f595707210869f6a06943d8bbb21c59309.pkl",
+      "cache_input_text_sha256": "9e8e87b32a79b864fc7544cf0971f234807936e5ca9ce9de721b74f40603de63",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S15",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "In November 2019 Lee withdrew from the professional circuit,",
+      "exact_native_cache_key": "0086cb7c4c6478a0b7f9ad8065e6d3d6a5168138.pkl",
+      "cache_input_text_sha256": "3ff1a8a1155a05a0ab720a566248e9e7954109cba2ada104945160e961a003ce",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S15",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "a farewell he tied to AI's unrivalled dominance.",
+      "exact_native_cache_key": "f18d73f595707210869f6a06943d8bbb21c59309.pkl",
+      "cache_input_text_sha256": "9e8e87b32a79b864fc7544cf0971f234807936e5ca9ce9de721b74f40603de63",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S16",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Calling AI an invincible entity, he said the summit was beyond him.",
+      "exact_native_cache_key": "c4795900641e47d6f0092a8a04cfc15d1d7adf46.pkl",
+      "cache_input_text_sha256": "e3f5bad0d33e3e08246ae163ab550c6c3910034c0ee7d4bcc1f7b38b7add2123",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Calling AI an invincible entity, he said the summit was beyond him.",
+      "exact_native_cache_key": "d1ed18eaa0f155b12e6d0f8bb8d916ecdb90a034.pkl",
+      "cache_input_text_sha256": "e3f5bad0d33e3e08246ae163ab550c6c3910034c0ee7d4bcc1f7b38b7add2123",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Calling AI an invincible entity,",
+      "exact_native_cache_key": "42eb00b85ec9bd3a45870814c8d6bf557737d18b.pkl",
+      "cache_input_text_sha256": "f6774ec31374ab8cc9468b588e017d2b6fd38f364cd57f7f969dbfc80adc68c5",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S16",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "he said the summit was beyond him.",
+      "exact_native_cache_key": "99c9e79127934dbb71d94374a59a00d3f5749327.pkl",
+      "cache_input_text_sha256": "14c1bcc6973ddf80e1e7fff438d11e8847c44d59f5882e2d13b3da82b854e172",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S17",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Yet his one win came from a stone whose odds, by DeepMind's figures, were as slim as those of AlphaGo's audacious shoulder hit.",
+      "exact_native_cache_key": "9c72f2ef3272908f899e9e62e080c10d1f32077b.pkl",
+      "cache_input_text_sha256": "78583b48283e240c83762355cec94bcfc98a12e3529ddbf549026d52d3550679",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Yet his one win came from a stone whose odds, by DeepMind's figures, were as slim as those of AlphaGo's audacious shoulder hit.",
+      "exact_native_cache_key": "ffae02ae7f299b6755733391ad8b1b076eee6f4f.pkl",
+      "cache_input_text_sha256": "78583b48283e240c83762355cec94bcfc98a12e3529ddbf549026d52d3550679",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Yet his one win came from a stone",
+      "exact_native_cache_key": "d861c624a9f393a39ba1c9003c4e05b392487fc7.pkl",
+      "cache_input_text_sha256": "a088d9d65a6757dac7e26717eacdd070a5726ed772dfbe031378e540655ec743",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S17",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "whose odds, by DeepMind's figures,",
+      "exact_native_cache_key": "3519fc56b8a9e9633294c3ae1d78b65f2ed03479.pkl",
+      "cache_input_text_sha256": "0392ccf182b97d4bcb2666dd8f306411b8362342045dd59a100d04de53bda5bb",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S17",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "were as slim as those of AlphaGo's audacious shoulder hit.",
+      "exact_native_cache_key": "c7cfc468b64af9631bf110ceb5d0e4f9821f2b81.pkl",
+      "cache_input_text_sha256": "3bf2013aac35ab452ec95b631e0779987e9a6d7755378c6d1d6b7245016a69c4",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S17",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Yet his one win came from a stone whose odds,",
+      "exact_native_cache_key": "567cf7ea859853de734b2a3979eb126dcff3445e.pkl",
+      "cache_input_text_sha256": "beaf827141cb6d20e900dd7c09ea41f48427c2b544eefce354d69bb81baf655b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S17",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "by DeepMind's figures,",
+      "exact_native_cache_key": "9f7061e02465ba822222cb46fb59b504c70c4f95.pkl",
+      "cache_input_text_sha256": "5eadf03efa90d1060c0d5e7a57f739098ad61dd3c12283ffda5ac445fa7cf4d8",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S17",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "were as slim as those of AlphaGo's audacious shoulder hit.",
+      "exact_native_cache_key": "c7cfc468b64af9631bf110ceb5d0e4f9821f2b81.pkl",
+      "cache_input_text_sha256": "3bf2013aac35ab452ec95b631e0779987e9a6d7755378c6d1d6b7245016a69c4",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    }
+  ],
+  "unique_reference_key_count": 81,
+  "raw_mother_cache_scalar_manifest": [
+    {
+      "exact_native_cache_key": "531aa04275a74c9397d4d2f74bf1f671ef6f2504.pkl",
+      "pkl_sha256": "23e3e3ce1f4b6b2d5cec11bb8798088eaec55873e422ce09146041d8c5a0ffa0",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "标题",
+          "piece": null,
+          "reference_kind": "title-default-raw",
+          "method": "create",
+          "source_slice": "Move 37",
+          "exact_native_cache_key": "531aa04275a74c9397d4d2f74bf1f671ef6f2504.pkl",
+          "cache_input_text_sha256": "20e8ff1e90fbbc494a0fc20c72c64312a185c47169938937f4cd99ce6d4c9a0e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        28672
+      ],
+      "unprocessed_array_sha256": "2987014a03c8433a5b07f959b51464c4f074b377217b25a7a24f7da8bcf5a472"
+    },
+    {
+      "exact_native_cache_key": "b9b2f1361faf412b86036eeb001e12f54f6c52b2.pkl",
+      "pkl_sha256": "37ec47c61a2691aaeb93e919bb1d7469b9ed4e264cb5fe4c4eb09f1cf8dd18de",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Go is said to allow more configurations than the universe has atoms, a daunting computational challenge.",
+          "exact_native_cache_key": "b9b2f1361faf412b86036eeb001e12f54f6c52b2.pkl",
+          "cache_input_text_sha256": "c7e95098b815e889166f1961017028c1f68b2d1b2322673b40ec351a38fa5d31",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        172544
+      ],
+      "unprocessed_array_sha256": "e52f86c7f352b8f59dd8af5a2c3f200428af16b776c7ee7d0212ee40670a0a9c"
+    },
+    {
+      "exact_native_cache_key": "e4439b8ee6b2194812f91d988de7976fd5567207.pkl",
+      "pkl_sha256": "75a029713fb21dba817e0018584acab80991fa0148a6bc766c9c0b981a573cd2",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Go is said to allow more configurations than the universe has atoms,",
+          "exact_native_cache_key": "e4439b8ee6b2194812f91d988de7976fd5567207.pkl",
+          "cache_input_text_sha256": "6dcff1430d02b223addfbfae83d3f1931fd4e113c082c03f26894f847a548f6e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        },
+        {
+          "sentence": "S1",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Go is said to allow more configurations than the universe has atoms,",
+          "exact_native_cache_key": "e4439b8ee6b2194812f91d988de7976fd5567207.pkl",
+          "cache_input_text_sha256": "6dcff1430d02b223addfbfae83d3f1931fd4e113c082c03f26894f847a548f6e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "75a029713fb21dba",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        103936
+      ],
+      "unprocessed_array_sha256": "f5b97569f5957d9592a9a160be49c604257cfad2870b72dcbdafce8cd05bb34d"
+    },
+    {
+      "exact_native_cache_key": "028265e74b4cc25c104edcc89ac79b6c02454ede.pkl",
+      "pkl_sha256": "d70fe1a1fcc136ab1a44c9cbdfe11f4fd0b43a02f3bdd3cc6b1777474508f21a",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "a daunting computational challenge.",
+          "exact_native_cache_key": "028265e74b4cc25c104edcc89ac79b6c02454ede.pkl",
+          "cache_input_text_sha256": "64d885816d06005413e6a682c682f7c4dfb4a4ac6d8cdb45b351e1a28832f12f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        },
+        {
+          "sentence": "S1",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a daunting computational challenge.",
+          "exact_native_cache_key": "028265e74b4cc25c104edcc89ac79b6c02454ede.pkl",
+          "cache_input_text_sha256": "64d885816d06005413e6a682c682f7c4dfb4a4ac6d8cdb45b351e1a28832f12f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "d70fe1a1fcc136ab",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        53248
+      ],
+      "unprocessed_array_sha256": "bec8c31122bb1200d0aab0b6ff378b140b18da4e09979f4b570fd0286c4e0947"
+    },
+    {
+      "exact_native_cache_key": "35db43acab1386f1ba3118947b7657f7c11b9749.pkl",
+      "pkl_sha256": "b23bde56c440708d2769b586ad01006c1df8c3d7817dbad112113c74869cf556",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In October 2015 DeepMind's AlphaGo reached a milestone, becoming the first program to beat a professional on a full board without a handicap.",
+          "exact_native_cache_key": "35db43acab1386f1ba3118947b7657f7c11b9749.pkl",
+          "cache_input_text_sha256": "1132a8b88fcec2ca99c604fdbf1d4efba0d8fd2724c97b21adc20cb04d495122",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        249344
+      ],
+      "unprocessed_array_sha256": "097255e43404a08d78235de692c2018d108ea5935f3c6f861ee0c3ac4fadea67"
+    },
+    {
+      "exact_native_cache_key": "01d118b6d228d4bc5ee05457e45219b974df701c.pkl",
+      "pkl_sha256": "7ca10c22e96b65c41b58aaa275dd6d28c8bcda68fcf51de73e3b8ac21b9da7c7",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In October 2015 DeepMind's AlphaGo reached a milestone,",
+          "exact_native_cache_key": "01d118b6d228d4bc5ee05457e45219b974df701c.pkl",
+          "cache_input_text_sha256": "188d9328ee7c94eeb107a90e20a47272a86260ee9b44aafdad3c2a322b960adf",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        },
+        {
+          "sentence": "S2",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In October 2015 DeepMind's AlphaGo reached a milestone,",
+          "exact_native_cache_key": "01d118b6d228d4bc5ee05457e45219b974df701c.pkl",
+          "cache_input_text_sha256": "188d9328ee7c94eeb107a90e20a47272a86260ee9b44aafdad3c2a322b960adf",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "7ca10c22e96b65c4",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        118784
+      ],
+      "unprocessed_array_sha256": "a398ac205470c1f5c8743a73ea93fc4bac4e4b8ceae70f83a6e36401776024d6"
+    },
+    {
+      "exact_native_cache_key": "a4530fdc60bc97f78fe4ab10e8deb86ccb8b95bc.pkl",
+      "pkl_sha256": "f94b00f13e1334a815f86bbcd15a7ce4fbfec3a0c991bd856518825cf9f133fc",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "becoming the first program to beat a professional on a full board without a handicap.",
+          "exact_native_cache_key": "a4530fdc60bc97f78fe4ab10e8deb86ccb8b95bc.pkl",
+          "cache_input_text_sha256": "3e81f8e007e8bc33f12b773c610301cd3f7be876a5da2da604a2d598a368117f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        },
+        {
+          "sentence": "S2",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "becoming the first program to beat a professional on a full board without a handicap.",
+          "exact_native_cache_key": "a4530fdc60bc97f78fe4ab10e8deb86ccb8b95bc.pkl",
+          "cache_input_text_sha256": "3e81f8e007e8bc33f12b773c610301cd3f7be876a5da2da604a2d598a368117f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "f94b00f13e1334a8",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        124928
+      ],
+      "unprocessed_array_sha256": "cd6179a4484ed4992137c546308de4c66af852f35d37ba6d80485f9e180c4f94"
+    },
+    {
+      "exact_native_cache_key": "a530a994ad20f3c0adacb9f84181e609e2f1c292.pkl",
+      "pkl_sha256": "19a045ee5566233381cfd01169d8e64b8ea528a9c3e7359d52783923f236bc1e",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In March 2016 its opponent in a televised Seoul showdown was Lee Sedol, a South Korean strategist with 18 international titles.",
+          "exact_native_cache_key": "a530a994ad20f3c0adacb9f84181e609e2f1c292.pkl",
+          "cache_input_text_sha256": "3b0d0ef502e8b5895b3dcd65f261782d57e0dcb4a87bff12ee6af05bfbbd1443",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        251904
+      ],
+      "unprocessed_array_sha256": "168e0f476c53daae8a7352809e979281b2ba9ed88bf862b78bf1e4884897a115"
+    },
+    {
+      "exact_native_cache_key": "54174f758622cfdd5771023fffb879634fac1f6a.pkl",
+      "pkl_sha256": "6024666a60f1e64840a2dac6d81324b3a484451459db05f05d7adaa588bae3d1",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In March 2016 its opponent in a televised Seoul showdown",
+          "exact_native_cache_key": "54174f758622cfdd5771023fffb879634fac1f6a.pkl",
+          "cache_input_text_sha256": "42c0147266adf086cbede7c50588e43b40f37d0ccdd342a1be0df13858539528",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "6024666a60f1e648",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        113152
+      ],
+      "unprocessed_array_sha256": "04b3fbd4181c35c94a8cbd75741776220d3b82460bea5505da0dfab66225ff7d"
+    },
+    {
+      "exact_native_cache_key": "dfd39497db28f0d0704cfabdb04b2e0b392eade3.pkl",
+      "pkl_sha256": "688227747f5b16ecc812ebb3093814f11aa1e8974a37825120aebcd34f76ca28",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "was Lee Sedol, a South Korean strategist with 18 international titles.",
+          "exact_native_cache_key": "dfd39497db28f0d0704cfabdb04b2e0b392eade3.pkl",
+          "cache_input_text_sha256": "0f33d2589a91f8183364b5614ad20b447adb9547e4839d17b0c8d502ba363e8b",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "688227747f5b16ec",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        124928
+      ],
+      "unprocessed_array_sha256": "e4869365f799dc19d94fadb258da8db04453a2c4d1420ab7414ff515a0cd9199"
+    },
+    {
+      "exact_native_cache_key": "fa902f1beb184c77a42cad72e924b9e67874dc93.pkl",
+      "pkl_sha256": "890cabf7dc928bad161d8536f225eddb69f4a223a6ca7fd72ddddb786a2266a4",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In March 2016 its opponent in a televised Seoul showdown was Lee Sedol,",
+          "exact_native_cache_key": "fa902f1beb184c77a42cad72e924b9e67874dc93.pkl",
+          "cache_input_text_sha256": "86e3df647e28c29ebb2ed6b620548c6e618f9a611a77c8e41c86e7479a11842f",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "890cabf7dc928bad",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        140800
+      ],
+      "unprocessed_array_sha256": "ecf7add848eb789781e20a92285e36cb45ae46a9140d39d85c5768e6092607f0"
+    },
+    {
+      "exact_native_cache_key": "84c7610894d029935a6a2da03ea1436a7a6212ed.pkl",
+      "pkl_sha256": "85d9da6b26159a6377ecb2391d0a4038a83d9ec610d21ab91c49d291b66f45c8",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a South Korean strategist with 18 international titles.",
+          "exact_native_cache_key": "84c7610894d029935a6a2da03ea1436a7a6212ed.pkl",
+          "cache_input_text_sha256": "99185ecd38dfc54060434aad816a31135b42e9f31913e9caf17a66e20294e099",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "85d9da6b26159a63",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        94208
+      ],
+      "unprocessed_array_sha256": "6154dd67dcc8e7d3ff84427110ee25e91ed5d66898c493aa423b640834ee45dc"
+    },
+    {
+      "exact_native_cache_key": "f9084d11e30d526cf31722bd2ae6a5023bd4a791.pkl",
+      "pkl_sha256": "78b2493d4cbb56253b9dfdb60ec1694e87939208bdde7592e388f30a2fb6cf82",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In game two, on 10 March, AlphaGo's 37th move was a shoulder hit, a tactic placing a stone adjacent to an opponent's on the diagonal.",
+          "exact_native_cache_key": "f9084d11e30d526cf31722bd2ae6a5023bd4a791.pkl",
+          "cache_input_text_sha256": "b0dcf3b6bcd660ac0c86f876e9f0231bf1ffa37b34b98d56e69cf2e6eb074886",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        253952
+      ],
+      "unprocessed_array_sha256": "7100079b9408802932b8cdaabd6f3b40026740e96c7bbfa03963912031f85ef2"
+    },
+    {
+      "exact_native_cache_key": "66fb53965a2b2a57cb4ffcfa10595481442df919.pkl",
+      "pkl_sha256": "7e1e706adc4b56fc2280547018572b35d23371510a57dfbe44cae863298fcaee",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In game two, on 10 March, AlphaGo's 37th move was a shoulder hit,",
+          "exact_native_cache_key": "66fb53965a2b2a57cb4ffcfa10595481442df919.pkl",
+          "cache_input_text_sha256": "ed3ef702785ec233114b5772a5b4b856493d1937b169c69241bccd162b8429e5",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "7e1e706adc4b56fc",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        130560
+      ],
+      "unprocessed_array_sha256": "c5113da4cb89c4163623343467614c75e50be4a574499dd251e0e7e487d9961e"
+    },
+    {
+      "exact_native_cache_key": "b8ceb35e721e279645cfb8bbc1486a286c5700d8.pkl",
+      "pkl_sha256": "864a0f549d0228933b9028b495c25aa4c766248778e962d55aac1d970fe57da7",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "a tactic placing a stone adjacent to an opponent's on the diagonal.",
+          "exact_native_cache_key": "b8ceb35e721e279645cfb8bbc1486a286c5700d8.pkl",
+          "cache_input_text_sha256": "b69791dbd7fbc8378d2fed00a9c8017275b46fa39881e3e5981800c5f5e5adc7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        },
+        {
+          "sentence": "S4",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a tactic placing a stone adjacent to an opponent's on the diagonal.",
+          "exact_native_cache_key": "b8ceb35e721e279645cfb8bbc1486a286c5700d8.pkl",
+          "cache_input_text_sha256": "b69791dbd7fbc8378d2fed00a9c8017275b46fa39881e3e5981800c5f5e5adc7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "864a0f549d022893",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        111616
+      ],
+      "unprocessed_array_sha256": "cff6406d0136e4d72651c5aecbeb2064321b4b9bbcc79b8f458071c8ec0c952e"
+    },
+    {
+      "exact_native_cache_key": "36a0acbcea8317e6d94f7ee90c4aad6af0cab282.pkl",
+      "pkl_sha256": "eeb8285f2d3bde25a839cab0115c362e57b64da007b28b91c29172bb8a9c6fd6",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In game two,",
+          "exact_native_cache_key": "36a0acbcea8317e6d94f7ee90c4aad6af0cab282.pkl",
+          "cache_input_text_sha256": "d45b20c479a0c9cbcd23a1c13e39cdbb0e9229d6f32c315cfdba292f490e0d30",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "eeb8285f2d3bde25",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        25600
+      ],
+      "unprocessed_array_sha256": "099f1126527ed3981e580ff6f5efa71215f482031a47115ea15fe3a44de6e3cf"
+    },
+    {
+      "exact_native_cache_key": "66b992048d83d8ec357346a6d815ba7bd307efd0.pkl",
+      "pkl_sha256": "dd1cebed8e3c6be152dab3b5f73631a81dfe8ad18a7032b0e334176dbba8dd92",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "on 10 March,",
+          "exact_native_cache_key": "66b992048d83d8ec357346a6d815ba7bd307efd0.pkl",
+          "cache_input_text_sha256": "49e15c759ea6a526b1445b2634e77d6844d64e360aa03afede1352bec185b2c0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "dd1cebed8e3c6be1",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        32256
+      ],
+      "unprocessed_array_sha256": "6299f7925c405e60d73d4497be22a62500d04fc7a431a90221c7e036f0824ef9"
+    },
+    {
+      "exact_native_cache_key": "44d746b1cf2d9a386e7e3a73daecaf57241446ec.pkl",
+      "pkl_sha256": "855ba8686cf5e48201f633735a0e1c17d1a4a511cb8d6986bb73702786b7765f",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "AlphaGo's 37th move was a shoulder hit,",
+          "exact_native_cache_key": "44d746b1cf2d9a386e7e3a73daecaf57241446ec.pkl",
+          "cache_input_text_sha256": "8765ab91a796f26218d5985f1845aa50954af48d2bee4b2e814835b34d7d489d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "855ba8686cf5e482",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        73728
+      ],
+      "unprocessed_array_sha256": "3056b87bafb860bedef8dc5aa47b49591ea81f87e9a6d58fc557b98406d8786a"
+    },
+    {
+      "exact_native_cache_key": "920ea30bc111b2b8f234ab304aedcd24ee5460d5.pkl",
+      "pkl_sha256": "0bf91e7064df04a0e6fc61a15a85ea03a2590905ba06504db72925c802421678",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "On the grid's fifth line, it was hardly orthodox.",
+          "exact_native_cache_key": "920ea30bc111b2b8f234ab304aedcd24ee5460d5.pkl",
+          "cache_input_text_sha256": "bd6f12e8215cdc67f97be013fb26c10c5eff2a970430a80bb66480342de1bfc5",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        72192
+      ],
+      "unprocessed_array_sha256": "d3800ee5fb2165ede18842897bab13b423ab59dcd11a89a25a5e45de5e67d5da"
+    },
+    {
+      "exact_native_cache_key": "99cc458a628d7b53cd25e623f55212b9c0f93384.pkl",
+      "pkl_sha256": "4bf0a1211ac686a5a369e6828a2cd63e1017112f5592bfc4f347501c450bff93",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "On the grid's fifth line,",
+          "exact_native_cache_key": "99cc458a628d7b53cd25e623f55212b9c0f93384.pkl",
+          "cache_input_text_sha256": "312a3d7779ca6b8ad21e0e1983ab2f9f3bf35dc70537523dd38fc7f6bc35a42a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "4bf0a1211ac686a5",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        34304
+      ],
+      "unprocessed_array_sha256": "b6a3e36cfec1abb759300c61960fde7c28c176431963757c565db5ce107d137a"
+    },
+    {
+      "exact_native_cache_key": "c92d6bed94a05913e59f126f30c3db48eff2facd.pkl",
+      "pkl_sha256": "458df910e94c10bfd18a07829cddc3383ec981549f167a33011e347d28a2f336",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "it was hardly orthodox.",
+          "exact_native_cache_key": "c92d6bed94a05913e59f126f30c3db48eff2facd.pkl",
+          "cache_input_text_sha256": "905e6dc9ff1143f5baed629b688c1ce4b4994285347df1e83babb4964704e377",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "458df910e94c10bf",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        39936
+      ],
+      "unprocessed_array_sha256": "c6cf701364522ba507a813765c146d3848d4bf23dcf086c11f655e0deaf10b68"
+    },
+    {
+      "exact_native_cache_key": "39db4ebecf4d9e158555346d491a567040d4b3bc.pkl",
+      "pkl_sha256": "e4873b58eb165bc2b5aea31ff518caf9a63ebce750e765459666da399b725f9c",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Commentators found the unexpected placement bizarre; one took it for a mistake.",
+          "exact_native_cache_key": "39db4ebecf4d9e158555346d491a567040d4b3bc.pkl",
+          "cache_input_text_sha256": "8f5a4b10212cd509b72bdfcb7af90bc56e73b0eb31dfa3d4ff29f8ca05c1dcfe",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        124928
+      ],
+      "unprocessed_array_sha256": "9f1de916e39302e7a308c9a96341eb7ef77704d5f44a22429f7a8a61e43d3876"
+    },
+    {
+      "exact_native_cache_key": "49547ace3c33b2bac47fc9172b121518498afb0a.pkl",
+      "pkl_sha256": "ebc0609a9e9394e15337a77139e11484ffa8284da2fb1eba6faa129b87abcb90",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Commentators found the unexpected placement bizarre;",
+          "exact_native_cache_key": "49547ace3c33b2bac47fc9172b121518498afb0a.pkl",
+          "cache_input_text_sha256": "e02e3ee01110fb6a1b5ad555dd6b4bcbe45bc44595cfff3105ac116acdd6a21c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        },
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Commentators found the unexpected placement bizarre;",
+          "exact_native_cache_key": "49547ace3c33b2bac47fc9172b121518498afb0a.pkl",
+          "cache_input_text_sha256": "e02e3ee01110fb6a1b5ad555dd6b4bcbe45bc44595cfff3105ac116acdd6a21c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "ebc0609a9e9394e1",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        77312
+      ],
+      "unprocessed_array_sha256": "1ae1acec409f2cfb1d2ad12307a31dee925c0df9df7871e8fac5107966030b71"
+    },
+    {
+      "exact_native_cache_key": "63ac20f877c413738b1fc138893a1e4fb8e6f80b.pkl",
+      "pkl_sha256": "8d4b3135813f686e6b1ebc9d6135734c26cfbc0d3f821590ec20d31decabada8",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "one took it for a mistake.",
+          "exact_native_cache_key": "63ac20f877c413738b1fc138893a1e4fb8e6f80b.pkl",
+          "cache_input_text_sha256": "3434bbd86a79a6ae45d3b884f79012ee0fc0ad19537a06c5631caf7bd9cf3195",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        },
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "one took it for a mistake.",
+          "exact_native_cache_key": "63ac20f877c413738b1fc138893a1e4fb8e6f80b.pkl",
+          "cache_input_text_sha256": "3434bbd86a79a6ae45d3b884f79012ee0fc0ad19537a06c5631caf7bd9cf3195",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "8d4b3135813f686e",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        36864
+      ],
+      "unprocessed_array_sha256": "ed2123a40a008aef80e5317bc3e3026c92ecb3d8f32fc12df294873f4cf69394"
+    },
+    {
+      "exact_native_cache_key": "fab40bc1bf37bc54d601bbba0eb05e0046ea9b04.pkl",
+      "pkl_sha256": "e56c0da42bafc1e3094a4198b4ea3ae1ce35fe392a90a318e69a27a3ca65f6d8",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Lee left the room, his pause for deliberation lasting over ten minutes.",
+          "exact_native_cache_key": "fab40bc1bf37bc54d601bbba0eb05e0046ea9b04.pkl",
+          "cache_input_text_sha256": "d133cf4d778d47c3fbb259d99e2a5582426ce3124f1689243143662990b7b005",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        110592
+      ],
+      "unprocessed_array_sha256": "ce62634df44b27da0e43100c9c4b3677bdf8c61cc3c99c959840e6e6c150152d"
+    },
+    {
+      "exact_native_cache_key": "4de11b517234990bb14eda3de7bfdedb990a8252.pkl",
+      "pkl_sha256": "489c7c3e14a0c0f785aba7975f4a9c2caeff5a7b7d81b9dd59a474efc34c1258",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Lee left the room,",
+          "exact_native_cache_key": "4de11b517234990bb14eda3de7bfdedb990a8252.pkl",
+          "cache_input_text_sha256": "e95f69d5817b53e08115752b75782f2d0e7b49388c95d758104f05fa3303302e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        },
+        {
+          "sentence": "S7",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Lee left the room,",
+          "exact_native_cache_key": "4de11b517234990bb14eda3de7bfdedb990a8252.pkl",
+          "cache_input_text_sha256": "e95f69d5817b53e08115752b75782f2d0e7b49388c95d758104f05fa3303302e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "489c7c3e14a0c0f7",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        26624
+      ],
+      "unprocessed_array_sha256": "ef675b05236006cde25628c080ed32fab8c8ceeb4d316728f8e01fbab8925f5c"
+    },
+    {
+      "exact_native_cache_key": "e0b3d72ba1f53458beceb93b2d58748d8edcc77a.pkl",
+      "pkl_sha256": "35d2dc173f73de828ff65945581f4169f057b250d46171af2e58b268d3e9bfa3",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "his pause for deliberation lasting over ten minutes.",
+          "exact_native_cache_key": "e0b3d72ba1f53458beceb93b2d58748d8edcc77a.pkl",
+          "cache_input_text_sha256": "b0579e5be3b60748e7ad78e05c4825c4ae21f17ea524cc4ef2db06045933f2fd",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        },
+        {
+          "sentence": "S7",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "his pause for deliberation lasting over ten minutes.",
+          "exact_native_cache_key": "e0b3d72ba1f53458beceb93b2d58748d8edcc77a.pkl",
+          "cache_input_text_sha256": "b0579e5be3b60748e7ad78e05c4825c4ae21f17ea524cc4ef2db06045933f2fd",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "35d2dc173f73de82",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        84992
+      ],
+      "unprocessed_array_sha256": "eff202759a6781b72c4f6e1dbc138f41cab3794e6f533e59a8797f913eb1925a"
+    },
+    {
+      "exact_native_cache_key": "56598dbf0162efc3643a2ea0ba657c6c30ee93c9.pkl",
+      "pkl_sha256": "b9a095ee7cb12c5e1cf9ba5e64796adcfb29f1d56a65f75176c4b1e1c4bf8dc5",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "DeepMind's diagnostic tools showed AlphaGo had put the odds of a human playing that stone at one in 10,000, a staggering rarity.",
+          "exact_native_cache_key": "56598dbf0162efc3643a2ea0ba657c6c30ee93c9.pkl",
+          "cache_input_text_sha256": "149664a458bc03b2906e2ddc5312d8fbeb75f75dd3aa5d53d4e3081beb19f650",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        230400
+      ],
+      "unprocessed_array_sha256": "e6ab65f351477bd07a4c57bd69975151b67afd164630f91ff77e9ad1c1ef1599"
+    },
+    {
+      "exact_native_cache_key": "26aa01e0ad99c64f457be541c354e63598e6dc24.pkl",
+      "pkl_sha256": "661ea5867a01267532be5f776ca8aa8299279b234f5618078df0ed472502f52c",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "DeepMind's diagnostic tools showed",
+          "exact_native_cache_key": "26aa01e0ad99c64f457be541c354e63598e6dc24.pkl",
+          "cache_input_text_sha256": "a29bcb7fcc1df9d1d498f948b2a2f27b82fd769a912c47631e91aa8c1fc1d961",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "661ea5867a012675",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        56320
+      ],
+      "unprocessed_array_sha256": "721150812a0f9015c73a5faebed76fd8885f36e127cd4a583f9458b32bf2a6c1"
+    },
+    {
+      "exact_native_cache_key": "bec5bc1c8c7a87f0ec299a303ed688ae4bed5560.pkl",
+      "pkl_sha256": "c73e22520d0c7b5e6eeb8a3f49ed5a4c9fa781162fe26666362e22e116967242",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "AlphaGo had put the odds of a human playing that stone at one in 10,000,",
+          "exact_native_cache_key": "bec5bc1c8c7a87f0ec299a303ed688ae4bed5560.pkl",
+          "cache_input_text_sha256": "3eda19f7372c134d69de6d67b4106b19ec19ce12a4aa8dffba2b3610c8305af5",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "c73e22520d0c7b5e",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        145408
+      ],
+      "unprocessed_array_sha256": "849581c008b049f37223538c2c3769b62676c20a6360619a72136e6ab012b36b"
+    },
+    {
+      "exact_native_cache_key": "66a6b4f4fa5c889628966999784357d67a7529e4.pkl",
+      "pkl_sha256": "8ecdc01156ca715fd4006fc0a307a6b7a8861a30b3a0a44ce7c5a7ed9f8378a0",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "a staggering rarity.",
+          "exact_native_cache_key": "66a6b4f4fa5c889628966999784357d67a7529e4.pkl",
+          "cache_input_text_sha256": "a9ccadc026a488ab681908af304fb3ee60fa190a5ad95407f0ffc779eb52ed19",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        },
+        {
+          "sentence": "S8",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a staggering rarity.",
+          "exact_native_cache_key": "66a6b4f4fa5c889628966999784357d67a7529e4.pkl",
+          "cache_input_text_sha256": "a9ccadc026a488ab681908af304fb3ee60fa190a5ad95407f0ffc779eb52ed19",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "8ecdc01156ca715f",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        31744
+      ],
+      "unprocessed_array_sha256": "57be6500df548fa6515f4bf96607a7189adb361473947654660bcac84e2af993"
+    },
+    {
+      "exact_native_cache_key": "40bbe20d193a5216dc8b775d530dbada518c98f4.pkl",
+      "pkl_sha256": "d1d1bcb80903be3a90a20e106046699953f8686370306440a925b82175464a27",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "DeepMind's diagnostic tools showed AlphaGo had put the odds of a human playing that stone at one in 10,000,",
+          "exact_native_cache_key": "40bbe20d193a5216dc8b775d530dbada518c98f4.pkl",
+          "cache_input_text_sha256": "3a434411fa0cd80f019a33f0ee41c1ddd42a766e7a1829127f19752af5f975a3",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "d1d1bcb80903be3a",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        214528
+      ],
+      "unprocessed_array_sha256": "f97330d706235615d06a17546ecb6ab19c2c3625e59ca3b5ccd858112ebf3cb9"
+    },
+    {
+      "exact_native_cache_key": "ed83b3f3bab2ec603cb06782fc997cbdd2ead9a5.pkl",
+      "pkl_sha256": "511ca1c0343c8a439234f00bf020b430cb87cc6c7c79949beeaf16520e522f9d",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "AlphaGo had first learned to imitate strong amateurs online, then sharpened its play over tens of millions of simulated games against itself.",
+          "exact_native_cache_key": "ed83b3f3bab2ec603cb06782fc997cbdd2ead9a5.pkl",
+          "cache_input_text_sha256": "cba75a3e973f03371d8d07b365998be2e698f521bece6d025fa2e0735f65b280",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        233472
+      ],
+      "unprocessed_array_sha256": "a15f7ef2363e2d46d7bd875b435527b1d097fb4e3db5db0c80a224772d708a69"
+    },
+    {
+      "exact_native_cache_key": "cf48ea080089021cfe3f12f6b76b10fec92443dd.pkl",
+      "pkl_sha256": "5dc259bce57802dc7feccac06cb3c920e884c9fca64894239beb40603cb6a16a",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "AlphaGo had first learned to imitate strong amateurs online,",
+          "exact_native_cache_key": "cf48ea080089021cfe3f12f6b76b10fec92443dd.pkl",
+          "cache_input_text_sha256": "71914efd6eec02438ace456fabe441477dda2fbaa90e5de9ab0d76d4107a05da",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        },
+        {
+          "sentence": "S9",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "AlphaGo had first learned to imitate strong amateurs online,",
+          "exact_native_cache_key": "cf48ea080089021cfe3f12f6b76b10fec92443dd.pkl",
+          "cache_input_text_sha256": "71914efd6eec02438ace456fabe441477dda2fbaa90e5de9ab0d76d4107a05da",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "5dc259bce57802dc",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        90624
+      ],
+      "unprocessed_array_sha256": "345607be75d02f378f86c7b8c216e3c876ea0ca1df53f30081c8646b324977c6"
+    },
+    {
+      "exact_native_cache_key": "6ad88cf1b3b283da3455d7872136336c805639b4.pkl",
+      "pkl_sha256": "3b3d32c66560dcfc95a0cafef131da667bdcf11f38373198266add1cf8a0ca50",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "then sharpened its play over tens of millions of simulated games against itself.",
+          "exact_native_cache_key": "6ad88cf1b3b283da3455d7872136336c805639b4.pkl",
+          "cache_input_text_sha256": "e2c5a7fadd7ff324a3409d99b499b4d123e9cd067c1d22b36dac0acc132d0373",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        },
+        {
+          "sentence": "S9",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "then sharpened its play over tens of millions of simulated games against itself.",
+          "exact_native_cache_key": "6ad88cf1b3b283da3455d7872136336c805639b4.pkl",
+          "cache_input_text_sha256": "e2c5a7fadd7ff324a3409d99b499b4d123e9cd067c1d22b36dac0acc132d0373",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "3b3d32c66560dcfc",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        124416
+      ],
+      "unprocessed_array_sha256": "9cb528252dec7262fad3a0b4bc1608a99ce751bd0bdd69e2587b713f08f40883"
+    },
+    {
+      "exact_native_cache_key": "f12ffb30cd687dc99990c317b737f486d65379a0.pkl",
+      "pkl_sha256": "4b3ac484e540e85a5285e4c45618bf63c186017c869afd8483f6ab8762bcbefc",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Lee later acknowledged the stone's originality and beauty.",
+          "exact_native_cache_key": "f12ffb30cd687dc99990c317b737f486d65379a0.pkl",
+          "cache_input_text_sha256": "dedf300c1c7a0508ac1c696f90d5f2131d075fc6c615c34ef192b935f7243af0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        90112
+      ],
+      "unprocessed_array_sha256": "c2d9e4e3c9fa83e6e3391e1732e4336e7c8fc74cc5434f1123ae15ab22855021"
+    },
+    {
+      "exact_native_cache_key": "4c3a20670ed238ab3b7bb2de586479c88a0732aa.pkl",
+      "pkl_sha256": "7988278df20b43de52cebc0d2ae91f64bcd8e616be4c199c6374dad86ddba78c",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The fourth game, on 13 March, reversed the roles in neat symmetry.",
+          "exact_native_cache_key": "4c3a20670ed238ab3b7bb2de586479c88a0732aa.pkl",
+          "cache_input_text_sha256": "f76b0fb496349cbff70dd96d3e0f642d63c2249caa0b6cad9c2c087f44fbc497",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        113152
+      ],
+      "unprocessed_array_sha256": "b41187780b5c7f2a2109ffa455bccfb5ddf3586cf73127a642a9145e61aec29d"
+    },
+    {
+      "exact_native_cache_key": "92ce806e89d1e4b5ad27aa2bd653a8e29dc307d9.pkl",
+      "pkl_sha256": "78d3685d07bfd19f9fe585d44ee033b2f96a1eaee291522e4b989c9843ac77cd",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "The fourth game,",
+          "exact_native_cache_key": "92ce806e89d1e4b5ad27aa2bd653a8e29dc307d9.pkl",
+          "cache_input_text_sha256": "ecac589830ff5fe4f67aefe1cb230d1a71bafe7c7a6a18f642290c25a9c93aa5",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "78d3685d07bfd19f",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        25600
+      ],
+      "unprocessed_array_sha256": "2940eaa0b14d05882625b6efe0005dc528e5113458226051b45e1db844ca4208"
+    },
+    {
+      "exact_native_cache_key": "cd036ffd028ebe4c7edc3359f4a712421576e0e1.pkl",
+      "pkl_sha256": "71dc820c1befd9e3b58e330bea810e74f351a4a27dc19f7d9e535f9253398464",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "on 13 March,",
+          "exact_native_cache_key": "cd036ffd028ebe4c7edc3359f4a712421576e0e1.pkl",
+          "cache_input_text_sha256": "2b16b6ae687ada0552537e0f077e71a9f385076c129b0c51f1e6a08784711fab",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "71dc820c1befd9e3",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        35328
+      ],
+      "unprocessed_array_sha256": "e0a417f842593058a628fc83e75ae6f0f9139ad002fa549133c62437a2e31bff"
+    },
+    {
+      "exact_native_cache_key": "bc7bab6c03cea467d9e99c7c26a7c28db55cdbc9.pkl",
+      "pkl_sha256": "9ad99d7f63942a91ac1faf2d4274e880a3b2456e07dfdf864388195f64280eaa",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "reversed the roles in neat symmetry.",
+          "exact_native_cache_key": "bc7bab6c03cea467d9e99c7c26a7c28db55cdbc9.pkl",
+          "cache_input_text_sha256": "c60c02423437ccd803872b09071334d23389466d45eafd975d49cee0a4a8f496",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "9ad99d7f63942a91",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        48640
+      ],
+      "unprocessed_array_sha256": "135b40baed35df4c9359881eb36f847d471556a6d1b06511852ec7a75b8c8c1e"
+    },
+    {
+      "exact_native_cache_key": "14dca0504476b04785fe85f18702638d73c951e3.pkl",
+      "pkl_sha256": "d96b250cd0d3340a242767e662dc1da2ff7358257242e6115ca9e7f6743b2d71",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Lee's 78th move turned the tide, and many professionals heralded it as divine.",
+          "exact_native_cache_key": "14dca0504476b04785fe85f18702638d73c951e3.pkl",
+          "cache_input_text_sha256": "5c84c025b24158605c78e846a4fbfa0e5c918854ccb4f86c1197b46c552b2917",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        138240
+      ],
+      "unprocessed_array_sha256": "038b6d80eca8cd466e1042c07e25c56716327288d2bf9501895aa5cabf436aa5"
+    },
+    {
+      "exact_native_cache_key": "94adc9f744421b3b12172b9535e7eaaf02a937a1.pkl",
+      "pkl_sha256": "6b160568fe82fd839864f1ffff840deabe6a12e7fa7f86f8d49ffd27a7be77e8",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Lee's 78th move turned the tide,",
+          "exact_native_cache_key": "94adc9f744421b3b12172b9535e7eaaf02a937a1.pkl",
+          "cache_input_text_sha256": "4daad6da5a53c0c150526a993e4028c0fd3af82826036d573caaabee1fdc3e20",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        },
+        {
+          "sentence": "S12",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Lee's 78th move turned the tide,",
+          "exact_native_cache_key": "94adc9f744421b3b12172b9535e7eaaf02a937a1.pkl",
+          "cache_input_text_sha256": "4daad6da5a53c0c150526a993e4028c0fd3af82826036d573caaabee1fdc3e20",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "6b160568fe82fd83",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        55296
+      ],
+      "unprocessed_array_sha256": "4bb814e328796d66507f0938c4923ae126c45a73b7723114ada4d0eaa9fd617e"
+    },
+    {
+      "exact_native_cache_key": "35de1a7bf4c12604d57dfbdd45dc774f8a08b2e0.pkl",
+      "pkl_sha256": "c4b71748f1cd0c79e0e482ae2a92fc8c6c0a95fc0a19d0c93e8687e36e1efc60",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and many professionals heralded it as divine.",
+          "exact_native_cache_key": "35de1a7bf4c12604d57dfbdd45dc774f8a08b2e0.pkl",
+          "cache_input_text_sha256": "f764897b4ce1e1c06622fc0b18971aeae19d02c313221414ee76924ee997b75f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        },
+        {
+          "sentence": "S12",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and many professionals heralded it as divine.",
+          "exact_native_cache_key": "35de1a7bf4c12604d57dfbdd45dc774f8a08b2e0.pkl",
+          "cache_input_text_sha256": "f764897b4ce1e1c06622fc0b18971aeae19d02c313221414ee76924ee997b75f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "c4b71748f1cd0c79",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        65536
+      ],
+      "unprocessed_array_sha256": "27bae2ad8be6f3ab9056bb77661341944e80de723e089052ccc3607799f30d36"
+    },
+    {
+      "exact_native_cache_key": "e0bce5d93b0825500c4b6e3bffa6647ec57f5115.pkl",
+      "pkl_sha256": "444d5066f348fcd96686eded0e022cc8ba2e5b8f4f0e4fb57ccd5c0170cbcf74",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "DeepMind's team computed a professional's likelihood of finding it: about one in 10,000.",
+          "exact_native_cache_key": "e0bce5d93b0825500c4b6e3bffa6647ec57f5115.pkl",
+          "cache_input_text_sha256": "7190a6833b91a68b377b7924e7f76cbecd12f9a4520ab718266d15234181252e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        152576
+      ],
+      "unprocessed_array_sha256": "ea6c913ab712263a61b3b60109fbade7917bd51654022e90a6e7811fa07bd5ff"
+    },
+    {
+      "exact_native_cache_key": "664dd4c3d718cfc87e328dbd424b47a59472e7ff.pkl",
+      "pkl_sha256": "31aa7d360ba5f4a6bea1a11f959f2006be4edaeb68e548466becaedc13165305",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "DeepMind's team computed",
+          "exact_native_cache_key": "664dd4c3d718cfc87e328dbd424b47a59472e7ff.pkl",
+          "cache_input_text_sha256": "aeff264e3737191f70beec8c2808ca29444b71505643bdf7a3e283526b8fbd1a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "31aa7d360ba5f4a6",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        41472
+      ],
+      "unprocessed_array_sha256": "69e658e69ee8401bd538e3388d14c44ed1777ff3fe6fa7a0e190328657d37555"
+    },
+    {
+      "exact_native_cache_key": "bf13447dc4f1a687bdd977f29d81757b98a87dc7.pkl",
+      "pkl_sha256": "bf4f609e9ba756e199c7444fb095690047ed5cccc68a2ddbdf211efebc06779a",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "a professional's likelihood of finding it: about one in 10,000.",
+          "exact_native_cache_key": "bf13447dc4f1a687bdd977f29d81757b98a87dc7.pkl",
+          "cache_input_text_sha256": "6755cc3809b780fc60157820b9e220881ec586cb98a8b900d9ed794fd27d612b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "bf4f609e9ba756e1",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        104448
+      ],
+      "unprocessed_array_sha256": "25e18e9bab597ed17374cca1990b453a218d181da33c6e88c216d67f59a94be5"
+    },
+    {
+      "exact_native_cache_key": "fd69b4f228c380473febd3bcbabde3605335959a.pkl",
+      "pkl_sha256": "cdd4f24b440375ca87606540e10b0a02dc1eaaa521f04c67d1cc7fd51bf2e309",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "DeepMind's team computed a professional's likelihood of finding it:",
+          "exact_native_cache_key": "fd69b4f228c380473febd3bcbabde3605335959a.pkl",
+          "cache_input_text_sha256": "61cdd2b4061ef2c82685e2d45acec29c8f2e926541e1a7bfc7d81762b2a0cbe9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "cdd4f24b440375ca",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        98304
+      ],
+      "unprocessed_array_sha256": "f3525063ae0c8b1801a1e616b8c62f4622d8e7e8a7c5d35520e4f7f49a5a12e5"
+    },
+    {
+      "exact_native_cache_key": "c8679099b39ac2d1c7542369997cbe26c7e1cdd5.pkl",
+      "pkl_sha256": "15b00629ea5040541c1ae610a60a92426faad19b2e0db9edcd1164723f0f495a",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "about one in 10,000.",
+          "exact_native_cache_key": "c8679099b39ac2d1c7542369997cbe26c7e1cdd5.pkl",
+          "cache_input_text_sha256": "59d1f8cc4a93a49008c75199aec44bd3dc35422cfa29facb5a1704db22b58755",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "15b00629ea504054",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        43008
+      ],
+      "unprocessed_array_sha256": "c1a2b739f1c10993e90ebe72e5b480f39a79961d98c14be1f31be68a02753698"
+    },
+    {
+      "exact_native_cache_key": "f853387dfa5ed72465ccc65e50ba792280505b73.pkl",
+      "pkl_sha256": "7964664d976b5db170459bf0ee2b54c9d27062a061d18009a080f265605288d5",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Lee's only win was a consolation amid AlphaGo's overwhelming 4–1 victory.",
+          "exact_native_cache_key": "f853387dfa5ed72465ccc65e50ba792280505b73.pkl",
+          "cache_input_text_sha256": "8a5a56066df8159cdf8a7e31156fd627f605cd767e710c4de293d803e6310fd6",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        142848
+      ],
+      "unprocessed_array_sha256": "e4186932e0de0a8f7ce2ec7aa8082e3bef6911a404c1e9cfa21ccf2b2010ef28"
+    },
+    {
+      "exact_native_cache_key": "f383862416adfd43c187a475c6b630a8cb07e325.pkl",
+      "pkl_sha256": "9b4d63d8df0f6de49491736cb97a73ce6eccae6870367f1ebeebc52b0206526c",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Lee's only win",
+          "exact_native_cache_key": "f383862416adfd43c187a475c6b630a8cb07e325.pkl",
+          "cache_input_text_sha256": "3ed34ca5be5a1410df4e975e298ee40a94ed3ba04e754df7d05a9d65cd648f70",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "9b4d63d8df0f6de4",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        20992
+      ],
+      "unprocessed_array_sha256": "e2918c7b29269f8719f2148b27d1b4e50674d827ede23e9409f9e92d7d106f99"
+    },
+    {
+      "exact_native_cache_key": "06dbe3bae207e4ed5aa159cbe207b2706eadcced.pkl",
+      "pkl_sha256": "57dea0376a68bb2ee26af03c585e17f2cdea6b44da44654a1bcbd07911c3595b",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "was a consolation amid AlphaGo's overwhelming 4–1 victory.",
+          "exact_native_cache_key": "06dbe3bae207e4ed5aa159cbe207b2706eadcced.pkl",
+          "cache_input_text_sha256": "35d11137ae816b689501eebbaab133745b92906659d97ccb882243059c5aa312",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "57dea0376a68bb2e",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        108544
+      ],
+      "unprocessed_array_sha256": "1ef68e3e3428b9dff076d1fe66554186073e957238eec68165600a4285e4f7ea"
+    },
+    {
+      "exact_native_cache_key": "bb348dc2353c5ce762708cb263d803ffd8e9d652.pkl",
+      "pkl_sha256": "d1a954a9fa0bafea60ee7780d26caafc5db48ff10aeca171836872d9d4a0ff26",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In November 2019 Lee withdrew from the professional circuit, a farewell he tied to AI's unrivalled dominance.",
+          "exact_native_cache_key": "bb348dc2353c5ce762708cb263d803ffd8e9d652.pkl",
+          "cache_input_text_sha256": "0c6b4b8845045b179107a02acb181ffc221e3b399d9957e387f5c94fd90baedf",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        212992
+      ],
+      "unprocessed_array_sha256": "d38a02fc5fa8211b8af9f8c1fb7df3c3f4abcb3686642f908b9a4a1c640370d0"
+    },
+    {
+      "exact_native_cache_key": "0086cb7c4c6478a0b7f9ad8065e6d3d6a5168138.pkl",
+      "pkl_sha256": "20fab4012565620016e71964afbf23e56af4ff78b718a91b90ba4606f6cc4aee",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In November 2019 Lee withdrew from the professional circuit,",
+          "exact_native_cache_key": "0086cb7c4c6478a0b7f9ad8065e6d3d6a5168138.pkl",
+          "cache_input_text_sha256": "3ff1a8a1155a05a0ab720a566248e9e7954109cba2ada104945160e961a003ce",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        },
+        {
+          "sentence": "S15",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In November 2019 Lee withdrew from the professional circuit,",
+          "exact_native_cache_key": "0086cb7c4c6478a0b7f9ad8065e6d3d6a5168138.pkl",
+          "cache_input_text_sha256": "3ff1a8a1155a05a0ab720a566248e9e7954109cba2ada104945160e961a003ce",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "20fab40125656200",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        114176
+      ],
+      "unprocessed_array_sha256": "c12d4b1da4812f92f016c290dd6bd5f485cf4c4dace5b223590a71163052d618"
+    },
+    {
+      "exact_native_cache_key": "f18d73f595707210869f6a06943d8bbb21c59309.pkl",
+      "pkl_sha256": "cab21e88f4503ca83bbc88b27b3028251a3b98fc852860470f71e07c82435713",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "a farewell he tied to AI's unrivalled dominance.",
+          "exact_native_cache_key": "f18d73f595707210869f6a06943d8bbb21c59309.pkl",
+          "cache_input_text_sha256": "9e8e87b32a79b864fc7544cf0971f234807936e5ca9ce9de721b74f40603de63",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        },
+        {
+          "sentence": "S15",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a farewell he tied to AI's unrivalled dominance.",
+          "exact_native_cache_key": "f18d73f595707210869f6a06943d8bbb21c59309.pkl",
+          "cache_input_text_sha256": "9e8e87b32a79b864fc7544cf0971f234807936e5ca9ce9de721b74f40603de63",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "cab21e88f4503ca8",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        78336
+      ],
+      "unprocessed_array_sha256": "e370053f4898a3f37742d9f3391170e9830d7b68543501ab63edbaa45b87a4bd"
+    },
+    {
+      "exact_native_cache_key": "c4795900641e47d6f0092a8a04cfc15d1d7adf46.pkl",
+      "pkl_sha256": "3f1d4041ab8b12a955dfcb0248a4108f33f043df7dc485acf09fb1208586a9fd",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S16",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Calling AI an invincible entity, he said the summit was beyond him.",
+          "exact_native_cache_key": "c4795900641e47d6f0092a8a04cfc15d1d7adf46.pkl",
+          "cache_input_text_sha256": "e3f5bad0d33e3e08246ae163ab550c6c3910034c0ee7d4bcc1f7b38b7add2123",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        116736
+      ],
+      "unprocessed_array_sha256": "77071314ee2d5d0753c3ca37b3d3e8b3edb1607eb69dc9ab5929858b31fc43f7"
+    },
+    {
+      "exact_native_cache_key": "42eb00b85ec9bd3a45870814c8d6bf557737d18b.pkl",
+      "pkl_sha256": "f3f4ee616669df72537b64efa703a9051e0e49782206db509dbf00e7d2d6b2a6",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S16",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Calling AI an invincible entity,",
+          "exact_native_cache_key": "42eb00b85ec9bd3a45870814c8d6bf557737d18b.pkl",
+          "cache_input_text_sha256": "f6774ec31374ab8cc9468b588e017d2b6fd38f364cd57f7f969dbfc80adc68c5",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "f3f4ee616669df72",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        54784
+      ],
+      "unprocessed_array_sha256": "39e23f0501bad9b13aff661e02c3696fa4cc80a34a532498bc52b1a0f5b30400"
+    },
+    {
+      "exact_native_cache_key": "99c9e79127934dbb71d94374a59a00d3f5749327.pkl",
+      "pkl_sha256": "e715ceb4c9a59b78a75dfd0ae20e8095c8661d2613a75da81bff7eafed0b23bf",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S16",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "he said the summit was beyond him.",
+          "exact_native_cache_key": "99c9e79127934dbb71d94374a59a00d3f5749327.pkl",
+          "cache_input_text_sha256": "14c1bcc6973ddf80e1e7fff438d11e8847c44d59f5882e2d13b3da82b854e172",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "e715ceb4c9a59b78",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        46592
+      ],
+      "unprocessed_array_sha256": "793ce1445abae07a63ddaf4cb56432a64d3210915225473e23892f889c7d4f28"
+    },
+    {
+      "exact_native_cache_key": "9c72f2ef3272908f899e9e62e080c10d1f32077b.pkl",
+      "pkl_sha256": "d764a8700688c8ef09d395236587b3eb747c76b6a6d54c7a869afd1264903132",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Yet his one win came from a stone whose odds, by DeepMind's figures, were as slim as those of AlphaGo's audacious shoulder hit.",
+          "exact_native_cache_key": "9c72f2ef3272908f899e9e62e080c10d1f32077b.pkl",
+          "cache_input_text_sha256": "78583b48283e240c83762355cec94bcfc98a12e3529ddbf549026d52d3550679",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        205824
+      ],
+      "unprocessed_array_sha256": "c4b46889e9dadff354f9ef5ccd282388bd9e1ec50abbe5a71a92c5880be49ae6"
+    },
+    {
+      "exact_native_cache_key": "d861c624a9f393a39ba1c9003c4e05b392487fc7.pkl",
+      "pkl_sha256": "6bd94b1394bb01ea5fcdeed241ea6d0a11629eb1cdb074e0e32e00db5dbab401",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Yet his one win came from a stone",
+          "exact_native_cache_key": "d861c624a9f393a39ba1c9003c4e05b392487fc7.pkl",
+          "cache_input_text_sha256": "a088d9d65a6757dac7e26717eacdd070a5726ed772dfbe031378e540655ec743",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "6bd94b1394bb01ea",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        46592
+      ],
+      "unprocessed_array_sha256": "ca463a0f0f570707c92a1eb6fb988d976258a00eee23d9199be8fb861fb03bf7"
+    },
+    {
+      "exact_native_cache_key": "3519fc56b8a9e9633294c3ae1d78b65f2ed03479.pkl",
+      "pkl_sha256": "c87d0345453fb7c2cff76fe9805f39d715b1ae8a3b43c2aee81cadf4836cc1dd",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "whose odds, by DeepMind's figures,",
+          "exact_native_cache_key": "3519fc56b8a9e9633294c3ae1d78b65f2ed03479.pkl",
+          "cache_input_text_sha256": "0392ccf182b97d4bcb2666dd8f306411b8362342045dd59a100d04de53bda5bb",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "c87d0345453fb7c2",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        51712
+      ],
+      "unprocessed_array_sha256": "8b4d033befae54474ee055737b3a7351a4f3a0890528251cfd4c65239b1e4339"
+    },
+    {
+      "exact_native_cache_key": "c7cfc468b64af9631bf110ceb5d0e4f9821f2b81.pkl",
+      "pkl_sha256": "607a9b55e781c919b2f0f3bf86fd938cc69ff2764014b8ec704eb9cfc87ff0e0",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "were as slim as those of AlphaGo's audacious shoulder hit.",
+          "exact_native_cache_key": "c7cfc468b64af9631bf110ceb5d0e4f9821f2b81.pkl",
+          "cache_input_text_sha256": "3bf2013aac35ab452ec95b631e0779987e9a6d7755378c6d1d6b7245016a69c4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        },
+        {
+          "sentence": "S17",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "were as slim as those of AlphaGo's audacious shoulder hit.",
+          "exact_native_cache_key": "c7cfc468b64af9631bf110ceb5d0e4f9821f2b81.pkl",
+          "cache_input_text_sha256": "3bf2013aac35ab452ec95b631e0779987e9a6d7755378c6d1d6b7245016a69c4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "607a9b55e781c919",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        82944
+      ],
+      "unprocessed_array_sha256": "c9ccbe094bbd7c8a9abc0577432aa650f0ae173c776e7152600f4d7a2d055872"
+    },
+    {
+      "exact_native_cache_key": "567cf7ea859853de734b2a3979eb126dcff3445e.pkl",
+      "pkl_sha256": "304521b9576bee6033264be656f6b9635e3d1ad2733254c71acbdc9788bf109e",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Yet his one win came from a stone whose odds,",
+          "exact_native_cache_key": "567cf7ea859853de734b2a3979eb126dcff3445e.pkl",
+          "cache_input_text_sha256": "beaf827141cb6d20e900dd7c09ea41f48427c2b544eefce354d69bb81baf655b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "304521b9576bee60",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        62464
+      ],
+      "unprocessed_array_sha256": "3bbaedf93b7ceab9a7ea69d856e8b5e11bb049a07138214e63d2485624344875"
+    },
+    {
+      "exact_native_cache_key": "9f7061e02465ba822222cb46fb59b504c70c4f95.pkl",
+      "pkl_sha256": "c1c834e41717a91aa8809a9853e6d2ce70e4892ed4f698cb98a451d9ed444b0b",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "by DeepMind's figures,",
+          "exact_native_cache_key": "9f7061e02465ba822222cb46fb59b504c70c4f95.pkl",
+          "cache_input_text_sha256": "5eadf03efa90d1060c0d5e7a57f739098ad61dd3c12283ffda5ac445fa7cf4d8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "c1c834e41717a91a",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        36352
+      ],
+      "unprocessed_array_sha256": "3412c51b5e2e4c5dbac2113a24997de2f38a496a3baff513a1d6f59579418bda"
+    }
+  ],
+  "missing_reference_key_count": 45,
+  "observed_missing_keys_covered": [
+    "028265e74b4cc25c104edcc89ac79b6c02454ede.pkl",
+    "54174f758622cfdd5771023fffb879634fac1f6a.pkl",
+    "e4439b8ee6b2194812f91d988de7976fd5567207.pkl"
+  ],
+  "new_private_cache_names": [
+    "0086cb7c4c6478a0b7f9ad8065e6d3d6a5168138.pkl",
+    "0086cb7c4c6478a0b7f9ad8065e6d3d6a5168138.pkl.单线程",
+    "01d118b6d228d4bc5ee05457e45219b974df701c.pkl",
+    "01d118b6d228d4bc5ee05457e45219b974df701c.pkl.单线程",
+    "028265e74b4cc25c104edcc89ac79b6c02454ede.pkl",
+    "028265e74b4cc25c104edcc89ac79b6c02454ede.pkl.单线程",
+    "06dbe3bae207e4ed5aa159cbe207b2706eadcced.pkl",
+    "06dbe3bae207e4ed5aa159cbe207b2706eadcced.pkl.单线程",
+    "26aa01e0ad99c64f457be541c354e63598e6dc24.pkl",
+    "26aa01e0ad99c64f457be541c354e63598e6dc24.pkl.单线程",
+    "3519fc56b8a9e9633294c3ae1d78b65f2ed03479.pkl",
+    "3519fc56b8a9e9633294c3ae1d78b65f2ed03479.pkl.单线程",
+    "35de1a7bf4c12604d57dfbdd45dc774f8a08b2e0.pkl",
+    "35de1a7bf4c12604d57dfbdd45dc774f8a08b2e0.pkl.单线程",
+    "36a0acbcea8317e6d94f7ee90c4aad6af0cab282.pkl",
+    "36a0acbcea8317e6d94f7ee90c4aad6af0cab282.pkl.单线程",
+    "40bbe20d193a5216dc8b775d530dbada518c98f4.pkl",
+    "40bbe20d193a5216dc8b775d530dbada518c98f4.pkl.单线程",
+    "42eb00b85ec9bd3a45870814c8d6bf557737d18b.pkl",
+    "42eb00b85ec9bd3a45870814c8d6bf557737d18b.pkl.单线程",
+    "44d746b1cf2d9a386e7e3a73daecaf57241446ec.pkl",
+    "44d746b1cf2d9a386e7e3a73daecaf57241446ec.pkl.单线程",
+    "49547ace3c33b2bac47fc9172b121518498afb0a.pkl",
+    "49547ace3c33b2bac47fc9172b121518498afb0a.pkl.单线程",
+    "4de11b517234990bb14eda3de7bfdedb990a8252.pkl",
+    "4de11b517234990bb14eda3de7bfdedb990a8252.pkl.单线程",
+    "54174f758622cfdd5771023fffb879634fac1f6a.pkl",
+    "54174f758622cfdd5771023fffb879634fac1f6a.pkl.单线程",
+    "567cf7ea859853de734b2a3979eb126dcff3445e.pkl",
+    "567cf7ea859853de734b2a3979eb126dcff3445e.pkl.单线程",
+    "63ac20f877c413738b1fc138893a1e4fb8e6f80b.pkl",
+    "63ac20f877c413738b1fc138893a1e4fb8e6f80b.pkl.单线程",
+    "664dd4c3d718cfc87e328dbd424b47a59472e7ff.pkl",
+    "664dd4c3d718cfc87e328dbd424b47a59472e7ff.pkl.单线程",
+    "66a6b4f4fa5c889628966999784357d67a7529e4.pkl",
+    "66a6b4f4fa5c889628966999784357d67a7529e4.pkl.单线程",
+    "66b992048d83d8ec357346a6d815ba7bd307efd0.pkl",
+    "66b992048d83d8ec357346a6d815ba7bd307efd0.pkl.单线程",
+    "66fb53965a2b2a57cb4ffcfa10595481442df919.pkl",
+    "66fb53965a2b2a57cb4ffcfa10595481442df919.pkl.单线程",
+    "6ad88cf1b3b283da3455d7872136336c805639b4.pkl",
+    "6ad88cf1b3b283da3455d7872136336c805639b4.pkl.单线程",
+    "84c7610894d029935a6a2da03ea1436a7a6212ed.pkl",
+    "84c7610894d029935a6a2da03ea1436a7a6212ed.pkl.单线程",
+    "92ce806e89d1e4b5ad27aa2bd653a8e29dc307d9.pkl",
+    "92ce806e89d1e4b5ad27aa2bd653a8e29dc307d9.pkl.单线程",
+    "94adc9f744421b3b12172b9535e7eaaf02a937a1.pkl",
+    "94adc9f744421b3b12172b9535e7eaaf02a937a1.pkl.单线程",
+    "99c9e79127934dbb71d94374a59a00d3f5749327.pkl",
+    "99c9e79127934dbb71d94374a59a00d3f5749327.pkl.单线程",
+    "99cc458a628d7b53cd25e623f55212b9c0f93384.pkl",
+    "99cc458a628d7b53cd25e623f55212b9c0f93384.pkl.单线程",
+    "9f7061e02465ba822222cb46fb59b504c70c4f95.pkl",
+    "9f7061e02465ba822222cb46fb59b504c70c4f95.pkl.单线程",
+    "a4530fdc60bc97f78fe4ab10e8deb86ccb8b95bc.pkl",
+    "a4530fdc60bc97f78fe4ab10e8deb86ccb8b95bc.pkl.单线程",
+    "b8ceb35e721e279645cfb8bbc1486a286c5700d8.pkl",
+    "b8ceb35e721e279645cfb8bbc1486a286c5700d8.pkl.单线程",
+    "bc7bab6c03cea467d9e99c7c26a7c28db55cdbc9.pkl",
+    "bc7bab6c03cea467d9e99c7c26a7c28db55cdbc9.pkl.单线程",
+    "bec5bc1c8c7a87f0ec299a303ed688ae4bed5560.pkl",
+    "bec5bc1c8c7a87f0ec299a303ed688ae4bed5560.pkl.单线程",
+    "bf13447dc4f1a687bdd977f29d81757b98a87dc7.pkl",
+    "bf13447dc4f1a687bdd977f29d81757b98a87dc7.pkl.单线程",
+    "c7cfc468b64af9631bf110ceb5d0e4f9821f2b81.pkl",
+    "c7cfc468b64af9631bf110ceb5d0e4f9821f2b81.pkl.单线程",
+    "c8679099b39ac2d1c7542369997cbe26c7e1cdd5.pkl",
+    "c8679099b39ac2d1c7542369997cbe26c7e1cdd5.pkl.单线程",
+    "c92d6bed94a05913e59f126f30c3db48eff2facd.pkl",
+    "c92d6bed94a05913e59f126f30c3db48eff2facd.pkl.单线程",
+    "cd036ffd028ebe4c7edc3359f4a712421576e0e1.pkl",
+    "cd036ffd028ebe4c7edc3359f4a712421576e0e1.pkl.单线程",
+    "cf48ea080089021cfe3f12f6b76b10fec92443dd.pkl",
+    "cf48ea080089021cfe3f12f6b76b10fec92443dd.pkl.单线程",
+    "d861c624a9f393a39ba1c9003c4e05b392487fc7.pkl",
+    "d861c624a9f393a39ba1c9003c4e05b392487fc7.pkl.单线程",
+    "dfd39497db28f0d0704cfabdb04b2e0b392eade3.pkl",
+    "dfd39497db28f0d0704cfabdb04b2e0b392eade3.pkl.单线程",
+    "e0b3d72ba1f53458beceb93b2d58748d8edcc77a.pkl",
+    "e0b3d72ba1f53458beceb93b2d58748d8edcc77a.pkl.单线程",
+    "e4439b8ee6b2194812f91d988de7976fd5567207.pkl",
+    "e4439b8ee6b2194812f91d988de7976fd5567207.pkl.单线程",
+    "f18d73f595707210869f6a06943d8bbb21c59309.pkl",
+    "f18d73f595707210869f6a06943d8bbb21c59309.pkl.单线程",
+    "f383862416adfd43c187a475c6b630a8cb07e325.pkl",
+    "f383862416adfd43c187a475c6b630a8cb07e325.pkl.单线程",
+    "fa902f1beb184c77a42cad72e924b9e67874dc93.pkl",
+    "fa902f1beb184c77a42cad72e924b9e67874dc93.pkl.单线程",
+    "fd69b4f228c380473febd3bcbabde3605335959a.pkl",
+    "fd69b4f228c380473febd3bcbabde3605335959a.pkl.单线程"
+  ],
+  "native_single_thread_marker_verified": true,
+  "single_thread_sessions": [
+    {
+      "intra_op_num_threads": 1,
+      "inter_op_num_threads": 1
+    },
+    {
+      "intra_op_num_threads": 1,
+      "inter_op_num_threads": 1
+    }
+  ],
+  "models_sha256": {
+    "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+    "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+    "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+  },
+  "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+  "existing_private_cache_count": 11514,
+  "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+  "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+  "existing_private_cache_bytes_unchanged": true,
+  "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+  "public_repository_cache_unchanged": true,
+  "producer_pcm_existed_before": false,
+  "producer_pcm_sha256_before": null,
+  "producer_pcm_sha256_after": null,
+  "accepted_aac_adts_sha256_before": "bbb015df86171dab11bb2dc2c34e99610d853105d14065414980d2bc2121bae0",
+  "accepted_aac_adts_sha256_after": "bbb015df86171dab11bb2dc2c34e99610d853105d14065414980d2bc2121bae0",
+  "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+  "private_cache_exported": false
+}

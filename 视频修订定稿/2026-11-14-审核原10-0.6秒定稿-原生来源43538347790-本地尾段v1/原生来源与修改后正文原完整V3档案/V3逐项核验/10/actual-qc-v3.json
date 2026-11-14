@@ -1,0 +1,243 @@
+{
+  "article": "10",
+  "status": "passed",
+  "actual_new_mp4": true,
+  "video_sha256": "0cafe638062ffa373b6a11b8c8f64890d80db59468896734872aae410f172ba7",
+  "video_bytes": 15993219,
+  "official_run": {
+    "repository": "AlienCodes/literate-enigma",
+    "run_id": 43538347790,
+    "run_attempt": 1,
+    "status": "completed",
+    "conclusion": "failure",
+    "head_sha": "e558509b9bfb09fa869511c09a54be9a156b1471",
+    "workflow_path": ".github/workflows/produce-revision-batch4K.yml",
+    "entrypoint": "视频/工具/新管/定稿.sh",
+    "stage": "4K",
+    "canonical_selection": "native_final_official_passed",
+    "artifact_id": 14092186161,
+    "artifact_zip": {
+      "path": "/workspace/work/video-audit70-20261113/recovered-canonical-native/43538347790/10/article10-passed-output.zip",
+      "bytes": 28186735,
+      "sha256": "1443fb403fd2ee84306e145c0e9ba8002e07ce0c85b7ccc16ec8757a0bd898bf"
+    },
+    "artifact_zip_sha256": "1443fb403fd2ee84306e145c0e9ba8002e07ce0c85b7ccc16ec8757a0bd898bf",
+    "artifact_status_member": "10-canonical-summary-passed-status.json",
+    "artifact_mp4_member": "10-4K-读完即转简述2秒.mp4",
+    "artifact_mp4_sha256": "50cbf6276680b7a6af0b129a88914713b422060b0e13460f426587dceba6c33b",
+    "job": {
+      "id": 132273626894,
+      "name": "produce (10)",
+      "article": "10",
+      "run_attempt": 1,
+      "status": "completed",
+      "conclusion": "failure",
+      "upload_step_name": "仅保留本篇公开成片和核验材料"
+    },
+    "post_quality_recovery": {
+      "kind": "missing-approved-illustration-after-genuine-canonical-quality-pass",
+      "original_outer_job_conclusion": "failure",
+      "artifact_outer_status_member": "10-status.json",
+      "artifact_outer_status_sha256": "93bec6012fc471209ec0b945b5263f7f10bcb22289f3cb6f18d542aaa72bcd26",
+      "artifact_missing_illustration_report_member": "10-illustrated-tail-verification.json",
+      "artifact_missing_illustration_report_sha256": "57ca861aa6b60eb41bbe266db137051f33d9ed0e5f3d9fb74e0de0e8441cef3a"
+    }
+  },
+  "actual_probe": {
+    "width": 3840,
+    "height": 2160,
+    "frames": 4155,
+    "fps": "30/1",
+    "duration_seconds": 138.5
+  },
+  "speech_end": {
+    "actual_new_output": true,
+    "measured_from_actual_audio": true,
+    "end_frame": 4035,
+    "report_sha256": "dc5dc8eed159bd3e656c8b15379a646abdaf73e3a7e75edebf0e617f87a6b0fe"
+  },
+  "illustration": {
+    "decoded_from_actual_mp4": true,
+    "frames": 60,
+    "start_frame": 4035,
+    "width": 3840,
+    "height": 2160,
+    "approved_illustration_sha256": "e9f0c618f7372600774f9cbb3a5e2e1751233ff5f9c103f2bf46cf2e88d7ddd5",
+    "book_source_sha256": "e9f0c618f7372600774f9cbb3a5e2e1751233ff5f9c103f2bf46cf2e88d7ddd5",
+    "preparation": {
+      "source_id": "10",
+      "new_id": "06",
+      "native_image_sha256": "e9f0c618f7372600774f9cbb3a5e2e1751233ff5f9c103f2bf46cf2e88d7ddd5",
+      "native_pixel_dimensions": [
+        1536,
+        1024
+      ],
+      "prepared_png_sha256": "b8615c8e22e9e2bf508f868bfdc1ac44738ad6719df42211c5ff75bc72a4665d",
+      "prepared_rgb_sha256": "e5ea4779adb92d641e2ed3e90ff4a45eea887df1394be3b50f53fa15ff788472",
+      "prepared_pixel_dimensions": [
+        3840,
+        2160
+      ],
+      "mode": "cover",
+      "Pillow": "12.3.0",
+      "native_source_crop_box": [
+        0,
+        80,
+        1536,
+        944
+      ],
+      "resampling": "Pillow Image.Resampling.LANCZOS",
+      "same_image_background_gaussian_blur_radius": null,
+      "derived_in_this_process_from_exact_approved_native_image": true,
+      "generated_or_substituted_artwork": false,
+      "added_text_or_graphics": false,
+      "preparer_program_sha256": "dc204b91415e28297b844e9666087b0e23e67194944b359cb5fb5ddbca0f1208",
+      "prepared_image_path": "/workspace/work/video-audit70-20261113/recovered-canonical-native/43538347790/10/10-插图4K.png"
+    },
+    "frame_comparison": {
+      "status": "passed",
+      "actual_new_output": true,
+      "decoded_from_actual_mp4": true,
+      "frames_checked": 60,
+      "start_frame": 4035,
+      "video_sha256": "0cafe638062ffa373b6a11b8c8f64890d80db59468896734872aae410f172ba7",
+      "reference_sha256": "b8615c8e22e9e2bf508f868bfdc1ac44738ad6719df42211c5ff75bc72a4665d",
+      "report_sha256": "c7bf6d1e5a057886ce416348d8fbd18a6fb051c6a15991adb62d159b5d654951"
+    }
+  },
+  "summary": {
+    "decoded_from_actual_mp4": true,
+    "frames": 60,
+    "start_frame": 4095,
+    "overflow": false,
+    "normal_font_size": true,
+    "font_px": 112,
+    "text_sha256": "9b517e96ed831e9bb50f2a6c5484390a37b1370f71cd928fd3c8a394a6811176",
+    "approved_request_text_sha256": "19ee34f46490d49fbdb8a769919f789fe1771359b6c872330722d4f936d3fd04"
+  },
+  "audio": {
+    "canonical_qc": {
+      "tool": "audio-qc.py",
+      "actual_new_output": true,
+      "status": "passed",
+      "canonical_video_sha256": "50cbf6276680b7a6af0b129a88914713b422060b0e13460f426587dceba6c33b",
+      "reviewed_canonical_video_sha256": "6cf4ffb5108d3cbfd6ef8822f55189a63dffac42e47190d5e89063ea2800a69e",
+      "binding": "reviewed_native_pre_card_then_exact_audio_copy",
+      "copy_verification_sha256": "dc5dc8eed159bd3e656c8b15379a646abdaf73e3a7e75edebf0e617f87a6b0fe",
+      "report_sha256": "8a4530bf876dc17b1ee8f2fd50d263d80c599c77bae0c6d7c5aaf9dc5a1fe4cb"
+    },
+    "repair_applied": true,
+    "lossless_copy": {
+      "canonical_video_sha256": "50cbf6276680b7a6af0b129a88914713b422060b0e13460f426587dceba6c33b",
+      "final_video_sha256": "0cafe638062ffa373b6a11b8c8f64890d80db59468896734872aae410f172ba7",
+      "audio_packet_times_identical": true,
+      "canonical_aac_adts_sha256": "6ba668d552af9744d5b3a398e89ad4d77a9e2e23b365fa06e03834c94dfb60c4",
+      "canonical_packet_projection_sha256": "efc15aea437e5624c55152e5837abe1e73871022770f4b5881e5a44869906d45",
+      "canonical_packet_count": 6399,
+      "final_aac_adts_sha256": "6ba668d552af9744d5b3a398e89ad4d77a9e2e23b365fa06e03834c94dfb60c4",
+      "final_packet_projection_sha256": "efc15aea437e5624c55152e5837abe1e73871022770f4b5881e5a44869906d45",
+      "final_packet_count": 6399
+    },
+    "targeted_review": {
+      "article": "10",
+      "actual_new_output": true,
+      "status": "passed",
+      "canonical_video_sha256": "50cbf6276680b7a6af0b129a88914713b422060b0e13460f426587dceba6c33b",
+      "reviewed_canonical_video_sha256": "6cf4ffb5108d3cbfd6ef8822f55189a63dffac42e47190d5e89063ea2800a69e",
+      "binding": "reviewed_native_pre_card_then_exact_audio_copy",
+      "report_sha256": "8a4530bf876dc17b1ee8f2fd50d263d80c599c77bae0c6d7c5aaf9dc5a1fe4cb",
+      "whole_track_loudness_review": true
+    },
+    "controlled_repair": {
+      "status": "passed",
+      "actual_new_output": true,
+      "canonical_video_sha256": "50cbf6276680b7a6af0b129a88914713b422060b0e13460f426587dceba6c33b",
+      "reviewed_canonical_video_sha256": "6cf4ffb5108d3cbfd6ef8822f55189a63dffac42e47190d5e89063ea2800a69e",
+      "binding": "reviewed_native_pre_card_then_exact_audio_copy",
+      "report_sha256": "8a4530bf876dc17b1ee8f2fd50d263d80c599c77bae0c6d7c5aaf9dc5a1fe4cb",
+      "authorization": "Actual immutable native user-authorization/source request records and approved dedicated acoustic QC retained in evidence."
+    }
+  },
+  "source_sha256": {
+    "request": {
+      "json": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
+      "gen": "8bf8c79662f5342d56316b3a2f36c19ca269dd92796ca78e459b7955ade84d9d",
+      "md": "ff63cf94e4d2c835e2e2f1ffd3e6c5642f0916f0b13c012f1f13c3dff716d47a"
+    },
+    "final": {
+      "json": "289affbd790d95b034b0422f1ec645be5de15be647ba88c43fcb4f341676685d",
+      "gen": "6ccfe5dc5905da7ce85f85ab6b82d2d027ef4134408ad32ce1aad7fde060b085",
+      "md": "a89200ce829fc702d9ab03b0c331e53f779329ff64904ee5d3aaabd0c33f418a"
+    }
+  },
+  "source_transform": {
+    "status": "passed",
+    "actual_working_copy": true,
+    "operations": [
+      "L19",
+      "production_qc_metadata"
+    ],
+    "report_sha256": "8ee47444931689f9f9f088a116b796b9ee212276c3b1bfce376728fb636481c3",
+    "changed_paths": [
+      "/sentences/1/chunks/2/note",
+      "/sentences/16/chunks/0/note",
+      "/区间声音指纹",
+      "/核对确认/删除段/S1 raw 3.1200-3.5033/依据",
+      "/核对确认/删除段/S1 raw 3.1200-3.5033/配音指纹",
+      "/核对确认/删除段/S10 raw 1.7246-1.9997/依据",
+      "/核对确认/删除段/S10 raw 1.7246-1.9997/配音指纹",
+      "/核对确认/删除段/S11 raw 6.6102-6.7561/依据",
+      "/核对确认/删除段/S11 raw 6.6102-6.7561/配音指纹",
+      "/核对确认/删除段/S13 raw 3.7338-3.8706/依据",
+      "/核对确认/删除段/S13 raw 3.7338-3.8706/配音指纹",
+      "/核对确认/删除段/S14 raw 4.5739-4.7000/依据",
+      "/核对确认/删除段/S14 raw 4.5739-4.7000/配音指纹",
+      "/核对确认/删除段/S2 raw 3.0400-3.4425/依据",
+      "/核对确认/删除段/S2 raw 3.0400-3.4425/配音指纹",
+      "/核对确认/删除段/S4 raw 5.0892-5.2500/依据",
+      "/核对确认/删除段/S4 raw 5.0892-5.2500/配音指纹",
+      "/核对确认/删除段/S5 raw 2.5450-2.9400/依据",
+      "/核对确认/删除段/S5 raw 2.5450-2.9400/配音指纹",
+      "/核对确认/非人声/10.66–10.68s/依据",
+      "/核对确认/非人声/10.66–10.68s/配音指纹",
+      "/核对确认/非人声/103.39–103.47s/依据",
+      "/核对确认/非人声/103.39–103.47s/配音指纹",
+      "/核对确认/非人声/107.01–107.03s/依据",
+      "/核对确认/非人声/107.01–107.03s/配音指纹",
+      "/核对确认/非人声/118.53–118.64s/依据",
+      "/核对确认/非人声/118.53–118.64s/配音指纹",
+      "/核对确认/非人声/12.85–12.87s/依据",
+      "/核对确认/非人声/12.85–12.87s/配音指纹",
+      "/核对确认/非人声/129.93–129.94s/依据",
+      "/核对确认/非人声/129.93–129.94s/配音指纹",
+      "/核对确认/非人声/15.48–15.50s/依据",
+      "/核对确认/非人声/15.48–15.50s/配音指纹",
+      "/核对确认/非人声/16.48–16.50s/依据",
+      "/核对确认/非人声/16.48–16.50s/配音指纹",
+      "/核对确认/非人声/20.78–20.86s/依据",
+      "/核对确认/非人声/20.78–20.86s/配音指纹",
+      "/核对确认/非人声/42.95–43.04s/依据",
+      "/核对确认/非人声/42.95–43.04s/配音指纹",
+      "/核对确认/非人声/42.99–43.02s/依据",
+      "/核对确认/非人声/42.99–43.02s/配音指纹",
+      "/核对确认/非人声/44.09–44.12s/依据",
+      "/核对确认/非人声/44.09–44.12s/配音指纹",
+      "/核对确认/非人声/67.77–67.78s/依据",
+      "/核对确认/非人声/67.77–67.78s/配音指纹",
+      "/核对确认/非人声/69.82–69.90s/依据",
+      "/核对确认/非人声/69.82–69.90s/配音指纹",
+      "/核对确认/非人声/81.19–81.21s/依据",
+      "/核对确认/非人声/81.19–81.21s/配音指纹",
+      "/核对确认/非人声/87.83–87.91s/依据",
+      "/核对确认/非人声/87.83–87.91s/配音指纹",
+      "/核对确认/非人声/97.61–97.66s/依据",
+      "/核对确认/非人声/97.61–97.66s/配音指纹",
+      "/核对确认/非人声/99.12–99.20s/依据",
+      "/核对确认/非人声/99.12–99.20s/配音指纹",
+      "/核对确认/高亮/S10 第2块/依据",
+      "/核对确认/高亮/S10 第2块/配音指纹",
+      "/结尾句/S17/依据"
+    ]
+  },
+  "adapter_scope": "Explicit actual native status + raw real postprocessor report field mapping; not fabricated audio-qc.py or unobserved runtime GEN/MD."
+}

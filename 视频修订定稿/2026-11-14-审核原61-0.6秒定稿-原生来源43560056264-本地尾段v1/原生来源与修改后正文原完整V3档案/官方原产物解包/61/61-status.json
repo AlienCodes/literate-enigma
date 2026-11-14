@@ -1,0 +1,3601 @@
+{
+  "article": "61",
+  "passed": true,
+  "stage": "final4K-passed",
+  "original_audit_and_quality_thresholds_unchanged": true,
+  "original_maker_unchanged": true,
+  "core_repairs": [
+    {
+      "target": "视频/工具/草稿声音.sh",
+      "file": "files/视频/工具/草稿声音.sh",
+      "original_sha256": "0ce3277812cf16ed30438509b6dc97db0c26725db4c5db5d9b058c3ef6531aa2",
+      "patched_sha256": "43fc6a1acdae6bb1c2252178bf034407400bbbe92eb1752053f3047da9760491",
+      "repair_scope": "explicit revision flags keep reviewed gain, existing valid ending and reviewed physical cuts; automatic cuts still measured/proposed without --写入 in CUTS=1 mode; default full JSON/PCM/AAC exact to prior5; all original later quality checks retained"
+    },
+    {
+      "target": "视频/工具/句内响度.py",
+      "file": "files/视频/工具/句内响度.py",
+      "original_sha256": "58735b7173a3c03efa61fb300b4aed4039c164fa970e0593a40bae2a3f3cbd27",
+      "patched_sha256": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea",
+      "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+    },
+    {
+      "target": "视频/工具/独立复核/synth.py",
+      "file": "files/视频/工具/独立复核/synth.py",
+      "original_sha256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+      "patched_sha256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+      "repair_scope": "validated unprocessed raw-mother reference input only; independent transforms/audit/thresholds retained"
+    },
+    {
+      "target": "视频/工具/结尾句接点.py",
+      "file": "files/视频/工具/结尾句接点.py",
+      "original_sha256": "15303682c605dd4544172c92d42c016d8d0536e0c6d1f9816d0d38dd5d2b9a61",
+      "patched_sha256": "1a5d43c4f5483014b69bbea7ad43dddb0333a9a80e29bb2b4c8029d8915ff798",
+      "repair_scope": "validate existing ending entry with original producer guard then keep it; bad points fail, missing points use original algorithm; default unchanged"
+    },
+    {
+      "target": "视频/工具/读音核对.py",
+      "file": "files/视频/工具/读音核对.py",
+      "original_sha256": "0a3b97e1179e47c0593f69286f4206eecc123cc7ec5d5adf4f5e62457c228a41",
+      "patched_sha256": "50f4363bb2fc2930be59904cdccfa44fd46f14393a0385c7846028ee25b4e84c",
+      "repair_scope": "selftest-only fault injection keeps compound registry and injects actual uncorrected espeak IPA; normal checker AST/output and dictionaries unchanged; unrelated exceptions propagate with restoration"
+    }
+  ],
+  "strict_production_cache": true,
+  "pdf_requested": false,
+  "check_summaries": {
+    "approved-illustration-resource.log": [],
+    "certified-core-original-stamp-verification.log": [],
+    "original-restored-stamp.log": [],
+    "canonical-module-copy.log": [],
+    "canonical-draft-00.log": [
+      "第61篇 做完（365 秒）：修了 1 处、疑点 45 处",
+      "① 文本：通过，自动修 1 处",
+      "② 声音：61 词尾辅音核对 问题数 0；61 纯人声核对（配音指纹 7499cce91ea3）问题数 0；问题数 0；61 句间停顿核对 问题数 0；问题数 0",
+      "③ 出片前核查：通过",
+      "⑤ 出片后核查：全部通过",
+      "⑥ 已拷 视频/视频/草稿1080p/61_1080p.mp4（--不推）"
+    ],
+    "canonical-final4K-00.log": [
+      "第61篇 用户定稿原话：有"
+    ],
+    "original-stamp-after-production.log": []
+  },
+  "actual_native_core_certification": {
+    "run_id": 43550422832,
+    "job_id": 132311381738,
+    "commit": "5ecda5ba57c151cb74fc3d36193b60fa59f51c26",
+    "actual_full_quickcheck_exit": 0,
+    "actual_full_quickcheck_seconds": 384.1,
+    "artifact_id": 14096681983,
+    "artifact_zip_sha256": "19dee7da557610e78f39567446bd7dd17ee2c1fe58a0070bb2d6f2c11c22b347",
+    "full_original_quickcheck_log_sha256": "43e1f723087d59c15e78593b23dc37cd2360ba3526474cc5484fbe80edc253d8",
+    "article_audio_or_video_passed_not_implied": true
+  },
+  "actual_native_fastcheck_stamp": {
+    "target": "视频/工具/新管/快测通过.json",
+    "file": "files/视频/工具/新管/快测通过.json",
+    "sha256": "bb75875985ff106abe142caf7ecbf0a5eb76a1412309bf78d77bf146f64512af",
+    "origin": "actual unmodified original full quickcheck, native run43550422832"
+  },
+  "reviewed_regression_resource": {
+    "target": "视频/工具/新管/回归基准_27.json",
+    "file": "files/视频/工具/新管/回归基准_27.json",
+    "sha256": "b8ddb4656ae27cbfc7ec8e3b99511983b4e568997bd4ad4ee33c364f3926ae94",
+    "origin": "pre-existing root-reviewed 67-screen data; original voice/segment MD5 unchanged"
+  },
+  "core_repair_manifest_sha256": "24766577a0001a4920f21cf4887c4cff080d233c34d57cf45a83b7ac660cdcac",
+  "reviewed_gain_preservation_mode": true,
+  "reviewed_existing_ending_preservation_mode": true,
+  "reviewed_existing_physical_cuts_preservation_mode": true,
+  "real_restored_stamp_validated": true,
+  "reviewed_cross_article_context": {
+    "provided": true,
+    "manifest_sha256": "10c9eac96412c199a86b14cc8f429195df193531aa56fc255ed654914c04c94d",
+    "files_sha256": {
+      "视频/脚本/01.json": "2be2f80a69af28703992204ac95f987c745362c326e62ad81b3cd8e0e0735d3a",
+      "新版定稿/01-the-robber-who-thought-lemon-juice-made-him-invisible.md": "572054065b5bb65446bf8939a21c789c1e9c7664d82da5117c43efdded894351",
+      "视频/脚本/02.json": "0403368c77fd3e0f91e1ee3780e1c7c147894ad13c16b5f14707d700a8f717c8",
+      "新版定稿/02-the-truth-about-one-marshmallow.md": "91b92505aad03f963861bec39e96f0a472c126d1d57c9fc538676c32f65e545c",
+      "视频/脚本/03.json": "527f3bf4a11843f4d606188dabc6ebce6830da3fb454a49c782e3a595cb47407",
+      "新版定稿/03-the-doctor-who-drank-bacteria-to-win-an-argument.md": "6dfb56504882e24854a3584fd740e7f6601e3f2532818aee3a56d5330d317aa3",
+      "视频/脚本/04.json": "93cc1ff58d65ebe43a65ecb2fb2dbd2da262d80877c05740bbdf4eab4eaca1e8",
+      "新版定稿/04-the-brain-that-learned-london.md": "a8ccb31ffff50aaae77de4b83de1847fafae1d585981cf960c5880c409f6cfc3",
+      "视频/脚本/05.json": "44deeca041c628e7900bbbe89f70dd072042a1ac324fc80e6e88d46b81106ca4",
+      "新版定稿/05-the-fingerprint-in-the-blood.md": "612deac4ed066489e04e214ca969f8f27dda05856e0ef0ed2e540e7a4a52ae34",
+      "视频/脚本/06.json": "2cbf1d6cd6e66a59285298ea830f5ef914590b64286d40b2ae5f3168aa27a2e9",
+      "新版定稿/06-the-horse-that-could-count.md": "7fd21ba491c7596c53c486f2bb0b0f2f6da8e67bac75461a4649a7caff822f74",
+      "视频/脚本/07.json": "842e44e5aa19fddcfa239cb6530c5152341cd86e11db959543d02d8670ca13e8",
+      "新版定稿/07-the-octopus-that-escaped.md": "b8544281bb2ada88fce9d1082cbc30233dcb63ee3e9c2bbefafc22cb28b8cb39",
+      "视频/脚本/08.json": "254832e09f12759d950384dd9f31f671ad5a3bc1590b7466065dd3ef5fe4b8d5",
+      "新版定稿/08-the-doctor-who-solved-the-cholera-mystery.md": "0b2bfa68070ce585a452f6b7034d03c3683e710dcabec5e86d7b221950dc7bab",
+      "视频/脚本/09.json": "fa3e429351d629de188c184d04e9986200e16e80606fcbec82332b6433301dae",
+      "新版定稿/09-the-great-emu-war.md": "af5c3e844bad15f94bfc43aeed6d7417c4bfae85f026b194da667a7a3bdb6196",
+      "视频/脚本/10.json": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
+      "新版定稿/10-the-stolen-smile.md": "ff63cf94e4d2c835e2e2f1ffd3e6c5642f0916f0b13c012f1f13c3dff716d47a",
+      "视频/脚本/11.json": "665cbb80cc70b700ecc0cc5813209fd100ad4fa8f0eead3929b9e53778d9d07f",
+      "新版定稿/11-move-37.md": "7e0b49b346c1fa3ab994a11a2301167c0d6a1bb00916508bdc0b1acf71e68053",
+      "视频/脚本/12.json": "e3bfbcce6f1a8e14cfe451d656574353321e297c90c62f5a7b422f37478311d5",
+      "新版定稿/12-the-79-days-of-new-coke.md": "5a23c1e0c81318527bcbf27573487d1845c5318905a2b1e020cc6e2eaf5d643f",
+      "视频/脚本/13.json": "3687b6c42a6d524d0d7e40a47ed02c37b18abe8d524db4f5914abad52019a63c",
+      "新版定稿/13-eleven-days-without-sleep.md": "72b842de127132e386e9e52a1719ec96765e94958f56687987f53e2801c69704",
+      "视频/脚本/14.json": "17141351875ddb8f0e308602c0b6ab85cbf5126a4d0118978c25c869db769fee",
+      "新版定稿/14-the-fungus-that-turns-ants-into-zombies.md": "e114c9e1783c80a2ffdb60af05e824f93a8ea8725905cb733560abe1c0ad01a8",
+      "视频/脚本/15.json": "0934aa067f19814028c398b0c70a400bb09e354f744bde4000742950d77f441e",
+      "新版定稿/15-the-myth-of-the-unsinkable.md": "68e236868c4b466928ff2a60358250b9592dfe9287b66561b1e5a80b4d14de4f",
+      "视频/脚本/16.json": "d25aa07f3fac316c26c2ae1006d3efa7eb82a396b66150432b50239c1628396d",
+      "新版定稿/16-the-bread-made-from-air.md": "4da63148111213f6d77451b0eb4193893e6fc2fc170400bc39ce5f5ffcaa0b20",
+      "视频/脚本/17.json": "2e9971ea5ce7857e119226fe95def06e6eb9c3ef9823d8e8c4f3456f46a3bbb0",
+      "新版定稿/17-the-curse-of-the-pharaoh.md": "a2e8d92f9136e1b22fcc0799f9a4d281092f0e547cc68242e090241d7b09e222",
+      "视频/脚本/18.json": "5192b78e582c36fd7d5a34973d8314c5b23e13b8313c8960ac29653bd7fa5d8c",
+      "新版定稿/18-the-mould-that-changed-the-world.md": "ef41cea03f471fe3b9a53939c843e450da3325eb711f6414e108ae92a7518dd8",
+      "视频/脚本/19.json": "cc3c5eea0f7d9ec0712b2e58adba7e5ef8b61d6518a322f9b25a12fcc45282fb",
+      "新版定稿/19-tulip-mania.md": "3882d487383b759c31dda4785966091c362960cd873a5d83c530d08d52e2e97c",
+      "视频/脚本/20.json": "cc5ed6d7be8767e5e7e9b098e8f3836821c0b3f51c17581b2746722da1cf3001",
+      "新版定稿/20-the-5000-year-old-murder-in-the-ice.md": "8d55638070787f7ff5432c197292af1188c463a8b018e01bdefc32999b888e95",
+      "视频/脚本/21.json": "61c1569a26d7569ee0f586178be6b307b1c394c0a30c3cb02541c910038b0589",
+      "新版定稿/21-the-man-who-sold-the-eiffel-tower-twice.md": "e8e966b70f579235d696ba11fb01d3b2cae3fa26efb9071bbea95071be259e1f",
+      "视频/脚本/22.json": "e3027a42c532fee9935afcecdd0542713cbb907183802c2345b9472f93b75f59",
+      "新版定稿/22-the-building-that-melted-a-car.md": "49ae09483bc80bbc40a71551cd98aebec355d96d9ff7b2bcdea59a06fe599267",
+      "视频/脚本/23.json": "c4574a79fd3a58577a1402ce095ea9e4a0ea1f98883ce63e3cc60d126e819409",
+      "新版定稿/23-the-man-who-gave-machines-a-mind.md": "72ed3049e87fe75ce1e753d5e443bdbe6a7ab72f6e282e8467fbbb62be873169",
+      "视频/脚本/24.json": "f08620b534bb10b718f7515c805dcb541721427d855bd5a092b8954847a351b8",
+      "新版定稿/24-survival-in-the-ice.md": "cb7f810d9a74256e0c00625290be4f16207feb90f5719ca87d5d7c9912b91307",
+      "视频/脚本/25.json": "c73e854e052b3df9bd920d4a59fafb183dee19bd58765fa426af6ea3d7c9a329",
+      "新版定稿/25-apollo-13-the-successful-failure.md": "b6b7d55fe66e6e32116431ea955778fab779b8bda622df0ba1036c2f40a3969f",
+      "视频/脚本/26.json": "ab663b240eb5e27923f38e2ff296c0196e3d820766d0c909adb9faf19aa3cac9",
+      "新版定稿/26-the-language-the-children-invented.md": "9e9ad8021ddabc17157d73dc739383f9676df3583cf965e470fcd773e26a3761",
+      "视频/脚本/27.json": "61cd724c5fab6f07a46aa5ac069101617c4c8350311eb11a43f9fefdddb31d8b",
+      "新版定稿/27-life-in-the-forbidden-zone.md": "e276bcf76225b9ae16cd8cfda8c9b726b442fbd625d3718f532b47b09b21b16f",
+      "视频/脚本/28.json": "a6a4befc0291727f5cc3f8b50857ee954ef9f936738f014a978ebb4d37a28ea8",
+      "新版定稿/28-a-handful-of-wormwood-that-saved-millions.md": "b9817d3429767d07b6a2eb14cce5422a20cb4e3b89f8b03e6b3d5da2daf91d91",
+      "视频/脚本/29.json": "1e5f1d9f0c22b5d14b757f029be694c2a3969666d732ca79bb695282763de791",
+      "新版定稿/29-the-volcano-that-gave-us-frankenstein.md": "69045ee19a170c7ea9d0008b468c7e947bc28b639b834c0192dc0aeafc3ef4d0",
+      "视频/脚本/30.json": "cdf727cb4c6832063421df9da6ab8ae7729cf9df01d6be089a8981c92c360f06",
+      "新版定稿/30-the-stink-that-built-londons-sewers.md": "84dbf19cee0045ea2608b13ee0677cb9623dd8fbb371c67093bf50c64186137a",
+      "视频/脚本/31.json": "d81f8645a1e5663ba8c84668e817cdb218bc6689079fbfd51326b3a7fd3cd384",
+      "新版定稿/31-the-book-twelve-publishers-turned-down.md": "7abd20fed44918dcf01586c056e9d0acd9d2ad3b90aa7d3d403762d9f06d2659",
+      "视频/脚本/32.json": "357aa59bed62154f7302a5efcf528859b303004e028657b93058138fe931bf85",
+      "新版定稿/32-the-planet-that-was-demoted.md": "1421f2b0921e7e9478ebc48777e3e8b2c979172de63d0124015107c3750a3542",
+      "视频/脚本/33.json": "ca51103c1a9d45c9159322765efc86c81f61f6ec78975f160019d21a1d9ee0d7",
+      "新版定稿/33-thirteen-in-the-cave.md": "9862078044ce45a9f6d51aa7d165afdfcf90066d1de98cbb317dd7e8f980610d",
+      "视频/脚本/34.json": "74921848a6bb25a2ba631813f60d4756c9ff90c64c03a2fb936ce34f310ce509",
+      "新版定稿/34-the-game-that-escaped-the-soviet-union.md": "e3244b67b21e283e67f4e88e932a1dbb85bf273a48ee009b3f435e1c5814831c",
+      "视频/脚本/35.json": "d8439077dc2c909b1c6cbd1347f31e9625f25fffe447d6f5945c9492561f1a16",
+      "新版定稿/35-the-bird-that-beat-the-letter-home.md": "ba8c38e38b21a3345624e2d44fd352561d3096cfb6f62214b48ea9b6e66faead",
+      "视频/脚本/36.json": "76daa28f421bd40d8e2744d4e785a34bb8ee67da1403b4b1546db9465c535cef",
+      "新版定稿/36-the-company-that-invented-its-own-killer.md": "411eeb96c8641ee7082b49a5abf4c7343d3f1dbb7ef331064d7c0f3c630fe58f",
+      "视频/脚本/37.json": "b1b8945ccf3581df48ade5714a2d0e93e4cc6812708f95bef6f5e44439106c99",
+      "新版定稿/37-dynamite-for-the-heart.md": "4933e24d2384471a96d9c8c26c15d5224a85dae98d9971a3fed15b4978dafc51",
+      "视频/脚本/38.json": "8d0379032000967c9f72e550574874949f798eefbfbfb58ab2b38e4e23ecbc6b",
+      "新版定稿/38-the-web-beneath-the-woods.md": "abb7eead9f3da0b2b326ceed5a649cfbf71fc28dad22e0d52f7b19caa798c54f",
+      "视频/脚本/39.json": "6c3e9539f624b192335312912572a05fba2c7bcfb821b44c3c1dbb21b42527a7",
+      "新版定稿/39-y2k-the-crisis-that-success-erased.md": "abbc9804661126aa006595031ed8f201ce55e8eb5fd9e1ad5669c0c6fcdb80ab",
+      "视频/脚本/40.json": "1c50d1a47ee6f8528d0f7299e8a45bc8c30312622f3f465a964d21cc1395ee7f",
+      "新版定稿/40-the-glue-that-failed.md": "dce9f78f3a0828307843dd667b7eeebf3380a3630f03d234bd5824870aba61a1",
+      "视频/脚本/41.json": "6b6673ffc1db986f4c355f3685de6a0faf2272cee042c5e917f26a8b3057c2be",
+      "新版定稿/41-the-toad-that-invaded-australia.md": "eca590f97120f4e76d719e29aa07b094f9117cd462f5a70c029331a63b85f710",
+      "视频/脚本/42.json": "eceb10ae92aa4b9cd23180d1138149a7fa7b674385462c898bc0d2283c8739e7",
+      "新版定稿/42-the-telescope-that-needed-glasses.md": "d4aa049779a0eba06c555d76ca14103648378eef90465df424120126fa771280",
+      "视频/脚本/43.json": "aa9da1246e293c80408edf94a7c9bed65ef3178ae7cb5265a8273e8c4396687f",
+      "新版定稿/43-from-a-garage-to-the-top-of-the-world.md": "bd70c83e5ac867238ca179f3c9f3548eb9cbdcae1f6df40994aef0bda721ae54",
+      "视频/脚本/44.json": "87f531203ca38d88ae5e71ffd88190b1530715cdc0adba146c2a4a78ebe9b976",
+      "新版定稿/44-the-night-sweden-switched-sides.md": "d3f7ad2ac43f02aae9205a15b9808280ca3db597d6ef3b36aca8ca6176c5f74a",
+      "视频/脚本/45.json": "569406607d2bf18dce5e916052d6460509450d97fe17ac9820be524f59c2c3cc",
+      "新版定稿/45-the-record-humanity-threw-into-the-stars.md": "27deabec4a8478fe570f7f237a2fb850ffdce3deebfd952f512d82a60cf7314f",
+      "视频/脚本/46.json": "c8c7ce7a76226f5274a91af693d24410d5eacfa59206b085a70d133f3634c12b",
+      "新版定稿/46-lost-in-the-glare.md": "7aaa06e875fe56c5d78210b90a8769b8b2051714025ef10df37c2fe89db7a68c",
+      "视频/脚本/47.json": "0417489c8a672e7e63d46c2239d847acabda2d93160cabed3b0fb14f701ac39a",
+      "新版定稿/47-shadows-of-wolves-over-yellowstone.md": "34c68cf4d0f0ef3545ad68edf3367fcb76ab500174b11ae7f83b782cd5a80a2a",
+      "视频/脚本/48.json": "4f146ce6a70bb0bf5d2c6e1f6b47bd6a2bcc2f311be7a948092d7bde1a08f449",
+      "新版定稿/48-rice-for-the-world.md": "76416be21f857e8a05c37baa33ac90f5785812291485231c249e38a1d0edf15f",
+      "视频/脚本/49.json": "fdcc3a438e50a32fdf8c7bcbe27a97d20fc101b6169ca305f920fedbd3303c3c",
+      "新版定稿/49-the-woman-who-won-two-nobels.md": "1e4fb068aa9ae4513d01b199a074b84dc9d819f57b2134df32588a0e4a4b6b6a",
+      "视频/脚本/50.json": "1d4a41824dfa5e8d11e5990b2a4b802ba2fcc3231d85b15ed6630396c6f027bf",
+      "新版定稿/50-microplastics.md": "5439589bacf1abb2abbb184eb658492bc02bcc5bdd8dfd8ababcd80ab93621cb",
+      "视频/脚本/51.json": "39886d83593a31fb575b124ecf6457190773dca695b6ff78f8434d52aebd6d7c",
+      "新版定稿/51-the-joke-that-became-ok.md": "8de30ea4846f4e88d8b71c8d5ced3ee63a73955e39b7dc3c5adad0971b854fd0",
+      "视频/脚本/52.json": "832249bb44617d38ede75560a5e57af6ba79ec284c9609407cb30ce879f6f862",
+      "新版定稿/52-the-killer-smog-of-1952.md": "179500361e4a837d7edb2e0497e08677d5abd425e8ad542f788205a6f7667b4b",
+      "视频/脚本/53.json": "28b604bfa72896534736293f79e9b3aabd8e3678672f4dc6c66337c02a8f1518",
+      "新版定稿/53-the-wind-that-kept-no-time.md": "6fab302dcadb5a2c509436f5fbf8d9ef925c008a36f5b422749bd405aa4701d3",
+      "视频/脚本/54.json": "b1fcb8ae86045b3d35ccfa0f52eb9594b8921d43063835769ee3ecc4543be75e",
+      "新版定稿/54-the-sound-that-shook-the-world.md": "abd5f4bfe11ed73bcc5326a92cf99b0a8e5ad70adaca1ce8d0c8f622b57fa519",
+      "视频/脚本/55.json": "06344fc0ad5975cba2f4dbe5262a9957dd7c024f9a05b9abbfa327f32ea8c719",
+      "新版定稿/55-the-secret-of-romes-undying-concrete.md": "a7759eddcc7ec06dfd6dab7912e06b3b5ef8576df0c025a97812006669d0be61",
+      "视频/脚本/56.json": "22ca3b4180a8ae6a37b4c8e25f5e357d5696d9b23bf148fb7064425d1403e59c",
+      "新版定稿/56-the-letter-that-startled-darwin.md": "aad1e2aab9ff28f534a510362e807ef401e0b502475240f4b2531e9e518a8d7a",
+      "视频/脚本/57.json": "a0ba65b769430289a33ec1f7bc6dbf91dad8d2c3b1d725348851de546563cd6f",
+      "新版定稿/57-a-change-of-anthem-in-the-deep.md": "0731d925a98bafc222718c111985362e166b38b9189c516219a481e36d0d4b6e",
+      "视频/脚本/58.json": "8b0bd3d7d39000518789e9907aec53bd52fab1b9d6b4f22a152d158635b6e8ee",
+      "新版定稿/58-from-a-scratch-to-a-world-without-smallpox.md": "1aa2a0d2c51da76f9c9ebb88d049dd1a55ab530791566fdbf6476e5aa48c15ee",
+      "视频/脚本/59.json": "df1db4174d942371166048b220ef6d55b0b700b2ce31c866edf6dfdf33b92f0c",
+      "新版定稿/59-saving-the-sky.md": "7bf9c4661e733e7af23dc2f11bc820b809ec93dad75a94fb6a12748226e8722c",
+      "视频/脚本/60.json": "eed1655c0919db32a3a016b24791b93d25683f287c7ccb2523e168a69bddc562",
+      "新版定稿/60-the-scientific-giant-who-changed-the-world.md": "9d1578e7af085559922394a3db01de4eb22dc1c520ca17de5cad68e5a38a31a8",
+      "视频/脚本/61.json": "2d08704376faff25b06d334d7567a381460975a56a4cef6b4ae97b3580ea8dbc",
+      "新版定稿/61-the-steel-box-that-remade-the-world.md": "135cc9cfbcbd68d957f831cf55558112a45b1cc3749366cb9a304507355c7d2c",
+      "视频/脚本/62.json": "4b3a97f2b6404e1b091537c21f01fc60088902f596803345983c38be52ec79eb",
+      "新版定稿/62-dolly-the-copied-sheep.md": "62817546ae33824b57255f941135c503e41a41f905331ed4af1e32850fa00960",
+      "视频/脚本/63.json": "5d266d80f9cf29cce6f7e34531449cf75191a42f180102685a5bcd04849e75c5",
+      "新版定稿/63-the-crowded-heavens.md": "6ef79d4310019dfefa7364b8a428411a6bc337678c69fa5cbc89b84689e253a4",
+      "视频/脚本/64.json": "12a36862765922d72ce6e5a4c5fe85f548364eed65fe3b3b284f0b38899a965f",
+      "新版定稿/64-the-day-zero-that-never-came.md": "e0c83cbe36745adbbffd33a156fa8d0671704ea976cb13215cabb612639b37a5",
+      "视频/脚本/65.json": "78e60dd231df4ac71df83e21a26f82bbf706dc0bef80bee156a36bc287661ede",
+      "新版定稿/65-the-day-the-doomsday-vault-opened.md": "71a50d32e25955e713e6ca108ab68422a4fd5b77c914a9074eece1dc33cbff89",
+      "视频/脚本/66.json": "ad5324af4270834186285a5e7273a90213094077adc6f9e1d5c7b0ebff9cf035",
+      "新版定稿/66-the-burrs-that-became-velcro.md": "75dbe6c148ca97a7780ac1737f33f58bf8ee27a51aa729a83315705655b12b2a",
+      "视频/脚本/67.json": "8897cc1c2df1e4672eec3bbff2776d0565afb9c9fe84087a1758ebb15b2a233e",
+      "新版定稿/67-the-cave-found-by-a-dog.md": "10e37b81eeef4e3289448a6b4fd679f34d495a4fc087c57747e6dca949e00cf1",
+      "视频/脚本/68.json": "568f72dacac48e206811d35a57c7fa22e3da428783f64e507c184f2090e579f3",
+      "新版定稿/68-the-last-flight-of-the-hindenburg.md": "c25f58ffb0e3748336767bb7470dd7cef10374c53cbb48af89dba26f65b2dd5c",
+      "视频/脚本/69.json": "c493528f054e2d572e56b8ea15be0950158e86e3d3271b0f94237e8d296163ff",
+      "新版定稿/69-the-trial-of-the-father-of-the-atomic-bomb.md": "570eda5b7d979d71e9bcad1c67e295ed326ecdb8b61e663aba33272c8a9451bd",
+      "视频/脚本/70.json": "0f6827f02cef0d2416f9d7d69b7e1c5553acee7cf6dc89f3379201264587236c",
+      "新版定稿/70-the-stamp-that-changed-the-post.md": "edfd85cea33730ba67e4210e756da1f2945f1a21bce55c7e75497cb5f0095d80"
+    },
+    "source_file_count": 140,
+    "working_script_count": 70,
+    "target_request_exactly_matches_context": true
+  },
+  "request_source_sha256": {
+    "视频/脚本/61.json": "2d08704376faff25b06d334d7567a381460975a56a4cef6b4ae97b3580ea8dbc",
+    "视频/工具/初稿生成/gen61.py": "9cff2fa4f185d4068efaa8d41efdb281d498f094aa8b4c8fa2e4dd4153f05b29",
+    "新版定稿/61-the-steel-box-that-remade-the-world.md": "135cc9cfbcbd68d957f831cf55558112a45b1cc3749366cb9a304507355c7d2c",
+    "视频/制作记录/61_待改清单.md": "b8b86edcb51b8f9cab16018879b0421ab2a941f83d1728eb7f96ab68aa170677",
+    "视频/制作记录/逐句确认/61.json": "ce615485d4de98827b49ed64fbdee3f1eb100753e93cb4ca6ae1e960e7710e48"
+  },
+  "accepted_source": {
+    "id": "61",
+    "path": "最终版4K视频/61 - The Steel Box That Remade the World - 集装箱：重塑世界的铁盒子.mp4",
+    "sha256": "184686f418f0b43141f131aeac4269636185b85d7d2288fce7fdecc819cd56a9",
+    "git_blob_sha": "055c5006047b3013c61697baf027ff261afa2335",
+    "bytes": 12351524,
+    "width": 3840,
+    "height": 2160,
+    "summary_frames": 60,
+    "aac_adts_sha256": "09a13bc5853b6edbe832580796961247f5aea94c00b81be8e645314bd69d23da"
+  },
+  "checker_reference_preparation": {
+    "article": "61",
+    "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+    "reference_prepared": true,
+    "acceptance": false,
+    "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+    "source_sha256": "2d08704376faff25b06d334d7567a381460975a56a4cef6b4ae97b3580ea8dbc",
+    "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+    "checker_program_sha256": {
+      "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+      "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+      "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+      "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+      "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+      "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+    },
+    "reference_calls": [
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-raw",
+        "method": "create",
+        "source_slice": "The Steel Box That Remade the World",
+        "exact_native_cache_key": "8270ef4e3a04aa0e336ebebabd00d891c39f3c8d.pkl",
+        "cache_input_text_sha256": "7414031bc8d1b13f07d5a118d98880b7c3d75ded3d0f25e26b0e95e73b19831b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-timed",
+        "method": "create_timed",
+        "source_slice": "The Steel Box That Remade the World",
+        "exact_native_cache_key": "06604fc26fbfee6e75faf92de43580696e1af82e.pkl",
+        "cache_input_text_sha256": "7414031bc8d1b13f07d5a118d98880b7c3d75ded3d0f25e26b0e95e73b19831b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "On 26 April 1956 a converted Second World War tanker, the Ideal X, slipped out of Port Newark, New Jersey, for Houston.",
+        "exact_native_cache_key": "8925e560d2ddb2ea7bd33b3e21cc9e0d4b37b19d.pkl",
+        "cache_input_text_sha256": "99280889f041b4854c61f21fcffd47b475a0d48513647757f01866b3d44855c3",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "On 26 April 1956 a converted Second World War tanker, the Ideal X, slipped out of Port Newark, New Jersey, for Houston.",
+        "exact_native_cache_key": "ba65a7c0bb1ddcb40d6abdb1640fe328f3fa1d0b.pkl",
+        "cache_input_text_sha256": "99280889f041b4854c61f21fcffd47b475a0d48513647757f01866b3d44855c3",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "On 26 April 1956 a converted Second World War tanker, the Ideal X,",
+        "exact_native_cache_key": "210f1a8801414fa8a98e1ddf154e7590a8abae46.pkl",
+        "cache_input_text_sha256": "8e85f04e3b22cd40139f984eb34c3a9784b35d053aa21efd38319e370220c8c4",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "slipped out of Port Newark, New Jersey, for Houston.",
+        "exact_native_cache_key": "3d3a4afb1453b9eb2b1357ed8b77b3ebad59a37a.pkl",
+        "cache_input_text_sha256": "60fb27797f8842c12cce02d8f4dce5e051884a939337457e222a76c1e8a78a84",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "On 26 April 1956 a converted Second World War tanker,",
+        "exact_native_cache_key": "4116efcb719db3ba6a780d0907912cf68625c0b2.pkl",
+        "cache_input_text_sha256": "c476e747c648ce2fd4c5fb9f3f6fe2d5749b56be28927b43308a6c23fbd4af82",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "the Ideal X,",
+        "exact_native_cache_key": "73f6bc4a9a05d19605af950e0e22c800888915b6.pkl",
+        "cache_input_text_sha256": "7f4ad5212d3958da4c22bdd865f25bb96f7aec76161cf95267f277fafd0f373b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "slipped out of Port Newark,",
+        "exact_native_cache_key": "d28e66cb3257cdd89397a7d25c01a5b3654c0462.pkl",
+        "cache_input_text_sha256": "e88f99dab6246d04f5e082a232ead5ebd3cedbabd844e0a8ebe8179decf426ba",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "New Jersey,",
+        "exact_native_cache_key": "91cf6a273c42e094634ff805c0530408b9df42df.pkl",
+        "cache_input_text_sha256": "4f92b38f28dad3d3915cbf99328aa01dacab0bfe9909d08741ed9f6c8848b9d0",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 5,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "for Houston.",
+        "exact_native_cache_key": "56d1c5c1a229f6e7ef0ada2c035e21316d3eb161.pkl",
+        "cache_input_text_sha256": "e26388af50e80f15687587c3e3f8b1f3b4151f92384bbddd5b286844190cd4d5",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Clamped to her deck were 58 containers, trailer bodies detached from their wheels and chassis.",
+        "exact_native_cache_key": "6fddd69719d53680686ba5488e17e263ddb0270c.pkl",
+        "cache_input_text_sha256": "23ece9d2ffe0768dfa23691f6c39abe708c7d42e02821bb40f2d8f800411d874",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Clamped to her deck were 58 containers, trailer bodies detached from their wheels and chassis.",
+        "exact_native_cache_key": "24bfba2c40fde563e16504fed479c26b1e2f03d7.pkl",
+        "cache_input_text_sha256": "23ece9d2ffe0768dfa23691f6c39abe708c7d42e02821bb40f2d8f800411d874",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Clamped to her deck were 58 containers,",
+        "exact_native_cache_key": "9c2de27bef3551237a2e9a3977dbd138cf03ef93.pkl",
+        "cache_input_text_sha256": "e1381db96203b20c14f2cd554cce399399260d9d2e8af63f604ea213197d266c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "trailer bodies detached from their wheels and chassis.",
+        "exact_native_cache_key": "2d53e677dd6bb13fd4f0e6e9acacc9402741df42.pkl",
+        "cache_input_text_sha256": "1f01c6e323d246e4928d44e13d5c09b5731b05ecb8ccfc57f3b6d0e9ab28e427",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Clamped to her deck were 58 containers,",
+        "exact_native_cache_key": "9c2de27bef3551237a2e9a3977dbd138cf03ef93.pkl",
+        "cache_input_text_sha256": "e1381db96203b20c14f2cd554cce399399260d9d2e8af63f604ea213197d266c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "trailer bodies detached from their wheels and chassis.",
+        "exact_native_cache_key": "2d53e677dd6bb13fd4f0e6e9acacc9402741df42.pkl",
+        "cache_input_text_sha256": "1f01c6e323d246e4928d44e13d5c09b5731b05ecb8ccfc57f3b6d0e9ab28e427",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Few spectators would have taken so unremarkable a cargo for a landmark.",
+        "exact_native_cache_key": "7e7c77ba56de5998ebd95df242e24b7366985ba2.pkl",
+        "cache_input_text_sha256": "13eb37c0ae496d701decbcbfff919921a7b21f3726c09a9f56e6f3ff272af892",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Few spectators would have taken so unremarkable a cargo for a landmark.",
+        "exact_native_cache_key": "4a6b2beea840e14b2bd81d355ab5983e3209013c.pkl",
+        "cache_input_text_sha256": "13eb37c0ae496d701decbcbfff919921a7b21f3726c09a9f56e6f3ff272af892",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "At the time, freight travelled loose.",
+        "exact_native_cache_key": "37dfa9c5d53c0e239d65082ba74fa9baa7c7245f.pkl",
+        "cache_input_text_sha256": "3eea708201f1e29efd816366edd43c28fc6233e0a37fae9e94ab7c8ec3cd58e1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "At the time, freight travelled loose.",
+        "exact_native_cache_key": "e3a888d2d1e9beb5fa102f3b62e51ae8a47648cb.pkl",
+        "cache_input_text_sha256": "3eea708201f1e29efd816366edd43c28fc6233e0a37fae9e94ab7c8ec3cd58e1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "At the time,",
+        "exact_native_cache_key": "5ce514a60512940dee7479051ccbe7b952e45e1b.pkl",
+        "cache_input_text_sha256": "78c8cbb5102fa9b52c94884ce6514f95e7c6c312f20afb701fbdd794935a03c1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "freight travelled loose.",
+        "exact_native_cache_key": "fad37536f225171c41fed04a04f1737562d1cf04.pkl",
+        "cache_input_text_sha256": "95c164db0f2103c6ea61cb367267d21e4a419fe4bfd37316a7c1abd1b6553ea2",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Gangs of twenty or more dockworkers carried sacks, barrels, and crates piece by piece.",
+        "exact_native_cache_key": "b52468d68d2144864efc82996f8038c84211d7fa.pkl",
+        "cache_input_text_sha256": "9512c5cfa1145b07d31dc0e18824632df7833102d6c26e6d6834e320ccc46dd7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Gangs of twenty or more dockworkers carried sacks, barrels, and crates piece by piece.",
+        "exact_native_cache_key": "80fcc18414a343ca85eca634936c3faebf0264b3.pkl",
+        "cache_input_text_sha256": "9512c5cfa1145b07d31dc0e18824632df7833102d6c26e6d6834e320ccc46dd7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Gangs of twenty or more dockworkers",
+        "exact_native_cache_key": "ab6baceee46af4906a937bad5319bc4e6f0f31cc.pkl",
+        "cache_input_text_sha256": "06cb4eb524349efdd2e18367f26b95c0cd78b0e0b0ba05a534c543ecc7b06b1e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "carried sacks, barrels, and crates piece by piece.",
+        "exact_native_cache_key": "65861d89b31de3d743b7ec29434ab9eb00290c93.pkl",
+        "cache_input_text_sha256": "73eaef11dd5e215566110d186ca913572e4080b1d78d448e3f494a98aeba9163",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Gangs of twenty or more dockworkers carried sacks,",
+        "exact_native_cache_key": "b369daee81eb31bb2ea57e967fc59748843329db.pkl",
+        "cache_input_text_sha256": "698c824808c764626221d502d598eb5080e740e4304ddc7f1dfeaef0e7f817ef",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "barrels,",
+        "exact_native_cache_key": "00f0ef56d5956bde16c298dde69b6439b52f0078.pkl",
+        "cache_input_text_sha256": "126aca79184c5460d3410ee784b4f64bce688d0546bea67c59dbed9c36445bae",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and crates piece by piece.",
+        "exact_native_cache_key": "993c1830e1ee21ffcf62ef8ecd2824cf1dc5fc01.pkl",
+        "cache_input_text_sha256": "65a1158cc0ea84e70f08d5add7ad56829d01d3266fdcfef4f2d24909412cd909",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "It was strenuous drudgery.",
+        "exact_native_cache_key": "37e6bd46525d51a7d591d2f0de55a0e75695ac57.pkl",
+        "cache_input_text_sha256": "7f3cc08e9d402c3a2166104e53bb7c738e068eb7f0b2cdf1444cd2abbb2940f9",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "It was strenuous drudgery.",
+        "exact_native_cache_key": "c006523f842de6db7e5857e9e9618639cefa8f4e.pkl",
+        "cache_input_text_sha256": "7f3cc08e9d402c3a2166104e53bb7c738e068eb7f0b2cdf1444cd2abbb2940f9",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Ships could spend up to half their time berthed, and theft was rampant.",
+        "exact_native_cache_key": "8174990694f9ae47bd0678e5e9a1c8e3cc132a46.pkl",
+        "cache_input_text_sha256": "8e98346a24364c860d84b04ed9508293bbd57ead692ebdcaeebada689ee8c5be",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Ships could spend up to half their time berthed, and theft was rampant.",
+        "exact_native_cache_key": "0634cde02e5d7bab39e7f66d3f055b222da0898a.pkl",
+        "cache_input_text_sha256": "8e98346a24364c860d84b04ed9508293bbd57ead692ebdcaeebada689ee8c5be",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Ships could spend up to half their time berthed,",
+        "exact_native_cache_key": "65b68a01feaf22263e2f8ee1970ac0da05f0c350.pkl",
+        "cache_input_text_sha256": "1cf40e69abd0d5875e864d8c5f8f8e8618462305290911bf1e0bccc8ce8d05ee",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and theft was rampant.",
+        "exact_native_cache_key": "a49040e08f117dccf280a159c218aa1c8491a27e.pkl",
+        "cache_input_text_sha256": "aee901746a9b68f345af7d55748567844191363d56ee7c81db995c7bfdf592d5",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Ships could spend up to half their time berthed,",
+        "exact_native_cache_key": "65b68a01feaf22263e2f8ee1970ac0da05f0c350.pkl",
+        "cache_input_text_sha256": "1cf40e69abd0d5875e864d8c5f8f8e8618462305290911bf1e0bccc8ce8d05ee",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and theft was rampant.",
+        "exact_native_cache_key": "a49040e08f117dccf280a159c218aa1c8491a27e.pkl",
+        "cache_input_text_sha256": "aee901746a9b68f345af7d55748567844191363d56ee7c81db995c7bfdf592d5",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "In 1956 loading loose cargo cost about $5.83 a ton; loading the Ideal X cost, by the company's reckoning, about 16 cents.",
+        "exact_native_cache_key": "4cf5a3f3d4fe5109bc6de2c8572c5c7000eff0b6.pkl",
+        "cache_input_text_sha256": "76cb1a21674fa3618a0afd265c1d6c59b770754edf437eafd8a83c0fb856f948",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "In 1956 loading loose cargo cost about $5.83 a ton; loading the Ideal X cost, by the company's reckoning, about 16 cents.",
+        "exact_native_cache_key": "5e04b266b1a73a3aaeebbf5aeebebe02060a91ff.pkl",
+        "cache_input_text_sha256": "76cb1a21674fa3618a0afd265c1d6c59b770754edf437eafd8a83c0fb856f948",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "In 1956 loading loose cargo cost about $5.83 a ton;",
+        "exact_native_cache_key": "c6858c2f91c6a40d99991f700679e1a8abb00d75.pkl",
+        "cache_input_text_sha256": "7d5ac9d9626f007efacfdbcdda3857368622369e6a05353395de789768837ef1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "loading the Ideal X cost, by the company's reckoning, about 16 cents.",
+        "exact_native_cache_key": "4364881d443a1fac20214c1fd4a19d8196e7381f.pkl",
+        "cache_input_text_sha256": "48aa30f6a9eb916407e6635622ce723e3e4e9ed8232f8c50e67679c73a8928e4",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "In 1956 loading loose cargo cost about $5.83 a ton;",
+        "exact_native_cache_key": "c6858c2f91c6a40d99991f700679e1a8abb00d75.pkl",
+        "cache_input_text_sha256": "7d5ac9d9626f007efacfdbcdda3857368622369e6a05353395de789768837ef1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "loading the Ideal X cost,",
+        "exact_native_cache_key": "dc8bc98d6c3d8fa2f0b6291bfa220de3f5100914.pkl",
+        "cache_input_text_sha256": "ee0c52d601926b50a41ba377e477ad01ca355541a44aa2177423309d06cc8b20",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "by the company's reckoning,",
+        "exact_native_cache_key": "5b0b21f8e0f6445f4a91eb9c8de4cc9e0d0240be.pkl",
+        "cache_input_text_sha256": "68c7f113508fc8cd843bed13d6d8da98615ed98fd1e2156c8fba027e1d1a3e40",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "about 16 cents.",
+        "exact_native_cache_key": "c314bfe79bee3bf3133cda21ced7ba6acb771dbc.pkl",
+        "cache_input_text_sha256": "f0552c92dc3bbe6a0d105a215025237bde98e1bdce11ca4bd85a6b6ef55dd554",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Containers were not new.",
+        "exact_native_cache_key": "a499c666ecd434834fbe07b87d260d25dc7e8456.pkl",
+        "cache_input_text_sha256": "d2fe397d59bc7b1219aaeafcfd7a6b5a3d5910eba6a047c169fd5f5ab37f2ca5",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Containers were not new.",
+        "exact_native_cache_key": "5229f133fdc5f39de0f082dd4287dc7a9fb8eb02.pkl",
+        "cache_input_text_sha256": "d2fe397d59bc7b1219aaeafcfd7a6b5a3d5910eba6a047c169fd5f5ab37f2ca5",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The hurdle was consensus: rival firms' boxes had incompatible dimensions and latches.",
+        "exact_native_cache_key": "5e5cc7d251fc479291011b47adca297987a07828.pkl",
+        "cache_input_text_sha256": "6e2bf3f705dc01f3fec790a3560c84d66d04741e43f81838b19a9f15d33ac523",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The hurdle was consensus: rival firms' boxes had incompatible dimensions and latches.",
+        "exact_native_cache_key": "b720c10dc90ec2ef77861c19cf3612a3dbc1315f.pkl",
+        "cache_input_text_sha256": "6e2bf3f705dc01f3fec790a3560c84d66d04741e43f81838b19a9f15d33ac523",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "The hurdle was consensus:",
+        "exact_native_cache_key": "9a6914bfd6f8f2b9f776d8a390a35ee4c57153aa.pkl",
+        "cache_input_text_sha256": "fb9d74ebdbd381cc11deac657441ebbe16545cf06ee5b12dbfb32886d4c108d8",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "rival firms' boxes had incompatible dimensions and latches.",
+        "exact_native_cache_key": "65d105c29359ee485e0e0c2c5906ba9fee25ed6e.pkl",
+        "cache_input_text_sha256": "3a7ed8956d72ee3bcb5387a88f528d83239936c5cd5642a9e46d5f06cd0ca897",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "The hurdle was consensus:",
+        "exact_native_cache_key": "9a6914bfd6f8f2b9f776d8a390a35ee4c57153aa.pkl",
+        "cache_input_text_sha256": "fb9d74ebdbd381cc11deac657441ebbe16545cf06ee5b12dbfb32886d4c108d8",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "rival firms' boxes had incompatible dimensions and latches.",
+        "exact_native_cache_key": "65d105c29359ee485e0e0c2c5906ba9fee25ed6e.pkl",
+        "cache_input_text_sha256": "3a7ed8956d72ee3bcb5387a88f528d83239936c5cd5642a9e46d5f06cd0ca897",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "An international standards committee formed in 1961.",
+        "exact_native_cache_key": "a65742fa5a5bf2685c66a15594aae732c7bcc5af.pkl",
+        "cache_input_text_sha256": "a046311a4705f11089bd6d4c32e6b5099b12e7e57766fb2eeaf31a4711d5a15d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "An international standards committee formed in 1961.",
+        "exact_native_cache_key": "e3be8f8605d66375e2c3ed7042a999fd11e482fa.pkl",
+        "cache_input_text_sha256": "a046311a4705f11089bd6d4c32e6b5099b12e7e57766fb2eeaf31a4711d5a15d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "In January 1963 Sea-Land, the Ideal X's renamed operator, let the committee use its patents free of royalties, including those on corner fittings for hoisting.",
+        "exact_native_cache_key": "0599b560b66662e193d032d05afcaa59433e28ff.pkl",
+        "cache_input_text_sha256": "4cbbea825b4832522329b96ad01af88fedb274fe28b9b95adefffd2ddef6f2a4",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "In January 1963 Sea-Land, the Ideal X's renamed operator, let the committee use its patents free of royalties, including those on corner fittings for hoisting.",
+        "exact_native_cache_key": "d04f28e13bb218cbe8c022968144c58ddbd6923a.pkl",
+        "cache_input_text_sha256": "4cbbea825b4832522329b96ad01af88fedb274fe28b9b95adefffd2ddef6f2a4",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "In January 1963 Sea-Land, the Ideal X's renamed operator,",
+        "exact_native_cache_key": "03eb5bc040c5bc29d8f8e54ab50db68110750211.pkl",
+        "cache_input_text_sha256": "07757544fbc1dccac754438a0ce23bc87306ff40c29a768cdcb04fd207cbd452",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "let the committee use its patents free of royalties,",
+        "exact_native_cache_key": "4c069d9e160944d08fd544173d29aa5d889adddc.pkl",
+        "cache_input_text_sha256": "adfaafd3264b5bf9c2585efa6bec0b737e6b52ed57fde11c928d4a75490d705f",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "including those on corner fittings for hoisting.",
+        "exact_native_cache_key": "2e8fb1dee4d8709042796638b8f3a4335f8baa9f.pkl",
+        "cache_input_text_sha256": "e90bb361f93dbb4ffd23a6fb51751a8d78fdab230db941e7ab8a4bd17b8289bb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "In January 1963 Sea-Land,",
+        "exact_native_cache_key": "27eff77c752dbdd64e201b2306f0b4dbeed16522.pkl",
+        "cache_input_text_sha256": "463fa6a4a889f676eae55148329de0dab45575e1e656d7a98b41a7a8513e8d65",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "the Ideal X's renamed operator,",
+        "exact_native_cache_key": "fb778a220b2f51189b4eb30a183fc1296cd35574.pkl",
+        "cache_input_text_sha256": "75fbf65fbc91b44f3e2abd3f98756136f205bb72b3f72d26403ec7db01b82629",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "let the committee use its patents free of royalties,",
+        "exact_native_cache_key": "4c069d9e160944d08fd544173d29aa5d889adddc.pkl",
+        "cache_input_text_sha256": "adfaafd3264b5bf9c2585efa6bec0b737e6b52ed57fde11c928d4a75490d705f",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "including those on corner fittings for hoisting.",
+        "exact_native_cache_key": "2e8fb1dee4d8709042796638b8f3a4335f8baa9f.pkl",
+        "cache_input_text_sha256": "e90bb361f93dbb4ffd23a6fb51751a8d78fdab230db941e7ab8a4bd17b8289bb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Lifted by crane, a box could be transferred smoothly between ship, lorry, and train.",
+        "exact_native_cache_key": "70d38ef1bff2bbccb756dd93258814e15e370e39.pkl",
+        "cache_input_text_sha256": "d53bb74dad0e50f6d3929364d5a1b14aea7d47f2a614529242108fd9a885e741",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Lifted by crane, a box could be transferred smoothly between ship, lorry, and train.",
+        "exact_native_cache_key": "0cf59472881ed3d6423dfc31c3dac287411868a3.pkl",
+        "cache_input_text_sha256": "d53bb74dad0e50f6d3929364d5a1b14aea7d47f2a614529242108fd9a885e741",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Lifted by crane, a box",
+        "exact_native_cache_key": "cebaa013abc986cce6217cf112ba3d589ebb1583.pkl",
+        "cache_input_text_sha256": "18e1565d1ad69670f979ce0a34fb49657b69f78f730337ca2826941d79a23545",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "could be transferred smoothly between ship, lorry, and train.",
+        "exact_native_cache_key": "be5c979f39c335e0a98baa3c7c0ef81662a3a3bd.pkl",
+        "cache_input_text_sha256": "0afdee3e839cda5b805b777cae08128ceae58b00d676e740aa6826e3fd05397c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Lifted by crane,",
+        "exact_native_cache_key": "dfe7119b43cbca8902c06ec0083cbd05dfa6aca4.pkl",
+        "cache_input_text_sha256": "d8b0da6d4a14739a50d5bc8770fc639b2b3631490a19a716ce288361ace4ebf5",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "a box could be transferred smoothly between ship,",
+        "exact_native_cache_key": "3cf7b7677f8519e9578f59e4ec52771c02c1f8d7.pkl",
+        "cache_input_text_sha256": "c71a9f8f6fff3c59e1763cd958280ca45252a3b9b9eafe0830065721ad943488",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "lorry,",
+        "exact_native_cache_key": "a7a1ca970de66566731f6972660b2a60fab753ce.pkl",
+        "cache_input_text_sha256": "a01b23881d99c2bbfa7b42a2253c0796a624f56a1cec05a02dbe8a417dc467db",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and train.",
+        "exact_native_cache_key": "1a065ca452b7a2ccaf9a2539f443397884541c97.pkl",
+        "cache_input_text_sha256": "dbdd82351f72e7a755a9ceaf2620988acd46439e972cc68667880e5d18578511",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "This efficiency came at the expense of livelihoods.",
+        "exact_native_cache_key": "855d5f6f09be43c97bb91b78c5edb10c721164e7.pkl",
+        "cache_input_text_sha256": "65c616ea177fd5944496199b72cfe312c06155e895c1af55956cf4ef37f8fc0b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "This efficiency came at the expense of livelihoods.",
+        "exact_native_cache_key": "05bdfdca19bf65376c0a2d66163c3793e647f286.pkl",
+        "cache_input_text_sha256": "65c616ea177fd5944496199b72cfe312c06155e895c1af55956cf4ef37f8fc0b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "New York's waterfront employment shrank by about three quarters between 1963 and 1976.",
+        "exact_native_cache_key": "0e8fdb6953a1b496605353a2c41ae87bb7f28ca4.pkl",
+        "cache_input_text_sha256": "33bd3adf782d40e93f7ef40e1c5c5dac53af237e0e1017e3a076f53e8c6b490c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "New York's waterfront employment shrank by about three quarters between 1963 and 1976.",
+        "exact_native_cache_key": "7f5709bfb9753382e91c67124757f74246ae0f0b.pkl",
+        "cache_input_text_sha256": "33bd3adf782d40e93f7ef40e1c5c5dac53af237e0e1017e3a076f53e8c6b490c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Much of the cargo crossed the harbour to a new terminal at Elizabeth, inaugurated in August 1962.",
+        "exact_native_cache_key": "1175179ef75f26cc846c5dcd694506a21295c0dd.pkl",
+        "cache_input_text_sha256": "671de7318debcda77c35b8845fb8cb45476d5fb9ee3ac9ce5359dea30be739ba",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Much of the cargo crossed the harbour to a new terminal at Elizabeth, inaugurated in August 1962.",
+        "exact_native_cache_key": "4d997b1efca0739f2c128e50321ee07f6228d1bf.pkl",
+        "cache_input_text_sha256": "671de7318debcda77c35b8845fb8cb45476d5fb9ee3ac9ce5359dea30be739ba",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Much of the cargo crossed the harbour",
+        "exact_native_cache_key": "5d80ac765c1f050f47c95f56ef84396b08bc73bd.pkl",
+        "cache_input_text_sha256": "c81b8ada215f1bd196cd50f4d18c573a624fcfc30d2bd6e1d707fa1e01751f7f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "to a new terminal at Elizabeth, inaugurated in August 1962.",
+        "exact_native_cache_key": "6da41abc1e816ffb02c806fc998a5cafdcabf7ad.pkl",
+        "cache_input_text_sha256": "53824c360cc0b80951924daa4a9232d5613036b3ce55505b8404650a8187ab70",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Much of the cargo crossed the harbour to a new terminal at Elizabeth,",
+        "exact_native_cache_key": "b1b1d419ec1ac457308225ea493a354d1b018a96.pkl",
+        "cache_input_text_sha256": "56778c7799675634765293c1149683bc4fa99f7d86f1438528f7726593f3e76a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "inaugurated in August 1962.",
+        "exact_native_cache_key": "cb823e0c8bc598544ae6a51f02fb84cf6a5aaf91.pkl",
+        "cache_input_text_sha256": "9d8c626e253167a484b049b8d6dc8e6cc2b09e18c20bc62ccd72ed650b0b50c4",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Most of London's historic docks closed one after another from 1967 to 1980, while Felixstowe, on the Suffolk coast, expanded.",
+        "exact_native_cache_key": "6dfd0a703643db901b83b4876f2985ae045e8342.pkl",
+        "cache_input_text_sha256": "bc32330b4b5bf46631038c4a5f86098ca42cc9c11d686f4fad9a23667d9ffd84",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Most of London's historic docks closed one after another from 1967 to 1980, while Felixstowe, on the Suffolk coast, expanded.",
+        "exact_native_cache_key": "7eeeb27b7e6962a7acf947e6be94662a306cf73d.pkl",
+        "cache_input_text_sha256": "bc32330b4b5bf46631038c4a5f86098ca42cc9c11d686f4fad9a23667d9ffd84",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Most of London's historic docks closed one after another from 1967 to 1980,",
+        "exact_native_cache_key": "3b5a08c31fd601b034d25abd106c4c522c0bfcf4.pkl",
+        "cache_input_text_sha256": "120a593003008b289b70065a2f02550f02dc74c7ee16263508bfacf59b902f7b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "while Felixstowe, on the Suffolk coast, expanded.",
+        "exact_native_cache_key": "80adb528489808abb630f53f5308e47452698490.pkl",
+        "cache_input_text_sha256": "43ab86a8eb1cba2254d78732927598bad4c68cbc3608adda0a5cadf3362704f5",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Most of London's historic docks closed one after another from 1967 to 1980,",
+        "exact_native_cache_key": "3b5a08c31fd601b034d25abd106c4c522c0bfcf4.pkl",
+        "cache_input_text_sha256": "120a593003008b289b70065a2f02550f02dc74c7ee16263508bfacf59b902f7b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "while Felixstowe,",
+        "exact_native_cache_key": "e347353a721ec899268d7b48d59e09b5ab8ed814.pkl",
+        "cache_input_text_sha256": "f9782374093455115606599b184fe397fa0bd4c33ee7371e5171a8ca792aab6a",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "on the Suffolk coast,",
+        "exact_native_cache_key": "2d741f15ae06a8405ecc1ef4e29486ef098aa495.pkl",
+        "cache_input_text_sha256": "ccabb47c94c2c231f1e15044d5d8958d633b13ffcdcbf3aa4fc850712fb1b0c0",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "expanded.",
+        "exact_native_cache_key": "736b32d5e7b510ee3fc51ef9be8ff92860f2df06.pkl",
+        "cache_input_text_sha256": "fdc65c6f39044a1b4c170cf0fe8f5a030c9980b5257b95139568aad6761ab684",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The rewards were substantial.",
+        "exact_native_cache_key": "8b40c769a90ba0ae0c120e53529aaef0cfaceaf6.pkl",
+        "cache_input_text_sha256": "b0ef3c06cf48797d30865726a4b6ac1fe7ff31242e78db7b378710fdef9b6921",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The rewards were substantial.",
+        "exact_native_cache_key": "583493336b90465534fc837fdb123e5257967191.pkl",
+        "cache_input_text_sha256": "b0ef3c06cf48797d30865726a4b6ac1fe7ff31242e78db7b378710fdef9b6921",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "A study published in the Journal of International Economics in 2016 estimated that containerisation had lifted trade between industrialised countries by a cumulative 700 per cent over 20 years.",
+        "exact_native_cache_key": "71c4ba90bf9d22ab4717599d65b24b4a7cde4e12.pkl",
+        "cache_input_text_sha256": "d27777ae0b980fec099bc9acb835153d5eaed6f5608642098b82ae35e4d02699",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "A study published in the Journal of International Economics in 2016 estimated that containerisation had lifted trade between industrialised countries by a cumulative 700 per cent over 20 years.",
+        "exact_native_cache_key": "e33df018fd2bc07e658c14991bfb7603acbf9ff9.pkl",
+        "cache_input_text_sha256": "d27777ae0b980fec099bc9acb835153d5eaed6f5608642098b82ae35e4d02699",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "A study published in the Journal of International Economics in 2016 estimated",
+        "exact_native_cache_key": "bc456cbdc54177f50ad5883dcf396542cc915f91.pkl",
+        "cache_input_text_sha256": "80e664cd7352b0bd47e1639af907bde1d41747adf1d12a1cf90c435d6bc57c6b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "that containerisation had lifted trade between industrialised countries by a cumulative 700 per cent over 20 years.",
+        "exact_native_cache_key": "72fab4a3f352dcefdd063e68d5b6c211b5c79b44.pkl",
+        "cache_input_text_sha256": "6c6d5033d663b43c699ce2a38630f2a2af0b523677679134030d309b85181509",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S20",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Tireless cranes now lift identical containers into orderly, immense stacks.",
+        "exact_native_cache_key": "22d4c5a40657e442d4a110f9f00fed031941d1ca.pkl",
+        "cache_input_text_sha256": "55f3d725b95e5ba94064474eed5a33b55bada52ee969cc2fb62c91f92f650bcd",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S20",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Tireless cranes now lift identical containers into orderly, immense stacks.",
+        "exact_native_cache_key": "fd8fbe264a25db9df47048c7e5c897eb4ad32e1d.pkl",
+        "cache_input_text_sha256": "55f3d725b95e5ba94064474eed5a33b55bada52ee969cc2fb62c91f92f650bcd",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S20",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Tireless cranes now lift identical containers into orderly,",
+        "exact_native_cache_key": "b9c71a0bc7a1bddb230a5c2c338bc564d725ec5c.pkl",
+        "cache_input_text_sha256": "97e75a19f9801f7cde5f6eefb4cd8e19bf9b142b64e0426d702974f518241dd8",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S20",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "immense stacks.",
+        "exact_native_cache_key": "4262362557ebd172b57174e2c610770886178bec.pkl",
+        "cache_input_text_sha256": "64e906ec7b0b518550a6f92b1f61a1254b0a406de7bb564896152ed7b571daab",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      }
+    ],
+    "unique_reference_key_count": 91,
+    "raw_mother_cache_scalar_manifest": [
+      {
+        "exact_native_cache_key": "8270ef4e3a04aa0e336ebebabd00d891c39f3c8d.pkl",
+        "pkl_sha256": "0e7d76e8c061e52ef60013428d7e9c2eb3de910950a656a112d5d37480479b66",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "标题",
+            "piece": null,
+            "reference_kind": "title-default-raw",
+            "method": "create",
+            "source_slice": "The Steel Box That Remade the World",
+            "exact_native_cache_key": "8270ef4e3a04aa0e336ebebabd00d891c39f3c8d.pkl",
+            "cache_input_text_sha256": "7414031bc8d1b13f07d5a118d98880b7c3d75ded3d0f25e26b0e95e73b19831b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "0e7d76e8c061e52e",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          49664
+        ],
+        "unprocessed_array_sha256": "2e51d23fb86a70c620fffb5f6ca93d97ebad1f5e8b15a641042cbfe8c9d4a7a0"
+      },
+      {
+        "exact_native_cache_key": "8925e560d2ddb2ea7bd33b3e21cc9e0d4b37b19d.pkl",
+        "pkl_sha256": "8def97b2e39d7d4ad585f41b621cc5d5587e246a72b6612fed7fa47ae3c975ec",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "On 26 April 1956 a converted Second World War tanker, the Ideal X, slipped out of Port Newark, New Jersey, for Houston.",
+            "exact_native_cache_key": "8925e560d2ddb2ea7bd33b3e21cc9e0d4b37b19d.pkl",
+            "cache_input_text_sha256": "99280889f041b4854c61f21fcffd47b475a0d48513647757f01866b3d44855c3",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "8def97b2e39d7d4a",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          254976
+        ],
+        "unprocessed_array_sha256": "c3362e7e24f537094a7020a692932d66d72227d5b23f09089cc5df286ee8c1b8"
+      },
+      {
+        "exact_native_cache_key": "210f1a8801414fa8a98e1ddf154e7590a8abae46.pkl",
+        "pkl_sha256": "9046bc6584b41942d3eddf0b802f83ba60494ac88d9fc9936f72348f2c4b4c18",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "On 26 April 1956 a converted Second World War tanker, the Ideal X,",
+            "exact_native_cache_key": "210f1a8801414fa8a98e1ddf154e7590a8abae46.pkl",
+            "cache_input_text_sha256": "8e85f04e3b22cd40139f984eb34c3a9784b35d053aa21efd38319e370220c8c4",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "9046bc6584b41942",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          168448
+        ],
+        "unprocessed_array_sha256": "1762cb57fb825088db21ca50ac410f090fb74e677f11f1a9cc160f7326b2b9cc"
+      },
+      {
+        "exact_native_cache_key": "3d3a4afb1453b9eb2b1357ed8b77b3ebad59a37a.pkl",
+        "pkl_sha256": "86cf38ae0ce64d750b2ac0f7d470a295666c7c8cb94582fdeb8f8d1be7087600",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "slipped out of Port Newark, New Jersey, for Houston.",
+            "exact_native_cache_key": "3d3a4afb1453b9eb2b1357ed8b77b3ebad59a37a.pkl",
+            "cache_input_text_sha256": "60fb27797f8842c12cce02d8f4dce5e051884a939337457e222a76c1e8a78a84",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "86cf38ae0ce64d75",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          71168
+        ],
+        "unprocessed_array_sha256": "37f78ab0bd480fa3cbc4e4768e68e3dcc96e53dffdd8b256f7f40f3ef207a287"
+      },
+      {
+        "exact_native_cache_key": "4116efcb719db3ba6a780d0907912cf68625c0b2.pkl",
+        "pkl_sha256": "d687374aa07ffb8eba68a0ae0d0ecde8262acce93d2becd3ff1e16c2daec04e9",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "On 26 April 1956 a converted Second World War tanker,",
+            "exact_native_cache_key": "4116efcb719db3ba6a780d0907912cf68625c0b2.pkl",
+            "cache_input_text_sha256": "c476e747c648ce2fd4c5fb9f3f6fe2d5749b56be28927b43308a6c23fbd4af82",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "d687374aa07ffb8e",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          135680
+        ],
+        "unprocessed_array_sha256": "090b617c84914f51e0013ea578c3e64882a8e86f699197abfab320cef5c4a5c6"
+      },
+      {
+        "exact_native_cache_key": "73f6bc4a9a05d19605af950e0e22c800888915b6.pkl",
+        "pkl_sha256": "7d2eb868bb26bb59e7e81f3edb159e4505e833b50b8d89adada401b45be6ffad",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "the Ideal X,",
+            "exact_native_cache_key": "73f6bc4a9a05d19605af950e0e22c800888915b6.pkl",
+            "cache_input_text_sha256": "7f4ad5212d3958da4c22bdd865f25bb96f7aec76161cf95267f277fafd0f373b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "7d2eb868bb26bb59",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          27648
+        ],
+        "unprocessed_array_sha256": "ac3320440abf2e41bbc23e4e02f3f9b03fcfc08a2b3e48e0e1357bd3afa556f2"
+      },
+      {
+        "exact_native_cache_key": "d28e66cb3257cdd89397a7d25c01a5b3654c0462.pkl",
+        "pkl_sha256": "8d433dd4dbf3715612e13bea918008dfa721f5369d08030eef139859116ae067",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "slipped out of Port Newark,",
+            "exact_native_cache_key": "d28e66cb3257cdd89397a7d25c01a5b3654c0462.pkl",
+            "cache_input_text_sha256": "e88f99dab6246d04f5e082a232ead5ebd3cedbabd844e0a8ebe8179decf426ba",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "8d433dd4dbf37156",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          36352
+        ],
+        "unprocessed_array_sha256": "eefd7c383c749829055c5ae257a0db7205966e917787419298894085a195cdf6"
+      },
+      {
+        "exact_native_cache_key": "91cf6a273c42e094634ff805c0530408b9df42df.pkl",
+        "pkl_sha256": "bc90f5261e84f06e92337282c3ee8ee2eb9432a0016e154ff913aa96b559b35c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "New Jersey,",
+            "exact_native_cache_key": "91cf6a273c42e094634ff805c0530408b9df42df.pkl",
+            "cache_input_text_sha256": "4f92b38f28dad3d3915cbf99328aa01dacab0bfe9909d08741ed9f6c8848b9d0",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "bc90f5261e84f06e",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          23552
+        ],
+        "unprocessed_array_sha256": "ee5d6580976b87b33646e07d31b61dc8add9d8c5d383f673c677d782c7d32e93"
+      },
+      {
+        "exact_native_cache_key": "56d1c5c1a229f6e7ef0ada2c035e21316d3eb161.pkl",
+        "pkl_sha256": "08fb52b62c51b212caeaaf022c1bc40e006e82c3003324002f32755559d644d2",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 5,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "for Houston.",
+            "exact_native_cache_key": "56d1c5c1a229f6e7ef0ada2c035e21316d3eb161.pkl",
+            "cache_input_text_sha256": "e26388af50e80f15687587c3e3f8b1f3b4151f92384bbddd5b286844190cd4d5",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "08fb52b62c51b212",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          24064
+        ],
+        "unprocessed_array_sha256": "636c0374eb12081c6347886b4e4a32bd6ae13209b024241786a047d0a1f40072"
+      },
+      {
+        "exact_native_cache_key": "6fddd69719d53680686ba5488e17e263ddb0270c.pkl",
+        "pkl_sha256": "089d7b5b88763b649467f506f15e4b13fa041dbae71a2ecceaf08c66fa53db60",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Clamped to her deck were 58 containers, trailer bodies detached from their wheels and chassis.",
+            "exact_native_cache_key": "6fddd69719d53680686ba5488e17e263ddb0270c.pkl",
+            "cache_input_text_sha256": "23ece9d2ffe0768dfa23691f6c39abe708c7d42e02821bb40f2d8f800411d874",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "089d7b5b88763b64",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          145408
+        ],
+        "unprocessed_array_sha256": "1e0491adc6d028181ffaf068a9820acae5865b5844ee5e29b562cdded831583a"
+      },
+      {
+        "exact_native_cache_key": "9c2de27bef3551237a2e9a3977dbd138cf03ef93.pkl",
+        "pkl_sha256": "8df9f2bc8b9fb9476f81ae64d48109f7fb89c0614a683862aec307c86d3c2c58",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Clamped to her deck were 58 containers,",
+            "exact_native_cache_key": "9c2de27bef3551237a2e9a3977dbd138cf03ef93.pkl",
+            "cache_input_text_sha256": "e1381db96203b20c14f2cd554cce399399260d9d2e8af63f604ea213197d266c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S2",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Clamped to her deck were 58 containers,",
+            "exact_native_cache_key": "9c2de27bef3551237a2e9a3977dbd138cf03ef93.pkl",
+            "cache_input_text_sha256": "e1381db96203b20c14f2cd554cce399399260d9d2e8af63f604ea213197d266c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "8df9f2bc8b9fb947",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          62464
+        ],
+        "unprocessed_array_sha256": "79d29ddc154323ba35bd828539ecf87532648fc02f6bdd1518612e0d848f9540"
+      },
+      {
+        "exact_native_cache_key": "2d53e677dd6bb13fd4f0e6e9acacc9402741df42.pkl",
+        "pkl_sha256": "8e1009a67f1940509ac853dfd698f0b4a12f70f4eb6bf599f930ad40c4eea54c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "trailer bodies detached from their wheels and chassis.",
+            "exact_native_cache_key": "2d53e677dd6bb13fd4f0e6e9acacc9402741df42.pkl",
+            "cache_input_text_sha256": "1f01c6e323d246e4928d44e13d5c09b5731b05ecb8ccfc57f3b6d0e9ab28e427",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S2",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "trailer bodies detached from their wheels and chassis.",
+            "exact_native_cache_key": "2d53e677dd6bb13fd4f0e6e9acacc9402741df42.pkl",
+            "cache_input_text_sha256": "1f01c6e323d246e4928d44e13d5c09b5731b05ecb8ccfc57f3b6d0e9ab28e427",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "8e1009a67f194050",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          72704
+        ],
+        "unprocessed_array_sha256": "ae7173f8b37fc2618159e18031ff3ac0890e186bb10cf35afcdcae68468d1582"
+      },
+      {
+        "exact_native_cache_key": "7e7c77ba56de5998ebd95df242e24b7366985ba2.pkl",
+        "pkl_sha256": "b95ce813da8a7d6f6912a95239a0fd3e2afd98173f491638867cb8c8826de24d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Few spectators would have taken so unremarkable a cargo for a landmark.",
+            "exact_native_cache_key": "7e7c77ba56de5998ebd95df242e24b7366985ba2.pkl",
+            "cache_input_text_sha256": "13eb37c0ae496d701decbcbfff919921a7b21f3726c09a9f56e6f3ff272af892",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "b95ce813da8a7d6f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          113152
+        ],
+        "unprocessed_array_sha256": "837c60ce7e0607be92714015cbfab6e991e64dd00f8019559aa1b032fb1f2bc7"
+      },
+      {
+        "exact_native_cache_key": "37dfa9c5d53c0e239d65082ba74fa9baa7c7245f.pkl",
+        "pkl_sha256": "6a397146bebecbe887e6a013df7ff64b897860b622eaecc94da0b7ea0efed272",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "At the time, freight travelled loose.",
+            "exact_native_cache_key": "37dfa9c5d53c0e239d65082ba74fa9baa7c7245f.pkl",
+            "cache_input_text_sha256": "3eea708201f1e29efd816366edd43c28fc6233e0a37fae9e94ab7c8ec3cd58e1",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "6a397146bebecbe8",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          50176
+        ],
+        "unprocessed_array_sha256": "730e26c13637e724e17623f23086395876aefa4d9952039dfaae5d804d569222"
+      },
+      {
+        "exact_native_cache_key": "5ce514a60512940dee7479051ccbe7b952e45e1b.pkl",
+        "pkl_sha256": "72e90ed7b941e8fae6c2fbdd79f437c9af4f3a711ebeee3d59d8ef2d34a9a1a6",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "At the time,",
+            "exact_native_cache_key": "5ce514a60512940dee7479051ccbe7b952e45e1b.pkl",
+            "cache_input_text_sha256": "78c8cbb5102fa9b52c94884ce6514f95e7c6c312f20afb701fbdd794935a03c1",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "72e90ed7b941e8fa",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          24064
+        ],
+        "unprocessed_array_sha256": "0465e2e5a943f31ce02882075b4c63a2cf05efed435f34dc24dbec9d3d75aaee"
+      },
+      {
+        "exact_native_cache_key": "fad37536f225171c41fed04a04f1737562d1cf04.pkl",
+        "pkl_sha256": "8d7f5e3e0f059c7ddec4bcbef3ebb5ba6dd163097e800e9f7d5580e839fd9034",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "freight travelled loose.",
+            "exact_native_cache_key": "fad37536f225171c41fed04a04f1737562d1cf04.pkl",
+            "cache_input_text_sha256": "95c164db0f2103c6ea61cb367267d21e4a419fe4bfd37316a7c1abd1b6553ea2",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "8d7f5e3e0f059c7d",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          32768
+        ],
+        "unprocessed_array_sha256": "3d843bbbcd182adb9203d17b40dc83be33fbe78cfd9c38f2de64c44c33f04930"
+      },
+      {
+        "exact_native_cache_key": "b52468d68d2144864efc82996f8038c84211d7fa.pkl",
+        "pkl_sha256": "9a024e72fa1c4fd78ed7bd6f87a8f13eb8df1cfaa52a8ea34e28fae0277b6c9e",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Gangs of twenty or more dockworkers carried sacks, barrels, and crates piece by piece.",
+            "exact_native_cache_key": "b52468d68d2144864efc82996f8038c84211d7fa.pkl",
+            "cache_input_text_sha256": "9512c5cfa1145b07d31dc0e18824632df7833102d6c26e6d6834e320ccc46dd7",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "9a024e72fa1c4fd7",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          129536
+        ],
+        "unprocessed_array_sha256": "5ed37b7d9bd1d899f5686f65378ba103544ec88a2e866ba158b34e6920aaf536"
+      },
+      {
+        "exact_native_cache_key": "ab6baceee46af4906a937bad5319bc4e6f0f31cc.pkl",
+        "pkl_sha256": "f45eb84e8ecfa4b54616c2c9620bf3e63b306f8453a262424afa692e16e14e99",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Gangs of twenty or more dockworkers",
+            "exact_native_cache_key": "ab6baceee46af4906a937bad5319bc4e6f0f31cc.pkl",
+            "cache_input_text_sha256": "06cb4eb524349efdd2e18367f26b95c0cd78b0e0b0ba05a534c543ecc7b06b1e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "f45eb84e8ecfa4b5",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          52224
+        ],
+        "unprocessed_array_sha256": "b9dfea8dfb273057966a80781a46a55a4a502db92e01821b7d23928d099e743c"
+      },
+      {
+        "exact_native_cache_key": "65861d89b31de3d743b7ec29434ab9eb00290c93.pkl",
+        "pkl_sha256": "12537b453c8c3b414f4905d7b2b6991233304465f65fde59a7bbd7221c565f61",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "carried sacks, barrels, and crates piece by piece.",
+            "exact_native_cache_key": "65861d89b31de3d743b7ec29434ab9eb00290c93.pkl",
+            "cache_input_text_sha256": "73eaef11dd5e215566110d186ca913572e4080b1d78d448e3f494a98aeba9163",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "12537b453c8c3b41",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          69120
+        ],
+        "unprocessed_array_sha256": "b617b96484cd5aa89f8bdf55538311660de926c193ff91da5c10db3a8555700e"
+      },
+      {
+        "exact_native_cache_key": "b369daee81eb31bb2ea57e967fc59748843329db.pkl",
+        "pkl_sha256": "294f489ba05b3b354043634e6857041a6e5dc241d03935d37273d2a7e0dc370b",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Gangs of twenty or more dockworkers carried sacks,",
+            "exact_native_cache_key": "b369daee81eb31bb2ea57e967fc59748843329db.pkl",
+            "cache_input_text_sha256": "698c824808c764626221d502d598eb5080e740e4304ddc7f1dfeaef0e7f817ef",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "294f489ba05b3b35",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          70656
+        ],
+        "unprocessed_array_sha256": "27f9be03c569d29908e65b7e123461abb620087609e98d700207dcfa8bebbeda"
+      },
+      {
+        "exact_native_cache_key": "00f0ef56d5956bde16c298dde69b6439b52f0078.pkl",
+        "pkl_sha256": "23e36f7ca164de38461172d131e3eb419e07b9e1a92989eab0f74f7ca79ecc0a",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "barrels,",
+            "exact_native_cache_key": "00f0ef56d5956bde16c298dde69b6439b52f0078.pkl",
+            "cache_input_text_sha256": "126aca79184c5460d3410ee784b4f64bce688d0546bea67c59dbed9c36445bae",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "23e36f7ca164de38",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          18432
+        ],
+        "unprocessed_array_sha256": "219b2528667baaa0bedebbef3764df42355d07a812a0368a8934d8fbdde7833d"
+      },
+      {
+        "exact_native_cache_key": "993c1830e1ee21ffcf62ef8ecd2824cf1dc5fc01.pkl",
+        "pkl_sha256": "4261028f6cce9110285e15ffd7ec9d911b9549013dbe052eb633f46a92086e9f",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and crates piece by piece.",
+            "exact_native_cache_key": "993c1830e1ee21ffcf62ef8ecd2824cf1dc5fc01.pkl",
+            "cache_input_text_sha256": "65a1158cc0ea84e70f08d5add7ad56829d01d3266fdcfef4f2d24909412cd909",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "4261028f6cce9110",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          36352
+        ],
+        "unprocessed_array_sha256": "4af4d4cf15ca770a9c09f0d96d133868b2c528a3fd544e0c309ec50cb67db8d3"
+      },
+      {
+        "exact_native_cache_key": "37e6bd46525d51a7d591d2f0de55a0e75695ac57.pkl",
+        "pkl_sha256": "c85e7f5a2a51f4bc8425526e5d0d86e7e41e105e63cf4ff5a1471bb8331416bb",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "It was strenuous drudgery.",
+            "exact_native_cache_key": "37e6bd46525d51a7d591d2f0de55a0e75695ac57.pkl",
+            "cache_input_text_sha256": "7f3cc08e9d402c3a2166104e53bb7c738e068eb7f0b2cdf1444cd2abbb2940f9",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "c85e7f5a2a51f4bc",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          38400
+        ],
+        "unprocessed_array_sha256": "de0103dd2f5915110d6cf65f71d40a046fd704c821610aaa26d99dc5df239602"
+      },
+      {
+        "exact_native_cache_key": "8174990694f9ae47bd0678e5e9a1c8e3cc132a46.pkl",
+        "pkl_sha256": "d307972c4cb363dcbd0b9f0689868576512fc54598fdbe26f17a0fcb3fb0ec15",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Ships could spend up to half their time berthed, and theft was rampant.",
+            "exact_native_cache_key": "8174990694f9ae47bd0678e5e9a1c8e3cc132a46.pkl",
+            "cache_input_text_sha256": "8e98346a24364c860d84b04ed9508293bbd57ead692ebdcaeebada689ee8c5be",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "d307972c4cb363dc",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          97280
+        ],
+        "unprocessed_array_sha256": "5f46ba01c87eb7a230c0c29aaa368bfcd6b11edf749447889287ed244e5f8f49"
+      },
+      {
+        "exact_native_cache_key": "65b68a01feaf22263e2f8ee1970ac0da05f0c350.pkl",
+        "pkl_sha256": "9ead90c9235176a004c10894847e6ee19b5ba4059cd147fa1f7fea5cf7411e36",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Ships could spend up to half their time berthed,",
+            "exact_native_cache_key": "65b68a01feaf22263e2f8ee1970ac0da05f0c350.pkl",
+            "cache_input_text_sha256": "1cf40e69abd0d5875e864d8c5f8f8e8618462305290911bf1e0bccc8ce8d05ee",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S7",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Ships could spend up to half their time berthed,",
+            "exact_native_cache_key": "65b68a01feaf22263e2f8ee1970ac0da05f0c350.pkl",
+            "cache_input_text_sha256": "1cf40e69abd0d5875e864d8c5f8f8e8618462305290911bf1e0bccc8ce8d05ee",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "9ead90c9235176a0",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          57344
+        ],
+        "unprocessed_array_sha256": "6fc4b6959f670bffcfd7bc8bad3aae552e869bea81e4d558ad87e9d7835e127d"
+      },
+      {
+        "exact_native_cache_key": "a49040e08f117dccf280a159c218aa1c8491a27e.pkl",
+        "pkl_sha256": "da75e51ce5ddc12a5a28c5d1ccb1364c540829e7a7c2729a187025fbdfac96d2",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and theft was rampant.",
+            "exact_native_cache_key": "a49040e08f117dccf280a159c218aa1c8491a27e.pkl",
+            "cache_input_text_sha256": "aee901746a9b68f345af7d55748567844191363d56ee7c81db995c7bfdf592d5",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S7",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and theft was rampant.",
+            "exact_native_cache_key": "a49040e08f117dccf280a159c218aa1c8491a27e.pkl",
+            "cache_input_text_sha256": "aee901746a9b68f345af7d55748567844191363d56ee7c81db995c7bfdf592d5",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "da75e51ce5ddc12a",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          33792
+        ],
+        "unprocessed_array_sha256": "e007c665391f6f34579144573d141b8ff9fdb645ce54d84e43635d7bb916c4d4"
+      },
+      {
+        "exact_native_cache_key": "4cf5a3f3d4fe5109bc6de2c8572c5c7000eff0b6.pkl",
+        "pkl_sha256": "43c357560df0704d4462dfd4d0da7e2db6f4e9aa20af39b67925afba51f07779",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "In 1956 loading loose cargo cost about $5.83 a ton; loading the Ideal X cost, by the company's reckoning, about 16 cents.",
+            "exact_native_cache_key": "4cf5a3f3d4fe5109bc6de2c8572c5c7000eff0b6.pkl",
+            "cache_input_text_sha256": "76cb1a21674fa3618a0afd265c1d6c59b770754edf437eafd8a83c0fb856f948",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "43c357560df0704d",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          287744
+        ],
+        "unprocessed_array_sha256": "d45afe0309099bc355fc17cfd9b8e2da46783d5f52a33510646b0cb24eed86a8"
+      },
+      {
+        "exact_native_cache_key": "c6858c2f91c6a40d99991f700679e1a8abb00d75.pkl",
+        "pkl_sha256": "f8b38b50ce8d0a3c9f4a8efdf02fcdf01cfedb87c7b9796d85df38313b34c5ad",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "In 1956 loading loose cargo cost about $5.83 a ton;",
+            "exact_native_cache_key": "c6858c2f91c6a40d99991f700679e1a8abb00d75.pkl",
+            "cache_input_text_sha256": "7d5ac9d9626f007efacfdbcdda3857368622369e6a05353395de789768837ef1",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S8",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "In 1956 loading loose cargo cost about $5.83 a ton;",
+            "exact_native_cache_key": "c6858c2f91c6a40d99991f700679e1a8abb00d75.pkl",
+            "cache_input_text_sha256": "7d5ac9d9626f007efacfdbcdda3857368622369e6a05353395de789768837ef1",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "f8b38b50ce8d0a3c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          150528
+        ],
+        "unprocessed_array_sha256": "03f885bf48451f2f38015d3ba7c020a52fa906f56d6f6e19a2b1365bda9f5970"
+      },
+      {
+        "exact_native_cache_key": "4364881d443a1fac20214c1fd4a19d8196e7381f.pkl",
+        "pkl_sha256": "7e60ba5a27f9bb6dff9b410e24a97391c9de8e07f77437cf6d5cb3e324b5fc6c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "loading the Ideal X cost, by the company's reckoning, about 16 cents.",
+            "exact_native_cache_key": "4364881d443a1fac20214c1fd4a19d8196e7381f.pkl",
+            "cache_input_text_sha256": "48aa30f6a9eb916407e6635622ce723e3e4e9ed8232f8c50e67679c73a8928e4",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "7e60ba5a27f9bb6d",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          119808
+        ],
+        "unprocessed_array_sha256": "ab1c6b85bd44081731c768793183ab408b1e1629bcf108550f35d4ab8676a003"
+      },
+      {
+        "exact_native_cache_key": "dc8bc98d6c3d8fa2f0b6291bfa220de3f5100914.pkl",
+        "pkl_sha256": "256592e5f715029a00b666710df5a52810cc289cb968260784c74c92ae2129e6",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "loading the Ideal X cost,",
+            "exact_native_cache_key": "dc8bc98d6c3d8fa2f0b6291bfa220de3f5100914.pkl",
+            "cache_input_text_sha256": "ee0c52d601926b50a41ba377e477ad01ca355541a44aa2177423309d06cc8b20",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "256592e5f715029a",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          42496
+        ],
+        "unprocessed_array_sha256": "4ee64199a16592b35b367dedacb0f0dc4a6f6ee1cc577809af174a350a8e2e20"
+      },
+      {
+        "exact_native_cache_key": "5b0b21f8e0f6445f4a91eb9c8de4cc9e0d0240be.pkl",
+        "pkl_sha256": "2782e38b3a9d6d01b2f07f403c8b40e3f5b1788fbe240850efe07628324e1d63",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "by the company's reckoning,",
+            "exact_native_cache_key": "5b0b21f8e0f6445f4a91eb9c8de4cc9e0d0240be.pkl",
+            "cache_input_text_sha256": "68c7f113508fc8cd843bed13d6d8da98615ed98fd1e2156c8fba027e1d1a3e40",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "2782e38b3a9d6d01",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          35840
+        ],
+        "unprocessed_array_sha256": "1a979e5deee031f7fdfc518c3709a8ded22873f7d45b27701bf7ddaf93d01274"
+      },
+      {
+        "exact_native_cache_key": "c314bfe79bee3bf3133cda21ced7ba6acb771dbc.pkl",
+        "pkl_sha256": "6182022621b1c0e8a4d65bdc995e15642fe2fbfb36db95a50f4c3ccba420d2e1",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "about 16 cents.",
+            "exact_native_cache_key": "c314bfe79bee3bf3133cda21ced7ba6acb771dbc.pkl",
+            "cache_input_text_sha256": "f0552c92dc3bbe6a0d105a215025237bde98e1bdce11ca4bd85a6b6ef55dd554",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "6182022621b1c0e8",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          33792
+        ],
+        "unprocessed_array_sha256": "64817c90802559e661780aeb34436a6272070901440bd9ead1a953b3b10803ab"
+      },
+      {
+        "exact_native_cache_key": "a499c666ecd434834fbe07b87d260d25dc7e8456.pkl",
+        "pkl_sha256": "16f5150f55b04c8fde62796002f6b792e222e0538ac6f1916b3abacfa948ea4c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Containers were not new.",
+            "exact_native_cache_key": "a499c666ecd434834fbe07b87d260d25dc7e8456.pkl",
+            "cache_input_text_sha256": "d2fe397d59bc7b1219aaeafcfd7a6b5a3d5910eba6a047c169fd5f5ab37f2ca5",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "16f5150f55b04c8f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          36352
+        ],
+        "unprocessed_array_sha256": "0c8166d37c24a2fc41a25b2a8ffb1c9469ecd193497df97702cc894a6ed8b141"
+      },
+      {
+        "exact_native_cache_key": "5e5cc7d251fc479291011b47adca297987a07828.pkl",
+        "pkl_sha256": "a6801303031f1bdf8e5ac268dc88f2d21f2aa6c1e25172e7d68931f452fe2327",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The hurdle was consensus: rival firms' boxes had incompatible dimensions and latches.",
+            "exact_native_cache_key": "5e5cc7d251fc479291011b47adca297987a07828.pkl",
+            "cache_input_text_sha256": "6e2bf3f705dc01f3fec790a3560c84d66d04741e43f81838b19a9f15d33ac523",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "a6801303031f1bdf",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          147456
+        ],
+        "unprocessed_array_sha256": "37460c8c045ee2e5263ebc1c082b630667f95680033932ba646bdb94e2b2b811"
+      },
+      {
+        "exact_native_cache_key": "9a6914bfd6f8f2b9f776d8a390a35ee4c57153aa.pkl",
+        "pkl_sha256": "169343a7a5e73463d8f88b2e9664b5d0bff6fc0a6e8315a067ed905bc04368fb",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "The hurdle was consensus:",
+            "exact_native_cache_key": "9a6914bfd6f8f2b9f776d8a390a35ee4c57153aa.pkl",
+            "cache_input_text_sha256": "fb9d74ebdbd381cc11deac657441ebbe16545cf06ee5b12dbfb32886d4c108d8",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S10",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "The hurdle was consensus:",
+            "exact_native_cache_key": "9a6914bfd6f8f2b9f776d8a390a35ee4c57153aa.pkl",
+            "cache_input_text_sha256": "fb9d74ebdbd381cc11deac657441ebbe16545cf06ee5b12dbfb32886d4c108d8",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "169343a7a5e73463",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          38912
+        ],
+        "unprocessed_array_sha256": "a23ae93361543e521779a587723a3faf0318873f4463c3b30a8923d52fe373e4"
+      },
+      {
+        "exact_native_cache_key": "65d105c29359ee485e0e0c2c5906ba9fee25ed6e.pkl",
+        "pkl_sha256": "bf348ae842217d8215555e76f0ab15ccd5e2ff24b68b5a2df751770d84ed10cb",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "rival firms' boxes had incompatible dimensions and latches.",
+            "exact_native_cache_key": "65d105c29359ee485e0e0c2c5906ba9fee25ed6e.pkl",
+            "cache_input_text_sha256": "3a7ed8956d72ee3bcb5387a88f528d83239936c5cd5642a9e46d5f06cd0ca897",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S10",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "rival firms' boxes had incompatible dimensions and latches.",
+            "exact_native_cache_key": "65d105c29359ee485e0e0c2c5906ba9fee25ed6e.pkl",
+            "cache_input_text_sha256": "3a7ed8956d72ee3bcb5387a88f528d83239936c5cd5642a9e46d5f06cd0ca897",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "bf348ae842217d82",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          100352
+        ],
+        "unprocessed_array_sha256": "68eaf8b9703734c210c52d9d3e41d2605c8b282cd1b8142313331cd57271ea42"
+      },
+      {
+        "exact_native_cache_key": "a65742fa5a5bf2685c66a15594aae732c7bcc5af.pkl",
+        "pkl_sha256": "cc54c803f7c702068790bf51c0eaaf03156d97dcf6f0ba986c3f378dd0968ec1",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "An international standards committee formed in 1961.",
+            "exact_native_cache_key": "a65742fa5a5bf2685c66a15594aae732c7bcc5af.pkl",
+            "cache_input_text_sha256": "a046311a4705f11089bd6d4c32e6b5099b12e7e57766fb2eeaf31a4711d5a15d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "cc54c803f7c70206",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          94720
+        ],
+        "unprocessed_array_sha256": "0ce1d286e5ebf645a18c6ca4ce4598b4184a461d5aa34d604bde5520b12d564a"
+      },
+      {
+        "exact_native_cache_key": "0599b560b66662e193d032d05afcaa59433e28ff.pkl",
+        "pkl_sha256": "cddcc8e1a99ce469d49147db33979305a0a119ff13d597a182fdf5c3ce8d6e3f",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "In January 1963 Sea-Land, the Ideal X's renamed operator, let the committee use its patents free of royalties, including those on corner fittings for hoisting.",
+            "exact_native_cache_key": "0599b560b66662e193d032d05afcaa59433e28ff.pkl",
+            "cache_input_text_sha256": "4cbbea825b4832522329b96ad01af88fedb274fe28b9b95adefffd2ddef6f2a4",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "cddcc8e1a99ce469",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          306688
+        ],
+        "unprocessed_array_sha256": "7ede242515b1c416ca11cd8e67899a00caf65e2aeb98a2f92d16a37a8fb726f2"
+      },
+      {
+        "exact_native_cache_key": "03eb5bc040c5bc29d8f8e54ab50db68110750211.pkl",
+        "pkl_sha256": "03319555828dc0a190689cd193069df1e33fadb7ee2c1a9c63483ef19752d560",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "In January 1963 Sea-Land, the Ideal X's renamed operator,",
+            "exact_native_cache_key": "03eb5bc040c5bc29d8f8e54ab50db68110750211.pkl",
+            "cache_input_text_sha256": "07757544fbc1dccac754438a0ce23bc87306ff40c29a768cdcb04fd207cbd452",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "03319555828dc0a1",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          135680
+        ],
+        "unprocessed_array_sha256": "ebb0d9d182c68055233174f7efea90989675860005f0c43a872708424d0670f5"
+      },
+      {
+        "exact_native_cache_key": "4c069d9e160944d08fd544173d29aa5d889adddc.pkl",
+        "pkl_sha256": "3544f60d4185dbeaea0b5308dab1d3d09a6dffd59b78866eaecb6be1dc47790c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "let the committee use its patents free of royalties,",
+            "exact_native_cache_key": "4c069d9e160944d08fd544173d29aa5d889adddc.pkl",
+            "cache_input_text_sha256": "adfaafd3264b5bf9c2585efa6bec0b737e6b52ed57fde11c928d4a75490d705f",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S12",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "let the committee use its patents free of royalties,",
+            "exact_native_cache_key": "4c069d9e160944d08fd544173d29aa5d889adddc.pkl",
+            "cache_input_text_sha256": "adfaafd3264b5bf9c2585efa6bec0b737e6b52ed57fde11c928d4a75490d705f",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "3544f60d4185dbea",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          65536
+        ],
+        "unprocessed_array_sha256": "894d21e07a1687a39d50df82cb166cbcb2bb5bb63965d9d00b8453a8e3db10de"
+      },
+      {
+        "exact_native_cache_key": "2e8fb1dee4d8709042796638b8f3a4335f8baa9f.pkl",
+        "pkl_sha256": "8b07909a44e5138ef8bfebcc86ba1557aab807885e86ebfffbc07095a4f29ff0",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "including those on corner fittings for hoisting.",
+            "exact_native_cache_key": "2e8fb1dee4d8709042796638b8f3a4335f8baa9f.pkl",
+            "cache_input_text_sha256": "e90bb361f93dbb4ffd23a6fb51751a8d78fdab230db941e7ab8a4bd17b8289bb",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S12",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "including those on corner fittings for hoisting.",
+            "exact_native_cache_key": "2e8fb1dee4d8709042796638b8f3a4335f8baa9f.pkl",
+            "cache_input_text_sha256": "e90bb361f93dbb4ffd23a6fb51751a8d78fdab230db941e7ab8a4bd17b8289bb",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "8b07909a44e5138e",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          65536
+        ],
+        "unprocessed_array_sha256": "17f229f8f3c04a8cdd11c5c2f0c6dd1c1a3b57d7b408c79a457c034cbcd3ed2d"
+      },
+      {
+        "exact_native_cache_key": "27eff77c752dbdd64e201b2306f0b4dbeed16522.pkl",
+        "pkl_sha256": "9c732d598263603d3034151eb97ced45ae4a3dee09735706455abbe64a428210",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "In January 1963 Sea-Land,",
+            "exact_native_cache_key": "27eff77c752dbdd64e201b2306f0b4dbeed16522.pkl",
+            "cache_input_text_sha256": "463fa6a4a889f676eae55148329de0dab45575e1e656d7a98b41a7a8513e8d65",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "9c732d598263603d",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          68096
+        ],
+        "unprocessed_array_sha256": "66b3624ea0081075ede774d223cea329659ee16074b939f17dd2d8b6444d4d13"
+      },
+      {
+        "exact_native_cache_key": "fb778a220b2f51189b4eb30a183fc1296cd35574.pkl",
+        "pkl_sha256": "3c7110bb02d7f619206b95d19ddd7292ca9b87e32874979b697815a85dff0ad8",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "the Ideal X's renamed operator,",
+            "exact_native_cache_key": "fb778a220b2f51189b4eb30a183fc1296cd35574.pkl",
+            "cache_input_text_sha256": "75fbf65fbc91b44f3e2abd3f98756136f205bb72b3f72d26403ec7db01b82629",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "3c7110bb02d7f619",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          56320
+        ],
+        "unprocessed_array_sha256": "e03352123711f06eaa9e779c4c7a62d5788a5aedb2b457b1ff3c354b8c4a4f83"
+      },
+      {
+        "exact_native_cache_key": "70d38ef1bff2bbccb756dd93258814e15e370e39.pkl",
+        "pkl_sha256": "c5d69bae101ef54dd83b7a0608f9eb9d828f02d4e128a8702ed21a93ebfb127f",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Lifted by crane, a box could be transferred smoothly between ship, lorry, and train.",
+            "exact_native_cache_key": "70d38ef1bff2bbccb756dd93258814e15e370e39.pkl",
+            "cache_input_text_sha256": "d53bb74dad0e50f6d3929364d5a1b14aea7d47f2a614529242108fd9a885e741",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "c5d69bae101ef54d",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          129536
+        ],
+        "unprocessed_array_sha256": "4a7af1fc254afdd436ca15bd3aea3f15f7f84d7694bfa1cc6875f0326d7e69ce"
+      },
+      {
+        "exact_native_cache_key": "cebaa013abc986cce6217cf112ba3d589ebb1583.pkl",
+        "pkl_sha256": "9e9b98f8a815116f239da5ea0e98d9c6a67428bb2fa75b06fb987ee9e5392b91",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Lifted by crane, a box",
+            "exact_native_cache_key": "cebaa013abc986cce6217cf112ba3d589ebb1583.pkl",
+            "cache_input_text_sha256": "18e1565d1ad69670f979ce0a34fb49657b69f78f730337ca2826941d79a23545",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "9e9b98f8a815116f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          39936
+        ],
+        "unprocessed_array_sha256": "ecdc542f49d841cb54778a1466accbd3b6a4bfe48fc05b2d6987b1bb62730899"
+      },
+      {
+        "exact_native_cache_key": "be5c979f39c335e0a98baa3c7c0ef81662a3a3bd.pkl",
+        "pkl_sha256": "21d5da500c61b75deac914abba60fa7bdc279523dca6782303980f259753a769",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "could be transferred smoothly between ship, lorry, and train.",
+            "exact_native_cache_key": "be5c979f39c335e0a98baa3c7c0ef81662a3a3bd.pkl",
+            "cache_input_text_sha256": "0afdee3e839cda5b805b777cae08128ceae58b00d676e740aa6826e3fd05397c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "21d5da500c61b75d",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          83456
+        ],
+        "unprocessed_array_sha256": "983cd18209e695408958355ea59498eed7bec2c5ef664c79f1ce5994c05c8981"
+      },
+      {
+        "exact_native_cache_key": "dfe7119b43cbca8902c06ec0083cbd05dfa6aca4.pkl",
+        "pkl_sha256": "6c2ce9d58f139804b15a824d37a9368ced1e96d2a9af166a8aa4c526d5062a25",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Lifted by crane,",
+            "exact_native_cache_key": "dfe7119b43cbca8902c06ec0083cbd05dfa6aca4.pkl",
+            "cache_input_text_sha256": "d8b0da6d4a14739a50d5bc8770fc639b2b3631490a19a716ce288361ace4ebf5",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "6c2ce9d58f139804",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          29184
+        ],
+        "unprocessed_array_sha256": "972519e30079e690bb387690a738e5557ac5ab1114a15221d17562d81fa8e343"
+      },
+      {
+        "exact_native_cache_key": "3cf7b7677f8519e9578f59e4ec52771c02c1f8d7.pkl",
+        "pkl_sha256": "a4719c3f38759160d3793d8273f8ba59e9575b4f956dcbff0e390a63c54d039e",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "a box could be transferred smoothly between ship,",
+            "exact_native_cache_key": "3cf7b7677f8519e9578f59e4ec52771c02c1f8d7.pkl",
+            "cache_input_text_sha256": "c71a9f8f6fff3c59e1763cd958280ca45252a3b9b9eafe0830065721ad943488",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "a4719c3f38759160",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          62976
+        ],
+        "unprocessed_array_sha256": "ba2f81d57c392a37306f69f9df27accd0615391027ce20adb9f0455c8ec68d47"
+      },
+      {
+        "exact_native_cache_key": "a7a1ca970de66566731f6972660b2a60fab753ce.pkl",
+        "pkl_sha256": "2ad5d97b061a4d49cdae5f5627a4a799a92f4630b6773d31d319bca42caed588",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "lorry,",
+            "exact_native_cache_key": "a7a1ca970de66566731f6972660b2a60fab753ce.pkl",
+            "cache_input_text_sha256": "a01b23881d99c2bbfa7b42a2253c0796a624f56a1cec05a02dbe8a417dc467db",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "2ad5d97b061a4d49",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          17408
+        ],
+        "unprocessed_array_sha256": "9e59a2206db3a4ad9ba9a675919d216ee023e99f982837ccad439d8280e981b3"
+      },
+      {
+        "exact_native_cache_key": "1a065ca452b7a2ccaf9a2539f443397884541c97.pkl",
+        "pkl_sha256": "df17518a7f0af0a86656b64c3aa2f6d5f0e189780ad35ec0f27ba4a5a361dd76",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and train.",
+            "exact_native_cache_key": "1a065ca452b7a2ccaf9a2539f443397884541c97.pkl",
+            "cache_input_text_sha256": "dbdd82351f72e7a755a9ceaf2620988acd46439e972cc68667880e5d18578511",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "df17518a7f0af0a8",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          22528
+        ],
+        "unprocessed_array_sha256": "b65e2412aa9dd3b48efe3dd8228a9d5b8e3c85ee6c3c9c8777f79412317ab0a7"
+      },
+      {
+        "exact_native_cache_key": "855d5f6f09be43c97bb91b78c5edb10c721164e7.pkl",
+        "pkl_sha256": "e0f3f98ed19fefaee2d95b00864e476f0a37a514ff9b3a288bec4f25f9c16376",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "This efficiency came at the expense of livelihoods.",
+            "exact_native_cache_key": "855d5f6f09be43c97bb91b78c5edb10c721164e7.pkl",
+            "cache_input_text_sha256": "65c616ea177fd5944496199b72cfe312c06155e895c1af55956cf4ef37f8fc0b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "e0f3f98ed19fefae",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          72192
+        ],
+        "unprocessed_array_sha256": "2426994ef9f5d8a228b54a69e1fa639c5f5b2bfcc1a02db2751f4c3540dfabec"
+      },
+      {
+        "exact_native_cache_key": "0e8fdb6953a1b496605353a2c41ae87bb7f28ca4.pkl",
+        "pkl_sha256": "e3c47b8ad4ed758c03d44e41b912855e4563486df55d363b3853866cbc3b1726",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "New York's waterfront employment shrank by about three quarters between 1963 and 1976.",
+            "exact_native_cache_key": "0e8fdb6953a1b496605353a2c41ae87bb7f28ca4.pkl",
+            "cache_input_text_sha256": "33bd3adf782d40e93f7ef40e1c5c5dac53af237e0e1017e3a076f53e8c6b490c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "e3c47b8ad4ed758c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          175616
+        ],
+        "unprocessed_array_sha256": "3c457997234bddeeb4ba5c89cd1913309b279dbc1b17cd95bc06c6810b07ea35"
+      },
+      {
+        "exact_native_cache_key": "1175179ef75f26cc846c5dcd694506a21295c0dd.pkl",
+        "pkl_sha256": "5d091250ab05e416f4d420a889cd942d9f5bae437844d0619327e74aec481147",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Much of the cargo crossed the harbour to a new terminal at Elizabeth, inaugurated in August 1962.",
+            "exact_native_cache_key": "1175179ef75f26cc846c5dcd694506a21295c0dd.pkl",
+            "cache_input_text_sha256": "671de7318debcda77c35b8845fb8cb45476d5fb9ee3ac9ce5359dea30be739ba",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "5d091250ab05e416",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          178688
+        ],
+        "unprocessed_array_sha256": "a69b09ff97b9fc4bd35d135eed77128f890d90ab3cc4574b8c0bb704a7596e98"
+      },
+      {
+        "exact_native_cache_key": "5d80ac765c1f050f47c95f56ef84396b08bc73bd.pkl",
+        "pkl_sha256": "607df6dac4e2b3bbc26ca1525d9a66fb8313a370c4e917e202a4dd2f2a6c6999",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Much of the cargo crossed the harbour",
+            "exact_native_cache_key": "5d80ac765c1f050f47c95f56ef84396b08bc73bd.pkl",
+            "cache_input_text_sha256": "c81b8ada215f1bd196cd50f4d18c573a624fcfc30d2bd6e1d707fa1e01751f7f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "607df6dac4e2b3bb",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          46080
+        ],
+        "unprocessed_array_sha256": "69e97e8c5dcf264ff22bb02e0cb0b1801bf8de956dd4f1e02b511a80c2ad8388"
+      },
+      {
+        "exact_native_cache_key": "6da41abc1e816ffb02c806fc998a5cafdcabf7ad.pkl",
+        "pkl_sha256": "987a1a612de3dad2fe2e3d2ff29b0c6241f290d3cc6f8eaaa332814f946116c9",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "to a new terminal at Elizabeth, inaugurated in August 1962.",
+            "exact_native_cache_key": "6da41abc1e816ffb02c806fc998a5cafdcabf7ad.pkl",
+            "cache_input_text_sha256": "53824c360cc0b80951924daa4a9232d5613036b3ce55505b8404650a8187ab70",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "987a1a612de3dad2",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          128512
+        ],
+        "unprocessed_array_sha256": "161423b2f70623eabdb425e94b0f386a293d1bb38156301c90d52115ca8a8525"
+      },
+      {
+        "exact_native_cache_key": "b1b1d419ec1ac457308225ea493a354d1b018a96.pkl",
+        "pkl_sha256": "63864b052b54c5759cc19a800887f889e980a1cceee87e58e6b0fbef7749d5d3",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Much of the cargo crossed the harbour to a new terminal at Elizabeth,",
+            "exact_native_cache_key": "b1b1d419ec1ac457308225ea493a354d1b018a96.pkl",
+            "cache_input_text_sha256": "56778c7799675634765293c1149683bc4fa99f7d86f1438528f7726593f3e76a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "63864b052b54c575",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          97280
+        ],
+        "unprocessed_array_sha256": "26e7739e8a17424805f77a686b031eec758ac7eefb4a1005ba7a9ef9bd0803fd"
+      },
+      {
+        "exact_native_cache_key": "cb823e0c8bc598544ae6a51f02fb84cf6a5aaf91.pkl",
+        "pkl_sha256": "09452b9aeb7396b385eb08a0d4a8aff8fe066a8d4cff479ce69b1c7df5f1a7a7",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "inaugurated in August 1962.",
+            "exact_native_cache_key": "cb823e0c8bc598544ae6a51f02fb84cf6a5aaf91.pkl",
+            "cache_input_text_sha256": "9d8c626e253167a484b049b8d6dc8e6cc2b09e18c20bc62ccd72ed650b0b50c4",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "09452b9aeb7396b3",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          67072
+        ],
+        "unprocessed_array_sha256": "75526f15a913315a2149d8ed19687b8556922ceb38f8e00a137a7100e8acb423"
+      },
+      {
+        "exact_native_cache_key": "6dfd0a703643db901b83b4876f2985ae045e8342.pkl",
+        "pkl_sha256": "afabc2f0971646e5e16a43133c95d6eda1871a04054fcda36f5254dfaeac1ab0",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Most of London's historic docks closed one after another from 1967 to 1980, while Felixstowe, on the Suffolk coast, expanded.",
+            "exact_native_cache_key": "6dfd0a703643db901b83b4876f2985ae045e8342.pkl",
+            "cache_input_text_sha256": "bc32330b4b5bf46631038c4a5f86098ca42cc9c11d686f4fad9a23667d9ffd84",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "afabc2f0971646e5",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          240640
+        ],
+        "unprocessed_array_sha256": "318eda0dfd99c0e31622ef7769969d75e9466f1d93ffff16066c558d4ac4fb0e"
+      },
+      {
+        "exact_native_cache_key": "3b5a08c31fd601b034d25abd106c4c522c0bfcf4.pkl",
+        "pkl_sha256": "3ca3f4571011d0aa5ad507aae5a2895d050baecda1a1d5cd44f4309ea4ce045d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Most of London's historic docks closed one after another from 1967 to 1980,",
+            "exact_native_cache_key": "3b5a08c31fd601b034d25abd106c4c522c0bfcf4.pkl",
+            "cache_input_text_sha256": "120a593003008b289b70065a2f02550f02dc74c7ee16263508bfacf59b902f7b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S17",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Most of London's historic docks closed one after another from 1967 to 1980,",
+            "exact_native_cache_key": "3b5a08c31fd601b034d25abd106c4c522c0bfcf4.pkl",
+            "cache_input_text_sha256": "120a593003008b289b70065a2f02550f02dc74c7ee16263508bfacf59b902f7b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "3ca3f4571011d0aa",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          159232
+        ],
+        "unprocessed_array_sha256": "d02d99ed8194c92e7a313666f72decfbabb0c84ba05f8455933a99b69d5ae76f"
+      },
+      {
+        "exact_native_cache_key": "80adb528489808abb630f53f5308e47452698490.pkl",
+        "pkl_sha256": "f06ccd5a1fa0fa527376119d2c93768f03fc83f6a6bea1d9a1df55480be818e8",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "while Felixstowe, on the Suffolk coast, expanded.",
+            "exact_native_cache_key": "80adb528489808abb630f53f5308e47452698490.pkl",
+            "cache_input_text_sha256": "43ab86a8eb1cba2254d78732927598bad4c68cbc3608adda0a5cadf3362704f5",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "f06ccd5a1fa0fa52",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          70144
+        ],
+        "unprocessed_array_sha256": "58b59b071778d3926792cc5f2c95f3ee43c628923f3e7bb21c58f377fe814208"
+      },
+      {
+        "exact_native_cache_key": "e347353a721ec899268d7b48d59e09b5ab8ed814.pkl",
+        "pkl_sha256": "1e54322649c3980ce3e3b7f76a1ac597eb078c4ee680f61806bc656ac7f265d7",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "while Felixstowe,",
+            "exact_native_cache_key": "e347353a721ec899268d7b48d59e09b5ab8ed814.pkl",
+            "cache_input_text_sha256": "f9782374093455115606599b184fe397fa0bd4c33ee7371e5171a8ca792aab6a",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "1e54322649c3980c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          28672
+        ],
+        "unprocessed_array_sha256": "e3238412051d7964df02afbe556f5a40de16ddd80735b872198f3b43a41c700d"
+      },
+      {
+        "exact_native_cache_key": "2d741f15ae06a8405ecc1ef4e29486ef098aa495.pkl",
+        "pkl_sha256": "99e21b00f1ceb0265c70d188f6cc4e69919a8b4902b4b0a349bc4cac78661b8e",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "on the Suffolk coast,",
+            "exact_native_cache_key": "2d741f15ae06a8405ecc1ef4e29486ef098aa495.pkl",
+            "cache_input_text_sha256": "ccabb47c94c2c231f1e15044d5d8958d633b13ffcdcbf3aa4fc850712fb1b0c0",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "99e21b00f1ceb026",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          30208
+        ],
+        "unprocessed_array_sha256": "631c5ae298b602767007462d1ae0c15daa18f605b61a6ae9c4aefecc48a28847"
+      },
+      {
+        "exact_native_cache_key": "736b32d5e7b510ee3fc51ef9be8ff92860f2df06.pkl",
+        "pkl_sha256": "1264d8eadddad0ea56b918c7a86a55807cd8493f74de53b7e04e4932a8209537",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "expanded.",
+            "exact_native_cache_key": "736b32d5e7b510ee3fc51ef9be8ff92860f2df06.pkl",
+            "cache_input_text_sha256": "fdc65c6f39044a1b4c170cf0fe8f5a030c9980b5257b95139568aad6761ab684",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "1264d8eadddad0ea",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          23552
+        ],
+        "unprocessed_array_sha256": "c7737b9c8a16b08bf81a8a22e5d37323a9b4eff11b2891e7cc77c0a381cb9f0c"
+      },
+      {
+        "exact_native_cache_key": "8b40c769a90ba0ae0c120e53529aaef0cfaceaf6.pkl",
+        "pkl_sha256": "953dab400a80f999cfe8c27f28ac5a3fcbf86b371209016a1ec69fd8e946611f",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The rewards were substantial.",
+            "exact_native_cache_key": "8b40c769a90ba0ae0c120e53529aaef0cfaceaf6.pkl",
+            "cache_input_text_sha256": "b0ef3c06cf48797d30865726a4b6ac1fe7ff31242e78db7b378710fdef9b6921",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "953dab400a80f999",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          39936
+        ],
+        "unprocessed_array_sha256": "1829e5a6ebbe189a1f43070979e1c57f45da5c2164ad49ef3f14e3461e7371f0"
+      },
+      {
+        "exact_native_cache_key": "71c4ba90bf9d22ab4717599d65b24b4a7cde4e12.pkl",
+        "pkl_sha256": "95ec7ee466ee817961c08b4f81e751aef6873d78fbe644c1b046260ee2159cf8",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S19",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "A study published in the Journal of International Economics in 2016 estimated that containerisation had lifted trade between industrialised countries by a cumulative 700 per cent over 20 years.",
+            "exact_native_cache_key": "71c4ba90bf9d22ab4717599d65b24b4a7cde4e12.pkl",
+            "cache_input_text_sha256": "d27777ae0b980fec099bc9acb835153d5eaed6f5608642098b82ae35e4d02699",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "95ec7ee466ee8179",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          359936
+        ],
+        "unprocessed_array_sha256": "28cf0eeac22d03c4b35cb7a68ec327626951b854099921d4f14497b168bbce79"
+      },
+      {
+        "exact_native_cache_key": "bc456cbdc54177f50ad5883dcf396542cc915f91.pkl",
+        "pkl_sha256": "3c90da87884f04e5a442da52abe0324a04de9c4271ff84592062ab17ee63727d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S19",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "A study published in the Journal of International Economics in 2016 estimated",
+            "exact_native_cache_key": "bc456cbdc54177f50ad5883dcf396542cc915f91.pkl",
+            "cache_input_text_sha256": "80e664cd7352b0bd47e1639af907bde1d41747adf1d12a1cf90c435d6bc57c6b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "3c90da87884f04e5",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          143360
+        ],
+        "unprocessed_array_sha256": "9a8b5d23b62fa579138e8c9d997a976a82e4c2ecf56411d8bfa4b231853af056"
+      },
+      {
+        "exact_native_cache_key": "72fab4a3f352dcefdd063e68d5b6c211b5c79b44.pkl",
+        "pkl_sha256": "94924503ad21d599e1b203db77316c89301990d83d9dcfee9770350a135359b0",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S19",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "that containerisation had lifted trade between industrialised countries by a cumulative 700 per cent over 20 years.",
+            "exact_native_cache_key": "72fab4a3f352dcefdd063e68d5b6c211b5c79b44.pkl",
+            "cache_input_text_sha256": "6c6d5033d663b43c699ce2a38630f2a2af0b523677679134030d309b85181509",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "94924503ad21d599",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          215040
+        ],
+        "unprocessed_array_sha256": "953c8c71fbcb09a4cc2e3de1be67569f4b38c695b67f2eec332c62bc1e4af321"
+      },
+      {
+        "exact_native_cache_key": "22d4c5a40657e442d4a110f9f00fed031941d1ca.pkl",
+        "pkl_sha256": "41d4f7aa0fd270585237fef7de5682b252e0a3b39b5e5819e872da466de07799",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S20",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Tireless cranes now lift identical containers into orderly, immense stacks.",
+            "exact_native_cache_key": "22d4c5a40657e442d4a110f9f00fed031941d1ca.pkl",
+            "cache_input_text_sha256": "55f3d725b95e5ba94064474eed5a33b55bada52ee969cc2fb62c91f92f650bcd",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "41d4f7aa0fd27058",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          125440
+        ],
+        "unprocessed_array_sha256": "bfd76e007f5c5ac6682296db556f15868cde505006ad8165a928e97be5eccfd7"
+      },
+      {
+        "exact_native_cache_key": "b9c71a0bc7a1bddb230a5c2c338bc564d725ec5c.pkl",
+        "pkl_sha256": "bda387c5f3d0d09f15d8643c53c95ba80f544cf95984a77343f6ed28eaa63fc7",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S20",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Tireless cranes now lift identical containers into orderly,",
+            "exact_native_cache_key": "b9c71a0bc7a1bddb230a5c2c338bc564d725ec5c.pkl",
+            "cache_input_text_sha256": "97e75a19f9801f7cde5f6eefb4cd8e19bf9b142b64e0426d702974f518241dd8",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "bda387c5f3d0d09f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          98816
+        ],
+        "unprocessed_array_sha256": "2d0ccb2b547de5f4d8008cb150321d870aa3610cb2c9b9d3115a077728a7a669"
+      },
+      {
+        "exact_native_cache_key": "4262362557ebd172b57174e2c610770886178bec.pkl",
+        "pkl_sha256": "be568882b22049fc5cf938850c6d73bec0e17ef66d366a4182c375e7aa102ecc",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S20",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "immense stacks.",
+            "exact_native_cache_key": "4262362557ebd172b57174e2c610770886178bec.pkl",
+            "cache_input_text_sha256": "64e906ec7b0b518550a6f92b1f61a1254b0a406de7bb564896152ed7b571daab",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "be568882b22049fc",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          25600
+        ],
+        "unprocessed_array_sha256": "775bf7a103d9e5834defee50aef8f477489731589fa3e6a1f6590be3d5e2647c"
+      }
+    ],
+    "missing_reference_key_count": 0,
+    "observed_missing_keys_covered": [],
+    "new_private_cache_names": [],
+    "native_single_thread_marker_verified": true,
+    "single_thread_sessions": [
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      },
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      }
+    ],
+    "models_sha256": {
+      "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+      "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+      "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+    },
+    "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+    "existing_private_cache_count": 11514,
+    "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "existing_private_cache_bytes_unchanged": true,
+    "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+    "public_repository_cache_unchanged": true,
+    "producer_pcm_existed_before": false,
+    "producer_pcm_sha256_before": null,
+    "producer_pcm_sha256_after": null,
+    "accepted_aac_adts_sha256_before": "09a13bc5853b6edbe832580796961247f5aea94c00b81be8e645314bd69d23da",
+    "accepted_aac_adts_sha256_after": "09a13bc5853b6edbe832580796961247f5aea94c00b81be8e645314bd69d23da",
+    "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+    "private_cache_exported": false
+  },
+  "checker_reference_preparation_program_sha256": "f6f2a032e207085e7252d036e39430fb80b06e84a721c525b61196d021c5ca12",
+  "fresh_current_article_reference": {
+    "article": "61",
+    "removed_temporary_gt_files": [],
+    "processed_pcm_or_raw_mother_cache_modified": false,
+    "purpose": "Original synth/labels/audit rebuild fresh for this production; no old CPU GT reuse."
+  },
+  "temporary_output_reset": {
+    "removed": [],
+    "production_started_ns": 1794633060114184767,
+    "repository_outputs_modified": false
+  },
+  "reviewed_gain_control_preservation": [
+    {
+      "stage": "canonical-draft",
+      "requested_gain_controls": {
+        "/句子增益dB": {
+          "S9": -0.3,
+          "S6": -0.5,
+          "S18": -0.5
+        }
+      },
+      "actual_gain_controls": {
+        "/句子增益dB": {
+          "S9": -0.3,
+          "S6": -0.5,
+          "S18": -0.5
+        }
+      },
+      "exactly_preserved": true
+    },
+    {
+      "stage": "canonical-final4K",
+      "requested_gain_controls": {
+        "/句子增益dB": {
+          "S9": -0.3,
+          "S6": -0.5,
+          "S18": -0.5
+        }
+      },
+      "actual_gain_controls": {
+        "/句子增益dB": {
+          "S9": -0.3,
+          "S6": -0.5,
+          "S18": -0.5
+        }
+      },
+      "exactly_preserved": true
+    }
+  ],
+  "canonical_video_sha256": "9d9c06658d74161f34837436313c087a746489b471556d6fc5249d1185e97751",
+  "canonical_aac_adts_sha256": "09a13bc5853b6edbe832580796961247f5aea94c00b81be8e645314bd69d23da",
+  "canonical_pipeline_passed": true,
+  "cached_input_wav_sha256": null,
+  "final_wav_sha256": "1eb3f76a4b859fdde5b0646f3a077999a786f0a8767510f784974d98894d297c",
+  "accepted_prior_aac_identical": true,
+  "video_sha256": "3afc37036c89db19951a3c77b03cfc753de220ccc696c930f613931b2a0c924a",
+  "width": 3840,
+  "height": 2160,
+  "summary_seconds": 2,
+  "summary_frames": 60,
+  "summary_start_seconds": 150.1,
+  "delay_after_voice_seconds": 0.025000000000005684,
+  "actual_source_collection": {
+    "article": "61",
+    "kind": "actual-production-source-collection",
+    "new_quality_gate": false,
+    "files": {
+      "request_json": {
+        "file": "61-request-source.json",
+        "sha256": "2d08704376faff25b06d334d7567a381460975a56a4cef6b4ae97b3580ea8dbc",
+        "origin": "immutable_request"
+      },
+      "request_generator": {
+        "file": "61-request-gen.py",
+        "sha256": "9cff2fa4f185d4068efaa8d41efdb281d498f094aa8b4c8fa2e4dd4153f05b29",
+        "origin": "immutable_request"
+      },
+      "used_generator": {
+        "file": "61-used-gen.py",
+        "sha256": "9cff2fa4f185d4068efaa8d41efdb281d498f094aa8b4c8fa2e4dd4153f05b29",
+        "origin": "actual_production_filesystem"
+      },
+      "actual_working_source": {
+        "file": "61-actual-working-source.json",
+        "sha256": "e1cfaa71553aa30b0d3e2abc4c13642b511e666272e1b80e14eb85ca3dbb4ac6",
+        "origin": "actual_production_filesystem"
+      },
+      "request_manuscript": {
+        "file": "61-request-manuscript.md",
+        "sha256": "135cc9cfbcbd68d957f831cf55558112a45b1cc3749366cb9a304507355c7d2c",
+        "origin": "immutable_request"
+      },
+      "actual_working_manuscript": {
+        "file": "61-actual-working-manuscript.md",
+        "sha256": "48881d3cf07296b45ef45ceb3a35a2fd1578f3f66a2d397a9140e84117f38d65",
+        "origin": "actual_production_filesystem"
+      }
+    },
+    "generator_execution_observed": false,
+    "generator_execution_evidence": "No fresh generator execution log; do not claim this GEN was executed during rendering.",
+    "source_differences": {
+      "file": "61-actual-source-differences.json",
+      "sha256": "10f1e2a814afde57c0cb3bd4d97ebf297bdf4734395a450a8ff4d5bc2b5587dc"
+    }
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "status": "passed",
+  "article": "21",
+  "origin": "derived_after_final_QC",
+  "actual_original_job_execution_claimed": false,
+  "used_generator_observation": "exported_actual_production_file; execution observation is a separate original fact",
+  "source_json_sha256": "79148437ac0c62e3a9cdcf2579b389ad5ae2822996da6da253d5971b917d1c5a",
+  "derived_generator_sha256": "f050754085944e5f32556adce9445ac7c98339d83ce151937adda5f4ef90dda8",
+  "request_json_sha256": "61c1569a26d7569ee0f586178be6b307b1c394c0a30c3cb02541c910038b0589",
+  "request_generator_sha256": "7c757dae9d452376ef38b72aa09a136d06c0a27150a4817c65507b4a888320ea",
+  "request_manuscript_sha256": "e8e966b70f579235d696ba11fb01d3b2cae3fa26efb9071bbea95071be259e1f",
+  "immutable_native_status_sha256": "fd0bbf5f81ca856efba83d0be40e4bc3b686d4a0909e02640376b914a7f598c8",
+  "factory_program_sha256": "1514e91aee9dc04424e5b755cee37b65b8dadef9717f3e6c0cede35f1c03e044",
+  "original_helper_sha256": {
+    "初稿生成/核对.py": "c635aee82e0fe4dff9f70dcae03e2f797aadb670c8ebe6c8f202b82a35a87a74",
+    "重点词被去掉.py": "b898e63bb0954f0f17b90f92c2af41b3264ca60b7fd264e1cfa632f3d1e86f93"
+  },
+  "original_helper_exit": 0,
+  "whole_JSON_roundtrip_exact": true,
+  "semantic_control_invariants": {
+    "visible_body_notes_summary_and_focus_unchanged": true,
+    "layout_only_newlines_and_T38_bold_allowed": true,
+    "audio_render_title_metadata_unchanged": false,
+    "effective_audio_render_title_controls_unchanged": true,
+    "official_regenerated_nonaudio_rationale_updates": [
+      {
+        "path": "/结尾句/S19/依据",
+        "before": "全篇结尾句按 07 定下的标准（用户 2026-10-10 同意并要求所有视频统一）：前段 0.9、最后一段“the one who paid kept mum and the one who kept his money went to the police.” 0.78、前面停 0.7 秒。接点由 结尾句接点.py 自动找：0.9 那遍最后一个标点后最长静音（30 ms）的正中 2.038 s，0.78 那遍（140 ms）的正中 2.513 s，所在帧和两侧各 5 ms 都低于 -55 dB（程序以 08 校准：与人工核实的接点落在同一段静音里）；2026-10-22 前段 Of Lustig's two marks, 比全片响 2.0 LU、与最后一段差 3.3 LU（标准 ≤2.5），前段增益 -1.0 dB（同 10 S17；在用户 2026-10-21 同意的 ±1 dB 以内）",
+        "after": "全篇结尾句按 07 定下的标准（用户 2026-10-10 同意并要求所有视频统一）：前段 0.9、最后一段“the one who paid kept mum and the one who kept his money went to the police.” 0.78、前面停 0.7 秒。接点由 结尾句接点.py 自动找：0.9 那遍最后一个标点后最长静音（30 ms）的正中 2.038 s，0.78 那遍（140 ms）的正中 2.513 s，所在帧和两侧各 5 ms 都低于 -55 dB（程序以 08 校准：与人工核实的接点落在同一段静音里）",
+        "before_sha256": "9e853513567558f93e02f9ef36e5078c889549f9704f12e98e1e6f2be7c2b673",
+        "after_sha256": "8e8d4ad35a74e8d42d45a30ec5ebc29b1170fbc9f5f4609eded04582a4084969",
+        "effective_controls_identical": true,
+        "effective_controls": {
+          "前段语速": 0.9,
+          "最后一段语速": 0.78,
+          "最后一段前停顿": 0.7,
+          "接点": [
+            48900,
+            60300
+          ],
+          "前段增益dB": -1.0
+        },
+        "official_regenerator": "结尾句接点.py",
+        "basis": "Original official locator regenerated the same rationale prefix for deeply identical effective settings. Exact original appended history is retained here and in the immutable requested source. No actual gain/cut/speed/pitch/splice control change is permitted by this classification."
+      }
+    ],
+    "observed_original_QC_interval_fingerprint_updates": [
+      {
+        "path": "/区间声音指纹",
+        "before": null,
+        "after": {
+          "S1": "f00437ff2fb0",
+          "S2": "68f0dbb05269",
+          "S3": "91cc4b9fdc1e",
+          "S7": "f3f6be3e7e76",
+          "S9": "659919d54e73",
+          "S13": "b3ff79c2bef9",
+          "S14": "be0476027a51",
+          "S16": "916c80329734",
+          "S18": "516435c6eb9d",
+          "S19": "cc5b3b60d4f9"
+        },
+        "basis": "Original maker A45 observed raw-synthesis validity hashes, not physical audio controls. Both immutable source versions and actual native QC remain in the artifact; original full sound gates and actual approved AAC/absolute timing validation remain mandatory."
+      }
+    ]
+  },
+  "changed_paths": [
+    "/sentences/18/chunks/1/note",
+    "/区间声音指纹",
+    "/结尾句/S19/依据"
+  ],
+  "original_inputs_unchanged": true,
+  "manuscript_origin": "immutable request used for roundtrip; actual exported production manuscript recorded separately",
+  "manuscript_runtime_observed": true,
+  "no_repository_or_remote_write": true,
+  "scope": "data fidelity and regeneration only; final JSON artifact-member origin must additionally be checked by delivery validation/archive",
+  "final_JSON_artifact_origin_checked_here": false,
+  "observed_used_generator": {
+    "file": "21-used-gen.py",
+    "sha256": "7c757dae9d452376ef38b72aa09a136d06c0a27150a4817c65507b4a888320ea",
+    "origin": "actual_production_filesystem"
+  },
+  "original_production_generator_execution_observed": false,
+  "original_production_generator_execution_evidence": "No fresh generator execution log; do not claim this GEN was executed during rendering.",
+  "actual_production_manuscript": {
+    "file": "21-actual-working-manuscript.md",
+    "sha256": "51ccf92096fd50ff07601b4b0f4bdcea77ab8cf3616cc23670ac08cfcdfadd07",
+    "origin": "actual_production_filesystem"
+  },
+  "derived_generator_original_job_execution_claimed": false
+}

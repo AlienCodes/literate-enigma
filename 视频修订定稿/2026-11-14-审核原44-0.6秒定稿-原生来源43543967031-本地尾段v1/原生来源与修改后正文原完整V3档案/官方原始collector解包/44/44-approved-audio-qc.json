@@ -1,0 +1,425 @@
+{
+  "article": "44",
+  "passed": true,
+  "validation_basis": "Actual accepted and reconstructed public MP4 decoded samples; no simulated values determine passed.",
+  "accepted_sha256": "efb332cdaf0f09a6cd892c91b8f6cef6eba48ea540f83eaa70eccf19aa26e659",
+  "canonical_sha256": "05227d77fb697149a094b5742542a5a260be777f9ea95acf0e6a678203d0e3f9",
+  "accepted_global": {
+    "integrated_lufs": -25.1,
+    "true_peak_dbtp": -0.8,
+    "lra_lu": 3.5
+  },
+  "actual_global": {
+    "integrated_lufs": -25.1,
+    "true_peak_dbtp": -0.8,
+    "lra_lu": 3.5
+  },
+  "accepted_units": {
+    "Norway_Finland": {
+      "start_s": 33.97,
+      "end_s": 36.3,
+      "crop_bs1770_lufs": -23.85332297723347,
+      "gated_400ms_lufs": -23.930373043321303,
+      "max_400ms_lufs": -18.9,
+      "active_10ms_rms_dbfs": -22.395842886264266,
+      "rms_dbfs": -22.764537317944942,
+      "sample_peak_dbfs": -4.876957902393762
+    },
+    "with_border_crossings": {
+      "start_s": 36.72,
+      "end_s": 39.66,
+      "crop_bs1770_lufs": -25.078311176739337,
+      "gated_400ms_lufs": -25.367675517157945,
+      "max_400ms_lufs": -22.0,
+      "active_10ms_rms_dbfs": -24.09531106254458,
+      "rms_dbfs": -24.712252979999214,
+      "sample_peak_dbfs": -3.452421283829908
+    },
+    "so_main": {
+      "start_s": 40.08,
+      "end_s": 44.89,
+      "crop_bs1770_lufs": -25.20603786400442,
+      "gated_400ms_lufs": -25.233392757974173,
+      "max_400ms_lufs": -19.8,
+      "active_10ms_rms_dbfs": -24.25773000676408,
+      "rms_dbfs": -24.866556780655365,
+      "sample_peak_dbfs": -4.310447683150276
+    }
+  },
+  "actual_units": {
+    "Norway_Finland": {
+      "start_s": 33.97,
+      "end_s": 36.3,
+      "crop_bs1770_lufs": -24.860242726238926,
+      "gated_400ms_lufs": -24.9303730433213,
+      "max_400ms_lufs": -19.9,
+      "active_10ms_rms_dbfs": -23.35910632046865,
+      "rms_dbfs": -23.76836103706095,
+      "sample_peak_dbfs": -5.874165924971704
+    },
+    "with_border_crossings": {
+      "start_s": 36.72,
+      "end_s": 39.66,
+      "crop_bs1770_lufs": -25.078313097551572,
+      "gated_400ms_lufs": -25.367675517157945,
+      "max_400ms_lufs": -22.0,
+      "active_10ms_rms_dbfs": -24.095320322568305,
+      "rms_dbfs": -24.712262237614752,
+      "sample_peak_dbfs": -3.452421283829908
+    },
+    "so_main": {
+      "start_s": 40.08,
+      "end_s": 44.89,
+      "crop_bs1770_lufs": -25.20603786400442,
+      "gated_400ms_lufs": -25.233392757974173,
+      "max_400ms_lufs": -19.8,
+      "active_10ms_rms_dbfs": -24.25773000676408,
+      "rms_dbfs": -24.866556780655365,
+      "sample_peak_dbfs": -4.310447683150276
+    }
+  },
+  "actual_waveform_fits": {
+    "Norway_Finland": {
+      "gain_db": -1.004030512767585,
+      "correlation": 0.9999761922844352,
+      "gain_compensated_residual_snr_db": 43.22236769474338
+    },
+    "with_border_crossings": {
+      "gain_db": -9.284948575472007e-06,
+      "correlation": 0.9999999968531682,
+      "gain_compensated_residual_snr_db": 82.01096464181384
+    },
+    "so_main": {
+      "gain_db": 0.0,
+      "correlation": 1.0,
+      "gain_compensated_residual_snr_db": 275.13344321934466
+    },
+    "actual_right_t_A21": [
+      {
+        "endpoint_s": 36.295,
+        "original_A21_passes": true,
+        "release_metrics": [
+          -31.87089313736473,
+          -31.92579163431331,
+          50,
+          [
+            56280,
+            57480
+          ],
+          -89.55988534267885
+        ]
+      },
+      {
+        "endpoint_s": 36.3,
+        "original_A21_passes": true,
+        "release_metrics": [
+          -31.87089313736473,
+          -31.92579163431331,
+          55,
+          [
+            56280,
+            57600
+          ],
+          -89.55988534267885
+        ]
+      },
+      {
+        "endpoint_s": 36.305,
+        "original_A21_passes": true,
+        "release_metrics": [
+          -31.87089313736473,
+          -31.92579163431331,
+          60,
+          [
+            56280,
+            57720
+          ],
+          -89.55988534267885
+        ]
+      }
+    ]
+  },
+  "pitch_comparison": {
+    "Norway_Finland": {
+      "voiced_pairs": 187,
+      "median_absolute_cents": 0.10082878576073025,
+      "p90_absolute_cents": 0.38301824196165357,
+      "whole_decoded_crop_bit_identical": false,
+      "decoded_sample_count": 111840,
+      "decoded_dtype": "float64",
+      "accepted_crop_sha256": "4f9dbcd4c845ddc69b11b952dff860a769b732e1af6d5fac6da7f48f5ade5137",
+      "actual_crop_sha256": "0fb80d87a54e6079187bb4df28de06f7eeda7c3eab2449b2a60be99a224039ba",
+      "preservation_basis": "measured-pitch-original-count-and-cent-limits"
+    },
+    "with_border_crossings": {
+      "voiced_pairs": 200,
+      "median_absolute_cents": 0.0,
+      "p90_absolute_cents": 0.0,
+      "whole_decoded_crop_bit_identical": false,
+      "decoded_sample_count": 141120,
+      "decoded_dtype": "float64",
+      "accepted_crop_sha256": "48db4887c3ba54caa6d04f8127ec21d0900d821b3b309019270575b723cabcc0",
+      "actual_crop_sha256": "4e12543f074bb1a8d83bce00ee86d73ab6d8a0c440d423968d74cedc3c128ff0",
+      "preservation_basis": "measured-pitch-original-count-and-cent-limits"
+    },
+    "so_main": {
+      "voiced_pairs": 298,
+      "median_absolute_cents": 0.0,
+      "p90_absolute_cents": 0.0,
+      "whole_decoded_crop_bit_identical": true,
+      "decoded_sample_count": 230880,
+      "decoded_dtype": "float64",
+      "accepted_crop_sha256": "2268cdfff1d283525284b5523ecb2fd0147a249548c5f43bc1e536f296a5dc57",
+      "actual_crop_sha256": "2268cdfff1d283525284b5523ecb2fd0147a249548c5f43bc1e536f296a5dc57",
+      "preservation_basis": "whole-decoded-crop-bit-identical"
+    }
+  },
+  "actual_public_piece_ranges": {
+    "S4:1": [
+      33.94,
+      36.295
+    ],
+    "S4:2": [
+      36.675,
+      39.66
+    ],
+    "S4:3": [
+      40.04,
+      44.875
+    ]
+  },
+  "actual_title_A21": null,
+  "checks": [
+    {
+      "name": "accepted-public-source-sha256",
+      "passed": true
+    },
+    {
+      "name": "duration-preserved",
+      "passed": true,
+      "delta_s": 0.0
+    },
+    {
+      "name": "encoding-alignment-only",
+      "passed": true,
+      "lag_samples": 0,
+      "local_lags_samples": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "actual-original-audio-format",
+      "passed": true,
+      "actual": {
+        "sample_rate": "48000",
+        "channels": 1
+      }
+    },
+    {
+      "name": "actual-no-digital-clipping-or-nonfinite",
+      "passed": true,
+      "sample_peak_dbfs": -0.8078895385311136
+    },
+    {
+      "name": "actual-true-peak-below-zero",
+      "passed": true,
+      "measured_dbtp": -0.8
+    },
+    {
+      "name": "whole-track-level-preserved",
+      "passed": true,
+      "accepted": {
+        "integrated_lufs": -25.1,
+        "true_peak_dbtp": -0.8,
+        "lra_lu": 3.5
+      },
+      "actual": {
+        "integrated_lufs": -25.1,
+        "true_peak_dbtp": -0.8,
+        "lra_lu": 3.5
+      }
+    },
+    {
+      "name": "outside-approved-ranges-same-voice-timing-gain",
+      "passed": true,
+      "gain_db": -2.3002948983045948e-07,
+      "correlation": 0.9999999999220252,
+      "gain_compensated_residual_snr_db": 98.07016239032187,
+      "p95_absolute_frame_gain_db": 0.0
+    },
+    {
+      "name": "every-untouched-active-one-second-block-preserved",
+      "passed": true,
+      "checked_blocks": 138,
+      "failed_blocks": []
+    },
+    {
+      "name": "no-new-click-or-noise-in-modified-pauses",
+      "passed": true,
+      "maximum_actual_10ms_dbfs": -74.06397574915101
+    },
+    {
+      "name": "requested-control:/分段增益dB/S4/1",
+      "passed": true,
+      "actual": -1.0,
+      "expected": -1.0
+    },
+    {
+      "name": "requested-control:/词尾除阻/S4/1",
+      "passed": true,
+      "actual": [
+        2.3,
+        "t"
+      ],
+      "expected": [
+        2.3,
+        "t"
+      ]
+    },
+    {
+      "name": "actual-production-piece-timings-present",
+      "passed": true
+    },
+    {
+      "name": "actual-gain-and-same-waveform:Norway_Finland",
+      "passed": true,
+      "expected_gain_db": -1.0,
+      "actual_lufs_delta": -1.006919749005455,
+      "gain_db": -1.004030512767585,
+      "correlation": 0.9999761922844352,
+      "gain_compensated_residual_snr_db": 43.22236769474338
+    },
+    {
+      "name": "actual-gain-and-same-waveform:with_border_crossings",
+      "passed": true,
+      "expected_gain_db": 0.0,
+      "actual_lufs_delta": -1.920812234601499e-06,
+      "gain_db": -9.284948575472007e-06,
+      "correlation": 0.9999999968531682,
+      "gain_compensated_residual_snr_db": 82.01096464181384
+    },
+    {
+      "name": "actual-gain-and-same-waveform:so_main",
+      "passed": true,
+      "expected_gain_db": 0.0,
+      "actual_lufs_delta": 0.0,
+      "gain_db": 0.0,
+      "correlation": 1.0,
+      "gain_compensated_residual_snr_db": 275.13344321934466
+    },
+    {
+      "name": "actual-S4-local-level-continuity",
+      "passed": true,
+      "first_minus_following_mean_lu": 0.2180703713126455,
+      "first_minus_following_active_rms_db": 0.7362140020996542,
+      "first_minus_following_strongest400ms_lu": 2.1000000000000014
+    },
+    {
+      "name": "actual-S4-first-piece-boundary-preserved",
+      "passed": true,
+      "actual_piece_range": [
+        33.94,
+        36.295
+      ],
+      "accepted_acoustic_range": [
+        33.97,
+        36.3
+      ]
+    },
+    {
+      "name": "actual-S4-right-t-release-preserved",
+      "passed": true,
+      "original_A21_actual_public_audio": [
+        {
+          "endpoint_s": 36.295,
+          "original_A21_passes": true,
+          "release_metrics": [
+            -31.87089313736473,
+            -31.92579163431331,
+            50,
+            [
+              56280,
+              57480
+            ],
+            -89.55988534267885
+          ]
+        },
+        {
+          "endpoint_s": 36.3,
+          "original_A21_passes": true,
+          "release_metrics": [
+            -31.87089313736473,
+            -31.92579163431331,
+            55,
+            [
+              56280,
+              57600
+            ],
+            -89.55988534267885
+          ]
+        },
+        {
+          "endpoint_s": 36.305,
+          "original_A21_passes": true,
+          "release_metrics": [
+            -31.87089313736473,
+            -31.92579163431331,
+            60,
+            [
+              56280,
+              57720
+            ],
+            -89.55988534267885
+          ]
+        }
+      ]
+    },
+    {
+      "name": "actual-pitch-preserved:Norway_Finland",
+      "passed": true,
+      "voiced_pairs": 187,
+      "median_absolute_cents": 0.10082878576073025,
+      "p90_absolute_cents": 0.38301824196165357,
+      "whole_decoded_crop_bit_identical": false,
+      "decoded_sample_count": 111840,
+      "decoded_dtype": "float64",
+      "accepted_crop_sha256": "4f9dbcd4c845ddc69b11b952dff860a769b732e1af6d5fac6da7f48f5ade5137",
+      "actual_crop_sha256": "0fb80d87a54e6079187bb4df28de06f7eeda7c3eab2449b2a60be99a224039ba",
+      "preservation_basis": "measured-pitch-original-count-and-cent-limits"
+    },
+    {
+      "name": "actual-pitch-preserved:with_border_crossings",
+      "passed": true,
+      "voiced_pairs": 200,
+      "median_absolute_cents": 0.0,
+      "p90_absolute_cents": 0.0,
+      "whole_decoded_crop_bit_identical": false,
+      "decoded_sample_count": 141120,
+      "decoded_dtype": "float64",
+      "accepted_crop_sha256": "48db4887c3ba54caa6d04f8127ec21d0900d821b3b309019270575b723cabcc0",
+      "actual_crop_sha256": "4e12543f074bb1a8d83bce00ee86d73ab6d8a0c440d423968d74cedc3c128ff0",
+      "preservation_basis": "measured-pitch-original-count-and-cent-limits"
+    },
+    {
+      "name": "actual-pitch-preserved:so_main",
+      "passed": true,
+      "voiced_pairs": 298,
+      "median_absolute_cents": 0.0,
+      "p90_absolute_cents": 0.0,
+      "whole_decoded_crop_bit_identical": true,
+      "decoded_sample_count": 230880,
+      "decoded_dtype": "float64",
+      "accepted_crop_sha256": "2268cdfff1d283525284b5523ecb2fd0147a249548c5f43bc1e536f296a5dc57",
+      "actual_crop_sha256": "2268cdfff1d283525284b5523ecb2fd0147a249548c5f43bc1e536f296a5dc57",
+      "preservation_basis": "whole-decoded-crop-bit-identical"
+    }
+  ],
+  "public_listening_clips": [
+    "44-S4-Norway-border-context-accepted.wav",
+    "44-S4-Norway-border-context-actual.wav"
+  ],
+  "subjective_listening": "Public final-file clips saved for root listening; this program does not claim listening acceptance.",
+  "private_caches_or_GT_exported": false
+}

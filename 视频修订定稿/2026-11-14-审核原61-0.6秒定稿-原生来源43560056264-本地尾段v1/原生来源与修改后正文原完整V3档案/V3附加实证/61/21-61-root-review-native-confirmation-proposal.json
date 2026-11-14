@@ -1,0 +1,42 @@
+{
+  "article": "61",
+  "root_review_only": true,
+  "applied_to_source": false,
+  "claim_user_listening_approval": false,
+  "do_not_change_audio_or_visual_timing": true,
+  "candidate_target": "核对确认.高亮.S1 第2块",
+  "candidate_record": {
+    "开始读": 10.85,
+    "配音指纹": "7499cce91ea3",
+    "依据": "2026-11-14只读原源重放诊断：G72母素材与原producer/clean、原调平JSON重建完整a.wav，全SHA与run43543967031原failedproof一致(1eb3f76a4b859fdde5b0646f3a077999a786f0a8767510f784974d98894d297c)，原AF后的整轨ADTS亦与failed/oldaccepted一致(09a13bc5853b6edbe832580796961247f5aea94c00b81be8e645314bd69d23da)。实际原生a.wav的10.85s原G45确认可收=true，前30ms最大-53.868dB、后40ms最大-20.616dB；此为程序实际测量，非用户听审。保留原失败报告和旧稿；本候选须root审定并由原完整门复验。"
+  },
+  "actual_native_scalar_at_candidate": {
+    "time_s": 10.85,
+    "pre30ms_max_dB": -53.86816016246752,
+    "post40ms_max_dB": -20.615612946160446,
+    "this5ms_dB": -47.213578546759365,
+    "unchanged_original_G45_accepts": true
+  },
+  "original_failed_highlight_printed_s": 10.84,
+  "printed_2decimal_uncertainty_highlight_interval_s": [
+    10.835,
+    10.845
+  ],
+  "maximum_confirmation_deviation_over_entire_printed_rounding_interval_s": 0.015,
+  "original_limit_s": 0.15,
+  "actual_original_confirmation_condition_positive": {
+    "key": "S1 第2块",
+    "开始读": 10.85,
+    "配音指纹": "7499cce91ea3",
+    "actual_original_G45_accepts": true,
+    "actual_full_native_WAV_fingerprint_matches": true,
+    "deviation_from_reconstructed_serialized_list_highlight_s": 0.008999999999998565,
+    "original_confirmation_condition_would_accept_in_memory": true,
+    "start_is_from_exact_native_scalar_probe_not_public_clock_or_human_listening": true,
+    "not_written_or_claimed_as_full_article_QC": true
+  },
+  "actual_whole_native_WAV_sha256": "1eb3f76a4b859fdde5b0646f3a077999a786f0a8767510f784974d98894d297c",
+  "actual_whole_ADTS_sha256": "09a13bc5853b6edbe832580796961247f5aea94c00b81be8e645314bd69d23da",
+  "native_report_sha256": "6e53358c7c4d2df735e7bc755f741c07d46042d99c3dfdf29fa68217d755b15b",
+  "remaining_actual_production_requirement": "If root approves this data record, preserve waveform/visual/source controls and run the real original full draft/4K checks; no article61 or final delivery pass is claimed here."
+}
