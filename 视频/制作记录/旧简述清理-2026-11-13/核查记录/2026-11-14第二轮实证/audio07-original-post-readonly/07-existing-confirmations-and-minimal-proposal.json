@@ -1,0 +1,388 @@
+{
+  "kind": "07-actual-alarms-and-minimal-data-proposal",
+  "run_id": 43538347790,
+  "article": "07",
+  "acceptance": false,
+  "source_program_or_thresholds_modified": false,
+  "request_sha256": "842e44e5aa19fddcfa239cb6530c5152341cd86e11db959543d02d8670ca13e8",
+  "actual_source_sha256": "a7270074366ecf2311e50671df276470fd16e70a81c7658a2d1961116eb80a95",
+  "old_source_sha256": "96ad5ac097dabf30aa7ee95243c7f7636e91590d2ec34cb480ed176418e2f4c1",
+  "actual_post_whole_fingerprint": "2b2539746b32",
+  "old_whole_fingerprint_evidence": {
+    "value": "8374149bd3cc",
+    "basis": "Pinned original source and exact request both attach14 currently alarming positions and8 existing typed deletions to this prior whole PCM fingerprint.",
+    "old_accepted_raw_PCM_reconstructed_and_full_MD5_proved_here": false,
+    "no_sidecar_observed": true
+  },
+  "actual_original_gate_summary": {
+    "post_purevoice_alarms": 14,
+    "cut_word_alarms": 2,
+    "edge_alarms": 8,
+    "edges_without_current_confirmation": 7,
+    "extra_runs": 0,
+    "selftest_malfunction_warning_observed": false,
+    "individual_audit_raw_cut_keys_not_exported_in_actual_artifact": true
+  },
+  "purevoice_confirmations": {
+    "request_existing_count": 25,
+    "actual_remaining_count": 0,
+    "actual14_alarm_keys_all_have_existing_exact_key_confirmation": true,
+    "actual14_alarm_contexts_bit_identical": true,
+    "context_padding_seconds": 0.15,
+    "per_position_evidence_file": "07-public-audio-continuity.json",
+    "original_migration_program_sha256": "7fa13f40cb200a2139c2dc1a4bd9ca4b17b52ae65c04db71ee1442b818ebaacf",
+    "original_migration_basis_pattern": "S(\\d+) w (\\d+(?:\\.\\d+)?)(?:[–-](\\d+(?:\\.\\d+)?))?",
+    "old_entries_matching_original_pattern_count": 0,
+    "mechanism": "Original location migration retains entries already at current whole fp; all stale entries without S# w contiguous anchor are dropped. Here all25 existing narrative bases lack that pattern, so no existing confirmation migrated.",
+    "proposed_restoration_only_if_current_PCM_is_retained": [
+      {
+        "key": "1.75–1.76s",
+        "preserve_existing_basis": true,
+        "continuity_proved_by_exact_decoded_context_SHA": "32e2499621f619be681564f49df92466d538fa6bb540ff71858a2a60837caabd"
+      },
+      {
+        "key": "2.85–2.86s",
+        "preserve_existing_basis": true,
+        "continuity_proved_by_exact_decoded_context_SHA": "f1151ba83991cb541acf4c06562ab0edcbe4382e168eb6eef3085cc4868ec5a6"
+      },
+      {
+        "key": "15.21–15.29s",
+        "preserve_existing_basis": true,
+        "continuity_proved_by_exact_decoded_context_SHA": "a20428f90e3d494a82fcfa6e2f6af61594182633a81b90bfb8d46ba91a6558b2"
+      },
+      {
+        "key": "18.12–18.14s",
+        "preserve_existing_basis": true,
+        "continuity_proved_by_exact_decoded_context_SHA": "e851fd61e2d84b0e727ad162d75fce5c63f7dee06ef7a8bb93de2e1dc1076698"
+      },
+      {
+        "key": "31.64–31.66s",
+        "preserve_existing_basis": true,
+        "continuity_proved_by_exact_decoded_context_SHA": "44f0e4b260c06a8ab35f8b09f33b6eca293dc112a8cd3457277baafebec644c2"
+      },
+      {
+        "key": "34.96–34.97s",
+        "preserve_existing_basis": true,
+        "continuity_proved_by_exact_decoded_context_SHA": "6350b6e8ffa015a223c3f10881e10aae9a950979d3dd78e35ba36bda2b7cc368"
+      },
+      {
+        "key": "73.64–73.73s",
+        "preserve_existing_basis": true,
+        "continuity_proved_by_exact_decoded_context_SHA": "fffc382d39b2e8c54adf7f4e552934cab2df388347fe7a4a24f48dd5803c5b47"
+      },
+      {
+        "key": "72.50–72.52s",
+        "preserve_existing_basis": true,
+        "continuity_proved_by_exact_decoded_context_SHA": "5ae8b47dba0e96b891f40af9a039f2f996cb3a2b67352a08acb19e4902238891"
+      },
+      {
+        "key": "93.38–93.48s",
+        "preserve_existing_basis": true,
+        "continuity_proved_by_exact_decoded_context_SHA": "6a07f8d59fe8790c7be3b232ed7aca41037c71ed09d4f0ea080d811e7b512214"
+      },
+      {
+        "key": "95.69–95.71s",
+        "preserve_existing_basis": true,
+        "continuity_proved_by_exact_decoded_context_SHA": "3d06b32f6abafd877cb104ee8fe6b7e759706b5316995237f1e6688cc592b1ff"
+      },
+      {
+        "key": "97.98–98.00s",
+        "preserve_existing_basis": true,
+        "continuity_proved_by_exact_decoded_context_SHA": "4c2eb8e086d067822b6faa677de7a602aec1e4432dafb456e103edf3c6e7fe7f"
+      },
+      {
+        "key": "103.64–103.73s",
+        "preserve_existing_basis": true,
+        "continuity_proved_by_exact_decoded_context_SHA": "1ae95601434ad3858cea56a512c94c3026bc131d5aec6ddc3c5cc768e205177d"
+      },
+      {
+        "key": "112.50–112.58s",
+        "preserve_existing_basis": true,
+        "continuity_proved_by_exact_decoded_context_SHA": "e1b3b8fbe8c8bdac6bdff1f6c5a9e7d06172ba18534a5bc9d63a42a1e3d4897d"
+      },
+      {
+        "key": "122.53–122.56s",
+        "preserve_existing_basis": true,
+        "continuity_proved_by_exact_decoded_context_SHA": "9834112710460670832a625feced5aca0ffe62f3fc074fde45ee9c09a3d24b9f"
+      }
+    ]
+  },
+  "existing_typed_deletion_confirmation_inventory": [
+    {
+      "key": "S2 raw 4.0400-4.4168",
+      "type": "紧贴词头的非人声",
+      "old_whole_fp": "8374149bd3cc",
+      "actual_whole_fp": "2b2539746b32",
+      "original_basis_preserved": "2026-10-09 实际声音（逐 1–2.5 ms 电平、分频段能量、20 ms 周期、频谱重心、半周期与自相关基频、带时长模型音素位置）：room, 与 and 之间（牛津逗号）。room 的 /m/ 在 w 4.03 衰减到 -60 dB 以下，前一头切在其后 -66 dB 的静音（w 4.065833）；删去 0.2 秒吸气声（4.176–4.381，-36～-55 dB、无周期 0.23、重心约 2.7 kHz、150 Hz 以下占比 -17 dB）和 25 ms 低频噗声（4.38–4.406，150 Hz 以下占比 -2.5 dB、150–500 Hz 只有 -56～-73 dB、半周期 4.6–5.3 ms 不规则），噗声直接连着 and 的起音、没有 -55 dB 低谷。后一头切在噗声最后一个低频半周期与 and 第一个声门周期之间（4.4068–4.4075 样本值 ≤5e-5，150–500 Hz 能量从 4.4075 起上升）的过零点 w 4.406875，and 本身不动，词头被切 0 ms。复核报的 post（-40.7 dB）是 and 的起音；删掉的部分最响 -36.1 dB 是这段吸气声本身（A18）。停顿词到词 0.2 秒（A19 原报停顿后 0.23 秒不是词）。用户 2026-10-09：“不要有任何的呼吸声 语气声 这些都不要 底噪也不要 就要绝对的纯人声”（原始合成里的区间不变，删掉的是同一段声音；配音指纹 064d7e76697e → 3a51c7d6231d，复核仍逐处重算两侧）（原始合成里的区间不变，删掉的是同一段声音；配音指纹 3a51c7d6231d → a33bf05a9d7a，复核仍逐处重算两侧）（原始合成里的区间不变，删掉的是同一段声音；配音指纹 a33bf05a9d7a → 22271bdd8d26，复核仍逐处重算两侧）（原始合成里的区间不变，删掉的是同一段声音；配音指纹 22271bdd8d26 → d659c6245930，复核仍逐处重算两侧）（原始合成里的区间不变，删掉的是同一段声音；配音指纹 d659c6245930 → 8374149bd3cc，复核仍逐处重算两侧）",
+      "source_is_existing_typed_confirmation": true,
+      "old_and_actual_spoken_sentence_exactly_same": true,
+      "sentence_physical_control_differences": {},
+      "native_unprocessed_raw_mother_fullSHA_equals_pinned_original": true,
+      "native_raw_mother_fullSHA": "a2646496ac1a70d2a91c8d5e3ab4621e019d2fea5719df1a1691c237062f9ee9",
+      "actual_output_continuity_evidence": "Whole public decoded samples 0–132.3946667s are bit-identical, including every complete S2/S4/S7/S11/S12/S13/S14 and their joins.",
+      "active_native_exact_raw_alarm_key_exported": false,
+      "active_vs_dormant": "S14 raw 6.1000-6.5547 superseded by existing6.1300 row (existing basis explains); other rows candidates for7 stale confirmations, actual detailed key map not exported.",
+      "proposal_only": "First preserve the already requested/approved S16 splice and prove whole PCM identity; no automatic metadata renewal. If root deliberately retains current altered splice, only original exact confirmed records may migrate after actual native old/current PCM proof.",
+      "no_new_auditory_exemption": true
+    },
+    {
+      "key": "S7 raw 3.4500-3.8356",
+      "type": "紧贴词头的非人声",
+      "old_whole_fp": "8374149bd3cc",
+      "actual_whole_fp": "2b2539746b32",
+      "original_basis_preserved": "2026-10-09 实际声音（逐 1–2.5 ms 电平、分频段能量、20 ms 周期、频谱重心、半周期与自相关基频、带时长模型音素位置）：body, 与 which 之间。body 的 /i/ 衰减到 -55 dB 以下后，前一头切在 -66 dB 的静音（w 3.447792）；删去 0.165 秒吸气声（3.608–3.773，-48～-55 dB、无周期 0.21、重心约 2.3 kHz、150 Hz 以下占比 -15 dB）和 37 ms 低频噗声（3.7885–3.8248，半周期 3.2–8.1 ms 不规则、峰值 -45～-52 dB，150 Hz 以下占比约 -1 dB、150–500 Hz 只有 -55～-77 dB）。这个噗声原来被出片程序的停顿切点分成两截（5 ms + 10 ms），纯人声核对（要求连续 ≥15 ms）没有报出，2026-10-09 逐处对比停顿两侧时查出。噗声最后一个正半周期在 3.8248 回到零，3.8262 起才是 which 的 /w/（150–500 Hz 能量上升），中间只有约 1 ms 的低谷，后一头切在其中最低处的过零点 w 3.825583，which 本身不动，词头被切 0 ms。复核报的 post（-48.4 dB）是 /w/ 的起音。停顿词到词 0.4 秒。用户 2026-10-09：“不要有任何的呼吸声 语气声 这些都不要 底噪也不要 就要绝对的纯人声”（原始合成里的区间不变，删掉的是同一段声音；配音指纹 064d7e76697e → 3a51c7d6231d，复核仍逐处重算两侧）（原始合成里的区间不变，删掉的是同一段声音；配音指纹 3a51c7d6231d → a33bf05a9d7a，复核仍逐处重算两侧）（原始合成里的区间不变，删掉的是同一段声音；配音指纹 a33bf05a9d7a → 22271bdd8d26，复核仍逐处重算两侧）（原始合成里的区间不变，删掉的是同一段声音；配音指纹 22271bdd8d26 → d659c6245930，复核仍逐处重算两侧）（原始合成里的区间不变，删掉的是同一段声音；配音指纹 d659c6245930 → 8374149bd3cc，复核仍逐处重算两侧）",
+      "source_is_existing_typed_confirmation": true,
+      "old_and_actual_spoken_sentence_exactly_same": true,
+      "sentence_physical_control_differences": {},
+      "native_unprocessed_raw_mother_fullSHA_equals_pinned_original": true,
+      "native_raw_mother_fullSHA": "b18a0ab1cfd315f7c78688be42f6ba8df4ecbaf1cd778e2ee7953557efe025fc",
+      "actual_output_continuity_evidence": "Whole public decoded samples 0–132.3946667s are bit-identical, including every complete S2/S4/S7/S11/S12/S13/S14 and their joins.",
+      "active_native_exact_raw_alarm_key_exported": false,
+      "active_vs_dormant": "S14 raw 6.1000-6.5547 superseded by existing6.1300 row (existing basis explains); other rows candidates for7 stale confirmations, actual detailed key map not exported.",
+      "proposal_only": "First preserve the already requested/approved S16 splice and prove whole PCM identity; no automatic metadata renewal. If root deliberately retains current altered splice, only original exact confirmed records may migrate after actual native old/current PCM proof.",
+      "no_new_auditory_exemption": true
+    },
+    {
+      "key": "S11 raw 4.7050-5.1164",
+      "type": "紧贴词尾的非人声",
+      "old_whole_fp": "8374149bd3cc",
+      "actual_whole_fp": "2b2539746b32",
+      "original_basis_preserved": "2026-10-09 实际声音（逐 1–2.5 ms 电平、分频段能量、20 ms 周期、频谱重心、半周期与自相关基频、带时长模型音素位置）：jars, 与 needing 之间。jars 的 /z/（清化，重心 5.4 kHz）4 kHz 以上能量在 w 4.612 衰减到 -57 dB，4.6145 有 1 ms 的 -58.6 dB 低谷，之后 4.615–4.618 是 500 Hz–1.5 kHz 为主的 -52 dB 声音（4 kHz 以上 -60～-66 dB，已不是 /z/）、4.6185–4.622 一个 -42.5 dB 的宽带咔哒声、4.625–4.635 几处低频小噗声，接着 0.39 秒吸气声（4.64–5.025，-39.6～-54 dB、无周期 0.21、重心约 2.7 kHz、150 Hz 以下占比 -15 dB）和 4.980–5.0215 的低频噗声（150 Hz 以下 -40～-56 dB、150–500 Hz -55～-69 dB，半周期 4.1–7.5 ms 不规则）。/z/ 与后面这些之间没有 5 ms 低于 -55 dB 的低谷，前一头紧贴词尾切在 1 ms 低谷处的过零点 w 4.614875（样本值 1e-5），/z/ 本身不动，词尾被切 0 ms；后一头切在 needing 的 /n/ 起音前 -55.5 dB 的低谷（w 5.026417）。复核报的 pre（-45.8 dB）是保留下来的 /z/ 的自然衰减；删掉的部分最响 -39.4 dB 是吸气声本身（A18）。停顿词到词 0.4 秒（A19 原报停顿后 0.41 秒不是词）。用户 2026-10-09：“不要有任何的呼吸声 语气声 这些都不要 底噪也不要 就要绝对的纯人声”（原始合成里的区间不变，删掉的是同一段声音；配音指纹 064d7e76697e → 3a51c7d6231d，复核仍逐处重算两侧）（原始合成里的区间不变，删掉的是同一段声音；配音指纹 3a51c7d6231d → a33bf05a9d7a，复核仍逐处重算两侧）（原始合成里的区间不变，删掉的是同一段声音；配音指纹 a33bf05a9d7a → 22271bdd8d26，复核仍逐处重算两侧）（原始合成里的区间不变，删掉的是同一段声音；配音指纹 22271bdd8d26 → d659c6245930，复核仍逐处重算两侧）（原始合成里的区间不变，删掉的是同一段声音；配音指纹 d659c6245930 → 8374149bd3cc，复核仍逐处重算两侧）",
+      "source_is_existing_typed_confirmation": true,
+      "old_and_actual_spoken_sentence_exactly_same": true,
+      "sentence_physical_control_differences": {},
+      "native_unprocessed_raw_mother_fullSHA_equals_pinned_original": true,
+      "native_raw_mother_fullSHA": "b441b8b890045be98e91e59d79edb51ccb1de7942ed6749e0b14fc1cd9cccf34",
+      "actual_output_continuity_evidence": "Whole public decoded samples 0–132.3946667s are bit-identical, including every complete S2/S4/S7/S11/S12/S13/S14 and their joins.",
+      "active_native_exact_raw_alarm_key_exported": false,
+      "active_vs_dormant": "S14 raw 6.1000-6.5547 superseded by existing6.1300 row (existing basis explains); other rows candidates for7 stale confirmations, actual detailed key map not exported.",
+      "proposal_only": "First preserve the already requested/approved S16 splice and prove whole PCM identity; no automatic metadata renewal. If root deliberately retains current altered splice, only original exact confirmed records may migrate after actual native old/current PCM proof.",
+      "no_new_auditory_exemption": true
+    },
+    {
+      "key": "S14 raw 6.1000-6.5547",
+      "type": "紧贴词头的非人声",
+      "old_whole_fp": "8374149bd3cc",
+      "actual_whole_fp": "2b2539746b32",
+      "original_basis_preserved": "2026-10-09 实际声音（逐 1–2.5 ms 电平、分频段能量、20 ms 周期、频谱重心、半周期与自相关基频、带时长模型音素位置）：sentient, 与 and 之间。sentient 的 /t/ 除阻在 w 6.005 衰减到 -55 dB，前一头切在其后 -66 dB 的静音（w 6.019583）；删去 0.35 秒吸气声（6.07–6.42，-36～-55 dB、无周期 0.20、重心约 2.6 kHz、150 Hz 以下占比 -16 dB）、6.4275–6.4516 的低频噗声（150 Hz 以下 -41～-53 dB、其他频段 -57～-71 dB，半周期 3.5–7.2 ms）和 6.4518–6.4647 的过渡段（仍有吸气声 1.6–2 kHz 的谱峰，加低频，-43～-48 dB）。and 的 /æ/ 起音从 6.4648 起（400–650 Hz 第一共振峰能量出现，150–500 Hz 从 -50 升到 -26 dB），之前没有 -55 dB 低谷，后一头切在起音前的过零点 w 6.464667，and 本身不动，词头被切 0 ms。复核报的 post（-40.8 dB）是 and 的起音；删掉的部分最响 -36.1 dB 是吸气声本身（A18）。停顿词到词 0.4 秒（A19 原报停顿后 0.40 秒不是词）。用户 2026-10-09：“不要有任何的呼吸声 语气声 这些都不要 底噪也不要 就要绝对的纯人声”（原始合成里的区间不变，删掉的是同一段声音；配音指纹 064d7e76697e → 3a51c7d6231d，复核仍逐处重算两侧）（原始合成里的区间不变，删掉的是同一段声音；配音指纹 3a51c7d6231d → a33bf05a9d7a，复核仍逐处重算两侧）（原始合成里的区间不变，删掉的是同一段声音；配音指纹 a33bf05a9d7a → 22271bdd8d26，复核仍逐处重算两侧）（原始合成里的区间不变，删掉的是同一段声音；配音指纹 22271bdd8d26 → d659c6245930，复核仍逐处重算两侧）（原始合成里的区间不变，删掉的是同一段声音；配音指纹 d659c6245930 → 8374149bd3cc，复核仍逐处重算两侧）",
+      "source_is_existing_typed_confirmation": true,
+      "old_and_actual_spoken_sentence_exactly_same": true,
+      "sentence_physical_control_differences": {},
+      "native_unprocessed_raw_mother_fullSHA_equals_pinned_original": true,
+      "native_raw_mother_fullSHA": "f4107a287a268a32a67455dee099a42e237f36e0bb6d0701aafd6d7c35d9eac8",
+      "actual_output_continuity_evidence": "Whole public decoded samples 0–132.3946667s are bit-identical, including every complete S2/S4/S7/S11/S12/S13/S14 and their joins.",
+      "active_native_exact_raw_alarm_key_exported": false,
+      "active_vs_dormant": "S14 raw 6.1000-6.5547 superseded by existing6.1300 row (existing basis explains); other rows candidates for7 stale confirmations, actual detailed key map not exported.",
+      "proposal_only": "First preserve the already requested/approved S16 splice and prove whole PCM identity; no automatic metadata renewal. If root deliberately retains current altered splice, only original exact confirmed records may migrate after actual native old/current PCM proof.",
+      "no_new_auditory_exemption": true
+    },
+    {
+      "key": "S14 raw 6.1300-6.5547",
+      "type": "紧贴词头的非人声",
+      "old_whole_fp": "8374149bd3cc",
+      "actual_whole_fp": "2b2539746b32",
+      "original_basis_preserved": "2026-10-09 A21 重出后复核：这一处就是已核实的 S14 raw 6.1000-6.5547（sentient, 与 and 之间的吸气声，紧贴 and 的词头切），终点不变；起点从 6.1000 挪到 6.1300，因为 sentient 的 /t/ 除阻换成了 A21 移植的清楚除阻（w 5.970 起 60 ms），停顿删除从移植段之后开始——删掉的是原来核实过的那一段的一部分，只少删、不多删；复核报的 post/lost 与原来同一类（and 的起音、吸气声本身）。原依据：2026-10-09 实际声音（逐 1–2.5 ms 电平、分频段能量、20 ms 周期、频谱重心、半周期与自相关基频、带时长模型音素位置）：sentient, 与 and 之间。sentient 的 /t/ 除阻在 w 6.005 衰减到 -55 dB，前一头切在其后 -66 dB 的静音（w 6.019583）；删去 0.35 秒吸气声（6.07–6.42，-36～-55 dB、无周期 0.20、重心约 2.6 kHz、150 Hz 以下占比 -16 dB）、6.4275–6.4516 的低频噗声（150 Hz 以下 -41～-53 dB、其他频段 -57～-71 dB，半周期 3.5–7.2 ms）和 6.4518–6.4647 的过渡段（仍有吸气声 1.6–2 kHz 的谱峰，加低频，-43～-48 dB）。and 的 /æ/ 起音从 6.4648 起（400–650 Hz 第一共振峰能量出现，150–500 Hz 从 -50 升到 -26 dB），之前没有 -55 dB 低谷，后一头切在起音前的过零点 w 6.464667，and 本身不动，词头被切 0 ms。复核报的 post（-40.8 dB）是 and 的起音；删掉的部分最响 -36.1 dB 是吸气声本身（A18）。停顿词到词 0.4 秒（A19 原报停顿后 0.40 秒不是词）。用户 2026-10-09：“不要有任何的呼吸声 语气声 这些都不要 底噪也不要 就要绝对的纯人声”（原始合成里的区间不变，删掉的是同一段声音；配音指纹 064d7e76697e → 3a51c7d6231d，复核仍逐处重算两侧）（原始合成里的区间不变，删掉的是同一段声音；配音指纹 3a51c7d6231d → a33bf05a9d7a，复核仍逐处重算两侧）（原始合成里的区间不变，删掉的是同一段声音；配音指纹 a33bf05a9d7a → 22271bdd8d26，复核仍逐处重算两侧）（原始合成里的区间不变，删掉的是同一段声音；配音指纹 22271bdd8d26 → d659c6245930，复核仍逐处重算两侧）（原始合成里的区间不变，删掉的是同一段声音；配音指纹 d659c6245930 → 8374149bd3cc，复核仍逐处重算两侧）",
+      "source_is_existing_typed_confirmation": true,
+      "old_and_actual_spoken_sentence_exactly_same": true,
+      "sentence_physical_control_differences": {},
+      "native_unprocessed_raw_mother_fullSHA_equals_pinned_original": true,
+      "native_raw_mother_fullSHA": "f4107a287a268a32a67455dee099a42e237f36e0bb6d0701aafd6d7c35d9eac8",
+      "actual_output_continuity_evidence": "Whole public decoded samples 0–132.3946667s are bit-identical, including every complete S2/S4/S7/S11/S12/S13/S14 and their joins.",
+      "active_native_exact_raw_alarm_key_exported": false,
+      "active_vs_dormant": "S14 raw 6.1000-6.5547 superseded by existing6.1300 row (existing basis explains); other rows candidates for7 stale confirmations, actual detailed key map not exported.",
+      "proposal_only": "First preserve the already requested/approved S16 splice and prove whole PCM identity; no automatic metadata renewal. If root deliberately retains current altered splice, only original exact confirmed records may migrate after actual native old/current PCM proof.",
+      "no_new_auditory_exemption": true
+    },
+    {
+      "key": "S4 raw 3.7850-4.2365",
+      "type": "紧贴词头的非人声",
+      "old_whole_fp": "8374149bd3cc",
+      "actual_whole_fp": "2b2539746b32",
+      "original_basis_preserved": "2026-10-10 实际声音（逐 2.5 ms 电平、20 ms 周期、10 ms 低频占比、重心；读音改正后重新合成，旧确认作废后重核）：fourteen, 与 when 之间。fourteen 的 /n/ 在 w 3.78 衰减到 -58 dB，停顿（-55～-66 dB）之后 3.945–4.235 是 0.29 秒吸气声（-57 升到 -39 dB、重心 2–2.9 kHz、无周期、150 Hz 以下占比约 -19 dB），一直连到 when 的 /w/ 起音（4.2375 起 -33 dB、重心 1.1 kHz 以下的浊音），中间没有 -55 dB 低谷，只能紧贴 when 的词头在过零点（w 4.236542）切；when 本身一个样本都没动。",
+      "source_is_existing_typed_confirmation": true,
+      "old_and_actual_spoken_sentence_exactly_same": true,
+      "sentence_physical_control_differences": {},
+      "native_unprocessed_raw_mother_fullSHA_equals_pinned_original": true,
+      "native_raw_mother_fullSHA": "9e4648e89bc0ac83235dc810da001dbfc0c1758e57173c9ce57a0142f785a83d",
+      "actual_output_continuity_evidence": "Whole public decoded samples 0–132.3946667s are bit-identical, including every complete S2/S4/S7/S11/S12/S13/S14 and their joins.",
+      "active_native_exact_raw_alarm_key_exported": false,
+      "active_vs_dormant": "S14 raw 6.1000-6.5547 superseded by existing6.1300 row (existing basis explains); other rows candidates for7 stale confirmations, actual detailed key map not exported.",
+      "proposal_only": "First preserve the already requested/approved S16 splice and prove whole PCM identity; no automatic metadata renewal. If root deliberately retains current altered splice, only original exact confirmed records may migrate after actual native old/current PCM proof.",
+      "no_new_auditory_exemption": true
+    },
+    {
+      "key": "S12 raw 9.2200-9.5318",
+      "type": "紧贴词头的非人声",
+      "old_whole_fp": "8374149bd3cc",
+      "actual_whole_fp": "2b2539746b32",
+      "original_basis_preserved": "2026-10-10 实际声音（逐 2.5 ms 电平、20 ms 周期、10 ms 低频占比、重心；读音改正后重新合成，旧确认作废后重核）：stick, 与 adopting 之间。stick 的 /k/ 除阻（已按 A21 移植清楚的除阻）在 w 9.165 衰减到 -60 dB 以下，停顿底噪 -56～-62 dB，9.335–9.5225 是 0.19 秒吸气声（-53 升到 -39 再降到 -54 dB、重心约 2 kHz、无周期、150 Hz 以下占比约 -19 dB），9.525–9.53 只有 -52～-60 dB 的吸气尾，紧接着 9.5325 adopting 的 ɐ 起音（-40 dB、重心 1.6 kHz 的浊音），没有 5 ms 的 -55 dB 低谷，只能紧贴词头在过零点（w 9.531875）切；adopting 本身没动。",
+      "source_is_existing_typed_confirmation": true,
+      "old_and_actual_spoken_sentence_exactly_same": true,
+      "sentence_physical_control_differences": {},
+      "native_unprocessed_raw_mother_fullSHA_equals_pinned_original": true,
+      "native_raw_mother_fullSHA": "725a4e4f1a17930f368c5288b296dc5b2756cac50212a2c510cf2ef42610ba90",
+      "actual_output_continuity_evidence": "Whole public decoded samples 0–132.3946667s are bit-identical, including every complete S2/S4/S7/S11/S12/S13/S14 and their joins.",
+      "active_native_exact_raw_alarm_key_exported": false,
+      "active_vs_dormant": "S14 raw 6.1000-6.5547 superseded by existing6.1300 row (existing basis explains); other rows candidates for7 stale confirmations, actual detailed key map not exported.",
+      "proposal_only": "First preserve the already requested/approved S16 splice and prove whole PCM identity; no automatic metadata renewal. If root deliberately retains current altered splice, only original exact confirmed records may migrate after actual native old/current PCM proof.",
+      "no_new_auditory_exemption": true
+    },
+    {
+      "key": "S13 raw 5.0648-5.3330",
+      "type": "紧贴两头的非人声",
+      "old_whole_fp": "8374149bd3cc",
+      "actual_whole_fp": "2b2539746b32",
+      "original_basis_preserved": "2026-10-10 实际声音（逐 2.5 ms 电平、20 ms 周期、10 ms 低频占比、重心；读音改正后重新合成，旧确认作废后重核）：Consciousness 与 listed 之间（句中，无标点）。Consciousness 词尾 /s/（重心 6 kHz）在 w 5.035–5.0525 衰减（-42→-52 dB、重心仍 3.2–4.4 kHz），5.055 起重心降到 2.2–2.5 kHz 变成吸气声，两者之间没有 -55 dB 低谷，前一头紧贴 /s/ 的尾在过零点（w 5.054792）切，/s/ 衰减到 -56 dB 的部分全部保留；5.06–5.30 是 0.24 秒吸气声（-38～-56 dB、重心 2.3–4 kHz、无周期、150 Hz 以下占比约 -18 dB），5.315–5.32 还有吸气的尾（-43～-47 dB、重心 2.6–3.4 kHz），5.3225 起才是 listed 的 /l/ 浊音（重心 1.8 kHz 以下），后一头紧贴 /l/ 的起音在过零点（w 5.323）切；两个词本身都没动。",
+      "source_is_existing_typed_confirmation": true,
+      "old_and_actual_spoken_sentence_exactly_same": true,
+      "sentence_physical_control_differences": {},
+      "native_unprocessed_raw_mother_fullSHA_equals_pinned_original": true,
+      "native_raw_mother_fullSHA": "83e4d1c464f47dea53917da4967ae8060f84d34f144ec2f9c5106b8deba731f5",
+      "actual_output_continuity_evidence": "Whole public decoded samples 0–132.3946667s are bit-identical, including every complete S2/S4/S7/S11/S12/S13/S14 and their joins.",
+      "active_native_exact_raw_alarm_key_exported": false,
+      "active_vs_dormant": "S14 raw 6.1000-6.5547 superseded by existing6.1300 row (existing basis explains); other rows candidates for7 stale confirmations, actual detailed key map not exported.",
+      "proposal_only": "First preserve the already requested/approved S16 splice and prove whole PCM identity; no automatic metadata renewal. If root deliberately retains current altered splice, only original exact confirmed records may migrate after actual native old/current PCM proof.",
+      "no_new_auditory_exemption": true
+    }
+  ],
+  "whole_public_audio_evidence": {
+    "kind": "whole-public-audio-identity-and-difference-localization",
+    "passed_not_implied": true,
+    "accepted_aac_adts_sha256": "16b6293adfc7a3c35224408ae39d831317e1932f8d47876824e129129c9115d8",
+    "actual_aac_adts_sha256": "54db011901074db7960b44b119ccddf8535523a49560631be610c756cfd8312c",
+    "whole_AAC_identical": false,
+    "whole_decoded_float32_identical": false,
+    "decoded_sample_counts": [
+      6596608,
+      6596608
+    ],
+    "number_of_different_samples": 153600,
+    "first_differing_sample": 6354944,
+    "last_differing_sample_exclusive": 6508544,
+    "minimal_enclosing_differing_span_seconds": [
+      132.39466666666667,
+      135.59466666666665
+    ],
+    "differing_runs_merged_only_for_150ms_encoding_boundary_localization": [
+      [
+        132.39466666666667,
+        135.59466666666665
+      ]
+    ],
+    "bit_identical_prefix": {
+      "samples": 6354944,
+      "end_seconds": 132.39466666666667,
+      "accepted_sha256": "e244e1e0eaff4f15e24755fa369544ce55e55e8e37f3af8704b7de81111be8ba",
+      "actual_sha256": "e244e1e0eaff4f15e24755fa369544ce55e55e8e37f3af8704b7de81111be8ba",
+      "np_array_equal": true
+    },
+    "tail_template_alignment_diagnostic": [
+      {
+        "accepted_span": [
+          128,
+          129
+        ],
+        "best_lag_s": 0.0,
+        "NCC": 0.9999999999999999
+      },
+      {
+        "accepted_span": [
+          130,
+          131
+        ],
+        "best_lag_s": 0.0,
+        "NCC": 1.0000000000000002
+      },
+      {
+        "accepted_span": [
+          132.8,
+          133.2
+        ],
+        "best_lag_s": -0.00020833333333333335,
+        "NCC": 0.9999686305442842
+      },
+      {
+        "accepted_span": [
+          133.4,
+          133.8
+        ],
+        "best_lag_s": -0.00020833333333333335,
+        "NCC": 0.9999710775438327
+      },
+      {
+        "accepted_span": [
+          134.4,
+          134.8
+        ],
+        "best_lag_s": -0.00020833333333333335,
+        "NCC": 0.9999270844939387
+      },
+      {
+        "accepted_span": [
+          135,
+          135.4
+        ],
+        "best_lag_s": -0.00020833333333333335,
+        "NCC": 0.9999709476595874
+      }
+    ]
+  },
+  "accepted_vs_requested_physical_controls": {},
+  "minimal_preferred_proposal": {
+    "action": "Preserve the already approved and request-supplied S16 joins[45598,57353] through the official automatic prep step, subject to the unchanged original join/A32/voice checks, instead of reselecting52620/64500.",
+    "scope": "Requires root review of the original automatic join-write behavior; merely rewriting PAY will not help, because immutable PAY already contains the correct approved joins. No core patch is made here.",
+    "why": "No07 voice change requested. The actual automatic join reselection is the only physical-control difference and changes only last phrase by a10-sample48k timeline phase, invalidating unrelated whole-fp confirmations.",
+    "actual_old_original_join_guard_passes_on_pinned_mother": {
+      "speed0.9_join45598_dB": -64.26612854003906,
+      "speed0.78_join57353_dB": -59.64947509765625,
+      "unaltered_original_requirement": "each3x5mswindow maximum<-55dB"
+    },
+    "confirmation_changes_needed_now": "Do not preemptively renew metadata if preserved/restored native production returns whole PCM8374149bd3cc. Preserve the14 original matching-fp explanations and existing8typed checks; unchanged original gates decide.",
+    "required_actual_evidence": "Original native old-source AUDIO_ONLY must truly prove wholefp8374149bd3cc plus AAC=accepted16b6293a..., then restored production must preserve that AAC and pass all original checks.",
+    "not_implemented_here": true
+  },
+  "fallback_if_root_chooses_current_splice": {
+    "method": "Use unchanged original确认平移.py on exact old/current native PCM after proving old wholefp and currentfullSHA; that tool may migrate14 unchanged regions and8raw-key existing types without reformulatingbases.",
+    "not_an_authorization_to_bypass_AAC_contract": true,
+    "old_public_audio_equality_alone_does_not_prove_correct_pronunciation": true
+  },
+  "actual_source_physical_control_difference": {
+    "结尾句/S16/接点": {
+      "accepted": [
+        45598,
+        57353
+      ],
+      "immutable_request": [
+        45598,
+        57353
+      ],
+      "actual_after_official_automatic_reselection": [
+        52620,
+        64500
+      ]
+    },
+    "request_matches_accepted_all_physical_controls": true,
+    "actual_other_physical_controls_match_request": true
+  },
+  "provenance": {
+    "accepted_MP4": {
+      "repository_path": "最终版4K视频/07 - The Octopus That Escaped - 越狱的章鱼.mp4",
+      "git_blob": "27a6b0f0825ef3f5718967a2c22a71d8b1480b69",
+      "full_SHA256": "bece32b7cc7558bad0e2a19f790ff786c775d94b71b37c59043a364012e33e47"
+    },
+    "old_source": {
+      "repository_commit": "64621068034f8b6e09836a6d97210a0e9b2f1ed6",
+      "repository_path": "视频/脚本/07.json",
+      "full_SHA256": "96ad5ac097dabf30aa7ee95243c7f7636e91590d2ec34cb480ed176418e2f4c1"
+    },
+    "current_actual_MP4": {
+      "run_id": 43538347790,
+      "artifact_id": 14092320344,
+      "file": "files/07-failed-draft.mp4",
+      "full_SHA256": "427649c7301450f0c777d4ea8f3c24ec0f56f7f1639cfee96ff046211f04bb54",
+      "official_source_PCM_fingerprint_match_proof": "files/07-failed-draft-proof.json"
+    }
+  },
+  "S16_exact_input_cache_key_evidence_file": "07-S16-raw-cache-and-join-measurements.json",
+  "correction_of_initial_message": "Initial chat called52620/64500 a request change. Three-way byte-verified review corrected this: immutable request retains45598/57353; only actual official production rewrote them. All reports now record actual vsrequest separately."
+}

@@ -1,0 +1,136 @@
+{
+  "kind": "real-Tokenizer-readonly-A23-selftest-structural-failure",
+  "article": "16",
+  "source_run": 43543967031,
+  "native_job_id": 132290749437,
+  "quality_acceptance": false,
+  "TTS_model_inference_or_cache_write": false,
+  "original_maker_SHA256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+  "original_pronunciation_dictionary_SHA256": "5f558c61f8ffb99009a89989afcc07a9ce168b2b70a6c9377289040d14ec402b",
+  "original_context_dictionary_SHA256": "4d8905dc1a87f97b707270f03f41ea0fdf2b207ca218ed74608cdb134e3dc8e3",
+  "frozen_request_SHA256": "d25aa07f3fac316c26c2ae1006d3efa7eb82a396b66150432b50239c1628396d",
+  "sentence": "S18",
+  "actual_full_original_sentence": "About half the nitrogen in our proteins and DNA has passed through a Haber-Bosch factory, so each of us carries a little of Haber's chemistry.",
+  "dictionary_entries": {
+    "Haber": {
+      "读音": "hˈɑːbɚ",
+      "配音原来读作": "hˈeɪbɚ",
+      "依据": "2026-10-16 16 读音查证：Fritz Haber，Merriam-Webster ˈhä-bər（HAH-ber），德语 /ˈhaːbɐ/；配音读成 HAY-ber"
+    },
+    "Haber-Bosch": {
+      "读音": "hˈɑːbɚbˈɑːʃ",
+      "配音原来读作": "hˈeɪbɚbˈɑːʃ",
+      "依据": "2026-10-16 16 读音查证：Haber 同上（HAH-ber），Bosch Merriam-Webster ˈbäsh；注音程序把连字符复合词注成一串，单登记 Haber 换不到，复合词单独登记"
+    }
+  },
+  "actual_native_original_reference_input": [
+    {
+      "sentence": "S18",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "About half the nitrogen in our proteins and DNA has passed through a Haber-Bosch factory, so each of us carries a little of Haber's chemistry.",
+      "exact_native_cache_key": "fe499637be0bc8b7f63a949f04a6488f63ed92d0.pkl",
+      "cache_input_text_sha256": "8a8e6572b6a071064f6600710451048af1ebef0fdef03115cd3ca32d9816a6a7",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    }
+  ],
+  "baseline_our_unchanged_function_SHA_matches_native_prepared_input": true,
+  "actual_replay_cases": [
+    {
+      "disabled_by_original_selftest_pop": null,
+      "returned_phonemes": "ɐbˌaʊt hˈæf ðə nˈaɪtɹədʒən ɪn ˌaʊɚ pɹˈoʊtiːnz ænd dˌiːˌɛnˈeɪ hɐz pˈæst θɹuː ɐ hˈɑːbɚbˈɑːʃ fˈæktɚɹi, sˌoʊ ˈiːtʃ əv ˌʌs kˈæɹiz ɐ lˈɪɾəl ʌv hˈɑːbɚz kˈɛmɪstɹi.",
+      "returned_input_SHA256": "8a8e6572b6a071064f6600710451048af1ebef0fdef03115cd3ca32d9816a6a7",
+      "error": null
+    },
+    {
+      "disabled_by_original_selftest_pop": "Haber",
+      "returned_phonemes": "ɐbˌaʊt hˈæf ðə nˈaɪtɹədʒən ɪn ˌaʊɚ pɹˈoʊtiːnz ænd dˌiːˌɛnˈeɪ hɐz pˈæst θɹuː ɐ hˈɑːbɚbˈɑːʃ fˈæktɚɹi, sˌoʊ ˈiːtʃ əv ˌʌs kˈæɹiz ɐ lˈɪɾəl ʌv hˈeɪbɚz kˈɛmɪstɹi.",
+      "returned_input_SHA256": "243134f4f5af32cf9f062500d853a7c83e027336ad7f9ca6d51ce74b3c26d39f",
+      "error": null
+    },
+    {
+      "disabled_by_original_selftest_pop": "Haber-Bosch",
+      "error": {
+        "type": "SystemExit",
+        "message": "【停止】读音改正没有全部换到（A23）：Haber 出现 2 次，换了 1 次：About half the nitrogen in our proteins and DNA has passed t"
+      }
+    }
+  ],
+  "exact_original_matching_trace": [
+    {
+      "compound_entry_disabled": null,
+      "text_Haber_occurrences": [
+        {
+          "text_span": [
+            69,
+            74
+          ],
+          "following_text": "-Bosch f",
+          "compound": "haber-bosch",
+          "counted_for_single_Haber_replacement": false
+        },
+        {
+          "text_span": [
+            124,
+            129
+          ],
+          "following_text": "'s chemi",
+          "compound": "",
+          "counted_for_single_Haber_replacement": true
+        }
+      ],
+      "expected_replacement_count": 1,
+      "raw_espeak_phonemes": "ɐbˌaʊt hˈæf ðə nˈaɪtɹədʒən ɪn ˌaʊɚ pɹˈoʊtiːnz ænd dˌiːˌɛnˈeɪ hɐz pˈæst θɹuː ɐ hˈeɪbɚbˈɑːʃ fˈæktɚɹi, sˌoʊ ˈiːtʃ əv ˌʌs kˈæɹiz ɐ lˈɪɾəl ʌv hˈeɪbɚz kˈɛmɪstɹi.",
+      "single_word_bad_phonemes": "hˈeɪbɚ",
+      "original_replacement_pattern": "(?<![^\\s,;:.!?])[ˈˌ]?h[ˈˌ]?e[ˈˌ]?ɪ[ˈˌ]?b[ˈˌ]?ɚ[ˈˌ]?([sz]?)(?=[\\s,;:.!?]|$)",
+      "actual_wholeword_raw_regex_match_count": 1
+    },
+    {
+      "compound_entry_disabled": "Haber-Bosch",
+      "text_Haber_occurrences": [
+        {
+          "text_span": [
+            69,
+            74
+          ],
+          "following_text": "-Bosch f",
+          "compound": "haber-bosch",
+          "counted_for_single_Haber_replacement": true
+        },
+        {
+          "text_span": [
+            124,
+            129
+          ],
+          "following_text": "'s chemi",
+          "compound": "",
+          "counted_for_single_Haber_replacement": true
+        }
+      ],
+      "expected_replacement_count": 2,
+      "raw_espeak_phonemes": "ɐbˌaʊt hˈæf ðə nˈaɪtɹədʒən ɪn ˌaʊɚ pɹˈoʊtiːnz ænd dˌiːˌɛnˈeɪ hɐz pˈæst θɹuː ɐ hˈeɪbɚbˈɑːʃ fˈæktɚɹi, sˌoʊ ˈiːtʃ əv ˌʌs kˈæɹiz ɐ lˈɪɾəl ʌv hˈeɪbɚz kˈɛmɪstɹi.",
+      "single_word_bad_phonemes": "hˈeɪbɚ",
+      "original_replacement_pattern": "(?<![^\\s,;:.!?])[ˈˌ]?h[ˈˌ]?e[ˈˌ]?ɪ[ˈˌ]?b[ˈˌ]?ɚ[ˈˌ]?([sz]?)(?=[\\s,;:.!?]|$)",
+      "actual_wholeword_raw_regex_match_count": 1
+    }
+  ],
+  "proposed_selftest_only_key_preservation_development_probe": {
+    "disabled_correction_but_compound_key_retained": "Haber-Bosch",
+    "original_raw_phonemes_value": "hˈeɪbɚbˈɑːʃ",
+    "returned_phonemes": "ɐbˌaʊt hˈæf ðə nˈaɪtɹədʒən ɪn ˌaʊɚ pɹˈoʊtiːnz ænd dˌiːˌɛnˈeɪ hɐz pˈæst θɹuː ɐ hˈeɪbɚbˈɑːʃ fˈæktɚɹi, sˌoʊ ˈiːtʃ əv ˌʌs kˈæɹiz ɐ lˈɪɾəl ʌv hˈɑːbɚz kˈɛmɪstɹi.",
+    "returned_SHA256": "c2788e43e15998228c976314cd0c4330b1279a68c59ba314257ec62eff5fe547",
+    "raised_exception": false,
+    "production_code_or_dictionary_changed": false
+  },
+  "versions": {
+    "kokoro-onnx": "0.6.1",
+    "phonemizer": "3.4.0",
+    "espeakng-loader": "0.2.4"
+  },
+  "real_espeak_library_path": "/workspace/work/video-venv/lib/python3.12/site-packages/espeakng_loader/libespeak-ng.so",
+  "real_espeak_data_path": "/workspace/work/video-venv/lib/python3.12/site-packages/espeakng_loader/espeak-ng-data",
+  "real_espeak_library_SHA256": "b15ce0803b26254e8a0d088c6b9281a2637b2b02613147cc320cfdefaf2c3ccf",
+  "no_source_or_core_dictionary_or_cache_modified": true
+}

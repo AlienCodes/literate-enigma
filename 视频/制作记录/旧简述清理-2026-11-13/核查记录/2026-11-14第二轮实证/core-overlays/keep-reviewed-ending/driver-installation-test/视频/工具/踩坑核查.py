@@ -1,0 +1,991 @@
+#!/usr/bin/env python3
+"""踩坑核查（最高铁律：踩过的坑绝不再踩）。任何东西交出去之前都要过这一关：
+  python3 踩坑核查.py NN 文本   # 发 Word / HTML / PDF 之前（生成文本.py 自动调用）
+  python3 踩坑核查.py NN 出片   # 出视频之前（交付核查.py 出片前 自动调用）
+  python3 踩坑核查.py 通用      # 做文章、视频以外的任何事之前：列出沟通、保存类的坑和铁律，逐条对照
+  python3 踩坑核查.py 自检      # 只做核查程序自检
+每次运行先做"核查程序自检"：在第03篇（已定稿）的副本里故意造出每一种能用程序查的坑，必须全部抓到，且原稿不得误报；
+抓不到 = 核查失灵，不得交付。然后：
+  ① 踩坑对照记录：制作记录/NN.md 里本阶段涉及的每一条（文本：T D W C G；出片：全部）都填了"涉及/不涉及"和怎么防的；
+  ② 能用程序查的坑逐条查（下面每个检查都写明对应的踩坑编号）；
+  ③ 需要逐个确认的（疑似缺牛津逗号、数字对不上）必须在 scripts/NN.json 的"核对确认"里逐条写明结论；
+  ④ 换行（L13）：与上次发给用户的版本（脚本/已发版本/NN.json）逐句比对，有变化必须在"换行变更已获同意"里写明用户原话；
+  ⑤ 存视频的文件夹只存定稿（G7）：已定稿篇目的草稿、试听视频、旧版本必须删掉。
+新坑入表时，凡是能用程序查的，必须同时在这里加检查、在自检里加一个故意造坑的样本。"""
+import sys, os, re, json, glob, copy, subprocess
+T = os.path.dirname(os.path.abspath(__file__)); V = os.path.dirname(T); ROOT = os.path.dirname(V)
+STAGE_PREFIX = {'文本': 'TDWCG', '出片': 'TDWCGLHAS'}
+NUMW = {'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9, 'ten': 10,
+        'eleven': 11, 'twelve': 12, 'twenty': 20, 'thirty': 30, 'fifty': 50, 'hundred': 100}
+strip_en = lambda x: re.sub(r'\*\*|\{\{.*?\}\}', '', x)
+ns = lambda x: re.sub(r'[\*\s]', '', x)
+
+
+def pit_rows():
+    """《踩坑总表》每一行：(编号, 出过的问题, 以后怎么防)"""
+    sys.path.insert(0, T); from 坑表 import 坑行   # 总表只有一份：《制作硬性标准与踩坑总结》里的表
+    return 坑行()
+
+
+def record_gate(no, stage):
+    """① 踩坑对照记录：本阶段涉及的条目逐条填完"""
+    rec = f'{V}/制作记录/{no}.md'
+    try:   # G21：查之前先把程序把关的新坑补进对照记录（只有人能判的不补）——流水线跑到一半加了新坑，① 和 ④ 都不会再白停（2026-10-23 停了四次）
+        import 补对照记录 as _BJ; _BJ.补(no)
+    except Exception: pass
+    txt = open(rec).read() if os.path.exists(rec) else ''
+    return record_gate_text(txt, no, stage)
+
+
+人判格式_起 = 25
+
+
+def record_gate_text(txt, no, stage):
+    if '## 踩坑对照记录' not in txt:
+        return [f'制作记录/{no}.md 没有"## 踩坑对照记录"（先运行：交付核查.py {no} 对照表，再逐条填写）']
+    _m = re.search(r'^## 踩坑对照记录[^\n]*\n(.*?)(?=^## |\Z)', txt, re.S | re.M); sec = _m.group(1) if _m else txt[txt.index('## 踩坑对照记录'):]   # 只到下一个“## ”标题（32 报：后面“做事对照记录”表的 T15 行被当成踩坑对照行）
+    rows = {m.group(1): [c.strip() for c in m.group(2).split('|')] for m in re.finditer(r'^\| *([A-Z]\d+b?) *\|(.*)\|\s*$', sec, re.M)}
+    need = [i for i, _, _ in pit_rows() if i[0] in STAGE_PREFIX[stage]]
+    miss = [i for i in need if i not in rows]
+    blank = [i for i in need if i in rows and not (len(rows[i]) >= 3 and rows[i][-2] in ('涉及', '不涉及') and rows[i][-1] not in ('', '待填'))]
+    err = []
+    if miss: err.append(f'踩坑对照记录缺条目（《踩坑总表》新加的条目要补进去）：{" ".join(miss)}')
+    if blank: err.append(f'踩坑对照记录没填完（{stage}阶段必须填）：{" ".join(blank)}')
+    if int(no) >= 人判格式_起:   # 规矩全面落实 三：G6/C3/C4 只认固定格式：“本篇无：……”或“本篇有：……”且引用户原话
+        bad = [i for i in ('G6', 'C3', 'C4') if i in rows and i in need and not (re.match(r'^本篇无[：:].{4,}', rows[i][-1]) or (re.match(r'^本篇有[：:]', rows[i][-1]) and re.search(r'“[^”]{4,}”', rows[i][-1])))]
+        if bad: err.append(f'踩坑对照记录：{" ".join(bad)} 只认固定格式（25 起）：“本篇无：具体说明”，或“本篇有：怎么做的，用户原话“……””')
+    if int(no) >= 21:   # 只有人能判的坑（G6 不覆盖原稿、C3 两次要求冲突要问、C4 插话合并一次改）：要写明本篇具体怎么做的，不许用开工时自动填的套话
+        tao = [i for i in ('G6', 'C3', 'C4') if i in rows and i in need and (len(rows[i][-1]) < 8 or '按现行做法由程序把关' in rows[i][-1])]
+        if tao: err.append(f'踩坑对照记录：{" ".join(tao)} 只有人能判，要写明本篇具体怎么做的（不许用开工时自动填的套话）')
+    return err
+
+
+def selftest_record_human():
+    """G6/C3/C4 自检：用开工套话填的必须报出；写明具体做法的不报"""
+    ids = [i for i, _, _ in pit_rows() if i[0] in STAGE_PREFIX['文本']]
+    def rec(c3): return '## 踩坑对照记录\n' + '\n'.join(f'| {i} | x | 涉及 | ' + (c3 if i == 'C3' else '本篇已逐条核对，具体做法见制作记录') + ' |' for i in ids)
+    fails = []
+    if not any('只有人能判' in x for x in record_gate_text(rec('按现行做法由程序把关（踩坑总表“拦住”），本篇核查通过'), '21', '文本')): fails.append('没抓到：只有人能判的坑用了套话（G6/C3/C4）')
+    if record_gate_text(rec('用户两次要求不冲突，没有需要问的'), '21', '文本'): fails.append('G6/C3/C4 误报：写明了具体做法')
+    def rec2(v): return '## 踩坑对照记录\n' + '\n'.join(f'| {i} | x | 涉及 | ' + (v if i in ('G6', 'C3', 'C4') else '本篇已逐条核对，具体做法见制作记录') + ' |' for i in ids)
+    if not any('只认固定格式' in x for x in record_gate_text(rec2('用户两次要求不冲突，没有需要问的'), '25', '文本')): fails.append('没抓到：25 起 G6/C3/C4 没按固定格式写（本篇无/本篇有）')
+    if not any('只认固定格式' in x for x in record_gate_text(rec2('本篇有：合并成一次改了'), '25', '文本')): fails.append('没抓到：25 起“本篇有”却没引用户原话')
+    if record_gate_text(rec2('本篇无：用户没有提互相冲突的要求，也没有插话'), '25', '文本'): fails.append('G6/C3/C4 误报：固定格式“本篇无：……”')
+    if record_gate_text(rec2('本篇有：两次插话合并成一次改，用户原话“这两处一起改”'), '25', '文本'): fails.append('G6/C3/C4 误报：固定格式“本篇有：……“原话””')
+    _t = rec('用户两次要求不冲突，没有需要问的') + '\n\n## 做事对照记录\n| T15 | z | 待填 | 待填 |\n'   # 32 报：做事对照记录表放在后面，T15 行被当成踩坑对照行
+    if any('T15' in x for x in record_gate_text(_t, '21', '文本')): fails.append('误报：做事对照记录里的 T15 行被当成踩坑对照行（只该看到下一个“## ”标题为止）')
+    return fails
+
+
+def article_en(no):
+    md = glob.glob(f'{ROOT}/新版定稿/{no}-*.md')
+    return open(md[0]).read().split('## 英文', 1)[1].split('## 中文', 1)[0] if md else None
+
+
+_R = None
+def _render():
+    """视频画面的排版程序（与出片同一套），字体用仓库 资源/字体/"""
+    global _R
+    if _R is None:
+        sys.path.insert(0, T); import render as R
+        R.F = f'{V}/资源/字体/'; _R = R
+    return _R
+
+
+def layout(d):
+    """换行结构（L13）：用出片的排版程序算出每屏每一行实际是哪几个英文词、中文占几行；
+    再加上 chunk 划分、手动断行标记 ["\n",""]、英文里的 {{=}}/{{/}} 标记。只改分组、不改画面上的行，不算换行变化。"""
+    R = _render(); es = R.LAYOUT_ES; ef = R.EN(es, 600); zf = R.ZH(int(es * R.ZR), 500); gapx = int(es * 0.36)
+    sig = []
+    for s in d['sentences']:
+        colors = {w.lower(): (1, 1, 1) for c in s['chunks'] for w in re.findall(r'\*\*([^*]+)\*\*', c['en'])}
+        ss = []
+        for c in s['chunks']:
+            before = []; acc = []
+            for a, z in c['align']:
+                if a == '\n': before.append(ns(strip_en(' '.join(acc))))
+                else: acc.append(a)
+            rows = []
+            for r in R._rows([tuple(p) for p in c['align']], colors, ef, zf, gapx, 1840 * R.S):
+                cols = [r[1]] if isinstance(r, tuple) else r
+                rows.append(('整格折行' if isinstance(r, tuple) else '行', ns(''.join(t for col in cols for t, _ in col['se'])), max(col['nz'] for col in cols)))
+            ss.append({'en': ns(strip_en(c['en'])), '标记': re.findall(r'\{\{(?:[=/]|一行)\}\}', c['en']), '断行在': before, '画面各行': rows})
+        sig.append(ss)
+    return sig
+
+
+T18_起 = 24   # T18 堵漏（用户 2026-10-24：“不是说必须要有牛津逗号吗？……你为什么现在又来问我呢？”）：24 起 核对确认.牛津逗号 只认“不是三项并列：……”，写“英式/不改/保留”一律算错误
+T18_放行 = '不是三项并列'
+
+
+def text_checks(d, art=None, sent=None, no=None):
+    """② ③ ④ 能用程序查的坑。返回 (错误, 待确认, 参考)；每条以 [编号] 开头"""
+    err, conf, ref = [], [], []
+    ok = d.get('核对确认', {}); ox_ok = ok.get('牛津逗号', {}); num_ok = ok.get('数字', {})
+    paras = {}
+    for i, s in enumerate(d['sentences']):
+        S = f'S{i + 1}'
+        en_sent = ' '.join(strip_en(c['en']) for c in s['chunks'])
+        # T18 牛津逗号：疑似"A, B and C"（and/or 前没有逗号）逐个确认
+        for m in re.finditer(r"(?<![\w'-])([\w'-]+(?: [\w'-]+){0,3}), ([\w'-]+(?: [\w'-]+){0,3}) (and|or) ", en_sent):
+            key = f'{S} {m.group(0).strip()}'
+            if key not in ox_ok: conf.append(f'[T18] {key}  ← 是不是三项以上并列、缺牛津逗号？逐个确认后写进 核对确认.牛津逗号')
+            elif no is not None and int(no) >= T18_起 and (not str(ox_ok[key]).startswith(T18_放行) or '英式' in str(ox_ok[key])):
+                err.append(f'[T18] {key}  ← 三项并列一律加牛津逗号（and/or 前加逗号，脚本和文章英文同时改）；核对确认只认“不是三项并列：……”，现在写的是“{str(ox_ok[key])[:30]}”（写“英式/不改/保留”的不放行）')
+        for k, c in enumerate(s['chunks']):
+            C = f'{S}-{k + 1}'
+            if '\n' in c['en']: err.append(f'[D1] {C} 英文里混入换行标记')
+            if ns(' '.join(a for a, _ in c['align'] if a != '\n')) != ns(c['en']): err.append(f'[D2] {C} align 英文与 en 不一致')
+            if ''.join(z for _, z in c['align']) != c['zh']: err.append(f'[D2] {C} zh 与 align 中文拼接不一致')
+            if c['en'].strip() and not c['zh'].strip(): err.append(f'[T6] {C} 空译文')
+            marks = {m.lower() for m in re.findall(r'\*\*[^*]+\*\*\(([^)]+)\)', c['zh'])}
+            for w in re.findall(r'\*\*([^*]+)\*\*', c['en']):
+                if w.lower() not in marks and not any(w.lower() in m.split() for m in marks): err.append(f'[D4] {C} 重点词 {w} 缺中文标记')
+            for m in re.finditer(r'\*\*([^*]+)\*\*', c['zh']):
+                if not c['zh'][m.end():].startswith('('): err.append(f'[D4格式] {C} 中文重点词 **{m.group(1)}** 后面没有紧跟 (英文)')
+            z = re.sub(r'\*\*|\([A-Za-z][^)]*\)', '', c['zh'])
+            if re.search(r'[一-鿿）】》”][,.;:?!]|[,;:?!][一-鿿（【《“]', z): err.append(f'[标点] {C} 中文里用了半角标点：{c["zh"][:30]}')
+            if re.search(r'[「」『』"]', z): err.append(f'[标点] {C} 引号要用中文引号“”：{c["zh"][:30]}')
+            if re.search(r'\((?![A-Za-z])', z): err.append(f'[W4] {C} 中文说明用了半角括号（要用全角（））')
+            if c.get('note') and not note_bracket_ok(c['note']): err.append(f'[注释] {C} 注释要写在全角（）里：{c["note"][:30]}')
+            # T16 数字：英文里的阿拉伯数字，中文里要有同一个数（写法不同的逐个确认）
+            for num in re.findall(r'\d[\d,]*\d|\d', strip_en(c['en'])):
+                if num not in c['zh'] and num.replace(',', '') not in c['zh'].replace(',', ''):
+                    key = f'{C} {num}'
+                    if key not in num_ok: conf.append(f'[T16] {key}  ← 中文里没有这个数，读法/写法核对后写进 核对确认.数字')
+            # T24 用户口述（语音输入）多识别出来的词照抄进了画面（08 S16 用户口述“婉言拒绝(觉得方式比较体面，礼貌)”，“觉得”是语音输入多出来的，
+            # 我按 T10 照抄；用户：“这个地方为什么会有一个觉得呢？……没有觉得那两个字”）：括号说明、note 里出现这类词，核对用户本意后写进 核对确认.口述
+            segs = re.findall(r'（(?:[^（）]|（[^（）]*）)*）', c['zh']) + ([c['note']] if c.get('note') else [])
+            for seg in segs:
+                for m in re.finditer(r'觉得|嗯|呃|那个|就是说|然后呢|你知道', seg):
+                    key = f'{C} {m.group(0)}'
+                    if key not in d.get('核对确认', {}).get('口述', {}): conf.append(f'[T24] {key}  ← 用户口述（语音输入）里常多出来的词出现在括号说明或 note 里：{seg[:30]}，核对用户本意后改掉，或写进 核对确认.口述')
+            # T19：第04篇初稿与 01–03 定稿写法不一致、经独立审校查出的几类（01–03 里从未出现或只出现过经用户认可的个例）
+            if re.search(r'\*\*\([^)]*\)了', c['zh']) and C not in d.get('核对确认', {}).get('了不并', {}): err.append(f'[T19了] {C} "了"要放进加粗里（如 **扫描了**(scanned)）：{c["zh"][:30]}')
+            def ask(tag, what, hint):
+                key = f'{C} {what}'
+                if key not in ok.get(tag, {}): conf.append(f'[T19{tag}] {key}  ← {hint}，核对后写进 核对确认.{tag}')
+            for m in re.finditer(r'(?<!也就)(?<!的)(?<!就)是\*\*[^*]+的\*\*', c['zh']): ask('是的', m.group(0), '"是**…的**"多半生硬（01–03 没有先例，如"都是至关重要的"→"都至关重要"）')
+            for w, v in NUMW.items():
+                if re.search(rf'\b{w}\b', strip_en(c['en']), re.I) and re.search(rf'(?<![\d,.]){v}(?![\d,])', c['zh']): ask('数字写法', w, '英文是单词数字，中文写成了阿拉伯数字')
+            if re.search(r'[“”]', c['zh']) and not re.search(r'["“”]', c['en']): ask('引号', '“”', '英文没有引号，中文却加了引号')
+            if '即' in re.sub(r'（[^（）]*）|\*\*[^*]+\*\*\([^)]*\)', '', c['zh']): ask('即', '即', '正文（括号外）用了文言的"即"')
+            for m in re.finditer(r'\*\*[^*]*们\*\*', c['zh']): ask('们', m.group(0), '名词重点词带"们"')
+            for m in re.finditer(r'（[^（）]*\*\*[^（）]*）', c['zh']): ask('括号含重点词', m.group(0), '括号里包着重点词：原文的译文不能放进括号当补充（T1）')
+            for a in re.findall(r'（[^（）]*）', re.sub(r'\*\*[^*]+\*\*\([^)]+\)', '', c['zh'])):
+                ref.append(f'[T1] {C} 括号内容 {a}（若是原文没有的补充，需用户认可）')
+        paras.setdefault(s['para'], []).append(' '.join(re.sub(r'\{\{.*?\}\}', '', c['en']) for c in s['chunks']))
+    sys.path.insert(0, T); import 破折号 as _PZ
+    if art is not None and not _PZ.英文一致(' '.join(' '.join(v) for _, v in sorted(paras.items())), art): err.append('[D3] 英文与文章原文不一致（英文一个字都不能改；例外只有牛津逗号、重点词换词、破折号换逗号/冒号/括号，且要同步到文章）')
+    if sent is not None:
+        a, b = layout(sent), layout(d); appr = d.get('换行变更已获同意', {})
+        if len(a) != len(b): err.append(f'[L13] 句数变了（{len(a)} → {len(b)}），换行变更必须经用户同意')
+        for i, (x, y) in enumerate(zip(a, b)):
+            if x != y and f'S{i + 1}' not in appr: err.append(f'[L13] S{i + 1} 换行与上次发给用户的版本不同，没有用户同意（写进 换行变更已获同意："S{i + 1}": "用户原话"）')
+    return err, conf, ref
+
+
+# T22 短语型用法只标了一个词（用户 2026-10-10 看 08 初稿：“这个地方 attributed to 肯定要把 to 也包含进去，也要标色。
+# 你记住以后……短语型的用法……就不止一个词，这种复合用法你不能只标一个词”；T14 depend on 的坑重犯）：
+# 重点词的固定搭配/短语动词/句型（速查表释义、note 里写的 attribute A to B、arise from、succumb to……，再加一张常用搭配兜底表），
+# 搭配里的介词/小品词就在同一分句里（往后 6 个词以内，不跨 , ; : .），却没有一起加粗 → 逐个报出。
+# 改法：连着的整体加粗（**arising from**）；被隔开的按 T14 两部分都加粗、中文括注写完整短语（**attributed** **epidemics** **to** / **归因于**(attributed to)）。
+# 介词只是普通介词短语开头、不构成固定用法的，核实后写进 核对确认.短语："S6 plunged … from": "理由"。
+PH_PREPS = 'to from as on in of with for into at by about out up off over upon onto against through away down back'.split()
+PH_BACK = 'in on at by under with without within beyond'.split()   # 反方向：这些介词 + 名词重点词（in flocks、in desperation、on foot、by chance）
+PH_SLOT = r"(?:A|B|C|sb|sth|sb's|sth's|one|one's|oneself|somebody|something|\.\.\.|…|……|doing|do)"
+PH_CORE = {'attribute':['to'],'ascribe':['to'],'stem':['from'],'arise':['from'],'result':['in','from'],'derive':['from'],'originate':['from'],
+ 'depend':['on','upon'],'rely':['on','upon'],'consist':['of'],'account':['for'],'refer':['to'],'interpret':['as'],'regard':['as'],'view':['as'],
+ 'succumb':['to'],'cope':['with'],'deal':['with'],'insist':['on'],'focus':['on'],'belong':['to'],'adapt':['to'],'respond':['to'],'object':['to'],
+ 'contribute':['to'],'lead':['to'],'prevent':['from'],'distinguish':['from'],'differ':['from'],'suffer':['from'],'benefit':['from'],'emerge':['from'],
+ 'compensate':['for'],'search':['for'],'apply':['to','for'],'subject':['to'],'expose':['to'],'confine':['to'],'convert':['into'],'transform':['into'],
+ 'translate':['into'],'divide':['into'],'turn':['into'],'blame':['on','for'],'accuse':['of'],'deprive':['of'],'rob':['of'],'remind':['of'],'consist':['of'],
+ 'dispose':['of'],'approve':['of'],'conform':['to'],'cling':['to'],'resort':['to'],'yield':['to'],'amount':['to'],'adhere':['to'],'commit':['to'],
+ 'devote':['to'],'dedicate':['to'],'specialize':['in'],'engage':['in'],'participate':['in'],'result':['in','from'],'persist':['in'],'invest':['in'],
+ 'comply':['with'],'interfere':['with'],'associate':['with'],'equip':['with'],'provide':['with','for'],'charge':['with'],'credit':['with'],
+ 'spur':['on'],'set':['in','out','off','up'],'hold':['out','on','back'],'rattle':['off'],'carry':['out','on'],'figure':['out'],'point':['out'],
+ 'call':['for','on','off'],'stand':['for','out'],'take':['over','on','up'],'give':['up','in'],'bring':['about','up'],'come':['up','across','about'],
+ 'pore':['over'],'dwell':['on'],'feed':['on'],'prey':['on'],'live':['on'],'border':['on'],'hinge':['on'],'impose':['on'],'capitalize':['on'],
+ 'aware':['of'],'capable':['of'],'devoid':['of'],'free':['from','of'],'prone':['to'],'subject':['to'],'immune':['to'],'akin':['to'],'vulnerable':['to'],
+ 'susceptible':['to'],'relevant':['to'],'similar':['to'],'familiar':['with'],'content':['with'],'compatible':['with'],'consistent':['with'],
+ 'responsible':['for'],'eligible':['for'],'famous':['for'],'known':['for','as'],'confronted':['with'],'confront':['with'],'adjust':['for','to'],'beg':['to'],
+}
+
+
+def sq_table(no):
+    """文章速查表：{词(小写): 释义}"""
+    md = glob.glob(f'{ROOT}/新版定稿/{no}-*.md')
+    if not md: return {}
+    t = open(md[0]).read(); t = t.split('## 速查表', 1)[1] if '## 速查表' in t else ''
+    out = {}
+    for l in re.split(r'\n## ', t)[0].splitlines():
+        c = [x.strip() for x in l.strip().strip('|').split('|')]
+        if len(c) >= 2 and c[0] not in ('词', '---', ''): out[c[0].lower()] = c[1]
+    return out
+
+
+def _lemma(w, sq):
+    m = re.match(r'\s*[a-z./ ]*\s*\(([A-Za-z][A-Za-z ]*?)(?: 的[^)]*)?\)', sq.get(w.lower(), ''))
+    if m: return m.group(1).split()[0].lower()
+    x = w.lower()
+    for suf, rep in (('ied', 'y'), ('ies', 'y'), ('ing', ''), ('ed', ''), ('es', ''), ('s', '')):
+        if x.endswith(suf) and len(x) - len(suf) >= 3: return x[:-len(suf)] + rep
+    return x
+
+
+def _ph_pats(text, lem, word):
+    text = re.sub(r"\b(" + '|'.join(PH_PREPS) + r")((?:/(?:" + '|'.join(PH_PREPS) + r"))+)", lambda m: m.group(0).replace('/', ' / '), text)   # depart from/for：斜线后的介词也算（24 S1 depart … for 漏掉，T22 重犯）
+    alts = {p for m in re.finditer(r"\b(?:" + re.escape(lem) + r"\w*|" + re.escape(word.lower()) + r")\b\s+(" + '|'.join(PH_PREPS) + r")((?:\s+/\s+(?:" + '|'.join(PH_PREPS) + r"))+)", text, re.I) for p in re.findall(r"\w+", m.group(2).lower())}
+    return alts | {m.group(3).lower() for m in re.finditer(r"\b(" + re.escape(lem) + r"\w*|" + re.escape(word.lower()) + r")\b((?:\s+" + PH_SLOT + r")*)\s+(" + '|'.join(PH_PREPS) + r")\b", text, re.I)}
+
+
+T22宽_起 = 24   # 24 S1 departed South Georgia, a remote whaling outpost, for Antarctica 漏网（用户看草稿才发现）：24 起跨同位语逗号往后找（到 ; : . 为止、10 个词以内），
+PH_GEN = ['for', 'to', 'from', 'on', 'with', 'into', 'of']   # 并且动词重点词后面出现这些常见搭配介词一律列为待确认（结论只认“不是搭配：……”，G24 确认结论管）
+
+
+def phrase_checks(d, no):
+    """[T22] 返回待确认列表"""
+    sq = sq_table(no); ok = d.get('核对确认', {}).get('短语', {}); out = []
+    wide = str(no).isdigit() and int(no) >= T22宽_起
+    for i, s in enumerate(d['sentences'], 1):
+        en = ' '.join(c['en'] for c in s['chunks']); notes = ' '.join(c.get('note', '') for c in s['chunks'])
+        keys = [k.lower().split() for c in s['chunks'] for k in re.findall(r'\*\*[^*]+\*\*\(([^)]+)\)', c['zh'])]
+        toks = []
+        for m in re.finditer(r'\*\*([^*]+)\*\*|([^*\s]+)', re.sub(r'\{\{.*?\}\}', '', en)):
+            toks += [(w, True) for w in m.group(1).split()] if m.group(1) else [(m.group(2), False)]
+        for j, (w, b) in enumerate(toks):
+            wc = re.sub(r"[^\w'-]", '', w)
+            if not b or not wc: continue
+            # 反方向：介词紧挨在名词重点词前面、中间没有冠词（09 S3 in **flocks**、S5 In **desperation**，用户 2026-10-10：“In desperation，作为整体，
+            # 作为一个整体。而不是单独desperation。”）——零冠词的“介词 + 名词”多是固定用法；名词看速查表词性（n.），速查表没有这一行也报
+            pv = re.sub(r"[^\w'-]", '', toks[j - 1][0]).lower() if j else ''
+            if pv in PH_BACK and not toks[j - 1][1] and re.match(r'(n\.|$)', sq.get(wc.lower(), '')):
+                key = f'S{i} {pv} … {wc}'
+                if key not in ok and not any(pv in k and wc.lower() in k for k in keys):
+                    out.append(f'[T22] {key}「{toks[j - 1][0]} {w}」  ← 介词 + 名词的固定用法（in flocks、in desperation）只标了名词？是就整体加粗、同色，中文意思标全（T23）；不是就核实后写进 核对确认.短语')
+            lem = _lemma(wc, sq)
+            preps = _ph_pats(sq.get(wc.lower(), '') + ' ' + sq.get(lem, '') + ' ' + notes, lem, wc) | set(PH_CORE.get(lem, []))
+            if wide and re.match(r'\s*v\.', sq.get(wc.lower(), '')): preps |= set(PH_GEN)
+            for prep in sorted(preps):
+                for q in range(j + 1, min(len(toks), j + (11 if wide else 7))):
+                    t, bb = toks[q]
+                    if re.sub(r"[^\w'-]", '', t).lower() == prep:
+                        if not bb and not any(prep in k and wc.lower() in k for k in keys):
+                            key = f'S{i} {wc} … {prep}'
+                            if key not in ok: out.append(f'[T22] {key}「{" ".join(x for x, _ in toks[j:q + 1])}」  ← 重点词的短语型用法只标了一个词？是固定搭配就整体加粗、同色（被隔开的按 T14），不是就核实后写进 核对确认.短语')
+                        break
+                    if re.search(r'[;:.!?]$' if wide else r'[,;:.!?]$', t): break
+    return out
+
+
+# T22 习语（用户 2026-10-15 看 11 初稿：“turn the tide……你单独用一个 tide 不就是潮汐吗？不就是浪吗？但是你 turn the tide 很明显，
+# 它的意思绝对绝对是不太一样的，所以说你要把这个整体做出来”）：重点词在本文的意思不是速查表第一个意思（tide 本文“局势”，第一个意思“潮汐”），
+# 而速查表里这个词的搭配（turn the tide）就出现在本句、却没有整体加粗 → 报出。整体标后撞词也保留（allow_clash）。11 起查。
+def _idiom_re(ex, lem):
+    parts = []
+    for w in ex.split():
+        if w.lower() in ('be', 'sb', 'sth', "sb's", "sth's", "one's", 'one', '…', '...'): parts.append(None if w.lower() == 'be' else r"\S+"); continue
+        alts = [re.sub(r"[^A-Za-z'-]", '', a) for a in w.split('/')]
+        alts = [a for a in alts if a]
+        if not alts: continue
+        parts.append('(?:' + '|'.join((re.escape(lem) if a.lower().startswith(lem[:4]) else re.escape(a.rstrip('e'))) + r"\w*" for a in alts) + ')')
+    parts = [x for x in parts if x]
+    return re.compile(r"\b" + r"\s+".join(parts) + r"\b", re.I) if len(parts) >= 2 else None
+def idiom_checks(d, no, sq=None):
+    sq = sq if sq is not None else sq_table(no); ok = d.get('核对确认', {}).get('短语', {}); out = []
+    for i, s in enumerate(d['sentences'], 1):
+        en = ' '.join(c['en'] for c in s['chunks']); plain_ = re.sub(r'\*\*|\{\{.*?\}\}', '', en)
+        pairs = [(z, k) for c in s['chunks'] for z, k in re.findall(r'\*\*([^*]+)\*\*\(([^)]+)\)', c['zh'])]
+        keys = [k.lower().split() for _, k in pairs]
+        for z, k in pairs:
+            if ' ' in k: continue
+            m0 = re.match(r'\s*[a-z./ ]*\s*(?:\([^)]*\)\s*)?([^（，；]+)', sq.get(k.lower(), ''))
+            if not m0 or re.sub(r'[的地了]', '', z) in m0.group(1): continue        # 本文用的就是第一个意思（milestone 里程碑）不查
+            exs = re.findall(r'（([^）]*)）', sq.get(k.lower(), ''))
+            for ex in (x.strip() for e_ in exs for x in e_.split('；')):
+                r_ = _idiom_re(ex, _lemma(k, sq))
+                if not r_ or not re.search(r'\b' + re.escape(_lemma(k, sq)[:4]), ex, re.I): continue
+                m = r_.search(plain_)
+                if not m: continue
+                ws = [w.lower() for w in re.findall(r"[A-Za-z'-]+", m.group(0)) if w.lower() not in ('a', 'an', 'the')]
+                if any(all(any(w == x or w.startswith(x[:4]) for x in kk) for w in ws) for kk in keys): continue
+                key = f'S{i} {m.group(0)}'
+                if key not in ok: out.append(f'[T22习语] {key}  ← {k} 本文是“{z}”，不是第一个意思，靠速查表的搭配“{ex}”整体成义：整体加粗、中文标全（撞词也保留，写进 allow_clash）；不是就核实后写进 核对确认.短语')
+    return out
+def selftest_idiom():
+    """T22 习语自检（自带样本和速查表样本，不依赖文章：11 定稿后速查表的 tide 已同步成 turned the tide）：turned the **tide** 必须报出；**turned the tide** 整体标的不报；本文用第一个意思的 reached a **milestone** 不报"""
+    fails = []
+    SQ_ = {'tide': 'n. 潮汐；趋势，局势（turn the tide；the tide of public opinion）', 'milestone': 'n. 里程碑，重要事件（reach a milestone；a milestone in history）'}
+    mk = lambda en, zh: {'sentences': [{'chunks': [{'en': en, 'zh': zh, 'align': [[en, zh]]}]}]}
+    if not idiom_checks(mk("Lee's 78th move turned the **tide**,", '李世石的第78手扭转了**局势**(tide)，'), '11', SQ_): fails.append('没抓到：习语只标一个词（T22，11 turned the **tide**）')
+    if idiom_checks(mk("Lee's 78th move **turned the tide**,", '李世石的第78手**扭转了局势**(turned the tide)，'), '11', SQ_): fails.append('T22 习语误报：整体标的 **turned the tide** 被报出')
+    if idiom_checks(mk("DeepMind's AlphaGo reached a **milestone**,", 'DeepMind 的 AlphaGo 达成了一个**里程碑**(milestone)，'), '11', SQ_): fails.append('T22 习语误报：用第一个意思的 reached a **milestone** 被报出')
+    return fails
+
+
+# T30 用户给的整句照抄时漏了英文的意思（11 S17 用户原话“那次大胆一样”漏了 shoulder hit 肩冲，我看出来却没提）：
+# 英文这一句有的术语（脚本 "术语": {"shoulder hit": "肩冲"}）和拉丁字母专名（本篇中文里出现过的 AlphaGo、DeepMind），中文这一句也必须有。11 起查。
+def term_checks(d):
+    out = []; allzh = ''.join(c['zh'] for s in d['sentences'] for c in s['chunks'])
+    names = {w for s in d['sentences'] for c in s['chunks'] for w in re.findall(r"[A-Z][A-Za-z]+", re.sub(r'\*\*|\{\{.*?\}\}', '', c['en'])) if re.search(r'(?<![A-Za-z])' + w + r'(?![A-Za-z])', allzh)}   # 单独出现才算（AlphaGo 里的 Go 不算）
+    for i, s in enumerate(d['sentences'], 1):
+        en = re.sub(r'\*\*|\{\{.*?\}\}', '', ' '.join(c['en'] for c in s['chunks'])); zh = ''.join(c['zh'] for c in s['chunks'])
+        zhp = re.sub(r'\*\*', '', re.sub(r'\*\*([^*]+)\*\*\([^)]*\)', r'\1', zh))   # 57 S12：术语里的词本身是重点词（南**太平洋**(Pacific)），去掉标记再认
+        盖 = set()   # K121（31 S14）：这句英文里已由术语表整个专名译出的词（Sorcerer's Stone → 魔法石），不再按单个专名查
+        for e, z in d.get('术语', {}).items():
+            if re.search(r'\b' + re.escape(e) + r'\b', en, re.I):
+                if z not in zh and z not in zhp: out.append(f'[T30] S{i} 英文有 {e}，中文这一句没有“{z}”（漏译）')
+                else: 盖 |= set(re.findall(r'[A-Za-z]+', e))
+        for w in names:
+            if w in 盖: continue
+            if re.search(r'\b' + w + r'\b', en) and not re.search(r'(?<![A-Za-z])' + w + r'(?![A-Za-z])', zh): out.append(f'[T30] S{i} 英文有 {w}，中文这一句没有（漏译）')
+    return out
+def note_bracket_ok(note):
+    """注释写在全角（）里。K117（31 改稿 S2）：先去掉行首的“@词|”续行颜色标记（render._note_txt 同一写法），再判括号"""
+    return bool(re.match(r'^(#\w+)?（.*）$', re.sub(r'(?m)^@[^|（]*\|', '', note), re.S))
+def selftest_note():
+    f = []
+    for n_, 应 in (('（overshadow：使黯然失色）', True), ('@overshadow|（overshadow：使黯然失色，盖过；\n另一行）', True), ('#t（说明）', True),
+                   ('overshadow：使黯然失色', False), ('@overshadow|overshadow：使黯然失色', False), ('(overshadow: half-width)', False)):
+        if note_bracket_ok(n_) != 应: f.append(f'[注释] 判错：{n_[:30]} 应{"过" if 应 else "报"}')
+    return f
+def selftest_term():
+    ok_ = {'术语': {'shoulder hit': '肩冲'}, 'sentences': [{'chunks': [{'en': "as those of AlphaGo's **audacious** shoulder hit.", 'zh': '和 AlphaGo 那次**大胆的**(audacious)肩冲一样'}]}]}
+    b1 = copy.deepcopy(ok_); b1['sentences'][0]['chunks'][0]['zh'] = '和 AlphaGo 那次**大胆**(audacious)一样'
+    b2 = copy.deepcopy(ok_); b2['sentences'][0]['chunks'][0]['zh'] = '和那次**大胆的**(audacious)肩冲一样'; b2['sentences'].append({'chunks': [{'en': 'AlphaGo won.', 'zh': 'AlphaGo 赢了。'}]})
+    fails = []
+    k121 = {'术语': {"Sorcerer's Stone": '魔法石'}, 'sentences': [{'chunks': [{'en': "It was called Harry Potter and the Philosopher's Stone.", 'zh': '它叫《哈利·波特与魔法石》（Philosopher\'s Stone）。'}]},
+            {'chunks': [{'en': "The renamed Sorcerer's Stone appeared there.", 'zh': '更名后的《魔法石》在那里问世。'}]}]}
+    if any('Stone' in x for x in term_checks(k121)): fails.append('T30 误报：Stone 已由术语表 Sorcerer\'s Stone 整个译成 魔法石，还按单个专名报（K121）')
+    k121b = {'术语': {"Sorcerer's Stone": '魔法石'}, 'sentences': k121['sentences'][:1] + [{'chunks': [{'en': "The renamed Sorcerer's Stone appeared there.", 'zh': '更名后的书在那里问世。'}]}]}
+    if not term_checks(k121b): fails.append('没抓到：术语 Sorcerer\'s Stone 漏译 魔法石（K121 不许放过）')
+    if term_checks(ok_): fails.append('T30 误报：术语、专名都在的被报出')
+    k57 = {'术语': {'South Pacific': '南太平洋'}, 'sentences': [{'chunks': [{'en': 'from six South **Pacific** populations.', 'zh': '南**太平洋**(Pacific)六个种群'}]}]}
+    if term_checks(k57): fails.append('T30 误报：术语里的词标成重点词（南**太平洋**(Pacific)）还报漏译（57 S12）')
+    k57b = copy.deepcopy(k57); k57b['sentences'][0]['chunks'][0]['zh'] = '**太平洋**(Pacific)六个种群'
+    if not term_checks(k57b): fails.append('没抓到：术语 South Pacific 漏了“南”（57 S12 修误报后不许放过）')
+    if not term_checks(b1): fails.append('没抓到：漏了术语“肩冲”（T30，11 S17）')
+    if not term_checks(b2): fails.append('没抓到：漏了专名 AlphaGo（T30）')
+    return fails
+
+def selftest_phrase():
+    """T22 自检：07 的 **stems from**、02 的 **depends** partly **on** 去掉介词的加粗，必须报出；原样不报这两处"""
+    fails = []
+    for no, si, en0, en1, k0, k1, key in (('07', 6, '**stems from**', '**stems** from', '(stems from)', '(stems)', 'stems … from'),
+                                          ('02', 15, '**depends** partly **on**', '**depends** partly on', '(depends on)', '(depends)', 'depends … on')):
+        base = json.load(open(f'{V}/脚本/{no}.json'))
+        if any(key in x for x in phrase_checks(base, no)): fails.append(f'T22 原稿误报：{no} {key}')
+        d = copy.deepcopy(base); hit = False
+        for c in d['sentences'][si]['chunks']:
+            if en0 in c['en']:
+                c['en'] = c['en'].replace(en0, en1); c['align'] = [[a.replace(en0, en1), z.replace(k0, k1)] for a, z in c['align']]
+                c['zh'] = c['zh'].replace(k0, k1); hit = True
+        if not hit: fails.append(f'T22 自检样本找不到：{no} S{si + 1} {en0}')
+        elif not any(key in x for x in phrase_checks(d, no)): fails.append(f'没抓到：短语只标一个词（T22，{no} {en1}）')
+    # 反方向（介词 + 名词）：09 S5 造成只标 desperation 必须报出；整体标 In desperation 不报（不依赖 09 脚本现在改没改）
+    base = json.load(open(f'{V}/脚本/09.json'))
+    for en_, zh_, want in (('In **desperation**,', '**绝望**(desperation)之中，', True), ('**In desperation**,', '**绝望之中**(In desperation)，', False)):
+        d = copy.deepcopy(base); c = d['sentences'][4]['chunks'][0]
+        if 'desperation' not in c['en']: fails.append('T22 自检样本找不到：09 S5 desperation'); break
+        c['en'], c['zh'], c['align'] = en_, zh_, [[en_, zh_]]
+        got = any('S5 in … desperation' in x for x in phrase_checks(d, '09'))
+        if got != want: fails.append('没抓到：介词 + 名词只标名词（T22，09 In **desperation**）' if want else 'T22 误报：整体标的 **In desperation** 被报出')
+    return fails
+
+
+# T23 中文意思只标了一部分（用户 2026-10-10 看 08 初稿：“Vindicate 他的意思是证明什么什么是对的……但是你在标注的时候只标注了一个，
+# 证明了后面那个对的却没有标注上……如果说要标注一个单词的意思，你标注全了，你不要说只标注一部分”）：
+# 速查表释义里写成“证明……正确”“把……归因于”“在……期间”这种被隔开的意思，中文里只标了其中一处（这个词只有一个 **…**(词) 标记），
+# 而标了的那一处正是这个意思的一半 → 报出。改法：两处都标同一个英文，如 反倒**证明了**(vindicating)斯诺是**正确的**(vindicating)；
+# 不是这个意思的（本句用的是别的义项），核实后写进 核对确认.中文意思："S17 vindicating": "理由"。
+def _zh_parts(defn):
+    out = []
+    for item in re.split(r'[；;，,]', re.sub(r'（[^）]*）|\([^)]*\)', '', defn)):
+        if '……' in item:
+            a, b = item.split('……', 1)
+            a = re.findall(r'[一-鿿]+$', a); b = re.findall(r'^[一-鿿]+', b)
+            if a and b: out.append((a[0][-4:], b[0][:4]))
+    return out
+
+
+def _overlap(x, y):
+    return any(x[i:i + 2] in y for i in range(len(x) - 1)) or (len(x) == 1 and x in y) or (len(y) == 1 and y in x)
+
+
+def meaning_checks(d, no):
+    """[T23] 返回待确认列表"""
+    sq = sq_table(no); ok = d.get('核对确认', {}).get('中文意思', {}); out = []
+    for i, s in enumerate(d['sentences'], 1):
+        zh = ''.join(c['zh'] for c in s['chunks'])
+        marks = re.findall(r'\*\*([^*]+)\*\*\(([^)]+)\)', zh)
+        for k in dict.fromkeys(m for _, m in marks):
+            got = [z for z, m in marks if m == k]
+            if len(got) != 1: continue
+            defn = sq.get(k.lower(), '') or sq.get(_lemma(k, sq), '')
+            for a, b in _zh_parts(defn):
+                if _overlap(got[0], a) or _overlap(got[0], b):
+                    key = f'S{i} {k}'
+                    if key not in ok: out.append(f'[T23] {key}：意思是“{a}……{b}”，中文只标了“{got[0]}”一处  ← 被隔开的意思两处都要标同一个英文（如 **证明了**(vindicating)……**正确的**(vindicating)）；不是这个义项的核实后写进 核对确认.中文意思')
+                    break
+    return out
+
+
+def selftest_meaning():
+    """T23 自检：08 S17 定稿两处都标了 vindicating（证明了……正确的），原样不报；去掉“正确的”的标记、只剩“证明了”一处，必须报出"""
+    fails = []; base = json.load(open(f'{V}/脚本/08.json'))
+    if any('S17 vindicating' in x for x in meaning_checks(base, '08')): fails.append('T23 误报：两处都标了仍报出（08 S17 vindicating）')
+    d = copy.deepcopy(base); hit = False
+    for c in d['sentences'][16]['chunks']:
+        if '**正确的**(vindicating)' in c['zh']:
+            c['zh'] = c['zh'].replace('**正确的**(vindicating)', '正确的'); c['align'] = [[a, z.replace('**正确的**(vindicating)', '正确的')] for a, z in c['align']]; hit = True
+    if not hit: fails.append('T23 自检样本找不到：08 S17 **正确的**(vindicating)')
+    elif not any('S17 vindicating' in x for x in meaning_checks(d, '08')): fails.append('没抓到：中文意思只标一部分（T23，08 S17 vindicating）')
+    return fails
+
+
+def selftest():
+    """核查程序自检：在已定稿的第03篇副本里逐一造坑，每一种都必须抓到；原稿不得误报"""
+    base = json.load(open(f'{V}/脚本/03.json')); art = article_en('03')
+    e0, c0, _ = text_checks(base, art, base)
+    fails = [f'原稿误报：{x}' for x in e0 + c0]
+    def find(pred):
+        for s in base['sentences']:
+            for k, c in enumerate(s['chunks']):
+                if pred(c): return base['sentences'].index(s), k
+    def mut(name, tag, fn, art2=None):
+        d = copy.deepcopy(base); fn(d); e, c, _ = text_checks(d, art2 if art2 is not None else art, base)
+        if not any(x.startswith(f'[{tag}]') for x in e + c): fails.append(f'没抓到：{name}')
+    si, ck = find(lambda c: 'food, and' in c['en'])
+    def ox(d):
+        c = d['sentences'][si]['chunks'][ck]; c['en'] = c['en'].replace('food, and', 'food and')
+        c['align'] = [[a.replace('food, and', 'food and'), z] for a, z in c['align']]
+    mut('牛津逗号被去掉（T18）', 'T18', ox, art.replace('food, and', 'food and'))
+    d = copy.deepcopy(base); ox(d); key = next(x[6:].split('  ←')[0] for x in text_checks(d, art.replace('food, and', 'food and'), base)[1] if x.startswith('[T18]'))
+    d.setdefault('核对确认', {}).setdefault('牛津逗号', {})[key] = '文章英文是英式写法，三项并列不用牛津逗号；英文正文与文章逐字一致，不改'
+    if not any(x.startswith(f'[T18] {key} ') for x in text_checks(d, art.replace('food, and', 'food and'), base, '24')[0]): fails.append('没抓到：牛津逗号核对确认写“英式写法、不改”被放行（T18，24 起）')
+    if any(x.startswith('[T18]') for x in text_checks(d, art.replace('food, and', 'food and'), base, '03')[0]): fails.append('T18 误报：24 以前已定稿篇目的旧确认被报成错误')
+    d['核对确认']['牛津逗号'][key] = '不是三项并列：这里是两项'
+    if any(x.startswith(f'[T18] {key} ') for x in sum(text_checks(d, art.replace('food, and', 'food and'), base, '24')[:2], [])): fails.append('T18 误报：“不是三项并列：……”的确认被报出')
+    def t24(d):
+        c = d['sentences'][2]['chunks'][0]; c['zh'] += '（觉得这样更体面）'; c['align'][-1] = [c['align'][-1][0], c['align'][-1][1] + '（觉得这样更体面）']
+    mut('括号说明里有语音输入多出来的“觉得”（T24）', 'T24', t24)
+    mut('英文里混进换行标记（D1）', 'D1', lambda d: d['sentences'][0]['chunks'][0].__setitem__('en', d['sentences'][0]['chunks'][0]['en'] + '\n'))
+    def d2(d): d['sentences'][1]['chunks'][0]['zh'] += '多'
+    mut('zh 与分组拼接不一致（D2）', 'D2', d2)
+    def d3(d):
+        c = d['sentences'][2]['chunks'][0]; w = re.findall(r'[A-Za-z]{4,}', strip_en(c['en']))[0]
+        c['en'] = c['en'].replace(w, w + 's', 1); c['align'] = [[a.replace(w, w + 's', 1), z] for a, z in c['align']]
+    mut('英文被改动（D3）', 'D3', d3)
+    si4, ck4 = find(lambda c: '(broth)' in c['zh'])
+    def d4(d):
+        c = d['sentences'][si4]['chunks'][ck4]; c['zh'] = c['zh'].replace('(broth)', ''); c['align'] = [[a, z.replace('(broth)', '')] for a, z in c['align']]
+    mut('重点词缺中文标记（D4）', 'D4', d4)
+    def d4f(d):
+        c = d['sentences'][6]['chunks'][0]; c['zh'] += '**多加粗**'; c['align'][-1][1] += '**多加粗**'
+    mut('中文加粗后没有(英文)标记（D4格式）', 'D4格式', d4f)
+    si5, ck5 = find(lambda c: '，' in c['zh'])
+    def pu(d):
+        c = d['sentences'][si5]['chunks'][ck5]; c['zh'] = c['zh'].replace('，', ',', 1)
+        done = False
+        for g in c['align']:
+            if not done and '，' in g[1]: g[1] = g[1].replace('，', ',', 1); done = True
+    mut('中文用了半角逗号', '标点', pu)
+    def qu(d):
+        c = d['sentences'][3]['chunks'][0]; c['zh'] = '「' + c['zh'] + '」'; c['align'][0][1] = '「' + c['align'][0][1]; c['align'][-1][1] += '」'
+    mut('中文用了「」引号', '标点', qu)
+    si7, ck7 = find(lambda c: '1984' in c['zh'])
+    def nu(d):
+        c = d['sentences'][si7]['chunks'][ck7]; c['zh'] = c['zh'].replace('1984', '1948'); c['align'] = [[a, z.replace('1984', '1948')] for a, z in c['align']]
+    mut('数字抄错（T16）', 'T16', nu)
+    def lb(d): d['sentences'][4]['chunks'][0]['align'].insert(1, ['\n', ''])
+    mut('擅自加换行（L13）', 'L13', lb)
+    def lb2(d): d['sentences'][5]['chunks'][0]['en'] += '{{=}}'
+    mut('擅自加"不换行"标记（L13）', 'L13', lb2)
+    _d = copy.deepcopy(base); _d['sentences'].pop()   # G79 门变异：拆了“句数变了”这道门没人发现
+    if not any(x.startswith('[L13] 句数变了') for x in text_checks(_d, art, base)[0]): fails.append('没抓到：句数变了（L13）')
+    def d2e(d):
+        c = d['sentences'][7]['chunks'][0]; c['align'][0][0] += ' extra'
+    mut('align 英文与 en 不一致（D2）', 'D2', d2e)
+    def em(d):
+        c = d['sentences'][8]['chunks'][0]; c['zh'] = ''; c['align'] = [[a, ''] for a, _ in c['align']]
+    mut('漏译、空译文', 'T6', em)
+    def hp(d):
+        c = d['sentences'][9]['chunks'][0]; c['zh'] += '(补充)'; c['align'][-1][1] += '(补充)'
+    mut('中文说明用了半角括号（W4）', 'W4', hp)
+    ids = [i for i, _, _ in pit_rows()]
+    tpl = '## 踩坑对照记录\n' + '\n'.join(f'| {i} | x | 待填 | 待填 |' for i in ids)
+    if not record_gate_text(tpl, '03', '文本'): fails.append('没抓到：踩坑对照记录没填完')
+    full = '## 踩坑对照记录\n' + '\n'.join(f'| {i} | x | 不涉及 | 已核对 |' for i in ids)
+    if not record_gate_text(full.replace(f'| {ids[0]} | x | 不涉及 | 已核对 |\n', ''), '03', '出片'): fails.append('没抓到：踩坑对照记录缺条目')
+    if record_gate_text(full, '03', '出片'): fails.append('误报：填完的踩坑对照记录被判不合格')
+    def rg(d):   # 只把一组拆成两组、画面上的行不变：不应报换行变化
+        c = d['sentences'][0]['chunks'][0]; a, z = c['align'][0]
+        if ' ' in a: w = a.split(' '); c['align'][0:1] = [[w[0], z], [' '.join(w[1:]), '']]
+    dd = copy.deepcopy(base); rg(dd); e, _, _ = text_checks(dd, art, base)
+    if any(x.startswith('[L13]') for x in e): fails.append('误报：只改分组、画面行不变，被当成换行变化')
+    def zl(d):
+        c = d['sentences'][10]['chunks'][0]; c['align'][0][1] += '\n'; c['zh'] = ''.join(z for _, z in c['align'])
+    mut('擅自在中文格内分行（L13）', 'L13', zl)
+    def zfind(sub):
+        for s_ in base['sentences']:
+            for k_, c_ in enumerate(s_['chunks']):
+                if sub in c_['zh']: return base['sentences'].index(s_), k_
+    def rep(sub, new):
+        si_, ck_ = zfind(sub)
+        def f(d):
+            c = d['sentences'][si_]['chunks'][ck_]; c['zh'] = c['zh'].replace(sub, new, 1)
+            done = False
+            for g in c['align']:
+                if not done and sub in g[1]: g[1] = g[1].replace(sub, new, 1); done = True
+            assert done
+        return f
+    mut('"了"放在加粗外（T19）', 'T19了', rep('**刮了下来**(scraped)', '**刮下来**(scraped)了'))
+    _f = rep('**刮了下来**(scraped)', '**刮下来**(scraped)了'); _d = copy.deepcopy(base); _f(_d)   # 好样本（56 S4 用户“把了加上 但是不要标色”）：写了 核对确认.了不并 的段不报
+    _key = next(x.split()[1] for x in text_checks(_d, art, base)[0] if x.startswith('[T19了]')); _d.setdefault('核对确认', {}).setdefault('了不并', {})[_key] = '用户原话要“了”在标色外'
+    if any(x.startswith('[T19了]') for x in text_checks(_d, art, base)[0]): fails.append('误报：写了 核对确认.了不并 的段照样报 T19了')
+    mut('"是**…的**"生硬（T19）', 'T19是的', rep('**不利的**(hostile)', '是**不利的**(hostile)'))
+    mut('英文单词数字写成阿拉伯数字（T19）', 'T19数字写法', rep('两个培养皿', '2个培养皿'))
+    mut('英文没有引号、中文加了引号（T19）', 'T19引号', rep('**盛行的**(prevalent)', '“**盛行的**(prevalent)”'))
+    mut('正文用"即"（T19）', 'T19即', rep('**盛行的**(prevalent)', '即**盛行的**(prevalent)'))
+    mut('名词重点词带"们"（T19）', 'T19们', rep('**妻子**(spouse)', '**妻子们**(spouse)'))
+    mut('括号里包着重点词（T19/T1）', 'T19括号含重点词', rep('**盛行的**(prevalent)', '（**盛行的**(prevalent)）'))
+    def nt(d):
+        c = next(c for s in d['sentences'] for c in s['chunks'] if c.get('note')); c['note'] = c['note'].strip('（）')
+    mut('注释没写在全角括号里', '注释', nt)
+    return fails
+
+
+VIDEO_EXT = ('.mp4', '.mov', '.m4v', '.webm', '.mkv', '.avi')
+
+
+def video_folders(root):
+    """G7（用户 2026-10-08）：存定稿视频的文件夹只存定稿版本，有瑕疵的旧版本、草稿及时删除。
+    最终版4K视频/：每篇一个"NN - 英文标题 - 中文标题.mp4"；视频/视频/：只有 NN.mp4，且与归档的定稿逐字节相同；
+    已定稿的篇目，视频/视频/草稿1080p/ 里的草稿和 视频/试听/ 里的试听视频必须删掉（没定稿的篇目在修改阶段可以暂存草稿）。"""
+    import hashlib
+    md5 = lambda p: hashlib.md5(open(p, 'rb').read()).hexdigest()
+    err = []; fin = {}
+    for p in sorted(glob.glob(f'{root}/最终版4K视频/*')):
+        b = os.path.basename(p)
+        if b == 'README.md': continue
+        m = re.match(r'(\d\d) - .+ - .+\.mp4$', b)
+        if not m: err.append(f'[G7] 最终版4K视频/ 里有不是定稿命名的文件：{b}'); continue
+        if m.group(1) in fin: err.append(f'[G7] 最终版4K视频/ 里第{m.group(1)}篇不止一个版本：{b}')
+        fin[m.group(1)] = p
+    for p in sorted(glob.glob(f'{root}/视频/视频/*')):
+        b = os.path.basename(p)
+        if os.path.isdir(p):
+            if b != '草稿1080p': err.append(f'[G7] 视频/视频/ 里有多余的文件夹：{b}')
+            continue
+        m = re.match(r'(\d\d)\.mp4$', b)
+        if not m: err.append(f'[G7] 视频/视频/ 里有不是定稿的文件：{b}')
+        elif m.group(1) not in fin: err.append(f'[G7] 视频/视频/{b} 没有归档到 最终版4K视频/（定稿后运行 归档定稿视频.py）')
+        elif md5(p) != md5(fin[m.group(1)]): err.append(f'[G7] 视频/视频/{b} 与 最终版4K视频/ 里的定稿不是同一个版本')
+    for p in sorted(glob.glob(f'{root}/视频/视频/草稿1080p/*')) + [q for q in sorted(glob.glob(f'{root}/视频/试听/*')) if q.lower().endswith(VIDEO_EXT)]:
+        m = re.match(r'(\d\d)', os.path.basename(p))
+        if m and m.group(1) in fin: err.append(f'[G7] 第{m.group(1)}篇已定稿，旧草稿/试听视频没删：{os.path.relpath(p, root)}')
+    return err
+
+
+def selftest_folders():
+    """G7 自检：临时目录里造一份"已定稿、草稿没删"的目录，必须报出；删干净的必须不报"""
+    import tempfile
+    fails = []
+    with tempfile.TemporaryDirectory() as r:
+        for q in ('最终版4K视频', '视频/视频/草稿1080p', '视频/试听'): os.makedirs(f'{r}/{q}')
+        for q in ('最终版4K视频/03 - A - 甲.mp4', '视频/视频/03.mp4'): open(f'{r}/{q}', 'wb').write(b'final')
+        if video_folders(r): fails.append(f'误报：只有定稿的目录被判不合格 {video_folders(r)}')
+        open(f'{r}/视频/视频/草稿1080p/03_1080p.mp4', 'wb').write(b'draft')
+        if not any('03_1080p' in x for x in video_folders(r)): fails.append('没抓到：已定稿篇目的草稿没删（G7）')
+        os.remove(f'{r}/视频/视频/草稿1080p/03_1080p.mp4'); open(f'{r}/视频/试听/03_试听.mp4', 'wb').write(b'x')
+        if not any('03_试听' in x for x in video_folders(r)): fails.append('没抓到：已定稿篇目的试听视频没删（G7）')
+        os.remove(f'{r}/视频/试听/03_试听.mp4'); open(f'{r}/视频/视频/03.mp4', 'wb').write(b'old')
+        if not any('不是同一个版本' in x for x in video_folders(r)): fails.append('没抓到：视频/视频/ 里留着旧版本（G7）')
+        open(f'{r}/视频/视频/03.mp4', 'wb').write(b'final'); open(f'{r}/最终版4K视频/03 - A - 乙.mp4', 'wb').write(b'final')
+        if not any('不止一个版本' in x for x in video_folders(r)): fails.append('没抓到：最终版4K视频/ 里同一篇有两个版本（G7）')
+        os.remove(f'{r}/最终版4K视频/03 - A - 乙.mp4'); open(f'{r}/视频/视频/笔记.txt', 'w').write('x'); os.makedirs(f'{r}/视频/视频/旧版')   # G79 门变异
+        if not any('不是定稿的文件' in x for x in video_folders(r)): fails.append('没抓到：视频/视频/ 里有不是定稿的文件（G7）')
+        if not any('多余的文件夹' in x for x in video_folders(r)): fails.append('没抓到：视频/视频/ 里有多余的文件夹（G7）')
+    return fails
+
+
+def check_all_text(no, js, stage='出片'):
+    """check_all.py（D1–D4、撞词 T12、速查表 S2）；视频文件出片后才有，不算；
+    文本阶段：本篇的对照文本正是 生成文本.py 接下来要生成的（生成后逐格读回核对），新篇第一次生成时还没有，不算"""
+    r = subprocess.run(['python3', f'{T}/check_all.py', no, js], capture_output=True, text=True)
+    skip = ('缺文件: 视频/视频/',) + ((f'缺文件: 视频/对照文本/{no}-文本',) if stage == '文本' else ())
+    return [l for l in (r.stdout + r.stderr).splitlines() if l.strip() and '全部检查通过' not in l and not l.startswith(skip)]
+
+
+# T25 用户给的释义只写进了速查表、画面上没有（08 S17 set out to；用户 2026-10-10：“set out to do something 的意思是：带着明确的目标开始做某事，
+# 或者下定决心要去完成某事。……为什么下面的翻译为什么没有这个解说呢？”）：待改清单里用户原话中“……的意思是：……”“……下面要有：……”给出的释义，
+# 必须出现在画面的中文里（去掉标点、换行、颜色标记后比对）。
+def _gloss_norm(t): return re.sub(r'[\s，。、；：:,;.（）()“”"\'·…—\-]', '', re.sub(r'\{\{([^|{}]+)\|[^{}]+\}\}', r'\1', t))
+# 待改清单逐条落实（09 起，用户 2026-10-10：“要改的东西，我们最后统一修改”）：每一条写明改完后的原文——
+# “画面上要有：`…`”“英文要有：`…`”“画面上不要有：`…`”（反引号里逐字照脚本写），出片前逐字比对脚本，漏改一条就停。
+def user_gloss_checks(d, no, txt=None):
+    if txt is None:
+        f = f'{V}/制作记录/{no}_待改清单.md'
+        if not os.path.exists(f): return []
+        txt = open(f).read()
+    zh = _gloss_norm(''.join(c['zh'] + c.get('note', '') for s in d['sentences'] for c in s['chunks']))   # note 也在画面上（09 S18 结局解读放在 note 里）
+    out = []
+    for m in re.finditer(r'(?:的意思是|下面要有)[：:]\s*([^。”\n]+)', txt):
+        g = _gloss_norm(m.group(1))
+        if len(g) >= 4 and g not in zh: out.append(f'[T25] 待改清单里用户给的释义“{m.group(1)[:40]}”没有出现在画面上（要在这个词的中文正下方加同色括号）')
+    zhs = [c['zh'] for s in d['sentences'] for c in s['chunks']] + [c.get('note', '') for s in d['sentences'] for c in s['chunks']]
+    zhs += [re.sub(r'\{\{([^|{}]+)\|[^{}]+\}\}', r'\1', re.sub(r'\*\*([^*]+)\*\*\([^)]+\)', r'\1', z)) for z in zhs]   # 去掉标记的纯文字也比（11“以巧妙的对称，互换了双方的角色”跨着重点词标记）
+    ens = [c['en'] for s in d['sentences'] for c in s['chunks']]
+    for k, x in re.findall(r'(画面上要有|英文要有|画面上不要有)[：:]\s*`([^`]+)`', txt):
+        if any(x in t for t in (ens if k == '英文要有' else zhs)) == (k == '画面上不要有'):
+            out.append(f'[T25] 待改清单里“{k}：{x[:40]}”没有落实（用户要改的地方漏改了）')
+    return sorted(set(out))
+# T26 同一篇里两个不同的重点词用了同一个中文（09 用户把 payout 改成“赏金”，S18 payments 原来也是“赏金”）：学生分不清哪个是哪个，报出待确认；
+# 同一个词的不同形式（flock / flocks）、被隔开的同一个意思（**把**(likened to)…**比作**(likened to)）不算。确实要一样的写进 核对确认.中文重复：{"赏金": "理由"}。
+def zh_dup_checks(d):
+    ok = d.get('核对确认', {}).get('中文重复', {}); seen = {}
+    for s_ in d['sentences']:
+        for c in s_['chunks']:
+            for z, e in re.findall(r'\*\*([^*]+)\*\*\(([^)]+)\)', c['zh']): seen.setdefault(z, set()).add(e.lower())
+    return [f'[T26] 中文“{z}”同时是 {"、".join(sorted(es))} 的意思——两个不同的重点词用了同一个中文，学生分不清；换一个，确实要一样就写进 核对确认.中文重复'
+            for z, es in sorted(seen.items()) if len({re.sub(r'(ies|es|s|ed|ing)$', '', e) for e in es}) > 1 and z not in ok]
+def selftest_zhdup():
+    """T26 自检：09 原样不报；把 S17 payout 和 S18 payments 的中文都改成“赏金”（09 草稿修改时出过的情况），必须报出——不依赖 09 现在的写法"""
+    base = json.load(open(f'{V}/脚本/09.json')); fails = []
+    if zh_dup_checks(base): fails.append('T26 误报：09 原样被报出：' + '；'.join(zh_dup_checks(base)))
+    d = copy.deepcopy(base); hit = 0
+    for s_ in d['sentences'][16:18]:
+        for c in s_['chunks']:
+            for k in ('payout', 'payments'):
+                if f'({k})' in c['zh']: c['zh'] = re.sub(r'\*\*[^*]+\*\*\(' + k + r'\)', f'**赏金**({k})', c['zh']); hit += 1
+    if hit < 2: fails.append('T26 自检样本找不到：09 S17 payout、S18 payments')
+    elif not any('赏金' in x for x in zh_dup_checks(d)): fails.append('没抓到：两个重点词用了同一个中文（T26，09 payout/payments 赏金）')
+    return fails
+# T27 画面说明里的自问的话（09 S18 我起草成“结局怎么理解：”，用户：“就只写结局两个字就行了……怎么理解这几个字儿？”）：note 和括号里只写内容
+META_RE = re.compile(r'怎么理解|如何理解|怎样理解|怎么看|什么意思|怎么回事|要知道|你知道|敲黑板|划重点|不难看出|显而易见|众所周知')   # 用户：“这种说法，让人一看感觉好像就你懂……以后这样的字儿不要再出现”（铁律）
+def meta_checks(d):
+    out = []
+    for i, s_ in enumerate(d['sentences'], 1):
+        for c in s_['chunks']:
+            for t in [c.get('note', '')] + re.findall(r'（[^（）]*）', c['zh']):
+                m = META_RE.search(t)
+                if m: out.append(f'[T27] S{i} 说明里有“{m.group(0)}”（{t[:30]}）：画面上的说明只写内容，不写自问的话')
+    return out
+def selftest_meta():
+    """T27 自检（自带样本，不依赖哪一篇现在的写法）：用户定的“结局：……”不报；我原来写的“结局怎么理解：……”必须报出"""
+    fails = []
+    ok_ = {'sentences': [{'chunks': [{'zh': '是梅雷迪思那986只战果的五十七倍多。', 'note': '（claim：这里指申领）\n（结局：军队打了五个星期，只打死986只）'}]}]}
+    bad_ = copy.deepcopy(ok_); bad_['sentences'][0]['chunks'][0]['note'] = '（claim：这里指申领）\n（结局怎么理解：军队打了五个星期）'
+    if meta_checks(ok_): fails.append('T27 误报：“结局：”被报出')
+    if not meta_checks(bad_): fails.append('没抓到：说明里写了“怎么理解”（T27，09 S18）')
+    return fails
+# T28 结尾解说（用户 2026-10-10 看 10 定稿：“这个结尾要有一个解说，要有一个解说。就最后最好我们之后每次这个结尾都要有一个解说，就特别的有意思。”）：
+# 10 起每篇最后一句的说明里要有一段解说（09 S18 “结局：……”、10 S17 “历史背景：……”），脚本里 "结尾解说" 写它的标签，画面上必须有“（标签：”，正文至少 30 个字
+T33_起 = 21   # T33 结尾解说的标签是“简述”（用户 2026-10-23 看 23：“把这个结局改成简述啊……最后就是对这个整个故事的简述……简述就简短陈述”）：21 起（还没定稿的）一律“（简述：……）”，内容是从头到尾整个故事的简短陈述
+def ending_note_checks(d, no=None):
+    lab = d.get('结尾解说'); notes = ''.join((c.get('note') or '') for c in d['sentences'][-1]['chunks'])
+    nolab = d.get('结尾解说无标签特批', '')   # 22 用户 2026-10-23：“把那个结局两个字给去掉”——只认带用户原话、写明“特批”的；照样要有一段够长的解说
+    if no is not None and int(no) >= T33_起 and not nolab and (lab != '简述' or '（简述：' not in notes):
+        return [f'[T33] 结尾解说的标签要写“简述”（现在是“{lab}”；用户 2026-10-23：“把这个结局改成简述啊……最后就是对这个整个故事的简述”）：最后一句说明写“（简述：……）”，从头到尾简短讲一遍整个故事；脚本写 "结尾解说": "简述"']
+    if nolab:
+        if not ('用户' in nolab and '特批' in nolab): return ['[T28] 结尾解说无标签特批 要写用户原话（含“用户”“特批”），否则照旧写“（标签：……）”']
+        blocks = re.findall(r'（([^（）]*)）', notes); body = re.sub(r'\s', '', blocks[-1]) if blocks else ''
+        return [] if len(body) >= 30 else [f'[T28] 结尾解说（无标签特批）太短或没有（{len(body)} 字），要把结尾讲清楚']
+    if not lab: return ['[T28] 结尾要有一段解说（用户 2026-10-10 定的规矩，10 起每篇）：最后一句的 note 里写“（标签：……）”，脚本里写 "结尾解说": "标签"']
+    if f'（{lab}：' not in notes: return [f'[T28] 结尾解说“{lab}”不在最后一句的说明里（要有“（{lab}：……）”）']
+    body = re.sub(r'[\s（）]', '', notes.split(f'（{lab}：', 1)[1].split('）\n（')[0])
+    return [] if len(body) >= 30 else [f'[T28] 结尾解说“{lab}”太短（{len(body)} 字），要把结尾讲清楚']
+def selftest_ending():
+    """T28 自检（自带样本）：有“（结局：……）”且写了 结尾解说 的不报；没写 结尾解说、标签对不上、最后一句没有说明的都必须报出"""
+    fails = []
+    ok_ = {'结尾解说': '结局', 'sentences': [{'chunks': [{'zh': '前一句。'}]}, {'chunks': [{'zh': '是梅雷迪思那986只战果的五十七倍多。', 'note': '（claim：这里指申领）\n（结局：军队打了五个星期，只打死986只；政府改成悬赏，\n让农民自己打、按只领赏金，1934年半年里就领了5.7万多笔。）'}]}]}
+    if ending_note_checks(ok_): fails.append('T28 误报：有结局解说的被报出')
+    b1 = copy.deepcopy(ok_); del b1['结尾解说']
+    b2 = copy.deepcopy(ok_); b2['结尾解说'] = '历史背景'
+    b3 = copy.deepcopy(ok_); b3['sentences'][-1]['chunks'][0].pop('note')
+    b4 = copy.deepcopy(ok_); del b4['结尾解说']; b4['结尾解说无标签特批'] = '随便写的'                 # 无标签特批没有用户原话
+    b5 = copy.deepcopy(ok_); del b5['结尾解说']; b5['结尾解说无标签特批'] = '用户 2026-10-23 特批'; b5['sentences'][-1]['chunks'][-1]['note'] = '（claim：这里指申领）'   # 有特批但没有够长的解说
+    ok2 = copy.deepcopy(ok_); del ok2['结尾解说']; ok2['结尾解说无标签特批'] = '用户 2026-10-23 特批'; ok2['sentences'][-1]['chunks'][-1]['note'] = ok_['sentences'][-1]['chunks'][-1]['note'].replace('（结局：', '（')
+    if ending_note_checks(ok2): fails.append('T28 误报：用户特批无标签、解说够长的被报出')
+    if ending_note_checks(ok_, '12'): fails.append('T33 误报：21 以前已定稿篇目的“结局”被报出')
+    if not ending_note_checks(ok_, '23'): fails.append('没抓到：21 起结尾解说还写“结局”、没改成“简述”（T33）')
+    ok4 = copy.deepcopy(ok_); ok4['结尾解说'] = '简述'; ok4['sentences'][-1]['chunks'][-1]['note'] = ok_['sentences'][-1]['chunks'][-1]['note'].replace('（结局：', '（简述：')
+    if ending_note_checks(ok4, '23'): fails.append('T33 误报：21 起写了“（简述：……）”的被报出')
+    if ending_note_checks(ok2, '23'): fails.append('T33 误报：用户特批无标签（22）的被报出')
+    b7 = copy.deepcopy(ok_); b7['结尾解说'] = '简述'
+    if not ending_note_checks(b7, '23'): fails.append('没抓到：脚本写了“简述”、画面还是“（结局：”（T33）')
+    for b, why in ((b1, '没写结尾解说'), (b2, '标签对不上'), (b3, '最后一句没有说明'), (b4, '无标签特批没有用户原话'), (b5, '特批了但没有解说')):
+        if not ending_note_checks(b): fails.append(f'没抓到：{why}（T28）')
+    return fails
+# L16 说明换行后行首是标点（2026-10-10 10 S17 历史背景：程序按字数自动折行，把“。”折到了第三行开头，截图时看出来）：说明（note）和词下说明的每一行都不许以标点开头
+_LSP = '，。、；：！？）」』”’,.;:!?)'
+def note_linestart_checks(d):
+    out = []
+    for si, s_ in enumerate(d['sentences'], 1):
+        for c in s_['chunks']:
+            for ln in (c.get('note') or '').split('\n')[1:]:
+                if ln and ln[0] in _LSP: out.append(f'[L16] S{si} 说明有一行以标点开头：“{ln[:20]}”（标点留在上一行末尾）')
+            for g in re.findall(r'\{\{([^|{}]+)\|', c['zh']):
+                if g and g[0] in _LSP: out.append(f'[L16] S{si} 词下说明有一行以标点开头：“{g[:20]}”')
+    return out
+def selftest_linestart():
+    """L16 自检（自带样本）：正常断行不报；把“。”折到下一行开头、词下说明以“，”开头都必须报出"""
+    ok_ = {'sentences': [{'chunks': [{'zh': '**拘押了**(in custody)\n{{（被拘留、在羁押中）|in custody}}', 'note': '（历史背景：……几个钉子（即 bare wall）。\n在画作失窃的两年里，……）'}]}]}
+    b1 = copy.deepcopy(ok_); b1['sentences'][0]['chunks'][0]['note'] = '（历史背景：……几个钉子（即 bare wall）\n。在画作失窃的两年里，……）'
+    b2 = copy.deepcopy(ok_); b2['sentences'][0]['chunks'][0]['zh'] = '**拘押了**(in custody)\n{{（被拘留|in custody}}\n{{，在羁押中）|in custody}}'
+    fails = []
+    if note_linestart_checks(ok_): fails.append('L16 误报：正常断行被报出')
+    if not note_linestart_checks(b1): fails.append('没抓到：说明一行以“。”开头（L16，10 S17）')
+    if not note_linestart_checks(b2): fails.append('没抓到：词下说明一行以“，”开头（L16）')
+    return fails
+def selftest_gloss():
+    """T25 自检：08 定稿原样不报；去掉 S17 set out to 下面的说明，必须报出；待改清单逐条落实：已落实的不报，没落实的必须报出"""
+    base = json.load(open(f'{V}/脚本/08.json')); fails = []
+    if user_gloss_checks(base, '08'): fails.append('T25 误报：08 定稿原样被报出：' + '；'.join(user_gloss_checks(base, '08')))
+    ok_ = '画面上要有：`**丧生**(perished)。`\n英文要有：`**attributed** **epidemics** **to** miasma`\n画面上不要有：`**丧命**(perished)`'
+    if user_gloss_checks(base, '08', ok_): fails.append('T25 误报：08 已落实的改动被报出：' + '；'.join(user_gloss_checks(base, '08', ok_)))
+    for bad_ in ('画面上要有：`**丧命**(perished)`', '英文要有：`**attributed** epidemics`', '画面上不要有：`**丧生**(perished)`'):
+        if not user_gloss_checks(base, '08', bad_): fails.append(f'没抓到：待改清单的改动没落实（T25，{bad_}）')
+    d = copy.deepcopy(base); hit = False
+    for c in d['sentences'][16]['chunks']:
+        if '带着明确的目标' in c['zh']:
+            c['zh'] = re.sub(r'\n\{\{[^{}]*\|set out to\}\}', '', c['zh']); hit = True
+    if not hit: fails.append('T25 自检样本找不到：08 S17 set out to 的说明')
+    elif not user_gloss_checks(d, '08'): fails.append('没抓到：用户给的释义没上画面（T25，08 S17 set out to）')
+    return fails
+
+
+def l19_checks(dd):
+    """[L19] 说明行不得比这一句英文正文最宽的一行宽（12 起；用户 2026-10-16：“括号里面这些句子我说过不要超过正文的长度……把这个定为一个绝绝对要服从的规矩”）"""
+    err = []; no = dd.get("_no", "NN")
+    sys.path.insert(0, T); import render as R_
+    _d = copy.deepcopy(dd); R_.apply_script(_d)
+    for _si, _s in enumerate(_d['sentences'], 1):
+        _cl = {k: (1, 1, 1) for c in _s['chunks'] for k in re.findall(r'\*\*(.+?)\*\*', c['en'])}
+        for _gi, _ln, _w, _ew in R_.wide_notes([[tuple(p) for p in c['align']] for c in _s['chunks']], _cl, [c.get('note') for c in _s['chunks']], 100):
+            err.append(f'[L19] S{_si} 说明行比英文正文宽（{_w}>{_ew}）：{_ln[:30]}…——跑 python3 工具/说明分行.py {no} --写入 在标点处折成两行（字不改）')
+    return err
+
+
+漏洞节_起 = 28   # G79 机制漏洞节从 28 起（之前做完的不回头补）
+T31严_起 = 26   # G39：方法设计“预计调用”“预计 token”后面同一行要有内容（01–25 不回头查）
+def record_meta_checks(no, _rec):
+    """[T31] 制作记录要写好“## 方法设计”（13 起）；[T29] 要有“## 方法复盘”（11 起）"""
+    err = []
+    sp_ = r'[ \t]*' if int(no) >= T31严_起 else r'\s*'   # G39：\s 会跨行，空模板“- 预计调用：”下一行的“-”被当成内容（25.md 被整份换成空模板照样放行）；26 起只认同一行里的内容
+    if int(no) >= 13 and not re.search(r'## 方法设计[\s\S]*?预计调用：' + sp_ + r'\S[\s\S]*?预计 token：' + sp_ + r'\S', _rec):
+        err.append(f'[T31] 制作记录/{no}.md 没写“## 方法设计”（步骤、预计调用、预计 token、为什么有效）：用户 2026-10-16 铁律——动手前先设计并证明方法有效，规矩由程序执行，没写不能出片')
+    if int(no) >= 漏洞节_起:   # G79（用户 2026-10-27：“要一直不停的去发现……这套机制的问题和漏洞”）：程序填本篇 K#，会话补这次机制哪里没挡住
+        m = re.search(r'^## 机制漏洞[^\n]*\n([\s\S]*?)(?=^## |\Z)', _rec, re.M); b = re.search(r'^- 会话补：[ \t]*(\S[^\n]*)$', m.group(1), re.M) if m else None
+        if not m: err.append(f'[G79] 制作记录/{no}.md 没有“## 机制漏洞”：python3 视频/工具/方法进化表.py --写入 生成，再写“- 会话补：这次机制哪里没挡住/哪里不顺”')
+        elif not b or (b.group(1).startswith('无') and '依据' not in b.group(1)): err.append(f'[G79] 制作记录/{no}.md “## 机制漏洞”的“- 会话补：”没写（这次机制哪里没挡住、哪里不顺；没有写“无（依据：……）”）')
+    if int(no) >= 11 and '## 方法复盘' not in _rec: err.append(f'[T29] 制作记录/{no}.md 没有“## 方法复盘”：每做完一件事，写下费 token 的地方能不能用虹吸、改了什么（用户 2026-10-15 铁律）')
+    return err
+
+
+def selftest_l19():
+    """L19 自检：20 定稿原样不报；故意写一行很宽的说明，必须报出"""
+    base = json.load(open(f'{V}/脚本/20.json')); fails = []
+    if l19_checks(base): fails.append('L19 误报：20 定稿原样被报出')
+    d = copy.deepcopy(base); d['sentences'][1]['chunks'][0]['note'] = '这是一行故意写得很长很长很长的说明，' * 6
+    if not any(x.startswith('[L19]') for x in l19_checks(d)): fails.append('没抓到：说明行比英文正文宽（L19）')
+    return fails
+
+
+def selftest_l20():
+    """L20 自检：真实 24 不报；画法退回格内居中，必须报出"""
+    sys.path.insert(0, T); import 对正量 as _DZ; fails = []
+    d = json.load(open(f'{V}/脚本/24.json'))
+    if _DZ.gate('24', d): fails.append('L20 误报：24 原样被报出')
+    o = _DZ.R.col_place; _DZ.R.col_place = lambda c, ef, zf, x, align=None: o(c, ef, zf, x, False)
+    try:
+        if not _DZ.gate('24', d): fails.append('没抓到：重点词中文没对正（L20）')
+    finally: _DZ.R.col_place = o
+    return fails
+
+
+def selftest_record_meta():
+    """T29/T31 自检：写全的不报；去掉方法设计、方法复盘，必须分别报出"""
+    ok_ = '## 方法设计\n- 预计调用：10 次\n- 预计 token：100 万\n\n## 方法复盘\n- 无\n'; fails = []
+    if record_meta_checks('20', ok_): fails.append('T29/T31 误报：写全的制作记录被报出')
+    if not any(x.startswith('[T31]') for x in record_meta_checks('20', '## 方法复盘\n')): fails.append('没抓到：制作记录没写方法设计（T31）')
+    _空 = '## 方法设计（T31：动手前写好）\n- 步骤：\n- 每步谁做（程序/我）：\n- 预计调用：\n- 预计 token：\n- 为什么有效：\n\n## 方法复盘\n'
+    if not any(x.startswith('[T31]') for x in record_meta_checks('26', _空)): fails.append('没抓到：方法设计是空模板（预计调用、预计 token 后面没写，G39 重放 25.md）')
+    if record_meta_checks('26', _空.replace('预计调用：', '预计调用：50–70 次').replace('预计 token：', '预计 token：约 2M')): fails.append('G39 误报：方法设计写全了还报')
+    if not any(x.startswith('[T29]') for x in record_meta_checks('20', ok_.split('## 方法复盘')[0])): fails.append('没抓到：制作记录没写方法复盘（T29）')
+    _w = _空.replace('预计调用：', '预计调用：50 次').replace('预计 token：', '预计 token：2M')   # G79 机制漏洞节（28 起）
+    _j = '## 机制漏洞（G79）\n- 程序填：本篇登记 0 条\n- 会话补：{}\n\n'
+    if not any(x.startswith('[G79]') for x in record_meta_checks('28', _w)): fails.append('没抓到：28 没有“## 机制漏洞”（G79）')
+    for _b in ('', '无'):
+        if not any(x.startswith('[G79]') for x in record_meta_checks('28', _j.format(_b) + _w)): fails.append(f'没抓到：机制漏洞“会话补”写“{_b}”（G79）')
+    if record_meta_checks('28', _j.format('无（依据：门全挡住了）') + _w) or record_meta_checks('27', _w): fails.append('G79 误报：会话补写全了或 27 也报')
+    return fails
+
+
+
+# ---------- G24 确认结论（原 放行口子核查 的确认、特批部分；扫代码找“新口子”那部分已删，用户 2026-10-29）----------
+# 脚本里写的保留、特批、例外，结论必须合 确认格式表.json 的格式；保留违规、放宽、特批只认 用户同意记录 里的用户原话（AI 自己写的例外一律不认）。
+KZ_表 = json.load(open(f'{T}/确认格式表.json'))
+def KZ_同意():
+    return json.load(open(f'{T}/用户同意记录.json'))['记录']
+
+KZ_ns = lambda x: re.sub(r'[\s，。、；：:,.;!?！？…“”"\'（）()—\-]', '', x)
+
+def KZ_有原话(text, rec=None):
+    """结论里引的“……”在 用户同意记录.json 里有（至少一句：去标点后 ≥4 字、是某条原话的一段；或不到 4 字、但和某条原话整句一样，如用户只回“可以”）"""
+    rec = KZ_同意() if rec is None else rec; ys = [KZ_ns(r['原话']) for r in rec]
+    for q in re.findall(r'“([^”]+)”', text):
+        q = KZ_ns(q)
+        if len(q) >= 4 and any(q[:30] in y for y in ys): return True
+        if q and q in ys: return True   # K122（48：用户换行变更只回“可以”两个字，被拦）：短回答按整句对
+    return False
+
+def KZ_判(cat, val, rec=None, 规=None, no=None):
+    """一条确认/特批：合格返回 None，否则返回问题"""
+    规 = KZ_表['确认'] if 规 is None else 规
+    sp = 规.get(cat)
+    if sp is None: return f'没登记的口子类别“{cat}”（先在 确认格式表.json 登记规矩、允许、禁止）'
+    text = json.dumps(val, ensure_ascii=False) if isinstance(val, (dict, list)) else str(val)
+    backed = KZ_有原话(text, rec)
+    if sp['类'] == '用户' and not backed:
+        return '这是保留违规/放宽/特批，只认用户原话：结论里引“用户原话”，且这句话已记进 用户同意记录.json（AI 自己写的理由不算）'
+    if sp.get('禁止') and re.search(sp['禁止'], text) and not backed:
+        return f'结论违背规矩（命中“{re.search(sp["禁止"], text).group(0)}”）：{sp["规矩"]} 不许写例外，要例外先拿到用户原话'
+    allow = sp.get('允许')
+    if sp.get('起') and str(no).isdigit() and int(no) < sp['起']: allow = sp.get('旧允许', allow)   # 这一类收紧前的篇目按原来的格式体检
+    if allow and not re.search(allow, text) and not backed:
+        return f'结论不合格式（只认：{sp["允许说明"]}）'
+    return None
+
+def KZ_条目(d):
+    """(类别, 键, 值)：核对确认 每一条 + 顶层特批字段"""
+    out = []
+    for cat, v in d.get('核对确认', {}).items():
+        if isinstance(v, dict): out += [(cat, k, x) for k, x in v.items()]
+        elif isinstance(v, list): out += [(cat, x, x) for x in v]
+        else: out.append((cat, '', v))
+    for k, sp in KZ_表['特批字段'].items():
+        if sp.get('数据字段') and k in d:
+            v = d[k]
+            if isinstance(v, dict): out += [(k, s, x) for s, x in v.items()]
+            else: out.append((k, '', v))
+    return out
+
+def KZ_查篇(d, no, rec=None, 强制=False):
+    if not 强制 and (not str(no).isdigit() or int(no) < KZ_表['_起']): return []
+    out = []
+    for cat, k, v in KZ_条目(d):
+        p = KZ_判(cat, v, rec, no=no)
+        if p: out.append(f'[口子] {cat} {str(k)[:40]}：{p}')
+    return out
+
+def KZ_自检():
+    fails = []
+    rec = [{'篇': '99', '日期': '2026-10-24', '原话': '这个地方可以不加，我同意', '用于': '自检'}]
+    # ⑤ 每个确认类别的绕过样本：AI 写的“例外/放宽/不改”必须抓到
+    for cat, sp in KZ_表['确认'].items():
+        bad = '例外：英式写法，不改，先放宽' if sp['类'] != '核实' else {'配音指纹': 'x', '依据': '放宽：听不出来，例外'}
+        if KZ_判(cat, bad, rec) is None: fails.append(f'没抓到：{cat} 写“例外/不改/放宽”的确认被放行（G24 绕过样本）')
+    for k in [k for k, sp in KZ_表['特批字段'].items() if sp.get('数据字段')]:
+        if KZ_判(k, 'AI 觉得可以放宽一点', rec) is None: fails.append(f'没抓到：{k} 没有用户原话的特批被放行（G24）')
+    if KZ_判('牛津逗号', '文章英文是英式写法，三项并列不用牛津逗号；不改', rec) is None: fails.append('没抓到：牛津逗号“英式写法、不改”（T35 重放）')
+    if KZ_判('短语', 'in 是普通介词', rec, no='24') is None: fails.append('没抓到：24 起短语确认没写“不是搭配：……”（T22）')
+    if KZ_判('短语', 'in 是普通介词，不是固定搭配', rec, no='20'): fails.append('T22 误报：24 以前的短语确认按旧格式')
+    if KZ_判('短语', '不是搭配：in 是普通介词“在……里”', rec, no='24'): fails.append('T22 误报：“不是搭配：……”被报出')
+    if KZ_判('牛津逗号', '不是三项并列：upright and intact 是两项', rec): fails.append('G24 误报：牛津逗号“不是三项并列：……”被报出')
+    if KZ_判('引号', '用户 2026-10-24：“这个地方可以不加，我同意”', rec): fails.append('G24 误报：引了用户同意记录里原话的例外被报出')
+    if KZ_判('引号', '用户 2026-11-04：“可以”', rec + [{'篇': '48', '日期': '2026-11-04', '原话': '可以', '用于': '自检'}]): fails.append('K122 误报：用户整句只回“可以”被拦（48）')
+    if KZ_判('引号', '用户 2026-11-04：“可以”', rec) is None: fails.append('没抓到：“可以”只是某条原话的一段、不是整句（K122 坏样本）')
+    if KZ_判('引号', '用户 2026-10-24：“我编的一句话不在记录里”', rec) is None: fails.append('没抓到：引的“原话”不在用户同意记录里（AI 编的）')
+    if KZ_判('非人声', {'配音指纹': 'c81ce56b1f49', '依据': '2026-10-09 实际声音（逐 5 ms 电平）'}, rec): fails.append('G24 误报：正常的非人声核实被报出')
+    if KZ_判('词尾辅音', {'除阻全频': -28.9, '依据': '2026-11-09 主会话按守则22 实测接受：闭塞 6.215–6.29 -60～-70 dB，除阻 6.295–6.35 最响 -28.9 dB、60 ms、重心 1.3–2.4 kHz'}, rec): fails.append('误报：67 S8 词尾辅音实测接受原声被报出')
+    if KZ_判('新类别XYZ', '随便', rec) is None: fails.append('没抓到：没登记的确认类别')
+    if KZ_定稿同意('24', rec): fails.append('没抓到：用户没说定稿就跑定稿（画19/流7）')
+    if not KZ_定稿同意('24', rec + [{'篇': '24', '日期': '2026-10-24', '原话': '可以，定稿吧', '用于': '定稿 24'}]): fails.append('定稿门 误报：用户同意记录里有“定稿 24”')
+    _定 = {'篇': '24', '日期': '2026-10-24', '原话': '可以，定稿吧', '用于': '定稿 24'}; _撤 = {'篇': '24', '日期': '2026-10-24', '原话': '暂停，我先核查一下', '用于': '撤回 定稿 24'}
+    if KZ_定稿同意('24', rec + [_定, _撤]): fails.append('没抓到：定稿后又撤回，照样跑定稿（G28）')
+    if not KZ_定稿同意('24', rec + [_定, _撤, dict(_定, 原话='好了，这回定稿')]): fails.append('定稿门 误报：撤回后用户又说定稿（G28）')
+    if not KZ_定稿同意('20', rec): fails.append('定稿门 误报：24 以前已定稿的篇目')
+    if KZ_查篇({'核对确认': {'牛津逗号': {'S1 a, b and': '英式写法，不改'}}}, '23', rec): fails.append('G24 误报：24 以前已定稿篇目被报出（只列不改）')
+    if not KZ_查篇({'核对确认': {'牛津逗号': {'S1 a, b and': '英式写法，不改'}}}, '24', rec): fails.append('没抓到：24 起的“英式写法、不改”（G24）')
+    return fails
+
+KZ_定稿_起 = 24   # 画19/流7/单22：用户试听确认后才算定稿——定稿流水线先查 用户同意记录 里有这一篇“定稿”的用户原话（24 KZ_表['_起']）
+
+def KZ_定稿同意(no, rec=None):
+    rec = KZ_同意() if rec is None else rec
+    if not str(no).isdigit() or int(no) < KZ_定稿_起: return True
+    rs = [r for r in rec if r.get('篇') == no and '定稿' in r.get('用于', '') and len(KZ_ns(r.get('原话', ''))) >= 2]
+    return bool(rs) and '撤回' not in rs[-1].get('用于', '')   # G28：同一篇按记录先后，最后一条定稿类记录是“撤回”就停（24：14:17 定稿、14:18 撤回）
+
+
+def main():
+    args = sys.argv[1:]
+    if args and args[0] == '定稿同意':   # 画19/流7/G28：用户试听确认说了定稿（用户同意记录 里有这一篇“定稿”的原话、最后一条不是撤回）才跑定稿.sh
+        no = args[1].zfill(2); ok = KZ_定稿同意(no)
+        print(f'第{no}篇 用户定稿原话：' + ('有' if ok else ('【已撤回】最后一条定稿类记录是撤回（G28）' if any(r.get('篇') == no and '撤回' in r.get('用于', '') for r in KZ_同意()) else '【没有】用户试听确认说定稿后，把原话记进 用户同意记录.json')))
+        return 0 if ok else 1
+    if args and args[0] == '通用':
+        print('做任何事之前逐条对照（沟通、保存类的坑 + 铁律）：')
+        for i, a, b in pit_rows():
+            if i[0] in 'CG': print(f'  {i}  {a}\n       → {b}')
+        print('铁律：教材零瑕疵；踩过的坑绝不再踩；不自己检查自己；改一处全部重查；先核查后交付（硬性条件第〇节）')
+        vf = selftest_folders() or video_folders(ROOT)
+        print('存视频的文件夹只存定稿（G7）：' + ('通过' if not vf else '\n  ✘ ' + '\n  ✘ '.join(vf)))
+        return 1 if vf else 0
+    sys.path.insert(0, T); import 译文核查 as _YW
+    fails = selftest() + _YW.自检() + KZ_自检() + selftest_record_human() + selftest_l19() + selftest_l20() + selftest_record_meta() + selftest_folders() + selftest_phrase() + selftest_idiom() + selftest_note() + selftest_term() + selftest_meaning() + selftest_gloss() + selftest_zhdup() + selftest_meta() + selftest_ending() + selftest_linestart() + __import__('破折号').自检()
+    print('核查程序自检：' + ('通过（每一种造出来的坑都抓到，原稿无误报）' if not fails else '【失灵】' + '；'.join(fails)))
+    if fails: print('【核查程序失灵，不得交付】'); return 1
+    if args and args[0] == '自检': return 0
+    no, stage = args[0].zfill(2), args[1]
+    js = f'scripts/{no}.json' if os.path.exists(f'scripts/{no}.json') else f'{V}/脚本/{no}.json'
+    d = json.load(open(js)); snap = f'{V}/脚本/已发版本/{no}.json'
+    sent = json.load(open(snap)) if os.path.exists(snap) else None
+    err = []; 只提醒 = record_gate(no, stage) + video_folders(ROOT)   # 踩坑对照记录、视频文件夹：不是片子本身的问题，只提醒（用户 2026-10-29）
+    e, conf, ref = text_checks(d, article_en(no), sent, no); err += e
+    sys.path.insert(0, T); import 破折号 as _PZ; err += _PZ.查(d, no)
+    import 逐词对齐 as _ZD; err += _ZD.查(d, no)
+    conf += _ZD.同序(d, no)                                          # K128 中文语序和英文一样的组能拆就拆（只提醒，55 起；用户 2026-11-07）
+    import 意思个数 as _YS; err += _YS.查(d, no)   # 文36（27 起）：重点词中文最多两个意思
+    import 颜色核对 as _YS; err += _YS.查(d, no)                       # G49 同屏重点词颜色分得开（用户 2026-10-25，25 起：2026-10-26 起点移到 25）                       # G47 非重点词也逐词对齐（用户 2026-10-25，25 起：2026-10-26 起点移到 25）          # T36 破折号禁用（用户 2026-10-24，24 起）
+    err += KZ_查篇(d, no)                                           # G24：确认的结论合格式，保留违规、放宽、特批只认用户原话（24 起）
+    sys.path.insert(0, T); import 译文核查 as _YW                       # 译文规矩（21 起）：方向词 T4、词性 T2、同词异译 文10、排版指令 W3、改稿门 T10、逐句确认
+    _md = glob.glob(f'{ROOT}/新版定稿/{no}-*.md'); _e, _c = _YW.查(d, no, open(_md[0]).read() if _md else ''); err += _e; conf += _c
+    # T22 只查以后新做的篇目（09 起）。用户 2026-10-10：“以后查就行，已经做完了，这几天不要再查了……刚刚做完这篇，你查啥？不用再查了，又浪费时间……以后每次都要（查）”
+    # 已做完的 01–08 不回头查；08 只改用户点名的 S2 attributed … to（制作记录/08_待改清单.md）
+    if int(no) >= 9: conf += phrase_checks(d, no)
+    if int(no) >= 11: conf += idiom_checks(d, no)
+    if int(no) >= 11: err += term_checks(d)                         # T30 英文有的术语/专名中文漏了（11 起）                  # T22 习语整体标（11 起，用户 2026-10-15 turn the tide）
+    if int(no) >= 9: conf += meaning_checks(d, no)                 # T23 同样只查以后新做的篇目（用户：“以后我们再去做的时候……防止再犯”）
+    if int(no) >= 9: err += meta_checks(d)                          # T27 说明里不写自问的话（09 起）
+    if int(no) >= 10: err += ending_note_checks(d, no)                  # T28 结尾要有一段解说（10 起）
+    _rec = open(f'{V}/制作记录/{no}.md').read()
+    if int(no) >= 12: err += l19_checks({**json.load(open(f'scripts/{no}.json')), '_no': no})   # [L19] 铁律（用户 2026-10-16，见 l19_checks）
+    if int(no) >= 24:                                               # [L20] 重点词对正（用户 2026-10-24，24 起；对正量.py：做得到的必须正对，做不到的由程序给出几何原因）
+        sys.path.insert(0, T); import 对正量 as _DZ; err += [f'[L20] {x}' for x in _DZ.gate(no, json.load(open(f'scripts/{no}.json')))]
+    只提醒 += record_meta_checks(no, _rec)                          # [T31] 方法设计、[T29] 方法复盘、[G79] 机制漏洞：只提醒（用户 2026-10-29）
+    sys.path.insert(0, T); import 重点词被去掉 as _QD                   # [T32] 用户 2026-10-17：这一篇有重点词因撞词被去掉，做时必须先告诉用户
+    if _QD.记录(no) and not d.get('核对确认', {}).get('已告诉用户被去掉的重点词'):
+        err.append('[T32] 这一篇有重点词因撞词被去掉了，先把下面的话原样告诉用户，再在脚本写 核对确认.已告诉用户被去掉的重点词：\n' + _QD.提醒(no))
+    err += note_linestart_checks(d)                                 # L16 说明行首不许是标点（01–10 全部扫过，没有）
+    if int(no) >= 9: conf += zh_dup_checks(d)                      # T26 两个重点词同一个中文（09 起）
+    err += user_gloss_checks(d, no)                                # T25 用户给的释义要上画面（有待改清单的篇目都查）
+    err += [f'[check_all] {x}' for x in check_all_text(no, os.path.abspath(js), stage)]
+    try:   # G22：已定稿的篇目改了脚本，当场提醒必须重出 4K（不挡出片：定稿流水线自己就是在重出）
+        import 重查记录 as _RC; _m = _RC.定稿提醒(no, _RC.已出片(), _RC.欠着())
+        if _m: ref.insert(0, _m)
+    except Exception: pass
+    print(f'第{no}篇 {stage}阶段 踩坑核查（{js}）：')
+    if sent is None: print('  （还没有"已发版本"，这次不比对换行；生成文本.py 成功后会保存）')
+    for x in err: print('  ✘ ' + x)
+    for x in conf: print('  ？ ' + x)
+    for x in ref: print('  · ' + x)
+    for x in 只提醒: print('  △ （只提醒）' + x.replace('\n', ' '))
+    bad = bool(err or conf)
+    print('  全部通过' if not bad else f'  【不通过：{len(err)} 个错误，{len(conf)} 处待确认，不得交付】')
+    return 1 if bad else 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())

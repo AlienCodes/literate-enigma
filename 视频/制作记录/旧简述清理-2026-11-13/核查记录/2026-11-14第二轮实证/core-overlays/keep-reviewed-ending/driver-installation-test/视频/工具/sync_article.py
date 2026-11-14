@@ -1,0 +1,65 @@
+import json,re,sys
+js,md=sys.argv[1],sys.argv[2]
+d=json.load(open(js)); t=open(md).read()
+head,rest=t.split('## 英文',1); en_old,rest=rest.split('## 中文',1); zh_old,tail=rest.split('## 速查表',1)
+tbl_old,after=tail.split('\n## ',1)
+old_rows={}
+def split_benwen(x):
+    """拆成（最后一段“本文：”的内容, 其余释义）。括号里的“；”不算分段（08 inquiry、declined to 的说明里有“；”，还有括号套括号）"""
+    bw=''
+    while x.startswith('本文：'):
+        dep=0; i=len('本文：')
+        while i<len(x) and not (x[i]=='；' and dep==0):
+            dep+=(x[i]=='（')-(x[i]=='）'); i+=1
+        bw=x[len('本文：'):i]; x=x[i+1:]
+    return bw,x
+old_bw={}
+for r in re.findall(r'^\| (.+?) \| (.+?) \| (\d+) \|$',tbl_old,re.M): old_bw[r[0].lower()],old_rows[r[0].lower()]=split_benwen(r[1])
+def _gloss(z):
+    """画面上词下面的说明（\\n{{…|词}}，可分几行）在文章里接在词后面：本身没有一对括号整个括住的，外面加（）——
+    09 resilient 的说明“（人或动物）对困境有承受力的，有复原力的”原样接上会和后文连成一句；08 declined to、set out to 本来就整个括住，不变"""
+    def rep(m):
+        t=''.join(re.findall(r'\{\{([^|{}]+)\|[^{}]+\}\}',m.group(0))); dep=0; whole=t.startswith('（') and t.endswith('）')
+        for i,ch in enumerate(t):
+            dep+=(ch=='（')-(ch=='）')
+            if whole and dep==0 and i<len(t)-1: whole=False
+        return t if whole else '（'+t+'）'
+    return re.sub(r'\n?\{\{[^|{}]+\|([^{}]+)\}\}(?:\n?\{\{[^|{}]+\|\1\}\})*',rep,z)   # 只把同一个词的几行连起来（03 unimpressed、assessors 两个说明挨着，各算各的）
+paras_en={};paras_zh={}
+for s in d['sentences']:
+    en=' '.join(re.sub(r'\{\{.*?\}\}','',c['en']) for c in s['chunks'])
+    zh=''.join(_gloss(c['zh']).replace('\n','') for c in s['chunks'])  # 去掉格内换行、颜色说明标记
+    notes=''.join(c['note'].replace('#Y','').replace('\n','') for c in s['chunks'] if c.get('note'))   # note 里的 \n 只是屏幕上分行，文章里连成一段（06 S18、08 S10）
+    paras_en.setdefault(s['para'],[]).append(en); paras_zh.setdefault(s['para'],[]).append(zh+notes)
+new_en='\n\n'.join(' '.join(v) for k,v in sorted(paras_en.items()))
+strip=lambda x:re.sub(r'[\*\s]','',x)
+import os; sys.path.insert(0,os.path.dirname(os.path.abspath(__file__))); import 破折号 as _PZ
+assert _PZ.英文一致(new_en,en_old), 'English text changed!'   # 唯一放宽：文章的破折号在脚本里换成了逗号/冒号/括号（T36，用户 2026-10-24），文章随之改成脚本的写法
+new_zh='\n\n'.join(''.join(v) for k,v in sorted(paras_zh.items()))
+# keyword table in order of appearance
+import os; sys.path.insert(0,os.path.dirname(os.path.abspath(__file__))); import 速查表 as SC
+SC_D=SC.词典(os.path.dirname(os.path.dirname(os.path.abspath(md))))
+rows=[];seen=set()
+for s in d['sentences']:
+    zmap={}
+    for c in s['chunks']:   # 整句一起连：被隔开的意思可以跨块（10 S16 **把**(elevated to)……**抬高到了**……**的地位**，原来按块只连出“把”）
+        for z,e in re.findall(r'\*\*([^*]+)\*\*\(([^)]+)\)',c['zh']):   # 被隔开的同一个意思（T23：证明了……正确的、把……比作）连起来，原来只留最后一段（08 vindicating 成了“正确的”）
+            zmap[e.lower()]=zmap[e.lower()]+'……'+z if e.lower() in zmap else z
+    for c in s['chunks']:
+        ens=re.findall(r'\*\*([^*]+)\*\*',c['en'])
+        keys=[e for _,e in re.findall(r'\*\*([^*]+)\*\*\(([^)]+)\)',c['zh'])]
+        for w in keys:
+            w=next((x for x in ens if x.lower()==w.lower()),w)
+            if w.lower() in seen: continue
+            seen.add(w.lower())
+            old=old_rows.get(w.lower()) or next((v for k,v in old_rows.items() if k in w.lower().split() or w.lower().startswith(k)),'')
+            if not old: old=SC_D.get(w.lower(),'')   # G52：新重点词没有旧行，从 70 篇文章速查表里同一个词的“词性. 词义”自动填
+            pos=(re.match(r'^([a-z./]+\.)',old) or [None,''])[1] if old else ''
+            z_=zmap.get(w.lower(),''); ob_=old_bw.get(w.lower(),'')
+            if z_ and ob_.startswith(z_): z_=ob_          # 原来的“本文：”以现在的意思开头（后面跟着括号说明，如 08 inquiry），原样保留
+            rows.append(f"| {w} | 本文：{z_}" + (f"；{old}" if old else '') + f" | {s['para']} |")
+tbl='| 词 | 释义 | 段 |\n|---|---|---|\n'+'\n'.join(rows)+'\n'
+out=head+'## 英文\n'+new_en+'\n\n## 中文\n\n'+new_zh+'\n\n## 速查表\n'+tbl+'\n## '+after
+miss=SC.缺词性(out)   # G52：写完当场查，缺词性和词义就停在定稿流水线 ④（不写文件、不进仓库），列出来让会话补
+if miss: print(f'【停止】速查表这些新重点词缺词性和词义，70 篇文章里也查不到，请在文章速查表里补全再跑：{miss}'); sys.exit(1)
+open(md,'w').write(out); print(len(rows),'rows')

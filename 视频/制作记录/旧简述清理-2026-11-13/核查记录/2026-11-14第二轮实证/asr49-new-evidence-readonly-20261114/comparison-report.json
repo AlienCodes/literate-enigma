@@ -1,0 +1,101 @@
+{
+  "article": "49",
+  "sentence": "S8",
+  "checked_utc": "2026-11-14T02:43:15.622489+00:00",
+  "scope": "Read-only actual current public MP4 compared with previously accepted public MP4. No human listening, new quality approval, waiver, source/threshold/audio/control changes.",
+  "human_listening_performed": false,
+  "confirmation_or_gate_modified": false,
+  "input_ZIP_sha256": "b333340d730944166f2ce4d8787bad65cc0bdb4b20d4afc6cdb85a9d1c438d7f",
+  "accepted_public_mp4": {
+    "path": "/workspace/work/video-audit70-20261113/asr46-49-55-readonly-20261114/public-media/49/49-accepted.mp4",
+    "bytes": 13452894,
+    "sha256": "a95abb22587640d560f529d63dd03ccbcd61f3c60a7356f968779ac45a62d3eb",
+    "repository": "alienalgorithm/postgraduate-vocabulary",
+    "pinned_commit": "3d82f20ce7ecfea2e4e0a2aa93c340a779e646d3",
+    "repo_path": "最终版4K视频/49 - The Woman Who Won Two Nobels - 两度摘得诺奖的女人.mp4"
+  },
+  "current_public_mp4": {
+    "path": "/workspace/work/video-audit70-20261113/asr49-new-evidence-readonly-20261114/49-current-failed-public.mp4",
+    "sha256": "57f68fa85b037d00f9661262a05310dc3e9bf645e6c15e7f1bfa32f48538d219",
+    "bytes": 7757539
+  },
+  "ASR_evidence": {
+    "article": "49",
+    "sentence": "S8",
+    "diagnostic_only": true,
+    "acceptance": false,
+    "automatic_confirmation": false,
+    "private_raw_PCM_GT_models_or_caches_exported": false,
+    "original_asr_program_sha256": "40caf651184d50efeb8d3b4477cd7a2b85911a495360554db1b3cd09ab596229",
+    "source_sha256": "d84e829e4916327cb0d07d038b00ddb6cd69317b23b899a9b525f6845295e206",
+    "internal_pcm_sha256": "733b6cb742f42ac73f65c1599a35fb337aaac7a0736498c0b520afbc2764ff8c",
+    "public_video_sha256": "57f68fa85b037d00f9661262a05310dc3e9bf645e6c15e7f1bfa32f48538d219",
+    "actual_segment_metadata_sha256": "cdcc3a6c8819741c1d3e8d5c764abaef3d40a240a07c896ca4ee9232ee2e1856",
+    "reference_text": "The nomination had initially left her out; at Pierre's insistence, the omission was rectified.",
+    "original_pipeline_input": {
+      "native_seconds": [
+        72.83,
+        79.275
+      ],
+      "sample_rate": 16000,
+      "sample_count": 103120,
+      "float32_sample_sha256": "d676bc055ef842605987e13f40b3b117e30af96543297efeafdc069b1d266fe1",
+      "full_transcripts_by_original_recognizer": {
+        "small.en": "The nomination had initially left her out. At Pierre's insistence, the omission was rectified.",
+        "parakeet": "The nomination had initially left her out. At Pierre's insistence, the old mission was rectified."
+      },
+      "original_comparison_differences": [
+        [
+          "omission",
+          "old mission〔parakeet〕"
+        ]
+      ],
+      "original_merged_word_observations": []
+    },
+    "public_MP4_context": {
+      "file": "49-S8-public-ASR-context.wav",
+      "sha256": "226c6e62fbd00414f5d320320397a354694c4aa4766045f8a9229fae8d950668",
+      "source_video_sha256": "57f68fa85b037d00f9661262a05310dc3e9bf645e6c15e7f1bfa32f48538d219",
+      "public_mp4_seconds": [
+        72.71,
+        79.39500000000001
+      ],
+      "clock_relation": "native sentence bounds plus 120ms public-context padding; not a sample-identity alignment",
+      "derived_from_public_mp4_only": true,
+      "full_transcripts_by_original_recognizer": {
+        "small.en": "The nomination had initially left her out. At Pierre's insistence, the omission was rectified.",
+        "parakeet": "The nomination had initially left her out. At Pierre's insistence the omission was rectified."
+      },
+      "original_comparison_differences": [],
+      "original_merged_word_observations": []
+    }
+  },
+  "AAC_ADTS_entire_track_byte_equal": true,
+  "AAC_ADTS_sha256": {
+    "accepted": "6d68121b448428148efca585cb2b2ad9fbf52825f9cec76b15325a1b28a4069c",
+    "current": "6d68121b448428148efca585cb2b2ad9fbf52825f9cec76b15325a1b28a4069c"
+  },
+  "audio_codec_parameters_equal": true,
+  "AAC_packet_payload_absolute_pts_dts_duration_size_equal": true,
+  "packet_counts": {
+    "accepted": 7033,
+    "current": 7033
+  },
+  "packet_projection_sha256": {
+    "accepted": "7bfd7f4b87fbc6de27b16ff63e3436c9ff0d3cfc448e5b4541f2b292e72bc0d1",
+    "current": "7bfd7f4b87fbc6de27b16ff63e3436c9ff0d3cfc448e5b4541f2b292e72bc0d1"
+  },
+  "public_decoded_float32_entire_track_byte_equal": true,
+  "public_decoded_samples": {
+    "accepted": 7200768,
+    "current": 7200768
+  },
+  "public_decoded_sha256": {
+    "accepted": "05462178e74bc64be0d677d5527e01f6e2da92fa449515de7837a34444f32a63",
+    "current": "05462178e74bc64be0d677d5527e01f6e2da92fa449515de7837a34444f32a63"
+  },
+  "max_abs_public_sample_difference": 0.0,
+  "private_native_ASR_input_PCM_not_read_or_exported": true,
+  "native_ASR_input_identity_to_accepted_not_claimed": true,
+  "transcript_context_observation": "Original exact sentence window: small.en omission, parakeet old mission. Public MP4 context with 120ms padding: both recognizers omission and no word differences. Different context/window, not a sample-identity claim."
+}

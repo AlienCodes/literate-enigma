@@ -1,0 +1,616 @@
+{
+  "kind": "02-S14-original-raw-mother-and-source-only-ablation",
+  "quality_acceptance": false,
+  "original_maker_SHA256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+  "original_clean_SHA256": "86b3872cbca83437e24da2c7ada5fffd916f06cacdd2b32fee2a78c9b134178d",
+  "raw_mother_manifest": [
+    {
+      "key": "1380c4096ea7776f174d46f89bedc3bf8c175157.pkl",
+      "method": "create",
+      "model_identifier": "kokoro-v1.0.onnx:7d5df8ecf7d4b187",
+      "input_sha256": "5c4dc9c087862de741c7ebac39f62226b8be9aa96f0bf6092c00bad24b36f206",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kw": {},
+      "pkl_full_sha256": "9f9538cba0442e0b50084a5c75c650a6c146b6db46813f8b4b013163ecc2531e",
+      "G72_basis": "original-old-entry-manifest",
+      "marker": null,
+      "schema": {
+        "tuple_length": 2,
+        "dtype": "float32",
+        "shape": [
+          103936
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "e60f4a7caa731a999f6009f589e8cf5e7385ffcf.pkl",
+      "method": "create_timed",
+      "model_identifier": "kokoro-v1.0-timed.onnx:beb0d1848dee9a49",
+      "input_sha256": "5c4dc9c087862de741c7ebac39f62226b8be9aa96f0bf6092c00bad24b36f206",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kw": {
+        "clause_pause": 0,
+        "sentence_pause": 0
+      },
+      "pkl_full_sha256": "19a9e8fd7469463ce9267d6ba393810b91bcfbc633d8d47e0f98f661a66f021b",
+      "G72_basis": "original-old-entry-manifest",
+      "marker": null,
+      "schema": {
+        "tuple_length": 3,
+        "dtype": "float32",
+        "shape": [
+          107008
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    }
+  ],
+  "original_raw_mother_same_between_both_source_modes": true,
+  "original_timed_phonemes_near_last_word": [
+    {
+      "phoneme": "b",
+      "raw_start_s": 3.5429489633173845,
+      "raw_end_s": 3.640078149920255,
+      "clean_w_start_s": 3.5329489633173847,
+      "clean_w_end_s": 3.630078149920255
+    },
+    {
+      "phoneme": "s",
+      "raw_start_s": 3.640078149920255,
+      "raw_end_s": 3.7129250398724083,
+      "clean_w_start_s": 3.630078149920255,
+      "clean_w_end_s": 3.7029250398724085
+    },
+    {
+      "phoneme": "t",
+      "raw_start_s": 3.7129250398724083,
+      "raw_end_s": 3.761489633173843,
+      "clean_w_start_s": 3.7029250398724085,
+      "clean_w_end_s": 3.7514896331738434
+    },
+    {
+      "phoneme": "ˈ",
+      "raw_start_s": 3.761489633173843,
+      "raw_end_s": 3.8586188197767144,
+      "clean_w_start_s": 3.7514896331738434,
+      "clean_w_end_s": 3.8486188197767146
+    },
+    {
+      "phoneme": "æ",
+      "raw_start_s": 3.8586188197767144,
+      "raw_end_s": 3.9071834130781498,
+      "clean_w_start_s": 3.8486188197767146,
+      "clean_w_end_s": 3.89718341307815
+    },
+    {
+      "phoneme": "n",
+      "raw_start_s": 3.9071834130781498,
+      "raw_end_s": 3.955748006379585,
+      "clean_w_start_s": 3.89718341307815,
+      "clean_w_end_s": 3.9457480063795853
+    },
+    {
+      "phoneme": "t",
+      "raw_start_s": 3.955748006379585,
+      "raw_end_s": 4.052877192982455,
+      "clean_w_start_s": 3.9457480063795853,
+      "clean_w_end_s": 4.042877192982456
+    },
+    {
+      "phoneme": "ɪ",
+      "raw_start_s": 4.052877192982455,
+      "raw_end_s": 4.150006379585327,
+      "clean_w_start_s": 4.042877192982456,
+      "clean_w_end_s": 4.140006379585327
+    },
+    {
+      "phoneme": "v",
+      "raw_start_s": 4.150006379585327,
+      "raw_end_s": 4.330666666666667,
+      "clean_w_start_s": 4.140006379585327,
+      "clean_w_end_s": 4.320666666666667
+    },
+    {
+      "phoneme": ".",
+      "raw_start_s": 4.330666666666667,
+      "raw_end_s": 4.330666666666667,
+      "clean_w_start_s": 4.320666666666667,
+      "clean_w_end_s": 4.320666666666667
+    }
+  ],
+  "pre_interval_processed_w_same": true,
+  "pre_interval_w_fp": "76199cd68f41",
+  "old_current_NV": {
+    "old": [
+      [
+        1.668,
+        1.952875,
+        "紧贴词头"
+      ]
+    ],
+    "current": [
+      [
+        1.668,
+        1.952875,
+        "紧贴词头"
+      ],
+      [
+        4.183958,
+        4.275,
+        "紧贴词尾"
+      ]
+    ]
+  },
+  "w_candidate_removed_start_end_sample": [
+    100415,
+    102600
+  ],
+  "w_candidate_removed_samples": 2185,
+  "w_candidate_removed_duration_s": 0.09104166666666667,
+  "w_candidate_removed_fullSHA256": "154f3010ce89b82b8a15ba60d36341ce727708894261caedbed1bb5ccfed650d",
+  "w_candidate_removed_rms_relative_dB": -42.57513776491024,
+  "original_clean_head_samples": 240,
+  "original_sentence_only_sample_counts": [
+    104520,
+    102360
+  ],
+  "original_sentence_only_duration_delta_s": -0.09,
+  "old_S14_output_SHA256": "7cf57cdca41fc3b37dd83db582538bd7a78480606015a433ed64760edd41ed10",
+  "current_S14_output_SHA256": "3394e6b5bf674b55b3d20c5ae8e1ef3ab948b82f38a592de9e441fc014cf31f5",
+  "complete_unchanged_sentence_prefix_samples": 102335,
+  "complete_unchanged_sentence_prefix_seconds": 4.263958333333333,
+  "old_LAST_public_scalar": {
+    "head": 240,
+    "segs": [
+      [
+        0,
+        39840,
+        -0.015,
+        []
+      ],
+      [
+        46680,
+        102720,
+        2.025,
+        []
+      ]
+    ],
+    "total": 4.355,
+    "cuts": [
+      [
+        39840,
+        46680,
+        0.38
+      ]
+    ],
+    "grafts": [],
+    "gaps": [
+      0.4
+    ],
+    "hs": 360
+  },
+  "current_LAST_public_scalar": {
+    "head": 240,
+    "segs": [
+      [
+        0,
+        39840,
+        -0.015,
+        []
+      ],
+      [
+        46680,
+        102720,
+        2.025,
+        []
+      ]
+    ],
+    "total": 4.265,
+    "cuts": [
+      [
+        39840,
+        46680,
+        0.38
+      ]
+    ],
+    "grafts": [],
+    "gaps": [
+      0.4
+    ],
+    "hs": 360
+  },
+  "native_actual_S14_segment_timings": [
+    {
+      "段": 1,
+      "增益": 0.0,
+      "停顿": 0.4,
+      "时刻": [
+        114.72,
+        116.365
+      ]
+    },
+    {
+      "段": 2,
+      "增益": 0.0,
+      "停顿": null,
+      "时刻": [
+        116.745,
+        118.985
+      ]
+    }
+  ],
+  "w_to_current_producer_scalar_map": [
+    {
+      "mode": "old",
+      "w_extra_NV_start": 4.183958333333333,
+      "producer_start_s": 118.98395833333333,
+      "sentence_offset_s": 4.263958333333333,
+      "original_raw_sample_interval_s": [
+        4.193958333333334,
+        4.285
+      ]
+    },
+    {
+      "mode": "new",
+      "w_extra_NV_start": 4.183958333333333,
+      "producer_start_s": 118.98395833333333,
+      "sentence_offset_s": 4.263958333333333,
+      "original_raw_sample_interval_s": [
+        4.193958333333334,
+        4.285
+      ]
+    }
+  ],
+  "5ms_raw_mother_frames_w4p10_to4p29": [
+    {
+      "w_time_s": 4.1,
+      "relative_RMS5_dB": -28.298528829116357,
+      "centroid_5ms_Hz": 489.8429235384798,
+      "periodicity_20ms": 0.3397435723980404,
+      "best_period_F0_Hz": 222.22222222222223,
+      "under150Hz_fraction_dB": -12.591186509402121,
+      "3000to12000Hz_fraction_dB": -18.79369834500888
+    },
+    {
+      "w_time_s": 4.105,
+      "relative_RMS5_dB": -30.126639809282402,
+      "centroid_5ms_Hz": 658.0983713506164,
+      "periodicity_20ms": 0.27307273426907097,
+      "best_period_F0_Hz": 67.79661016949153,
+      "under150Hz_fraction_dB": -8.163788557448088,
+      "3000to12000Hz_fraction_dB": -15.770351789025337
+    },
+    {
+      "w_time_s": 4.11,
+      "relative_RMS5_dB": -29.46572880080965,
+      "centroid_5ms_Hz": 440.96253512383043,
+      "periodicity_20ms": 0.29121393689786845,
+      "best_period_F0_Hz": 250.0,
+      "under150Hz_fraction_dB": -7.444491892571211,
+      "3000to12000Hz_fraction_dB": -20.861801086830955
+    },
+    {
+      "w_time_s": 4.115,
+      "relative_RMS5_dB": -26.36655337031065,
+      "centroid_5ms_Hz": 397.44119245783526,
+      "periodicity_20ms": 0.4223384231767563,
+      "best_period_F0_Hz": 244.89795918367346,
+      "under150Hz_fraction_dB": -7.971746014961369,
+      "3000to12000Hz_fraction_dB": -20.634385760881614
+    },
+    {
+      "w_time_s": 4.12,
+      "relative_RMS5_dB": -25.122283685543344,
+      "centroid_5ms_Hz": 518.3537618678827,
+      "periodicity_20ms": 0.43143024442373673,
+      "best_period_F0_Hz": 242.42424242424244,
+      "under150Hz_fraction_dB": -8.263616106198361,
+      "3000to12000Hz_fraction_dB": -20.407833628577315
+    },
+    {
+      "w_time_s": 4.125,
+      "relative_RMS5_dB": -28.75444901201565,
+      "centroid_5ms_Hz": 416.65238214616744,
+      "periodicity_20ms": 0.36452746464146185,
+      "best_period_F0_Hz": 235.2941176470588,
+      "under150Hz_fraction_dB": -10.788903242047166,
+      "3000to12000Hz_fraction_dB": -24.412341963806977
+    },
+    {
+      "w_time_s": 4.13,
+      "relative_RMS5_dB": -33.18643578735849,
+      "centroid_5ms_Hz": 147.35851386450568,
+      "periodicity_20ms": 0.2577959838334644,
+      "best_period_F0_Hz": 152.86624203821657,
+      "under150Hz_fraction_dB": -8.93291177835518,
+      "3000to12000Hz_fraction_dB": -24.140552140924562
+    },
+    {
+      "w_time_s": 4.135,
+      "relative_RMS5_dB": -35.26664014856548,
+      "centroid_5ms_Hz": 387.7612823368948,
+      "periodicity_20ms": 0.22306626436481297,
+      "best_period_F0_Hz": 111.62790697674419,
+      "under150Hz_fraction_dB": -4.202981050592374,
+      "3000to12000Hz_fraction_dB": -23.13021577921961
+    },
+    {
+      "w_time_s": 4.14,
+      "relative_RMS5_dB": -29.22616714585992,
+      "centroid_5ms_Hz": 141.10133519069555,
+      "periodicity_20ms": 0.28778851721715765,
+      "best_period_F0_Hz": 117.6470588235294,
+      "under150Hz_fraction_dB": -5.639555575511049,
+      "3000to12000Hz_fraction_dB": -27.266127963345895
+    },
+    {
+      "w_time_s": 4.145,
+      "relative_RMS5_dB": -31.87083008093741,
+      "centroid_5ms_Hz": 205.3393365814696,
+      "periodicity_20ms": 0.22675194182162803,
+      "best_period_F0_Hz": 99.5850622406639,
+      "under150Hz_fraction_dB": -3.9315729611380457,
+      "3000to12000Hz_fraction_dB": -28.317216577894264
+    },
+    {
+      "w_time_s": 4.15,
+      "relative_RMS5_dB": -36.25385046916645,
+      "centroid_5ms_Hz": 110.829444544379,
+      "periodicity_20ms": 0.21758451827629352,
+      "best_period_F0_Hz": 98.36065573770492,
+      "under150Hz_fraction_dB": -3.629635045214132,
+      "3000to12000Hz_fraction_dB": -25.710155074050753
+    },
+    {
+      "w_time_s": 4.155,
+      "relative_RMS5_dB": -37.52164686220277,
+      "centroid_5ms_Hz": 237.62023944926293,
+      "periodicity_20ms": 0.22949166338047086,
+      "best_period_F0_Hz": 195.1219512195122,
+      "under150Hz_fraction_dB": -13.080341055127601,
+      "3000to12000Hz_fraction_dB": -25.856498149131436
+    },
+    {
+      "w_time_s": 4.16,
+      "relative_RMS5_dB": -38.57136306068938,
+      "centroid_5ms_Hz": 303.59640393029747,
+      "periodicity_20ms": 0.24863472474439186,
+      "best_period_F0_Hz": 66.85236768802228,
+      "under150Hz_fraction_dB": -5.1093514092505865,
+      "3000to12000Hz_fraction_dB": -25.794947270666864
+    },
+    {
+      "w_time_s": 4.165,
+      "relative_RMS5_dB": -37.992644429896544,
+      "centroid_5ms_Hz": 221.8542070317276,
+      "periodicity_20ms": 0.33381167049218546,
+      "best_period_F0_Hz": 100.0,
+      "under150Hz_fraction_dB": -2.533080993800967,
+      "3000to12000Hz_fraction_dB": -29.743528173457374
+    },
+    {
+      "w_time_s": 4.17,
+      "relative_RMS5_dB": -32.86113035470778,
+      "centroid_5ms_Hz": 267.8053242915469,
+      "periodicity_20ms": 0.40299559148278963,
+      "best_period_F0_Hz": 94.86166007905139,
+      "under150Hz_fraction_dB": -2.319636519208184,
+      "3000to12000Hz_fraction_dB": -30.794156299028668
+    },
+    {
+      "w_time_s": 4.175,
+      "relative_RMS5_dB": -38.94629348402907,
+      "centroid_5ms_Hz": 106.77795822026643,
+      "periodicity_20ms": 0.3594499459176279,
+      "best_period_F0_Hz": 94.86166007905139,
+      "under150Hz_fraction_dB": -0.9062646820046348,
+      "3000to12000Hz_fraction_dB": -26.777285291537677
+    },
+    {
+      "w_time_s": 4.18,
+      "relative_RMS5_dB": -38.05805632410532,
+      "centroid_5ms_Hz": 126.06410241454606,
+      "periodicity_20ms": 0.32985485442469825,
+      "best_period_F0_Hz": 104.34782608695652,
+      "under150Hz_fraction_dB": -1.4696807903534903,
+      "3000to12000Hz_fraction_dB": -23.510442037338414
+    },
+    {
+      "w_time_s": 4.185,
+      "relative_RMS5_dB": -36.206121133005205,
+      "centroid_5ms_Hz": 166.08327233675942,
+      "periodicity_20ms": 0.47410864420003807,
+      "best_period_F0_Hz": 106.66666666666667,
+      "under150Hz_fraction_dB": -2.9441399724880712,
+      "3000to12000Hz_fraction_dB": -23.457674977841222
+    },
+    {
+      "w_time_s": 4.19,
+      "relative_RMS5_dB": -38.45843314041549,
+      "centroid_5ms_Hz": 250.19414556626694,
+      "periodicity_20ms": 0.23983761430778602,
+      "best_period_F0_Hz": 109.0909090909091,
+      "under150Hz_fraction_dB": -2.7347399363085363,
+      "3000to12000Hz_fraction_dB": -22.09169721704018
+    },
+    {
+      "w_time_s": 4.195,
+      "relative_RMS5_dB": -43.0700746898568,
+      "centroid_5ms_Hz": 458.8684617140206,
+      "periodicity_20ms": 0.15796525804126768,
+      "best_period_F0_Hz": 110.59907834101382,
+      "under150Hz_fraction_dB": -2.817851225875941,
+      "3000to12000Hz_fraction_dB": -13.681273888372381
+    },
+    {
+      "w_time_s": 4.2,
+      "relative_RMS5_dB": -44.289177146248306,
+      "centroid_5ms_Hz": 1812.0066377560895,
+      "periodicity_20ms": 0.1875191650726477,
+      "best_period_F0_Hz": 137.14285714285714,
+      "under150Hz_fraction_dB": -11.663889112301735,
+      "3000to12000Hz_fraction_dB": -8.68080102796071
+    },
+    {
+      "w_time_s": 4.205,
+      "relative_RMS5_dB": -43.24561045369468,
+      "centroid_5ms_Hz": 1034.52254068055,
+      "periodicity_20ms": 0.13499682476328348,
+      "best_period_F0_Hz": 181.8181818181818,
+      "under150Hz_fraction_dB": -9.632516309341673,
+      "3000to12000Hz_fraction_dB": -7.72734383586584
+    },
+    {
+      "w_time_s": 4.21,
+      "relative_RMS5_dB": -43.869017887360506,
+      "centroid_5ms_Hz": 1957.1010717974489,
+      "periodicity_20ms": 0.19355102840303,
+      "best_period_F0_Hz": 292.6829268292683,
+      "under150Hz_fraction_dB": -13.993207037085188,
+      "3000to12000Hz_fraction_dB": -7.727615800187079
+    },
+    {
+      "w_time_s": 4.215,
+      "relative_RMS5_dB": -41.32627603799848,
+      "centroid_5ms_Hz": 2075.5031279803143,
+      "periodicity_20ms": 0.30227681212009594,
+      "best_period_F0_Hz": 198.34710743801654,
+      "under150Hz_fraction_dB": -15.471406472011182,
+      "3000to12000Hz_fraction_dB": -8.752296591068868
+    },
+    {
+      "w_time_s": 4.22,
+      "relative_RMS5_dB": -44.78542652595345,
+      "centroid_5ms_Hz": 1756.7928860566897,
+      "periodicity_20ms": 0.21176141798949769,
+      "best_period_F0_Hz": 198.34710743801654,
+      "under150Hz_fraction_dB": -15.349329592643723,
+      "3000to12000Hz_fraction_dB": -7.986485064259292
+    },
+    {
+      "w_time_s": 4.225,
+      "relative_RMS5_dB": -41.23038406677209,
+      "centroid_5ms_Hz": 2075.7508662629357,
+      "periodicity_20ms": 0.1724816574104336,
+      "best_period_F0_Hz": 195.1219512195122,
+      "under150Hz_fraction_dB": -19.106612520258196,
+      "3000to12000Hz_fraction_dB": -7.29759892545303
+    },
+    {
+      "w_time_s": 4.23,
+      "relative_RMS5_dB": -42.604920735759904,
+      "centroid_5ms_Hz": 1810.714236427489,
+      "periodicity_20ms": 0.24630105125671028,
+      "best_period_F0_Hz": 113.20754716981132,
+      "under150Hz_fraction_dB": -21.315660485032097,
+      "3000to12000Hz_fraction_dB": -8.236546113690098
+    },
+    {
+      "w_time_s": 4.235,
+      "relative_RMS5_dB": -42.41463067351291,
+      "centroid_5ms_Hz": 1519.8166371978891,
+      "periodicity_20ms": 0.2663474009622673,
+      "best_period_F0_Hz": 104.80349344978166,
+      "under150Hz_fraction_dB": -20.264634830370824,
+      "3000to12000Hz_fraction_dB": -9.22709383734102
+    },
+    {
+      "w_time_s": 4.24,
+      "relative_RMS5_dB": -43.93250292230577,
+      "centroid_5ms_Hz": 1783.7207862664852,
+      "periodicity_20ms": 0.29053157737772417,
+      "best_period_F0_Hz": 212.38938053097345,
+      "under150Hz_fraction_dB": -23.496563506003092,
+      "3000to12000Hz_fraction_dB": -8.501977312460312
+    },
+    {
+      "w_time_s": 4.245,
+      "relative_RMS5_dB": -45.65241887828897,
+      "centroid_5ms_Hz": 1700.1950742313627,
+      "periodicity_20ms": 0.26193121542410525,
+      "best_period_F0_Hz": 250.0,
+      "under150Hz_fraction_dB": -23.241160412493503,
+      "3000to12000Hz_fraction_dB": -8.172721789709081
+    },
+    {
+      "w_time_s": 4.25,
+      "relative_RMS5_dB": -44.68959563268953,
+      "centroid_5ms_Hz": 1413.2903459235524,
+      "periodicity_20ms": 0.19297913030843,
+      "best_period_F0_Hz": 114.28571428571429,
+      "under150Hz_fraction_dB": -22.866033595491615,
+      "3000to12000Hz_fraction_dB": -11.029746100634704
+    },
+    {
+      "w_time_s": 4.255,
+      "relative_RMS5_dB": -46.51039586623035,
+      "centroid_5ms_Hz": 841.6637286276757,
+      "periodicity_20ms": 0.21796588688377563,
+      "best_period_F0_Hz": 303.7974683544304,
+      "under150Hz_fraction_dB": -20.546559273588976,
+      "3000to12000Hz_fraction_dB": -13.65943735166101
+    },
+    {
+      "w_time_s": 4.26,
+      "relative_RMS5_dB": -48.39983577018075,
+      "centroid_5ms_Hz": 1164.1327637111094,
+      "periodicity_20ms": 0.23614575777030206,
+      "best_period_F0_Hz": 307.6923076923077,
+      "under150Hz_fraction_dB": -20.61623487948722,
+      "3000to12000Hz_fraction_dB": -15.257208783418829
+    },
+    {
+      "w_time_s": 4.265,
+      "relative_RMS5_dB": -50.025651384088505,
+      "centroid_5ms_Hz": 1298.4811050479689,
+      "periodicity_20ms": 0.4038393105345123,
+      "best_period_F0_Hz": 315.7894736842105,
+      "under150Hz_fraction_dB": -15.826243386768182,
+      "3000to12000Hz_fraction_dB": -14.073853242599776
+    },
+    {
+      "w_time_s": 4.27,
+      "relative_RMS5_dB": -53.552806937863046,
+      "centroid_5ms_Hz": 1341.4745989076262,
+      "periodicity_20ms": 0.37558490403471356,
+      "best_period_F0_Hz": 315.7894736842105,
+      "under150Hz_fraction_dB": -11.886258489766945,
+      "3000to12000Hz_fraction_dB": -14.370127189300943
+    },
+    {
+      "w_time_s": 4.275,
+      "relative_RMS5_dB": -61.720980609407334,
+      "centroid_5ms_Hz": 911.0757024310454,
+      "periodicity_20ms": 0.27041269820427755,
+      "best_period_F0_Hz": 208.69565217391303,
+      "under150Hz_fraction_dB": -7.480804167332359,
+      "3000to12000Hz_fraction_dB": -16.179427006206613
+    }
+  ],
+  "existing_original_confirmations": {
+    "118.79–118.89s": {
+      "配音指纹": "d40bd0518c09",
+      "依据": "2026-10-09 实际声音（逐 2.5 ms 电平、20 ms 周期、150 Hz 以下占比、频谱重心，自相关基频，分频段能量）：S14 句末 substantive. 的词尾 /v/：w 4.14–4.19 是浊擦（150 Hz 以下占比 -1～-3 dB、基频约 96–113 Hz、自相关 r 0.22–0.51），4.195–4.27 无间断地清化成擦音（-41～-46 dB、周期 0.15–0.3、重心 2.8–3.6 kHz），平滑衰减到 4.275 的 -59 dB。它的频谱比本篇呼吸声平、高频多（3–12 kHz 比呼吸声高 3–6 dB，200–300 Hz 比呼吸声低约 10 dB；本篇呼吸声重心 2.2–2.5 kHz），与浊擦之间没有任何低谷，是 /v/ 的清化收尾（与 06 thirty-five. 的 /v/ 同类），是词的一部分"
+    },
+    "118.97–119.08s": {
+      "配音指纹": "bf1e5b9d16b2",
+      "依据": "2026-10-09 实际声音（逐 2.5 ms 电平、20 ms 周期、150 Hz 以下占比、频谱重心，自相关基频，分频段能量）：S14 句末 substantive. 的词尾 /v/：w 4.14–4.19 是浊擦（150 Hz 以下占比 -1～-3 dB、基频约 96–113 Hz、自相关 r 0.22–0.51），4.195–4.27 无间断地清化成擦音（-41～-46 dB、周期 0.15–0.3、重心 2.8–3.6 kHz），平滑衰减到 4.275 的 -59 dB。它的频谱比本篇呼吸声平、高频多（3–12 kHz 比呼吸声高 3–6 dB，200–300 Hz 比呼吸声低约 10 dB；本篇呼吸声重心 2.2–2.5 kHz），与浊擦之间没有任何低谷，是 /v/ 的清化收尾（与 06 thirty-five. 的 /v/ 同类），是词的一部分（2026-10-09 A21 重建后复核：这一处原来被 clean_tail 的句尾淡出压低，A21 起句尾按原始合成保留、不再压低，所以这次重新报出为 119.14–119.23s；用 成片时刻对照.py 换算成整句合成 w 4.180–4.270 秒，与上面逐段核实的范围一致（相差不超过 10 ms，就是最后衰减到 -55 dB 的那一点），是同一段词音）（a02_old.wav → 新配音：这一段声音逐样本相同，位置挪了 -0.160 秒；确认平移.py 自动挪，配音指纹 9eba0956cf79 → bf1e5b9d16b2）"
+    }
+  },
+  "native_actual_raw_mother_hashes": [
+    {
+      "key": "1380c4096ea7776f174d46f89bedc3bf8c175157.pkl",
+      "native_pkl_SHA256": "9f9538cba0442e0b50084a5c75c650a6c146b6db46813f8b4b013163ecc2531e",
+      "pinned_original_pkl_SHA256": "9f9538cba0442e0b50084a5c75c650a6c146b6db46813f8b4b013163ecc2531e",
+      "match": true
+    }
+  ],
+  "private_waveforms_GT_pickle_or_model_bytes_exported": false
+}

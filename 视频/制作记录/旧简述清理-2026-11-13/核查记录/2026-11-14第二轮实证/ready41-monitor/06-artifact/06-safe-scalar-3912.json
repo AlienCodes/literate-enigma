@@ -1,0 +1,72 @@
+{
+  "article": "06",
+  "pid": 3912,
+  "diagnostic_only": true,
+  "quality_acceptance": false,
+  "native_function_arguments_source_audio_reference_and_thresholds_changed": false,
+  "PCM_GT_cache_payload_or_numeric_waveform_arrays_exported": false,
+  "probe_program_sha256": "f1a293eb432c14ea8d1f8c9819cc83ca6ab06daa14040eca8de54a1773b3eb55",
+  "observations": [
+    {
+      "kind": "nonvoice_original_gate_failure_predicates",
+      "article": "06",
+      "source_interval": [
+        3.613833,
+        4.055,
+        "紧贴词尾"
+      ],
+      "source_label_sha256": "e2038cdaa337622f0fb4b82b6fa2e34c06fa8fd06ac54aeb0b0cc62ff6fe9744",
+      "sample_rate": 24000,
+      "interval_start_sample": 86732,
+      "interval_end_sample": 97320,
+      "interval_samples": 10588,
+      "working_sentence_samples": 207656,
+      "working_sentence_seconds": 8.652333333333333,
+      "bounds_valid": true,
+      "interval_exceeds_end_by_samples": 0,
+      "interval_start_at_or_before_zero": false,
+      "interval_end_at_or_after_sentence_end": false,
+      "source_interval_order_and_nonnegative_times_valid": true,
+      "breath_exception_originally_selected": false,
+      "unchanged_region_threshold_dB": -30,
+      "unchanged_external_silence_threshold_dB": -55.0,
+      "unchanged_zero_crossing_abs_threshold": 0.0001,
+      "original_gate_exception_preserved": true,
+      "original_exception_message": "【停止】非人声区间不对（有词的声音、两头不够安静，或紧贴词尾/词头的一头不在过零点）：Hans went, on his owner's death in June 1909, to a jeweller  [3.613833, 4.055, '紧贴词尾']",
+      "python_version": "3.11.18",
+      "native_function": "_nonvoice",
+      "native_code_filename": "<string>",
+      "native_line": 458,
+      "selftest_copy": false,
+      "STRICT_CACHE": "1",
+      "actual_source_file_exists": true,
+      "actual_working_source_sha256": "d8d22703276f8dc274b984f08735cf3dbda26a71a39b0a9523bc62ec72729a5f",
+      "source_sentence": "S19",
+      "region_RMS_dB": -48.27429962158203,
+      "region_5ms_peak_dB": -41.29482650756836,
+      "pre5ms_samples": 120,
+      "post5ms_samples": 120,
+      "pre5ms_dB": -48.26918029785156,
+      "post5ms_dB": -44.450775146484375,
+      "attached_start_sample_abs": 0.0003354334330651909,
+      "attached_end_sample_abs": 0.0013352094683796167,
+      "original_failure_predicates": {
+        "invalid_interval_bounds": false,
+        "region_RMS_above_original_threshold": false,
+        "region_5ms_peak_at_or_above_original_threshold": false,
+        "external_pre5ms_not_quiet": false,
+        "external_post5ms_not_quiet": true,
+        "attached_start_not_zero_crossing": false,
+        "attached_end_not_zero_crossing": false
+      },
+      "failed_predicate_names": [
+        "external_post5ms_not_quiet"
+      ]
+    }
+  ],
+  "native_nonvoice_identity": {
+    "maker_file_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+    "nonvoice_AST_sha256": "cb28e3a860ed5d13226fc5ebd34861ed4aa9039b8f947ca0cebdc4d915dabbf9"
+  },
+  "updated_utc": "2026-11-14T02:04:40.051180+00:00"
+}

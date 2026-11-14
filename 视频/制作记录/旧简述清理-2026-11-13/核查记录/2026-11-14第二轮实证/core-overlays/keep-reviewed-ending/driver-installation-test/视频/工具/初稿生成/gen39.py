@@ -1,0 +1,144 @@
+import json,re,glob,os
+# 第39篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
+# 2026-11-03 重点词中文沿用文章定稿（铁律），只按《翻译风格》调格式；三项并列加牛津逗号（T18）；不用破折号（T36）；英文没引号中文不加。
+S=[
+(1,[[[("The Y2K **bug**,","Y2K **漏洞**(bug)，"),("or **millennium** bug,","又称**千年**(millennium)虫，")],
+     "（Y2K：Year 2000 的缩写，K 代表“千”；\nor：或者说，引出另一个名称）"],
+    [[("began as a **shortcut**.","起初只是一条**捷径**(shortcut)。")]]]),
+(1,[[[("When","当年"),("**memory**","**内存**(memory)"),("and **hardware**","和**硬件**(hardware)"),("were **costly**,","都很**昂贵**(costly)，")],
+     "（When…：时间状语从句）"],
+    [[("**programmers**","**程序员**(programmers)"),("stored years","便把年份存成"),("as two **digits**,","两位**数字**(digits)，"),("writing","用"),("\"99\"","“99”"),("for 1999.","表示1999年。")],
+     "（store A as B：以 B 的形式存储 A；\nwriting…：现在分词短语作伴随状语）"]]),
+(1,[[[("That","这种"),("**compact**","**小而紧凑的**(compact)"),("**code**","**代码**(code)"),("hid","暗藏着"),("an **ambiguity**:","一种**歧义**(ambiguity)：")]],
+    [[("a machine","机器"),("might read \"00\" as 1900,","可能把“00”读成1900年，")],
+     "（read A as B：把 A 读成 B）"],
+    [[("**corrupting**","从而**搞错**(corrupting)"),("calculations of interest, ages, or **deadlines**.","利息、年龄或**截止日期**(deadlines)的计算。")],
+     "（corrupting…：现在分词短语作结果状语；\ncorrupt：引起（计算机文件等的）错误；破坏）"]]),
+(2,[[[("Governments and firms","各国政府和企业")]],
+    [[("**braced for**","都在**严阵以待**(braced for)，**准备迎接**(braced for)")],
+     "（brace for sth：\n准备应对（不好的事））"],
+    [[("**chaos**.","一场**混乱**(chaos)。")]]]),
+(2,[[[("In February 1998","1998年2月，"),("**President**","美国**总统**(President)"),("Clinton","克林顿"),("created","设立了"),("a **council**","一个**委员会**(council)"),("to **coordinate**","来**协调**(coordinate)"),("America's effort.","全美的应对工作。")],
+     "（to coordinate…：不定式作目的状语）"]]),
+(2,[[[("**Consultants**","**顾问**(Consultants)们"),("**audited**","**审查了**(audited)"),("**legacy** systems","**遗留**(legacy)系统，")],
+     "（legacy systems：遗留系统，\n指仍在使用的旧计算机系统）"],
+    [[("and **patched** **faulty** date logic.","并**给**(patched)**有缺陷的**(faulty)日期处理逻辑**打上补丁**(patched)。")],
+     "（patch A：给 A 打补丁）"]]),
+(2,[[[("In November 1999","1999年11月，"),("the **Commerce Department**","**美国商务部**(Commerce Department)"),("estimated","估算，"),("American governments","美国各级政府"),("and **enterprises**","和**企业**(enterprises)"),("would spend","将为此花费"),("about $100bn;","约1,000亿美元；")],
+     "（estimated 后省略了 that，引出宾语从句；\n$100bn：100 billion dollars，1,000亿美元）"],
+    [[("**projections** of the **global** bill","对**全球**(global)总账单的各种**预测**(projections)"),("ran to","则高达"),("hundreds of billions.","数千亿美元。")],
+     "（projections of A：对 A 的预测；\nrun to：（数量）达到）"]]),
+(3,[[[("Then","随后，"),("**midnight**","1999年12月31日的**午夜**(midnight)钟声"),("**struck** on 31 December 1999,","**敲响**(struck)，")],
+     "（strike：（钟）敲响，过去式 struck）"],
+    [[("and little","几乎没"),("went wrong.","出什么问题。")],
+     "（little：几乎没有，表否定）"]]),
+(3,[[[("**Glitches** that did **crop up**","确实**意外出现**(crop up)的**小故障/小毛病**(Glitches)"),("were **sporadic**","也是**零星的/偶发的**(sporadic)，"),("and mostly **minor**.","而且大多**轻微**(minor)。")],
+     "（that did crop up：定语从句修饰 Glitches，\ndid 加强语气，意为“确实”）"]]),
+(3,[[[("{{=}}Radiation-monitoring equipment **faltered** at Japan's Shika nuclear plant","日本志贺核电站的辐射监测设备**出了故障**(faltered)，"),("without any threat","但并未威胁"),("to safety,","安全；")],
+     "（falter：失去动力或效力，运行不稳定；\n可以理解为设备在“打摆子”，时好时坏，运转不顺畅；\n与 break down（彻底坏掉）不同，faltered 强调的是\n一种衰退、不稳定的运行状态）"],
+    [[("and a Pentagon","美国国防部"),("ground system that processes **spy**-satellite data","一套处理**间谍**(spy)卫星数据的地面系统"),("failed.","也曾失灵。")],
+     "（Pentagon：五角大楼，美国国防部的代称；\nthat processes…：定语从句修饰 ground system）"]]),
+(3,[[[("In February 2000","2000年2月，"),("a Senate committee","美国参议院的一个委员会"),("**concluded**","**得出结论**(concluded)，"),("that the **expenditure**","认定这笔**开支**(expenditure)"),("had been **justified**.","是**合理的**(justified)。")],
+     "（that…：宾语从句；\nhad been justified：过去完成时的被动语态）"]]),
+(4,[[[("Many","许多人"),("saw it differently:","却不这么看："),("the threat","在他们眼里，这一威胁"),("had been **exaggerated**,","被**夸大了**(exaggerated)，"),("even a **hoax**.","甚至是一场**骗局**(hoax)。")],
+     "（see A differently：对 A 看法不同；\neven a hoax：前面省略了 had been）"]]),
+(4,[[[("Yet","然而，"),("calm **prevailed**","平静之所以**占据上风**(prevailed)，"),("**largely** because","**很大程度上**(largely)正是因为"),("so much","大量问题"),("had been fixed.","早已修好。")],
+     "（prevail：冲突中“占上风”，环境中“盛行”，\n劝人时“成功说服”）"]]),
+(4,[[[("This is","这就是"),("the **preparedness paradox**:","**防备悖论**(preparedness paradox)：")]],
+    [[("when **precautions** work,","**预防措施**(precautions)一旦奏效，"),("the danger they **ward off**","它们所**抵御**(ward off)的危险"),("never","就永远不会"),("appears,","出现，")],
+     "（they ward off：定语从句，省略了关系代词，\n修饰 the danger）"],
+    [[("so it looks **imaginary**.","于是看起来像是**虚构的**(imaginary)。")],
+     "（look＋形容词：看起来……）"]]),
+(4,[[[("**Tedious** repairs","那些**枯燥乏味的**(Tedious)修复工作"),("earned **mockery**","换来的是**嘲笑**(mockery)，"),("rather than **gratitude**.","而不是**感激**(gratitude)。")],
+     "（A rather than B：是 A 而不是 B；\n因为你防范得太好，啥事都没发生，\n结果别人反而觉得你在瞎操心、无事生非。\n这就是防备悖论）"]]),
+(5,[[[("Critics noted","批评者指出，"),("that Italy","意大利"),("and **South Korea**","和**韩国**(South Korea)"),("spent","花得"),("far less","少得多，"),("yet","结果"),("**fared no worse**.","也**不比别国差**(fared no worse)。")],
+     "（that…：宾语从句；\nfare no worse：情况不比别人差）"]]),
+(5,[[[("The **comparison**","但这种**比较**(comparison)"),("**misleads**:","**具有误导性**(misleads)："),("those","那些"),("low","低"),("figures","支出数字"),("often **omitted**","往往**遗漏了**(omitted)"),("what firms","企业自己"),("spent,","的花费，")],
+     "（what firms spent：what 引导宾语从句，\n企业花的钱）"],
+    [[("and much of","而且很大一部分"),("the **remedial** work","**补救**(remedial)工作"),("replaced","替换了"),("**obsolete** systems **overdue for** upgrading.","**早该**(overdue for)升级的**过时的/淘汰的**(obsolete)系统。")],
+     "（overdue for upgrading：后置定语修饰 systems，\n早该升级的）"]]),
+(5,[[[("Nobody can say","谁也说不清"),("which dollars were **essential**","哪些钱是**必不可少的**(essential)，"),("and which **excessive**.","哪些是**过度花费的**(excessive)。")],
+     "（and which excessive：省略了 dollars were；\nexcessive：指“过度的、过多的”，即超出了合理或必要的限度；\n过度消费（excessive spending）、超速（excessive speed）、\n过度压力（excessive pressure）都属于超出了合理的限度）"]]),
+(5,[[[("**Prevention** that works","奏效的**预防**(Prevention)，"),("may leave","可能"),("nothing but","只会留下"),("an **invoice**,","一张**账单**(invoice)，")],
+     "（that works：定语从句修饰 Prevention；\nnothing but：只有）"],
+    [[("to **be weighed against** a **catastrophe** that might have been.","用来**与**(be weighed against)一场本可能发生的**灾难**(catastrophe)**相权衡**(be weighed against)。")],
+     "（be weighed against A：与 A 相权衡；\nthat might have been：本可能发生的）\n"
+     "（简述：早年内存和硬件昂贵，程序员只用两位数字记年份，\n"
+     "“00”可能被读成1900年。1998年2月，克林顿设立委员会协调应对，\n"
+     "美国商务部估计美国要花约1,000亿美元。1999年12月31日午夜过后，\n"
+     "只出了零星的轻微故障，2000年2月参议院委员会认定开支合理。\n"
+     "许多人却说威胁被夸大，这就是防备悖论：预防奏效，危险就不出现，\n"
+     "看起来像是虚构的。意大利、韩国花得少也没出事，但这种比较有误导性。）"]]),
+]
+CONF={
+"合组":{
+ "S3 might read \"00\" as 1900":"对齐不了：read A as B 中文“把 A 读成 B”，把字结构让宾语提到动词前，拆开语序就乱",
+ "S3 calculations of interest, ages, or deadlines":"对齐不了：calculations of A 中文“A 的计算”，of 结构语序必须倒过来",
+ "S6 and patched faulty date logic":"对齐不了：patch A 中文“给 A 打上补丁”（文章定稿），宾语 faulty date logic 必须放到“打上补丁”前面",
+ "S7 projections of the global bill":"对齐不了：projections of A 中文“对 A 的预测”，of 结构语序必须倒过来",
+ "S7 hundreds of billions":"对齐不了：hundreds of billions 是一个数量“数千亿”，拆开不通",
+ "S8 struck on 31 December 1999":"对齐不了：on 31 December 1999 是时间状语，中文时间提到“午夜”前面（拆分组.py 拆法，中文一字不改）",
+ "S8 went wrong":"对齐不了：go wrong 是固定说法“出问题”",
+ "S9 Glitches that did crop up":"对齐不了：that did crop up 是定语从句修饰 Glitches，中文“确实冒出来的故障”从句必须提前",
+ "S10 Radiation-monitoring equipment faltered at Japan's Shika nuclear plant":"对齐不了：at Japan's Shika nuclear plant 是地点状语，中文“日本志贺核电站的辐射监测设备”地点必须提到主语前",
+ "S10 without any threat":"对齐不了：without any threat 中文“并未威胁”，介词结构译成动词，拆开不通",
+ "S10 ground system that processes spy-satellite data":"对齐不了：that processes spy-satellite data 是定语从句修饰 ground system，中文“处理间谍卫星数据的地面系统”从句必须提前",
+ "S12 saw it differently":"对齐不了：see it differently 是固定说法，中文“不这么看”",
+ "S14 the preparedness paradox":"对齐不了：preparedness paradox 是一个术语“防备悖论”，拆开不通",
+ "S2 stored years":"对齐不了：store A as B 中文“把 A 存成 B”，把字结构，years 和“存成”拆不开",
+ "S16 far less":"对齐不了：far less 中文“少得多”，修饰比较级的 far 译成后面的“得多”",
+ "S16 fared no worse":"对齐不了：fare no worse 中文“不比别国差”，比较结构拆开不通",
+ "S17 obsolete systems overdue for upgrading":"对齐不了：overdue for upgrading 是后置定语修饰 systems，中文“早该升级的过时系统”必须提前",
+ "S19 to be weighed against a catastrophe that might have been":"对齐不了：be weighed against A 中文“与 A 相权衡”，A 必须放到“相权衡”前面；that might have been 是定语从句修饰 catastrophe，中文“本可能发生的”必须提前"},
+"对齐":{
+ "S3-2 might read \"00\" as 1900,":"read A as B 中文“把 A 读成 B”，把字结构语序必须倒过来",
+ "S3-3 calculations of interest, ages":"calculations of A 中文“A 的计算”，of 结构语序必须倒过来",
+ "S6-2 and patched faulty date logic.":"patch A 中文“给 A 打上补丁”，宾语必须放到动词前",
+ "S7-2 projections of the global bill":"projections of A 中文“对 A 的预测”，of 结构语序必须倒过来",
+ "S8-1 struck on 31 December 1999,":"on 31 December 1999 是时间状语，中文“1999年12月31日的”提到“午夜”前面，时间必须提前",
+ "S9-1 Glitches that did crop up":"that did crop up 是定语从句修饰 Glitches，中文从句必须提前",
+ "S10-1 Radiation-monitoring equipment":"at Japan's Shika nuclear plant 是地点状语，中文地点必须提到主语前",
+ "S10-2 ground system that processes s":"定语从句修饰 ground system，中文从句必须提前",
+ "S14-2 the danger they ward off":"they ward off 是省略关系代词的定语从句，修饰 the danger，中文“它们所抵御的危险”从句必须提前",
+ "S17-2 obsolete systems overdue for u":"overdue for upgrading 是后置定语修饰 systems，中文必须提前",
+ "S19-1 Prevention that works":"that works 是定语从句修饰 Prevention，中文“奏效的预防”从句必须提前",
+ "S19-2 to be weighed against a catast":"be weighed against A 中文“与 A 相权衡”，A 必须放到动词前；定语从句 that might have been 中文必须提前"},
+"们":{"S6-1 **(Consultants)们**":"Consultants 是复数，“们”表复数，文章定稿就是“顾问们”"},
+"中文意思":{"S16 fared no worse":"不是被隔开的义项：中文“不比别国差”连成一处，比较对象“别国”已在里面；前面的“结果”对应 yet，不属于 fared no worse"},
+"口述":{"S15-1 觉得":"用户 2026-11-03 原话“结果别人反而觉得你在瞎操心、无事生非”，觉得是句子本意（别人认为），不是语音多出来的词"},
+"同词异译":{"be weighed against：与/相权衡":"S19 be weighed against A“与 A 相权衡”被“一场本可能发生的灾难”隔开，“与”和“相权衡”是同一个意思的两部分（T22/T23），不是两种译法","patched：打上补丁/给":"S6 patch A“给 A 打上补丁”被 faulty date logic 隔开，“给”和“打上补丁”是同一个意思的两部分（T22/T23，用户 2026-11-03 原话“给也要标注重点词汇”），不是两种译法","braced for：严阵以待/准备迎接":"S4 brace for“严阵以待，准备迎接”是同一个意思的两部分（T22/T23 被隔开的每处都标），不是两种译法",},
+"短语":{"S13 calm prevailed":"不是搭配：用户 2026-11-03 原话定“平静之所以占据上风”，prevail 取速查表第一义“占上风”，calm 单独译“平静”，不是靠搭配整体成义","S8 struck … on":"不是搭配：on 31 December 1999 是时间状语，和 struck 无关","S3 corrupting … of":"不是搭配：of 属于 calculations of interest，和 corrupting 无关",
+ "S7 projections … of":"不是搭配：of 只引出预测的对象（the global bill），projections 单独就是“预测”，速查表 sales projections 也不带 of",
+ "S10 faltered … to":"不是搭配：to 属于 threat to safety，和 faltered 无关",
+ "S17 omitted … of":"不是搭配：of 属于后一分句 much of the remedial work，和 omitted 无关"},
+"是的":{"S9-1 是**零星的/偶发的**":"用户 2026-11-03 原话“意思改为 零星的/偶发的”，文章定稿“也是零星的，而且大多轻微”（铁律：定稿中文意思不改）；were sporadic 判断句",
+ "S11-1 是**合理的**":"文章定稿“认定这笔开支是合理的”（铁律：定稿中文意思不改）；had been justified 判断",
+ "S14-3 是**虚构的**":"文章定稿“看起来像是虚构的”（铁律：定稿中文意思不改）；looks imaginary 系表结构",
+ "S18-1 是**必不可少的**":"文章定稿“哪些钱是必不可少的，哪些是过度的”（铁律）；were essential 判断句，两项对举，去掉“是……的”不通",
+ "S18-1 是**过度花费的**":"用户 2026-11-03 原话“过度花费的”；文章定稿“哪些是过度的”；和前面“是必不可少的”对举"}}
+CONF["停顿位置"]={"S14 appears, / so @6.655":"2026-11-03 S14 合成标点 appears; so 重新合成后逐 2.5 ms 看声音：appears 的 /z/ 6.38 收尾（6.39 -53 dB），吸气 6.395–6.6525 由 非人声区间 删掉，6.6525–6.6575 静音 -58～-59 dB，so 的 /s/ 6.66 起；6.655 是两词之间的静音（-58.1 dB），不切前后词"}
+CONF["非人声"]={"S14 6.405458–6.6525（左头紧贴 appears 的 /z/ 擦音尾 6.3975–6.4025〔-40～-50 dB、重心 4.6–5 kHz〕之后，落在过零点 6.405458；独立复核原先报切掉 /z/ 尾 5 ms）":"2026-11-03 S14 合成标点 appears; so 重新合成后逐 2.5 ms 实测：appears 的 /z/ 6.30–6.38（重心 4–6 kHz）到 6.39 降到 -53 dB，6.395 -57.0 dB；6.4125–6.635 -43～-52 dB、重心 2.5–3 kHz、低频 -5～-21 dB、周期 ≤0.23，是吸气声（A19）；6.6375–6.6575 -55～-59 dB 静音，6.66 起 so 的 /s/ 起音（6.675 -32.9 dB、重心 5.2 kHz），保留",}
+# 非人声区间新加 2026-11-03 依据（配音指纹 752414198735，dossier 逐 2.5 ms 实测）：
+#  S1 2.375333–2.4775（Y2K 读音改正后重新合成，配音指纹 b3f00270039c；左头紧贴 bug 的 /g/ 除阻尾，落在过零点 2.375333）：/g/ 除阻 2.355 -22 dB（重心 4.1 kHz）、送气 2.3575–2.375（-31～-41、重心 3.4–4 kHz）；2.3775–2.44 -36～-53 dB、重心 2.7–3 kHz、低频 -10～-22、周期 0.31–0.39，是吸气（A19）；2.4725 起 -57～-62 dB 静音，began 的 /b/ 2.53 起
+#  S3 [2.595,2.785]、S5 [2.405,2.52]、S7 [2.135458,2.24] 是草稿声音.sh 自动切点找的（程序可定），一并写在这里，免得被这一句的新区间覆盖
+#  S3 6.9275–6.9575：hundred, 之后、corrupting 的 /k/ 除阻（6.98）之前，6.935–6.94 孤立 10 ms 一下（-37.9 dB、重心 3.4 kHz、周期 0），两边 -57～-72 dB 静音隔开，不连词，是咔哒
+#  S5 2.20–2.62（主会话 2026-11-03 定：原来三段 [2.2,2.26][2.405,2.52][2.5425,2.62] 中间夹着 w≈2.36 的 15 ms -54 dB 气声尾，把 1998→President 的空隙隔成两段，程序没压，词到词 0.38 s；并成一段后整段安静，照常压到 0.18 s）：2.25–2.34 静音 -58～-70 dB，2.35–2.51 气声 -49～-58 dB（重心 2.1–2.6 kHz、低频 -9～-24、周期 ≤0.25），2.52–2.54 -57 dB，以下两条照旧；President 的 /p/ 闭塞尾 2.62–2.635 和除阻 2.64 不动；原 2.20–2.26：eight 的 /t/ 除阻 2.09–2.145 之后，2.22–2.24 孤立一团 -38～-50 dB（重心 2.3–2.7 kHz、低频 -12～-20、周期 0.33），两边 -54～-70 dB 静音，不连词
+#  S5 2.5425–2.62：2.545–2.58 一团低频 -42～-57 dB（低频 -0～-1），和 President 的 /p/（2.635）隔着 2.59–2.63 的 -62～-73 dB 静音，不连词
+#  S6 2.13–2.375083（右头紧贴 and 起音前的低频团，落在过零点 2.375083）：systems 的 /z/ 2.11 收尾后 2.14–2.37 平稳 -47～-56 dB、重心 1.8–2.8 kHz、低频 -9～-19、周期 0.19，是吸气（A19）；2.38–2.43 低频团紧连 and（2.44）保留
+#  S7 6.6475–6.9675：enterprises 的 /z/ 6.62 收尾，6.66–6.95 平稳 -39～-45 dB、重心 2.4–3.3 kHz、低频 -13～-27、周期 0.20，是吸气（无标点处）；6.98–7.00 低频团紧连 would 保留
+#  S13 1.785–2.02：largely 1.76 收尾，1.81–1.95 -47～-52 dB、重心 1.9–2.6 kHz、低频 -8～-17、周期 0.18，是吸气；1.96–1.98 低频团和 because 的 /b/（2.03）隔着 1.99–2.02 的 -62～-69 dB 静音，不连词
+#  S15 1.855208–1.935（左头紧贴 mockery 的元音尾，落在过零点 1.855208）：1.8575–1.92 -49～-58 dB、重心 2.0–2.6 kHz、低频 -10～-22、周期 0.15，是气声；1.935 -64 dB
+#  S18 2.625–2.9175：essential 的 /l/ 2.60 收尾，2.65–2.85 -49～-56 dB、重心 2.0–2.3 kHz、低频 -6～-20、周期 0.15–0.19，是吸气；2.86 一下 -48 dB 4 kHz 和 and（2.93）隔着 2.87–2.92 的 -54～-67 dB 静音
+CONF["非人声"].update({"1.14–1.23s": {"配音指纹": "c2b9b494fd0b", "依据": "2026-11-03 实测：标题 Y2K: 的 K（/eɪ/）元音收尾：w 0.68–0.75 元音（低频 -1～-2 dB 浊音），0.76–0.85 连续衰减到 -56 dB、低频 -3～-9 仍有浊音，没有低谷隔开，是 K 的元音尾", "实测": {"最响dB": -40.7, "重心Hz": 2116, "周期": 0.23, "低频dB": -5.3}}, "1.18–1.20s": {"配音指纹": "c2b9b494fd0b", "依据": "2026-11-03 实测：标题 Y2K: 的 K 元音尾里的一小段（同上，0.795–0.81 低频 -2.5 浊音，前后连续衰减）", "实测": {"最响dB": -49.9, "重心Hz": 2007, "周期": 0.0, "低频dB": -2.5}}, "43.51–43.52s": {"配音指纹": "c2b9b494fd0b", "依据": "2026-11-03 实测：S6 and 起音前的浊音（w 2.38–2.42 低频 -1～-8），2.43 只有 10 ms -57 dB，2.44 and 开口，连着词头", "实测": {"最响dB": -48.3, "重心Hz": 3586, "周期": 0.36, "低频dB": -2.8}}, "48.78–48.81s": {"配音指纹": "c2b9b494fd0b", "依据": "2026-11-03 实测：S7 the 的 /ð/ 起音前浊音（同上一条）", "实测": {"最响dB": -49.8, "重心Hz": 2407, "周期": 0.42, "低频dB": -0.6}}, "48.80–48.81s": {"配音指纹": "c2b9b494fd0b", "依据": "2026-11-03 实测：S7 the 的 /ð/ 起音前浊音（w 2.25–2.28 低频 -0～-1，-49～-53 dB），2.29 只有 10 ms -62 dB，2.30 起 /ð/（重心 5.6 kHz）", "实测": {"最响dB": -49.8, "重心Hz": 2225, "周期": 0.48, "低频dB": -0.2}}, "53.36–53.40s": {"配音指纹": "c2b9b494fd0b", "依据": "2026-11-03 实测：S7 would 起音前浊音（w 6.98–7.00 低频 -1，-50～-53 dB），7.01 只有 10 ms -60 dB，7.02 would 开口，连着词头 /w/", "实测": {"最响dB": -44.3, "重心Hz": 2249, "周期": 0.41, "低频dB": -0.2}}, "55.89–56.00s": {"配音指纹": "c2b9b494fd0b", "依据": "2026-11-03 实测：S7 dollars 词中：ɚ 到 /z/ 的过渡（w 9.46–9.57 -23～-49 dB，低频 -3～-12 浊音），9.61 起 /z/（重心 5.8 kHz）连着，没有低谷，是词的一部分", "实测": {"最响dB": -35.8, "重心Hz": 1967, "周期": 0.22, "低频dB": -3.6}}, "67.19–67.31s": {"配音指纹": "c2b9b494fd0b", "依据": "2026-11-03 实测：S8 wrong. 的 /ŋ/ 鼻音收尾：w 5.62–5.78 从 -21 dB 连续降到 -53 dB，低频 -2～-13 浊音（周期 0.24–0.59），句末自然衰减，是词的一部分", "实测": {"最响dB": -36.0, "重心Hz": 1806, "周期": 0.24, "低频dB": -2.1}}, "67.26–67.30s": {"配音指纹": "c2b9b494fd0b", "依据": "2026-11-03 实测：S8 wrong. 的 /ŋ/ 鼻音收尾里的一段（同上，周期 0.59 浊音）", "实测": {"最响dB": -38.7, "重心Hz": 1473, "周期": 0.59, "低频dB": -0.7}}, "70.62–70.70s": {"配音指纹": "c2b9b494fd0b", "依据": "2026-11-03 实测：S9 sporadic 词尾 /k/：w 2.30–2.32 闭塞 -62～-65 dB，2.33 起爆破送气 -42～-54 dB、重心 3–4.4 kHz，程序量得到从闭塞里爆出，是词尾除阻", "实测": {"最响dB": -34.7, "重心Hz": 3508, "周期": 0.1, "低频dB": -13.3}, "词尾": "k"}, "77.06–77.08s": {"配音指纹": "c2b9b494fd0b", "依据": "2026-11-03 实测：S10 nuclear 的 /ɹ/ 尾：w 4.24–4.30 从 -19 dB 连续降到 -54 dB，低频 -0～-3 浊音，没有低谷，是词尾", "实测": {"最响dB": -52.6, "重心Hz": 1964, "周期": 0.0, "低频dB": -0.5}}, "77.70–77.73s": {"配音指纹": "c2b9b494fd0b", "依据": "2026-11-03 实测：S10 without 起音前的浊音（w 5.01–5.06 低频 -1，-44～-52 dB），5.07 without 开口，中间没有低谷，是词头 /w/", "实测": {"最响dB": -42.2, "重心Hz": 1892, "周期": 0.34, "低频dB": -0.2}}, "84.18–84.21s": {"配音指纹": "c2b9b494fd0b", "依据": "2026-11-03 实测：S10 failed. 的词尾 /d/：w 11.54–11.61 浊音闭塞（低频 -1～-6、周期 0.57），11.64 /d/ 除阻，是词的一部分", "实测": {"最响dB": -41.1, "重心Hz": 1856, "周期": 0.57, "低频dB": -2.3}}, "90.89–91.01s": {"配音指纹": "c2b9b494fd0b", "依据": "2026-11-03 实测：S11 justified. 的词尾 /d/：w 5.72–5.87 -26～-48 dB 浊音段（低频 -2～-15），5.85–5.87 /d/ 浊音杠，句末衰减，是词的一部分", "实测": {"最响dB": -35.1, "重心Hz": 2857, "周期": 0.24, "低频dB": -3.3}}, "90.98–91.01s": {"配音指纹": "c2b9b494fd0b", "依据": "2026-11-03 实测：S11 justified. 的 /d/ 浊音杠（低频 -1.2、周期 0.53）", "实测": {"最响dB": -38.7, "重心Hz": 1100, "周期": 0.53, "低频dB": -1.2}}, "104.03–104.04s": {"配音指纹": "c2b9b494fd0b", "依据": "2026-11-03 实测：S14 paradox 的 /p/ 闭塞末尾的浊音（低频 -0.4），紧接 w 1.37 /p/ 除阻，是词头", "实测": {"最响dB": -50.5, "重心Hz": 2384, "周期": 0.0, "低频dB": -0.4}}, "120.20–120.22s": {"配音指纹": "c2b9b494fd0b", "依据": "2026-11-03 实测：S16 yet 的 /j/ 起音前浊音（低频 -0.4），w 3.64 起连着 yet，是词头", "实测": {"最响dB": -51.5, "重心Hz": 2572, "周期": 0.0, "低频dB": -0.4}}, "128.53–128.56s": {"配音指纹": "c2b9b494fd0b", "依据": "2026-11-03 实测：S17 and 起音前的浊音（低频 -0.3），w 5.99 起 and 开口，没有低谷，是词头", "实测": {"最响dB": -39.6, "重心Hz": 1829, "周期": 0.26, "低频dB": -0.3}}, "132.96–132.97s": {"配音指纹": "c2b9b494fd0b", "依据": "2026-11-03 实测：S17 for 的 /ɹ/ 尾：w 10.33–10.37 从 -19 dB 降到 -50 dB，低频 -0～-3 浊音，连续衰减，是词尾", "实测": {"最响dB": -50.5, "重心Hz": 2416, "周期": 0.0, "低频dB": -0.4}}, "138.22–138.37s": {"配音指纹": "c2b9b494fd0b", "依据": "2026-11-03 实测：S18 excessive. 的词尾 /v/：w 3.88–3.94 浊音（低频 -1～-10），3.95–4.02 清化的擦音（重心 3.3–4.2 kHz），句末衰减，是词的一部分", "实测": {"最响dB": -36.0, "重心Hz": 3621, "周期": 0.2, "低频dB": -6.0}}, "138.25–138.27s": {"配音指纹": "c2b9b494fd0b", "依据": "2026-11-03 实测：S18 excessive. 的 /v/ 浊音段（低频 -1.5、周期 0.37）", "实测": {"最响dB": -38.9, "重心Hz": 1338, "周期": 0.37, "低频dB": -1.5}}, "146.96–147.08s": {"配音指纹": "c2b9b494fd0b", "依据": "2026-11-03 实测：S19 been. 的 /n/ 鼻音收尾：w 7.33–7.48 -27～-56 dB，低频 -2～-14 浊音，句末连续衰减，是词的一部分", "实测": {"最响dB": -35.6, "重心Hz": 1568, "周期": 0.27, "低频dB": -5.6}}})
+CONF["删除段"]={"S1 raw 2.4053-2.5500": {"类型": "紧贴词尾的非人声", "配音指纹": "c2b9b494fd0b", "依据": "2026-10-15 删除段对应 非人声区间 [[2.375333, 2.4775, '紧贴词尾']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost', 'pre'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"}, "S3 raw 2.2850-2.7950": "2026-10-15 删除段对应 非人声区间 [[2.595, 2.785]]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词", "S3 raw 6.9200-6.9650": "2026-10-15 删除段对应 非人声区间 [[6.9275, 6.9575]]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词", "S5 raw 2.2050-2.6400": "2026-10-15 删除段对应 非人声区间 [[2.2, 2.62]]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词", "S7 raw 2.1355-2.2400": {"类型": "紧贴词尾的非人声", "配音指纹": "c2b9b494fd0b", "依据": "2026-10-15 删除段对应 非人声区间 [[2.135458, 2.24, '紧贴词尾']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['pre'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"}, "S7 raw 6.6475-6.9700": "2026-10-15 删除段对应 非人声区间 [[6.6475, 6.9675]]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词", "S10 raw 4.7750-5.0350": "2026-10-15 删除段对应 非人声区间 [[4.77, 5.015]]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词", "S15 raw 1.8653-1.9750": {"类型": "紧贴词尾的非人声", "配音指纹": "c2b9b494fd0b", "依据": "2026-10-15 删除段对应 非人声区间 [[1.855208, 1.935, '紧贴词尾']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['pre'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"}, "S17 raw 5.6100-5.9557": {"类型": "紧贴词头的非人声", "配音指纹": "c2b9b494fd0b", "依据": "2026-10-15 删除段对应 非人声区间 [[5.65, 5.955708, '紧贴词头']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost', 'post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"}}
+out={"no":"39","title_en":"Y2K: The Crisis That Success Erased","title_zh":"千年虫：被成功抹去的危机","title_fx":{"hl":["Crisis","Erased"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述","allow_clash":["Glitches","fared no worse"],"重点词颜色":{"faulty":"#38BDF8"},
+     "说明放宽特批":{"S19":{"倍数":"整屏","依据":"用户 2026-10-25 看 25 简述截图：“以后以后一定要合理的安排，不要压缩成这个样子……这个地方特批一下”（用户同意记录：原话适用以后各篇，26 起沿用）"}},
+     "非人声区间":{"S1":[[2.375333,2.4775,"紧贴词尾"]],"S3":[[2.595,2.785],[6.9275,6.9575]],"S5":[[2.2,2.62]],"S6":[[2.13,2.375083,"紧贴词头"]],"S7":[[2.135458,2.24,"紧贴词尾"],[6.6475,6.9675]],"S13":[[1.785,2.02]],"S14":[[6.405458,6.6525,"紧贴词尾"]],"S15":[[1.855208,1.935,"紧贴词尾"]],"S18":[[2.625,2.9175]]},
+     "合成标点":{"S14":[["appears, so","appears; so"]]},
+     "分段增益dB":{"S14": {"4": 0.5}},
+     "换行变更已获同意":{"S4":"用户 2026-11-03 看 39 S4 截图原话：“三行分成三行白字，一行绿字儿，一行红字儿，一行”（Governments and firms 一行；braced for 一行；chaos. 一行）","S1":"用户 2026-11-03 看 39 S1 截图原话：“这块单独占一行，这块单独占一行，Begin at the shortcut.the shot cut下面这个是第二行。”（The Y2K bug, or millennium bug, 一行；began as a shortcut. 第二行）"},
+     "高亮按实际开口":True,"高亮开口门槛":40,
+     "术语":{"Clinton":"克林顿","Commerce Department":"美国商务部","Japan":"日本","Shika":"志贺","Pentagon":"美国国防部","Senate":"美国参议院","Italy":"意大利","South Korea":"韩国","America":"美国"}}
+import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from 核对 import 生成并核对
+生成并核对(S, out)

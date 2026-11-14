@@ -1,0 +1,57 @@
+原26/27/29/39/43/45/47/53/64：最终运行JSON与纯数据GEN回灌计划
+2026-11-14；只读准备，未修改PAY，未推送GitHub，未重做成片验收。
+
+目的
+这9篇的实际新4K视频已由V3验收并永久归档。当前canonical的JSON/GEN仍与各自固定请求一致，而实际运行副本已包含合法的排版修复。拟将实际最终JSON及由该JSON派生、经过原helper完整JSON深等验证的纯数据GEN成对回灌，避免下次gen把这些修复回滚。MD继续保留已验收语义等价的approved原稿。本计划不是新的视频合格条件，不影响已合格视频归档。
+
+逐篇差异（RFC6901路径和每一叶原值、新值详见articleNN-leaf-diff.json）
+原编号  新编号  叶数  类型
+26      27       1   S17 C1 note：G35五点简述续行
+27      22       1   S16 C2 note：G35五点简述续行
+29      39       9   S16 C1简述续行1叶；四处中文末尾“的”并入重点标色，各有zh/align两叶
+39      11       1   S19 C2 note：G35五点简述续行
+43      40       1   S21 C1 note：G35五点简述续行
+45      70       1   S14 C2 note：G35五点简述续行
+47      32       1   S14 C2 note：G35五点简述续行
+53      35       6   S17 C2简述续行1叶；临时换行授权转存历史记录5叶
+64      63       1   S20 C2 note：G35五点简述续行
+共22叶（此前口头相加23有误，已更正）。上表新编号以实际passed handoff为准，机器报告保存逐篇真实映射。
+
+G35：共9个note叶
+每篇原小字与简述前的注释保持逐字不变。五点简述只增加换行，必要时加入行首▹续行标记；五个▸主点、全部文字和标点不变。按明确规则去掉空白和行首▹后完全相等；不删除主点符号或其他字符。
+
+29：共8个标色叶，4处实际词义
+S3 C1：**阴郁**(melancholy)的 → **阴郁的**(melancholy)
+S4 C2：**猛烈**(potent)的 → **猛烈的**(potent)
+S6 C3：**全世界**(world-wide)的 → **全世界的**(world-wide)
+S14 C1：**恐怖**(ghastly)的 → **恐怖的**(ghastly)
+每处zh与对应align中文各一叶。中文可见字、词序和重点英文key完全相等；这是原有重点词标色范围包含“的”，不是新增译法。MD仍保留原稿，采用原helper明确容许的“的/地/了”粗体范围差异，不强改MD。
+
+53：必须让root明确知悉的5个字段叶
+实际最终JSON删除顶层“换行变更已获同意”中的S6、S17两叶，将完全相同的原话写入“换行变更记录”第二项的S6、S17，加上运行记录日期2026-11-13。原来第一项2026-11-07记录完整保留。不是删掉用户授权，也不是新增一条用户许可；2026-11-13只是本次运行归档日期。这里转存的是换行授权，未发生原声按位置确认迁移。所有原话原值、新值完整保存在机器差异报告，不截改引用。
+
+未发现其他语义差异
+完整叶级比较排除了任何其他变化；9篇英文（包括重点标记）逐字相同，可见中文逐字相同，重点英文key相同，gain、剪切、音速、speech时间、声音确认与其他音控字段均不变；字体数值也没有变化。未识别的正文、重点译法或声控差异清单为空。
+
+来源与真实性
+逐篇核对passed handoff、V3真实passed record、实际最终JSON、固定request、derived-source-proof与原helper回环JSON的SHA。完整原native ZIP SHA核验后，最终JSON与ZIP中的NN-source.json字节一致；固定请求三源SHA与ZIP真实passed status中的request_source_sha256一致。原helper的existing exit=0、whole_JSON_roundtrip_exact=true证据及日志保存在evidence中。本轮还以AST只读读取纯数据S/out，按原helper字面数据结构投影，旧GEN与当前JSON、最终GEN与最终JSON均整篇深等；未执行额外媒体检查。
+最终GEN属于derived_after_final_QC，不能声称是原成片任务实际执行的GEN。MD为原固定请求稿，经既有原helper与最终源语义等价验证，不冒充未导出的runtime MD。
+
+候选应用
+apply-payload内仅18个文件：9个视频/脚本/NN.json及9个视频/工具/初稿生成/genNN.py。
+必须成对应用JSON和GEN，尤其53不能只换GEN而保留带临时字段的旧JSON；原helper会保留旧JSON独有的元数据键。
+默认只读预览：
+/workspace/work/video-venv/bin/python /workspace/work/video-audit70-20261113/canonical-final-source-backflow-plan-20261114/apply_candidate.py
+root审阅后一次性应用：
+/workspace/work/video-venv/bin/python /workspace/work/video-audit70-20261113/canonical-final-source-backflow-plan-20261114/apply_candidate.py --apply
+候选脚本先核对全部18个当前SHA，再逐文件原子替换；若源已被并发修改则拒绝覆盖，已是目标版本的文件可重复执行。遇应用异常恢复本次已写文件。所有MD、其他61篇、检查程序、音频缓存与MP4均不写。脚本不调用网络、不推送仓库。
+候选在独立临时副本中已测试18文件写入后SHA精确、重复应用无变化、并发改动导致写前拒绝、MD保持原样。真实PAY只运行默认dry-run；相关前后SHA见candidate-test-report.json。
+
+文件导览
+backflow-plan.json：九篇总报告、每篇全部叶差异、来源与不变量。
+articleNN-leaf-diff.json：逐篇详细值、分类、SHA与root注意项。
+apply-manifest.json：固定目标18路径、旧/新SHA与候选文件定位。
+apply_candidate.py：等待root审阅的一次性应用候选。
+candidate-test-report.json：隔离应用验证，非成片验收。
+snapshots：当前、固定请求、最终三源只读副本。
+evidence：既有passed handoff、V3 record、原helper证明/日志/回环与永久归档回执。

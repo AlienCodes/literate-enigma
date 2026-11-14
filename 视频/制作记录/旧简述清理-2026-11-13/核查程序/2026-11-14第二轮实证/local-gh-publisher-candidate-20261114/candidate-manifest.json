@@ -1,0 +1,45 @@
+{
+  "created_utc": "2026-11-14T02:24:56.493252+00:00",
+  "scope": "Root-authorized minimal local_gh publishing candidate; no actual publication, draft, upload or deletion",
+  "original_history_directory": "/workspace/work/video-revision-delivery/history/local-gh-before-20261114",
+  "candidate_source_sha256": {
+    "delivery.py": "9948ab47ef6b5296e3441a50990ca0b8f0a1a309024932733634b39a54f618d6",
+    "release_actions.py": "0beb060bb52151a689667440b83b0ad77d8e80aafbd084016355723012e12312",
+    "release_contract.py": "31985e1489d94fd6fa8b625985c0ca82a4912d49950c3fa789bfadce3c17fdf1",
+    "test_v3.py": "494a606b9474bdfb52c991ed848bcdaae405c268d71e0a6308a6ec6ab9a913a3",
+    "test_local_gh.py": "eb629d0345ebd0687397e275609911462d0deb74034dfb4e5327c2ecefb4ab8a",
+    "input.schema.json": "4f6d048a465401e0c3abc32a1e71819d2d806fd49cf89b9ac50c7639ebff0309",
+    "LOCAL-GH-PUBLISH.md": "dab04b045e6c645fb0f766dae9f0da28f26866b4b59309f527fe36ea2641771c",
+    "README.md": "d83da5cdfc2ba4f2f66736bdeb063326759df9d686ce31657f38d4ff84545566"
+  },
+  "real_readonly_rehearsal": {
+    "path": "/workspace/work/video-revision-delivery/local-gh-publisher-candidate-20261114/actual-local-gh-GET-rehearsal-final.json",
+    "sha256": "18a566d865fcdc3f97da1fa389c127496e253352471f17f84fb807acc67e2197",
+    "same_publisher_program_sha256_as_candidate": true,
+    "actual_repository_GET_succeeded": true,
+    "remote_mutation_executed": false
+  },
+  "source_invariants_owner_note": "Full delivery.py also includes root concurrent semantic A45/original-ending-rationale observations update. Publisher-only diff excludes that separate root change; it does not revert it.",
+  "only_authorized_old_release": {
+    "repository": "alienalgorithm/postgraduate-vocabulary",
+    "release_id": 444450051,
+    "tag_name": "reading-reordered-2026.11.13-v1",
+    "html_url": "https://github.com/alienalgorithm/postgraduate-vocabulary/releases/tag/reading-reordered-2026.11.13-v1"
+  },
+  "preserved_other_historical_book_PDF_releases": 3,
+  "preserved_cover_releases": 4,
+  "preserved_backup_software_model_releases": 16,
+  "git_tag_deletion": false,
+  "GitHub_write_executed": false,
+  "complete70_or71_ready_claimed": false,
+  "standalone_offline_tests": {
+    "command": "/workspace/work/video-venv/bin/python -m unittest test_v3.py test_local_gh.py",
+    "working_directory": "/workspace/work/video-revision-delivery/local-gh-publisher-candidate-20261114",
+    "actual_exit": 0,
+    "actual_tests": 33,
+    "passed": true,
+    "log_path": "/workspace/work/video-revision-delivery/local-gh-publisher-candidate-20261114/standalone-tests.log",
+    "log_sha256": "31f16a0ebf37cff027ac070b3bc0680d5518261bb8b1a25886949746530833c6",
+    "fixtures_only_not_real_publication": true
+  }
+}

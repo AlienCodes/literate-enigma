@@ -1,0 +1,73 @@
+{
+  "kind": "actual-original-fastcheck-certified-four-core-repair",
+  "core_files": [
+    {
+      "target": "视频/工具/草稿声音.sh",
+      "file": "files/视频/工具/草稿声音.sh",
+      "original_sha256": "0ce3277812cf16ed30438509b6dc97db0c26725db4c5db5d9b058c3ef6531aa2",
+      "patched_sha256": "c45c66e3cf68a380f5c829600cf6b0ed69f49f24c65e91c0330ed17d1a85475e",
+      "repair_scope": "explicit revision flags keep reviewed gain and existing valid ending entry; original pipeline and quality gates retained; bad ending check failures propagate"
+    },
+    {
+      "target": "视频/工具/句内响度.py",
+      "file": "files/视频/工具/句内响度.py",
+      "original_sha256": "58735b7173a3c03efa61fb300b4aed4039c164fa970e0593a40bae2a3f3cbd27",
+      "patched_sha256": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea",
+      "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+    },
+    {
+      "target": "视频/工具/独立复核/synth.py",
+      "file": "files/视频/工具/独立复核/synth.py",
+      "original_sha256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+      "patched_sha256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+      "repair_scope": "validated unprocessed raw-mother reference input only; independent transforms/audit/thresholds retained"
+    },
+    {
+      "target": "视频/工具/结尾句接点.py",
+      "file": "files/视频/工具/结尾句接点.py",
+      "original_sha256": "15303682c605dd4544172c92d42c016d8d0536e0c6d1f9816d0d38dd5d2b9a61",
+      "patched_sha256": "1a5d43c4f5483014b69bbea7ad43dddb0333a9a80e29bb2b4c8029d8915ff798",
+      "repair_scope": "explicit keep-reviewed-ending CLI validates existing points with original producer guard and preserves entire JSON entry; bad points fail, missing points use original algorithm; default unchanged"
+    }
+  ],
+  "reviewed_regression_resource": {
+    "target": "视频/工具/新管/回归基准_27.json",
+    "file": "files/视频/工具/新管/回归基准_27.json",
+    "sha256": "b8ddb4656ae27cbfc7ec8e3b99511983b4e568997bd4ad4ee33c364f3926ae94",
+    "origin": "pre-existing root-reviewed 67-screen data; original voice/segment MD5 unchanged"
+  },
+  "actual_native_fastcheck_stamp": {
+    "target": "视频/工具/新管/快测通过.json",
+    "file": "files/视频/工具/新管/快测通过.json",
+    "sha256": "8a46440dad43db2cb7016071a67f32dc17f11c42149ecbc13d992f32376b5ed7",
+    "origin": "actual unmodified original full quickcheck, native run43544532286"
+  },
+  "actual_native_certification": {
+    "run_id": 43544532286,
+    "job_id": 132292612475,
+    "commit": "cc3ee0b02f42f70fb3f4041501dc6036d3240a89",
+    "actual_full_quickcheck_exit": 0,
+    "actual_full_quickcheck_seconds": 443.33,
+    "artifact_id": 14093828857,
+    "artifact_zip_sha256": "58b2f09c8296480fdc43e9acf1cbf9d3a4ca7ed5e90b7f98e872175f94530855",
+    "full_original_quickcheck_log_sha256": "54e94a2e495e11e57a3decbd9fda2fff5c8950f5765cb055e89b6f13c0d071e6",
+    "article_audio_or_video_passed_not_implied": true
+  },
+  "environment_for_revision_jobs": {
+    "XG_KEEP_REVIEWED_GAIN": "1",
+    "XG_KEEP_REVIEWED_ENDING": "1"
+  },
+  "whole_production_T_compatibility": {
+    "source_ref": "e5446f35ffc522e96cf8cabdf36d1a182551a6a9",
+    "all_program_count": 110,
+    "original_stamp_exit": 0,
+    "all_program_map_exact": true,
+    "proof_SHA256": "d1351bb3d2b8d99f3f1a5c631872bc1e9bfebc6a90258c64a2155f98d7764238"
+  },
+  "default_behavior_unchanged": true,
+  "quality_thresholds_lowered": false,
+  "all_checkers_unchanged_claim": false,
+  "producer_unchanged_SHA256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+  "independent_audit_unchanged_SHA256": "bfe12dab6bec96c9b765faea286ae30a067589f6c5ef78461b21d12b955f1e22",
+  "historical_test_article_data_not_to_install": true
+}
