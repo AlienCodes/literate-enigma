@@ -1,0 +1,40 @@
+name: 只读恢复原机器中70篇实际源稿证据
+on:
+  push:
+    branches: [codex/finish-05-and-summaries-20261112]
+    paths: ['.github/warm-source-readonly/**', '.github/workflows/collect-restored-source-evidence.yml']
+permissions:
+  contents: read
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github/warm-source-readonly
+      - uses: actions/cache/restore@v4
+        id: original-cache
+        with:
+          path: |
+            ${{ runner.temp }}/completion-machine
+            ~/asr
+          key: completion-05-machine-43294745262
+      - name: 只读指纹与原已验AAC绑定，不合成不渲染不改请求
+        env:
+          ORIGINAL_CACHE_HIT: ${{ steps.original-cache.outputs.cache-hit }}
+        run: |
+          test "$ORIGINAL_CACHE_HIT" = true
+          if ! command -v ffmpeg >/dev/null; then
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq ffmpeg
+          fi
+          python .github/warm-source-readonly/collect.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: restored-public-source-candidates70-readonly
+          path: warm-source-evidence/*.json
+          compression-level: 1
+          retention-days: 30
+          if-no-files-found: error
