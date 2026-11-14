@@ -2,47 +2,60 @@
   "source_id": "52",
   "frozen_book_order": "41",
   "current_video_order": "41",
-  "title_zh": "夺命毒雾：伦敦1952",
   "user_spoken_number_preserved": "40",
+  "title_zh": "夺命毒雾：伦敦1952",
   "included_user_review_records": [
     "117",
     "118",
     "119",
     "120",
-    "121"
+    "121",
+    "122",
+    "123",
+    "124"
   ],
-  "latest_user_review_record": "121",
-  "final_4K_generation_authorized": false,
-  "status": "isolated_draft_and_actual_audio_review_pending",
-  "audio": {
-    "whole_actual_latest_track_audit_required": true,
+  "latest_user_review_record": "124",
+  "final_4K_generation_authorized": true,
+  "latest_finalization_authority": "122",
+  "status": "formal_finalization_pending_actual_audio_source_export_and_full_QA",
+  "audio_review_and_minimal_correction": {
+    "whole_latest_track_required": true,
     "targets": [
       "cold opening",
-      "though spoken-only pauses before and after",
-      "That smoke opening"
+      "though spoken-only surrounding comma pauses",
+      "That smoke opening",
+      "S18 entire last sentence without spoken comma breaks"
     ],
     "visible_English_punctuation_preserved": true,
-    "no_whole_track_blind_voice_replacement": true,
-    "actual_correction_and_new_quality_pass_not_claimed": true
+    "no_blind_whole_track_voice_replacement": true,
+    "actual_fix_or_new_quality_completion_not_claimed": true
   },
-  "text": {
-    "blame_on_whole_phrase_focus_segments": [
+  "accepted_note": {
+    "authority": "123",
+    "placement_authority": "124",
+    "exact_target_sentence": "S13",
+    "exact_English_anchor": "Such complacency may help to explain the government's grudging response.",
+    "text": "人们把煤烟当成寻常的生活麻烦，很少想到家中取暖的煤火也是污染元凶。这种掉以轻心，或许也是政府应对不够积极的原因之一。",
+    "not_last_page_summary_or_Jobs": true
+  },
+  "phrase_focus": {
+    "lemma": "blame on",
+    "actual_English_segments": [
       "blamed",
       "on"
     ],
-    "paired_Chinese_focus_segments": [
+    "Chinese_segments": [
       "把",
       "归咎于"
     ],
-    "intervening_objects_ordinary": true,
     "vocabulary_sync_required": true
   },
-  "note_proposal": {
-    "user_record": "121",
-    "insertion_authorized": false,
-    "pending_user_acceptance": true
-  },
-  "old_current_not_latest_completed_revision": true,
-  "Jobs_source43_is_separate": true,
+  "post_reading_pause_seconds": 0.6,
+  "illustration_seconds": 2,
+  "summary_card_seconds": 2,
+  "cloud_final_only_under079": true,
+  "no_single_Release_requested": true,
+  "old_source_video_and_quality_history_preserved": true,
+  "latest_request_pending_blocks_old_current_as_latest": true,
   "PDF_work_paused": true
 }
