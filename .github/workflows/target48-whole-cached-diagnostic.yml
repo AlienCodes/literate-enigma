@@ -1,0 +1,102 @@
+name: 原48整轨原缓存仅新姓名唯一语音域实际标量诊断
+on:
+  push:
+    branches: [codex/finish-05-and-summaries-20261112]
+    paths: ['.github/target48-whole-cached-diagnostic/**', '.github/workflows/target48-whole-cached-diagnostic.yml']
+permissions:
+  contents: read
+jobs:
+  prepare-name:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github/target48-whole-cached-diagnostic
+      - uses: actions/checkout@v4
+        with:
+          repository: alienalgorithm/postgraduate-vocabulary
+          ref: fc0b56af9a0ac0e97015548b756d4e51d66dc2ea
+          path: official-main
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /视频/工具/
+            /视频/配音缓存/*.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/cache/restore@v4
+        id: original-cache
+        with:
+          path: |
+            ${{ runner.temp }}/completion-machine
+            ~/asr
+          key: completion-05-machine-43294745262
+      - uses: actions/cache/restore@v4
+        id: exact-new-name
+        with:
+          path: |
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/2e780fe5d9534eaf29b922271342d8f40cf7d5e6.pkl
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/2e780fe5d9534eaf29b922271342d8f40cf7d5e6.pkl.单线程
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/3d2776ec4567d58a25236c22d669506f238edb1d.pkl
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/3d2776ec4567d58a25236c22d669506f238edb1d.pkl.单线程
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/调平_d3ee28c1a0d096e2302fb782cbd15f5b853f1116.json
+          key: Linux-native48-YuanLongping-43635240084
+      - name: 确认精确新全名私母已恢复
+        env:
+          CACHE_HIT: ${{ steps.exact-new-name.outputs.cache-hit }}
+        run: test "$CACHE_HIT" = true
+      - name: 确认原母模型缓存
+        env:
+          CACHE_HIT: ${{ steps.original-cache.outputs.cache-hit }}
+        run: |
+          test "$CACHE_HIT" = true
+          test -f "$RUNNER_TEMP/completion-machine/tts/kokoro-v1.0.onnx"
+      - name: 安装原核查依赖
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg espeak-ng
+          python -m pip install --quiet -r official-main/视频/工具/环境/requirements.txt
+      - name: 安装真正已认证五core原CUTS程序和实际110T
+        run: python .github/target48-whole-cached-diagnostic/install_exact_core5.py
+      - name: 原文件拷入临时工作目录
+        env:
+          XG_P: ${{ github.workspace }}/official-main
+          XG_NOPUSH: '1'
+        run: |
+          python official-main/视频/工具/出片指纹.py --拷 "$RUNNER_TEMP/completion-machine/video"
+      - name: 严格原缓存全轨原声与新S15母实际身份诊断
+        id: target
+        env:
+          XG_NOPUSH: '1'
+          STRICT_CACHE: '1'
+          AUDIO_ONLY: '1'
+          XG_KEEP_REVIEWED_GAIN: '1'
+          XG_KEEP_REVIEWED_ENDING: '1'
+          XG_KEEP_REVIEWED_CUTS: '1'
+          VIDEO_ROOT: ${{ runner.temp }}/completion-machine
+        run: |
+          mkdir -p target48-whole-public
+          python - <<'PYENV'
+          import hashlib,os
+          from pathlib import Path
+          tools=Path(os.environ['GITHUB_WORKSPACE'])/'official-main/视频/工具/环境'
+          work=Path(os.environ['RUNNER_TEMP'])/'completion-machine/video/环境'
+          expected='dfde6c065a3558b74923ce82865a3b01dae1f839af4456b74de55dc3ff492312'
+          assert hashlib.sha256((tools/'模型校验码.json').read_bytes()).hexdigest()==expected
+          if work.exists():
+              assert hashlib.sha256((work/'模型校验码.json').read_bytes()).hexdigest()==expected
+          else:
+              work.symlink_to(tools,target_is_directory=True)
+          PYENV
+          python -u .github/target48-whole-cached-diagnostic/native48_whole_audio_cached_scope.py --tools "$GITHUB_WORKSPACE/official-main/视频/工具" --video-root "$RUNNER_TEMP/completion-machine" --request "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48.json" --baseline-source "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48-current-baseline.json" --cache-identity "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/native48-new-S15-private-cache-identity.json" --output "$GITHUB_WORKSPACE/target48-whole-public/48-whole-strict-cached-diagnostic.json"
+      - name: 仅保存安全标量JSON不导母料音频
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: native48-strict-cached-whole-scope-diagnostic
+          path: |
+            target48-whole-public/*.json
+          retention-days: 30
+          if-no-files-found: error
