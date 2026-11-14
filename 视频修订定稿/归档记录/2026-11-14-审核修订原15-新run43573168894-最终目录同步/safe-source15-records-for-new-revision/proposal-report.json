@@ -1,0 +1,100 @@
+{
+  "article": "15",
+  "book_order": "25",
+  "kind": "two-user-requested-focus-only-source-proposal",
+  "quality_acceptance": false,
+  "before_source_sha256": "181b21b9d960292284ce34ed7cdf56b0ce3592b255b7480941c5924aaf713b33",
+  "after_source_sha256": "9b42f089b79e4e0c54c254c948ac4d9ae28d224585095a373607122a0d7c6898",
+  "generator_sha256": "a5fbf922acd8eeb3e1aee0c4e2a78e3898ab346e7bd6dd44d69104e78454aef9",
+  "manuscript_sha256": "bc2d0c8613437b39149cd6e66729104b26efceb8681fb645f782a97b40007584",
+  "all_spoken_English_chunk_boundaries_exact": true,
+  "all_existing_non_sentence_controls_and_CF_exact": true,
+  "current_A21_plus5_exact": true,
+  "bare_Chinese_exact": true,
+  "existing_S15_ice_patrol_sentence_exact": true,
+  "full_last_summary_note_exact": true,
+  "exact_JSON_diff": [
+    {
+      "path": "/allow_clash",
+      "reason": "list_length",
+      "expected_length": 3,
+      "actual_length": 5
+    },
+    {
+      "path": "/allow_clash/3",
+      "reason": "unexpected_item",
+      "actual": "inquiries"
+    },
+    {
+      "path": "/allow_clash/4",
+      "reason": "unexpected_item",
+      "actual": "patrol"
+    },
+    {
+      "path": "/sentences/12/chunks/0/align/1/0",
+      "reason": "value",
+      "expected": "inquiries in Washington and London",
+      "actual": "**inquiries** in Washington and London"
+    },
+    {
+      "path": "/sentences/12/chunks/0/align/1/1",
+      "reason": "value",
+      "expected": "华盛顿和伦敦的调查",
+      "actual": "华盛顿和伦敦的**调查**(inquiries)"
+    },
+    {
+      "path": "/sentences/12/chunks/0/en",
+      "reason": "value",
+      "expected": "Between April and July 1912, inquiries in Washington and London",
+      "actual": "Between April and July 1912, **inquiries** in Washington and London"
+    },
+    {
+      "path": "/sentences/12/chunks/0/zh",
+      "reason": "value",
+      "expected": "1912年4月至7月，华盛顿和伦敦的调查",
+      "actual": "1912年4月至7月，华盛顿和伦敦的**调查**(inquiries)"
+    },
+    {
+      "path": "/sentences/15/chunks/1/align/0/0",
+      "reason": "value",
+      "expected": "the patrol",
+      "actual": "the **patrol**"
+    },
+    {
+      "path": "/sentences/15/chunks/1/align/0/1",
+      "reason": "value",
+      "expected": "然而冰情巡逻",
+      "actual": "然而冰情**巡逻**(patrol)"
+    },
+    {
+      "path": "/sentences/15/chunks/1/en",
+      "reason": "value",
+      "expected": "the patrol went ahead **regardless**.",
+      "actual": "the **patrol** went ahead **regardless**."
+    },
+    {
+      "path": "/sentences/15/chunks/1/zh",
+      "reason": "value",
+      "expected": "然而冰情巡逻**不管怎样**(regardless)依然进行。",
+      "actual": "然而冰情**巡逻**(patrol)**不管怎样**(regardless)依然进行。"
+    }
+  ],
+  "auth_entries": [
+    {
+      "篇": "15",
+      "日期": "2026-11-10",
+      "原话": "不用管，这个就是我清点的词，我清点的词不用管，撞不撞车，全都留，全都留，全都特批。我专门说的这个加为重点词汇的这个所有的词全都这个重点特批。",
+      "用于": "allow_clash.inquiries / patrol（2026-11-14用户本篇指定新增S13C1 inquiries调查、仅S16C2 patrol巡逻重点；保复数小写及原S15 ice patrol重点）",
+      "来源": "沿用真实通用特批；本轮具体截图及原话见USER-REVIEW-2026-11-14-018和019.json；其他篇原重点词不变"
+    },
+    {
+      "篇": "15",
+      "日期": "2026-11-14",
+      "原话": "泰坦尼克号这一篇可以定稿了，4k重新定稿。",
+      "用于": "仅本篇两处重点修改后重新生成4K定稿；保43562525001最新已通过A21音频",
+      "来源": "/workspace/work/first50-review-release/USER-REVIEW-2026-11-14-020.json",
+      "来源文件SHA256": "b9575a93110cf0cfce87ae5b0ebf2691d38d30abf1ec3c3f1f11129fea686ca5"
+    }
+  ],
+  "created_utc": "2026-11-14T07:39:00.245021+00:00"
+}
