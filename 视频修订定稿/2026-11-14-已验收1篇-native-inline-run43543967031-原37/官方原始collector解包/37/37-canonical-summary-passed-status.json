@@ -1,0 +1,4015 @@
+{
+  "article": "37",
+  "passed": true,
+  "stage": "final4K-passed",
+  "original_audit_and_quality_thresholds_unchanged": true,
+  "original_maker_unchanged": true,
+  "core_repairs": [
+    {
+      "target": "视频/工具/草稿声音.sh",
+      "file": "files/视频/工具/草稿声音.sh",
+      "original_sha256": "0ce3277812cf16ed30438509b6dc97db0c26725db4c5db5d9b058c3ef6531aa2",
+      "patched_sha256": "957d7eb1598698ea33ff77d83379256ecae258d84d588753d561a902284be439",
+      "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+    },
+    {
+      "target": "视频/工具/句内响度.py",
+      "file": "files/视频/工具/句内响度.py",
+      "original_sha256": "58735b7173a3c03efa61fb300b4aed4039c164fa970e0593a40bae2a3f3cbd27",
+      "patched_sha256": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea",
+      "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+    },
+    {
+      "target": "视频/工具/独立复核/synth.py",
+      "file": "files/视频/工具/独立复核/synth.py",
+      "original_sha256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+      "patched_sha256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+      "repair_scope": "validated unprocessed raw-mother reference input only; independent transforms/audit/thresholds retained"
+    }
+  ],
+  "strict_production_cache": true,
+  "pdf_requested": false,
+  "check_summaries": {
+    "approved-illustration-resource.log": [],
+    "certified-core-original-stamp-verification.log": [],
+    "original-restored-stamp.log": [],
+    "canonical-module-copy.log": [],
+    "canonical-draft-00.log": [
+      "第37篇 做完（365 秒）：修了 1 处、疑点 18 处",
+      "① 文本：通过，自动修 1 处",
+      "② 声音：37 词尾辅音核对 问题数 0；37 纯人声核对（配音指纹 80d414efeeed）问题数 0；问题数 0；37 句间停顿核对 问题数 0；问题数 0",
+      "③ 出片前核查：通过",
+      "⑤ 出片后核查：全部通过",
+      "⑥ 已拷 视频/视频/草稿1080p/37_1080p.mp4（--不推）"
+    ],
+    "canonical-final4K-00.log": [
+      "第37篇 用户定稿原话：有"
+    ],
+    "original-stamp-after-production.log": []
+  },
+  "actual_native_core_certification": {
+    "run_id": 43535822030,
+    "job_id": 132264443476,
+    "commit": "395e8da264fafa2453a42ee70a3f7aed8303a769",
+    "actual_full_quickcheck_exit": 0,
+    "actual_full_quickcheck_seconds": 478.16,
+    "artifact_id": 14089812323,
+    "artifact_zip_sha256": "5e396c84e4a6fc7c6cc737ceb8648d7f15f397e9551806e032c93db8ab0963b8",
+    "full_original_quickcheck_log_sha256": "dbe7f6e08d2b7c3a5f9a2f925bb75a662aed725c780e1bc6714706807552a294",
+    "article_audio_or_video_passed_not_implied": true
+  },
+  "actual_native_fastcheck_stamp": {
+    "target": "视频/工具/新管/快测通过.json",
+    "file": "files/视频/工具/新管/快测通过.json",
+    "sha256": "6ebc7aa41f79f77258fa333b665af258e007daa36a4ea290de972cd3da7b42f2",
+    "origin": "actual unmodified original full quickcheck, native run43535822030"
+  },
+  "reviewed_regression_resource": {
+    "target": "视频/工具/新管/回归基准_27.json",
+    "file": "files/视频/工具/新管/回归基准_27.json",
+    "sha256": "b8ddb4656ae27cbfc7ec8e3b99511983b4e568997bd4ad4ee33c364f3926ae94",
+    "origin": "pre-existing root-reviewed 67-screen data; original voice/segment MD5 unchanged"
+  },
+  "core_repair_manifest_sha256": "1b1558108d15603e5711e200135651d6c7700a583d8bcf53ad8753683ed05a5e",
+  "reviewed_gain_preservation_mode": true,
+  "real_restored_stamp_validated": true,
+  "reviewed_cross_article_context": {
+    "provided": true,
+    "manifest_sha256": "eddfbdceea4e25f2398a2198f94d9852f1e30e35b35c4075c5a5ff0c8e32c096",
+    "files_sha256": {
+      "视频/脚本/01.json": "2be2f80a69af28703992204ac95f987c745362c326e62ad81b3cd8e0e0735d3a",
+      "新版定稿/01-the-robber-who-thought-lemon-juice-made-him-invisible.md": "572054065b5bb65446bf8939a21c789c1e9c7664d82da5117c43efdded894351",
+      "视频/脚本/02.json": "0403368c77fd3e0f91e1ee3780e1c7c147894ad13c16b5f14707d700a8f717c8",
+      "新版定稿/02-the-truth-about-one-marshmallow.md": "91b92505aad03f963861bec39e96f0a472c126d1d57c9fc538676c32f65e545c",
+      "视频/脚本/03.json": "527f3bf4a11843f4d606188dabc6ebce6830da3fb454a49c782e3a595cb47407",
+      "新版定稿/03-the-doctor-who-drank-bacteria-to-win-an-argument.md": "6dfb56504882e24854a3584fd740e7f6601e3f2532818aee3a56d5330d317aa3",
+      "视频/脚本/04.json": "93cc1ff58d65ebe43a65ecb2fb2dbd2da262d80877c05740bbdf4eab4eaca1e8",
+      "新版定稿/04-the-brain-that-learned-london.md": "a8ccb31ffff50aaae77de4b83de1847fafae1d585981cf960c5880c409f6cfc3",
+      "视频/脚本/05.json": "2282acbfa4b82825f93261ec6c18359eb47fd3f7c639319ac5058d126643e136",
+      "新版定稿/05-the-fingerprint-in-the-blood.md": "612deac4ed066489e04e214ca969f8f27dda05856e0ef0ed2e540e7a4a52ae34",
+      "视频/脚本/06.json": "2cbf1d6cd6e66a59285298ea830f5ef914590b64286d40b2ae5f3168aa27a2e9",
+      "新版定稿/06-the-horse-that-could-count.md": "7fd21ba491c7596c53c486f2bb0b0f2f6da8e67bac75461a4649a7caff822f74",
+      "视频/脚本/07.json": "842e44e5aa19fddcfa239cb6530c5152341cd86e11db959543d02d8670ca13e8",
+      "新版定稿/07-the-octopus-that-escaped.md": "b8544281bb2ada88fce9d1082cbc30233dcb63ee3e9c2bbefafc22cb28b8cb39",
+      "视频/脚本/08.json": "254832e09f12759d950384dd9f31f671ad5a3bc1590b7466065dd3ef5fe4b8d5",
+      "新版定稿/08-the-doctor-who-solved-the-cholera-mystery.md": "0b2bfa68070ce585a452f6b7034d03c3683e710dcabec5e86d7b221950dc7bab",
+      "视频/脚本/09.json": "fa3e429351d629de188c184d04e9986200e16e80606fcbec82332b6433301dae",
+      "新版定稿/09-the-great-emu-war.md": "af5c3e844bad15f94bfc43aeed6d7417c4bfae85f026b194da667a7a3bdb6196",
+      "视频/脚本/10.json": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
+      "新版定稿/10-the-stolen-smile.md": "ff63cf94e4d2c835e2e2f1ffd3e6c5642f0916f0b13c012f1f13c3dff716d47a",
+      "视频/脚本/11.json": "665cbb80cc70b700ecc0cc5813209fd100ad4fa8f0eead3929b9e53778d9d07f",
+      "新版定稿/11-move-37.md": "7e0b49b346c1fa3ab994a11a2301167c0d6a1bb00916508bdc0b1acf71e68053",
+      "视频/脚本/12.json": "e3bfbcce6f1a8e14cfe451d656574353321e297c90c62f5a7b422f37478311d5",
+      "新版定稿/12-the-79-days-of-new-coke.md": "5a23c1e0c81318527bcbf27573487d1845c5318905a2b1e020cc6e2eaf5d643f",
+      "视频/脚本/13.json": "3687b6c42a6d524d0d7e40a47ed02c37b18abe8d524db4f5914abad52019a63c",
+      "新版定稿/13-eleven-days-without-sleep.md": "72b842de127132e386e9e52a1719ec96765e94958f56687987f53e2801c69704",
+      "视频/脚本/14.json": "17141351875ddb8f0e308602c0b6ab85cbf5126a4d0118978c25c869db769fee",
+      "新版定稿/14-the-fungus-that-turns-ants-into-zombies.md": "e114c9e1783c80a2ffdb60af05e824f93a8ea8725905cb733560abe1c0ad01a8",
+      "视频/脚本/15.json": "0934aa067f19814028c398b0c70a400bb09e354f744bde4000742950d77f441e",
+      "新版定稿/15-the-myth-of-the-unsinkable.md": "68e236868c4b466928ff2a60358250b9592dfe9287b66561b1e5a80b4d14de4f",
+      "视频/脚本/16.json": "d25aa07f3fac316c26c2ae1006d3efa7eb82a396b66150432b50239c1628396d",
+      "新版定稿/16-the-bread-made-from-air.md": "4da63148111213f6d77451b0eb4193893e6fc2fc170400bc39ce5f5ffcaa0b20",
+      "视频/脚本/17.json": "2e9971ea5ce7857e119226fe95def06e6eb9c3ef9823d8e8c4f3456f46a3bbb0",
+      "新版定稿/17-the-curse-of-the-pharaoh.md": "a2e8d92f9136e1b22fcc0799f9a4d281092f0e547cc68242e090241d7b09e222",
+      "视频/脚本/18.json": "8cffbad6f0b8451e46ad1a65d5f629c450ceff2c771218445770c8cbfd77ebca",
+      "新版定稿/18-the-mould-that-changed-the-world.md": "ef41cea03f471fe3b9a53939c843e450da3325eb711f6414e108ae92a7518dd8",
+      "视频/脚本/19.json": "cc3c5eea0f7d9ec0712b2e58adba7e5ef8b61d6518a322f9b25a12fcc45282fb",
+      "新版定稿/19-tulip-mania.md": "3882d487383b759c31dda4785966091c362960cd873a5d83c530d08d52e2e97c",
+      "视频/脚本/20.json": "cc5ed6d7be8767e5e7e9b098e8f3836821c0b3f51c17581b2746722da1cf3001",
+      "新版定稿/20-the-5000-year-old-murder-in-the-ice.md": "8d55638070787f7ff5432c197292af1188c463a8b018e01bdefc32999b888e95",
+      "视频/脚本/21.json": "61c1569a26d7569ee0f586178be6b307b1c394c0a30c3cb02541c910038b0589",
+      "新版定稿/21-the-man-who-sold-the-eiffel-tower-twice.md": "e8e966b70f579235d696ba11fb01d3b2cae3fa26efb9071bbea95071be259e1f",
+      "视频/脚本/22.json": "e3027a42c532fee9935afcecdd0542713cbb907183802c2345b9472f93b75f59",
+      "新版定稿/22-the-building-that-melted-a-car.md": "49ae09483bc80bbc40a71551cd98aebec355d96d9ff7b2bcdea59a06fe599267",
+      "视频/脚本/23.json": "c4574a79fd3a58577a1402ce095ea9e4a0ea1f98883ce63e3cc60d126e819409",
+      "新版定稿/23-the-man-who-gave-machines-a-mind.md": "72ed3049e87fe75ce1e753d5e443bdbe6a7ab72f6e282e8467fbbb62be873169",
+      "视频/脚本/24.json": "f08620b534bb10b718f7515c805dcb541721427d855bd5a092b8954847a351b8",
+      "新版定稿/24-survival-in-the-ice.md": "cb7f810d9a74256e0c00625290be4f16207feb90f5719ca87d5d7c9912b91307",
+      "视频/脚本/25.json": "c73e854e052b3df9bd920d4a59fafb183dee19bd58765fa426af6ea3d7c9a329",
+      "新版定稿/25-apollo-13-the-successful-failure.md": "b6b7d55fe66e6e32116431ea955778fab779b8bda622df0ba1036c2f40a3969f",
+      "视频/脚本/26.json": "ab663b240eb5e27923f38e2ff296c0196e3d820766d0c909adb9faf19aa3cac9",
+      "新版定稿/26-the-language-the-children-invented.md": "9e9ad8021ddabc17157d73dc739383f9676df3583cf965e470fcd773e26a3761",
+      "视频/脚本/27.json": "61cd724c5fab6f07a46aa5ac069101617c4c8350311eb11a43f9fefdddb31d8b",
+      "新版定稿/27-life-in-the-forbidden-zone.md": "e276bcf76225b9ae16cd8cfda8c9b726b442fbd625d3718f532b47b09b21b16f",
+      "视频/脚本/28.json": "a6a4befc0291727f5cc3f8b50857ee954ef9f936738f014a978ebb4d37a28ea8",
+      "新版定稿/28-a-handful-of-wormwood-that-saved-millions.md": "b9817d3429767d07b6a2eb14cce5422a20cb4e3b89f8b03e6b3d5da2daf91d91",
+      "视频/脚本/29.json": "1e5f1d9f0c22b5d14b757f029be694c2a3969666d732ca79bb695282763de791",
+      "新版定稿/29-the-volcano-that-gave-us-frankenstein.md": "69045ee19a170c7ea9d0008b468c7e947bc28b639b834c0192dc0aeafc3ef4d0",
+      "视频/脚本/30.json": "cdf727cb4c6832063421df9da6ab8ae7729cf9df01d6be089a8981c92c360f06",
+      "新版定稿/30-the-stink-that-built-londons-sewers.md": "84dbf19cee0045ea2608b13ee0677cb9623dd8fbb371c67093bf50c64186137a",
+      "视频/脚本/31.json": "d81f8645a1e5663ba8c84668e817cdb218bc6689079fbfd51326b3a7fd3cd384",
+      "新版定稿/31-the-book-twelve-publishers-turned-down.md": "7abd20fed44918dcf01586c056e9d0acd9d2ad3b90aa7d3d403762d9f06d2659",
+      "视频/脚本/32.json": "357aa59bed62154f7302a5efcf528859b303004e028657b93058138fe931bf85",
+      "新版定稿/32-the-planet-that-was-demoted.md": "1421f2b0921e7e9478ebc48777e3e8b2c979172de63d0124015107c3750a3542",
+      "视频/脚本/33.json": "ca51103c1a9d45c9159322765efc86c81f61f6ec78975f160019d21a1d9ee0d7",
+      "新版定稿/33-thirteen-in-the-cave.md": "9862078044ce45a9f6d51aa7d165afdfcf90066d1de98cbb317dd7e8f980610d",
+      "视频/脚本/34.json": "74921848a6bb25a2ba631813f60d4756c9ff90c64c03a2fb936ce34f310ce509",
+      "新版定稿/34-the-game-that-escaped-the-soviet-union.md": "e3244b67b21e283e67f4e88e932a1dbb85bf273a48ee009b3f435e1c5814831c",
+      "视频/脚本/35.json": "d8439077dc2c909b1c6cbd1347f31e9625f25fffe447d6f5945c9492561f1a16",
+      "新版定稿/35-the-bird-that-beat-the-letter-home.md": "ba8c38e38b21a3345624e2d44fd352561d3096cfb6f62214b48ea9b6e66faead",
+      "视频/脚本/36.json": "76daa28f421bd40d8e2744d4e785a34bb8ee67da1403b4b1546db9465c535cef",
+      "新版定稿/36-the-company-that-invented-its-own-killer.md": "411eeb96c8641ee7082b49a5abf4c7343d3f1dbb7ef331064d7c0f3c630fe58f",
+      "视频/脚本/37.json": "b1b8945ccf3581df48ade5714a2d0e93e4cc6812708f95bef6f5e44439106c99",
+      "新版定稿/37-dynamite-for-the-heart.md": "4933e24d2384471a96d9c8c26c15d5224a85dae98d9971a3fed15b4978dafc51",
+      "视频/脚本/38.json": "8d0379032000967c9f72e550574874949f798eefbfbfb58ab2b38e4e23ecbc6b",
+      "新版定稿/38-the-web-beneath-the-woods.md": "abb7eead9f3da0b2b326ceed5a649cfbf71fc28dad22e0d52f7b19caa798c54f",
+      "视频/脚本/39.json": "6c3e9539f624b192335312912572a05fba2c7bcfb821b44c3c1dbb21b42527a7",
+      "新版定稿/39-y2k-the-crisis-that-success-erased.md": "abbc9804661126aa006595031ed8f201ce55e8eb5fd9e1ad5669c0c6fcdb80ab",
+      "视频/脚本/40.json": "1c50d1a47ee6f8528d0f7299e8a45bc8c30312622f3f465a964d21cc1395ee7f",
+      "新版定稿/40-the-glue-that-failed.md": "dce9f78f3a0828307843dd667b7eeebf3380a3630f03d234bd5824870aba61a1",
+      "视频/脚本/41.json": "6b6673ffc1db986f4c355f3685de6a0faf2272cee042c5e917f26a8b3057c2be",
+      "新版定稿/41-the-toad-that-invaded-australia.md": "eca590f97120f4e76d719e29aa07b094f9117cd462f5a70c029331a63b85f710",
+      "视频/脚本/42.json": "eceb10ae92aa4b9cd23180d1138149a7fa7b674385462c898bc0d2283c8739e7",
+      "新版定稿/42-the-telescope-that-needed-glasses.md": "d4aa049779a0eba06c555d76ca14103648378eef90465df424120126fa771280",
+      "视频/脚本/43.json": "aa9da1246e293c80408edf94a7c9bed65ef3178ae7cb5265a8273e8c4396687f",
+      "新版定稿/43-from-a-garage-to-the-top-of-the-world.md": "bd70c83e5ac867238ca179f3c9f3548eb9cbdcae1f6df40994aef0bda721ae54",
+      "视频/脚本/44.json": "87f531203ca38d88ae5e71ffd88190b1530715cdc0adba146c2a4a78ebe9b976",
+      "新版定稿/44-the-night-sweden-switched-sides.md": "d3f7ad2ac43f02aae9205a15b9808280ca3db597d6ef3b36aca8ca6176c5f74a",
+      "视频/脚本/45.json": "569406607d2bf18dce5e916052d6460509450d97fe17ac9820be524f59c2c3cc",
+      "新版定稿/45-the-record-humanity-threw-into-the-stars.md": "27deabec4a8478fe570f7f237a2fb850ffdce3deebfd952f512d82a60cf7314f",
+      "视频/脚本/46.json": "804ecfddb6060288b05eda0e1027c65e9bff0c08a9d010c201bf39306c769b62",
+      "新版定稿/46-lost-in-the-glare.md": "7aaa06e875fe56c5d78210b90a8769b8b2051714025ef10df37c2fe89db7a68c",
+      "视频/脚本/47.json": "0417489c8a672e7e63d46c2239d847acabda2d93160cabed3b0fb14f701ac39a",
+      "新版定稿/47-shadows-of-wolves-over-yellowstone.md": "34c68cf4d0f0ef3545ad68edf3367fcb76ab500174b11ae7f83b782cd5a80a2a",
+      "视频/脚本/48.json": "4f146ce6a70bb0bf5d2c6e1f6b47bd6a2bcc2f311be7a948092d7bde1a08f449",
+      "新版定稿/48-rice-for-the-world.md": "76416be21f857e8a05c37baa33ac90f5785812291485231c249e38a1d0edf15f",
+      "视频/脚本/49.json": "640168eb8a17c5d53d266c6604ffe287919314947371c2ee239eeea952d73b77",
+      "新版定稿/49-the-woman-who-won-two-nobels.md": "1e4fb068aa9ae4513d01b199a074b84dc9d819f57b2134df32588a0e4a4b6b6a",
+      "视频/脚本/50.json": "1d4a41824dfa5e8d11e5990b2a4b802ba2fcc3231d85b15ed6630396c6f027bf",
+      "新版定稿/50-microplastics.md": "5439589bacf1abb2abbb184eb658492bc02bcc5bdd8dfd8ababcd80ab93621cb",
+      "视频/脚本/51.json": "39886d83593a31fb575b124ecf6457190773dca695b6ff78f8434d52aebd6d7c",
+      "新版定稿/51-the-joke-that-became-ok.md": "8de30ea4846f4e88d8b71c8d5ced3ee63a73955e39b7dc3c5adad0971b854fd0",
+      "视频/脚本/52.json": "832249bb44617d38ede75560a5e57af6ba79ec284c9609407cb30ce879f6f862",
+      "新版定稿/52-the-killer-smog-of-1952.md": "179500361e4a837d7edb2e0497e08677d5abd425e8ad542f788205a6f7667b4b",
+      "视频/脚本/53.json": "28b604bfa72896534736293f79e9b3aabd8e3678672f4dc6c66337c02a8f1518",
+      "新版定稿/53-the-wind-that-kept-no-time.md": "6fab302dcadb5a2c509436f5fbf8d9ef925c008a36f5b422749bd405aa4701d3",
+      "视频/脚本/54.json": "b1fcb8ae86045b3d35ccfa0f52eb9594b8921d43063835769ee3ecc4543be75e",
+      "新版定稿/54-the-sound-that-shook-the-world.md": "abd5f4bfe11ed73bcc5326a92cf99b0a8e5ad70adaca1ce8d0c8f622b57fa519",
+      "视频/脚本/55.json": "06344fc0ad5975cba2f4dbe5262a9957dd7c024f9a05b9abbfa327f32ea8c719",
+      "新版定稿/55-the-secret-of-romes-undying-concrete.md": "a7759eddcc7ec06dfd6dab7912e06b3b5ef8576df0c025a97812006669d0be61",
+      "视频/脚本/56.json": "22ca3b4180a8ae6a37b4c8e25f5e357d5696d9b23bf148fb7064425d1403e59c",
+      "新版定稿/56-the-letter-that-startled-darwin.md": "aad1e2aab9ff28f534a510362e807ef401e0b502475240f4b2531e9e518a8d7a",
+      "视频/脚本/57.json": "a0ba65b769430289a33ec1f7bc6dbf91dad8d2c3b1d725348851de546563cd6f",
+      "新版定稿/57-a-change-of-anthem-in-the-deep.md": "0731d925a98bafc222718c111985362e166b38b9189c516219a481e36d0d4b6e",
+      "视频/脚本/58.json": "8b0bd3d7d39000518789e9907aec53bd52fab1b9d6b4f22a152d158635b6e8ee",
+      "新版定稿/58-from-a-scratch-to-a-world-without-smallpox.md": "1aa2a0d2c51da76f9c9ebb88d049dd1a55ab530791566fdbf6476e5aa48c15ee",
+      "视频/脚本/59.json": "df1db4174d942371166048b220ef6d55b0b700b2ce31c866edf6dfdf33b92f0c",
+      "新版定稿/59-saving-the-sky.md": "7bf9c4661e733e7af23dc2f11bc820b809ec93dad75a94fb6a12748226e8722c",
+      "视频/脚本/60.json": "eed1655c0919db32a3a016b24791b93d25683f287c7ccb2523e168a69bddc562",
+      "新版定稿/60-the-scientific-giant-who-changed-the-world.md": "9d1578e7af085559922394a3db01de4eb22dc1c520ca17de5cad68e5a38a31a8",
+      "视频/脚本/61.json": "72378937501769dfb3d934fe65ab1a69afeb5420a15e19890c161433717d2435",
+      "新版定稿/61-the-steel-box-that-remade-the-world.md": "135cc9cfbcbd68d957f831cf55558112a45b1cc3749366cb9a304507355c7d2c",
+      "视频/脚本/62.json": "4b3a97f2b6404e1b091537c21f01fc60088902f596803345983c38be52ec79eb",
+      "新版定稿/62-dolly-the-copied-sheep.md": "62817546ae33824b57255f941135c503e41a41f905331ed4af1e32850fa00960",
+      "视频/脚本/63.json": "5d266d80f9cf29cce6f7e34531449cf75191a42f180102685a5bcd04849e75c5",
+      "新版定稿/63-the-crowded-heavens.md": "6ef79d4310019dfefa7364b8a428411a6bc337678c69fa5cbc89b84689e253a4",
+      "视频/脚本/64.json": "12a36862765922d72ce6e5a4c5fe85f548364eed65fe3b3b284f0b38899a965f",
+      "新版定稿/64-the-day-zero-that-never-came.md": "e0c83cbe36745adbbffd33a156fa8d0671704ea976cb13215cabb612639b37a5",
+      "视频/脚本/65.json": "78e60dd231df4ac71df83e21a26f82bbf706dc0bef80bee156a36bc287661ede",
+      "新版定稿/65-the-day-the-doomsday-vault-opened.md": "71a50d32e25955e713e6ca108ab68422a4fd5b77c914a9074eece1dc33cbff89",
+      "视频/脚本/66.json": "ad5324af4270834186285a5e7273a90213094077adc6f9e1d5c7b0ebff9cf035",
+      "新版定稿/66-the-burrs-that-became-velcro.md": "75dbe6c148ca97a7780ac1737f33f58bf8ee27a51aa729a83315705655b12b2a",
+      "视频/脚本/67.json": "8897cc1c2df1e4672eec3bbff2776d0565afb9c9fe84087a1758ebb15b2a233e",
+      "新版定稿/67-the-cave-found-by-a-dog.md": "10e37b81eeef4e3289448a6b4fd679f34d495a4fc087c57747e6dca949e00cf1",
+      "视频/脚本/68.json": "568f72dacac48e206811d35a57c7fa22e3da428783f64e507c184f2090e579f3",
+      "新版定稿/68-the-last-flight-of-the-hindenburg.md": "c25f58ffb0e3748336767bb7470dd7cef10374c53cbb48af89dba26f65b2dd5c",
+      "视频/脚本/69.json": "09fd3fdbbc834badd16a9b38d8c14e425193a6849d7db87253f26a782a1c4137",
+      "新版定稿/69-the-trial-of-the-father-of-the-atomic-bomb.md": "570eda5b7d979d71e9bcad1c67e295ed326ecdb8b61e663aba33272c8a9451bd",
+      "视频/脚本/70.json": "0f6827f02cef0d2416f9d7d69b7e1c5553acee7cf6dc89f3379201264587236c",
+      "新版定稿/70-the-stamp-that-changed-the-post.md": "edfd85cea33730ba67e4210e756da1f2945f1a21bce55c7e75497cb5f0095d80"
+    },
+    "source_file_count": 140,
+    "working_script_count": 70,
+    "target_request_exactly_matches_context": true
+  },
+  "request_source_sha256": {
+    "视频/脚本/37.json": "b1b8945ccf3581df48ade5714a2d0e93e4cc6812708f95bef6f5e44439106c99",
+    "视频/工具/初稿生成/gen37.py": "5df06149c7f926aeb0506fbd1377dcbb6495b9cf74baa5602e0558a324fc08d1",
+    "新版定稿/37-dynamite-for-the-heart.md": "4933e24d2384471a96d9c8c26c15d5224a85dae98d9971a3fed15b4978dafc51",
+    "视频/制作记录/37_待改清单.md": "d1013d191063c40ede82422236c9f238338571797d4b9381ba0052d199f17075",
+    "视频/制作记录/逐句确认/37.json": "a54f421d6d6e2d8eb1b29235d8c45b0752e52d8813bffee6c5a7e3a7f8be5b0b"
+  },
+  "accepted_source": {
+    "id": "37",
+    "path": "最终版4K视频/37 - Dynamite for the Heart - 炸药大王的救心药.mp4",
+    "sha256": "ecf4b8f87a4a5a1d32ea84b9c8f397c55b695a924d01a5809368b67fd09ebb16",
+    "git_blob_sha": "4bbbf4856e2e5c9b37eda8bf780ad0847e5b3449",
+    "bytes": 13444631,
+    "width": 3840,
+    "height": 2160,
+    "summary_frames": 60,
+    "aac_adts_sha256": "60f3893386a8fc86d9f72b08b0b7eada024dcb350a7bb9bad9a37588b771d572"
+  },
+  "checker_reference_preparation": {
+    "article": "37",
+    "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+    "reference_prepared": true,
+    "acceptance": false,
+    "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+    "source_sha256": "b1b8945ccf3581df48ade5714a2d0e93e4cc6812708f95bef6f5e44439106c99",
+    "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+    "checker_program_sha256": {
+      "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+      "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+      "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+      "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+      "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+      "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+    },
+    "reference_calls": [
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-raw",
+        "method": "create",
+        "source_slice": "Dynamite for the Heart",
+        "exact_native_cache_key": "f3ca88d89375a177a11a58960bf28a8afe164281.pkl",
+        "cache_input_text_sha256": "540e24c68957c033ede1f6de8450b898a7f9051f7ff6b438ede43b544ef7a1c1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-timed",
+        "method": "create_timed",
+        "source_slice": "Dynamite for the Heart",
+        "exact_native_cache_key": "e7f44fabd8ab9896d3f124a8f213594acd55e7d2.pkl",
+        "cache_input_text_sha256": "540e24c68957c033ede1f6de8450b898a7f9051f7ff6b438ede43b544ef7a1c1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Around 1847 the Italian chemist Sobrero first made nitroglycerin, a colourless, oily liquid of acute instability.",
+        "exact_native_cache_key": "125e996149f2930863df8f711561e1f7ba384d1b.pkl",
+        "cache_input_text_sha256": "396af43226d75ac13d01916c234fa44ccc10ed8bd58fd6e6c690b5f0f11d001c",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Around 1847 the Italian chemist Sobrero first made nitroglycerin, a colourless, oily liquid of acute instability.",
+        "exact_native_cache_key": "a9251e9511f885f9896b8e3332e88e3eba27afc4.pkl",
+        "cache_input_text_sha256": "396af43226d75ac13d01916c234fa44ccc10ed8bd58fd6e6c690b5f0f11d001c",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Around 1847 the Italian chemist Sobrero first made nitroglycerin,",
+        "exact_native_cache_key": "9a66228bc6d09e20ff6086ec481ba51cccf5fe1f.pkl",
+        "cache_input_text_sha256": "1c288301996ec4584a1d7418d9d6a1bea1c8c016e57e32998b9ec9156ad37bb5",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "a colourless, oily liquid of acute instability.",
+        "exact_native_cache_key": "420a03ef135075ca04afd23df9e8532ac12a1575.pkl",
+        "cache_input_text_sha256": "dcbe64e99ed07eea5ed903804cb746e8281df2f9e924b308f7246955fa1bc5e0",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Around 1847 the Italian chemist Sobrero first made nitroglycerin,",
+        "exact_native_cache_key": "9a66228bc6d09e20ff6086ec481ba51cccf5fe1f.pkl",
+        "cache_input_text_sha256": "1c288301996ec4584a1d7418d9d6a1bea1c8c016e57e32998b9ec9156ad37bb5",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "a colourless,",
+        "exact_native_cache_key": "08b79dc6752c88683610614ab8db3fde2b3a88e8.pkl",
+        "cache_input_text_sha256": "9b2a7d482d0e118e34510b019b85b6485cb9cb91097da597dd2deb1c115d7764",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "oily liquid of acute instability.",
+        "exact_native_cache_key": "0253b1874b3ead825f2a7ea1115a855443664366.pkl",
+        "cache_input_text_sha256": "8a21046d070680a030fc1fd284ebea63eb73603601939bd1f848e51bda05e1f8",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "A mere droplet on the tongue, he reported, left his head throbbing violently for hours.",
+        "exact_native_cache_key": "266d557098cab369f39f52fff190dd0a74315039.pkl",
+        "cache_input_text_sha256": "eb0af2d9a6e2612a76650d4f6c0c2a04fb586d3668e13563d2433116a4d1b17e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "A mere droplet on the tongue, he reported, left his head throbbing violently for hours.",
+        "exact_native_cache_key": "d0262b41b422ab76d2d74253a64a455f61e6e0c1.pkl",
+        "cache_input_text_sha256": "eb0af2d9a6e2612a76650d4f6c0c2a04fb586d3668e13563d2433116a4d1b17e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "A mere droplet on the tongue, he reported,",
+        "exact_native_cache_key": "9400237a942556c304ba8112c78ce9601d45fd61.pkl",
+        "cache_input_text_sha256": "7806c7650a0ea4017c07bded47fb355d408c0c024cc8127835b5e660fc8e3aef",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "left his head throbbing violently for hours.",
+        "exact_native_cache_key": "b07d26ba3ca6f884ffa95dc01be30650a529377b.pkl",
+        "cache_input_text_sha256": "47126fe7a21017abc1d471443b1af5d6b75c41ef47f599071e66b0915e427c69",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "A mere droplet on the tongue,",
+        "exact_native_cache_key": "7d252bed3ab829587f07fae2ae53e061f84520de.pkl",
+        "cache_input_text_sha256": "b1262cbd59bb440e42044cfa792a62fef142ea5d4c851ba1e69c2cbaf1488ac8",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "he reported,",
+        "exact_native_cache_key": "ce5d0d8a6aebf54930b74913806275385b559043.pkl",
+        "cache_input_text_sha256": "f2a63b9d6ca2676499b16c7937200dda47cfe78ebae1bf93f9691d4e3eaf9f42",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "left his head throbbing violently for hours.",
+        "exact_native_cache_key": "b07d26ba3ca6f884ffa95dc01be30650a529377b.pkl",
+        "cache_input_text_sha256": "47126fe7a21017abc1d471443b1af5d6b75c41ef47f599071e66b0915e427c69",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "On 3 September 1864 a nitroglycerin shed in Stockholm exploded.",
+        "exact_native_cache_key": "2d6545c42d5ffae383dfcc80d91fb41569b8a7a8.pkl",
+        "cache_input_text_sha256": "9ad5a66beb7a429949f6a0aa9ca70674bfcc0859f206bed654eedcfdae35a1c6",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "On 3 September 1864 a nitroglycerin shed in Stockholm exploded.",
+        "exact_native_cache_key": "fe2523916f268cd156eee16f9b229077e4bb7aa1.pkl",
+        "cache_input_text_sha256": "9ad5a66beb7a429949f6a0aa9ca70674bfcc0859f206bed654eedcfdae35a1c6",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The tragic blast killed five, including Alfred Nobel's younger brother Emil.",
+        "exact_native_cache_key": "03dd7a12368f73573044940b668cae24afd08357.pkl",
+        "cache_input_text_sha256": "874b04e410793a63d13dc2884321ed8f443a6fd9ad7e255c6faf4a4dba005924",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The tragic blast killed five, including Alfred Nobel's younger brother Emil.",
+        "exact_native_cache_key": "5be6aa52d07dac4403773ac8ef81bb442b97d7ae.pkl",
+        "cache_input_text_sha256": "874b04e410793a63d13dc2884321ed8f443a6fd9ad7e255c6faf4a4dba005924",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "The tragic blast killed five,",
+        "exact_native_cache_key": "d5eeaba125b3646506936c3bc6ea1aaba6762963.pkl",
+        "cache_input_text_sha256": "d7860a99c30aa67d3b32d469a7ba9c5a2c774fb1b027c81ec91d28778261ab8d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "including Alfred Nobel's younger brother Emil.",
+        "exact_native_cache_key": "3b233240a68face81f4b3d118c0b1951fb44bf49.pkl",
+        "cache_input_text_sha256": "d630bcda139ad31fdb5c422a9079911322134ed0da6df3ed2604fe98903d4ce8",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Nobel tamed the liquid by blending it with kieselguhr, a porous earth, into a paste shaped into rods.",
+        "exact_native_cache_key": "fa95d2255a2fc0e0b79ac16934d98a655491d5ea.pkl",
+        "cache_input_text_sha256": "de54b697c2f51cda90b13dba65b9b7bef6ec01b9ac737823495d994ac79bacb1",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Nobel tamed the liquid by blending it with kieselguhr, a porous earth, into a paste shaped into rods.",
+        "exact_native_cache_key": "1bbd769d2409d644220caf6ebeaa35372c084f17.pkl",
+        "cache_input_text_sha256": "de54b697c2f51cda90b13dba65b9b7bef6ec01b9ac737823495d994ac79bacb1",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Nobel tamed the liquid",
+        "exact_native_cache_key": "ac56fa31e8ce4e683d8e84a379a9dcf500cdc90c.pkl",
+        "cache_input_text_sha256": "35c60dedf9a9be1693938907e16cd2f418e0d7e56dc4c6959c61ea055b188880",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "by blending it with kieselguhr, a porous earth, into a paste shaped into rods.",
+        "exact_native_cache_key": "8f9b617d79863d73796ac5701a5d118cade04eab.pkl",
+        "cache_input_text_sha256": "2296e04fd1381b3b32c70f85bf077950f92479b7fe1a03e0f828cefbe44e3938",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Nobel tamed the liquid by blending it with kieselguhr,",
+        "exact_native_cache_key": "82a817e1387cfc31036d5dfdf0519ce8e04ad24c.pkl",
+        "cache_input_text_sha256": "4a65fd2ec45df1be5c41985ba3619b4b06ba11b609f11f0216f5ea27f6f046db",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "a porous earth,",
+        "exact_native_cache_key": "dff4666dea53594c240268dde63fd38b7f0a5420.pkl",
+        "cache_input_text_sha256": "f9d81470aea7153ecdc74ce7289084df7aceac15fc0602f46861761d3773c896",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "into a paste shaped into rods.",
+        "exact_native_cache_key": "03ab5a3d8ee717874f2b59d75160b50f6e9d3f47.pkl",
+        "cache_input_text_sha256": "deacad79c09e3b48b43184fd76412680012c12d5dea511311e6fd4f0510783e4",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Patented in 1867 as dynamite, it was harnessed for mining, quarrying, and demolition, enriching him immensely.",
+        "exact_native_cache_key": "90091f608e47a0e95403e6f69fb13a7b51cc229c.pkl",
+        "cache_input_text_sha256": "ab6b7db8d03684723c05a7e09a858a385b9a37f5d504bb62332c81dccd7f60e1",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Patented in 1867 as dynamite, it was harnessed for mining, quarrying, and demolition, enriching him immensely.",
+        "exact_native_cache_key": "dd724cbe0d6e9478fbda71e23789a75dbdec19b7.pkl",
+        "cache_input_text_sha256": "ab6b7db8d03684723c05a7e09a858a385b9a37f5d504bb62332c81dccd7f60e1",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Patented in 1867 as dynamite,",
+        "exact_native_cache_key": "50c0994b3e5fe5c695afa12021f88d1a22838a94.pkl",
+        "cache_input_text_sha256": "9cd3b3b4517bbe08bdc3ec36c4e8aebed4fa304d169e9f73a9852f3a6c43e9f7",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "it was harnessed for mining, quarrying, and demolition,",
+        "exact_native_cache_key": "89ef0d5fb7e55cfbfa751b87744358baae919da8.pkl",
+        "cache_input_text_sha256": "2dff24e5a54ed5d29d02ccb1fd25f6d7b9e351d4b229dc4724df644eba1716eb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "enriching him immensely.",
+        "exact_native_cache_key": "ddf1cbb8e7f0b0188a30b22e9327682f80c5204a.pkl",
+        "cache_input_text_sha256": "ba8051ee18b8ce0823b768459ce46926fcf36a1dca52d248ed231c6831c2bd04",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Patented in 1867 as dynamite,",
+        "exact_native_cache_key": "50c0994b3e5fe5c695afa12021f88d1a22838a94.pkl",
+        "cache_input_text_sha256": "9cd3b3b4517bbe08bdc3ec36c4e8aebed4fa304d169e9f73a9852f3a6c43e9f7",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "it was harnessed for mining,",
+        "exact_native_cache_key": "bb32ae7b99cd67028af84f8629c0bdeb44cf2ab9.pkl",
+        "cache_input_text_sha256": "9d179818b34eddf32b4a5aa8b6d1e3de825519f4b1564a60a8505a6f302c9c02",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "quarrying,",
+        "exact_native_cache_key": "a247e43d83543a1ba2e7a944b3fb77869515e388.pkl",
+        "cache_input_text_sha256": "54222205cdc307da5aaef0b3efd3f891744e820f7c876c6b5bc9379449d98613",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and demolition,",
+        "exact_native_cache_key": "4539ddd7606df262132f2b156bb6a19202879aa1.pkl",
+        "cache_input_text_sha256": "bc3893e8a1da32288b1bd9ca773f2e59074d898f1a89062a2ea656d648eaf4da",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 5,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "enriching him immensely.",
+        "exact_native_cache_key": "ddf1cbb8e7f0b0188a30b22e9327682f80c5204a.pkl",
+        "cache_input_text_sha256": "ba8051ee18b8ce0823b768459ce46926fcf36a1dca52d248ed231c6831c2bd04",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "His 1895 testament made the fortune an endowment for prizes, first awarded in 1901.",
+        "exact_native_cache_key": "a64e98d1107aa588bb3b8a30fa6d53fa1663f39b.pkl",
+        "cache_input_text_sha256": "9d77f69d4762fe1ea93e59a60ec218f310e7ba5930d54d5462e24dddae5d6235",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "His 1895 testament made the fortune an endowment for prizes, first awarded in 1901.",
+        "exact_native_cache_key": "ccf7924cf92fd8b3c11efead7a2b104bb39b4969.pkl",
+        "cache_input_text_sha256": "9d77f69d4762fe1ea93e59a60ec218f310e7ba5930d54d5462e24dddae5d6235",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "His 1895 testament made the fortune an endowment for prizes,",
+        "exact_native_cache_key": "1f9c06f6700f052dfbb944b6f6fe50de0c3c4450.pkl",
+        "cache_input_text_sha256": "972b9f885ce832396d398deba27d19ca8a81041c927bb357cb44855fc0698bc9",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "first awarded in 1901.",
+        "exact_native_cache_key": "f05b59d38fd0abe11f1452077b56e00f129b8843.pkl",
+        "cache_input_text_sha256": "6748d24114cfba91a10fc9ccb49f81d302168aa47ddc646dcc175b35cdabf159",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "His 1895 testament made the fortune an endowment for prizes,",
+        "exact_native_cache_key": "1f9c06f6700f052dfbb944b6f6fe50de0c3c4450.pkl",
+        "cache_input_text_sha256": "972b9f885ce832396d398deba27d19ca8a81041c927bb357cb44855fc0698bc9",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "first awarded in 1901.",
+        "exact_native_cache_key": "f05b59d38fd0abe11f1452077b56e00f129b8843.pkl",
+        "cache_input_text_sha256": "6748d24114cfba91a10fc9ccb49f81d302168aa47ddc646dcc175b35cdabf159",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Nitroglycerin had side-effects.",
+        "exact_native_cache_key": "dca0a82dba5d62ae66410373e78fd35c53a64c1b.pkl",
+        "cache_input_text_sha256": "03615b6bd54f156fecdb620634b9d7a1fbd77c8d0cb90adb400a21ef847f4b3f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Nitroglycerin had side-effects.",
+        "exact_native_cache_key": "2766a8639b9d58766c2c498200c5c302dc94ce29.pkl",
+        "cache_input_text_sha256": "03615b6bd54f156fecdb620634b9d7a1fbd77c8d0cb90adb400a21ef847f4b3f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Factory operatives suffered racking headaches, and their tolerance, built over the week, ebbed at weekends.",
+        "exact_native_cache_key": "61a68c84c511a0a6c9cad8589ff77960174cac89.pkl",
+        "cache_input_text_sha256": "2e9939f8fec7114f35c0226b5f9eb26f4993946126470e152a47cb1f6d4973d8",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Factory operatives suffered racking headaches, and their tolerance, built over the week, ebbed at weekends.",
+        "exact_native_cache_key": "c9662948b8de14ae6ffe0dcf1b3cc346062db075.pkl",
+        "cache_input_text_sha256": "2e9939f8fec7114f35c0226b5f9eb26f4993946126470e152a47cb1f6d4973d8",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Factory operatives suffered racking headaches,",
+        "exact_native_cache_key": "c68b2bea693e24c4589827baf8cfbc8738c208e0.pkl",
+        "cache_input_text_sha256": "f96ac2f827eaabacb4ed4535b2ec6ceb03e2c7c6184b1ba1b76d96cf85b95136",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and their tolerance, built over the week, ebbed at weekends.",
+        "exact_native_cache_key": "94ff5f7c4338d62d06d806e06a2f5daedcc03401.pkl",
+        "cache_input_text_sha256": "facaca1c666811877a3b8d92b075917b98f39ecdf49c076268ce07a050f259fc",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Factory operatives suffered racking headaches,",
+        "exact_native_cache_key": "c68b2bea693e24c4589827baf8cfbc8738c208e0.pkl",
+        "cache_input_text_sha256": "f96ac2f827eaabacb4ed4535b2ec6ceb03e2c7c6184b1ba1b76d96cf85b95136",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and their tolerance,",
+        "exact_native_cache_key": "5596a96ac7f5567595263c130f8e08a62a0d4fd7.pkl",
+        "cache_input_text_sha256": "60174736e9952951eb34689477b8229a1db116344c2bc4e0ada917f86978a94a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "built over the week,",
+        "exact_native_cache_key": "05510cc06e38ad6cee8948c9529751e760aa5c99.pkl",
+        "cache_input_text_sha256": "65d78844c905a3c41159832c711c8f517ecd4d6537e9595fad3f0f1d235986a2",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "ebbed at weekends.",
+        "exact_native_cache_key": "14f6e3d844838783aa041d59295f4e11ab4c7407.pkl",
+        "cache_input_text_sha256": "83f9621aed22ac8e9659b4ce57e64641c4c7e679c5822bb5cc52a5fefe82a108",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Mondays brought a recurrence, with dizziness and palpitations, hence the name Monday disease.",
+        "exact_native_cache_key": "9f00409fa326fc77db7acac7eec0bb312c9fd4eb.pkl",
+        "cache_input_text_sha256": "4a8e62f173506b9a26cce7d0c96063f64a28acae0c81a72d1d0d45f66b4359d9",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Mondays brought a recurrence, with dizziness and palpitations, hence the name Monday disease.",
+        "exact_native_cache_key": "cdd9e8952565596748324179d4167f6e135faafd.pkl",
+        "cache_input_text_sha256": "4a8e62f173506b9a26cce7d0c96063f64a28acae0c81a72d1d0d45f66b4359d9",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Mondays brought a recurrence, with dizziness and palpitations,",
+        "exact_native_cache_key": "23eb60fa9dfc0c9e966cdeca8c3a4c638d604a05.pkl",
+        "cache_input_text_sha256": "eb0325e4526f80efd7f834f15a09a122013226e3d93e7d40d3e18cc3480d8324",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "hence the name Monday disease.",
+        "exact_native_cache_key": "af39e99740dd2d8bacfadce0a5a0363027a76981.pkl",
+        "cache_input_text_sha256": "22de33d5280b62841778726666f7ae16dfdf89c7c1e539595509c89196dfdb0b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Mondays brought a recurrence,",
+        "exact_native_cache_key": "d528483ef07b5c7d1d283df35f013b3cd86d4530.pkl",
+        "cache_input_text_sha256": "1a4dfb05be026ba04fc092d97b2620e1558d5143c2b23151496f975fd35244a1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "with dizziness and palpitations,",
+        "exact_native_cache_key": "cdfbb81960bb4ddabcd6b41fe7254b78d5c44698.pkl",
+        "cache_input_text_sha256": "7a734fa39f2829e707ddf704c391c0a985bfc8e20ed70210d027bf079e139a51",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "hence the name Monday disease.",
+        "exact_native_cache_key": "af39e99740dd2d8bacfadce0a5a0363027a76981.pkl",
+        "cache_input_text_sha256": "22de33d5280b62841778726666f7ae16dfdf89c7c1e539595509c89196dfdb0b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "In 1879 William Murrell reported in The Lancet on its therapeutic use against angina pectoris, attacks of chest pain.",
+        "exact_native_cache_key": "19fca7c8ac2969d3ee300b6eac63bd579a174474.pkl",
+        "cache_input_text_sha256": "c9884e11fa5ee623d1236352b3ae7eb2a8b97cd67f8d298ea8696c0cba5a655c",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "In 1879 William Murrell reported in The Lancet on its therapeutic use against angina pectoris, attacks of chest pain.",
+        "exact_native_cache_key": "0b4d0da8ca8c1b375578ecceffd80c72b2b0d78f.pkl",
+        "cache_input_text_sha256": "c9884e11fa5ee623d1236352b3ae7eb2a8b97cd67f8d298ea8696c0cba5a655c",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "In 1879 William Murrell reported in The Lancet on its therapeutic use against angina pectoris,",
+        "exact_native_cache_key": "b8afaec68a41e8a8577f5054b569a1ef38ea0a52.pkl",
+        "cache_input_text_sha256": "d7a77ac6e2094bbacbba6e1eb0fc2f652098aee6f8a97f302f47d6fd2d4f9a88",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "attacks of chest pain.",
+        "exact_native_cache_key": "2bffeeab5f18e42f9b2273cce1d2ec66795aab81.pkl",
+        "cache_input_text_sha256": "45c18482d874579b0c81336977bfe0f7462732eee0cfd84a48d20acab69f51ac",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "In 1879 William Murrell reported in The Lancet on its therapeutic use against angina pectoris,",
+        "exact_native_cache_key": "b8afaec68a41e8a8577f5054b569a1ef38ea0a52.pkl",
+        "cache_input_text_sha256": "d7a77ac6e2094bbacbba6e1eb0fc2f652098aee6f8a97f302f47d6fd2d4f9a88",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "attacks of chest pain.",
+        "exact_native_cache_key": "2bffeeab5f18e42f9b2273cce1d2ec66795aab81.pkl",
+        "cache_input_text_sha256": "45c18482d874579b0c81336977bfe0f7462732eee0cfd84a48d20acab69f51ac",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "On 25 October 1896 Nobel, who had angina, wrote to his aide that by an irony of fate doctors had prescribed him nitroglycerin to take internally.",
+        "exact_native_cache_key": "2f443f0b49f27f601ffa34e0821fe474411493ef.pkl",
+        "cache_input_text_sha256": "e0c68fc051446760534e2d7467ef2d43544041812440d852ffc6db4bea0b657c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "On 25 October 1896 Nobel, who had angina, wrote to his aide that by an irony of fate doctors had prescribed him nitroglycerin to take internally.",
+        "exact_native_cache_key": "13e495658d10b43214605bde7f5c0144f20c222f.pkl",
+        "cache_input_text_sha256": "e0c68fc051446760534e2d7467ef2d43544041812440d852ffc6db4bea0b657c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "On 25 October 1896 Nobel, who had angina,",
+        "exact_native_cache_key": "0ff3a085702c8f8954e3674b89cdca3c20514c03.pkl",
+        "cache_input_text_sha256": "9185ee49eb062604adbe50910267a3fcdb64689ef473923b7bbde1e3106f2217",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "wrote to his aide that by an irony of fate",
+        "exact_native_cache_key": "c1476534603cede51328a4f63598b984a61f88a6.pkl",
+        "cache_input_text_sha256": "449b6354de99beb681ce503ad0dd4091dd55ee09140527ddf1e02b9421d7e382",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "doctors had prescribed him nitroglycerin to take internally.",
+        "exact_native_cache_key": "8049ca06573ac0cf8818d3f7ec08179c7d716ad7.pkl",
+        "cache_input_text_sha256": "31d55b4b11ec988fd1b76af61abc922d75292e9f173740ed69415689819f8cd4",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "On 25 October 1896 Nobel,",
+        "exact_native_cache_key": "b7516d6d013601183b8fcd04a48d81bd97b9e4ef.pkl",
+        "cache_input_text_sha256": "36cb541ea332d3ea6c872aa7ee6b9139d01f3bd41c6795f7d360aa21182ad3eb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "who had angina,",
+        "exact_native_cache_key": "1600e40184a4b49fd6c76c792c9834ac4686a779.pkl",
+        "cache_input_text_sha256": "9c11ec53236e8fa0083640aa03295210f04d0bd7d536c53c0d8378f6284a5b82",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "wrote to his aide that by an irony of fate doctors had prescribed him nitroglycerin to take internally.",
+        "exact_native_cache_key": "98bd8d1f8cc76a376165d40a8cdff6ceb21ab3bc.pkl",
+        "cache_input_text_sha256": "0c7332cdb04e9ad6ede00e082b3d2b9defd7dadcd92208ff1dd5734a9271d07b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Its alias, Trinitrin, was chosen, he explained, to avoid frightening pharmacists or the public.",
+        "exact_native_cache_key": "8aace1d4bd55081dbd3d74ff0152603eacf9c22b.pkl",
+        "cache_input_text_sha256": "e7cfe7ef02a2197f8ba58eb4de073f98433b684d16f4d0b8315791028ea5e056",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Its alias, Trinitrin, was chosen, he explained, to avoid frightening pharmacists or the public.",
+        "exact_native_cache_key": "8c0b5a6c4344ec3e9c601224e002e2b336cfab3f.pkl",
+        "cache_input_text_sha256": "e7cfe7ef02a2197f8ba58eb4de073f98433b684d16f4d0b8315791028ea5e056",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Its alias, Trinitrin, was chosen, he explained,",
+        "exact_native_cache_key": "3b1103c07d6158fe647a9c4517c2be5e84b97c15.pkl",
+        "cache_input_text_sha256": "1d3525eaeff37a7a44b47dc6fad40eb0fe24fa592954c5dcd2a18db85035e4f6",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "to avoid frightening pharmacists or the public.",
+        "exact_native_cache_key": "f58ee580236ee7066179e94f5ef1fdba9588a797.pkl",
+        "cache_input_text_sha256": "d693edbee5cc62bc56d0c13e3faa6569dbf3285e3b45115397cb2959bcd61821",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Its alias,",
+        "exact_native_cache_key": "a2772c6787d328f27ac9b259e7758213935a9543.pkl",
+        "cache_input_text_sha256": "ea46230e647238f5dc2f98429dafe7c43256498898752c772dd02dce019e4ba4",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Trinitrin,",
+        "exact_native_cache_key": "2d056b2a4fb7e276817a8436ab4db3acebe394bb.pkl",
+        "cache_input_text_sha256": "c7651c5f1baf1edbc1b5b701d7adc7e42b915ae46bc6e498a4714d879d4d3f2a",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "was chosen,",
+        "exact_native_cache_key": "845b55c1afe95ac254bb4fec09225ff484973300.pkl",
+        "cache_input_text_sha256": "90b5789828c1c452a108860e9ab9b2878fc15a38d641a3da51dd4634f13f8d40",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "he explained,",
+        "exact_native_cache_key": "4fc889cfc021024df20655cd452572ffd904f673.pkl",
+        "cache_input_text_sha256": "4a6469c669025475504d14c2f257b46be38a97f929cc3308d79957a33e816377",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 5,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "to avoid frightening pharmacists or the public.",
+        "exact_native_cache_key": "f58ee580236ee7066179e94f5ef1fdba9588a797.pkl",
+        "cache_input_text_sha256": "d693edbee5cc62bc56d0c13e3faa6569dbf3285e3b45115397cb2959bcd61821",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "He did not comply.",
+        "exact_native_cache_key": "198e77b8aafa8bf65c60c8b2da831d99a1b4b838.pkl",
+        "cache_input_text_sha256": "b48c09b0bef902093bfb1b0314540b85ed67dd212db5a33e942042c0fc3b24af",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "He did not comply.",
+        "exact_native_cache_key": "3fa991c38297401734f0cb449490d6f0c075439d.pkl",
+        "cache_input_text_sha256": "b48c09b0bef902093bfb1b0314540b85ed67dd212db5a33e942042c0fc3b24af",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Partly paralysed by a cerebral haemorrhage, he died at his San Remo villa on 10 December 1896.",
+        "exact_native_cache_key": "1d885500e04d2140ec99c49e4ac7ad127fc4d363.pkl",
+        "cache_input_text_sha256": "625154f14814ae1fac2f3d99295f4143f1b25c9b6fba1d2ebb08a9ef0709a108",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Partly paralysed by a cerebral haemorrhage, he died at his San Remo villa on 10 December 1896.",
+        "exact_native_cache_key": "bdf476e6a045e9463f297736ba312e4c327d0272.pkl",
+        "cache_input_text_sha256": "625154f14814ae1fac2f3d99295f4143f1b25c9b6fba1d2ebb08a9ef0709a108",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Partly paralysed by a cerebral haemorrhage,",
+        "exact_native_cache_key": "0fbead2ff5efbfc56667f56d6ad612e5eba289cb.pkl",
+        "cache_input_text_sha256": "6bb56ad2e148d8ea107024f7af08663190d660c72dc64a098a1348c2fd43b41e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "he died at his San Remo villa on 10 December 1896.",
+        "exact_native_cache_key": "5130a1f11042b0066ae10781b80df24eba5c47a2.pkl",
+        "cache_input_text_sha256": "39f92e3dd2a267146f39b2be5900dee732190440dd1055f7516cf070b4e4f9bf",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Partly paralysed by a cerebral haemorrhage,",
+        "exact_native_cache_key": "0fbead2ff5efbfc56667f56d6ad612e5eba289cb.pkl",
+        "cache_input_text_sha256": "6bb56ad2e148d8ea107024f7af08663190d660c72dc64a098a1348c2fd43b41e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "he died at his San Remo villa on 10 December 1896.",
+        "exact_native_cache_key": "5130a1f11042b0066ae10781b80df24eba5c47a2.pkl",
+        "cache_input_text_sha256": "39f92e3dd2a267146f39b2be5900dee732190440dd1055f7516cf070b4e4f9bf",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "In 1977 Murad ascertained that nitroglycerin releases nitric oxide, which widens blood vessels.",
+        "exact_native_cache_key": "5018a1a4cf5ebb03eb47479def26fde6227696bf.pkl",
+        "cache_input_text_sha256": "73d8b9d531a60130e9ceed340ba973387faa39201c0bd3191b2cd7452b20495a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "In 1977 Murad ascertained that nitroglycerin releases nitric oxide, which widens blood vessels.",
+        "exact_native_cache_key": "6396b67cad575409d8cb2481f6925b16060c0fd9.pkl",
+        "cache_input_text_sha256": "73d8b9d531a60130e9ceed340ba973387faa39201c0bd3191b2cd7452b20495a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "In 1977 Murad ascertained that nitroglycerin releases nitric oxide,",
+        "exact_native_cache_key": "b28f1dd30d28edb36349a9c089e03546dfc7900b.pkl",
+        "cache_input_text_sha256": "ff5c3a8b1aca54832ee6610667891a7ce0fbd298f623866b4fe1c5a588f6974d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "which widens blood vessels.",
+        "exact_native_cache_key": "27c870c79eba431f16543b628b041d915d2aa9d5.pkl",
+        "cache_input_text_sha256": "9f89986d886b4a33574868a52c245625ff4957bae426deb0bf40756529b13cfd",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "In 1977 Murad ascertained that nitroglycerin releases nitric oxide,",
+        "exact_native_cache_key": "b28f1dd30d28edb36349a9c089e03546dfc7900b.pkl",
+        "cache_input_text_sha256": "ff5c3a8b1aca54832ee6610667891a7ce0fbd298f623866b4fe1c5a588f6974d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "which widens blood vessels.",
+        "exact_native_cache_key": "27c870c79eba431f16543b628b041d915d2aa9d5.pkl",
+        "cache_input_text_sha256": "9f89986d886b4a33574868a52c245625ff4957bae426deb0bf40756529b13cfd",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Furchgott found an unidentified relaxing factor in vascular linings in 1980, and Ignarro recognised it as nitric oxide in 1986.",
+        "exact_native_cache_key": "d7770b668522d249b07c12d9f3895836c953e8f1.pkl",
+        "cache_input_text_sha256": "aaddafbfa915bec4948ad047af78122f47f21cc3c808856f3484b123a02d6599",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Furchgott found an unidentified relaxing factor in vascular linings in 1980, and Ignarro recognised it as nitric oxide in 1986.",
+        "exact_native_cache_key": "93ab17402647638935765be0c1eb4225f9af3c7d.pkl",
+        "cache_input_text_sha256": "aaddafbfa915bec4948ad047af78122f47f21cc3c808856f3484b123a02d6599",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Furchgott found an unidentified relaxing factor in vascular linings in 1980,",
+        "exact_native_cache_key": "1e821bb149a1d8f81c2be30d0111a3c8b6262893.pkl",
+        "cache_input_text_sha256": "799730c6f6c9b27aa0174937093ad1f3c18d8ab66734c09f56b44948331e3707",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and Ignarro recognised it as nitric oxide in 1986.",
+        "exact_native_cache_key": "8efc79b22a391e42da24dfa9358a33b77bf06e8c.pkl",
+        "cache_input_text_sha256": "bac899639d29b58100ce1d87dbf777089db987938aaed7bd96f68ba38f825a11",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Furchgott found an unidentified relaxing factor in vascular linings in 1980,",
+        "exact_native_cache_key": "1e821bb149a1d8f81c2be30d0111a3c8b6262893.pkl",
+        "cache_input_text_sha256": "799730c6f6c9b27aa0174937093ad1f3c18d8ab66734c09f56b44948331e3707",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and Ignarro recognised it as nitric oxide in 1986.",
+        "exact_native_cache_key": "8efc79b22a391e42da24dfa9358a33b77bf06e8c.pkl",
+        "cache_input_text_sha256": "bac899639d29b58100ce1d87dbf777089db987938aaed7bd96f68ba38f825a11",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The trio shared the 1998 Nobel Prize in Physiology or Medicine.",
+        "exact_native_cache_key": "86a6477fd178cb56672af8c617dd6a515601d77b.pkl",
+        "cache_input_text_sha256": "ed85041890a65f47c11823511abcba7978f1e875835aa32e64da05f5c2fd305d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The trio shared the 1998 Nobel Prize in Physiology or Medicine.",
+        "exact_native_cache_key": "dcc7f87ff535bf2646d1b73e1931393afd9d7907.pkl",
+        "cache_input_text_sha256": "ed85041890a65f47c11823511abcba7978f1e875835aa32e64da05f5c2fd305d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Its presentation speech, on 10 December, the anniversary of Nobel's death, quoted his ironic letter.",
+        "exact_native_cache_key": "498a8b592f6964064ca9993187ca2a5cdceea460.pkl",
+        "cache_input_text_sha256": "f35982df6bd01a36f368b849e62f7dc4d8d79a927cfd0f8b39453ace06262383",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Its presentation speech, on 10 December, the anniversary of Nobel's death, quoted his ironic letter.",
+        "exact_native_cache_key": "196d3df39d63087732c0d11a9ffa422952649233.pkl",
+        "cache_input_text_sha256": "f35982df6bd01a36f368b849e62f7dc4d8d79a927cfd0f8b39453ace06262383",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Its presentation speech, on 10 December, the anniversary of Nobel's death,",
+        "exact_native_cache_key": "f05ab6670c208812a66bdc1a630c5ab130501136.pkl",
+        "cache_input_text_sha256": "30f0aad554d2da1db748a855c65230f207455b9d64dccbe8046773ea387dc4a4",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "quoted his ironic letter.",
+        "exact_native_cache_key": "2b7f94589cb1ca25e3e51a1cf06a38c61212af1a.pkl",
+        "cache_input_text_sha256": "2f3fdc0a5dd89d8322a86ce2541013c3be94e7cb61201ca2b98c7cd45f0ddb07",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Its presentation speech,",
+        "exact_native_cache_key": "3eb873e9e81a62d3bfa296a3c56b4ea171b6ac03.pkl",
+        "cache_input_text_sha256": "8b724f3e29ecd59b42883b5b835e73368f6e87d1d32b68bf07ccd531375472ff",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "on 10 December,",
+        "exact_native_cache_key": "5a9c0eb5fb36706b18ec777642b1ab177e6468cc.pkl",
+        "cache_input_text_sha256": "bbb0428e632ef78ec53771a0c7cf8558bbfa7a806e2bc21444b15c67ce6e9cbb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "the anniversary of Nobel's death,",
+        "exact_native_cache_key": "053efb494c01deb5f76336f86fcfb49b54017a8d.pkl",
+        "cache_input_text_sha256": "29ac4c02ab4655cad7acdcb9dd8b54a1a42768c0194b84cf9962e9672ec9e0cd",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "quoted his ironic letter.",
+        "exact_native_cache_key": "2b7f94589cb1ca25e3e51a1cf06a38c61212af1a.pkl",
+        "cache_input_text_sha256": "2f3fdc0a5dd89d8322a86ce2541013c3be94e7cb61201ca2b98c7cd45f0ddb07",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      }
+    ],
+    "unique_reference_key_count": 97,
+    "raw_mother_cache_scalar_manifest": [
+      {
+        "exact_native_cache_key": "f3ca88d89375a177a11a58960bf28a8afe164281.pkl",
+        "pkl_sha256": "e7ceed9976c83565a4113c681b704054a399ec366e46bd4bce083bbb1c481178",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "标题",
+            "piece": null,
+            "reference_kind": "title-default-raw",
+            "method": "create",
+            "source_slice": "Dynamite for the Heart",
+            "exact_native_cache_key": "f3ca88d89375a177a11a58960bf28a8afe164281.pkl",
+            "cache_input_text_sha256": "540e24c68957c033ede1f6de8450b898a7f9051f7ff6b438ede43b544ef7a1c1",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "e7ceed9976c83565",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          34304
+        ],
+        "unprocessed_array_sha256": "8ec2565b572e3ea4181d31367c25396cec383cb602738e79b11f22b3f0d3e37d"
+      },
+      {
+        "exact_native_cache_key": "125e996149f2930863df8f711561e1f7ba384d1b.pkl",
+        "pkl_sha256": "7ca7f3ecd2a6df8ea0a353739ec39678ef4be29ea650c73eef31c89cf6d01753",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Around 1847 the Italian chemist Sobrero first made nitroglycerin, a colourless, oily liquid of acute instability.",
+            "exact_native_cache_key": "125e996149f2930863df8f711561e1f7ba384d1b.pkl",
+            "cache_input_text_sha256": "396af43226d75ac13d01916c234fa44ccc10ed8bd58fd6e6c690b5f0f11d001c",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "7ca7f3ecd2a6df8e",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          232960
+        ],
+        "unprocessed_array_sha256": "0069084906e48da8fd0853edb14c2b8a63c9745099a6b07a11e9329fe0860a80"
+      },
+      {
+        "exact_native_cache_key": "9a66228bc6d09e20ff6086ec481ba51cccf5fe1f.pkl",
+        "pkl_sha256": "ae9c9a8e7cf0b03cb44d59ceb2307004fbf3b481d9f979499f126060aa7085b3",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Around 1847 the Italian chemist Sobrero first made nitroglycerin,",
+            "exact_native_cache_key": "9a66228bc6d09e20ff6086ec481ba51cccf5fe1f.pkl",
+            "cache_input_text_sha256": "1c288301996ec4584a1d7418d9d6a1bea1c8c016e57e32998b9ec9156ad37bb5",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S1",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Around 1847 the Italian chemist Sobrero first made nitroglycerin,",
+            "exact_native_cache_key": "9a66228bc6d09e20ff6086ec481ba51cccf5fe1f.pkl",
+            "cache_input_text_sha256": "1c288301996ec4584a1d7418d9d6a1bea1c8c016e57e32998b9ec9156ad37bb5",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "ae9c9a8e7cf0b03c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          140288
+        ],
+        "unprocessed_array_sha256": "98edf659f385c35c233706b5dcec27955122ce97d1ba99424ffdf25f7d54ab6f"
+      },
+      {
+        "exact_native_cache_key": "420a03ef135075ca04afd23df9e8532ac12a1575.pkl",
+        "pkl_sha256": "81280e6049a3dc8525f530b6f47eea3b78b1de1c0cdc450aeb59cb8b636d39b6",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "a colourless, oily liquid of acute instability.",
+            "exact_native_cache_key": "420a03ef135075ca04afd23df9e8532ac12a1575.pkl",
+            "cache_input_text_sha256": "dcbe64e99ed07eea5ed903804cb746e8281df2f9e924b308f7246955fa1bc5e0",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "81280e6049a3dc85",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          71680
+        ],
+        "unprocessed_array_sha256": "51bc7c3c3706a0413573d1fad2b769860f1e592daf76bb29ad41a038d12b0e29"
+      },
+      {
+        "exact_native_cache_key": "08b79dc6752c88683610614ab8db3fde2b3a88e8.pkl",
+        "pkl_sha256": "95c61bb691ad224fb3061829c4660c16326a1fc33fa11133fef4874ef51961bb",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "a colourless,",
+            "exact_native_cache_key": "08b79dc6752c88683610614ab8db3fde2b3a88e8.pkl",
+            "cache_input_text_sha256": "9b2a7d482d0e118e34510b019b85b6485cb9cb91097da597dd2deb1c115d7764",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "95c61bb691ad224f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          22016
+        ],
+        "unprocessed_array_sha256": "739a0c273b988961f6ad7a346ef275abd912631380b22ddac1e249ce45d920ef"
+      },
+      {
+        "exact_native_cache_key": "0253b1874b3ead825f2a7ea1115a855443664366.pkl",
+        "pkl_sha256": "21af20296101690febd19b7f93958f5bf33ed1d910b8897951ddd4f4bba78c5b",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "oily liquid of acute instability.",
+            "exact_native_cache_key": "0253b1874b3ead825f2a7ea1115a855443664366.pkl",
+            "cache_input_text_sha256": "8a21046d070680a030fc1fd284ebea63eb73603601939bd1f848e51bda05e1f8",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "21af20296101690f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          55808
+        ],
+        "unprocessed_array_sha256": "17670b228a754565e51ef732c292dfc2fb824d066bbfbe269e01ac4d92a1cb15"
+      },
+      {
+        "exact_native_cache_key": "266d557098cab369f39f52fff190dd0a74315039.pkl",
+        "pkl_sha256": "3f9001f5228d84d604a80895874573af35867798d911489e822288871569fb1e",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "A mere droplet on the tongue, he reported, left his head throbbing violently for hours.",
+            "exact_native_cache_key": "266d557098cab369f39f52fff190dd0a74315039.pkl",
+            "cache_input_text_sha256": "eb0af2d9a6e2612a76650d4f6c0c2a04fb586d3668e13563d2433116a4d1b17e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "3f9001f5228d84d6",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          135680
+        ],
+        "unprocessed_array_sha256": "94e1cab842dc05b74a1e8bf64d4ea25c2b6e5c3763faa13088bf05aabda84a8b"
+      },
+      {
+        "exact_native_cache_key": "9400237a942556c304ba8112c78ce9601d45fd61.pkl",
+        "pkl_sha256": "ca990029f3890d46ce539c6b5033eb66a3fa6f4df207270702352534ac0ea25c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "A mere droplet on the tongue, he reported,",
+            "exact_native_cache_key": "9400237a942556c304ba8112c78ce9601d45fd61.pkl",
+            "cache_input_text_sha256": "7806c7650a0ea4017c07bded47fb355d408c0c024cc8127835b5e660fc8e3aef",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "ca990029f3890d46",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          60928
+        ],
+        "unprocessed_array_sha256": "6baafa61e3d8c39c0b3264332b472e4497d3568ec3811b431b53ea5697c7f1ae"
+      },
+      {
+        "exact_native_cache_key": "b07d26ba3ca6f884ffa95dc01be30650a529377b.pkl",
+        "pkl_sha256": "c3f802a1e7ad11aa7daadfe571bf6fac4ba15655cc29a7d30bbc8c25654e6746",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "left his head throbbing violently for hours.",
+            "exact_native_cache_key": "b07d26ba3ca6f884ffa95dc01be30650a529377b.pkl",
+            "cache_input_text_sha256": "47126fe7a21017abc1d471443b1af5d6b75c41ef47f599071e66b0915e427c69",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S2",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "left his head throbbing violently for hours.",
+            "exact_native_cache_key": "b07d26ba3ca6f884ffa95dc01be30650a529377b.pkl",
+            "cache_input_text_sha256": "47126fe7a21017abc1d471443b1af5d6b75c41ef47f599071e66b0915e427c69",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "c3f802a1e7ad11aa",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          66048
+        ],
+        "unprocessed_array_sha256": "ab305de47380b6042e029b1801e1859cb7e206985b4a4cabf9d3784aa51f5686"
+      },
+      {
+        "exact_native_cache_key": "7d252bed3ab829587f07fae2ae53e061f84520de.pkl",
+        "pkl_sha256": "4a07116c1e467e1799943368fbcc0b8e5bb2e0b6b38822f97dab61a0de06ae91",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "A mere droplet on the tongue,",
+            "exact_native_cache_key": "7d252bed3ab829587f07fae2ae53e061f84520de.pkl",
+            "cache_input_text_sha256": "b1262cbd59bb440e42044cfa792a62fef142ea5d4c851ba1e69c2cbaf1488ac8",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "4a07116c1e467e17",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          39936
+        ],
+        "unprocessed_array_sha256": "5d32619d42ab36cc70aa543308188fbf073358eca43e94081143a654df92d4e0"
+      },
+      {
+        "exact_native_cache_key": "ce5d0d8a6aebf54930b74913806275385b559043.pkl",
+        "pkl_sha256": "4b77688aa7dbf584c8e934a40897820dc18c491f40cc3f5c445c7ad626bfaf0a",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "he reported,",
+            "exact_native_cache_key": "ce5d0d8a6aebf54930b74913806275385b559043.pkl",
+            "cache_input_text_sha256": "f2a63b9d6ca2676499b16c7937200dda47cfe78ebae1bf93f9691d4e3eaf9f42",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "4b77688aa7dbf584",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          24064
+        ],
+        "unprocessed_array_sha256": "47d5b8c6f9c26ba701b51dfdef04f199e88a3c048bf18a262bdcfaa6463ed8dd"
+      },
+      {
+        "exact_native_cache_key": "2d6545c42d5ffae383dfcc80d91fb41569b8a7a8.pkl",
+        "pkl_sha256": "7e1e560920182dcd98b729aa47d420b5e21dd6932d36958bbb8c9280dae9171f",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "On 3 September 1864 a nitroglycerin shed in Stockholm exploded.",
+            "exact_native_cache_key": "2d6545c42d5ffae383dfcc80d91fb41569b8a7a8.pkl",
+            "cache_input_text_sha256": "9ad5a66beb7a429949f6a0aa9ca70674bfcc0859f206bed654eedcfdae35a1c6",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "7e1e560920182dcd",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          151040
+        ],
+        "unprocessed_array_sha256": "2f17da8aea100c83c1f508be655586231816010f42ba660cad07bf099bd2e33f"
+      },
+      {
+        "exact_native_cache_key": "03dd7a12368f73573044940b668cae24afd08357.pkl",
+        "pkl_sha256": "0b02d6d243d4e77ee2a383a988510a45383f7719ae1d2d9138147a261c4331c8",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The tragic blast killed five, including Alfred Nobel's younger brother Emil.",
+            "exact_native_cache_key": "03dd7a12368f73573044940b668cae24afd08357.pkl",
+            "cache_input_text_sha256": "874b04e410793a63d13dc2884321ed8f443a6fd9ad7e255c6faf4a4dba005924",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "0b02d6d243d4e77e",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          124416
+        ],
+        "unprocessed_array_sha256": "3f6e2a5c58b62e58f7f62901c1f9a9b41c9f0fef26a48a8060e8fbae762825fe"
+      },
+      {
+        "exact_native_cache_key": "d5eeaba125b3646506936c3bc6ea1aaba6762963.pkl",
+        "pkl_sha256": "2c77be73bda0e83ebe9d40e62dab998d9c4e4ee15f40785af216f19f8ea04087",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "The tragic blast killed five,",
+            "exact_native_cache_key": "d5eeaba125b3646506936c3bc6ea1aaba6762963.pkl",
+            "cache_input_text_sha256": "d7860a99c30aa67d3b32d469a7ba9c5a2c774fb1b027c81ec91d28778261ab8d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "2c77be73bda0e83e",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          44544
+        ],
+        "unprocessed_array_sha256": "8c47d58156ed9f9d69b454fd8ad5b654e151e56916984a61a07101a8633fe4cc"
+      },
+      {
+        "exact_native_cache_key": "3b233240a68face81f4b3d118c0b1951fb44bf49.pkl",
+        "pkl_sha256": "6da636ec0d381881d31b57e3ca03741770f891c03afdd1631123e16a3f275623",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "including Alfred Nobel's younger brother Emil.",
+            "exact_native_cache_key": "3b233240a68face81f4b3d118c0b1951fb44bf49.pkl",
+            "cache_input_text_sha256": "d630bcda139ad31fdb5c422a9079911322134ed0da6df3ed2604fe98903d4ce8",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "6da636ec0d381881",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          72192
+        ],
+        "unprocessed_array_sha256": "f0df8732a20b566c1a3848a6330f748c354090074febc1bd1fb7cce3990ec89d"
+      },
+      {
+        "exact_native_cache_key": "fa95d2255a2fc0e0b79ac16934d98a655491d5ea.pkl",
+        "pkl_sha256": "aca3ee89bf2f171ddcc4af91609df32bea111e433c7d5912ef313c76b52737b0",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Nobel tamed the liquid by blending it with kieselguhr, a porous earth, into a paste shaped into rods.",
+            "exact_native_cache_key": "fa95d2255a2fc0e0b79ac16934d98a655491d5ea.pkl",
+            "cache_input_text_sha256": "de54b697c2f51cda90b13dba65b9b7bef6ec01b9ac737823495d994ac79bacb1",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "aca3ee89bf2f171d",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          166400
+        ],
+        "unprocessed_array_sha256": "202424ee2ad116c2797377a85d7ff6a82ea7b52a88547939158891461b4cdc77"
+      },
+      {
+        "exact_native_cache_key": "ac56fa31e8ce4e683d8e84a379a9dcf500cdc90c.pkl",
+        "pkl_sha256": "85ecd32ecd65920cff73e270dfcf3ece67d3aef23e789d958d4d91512fa46ddc",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Nobel tamed the liquid",
+            "exact_native_cache_key": "ac56fa31e8ce4e683d8e84a379a9dcf500cdc90c.pkl",
+            "cache_input_text_sha256": "35c60dedf9a9be1693938907e16cd2f418e0d7e56dc4c6959c61ea055b188880",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "85ecd32ecd65920c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          33792
+        ],
+        "unprocessed_array_sha256": "a4190d1ddcfe668183b0a03e6d26cd45ed9e635ad767ecc26456dd73b2080103"
+      },
+      {
+        "exact_native_cache_key": "8f9b617d79863d73796ac5701a5d118cade04eab.pkl",
+        "pkl_sha256": "23d3019b22ab6426032e01cd9fe13752d9e4b2f72856faff3c6e8bf6435b1f0d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "by blending it with kieselguhr, a porous earth, into a paste shaped into rods.",
+            "exact_native_cache_key": "8f9b617d79863d73796ac5701a5d118cade04eab.pkl",
+            "cache_input_text_sha256": "2296e04fd1381b3b32c70f85bf077950f92479b7fe1a03e0f828cefbe44e3938",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "23d3019b22ab6426",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          121856
+        ],
+        "unprocessed_array_sha256": "c2dcced34bd7da43da5887936b4e44cf7f8b600bd3c45bc7a4d16c5a82f9a32b"
+      },
+      {
+        "exact_native_cache_key": "82a817e1387cfc31036d5dfdf0519ce8e04ad24c.pkl",
+        "pkl_sha256": "2b7cd3bc75fd4266ac5756dace70f868a2d152b7f95bc1bd9205158e91b59d1e",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Nobel tamed the liquid by blending it with kieselguhr,",
+            "exact_native_cache_key": "82a817e1387cfc31036d5dfdf0519ce8e04ad24c.pkl",
+            "cache_input_text_sha256": "4a65fd2ec45df1be5c41985ba3619b4b06ba11b609f11f0216f5ea27f6f046db",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "2b7cd3bc75fd4266",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          78336
+        ],
+        "unprocessed_array_sha256": "1dbb17bd6ae1491d98b46240132d5e49d6879418f6ee886b4085ad5f557b0bc4"
+      },
+      {
+        "exact_native_cache_key": "dff4666dea53594c240268dde63fd38b7f0a5420.pkl",
+        "pkl_sha256": "c1bc8871a6e7f9f2c249c6f307be0a6bec0697abc7fa9aa2bdd8d25f047ab517",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "a porous earth,",
+            "exact_native_cache_key": "dff4666dea53594c240268dde63fd38b7f0a5420.pkl",
+            "cache_input_text_sha256": "f9d81470aea7153ecdc74ce7289084df7aceac15fc0602f46861761d3773c896",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "c1bc8871a6e7f9f2",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          26112
+        ],
+        "unprocessed_array_sha256": "96686cd3681e57643a58311985982b59af26515f06e73c7794e4bb1918a82c57"
+      },
+      {
+        "exact_native_cache_key": "03ab5a3d8ee717874f2b59d75160b50f6e9d3f47.pkl",
+        "pkl_sha256": "c88afbb4b72bd51fff58e95720fd844e475f47e7f92c4e1e409a8df5afefd478",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "into a paste shaped into rods.",
+            "exact_native_cache_key": "03ab5a3d8ee717874f2b59d75160b50f6e9d3f47.pkl",
+            "cache_input_text_sha256": "deacad79c09e3b48b43184fd76412680012c12d5dea511311e6fd4f0510783e4",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "c88afbb4b72bd51f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          48128
+        ],
+        "unprocessed_array_sha256": "48e2d3963b37ef91c63d4740d589d92db7690abc9f5839b99d342930acd4d488"
+      },
+      {
+        "exact_native_cache_key": "90091f608e47a0e95403e6f69fb13a7b51cc229c.pkl",
+        "pkl_sha256": "e5baeb76e7e4618e65bf967474ecb4d405df97b884be122aebd0fe7f8de5145e",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Patented in 1867 as dynamite, it was harnessed for mining, quarrying, and demolition, enriching him immensely.",
+            "exact_native_cache_key": "90091f608e47a0e95403e6f69fb13a7b51cc229c.pkl",
+            "cache_input_text_sha256": "ab6b7db8d03684723c05a7e09a858a385b9a37f5d504bb62332c81dccd7f60e1",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "e5baeb76e7e4618e",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          205824
+        ],
+        "unprocessed_array_sha256": "1e9507c4dc93ca6ed30ff6c48ab3b4d7dbddb892f05a0d9a1280ca1dd1554aec"
+      },
+      {
+        "exact_native_cache_key": "50c0994b3e5fe5c695afa12021f88d1a22838a94.pkl",
+        "pkl_sha256": "ec2f32a4dc00ed3687d354a83a09d7f7a271a75a6981d80a9439b17c4f2a86f1",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Patented in 1867 as dynamite,",
+            "exact_native_cache_key": "50c0994b3e5fe5c695afa12021f88d1a22838a94.pkl",
+            "cache_input_text_sha256": "9cd3b3b4517bbe08bdc3ec36c4e8aebed4fa304d169e9f73a9852f3a6c43e9f7",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S6",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Patented in 1867 as dynamite,",
+            "exact_native_cache_key": "50c0994b3e5fe5c695afa12021f88d1a22838a94.pkl",
+            "cache_input_text_sha256": "9cd3b3b4517bbe08bdc3ec36c4e8aebed4fa304d169e9f73a9852f3a6c43e9f7",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "ec2f32a4dc00ed36",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          73216
+        ],
+        "unprocessed_array_sha256": "5fcc033350c5464668a946542b692231a2d43095c7595179f4be04fd13265b44"
+      },
+      {
+        "exact_native_cache_key": "89ef0d5fb7e55cfbfa751b87744358baae919da8.pkl",
+        "pkl_sha256": "185451933f23602c8945d0c2e7c590062adb9428c8c1f5de27806ff17576ae00",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "it was harnessed for mining, quarrying, and demolition,",
+            "exact_native_cache_key": "89ef0d5fb7e55cfbfa751b87744358baae919da8.pkl",
+            "cache_input_text_sha256": "2dff24e5a54ed5d29d02ccb1fd25f6d7b9e351d4b229dc4724df644eba1716eb",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "185451933f23602c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          71168
+        ],
+        "unprocessed_array_sha256": "05fa45a65b9a468e82055fb5f09a070882c4f7563f3cdcaeb40aa58b19ede17e"
+      },
+      {
+        "exact_native_cache_key": "ddf1cbb8e7f0b0188a30b22e9327682f80c5204a.pkl",
+        "pkl_sha256": "443f5c95317971678104c3cb37fc63bab61f0265ef4ba4628e9efde569e89d7a",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "enriching him immensely.",
+            "exact_native_cache_key": "ddf1cbb8e7f0b0188a30b22e9327682f80c5204a.pkl",
+            "cache_input_text_sha256": "ba8051ee18b8ce0823b768459ce46926fcf36a1dca52d248ed231c6831c2bd04",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S6",
+            "piece": 5,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "enriching him immensely.",
+            "exact_native_cache_key": "ddf1cbb8e7f0b0188a30b22e9327682f80c5204a.pkl",
+            "cache_input_text_sha256": "ba8051ee18b8ce0823b768459ce46926fcf36a1dca52d248ed231c6831c2bd04",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "443f5c9531797167",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          35840
+        ],
+        "unprocessed_array_sha256": "6969518e2d2df4c52b9e19310b0674b9c1156ac2bd017a38059205000bf2a6b0"
+      },
+      {
+        "exact_native_cache_key": "bb32ae7b99cd67028af84f8629c0bdeb44cf2ab9.pkl",
+        "pkl_sha256": "d5612967bf7c465a28f353d8b6e8a9d4ee63f2d6cb087a6a3f7aec0db3228731",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "it was harnessed for mining,",
+            "exact_native_cache_key": "bb32ae7b99cd67028af84f8629c0bdeb44cf2ab9.pkl",
+            "cache_input_text_sha256": "9d179818b34eddf32b4a5aa8b6d1e3de825519f4b1564a60a8505a6f302c9c02",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "d5612967bf7c465a",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          36864
+        ],
+        "unprocessed_array_sha256": "68e96eea686a8e0678c68cb65fd30d7b2a8fa4e9093c23c09f02b715f0a5e560"
+      },
+      {
+        "exact_native_cache_key": "a247e43d83543a1ba2e7a944b3fb77869515e388.pkl",
+        "pkl_sha256": "f5699ad441148743ca4b5333ffbd494b896d5cbe033588924834aad6ad18a7f5",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "quarrying,",
+            "exact_native_cache_key": "a247e43d83543a1ba2e7a944b3fb77869515e388.pkl",
+            "cache_input_text_sha256": "54222205cdc307da5aaef0b3efd3f891744e820f7c876c6b5bc9379449d98613",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "f5699ad441148743",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          18944
+        ],
+        "unprocessed_array_sha256": "71b41be309a661f220dd80f52979d401b6ee7035af82a485d82c1f8044c5e2fc"
+      },
+      {
+        "exact_native_cache_key": "4539ddd7606df262132f2b156bb6a19202879aa1.pkl",
+        "pkl_sha256": "78007b7d21eeb4024104fdaa53913b2d51bd6df3ecfd617452b49223948a42b8",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and demolition,",
+            "exact_native_cache_key": "4539ddd7606df262132f2b156bb6a19202879aa1.pkl",
+            "cache_input_text_sha256": "bc3893e8a1da32288b1bd9ca773f2e59074d898f1a89062a2ea656d648eaf4da",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "78007b7d21eeb402",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          26624
+        ],
+        "unprocessed_array_sha256": "f02e2bc9e3cfed0a7c6b536e218865213b5976331c7545a19cc48cbef3c80093"
+      },
+      {
+        "exact_native_cache_key": "a64e98d1107aa588bb3b8a30fa6d53fa1663f39b.pkl",
+        "pkl_sha256": "940e9d8bb2ee5661f397936cb2a618bfb733f5993f0dc9793ad67e457421fbc5",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "His 1895 testament made the fortune an endowment for prizes, first awarded in 1901.",
+            "exact_native_cache_key": "a64e98d1107aa588bb3b8a30fa6d53fa1663f39b.pkl",
+            "cache_input_text_sha256": "9d77f69d4762fe1ea93e59a60ec218f310e7ba5930d54d5462e24dddae5d6235",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "940e9d8bb2ee5661",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          176640
+        ],
+        "unprocessed_array_sha256": "a3513e898cc2721472764a1c64482c2e1180c7287a68df195f19a95f51695d7b"
+      },
+      {
+        "exact_native_cache_key": "1f9c06f6700f052dfbb944b6f6fe50de0c3c4450.pkl",
+        "pkl_sha256": "2a459e22d6d5ebf4ba8a0173634c2ed63299a01870b26d50f8a64cff7b6ac504",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "His 1895 testament made the fortune an endowment for prizes,",
+            "exact_native_cache_key": "1f9c06f6700f052dfbb944b6f6fe50de0c3c4450.pkl",
+            "cache_input_text_sha256": "972b9f885ce832396d398deba27d19ca8a81041c927bb357cb44855fc0698bc9",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S7",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "His 1895 testament made the fortune an endowment for prizes,",
+            "exact_native_cache_key": "1f9c06f6700f052dfbb944b6f6fe50de0c3c4450.pkl",
+            "cache_input_text_sha256": "972b9f885ce832396d398deba27d19ca8a81041c927bb357cb44855fc0698bc9",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "2a459e22d6d5ebf4",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          121344
+        ],
+        "unprocessed_array_sha256": "9f3b21943f3b46dfd5618e0f076b408d833a789c7dc62bf5ab605b1142d22ca9"
+      },
+      {
+        "exact_native_cache_key": "f05b59d38fd0abe11f1452077b56e00f129b8843.pkl",
+        "pkl_sha256": "c994d401821764ce6b13a420acb1eba838f89802194b49612226dff80346d1ae",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "first awarded in 1901.",
+            "exact_native_cache_key": "f05b59d38fd0abe11f1452077b56e00f129b8843.pkl",
+            "cache_input_text_sha256": "6748d24114cfba91a10fc9ccb49f81d302168aa47ddc646dcc175b35cdabf159",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S7",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "first awarded in 1901.",
+            "exact_native_cache_key": "f05b59d38fd0abe11f1452077b56e00f129b8843.pkl",
+            "cache_input_text_sha256": "6748d24114cfba91a10fc9ccb49f81d302168aa47ddc646dcc175b35cdabf159",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "c994d401821764ce",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          55296
+        ],
+        "unprocessed_array_sha256": "f9e329a882395855dcd4ec71593e3cba67e2b8594f16043cb41d48de2edb789b"
+      },
+      {
+        "exact_native_cache_key": "dca0a82dba5d62ae66410373e78fd35c53a64c1b.pkl",
+        "pkl_sha256": "cdd9b69d94497e3156115f3f93b3a75f930decf8d0cdf2ac77a497981e17cc3a",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Nitroglycerin had side-effects.",
+            "exact_native_cache_key": "dca0a82dba5d62ae66410373e78fd35c53a64c1b.pkl",
+            "cache_input_text_sha256": "03615b6bd54f156fecdb620634b9d7a1fbd77c8d0cb90adb400a21ef847f4b3f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "cdd9b69d94497e31",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          49152
+        ],
+        "unprocessed_array_sha256": "8fa5f82b0e0e25338378773be5c706809748e42917543309b8ab1ca5051b1c3f"
+      },
+      {
+        "exact_native_cache_key": "61a68c84c511a0a6c9cad8589ff77960174cac89.pkl",
+        "pkl_sha256": "49923b17e84bd92668a5c3aff2a0796572554824fc27d241075ce1318f1560a7",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Factory operatives suffered racking headaches, and their tolerance, built over the week, ebbed at weekends.",
+            "exact_native_cache_key": "61a68c84c511a0a6c9cad8589ff77960174cac89.pkl",
+            "cache_input_text_sha256": "2e9939f8fec7114f35c0226b5f9eb26f4993946126470e152a47cb1f6d4973d8",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "49923b17e84bd926",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          156160
+        ],
+        "unprocessed_array_sha256": "e282bc21f9e728ac0980da2f5155c4433e32750e17858732d8fa65b0c52b41bd"
+      },
+      {
+        "exact_native_cache_key": "c68b2bea693e24c4589827baf8cfbc8738c208e0.pkl",
+        "pkl_sha256": "cb290383f5e23082026a691da057b951b095d8caee9e15580b21a2864ec8ebf2",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Factory operatives suffered racking headaches,",
+            "exact_native_cache_key": "c68b2bea693e24c4589827baf8cfbc8738c208e0.pkl",
+            "cache_input_text_sha256": "f96ac2f827eaabacb4ed4535b2ec6ceb03e2c7c6184b1ba1b76d96cf85b95136",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S9",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Factory operatives suffered racking headaches,",
+            "exact_native_cache_key": "c68b2bea693e24c4589827baf8cfbc8738c208e0.pkl",
+            "cache_input_text_sha256": "f96ac2f827eaabacb4ed4535b2ec6ceb03e2c7c6184b1ba1b76d96cf85b95136",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "cb290383f5e23082",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          62464
+        ],
+        "unprocessed_array_sha256": "a9d839c429fd0bdc20d78122fd5b8f5b5f5db7e97b5c67e076562cfd9dab55ad"
+      },
+      {
+        "exact_native_cache_key": "94ff5f7c4338d62d06d806e06a2f5daedcc03401.pkl",
+        "pkl_sha256": "ba4e6d7914e7015d6d6022253eba0d7f5c2816f916df6db235718d672bbcc601",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and their tolerance, built over the week, ebbed at weekends.",
+            "exact_native_cache_key": "94ff5f7c4338d62d06d806e06a2f5daedcc03401.pkl",
+            "cache_input_text_sha256": "facaca1c666811877a3b8d92b075917b98f39ecdf49c076268ce07a050f259fc",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "ba4e6d7914e7015d",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          81920
+        ],
+        "unprocessed_array_sha256": "6d12996047e946a010196d6be40dd0ac9a3762e7412fbde0eaf610bb6aa8bcfe"
+      },
+      {
+        "exact_native_cache_key": "5596a96ac7f5567595263c130f8e08a62a0d4fd7.pkl",
+        "pkl_sha256": "fa6b2f4db9331736eb295750b89e6b77f48d6c92498bb4bfc46fc6ccda7c8e9b",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and their tolerance,",
+            "exact_native_cache_key": "5596a96ac7f5567595263c130f8e08a62a0d4fd7.pkl",
+            "cache_input_text_sha256": "60174736e9952951eb34689477b8229a1db116344c2bc4e0ada917f86978a94a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "fa6b2f4db9331736",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          30208
+        ],
+        "unprocessed_array_sha256": "52b31085e1d780de09005dd365cc1d5c941eec37187f7fcb36d50d55b97695f7"
+      },
+      {
+        "exact_native_cache_key": "05510cc06e38ad6cee8948c9529751e760aa5c99.pkl",
+        "pkl_sha256": "2a1b36f45a9fbc256a8fad0a0c2ca4d7513f4328d28a84a687e30eebd11443d0",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "built over the week,",
+            "exact_native_cache_key": "05510cc06e38ad6cee8948c9529751e760aa5c99.pkl",
+            "cache_input_text_sha256": "65d78844c905a3c41159832c711c8f517ecd4d6537e9595fad3f0f1d235986a2",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "2a1b36f45a9fbc25",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          30208
+        ],
+        "unprocessed_array_sha256": "c0e58a6d49094380929220c2add4c85485f2ff56f233d4a5c3e1d54aac510dcc"
+      },
+      {
+        "exact_native_cache_key": "14f6e3d844838783aa041d59295f4e11ab4c7407.pkl",
+        "pkl_sha256": "11595835ec42e802a24a2cc4a627ab522af9e592a52ea1a2569c06cf0f79ef24",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "ebbed at weekends.",
+            "exact_native_cache_key": "14f6e3d844838783aa041d59295f4e11ab4c7407.pkl",
+            "cache_input_text_sha256": "83f9621aed22ac8e9659b4ce57e64641c4c7e679c5822bb5cc52a5fefe82a108",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "11595835ec42e802",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          29696
+        ],
+        "unprocessed_array_sha256": "3a345bcbc10f55f7e2a34aba427642a6d9211e81e08fb04a81fd4b5d45a39f0c"
+      },
+      {
+        "exact_native_cache_key": "9f00409fa326fc77db7acac7eec0bb312c9fd4eb.pkl",
+        "pkl_sha256": "19602fe10257a5033d9567e02f7c607f31b9a0c951e5d59a925001b58fc9e368",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Mondays brought a recurrence, with dizziness and palpitations, hence the name Monday disease.",
+            "exact_native_cache_key": "9f00409fa326fc77db7acac7eec0bb312c9fd4eb.pkl",
+            "cache_input_text_sha256": "4a8e62f173506b9a26cce7d0c96063f64a28acae0c81a72d1d0d45f66b4359d9",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "19602fe10257a503",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          143360
+        ],
+        "unprocessed_array_sha256": "f76d5612b1dec8918b7507afeca4ba09d85db0f602ba0813eb89043b0516d717"
+      },
+      {
+        "exact_native_cache_key": "23eb60fa9dfc0c9e966cdeca8c3a4c638d604a05.pkl",
+        "pkl_sha256": "1bf709332742d993d1e1b8afce94b1edaf8b8b0a7658a91e7b475b18428b0f9a",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Mondays brought a recurrence, with dizziness and palpitations,",
+            "exact_native_cache_key": "23eb60fa9dfc0c9e966cdeca8c3a4c638d604a05.pkl",
+            "cache_input_text_sha256": "eb0325e4526f80efd7f834f15a09a122013226e3d93e7d40d3e18cc3480d8324",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "1bf709332742d993",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          92160
+        ],
+        "unprocessed_array_sha256": "e85f2c2ed8698fdef3a9f23df2c2bb24cca8c3215de078cc254f32ca85f9e059"
+      },
+      {
+        "exact_native_cache_key": "af39e99740dd2d8bacfadce0a5a0363027a76981.pkl",
+        "pkl_sha256": "a7877ba415aad4635ef5674652fb878864094762a84f578b9e08e74fd7f9dc78",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "hence the name Monday disease.",
+            "exact_native_cache_key": "af39e99740dd2d8bacfadce0a5a0363027a76981.pkl",
+            "cache_input_text_sha256": "22de33d5280b62841778726666f7ae16dfdf89c7c1e539595509c89196dfdb0b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S10",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "hence the name Monday disease.",
+            "exact_native_cache_key": "af39e99740dd2d8bacfadce0a5a0363027a76981.pkl",
+            "cache_input_text_sha256": "22de33d5280b62841778726666f7ae16dfdf89c7c1e539595509c89196dfdb0b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "a7877ba415aad463",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          44544
+        ],
+        "unprocessed_array_sha256": "fcdd96c707e149d6691bc2733bb7496e3f5b3b81f3b5ce3daf36f079e6416a9b"
+      },
+      {
+        "exact_native_cache_key": "d528483ef07b5c7d1d283df35f013b3cd86d4530.pkl",
+        "pkl_sha256": "8cd7823c6dce60d685bab1a6c85a84282d5b829b542944fa08d184abd374e327",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Mondays brought a recurrence,",
+            "exact_native_cache_key": "d528483ef07b5c7d1d283df35f013b3cd86d4530.pkl",
+            "cache_input_text_sha256": "1a4dfb05be026ba04fc092d97b2620e1558d5143c2b23151496f975fd35244a1",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "8cd7823c6dce60d6",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          39936
+        ],
+        "unprocessed_array_sha256": "2dc76d85f7505f72b4c300e6eb1eb217f00f85556fcaec73c37147d26e1802a6"
+      },
+      {
+        "exact_native_cache_key": "cdfbb81960bb4ddabcd6b41fe7254b78d5c44698.pkl",
+        "pkl_sha256": "3945ba5dfcf6a19a820afaf6fed2396654ea96fe6b6322f25ab54ac84d8f1853",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "with dizziness and palpitations,",
+            "exact_native_cache_key": "cdfbb81960bb4ddabcd6b41fe7254b78d5c44698.pkl",
+            "cache_input_text_sha256": "7a734fa39f2829e707ddf704c391c0a985bfc8e20ed70210d027bf079e139a51",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "3945ba5dfcf6a19a",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          46080
+        ],
+        "unprocessed_array_sha256": "0d70cf490182eaabb0b7541ca609bdc26da295b19c3eaace91fd52fa779678bb"
+      },
+      {
+        "exact_native_cache_key": "19fca7c8ac2969d3ee300b6eac63bd579a174474.pkl",
+        "pkl_sha256": "ba94925f7445f872f38911975d7fe2dc6e57ac3b1d310701a58bdb1910852cdb",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "In 1879 William Murrell reported in The Lancet on its therapeutic use against angina pectoris, attacks of chest pain.",
+            "exact_native_cache_key": "19fca7c8ac2969d3ee300b6eac63bd579a174474.pkl",
+            "cache_input_text_sha256": "c9884e11fa5ee623d1236352b3ae7eb2a8b97cd67f8d298ea8696c0cba5a655c",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "ba94925f7445f872",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          225792
+        ],
+        "unprocessed_array_sha256": "fb33cd2f95d7eebf4335d0a30f3cba5fe4fff766152c9e6cafbcb8393e569591"
+      },
+      {
+        "exact_native_cache_key": "b8afaec68a41e8a8577f5054b569a1ef38ea0a52.pkl",
+        "pkl_sha256": "5f398a39c2e241ffad588ced487005fbe26990313c9cfce38579f0e631f1d303",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "In 1879 William Murrell reported in The Lancet on its therapeutic use against angina pectoris,",
+            "exact_native_cache_key": "b8afaec68a41e8a8577f5054b569a1ef38ea0a52.pkl",
+            "cache_input_text_sha256": "d7a77ac6e2094bbacbba6e1eb0fc2f652098aee6f8a97f302f47d6fd2d4f9a88",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S11",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "In 1879 William Murrell reported in The Lancet on its therapeutic use against angina pectoris,",
+            "exact_native_cache_key": "b8afaec68a41e8a8577f5054b569a1ef38ea0a52.pkl",
+            "cache_input_text_sha256": "d7a77ac6e2094bbacbba6e1eb0fc2f652098aee6f8a97f302f47d6fd2d4f9a88",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "5f398a39c2e241ff",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          187904
+        ],
+        "unprocessed_array_sha256": "5188769cbd90a11b8d38d4c7217591e55119053930cfc07b2f8daf22ec4e3c42"
+      },
+      {
+        "exact_native_cache_key": "2bffeeab5f18e42f9b2273cce1d2ec66795aab81.pkl",
+        "pkl_sha256": "225f350ac46ea5ae27ef5db5c4645a64432896d1b15268b788e678d440451595",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "attacks of chest pain.",
+            "exact_native_cache_key": "2bffeeab5f18e42f9b2273cce1d2ec66795aab81.pkl",
+            "cache_input_text_sha256": "45c18482d874579b0c81336977bfe0f7462732eee0cfd84a48d20acab69f51ac",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S11",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "attacks of chest pain.",
+            "exact_native_cache_key": "2bffeeab5f18e42f9b2273cce1d2ec66795aab81.pkl",
+            "cache_input_text_sha256": "45c18482d874579b0c81336977bfe0f7462732eee0cfd84a48d20acab69f51ac",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "225f350ac46ea5ae",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          35840
+        ],
+        "unprocessed_array_sha256": "eeb7ef61e9699d41e40dcd71eea47e635df1147d76e024bbf5f8c257ad8f589f"
+      },
+      {
+        "exact_native_cache_key": "2f443f0b49f27f601ffa34e0821fe474411493ef.pkl",
+        "pkl_sha256": "e5d367e464c1f15786da910ec1aec6ada815544120f07114025cf3fa40ec7860",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "On 25 October 1896 Nobel, who had angina, wrote to his aide that by an irony of fate doctors had prescribed him nitroglycerin to take internally.",
+            "exact_native_cache_key": "2f443f0b49f27f601ffa34e0821fe474411493ef.pkl",
+            "cache_input_text_sha256": "e0c68fc051446760534e2d7467ef2d43544041812440d852ffc6db4bea0b657c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "e5d367e464c1f157",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          302080
+        ],
+        "unprocessed_array_sha256": "297d5a797ecfa270beb4803e6871740e2212cadb92e7f34a80ae8db40f199e67"
+      },
+      {
+        "exact_native_cache_key": "0ff3a085702c8f8954e3674b89cdca3c20514c03.pkl",
+        "pkl_sha256": "db500448ec7fa71e1355614390215ea0e714f6efab1c7af4364b8f9b65dea7cb",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "On 25 October 1896 Nobel, who had angina,",
+            "exact_native_cache_key": "0ff3a085702c8f8954e3674b89cdca3c20514c03.pkl",
+            "cache_input_text_sha256": "9185ee49eb062604adbe50910267a3fcdb64689ef473923b7bbde1e3106f2217",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "db500448ec7fa71e",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          118784
+        ],
+        "unprocessed_array_sha256": "9311d20f75aa3fc74368a82354de3fbc757dacdb2e9eb816baa87714110f1e2f"
+      },
+      {
+        "exact_native_cache_key": "c1476534603cede51328a4f63598b984a61f88a6.pkl",
+        "pkl_sha256": "3e08150e347c26219fbf1c5f31edda1b98fccdcfae206037c4c684a31b8ad9e6",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "wrote to his aide that by an irony of fate",
+            "exact_native_cache_key": "c1476534603cede51328a4f63598b984a61f88a6.pkl",
+            "cache_input_text_sha256": "449b6354de99beb681ce503ad0dd4091dd55ee09140527ddf1e02b9421d7e382",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "3e08150e347c2621",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          57856
+        ],
+        "unprocessed_array_sha256": "d838c967881bade623419ec25b1d88b6b04aa0d5f5fb31e359a0e7fb7b2daa1f"
+      },
+      {
+        "exact_native_cache_key": "8049ca06573ac0cf8818d3f7ec08179c7d716ad7.pkl",
+        "pkl_sha256": "33030be8464e0f243a394e8339aea2851e00b2671ad35d5b38cb72344ce75953",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "doctors had prescribed him nitroglycerin to take internally.",
+            "exact_native_cache_key": "8049ca06573ac0cf8818d3f7ec08179c7d716ad7.pkl",
+            "cache_input_text_sha256": "31d55b4b11ec988fd1b76af61abc922d75292e9f173740ed69415689819f8cd4",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "33030be8464e0f24",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          100864
+        ],
+        "unprocessed_array_sha256": "9b340d441237290369e00902e83ad353a03359711d9c78a0d53c6bc64a42fb2c"
+      },
+      {
+        "exact_native_cache_key": "b7516d6d013601183b8fcd04a48d81bd97b9e4ef.pkl",
+        "pkl_sha256": "5d7cd902f10c583b9c8060c9a8cab92ce9cd56bdb9c74067324762c269d1e4b1",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "On 25 October 1896 Nobel,",
+            "exact_native_cache_key": "b7516d6d013601183b8fcd04a48d81bd97b9e4ef.pkl",
+            "cache_input_text_sha256": "36cb541ea332d3ea6c872aa7ee6b9139d01f3bd41c6795f7d360aa21182ad3eb",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "5d7cd902f10c583b",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          82432
+        ],
+        "unprocessed_array_sha256": "92174ef5042ea16d0e6fac03ee7388c364a71cab7a937c80740709af3d64e8cf"
+      },
+      {
+        "exact_native_cache_key": "1600e40184a4b49fd6c76c792c9834ac4686a779.pkl",
+        "pkl_sha256": "09187bf9cab0f872dac42127912603dadbc2b01dd1bf0ae3bae3d6ce387e2dfe",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "who had angina,",
+            "exact_native_cache_key": "1600e40184a4b49fd6c76c792c9834ac4686a779.pkl",
+            "cache_input_text_sha256": "9c11ec53236e8fa0083640aa03295210f04d0bd7d536c53c0d8378f6284a5b82",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "09187bf9cab0f872",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          29696
+        ],
+        "unprocessed_array_sha256": "7ce61f9a20179e91f7bfe7a0880caabfb52e31dd0a6d95d46cbb15e96b4b9223"
+      },
+      {
+        "exact_native_cache_key": "98bd8d1f8cc76a376165d40a8cdff6ceb21ab3bc.pkl",
+        "pkl_sha256": "300e41b48da691d0e825cc6c8bac213de98ce7007aeb25a054960dc66dc220c0",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "wrote to his aide that by an irony of fate doctors had prescribed him nitroglycerin to take internally.",
+            "exact_native_cache_key": "98bd8d1f8cc76a376165d40a8cdff6ceb21ab3bc.pkl",
+            "cache_input_text_sha256": "0c7332cdb04e9ad6ede00e082b3d2b9defd7dadcd92208ff1dd5734a9271d07b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "300e41b48da691d0",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          163328
+        ],
+        "unprocessed_array_sha256": "9fc6b0d9d667c04b3816b5c81d8c606a79729935d6c237bc626d749fe3c09421"
+      },
+      {
+        "exact_native_cache_key": "8aace1d4bd55081dbd3d74ff0152603eacf9c22b.pkl",
+        "pkl_sha256": "dbba6e94c01224f11a9ad521d23766903f9f34e5321206d71aed3e4b2f85bcaf",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Its alias, Trinitrin, was chosen, he explained, to avoid frightening pharmacists or the public.",
+            "exact_native_cache_key": "8aace1d4bd55081dbd3d74ff0152603eacf9c22b.pkl",
+            "cache_input_text_sha256": "e7cfe7ef02a2197f8ba58eb4de073f98433b684d16f4d0b8315791028ea5e056",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "dbba6e94c01224f1",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          158208
+        ],
+        "unprocessed_array_sha256": "d021adaa580c84b998128b9210dfb723d6029b9913d9c73c9d08a12b1bcf0779"
+      },
+      {
+        "exact_native_cache_key": "3b1103c07d6158fe647a9c4517c2be5e84b97c15.pkl",
+        "pkl_sha256": "2043d9f1bd0382a949dbc836ad3b492229c0345b57b5bdd4496f5ea73c48c764",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Its alias, Trinitrin, was chosen, he explained,",
+            "exact_native_cache_key": "3b1103c07d6158fe647a9c4517c2be5e84b97c15.pkl",
+            "cache_input_text_sha256": "1d3525eaeff37a7a44b47dc6fad40eb0fe24fa592954c5dcd2a18db85035e4f6",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "2043d9f1bd0382a9",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          75264
+        ],
+        "unprocessed_array_sha256": "70187fe55425907d37513a63c715cfca30a00a8541923e5892789f3077507ad3"
+      },
+      {
+        "exact_native_cache_key": "f58ee580236ee7066179e94f5ef1fdba9588a797.pkl",
+        "pkl_sha256": "eee1860ae8bcb6ae8656ee9dc552a61d85168e49a4b18a57bc2f502e74cca349",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "to avoid frightening pharmacists or the public.",
+            "exact_native_cache_key": "f58ee580236ee7066179e94f5ef1fdba9588a797.pkl",
+            "cache_input_text_sha256": "d693edbee5cc62bc56d0c13e3faa6569dbf3285e3b45115397cb2959bcd61821",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S13",
+            "piece": 5,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "to avoid frightening pharmacists or the public.",
+            "exact_native_cache_key": "f58ee580236ee7066179e94f5ef1fdba9588a797.pkl",
+            "cache_input_text_sha256": "d693edbee5cc62bc56d0c13e3faa6569dbf3285e3b45115397cb2959bcd61821",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "eee1860ae8bcb6ae",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          67584
+        ],
+        "unprocessed_array_sha256": "47feb3002314735edc85d21bdd490d930d48e99c0327c6921098e46d80bd0075"
+      },
+      {
+        "exact_native_cache_key": "a2772c6787d328f27ac9b259e7758213935a9543.pkl",
+        "pkl_sha256": "f88f4146772778cac757706b81ffcc8ae6ccccf5efd54b7b31429000817b9697",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Its alias,",
+            "exact_native_cache_key": "a2772c6787d328f27ac9b259e7758213935a9543.pkl",
+            "cache_input_text_sha256": "ea46230e647238f5dc2f98429dafe7c43256498898752c772dd02dce019e4ba4",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "f88f4146772778ca",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          22528
+        ],
+        "unprocessed_array_sha256": "d7213470751d098911d3ee6d2b54206ed9ae13152a11d7ee537e91a46d37d3f0"
+      },
+      {
+        "exact_native_cache_key": "2d056b2a4fb7e276817a8436ab4db3acebe394bb.pkl",
+        "pkl_sha256": "d668fd85cf00e32fac72b800a87aaed5b7fc8e6449047f3094dcb80be98fd7fb",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Trinitrin,",
+            "exact_native_cache_key": "2d056b2a4fb7e276817a8436ab4db3acebe394bb.pkl",
+            "cache_input_text_sha256": "c7651c5f1baf1edbc1b5b701d7adc7e42b915ae46bc6e498a4714d879d4d3f2a",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "d668fd85cf00e32f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          23552
+        ],
+        "unprocessed_array_sha256": "576bb911bf1e79e884e3cf4ebf4af9eb9afde1b2cb4bf20d2fa1ab1340b3bef7"
+      },
+      {
+        "exact_native_cache_key": "845b55c1afe95ac254bb4fec09225ff484973300.pkl",
+        "pkl_sha256": "ba129d67abf35487e1739341cf751f2e0f856b033bb2aa348c0128d7b88d55bb",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "was chosen,",
+            "exact_native_cache_key": "845b55c1afe95ac254bb4fec09225ff484973300.pkl",
+            "cache_input_text_sha256": "90b5789828c1c452a108860e9ab9b2878fc15a38d641a3da51dd4634f13f8d40",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "ba129d67abf35487",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          23552
+        ],
+        "unprocessed_array_sha256": "a04b231a4b5f9bb9534616234eba2077315204ff6b84ddd8bbbe75a37f245d5c"
+      },
+      {
+        "exact_native_cache_key": "4fc889cfc021024df20655cd452572ffd904f673.pkl",
+        "pkl_sha256": "e76fcce9d8556f4a3bd1ddae69734dec6b1051f8e58b93f87a8289ebfebe6bd7",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "he explained,",
+            "exact_native_cache_key": "4fc889cfc021024df20655cd452572ffd904f673.pkl",
+            "cache_input_text_sha256": "4a6469c669025475504d14c2f257b46be38a97f929cc3308d79957a33e816377",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "e76fcce9d8556f4a",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          25600
+        ],
+        "unprocessed_array_sha256": "196c8b4ce0d6e98d8d98843988c04af2e12319799d98b78b255a199d50226f9f"
+      },
+      {
+        "exact_native_cache_key": "198e77b8aafa8bf65c60c8b2da831d99a1b4b838.pkl",
+        "pkl_sha256": "49d1d4cf54d087d93310a90ec9faed2c3861d5a33cb0e4e76ced1bf940208972",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "He did not comply.",
+            "exact_native_cache_key": "198e77b8aafa8bf65c60c8b2da831d99a1b4b838.pkl",
+            "cache_input_text_sha256": "b48c09b0bef902093bfb1b0314540b85ed67dd212db5a33e942042c0fc3b24af",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "49d1d4cf54d087d9",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          33280
+        ],
+        "unprocessed_array_sha256": "49ca25de0c1c93c6f6a4e280f76c34b82b6af98796728772fff8a28831d90067"
+      },
+      {
+        "exact_native_cache_key": "1d885500e04d2140ec99c49e4ac7ad127fc4d363.pkl",
+        "pkl_sha256": "f96910c566cfbe016e4f42dfe847bc98835a0fe8f8591db2ac5d88384b197a0f",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Partly paralysed by a cerebral haemorrhage, he died at his San Remo villa on 10 December 1896.",
+            "exact_native_cache_key": "1d885500e04d2140ec99c49e4ac7ad127fc4d363.pkl",
+            "cache_input_text_sha256": "625154f14814ae1fac2f3d99295f4143f1b25c9b6fba1d2ebb08a9ef0709a108",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "f96910c566cfbe01",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          192000
+        ],
+        "unprocessed_array_sha256": "ccf355845a1e90e07d85ec900c2cd4befb809c3da2401a27cdc2c5760ac82d82"
+      },
+      {
+        "exact_native_cache_key": "0fbead2ff5efbfc56667f56d6ad612e5eba289cb.pkl",
+        "pkl_sha256": "43949e79a28665f82f2111432f4e67542028bb4eb3fe4484dbd9c7f0c1770257",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Partly paralysed by a cerebral haemorrhage,",
+            "exact_native_cache_key": "0fbead2ff5efbfc56667f56d6ad612e5eba289cb.pkl",
+            "cache_input_text_sha256": "6bb56ad2e148d8ea107024f7af08663190d660c72dc64a098a1348c2fd43b41e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S15",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Partly paralysed by a cerebral haemorrhage,",
+            "exact_native_cache_key": "0fbead2ff5efbfc56667f56d6ad612e5eba289cb.pkl",
+            "cache_input_text_sha256": "6bb56ad2e148d8ea107024f7af08663190d660c72dc64a098a1348c2fd43b41e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "43949e79a28665f8",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          61952
+        ],
+        "unprocessed_array_sha256": "c42be18f558a318e345ffcf17d3fd7bfd8ceb1a08c2fd97b769119509d93efb0"
+      },
+      {
+        "exact_native_cache_key": "5130a1f11042b0066ae10781b80df24eba5c47a2.pkl",
+        "pkl_sha256": "a82da06c773c0d1936313290799fb1bf87da6054f52b824a2c479f9ac75a8666",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "he died at his San Remo villa on 10 December 1896.",
+            "exact_native_cache_key": "5130a1f11042b0066ae10781b80df24eba5c47a2.pkl",
+            "cache_input_text_sha256": "39f92e3dd2a267146f39b2be5900dee732190440dd1055f7516cf070b4e4f9bf",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S15",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "he died at his San Remo villa on 10 December 1896.",
+            "exact_native_cache_key": "5130a1f11042b0066ae10781b80df24eba5c47a2.pkl",
+            "cache_input_text_sha256": "39f92e3dd2a267146f39b2be5900dee732190440dd1055f7516cf070b4e4f9bf",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "a82da06c773c0d19",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          120320
+        ],
+        "unprocessed_array_sha256": "6d8d487675afee4ec7d2bf8989c100421c6096d5ca3d32eac35fdf37fff3b83c"
+      },
+      {
+        "exact_native_cache_key": "5018a1a4cf5ebb03eb47479def26fde6227696bf.pkl",
+        "pkl_sha256": "653c5f3e15fb6baa271335ab379c4e0052fef610af8f706878f634932432153d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "In 1977 Murad ascertained that nitroglycerin releases nitric oxide, which widens blood vessels.",
+            "exact_native_cache_key": "5018a1a4cf5ebb03eb47479def26fde6227696bf.pkl",
+            "cache_input_text_sha256": "73d8b9d531a60130e9ceed340ba973387faa39201c0bd3191b2cd7452b20495a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "653c5f3e15fb6baa",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          211456
+        ],
+        "unprocessed_array_sha256": "c89e31af50348b2ac64ce288c9dc0405ca223ccb8e301bd566b9b99e0bb0672b"
+      },
+      {
+        "exact_native_cache_key": "b28f1dd30d28edb36349a9c089e03546dfc7900b.pkl",
+        "pkl_sha256": "babbb53d3ea53a9a364ef2438240cdc7fa37f19192c95b6e941a2365334cda43",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "In 1977 Murad ascertained that nitroglycerin releases nitric oxide,",
+            "exact_native_cache_key": "b28f1dd30d28edb36349a9c089e03546dfc7900b.pkl",
+            "cache_input_text_sha256": "ff5c3a8b1aca54832ee6610667891a7ce0fbd298f623866b4fe1c5a588f6974d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S16",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "In 1977 Murad ascertained that nitroglycerin releases nitric oxide,",
+            "exact_native_cache_key": "b28f1dd30d28edb36349a9c089e03546dfc7900b.pkl",
+            "cache_input_text_sha256": "ff5c3a8b1aca54832ee6610667891a7ce0fbd298f623866b4fe1c5a588f6974d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "babbb53d3ea53a9a",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          160256
+        ],
+        "unprocessed_array_sha256": "1a1358941da8640dbde898ab0f6dd1d3b0e48310e62024b67c2b230908047804"
+      },
+      {
+        "exact_native_cache_key": "27c870c79eba431f16543b628b041d915d2aa9d5.pkl",
+        "pkl_sha256": "349a7c2338d9b7ca2df2d66c743523f9fb36ea059e8c86f3207e433ad17a120c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "which widens blood vessels.",
+            "exact_native_cache_key": "27c870c79eba431f16543b628b041d915d2aa9d5.pkl",
+            "cache_input_text_sha256": "9f89986d886b4a33574868a52c245625ff4957bae426deb0bf40756529b13cfd",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S16",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "which widens blood vessels.",
+            "exact_native_cache_key": "27c870c79eba431f16543b628b041d915d2aa9d5.pkl",
+            "cache_input_text_sha256": "9f89986d886b4a33574868a52c245625ff4957bae426deb0bf40756529b13cfd",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "349a7c2338d9b7ca",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          41472
+        ],
+        "unprocessed_array_sha256": "f8b564c949dfaa446c917d4d9e9acdcc5b32391b8e1a9ba9e0de4f7e9e0b2e11"
+      },
+      {
+        "exact_native_cache_key": "d7770b668522d249b07c12d9f3895836c953e8f1.pkl",
+        "pkl_sha256": "080d8abd39cb44116dda4237b29f79e1ba98b0f41fac5772ec94fe8bca671430",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Furchgott found an unidentified relaxing factor in vascular linings in 1980, and Ignarro recognised it as nitric oxide in 1986.",
+            "exact_native_cache_key": "d7770b668522d249b07c12d9f3895836c953e8f1.pkl",
+            "cache_input_text_sha256": "aaddafbfa915bec4948ad047af78122f47f21cc3c808856f3484b123a02d6599",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "080d8abd39cb4411",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          274944
+        ],
+        "unprocessed_array_sha256": "bdad70936f5f51e83405e9b61d5e0d154f91bbe497c68014e3a1b5a34ddb8ff8"
+      },
+      {
+        "exact_native_cache_key": "1e821bb149a1d8f81c2be30d0111a3c8b6262893.pkl",
+        "pkl_sha256": "1f84523632a12d7e660c8a5b363367e520b2280f131549e062227df8039a8cfb",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Furchgott found an unidentified relaxing factor in vascular linings in 1980,",
+            "exact_native_cache_key": "1e821bb149a1d8f81c2be30d0111a3c8b6262893.pkl",
+            "cache_input_text_sha256": "799730c6f6c9b27aa0174937093ad1f3c18d8ab66734c09f56b44948331e3707",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S17",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Furchgott found an unidentified relaxing factor in vascular linings in 1980,",
+            "exact_native_cache_key": "1e821bb149a1d8f81c2be30d0111a3c8b6262893.pkl",
+            "cache_input_text_sha256": "799730c6f6c9b27aa0174937093ad1f3c18d8ab66734c09f56b44948331e3707",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "1f84523632a12d7e",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          147456
+        ],
+        "unprocessed_array_sha256": "33d04972abafb6b05e1ad650305867ae6f08e2867aeb6b84de24b1e2f80b9c6c"
+      },
+      {
+        "exact_native_cache_key": "8efc79b22a391e42da24dfa9358a33b77bf06e8c.pkl",
+        "pkl_sha256": "a4c8ba5a126ec145c512d3df3ced0b7473c514842ac12372b1867c34baefe35e",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and Ignarro recognised it as nitric oxide in 1986.",
+            "exact_native_cache_key": "8efc79b22a391e42da24dfa9358a33b77bf06e8c.pkl",
+            "cache_input_text_sha256": "bac899639d29b58100ce1d87dbf777089db987938aaed7bd96f68ba38f825a11",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S17",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and Ignarro recognised it as nitric oxide in 1986.",
+            "exact_native_cache_key": "8efc79b22a391e42da24dfa9358a33b77bf06e8c.pkl",
+            "cache_input_text_sha256": "bac899639d29b58100ce1d87dbf777089db987938aaed7bd96f68ba38f825a11",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "a4c8ba5a126ec145",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          121856
+        ],
+        "unprocessed_array_sha256": "3700d02d6391101eac0aade070c79066874613a7eaffaec5bd0ae3709cfd28b1"
+      },
+      {
+        "exact_native_cache_key": "86a6477fd178cb56672af8c617dd6a515601d77b.pkl",
+        "pkl_sha256": "467c0534b103a7c0c4225d79b082e95042420bdd8f71e5e318831b65b971d291",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The trio shared the 1998 Nobel Prize in Physiology or Medicine.",
+            "exact_native_cache_key": "86a6477fd178cb56672af8c617dd6a515601d77b.pkl",
+            "cache_input_text_sha256": "ed85041890a65f47c11823511abcba7978f1e875835aa32e64da05f5c2fd305d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "467c0534b103a7c0",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          133120
+        ],
+        "unprocessed_array_sha256": "6a60217f72ce8ab008e17aaa96026b58f32d4212a09044cd1442ae35daca0511"
+      },
+      {
+        "exact_native_cache_key": "498a8b592f6964064ca9993187ca2a5cdceea460.pkl",
+        "pkl_sha256": "f3e43010ee7681d179fd51340efb1fa6a93fd20027fa3ce792ee0f9f1f51cdb1",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S19",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Its presentation speech, on 10 December, the anniversary of Nobel's death, quoted his ironic letter.",
+            "exact_native_cache_key": "498a8b592f6964064ca9993187ca2a5cdceea460.pkl",
+            "cache_input_text_sha256": "f35982df6bd01a36f368b849e62f7dc4d8d79a927cfd0f8b39453ace06262383",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "f3e43010ee7681d1",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          177664
+        ],
+        "unprocessed_array_sha256": "6591cf747c00c6f28dc8e4bd97c7b8ad3c3e6b2ee982630f0e7d1665c4b1d639"
+      },
+      {
+        "exact_native_cache_key": "f05ab6670c208812a66bdc1a630c5ab130501136.pkl",
+        "pkl_sha256": "856813b442edd52560372caff4d3817e7c770f6905003a633506001fea22d1c4",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S19",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Its presentation speech, on 10 December, the anniversary of Nobel's death,",
+            "exact_native_cache_key": "f05ab6670c208812a66bdc1a630c5ab130501136.pkl",
+            "cache_input_text_sha256": "30f0aad554d2da1db748a855c65230f207455b9d64dccbe8046773ea387dc4a4",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "856813b442edd525",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          129536
+        ],
+        "unprocessed_array_sha256": "04f3642f82d40d7e94282d854397f81932cc3a80ad9e105c032b0d54a2637281"
+      },
+      {
+        "exact_native_cache_key": "2b7f94589cb1ca25e3e51a1cf06a38c61212af1a.pkl",
+        "pkl_sha256": "1b5c12a9e741593afe647bda0adb1cc8dca46e9e27bac592c5ba9ee59bfa3bf9",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S19",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "quoted his ironic letter.",
+            "exact_native_cache_key": "2b7f94589cb1ca25e3e51a1cf06a38c61212af1a.pkl",
+            "cache_input_text_sha256": "2f3fdc0a5dd89d8322a86ce2541013c3be94e7cb61201ca2b98c7cd45f0ddb07",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S19",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "quoted his ironic letter.",
+            "exact_native_cache_key": "2b7f94589cb1ca25e3e51a1cf06a38c61212af1a.pkl",
+            "cache_input_text_sha256": "2f3fdc0a5dd89d8322a86ce2541013c3be94e7cb61201ca2b98c7cd45f0ddb07",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "1b5c12a9e741593a",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          38400
+        ],
+        "unprocessed_array_sha256": "3490723d94a3833bc76f9bc5fd9d605222945250e17f2c4764788dd2ce0a67f0"
+      },
+      {
+        "exact_native_cache_key": "3eb873e9e81a62d3bfa296a3c56b4ea171b6ac03.pkl",
+        "pkl_sha256": "35f80ef93f5ae72bc6fdbf487abc6fd55b0a7dad6b2e7c84e8ba50a3a0e34ffc",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S19",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Its presentation speech,",
+            "exact_native_cache_key": "3eb873e9e81a62d3bfa296a3c56b4ea171b6ac03.pkl",
+            "cache_input_text_sha256": "8b724f3e29ecd59b42883b5b835e73368f6e87d1d32b68bf07ccd531375472ff",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "35f80ef93f5ae72b",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          39424
+        ],
+        "unprocessed_array_sha256": "1e309c42a668247b8c7b0463bcc461f15d53613c29b37d393144c03f4798f444"
+      },
+      {
+        "exact_native_cache_key": "5a9c0eb5fb36706b18ec777642b1ab177e6468cc.pkl",
+        "pkl_sha256": "b91ba15a755907cf7102ce32f419cfdc567b49d03fc1a5b4e2af3854ca408783",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S19",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "on 10 December,",
+            "exact_native_cache_key": "5a9c0eb5fb36706b18ec777642b1ab177e6468cc.pkl",
+            "cache_input_text_sha256": "bbb0428e632ef78ec53771a0c7cf8558bbfa7a806e2bc21444b15c67ce6e9cbb",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "b91ba15a755907cf",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          35840
+        ],
+        "unprocessed_array_sha256": "7cbdb6197357ab096f3dbb99c93670f1a19df476c26d9a669e468b5e58658f62"
+      },
+      {
+        "exact_native_cache_key": "053efb494c01deb5f76336f86fcfb49b54017a8d.pkl",
+        "pkl_sha256": "8f655b4148ad16da0ad7e8ab40f1b99a03f283545063abb6b29d39b4579edd81",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S19",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "the anniversary of Nobel's death,",
+            "exact_native_cache_key": "053efb494c01deb5f76336f86fcfb49b54017a8d.pkl",
+            "cache_input_text_sha256": "29ac4c02ab4655cad7acdcb9dd8b54a1a42768c0194b84cf9962e9672ec9e0cd",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "8f655b4148ad16da",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          51712
+        ],
+        "unprocessed_array_sha256": "304fc76d007d6fc27d4defb339ea6ebc96cb07244c0311a217ff5c6daea36b7e"
+      }
+    ],
+    "missing_reference_key_count": 0,
+    "observed_missing_keys_covered": [],
+    "new_private_cache_names": [],
+    "native_single_thread_marker_verified": true,
+    "single_thread_sessions": [
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      },
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      }
+    ],
+    "models_sha256": {
+      "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+      "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+      "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+    },
+    "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+    "existing_private_cache_count": 11514,
+    "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "existing_private_cache_bytes_unchanged": true,
+    "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+    "public_repository_cache_unchanged": true,
+    "producer_pcm_existed_before": false,
+    "producer_pcm_sha256_before": null,
+    "producer_pcm_sha256_after": null,
+    "accepted_aac_adts_sha256_before": "60f3893386a8fc86d9f72b08b0b7eada024dcb350a7bb9bad9a37588b771d572",
+    "accepted_aac_adts_sha256_after": "60f3893386a8fc86d9f72b08b0b7eada024dcb350a7bb9bad9a37588b771d572",
+    "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+    "private_cache_exported": false
+  },
+  "checker_reference_preparation_program_sha256": "f6f2a032e207085e7252d036e39430fb80b06e84a721c525b61196d021c5ca12",
+  "fresh_current_article_reference": {
+    "article": "37",
+    "removed_temporary_gt_files": [],
+    "processed_pcm_or_raw_mother_cache_modified": false,
+    "purpose": "Original synth/labels/audit rebuild fresh for this production; no old CPU GT reuse."
+  },
+  "temporary_output_reset": {
+    "removed": [],
+    "production_started_ns": 1794623120071691448,
+    "repository_outputs_modified": false
+  },
+  "reviewed_gain_control_preservation": [
+    {
+      "stage": "canonical-draft",
+      "requested_gain_controls": {
+        "/句子增益dB": {
+          "S14": -1.0
+        }
+      },
+      "actual_gain_controls": {
+        "/句子增益dB": {
+          "S14": -1.0
+        }
+      },
+      "exactly_preserved": true
+    },
+    {
+      "stage": "canonical-final4K",
+      "requested_gain_controls": {
+        "/句子增益dB": {
+          "S14": -1.0
+        }
+      },
+      "actual_gain_controls": {
+        "/句子增益dB": {
+          "S14": -1.0
+        }
+      },
+      "exactly_preserved": true
+    }
+  ],
+  "canonical_video_sha256": "8621d87ce6850c8a00463b5368bca233c5d829edc0c0e051c66c366322540411",
+  "canonical_aac_adts_sha256": "60f3893386a8fc86d9f72b08b0b7eada024dcb350a7bb9bad9a37588b771d572",
+  "canonical_pipeline_passed": true,
+  "cached_input_wav_sha256": null,
+  "final_wav_sha256": "e7a06c4300cb662793594b8c013b7e87442d38e529afe62f964bfe832771ef0c",
+  "accepted_prior_aac_identical": true,
+  "video_sha256": "2b4d145d5bd62c2467eca639f11fcc69323623d4f3673720989b23188118af7b",
+  "width": 3840,
+  "height": 2160,
+  "summary_seconds": 2,
+  "summary_frames": 60,
+  "summary_start_seconds": 159.36666666666667,
+  "delay_after_voice_seconds": 0.03166666666666629,
+  "actual_source_collection": {
+    "article": "37",
+    "kind": "actual-production-source-collection",
+    "new_quality_gate": false,
+    "files": {
+      "request_json": {
+        "file": "37-request-source.json",
+        "sha256": "b1b8945ccf3581df48ade5714a2d0e93e4cc6812708f95bef6f5e44439106c99",
+        "origin": "immutable_request"
+      },
+      "request_generator": {
+        "file": "37-request-gen.py",
+        "sha256": "5df06149c7f926aeb0506fbd1377dcbb6495b9cf74baa5602e0558a324fc08d1",
+        "origin": "immutable_request"
+      },
+      "used_generator": {
+        "file": "37-used-gen.py",
+        "sha256": "5df06149c7f926aeb0506fbd1377dcbb6495b9cf74baa5602e0558a324fc08d1",
+        "origin": "actual_production_filesystem"
+      },
+      "actual_working_source": {
+        "file": "37-actual-working-source.json",
+        "sha256": "cf4d7618f46155f222d9ce016c5411fbd3904aa6296834048c486c286ed2e40d",
+        "origin": "actual_production_filesystem"
+      },
+      "request_manuscript": {
+        "file": "37-request-manuscript.md",
+        "sha256": "4933e24d2384471a96d9c8c26c15d5224a85dae98d9971a3fed15b4978dafc51",
+        "origin": "immutable_request"
+      },
+      "actual_working_manuscript": {
+        "file": "37-actual-working-manuscript.md",
+        "sha256": "2d5a608b1d9e2107aad333541d6ad888e5d3fd476048f6ea7d45eb1861f7524f",
+        "origin": "actual_production_filesystem"
+      }
+    },
+    "generator_execution_observed": false,
+    "generator_execution_evidence": "No fresh generator execution log; do not claim this GEN was executed during rendering.",
+    "source_differences": {
+      "file": "37-actual-source-differences.json",
+      "sha256": "934ab9d0889f2782c642f59a7a49962a6785b1f0660eccd2ed422debb52830e2"
+    }
+  }
+}
