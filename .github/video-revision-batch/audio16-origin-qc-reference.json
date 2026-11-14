@@ -1,0 +1,162 @@
+{
+  "article": "16",
+  "kind": "exact-root-approved-S15-Origin-stress-only-correction",
+  "approved_request_sha256": "d25aa07f3fac316c26c2ae1006d3efa7eb82a396b66150432b50239c1628396d",
+  "accepted_sha256": "88f0e80e9efa58316356eff5194295a1014e4e89878a73be5bae7d7ca39f4005",
+  "accepted_aac_sha256": "bbd43027b230cfd0e569c7d55c6c33737ad7c7a498f762a19d7f5c021007c4d6",
+  "certified_maker_sha256": "6945e9bee6db143029bace6c04b4f4df7110c41ba647eee7236b0d0e5ed75203",
+  "native_cache_contract_sha256": "d94048429e5c68ca30de838811b388dc128980a9787a6d9c6f148e9bafe6260f",
+  "native_cache_readback_program_sha256": "77bcb2239f86291ea807dac1f6e83993c13df219ec94e4c882777305477a83a7",
+  "native_cache_files_sha256": {
+    "dce6d1ce3af5043cfc8b6d30acf416eab118b916.pkl": "ba8e0876ef8d40699c4b74f083083a64eb8afba3e6d9e1bb64fa1d71ba048843",
+    "dce6d1ce3af5043cfc8b6d30acf416eab118b916.pkl.单线程": "91499e28d19b3432bbe1935c7a45e53dce107b1437fcbbb0fa71f1e51b5ce7d0",
+    "989b1c025c09eacfd989962aef8352fba7637aa6.pkl": "3f12839845c5ef7d4e15d8d6838b93666544dc1fc42e7676f4b28bf4ee960994",
+    "989b1c025c09eacfd989962aef8352fba7637aa6.pkl.单线程": "3b20064fb91db56200c7b0d615d1d3e07969d36954190c438e0742d6384fb029"
+  },
+  "old_change_span_s": [
+    110.365,
+    119.37
+  ],
+  "audio_control_keys": [
+    "非人声区间",
+    "停顿删除区间",
+    "停顿插入点",
+    "词尾除阻",
+    "停顿处除阻",
+    "除阻加强",
+    "分段增益dB",
+    "句子增益dB",
+    "段内渐变dB",
+    "结尾句",
+    "合成标点",
+    "列举逗号"
+  ],
+  "approved_audio_controls": {
+    "非人声区间": {
+      "S2": [
+        [
+          2.647833,
+          2.86,
+          "紧贴词尾"
+        ],
+        [
+          7.015,
+          7.209375,
+          "紧贴词头"
+        ]
+      ],
+      "S4": [
+        [
+          3.04,
+          3.219,
+          "紧贴词头"
+        ],
+        [
+          4.68875,
+          4.833,
+          "紧贴词尾"
+        ]
+      ],
+      "S6": [
+        [
+          2.72,
+          3.085
+        ]
+      ],
+      "S7": [
+        [
+          1.26,
+          1.405
+        ]
+      ],
+      "S9": [
+        [
+          5.81,
+          6.040083,
+          "紧贴词头"
+        ]
+      ],
+      "S11": [
+        [
+          5.781292,
+          6.055,
+          "紧贴词尾"
+        ]
+      ],
+      "S18": [
+        [
+          3.53625,
+          3.835,
+          "紧贴词尾"
+        ]
+      ],
+      "S10": [
+        [
+          3.53,
+          3.585
+        ]
+      ]
+    },
+    "词尾除阻": {
+      "S2": {
+        "3": [
+          6.735,
+          "t"
+        ]
+      },
+      "S10": {
+        "句末": [
+          13.64,
+          "t"
+        ]
+      },
+      "S17": {
+        "1": [
+          0.915,
+          "t"
+        ]
+      }
+    },
+    "除阻加强": {
+      "S4": {
+        "1": [
+          2.825,
+          2.855,
+          4.0
+        ]
+      }
+    },
+    "结尾句": {
+      "S18": {
+        "前段语速": 0.9,
+        "最后一段语速": 0.78,
+        "最后一段前停顿": 0.7,
+        "接点": [
+          162060,
+          196740
+        ],
+        "依据": "全篇结尾句按 07 定下的标准（用户 2026-10-10 同意并要求所有视频统一）：前段 0.9、最后一段“so each of us carries a little of Haber's chemistry.” 0.78、前面停 0.7 秒。接点由 结尾句接点.py 自动找：0.9 那遍最后一个标点后最长静音（55 ms）的正中 6.753 s，0.78 那遍（155 ms）的正中 8.197 s，所在帧和两侧各 5 ms 都低于 -55 dB（程序以 08 校准：与人工核实的接点落在同一段静音里）"
+      }
+    }
+  },
+  "correct_Origin_evidence": {
+    "source_sentence": "Of Jewish origin, Haber left Germany an outcast after Hitler's regime seized power, dying in Basel in 1934.",
+    "corrected_complete_IPA_input_sha256": "6b9bb1a229fbdbd8150ab8745b7e82d63e76fea334a2c6814f47ad9567e4d4a5",
+    "expected_cached_mother_input": "Correct Origin secondary stress removed; Haber/BASF input unchanged. Real native single-thread raw+timed cache generated once and read back by complete SHA; no claim same bytes as a different CPU.",
+    "ordinary_next_S13": "Now uses original text mother exactly, verified by all-untouched-sentence waveform/pitch checks.",
+    "source_dictionary_model_voice_or_quality_threshold_edits": false,
+    "actual_original_full_run_id": 43562710640,
+    "only_producer_AST_change": "_pron flags=re.I becomes existing _wf(w_)"
+  },
+  "ordinary_next_accepted_text_mother": {
+    "source_sentence": "The next day the widower left for the Eastern Front.",
+    "method": "create",
+    "exact_cache_key": "527e579553ec1e4fe43e07d6d3612032ef05ca14.pkl",
+    "pkl_sha256": "e6763b4753c70c0e595fbd13d69556347a6c933daecdb6dfd5634db8291ba207",
+    "array_sha256": "553bcceff34ba382dfec2745c0557dd94cc661cd7509e16011c04a45411b5bca",
+    "sample_count": 64000,
+    "input_sha256": "2f19624f31e37e5598fe1ff0c0720242b0c9997b8a1399b9204279926f889511",
+    "G72_basis": "original-old-entry-manifest",
+    "source_proof_sha256": "3c528334938cf16a685c04c7e6aa4c62285df0140a2a5549c0ab7ee9088c90d4"
+  }
+}

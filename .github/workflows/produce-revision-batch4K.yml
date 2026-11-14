@@ -112,6 +112,22 @@ jobs:
         run: |
           test "$CACHE_HIT" = true
           test -f "$RUNNER_TEMP/completion-machine/tts/kokoro-v1.0.onnx"
+      - name: 恢复16正确Origin的本轮已固定原始母素材
+        if: matrix.article == '16'
+        uses: actions/cache/restore@v4
+        id: certified-origin-cache
+        with:
+          path: |
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/dce6d1ce3af5043cfc8b6d30acf416eab118b916.pkl
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/dce6d1ce3af5043cfc8b6d30acf416eab118b916.pkl.单线程
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/989b1c025c09eacfd989962aef8352fba7637aa6.pkl
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/989b1c025c09eacfd989962aef8352fba7637aa6.pkl.单线程
+          key: Linux-native16-origin-dce6d1-989b1c-43562710640
+      - name: 确认16精确原母缓存真实命中
+        if: matrix.article == '16'
+        env:
+          ORIGIN_CACHE_HIT: ${{ steps.certified-origin-cache.outputs.cache-hit }}
+        run: test "$ORIGIN_CACHE_HIT" = true
       - name: 准备原有核查工具
         run: |
           sudo apt-get update -qq
