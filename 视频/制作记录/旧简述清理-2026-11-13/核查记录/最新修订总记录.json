@@ -1,7 +1,7 @@
 {
-  "recorded_at_utc": "2026-11-13T23:26:06.197842+00:00",
+  "recorded_at_utc": "2026-11-14T00:07:23.776158+00:00",
   "task": "70篇精读视频及正式印刷书的全部修订、重建和GitHub交付",
-  "state": "ALL70_SOURCE_TEXT_AND_STATIC_LAYOUT_VERIFIED; PRIORITY_AUDIO_FIXES_AND_COMPACT_BOOK_REBUILD_IN_PROGRESS",
+  "state": "COMPACT_475_PAGE_BOOK_APPROVED_AND_DUAL_ARCHIVED; ALL70_TEXT_STATIC_LAYOUT_PASSED; TWO_ILLUSTRATED_4K_VIDEOS_PASSED; REMAINING_AUDIO_PRODUCTION_IN_PROGRESS",
   "status_is_not_a_final_delivery_claim": true,
   "scope": {
     "main_pdf_latest_correction": "799页含解析版本仅未发布本地历史草稿，主册改为v4-compact；小字/句析/语法/练习均从主册移除，解析材料源码留存供以后单独解析书，本轮不制作解析册",
@@ -129,7 +129,7 @@
       "changes": [
         "lavish中文exact巨大的/奢侈的",
         "instruments／仪器，词表解释本语境精密观测仪器",
-        "382字五点简述，解释主镜误差、错检、COSTAR和新相机、原主镜仍有缺陷"
+        "377字五点简述，解释主镜误差、错检、COSTAR和新相机、原主镜仍有缺陷"
       ]
     },
     {
@@ -182,22 +182,46 @@
     "旧字面摘要锚保留历史记录，现行全文由请求源稿及实际排版归一化校验，原检查器不被绕过"
   ],
   "production": {
-    "current_github_run": 43526354790,
-    "commit": "3c7a09c25eee3df3e1ad9696e7cfb91d7d9e6893",
-    "selected": [
-      "10",
-      "11",
-      "12",
-      "44",
-      "51"
+    "new_final_videos_passed": 2,
+    "required_videos": 70,
+    "passed_videos": [
+      {
+        "original_id": "53",
+        "book_order": "35",
+        "sha256": "b82966baa6439b194a6fa1e2c222f226517982318ef398ae631efcd5c562d588"
+      },
+      {
+        "original_id": "64",
+        "book_order": "63",
+        "sha256": "78ef9444e6a65a07ed934c8f9b7f7b51dbcb6d0d6e783db9f61b99a5659b40c9"
+      }
     ],
-    "new_final_videos_passed": 0,
+    "passed_video_ending": "实际正文结束后，书中对应插图60帧，再简述60帧；3840×2160、30fps；原正文编码与AAC包及绝对时间保持不变",
+    "official_producer_run_for_passed_two": 43523430839,
+    "active_runs_at_recording": {
+      "article26_official_rerender": 43529134759,
+      "keep_reviewed_gain_original_native_regression": 43530603703
+    },
+    "readonly_diagnostics_run": 43528832985,
     "observed_blockers": [
-      "原生单线程参考准备已补全标题/整句raw和timed、标点切片及显示分块；已有声音未被此准备改动",
-      "12/44/51独立声音复核与部分高亮仍需实际草稿诊断",
-      "草稿导出16位指纹比较已修；5篇真实新草稿已取回，按实际波形定位，不把局部确认当整篇通过"
+      "草稿声音程序会额外改写已审句内增益；最小保留模式补丁正在原完整回归认证",
+      "同一实际PCM在不同CPU上新推TTS参考不逐样本相同，已证实并着手修复原始create母素材读取；保留原自检、阈值及真实声学问题检查",
+      "原生参考输入枚举、全70词汇上下文、简述续行装饰比较已修，其他真实声音和高亮疑点继续逐篇处理"
     ],
-    "new_final_pdfs_passed": 0
+    "new_final_pdfs_passed": 1,
+    "whole_book": {
+      "pages": 475,
+      "bytes": 375955024,
+      "sha256": "65bc695c7b789fbc397c443ea6a387ee616f2569865a4350edc0137ddcff089e",
+      "format": "B5 176×250mm；只插图、中英文章、词汇短语和简述；保留批准封面/第2页序言/目录/封底",
+      "primary_pinned_commit": "8404ddff99dfa094aa005fec70643d9da55e21fc",
+      "archive_prefix": "考研学人印刷版/2026-11-13-v4/",
+      "frozen_asset_count": 637,
+      "dual_archive_verified": true,
+      "full_pdf_in_git": "原字节四分片、完整SHA、复组程序；Release交付单个完整PDF"
+    },
+    "release_published": false,
+    "old_release_deleted": false
   },
   "preservation": {
     "primary": "alienalgorithm/postgraduate-vocabulary:main",
