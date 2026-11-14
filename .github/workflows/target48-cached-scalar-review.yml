@@ -72,6 +72,18 @@ jobs:
           VIDEO_ROOT: ${{ runner.temp }}/completion-machine
         run: |
           mkdir -p target48-public
+          python - <<'PYENV'
+          import hashlib,os
+          from pathlib import Path
+          tools=Path(os.environ['GITHUB_WORKSPACE'])/'official-main/视频/工具/环境'
+          work=Path(os.environ['RUNNER_TEMP'])/'completion-machine/video/环境'
+          expected='dfde6c065a3558b74923ce82865a3b01dae1f839af4456b74de55dc3ff492312'
+          assert hashlib.sha256((tools/'模型校验码.json').read_bytes()).hexdigest()==expected
+          if work.exists():
+              assert hashlib.sha256((work/'模型校验码.json').read_bytes()).hexdigest()==expected
+          else:
+              work.symlink_to(tools,target_is_directory=True)
+          PYENV
           python -u .github/target48-cached-scalar-review/native48_cached_S15_scalar_review.py --tools "$GITHUB_WORKSPACE/official-main/视频/工具" --video-root "$RUNNER_TEMP/completion-machine" --request "$GITHUB_WORKSPACE/.github/target48-cached-scalar-review/48.json" --output "$GITHUB_WORKSPACE/target48-public/48-cached-S15-scalar-review.json" --public-output "$GITHUB_WORKSPACE/target48-public"
       - name: 仅保存诊断AAC与安全标量报告
         if: always()
