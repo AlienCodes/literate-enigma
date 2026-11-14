@@ -1,0 +1,204 @@
+{
+  "created_utc": "2026-11-14T07:12:15.737735+00:00",
+  "status": "passed_actual_two_vocabulary_coverage_frames_only",
+  "source_id": "13",
+  "book_order": "23",
+  "title_en": "Eleven Days Without Sleep",
+  "task_scope": "read-only actual new native MP4 decoded vocabulary coverage; no source edit, no full V3, no five-boundary duplication",
+  "native_provenance": {
+    "run_id": 43568315233,
+    "artifact_id": 14103886193,
+    "original_zip_sha256_reported_by_root": "a9e8e1b186a0f89bbf7c11dd11b57d64d648b9e42145c4b86b4cbf8143308989",
+    "zip_downloaded_or_reopened_by_this_task": false,
+    "zip_hash_independently_rechecked_by_this_task": false
+  },
+  "actual_video": {
+    "path": "/workspace/work/video-audit70-20261113/next-passed-native/43568315233/13/artifact-files/13-4K-正文-书中插图2秒-简述2秒.mp4",
+    "bytes": 17467168,
+    "sha256": "5d4380c4b405b5deec5a756bc17489d34d9e2aced648e256f6be0a505fbc01cd",
+    "probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "width": 3840,
+          "height": 2160,
+          "r_frame_rate": "30/1",
+          "avg_frame_rate": "30/1",
+          "time_base": "1/15360",
+          "start_pts": 0,
+          "start_time": "0.000000",
+          "duration": "145.833333",
+          "nb_frames": "4375"
+        }
+      ]
+    }
+  },
+  "immutable_actual_working_source": {
+    "path": "/workspace/work/video-audit70-20261113/next-passed-native/43568315233/13/artifact-files/13-actual-working-source.json",
+    "bytes": 46550,
+    "sha256": "b773ce6a96d139049748f1cfc602c2bca0e9e31605d22e02f696285cff872c1d",
+    "only_source_read_for_this_review": true
+  },
+  "frames": [
+    {
+      "sentence": 2,
+      "chunk": 3,
+      "english_target": "logged",
+      "chinese_target": "记录了",
+      "highlight_color_visually_observed": "pink",
+      "all_target_words_same_color": true,
+      "english_chinese_target_color_matches": true,
+      "target_current_chunk_is_active": true,
+      "decoded_from_actual_video": true,
+      "source_original_zero_based_frame_index": 690,
+      "source_original_one_based_frame_number": 691,
+      "public_video_time_seconds": 23,
+      "exact_video_pts": 353280,
+      "video_time_base": "1/15360",
+      "frame_index_basis": "exact original PTS / 512 ticks per frame at 30/1 fps; decoder-local showinfo n=0 after input seek is not used as original index",
+      "png": {
+        "path": "/workspace/work/video-audit70-20261113/article13-user-review-20261114/native13/actual-new-vocabulary-frames/S2C3-logged-active-4K.png",
+        "bytes": 606490,
+        "sha256": "6a5797530feed720105f9cce2f416de59ff22d13fb202d5cef8c1afbdd0e6721",
+        "width": 3840,
+        "height": 2160,
+        "scale_crop_or_overlay_applied": false
+      },
+      "decode_command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-nostdin",
+        "-copyts",
+        "-ss",
+        "23",
+        "-i",
+        "/workspace/work/video-audit70-20261113/next-passed-native/43568315233/13/artifact-files/13-4K-正文-书中插图2秒-简述2秒.mp4",
+        "-map",
+        "0:v:0",
+        "-frames:v",
+        "1",
+        "-vf",
+        "showinfo",
+        "-fps_mode",
+        "passthrough",
+        "/workspace/work/video-audit70-20261113/article13-user-review-20261114/native13/actual-new-vocabulary-frames/S2C3-logged-active-4K.png"
+      ],
+      "decode_log": {
+        "path": "/workspace/work/video-audit70-20261113/article13-user-review-20261114/native13/actual-new-vocabulary-frames/S2C3-logged-active-4K-decode.log",
+        "sha256": "3bc1a2d5622d47033a7f8108ca0044fc1395bd8a696f8685b07df73660084ddc"
+      },
+      "matching_actual_working_source_chunk": {
+        "en": "and **logged** his **mood**.",
+        "zh": "并**记录了**(logged)他的**情绪**(mood)。",
+        "align": [
+          [
+            "and",
+            "并"
+          ],
+          [
+            "**logged**",
+            "**记录了**(logged)"
+          ],
+          [
+            "his **mood**.",
+            "他的**情绪**(mood)。"
+          ]
+        ],
+        "note": "（jolt sb awake：使某人猛然清醒；whenever…：时间状语从句，每当……）"
+      },
+      "actually_viewed_full_4k_image": true,
+      "observed_layout_notes_zh": "logged完整单词与记录了同为粉色；mood/情绪另为绿色，分组清楚。目标英文和中文释义完整、无重叠或裁切。",
+      "visible_target_clipping": false,
+      "visible_target_overlap": false,
+      "layout_scope": "these two actual displayed target frames only; full V3 and five boundary review owned by root"
+    },
+    {
+      "sentence": 15,
+      "chunk": 1,
+      "english_target": "Guinness World Records",
+      "chinese_target": "吉尼斯世界纪录",
+      "highlight_color_visually_observed": "yellow",
+      "all_target_words_same_color": true,
+      "english_chinese_target_color_matches": true,
+      "target_current_chunk_is_active": true,
+      "decoded_from_actual_video": true,
+      "source_original_zero_based_frame_index": 3390,
+      "source_original_one_based_frame_number": 3391,
+      "public_video_time_seconds": 113,
+      "exact_video_pts": 1735680,
+      "video_time_base": "1/15360",
+      "frame_index_basis": "exact original PTS / 512 ticks per frame at 30/1 fps; decoder-local showinfo n=0 after input seek is not used as original index",
+      "png": {
+        "path": "/workspace/work/video-audit70-20261113/article13-user-review-20261114/native13/actual-new-vocabulary-frames/S15C1-Guinness-World-Records-active-4K.png",
+        "bytes": 508477,
+        "sha256": "b0aea9cbf7c4fb98681d889beb1f36f2274c951d17c6bc358d16bdc3e400de4f",
+        "width": 3840,
+        "height": 2160,
+        "scale_crop_or_overlay_applied": false
+      },
+      "decode_command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-nostdin",
+        "-copyts",
+        "-ss",
+        "113",
+        "-i",
+        "/workspace/work/video-audit70-20261113/next-passed-native/43568315233/13/artifact-files/13-4K-正文-书中插图2秒-简述2秒.mp4",
+        "-map",
+        "0:v:0",
+        "-frames:v",
+        "1",
+        "-vf",
+        "showinfo",
+        "-fps_mode",
+        "passthrough",
+        "/workspace/work/video-audit70-20261113/article13-user-review-20261114/native13/actual-new-vocabulary-frames/S15C1-Guinness-World-Records-active-4K.png"
+      ],
+      "decode_log": {
+        "path": "/workspace/work/video-audit70-20261113/article13-user-review-20261114/native13/actual-new-vocabulary-frames/S15C1-Guinness-World-Records-active-4K-decode.log",
+        "sha256": "561932b72b6cb820a10770b76578c4b39719a8a51fd7a264df8e49150511fcd9"
+      },
+      "matching_actual_working_source_chunk": {
+        "en": "In 1997 **Guinness World Records**",
+        "zh": "1997年，**吉尼斯世界纪录**(Guinness World Records)",
+        "align": [
+          [
+            "In 1997",
+            "1997年，"
+          ],
+          [
+            "**Guinness World Records**",
+            "**吉尼斯世界纪录**(Guinness World Records)"
+          ]
+        ]
+      },
+      "actually_viewed_full_4k_image": true,
+      "observed_layout_notes_zh": "Guinness、World、Records三词整体同为黄色，中文吉尼斯世界纪录亦同为黄色；英文保持一行、没有拆色或拆成不同词组。目标区域留白充分，无重叠或裁切。",
+      "visible_target_clipping": false,
+      "visible_target_overlap": false,
+      "layout_scope": "these two actual displayed target frames only; full V3 and five boundary review owned by root"
+    }
+  ],
+  "locator": {
+    "path": "/workspace/work/video-audit70-20261113/article13-user-review-20261114/native13/actual-new-vocabulary-frames/locator-every-150frames.jpg",
+    "sha256": "5243fe215545507212df13f9e2ef5f5d7b62b18873f3f61e908b2802b8c38b27",
+    "interval_frames": 150,
+    "interval_seconds": 5,
+    "resolution_per_cell": [
+      640,
+      360
+    ],
+    "actually_viewed": true,
+    "used_for_location_only": true
+  },
+  "no_word_timing_inferred": true,
+  "new_4k_still_images_written": 2,
+  "audio_decoded": false,
+  "new_tts_or_video_rendered": false,
+  "append_postprocess_or_source_mutation": false,
+  "publish_or_launch": false,
+  "full_V3_claimed": false,
+  "conclusion_zh": "已从本次实际4K原片独立解码并实际查看两张当前组高亮帧。logged/记录了同为粉色；Guinness World Records整体三词与吉尼斯世界纪录同为黄色。两目标组完整可见、释义符合实际source13，未见目标裁切、重叠或拆色。此结论仅覆盖两张目标帧。"
+}
