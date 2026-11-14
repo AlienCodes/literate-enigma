@@ -1,0 +1,18 @@
+{
+  "command": [
+    "ffmpeg",
+    "-hide_banner",
+    "-loglevel",
+    "error",
+    "-i",
+    "/workspace/work/video-audit70-20261113/next-passed-native/43573168894/15/15-4K-\u6b63\u6587\u540e\u63d2\u56fe2\u79d2-\u7b80\u8ff02\u79d2.mp4",
+    "-an",
+    "-vf",
+    "fps=1/5,scale=384:-1,tile=5x7",
+    "-frames:v",
+    "1",
+    "/workspace/work/video-audit70-20261113/next-passed-native/43573168894/15/actual-new-vocabulary-frames/locator-every5s.jpg"
+  ],
+  "exit_code": 0,
+  "purpose": "Read-only frame locator; no original MP4 edit"
+}

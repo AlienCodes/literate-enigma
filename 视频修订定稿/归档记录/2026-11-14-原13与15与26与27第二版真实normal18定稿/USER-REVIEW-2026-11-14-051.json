@@ -1,0 +1,34 @@
+{
+  "kind": "user_supersedes_global_end_of_reading_to_illustration_pause_0_3_with_0_6_seconds",
+  "user_facing_date": "2026-11-14",
+  "user_verbatim": "觉得我觉得这个0.3秒不够，还是变成0.6秒吧，0.6秒，ok。统一变为0.6秒，统一变为0.6秒。统一变为0.6秒。统一变为0点0.6秒，统一变为0.6秒。就是说最后一句话和那个图片之间的这个间隔统一变为0.6秒。",
+  "supersedes_pause_duration_in_records": [
+    "032",
+    "042",
+    "048"
+  ],
+  "required_behavior": {
+    "pause_seconds": 0.6,
+    "fps": 30,
+    "nominal_extra_hold_frames": 18,
+    "start": "actual final spoken sentence end",
+    "display_during_pause": "original final body page",
+    "next": "original illustration for 2 seconds, then original summary for 2 seconds",
+    "AAC_audio_changes_for_transition_only": false
+  },
+  "implementation_frame_rounding": {
+    "voice_end_frame": "ceil(actual_voice_end_seconds*30)",
+    "illustration_first_frame": "voice_end_frame+18",
+    "actual_gap_seconds_lower_inclusive": 0.6,
+    "actual_gap_seconds_upper_exclusive": 0.633334
+  },
+  "execution_state": {
+    "current_uniform_standard_seconds": 0.6,
+    "Tu_Youyou_new_0_6_preview_priority": true,
+    "Tu_Youyou_effect_final_acceptance_still_pending": true,
+    "all_prior_final_authorizations_remain_valid": true,
+    "all_prior_published_versions_preserved_as_history": true,
+    "old_files_not_silently_relabelled_0_6_compliant": true,
+    "all_PDF_work_remains_paused": true
+  }
+}

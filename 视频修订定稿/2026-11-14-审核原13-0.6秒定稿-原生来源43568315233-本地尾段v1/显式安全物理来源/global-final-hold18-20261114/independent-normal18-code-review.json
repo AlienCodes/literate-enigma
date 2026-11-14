@@ -1,0 +1,98 @@
+{
+  "kind": "independent_read_only_normal18_code_review",
+  "created_utc": "2026-11-14T10:04:31.595076+00:00",
+  "reviewer": "/root/resume_layout/contact_review",
+  "reviewed_helper": {
+    "path": "/workspace/work/video-audit70-20261113/global-final-hold18-20261114/illustrated_tail.py",
+    "sha256": "05011f54fc9bbfb4ef8d7325f349bfb1e17d9038cb2b5b6b3d2e3290df65dbaa",
+    "bytes": 32385
+  },
+  "legacy_a05": {
+    "path": "/workspace/work/video-audit70-20261113/article28-user-review-20261114/hold18-integrator/illustrated_tail.py",
+    "sha256": "a05b4455de5225bfca0f5f2ee8fa31ce59d15cd3556dd831228a754fc290831a"
+  },
+  "original_task_snapshot_sha256": "a6d9259eed80bb65dcbd3e284d3c8fa1741071365f0f4ea57a13e27230b3d83c",
+  "version_drift_handled": "The helper was repaired by its owner during this read-only review. Initial finding is retained below; conclusions refer only to the final reviewed05011f54 bytes.",
+  "initial_finding_resolved": {
+    "severity": "metadata_failure_misclassification",
+    "observed_in_sha256": "a6d9259eed80bb65dcbd3e284d3c8fa1741071365f0f4ea57a13e27230b3d83c",
+    "observation": "The normal-final output18-frame decoder check originally ran after result passed/production_delivery_eligible had become true; exceptions retained those success flags.",
+    "resolved_in_reviewed_sha256": "05011f54fc9bbfb4ef8d7325f349bfb1e17d9038cb2b5b6b3d2e3290df65dbaa",
+    "resolution_observed": "Actual output18-frame validation now precedes passed=true, and final18 exception handling explicitly restores passed=false and production_delivery_eligible=false for decoder, preview-export or output-write failures.",
+    "output_hold_validation_line": 410,
+    "success_assignment_line": 411,
+    "failure_reset_line": 463
+  },
+  "requested_contract_observations": {
+    "explicit_exact18_CLI_required": true,
+    "whitelist_source_ids": [
+      "13",
+      "14",
+      "15",
+      "17",
+      "26",
+      "27",
+      "33",
+      "34",
+      "36",
+      "47",
+      "62"
+    ],
+    "pinned_policy051_SHA256": "4bcae46b68b9584f107966f683af580b474fa9835f101834fe55ed6968dfc36b",
+    "policy_digest_and_source_scope_enforced": true,
+    "exact_upstream_kind": "last-body-hold18-then-summary60",
+    "strict_true_finalization_and_false_preview_required": true,
+    "strict_int_last_body18_and_zero_preview_declaration_required": true,
+    "mixed_CLI_preview_upgrade_and_validation_fixture_rejected": true,
+    "Fraction_exact_gap": "[18/30,19/30)",
+    "exact_body_frame_relation": "ceil(Fraction(str(source_voice_endpoint_seconds))*30)+18",
+    "input_and_output_actual19decoded_frame_checks_preserved": true,
+    "full_status_source_binding_coded_pictures_AAC_clocks_IDR_and_art60_card60_checks_preserved": true,
+    "final18_failed_or_plan_only_result_not_production_eligible": true
+  },
+  "independent_AST_comparison": {
+    "all17_nonmain_nonprovenance_legacy_functions_exact": true,
+    "exact_functions": [
+      "run",
+      "digest_bytes",
+      "sha",
+      "probe",
+      "packets",
+      "packet_timing",
+      "coded_pictures_sha",
+      "boundary_is_idr",
+      "aac_sha",
+      "rgb_sha",
+      "source_layout_digest",
+      "source_layout_binding",
+      "approved_inputs",
+      "compose_illustration",
+      "preview_hold_contract",
+      "verify_preview_hold",
+      "verify_static_pages"
+    ],
+    "all_legacy_main_assertions_retained": true,
+    "legacy_main_assertion_count": 22,
+    "only_changed_legacy_provenance_assertion": "timing kind selection extended to normal-final18; remaining provenance assertions retained"
+  },
+  "existing_test_report_read_not_rerun_by_reviewer": {
+    "path": "/workspace/work/video-audit70-20261113/global-final-hold18-20261114/normal18-scope-fraction-legacy-and-actual-decoder-tests.json",
+    "sha256": "41179d02551cbbda2725711c02157cc9eddeab70a8e639f234d32b41c631853f",
+    "program_sha256": "05011f54fc9bbfb4ef8d7325f349bfb1e17d9038cb2b5b6b3d2e3290df65dbaa",
+    "test_count": 62,
+    "reported_passed": true,
+    "actual_decoder_case_count": 4,
+    "real_normal_final_full_positive_pending": true,
+    "no_formal_production_pass_claimed": true
+  },
+  "unresolved_specific_implementation_or_metadata_findings": [],
+  "conclusion": "No unresolved implementation omission or metadata misclassification found in the requested normal18 code scope after the owner fix. This is code review only; actual normal36 end-to-end positive media verification remains with the parent.",
+  "limitations": [
+    "No independent full-media production run or new positive-normal36 acceptance performed.",
+    "Existing62-test report was inspected and byte-bound, not rerun by this reviewer."
+  ],
+  "source_CI_auth_D_R_or_original_reports_modified": false,
+  "helper_code_modified_by_reviewer": false,
+  "media_generated_by_reviewer": false,
+  "new_production_or_video_pass_added": false
+}

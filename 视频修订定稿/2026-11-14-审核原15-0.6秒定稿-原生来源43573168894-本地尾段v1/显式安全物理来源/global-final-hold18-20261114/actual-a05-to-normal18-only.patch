@@ -1,0 +1,124 @@
+--- frozen-a05-preview18/illustrated_tail.py
++++ frozen-normal18/illustrated_tail.py
+@@ -23,6 +23,8 @@
+ PAGE_FRAMES = 60
+ SIZE = (3840, 2160)
+ THUMB = (384, 216)
++FINAL_HOLD18_POLICY_SHA256 = '4bcae46b68b9584f107966f683af580b474fa9835f101834fe55ed6968dfc36b'
++FINAL_HOLD18_SOURCE_IDS = frozenset(('14','27','13','26','15','17','36','33','47','34','62'))
+ # Explicit review-only top-level keys. The pinned official render.py never reads
+ # either key (including apply_script/layout/size); no gain, timing or content key
+ # is omitted. JSON key order and all remaining data stay part of the digest.
+@@ -207,17 +209,53 @@
+             'preview_hold_visual_reference':'actual decoded last spoken-page frame before18-frame hold; existing static-page MAE<2 rule'}
+ 
+ 
++def final_hold_contract(args, timing, body_frames=None):
++    """Explicit final18 mode; the policy never grants final approval to other articles."""
++    hold = getattr(args, 'final_last_body_hold_frames', 0)
++    preview = getattr(args, 'preview_last_body_hold_frames', 0)
++    policy = getattr(args, 'final_hold_policy', None)
++    assert type(hold) is int and hold in (0,18), 'Only default0 or exactly18 final hold frames are supported.'
++    assert not (hold and preview), 'Final and preview hold modes are mutually exclusive.'
++    if hold == 0:
++        assert policy is None, 'A final hold policy requires explicit final18 mode.'
++        assert timing.get('kind') != 'last-body-hold18-then-summary60' and not timing.get('last_body_hold_frames',0), 'Final hold metadata requires explicit final18 mode.'
++        return False
++    assert args.source_id in FINAL_HOLD18_SOURCE_IDS, 'This article has no explicit finalization authorization.'
++    assert not args.validation_fixture, 'Final delivery requires actual passed native quality provenance.'
++    assert policy is not None and sha(policy) == FINAL_HOLD18_POLICY_SHA256, 'Wrong or missing approved final hold policy.'
++    assert timing.get('kind') == 'last-body-hold18-then-summary60', 'Wrong normal-final upstream kind; a preview cannot be promoted.'
++    assert timing.get('finalization_authorized') is True, 'Missing explicit finalization authorization.'
++    assert timing.get('preview_only') is False, 'A preview cannot be promoted to final delivery.'
++    assert type(timing.get('last_body_hold_frames')) is int and timing['last_body_hold_frames'] == 18, 'Missing exact final18 declaration.'
++    assert type(timing.get('preview_last_body_hold_frames',0)) is int and timing.get('preview_last_body_hold_frames',0) == 0, 'Preview declarations cannot enter final mode.'
++    if body_frames is not None:
++        endpoint = Fraction(str(timing['source_voice_endpoint_seconds']))
++        gap = Fraction(body_frames,FPS) - endpoint
++        assert Fraction(18,FPS) <= gap < Fraction(19,FPS), 'Voice-to-illustration gap is outside the exact18-frame ceiling hold.'
++        ceiling = __import__('math').ceil(endpoint * FPS)
++        assert body_frames == ceiling + 18, 'Final hold must start after measured speech ceiling and last exactly18frames.'
++    return True
++
++
++def verify_final_hold(video, body_frames):
++    """Run the identical actual19-frame decode and pixel check without preview labels."""
++    checked = verify_preview_hold(video, body_frames)
++    return {key.removeprefix('preview_'): value for key,value in checked.items()}
++
++
+ def provenance(args, source_sha, approved):
+     timing = json.loads(args.verification.read_text())
+     assert str(timing['article']).zfill(2) == args.source_id
+     assert timing['video_sha256'] == source_sha, 'Input MP4 does not match its passed verification.'
+-    is_preview = preview_hold_contract(args, timing)
++    is_final = final_hold_contract(args, timing)
++    is_preview = False if is_final else preview_hold_contract(args, timing)
+     if args.validation_fixture:
+         assert timing.get('synthetic_validation_fixture') is True
+         assert timing.get('source_kind') == 'synthetic-validation-only'
+         return timing, None, {'method':'synthetic_only_not_production_source_acceptance'}
+     assert timing.get('source_kind') == 'new-canonical-4K', 'Historical accepted/failed sources are forbidden.'
+-    assert timing.get('kind') == ('preview-last-body-hold18-then-summary60' if is_preview else 'immediate-standalone-summary'), 'Input is not the verified new two-second summary stage.'
++    expected_kind = 'last-body-hold18-then-summary60' if is_final else ('preview-last-body-hold18-then-summary60' if is_preview else 'immediate-standalone-summary')
++    assert timing.get('kind') == expected_kind, 'Input is not the verified new two-second summary stage.'
+     assert timing.get('canonical_pipeline_passed') is True
+     assert timing.get('original_audio_identical') is True
+     assert timing.get('original_audio_packet_timings_identical') is True
+@@ -276,6 +314,8 @@
+     ap.add_argument('--overwrite', action='store_true')
+     ap.add_argument('--validation-fixture', action='store_true')
+     ap.add_argument('--preview-last-body-hold-frames', type=int, default=0, help='Only source28 authorized review variant: exactly18frames after actual final speech; default0 retains original contract.')
++    ap.add_argument('--final-last-body-hold-frames', type=int, default=0, help='Only explicitly finalized articles: exactly18frames after measured final speech, bound to policy051.')
++    ap.add_argument('--final-hold-policy', type=Path)
+     args = ap.parse_args(); args.source_id = args.source_id.zfill(2)
+     assert PILLOW_VERSION == '12.3.0', 'Use the approved Pillow12.3.0 production environment.'
+     assert args.input.resolve() != args.output.resolve(), 'Write a separate new output; retain the verified input.'
+@@ -294,7 +334,8 @@
+         before_v = packets(args.input, 'v:0'); before_a = packets(args.input, 'a:0', payload=True)
+         body_frames = int(timing['summary_start_frame']); body_seconds = body_frames / FPS
+         assert body_frames > 0 and len(before_v) == body_frames + PAGE_FRAMES
+-        is_preview = preview_hold_contract(args, timing, body_frames)
++        is_final = final_hold_contract(args, timing, body_frames)
++        is_preview = False if is_final else preview_hold_contract(args, timing, body_frames)
+         assert 'K' in before_v[body_frames]['flags'], 'Body boundary is not a closed IDR: rerun only the NEW end-card stage with a forced keyframe; no silent body re-encode.'
+         assert round(float(before_v[body_frames]['pts_time']) * FPS) == body_frames
+         assert boundary_is_idr(args.input,body_seconds), 'The summary keyframe is not an H.264 IDR; no silent body re-encode.'
+@@ -315,6 +356,9 @@
+         if is_preview:
+             result.update({'preview_only':True,'preview_delivery_eligible':False,'production_delivery_eligible':False,'kind':'preview-last-body-hold18-then-approved-book-illustration60-then-approved-summary60'})
+             result.update(verify_preview_hold(args.input,body_frames))
++        if is_final:
++            result.update({'preview_only':False,'finalization_authorized':True,'kind':'last-body-hold18-then-approved-book-illustration60-then-approved-summary60','final_hold_policy_sha256':sha(args.final_hold_policy)})
++            result.update(verify_final_hold(args.input,body_frames))
+         if args.plan_only:
+             result['plan_passed'] = True
+             args.report.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')
+@@ -362,6 +406,8 @@
+             assert {k:au.get(k) for k in audio_parameters} == {k:out_a.get(k) for k in audio_parameters}, 'Audio codec parameters changed.'
+             page_checks = verify_static_pages(joined, body_frames, art, args.summary_image)
+             result.update(page_checks)
++            # A normal final remains ineligible until its output18 frames pass too.
++            final_output_hold_validation = verify_final_hold(joined,body_frames) if is_final else None
+             result.update({'passed':True,'production_delivery_eligible':not args.validation_fixture and not is_preview,
+                            'source_kind':'new-canonical-4K' if not args.validation_fixture else 'synthetic-validation-only',
+                            'output_frames':len(after_v),'output_seconds':body_seconds+4,
+@@ -374,6 +420,9 @@
+             if is_preview:
+                 result.update({'preview_only':True,'preview_delivery_eligible':True,'production_delivery_eligible':False})
+                 result['output_preview_hold_validation'] = verify_preview_hold(joined,body_frames)
++            if is_final:
++                result.update({'preview_only':False,'finalization_authorized':True,'production_delivery_eligible':True})
++                result['output_final_hold_validation'] = final_output_hold_validation
+             result['illustration_preparation'] = {
+                 'source_id':args.source_id, 'new_id':image_row['new_id'],
+                 'native_image_sha256':image_row['sha256'],
+@@ -410,6 +459,8 @@
+         args.report.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+         print(json.dumps(result,ensure_ascii=False))
+     except Exception as error:
++        if getattr(args,'final_last_body_hold_frames',0) == 18:
++            result.update({'passed':False,'production_delivery_eligible':False})
+         result['error'] = str(error)
+         args.report.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+         raise

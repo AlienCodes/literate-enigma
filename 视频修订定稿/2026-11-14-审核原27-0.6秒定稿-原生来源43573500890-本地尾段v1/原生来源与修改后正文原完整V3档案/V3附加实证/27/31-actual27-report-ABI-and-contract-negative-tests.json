@@ -1,0 +1,58 @@
+{
+  "kind": "actual27_diagnostic_ABI_and_contract_negative_tests",
+  "actual_diagnostic_report": {
+    "path": "/workspace/work/video-audit70-20261113/article27-user-review-20261114/controlled-QC-real-verification/27-actual-diagnostic-positive.json",
+    "sha256": "c1f08534635d981afdf395fe43cc751ebf21104406e055fb27d153ca37b7214b"
+  },
+  "actual_diagnostic_measurement_adapter_passed": true,
+  "actual_native_production_not_yet_observed_or_claimed": true,
+  "tests": [
+    {
+      "case": "Actual diagnostic report measurement ABI",
+      "passed": true,
+      "production_pass_claimed": false
+    },
+    {
+      "case": "Actual diagnostic report cannot count as production",
+      "rejected": true,
+      "reason": "A diagnostic candidate is not a passed native production report"
+    },
+    {
+      "case": "wrong_program",
+      "rejected": true,
+      "reason": "Article27 exact approved program/reference differs"
+    },
+    {
+      "case": "wrong_request",
+      "rejected": true,
+      "reason": "Article27 measured original source/audio binding differs"
+    },
+    {
+      "case": "S12_failure_cleared",
+      "rejected": true,
+      "reason": "Keep the exact original S12 R finding; do not clear or generalize it"
+    },
+    {
+      "case": "another_acoustic_failure",
+      "rejected": true,
+      "reason": "Actual article27 contains another failed acoustic check"
+    },
+    {
+      "case": "S12_public_sample_changed",
+      "rejected": true,
+      "reason": "Actual S12 public samples/window differ"
+    },
+    {
+      "case": "S12_original_r_finding_changed",
+      "rejected": true,
+      "reason": "The exact authorized unchanged S12 passage is not preserved"
+    },
+    {
+      "case": "new_AAC_changed",
+      "rejected": true,
+      "reason": "Article27 measured original source/audio binding differs"
+    }
+  ],
+  "all_tests_passed": true,
+  "actual_audio_QC_not_reexecuted_or_modified": true
+}

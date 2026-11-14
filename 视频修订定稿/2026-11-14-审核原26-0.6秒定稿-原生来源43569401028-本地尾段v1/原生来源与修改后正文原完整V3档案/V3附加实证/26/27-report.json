@@ -1,0 +1,239 @@
+{
+  "created_utc": "2026-11-14T07:24:47.489058+00:00",
+  "status": "passed_actual_two_vocabulary_coverage_frames_only",
+  "source_id": "26",
+  "book_order": "27",
+  "title_en": "The Language the Children Invented",
+  "task_scope": "read-only actual native MP4 two vocabulary coverage frames; no source edit, audio access, append or video re-render",
+  "native_provenance": {
+    "run_id": 43569401028,
+    "job_id": 132370297695,
+    "artifact_id": 14104223109,
+    "original_zip_bytes_reported_by_root": 40553455,
+    "original_zip_sha256_reported_by_root": "a65f6e762572206b89089bdc2c8c584ee0d8d05590ea111bd44a5fb9e3733ff5",
+    "zip_downloaded_or_reopened_by_this_task": false,
+    "zip_hash_independently_rechecked_by_this_task": false
+  },
+  "actual_video": {
+    "path": "/workspace/work/video-audit70-20261113/next-passed-native/43569401028/26/artifact-files/26-4K-正文-书中插图2秒-简述2秒.mp4",
+    "bytes": 15490120,
+    "sha256": "86867cce1791f3ac6c3913e870d95dedd10a18f1dcd560dcde47e6d56bd5a6f9",
+    "probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "width": 3840,
+          "height": 2160,
+          "r_frame_rate": "30/1",
+          "avg_frame_rate": "30/1",
+          "time_base": "1/15360",
+          "start_pts": 0,
+          "start_time": "0.000000",
+          "duration": "140.733333",
+          "nb_frames": "4222"
+        }
+      ]
+    }
+  },
+  "immutable_actual_working_source": {
+    "path": "/workspace/work/video-audit70-20261113/next-passed-native/43569401028/26/artifact-files/26-actual-working-source.json",
+    "bytes": 49937,
+    "sha256": "8e5245bd05e295f08dc4d481392b07ce83b32bc54deb895f07afe1af2e051434",
+    "only_source_read_for_this_review": true
+  },
+  "frames": [
+    {
+      "sentence": 4,
+      "chunk": 2,
+      "english_target": "gestures",
+      "chinese_target": "手势",
+      "english_plural_preserved": true,
+      "english_capitalization_preserved": true,
+      "highlight_color_visually_observed": "lime green",
+      "whole_target_same_color": true,
+      "english_chinese_target_color_matches": true,
+      "target_current_chunk_is_active": true,
+      "decoded_from_actual_video": true,
+      "source_original_zero_based_frame_index": 750,
+      "source_original_one_based_frame_number": 751,
+      "public_video_time_seconds": 25,
+      "exact_video_pts": 384000,
+      "video_time_base": "1/15360",
+      "frame_index_basis": "exact original PTS / 512 ticks per frame at 30/1 fps; decoder-local showinfo n=0 after input seek is not the original frame index",
+      "png": {
+        "path": "/workspace/work/video-audit70-20261113/article26-user-review-20261114/native26/actual-new-vocabulary-frames/S4C2-gestures-active-4K.png",
+        "bytes": 841872,
+        "sha256": "e17e657cd2b45fb657bd92c879691c4b88e6684f8da2a58a8b96d8346ab50559",
+        "width": 3840,
+        "height": 2160,
+        "scale_crop_or_overlay_applied": false
+      },
+      "decode_command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-nostdin",
+        "-copyts",
+        "-ss",
+        "25",
+        "-i",
+        "/workspace/work/video-audit70-20261113/next-passed-native/43569401028/26/artifact-files/26-4K-正文-书中插图2秒-简述2秒.mp4",
+        "-map",
+        "0:v:0",
+        "-frames:v",
+        "1",
+        "-vf",
+        "showinfo",
+        "-fps_mode",
+        "passthrough",
+        "/workspace/work/video-audit70-20261113/article26-user-review-20261114/native26/actual-new-vocabulary-frames/S4C2-gestures-active-4K.png"
+      ],
+      "decode_log": {
+        "path": "/workspace/work/video-audit70-20261113/article26-user-review-20261114/native26/actual-new-vocabulary-frames/S4C2-gestures-active-4K-decode.log",
+        "sha256": "e254eecc5ae8b54ef2d7d47d63da265df8200153e28fd932012603b460f4e64d"
+      },
+      "matching_actual_working_source_chunk": {
+        "en": "sharing a **homemade** **repertoire** of **gestures** with parents and **siblings**.",
+        "zh": "共用**自制的**(homemade)**一整套/全部**(repertoire)**手势**(gestures)，在父母和**兄弟姐妹**(siblings)之间。",
+        "align": [
+          [
+            "sharing",
+            "共用"
+          ],
+          [
+            "a **homemade**",
+            "**自制的**(homemade)"
+          ],
+          [
+            "**repertoire**",
+            "**一整套/全部**(repertoire)"
+          ],
+          [
+            "of **gestures**",
+            "**手势**(gestures)，"
+          ],
+          [
+            "with parents",
+            "在父母"
+          ],
+          [
+            "and **siblings**.",
+            "和**兄弟姐妹**(siblings)之间。"
+          ]
+        ],
+        "note": "（sharing…：现在分词短语作伴随状语；\nrepertoire：全部本领，全部节目，这里指全部手势）"
+      },
+      "actually_viewed_full_4k_image": true,
+      "observed_layout_and_meaning_notes_zh": "目标是gestures/手势，二者同为亮黄绿色；旁边repertoire/一整套/全部为紫色，未把repertoire误作本次新增词。gestures复数词形完整。目标英文中文均完整可见、无重叠或裁切。",
+      "visible_target_clipping": false,
+      "visible_target_overlap": false,
+      "layout_scope": "these two actual displayed vocabulary frames only; root owns full V3 and five boundaries"
+    },
+    {
+      "sentence": 16,
+      "chunk": 1,
+      "english_target": "Linguists",
+      "chinese_target": "语言学家",
+      "english_plural_preserved": true,
+      "english_capitalization_preserved": true,
+      "highlight_color_visually_observed": "bright green",
+      "whole_target_same_color": true,
+      "english_chinese_target_color_matches": true,
+      "target_current_chunk_is_active": true,
+      "decoded_from_actual_video": true,
+      "source_original_zero_based_frame_index": 3750,
+      "source_original_one_based_frame_number": 3751,
+      "public_video_time_seconds": 125,
+      "exact_video_pts": 1920000,
+      "video_time_base": "1/15360",
+      "frame_index_basis": "exact original PTS / 512 ticks per frame at 30/1 fps; decoder-local showinfo n=0 after input seek is not the original frame index",
+      "png": {
+        "path": "/workspace/work/video-audit70-20261113/article26-user-review-20261114/native26/actual-new-vocabulary-frames/S16C1-Linguists-active-4K.png",
+        "bytes": 564976,
+        "sha256": "cc3c2e15fb100be2b4ef9f4c3464da120e7e46741e3cfe5074e8d36f03cdee34",
+        "width": 3840,
+        "height": 2160,
+        "scale_crop_or_overlay_applied": false
+      },
+      "decode_command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-nostdin",
+        "-copyts",
+        "-ss",
+        "125",
+        "-i",
+        "/workspace/work/video-audit70-20261113/next-passed-native/43569401028/26/artifact-files/26-4K-正文-书中插图2秒-简述2秒.mp4",
+        "-map",
+        "0:v:0",
+        "-frames:v",
+        "1",
+        "-vf",
+        "showinfo",
+        "-fps_mode",
+        "passthrough",
+        "/workspace/work/video-audit70-20261113/article26-user-review-20261114/native26/actual-new-vocabulary-frames/S16C1-Linguists-active-4K.png"
+      ],
+      "decode_log": {
+        "path": "/workspace/work/video-audit70-20261113/article26-user-review-20261114/native26/actual-new-vocabulary-frames/S16C1-Linguists-active-4K-decode.log",
+        "sha256": "fb7343b5adb25b5672def7441bf0baf2a381f623d9b7724e20b945cd269ad2d6"
+      },
+      "matching_actual_working_source_chunk": {
+        "en": "**Linguists** had a rare chance to watch a language grow from **infancy** to **maturity**.",
+        "zh": "**语言学家**(Linguists)难得有机会看着一门语言从**婴儿期**(infancy)长到**成熟期**(maturity)。",
+        "align": [
+          [
+            "**Linguists**",
+            "**语言学家**(Linguists)"
+          ],
+          [
+            "had a rare chance",
+            "难得有机会"
+          ],
+          [
+            "to watch",
+            "看着"
+          ],
+          [
+            "a language",
+            "一门语言"
+          ],
+          [
+            "grow from **infancy**",
+            "从**婴儿期**(infancy)长"
+          ],
+          [
+            "to **maturity**.",
+            "到**成熟期**(maturity)。"
+          ]
+        ],
+        "note": "（grow from A to B：从 A 长到 B；watch sth do：看着……做）"
+      },
+      "actually_viewed_full_4k_image": true,
+      "observed_layout_and_meaning_notes_zh": "句首Linguists保留大写L与复数-s，完整单词和中文语言学家同为亮绿色。词义为语言学家，符合本句研究语言成长的语境。目标英文中文完整可见、无重叠或裁切。",
+      "visible_target_clipping": false,
+      "visible_target_overlap": false,
+      "layout_scope": "these two actual displayed vocabulary frames only; root owns full V3 and five boundaries"
+    }
+  ],
+  "locator": {
+    "path": "/workspace/work/video-audit70-20261113/article26-user-review-20261114/native26/actual-new-vocabulary-frames/locator-every-150frames.jpg",
+    "sha256": "d5f4d8b35061f55e2b2ddc92aebd13b702cddd82a704d4f3ba23d0318dba7c17",
+    "interval_frames": 150,
+    "interval_seconds": 5,
+    "resolution_per_cell": [
+      640,
+      360
+    ],
+    "actually_viewed": true,
+    "used_for_location_only": true
+  },
+  "no_word_timing_inferred": true,
+  "new_4k_still_images_written": 2,
+  "audio_decoded_or_identity_checked": false,
+  "new_tts_or_video_rendered": false,
+  "append_postprocess_or_source_mutation": false,
+  "publish_or_launch": false,
+  "full_V3_claimed": false,
+  "conclusion_zh": "已从本次source26/book27实际4K原片独立解码并逐张实际查看两张当前组高亮帧。S4C2 gestures/手势同为亮黄绿色，且与repertoire明确分色；S16C1 Linguists/语言学家同为亮绿色，句首大写与复数保留。两目标组完整可见、语义符合实际source26，无目标裁切、重叠或拆色。此结论仅覆盖两张目标帧，不作全V3或音频同一性结论。"
+}

@@ -1,0 +1,241 @@
+{
+  "article": "27",
+  "status": "passed",
+  "actual_new_mp4": true,
+  "video_sha256": "515912e13e8e657ccf24c6c6617dc57c9d2a0bed1310b6fef090a150f31a1d26",
+  "video_bytes": 16919166,
+  "official_run": {
+    "repository": "AlienCodes/literate-enigma",
+    "run_id": 43573500890,
+    "run_attempt": 1,
+    "status": "completed",
+    "conclusion": "success",
+    "head_sha": "9f0ab881a7c2cce261457e138782b017e77a48a9",
+    "workflow_path": ".github/workflows/produce-revision-batch4K.yml",
+    "entrypoint": "视频/工具/新管/定稿.sh",
+    "stage": "4K",
+    "canonical_selection": "native_final_official_passed",
+    "artifact_id": 14106301230,
+    "artifact_zip": {
+      "path": "/workspace/work/video-audit70-20261113/next-passed-native/43573500890/27/article27-passed-output.zip",
+      "bytes": 45119730,
+      "sha256": "b8eccd9befab60ea814ed8c392b5544fb128ed73979ee2e55c2e9ac2cdc79d41"
+    },
+    "artifact_zip_sha256": "b8eccd9befab60ea814ed8c392b5544fb128ed73979ee2e55c2e9ac2cdc79d41",
+    "artifact_status_member": "27-canonical-summary-passed-status.json",
+    "artifact_mp4_member": "27-4K-读完即转简述2秒.mp4",
+    "artifact_mp4_sha256": "6d200ba6acce2b53536fff2b1d3228664a8858dd531d46b17ecc5c5dd226e2a3",
+    "job": {
+      "id": 132382701813,
+      "name": "produce (27)",
+      "article": "27",
+      "run_attempt": 1,
+      "status": "completed",
+      "conclusion": "success",
+      "upload_step_name": "仅保留本篇公开成片和核验材料"
+    },
+    "artifact_main_status_member": "27-status.json",
+    "artifact_main_status_sha256": "eba82cb404fa23741270b7ecbf9963d66110c18a0d20cbd58324b1a9437be7af",
+    "native_inline_final_original_bytes_preserved": true
+  },
+  "actual_probe": {
+    "width": 3840,
+    "height": 2160,
+    "frames": 4565,
+    "fps": "30/1",
+    "duration_seconds": 152.166667
+  },
+  "speech_end": {
+    "actual_new_output": true,
+    "measured_from_actual_audio": true,
+    "end_frame": 4445,
+    "report_sha256": "58c32501c885156ec591d88c0cfa77b874176a789a5848c07760dd92ef12d3b1"
+  },
+  "illustration": {
+    "decoded_from_actual_mp4": true,
+    "frames": 60,
+    "start_frame": 4445,
+    "width": 3840,
+    "height": 2160,
+    "approved_illustration_sha256": "fa4f8e3c9b91cd923b539a9cdd29aa1b36892ca27c44730bcabe6e6254761acf",
+    "book_source_sha256": "fa4f8e3c9b91cd923b539a9cdd29aa1b36892ca27c44730bcabe6e6254761acf",
+    "preparation": {
+      "source_id": "27",
+      "new_id": "22",
+      "native_image_sha256": "fa4f8e3c9b91cd923b539a9cdd29aa1b36892ca27c44730bcabe6e6254761acf",
+      "native_pixel_dimensions": [
+        1536,
+        1024
+      ],
+      "prepared_png_sha256": "3988480ab623b46fe44a259d244fb1816513571f3eb209488f5608b8f4abe62e",
+      "prepared_rgb_sha256": "bf851b48f91054ccabf132ed560e09c462f0b394bc8b7be6d940b585819aafed",
+      "prepared_pixel_dimensions": [
+        3840,
+        2160
+      ],
+      "mode": "cover",
+      "Pillow": "12.3.0",
+      "native_source_crop_box": [
+        0,
+        80,
+        1536,
+        944
+      ],
+      "resampling": "Pillow Image.Resampling.LANCZOS",
+      "same_image_background_gaussian_blur_radius": null,
+      "derived_in_this_process_from_exact_approved_native_image": true,
+      "generated_or_substituted_artwork": false,
+      "added_text_or_graphics": false,
+      "preparer_program_sha256": "dc204b91415e28297b844e9666087b0e23e67194944b359cb5fb5ddbca0f1208",
+      "prepared_image_path": "/home/runner/work/literate-enigma/literate-enigma/article27-delivery/27-批准插图4K.png"
+    },
+    "frame_comparison": {
+      "status": "passed",
+      "actual_new_output": true,
+      "decoded_from_actual_mp4": true,
+      "frames_checked": 60,
+      "start_frame": 4445,
+      "video_sha256": "515912e13e8e657ccf24c6c6617dc57c9d2a0bed1310b6fef090a150f31a1d26",
+      "reference_sha256": "3988480ab623b46fe44a259d244fb1816513571f3eb209488f5608b8f4abe62e",
+      "report_sha256": "f138f2ec3e78c56a6a6c37c2bb120c62d82b20ee51fff524c3ba2bd06ae7e281"
+    }
+  },
+  "summary": {
+    "decoded_from_actual_mp4": true,
+    "frames": 60,
+    "start_frame": 4505,
+    "overflow": false,
+    "normal_font_size": true,
+    "font_px": 113,
+    "text_sha256": "4f5ca7607b42849b3dc8fb65e4710cd27246b6517b73f88a859593e73f5336d3",
+    "approved_request_text_sha256": "e778792a4a4e62aa079f694a8776d0751934bd505d696867c41255cae549f0dc"
+  },
+  "audio": {
+    "canonical_qc": {
+      "tool": "audio27-controlled-qc.py",
+      "actual_new_output": true,
+      "status": "passed",
+      "canonical_video_sha256": "6d200ba6acce2b53536fff2b1d3228664a8858dd531d46b17ecc5c5dd226e2a3",
+      "reviewed_canonical_video_sha256": "b4cd3750a9c1eb458e878f0bbdca520087db7a4ed5e71aca02cb98f14dceda38",
+      "binding": "reviewed_native_pre_card_then_exact_audio_copy",
+      "copy_verification_sha256": "58c32501c885156ec591d88c0cfa77b874176a789a5848c07760dd92ef12d3b1",
+      "report_sha256": "49e07fa013ccb5173dd7712f754c9ba26b6e287c6fb0c239251346885f2665e6",
+      "program_sha256": "2316283d99881b679a3f3c51bae59450fc65387ec2d6bd264d334cd485f2fea6",
+      "reference_file_sha256": "37581282f897aa22f776ee186ebe597e2d4ea67fa3f7abb23b392870fefe2037",
+      "request_source_sha256": "e1214d8e9314a1cb54da82e2532889198bec555d6be9189fbfb43b5fdedcd728"
+    },
+    "repair_applied": true,
+    "lossless_copy": {
+      "canonical_video_sha256": "6d200ba6acce2b53536fff2b1d3228664a8858dd531d46b17ecc5c5dd226e2a3",
+      "final_video_sha256": "515912e13e8e657ccf24c6c6617dc57c9d2a0bed1310b6fef090a150f31a1d26",
+      "audio_packet_times_identical": true,
+      "canonical_aac_adts_sha256": "d619f0175ab2c57c6a5b77b9c6f0d62cd5b9fc2c548ec3900a45b3c44919b6f9",
+      "canonical_packet_projection_sha256": "799b98058e016fb9850518d2d4d2b7be4cb6215a31a6814c5ce3da452ee893a1",
+      "canonical_packet_count": 7039,
+      "final_aac_adts_sha256": "d619f0175ab2c57c6a5b77b9c6f0d62cd5b9fc2c548ec3900a45b3c44919b6f9",
+      "final_packet_projection_sha256": "799b98058e016fb9850518d2d4d2b7be4cb6215a31a6814c5ce3da452ee893a1",
+      "final_packet_count": 7039
+    },
+    "targeted_review": {
+      "article": "27",
+      "actual_new_output": true,
+      "status": "passed",
+      "canonical_video_sha256": "6d200ba6acce2b53536fff2b1d3228664a8858dd531d46b17ecc5c5dd226e2a3",
+      "reviewed_canonical_video_sha256": "b4cd3750a9c1eb458e878f0bbdca520087db7a4ed5e71aca02cb98f14dceda38",
+      "binding": "reviewed_native_pre_card_then_exact_audio_copy",
+      "report_sha256": "49e07fa013ccb5173dd7712f754c9ba26b6e287c6fb0c239251346885f2665e6",
+      "whole_track_loudness_review": true
+    },
+    "controlled_repair": {
+      "status": "passed",
+      "actual_new_output": true,
+      "canonical_video_sha256": "6d200ba6acce2b53536fff2b1d3228664a8858dd531d46b17ecc5c5dd226e2a3",
+      "reviewed_canonical_video_sha256": "b4cd3750a9c1eb458e878f0bbdca520087db7a4ed5e71aca02cb98f14dceda38",
+      "binding": "reviewed_native_pre_card_then_exact_audio_copy",
+      "report_sha256": "49e07fa013ccb5173dd7712f754c9ba26b6e287c6fb0c239251346885f2665e6",
+      "authorization": "Actual immutable native user-authorization/source request records and approved dedicated acoustic QC retained in evidence.",
+      "actual_qc_program": "audio27-controlled-qc.py",
+      "program_sha256": "2316283d99881b679a3f3c51bae59450fc65387ec2d6bd264d334cd485f2fea6",
+      "approved_native_repair_scope": {
+        "kind": "controlled_audio_repair",
+        "repair_applied": true,
+        "request_source_sha256": "e1214d8e9314a1cb54da82e2532889198bec555d6be9189fbfb43b5fdedcd728",
+        "reference_file_sha256": "37581282f897aa22f776ee186ebe597e2d4ea67fa3f7abb23b392870fefe2037",
+        "actual_original_full_pipeline_passed_first": true,
+        "whole_track_actual_audio_and_approved_unchanged_regions_required": true
+      }
+    }
+  },
+  "source_sha256": {
+    "request": {
+      "json": "e1214d8e9314a1cb54da82e2532889198bec555d6be9189fbfb43b5fdedcd728",
+      "gen": "8509dd84018445aadb204b6bd9b2e7a609dbf65aed59e4a725f515053a820dbb",
+      "md": "c592b44a8e6ec26f3c2e96ed19191958e57c81d31e54329c20d726e538c10e52"
+    },
+    "final": {
+      "json": "ef3813944f27b0f4cbf59f108749c2714d2e41f380e41b21251d1160bcd5c5c8",
+      "gen": "692906da18b63563fe1b8c7efc1e139beb90ea0772ae823b6ccd961cbb5ee670",
+      "md": "53f58e003c3068f6ec0b0af1d2a8eeb17f67848e5bc7ee6494d2d5980519a85e"
+    }
+  },
+  "source_transform": {
+    "status": "passed",
+    "actual_working_copy": true,
+    "operations": [
+      "L19",
+      "production_qc_metadata"
+    ],
+    "report_sha256": "9d47ef1bcaba4e497dc3f05255c18b1ff289f5e820981d2bb43011b4c811935b",
+    "changed_paths": [
+      "/核对确认/删除段/S12 raw 3.8550-4.2161/依据",
+      "/核对确认/删除段/S12 raw 3.8550-4.2161/配音指纹",
+      "/核对确认/删除段/S15 raw 4.1050-4.5086/依据",
+      "/核对确认/删除段/S15 raw 4.1050-4.5086/配音指纹",
+      "/核对确认/删除段/S16 raw 11.3702-11.4546/依据",
+      "/核对确认/删除段/S16 raw 11.3702-11.4546/配音指纹",
+      "/核对确认/删除段/S16 raw 4.0950-4.6850/依据",
+      "/核对确认/删除段/S16 raw 4.0950-4.6850/配音指纹",
+      "/核对确认/删除段/S2 raw 7.2700-7.6600/依据",
+      "/核对确认/删除段/S2 raw 7.2700-7.6600/配音指纹",
+      "/核对确认/删除段/S6 raw 7.5650-8.0210/依据",
+      "/核对确认/删除段/S6 raw 7.5650-8.0210/配音指纹",
+      "/核对确认/删除段/S7 raw 3.3841-3.5050/依据",
+      "/核对确认/删除段/S7 raw 3.3841-3.5050/配音指纹",
+      "/核对确认/响度骤降/98.1–98.8s/依据",
+      "/核对确认/响度骤降/98.1–98.8s/配音指纹",
+      "/核对确认/非人声/118.72–118.75s/依据",
+      "/核对确认/非人声/118.72–118.75s/配音指纹",
+      "/核对确认/非人声/127.78–127.81s/依据",
+      "/核对确认/非人声/127.78–127.81s/配音指纹",
+      "/核对确认/非人声/13.45–13.47s/依据",
+      "/核对确认/非人声/13.45–13.47s/配音指纹",
+      "/核对确认/非人声/135.19–135.22s/依据",
+      "/核对确认/非人声/135.19–135.22s/配音指纹",
+      "/核对确认/非人声/14.33–14.36s/依据",
+      "/核对确认/非人声/14.33–14.36s/配音指纹",
+      "/核对确认/非人声/148.08–148.13s/依据",
+      "/核对确认/非人声/148.08–148.13s/配音指纹",
+      "/核对确认/非人声/20.38–20.42s/依据",
+      "/核对确认/非人声/20.38–20.42s/配音指纹",
+      "/核对确认/非人声/28.51–28.61s/依据",
+      "/核对确认/非人声/28.51–28.61s/配音指纹",
+      "/核对确认/非人声/33.45–33.47s/依据",
+      "/核对确认/非人声/33.45–33.47s/配音指纹",
+      "/核对确认/非人声/46.57–46.65s/依据",
+      "/核对确认/非人声/46.57–46.65s/配音指纹",
+      "/核对确认/非人声/46.62–46.65s/依据",
+      "/核对确认/非人声/46.62–46.65s/配音指纹",
+      "/核对确认/非人声/74.57–74.60s/依据",
+      "/核对确认/非人声/74.57–74.60s/配音指纹",
+      "/核对确认/非人声/78.78–78.82s/依据",
+      "/核对确认/非人声/78.78–78.82s/配音指纹",
+      "/核对确认/非人声/8.35–8.60s/依据",
+      "/核对确认/非人声/8.35–8.60s/配音指纹",
+      "/核对确认/非人声/8.38–8.47s/依据",
+      "/核对确认/非人声/8.38–8.47s/配音指纹",
+      "/核对确认/非人声/97.38–97.41s/依据",
+      "/核对确认/非人声/97.38–97.41s/配音指纹"
+    ]
+  },
+  "adapter_scope": "Explicit actual native status + raw real postprocessor report field mapping; not fabricated audio-qc.py or unobserved runtime GEN/MD."
+}
