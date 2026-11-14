@@ -1,0 +1,204 @@
+{
+  "article": "27",
+  "diagnostic_only": true,
+  "production_delivery_eligible": false,
+  "official_video_produced": false,
+  "all_tests_passed": true,
+  "source_core_or_existing_cache_modified": false,
+  "program_sha256": "1b2ec7c6cdba0a28e5b26659dff106a43663bef38ea52794f5816fa06cfc56ba",
+  "profile_proposal_sha256": "19fc6ed50ba86704c71934ac17b9f75e3803c858cd641ebfafd8222a4c71bcfb",
+  "tests": [
+    {
+      "name": "exact-real-original-cache-audio-diagnostic-positive",
+      "passed": true,
+      "official_native_or_production_acceptance_claimed": false,
+      "report_sha256": "c1f08534635d981afdf395fe43cc751ebf21104406e055fb27d153ca37b7214b"
+    },
+    {
+      "name": "actual-S12-public-decoded-one-sample-change-strictly-rejected",
+      "passed": true,
+      "changed_sample_time_s": 100.0,
+      "delta": 3.0517578125e-05,
+      "actual_numeric_preservation_result": {
+        "classification": "not_preserved",
+        "preservation_conditions_passed": false,
+        "old_original_R_findings": [
+          [
+            "S12",
+            2,
+            [
+              99.2,
+              101.4
+            ],
+            1.572465497844636,
+            5.199999999999999
+          ]
+        ],
+        "new_original_R_findings": [
+          [
+            "S12",
+            2,
+            [
+              99.2,
+              101.4
+            ],
+            1.572465497844636,
+            5.199999999999999
+          ]
+        ],
+        "original_R_findings_not_cleared": true,
+        "old_original_R_passed": false,
+        "new_original_R_passed": false,
+        "exact_original_tuple_equal": true,
+        "native_prefix_float32_sha256": "95daa46f23e7049cbb52be992a133205566128ed61c0667658c19e7174e1c7d6",
+        "native_prefix_matches_immutable_old_hash": true,
+        "public_float32_sample_identity": [
+          {
+            "label": "window",
+            "span_s": [
+              99.2,
+              101.4
+            ],
+            "samples": 105600,
+            "old_sha256": "f2544118b088d03cc83bb5ca82f3571a36845fa83ed3943410fb584be7d618cd",
+            "new_sha256": "ccf51707b7d85245366b7ae95a0a884de553906a6c690f95a520c85318b6d9fa",
+            "float32_bitexact": false
+          },
+          {
+            "label": "context",
+            "span_s": [
+              92.8,
+              101.6
+            ],
+            "samples": 422400,
+            "old_sha256": "48123765ef3b0cd9efe263c5354d79941caccbd257c413c6ad2ce1f23bd1d1de",
+            "new_sha256": "80db9478aa37a31925f147072980e0a99125805e17d571d41bfbb07b7d870677",
+            "float32_bitexact": false
+          }
+        ],
+        "original_S12_group_metadata_exact": true,
+        "zero_gain_and_no_changed_public_samples": false
+      }
+    },
+    {
+      "name": "real-decoded-outside-voiced-block-plus6dB-rejected-numerically",
+      "passed": true,
+      "actual_public_decoded_mutation_span_s": [
+        3.2,
+        4.2
+      ],
+      "failed_original_numeric_checks": [
+        {
+          "name": "outside-approved-ranges-same-voice-timing-gain",
+          "passed": false,
+          "gain_db": 0.0979456134880668,
+          "correlation": 0.9945896614144433,
+          "gain_compensated_residual_snr_db": 19.622098727508458,
+          "p95_absolute_frame_gain_db": 0.0
+        },
+        {
+          "name": "every-untouched-active-one-second-block-preserved",
+          "passed": false,
+          "checked_blocks": 141,
+          "failed_blocks": [
+            {
+              "gain_db": 3.858400729212794,
+              "correlation": 0.9533365634136922,
+              "gain_compensated_residual_snr_db": 9.987387005176373,
+              "start_s": 3.0,
+              "passed": false
+            },
+            {
+              "gain_db": 3.94987662894198,
+              "correlation": 0.954647426498728,
+              "gain_compensated_residual_snr_db": 10.12015644391376,
+              "start_s": 4.0,
+              "passed": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "actual-decoded-digital-clipping-negative",
+      "passed": true,
+      "actual_sample": 1.1,
+      "original_no_clipping_condition": false
+    },
+    {
+      "name": "wrong-effective-source-gain-rejected",
+      "passed": true,
+      "failed_checks": [
+        "exact-entire-actual-nonreview-document",
+        "all-approved-audio-controls-exact",
+        "original-suppressed-segment-rule-every-body-sentence"
+      ],
+      "report_sha256": "997a2e5717eb49644d6c21f1b3f7f35cbaacfc1226f464f50dfe5ee36e2761f4"
+    }
+  ],
+  "four_full_WAV_AAC_bindings": {
+    "old": {
+      "WAV_sha256": "e15a2d05428e3219216ac8d10780669007f903071b0fcfc3c6bf377c517b8d7f",
+      "AAC_ADTS_sha256": "14bc91c62e66921fb55a215a42ce2db6a5544316600687b535a468770ae28252",
+      "MD5_first12": "79f315bb8b44",
+      "samples": 3603240
+    },
+    "new": {
+      "WAV_sha256": "def5cf361fc57229ff8e14bf8db379fa60ca876b4ecde7eae6689444d4416ea7",
+      "AAC_ADTS_sha256": "d619f0175ab2c57c6a5b77b9c6f0d62cd5b9fc2c548ec3900a45b3c44919b6f9",
+      "MD5_first12": "dff6ccbb01d9",
+      "samples": 3603240
+    }
+  },
+  "original-confirmation-transfer": {
+    "exit": 0,
+    "last_lines": [
+      "27 删除段 S6 raw 7.5650-8.0210：换指纹",
+      "27 响度骤降 98.1–98.8s → 98.1–98.8s（位移 +0.000 s）",
+      "27 确认平移：挪了 24 处，留给人核实 0 处（旧指纹 79f315bb8b44 → 新指纹 dff6ccbb01d9）",
+      "已写入 scripts/27.json"
+    ],
+    "actual_BAD_lines": []
+  },
+  "original-PV": {
+    "exit": 0,
+    "last_lines": [
+      "27 OK（已用实际声音核实是词的一部分） 噗声 127.78–127.81s 长 20 ms 最响 -42.7 dB 重心 1853 Hz 周期 0.18 低频占比 -0.2 dB",
+      "27 OK（已用实际声音核实是词的一部分） 噗声 135.19–135.22s 长 20 ms 最响 -40.2 dB 重心 873 Hz 周期 0.20 低频占比 -2.3 dB",
+      "27 OK（已用实际声音核实是词的一部分） 孤立杂音 148.08–148.13s 长 55 ms 最响 -30.8 dB 重心 3794 Hz 周期 0.22 低频占比 -14.0 dB",
+      "27 纯人声核对（配音指纹 dff6ccbb01d9）问题数 0"
+    ],
+    "actual_BAD_lines": []
+  },
+  "original-PV-selftest": {
+    "exit": 0,
+    "last_lines": [
+      "✔ 纯人声核对 自检：39.98s 假呼吸声报出、104.94s 假噗声报出、84.06s 假咔哒声报出、66.86s 开口前假吸气声报出；别处没有多报"
+    ],
+    "actual_BAD_lines": []
+  },
+  "positive_exit": 0,
+  "positive_error": null,
+  "positive_failed_checks": [
+    {
+      "name": "original-suppressed-segment-rule-every-body-sentence",
+      "passed": false,
+      "failures": [
+        [
+          "S12",
+          2,
+          [
+            99.2,
+            101.4
+          ],
+          1.572465497844636,
+          5.199999999999999
+        ]
+      ]
+    }
+  ],
+  "private_generated_PCM_AAC_and_cloned_sources_deleted": true,
+  "no_PCM_GT_cache_exported": true,
+  "helper_program_sha256": "2316283d99881b679a3f3c51bae59450fc65387ec2d6bd264d334cd485f2fea6",
+  "reference_sha256": "37581282f897aa22f776ee186ebe597e2d4ea67fa3f7abb23b392870fefe2037"
+}

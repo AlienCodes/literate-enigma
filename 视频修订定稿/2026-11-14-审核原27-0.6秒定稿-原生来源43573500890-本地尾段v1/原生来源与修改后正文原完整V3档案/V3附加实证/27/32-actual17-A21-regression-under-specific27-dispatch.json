@@ -1,0 +1,79 @@
+{
+  "scope": "Existing actual17 A21 canonical/copy functions plus 14 real-object mutation regressions under new isolated27 ABI",
+  "actual17_measurement_contract_passed": true,
+  "mutations_rejected": [
+    {
+      "case": "wrong_actual_program",
+      "rejected": true,
+      "reason": "Actual A21 QC program identity differs"
+    },
+    {
+      "case": "wrong_reference",
+      "rejected": true,
+      "reason": "A21 actual reference differs from the approved file"
+    },
+    {
+      "case": "wrong_request",
+      "rejected": true,
+      "reason": "A21 request differs from the exact approved reference"
+    },
+    {
+      "case": "wrong_repair_scope",
+      "rejected": true,
+      "reason": "Actual approved original-release repair scope absent"
+    },
+    {
+      "case": "original_full_pipeline_not_passed",
+      "rejected": true,
+      "reason": "Actual complete original pipeline/A21 report not passed"
+    },
+    {
+      "case": "wrong_original_A21_program",
+      "rejected": true,
+      "reason": "A21 report is not the approved actual public-MP4/original-function measurement"
+    },
+    {
+      "case": "one_original_phase_failed",
+      "rejected": true,
+      "reason": "Actual repaired release did not pass every unchanged original A21 phase"
+    },
+    {
+      "case": "double_release_in_one_phase",
+      "rejected": true,
+      "reason": "Actual repaired release did not pass every unchanged original A21 phase"
+    },
+    {
+      "case": "wrong_phase_offsets",
+      "rejected": true,
+      "reason": "Actual repaired release did not pass every unchanged original A21 phase"
+    },
+    {
+      "case": "untouched_voice_not_preserved",
+      "rejected": true,
+      "reason": "Actual A21 repair has failed checks"
+    },
+    {
+      "case": "missing_required_original_check",
+      "rejected": true,
+      "reason": "A21 actual control/five-phase/untouched-voice evidence is incomplete"
+    },
+    {
+      "case": "canonical_identity_changed",
+      "rejected": true,
+      "reason": "Do not relabel the original acoustic report canonical fingerprint"
+    },
+    {
+      "case": "copy_absolute_packet_clock_changed",
+      "rejected": true,
+      "reason": "Native processing changed reviewed audio payload or absolute timing"
+    },
+    {
+      "case": "selected_AAC_changed",
+      "rejected": true,
+      "reason": "A21 original reviewed canonical-to-card copy chain differs"
+    }
+  ],
+  "unmodified_legacy_function_AST_exact_except_explicit_canonical_dispatch_and_copy_dispatch": true,
+  "delivery_program_byte_exact_to_V9": true,
+  "original_V6_test_full_run_not_compatible_with_added_expected_dispatch": "Its legacy AST assertion only removes the V6 A21 branch and correctly notices the new explicit27 dispatch; original failure preserved as a compatibility finding, not an audio failure. Original actual17 positive and14 negative code prefix independently executed unchanged."
+}
