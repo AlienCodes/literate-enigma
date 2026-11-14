@@ -99,6 +99,11 @@ def main():
         api('releases/'+str(release['id']),'PATCH',{'draft':False,'prerelease':False,'make_latest':'false'})
     tag = api('git/ref/tags/'+TAG)['object']
     assert tag['type']=='commit' and tag['sha']==config['final_directory_commit']
+    # A draft asset URL changes when publishing; read the actual public asset again.
+    published_assets = api('releases/'+str(release['id'])+'/assets?per_page=100')
+    assert len(published_assets)==1 and published_assets[0]['name']==ASSET
+    asset = published_assets[0]
+    assert asset['size']==bundle.stat().st_size and asset['digest']=='sha256:'+digest
     downloaded=hashlib.sha256();size=0
     with urllib.request.urlopen(asset['browser_download_url'],timeout=180) as response:
         while chunk:=response.read(1024*1024):
