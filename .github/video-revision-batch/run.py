@@ -17,7 +17,7 @@ TASK = ROOT / '.github/video-revision-batch'
 NO = os.environ.get('ARTICLE_NO', '12').zfill(2)
 ALLOWED = {f'{n:02d}' for n in range(1, 71)}
 A21_AUDIO_REPAIRS = {'15', '17', '18', '30'}
-CONTROLLED_AUDIO_REPAIRS = {'05', '67', '60'}
+CONTROLLED_AUDIO_REPAIRS = {'05', '67'}
 APPROVED_AUDIO_REPAIRS = {'10', '12', '44', '51'} | A21_AUDIO_REPAIRS | CONTROLLED_AUDIO_REPAIRS
 SELECTED = json.loads((TASK / 'articles.json').read_text())
 assert NO in ALLOWED and NO in SELECTED, f'Article {NO} is outside the pinned revision scope.'
@@ -35,7 +35,9 @@ for key in ('YAOWENBEN', 'OLD_IV_VOID', 'AUDIO_ONLY', 'VIDEO_S'):
 status = {'article': NO, 'passed': False, 'stage': 'start',
           'original_audit_and_quality_thresholds_unchanged': True, 'original_maker_unchanged': True,
           'core_repairs': [],
-          'strict_production_cache': True, 'pdf_requested': False}
+          'strict_production_cache': True, 'pdf_requested': False,
+          'review_only':True, 'user_individual_finalization_authorized':False,
+          'specific_review_authorization_102_sha256':'baf7b2fc59a11d2b1b135051a3e9c0aec2782c7789b055c87c782d7a67aba536'}
 PRODUCTION_STARTED_NS = None
 BASELINE_AUDIO_FILES = None
 
@@ -116,13 +118,12 @@ def prepare_accepted_pcm_continuity(baseline_bytes, accepted_aac):
                 '15':'7e5ea2bdb6d3', '17':'0ef19e50999f',
                 '18':'76b99c620981', '30':'93a277750d35', '02':None,
                 '69':'8b8618454b80', '05':'1e25fbe69f6f',
-                '67':'c34294a522a7', '16':'630cbdf1eae2', '60':'c51376cb90f5'}
+                '67':'c34294a522a7', '16':'630cbdf1eae2'}
     exact_old_pcm = {'02':'c21872d4db894f37b1b8b5db752917f9f6ef60680834ca4cccef9b806b5c1c52',
                      '69':'d04e5e1b057dfaa788bf86dcd6fe7da7b88fc1a254f8abd0a695621f074c2837',
                      '05':'4c20eb528b935e7a315e3f41b3f4168fe82cd5e26e0b33d16ea4bfce2609cb64',
                      '67':'39f7defdcfad7a4dae00c9677c7998d8f70c984247583e136e09e6efe9392bae',
-                     '16':'3a2239772fe1941d4a5de28be034ff49670fedcf6ced0d1c0e61e5476912b93d',
-                     '60':'2b34c90dcf4f337e5f2cd0e32387e97cff79fe1b5d640efb5ba1c64e1c0c81c6'}
+                     '16':'3a2239772fe1941d4a5de28be034ff49670fedcf6ced0d1c0e61e5476912b93d'}
     prior_public_aac = {'69':'2b15b4811866afd03ef5962f6ce99717d28d7e97704750d9ede91bd7799eed15',
                         '67':'d5d57519d6b60e31eeb92bd1bf0b0505192b49ee9c1e34ae02b5c9ddc9532856'}
     if NO not in expected:
@@ -130,7 +131,7 @@ def prepare_accepted_pcm_continuity(baseline_bytes, accepted_aac):
     # These reviewed prior-source snapshots contain the exact approved old
     # audio inputs. Re-prove the complete real accepted PCM and AAC below
     # before attempting any original exact-sample confirmation migration.
-    if NO in {'05', '16', '60'}:
+    if NO in {'05', '16'}:
         reference_source = TASK / 'accepted-pcm-source-reference' / f'{NO}.json'
         reference_contract = json.loads(reference_source.with_name(f'{NO}-proof.json').read_text())
         assert reference_contract['article'] == NO
@@ -225,7 +226,7 @@ def prepare_accepted_pcm_continuity(baseline_bytes, accepted_aac):
             proof_file.write_text(json.dumps(proof, ensure_ascii=False, indent=2) + '\n')
             save()
             return
-    if NO in A21_AUDIO_REPAIRS | {'02', '05', '16', '60'} and not proof.get('old_reconstructed_aac_exactly_matches_accepted', False):
+    if NO in A21_AUDIO_REPAIRS | {'02', '05', '16'} and not proof.get('old_reconstructed_aac_exactly_matches_accepted', False):
         proof['migration_not_attempted'] = 'Old reconstruction did not exactly reproduce the accepted AAC.'
         proof_file.write_text(json.dumps(proof, ensure_ascii=False, indent=2) + '\n')
         save()
@@ -763,26 +764,6 @@ def collect_actual67_original_two_route_texts():
             'diagnostic_error':type(exc).__name__}
 
 
-def collect_actual60_original_two_route_texts():
-    if NO != '60':
-        return
-    video = W / '60.mp4'
-    if not video.is_file():
-        return
-    output = OUT / '60-actual-original-ASR-texts.json'
-    try:
-        result = subprocess.run(list(map(str, ['python3', TASK / 'collect60-actual-original-ASR-texts.py',
-            '--work', W, '--tools', T, '--video', video, '--output', output])),
-            cwd=W, env=ENV, capture_output=True, text=True, errors='replace', timeout=480)
-        record = {'diagnostic_only':True,'quality_acceptance':False,'automatic_confirmation':False,'exit':result.returncode}
-        if output.is_file():
-            record.update(file=output.name,sha256=sha(output))
-        status['actual60_original_ASR_texts'] = record
-    except Exception as exc:
-        status['actual60_original_ASR_texts'] = {'diagnostic_only':True,'quality_acceptance':False,
-            'diagnostic_error':type(exc).__name__}
-
-
 def cache_entry(name):
     assert re.fullmatch(r'[A-Za-z0-9_\u4e00-\u9fff.-]+\.(pkl|json)', name), name
     destination = M / 'tts/cache_tts' / name
@@ -1000,9 +981,17 @@ try:
             assert actual_record['篇'] == NO
             if actual_record not in records['记录']:
                 records['记录'].append(actual_record)
-    if NO == '60':
+    if NO == '07':
         supplement = request / '真实用户同意补充.json'
-        assert sha(supplement) == '86dfb2d90f06139891443a5fff827557b03e45f281a7a0277deadba9b1e035be'
+        assert sha(supplement) == 'f357a9649c37b38ffe9f4cc36363ee4f82f59b34cae5f8548a50f3dbe004cbbb'
+        for actual_record in json.loads(supplement.read_text())['records']:
+            assert actual_record['篇'] == NO
+            if actual_record not in records['记录']:
+                records['记录'].append(actual_record)
+    if NO == '66':
+        supplement = request / '真实用户同意补充.json'
+        assert sha(supplement) == '8068f1abd5837e683fb33989f3cf5460fbf4778567a40ed0d84de817b4131a0c'
+        assert sha(request / 'root-source66-existing-S9-exact-review-decision.json') == '89c3398bd0540648ed539972868c571070a4dba63dadfa5d4c9d3ba5f89046b2'
         for actual_record in json.loads(supplement.read_text())['records']:
             assert actual_record['篇'] == NO
             if actual_record not in records['记录']:
@@ -1033,20 +1022,6 @@ try:
     assert sha(source_video) == reference['sha256'], 'Accepted source MP4 hash mismatch.'
     accepted_aac = aac_hash(source_video)
     status['accepted_source'] = {**reference, 'aac_adts_sha256': accepted_aac}
-    if NO == '60':
-        restored = []
-        for name, pair in {'f9c9d31f47c1a409584d93db253e16780cea5f6a.pkl': ('3f331f630d7cc1125c75e37436f2dae0b8fbbe1c123b036502e288c412e654a7', '72aecac241b84ba9f780bf0e11e8ed8a77243eff857e579512382f1e3105d6e0'), '57ab6ae968ad01d01649cfca56a04098c6df5f85.pkl': ('75df45a230b4c60ead90858ef5b28d147e1a5e551614e7cb85528785bfe35a02', '3205b163e8690dfb7a1175ec78f2f6ad522ee9ef5b1b92216ffdcc62da48d0ef'), '8df70d1e4a99729ba6dfdc0d44e1c0ee949b6013.pkl': ('d9b78cc87ae082b5de64c6bb20d912159dd1e7d1c34fde0f7524218395dfb43c', 'c38eefa5a711a7c4c4eb09fc48b72af99b1d98a557b14b0db817354153aa0586')}.items():
-            for suffix, expected_hash in zip(('', '.单线程'), pair):
-                target = M / 'tts/cache_tts' / (name + suffix)
-                if not target.exists():
-                    data = git_bytes('视频/配音缓存/' + name + suffix)
-                    assert hashlib.sha256(data).hexdigest() == expected_hash
-                    target.parent.mkdir(parents=True, exist_ok=True)
-                    target.write_bytes(data)
-                    restored.append(name + suffix)
-                assert sha(target) == expected_hash
-        status['source60_exact_previous_native_cache_restore'] = {'private_cache_exported':False, 'new_TTS_generated':False, 'entries_restored':restored, 'all_six_file_SHA256_verified':True}
-        save()
     start_wav = sha(W / f'work_{NO}/a.wav') if (W / f'work_{NO}/a.wav').exists() else None
     if NO in ALLOWED:
         # Enumerate the original checker's complete punctuation-slice calls for
@@ -1101,30 +1076,6 @@ try:
             'file':exact_transfer.name, 'sha256':sha(exact_transfer),
             'program_sha256':sha(installer), 'does_not_change_audio_or_ASR_rules':True}
         save()
-    if NO == '60':
-        decision = request / 'root-exact-three-CF-and-G35-authorization.json'
-        assert sha(decision) == '0a6e422ef20e1143cfa133c89d0799cd24335d43b0fc3d153d749924f3938178'
-        installer = TASK / 'install60-exact-unchanged-machine-confirmations.py'
-        assert sha(installer) == 'c64c3ac3b4310b57e882796152dea40a2021be47f85931c6fa261c269d389ff4'
-        assert sha(installer.with_name('install60-exact-unchanged-machine-confirmations-reference.json')) == '5a6899b8780ecd0ffd488d6ad5e1db47e504ad3b97691d8496a1270e2d9e1f9b'
-        exact_transfer = OUT / '60-three-exact-unchanged-machine-confirmation-transfer.json'
-        checked(['python3', installer, '--work', W, '--request', request,
-                 '--old-source', LOG / 'accepted-prior-source.json',
-                 '--old-wav', LOG / 'accepted-prior-a.wav',
-                 '--old-audio', W / '_accepted-prior-diagnostic-60.m4a',
-                 '--actual-audio', W / '60.mp4',
-                 '--baseline-proof', OUT / '60-accepted-prior-pcm-probe.json',
-                 '--output', exact_transfer, '--write-runtime'],
-                '60-three-exact-unchanged-machine-confirmation-transfer.log', W)
-        transfer = json.loads(exact_transfer.read_text())
-        assert transfer['passed'] and transfer['runtime_confirmation_transfer_applied']
-        assert transfer['S11_confirmation_unchanged'] and transfer['all_other_source_fields_exact']
-        status['root_approved_three_same_sentence_machine_confirmation_transfer'] = {
-            'file':exact_transfer.name, 'sha256':sha(exact_transfer),
-            'program_sha256':sha(installer), 'root_decision_sha256':sha(decision),
-            'exact_sentences':['S2','S5','S8'], 'basis_preserved_verbatim':True,
-            'does_not_change_audio_or_ASR_rules':True, 'S11_not_renewed':True}
-        save()
     clear_current_reference_cache()
     clear_temporary_video()
     activate_read_only_failure_probe()
@@ -1143,6 +1094,12 @@ try:
     canonical = W / f'{NO}.mp4'
     status['canonical_video_sha256'] = sha(canonical)
     status['canonical_aac_adts_sha256'] = aac_hash(canonical)
+    if NO == '07':
+        assert status['canonical_aac_adts_sha256'] == '16b6293adfc7a3c35224408ae39d831317e1932f8d47876824e129129c9115d8'
+        assert sha(W / 'work_07/a.wav') == '11edc969af0797bcd7121034f43de130d72ca9186508e64e3330aff6c4069643'
+    if NO == '66':
+        assert status['canonical_aac_adts_sha256'] == '96ff3f072646fd8273e9e2a507c43d4219f026eac413af33a7440b13b8b1c9ec'
+        assert sha(W / 'work_66/a.wav') == '7f20531d779a6f5514e212c05e092e0e89506044c09b4b3222afb096ceef00ac'
     status['canonical_pipeline_passed'] = True
     status['cached_input_wav_sha256'] = start_wav
     status['final_wav_sha256'] = sha(W / f'work_{NO}/a.wav')
@@ -1152,7 +1109,6 @@ try:
         # Root supplies actual approved audio-change validation. No gain/overlay implementation is assumed here.
         helper_name = ('audio05-tail-qc.py' if NO == '05' else
                        'audio67-controlled-qc.py' if NO == '67' else
-                       'audio60-controlled-qc.py' if NO == '60' else
                        'audio-controlled-qc.py' if NO in CONTROLLED_AUDIO_REPAIRS else
                        'audio-a21-qc.py' if NO in A21_AUDIO_REPAIRS else 'audio-qc.py')
         audio_qc = TASK / helper_name
@@ -1181,7 +1137,6 @@ try:
                 assert audio_evidence.get('production_delivery_eligible') is True
             reference_file = TASK / ('audio05-tail-qc-reference.json' if NO == '05' else
                                      'audio67-controlled-qc-reference.json' if NO == '67' else
-                                     'audio60-controlled-qc-reference.json' if NO == '60' else
                                      'audio-controlled-qc-reference.json')
             status['approved_audio_repair_scope'] = {
                 'kind': 'controlled_audio_repair', 'repair_applied': True,
@@ -1258,7 +1213,7 @@ try:
 except Exception as exc:
     status['passed'] = False
     status['error'] = str(exc)
-    for collector in (collect_confirmation_continuity, failure_audio_diagnostics, export_failed_current_video, collect_actual67_original_two_route_texts, collect_actual60_original_two_route_texts,
+    for collector in (collect_confirmation_continuity, failure_audio_diagnostics, export_failed_current_video, collect_actual67_original_two_route_texts,
                       collect_original_asr_target_evidence):
         try:
             collector()
