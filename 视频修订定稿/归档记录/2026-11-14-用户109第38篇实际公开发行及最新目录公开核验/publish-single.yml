@@ -1,0 +1,29 @@
+name: Publish reviewed book38 Tulip Mania 4K final
+on:
+  push:
+    branches: [codex/book38-tulip-mania-final-4k-hold06-v1]
+    paths: [.github/tulip-mania-release/MANIFEST.json]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  publish:
+    if: github.repository == 'alienalgorithm/postgraduate-vocabulary'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify sourceQA, actual normal18 proofs and archived bytes; publish one MP4
+        run: python -u .github/tulip-mania-release/publish_single.py
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: book38-tulip-mania-release-verification-${{ github.run_id }}
+          path: single-release-output/RELEASE-VERIFICATION.json
+          if-no-files-found: warn
+          retention-days: 30
