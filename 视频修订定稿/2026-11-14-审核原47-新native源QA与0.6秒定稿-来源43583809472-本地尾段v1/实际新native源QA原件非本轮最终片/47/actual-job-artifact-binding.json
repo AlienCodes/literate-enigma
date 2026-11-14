@@ -1,0 +1,3908 @@
+{
+  "actual_successful_job_verified": true,
+  "actual_genuine_upstream_pass_with_missing_art_recovery": false,
+  "actual_job_uploaded_selected_artifact": false,
+  "overall_matrix_success_required": false,
+  "acceptance_basis": "actual successful article job + immutable run artifact + actual native passed article/media/source identity; upload log is auxiliary",
+  "run": {
+    "id": 43583809472,
+    "name": "本轮改动篇目原缓存正式4K",
+    "node_id": "WFR_kwLODJcpM88AAAAKJcwnwA",
+    "head_branch": "codex/finish-05-and-summaries-20261112",
+    "head_sha": "1c3fe9e8282661347d4e83324664d52bddde3847",
+    "path": ".github/workflows/produce-revision-batch4K.yml",
+    "display_title": "Rebuild revised articles in official4K: 47",
+    "run_number": 37,
+    "event": "push",
+    "status": "completed",
+    "conclusion": "success",
+    "workflow_id": 417752518,
+    "check_suite_id": 118011185624,
+    "check_suite_node_id": "CS_kwDODJcpM88AAAAbegPJ2A",
+    "url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43583809472",
+    "html_url": "https://github.com/AlienCodes/literate-enigma/actions/runs/43583809472",
+    "pull_requests": [],
+    "created_at": "2026-11-14T10:08:04Z",
+    "updated_at": "2026-11-14T10:27:02Z",
+    "actor": {
+      "login": "AlienCodes",
+      "id": 52247027,
+      "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/AlienCodes",
+      "html_url": "https://github.com/AlienCodes",
+      "followers_url": "https://api.github.com/users/AlienCodes/followers",
+      "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+      "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+      "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+      "repos_url": "https://api.github.com/users/AlienCodes/repos",
+      "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "run_attempt": 1,
+    "referenced_workflows": [],
+    "run_started_at": "2026-11-14T10:08:04Z",
+    "triggering_actor": {
+      "login": "AlienCodes",
+      "id": 52247027,
+      "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/AlienCodes",
+      "html_url": "https://github.com/AlienCodes",
+      "followers_url": "https://api.github.com/users/AlienCodes/followers",
+      "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+      "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+      "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+      "repos_url": "https://api.github.com/users/AlienCodes/repos",
+      "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "jobs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43583809472/attempts/1/jobs",
+    "logs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43583809472/attempts/1/logs",
+    "check_suite_url": "https://api.github.com/repos/AlienCodes/literate-enigma/check-suites/118011185624",
+    "artifacts_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43583809472/artifacts",
+    "cancel_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43583809472/cancel",
+    "rerun_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43583809472/rerun",
+    "previous_attempt_url": null,
+    "workflow_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/workflows/417752518",
+    "head_commit": {
+      "id": "1c3fe9e8282661347d4e83324664d52bddde3847",
+      "tree_id": "9304dabc3a1ddccb6e21aeaa8d8c53571bf999f8",
+      "message": "Rebuild revised articles in official4K: 47",
+      "timestamp": "2026-11-14T10:08:01Z",
+      "author": {
+        "name": "the Sword God",
+        "email": "52247027+AlienCodes@users.noreply.github.com"
+      },
+      "committer": {
+        "name": "the Sword God",
+        "email": "52247027+AlienCodes@users.noreply.github.com"
+      }
+    },
+    "repository": {
+      "id": 211233075,
+      "node_id": "MDEwOlJlcG9zaXRvcnkyMTEyMzMwNzU=",
+      "name": "literate-enigma",
+      "full_name": "AlienCodes/literate-enigma",
+      "private": false,
+      "owner": {
+        "login": "AlienCodes",
+        "id": 52247027,
+        "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+        "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/AlienCodes",
+        "html_url": "https://github.com/AlienCodes",
+        "followers_url": "https://api.github.com/users/AlienCodes/followers",
+        "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+        "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+        "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+        "repos_url": "https://api.github.com/users/AlienCodes/repos",
+        "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/AlienCodes/literate-enigma",
+      "description": "I am exploring this world!",
+      "fork": false,
+      "url": "https://api.github.com/repos/AlienCodes/literate-enigma",
+      "forks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/forks",
+      "keys_url": "https://api.github.com/repos/AlienCodes/literate-enigma/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/AlienCodes/literate-enigma/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/AlienCodes/literate-enigma/teams",
+      "hooks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/hooks",
+      "issue_events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/events",
+      "assignees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/AlienCodes/literate-enigma/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/tags",
+      "blobs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/AlienCodes/literate-enigma/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/AlienCodes/literate-enigma/languages",
+      "stargazers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/stargazers",
+      "contributors_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contributors",
+      "subscribers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscribers",
+      "subscription_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscription",
+      "commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/AlienCodes/literate-enigma/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/AlienCodes/literate-enigma/merges",
+      "archive_url": "https://api.github.com/repos/AlienCodes/literate-enigma/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/AlienCodes/literate-enigma/downloads",
+      "issues_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/AlienCodes/literate-enigma/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/AlienCodes/literate-enigma/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/AlienCodes/literate-enigma/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/AlienCodes/literate-enigma/labels{/name}",
+      "releases_url": "https://api.github.com/repos/AlienCodes/literate-enigma/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/deployments"
+    },
+    "head_repository": {
+      "id": 211233075,
+      "node_id": "MDEwOlJlcG9zaXRvcnkyMTEyMzMwNzU=",
+      "name": "literate-enigma",
+      "full_name": "AlienCodes/literate-enigma",
+      "private": false,
+      "owner": {
+        "login": "AlienCodes",
+        "id": 52247027,
+        "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+        "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/AlienCodes",
+        "html_url": "https://github.com/AlienCodes",
+        "followers_url": "https://api.github.com/users/AlienCodes/followers",
+        "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+        "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+        "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+        "repos_url": "https://api.github.com/users/AlienCodes/repos",
+        "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/AlienCodes/literate-enigma",
+      "description": "I am exploring this world!",
+      "fork": false,
+      "url": "https://api.github.com/repos/AlienCodes/literate-enigma",
+      "forks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/forks",
+      "keys_url": "https://api.github.com/repos/AlienCodes/literate-enigma/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/AlienCodes/literate-enigma/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/AlienCodes/literate-enigma/teams",
+      "hooks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/hooks",
+      "issue_events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/events",
+      "assignees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/AlienCodes/literate-enigma/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/tags",
+      "blobs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/AlienCodes/literate-enigma/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/AlienCodes/literate-enigma/languages",
+      "stargazers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/stargazers",
+      "contributors_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contributors",
+      "subscribers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscribers",
+      "subscription_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscription",
+      "commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/AlienCodes/literate-enigma/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/AlienCodes/literate-enigma/merges",
+      "archive_url": "https://api.github.com/repos/AlienCodes/literate-enigma/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/AlienCodes/literate-enigma/downloads",
+      "issues_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/AlienCodes/literate-enigma/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/AlienCodes/literate-enigma/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/AlienCodes/literate-enigma/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/AlienCodes/literate-enigma/labels{/name}",
+      "releases_url": "https://api.github.com/repos/AlienCodes/literate-enigma/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/deployments"
+    }
+  },
+  "job": {
+    "id": 132413990414,
+    "run_id": 43583809472,
+    "workflow_name": "本轮改动篇目原缓存正式4K",
+    "head_branch": "codex/finish-05-and-summaries-20261112",
+    "run_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43583809472",
+    "run_attempt": 1,
+    "node_id": "CR_kwDODJcpM88AAAAe1H0mDg",
+    "head_sha": "1c3fe9e8282661347d4e83324664d52bddde3847",
+    "url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/jobs/132413990414",
+    "html_url": "https://github.com/AlienCodes/literate-enigma/actions/runs/43583809472/job/132413990414",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-11-14T10:08:18Z",
+    "started_at": "2026-11-14T10:08:20Z",
+    "completed_at": "2026-11-14T10:27:01Z",
+    "name": "produce (47)",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-11-14T10:08:20Z",
+        "completed_at": "2026-11-14T10:08:21Z"
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-11-14T10:08:21Z",
+        "completed_at": "2026-11-14T10:08:39Z"
+      },
+      {
+        "name": "按批准的原图清单解析本篇原生文件名",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3,
+        "started_at": "2026-11-14T10:08:39Z",
+        "completed_at": "2026-11-14T10:08:39Z"
+      },
+      {
+        "name": "取固定主仓中已批准的本篇书中原图",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4,
+        "started_at": "2026-11-14T10:08:39Z",
+        "completed_at": "2026-11-14T10:08:41Z"
+      },
+      {
+        "name": "先验本篇原图的主仓提交、原生blob和批准SHA",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5,
+        "started_at": "2026-11-14T10:08:41Z",
+        "completed_at": "2026-11-14T10:08:41Z"
+      },
+      {
+        "name": "Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6,
+        "started_at": "2026-11-14T10:08:41Z",
+        "completed_at": "2026-11-14T10:08:41Z"
+      },
+      {
+        "name": "Run actions/cache/restore@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7,
+        "started_at": "2026-11-14T10:08:41Z",
+        "completed_at": "2026-11-14T10:09:20Z"
+      },
+      {
+        "name": "确认恢复既有机器缓存",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8,
+        "started_at": "2026-11-14T10:09:20Z",
+        "completed_at": "2026-11-14T10:09:21Z"
+      },
+      {
+        "name": "恢复16正确Origin的本轮已固定原始母素材",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 9,
+        "started_at": "2026-11-14T10:09:21Z",
+        "completed_at": "2026-11-14T10:09:21Z"
+      },
+      {
+        "name": "确认16精确原母缓存真实命中",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 10,
+        "started_at": "2026-11-14T10:09:21Z",
+        "completed_at": "2026-11-14T10:09:21Z"
+      },
+      {
+        "name": "准备原有核查工具",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 11,
+        "started_at": "2026-11-14T10:09:21Z",
+        "completed_at": "2026-11-14T10:09:54Z"
+      },
+      {
+        "name": "Run actions/cache/restore@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 12,
+        "started_at": "2026-11-14T10:09:54Z",
+        "completed_at": "2026-11-14T10:09:55Z"
+      },
+      {
+        "name": "确认原快测印章缓存命中",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 13,
+        "started_at": "2026-11-14T10:09:55Z",
+        "completed_at": "2026-11-14T10:09:55Z"
+      },
+      {
+        "name": "原程序做稿并正式定稿4K",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 14,
+        "started_at": "2026-11-14T10:09:55Z",
+        "completed_at": "2026-11-14T10:26:54Z"
+      },
+      {
+        "name": "仅保留本篇公开成片和核验材料",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 15,
+        "started_at": "2026-11-14T10:26:54Z",
+        "completed_at": "2026-11-14T10:26:57Z"
+      },
+      {
+        "name": "Post Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 28,
+        "started_at": "2026-11-14T10:26:57Z",
+        "completed_at": "2026-11-14T10:26:57Z"
+      },
+      {
+        "name": "Post 取固定主仓中已批准的本篇书中原图",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 29,
+        "started_at": "2026-11-14T10:26:57Z",
+        "completed_at": "2026-11-14T10:26:57Z"
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 30,
+        "started_at": "2026-11-14T10:26:57Z",
+        "completed_at": "2026-11-14T10:26:57Z"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 31,
+        "started_at": "2026-11-14T10:26:57Z",
+        "completed_at": "2026-11-14T10:26:57Z"
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/AlienCodes/literate-enigma/check-runs/132413990414",
+    "labels": [
+      "ubuntu-latest"
+    ],
+    "runner_id": 1000008586,
+    "runner_name": "GitHub Actions 1000008586",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  "artifact": {
+    "id": 14110386087,
+    "node_id": "MDg6QXJ0aWZhY3QxNDExMDM4NjA4Nw==",
+    "name": "article47-revised-canonical-4K-final",
+    "size_in_bytes": 47059811,
+    "url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/artifacts/14110386087",
+    "archive_download_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/artifacts/14110386087/zip",
+    "expired": false,
+    "digest": "sha256:2609aac72d5e96caf997884a413a1bf0b13df6eb9946d24bbd1ce6e84d765c98",
+    "created_at": "2026-11-14T10:26:56Z",
+    "updated_at": "2026-11-14T10:26:56Z",
+    "expires_at": "2026-12-14T10:26:54Z",
+    "workflow_run": {
+      "id": 43583809472,
+      "repository_id": 211233075,
+      "head_repository_id": 211233075,
+      "head_branch": "codex/finish-05-and-summaries-20261112",
+      "head_sha": "1c3fe9e8282661347d4e83324664d52bddde3847"
+    }
+  },
+  "upload_step_proof": {
+    "unambiguous_selected_step_upload": false,
+    "auxiliary_only": true,
+    "reason": "Upload action log block is missing or ambiguous in selected API step interval",
+    "acceptance_blocked_by_log": false
+  },
+  "native_status": {
+    "article": "47",
+    "passed": true,
+    "stage": "final4K-passed",
+    "original_audit_and_quality_thresholds_unchanged": true,
+    "original_maker_unchanged": true,
+    "core_repairs": [
+      {
+        "target": "视频/工具/草稿声音.sh",
+        "file": "files/视频/工具/草稿声音.sh",
+        "original_sha256": "0ce3277812cf16ed30438509b6dc97db0c26725db4c5db5d9b058c3ef6531aa2",
+        "patched_sha256": "957d7eb1598698ea33ff77d83379256ecae258d84d588753d561a902284be439",
+        "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+      },
+      {
+        "target": "视频/工具/句内响度.py",
+        "file": "files/视频/工具/句内响度.py",
+        "original_sha256": "58735b7173a3c03efa61fb300b4aed4039c164fa970e0593a40bae2a3f3cbd27",
+        "patched_sha256": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea",
+        "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+      },
+      {
+        "target": "视频/工具/独立复核/synth.py",
+        "file": "files/视频/工具/独立复核/synth.py",
+        "original_sha256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+        "patched_sha256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+        "repair_scope": "validated unprocessed raw-mother reference input only; independent transforms/audit/thresholds retained"
+      }
+    ],
+    "strict_production_cache": true,
+    "pdf_requested": false,
+    "check_summaries": {
+      "approved-illustration-resource.log": [],
+      "certified-core-original-stamp-verification.log": [],
+      "original-restored-stamp.log": [],
+      "canonical-module-copy.log": [],
+      "canonical-draft-00.log": [
+        "第47篇 做完（467 秒）：修了 0 处、疑点 30 处",
+        "① 文本：通过",
+        "② 声音：47 词尾辅音核对 问题数 0；47 纯人声核对（配音指纹 bf63f0546487）问题数 0；问题数 0；47 句间停顿核对 问题数 0；问题数 0",
+        "③ 出片前核查：通过",
+        "⑤ 出片后核查：全部通过",
+        "⑥ 已拷 视频/视频/草稿1080p/47_1080p.mp4（--不推）"
+      ],
+      "canonical-final4K-00.log": [
+        "第47篇 用户定稿原话：有"
+      ],
+      "original-stamp-after-production.log": []
+    },
+    "actual_native_core_certification": {
+      "run_id": 43535822030,
+      "job_id": 132264443476,
+      "commit": "395e8da264fafa2453a42ee70a3f7aed8303a769",
+      "actual_full_quickcheck_exit": 0,
+      "actual_full_quickcheck_seconds": 478.16,
+      "artifact_id": 14089812323,
+      "artifact_zip_sha256": "5e396c84e4a6fc7c6cc737ceb8648d7f15f397e9551806e032c93db8ab0963b8",
+      "full_original_quickcheck_log_sha256": "dbe7f6e08d2b7c3a5f9a2f925bb75a662aed725c780e1bc6714706807552a294",
+      "article_audio_or_video_passed_not_implied": true
+    },
+    "actual_native_fastcheck_stamp": {
+      "target": "视频/工具/新管/快测通过.json",
+      "file": "files/视频/工具/新管/快测通过.json",
+      "sha256": "6ebc7aa41f79f77258fa333b665af258e007daa36a4ea290de972cd3da7b42f2",
+      "origin": "actual unmodified original full quickcheck, native run43535822030"
+    },
+    "reviewed_regression_resource": {
+      "target": "视频/工具/新管/回归基准_27.json",
+      "file": "files/视频/工具/新管/回归基准_27.json",
+      "sha256": "b8ddb4656ae27cbfc7ec8e3b99511983b4e568997bd4ad4ee33c364f3926ae94",
+      "origin": "pre-existing root-reviewed 67-screen data; original voice/segment MD5 unchanged"
+    },
+    "core_repair_manifest_sha256": "1b1558108d15603e5711e200135651d6c7700a583d8bcf53ad8753683ed05a5e",
+    "reviewed_gain_preservation_mode": true,
+    "reviewed_existing_ending_preservation_mode": false,
+    "reviewed_existing_physical_cuts_preservation_mode": false,
+    "real_restored_stamp_validated": true,
+    "reviewed_cross_article_context": {
+      "provided": true,
+      "manifest_sha256": "0412f53e02f6588bd6423c8178307e6def7bfa6e767c0895d8c84b00bdad83b3",
+      "files_sha256": {
+        "视频/脚本/01.json": "2be2f80a69af28703992204ac95f987c745362c326e62ad81b3cd8e0e0735d3a",
+        "新版定稿/01-the-robber-who-thought-lemon-juice-made-him-invisible.md": "572054065b5bb65446bf8939a21c789c1e9c7664d82da5117c43efdded894351",
+        "视频/脚本/02.json": "0403368c77fd3e0f91e1ee3780e1c7c147894ad13c16b5f14707d700a8f717c8",
+        "新版定稿/02-the-truth-about-one-marshmallow.md": "91b92505aad03f963861bec39e96f0a472c126d1d57c9fc538676c32f65e545c",
+        "视频/脚本/03.json": "527f3bf4a11843f4d606188dabc6ebce6830da3fb454a49c782e3a595cb47407",
+        "新版定稿/03-the-doctor-who-drank-bacteria-to-win-an-argument.md": "6dfb56504882e24854a3584fd740e7f6601e3f2532818aee3a56d5330d317aa3",
+        "视频/脚本/04.json": "93cc1ff58d65ebe43a65ecb2fb2dbd2da262d80877c05740bbdf4eab4eaca1e8",
+        "新版定稿/04-the-brain-that-learned-london.md": "a8ccb31ffff50aaae77de4b83de1847fafae1d585981cf960c5880c409f6cfc3",
+        "视频/脚本/05.json": "fa9b957b54271d144712ec503c628dae4e0d726eefc348d54a08d89d0f179d87",
+        "新版定稿/05-the-fingerprint-in-the-blood.md": "612deac4ed066489e04e214ca969f8f27dda05856e0ef0ed2e540e7a4a52ae34",
+        "视频/脚本/06.json": "2cbf1d6cd6e66a59285298ea830f5ef914590b64286d40b2ae5f3168aa27a2e9",
+        "新版定稿/06-the-horse-that-could-count.md": "7fd21ba491c7596c53c486f2bb0b0f2f6da8e67bac75461a4649a7caff822f74",
+        "视频/脚本/07.json": "842e44e5aa19fddcfa239cb6530c5152341cd86e11db959543d02d8670ca13e8",
+        "新版定稿/07-the-octopus-that-escaped.md": "b8544281bb2ada88fce9d1082cbc30233dcb63ee3e9c2bbefafc22cb28b8cb39",
+        "视频/脚本/08.json": "254832e09f12759d950384dd9f31f671ad5a3bc1590b7466065dd3ef5fe4b8d5",
+        "新版定稿/08-the-doctor-who-solved-the-cholera-mystery.md": "0b2bfa68070ce585a452f6b7034d03c3683e710dcabec5e86d7b221950dc7bab",
+        "视频/脚本/09.json": "fa3e429351d629de188c184d04e9986200e16e80606fcbec82332b6433301dae",
+        "新版定稿/09-the-great-emu-war.md": "af5c3e844bad15f94bfc43aeed6d7417c4bfae85f026b194da667a7a3bdb6196",
+        "视频/脚本/10.json": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
+        "新版定稿/10-the-stolen-smile.md": "ff63cf94e4d2c835e2e2f1ffd3e6c5642f0916f0b13c012f1f13c3dff716d47a",
+        "视频/脚本/11.json": "665cbb80cc70b700ecc0cc5813209fd100ad4fa8f0eead3929b9e53778d9d07f",
+        "新版定稿/11-move-37.md": "7e0b49b346c1fa3ab994a11a2301167c0d6a1bb00916508bdc0b1acf71e68053",
+        "视频/脚本/12.json": "e3bfbcce6f1a8e14cfe451d656574353321e297c90c62f5a7b422f37478311d5",
+        "新版定稿/12-the-79-days-of-new-coke.md": "5a23c1e0c81318527bcbf27573487d1845c5318905a2b1e020cc6e2eaf5d643f",
+        "视频/脚本/13.json": "c22ccc9eb34a92380ecbd2ea72189db492264c4730141c73024685b3fca5fd1e",
+        "新版定稿/13-eleven-days-without-sleep.md": "41998b355721703f761685dd351fbf4628b2be67dfed8b3d37276f9e8f929ecb",
+        "视频/脚本/14.json": "2889a9b31bc7945ee55c306d3507b8557bf1efe371af8a97483a61172be800b8",
+        "新版定稿/14-the-fungus-that-turns-ants-into-zombies.md": "618900d05bd2cecc8d577c446146e4df98d71e070c0b779b40992820d1fdd332",
+        "视频/脚本/15.json": "9b42f089b79e4e0c54c254c948ac4d9ae28d224585095a373607122a0d7c6898",
+        "新版定稿/15-the-myth-of-the-unsinkable.md": "bc2d0c8613437b39149cd6e66729104b26efceb8681fb645f782a97b40007584",
+        "视频/脚本/16.json": "d25aa07f3fac316c26c2ae1006d3efa7eb82a396b66150432b50239c1628396d",
+        "新版定稿/16-the-bread-made-from-air.md": "4da63148111213f6d77451b0eb4193893e6fc2fc170400bc39ce5f5ffcaa0b20",
+        "视频/脚本/17.json": "9750857c3e2c67e6abe5ea6913cb0602347be8b58836bbbc03e2c4153bb12e1b",
+        "新版定稿/17-the-curse-of-the-pharaoh.md": "0dc7b6ee7f4ef05d5e4382beeb077d57578d0bb6a6b69415485008facae98717",
+        "视频/脚本/18.json": "5192b78e582c36fd7d5a34973d8314c5b23e13b8313c8960ac29653bd7fa5d8c",
+        "新版定稿/18-the-mould-that-changed-the-world.md": "ef41cea03f471fe3b9a53939c843e450da3325eb711f6414e108ae92a7518dd8",
+        "视频/脚本/19.json": "cc3c5eea0f7d9ec0712b2e58adba7e5ef8b61d6518a322f9b25a12fcc45282fb",
+        "新版定稿/19-tulip-mania.md": "3882d487383b759c31dda4785966091c362960cd873a5d83c530d08d52e2e97c",
+        "视频/脚本/20.json": "cc5ed6d7be8767e5e7e9b098e8f3836821c0b3f51c17581b2746722da1cf3001",
+        "新版定稿/20-the-5000-year-old-murder-in-the-ice.md": "8d55638070787f7ff5432c197292af1188c463a8b018e01bdefc32999b888e95",
+        "视频/脚本/21.json": "61c1569a26d7569ee0f586178be6b307b1c394c0a30c3cb02541c910038b0589",
+        "新版定稿/21-the-man-who-sold-the-eiffel-tower-twice.md": "e8e966b70f579235d696ba11fb01d3b2cae3fa26efb9071bbea95071be259e1f",
+        "视频/脚本/22.json": "e3027a42c532fee9935afcecdd0542713cbb907183802c2345b9472f93b75f59",
+        "新版定稿/22-the-building-that-melted-a-car.md": "49ae09483bc80bbc40a71551cd98aebec355d96d9ff7b2bcdea59a06fe599267",
+        "视频/脚本/23.json": "c4574a79fd3a58577a1402ce095ea9e4a0ea1f98883ce63e3cc60d126e819409",
+        "新版定稿/23-the-man-who-gave-machines-a-mind.md": "72ed3049e87fe75ce1e753d5e443bdbe6a7ab72f6e282e8467fbbb62be873169",
+        "视频/脚本/24.json": "f08620b534bb10b718f7515c805dcb541721427d855bd5a092b8954847a351b8",
+        "新版定稿/24-survival-in-the-ice.md": "cb7f810d9a74256e0c00625290be4f16207feb90f5719ca87d5d7c9912b91307",
+        "视频/脚本/25.json": "c73e854e052b3df9bd920d4a59fafb183dee19bd58765fa426af6ea3d7c9a329",
+        "新版定稿/25-apollo-13-the-successful-failure.md": "b6b7d55fe66e6e32116431ea955778fab779b8bda622df0ba1036c2f40a3969f",
+        "视频/脚本/26.json": "22349b0a29f05689aae5bd5e9d0907846a68e6ad42949eb0b8cc392d6dce18d6",
+        "新版定稿/26-the-language-the-children-invented.md": "f64089bc9487e756522746058fba2e27c45e56ffc339d8590038643012eb496d",
+        "视频/脚本/27.json": "e1214d8e9314a1cb54da82e2532889198bec555d6be9189fbfb43b5fdedcd728",
+        "新版定稿/27-life-in-the-forbidden-zone.md": "c592b44a8e6ec26f3c2e96ed19191958e57c81d31e54329c20d726e538c10e52",
+        "视频/脚本/28.json": "e0c8e6c644ab0c5d52d99c23461b99e9ae1574aa574369e56feb35e2ac20698b",
+        "新版定稿/28-a-handful-of-wormwood-that-saved-millions.md": "d609cd99ab982365c6f0167e211c55b31e52a354d50918780f3da66ef702a5bb",
+        "视频/脚本/29.json": "1e5f1d9f0c22b5d14b757f029be694c2a3969666d732ca79bb695282763de791",
+        "新版定稿/29-the-volcano-that-gave-us-frankenstein.md": "69045ee19a170c7ea9d0008b468c7e947bc28b639b834c0192dc0aeafc3ef4d0",
+        "视频/脚本/30.json": "34eb48747f1ea7d14b41ccc0cf45aa1592907aacf6618999b3506944e2ff4a0c",
+        "新版定稿/30-the-stink-that-built-londons-sewers.md": "84dbf19cee0045ea2608b13ee0677cb9623dd8fbb371c67093bf50c64186137a",
+        "视频/脚本/31.json": "d81f8645a1e5663ba8c84668e817cdb218bc6689079fbfd51326b3a7fd3cd384",
+        "新版定稿/31-the-book-twelve-publishers-turned-down.md": "7abd20fed44918dcf01586c056e9d0acd9d2ad3b90aa7d3d403762d9f06d2659",
+        "视频/脚本/32.json": "357aa59bed62154f7302a5efcf528859b303004e028657b93058138fe931bf85",
+        "新版定稿/32-the-planet-that-was-demoted.md": "1421f2b0921e7e9478ebc48777e3e8b2c979172de63d0124015107c3750a3542",
+        "视频/脚本/33.json": "da87d68fdee3401e499aa145c23d9b2c663ce3b27f79feec5eca1ddb0d794e72",
+        "新版定稿/33-thirteen-in-the-cave.md": "b96faac786ace911140b835d9f9c6e37eeb0c5f3e7a077b913805b8942c56067",
+        "视频/脚本/34.json": "5350c08cdc6dfa5579f0bdc6960805cbe079a1c471c46bb2250f11b32da34868",
+        "新版定稿/34-the-game-that-escaped-the-soviet-union.md": "fdfd966f8624bc506b7cfe16da04f2f7382ce5566fab3bcb35c3d99dd6d4a5f2",
+        "视频/脚本/35.json": "d8439077dc2c909b1c6cbd1347f31e9625f25fffe447d6f5945c9492561f1a16",
+        "新版定稿/35-the-bird-that-beat-the-letter-home.md": "ba8c38e38b21a3345624e2d44fd352561d3096cfb6f62214b48ea9b6e66faead",
+        "视频/脚本/36.json": "e35a3dcb2ff0f0c7054493331370c0364190771ecf56e0dad6dbee3af860a628",
+        "新版定稿/36-the-company-that-invented-its-own-killer.md": "4b0f1d016d3e94bd7f77d3a36bfc423700006c7a23c0b0cae5ca68d5c5af883f",
+        "视频/脚本/37.json": "b1b8945ccf3581df48ade5714a2d0e93e4cc6812708f95bef6f5e44439106c99",
+        "新版定稿/37-dynamite-for-the-heart.md": "4933e24d2384471a96d9c8c26c15d5224a85dae98d9971a3fed15b4978dafc51",
+        "视频/脚本/38.json": "8d0379032000967c9f72e550574874949f798eefbfbfb58ab2b38e4e23ecbc6b",
+        "新版定稿/38-the-web-beneath-the-woods.md": "abb7eead9f3da0b2b326ceed5a649cfbf71fc28dad22e0d52f7b19caa798c54f",
+        "视频/脚本/39.json": "6c3e9539f624b192335312912572a05fba2c7bcfb821b44c3c1dbb21b42527a7",
+        "新版定稿/39-y2k-the-crisis-that-success-erased.md": "abbc9804661126aa006595031ed8f201ce55e8eb5fd9e1ad5669c0c6fcdb80ab",
+        "视频/脚本/40.json": "1c50d1a47ee6f8528d0f7299e8a45bc8c30312622f3f465a964d21cc1395ee7f",
+        "新版定稿/40-the-glue-that-failed.md": "dce9f78f3a0828307843dd667b7eeebf3380a3630f03d234bd5824870aba61a1",
+        "视频/脚本/41.json": "6b6673ffc1db986f4c355f3685de6a0faf2272cee042c5e917f26a8b3057c2be",
+        "新版定稿/41-the-toad-that-invaded-australia.md": "eca590f97120f4e76d719e29aa07b094f9117cd462f5a70c029331a63b85f710",
+        "视频/脚本/42.json": "eceb10ae92aa4b9cd23180d1138149a7fa7b674385462c898bc0d2283c8739e7",
+        "新版定稿/42-the-telescope-that-needed-glasses.md": "d4aa049779a0eba06c555d76ca14103648378eef90465df424120126fa771280",
+        "视频/脚本/43.json": "aa9da1246e293c80408edf94a7c9bed65ef3178ae7cb5265a8273e8c4396687f",
+        "新版定稿/43-from-a-garage-to-the-top-of-the-world.md": "bd70c83e5ac867238ca179f3c9f3548eb9cbdcae1f6df40994aef0bda721ae54",
+        "视频/脚本/44.json": "87f531203ca38d88ae5e71ffd88190b1530715cdc0adba146c2a4a78ebe9b976",
+        "新版定稿/44-the-night-sweden-switched-sides.md": "d3f7ad2ac43f02aae9205a15b9808280ca3db597d6ef3b36aca8ca6176c5f74a",
+        "视频/脚本/45.json": "569406607d2bf18dce5e916052d6460509450d97fe17ac9820be524f59c2c3cc",
+        "新版定稿/45-the-record-humanity-threw-into-the-stars.md": "27deabec4a8478fe570f7f237a2fb850ffdce3deebfd952f512d82a60cf7314f",
+        "视频/脚本/46.json": "c8c7ce7a76226f5274a91af693d24410d5eacfa59206b085a70d133f3634c12b",
+        "新版定稿/46-lost-in-the-glare.md": "7aaa06e875fe56c5d78210b90a8769b8b2051714025ef10df37c2fe89db7a68c",
+        "视频/脚本/47.json": "4c33bb0764a9b98e914a55806486ce841a1503efda1ff001cd2f8c9bb1626c06",
+        "新版定稿/47-shadows-of-wolves-over-yellowstone.md": "6b51ae76b8ec4ffd0ff1748c5902ef59754fa446479fc40357e9946a9aaac7a1",
+        "视频/脚本/48.json": "4f146ce6a70bb0bf5d2c6e1f6b47bd6a2bcc2f311be7a948092d7bde1a08f449",
+        "新版定稿/48-rice-for-the-world.md": "76416be21f857e8a05c37baa33ac90f5785812291485231c249e38a1d0edf15f",
+        "视频/脚本/49.json": "fdcc3a438e50a32fdf8c7bcbe27a97d20fc101b6169ca305f920fedbd3303c3c",
+        "新版定稿/49-the-woman-who-won-two-nobels.md": "1e4fb068aa9ae4513d01b199a074b84dc9d819f57b2134df32588a0e4a4b6b6a",
+        "视频/脚本/50.json": "1d4a41824dfa5e8d11e5990b2a4b802ba2fcc3231d85b15ed6630396c6f027bf",
+        "新版定稿/50-microplastics.md": "5439589bacf1abb2abbb184eb658492bc02bcc5bdd8dfd8ababcd80ab93621cb",
+        "视频/脚本/51.json": "39886d83593a31fb575b124ecf6457190773dca695b6ff78f8434d52aebd6d7c",
+        "新版定稿/51-the-joke-that-became-ok.md": "8de30ea4846f4e88d8b71c8d5ced3ee63a73955e39b7dc3c5adad0971b854fd0",
+        "视频/脚本/52.json": "832249bb44617d38ede75560a5e57af6ba79ec284c9609407cb30ce879f6f862",
+        "新版定稿/52-the-killer-smog-of-1952.md": "179500361e4a837d7edb2e0497e08677d5abd425e8ad542f788205a6f7667b4b",
+        "视频/脚本/53.json": "28b604bfa72896534736293f79e9b3aabd8e3678672f4dc6c66337c02a8f1518",
+        "新版定稿/53-the-wind-that-kept-no-time.md": "6fab302dcadb5a2c509436f5fbf8d9ef925c008a36f5b422749bd405aa4701d3",
+        "视频/脚本/54.json": "b1fcb8ae86045b3d35ccfa0f52eb9594b8921d43063835769ee3ecc4543be75e",
+        "新版定稿/54-the-sound-that-shook-the-world.md": "abd5f4bfe11ed73bcc5326a92cf99b0a8e5ad70adaca1ce8d0c8f622b57fa519",
+        "视频/脚本/55.json": "06344fc0ad5975cba2f4dbe5262a9957dd7c024f9a05b9abbfa327f32ea8c719",
+        "新版定稿/55-the-secret-of-romes-undying-concrete.md": "a7759eddcc7ec06dfd6dab7912e06b3b5ef8576df0c025a97812006669d0be61",
+        "视频/脚本/56.json": "22ca3b4180a8ae6a37b4c8e25f5e357d5696d9b23bf148fb7064425d1403e59c",
+        "新版定稿/56-the-letter-that-startled-darwin.md": "aad1e2aab9ff28f534a510362e807ef401e0b502475240f4b2531e9e518a8d7a",
+        "视频/脚本/57.json": "a0ba65b769430289a33ec1f7bc6dbf91dad8d2c3b1d725348851de546563cd6f",
+        "新版定稿/57-a-change-of-anthem-in-the-deep.md": "0731d925a98bafc222718c111985362e166b38b9189c516219a481e36d0d4b6e",
+        "视频/脚本/58.json": "8b0bd3d7d39000518789e9907aec53bd52fab1b9d6b4f22a152d158635b6e8ee",
+        "新版定稿/58-from-a-scratch-to-a-world-without-smallpox.md": "1aa2a0d2c51da76f9c9ebb88d049dd1a55ab530791566fdbf6476e5aa48c15ee",
+        "视频/脚本/59.json": "df1db4174d942371166048b220ef6d55b0b700b2ce31c866edf6dfdf33b92f0c",
+        "新版定稿/59-saving-the-sky.md": "7bf9c4661e733e7af23dc2f11bc820b809ec93dad75a94fb6a12748226e8722c",
+        "视频/脚本/60.json": "eed1655c0919db32a3a016b24791b93d25683f287c7ccb2523e168a69bddc562",
+        "新版定稿/60-the-scientific-giant-who-changed-the-world.md": "9d1578e7af085559922394a3db01de4eb22dc1c520ca17de5cad68e5a38a31a8",
+        "视频/脚本/61.json": "2d08704376faff25b06d334d7567a381460975a56a4cef6b4ae97b3580ea8dbc",
+        "新版定稿/61-the-steel-box-that-remade-the-world.md": "135cc9cfbcbd68d957f831cf55558112a45b1cc3749366cb9a304507355c7d2c",
+        "视频/脚本/62.json": "e34fe389b2d543996f09c063e8c57750b2b9a9be77e6a5d757c3529f96471d47",
+        "新版定稿/62-dolly-the-copied-sheep.md": "9edfbd3ebacdecc8c3aa3034d38dd371a105c19382282e8c0de2d08a1713f863",
+        "视频/脚本/63.json": "5d266d80f9cf29cce6f7e34531449cf75191a42f180102685a5bcd04849e75c5",
+        "新版定稿/63-the-crowded-heavens.md": "6ef79d4310019dfefa7364b8a428411a6bc337678c69fa5cbc89b84689e253a4",
+        "视频/脚本/64.json": "12a36862765922d72ce6e5a4c5fe85f548364eed65fe3b3b284f0b38899a965f",
+        "新版定稿/64-the-day-zero-that-never-came.md": "e0c83cbe36745adbbffd33a156fa8d0671704ea976cb13215cabb612639b37a5",
+        "视频/脚本/65.json": "78e60dd231df4ac71df83e21a26f82bbf706dc0bef80bee156a36bc287661ede",
+        "新版定稿/65-the-day-the-doomsday-vault-opened.md": "71a50d32e25955e713e6ca108ab68422a4fd5b77c914a9074eece1dc33cbff89",
+        "视频/脚本/66.json": "ad5324af4270834186285a5e7273a90213094077adc6f9e1d5c7b0ebff9cf035",
+        "新版定稿/66-the-burrs-that-became-velcro.md": "75dbe6c148ca97a7780ac1737f33f58bf8ee27a51aa729a83315705655b12b2a",
+        "视频/脚本/67.json": "6839a46ebdb51cdcff6a65ca238efc228f1e114efd1734cee6c994ca659a29cb",
+        "新版定稿/67-the-cave-found-by-a-dog.md": "10e37b81eeef4e3289448a6b4fd679f34d495a4fc087c57747e6dca949e00cf1",
+        "视频/脚本/68.json": "568f72dacac48e206811d35a57c7fa22e3da428783f64e507c184f2090e579f3",
+        "新版定稿/68-the-last-flight-of-the-hindenburg.md": "c25f58ffb0e3748336767bb7470dd7cef10374c53cbb48af89dba26f65b2dd5c",
+        "视频/脚本/69.json": "c493528f054e2d572e56b8ea15be0950158e86e3d3271b0f94237e8d296163ff",
+        "新版定稿/69-the-trial-of-the-father-of-the-atomic-bomb.md": "570eda5b7d979d71e9bcad1c67e295ed326ecdb8b61e663aba33272c8a9451bd",
+        "视频/脚本/70.json": "0f6827f02cef0d2416f9d7d69b7e1c5553acee7cf6dc89f3379201264587236c",
+        "新版定稿/70-the-stamp-that-changed-the-post.md": "edfd85cea33730ba67e4210e756da1f2945f1a21bce55c7e75497cb5f0095d80"
+      },
+      "source_file_count": 140,
+      "working_script_count": 70,
+      "target_request_exactly_matches_context": true
+    },
+    "request_source_sha256": {
+      "视频/脚本/47.json": "4c33bb0764a9b98e914a55806486ce841a1503efda1ff001cd2f8c9bb1626c06",
+      "视频/工具/初稿生成/gen47.py": "9e2e1021ba729358d41002fd5c3f384cdd8575f1b5ebaa13e0bf007dec451dae",
+      "新版定稿/47-shadows-of-wolves-over-yellowstone.md": "6b51ae76b8ec4ffd0ff1748c5902ef59754fa446479fc40357e9946a9aaac7a1",
+      "视频/制作记录/47_待改清单.md": "3abe9aa5470a469d7b383d20c9db9148fc98e3a7b9ac29501b408348915491e1",
+      "视频/制作记录/逐句确认/47.json": "c6c032eefcf393af005c637c4e77416b6009fa2d7ea17ea92abbce8ce9c64235"
+    },
+    "actual_original_user_consent_supplement_sha256": "ddefeead2ea53cb3f3a49e66ac73ba743003edd64f71eda061dc568c6409afac",
+    "accepted_source": {
+      "id": "47",
+      "path": ".github/video-revision-batch/latest-accepted-reviews/47.mp4",
+      "sha256": "41a80d97ec08a8308df802694e82cd00cbd2f41c3d2f5496adf2001ef8b10c98",
+      "git_blob_sha": "9120f8b2d4b83b30e1c352a67ca53842690094b8",
+      "bytes": 17862854,
+      "width": 3840,
+      "height": 2160,
+      "summary_frames": 60,
+      "reference_role": "own-latest-accepted-voice-for-pure-visual-review",
+      "actual_accepted_native_run": 43533004625,
+      "aac_adts_sha256": "a1311cc32d5d4ae50b7dd0808f2f5ebd953989e0138c639df5c7965032a78ffe"
+    },
+    "checker_reference_preparation": {
+      "article": "47",
+      "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+      "reference_prepared": true,
+      "acceptance": false,
+      "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+      "source_sha256": "4c33bb0764a9b98e914a55806486ce841a1503efda1ff001cd2f8c9bb1626c06",
+      "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+      "checker_program_sha256": {
+        "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+        "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+        "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+        "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+        "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+        "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+      },
+      "reference_calls": [
+        {
+          "sentence": "标题",
+          "piece": null,
+          "reference_kind": "title-default-raw",
+          "method": "create",
+          "source_slice": "Shadows of Wolves Over Yellowstone",
+          "exact_native_cache_key": "8042ddf7ea9bb45cf7b53a1e69c9725e96efb692.pkl",
+          "cache_input_text_sha256": "2809f5c567afef0edd74265863897e24aa278875409ea6dc91141a0cb3249425",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "标题",
+          "piece": null,
+          "reference_kind": "title-default-timed",
+          "method": "create_timed",
+          "source_slice": "Shadows of Wolves Over Yellowstone",
+          "exact_native_cache_key": "e8468a821332f573af11c158f532f7e10e703499.pkl",
+          "cache_input_text_sha256": "2809f5c567afef0edd74265863897e24aa278875409ea6dc91141a0cb3249425",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Yellowstone's iconic grey wolves had been exterminated by 1926.",
+          "exact_native_cache_key": "edb9751a07ebd429d0023c41838444af2aee80c4.pkl",
+          "cache_input_text_sha256": "0353e9692a1ee9a2957add8aeafdceb22d15f0f2852c2dbb3a1a9f7e864c9372",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Yellowstone's iconic grey wolves had been exterminated by 1926.",
+          "exact_native_cache_key": "c4674e42b3b0d6cf1375c8075c06e37f9ae0c07b.pkl",
+          "cache_input_text_sha256": "0353e9692a1ee9a2957add8aeafdceb22d15f0f2852c2dbb3a1a9f7e864c9372",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "On 12 January 1995 eight wolves captured in Alberta, Canada, were hauled to the park in crates; six more followed.",
+          "exact_native_cache_key": "b1591a0fd968341c39bcdac70a5cad91aead2198.pkl",
+          "cache_input_text_sha256": "5df33e2c539614469b9a745a704d78d00297303503ff17308f5aa46b87e0ad5e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "On 12 January 1995 eight wolves captured in Alberta, Canada, were hauled to the park in crates; six more followed.",
+          "exact_native_cache_key": "7cd18ca01d2415deeef10c786853e8385bdf7d7e.pkl",
+          "cache_input_text_sha256": "5df33e2c539614469b9a745a704d78d00297303503ff17308f5aa46b87e0ad5e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "On 12 January 1995 eight wolves captured in Alberta, Canada,",
+          "exact_native_cache_key": "8fcb86d2c135838ccf81109cf2cb1afa9b716a55.pkl",
+          "cache_input_text_sha256": "f106e326276d4aa3f186500e9e8a3ac38e2307ee327aabda4bd50b55e75bd7c2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "were hauled to the park in crates; six more followed.",
+          "exact_native_cache_key": "a4c7f4c2e461241eb417d7e1046480eda5da199c.pkl",
+          "cache_input_text_sha256": "0681344759d5b631cf8b7ba82ad30328656c3a742149b3f89ac298099596eddd",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "On 12 January 1995 eight wolves captured in Alberta,",
+          "exact_native_cache_key": "f0ed3668a9d10e38b9017d97e2f527deec33831e.pkl",
+          "cache_input_text_sha256": "0d879abeb12671b3081f6a3a7b01c07ceb657bad0538e9d4163ea5b93b621fcf",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Canada,",
+          "exact_native_cache_key": "f37bdc25569cbafb041f0087ca13dd1db2f374f1.pkl",
+          "cache_input_text_sha256": "01adc911463c14348859a86a3094f52bb697ce747c2e36547e3de3c142445ae5",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "were hauled to the park in crates;",
+          "exact_native_cache_key": "240e77821f1bdf7ccfedb69ddfa098e10ea42a87.pkl",
+          "cache_input_text_sha256": "ea21261fdc991d12ed749df0e2e131835b5eb7b515da37f66237ebce67cd38ee",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "six more followed.",
+          "exact_native_cache_key": "b061cec80c3af87cc564e5a851ccd13c04119c19.pkl",
+          "cache_input_text_sha256": "f491b58ed015880baf4f8b39f2b3a4031f2ce9afde159003e319836e901edb66",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Released from enclosures in late March, they roamed the wilderness.",
+          "exact_native_cache_key": "f49d6c6cd89b7148a52a8b56ede6a512b2b8ae20.pkl",
+          "cache_input_text_sha256": "65a3927c3762ea1f723d0de8ec4e63585dcbedbbbfaa90209eb63e1fb0c3f103",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Released from enclosures in late March, they roamed the wilderness.",
+          "exact_native_cache_key": "d6a3e7f6600db5664f91866a27ba1f6bf61918b4.pkl",
+          "cache_input_text_sha256": "65a3927c3762ea1f723d0de8ec4e63585dcbedbbbfaa90209eb63e1fb0c3f103",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Released from enclosures in late March,",
+          "exact_native_cache_key": "5647255400f56c728f67a4c14358834afc434d97.pkl",
+          "cache_input_text_sha256": "46de021138545fd2536c29e1aa8e1f3922a30ea106ad7d65b271c162c8ef736d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "they roamed the wilderness.",
+          "exact_native_cache_key": "c5800fa3805f860661af1573058106520a882541.pkl",
+          "cache_input_text_sha256": "f3e9635348eade12d03241bf0326d7cebaa60d346ed4891c696131b6ff535a23",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Released from enclosures in late March,",
+          "exact_native_cache_key": "5647255400f56c728f67a4c14358834afc434d97.pkl",
+          "cache_input_text_sha256": "46de021138545fd2536c29e1aa8e1f3922a30ea106ad7d65b271c162c8ef736d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "they roamed the wilderness.",
+          "exact_native_cache_key": "c5800fa3805f860661af1573058106520a882541.pkl",
+          "cache_input_text_sha256": "f3e9635348eade12d03241bf0326d7cebaa60d346ed4891c696131b6ff535a23",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In February 2014 a viral video narrated by writer George Monbiot spun a compelling narrative: elk, thinned by wolves and wary of them, retreated from valleys, letting willows flourish and riverbanks stabilise.",
+          "exact_native_cache_key": "5877503f629020439942413550d9f45ff1df39cc.pkl",
+          "cache_input_text_sha256": "97e3ba67364385c1b90110665d4f44ea1798a3eca0189596536c9a9220247a28",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "In February 2014 a viral video narrated by writer George Monbiot spun a compelling narrative: elk, thinned by wolves and wary of them, retreated from valleys, letting willows flourish and riverbanks stabilise.",
+          "exact_native_cache_key": "787b41924b33a6a3213f9686537bd81d8e6c09be.pkl",
+          "cache_input_text_sha256": "97e3ba67364385c1b90110665d4f44ea1798a3eca0189596536c9a9220247a28",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In February 2014 a viral video narrated by writer George Monbiot",
+          "exact_native_cache_key": "6fcc4e1d74a7a6ecc88a3142a96aeea7cee3aa17.pkl",
+          "cache_input_text_sha256": "574271da68cec484778782c35e26d82f00270f9740132bef7b6551f5fca740d9",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "spun a compelling narrative:",
+          "exact_native_cache_key": "4f6be486f03600251c5955f96cc7abe17043ab5a.pkl",
+          "cache_input_text_sha256": "8a74940b817344f123b9df5ff5dd9ff0d04a006dda515b9ebcbfdba8a46760cc",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "elk, thinned by wolves and wary of them, retreated from valleys,",
+          "exact_native_cache_key": "0a6a91c5608e3a4a9958280e5ad2b0366b8d7ce5.pkl",
+          "cache_input_text_sha256": "ec75c6c81ba7bb8d875efe07d49c93bdf95eec313d2b9e217fd3d748165db0ae",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 4,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "letting willows flourish and riverbanks stabilise.",
+          "exact_native_cache_key": "cda8c49f74876be7183dcad4704753d33ad32e59.pkl",
+          "cache_input_text_sha256": "f8f582ff3d84e08d8f282b2a16c6343d7a0362083939461811e3befb21d46c2b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In February 2014 a viral video narrated by writer George Monbiot spun a compelling narrative:",
+          "exact_native_cache_key": "bdad5a2d1ebac0006f77973862e4ef257f4e4581.pkl",
+          "cache_input_text_sha256": "3ac9a6ae09d6903cb492699cf9dc745fcbed4202efb5f7a798a9b46ee6ee62bf",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "elk,",
+          "exact_native_cache_key": "2117805ab1da78bc5e184d25041630d5737f8dec.pkl",
+          "cache_input_text_sha256": "acf84c414c6314a83f7e9aaee1118133c4394dbc48985edd66b9940a0f0ce69e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "thinned by wolves and wary of them,",
+          "exact_native_cache_key": "e02e7c3c2a003b5bb39cf88314657d3a10ef829c.pkl",
+          "cache_input_text_sha256": "d211c91e00a0a169b1aff6074d1dca8dd616090383a72e0ce3413b0848c33ccf",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "retreated from valleys,",
+          "exact_native_cache_key": "941d13bbf77e7901d5eeec030911fbfbccca0132.pkl",
+          "cache_input_text_sha256": "eb50cbca58d70006e5dbe28e52140c124bf4676c5a349632660c28273dbcc751",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 5,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "letting willows flourish and riverbanks stabilise.",
+          "exact_native_cache_key": "cda8c49f74876be7183dcad4704753d33ad32e59.pkl",
+          "cache_input_text_sha256": "f8f582ff3d84e08d8f282b2a16c6343d7a0362083939461811e3befb21d46c2b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Ecologists call this a trophic cascade: predators eat or deter plant-eaters, and vegetation rebounds.",
+          "exact_native_cache_key": "7012e2d6826f24501e9f7ed18a33868f2c41a161.pkl",
+          "cache_input_text_sha256": "67ebc95e7eca0b9d7b365756f6ea939bdccca9c3de0d9c9893f3b477b308f37a",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Ecologists call this a trophic cascade: predators eat or deter plant-eaters, and vegetation rebounds.",
+          "exact_native_cache_key": "6030d1dbc00cd9c1c5b22e617b767a6ebdbab3f1.pkl",
+          "cache_input_text_sha256": "67ebc95e7eca0b9d7b365756f6ea939bdccca9c3de0d9c9893f3b477b308f37a",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Ecologists call this a trophic cascade:",
+          "exact_native_cache_key": "af771427df5bc43057b6e52bbb6b081459e1f6c0.pkl",
+          "cache_input_text_sha256": "fbbaf37eea6de066d7fccb7bb886e91f2f065ab4ddfbac5562350d4b5a78c4b2",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "predators eat or deter plant-eaters, and vegetation rebounds.",
+          "exact_native_cache_key": "f59813bf49630a5ea626645b032477022d194bb3.pkl",
+          "cache_input_text_sha256": "1a84874aead904d1e62b850a72aa0ed9c7a623dccf611dea3d273eb23d3c5b00",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Ecologists call this a trophic cascade:",
+          "exact_native_cache_key": "af771427df5bc43057b6e52bbb6b081459e1f6c0.pkl",
+          "cache_input_text_sha256": "fbbaf37eea6de066d7fccb7bb886e91f2f065ab4ddfbac5562350d4b5a78c4b2",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "predators eat or deter plant-eaters,",
+          "exact_native_cache_key": "a8ed94b3c70c551ce0a018c9b746f4fa169f30a6.pkl",
+          "cache_input_text_sha256": "16bb957d5834ab352a9ff9af2116243a38268a0445e12a2a97f077fc64ca579d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and vegetation rebounds.",
+          "exact_native_cache_key": "a3e5e1a7f2e777e438093edf235f84020301e135.pkl",
+          "cache_input_text_sha256": "0513ea79a1cfa47698f53083a20a5fe8fbc72f6eeadd8c72842152e50b7012c4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Yet the census undermined the thinning claim: elk on the park's northern range peaked at about 19,000 in January 1994 and were dwindling before wolves arrived, depleted by hunters, drought, and bears.",
+          "exact_native_cache_key": "c78a78059ac228a820af7f186ea620d7364da7dd.pkl",
+          "cache_input_text_sha256": "84bcef64d254644c598a674377e2635ecfff281731d0a2809184e2ee0746d38c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Yet the census undermined the thinning claim: elk on the park's northern range peaked at about 19,000 in January 1994 and were dwindling before wolves arrived, depleted by hunters, drought, and bears.",
+          "exact_native_cache_key": "746046178fef0741b783ad42fe3cafcf2c4e711c.pkl",
+          "cache_input_text_sha256": "84bcef64d254644c598a674377e2635ecfff281731d0a2809184e2ee0746d38c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Yet the census undermined the thinning claim:",
+          "exact_native_cache_key": "02900712dde75fadc561e91b0c54fc3cca3532e9.pkl",
+          "cache_input_text_sha256": "bc28bb075a197d033b263290318bba6d587b404b8b23331f773bcc48079ff64d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "elk on the park's northern range peaked at about 19,000 in January 1994",
+          "exact_native_cache_key": "1c3e029a5bd447a1a62f1ab9b3405584ba6989bb.pkl",
+          "cache_input_text_sha256": "0f0e933ce772c8b8b56a517432b6398c063f5d71e7ec7ae90194d7c3cffedb65",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and were dwindling before wolves arrived,",
+          "exact_native_cache_key": "9c67c76cbea3fcd569e769c78852440ad8919d89.pkl",
+          "cache_input_text_sha256": "605dd8b7841ae5d318670efa00a05a8984c29309a9fe1bb1f5e4c9689f85e9a2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 4,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "depleted by hunters, drought, and bears.",
+          "exact_native_cache_key": "da53e07a8f694b549ff53a0cbef96de339c8da35.pkl",
+          "cache_input_text_sha256": "ea47cdf93734574b2b78412a55ef4b0286312d3af2aea194c57575db64915eac",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Yet the census undermined the thinning claim:",
+          "exact_native_cache_key": "02900712dde75fadc561e91b0c54fc3cca3532e9.pkl",
+          "cache_input_text_sha256": "bc28bb075a197d033b263290318bba6d587b404b8b23331f773bcc48079ff64d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "elk on the park's northern range peaked at about 19,000 in January 1994 and were dwindling before wolves arrived,",
+          "exact_native_cache_key": "35367d6c74e9095237094ab6d7122b58e814f382.pkl",
+          "cache_input_text_sha256": "d07965872e8a68933ebf14afc7b000fabee93f3f105558a63a44e3cae772e45d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "depleted by hunters,",
+          "exact_native_cache_key": "f33b2e56718c2e53aaedae9554a65cc3aa9a6f0d.pkl",
+          "cache_input_text_sha256": "7c6c11b8515cf354b9efe7811dac2aa5e44509f7e7302bd7c97de90db710579b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "drought,",
+          "exact_native_cache_key": "2afecd950b3fed0084d9f51a2550b204a2c56840.pkl",
+          "cache_input_text_sha256": "86cecd4f8c053451d0cfefc09e888fdaa65336729a5cdc412df961ff6004116c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 5,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and bears.",
+          "exact_native_cache_key": "cd351cfd2f58a9d4778248ebd3ce7f080822e763.pkl",
+          "cache_input_text_sha256": "8e699934e76fd1af019bcb93c0f93d8fa43fa3bbfe63f24369d06080884f5458",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Fear looked weak too: in June 2013 Arthur Middleton's University of Wyoming team found that collared elk east of the park kept grazing unless wolves ventured within half a mile.",
+          "exact_native_cache_key": "fa25b77dca6771d855e5e2f7fb1b1b77e11e6810.pkl",
+          "cache_input_text_sha256": "2b93390b3230040eaf3cb8c039347552f2545fc41650d9908ccb81236192f19d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Fear looked weak too: in June 2013 Arthur Middleton's University of Wyoming team found that collared elk east of the park kept grazing unless wolves ventured within half a mile.",
+          "exact_native_cache_key": "7b384c0f44365087f9a5922080b7f1cf95deca29.pkl",
+          "cache_input_text_sha256": "2b93390b3230040eaf3cb8c039347552f2545fc41650d9908ccb81236192f19d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Fear looked weak too:",
+          "exact_native_cache_key": "7629066ac5f9346af2144bf4878003545b3fe99a.pkl",
+          "cache_input_text_sha256": "6eb785b97b92ff402b7e1b8b66513d517117f20187208674a29233d2cc28d3f7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "in June 2013 Arthur Middleton's University of Wyoming team found that",
+          "exact_native_cache_key": "c16dfae7a77f11b7fccb7aed54f2b8ee69d3cfb9.pkl",
+          "cache_input_text_sha256": "6f38157cf7475b8130f497f9b59e1dc9d079083c102c489905ccd03546837ce4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "collared elk east of the park kept grazing",
+          "exact_native_cache_key": "c3b0b36f84f074336a842e7f1073cf7c64adefc8.pkl",
+          "cache_input_text_sha256": "74ffb097d9651a7e6b7813e6abb29f28142982c27906d8db0a62b107a3ff00d5",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": 4,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "unless wolves ventured within half a mile.",
+          "exact_native_cache_key": "9072166efe3bd8d893e718236ac45921837d4662.pkl",
+          "cache_input_text_sha256": "1c49fea111c594f1528f0735ed164bdc226552a8894772b4b962325ae6155fe7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Fear looked weak too:",
+          "exact_native_cache_key": "7629066ac5f9346af2144bf4878003545b3fe99a.pkl",
+          "cache_input_text_sha256": "6eb785b97b92ff402b7e1b8b66513d517117f20187208674a29233d2cc28d3f7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "in June 2013 Arthur Middleton's University of Wyoming team found that collared elk east of the park kept grazing unless wolves ventured within half a mile.",
+          "exact_native_cache_key": "f4c3d5c63c9af4b870abe633af5b5b1ac94087de.pkl",
+          "cache_input_text_sha256": "5cfd51ca60f303c587bca36ab3feeec466301069c7c8e8ad2813a4e52154192c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Trees fared no better: in November 2021 Utah State University's Elaine Brice showed that sampling only the tallest aspens overstated regrowth four- to sevenfold.",
+          "exact_native_cache_key": "05ad03523d1df1753d409182430a1e6452a7929b.pkl",
+          "cache_input_text_sha256": "61b999fa6cd941f5188c9a767f00e6795e4f6da8ba244190c9205a7d051ab726",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Trees fared no better: in November 2021 Utah State University's Elaine Brice showed that sampling only the tallest aspens overstated regrowth four- to sevenfold.",
+          "exact_native_cache_key": "ecef7a9edd2be3e72a22053b207d245e01e23b2d.pkl",
+          "cache_input_text_sha256": "61b999fa6cd941f5188c9a767f00e6795e4f6da8ba244190c9205a7d051ab726",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Trees fared no better:",
+          "exact_native_cache_key": "2ed296451c723fd288d5ad7cf9d5c5d0c3face56.pkl",
+          "cache_input_text_sha256": "459dde9cb84a1fbe08a6f4a2d8d81a21cdcc9a9d7b89303c044e2f32545d1e25",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "in November 2021 Utah State University's Elaine Brice showed that",
+          "exact_native_cache_key": "096e2bbbbc53a37970212b8fa588c5be9b3d8914.pkl",
+          "cache_input_text_sha256": "73338529c214b228acf4e315815034248bfa935be38ad969fcaa7797a8061cbd",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "sampling only the tallest aspens overstated regrowth four- to sevenfold.",
+          "exact_native_cache_key": "c15e60227f2f7f59aab2fd44e9b4c4f2f6eaf653.pkl",
+          "cache_input_text_sha256": "20abda09703d823e4cd75031d70cce5b06ffd97c611cd041c0370411684152cf",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Trees fared no better:",
+          "exact_native_cache_key": "2ed296451c723fd288d5ad7cf9d5c5d0c3face56.pkl",
+          "cache_input_text_sha256": "459dde9cb84a1fbe08a6f4a2d8d81a21cdcc9a9d7b89303c044e2f32545d1e25",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "in November 2021 Utah State University's Elaine Brice showed that sampling only the tallest aspens overstated regrowth four- to sevenfold.",
+          "exact_native_cache_key": "cda303b254ac7db14c931dd2842f475cb333aee1.pkl",
+          "cache_input_text_sha256": "f2824c151c61a2ad94431569b50f6c5af3c799f2ad28cbbf546b48883473e6b9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The deeper flaw was water.",
+          "exact_native_cache_key": "5574f661c2199ad77eaa61beeccd42ecc2b0f51e.pkl",
+          "cache_input_text_sha256": "fca1d0075228bd54391e236abd844455c0f05a1736f1a5f4919d0e1ec5b3017d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "The deeper flaw was water.",
+          "exact_native_cache_key": "81462b0fd2210de8241a8a0346247428b5b0a1ae.pkl",
+          "cache_input_text_sha256": "fca1d0075228bd54391e236abd844455c0f05a1736f1a5f4919d0e1ec5b3017d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Colorado State University's Tom Hobbs and David Cooper had excluded elk with fences and built artificial beaver dams.",
+          "exact_native_cache_key": "b99643ffeec23f3193c2d6bee549bf050895c6e0.pkl",
+          "cache_input_text_sha256": "fd45fd7a93e66455fd668ab1946b8f2e759e79d9e2d1fb620903db0db70bec93",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Colorado State University's Tom Hobbs and David Cooper had excluded elk with fences and built artificial beaver dams.",
+          "exact_native_cache_key": "12a96739fda1a82e97ae0cd00e5fbac9e3c7c072.pkl",
+          "cache_input_text_sha256": "fd45fd7a93e66455fd668ab1946b8f2e759e79d9e2d1fb620903db0db70bec93",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Colorado State University's Tom Hobbs and David Cooper",
+          "exact_native_cache_key": "d8337df311aa5de634cf6b610483e62db4d64f83.pkl",
+          "cache_input_text_sha256": "10cb4fe8edf669f85188065e629972e6c31c21da404d017d5eed703b2dcfac88",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "had excluded elk with fences and built artificial beaver dams.",
+          "exact_native_cache_key": "fb46e823721a2e0c946614ed4707a90eed1f65c3.pkl",
+          "cache_input_text_sha256": "c838e4ca40f44c450f1708d42d7d203e20824dd035a19526f940d36fc6b6f69a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In January 2024 they reported: eroding streams had cut so deep that stunted willows no longer reached water.",
+          "exact_native_cache_key": "89b8cd7f980be9cf7ab5fb7d74a48a056ce4cab9.pkl",
+          "cache_input_text_sha256": "516ede336f30dee908bb5301dc20400ceb178d1d0828aef77e5052c135833f27",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "In January 2024 they reported: eroding streams had cut so deep that stunted willows no longer reached water.",
+          "exact_native_cache_key": "7c0ae2f06c528a3cb4110f64d8e14f0b62ff2f2d.pkl",
+          "cache_input_text_sha256": "516ede336f30dee908bb5301dc20400ceb178d1d0828aef77e5052c135833f27",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In January 2024 they reported:",
+          "exact_native_cache_key": "5bbd44e897abbaed54ebb045c7a416b6317de5fd.pkl",
+          "cache_input_text_sha256": "2da91c59fbb9ed5a3919f84b469e13326e4812318f7ccec0f99a47612bf8f3b8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "eroding streams had cut so deep that stunted willows no longer reached water.",
+          "exact_native_cache_key": "0f767bf8f8d1fbf78edba0f0f02705f28361a522.pkl",
+          "cache_input_text_sha256": "1d5dfcec3a041330039cb2d952fc08e48519b3f5874faa972fd972cb25e8f302",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In January 2024 they reported:",
+          "exact_native_cache_key": "5bbd44e897abbaed54ebb045c7a416b6317de5fd.pkl",
+          "cache_input_text_sha256": "2da91c59fbb9ed5a3919f84b469e13326e4812318f7ccec0f99a47612bf8f3b8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "eroding streams had cut so deep that stunted willows no longer reached water.",
+          "exact_native_cache_key": "0f767bf8f8d1fbf78edba0f0f02705f28361a522.pkl",
+          "cache_input_text_sha256": "1d5dfcec3a041330039cb2d952fc08e48519b3f5874faa972fd972cb25e8f302",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In January 2025 Oregon State University's William Ripple, an advocate of the hypothesis, reported one of the world's strongest cascades; critics disputed his methods.",
+          "exact_native_cache_key": "6689ccbb0224bc4456f9c42fbffd74c483ed28c8.pkl",
+          "cache_input_text_sha256": "9979709d73704fb533afe1250c448c229f3888f432746e2e53ad3d0719127f7b",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "In January 2025 Oregon State University's William Ripple, an advocate of the hypothesis, reported one of the world's strongest cascades; critics disputed his methods.",
+          "exact_native_cache_key": "4db0407d227564752dd24b8b32c269456a2237f9.pkl",
+          "cache_input_text_sha256": "9979709d73704fb533afe1250c448c229f3888f432746e2e53ad3d0719127f7b",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In January 2025 Oregon State University's William Ripple, an advocate of the hypothesis,",
+          "exact_native_cache_key": "7a6c01a6139d8163216a4c4cab30f9194874f119.pkl",
+          "cache_input_text_sha256": "b96310b3f131a4cb5fd94213af243794ecb48a8c0c1c3e13ebbfc8c8f4c81a0d",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "reported one of the world's strongest cascades;",
+          "exact_native_cache_key": "60b683d8a4a735aec68400da232dd3a64178ac68.pkl",
+          "cache_input_text_sha256": "55f614486742c7f1b4c749ec3915e0f9b2770d9b851424e5e5e6eacfcd2bda21",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "critics disputed his methods.",
+          "exact_native_cache_key": "ed837bcd38e0c479cb29a40470dc2b749fb5da01.pkl",
+          "cache_input_text_sha256": "172a958caa7637ed81964fc8a0890a5d276562a1ba3a3b6b637777430df433ca",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In January 2025 Oregon State University's William Ripple,",
+          "exact_native_cache_key": "5402396305245853c7e0fa61c016680efabcf351.pkl",
+          "cache_input_text_sha256": "c45ad76352b705d789b1325e4967ebfe72ceeaf204a588f215bfc0f6dab8bf10",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "an advocate of the hypothesis,",
+          "exact_native_cache_key": "df2f015f38d200c7b2a419bd8d2fbca8917b2d17.pkl",
+          "cache_input_text_sha256": "42db7f0c11132e10afa7de80c44fd1785f2a14d08fadf0476881f3a2b6c11d56",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "reported one of the world's strongest cascades;",
+          "exact_native_cache_key": "60b683d8a4a735aec68400da232dd3a64178ac68.pkl",
+          "cache_input_text_sha256": "55f614486742c7f1b4c749ec3915e0f9b2770d9b851424e5e5e6eacfcd2bda21",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "critics disputed his methods.",
+          "exact_native_cache_key": "ed837bcd38e0c479cb29a40470dc2b749fb5da01.pkl",
+          "cache_input_text_sha256": "172a958caa7637ed81964fc8a0890a5d276562a1ba3a3b6b637777430df433ca",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The question is unresolved, but the wolves' shadow looks fainter than the fable suggested, and the science messier.",
+          "exact_native_cache_key": "1dda5bf5a98a5038e3f1f029898f7561387ae5a2.pkl",
+          "cache_input_text_sha256": "bb83e6b70561b8cab38dd605434f53b8ef3f1d16c7a7e833ffd9813b59d0fdc1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "The question is unresolved, but the wolves' shadow looks fainter than the fable suggested, and the science messier.",
+          "exact_native_cache_key": "33c4388219e689e8b45546b4d014a23a940ce724.pkl",
+          "cache_input_text_sha256": "bb83e6b70561b8cab38dd605434f53b8ef3f1d16c7a7e833ffd9813b59d0fdc1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "The question is unresolved,",
+          "exact_native_cache_key": "279e8576f534fb7e417c1b89e4286725671d81c3.pkl",
+          "cache_input_text_sha256": "08edad5c2e043d4a7696e65a209c9a96667b2a546cd48ea9e11d368bd251cc0d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "but the wolves' shadow looks fainter than the fable suggested,",
+          "exact_native_cache_key": "0be4e1d70611cabc00f88c202fff3b0e7ca780f9.pkl",
+          "cache_input_text_sha256": "3fefee0627a7edab49bdcf005bb206bbf936cdf1ccd9ea8e76d7efd227cb1e54",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and the science messier.",
+          "exact_native_cache_key": "c6e7bce013fac7ed0fd85037ae62518a1e3e3191.pkl",
+          "cache_input_text_sha256": "6754429d57be33e023307e64bb82555d1003fcde0412669cb1b0a0df070be82e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "The question is unresolved,",
+          "exact_native_cache_key": "279e8576f534fb7e417c1b89e4286725671d81c3.pkl",
+          "cache_input_text_sha256": "08edad5c2e043d4a7696e65a209c9a96667b2a546cd48ea9e11d368bd251cc0d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "but the wolves' shadow looks fainter than the fable suggested,",
+          "exact_native_cache_key": "0be4e1d70611cabc00f88c202fff3b0e7ca780f9.pkl",
+          "cache_input_text_sha256": "3fefee0627a7edab49bdcf005bb206bbf936cdf1ccd9ea8e76d7efd227cb1e54",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and the science messier.",
+          "exact_native_cache_key": "c6e7bce013fac7ed0fd85037ae62518a1e3e3191.pkl",
+          "cache_input_text_sha256": "6754429d57be33e023307e64bb82555d1003fcde0412669cb1b0a0df070be82e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "A discipline willing to revise its cherished example may deserve more trust than the fable ever did.",
+          "exact_native_cache_key": "b5582c83c0b23a569bb441c26809f16328a13b0f.pkl",
+          "cache_input_text_sha256": "5ec569e07bcb13379b7aae51f65d47e636833f395149f09add66a3004c08b0a4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "A discipline willing to revise its cherished example may deserve more trust than the fable ever did.",
+          "exact_native_cache_key": "aee1a4b5d85d14c1d9a684d31165c52f6388cae3.pkl",
+          "cache_input_text_sha256": "5ec569e07bcb13379b7aae51f65d47e636833f395149f09add66a3004c08b0a4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "A discipline willing to revise its cherished example",
+          "exact_native_cache_key": "f39bb5db2276dd811a1fb9fa8bde324e20245cda.pkl",
+          "cache_input_text_sha256": "9c4c09397ccb2ebb4bb7b4bfbb1bf86887f8197f88b7e533ac41e8f98dbc354b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "may deserve more trust than the fable ever did.",
+          "exact_native_cache_key": "3ec2222a163a52884f068a9f8e0b6bd3d2bffd92.pkl",
+          "cache_input_text_sha256": "48cf7936411deb290c5aaae8d258d1d6fd06c1882e2e6a23c97d020cbccdf43d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "unique_reference_key_count": 81,
+      "raw_mother_cache_scalar_manifest": [
+        {
+          "exact_native_cache_key": "8042ddf7ea9bb45cf7b53a1e69c9725e96efb692.pkl",
+          "pkl_sha256": "d53bddf0b4d6db77161e401cb06d372e607e3175f5eaaebcd0a36e5c73600b3b",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "标题",
+              "piece": null,
+              "reference_kind": "title-default-raw",
+              "method": "create",
+              "source_slice": "Shadows of Wolves Over Yellowstone",
+              "exact_native_cache_key": "8042ddf7ea9bb45cf7b53a1e69c9725e96efb692.pkl",
+              "cache_input_text_sha256": "2809f5c567afef0edd74265863897e24aa278875409ea6dc91141a0cb3249425",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "d53bddf0b4d6db77",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            51200
+          ],
+          "unprocessed_array_sha256": "1042a4703d41b14c725348c2d17b50511c360bdd16a82ca53e7e1c6137d8cdd9"
+        },
+        {
+          "exact_native_cache_key": "edb9751a07ebd429d0023c41838444af2aee80c4.pkl",
+          "pkl_sha256": "c1197cbfe3cd0a37b3ef77ba0c51e48e1a800ace7cfe6fc4bce2b43d2a2d5c1f",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Yellowstone's iconic grey wolves had been exterminated by 1926.",
+              "exact_native_cache_key": "edb9751a07ebd429d0023c41838444af2aee80c4.pkl",
+              "cache_input_text_sha256": "0353e9692a1ee9a2957add8aeafdceb22d15f0f2852c2dbb3a1a9f7e864c9372",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "c1197cbfe3cd0a37",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            135168
+          ],
+          "unprocessed_array_sha256": "475f8bcce203adcb5e165c2e3e1c095d2280f6324eac4e4836916e2004473c6f"
+        },
+        {
+          "exact_native_cache_key": "b1591a0fd968341c39bcdac70a5cad91aead2198.pkl",
+          "pkl_sha256": "dc9596dcb90a19b56f0bcbf14e399e7993be5f4282eb52de96b1961411e79716",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S2",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "On 12 January 1995 eight wolves captured in Alberta, Canada, were hauled to the park in crates; six more followed.",
+              "exact_native_cache_key": "b1591a0fd968341c39bcdac70a5cad91aead2198.pkl",
+              "cache_input_text_sha256": "5df33e2c539614469b9a745a704d78d00297303503ff17308f5aa46b87e0ad5e",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "dc9596dcb90a19b5",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            234496
+          ],
+          "unprocessed_array_sha256": "166c68708c2f32c02c7cb3c3b1521c5f8c392688f45633da579ce53f64933fc2"
+        },
+        {
+          "exact_native_cache_key": "8fcb86d2c135838ccf81109cf2cb1afa9b716a55.pkl",
+          "pkl_sha256": "fdb245271a51887fabad8fd777a3d6e92138a141fcf7b739c0623e7262d7278f",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S2",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "On 12 January 1995 eight wolves captured in Alberta, Canada,",
+              "exact_native_cache_key": "8fcb86d2c135838ccf81109cf2cb1afa9b716a55.pkl",
+              "cache_input_text_sha256": "f106e326276d4aa3f186500e9e8a3ac38e2307ee327aabda4bd50b55e75bd7c2",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "fdb245271a51887f",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            139776
+          ],
+          "unprocessed_array_sha256": "c95e5e47466e41533e614a78e013a522909e2ff4a4d423b6161a0b27d320cb4b"
+        },
+        {
+          "exact_native_cache_key": "a4c7f4c2e461241eb417d7e1046480eda5da199c.pkl",
+          "pkl_sha256": "8fe6da04b8f875a8e7d4c0be3de10adbf0306a94da945f38bcf39b08914cc39e",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S2",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "were hauled to the park in crates; six more followed.",
+              "exact_native_cache_key": "a4c7f4c2e461241eb417d7e1046480eda5da199c.pkl",
+              "cache_input_text_sha256": "0681344759d5b631cf8b7ba82ad30328656c3a742149b3f89ac298099596eddd",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "8fe6da04b8f875a8",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            76288
+          ],
+          "unprocessed_array_sha256": "41a5c1d72d8ac5dcdb684fe94ba469bcb5b934fbcec8f3f8a7c19de4ef3f985b"
+        },
+        {
+          "exact_native_cache_key": "f0ed3668a9d10e38b9017d97e2f527deec33831e.pkl",
+          "pkl_sha256": "e9adc6799830f4ba49751f36c0cfc67add0308cf2580ff92686e4c1fe5147138",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S2",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "On 12 January 1995 eight wolves captured in Alberta,",
+              "exact_native_cache_key": "f0ed3668a9d10e38b9017d97e2f527deec33831e.pkl",
+              "cache_input_text_sha256": "0d879abeb12671b3081f6a3a7b01c07ceb657bad0538e9d4163ea5b93b621fcf",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "e9adc6799830f4ba",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            124928
+          ],
+          "unprocessed_array_sha256": "4062af9dd4598110b91bfcba006c90678b08c8e8f50ec9e810c28294e9e8173f"
+        },
+        {
+          "exact_native_cache_key": "f37bdc25569cbafb041f0087ca13dd1db2f374f1.pkl",
+          "pkl_sha256": "f2a61b4707ba07a2125dac81a3679eccce0cab84d21cb21ec0e92a42f204c9c8",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S2",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Canada,",
+              "exact_native_cache_key": "f37bdc25569cbafb041f0087ca13dd1db2f374f1.pkl",
+              "cache_input_text_sha256": "01adc911463c14348859a86a3094f52bb697ce747c2e36547e3de3c142445ae5",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "f2a61b4707ba07a2",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            17920
+          ],
+          "unprocessed_array_sha256": "d87b8d53bcc7317f6eb214bab12f6a5bcd76e7206692916c238ad61261d8236f"
+        },
+        {
+          "exact_native_cache_key": "240e77821f1bdf7ccfedb69ddfa098e10ea42a87.pkl",
+          "pkl_sha256": "1b44ada378fb79b5ea7e11959df44a09df6d376e5b74871690574023567c753a",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S2",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "were hauled to the park in crates;",
+              "exact_native_cache_key": "240e77821f1bdf7ccfedb69ddfa098e10ea42a87.pkl",
+              "cache_input_text_sha256": "ea21261fdc991d12ed749df0e2e131835b5eb7b515da37f66237ebce67cd38ee",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "1b44ada378fb79b5",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            44032
+          ],
+          "unprocessed_array_sha256": "3798685b78b66696dc276b0af2118e9be83258d2e52eef56c5c1b8fcebaf2ceb"
+        },
+        {
+          "exact_native_cache_key": "b061cec80c3af87cc564e5a851ccd13c04119c19.pkl",
+          "pkl_sha256": "1be3f4f2b832854db2f6b03dd3cbc70eac548093594ea24fc0d967543d1486fd",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S2",
+              "piece": 4,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "six more followed.",
+              "exact_native_cache_key": "b061cec80c3af87cc564e5a851ccd13c04119c19.pkl",
+              "cache_input_text_sha256": "f491b58ed015880baf4f8b39f2b3a4031f2ce9afde159003e319836e901edb66",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "1be3f4f2b832854d",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            32256
+          ],
+          "unprocessed_array_sha256": "27eb3a57d776d4d0f7f52071717ef1ec71ebb6446272073cf0a43220a1c44bf0"
+        },
+        {
+          "exact_native_cache_key": "f49d6c6cd89b7148a52a8b56ede6a512b2b8ae20.pkl",
+          "pkl_sha256": "c87fd9402e992389f8177bec36ac52280041708fac1a09c1c00aa4b1dd7406e1",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S3",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Released from enclosures in late March, they roamed the wilderness.",
+              "exact_native_cache_key": "f49d6c6cd89b7148a52a8b56ede6a512b2b8ae20.pkl",
+              "cache_input_text_sha256": "65a3927c3762ea1f723d0de8ec4e63585dcbedbbbfaa90209eb63e1fb0c3f103",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "c87fd9402e992389",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            97280
+          ],
+          "unprocessed_array_sha256": "8407e515945781afa8dc0533e90355788d3eb5ed4c3e21c091067a56c76d74c6"
+        },
+        {
+          "exact_native_cache_key": "5647255400f56c728f67a4c14358834afc434d97.pkl",
+          "pkl_sha256": "700faf747e01316aa9b878b91df90bf932869ff0a9575c269fee1cb8e2436e66",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S3",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Released from enclosures in late March,",
+              "exact_native_cache_key": "5647255400f56c728f67a4c14358834afc434d97.pkl",
+              "cache_input_text_sha256": "46de021138545fd2536c29e1aa8e1f3922a30ea106ad7d65b271c162c8ef736d",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S3",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Released from enclosures in late March,",
+              "exact_native_cache_key": "5647255400f56c728f67a4c14358834afc434d97.pkl",
+              "cache_input_text_sha256": "46de021138545fd2536c29e1aa8e1f3922a30ea106ad7d65b271c162c8ef736d",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "700faf747e01316a",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            54784
+          ],
+          "unprocessed_array_sha256": "f2a770400dc90413d988ee9a8a875cc90d98231e67a04ffbb190f1bd355df248"
+        },
+        {
+          "exact_native_cache_key": "c5800fa3805f860661af1573058106520a882541.pkl",
+          "pkl_sha256": "5b5b250cce040cee6be8e4c75a797c3da8f5326c1e2f7d3fac67d0071ead2bc8",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S3",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "they roamed the wilderness.",
+              "exact_native_cache_key": "c5800fa3805f860661af1573058106520a882541.pkl",
+              "cache_input_text_sha256": "f3e9635348eade12d03241bf0326d7cebaa60d346ed4891c696131b6ff535a23",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S3",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "they roamed the wilderness.",
+              "exact_native_cache_key": "c5800fa3805f860661af1573058106520a882541.pkl",
+              "cache_input_text_sha256": "f3e9635348eade12d03241bf0326d7cebaa60d346ed4891c696131b6ff535a23",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "5b5b250cce040cee",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            33280
+          ],
+          "unprocessed_array_sha256": "4ba0accce1466feeed098cb9b636321da50a92a8a0fd6d616ddf9799dba52a4c"
+        },
+        {
+          "exact_native_cache_key": "5877503f629020439942413550d9f45ff1df39cc.pkl",
+          "pkl_sha256": "af8978c134d1ee291cab7e7ae6d38d3ee097b6791e00ca1524e54aa8f929c54e",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "In February 2014 a viral video narrated by writer George Monbiot spun a compelling narrative: elk, thinned by wolves and wary of them, retreated from valleys, letting willows flourish and riverbanks stabilise.",
+              "exact_native_cache_key": "5877503f629020439942413550d9f45ff1df39cc.pkl",
+              "cache_input_text_sha256": "97e3ba67364385c1b90110665d4f44ea1798a3eca0189596536c9a9220247a28",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "af8978c134d1ee29",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            389632
+          ],
+          "unprocessed_array_sha256": "ab1af8121383edb850d4af324c233e2b0d00afd206bea6931bcac6b816d3d4b2"
+        },
+        {
+          "exact_native_cache_key": "6fcc4e1d74a7a6ecc88a3142a96aeea7cee3aa17.pkl",
+          "pkl_sha256": "35b116c15f419c27f983b64fbd57ef2cdd24ca6c2ccbc938179c5853fbea1b09",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "In February 2014 a viral video narrated by writer George Monbiot",
+              "exact_native_cache_key": "6fcc4e1d74a7a6ecc88a3142a96aeea7cee3aa17.pkl",
+              "cache_input_text_sha256": "574271da68cec484778782c35e26d82f00270f9740132bef7b6551f5fca740d9",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "35b116c15f419c27",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            144384
+          ],
+          "unprocessed_array_sha256": "573378bc4a21bd23307f32fedfc21f918c58cfc2568d41346c1c79fd8c2a5cae"
+        },
+        {
+          "exact_native_cache_key": "4f6be486f03600251c5955f96cc7abe17043ab5a.pkl",
+          "pkl_sha256": "71ecd97aa7189c1a0d283fe3feec772d078b376a55e81ac3a3ceade85a664cca",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "spun a compelling narrative:",
+              "exact_native_cache_key": "4f6be486f03600251c5955f96cc7abe17043ab5a.pkl",
+              "cache_input_text_sha256": "8a74940b817344f123b9df5ff5dd9ff0d04a006dda515b9ebcbfdba8a46760cc",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "71ecd97aa7189c1a",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            41472
+          ],
+          "unprocessed_array_sha256": "2f8e0e6cd12696c634aaca9f09d3f0fd202419d8b69bd7f8451c4fa10378ebed"
+        },
+        {
+          "exact_native_cache_key": "0a6a91c5608e3a4a9958280e5ad2b0366b8d7ce5.pkl",
+          "pkl_sha256": "dddd8a387992baa82ad30dddec851d937f9c9a742e2c0409464635b6d86a1b0b",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": 3,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "elk, thinned by wolves and wary of them, retreated from valleys,",
+              "exact_native_cache_key": "0a6a91c5608e3a4a9958280e5ad2b0366b8d7ce5.pkl",
+              "cache_input_text_sha256": "ec75c6c81ba7bb8d875efe07d49c93bdf95eec313d2b9e217fd3d748165db0ae",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "dddd8a387992baa8",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            93696
+          ],
+          "unprocessed_array_sha256": "d6db4465bb74fe7481547f6920dc64924438011edcd2356dedb78be83fd9eb8e"
+        },
+        {
+          "exact_native_cache_key": "cda8c49f74876be7183dcad4704753d33ad32e59.pkl",
+          "pkl_sha256": "97efe68e6944a544d614cde9571fb94eef7d123a0e341ac8f9bd62552caa3027",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": 4,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "letting willows flourish and riverbanks stabilise.",
+              "exact_native_cache_key": "cda8c49f74876be7183dcad4704753d33ad32e59.pkl",
+              "cache_input_text_sha256": "f8f582ff3d84e08d8f282b2a16c6343d7a0362083939461811e3befb21d46c2b",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S4",
+              "piece": 5,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "letting willows flourish and riverbanks stabilise.",
+              "exact_native_cache_key": "cda8c49f74876be7183dcad4704753d33ad32e59.pkl",
+              "cache_input_text_sha256": "f8f582ff3d84e08d8f282b2a16c6343d7a0362083939461811e3befb21d46c2b",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "97efe68e6944a544",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            70656
+          ],
+          "unprocessed_array_sha256": "a7a004a0c02d6181d3a7448c8fb8e725d13c505f1bfe52eaa297521027c510d8"
+        },
+        {
+          "exact_native_cache_key": "bdad5a2d1ebac0006f77973862e4ef257f4e4581.pkl",
+          "pkl_sha256": "9a78f98aa46ed54d50c2ae440629f395df64cce328c639bb6cdaa5c8cd896eaf",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "In February 2014 a viral video narrated by writer George Monbiot spun a compelling narrative:",
+              "exact_native_cache_key": "bdad5a2d1ebac0006f77973862e4ef257f4e4581.pkl",
+              "cache_input_text_sha256": "3ac9a6ae09d6903cb492699cf9dc745fcbed4202efb5f7a798a9b46ee6ee62bf",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "9a78f98aa46ed54d",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            195072
+          ],
+          "unprocessed_array_sha256": "e97c95f62073695acaa11d5fc01bbf23718f04b095f8c5511f4259281158347d"
+        },
+        {
+          "exact_native_cache_key": "2117805ab1da78bc5e184d25041630d5737f8dec.pkl",
+          "pkl_sha256": "e46723f2a4f66c168b6a3852912a9e0bce3a596cfa2816c9074d9d328b3df153",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "elk,",
+              "exact_native_cache_key": "2117805ab1da78bc5e184d25041630d5737f8dec.pkl",
+              "cache_input_text_sha256": "acf84c414c6314a83f7e9aaee1118133c4394dbc48985edd66b9940a0f0ce69e",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "e46723f2a4f66c16",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            14848
+          ],
+          "unprocessed_array_sha256": "b1a0dbce00f7fdba93b3a24ef3e2ff23912d62a91b6e7231f9a172857a72f1af"
+        },
+        {
+          "exact_native_cache_key": "e02e7c3c2a003b5bb39cf88314657d3a10ef829c.pkl",
+          "pkl_sha256": "d4391a392a92e5b2f49637d876997b07f1d1d6de9e3e8ff2c02fd61478ec4f95",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "thinned by wolves and wary of them,",
+              "exact_native_cache_key": "e02e7c3c2a003b5bb39cf88314657d3a10ef829c.pkl",
+              "cache_input_text_sha256": "d211c91e00a0a169b1aff6074d1dca8dd616090383a72e0ce3413b0848c33ccf",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "d4391a392a92e5b2",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            47616
+          ],
+          "unprocessed_array_sha256": "89f6b4d1513e61fb794f7f4b6a074da4ae377275acdf400c840ac50770f70988"
+        },
+        {
+          "exact_native_cache_key": "941d13bbf77e7901d5eeec030911fbfbccca0132.pkl",
+          "pkl_sha256": "7df001728f1684d87d8b416c6f29036fd149df0386f99e1816ebfea103f1f12d",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": 4,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "retreated from valleys,",
+              "exact_native_cache_key": "941d13bbf77e7901d5eeec030911fbfbccca0132.pkl",
+              "cache_input_text_sha256": "eb50cbca58d70006e5dbe28e52140c124bf4676c5a349632660c28273dbcc751",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "7df001728f1684d8",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            34304
+          ],
+          "unprocessed_array_sha256": "0413452927b62b700b532ee02892a1f8432d023731c1d96f37b2799beaea48b4"
+        },
+        {
+          "exact_native_cache_key": "7012e2d6826f24501e9f7ed18a33868f2c41a161.pkl",
+          "pkl_sha256": "a6b1d4e9caec22ac9f639f431622a69134ba4f969dee4c93f60f684aa03a6283",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Ecologists call this a trophic cascade: predators eat or deter plant-eaters, and vegetation rebounds.",
+              "exact_native_cache_key": "7012e2d6826f24501e9f7ed18a33868f2c41a161.pkl",
+              "cache_input_text_sha256": "67ebc95e7eca0b9d7b365756f6ea939bdccca9c3de0d9c9893f3b477b308f37a",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "a6b1d4e9caec22ac",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            175616
+          ],
+          "unprocessed_array_sha256": "fdff6d1cb6cd6cdbe3e057d0142bb11f8cd256d18f26f70f5cd4f23a94110cec"
+        },
+        {
+          "exact_native_cache_key": "af771427df5bc43057b6e52bbb6b081459e1f6c0.pkl",
+          "pkl_sha256": "fad4dbed2d65fde105310909f697480b995be3c715f5fc5a3aaca75372cb8388",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Ecologists call this a trophic cascade:",
+              "exact_native_cache_key": "af771427df5bc43057b6e52bbb6b081459e1f6c0.pkl",
+              "cache_input_text_sha256": "fbbaf37eea6de066d7fccb7bb886e91f2f065ab4ddfbac5562350d4b5a78c4b2",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S5",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Ecologists call this a trophic cascade:",
+              "exact_native_cache_key": "af771427df5bc43057b6e52bbb6b081459e1f6c0.pkl",
+              "cache_input_text_sha256": "fbbaf37eea6de066d7fccb7bb886e91f2f065ab4ddfbac5562350d4b5a78c4b2",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "fad4dbed2d65fde1",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            62976
+          ],
+          "unprocessed_array_sha256": "3438d6182614f74cad3c0645f971ea6e5dc0fc6d8b839b231af634273bc3576c"
+        },
+        {
+          "exact_native_cache_key": "f59813bf49630a5ea626645b032477022d194bb3.pkl",
+          "pkl_sha256": "d58a6f965f50dfed61401a069dbdc72333c6b221674dce364257234aeed15661",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "predators eat or deter plant-eaters, and vegetation rebounds.",
+              "exact_native_cache_key": "f59813bf49630a5ea626645b032477022d194bb3.pkl",
+              "cache_input_text_sha256": "1a84874aead904d1e62b850a72aa0ed9c7a623dccf611dea3d273eb23d3c5b00",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "d58a6f965f50dfed",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            104960
+          ],
+          "unprocessed_array_sha256": "089d15cfb0b2d5add523fcdc67092bddd907f69397c893385f844cfe80b0b8b6"
+        },
+        {
+          "exact_native_cache_key": "a8ed94b3c70c551ce0a018c9b746f4fa169f30a6.pkl",
+          "pkl_sha256": "c8848ea4a773a209d51d3bf2397a80f16467458be688d7e26d84557572b81533",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "predators eat or deter plant-eaters,",
+              "exact_native_cache_key": "a8ed94b3c70c551ce0a018c9b746f4fa169f30a6.pkl",
+              "cache_input_text_sha256": "16bb957d5834ab352a9ff9af2116243a38268a0445e12a2a97f077fc64ca579d",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "c8848ea4a773a209",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            54784
+          ],
+          "unprocessed_array_sha256": "76aa6516536a895e5c322ad9e71196659d6dbdb748f8f4b450a069482265e691"
+        },
+        {
+          "exact_native_cache_key": "a3e5e1a7f2e777e438093edf235f84020301e135.pkl",
+          "pkl_sha256": "c6843aa10de3489ad4d156e4feb48d75232d8b2c63a6d44dfc893bce9e406526",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "and vegetation rebounds.",
+              "exact_native_cache_key": "a3e5e1a7f2e777e438093edf235f84020301e135.pkl",
+              "cache_input_text_sha256": "0513ea79a1cfa47698f53083a20a5fe8fbc72f6eeadd8c72842152e50b7012c4",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "c6843aa10de3489a",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            40960
+          ],
+          "unprocessed_array_sha256": "c112908016291f055caa2d5566ee614951c2ba2f67e7feaed8f00310bb33b4e0"
+        },
+        {
+          "exact_native_cache_key": "c78a78059ac228a820af7f186ea620d7364da7dd.pkl",
+          "pkl_sha256": "133495a5f5be31e8feabd46cd60cf9e36b4f4f1639c21a8f190836340974d803",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Yet the census undermined the thinning claim: elk on the park's northern range peaked at about 19,000 in January 1994 and were dwindling before wolves arrived, depleted by hunters, drought, and bears.",
+              "exact_native_cache_key": "c78a78059ac228a820af7f186ea620d7364da7dd.pkl",
+              "cache_input_text_sha256": "84bcef64d254644c598a674377e2635ecfff281731d0a2809184e2ee0746d38c",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "133495a5f5be31e8",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            363008
+          ],
+          "unprocessed_array_sha256": "5b56660f489ad5b76497e778058235fa48095bf65fa0d9278cce4145dd9930b4"
+        },
+        {
+          "exact_native_cache_key": "02900712dde75fadc561e91b0c54fc3cca3532e9.pkl",
+          "pkl_sha256": "bf0bbd2fc3e606f66adabf99e7565c7e1f5e342f43bc88fb58f4df5d8881dc53",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Yet the census undermined the thinning claim:",
+              "exact_native_cache_key": "02900712dde75fadc561e91b0c54fc3cca3532e9.pkl",
+              "cache_input_text_sha256": "bc28bb075a197d033b263290318bba6d587b404b8b23331f773bcc48079ff64d",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S6",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Yet the census undermined the thinning claim:",
+              "exact_native_cache_key": "02900712dde75fadc561e91b0c54fc3cca3532e9.pkl",
+              "cache_input_text_sha256": "bc28bb075a197d033b263290318bba6d587b404b8b23331f773bcc48079ff64d",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "bf0bbd2fc3e606f6",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            65536
+          ],
+          "unprocessed_array_sha256": "b0cd0ef94c05c8ce94eec6e2c32f9740fc2b77e9d7f7834d26f74c9dac3b0729"
+        },
+        {
+          "exact_native_cache_key": "1c3e029a5bd447a1a62f1ab9b3405584ba6989bb.pkl",
+          "pkl_sha256": "53bc020ba4e5dce3b62df441af6407e22de0e49192ec13c59b92b96e56fe1ecd",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "elk on the park's northern range peaked at about 19,000 in January 1994",
+              "exact_native_cache_key": "1c3e029a5bd447a1a62f1ab9b3405584ba6989bb.pkl",
+              "cache_input_text_sha256": "0f0e933ce772c8b8b56a517432b6398c063f5d71e7ec7ae90194d7c3cffedb65",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "53bc020ba4e5dce3",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            154624
+          ],
+          "unprocessed_array_sha256": "1b10ca016bd75749d8bf02c1e2e4d257e634db99fcae54950b3655cae02e9358"
+        },
+        {
+          "exact_native_cache_key": "9c67c76cbea3fcd569e769c78852440ad8919d89.pkl",
+          "pkl_sha256": "0fea47604af719af19a9923add8e5ebe0fbece28847342ce8c5b61180a2b6524",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": 3,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "and were dwindling before wolves arrived,",
+              "exact_native_cache_key": "9c67c76cbea3fcd569e769c78852440ad8919d89.pkl",
+              "cache_input_text_sha256": "605dd8b7841ae5d318670efa00a05a8984c29309a9fe1bb1f5e4c9689f85e9a2",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "0fea47604af719af",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            55296
+          ],
+          "unprocessed_array_sha256": "24611e52b8255c14672f3dfc1f8d55e6ef02335e9a7eaf3d434662ad8f4508f2"
+        },
+        {
+          "exact_native_cache_key": "da53e07a8f694b549ff53a0cbef96de339c8da35.pkl",
+          "pkl_sha256": "9dcb62376e476710ae42a141135c76f4e6b26031ea19bbde5f89ba20ba66e74e",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": 4,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "depleted by hunters, drought, and bears.",
+              "exact_native_cache_key": "da53e07a8f694b549ff53a0cbef96de339c8da35.pkl",
+              "cache_input_text_sha256": "ea47cdf93734574b2b78412a55ef4b0286312d3af2aea194c57575db64915eac",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "9dcb62376e476710",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            60416
+          ],
+          "unprocessed_array_sha256": "2e2980092f83cff2d2e8df28138e71bf7ca604038952f570a530592348945854"
+        },
+        {
+          "exact_native_cache_key": "35367d6c74e9095237094ab6d7122b58e814f382.pkl",
+          "pkl_sha256": "a1be5554ec8bb1ed961a8aa29f431c6da418ba6d216fcaa0e43fa3e1bb622f6d",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "elk on the park's northern range peaked at about 19,000 in January 1994 and were dwindling before wolves arrived,",
+              "exact_native_cache_key": "35367d6c74e9095237094ab6d7122b58e814f382.pkl",
+              "cache_input_text_sha256": "d07965872e8a68933ebf14afc7b000fabee93f3f105558a63a44e3cae772e45d",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "a1be5554ec8bb1ed",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            246784
+          ],
+          "unprocessed_array_sha256": "6f97cf1bfca936ca28db6563eac42b76443688f5751b19b15856d84a90e43a54"
+        },
+        {
+          "exact_native_cache_key": "f33b2e56718c2e53aaedae9554a65cc3aa9a6f0d.pkl",
+          "pkl_sha256": "605ce5df6998c151f73dbff7c55b2385f97ff3387451c88b81b43a8bfb5b339f",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "depleted by hunters,",
+              "exact_native_cache_key": "f33b2e56718c2e53aaedae9554a65cc3aa9a6f0d.pkl",
+              "cache_input_text_sha256": "7c6c11b8515cf354b9efe7811dac2aa5e44509f7e7302bd7c97de90db710579b",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "605ce5df6998c151",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            35840
+          ],
+          "unprocessed_array_sha256": "603c54e287b9ce28a8cd849783a5cd67ed317343dc87dde8f1f2ee8dd568dc37"
+        },
+        {
+          "exact_native_cache_key": "2afecd950b3fed0084d9f51a2550b204a2c56840.pkl",
+          "pkl_sha256": "9a4914cd40ce099c2115106a160985a3504ce08f3ab4175cd6b77585db47f76d",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": 4,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "drought,",
+              "exact_native_cache_key": "2afecd950b3fed0084d9f51a2550b204a2c56840.pkl",
+              "cache_input_text_sha256": "86cecd4f8c053451d0cfefc09e888fdaa65336729a5cdc412df961ff6004116c",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "9a4914cd40ce099c",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            16384
+          ],
+          "unprocessed_array_sha256": "d68ab64e89c704abd5fba84f58cce800c79ccfcadc6e623cb294f89e44fe81f7"
+        },
+        {
+          "exact_native_cache_key": "cd351cfd2f58a9d4778248ebd3ce7f080822e763.pkl",
+          "pkl_sha256": "2ff6bc3380f0af29b7cc0a1a47f8a8cb1b72fdbc257def62ab1eb9e061de20ff",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": 5,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "and bears.",
+              "exact_native_cache_key": "cd351cfd2f58a9d4778248ebd3ce7f080822e763.pkl",
+              "cache_input_text_sha256": "8e699934e76fd1af019bcb93c0f93d8fa43fa3bbfe63f24369d06080884f5458",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "2ff6bc3380f0af29",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            21504
+          ],
+          "unprocessed_array_sha256": "b0e4dce0a76edd7766663e8b8d35adc3be42ea0f00c66f63bfb3c8f7126ce7ee"
+        },
+        {
+          "exact_native_cache_key": "fa25b77dca6771d855e5e2f7fb1b1b77e11e6810.pkl",
+          "pkl_sha256": "4e94a58eb1b9c1bc5e048b8dd42900f9f9712838b7272b0bf7fe8a91f1d2dc1a",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S7",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Fear looked weak too: in June 2013 Arthur Middleton's University of Wyoming team found that collared elk east of the park kept grazing unless wolves ventured within half a mile.",
+              "exact_native_cache_key": "fa25b77dca6771d855e5e2f7fb1b1b77e11e6810.pkl",
+              "cache_input_text_sha256": "2b93390b3230040eaf3cb8c039347552f2545fc41650d9908ccb81236192f19d",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "4e94a58eb1b9c1bc",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            322048
+          ],
+          "unprocessed_array_sha256": "90672ab2cdf1ecca4ba1086724a4eb98af130593858b8977eb6909b6fcb6ea96"
+        },
+        {
+          "exact_native_cache_key": "7629066ac5f9346af2144bf4878003545b3fe99a.pkl",
+          "pkl_sha256": "f61d161bceb23e2fb0841b0e93010c783abdeec75675ea0f32f70d998083a346",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S7",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Fear looked weak too:",
+              "exact_native_cache_key": "7629066ac5f9346af2144bf4878003545b3fe99a.pkl",
+              "cache_input_text_sha256": "6eb785b97b92ff402b7e1b8b66513d517117f20187208674a29233d2cc28d3f7",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S7",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Fear looked weak too:",
+              "exact_native_cache_key": "7629066ac5f9346af2144bf4878003545b3fe99a.pkl",
+              "cache_input_text_sha256": "6eb785b97b92ff402b7e1b8b66513d517117f20187208674a29233d2cc28d3f7",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "f61d161bceb23e2f",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            33792
+          ],
+          "unprocessed_array_sha256": "74f9f65b4339c8b79f5179d42d5f939a2da8b2a040cba933a17003265ba29cf1"
+        },
+        {
+          "exact_native_cache_key": "c16dfae7a77f11b7fccb7aed54f2b8ee69d3cfb9.pkl",
+          "pkl_sha256": "7e56a87025fa2626e41a380be8bc805d5fe02ce030eee2868c72186b66c28569",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S7",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "in June 2013 Arthur Middleton's University of Wyoming team found that",
+              "exact_native_cache_key": "c16dfae7a77f11b7fccb7aed54f2b8ee69d3cfb9.pkl",
+              "cache_input_text_sha256": "6f38157cf7475b8130f497f9b59e1dc9d079083c102c489905ccd03546837ce4",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "7e56a87025fa2626",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            143872
+          ],
+          "unprocessed_array_sha256": "2c8b6a11e4bd486baebdeafc86e7b3f9753da20d181cb654c5bd4b197105a02a"
+        },
+        {
+          "exact_native_cache_key": "c3b0b36f84f074336a842e7f1073cf7c64adefc8.pkl",
+          "pkl_sha256": "75f99d68ccfe3c592c75c0fcb17e5e8c01b5815e3215fdbce33de8b1c4aedb9f",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S7",
+              "piece": 3,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "collared elk east of the park kept grazing",
+              "exact_native_cache_key": "c3b0b36f84f074336a842e7f1073cf7c64adefc8.pkl",
+              "cache_input_text_sha256": "74ffb097d9651a7e6b7813e6abb29f28142982c27906d8db0a62b107a3ff00d5",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "75f99d68ccfe3c59",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            59392
+          ],
+          "unprocessed_array_sha256": "c643e3afcc4ad3bdc6e5547111a539fb30e7f20500326e3f088d8efcf9e9a719"
+        },
+        {
+          "exact_native_cache_key": "9072166efe3bd8d893e718236ac45921837d4662.pkl",
+          "pkl_sha256": "19ed1e040a08f4756f41e62def27ace7a33a2f21df19d2ce74c35f957ef99698",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S7",
+              "piece": 4,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "unless wolves ventured within half a mile.",
+              "exact_native_cache_key": "9072166efe3bd8d893e718236ac45921837d4662.pkl",
+              "cache_input_text_sha256": "1c49fea111c594f1528f0735ed164bdc226552a8894772b4b962325ae6155fe7",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "19ed1e040a08f475",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            61952
+          ],
+          "unprocessed_array_sha256": "26f7668459344cdb3acb832007c14242a5eef76d5a4c93910ca734f5302ce34a"
+        },
+        {
+          "exact_native_cache_key": "f4c3d5c63c9af4b870abe633af5b5b1ac94087de.pkl",
+          "pkl_sha256": "2e65840ff5a1e67a39e0f9f08cc71b35b96703209f22c18bb3f651e9670d3ad3",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S7",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "in June 2013 Arthur Middleton's University of Wyoming team found that collared elk east of the park kept grazing unless wolves ventured within half a mile.",
+              "exact_native_cache_key": "f4c3d5c63c9af4b870abe633af5b5b1ac94087de.pkl",
+              "cache_input_text_sha256": "5cfd51ca60f303c587bca36ab3feeec466301069c7c8e8ad2813a4e52154192c",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "2e65840ff5a1e67a",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            286720
+          ],
+          "unprocessed_array_sha256": "a2e6213e470f45a6c43316d790a6245ca4162e8a2547a7ad0038fe2a8213e0fd"
+        },
+        {
+          "exact_native_cache_key": "05ad03523d1df1753d409182430a1e6452a7929b.pkl",
+          "pkl_sha256": "d805955eb8861bbea409b277118c293ae0e9fb277f9940b632d70f9c5add42b2",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Trees fared no better: in November 2021 Utah State University's Elaine Brice showed that sampling only the tallest aspens overstated regrowth four- to sevenfold.",
+              "exact_native_cache_key": "05ad03523d1df1753d409182430a1e6452a7929b.pkl",
+              "cache_input_text_sha256": "61b999fa6cd941f5188c9a767f00e6795e4f6da8ba244190c9205a7d051ab726",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "d805955eb8861bbe",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            317440
+          ],
+          "unprocessed_array_sha256": "b14781e126fa8beb68e7f178828cc22187f36b70f51aae6f1e2855650bec58f0"
+        },
+        {
+          "exact_native_cache_key": "2ed296451c723fd288d5ad7cf9d5c5d0c3face56.pkl",
+          "pkl_sha256": "b6a97cc7362e10b385e515af735ee384b6a326132b2e7197c2dc7b9f2b118a0d",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Trees fared no better:",
+              "exact_native_cache_key": "2ed296451c723fd288d5ad7cf9d5c5d0c3face56.pkl",
+              "cache_input_text_sha256": "459dde9cb84a1fbe08a6f4a2d8d81a21cdcc9a9d7b89303c044e2f32545d1e25",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S8",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Trees fared no better:",
+              "exact_native_cache_key": "2ed296451c723fd288d5ad7cf9d5c5d0c3face56.pkl",
+              "cache_input_text_sha256": "459dde9cb84a1fbe08a6f4a2d8d81a21cdcc9a9d7b89303c044e2f32545d1e25",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "b6a97cc7362e10b3",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            35328
+          ],
+          "unprocessed_array_sha256": "59da49f3f2120cac2e070f655a466ee6a2d458b7ce9bd28b60b6d5840f90dda9"
+        },
+        {
+          "exact_native_cache_key": "096e2bbbbc53a37970212b8fa588c5be9b3d8914.pkl",
+          "pkl_sha256": "e9362d75e40fbf485d564b826c8121130d07614b0d91a125f8630979d2fe382e",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "in November 2021 Utah State University's Elaine Brice showed that",
+              "exact_native_cache_key": "096e2bbbbc53a37970212b8fa588c5be9b3d8914.pkl",
+              "cache_input_text_sha256": "73338529c214b228acf4e315815034248bfa935be38ad969fcaa7797a8061cbd",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "e9362d75e40fbf48",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            140800
+          ],
+          "unprocessed_array_sha256": "9ef641f85630b9b35b6a9ef5ed77f104530de05f447c174b6fec824a1aea5d33"
+        },
+        {
+          "exact_native_cache_key": "c15e60227f2f7f59aab2fd44e9b4c4f2f6eaf653.pkl",
+          "pkl_sha256": "b7bd8c3ae3bc00b619027967f938afac55691b092a74c35437ad508f09290054",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": 3,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "sampling only the tallest aspens overstated regrowth four- to sevenfold.",
+              "exact_native_cache_key": "c15e60227f2f7f59aab2fd44e9b4c4f2f6eaf653.pkl",
+              "cache_input_text_sha256": "20abda09703d823e4cd75031d70cce5b06ffd97c611cd041c0370411684152cf",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "b7bd8c3ae3bc00b6",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            125440
+          ],
+          "unprocessed_array_sha256": "3b45ec0db6d2a0fd94d8726fb34199eec7a00eed10a793c2876ba021b6b3ec48"
+        },
+        {
+          "exact_native_cache_key": "cda303b254ac7db14c931dd2842f475cb333aee1.pkl",
+          "pkl_sha256": "517e113638960384be58f40b7b73b4e83f6b1f340f72481a96359175fa0534a7",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "in November 2021 Utah State University's Elaine Brice showed that sampling only the tallest aspens overstated regrowth four- to sevenfold.",
+              "exact_native_cache_key": "cda303b254ac7db14c931dd2842f475cb333aee1.pkl",
+              "cache_input_text_sha256": "f2824c151c61a2ad94431569b50f6c5af3c799f2ad28cbbf546b48883473e6b9",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "517e113638960384",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            275968
+          ],
+          "unprocessed_array_sha256": "b152221998a65958883b3c53f36ac7a876b1d5c42cc72f4591587ffdc735c499"
+        },
+        {
+          "exact_native_cache_key": "5574f661c2199ad77eaa61beeccd42ecc2b0f51e.pkl",
+          "pkl_sha256": "582f725af865140a741c312a20b4fbd5263b045223256d9b1eeca28a819dc590",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S9",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "The deeper flaw was water.",
+              "exact_native_cache_key": "5574f661c2199ad77eaa61beeccd42ecc2b0f51e.pkl",
+              "cache_input_text_sha256": "fca1d0075228bd54391e236abd844455c0f05a1736f1a5f4919d0e1ec5b3017d",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "582f725af865140a",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            37888
+          ],
+          "unprocessed_array_sha256": "610d2ef49dd4d46615c8c0f1920d6ef4b2360a7e133015345cc049fdb22a32f8"
+        },
+        {
+          "exact_native_cache_key": "b99643ffeec23f3193c2d6bee549bf050895c6e0.pkl",
+          "pkl_sha256": "bf9275beecd72700a9d3741f7c8c6567d9ab9e88628b93a2db7af13833cf069b",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S10",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Colorado State University's Tom Hobbs and David Cooper had excluded elk with fences and built artificial beaver dams.",
+              "exact_native_cache_key": "b99643ffeec23f3193c2d6bee549bf050895c6e0.pkl",
+              "cache_input_text_sha256": "fd45fd7a93e66455fd668ab1946b8f2e759e79d9e2d1fb620903db0db70bec93",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "bf9275beecd72700",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            206336
+          ],
+          "unprocessed_array_sha256": "3ef49de2314206f0a7e65a0c95f93f4f4650452ec15c6be7dde9d7f6bfc86fcf"
+        },
+        {
+          "exact_native_cache_key": "d8337df311aa5de634cf6b610483e62db4d64f83.pkl",
+          "pkl_sha256": "c9382e732a7bb17ccda99c8e562ff7dd05f326eb8bce10bbf19e06890088e6be",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S10",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Colorado State University's Tom Hobbs and David Cooper",
+              "exact_native_cache_key": "d8337df311aa5de634cf6b610483e62db4d64f83.pkl",
+              "cache_input_text_sha256": "10cb4fe8edf669f85188065e629972e6c31c21da404d017d5eed703b2dcfac88",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "c9382e732a7bb17c",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            93696
+          ],
+          "unprocessed_array_sha256": "7ff5c1d673f0e64e8b0868e0a6a2950371bff824d097f52064d32d4c26f7c5d6"
+        },
+        {
+          "exact_native_cache_key": "fb46e823721a2e0c946614ed4707a90eed1f65c3.pkl",
+          "pkl_sha256": "b9faa212b499f6a0009d7961ae905df4a0b76dd7ef0b8589f7cd2d6eefc3858b",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S10",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "had excluded elk with fences and built artificial beaver dams.",
+              "exact_native_cache_key": "fb46e823721a2e0c946614ed4707a90eed1f65c3.pkl",
+              "cache_input_text_sha256": "c838e4ca40f44c450f1708d42d7d203e20824dd035a19526f940d36fc6b6f69a",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "b9faa212b499f6a0",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            100864
+          ],
+          "unprocessed_array_sha256": "b311f5dbd662236051a284a2a8fb98cdd98e596fedf69d98806227e913447ad1"
+        },
+        {
+          "exact_native_cache_key": "89b8cd7f980be9cf7ab5fb7d74a48a056ce4cab9.pkl",
+          "pkl_sha256": "5cd14543fd9c3f46165438628a11dd06375cb909a420b9036b56cbeb90b56e9a",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "In January 2024 they reported: eroding streams had cut so deep that stunted willows no longer reached water.",
+              "exact_native_cache_key": "89b8cd7f980be9cf7ab5fb7d74a48a056ce4cab9.pkl",
+              "cache_input_text_sha256": "516ede336f30dee908bb5301dc20400ceb178d1d0828aef77e5052c135833f27",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "5cd14543fd9c3f46",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            216576
+          ],
+          "unprocessed_array_sha256": "333087a7175a42691a9ddffcf9073f40d3fa570743bb477a4d6e0c904c10334c"
+        },
+        {
+          "exact_native_cache_key": "5bbd44e897abbaed54ebb045c7a416b6317de5fd.pkl",
+          "pkl_sha256": "43e8994193c6d3351b0d0446ee6e91fc623ae6e9ef7b30ce17ed561af5014ea3",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "In January 2024 they reported:",
+              "exact_native_cache_key": "5bbd44e897abbaed54ebb045c7a416b6317de5fd.pkl",
+              "cache_input_text_sha256": "2da91c59fbb9ed5a3919f84b469e13326e4812318f7ccec0f99a47612bf8f3b8",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S11",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "In January 2024 they reported:",
+              "exact_native_cache_key": "5bbd44e897abbaed54ebb045c7a416b6317de5fd.pkl",
+              "cache_input_text_sha256": "2da91c59fbb9ed5a3919f84b469e13326e4812318f7ccec0f99a47612bf8f3b8",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "43e8994193c6d335",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            79360
+          ],
+          "unprocessed_array_sha256": "3917b1425af9793b05707fb46e6ec21daa8b7158e07db2eb3a961813a4fd8026"
+        },
+        {
+          "exact_native_cache_key": "0f767bf8f8d1fbf78edba0f0f02705f28361a522.pkl",
+          "pkl_sha256": "3350e5ed5e5f260ca11af16a33a1b16f21a5fc48ef966e78a56ce3961262b72b",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "eroding streams had cut so deep that stunted willows no longer reached water.",
+              "exact_native_cache_key": "0f767bf8f8d1fbf78edba0f0f02705f28361a522.pkl",
+              "cache_input_text_sha256": "1d5dfcec3a041330039cb2d952fc08e48519b3f5874faa972fd972cb25e8f302",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S11",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "eroding streams had cut so deep that stunted willows no longer reached water.",
+              "exact_native_cache_key": "0f767bf8f8d1fbf78edba0f0f02705f28361a522.pkl",
+              "cache_input_text_sha256": "1d5dfcec3a041330039cb2d952fc08e48519b3f5874faa972fd972cb25e8f302",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "3350e5ed5e5f260c",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            125952
+          ],
+          "unprocessed_array_sha256": "8d624b8386153f124751a6482879e6d3858c0c110a6756d1181d0ef9ed716e0d"
+        },
+        {
+          "exact_native_cache_key": "6689ccbb0224bc4456f9c42fbffd74c483ed28c8.pkl",
+          "pkl_sha256": "39ae233604a3a1011d3a7ac7e527e187c576cb402b5b10602198d6eb5fe65f06",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S12",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "In January 2025 Oregon State University's William Ripple, an advocate of the hypothesis, reported one of the world's strongest cascades; critics disputed his methods.",
+              "exact_native_cache_key": "6689ccbb0224bc4456f9c42fbffd74c483ed28c8.pkl",
+              "cache_input_text_sha256": "9979709d73704fb533afe1250c448c229f3888f432746e2e53ad3d0719127f7b",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "39ae233604a3a101",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            321536
+          ],
+          "unprocessed_array_sha256": "5f58b7680af803e117b5b4e8be2b99af2d54d122565fe8208b47d90d1ad9eb0b"
+        },
+        {
+          "exact_native_cache_key": "7a6c01a6139d8163216a4c4cab30f9194874f119.pkl",
+          "pkl_sha256": "cbcb178f3ee662f63e411fd204ebe49719205b3254e718c7c6502f53fe781c43",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S12",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "In January 2025 Oregon State University's William Ripple, an advocate of the hypothesis,",
+              "exact_native_cache_key": "7a6c01a6139d8163216a4c4cab30f9194874f119.pkl",
+              "cache_input_text_sha256": "b96310b3f131a4cb5fd94213af243794ecb48a8c0c1c3e13ebbfc8c8f4c81a0d",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "cbcb178f3ee662f6",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            192000
+          ],
+          "unprocessed_array_sha256": "44c03141b9010c8ebec5bfcc553cead14d8affd32908df461a5a3276c058f2b7"
+        },
+        {
+          "exact_native_cache_key": "60b683d8a4a735aec68400da232dd3a64178ac68.pkl",
+          "pkl_sha256": "4dbe0c70047bc3754738026e83fba4e24b6475649ca0b0f5845c782cb1b93410",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S12",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "reported one of the world's strongest cascades;",
+              "exact_native_cache_key": "60b683d8a4a735aec68400da232dd3a64178ac68.pkl",
+              "cache_input_text_sha256": "55f614486742c7f1b4c749ec3915e0f9b2770d9b851424e5e5e6eacfcd2bda21",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S12",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "reported one of the world's strongest cascades;",
+              "exact_native_cache_key": "60b683d8a4a735aec68400da232dd3a64178ac68.pkl",
+              "cache_input_text_sha256": "55f614486742c7f1b4c749ec3915e0f9b2770d9b851424e5e5e6eacfcd2bda21",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "4dbe0c70047bc375",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            62464
+          ],
+          "unprocessed_array_sha256": "681fa973670c841ca3f477c89725ae8dff35a14effd55ff2c3713a61fd6957cf"
+        },
+        {
+          "exact_native_cache_key": "ed837bcd38e0c479cb29a40470dc2b749fb5da01.pkl",
+          "pkl_sha256": "1ec8591ca77c631b1dcc5fc7080537de480ab7fccba2a3cc42b53f2202ad3c37",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S12",
+              "piece": 3,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "critics disputed his methods.",
+              "exact_native_cache_key": "ed837bcd38e0c479cb29a40470dc2b749fb5da01.pkl",
+              "cache_input_text_sha256": "172a958caa7637ed81964fc8a0890a5d276562a1ba3a3b6b637777430df433ca",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S12",
+              "piece": 4,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "critics disputed his methods.",
+              "exact_native_cache_key": "ed837bcd38e0c479cb29a40470dc2b749fb5da01.pkl",
+              "cache_input_text_sha256": "172a958caa7637ed81964fc8a0890a5d276562a1ba3a3b6b637777430df433ca",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "1ec8591ca77c631b",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            42496
+          ],
+          "unprocessed_array_sha256": "3d306127bbfd2f9bc02caa075c22e259dde104ce8fd55a2d22aab87cb378b408"
+        },
+        {
+          "exact_native_cache_key": "5402396305245853c7e0fa61c016680efabcf351.pkl",
+          "pkl_sha256": "33ff87bea2d3309446bb42103db9075976d0e512db62b943a8ef153055472bda",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S12",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "In January 2025 Oregon State University's William Ripple,",
+              "exact_native_cache_key": "5402396305245853c7e0fa61c016680efabcf351.pkl",
+              "cache_input_text_sha256": "c45ad76352b705d789b1325e4967ebfe72ceeaf204a588f215bfc0f6dab8bf10",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "33ff87bea2d33094",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            131072
+          ],
+          "unprocessed_array_sha256": "e18d502831d764ed682525efc4edd22c1ea6ec9147bc3d623f4715ebff1b29d4"
+        },
+        {
+          "exact_native_cache_key": "df2f015f38d200c7b2a419bd8d2fbca8917b2d17.pkl",
+          "pkl_sha256": "6f1c21938775b6b6ca40dce1a61b641c9f06a81eb12d563bf1b669e5ab8d5df0",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S12",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "an advocate of the hypothesis,",
+              "exact_native_cache_key": "df2f015f38d200c7b2a419bd8d2fbca8917b2d17.pkl",
+              "cache_input_text_sha256": "42db7f0c11132e10afa7de80c44fd1785f2a14d08fadf0476881f3a2b6c11d56",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "6f1c21938775b6b6",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            47616
+          ],
+          "unprocessed_array_sha256": "85d439bf8cf68cf3dcdfe1d708eac664a6b1885db3666ecbb8de560e57e8a63b"
+        },
+        {
+          "exact_native_cache_key": "1dda5bf5a98a5038e3f1f029898f7561387ae5a2.pkl",
+          "pkl_sha256": "a3a0575ab7d109cd2b9963db10ac56d87b12fec82909ec571d11b0f9623c01af",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S13",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "The question is unresolved, but the wolves' shadow looks fainter than the fable suggested, and the science messier.",
+              "exact_native_cache_key": "1dda5bf5a98a5038e3f1f029898f7561387ae5a2.pkl",
+              "cache_input_text_sha256": "bb83e6b70561b8cab38dd605434f53b8ef3f1d16c7a7e833ffd9813b59d0fdc1",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "a3a0575ab7d109cd",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            171520
+          ],
+          "unprocessed_array_sha256": "2ce3cbc75939c194224e2bd4ec7bf111e5d01c831c969a891ee5be1fe61db39a"
+        },
+        {
+          "exact_native_cache_key": "279e8576f534fb7e417c1b89e4286725671d81c3.pkl",
+          "pkl_sha256": "fcca86497172b183dd63a59f96b40d4fa09f2736a620ec506b050cbd9bf13903",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S13",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "The question is unresolved,",
+              "exact_native_cache_key": "279e8576f534fb7e417c1b89e4286725671d81c3.pkl",
+              "cache_input_text_sha256": "08edad5c2e043d4a7696e65a209c9a96667b2a546cd48ea9e11d368bd251cc0d",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S13",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "The question is unresolved,",
+              "exact_native_cache_key": "279e8576f534fb7e417c1b89e4286725671d81c3.pkl",
+              "cache_input_text_sha256": "08edad5c2e043d4a7696e65a209c9a96667b2a546cd48ea9e11d368bd251cc0d",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "fcca86497172b183",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            44032
+          ],
+          "unprocessed_array_sha256": "0b756bada103dc497d61b4b4f64e24d6f100f8668e7eb45d616819de8485f58d"
+        },
+        {
+          "exact_native_cache_key": "0be4e1d70611cabc00f88c202fff3b0e7ca780f9.pkl",
+          "pkl_sha256": "17611de81dc1e2182991964deb07cdae4c8c8dc25adce307bf041e4ec5efb95b",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S13",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "but the wolves' shadow looks fainter than the fable suggested,",
+              "exact_native_cache_key": "0be4e1d70611cabc00f88c202fff3b0e7ca780f9.pkl",
+              "cache_input_text_sha256": "3fefee0627a7edab49bdcf005bb206bbf936cdf1ccd9ea8e76d7efd227cb1e54",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S13",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "but the wolves' shadow looks fainter than the fable suggested,",
+              "exact_native_cache_key": "0be4e1d70611cabc00f88c202fff3b0e7ca780f9.pkl",
+              "cache_input_text_sha256": "3fefee0627a7edab49bdcf005bb206bbf936cdf1ccd9ea8e76d7efd227cb1e54",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "17611de81dc1e218",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            79360
+          ],
+          "unprocessed_array_sha256": "527d8a8114f0f88a6857aa04db2570358a166e545235491386dae6e7ee567e56"
+        },
+        {
+          "exact_native_cache_key": "c6e7bce013fac7ed0fd85037ae62518a1e3e3191.pkl",
+          "pkl_sha256": "4ca06dc674dd6597967ec72eef6f6a03ca9c1875cb161b738b900a31a52fd1ed",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S13",
+              "piece": 3,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "and the science messier.",
+              "exact_native_cache_key": "c6e7bce013fac7ed0fd85037ae62518a1e3e3191.pkl",
+              "cache_input_text_sha256": "6754429d57be33e023307e64bb82555d1003fcde0412669cb1b0a0df070be82e",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S13",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "and the science messier.",
+              "exact_native_cache_key": "c6e7bce013fac7ed0fd85037ae62518a1e3e3191.pkl",
+              "cache_input_text_sha256": "6754429d57be33e023307e64bb82555d1003fcde0412669cb1b0a0df070be82e",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "4ca06dc674dd6597",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            33280
+          ],
+          "unprocessed_array_sha256": "858ac909fdec830d44d84a64d22914d7100feaa2229860c3b593fb4347a949e1"
+        },
+        {
+          "exact_native_cache_key": "b5582c83c0b23a569bb441c26809f16328a13b0f.pkl",
+          "pkl_sha256": "37d2d9c51419f410103118fdb7d2d658d9d06bdbb057882e4ce79e9f9cb2c974",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S14",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "A discipline willing to revise its cherished example may deserve more trust than the fable ever did.",
+              "exact_native_cache_key": "b5582c83c0b23a569bb441c26809f16328a13b0f.pkl",
+              "cache_input_text_sha256": "5ec569e07bcb13379b7aae51f65d47e636833f395149f09add66a3004c08b0a4",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "37d2d9c51419f410",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            157696
+          ],
+          "unprocessed_array_sha256": "c8b73cca3c7cee0b53c9254f2fa21b79a5eb1aa9dd55bcab0675e3a657fb5598"
+        },
+        {
+          "exact_native_cache_key": "f39bb5db2276dd811a1fb9fa8bde324e20245cda.pkl",
+          "pkl_sha256": "b1bcda597919a0fca310ad365879963cd62c038dd03c6b78bd92b6053fd2a063",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S14",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "A discipline willing to revise its cherished example",
+              "exact_native_cache_key": "f39bb5db2276dd811a1fb9fa8bde324e20245cda.pkl",
+              "cache_input_text_sha256": "9c4c09397ccb2ebb4bb7b4bfbb1bf86887f8197f88b7e533ac41e8f98dbc354b",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "b1bcda597919a0fc",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            75264
+          ],
+          "unprocessed_array_sha256": "c17af025b78302ac0e83349b417e3a71db0b98b11f407b893a7a0bf8d6668e71"
+        },
+        {
+          "exact_native_cache_key": "3ec2222a163a52884f068a9f8e0b6bd3d2bffd92.pkl",
+          "pkl_sha256": "281952bfbf378a841deb797c074d791716a9e8ca156e6281687555bc87b085de",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S14",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "may deserve more trust than the fable ever did.",
+              "exact_native_cache_key": "3ec2222a163a52884f068a9f8e0b6bd3d2bffd92.pkl",
+              "cache_input_text_sha256": "48cf7936411deb290c5aaae8d258d1d6fd06c1882e2e6a23c97d020cbccdf43d",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "281952bfbf378a84",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            67584
+          ],
+          "unprocessed_array_sha256": "b7c47d39cda2be337568b962690719799d3abba3093a78688a7acc74cef2cb4c"
+        }
+      ],
+      "missing_reference_key_count": 0,
+      "observed_missing_keys_covered": [],
+      "new_private_cache_names": [],
+      "native_single_thread_marker_verified": true,
+      "single_thread_sessions": [
+        {
+          "intra_op_num_threads": 1,
+          "inter_op_num_threads": 1
+        },
+        {
+          "intra_op_num_threads": 1,
+          "inter_op_num_threads": 1
+        }
+      ],
+      "models_sha256": {
+        "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+        "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+        "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+      },
+      "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+      "existing_private_cache_count": 11514,
+      "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+      "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+      "existing_private_cache_bytes_unchanged": true,
+      "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+      "public_repository_cache_unchanged": true,
+      "producer_pcm_existed_before": false,
+      "producer_pcm_sha256_before": null,
+      "producer_pcm_sha256_after": null,
+      "accepted_aac_adts_sha256_before": "a1311cc32d5d4ae50b7dd0808f2f5ebd953989e0138c639df5c7965032a78ffe",
+      "accepted_aac_adts_sha256_after": "a1311cc32d5d4ae50b7dd0808f2f5ebd953989e0138c639df5c7965032a78ffe",
+      "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+      "private_cache_exported": false
+    },
+    "checker_reference_preparation_program_sha256": "f6f2a032e207085e7252d036e39430fb80b06e84a721c525b61196d021c5ca12",
+    "fresh_current_article_reference": {
+      "article": "47",
+      "removed_temporary_gt_files": [],
+      "processed_pcm_or_raw_mother_cache_modified": false,
+      "purpose": "Original synth/labels/audit rebuild fresh for this production; no old CPU GT reuse."
+    },
+    "temporary_output_reset": {
+      "removed": [],
+      "production_started_ns": 1794651007303848697,
+      "repository_outputs_modified": false
+    },
+    "reviewed_gain_control_preservation": [
+      {
+        "stage": "canonical-draft",
+        "requested_gain_controls": {},
+        "actual_gain_controls": {},
+        "exactly_preserved": true
+      },
+      {
+        "stage": "canonical-final4K",
+        "requested_gain_controls": {},
+        "actual_gain_controls": {},
+        "exactly_preserved": true
+      }
+    ],
+    "canonical_video_sha256": "fdf595539aab19f386552a05de9136a1bbca8c16fb463480ecd3127783636430",
+    "canonical_aac_adts_sha256": "a1311cc32d5d4ae50b7dd0808f2f5ebd953989e0138c639df5c7965032a78ffe",
+    "canonical_pipeline_passed": true,
+    "cached_input_wav_sha256": null,
+    "final_wav_sha256": "b55fb474faa9956bd6cc5016c5986e2da27401676fbcc52b6206f9150b1e13d0",
+    "accepted_prior_audio_packet_preservation": {
+      "file": "47-accepted-audio-packet-preservation.json",
+      "sha256": "9fa20341f6a906cbeef5736661e08870f20a86b18463f6bf2fcc05c2992f8d97",
+      "article": "47",
+      "scope": "This47 revision changes focus colours and Chinese explanations only.",
+      "accepted_video_sha256": "41a80d97ec08a8308df802694e82cd00cbd2f41c3d2f5496adf2001ef8b10c98",
+      "canonical_video_sha256": "fdf595539aab19f386552a05de9136a1bbca8c16fb463480ecd3127783636430",
+      "accepted_packet_count": 6968,
+      "canonical_packet_count": 6968,
+      "accepted_packet_records_sha256": "bbf2a2acd83c82d3f0e9e27e914d9e7ed7eabd229ae6cbed87e03d1c1a10a402",
+      "canonical_packet_records_sha256": "bbf2a2acd83c82d3f0e9e27e914d9e7ed7eabd229ae6cbed87e03d1c1a10a402",
+      "AAC_payload_side_data_and_absolute_PTS_DTS_duration_identical": true,
+      "codec_parameters_identical": true,
+      "codec_parameters": [
+        {
+          "codec_name": "aac",
+          "profile": "LC",
+          "codec_tag_string": "mp4a",
+          "sample_fmt": "fltp",
+          "sample_rate": "48000",
+          "channels": 1,
+          "channel_layout": "mono",
+          "time_base": "1/48000"
+        },
+        {
+          "codec_name": "aac",
+          "profile": "LC",
+          "codec_tag_string": "mp4a",
+          "sample_fmt": "fltp",
+          "sample_rate": "48000",
+          "channels": 1,
+          "channel_layout": "mono",
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_packet_reader_sha256": "dc204b91415e28297b844e9666087b0e23e67194944b359cb5fb5ddbca0f1208",
+      "private_PCM_or_cache_read": false
+    },
+    "accepted_prior_aac_identical": true,
+    "video_sha256": "8ffa92f744c152dda7851efc1dc96e721da90c014e258d0e767f404dff450a66",
+    "width": 3840,
+    "height": 2160,
+    "summary_seconds": 2,
+    "summary_frames": 60,
+    "summary_start_seconds": 146.66666666666666,
+    "delay_after_voice_seconds": 0.011666666666656056,
+    "actual_source_collection": {
+      "article": "47",
+      "kind": "actual-production-source-collection",
+      "new_quality_gate": false,
+      "files": {
+        "request_json": {
+          "file": "47-request-source.json",
+          "sha256": "4c33bb0764a9b98e914a55806486ce841a1503efda1ff001cd2f8c9bb1626c06",
+          "origin": "immutable_request"
+        },
+        "request_generator": {
+          "file": "47-request-gen.py",
+          "sha256": "9e2e1021ba729358d41002fd5c3f384cdd8575f1b5ebaa13e0bf007dec451dae",
+          "origin": "immutable_request"
+        },
+        "used_generator": {
+          "file": "47-used-gen.py",
+          "sha256": "9e2e1021ba729358d41002fd5c3f384cdd8575f1b5ebaa13e0bf007dec451dae",
+          "origin": "actual_production_filesystem"
+        },
+        "actual_working_source": {
+          "file": "47-actual-working-source.json",
+          "sha256": "f5777d48d748020330a4e8ce2fe3327fc09fbe3eeb64c4b2f88f5faee24e542d",
+          "origin": "actual_production_filesystem"
+        },
+        "request_manuscript": {
+          "file": "47-request-manuscript.md",
+          "sha256": "6b51ae76b8ec4ffd0ff1748c5902ef59754fa446479fc40357e9946a9aaac7a1",
+          "origin": "immutable_request"
+        },
+        "actual_working_manuscript": {
+          "file": "47-actual-working-manuscript.md",
+          "sha256": "c7fc0d19c754c19f586578357cb85dbda3156d792dfd503a23663bfd527e94c3",
+          "origin": "actual_production_filesystem"
+        }
+      },
+      "generator_execution_observed": false,
+      "generator_execution_evidence": "No fresh generator execution log; do not claim this GEN was executed during rendering.",
+      "source_differences": {
+        "file": "47-actual-source-differences.json",
+        "sha256": "0874900741d00f19e3cd9bd9a8aaada2aaa561212e76acc8f1463c15b429cf83"
+      }
+    }
+  },
+  "native_status_sha256": "2c41cc3aba82123c1af08565956059dfaeb1a0f8b03e333a6d4fe895397aab52"
+}
