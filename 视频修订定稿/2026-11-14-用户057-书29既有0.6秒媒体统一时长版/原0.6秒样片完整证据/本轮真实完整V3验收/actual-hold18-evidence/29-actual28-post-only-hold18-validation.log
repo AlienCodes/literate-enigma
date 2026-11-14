@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/workspace/work/video-revision-delivery/hold18-intake-preparation-20261114/validate_actual28_post_only_hold18.py", line 194, in <module>
+    validate()
+  File "/workspace/work/video-revision-delivery/hold18-intake-preparation-20261114/validate_actual28_post_only_hold18.py", line 62, in validate
+    require(old_record['preview_passed'] is True and old_qc['audio']['repair_applied'] is False, 'Original full source/audio V3 must remain passed')
+            ~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+KeyError: 'preview_passed'

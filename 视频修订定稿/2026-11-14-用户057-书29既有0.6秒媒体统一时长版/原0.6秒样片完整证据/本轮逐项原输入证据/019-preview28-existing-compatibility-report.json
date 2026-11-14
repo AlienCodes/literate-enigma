@@ -1,0 +1,300 @@
+{
+  "kind": "isolated_article28_hold9_contract_and_actual_legacy_fixture_checks",
+  "passed": true,
+  "program_sha256": "f90e399b59ec5d1c7bc83a9d8c4c0134b7ba4dbe1627a2bde6ab91daa6c06562",
+  "original_program_sha256": "dc204b91415e28297b844e9666087b0e23e67194944b359cb5fb5ddbca0f1208",
+  "all_original_non_main_non_provenance_functions_AST_identical": [
+    "run",
+    "digest_bytes",
+    "sha",
+    "probe",
+    "packets",
+    "packet_timing",
+    "coded_pictures_sha",
+    "boundary_is_idr",
+    "aac_sha",
+    "rgb_sha",
+    "source_layout_digest",
+    "source_layout_binding",
+    "approved_inputs",
+    "compose_illustration",
+    "verify_static_pages"
+  ],
+  "unit_and_scope_tests": [
+    {
+      "name": "authorized28exact9",
+      "kind": "unit_contract_not_native_media",
+      "expected_accept": true,
+      "actual_accept": true,
+      "return": true,
+      "error": null
+    },
+    {
+      "name": "reject_other_article_01",
+      "kind": "unit_contract_not_native_media",
+      "expected_accept": false,
+      "actual_accept": false,
+      "return": null,
+      "error": "Nine-frame trial is authorized only for source28/book29."
+    },
+    {
+      "name": "reject_other_article_14",
+      "kind": "unit_contract_not_native_media",
+      "expected_accept": false,
+      "actual_accept": false,
+      "return": null,
+      "error": "Nine-frame trial is authorized only for source28/book29."
+    },
+    {
+      "name": "reject_other_article_17",
+      "kind": "unit_contract_not_native_media",
+      "expected_accept": false,
+      "actual_accept": false,
+      "return": null,
+      "error": "Nine-frame trial is authorized only for source28/book29."
+    },
+    {
+      "name": "reject_other_article_27",
+      "kind": "unit_contract_not_native_media",
+      "expected_accept": false,
+      "actual_accept": false,
+      "return": null,
+      "error": "Nine-frame trial is authorized only for source28/book29."
+    },
+    {
+      "name": "reject_other_article_29",
+      "kind": "unit_contract_not_native_media",
+      "expected_accept": false,
+      "actual_accept": false,
+      "return": null,
+      "error": "Nine-frame trial is authorized only for source28/book29."
+    },
+    {
+      "name": "reject_other_article_70",
+      "kind": "unit_contract_not_native_media",
+      "expected_accept": false,
+      "actual_accept": false,
+      "return": null,
+      "error": "Nine-frame trial is authorized only for source28/book29."
+    },
+    {
+      "name": "reject_hold_8",
+      "kind": "unit_contract_not_native_media",
+      "expected_accept": false,
+      "actual_accept": false,
+      "return": null,
+      "error": "Only default0 or explicitly authorized9 hold frames are supported."
+    },
+    {
+      "name": "reject_hold_10",
+      "kind": "unit_contract_not_native_media",
+      "expected_accept": false,
+      "actual_accept": false,
+      "return": null,
+      "error": "Only default0 or explicitly authorized9 hold frames are supported."
+    },
+    {
+      "name": "reject_hold_-1",
+      "kind": "unit_contract_not_native_media",
+      "expected_accept": false,
+      "actual_accept": false,
+      "return": null,
+      "error": "Only default0 or explicitly authorized9 hold frames are supported."
+    },
+    {
+      "name": "reject_hold_0.3",
+      "kind": "unit_contract_not_native_media",
+      "expected_accept": false,
+      "actual_accept": false,
+      "return": null,
+      "error": "Only default0 or explicitly authorized9 hold frames are supported."
+    },
+    {
+      "name": "reject_hold_'9'",
+      "kind": "unit_contract_not_native_media",
+      "expected_accept": false,
+      "actual_accept": false,
+      "return": null,
+      "error": "Only default0 or explicitly authorized9 hold frames are supported."
+    },
+    {
+      "name": "reject_hold_True",
+      "kind": "unit_contract_not_native_media",
+      "expected_accept": false,
+      "actual_accept": false,
+      "return": null,
+      "error": "Only default0 or explicitly authorized9 hold frames are supported."
+    },
+    {
+      "name": "reject_declaration_kind_immediate-standalone-summary",
+      "kind": "unit_contract_not_native_media",
+      "expected_accept": false,
+      "actual_accept": false,
+      "return": null,
+      "error": "Wrong upstream preview stage kind."
+    },
+    {
+      "name": "reject_declaration_kind_preview-last-body-hold10-then-summary60",
+      "kind": "unit_contract_not_native_media",
+      "expected_accept": false,
+      "actual_accept": false,
+      "return": null,
+      "error": "Wrong upstream preview stage kind."
+    },
+    {
+      "name": "reject_declaration_preview_only_False",
+      "kind": "unit_contract_not_native_media",
+      "expected_accept": false,
+      "actual_accept": false,
+      "return": null,
+      "error": "Missing exact preview-only hold9 declaration."
+    },
+    {
+      "name": "reject_declaration_preview_only_1",
+      "kind": "unit_contract_not_native_media",
+      "expected_accept": false,
+      "actual_accept": false,
+      "return": null,
+      "error": "Missing exact preview-only hold9 declaration."
+    },
+    {
+      "name": "reject_declaration_preview_last_body_hold_frames_8",
+      "kind": "unit_contract_not_native_media",
+      "expected_accept": false,
+      "actual_accept": false,
+      "return": null,
+      "error": "Missing exact preview-only hold9 declaration."
+    },
+    {
+      "name": "reject_declaration_preview_last_body_hold_frames_True",
+      "kind": "unit_contract_not_native_media",
+      "expected_accept": false,
+      "actual_accept": false,
+      "return": null,
+      "error": "Missing exact preview-only hold9 declaration."
+    },
+    {
+      "name": "reject_synthetic_preview",
+      "kind": "unit_contract_not_native_media",
+      "expected_accept": false,
+      "actual_accept": false,
+      "return": null,
+      "error": "Preview acceptance requires actual new-canonical production provenance; synthetic fixtures are never preview deliveries."
+    },
+    {
+      "name": "reject_wrong_frame_boundary_4728",
+      "kind": "unit_contract_not_native_media",
+      "expected_accept": false,
+      "actual_accept": false,
+      "return": null,
+      "error": "Voice-to-illustration gap is not the authorized9-frame ceiling hold."
+    },
+    {
+      "name": "reject_wrong_frame_boundary_4730",
+      "kind": "unit_contract_not_native_media",
+      "expected_accept": false,
+      "actual_accept": false,
+      "return": null,
+      "error": "Voice-to-illustration gap is not the authorized9-frame ceiling hold."
+    },
+    {
+      "name": "reject_preview_decl_without_cli",
+      "kind": "unit_contract_not_native_media",
+      "expected_accept": false,
+      "actual_accept": false,
+      "return": null,
+      "error": "Preview metadata requires the explicit article28 hold9 CLI."
+    },
+    {
+      "name": "legacy_default_immediate_0",
+      "kind": "unit_contract_not_native_media",
+      "expected_accept": true,
+      "actual_accept": true,
+      "return": false,
+      "error": null
+    },
+    {
+      "name": "legacy_default_immediate_0.005",
+      "kind": "unit_contract_not_native_media",
+      "expected_accept": true,
+      "actual_accept": true,
+      "return": false,
+      "error": null
+    },
+    {
+      "name": "legacy_default_immediate_0.03333323333333333",
+      "kind": "unit_contract_not_native_media",
+      "expected_accept": true,
+      "actual_accept": true,
+      "return": false,
+      "error": null
+    },
+    {
+      "name": "legacy_default_reject_pause",
+      "kind": "unit_contract_not_native_media",
+      "expected_accept": false,
+      "actual_accept": false,
+      "return": null,
+      "error": ""
+    },
+    {
+      "name": "legacy_synthetic_default",
+      "kind": "unit_contract_not_native_media",
+      "expected_accept": true,
+      "actual_accept": true,
+      "return": false,
+      "error": null
+    },
+    {
+      "name": "preview_wrong_article",
+      "kind": "actual_legacy_fixture_CLI_negative",
+      "expected_reject": true,
+      "actual_exit": 1,
+      "error": "Nine-frame trial is authorized only for source28/book29.",
+      "report": "/workspace/work/video-audit70-20261113/article28-user-review-20261114/hold9-integrator/preview_wrong_article-rejection.json",
+      "report_sha256": "4f2d9e01eb37afdb3e53e8c45d0407483989d09bd0d7609f99b32862ce994a3d"
+    },
+    {
+      "name": "invalid_hold8",
+      "kind": "actual_legacy_fixture_CLI_negative",
+      "expected_reject": true,
+      "actual_exit": 1,
+      "error": "Only default0 or explicitly authorized9 hold frames are supported.",
+      "report": "/workspace/work/video-audit70-20261113/article28-user-review-20261114/hold9-integrator/invalid_hold8-rejection.json",
+      "report_sha256": "0e940b47de707cac5d0a524fb15b68f380e217f605dd20da11e2676294d6de10"
+    },
+    {
+      "name": "invalid_hold10",
+      "kind": "actual_legacy_fixture_CLI_negative",
+      "expected_reject": true,
+      "actual_exit": 1,
+      "error": "Only default0 or explicitly authorized9 hold frames are supported.",
+      "report": "/workspace/work/video-audit70-20261113/article28-user-review-20261114/hold9-integrator/invalid_hold10-rejection.json",
+      "report_sha256": "0e940b47de707cac5d0a524fb15b68f380e217f605dd20da11e2676294d6de10"
+    },
+    {
+      "name": "wrong_image",
+      "kind": "actual_legacy_fixture_CLI_negative",
+      "expected_reject": true,
+      "actual_exit": 1,
+      "error": "Wrong or changed approved book illustration.",
+      "report": "/workspace/work/video-audit70-20261113/article28-user-review-20261114/hold9-integrator/wrong_image-rejection.json",
+      "report_sha256": "fe03026a110b3a5992b2829daf310987eb4a2f70bc7c4858e99388fe1d46ff86"
+    },
+    {
+      "name": "missing_idr",
+      "kind": "actual_legacy_fixture_CLI_negative",
+      "expected_reject": true,
+      "actual_exit": 1,
+      "error": "Body boundary is not a closed IDR: rerun only the NEW end-card stage with a forced keyframe; no silent body re-encode.",
+      "report": "/workspace/work/video-audit70-20261113/article28-user-review-20261114/hold9-integrator/missing_idr-rejection.json",
+      "report_sha256": "510ce3fcf7703fbc970784eda75a396b6481768e433ffccaf5fa74241c7649d3"
+    }
+  ],
+  "test_count": 33,
+  "legacy_real_fixture_full_postprocessor_passed": true,
+  "legacy_fixture_report_sha256": "8575605b1fab870f526e23a011ee2e84adadb50bd4669be46dfcc261fe9248ad",
+  "original_default_kind_and_nonproduction_eligibility_preserved": true,
+  "genuine_source28_preview_positive_still_pending": true,
+  "no_formal_production_pass_claimed": true
+}

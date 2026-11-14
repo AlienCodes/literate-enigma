@@ -1,0 +1,3581 @@
+{
+  "actual_successful_job_verified": true,
+  "actual_genuine_upstream_pass_with_missing_art_recovery": false,
+  "actual_job_uploaded_selected_artifact": false,
+  "overall_matrix_success_required": false,
+  "acceptance_basis": "actual successful article job + immutable run artifact + actual native passed article/media/source identity; upload log is auxiliary",
+  "run": {
+    "id": 43576642418,
+    "name": "本轮改动篇目原缓存正式4K",
+    "node_id": "WFR_kwLODJcpM88AAAAKJV7Lcg",
+    "head_branch": "codex/finish-05-and-summaries-20261112",
+    "head_sha": "b91467310c4043008d0c55220b0d1844ec67ba30",
+    "path": ".github/workflows/produce-revision-batch4K.yml",
+    "display_title": "Rebuild revised articles in official4K: 28",
+    "run_number": 35,
+    "event": "push",
+    "status": "completed",
+    "conclusion": "success",
+    "workflow_id": 417752518,
+    "check_suite_id": 117992312664,
+    "check_suite_node_id": "CS_kwDODJcpM88AAAAbeOPPWA",
+    "url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43576642418",
+    "html_url": "https://github.com/AlienCodes/literate-enigma/actions/runs/43576642418",
+    "pull_requests": [],
+    "created_at": "2026-11-14T08:36:41Z",
+    "updated_at": "2026-11-14T08:48:43Z",
+    "actor": {
+      "login": "AlienCodes",
+      "id": 52247027,
+      "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/AlienCodes",
+      "html_url": "https://github.com/AlienCodes",
+      "followers_url": "https://api.github.com/users/AlienCodes/followers",
+      "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+      "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+      "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+      "repos_url": "https://api.github.com/users/AlienCodes/repos",
+      "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "run_attempt": 1,
+    "referenced_workflows": [],
+    "run_started_at": "2026-11-14T08:36:41Z",
+    "triggering_actor": {
+      "login": "AlienCodes",
+      "id": 52247027,
+      "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/AlienCodes",
+      "html_url": "https://github.com/AlienCodes",
+      "followers_url": "https://api.github.com/users/AlienCodes/followers",
+      "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+      "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+      "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+      "repos_url": "https://api.github.com/users/AlienCodes/repos",
+      "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "jobs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43576642418/attempts/1/jobs",
+    "logs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43576642418/attempts/1/logs",
+    "check_suite_url": "https://api.github.com/repos/AlienCodes/literate-enigma/check-suites/117992312664",
+    "artifacts_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43576642418/artifacts",
+    "cancel_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43576642418/cancel",
+    "rerun_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43576642418/rerun",
+    "previous_attempt_url": null,
+    "workflow_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/workflows/417752518",
+    "head_commit": {
+      "id": "b91467310c4043008d0c55220b0d1844ec67ba30",
+      "tree_id": "c98324f9bd58ff14e3e2967e81476ae1bd3cc6e8",
+      "message": "Rebuild revised articles in official4K: 28",
+      "timestamp": "2026-11-14T08:36:38Z",
+      "author": {
+        "name": "the Sword God",
+        "email": "52247027+AlienCodes@users.noreply.github.com"
+      },
+      "committer": {
+        "name": "the Sword God",
+        "email": "52247027+AlienCodes@users.noreply.github.com"
+      }
+    },
+    "repository": {
+      "id": 211233075,
+      "node_id": "MDEwOlJlcG9zaXRvcnkyMTEyMzMwNzU=",
+      "name": "literate-enigma",
+      "full_name": "AlienCodes/literate-enigma",
+      "private": false,
+      "owner": {
+        "login": "AlienCodes",
+        "id": 52247027,
+        "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+        "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/AlienCodes",
+        "html_url": "https://github.com/AlienCodes",
+        "followers_url": "https://api.github.com/users/AlienCodes/followers",
+        "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+        "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+        "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+        "repos_url": "https://api.github.com/users/AlienCodes/repos",
+        "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/AlienCodes/literate-enigma",
+      "description": "I am exploring this world!",
+      "fork": false,
+      "url": "https://api.github.com/repos/AlienCodes/literate-enigma",
+      "forks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/forks",
+      "keys_url": "https://api.github.com/repos/AlienCodes/literate-enigma/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/AlienCodes/literate-enigma/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/AlienCodes/literate-enigma/teams",
+      "hooks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/hooks",
+      "issue_events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/events",
+      "assignees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/AlienCodes/literate-enigma/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/tags",
+      "blobs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/AlienCodes/literate-enigma/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/AlienCodes/literate-enigma/languages",
+      "stargazers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/stargazers",
+      "contributors_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contributors",
+      "subscribers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscribers",
+      "subscription_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscription",
+      "commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/AlienCodes/literate-enigma/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/AlienCodes/literate-enigma/merges",
+      "archive_url": "https://api.github.com/repos/AlienCodes/literate-enigma/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/AlienCodes/literate-enigma/downloads",
+      "issues_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/AlienCodes/literate-enigma/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/AlienCodes/literate-enigma/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/AlienCodes/literate-enigma/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/AlienCodes/literate-enigma/labels{/name}",
+      "releases_url": "https://api.github.com/repos/AlienCodes/literate-enigma/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/deployments"
+    },
+    "head_repository": {
+      "id": 211233075,
+      "node_id": "MDEwOlJlcG9zaXRvcnkyMTEyMzMwNzU=",
+      "name": "literate-enigma",
+      "full_name": "AlienCodes/literate-enigma",
+      "private": false,
+      "owner": {
+        "login": "AlienCodes",
+        "id": 52247027,
+        "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+        "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/AlienCodes",
+        "html_url": "https://github.com/AlienCodes",
+        "followers_url": "https://api.github.com/users/AlienCodes/followers",
+        "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+        "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+        "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+        "repos_url": "https://api.github.com/users/AlienCodes/repos",
+        "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/AlienCodes/literate-enigma",
+      "description": "I am exploring this world!",
+      "fork": false,
+      "url": "https://api.github.com/repos/AlienCodes/literate-enigma",
+      "forks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/forks",
+      "keys_url": "https://api.github.com/repos/AlienCodes/literate-enigma/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/AlienCodes/literate-enigma/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/AlienCodes/literate-enigma/teams",
+      "hooks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/hooks",
+      "issue_events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/events",
+      "assignees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/AlienCodes/literate-enigma/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/tags",
+      "blobs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/AlienCodes/literate-enigma/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/AlienCodes/literate-enigma/languages",
+      "stargazers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/stargazers",
+      "contributors_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contributors",
+      "subscribers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscribers",
+      "subscription_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscription",
+      "commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/AlienCodes/literate-enigma/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/AlienCodes/literate-enigma/merges",
+      "archive_url": "https://api.github.com/repos/AlienCodes/literate-enigma/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/AlienCodes/literate-enigma/downloads",
+      "issues_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/AlienCodes/literate-enigma/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/AlienCodes/literate-enigma/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/AlienCodes/literate-enigma/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/AlienCodes/literate-enigma/labels{/name}",
+      "releases_url": "https://api.github.com/repos/AlienCodes/literate-enigma/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/deployments"
+    }
+  },
+  "job": {
+    "id": 132392232134,
+    "run_id": 43576642418,
+    "workflow_name": "本轮改动篇目原缓存正式4K",
+    "head_branch": "codex/finish-05-and-summaries-20261112",
+    "run_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43576642418",
+    "run_attempt": 1,
+    "node_id": "CR_kwDODJcpM88AAAAe0zEkxg",
+    "head_sha": "b91467310c4043008d0c55220b0d1844ec67ba30",
+    "url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/jobs/132392232134",
+    "html_url": "https://github.com/AlienCodes/literate-enigma/actions/runs/43576642418/job/132392232134",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-11-14T08:36:50Z",
+    "started_at": "2026-11-14T08:36:52Z",
+    "completed_at": "2026-11-14T08:48:42Z",
+    "name": "produce (28)",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-11-14T08:36:52Z",
+        "completed_at": "2026-11-14T08:36:53Z"
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-11-14T08:36:53Z",
+        "completed_at": "2026-11-14T08:37:08Z"
+      },
+      {
+        "name": "按批准的原图清单解析本篇原生文件名",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3,
+        "started_at": "2026-11-14T08:37:08Z",
+        "completed_at": "2026-11-14T08:37:08Z"
+      },
+      {
+        "name": "取固定主仓中已批准的本篇书中原图",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4,
+        "started_at": "2026-11-14T08:37:08Z",
+        "completed_at": "2026-11-14T08:37:10Z"
+      },
+      {
+        "name": "先验本篇原图的主仓提交、原生blob和批准SHA",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5,
+        "started_at": "2026-11-14T08:37:10Z",
+        "completed_at": "2026-11-14T08:37:10Z"
+      },
+      {
+        "name": "Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6,
+        "started_at": "2026-11-14T08:37:10Z",
+        "completed_at": "2026-11-14T08:37:10Z"
+      },
+      {
+        "name": "Run actions/cache/restore@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7,
+        "started_at": "2026-11-14T08:37:10Z",
+        "completed_at": "2026-11-14T08:38:01Z"
+      },
+      {
+        "name": "确认恢复既有机器缓存",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8,
+        "started_at": "2026-11-14T08:38:01Z",
+        "completed_at": "2026-11-14T08:38:02Z"
+      },
+      {
+        "name": "恢复16正确Origin的本轮已固定原始母素材",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 9,
+        "started_at": "2026-11-14T08:38:02Z",
+        "completed_at": "2026-11-14T08:38:02Z"
+      },
+      {
+        "name": "确认16精确原母缓存真实命中",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 10,
+        "started_at": "2026-11-14T08:38:02Z",
+        "completed_at": "2026-11-14T08:38:02Z"
+      },
+      {
+        "name": "准备原有核查工具",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 11,
+        "started_at": "2026-11-14T08:38:02Z",
+        "completed_at": "2026-11-14T08:38:39Z"
+      },
+      {
+        "name": "Run actions/cache/restore@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 12,
+        "started_at": "2026-11-14T08:38:39Z",
+        "completed_at": "2026-11-14T08:38:40Z"
+      },
+      {
+        "name": "确认原快测印章缓存命中",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 13,
+        "started_at": "2026-11-14T08:38:40Z",
+        "completed_at": "2026-11-14T08:38:40Z"
+      },
+      {
+        "name": "原程序做稿并正式定稿4K",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 14,
+        "started_at": "2026-11-14T08:38:40Z",
+        "completed_at": "2026-11-14T08:48:37Z"
+      },
+      {
+        "name": "仅保留本篇公开成片和核验材料",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 15,
+        "started_at": "2026-11-14T08:48:37Z",
+        "completed_at": "2026-11-14T08:48:39Z"
+      },
+      {
+        "name": "Post Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 28,
+        "started_at": "2026-11-14T08:48:39Z",
+        "completed_at": "2026-11-14T08:48:39Z"
+      },
+      {
+        "name": "Post 取固定主仓中已批准的本篇书中原图",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 29,
+        "started_at": "2026-11-14T08:48:39Z",
+        "completed_at": "2026-11-14T08:48:39Z"
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 30,
+        "started_at": "2026-11-14T08:48:39Z",
+        "completed_at": "2026-11-14T08:48:39Z"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 31,
+        "started_at": "2026-11-14T08:48:39Z",
+        "completed_at": "2026-11-14T08:48:40Z"
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/AlienCodes/literate-enigma/check-runs/132392232134",
+    "labels": [
+      "ubuntu-latest"
+    ],
+    "runner_id": 1000008545,
+    "runner_name": "GitHub Actions 1000008545",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  "artifact": {
+    "id": 14107311337,
+    "node_id": "MDg6QXJ0aWZhY3QxNDEwNzMxMTMzNw==",
+    "name": "article28-user-requested-hold0p3s-preview4K",
+    "size_in_bytes": 43749935,
+    "url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/artifacts/14107311337",
+    "archive_download_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/artifacts/14107311337/zip",
+    "expired": false,
+    "digest": "sha256:74ff07aed0fe5091ac6a143af3b23de7223756943baeb64f08f41c2cecf29a4e",
+    "created_at": "2026-11-14T08:48:39Z",
+    "updated_at": "2026-11-14T08:48:39Z",
+    "expires_at": "2026-12-14T08:48:37Z",
+    "workflow_run": {
+      "id": 43576642418,
+      "repository_id": 211233075,
+      "head_repository_id": 211233075,
+      "head_branch": "codex/finish-05-and-summaries-20261112",
+      "head_sha": "b91467310c4043008d0c55220b0d1844ec67ba30"
+    }
+  },
+  "upload_step_proof": {
+    "unambiguous_selected_step_upload": false,
+    "auxiliary_only": true,
+    "reason": "Upload action log block is missing or ambiguous in selected API step interval",
+    "acceptance_blocked_by_log": false
+  },
+  "native_status": {
+    "article": "28",
+    "passed": true,
+    "stage": "final4K-passed",
+    "preview_only": true,
+    "active_final_replacement_authorized": false,
+    "original_audit_and_quality_thresholds_unchanged": true,
+    "original_maker_unchanged": true,
+    "core_repairs": [
+      {
+        "target": "视频/工具/草稿声音.sh",
+        "file": "files/视频/工具/草稿声音.sh",
+        "original_sha256": "0ce3277812cf16ed30438509b6dc97db0c26725db4c5db5d9b058c3ef6531aa2",
+        "patched_sha256": "957d7eb1598698ea33ff77d83379256ecae258d84d588753d561a902284be439",
+        "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+      },
+      {
+        "target": "视频/工具/句内响度.py",
+        "file": "files/视频/工具/句内响度.py",
+        "original_sha256": "58735b7173a3c03efa61fb300b4aed4039c164fa970e0593a40bae2a3f3cbd27",
+        "patched_sha256": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea",
+        "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+      },
+      {
+        "target": "视频/工具/独立复核/synth.py",
+        "file": "files/视频/工具/独立复核/synth.py",
+        "original_sha256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+        "patched_sha256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+        "repair_scope": "validated unprocessed raw-mother reference input only; independent transforms/audit/thresholds retained"
+      }
+    ],
+    "strict_production_cache": true,
+    "pdf_requested": false,
+    "check_summaries": {
+      "approved-illustration-resource.log": [],
+      "certified-core-original-stamp-verification.log": [],
+      "original-restored-stamp.log": [],
+      "canonical-module-copy.log": [],
+      "canonical-draft-00.log": [
+        "第28篇 做完（263 秒）：修了 1 处、疑点 19 处",
+        "① 文本：通过，自动修 1 处",
+        "② 声音：28 词尾辅音核对 问题数 0；28 纯人声核对（配音指纹 68d4337c775f）问题数 0；问题数 0；28 句间停顿核对 问题数 0；问题数 0",
+        "③ 出片前核查：通过",
+        "⑤ 出片后核查：全部通过",
+        "⑥ 已拷 视频/视频/草稿1080p/28_1080p.mp4（--不推）"
+      ],
+      "canonical-final4K-00.log": [
+        "第28篇 用户定稿原话：有"
+      ],
+      "original-stamp-after-production.log": []
+    },
+    "actual_native_core_certification": {
+      "run_id": 43535822030,
+      "job_id": 132264443476,
+      "commit": "395e8da264fafa2453a42ee70a3f7aed8303a769",
+      "actual_full_quickcheck_exit": 0,
+      "actual_full_quickcheck_seconds": 478.16,
+      "artifact_id": 14089812323,
+      "artifact_zip_sha256": "5e396c84e4a6fc7c6cc737ceb8648d7f15f397e9551806e032c93db8ab0963b8",
+      "full_original_quickcheck_log_sha256": "dbe7f6e08d2b7c3a5f9a2f925bb75a662aed725c780e1bc6714706807552a294",
+      "article_audio_or_video_passed_not_implied": true
+    },
+    "actual_native_fastcheck_stamp": {
+      "target": "视频/工具/新管/快测通过.json",
+      "file": "files/视频/工具/新管/快测通过.json",
+      "sha256": "6ebc7aa41f79f77258fa333b665af258e007daa36a4ea290de972cd3da7b42f2",
+      "origin": "actual unmodified original full quickcheck, native run43535822030"
+    },
+    "reviewed_regression_resource": {
+      "target": "视频/工具/新管/回归基准_27.json",
+      "file": "files/视频/工具/新管/回归基准_27.json",
+      "sha256": "b8ddb4656ae27cbfc7ec8e3b99511983b4e568997bd4ad4ee33c364f3926ae94",
+      "origin": "pre-existing root-reviewed 67-screen data; original voice/segment MD5 unchanged"
+    },
+    "core_repair_manifest_sha256": "1b1558108d15603e5711e200135651d6c7700a583d8bcf53ad8753683ed05a5e",
+    "reviewed_gain_preservation_mode": true,
+    "reviewed_existing_ending_preservation_mode": false,
+    "reviewed_existing_physical_cuts_preservation_mode": false,
+    "real_restored_stamp_validated": true,
+    "reviewed_cross_article_context": {
+      "provided": true,
+      "manifest_sha256": "acb6b42c5a1fa4906359bdedd4b8bb96c2a4a315cdc2f18bc76eebd270784c3c",
+      "files_sha256": {
+        "视频/脚本/01.json": "2be2f80a69af28703992204ac95f987c745362c326e62ad81b3cd8e0e0735d3a",
+        "新版定稿/01-the-robber-who-thought-lemon-juice-made-him-invisible.md": "572054065b5bb65446bf8939a21c789c1e9c7664d82da5117c43efdded894351",
+        "视频/脚本/02.json": "0403368c77fd3e0f91e1ee3780e1c7c147894ad13c16b5f14707d700a8f717c8",
+        "新版定稿/02-the-truth-about-one-marshmallow.md": "91b92505aad03f963861bec39e96f0a472c126d1d57c9fc538676c32f65e545c",
+        "视频/脚本/03.json": "527f3bf4a11843f4d606188dabc6ebce6830da3fb454a49c782e3a595cb47407",
+        "新版定稿/03-the-doctor-who-drank-bacteria-to-win-an-argument.md": "6dfb56504882e24854a3584fd740e7f6601e3f2532818aee3a56d5330d317aa3",
+        "视频/脚本/04.json": "93cc1ff58d65ebe43a65ecb2fb2dbd2da262d80877c05740bbdf4eab4eaca1e8",
+        "新版定稿/04-the-brain-that-learned-london.md": "a8ccb31ffff50aaae77de4b83de1847fafae1d585981cf960c5880c409f6cfc3",
+        "视频/脚本/05.json": "fa9b957b54271d144712ec503c628dae4e0d726eefc348d54a08d89d0f179d87",
+        "新版定稿/05-the-fingerprint-in-the-blood.md": "612deac4ed066489e04e214ca969f8f27dda05856e0ef0ed2e540e7a4a52ae34",
+        "视频/脚本/06.json": "2cbf1d6cd6e66a59285298ea830f5ef914590b64286d40b2ae5f3168aa27a2e9",
+        "新版定稿/06-the-horse-that-could-count.md": "7fd21ba491c7596c53c486f2bb0b0f2f6da8e67bac75461a4649a7caff822f74",
+        "视频/脚本/07.json": "842e44e5aa19fddcfa239cb6530c5152341cd86e11db959543d02d8670ca13e8",
+        "新版定稿/07-the-octopus-that-escaped.md": "b8544281bb2ada88fce9d1082cbc30233dcb63ee3e9c2bbefafc22cb28b8cb39",
+        "视频/脚本/08.json": "254832e09f12759d950384dd9f31f671ad5a3bc1590b7466065dd3ef5fe4b8d5",
+        "新版定稿/08-the-doctor-who-solved-the-cholera-mystery.md": "0b2bfa68070ce585a452f6b7034d03c3683e710dcabec5e86d7b221950dc7bab",
+        "视频/脚本/09.json": "fa3e429351d629de188c184d04e9986200e16e80606fcbec82332b6433301dae",
+        "新版定稿/09-the-great-emu-war.md": "af5c3e844bad15f94bfc43aeed6d7417c4bfae85f026b194da667a7a3bdb6196",
+        "视频/脚本/10.json": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
+        "新版定稿/10-the-stolen-smile.md": "ff63cf94e4d2c835e2e2f1ffd3e6c5642f0916f0b13c012f1f13c3dff716d47a",
+        "视频/脚本/11.json": "665cbb80cc70b700ecc0cc5813209fd100ad4fa8f0eead3929b9e53778d9d07f",
+        "新版定稿/11-move-37.md": "7e0b49b346c1fa3ab994a11a2301167c0d6a1bb00916508bdc0b1acf71e68053",
+        "视频/脚本/12.json": "e3bfbcce6f1a8e14cfe451d656574353321e297c90c62f5a7b422f37478311d5",
+        "新版定稿/12-the-79-days-of-new-coke.md": "5a23c1e0c81318527bcbf27573487d1845c5318905a2b1e020cc6e2eaf5d643f",
+        "视频/脚本/13.json": "c22ccc9eb34a92380ecbd2ea72189db492264c4730141c73024685b3fca5fd1e",
+        "新版定稿/13-eleven-days-without-sleep.md": "41998b355721703f761685dd351fbf4628b2be67dfed8b3d37276f9e8f929ecb",
+        "视频/脚本/14.json": "2889a9b31bc7945ee55c306d3507b8557bf1efe371af8a97483a61172be800b8",
+        "新版定稿/14-the-fungus-that-turns-ants-into-zombies.md": "618900d05bd2cecc8d577c446146e4df98d71e070c0b779b40992820d1fdd332",
+        "视频/脚本/15.json": "9b42f089b79e4e0c54c254c948ac4d9ae28d224585095a373607122a0d7c6898",
+        "新版定稿/15-the-myth-of-the-unsinkable.md": "bc2d0c8613437b39149cd6e66729104b26efceb8681fb645f782a97b40007584",
+        "视频/脚本/16.json": "d25aa07f3fac316c26c2ae1006d3efa7eb82a396b66150432b50239c1628396d",
+        "新版定稿/16-the-bread-made-from-air.md": "4da63148111213f6d77451b0eb4193893e6fc2fc170400bc39ce5f5ffcaa0b20",
+        "视频/脚本/17.json": "9750857c3e2c67e6abe5ea6913cb0602347be8b58836bbbc03e2c4153bb12e1b",
+        "新版定稿/17-the-curse-of-the-pharaoh.md": "0dc7b6ee7f4ef05d5e4382beeb077d57578d0bb6a6b69415485008facae98717",
+        "视频/脚本/18.json": "5192b78e582c36fd7d5a34973d8314c5b23e13b8313c8960ac29653bd7fa5d8c",
+        "新版定稿/18-the-mould-that-changed-the-world.md": "ef41cea03f471fe3b9a53939c843e450da3325eb711f6414e108ae92a7518dd8",
+        "视频/脚本/19.json": "cc3c5eea0f7d9ec0712b2e58adba7e5ef8b61d6518a322f9b25a12fcc45282fb",
+        "新版定稿/19-tulip-mania.md": "3882d487383b759c31dda4785966091c362960cd873a5d83c530d08d52e2e97c",
+        "视频/脚本/20.json": "cc5ed6d7be8767e5e7e9b098e8f3836821c0b3f51c17581b2746722da1cf3001",
+        "新版定稿/20-the-5000-year-old-murder-in-the-ice.md": "8d55638070787f7ff5432c197292af1188c463a8b018e01bdefc32999b888e95",
+        "视频/脚本/21.json": "61c1569a26d7569ee0f586178be6b307b1c394c0a30c3cb02541c910038b0589",
+        "新版定稿/21-the-man-who-sold-the-eiffel-tower-twice.md": "e8e966b70f579235d696ba11fb01d3b2cae3fa26efb9071bbea95071be259e1f",
+        "视频/脚本/22.json": "e3027a42c532fee9935afcecdd0542713cbb907183802c2345b9472f93b75f59",
+        "新版定稿/22-the-building-that-melted-a-car.md": "49ae09483bc80bbc40a71551cd98aebec355d96d9ff7b2bcdea59a06fe599267",
+        "视频/脚本/23.json": "c4574a79fd3a58577a1402ce095ea9e4a0ea1f98883ce63e3cc60d126e819409",
+        "新版定稿/23-the-man-who-gave-machines-a-mind.md": "72ed3049e87fe75ce1e753d5e443bdbe6a7ab72f6e282e8467fbbb62be873169",
+        "视频/脚本/24.json": "f08620b534bb10b718f7515c805dcb541721427d855bd5a092b8954847a351b8",
+        "新版定稿/24-survival-in-the-ice.md": "cb7f810d9a74256e0c00625290be4f16207feb90f5719ca87d5d7c9912b91307",
+        "视频/脚本/25.json": "c73e854e052b3df9bd920d4a59fafb183dee19bd58765fa426af6ea3d7c9a329",
+        "新版定稿/25-apollo-13-the-successful-failure.md": "b6b7d55fe66e6e32116431ea955778fab779b8bda622df0ba1036c2f40a3969f",
+        "视频/脚本/26.json": "22349b0a29f05689aae5bd5e9d0907846a68e6ad42949eb0b8cc392d6dce18d6",
+        "新版定稿/26-the-language-the-children-invented.md": "f64089bc9487e756522746058fba2e27c45e56ffc339d8590038643012eb496d",
+        "视频/脚本/27.json": "e1214d8e9314a1cb54da82e2532889198bec555d6be9189fbfb43b5fdedcd728",
+        "新版定稿/27-life-in-the-forbidden-zone.md": "c592b44a8e6ec26f3c2e96ed19191958e57c81d31e54329c20d726e538c10e52",
+        "视频/脚本/28.json": "e0c8e6c644ab0c5d52d99c23461b99e9ae1574aa574369e56feb35e2ac20698b",
+        "新版定稿/28-a-handful-of-wormwood-that-saved-millions.md": "d609cd99ab982365c6f0167e211c55b31e52a354d50918780f3da66ef702a5bb",
+        "视频/脚本/29.json": "1e5f1d9f0c22b5d14b757f029be694c2a3969666d732ca79bb695282763de791",
+        "新版定稿/29-the-volcano-that-gave-us-frankenstein.md": "69045ee19a170c7ea9d0008b468c7e947bc28b639b834c0192dc0aeafc3ef4d0",
+        "视频/脚本/30.json": "34eb48747f1ea7d14b41ccc0cf45aa1592907aacf6618999b3506944e2ff4a0c",
+        "新版定稿/30-the-stink-that-built-londons-sewers.md": "84dbf19cee0045ea2608b13ee0677cb9623dd8fbb371c67093bf50c64186137a",
+        "视频/脚本/31.json": "d81f8645a1e5663ba8c84668e817cdb218bc6689079fbfd51326b3a7fd3cd384",
+        "新版定稿/31-the-book-twelve-publishers-turned-down.md": "7abd20fed44918dcf01586c056e9d0acd9d2ad3b90aa7d3d403762d9f06d2659",
+        "视频/脚本/32.json": "357aa59bed62154f7302a5efcf528859b303004e028657b93058138fe931bf85",
+        "新版定稿/32-the-planet-that-was-demoted.md": "1421f2b0921e7e9478ebc48777e3e8b2c979172de63d0124015107c3750a3542",
+        "视频/脚本/33.json": "da87d68fdee3401e499aa145c23d9b2c663ce3b27f79feec5eca1ddb0d794e72",
+        "新版定稿/33-thirteen-in-the-cave.md": "b96faac786ace911140b835d9f9c6e37eeb0c5f3e7a077b913805b8942c56067",
+        "视频/脚本/34.json": "74921848a6bb25a2ba631813f60d4756c9ff90c64c03a2fb936ce34f310ce509",
+        "新版定稿/34-the-game-that-escaped-the-soviet-union.md": "e3244b67b21e283e67f4e88e932a1dbb85bf273a48ee009b3f435e1c5814831c",
+        "视频/脚本/35.json": "d8439077dc2c909b1c6cbd1347f31e9625f25fffe447d6f5945c9492561f1a16",
+        "新版定稿/35-the-bird-that-beat-the-letter-home.md": "ba8c38e38b21a3345624e2d44fd352561d3096cfb6f62214b48ea9b6e66faead",
+        "视频/脚本/36.json": "e35a3dcb2ff0f0c7054493331370c0364190771ecf56e0dad6dbee3af860a628",
+        "新版定稿/36-the-company-that-invented-its-own-killer.md": "4b0f1d016d3e94bd7f77d3a36bfc423700006c7a23c0b0cae5ca68d5c5af883f",
+        "视频/脚本/37.json": "b1b8945ccf3581df48ade5714a2d0e93e4cc6812708f95bef6f5e44439106c99",
+        "新版定稿/37-dynamite-for-the-heart.md": "4933e24d2384471a96d9c8c26c15d5224a85dae98d9971a3fed15b4978dafc51",
+        "视频/脚本/38.json": "8d0379032000967c9f72e550574874949f798eefbfbfb58ab2b38e4e23ecbc6b",
+        "新版定稿/38-the-web-beneath-the-woods.md": "abb7eead9f3da0b2b326ceed5a649cfbf71fc28dad22e0d52f7b19caa798c54f",
+        "视频/脚本/39.json": "6c3e9539f624b192335312912572a05fba2c7bcfb821b44c3c1dbb21b42527a7",
+        "新版定稿/39-y2k-the-crisis-that-success-erased.md": "abbc9804661126aa006595031ed8f201ce55e8eb5fd9e1ad5669c0c6fcdb80ab",
+        "视频/脚本/40.json": "1c50d1a47ee6f8528d0f7299e8a45bc8c30312622f3f465a964d21cc1395ee7f",
+        "新版定稿/40-the-glue-that-failed.md": "dce9f78f3a0828307843dd667b7eeebf3380a3630f03d234bd5824870aba61a1",
+        "视频/脚本/41.json": "6b6673ffc1db986f4c355f3685de6a0faf2272cee042c5e917f26a8b3057c2be",
+        "新版定稿/41-the-toad-that-invaded-australia.md": "eca590f97120f4e76d719e29aa07b094f9117cd462f5a70c029331a63b85f710",
+        "视频/脚本/42.json": "eceb10ae92aa4b9cd23180d1138149a7fa7b674385462c898bc0d2283c8739e7",
+        "新版定稿/42-the-telescope-that-needed-glasses.md": "d4aa049779a0eba06c555d76ca14103648378eef90465df424120126fa771280",
+        "视频/脚本/43.json": "aa9da1246e293c80408edf94a7c9bed65ef3178ae7cb5265a8273e8c4396687f",
+        "新版定稿/43-from-a-garage-to-the-top-of-the-world.md": "bd70c83e5ac867238ca179f3c9f3548eb9cbdcae1f6df40994aef0bda721ae54",
+        "视频/脚本/44.json": "87f531203ca38d88ae5e71ffd88190b1530715cdc0adba146c2a4a78ebe9b976",
+        "新版定稿/44-the-night-sweden-switched-sides.md": "d3f7ad2ac43f02aae9205a15b9808280ca3db597d6ef3b36aca8ca6176c5f74a",
+        "视频/脚本/45.json": "569406607d2bf18dce5e916052d6460509450d97fe17ac9820be524f59c2c3cc",
+        "新版定稿/45-the-record-humanity-threw-into-the-stars.md": "27deabec4a8478fe570f7f237a2fb850ffdce3deebfd952f512d82a60cf7314f",
+        "视频/脚本/46.json": "c8c7ce7a76226f5274a91af693d24410d5eacfa59206b085a70d133f3634c12b",
+        "新版定稿/46-lost-in-the-glare.md": "7aaa06e875fe56c5d78210b90a8769b8b2051714025ef10df37c2fe89db7a68c",
+        "视频/脚本/47.json": "0417489c8a672e7e63d46c2239d847acabda2d93160cabed3b0fb14f701ac39a",
+        "新版定稿/47-shadows-of-wolves-over-yellowstone.md": "34c68cf4d0f0ef3545ad68edf3367fcb76ab500174b11ae7f83b782cd5a80a2a",
+        "视频/脚本/48.json": "4f146ce6a70bb0bf5d2c6e1f6b47bd6a2bcc2f311be7a948092d7bde1a08f449",
+        "新版定稿/48-rice-for-the-world.md": "76416be21f857e8a05c37baa33ac90f5785812291485231c249e38a1d0edf15f",
+        "视频/脚本/49.json": "fdcc3a438e50a32fdf8c7bcbe27a97d20fc101b6169ca305f920fedbd3303c3c",
+        "新版定稿/49-the-woman-who-won-two-nobels.md": "1e4fb068aa9ae4513d01b199a074b84dc9d819f57b2134df32588a0e4a4b6b6a",
+        "视频/脚本/50.json": "1d4a41824dfa5e8d11e5990b2a4b802ba2fcc3231d85b15ed6630396c6f027bf",
+        "新版定稿/50-microplastics.md": "5439589bacf1abb2abbb184eb658492bc02bcc5bdd8dfd8ababcd80ab93621cb",
+        "视频/脚本/51.json": "39886d83593a31fb575b124ecf6457190773dca695b6ff78f8434d52aebd6d7c",
+        "新版定稿/51-the-joke-that-became-ok.md": "8de30ea4846f4e88d8b71c8d5ced3ee63a73955e39b7dc3c5adad0971b854fd0",
+        "视频/脚本/52.json": "832249bb44617d38ede75560a5e57af6ba79ec284c9609407cb30ce879f6f862",
+        "新版定稿/52-the-killer-smog-of-1952.md": "179500361e4a837d7edb2e0497e08677d5abd425e8ad542f788205a6f7667b4b",
+        "视频/脚本/53.json": "28b604bfa72896534736293f79e9b3aabd8e3678672f4dc6c66337c02a8f1518",
+        "新版定稿/53-the-wind-that-kept-no-time.md": "6fab302dcadb5a2c509436f5fbf8d9ef925c008a36f5b422749bd405aa4701d3",
+        "视频/脚本/54.json": "b1fcb8ae86045b3d35ccfa0f52eb9594b8921d43063835769ee3ecc4543be75e",
+        "新版定稿/54-the-sound-that-shook-the-world.md": "abd5f4bfe11ed73bcc5326a92cf99b0a8e5ad70adaca1ce8d0c8f622b57fa519",
+        "视频/脚本/55.json": "06344fc0ad5975cba2f4dbe5262a9957dd7c024f9a05b9abbfa327f32ea8c719",
+        "新版定稿/55-the-secret-of-romes-undying-concrete.md": "a7759eddcc7ec06dfd6dab7912e06b3b5ef8576df0c025a97812006669d0be61",
+        "视频/脚本/56.json": "22ca3b4180a8ae6a37b4c8e25f5e357d5696d9b23bf148fb7064425d1403e59c",
+        "新版定稿/56-the-letter-that-startled-darwin.md": "aad1e2aab9ff28f534a510362e807ef401e0b502475240f4b2531e9e518a8d7a",
+        "视频/脚本/57.json": "a0ba65b769430289a33ec1f7bc6dbf91dad8d2c3b1d725348851de546563cd6f",
+        "新版定稿/57-a-change-of-anthem-in-the-deep.md": "0731d925a98bafc222718c111985362e166b38b9189c516219a481e36d0d4b6e",
+        "视频/脚本/58.json": "8b0bd3d7d39000518789e9907aec53bd52fab1b9d6b4f22a152d158635b6e8ee",
+        "新版定稿/58-from-a-scratch-to-a-world-without-smallpox.md": "1aa2a0d2c51da76f9c9ebb88d049dd1a55ab530791566fdbf6476e5aa48c15ee",
+        "视频/脚本/59.json": "df1db4174d942371166048b220ef6d55b0b700b2ce31c866edf6dfdf33b92f0c",
+        "新版定稿/59-saving-the-sky.md": "7bf9c4661e733e7af23dc2f11bc820b809ec93dad75a94fb6a12748226e8722c",
+        "视频/脚本/60.json": "eed1655c0919db32a3a016b24791b93d25683f287c7ccb2523e168a69bddc562",
+        "新版定稿/60-the-scientific-giant-who-changed-the-world.md": "9d1578e7af085559922394a3db01de4eb22dc1c520ca17de5cad68e5a38a31a8",
+        "视频/脚本/61.json": "2d08704376faff25b06d334d7567a381460975a56a4cef6b4ae97b3580ea8dbc",
+        "新版定稿/61-the-steel-box-that-remade-the-world.md": "135cc9cfbcbd68d957f831cf55558112a45b1cc3749366cb9a304507355c7d2c",
+        "视频/脚本/62.json": "4b3a97f2b6404e1b091537c21f01fc60088902f596803345983c38be52ec79eb",
+        "新版定稿/62-dolly-the-copied-sheep.md": "62817546ae33824b57255f941135c503e41a41f905331ed4af1e32850fa00960",
+        "视频/脚本/63.json": "5d266d80f9cf29cce6f7e34531449cf75191a42f180102685a5bcd04849e75c5",
+        "新版定稿/63-the-crowded-heavens.md": "6ef79d4310019dfefa7364b8a428411a6bc337678c69fa5cbc89b84689e253a4",
+        "视频/脚本/64.json": "12a36862765922d72ce6e5a4c5fe85f548364eed65fe3b3b284f0b38899a965f",
+        "新版定稿/64-the-day-zero-that-never-came.md": "e0c83cbe36745adbbffd33a156fa8d0671704ea976cb13215cabb612639b37a5",
+        "视频/脚本/65.json": "78e60dd231df4ac71df83e21a26f82bbf706dc0bef80bee156a36bc287661ede",
+        "新版定稿/65-the-day-the-doomsday-vault-opened.md": "71a50d32e25955e713e6ca108ab68422a4fd5b77c914a9074eece1dc33cbff89",
+        "视频/脚本/66.json": "ad5324af4270834186285a5e7273a90213094077adc6f9e1d5c7b0ebff9cf035",
+        "新版定稿/66-the-burrs-that-became-velcro.md": "75dbe6c148ca97a7780ac1737f33f58bf8ee27a51aa729a83315705655b12b2a",
+        "视频/脚本/67.json": "6839a46ebdb51cdcff6a65ca238efc228f1e114efd1734cee6c994ca659a29cb",
+        "新版定稿/67-the-cave-found-by-a-dog.md": "10e37b81eeef4e3289448a6b4fd679f34d495a4fc087c57747e6dca949e00cf1",
+        "视频/脚本/68.json": "568f72dacac48e206811d35a57c7fa22e3da428783f64e507c184f2090e579f3",
+        "新版定稿/68-the-last-flight-of-the-hindenburg.md": "c25f58ffb0e3748336767bb7470dd7cef10374c53cbb48af89dba26f65b2dd5c",
+        "视频/脚本/69.json": "c493528f054e2d572e56b8ea15be0950158e86e3d3271b0f94237e8d296163ff",
+        "新版定稿/69-the-trial-of-the-father-of-the-atomic-bomb.md": "570eda5b7d979d71e9bcad1c67e295ed326ecdb8b61e663aba33272c8a9451bd",
+        "视频/脚本/70.json": "0f6827f02cef0d2416f9d7d69b7e1c5553acee7cf6dc89f3379201264587236c",
+        "新版定稿/70-the-stamp-that-changed-the-post.md": "edfd85cea33730ba67e4210e756da1f2945f1a21bce55c7e75497cb5f0095d80"
+      },
+      "source_file_count": 140,
+      "working_script_count": 70,
+      "target_request_exactly_matches_context": true
+    },
+    "request_source_sha256": {
+      "视频/脚本/28.json": "e0c8e6c644ab0c5d52d99c23461b99e9ae1574aa574369e56feb35e2ac20698b",
+      "视频/工具/初稿生成/gen28.py": "067592d5540ce36ac2b25a04603b425d931fa297d27a0da25f3afb3574cdaae5",
+      "新版定稿/28-a-handful-of-wormwood-that-saved-millions.md": "d609cd99ab982365c6f0167e211c55b31e52a354d50918780f3da66ef702a5bb",
+      "视频/制作记录/28_待改清单.md": "3e2c391b27b243b13c5a52f8bca3146a092bfd63c062e6be7e5257da3558e07d",
+      "视频/制作记录/逐句确认/28.json": "e168a3e815774ec19b74523c04ebce328ba80020ca0ed2073a2254bfa71d0171"
+    },
+    "accepted_source": {
+      "id": "28",
+      "path": ".github/video-revision-batch/latest-accepted-reviews/28.mp4",
+      "sha256": "3ad04ab6556a9e76e7701d56985e5f9b3019a811e1cd04dfcb11d5421a6ab456",
+      "git_blob_sha": "88b366b44276c354343b18a5d24051df1be9b2b8",
+      "bytes": 17384958,
+      "width": 3840,
+      "height": 2160,
+      "summary_frames": 60,
+      "actual_quality_passed_source_run": 43543967031,
+      "reference_role": "own-latest-accepted-voice-for-ONLY28-nine-frame-effect-preview",
+      "aac_adts_sha256": "82898283b5f5c55b84912f8838ebdfed1a337300db09de759fc55a3eb389ddd2"
+    },
+    "checker_reference_preparation": {
+      "article": "28",
+      "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+      "reference_prepared": true,
+      "acceptance": false,
+      "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+      "source_sha256": "e0c8e6c644ab0c5d52d99c23461b99e9ae1574aa574369e56feb35e2ac20698b",
+      "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+      "checker_program_sha256": {
+        "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+        "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+        "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+        "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+        "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+        "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+      },
+      "reference_calls": [
+        {
+          "sentence": "标题",
+          "piece": null,
+          "reference_kind": "title-default-raw",
+          "method": "create",
+          "source_slice": "A Handful of Wormwood That Saved Millions",
+          "exact_native_cache_key": "8b9e2da3de253ddb6ead738e182bc65055204bff.pkl",
+          "cache_input_text_sha256": "06408ba8f2805bb96d3469d47eb9327d79f4ab479e87d60fd441e112765f4462",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "标题",
+          "piece": null,
+          "reference_kind": "title-default-timed",
+          "method": "create_timed",
+          "source_slice": "A Handful of Wormwood That Saved Millions",
+          "exact_native_cache_key": "3cbefaae74c4249e8f2c3754228902bd33b1e268.pkl",
+          "cache_input_text_sha256": "06408ba8f2805bb96d3469d47eb9327d79f4ab479e87d60fd441e112765f4462",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Project 523, a covert military mission involving many institutes, was named after its launch date, 23 May 1967.",
+          "exact_native_cache_key": "7618e0ea194fd34f7999ef07950754c6b54c2242.pkl",
+          "cache_input_text_sha256": "17acc85c85df65a95a16ed7a906af6e90264d83346dc99673d389c474366ab65",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Project 523, a covert military mission involving many institutes, was named after its launch date, 23 May 1967.",
+          "exact_native_cache_key": "f1f45a097eba9c1491de066bd7e36de064146775.pkl",
+          "cache_input_text_sha256": "17acc85c85df65a95a16ed7a906af6e90264d83346dc99673d389c474366ab65",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Project 523, a covert military mission involving many institutes,",
+          "exact_native_cache_key": "946dc8d60edc4f96ae40eda8aec81a466c92c994.pkl",
+          "cache_input_text_sha256": "650c78d806642d6cedc28576264273e921701cce42035e7216f3faaaa622edb6",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "was named after its launch date, 23 May 1967.",
+          "exact_native_cache_key": "ba2dae9a376e9321d8e45810ee81130e6064a387.pkl",
+          "cache_input_text_sha256": "5bcf5bd609c84874123efb6be1a38a2707a8e383aaaa085ac9153b9045dc2e21",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Project 523,",
+          "exact_native_cache_key": "db7f86c0f0fd11a4e3991aa5f0770851f34a54ac.pkl",
+          "cache_input_text_sha256": "6bc2925525c47581fc3038a7780dd173c2ceeef569ed0ed251493aa2ff5431b2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a covert military mission involving many institutes,",
+          "exact_native_cache_key": "8e25db1bc6e90acd052647a5c671df6f0b4532a9.pkl",
+          "cache_input_text_sha256": "340724e1ee45ee80e1fa5475504d20931150752e5cb9cd60799435755cd35e63",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "was named after its launch date,",
+          "exact_native_cache_key": "b9c02dcf251081cbccdb5ed61c71e5a297f9f9a3.pkl",
+          "cache_input_text_sha256": "7e638cad51ea0144e44a95d7c5dc0f596f475095c46d760bc30b3d19cf592522",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "23 May 1967.",
+          "exact_native_cache_key": "a2fe757cafff526739881a7663dce3ade953d6ea.pkl",
+          "cache_input_text_sha256": "5e1de12da5db64cf323333321c7162e6bda8cc3866649608ab3209662d7a1740",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Its urgent target was the chloroquine-resistant malaria weakening troops in the Vietnam War.",
+          "exact_native_cache_key": "1a99bb9e68d78f32d9a347d95b6e5808f645c7f2.pkl",
+          "cache_input_text_sha256": "797848f3174df67692a993511666c3a218061f272f0e599219f0d5bd7c9c7ac5",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Its urgent target was the chloroquine-resistant malaria weakening troops in the Vietnam War.",
+          "exact_native_cache_key": "356c42eed28e9a1f90f877287dcb81e29df90c2a.pkl",
+          "cache_input_text_sha256": "797848f3174df67692a993511666c3a218061f272f0e599219f0d5bd7c9c7ac5",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Its urgent target was the chloroquine-resistant malaria",
+          "exact_native_cache_key": "588b4867e01602acea4b9cc75741d28616af206d.pkl",
+          "cache_input_text_sha256": "d6f676456bd59518225780b5858e1856498410e86e5fdaa358bad31dad70f44a",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "weakening troops in the Vietnam War.",
+          "exact_native_cache_key": "23a06aaef833b1d5202b8fd87fb1d9ed59c7dde1.pkl",
+          "cache_input_text_sha256": "d6394a52cd8ad7ebdb5d6188d24e835be71981c0ec80602f4c59b7860037663f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In January 1969 Tu Youyou was entrusted with leading her institute's research group, despite having no doctorate or foreign training.",
+          "exact_native_cache_key": "84618bdf0d69cb273994b3af7132c50f3ba2c19d.pkl",
+          "cache_input_text_sha256": "6d99b6d66f71d480d8b9fe78989db96d87708a9ccb433025aeda827985b9de55",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "In January 1969 Tu Youyou was entrusted with leading her institute's research group, despite having no doctorate or foreign training.",
+          "exact_native_cache_key": "d1670fcd190e997fb6f8e5ec1437e893c4f83ec7.pkl",
+          "cache_input_text_sha256": "6d99b6d66f71d480d8b9fe78989db96d87708a9ccb433025aeda827985b9de55",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In January 1969 Tu Youyou was entrusted with leading her institute's research group,",
+          "exact_native_cache_key": "1e3cc9337e8624f0039e335238df62312d9976e4.pkl",
+          "cache_input_text_sha256": "ac38dcf512c06d886364f1b382c6121fd2750a9b80356bdeff05def73597f6ba",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "despite having no doctorate or foreign training.",
+          "exact_native_cache_key": "7aa9e308526e5e9b8fd37647eb7a982d9dbb05ef.pkl",
+          "cache_input_text_sha256": "2b93229fa73f8cee680991d873600cf79a7b3280cc885bbcb5a27835d7989c0a",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In January 1969 Tu Youyou was entrusted with leading her institute's research group,",
+          "exact_native_cache_key": "1e3cc9337e8624f0039e335238df62312d9976e4.pkl",
+          "cache_input_text_sha256": "ac38dcf512c06d886364f1b382c6121fd2750a9b80356bdeff05def73597f6ba",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "despite having no doctorate or foreign training.",
+          "exact_native_cache_key": "7aa9e308526e5e9b8fd37647eb7a982d9dbb05ef.pkl",
+          "cache_input_text_sha256": "2b93229fa73f8cee680991d873600cf79a7b3280cc885bbcb5a27835d7989c0a",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In an exhaustive search, her team combed over 2,000 folk recipes, compiled 640 prescriptions, and evaluated about 380 extracts from some 200 medicinal herbs.",
+          "exact_native_cache_key": "7d429d1e435b12b74a749296f62fc1d3b76a3a1d.pkl",
+          "cache_input_text_sha256": "3f7e676420ea22316308836b6d83e8b1c3cdfbe425b91070a9ce593ad0ade4fe",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "In an exhaustive search, her team combed over 2,000 folk recipes, compiled 640 prescriptions, and evaluated about 380 extracts from some 200 medicinal herbs.",
+          "exact_native_cache_key": "9d5d31ec145320b995df9bf6e626bccdf7e5bb13.pkl",
+          "cache_input_text_sha256": "3f7e676420ea22316308836b6d83e8b1c3cdfbe425b91070a9ce593ad0ade4fe",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In an exhaustive search, her team combed over 2,000 folk recipes,",
+          "exact_native_cache_key": "198f16e567833cc94f9a3a867aa2426669862de2.pkl",
+          "cache_input_text_sha256": "d05832f71adcd71974f190aa15c0d5f74c24d88c059d1d92fefe3b065ff15fa5",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "compiled 640 prescriptions, and evaluated about 380 extracts from some 200 medicinal herbs.",
+          "exact_native_cache_key": "d53805545c7fd7409ef61876626efbddce3202d6.pkl",
+          "cache_input_text_sha256": "be32f47a0c42837463ac22f99239c86b9ab941fe5644ad07965c2eef3f1ebfb0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In an exhaustive search,",
+          "exact_native_cache_key": "c0e617430099c8f9137f20a53667c83846dfffdd.pkl",
+          "cache_input_text_sha256": "85936dc59a80b9832c1d843fdcd8dfcfb2c6391a66ae7c0b3caf3bf9535a4d86",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "her team combed over 2,000 folk recipes,",
+          "exact_native_cache_key": "494fc7dcff9b6d780ad73998cb899aa4b522c638.pkl",
+          "cache_input_text_sha256": "e7922827d6ef210cb826910a76322591197e4596368777204200fb295e9ec15f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "compiled 640 prescriptions,",
+          "exact_native_cache_key": "7f87b6b67d8c825c196a4dd19d032a6444fddc90.pkl",
+          "cache_input_text_sha256": "4339bf60aefc0c73e10d528dfecb9859adfb6142670848fb8ef41d200920a05e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and evaluated about 380 extracts from some 200 medicinal herbs.",
+          "exact_native_cache_key": "8378d63161ce5e5fad5aba181e6712aba179dc81.pkl",
+          "cache_input_text_sha256": "a281efb851eab7e880cf8ce179ef3dc79a18f40cf8d22583065a2c6d8f78b4e0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Qinghao, or sweet wormwood, showed flashes of promise, yet its results were erratic.",
+          "exact_native_cache_key": "6496e7f2e4c2e53c2f9ae2d8af4bcea634d887d2.pkl",
+          "cache_input_text_sha256": "6d810042a2108b4d0baac62bd6404f0d47e75c672e833aaf7ce2e8e85f14790b",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Qinghao, or sweet wormwood, showed flashes of promise, yet its results were erratic.",
+          "exact_native_cache_key": "b3a4d83f64b1c10b905809eacda982498327c793.pkl",
+          "cache_input_text_sha256": "6d810042a2108b4d0baac62bd6404f0d47e75c672e833aaf7ce2e8e85f14790b",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Qinghao,",
+          "exact_native_cache_key": "f8cf3496640274757a14eed4f3227a0608c5551d.pkl",
+          "cache_input_text_sha256": "f8b52971f43ae3415e5cfda1f36ef2cb9eb25be30768723f58e7b542cb304ffe",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "or sweet wormwood,",
+          "exact_native_cache_key": "802203581cfbc225f56075f446cbfe482dfebf3e.pkl",
+          "cache_input_text_sha256": "0f282580f97dac2a5e50812702702d726f2e952a2dc325d0e8f507704ee9ceea",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "showed flashes of promise,",
+          "exact_native_cache_key": "c3e26cb7d2073e18dbfff7a48a964b479f9b3f11.pkl",
+          "cache_input_text_sha256": "c8f79dd4b7ab8582e0942586cad6d65e85de5abe9c5dc398e41f6a53f547b4df",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "yet its results were erratic.",
+          "exact_native_cache_key": "cf6a4bf6f038b3e58a9c05240d94523eabbf52ce.pkl",
+          "cache_input_text_sha256": "03eff8a32395f8a2a9425ae179aecea96fa3220fae4417a9a20ee48ae47d83cc",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Seeking a clue, Tu revisited the classical texts.",
+          "exact_native_cache_key": "8b00db16714ac6578ed76d89dff7de5b2e8f788e.pkl",
+          "cache_input_text_sha256": "c92e66ef6672cb3d9406ccdb4c6488618ab3f1d14915e0c24897e713f993b249",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Seeking a clue, Tu revisited the classical texts.",
+          "exact_native_cache_key": "01b0bd02d6afe987855d75ed9be6d6a8020eb23a.pkl",
+          "cache_input_text_sha256": "c92e66ef6672cb3d9406ccdb4c6488618ab3f1d14915e0c24897e713f993b249",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Seeking a clue,",
+          "exact_native_cache_key": "82b4275b672dbf236ed0b57c8398585d9f188d8a.pkl",
+          "cache_input_text_sha256": "6cb3d01ae2c7d1a54b7cea81e8315f1cf7b073d3d941d0d5a65140444a4b7654",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Tu revisited the classical texts.",
+          "exact_native_cache_key": "c0ba3dd39bb6164ae5cdb40945048e78dd7a0ecc.pkl",
+          "cache_input_text_sha256": "88fa730fafd47fc1f06bf3c64c8953de5411a49b0352909143aef10b6fb7b4bb",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Around AD 340, the physician Ge Hong's handbook advised taking \"a handful of qinghao immersed in two litres of water\".",
+          "exact_native_cache_key": "f0e09acfc82b6c93056206c08a60e04729539576.pkl",
+          "cache_input_text_sha256": "5f401c0c29dc59dc9e58788c0a01947322f85996d04b789ace00bc72fdf9a0dd",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Around AD 340, the physician Ge Hong's handbook advised taking \"a handful of qinghao immersed in two litres of water\".",
+          "exact_native_cache_key": "ee1b6e7816c6a5b8437c8b7c8b4e49f143c853e7.pkl",
+          "cache_input_text_sha256": "5f401c0c29dc59dc9e58788c0a01947322f85996d04b789ace00bc72fdf9a0dd",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Around AD 340, the physician Ge Hong's handbook advised taking",
+          "exact_native_cache_key": "f7716277ad9833e2777f626a97bfbc6cd9a078b7.pkl",
+          "cache_input_text_sha256": "f04a9b2a9546d7d8d583384b565cd356b30f9d802087bf719b24ad16ff6e404a",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "\"a handful of qinghao immersed in two litres of water\".",
+          "exact_native_cache_key": "1442f325b7d1e57de2cf71eba0f715ebc76e6495.pkl",
+          "cache_input_text_sha256": "bd98ac8fb1580204c177de75fb6f5665d724bf43a15d81dbde2e83e0a9db2c36",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Around AD 340,",
+          "exact_native_cache_key": "7ab1b024b4e3349f163c9cafdf3c12b0f2638388.pkl",
+          "cache_input_text_sha256": "bd622a73f7276d6d77837c4134ef90bbe82bb6e35f9ac21d4acb8587fbc456ae",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "the physician Ge Hong's handbook advised taking \"a handful of qinghao immersed in two litres of water\".",
+          "exact_native_cache_key": "94ba4fe8b19090650228cca9c8e59d9c0764edaa.pkl",
+          "cache_input_text_sha256": "04ecae2cebc020372fdd25339da3b91e6146dba4a90832f416afb41052493782",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "This bypassed boiling.",
+          "exact_native_cache_key": "aadbbe1a4519ca020cb724ee3f660bc217d9e314.pkl",
+          "cache_input_text_sha256": "06d2f40bb10210765dc3d7f5460d81db3197ce82218e3f0598a64d1ed524d62a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "This bypassed boiling.",
+          "exact_native_cache_key": "9bb000ea3506255289898adbcf650b7e7874eef4.pkl",
+          "cache_input_text_sha256": "06d2f40bb10210765dc3d7f5460d81db3197ce82218e3f0598a64d1ed524d62a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Tu suspected heat during extraction was degrading a delicate component, so she switched to ether, a volatile solvent boiling at about 35 degrees Celsius.",
+          "exact_native_cache_key": "d31af1d1118cc23cb5adc9d127e46295c74914d9.pkl",
+          "cache_input_text_sha256": "a243eb3a6de41511e51b7e5df8cc01356b32ef15f2c940bacdd4f30c0b5adc28",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Tu suspected heat during extraction was degrading a delicate component, so she switched to ether, a volatile solvent boiling at about 35 degrees Celsius.",
+          "exact_native_cache_key": "c6a2dbb2d770447500d4f2848a4355f525aaed59.pkl",
+          "cache_input_text_sha256": "a243eb3a6de41511e51b7e5df8cc01356b32ef15f2c940bacdd4f30c0b5adc28",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Tu suspected heat during extraction was degrading a delicate component,",
+          "exact_native_cache_key": "cc2f3e5b96ae5f2fd2fae8f10c647eb823399f6a.pkl",
+          "cache_input_text_sha256": "c06d0dd78447a59b3bd83c796c19b6c38c0416cfcaec46564e8a4223009a846c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "so she switched to ether,",
+          "exact_native_cache_key": "9052a63e0cb2eebae327eb2b4f6f697a6831f179.pkl",
+          "cache_input_text_sha256": "bc876ec4ecf1902fa5411c6d9f67d9c4e7777c29ae4b305391487535b3a53d3e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "a volatile solvent boiling at about 35 degrees Celsius.",
+          "exact_native_cache_key": "83653625bc418ed32b83bf3bff4c4ce256e33203.pkl",
+          "cache_input_text_sha256": "47a0d19ae97b1eff80f7ccf03480bc2c7805e1f28e628d55a568e60ac1380b5c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Tu suspected heat during extraction was degrading a delicate component,",
+          "exact_native_cache_key": "cc2f3e5b96ae5f2fd2fae8f10c647eb823399f6a.pkl",
+          "cache_input_text_sha256": "c06d0dd78447a59b3bd83c796c19b6c38c0416cfcaec46564e8a4223009a846c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "so she switched to ether,",
+          "exact_native_cache_key": "9052a63e0cb2eebae327eb2b4f6f697a6831f179.pkl",
+          "cache_input_text_sha256": "bc876ec4ecf1902fa5411c6d9f67d9c4e7777c29ae4b305391487535b3a53d3e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a volatile solvent boiling at about 35 degrees Celsius.",
+          "exact_native_cache_key": "83653625bc418ed32b83bf3bff4c4ce256e33203.pkl",
+          "cache_input_text_sha256": "47a0d19ae97b1eff80f7ccf03480bc2c7805e1f28e628d55a568e60ac1380b5c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "On 4 October 1971 sample 191 completely inhibited the parasite in infected mice.",
+          "exact_native_cache_key": "45f80bb18ed3858c59fc62e83bbe8929278f00df.pkl",
+          "cache_input_text_sha256": "0ceef58a438d75d34bd2c10235fd07257cfa50619a27fa030361eed957dafb59",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "On 4 October 1971 sample 191 completely inhibited the parasite in infected mice.",
+          "exact_native_cache_key": "9c2a88169f965179a3ac0033556e2ed2c50437e0.pkl",
+          "cache_input_text_sha256": "0ceef58a438d75d34bd2c10235fd07257cfa50619a27fa030361eed957dafb59",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Efficacy in mice indicated nothing about human safety.",
+          "exact_native_cache_key": "b6defa2e76f6e9818307bbc7c2630c43bc91ca7f.pkl",
+          "cache_input_text_sha256": "17cae80f74e1d397e443ba34c1d6b6d77d223280204c3c747ca6d0aefadb3dd7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Efficacy in mice indicated nothing about human safety.",
+          "exact_native_cache_key": "f1313d2cbffec1afdf2ab4ec84e564c75eb5647b.pkl",
+          "cache_input_text_sha256": "17cae80f74e1d397e443ba34c1d6b6d77d223280204c3c747ca6d0aefadb3dd7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In July 1972, to assess its toxicity, Tu and two colleagues voluntarily took the extract.",
+          "exact_native_cache_key": "5cff8bb3c6050ecd3b00809bf521f82944f40a90.pkl",
+          "cache_input_text_sha256": "00e2b5678d9a2d7a2591207c887d533397bb383322fe44040d7b6e0cbff5cf40",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "In July 1972, to assess its toxicity, Tu and two colleagues voluntarily took the extract.",
+          "exact_native_cache_key": "a8184dfa9a5ff78eed157245e0ec4d2589451622.pkl",
+          "cache_input_text_sha256": "00e2b5678d9a2d7a2591207c887d533397bb383322fe44040d7b6e0cbff5cf40",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In July 1972,",
+          "exact_native_cache_key": "fced03a17746951cd58f5c30f462276daabac9f6.pkl",
+          "cache_input_text_sha256": "f869211fc6ef37312bbd9cc47ec4883facd466db0eb0527d3ccb16211e1a8437",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "to assess its toxicity,",
+          "exact_native_cache_key": "2d7c4217a9121b8916886e861be8677c26438482.pkl",
+          "cache_input_text_sha256": "6cb82bbb6da47496a81c4d1c05c49381ceb6df6abce802cfbd88435ee1d78141",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Tu and two colleagues voluntarily took the extract.",
+          "exact_native_cache_key": "d457f3f4daf7682dcca8ead58a3b62aa97174a12.pkl",
+          "cache_input_text_sha256": "14bb0e9f515c5e5c1bcafb411301422b7a8b9bda08443836816c1a1e441f729d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Thereafter, from August to October, it was administered to 21 malaria patients in Hainan, and on 8 November her team obtained pure crystals of the substance later named artemisinin.",
+          "exact_native_cache_key": "127a665ebbba8a0c073f6e9e02577396fb7ff69f.pkl",
+          "cache_input_text_sha256": "81e6c245c66f2cd909700bb4778f4f33b1baddbee38072bc04b9235a8dd80d20",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Thereafter, from August to October, it was administered to 21 malaria patients in Hainan, and on 8 November her team obtained pure crystals of the substance later named artemisinin.",
+          "exact_native_cache_key": "08947496b237a0972a2656ac5bb4b23ce2cc650d.pkl",
+          "cache_input_text_sha256": "81e6c245c66f2cd909700bb4778f4f33b1baddbee38072bc04b9235a8dd80d20",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Thereafter, from August to October, it was administered to 21 malaria patients in Hainan,",
+          "exact_native_cache_key": "f374bc802a2151d2d1fbeeff06cc928f9255635c.pkl",
+          "cache_input_text_sha256": "13c2237e94262c8d0cb481be557002f5634101c90489015bc2f425f618da9c99",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and on 8 November her team obtained pure crystals of the substance later named artemisinin.",
+          "exact_native_cache_key": "ae7b3a5e1d50d054cf71d635ff70647d3fdde0c4.pkl",
+          "cache_input_text_sha256": "c48468b6c1099a4b3cafd8ac42d34f7a9461e8c345759b2f5d64afb4e4d37920",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Thereafter,",
+          "exact_native_cache_key": "be72200a558052ce03edff95fcfd2dc4ed063aec.pkl",
+          "cache_input_text_sha256": "c829e6d3ec4da1af8340b113f47ff7f0b9affddd69474df752504e841e371c91",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "from August to October,",
+          "exact_native_cache_key": "45bf20c2c1d2853dd4b0bd497a58860a91d71161.pkl",
+          "cache_input_text_sha256": "17cd27f08df19806a657588546dd4ba3566f9739c932844882b87675d39efe06",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "it was administered to 21 malaria patients in Hainan,",
+          "exact_native_cache_key": "d9d30c5dac328b39103a301528b268482ccead05.pkl",
+          "cache_input_text_sha256": "40d82722cfe6e68f4d1cc2b5ca2be003262fd9719c5d6ac61431eb10a728a4c4",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and on 8 November her team obtained pure crystals of the substance later named artemisinin.",
+          "exact_native_cache_key": "ae7b3a5e1d50d054cf71d635ff70647d3fdde0c4.pkl",
+          "cache_input_text_sha256": "c48468b6c1099a4b3cafd8ac42d34f7a9461e8c345759b2f5d64afb4e4d37920",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In September 2011 Tu was named a Lasker Award recipient; its jury credited the drug with saving millions.",
+          "exact_native_cache_key": "3f378e2f33aa7f94743014a50f9e911f21cd3719.pkl",
+          "cache_input_text_sha256": "e2d25f7185e5c4b3985cec317ee9b79319f8a0979caf02b9fd7d17d023311bb3",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "In September 2011 Tu was named a Lasker Award recipient; its jury credited the drug with saving millions.",
+          "exact_native_cache_key": "c4c9d10ba8c0592d16170b921dbf657cba5c0b3b.pkl",
+          "cache_input_text_sha256": "e2d25f7185e5c4b3985cec317ee9b79319f8a0979caf02b9fd7d17d023311bb3",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In September 2011 Tu was named a Lasker Award recipient;",
+          "exact_native_cache_key": "87f9b070cbf42e40c45d95c08983ff0cfe35b3c9.pkl",
+          "cache_input_text_sha256": "26dab4fd370ef34bdae42d4cd374a0520978527c1c8f03c0c2bf98224d900937",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "its jury credited the drug with saving millions.",
+          "exact_native_cache_key": "2f35225356fd5de550b946cf9475408b77315c90.pkl",
+          "cache_input_text_sha256": "077359112a5576b9e4820a5a3c59ce732c3e161db887393625502af18d82531d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In September 2011 Tu was named a Lasker Award recipient;",
+          "exact_native_cache_key": "87f9b070cbf42e40c45d95c08983ff0cfe35b3c9.pkl",
+          "cache_input_text_sha256": "26dab4fd370ef34bdae42d4cd374a0520978527c1c8f03c0c2bf98224d900937",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "its jury credited the drug with saving millions.",
+          "exact_native_cache_key": "2f35225356fd5de550b946cf9475408b77315c90.pkl",
+          "cache_input_text_sha256": "077359112a5576b9e4820a5a3c59ce732c3e161db887393625502af18d82531d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "On 5 October 2015 she won half the Nobel Prize in Physiology or Medicine, the first Chinese woman Nobel laureate.",
+          "exact_native_cache_key": "fd2d64e4592b7ad3323a28bcca2587d84be6d6c4.pkl",
+          "cache_input_text_sha256": "945257c4e5c9cbbfc73c41961daa3509f0c1aaaa7b24e4d41b9ba27cca62d381",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "On 5 October 2015 she won half the Nobel Prize in Physiology or Medicine, the first Chinese woman Nobel laureate.",
+          "exact_native_cache_key": "a470a3e0007b358f735ce5b1cbc0ec1f257ebc86.pkl",
+          "cache_input_text_sha256": "945257c4e5c9cbbfc73c41961daa3509f0c1aaaa7b24e4d41b9ba27cca62d381",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "On 5 October 2015 she won half the Nobel Prize in Physiology or Medicine,",
+          "exact_native_cache_key": "36312be4ed58caee9579d86dd27124a69e90b7cd.pkl",
+          "cache_input_text_sha256": "fcc4c0bea23ac9a904475daed718783b3a17b4498b08031f0e6b6e5eb22898b8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "the first Chinese woman Nobel laureate.",
+          "exact_native_cache_key": "6818df7a1496707cbc06048bc7c9dc0294102081.pkl",
+          "cache_input_text_sha256": "7c6a4ae913c62418d331d2e57b02e6c23231974b8b25535c27873882f911693f",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "On 5 October 2015 she won half the Nobel Prize in Physiology or Medicine,",
+          "exact_native_cache_key": "36312be4ed58caee9579d86dd27124a69e90b7cd.pkl",
+          "cache_input_text_sha256": "fcc4c0bea23ac9a904475daed718783b3a17b4498b08031f0e6b6e5eb22898b8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "the first Chinese woman Nobel laureate.",
+          "exact_native_cache_key": "6818df7a1496707cbc06048bc7c9dc0294102081.pkl",
+          "cache_input_text_sha256": "7c6a4ae913c62418d331d2e57b02e6c23231974b8b25535c27873882f911693f",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Since 2006 WHO guidelines have endorsed artemisinin-based combination therapies against malaria's deadliest form.",
+          "exact_native_cache_key": "ea37471d559f122be87385114ce21bac9dbe82a9.pkl",
+          "cache_input_text_sha256": "8a99013c9ae38f11a0d5828c151507b3b52b7b9b3d50e713d8e5fbaba455d837",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Since 2006 WHO guidelines have endorsed artemisinin-based combination therapies against malaria's deadliest form.",
+          "exact_native_cache_key": "977be2cbfaef6383f25edb957227037c5e6bbb60.pkl",
+          "cache_input_text_sha256": "8a99013c9ae38f11a0d5828c151507b3b52b7b9b3d50e713d8e5fbaba455d837",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The essence of Ge Hong's line lay in the boiling it skipped.",
+          "exact_native_cache_key": "d73024be15fee5877a0dc300acec10a5668bbbae.pkl",
+          "cache_input_text_sha256": "d7b1157871339d142fb3f4106ebfa10295a9667a48b1eb6f1f5894221570a062",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "The essence of Ge Hong's line lay in the boiling it skipped.",
+          "exact_native_cache_key": "5c70b8a8eb8b6bdfa91d474cf96880c3fec262d8.pkl",
+          "cache_input_text_sha256": "d7b1157871339d142fb3f4106ebfa10295a9667a48b1eb6f1f5894221570a062",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "unique_reference_key_count": 77,
+      "raw_mother_cache_scalar_manifest": [
+        {
+          "exact_native_cache_key": "8b9e2da3de253ddb6ead738e182bc65055204bff.pkl",
+          "pkl_sha256": "3938a3bfa8e00ef715c34f178500cfb61a17fd109dd8a8faa0c5d6325e2603f3",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "标题",
+              "piece": null,
+              "reference_kind": "title-default-raw",
+              "method": "create",
+              "source_slice": "A Handful of Wormwood That Saved Millions",
+              "exact_native_cache_key": "8b9e2da3de253ddb6ead738e182bc65055204bff.pkl",
+              "cache_input_text_sha256": "06408ba8f2805bb96d3469d47eb9327d79f4ab479e87d60fd441e112765f4462",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "3938a3bfa8e00ef7",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            58880
+          ],
+          "unprocessed_array_sha256": "d89e63a810cddbe26246013192d52b06be0ae49b0891797f56f53a7035bcc2b7"
+        },
+        {
+          "exact_native_cache_key": "7618e0ea194fd34f7999ef07950754c6b54c2242.pkl",
+          "pkl_sha256": "70f1470940e659e756489c894d7e1b5ce51259016457928ce404c68821f75e1c",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Project 523, a covert military mission involving many institutes, was named after its launch date, 23 May 1967.",
+              "exact_native_cache_key": "7618e0ea194fd34f7999ef07950754c6b54c2242.pkl",
+              "cache_input_text_sha256": "17acc85c85df65a95a16ed7a906af6e90264d83346dc99673d389c474366ab65",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "70f1470940e659e7",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            281600
+          ],
+          "unprocessed_array_sha256": "542994e4c7052f04eee56b9a316c64d34dbe78b5626f9a2a1a2b39ef978deb00"
+        },
+        {
+          "exact_native_cache_key": "946dc8d60edc4f96ae40eda8aec81a466c92c994.pkl",
+          "pkl_sha256": "f88ab6c4a009332ae9409d99e1d08754fced8c0bc68f347049281149cc223b57",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Project 523, a covert military mission involving many institutes,",
+              "exact_native_cache_key": "946dc8d60edc4f96ae40eda8aec81a466c92c994.pkl",
+              "cache_input_text_sha256": "650c78d806642d6cedc28576264273e921701cce42035e7216f3faaaa622edb6",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "f88ab6c4a009332a",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            144384
+          ],
+          "unprocessed_array_sha256": "0aa297bbbdfe6950473676dd50b1634210d1348ca916d1a3a697c78618df0bb6"
+        },
+        {
+          "exact_native_cache_key": "ba2dae9a376e9321d8e45810ee81130e6064a387.pkl",
+          "pkl_sha256": "4a4327290403ebed88858e5e60a9a69cbfde5e8ecb8ef51d49f8d48f62a1446b",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "was named after its launch date, 23 May 1967.",
+              "exact_native_cache_key": "ba2dae9a376e9321d8e45810ee81130e6064a387.pkl",
+              "cache_input_text_sha256": "5bcf5bd609c84874123efb6be1a38a2707a8e383aaaa085ac9153b9045dc2e21",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "4a4327290403ebed",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            119808
+          ],
+          "unprocessed_array_sha256": "f3b8a48ec33bec368d27664e61bbb3c5a9d535535421152fcf195eb76469425c"
+        },
+        {
+          "exact_native_cache_key": "db7f86c0f0fd11a4e3991aa5f0770851f34a54ac.pkl",
+          "pkl_sha256": "4c2a90cec5bdf974ea2dba8d286d071c01c425b0e4d3431b72327c9a5de06616",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Project 523,",
+              "exact_native_cache_key": "db7f86c0f0fd11a4e3991aa5f0770851f34a54ac.pkl",
+              "cache_input_text_sha256": "6bc2925525c47581fc3038a7780dd173c2ceeef569ed0ed251493aa2ff5431b2",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "4c2a90cec5bdf974",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            47616
+          ],
+          "unprocessed_array_sha256": "d1b2fc586018243bf0babefb04595c59a6962ee21f031ac37733ba95241e4490"
+        },
+        {
+          "exact_native_cache_key": "8e25db1bc6e90acd052647a5c671df6f0b4532a9.pkl",
+          "pkl_sha256": "7bb3681d20fbddf9aab6e7af7c04e0dfb9ac4f1f9d907633130a6a3815f18082",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "a covert military mission involving many institutes,",
+              "exact_native_cache_key": "8e25db1bc6e90acd052647a5c671df6f0b4532a9.pkl",
+              "cache_input_text_sha256": "340724e1ee45ee80e1fa5475504d20931150752e5cb9cd60799435755cd35e63",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "7bb3681d20fbddf9",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            89088
+          ],
+          "unprocessed_array_sha256": "06f20af78fc5e35c4e8728e2cd2d0127a5a9eba370eba6db88f8c0123145e4f3"
+        },
+        {
+          "exact_native_cache_key": "b9c02dcf251081cbccdb5ed61c71e5a297f9f9a3.pkl",
+          "pkl_sha256": "8dab4ab0075559e11f3affdd8fe7e3ce4e0c8c721acbabbbd5e232f9d0812dc7",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "was named after its launch date,",
+              "exact_native_cache_key": "b9c02dcf251081cbccdb5ed61c71e5a297f9f9a3.pkl",
+              "cache_input_text_sha256": "7e638cad51ea0144e44a95d7c5dc0f596f475095c46d760bc30b3d19cf592522",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "8dab4ab0075559e1",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            47616
+          ],
+          "unprocessed_array_sha256": "3a5460fa62e1d3462b48aa5af784efdfad1be1d8bfc138929cd45612a172eb85"
+        },
+        {
+          "exact_native_cache_key": "a2fe757cafff526739881a7663dce3ade953d6ea.pkl",
+          "pkl_sha256": "ab25cdeb24a97b3fc052848034c8eac591d8f7ac645509be2d0de4756951ccdb",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": 4,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "23 May 1967.",
+              "exact_native_cache_key": "a2fe757cafff526739881a7663dce3ade953d6ea.pkl",
+              "cache_input_text_sha256": "5e1de12da5db64cf323333321c7162e6bda8cc3866649608ab3209662d7a1740",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "ab25cdeb24a97b3f",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            64000
+          ],
+          "unprocessed_array_sha256": "cafd7d07c4180470c0c5e38a517e57d92f8e10ecb7a26e2b6d566a7a21106347"
+        },
+        {
+          "exact_native_cache_key": "1a99bb9e68d78f32d9a347d95b6e5808f645c7f2.pkl",
+          "pkl_sha256": "1999c98bfc0f42fcdf7e09d5cd88353c3f3b8b52084de31327c51d52455d9568",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S2",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Its urgent target was the chloroquine-resistant malaria weakening troops in the Vietnam War.",
+              "exact_native_cache_key": "1a99bb9e68d78f32d9a347d95b6e5808f645c7f2.pkl",
+              "cache_input_text_sha256": "797848f3174df67692a993511666c3a218061f272f0e599219f0d5bd7c9c7ac5",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "1999c98bfc0f42fc",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            146432
+          ],
+          "unprocessed_array_sha256": "d158df982a5bf04d9078f074e1f532f73a62df2085e8aec4b0b31fd41ce1c711"
+        },
+        {
+          "exact_native_cache_key": "588b4867e01602acea4b9cc75741d28616af206d.pkl",
+          "pkl_sha256": "44b7ecebdc2e9f5c230f2e3fc0f0bd0ef1b9f52970bb4dbf74602a7148fbccda",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S2",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Its urgent target was the chloroquine-resistant malaria",
+              "exact_native_cache_key": "588b4867e01602acea4b9cc75741d28616af206d.pkl",
+              "cache_input_text_sha256": "d6f676456bd59518225780b5858e1856498410e86e5fdaa358bad31dad70f44a",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "44b7ecebdc2e9f5c",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            87552
+          ],
+          "unprocessed_array_sha256": "f8688597fa46fb58cec0d6d0f5ed6b3ac313f8f04ff6283f0605fb3d1ab3e2a5"
+        },
+        {
+          "exact_native_cache_key": "23a06aaef833b1d5202b8fd87fb1d9ed59c7dde1.pkl",
+          "pkl_sha256": "d344b0d5c46a2ce370e646225fc1a261253b490096308b951c7d878583dd45c7",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S2",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "weakening troops in the Vietnam War.",
+              "exact_native_cache_key": "23a06aaef833b1d5202b8fd87fb1d9ed59c7dde1.pkl",
+              "cache_input_text_sha256": "d6394a52cd8ad7ebdb5d6188d24e835be71981c0ec80602f4c59b7860037663f",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "d344b0d5c46a2ce3",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            56320
+          ],
+          "unprocessed_array_sha256": "309d528d61aa238346069d2446f527f2bde2b06679547ae1ebb404c0111bc8e1"
+        },
+        {
+          "exact_native_cache_key": "84618bdf0d69cb273994b3af7132c50f3ba2c19d.pkl",
+          "pkl_sha256": "9c8507e5f187daf504bdc7c919a97fef7277cbc666229fb1e7001369532983a4",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S3",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "In January 1969 Tu Youyou was entrusted with leading her institute's research group, despite having no doctorate or foreign training.",
+              "exact_native_cache_key": "84618bdf0d69cb273994b3af7132c50f3ba2c19d.pkl",
+              "cache_input_text_sha256": "6d99b6d66f71d480d8b9fe78989db96d87708a9ccb433025aeda827985b9de55",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "9c8507e5f187daf5",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            237568
+          ],
+          "unprocessed_array_sha256": "eb282bdd9bc22b1b534ca7d505735bc0b1a6514431eb01e2303d2f5ecc658103"
+        },
+        {
+          "exact_native_cache_key": "1e3cc9337e8624f0039e335238df62312d9976e4.pkl",
+          "pkl_sha256": "b8446a21ff3cf4c6182ac23fae2caf3c8ec99f157dc1198770d9d9be72a1b8fc",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S3",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "In January 1969 Tu Youyou was entrusted with leading her institute's research group,",
+              "exact_native_cache_key": "1e3cc9337e8624f0039e335238df62312d9976e4.pkl",
+              "cache_input_text_sha256": "ac38dcf512c06d886364f1b382c6121fd2750a9b80356bdeff05def73597f6ba",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S3",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "In January 1969 Tu Youyou was entrusted with leading her institute's research group,",
+              "exact_native_cache_key": "1e3cc9337e8624f0039e335238df62312d9976e4.pkl",
+              "cache_input_text_sha256": "ac38dcf512c06d886364f1b382c6121fd2750a9b80356bdeff05def73597f6ba",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "b8446a21ff3cf4c6",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            160256
+          ],
+          "unprocessed_array_sha256": "1bbee2bd9574046d9cc4f2c8fd4e78fade0cbcb4bfb1cc3867b3ac8e2d382c54"
+        },
+        {
+          "exact_native_cache_key": "7aa9e308526e5e9b8fd37647eb7a982d9dbb05ef.pkl",
+          "pkl_sha256": "93b14e2b43325d1131dae9ae90514487ae599d51a0f9d7bd3fe505b3aac6a662",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S3",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "despite having no doctorate or foreign training.",
+              "exact_native_cache_key": "7aa9e308526e5e9b8fd37647eb7a982d9dbb05ef.pkl",
+              "cache_input_text_sha256": "2b93229fa73f8cee680991d873600cf79a7b3280cc885bbcb5a27835d7989c0a",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S3",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "despite having no doctorate or foreign training.",
+              "exact_native_cache_key": "7aa9e308526e5e9b8fd37647eb7a982d9dbb05ef.pkl",
+              "cache_input_text_sha256": "2b93229fa73f8cee680991d873600cf79a7b3280cc885bbcb5a27835d7989c0a",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "93b14e2b43325d11",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            70144
+          ],
+          "unprocessed_array_sha256": "8bb9b717d1c034b03a9cbb049094dd4c005e398e16435c7ded3b1dbd225e5c0c"
+        },
+        {
+          "exact_native_cache_key": "7d429d1e435b12b74a749296f62fc1d3b76a3a1d.pkl",
+          "pkl_sha256": "58309da4815c94d72bff11c25fead82a91205d9b07e310ef729dbddfc5e282a5",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "In an exhaustive search, her team combed over 2,000 folk recipes, compiled 640 prescriptions, and evaluated about 380 extracts from some 200 medicinal herbs.",
+              "exact_native_cache_key": "7d429d1e435b12b74a749296f62fc1d3b76a3a1d.pkl",
+              "cache_input_text_sha256": "3f7e676420ea22316308836b6d83e8b1c3cdfbe425b91070a9ce593ad0ade4fe",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "58309da4815c94d7",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            339968
+          ],
+          "unprocessed_array_sha256": "6938daf09bf0af6a081b44ca9616a2b3d482e388d48717cd4e2b7e1f2d077828"
+        },
+        {
+          "exact_native_cache_key": "198f16e567833cc94f9a3a867aa2426669862de2.pkl",
+          "pkl_sha256": "97176f57af450f0538c70b3a3ff5125c78248b415f5ceb60ea8725badac65852",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "In an exhaustive search, her team combed over 2,000 folk recipes,",
+              "exact_native_cache_key": "198f16e567833cc94f9a3a867aa2426669862de2.pkl",
+              "cache_input_text_sha256": "d05832f71adcd71974f190aa15c0d5f74c24d88c059d1d92fefe3b065ff15fa5",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "97176f57af450f05",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            137728
+          ],
+          "unprocessed_array_sha256": "530630a3c6ef36435a5ea435a5a6d2d16ac63a9d02593422af775cb39219ed77"
+        },
+        {
+          "exact_native_cache_key": "d53805545c7fd7409ef61876626efbddce3202d6.pkl",
+          "pkl_sha256": "7f418ce93960d2fd97f05ff7d5291c88b81e7410c19d8b758608e07a8748aee4",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "compiled 640 prescriptions, and evaluated about 380 extracts from some 200 medicinal herbs.",
+              "exact_native_cache_key": "d53805545c7fd7409ef61876626efbddce3202d6.pkl",
+              "cache_input_text_sha256": "be32f47a0c42837463ac22f99239c86b9ab941fe5644ad07965c2eef3f1ebfb0",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "7f418ce93960d2fd",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            213504
+          ],
+          "unprocessed_array_sha256": "743561f0a010b0f677307745a7fad8f6216afe2e442040525fbd85755607f306"
+        },
+        {
+          "exact_native_cache_key": "c0e617430099c8f9137f20a53667c83846dfffdd.pkl",
+          "pkl_sha256": "4985fb020f76a95fd50324ea82a9b784fcfb30603d74bd734998e022ef682f40",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "In an exhaustive search,",
+              "exact_native_cache_key": "c0e617430099c8f9137f20a53667c83846dfffdd.pkl",
+              "cache_input_text_sha256": "85936dc59a80b9832c1d843fdcd8dfcfb2c6391a66ae7c0b3caf3bf9535a4d86",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "4985fb020f76a95f",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            33792
+          ],
+          "unprocessed_array_sha256": "cc259f4abdce8cb360714b4634750ecf1c9e0a76bf4fed383924923ad4186bdd"
+        },
+        {
+          "exact_native_cache_key": "494fc7dcff9b6d780ad73998cb899aa4b522c638.pkl",
+          "pkl_sha256": "8b6f9ec4196104803373b3798f0b7ad9adffd55fff5511ed44669098fe810b7d",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "her team combed over 2,000 folk recipes,",
+              "exact_native_cache_key": "494fc7dcff9b6d780ad73998cb899aa4b522c638.pkl",
+              "cache_input_text_sha256": "e7922827d6ef210cb826910a76322591197e4596368777204200fb295e9ec15f",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "8b6f9ec419610480",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            103936
+          ],
+          "unprocessed_array_sha256": "8992fa3e25ed9d0e79993b825a8d576026a110c7ebc4f050435ec2edbfc415c1"
+        },
+        {
+          "exact_native_cache_key": "7f87b6b67d8c825c196a4dd19d032a6444fddc90.pkl",
+          "pkl_sha256": "bf89e27ff2d36376401876eae7096d00a4e1f15693e28c2ed193ff087101a253",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "compiled 640 prescriptions,",
+              "exact_native_cache_key": "7f87b6b67d8c825c196a4dd19d032a6444fddc90.pkl",
+              "cache_input_text_sha256": "4339bf60aefc0c73e10d528dfecb9859adfb6142670848fb8ef41d200920a05e",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "bf89e27ff2d36376",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            59392
+          ],
+          "unprocessed_array_sha256": "2b80f22f8628b377e144a9e937b0b0373abb2630726cc96ba43a9ac9bfffe3e9"
+        },
+        {
+          "exact_native_cache_key": "8378d63161ce5e5fad5aba181e6712aba179dc81.pkl",
+          "pkl_sha256": "b2229416221152bf06225fb52d7dbd24e9f22e1a6102e5ca7efe98417bf4e348",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": 4,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "and evaluated about 380 extracts from some 200 medicinal herbs.",
+              "exact_native_cache_key": "8378d63161ce5e5fad5aba181e6712aba179dc81.pkl",
+              "cache_input_text_sha256": "a281efb851eab7e880cf8ce179ef3dc79a18f40cf8d22583065a2c6d8f78b4e0",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "b2229416221152bf",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            140800
+          ],
+          "unprocessed_array_sha256": "2d68da06fc72beaf86b18ea1a964c7e1dd4f5361126fe6f826c6a739c287f823"
+        },
+        {
+          "exact_native_cache_key": "6496e7f2e4c2e53c2f9ae2d8af4bcea634d887d2.pkl",
+          "pkl_sha256": "ee6cc6b4f677bfcced4214b4f5eb28060f64e89e6c07e27846b7b07ccfb3cc06",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Qinghao, or sweet wormwood, showed flashes of promise, yet its results were erratic.",
+              "exact_native_cache_key": "6496e7f2e4c2e53c2f9ae2d8af4bcea634d887d2.pkl",
+              "cache_input_text_sha256": "6d810042a2108b4d0baac62bd6404f0d47e75c672e833aaf7ce2e8e85f14790b",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "ee6cc6b4f677bfcc",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            130560
+          ],
+          "unprocessed_array_sha256": "50ba0c5f7089ac2248e33b0592cb95052134dfb170ee17024292a77e0ae58562"
+        },
+        {
+          "exact_native_cache_key": "f8cf3496640274757a14eed4f3227a0608c5551d.pkl",
+          "pkl_sha256": "74d8efdac29e6b7dd1fe8c1d38e8f38b8fad9c696d0f58000ed8da9b1aca92a7",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Qinghao,",
+              "exact_native_cache_key": "f8cf3496640274757a14eed4f3227a0608c5551d.pkl",
+              "cache_input_text_sha256": "f8b52971f43ae3415e5cfda1f36ef2cb9eb25be30768723f58e7b542cb304ffe",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "74d8efdac29e6b7d",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            19968
+          ],
+          "unprocessed_array_sha256": "8c256b7fc436b5484e3e890c261498d529aa11696803ca73ea4821dbec923119"
+        },
+        {
+          "exact_native_cache_key": "802203581cfbc225f56075f446cbfe482dfebf3e.pkl",
+          "pkl_sha256": "2946b017036fe6352b595396c35e2577922c93c13600c505db06c9b7ab76ea46",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "or sweet wormwood,",
+              "exact_native_cache_key": "802203581cfbc225f56075f446cbfe482dfebf3e.pkl",
+              "cache_input_text_sha256": "0f282580f97dac2a5e50812702702d726f2e952a2dc325d0e8f507704ee9ceea",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "2946b017036fe635",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            30720
+          ],
+          "unprocessed_array_sha256": "e5a00a6e3d42b938032d430e150272f7e760b75d41a49d3a94463397206b76f8"
+        },
+        {
+          "exact_native_cache_key": "c3e26cb7d2073e18dbfff7a48a964b479f9b3f11.pkl",
+          "pkl_sha256": "31a5e73e0280ec3d66492923afd461cc1651245aaebd28bbeca763c80a400a9d",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "showed flashes of promise,",
+              "exact_native_cache_key": "c3e26cb7d2073e18dbfff7a48a964b479f9b3f11.pkl",
+              "cache_input_text_sha256": "c8f79dd4b7ab8582e0942586cad6d65e85de5abe9c5dc398e41f6a53f547b4df",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "31a5e73e0280ec3d",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            38400
+          ],
+          "unprocessed_array_sha256": "fa1dcc4bbe319d82ddf1e7bbd27b4f10ffa3db412293c59c687bb3eb7c5f80c1"
+        },
+        {
+          "exact_native_cache_key": "cf6a4bf6f038b3e58a9c05240d94523eabbf52ce.pkl",
+          "pkl_sha256": "3252fdacf70d851b6661ededef0fcc3cfeb62d2b91a9e5461a59a797f3786633",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": 4,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "yet its results were erratic.",
+              "exact_native_cache_key": "cf6a4bf6f038b3e58a9c05240d94523eabbf52ce.pkl",
+              "cache_input_text_sha256": "03eff8a32395f8a2a9425ae179aecea96fa3220fae4417a9a20ee48ae47d83cc",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "3252fdacf70d851b",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            40960
+          ],
+          "unprocessed_array_sha256": "42f8f4b52e6b17eb0b5b4cb7fbbdc60292194f0841bdcb99ad30e74a33b64d08"
+        },
+        {
+          "exact_native_cache_key": "8b00db16714ac6578ed76d89dff7de5b2e8f788e.pkl",
+          "pkl_sha256": "e2bc489b510aed4061e7855f2831c1359d83353e8f101c261cccc484ab3b90a9",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Seeking a clue, Tu revisited the classical texts.",
+              "exact_native_cache_key": "8b00db16714ac6578ed76d89dff7de5b2e8f788e.pkl",
+              "cache_input_text_sha256": "c92e66ef6672cb3d9406ccdb4c6488618ab3f1d14915e0c24897e713f993b249",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "e2bc489b510aed40",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            76800
+          ],
+          "unprocessed_array_sha256": "1e9005770198625c081dc77d98f946ba43a58d1b1dbcbb56428f5132bb43201e"
+        },
+        {
+          "exact_native_cache_key": "82b4275b672dbf236ed0b57c8398585d9f188d8a.pkl",
+          "pkl_sha256": "c61f03b6fbf39d44fb602f88c8af9c72e473befbef5bdca8406d6ba9936c7b2d",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Seeking a clue,",
+              "exact_native_cache_key": "82b4275b672dbf236ed0b57c8398585d9f188d8a.pkl",
+              "cache_input_text_sha256": "6cb3d01ae2c7d1a54b7cea81e8315f1cf7b073d3d941d0d5a65140444a4b7654",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "c61f03b6fbf39d44",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            27648
+          ],
+          "unprocessed_array_sha256": "63c4bb31094c0982c63dc74f21d9a30cbc4ae24b6fc14f992e54679bf767d8c5"
+        },
+        {
+          "exact_native_cache_key": "c0ba3dd39bb6164ae5cdb40945048e78dd7a0ecc.pkl",
+          "pkl_sha256": "5eb8c56f938a518b0d4d4a08c413cc11ea847d0fb7e330b470ec335809999ec4",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Tu revisited the classical texts.",
+              "exact_native_cache_key": "c0ba3dd39bb6164ae5cdb40945048e78dd7a0ecc.pkl",
+              "cache_input_text_sha256": "88fa730fafd47fc1f06bf3c64c8953de5411a49b0352909143aef10b6fb7b4bb",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "5eb8c56f938a518b",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            54784
+          ],
+          "unprocessed_array_sha256": "30649f44584d285bb368a79500d3c20f87a803d8e9d28001766a2a901a2e4546"
+        },
+        {
+          "exact_native_cache_key": "f0e09acfc82b6c93056206c08a60e04729539576.pkl",
+          "pkl_sha256": "7b6fab42e350f53e0a8f64ba9194ee945b51cf174fe8bb7c623f5dae8ce63124",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S7",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Around AD 340, the physician Ge Hong's handbook advised taking \"a handful of qinghao immersed in two litres of water\".",
+              "exact_native_cache_key": "f0e09acfc82b6c93056206c08a60e04729539576.pkl",
+              "cache_input_text_sha256": "5f401c0c29dc59dc9e58788c0a01947322f85996d04b789ace00bc72fdf9a0dd",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "7b6fab42e350f53e",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            231936
+          ],
+          "unprocessed_array_sha256": "dd213047849f8315c03153344fbeebd100a516e108af3fb4308f8fc867f9de2d"
+        },
+        {
+          "exact_native_cache_key": "f7716277ad9833e2777f626a97bfbc6cd9a078b7.pkl",
+          "pkl_sha256": "0010f1054d71400278e35b7d14e8f29ee81d6cfb609c43a516b737b643986d19",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S7",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Around AD 340, the physician Ge Hong's handbook advised taking",
+              "exact_native_cache_key": "f7716277ad9833e2777f626a97bfbc6cd9a078b7.pkl",
+              "cache_input_text_sha256": "f04a9b2a9546d7d8d583384b565cd356b30f9d802087bf719b24ad16ff6e404a",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "0010f1054d714002",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            134144
+          ],
+          "unprocessed_array_sha256": "a1691e83a7ccca2d42ededd4173c2b6f03eda9b5a6ff0737200219040799f75d"
+        },
+        {
+          "exact_native_cache_key": "1442f325b7d1e57de2cf71eba0f715ebc76e6495.pkl",
+          "pkl_sha256": "3b10cb72e7ab1e31859178d2a3e6b71d06aff8121ac6ccc8ed0dacdad327464a",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S7",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "\"a handful of qinghao immersed in two litres of water\".",
+              "exact_native_cache_key": "1442f325b7d1e57de2cf71eba0f715ebc76e6495.pkl",
+              "cache_input_text_sha256": "bd98ac8fb1580204c177de75fb6f5665d724bf43a15d81dbde2e83e0a9db2c36",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "3b10cb72e7ab1e31",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            80384
+          ],
+          "unprocessed_array_sha256": "829305a10368c5caf06c4e2a00ae980e16b1637e8f31f6e23f1be931aa4732f1"
+        },
+        {
+          "exact_native_cache_key": "7ab1b024b4e3349f163c9cafdf3c12b0f2638388.pkl",
+          "pkl_sha256": "8a034925d9ba3dff09f4211646ea1588537b85e438b947341c79143be1810d3b",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S7",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Around AD 340,",
+              "exact_native_cache_key": "7ab1b024b4e3349f163c9cafdf3c12b0f2638388.pkl",
+              "cache_input_text_sha256": "bd622a73f7276d6d77837c4134ef90bbe82bb6e35f9ac21d4acb8587fbc456ae",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "8a034925d9ba3dff",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            50688
+          ],
+          "unprocessed_array_sha256": "c051ae9bcb4ba164ca8fa59938abbd54c9081ef1dce44cdc963d1b61097e17aa"
+        },
+        {
+          "exact_native_cache_key": "94ba4fe8b19090650228cca9c8e59d9c0764edaa.pkl",
+          "pkl_sha256": "aede41b626a0a0bd7c558df188520205441d92ee091d5128a0d49cd9d3660cda",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S7",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "the physician Ge Hong's handbook advised taking \"a handful of qinghao immersed in two litres of water\".",
+              "exact_native_cache_key": "94ba4fe8b19090650228cca9c8e59d9c0764edaa.pkl",
+              "cache_input_text_sha256": "04ecae2cebc020372fdd25339da3b91e6146dba4a90832f416afb41052493782",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "aede41b626a0a0bd",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            167424
+          ],
+          "unprocessed_array_sha256": "c2f2bec9754e06e79012e2bdaa636e5e04016e2494b3246390b41780c06f5cc8"
+        },
+        {
+          "exact_native_cache_key": "aadbbe1a4519ca020cb724ee3f660bc217d9e314.pkl",
+          "pkl_sha256": "3574beee5ccb4fe02140b82205bab2c3925bddaa3ba4e62cf3934d1650893fc7",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "This bypassed boiling.",
+              "exact_native_cache_key": "aadbbe1a4519ca020cb724ee3f660bc217d9e314.pkl",
+              "cache_input_text_sha256": "06d2f40bb10210765dc3d7f5460d81db3197ce82218e3f0598a64d1ed524d62a",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "3574beee5ccb4fe0",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            33280
+          ],
+          "unprocessed_array_sha256": "59eb59346633f626e61a42e56f171db0c93ab301a4e01ed709cc000f848f9265"
+        },
+        {
+          "exact_native_cache_key": "d31af1d1118cc23cb5adc9d127e46295c74914d9.pkl",
+          "pkl_sha256": "1ccd58a4395fa46c5ff2b43321a744b96f8ba86504ac816f11e87559d9c3b5ce",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S9",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Tu suspected heat during extraction was degrading a delicate component, so she switched to ether, a volatile solvent boiling at about 35 degrees Celsius.",
+              "exact_native_cache_key": "d31af1d1118cc23cb5adc9d127e46295c74914d9.pkl",
+              "cache_input_text_sha256": "a243eb3a6de41511e51b7e5df8cc01356b32ef15f2c940bacdd4f30c0b5adc28",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "1ccd58a4395fa46c",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            264704
+          ],
+          "unprocessed_array_sha256": "341cf8631ade472102c3787e3a5ed385d58baf80c7f345818ad2cf07536e3754"
+        },
+        {
+          "exact_native_cache_key": "cc2f3e5b96ae5f2fd2fae8f10c647eb823399f6a.pkl",
+          "pkl_sha256": "bf4b948fe108c7ebb81d88e840732bdddb7e3a2ed2814ad30e72b3ece40aff01",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S9",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Tu suspected heat during extraction was degrading a delicate component,",
+              "exact_native_cache_key": "cc2f3e5b96ae5f2fd2fae8f10c647eb823399f6a.pkl",
+              "cache_input_text_sha256": "c06d0dd78447a59b3bd83c796c19b6c38c0416cfcaec46564e8a4223009a846c",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S9",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Tu suspected heat during extraction was degrading a delicate component,",
+              "exact_native_cache_key": "cc2f3e5b96ae5f2fd2fae8f10c647eb823399f6a.pkl",
+              "cache_input_text_sha256": "c06d0dd78447a59b3bd83c796c19b6c38c0416cfcaec46564e8a4223009a846c",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "bf4b948fe108c7eb",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            117248
+          ],
+          "unprocessed_array_sha256": "a3f968631b80e057a74cf40f02feebfa8d20020293818a9c2edecfcf04c99db6"
+        },
+        {
+          "exact_native_cache_key": "9052a63e0cb2eebae327eb2b4f6f697a6831f179.pkl",
+          "pkl_sha256": "3eff17d885db671ecad2fa6c98f741a8bc787f62432bac7ce385a0c4415ae168",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S9",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "so she switched to ether,",
+              "exact_native_cache_key": "9052a63e0cb2eebae327eb2b4f6f697a6831f179.pkl",
+              "cache_input_text_sha256": "bc876ec4ecf1902fa5411c6d9f67d9c4e7777c29ae4b305391487535b3a53d3e",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S9",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "so she switched to ether,",
+              "exact_native_cache_key": "9052a63e0cb2eebae327eb2b4f6f697a6831f179.pkl",
+              "cache_input_text_sha256": "bc876ec4ecf1902fa5411c6d9f67d9c4e7777c29ae4b305391487535b3a53d3e",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "3eff17d885db671e",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            33792
+          ],
+          "unprocessed_array_sha256": "5fc5ea5c7179ed84275e880109b194642e2fbe407e9d3eb07509c5e88f6a79c8"
+        },
+        {
+          "exact_native_cache_key": "83653625bc418ed32b83bf3bff4c4ce256e33203.pkl",
+          "pkl_sha256": "9ef1e82e8dcd8cbeafb266d53ac6b5528a6a45e228aad850303be6fcd62cadf0",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S9",
+              "piece": 3,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "a volatile solvent boiling at about 35 degrees Celsius.",
+              "exact_native_cache_key": "83653625bc418ed32b83bf3bff4c4ce256e33203.pkl",
+              "cache_input_text_sha256": "47a0d19ae97b1eff80f7ccf03480bc2c7805e1f28e628d55a568e60ac1380b5c",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S9",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "a volatile solvent boiling at about 35 degrees Celsius.",
+              "exact_native_cache_key": "83653625bc418ed32b83bf3bff4c4ce256e33203.pkl",
+              "cache_input_text_sha256": "47a0d19ae97b1eff80f7ccf03480bc2c7805e1f28e628d55a568e60ac1380b5c",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "9ef1e82e8dcd8cbe",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            100864
+          ],
+          "unprocessed_array_sha256": "3d895c79e345fba3f33d0dc8d2fd5c20405313aa142672854de1cf645b1fff78"
+        },
+        {
+          "exact_native_cache_key": "45f80bb18ed3858c59fc62e83bbe8929278f00df.pkl",
+          "pkl_sha256": "ee5f824fe912356650729c43a3121c85d42f60bdd901ccc450ec8c9670f16632",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S10",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "On 4 October 1971 sample 191 completely inhibited the parasite in infected mice.",
+              "exact_native_cache_key": "45f80bb18ed3858c59fc62e83bbe8929278f00df.pkl",
+              "cache_input_text_sha256": "0ceef58a438d75d34bd2c10235fd07257cfa50619a27fa030361eed957dafb59",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "ee5f824fe9123566",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            208896
+          ],
+          "unprocessed_array_sha256": "06e31a68d90e54c6d1458cb22c86a92b62bff5ebb34813031cb1fa8880303e3f"
+        },
+        {
+          "exact_native_cache_key": "b6defa2e76f6e9818307bbc7c2630c43bc91ca7f.pkl",
+          "pkl_sha256": "74c0fd56a2d93a6e6b046fbdee9612d490508abee19ec5ca3cc645bf7580c5ec",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Efficacy in mice indicated nothing about human safety.",
+              "exact_native_cache_key": "b6defa2e76f6e9818307bbc7c2630c43bc91ca7f.pkl",
+              "cache_input_text_sha256": "17cae80f74e1d397e443ba34c1d6b6d77d223280204c3c747ca6d0aefadb3dd7",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "74c0fd56a2d93a6e",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            96256
+          ],
+          "unprocessed_array_sha256": "97b70161b6a2e72bec72b000b5baaa10728c1ca1be3b0d19ca454eb0a27f991e"
+        },
+        {
+          "exact_native_cache_key": "5cff8bb3c6050ecd3b00809bf521f82944f40a90.pkl",
+          "pkl_sha256": "20f78fcb7b19cc99c27965453f11d95078e2432f724b7994e060f4d33058ad25",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S12",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "In July 1972, to assess its toxicity, Tu and two colleagues voluntarily took the extract.",
+              "exact_native_cache_key": "5cff8bb3c6050ecd3b00809bf521f82944f40a90.pkl",
+              "cache_input_text_sha256": "00e2b5678d9a2d7a2591207c887d533397bb383322fe44040d7b6e0cbff5cf40",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "20f78fcb7b19cc99",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            186880
+          ],
+          "unprocessed_array_sha256": "c49865425d1bb21c3dae158b9e8d0e05d3add01d1a1414a0fc634092f85cb07d"
+        },
+        {
+          "exact_native_cache_key": "fced03a17746951cd58f5c30f462276daabac9f6.pkl",
+          "pkl_sha256": "a4b551840e57b30fcb9c01451ac84f5acf9de4e045fbf85ae1afcdd0595dc337",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S12",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "In July 1972,",
+              "exact_native_cache_key": "fced03a17746951cd58f5c30f462276daabac9f6.pkl",
+              "cache_input_text_sha256": "f869211fc6ef37312bbd9cc47ec4883facd466db0eb0527d3ccb16211e1a8437",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "a4b551840e57b30f",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            49664
+          ],
+          "unprocessed_array_sha256": "9135a93738fd43d8afc48598173a8508f339cd9732b18a532c1cda9dc92b1a53"
+        },
+        {
+          "exact_native_cache_key": "2d7c4217a9121b8916886e861be8677c26438482.pkl",
+          "pkl_sha256": "f3462b432fb89b07486fb9b4e2e67858bd9e3b0f7e7cfb0459d1795d7ca50d21",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S12",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "to assess its toxicity,",
+              "exact_native_cache_key": "2d7c4217a9121b8916886e861be8677c26438482.pkl",
+              "cache_input_text_sha256": "6cb82bbb6da47496a81c4d1c05c49381ceb6df6abce802cfbd88435ee1d78141",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "f3462b432fb89b07",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            38400
+          ],
+          "unprocessed_array_sha256": "3910c7850a33c39f83abda815006fa9af341feb697d85ef531d7bd129db717af"
+        },
+        {
+          "exact_native_cache_key": "d457f3f4daf7682dcca8ead58a3b62aa97174a12.pkl",
+          "pkl_sha256": "014697839ad47d63ce0f97d88cd4e4f39db19a45e49c7e1ed39b12357ac57830",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S12",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Tu and two colleagues voluntarily took the extract.",
+              "exact_native_cache_key": "d457f3f4daf7682dcca8ead58a3b62aa97174a12.pkl",
+              "cache_input_text_sha256": "14bb0e9f515c5e5c1bcafb411301422b7a8b9bda08443836816c1a1e441f729d",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "014697839ad47d63",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            77824
+          ],
+          "unprocessed_array_sha256": "8d5a7d68db782049f0793642a4d96021e34f63aa50ca206cc2eda735e3310285"
+        },
+        {
+          "exact_native_cache_key": "127a665ebbba8a0c073f6e9e02577396fb7ff69f.pkl",
+          "pkl_sha256": "93952d26f036d9c075d3a29fd75264a9f82a472df8019623429b836c6c31250a",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S13",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Thereafter, from August to October, it was administered to 21 malaria patients in Hainan, and on 8 November her team obtained pure crystals of the substance later named artemisinin.",
+              "exact_native_cache_key": "127a665ebbba8a0c073f6e9e02577396fb7ff69f.pkl",
+              "cache_input_text_sha256": "81e6c245c66f2cd909700bb4778f4f33b1baddbee38072bc04b9235a8dd80d20",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "93952d26f036d9c0",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            316928
+          ],
+          "unprocessed_array_sha256": "973b6be2b534813e89ac3d134b3c98988b9dbbe6a05bf1fb7e0b222fda75335d"
+        },
+        {
+          "exact_native_cache_key": "f374bc802a2151d2d1fbeeff06cc928f9255635c.pkl",
+          "pkl_sha256": "6813ff9e75274493620ce932293e7df83c17c4130b2fd2f28f0bdda799c260ff",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S13",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Thereafter, from August to October, it was administered to 21 malaria patients in Hainan,",
+              "exact_native_cache_key": "f374bc802a2151d2d1fbeeff06cc928f9255635c.pkl",
+              "cache_input_text_sha256": "13c2237e94262c8d0cb481be557002f5634101c90489015bc2f425f618da9c99",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "6813ff9e75274493",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            154624
+          ],
+          "unprocessed_array_sha256": "f1bc46775535ad12121f9e0342b22cd1b0c52b32eddd26be6582c5fc312aa4ef"
+        },
+        {
+          "exact_native_cache_key": "ae7b3a5e1d50d054cf71d635ff70647d3fdde0c4.pkl",
+          "pkl_sha256": "32d4f9544d14ff00ba0574238440b38c39d5fab15fb352ff8a862098c80bfd18",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S13",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "and on 8 November her team obtained pure crystals of the substance later named artemisinin.",
+              "exact_native_cache_key": "ae7b3a5e1d50d054cf71d635ff70647d3fdde0c4.pkl",
+              "cache_input_text_sha256": "c48468b6c1099a4b3cafd8ac42d34f7a9461e8c345759b2f5d64afb4e4d37920",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S13",
+              "piece": 4,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "and on 8 November her team obtained pure crystals of the substance later named artemisinin.",
+              "exact_native_cache_key": "ae7b3a5e1d50d054cf71d635ff70647d3fdde0c4.pkl",
+              "cache_input_text_sha256": "c48468b6c1099a4b3cafd8ac42d34f7a9461e8c345759b2f5d64afb4e4d37920",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "32d4f9544d14ff00",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            155136
+          ],
+          "unprocessed_array_sha256": "783e699e7e4d74514f49bd8054db1a88a6d8ae8997ec19c5bf18a4825c34e24d"
+        },
+        {
+          "exact_native_cache_key": "be72200a558052ce03edff95fcfd2dc4ed063aec.pkl",
+          "pkl_sha256": "70641fbec8b84d7f2e19511f462d07f6e95882998ad8f031c0cbd18d2b0d5feb",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S13",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Thereafter,",
+              "exact_native_cache_key": "be72200a558052ce03edff95fcfd2dc4ed063aec.pkl",
+              "cache_input_text_sha256": "c829e6d3ec4da1af8340b113f47ff7f0b9affddd69474df752504e841e371c91",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "70641fbec8b84d7f",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            23040
+          ],
+          "unprocessed_array_sha256": "f7c5618365802cfde088bc403d736af85ad2cdf5907ffc0f5bfa7e9ed65fdb89"
+        },
+        {
+          "exact_native_cache_key": "45bf20c2c1d2853dd4b0bd497a58860a91d71161.pkl",
+          "pkl_sha256": "b0a4358c769d752ef153126c8b700950fb6b16ba3f40e7fa1b3be1bace923393",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S13",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "from August to October,",
+              "exact_native_cache_key": "45bf20c2c1d2853dd4b0bd497a58860a91d71161.pkl",
+              "cache_input_text_sha256": "17cd27f08df19806a657588546dd4ba3566f9739c932844882b87675d39efe06",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "b0a4358c769d752e",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            37376
+          ],
+          "unprocessed_array_sha256": "99b0e038f830b1d3544def8ba3abca638a3906ccfef585fde7b9bd26c73cb362"
+        },
+        {
+          "exact_native_cache_key": "d9d30c5dac328b39103a301528b268482ccead05.pkl",
+          "pkl_sha256": "b168fab71e0140a52c0ac9315c8b4b714fcd9d3456ba8b64c431410e685a8016",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S13",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "it was administered to 21 malaria patients in Hainan,",
+              "exact_native_cache_key": "d9d30c5dac328b39103a301528b268482ccead05.pkl",
+              "cache_input_text_sha256": "40d82722cfe6e68f4d1cc2b5ca2be003262fd9719c5d6ac61431eb10a728a4c4",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "b168fab71e0140a5",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            90624
+          ],
+          "unprocessed_array_sha256": "0f0b7ad893f55c7ad5cbb704edab23057f43f9418261c6bf74bd313c338623c4"
+        },
+        {
+          "exact_native_cache_key": "3f378e2f33aa7f94743014a50f9e911f21cd3719.pkl",
+          "pkl_sha256": "d30858618cf48e8ade4339866b4e14733ed8df8cce4c0c3dbc09e3f6993a7ea8",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S14",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "In September 2011 Tu was named a Lasker Award recipient; its jury credited the drug with saving millions.",
+              "exact_native_cache_key": "3f378e2f33aa7f94743014a50f9e911f21cd3719.pkl",
+              "cache_input_text_sha256": "e2d25f7185e5c4b3985cec317ee9b79319f8a0979caf02b9fd7d17d023311bb3",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "d30858618cf48e8a",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            207360
+          ],
+          "unprocessed_array_sha256": "24552ad03a0adf0791b3de6b8d384b511b31b3224d7a6870a62b75e3cbbe3271"
+        },
+        {
+          "exact_native_cache_key": "87f9b070cbf42e40c45d95c08983ff0cfe35b3c9.pkl",
+          "pkl_sha256": "07ecfff4566ef20087ea7b70fbbfec4b62fe56ab65b85678a072f84799054672",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S14",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "In September 2011 Tu was named a Lasker Award recipient;",
+              "exact_native_cache_key": "87f9b070cbf42e40c45d95c08983ff0cfe35b3c9.pkl",
+              "cache_input_text_sha256": "26dab4fd370ef34bdae42d4cd374a0520978527c1c8f03c0c2bf98224d900937",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S14",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "In September 2011 Tu was named a Lasker Award recipient;",
+              "exact_native_cache_key": "87f9b070cbf42e40c45d95c08983ff0cfe35b3c9.pkl",
+              "cache_input_text_sha256": "26dab4fd370ef34bdae42d4cd374a0520978527c1c8f03c0c2bf98224d900937",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "07ecfff4566ef200",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            121344
+          ],
+          "unprocessed_array_sha256": "02892e1906855f84b4f45870577d079fc1f1a0ee2dcfa3f03c5f8473ec6bb133"
+        },
+        {
+          "exact_native_cache_key": "2f35225356fd5de550b946cf9475408b77315c90.pkl",
+          "pkl_sha256": "5711bd98e19032d35e997bedb4fb6175ab45c0b0b09e0460293be8c4204502df",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S14",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "its jury credited the drug with saving millions.",
+              "exact_native_cache_key": "2f35225356fd5de550b946cf9475408b77315c90.pkl",
+              "cache_input_text_sha256": "077359112a5576b9e4820a5a3c59ce732c3e161db887393625502af18d82531d",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S14",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "its jury credited the drug with saving millions.",
+              "exact_native_cache_key": "2f35225356fd5de550b946cf9475408b77315c90.pkl",
+              "cache_input_text_sha256": "077359112a5576b9e4820a5a3c59ce732c3e161db887393625502af18d82531d",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "5711bd98e19032d3",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            68608
+          ],
+          "unprocessed_array_sha256": "46cbc35d415a8a99befd19a7b4394e3e4b10e14d29dd634529c60dacc6057aa7"
+        },
+        {
+          "exact_native_cache_key": "fd2d64e4592b7ad3323a28bcca2587d84be6d6c4.pkl",
+          "pkl_sha256": "7ec253d42919b718eba1169b5eab06e9f9fa38662c1ef289ca9bdcaa9d11c49c",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S15",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "On 5 October 2015 she won half the Nobel Prize in Physiology or Medicine, the first Chinese woman Nobel laureate.",
+              "exact_native_cache_key": "fd2d64e4592b7ad3323a28bcca2587d84be6d6c4.pkl",
+              "cache_input_text_sha256": "945257c4e5c9cbbfc73c41961daa3509f0c1aaaa7b24e4d41b9ba27cca62d381",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "7ec253d42919b718",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            235520
+          ],
+          "unprocessed_array_sha256": "7dae583a5a1872ff676f12302db7732c30c60e1980296909f67f3cb42222946b"
+        },
+        {
+          "exact_native_cache_key": "36312be4ed58caee9579d86dd27124a69e90b7cd.pkl",
+          "pkl_sha256": "b53a4c84abbec917930bc36b86985e5b8655669443b06b6cd5370000c714e740",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S15",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "On 5 October 2015 she won half the Nobel Prize in Physiology or Medicine,",
+              "exact_native_cache_key": "36312be4ed58caee9579d86dd27124a69e90b7cd.pkl",
+              "cache_input_text_sha256": "fcc4c0bea23ac9a904475daed718783b3a17b4498b08031f0e6b6e5eb22898b8",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S15",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "On 5 October 2015 she won half the Nobel Prize in Physiology or Medicine,",
+              "exact_native_cache_key": "36312be4ed58caee9579d86dd27124a69e90b7cd.pkl",
+              "cache_input_text_sha256": "fcc4c0bea23ac9a904475daed718783b3a17b4498b08031f0e6b6e5eb22898b8",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "b53a4c84abbec917",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            160256
+          ],
+          "unprocessed_array_sha256": "c0c1cb7cb100149b644f6c57ea7a2ef562f7ac1bd305309915597563d4fd7bb4"
+        },
+        {
+          "exact_native_cache_key": "6818df7a1496707cbc06048bc7c9dc0294102081.pkl",
+          "pkl_sha256": "31c9f9904a7908cc57cbdd055ffa8bb0253f6e1571622630a6752a47261d6567",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S15",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "the first Chinese woman Nobel laureate.",
+              "exact_native_cache_key": "6818df7a1496707cbc06048bc7c9dc0294102081.pkl",
+              "cache_input_text_sha256": "7c6a4ae913c62418d331d2e57b02e6c23231974b8b25535c27873882f911693f",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S15",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "the first Chinese woman Nobel laureate.",
+              "exact_native_cache_key": "6818df7a1496707cbc06048bc7c9dc0294102081.pkl",
+              "cache_input_text_sha256": "7c6a4ae913c62418d331d2e57b02e6c23231974b8b25535c27873882f911693f",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "31c9f9904a7908cc",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            61952
+          ],
+          "unprocessed_array_sha256": "f191a00eb14f5313e3c456c44999677f96751bcaf04842f610961e6f9ed618f9"
+        },
+        {
+          "exact_native_cache_key": "ea37471d559f122be87385114ce21bac9dbe82a9.pkl",
+          "pkl_sha256": "c3feb35f9c3d97f394be85c9145035f227203a709c3e4eaf24ae5a5bb135ebf9",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S16",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Since 2006 WHO guidelines have endorsed artemisinin-based combination therapies against malaria's deadliest form.",
+              "exact_native_cache_key": "ea37471d559f122be87385114ce21bac9dbe82a9.pkl",
+              "cache_input_text_sha256": "8a99013c9ae38f11a0d5828c151507b3b52b7b9b3d50e713d8e5fbaba455d837",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "c3feb35f9c3d97f3",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            240640
+          ],
+          "unprocessed_array_sha256": "7a22648c7fb627146f2c8b6bba18c2ef3cbdd7f9f59401244903a4ff56000330"
+        },
+        {
+          "exact_native_cache_key": "d73024be15fee5877a0dc300acec10a5668bbbae.pkl",
+          "pkl_sha256": "a1a0281acb50c8764774d1cc5252b763e65091af0dc1141923980a78d78eeb14",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S17",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "The essence of Ge Hong's line lay in the boiling it skipped.",
+              "exact_native_cache_key": "d73024be15fee5877a0dc300acec10a5668bbbae.pkl",
+              "cache_input_text_sha256": "d7b1157871339d142fb3f4106ebfa10295a9667a48b1eb6f1f5894221570a062",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "a1a0281acb50c876",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            79360
+          ],
+          "unprocessed_array_sha256": "8b9bb1e8735f0dcc5bcdf688d66dd4e910735f036a63eea96c83d602236cccd5"
+        }
+      ],
+      "missing_reference_key_count": 0,
+      "observed_missing_keys_covered": [],
+      "new_private_cache_names": [],
+      "native_single_thread_marker_verified": true,
+      "single_thread_sessions": [
+        {
+          "intra_op_num_threads": 1,
+          "inter_op_num_threads": 1
+        },
+        {
+          "intra_op_num_threads": 1,
+          "inter_op_num_threads": 1
+        }
+      ],
+      "models_sha256": {
+        "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+        "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+        "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+      },
+      "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+      "existing_private_cache_count": 11514,
+      "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+      "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+      "existing_private_cache_bytes_unchanged": true,
+      "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+      "public_repository_cache_unchanged": true,
+      "producer_pcm_existed_before": false,
+      "producer_pcm_sha256_before": null,
+      "producer_pcm_sha256_after": null,
+      "accepted_aac_adts_sha256_before": "82898283b5f5c55b84912f8838ebdfed1a337300db09de759fc55a3eb389ddd2",
+      "accepted_aac_adts_sha256_after": "82898283b5f5c55b84912f8838ebdfed1a337300db09de759fc55a3eb389ddd2",
+      "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+      "private_cache_exported": false
+    },
+    "checker_reference_preparation_program_sha256": "f6f2a032e207085e7252d036e39430fb80b06e84a721c525b61196d021c5ca12",
+    "fresh_current_article_reference": {
+      "article": "28",
+      "removed_temporary_gt_files": [],
+      "processed_pcm_or_raw_mother_cache_modified": false,
+      "purpose": "Original synth/labels/audit rebuild fresh for this production; no old CPU GT reuse."
+    },
+    "temporary_output_reset": {
+      "removed": [],
+      "production_started_ns": 1794645527139207974,
+      "repository_outputs_modified": false
+    },
+    "reviewed_gain_control_preservation": [
+      {
+        "stage": "canonical-draft",
+        "requested_gain_controls": {},
+        "actual_gain_controls": {},
+        "exactly_preserved": true
+      },
+      {
+        "stage": "canonical-final4K",
+        "requested_gain_controls": {},
+        "actual_gain_controls": {},
+        "exactly_preserved": true
+      }
+    ],
+    "canonical_video_sha256": "67ed5bb4a3b52db64f4fafcc8536e2919eb9a6c88754278392df6e0d2fb26a6c",
+    "canonical_aac_adts_sha256": "82898283b5f5c55b84912f8838ebdfed1a337300db09de759fc55a3eb389ddd2",
+    "canonical_pipeline_passed": true,
+    "cached_input_wav_sha256": null,
+    "final_wav_sha256": "e385cd4449b03f39c5044b7d3d859d0619dfa480bd43bc5660f1270633fee0a3",
+    "accepted_prior_audio_packet_preservation": {
+      "file": "28-accepted-audio-packet-preservation.json",
+      "sha256": "4fc43a6d82cbd9948304aae8c4fccc7a8b750c5ab0e8fbbbc302dda0a12267dc",
+      "article": "28",
+      "scope": "This28 revision changes focus colours and Chinese explanations only.",
+      "accepted_video_sha256": "3ad04ab6556a9e76e7701d56985e5f9b3019a811e1cd04dfcb11d5421a6ab456",
+      "canonical_video_sha256": "67ed5bb4a3b52db64f4fafcc8536e2919eb9a6c88754278392df6e0d2fb26a6c",
+      "accepted_packet_count": 7469,
+      "canonical_packet_count": 7469,
+      "accepted_packet_records_sha256": "9de0bbda6b3be0d85152d8a6b50fb60a084a8f83bfd0526b635bd626e14a910f",
+      "canonical_packet_records_sha256": "9de0bbda6b3be0d85152d8a6b50fb60a084a8f83bfd0526b635bd626e14a910f",
+      "AAC_payload_side_data_and_absolute_PTS_DTS_duration_identical": true,
+      "codec_parameters_identical": true,
+      "codec_parameters": [
+        {
+          "codec_name": "aac",
+          "profile": "LC",
+          "codec_tag_string": "mp4a",
+          "sample_fmt": "fltp",
+          "sample_rate": "48000",
+          "channels": 1,
+          "channel_layout": "mono",
+          "time_base": "1/48000"
+        },
+        {
+          "codec_name": "aac",
+          "profile": "LC",
+          "codec_tag_string": "mp4a",
+          "sample_fmt": "fltp",
+          "sample_rate": "48000",
+          "channels": 1,
+          "channel_layout": "mono",
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_packet_reader_sha256": "f90e399b59ec5d1c7bc83a9d8c4c0134b7ba4dbe1627a2bde6ab91daa6c06562",
+      "private_PCM_or_cache_read": false
+    },
+    "accepted_prior_aac_identical": true,
+    "video_sha256": "e456616b266fa5a0fff5f5968189c8706cc1d4de33d91ff47b001c287bc91eec",
+    "width": 3840,
+    "height": 2160,
+    "summary_seconds": 2,
+    "summary_frames": 60,
+    "summary_start_seconds": 157.63333333333333,
+    "delay_after_voice_seconds": 0.30333333333331325,
+    "actual_source_collection": {
+      "article": "28",
+      "kind": "actual-production-source-collection",
+      "new_quality_gate": false,
+      "files": {
+        "request_json": {
+          "file": "28-request-source.json",
+          "sha256": "e0c8e6c644ab0c5d52d99c23461b99e9ae1574aa574369e56feb35e2ac20698b",
+          "origin": "immutable_request"
+        },
+        "request_generator": {
+          "file": "28-request-gen.py",
+          "sha256": "067592d5540ce36ac2b25a04603b425d931fa297d27a0da25f3afb3574cdaae5",
+          "origin": "immutable_request"
+        },
+        "used_generator": {
+          "file": "28-used-gen.py",
+          "sha256": "067592d5540ce36ac2b25a04603b425d931fa297d27a0da25f3afb3574cdaae5",
+          "origin": "actual_production_filesystem"
+        },
+        "actual_working_source": {
+          "file": "28-actual-working-source.json",
+          "sha256": "a28a0f39bf8a740cd559618d945bfe150ea2e9ab7a81c34c96a54656974c6afa",
+          "origin": "actual_production_filesystem"
+        },
+        "request_manuscript": {
+          "file": "28-request-manuscript.md",
+          "sha256": "d609cd99ab982365c6f0167e211c55b31e52a354d50918780f3da66ef702a5bb",
+          "origin": "immutable_request"
+        },
+        "actual_working_manuscript": {
+          "file": "28-actual-working-manuscript.md",
+          "sha256": "df7e836c34bb81ef3784a0b6ac80eb5b7cc6c82fb3f4e022ee6a340aa447dfa6",
+          "origin": "actual_production_filesystem"
+        }
+      },
+      "generator_execution_observed": false,
+      "generator_execution_evidence": "No fresh generator execution log; do not claim this GEN was executed during rendering.",
+      "source_differences": {
+        "file": "28-actual-source-differences.json",
+        "sha256": "4f4e5c3034896b52ad363ffdb88ede66c18687be824d7b478a34d298f5c25b82"
+      }
+    }
+  },
+  "native_status_sha256": "d8c71abc942a8dd26b36fe98069c8a5bf0e7a260e6348d958f5166d97742a26b"
+}

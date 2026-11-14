@@ -1,0 +1,2774 @@
+{
+  "article": "28",
+  "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+  "reference_prepared": true,
+  "acceptance": false,
+  "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+  "source_sha256": "e0c8e6c644ab0c5d52d99c23461b99e9ae1574aa574369e56feb35e2ac20698b",
+  "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+  "checker_program_sha256": {
+    "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+    "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+    "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+    "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+    "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+    "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+  },
+  "reference_calls": [
+    {
+      "sentence": "标题",
+      "piece": null,
+      "reference_kind": "title-default-raw",
+      "method": "create",
+      "source_slice": "A Handful of Wormwood That Saved Millions",
+      "exact_native_cache_key": "8b9e2da3de253ddb6ead738e182bc65055204bff.pkl",
+      "cache_input_text_sha256": "06408ba8f2805bb96d3469d47eb9327d79f4ab479e87d60fd441e112765f4462",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "标题",
+      "piece": null,
+      "reference_kind": "title-default-timed",
+      "method": "create_timed",
+      "source_slice": "A Handful of Wormwood That Saved Millions",
+      "exact_native_cache_key": "3cbefaae74c4249e8f2c3754228902bd33b1e268.pkl",
+      "cache_input_text_sha256": "06408ba8f2805bb96d3469d47eb9327d79f4ab479e87d60fd441e112765f4462",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Project 523, a covert military mission involving many institutes, was named after its launch date, 23 May 1967.",
+      "exact_native_cache_key": "7618e0ea194fd34f7999ef07950754c6b54c2242.pkl",
+      "cache_input_text_sha256": "17acc85c85df65a95a16ed7a906af6e90264d83346dc99673d389c474366ab65",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Project 523, a covert military mission involving many institutes, was named after its launch date, 23 May 1967.",
+      "exact_native_cache_key": "f1f45a097eba9c1491de066bd7e36de064146775.pkl",
+      "cache_input_text_sha256": "17acc85c85df65a95a16ed7a906af6e90264d83346dc99673d389c474366ab65",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Project 523, a covert military mission involving many institutes,",
+      "exact_native_cache_key": "946dc8d60edc4f96ae40eda8aec81a466c92c994.pkl",
+      "cache_input_text_sha256": "650c78d806642d6cedc28576264273e921701cce42035e7216f3faaaa622edb6",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "was named after its launch date, 23 May 1967.",
+      "exact_native_cache_key": "ba2dae9a376e9321d8e45810ee81130e6064a387.pkl",
+      "cache_input_text_sha256": "5bcf5bd609c84874123efb6be1a38a2707a8e383aaaa085ac9153b9045dc2e21",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Project 523,",
+      "exact_native_cache_key": "db7f86c0f0fd11a4e3991aa5f0770851f34a54ac.pkl",
+      "cache_input_text_sha256": "6bc2925525c47581fc3038a7780dd173c2ceeef569ed0ed251493aa2ff5431b2",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "a covert military mission involving many institutes,",
+      "exact_native_cache_key": "8e25db1bc6e90acd052647a5c671df6f0b4532a9.pkl",
+      "cache_input_text_sha256": "340724e1ee45ee80e1fa5475504d20931150752e5cb9cd60799435755cd35e63",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "was named after its launch date,",
+      "exact_native_cache_key": "b9c02dcf251081cbccdb5ed61c71e5a297f9f9a3.pkl",
+      "cache_input_text_sha256": "7e638cad51ea0144e44a95d7c5dc0f596f475095c46d760bc30b3d19cf592522",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 4,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "23 May 1967.",
+      "exact_native_cache_key": "a2fe757cafff526739881a7663dce3ade953d6ea.pkl",
+      "cache_input_text_sha256": "5e1de12da5db64cf323333321c7162e6bda8cc3866649608ab3209662d7a1740",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Its urgent target was the chloroquine-resistant malaria weakening troops in the Vietnam War.",
+      "exact_native_cache_key": "1a99bb9e68d78f32d9a347d95b6e5808f645c7f2.pkl",
+      "cache_input_text_sha256": "797848f3174df67692a993511666c3a218061f272f0e599219f0d5bd7c9c7ac5",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Its urgent target was the chloroquine-resistant malaria weakening troops in the Vietnam War.",
+      "exact_native_cache_key": "356c42eed28e9a1f90f877287dcb81e29df90c2a.pkl",
+      "cache_input_text_sha256": "797848f3174df67692a993511666c3a218061f272f0e599219f0d5bd7c9c7ac5",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Its urgent target was the chloroquine-resistant malaria",
+      "exact_native_cache_key": "588b4867e01602acea4b9cc75741d28616af206d.pkl",
+      "cache_input_text_sha256": "d6f676456bd59518225780b5858e1856498410e86e5fdaa358bad31dad70f44a",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "weakening troops in the Vietnam War.",
+      "exact_native_cache_key": "23a06aaef833b1d5202b8fd87fb1d9ed59c7dde1.pkl",
+      "cache_input_text_sha256": "d6394a52cd8ad7ebdb5d6188d24e835be71981c0ec80602f4c59b7860037663f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "In January 1969 Tu Youyou was entrusted with leading her institute's research group, despite having no doctorate or foreign training.",
+      "exact_native_cache_key": "84618bdf0d69cb273994b3af7132c50f3ba2c19d.pkl",
+      "cache_input_text_sha256": "6d99b6d66f71d480d8b9fe78989db96d87708a9ccb433025aeda827985b9de55",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "In January 1969 Tu Youyou was entrusted with leading her institute's research group, despite having no doctorate or foreign training.",
+      "exact_native_cache_key": "d1670fcd190e997fb6f8e5ec1437e893c4f83ec7.pkl",
+      "cache_input_text_sha256": "6d99b6d66f71d480d8b9fe78989db96d87708a9ccb433025aeda827985b9de55",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "In January 1969 Tu Youyou was entrusted with leading her institute's research group,",
+      "exact_native_cache_key": "1e3cc9337e8624f0039e335238df62312d9976e4.pkl",
+      "cache_input_text_sha256": "ac38dcf512c06d886364f1b382c6121fd2750a9b80356bdeff05def73597f6ba",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "despite having no doctorate or foreign training.",
+      "exact_native_cache_key": "7aa9e308526e5e9b8fd37647eb7a982d9dbb05ef.pkl",
+      "cache_input_text_sha256": "2b93229fa73f8cee680991d873600cf79a7b3280cc885bbcb5a27835d7989c0a",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "In January 1969 Tu Youyou was entrusted with leading her institute's research group,",
+      "exact_native_cache_key": "1e3cc9337e8624f0039e335238df62312d9976e4.pkl",
+      "cache_input_text_sha256": "ac38dcf512c06d886364f1b382c6121fd2750a9b80356bdeff05def73597f6ba",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "despite having no doctorate or foreign training.",
+      "exact_native_cache_key": "7aa9e308526e5e9b8fd37647eb7a982d9dbb05ef.pkl",
+      "cache_input_text_sha256": "2b93229fa73f8cee680991d873600cf79a7b3280cc885bbcb5a27835d7989c0a",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "In an exhaustive search, her team combed over 2,000 folk recipes, compiled 640 prescriptions, and evaluated about 380 extracts from some 200 medicinal herbs.",
+      "exact_native_cache_key": "7d429d1e435b12b74a749296f62fc1d3b76a3a1d.pkl",
+      "cache_input_text_sha256": "3f7e676420ea22316308836b6d83e8b1c3cdfbe425b91070a9ce593ad0ade4fe",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "In an exhaustive search, her team combed over 2,000 folk recipes, compiled 640 prescriptions, and evaluated about 380 extracts from some 200 medicinal herbs.",
+      "exact_native_cache_key": "9d5d31ec145320b995df9bf6e626bccdf7e5bb13.pkl",
+      "cache_input_text_sha256": "3f7e676420ea22316308836b6d83e8b1c3cdfbe425b91070a9ce593ad0ade4fe",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "In an exhaustive search, her team combed over 2,000 folk recipes,",
+      "exact_native_cache_key": "198f16e567833cc94f9a3a867aa2426669862de2.pkl",
+      "cache_input_text_sha256": "d05832f71adcd71974f190aa15c0d5f74c24d88c059d1d92fefe3b065ff15fa5",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "compiled 640 prescriptions, and evaluated about 380 extracts from some 200 medicinal herbs.",
+      "exact_native_cache_key": "d53805545c7fd7409ef61876626efbddce3202d6.pkl",
+      "cache_input_text_sha256": "be32f47a0c42837463ac22f99239c86b9ab941fe5644ad07965c2eef3f1ebfb0",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "In an exhaustive search,",
+      "exact_native_cache_key": "c0e617430099c8f9137f20a53667c83846dfffdd.pkl",
+      "cache_input_text_sha256": "85936dc59a80b9832c1d843fdcd8dfcfb2c6391a66ae7c0b3caf3bf9535a4d86",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "her team combed over 2,000 folk recipes,",
+      "exact_native_cache_key": "494fc7dcff9b6d780ad73998cb899aa4b522c638.pkl",
+      "cache_input_text_sha256": "e7922827d6ef210cb826910a76322591197e4596368777204200fb295e9ec15f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "compiled 640 prescriptions,",
+      "exact_native_cache_key": "7f87b6b67d8c825c196a4dd19d032a6444fddc90.pkl",
+      "cache_input_text_sha256": "4339bf60aefc0c73e10d528dfecb9859adfb6142670848fb8ef41d200920a05e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 4,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "and evaluated about 380 extracts from some 200 medicinal herbs.",
+      "exact_native_cache_key": "8378d63161ce5e5fad5aba181e6712aba179dc81.pkl",
+      "cache_input_text_sha256": "a281efb851eab7e880cf8ce179ef3dc79a18f40cf8d22583065a2c6d8f78b4e0",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Qinghao, or sweet wormwood, showed flashes of promise, yet its results were erratic.",
+      "exact_native_cache_key": "6496e7f2e4c2e53c2f9ae2d8af4bcea634d887d2.pkl",
+      "cache_input_text_sha256": "6d810042a2108b4d0baac62bd6404f0d47e75c672e833aaf7ce2e8e85f14790b",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Qinghao, or sweet wormwood, showed flashes of promise, yet its results were erratic.",
+      "exact_native_cache_key": "b3a4d83f64b1c10b905809eacda982498327c793.pkl",
+      "cache_input_text_sha256": "6d810042a2108b4d0baac62bd6404f0d47e75c672e833aaf7ce2e8e85f14790b",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Qinghao,",
+      "exact_native_cache_key": "f8cf3496640274757a14eed4f3227a0608c5551d.pkl",
+      "cache_input_text_sha256": "f8b52971f43ae3415e5cfda1f36ef2cb9eb25be30768723f58e7b542cb304ffe",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "or sweet wormwood,",
+      "exact_native_cache_key": "802203581cfbc225f56075f446cbfe482dfebf3e.pkl",
+      "cache_input_text_sha256": "0f282580f97dac2a5e50812702702d726f2e952a2dc325d0e8f507704ee9ceea",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "showed flashes of promise,",
+      "exact_native_cache_key": "c3e26cb7d2073e18dbfff7a48a964b479f9b3f11.pkl",
+      "cache_input_text_sha256": "c8f79dd4b7ab8582e0942586cad6d65e85de5abe9c5dc398e41f6a53f547b4df",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 4,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "yet its results were erratic.",
+      "exact_native_cache_key": "cf6a4bf6f038b3e58a9c05240d94523eabbf52ce.pkl",
+      "cache_input_text_sha256": "03eff8a32395f8a2a9425ae179aecea96fa3220fae4417a9a20ee48ae47d83cc",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Seeking a clue, Tu revisited the classical texts.",
+      "exact_native_cache_key": "8b00db16714ac6578ed76d89dff7de5b2e8f788e.pkl",
+      "cache_input_text_sha256": "c92e66ef6672cb3d9406ccdb4c6488618ab3f1d14915e0c24897e713f993b249",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Seeking a clue, Tu revisited the classical texts.",
+      "exact_native_cache_key": "01b0bd02d6afe987855d75ed9be6d6a8020eb23a.pkl",
+      "cache_input_text_sha256": "c92e66ef6672cb3d9406ccdb4c6488618ab3f1d14915e0c24897e713f993b249",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Seeking a clue,",
+      "exact_native_cache_key": "82b4275b672dbf236ed0b57c8398585d9f188d8a.pkl",
+      "cache_input_text_sha256": "6cb3d01ae2c7d1a54b7cea81e8315f1cf7b073d3d941d0d5a65140444a4b7654",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Tu revisited the classical texts.",
+      "exact_native_cache_key": "c0ba3dd39bb6164ae5cdb40945048e78dd7a0ecc.pkl",
+      "cache_input_text_sha256": "88fa730fafd47fc1f06bf3c64c8953de5411a49b0352909143aef10b6fb7b4bb",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Around AD 340, the physician Ge Hong's handbook advised taking \"a handful of qinghao immersed in two litres of water\".",
+      "exact_native_cache_key": "f0e09acfc82b6c93056206c08a60e04729539576.pkl",
+      "cache_input_text_sha256": "5f401c0c29dc59dc9e58788c0a01947322f85996d04b789ace00bc72fdf9a0dd",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Around AD 340, the physician Ge Hong's handbook advised taking \"a handful of qinghao immersed in two litres of water\".",
+      "exact_native_cache_key": "ee1b6e7816c6a5b8437c8b7c8b4e49f143c853e7.pkl",
+      "cache_input_text_sha256": "5f401c0c29dc59dc9e58788c0a01947322f85996d04b789ace00bc72fdf9a0dd",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Around AD 340, the physician Ge Hong's handbook advised taking",
+      "exact_native_cache_key": "f7716277ad9833e2777f626a97bfbc6cd9a078b7.pkl",
+      "cache_input_text_sha256": "f04a9b2a9546d7d8d583384b565cd356b30f9d802087bf719b24ad16ff6e404a",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "\"a handful of qinghao immersed in two litres of water\".",
+      "exact_native_cache_key": "1442f325b7d1e57de2cf71eba0f715ebc76e6495.pkl",
+      "cache_input_text_sha256": "bd98ac8fb1580204c177de75fb6f5665d724bf43a15d81dbde2e83e0a9db2c36",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Around AD 340,",
+      "exact_native_cache_key": "7ab1b024b4e3349f163c9cafdf3c12b0f2638388.pkl",
+      "cache_input_text_sha256": "bd622a73f7276d6d77837c4134ef90bbe82bb6e35f9ac21d4acb8587fbc456ae",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "the physician Ge Hong's handbook advised taking \"a handful of qinghao immersed in two litres of water\".",
+      "exact_native_cache_key": "94ba4fe8b19090650228cca9c8e59d9c0764edaa.pkl",
+      "cache_input_text_sha256": "04ecae2cebc020372fdd25339da3b91e6146dba4a90832f416afb41052493782",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "This bypassed boiling.",
+      "exact_native_cache_key": "aadbbe1a4519ca020cb724ee3f660bc217d9e314.pkl",
+      "cache_input_text_sha256": "06d2f40bb10210765dc3d7f5460d81db3197ce82218e3f0598a64d1ed524d62a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "This bypassed boiling.",
+      "exact_native_cache_key": "9bb000ea3506255289898adbcf650b7e7874eef4.pkl",
+      "cache_input_text_sha256": "06d2f40bb10210765dc3d7f5460d81db3197ce82218e3f0598a64d1ed524d62a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Tu suspected heat during extraction was degrading a delicate component, so she switched to ether, a volatile solvent boiling at about 35 degrees Celsius.",
+      "exact_native_cache_key": "d31af1d1118cc23cb5adc9d127e46295c74914d9.pkl",
+      "cache_input_text_sha256": "a243eb3a6de41511e51b7e5df8cc01356b32ef15f2c940bacdd4f30c0b5adc28",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Tu suspected heat during extraction was degrading a delicate component, so she switched to ether, a volatile solvent boiling at about 35 degrees Celsius.",
+      "exact_native_cache_key": "c6a2dbb2d770447500d4f2848a4355f525aaed59.pkl",
+      "cache_input_text_sha256": "a243eb3a6de41511e51b7e5df8cc01356b32ef15f2c940bacdd4f30c0b5adc28",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Tu suspected heat during extraction was degrading a delicate component,",
+      "exact_native_cache_key": "cc2f3e5b96ae5f2fd2fae8f10c647eb823399f6a.pkl",
+      "cache_input_text_sha256": "c06d0dd78447a59b3bd83c796c19b6c38c0416cfcaec46564e8a4223009a846c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "so she switched to ether,",
+      "exact_native_cache_key": "9052a63e0cb2eebae327eb2b4f6f697a6831f179.pkl",
+      "cache_input_text_sha256": "bc876ec4ecf1902fa5411c6d9f67d9c4e7777c29ae4b305391487535b3a53d3e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "a volatile solvent boiling at about 35 degrees Celsius.",
+      "exact_native_cache_key": "83653625bc418ed32b83bf3bff4c4ce256e33203.pkl",
+      "cache_input_text_sha256": "47a0d19ae97b1eff80f7ccf03480bc2c7805e1f28e628d55a568e60ac1380b5c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Tu suspected heat during extraction was degrading a delicate component,",
+      "exact_native_cache_key": "cc2f3e5b96ae5f2fd2fae8f10c647eb823399f6a.pkl",
+      "cache_input_text_sha256": "c06d0dd78447a59b3bd83c796c19b6c38c0416cfcaec46564e8a4223009a846c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "so she switched to ether,",
+      "exact_native_cache_key": "9052a63e0cb2eebae327eb2b4f6f697a6831f179.pkl",
+      "cache_input_text_sha256": "bc876ec4ecf1902fa5411c6d9f67d9c4e7777c29ae4b305391487535b3a53d3e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "a volatile solvent boiling at about 35 degrees Celsius.",
+      "exact_native_cache_key": "83653625bc418ed32b83bf3bff4c4ce256e33203.pkl",
+      "cache_input_text_sha256": "47a0d19ae97b1eff80f7ccf03480bc2c7805e1f28e628d55a568e60ac1380b5c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "On 4 October 1971 sample 191 completely inhibited the parasite in infected mice.",
+      "exact_native_cache_key": "45f80bb18ed3858c59fc62e83bbe8929278f00df.pkl",
+      "cache_input_text_sha256": "0ceef58a438d75d34bd2c10235fd07257cfa50619a27fa030361eed957dafb59",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "On 4 October 1971 sample 191 completely inhibited the parasite in infected mice.",
+      "exact_native_cache_key": "9c2a88169f965179a3ac0033556e2ed2c50437e0.pkl",
+      "cache_input_text_sha256": "0ceef58a438d75d34bd2c10235fd07257cfa50619a27fa030361eed957dafb59",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Efficacy in mice indicated nothing about human safety.",
+      "exact_native_cache_key": "b6defa2e76f6e9818307bbc7c2630c43bc91ca7f.pkl",
+      "cache_input_text_sha256": "17cae80f74e1d397e443ba34c1d6b6d77d223280204c3c747ca6d0aefadb3dd7",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Efficacy in mice indicated nothing about human safety.",
+      "exact_native_cache_key": "f1313d2cbffec1afdf2ab4ec84e564c75eb5647b.pkl",
+      "cache_input_text_sha256": "17cae80f74e1d397e443ba34c1d6b6d77d223280204c3c747ca6d0aefadb3dd7",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "In July 1972, to assess its toxicity, Tu and two colleagues voluntarily took the extract.",
+      "exact_native_cache_key": "5cff8bb3c6050ecd3b00809bf521f82944f40a90.pkl",
+      "cache_input_text_sha256": "00e2b5678d9a2d7a2591207c887d533397bb383322fe44040d7b6e0cbff5cf40",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "In July 1972, to assess its toxicity, Tu and two colleagues voluntarily took the extract.",
+      "exact_native_cache_key": "a8184dfa9a5ff78eed157245e0ec4d2589451622.pkl",
+      "cache_input_text_sha256": "00e2b5678d9a2d7a2591207c887d533397bb383322fe44040d7b6e0cbff5cf40",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "In July 1972,",
+      "exact_native_cache_key": "fced03a17746951cd58f5c30f462276daabac9f6.pkl",
+      "cache_input_text_sha256": "f869211fc6ef37312bbd9cc47ec4883facd466db0eb0527d3ccb16211e1a8437",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "to assess its toxicity,",
+      "exact_native_cache_key": "2d7c4217a9121b8916886e861be8677c26438482.pkl",
+      "cache_input_text_sha256": "6cb82bbb6da47496a81c4d1c05c49381ceb6df6abce802cfbd88435ee1d78141",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Tu and two colleagues voluntarily took the extract.",
+      "exact_native_cache_key": "d457f3f4daf7682dcca8ead58a3b62aa97174a12.pkl",
+      "cache_input_text_sha256": "14bb0e9f515c5e5c1bcafb411301422b7a8b9bda08443836816c1a1e441f729d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Thereafter, from August to October, it was administered to 21 malaria patients in Hainan, and on 8 November her team obtained pure crystals of the substance later named artemisinin.",
+      "exact_native_cache_key": "127a665ebbba8a0c073f6e9e02577396fb7ff69f.pkl",
+      "cache_input_text_sha256": "81e6c245c66f2cd909700bb4778f4f33b1baddbee38072bc04b9235a8dd80d20",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Thereafter, from August to October, it was administered to 21 malaria patients in Hainan, and on 8 November her team obtained pure crystals of the substance later named artemisinin.",
+      "exact_native_cache_key": "08947496b237a0972a2656ac5bb4b23ce2cc650d.pkl",
+      "cache_input_text_sha256": "81e6c245c66f2cd909700bb4778f4f33b1baddbee38072bc04b9235a8dd80d20",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Thereafter, from August to October, it was administered to 21 malaria patients in Hainan,",
+      "exact_native_cache_key": "f374bc802a2151d2d1fbeeff06cc928f9255635c.pkl",
+      "cache_input_text_sha256": "13c2237e94262c8d0cb481be557002f5634101c90489015bc2f425f618da9c99",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "and on 8 November her team obtained pure crystals of the substance later named artemisinin.",
+      "exact_native_cache_key": "ae7b3a5e1d50d054cf71d635ff70647d3fdde0c4.pkl",
+      "cache_input_text_sha256": "c48468b6c1099a4b3cafd8ac42d34f7a9461e8c345759b2f5d64afb4e4d37920",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Thereafter,",
+      "exact_native_cache_key": "be72200a558052ce03edff95fcfd2dc4ed063aec.pkl",
+      "cache_input_text_sha256": "c829e6d3ec4da1af8340b113f47ff7f0b9affddd69474df752504e841e371c91",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "from August to October,",
+      "exact_native_cache_key": "45bf20c2c1d2853dd4b0bd497a58860a91d71161.pkl",
+      "cache_input_text_sha256": "17cd27f08df19806a657588546dd4ba3566f9739c932844882b87675d39efe06",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "it was administered to 21 malaria patients in Hainan,",
+      "exact_native_cache_key": "d9d30c5dac328b39103a301528b268482ccead05.pkl",
+      "cache_input_text_sha256": "40d82722cfe6e68f4d1cc2b5ca2be003262fd9719c5d6ac61431eb10a728a4c4",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 4,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "and on 8 November her team obtained pure crystals of the substance later named artemisinin.",
+      "exact_native_cache_key": "ae7b3a5e1d50d054cf71d635ff70647d3fdde0c4.pkl",
+      "cache_input_text_sha256": "c48468b6c1099a4b3cafd8ac42d34f7a9461e8c345759b2f5d64afb4e4d37920",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "In September 2011 Tu was named a Lasker Award recipient; its jury credited the drug with saving millions.",
+      "exact_native_cache_key": "3f378e2f33aa7f94743014a50f9e911f21cd3719.pkl",
+      "cache_input_text_sha256": "e2d25f7185e5c4b3985cec317ee9b79319f8a0979caf02b9fd7d17d023311bb3",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "In September 2011 Tu was named a Lasker Award recipient; its jury credited the drug with saving millions.",
+      "exact_native_cache_key": "c4c9d10ba8c0592d16170b921dbf657cba5c0b3b.pkl",
+      "cache_input_text_sha256": "e2d25f7185e5c4b3985cec317ee9b79319f8a0979caf02b9fd7d17d023311bb3",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "In September 2011 Tu was named a Lasker Award recipient;",
+      "exact_native_cache_key": "87f9b070cbf42e40c45d95c08983ff0cfe35b3c9.pkl",
+      "cache_input_text_sha256": "26dab4fd370ef34bdae42d4cd374a0520978527c1c8f03c0c2bf98224d900937",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "its jury credited the drug with saving millions.",
+      "exact_native_cache_key": "2f35225356fd5de550b946cf9475408b77315c90.pkl",
+      "cache_input_text_sha256": "077359112a5576b9e4820a5a3c59ce732c3e161db887393625502af18d82531d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "In September 2011 Tu was named a Lasker Award recipient;",
+      "exact_native_cache_key": "87f9b070cbf42e40c45d95c08983ff0cfe35b3c9.pkl",
+      "cache_input_text_sha256": "26dab4fd370ef34bdae42d4cd374a0520978527c1c8f03c0c2bf98224d900937",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "its jury credited the drug with saving millions.",
+      "exact_native_cache_key": "2f35225356fd5de550b946cf9475408b77315c90.pkl",
+      "cache_input_text_sha256": "077359112a5576b9e4820a5a3c59ce732c3e161db887393625502af18d82531d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "On 5 October 2015 she won half the Nobel Prize in Physiology or Medicine, the first Chinese woman Nobel laureate.",
+      "exact_native_cache_key": "fd2d64e4592b7ad3323a28bcca2587d84be6d6c4.pkl",
+      "cache_input_text_sha256": "945257c4e5c9cbbfc73c41961daa3509f0c1aaaa7b24e4d41b9ba27cca62d381",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "On 5 October 2015 she won half the Nobel Prize in Physiology or Medicine, the first Chinese woman Nobel laureate.",
+      "exact_native_cache_key": "a470a3e0007b358f735ce5b1cbc0ec1f257ebc86.pkl",
+      "cache_input_text_sha256": "945257c4e5c9cbbfc73c41961daa3509f0c1aaaa7b24e4d41b9ba27cca62d381",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "On 5 October 2015 she won half the Nobel Prize in Physiology or Medicine,",
+      "exact_native_cache_key": "36312be4ed58caee9579d86dd27124a69e90b7cd.pkl",
+      "cache_input_text_sha256": "fcc4c0bea23ac9a904475daed718783b3a17b4498b08031f0e6b6e5eb22898b8",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "the first Chinese woman Nobel laureate.",
+      "exact_native_cache_key": "6818df7a1496707cbc06048bc7c9dc0294102081.pkl",
+      "cache_input_text_sha256": "7c6a4ae913c62418d331d2e57b02e6c23231974b8b25535c27873882f911693f",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "On 5 October 2015 she won half the Nobel Prize in Physiology or Medicine,",
+      "exact_native_cache_key": "36312be4ed58caee9579d86dd27124a69e90b7cd.pkl",
+      "cache_input_text_sha256": "fcc4c0bea23ac9a904475daed718783b3a17b4498b08031f0e6b6e5eb22898b8",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "the first Chinese woman Nobel laureate.",
+      "exact_native_cache_key": "6818df7a1496707cbc06048bc7c9dc0294102081.pkl",
+      "cache_input_text_sha256": "7c6a4ae913c62418d331d2e57b02e6c23231974b8b25535c27873882f911693f",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Since 2006 WHO guidelines have endorsed artemisinin-based combination therapies against malaria's deadliest form.",
+      "exact_native_cache_key": "ea37471d559f122be87385114ce21bac9dbe82a9.pkl",
+      "cache_input_text_sha256": "8a99013c9ae38f11a0d5828c151507b3b52b7b9b3d50e713d8e5fbaba455d837",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Since 2006 WHO guidelines have endorsed artemisinin-based combination therapies against malaria's deadliest form.",
+      "exact_native_cache_key": "977be2cbfaef6383f25edb957227037c5e6bbb60.pkl",
+      "cache_input_text_sha256": "8a99013c9ae38f11a0d5828c151507b3b52b7b9b3d50e713d8e5fbaba455d837",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "The essence of Ge Hong's line lay in the boiling it skipped.",
+      "exact_native_cache_key": "d73024be15fee5877a0dc300acec10a5668bbbae.pkl",
+      "cache_input_text_sha256": "d7b1157871339d142fb3f4106ebfa10295a9667a48b1eb6f1f5894221570a062",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "The essence of Ge Hong's line lay in the boiling it skipped.",
+      "exact_native_cache_key": "5c70b8a8eb8b6bdfa91d474cf96880c3fec262d8.pkl",
+      "cache_input_text_sha256": "d7b1157871339d142fb3f4106ebfa10295a9667a48b1eb6f1f5894221570a062",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    }
+  ],
+  "unique_reference_key_count": 77,
+  "raw_mother_cache_scalar_manifest": [
+    {
+      "exact_native_cache_key": "8b9e2da3de253ddb6ead738e182bc65055204bff.pkl",
+      "pkl_sha256": "3938a3bfa8e00ef715c34f178500cfb61a17fd109dd8a8faa0c5d6325e2603f3",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "标题",
+          "piece": null,
+          "reference_kind": "title-default-raw",
+          "method": "create",
+          "source_slice": "A Handful of Wormwood That Saved Millions",
+          "exact_native_cache_key": "8b9e2da3de253ddb6ead738e182bc65055204bff.pkl",
+          "cache_input_text_sha256": "06408ba8f2805bb96d3469d47eb9327d79f4ab479e87d60fd441e112765f4462",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "3938a3bfa8e00ef7",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        58880
+      ],
+      "unprocessed_array_sha256": "d89e63a810cddbe26246013192d52b06be0ae49b0891797f56f53a7035bcc2b7"
+    },
+    {
+      "exact_native_cache_key": "7618e0ea194fd34f7999ef07950754c6b54c2242.pkl",
+      "pkl_sha256": "70f1470940e659e756489c894d7e1b5ce51259016457928ce404c68821f75e1c",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Project 523, a covert military mission involving many institutes, was named after its launch date, 23 May 1967.",
+          "exact_native_cache_key": "7618e0ea194fd34f7999ef07950754c6b54c2242.pkl",
+          "cache_input_text_sha256": "17acc85c85df65a95a16ed7a906af6e90264d83346dc99673d389c474366ab65",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "70f1470940e659e7",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        281600
+      ],
+      "unprocessed_array_sha256": "542994e4c7052f04eee56b9a316c64d34dbe78b5626f9a2a1a2b39ef978deb00"
+    },
+    {
+      "exact_native_cache_key": "946dc8d60edc4f96ae40eda8aec81a466c92c994.pkl",
+      "pkl_sha256": "f88ab6c4a009332ae9409d99e1d08754fced8c0bc68f347049281149cc223b57",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Project 523, a covert military mission involving many institutes,",
+          "exact_native_cache_key": "946dc8d60edc4f96ae40eda8aec81a466c92c994.pkl",
+          "cache_input_text_sha256": "650c78d806642d6cedc28576264273e921701cce42035e7216f3faaaa622edb6",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "f88ab6c4a009332a",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        144384
+      ],
+      "unprocessed_array_sha256": "0aa297bbbdfe6950473676dd50b1634210d1348ca916d1a3a697c78618df0bb6"
+    },
+    {
+      "exact_native_cache_key": "ba2dae9a376e9321d8e45810ee81130e6064a387.pkl",
+      "pkl_sha256": "4a4327290403ebed88858e5e60a9a69cbfde5e8ecb8ef51d49f8d48f62a1446b",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "was named after its launch date, 23 May 1967.",
+          "exact_native_cache_key": "ba2dae9a376e9321d8e45810ee81130e6064a387.pkl",
+          "cache_input_text_sha256": "5bcf5bd609c84874123efb6be1a38a2707a8e383aaaa085ac9153b9045dc2e21",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "4a4327290403ebed",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        119808
+      ],
+      "unprocessed_array_sha256": "f3b8a48ec33bec368d27664e61bbb3c5a9d535535421152fcf195eb76469425c"
+    },
+    {
+      "exact_native_cache_key": "db7f86c0f0fd11a4e3991aa5f0770851f34a54ac.pkl",
+      "pkl_sha256": "4c2a90cec5bdf974ea2dba8d286d071c01c425b0e4d3431b72327c9a5de06616",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Project 523,",
+          "exact_native_cache_key": "db7f86c0f0fd11a4e3991aa5f0770851f34a54ac.pkl",
+          "cache_input_text_sha256": "6bc2925525c47581fc3038a7780dd173c2ceeef569ed0ed251493aa2ff5431b2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "4c2a90cec5bdf974",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        47616
+      ],
+      "unprocessed_array_sha256": "d1b2fc586018243bf0babefb04595c59a6962ee21f031ac37733ba95241e4490"
+    },
+    {
+      "exact_native_cache_key": "8e25db1bc6e90acd052647a5c671df6f0b4532a9.pkl",
+      "pkl_sha256": "7bb3681d20fbddf9aab6e7af7c04e0dfb9ac4f1f9d907633130a6a3815f18082",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a covert military mission involving many institutes,",
+          "exact_native_cache_key": "8e25db1bc6e90acd052647a5c671df6f0b4532a9.pkl",
+          "cache_input_text_sha256": "340724e1ee45ee80e1fa5475504d20931150752e5cb9cd60799435755cd35e63",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "7bb3681d20fbddf9",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        89088
+      ],
+      "unprocessed_array_sha256": "06f20af78fc5e35c4e8728e2cd2d0127a5a9eba370eba6db88f8c0123145e4f3"
+    },
+    {
+      "exact_native_cache_key": "b9c02dcf251081cbccdb5ed61c71e5a297f9f9a3.pkl",
+      "pkl_sha256": "8dab4ab0075559e11f3affdd8fe7e3ce4e0c8c721acbabbbd5e232f9d0812dc7",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "was named after its launch date,",
+          "exact_native_cache_key": "b9c02dcf251081cbccdb5ed61c71e5a297f9f9a3.pkl",
+          "cache_input_text_sha256": "7e638cad51ea0144e44a95d7c5dc0f596f475095c46d760bc30b3d19cf592522",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "8dab4ab0075559e1",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        47616
+      ],
+      "unprocessed_array_sha256": "3a5460fa62e1d3462b48aa5af784efdfad1be1d8bfc138929cd45612a172eb85"
+    },
+    {
+      "exact_native_cache_key": "a2fe757cafff526739881a7663dce3ade953d6ea.pkl",
+      "pkl_sha256": "ab25cdeb24a97b3fc052848034c8eac591d8f7ac645509be2d0de4756951ccdb",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "23 May 1967.",
+          "exact_native_cache_key": "a2fe757cafff526739881a7663dce3ade953d6ea.pkl",
+          "cache_input_text_sha256": "5e1de12da5db64cf323333321c7162e6bda8cc3866649608ab3209662d7a1740",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "ab25cdeb24a97b3f",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        64000
+      ],
+      "unprocessed_array_sha256": "cafd7d07c4180470c0c5e38a517e57d92f8e10ecb7a26e2b6d566a7a21106347"
+    },
+    {
+      "exact_native_cache_key": "1a99bb9e68d78f32d9a347d95b6e5808f645c7f2.pkl",
+      "pkl_sha256": "1999c98bfc0f42fcdf7e09d5cd88353c3f3b8b52084de31327c51d52455d9568",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Its urgent target was the chloroquine-resistant malaria weakening troops in the Vietnam War.",
+          "exact_native_cache_key": "1a99bb9e68d78f32d9a347d95b6e5808f645c7f2.pkl",
+          "cache_input_text_sha256": "797848f3174df67692a993511666c3a218061f272f0e599219f0d5bd7c9c7ac5",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "1999c98bfc0f42fc",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        146432
+      ],
+      "unprocessed_array_sha256": "d158df982a5bf04d9078f074e1f532f73a62df2085e8aec4b0b31fd41ce1c711"
+    },
+    {
+      "exact_native_cache_key": "588b4867e01602acea4b9cc75741d28616af206d.pkl",
+      "pkl_sha256": "44b7ecebdc2e9f5c230f2e3fc0f0bd0ef1b9f52970bb4dbf74602a7148fbccda",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Its urgent target was the chloroquine-resistant malaria",
+          "exact_native_cache_key": "588b4867e01602acea4b9cc75741d28616af206d.pkl",
+          "cache_input_text_sha256": "d6f676456bd59518225780b5858e1856498410e86e5fdaa358bad31dad70f44a",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "44b7ecebdc2e9f5c",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        87552
+      ],
+      "unprocessed_array_sha256": "f8688597fa46fb58cec0d6d0f5ed6b3ac313f8f04ff6283f0605fb3d1ab3e2a5"
+    },
+    {
+      "exact_native_cache_key": "23a06aaef833b1d5202b8fd87fb1d9ed59c7dde1.pkl",
+      "pkl_sha256": "d344b0d5c46a2ce370e646225fc1a261253b490096308b951c7d878583dd45c7",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "weakening troops in the Vietnam War.",
+          "exact_native_cache_key": "23a06aaef833b1d5202b8fd87fb1d9ed59c7dde1.pkl",
+          "cache_input_text_sha256": "d6394a52cd8ad7ebdb5d6188d24e835be71981c0ec80602f4c59b7860037663f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "d344b0d5c46a2ce3",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        56320
+      ],
+      "unprocessed_array_sha256": "309d528d61aa238346069d2446f527f2bde2b06679547ae1ebb404c0111bc8e1"
+    },
+    {
+      "exact_native_cache_key": "84618bdf0d69cb273994b3af7132c50f3ba2c19d.pkl",
+      "pkl_sha256": "9c8507e5f187daf504bdc7c919a97fef7277cbc666229fb1e7001369532983a4",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In January 1969 Tu Youyou was entrusted with leading her institute's research group, despite having no doctorate or foreign training.",
+          "exact_native_cache_key": "84618bdf0d69cb273994b3af7132c50f3ba2c19d.pkl",
+          "cache_input_text_sha256": "6d99b6d66f71d480d8b9fe78989db96d87708a9ccb433025aeda827985b9de55",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "9c8507e5f187daf5",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        237568
+      ],
+      "unprocessed_array_sha256": "eb282bdd9bc22b1b534ca7d505735bc0b1a6514431eb01e2303d2f5ecc658103"
+    },
+    {
+      "exact_native_cache_key": "1e3cc9337e8624f0039e335238df62312d9976e4.pkl",
+      "pkl_sha256": "b8446a21ff3cf4c6182ac23fae2caf3c8ec99f157dc1198770d9d9be72a1b8fc",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In January 1969 Tu Youyou was entrusted with leading her institute's research group,",
+          "exact_native_cache_key": "1e3cc9337e8624f0039e335238df62312d9976e4.pkl",
+          "cache_input_text_sha256": "ac38dcf512c06d886364f1b382c6121fd2750a9b80356bdeff05def73597f6ba",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In January 1969 Tu Youyou was entrusted with leading her institute's research group,",
+          "exact_native_cache_key": "1e3cc9337e8624f0039e335238df62312d9976e4.pkl",
+          "cache_input_text_sha256": "ac38dcf512c06d886364f1b382c6121fd2750a9b80356bdeff05def73597f6ba",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "b8446a21ff3cf4c6",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        160256
+      ],
+      "unprocessed_array_sha256": "1bbee2bd9574046d9cc4f2c8fd4e78fade0cbcb4bfb1cc3867b3ac8e2d382c54"
+    },
+    {
+      "exact_native_cache_key": "7aa9e308526e5e9b8fd37647eb7a982d9dbb05ef.pkl",
+      "pkl_sha256": "93b14e2b43325d1131dae9ae90514487ae599d51a0f9d7bd3fe505b3aac6a662",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "despite having no doctorate or foreign training.",
+          "exact_native_cache_key": "7aa9e308526e5e9b8fd37647eb7a982d9dbb05ef.pkl",
+          "cache_input_text_sha256": "2b93229fa73f8cee680991d873600cf79a7b3280cc885bbcb5a27835d7989c0a",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "despite having no doctorate or foreign training.",
+          "exact_native_cache_key": "7aa9e308526e5e9b8fd37647eb7a982d9dbb05ef.pkl",
+          "cache_input_text_sha256": "2b93229fa73f8cee680991d873600cf79a7b3280cc885bbcb5a27835d7989c0a",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "93b14e2b43325d11",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        70144
+      ],
+      "unprocessed_array_sha256": "8bb9b717d1c034b03a9cbb049094dd4c005e398e16435c7ded3b1dbd225e5c0c"
+    },
+    {
+      "exact_native_cache_key": "7d429d1e435b12b74a749296f62fc1d3b76a3a1d.pkl",
+      "pkl_sha256": "58309da4815c94d72bff11c25fead82a91205d9b07e310ef729dbddfc5e282a5",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In an exhaustive search, her team combed over 2,000 folk recipes, compiled 640 prescriptions, and evaluated about 380 extracts from some 200 medicinal herbs.",
+          "exact_native_cache_key": "7d429d1e435b12b74a749296f62fc1d3b76a3a1d.pkl",
+          "cache_input_text_sha256": "3f7e676420ea22316308836b6d83e8b1c3cdfbe425b91070a9ce593ad0ade4fe",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "58309da4815c94d7",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        339968
+      ],
+      "unprocessed_array_sha256": "6938daf09bf0af6a081b44ca9616a2b3d482e388d48717cd4e2b7e1f2d077828"
+    },
+    {
+      "exact_native_cache_key": "198f16e567833cc94f9a3a867aa2426669862de2.pkl",
+      "pkl_sha256": "97176f57af450f0538c70b3a3ff5125c78248b415f5ceb60ea8725badac65852",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In an exhaustive search, her team combed over 2,000 folk recipes,",
+          "exact_native_cache_key": "198f16e567833cc94f9a3a867aa2426669862de2.pkl",
+          "cache_input_text_sha256": "d05832f71adcd71974f190aa15c0d5f74c24d88c059d1d92fefe3b065ff15fa5",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "97176f57af450f05",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        137728
+      ],
+      "unprocessed_array_sha256": "530630a3c6ef36435a5ea435a5a6d2d16ac63a9d02593422af775cb39219ed77"
+    },
+    {
+      "exact_native_cache_key": "d53805545c7fd7409ef61876626efbddce3202d6.pkl",
+      "pkl_sha256": "7f418ce93960d2fd97f05ff7d5291c88b81e7410c19d8b758608e07a8748aee4",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "compiled 640 prescriptions, and evaluated about 380 extracts from some 200 medicinal herbs.",
+          "exact_native_cache_key": "d53805545c7fd7409ef61876626efbddce3202d6.pkl",
+          "cache_input_text_sha256": "be32f47a0c42837463ac22f99239c86b9ab941fe5644ad07965c2eef3f1ebfb0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "7f418ce93960d2fd",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        213504
+      ],
+      "unprocessed_array_sha256": "743561f0a010b0f677307745a7fad8f6216afe2e442040525fbd85755607f306"
+    },
+    {
+      "exact_native_cache_key": "c0e617430099c8f9137f20a53667c83846dfffdd.pkl",
+      "pkl_sha256": "4985fb020f76a95fd50324ea82a9b784fcfb30603d74bd734998e022ef682f40",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In an exhaustive search,",
+          "exact_native_cache_key": "c0e617430099c8f9137f20a53667c83846dfffdd.pkl",
+          "cache_input_text_sha256": "85936dc59a80b9832c1d843fdcd8dfcfb2c6391a66ae7c0b3caf3bf9535a4d86",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "4985fb020f76a95f",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        33792
+      ],
+      "unprocessed_array_sha256": "cc259f4abdce8cb360714b4634750ecf1c9e0a76bf4fed383924923ad4186bdd"
+    },
+    {
+      "exact_native_cache_key": "494fc7dcff9b6d780ad73998cb899aa4b522c638.pkl",
+      "pkl_sha256": "8b6f9ec4196104803373b3798f0b7ad9adffd55fff5511ed44669098fe810b7d",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "her team combed over 2,000 folk recipes,",
+          "exact_native_cache_key": "494fc7dcff9b6d780ad73998cb899aa4b522c638.pkl",
+          "cache_input_text_sha256": "e7922827d6ef210cb826910a76322591197e4596368777204200fb295e9ec15f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "8b6f9ec419610480",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        103936
+      ],
+      "unprocessed_array_sha256": "8992fa3e25ed9d0e79993b825a8d576026a110c7ebc4f050435ec2edbfc415c1"
+    },
+    {
+      "exact_native_cache_key": "7f87b6b67d8c825c196a4dd19d032a6444fddc90.pkl",
+      "pkl_sha256": "bf89e27ff2d36376401876eae7096d00a4e1f15693e28c2ed193ff087101a253",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "compiled 640 prescriptions,",
+          "exact_native_cache_key": "7f87b6b67d8c825c196a4dd19d032a6444fddc90.pkl",
+          "cache_input_text_sha256": "4339bf60aefc0c73e10d528dfecb9859adfb6142670848fb8ef41d200920a05e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "bf89e27ff2d36376",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        59392
+      ],
+      "unprocessed_array_sha256": "2b80f22f8628b377e144a9e937b0b0373abb2630726cc96ba43a9ac9bfffe3e9"
+    },
+    {
+      "exact_native_cache_key": "8378d63161ce5e5fad5aba181e6712aba179dc81.pkl",
+      "pkl_sha256": "b2229416221152bf06225fb52d7dbd24e9f22e1a6102e5ca7efe98417bf4e348",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and evaluated about 380 extracts from some 200 medicinal herbs.",
+          "exact_native_cache_key": "8378d63161ce5e5fad5aba181e6712aba179dc81.pkl",
+          "cache_input_text_sha256": "a281efb851eab7e880cf8ce179ef3dc79a18f40cf8d22583065a2c6d8f78b4e0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "b2229416221152bf",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        140800
+      ],
+      "unprocessed_array_sha256": "2d68da06fc72beaf86b18ea1a964c7e1dd4f5361126fe6f826c6a739c287f823"
+    },
+    {
+      "exact_native_cache_key": "6496e7f2e4c2e53c2f9ae2d8af4bcea634d887d2.pkl",
+      "pkl_sha256": "ee6cc6b4f677bfcced4214b4f5eb28060f64e89e6c07e27846b7b07ccfb3cc06",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Qinghao, or sweet wormwood, showed flashes of promise, yet its results were erratic.",
+          "exact_native_cache_key": "6496e7f2e4c2e53c2f9ae2d8af4bcea634d887d2.pkl",
+          "cache_input_text_sha256": "6d810042a2108b4d0baac62bd6404f0d47e75c672e833aaf7ce2e8e85f14790b",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "ee6cc6b4f677bfcc",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        130560
+      ],
+      "unprocessed_array_sha256": "50ba0c5f7089ac2248e33b0592cb95052134dfb170ee17024292a77e0ae58562"
+    },
+    {
+      "exact_native_cache_key": "f8cf3496640274757a14eed4f3227a0608c5551d.pkl",
+      "pkl_sha256": "74d8efdac29e6b7dd1fe8c1d38e8f38b8fad9c696d0f58000ed8da9b1aca92a7",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Qinghao,",
+          "exact_native_cache_key": "f8cf3496640274757a14eed4f3227a0608c5551d.pkl",
+          "cache_input_text_sha256": "f8b52971f43ae3415e5cfda1f36ef2cb9eb25be30768723f58e7b542cb304ffe",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "74d8efdac29e6b7d",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        19968
+      ],
+      "unprocessed_array_sha256": "8c256b7fc436b5484e3e890c261498d529aa11696803ca73ea4821dbec923119"
+    },
+    {
+      "exact_native_cache_key": "802203581cfbc225f56075f446cbfe482dfebf3e.pkl",
+      "pkl_sha256": "2946b017036fe6352b595396c35e2577922c93c13600c505db06c9b7ab76ea46",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "or sweet wormwood,",
+          "exact_native_cache_key": "802203581cfbc225f56075f446cbfe482dfebf3e.pkl",
+          "cache_input_text_sha256": "0f282580f97dac2a5e50812702702d726f2e952a2dc325d0e8f507704ee9ceea",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "2946b017036fe635",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        30720
+      ],
+      "unprocessed_array_sha256": "e5a00a6e3d42b938032d430e150272f7e760b75d41a49d3a94463397206b76f8"
+    },
+    {
+      "exact_native_cache_key": "c3e26cb7d2073e18dbfff7a48a964b479f9b3f11.pkl",
+      "pkl_sha256": "31a5e73e0280ec3d66492923afd461cc1651245aaebd28bbeca763c80a400a9d",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "showed flashes of promise,",
+          "exact_native_cache_key": "c3e26cb7d2073e18dbfff7a48a964b479f9b3f11.pkl",
+          "cache_input_text_sha256": "c8f79dd4b7ab8582e0942586cad6d65e85de5abe9c5dc398e41f6a53f547b4df",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "31a5e73e0280ec3d",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        38400
+      ],
+      "unprocessed_array_sha256": "fa1dcc4bbe319d82ddf1e7bbd27b4f10ffa3db412293c59c687bb3eb7c5f80c1"
+    },
+    {
+      "exact_native_cache_key": "cf6a4bf6f038b3e58a9c05240d94523eabbf52ce.pkl",
+      "pkl_sha256": "3252fdacf70d851b6661ededef0fcc3cfeb62d2b91a9e5461a59a797f3786633",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "yet its results were erratic.",
+          "exact_native_cache_key": "cf6a4bf6f038b3e58a9c05240d94523eabbf52ce.pkl",
+          "cache_input_text_sha256": "03eff8a32395f8a2a9425ae179aecea96fa3220fae4417a9a20ee48ae47d83cc",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "3252fdacf70d851b",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        40960
+      ],
+      "unprocessed_array_sha256": "42f8f4b52e6b17eb0b5b4cb7fbbdc60292194f0841bdcb99ad30e74a33b64d08"
+    },
+    {
+      "exact_native_cache_key": "8b00db16714ac6578ed76d89dff7de5b2e8f788e.pkl",
+      "pkl_sha256": "e2bc489b510aed4061e7855f2831c1359d83353e8f101c261cccc484ab3b90a9",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Seeking a clue, Tu revisited the classical texts.",
+          "exact_native_cache_key": "8b00db16714ac6578ed76d89dff7de5b2e8f788e.pkl",
+          "cache_input_text_sha256": "c92e66ef6672cb3d9406ccdb4c6488618ab3f1d14915e0c24897e713f993b249",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "e2bc489b510aed40",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        76800
+      ],
+      "unprocessed_array_sha256": "1e9005770198625c081dc77d98f946ba43a58d1b1dbcbb56428f5132bb43201e"
+    },
+    {
+      "exact_native_cache_key": "82b4275b672dbf236ed0b57c8398585d9f188d8a.pkl",
+      "pkl_sha256": "c61f03b6fbf39d44fb602f88c8af9c72e473befbef5bdca8406d6ba9936c7b2d",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Seeking a clue,",
+          "exact_native_cache_key": "82b4275b672dbf236ed0b57c8398585d9f188d8a.pkl",
+          "cache_input_text_sha256": "6cb3d01ae2c7d1a54b7cea81e8315f1cf7b073d3d941d0d5a65140444a4b7654",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "c61f03b6fbf39d44",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        27648
+      ],
+      "unprocessed_array_sha256": "63c4bb31094c0982c63dc74f21d9a30cbc4ae24b6fc14f992e54679bf767d8c5"
+    },
+    {
+      "exact_native_cache_key": "c0ba3dd39bb6164ae5cdb40945048e78dd7a0ecc.pkl",
+      "pkl_sha256": "5eb8c56f938a518b0d4d4a08c413cc11ea847d0fb7e330b470ec335809999ec4",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Tu revisited the classical texts.",
+          "exact_native_cache_key": "c0ba3dd39bb6164ae5cdb40945048e78dd7a0ecc.pkl",
+          "cache_input_text_sha256": "88fa730fafd47fc1f06bf3c64c8953de5411a49b0352909143aef10b6fb7b4bb",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "5eb8c56f938a518b",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        54784
+      ],
+      "unprocessed_array_sha256": "30649f44584d285bb368a79500d3c20f87a803d8e9d28001766a2a901a2e4546"
+    },
+    {
+      "exact_native_cache_key": "f0e09acfc82b6c93056206c08a60e04729539576.pkl",
+      "pkl_sha256": "7b6fab42e350f53e0a8f64ba9194ee945b51cf174fe8bb7c623f5dae8ce63124",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Around AD 340, the physician Ge Hong's handbook advised taking \"a handful of qinghao immersed in two litres of water\".",
+          "exact_native_cache_key": "f0e09acfc82b6c93056206c08a60e04729539576.pkl",
+          "cache_input_text_sha256": "5f401c0c29dc59dc9e58788c0a01947322f85996d04b789ace00bc72fdf9a0dd",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "7b6fab42e350f53e",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        231936
+      ],
+      "unprocessed_array_sha256": "dd213047849f8315c03153344fbeebd100a516e108af3fb4308f8fc867f9de2d"
+    },
+    {
+      "exact_native_cache_key": "f7716277ad9833e2777f626a97bfbc6cd9a078b7.pkl",
+      "pkl_sha256": "0010f1054d71400278e35b7d14e8f29ee81d6cfb609c43a516b737b643986d19",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Around AD 340, the physician Ge Hong's handbook advised taking",
+          "exact_native_cache_key": "f7716277ad9833e2777f626a97bfbc6cd9a078b7.pkl",
+          "cache_input_text_sha256": "f04a9b2a9546d7d8d583384b565cd356b30f9d802087bf719b24ad16ff6e404a",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "0010f1054d714002",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        134144
+      ],
+      "unprocessed_array_sha256": "a1691e83a7ccca2d42ededd4173c2b6f03eda9b5a6ff0737200219040799f75d"
+    },
+    {
+      "exact_native_cache_key": "1442f325b7d1e57de2cf71eba0f715ebc76e6495.pkl",
+      "pkl_sha256": "3b10cb72e7ab1e31859178d2a3e6b71d06aff8121ac6ccc8ed0dacdad327464a",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "\"a handful of qinghao immersed in two litres of water\".",
+          "exact_native_cache_key": "1442f325b7d1e57de2cf71eba0f715ebc76e6495.pkl",
+          "cache_input_text_sha256": "bd98ac8fb1580204c177de75fb6f5665d724bf43a15d81dbde2e83e0a9db2c36",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "3b10cb72e7ab1e31",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        80384
+      ],
+      "unprocessed_array_sha256": "829305a10368c5caf06c4e2a00ae980e16b1637e8f31f6e23f1be931aa4732f1"
+    },
+    {
+      "exact_native_cache_key": "7ab1b024b4e3349f163c9cafdf3c12b0f2638388.pkl",
+      "pkl_sha256": "8a034925d9ba3dff09f4211646ea1588537b85e438b947341c79143be1810d3b",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Around AD 340,",
+          "exact_native_cache_key": "7ab1b024b4e3349f163c9cafdf3c12b0f2638388.pkl",
+          "cache_input_text_sha256": "bd622a73f7276d6d77837c4134ef90bbe82bb6e35f9ac21d4acb8587fbc456ae",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "8a034925d9ba3dff",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        50688
+      ],
+      "unprocessed_array_sha256": "c051ae9bcb4ba164ca8fa59938abbd54c9081ef1dce44cdc963d1b61097e17aa"
+    },
+    {
+      "exact_native_cache_key": "94ba4fe8b19090650228cca9c8e59d9c0764edaa.pkl",
+      "pkl_sha256": "aede41b626a0a0bd7c558df188520205441d92ee091d5128a0d49cd9d3660cda",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "the physician Ge Hong's handbook advised taking \"a handful of qinghao immersed in two litres of water\".",
+          "exact_native_cache_key": "94ba4fe8b19090650228cca9c8e59d9c0764edaa.pkl",
+          "cache_input_text_sha256": "04ecae2cebc020372fdd25339da3b91e6146dba4a90832f416afb41052493782",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "aede41b626a0a0bd",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        167424
+      ],
+      "unprocessed_array_sha256": "c2f2bec9754e06e79012e2bdaa636e5e04016e2494b3246390b41780c06f5cc8"
+    },
+    {
+      "exact_native_cache_key": "aadbbe1a4519ca020cb724ee3f660bc217d9e314.pkl",
+      "pkl_sha256": "3574beee5ccb4fe02140b82205bab2c3925bddaa3ba4e62cf3934d1650893fc7",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "This bypassed boiling.",
+          "exact_native_cache_key": "aadbbe1a4519ca020cb724ee3f660bc217d9e314.pkl",
+          "cache_input_text_sha256": "06d2f40bb10210765dc3d7f5460d81db3197ce82218e3f0598a64d1ed524d62a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "3574beee5ccb4fe0",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        33280
+      ],
+      "unprocessed_array_sha256": "59eb59346633f626e61a42e56f171db0c93ab301a4e01ed709cc000f848f9265"
+    },
+    {
+      "exact_native_cache_key": "d31af1d1118cc23cb5adc9d127e46295c74914d9.pkl",
+      "pkl_sha256": "1ccd58a4395fa46c5ff2b43321a744b96f8ba86504ac816f11e87559d9c3b5ce",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Tu suspected heat during extraction was degrading a delicate component, so she switched to ether, a volatile solvent boiling at about 35 degrees Celsius.",
+          "exact_native_cache_key": "d31af1d1118cc23cb5adc9d127e46295c74914d9.pkl",
+          "cache_input_text_sha256": "a243eb3a6de41511e51b7e5df8cc01356b32ef15f2c940bacdd4f30c0b5adc28",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "1ccd58a4395fa46c",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        264704
+      ],
+      "unprocessed_array_sha256": "341cf8631ade472102c3787e3a5ed385d58baf80c7f345818ad2cf07536e3754"
+    },
+    {
+      "exact_native_cache_key": "cc2f3e5b96ae5f2fd2fae8f10c647eb823399f6a.pkl",
+      "pkl_sha256": "bf4b948fe108c7ebb81d88e840732bdddb7e3a2ed2814ad30e72b3ece40aff01",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Tu suspected heat during extraction was degrading a delicate component,",
+          "exact_native_cache_key": "cc2f3e5b96ae5f2fd2fae8f10c647eb823399f6a.pkl",
+          "cache_input_text_sha256": "c06d0dd78447a59b3bd83c796c19b6c38c0416cfcaec46564e8a4223009a846c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Tu suspected heat during extraction was degrading a delicate component,",
+          "exact_native_cache_key": "cc2f3e5b96ae5f2fd2fae8f10c647eb823399f6a.pkl",
+          "cache_input_text_sha256": "c06d0dd78447a59b3bd83c796c19b6c38c0416cfcaec46564e8a4223009a846c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "bf4b948fe108c7eb",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        117248
+      ],
+      "unprocessed_array_sha256": "a3f968631b80e057a74cf40f02feebfa8d20020293818a9c2edecfcf04c99db6"
+    },
+    {
+      "exact_native_cache_key": "9052a63e0cb2eebae327eb2b4f6f697a6831f179.pkl",
+      "pkl_sha256": "3eff17d885db671ecad2fa6c98f741a8bc787f62432bac7ce385a0c4415ae168",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "so she switched to ether,",
+          "exact_native_cache_key": "9052a63e0cb2eebae327eb2b4f6f697a6831f179.pkl",
+          "cache_input_text_sha256": "bc876ec4ecf1902fa5411c6d9f67d9c4e7777c29ae4b305391487535b3a53d3e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "so she switched to ether,",
+          "exact_native_cache_key": "9052a63e0cb2eebae327eb2b4f6f697a6831f179.pkl",
+          "cache_input_text_sha256": "bc876ec4ecf1902fa5411c6d9f67d9c4e7777c29ae4b305391487535b3a53d3e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "3eff17d885db671e",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        33792
+      ],
+      "unprocessed_array_sha256": "5fc5ea5c7179ed84275e880109b194642e2fbe407e9d3eb07509c5e88f6a79c8"
+    },
+    {
+      "exact_native_cache_key": "83653625bc418ed32b83bf3bff4c4ce256e33203.pkl",
+      "pkl_sha256": "9ef1e82e8dcd8cbeafb266d53ac6b5528a6a45e228aad850303be6fcd62cadf0",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "a volatile solvent boiling at about 35 degrees Celsius.",
+          "exact_native_cache_key": "83653625bc418ed32b83bf3bff4c4ce256e33203.pkl",
+          "cache_input_text_sha256": "47a0d19ae97b1eff80f7ccf03480bc2c7805e1f28e628d55a568e60ac1380b5c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a volatile solvent boiling at about 35 degrees Celsius.",
+          "exact_native_cache_key": "83653625bc418ed32b83bf3bff4c4ce256e33203.pkl",
+          "cache_input_text_sha256": "47a0d19ae97b1eff80f7ccf03480bc2c7805e1f28e628d55a568e60ac1380b5c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "9ef1e82e8dcd8cbe",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        100864
+      ],
+      "unprocessed_array_sha256": "3d895c79e345fba3f33d0dc8d2fd5c20405313aa142672854de1cf645b1fff78"
+    },
+    {
+      "exact_native_cache_key": "45f80bb18ed3858c59fc62e83bbe8929278f00df.pkl",
+      "pkl_sha256": "ee5f824fe912356650729c43a3121c85d42f60bdd901ccc450ec8c9670f16632",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "On 4 October 1971 sample 191 completely inhibited the parasite in infected mice.",
+          "exact_native_cache_key": "45f80bb18ed3858c59fc62e83bbe8929278f00df.pkl",
+          "cache_input_text_sha256": "0ceef58a438d75d34bd2c10235fd07257cfa50619a27fa030361eed957dafb59",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "ee5f824fe9123566",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        208896
+      ],
+      "unprocessed_array_sha256": "06e31a68d90e54c6d1458cb22c86a92b62bff5ebb34813031cb1fa8880303e3f"
+    },
+    {
+      "exact_native_cache_key": "b6defa2e76f6e9818307bbc7c2630c43bc91ca7f.pkl",
+      "pkl_sha256": "74c0fd56a2d93a6e6b046fbdee9612d490508abee19ec5ca3cc645bf7580c5ec",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Efficacy in mice indicated nothing about human safety.",
+          "exact_native_cache_key": "b6defa2e76f6e9818307bbc7c2630c43bc91ca7f.pkl",
+          "cache_input_text_sha256": "17cae80f74e1d397e443ba34c1d6b6d77d223280204c3c747ca6d0aefadb3dd7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "74c0fd56a2d93a6e",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        96256
+      ],
+      "unprocessed_array_sha256": "97b70161b6a2e72bec72b000b5baaa10728c1ca1be3b0d19ca454eb0a27f991e"
+    },
+    {
+      "exact_native_cache_key": "5cff8bb3c6050ecd3b00809bf521f82944f40a90.pkl",
+      "pkl_sha256": "20f78fcb7b19cc99c27965453f11d95078e2432f724b7994e060f4d33058ad25",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In July 1972, to assess its toxicity, Tu and two colleagues voluntarily took the extract.",
+          "exact_native_cache_key": "5cff8bb3c6050ecd3b00809bf521f82944f40a90.pkl",
+          "cache_input_text_sha256": "00e2b5678d9a2d7a2591207c887d533397bb383322fe44040d7b6e0cbff5cf40",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "20f78fcb7b19cc99",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        186880
+      ],
+      "unprocessed_array_sha256": "c49865425d1bb21c3dae158b9e8d0e05d3add01d1a1414a0fc634092f85cb07d"
+    },
+    {
+      "exact_native_cache_key": "fced03a17746951cd58f5c30f462276daabac9f6.pkl",
+      "pkl_sha256": "a4b551840e57b30fcb9c01451ac84f5acf9de4e045fbf85ae1afcdd0595dc337",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In July 1972,",
+          "exact_native_cache_key": "fced03a17746951cd58f5c30f462276daabac9f6.pkl",
+          "cache_input_text_sha256": "f869211fc6ef37312bbd9cc47ec4883facd466db0eb0527d3ccb16211e1a8437",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "a4b551840e57b30f",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        49664
+      ],
+      "unprocessed_array_sha256": "9135a93738fd43d8afc48598173a8508f339cd9732b18a532c1cda9dc92b1a53"
+    },
+    {
+      "exact_native_cache_key": "2d7c4217a9121b8916886e861be8677c26438482.pkl",
+      "pkl_sha256": "f3462b432fb89b07486fb9b4e2e67858bd9e3b0f7e7cfb0459d1795d7ca50d21",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "to assess its toxicity,",
+          "exact_native_cache_key": "2d7c4217a9121b8916886e861be8677c26438482.pkl",
+          "cache_input_text_sha256": "6cb82bbb6da47496a81c4d1c05c49381ceb6df6abce802cfbd88435ee1d78141",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "f3462b432fb89b07",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        38400
+      ],
+      "unprocessed_array_sha256": "3910c7850a33c39f83abda815006fa9af341feb697d85ef531d7bd129db717af"
+    },
+    {
+      "exact_native_cache_key": "d457f3f4daf7682dcca8ead58a3b62aa97174a12.pkl",
+      "pkl_sha256": "014697839ad47d63ce0f97d88cd4e4f39db19a45e49c7e1ed39b12357ac57830",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Tu and two colleagues voluntarily took the extract.",
+          "exact_native_cache_key": "d457f3f4daf7682dcca8ead58a3b62aa97174a12.pkl",
+          "cache_input_text_sha256": "14bb0e9f515c5e5c1bcafb411301422b7a8b9bda08443836816c1a1e441f729d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "014697839ad47d63",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        77824
+      ],
+      "unprocessed_array_sha256": "8d5a7d68db782049f0793642a4d96021e34f63aa50ca206cc2eda735e3310285"
+    },
+    {
+      "exact_native_cache_key": "127a665ebbba8a0c073f6e9e02577396fb7ff69f.pkl",
+      "pkl_sha256": "93952d26f036d9c075d3a29fd75264a9f82a472df8019623429b836c6c31250a",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Thereafter, from August to October, it was administered to 21 malaria patients in Hainan, and on 8 November her team obtained pure crystals of the substance later named artemisinin.",
+          "exact_native_cache_key": "127a665ebbba8a0c073f6e9e02577396fb7ff69f.pkl",
+          "cache_input_text_sha256": "81e6c245c66f2cd909700bb4778f4f33b1baddbee38072bc04b9235a8dd80d20",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "93952d26f036d9c0",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        316928
+      ],
+      "unprocessed_array_sha256": "973b6be2b534813e89ac3d134b3c98988b9dbbe6a05bf1fb7e0b222fda75335d"
+    },
+    {
+      "exact_native_cache_key": "f374bc802a2151d2d1fbeeff06cc928f9255635c.pkl",
+      "pkl_sha256": "6813ff9e75274493620ce932293e7df83c17c4130b2fd2f28f0bdda799c260ff",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Thereafter, from August to October, it was administered to 21 malaria patients in Hainan,",
+          "exact_native_cache_key": "f374bc802a2151d2d1fbeeff06cc928f9255635c.pkl",
+          "cache_input_text_sha256": "13c2237e94262c8d0cb481be557002f5634101c90489015bc2f425f618da9c99",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "6813ff9e75274493",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        154624
+      ],
+      "unprocessed_array_sha256": "f1bc46775535ad12121f9e0342b22cd1b0c52b32eddd26be6582c5fc312aa4ef"
+    },
+    {
+      "exact_native_cache_key": "ae7b3a5e1d50d054cf71d635ff70647d3fdde0c4.pkl",
+      "pkl_sha256": "32d4f9544d14ff00ba0574238440b38c39d5fab15fb352ff8a862098c80bfd18",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and on 8 November her team obtained pure crystals of the substance later named artemisinin.",
+          "exact_native_cache_key": "ae7b3a5e1d50d054cf71d635ff70647d3fdde0c4.pkl",
+          "cache_input_text_sha256": "c48468b6c1099a4b3cafd8ac42d34f7a9461e8c345759b2f5d64afb4e4d37920",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and on 8 November her team obtained pure crystals of the substance later named artemisinin.",
+          "exact_native_cache_key": "ae7b3a5e1d50d054cf71d635ff70647d3fdde0c4.pkl",
+          "cache_input_text_sha256": "c48468b6c1099a4b3cafd8ac42d34f7a9461e8c345759b2f5d64afb4e4d37920",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "32d4f9544d14ff00",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        155136
+      ],
+      "unprocessed_array_sha256": "783e699e7e4d74514f49bd8054db1a88a6d8ae8997ec19c5bf18a4825c34e24d"
+    },
+    {
+      "exact_native_cache_key": "be72200a558052ce03edff95fcfd2dc4ed063aec.pkl",
+      "pkl_sha256": "70641fbec8b84d7f2e19511f462d07f6e95882998ad8f031c0cbd18d2b0d5feb",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Thereafter,",
+          "exact_native_cache_key": "be72200a558052ce03edff95fcfd2dc4ed063aec.pkl",
+          "cache_input_text_sha256": "c829e6d3ec4da1af8340b113f47ff7f0b9affddd69474df752504e841e371c91",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "70641fbec8b84d7f",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        23040
+      ],
+      "unprocessed_array_sha256": "f7c5618365802cfde088bc403d736af85ad2cdf5907ffc0f5bfa7e9ed65fdb89"
+    },
+    {
+      "exact_native_cache_key": "45bf20c2c1d2853dd4b0bd497a58860a91d71161.pkl",
+      "pkl_sha256": "b0a4358c769d752ef153126c8b700950fb6b16ba3f40e7fa1b3be1bace923393",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "from August to October,",
+          "exact_native_cache_key": "45bf20c2c1d2853dd4b0bd497a58860a91d71161.pkl",
+          "cache_input_text_sha256": "17cd27f08df19806a657588546dd4ba3566f9739c932844882b87675d39efe06",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "b0a4358c769d752e",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        37376
+      ],
+      "unprocessed_array_sha256": "99b0e038f830b1d3544def8ba3abca638a3906ccfef585fde7b9bd26c73cb362"
+    },
+    {
+      "exact_native_cache_key": "d9d30c5dac328b39103a301528b268482ccead05.pkl",
+      "pkl_sha256": "b168fab71e0140a52c0ac9315c8b4b714fcd9d3456ba8b64c431410e685a8016",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "it was administered to 21 malaria patients in Hainan,",
+          "exact_native_cache_key": "d9d30c5dac328b39103a301528b268482ccead05.pkl",
+          "cache_input_text_sha256": "40d82722cfe6e68f4d1cc2b5ca2be003262fd9719c5d6ac61431eb10a728a4c4",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "b168fab71e0140a5",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        90624
+      ],
+      "unprocessed_array_sha256": "0f0b7ad893f55c7ad5cbb704edab23057f43f9418261c6bf74bd313c338623c4"
+    },
+    {
+      "exact_native_cache_key": "3f378e2f33aa7f94743014a50f9e911f21cd3719.pkl",
+      "pkl_sha256": "d30858618cf48e8ade4339866b4e14733ed8df8cce4c0c3dbc09e3f6993a7ea8",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In September 2011 Tu was named a Lasker Award recipient; its jury credited the drug with saving millions.",
+          "exact_native_cache_key": "3f378e2f33aa7f94743014a50f9e911f21cd3719.pkl",
+          "cache_input_text_sha256": "e2d25f7185e5c4b3985cec317ee9b79319f8a0979caf02b9fd7d17d023311bb3",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "d30858618cf48e8a",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        207360
+      ],
+      "unprocessed_array_sha256": "24552ad03a0adf0791b3de6b8d384b511b31b3224d7a6870a62b75e3cbbe3271"
+    },
+    {
+      "exact_native_cache_key": "87f9b070cbf42e40c45d95c08983ff0cfe35b3c9.pkl",
+      "pkl_sha256": "07ecfff4566ef20087ea7b70fbbfec4b62fe56ab65b85678a072f84799054672",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In September 2011 Tu was named a Lasker Award recipient;",
+          "exact_native_cache_key": "87f9b070cbf42e40c45d95c08983ff0cfe35b3c9.pkl",
+          "cache_input_text_sha256": "26dab4fd370ef34bdae42d4cd374a0520978527c1c8f03c0c2bf98224d900937",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In September 2011 Tu was named a Lasker Award recipient;",
+          "exact_native_cache_key": "87f9b070cbf42e40c45d95c08983ff0cfe35b3c9.pkl",
+          "cache_input_text_sha256": "26dab4fd370ef34bdae42d4cd374a0520978527c1c8f03c0c2bf98224d900937",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "07ecfff4566ef200",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        121344
+      ],
+      "unprocessed_array_sha256": "02892e1906855f84b4f45870577d079fc1f1a0ee2dcfa3f03c5f8473ec6bb133"
+    },
+    {
+      "exact_native_cache_key": "2f35225356fd5de550b946cf9475408b77315c90.pkl",
+      "pkl_sha256": "5711bd98e19032d35e997bedb4fb6175ab45c0b0b09e0460293be8c4204502df",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "its jury credited the drug with saving millions.",
+          "exact_native_cache_key": "2f35225356fd5de550b946cf9475408b77315c90.pkl",
+          "cache_input_text_sha256": "077359112a5576b9e4820a5a3c59ce732c3e161db887393625502af18d82531d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "its jury credited the drug with saving millions.",
+          "exact_native_cache_key": "2f35225356fd5de550b946cf9475408b77315c90.pkl",
+          "cache_input_text_sha256": "077359112a5576b9e4820a5a3c59ce732c3e161db887393625502af18d82531d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "5711bd98e19032d3",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        68608
+      ],
+      "unprocessed_array_sha256": "46cbc35d415a8a99befd19a7b4394e3e4b10e14d29dd634529c60dacc6057aa7"
+    },
+    {
+      "exact_native_cache_key": "fd2d64e4592b7ad3323a28bcca2587d84be6d6c4.pkl",
+      "pkl_sha256": "7ec253d42919b718eba1169b5eab06e9f9fa38662c1ef289ca9bdcaa9d11c49c",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "On 5 October 2015 she won half the Nobel Prize in Physiology or Medicine, the first Chinese woman Nobel laureate.",
+          "exact_native_cache_key": "fd2d64e4592b7ad3323a28bcca2587d84be6d6c4.pkl",
+          "cache_input_text_sha256": "945257c4e5c9cbbfc73c41961daa3509f0c1aaaa7b24e4d41b9ba27cca62d381",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "7ec253d42919b718",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        235520
+      ],
+      "unprocessed_array_sha256": "7dae583a5a1872ff676f12302db7732c30c60e1980296909f67f3cb42222946b"
+    },
+    {
+      "exact_native_cache_key": "36312be4ed58caee9579d86dd27124a69e90b7cd.pkl",
+      "pkl_sha256": "b53a4c84abbec917930bc36b86985e5b8655669443b06b6cd5370000c714e740",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "On 5 October 2015 she won half the Nobel Prize in Physiology or Medicine,",
+          "exact_native_cache_key": "36312be4ed58caee9579d86dd27124a69e90b7cd.pkl",
+          "cache_input_text_sha256": "fcc4c0bea23ac9a904475daed718783b3a17b4498b08031f0e6b6e5eb22898b8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "On 5 October 2015 she won half the Nobel Prize in Physiology or Medicine,",
+          "exact_native_cache_key": "36312be4ed58caee9579d86dd27124a69e90b7cd.pkl",
+          "cache_input_text_sha256": "fcc4c0bea23ac9a904475daed718783b3a17b4498b08031f0e6b6e5eb22898b8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "b53a4c84abbec917",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        160256
+      ],
+      "unprocessed_array_sha256": "c0c1cb7cb100149b644f6c57ea7a2ef562f7ac1bd305309915597563d4fd7bb4"
+    },
+    {
+      "exact_native_cache_key": "6818df7a1496707cbc06048bc7c9dc0294102081.pkl",
+      "pkl_sha256": "31c9f9904a7908cc57cbdd055ffa8bb0253f6e1571622630a6752a47261d6567",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "the first Chinese woman Nobel laureate.",
+          "exact_native_cache_key": "6818df7a1496707cbc06048bc7c9dc0294102081.pkl",
+          "cache_input_text_sha256": "7c6a4ae913c62418d331d2e57b02e6c23231974b8b25535c27873882f911693f",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "the first Chinese woman Nobel laureate.",
+          "exact_native_cache_key": "6818df7a1496707cbc06048bc7c9dc0294102081.pkl",
+          "cache_input_text_sha256": "7c6a4ae913c62418d331d2e57b02e6c23231974b8b25535c27873882f911693f",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "31c9f9904a7908cc",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        61952
+      ],
+      "unprocessed_array_sha256": "f191a00eb14f5313e3c456c44999677f96751bcaf04842f610961e6f9ed618f9"
+    },
+    {
+      "exact_native_cache_key": "ea37471d559f122be87385114ce21bac9dbe82a9.pkl",
+      "pkl_sha256": "c3feb35f9c3d97f394be85c9145035f227203a709c3e4eaf24ae5a5bb135ebf9",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S16",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Since 2006 WHO guidelines have endorsed artemisinin-based combination therapies against malaria's deadliest form.",
+          "exact_native_cache_key": "ea37471d559f122be87385114ce21bac9dbe82a9.pkl",
+          "cache_input_text_sha256": "8a99013c9ae38f11a0d5828c151507b3b52b7b9b3d50e713d8e5fbaba455d837",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "c3feb35f9c3d97f3",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        240640
+      ],
+      "unprocessed_array_sha256": "7a22648c7fb627146f2c8b6bba18c2ef3cbdd7f9f59401244903a4ff56000330"
+    },
+    {
+      "exact_native_cache_key": "d73024be15fee5877a0dc300acec10a5668bbbae.pkl",
+      "pkl_sha256": "a1a0281acb50c8764774d1cc5252b763e65091af0dc1141923980a78d78eeb14",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The essence of Ge Hong's line lay in the boiling it skipped.",
+          "exact_native_cache_key": "d73024be15fee5877a0dc300acec10a5668bbbae.pkl",
+          "cache_input_text_sha256": "d7b1157871339d142fb3f4106ebfa10295a9667a48b1eb6f1f5894221570a062",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "a1a0281acb50c876",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        79360
+      ],
+      "unprocessed_array_sha256": "8b9bb1e8735f0dcc5bcdf688d66dd4e910735f036a63eea96c83d602236cccd5"
+    }
+  ],
+  "missing_reference_key_count": 0,
+  "observed_missing_keys_covered": [],
+  "new_private_cache_names": [],
+  "native_single_thread_marker_verified": true,
+  "single_thread_sessions": [
+    {
+      "intra_op_num_threads": 1,
+      "inter_op_num_threads": 1
+    },
+    {
+      "intra_op_num_threads": 1,
+      "inter_op_num_threads": 1
+    }
+  ],
+  "models_sha256": {
+    "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+    "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+    "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+  },
+  "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+  "existing_private_cache_count": 11514,
+  "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+  "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+  "existing_private_cache_bytes_unchanged": true,
+  "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+  "public_repository_cache_unchanged": true,
+  "producer_pcm_existed_before": false,
+  "producer_pcm_sha256_before": null,
+  "producer_pcm_sha256_after": null,
+  "accepted_aac_adts_sha256_before": "82898283b5f5c55b84912f8838ebdfed1a337300db09de759fc55a3eb389ddd2",
+  "accepted_aac_adts_sha256_after": "82898283b5f5c55b84912f8838ebdfed1a337300db09de759fc55a3eb389ddd2",
+  "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+  "private_cache_exported": false
+}
