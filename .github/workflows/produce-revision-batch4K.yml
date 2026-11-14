@@ -106,19 +106,6 @@ jobs:
             ${{ runner.temp }}/completion-machine
             ~/asr
           key: completion-05-machine-43294745262
-      - uses: actions/cache/restore@v4
-        id: exact-origin-cache
-        with:
-          path: |
-            ${{ runner.temp }}/completion-machine/tts/cache_tts/dce6d1ce3af5043cfc8b6d30acf416eab118b916.pkl
-            ${{ runner.temp }}/completion-machine/tts/cache_tts/dce6d1ce3af5043cfc8b6d30acf416eab118b916.pkl.单线程
-            ${{ runner.temp }}/completion-machine/tts/cache_tts/989b1c025c09eacfd989962aef8352fba7637aa6.pkl
-            ${{ runner.temp }}/completion-machine/tts/cache_tts/989b1c025c09eacfd989962aef8352fba7637aa6.pkl.单线程
-          key: Linux-native16-origin-dce6d1-989b1c-43562710640
-      - name: 确认真实六core原Origin缓存命中
-        env:
-          CACHE_HIT: ${{ steps.exact-origin-cache.outputs.cache-hit }}
-        run: test "$CACHE_HIT" = true
       - name: 确认恢复既有机器缓存
         env:
           CACHE_HIT: ${{ steps.original-cache.outputs.cache-hit }}
