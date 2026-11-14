@@ -1,0 +1,37 @@
+{
+  "kind": "49-frozen-request-vs-actual-PAY-input-scope",
+  "original_request_file": "/workspace/work/video-revision-batch-ci/.github/video-revision-batch/request/49/视频/脚本/49.json",
+  "original_request_file_SHA256": "640168eb8a17c5d53d266c6604ffe287919314947371c2ee239eeea952d73b77",
+  "actual_PAY_file": "/workspace/work/video-audit70-20261113/payload/视频/脚本/49.json",
+  "actual_PAY_file_SHA256": "a7ea38ae5c2461fb3a2e2f18dc65577300f6873b139a75d7c89b9b7c70652ed8",
+  "all_physical_sound_controls_equal": true,
+  "physical_controls_compared": [
+    "title_en",
+    "非人声区间",
+    "词尾除阻",
+    "停顿处除阻",
+    "除阻加强",
+    "停顿插入点",
+    "停顿删除区间",
+    "分段增益dB",
+    "段内渐变dB",
+    "句子增益dB",
+    "结尾句",
+    "区间声音指纹",
+    "列举逗号"
+  ],
+  "entire_S17_deep_equal": true,
+  "all_English_chunks_equal": true,
+  "all_full_JSON_differences": [
+    {
+      "path": "/核对确认/机器复听",
+      "request": "ABSENT",
+      "PAY": {
+        "S8": {
+          "配音指纹": "4d07dfa775bc",
+          "依据": "2026-11-14按原机器复听方法实测S8，当前配音指纹4d07dfa775bc。原始句窗72.83–79.275秒：small.en=The nomination had initially left her out. At Pierre's insistence, the omission was rectified.；parakeet=The nomination had initially left her out. At Pierre's insistence, the old mission was rectified.。实际公开MP4扩大前后各120毫秒上下文（72.71–79.395秒）：small.en=The nomination had initially left her out. At Pierre's insistence, the omission was rectified.；parakeet=The nomination had initially left her out. At Pierre's insistence the omission was rectified.；两路逐词比较差异均为空。当前公开整轨7033个AAC包的payload、绝对PTS/DTS/duration/size及codec参数与已验旧轨严格相同，7200768个float32解码样本逐字节相同、maxdiff=0。本记录只对应本句、本指纹的两种识别器上下文差异实测。依据：comparison-report.json SHA256=069ece8bcecbf6183e9adf839f8948c003f32f47e9121552bdf0c6d8fa98c078；49-original-ASR-target-evidence.json SHA256=581dcb8f8f39bacbea2ca881af0247049090aaffcc1378c40585c72e36eb0972。"
+        }
+      }
+    }
+  ]
+}

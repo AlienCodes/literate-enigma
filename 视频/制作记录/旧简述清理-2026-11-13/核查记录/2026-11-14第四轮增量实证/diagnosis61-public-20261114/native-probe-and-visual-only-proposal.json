@@ -1,0 +1,31 @@
+{
+  "article": "61",
+  "diagnostic_only": true,
+  "source_write_authorized_by_this_report": false,
+  "actual_native_probe_has_not_run_locally": true,
+  "candidate_visual_delta_only": {
+    "op": "add",
+    "path": "/高亮开始/S1 第2块",
+    "value": 10.9
+  },
+  "not_a_confirmation": true,
+  "native_command_template": [
+    "python",
+    "probe61_native_onset.py",
+    "--wav",
+    "work_61/a.wav",
+    "--tools",
+    "<exact original tools directory>",
+    "--out",
+    "61-native-G45-onset-scalars.json"
+  ],
+  "required_actual_native_facts": [
+    "Actual supplied a.wav SHA256 and MD5first12 (previous failed native was7499cce91ea3; never force this fingerprint)",
+    "Original 高亮同步核对.py pure functions 是开口/确认可收 SHA and unmodified execution",
+    "Only scalar pre30ms and post40ms 5ms-level/onset predicates from10.600–11.200s, with1ms grid10.800–11.020s",
+    "Original native list.txt full-precision highlight for S1C2 and original full-precision two-route timings if alignment is rerun",
+    "No source, media, cache, threshold, or confirmation write during this probe"
+  ],
+  "review_action": "Root/audio owner reviews native facts then decides the candidate visual10.9. Actual source/GEN update and official full QC are separate later actions. Public original G45 passing10.865–10.894 is not a native a.wav confirmation.",
+  "post_change_required": "Actual canonical draft/4K original highlight and other quality gates; compare full accepted AAC payload and absolute timing; after genuine pass, existing actual tail and V3 acceptance."
+}

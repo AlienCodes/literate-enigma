@@ -1,0 +1,2767 @@
+{
+  "article": "69",
+  "passed": false,
+  "stage": "original-stamp-after-production.log",
+  "original_audit_and_quality_thresholds_unchanged": true,
+  "original_maker_unchanged": true,
+  "core_repairs": [
+    {
+      "target": "视频/工具/草稿声音.sh",
+      "file": "files/视频/工具/草稿声音.sh",
+      "original_sha256": "0ce3277812cf16ed30438509b6dc97db0c26725db4c5db5d9b058c3ef6531aa2",
+      "patched_sha256": "957d7eb1598698ea33ff77d83379256ecae258d84d588753d561a902284be439",
+      "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+    },
+    {
+      "target": "视频/工具/句内响度.py",
+      "file": "files/视频/工具/句内响度.py",
+      "original_sha256": "58735b7173a3c03efa61fb300b4aed4039c164fa970e0593a40bae2a3f3cbd27",
+      "patched_sha256": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea",
+      "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+    },
+    {
+      "target": "视频/工具/独立复核/synth.py",
+      "file": "files/视频/工具/独立复核/synth.py",
+      "original_sha256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+      "patched_sha256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+      "repair_scope": "validated unprocessed raw-mother reference input only; independent transforms/audit/thresholds retained"
+    }
+  ],
+  "strict_production_cache": true,
+  "pdf_requested": false,
+  "check_summaries": {
+    "approved-illustration-resource.log": [],
+    "certified-core-original-stamp-verification.log": [],
+    "original-restored-stamp.log": [],
+    "canonical-module-copy.log": [],
+    "canonical-draft-00.log": [
+      "第69篇 做完（246 秒）：修了 1 处、疑点 24 处",
+      "① 文本：通过，自动修 1 处",
+      "② 声音：69 词尾辅音核对 问题数 0；69 纯人声核对（配音指纹 8b8618454b80）问题数 0；问题数 0；69 句间停顿核对 问题数 0；问题数 0",
+      "③ 出片前核查：通过",
+      "⑤ 出片后核查：全部通过",
+      "⑥ 已拷 视频/视频/草稿1080p/69_1080p.mp4（--不推）"
+    ],
+    "canonical-final4K-00.log": [
+      "第69篇 用户定稿原话：有"
+    ],
+    "original-stamp-after-production.log": []
+  },
+  "actual_native_core_certification": {
+    "run_id": 43535822030,
+    "job_id": 132264443476,
+    "commit": "395e8da264fafa2453a42ee70a3f7aed8303a769",
+    "actual_full_quickcheck_exit": 0,
+    "actual_full_quickcheck_seconds": 478.16,
+    "artifact_id": 14089812323,
+    "artifact_zip_sha256": "5e396c84e4a6fc7c6cc737ceb8648d7f15f397e9551806e032c93db8ab0963b8",
+    "full_original_quickcheck_log_sha256": "dbe7f6e08d2b7c3a5f9a2f925bb75a662aed725c780e1bc6714706807552a294",
+    "article_audio_or_video_passed_not_implied": true
+  },
+  "actual_native_fastcheck_stamp": {
+    "target": "视频/工具/新管/快测通过.json",
+    "file": "files/视频/工具/新管/快测通过.json",
+    "sha256": "6ebc7aa41f79f77258fa333b665af258e007daa36a4ea290de972cd3da7b42f2",
+    "origin": "actual unmodified original full quickcheck, native run43535822030"
+  },
+  "reviewed_regression_resource": {
+    "target": "视频/工具/新管/回归基准_27.json",
+    "file": "files/视频/工具/新管/回归基准_27.json",
+    "sha256": "b8ddb4656ae27cbfc7ec8e3b99511983b4e568997bd4ad4ee33c364f3926ae94",
+    "origin": "pre-existing root-reviewed 67-screen data; original voice/segment MD5 unchanged"
+  },
+  "core_repair_manifest_sha256": "1b1558108d15603e5711e200135651d6c7700a583d8bcf53ad8753683ed05a5e",
+  "reviewed_gain_preservation_mode": true,
+  "real_restored_stamp_validated": true,
+  "reviewed_cross_article_context": {
+    "provided": true,
+    "manifest_sha256": "eddfbdceea4e25f2398a2198f94d9852f1e30e35b35c4075c5a5ff0c8e32c096",
+    "files_sha256": {
+      "视频/脚本/01.json": "2be2f80a69af28703992204ac95f987c745362c326e62ad81b3cd8e0e0735d3a",
+      "新版定稿/01-the-robber-who-thought-lemon-juice-made-him-invisible.md": "572054065b5bb65446bf8939a21c789c1e9c7664d82da5117c43efdded894351",
+      "视频/脚本/02.json": "0403368c77fd3e0f91e1ee3780e1c7c147894ad13c16b5f14707d700a8f717c8",
+      "新版定稿/02-the-truth-about-one-marshmallow.md": "91b92505aad03f963861bec39e96f0a472c126d1d57c9fc538676c32f65e545c",
+      "视频/脚本/03.json": "527f3bf4a11843f4d606188dabc6ebce6830da3fb454a49c782e3a595cb47407",
+      "新版定稿/03-the-doctor-who-drank-bacteria-to-win-an-argument.md": "6dfb56504882e24854a3584fd740e7f6601e3f2532818aee3a56d5330d317aa3",
+      "视频/脚本/04.json": "93cc1ff58d65ebe43a65ecb2fb2dbd2da262d80877c05740bbdf4eab4eaca1e8",
+      "新版定稿/04-the-brain-that-learned-london.md": "a8ccb31ffff50aaae77de4b83de1847fafae1d585981cf960c5880c409f6cfc3",
+      "视频/脚本/05.json": "2282acbfa4b82825f93261ec6c18359eb47fd3f7c639319ac5058d126643e136",
+      "新版定稿/05-the-fingerprint-in-the-blood.md": "612deac4ed066489e04e214ca969f8f27dda05856e0ef0ed2e540e7a4a52ae34",
+      "视频/脚本/06.json": "2cbf1d6cd6e66a59285298ea830f5ef914590b64286d40b2ae5f3168aa27a2e9",
+      "新版定稿/06-the-horse-that-could-count.md": "7fd21ba491c7596c53c486f2bb0b0f2f6da8e67bac75461a4649a7caff822f74",
+      "视频/脚本/07.json": "842e44e5aa19fddcfa239cb6530c5152341cd86e11db959543d02d8670ca13e8",
+      "新版定稿/07-the-octopus-that-escaped.md": "b8544281bb2ada88fce9d1082cbc30233dcb63ee3e9c2bbefafc22cb28b8cb39",
+      "视频/脚本/08.json": "254832e09f12759d950384dd9f31f671ad5a3bc1590b7466065dd3ef5fe4b8d5",
+      "新版定稿/08-the-doctor-who-solved-the-cholera-mystery.md": "0b2bfa68070ce585a452f6b7034d03c3683e710dcabec5e86d7b221950dc7bab",
+      "视频/脚本/09.json": "fa3e429351d629de188c184d04e9986200e16e80606fcbec82332b6433301dae",
+      "新版定稿/09-the-great-emu-war.md": "af5c3e844bad15f94bfc43aeed6d7417c4bfae85f026b194da667a7a3bdb6196",
+      "视频/脚本/10.json": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
+      "新版定稿/10-the-stolen-smile.md": "ff63cf94e4d2c835e2e2f1ffd3e6c5642f0916f0b13c012f1f13c3dff716d47a",
+      "视频/脚本/11.json": "665cbb80cc70b700ecc0cc5813209fd100ad4fa8f0eead3929b9e53778d9d07f",
+      "新版定稿/11-move-37.md": "7e0b49b346c1fa3ab994a11a2301167c0d6a1bb00916508bdc0b1acf71e68053",
+      "视频/脚本/12.json": "e3bfbcce6f1a8e14cfe451d656574353321e297c90c62f5a7b422f37478311d5",
+      "新版定稿/12-the-79-days-of-new-coke.md": "5a23c1e0c81318527bcbf27573487d1845c5318905a2b1e020cc6e2eaf5d643f",
+      "视频/脚本/13.json": "3687b6c42a6d524d0d7e40a47ed02c37b18abe8d524db4f5914abad52019a63c",
+      "新版定稿/13-eleven-days-without-sleep.md": "72b842de127132e386e9e52a1719ec96765e94958f56687987f53e2801c69704",
+      "视频/脚本/14.json": "17141351875ddb8f0e308602c0b6ab85cbf5126a4d0118978c25c869db769fee",
+      "新版定稿/14-the-fungus-that-turns-ants-into-zombies.md": "e114c9e1783c80a2ffdb60af05e824f93a8ea8725905cb733560abe1c0ad01a8",
+      "视频/脚本/15.json": "0934aa067f19814028c398b0c70a400bb09e354f744bde4000742950d77f441e",
+      "新版定稿/15-the-myth-of-the-unsinkable.md": "68e236868c4b466928ff2a60358250b9592dfe9287b66561b1e5a80b4d14de4f",
+      "视频/脚本/16.json": "d25aa07f3fac316c26c2ae1006d3efa7eb82a396b66150432b50239c1628396d",
+      "新版定稿/16-the-bread-made-from-air.md": "4da63148111213f6d77451b0eb4193893e6fc2fc170400bc39ce5f5ffcaa0b20",
+      "视频/脚本/17.json": "2e9971ea5ce7857e119226fe95def06e6eb9c3ef9823d8e8c4f3456f46a3bbb0",
+      "新版定稿/17-the-curse-of-the-pharaoh.md": "a2e8d92f9136e1b22fcc0799f9a4d281092f0e547cc68242e090241d7b09e222",
+      "视频/脚本/18.json": "8cffbad6f0b8451e46ad1a65d5f629c450ceff2c771218445770c8cbfd77ebca",
+      "新版定稿/18-the-mould-that-changed-the-world.md": "ef41cea03f471fe3b9a53939c843e450da3325eb711f6414e108ae92a7518dd8",
+      "视频/脚本/19.json": "cc3c5eea0f7d9ec0712b2e58adba7e5ef8b61d6518a322f9b25a12fcc45282fb",
+      "新版定稿/19-tulip-mania.md": "3882d487383b759c31dda4785966091c362960cd873a5d83c530d08d52e2e97c",
+      "视频/脚本/20.json": "cc5ed6d7be8767e5e7e9b098e8f3836821c0b3f51c17581b2746722da1cf3001",
+      "新版定稿/20-the-5000-year-old-murder-in-the-ice.md": "8d55638070787f7ff5432c197292af1188c463a8b018e01bdefc32999b888e95",
+      "视频/脚本/21.json": "61c1569a26d7569ee0f586178be6b307b1c394c0a30c3cb02541c910038b0589",
+      "新版定稿/21-the-man-who-sold-the-eiffel-tower-twice.md": "e8e966b70f579235d696ba11fb01d3b2cae3fa26efb9071bbea95071be259e1f",
+      "视频/脚本/22.json": "e3027a42c532fee9935afcecdd0542713cbb907183802c2345b9472f93b75f59",
+      "新版定稿/22-the-building-that-melted-a-car.md": "49ae09483bc80bbc40a71551cd98aebec355d96d9ff7b2bcdea59a06fe599267",
+      "视频/脚本/23.json": "c4574a79fd3a58577a1402ce095ea9e4a0ea1f98883ce63e3cc60d126e819409",
+      "新版定稿/23-the-man-who-gave-machines-a-mind.md": "72ed3049e87fe75ce1e753d5e443bdbe6a7ab72f6e282e8467fbbb62be873169",
+      "视频/脚本/24.json": "f08620b534bb10b718f7515c805dcb541721427d855bd5a092b8954847a351b8",
+      "新版定稿/24-survival-in-the-ice.md": "cb7f810d9a74256e0c00625290be4f16207feb90f5719ca87d5d7c9912b91307",
+      "视频/脚本/25.json": "c73e854e052b3df9bd920d4a59fafb183dee19bd58765fa426af6ea3d7c9a329",
+      "新版定稿/25-apollo-13-the-successful-failure.md": "b6b7d55fe66e6e32116431ea955778fab779b8bda622df0ba1036c2f40a3969f",
+      "视频/脚本/26.json": "ab663b240eb5e27923f38e2ff296c0196e3d820766d0c909adb9faf19aa3cac9",
+      "新版定稿/26-the-language-the-children-invented.md": "9e9ad8021ddabc17157d73dc739383f9676df3583cf965e470fcd773e26a3761",
+      "视频/脚本/27.json": "61cd724c5fab6f07a46aa5ac069101617c4c8350311eb11a43f9fefdddb31d8b",
+      "新版定稿/27-life-in-the-forbidden-zone.md": "e276bcf76225b9ae16cd8cfda8c9b726b442fbd625d3718f532b47b09b21b16f",
+      "视频/脚本/28.json": "a6a4befc0291727f5cc3f8b50857ee954ef9f936738f014a978ebb4d37a28ea8",
+      "新版定稿/28-a-handful-of-wormwood-that-saved-millions.md": "b9817d3429767d07b6a2eb14cce5422a20cb4e3b89f8b03e6b3d5da2daf91d91",
+      "视频/脚本/29.json": "1e5f1d9f0c22b5d14b757f029be694c2a3969666d732ca79bb695282763de791",
+      "新版定稿/29-the-volcano-that-gave-us-frankenstein.md": "69045ee19a170c7ea9d0008b468c7e947bc28b639b834c0192dc0aeafc3ef4d0",
+      "视频/脚本/30.json": "cdf727cb4c6832063421df9da6ab8ae7729cf9df01d6be089a8981c92c360f06",
+      "新版定稿/30-the-stink-that-built-londons-sewers.md": "84dbf19cee0045ea2608b13ee0677cb9623dd8fbb371c67093bf50c64186137a",
+      "视频/脚本/31.json": "d81f8645a1e5663ba8c84668e817cdb218bc6689079fbfd51326b3a7fd3cd384",
+      "新版定稿/31-the-book-twelve-publishers-turned-down.md": "7abd20fed44918dcf01586c056e9d0acd9d2ad3b90aa7d3d403762d9f06d2659",
+      "视频/脚本/32.json": "357aa59bed62154f7302a5efcf528859b303004e028657b93058138fe931bf85",
+      "新版定稿/32-the-planet-that-was-demoted.md": "1421f2b0921e7e9478ebc48777e3e8b2c979172de63d0124015107c3750a3542",
+      "视频/脚本/33.json": "ca51103c1a9d45c9159322765efc86c81f61f6ec78975f160019d21a1d9ee0d7",
+      "新版定稿/33-thirteen-in-the-cave.md": "9862078044ce45a9f6d51aa7d165afdfcf90066d1de98cbb317dd7e8f980610d",
+      "视频/脚本/34.json": "74921848a6bb25a2ba631813f60d4756c9ff90c64c03a2fb936ce34f310ce509",
+      "新版定稿/34-the-game-that-escaped-the-soviet-union.md": "e3244b67b21e283e67f4e88e932a1dbb85bf273a48ee009b3f435e1c5814831c",
+      "视频/脚本/35.json": "d8439077dc2c909b1c6cbd1347f31e9625f25fffe447d6f5945c9492561f1a16",
+      "新版定稿/35-the-bird-that-beat-the-letter-home.md": "ba8c38e38b21a3345624e2d44fd352561d3096cfb6f62214b48ea9b6e66faead",
+      "视频/脚本/36.json": "76daa28f421bd40d8e2744d4e785a34bb8ee67da1403b4b1546db9465c535cef",
+      "新版定稿/36-the-company-that-invented-its-own-killer.md": "411eeb96c8641ee7082b49a5abf4c7343d3f1dbb7ef331064d7c0f3c630fe58f",
+      "视频/脚本/37.json": "b1b8945ccf3581df48ade5714a2d0e93e4cc6812708f95bef6f5e44439106c99",
+      "新版定稿/37-dynamite-for-the-heart.md": "4933e24d2384471a96d9c8c26c15d5224a85dae98d9971a3fed15b4978dafc51",
+      "视频/脚本/38.json": "8d0379032000967c9f72e550574874949f798eefbfbfb58ab2b38e4e23ecbc6b",
+      "新版定稿/38-the-web-beneath-the-woods.md": "abb7eead9f3da0b2b326ceed5a649cfbf71fc28dad22e0d52f7b19caa798c54f",
+      "视频/脚本/39.json": "6c3e9539f624b192335312912572a05fba2c7bcfb821b44c3c1dbb21b42527a7",
+      "新版定稿/39-y2k-the-crisis-that-success-erased.md": "abbc9804661126aa006595031ed8f201ce55e8eb5fd9e1ad5669c0c6fcdb80ab",
+      "视频/脚本/40.json": "1c50d1a47ee6f8528d0f7299e8a45bc8c30312622f3f465a964d21cc1395ee7f",
+      "新版定稿/40-the-glue-that-failed.md": "dce9f78f3a0828307843dd667b7eeebf3380a3630f03d234bd5824870aba61a1",
+      "视频/脚本/41.json": "6b6673ffc1db986f4c355f3685de6a0faf2272cee042c5e917f26a8b3057c2be",
+      "新版定稿/41-the-toad-that-invaded-australia.md": "eca590f97120f4e76d719e29aa07b094f9117cd462f5a70c029331a63b85f710",
+      "视频/脚本/42.json": "eceb10ae92aa4b9cd23180d1138149a7fa7b674385462c898bc0d2283c8739e7",
+      "新版定稿/42-the-telescope-that-needed-glasses.md": "d4aa049779a0eba06c555d76ca14103648378eef90465df424120126fa771280",
+      "视频/脚本/43.json": "aa9da1246e293c80408edf94a7c9bed65ef3178ae7cb5265a8273e8c4396687f",
+      "新版定稿/43-from-a-garage-to-the-top-of-the-world.md": "bd70c83e5ac867238ca179f3c9f3548eb9cbdcae1f6df40994aef0bda721ae54",
+      "视频/脚本/44.json": "87f531203ca38d88ae5e71ffd88190b1530715cdc0adba146c2a4a78ebe9b976",
+      "新版定稿/44-the-night-sweden-switched-sides.md": "d3f7ad2ac43f02aae9205a15b9808280ca3db597d6ef3b36aca8ca6176c5f74a",
+      "视频/脚本/45.json": "569406607d2bf18dce5e916052d6460509450d97fe17ac9820be524f59c2c3cc",
+      "新版定稿/45-the-record-humanity-threw-into-the-stars.md": "27deabec4a8478fe570f7f237a2fb850ffdce3deebfd952f512d82a60cf7314f",
+      "视频/脚本/46.json": "804ecfddb6060288b05eda0e1027c65e9bff0c08a9d010c201bf39306c769b62",
+      "新版定稿/46-lost-in-the-glare.md": "7aaa06e875fe56c5d78210b90a8769b8b2051714025ef10df37c2fe89db7a68c",
+      "视频/脚本/47.json": "0417489c8a672e7e63d46c2239d847acabda2d93160cabed3b0fb14f701ac39a",
+      "新版定稿/47-shadows-of-wolves-over-yellowstone.md": "34c68cf4d0f0ef3545ad68edf3367fcb76ab500174b11ae7f83b782cd5a80a2a",
+      "视频/脚本/48.json": "4f146ce6a70bb0bf5d2c6e1f6b47bd6a2bcc2f311be7a948092d7bde1a08f449",
+      "新版定稿/48-rice-for-the-world.md": "76416be21f857e8a05c37baa33ac90f5785812291485231c249e38a1d0edf15f",
+      "视频/脚本/49.json": "640168eb8a17c5d53d266c6604ffe287919314947371c2ee239eeea952d73b77",
+      "新版定稿/49-the-woman-who-won-two-nobels.md": "1e4fb068aa9ae4513d01b199a074b84dc9d819f57b2134df32588a0e4a4b6b6a",
+      "视频/脚本/50.json": "1d4a41824dfa5e8d11e5990b2a4b802ba2fcc3231d85b15ed6630396c6f027bf",
+      "新版定稿/50-microplastics.md": "5439589bacf1abb2abbb184eb658492bc02bcc5bdd8dfd8ababcd80ab93621cb",
+      "视频/脚本/51.json": "39886d83593a31fb575b124ecf6457190773dca695b6ff78f8434d52aebd6d7c",
+      "新版定稿/51-the-joke-that-became-ok.md": "8de30ea4846f4e88d8b71c8d5ced3ee63a73955e39b7dc3c5adad0971b854fd0",
+      "视频/脚本/52.json": "832249bb44617d38ede75560a5e57af6ba79ec284c9609407cb30ce879f6f862",
+      "新版定稿/52-the-killer-smog-of-1952.md": "179500361e4a837d7edb2e0497e08677d5abd425e8ad542f788205a6f7667b4b",
+      "视频/脚本/53.json": "28b604bfa72896534736293f79e9b3aabd8e3678672f4dc6c66337c02a8f1518",
+      "新版定稿/53-the-wind-that-kept-no-time.md": "6fab302dcadb5a2c509436f5fbf8d9ef925c008a36f5b422749bd405aa4701d3",
+      "视频/脚本/54.json": "b1fcb8ae86045b3d35ccfa0f52eb9594b8921d43063835769ee3ecc4543be75e",
+      "新版定稿/54-the-sound-that-shook-the-world.md": "abd5f4bfe11ed73bcc5326a92cf99b0a8e5ad70adaca1ce8d0c8f622b57fa519",
+      "视频/脚本/55.json": "06344fc0ad5975cba2f4dbe5262a9957dd7c024f9a05b9abbfa327f32ea8c719",
+      "新版定稿/55-the-secret-of-romes-undying-concrete.md": "a7759eddcc7ec06dfd6dab7912e06b3b5ef8576df0c025a97812006669d0be61",
+      "视频/脚本/56.json": "22ca3b4180a8ae6a37b4c8e25f5e357d5696d9b23bf148fb7064425d1403e59c",
+      "新版定稿/56-the-letter-that-startled-darwin.md": "aad1e2aab9ff28f534a510362e807ef401e0b502475240f4b2531e9e518a8d7a",
+      "视频/脚本/57.json": "a0ba65b769430289a33ec1f7bc6dbf91dad8d2c3b1d725348851de546563cd6f",
+      "新版定稿/57-a-change-of-anthem-in-the-deep.md": "0731d925a98bafc222718c111985362e166b38b9189c516219a481e36d0d4b6e",
+      "视频/脚本/58.json": "8b0bd3d7d39000518789e9907aec53bd52fab1b9d6b4f22a152d158635b6e8ee",
+      "新版定稿/58-from-a-scratch-to-a-world-without-smallpox.md": "1aa2a0d2c51da76f9c9ebb88d049dd1a55ab530791566fdbf6476e5aa48c15ee",
+      "视频/脚本/59.json": "df1db4174d942371166048b220ef6d55b0b700b2ce31c866edf6dfdf33b92f0c",
+      "新版定稿/59-saving-the-sky.md": "7bf9c4661e733e7af23dc2f11bc820b809ec93dad75a94fb6a12748226e8722c",
+      "视频/脚本/60.json": "eed1655c0919db32a3a016b24791b93d25683f287c7ccb2523e168a69bddc562",
+      "新版定稿/60-the-scientific-giant-who-changed-the-world.md": "9d1578e7af085559922394a3db01de4eb22dc1c520ca17de5cad68e5a38a31a8",
+      "视频/脚本/61.json": "72378937501769dfb3d934fe65ab1a69afeb5420a15e19890c161433717d2435",
+      "新版定稿/61-the-steel-box-that-remade-the-world.md": "135cc9cfbcbd68d957f831cf55558112a45b1cc3749366cb9a304507355c7d2c",
+      "视频/脚本/62.json": "4b3a97f2b6404e1b091537c21f01fc60088902f596803345983c38be52ec79eb",
+      "新版定稿/62-dolly-the-copied-sheep.md": "62817546ae33824b57255f941135c503e41a41f905331ed4af1e32850fa00960",
+      "视频/脚本/63.json": "5d266d80f9cf29cce6f7e34531449cf75191a42f180102685a5bcd04849e75c5",
+      "新版定稿/63-the-crowded-heavens.md": "6ef79d4310019dfefa7364b8a428411a6bc337678c69fa5cbc89b84689e253a4",
+      "视频/脚本/64.json": "12a36862765922d72ce6e5a4c5fe85f548364eed65fe3b3b284f0b38899a965f",
+      "新版定稿/64-the-day-zero-that-never-came.md": "e0c83cbe36745adbbffd33a156fa8d0671704ea976cb13215cabb612639b37a5",
+      "视频/脚本/65.json": "78e60dd231df4ac71df83e21a26f82bbf706dc0bef80bee156a36bc287661ede",
+      "新版定稿/65-the-day-the-doomsday-vault-opened.md": "71a50d32e25955e713e6ca108ab68422a4fd5b77c914a9074eece1dc33cbff89",
+      "视频/脚本/66.json": "ad5324af4270834186285a5e7273a90213094077adc6f9e1d5c7b0ebff9cf035",
+      "新版定稿/66-the-burrs-that-became-velcro.md": "75dbe6c148ca97a7780ac1737f33f58bf8ee27a51aa729a83315705655b12b2a",
+      "视频/脚本/67.json": "8897cc1c2df1e4672eec3bbff2776d0565afb9c9fe84087a1758ebb15b2a233e",
+      "新版定稿/67-the-cave-found-by-a-dog.md": "10e37b81eeef4e3289448a6b4fd679f34d495a4fc087c57747e6dca949e00cf1",
+      "视频/脚本/68.json": "568f72dacac48e206811d35a57c7fa22e3da428783f64e507c184f2090e579f3",
+      "新版定稿/68-the-last-flight-of-the-hindenburg.md": "c25f58ffb0e3748336767bb7470dd7cef10374c53cbb48af89dba26f65b2dd5c",
+      "视频/脚本/69.json": "09fd3fdbbc834badd16a9b38d8c14e425193a6849d7db87253f26a782a1c4137",
+      "新版定稿/69-the-trial-of-the-father-of-the-atomic-bomb.md": "570eda5b7d979d71e9bcad1c67e295ed326ecdb8b61e663aba33272c8a9451bd",
+      "视频/脚本/70.json": "0f6827f02cef0d2416f9d7d69b7e1c5553acee7cf6dc89f3379201264587236c",
+      "新版定稿/70-the-stamp-that-changed-the-post.md": "edfd85cea33730ba67e4210e756da1f2945f1a21bce55c7e75497cb5f0095d80"
+    },
+    "source_file_count": 140,
+    "working_script_count": 70,
+    "target_request_exactly_matches_context": true
+  },
+  "request_source_sha256": {
+    "视频/脚本/69.json": "09fd3fdbbc834badd16a9b38d8c14e425193a6849d7db87253f26a782a1c4137",
+    "视频/工具/初稿生成/gen69.py": "cfdbf66dc87b0a0b404d0e4cf56099dd057ebe4cdc79935907f589c18eaadf87",
+    "新版定稿/69-the-trial-of-the-father-of-the-atomic-bomb.md": "570eda5b7d979d71e9bcad1c67e295ed326ecdb8b61e663aba33272c8a9451bd",
+    "视频/制作记录/69_待改清单.md": "34b51783aca39b07af923e05f18fe8e1135e4643540466b2b32e3bc68a4dc991",
+    "视频/制作记录/逐句确认/69.json": "69546eb49f10c7b74b6f043af4136a832d2c15c2b943651724efa5d6b6f77f58"
+  },
+  "accepted_source": {
+    "id": "69",
+    "path": "最终版4K视频/69 - The Trial of the Father of the Atomic Bomb - 原子弹之父的审判.mp4",
+    "sha256": "87a3dd8e2687cf1ff8eaad43eb925d21de6bdb47dad1442af3bce18b8c14a25c",
+    "git_blob_sha": "bef6f819abe390115f34c4c3f0596e2c0d61780a",
+    "bytes": 12995410,
+    "width": 3840,
+    "height": 2160,
+    "summary_frames": 60,
+    "aac_adts_sha256": "c84d071669149d57346d992abf836d82ad6580677de954259a7a59e527d5f2e1"
+  },
+  "checker_reference_preparation": {
+    "article": "69",
+    "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+    "reference_prepared": true,
+    "acceptance": false,
+    "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+    "source_sha256": "09fd3fdbbc834badd16a9b38d8c14e425193a6849d7db87253f26a782a1c4137",
+    "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+    "checker_program_sha256": {
+      "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+      "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+      "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+      "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+      "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+      "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+    },
+    "reference_calls": [
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-raw",
+        "method": "create",
+        "source_slice": "The Trial of the Father of the Atomic Bomb",
+        "exact_native_cache_key": "a93db4632da700555ed251e9bf3a51e606e5c2b5.pkl",
+        "cache_input_text_sha256": "ef7b8561cbcca392a0d1cd0cf1c84c398b381a029bb30120ad175159330d5e72",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-timed",
+        "method": "create_timed",
+        "source_slice": "The Trial of the Father of the Atomic Bomb",
+        "exact_native_cache_key": "942e6ab055527afed62d70a6eb6666b7249afdc5.pkl",
+        "cache_input_text_sha256": "ef7b8561cbcca392a0d1cd0cf1c84c398b381a029bb30120ad175159330d5e72",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "J. Robert Oppenheimer, born in New York on 22 April 1904, was an accomplished physicist and prominent lecturer at Berkeley and Caltech.",
+        "exact_native_cache_key": "f94d2df011b85b4ad193d80c8fe518c2dbe2256c.pkl",
+        "cache_input_text_sha256": "26d9686537920f4738670cff4e58ee32b5e5fc82fd73506839fe63692e7e1f55",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "J. Robert Oppenheimer, born in New York on 22 April 1904, was an accomplished physicist and prominent lecturer at Berkeley and Caltech.",
+        "exact_native_cache_key": "2c8287f4c9ca3af6e4d73773e8ba69b1a5d97aee.pkl",
+        "cache_input_text_sha256": "26d9686537920f4738670cff4e58ee32b5e5fc82fd73506839fe63692e7e1f55",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "J. Robert Oppenheimer, born in New York on 22 April 1904,",
+        "exact_native_cache_key": "22af11bdf0dd61d80babd66ce66a3d3ff84970bf.pkl",
+        "cache_input_text_sha256": "e48565fd68898a411a61a7bfe93113b643a9cead76e43a1211e743eaab6bcfed",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "was an accomplished physicist and prominent lecturer at Berkeley and Caltech.",
+        "exact_native_cache_key": "6db7baa66baa9b9237be22916be1f5fa5053f4d3.pkl",
+        "cache_input_text_sha256": "0a1a1c1bb5b6da2e01bd9ca5043e1d3148cb89f02d32cbe7d0e92177630ddfab",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "J. Robert Oppenheimer,",
+        "exact_native_cache_key": "aeef27b61adb5babd0cb22f0c0980561c99d3aa6.pkl",
+        "cache_input_text_sha256": "f45c4be2fa9a0a572d85c0027c0006c885ca4d8628a8de692ddc57b959d19177",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "born in New York on 22 April 1904,",
+        "exact_native_cache_key": "7953961d9bbe2dfb0a28d64d74fd011e76c525f9.pkl",
+        "cache_input_text_sha256": "b6f043242f29e18e1a56684003561b50a883d3e583c3b5a560ea8742cd2c2740",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "was an accomplished physicist and prominent lecturer at Berkeley and Caltech.",
+        "exact_native_cache_key": "6db7baa66baa9b9237be22916be1f5fa5053f4d3.pkl",
+        "cache_input_text_sha256": "0a1a1c1bb5b6da2e01bd9ca5043e1d3148cb89f02d32cbe7d0e92177630ddfab",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "From April 1943 he oversaw a secretive weapons installation at Los Alamos, whose bombs were the collaborative creation of a thousands-strong workforce.",
+        "exact_native_cache_key": "1d3d59457a98498e68441f4fd2be52a9ca378183.pkl",
+        "cache_input_text_sha256": "321765befe298944f1c14d8480981eae433b1c0028b185c56c9cfcbe9a2ff40e",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "From April 1943 he oversaw a secretive weapons installation at Los Alamos, whose bombs were the collaborative creation of a thousands-strong workforce.",
+        "exact_native_cache_key": "4f84c54a130460dfe00f7197ab7a844a2391da14.pkl",
+        "cache_input_text_sha256": "321765befe298944f1c14d8480981eae433b1c0028b185c56c9cfcbe9a2ff40e",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "From April 1943 he oversaw a secretive weapons installation at Los Alamos,",
+        "exact_native_cache_key": "66195ae6fedb59b7b3af369dd63cccdc8cd99c80.pkl",
+        "cache_input_text_sha256": "5aba248f8d51035cfb2f29708b0feb729692b8778801aac69ccac4f833095578",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "whose bombs were the collaborative creation of a thousands-strong workforce.",
+        "exact_native_cache_key": "e78a11f6fd868c4a50534e289d6295c402c0a471.pkl",
+        "cache_input_text_sha256": "3787303a9bc7d3dce339e55351bebb3fe6a86f6a0a8a559399920b8f992fa5dc",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "From April 1943 he oversaw a secretive weapons installation at Los Alamos,",
+        "exact_native_cache_key": "66195ae6fedb59b7b3af369dd63cccdc8cd99c80.pkl",
+        "cache_input_text_sha256": "5aba248f8d51035cfb2f29708b0feb729692b8778801aac69ccac4f833095578",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "whose bombs were the collaborative creation of a thousands-strong workforce.",
+        "exact_native_cache_key": "e78a11f6fd868c4a50534e289d6295c402c0a471.pkl",
+        "cache_input_text_sha256": "3787303a9bc7d3dce339e55351bebb3fe6a86f6a0a8a559399920b8f992fa5dc",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "In the pre-dawn darkness of 16 July 1945, the first nuclear test illuminated the desolate New Mexico landscape with a blinding glare, its explosive force roughly 20 kilotons.",
+        "exact_native_cache_key": "2fdcc5928f89d16e4953bf54a12c750b6500a1d3.pkl",
+        "cache_input_text_sha256": "0c808c9c05c744d7ab76bcc28adfbe7e719840229b61ec0a28a334b7384fb63f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "In the pre-dawn darkness of 16 July 1945, the first nuclear test illuminated the desolate New Mexico landscape with a blinding glare, its explosive force roughly 20 kilotons.",
+        "exact_native_cache_key": "c77d69470f8314f9dbaf3867ea4c5a69fb55178b.pkl",
+        "cache_input_text_sha256": "0c808c9c05c744d7ab76bcc28adfbe7e719840229b61ec0a28a334b7384fb63f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "In the pre-dawn darkness of 16 July 1945,",
+        "exact_native_cache_key": "8e4a1a77f5cc6001637135e0382399fd73e75289.pkl",
+        "cache_input_text_sha256": "7531c2f8cd26ee4d7a2c05232aa18e7308e428fdf9afd920b4a974fa1195f9df",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "the first nuclear test illuminated the desolate New Mexico landscape with a blinding glare,",
+        "exact_native_cache_key": "e3d72d788e88078c3fedffeca97d8e4b4ab3c1f0.pkl",
+        "cache_input_text_sha256": "61f71c9224caceb8e6e5709e534bf352a00b343af6ce8ad09644367201f64946",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "its explosive force roughly 20 kilotons.",
+        "exact_native_cache_key": "9a93646f9dad91628ed4392f300d1fca37c6fe83.pkl",
+        "cache_input_text_sha256": "8222e68f378093632124c2a3578c7d2d68e3a4105ca35cdcbaca678dd49d1170",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "In the pre-dawn darkness of 16 July 1945,",
+        "exact_native_cache_key": "8e4a1a77f5cc6001637135e0382399fd73e75289.pkl",
+        "cache_input_text_sha256": "7531c2f8cd26ee4d7a2c05232aa18e7308e428fdf9afd920b4a974fa1195f9df",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "the first nuclear test illuminated the desolate New Mexico landscape with a blinding glare,",
+        "exact_native_cache_key": "e3d72d788e88078c3fedffeca97d8e4b4ab3c1f0.pkl",
+        "cache_input_text_sha256": "61f71c9224caceb8e6e5709e534bf352a00b343af6ce8ad09644367201f64946",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "its explosive force roughly 20 kilotons.",
+        "exact_native_cache_key": "9a93646f9dad91628ed4392f300d1fca37c6fe83.pkl",
+        "cache_input_text_sha256": "8222e68f378093632124c2a3578c7d2d68e3a4105ca35cdcbaca678dd49d1170",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "On 6 and 9 August 1945 atomic bombings devastated Hiroshima and Nagasaki, where year-end fatalities numbered well over 100,000 and about 70,000 respectively.",
+        "exact_native_cache_key": "65d3d3131f2c88e20d5f5148db7d71c6b129963b.pkl",
+        "cache_input_text_sha256": "7daac0d5a265a88466bb6d82becaf26aa5ef7f71d33499a2c3a1a2182e20d9f0",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "On 6 and 9 August 1945 atomic bombings devastated Hiroshima and Nagasaki, where year-end fatalities numbered well over 100,000 and about 70,000 respectively.",
+        "exact_native_cache_key": "47282ded7e78fb6822b057737bbf4ecec701bd52.pkl",
+        "cache_input_text_sha256": "7daac0d5a265a88466bb6d82becaf26aa5ef7f71d33499a2c3a1a2182e20d9f0",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "On 6 and 9 August 1945 atomic bombings devastated Hiroshima and Nagasaki,",
+        "exact_native_cache_key": "619f300689fcf16e8376e42441c749a3ee315c38.pkl",
+        "cache_input_text_sha256": "ca7c4153f2c4cbf7b83df1364ced1e50ddafe8e05aca991921b4fd14791ded50",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "where year-end fatalities numbered well over 100,000 and about 70,000 respectively.",
+        "exact_native_cache_key": "5986341d770a6e2b8d15ee5906e24d0f549f5dcb.pkl",
+        "cache_input_text_sha256": "e0e8459a685655c78e5d37276e81a5ffc0db61617ad2f87f8a196849e0db1964",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "On 6 and 9 August 1945 atomic bombings devastated Hiroshima and Nagasaki,",
+        "exact_native_cache_key": "619f300689fcf16e8376e42441c749a3ee315c38.pkl",
+        "cache_input_text_sha256": "ca7c4153f2c4cbf7b83df1364ced1e50ddafe8e05aca991921b4fd14791ded50",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "where year-end fatalities numbered well over 100,000 and about 70,000 respectively.",
+        "exact_native_cache_key": "5986341d770a6e2b8d15ee5906e24d0f549f5dcb.pkl",
+        "cache_input_text_sha256": "e0e8459a685655c78e5d37276e81a5ffc0db61617ad2f87f8a196849e0db1964",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Oppenheimer left Los Alamos in October 1945 and from 1947 presided over Princeton's Institute for Advanced Study.",
+        "exact_native_cache_key": "2c91ba10255ef0ca9d5d41db1402fcb61e7941b0.pkl",
+        "cache_input_text_sha256": "76308ef016729a824e19663b43f68c6221b60c3ce2d53bd5853580e25c90bc6d",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Oppenheimer left Los Alamos in October 1945 and from 1947 presided over Princeton's Institute for Advanced Study.",
+        "exact_native_cache_key": "78bd1e8dff9c0208ad7df956e0e14d00db4cfca9.pkl",
+        "cache_input_text_sha256": "76308ef016729a824e19663b43f68c6221b60c3ce2d53bd5853580e25c90bc6d",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Oppenheimer left Los Alamos in October 1945",
+        "exact_native_cache_key": "359a010be1c30db8677a58da438989827759646e.pkl",
+        "cache_input_text_sha256": "5264fe1d87d52cb3464bc4552d9abe5ae9f153e7a991f2405ef90f815ee9292b",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and from 1947 presided over Princeton's Institute for Advanced Study.",
+        "exact_native_cache_key": "6577b9da75cfbdc859a6605de92f7b0c4d362f4d.pkl",
+        "cache_input_text_sha256": "7caa673e4b0cc599c054a32ed9ceead67907f27a4a3fc897d6e8bcdfa2417a84",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "In October 1949 the advisory committee he chaired, expressing misgivings, unanimously counselled against a crash programme for the hydrogen bomb, a vastly more destructive weapon.",
+        "exact_native_cache_key": "db4b918b3975cdbdd1edac76d89c4dc57b6469a3.pkl",
+        "cache_input_text_sha256": "cc713c18df117e7ff69bbc6a1cef9286fc1ad29bee71fa6166e0992dcbec38f0",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "In October 1949 the advisory committee he chaired, expressing misgivings, unanimously counselled against a crash programme for the hydrogen bomb, a vastly more destructive weapon.",
+        "exact_native_cache_key": "b3654e274de1f5c9359f769899affaeb485ee3a6.pkl",
+        "cache_input_text_sha256": "cc713c18df117e7ff69bbc6a1cef9286fc1ad29bee71fa6166e0992dcbec38f0",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "In October 1949 the advisory committee he chaired,",
+        "exact_native_cache_key": "aa7bc3f8296793440287f3078f5b380ed6db81d3.pkl",
+        "cache_input_text_sha256": "a5a5b11926f1cd48f34b1723d3e6d27c6871296d39e7714d2d7b1489251a8834",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "expressing misgivings,",
+        "exact_native_cache_key": "98dd7f254dce0ec04cec5104762ba7c50fc47850.pkl",
+        "cache_input_text_sha256": "a702b0cc01268ea17d36274e81a62925715e87512f94551105c88bcf94fccf27",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "unanimously counselled against a crash programme for the hydrogen bomb,",
+        "exact_native_cache_key": "463f63af59fa07c0858992c45f30fed1b122fd17.pkl",
+        "cache_input_text_sha256": "e3219ffa7e3dbc25fe4426558d6aee01c7ddc66296309038f45146cb55fe495b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 4,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "a vastly more destructive weapon.",
+        "exact_native_cache_key": "61d4fd13ae92b0d8e755a18d3444c8b6d4a7ee84.pkl",
+        "cache_input_text_sha256": "2d7378f00a621908812c0ee1c7b0bb932d1829e48e92bbde9351847a738a74d3",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "In October 1949 the advisory committee he chaired,",
+        "exact_native_cache_key": "aa7bc3f8296793440287f3078f5b380ed6db81d3.pkl",
+        "cache_input_text_sha256": "a5a5b11926f1cd48f34b1723d3e6d27c6871296d39e7714d2d7b1489251a8834",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "expressing misgivings,",
+        "exact_native_cache_key": "98dd7f254dce0ec04cec5104762ba7c50fc47850.pkl",
+        "cache_input_text_sha256": "a702b0cc01268ea17d36274e81a62925715e87512f94551105c88bcf94fccf27",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "unanimously counselled against a crash programme for the hydrogen bomb,",
+        "exact_native_cache_key": "463f63af59fa07c0858992c45f30fed1b122fd17.pkl",
+        "cache_input_text_sha256": "e3219ffa7e3dbc25fe4426558d6aee01c7ddc66296309038f45146cb55fe495b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "a vastly more destructive weapon.",
+        "exact_native_cache_key": "61d4fd13ae92b0d8e755a18d3444c8b6d4a7ee84.pkl",
+        "cache_input_text_sha256": "2d7378f00a621908812c0ee1c7b0bb932d1829e48e92bbde9351847a738a74d3",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "In December 1953 a presidential directive severed his access to confidential documentation.",
+        "exact_native_cache_key": "fe5ea25c933032c74c47648732f903e3a418f700.pkl",
+        "cache_input_text_sha256": "2d3eab9aa7b87761435ca231decaeb274518b21a3b8ca0708225283cd36a8c4b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "In December 1953 a presidential directive severed his access to confidential documentation.",
+        "exact_native_cache_key": "c1ee0f290797c42ff362d2cc6027942a57400e33.pkl",
+        "cache_input_text_sha256": "2d3eab9aa7b87761435ca231decaeb274518b21a3b8ca0708225283cd36a8c4b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "From 12 April to 6 May 1954 he was cross-examined at a security hearing, an administrative proceeding, not a criminal prosecution.",
+        "exact_native_cache_key": "549b192a0510dc1cb83811ee1c1908661686af7f.pkl",
+        "cache_input_text_sha256": "e023bee5b151552a4ff32b126166a73ab0c06effba9ebaf325c9988759fe0d18",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "From 12 April to 6 May 1954 he was cross-examined at a security hearing, an administrative proceeding, not a criminal prosecution.",
+        "exact_native_cache_key": "6c1cb67237106d49ac34361e051da53ed1cb4b5b.pkl",
+        "cache_input_text_sha256": "e023bee5b151552a4ff32b126166a73ab0c06effba9ebaf325c9988759fe0d18",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "From 12 April to 6 May 1954 he was cross-examined at a security hearing,",
+        "exact_native_cache_key": "fa1396368158bf6914053449fe372b00344d625e.pkl",
+        "cache_input_text_sha256": "da10932e9c925e96b1c5f5c1c3ce4cbbaaeaa4a5483ed249ac147fc2fc6146e9",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "an administrative proceeding, not a criminal prosecution.",
+        "exact_native_cache_key": "ebada74fa6566f6a673efb688f056b3e360c8d32.pkl",
+        "cache_input_text_sha256": "7ce2a39b95aa85c36a5ec7eaa60dbb73ab1318a15f24f78802ba3807eb60a2fc",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "From 12 April to 6 May 1954 he was cross-examined at a security hearing,",
+        "exact_native_cache_key": "fa1396368158bf6914053449fe372b00344d625e.pkl",
+        "cache_input_text_sha256": "da10932e9c925e96b1c5f5c1c3ce4cbbaaeaa4a5483ed249ac147fc2fc6146e9",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "an administrative proceeding,",
+        "exact_native_cache_key": "c52278450251d22e98bc5f460f6474d3386daaee.pkl",
+        "cache_input_text_sha256": "aa0809632e0efad56f42297a6562cae5dcfd5a06940c265847f8b4c2c4e5e28e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "not a criminal prosecution.",
+        "exact_native_cache_key": "537e03c27d8284935c714c3a1ec4e00edfb734fb.pkl",
+        "cache_input_text_sha256": "6c2adaca985aa91a9445d7735ed66c709d174b630a4e7eecad7b0cfc1aabfecc",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "On 29 June 1954 the Atomic Energy Commission voted 4 to 1 against letting him regain his clearance, two days before his consultancy contract was due to expire.",
+        "exact_native_cache_key": "28afac5f575976ff39ba168a687d6f9b0c166a8e.pkl",
+        "cache_input_text_sha256": "eaacde4bee86c08afbbfda8f45cce3b725bbb5d3af8f2581b1310e7af0782beb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "On 29 June 1954 the Atomic Energy Commission voted 4 to 1 against letting him regain his clearance, two days before his consultancy contract was due to expire.",
+        "exact_native_cache_key": "73c7d60368bb47e14bada2ac6e6d745bf4cfdced.pkl",
+        "cache_input_text_sha256": "eaacde4bee86c08afbbfda8f45cce3b725bbb5d3af8f2581b1310e7af0782beb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "On 29 June 1954 the Atomic Energy Commission voted 4 to 1 against letting him regain his clearance,",
+        "exact_native_cache_key": "245abd6c2b7bf3cadcc905c2b6a15cdf49a70183.pkl",
+        "cache_input_text_sha256": "7b62b91192aff87c2509c59482921bedd9131df1023254271fc752b386ba5866",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "two days before his consultancy contract was due to expire.",
+        "exact_native_cache_key": "7fa764ba06e68aeb6380e069f656f99c82affc53.pkl",
+        "cache_input_text_sha256": "03fbdb546a5518e23c73dd700d8a8c055ec0b6044303832630c8bfa12076658f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "On 29 June 1954 the Atomic Energy Commission voted 4 to 1 against letting him regain his clearance,",
+        "exact_native_cache_key": "245abd6c2b7bf3cadcc905c2b6a15cdf49a70183.pkl",
+        "cache_input_text_sha256": "7b62b91192aff87c2509c59482921bedd9131df1023254271fc752b386ba5866",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "two days before his consultancy contract was due to expire.",
+        "exact_native_cache_key": "7fa764ba06e68aeb6380e069f656f99c82affc53.pkl",
+        "cache_input_text_sha256": "03fbdb546a5518e23c73dd700d8a8c055ec0b6044303832630c8bfa12076658f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The ruling did not find him disloyal, but nonetheless questioned his character and associates.",
+        "exact_native_cache_key": "184d861dac7590ef4849b375cb342dad2d95412f.pkl",
+        "cache_input_text_sha256": "5e9ec1dd918fb4b5cdade691a68e8dcdd0202322667789bbeef47ded8833e90b",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The ruling did not find him disloyal, but nonetheless questioned his character and associates.",
+        "exact_native_cache_key": "bb1dc5663a649b9cfdc8a678a7cdce23718f23d7.pkl",
+        "cache_input_text_sha256": "5e9ec1dd918fb4b5cdade691a68e8dcdd0202322667789bbeef47ded8833e90b",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "The ruling did not find him disloyal,",
+        "exact_native_cache_key": "94a9f88c5a942aba7ac430afb3f99901cc1cda38.pkl",
+        "cache_input_text_sha256": "d59daf193a46ea35298307f0019e02b5051d88c986208501f99b6c4efbad1e07",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "but nonetheless questioned his character and associates.",
+        "exact_native_cache_key": "0b119f898b0da372b4207e12ba6a3225cac984b1.pkl",
+        "cache_input_text_sha256": "69f9f0425f3c65200fed3502fccb00658efcf116259fde81d52a796e653ab108",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "On 2 December 1963 President Johnson bestowed on him the Fermi Award, which Kennedy had authorised before his assassination.",
+        "exact_native_cache_key": "ae3ae8446c32f72192e0ea533858b167de4ef33c.pkl",
+        "cache_input_text_sha256": "0d9e3ac9cb1c145a7cb3c4706bfcce9c5d9d8d70e290a1e428c28313b9efc203",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "On 2 December 1963 President Johnson bestowed on him the Fermi Award, which Kennedy had authorised before his assassination.",
+        "exact_native_cache_key": "3f843ed9c8cc31126f9377907ce9358663388dd3.pkl",
+        "cache_input_text_sha256": "0d9e3ac9cb1c145a7cb3c4706bfcce9c5d9d8d70e290a1e428c28313b9efc203",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "On 2 December 1963 President Johnson bestowed on him the Fermi Award,",
+        "exact_native_cache_key": "b6cc93c90b2c46f7895eb8cee9101c63a2b89106.pkl",
+        "cache_input_text_sha256": "cbeca378c02ab7e96065a48c9bf22b6c628e3aa448e5eed11935056d2717f967",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "which Kennedy had authorised before his assassination.",
+        "exact_native_cache_key": "df5912e124f736e51381c1e79dfbffee97fc7591.pkl",
+        "cache_input_text_sha256": "8f69c0ad4cb3fe1481e9494b201f8cd7955b90359295e3c439b1a8be5a2a852a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "On 2 December 1963 President Johnson bestowed on him the Fermi Award,",
+        "exact_native_cache_key": "b6cc93c90b2c46f7895eb8cee9101c63a2b89106.pkl",
+        "cache_input_text_sha256": "cbeca378c02ab7e96065a48c9bf22b6c628e3aa448e5eed11935056d2717f967",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "which Kennedy had authorised before his assassination.",
+        "exact_native_cache_key": "df5912e124f736e51381c1e79dfbffee97fc7591.pkl",
+        "cache_input_text_sha256": "8f69c0ad4cb3fe1481e9494b201f8cd7955b90359295e3c439b1a8be5a2a852a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Oppenheimer died on 18 February 1967.",
+        "exact_native_cache_key": "7f5c25bff067c10c5617f44874951ec6f7243230.pkl",
+        "cache_input_text_sha256": "e152a6826a5df88912bf3fcc8cb40eba4698528315c175786d793cc52b9f95a9",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Oppenheimer died on 18 February 1967.",
+        "exact_native_cache_key": "2af26952040dbda38d3041c0fd5662587b9232c9.pkl",
+        "cache_input_text_sha256": "e152a6826a5df88912bf3fcc8cb40eba4698528315c175786d793cc52b9f95a9",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "In December 2022 the energy secretary officially vacated the 1954 determination, calling the process flawed and contrary to the commission's rules.",
+        "exact_native_cache_key": "472ee87edd2accc84167aec0d0cf42be04698018.pkl",
+        "cache_input_text_sha256": "7319156ecece69337f7bd2d8b42e8850270c07be0600f87dbe6902bc37823127",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "In December 2022 the energy secretary officially vacated the 1954 determination, calling the process flawed and contrary to the commission's rules.",
+        "exact_native_cache_key": "0f04bbf95143a20622474a043463f7fe503ee564.pkl",
+        "cache_input_text_sha256": "7319156ecece69337f7bd2d8b42e8850270c07be0600f87dbe6902bc37823127",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "In December 2022 the energy secretary officially vacated the 1954 determination,",
+        "exact_native_cache_key": "79f22c22ccb70faa4f4b7a7bec4fc8892eb088bb.pkl",
+        "cache_input_text_sha256": "291c935b3f14a496b4b3309c8ff302182cde8ad5b30c15994db394339e1a16c1",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "calling the process flawed and contrary to the commission's rules.",
+        "exact_native_cache_key": "c6220eade4a280b3a6d22bff77713dcd0f3fdff8.pkl",
+        "cache_input_text_sha256": "e3a8dda901d191677ddf107281e1a592c3f02a1175a0651a25506c3e302de3ee",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "In December 2022 the energy secretary officially vacated the 1954 determination,",
+        "exact_native_cache_key": "79f22c22ccb70faa4f4b7a7bec4fc8892eb088bb.pkl",
+        "cache_input_text_sha256": "291c935b3f14a496b4b3309c8ff302182cde8ad5b30c15994db394339e1a16c1",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "calling the process flawed and contrary to the commission's rules.",
+        "exact_native_cache_key": "c6220eade4a280b3a6d22bff77713dcd0f3fdff8.pkl",
+        "cache_input_text_sha256": "e3a8dda901d191677ddf107281e1a592c3f02a1175a0651a25506c3e302de3ee",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The stigma of the revocation had persisted for fifty-five years beyond his lifetime.",
+        "exact_native_cache_key": "5725fd1798189c2f78c7b3a6d2fad015064b1a8e.pkl",
+        "cache_input_text_sha256": "b2cd101a8db3462aaba3b39bde1fe523962aadd6f315ea59175e32bd091475cb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The stigma of the revocation had persisted for fifty-five years beyond his lifetime.",
+        "exact_native_cache_key": "fc178713fea36e81ac3946eabc19739d09dc5a66.pkl",
+        "cache_input_text_sha256": "b2cd101a8db3462aaba3b39bde1fe523962aadd6f315ea59175e32bd091475cb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "The stigma of the revocation",
+        "exact_native_cache_key": "f9a8088ccc912d6f798a85d523d38d490a3dddb3.pkl",
+        "cache_input_text_sha256": "d662dc0bdce139dbeb74456be6e0a0df9bffc32482fbb4dbd51d0a87c140e68f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "had persisted for fifty-five years beyond his lifetime.",
+        "exact_native_cache_key": "c57c2934cabe5df883d89965408f452293d75e49.pkl",
+        "cache_input_text_sha256": "c7a01079e7c87ebce1823ed2241bd9247f1ef16f80e4c1d88536500a944cefb7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      }
+    ],
+    "unique_reference_key_count": 61,
+    "raw_mother_cache_scalar_manifest": [
+      {
+        "exact_native_cache_key": "a93db4632da700555ed251e9bf3a51e606e5c2b5.pkl",
+        "pkl_sha256": "9c7256885062d0041a5ae2e78b6bbe1e9def01882d4572362e2917ff1169df4f",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "标题",
+            "piece": null,
+            "reference_kind": "title-default-raw",
+            "method": "create",
+            "source_slice": "The Trial of the Father of the Atomic Bomb",
+            "exact_native_cache_key": "a93db4632da700555ed251e9bf3a51e606e5c2b5.pkl",
+            "cache_input_text_sha256": "ef7b8561cbcca392a0d1cd0cf1c84c398b381a029bb30120ad175159330d5e72",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "9c7256885062d004",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          59904
+        ],
+        "unprocessed_array_sha256": "424e32743a17a6dd0206c35724ebac81feb946b88cd0a18733457a9b1aca5a7b"
+      },
+      {
+        "exact_native_cache_key": "f94d2df011b85b4ad193d80c8fe518c2dbe2256c.pkl",
+        "pkl_sha256": "f6bf11bdb5f7a76f987b43aea79e5d248bb1e250f3962c95c4feef9cab360f00",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "J. Robert Oppenheimer, born in New York on 22 April 1904, was an accomplished physicist and prominent lecturer at Berkeley and Caltech.",
+            "exact_native_cache_key": "f94d2df011b85b4ad193d80c8fe518c2dbe2256c.pkl",
+            "cache_input_text_sha256": "26d9686537920f4738670cff4e58ee32b5e5fc82fd73506839fe63692e7e1f55",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "f6bf11bdb5f7a76f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          261120
+        ],
+        "unprocessed_array_sha256": "52fce6171bb5055d7ec87b2f0efeca7e429224d4842e49568f59f0445d5cd586"
+      },
+      {
+        "exact_native_cache_key": "22af11bdf0dd61d80babd66ce66a3d3ff84970bf.pkl",
+        "pkl_sha256": "14ccb08a2cd48f98b58e330531b4b87abd931104d9c4717c81f894f34dd0bdf1",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "J. Robert Oppenheimer, born in New York on 22 April 1904,",
+            "exact_native_cache_key": "22af11bdf0dd61d80babd66ce66a3d3ff84970bf.pkl",
+            "cache_input_text_sha256": "e48565fd68898a411a61a7bfe93113b643a9cead76e43a1211e743eaab6bcfed",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "14ccb08a2cd48f98",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          139776
+        ],
+        "unprocessed_array_sha256": "93b875ed2ddb0c4de930db5f2f1127755a1c2ef7c838464253c739500224b050"
+      },
+      {
+        "exact_native_cache_key": "6db7baa66baa9b9237be22916be1f5fa5053f4d3.pkl",
+        "pkl_sha256": "82d6ecb4eeff893a701c28977d35751e6f8b6347f8124f0031a3432b2eb0cc5a",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "was an accomplished physicist and prominent lecturer at Berkeley and Caltech.",
+            "exact_native_cache_key": "6db7baa66baa9b9237be22916be1f5fa5053f4d3.pkl",
+            "cache_input_text_sha256": "0a1a1c1bb5b6da2e01bd9ca5043e1d3148cb89f02d32cbe7d0e92177630ddfab",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S1",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "was an accomplished physicist and prominent lecturer at Berkeley and Caltech.",
+            "exact_native_cache_key": "6db7baa66baa9b9237be22916be1f5fa5053f4d3.pkl",
+            "cache_input_text_sha256": "0a1a1c1bb5b6da2e01bd9ca5043e1d3148cb89f02d32cbe7d0e92177630ddfab",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "82d6ecb4eeff893a",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          114176
+        ],
+        "unprocessed_array_sha256": "05a46dc1d83b0fab593b65190a6b818d7c21df54ed23302088218849ffd5df15"
+      },
+      {
+        "exact_native_cache_key": "aeef27b61adb5babd0cb22f0c0980561c99d3aa6.pkl",
+        "pkl_sha256": "98375b2bf7abf35358a68dc126f4000dbfeec71e9e49e94021f9766efe83cff8",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "J. Robert Oppenheimer,",
+            "exact_native_cache_key": "aeef27b61adb5babd0cb22f0c0980561c99d3aa6.pkl",
+            "cache_input_text_sha256": "f45c4be2fa9a0a572d85c0027c0006c885ca4d8628a8de692ddc57b959d19177",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "98375b2bf7abf353",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          39424
+        ],
+        "unprocessed_array_sha256": "280fd8b7abadd7ccf16bf81b2442b0058ffd28770ba7c9c8143fcd23cae7fe4f"
+      },
+      {
+        "exact_native_cache_key": "7953961d9bbe2dfb0a28d64d74fd011e76c525f9.pkl",
+        "pkl_sha256": "52f13e6dbd5d7ff105770291a8121d9c19f34b302db5437e020eecc5746e442c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "born in New York on 22 April 1904,",
+            "exact_native_cache_key": "7953961d9bbe2dfb0a28d64d74fd011e76c525f9.pkl",
+            "cache_input_text_sha256": "b6f043242f29e18e1a56684003561b50a883d3e583c3b5a560ea8742cd2c2740",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "52f13e6dbd5d7ff1",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          97280
+        ],
+        "unprocessed_array_sha256": "e3d44ed7e7398e553e2b3fda9cff90678d1ed0c408b02ee83b7bbb4efb9311e8"
+      },
+      {
+        "exact_native_cache_key": "1d3d59457a98498e68441f4fd2be52a9ca378183.pkl",
+        "pkl_sha256": "36f7d7eb296efb6aa89360294539ccdddcbb18fd15c5b01195ddc941e17cf43d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "From April 1943 he oversaw a secretive weapons installation at Los Alamos, whose bombs were the collaborative creation of a thousands-strong workforce.",
+            "exact_native_cache_key": "1d3d59457a98498e68441f4fd2be52a9ca378183.pkl",
+            "cache_input_text_sha256": "321765befe298944f1c14d8480981eae433b1c0028b185c56c9cfcbe9a2ff40e",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "36f7d7eb296efb6a",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          278016
+        ],
+        "unprocessed_array_sha256": "e109f76b01bdfd2b51b8a1c1bd19af55f59afa5ee45048cd00f3fcf5579e6190"
+      },
+      {
+        "exact_native_cache_key": "66195ae6fedb59b7b3af369dd63cccdc8cd99c80.pkl",
+        "pkl_sha256": "9cfda802b9ecd5da169627eefbe6884f8ac9a015fbe071170596b679824140dd",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "From April 1943 he oversaw a secretive weapons installation at Los Alamos,",
+            "exact_native_cache_key": "66195ae6fedb59b7b3af369dd63cccdc8cd99c80.pkl",
+            "cache_input_text_sha256": "5aba248f8d51035cfb2f29708b0feb729692b8778801aac69ccac4f833095578",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S2",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "From April 1943 he oversaw a secretive weapons installation at Los Alamos,",
+            "exact_native_cache_key": "66195ae6fedb59b7b3af369dd63cccdc8cd99c80.pkl",
+            "cache_input_text_sha256": "5aba248f8d51035cfb2f29708b0feb729692b8778801aac69ccac4f833095578",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "9cfda802b9ecd5da",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          156672
+        ],
+        "unprocessed_array_sha256": "312e6c34992979970ca5531df6f3616a06be0b0e741238c793128da80b6abaa4"
+      },
+      {
+        "exact_native_cache_key": "e78a11f6fd868c4a50534e289d6295c402c0a471.pkl",
+        "pkl_sha256": "4cd52e52233906f5ce7877fe99f31887ee8754b29342919411ee4f1b3165955c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "whose bombs were the collaborative creation of a thousands-strong workforce.",
+            "exact_native_cache_key": "e78a11f6fd868c4a50534e289d6295c402c0a471.pkl",
+            "cache_input_text_sha256": "3787303a9bc7d3dce339e55351bebb3fe6a86f6a0a8a559399920b8f992fa5dc",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S2",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "whose bombs were the collaborative creation of a thousands-strong workforce.",
+            "exact_native_cache_key": "e78a11f6fd868c4a50534e289d6295c402c0a471.pkl",
+            "cache_input_text_sha256": "3787303a9bc7d3dce339e55351bebb3fe6a86f6a0a8a559399920b8f992fa5dc",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "4cd52e52233906f5",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          110080
+        ],
+        "unprocessed_array_sha256": "7fd3a602e02fd402d1b50145369e56dcd7e0bce1fd5372c7116555b46158b95b"
+      },
+      {
+        "exact_native_cache_key": "2fdcc5928f89d16e4953bf54a12c750b6500a1d3.pkl",
+        "pkl_sha256": "e8fa02fd620efaa575c24b4961955236c9757b27630576366124249ab0c672c5",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "In the pre-dawn darkness of 16 July 1945, the first nuclear test illuminated the desolate New Mexico landscape with a blinding glare, its explosive force roughly 20 kilotons.",
+            "exact_native_cache_key": "2fdcc5928f89d16e4953bf54a12c750b6500a1d3.pkl",
+            "cache_input_text_sha256": "0c808c9c05c744d7ab76bcc28adfbe7e719840229b61ec0a28a334b7384fb63f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "e8fa02fd620efaa5",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          347648
+        ],
+        "unprocessed_array_sha256": "f1a1ec615e2bd0ea7b9c0b3b624e0791b28390b17ab8e8a732f48c9583b30978"
+      },
+      {
+        "exact_native_cache_key": "8e4a1a77f5cc6001637135e0382399fd73e75289.pkl",
+        "pkl_sha256": "204aadc80ac8d09388616714ddf338fd52a65d83cce17495d86b490b0c1c84ad",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "In the pre-dawn darkness of 16 July 1945,",
+            "exact_native_cache_key": "8e4a1a77f5cc6001637135e0382399fd73e75289.pkl",
+            "cache_input_text_sha256": "7531c2f8cd26ee4d7a2c05232aa18e7308e428fdf9afd920b4a974fa1195f9df",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S3",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "In the pre-dawn darkness of 16 July 1945,",
+            "exact_native_cache_key": "8e4a1a77f5cc6001637135e0382399fd73e75289.pkl",
+            "cache_input_text_sha256": "7531c2f8cd26ee4d7a2c05232aa18e7308e428fdf9afd920b4a974fa1195f9df",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "204aadc80ac8d093",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          115712
+        ],
+        "unprocessed_array_sha256": "293c9030b1ac1bd59b19585d16dc4169d348259ddcfb7cca88afde3920554c85"
+      },
+      {
+        "exact_native_cache_key": "e3d72d788e88078c3fedffeca97d8e4b4ab3c1f0.pkl",
+        "pkl_sha256": "c878b86a322ea85c18fe892bc2d5032a5c19e754f77719d3242e2299c68ca1d8",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "the first nuclear test illuminated the desolate New Mexico landscape with a blinding glare,",
+            "exact_native_cache_key": "e3d72d788e88078c3fedffeca97d8e4b4ab3c1f0.pkl",
+            "cache_input_text_sha256": "61f71c9224caceb8e6e5709e534bf352a00b343af6ce8ad09644367201f64946",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S3",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "the first nuclear test illuminated the desolate New Mexico landscape with a blinding glare,",
+            "exact_native_cache_key": "e3d72d788e88078c3fedffeca97d8e4b4ab3c1f0.pkl",
+            "cache_input_text_sha256": "61f71c9224caceb8e6e5709e534bf352a00b343af6ce8ad09644367201f64946",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "c878b86a322ea85c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          151552
+        ],
+        "unprocessed_array_sha256": "ad3599220408ba4c77a309fbe3749dd6084a5a526d83c8ab5625b88fcd71ef2d"
+      },
+      {
+        "exact_native_cache_key": "9a93646f9dad91628ed4392f300d1fca37c6fe83.pkl",
+        "pkl_sha256": "c23cb2a8ee34d94eafe78d4d7a242d282449a31edb170cb84572490d6c54a8cc",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "its explosive force roughly 20 kilotons.",
+            "exact_native_cache_key": "9a93646f9dad91628ed4392f300d1fca37c6fe83.pkl",
+            "cache_input_text_sha256": "8222e68f378093632124c2a3578c7d2d68e3a4105ca35cdcbaca678dd49d1170",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S3",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "its explosive force roughly 20 kilotons.",
+            "exact_native_cache_key": "9a93646f9dad91628ed4392f300d1fca37c6fe83.pkl",
+            "cache_input_text_sha256": "8222e68f378093632124c2a3578c7d2d68e3a4105ca35cdcbaca678dd49d1170",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "c23cb2a8ee34d94e",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          65024
+        ],
+        "unprocessed_array_sha256": "f601b760ec21b6399c7bf9b5b594a5be0fd2e3874d7cafddf40940d96286c1a8"
+      },
+      {
+        "exact_native_cache_key": "65d3d3131f2c88e20d5f5148db7d71c6b129963b.pkl",
+        "pkl_sha256": "81c52fe614827bdedaef28c0f8b43bc6247ce31ca3f97eac161922d2352b0ad4",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "On 6 and 9 August 1945 atomic bombings devastated Hiroshima and Nagasaki, where year-end fatalities numbered well over 100,000 and about 70,000 respectively.",
+            "exact_native_cache_key": "65d3d3131f2c88e20d5f5148db7d71c6b129963b.pkl",
+            "cache_input_text_sha256": "7daac0d5a265a88466bb6d82becaf26aa5ef7f71d33499a2c3a1a2182e20d9f0",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "81c52fe614827bde",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          350720
+        ],
+        "unprocessed_array_sha256": "a10eca4847f0a033154a1e95f37985c956cf2982bb5b5a669f3c42dc739af6a9"
+      },
+      {
+        "exact_native_cache_key": "619f300689fcf16e8376e42441c749a3ee315c38.pkl",
+        "pkl_sha256": "064b1e0e7d628a520e1225f91af8411552136de785fbfad79ce6fbf4c8902519",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "On 6 and 9 August 1945 atomic bombings devastated Hiroshima and Nagasaki,",
+            "exact_native_cache_key": "619f300689fcf16e8376e42441c749a3ee315c38.pkl",
+            "cache_input_text_sha256": "ca7c4153f2c4cbf7b83df1364ced1e50ddafe8e05aca991921b4fd14791ded50",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S4",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "On 6 and 9 August 1945 atomic bombings devastated Hiroshima and Nagasaki,",
+            "exact_native_cache_key": "619f300689fcf16e8376e42441c749a3ee315c38.pkl",
+            "cache_input_text_sha256": "ca7c4153f2c4cbf7b83df1364ced1e50ddafe8e05aca991921b4fd14791ded50",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "064b1e0e7d628a52",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          187904
+        ],
+        "unprocessed_array_sha256": "fc61c1e011cd73482850b42b57023c05d81d563c05879ba5cfadcb563d9e284a"
+      },
+      {
+        "exact_native_cache_key": "5986341d770a6e2b8d15ee5906e24d0f549f5dcb.pkl",
+        "pkl_sha256": "a9ef4b7dbc45c9a83ea30347b0e74c6ac7d46ae92dc5002279418dae73d103c2",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "where year-end fatalities numbered well over 100,000 and about 70,000 respectively.",
+            "exact_native_cache_key": "5986341d770a6e2b8d15ee5906e24d0f549f5dcb.pkl",
+            "cache_input_text_sha256": "e0e8459a685655c78e5d37276e81a5ffc0db61617ad2f87f8a196849e0db1964",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S4",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "where year-end fatalities numbered well over 100,000 and about 70,000 respectively.",
+            "exact_native_cache_key": "5986341d770a6e2b8d15ee5906e24d0f549f5dcb.pkl",
+            "cache_input_text_sha256": "e0e8459a685655c78e5d37276e81a5ffc0db61617ad2f87f8a196849e0db1964",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "a9ef4b7dbc45c9a8",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          164864
+        ],
+        "unprocessed_array_sha256": "77b136b4f2ece7b75b392477e6b7e61022bc4d6eb63421f733fe048de3ec6242"
+      },
+      {
+        "exact_native_cache_key": "2c91ba10255ef0ca9d5d41db1402fcb61e7941b0.pkl",
+        "pkl_sha256": "74dc82568bdf2aec76f41762abe45bb12e93b519c6b2d3cf62a133af63761bd8",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Oppenheimer left Los Alamos in October 1945 and from 1947 presided over Princeton's Institute for Advanced Study.",
+            "exact_native_cache_key": "2c91ba10255ef0ca9d5d41db1402fcb61e7941b0.pkl",
+            "cache_input_text_sha256": "76308ef016729a824e19663b43f68c6221b60c3ce2d53bd5853580e25c90bc6d",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "74dc82568bdf2aec",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          245248
+        ],
+        "unprocessed_array_sha256": "2706b0c6a59b4a607fe0d7269fc1f3e8ba3de80b80b0fcc954018c21f96fd43e"
+      },
+      {
+        "exact_native_cache_key": "359a010be1c30db8677a58da438989827759646e.pkl",
+        "pkl_sha256": "cf4fb12b8a9cb577c49c1cc614295d03b4076c8b480f36e8793e44503336d972",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Oppenheimer left Los Alamos in October 1945",
+            "exact_native_cache_key": "359a010be1c30db8677a58da438989827759646e.pkl",
+            "cache_input_text_sha256": "5264fe1d87d52cb3464bc4552d9abe5ae9f153e7a991f2405ef90f815ee9292b",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "cf4fb12b8a9cb577",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          103936
+        ],
+        "unprocessed_array_sha256": "6376810c2a558f4bd621e5dd7ffa78bf396273f4b7163455cc4ae2c182980ec3"
+      },
+      {
+        "exact_native_cache_key": "6577b9da75cfbdc859a6605de92f7b0c4d362f4d.pkl",
+        "pkl_sha256": "056713a661c741cb670faa243f26517fa589c7302c83264c030643b0656a3edf",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and from 1947 presided over Princeton's Institute for Advanced Study.",
+            "exact_native_cache_key": "6577b9da75cfbdc859a6605de92f7b0c4d362f4d.pkl",
+            "cache_input_text_sha256": "7caa673e4b0cc599c054a32ed9ceead67907f27a4a3fc897d6e8bcdfa2417a84",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "056713a661c741cb",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          133120
+        ],
+        "unprocessed_array_sha256": "09bf39b5af1257a2308f27bcb8472c77abd8f3e384d03dd95275de87fd7be3e4"
+      },
+      {
+        "exact_native_cache_key": "db4b918b3975cdbdd1edac76d89c4dc57b6469a3.pkl",
+        "pkl_sha256": "9c4688829e2064d313f5352ffebcead9345b2d6be0cac343bf5d204e9a81abd5",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "In October 1949 the advisory committee he chaired, expressing misgivings, unanimously counselled against a crash programme for the hydrogen bomb, a vastly more destructive weapon.",
+            "exact_native_cache_key": "db4b918b3975cdbdd1edac76d89c4dc57b6469a3.pkl",
+            "cache_input_text_sha256": "cc713c18df117e7ff69bbc6a1cef9286fc1ad29bee71fa6166e0992dcbec38f0",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "9c4688829e2064d3",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          323072
+        ],
+        "unprocessed_array_sha256": "d3afe615db9686276d6c3a34eb565bdf04d862cfa4eca26dcc3af1743bf42022"
+      },
+      {
+        "exact_native_cache_key": "aa7bc3f8296793440287f3078f5b380ed6db81d3.pkl",
+        "pkl_sha256": "8811aa793547a6686bb41b4c007c88ffc890a03522454b6af2b31197692f3796",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "In October 1949 the advisory committee he chaired,",
+            "exact_native_cache_key": "aa7bc3f8296793440287f3078f5b380ed6db81d3.pkl",
+            "cache_input_text_sha256": "a5a5b11926f1cd48f34b1723d3e6d27c6871296d39e7714d2d7b1489251a8834",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S6",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "In October 1949 the advisory committee he chaired,",
+            "exact_native_cache_key": "aa7bc3f8296793440287f3078f5b380ed6db81d3.pkl",
+            "cache_input_text_sha256": "a5a5b11926f1cd48f34b1723d3e6d27c6871296d39e7714d2d7b1489251a8834",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "8811aa793547a668",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          102912
+        ],
+        "unprocessed_array_sha256": "2f5747eca7ef7ada7aecf9dec617b58cfd05897976dff6d44a1feea6418b63ba"
+      },
+      {
+        "exact_native_cache_key": "98dd7f254dce0ec04cec5104762ba7c50fc47850.pkl",
+        "pkl_sha256": "010c05da40154331aa8f143f9ae59e9c9386838bdf711c0cf8d9c743739e596d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "expressing misgivings,",
+            "exact_native_cache_key": "98dd7f254dce0ec04cec5104762ba7c50fc47850.pkl",
+            "cache_input_text_sha256": "a702b0cc01268ea17d36274e81a62925715e87512f94551105c88bcf94fccf27",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S6",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "expressing misgivings,",
+            "exact_native_cache_key": "98dd7f254dce0ec04cec5104762ba7c50fc47850.pkl",
+            "cache_input_text_sha256": "a702b0cc01268ea17d36274e81a62925715e87512f94551105c88bcf94fccf27",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "010c05da40154331",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          35840
+        ],
+        "unprocessed_array_sha256": "8b03ad8bc9661b5009acb8d8dea21ea8d69e8098d597ff40b848f0829b919957"
+      },
+      {
+        "exact_native_cache_key": "463f63af59fa07c0858992c45f30fed1b122fd17.pkl",
+        "pkl_sha256": "3893359b9fd4d5c83f67cfdf2bb902579011717c666411dc5301436e897d0376",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "unanimously counselled against a crash programme for the hydrogen bomb,",
+            "exact_native_cache_key": "463f63af59fa07c0858992c45f30fed1b122fd17.pkl",
+            "cache_input_text_sha256": "e3219ffa7e3dbc25fe4426558d6aee01c7ddc66296309038f45146cb55fe495b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S6",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "unanimously counselled against a crash programme for the hydrogen bomb,",
+            "exact_native_cache_key": "463f63af59fa07c0858992c45f30fed1b122fd17.pkl",
+            "cache_input_text_sha256": "e3219ffa7e3dbc25fe4426558d6aee01c7ddc66296309038f45146cb55fe495b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "3893359b9fd4d5c8",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          112640
+        ],
+        "unprocessed_array_sha256": "b444a8a7317b4a0526dd96cd8c711220a05ea9cc1d02f9c1e6b4f3d784712516"
+      },
+      {
+        "exact_native_cache_key": "61d4fd13ae92b0d8e755a18d3444c8b6d4a7ee84.pkl",
+        "pkl_sha256": "ad5960f7269b611f1d149c6e71d9fe3526a26348294499343fadba1bb01e760f",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 4,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "a vastly more destructive weapon.",
+            "exact_native_cache_key": "61d4fd13ae92b0d8e755a18d3444c8b6d4a7ee84.pkl",
+            "cache_input_text_sha256": "2d7378f00a621908812c0ee1c7b0bb932d1829e48e92bbde9351847a738a74d3",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S6",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "a vastly more destructive weapon.",
+            "exact_native_cache_key": "61d4fd13ae92b0d8e755a18d3444c8b6d4a7ee84.pkl",
+            "cache_input_text_sha256": "2d7378f00a621908812c0ee1c7b0bb932d1829e48e92bbde9351847a738a74d3",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "ad5960f7269b611f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          50688
+        ],
+        "unprocessed_array_sha256": "04bd28595f5b4fbdfc21050f4b52bf1549d7581c1ef9bcaa7c14ed4100a6dc02"
+      },
+      {
+        "exact_native_cache_key": "fe5ea25c933032c74c47648732f903e3a418f700.pkl",
+        "pkl_sha256": "039d5311af7f98263916b155e17312d95b4f74b2d92ae14e93c1d0d056741584",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "In December 1953 a presidential directive severed his access to confidential documentation.",
+            "exact_native_cache_key": "fe5ea25c933032c74c47648732f903e3a418f700.pkl",
+            "cache_input_text_sha256": "2d3eab9aa7b87761435ca231decaeb274518b21a3b8ca0708225283cd36a8c4b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "039d5311af7f9826",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          175104
+        ],
+        "unprocessed_array_sha256": "d9fb27ac2db903b185dc14e933f7e4435058c304c8150311e10ce5c9005d4d66"
+      },
+      {
+        "exact_native_cache_key": "549b192a0510dc1cb83811ee1c1908661686af7f.pkl",
+        "pkl_sha256": "af05f0d561bb52f96761c38e62db58ce51e507a8eaa3551179b9783550f553c2",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "From 12 April to 6 May 1954 he was cross-examined at a security hearing, an administrative proceeding, not a criminal prosecution.",
+            "exact_native_cache_key": "549b192a0510dc1cb83811ee1c1908661686af7f.pkl",
+            "cache_input_text_sha256": "e023bee5b151552a4ff32b126166a73ab0c06effba9ebaf325c9988759fe0d18",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "af05f0d561bb52f9",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          271360
+        ],
+        "unprocessed_array_sha256": "ce6cac9fb61037a4b9f74b69cff48c034e02f6509383e9d5013bf06f22a5c65f"
+      },
+      {
+        "exact_native_cache_key": "fa1396368158bf6914053449fe372b00344d625e.pkl",
+        "pkl_sha256": "3ad30a553b5d5a3099d0e8f5e5b08a0af538c689437695ccafe633a373fe3c6d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "From 12 April to 6 May 1954 he was cross-examined at a security hearing,",
+            "exact_native_cache_key": "fa1396368158bf6914053449fe372b00344d625e.pkl",
+            "cache_input_text_sha256": "da10932e9c925e96b1c5f5c1c3ce4cbbaaeaa4a5483ed249ac147fc2fc6146e9",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S8",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "From 12 April to 6 May 1954 he was cross-examined at a security hearing,",
+            "exact_native_cache_key": "fa1396368158bf6914053449fe372b00344d625e.pkl",
+            "cache_input_text_sha256": "da10932e9c925e96b1c5f5c1c3ce4cbbaaeaa4a5483ed249ac147fc2fc6146e9",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "3ad30a553b5d5a30",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          164864
+        ],
+        "unprocessed_array_sha256": "77b74db8fe907d4cb8b6860036fc9d2ce0b9cf3a701f5da7daddb4dd7d29e231"
+      },
+      {
+        "exact_native_cache_key": "ebada74fa6566f6a673efb688f056b3e360c8d32.pkl",
+        "pkl_sha256": "26c8c0f34320d5d94ec697354f7900fa1edacf10735f011c10f12e6e628f918d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "an administrative proceeding, not a criminal prosecution.",
+            "exact_native_cache_key": "ebada74fa6566f6a673efb688f056b3e360c8d32.pkl",
+            "cache_input_text_sha256": "7ce2a39b95aa85c36a5ec7eaa60dbb73ab1318a15f24f78802ba3807eb60a2fc",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "26c8c0f34320d5d9",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          92160
+        ],
+        "unprocessed_array_sha256": "7ed4b84ed1fd8fc1ee9710498d5a67028ea0ee6797e77faa91cb931b9292e2a4"
+      },
+      {
+        "exact_native_cache_key": "c52278450251d22e98bc5f460f6474d3386daaee.pkl",
+        "pkl_sha256": "a497b3ddb64bfc778a094bf1bfa063f95c7b37c203db59d803e98387077445d9",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "an administrative proceeding,",
+            "exact_native_cache_key": "c52278450251d22e98bc5f460f6474d3386daaee.pkl",
+            "cache_input_text_sha256": "aa0809632e0efad56f42297a6562cae5dcfd5a06940c265847f8b4c2c4e5e28e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "a497b3ddb64bfc77",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          42496
+        ],
+        "unprocessed_array_sha256": "d23f2166fa065f7c5b5f54ccf8e9cc59af1dee522ab4a295cd1fb9e9883c6ba8"
+      },
+      {
+        "exact_native_cache_key": "537e03c27d8284935c714c3a1ec4e00edfb734fb.pkl",
+        "pkl_sha256": "cd9051e57bee71ae5c4b8599c68666c3b6cf49a4f2dc534984efa3066609481d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "not a criminal prosecution.",
+            "exact_native_cache_key": "537e03c27d8284935c714c3a1ec4e00edfb734fb.pkl",
+            "cache_input_text_sha256": "6c2adaca985aa91a9445d7735ed66c709d174b630a4e7eecad7b0cfc1aabfecc",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "cd9051e57bee71ae",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          45056
+        ],
+        "unprocessed_array_sha256": "aae41cfe406753e3985e6d3841d860b675e6aea90bba91fdae0feb87e49898e2"
+      },
+      {
+        "exact_native_cache_key": "28afac5f575976ff39ba168a687d6f9b0c166a8e.pkl",
+        "pkl_sha256": "610a0e5c85252a76d130ca7537024243c4c0b61ad6a6660e8ab1dddd41674737",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "On 29 June 1954 the Atomic Energy Commission voted 4 to 1 against letting him regain his clearance, two days before his consultancy contract was due to expire.",
+            "exact_native_cache_key": "28afac5f575976ff39ba168a687d6f9b0c166a8e.pkl",
+            "cache_input_text_sha256": "eaacde4bee86c08afbbfda8f45cce3b725bbb5d3af8f2581b1310e7af0782beb",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "610a0e5c85252a76",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          316416
+        ],
+        "unprocessed_array_sha256": "9be9c98a7a02b8dd6318fc236f2c0b5b5415e15280ad7470b775631e8032e1c5"
+      },
+      {
+        "exact_native_cache_key": "245abd6c2b7bf3cadcc905c2b6a15cdf49a70183.pkl",
+        "pkl_sha256": "43ed3580990ed20b8bd3394c1249fcebb689d0c6510f0048f0ef0d18ea6ccca4",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "On 29 June 1954 the Atomic Energy Commission voted 4 to 1 against letting him regain his clearance,",
+            "exact_native_cache_key": "245abd6c2b7bf3cadcc905c2b6a15cdf49a70183.pkl",
+            "cache_input_text_sha256": "7b62b91192aff87c2509c59482921bedd9131df1023254271fc752b386ba5866",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S9",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "On 29 June 1954 the Atomic Energy Commission voted 4 to 1 against letting him regain his clearance,",
+            "exact_native_cache_key": "245abd6c2b7bf3cadcc905c2b6a15cdf49a70183.pkl",
+            "cache_input_text_sha256": "7b62b91192aff87c2509c59482921bedd9131df1023254271fc752b386ba5866",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "43ed3580990ed20b",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          211456
+        ],
+        "unprocessed_array_sha256": "feeae23599eee311a6d5a47aefc76acb3e1f240f54be4020786386f3344b4019"
+      },
+      {
+        "exact_native_cache_key": "7fa764ba06e68aeb6380e069f656f99c82affc53.pkl",
+        "pkl_sha256": "d571f4aa4a55036fc3eea7c600f9df47e5afc52d932e1b9620c16fcb274a243e",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "two days before his consultancy contract was due to expire.",
+            "exact_native_cache_key": "7fa764ba06e68aeb6380e069f656f99c82affc53.pkl",
+            "cache_input_text_sha256": "03fbdb546a5518e23c73dd700d8a8c055ec0b6044303832630c8bfa12076658f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S9",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "two days before his consultancy contract was due to expire.",
+            "exact_native_cache_key": "7fa764ba06e68aeb6380e069f656f99c82affc53.pkl",
+            "cache_input_text_sha256": "03fbdb546a5518e23c73dd700d8a8c055ec0b6044303832630c8bfa12076658f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "d571f4aa4a55036f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          99840
+        ],
+        "unprocessed_array_sha256": "d49f2ce509ca0ca0595c0ddb7665bec5e7a9ed15626a4d354a4a7fc6b0336f88"
+      },
+      {
+        "exact_native_cache_key": "184d861dac7590ef4849b375cb342dad2d95412f.pkl",
+        "pkl_sha256": "afede5acde61897f75bc836e76e553e33a736bd4be5302da998489f7394011e1",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The ruling did not find him disloyal, but nonetheless questioned his character and associates.",
+            "exact_native_cache_key": "184d861dac7590ef4849b375cb342dad2d95412f.pkl",
+            "cache_input_text_sha256": "5e9ec1dd918fb4b5cdade691a68e8dcdd0202322667789bbeef47ded8833e90b",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "afede5acde61897f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          138752
+        ],
+        "unprocessed_array_sha256": "919f995365b0ffe9f3c8a2dcbaf81d8b4b5f0aa2136988688b7b267da9bd917d"
+      },
+      {
+        "exact_native_cache_key": "94a9f88c5a942aba7ac430afb3f99901cc1cda38.pkl",
+        "pkl_sha256": "f63a06b0b82a6ee876919c864d760b36c61bf419cd835932e51830347cf2a25c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "The ruling did not find him disloyal,",
+            "exact_native_cache_key": "94a9f88c5a942aba7ac430afb3f99901cc1cda38.pkl",
+            "cache_input_text_sha256": "d59daf193a46ea35298307f0019e02b5051d88c986208501f99b6c4efbad1e07",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "f63a06b0b82a6ee8",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          53760
+        ],
+        "unprocessed_array_sha256": "85c53cb5dc0d3024ba982e309df2e2fe9d3cc099c283e6bc99cc6bf76f39ee5e"
+      },
+      {
+        "exact_native_cache_key": "0b119f898b0da372b4207e12ba6a3225cac984b1.pkl",
+        "pkl_sha256": "d61e1635075a57fc86adf579cc8d46e7eadedce84411ebde811a2a7b65367ebd",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "but nonetheless questioned his character and associates.",
+            "exact_native_cache_key": "0b119f898b0da372b4207e12ba6a3225cac984b1.pkl",
+            "cache_input_text_sha256": "69f9f0425f3c65200fed3502fccb00658efcf116259fde81d52a796e653ab108",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "d61e1635075a57fc",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          69632
+        ],
+        "unprocessed_array_sha256": "57cc4f5936c2c34e91668a73278ef68db8fda70dafb047add224600e65cba09b"
+      },
+      {
+        "exact_native_cache_key": "ae3ae8446c32f72192e0ea533858b167de4ef33c.pkl",
+        "pkl_sha256": "5680731ddf2a42167c34c7f6970ed5aa2a3f14d0aa1749e4bd5a3f0dd293185f",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "On 2 December 1963 President Johnson bestowed on him the Fermi Award, which Kennedy had authorised before his assassination.",
+            "exact_native_cache_key": "ae3ae8446c32f72192e0ea533858b167de4ef33c.pkl",
+            "cache_input_text_sha256": "0d9e3ac9cb1c145a7cb3c4706bfcce9c5d9d8d70e290a1e428c28313b9efc203",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "5680731ddf2a4216",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          250880
+        ],
+        "unprocessed_array_sha256": "d8f42cbac7c1e691cf9cd6974e79940936e71381ac0999e19a0bce2c680dd81a"
+      },
+      {
+        "exact_native_cache_key": "b6cc93c90b2c46f7895eb8cee9101c63a2b89106.pkl",
+        "pkl_sha256": "aab17419e0300f86a290f6b0283557c1dbb7f31c04e771cb8adc5e74e1977e6a",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "On 2 December 1963 President Johnson bestowed on him the Fermi Award,",
+            "exact_native_cache_key": "b6cc93c90b2c46f7895eb8cee9101c63a2b89106.pkl",
+            "cache_input_text_sha256": "cbeca378c02ab7e96065a48c9bf22b6c628e3aa448e5eed11935056d2717f967",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S11",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "On 2 December 1963 President Johnson bestowed on him the Fermi Award,",
+            "exact_native_cache_key": "b6cc93c90b2c46f7895eb8cee9101c63a2b89106.pkl",
+            "cache_input_text_sha256": "cbeca378c02ab7e96065a48c9bf22b6c628e3aa448e5eed11935056d2717f967",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "aab17419e0300f86",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          149504
+        ],
+        "unprocessed_array_sha256": "27ecee2613f49983baafdca23787f84ffa29c9205fd28782c8aa4e5f1a3ad5ed"
+      },
+      {
+        "exact_native_cache_key": "df5912e124f736e51381c1e79dfbffee97fc7591.pkl",
+        "pkl_sha256": "f241edeb267e2d12581de48f4cab88777ab0a7845ab935dc747254ac3d761f8a",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "which Kennedy had authorised before his assassination.",
+            "exact_native_cache_key": "df5912e124f736e51381c1e79dfbffee97fc7591.pkl",
+            "cache_input_text_sha256": "8f69c0ad4cb3fe1481e9494b201f8cd7955b90359295e3c439b1a8be5a2a852a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S11",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "which Kennedy had authorised before his assassination.",
+            "exact_native_cache_key": "df5912e124f736e51381c1e79dfbffee97fc7591.pkl",
+            "cache_input_text_sha256": "8f69c0ad4cb3fe1481e9494b201f8cd7955b90359295e3c439b1a8be5a2a852a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "f241edeb267e2d12",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          76288
+        ],
+        "unprocessed_array_sha256": "fec2de5f9d4d4c5c9a27ff512420a302460664b43782251c388f7db70e17fd98"
+      },
+      {
+        "exact_native_cache_key": "7f5c25bff067c10c5617f44874951ec6f7243230.pkl",
+        "pkl_sha256": "09317abf340f3df7894a2fe1563c2f6364946ed4f344fe9556acd7158cb7eb53",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Oppenheimer died on 18 February 1967.",
+            "exact_native_cache_key": "7f5c25bff067c10c5617f44874951ec6f7243230.pkl",
+            "cache_input_text_sha256": "e152a6826a5df88912bf3fcc8cb40eba4698528315c175786d793cc52b9f95a9",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "09317abf340f3df7",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          108544
+        ],
+        "unprocessed_array_sha256": "a7e2c3884e0835a5b01df5703aaff2f1f2c3a0ca5245a45034993e075fda065f"
+      },
+      {
+        "exact_native_cache_key": "472ee87edd2accc84167aec0d0cf42be04698018.pkl",
+        "pkl_sha256": "ef9c32b985068f0550a12f41c457397db4d4c959ef2241218a91a29345258515",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "In December 2022 the energy secretary officially vacated the 1954 determination, calling the process flawed and contrary to the commission's rules.",
+            "exact_native_cache_key": "472ee87edd2accc84167aec0d0cf42be04698018.pkl",
+            "cache_input_text_sha256": "7319156ecece69337f7bd2d8b42e8850270c07be0600f87dbe6902bc37823127",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "ef9c32b985068f05",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          290816
+        ],
+        "unprocessed_array_sha256": "d2c7136d6f091dc48e72eb951ab21b40067cac131bd01cd7b179ba77f82f2682"
+      },
+      {
+        "exact_native_cache_key": "79f22c22ccb70faa4f4b7a7bec4fc8892eb088bb.pkl",
+        "pkl_sha256": "6b187c2bf770f9ec8593d89dbc938d932113138b07f1e492684a558095a2b47b",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "In December 2022 the energy secretary officially vacated the 1954 determination,",
+            "exact_native_cache_key": "79f22c22ccb70faa4f4b7a7bec4fc8892eb088bb.pkl",
+            "cache_input_text_sha256": "291c935b3f14a496b4b3309c8ff302182cde8ad5b30c15994db394339e1a16c1",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S13",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "In December 2022 the energy secretary officially vacated the 1954 determination,",
+            "exact_native_cache_key": "79f22c22ccb70faa4f4b7a7bec4fc8892eb088bb.pkl",
+            "cache_input_text_sha256": "291c935b3f14a496b4b3309c8ff302182cde8ad5b30c15994db394339e1a16c1",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "6b187c2bf770f9ec",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          188928
+        ],
+        "unprocessed_array_sha256": "1dd83cd9a0d12863626ceb6a92a6b40a600e671f135521cbff4d5009f9d36239"
+      },
+      {
+        "exact_native_cache_key": "c6220eade4a280b3a6d22bff77713dcd0f3fdff8.pkl",
+        "pkl_sha256": "b09180dc5eeb3c8fb24fb99b168d5a9968322565e699ce6e0e90342f7239b9ae",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "calling the process flawed and contrary to the commission's rules.",
+            "exact_native_cache_key": "c6220eade4a280b3a6d22bff77713dcd0f3fdff8.pkl",
+            "cache_input_text_sha256": "e3a8dda901d191677ddf107281e1a592c3f02a1175a0651a25506c3e302de3ee",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S13",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "calling the process flawed and contrary to the commission's rules.",
+            "exact_native_cache_key": "c6220eade4a280b3a6d22bff77713dcd0f3fdff8.pkl",
+            "cache_input_text_sha256": "e3a8dda901d191677ddf107281e1a592c3f02a1175a0651a25506c3e302de3ee",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "b09180dc5eeb3c8f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          94208
+        ],
+        "unprocessed_array_sha256": "e948dadf81718bff637964e9d1ea06c334c9b5a16ea5d60b85a11ed0c51c2bee"
+      },
+      {
+        "exact_native_cache_key": "5725fd1798189c2f78c7b3a6d2fad015064b1a8e.pkl",
+        "pkl_sha256": "5384b0ea6ac1120a9d8fdf66695d2a3d187a25417d64e39b0b5b909304733739",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The stigma of the revocation had persisted for fifty-five years beyond his lifetime.",
+            "exact_native_cache_key": "5725fd1798189c2f78c7b3a6d2fad015064b1a8e.pkl",
+            "cache_input_text_sha256": "b2cd101a8db3462aaba3b39bde1fe523962aadd6f315ea59175e32bd091475cb",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "5384b0ea6ac1120a",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          130560
+        ],
+        "unprocessed_array_sha256": "78e6232461a2e84dca14806b8fea05a5f9ba7c78ad46d877b8761744f5017cd6"
+      },
+      {
+        "exact_native_cache_key": "f9a8088ccc912d6f798a85d523d38d490a3dddb3.pkl",
+        "pkl_sha256": "83cd40706197e4d1b9f25605d5b54a4445aee562f7140bc34a5caef01b0680bf",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "The stigma of the revocation",
+            "exact_native_cache_key": "f9a8088ccc912d6f798a85d523d38d490a3dddb3.pkl",
+            "cache_input_text_sha256": "d662dc0bdce139dbeb74456be6e0a0df9bffc32482fbb4dbd51d0a87c140e68f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "83cd40706197e4d1",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          41984
+        ],
+        "unprocessed_array_sha256": "9fe25681609431b0aa58431514ebbad042d0687262604fb9bfb535e76c4bbea1"
+      },
+      {
+        "exact_native_cache_key": "c57c2934cabe5df883d89965408f452293d75e49.pkl",
+        "pkl_sha256": "b17e9b5bfd445136a29677dae9f3cceb8b7feca9cdf2925a4aefaf11501b7a73",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "had persisted for fifty-five years beyond his lifetime.",
+            "exact_native_cache_key": "c57c2934cabe5df883d89965408f452293d75e49.pkl",
+            "cache_input_text_sha256": "c7a01079e7c87ebce1823ed2241bd9247f1ef16f80e4c1d88536500a944cefb7",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "b17e9b5bfd445136",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          84480
+        ],
+        "unprocessed_array_sha256": "a265850aa4ab6183934f545a596ce3ba6d580d7cd40ef115b79e0ca497dce995"
+      }
+    ],
+    "missing_reference_key_count": 0,
+    "observed_missing_keys_covered": [],
+    "new_private_cache_names": [],
+    "native_single_thread_marker_verified": true,
+    "single_thread_sessions": [
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      },
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      }
+    ],
+    "models_sha256": {
+      "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+      "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+      "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+    },
+    "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+    "existing_private_cache_count": 11514,
+    "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "existing_private_cache_bytes_unchanged": true,
+    "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+    "public_repository_cache_unchanged": true,
+    "producer_pcm_existed_before": false,
+    "producer_pcm_sha256_before": null,
+    "producer_pcm_sha256_after": null,
+    "accepted_aac_adts_sha256_before": "c84d071669149d57346d992abf836d82ad6580677de954259a7a59e527d5f2e1",
+    "accepted_aac_adts_sha256_after": "c84d071669149d57346d992abf836d82ad6580677de954259a7a59e527d5f2e1",
+    "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+    "private_cache_exported": false
+  },
+  "checker_reference_preparation_program_sha256": "f6f2a032e207085e7252d036e39430fb80b06e84a721c525b61196d021c5ca12",
+  "fresh_current_article_reference": {
+    "article": "69",
+    "removed_temporary_gt_files": [],
+    "processed_pcm_or_raw_mother_cache_modified": false,
+    "purpose": "Original synth/labels/audit rebuild fresh for this production; no old CPU GT reuse."
+  },
+  "temporary_output_reset": {
+    "removed": [],
+    "production_started_ns": 1794623815134018574,
+    "repository_outputs_modified": false
+  },
+  "reviewed_gain_control_preservation": [
+    {
+      "stage": "canonical-draft",
+      "requested_gain_controls": {
+        "/分段增益dB": {
+          "S13": {
+            "1": 1.5
+          }
+        }
+      },
+      "actual_gain_controls": {
+        "/分段增益dB": {
+          "S13": {
+            "1": 1.5
+          }
+        }
+      },
+      "exactly_preserved": true
+    },
+    {
+      "stage": "canonical-final4K",
+      "requested_gain_controls": {
+        "/分段增益dB": {
+          "S13": {
+            "1": 1.5
+          }
+        }
+      },
+      "actual_gain_controls": {
+        "/分段增益dB": {
+          "S13": {
+            "1": 1.5
+          }
+        }
+      },
+      "exactly_preserved": true
+    }
+  ],
+  "canonical_video_sha256": "69c4ac977222183458bb20ce237548f533f432c29cda66ec74e814d25ed009d4",
+  "canonical_aac_adts_sha256": "2b15b4811866afd03ef5962f6ce99717d28d7e97704750d9ede91bd7799eed15",
+  "canonical_pipeline_passed": true,
+  "cached_input_wav_sha256": null,
+  "final_wav_sha256": "d04e5e1b057dfaa788bf86dcd6fe7da7b88fc1a254f8abd0a695621f074c2837",
+  "error": "Canonical AAC differs from the accepted prior voice.",
+  "reference_gain_failure_diagnostic": {
+    "acceptance": false,
+    "diagnostic_only": true,
+    "program_present": true,
+    "reference_meta_present": true,
+    "actual_pcm_present": true,
+    "current_post_check_present": true,
+    "exit": 0,
+    "program_sha256": "e9c6fa0ad2147ab6227919c2039406b87a4865567d1c0ceaa70c456c1bd02e60",
+    "file": "69-reference-gain-diagnostic.json",
+    "sha256": "4a7fb37468bb38f439f69d9b7b822f184fa5867d1d21f7a281c9e303f38b18d2",
+    "anchor_summary": {
+      "count": 240,
+      "same_waveform_candidates": 238,
+      "median_fitted_gain": 0.8989805523884755,
+      "median_fitted_to_default_gain": 1.000001232626201,
+      "fitted_gain_min": 0.8989610632051241,
+      "fitted_gain_max": 0.8990759273854332,
+      "inferred_kept_input_peak": 0.9900102929205584,
+      "default_gain_fails_original_2_2_lsb_limit_count": 0
+    },
+    "diagnostic_error": null
+  },
+  "failed_current_video": {
+    "exported": true,
+    "passed": false,
+    "acceptance": false,
+    "purpose": "failed current-attempt video for diagnosis; not a final deliverable",
+    "file": "69-failed-draft.mp4",
+    "sha256": "69c4ac977222183458bb20ce237548f533f432c29cda66ec74e814d25ed009d4",
+    "width": 3840,
+    "height": 2160,
+    "proof": "69-failed-draft-proof.json",
+    "proof_sha256": "33a169a2f665477bbff85724cced9d762b865ac1ede516390bbd9d93584bb0ad",
+    "derived_clip_count": 0
+  }
+}

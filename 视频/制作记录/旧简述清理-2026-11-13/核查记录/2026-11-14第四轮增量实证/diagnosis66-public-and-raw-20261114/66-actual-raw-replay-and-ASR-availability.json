@@ -1,0 +1,26 @@
+{
+  "article": "66",
+  "kind": "original_source_actual_raw_replay_and_ASR_evidence_availability",
+  "quality_acceptance": false,
+  "automatic_confirmation": false,
+  "source_audio_controls_or_core_modified": false,
+  "workflow_launched": false,
+  "private_PCM_or_cache_exported": false,
+  "original_failed_proof_sha256": "6ee025c81b4b6a09c73cec58304d8005503f676332e64051e012cb29958b474f",
+  "original_failed_source_sha256": "23464ca177c9b19e02641ecbf486752fc58484d54b407dc445845a11e1f326e0",
+  "replay_loader_sha256": "d05d9b2ad9bbee3b3403aefc8ba73518b6991228147c0127e01672c52b6c765d",
+  "unchanged_original_program_sha256": {
+    "make_video.py": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+    "clean.py": "86b3872cbca83437e24da2c7ada5fffd916f06cacdd2b32fee2a78c9b134178d",
+    "独立复核/audit.py": "bfe12dab6bec96c9b765faea286ae30a067589f6c5ef78461b21d12b955f1e22",
+    "独立复核/synth.py": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+    "交付核查.py": "26e8e213a07747f6fc3654be18d64336011cba59ffd83bf74e4cf4759baf6976"
+  },
+  "diagnostic_error": {
+    "type": "SystemExit",
+    "message": "【停止】这一句的声音变了（读音或语速改过），旧的非人声区间、词尾除阻、停顿删除都作废（A45）：The name Velcro merged two French words, velours, 。跑 草稿声音.sh，自动清掉旧区间、旧确认并重找",
+    "traceback": "Traceback (most recent call last):\n  File \"/workspace/work/video-audit70-20261113/diagnosis66-public-and-raw-20261114/replay66_actual_raw.py\", line 48, in main\n    raw, parts = R.build(data, cache)\n                 ^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/work/video-audit70-20261113/audio65-69-source-readonly/replay_original_sources.py\", line 59, in build\n    clips,tmap=n['sentence_audio'](t,pieces,gaps)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/work/audit-repo/视频/工具/make_video.py#original-functions-only\", line 876, in sentence_audio\nSystemExit: 【停止】这一句的声音变了（读音或语速改过），旧的非人声区间、词尾除阻、停顿删除都作废（A45）：The name Velcro merged two French words, velours, 。跑 草稿声音.sh，自动清掉旧区间、旧确认并重找\n"
+  },
+  "self_owned_temporary_private_WAV_and_cache_removed": true,
+  "no_pronunciation_or_user_confirmation_created": true
+}

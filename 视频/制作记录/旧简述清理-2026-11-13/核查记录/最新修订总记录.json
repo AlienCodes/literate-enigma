@@ -1,7 +1,7 @@
 {
-  "recorded_at_utc": "2026-11-14T04:14:01.139564+00:00",
+  "recorded_at_utc": "2026-11-14T04:36:32.676306+00:00",
   "task": "70篇精读视频及正式印刷书的全部修订、重建和GitHub交付",
-  "state": "COMPACT_BOOK_DUAL_ARCHIVED; ALL70_TEXT_LAYOUT_BASE_PASSED; 51_ILLUSTRATED_4K_VIDEOS_PASSED; 51_PERMANENTLY_DUAL_ARCHIVED; REMAINING_OFFICIAL_PRODUCTION_IN_PROGRESS; RELEASE_NOT_YET_PUBLISHED",
+  "state": "COMPACT_BOOK_DUAL_ARCHIVED; ALL70_TEXT_LAYOUT_BASE_PASSED; 53_ILLUSTRATED_4K_VIDEOS_PASSED; 53_PERMANENTLY_DUAL_ARCHIVED; REMAINING_OFFICIAL_PRODUCTION_IN_PROGRESS; RELEASE_NOT_YET_PUBLISHED",
   "status_is_not_a_final_delivery_claim": true,
   "scope": {
     "main_pdf_latest_correction": "799页含解析版本仅未发布本地历史草稿，主册改为v4-compact；小字/句析/语法/练习均从主册移除，解析材料源码留存供以后单独解析书，本轮不制作解析册",
@@ -182,7 +182,7 @@
     "旧字面摘要锚保留历史记录，现行全文由请求源稿及实际排版归一化校验，原检查器不被绕过"
   ],
   "production": {
-    "new_final_videos_passed": 51,
+    "new_final_videos_passed": 53,
     "required_videos": 70,
     "passed_videos": [
       {
@@ -200,6 +200,14 @@
         "sha256": "78f21bd81f7a2316cd8d529b52701acbddd17df1563289d36b43d21306c9bf83",
         "passed_handoff": "/workspace/work/video-revision-delivery/next-passed-validated/43543967031/22/archive-handoff.json",
         "passed_handoff_sha256": "258973731eae0da7797cdc2084ddf822d431ef2bd20c574b9eb4b74bf46a1b0a"
+      },
+      {
+        "original_id": "07",
+        "book_order": "03",
+        "bytes": 14775408,
+        "sha256": "43791aac5102a3b24ec5bac7880738d637436e0869c7039ae04b8819ad02274c",
+        "passed_handoff": "/workspace/work/video-revision-delivery/next-passed-validated/43548189084/07/archive-handoff.json",
+        "passed_handoff_sha256": "9f7051d2686780733381e3c8887a01dfc6c60678ca13785947cfa6ff21e35694"
       },
       {
         "original_id": "03",
@@ -466,6 +474,14 @@
         "passed_handoff_sha256": "b744818a16be6a6f5c974a3df38fa955d6046b598ed1a8009427739c26f2a773"
       },
       {
+        "original_id": "46",
+        "book_order": "48",
+        "bytes": 15818528,
+        "sha256": "53c06d04738268c80ec1c37c7c2fb2d95f431106190aaf0d3391a207a5c08dd0",
+        "passed_handoff": "/workspace/work/video-revision-delivery/next-passed-validated/43554669373/46/archive-handoff.json",
+        "passed_handoff_sha256": "e4512215f86c476b4c5aefd00279b4491ce3b3a77266430855a2ddc5fa039336"
+      },
+      {
         "original_id": "24",
         "book_order": "49",
         "bytes": 16447685,
@@ -596,9 +612,7 @@
     ],
     "passed_video_ending": "实际正文结束后，书中对应插图60帧，再简述60帧；3840×2160、30fps；原正文编码与AAC包及绝对时间保持不变",
     "official_producer_run_for_passed_two": 43523430839,
-    "active_runs_at_recording": {
-      "16_46_49_core5": 43554669373
-    },
+    "active_runs_at_recording": {},
     "readonly_diagnostics_run": 43528832985,
     "observed_blockers": [
       "02原auto writer新增剪已确认/v/；严格A/B已复现90ms差异；仅候选保护已审切点模式，须单独原full后正式重验",
@@ -695,13 +709,13 @@
       "sound_and_displayed_highlight_unchanged": true
     },
     "permanent_video_archive_snapshot": {
-      "primary_commit_observed": "470e73cad274cca183ba2fd3aeabed4a48e6fb07",
-      "count": 51,
-      "backup_commit_observed": "6ce0575788875f0a4805576a08c352b82b232e7b",
+      "primary_commit_observed": "4f57deab47960d99d222629a1414dcc77290bc4c",
+      "count": 53,
+      "backup_commit_observed": "1d9db4b41e413a624a7b0e3ece5ae295454d20b9",
       "index_bytes_identical_in_both_repositories": true,
       "path": "视频修订定稿/已归档视频总清单.json",
-      "sha256": "e3f195b180e6aaded25b3d18db907b6e9a5c2b3ad0551044bc96bb40f0b190a3",
-      "local_original_snapshot": "/workspace/work/video-audit70-20261113/progress-observations/archived-index-470e73cad274cca183ba2fd3aeabed4a48e6fb07.json"
+      "sha256": "5d8712e69ef67f03a4eeaca83afb47ae72af4f2ba475101b6c6f904e5e466d48",
+      "local_original_snapshot": "/workspace/work/video-audit70-20261113/progress-observations/archived-index-4f57deab47960d99d222629a1414dcc77290bc4c.json"
     },
     "priority7_native_run": 43538347790,
     "priority7_actual_result": {
@@ -810,8 +824,8 @@
       "16_46_49_core5": {
         "run_id": 43554669373,
         "head_sha": "59ed1b22db2b98eb0b9f6cac0c1169c5fec1c1a9",
-        "status": "in_progress",
-        "conclusion": null,
+        "status": "completed",
+        "conclusion": "failure",
         "not_article_acceptance_without_actual_handoff": true
       }
     }
@@ -822,22 +836,22 @@
     "backup_master_never_modified": "6355a02864ebae616b693200d9d26f74f5da80e9",
     "latest_saved_source_state": {
       "asset_branch": "codex/review-source-fixes-20261113-v1",
-      "asset_commit": "08f1cd121f2ffd961814448dbdb457c5c9fb21d5",
-      "payload_files": 2983,
-      "payload_bytes": 180596569,
+      "asset_commit": "43faa45d2cdf406ce628dd3a80f6f9bb79653dfe",
+      "payload_files": 4854,
+      "payload_bytes": 308791703,
       "archives": [
         {
           "repository": "alienalgorithm/postgraduate-vocabulary",
           "branch": "main",
-          "source_commit": "3414c78c3e497a57af5bf6205f4791213de35228",
-          "previous_commit": "e3a94843245676c4aa618a92f3a14772491f830d",
+          "source_commit": "46c1c9d7887098e8ee7b2998c4f80c3445111758",
+          "previous_commit": "470e73cad274cca183ba2fd3aeabed4a48e6fb07",
           "master_unchanged": null
         },
         {
           "repository": "AlienCodes/literate-enigma",
           "branch": "codex/all-deliverables-20261113",
-          "source_commit": "04d5e087a4e2c8b69bece73449c070924ccebde7",
-          "previous_commit": "200ed340b16a0e170726069ca6f7e99d35f5f9c9",
+          "source_commit": "aebace394e35df9d592f2256849ba24ee2ed4ef0",
+          "previous_commit": "6ce0575788875f0a4805576a08c352b82b232e7b",
           "master_unchanged": true
         }
       ]
@@ -848,7 +862,7 @@
     "02": "0403368c77fd3e0f91e1ee3780e1c7c147894ad13c16b5f14707d700a8f717c8",
     "03": "527f3bf4a11843f4d606188dabc6ebce6830da3fb454a49c782e3a595cb47407",
     "04": "93cc1ff58d65ebe43a65ecb2fb2dbd2da262d80877c05740bbdf4eab4eaca1e8",
-    "05": "47fa4c8746deecb0583e08633d1b52751ed3e6046ee5c1e46d032c443d220fba",
+    "05": "44deeca041c628e7900bbbe89f70dd072042a1ac324fc80e6e88d46b81106ca4",
     "06": "2cbf1d6cd6e66a59285298ea830f5ef914590b64286d40b2ae5f3168aa27a2e9",
     "07": "842e44e5aa19fddcfa239cb6530c5152341cd86e11db959543d02d8670ca13e8",
     "08": "254832e09f12759d950384dd9f31f671ad5a3bc1590b7466065dd3ef5fe4b8d5",
@@ -861,7 +875,7 @@
     "15": "0934aa067f19814028c398b0c70a400bb09e354f744bde4000742950d77f441e",
     "16": "d25aa07f3fac316c26c2ae1006d3efa7eb82a396b66150432b50239c1628396d",
     "17": "2e9971ea5ce7857e119226fe95def06e6eb9c3ef9823d8e8c4f3456f46a3bbb0",
-    "18": "8cffbad6f0b8451e46ad1a65d5f629c450ceff2c771218445770c8cbfd77ebca",
+    "18": "5192b78e582c36fd7d5a34973d8314c5b23e13b8313c8960ac29653bd7fa5d8c",
     "19": "cc3c5eea0f7d9ec0712b2e58adba7e5ef8b61d6518a322f9b25a12fcc45282fb",
     "20": "cc5ed6d7be8767e5e7e9b098e8f3836821c0b3f51c17581b2746722da1cf3001",
     "21": "61c1569a26d7569ee0f586178be6b307b1c394c0a30c3cb02541c910038b0589",
@@ -892,7 +906,7 @@
     "46": "c8c7ce7a76226f5274a91af693d24410d5eacfa59206b085a70d133f3634c12b",
     "47": "0417489c8a672e7e63d46c2239d847acabda2d93160cabed3b0fb14f701ac39a",
     "48": "4f146ce6a70bb0bf5d2c6e1f6b47bd6a2bcc2f311be7a948092d7bde1a08f449",
-    "49": "a7ea38ae5c2461fb3a2e2f18dc65577300f6873b139a75d7c89b9b7c70652ed8",
+    "49": "fdcc3a438e50a32fdf8c7bcbe27a97d20fc101b6169ca305f920fedbd3303c3c",
     "50": "1d4a41824dfa5e8d11e5990b2a4b802ba2fcc3231d85b15ed6630396c6f027bf",
     "51": "39886d83593a31fb575b124ecf6457190773dca695b6ff78f8434d52aebd6d7c",
     "52": "832249bb44617d38ede75560a5e57af6ba79ec284c9609407cb30ce879f6f862",

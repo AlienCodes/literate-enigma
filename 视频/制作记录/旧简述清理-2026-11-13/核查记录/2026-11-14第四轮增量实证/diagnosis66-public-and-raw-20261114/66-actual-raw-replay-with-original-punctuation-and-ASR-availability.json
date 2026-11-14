@@ -1,0 +1,1213 @@
+{
+  "article": "66",
+  "kind": "original_source_actual_raw_replay_and_ASR_evidence_availability",
+  "quality_acceptance": false,
+  "automatic_confirmation": false,
+  "source_audio_controls_or_core_modified": false,
+  "workflow_launched": false,
+  "private_PCM_or_cache_exported": false,
+  "original_failed_proof_sha256": "6ee025c81b4b6a09c73cec58304d8005503f676332e64051e012cb29958b474f",
+  "original_failed_source_sha256": "23464ca177c9b19e02641ecbf486752fc58484d54b407dc445845a11e1f326e0",
+  "replay_loader_sha256": "d05d9b2ad9bbee3b3403aefc8ba73518b6991228147c0127e01672c52b6c765d",
+  "unchanged_original_program_sha256": {
+    "make_video.py": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+    "clean.py": "86b3872cbca83437e24da2c7ada5fffd916f06cacdd2b32fee2a78c9b134178d",
+    "独立复核/audit.py": "bfe12dab6bec96c9b765faea286ae30a067589f6c5ef78461b21d12b955f1e22",
+    "独立复核/synth.py": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+    "交付核查.py": "26e8e213a07747f6fc3654be18d64336011cba59ffd83bf74e4cf4759baf6976"
+  },
+  "additional_original_main_loop_data_hydration": {
+    "field": "合成标点",
+    "actual_source_rows": {
+      "S8": [
+        [
+          "velvet, and",
+          "velvet; and"
+        ],
+        [
+          "velours, meaning",
+          "velours; meaning"
+        ]
+      ]
+    },
+    "reason": "Reusable65/69 diagnostic scope omitted this existing66 field; originalA45 correctly stopped the first local reconstruction, not the native failed producer.",
+    "original_synth_punctuation_validator_actually_applied": true,
+    "core_functions_or_existing_source_pairs_modified": false
+  },
+  "replayed_private_WAV_sha256": "7f20531d779a6f5514e212c05e092e0e89506044c09b4b3222afb096ceef00ac",
+  "actual_native_private_WAV_sha256": "7f20531d779a6f5514e212c05e092e0e89506044c09b4b3222afb096ceef00ac",
+  "replayed_private_WAV_MD5_first12": "b4ac745defc1",
+  "replayed_AAC_ADTS_sha256": "96ff3f072646fd8273e9e2a507c43d4219f026eac413af33a7440b13b8b1c9ec",
+  "actual_failed_raw_WAV_and_AAC_both_reproduced_exactly": true,
+  "S9_actual_original_producer_replay_scalar_metadata": {
+    "sentence": "S9",
+    "spoken_English": "A US patent duly followed in 1955.",
+    "start_s": 59.11,
+    "end_s": 62.455,
+    "sample_count": 80280,
+    "pre_normalized_array_SHA256": "99ea41fa3140174017152269adf4e8614e542cc57ee34fda196ed3bb38986c21",
+    "automatic_level": {},
+    "manual_segment_level": null,
+    "actual_raw_processed_fp": "7df6f23fc4c8",
+    "actual_control_invalidated": false,
+    "LAST_scalar_timing": {
+      "head": 1920,
+      "segs": [
+        [
+          0,
+          82048,
+          -0.015,
+          []
+        ]
+      ],
+      "total": 3.345,
+      "cuts": [],
+      "grafts": [],
+      "gaps": [],
+      "hs": 360
+    }
+  },
+  "original_G72_scalar_provenance": [
+    {
+      "key": "dbf38fc5d3c7b369e331277ab6641059e028aa55.pkl",
+      "method": "create",
+      "model_identifier": "kokoro-v1.0.onnx:7d5df8ecf7d4b187",
+      "input_sha256": "39f46ed99074bbdfc82e94fefda4d992a5ad5918704e0ad38c5d536e73bb5097",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kw": {},
+      "pkl_full_sha256": "cbb478ace785cce160fc8f7cdb7f927f2d7a7fa3f3d726ef3d142ef43a5a224e",
+      "G72_basis": "native-single-thread-marker",
+      "marker": "cbb478ace785cce1",
+      "schema": {
+        "tuple_length": 2,
+        "dtype": "float32",
+        "shape": [
+          41472
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "6f69de4bb4cc71beaa384171fe6ccc844bae46a8.pkl",
+      "method": "create",
+      "model_identifier": "kokoro-v1.0.onnx:7d5df8ecf7d4b187",
+      "input_sha256": "3dd3e4be97b3bb70d94db43a21c7b63dfa660d2372be81fb2044d3878c939e90",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kw": {
+        "is_phonemes": true
+      },
+      "pkl_full_sha256": "96697086b30ceeecec969938b12efc47afc556849b8461bc564da8c1919b4101",
+      "G72_basis": "native-single-thread-marker",
+      "marker": "96697086b30ceeec",
+      "schema": {
+        "tuple_length": 2,
+        "dtype": "float32",
+        "shape": [
+          215552
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "7a1a866d1e006b26c067fc4dcee18af3eee17199.pkl",
+      "method": "create_timed",
+      "model_identifier": "kokoro-v1.0-timed.onnx:beb0d1848dee9a49",
+      "input_sha256": "3dd3e4be97b3bb70d94db43a21c7b63dfa660d2372be81fb2044d3878c939e90",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kw": {
+        "is_phonemes": true,
+        "clause_pause": 0,
+        "sentence_pause": 0
+      },
+      "pkl_full_sha256": "2d9b877e20cf8c915c652291fc744567402be29d9c678c01cd3b83f70bf56103",
+      "G72_basis": "native-single-thread-marker",
+      "marker": "2d9b877e20cf8c91",
+      "schema": {
+        "tuple_length": 3,
+        "dtype": "float32",
+        "shape": [
+          220672
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "f1df2215dedba4e2a6180eacc0ce8be54daad0e0.pkl",
+      "method": "create",
+      "model_identifier": "kokoro-v1.0.onnx:7d5df8ecf7d4b187",
+      "input_sha256": "6c43c3d79d82150959ad59d537612d501bbcd7f780e92ed5b2457eee3ffb0cd6",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kw": {},
+      "pkl_full_sha256": "0e5e170312fc9edc32a4e0516c9f3f53790a20dbeee5766fc8ef961559167daf",
+      "G72_basis": "native-single-thread-marker",
+      "marker": "0e5e170312fc9edc",
+      "schema": {
+        "tuple_length": 2,
+        "dtype": "float32",
+        "shape": [
+          141312
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "cf128c04106638d842ef85a6d1db8875eeb28afc.pkl",
+      "method": "create_timed",
+      "model_identifier": "kokoro-v1.0-timed.onnx:beb0d1848dee9a49",
+      "input_sha256": "6c43c3d79d82150959ad59d537612d501bbcd7f780e92ed5b2457eee3ffb0cd6",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kw": {
+        "clause_pause": 0,
+        "sentence_pause": 0
+      },
+      "pkl_full_sha256": "74e946ededa4e7b162873abc2d6f64df1eda9aaff143f243ab23672c193dd4e6",
+      "G72_basis": "native-single-thread-marker",
+      "marker": "74e946ededa4e7b1",
+      "schema": {
+        "tuple_length": 3,
+        "dtype": "float32",
+        "shape": [
+          141824
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "8dedab19883dad2de515dc8dd8011ea017d1cc5b.pkl",
+      "method": "create",
+      "model_identifier": "kokoro-v1.0.onnx:7d5df8ecf7d4b187",
+      "input_sha256": "029dc83650a59570a4bf45175180bd652c81d102d1e5ee92f5de4e6b3235d5b6",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kw": {},
+      "pkl_full_sha256": "c41f7eff8a9168dcc5a41e1197ffafe28dbfd8bf4bf7e5ec6e94a313305cdb10",
+      "G72_basis": "native-single-thread-marker",
+      "marker": "c41f7eff8a9168dc",
+      "schema": {
+        "tuple_length": 2,
+        "dtype": "float32",
+        "shape": [
+          160256
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "fe1e67e0b96acb23b6d07c8f021c06473b32bbc8.pkl",
+      "method": "create_timed",
+      "model_identifier": "kokoro-v1.0-timed.onnx:beb0d1848dee9a49",
+      "input_sha256": "029dc83650a59570a4bf45175180bd652c81d102d1e5ee92f5de4e6b3235d5b6",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kw": {
+        "clause_pause": 0,
+        "sentence_pause": 0
+      },
+      "pkl_full_sha256": "d3f570af9b9afb5b0b74de71890f25ffd539eaaec8f15046ef449862018937d1",
+      "G72_basis": "native-single-thread-marker",
+      "marker": "d3f570af9b9afb5b",
+      "schema": {
+        "tuple_length": 3,
+        "dtype": "float32",
+        "shape": [
+          161280
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "f3bba4116fb16a12a03f887c25148d1157032171.pkl",
+      "method": "create",
+      "model_identifier": "kokoro-v1.0.onnx:7d5df8ecf7d4b187",
+      "input_sha256": "d9a5b233e318555cb76831291bd9bdc264ee62930035f279c27b6791666b976f",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kw": {},
+      "pkl_full_sha256": "7e2ae5415d94772ee44a408a30e3e031793cce80468f6717d05e654b6037587a",
+      "G72_basis": "native-single-thread-marker",
+      "marker": "7e2ae5415d94772e",
+      "schema": {
+        "tuple_length": 2,
+        "dtype": "float32",
+        "shape": [
+          56320
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "5f62ffd6f79e122ecc319cffffeb508c35396d3b.pkl",
+      "method": "create_timed",
+      "model_identifier": "kokoro-v1.0-timed.onnx:beb0d1848dee9a49",
+      "input_sha256": "d9a5b233e318555cb76831291bd9bdc264ee62930035f279c27b6791666b976f",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kw": {
+        "clause_pause": 0,
+        "sentence_pause": 0
+      },
+      "pkl_full_sha256": "329d2e0371517a80e6799ad1ec8169c24c846406b1df2937eea80b55e817dbdf",
+      "G72_basis": "native-single-thread-marker",
+      "marker": "329d2e0371517a80",
+      "schema": {
+        "tuple_length": 3,
+        "dtype": "float32",
+        "shape": [
+          59904
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "f2551101dc851a3898707c9eaaa8a3ec3162fcf3.pkl",
+      "method": "create",
+      "model_identifier": "kokoro-v1.0.onnx:7d5df8ecf7d4b187",
+      "input_sha256": "0f6c66b1561a8dc0fb917cb4638efe235e5a0b6e78e970a2167c64f44b9dc075",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kw": {
+        "is_phonemes": true
+      },
+      "pkl_full_sha256": "e9ddd2a1a084571aec55544ab9237064ab12d2458df522c491656a6f7c31c8f8",
+      "G72_basis": "native-single-thread-marker",
+      "marker": "e9ddd2a1a084571a",
+      "schema": {
+        "tuple_length": 2,
+        "dtype": "float32",
+        "shape": [
+          141824
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "7021535bb16d3d728b203e37d3ed810078caa40c.pkl",
+      "method": "create_timed",
+      "model_identifier": "kokoro-v1.0-timed.onnx:beb0d1848dee9a49",
+      "input_sha256": "0f6c66b1561a8dc0fb917cb4638efe235e5a0b6e78e970a2167c64f44b9dc075",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kw": {
+        "is_phonemes": true,
+        "clause_pause": 0,
+        "sentence_pause": 0
+      },
+      "pkl_full_sha256": "47dd0a14daafef785fc5e7272c0931fced74f14dfbdd69a6da7480abbb7033ff",
+      "G72_basis": "native-single-thread-marker",
+      "marker": "47dd0a14daafef78",
+      "schema": {
+        "tuple_length": 3,
+        "dtype": "float32",
+        "shape": [
+          142848
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "f418b527d37cb7484e031237e30ddffb6bb445aa.pkl",
+      "method": "create",
+      "model_identifier": "kokoro-v1.0.onnx:7d5df8ecf7d4b187",
+      "input_sha256": "217c094a3818807170dca8a7c16b713cd402f841d6a3e7e4d09356f8dcbf4abb",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kw": {},
+      "pkl_full_sha256": "42b8bb73884bc19718c00424c0e45fc9bd9e57bd58b76ca32a4584cb025f6eb2",
+      "G72_basis": "native-single-thread-marker",
+      "marker": "42b8bb73884bc197",
+      "schema": {
+        "tuple_length": 2,
+        "dtype": "float32",
+        "shape": [
+          175104
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "433ad74a0bfea11107317f770861be6293389a2c.pkl",
+      "method": "create_timed",
+      "model_identifier": "kokoro-v1.0-timed.onnx:beb0d1848dee9a49",
+      "input_sha256": "217c094a3818807170dca8a7c16b713cd402f841d6a3e7e4d09356f8dcbf4abb",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kw": {
+        "clause_pause": 0,
+        "sentence_pause": 0
+      },
+      "pkl_full_sha256": "be24bd701ddec83197a0112b057896e762772e4d20e918802a4f6718367133f5",
+      "G72_basis": "native-single-thread-marker",
+      "marker": "be24bd701ddec831",
+      "schema": {
+        "tuple_length": 3,
+        "dtype": "float32",
+        "shape": [
+          176128
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "a42f216e575d7f8feaed3df8cfa4b3b4571557a5.pkl",
+      "method": "create",
+      "model_identifier": "kokoro-v1.0.onnx:7d5df8ecf7d4b187",
+      "input_sha256": "ef41add6d92285ccfc76da7e9382e6d6d233dc6ebb9f57fa2ea01b1da14c253d",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kw": {},
+      "pkl_full_sha256": "cc05d6ccd72af03dc9ad45344e60c545e0de3eeed2322cc2ecba94895801abcb",
+      "G72_basis": "native-single-thread-marker",
+      "marker": "cc05d6ccd72af03d",
+      "schema": {
+        "tuple_length": 2,
+        "dtype": "float32",
+        "shape": [
+          100864
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "7d95eaf5b73850fcf4d1118b2225c324b999298b.pkl",
+      "method": "create_timed",
+      "model_identifier": "kokoro-v1.0-timed.onnx:beb0d1848dee9a49",
+      "input_sha256": "ef41add6d92285ccfc76da7e9382e6d6d233dc6ebb9f57fa2ea01b1da14c253d",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kw": {
+        "clause_pause": 0,
+        "sentence_pause": 0
+      },
+      "pkl_full_sha256": "8f3fc0e3da49f60b6b8cacadad49cd1d576690bc8a4543d6fdde9c26e1793b2c",
+      "G72_basis": "native-single-thread-marker",
+      "marker": "8f3fc0e3da49f60b",
+      "schema": {
+        "tuple_length": 3,
+        "dtype": "float32",
+        "shape": [
+          103424
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "83b430384d202b96540149ed4c9d18d73d0056b3.pkl",
+      "method": "create",
+      "model_identifier": "kokoro-v1.0.onnx:7d5df8ecf7d4b187",
+      "input_sha256": "b360944306937a7cd404028e809529309f7e6ff37010f80f5888bd3958a1e923",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kw": {
+        "is_phonemes": true
+      },
+      "pkl_full_sha256": "a6544dafbe942569a48e5bad5f65774d46706fa0d25065ac671b3c1ce127cd58",
+      "G72_basis": "native-single-thread-marker",
+      "marker": "a6544dafbe942569",
+      "schema": {
+        "tuple_length": 2,
+        "dtype": "float32",
+        "shape": [
+          143872
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "571a8bf3ca794cc237ae6677290bf279717abe8d.pkl",
+      "method": "create",
+      "model_identifier": "kokoro-v1.0.onnx:7d5df8ecf7d4b187",
+      "input_sha256": "ca580df610a2f0521f13596e69bb978271adc6dbc745e8efcfe6a580718cc1c5",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kw": {},
+      "pkl_full_sha256": "aecbbe5468313e5e8d6179f79e8cbe5275e3b159ed92fec9fc9a4a867c7b0d3b",
+      "G72_basis": "original-old-entry-manifest",
+      "marker": null,
+      "schema": {
+        "tuple_length": 2,
+        "dtype": "float32",
+        "shape": [
+          41984
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "b2201d19ab75c8db3971a5f69d56a7cb7ffa1c6b.pkl",
+      "method": "create_timed",
+      "model_identifier": "kokoro-v1.0-timed.onnx:beb0d1848dee9a49",
+      "input_sha256": "b360944306937a7cd404028e809529309f7e6ff37010f80f5888bd3958a1e923",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kw": {
+        "is_phonemes": true,
+        "clause_pause": 0,
+        "sentence_pause": 0
+      },
+      "pkl_full_sha256": "a554bed1736c1459118a1fb5ac17af42d78057cc85220126ac7a9b45f8e03822",
+      "G72_basis": "native-single-thread-marker",
+      "marker": "a554bed1736c1459",
+      "schema": {
+        "tuple_length": 3,
+        "dtype": "float32",
+        "shape": [
+          146944
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "aee259ad39f5057de8a3eb3e87607c35e5ff97b9.pkl",
+      "method": "create",
+      "model_identifier": "kokoro-v1.0.onnx:7d5df8ecf7d4b187",
+      "input_sha256": "82cf462e21a57bff7102becadc6e5591f70e985f9cd2077462e9e8e6bcea5bef",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kw": {
+        "is_phonemes": true
+      },
+      "pkl_full_sha256": "5f714a134d726f429cf4be11eb7c0f239ef2db3e9751866014c2b5cfaa3de737",
+      "G72_basis": "native-single-thread-marker",
+      "marker": "5f714a134d726f42",
+      "schema": {
+        "tuple_length": 2,
+        "dtype": "float32",
+        "shape": [
+          83968
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "9dd716bc843e6ee055b0992cd0036ce78222a0c0.pkl",
+      "method": "create_timed",
+      "model_identifier": "kokoro-v1.0-timed.onnx:beb0d1848dee9a49",
+      "input_sha256": "82cf462e21a57bff7102becadc6e5591f70e985f9cd2077462e9e8e6bcea5bef",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kw": {
+        "is_phonemes": true,
+        "clause_pause": 0,
+        "sentence_pause": 0
+      },
+      "pkl_full_sha256": "c987c2176d762c2a3d93614abbab2e8b237ccd6b87f9fa9973e3715b082be26e",
+      "G72_basis": "native-single-thread-marker",
+      "marker": "c987c2176d762c2a",
+      "schema": {
+        "tuple_length": 3,
+        "dtype": "float32",
+        "shape": [
+          83968
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "ddc81dbd0ba339a692d162bec2fb93476ac0ed54.pkl",
+      "method": "create",
+      "model_identifier": "kokoro-v1.0.onnx:7d5df8ecf7d4b187",
+      "input_sha256": "7be6ef377d759cec284911ae28aca1e2b8d26e2e5c2055877cad988ed2a43f8b",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kw": {},
+      "pkl_full_sha256": "fa0ad7c1c58c7e4be110b2d6519ba097c0c553556ca12d227e66a2bd2892b779",
+      "G72_basis": "native-single-thread-marker",
+      "marker": "fa0ad7c1c58c7e4b",
+      "schema": {
+        "tuple_length": 2,
+        "dtype": "float32",
+        "shape": [
+          156672
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "60e4be8f0fce489d9f91a0127ed8b4a987aa4ff6.pkl",
+      "method": "create_timed",
+      "model_identifier": "kokoro-v1.0-timed.onnx:beb0d1848dee9a49",
+      "input_sha256": "7be6ef377d759cec284911ae28aca1e2b8d26e2e5c2055877cad988ed2a43f8b",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kw": {
+        "clause_pause": 0,
+        "sentence_pause": 0
+      },
+      "pkl_full_sha256": "05365deaf1ab91f44a90c663bdd07e8de519e62ae8e5e44cacdd35212954146d",
+      "G72_basis": "native-single-thread-marker",
+      "marker": "05365deaf1ab91f4",
+      "schema": {
+        "tuple_length": 3,
+        "dtype": "float32",
+        "shape": [
+          157184
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "024728e8e310e05d67a4e39a10304826bc236380.pkl",
+      "method": "create",
+      "model_identifier": "kokoro-v1.0.onnx:7d5df8ecf7d4b187",
+      "input_sha256": "f5322c6866790ca72401684568e47b963300ce711a4924af966ad4e82b3d8baa",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kw": {},
+      "pkl_full_sha256": "f9943c6957229ce68089be872c2730e0d92f5fa8427e8bfb1fdcf696441be48d",
+      "G72_basis": "native-single-thread-marker",
+      "marker": "f9943c6957229ce6",
+      "schema": {
+        "tuple_length": 2,
+        "dtype": "float32",
+        "shape": [
+          113152
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "86c2d99938a70e39e5e94b7996e0f32c2ef7d6d3.pkl",
+      "method": "create",
+      "model_identifier": "kokoro-v1.0.onnx:7d5df8ecf7d4b187",
+      "input_sha256": "dff004a8f912a520b235b76a6878bce1ff68049774e8406e1f3acd79280cd785",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kw": {},
+      "pkl_full_sha256": "525c99ed6e4b4ec63f739b2aafe37eddf8cb110fed854212526a14b0c4f61cb5",
+      "G72_basis": "original-old-entry-manifest",
+      "marker": null,
+      "schema": {
+        "tuple_length": 2,
+        "dtype": "float32",
+        "shape": [
+          38912
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "33d4602e8d771aee5e91af57f16f0d67d667234e.pkl",
+      "method": "create_timed",
+      "model_identifier": "kokoro-v1.0-timed.onnx:beb0d1848dee9a49",
+      "input_sha256": "f5322c6866790ca72401684568e47b963300ce711a4924af966ad4e82b3d8baa",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kw": {
+        "clause_pause": 0,
+        "sentence_pause": 0
+      },
+      "pkl_full_sha256": "3d500c690d42b4252afdfea8ed6e8cf587b4070780baa2d85d51d72fb16bc849",
+      "G72_basis": "native-single-thread-marker",
+      "marker": "3d500c690d42b425",
+      "schema": {
+        "tuple_length": 3,
+        "dtype": "float32",
+        "shape": [
+          113152
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "32e7ad4a8b3ef4b823e222dec00d289a10f5fc03.pkl",
+      "method": "create",
+      "model_identifier": "kokoro-v1.0.onnx:7d5df8ecf7d4b187",
+      "input_sha256": "9c73e86098e4ee45085c43a4f397979266271e2f1fb87b00dfa7cf49c148062c",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kw": {
+        "is_phonemes": true
+      },
+      "pkl_full_sha256": "82344bd4af2ab280f9d5a266e16ae9d86551eaf4f3a6a031ad5fb773ac77ce80",
+      "G72_basis": "native-single-thread-marker",
+      "marker": "82344bd4af2ab280",
+      "schema": {
+        "tuple_length": 2,
+        "dtype": "float32",
+        "shape": [
+          70656
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "9179a1aa834184655438569a93d3c13ff2e62840.pkl",
+      "method": "create_timed",
+      "model_identifier": "kokoro-v1.0-timed.onnx:beb0d1848dee9a49",
+      "input_sha256": "9c73e86098e4ee45085c43a4f397979266271e2f1fb87b00dfa7cf49c148062c",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kw": {
+        "is_phonemes": true,
+        "clause_pause": 0,
+        "sentence_pause": 0
+      },
+      "pkl_full_sha256": "1b3168b57662ca3f7a53c77732b6fe5f0efec9466d397a9a6e582a0478d03f76",
+      "G72_basis": "native-single-thread-marker",
+      "marker": "1b3168b57662ca3f",
+      "schema": {
+        "tuple_length": 3,
+        "dtype": "float32",
+        "shape": [
+          72704
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "3dc8aeffc9a231fdb3a38bb2ec73f32c04de9ce2.pkl",
+      "method": "create",
+      "model_identifier": "kokoro-v1.0.onnx:7d5df8ecf7d4b187",
+      "input_sha256": "cf7a0d5b5d303b900aee4e2a46b091657acd2a563c9737a5c5948c59923e5e41",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kw": {},
+      "pkl_full_sha256": "e72e52d8c13bbfcf98ddb461df0d1a8fc1559704565568d3c7bb70dcd108eaf9",
+      "G72_basis": "native-single-thread-marker",
+      "marker": "e72e52d8c13bbfcf",
+      "schema": {
+        "tuple_length": 2,
+        "dtype": "float32",
+        "shape": [
+          171520
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "3de708a638e443bb8be11b29c4cf24318d56de62.pkl",
+      "method": "create_timed",
+      "model_identifier": "kokoro-v1.0-timed.onnx:beb0d1848dee9a49",
+      "input_sha256": "cf7a0d5b5d303b900aee4e2a46b091657acd2a563c9737a5c5948c59923e5e41",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kw": {
+        "clause_pause": 0,
+        "sentence_pause": 0
+      },
+      "pkl_full_sha256": "d49fa2b87bf715d5f2da95c02da7eaad37d97c66830629e1ce5b5b852d8da9a6",
+      "G72_basis": "native-single-thread-marker",
+      "marker": "d49fa2b87bf715d5",
+      "schema": {
+        "tuple_length": 3,
+        "dtype": "float32",
+        "shape": [
+          172544
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "295d5893f1f4aeedc324adb526fc0c94fadc8752.pkl",
+      "method": "create",
+      "model_identifier": "kokoro-v1.0.onnx:7d5df8ecf7d4b187",
+      "input_sha256": "c52797ac98a95683d468f35d9c76a4bbd6135c6a31bfae298414e725436f48b8",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kw": {},
+      "pkl_full_sha256": "beb669e58ec4a61516595a5e4ec188a85c938b8f44704eb211be770928e32bf9",
+      "G72_basis": "native-single-thread-marker",
+      "marker": "beb669e58ec4a615",
+      "schema": {
+        "tuple_length": 2,
+        "dtype": "float32",
+        "shape": [
+          156160
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "f8e69835f6dd561df5851bb15abab3f559902932.pkl",
+      "method": "create_timed",
+      "model_identifier": "kokoro-v1.0-timed.onnx:beb0d1848dee9a49",
+      "input_sha256": "c52797ac98a95683d468f35d9c76a4bbd6135c6a31bfae298414e725436f48b8",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kw": {
+        "clause_pause": 0,
+        "sentence_pause": 0
+      },
+      "pkl_full_sha256": "58c88e5a331c949dc8e0e96639a5443ed5ea6f1b749fb36f85d9bb82e1c84bc7",
+      "G72_basis": "native-single-thread-marker",
+      "marker": "58c88e5a331c949d",
+      "schema": {
+        "tuple_length": 3,
+        "dtype": "float32",
+        "shape": [
+          158720
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "f2ca3c83538a4bcb7c852577091f8f75ee3da685.pkl",
+      "method": "create",
+      "model_identifier": "kokoro-v1.0.onnx:7d5df8ecf7d4b187",
+      "input_sha256": "0e9f8141e9941a6328030f4d06de91c83cefed3bd1de96c3b563729e5de0ff0a",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kw": {},
+      "pkl_full_sha256": "495efb9b0158a84519e2877a7eba397dcb17b51e5225532dc59a6bed514bc75e",
+      "G72_basis": "native-single-thread-marker",
+      "marker": "495efb9b0158a845",
+      "schema": {
+        "tuple_length": 2,
+        "dtype": "float32",
+        "shape": [
+          58880
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "c950fc34bfd8b8e97ce7b34367efa6913a7eb861.pkl",
+      "method": "create_timed",
+      "model_identifier": "kokoro-v1.0-timed.onnx:beb0d1848dee9a49",
+      "input_sha256": "0e9f8141e9941a6328030f4d06de91c83cefed3bd1de96c3b563729e5de0ff0a",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kw": {
+        "clause_pause": 0,
+        "sentence_pause": 0
+      },
+      "pkl_full_sha256": "04204b42a292e9232a9662865952012479058dbe0692cca6c87f628b1b5f2269",
+      "G72_basis": "native-single-thread-marker",
+      "marker": "04204b42a292e923",
+      "schema": {
+        "tuple_length": 3,
+        "dtype": "float32",
+        "shape": [
+          61952
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "5aebf54b4f8c8f2ae112b40dfaf67b7a4428efcd.pkl",
+      "method": "create",
+      "model_identifier": "kokoro-v1.0.onnx:7d5df8ecf7d4b187",
+      "input_sha256": "ae8cf7c8382771e90da92f73a733f0db2d10c3a4cf1e5291cd83454d3e9d245a",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kw": {},
+      "pkl_full_sha256": "b19e87c3c4610c8fb067325be8fb3b0ab8d8ee3eca3e75a4baf470061469c29e",
+      "G72_basis": "native-single-thread-marker",
+      "marker": "b19e87c3c4610c8f",
+      "schema": {
+        "tuple_length": 2,
+        "dtype": "float32",
+        "shape": [
+          219136
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "29199b9bbde7d84441e244e052fd7c62b2b3ede0.pkl",
+      "method": "create_timed",
+      "model_identifier": "kokoro-v1.0-timed.onnx:beb0d1848dee9a49",
+      "input_sha256": "ae8cf7c8382771e90da92f73a733f0db2d10c3a4cf1e5291cd83454d3e9d245a",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kw": {
+        "clause_pause": 0,
+        "sentence_pause": 0
+      },
+      "pkl_full_sha256": "9805baa87fd198ae729e8544a11ce8c75aeabf4913304b752520b40b24c0fb46",
+      "G72_basis": "native-single-thread-marker",
+      "marker": "9805baa87fd198ae",
+      "schema": {
+        "tuple_length": 3,
+        "dtype": "float32",
+        "shape": [
+          222720
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "00ddc7d9a69c66cc7585b8c00e2cc2ee5cc0d338.pkl",
+      "method": "create",
+      "model_identifier": "kokoro-v1.0.onnx:7d5df8ecf7d4b187",
+      "input_sha256": "7d071666ca83877b7eedd754d284fe1230d8a2400af75700e1055cdb20692f80",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kw": {},
+      "pkl_full_sha256": "94b8cc0c1b1d926cfa07e091bb62273a12e5599807a7a0968f3b127120bcf9f7",
+      "G72_basis": "native-single-thread-marker",
+      "marker": "94b8cc0c1b1d926c",
+      "schema": {
+        "tuple_length": 2,
+        "dtype": "float32",
+        "shape": [
+          238080
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "c49cbd67be2bca07fd71f2c9079af7d02c324832.pkl",
+      "method": "create_timed",
+      "model_identifier": "kokoro-v1.0-timed.onnx:beb0d1848dee9a49",
+      "input_sha256": "7d071666ca83877b7eedd754d284fe1230d8a2400af75700e1055cdb20692f80",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kw": {
+        "clause_pause": 0,
+        "sentence_pause": 0
+      },
+      "pkl_full_sha256": "a579328002c618a7558a8949aadf66d9462a4f146a270ab8c5df4997a7bfc78c",
+      "G72_basis": "native-single-thread-marker",
+      "marker": "a579328002c618a7",
+      "schema": {
+        "tuple_length": 3,
+        "dtype": "float32",
+        "shape": [
+          240128
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "b05a0caf5086c78ef0cfe382c934c804cf6a77ae.pkl",
+      "method": "create",
+      "model_identifier": "kokoro-v1.0.onnx:7d5df8ecf7d4b187",
+      "input_sha256": "23ea8c5e9afce8e4675f0f7379c45cde76290395887dd3b83f5a108c3195bc23",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.9,
+      "lang": "en-us",
+      "kw": {},
+      "pkl_full_sha256": "2a1cea4db4aa6ed2c0a8dd495d3cfa63e49c83607f8d2ab3f3fecdc49c264cee",
+      "G72_basis": "native-single-thread-marker",
+      "marker": "2a1cea4db4aa6ed2",
+      "schema": {
+        "tuple_length": 2,
+        "dtype": "float32",
+        "shape": [
+          139776
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "e5c74f1da13d6d896c63cf35ea15a965d6270842.pkl",
+      "method": "create",
+      "model_identifier": "kokoro-v1.0.onnx:7d5df8ecf7d4b187",
+      "input_sha256": "23ea8c5e9afce8e4675f0f7379c45cde76290395887dd3b83f5a108c3195bc23",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.78,
+      "lang": "en-us",
+      "kw": {},
+      "pkl_full_sha256": "19ca3234f8b94491eb8129b256e565ef6b54f024cb42b60596fc83e7f69b8acb",
+      "G72_basis": "native-single-thread-marker",
+      "marker": "19ca3234f8b94491",
+      "schema": {
+        "tuple_length": 2,
+        "dtype": "float32",
+        "shape": [
+          174592
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "96120d832f63277368910a5813a4eb7e0b346c39.pkl",
+      "method": "create_timed",
+      "model_identifier": "kokoro-v1.0-timed.onnx:beb0d1848dee9a49",
+      "input_sha256": "23ea8c5e9afce8e4675f0f7379c45cde76290395887dd3b83f5a108c3195bc23",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.9,
+      "lang": "en-us",
+      "kw": {
+        "clause_pause": 0,
+        "sentence_pause": 0
+      },
+      "pkl_full_sha256": "86eb89958d198ebb76fd9d13d43e3f0b5f743223f217117868eed22363527422",
+      "G72_basis": "native-single-thread-marker",
+      "marker": "86eb89958d198ebb",
+      "schema": {
+        "tuple_length": 3,
+        "dtype": "float32",
+        "shape": [
+          140288
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "5a5afcfd40eb658e3f88501db362f122fa9ca9ce.pkl",
+      "method": "create_timed",
+      "model_identifier": "kokoro-v1.0-timed.onnx:beb0d1848dee9a49",
+      "input_sha256": "23ea8c5e9afce8e4675f0f7379c45cde76290395887dd3b83f5a108c3195bc23",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.78,
+      "lang": "en-us",
+      "kw": {
+        "clause_pause": 0,
+        "sentence_pause": 0
+      },
+      "pkl_full_sha256": "d4926e44a8597f2a5b0be7e43b3f5a3da35396efebadc9864fb9d4acc74853a8",
+      "G72_basis": "native-single-thread-marker",
+      "marker": "d4926e44a8597f2a",
+      "schema": {
+        "tuple_length": 3,
+        "dtype": "float32",
+        "shape": [
+          175104
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "a1fe8ab7dc84f802d8c860d0a62304937a8f7f33.pkl",
+      "method": "create",
+      "model_identifier": "kokoro-v1.0.onnx:7d5df8ecf7d4b187",
+      "input_sha256": "23ea8c5e9afce8e4675f0f7379c45cde76290395887dd3b83f5a108c3195bc23",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kw": {},
+      "pkl_full_sha256": "c430f6430539c48a0a3b4fc715093b94317da7e6a48d64ec51a2b50a3874f4cb",
+      "G72_basis": "native-single-thread-marker",
+      "marker": "c430f6430539c48a",
+      "schema": {
+        "tuple_length": 2,
+        "dtype": "float32",
+        "shape": [
+          132608
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    },
+    {
+      "key": "5161794290268de445c47653d9a0b2a05d0466b0.pkl",
+      "method": "create_timed",
+      "model_identifier": "kokoro-v1.0-timed.onnx:beb0d1848dee9a49",
+      "input_sha256": "23ea8c5e9afce8e4675f0f7379c45cde76290395887dd3b83f5a108c3195bc23",
+      "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kw": {
+        "clause_pause": 0,
+        "sentence_pause": 0
+      },
+      "pkl_full_sha256": "f7c6275e4bfc6e36f3734056c6f70abc03af4c31091c4ac4cc1ecc17eaf7a792",
+      "G72_basis": "native-single-thread-marker",
+      "marker": "f7c6275e4bfc6e36",
+      "schema": {
+        "tuple_length": 3,
+        "dtype": "float32",
+        "shape": [
+          134656
+        ],
+        "sample_rate": 24000
+      },
+      "raw_array_bytes_exported": false
+    }
+  ],
+  "original_stored_level_scalar_provenance": [
+    {
+      "key": "调平_8c640966eb65946cdf837c527239bda92a6a39be.json",
+      "stored_json_full_SHA256": "42c8d4765648862876213cd4d12c43cc14ecf4bb55e02201e5e8b64f1526932a",
+      "stored_value": {
+        "1": -2.5,
+        "4": 2.0
+      },
+      "repository_commit": "64621068034f8b6e09836a6d97210a0e9b2f1ed6",
+      "existing_public_cache_copied_to_private_temp_only": true
+    },
+    {
+      "key": "调平_a3eb7cb9a528e6e11114311a23873c0f3334c185.json",
+      "stored_json_full_SHA256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "stored_value": {},
+      "repository_commit": "64621068034f8b6e09836a6d97210a0e9b2f1ed6",
+      "existing_public_cache_copied_to_private_temp_only": true
+    },
+    {
+      "key": "调平_0d276160ed375ba90c4a04a59cf981bb4f5c1c9d.json",
+      "stored_json_full_SHA256": "452bdc3cfb219e9a8263b15b0fc8e219e594d17cada6963a97276c70c26f9cb4",
+      "stored_value": {
+        "1": -4.0,
+        "2": 3.0
+      },
+      "repository_commit": "64621068034f8b6e09836a6d97210a0e9b2f1ed6",
+      "existing_public_cache_copied_to_private_temp_only": true
+    },
+    {
+      "key": "调平_2f2aaec2a92b4d4be82788d196c933aa22a44111.json",
+      "stored_json_full_SHA256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "stored_value": {},
+      "repository_commit": "64621068034f8b6e09836a6d97210a0e9b2f1ed6",
+      "existing_public_cache_copied_to_private_temp_only": true
+    },
+    {
+      "key": "调平_d3d832cd83cc609ebdffc9c2561108d0d931d9da.json",
+      "stored_json_full_SHA256": "577cc5d4a50dd0d26717262225630c7dc148bd08241e6a9deadb703e3c3b1f15",
+      "stored_value": {
+        "1": -1.5,
+        "2": -1.5,
+        "3": -1.5,
+        "4": -1.5,
+        "5": 1.5
+      },
+      "repository_commit": "64621068034f8b6e09836a6d97210a0e9b2f1ed6",
+      "existing_public_cache_copied_to_private_temp_only": true
+    },
+    {
+      "key": "调平_49ad09be2b18111575fab9651166af2db25235dc.json",
+      "stored_json_full_SHA256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "stored_value": {},
+      "repository_commit": "64621068034f8b6e09836a6d97210a0e9b2f1ed6",
+      "existing_public_cache_copied_to_private_temp_only": true
+    },
+    {
+      "key": "调平_154d7813456f8b2299567c654c1ea26804e71b23.json",
+      "stored_json_full_SHA256": "a143da25aa7b67dda3533c991caead638ee1d2faf19a22f9423a37eefd61c655",
+      "stored_value": {
+        "1": 1.5,
+        "2": -1.5
+      },
+      "repository_commit": "64621068034f8b6e09836a6d97210a0e9b2f1ed6",
+      "existing_public_cache_copied_to_private_temp_only": true
+    },
+    {
+      "key": "调平_a8a48356d52678c644943090aba8324c386b45dd.json",
+      "stored_json_full_SHA256": "cc567657ae3e6b8bd9c35667398934b4be796286cae59dd4d162185f79c4afb7",
+      "stored_value": {
+        "1": -1.0,
+        "2": 1.0
+      },
+      "repository_commit": "64621068034f8b6e09836a6d97210a0e9b2f1ed6",
+      "existing_public_cache_copied_to_private_temp_only": true
+    },
+    {
+      "key": "调平_72093e22b3d613349c91aca016dc333521db3fa6.json",
+      "stored_json_full_SHA256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "stored_value": {},
+      "repository_commit": "64621068034f8b6e09836a6d97210a0e9b2f1ed6",
+      "existing_public_cache_copied_to_private_temp_only": true
+    },
+    {
+      "key": "调平_dfef00bb33d1ecabcb3a8b0508a6c0917e5baf48.json",
+      "stored_json_full_SHA256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "stored_value": {},
+      "repository_commit": "64621068034f8b6e09836a6d97210a0e9b2f1ed6",
+      "existing_public_cache_copied_to_private_temp_only": true
+    },
+    {
+      "key": "调平_e40bc9cb50b1854e1599c32c4def9bc2a46ca66d.json",
+      "stored_json_full_SHA256": "68a67487246589c1ad0918728844cd3689d5b4f8a26d517426f8dac5f6dab724",
+      "stored_value": {
+        "1": -2.0,
+        "2": 2.0
+      },
+      "repository_commit": "64621068034f8b6e09836a6d97210a0e9b2f1ed6",
+      "existing_public_cache_copied_to_private_temp_only": true
+    }
+  ],
+  "reference": "A US patent duly followed in 1955.",
+  "actual_local_original_ASR_model_availability": {
+    "small.en": false,
+    "parakeet": false
+  },
+  "two_original_recognizers_transcripts_collected": false,
+  "ASR_diagnostic_remaining": "Both original ASR model directories are absent locally; no transcript or pronunciation verdict is invented. Native original two-route collector has66:S9 support.",
+  "public_context": {
+    "path": "/workspace/work/video-audit70-20261113/diagnosis66-public-and-raw-20261114/66-S9-public-AAC-context.wav",
+    "sha256": "0f70beda70dcba0a4d020a35ad72d07df972dad27e55954dbf6d1ee96a8f56fd",
+    "source_public_video_sha256": "c31f1a0b505dac175ce9c540537184d4098f74ed48f43f2c3ec437b037a68eea",
+    "public_absolute_seconds": [
+      58.99,
+      62.574999999999996
+    ],
+    "derived_from_public_MP4_only": true,
+    "clock_relation": "Raw sentence replay bounds plus120ms public context; not asserted raw/public sample alignment"
+  },
+  "self_owned_temporary_private_WAV_and_cache_removed": true,
+  "no_pronunciation_or_user_confirmation_created": true
+}
