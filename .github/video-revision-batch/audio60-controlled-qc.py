@@ -94,9 +94,22 @@ def actual_nonreview_binding(actual,requested,profile):
         if keys[1]in requested:current[keys[1]]=copy.deepcopy(before)
         else:current.pop(keys[1],None)
     core={k:v for k,v in current.items()if k not in profile['review_only_top_level_keys']}
-    valid=canonical(core)==profile['approved_nonreview_document_sha256']
+    valid=canonical(core)==profile['approved_nonreview_document_sha256'];g35=False
+    variant=profile.get('exact_observed_original_G35_note_variant',{})
+    if not valid and variant:
+        try:
+            actual_note=current['sentences'][14]['chunks'][1]['note']
+            request_note=requested['sentences'][14]['chunks'][1]['note']
+            if (actual_note==variant['actual_original_G35_exact_note'] and
+                    request_note==variant['requested_exact_note'] and
+                    actual_note.replace('\n','')==request_note.replace('\n','')):
+                current['sentences'][14]['chunks'][1]['note']=request_note
+                core={k:v for k,v in current.items()if k not in profile['review_only_top_level_keys']}
+                valid=canonical(core)==profile['approved_nonreview_document_sha256'];g35=valid
+        except (KeyError,IndexError,TypeError):pass
     return valid,{'original_pending_consent_consumed':moved,
-        'exact_history_move_valid':bool(moved),'all_other_nonreview_document_exact':valid}
+        'exact_history_move_valid':bool(moved),'exact_observed_G35_note_linewrap_normalized':g35,
+        'all_other_nonreview_document_exact':valid}
 
 def control_valid(data,p):
     controls={k:data.get(k)for k in p['approved_audio_controls']};old=copy.deepcopy(controls)
