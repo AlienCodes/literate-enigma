@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/workspace/work/video-revision-delivery/hold18-intake-preparation-20261114/validate_actual28_post_only_hold18.py", line 194, in <module>
+    validate()
+  File "/workspace/work/video-revision-delivery/hold18-intake-preparation-20261114/validate_actual28_post_only_hold18.py", line 140, in validate
+    require((probe['width'], probe['height'], probe['fps_num'], probe['fps_den'], probe['frames']) == (3840,2160,30,1,4858), 'Actual4K30fps output differs')
+                                              ~~~~~^^^^^^^^^^^
+KeyError: 'fps_num'
