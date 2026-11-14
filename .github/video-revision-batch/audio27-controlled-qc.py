@@ -27,6 +27,41 @@ def load(name, path):
     return value
 
 
+def exact_existing_S12(profile, old, new, raw_path, old_findings, new_findings, actual_S12_groups):
+    """Root's single explicit existing-baseline condition; never clear R output."""
+    import hashlib
+    import soundfile as sf
+    p = profile['baseline_existing_unchanged_S12_2']
+    assert p['sentence'] == 'S12' and p['independent_R_segment'] == 2
+    assert p['public_window_s'] == [99.2,101.4]
+    assert p['public_context_s'] == [92.8,101.6]
+    expected = [p['exact_original_R_finding']]
+    assert expected[0][:3] == ['S12',2,[99.2,101.4]]
+    tuple_equal = old_findings == new_findings == expected
+    raw,rate = sf.read(raw_path,dtype='float32')
+    prefix = hashlib.sha256(np.ascontiguousarray(raw[:2454600]).tobytes()).hexdigest()
+    assert p['native_prefix_representation'] == 'WAV_PCM16_read_as_float32'
+    prefix_equal = rate == 24000 and len(raw) >= 2454600 and prefix == p['native_WAV_PCM16_read_as_float32_prefix_sha256']
+    parts = []
+    for label,span,want in [('window',p['public_window_s'],p['public_window_float32_sha256']),
+                            ('context',p['public_context_s'],p['public_context_float32_sha256'])]:
+        lo,hi = [round(x*SR) for x in span]
+        a,b = [np.ascontiguousarray(v[lo:hi],dtype=np.float32) for v in (old,new)]
+        ha,hb = [hashlib.sha256(v.tobytes()).hexdigest() for v in (a,b)]
+        parts.append(dict(label=label,span_s=span,samples=len(a),old_sha256=ha,new_sha256=hb,
+            float32_bitexact=bool(np.array_equal(a,b) and ha == hb == want)))
+    metadata_equal = actual_S12_groups == p['original_S12_producer_group_metadata']
+    satisfied = tuple_equal and prefix_equal and metadata_equal and all(v['float32_bitexact'] for v in parts)
+    return dict(classification='baseline_existing_unchanged' if satisfied else 'not_preserved',
+        preservation_conditions_passed=bool(satisfied),old_original_R_findings=old_findings,
+        new_original_R_findings=new_findings,original_R_findings_not_cleared=True,
+        old_original_R_passed=False,new_original_R_passed=False,
+        exact_original_tuple_equal=tuple_equal,native_prefix_float32_sha256=prefix,
+        native_prefix_matches_immutable_old_hash=bool(prefix_equal),
+        public_float32_sample_identity=parts,original_S12_group_metadata_exact=metadata_equal,
+        zero_gain_and_no_changed_public_samples=all(v['float32_bitexact'] for v in parts))
+
+
 def audit(args):
     import hashlib
     sha = lambda p: hashlib.sha256(Path(p).read_bytes()).hexdigest()
@@ -154,6 +189,29 @@ def audit(args):
         groups=json.loads((work/'work_27/分段.json').read_text())
         normalized={label:[{k:r[k] for k in ('段','增益','停顿','时刻')} for r in values]for label,values in groups.items()}
         add('actual-all-producer-group-times-and-gains-exact',normalized==profile['approved_producer_group_metadata'])
+        baseline_supplement_preserved = False
+        if 'baseline_existing_unchanged_S12_2' in profile:
+            # This is a new supplement on an already accepted unchanged voice
+            # passage. Keep both raw original R failures, then prove the exact
+            # sole passage is byte-identical. No original threshold is altered.
+            import tempfile
+            with tempfile.TemporaryDirectory(prefix='original27-old-R-') as temp:
+                samples = R.pcm(args.accepted_source)
+                old_moments = R.momentary(args.accepted_source)
+                spans = Q.句段(samples)
+                assert len(spans) == len(actual['sentences'])+1
+                segment_json = Path(temp)/'work_27/分段.json'
+                segment_json.parent.mkdir()
+                segment_json.write_text(json.dumps({f'S{i}':[{'时刻':[a/R.SR,b/R.SR]}]
+                    for i,(a,b) in enumerate(spans[1:],1)}))
+                old_raw = C.json_safe(R.压小(args.accepted_source,samples,old_moments,str(segment_json)))
+            new_raw = next(row['failures'] for row in checks
+                if row['name']=='original-suppressed-segment-rule-every-body-sentence')
+            preservation = exact_existing_S12(profile,old,aligned,raw_path,old_raw,new_raw,normalized['S12'])
+            report['existing_accepted_supplemental_baseline'] = preservation
+            baseline_supplement_preserved = preservation['preservation_conditions_passed']
+            add('only-exact-root-approved-existing-S12-baseline-preserved',baseline_supplement_preserved,
+                classification=preservation['classification'])
         import parselmouth
         spans=[('title',(track['title']['start'],track['title']['end']))] if track['title'] else []
         spans += [(r['sentence'],(r['start'],r['end'])) for r in track['sentences']]
@@ -166,7 +224,9 @@ def audit(args):
             add('actual-pitch-preserved:'+name,len(cents)>10 and result['median_absolute_cents']<=40 and result['p90_absolute_cents']<=150,**result)
             pitch[name]=result
         report['pitch_comparison']=pitch
-        report['passed']=bool(checks) and all(r['passed']for r in checks)
+        report['passed']=bool(checks) and all(r['passed'] or (
+            r['name']=='original-suppressed-segment-rule-every-body-sentence' and
+            baseline_supplement_preserved) for r in checks)
         report['repair_applied']=report['passed']
         report['production_delivery_eligible']=report['passed'] and not args.diagnostic
     except BaseException as exc:
