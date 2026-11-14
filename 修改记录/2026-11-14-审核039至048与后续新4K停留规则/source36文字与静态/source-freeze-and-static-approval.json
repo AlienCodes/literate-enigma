@@ -1,0 +1,199 @@
+{
+  "article": "36",
+  "book_order": "28",
+  "source_freeze_complete": true,
+  "created_utc": "2026-11-14T08:03:38.259764+00:00",
+  "two_user_feedback_implemented": true,
+  "source_JSON_sha256": "e35a3dcb2ff0f0c7054493331370c0364190771ecf56e0dad6dbee3af860a628",
+  "GEN_sha256": "e739cb603ae0cd6b8b112ecef2f6702033764f706b00f676e1f2d4e7b8d06b4a",
+  "MD_sha256": "4b0f1d016d3e94bd7f77d3a36bfc423700006c7a23c0b0cae5ca68d5c5af883f",
+  "GEN_sources_sha256": "e739cb603ae0cd6b8b112ecef2f6702033764f706b00f676e1f2d4e7b8d06b4a",
+  "GEN_sources_baseline_existed": false,
+  "files_applied": [
+    {
+      "path": "/workspace/work/video-audit70-20261113/payload/视频/脚本/36.json",
+      "before_sha256": "76daa28f421bd40d8e2744d4e785a34bb8ee67da1403b4b1546db9465c535cef",
+      "after_sha256": "e35a3dcb2ff0f0c7054493331370c0364190771ecf56e0dad6dbee3af860a628",
+      "bytes": 57584
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/payload/视频/工具/初稿生成/gen36.py",
+      "before_sha256": "bb4bedfa0abfc2f7c0bae65bb9199d6cb02cf72d53dec57c23f30746aa0bf3c6",
+      "after_sha256": "e739cb603ae0cd6b8b112ecef2f6702033764f706b00f676e1f2d4e7b8d06b4a",
+      "bytes": 51524
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/payload/新版定稿/36-the-company-that-invented-its-own-killer.md",
+      "before_sha256": null,
+      "after_sha256": "4b0f1d016d3e94bd7f77d3a36bfc423700006c7a23c0b0cae5ca68d5c5af883f",
+      "bytes": 15169
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/payload/视频/制作记录/36_待改清单.md",
+      "before_sha256": "5f224e8506f511cd814d69b8fae98da691f64213745096b647a2851f5137ef3a",
+      "after_sha256": "355203b052c43ba15f153682163ed7ddf8ca9cb1085ea191b312b90a919e17d9",
+      "bytes": 13393
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/gen-sources/gen36.py",
+      "before_sha256": null,
+      "after_sha256": "e739cb603ae0cd6b8b112ecef2f6702033764f706b00f676e1f2d4e7b8d06b4a",
+      "bytes": 51524
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/payload/视频/制作记录/逐句确认/36.json",
+      "before_sha256": "18e963f04fb9d46f0ec8ab209057781ecab51dc7ceac8ed013f03fde8f667976",
+      "after_sha256": "bce6ec141ec76e76bcf88add5e5e9874fe313b39a849dcebae1a17e34bc25d19",
+      "bytes": 10163
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/payload/视频/工具/用户同意记录.json",
+      "before_sha256": "e25157d93af240294018acff165be2049034ec62ffe1f0d1b335c7655046b005",
+      "after_sha256": "1edb00ec8d41aa54f90edffbcf8e9ed5c3369f01bf72ad6f9e5ed51dc56f0118",
+      "scope": "Only two source36 consent entries appended to fresh current data; all unrelated entries retained."
+    }
+  ],
+  "exact_JSON_diff": [
+    {
+      "path": "/allow_clash",
+      "reason": "list_length",
+      "expected_length": 2,
+      "actual_length": 4
+    },
+    {
+      "path": "/allow_clash/2",
+      "reason": "unexpected_item",
+      "actual": "fetched"
+    },
+    {
+      "path": "/allow_clash/3",
+      "reason": "unexpected_item",
+      "actual": "bankruptcy"
+    },
+    {
+      "path": "/sentences/15/chunks/1/align/0/0",
+      "reason": "value",
+      "expected": "fetched about $525 million",
+      "actual": "**fetched** about $525 million"
+    },
+    {
+      "path": "/sentences/15/chunks/1/align/0/1",
+      "reason": "value",
+      "expected": "以约5.25亿美元卖给",
+      "actual": "**以**(fetched)约5.25亿美元**卖给**(fetched)"
+    },
+    {
+      "path": "/sentences/15/chunks/1/en",
+      "reason": "value",
+      "expected": "fetched about $525 million from a **consortium** of twelve **buyers**,",
+      "actual": "**fetched** about $525 million from a **consortium** of twelve **buyers**,"
+    },
+    {
+      "path": "/sentences/15/chunks/1/zh",
+      "reason": "value",
+      "expected": "以约5.25亿美元卖给一个由十二家**买家**(buyers)组成的**财团**(consortium)，",
+      "actual": "**以**(fetched)约5.25亿美元**卖给**(fetched)一个由十二家**买家**(buyers)组成的**财团**(consortium)，"
+    },
+    {
+      "path": "/sentences/16/chunks/0/align/5/0",
+      "reason": "value",
+      "expected": "left bankruptcy in September 2013,",
+      "actual": "left **bankruptcy** in September 2013,"
+    },
+    {
+      "path": "/sentences/16/chunks/0/align/5/1",
+      "reason": "value",
+      "expected": "于2013年9月走出破产，",
+      "actual": "于2013年9月走出**破产**(bankruptcy)，"
+    },
+    {
+      "path": "/sentences/16/chunks/0/en",
+      "reason": "value",
+      "expected": "After 19 months of **reorganisation**, the **once-mighty** Kodak left bankruptcy in September 2013,",
+      "actual": "After 19 months of **reorganisation**, the **once-mighty** Kodak left **bankruptcy** in September 2013,"
+    },
+    {
+      "path": "/sentences/16/chunks/0/zh",
+      "reason": "value",
+      "expected": "经过19个月的**改组**(reorganisation)，**昔日强大的**(once-mighty)柯达于2013年9月走出破产，",
+      "actual": "经过19个月的**改组**(reorganisation)，**昔日强大的**(once-mighty)柯达于2013年9月走出**破产**(bankruptcy)，"
+    },
+    {
+      "path": "/核对确认/同词异译/fetched：以~1卖给",
+      "reason": "unexpected_field",
+      "actual": "用户2026-11-14明确要求 fetched 对应中文只标“以”“卖给”，金额普通，原小字不改；这是同一谓语“以……卖给”的两处对应，不是两个不同释义。"
+    }
+  ],
+  "original_GEN_JSON_text_checks": {
+    "path": "/workspace/work/video-audit70-20261113/article36-user-review-20261114/gen-text-validation-v6/report.json",
+    "sha256": "8edb2df5b3bbec7741c41d74e4d7f0f3b992355bff1867aafe6ec5b3371d7c05",
+    "all_passed": true,
+    "GEN_whole_JSON_exact": true,
+    "before_repair_exit": 0,
+    "mechanical_repair_exit": 0,
+    "after_repair_exit": 0,
+    "earlier_fixture_and_mapping_diagnostic_runs_preserved": true,
+    "unchanged_summary_before_and_after_mechanical_wrap_separately_confirmed_by_original_helper": true
+  },
+  "independent_semantic_review": {
+    "path": "/workspace/work/video-revision-delivery/article36-review-intake-20261114/independent-two-feedback-candidate-review.json",
+    "sha256": "23afb521c471606a02b357d902b9405fad421f96e5ff0555a52d27d4825ba440",
+    "final_metadata_addendum_path": "/workspace/work/video-revision-delivery/article36-review-intake-20261114/independent-final-specific-mapping-metadata-addendum.json",
+    "final_metadata_addendum_sha256": "ce73cb028f72c9ca90be3beb7f583180bf607fb0694843720b15d56685f862c5",
+    "passed": true
+  },
+  "actual_static_1080_and_4K": {
+    "path": "/workspace/work/video-audit70-20261113/article36-user-review-20261114/static-render-report.json",
+    "sha256": "e0cc8c0c5619a47a3057a229339f43588c5df71acf1eac07f03c082f9fdea53d",
+    "all_passed": true,
+    "all_19_sentences_actual_native_before_and_candidate_checked": true,
+    "actual_changed_page_renders": 4,
+    "actual_visual_review_sha256": "bca6ff55a60263488c7dc6921c5a495b9c2a25169c833f58200a1a7fa5dc1b85"
+  },
+  "original_own_actual_audio_input_invariance": {
+    "path": "/workspace/work/video-audit70-20261113/article36-user-review-20261114/original-audio-input-invariance.json",
+    "sha256": "f928dbd6038b9a8d498ef5bda6ff84f70ff3a07e71b2b9b21ca0eaba9c4f922b",
+    "effective_model_input_plan_count": 40,
+    "all_input_and_DSP_equal": true,
+    "actual_own_native36_preparation_checked": true,
+    "new_audio_quality_pass_not_claimed": true
+  },
+  "CI_approved_manifest": {
+    "path": "/workspace/work/video-revision-batch-ci/.github/video-revision-batch/approved-video-layouts70.json",
+    "before_sha256": "929a23c88336899fea69003d2a8384f94a59da0a41c9036471a4a399671ee80a",
+    "after_sha256": "09b201148ea45e79448d6f8ec5c2f4e84f130f73696d21a1e929fe5f105235b7",
+    "before_row": {
+      "source_id": "36",
+      "new_id": "28",
+      "source_json_sha256": "76daa28f421bd40d8e2744d4e785a34bb8ee67da1403b4b1546db9465c535cef",
+      "approved_summary_text_sha256": "4765678bd3b2746d9d5c8605e7cc156479ffeca9415e2a551ee6758200e3c1b5",
+      "summary_png_sha256": "0d51277005729e874d6d35e503a5564d4a2c09acc026bc0a2da3540fc33f5e61",
+      "summary_rgb_sha256": "6c3a3d68c105c19674e543eff8d07e860f3e99bc95a887b7be7eca0992c00a8a",
+      "summary_font_4k_px": 128,
+      "source_layout_structural_sha256": "a4c76927665519a0249bdf47c9ffc6f4cc8ca8f6c6b58adf7f84a097f01b5202"
+    },
+    "after_row": {
+      "source_id": "36",
+      "new_id": "28",
+      "source_json_sha256": "e35a3dcb2ff0f0c7054493331370c0364190771ecf56e0dad6dbee3af860a628",
+      "approved_summary_text_sha256": "4765678bd3b2746d9d5c8605e7cc156479ffeca9415e2a551ee6758200e3c1b5",
+      "summary_png_sha256": "0d51277005729e874d6d35e503a5564d4a2c09acc026bc0a2da3540fc33f5e61",
+      "summary_rgb_sha256": "6c3a3d68c105c19674e543eff8d07e860f3e99bc95a887b7be7eca0992c00a8a",
+      "summary_font_4k_px": 128,
+      "source_layout_structural_sha256": "933911fab65a84c68c93c10043035da54ac9073335ec9c0ba1583debb2af0d95"
+    },
+    "only_two_article36_source_digest_leaves_changed": true,
+    "all_other_approved_rows_preserved": true,
+    "unchanged_approved_summary_canonical_text_RGB_font": true
+  },
+  "spoken_English_and_chunk_boundaries_exact": true,
+  "all_current_DSP_CF_and_audio_controls_exact": true,
+  "all_original_notes_and_current_five_point_summary_exact": true,
+  "fetched_Chinese_only_yi_maigei_price_ordinary": true,
+  "source_manuscript_missing_baseline_restored_from_actual_used_9a3b6174": true,
+  "body_tail_geometry_and_font_exact": true,
+  "body_tail_RGB_identity_claimed": false,
+  "official_core_or_renderer_modified": false,
+  "native_video_or_audio_generated_or_dispatched_by_this_agent": false,
+  "sole_next_native_launcher": "/root/resume_audio_ci"
+}

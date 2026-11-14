@@ -1,0 +1,486 @@
+{
+  "kind": "read-only-review-of-real-previous-repair-audio-preservation-reports",
+  "recorded_utc": "2026-11-14T08:50:32.344901+00:00",
+  "articles": [
+    {
+      "article": "27",
+      "actual_approved_repair_run": 43573500890,
+      "actual_native_qc_member": "27-approved-audio-qc.json",
+      "actual_native_qc_sha256": "49e07fa013ccb5173dd7712f754c9ba26b6e287c6fb0c239251346885f2665e6",
+      "raw_repair_report_passed": true,
+      "raw_check_count": 82,
+      "raw_check_false_preserved": [
+        {
+          "name": "original-suppressed-segment-rule-every-body-sentence",
+          "passed": false,
+          "failures": [
+            [
+              "S12",
+              2,
+              [
+                99.2,
+                101.4
+              ],
+              1.572465497844636,
+              5.199999999999999
+            ]
+          ]
+        }
+      ],
+      "actual_original_audio_controls_scope": [
+        {
+          "name": "approved-gain-articulation-and-waveform:S13#1:0.0",
+          "passed": true,
+          "expected_gain_db": 1.5,
+          "actual_lufs_delta": 1.5135024306102594,
+          "accepted": {
+            "start_s": 102.29995833333332,
+            "end_s": 102.80995833333333,
+            "crop_bs1770_lufs": -22.624791842100787,
+            "gated_400ms_lufs": -22.542808392057943,
+            "max_400ms_lufs": -22.3,
+            "active_10ms_rms_dbfs": -22.291535062362733,
+            "rms_dbfs": -22.64611595917046,
+            "sample_peak_dbfs": -9.243033650549043
+          },
+          "actual": {
+            "start_s": 102.29995833333332,
+            "end_s": 102.80995833333333,
+            "crop_bs1770_lufs": -21.111289411490528,
+            "gated_400ms_lufs": -21.04280839205794,
+            "max_400ms_lufs": -20.8,
+            "active_10ms_rms_dbfs": -20.782103445608552,
+            "rms_dbfs": -21.13668045072401,
+            "sample_peak_dbfs": -7.706052578034475
+          },
+          "gain_db": 1.5092363248259137,
+          "correlation": 0.9999770684011621,
+          "gain_compensated_residual_snr_db": 43.38520729831021
+        },
+        {
+          "name": "approved-gain-articulation-and-waveform:S14#1:0.0",
+          "passed": true,
+          "expected_gain_db": 1.25,
+          "actual_lufs_delta": 1.2552660651549878,
+          "accepted": {
+            "start_s": 110.58497916666667,
+            "end_s": 111.31497916666667,
+            "crop_bs1770_lufs": -22.761651427201205,
+            "gated_400ms_lufs": -22.70204584027034,
+            "max_400ms_lufs": -22.1,
+            "active_10ms_rms_dbfs": -23.147272243149473,
+            "rms_dbfs": -23.925371455093902,
+            "sample_peak_dbfs": -8.808865816074047
+          },
+          "actual": {
+            "start_s": 110.58497916666667,
+            "end_s": 111.31497916666667,
+            "crop_bs1770_lufs": -21.506385362046217,
+            "gated_400ms_lufs": -21.45491884110942,
+            "max_400ms_lufs": -20.9,
+            "active_10ms_rms_dbfs": -22.031239933368482,
+            "rms_dbfs": -22.669972963359008,
+            "sample_peak_dbfs": -7.546126031952238
+          },
+          "gain_db": 1.2552190408907526,
+          "correlation": 0.9999793401714847,
+          "gain_compensated_residual_snr_db": 43.838298330974595
+        }
+      ],
+      "actual_original_global_before": {
+        "integrated_lufs": -23.2,
+        "true_peak_dbtp": -0.6,
+        "lra_lu": 3.6
+      },
+      "actual_original_global_after": {
+        "integrated_lufs": -23.2,
+        "true_peak_dbtp": -0.6,
+        "lra_lu": 3.5
+      },
+      "actual_preservation_measurements": [
+        {
+          "name": "actual-no-clipping-or-nonfinite",
+          "passed": true,
+          "sample_peak_dbfs": -0.5809442955437822
+        },
+        {
+          "name": "actual-true-peak-below-zero",
+          "passed": true,
+          "actual_dbtp": -0.6
+        },
+        {
+          "name": "whole-track-level-preserved",
+          "passed": true,
+          "delta_lu": 0.0
+        },
+        {
+          "name": "outside-approved-ranges-same-voice-timing-gain",
+          "passed": true,
+          "gain_db": -4.884969377556849e-07,
+          "correlation": 0.9999999977743201,
+          "gain_compensated_residual_snr_db": 83.51507366624362,
+          "p95_absolute_frame_gain_db": 0.0
+        },
+        {
+          "name": "every-untouched-active-one-second-block-preserved",
+          "passed": true,
+          "checked_blocks": 141,
+          "failed_blocks": []
+        },
+        {
+          "name": "original-audio-health-all-items",
+          "passed": true,
+          "metrics": {
+            "削波": [
+              0,
+              ""
+            ],
+            "直流偏移": [
+              8.359334351365186e-05,
+              "第8句"
+            ],
+            "咔哒": [
+              1.1167956722736372,
+              "第2句"
+            ],
+            "句尾截断": [
+              -56.2561846294671,
+              "第5句"
+            ],
+            "句首突起": [
+              -34.89164703945653,
+              "第15句"
+            ],
+            "齿音": [
+              2.182630779076767,
+              "第10句"
+            ],
+            "音色突变": [
+              0.2865462767575673,
+              "第3句"
+            ],
+            "语速突变": [
+              0.30706453214966634,
+              "第8句"
+            ]
+          },
+          "failures": [],
+          "original_confirmation_notes": []
+        },
+        {
+          "name": "original-whole-track-loudness",
+          "passed": true,
+          "global_lufs": -23.187715740849445,
+          "failures": [],
+          "summary": "全片 -23.2 LUFS，峰值 -0.6 dBFS，16 句，逐句与全片差 -0.6～+1.0 LU"
+        }
+      ],
+      "latest_already_validated_video_run_at_this_read": 43573500890,
+      "latest_video_sha256": "515912e13e8e657ccf24c6c6617dc57c9d2a0bed1310b6fef090a150f31a1d26",
+      "latest_validated_record_sha256": "9934922b76b5acefc6c15c40c0bcf48a84b49a599a604d9e28b6c80ec6130946",
+      "latest_AAC_and_absolute_packet_chain": {
+        "aac_adts_sha256": "d619f0175ab2c57c6a5b77b9c6f0d62cd5b9fc2c548ec3900a45b3c44919b6f9",
+        "packet_projection_sha256": "799b98058e016fb9850518d2d4d2b7be4cb6215a31a6814c5ce3da452ee893a1",
+        "packet_count": 7039
+      },
+      "latest_audio_copy_exact": true,
+      "existing_unchanged_supplemental_baseline_preserved": {
+        "classification": "baseline_existing_unchanged",
+        "preservation_conditions_passed": true,
+        "old_original_R_findings": [
+          [
+            "S12",
+            2,
+            [
+              99.2,
+              101.4
+            ],
+            1.572465497844636,
+            5.199999999999999
+          ]
+        ],
+        "new_original_R_findings": [
+          [
+            "S12",
+            2,
+            [
+              99.2,
+              101.4
+            ],
+            1.572465497844636,
+            5.199999999999999
+          ]
+        ],
+        "original_R_findings_not_cleared": true,
+        "old_original_R_passed": false,
+        "new_original_R_passed": false,
+        "exact_original_tuple_equal": true,
+        "native_prefix_float32_sha256": "95daa46f23e7049cbb52be992a133205566128ed61c0667658c19e7174e1c7d6",
+        "native_prefix_matches_immutable_old_hash": true,
+        "public_float32_sample_identity": [
+          {
+            "label": "window",
+            "span_s": [
+              99.2,
+              101.4
+            ],
+            "samples": 105600,
+            "old_sha256": "f2544118b088d03cc83bb5ca82f3571a36845fa83ed3943410fb584be7d618cd",
+            "new_sha256": "f2544118b088d03cc83bb5ca82f3571a36845fa83ed3943410fb584be7d618cd",
+            "float32_bitexact": true
+          },
+          {
+            "label": "context",
+            "span_s": [
+              92.8,
+              101.6
+            ],
+            "samples": 422400,
+            "old_sha256": "48123765ef3b0cd9efe263c5354d79941caccbd257c413c6ad2ce1f23bd1d1de",
+            "new_sha256": "48123765ef3b0cd9efe263c5354d79941caccbd257c413c6ad2ce1f23bd1d1de",
+            "float32_bitexact": true
+          }
+        ],
+        "original_S12_group_metadata_exact": true,
+        "zero_gain_and_no_changed_public_samples": true
+      }
+    },
+    {
+      "article": "15",
+      "actual_approved_repair_run": 43562525001,
+      "actual_native_qc_member": "15-approved-audio-qc.json",
+      "actual_native_qc_sha256": "af00c5f271babed8cf321b3c30dfcdcd54d76978ca6c34c72065da91bd7b0fc0",
+      "raw_repair_report_passed": true,
+      "raw_check_count": 29,
+      "raw_check_false_preserved": [],
+      "actual_original_audio_controls_scope": [
+        {
+          "name": "approved-original-release-boost-exact-in-request",
+          "passed": true,
+          "actual": [
+            3.25,
+            3.315,
+            5.0
+          ],
+          "expected": [
+            3.25,
+            3.315,
+            5.0
+          ]
+        }
+      ],
+      "actual_original_global_before": {
+        "integrated_lufs": -23.3,
+        "true_peak_dbtp": -0.5,
+        "lra_lu": 3.2
+      },
+      "actual_original_global_after": {
+        "integrated_lufs": -23.2,
+        "true_peak_dbtp": -0.5,
+        "lra_lu": 3.2
+      },
+      "actual_preservation_measurements": [
+        {
+          "name": "actual-no-digital-clipping-or-nonfinite",
+          "passed": true,
+          "sample_peak_dbfs": -0.46462448679817425
+        },
+        {
+          "name": "actual-true-peak-below-zero",
+          "passed": true,
+          "measured_dbtp": -0.5
+        },
+        {
+          "name": "whole-track-level-preserved",
+          "passed": true,
+          "accepted": {
+            "integrated_lufs": -23.3,
+            "true_peak_dbtp": -0.5,
+            "lra_lu": 3.2
+          },
+          "actual": {
+            "integrated_lufs": -23.2,
+            "true_peak_dbtp": -0.5,
+            "lra_lu": 3.2
+          }
+        },
+        {
+          "name": "outside-exact-approved-release-and-graft-ranges-same-voice",
+          "passed": true,
+          "gain_db": 1.5179689182128007e-05,
+          "correlation": 0.9999824237583435,
+          "gain_compensated_residual_snr_db": 44.54032539608397,
+          "p95_absolute_10ms_gain_db": 0.04028844356840156
+        },
+        {
+          "name": "every-untouched-active-one-second-block-preserved",
+          "passed": true,
+          "checked_blocks": 140,
+          "failed_blocks": []
+        },
+        {
+          "name": "every-untouched-whole-sentence-preserved",
+          "passed": true,
+          "checked_sentences": 17,
+          "failed_sentences": []
+        },
+        {
+          "name": "untouched-whole-sentence-pitch-preserved",
+          "passed": true,
+          "failed_sentences": []
+        },
+        {
+          "name": "voiced-prefix-before-controlled-release-pitch-preserved",
+          "passed": true,
+          "voiced_pairs": 226,
+          "median_absolute_cents": 0.0,
+          "p90_absolute_cents": 0.0,
+          "whole_decoded_crop_bit_identical": true,
+          "decoded_sample_count": 148440,
+          "decoded_dtype": "float64",
+          "accepted_crop_sha256": "5770137d8826eef782e34ef60fc485eb05f731fec2530820a2b682322ff8804a",
+          "actual_crop_sha256": "5770137d8826eef782e34ef60fc485eb05f731fec2530820a2b682322ff8804a",
+          "preservation_basis": "whole-decoded-crop-bit-identical"
+        },
+        {
+          "name": "actual-single-original-release-passes-every-original-A21-phase",
+          "passed": true
+        },
+        {
+          "name": "actual-no-double-release-in-any-original-A21-phase",
+          "passed": true
+        }
+      ],
+      "latest_already_validated_video_run_at_this_read": 43573168894,
+      "latest_video_sha256": "a87ff850fcb01dcc8d1b78491cb85e30af48397b2f54e3d62732945f791933d9",
+      "latest_validated_record_sha256": "000ae0a8c9727233881233026469f5f424c04f9b88595dcf8ea35ab8b6c6b3f4",
+      "latest_AAC_and_absolute_packet_chain": {
+        "aac_adts_sha256": "ce18cbc1fbda9d47ccadf4247c58bdcd1571de719f74487c322ce40f09cdb32b",
+        "packet_projection_sha256": "a430eadf9caeb8a980f1901942a97d09e5296f8ce287b32e4bb75950350929cb",
+        "packet_count": 7005
+      },
+      "latest_audio_copy_exact": true
+    },
+    {
+      "article": "17",
+      "actual_approved_repair_run": 43562525001,
+      "actual_native_qc_member": "17-approved-audio-qc.json",
+      "actual_native_qc_sha256": "2ac2042e30aa9da36d32da5495eb5f3caa0fd28c7880bb990562b3cfdeb9ea4c",
+      "raw_repair_report_passed": true,
+      "raw_check_count": 29,
+      "raw_check_false_preserved": [],
+      "actual_original_audio_controls_scope": [
+        {
+          "name": "approved-original-release-boost-exact-in-request",
+          "passed": true,
+          "actual": [
+            11.27,
+            11.34,
+            6.0
+          ],
+          "expected": [
+            11.27,
+            11.34,
+            6.0
+          ]
+        }
+      ],
+      "actual_original_global_before": {
+        "integrated_lufs": -22.7,
+        "true_peak_dbtp": -0.5,
+        "lra_lu": 3.3
+      },
+      "actual_original_global_after": {
+        "integrated_lufs": -22.7,
+        "true_peak_dbtp": -0.5,
+        "lra_lu": 3.3
+      },
+      "actual_preservation_measurements": [
+        {
+          "name": "actual-no-digital-clipping-or-nonfinite",
+          "passed": true,
+          "sample_peak_dbfs": -0.5524394581749157
+        },
+        {
+          "name": "actual-true-peak-below-zero",
+          "passed": true,
+          "measured_dbtp": -0.5
+        },
+        {
+          "name": "whole-track-level-preserved",
+          "passed": true,
+          "accepted": {
+            "integrated_lufs": -22.7,
+            "true_peak_dbtp": -0.5,
+            "lra_lu": 3.3
+          },
+          "actual": {
+            "integrated_lufs": -22.7,
+            "true_peak_dbtp": -0.5,
+            "lra_lu": 3.3
+          }
+        },
+        {
+          "name": "outside-exact-approved-release-and-graft-ranges-same-voice",
+          "passed": true,
+          "gain_db": -0.00031563915735659774,
+          "correlation": 0.9999764713734238,
+          "gain_compensated_residual_snr_db": 43.27358099926181,
+          "p95_absolute_10ms_gain_db": 0.05095179981776637
+        },
+        {
+          "name": "every-untouched-active-one-second-block-preserved",
+          "passed": true,
+          "checked_blocks": 133,
+          "failed_blocks": []
+        },
+        {
+          "name": "every-untouched-whole-sentence-preserved",
+          "passed": true,
+          "checked_sentences": 18,
+          "failed_sentences": []
+        },
+        {
+          "name": "untouched-whole-sentence-pitch-preserved",
+          "passed": true,
+          "failed_sentences": []
+        },
+        {
+          "name": "voiced-prefix-before-controlled-release-pitch-preserved",
+          "passed": true,
+          "voiced_pairs": 677,
+          "median_absolute_cents": 0.0,
+          "p90_absolute_cents": 0.0,
+          "whole_decoded_crop_bit_identical": true,
+          "decoded_sample_count": 536520,
+          "decoded_dtype": "float64",
+          "accepted_crop_sha256": "b497cf6af5964e734a03ed7f19b4d4a2dc4c8fe1318405a37b76e9d4b09dd0e9",
+          "actual_crop_sha256": "b497cf6af5964e734a03ed7f19b4d4a2dc4c8fe1318405a37b76e9d4b09dd0e9",
+          "preservation_basis": "whole-decoded-crop-bit-identical"
+        },
+        {
+          "name": "actual-single-original-release-passes-every-original-A21-phase",
+          "passed": true
+        },
+        {
+          "name": "actual-no-double-release-in-any-original-A21-phase",
+          "passed": true
+        }
+      ],
+      "latest_already_validated_video_run_at_this_read": 43562525001,
+      "latest_video_sha256": "3a28679efead092857197a17b6205b1e5577616f6be808ef5de9c236d200c7ee",
+      "latest_validated_record_sha256": "dd6014b38128305add2a73550edc47af008ecafcef108d2027655aeb9fb57144",
+      "latest_AAC_and_absolute_packet_chain": {
+        "aac_adts_sha256": "e60811a051e70f7b4056df03bf6222f75c86ab3adc6c4d26c64fc619bb2e4324",
+        "packet_projection_sha256": "5ff6413b2ffaa1d0ab6bddcbd3f54ae89011e7ad0956dca600cda45f492125e3",
+        "packet_count": 6575
+      },
+      "latest_audio_copy_exact": true,
+      "limitation": "This reviews latest actually passed +6 baseline 43562525001; the newer text-only 17 retry is still separately owned by the production/preflight team and is not asserted passed here."
+    }
+  ],
+  "new_voice_or_media_generation": false,
+  "quality_threshold_changes": false,
+  "subjective_human_listening_claimed": false,
+  "all_PDF_work_untouched": true
+}

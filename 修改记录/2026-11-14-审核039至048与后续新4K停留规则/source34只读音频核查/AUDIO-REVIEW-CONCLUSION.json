@@ -1,0 +1,151 @@
+{
+  "kind": "actual-Tetris34-audio-user-review-diagnostic-conclusion",
+  "recorded_utc": "2026-11-14T08:51:18.363431+00:00",
+  "source_id": "34",
+  "book_order": "33",
+  "title_zh": "走出苏联的俄罗斯方块",
+  "actual_original_video_sha256": "c75a9a89749e3987c1aa806630f90e06f68b1281101c180a6a5f4abfbc8b8739",
+  "actual_original_video_bytes": 17583047,
+  "scope": "Read-only whole-track quality review and S4C1 He called it Tetris phrase-onset check. No audio edits or new TTS.",
+  "original_maker_SHA256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+  "strict_source_cache_binding": {
+    "PCM_exact": true,
+    "AAC_exact": true,
+    "PCM_SHA256": "460d6113f34677d349884ddb0e80b68ff4bd6f16efce5feb0e998e7eab9659d4",
+    "AAC_SHA256": "5649e6746d919510ba830daa5509ab68814dc1afe4d3578cf9c246dfb2c4a0e6"
+  },
+  "actual_whole_track": {
+    "integrated_lufs": -22.519476511094368,
+    "true_peak_dbtp": -0.5,
+    "LRA_LU": 3.1,
+    "original_R_failures": [],
+    "actual_original_health_failures": [],
+    "actual_original_within_sentence_level_failures": [],
+    "clip_samples": 0,
+    "body_sentences_detected": 17
+  },
+  "target": {
+    "sentence": "S4",
+    "chunk": "C1",
+    "phrase": "He called it Tetris,",
+    "producer_sentence_window_s": [
+      26.625,
+      32.25
+    ],
+    "public_audio_clock_shift_s": 0.025,
+    "public_C1_original_R_window_s": [
+      26.67,
+      27.79
+    ],
+    "public_C1_original_R_LUFS": -20.899683893602344,
+    "following_subphrase_original_R_LUFS": -21.946086594566385,
+    "first_four_word_public_metrics": [
+      {
+        "word": "He",
+        "start_s_in_producer_sentence": 0.0,
+        "end_s_in_producer_sentence": 0.16358333333333336,
+        "public_window_s": [
+          26.65,
+          26.81358333333333
+        ],
+        "public_measurement": {
+          "rms_dbfs": -26.588620914587786,
+          "peak_dbfs": -14.788228988647461,
+          "samples": 3926
+        }
+      },
+      {
+        "word": "called",
+        "start_s_in_producer_sentence": 0.16358333333333336,
+        "end_s_in_producer_sentence": 0.46120833333333333,
+        "public_window_s": [
+          26.81358333333333,
+          27.11120833333333
+        ],
+        "public_measurement": {
+          "rms_dbfs": -16.195282059290008,
+          "peak_dbfs": -3.389824628829956,
+          "samples": 7143
+        }
+      },
+      {
+        "word": "it",
+        "start_s_in_producer_sentence": 0.46120833333333333,
+        "end_s_in_producer_sentence": 0.5852499999999999,
+        "public_window_s": [
+          27.11120833333333,
+          27.235249999999997
+        ],
+        "public_measurement": {
+          "rms_dbfs": -36.5555590049414,
+          "peak_dbfs": -20.900249481201172,
+          "samples": 2977
+        }
+      },
+      {
+        "word": "Tetris,",
+        "start_s_in_producer_sentence": 0.5852499999999999,
+        "end_s_in_producer_sentence": 1.1700000000000002,
+        "public_window_s": [
+          27.235249999999997,
+          27.82
+        ],
+        "public_measurement": {
+          "rms_dbfs": -26.94836812204068,
+          "peak_dbfs": -7.375077724456787,
+          "samples": 14034
+        }
+      }
+    ],
+    "native_head_trim_ms": 15,
+    "native_first_h_timed_model_ms": [
+      80,
+      130
+    ],
+    "head_trim_precedes_first_h_phoneme": true,
+    "normal_function_word_stress_distinction": true
+  },
+  "recommended_audio_action": {
+    "decision": "retain_original_audio_no_gain_change",
+    "reason": "The full phrase is not lower than its neighbours; original whole-track and eight health tests pass. The short He/it function words are weaker than stressed called as part of the preserved delivery, with the h onset intact. An across-phrase boost is unsupported and could over-amplify the stressed word.",
+    "new_gain_db": 0,
+    "preserve_every_original_AAC_payload_and_absolute_clock": true,
+    "new_4k_text_and_0_3_second_postvoice_hold_are_separate_authorized_work_for_parent": true
+  },
+  "prior_repairs_readonly_recheck": {
+    "27": {
+      "actual_approved_report_passed": true,
+      "raw_false_S12_check_preserved": true,
+      "precisely_unchanged_existing_baseline_conditions_passed": true,
+      "outside_windows_NCC": 0.9999999977743201,
+      "outside_windows_gain_compensated_SNR_dB": 83.51507366624362,
+      "target_gains_dB": [
+        1.5,
+        1.25
+      ],
+      "latest_validated_AAC_packets": 7039
+    },
+    "15": {
+      "actual_A21_repair_report_passed": true,
+      "latest_colour_only_revision_same_AAC_and_clock": true,
+      "latest_validated_AAC_packets": 7005
+    },
+    "17": {
+      "actual_A21_repair_report_passed": true,
+      "latest_preexisting_accepted_plus6_AAC_packets": 6575,
+      "new_text_only_retry_media_not_revalidated_by_this_child": true
+    }
+  },
+  "limitations": [
+    "Measurements and the existing actual native sound gates do not establish a subjective human listening judgement.",
+    "Subword phoneme boundaries are from the bound original timed model/native mapping, not independently human-transcribed word alignments.",
+    "No absolute perfection guarantee is made; recommendation follows the observed level, onset, clipping, pitch/timing-preservation evidence."
+  ],
+  "no_original_source_or_media_changed": true,
+  "no_PDF_opened_or_changed": true,
+  "no_private_PCM_GT_or_cache_exported": true,
+  "implementation_diagnostics_preserved": [
+    "word-head-first-implementation-note.json",
+    "word-boundary-diagnostic-implementation-note.json"
+  ]
+}

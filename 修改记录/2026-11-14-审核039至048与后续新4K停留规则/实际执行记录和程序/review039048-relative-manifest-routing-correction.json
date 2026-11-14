@@ -1,0 +1,10 @@
+{
+  "kind": "metadata-collector-relative-path-routing-correction",
+  "original_attempt_stopped_before_Git_mutation": true,
+  "original_failure": "FileNotFoundError: /workspace/work/video-audit70-20261113/article36-user-review-20261114/work/video-audit70-20261113/article36-user-review-20261114/actual-visual-review.initial.json",
+  "cause": "Explicit source36 frozen safe manifest uses paths relative to /workspace, unlike other producer manifests using absolute or manifest-local names.",
+  "correction": "Resolve only work/... paths from /workspace and require every result remain within its exact declared manifest directory; all original length/SHA/extension checks retained.",
+  "old_collector_snapshot": "/workspace/work/video-archive-batches-20261114/history/archive_review039_048_history_records-before-workspace-relative-path.py",
+  "raw_frozen_manifests_sources_QA_and_media_unchanged": true,
+  "PDF_work_executed": false
+}

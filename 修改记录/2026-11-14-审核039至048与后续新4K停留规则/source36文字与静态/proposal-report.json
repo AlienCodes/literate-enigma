@@ -1,0 +1,136 @@
+{
+  "article": "36",
+  "book_order": "28",
+  "kind": "two-user-requested-focus-only-source-proposal",
+  "quality_acceptance": false,
+  "before_source_sha256": "76daa28f421bd40d8e2744d4e785a34bb8ee67da1403b4b1546db9465c535cef",
+  "after_source_sha256": "e35a3dcb2ff0f0c7054493331370c0364190771ecf56e0dad6dbee3af860a628",
+  "generator_sha256": "e739cb603ae0cd6b8b112ecef2f6702033764f706b00f676e1f2d4e7b8d06b4a",
+  "manuscript_sha256": "4b0f1d016d3e94bd7f77d3a36bfc423700006c7a23c0b0cae5ca68d5c5af883f",
+  "actual_accepted_source_sha256": "3e9bd4f3b398dee5a540662d9b62bff363ca1bca268a8ff0744b9b5af6b307f5",
+  "actual_accepted_source_only_existing_summary_wrap_diff": true,
+  "all_spoken_English_chunk_boundaries_exact": true,
+  "all_existing_non_sentence_controls_and_CF_exact": true,
+  "bare_Chinese_exact": true,
+  "all_original_notes_exact": true,
+  "full_last_summary_note_exact": true,
+  "fetched_Chinese_only_separate_yi_and_maigei_colored": true,
+  "price_uncolored": true,
+  "exact_JSON_diff": [
+    {
+      "path": "/allow_clash",
+      "reason": "list_length",
+      "expected_length": 2,
+      "actual_length": 4
+    },
+    {
+      "path": "/allow_clash/2",
+      "reason": "unexpected_item",
+      "actual": "fetched"
+    },
+    {
+      "path": "/allow_clash/3",
+      "reason": "unexpected_item",
+      "actual": "bankruptcy"
+    },
+    {
+      "path": "/sentences/15/chunks/1/align/0/0",
+      "reason": "value",
+      "expected": "fetched about $525 million",
+      "actual": "**fetched** about $525 million"
+    },
+    {
+      "path": "/sentences/15/chunks/1/align/0/1",
+      "reason": "value",
+      "expected": "以约5.25亿美元卖给",
+      "actual": "**以**(fetched)约5.25亿美元**卖给**(fetched)"
+    },
+    {
+      "path": "/sentences/15/chunks/1/en",
+      "reason": "value",
+      "expected": "fetched about $525 million from a **consortium** of twelve **buyers**,",
+      "actual": "**fetched** about $525 million from a **consortium** of twelve **buyers**,"
+    },
+    {
+      "path": "/sentences/15/chunks/1/zh",
+      "reason": "value",
+      "expected": "以约5.25亿美元卖给一个由十二家**买家**(buyers)组成的**财团**(consortium)，",
+      "actual": "**以**(fetched)约5.25亿美元**卖给**(fetched)一个由十二家**买家**(buyers)组成的**财团**(consortium)，"
+    },
+    {
+      "path": "/sentences/16/chunks/0/align/5/0",
+      "reason": "value",
+      "expected": "left bankruptcy in September 2013,",
+      "actual": "left **bankruptcy** in September 2013,"
+    },
+    {
+      "path": "/sentences/16/chunks/0/align/5/1",
+      "reason": "value",
+      "expected": "于2013年9月走出破产，",
+      "actual": "于2013年9月走出**破产**(bankruptcy)，"
+    },
+    {
+      "path": "/sentences/16/chunks/0/en",
+      "reason": "value",
+      "expected": "After 19 months of **reorganisation**, the **once-mighty** Kodak left bankruptcy in September 2013,",
+      "actual": "After 19 months of **reorganisation**, the **once-mighty** Kodak left **bankruptcy** in September 2013,"
+    },
+    {
+      "path": "/sentences/16/chunks/0/zh",
+      "reason": "value",
+      "expected": "经过19个月的**改组**(reorganisation)，**昔日强大的**(once-mighty)柯达于2013年9月走出破产，",
+      "actual": "经过19个月的**改组**(reorganisation)，**昔日强大的**(once-mighty)柯达于2013年9月走出**破产**(bankruptcy)，"
+    },
+    {
+      "path": "/核对确认/同词异译/fetched：以~1卖给",
+      "reason": "unexpected_field",
+      "actual": "用户2026-11-14明确要求 fetched 对应中文只标“以”“卖给”，金额普通，原小字不改；这是同一谓语“以……卖给”的两处对应，不是两个不同释义。"
+    }
+  ],
+  "auth_entries": [
+    {
+      "篇": "36",
+      "日期": "2026-11-10",
+      "原话": "不用管，这个就是我清点的词，我清点的词不用管，撞不撞车，全都留，全都留，全都特批。我专门说的这个加为重点词汇的这个所有的词全都这个重点特批。",
+      "用于": "allow_clash.fetched / bankruptcy（2026-11-14用户本篇指定S16C2 fetched与S17C1 bankruptcy重点；fetched中文仅以、卖给同色、金额普通、原小字不改）",
+      "来源": "沿用真实通用特批；本轮具体截图及原话见USER-REVIEW-2026-11-14-027和028.json；其他篇原重点词不变"
+    },
+    {
+      "篇": "36",
+      "日期": "2026-11-14",
+      "原话": "数码相机这一篇重新定稿出4k视频，所有最终定稿4k视频上传保存在GitHub作为最终版本。",
+      "用于": "仅本篇两处重点修改后重新生成4K定稿；保43543967031已通过实际音频及全部声音控制",
+      "来源": "/workspace/work/first50-review-release/USER-REVIEW-2026-11-14-029.json",
+      "来源文件SHA256": "62e1303037118306de859bb77157e2e65e9529ded1b80d1fcac9ba3b213abc65"
+    }
+  ],
+  "baseline_states": {
+    "视频/脚本/36.json": {
+      "exists": true,
+      "sha256": "76daa28f421bd40d8e2744d4e785a34bb8ee67da1403b4b1546db9465c535cef"
+    },
+    "视频/工具/初稿生成/gen36.py": {
+      "exists": true,
+      "sha256": "bb4bedfa0abfc2f7c0bae65bb9199d6cb02cf72d53dec57c23f30746aa0bf3c6"
+    },
+    "新版定稿/36-the-company-that-invented-its-own-killer.md": {
+      "exists": false,
+      "sha256": null,
+      "restored_from_actual_accepted_run_manuscript": "/workspace/work/video-audit70-20261113/next-passed-native/43543967031/36/artifact-files/36-actual-working-manuscript.md",
+      "restored_sha256": "9a3b61748583feb80594d042c0df5379452924efd9556b532435cf453540cc55"
+    },
+    "视频/制作记录/36_待改清单.md": {
+      "exists": true,
+      "sha256": "5f224e8506f511cd814d69b8fae98da691f64213745096b647a2851f5137ef3a"
+    },
+    "视频/工具/用户同意记录.json": {
+      "exists": true,
+      "sha256": "e25157d93af240294018acff165be2049034ec62ffe1f0d1b335c7655046b005"
+    },
+    "gen-sources/gen36.py": {
+      "exists": false,
+      "sha256": null
+    }
+  },
+  "created_utc": "2026-11-14T07:58:37.364256+00:00"
+}
