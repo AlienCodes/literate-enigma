@@ -7,7 +7,7 @@ On 10 April 1912 the **opulent** **liner** Titanic left Southampton on her **mai
 
 Within radio range, the steamer Californian kept an **equally** **lawful** routine. Her **sole** **wireless** **operator**, Cyril Evans, was **on the payroll of** the Marconi company; when he slept, so did the radio. Around 11.30pm he **switched off** his set. **Hindsight** may call that **negligence**, yet no rule **obliged** him **to** stay **vigilant**, so the Titanic's **frantic** **distress calls** went **unheard** there.
 
-Between April and July 1912, **inquiries** in Washington and London heard **testimony** from **survivors** and the Californian's crew. That July, American **legislation** made **round-the-clock** radio watch **compulsory**. In January 1914 **delegates** of 13 nations signed the first Safety of Life at Sea **convention**, **stipulating** lifeboat seats for all, **continuous** radio watch, and an ice **patrol**. The First World War **stalled** the **treaty**; the **patrol** went ahead **regardless**.
+Between April and July 1912, inquiries in Washington and London heard **testimony** from **survivors** and the Californian's crew. That July, American **legislation** made **round-the-clock** radio watch **compulsory**. In January 1914 **delegates** of 13 nations signed the first Safety of Life at Sea **convention**, **stipulating** lifeboat seats for all, **continuous** radio watch, and an ice **patrol**. The First World War **stalled** the **treaty**; the patrol went ahead **regardless**.
 
 The **doomed** liner sank within three hours. The **outdated** rules she sailed under had **stayed afloat** since 1894; it took her dead to **discredit** them.
 
@@ -19,7 +19,7 @@ The **doomed** liner sank within three hours. The **outdated** rules she sailed 
 
 在无线电通讯范围内，加州人号轮船遵循的是一套**同样**(equally)**合法的**(lawful)值班惯例。（Within radio range：在泰坦尼克号的无线电通讯范围内；equally lawful：和泰坦尼克号一样合法）（按照当时的规定，加州人号报务员下班睡觉，是完全合法的。他没有违规。泰坦尼克号没收到加州人号的冰情警告，加州人号没收到泰坦尼克的求救，错的不是船员，错的是这套没跟上时代（没要求全天候值守）的法律。）她**唯一的**(sole)**无线电**(wireless)**操作员**(operator)西里尔·埃文斯，**受雇于**(on the payroll of)马可尼公司；他一睡下，电台也一样睡了。（Her：指加州人号；Cyril Evans：同位语，说明报务员是谁；be on the payroll of：受雇于，领……的薪水；so did the radio：倒装，电台也一样）晚上11时30分左右，他**关掉了**(switched off)自己的设备。（switch off：关掉；set：这里指无线电收发报机）**事后看来**(Hindsight)，这或许可称为**疏忽**(negligence)，然而没有哪条规则**强制**(obliged to)他保持**警觉**(vigilant)，所以泰坦尼克号**发狂似的**(frantic)**求救呼叫**(distress calls)，在那里**无人听见**(unheard)。（call A B：把A称为B；oblige sb to do：责成某人做……；go unheard：没有被听到）
 
-1912年4月至7月，华盛顿和伦敦的**调查**(inquiries)听取了**幸存者**(survivors)以及加州人号船员的**证词**(testimony)。（hear testimony from…：听取……的证词）同年7月，美国的一项**立法**(legislation)将**全天候**(round-the-clock)无线电值守定为**强制性的**(compulsory)（义务）。（make A B：使A成为B，把A定为B）1914年1月，13国的**代表**(delegates)签署了第一部《海上人命安全**公约**(convention)》，**规定**(stipulating)救生艇座位要够所有人乘坐，电台要**不间断**(continuous)值守，还要开展冰情**巡逻**(patrol)。（stipulating…：现在分词短语，说明公约规定的内容；lifeboat seats for all：够所有人坐的救生艇座位）第一次世界大战让这项**条约**(treaty)**暂缓搁置了**(stalled)；然而冰情**巡逻**(patrol)**不管怎样**(regardless)依然进行。（go ahead：开始进行，照计划进行）
+1912年4月至7月，华盛顿和伦敦的调查听取了**幸存者**(survivors)以及加州人号船员的**证词**(testimony)。（hear testimony from…：听取……的证词）同年7月，美国的一项**立法**(legislation)将**全天候**(round-the-clock)无线电值守定为**强制性的**(compulsory)（义务）。（make A B：使A成为B，把A定为B）1914年1月，13国的**代表**(delegates)签署了第一部《海上人命安全**公约**(convention)》，**规定**(stipulating)救生艇座位要够所有人乘坐，电台要**不间断**(continuous)值守，还要开展冰情**巡逻**(patrol)。（stipulating…：现在分词短语，说明公约规定的内容；lifeboat seats for all：够所有人坐的救生艇座位）第一次世界大战让这项**条约**(treaty)**暂缓搁置了**(stalled)；然而冰情巡逻**不管怎样**(regardless)依然进行。（go ahead：开始进行，照计划进行）
 
 这艘**在劫难逃的**(doomed)邮轮不到三小时就沉没了。她航行时所遵循的那套**过时的**(outdated)规则，却自1894年起**一直没有沉没**(stayed afloat)；直到她的乘客葬身大海，它们才**信誉扫地**(discredit)。（she sailed under：省略了 that 的定语从句，修饰 rules；stay afloat：浮在水上，没有沉没；也指维持下去；it took A to do B：直到有了A才做成B；her dead：她船上的死者）（简述：▸沉船：1912年，号称几乎不会沉没的泰坦尼克号在首航中撞上冰山，不足三小时沉没，超过1500人遇难。▸救生：旧法按船体总吨位、也就是容积来定救生艇数，万吨以上只需16艘；泰坦尼克号配了20艘，虽超过法定要求，1178个座位仍只够船上2200人约一半。▸漏听：附近加州人号的唯一报务员关机睡觉，电台因此没听到求救；他没有违反当时的规定，因为法律未要求全天值守。▸改革：1912年美国规定无线电必须全天有人值守；1914年13国签约，要求救生艇容纳全员、连续值守并巡查冰情。▸教训：一战使公约搁置，冰情巡逻仍启动；灾难表明，沿用旧法规，即使配置合法，也未必足以保障安全。）
 
@@ -67,7 +67,6 @@ The **doomed** liner sank within three hours. The **outdated** rules she sailed 
 | frantic | 本文：发狂似的；adj. 急切的，焦急万分的（frantic calls/efforts）；忙乱的，手忙脚乱的（a frantic pace）；frantically adv. | 3 |
 | distress calls | 本文：求救呼叫；n. 危难，（船、飞机）遇险（in distress；distress signal/call 求救信号）；痛苦，忧虑；v. 使痛苦，使忧虑 | 3 |
 | unheard | 本文：无人听见；adj. 未被听到的；被忽视的（go unheard 无人理会）；unheard-of 前所未闻的 | 3 |
-| inquiries | 本文：调查；n. (inquiry) 调查；询问（a public inquiry） | 4 |
 | survivors | 本文：幸存者；n. (survivor) 幸存者，生还者；（逆境中）挺过来的人 | 4 |
 | testimony | 本文：证词；n. （法庭）证词，证言（give testimony）；证明，证据（a testimony to 足以证明……） | 4 |
 | legislation | 本文：立法；n. 法规，法律（总称）（pass/introduce legislation）；立法；legislate v.；legislature n. 立法机关 | 4 |
