@@ -1,0 +1,133 @@
+{
+  "kind": "62-private-full-candidate-review-handoff-after-root-authorization",
+  "status": "original-cache whole candidate constructed twice with stable WAV/AAC identities; measured original voice gates passed; native ASR/production gates still pending",
+  "actual_baseline_identity": {
+    "video_sha256": "76ed237782d65e7bd19fd1c14891b55fd6b7014a43f7562f4d2faaf471a8b8af",
+    "source_sha256": "8147198c65aa6f66839b2a7050dbe13c5e4209725ddff01bcb636859340ba084",
+    "WAV_sha256": "f7348a62d6b00aa9cf74ad7c26f83bd3c4c98ff6621e3875dbced7bcfd0ac2c0",
+    "AAC_sha256": "cbaa0988f1020bcaa2c245f8349001d8ad2224194164bfaa819231493f06b081",
+    "source_maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3"
+  },
+  "one_leaf": {
+    "path": "停顿插入点.S15.2[0]",
+    "from": 3.580083,
+    "to": 3.584083
+  },
+  "candidate_identity": {
+    "in_memory_source_canonical_JSON_sha256": "f143ab3941ef9e39deb077d7c5fba66e5b3418efbd2465b45fd3616291d54731",
+    "WAV_sha256": "c5330026dbc9f81d0c7546a1716b9dade9960f44311862a5feb3e4aa0749d7c3",
+    "WAV_bytes": 7665884,
+    "WAV_subtype": "PCM_16",
+    "sample_rate": 24000,
+    "AAC_ADTS_sha256": "b85f7e4c45784077f227b29a24b7cd72cef6c6160aa3783747ba708f8fda6348",
+    "AAC_ADTS_bytes": 2473345,
+    "M4A_sha256": "3ed013c1f04198289f87085371e135385498a7bf38ae0e38f219e622859e03ee",
+    "M4A_bytes": 2451719,
+    "candidate_raw_S15_array_SHA256": "8807e6db027b4300a28f2209b496b7977c58619519889c575c00502f5eccef05"
+  },
+  "insertion_boundary_details": {
+    "original_cut_samples": [
+      85922,
+      85922
+    ],
+    "candidate_cut_samples": [
+      86018,
+      86018
+    ],
+    "samples_deleted_at_this_cut": 0,
+    "pause_samples": 9600,
+    "original_pause_s": 0.4,
+    "candidate_pause_s": 0.4,
+    "original_public_boundaries_s": [
+      113.45008333333334,
+      113.85008333333333
+    ],
+    "candidate_public_boundaries_s": [
+      113.45408333333334,
+      113.85408333333334
+    ],
+    "mother_samples_between_old_and_new_cut_reassigned_to_before_pause": 96,
+    "A42_original_cosine_fades_ms": 8
+  },
+  "all_other_original_source_controls_and_spoken_English_unchanged": true,
+  "original_maker_and_AF_unchanged": true,
+  "source_and_processed_PCM": {
+    "samples": 3832920,
+    "duration_s": 159.705,
+    "changed_float_samples": 572,
+    "changed_PCM16_samples": 536,
+    "outside_local_window_sample_exact": true,
+    "all_other_title_and_sentence_array_SHA_and_clock_equal": true,
+    "S15_original_automatic_gains_unchanged": true
+  },
+  "original_measured_voice_gates": {
+    "eight_health_failures": [],
+    "R_whole_sentence_failures": [],
+    "R_within_sentence_failures": [],
+    "clipped_samples": 0,
+    "R_summary": "全片 -22.8 LUFS，峰值 -0.6 dBFS，19 句，逐句与全片差 -1.0～+1.7 LU",
+    "candidate_truepeak_dbfs": -0.5,
+    "candidate_LRA_LU": 3.2,
+    "all_eight_metric_maxima_exactly_match_actual_baseline": true
+  },
+  "local_word_head": {
+    "pre_normalized_f10ms_delta_db": -1.3069811388642236,
+    "pre_normalized_f_core_delta_db": -0.5681047252960809,
+    "estimated_postpause_z_residue_energy_delta_db": -13.46749121888994,
+    "actual_encoded_f10ms_delta_db": -1.1737917127998614,
+    "raw_four_vowel_samples_unchanged": true,
+    "voiced_phrase_F0": {
+      "public_clock_s": [
+        113.9,
+        115.05
+      ],
+      "estimator": "Praat/parselmouth original-sample autocorrelation",
+      "same_voicing_frame_mask": true,
+      "joint_voiced_frames": 82,
+      "median_baseline_Hz": 105.09400843506756,
+      "median_candidate_Hz": 105.09399105874263,
+      "max_abs_F0_difference_Hz": 0.003954415404365363
+    }
+  },
+  "codec_limit_and_control": {
+    "AAC_packets": 7488,
+    "changed_packet_count": 37,
+    "decoded_difference_support_s": [
+      113.408,
+      114.92266666666667
+    ],
+    "all_samples_before_and_after_encoded_support_exact": true,
+    "encoded_target_outside_SNR_db": 85.647524967587,
+    "encoded_target_outside_NCC": 0.9999999986379308,
+    "subsequent_four_phrase_control_SNR_db": 65.35150295488631,
+    "late_codec_tail_difference_RMS_dbfs": -95.03077659032226,
+    "AAC_not_claimed_bit_exact_inside_local_filter_transform_context": true
+  },
+  "native_ASR_status": {
+    "fresh_local_candidate_ASR_run": false,
+    "reason": "Original local ASR model files are unavailable; no model download or new native job was launched. Unchanged words/outside support are proved by exact original PCM, but this is not fresh ASR acceptance.",
+    "actual_baseline_native_original_ASR_and_other_original_audio_gates_passed_previously": true,
+    "native_production_owner_must_run_unchanged_original_candidate_ASR_and_audio_gates": true
+  },
+  "production_handoff": "Unique text/source writer may fresh-merge only this approved control leaf after its text changes. Validate stripped spoken English against actual baseline and preserve every other voice control. The unique audio production owner must bind fresh native artifacts to these WAV/AAC hashes and run the unchanged original production/ASR gates before accepting or publishing.",
+  "preservation": {
+    "formal_source_PAY_GEN_DSP_or_core_modified": false,
+    "new_TTS": false,
+    "native_job_or_video_launched": false,
+    "released_or_uploaded": false,
+    "human_listening_claim": false,
+    "PDF_accessed": false,
+    "private_PCM_AAC_cache_GT_exported": false,
+    "private_audio_deleted_after_each_measurement": true,
+    "initial_diagnostics_and_negative_cut3_587667_f_loss_preserved": true,
+    "tetris34_and_prior_three_audio_repair_proofs_untouched": true
+  },
+  "evidence": {
+    "full_QC_file": "private-full-candidate-original-QC.json",
+    "full_QC_sha256": "ccf1c488287df19a795359a52d86470f2ff96eae0cceece31eadec248683de56",
+    "codec_addendum_file": "private-full-candidate-codec-locality-addendum.json",
+    "codec_addendum_sha256": "1c70dd88987d0860f7f146d7a2afc135b537b89e41b54940a125e1ca1ee459ef",
+    "initial_conclusion_file": "AUDIO-REVIEW-CONCLUSION.json",
+    "initial_conclusion_sha256": "a8e39cd2ed8ef6ba41bcb5e25817c2af685de39d87f103dba6654d13d0d42267"
+  }
+}

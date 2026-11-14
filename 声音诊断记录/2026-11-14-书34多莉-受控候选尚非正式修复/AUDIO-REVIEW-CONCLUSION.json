@@ -1,0 +1,136 @@
+{
+  "kind": "source62-book34-dolly-readonly-audio-review-conclusion",
+  "status": "local-junction-artifact-plausible-and-bounded-private-repair-candidate-ready; not formal audio acceptance",
+  "priority": "Parent delivers TuYouyou source28 0.3s-hold preview first. No production or publishing by this audit.",
+  "identity": {
+    "native_run": "43543967031",
+    "article": "62",
+    "book_article": "34",
+    "accepted_video_sha256": "76ed237782d65e7bd19fd1c14891b55fd6b7014a43f7562f4d2faaf471a8b8af",
+    "accepted_video_bytes": 15935506,
+    "archive_handoff_sha256": "bff769b5bba6f42589211b32e06a8d12ff0e62376c9d1fcc3cf4a06c5f7ed651",
+    "actual_source_sha256": "8147198c65aa6f66839b2a7050dbe13c5e4209725ddff01bcb636859340ba084",
+    "strict_original_PCM_sha256": "f7348a62d6b00aa9cf74ad7c26f83bd3c4c98ff6621e3875dbced7bcfd0ac2c0",
+    "strict_original_AAC_sha256": "cbaa0988f1020bcaa2c245f8349001d8ad2224194164bfaa819231493f06b081",
+    "whole_producer_PCM_and_AAC_exactly_reproduced": true
+  },
+  "actual_user_target": {
+    "sentence": "S15",
+    "text": "In July 2016, 13 clones, four from her cell line, were ageing normally, without hypertension or diabetes.",
+    "public_clones_tail_end_s": 113.45008333333334,
+    "public_four_start_s": 113.85008333333333,
+    "pause_s": 0.3999999999999915,
+    "AAC_to_source_alignment_s": 0.025,
+    "source_cut_clean_mother_s": 3.580083,
+    "source_sentence_sample_count": 234840,
+    "source_automatic_gain": {
+      "2": -1.5,
+      "5": 1.5
+    }
+  },
+  "finding": {
+    "overall_loudness_is_not_the_local_cause": true,
+    "clones_tail_and_four_are_continuously_coarticulated_in_original_cache": true,
+    "current_source_cut_precedes_the_estimated_z_to_f_transition_by_several_ms": true,
+    "after_pause_initial_spectrum_contains_a_possible_high_frequency_z_tail_before_f": true,
+    "timed_model_f_label_is_later_than_actual_raw_spectrum_transition": true,
+    "full_health_gate_pass_does_not_resolve_the_local_complaint": true,
+    "spectral_estimated_f_interval_clean_mother_s": [
+      3.5875,
+      3.5975
+    ],
+    "four_vowel_onset_spectral_interval_clean_mother_s": [
+      3.6,
+      3.625
+    ],
+    "word_onset_and_spectral_windows_are_not_human_verified_ground_truth": true
+  },
+  "minimal_private_candidate": {
+    "source_leaf": "停顿插入点.S15.2[0]",
+    "from": 3.580083,
+    "to": 3.584083,
+    "delta_ms": 4.0,
+    "original_A42_fades_ms": 8,
+    "estimated_postpause_z_residue_energy_delta_db": -13.46749121888994,
+    "estimated_z_residue_duration_original_ms": 7.416999999999785,
+    "estimated_z_residue_duration_candidate_ms": 3.4169999999997813,
+    "f_10ms_energy_delta_vs_actual_db": -1.3069811388642236,
+    "f_core_energy_delta_vs_actual_db": -0.5681047252960809,
+    "four_vowel_onset_every_sample_unchanged": true,
+    "all_samples_outside_local_junction_unchanged": true,
+    "sentence_sample_count_unchanged": true,
+    "automatic_gain_unchanged": true,
+    "standard_pause_unchanged_s": 0.4,
+    "no_gain_or_speed_or_voice_model_change": true,
+    "candidate_array_sha256": "8807e6db027b4300a28f2209b496b7977c58619519889c575c00502f5eccef05",
+    "candidate_private_PCM_deleted_not_exported": true,
+    "formal_source_change_not_applied": true,
+    "candidate_does_not_have_native_encoded_acceptance_yet": true
+  },
+  "alternative_tradeoffs": {
+    "smaller_cut3_5825_f10ms_delta_db": -0.31105643301690833,
+    "smaller_cut3_5825_residue_energy_delta_db": -6.222361042380752,
+    "do_not_blindly_restore_old3_587667_f10ms_delta_db": -5.886702864413479
+  },
+  "fresh_original_whole_audio_checks": {
+    "original_health_failures": [],
+    "all_eight_original_health_metrics": {
+      "削波": [
+        0,
+        ""
+      ],
+      "直流偏移": [
+        4.324549867155552e-05,
+        "第9句"
+      ],
+      "咔哒": [
+        1.2277642298976592,
+        "第16句"
+      ],
+      "句尾截断": [
+        -56.04006376340624,
+        "第18句"
+      ],
+      "句首突起": [
+        -45.832767156483634,
+        "第9句"
+      ],
+      "齿音": [
+        2.979221802816614,
+        "第16句"
+      ],
+      "音色突变": [
+        0.29664811245976974,
+        "第10句"
+      ],
+      "语速突变": [
+        0.4744589707154547,
+        "第14句"
+      ]
+    },
+    "within_sentence_level_failures": [],
+    "whole_sentence_level_failures": [],
+    "original_R_summary": "全片 -22.8 LUFS，峰值 -0.6 dBFS，19 句，逐句与全片差 -1.0～+1.7 LU",
+    "integrated_lufs": -22.773077262585087,
+    "truepeak_dbfs": -0.5,
+    "LRA_LU": 3.2,
+    "native_original_audit_previously_passed": true,
+    "fresh_local_ASR_not_run_no_model_downloaded": true
+  },
+  "recommendation": "After higher-priority source28 delivery, review the bounded 3.584083 private candidate against the actual accepted junction; if adopted, change only this one source control leaf, preserve other voice controls and original cached mother, then run the unchanged original native audio/encode gates. Do not apply a whole-phrase boost, retime the sentence, or replace the entire voice.",
+  "limitations": [
+    "No human listening is claimed; spectral classification of z/f is an estimate, and no automatic whole-track metric proves pronunciation or subjective continuity perfect.",
+    "The candidate is pre-normalization PCM from the exact original function; native AF/AAC candidate comparison and ordinary production gates remain to be done by the production owner if adopted.",
+    "Original timed-model phoneme timing drifts at this junction; its f label cannot establish the correct cut alone."
+  ],
+  "scope_preservation": {
+    "new_TTS": false,
+    "formal_source_modified": false,
+    "approved_media_modified": false,
+    "GEN_DSP_core_programs_modified": false,
+    "released_or_uploaded": false,
+    "PDF_read_or_written": false,
+    "private_mother_PCM_cache_or_GT_exported": false,
+    "prior_tetris34_results_and_prior_three_repair_proofs_untouched": true
+  }
+}
