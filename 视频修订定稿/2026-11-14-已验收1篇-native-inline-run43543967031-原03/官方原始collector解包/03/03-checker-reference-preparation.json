@@ -1,0 +1,3406 @@
+{
+  "article": "03",
+  "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+  "reference_prepared": true,
+  "acceptance": false,
+  "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+  "source_sha256": "527f3bf4a11843f4d606188dabc6ebce6830da3fb454a49c782e3a595cb47407",
+  "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+  "checker_program_sha256": {
+    "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+    "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+    "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+    "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+    "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+    "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+  },
+  "reference_calls": [
+    {
+      "sentence": "标题",
+      "piece": null,
+      "reference_kind": "title-default-raw",
+      "method": "create",
+      "source_slice": "The Doctor Who Drank Bacteria to Win an Argument",
+      "exact_native_cache_key": "8169b9a16cde24cd34bc06988343498313076216.pkl",
+      "cache_input_text_sha256": "d7a8adc3d90d7173a60701ae49d86c26ab6b1e5dd5f95fd7fba91e929d9ce8bd",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "标题",
+      "piece": null,
+      "reference_kind": "title-default-timed",
+      "method": "create_timed",
+      "source_slice": "The Doctor Who Drank Bacteria to Win an Argument",
+      "exact_native_cache_key": "2bafb34ad989e473e32466fca4bfe12fce12d6f5.pkl",
+      "cache_input_text_sha256": "d7a8adc3d90d7173a60701ae49d86c26ab6b1e5dd5f95fd7fba91e929d9ce8bd",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "In 1984 Barry Marshall, a 32-year-old doctor at Fremantle Hospital, drank a brew of beef broth into which the microbial growth of two Petri dishes had been scraped.",
+      "exact_native_cache_key": "2a22e9d78268325abd0aed1e198f1923f943b595.pkl",
+      "cache_input_text_sha256": "e3430a402b19c2338ea5f1f31eff20f23f153bf0c161254c5ef39876dd44d817",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "In 1984 Barry Marshall, a 32-year-old doctor at Fremantle Hospital, drank a brew of beef broth into which the microbial growth of two Petri dishes had been scraped.",
+      "exact_native_cache_key": "f3cd810f2ee7a7d6cad58724fbba5c3c102c2db1.pkl",
+      "cache_input_text_sha256": "e3430a402b19c2338ea5f1f31eff20f23f153bf0c161254c5ef39876dd44d817",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "In 1984 Barry Marshall, a 32-year-old doctor at Fremantle Hospital,",
+      "exact_native_cache_key": "df03c5dc2882a812070fec724dcacd2256c6a42c.pkl",
+      "cache_input_text_sha256": "3376e2e3c1fbc4db7eeab0065f0b6609f0e6bb02b80e6b42e8495fbe88df580d",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S1",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "drank a brew of beef broth",
+      "exact_native_cache_key": "9b7661b1885f0f7038f1cd3792fdd90fe11b6bd4.pkl",
+      "cache_input_text_sha256": "05a181a642cc9f73408f6dc9676ea3c8bc8730b238a2713c6a4681f13e8e0307",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S1",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "into which the microbial growth of two Petri dishes",
+      "exact_native_cache_key": "fe92a0f535b86ed63ada27a9c414965f3f94b645.pkl",
+      "cache_input_text_sha256": "087ef3ba6306e0c5d4d1087b6fa756bafa3778fc0abce28a57f52af58fefe463",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S1",
+      "piece": 4,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "had been scraped.",
+      "exact_native_cache_key": "eb3f32cbb32fbb9671d42d554f4072649d97fed7.pkl",
+      "cache_input_text_sha256": "86c0a3b7d25dd3650f76f939558e54dbdb31ef06dae909c1c896d7eaa3670de5",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S1",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "In 1984 Barry Marshall,",
+      "exact_native_cache_key": "6e6af6e07d80392889a95b947aaf9351e51e0149.pkl",
+      "cache_input_text_sha256": "6c38f38a9b48133cb38d6693e18d71b8cb3f338c69f9503893a92f0e5734fe17",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "a 32-year-old doctor at Fremantle Hospital,",
+      "exact_native_cache_key": "3a438cbf3933bef2180cc0bed0e83da2cd82766e.pkl",
+      "cache_input_text_sha256": "cb575327db8a2fb68c8d91be002abeed047aa246e8bb4e4629b33faa0f51dada",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "drank a brew of beef broth into which the microbial growth of two Petri dishes had been scraped.",
+      "exact_native_cache_key": "43a057538b7828f596a1cbc6e70fc6eb584b73ab.pkl",
+      "cache_input_text_sha256": "8eefba857782414eb2b70847e1cf18141e3c5d516a72406d6849a4c83f77c907",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "The prevalent doctrine blamed ulcers on stress, spicy food, and excess acid secretion.",
+      "exact_native_cache_key": "53236620a5826e967b64f757b4266400771294ec.pkl",
+      "cache_input_text_sha256": "b323eb1d78302ba0971b35ef4821d7a47a2f844f550b371d1755726ad33cf5d3",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "The prevalent doctrine blamed ulcers on stress, spicy food, and excess acid secretion.",
+      "exact_native_cache_key": "f8af166bfe3ed8100dde4d628eff32b237fef177.pkl",
+      "cache_input_text_sha256": "b323eb1d78302ba0971b35ef4821d7a47a2f844f550b371d1755726ad33cf5d3",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "The prevalent doctrine blamed ulcers on",
+      "exact_native_cache_key": "4a45022a33fc358fefbee040bb1c9ff90e87d711.pkl",
+      "cache_input_text_sha256": "253c2a1ecc7a5740960d31bce27916863bed83263b5d00e30f32f62cefd68463",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S2",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "stress, spicy food, and excess acid secretion.",
+      "exact_native_cache_key": "b7ae168b284e11221134e01f992fa363164a53f0.pkl",
+      "cache_input_text_sha256": "66fbb6b10eb867496981bc0767e7f747670bb781f2700eb4f36a2d7a74a88f88",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S2",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "The prevalent doctrine blamed ulcers on stress,",
+      "exact_native_cache_key": "6598b4918c1dddcbc694dfbbf6d2ba59b2079542.pkl",
+      "cache_input_text_sha256": "879f093eab75e24214e8f97715c16bc2893b076f85fc36547c0631b74bdb3c9f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "spicy food,",
+      "exact_native_cache_key": "d55615d76b17e182364263eb82a7307efab24d7d.pkl",
+      "cache_input_text_sha256": "b7b94e611765e1c5b769229b234da38b18ad24d5bd7857c058d7761a965b9dc2",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "and excess acid secretion.",
+      "exact_native_cache_key": "55afaf0fb75ed5657d2c49acecdceda7ef1d4f3b.pkl",
+      "cache_input_text_sha256": "1293e895345931d5b9b715767b251a14b7fb0dbc2730390753afb4d93f1fd8cd",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "No bacterium, the profession firmly held, could withstand so caustic and hostile a habitat.",
+      "exact_native_cache_key": "ca37ffe2b269efcc36f8cea49dd3ac3d8498b36c.pkl",
+      "cache_input_text_sha256": "e1121618ddd1b41c096189f0c5f8f319dd8427185b940389f5b4753472f96129",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "No bacterium, the profession firmly held, could withstand so caustic and hostile a habitat.",
+      "exact_native_cache_key": "6520429b936de57bc87527260d802fe9860854e6.pkl",
+      "cache_input_text_sha256": "e1121618ddd1b41c096189f0c5f8f319dd8427185b940389f5b4753472f96129",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "No bacterium, the profession firmly held,",
+      "exact_native_cache_key": "4a7a7893854241e2c7ad9ae62c6566b5b6bc686d.pkl",
+      "cache_input_text_sha256": "bfc733ea57295d027ab10a139c1de776380df7505c9d1ecc55841d4287ea58c5",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S3",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "could withstand",
+      "exact_native_cache_key": "de0301f322040c72f23f0eff7bbe77e29a58e537.pkl",
+      "cache_input_text_sha256": "e468ee3d6a3abdc4f954776a20ce329ce31b1a2f2278355e97b67e474e9695c3",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S3",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "so caustic and hostile a habitat.",
+      "exact_native_cache_key": "d28c351e329aaa5ef68ed4754a4fb0221d4866c5.pkl",
+      "cache_input_text_sha256": "2c5189e6cc4b520efde1edfbdb68559bbf57d245a9543c386eecd7e113188e00",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S3",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "No bacterium,",
+      "exact_native_cache_key": "8f103b907e8fa896f637a053bcb159dd07a17b28.pkl",
+      "cache_input_text_sha256": "bf8543822107fc54acde3d99cf3588ab19ae81884ef1da6d51a2b04247f7a3fa",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "the profession firmly held,",
+      "exact_native_cache_key": "15a2e8ba38eaa4fba34f46446dba61df79a5eb46.pkl",
+      "cache_input_text_sha256": "9c0df999aea968ebfc470f1ebbe4e0c90dab2fa9eb184c96d511211e9587874c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "could withstand so caustic and hostile a habitat.",
+      "exact_native_cache_key": "6cdfa3f375f3258946fdaf7dc3117b2d12d619ee.pkl",
+      "cache_input_text_sha256": "5ec0017fbf651c45f8ced09337beacf43d7049b69c8ea7173338dffd6fd02607",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Yet Robin Warren, a pathologist at Royal Perth Hospital, had seen curved, coiled bacteria in gastric biopsies from patients with gastritis.",
+      "exact_native_cache_key": "5bb8167a5c29c91c48ce02ca9162103743ec6067.pkl",
+      "cache_input_text_sha256": "cb4b82aa2ef7818ae76f4041bd318245827c346b5433ea410d5e17f6a156380b",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Yet Robin Warren, a pathologist at Royal Perth Hospital, had seen curved, coiled bacteria in gastric biopsies from patients with gastritis.",
+      "exact_native_cache_key": "5481f9b36c7ac03d55edb14f4083e08f69a0c0ca.pkl",
+      "cache_input_text_sha256": "cb4b82aa2ef7818ae76f4041bd318245827c346b5433ea410d5e17f6a156380b",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Yet Robin Warren, a pathologist at Royal Perth Hospital,",
+      "exact_native_cache_key": "df69772411fc8a2332dc06ae62c9ca633eed8ec8.pkl",
+      "cache_input_text_sha256": "b29dbd2f76f56602ad38e39cd4681322cb40c05caaa974ecd226e5cbaf32a53d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S4",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "had seen curved, coiled bacteria in gastric biopsies",
+      "exact_native_cache_key": "bef754fbc7d878fc720e555fd680ef219aa43d36.pkl",
+      "cache_input_text_sha256": "ce814a43f9fd92f0d9921dd8992721aaf4bbc5098eac37b280801a22be583e1d",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S4",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "from patients with gastritis.",
+      "exact_native_cache_key": "aa047e81e2467e232de324dee240fa4bd514573d.pkl",
+      "cache_input_text_sha256": "3aff350bc9f4c1536a8e2c6c9b66737e0e16a6bb8f324d01324a9c741549245f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S4",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Yet Robin Warren,",
+      "exact_native_cache_key": "35d6c29a75d5e3e6b95c2b75c3d9f23c9e9e290d.pkl",
+      "cache_input_text_sha256": "e8b28ae435ef41d1f31426d87d9cb653506c5b21045056ee448e38fb0e7f6d27",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "a pathologist at Royal Perth Hospital,",
+      "exact_native_cache_key": "20e77d1edcc12dbd0c6ab7fdc121cdca4af1f494.pkl",
+      "cache_input_text_sha256": "d6369cbc47ee704a7a0ecd08645c909ef6a4e30ead77d9c9f13530309b23958f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "had seen curved,",
+      "exact_native_cache_key": "b6f892daaf0c79903675c62f8ddac4388b6f4852.pkl",
+      "cache_input_text_sha256": "00745bd47f18e70063816b1fba955223255a6133ad9ed63f59840366efd4c73a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 4,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "coiled bacteria in gastric biopsies from patients with gastritis.",
+      "exact_native_cache_key": "097954e915f7f80c17d0a39557a668dcffe7939e.pkl",
+      "cache_input_text_sha256": "e3c6f2d11a982742e98808f1b5316ccaf3958297395e0b8cdecb7b0e6d482ba8",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Marshall began to collaborate with him.",
+      "exact_native_cache_key": "3c2d4ca627e0dac3355dab6ee068923911732917.pkl",
+      "cache_input_text_sha256": "5a8851c6bb863f12b2308dfb9fbfcfb116de383afedefe8b91ed4adafd38f7fd",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Marshall began to collaborate with him.",
+      "exact_native_cache_key": "1a3c139e6d7c0250d8fdc0920cd37ecd16a11a0a.pkl",
+      "cache_input_text_sha256": "5a8851c6bb863f12b2308dfb9fbfcfb116de383afedefe8b91ed4adafd38f7fd",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Attempts to culture the germ were invariably unsuccessful until Easter 1982, when plates sat undisturbed in the incubator for about five days.",
+      "exact_native_cache_key": "ea3195184fd52d67f16ab2e235b68d148abd50a8.pkl",
+      "cache_input_text_sha256": "28a2f4686e32bf4fdd5018cbb2c236bcbb9c4413b8f72a0e213f0bd7f9d26cf6",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Attempts to culture the germ were invariably unsuccessful until Easter 1982, when plates sat undisturbed in the incubator for about five days.",
+      "exact_native_cache_key": "2dced9542441ec4b5808c411a2b5f13a1421fb8e.pkl",
+      "cache_input_text_sha256": "28a2f4686e32bf4fdd5018cbb2c236bcbb9c4413b8f72a0e213f0bd7f9d26cf6",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Attempts to culture the germ",
+      "exact_native_cache_key": "5f30028c5a521e784b3f2f1f8ac638c2a39776fe.pkl",
+      "cache_input_text_sha256": "53d13e5071d1302268e3794e25c6908449c5656b1760b78153248001f2e195c6",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S6",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "were invariably unsuccessful",
+      "exact_native_cache_key": "d3341df39fb4946ee3e5586a1d489d0c3dced06e.pkl",
+      "cache_input_text_sha256": "9aa782b1528cb84ce428fc276960321d7b2f05c956648cff4b511929079fe410",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S6",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "until Easter 1982,",
+      "exact_native_cache_key": "0d527c8780412153f61101edff5317f9d7b57036.pkl",
+      "cache_input_text_sha256": "e49e0fc7f6c7fbf3ec4a0f95a534bb0dbb741b13da79614645c210896ffd1f73",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S6",
+      "piece": 4,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "when plates sat undisturbed",
+      "exact_native_cache_key": "7c6a660b659574b53463d2103b2d6c041aa4dead.pkl",
+      "cache_input_text_sha256": "f4ab4c7ba3f359dc99b42f049c8feeb68ee8120a64719806bd1f29bfa2690a32",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S6",
+      "piece": 5,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "in the incubator for about five days.",
+      "exact_native_cache_key": "a5eb77372a2e39b5a810a0e56e1672a9d35fb19b.pkl",
+      "cache_input_text_sha256": "40c959f9333f1bf4bc63815f905df492f7dd5afc75a16cff8f88a6f130a84450",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S6",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Attempts to culture the germ were invariably unsuccessful until Easter 1982,",
+      "exact_native_cache_key": "e38c782ef1f7069589e2745d46100ca102a6efbd.pkl",
+      "cache_input_text_sha256": "90e54d241932de5668a42803667466196efbd7abe8a0196d6318a96950c1ca68",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "when plates sat undisturbed in the incubator for about five days.",
+      "exact_native_cache_key": "aecd8385ef08804fc662850e0398f8ddf3505167.pkl",
+      "cache_input_text_sha256": "92914c3bfcbc8e8463de30c44c884d0b334dc2fcfdd0661793edf22ece4741d3",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "They were ordinarily binned after two.",
+      "exact_native_cache_key": "b49771d81e47bd93165da9b64ba19ca772afd7ca.pkl",
+      "cache_input_text_sha256": "a04ef2f1f4f128094750893e30652c65e69e07716e09e3ae771dd34441efca8a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "They were ordinarily binned after two.",
+      "exact_native_cache_key": "2545be2459982db7271af5c61cfbe4bea839698f.pkl",
+      "cache_input_text_sha256": "a04ef2f1f4f128094750893e30652c65e69e07716e09e3ae771dd34441efca8a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Colonies blossomed.",
+      "exact_native_cache_key": "366a892f62336b8ca4448fc5124d2da87543fe21.pkl",
+      "cache_input_text_sha256": "5a21b6a6e1ee7e125f34fed77a097d74ea73b344a6b2eb39e216b6878e773da2",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Colonies blossomed.",
+      "exact_native_cache_key": "c5ff5d3953b98509c0640956f57409d1dae90dcc.pkl",
+      "cache_input_text_sha256": "5a21b6a6e1ee7e125f34fed77a097d74ea73b344a6b2eb39e216b6878e773da2",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "The organism was later named Helicobacter pylori.",
+      "exact_native_cache_key": "fe7224c3f888c3999075cc5c3166efe3201d24c1.pkl",
+      "cache_input_text_sha256": "76a18bccc88e5c6ca48f89a332458bcd1bdbb93a3ce47e3234e089a1b7c30735",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "The organism was later named Helicobacter pylori.",
+      "exact_native_cache_key": "4d257a4a91fc75e6a6c1e1da353b3493ead6081b.pkl",
+      "cache_input_text_sha256": "76a18bccc88e5c6ca48f89a332458bcd1bdbb93a3ce47e3234e089a1b7c30735",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "In 1983 unimpressed assessors at the Gastroenterological Society of Australia relegated the pair's paper to the bottom tenth of that year's submissions.",
+      "exact_native_cache_key": "044fef883debf5a4023d5a15d812b2d07a271af9.pkl",
+      "cache_input_text_sha256": "df0d54171f596502e5a87d13311b35d06beb4854b4ab2c5ef9e016bfdf8c0ccf",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "In 1983 unimpressed assessors at the Gastroenterological Society of Australia relegated the pair's paper to the bottom tenth of that year's submissions.",
+      "exact_native_cache_key": "9805a7c0e3f8ac4ecc1eddc66e3a7f873b0405cd.pkl",
+      "cache_input_text_sha256": "df0d54171f596502e5a87d13311b35d06beb4854b4ab2c5ef9e016bfdf8c0ccf",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "In 1983 unimpressed assessors at the Gastroenterological Society of Australia",
+      "exact_native_cache_key": "aedaa7e5fcaf3540d7c901c2ec4a889b76262fd2.pkl",
+      "cache_input_text_sha256": "1342be5056d6214135d90edcf0a1564df01d8a4b111a1ee156b88d322eafe7a9",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S10",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "relegated the pair's paper",
+      "exact_native_cache_key": "b64f9884f0cc83b98a04309642aca42c77638d66.pkl",
+      "cache_input_text_sha256": "85369b44c5787eaed6481823b0df162ce6d4023504c4fad4a1fa349acd75b063",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S10",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "to the bottom tenth of that year's submissions.",
+      "exact_native_cache_key": "41bcb98f474045add49cf275182ffecf17cb86cc.pkl",
+      "cache_input_text_sha256": "945fcda9637073bbebf429307f897e25272ff6633f7c75d7b9507e4d1f784035",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S11",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Efforts to infect swine were likewise in vain.",
+      "exact_native_cache_key": "59e6a0780470b770c0adbc49c6a5d4fe9f5636ef.pkl",
+      "cache_input_text_sha256": "718e3a2361ff0b26499c60c331621395df30686d5569be6742d0f85eb78e6c67",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Efforts to infect swine were likewise in vain.",
+      "exact_native_cache_key": "3381028dd3fa75465fae377f276711a2e7bbda2b.pkl",
+      "cache_input_text_sha256": "718e3a2361ff0b26499c60c331621395df30686d5569be6742d0f85eb78e6c67",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Efforts to infect swine",
+      "exact_native_cache_key": "fa3ec24ed9ab03fe9430929658922404023121d8.pkl",
+      "cache_input_text_sha256": "58193597f38e9fd78bcd4ca55c51a580cc5db84402b87e44a0a00c6011b9a7d0",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S11",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "were likewise in vain.",
+      "exact_native_cache_key": "8d8b8752174ac4faded5ab6fd345001c1bc3d628.pkl",
+      "cache_input_text_sha256": "c16d92851913c9dc7fe074f968c09d541acd0da2c7e8316e900d26023d93ada2",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S12",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Marshall made himself the guinea pig.",
+      "exact_native_cache_key": "2678f577a6bd00b519ab70b5ae4edd79d1dbf7f6.pkl",
+      "cache_input_text_sha256": "89b67fed92356d289e5555698fe5670b64d41570b37acec6d48d2627fba0573d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Marshall made himself the guinea pig.",
+      "exact_native_cache_key": "47fe4deac8d39aa82b6024231b2fcb436481567e.pkl",
+      "cache_input_text_sha256": "89b67fed92356d289e5555698fe5670b64d41570b37acec6d48d2627fba0573d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Within days Marshall was vomiting, his breath had a disagreeable odour and weariness set in.",
+      "exact_native_cache_key": "252aa787c62c3565b86dd91b49bd89c4c3b2a874.pkl",
+      "cache_input_text_sha256": "775e4945ce3ed8cdb4af1c4f357190d0e4e452d1f606b367ffdfbe0dcfadde5c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Within days Marshall was vomiting, his breath had a disagreeable odour and weariness set in.",
+      "exact_native_cache_key": "5828a3dd32536d4be0323d29e2385ea4e0fa361a.pkl",
+      "cache_input_text_sha256": "775e4945ce3ed8cdb4af1c4f357190d0e4e452d1f606b367ffdfbe0dcfadde5c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Within days Marshall was vomiting,",
+      "exact_native_cache_key": "f1d3eccac514419260223b2b764763b2844e1185.pkl",
+      "cache_input_text_sha256": "3f802735bd9b8fc78d8432b78a292db2836c42ed7262f1bc3b2e064a08f1bf2e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "his breath had a disagreeable odour",
+      "exact_native_cache_key": "543757cc0dd747037869a1333a565d88130fde25.pkl",
+      "cache_input_text_sha256": "c0fb552a87f1364b03bc099d06581e2a48fb25960abf41710aebe85df4be9d7e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S13",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "and weariness set in.",
+      "exact_native_cache_key": "641a8433b192d9d858ff64a9f8bf98aea59c2bdb.pkl",
+      "cache_input_text_sha256": "f034b7f3e9e24b7ae774eb6d9636507d4dfc9f7ecdaf188538d73e6e7e608830",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S13",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Within days Marshall was vomiting,",
+      "exact_native_cache_key": "f1d3eccac514419260223b2b764763b2844e1185.pkl",
+      "cache_input_text_sha256": "3f802735bd9b8fc78d8432b78a292db2836c42ed7262f1bc3b2e064a08f1bf2e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "his breath had a disagreeable odour and weariness set in.",
+      "exact_native_cache_key": "7556d01156329123c61203329883ef62977443d3.pkl",
+      "cache_input_text_sha256": "1737fff90b278ac2ac7582dba54c054e00d4a67609fa9b99e503005ced9b7dd1",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "About ten days later an endoscopy revealed gastritis, an inflammation of the stomach's mucous membrane and a precursor to ulcers, albeit not an ulcer itself.",
+      "exact_native_cache_key": "2b2d95e38706aee399c7ee4998b835a41cf5137f.pkl",
+      "cache_input_text_sha256": "fb5c6328a987b642cfb9a6cce509fec40c864a68ce225f41724570138659f642",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "About ten days later an endoscopy revealed gastritis, an inflammation of the stomach's mucous membrane and a precursor to ulcers, albeit not an ulcer itself.",
+      "exact_native_cache_key": "5f7b2cd0b40a5fe780abb61ae4d18a554a3c2829.pkl",
+      "cache_input_text_sha256": "fb5c6328a987b642cfb9a6cce509fec40c864a68ce225f41724570138659f642",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "About ten days later an endoscopy revealed gastritis,",
+      "exact_native_cache_key": "1ec57782d1ed00d356d0928d89588478c67b6f63.pkl",
+      "cache_input_text_sha256": "4b0ecb74035781f7528e6ed9b46d0b294f9645ba301adf8955bcc95708d0dbee",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "an inflammation of the stomach's mucous membrane",
+      "exact_native_cache_key": "81019dede5070182b5d265cedc06adda28a68357.pkl",
+      "cache_input_text_sha256": "e2c348bee1470e78df9b643826493652c21e8799b6e4be41dd301984b406580d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S14",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "and a precursor to ulcers,",
+      "exact_native_cache_key": "dfea6c83acf540a168de959fd66a836ff1c55190.pkl",
+      "cache_input_text_sha256": "12db14d9d7e17af6bd2a12ee30a2c1764b5831aea554ac6358e01b9663a40c51",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S14",
+      "piece": 4,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "albeit not an ulcer itself.",
+      "exact_native_cache_key": "74394635d986bb41e4754b4bf55e542eb0c80c64.pkl",
+      "cache_input_text_sha256": "733f81410f533ca913ec47bd7de6c24246951be47046771cfaa7f15306f4e31c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "About ten days later an endoscopy revealed gastritis,",
+      "exact_native_cache_key": "1ec57782d1ed00d356d0928d89588478c67b6f63.pkl",
+      "cache_input_text_sha256": "4b0ecb74035781f7528e6ed9b46d0b294f9645ba301adf8955bcc95708d0dbee",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "an inflammation of the stomach's mucous membrane and a precursor to ulcers,",
+      "exact_native_cache_key": "2f2401b95bca6b46200036eb0ea07e4c03ccccba.pkl",
+      "cache_input_text_sha256": "3e435c9bbf6428ae0d190ec1e94597af9892969bad37b2eb0ca26dfd6e828d6f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "albeit not an ulcer itself.",
+      "exact_native_cache_key": "74394635d986bb41e4754b4bf55e542eb0c80c64.pkl",
+      "cache_input_text_sha256": "733f81410f533ca913ec47bd7de6c24246951be47046771cfaa7f15306f4e31c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "The germ was cultured directly from his stomach.",
+      "exact_native_cache_key": "5bd8b9a4a09b647e017e1dc60739721725fabef3.pkl",
+      "cache_input_text_sha256": "b6305e32f4863bf3f9bbbaa6bc1ba094896df323dd0e7be74d143c1f355d4a21",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "The germ was cultured directly from his stomach.",
+      "exact_native_cache_key": "c1d560cddc843991e5701aede6a731efdcbc01db.pkl",
+      "cache_input_text_sha256": "b6305e32f4863bf3f9bbbaa6bc1ba094896df323dd0e7be74d143c1f355d4a21",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Spurred on by his insistent spouse, Marshall took antibiotics, which cleared the infection.",
+      "exact_native_cache_key": "30658bd4edf24fd816e1536a91d91b0dce94399d.pkl",
+      "cache_input_text_sha256": "382020530e23ed7657da90c74a27822c8737b9134b89a80a152e6d28ba5d2fc6",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Spurred on by his insistent spouse, Marshall took antibiotics, which cleared the infection.",
+      "exact_native_cache_key": "1afc5e7ef7aac8d9d620f2eb465d3a2cd82d68e7.pkl",
+      "cache_input_text_sha256": "382020530e23ed7657da90c74a27822c8737b9134b89a80a152e6d28ba5d2fc6",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Spurred on by his insistent spouse,",
+      "exact_native_cache_key": "7ddba8b8a046e3cce103f81ecf0d850f5b166e7e.pkl",
+      "cache_input_text_sha256": "112aee42a841144a620579ea65613616fe952f5812877bd9f1f9b5c977e5e624",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Marshall took antibiotics,",
+      "exact_native_cache_key": "e60af417d4ea7a16a9479fc5a98fd00bb8a21a3e.pkl",
+      "cache_input_text_sha256": "b18b43d3ebd85c3fbbd83e01d090b41552c3a2747ced09746e4a00d19c25d2df",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "which cleared the infection.",
+      "exact_native_cache_key": "01a8fadd2a9ab5822a01731848f793d162718590.pkl",
+      "cache_input_text_sha256": "667cf7fd7d3e018ff6d6b8637cabcf1c15e7d0a18227319858a4d911d2209860",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Spurred on by his insistent spouse,",
+      "exact_native_cache_key": "7ddba8b8a046e3cce103f81ecf0d850f5b166e7e.pkl",
+      "cache_input_text_sha256": "112aee42a841144a620579ea65613616fe952f5812877bd9f1f9b5c977e5e624",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Marshall took antibiotics,",
+      "exact_native_cache_key": "e60af417d4ea7a16a9479fc5a98fd00bb8a21a3e.pkl",
+      "cache_input_text_sha256": "b18b43d3ebd85c3fbbd83e01d090b41552c3a2747ced09746e4a00d19c25d2df",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "which cleared the infection.",
+      "exact_native_cache_key": "01a8fadd2a9ab5822a01731848f793d162718590.pkl",
+      "cache_input_text_sha256": "667cf7fd7d3e018ff6d6b8637cabcf1c15e7d0a18227319858a4d911d2209860",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Ulcers came to be treated with such medication.",
+      "exact_native_cache_key": "88f6b7e7b9c3b1fcfccda6ac7fb43ffde254abab.pkl",
+      "cache_input_text_sha256": "d14cebd9a0e5092cdc74005beed533dc0476204269902f93ddcdb45beccac7f5",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Ulcers came to be treated with such medication.",
+      "exact_native_cache_key": "3271c02b947fe7108c72d8129fead8595a5c7bb6.pkl",
+      "cache_input_text_sha256": "d14cebd9a0e5092cdc74005beed533dc0476204269902f93ddcdb45beccac7f5",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S18",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "In 2005 Marshall and Warren shared the Nobel Prize in Physiology or Medicine for discovering Helicobacter pylori and its role in gastritis and peptic ulcer disease.",
+      "exact_native_cache_key": "bf0a015722e735b00bd1334b64b1e8bff093556d.pkl",
+      "cache_input_text_sha256": "581fa123a989d1631a07245f276b37e4785eb32b489364d05e6773d10bc827d1",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S18",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "In 2005 Marshall and Warren shared the Nobel Prize in Physiology or Medicine for discovering Helicobacter pylori and its role in gastritis and peptic ulcer disease.",
+      "exact_native_cache_key": "7c3bf0fdfd489e9fec64b290e9a33039eed61f98.pkl",
+      "cache_input_text_sha256": "581fa123a989d1631a07245f276b37e4785eb32b489364d05e6773d10bc827d1",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S18",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "In 2005 Marshall and Warren shared",
+      "exact_native_cache_key": "daff882768bb0e16f9da010bfa72605a776b6263.pkl",
+      "cache_input_text_sha256": "9763a77a4320a0463c6194eec21a161310c5da8d10da2230d84c70e2aea0bbfb",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S18",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "the Nobel Prize in Physiology or Medicine",
+      "exact_native_cache_key": "c116b790fef2a9e301815ad9738ece4c6e7ac2aa.pkl",
+      "cache_input_text_sha256": "2c1fcfeb52ddcf2b477358bc80c11d3a20d104e5046cb5c4c0dfc0b885f4edda",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S18",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "for discovering Helicobacter pylori",
+      "exact_native_cache_key": "99c85a72440a5ee581d50f538b2b58c3bd12a887.pkl",
+      "cache_input_text_sha256": "c88eb76aa869e3a36928a9c6a688262a657ec5c03c4f06e819ee734be7e2c799",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S18",
+      "piece": 4,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "and its role in gastritis and peptic ulcer disease.",
+      "exact_native_cache_key": "ee12d3ea73fea6e85af0f1d5838a8218cbd04379.pkl",
+      "cache_input_text_sha256": "19e3aab6d4f04a89df2db85796ee95b11558fc9e253de78b4b6325b7f501eecb",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": false
+    },
+    {
+      "sentence": "S19",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Gastritis, the illness Marshall had willingly given himself, is named in the prize citation.",
+      "exact_native_cache_key": "8c2be12a83cdaea3e714e6122fb840f3ceca0568.pkl",
+      "cache_input_text_sha256": "0dd591327e23b80a77f0fdfcfbf6f03279ce6198ca57bb45fe6c91ee858a58c2",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S19",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Gastritis, the illness Marshall had willingly given himself, is named in the prize citation.",
+      "exact_native_cache_key": "2ebb89bf0b9c30a0d738f29e86dfa8a9d03212a2.pkl",
+      "cache_input_text_sha256": "0dd591327e23b80a77f0fdfcfbf6f03279ce6198ca57bb45fe6c91ee858a58c2",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S19",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Gastritis,",
+      "exact_native_cache_key": "87dc9245fa6ec133d287103c50622dd329df8295.pkl",
+      "cache_input_text_sha256": "b72899480d253be3567741a944128fa289c2523baf4aebd440c993b4405cc0fd",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S19",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "the illness Marshall had willingly given himself,",
+      "exact_native_cache_key": "3f21c013f7d393a142ced2d4c3919e80f1f4fe17.pkl",
+      "cache_input_text_sha256": "a4b7a2051eeec9a82d7cb6db6b1d5092b0c6fd0c05630a06a6b8f7e5c6bfbea0",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S19",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "is named in the prize citation.",
+      "exact_native_cache_key": "ff66ebbf3135c0718e349da813f5ee9fd922ee9e.pkl",
+      "cache_input_text_sha256": "5cc387faf8bba35201e489b323a8e566362e33840326fb7fccf5e9fea10d636f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S19",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Gastritis,",
+      "exact_native_cache_key": "87dc9245fa6ec133d287103c50622dd329df8295.pkl",
+      "cache_input_text_sha256": "b72899480d253be3567741a944128fa289c2523baf4aebd440c993b4405cc0fd",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S19",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "the illness Marshall had willingly given himself,",
+      "exact_native_cache_key": "3f21c013f7d393a142ced2d4c3919e80f1f4fe17.pkl",
+      "cache_input_text_sha256": "a4b7a2051eeec9a82d7cb6db6b1d5092b0c6fd0c05630a06a6b8f7e5c6bfbea0",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S19",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "is named in the prize citation.",
+      "exact_native_cache_key": "ff66ebbf3135c0718e349da813f5ee9fd922ee9e.pkl",
+      "cache_input_text_sha256": "5cc387faf8bba35201e489b323a8e566362e33840326fb7fccf5e9fea10d636f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    }
+  ],
+  "unique_reference_key_count": 96,
+  "raw_mother_cache_scalar_manifest": [
+    {
+      "exact_native_cache_key": "8169b9a16cde24cd34bc06988343498313076216.pkl",
+      "pkl_sha256": "bab6faeedf996e315063d368736f1e1d4add410a62fd4fbd55cc5d0c79d7d2aa",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "标题",
+          "piece": null,
+          "reference_kind": "title-default-raw",
+          "method": "create",
+          "source_slice": "The Doctor Who Drank Bacteria to Win an Argument",
+          "exact_native_cache_key": "8169b9a16cde24cd34bc06988343498313076216.pkl",
+          "cache_input_text_sha256": "d7a8adc3d90d7173a60701ae49d86c26ab6b1e5dd5f95fd7fba91e929d9ce8bd",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        75264
+      ],
+      "unprocessed_array_sha256": "6093643a77cb1d72a8d8a50001bb229409c9a5d465d56081c831026aa8f719e4"
+    },
+    {
+      "exact_native_cache_key": "2a22e9d78268325abd0aed1e198f1923f943b595.pkl",
+      "pkl_sha256": "9cf9eea51a1f436c0869306ffa92fa79238a887280c4093ef8203330f28eec26",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In 1984 Barry Marshall, a 32-year-old doctor at Fremantle Hospital, drank a brew of beef broth into which the microbial growth of two Petri dishes had been scraped.",
+          "exact_native_cache_key": "2a22e9d78268325abd0aed1e198f1923f943b595.pkl",
+          "cache_input_text_sha256": "e3430a402b19c2338ea5f1f31eff20f23f153bf0c161254c5ef39876dd44d817",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        297984
+      ],
+      "unprocessed_array_sha256": "e3dd7b2fcd9ff4e99d3878307d38cdb66ffafce714ada611025422c0d8b70cb4"
+    },
+    {
+      "exact_native_cache_key": "df03c5dc2882a812070fec724dcacd2256c6a42c.pkl",
+      "pkl_sha256": "266c705e18ff257fb9b8bf8af2eba3d50510de49b62034edb2fb8bf077c4dee2",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In 1984 Barry Marshall, a 32-year-old doctor at Fremantle Hospital,",
+          "exact_native_cache_key": "df03c5dc2882a812070fec724dcacd2256c6a42c.pkl",
+          "cache_input_text_sha256": "3376e2e3c1fbc4db7eeab0065f0b6609f0e6bb02b80e6b42e8495fbe88df580d",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "266c705e18ff257f",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        144384
+      ],
+      "unprocessed_array_sha256": "2f431479d85905918f7a529f411cb06c16560c218f4dcb68ec18d71f3c2091b0"
+    },
+    {
+      "exact_native_cache_key": "9b7661b1885f0f7038f1cd3792fdd90fe11b6bd4.pkl",
+      "pkl_sha256": "66ba5453390c9d2fb37a24747e9caee6c8c8d2249644511cc637ff1f3e5336cb",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "drank a brew of beef broth",
+          "exact_native_cache_key": "9b7661b1885f0f7038f1cd3792fdd90fe11b6bd4.pkl",
+          "cache_input_text_sha256": "05a181a642cc9f73408f6dc9676ea3c8bc8730b238a2713c6a4681f13e8e0307",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "66ba5453390c9d2f",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        37376
+      ],
+      "unprocessed_array_sha256": "10af6ca1db8daae382228f1f1e2585c0286de110216757865ba5fd68c9a99f7a"
+    },
+    {
+      "exact_native_cache_key": "fe92a0f535b86ed63ada27a9c414965f3f94b645.pkl",
+      "pkl_sha256": "125da82740c8656370a78b8261608b26a1392a7cb19d0a230f8ea1c547177f16",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "into which the microbial growth of two Petri dishes",
+          "exact_native_cache_key": "fe92a0f535b86ed63ada27a9c414965f3f94b645.pkl",
+          "cache_input_text_sha256": "087ef3ba6306e0c5d4d1087b6fa756bafa3778fc0abce28a57f52af58fefe463",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "125da82740c86563",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        74752
+      ],
+      "unprocessed_array_sha256": "6fc45071a034073d634b55d870a37325cb9eb466eda1e4bd90187a67608a52f9"
+    },
+    {
+      "exact_native_cache_key": "eb3f32cbb32fbb9671d42d554f4072649d97fed7.pkl",
+      "pkl_sha256": "da0d5e88bc75bcd24bb86077c126848e6a99ec89be0b4dfd21c324f6bc0207c3",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 4,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "had been scraped.",
+          "exact_native_cache_key": "eb3f32cbb32fbb9671d42d554f4072649d97fed7.pkl",
+          "cache_input_text_sha256": "86c0a3b7d25dd3650f76f939558e54dbdb31ef06dae909c1c896d7eaa3670de5",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "da0d5e88bc75bcd2",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        27136
+      ],
+      "unprocessed_array_sha256": "b85459cf197c472c95f6911d19a943d608397d91985a4d96212b41b54a36a015"
+    },
+    {
+      "exact_native_cache_key": "6e6af6e07d80392889a95b947aaf9351e51e0149.pkl",
+      "pkl_sha256": "c04d7b0ed41acdc1028089cd45f9ced1a9d708d7cb84045f3ac06aa871d385c3",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In 1984 Barry Marshall,",
+          "exact_native_cache_key": "6e6af6e07d80392889a95b947aaf9351e51e0149.pkl",
+          "cache_input_text_sha256": "6c38f38a9b48133cb38d6693e18d71b8cb3f338c69f9503893a92f0e5734fe17",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        53248
+      ],
+      "unprocessed_array_sha256": "4b5077c0f4785d8a558448abcd4aebab06cd55ce7b543b133b9737d80959c682"
+    },
+    {
+      "exact_native_cache_key": "3a438cbf3933bef2180cc0bed0e83da2cd82766e.pkl",
+      "pkl_sha256": "7cd2e511611b1542f76c3addd6d03d9fcfc7809efb1c5ea984f53abb85c13aa7",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a 32-year-old doctor at Fremantle Hospital,",
+          "exact_native_cache_key": "3a438cbf3933bef2180cc0bed0e83da2cd82766e.pkl",
+          "cache_input_text_sha256": "cb575327db8a2fb68c8d91be002abeed047aa246e8bb4e4629b33faa0f51dada",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        77312
+      ],
+      "unprocessed_array_sha256": "3d03da6813d6b752a9067bb7f82cfc9515cda8a9b7fc15aabfe24f64088ca1ef"
+    },
+    {
+      "exact_native_cache_key": "43a057538b7828f596a1cbc6e70fc6eb584b73ab.pkl",
+      "pkl_sha256": "c616422d07f60a3d5e20d26c9093f4029079419282609c1b0a174979dcd3b091",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "drank a brew of beef broth into which the microbial growth of two Petri dishes had been scraped.",
+          "exact_native_cache_key": "43a057538b7828f596a1cbc6e70fc6eb584b73ab.pkl",
+          "cache_input_text_sha256": "8eefba857782414eb2b70847e1cf18141e3c5d516a72406d6849a4c83f77c907",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        146432
+      ],
+      "unprocessed_array_sha256": "0ac6386ef1b538659c44ce7542dec3ce2275e72696c5d78089100aacd3a3c07f"
+    },
+    {
+      "exact_native_cache_key": "53236620a5826e967b64f757b4266400771294ec.pkl",
+      "pkl_sha256": "d4b25d99e981464e06db9fb7a7d6775f27a944a0eb3318ea72ed2549687fa813",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The prevalent doctrine blamed ulcers on stress, spicy food, and excess acid secretion.",
+          "exact_native_cache_key": "53236620a5826e967b64f757b4266400771294ec.pkl",
+          "cache_input_text_sha256": "b323eb1d78302ba0971b35ef4821d7a47a2f844f550b371d1755726ad33cf5d3",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        150528
+      ],
+      "unprocessed_array_sha256": "82640c1288a17e8bd0d89a83b8f9a0079aefd17e8dc565195caac56cef7ea28b"
+    },
+    {
+      "exact_native_cache_key": "4a45022a33fc358fefbee040bb1c9ff90e87d711.pkl",
+      "pkl_sha256": "f1b1a6c986f74ff9a9a22a5c0ac7e942d115fc5d814cfcaec5310dc44788b527",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "The prevalent doctrine blamed ulcers on",
+          "exact_native_cache_key": "4a45022a33fc358fefbee040bb1c9ff90e87d711.pkl",
+          "cache_input_text_sha256": "253c2a1ecc7a5740960d31bce27916863bed83263b5d00e30f32f62cefd68463",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "f1b1a6c986f74ff9",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        57344
+      ],
+      "unprocessed_array_sha256": "4ae9deef3fe0997f2ea88666b13bc6391d502b92b895e5a95ea09c7aba0663e5"
+    },
+    {
+      "exact_native_cache_key": "b7ae168b284e11221134e01f992fa363164a53f0.pkl",
+      "pkl_sha256": "bc218ac5e587b4477d6dab18db9ac23e1c2ab5c649afe078d659c15498cf5e59",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "stress, spicy food, and excess acid secretion.",
+          "exact_native_cache_key": "b7ae168b284e11221134e01f992fa363164a53f0.pkl",
+          "cache_input_text_sha256": "66fbb6b10eb867496981bc0767e7f747670bb781f2700eb4f36a2d7a74a88f88",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "bc218ac5e587b447",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        82432
+      ],
+      "unprocessed_array_sha256": "cab4a357ef3921cf26606b748d2bb2085fefe1827943c3addb27a5c7955b4307"
+    },
+    {
+      "exact_native_cache_key": "6598b4918c1dddcbc694dfbbf6d2ba59b2079542.pkl",
+      "pkl_sha256": "b903e21e44b8f4309056bbc1ad666b6223b58762e8d51cb9d4e3add1df5b7fca",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "The prevalent doctrine blamed ulcers on stress,",
+          "exact_native_cache_key": "6598b4918c1dddcbc694dfbbf6d2ba59b2079542.pkl",
+          "cache_input_text_sha256": "879f093eab75e24214e8f97715c16bc2893b076f85fc36547c0631b74bdb3c9f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        68608
+      ],
+      "unprocessed_array_sha256": "289809b547f097792adc047bfaebb2dacc90e0c7cd6325d53bf055d1405806cf"
+    },
+    {
+      "exact_native_cache_key": "d55615d76b17e182364263eb82a7307efab24d7d.pkl",
+      "pkl_sha256": "51e92b57c8607445c6824c1f83341009e314a75c43d89517da05fe6bb46902d3",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "spicy food,",
+          "exact_native_cache_key": "d55615d76b17e182364263eb82a7307efab24d7d.pkl",
+          "cache_input_text_sha256": "b7b94e611765e1c5b769229b234da38b18ad24d5bd7857c058d7761a965b9dc2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        26112
+      ],
+      "unprocessed_array_sha256": "c6e3187123a25200524f8d25e24e71abec856442439473039ff2603a1808db03"
+    },
+    {
+      "exact_native_cache_key": "55afaf0fb75ed5657d2c49acecdceda7ef1d4f3b.pkl",
+      "pkl_sha256": "e3d53bef7568901e9a7e85f7f7e1b9dc254a8f5fb9f4baca9392b4fa749378c4",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and excess acid secretion.",
+          "exact_native_cache_key": "55afaf0fb75ed5657d2c49acecdceda7ef1d4f3b.pkl",
+          "cache_input_text_sha256": "1293e895345931d5b9b715767b251a14b7fb0dbc2730390753afb4d93f1fd8cd",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        44544
+      ],
+      "unprocessed_array_sha256": "89ddd1b7501dbec3a8af2c5fc8529cd8c689206593c4c9a4ee10522087179d53"
+    },
+    {
+      "exact_native_cache_key": "ca37ffe2b269efcc36f8cea49dd3ac3d8498b36c.pkl",
+      "pkl_sha256": "32b9125f306bc9d16beac7199af2a9e5bed280873df1c5fc358701a77ff7c4bf",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "No bacterium, the profession firmly held, could withstand so caustic and hostile a habitat.",
+          "exact_native_cache_key": "ca37ffe2b269efcc36f8cea49dd3ac3d8498b36c.pkl",
+          "cache_input_text_sha256": "e1121618ddd1b41c096189f0c5f8f319dd8427185b940389f5b4753472f96129",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        154112
+      ],
+      "unprocessed_array_sha256": "ec0d0931ff9584cc1b23ad214adb237af1c881c9628bff642f1c55c52e3265ec"
+    },
+    {
+      "exact_native_cache_key": "4a7a7893854241e2c7ad9ae62c6566b5b6bc686d.pkl",
+      "pkl_sha256": "ee2228b4f0ea094b67efc15aca60832840e8077a078adbaad53a7a7761f2d6b7",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "No bacterium, the profession firmly held,",
+          "exact_native_cache_key": "4a7a7893854241e2c7ad9ae62c6566b5b6bc686d.pkl",
+          "cache_input_text_sha256": "bfc733ea57295d027ab10a139c1de776380df7505c9d1ecc55841d4287ea58c5",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "ee2228b4f0ea094b",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        65024
+      ],
+      "unprocessed_array_sha256": "69a475499c832d2cc70d1ff85409a4fa84c6596f074a8bb723b469ae529af095"
+    },
+    {
+      "exact_native_cache_key": "de0301f322040c72f23f0eff7bbe77e29a58e537.pkl",
+      "pkl_sha256": "545c6c8886212cf9076beca9437d3bba6ffb22b8e531498c0998ff31bf02dccf",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "could withstand",
+          "exact_native_cache_key": "de0301f322040c72f23f0eff7bbe77e29a58e537.pkl",
+          "cache_input_text_sha256": "e468ee3d6a3abdc4f954776a20ce329ce31b1a2f2278355e97b67e474e9695c3",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "545c6c8886212cf9",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        24576
+      ],
+      "unprocessed_array_sha256": "db4f2a1259148e6045a5cac6df57b723ca9a297ed18416aa0832bed0f963812e"
+    },
+    {
+      "exact_native_cache_key": "d28c351e329aaa5ef68ed4754a4fb0221d4866c5.pkl",
+      "pkl_sha256": "e7182e39cc5ebc962cef839f86fb7fbe024d15e1a96a80b7f1d9598541265cb7",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "so caustic and hostile a habitat.",
+          "exact_native_cache_key": "d28c351e329aaa5ef68ed4754a4fb0221d4866c5.pkl",
+          "cache_input_text_sha256": "2c5189e6cc4b520efde1edfbdb68559bbf57d245a9543c386eecd7e113188e00",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "e7182e39cc5ebc96",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        53760
+      ],
+      "unprocessed_array_sha256": "81b1e5967eba36cdc2c09f3f2a8de9132fbf57ab3474f6ee992be32c43573d06"
+    },
+    {
+      "exact_native_cache_key": "8f103b907e8fa896f637a053bcb159dd07a17b28.pkl",
+      "pkl_sha256": "69ff2a97dd652d36416f8e31aff44aea45f701f7f8f8be0783254e0575c30402",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "No bacterium,",
+          "exact_native_cache_key": "8f103b907e8fa896f637a053bcb159dd07a17b28.pkl",
+          "cache_input_text_sha256": "bf8543822107fc54acde3d99cf3588ab19ae81884ef1da6d51a2b04247f7a3fa",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        26624
+      ],
+      "unprocessed_array_sha256": "dfe2d295bd12cb66772bbe9b85a9babce9b0bdd629d6c2ca21b3589f78343a1e"
+    },
+    {
+      "exact_native_cache_key": "15a2e8ba38eaa4fba34f46446dba61df79a5eb46.pkl",
+      "pkl_sha256": "65f54765516d00579af8b3f8cde131781a079fa49220f38fd2f31a38d4758933",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "the profession firmly held,",
+          "exact_native_cache_key": "15a2e8ba38eaa4fba34f46446dba61df79a5eb46.pkl",
+          "cache_input_text_sha256": "9c0df999aea968ebfc470f1ebbe4e0c90dab2fa9eb184c96d511211e9587874c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        38400
+      ],
+      "unprocessed_array_sha256": "5b3afe285a4064301c2afeb33755ae50c73daef266d2adf22c2e4174c835f3ab"
+    },
+    {
+      "exact_native_cache_key": "6cdfa3f375f3258946fdaf7dc3117b2d12d619ee.pkl",
+      "pkl_sha256": "532e3a1e578b11d09cdb6d783abc844a9ff288de7e357103dc3b253649c30960",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "could withstand so caustic and hostile a habitat.",
+          "exact_native_cache_key": "6cdfa3f375f3258946fdaf7dc3117b2d12d619ee.pkl",
+          "cache_input_text_sha256": "5ec0017fbf651c45f8ced09337beacf43d7049b69c8ea7173338dffd6fd02607",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        76288
+      ],
+      "unprocessed_array_sha256": "6ba38306f031dbeaae5ec034a8729e6925c27b575e3acff5d37f12e4e3dda9e6"
+    },
+    {
+      "exact_native_cache_key": "5bb8167a5c29c91c48ce02ca9162103743ec6067.pkl",
+      "pkl_sha256": "8ac80c714f34c2f96e1cda717a0add03e5cc5ecc719ff2c2e38a5f19aad68119",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Yet Robin Warren, a pathologist at Royal Perth Hospital, had seen curved, coiled bacteria in gastric biopsies from patients with gastritis.",
+          "exact_native_cache_key": "5bb8167a5c29c91c48ce02ca9162103743ec6067.pkl",
+          "cache_input_text_sha256": "cb4b82aa2ef7818ae76f4041bd318245827c346b5433ea410d5e17f6a156380b",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        252416
+      ],
+      "unprocessed_array_sha256": "f1f7cf91678c08664f2aebe9274dcd42a461c5d8458c05b3504174bf7ee8a397"
+    },
+    {
+      "exact_native_cache_key": "df69772411fc8a2332dc06ae62c9ca633eed8ec8.pkl",
+      "pkl_sha256": "600ca0ed4a568259333cfb2cdebc660e4c4c39bd0529d0311b4856538ef9313f",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Yet Robin Warren, a pathologist at Royal Perth Hospital,",
+          "exact_native_cache_key": "df69772411fc8a2332dc06ae62c9ca633eed8ec8.pkl",
+          "cache_input_text_sha256": "b29dbd2f76f56602ad38e39cd4681322cb40c05caaa974ecd226e5cbaf32a53d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "600ca0ed4a568259",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        99328
+      ],
+      "unprocessed_array_sha256": "190569229a0c043de9a3455a40a9ac8623801f3349de83ded234f451300e9908"
+    },
+    {
+      "exact_native_cache_key": "bef754fbc7d878fc720e555fd680ef219aa43d36.pkl",
+      "pkl_sha256": "930b799012ec5774b3002a52c1ad0e9a4545a62c46f598ea88f96989dfdd068f",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "had seen curved, coiled bacteria in gastric biopsies",
+          "exact_native_cache_key": "bef754fbc7d878fc720e555fd680ef219aa43d36.pkl",
+          "cache_input_text_sha256": "ce814a43f9fd92f0d9921dd8992721aaf4bbc5098eac37b280801a22be583e1d",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "930b799012ec5774",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        91136
+      ],
+      "unprocessed_array_sha256": "329a0edf32a90aa8eb4d84928eb037797081a540b3cdb47ce5375ceb1d50b2ba"
+    },
+    {
+      "exact_native_cache_key": "aa047e81e2467e232de324dee240fa4bd514573d.pkl",
+      "pkl_sha256": "07f62b44165a6a9d7d55db3b278487d86f03112e89483482858e4a5ac65639f2",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "from patients with gastritis.",
+          "exact_native_cache_key": "aa047e81e2467e232de324dee240fa4bd514573d.pkl",
+          "cache_input_text_sha256": "3aff350bc9f4c1536a8e2c6c9b66737e0e16a6bb8f324d01324a9c741549245f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "07f62b44165a6a9d",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        43008
+      ],
+      "unprocessed_array_sha256": "15047d29a9c7f644d9a885dafa531b8094ae82d9147c46a2b0c9f46914a93432"
+    },
+    {
+      "exact_native_cache_key": "35d6c29a75d5e3e6b95c2b75c3d9f23c9e9e290d.pkl",
+      "pkl_sha256": "68228fce12f66fc7f459c586ae15acf59615856163c26bd6cdc537c177dfc079",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Yet Robin Warren,",
+          "exact_native_cache_key": "35d6c29a75d5e3e6b95c2b75c3d9f23c9e9e290d.pkl",
+          "cache_input_text_sha256": "e8b28ae435ef41d1f31426d87d9cb653506c5b21045056ee448e38fb0e7f6d27",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        30720
+      ],
+      "unprocessed_array_sha256": "88b38190472afac516c5c81544a2453cdfee755712e3002a4216849545701f39"
+    },
+    {
+      "exact_native_cache_key": "20e77d1edcc12dbd0c6ab7fdc121cdca4af1f494.pkl",
+      "pkl_sha256": "5c262a2de2427fc63d25eee6f4f5c7cb326434bd34adaf611c3abab8697de950",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a pathologist at Royal Perth Hospital,",
+          "exact_native_cache_key": "20e77d1edcc12dbd0c6ab7fdc121cdca4af1f494.pkl",
+          "cache_input_text_sha256": "d6369cbc47ee704a7a0ecd08645c909ef6a4e30ead77d9c9f13530309b23958f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        62464
+      ],
+      "unprocessed_array_sha256": "155561507d4a987948eca3d512a11d1b0bd94561dcaa71ac49f09449b9f453d0"
+    },
+    {
+      "exact_native_cache_key": "b6f892daaf0c79903675c62f8ddac4388b6f4852.pkl",
+      "pkl_sha256": "dcdf4222c86a95475b73cc43f35d1d7b9a8d084a7129bb7952d0915d2a6f67be",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "had seen curved,",
+          "exact_native_cache_key": "b6f892daaf0c79903675c62f8ddac4388b6f4852.pkl",
+          "cache_input_text_sha256": "00745bd47f18e70063816b1fba955223255a6133ad9ed63f59840366efd4c73a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        28160
+      ],
+      "unprocessed_array_sha256": "2a4fec3632a7943b127706b5f2fbea8fb4bd8be5d2e51c43b4b41523c503dae5"
+    },
+    {
+      "exact_native_cache_key": "097954e915f7f80c17d0a39557a668dcffe7939e.pkl",
+      "pkl_sha256": "e59169181339a4bbbf0a2d33e234f71057754dd08cb594c439d2475d874b9b5b",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "coiled bacteria in gastric biopsies from patients with gastritis.",
+          "exact_native_cache_key": "097954e915f7f80c17d0a39557a668dcffe7939e.pkl",
+          "cache_input_text_sha256": "e3c6f2d11a982742e98808f1b5316ccaf3958297395e0b8cdecb7b0e6d482ba8",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        108544
+      ],
+      "unprocessed_array_sha256": "a85a55f6220e4a3b370be2419eaf6c9f06dfd9002251207b8034ad88eebc033f"
+    },
+    {
+      "exact_native_cache_key": "3c2d4ca627e0dac3355dab6ee068923911732917.pkl",
+      "pkl_sha256": "a14f212dda14e4ea19a1b7b537320e4e1180f591675a72369ae547777ed01f30",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Marshall began to collaborate with him.",
+          "exact_native_cache_key": "3c2d4ca627e0dac3355dab6ee068923911732917.pkl",
+          "cache_input_text_sha256": "5a8851c6bb863f12b2308dfb9fbfcfb116de383afedefe8b91ed4adafd38f7fd",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        52736
+      ],
+      "unprocessed_array_sha256": "128fda980742d7d7c379f873d40c5c99cb54a0fd67efb326aee8d83cccebef66"
+    },
+    {
+      "exact_native_cache_key": "ea3195184fd52d67f16ab2e235b68d148abd50a8.pkl",
+      "pkl_sha256": "7d6ee1f9aa76826d193c5934efd170155f5206297faeee9d93b3b2fc5f7cc188",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Attempts to culture the germ were invariably unsuccessful until Easter 1982, when plates sat undisturbed in the incubator for about five days.",
+          "exact_native_cache_key": "ea3195184fd52d67f16ab2e235b68d148abd50a8.pkl",
+          "cache_input_text_sha256": "28a2f4686e32bf4fdd5018cbb2c236bcbb9c4413b8f72a0e213f0bd7f9d26cf6",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        266752
+      ],
+      "unprocessed_array_sha256": "6733a60297b15cba6b734fb07fbf2f9509773a9d5250f4d43c235366e0759ddd"
+    },
+    {
+      "exact_native_cache_key": "5f30028c5a521e784b3f2f1f8ac638c2a39776fe.pkl",
+      "pkl_sha256": "f2a1cff0cfc59e53973c4078d8518af0ab0f613ecd4dcc0d9eb1178dbeda63c6",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Attempts to culture the germ",
+          "exact_native_cache_key": "5f30028c5a521e784b3f2f1f8ac638c2a39776fe.pkl",
+          "cache_input_text_sha256": "53d13e5071d1302268e3794e25c6908449c5656b1760b78153248001f2e195c6",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "f2a1cff0cfc59e53",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        39424
+      ],
+      "unprocessed_array_sha256": "03d8cc0a6888a37a0f48d71f3a610f4a8f65d9f72216b7bfa3ee3c9b7cb34c63"
+    },
+    {
+      "exact_native_cache_key": "d3341df39fb4946ee3e5586a1d489d0c3dced06e.pkl",
+      "pkl_sha256": "67daa5915b04e7c1d408fea4e776888ba84ee4fd5dd0df19a40d7dca903fb8e6",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "were invariably unsuccessful",
+          "exact_native_cache_key": "d3341df39fb4946ee3e5586a1d489d0c3dced06e.pkl",
+          "cache_input_text_sha256": "9aa782b1528cb84ce428fc276960321d7b2f05c956648cff4b511929079fe410",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "67daa5915b04e7c1",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        43520
+      ],
+      "unprocessed_array_sha256": "b4951ce4a155aa82fed28d0f51a62cff4fcdb6862d065c008d63467552040049"
+    },
+    {
+      "exact_native_cache_key": "0d527c8780412153f61101edff5317f9d7b57036.pkl",
+      "pkl_sha256": "df0328446f61505adb011ebee5fb62772ee1a00fd1fb99387fb79e7e2041d2ae",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "until Easter 1982,",
+          "exact_native_cache_key": "0d527c8780412153f61101edff5317f9d7b57036.pkl",
+          "cache_input_text_sha256": "e49e0fc7f6c7fbf3ec4a0f95a534bb0dbb741b13da79614645c210896ffd1f73",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "df0328446f61505a",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        49152
+      ],
+      "unprocessed_array_sha256": "c059713040b4cdafc8d6019513439576ba2e3d5614fa62d55760eb71af636eea"
+    },
+    {
+      "exact_native_cache_key": "7c6a660b659574b53463d2103b2d6c041aa4dead.pkl",
+      "pkl_sha256": "9ccee3272bfd77651ef485761ff70a77b629b7d251ee615600cf673b0d837f64",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 4,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "when plates sat undisturbed",
+          "exact_native_cache_key": "7c6a660b659574b53463d2103b2d6c041aa4dead.pkl",
+          "cache_input_text_sha256": "f4ab4c7ba3f359dc99b42f049c8feeb68ee8120a64719806bd1f29bfa2690a32",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "9ccee3272bfd7765",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        39936
+      ],
+      "unprocessed_array_sha256": "9c2429e15228eff03d07c023bd3534bba08aab4c59c647007b8e4a410513c38b"
+    },
+    {
+      "exact_native_cache_key": "a5eb77372a2e39b5a810a0e56e1672a9d35fb19b.pkl",
+      "pkl_sha256": "820d10f5e177075a695c03a1b79be29efda931ca7c625139fbbce0161d26f4a8",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 5,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "in the incubator for about five days.",
+          "exact_native_cache_key": "a5eb77372a2e39b5a810a0e56e1672a9d35fb19b.pkl",
+          "cache_input_text_sha256": "40c959f9333f1bf4bc63815f905df492f7dd5afc75a16cff8f88a6f130a84450",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "820d10f5e177075a",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        56320
+      ],
+      "unprocessed_array_sha256": "b65076b4c2846291f89608504a4226770c2f30d8ba45123008200c63a2ed22a8"
+    },
+    {
+      "exact_native_cache_key": "e38c782ef1f7069589e2745d46100ca102a6efbd.pkl",
+      "pkl_sha256": "10626213e31d1e1c11cab675441a3de318b5aa0ce875dbf95f5a83bfe55accc5",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Attempts to culture the germ were invariably unsuccessful until Easter 1982,",
+          "exact_native_cache_key": "e38c782ef1f7069589e2745d46100ca102a6efbd.pkl",
+          "cache_input_text_sha256": "90e54d241932de5668a42803667466196efbd7abe8a0196d6318a96950c1ca68",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        151552
+      ],
+      "unprocessed_array_sha256": "82e5dc97540c18971547737a4ecc6417007b971848ea620d6694218521730109"
+    },
+    {
+      "exact_native_cache_key": "aecd8385ef08804fc662850e0398f8ddf3505167.pkl",
+      "pkl_sha256": "bb0f5d5f0befe8d24450b33c2ca118cf43260f9fa05731764820bdb9f76f5877",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "when plates sat undisturbed in the incubator for about five days.",
+          "exact_native_cache_key": "aecd8385ef08804fc662850e0398f8ddf3505167.pkl",
+          "cache_input_text_sha256": "92914c3bfcbc8e8463de30c44c884d0b334dc2fcfdd0661793edf22ece4741d3",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        101376
+      ],
+      "unprocessed_array_sha256": "abeeaeb2b5ed127a80e72ef001575010d9a6aebe7dc9d874ce8b00e6b4612841"
+    },
+    {
+      "exact_native_cache_key": "b49771d81e47bd93165da9b64ba19ca772afd7ca.pkl",
+      "pkl_sha256": "d281dc34c5c294f959f4e9066b2d43912c14ed36c61126668087afb3ddf33a98",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "They were ordinarily binned after two.",
+          "exact_native_cache_key": "b49771d81e47bd93165da9b64ba19ca772afd7ca.pkl",
+          "cache_input_text_sha256": "a04ef2f1f4f128094750893e30652c65e69e07716e09e3ae771dd34441efca8a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        52224
+      ],
+      "unprocessed_array_sha256": "9522e4b7cb13d30896b46c11cfe0f4ff8feecd8cf4734a58b282b4dd1738da72"
+    },
+    {
+      "exact_native_cache_key": "366a892f62336b8ca4448fc5124d2da87543fe21.pkl",
+      "pkl_sha256": "a60f8274a9f26dc22b6c25ff4c4130ea72e031919f280c2a9a4ed03bddaf4f9d",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Colonies blossomed.",
+          "exact_native_cache_key": "366a892f62336b8ca4448fc5124d2da87543fe21.pkl",
+          "cache_input_text_sha256": "5a21b6a6e1ee7e125f34fed77a097d74ea73b344a6b2eb39e216b6878e773da2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        30208
+      ],
+      "unprocessed_array_sha256": "53af668cc7fc138e4a799c74b87b03365538ee312f8d0204a5cc789e994e9d61"
+    },
+    {
+      "exact_native_cache_key": "fe7224c3f888c3999075cc5c3166efe3201d24c1.pkl",
+      "pkl_sha256": "685011f120c2852a68b3fd2ae331f336b3ab5584b43ecd0b3c28b69edfdad101",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The organism was later named Helicobacter pylori.",
+          "exact_native_cache_key": "fe7224c3f888c3999075cc5c3166efe3201d24c1.pkl",
+          "cache_input_text_sha256": "76a18bccc88e5c6ca48f89a332458bcd1bdbb93a3ce47e3234e089a1b7c30735",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        89088
+      ],
+      "unprocessed_array_sha256": "cf6166e86fad1dc4541caa04af8f4c3eacd29af13824fa7cefa8adb1df14439f"
+    },
+    {
+      "exact_native_cache_key": "044fef883debf5a4023d5a15d812b2d07a271af9.pkl",
+      "pkl_sha256": "ed52791b7719df3709db03825b7fb78edec3936a8cc68a34049a81b07723f6ac",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In 1983 unimpressed assessors at the Gastroenterological Society of Australia relegated the pair's paper to the bottom tenth of that year's submissions.",
+          "exact_native_cache_key": "044fef883debf5a4023d5a15d812b2d07a271af9.pkl",
+          "cache_input_text_sha256": "df0d54171f596502e5a87d13311b35d06beb4854b4ab2c5ef9e016bfdf8c0ccf",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        275968
+      ],
+      "unprocessed_array_sha256": "965c31605d7dd6db5bce24b1abc362c5613c05ae5327a98a6f2dcf37e57fea4d"
+    },
+    {
+      "exact_native_cache_key": "aedaa7e5fcaf3540d7c901c2ec4a889b76262fd2.pkl",
+      "pkl_sha256": "0820f89e2afdac5fac36e93a1844bbeec34d1348dff4ad67bd35239ce0d39ba3",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In 1983 unimpressed assessors at the Gastroenterological Society of Australia",
+          "exact_native_cache_key": "aedaa7e5fcaf3540d7c901c2ec4a889b76262fd2.pkl",
+          "cache_input_text_sha256": "1342be5056d6214135d90edcf0a1564df01d8a4b111a1ee156b88d322eafe7a9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "0820f89e2afdac5f",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        158720
+      ],
+      "unprocessed_array_sha256": "5e3f51ecad624b8e4255fab124146c1ff094df099f1545fc8bb89f1a7a1c8a05"
+    },
+    {
+      "exact_native_cache_key": "b64f9884f0cc83b98a04309642aca42c77638d66.pkl",
+      "pkl_sha256": "1979b4c2e2abca4f776a4d9959f7553d8484186ef1312c01106eeb52d1fc3fb8",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "relegated the pair's paper",
+          "exact_native_cache_key": "b64f9884f0cc83b98a04309642aca42c77638d66.pkl",
+          "cache_input_text_sha256": "85369b44c5787eaed6481823b0df162ce6d4023504c4fad4a1fa349acd75b063",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "1979b4c2e2abca4f",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        38400
+      ],
+      "unprocessed_array_sha256": "0b650fa88874d0769d7ac9b3fc87ff7a984417c0b78940787097e43e51475878"
+    },
+    {
+      "exact_native_cache_key": "41bcb98f474045add49cf275182ffecf17cb86cc.pkl",
+      "pkl_sha256": "22167d806e8d0becca08dd20f20fd9944afb2557721d5b5abf15828b1304d100",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "to the bottom tenth of that year's submissions.",
+          "exact_native_cache_key": "41bcb98f474045add49cf275182ffecf17cb86cc.pkl",
+          "cache_input_text_sha256": "945fcda9637073bbebf429307f897e25272ff6633f7c75d7b9507e4d1f784035",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "22167d806e8d0bec",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        58368
+      ],
+      "unprocessed_array_sha256": "d272ff03fddf1d1c42e32f3d2bc83d7aa35d200412fb2d810878c791de71d146"
+    },
+    {
+      "exact_native_cache_key": "59e6a0780470b770c0adbc49c6a5d4fe9f5636ef.pkl",
+      "pkl_sha256": "6e53990900d70db211e025bac1c7f349025d046475b36ff063129e16f1e6ac9e",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Efforts to infect swine were likewise in vain.",
+          "exact_native_cache_key": "59e6a0780470b770c0adbc49c6a5d4fe9f5636ef.pkl",
+          "cache_input_text_sha256": "718e3a2361ff0b26499c60c331621395df30686d5569be6742d0f85eb78e6c67",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        68096
+      ],
+      "unprocessed_array_sha256": "9eb8b6cc8cfaaf85119f7832b09b05036c6aec23ebe1b358a08729639555c278"
+    },
+    {
+      "exact_native_cache_key": "fa3ec24ed9ab03fe9430929658922404023121d8.pkl",
+      "pkl_sha256": "045f4d6ed2ac518e580df307264dca934ac95a52ec407bac2c68ca07960d27de",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Efforts to infect swine",
+          "exact_native_cache_key": "fa3ec24ed9ab03fe9430929658922404023121d8.pkl",
+          "cache_input_text_sha256": "58193597f38e9fd78bcd4ca55c51a580cc5db84402b87e44a0a00c6011b9a7d0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "045f4d6ed2ac518e",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        39936
+      ],
+      "unprocessed_array_sha256": "621ffca2d6926665a68689a05bedc215ef7d8493d070fef0cba66d0beefe0ae2"
+    },
+    {
+      "exact_native_cache_key": "8d8b8752174ac4faded5ab6fd345001c1bc3d628.pkl",
+      "pkl_sha256": "908a69171cef4ce37885477d5dcf6347f54c2f3a9e4fdf3c77e0d1a67c64f673",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "were likewise in vain.",
+          "exact_native_cache_key": "8d8b8752174ac4faded5ab6fd345001c1bc3d628.pkl",
+          "cache_input_text_sha256": "c16d92851913c9dc7fe074f968c09d541acd0da2c7e8316e900d26023d93ada2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "908a69171cef4ce3",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        33792
+      ],
+      "unprocessed_array_sha256": "ee9ec78c87ad8b8cbf2b89063de0adc7c1aa60335d5e0794cde8d6d61b87acaf"
+    },
+    {
+      "exact_native_cache_key": "2678f577a6bd00b519ab70b5ae4edd79d1dbf7f6.pkl",
+      "pkl_sha256": "aebf18833695202c5abd7cf195debabef22fe82eb2652cc1083775daf1871095",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Marshall made himself the guinea pig.",
+          "exact_native_cache_key": "2678f577a6bd00b519ab70b5ae4edd79d1dbf7f6.pkl",
+          "cache_input_text_sha256": "89b67fed92356d289e5555698fe5670b64d41570b37acec6d48d2627fba0573d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        48128
+      ],
+      "unprocessed_array_sha256": "62c8c136d71536d98b17853d8700e9303abba1b10f1ee5da69c053bb7b919cae"
+    },
+    {
+      "exact_native_cache_key": "252aa787c62c3565b86dd91b49bd89c4c3b2a874.pkl",
+      "pkl_sha256": "c29ab91e4103ffe134664ab01bfd6646c535b038b669438674bdefefb0a6be3a",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Within days Marshall was vomiting, his breath had a disagreeable odour and weariness set in.",
+          "exact_native_cache_key": "252aa787c62c3565b86dd91b49bd89c4c3b2a874.pkl",
+          "cache_input_text_sha256": "775e4945ce3ed8cdb4af1c4f357190d0e4e452d1f606b367ffdfbe0dcfadde5c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        145920
+      ],
+      "unprocessed_array_sha256": "2ea35dcc7790e6c5d9e4605be40f90efb083c323e9e1375c93735f2669ee75cf"
+    },
+    {
+      "exact_native_cache_key": "f1d3eccac514419260223b2b764763b2844e1185.pkl",
+      "pkl_sha256": "fd0c497ab6ae1e0fc2693cfe5bdd41fe459dac2b8662b60899d31a762acd2382",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Within days Marshall was vomiting,",
+          "exact_native_cache_key": "f1d3eccac514419260223b2b764763b2844e1185.pkl",
+          "cache_input_text_sha256": "3f802735bd9b8fc78d8432b78a292db2836c42ed7262f1bc3b2e064a08f1bf2e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Within days Marshall was vomiting,",
+          "exact_native_cache_key": "f1d3eccac514419260223b2b764763b2844e1185.pkl",
+          "cache_input_text_sha256": "3f802735bd9b8fc78d8432b78a292db2836c42ed7262f1bc3b2e064a08f1bf2e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        51712
+      ],
+      "unprocessed_array_sha256": "22c8a68e66b1da58e8d35d151e75765d2a101ef7e0f06043a2da8718c856c992"
+    },
+    {
+      "exact_native_cache_key": "543757cc0dd747037869a1333a565d88130fde25.pkl",
+      "pkl_sha256": "e0c184dc805352804478271cf55f5c51fee157299ec2d11e379276a910f141e8",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "his breath had a disagreeable odour",
+          "exact_native_cache_key": "543757cc0dd747037869a1333a565d88130fde25.pkl",
+          "cache_input_text_sha256": "c0fb552a87f1364b03bc099d06581e2a48fb25960abf41710aebe85df4be9d7e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "e0c184dc80535280",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        43520
+      ],
+      "unprocessed_array_sha256": "8efb544203415f19b540406a6fab9636af57915fcff39b38dfe2d2c61336f89e"
+    },
+    {
+      "exact_native_cache_key": "641a8433b192d9d858ff64a9f8bf98aea59c2bdb.pkl",
+      "pkl_sha256": "5142510d2a346b56b76540094e1fb5d9d7ea87a7d97a8e7a86c21688db0d616a",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and weariness set in.",
+          "exact_native_cache_key": "641a8433b192d9d858ff64a9f8bf98aea59c2bdb.pkl",
+          "cache_input_text_sha256": "f034b7f3e9e24b7ae774eb6d9636507d4dfc9f7ecdaf188538d73e6e7e608830",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "5142510d2a346b56",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        32768
+      ],
+      "unprocessed_array_sha256": "87479419e96b7b59b99a217f695fa47877bdfee1e88b29a56e3f28802a770574"
+    },
+    {
+      "exact_native_cache_key": "7556d01156329123c61203329883ef62977443d3.pkl",
+      "pkl_sha256": "0df397e190be6f27cac823ca11559985c4f1c799ca257bdb09c9f21bbac7d0f7",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "his breath had a disagreeable odour and weariness set in.",
+          "exact_native_cache_key": "7556d01156329123c61203329883ef62977443d3.pkl",
+          "cache_input_text_sha256": "1737fff90b278ac2ac7582dba54c054e00d4a67609fa9b99e503005ced9b7dd1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        78848
+      ],
+      "unprocessed_array_sha256": "f91b5f87b3dea9cca0fcace93f12f7b8355f70b0a37527f2a1b60477e191b6c0"
+    },
+    {
+      "exact_native_cache_key": "2b2d95e38706aee399c7ee4998b835a41cf5137f.pkl",
+      "pkl_sha256": "4d2aa1407b89a8937fe79876402f061f3e788b4f3978aabd03e7a9ef0393a795",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "About ten days later an endoscopy revealed gastritis, an inflammation of the stomach's mucous membrane and a precursor to ulcers, albeit not an ulcer itself.",
+          "exact_native_cache_key": "2b2d95e38706aee399c7ee4998b835a41cf5137f.pkl",
+          "cache_input_text_sha256": "fb5c6328a987b642cfb9a6cce509fec40c864a68ce225f41724570138659f642",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        269824
+      ],
+      "unprocessed_array_sha256": "3c5f0ca6ac30cac3e61e2da8294658ddc5b455c6f1e0efd6c50fddf609ae6c7f"
+    },
+    {
+      "exact_native_cache_key": "1ec57782d1ed00d356d0928d89588478c67b6f63.pkl",
+      "pkl_sha256": "b9a199b0fe6153263c58ee98a589aa2b80d927bbac0607d64b907c826237a211",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "About ten days later an endoscopy revealed gastritis,",
+          "exact_native_cache_key": "1ec57782d1ed00d356d0928d89588478c67b6f63.pkl",
+          "cache_input_text_sha256": "4b0ecb74035781f7528e6ed9b46d0b294f9645ba301adf8955bcc95708d0dbee",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "About ten days later an endoscopy revealed gastritis,",
+          "exact_native_cache_key": "1ec57782d1ed00d356d0928d89588478c67b6f63.pkl",
+          "cache_input_text_sha256": "4b0ecb74035781f7528e6ed9b46d0b294f9645ba301adf8955bcc95708d0dbee",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        89600
+      ],
+      "unprocessed_array_sha256": "88388286b59a0ecf9dbba0c012e7e223adad6bd174dcaa77a69c0d1557d516af"
+    },
+    {
+      "exact_native_cache_key": "81019dede5070182b5d265cedc06adda28a68357.pkl",
+      "pkl_sha256": "a7b082ddda83ce871281330c5be5e9589b576f483a35ea003de042983c8e9d57",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "an inflammation of the stomach's mucous membrane",
+          "exact_native_cache_key": "81019dede5070182b5d265cedc06adda28a68357.pkl",
+          "cache_input_text_sha256": "e2c348bee1470e78df9b643826493652c21e8799b6e4be41dd301984b406580d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "a7b082ddda83ce87",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        70144
+      ],
+      "unprocessed_array_sha256": "00d231c3f2346afb55ba727d7ad7255d9fca2221977406bdb72e44c4f7a14cf8"
+    },
+    {
+      "exact_native_cache_key": "dfea6c83acf540a168de959fd66a836ff1c55190.pkl",
+      "pkl_sha256": "17cdc3ed96a8b5a2db7084e2162ddcea158969e528873483dada10eb256bb7f9",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and a precursor to ulcers,",
+          "exact_native_cache_key": "dfea6c83acf540a168de959fd66a836ff1c55190.pkl",
+          "cache_input_text_sha256": "12db14d9d7e17af6bd2a12ee30a2c1764b5831aea554ac6358e01b9663a40c51",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "17cdc3ed96a8b5a2",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        39936
+      ],
+      "unprocessed_array_sha256": "84c1fbde60561bf3949f51d74a2646bc3bdef3adc0d862fbe59b723b60d5310f"
+    },
+    {
+      "exact_native_cache_key": "74394635d986bb41e4754b4bf55e542eb0c80c64.pkl",
+      "pkl_sha256": "2c2cc7d6f4b9cc849e6a9a18f2ee00fcd7c9309a78b6a24dce5e07ba98f2cb22",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": 4,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "albeit not an ulcer itself.",
+          "exact_native_cache_key": "74394635d986bb41e4754b4bf55e542eb0c80c64.pkl",
+          "cache_input_text_sha256": "733f81410f533ca913ec47bd7de6c24246951be47046771cfaa7f15306f4e31c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "albeit not an ulcer itself.",
+          "exact_native_cache_key": "74394635d986bb41e4754b4bf55e542eb0c80c64.pkl",
+          "cache_input_text_sha256": "733f81410f533ca913ec47bd7de6c24246951be47046771cfaa7f15306f4e31c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        47616
+      ],
+      "unprocessed_array_sha256": "8e3aa4e9a6b40181fb8a4bc943b7bdbbadcddef4cd67615882ca97575876f692"
+    },
+    {
+      "exact_native_cache_key": "2f2401b95bca6b46200036eb0ea07e4c03ccccba.pkl",
+      "pkl_sha256": "7d03ba00279a16e0e0343fbaf1f869df4dcb35460dd997a829aee3ec8d034858",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "an inflammation of the stomach's mucous membrane and a precursor to ulcers,",
+          "exact_native_cache_key": "2f2401b95bca6b46200036eb0ea07e4c03ccccba.pkl",
+          "cache_input_text_sha256": "3e435c9bbf6428ae0d190ec1e94597af9892969bad37b2eb0ca26dfd6e828d6f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        114688
+      ],
+      "unprocessed_array_sha256": "c3243130aa1af0415f86d3e698b8879f8676f93d18bd9c800ad17c35713dcf86"
+    },
+    {
+      "exact_native_cache_key": "5bd8b9a4a09b647e017e1dc60739721725fabef3.pkl",
+      "pkl_sha256": "6c1cc1d7df2537eda5e04c800c2f2f4bccf82c00c4754be92d6eb423beb82f94",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The germ was cultured directly from his stomach.",
+          "exact_native_cache_key": "5bd8b9a4a09b647e017e1dc60739721725fabef3.pkl",
+          "cache_input_text_sha256": "b6305e32f4863bf3f9bbbaa6bc1ba094896df323dd0e7be74d143c1f355d4a21",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        68608
+      ],
+      "unprocessed_array_sha256": "9658b948a4d1f45c8175323c28f9bf0cf1139fc1553101d5a1129760f059d757"
+    },
+    {
+      "exact_native_cache_key": "30658bd4edf24fd816e1536a91d91b0dce94399d.pkl",
+      "pkl_sha256": "9a33ba7ce4bf30e447b972487772d88959593b4552fd97a7276ed731a7312dee",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S16",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Spurred on by his insistent spouse, Marshall took antibiotics, which cleared the infection.",
+          "exact_native_cache_key": "30658bd4edf24fd816e1536a91d91b0dce94399d.pkl",
+          "cache_input_text_sha256": "382020530e23ed7657da90c74a27822c8737b9134b89a80a152e6d28ba5d2fc6",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        142336
+      ],
+      "unprocessed_array_sha256": "1abb84c18d2c97d217c7bedac3e09240152c2b7ff1a11b5925e28714ad9f6480"
+    },
+    {
+      "exact_native_cache_key": "7ddba8b8a046e3cce103f81ecf0d850f5b166e7e.pkl",
+      "pkl_sha256": "a545626f5d8ce687accf92e928e044b36e64823db2e5c2b2ee1ba30053766e92",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S16",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Spurred on by his insistent spouse,",
+          "exact_native_cache_key": "7ddba8b8a046e3cce103f81ecf0d850f5b166e7e.pkl",
+          "cache_input_text_sha256": "112aee42a841144a620579ea65613616fe952f5812877bd9f1f9b5c977e5e624",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Spurred on by his insistent spouse,",
+          "exact_native_cache_key": "7ddba8b8a046e3cce103f81ecf0d850f5b166e7e.pkl",
+          "cache_input_text_sha256": "112aee42a841144a620579ea65613616fe952f5812877bd9f1f9b5c977e5e624",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        49664
+      ],
+      "unprocessed_array_sha256": "fd84b75254608930e1d725afb5d3d9b6f4c3fe9dfb2e93694204f4fdc15d5c5f"
+    },
+    {
+      "exact_native_cache_key": "e60af417d4ea7a16a9479fc5a98fd00bb8a21a3e.pkl",
+      "pkl_sha256": "9138bf1afaa01584ea030cf8b28476e7a7e8b511718de2a499fc9b11fe0017cb",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S16",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Marshall took antibiotics,",
+          "exact_native_cache_key": "e60af417d4ea7a16a9479fc5a98fd00bb8a21a3e.pkl",
+          "cache_input_text_sha256": "b18b43d3ebd85c3fbbd83e01d090b41552c3a2747ced09746e4a00d19c25d2df",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Marshall took antibiotics,",
+          "exact_native_cache_key": "e60af417d4ea7a16a9479fc5a98fd00bb8a21a3e.pkl",
+          "cache_input_text_sha256": "b18b43d3ebd85c3fbbd83e01d090b41552c3a2747ced09746e4a00d19c25d2df",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        42496
+      ],
+      "unprocessed_array_sha256": "d4b50d59ba155a00e22f823415ba1d58d0cff0a0593f39a774a3aeedcc4cea07"
+    },
+    {
+      "exact_native_cache_key": "01a8fadd2a9ab5822a01731848f793d162718590.pkl",
+      "pkl_sha256": "b6f379fba31e14cf79a1c215d30453b0d4de6eec4f84a4ed401fc6fbc99e648a",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S16",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "which cleared the infection.",
+          "exact_native_cache_key": "01a8fadd2a9ab5822a01731848f793d162718590.pkl",
+          "cache_input_text_sha256": "667cf7fd7d3e018ff6d6b8637cabcf1c15e7d0a18227319858a4d911d2209860",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "which cleared the infection.",
+          "exact_native_cache_key": "01a8fadd2a9ab5822a01731848f793d162718590.pkl",
+          "cache_input_text_sha256": "667cf7fd7d3e018ff6d6b8637cabcf1c15e7d0a18227319858a4d911d2209860",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        35328
+      ],
+      "unprocessed_array_sha256": "baf1b5fade07d2d1fb953345a963d31d8a6b46b6ef67d01d78bb83276a7d6397"
+    },
+    {
+      "exact_native_cache_key": "88f6b7e7b9c3b1fcfccda6ac7fb43ffde254abab.pkl",
+      "pkl_sha256": "118e25f25012c11e3008c38e97f6ca690305633b9abc910e23db27957c3f8bec",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Ulcers came to be treated with such medication.",
+          "exact_native_cache_key": "88f6b7e7b9c3b1fcfccda6ac7fb43ffde254abab.pkl",
+          "cache_input_text_sha256": "d14cebd9a0e5092cdc74005beed533dc0476204269902f93ddcdb45beccac7f5",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        67072
+      ],
+      "unprocessed_array_sha256": "e3e5b6272beb29043f0ee8536bb9268e7ba443e0551c627ee85f38068da28634"
+    },
+    {
+      "exact_native_cache_key": "bf0a015722e735b00bd1334b64b1e8bff093556d.pkl",
+      "pkl_sha256": "afa64c6f596c160286209ff1a3449bd8863a2b648592d38b89b963792a8bb2f6",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S18",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In 2005 Marshall and Warren shared the Nobel Prize in Physiology or Medicine for discovering Helicobacter pylori and its role in gastritis and peptic ulcer disease.",
+          "exact_native_cache_key": "bf0a015722e735b00bd1334b64b1e8bff093556d.pkl",
+          "cache_input_text_sha256": "581fa123a989d1631a07245f276b37e4785eb32b489364d05e6773d10bc827d1",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        313856
+      ],
+      "unprocessed_array_sha256": "7d797633aa72df2152da8e055a4463df9a25fbe80e644034b4ea16f6b20b2614"
+    },
+    {
+      "exact_native_cache_key": "daff882768bb0e16f9da010bfa72605a776b6263.pkl",
+      "pkl_sha256": "f5d5b76cd53127d8c1a3139ead691961787d3bc33105382bc8162b538a804c92",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S18",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In 2005 Marshall and Warren shared",
+          "exact_native_cache_key": "daff882768bb0e16f9da010bfa72605a776b6263.pkl",
+          "cache_input_text_sha256": "9763a77a4320a0463c6194eec21a161310c5da8d10da2230d84c70e2aea0bbfb",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "f5d5b76cd53127d8",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        66048
+      ],
+      "unprocessed_array_sha256": "a09e2b922bfcf87ffcc223c7d438ed611f546405cf922cf017d7c99ba75dea62"
+    },
+    {
+      "exact_native_cache_key": "c116b790fef2a9e301815ad9738ece4c6e7ac2aa.pkl",
+      "pkl_sha256": "9cdd950d379dd5d708742798bbf8551700bb1140e9b0f99b4134e628acf9075a",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S18",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "the Nobel Prize in Physiology or Medicine",
+          "exact_native_cache_key": "c116b790fef2a9e301815ad9738ece4c6e7ac2aa.pkl",
+          "cache_input_text_sha256": "2c1fcfeb52ddcf2b477358bc80c11d3a20d104e5046cb5c4c0dfc0b885f4edda",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "9cdd950d379dd5d7",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        68096
+      ],
+      "unprocessed_array_sha256": "93340a502f9c01496e2ab5daff0745299fde6d88dd6c2a0fac1e10d93248bd52"
+    },
+    {
+      "exact_native_cache_key": "99c85a72440a5ee581d50f538b2b58c3bd12a887.pkl",
+      "pkl_sha256": "5a6279edb05184bdcfe16b095c7a61b7d0ea162414bb225bfa1d1f75e40e976c",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S18",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "for discovering Helicobacter pylori",
+          "exact_native_cache_key": "99c85a72440a5ee581d50f538b2b58c3bd12a887.pkl",
+          "cache_input_text_sha256": "c88eb76aa869e3a36928a9c6a688262a657ec5c03c4f06e819ee734be7e2c799",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "5a6279edb05184bd",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        57344
+      ],
+      "unprocessed_array_sha256": "ae3933219483ef630448db11a4a8c246237e57b94c0bfe540b8c10445415096c"
+    },
+    {
+      "exact_native_cache_key": "ee12d3ea73fea6e85af0f1d5838a8218cbd04379.pkl",
+      "pkl_sha256": "d5ea43742507a2b8bfc16c3c9d17fe465b2f6bc61f3f0545cd99ee389a700125",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S18",
+          "piece": 4,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and its role in gastritis and peptic ulcer disease.",
+          "exact_native_cache_key": "ee12d3ea73fea6e85af0f1d5838a8218cbd04379.pkl",
+          "cache_input_text_sha256": "19e3aab6d4f04a89df2db85796ee95b11558fc9e253de78b4b6325b7f501eecb",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "d5ea43742507a2b8",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        79872
+      ],
+      "unprocessed_array_sha256": "ec8ac077f56f94409b1e17178e5ebb69e93f95e7ddca755daf0dc74177bbe6d4"
+    },
+    {
+      "exact_native_cache_key": "8c2be12a83cdaea3e714e6122fb840f3ceca0568.pkl",
+      "pkl_sha256": "bdd1df00a8bc3d35d916ec6fdceb1c4b98056d0d9ac1c0b6a20148f4744a7440",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S19",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Gastritis, the illness Marshall had willingly given himself, is named in the prize citation.",
+          "exact_native_cache_key": "8c2be12a83cdaea3e714e6122fb840f3ceca0568.pkl",
+          "cache_input_text_sha256": "0dd591327e23b80a77f0fdfcfbf6f03279ce6198ca57bb45fe6c91ee858a58c2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        149504
+      ],
+      "unprocessed_array_sha256": "3af85621cce0d23dbae2df7feb029488a551f78cb31cfecaa8b509d00127f76a"
+    },
+    {
+      "exact_native_cache_key": "87dc9245fa6ec133d287103c50622dd329df8295.pkl",
+      "pkl_sha256": "e63ffe4aac0287edee593378d2ab36c83aab150239c3ce220a83feab076917f2",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S19",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Gastritis,",
+          "exact_native_cache_key": "87dc9245fa6ec133d287103c50622dd329df8295.pkl",
+          "cache_input_text_sha256": "b72899480d253be3567741a944128fa289c2523baf4aebd440c993b4405cc0fd",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S19",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Gastritis,",
+          "exact_native_cache_key": "87dc9245fa6ec133d287103c50622dd329df8295.pkl",
+          "cache_input_text_sha256": "b72899480d253be3567741a944128fa289c2523baf4aebd440c993b4405cc0fd",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        23552
+      ],
+      "unprocessed_array_sha256": "e8e6674552a3743c2a7ee8cf5ac95d35af9ab56ec14e450182e3ec96cb92a5ba"
+    },
+    {
+      "exact_native_cache_key": "3f21c013f7d393a142ced2d4c3919e80f1f4fe17.pkl",
+      "pkl_sha256": "6da20bbdf6e5b6eee69b10f1bd9eeeb6bacfcd98d65a161e2876c971d35bb81c",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S19",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "the illness Marshall had willingly given himself,",
+          "exact_native_cache_key": "3f21c013f7d393a142ced2d4c3919e80f1f4fe17.pkl",
+          "cache_input_text_sha256": "a4b7a2051eeec9a82d7cb6db6b1d5092b0c6fd0c05630a06a6b8f7e5c6bfbea0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S19",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "the illness Marshall had willingly given himself,",
+          "exact_native_cache_key": "3f21c013f7d393a142ced2d4c3919e80f1f4fe17.pkl",
+          "cache_input_text_sha256": "a4b7a2051eeec9a82d7cb6db6b1d5092b0c6fd0c05630a06a6b8f7e5c6bfbea0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        69632
+      ],
+      "unprocessed_array_sha256": "036dbff0952e13e47a98fd86deed427a5405f54a07e75d69bc13439619b2a1e2"
+    },
+    {
+      "exact_native_cache_key": "ff66ebbf3135c0718e349da813f5ee9fd922ee9e.pkl",
+      "pkl_sha256": "6dfb0fbe42cb1da418bfa7fb2257b267b3f4563fcb27d54ded6c424f0bcd27cc",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S19",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "is named in the prize citation.",
+          "exact_native_cache_key": "ff66ebbf3135c0718e349da813f5ee9fd922ee9e.pkl",
+          "cache_input_text_sha256": "5cc387faf8bba35201e489b323a8e566362e33840326fb7fccf5e9fea10d636f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S19",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "is named in the prize citation.",
+          "exact_native_cache_key": "ff66ebbf3135c0718e349da813f5ee9fd922ee9e.pkl",
+          "cache_input_text_sha256": "5cc387faf8bba35201e489b323a8e566362e33840326fb7fccf5e9fea10d636f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        45568
+      ],
+      "unprocessed_array_sha256": "bbaadf3dc396da98ba210a106b2b73576f19a318c8f0786a1be08a618cf1db2e"
+    }
+  ],
+  "missing_reference_key_count": 30,
+  "observed_missing_keys_covered": [],
+  "new_private_cache_names": [
+    "0d527c8780412153f61101edff5317f9d7b57036.pkl",
+    "0d527c8780412153f61101edff5317f9d7b57036.pkl.单线程",
+    "41bcb98f474045add49cf275182ffecf17cb86cc.pkl",
+    "41bcb98f474045add49cf275182ffecf17cb86cc.pkl.单线程",
+    "4a45022a33fc358fefbee040bb1c9ff90e87d711.pkl",
+    "4a45022a33fc358fefbee040bb1c9ff90e87d711.pkl.单线程",
+    "4a7a7893854241e2c7ad9ae62c6566b5b6bc686d.pkl",
+    "4a7a7893854241e2c7ad9ae62c6566b5b6bc686d.pkl.单线程",
+    "543757cc0dd747037869a1333a565d88130fde25.pkl",
+    "543757cc0dd747037869a1333a565d88130fde25.pkl.单线程",
+    "5f30028c5a521e784b3f2f1f8ac638c2a39776fe.pkl",
+    "5f30028c5a521e784b3f2f1f8ac638c2a39776fe.pkl.单线程",
+    "641a8433b192d9d858ff64a9f8bf98aea59c2bdb.pkl",
+    "641a8433b192d9d858ff64a9f8bf98aea59c2bdb.pkl.单线程",
+    "7c6a660b659574b53463d2103b2d6c041aa4dead.pkl",
+    "7c6a660b659574b53463d2103b2d6c041aa4dead.pkl.单线程",
+    "81019dede5070182b5d265cedc06adda28a68357.pkl",
+    "81019dede5070182b5d265cedc06adda28a68357.pkl.单线程",
+    "8d8b8752174ac4faded5ab6fd345001c1bc3d628.pkl",
+    "8d8b8752174ac4faded5ab6fd345001c1bc3d628.pkl.单线程",
+    "99c85a72440a5ee581d50f538b2b58c3bd12a887.pkl",
+    "99c85a72440a5ee581d50f538b2b58c3bd12a887.pkl.单线程",
+    "9b7661b1885f0f7038f1cd3792fdd90fe11b6bd4.pkl",
+    "9b7661b1885f0f7038f1cd3792fdd90fe11b6bd4.pkl.单线程",
+    "a5eb77372a2e39b5a810a0e56e1672a9d35fb19b.pkl",
+    "a5eb77372a2e39b5a810a0e56e1672a9d35fb19b.pkl.单线程",
+    "aa047e81e2467e232de324dee240fa4bd514573d.pkl",
+    "aa047e81e2467e232de324dee240fa4bd514573d.pkl.单线程",
+    "aedaa7e5fcaf3540d7c901c2ec4a889b76262fd2.pkl",
+    "aedaa7e5fcaf3540d7c901c2ec4a889b76262fd2.pkl.单线程",
+    "b64f9884f0cc83b98a04309642aca42c77638d66.pkl",
+    "b64f9884f0cc83b98a04309642aca42c77638d66.pkl.单线程",
+    "b7ae168b284e11221134e01f992fa363164a53f0.pkl",
+    "b7ae168b284e11221134e01f992fa363164a53f0.pkl.单线程",
+    "bef754fbc7d878fc720e555fd680ef219aa43d36.pkl",
+    "bef754fbc7d878fc720e555fd680ef219aa43d36.pkl.单线程",
+    "c116b790fef2a9e301815ad9738ece4c6e7ac2aa.pkl",
+    "c116b790fef2a9e301815ad9738ece4c6e7ac2aa.pkl.单线程",
+    "d28c351e329aaa5ef68ed4754a4fb0221d4866c5.pkl",
+    "d28c351e329aaa5ef68ed4754a4fb0221d4866c5.pkl.单线程",
+    "d3341df39fb4946ee3e5586a1d489d0c3dced06e.pkl",
+    "d3341df39fb4946ee3e5586a1d489d0c3dced06e.pkl.单线程",
+    "daff882768bb0e16f9da010bfa72605a776b6263.pkl",
+    "daff882768bb0e16f9da010bfa72605a776b6263.pkl.单线程",
+    "de0301f322040c72f23f0eff7bbe77e29a58e537.pkl",
+    "de0301f322040c72f23f0eff7bbe77e29a58e537.pkl.单线程",
+    "df03c5dc2882a812070fec724dcacd2256c6a42c.pkl",
+    "df03c5dc2882a812070fec724dcacd2256c6a42c.pkl.单线程",
+    "df69772411fc8a2332dc06ae62c9ca633eed8ec8.pkl",
+    "df69772411fc8a2332dc06ae62c9ca633eed8ec8.pkl.单线程",
+    "dfea6c83acf540a168de959fd66a836ff1c55190.pkl",
+    "dfea6c83acf540a168de959fd66a836ff1c55190.pkl.单线程",
+    "eb3f32cbb32fbb9671d42d554f4072649d97fed7.pkl",
+    "eb3f32cbb32fbb9671d42d554f4072649d97fed7.pkl.单线程",
+    "ee12d3ea73fea6e85af0f1d5838a8218cbd04379.pkl",
+    "ee12d3ea73fea6e85af0f1d5838a8218cbd04379.pkl.单线程",
+    "fa3ec24ed9ab03fe9430929658922404023121d8.pkl",
+    "fa3ec24ed9ab03fe9430929658922404023121d8.pkl.单线程",
+    "fe92a0f535b86ed63ada27a9c414965f3f94b645.pkl",
+    "fe92a0f535b86ed63ada27a9c414965f3f94b645.pkl.单线程"
+  ],
+  "native_single_thread_marker_verified": true,
+  "single_thread_sessions": [
+    {
+      "intra_op_num_threads": 1,
+      "inter_op_num_threads": 1
+    },
+    {
+      "intra_op_num_threads": 1,
+      "inter_op_num_threads": 1
+    }
+  ],
+  "models_sha256": {
+    "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+    "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+    "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+  },
+  "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+  "existing_private_cache_count": 11514,
+  "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+  "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+  "existing_private_cache_bytes_unchanged": true,
+  "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+  "public_repository_cache_unchanged": true,
+  "producer_pcm_existed_before": false,
+  "producer_pcm_sha256_before": null,
+  "producer_pcm_sha256_after": null,
+  "accepted_aac_adts_sha256_before": "208d3c923e86ddbf27d9a59f23b90c95949dbdb8664fe89fc605b12fdedd1aff",
+  "accepted_aac_adts_sha256_after": "208d3c923e86ddbf27d9a59f23b90c95949dbdb8664fe89fc605b12fdedd1aff",
+  "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+  "private_cache_exported": false
+}
