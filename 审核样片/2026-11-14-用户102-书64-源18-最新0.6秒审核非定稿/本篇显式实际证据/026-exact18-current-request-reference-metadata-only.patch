@@ -1,0 +1,13 @@
+--- mature-A21-original-consumer
++++ exact18-user102-current4p5-reference
+@@ -146,6 +146,10 @@
+     require(article in requests, 'A21 repair scope is limited to the four actually approved requests')
+     program = '4bd358eb6d78e755a9d88ba55bc07dca99c814f84b9b1153061d8bed8fd43e55'
+     reference = '1af4157360a0266eb23c5f072ced0184b412bed344b94e10170b3698a8d67635'
++    if article=='18' and native.get('request_source_sha256',{}).get('视频/脚本/18.json')=='534bfa4314daa89036fa58ef264f7868f077262788633e3692c4dbc1a7872426':
++        requests['18']='534bfa4314daa89036fa58ef264f7868f077262788633e3692c4dbc1a7872426'
++        reference='9be69898ba3685c4e6d0912e7b3a908c00d4f182742309dd84e4e8f4f8efac82'
++        require(native.get('review_only')is True and native['request_source_sha256'].get('视频/工具/初稿生成/gen18.py')=='e0cd22e6f129acc21ba4516de67363cd9c5b7e4373ae916eb2ab3dcdbf07eeeb' and native.get('final_wav_sha256')=='916e594a32542618c6d5321f88fadc482adb4d3a6dabf3472cebc53f55c0d088' and native.get('canonical_aac_adts_sha256')=='f3dc4bbcfee0688dc9d30551944f028d29a11230f27eed51800d6e03eb4047ce' and native.get('accepted_source',{}).get('sha256')==raw_audio.get('accepted_sha256')=='4f81d5abd6744efce64bf42d5a1a79cbd9927fec646848f70a7867cc97239e9f','Only exact user102 source18 actual approved4.5 original-release review role')
+     scope = native.get('approved_audio_repair_scope', {})
+     require(scope.get('kind') == 'one-root-approved-original-release-instead-of-grafted-release' and
+             scope.get('original_A21_five_phase_checks_required') is True and

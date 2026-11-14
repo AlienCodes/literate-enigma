@@ -1,0 +1,33 @@
+{
+  "actual29_original_acoustic_checks_passed": true,
+  "all_five_original_A21_phases_passed": true,
+  "negatives": [
+    {
+      "case": "wrong-request",
+      "rejected": true,
+      "reason": "A21 request differs from the exact approved reference"
+    },
+    {
+      "case": "wrong-reference",
+      "rejected": true,
+      "reason": "A21 actual reference differs from the approved file"
+    },
+    {
+      "case": "original-native-failed",
+      "rejected": true,
+      "reason": "Actual complete original pipeline/A21 report not passed"
+    },
+    {
+      "case": "one-original-QC-check-failed",
+      "rejected": true,
+      "reason": "Actual A21 repair has failed checks"
+    },
+    {
+      "case": "one-A21-phase-failed",
+      "rejected": true,
+      "reason": "Actual repaired release did not pass every unchanged original A21 phase"
+    }
+  ],
+  "original_A21_and_numeric_instrument_and_thresholds_unchanged": true,
+  "only_exact_actual_request_reference_bindings_registered": true
+}

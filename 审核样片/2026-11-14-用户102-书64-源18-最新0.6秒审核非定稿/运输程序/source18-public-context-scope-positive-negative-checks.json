@@ -1,0 +1,41 @@
+{
+  "kind": "exact-two-public-MP4-derived-clips-export-scope-checks-not-audio-QA",
+  "source_id": "18",
+  "frozen_handoff_sha256": "01de649724f17baf7421bd813c04618b25caa4fd27a6dfd587c90c33c2487699",
+  "pinned_original_QC_sha256": "aaa08951c3402b3d8b68cc008818400acf6976fb982ebd6cf50adf7855bfc18b",
+  "program_sha256": "8e50e31af0d322d754135e5d0a598a9f545fedeaa0767087a64f86852e9c8012",
+  "actual_public_positive": [
+    {
+      "name": "18-a21-controlled-word-actual.wav",
+      "bytes": 72044,
+      "sha256": "0e942aa63017ad4c4e8760d4e5f8ff1124f4a6ae59a509fbb4c9628bcfef1c9b",
+      "actual_complete_public_file_contract_passed": true
+    },
+    {
+      "name": "18-a21-controlled-word-accepted.wav",
+      "bytes": 72044,
+      "sha256": "f3fd0f712cfbcd836a76472c6424c53a1759d1831f013ea889f5f9126c855c79",
+      "actual_complete_public_file_contract_passed": true
+    }
+  ],
+  "metadata_scope_negatives": [
+    {
+      "case": "private-mother-name",
+      "rejected_before_audio_content_read": true
+    },
+    {
+      "case": "same-name-wrong-dir",
+      "rejected_before_audio_content_read": true
+    },
+    {
+      "case": "wrong-size",
+      "rejected_before_audio_content_read": true
+    },
+    {
+      "case": "wrong-SHA",
+      "rejected_before_audio_content_read": true
+    }
+  ],
+  "private_mother_GT_cache_or_other_WAV_allowed": false,
+  "media_or_H_or_source_QA_retested_or_changed": false
+}

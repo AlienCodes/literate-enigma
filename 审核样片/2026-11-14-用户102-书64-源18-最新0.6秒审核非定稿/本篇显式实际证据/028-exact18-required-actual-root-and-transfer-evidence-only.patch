@@ -1,0 +1,12 @@
+--- 
++++ 
+@@ -381,6 +381,9 @@
+     if article=='54' and native.get('review_only')is True:
+         exact_current_review10254_identity(review,native,article,actual_aac_sha,evidence_hashes,status_sha,require)
+         return 'actual_original_audio_gates_plus_exact_current_native_reference_review_only'
++    if article=='18' and native.get('request_source_sha256',{}).get('视频/脚本/18.json')=='534bfa4314daa89036fa58ef264f7868f077262788633e3692c4dbc1a7872426':
++        b=native.get('root_specific_nine_FPs_and_one_objective_word_basis_registration',{})
++        require({'477fa3370cbf0c987d624eefbee4dc9fdff307a3dab582de299211d3365d1ba2','c70db70f96af4d8ee7c0efc6fced36e5fdc40b3b69b44cfd9df4a6cb0858cb15','7fe2acbd81b3e19657a2364886cd8c6fb783e6170018c9f8907d66a0924e5c21'}<=evidence_hashes and b.get('sha256')=='7fe2acbd81b3e19657a2364886cd8c6fb783e6170018c9f8907d66a0924e5c21' and b.get('program_sha256')=='8b7f0ccc9ed20840dc5ccb1a456cb20b51ced8ce08a63b322fd6a0e6985e4f35' and b.get('reference_sha256')=='c62b7cd37126a503a80e19ebcb68a2ac56d0f2bb448647f1e69e9552c215d234','Only actual18 exact original-stage nine typed plus one objective basis authority')
+     if strict_review:
+         if article=='16' and review['tool']=='audio16-origin-qc.py':
+             actual_source16_repair_scope(review,native,native.get('approved_audio_qc',{}),article)

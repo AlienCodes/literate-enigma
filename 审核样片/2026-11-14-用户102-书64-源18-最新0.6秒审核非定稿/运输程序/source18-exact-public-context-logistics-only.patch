@@ -1,0 +1,26 @@
+--- before-exact18-publiccontexts
++++ actual-exact18-publiccontexts
+@@ -21,7 +21,11 @@
+  bindings=[];destinations={}
+  def add(source,relative,size=None,sha=None):
+   source=Path(source);assert source.is_file(),str(source)
+-  assert source.suffix.lower() in SAFE and '__pycache__' not in source.parts
++  if source.suffix.lower()=='.wav':
++   import source18_exact_public_mp4_contexts as public18
++   assert sid=='18';public18.check(source)
++  else:assert source.suffix.lower() in SAFE
++  assert '__pycache__' not in source.parts
+   assert not any(s in str(source) for s in ('CURRENT-ROOT-DELIVERY','ROOTSTATE','USER-REVIEW-2026-11-14-055.json','USER-REVIEW-2026-11-14-056.json'))
+   actual=digest(source);assert actual not in DENY
+   assert size is None or source.stat().st_size==size,str(source);assert sha is None or actual==sha,str(source)
+@@ -53,8 +57,8 @@
+  for n,row in enumerate(h.get('additional_public_media_inputs',[]),1):spec(row,prefix/'实际公开中间视频输入'/f'{n:02d}-{Path(row["path"]).name}')
+  for row in art['section']['stills']:spec(row,prefix/'实际最终五边界帧'/Path(row['path']).name)
+  ill=art['section']['illustration'];spec(ill,prefix/'实际批准插图/actual4K.png');spec(ill['native_source'],prefix/'实际批准插图/original-book-illustration.png')
+- add(Path(__file__),prefix/'运输程序'/Path(__file__).name);add(HERE/'archive_batch.py',prefix/'运输程序/archive_batch.py');add(HERE/'original-source28-collector-reference.py',prefix/'运输程序/original-source28-collector-reference.py')
+- for helper in ('verify_review102_dual_asset_blobs.py','cleanup_review102_closed_own_bare.py','transport_exact_review102_assets.py','exact-logistics-adapter-binding.json','prepare_review102_source18_transport.py'):add(HERE/helper,prefix/'运输程序'/helper)
++ add(Path(__file__),prefix/'运输程序'/Path(__file__).name);add('/dev/shm/review18-hold18-intake/source18-two-explicit-public-MP4-derived-clips-provenance-sidecar.json',prefix/'两确切公开裁片来由/source18-two-explicit-public-MP4-derived-clips-provenance-sidecar.json',2393,'ab2ff6e73a22b8c8ecba23b4d3ca2a4cf03fb91277cc884099311b1e771966c8');add(HERE/'archive_batch.py',prefix/'运输程序/archive_batch.py');add(HERE/'original-source28-collector-reference.py',prefix/'运输程序/original-source28-collector-reference.py')
++ for helper in ('verify_review102_dual_asset_blobs.py','cleanup_review102_closed_own_bare.py','transport_exact_review102_assets.py','exact-logistics-adapter-binding.json','prepare_review102_source18_transport.py','source18_exact_public_mp4_contexts.py','prepare_review102_exact_assets-before-two-public-contexts.py','source18-public-context-scope-positive-negative-checks.json','source18-exact-public-context-logistics-only.patch'):add(HERE/helper,prefix/'运输程序'/helper)
+  row={'source_id':sid,'new_id':c['book'],'frozen_book_order':c['book'],'current_video_order':c['book'],'video_repo_path':str(video),'bytes':media['bytes'],'sha256':media['sha256'],'source_run':h['source_run'],'passed_per_article':False,'preview_passed':True,**FLAGS,'normal_final_delivery_claimed':False}
+  meta={'kind':'user102-exact-two-qualified-latest-review-only-immutable-assets','created_utc':now(),'prefix':str(prefix),'asset_branch':f'codex/review102-assets-{h["source_run"]}-{sid}-hold18-only-v1','source_run':h['source_run'],'articles':[row],**FLAGS,'real_V3_handoff_sha256':c['hsha'],'original_handoff_kind':h['kind'],'original_handoff_status':h['status'],'material_source_bindings':bindings,'native_run_created_or_claimed_by_archive':False,'active_final_index_aliases_or_PDF_modified':False}
+  write(pay/prefix/'review-archive-manifest.json',meta);write(w/'prepared-archive.json',meta)
