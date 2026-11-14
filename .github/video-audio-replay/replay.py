@@ -91,7 +91,7 @@ def publish_public_scalars():
     commit = os.environ['GITHUB_SHA']
     prefix = f'public-audio-replay/{os.environ["GITHUB_RUN_ID"]}/{NO}'
     allowed = {f'{NO}-readonly-replay-status.json', f'{NO}-reference-gain-diagnostic.json',
-               f'{NO}-native-cache-scalars.json'}
+               f'{NO}-native-cache-scalars.json', f'{NO}-raw-onset-diagnostic.json'}
     updates, files = [], []
     for path in sorted(OUT.iterdir()):
         assert path.name in allowed and path.is_file() and not path.is_symlink()
@@ -182,7 +182,7 @@ def original_independent_selftest():
     try:
         os.chdir(W)
         exec(compile(block, str(path) + '#unchanged-independent-selftest-block', 'exec'),
-             {'os': os, 'no': NO, 'T': str(T), 'run': original_run, 'step': original_step})
+             {**globals(), 'no': NO, 'T': str(T), 'run': original_run, 'step': original_step})
     finally:
         os.chdir(previous)
     log = PRIVATE_LOG / 'original-independent-selftest.log'
@@ -192,6 +192,39 @@ def original_independent_selftest():
         'original_audit_sha256': sha(T / '独立复核/audit.py'), 'steps': steps,
         'all_original_steps_passed': bool(steps) and all(row['original_step_passed'] for row in steps)}
     return log
+
+
+def export_early_actual_onset():
+    """Collect actual G45 before any reference/selftest/provenance diagnostic."""
+    if NO != '44':
+        return
+    diagnostic = TASK / 'diagnose_reference_gain.py'
+    spec = importlib.util.spec_from_file_location('early_raw_onset_diagnostic', diagnostic)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    wav = W / f'work_{NO}/a.wav'
+    actual, sr = sf.read(wav, dtype='float64')
+    assert actual.ndim == 1 and sr == 24000 and sha(wav) == status['actual_private_pcm_sha256']
+    source = W / f'scripts/{NO}.json'
+    confirmation = json.loads(source.read_text()).get('核对确认', {}).get('高亮', {}).get('S2 第3块')
+    fp = hashlib.md5(wav.read_bytes()).hexdigest()[:12]
+    result = {'article':NO, 'quality_acceptance':False, 'purpose':'earliest independent actual raw PCM onset scalars',
+              'actual_pcm_sha256':sha(wav), 'source_sha256':sha(source), 'actual_wav_md5_first12':fp,
+              'current_confirmation':confirmation, 'confirmation_fingerprint_matches':isinstance(confirmation,dict) and confirmation.get('配音指纹')==fp,
+              'original_G45_measurement':module.raw_highlight_onset_scalars(T,actual,sr,NO)}
+    reference = TASK / 'public-aac-reference/44.wav'
+    if reference.is_file():
+        proof = json.loads(reference.with_suffix('.json').read_text())
+        assert sha(reference) == proof['public_derived_wav_sha256']
+        public, psr = sf.read(reference,dtype='float64')
+        assert psr == sr
+        at,corr = module.ncc_search(actual,public,25*sr,26*sr)
+        result['public_AAC_timing_alignment']={**proof, 'actual_pcm_start_s':at/sr,'ncc':corr,
+            'actual_PCM_minus_public_AAC_seconds':at/sr-proof['public_video_start_seconds']}
+    output = OUT / f'{NO}-raw-onset-diagnostic.json'
+    output.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+    status['early_actual_onset_diagnostic']={'file':output.name,'sha256':sha(output)}
+    save()
 
 
 try:
@@ -234,6 +267,7 @@ try:
     assert actual == proof['internal_pcm_sha256'], 'Replayed PCM differs from actual failed-draft proof; no independent diagnosis allowed.'
     assert sha(W / f'scripts/{NO}.json') == proof['source_sha256']
     status['exact_failed_pcm_reproduced'] = True
+    export_early_actual_onset()
     export_native_cache_scalars()
     overlay = TASK / 'approved-reference-overlay/synth.py'
     if overlay.is_file():
@@ -251,7 +285,12 @@ try:
     status['fresh_reference_removed_previous_files'] = removed_gt
     for program in ('synth.py', 'labels.py'):
         assert run(['python3', T / '独立复核' / program, NO], 'original-' + program[:-3]) == 0
-    selftest_log = original_independent_selftest()
+    try:
+        selftest_log = original_independent_selftest()
+    except Exception as exc:
+        status['selftest_diagnostic_wrapper_error'] = {'type':type(exc).__name__,'message':str(exc)[:300]}
+        selftest_log = PRIVATE_LOG / 'original-independent-selftest-wrapper-error.log'
+        selftest_log.write_text('Original selftest wrapper did not complete; no selftest success claimed.\n')
     # A non-zero audit verdict is expected for a failed candidate and remains a failure.
     run(['python3', T / '独立复核/audit.py', NO], 'original-audit')
     diagnostic = TASK / 'diagnose_reference_gain.py'
@@ -284,4 +323,5 @@ except Exception as exc:
 finally:
     save()
     print(json.dumps(status, ensure_ascii=False))
-    publish_public_scalars()
+    # Standard always-upload artifacts preserve these scalar-only files even
+    # when a diagnostic fails; no repository branch write is necessary.

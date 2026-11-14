@@ -98,8 +98,8 @@ def raw_highlight_onset_scalars(tools, a, sr, no):
     scope = {'np': np}
     exec(compile(ast.Module(body=nodes, type_ignores=[]), str(path), 'exec'), scope)
     rows = []
-    times = sorted(set([tick * .005 for tick in range(5120, 5201)] +
-                       [tick / 1000 for tick in range(25770, 25831)]))
+    times = [tick / 1000 for tick in sorted(set(range(25600, 26001, 5)) |
+                                            set(range(25770, 25831)))]
     for t in times:
         F = int(.005 * sr)
         i = int(round(t * sr))

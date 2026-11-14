@@ -4,7 +4,7 @@ on:
     branches: [codex/finish-05-and-summaries-20261112]
     paths: ['.github/video-audio-replay/**', '.github/workflows/readonly-failed-audio-replay.yml']
 permissions:
-  contents: write
+  contents: read
 jobs:
   diagnose:
     runs-on: ubuntu-latest
@@ -47,6 +47,12 @@ jobs:
           sudo apt-get install -y -qq ffmpeg espeak-ng
           python -m pip install --quiet -r 视频/工具/环境/requirements.txt
       - name: Exact PCM hash before original read-only audit; publish scalars only
-        env:
-          GH_TOKEN: ${{ github.token }}
         run: python -u .github/video-audio-replay/replay.py
+      - name: Preserve actual safe scalar reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: readonly-audio-replay-${{ matrix.article }}
+          path: audio-replay-${{ matrix.article }}-public/*.json
+          if-no-files-found: error
+          retention-days: 30
