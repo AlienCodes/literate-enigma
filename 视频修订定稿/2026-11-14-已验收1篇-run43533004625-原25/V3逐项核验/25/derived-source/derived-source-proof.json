@@ -1,0 +1,59 @@
+{
+  "status": "passed",
+  "article": "25",
+  "origin": "derived_after_final_QC",
+  "actual_original_job_execution_claimed": false,
+  "used_generator_observation": "not_exported_by_original_producer",
+  "source_json_sha256": "4754878dc91a933f4150607b6d8312900e998ccffeaa1d370dbf383da8c4d743",
+  "derived_generator_sha256": "39a1f6c4afb88cf6e116ece6cb58525485a0acc3e9527d537d6571bd0ee8c432",
+  "request_json_sha256": "c73e854e052b3df9bd920d4a59fafb183dee19bd58765fa426af6ea3d7c9a329",
+  "request_generator_sha256": "1bbe76528968517e8a102e6f6d8b391e9bb7dc72f6c23ca93b23fcf1d227f06c",
+  "request_manuscript_sha256": "b6b7d55fe66e6e32116431ea955778fab779b8bda622df0ba1036c2f40a3969f",
+  "immutable_native_status_sha256": "947364b5c5c8a05d5fcc542cf69bcb321e432e6d50a49f6bd1740565cbcfe990",
+  "factory_program_sha256": "1514e91aee9dc04424e5b755cee37b65b8dadef9717f3e6c0cede35f1c03e044",
+  "original_helper_sha256": {
+    "初稿生成/核对.py": "c635aee82e0fe4dff9f70dcae03e2f797aadb670c8ebe6c8f202b82a35a87a74",
+    "重点词被去掉.py": "b898e63bb0954f0f17b90f92c2af41b3264ca60b7fd264e1cfa632f3d1e86f93"
+  },
+  "original_helper_exit": 0,
+  "whole_JSON_roundtrip_exact": true,
+  "semantic_control_invariants": {
+    "visible_body_notes_summary_and_focus_unchanged": true,
+    "layout_only_newlines_and_T38_bold_allowed": true,
+    "audio_render_title_metadata_unchanged": false,
+    "effective_audio_render_title_controls_unchanged": true,
+    "official_regenerated_nonaudio_rationale_updates": [
+      {
+        "path": "/结尾句/S17/依据",
+        "before": "全篇结尾句按 07 定下的标准（用户 2026-10-10 同意并要求所有视频统一）：前段 0.9、最后一段“a flight undone by a five-year-old engineering oversight was salvaged within four days by ingenuity on the ground.” 0.78、前面停 0.7 秒。接点由 结尾句接点.py 自动找：0.9 那遍最后一个标点后最长静音（30 ms）的正中 1.847 s，0.78 那遍（90 ms）的正中 2.337 s，所在帧和两侧各 5 ms 都低于 -55 dB（程序以 08 校准：与人工核实的接点落在同一段静音里）。2026-10-24 交付核查 响度一致性：前段“The paradox holds:”（0.9 倍速）比全片响 2.9 LU、与前后句差 2.8/3.7 LU，照 10 S17“If so,”的做法只给前段 -2.5 dB 增益（接点在静音里，不改音色）",
+        "after": "全篇结尾句按 07 定下的标准（用户 2026-10-10 同意并要求所有视频统一）：前段 0.9、最后一段“a flight undone by a five-year-old engineering oversight was salvaged within four days by ingenuity on the ground.” 0.78、前面停 0.7 秒。接点由 结尾句接点.py 自动找：0.9 那遍最后一个标点后最长静音（30 ms）的正中 1.847 s，0.78 那遍（90 ms）的正中 2.337 s，所在帧和两侧各 5 ms 都低于 -55 dB（程序以 08 校准：与人工核实的接点落在同一段静音里）",
+        "before_sha256": "9b6d456b57e5061fdb55921c1e36e5ab64003e3aedf43b97c4dfbe23ba0a6a18",
+        "after_sha256": "4254eac50298c595e34481ed07c88139f1025f2789101c01ab40c8711c091c04",
+        "effective_controls_identical": true,
+        "effective_controls": {
+          "前段语速": 0.9,
+          "最后一段语速": 0.78,
+          "最后一段前停顿": 0.7,
+          "接点": [
+            44340,
+            56100
+          ],
+          "前段增益dB": -2.5
+        },
+        "official_regenerator": "结尾句接点.py",
+        "official_program_sha256": "15303682c605dd4544172c92d42c016d8d0536e0c6d1f9816d0d38dd5d2b9a61",
+        "basis": "Actual fixed official template regenerates rationale (lines11/122); root explicitly authorized this exact nonaudio prose update on 2026-11-14. Both original source versions retained; native full audio gates and actual AAC/absolute timing invariants remain mandatory."
+      }
+    ]
+  },
+  "changed_paths": [
+    "/sentences/16/chunks/1/note",
+    "/结尾句/S17/依据"
+  ],
+  "original_inputs_unchanged": true,
+  "manuscript_origin": "request_manuscript_with_verified_final_source_equivalence",
+  "manuscript_runtime_observed": false,
+  "no_repository_or_remote_write": true,
+  "scope": "data fidelity and regeneration only; final JSON artifact-member origin must additionally be checked by delivery validation/archive",
+  "final_JSON_artifact_origin_checked_here": false
+}
