@@ -35,9 +35,7 @@ for key in ('YAOWENBEN', 'OLD_IV_VOID', 'AUDIO_ONLY', 'VIDEO_S'):
 status = {'article': NO, 'passed': False, 'stage': 'start',
           'original_audit_and_quality_thresholds_unchanged': True, 'original_maker_unchanged': True,
           'core_repairs': [],
-          'strict_production_cache': True, 'pdf_requested': False,
-          'review_only':True, 'user_individual_finalization_authorized':False,
-          'specific_review_authorization_102_sha256':'baf7b2fc59a11d2b1b135051a3e9c0aec2782c7789b055c87c782d7a67aba536'}
+          'strict_production_cache': True, 'pdf_requested': False}
 PRODUCTION_STARTED_NS = None
 BASELINE_AUDIO_FILES = None
 
@@ -988,10 +986,10 @@ try:
             assert actual_record['篇'] == NO
             if actual_record not in records['记录']:
                 records['记录'].append(actual_record)
-    if NO == '66':
+    if NO == '19':
         supplement = request / '真实用户同意补充.json'
-        assert sha(supplement) == '8068f1abd5837e683fb33989f3cf5460fbf4778567a40ed0d84de817b4131a0c'
-        assert sha(request / 'root-source66-existing-S9-exact-review-decision.json') == '89c3398bd0540648ed539972868c571070a4dba63dadfa5d4c9d3ba5f89046b2'
+        assert sha(supplement) == '203cf81ed3627aff80f724bf2eb98ff08ba45c4791ebcdba635850fc3cb9ac89'
+        assert sha(request / 'root-source19-user105-measured-original-voice-preservation-decision.json') == '3f71278a3b5915abdc6e6a2233c63a8c8ebdd9a970c2f80852676fe4324c105d'
         for actual_record in json.loads(supplement.read_text())['records']:
             assert actual_record['篇'] == NO
             if actual_record not in records['记录']:
@@ -1097,9 +1095,9 @@ try:
     if NO == '07':
         assert status['canonical_aac_adts_sha256'] == '16b6293adfc7a3c35224408ae39d831317e1932f8d47876824e129129c9115d8'
         assert sha(W / 'work_07/a.wav') == '11edc969af0797bcd7121034f43de130d72ca9186508e64e3330aff6c4069643'
-    if NO == '66':
-        assert status['canonical_aac_adts_sha256'] == '96ff3f072646fd8273e9e2a507c43d4219f026eac413af33a7440b13b8b1c9ec'
-        assert sha(W / 'work_66/a.wav') == '7f20531d779a6f5514e212c05e092e0e89506044c09b4b3222afb096ceef00ac'
+    if NO == '19':
+        assert status['canonical_aac_adts_sha256'] == 'bec515a6e5087e53d90e69671303ab9edf17d49cd66cb6cdbe4b0a534027e547'
+        assert sha(W / 'work_19/a.wav') == 'fe5819c52306836749f72d78979a02025c30cf7918fec915a43ac7a6a915d956'
     status['canonical_pipeline_passed'] = True
     status['cached_input_wav_sha256'] = start_wav
     status['final_wav_sha256'] = sha(W / f'work_{NO}/a.wav')
