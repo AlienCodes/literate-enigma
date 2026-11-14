@@ -4,29 +4,29 @@
 ## 英文
 Deep in a Thai **rainforest**, a **carpenter** ant breaks from its **colony**'s **column** in the **lofty** **canopy**. **Swaying** on **unsteady** legs, it **wanders** **downward**, **as if** **intoxicated**, into **leafy** **undergrowth**. Around **midday** it **clenches** its **jaws** on a major **vein** underneath a leaf, about 25 centimetres above the ground.
 
-By **dusk** the insect is **lifeless**, yet the bite holds **rigidly**. A **fungus** has destroyed its jaw **muscles**, so they cannot **loosen**. Two or three days later a **fungal** stalk pushes from its head and releases **infectious** **spores** on to the ground below, where **foraging** ants **tread**.
+By **dusk** the insect is **lifeless**, yet the bite holds **rigidly**. A fungus has destroyed its jaw **muscles**, so they cannot **loosen**. Two or three days later a **fungal** stalk pushes from its head and releases **infectious** spores on to the ground below, where foraging ants **tread**.
 
 The **invader**, Ophiocordyceps unilateralis, is **fussy** about **location**. David Hughes and colleagues found the **bites** mostly on the **north-west** side of plants, where the air is **humid** and the temperature suits the fungus. When researchers moved infected ants higher, the fungus grew **abnormally**. Placed on the ground, the bodies **disappeared**.
 
-In 2017 a Penn State team examined infected ants with **three-dimensional** **microscope** **imaging**. Fungal cells had formed an **intertwined** **lattice** around **muscle fibres** in the legs and jaw, a picture that **evokes** the strings of a **puppet**. Yet the fungus had not **infiltrated** the brain.
+In 2017 a Penn State team examined infected ants with **three-dimensional** **microscope** imaging. Fungal cells had formed an **intertwined** **lattice** around muscle fibres in the legs and jaw, a picture that **evokes** the strings of a **puppet**. Yet the fungus had not **infiltrated** the brain.
 
-A Planet Earth **episode**, with David Attenborough's **narration**, showed one such ant. It helped **inspire** The Last of Us, a 2013 video game whose **makers** **envisioned** the **parasite** jumping to humans. The **hypothetical** **scenario** gave **gamers** a **fictional** nightmare.
+A Planet Earth episode, with David Attenborough's **narration**, showed one such ant. It helped **inspire** The Last of Us, a 2013 video game whose **makers** **envisioned** the parasite jumping to humans. The **hypothetical** **scenario** gave **gamers** a **fictional** nightmare.
 
-The real **parasite**'s roots run far deeper, into the **geological** record. A 48-million-year-old **fossil** leaf from Messel, in Germany, bears the same **characteristic** bite **scars**.
+The real parasite's roots run far deeper, into the **geological** record. A 48-million-year-old **fossil** leaf from Messel, in Germany, bears the same **characteristic** bite **scars**.
 
 ## 中文
 
 在泰国**雨林**(rainforest)深处，一只**木匠**(carpenter)蚁脱离了它的蚁**群**(colony)**队列**(column)，在**高耸的**(lofty)**树冠**(canopy)上（前行）。（break from：脱离（群体、队伍）；in the lofty canopy：后置定语，修饰 column）**摇摇晃晃**(Swaying)，腿脚**不稳**(unsteady)，它**向下**(downward)**游荡**(wanders)，**好像**(as if)**喝醉了**(intoxicated)一样，进入**枝叶茂密的**(leafy)**林下植被**(undergrowth)。（Swaying…：现在分词短语作伴随状语；as if intoxicated：as if 后省略了 it were）**正午**(midday)前后，它将**双颚**(jaws)**紧咬**(clenches)在一片叶子下方的一条主**叶脉**(vein)上，离地面约25厘米。（clench A on B：把A咬紧在B上；underneath a leaf：后置定语，修饰 vein）
 
-到**黄昏**(dusk)时，这只昆虫已**无生命**(lifeless)，那一口却仍**牢牢地**(rigidly)咬着。（by + 时间：到……时；yet：却，表转折）一种**真菌**(fungus)摧毁了它的颚部**肌肉**(muscles)，因此它们无法**松开**(loosen)。两三天后，一根**真菌的**(fungal)菌柄从它头部顶出，将**具有传染性的**(infectious)**孢子**(spores)释放到下方的地面上，那里有**觅食的**(foraging)蚂蚁**行走**(tread)。（push from：从……长出；where…：非限制性定语从句，修饰 the ground below）
+到**黄昏**(dusk)时，这只昆虫已**无生命**(lifeless)，那一口却仍**牢牢地**(rigidly)咬着。（by + 时间：到……时；yet：却，表转折）一种真菌摧毁了它的颚部**肌肉**(muscles)，因此它们无法**松开**(loosen)。两三天后，一根**真菌**(fungal)菌柄从它头部顶出，将**具有传染性的**(infectious)孢子释放到下方的地面上，那里有觅食的蚂蚁**行走**(tread)。（push from：从……长出；where…：非限制性定语从句，修饰 the ground below）
 
 这个**入侵者**(invader)，也就是偏侧蛇虫草菌，对**位置**(location)很**挑剔**(fussy)。（Ophiocordyceps unilateralis：同位语，即 the invader；be fussy about：对……挑剔）戴维·休斯和同事发现，这些**咬合点**(bites)大多在植物的**西北**(north-west)侧，那里空气**潮湿**(humid)，且温度适宜真菌。（find A on B：发现A在B上；where…：非限制性定语从句，修饰 the north-west side of plants）研究人员把受感染的蚂蚁移到更高处时，真菌长得很**反常**(abnormally)。放在地面上，尸体则**不见了**(disappeared)。（Placed…：过去分词短语作状语，= When they were placed on the ground）
 
-2017年，宾夕法尼亚州立大学的一个团队检查了受感染的蚂蚁，用的是**三维**(three-dimensional)**显微镜**(microscope)**成像**(imaging)。真菌细胞形成了**相互交织的**(intertwined)**网格**(lattice)，围在腿部和颚部的**肌肉纤维**(muscle fibres)周围，一幅**使人想起**(evokes)**木偶**(puppet)的提线的画面。（a picture that…：同位语，概括前面描述的景象；that 引导定语从句，修饰 picture）不过，真菌尚未**渗入**(infiltrated)大脑。
+2017年，宾夕法尼亚州立大学的一个团队检查了受感染的蚂蚁，用的是**三维**(three-dimensional)**显微镜**(microscope)成像。真菌细胞形成了**相互交织的**(intertwined)**网格**(lattice)，围在腿部和颚部的肌肉纤维周围，一幅**使人想起**(evokes)**木偶**(puppet)的提线的画面。（a picture that…：同位语，概括前面描述的景象；that 引导定语从句，修饰 picture）不过，真菌尚未**渗入**(infiltrated)大脑。
 
-《地球脉动》的**一集**(episode)，伴随着戴维·阿滕伯勒的**解说**(narration)，就展示了这样一只蚂蚁。（with David Attenborough's narration：插入语，补充说明这一集）它帮助**启发了**(inspire)2013年的电子游戏《最后生还者》，游戏的**制作者**(makers)们**设想**(envisioned)这种**寄生菌**(parasite)跳到了人类身上。（help (to) do：帮助做……，to 可省；whose…：定语从句，修饰 a 2013 video game；envision sb/sth doing：设想……做某事）（parasite：泛指寄生生物，包括寄生虫、寄生菌和寄生植物；本文特指寄生真菌，所以译为寄生菌。）这个**假想的**(hypothetical)**情景**(scenario)给**玩家**(gamers)带来了一场**虚构的**(fictional)噩梦。
+《地球脉动》的一集，伴随着戴维·阿滕伯勒的**解说**(narration)，就展示了这样一只蚂蚁。（with David Attenborough's narration：插入语，补充说明这一集）它帮助**启发了**(inspire)2013年的电子游戏《最后生还者》，游戏的**制作者**(makers)们**设想**(envisioned)这种寄生菌跳到了人类身上。（help (to) do：帮助做……，to 可省；whose…：定语从句，修饰 a 2013 video game；envision sb/sth doing：设想……做某事）这个**假想的**(hypothetical)**情景**(scenario)给**玩家**(gamers)带来了一场**虚构的**(fictional)噩梦。
 
-现实中的**寄生菌**(parasite)，其根源要深得多，一直延伸到**地质**(geological)记录之中。（roots run deep：根源深远；far + 比较级：……得多）一片4800万年前的叶子**化石**(fossil)，出土于德国梅塞尔，上面带有同样**典型的**(characteristic)咬合**疤痕**(scars)。（bear：带有（痕迹、标记）；48-million-year-old：复合形容词，4800万年前的）（简述：▸感染：泰国木匠蚁感染一种寄生真菌后离群，正午咬住离地约25厘米的叶背主脉，到黄昏死去。▸传播：真菌破坏控制咬合的肌肉，使下颚无法松开，蚂蚁死后仍咬紧叶子；两三天后，蚁尸头部长出真菌细柄，向蚂蚁觅食的地面释放孢子，也就是可传播感染的微小颗粒。▸环境：咬痕多在温湿度适宜的植物西北侧；把感染蚂蚁移高，真菌生长反常，把蚁尸放到地面，尸体则消失。▸机制：2017年三维成像显示，真菌在腿和颚部肌肉周围织成网络，却没有侵入蚂蚁大脑。▸边界：4800万年前的叶化石已有同类咬痕；记录这种现象的纪录片启发了游戏《最后生还者》，但游戏中真菌感染人类的情节是虚构的。）
+现实中的寄生菌，其根源要深得多，一直延伸到**地质**(geological)记录之中。（roots run deep：根源深远；far + 比较级：……得多）一片4800万年前的叶子**化石**(fossil)，出土于德国梅塞尔，上面带有同样**典型的**(characteristic)咬合**疤痕**(scars)。（bear：带有（痕迹、标记）；48-million-year-old：复合形容词，4800万年前的）（简述：▸感染：泰国木匠蚁感染一种寄生真菌后离群，正午咬住离地约25厘米的叶背主脉，到黄昏死去。▸传播：真菌破坏控制咬合的肌肉，使下颚无法松开，蚂蚁死后仍咬紧叶子；两三天后，蚁尸头部长出真菌细柄，向蚂蚁觅食的地面释放孢子，也就是可传播感染的微小颗粒。▸环境：咬痕多在温湿度适宜的植物西北侧；把感染蚂蚁移高，真菌生长反常，把蚁尸放到地面，尸体则消失。▸机制：2017年三维成像显示，真菌在腿和颚部肌肉周围织成网络，却没有侵入蚂蚁大脑。▸边界：4800万年前的叶化石已有同类咬痕；记录这种现象的纪录片启发了游戏《最后生还者》，但游戏中真菌感染人类的情节是虚构的。）
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -52,13 +52,10 @@ The real **parasite**'s roots run far deeper, into the **geological** record. A 
 | dusk | 本文：黄昏；n. 黄昏（at dusk） | 2 |
 | lifeless | 本文：无生命；adj. 无生命的，死的（a lifeless body） | 2 |
 | rigidly | 本文：牢牢地；adv. 僵硬地，严格地（stand rigidly；rigidly controlled） | 2 |
-| fungus | 本文：真菌；n. 真菌（a fungus） | 2 |
 | muscles | 本文：肌肉；n. (muscle) 肌肉（pull a muscle） | 2 |
 | loosen | 本文：松开；v. 松开（loosen one's grip/tie） | 2 |
-| fungal | 本文：真菌的；adj. 真菌的（a fungal infection） | 2 |
+| fungal | 本文：真菌；adj. 真菌的（a fungal infection） | 2 |
 | infectious | 本文：具有传染性的；adj. 传染性的（an infectious disease） | 2 |
-| spores | 本文：孢子；n. (spore) 孢子（fungal spores） | 2 |
-| foraging | 本文：觅食的；v. (forage) 觅食；此处为现在分词作定语（foraging ants） | 2 |
 | tread | 本文：行走；v. 踩，踏（tread on sb's toes） | 2 |
 | invader | 本文：入侵者；n. 入侵者（foreign invaders） | 3 |
 | location | 本文：位置；n. 位置，地点（an ideal location） | 3 |
@@ -70,19 +67,15 @@ The real **parasite**'s roots run far deeper, into the **geological** record. A 
 | disappeared | 本文：不见了；v. (disappear) 不见，消失（disappear without trace） | 3 |
 | three-dimensional | 本文：三维；adj. 三维的，立体的（a three-dimensional image） | 4 |
 | microscope | 本文：显微镜；n. 显微镜（under a microscope） | 4 |
-| imaging | 本文：成像；n. 成像（microscope imaging） | 4 |
 | intertwined | 本文：相互交织的；adj. 交织的（intertwined branches） | 4 |
 | lattice | 本文：网格；n. 网格，格子结构（a lattice of beams） | 4 |
-| muscle fibres | 本文：肌肉纤维；n. pl. 肌肉纤维（muscle fibre 的复数） | 4 |
 | evokes | 本文：使人想起；v. (evoke) 唤起，使想起（evoke memories） | 4 |
 | puppet | 本文：木偶；n. 木偶，傀儡（a puppet show；a puppet government） | 4 |
 | infiltrated | 本文：渗入；v. (infiltrate) 渗入，潜入（infiltrate an organisation） | 4 |
-| episode | 本文：一集；n. （电视剧、纪录片等的）一集（a Planet Earth episode） | 5 |
 | narration | 本文：解说；n. 解说，旁白（a documentary with narration by…） | 5 |
 | inspire | 本文：启发了；v. 启发，激励（inspire a novel/sb） | 5 |
 | makers | 本文：制作者；n. (maker) 制作者（film makers） | 5 |
 | envisioned | 本文：设想；v. (envision) 设想（envision a better future） | 5 |
-| parasite | 本文：寄生菌；n. 寄生生物，包括寄生虫、寄生菌和寄生植物；本文特指寄生真菌 | 5 |
 | hypothetical | 本文：假想的；adj. 假设的（a hypothetical question） | 5 |
 | scenario | 本文：情景；n. 设想的情景（a worst-case scenario） | 5 |
 | gamers | 本文：玩家；n. (gamer) 电子游戏玩家（online gamers） | 5 |
