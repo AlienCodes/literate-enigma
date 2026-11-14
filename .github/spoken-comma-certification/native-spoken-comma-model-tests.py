@@ -135,6 +135,7 @@ try:
  for data,si,sent,row,raw,tb,toks,actual_ph,pieces,gaps,raw_sr in prepared:
   try:
    m._SPOKEN_SOURCE_NO=str(data['no']);row['phase']='actual_original_sentence_audio'
+   marks=m._speech_marks(sent)  # Bind this prepared case, not the final preparation case.
    os.environ['STRICT_CACHE']='1'
    clips,tmap=m.sentence_audio(sent,pieces,gaps);w=np.concatenate(clips)
    display_texts=[m.R.strip_gloss(c['en']).replace('**','').strip()for c in data['sentences'][si-1]['chunks']]
