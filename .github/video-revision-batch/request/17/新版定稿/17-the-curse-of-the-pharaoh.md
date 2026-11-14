@@ -2,27 +2,27 @@
 # ZH: 法老的诅咒
 
 ## 英文
-On 4 November 1922, in the Valley of the Kings, **labourers** **engaged** by the archaeologist Howard Carter **uncovered** a **staircase** **carved into** the rock. On 26 November, with his **wealthy** **sponsor** Lord Carnarvon beside him, Carter made a small hole in the sealed **doorway** and **glimpsed** the **glittering** gold of the boy king Tutankhamun. The **spectacular** find **riveted** the world.
+On 4 November 1922, in the Valley of the Kings, **labourers** **engaged** by the archaeologist Howard Carter **uncovered** a **staircase** **carved into** the rock. On 26 November, with his **wealthy** **sponsor** Lord Carnarvon beside him, Carter made a small hole in the sealed **doorway** and glimpsed the **glittering** gold of the boy king Tutankhamun. The **spectacular** find **riveted** the world.
 
 Carnarvon sold **exclusive** rights to The Times, a **monopoly** that left **competing** reporters **starved of** news. Many **resorted to** **speculation** or sought outside **commentators**. In March 1923 the **best-selling** novelist Marie Corelli warned publicly that **dire** **punishment** awaited anyone who entered a sealed **tomb**. Within a **fortnight**, her words would seem **uncanny**.
 
 That month a **mosquito** bit Carnarvon. He **nicked** the bite with a **razor** while **shaving**, it **turned septic**, and blood poisoning led to **pneumonia**. He died in Cairo on 5 April 1923. Newspapers reported that the city's lights failed **at that instant** and that his dog in England **howled** and died. Yet **blackouts** were almost a daily **occurrence** in Cairo.
 
-No **curse** **inscription** was ever found in the tomb. In December 2002 a British Medical Journal study traced the **fate** of 44 Westerners in **Egypt** at the time. The 25 **exposed to** the tomb died at an average age of 70, **versus** 75 for the rest, a **margin** not **statistically** **significant**. The **mortality** figures lent the **ominous** **rumour** no **credibility**.
+No curse **inscription** was ever found in the tomb. In December 2002 a British Medical Journal study traced the **fate** of 44 Westerners in Egypt at the time. The 25 **exposed to** the tomb died at an average age of 70, **versus** 75 for the rest, a **margin** not statistically **significant**. The **mortality** figures lent the **ominous** **rumour** no **credibility**.
 
 Carnarvon's **untimely** **demise** had **fuelled** the tale, giving it **impetus**. Carter, the **excavator** who had **unsealed** the **burial** place, died in March 1939, aged 64, almost sixteen years after his **patron**. The legend had left him **conspicuously** **unharmed**.
 
 ## 中文
 
-1922年11月4日，在帝王谷，考古学家霍华德·卡特**聘用**(engaged)的**工人**(labourers)，**发掘出了**(uncovered)一段**雕刻在**(carved into)岩石**上面**(carved into)的**阶梯**(staircase)。（@labourer 尤指户外的体力劳动者，劳工，工人）（engaged by…：过去分词短语作后置定语，修饰 labourers；carved into the rock 同样作后置定语，修饰 staircase）（@carved into the rock 文字、图案或符号被雕刻在石头表面并留下刻痕）11月26日，在他那**富有的**(wealthy)**赞助人**(sponsor)卡纳冯勋爵的陪同下，卡特在封住的**门道**(doorway)上开了一个小孔，并**瞥见了**(glimpsed)少年国王图坦卡蒙**闪闪发光的**(glittering)黄金。（with + 名词 + beside him：with 复合结构作伴随状语，“在……的陪同下”）这一**惊人的/壮观的**(spectacular)发现，**牢牢吸引了**(riveted)全世界的**注意力**(riveted)。
+1922年11月4日，在帝王谷，考古学家霍华德·卡特**聘用**(engaged)的**工人**(labourers)，**发掘出了**(uncovered)一段**雕刻在**(carved into)岩石**上面**(carved into)的**阶梯**(staircase)。（@labourer 尤指户外的体力劳动者，劳工，工人）（engaged by…：过去分词短语作后置定语，修饰 labourers；carved into the rock 同样作后置定语，修饰 staircase）（@carved into the rock 文字、图案或符号被雕刻在石头表面并留下刻痕）11月26日，在他那**富有的**(wealthy)**赞助人**(sponsor)卡纳冯勋爵的陪同下，卡特在封住的**门道**(doorway)上开了一个小孔，并瞥见了少年国王图坦卡蒙**闪闪发光的**(glittering)黄金。（with + 名词 + beside him：with 复合结构作伴随状语，“在……的陪同下”）这一**惊人的/壮观的**(spectacular)发现，**牢牢吸引了**(riveted)全世界的**注意力**(riveted)。
 
 卡纳冯将**独家的**(exclusive)新闻报道权卖给了《泰晤士报》，这种**垄断**(monopoly)让**相互竞争的**(competing)其他记者**严重缺少**(starved of)新闻。（a monopoly…：同位语，概括前面的独家协议；leave sb starved of sth：让某人严重缺少某物）许多人（只能）**诉诸于**(resorted to)**猜测**(speculation)，或者是找外界的**评论员**(commentators)。（resort to：不得已而采用，诉诸于）1923年3月，**畅销**(best-selling)小说家玛丽·科雷利公开警告，**极其严重的**(dire)**惩罚**(punishment)等待着任何进入封闭**陵墓**(tomb)的人。（that…：宾语从句；who…：定语从句，修饰 anyone）（@dire 情况、后果或处境极其严重，@dire|糟糕到令人担忧，通常还带有强烈的紧迫感。）**两周**(fortnight)之内，她的话就会显得**诡异而又邪门**(uncanny)。（would：过去将来，从1923年3月看之后的事）（within + 时间段 = “在……（时间）之内”，通常指“不超过这个期限”。）（@uncanny = 诡异、邪门、让人心里发毛（牛津释义：奇怪且难以解释）。）
 
 当月，一只**蚊子**(mosquito)叮了卡纳冯。他**刮胡子**(shaving)时用**剃刀**(razor)**划破了**(nicked)叮咬处，伤口**感染化脓了**(turned septic)，继而血液中毒又引发了**肺炎**(pneumonia)。（while shaving：在刮胡子时；turn septic：变得感染化脓，turn 作系动词）他于1923年4月5日在开罗去世。报纸报道称，就**在那一瞬间**(at that instant)，全城（开罗）的灯都熄灭了，而他在英国的狗也**嚎叫**(howled)着死去了。（两个 that 从句并列，都作 reported 的宾语）然而，**停电**(blackouts)在当时的开罗几乎是天天都有的**事情**(occurrence)。
 
-墓中从未发现过任何**诅咒**(curse)**铭文**(inscription)。（No… was ever found：no 否定主语，全句否定，“从未发现过任何……”）2002年12月，《英国医学杂志》的一项研究追溯了当时身在**埃及**(Egypt)的44名西方人的**命运**(fate)。（in Egypt at the time：后置定语，修饰 Westerners）其中曾**接触**(exposed to)这座陵墓的25人，平均死亡年龄为70岁，**相比之下**(versus)其余的人为75岁；这一**差距**(margin)**在统计上**(statistically)并不**显著**(significant)。（exposed to the tomb：过去分词短语作后置定语，修饰 The 25；a margin…：同位语，概括前面的差距）这些**死亡**(mortality)数据让这则**不祥的**(ominous)**传言**(rumour)毫无**可信度**(credibility)。（lend sth no credibility：不让某事显得可信）
+墓中从未发现过任何诅咒**铭文**(inscription)。（No… was ever found：no 否定主语，全句否定，“从未发现过任何……”）2002年12月，《英国医学杂志》的一项研究追溯了当时身在埃及的44名西方人的**命运**(fate)。（in Egypt at the time：后置定语，修饰 Westerners）其中曾**接触**(exposed to)这座陵墓的25人，平均死亡年龄为70岁，**相比之下**(versus)其余的人为75岁；这一**差距**(margin)在统计上并不**显著**(significant)。（exposed to the tomb：过去分词短语作后置定语，修饰 The 25；a margin…：同位语，概括前面的差距）这些**死亡**(mortality)数据让这则**不祥的**(ominous)**传言**(rumour)毫无**可信度**(credibility)。（lend sth no credibility：不让某事显得可信）
 
-卡纳冯的**过早**(untimely)**离世**(demise)**助长了**(fuelled)这一传言，并为其**推波助澜**(impetus)。（giving…：现在分词短语作结果状语）（giving it impetus：赋予它推动力（让它加速发展、更有势头）。）（@impetus 的核心词义就是：冲力、推动力、促进因素。）（在这个语境里，就是让这个谣言传播得更猛、发展得更快。）卡特，这位**启封了**(unsealed)这处**墓葬**(burial)的**发掘者**(excavator)，于1939年3月去世，终年64岁，距他的**资助人**(patron)去世已近十六年。（the excavator who…：同位语，说明 Carter；almost sixteen years after his patron：在他的资助人之后近十六年）这个传说偏偏让他**毫发无损**(unharmed)，这一点**格外醒目**(conspicuously)。（leave sb unharmed：让某人未受伤害；conspicuously 修饰 unharmed）（him 指亲自开墓的卡特。卡纳冯去世后，他又活了近16年，终年64岁。按照“法老诅咒”的传闻，卡特本应是最容易遭殃的人，结果却长久无事。作者用这种反差表达讽刺，质疑所谓“诅咒”的可信性。）（简述：▸发现：1922年，考古学家卡特与赞助人卡纳冯打开图坦卡蒙墓，墓中珍宝震惊世界。▸传言：卡纳冯把独家报道权卖给《泰晤士报》，其他记者转向猜测；次年他突然去世，进入墓葬会遭诅咒的故事由此盛行。▸病因：卡纳冯剃须时划破蚊子叮咬处，伤口感染恶化，并发肺炎；报纸还说他死时开罗停电，但当地本就几乎天天停电。▸对照：2002年一项研究比较开墓时身在埃及的44人的寿命，接触过墓的25人平均活到70岁，其余未接触者75岁；这点差异不足以排除偶然。▸结论：墓中从未发现诅咒铭文；卡纳冯去世后，亲自开墓的卡特又活了近16年，现有证据不能证明存在诅咒。）
+卡纳冯的**过早**(untimely)**离世**(demise)**助长了**(fuelled)这一传言，并为其**推波助澜**(impetus)。（giving…：现在分词短语作结果状语）（giving it impetus：赋予它推动力（让它加速发展、更有势头）。）（@impetus 的核心词义就是：冲力、推动力、促进因素。）（在这个语境里，就是让这个谣言传播得更猛、发展得更快。）卡特，这位**启封了**(unsealed)这处**墓葬**(burial)的**发掘者**(excavator)，于1939年3月去世，终年64岁，距他的**资助人**(patron)去世已近十六年。（the excavator who…：同位语，说明 Carter；almost sixteen years after his patron：在他的资助人之后近十六年）这个传说偏偏让他**毫发无损**(unharmed)，这一点**格外醒目**(conspicuously)。（leave sb unharmed：让某人未受伤害；conspicuously 修饰 unharmed）（简述：▸发现：1922年，考古学家卡特与赞助人卡纳冯打开图坦卡蒙墓，墓中珍宝震惊世界。▸传言：卡纳冯把独家报道权卖给《泰晤士报》，其他记者转向猜测；次年他突然去世，进入墓葬会遭诅咒的故事由此盛行。▸病因：卡纳冯剃须时划破蚊子叮咬处，伤口感染恶化，并发肺炎；报纸还说他死时开罗停电，但当地本就几乎天天停电。▸对照：2002年一项研究比较开墓时身在埃及的44人的寿命，接触过墓的25人平均活到70岁，其余未接触者75岁；这点差异不足以排除偶然。▸结论：墓中从未发现诅咒铭文；卡纳冯去世后，亲自开墓的卡特又活了近16年，现有证据不能证明存在诅咒。）
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -35,7 +35,6 @@ Carnarvon's **untimely** **demise** had **fuelled** the tale, giving it **impetu
 | wealthy | 本文：富有的；adj. 富有的（a wealthy family/businessman） | 1 |
 | sponsor | 本文：赞助人；n. 赞助人，资助者（a corporate sponsor；find a sponsor） | 1 |
 | doorway | 本文：门道；n. 门口，门道（stand in the doorway） | 1 |
-| glimpsed | 本文：瞥见了；v. (glimpse) 瞥见，短暂地看到（glimpse a figure） | 1 |
 | glittering | 本文：闪闪发光的；adj. 闪闪发光的；辉煌的（glittering jewels；a glittering career） | 1 |
 | spectacular | 本文：惊人的/壮观的；adj. 壮观的，惊人的（a spectacular view/success） | 1 |
 | riveted | 本文：牢牢吸引了……注意力；v. (rivet) 吸引（注意力）；铆接（be riveted by a story） | 1 |
@@ -62,14 +61,11 @@ Carnarvon's **untimely** **demise** had **fuelled** the tale, giving it **impetu
 | howled | 本文：嚎叫；v. (howl) 嚎叫，怒吼（wolves howling；the wind howled） | 3 |
 | blackouts | 本文：停电；n. (blackout) 停电；暂时昏厥（a power blackout；suffer blackouts） | 3 |
 | occurrence | 本文：事情；n. 发生的事情；发生（a common/rare occurrence） | 3 |
-| curse | 本文：诅咒；n. 诅咒（an ancient curse） | 4 |
 | inscription | 本文：铭文；n. 铭文，题字（a Latin inscription on the stone） | 4 |
-| Egypt | 本文：埃及；n. 埃及（国家名） | 4 |
 | fate | 本文：命运；n. 命运，结局（decide sb's fate；a cruel fate） | 4 |
 | exposed to | 本文：接触；adj./v. (expose) 暴露于，接触（be exposed to radiation/danger） | 4 |
 | versus | 本文：相比之下；prep. 与……相比；对（cost versus quality；England versus France） | 4 |
 | margin | 本文：差距；n. 差额，差距；页边（win by a narrow margin；profit margin） | 4 |
-| statistically | 本文：在统计上；adv. 从统计角度看（statistically significant） | 4 |
 | significant | 本文：显著；adj. 显著的，有统计意义的；重要的（statistically significant；a significant change） | 4 |
 | mortality | 本文：死亡；n. 死亡率；死亡（infant mortality；mortality rates） | 4 |
 | ominous | 本文：不祥的；adj. 不祥的，预兆不好的（an ominous silence/sign） | 4 |
