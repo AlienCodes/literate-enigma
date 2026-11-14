@@ -9,6 +9,7 @@ modified. Run after the official post-production check has created its GT.
 from __future__ import annotations
 
 import argparse
+import ast
 import hashlib
 import importlib.metadata
 import json
@@ -83,6 +84,45 @@ def summarize_official_report(path: Path):
         "a10_edge_violations": sum(bool(e.get("edge_bad")) for e in edits),
         "extra_nonzero_run_count": len(data.get("extra_runs", [])),
     }
+
+
+def raw_highlight_onset_scalars(tools, a, sr, no):
+    """Run the unchanged pure G45 functions on actual PCM; publish levels only."""
+    targets = {'44': ('S2', 3, 25600, 26000, 25770, 25830),
+               '02': ('S5', 2, 35550, 36800, 35630, 35720),
+               '05': ('S5', 4, 43650, 44000, 43860, 43950),
+               '16': ('S15', 2, 111850, 112450, 111950, 112060),
+               '18': ('S8', 2, 73750, 74080, 73940, 74030),
+               '61': ('S1', 2, 10600, 11200, 10800, 11020)}
+    if no not in targets:
+        return None
+    sentence, chunk, lo, hi, fine_lo, fine_hi = targets[no]
+    path = tools / '高亮同步核对.py'
+    tree = ast.parse(path.read_text())
+    nodes = [node for node in tree.body if isinstance(node, ast.FunctionDef)
+             and node.name in {'是开口', '确认可收'}]
+    assert len(nodes) == 2
+    scope = {'np': np}
+    exec(compile(ast.Module(body=nodes, type_ignores=[]), str(path), 'exec'), scope)
+    rows = []
+    times = [tick / 1000 for tick in sorted(set(range(lo, hi + 1, 5)) |
+                                            set(range(fine_lo, fine_hi + 1)))]
+    for t in times:
+        F = int(.005 * sr)
+        i = int(round(t * sr))
+        w = a[max(0, i - 2 * sr):i + 2 * sr]
+        n = len(w) // (2 * F)
+        ref = np.sqrt(np.mean(w[:n * 2 * F].reshape(n, 2 * F) ** 2, axis=1)).max() + 1e-12
+        level = lambda start: float(20 * np.log10(np.sqrt(np.mean(a[start:start + F] ** 2)) / ref + 1e-12))
+        pre = [level(j) for j in range(i - 6 * F, i, F)]
+        post = [level(j) for j in range(i, i + 8 * F, F)]
+        rows.append({'actual_pcm_time_s': round(t, 3), 'pre30ms_max_db': max(pre),
+                     'post40ms_max_db': max(post), 'this5ms_db': level(i),
+                     'original_G45_accepts': bool(scope['确认可收'](no, a, sr, t))})
+    return {'original_checker_sha256': sha256(path), 'original_functions_executed': ['是开口', '确认可收'],
+            'sentence': sentence, 'chunk': chunk, 'window_s': [lo / 1000, hi / 1000],
+            'fine_window_s': [fine_lo / 1000, fine_hi / 1000], 'fine_step_s': .001,
+            'purpose': 'raw actual PCM onset diagnosis only; does not approve a confirmation', 'rows': rows}
 
 
 def abnormal_edit_scalars(report_path: Path, script_path: Path, wav_path: Path, sr=24000):
@@ -259,6 +299,15 @@ def main():
         a, sr = sf.read(wav, dtype="float64")
         if a.ndim != 1 or sr != 24000:
             raise ValueError(f"expected mono 24000 Hz; got channels={a.ndim}, sample_rate={sr}")
+        result['raw_highlight_onset_scalars'] = raw_highlight_onset_scalars(args.tools, a, sr, no)
+        if result['raw_highlight_onset_scalars'] is not None:
+            target = result['raw_highlight_onset_scalars']
+            key = f"{target['sentence']} 第{target['chunk']}块"
+            conf = json.loads(script.read_text()).get('核对确认', {}).get('高亮', {}).get(key)
+            current_fingerprint = hashlib.md5(wav.read_bytes()).hexdigest()[:12]
+            result['raw_highlight_onset_scalars'].update({
+                'current_confirmation': conf, 'actual_wav_md5_first12': current_fingerprint,
+                'confirmation_fingerprint_matches': isinstance(conf, dict) and conf.get('配音指纹') == current_fingerprint})
         meta = json.loads(meta_path.read_text())
         records_path = work / "分段.json"
         records = json.loads(records_path.read_text()) if records_path.is_file() else {}

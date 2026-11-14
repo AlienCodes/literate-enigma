@@ -66,6 +66,36 @@ jobs:
             /最终版4K视频/${{ matrix.article }} - *
             /CLAUDE.md
           sparse-checkout-cone-mode: false
+      - name: 按批准的原图清单解析本篇原生文件名
+        id: approved-art-path
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          task = Path('.github/video-revision-batch')
+          manifest = json.loads((task / 'illustration-manifest70.json').read_text())
+          row, = [r for r in manifest['illustrations'] if r['source_id'] == os.environ['ARTICLE_NO']]
+          native = Path(row['approved_book_illustration_path']).name
+          assert native.endswith('.png') and '/' not in native and '\n' not in native
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as stream:
+              stream.write('path=插图阅读小册/illustrations/' + native + '\n')
+          PY
+      - name: 取固定主仓中已批准的本篇书中原图
+        uses: actions/checkout@v4
+        with:
+          repository: alienalgorithm/postgraduate-vocabulary
+          ref: 64621068034f8b6e09836a6d97210a0e9b2f1ed6
+          path: .approved-publication-illustrations
+          filter: blob:none
+          persist-credentials: false
+          sparse-checkout: /${{ steps.approved-art-path.outputs.path }}
+          sparse-checkout-cone-mode: false
+      - name: 先验本篇原图的主仓提交、原生blob和批准SHA
+        run: >-
+          python .github/video-revision-batch/approved_illustration_resource.py
+          --source-id "$ARTICLE_NO" --checkout .approved-publication-illustrations
+          --task .github/video-revision-batch
+          --out "article$ARTICLE_NO-delivery/$ARTICLE_NO-approved-illustration-resource.json"
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -111,6 +141,9 @@ jobs:
             article${{ matrix.article }}-delivery/*.png
             article${{ matrix.article }}-delivery/*.wav
             article${{ matrix.article }}-delivery/*.log
+            article${{ matrix.article }}-delivery/*.py
+            article${{ matrix.article }}-delivery/*.md
+            article${{ matrix.article }}-delivery/*-illustrated-tail-previews/*.jpg
           compression-level: 1
           retention-days: 30
           if-no-files-found: error
