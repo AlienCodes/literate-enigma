@@ -434,7 +434,19 @@ out = {'no': '49',
           '们': {'S6-1 **(leaky)棚屋里，他们**': '们不在加粗里，是代词“他们”（they，指居里夫妇），沿用文章定稿；被报出只因前面 **漏雨的**(leaky) '
                                           '与“他们”在同一块里'},
           '同词异译': {'left out：把/排除在外了': '不是两种译法：用户 2026-11-05 原话“提名最初把她排除在外了 left out 这里标注为重点词汇”，left out '
-                                       '的意思分在“把……排除在外了”两处，按 T23 意思标全，两处是同一个译法'}},
+                                       '的意思分在“把……排除在外了”两处，按 T23 意思标全，两处是同一个译法'},
+          '机器复听': {'S8': {'配音指纹': '4d07dfa775bc',
+                          '依据': '2026-11-14按原机器复听方法实测S8，当前配音指纹4d07dfa775bc。原始句窗72.83–79.275秒：small.en=The '
+                                "nomination had initially left her out. At Pierre's insistence, the omission "
+                                'was rectified.；parakeet=The nomination had initially left her out. At '
+                                "Pierre's insistence, the old mission was "
+                                'rectified.。实际公开MP4扩大前后各120毫秒上下文（72.71–79.395秒）：small.en=The nomination had '
+                                "initially left her out. At Pierre's insistence, the omission was "
+                                "rectified.；parakeet=The nomination had initially left her out. At Pierre's "
+                                'insistence the omission was '
+                                'rectified.；两路逐词比较差异均为空。当前公开整轨7033个AAC包的payload、绝对PTS/DTS/duration/size及codec参数与已验旧轨严格相同，7200768个float32解码样本逐字节相同、maxdiff=0。本记录只对应本句、本指纹的两种识别器上下文差异实测。依据：comparison-report.json '
+                                'SHA256=069ece8bcecbf6183e9adf839f8948c003f32f47e9121552bdf0c6d8fa98c078；49-original-ASR-target-evidence.json '
+                                'SHA256=581dcb8f8f39bacbea2ca881af0247049090aaffcc1378c40585c72e36eb0972。'}}},
  '结尾解说': '简述',
  '停顿插入点': {'S12': {'1': [0.7125, '交界']}},
  '非人声区间': {'S1': [[9.2, 9.22]],
@@ -481,7 +493,9 @@ out = {'no': '49',
             'S13': '747dbdc2606c',
             'S14': '6da70c9d000e',
             'S16': '9dca042052d3',
-            'S17': 'b94b68718345'}}
+            'S17': 'b94b68718345'},
+ '结尾句': {'S17': {'整句语速': 0.95,
+                 '依据': '旧稿未设结尾句时，原制作程序使用默认SPEED=0.95。本句没有句中逗号、分号或冒号，现透明记录原有整句0.95；2026-11-14用原G72核验母素材、原带时长母素材、原音素时刻、原sentence_audio及原句增益完整后处理逐样本核实，两种表示完全相同；原非人声区间和全部其他声控保持。此字段不新增双速或放慢，正式重制仍须原全门通过且AAC与既有验声逐字节相同。'}}}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对
