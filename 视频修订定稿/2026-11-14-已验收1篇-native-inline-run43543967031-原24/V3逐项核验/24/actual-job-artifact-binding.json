@@ -1,0 +1,3563 @@
+{
+  "actual_successful_job_verified": true,
+  "actual_genuine_upstream_pass_with_missing_art_recovery": false,
+  "actual_job_uploaded_selected_artifact": false,
+  "overall_matrix_success_required": false,
+  "acceptance_basis": "actual successful article job + immutable run artifact + actual native passed article/media/source identity; upload log is auxiliary",
+  "run": {
+    "id": 43543967031,
+    "name": "本轮改动篇目原缓存正式4K",
+    "node_id": "WFR_kwLODJcpM88AAAAKI2w1Nw",
+    "head_branch": "codex/finish-05-and-summaries-20261112",
+    "head_sha": "751cbb58491b7918c7437f9cd91efe28d90fa32e",
+    "path": ".github/workflows/produce-revision-batch4K.yml",
+    "display_title": "Rebuild revised articles in official4K: 01,02,03,04,05,06,08,09,13,14…",
+    "run_number": 14,
+    "event": "push",
+    "status": "queued",
+    "conclusion": null,
+    "workflow_id": 417752518,
+    "check_suite_id": 117906846498,
+    "check_suite_node_id": "CS_kwDODJcpM88AAAAbc8uzIg",
+    "url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43543967031",
+    "html_url": "https://github.com/AlienCodes/literate-enigma/actions/runs/43543967031",
+    "pull_requests": [],
+    "created_at": "2026-11-14T02:01:39Z",
+    "updated_at": "2026-11-14T02:01:45Z",
+    "actor": {
+      "login": "AlienCodes",
+      "id": 52247027,
+      "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/AlienCodes",
+      "html_url": "https://github.com/AlienCodes",
+      "followers_url": "https://api.github.com/users/AlienCodes/followers",
+      "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+      "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+      "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+      "repos_url": "https://api.github.com/users/AlienCodes/repos",
+      "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "run_attempt": 1,
+    "referenced_workflows": [],
+    "run_started_at": "2026-11-14T02:01:39Z",
+    "triggering_actor": {
+      "login": "AlienCodes",
+      "id": 52247027,
+      "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/AlienCodes",
+      "html_url": "https://github.com/AlienCodes",
+      "followers_url": "https://api.github.com/users/AlienCodes/followers",
+      "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+      "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+      "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+      "repos_url": "https://api.github.com/users/AlienCodes/repos",
+      "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "jobs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43543967031/attempts/1/jobs",
+    "logs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43543967031/attempts/1/logs",
+    "check_suite_url": "https://api.github.com/repos/AlienCodes/literate-enigma/check-suites/117906846498",
+    "artifacts_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43543967031/artifacts",
+    "cancel_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43543967031/cancel",
+    "rerun_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43543967031/rerun",
+    "previous_attempt_url": null,
+    "workflow_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/workflows/417752518",
+    "head_commit": {
+      "id": "751cbb58491b7918c7437f9cd91efe28d90fa32e",
+      "tree_id": "0914f9e0bf4e159fafeea9ae61cad85548219250",
+      "message": "Rebuild revised articles in official4K: 01,02,03,04,05,06,08,09,13,14,16,19,20,21,22,23,24,28,32,33,36,37,41,44,46,48,49,54,55,57,59,60,61,62,63,65,66,67,68,69,70",
+      "timestamp": "2026-11-14T02:01:37Z",
+      "author": {
+        "name": "the Sword God",
+        "email": "52247027+AlienCodes@users.noreply.github.com"
+      },
+      "committer": {
+        "name": "the Sword God",
+        "email": "52247027+AlienCodes@users.noreply.github.com"
+      }
+    },
+    "repository": {
+      "id": 211233075,
+      "node_id": "MDEwOlJlcG9zaXRvcnkyMTEyMzMwNzU=",
+      "name": "literate-enigma",
+      "full_name": "AlienCodes/literate-enigma",
+      "private": false,
+      "owner": {
+        "login": "AlienCodes",
+        "id": 52247027,
+        "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+        "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/AlienCodes",
+        "html_url": "https://github.com/AlienCodes",
+        "followers_url": "https://api.github.com/users/AlienCodes/followers",
+        "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+        "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+        "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+        "repos_url": "https://api.github.com/users/AlienCodes/repos",
+        "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/AlienCodes/literate-enigma",
+      "description": "I am exploring this world!",
+      "fork": false,
+      "url": "https://api.github.com/repos/AlienCodes/literate-enigma",
+      "forks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/forks",
+      "keys_url": "https://api.github.com/repos/AlienCodes/literate-enigma/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/AlienCodes/literate-enigma/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/AlienCodes/literate-enigma/teams",
+      "hooks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/hooks",
+      "issue_events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/events",
+      "assignees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/AlienCodes/literate-enigma/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/tags",
+      "blobs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/AlienCodes/literate-enigma/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/AlienCodes/literate-enigma/languages",
+      "stargazers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/stargazers",
+      "contributors_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contributors",
+      "subscribers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscribers",
+      "subscription_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscription",
+      "commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/AlienCodes/literate-enigma/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/AlienCodes/literate-enigma/merges",
+      "archive_url": "https://api.github.com/repos/AlienCodes/literate-enigma/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/AlienCodes/literate-enigma/downloads",
+      "issues_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/AlienCodes/literate-enigma/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/AlienCodes/literate-enigma/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/AlienCodes/literate-enigma/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/AlienCodes/literate-enigma/labels{/name}",
+      "releases_url": "https://api.github.com/repos/AlienCodes/literate-enigma/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/deployments"
+    },
+    "head_repository": {
+      "id": 211233075,
+      "node_id": "MDEwOlJlcG9zaXRvcnkyMTEyMzMwNzU=",
+      "name": "literate-enigma",
+      "full_name": "AlienCodes/literate-enigma",
+      "private": false,
+      "owner": {
+        "login": "AlienCodes",
+        "id": 52247027,
+        "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+        "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/AlienCodes",
+        "html_url": "https://github.com/AlienCodes",
+        "followers_url": "https://api.github.com/users/AlienCodes/followers",
+        "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+        "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+        "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+        "repos_url": "https://api.github.com/users/AlienCodes/repos",
+        "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/AlienCodes/literate-enigma",
+      "description": "I am exploring this world!",
+      "fork": false,
+      "url": "https://api.github.com/repos/AlienCodes/literate-enigma",
+      "forks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/forks",
+      "keys_url": "https://api.github.com/repos/AlienCodes/literate-enigma/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/AlienCodes/literate-enigma/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/AlienCodes/literate-enigma/teams",
+      "hooks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/hooks",
+      "issue_events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/events",
+      "assignees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/AlienCodes/literate-enigma/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/tags",
+      "blobs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/AlienCodes/literate-enigma/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/AlienCodes/literate-enigma/languages",
+      "stargazers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/stargazers",
+      "contributors_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contributors",
+      "subscribers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscribers",
+      "subscription_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscription",
+      "commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/AlienCodes/literate-enigma/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/AlienCodes/literate-enigma/merges",
+      "archive_url": "https://api.github.com/repos/AlienCodes/literate-enigma/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/AlienCodes/literate-enigma/downloads",
+      "issues_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/AlienCodes/literate-enigma/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/AlienCodes/literate-enigma/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/AlienCodes/literate-enigma/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/AlienCodes/literate-enigma/labels{/name}",
+      "releases_url": "https://api.github.com/repos/AlienCodes/literate-enigma/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/deployments"
+    }
+  },
+  "job": {
+    "id": 132290749447,
+    "run_id": 43543967031,
+    "workflow_name": "本轮改动篇目原缓存正式4K",
+    "head_branch": "codex/finish-05-and-summaries-20261112",
+    "run_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43543967031",
+    "run_attempt": 1,
+    "node_id": "CR_kwDODJcpM88AAAAezSSkBw",
+    "head_sha": "751cbb58491b7918c7437f9cd91efe28d90fa32e",
+    "url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/jobs/132290749447",
+    "html_url": "https://github.com/AlienCodes/literate-enigma/actions/runs/43543967031/job/132290749447",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-11-14T02:01:45Z",
+    "started_at": "2026-11-14T02:01:47Z",
+    "completed_at": "2026-11-14T02:10:18Z",
+    "name": "produce (24)",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-11-14T02:01:48Z",
+        "completed_at": "2026-11-14T02:01:48Z"
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-11-14T02:01:48Z",
+        "completed_at": "2026-11-14T02:01:56Z"
+      },
+      {
+        "name": "按批准的原图清单解析本篇原生文件名",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3,
+        "started_at": "2026-11-14T02:01:56Z",
+        "completed_at": "2026-11-14T02:01:56Z"
+      },
+      {
+        "name": "取固定主仓中已批准的本篇书中原图",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4,
+        "started_at": "2026-11-14T02:01:56Z",
+        "completed_at": "2026-11-14T02:01:58Z"
+      },
+      {
+        "name": "先验本篇原图的主仓提交、原生blob和批准SHA",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5,
+        "started_at": "2026-11-14T02:01:58Z",
+        "completed_at": "2026-11-14T02:01:58Z"
+      },
+      {
+        "name": "Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6,
+        "started_at": "2026-11-14T02:01:58Z",
+        "completed_at": "2026-11-14T02:01:58Z"
+      },
+      {
+        "name": "Run actions/cache/restore@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7,
+        "started_at": "2026-11-14T02:01:58Z",
+        "completed_at": "2026-11-14T02:02:48Z"
+      },
+      {
+        "name": "确认恢复既有机器缓存",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8,
+        "started_at": "2026-11-14T02:02:48Z",
+        "completed_at": "2026-11-14T02:02:48Z"
+      },
+      {
+        "name": "准备原有核查工具",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 9,
+        "started_at": "2026-11-14T02:02:48Z",
+        "completed_at": "2026-11-14T02:03:21Z"
+      },
+      {
+        "name": "Run actions/cache/restore@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 10,
+        "started_at": "2026-11-14T02:03:21Z",
+        "completed_at": "2026-11-14T02:03:22Z"
+      },
+      {
+        "name": "确认原快测印章缓存命中",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 11,
+        "started_at": "2026-11-14T02:03:22Z",
+        "completed_at": "2026-11-14T02:03:22Z"
+      },
+      {
+        "name": "原程序做稿并正式定稿4K",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 12,
+        "started_at": "2026-11-14T02:03:22Z",
+        "completed_at": "2026-11-14T02:10:14Z"
+      },
+      {
+        "name": "仅保留本篇公开成片和核验材料",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 13,
+        "started_at": "2026-11-14T02:10:14Z",
+        "completed_at": "2026-11-14T02:10:16Z"
+      },
+      {
+        "name": "Post Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 24,
+        "started_at": "2026-11-14T02:10:16Z",
+        "completed_at": "2026-11-14T02:10:16Z"
+      },
+      {
+        "name": "Post 取固定主仓中已批准的本篇书中原图",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 25,
+        "started_at": "2026-11-14T02:10:16Z",
+        "completed_at": "2026-11-14T02:10:16Z"
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 26,
+        "started_at": "2026-11-14T02:10:16Z",
+        "completed_at": "2026-11-14T02:10:16Z"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 27,
+        "started_at": "2026-11-14T02:10:16Z",
+        "completed_at": "2026-11-14T02:10:16Z"
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/AlienCodes/literate-enigma/check-runs/132290749447",
+    "labels": [
+      "ubuntu-latest"
+    ],
+    "runner_id": 1000008401,
+    "runner_name": "GitHub Actions 1000008401",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  "artifact": {
+    "id": 14092804429,
+    "node_id": "MDg6QXJ0aWZhY3QxNDA5MjgwNDQyOQ==",
+    "name": "article24-revised-canonical-4K-final",
+    "size_in_bytes": 42513186,
+    "url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/artifacts/14092804429",
+    "archive_download_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/artifacts/14092804429/zip",
+    "expired": false,
+    "digest": "sha256:7a69cc6fbeb6de923d7bb78434468482917b8e54325d946f906f8dddc1e8453e",
+    "created_at": "2026-11-14T02:10:16Z",
+    "updated_at": "2026-11-14T02:10:16Z",
+    "expires_at": "2026-12-14T02:10:14Z",
+    "workflow_run": {
+      "id": 43543967031,
+      "repository_id": 211233075,
+      "head_repository_id": 211233075,
+      "head_branch": "codex/finish-05-and-summaries-20261112",
+      "head_sha": "751cbb58491b7918c7437f9cd91efe28d90fa32e"
+    }
+  },
+  "upload_step_proof": {
+    "unambiguous_selected_step_upload": false,
+    "auxiliary_only": true,
+    "reason": "Upload action log block is missing or ambiguous in selected API step interval",
+    "acceptance_blocked_by_log": false
+  },
+  "native_status": {
+    "article": "24",
+    "passed": true,
+    "stage": "final4K-passed",
+    "original_audit_and_quality_thresholds_unchanged": true,
+    "original_maker_unchanged": true,
+    "core_repairs": [
+      {
+        "target": "视频/工具/草稿声音.sh",
+        "file": "files/视频/工具/草稿声音.sh",
+        "original_sha256": "0ce3277812cf16ed30438509b6dc97db0c26725db4c5db5d9b058c3ef6531aa2",
+        "patched_sha256": "957d7eb1598698ea33ff77d83379256ecae258d84d588753d561a902284be439",
+        "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+      },
+      {
+        "target": "视频/工具/句内响度.py",
+        "file": "files/视频/工具/句内响度.py",
+        "original_sha256": "58735b7173a3c03efa61fb300b4aed4039c164fa970e0593a40bae2a3f3cbd27",
+        "patched_sha256": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea",
+        "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+      },
+      {
+        "target": "视频/工具/独立复核/synth.py",
+        "file": "files/视频/工具/独立复核/synth.py",
+        "original_sha256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+        "patched_sha256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+        "repair_scope": "validated unprocessed raw-mother reference input only; independent transforms/audit/thresholds retained"
+      }
+    ],
+    "strict_production_cache": true,
+    "pdf_requested": false,
+    "check_summaries": {
+      "approved-illustration-resource.log": [],
+      "certified-core-original-stamp-verification.log": [],
+      "original-restored-stamp.log": [],
+      "canonical-module-copy.log": [],
+      "canonical-draft-00.log": [
+        "第24篇 做完（177 秒）：修了 1 处、疑点 26 处",
+        "① 文本：通过，自动修 1 处",
+        "② 声音：24 词尾辅音核对 问题数 0；24 纯人声核对（配音指纹 bf7ea6f7c65a）问题数 0；问题数 0；24 句间停顿核对 问题数 0；问题数 0",
+        "③ 出片前核查：通过",
+        "⑤ 出片后核查：全部通过",
+        "⑥ 已拷 视频/视频/草稿1080p/24_1080p.mp4（--不推）"
+      ],
+      "canonical-final4K-00.log": [
+        "第24篇 用户定稿原话：有"
+      ],
+      "original-stamp-after-production.log": []
+    },
+    "actual_native_core_certification": {
+      "run_id": 43535822030,
+      "job_id": 132264443476,
+      "commit": "395e8da264fafa2453a42ee70a3f7aed8303a769",
+      "actual_full_quickcheck_exit": 0,
+      "actual_full_quickcheck_seconds": 478.16,
+      "artifact_id": 14089812323,
+      "artifact_zip_sha256": "5e396c84e4a6fc7c6cc737ceb8648d7f15f397e9551806e032c93db8ab0963b8",
+      "full_original_quickcheck_log_sha256": "dbe7f6e08d2b7c3a5f9a2f925bb75a662aed725c780e1bc6714706807552a294",
+      "article_audio_or_video_passed_not_implied": true
+    },
+    "actual_native_fastcheck_stamp": {
+      "target": "视频/工具/新管/快测通过.json",
+      "file": "files/视频/工具/新管/快测通过.json",
+      "sha256": "6ebc7aa41f79f77258fa333b665af258e007daa36a4ea290de972cd3da7b42f2",
+      "origin": "actual unmodified original full quickcheck, native run43535822030"
+    },
+    "reviewed_regression_resource": {
+      "target": "视频/工具/新管/回归基准_27.json",
+      "file": "files/视频/工具/新管/回归基准_27.json",
+      "sha256": "b8ddb4656ae27cbfc7ec8e3b99511983b4e568997bd4ad4ee33c364f3926ae94",
+      "origin": "pre-existing root-reviewed 67-screen data; original voice/segment MD5 unchanged"
+    },
+    "core_repair_manifest_sha256": "1b1558108d15603e5711e200135651d6c7700a583d8bcf53ad8753683ed05a5e",
+    "reviewed_gain_preservation_mode": true,
+    "real_restored_stamp_validated": true,
+    "reviewed_cross_article_context": {
+      "provided": true,
+      "manifest_sha256": "eddfbdceea4e25f2398a2198f94d9852f1e30e35b35c4075c5a5ff0c8e32c096",
+      "files_sha256": {
+        "视频/脚本/01.json": "2be2f80a69af28703992204ac95f987c745362c326e62ad81b3cd8e0e0735d3a",
+        "新版定稿/01-the-robber-who-thought-lemon-juice-made-him-invisible.md": "572054065b5bb65446bf8939a21c789c1e9c7664d82da5117c43efdded894351",
+        "视频/脚本/02.json": "0403368c77fd3e0f91e1ee3780e1c7c147894ad13c16b5f14707d700a8f717c8",
+        "新版定稿/02-the-truth-about-one-marshmallow.md": "91b92505aad03f963861bec39e96f0a472c126d1d57c9fc538676c32f65e545c",
+        "视频/脚本/03.json": "527f3bf4a11843f4d606188dabc6ebce6830da3fb454a49c782e3a595cb47407",
+        "新版定稿/03-the-doctor-who-drank-bacteria-to-win-an-argument.md": "6dfb56504882e24854a3584fd740e7f6601e3f2532818aee3a56d5330d317aa3",
+        "视频/脚本/04.json": "93cc1ff58d65ebe43a65ecb2fb2dbd2da262d80877c05740bbdf4eab4eaca1e8",
+        "新版定稿/04-the-brain-that-learned-london.md": "a8ccb31ffff50aaae77de4b83de1847fafae1d585981cf960c5880c409f6cfc3",
+        "视频/脚本/05.json": "2282acbfa4b82825f93261ec6c18359eb47fd3f7c639319ac5058d126643e136",
+        "新版定稿/05-the-fingerprint-in-the-blood.md": "612deac4ed066489e04e214ca969f8f27dda05856e0ef0ed2e540e7a4a52ae34",
+        "视频/脚本/06.json": "2cbf1d6cd6e66a59285298ea830f5ef914590b64286d40b2ae5f3168aa27a2e9",
+        "新版定稿/06-the-horse-that-could-count.md": "7fd21ba491c7596c53c486f2bb0b0f2f6da8e67bac75461a4649a7caff822f74",
+        "视频/脚本/07.json": "842e44e5aa19fddcfa239cb6530c5152341cd86e11db959543d02d8670ca13e8",
+        "新版定稿/07-the-octopus-that-escaped.md": "b8544281bb2ada88fce9d1082cbc30233dcb63ee3e9c2bbefafc22cb28b8cb39",
+        "视频/脚本/08.json": "254832e09f12759d950384dd9f31f671ad5a3bc1590b7466065dd3ef5fe4b8d5",
+        "新版定稿/08-the-doctor-who-solved-the-cholera-mystery.md": "0b2bfa68070ce585a452f6b7034d03c3683e710dcabec5e86d7b221950dc7bab",
+        "视频/脚本/09.json": "fa3e429351d629de188c184d04e9986200e16e80606fcbec82332b6433301dae",
+        "新版定稿/09-the-great-emu-war.md": "af5c3e844bad15f94bfc43aeed6d7417c4bfae85f026b194da667a7a3bdb6196",
+        "视频/脚本/10.json": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
+        "新版定稿/10-the-stolen-smile.md": "ff63cf94e4d2c835e2e2f1ffd3e6c5642f0916f0b13c012f1f13c3dff716d47a",
+        "视频/脚本/11.json": "665cbb80cc70b700ecc0cc5813209fd100ad4fa8f0eead3929b9e53778d9d07f",
+        "新版定稿/11-move-37.md": "7e0b49b346c1fa3ab994a11a2301167c0d6a1bb00916508bdc0b1acf71e68053",
+        "视频/脚本/12.json": "e3bfbcce6f1a8e14cfe451d656574353321e297c90c62f5a7b422f37478311d5",
+        "新版定稿/12-the-79-days-of-new-coke.md": "5a23c1e0c81318527bcbf27573487d1845c5318905a2b1e020cc6e2eaf5d643f",
+        "视频/脚本/13.json": "3687b6c42a6d524d0d7e40a47ed02c37b18abe8d524db4f5914abad52019a63c",
+        "新版定稿/13-eleven-days-without-sleep.md": "72b842de127132e386e9e52a1719ec96765e94958f56687987f53e2801c69704",
+        "视频/脚本/14.json": "17141351875ddb8f0e308602c0b6ab85cbf5126a4d0118978c25c869db769fee",
+        "新版定稿/14-the-fungus-that-turns-ants-into-zombies.md": "e114c9e1783c80a2ffdb60af05e824f93a8ea8725905cb733560abe1c0ad01a8",
+        "视频/脚本/15.json": "0934aa067f19814028c398b0c70a400bb09e354f744bde4000742950d77f441e",
+        "新版定稿/15-the-myth-of-the-unsinkable.md": "68e236868c4b466928ff2a60358250b9592dfe9287b66561b1e5a80b4d14de4f",
+        "视频/脚本/16.json": "d25aa07f3fac316c26c2ae1006d3efa7eb82a396b66150432b50239c1628396d",
+        "新版定稿/16-the-bread-made-from-air.md": "4da63148111213f6d77451b0eb4193893e6fc2fc170400bc39ce5f5ffcaa0b20",
+        "视频/脚本/17.json": "2e9971ea5ce7857e119226fe95def06e6eb9c3ef9823d8e8c4f3456f46a3bbb0",
+        "新版定稿/17-the-curse-of-the-pharaoh.md": "a2e8d92f9136e1b22fcc0799f9a4d281092f0e547cc68242e090241d7b09e222",
+        "视频/脚本/18.json": "8cffbad6f0b8451e46ad1a65d5f629c450ceff2c771218445770c8cbfd77ebca",
+        "新版定稿/18-the-mould-that-changed-the-world.md": "ef41cea03f471fe3b9a53939c843e450da3325eb711f6414e108ae92a7518dd8",
+        "视频/脚本/19.json": "cc3c5eea0f7d9ec0712b2e58adba7e5ef8b61d6518a322f9b25a12fcc45282fb",
+        "新版定稿/19-tulip-mania.md": "3882d487383b759c31dda4785966091c362960cd873a5d83c530d08d52e2e97c",
+        "视频/脚本/20.json": "cc5ed6d7be8767e5e7e9b098e8f3836821c0b3f51c17581b2746722da1cf3001",
+        "新版定稿/20-the-5000-year-old-murder-in-the-ice.md": "8d55638070787f7ff5432c197292af1188c463a8b018e01bdefc32999b888e95",
+        "视频/脚本/21.json": "61c1569a26d7569ee0f586178be6b307b1c394c0a30c3cb02541c910038b0589",
+        "新版定稿/21-the-man-who-sold-the-eiffel-tower-twice.md": "e8e966b70f579235d696ba11fb01d3b2cae3fa26efb9071bbea95071be259e1f",
+        "视频/脚本/22.json": "e3027a42c532fee9935afcecdd0542713cbb907183802c2345b9472f93b75f59",
+        "新版定稿/22-the-building-that-melted-a-car.md": "49ae09483bc80bbc40a71551cd98aebec355d96d9ff7b2bcdea59a06fe599267",
+        "视频/脚本/23.json": "c4574a79fd3a58577a1402ce095ea9e4a0ea1f98883ce63e3cc60d126e819409",
+        "新版定稿/23-the-man-who-gave-machines-a-mind.md": "72ed3049e87fe75ce1e753d5e443bdbe6a7ab72f6e282e8467fbbb62be873169",
+        "视频/脚本/24.json": "f08620b534bb10b718f7515c805dcb541721427d855bd5a092b8954847a351b8",
+        "新版定稿/24-survival-in-the-ice.md": "cb7f810d9a74256e0c00625290be4f16207feb90f5719ca87d5d7c9912b91307",
+        "视频/脚本/25.json": "c73e854e052b3df9bd920d4a59fafb183dee19bd58765fa426af6ea3d7c9a329",
+        "新版定稿/25-apollo-13-the-successful-failure.md": "b6b7d55fe66e6e32116431ea955778fab779b8bda622df0ba1036c2f40a3969f",
+        "视频/脚本/26.json": "ab663b240eb5e27923f38e2ff296c0196e3d820766d0c909adb9faf19aa3cac9",
+        "新版定稿/26-the-language-the-children-invented.md": "9e9ad8021ddabc17157d73dc739383f9676df3583cf965e470fcd773e26a3761",
+        "视频/脚本/27.json": "61cd724c5fab6f07a46aa5ac069101617c4c8350311eb11a43f9fefdddb31d8b",
+        "新版定稿/27-life-in-the-forbidden-zone.md": "e276bcf76225b9ae16cd8cfda8c9b726b442fbd625d3718f532b47b09b21b16f",
+        "视频/脚本/28.json": "a6a4befc0291727f5cc3f8b50857ee954ef9f936738f014a978ebb4d37a28ea8",
+        "新版定稿/28-a-handful-of-wormwood-that-saved-millions.md": "b9817d3429767d07b6a2eb14cce5422a20cb4e3b89f8b03e6b3d5da2daf91d91",
+        "视频/脚本/29.json": "1e5f1d9f0c22b5d14b757f029be694c2a3969666d732ca79bb695282763de791",
+        "新版定稿/29-the-volcano-that-gave-us-frankenstein.md": "69045ee19a170c7ea9d0008b468c7e947bc28b639b834c0192dc0aeafc3ef4d0",
+        "视频/脚本/30.json": "cdf727cb4c6832063421df9da6ab8ae7729cf9df01d6be089a8981c92c360f06",
+        "新版定稿/30-the-stink-that-built-londons-sewers.md": "84dbf19cee0045ea2608b13ee0677cb9623dd8fbb371c67093bf50c64186137a",
+        "视频/脚本/31.json": "d81f8645a1e5663ba8c84668e817cdb218bc6689079fbfd51326b3a7fd3cd384",
+        "新版定稿/31-the-book-twelve-publishers-turned-down.md": "7abd20fed44918dcf01586c056e9d0acd9d2ad3b90aa7d3d403762d9f06d2659",
+        "视频/脚本/32.json": "357aa59bed62154f7302a5efcf528859b303004e028657b93058138fe931bf85",
+        "新版定稿/32-the-planet-that-was-demoted.md": "1421f2b0921e7e9478ebc48777e3e8b2c979172de63d0124015107c3750a3542",
+        "视频/脚本/33.json": "ca51103c1a9d45c9159322765efc86c81f61f6ec78975f160019d21a1d9ee0d7",
+        "新版定稿/33-thirteen-in-the-cave.md": "9862078044ce45a9f6d51aa7d165afdfcf90066d1de98cbb317dd7e8f980610d",
+        "视频/脚本/34.json": "74921848a6bb25a2ba631813f60d4756c9ff90c64c03a2fb936ce34f310ce509",
+        "新版定稿/34-the-game-that-escaped-the-soviet-union.md": "e3244b67b21e283e67f4e88e932a1dbb85bf273a48ee009b3f435e1c5814831c",
+        "视频/脚本/35.json": "d8439077dc2c909b1c6cbd1347f31e9625f25fffe447d6f5945c9492561f1a16",
+        "新版定稿/35-the-bird-that-beat-the-letter-home.md": "ba8c38e38b21a3345624e2d44fd352561d3096cfb6f62214b48ea9b6e66faead",
+        "视频/脚本/36.json": "76daa28f421bd40d8e2744d4e785a34bb8ee67da1403b4b1546db9465c535cef",
+        "新版定稿/36-the-company-that-invented-its-own-killer.md": "411eeb96c8641ee7082b49a5abf4c7343d3f1dbb7ef331064d7c0f3c630fe58f",
+        "视频/脚本/37.json": "b1b8945ccf3581df48ade5714a2d0e93e4cc6812708f95bef6f5e44439106c99",
+        "新版定稿/37-dynamite-for-the-heart.md": "4933e24d2384471a96d9c8c26c15d5224a85dae98d9971a3fed15b4978dafc51",
+        "视频/脚本/38.json": "8d0379032000967c9f72e550574874949f798eefbfbfb58ab2b38e4e23ecbc6b",
+        "新版定稿/38-the-web-beneath-the-woods.md": "abb7eead9f3da0b2b326ceed5a649cfbf71fc28dad22e0d52f7b19caa798c54f",
+        "视频/脚本/39.json": "6c3e9539f624b192335312912572a05fba2c7bcfb821b44c3c1dbb21b42527a7",
+        "新版定稿/39-y2k-the-crisis-that-success-erased.md": "abbc9804661126aa006595031ed8f201ce55e8eb5fd9e1ad5669c0c6fcdb80ab",
+        "视频/脚本/40.json": "1c50d1a47ee6f8528d0f7299e8a45bc8c30312622f3f465a964d21cc1395ee7f",
+        "新版定稿/40-the-glue-that-failed.md": "dce9f78f3a0828307843dd667b7eeebf3380a3630f03d234bd5824870aba61a1",
+        "视频/脚本/41.json": "6b6673ffc1db986f4c355f3685de6a0faf2272cee042c5e917f26a8b3057c2be",
+        "新版定稿/41-the-toad-that-invaded-australia.md": "eca590f97120f4e76d719e29aa07b094f9117cd462f5a70c029331a63b85f710",
+        "视频/脚本/42.json": "eceb10ae92aa4b9cd23180d1138149a7fa7b674385462c898bc0d2283c8739e7",
+        "新版定稿/42-the-telescope-that-needed-glasses.md": "d4aa049779a0eba06c555d76ca14103648378eef90465df424120126fa771280",
+        "视频/脚本/43.json": "aa9da1246e293c80408edf94a7c9bed65ef3178ae7cb5265a8273e8c4396687f",
+        "新版定稿/43-from-a-garage-to-the-top-of-the-world.md": "bd70c83e5ac867238ca179f3c9f3548eb9cbdcae1f6df40994aef0bda721ae54",
+        "视频/脚本/44.json": "87f531203ca38d88ae5e71ffd88190b1530715cdc0adba146c2a4a78ebe9b976",
+        "新版定稿/44-the-night-sweden-switched-sides.md": "d3f7ad2ac43f02aae9205a15b9808280ca3db597d6ef3b36aca8ca6176c5f74a",
+        "视频/脚本/45.json": "569406607d2bf18dce5e916052d6460509450d97fe17ac9820be524f59c2c3cc",
+        "新版定稿/45-the-record-humanity-threw-into-the-stars.md": "27deabec4a8478fe570f7f237a2fb850ffdce3deebfd952f512d82a60cf7314f",
+        "视频/脚本/46.json": "804ecfddb6060288b05eda0e1027c65e9bff0c08a9d010c201bf39306c769b62",
+        "新版定稿/46-lost-in-the-glare.md": "7aaa06e875fe56c5d78210b90a8769b8b2051714025ef10df37c2fe89db7a68c",
+        "视频/脚本/47.json": "0417489c8a672e7e63d46c2239d847acabda2d93160cabed3b0fb14f701ac39a",
+        "新版定稿/47-shadows-of-wolves-over-yellowstone.md": "34c68cf4d0f0ef3545ad68edf3367fcb76ab500174b11ae7f83b782cd5a80a2a",
+        "视频/脚本/48.json": "4f146ce6a70bb0bf5d2c6e1f6b47bd6a2bcc2f311be7a948092d7bde1a08f449",
+        "新版定稿/48-rice-for-the-world.md": "76416be21f857e8a05c37baa33ac90f5785812291485231c249e38a1d0edf15f",
+        "视频/脚本/49.json": "640168eb8a17c5d53d266c6604ffe287919314947371c2ee239eeea952d73b77",
+        "新版定稿/49-the-woman-who-won-two-nobels.md": "1e4fb068aa9ae4513d01b199a074b84dc9d819f57b2134df32588a0e4a4b6b6a",
+        "视频/脚本/50.json": "1d4a41824dfa5e8d11e5990b2a4b802ba2fcc3231d85b15ed6630396c6f027bf",
+        "新版定稿/50-microplastics.md": "5439589bacf1abb2abbb184eb658492bc02bcc5bdd8dfd8ababcd80ab93621cb",
+        "视频/脚本/51.json": "39886d83593a31fb575b124ecf6457190773dca695b6ff78f8434d52aebd6d7c",
+        "新版定稿/51-the-joke-that-became-ok.md": "8de30ea4846f4e88d8b71c8d5ced3ee63a73955e39b7dc3c5adad0971b854fd0",
+        "视频/脚本/52.json": "832249bb44617d38ede75560a5e57af6ba79ec284c9609407cb30ce879f6f862",
+        "新版定稿/52-the-killer-smog-of-1952.md": "179500361e4a837d7edb2e0497e08677d5abd425e8ad542f788205a6f7667b4b",
+        "视频/脚本/53.json": "28b604bfa72896534736293f79e9b3aabd8e3678672f4dc6c66337c02a8f1518",
+        "新版定稿/53-the-wind-that-kept-no-time.md": "6fab302dcadb5a2c509436f5fbf8d9ef925c008a36f5b422749bd405aa4701d3",
+        "视频/脚本/54.json": "b1fcb8ae86045b3d35ccfa0f52eb9594b8921d43063835769ee3ecc4543be75e",
+        "新版定稿/54-the-sound-that-shook-the-world.md": "abd5f4bfe11ed73bcc5326a92cf99b0a8e5ad70adaca1ce8d0c8f622b57fa519",
+        "视频/脚本/55.json": "06344fc0ad5975cba2f4dbe5262a9957dd7c024f9a05b9abbfa327f32ea8c719",
+        "新版定稿/55-the-secret-of-romes-undying-concrete.md": "a7759eddcc7ec06dfd6dab7912e06b3b5ef8576df0c025a97812006669d0be61",
+        "视频/脚本/56.json": "22ca3b4180a8ae6a37b4c8e25f5e357d5696d9b23bf148fb7064425d1403e59c",
+        "新版定稿/56-the-letter-that-startled-darwin.md": "aad1e2aab9ff28f534a510362e807ef401e0b502475240f4b2531e9e518a8d7a",
+        "视频/脚本/57.json": "a0ba65b769430289a33ec1f7bc6dbf91dad8d2c3b1d725348851de546563cd6f",
+        "新版定稿/57-a-change-of-anthem-in-the-deep.md": "0731d925a98bafc222718c111985362e166b38b9189c516219a481e36d0d4b6e",
+        "视频/脚本/58.json": "8b0bd3d7d39000518789e9907aec53bd52fab1b9d6b4f22a152d158635b6e8ee",
+        "新版定稿/58-from-a-scratch-to-a-world-without-smallpox.md": "1aa2a0d2c51da76f9c9ebb88d049dd1a55ab530791566fdbf6476e5aa48c15ee",
+        "视频/脚本/59.json": "df1db4174d942371166048b220ef6d55b0b700b2ce31c866edf6dfdf33b92f0c",
+        "新版定稿/59-saving-the-sky.md": "7bf9c4661e733e7af23dc2f11bc820b809ec93dad75a94fb6a12748226e8722c",
+        "视频/脚本/60.json": "eed1655c0919db32a3a016b24791b93d25683f287c7ccb2523e168a69bddc562",
+        "新版定稿/60-the-scientific-giant-who-changed-the-world.md": "9d1578e7af085559922394a3db01de4eb22dc1c520ca17de5cad68e5a38a31a8",
+        "视频/脚本/61.json": "72378937501769dfb3d934fe65ab1a69afeb5420a15e19890c161433717d2435",
+        "新版定稿/61-the-steel-box-that-remade-the-world.md": "135cc9cfbcbd68d957f831cf55558112a45b1cc3749366cb9a304507355c7d2c",
+        "视频/脚本/62.json": "4b3a97f2b6404e1b091537c21f01fc60088902f596803345983c38be52ec79eb",
+        "新版定稿/62-dolly-the-copied-sheep.md": "62817546ae33824b57255f941135c503e41a41f905331ed4af1e32850fa00960",
+        "视频/脚本/63.json": "5d266d80f9cf29cce6f7e34531449cf75191a42f180102685a5bcd04849e75c5",
+        "新版定稿/63-the-crowded-heavens.md": "6ef79d4310019dfefa7364b8a428411a6bc337678c69fa5cbc89b84689e253a4",
+        "视频/脚本/64.json": "12a36862765922d72ce6e5a4c5fe85f548364eed65fe3b3b284f0b38899a965f",
+        "新版定稿/64-the-day-zero-that-never-came.md": "e0c83cbe36745adbbffd33a156fa8d0671704ea976cb13215cabb612639b37a5",
+        "视频/脚本/65.json": "78e60dd231df4ac71df83e21a26f82bbf706dc0bef80bee156a36bc287661ede",
+        "新版定稿/65-the-day-the-doomsday-vault-opened.md": "71a50d32e25955e713e6ca108ab68422a4fd5b77c914a9074eece1dc33cbff89",
+        "视频/脚本/66.json": "ad5324af4270834186285a5e7273a90213094077adc6f9e1d5c7b0ebff9cf035",
+        "新版定稿/66-the-burrs-that-became-velcro.md": "75dbe6c148ca97a7780ac1737f33f58bf8ee27a51aa729a83315705655b12b2a",
+        "视频/脚本/67.json": "8897cc1c2df1e4672eec3bbff2776d0565afb9c9fe84087a1758ebb15b2a233e",
+        "新版定稿/67-the-cave-found-by-a-dog.md": "10e37b81eeef4e3289448a6b4fd679f34d495a4fc087c57747e6dca949e00cf1",
+        "视频/脚本/68.json": "568f72dacac48e206811d35a57c7fa22e3da428783f64e507c184f2090e579f3",
+        "新版定稿/68-the-last-flight-of-the-hindenburg.md": "c25f58ffb0e3748336767bb7470dd7cef10374c53cbb48af89dba26f65b2dd5c",
+        "视频/脚本/69.json": "09fd3fdbbc834badd16a9b38d8c14e425193a6849d7db87253f26a782a1c4137",
+        "新版定稿/69-the-trial-of-the-father-of-the-atomic-bomb.md": "570eda5b7d979d71e9bcad1c67e295ed326ecdb8b61e663aba33272c8a9451bd",
+        "视频/脚本/70.json": "0f6827f02cef0d2416f9d7d69b7e1c5553acee7cf6dc89f3379201264587236c",
+        "新版定稿/70-the-stamp-that-changed-the-post.md": "edfd85cea33730ba67e4210e756da1f2945f1a21bce55c7e75497cb5f0095d80"
+      },
+      "source_file_count": 140,
+      "working_script_count": 70,
+      "target_request_exactly_matches_context": true
+    },
+    "request_source_sha256": {
+      "视频/脚本/24.json": "f08620b534bb10b718f7515c805dcb541721427d855bd5a092b8954847a351b8",
+      "视频/工具/初稿生成/gen24.py": "ca6638792c3e19c9bd0d8ee291360af9c97cb4a7a54a263b3fb90d5ea9c76b23",
+      "新版定稿/24-survival-in-the-ice.md": "cb7f810d9a74256e0c00625290be4f16207feb90f5719ca87d5d7c9912b91307",
+      "视频/制作记录/24_待改清单.md": "269c972318107ca995db633a0bf6cc49d1d2a3dca1ca295e8155391d354e4de3",
+      "视频/制作记录/逐句确认/24.json": "8b8feb44dba6cdece2c4927d4b2094b10135bfe7bfd4042c1220369f8cfbf754"
+    },
+    "accepted_source": {
+      "id": "24",
+      "path": "最终版4K视频/24 - Survival in the Ice The Legend of Endurance - 冰海求生：坚忍号传奇.mp4",
+      "sha256": "f183c92057e69c441ad555f9789bfe35d0a17715b3e201997c77f328184503b0",
+      "git_blob_sha": "e4ea487fc4a039f285a598896c3e9b62712824ac",
+      "bytes": 12852714,
+      "width": 3840,
+      "height": 2160,
+      "summary_frames": 60,
+      "aac_adts_sha256": "cf173abebc298d002ad5a00cc042ab781876e81c1359fcf5c92633861b3faf9f"
+    },
+    "checker_reference_preparation": {
+      "article": "24",
+      "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+      "reference_prepared": true,
+      "acceptance": false,
+      "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+      "source_sha256": "f08620b534bb10b718f7515c805dcb541721427d855bd5a092b8954847a351b8",
+      "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+      "checker_program_sha256": {
+        "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+        "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+        "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+        "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+        "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+        "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+      },
+      "reference_calls": [
+        {
+          "sentence": "标题",
+          "piece": null,
+          "reference_kind": "title-default-raw",
+          "method": "create",
+          "source_slice": "Survival in the Ice: The Legend of Endurance",
+          "exact_native_cache_key": "46e3fde440249bfcc89092d0fb1d6ee657eb34bc.pkl",
+          "cache_input_text_sha256": "8a1d430350773a170221e5c653096cedadaf68e0b9e5bb864e14bdb56243e989",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "标题",
+          "piece": null,
+          "reference_kind": "title-default-timed",
+          "method": "create_timed",
+          "source_slice": "Survival in the Ice: The Legend of Endurance",
+          "exact_native_cache_key": "269f3882868ddd44deb310e11f643f68e60a8e72.pkl",
+          "cache_input_text_sha256": "8a1d430350773a170221e5c653096cedadaf68e0b9e5bb864e14bdb56243e989",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "On 5 December 1914 Endurance departed South Georgia, a remote whaling outpost, for Antarctica's Weddell Sea.",
+          "exact_native_cache_key": "0c866ce9162300b472fa5c1f7210d32bc8e5bbd7.pkl",
+          "cache_input_text_sha256": "57015dee36a7a100b2e58badb34ae8f84ddd67ab8a11df4b349d8aa16030cfc7",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "On 5 December 1914 Endurance departed South Georgia, a remote whaling outpost, for Antarctica's Weddell Sea.",
+          "exact_native_cache_key": "742126696def7207c4d76076e8d74ae10b9fe0de.pkl",
+          "cache_input_text_sha256": "57015dee36a7a100b2e58badb34ae8f84ddd67ab8a11df4b349d8aa16030cfc7",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "On 5 December 1914 Endurance departed South Georgia,",
+          "exact_native_cache_key": "d3ce1b2c980ad94aad64a52b3420c5522406dfff.pkl",
+          "cache_input_text_sha256": "803cfcf1dee0c6e0cbca34bca169b7485ba4b708b0f9e1bf86cf110ca95a01cd",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a remote whaling outpost,",
+          "exact_native_cache_key": "61198f572fe56d28d40d0eae26e035361b0814dd.pkl",
+          "cache_input_text_sha256": "3516e4d833c00acf75e04ba7ef9b9febc9083ed65f75fd935408df4d13ada8cf",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "for Antarctica's Weddell Sea.",
+          "exact_native_cache_key": "4ee72bd626f383bc64d98afe0eb71f921969e388.pkl",
+          "cache_input_text_sha256": "6af7c3df8e7a6d56c16a978dfd0ee2f684f0be97f9ed72b03b3a211ce2d4ab6f",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In January 1915 ice trapped the vessel.",
+          "exact_native_cache_key": "58d4198262781b5180e0c01d0f582aca6f93bedf.pkl",
+          "cache_input_text_sha256": "392e96fea7e28774f31c8aadb9df3169b30b0827efd83a18e26f3c4bc01b662d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "In January 1915 ice trapped the vessel.",
+          "exact_native_cache_key": "e3c5efd19148749c4f2dcc489440ad7eea5c33e6.pkl",
+          "cache_input_text_sha256": "392e96fea7e28774f31c8aadb9df3169b30b0827efd83a18e26f3c4bc01b662d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "On 27 October, her hull buckling, the men abandoned ship.",
+          "exact_native_cache_key": "d114f160ba29820ea4028e403585051c2402d1c7.pkl",
+          "cache_input_text_sha256": "0333444b5c410e0df42b34e200e5c7feaab6ab89f3098fb8814fc76812467b9f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "On 27 October, her hull buckling, the men abandoned ship.",
+          "exact_native_cache_key": "6515a889e2cb83bb04a9d1374faad755280b3203.pkl",
+          "cache_input_text_sha256": "0333444b5c410e0df42b34e200e5c7feaab6ab89f3098fb8814fc76812467b9f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "On 27 October,",
+          "exact_native_cache_key": "ba23d5c34540df836186cc5c50ba56aa16ab8f1b.pkl",
+          "cache_input_text_sha256": "65ddb9e948b0678d14500c595f3b5c5e7288760114487bc6a4c70140a988463e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "her hull buckling,",
+          "exact_native_cache_key": "0fd00f2950b98d8f1b8a549d4c97b2eafc85d6e0.pkl",
+          "cache_input_text_sha256": "334079334ad5f8f2bfbf692b7052a1bfb623587d3e54cc8b910517c46a00b781",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "the men abandoned ship.",
+          "exact_native_cache_key": "0607fe3a240e75cf11283dfee6fbb984c3b40af4.pkl",
+          "cache_input_text_sha256": "e9a2ee96173a6f03f8678793209a62f7e96d423b3f178ae235694b07cc8bfa44",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "She foundered on 21 November; her captain, Frank Worsley, logged the spot.",
+          "exact_native_cache_key": "7510cef2d7321a4d825f10495efc1ff90e23a176.pkl",
+          "cache_input_text_sha256": "0304cc4fb0cd64307a931925f38b9c383aeb7318f315b152554262d27a2ac6d7",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "She foundered on 21 November; her captain, Frank Worsley, logged the spot.",
+          "exact_native_cache_key": "c5ea558c3e18823672057f25bb309ea26e0fa50a.pkl",
+          "cache_input_text_sha256": "0304cc4fb0cd64307a931925f38b9c383aeb7318f315b152554262d27a2ac6d7",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "She foundered on 21 November;",
+          "exact_native_cache_key": "cb86540c9a5644629849e4e47f9700d06630778a.pkl",
+          "cache_input_text_sha256": "683fafdbdcc84693b1a9ce345c83d3e9223768450a732b0a96838a5c98917f00",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "her captain,",
+          "exact_native_cache_key": "8dad5e2a7595c280b69d8999d85a4aef4fee3104.pkl",
+          "cache_input_text_sha256": "a203b18e7c6b10a7b19959177c6e6ffe6e1c4aaea46d4afd12d583f937957cc5",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Frank Worsley,",
+          "exact_native_cache_key": "2d02a6226a038525f3f541908137c97dd7710d39.pkl",
+          "cache_input_text_sha256": "936dcbd69d27a583cffbb26299f5831d25391110e8c2053617df4d1a36a5657b",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "logged the spot.",
+          "exact_native_cache_key": "4383fda1aea714a7d40bd9cb7d26a716433ec67c.pkl",
+          "cache_input_text_sha256": "e274d799e87bd20ed5f1bb92cef466ebd96cfddf5ccc092d57e81cc2450db379",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The stranded men endured over five gruelling months on the ice.",
+          "exact_native_cache_key": "e7317c497ed189660bcec9e27623c63feb9a954d.pkl",
+          "cache_input_text_sha256": "3eecccfe5a0c058dd84ee1632a312a0b03772e9505566d74e50da2c38b99b22a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "The stranded men endured over five gruelling months on the ice.",
+          "exact_native_cache_key": "48a71a85a18488461648b3021ae41c0972b5734e.pkl",
+          "cache_input_text_sha256": "3eecccfe5a0c058dd84ee1632a312a0b03772e9505566d74e50da2c38b99b22a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Their floe split on 9 April 1916; on 15 April their lifeboats reached Elephant Island, a bleak, uninhabited rock far from shipping lanes.",
+          "exact_native_cache_key": "08c3c9fbef2a350dcf55604a9d0065acd1739899.pkl",
+          "cache_input_text_sha256": "59bb52f99cfc20aa56e322222287f4c21d8159fab8d9b9eeb43e148e327a1121",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Their floe split on 9 April 1916; on 15 April their lifeboats reached Elephant Island, a bleak, uninhabited rock far from shipping lanes.",
+          "exact_native_cache_key": "e1bad564551cb6aad8249085851dcc567839c0c0.pkl",
+          "cache_input_text_sha256": "59bb52f99cfc20aa56e322222287f4c21d8159fab8d9b9eeb43e148e327a1121",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Their floe split on 9 April 1916;",
+          "exact_native_cache_key": "ebf8bdb1778c7cb783cfe120cfdb0c23552c91c7.pkl",
+          "cache_input_text_sha256": "36de2233bfa6093857382caf691219eb3362de87f028a4eccb35dc7280ace989",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "on 15 April their lifeboats reached Elephant Island, a bleak, uninhabited rock far from shipping lanes.",
+          "exact_native_cache_key": "54f393d55a371dbcb7ee78166cd2fbfc2b586490.pkl",
+          "cache_input_text_sha256": "20a0a49e8965ab6b457c3b88def5ae1ed1c15ef5e72d45942793b0a4b08bec80",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Their floe split on 9 April 1916;",
+          "exact_native_cache_key": "ebf8bdb1778c7cb783cfe120cfdb0c23552c91c7.pkl",
+          "cache_input_text_sha256": "36de2233bfa6093857382caf691219eb3362de87f028a4eccb35dc7280ace989",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "on 15 April their lifeboats reached Elephant Island,",
+          "exact_native_cache_key": "983852543877fef2b0e863227af164536e43a6c9.pkl",
+          "cache_input_text_sha256": "71cde489738e77e76be5f3c1039fcda4912bcc9142b1be5d1158b88b9573006d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a bleak,",
+          "exact_native_cache_key": "9e4df9dc839d1ed860b045d48864a8a44c5148da.pkl",
+          "cache_input_text_sha256": "c8dff38a0c4e18f5bf18eb56dea1d0465016315dfdb5ae345e99a0da74b0d172",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "uninhabited rock far from shipping lanes.",
+          "exact_native_cache_key": "62411ae0571e7ba3e9db0718a44da4c896894db4.pkl",
+          "cache_input_text_sha256": "80868f7e56c05179b5d4f299c670af515c75f4d645ec688a877a7875595f790d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "On 24 April Shackleton and five others embarked in the James Caird, a fragile lifeboat, on a perilous voyage of some 1,300 kilometres.",
+          "exact_native_cache_key": "6fecca217790fd3f75606ab6b6dcb446a980a194.pkl",
+          "cache_input_text_sha256": "a0c5d8aa28af4aeedc11dbe762ac8258b1dcdeff6c8e17320a50d2b84645a9cd",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "On 24 April Shackleton and five others embarked in the James Caird, a fragile lifeboat, on a perilous voyage of some 1,300 kilometres.",
+          "exact_native_cache_key": "8d487f2d84fd9783de3f19ef20b07515ecf70275.pkl",
+          "cache_input_text_sha256": "a0c5d8aa28af4aeedc11dbe762ac8258b1dcdeff6c8e17320a50d2b84645a9cd",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "On 24 April Shackleton and five others embarked in the James Caird, a fragile lifeboat,",
+          "exact_native_cache_key": "9983a037274a79999ddf02be5a66b96c649306b4.pkl",
+          "cache_input_text_sha256": "905c9fdf54b44ca85964acd18c2d2b85004284a82045e1429708456b6f2dddb5",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "on a perilous voyage of some 1,300 kilometres.",
+          "exact_native_cache_key": "3a872562b9e7107efe629e4492f7fbb0d2ac4c4d.pkl",
+          "cache_input_text_sha256": "05676e004878457dad84b099bd148b383122d5228ece4fc58373de20d6fb1a6e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "On 24 April Shackleton and five others embarked in the James Caird,",
+          "exact_native_cache_key": "9b7e30db4f2b5f038defd1b9cc27c0d3b69e79e1.pkl",
+          "cache_input_text_sha256": "f787834f96a874179ea1152affc3cc7d6253733179670dbec99075914b960266",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a fragile lifeboat,",
+          "exact_native_cache_key": "575dc31483dc0c13e19d739d1301ef3e83cee935.pkl",
+          "cache_input_text_sha256": "18c9e1da75fdc0421cd43c0eba17948b6149be056f2a91b3da87ab6764620003",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "on a perilous voyage of some 1,300 kilometres.",
+          "exact_native_cache_key": "3a872562b9e7107efe629e4492f7fbb0d2ac4c4d.pkl",
+          "cache_input_text_sha256": "05676e004878457dad84b099bd148b383122d5228ece4fc58373de20d6fb1a6e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "As ferocious gales battered the boat, Worsley snatched only four sights of the sun, deducing the rest by dead reckoning from course, speed, and time elapsed.",
+          "exact_native_cache_key": "f42d7461fd5c4f6cc43b2bd32ceff5f2e1ed058d.pkl",
+          "cache_input_text_sha256": "5a952ec1f74c6eb8b172c7bd3ffa65a14e1a45defdede3309997ca0fb6f5f2e1",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "As ferocious gales battered the boat, Worsley snatched only four sights of the sun, deducing the rest by dead reckoning from course, speed, and time elapsed.",
+          "exact_native_cache_key": "d1f02fd279dbfc6b593e5a7f4a00bc92c264a1ed.pkl",
+          "cache_input_text_sha256": "5a952ec1f74c6eb8b172c7bd3ffa65a14e1a45defdede3309997ca0fb6f5f2e1",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "As ferocious gales battered the boat,",
+          "exact_native_cache_key": "77a0b09e6641364d169aa86a13484a4475b3585d.pkl",
+          "cache_input_text_sha256": "d5fc7b60cc7a02c2317a714fb1a19f1668b61e0cdbb7e0ed7e99ae938d0aa3c4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Worsley snatched only four sights of the sun,",
+          "exact_native_cache_key": "a13b1ec85da1918ad298450f91a96f4d2490cf4b.pkl",
+          "cache_input_text_sha256": "cb5d3c135441e3c13d905ee3f948c35b15f792218cc834229e6da42766ab5e0a",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "deducing the rest by dead reckoning from course, speed, and time elapsed.",
+          "exact_native_cache_key": "c103479ebc1d973301f3be4fbb290a904f4445f6.pkl",
+          "cache_input_text_sha256": "3b0f5eecc6ea9d0d7cbbe7886fafc35860071841e40223f3853e5b63f1addacb",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "As ferocious gales battered the boat,",
+          "exact_native_cache_key": "77a0b09e6641364d169aa86a13484a4475b3585d.pkl",
+          "cache_input_text_sha256": "d5fc7b60cc7a02c2317a714fb1a19f1668b61e0cdbb7e0ed7e99ae938d0aa3c4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Worsley snatched only four sights of the sun,",
+          "exact_native_cache_key": "a13b1ec85da1918ad298450f91a96f4d2490cf4b.pkl",
+          "cache_input_text_sha256": "cb5d3c135441e3c13d905ee3f948c35b15f792218cc834229e6da42766ab5e0a",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "deducing the rest by dead reckoning from course,",
+          "exact_native_cache_key": "44f7865463a24ae489544b79701695ab1deafa33.pkl",
+          "cache_input_text_sha256": "00170480abd2dbb2d4d4f7f13d18cdeb8ab40c35ae0d0a755989816d93917547",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "speed,",
+          "exact_native_cache_key": "0ebab6736f58e98ff727cd917d58044fe3ac7b9f.pkl",
+          "cache_input_text_sha256": "94e70b133e1afc45b4da2104fc7577a579e590b0390128588d94a355e0c58d5d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 5,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and time elapsed.",
+          "exact_native_cache_key": "59112dc01be532bb7d30395a24bb2bb3d4d3c264.pkl",
+          "cache_input_text_sha256": "a3a42d0e2e4e4db4ec6adae2573ddfc2d5496b79dac01939cfc4308ad2fba950",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "On 10 May they landed on South Georgia's deserted south coast.",
+          "exact_native_cache_key": "7f8943ba554239b14b1672ba5418d709bc0d2c14.pkl",
+          "cache_input_text_sha256": "3d2615c94dc10027488d557ead246cedc06b0ea265c3cabd95ea5ec578055523",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "On 10 May they landed on South Georgia's deserted south coast.",
+          "exact_native_cache_key": "ae048a23b1e5ca46442e8e0539d7102e54822a60.pkl",
+          "cache_input_text_sha256": "3d2615c94dc10027488d557ead246cedc06b0ea265c3cabd95ea5ec578055523",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Shackleton, Worsley, and Tom Crean traversed its mountainous interior in about 36 exhausting hours, reaching the Stromness whaling station on 20 May.",
+          "exact_native_cache_key": "dd607aa04df12147692e39843f47bfdf53e1a19d.pkl",
+          "cache_input_text_sha256": "f97ed5571f0914b233c72422627f12baf551f052064bf425e439cbac25923c94",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Shackleton, Worsley, and Tom Crean traversed its mountainous interior in about 36 exhausting hours, reaching the Stromness whaling station on 20 May.",
+          "exact_native_cache_key": "2271a8c159b04e1886d0bbbf3755213bf75b115f.pkl",
+          "cache_input_text_sha256": "f97ed5571f0914b233c72422627f12baf551f052064bf425e439cbac25923c94",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Shackleton, Worsley, and Tom Crean traversed its mountainous interior",
+          "exact_native_cache_key": "8c061ef15c71450c4881d14ed65cb2b21ef99a43.pkl",
+          "cache_input_text_sha256": "a2c397c6e8261ee60bf193e6055bd1d78c235fc12d8da0a88bd40010e018c49a",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "in about 36 exhausting hours, reaching the Stromness whaling station on 20 May.",
+          "exact_native_cache_key": "d1d22eb15b86e64a584c2528f8a67b2a3a0c4cf3.pkl",
+          "cache_input_text_sha256": "e6400b0611c1af2b7101e4088394020b5586e6c2f4c3b21be3846b1205cac74d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Shackleton,",
+          "exact_native_cache_key": "5b0a3764c3d11554cfd9757c6733703206768de5.pkl",
+          "cache_input_text_sha256": "887127ab2cd8839a630be19de21fa4d3a50b803859b37f39608d8f53f5feba37",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Worsley,",
+          "exact_native_cache_key": "4c2f2ab6fe66b378a01e3a02bd370dbfafca1103.pkl",
+          "cache_input_text_sha256": "0bb0a1b38075d0384a6e5bfb3c8037466c8e8cd2bf5bd88b0e23e02ef90287df",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and Tom Crean traversed its mountainous interior in about 36 exhausting hours,",
+          "exact_native_cache_key": "f13aa77368ff56d4c2b391df1d588258bd103677.pkl",
+          "cache_input_text_sha256": "4b33891bc1393583142a0a96cf1e5a943d51fcc8a8bd03f5e73ed4ca9c6eec74",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "reaching the Stromness whaling station on 20 May.",
+          "exact_native_cache_key": "5665897c336a333921576b66d475a516ccd74be5.pkl",
+          "cache_input_text_sha256": "1adb1b52eb508e8bebd607dbeceb7050b0bfb5ce88b74e56849ba50b14645cc4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Ice repelled three rescue attempts before the Yelcho, a Chilean tug, evacuated the 22 marooned men on 30 August.",
+          "exact_native_cache_key": "8df8bcc0574c9023eac225638b9e823bd53b25c8.pkl",
+          "cache_input_text_sha256": "0f2bb807ca01586528b29647079b40a3f6ee3b5ee163707f894b545a77f7374c",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Ice repelled three rescue attempts before the Yelcho, a Chilean tug, evacuated the 22 marooned men on 30 August.",
+          "exact_native_cache_key": "d952bbce0fc9fac8502158799c51376877bb841c.pkl",
+          "cache_input_text_sha256": "0f2bb807ca01586528b29647079b40a3f6ee3b5ee163707f894b545a77f7374c",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Ice repelled three rescue attempts",
+          "exact_native_cache_key": "6e2f9b39f2e693968d853914998c595fecca55a6.pkl",
+          "cache_input_text_sha256": "890adfa3451a3575ae5382aaa7bbaedb8122bd419c19c1f2d197a52b05d4dbc8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "before the Yelcho, a Chilean tug, evacuated the 22 marooned men on 30 August.",
+          "exact_native_cache_key": "2aced84f6a9a035263e8e563e922870ced54c82b.pkl",
+          "cache_input_text_sha256": "9d7741b3a59adec0d48e6810568ebc9dac1cc548005854e490875c8f8cdc643e",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Ice repelled three rescue attempts before the Yelcho,",
+          "exact_native_cache_key": "05949453ac7eced4ce4706c334e583600539e67e.pkl",
+          "cache_input_text_sha256": "9b9bc302b0eb3d74fdb7229f09276f5dc4608515a7f043db21afd555b2f3ce6b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a Chilean tug,",
+          "exact_native_cache_key": "3b7d7164924c206a187a5b697748942912f1c00d.pkl",
+          "cache_input_text_sha256": "c977a545209e05215ba09aa06430f0423d3c52dcd304580926eb627d18b2e897",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "evacuated the 22 marooned men on 30 August.",
+          "exact_native_cache_key": "150c9f3e9f785a6440218502509657650913992c.pkl",
+          "cache_input_text_sha256": "12b561002b5b608ffa4f93f7e7c0938e177c6c7136a0a92135a67096171cc888",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "All 28 of Endurance's party survived their ordeal.",
+          "exact_native_cache_key": "8bc5e152a972cd8109b85658bf6fb62c62ca915c.pkl",
+          "cache_input_text_sha256": "8d151cfd0aba26a24bbd4118ea585d5dbd055a0e0a0797073246219056440063",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "All 28 of Endurance's party survived their ordeal.",
+          "exact_native_cache_key": "a94a69069adecc49d724d83ebc1ce14a1f3b9407.pkl",
+          "cache_input_text_sha256": "8d151cfd0aba26a24bbd4118ea585d5dbd055a0e0a0797073246219056440063",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "On 5 March 2022 searchers located the wreck 3,008 metres down, upright and intact.",
+          "exact_native_cache_key": "2f94bbd4da97fc2a57b95c39d33fd7f38c475080.pkl",
+          "cache_input_text_sha256": "032ece48312eb5de8466dbd91a982b8584bac5c6c44882abeac43162293848a7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "On 5 March 2022 searchers located the wreck 3,008 metres down, upright and intact.",
+          "exact_native_cache_key": "30e881a6e55f3c3d3b235bdab3fac3b2e25e6899.pkl",
+          "cache_input_text_sha256": "032ece48312eb5de8466dbd91a982b8584bac5c6c44882abeac43162293848a7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "On 5 March 2022 searchers located the wreck 3,008 metres down,",
+          "exact_native_cache_key": "5cdec20c5b9c664581c22c5bef46cea4ab216df0.pkl",
+          "cache_input_text_sha256": "da38c5a089b36f4545588deab83e609950ae3d0b63c315ea8e64867d1b0565c9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "upright and intact.",
+          "exact_native_cache_key": "f4c75f1656326dc5c93c6845493a45f0dfef8eac.pkl",
+          "cache_input_text_sha256": "bc583e04e634cffccfb499d0c1ac6e1941bc938192da512b12a87bdd067583c4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "She lay about four miles south of the spot Worsley recorded in November 1915, months before the voyage: a slight discrepancy for a calculation on shifting ice.",
+          "exact_native_cache_key": "86f3c2762040493cc1090d88279b4dc91d86eac2.pkl",
+          "cache_input_text_sha256": "5177e72e8b675f12c680d23d921b78966d59d091913f186f8affb3fa5408f5a4",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "She lay about four miles south of the spot Worsley recorded in November 1915, months before the voyage: a slight discrepancy for a calculation on shifting ice.",
+          "exact_native_cache_key": "0e3bf9bea9c48c91df7f77e41594a706a3d484ef.pkl",
+          "cache_input_text_sha256": "5177e72e8b675f12c680d23d921b78966d59d091913f186f8affb3fa5408f5a4",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "She lay about four miles south of the spot Worsley recorded in November 1915, months before the voyage:",
+          "exact_native_cache_key": "424726e4cae31d70d2290ae8030ce46da25f2b84.pkl",
+          "cache_input_text_sha256": "76d95a8290df464e76f019918e7bab86ab9f3b0a8bc5a4f434bda571804f4e13",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "a slight discrepancy for a calculation on shifting ice.",
+          "exact_native_cache_key": "686d24adfe20b03cc7afbb71889ae20e11a433cf.pkl",
+          "cache_input_text_sha256": "4915acab1776daf90f12713172218daf6cdd442e8423a1a212c146805718d80e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "She lay about four miles south of the spot Worsley recorded in November 1915,",
+          "exact_native_cache_key": "cc2804ebfbc4b8139eb8a608977ae7ad88dab4e6.pkl",
+          "cache_input_text_sha256": "c83123cffb205859247ef9d691ee8c80c4c62ab3c8091ac83c12c9ae41c0dca1",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "months before the voyage:",
+          "exact_native_cache_key": "8b152974be5863bd125570170909ccc611114f31.pkl",
+          "cache_input_text_sha256": "dcfc12c564b7fcddc8dbc5f8bc394f19b216738d9f8f41ec99e71b213ad21809",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a slight discrepancy for a calculation on shifting ice.",
+          "exact_native_cache_key": "686d24adfe20b03cc7afbb71889ae20e11a433cf.pkl",
+          "cache_input_text_sha256": "4915acab1776daf90f12713172218daf6cdd442e8423a1a212c146805718d80e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Legend rightly salutes Shackleton for his charisma.",
+          "exact_native_cache_key": "45c1dca61d3a78312b40be8b257ba588f6e948fc.pkl",
+          "cache_input_text_sha256": "d57fd4be08d718e6060fddf6e53d102f8c45d89d0a1d4a0a7c6d0b936046b25a",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Legend rightly salutes Shackleton for his charisma.",
+          "exact_native_cache_key": "eb3353400e07703bd8b777259eac6e7f202ea299.pkl",
+          "cache_input_text_sha256": "d57fd4be08d718e6060fddf6e53d102f8c45d89d0a1d4a0a7c6d0b936046b25a",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Yet both ends of the story hinge on Worsley's meticulous arithmetic.",
+          "exact_native_cache_key": "f0201016257d4d22f7369a257cfdaf33c0228490.pkl",
+          "cache_input_text_sha256": "889f011e4b63275aaadb29669bdfb040a966afbcca269738d26e998f07d60c4e",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Yet both ends of the story hinge on Worsley's meticulous arithmetic.",
+          "exact_native_cache_key": "da751724fa5501a807c67988f65ff7187f6053ef.pkl",
+          "cache_input_text_sha256": "889f011e4b63275aaadb29669bdfb040a966afbcca269738d26e998f07d60c4e",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Leadership held 28 men together.",
+          "exact_native_cache_key": "3e33bb0342fe29a8936445568d565a3ae9be2596.pkl",
+          "cache_input_text_sha256": "082d462105a3eb87cf41c72683c7863586806803216dae3409f847a2155bad74",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Leadership held 28 men together.",
+          "exact_native_cache_key": "8959f381b272ac6e58e3e72b2cea375fc2053b65.pkl",
+          "cache_input_text_sha256": "082d462105a3eb87cf41c72683c7863586806803216dae3409f847a2155bad74",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S18",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Precision put six ashore within reach of help and, a century on, brought their ship back into view.",
+          "exact_native_cache_key": "5972df4550be2b5851fe95d6e29641462300bcfc.pkl",
+          "cache_input_text_sha256": "a30ceaf43f04ac5d73272cf5686adb8c4ffd1cf0f6108300f9422bbe7e185066",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S18",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Precision put six ashore within reach of help and, a century on, brought their ship back into view.",
+          "exact_native_cache_key": "f297d69416661c2f93351d145e0bc28b95e08e92.pkl",
+          "cache_input_text_sha256": "a30ceaf43f04ac5d73272cf5686adb8c4ffd1cf0f6108300f9422bbe7e185066",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S18",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Precision put six ashore within reach of help",
+          "exact_native_cache_key": "74ec41377e333b0242181c7b71aec3e21b528911.pkl",
+          "cache_input_text_sha256": "7021cd9b0fc002103376c8b2197abf42170f409ab14eb8debc36ac3a5a461412",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S18",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and, a century on, brought their ship back into view.",
+          "exact_native_cache_key": "7f34c4b34e24c82cde497515a4a9ce978e3f361e.pkl",
+          "cache_input_text_sha256": "fc81fa6499bfca18c8ca7fa389e04c405cdb51aefbebd2e6e4f88f8402fab60c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S18",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Precision put six ashore within reach of help and,",
+          "exact_native_cache_key": "8c1f7d3f314fb4d9ba422002802286609531a320.pkl",
+          "cache_input_text_sha256": "661fc88f1ae6c41f069a1ed904d037692bb2f133375a07aea3c189d0f5616789",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S18",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a century on,",
+          "exact_native_cache_key": "2e88a825b3db2c5edf93bd3471610a7d998950f5.pkl",
+          "cache_input_text_sha256": "daefc4e91058133f9a40c00db9e8da8d03d88fcdd1c2accdd7d185ccec5e359b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S18",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "brought their ship back into view.",
+          "exact_native_cache_key": "2ff5c42383a54cd2f9119599a7efecec910669ae.pkl",
+          "cache_input_text_sha256": "6d0adf30bb3f4ab125235b55f18814d4c5e0bb84a9bdbc8d0f68faf80738739c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "unique_reference_key_count": 85,
+      "raw_mother_cache_scalar_manifest": [
+        {
+          "exact_native_cache_key": "46e3fde440249bfcc89092d0fb1d6ee657eb34bc.pkl",
+          "pkl_sha256": "a1d2d4fb9c74c8aa418858899b5dab226689b016309a47ce73988ecd3dc03848",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "标题",
+              "piece": null,
+              "reference_kind": "title-default-raw",
+              "method": "create",
+              "source_slice": "Survival in the Ice: The Legend of Endurance",
+              "exact_native_cache_key": "46e3fde440249bfcc89092d0fb1d6ee657eb34bc.pkl",
+              "cache_input_text_sha256": "8a1d430350773a170221e5c653096cedadaf68e0b9e5bb864e14bdb56243e989",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            75264
+          ],
+          "unprocessed_array_sha256": "56b9029f154acf97130320401411bf9409217a26c0b9d34a4b3078263f958ec2"
+        },
+        {
+          "exact_native_cache_key": "0c866ce9162300b472fa5c1f7210d32bc8e5bbd7.pkl",
+          "pkl_sha256": "68835298ebdbf102691b32431f97fc41ef844d91ed6aaf8f20c2f1f2c324b2c3",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "On 5 December 1914 Endurance departed South Georgia, a remote whaling outpost, for Antarctica's Weddell Sea.",
+              "exact_native_cache_key": "0c866ce9162300b472fa5c1f7210d32bc8e5bbd7.pkl",
+              "cache_input_text_sha256": "57015dee36a7a100b2e58badb34ae8f84ddd67ab8a11df4b349d8aa16030cfc7",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            221696
+          ],
+          "unprocessed_array_sha256": "e5c07177e0d794361dc6c070112f5562ffdb8c0d4964d8f0540d5939c09ad704"
+        },
+        {
+          "exact_native_cache_key": "d3ce1b2c980ad94aad64a52b3420c5522406dfff.pkl",
+          "pkl_sha256": "7c47c309efb35e4f2b2bf23ad3b3fe30cf49368eca6900a1c7c3b5b8b8dde67f",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "On 5 December 1914 Endurance departed South Georgia,",
+              "exact_native_cache_key": "d3ce1b2c980ad94aad64a52b3420c5522406dfff.pkl",
+              "cache_input_text_sha256": "803cfcf1dee0c6e0cbca34bca169b7485ba4b708b0f9e1bf86cf110ca95a01cd",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            120320
+          ],
+          "unprocessed_array_sha256": "901fa3f6efb17bd846b4e6bcc49df07f85a7e0081bb17c0b7cbf063fb0395ede"
+        },
+        {
+          "exact_native_cache_key": "61198f572fe56d28d40d0eae26e035361b0814dd.pkl",
+          "pkl_sha256": "c0fb6523a64772238bfe473659dfca228be9e8b0d7688ab1868c5f38b97f8861",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "a remote whaling outpost,",
+              "exact_native_cache_key": "61198f572fe56d28d40d0eae26e035361b0814dd.pkl",
+              "cache_input_text_sha256": "3516e4d833c00acf75e04ba7ef9b9febc9083ed65f75fd935408df4d13ada8cf",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            41472
+          ],
+          "unprocessed_array_sha256": "16d60d3459bf54ab69db5fda6d2bbd91f4c4b7c42a01fb5251eded148aa31021"
+        },
+        {
+          "exact_native_cache_key": "4ee72bd626f383bc64d98afe0eb71f921969e388.pkl",
+          "pkl_sha256": "fd38336bf0458eeea29ce247bed330e574dac343a8957fade159776d8324a627",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "for Antarctica's Weddell Sea.",
+              "exact_native_cache_key": "4ee72bd626f383bc64d98afe0eb71f921969e388.pkl",
+              "cache_input_text_sha256": "6af7c3df8e7a6d56c16a978dfd0ee2f684f0be97f9ed72b03b3a211ce2d4ab6f",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            44544
+          ],
+          "unprocessed_array_sha256": "24921a506f0ab7fbc192afe09bf14f989968881cb6e9cff5a828afc2aad28eab"
+        },
+        {
+          "exact_native_cache_key": "58d4198262781b5180e0c01d0f582aca6f93bedf.pkl",
+          "pkl_sha256": "1e298d43212479870e4592a91428d0c7542316b85aea10212ea67b254c364b14",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S2",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "In January 1915 ice trapped the vessel.",
+              "exact_native_cache_key": "58d4198262781b5180e0c01d0f582aca6f93bedf.pkl",
+              "cache_input_text_sha256": "392e96fea7e28774f31c8aadb9df3169b30b0827efd83a18e26f3c4bc01b662d",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            78336
+          ],
+          "unprocessed_array_sha256": "a4e37256d5aabaac14ac7e5b88e19cd7204a9a2f51fb515a7a5ef458071833ff"
+        },
+        {
+          "exact_native_cache_key": "d114f160ba29820ea4028e403585051c2402d1c7.pkl",
+          "pkl_sha256": "bc2d5d4dfaa0e213d980679be5f7af8833f8c0b901f298da6d650fa1db278b0a",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S3",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "On 27 October, her hull buckling, the men abandoned ship.",
+              "exact_native_cache_key": "d114f160ba29820ea4028e403585051c2402d1c7.pkl",
+              "cache_input_text_sha256": "0333444b5c410e0df42b34e200e5c7feaab6ab89f3098fb8814fc76812467b9f",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            109568
+          ],
+          "unprocessed_array_sha256": "f539e1a79743c165d09aa561b04c9a40c8696194c98b0b880a0fbb5b19605ee0"
+        },
+        {
+          "exact_native_cache_key": "ba23d5c34540df836186cc5c50ba56aa16ab8f1b.pkl",
+          "pkl_sha256": "4626004cc6656a6d09bb4093bf85d4e60b9481b388def253c6d72840922747db",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S3",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "On 27 October,",
+              "exact_native_cache_key": "ba23d5c34540df836186cc5c50ba56aa16ab8f1b.pkl",
+              "cache_input_text_sha256": "65ddb9e948b0678d14500c595f3b5c5e7288760114487bc6a4c70140a988463e",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            46592
+          ],
+          "unprocessed_array_sha256": "38944e7b01b99bcb1b0ca0543fe989143f89c0b2d4152bb2681c674e4ba19d8e"
+        },
+        {
+          "exact_native_cache_key": "0fd00f2950b98d8f1b8a549d4c97b2eafc85d6e0.pkl",
+          "pkl_sha256": "984a3713b26f80e62f509f6ff4970989d28fd3c33c3be9b8c1a89fe40d028f8e",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S3",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "her hull buckling,",
+              "exact_native_cache_key": "0fd00f2950b98d8f1b8a549d4c97b2eafc85d6e0.pkl",
+              "cache_input_text_sha256": "334079334ad5f8f2bfbf692b7052a1bfb623587d3e54cc8b910517c46a00b781",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            27136
+          ],
+          "unprocessed_array_sha256": "a16c7fb4394aca09a2f13bf72936523808b1919abf9cac5fa638ad015b31edda"
+        },
+        {
+          "exact_native_cache_key": "0607fe3a240e75cf11283dfee6fbb984c3b40af4.pkl",
+          "pkl_sha256": "fa917725074d0795b2707d9870b5b2e8b2fc40115044b35e04d61e885267b907",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S3",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "the men abandoned ship.",
+              "exact_native_cache_key": "0607fe3a240e75cf11283dfee6fbb984c3b40af4.pkl",
+              "cache_input_text_sha256": "e9a2ee96173a6f03f8678793209a62f7e96d423b3f178ae235694b07cc8bfa44",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            34816
+          ],
+          "unprocessed_array_sha256": "41586d389174bcfe00c0051eb99bbd6c9df66b8b19af43e7bdc8958e6cb25ee4"
+        },
+        {
+          "exact_native_cache_key": "7510cef2d7321a4d825f10495efc1ff90e23a176.pkl",
+          "pkl_sha256": "88544c2ec6269f3c42b1aef178df488165b88a70df7ddb9195208467ccc39aff",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "She foundered on 21 November; her captain, Frank Worsley, logged the spot.",
+              "exact_native_cache_key": "7510cef2d7321a4d825f10495efc1ff90e23a176.pkl",
+              "cache_input_text_sha256": "0304cc4fb0cd64307a931925f38b9c383aeb7318f315b152554262d27a2ac6d7",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            131584
+          ],
+          "unprocessed_array_sha256": "570ce0755d7225a8532cb1173cef43cfd4fea4f7c55218922296a9c203010ede"
+        },
+        {
+          "exact_native_cache_key": "cb86540c9a5644629849e4e47f9700d06630778a.pkl",
+          "pkl_sha256": "af58a0577cb4e90c4148b5ad4cc0abe97df7a6ac6e173d284cbcd87c6aee23c4",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "She foundered on 21 November;",
+              "exact_native_cache_key": "cb86540c9a5644629849e4e47f9700d06630778a.pkl",
+              "cache_input_text_sha256": "683fafdbdcc84693b1a9ce345c83d3e9223768450a732b0a96838a5c98917f00",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            59392
+          ],
+          "unprocessed_array_sha256": "b139b007147da24a238a74bcb3d0e8c3b56a145d14463b6c7711e3ea1fb8812c"
+        },
+        {
+          "exact_native_cache_key": "8dad5e2a7595c280b69d8999d85a4aef4fee3104.pkl",
+          "pkl_sha256": "a3fa917543d3c336bcc7426f830a7efb4b0c7ad936a9eca592a5c0d38c2619c8",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "her captain,",
+              "exact_native_cache_key": "8dad5e2a7595c280b69d8999d85a4aef4fee3104.pkl",
+              "cache_input_text_sha256": "a203b18e7c6b10a7b19959177c6e6ffe6e1c4aaea46d4afd12d583f937957cc5",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            23552
+          ],
+          "unprocessed_array_sha256": "fcf8dee4f0dab427afbbdf88d40cf67877fd49d94d69c80b158c32480a645367"
+        },
+        {
+          "exact_native_cache_key": "2d02a6226a038525f3f541908137c97dd7710d39.pkl",
+          "pkl_sha256": "e0911a28fd1f2c80dc086cc604f652f8964e2754f4163d4da34f275967072349",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Frank Worsley,",
+              "exact_native_cache_key": "2d02a6226a038525f3f541908137c97dd7710d39.pkl",
+              "cache_input_text_sha256": "936dcbd69d27a583cffbb26299f5831d25391110e8c2053617df4d1a36a5657b",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            26112
+          ],
+          "unprocessed_array_sha256": "a35071c280fdeccceba3ad890ae8fba9ee2f39e5cae5bda033de4b23e51917f6"
+        },
+        {
+          "exact_native_cache_key": "4383fda1aea714a7d40bd9cb7d26a716433ec67c.pkl",
+          "pkl_sha256": "1915fd47e422e84d64433d2b8ef6c59dfe39b97ea5ecd18c3329271e80292b38",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": 4,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "logged the spot.",
+              "exact_native_cache_key": "4383fda1aea714a7d40bd9cb7d26a716433ec67c.pkl",
+              "cache_input_text_sha256": "e274d799e87bd20ed5f1bb92cef466ebd96cfddf5ccc092d57e81cc2450db379",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            26112
+          ],
+          "unprocessed_array_sha256": "53ab3e6e3b190580535a0cf04aa890fc76d4e8ad30c4849604ddcf03760be4b4"
+        },
+        {
+          "exact_native_cache_key": "e7317c497ed189660bcec9e27623c63feb9a954d.pkl",
+          "pkl_sha256": "224ace0d6583fd3c582e47ead9c4146483f2d1f3d7087385c180e05267bee9d2",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "The stranded men endured over five gruelling months on the ice.",
+              "exact_native_cache_key": "e7317c497ed189660bcec9e27623c63feb9a954d.pkl",
+              "cache_input_text_sha256": "3eecccfe5a0c058dd84ee1632a312a0b03772e9505566d74e50da2c38b99b22a",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            96768
+          ],
+          "unprocessed_array_sha256": "fbe1f0bae597c84780238c657c103712ad0c9640575034a0b1ffa9be4f21e3de"
+        },
+        {
+          "exact_native_cache_key": "08c3c9fbef2a350dcf55604a9d0065acd1739899.pkl",
+          "pkl_sha256": "e469151fda5421789ee52eefa35433f284abaf322eaec6a13f7a5ddc8ba78d48",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Their floe split on 9 April 1916; on 15 April their lifeboats reached Elephant Island, a bleak, uninhabited rock far from shipping lanes.",
+              "exact_native_cache_key": "08c3c9fbef2a350dcf55604a9d0065acd1739899.pkl",
+              "cache_input_text_sha256": "59bb52f99cfc20aa56e322222287f4c21d8159fab8d9b9eeb43e148e327a1121",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            283136
+          ],
+          "unprocessed_array_sha256": "02da2f7eae7c06d591077711b45a3ba102b6330a46fefaee894618a6c44c64a5"
+        },
+        {
+          "exact_native_cache_key": "ebf8bdb1778c7cb783cfe120cfdb0c23552c91c7.pkl",
+          "pkl_sha256": "d47ab55b1757ce34ca932ecb6e3c53aff42f92f2d54d07e9d44d5cab7a4b4c0a",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Their floe split on 9 April 1916;",
+              "exact_native_cache_key": "ebf8bdb1778c7cb783cfe120cfdb0c23552c91c7.pkl",
+              "cache_input_text_sha256": "36de2233bfa6093857382caf691219eb3362de87f028a4eccb35dc7280ace989",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S6",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Their floe split on 9 April 1916;",
+              "exact_native_cache_key": "ebf8bdb1778c7cb783cfe120cfdb0c23552c91c7.pkl",
+              "cache_input_text_sha256": "36de2233bfa6093857382caf691219eb3362de87f028a4eccb35dc7280ace989",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            87040
+          ],
+          "unprocessed_array_sha256": "f18a82166c5eaf71fffbae1580eac324b450dc190709566cfcd90d17a9d58dbc"
+        },
+        {
+          "exact_native_cache_key": "54f393d55a371dbcb7ee78166cd2fbfc2b586490.pkl",
+          "pkl_sha256": "ccc4fef05029ac763631f41d057c03bcc81696485a342156f1ce91c5eaa65095",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "on 15 April their lifeboats reached Elephant Island, a bleak, uninhabited rock far from shipping lanes.",
+              "exact_native_cache_key": "54f393d55a371dbcb7ee78166cd2fbfc2b586490.pkl",
+              "cache_input_text_sha256": "20a0a49e8965ab6b457c3b88def5ae1ed1c15ef5e72d45942793b0a4b08bec80",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            188928
+          ],
+          "unprocessed_array_sha256": "0fb125e5811db11da2c66e44bd3a668506b2e728ef666ea18c9083f42686897e"
+        },
+        {
+          "exact_native_cache_key": "983852543877fef2b0e863227af164536e43a6c9.pkl",
+          "pkl_sha256": "7ace30a15b8430b98873a962b1cf1e90401c5b1d3ad3e9e8d22dcab8044bda50",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "on 15 April their lifeboats reached Elephant Island,",
+              "exact_native_cache_key": "983852543877fef2b0e863227af164536e43a6c9.pkl",
+              "cache_input_text_sha256": "71cde489738e77e76be5f3c1039fcda4912bcc9142b1be5d1158b88b9573006d",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            94208
+          ],
+          "unprocessed_array_sha256": "9c8aac77dffb8a16fb793f1b8b66ff7d206457cdf54d8623b0f8d9da580377e3"
+        },
+        {
+          "exact_native_cache_key": "9e4df9dc839d1ed860b045d48864a8a44c5148da.pkl",
+          "pkl_sha256": "2082f93afc1cc9008c0eea3c279ebec98e19f46f9c98fe72c21ac12c2edd734f",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "a bleak,",
+              "exact_native_cache_key": "9e4df9dc839d1ed860b045d48864a8a44c5148da.pkl",
+              "cache_input_text_sha256": "c8dff38a0c4e18f5bf18eb56dea1d0465016315dfdb5ae345e99a0da74b0d172",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            19456
+          ],
+          "unprocessed_array_sha256": "4f6a09d852c8035a0150f4ffb9b8eba47020ed8f2f1a9b6fc3f677e527a06e26"
+        },
+        {
+          "exact_native_cache_key": "62411ae0571e7ba3e9db0718a44da4c896894db4.pkl",
+          "pkl_sha256": "28205fd52befb6604825259a1825da49673e763671a521a8aa936e3bcb30d0e8",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": 4,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "uninhabited rock far from shipping lanes.",
+              "exact_native_cache_key": "62411ae0571e7ba3e9db0718a44da4c896894db4.pkl",
+              "cache_input_text_sha256": "80868f7e56c05179b5d4f299c670af515c75f4d645ec688a877a7875595f790d",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            62464
+          ],
+          "unprocessed_array_sha256": "21726b5cab7abc27f3f9a72a0e85fe7dcbd1fceffdb83c7d0a87a426268351d8"
+        },
+        {
+          "exact_native_cache_key": "6fecca217790fd3f75606ab6b6dcb446a980a194.pkl",
+          "pkl_sha256": "8453fdbfe29c9f068f5bee2bdf57c0004b27f370b658eda0bad20aed537bc2b7",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S7",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "On 24 April Shackleton and five others embarked in the James Caird, a fragile lifeboat, on a perilous voyage of some 1,300 kilometres.",
+              "exact_native_cache_key": "6fecca217790fd3f75606ab6b6dcb446a980a194.pkl",
+              "cache_input_text_sha256": "a0c5d8aa28af4aeedc11dbe762ac8258b1dcdeff6c8e17320a50d2b84645a9cd",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            271360
+          ],
+          "unprocessed_array_sha256": "56840f8b400da51d86ff58b343be9994c25b5c9c43de5c70278d055f26bc078f"
+        },
+        {
+          "exact_native_cache_key": "9983a037274a79999ddf02be5a66b96c649306b4.pkl",
+          "pkl_sha256": "6492f91c71554f9aa50e00e2869a6b136c0cdb60341ebe3ce34094fb9fa8a9dd",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S7",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "On 24 April Shackleton and five others embarked in the James Caird, a fragile lifeboat,",
+              "exact_native_cache_key": "9983a037274a79999ddf02be5a66b96c649306b4.pkl",
+              "cache_input_text_sha256": "905c9fdf54b44ca85964acd18c2d2b85004284a82045e1429708456b6f2dddb5",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            157696
+          ],
+          "unprocessed_array_sha256": "d07cc4985274c0318a019d9f12c8a1fb5b4210e22b5148fde23763676b93cb08"
+        },
+        {
+          "exact_native_cache_key": "3a872562b9e7107efe629e4492f7fbb0d2ac4c4d.pkl",
+          "pkl_sha256": "e431f75fd6356a0551ce1034558df78e1bfa85c2f85f3dd1cc5754b6adc533d3",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S7",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "on a perilous voyage of some 1,300 kilometres.",
+              "exact_native_cache_key": "3a872562b9e7107efe629e4492f7fbb0d2ac4c4d.pkl",
+              "cache_input_text_sha256": "05676e004878457dad84b099bd148b383122d5228ece4fc58373de20d6fb1a6e",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S7",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "on a perilous voyage of some 1,300 kilometres.",
+              "exact_native_cache_key": "3a872562b9e7107efe629e4492f7fbb0d2ac4c4d.pkl",
+              "cache_input_text_sha256": "05676e004878457dad84b099bd148b383122d5228ece4fc58373de20d6fb1a6e",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            99840
+          ],
+          "unprocessed_array_sha256": "20596d5546863e4d93bd583115bd96f2e30cca5611636f42470280a54790e166"
+        },
+        {
+          "exact_native_cache_key": "9b7e30db4f2b5f038defd1b9cc27c0d3b69e79e1.pkl",
+          "pkl_sha256": "9087101be64d96537d8f8d3d9842100a91b744060c4b588f125348d054ce1a96",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S7",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "On 24 April Shackleton and five others embarked in the James Caird,",
+              "exact_native_cache_key": "9b7e30db4f2b5f038defd1b9cc27c0d3b69e79e1.pkl",
+              "cache_input_text_sha256": "f787834f96a874179ea1152affc3cc7d6253733179670dbec99075914b960266",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            123904
+          ],
+          "unprocessed_array_sha256": "c287af508827f4cec1cb97cb8b8e3313b8234aa68ba6c5462b05e8aa341bc401"
+        },
+        {
+          "exact_native_cache_key": "575dc31483dc0c13e19d739d1301ef3e83cee935.pkl",
+          "pkl_sha256": "e4c97bb37b43806174522f6fad8926701a9b96e0c41decf2e791f31ef2942cac",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S7",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "a fragile lifeboat,",
+              "exact_native_cache_key": "575dc31483dc0c13e19d739d1301ef3e83cee935.pkl",
+              "cache_input_text_sha256": "18c9e1da75fdc0421cd43c0eba17948b6149be056f2a91b3da87ab6764620003",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            32768
+          ],
+          "unprocessed_array_sha256": "9659bdd949f5a0d42bfc36d384811e67b4b2d8678a8bc50e3fd958c6f088f371"
+        },
+        {
+          "exact_native_cache_key": "f42d7461fd5c4f6cc43b2bd32ceff5f2e1ed058d.pkl",
+          "pkl_sha256": "ab09c192385e33810f7069845a90be763d531650dd291d563803180cc81e05d9",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "As ferocious gales battered the boat, Worsley snatched only four sights of the sun, deducing the rest by dead reckoning from course, speed, and time elapsed.",
+              "exact_native_cache_key": "f42d7461fd5c4f6cc43b2bd32ceff5f2e1ed058d.pkl",
+              "cache_input_text_sha256": "5a952ec1f74c6eb8b172c7bd3ffa65a14e1a45defdede3309997ca0fb6f5f2e1",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            257536
+          ],
+          "unprocessed_array_sha256": "a385ebce7b4a2a94469299eef30acdf7d1b526a7fe0d52008b6b977347b225f6"
+        },
+        {
+          "exact_native_cache_key": "77a0b09e6641364d169aa86a13484a4475b3585d.pkl",
+          "pkl_sha256": "12a85a989e75a326d82d7ef299b790637b989b39e4267c9c86f6f37e41bfdded",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "As ferocious gales battered the boat,",
+              "exact_native_cache_key": "77a0b09e6641364d169aa86a13484a4475b3585d.pkl",
+              "cache_input_text_sha256": "d5fc7b60cc7a02c2317a714fb1a19f1668b61e0cdbb7e0ed7e99ae938d0aa3c4",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S8",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "As ferocious gales battered the boat,",
+              "exact_native_cache_key": "77a0b09e6641364d169aa86a13484a4475b3585d.pkl",
+              "cache_input_text_sha256": "d5fc7b60cc7a02c2317a714fb1a19f1668b61e0cdbb7e0ed7e99ae938d0aa3c4",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            53248
+          ],
+          "unprocessed_array_sha256": "8e100bfa161dd9d305ee8eefb53ffaa3b5bb477fd6413f6414f19a1d719ecc95"
+        },
+        {
+          "exact_native_cache_key": "a13b1ec85da1918ad298450f91a96f4d2490cf4b.pkl",
+          "pkl_sha256": "a6f468cb3e6639329722d26737824791650f83d0703f6a28117c6ddfb15c46ef",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Worsley snatched only four sights of the sun,",
+              "exact_native_cache_key": "a13b1ec85da1918ad298450f91a96f4d2490cf4b.pkl",
+              "cache_input_text_sha256": "cb5d3c135441e3c13d905ee3f948c35b15f792218cc834229e6da42766ab5e0a",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S8",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Worsley snatched only four sights of the sun,",
+              "exact_native_cache_key": "a13b1ec85da1918ad298450f91a96f4d2490cf4b.pkl",
+              "cache_input_text_sha256": "cb5d3c135441e3c13d905ee3f948c35b15f792218cc834229e6da42766ab5e0a",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            65024
+          ],
+          "unprocessed_array_sha256": "17ba8b5987f06e56a6886e3ff82cdfcac8eae90b8526cba11ab85b6fdb5a5348"
+        },
+        {
+          "exact_native_cache_key": "c103479ebc1d973301f3be4fbb290a904f4445f6.pkl",
+          "pkl_sha256": "4de24787b0fc47ad971ee053fe9e5aaed656f3f7d3a468b062b000c6fab91d09",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": 3,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "deducing the rest by dead reckoning from course, speed, and time elapsed.",
+              "exact_native_cache_key": "c103479ebc1d973301f3be4fbb290a904f4445f6.pkl",
+              "cache_input_text_sha256": "3b0f5eecc6ea9d0d7cbbe7886fafc35860071841e40223f3853e5b63f1addacb",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            112640
+          ],
+          "unprocessed_array_sha256": "0df79485d81d429029293eb29aa6da2db837f732bd420a2171dd7a1f236036c0"
+        },
+        {
+          "exact_native_cache_key": "44f7865463a24ae489544b79701695ab1deafa33.pkl",
+          "pkl_sha256": "a6762475daf9ed2525adaf03b5511ddf90382bd694df27ded78fbd10924ce638",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "deducing the rest by dead reckoning from course,",
+              "exact_native_cache_key": "44f7865463a24ae489544b79701695ab1deafa33.pkl",
+              "cache_input_text_sha256": "00170480abd2dbb2d4d4f7f13d18cdeb8ab40c35ae0d0a755989816d93917547",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            62464
+          ],
+          "unprocessed_array_sha256": "89c62c810da1b8108ea3234bec117535a7ab70ed40b1b447eed5f7a826f520cb"
+        },
+        {
+          "exact_native_cache_key": "0ebab6736f58e98ff727cd917d58044fe3ac7b9f.pkl",
+          "pkl_sha256": "cfafa33029ae8f1530c567d7b58539f1156e2e250e31d4a0d58cd55f0ff9bbe7",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": 4,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "speed,",
+              "exact_native_cache_key": "0ebab6736f58e98ff727cd917d58044fe3ac7b9f.pkl",
+              "cache_input_text_sha256": "94e70b133e1afc45b4da2104fc7577a579e590b0390128588d94a355e0c58d5d",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            18432
+          ],
+          "unprocessed_array_sha256": "91cd29903764909f5d120a9e77b91c703a6dead89e1ebc3597d659e5848a1ec9"
+        },
+        {
+          "exact_native_cache_key": "59112dc01be532bb7d30395a24bb2bb3d4d3c264.pkl",
+          "pkl_sha256": "53465cbaee80947aeb8330489888f03e5b36bc149a072392a112b254f12c1537",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": 5,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "and time elapsed.",
+              "exact_native_cache_key": "59112dc01be532bb7d30395a24bb2bb3d4d3c264.pkl",
+              "cache_input_text_sha256": "a3a42d0e2e4e4db4ec6adae2573ddfc2d5496b79dac01939cfc4308ad2fba950",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            31744
+          ],
+          "unprocessed_array_sha256": "ac7cfd89e487c06a676f35b0c7e29b1a22446697228e6f87e64d63cbc84a49ae"
+        },
+        {
+          "exact_native_cache_key": "7f8943ba554239b14b1672ba5418d709bc0d2c14.pkl",
+          "pkl_sha256": "a2c6a8d70f9bc0d50ab81dfde3310f4b78d6dfa5cea6f9450aa5659b1b308b03",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S9",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "On 10 May they landed on South Georgia's deserted south coast.",
+              "exact_native_cache_key": "7f8943ba554239b14b1672ba5418d709bc0d2c14.pkl",
+              "cache_input_text_sha256": "3d2615c94dc10027488d557ead246cedc06b0ea265c3cabd95ea5ec578055523",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            113152
+          ],
+          "unprocessed_array_sha256": "36b4998dbdc194eafe335d4871af94553754cb7983451d657232ca19c306df7b"
+        },
+        {
+          "exact_native_cache_key": "dd607aa04df12147692e39843f47bfdf53e1a19d.pkl",
+          "pkl_sha256": "faa25a832415207b4110f42fd3fd18927f9a283433ef6954a1910f46c93fb249",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S10",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Shackleton, Worsley, and Tom Crean traversed its mountainous interior in about 36 exhausting hours, reaching the Stromness whaling station on 20 May.",
+              "exact_native_cache_key": "dd607aa04df12147692e39843f47bfdf53e1a19d.pkl",
+              "cache_input_text_sha256": "f97ed5571f0914b233c72422627f12baf551f052064bf425e439cbac25923c94",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            276480
+          ],
+          "unprocessed_array_sha256": "48be290ba049f642202932711e0c1f0cc7305a7ea5aca345ab889a79f0a4c3cf"
+        },
+        {
+          "exact_native_cache_key": "8c061ef15c71450c4881d14ed65cb2b21ef99a43.pkl",
+          "pkl_sha256": "905b4fa193aeec21470efcd6bc51df70f4158d238042d9067c4546f7343c1cf7",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S10",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Shackleton, Worsley, and Tom Crean traversed its mountainous interior",
+              "exact_native_cache_key": "8c061ef15c71450c4881d14ed65cb2b21ef99a43.pkl",
+              "cache_input_text_sha256": "a2c397c6e8261ee60bf193e6055bd1d78c235fc12d8da0a88bd40010e018c49a",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            109056
+          ],
+          "unprocessed_array_sha256": "8852a9de6efed85e6f69efbf577436a7b11df3c85da7315ddcebc5e2dd7d5309"
+        },
+        {
+          "exact_native_cache_key": "d1d22eb15b86e64a584c2528f8a67b2a3a0c4cf3.pkl",
+          "pkl_sha256": "cca64bf81c719c6cf5245dc6930782239410b5ff1c68d46d4b139581808ebbfe",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S10",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "in about 36 exhausting hours, reaching the Stromness whaling station on 20 May.",
+              "exact_native_cache_key": "d1d22eb15b86e64a584c2528f8a67b2a3a0c4cf3.pkl",
+              "cache_input_text_sha256": "e6400b0611c1af2b7101e4088394020b5586e6c2f4c3b21be3846b1205cac74d",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            155648
+          ],
+          "unprocessed_array_sha256": "503b4f20989fae3383c6ca11de9caacafb3e9d497daee5f0896bf4928ce3ef43"
+        },
+        {
+          "exact_native_cache_key": "5b0a3764c3d11554cfd9757c6733703206768de5.pkl",
+          "pkl_sha256": "6cba487b4782b8de354b1af414e7d311089f25ac4130b63d3367a681941ce901",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S10",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Shackleton,",
+              "exact_native_cache_key": "5b0a3764c3d11554cfd9757c6733703206768de5.pkl",
+              "cache_input_text_sha256": "887127ab2cd8839a630be19de21fa4d3a50b803859b37f39608d8f53f5feba37",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            22528
+          ],
+          "unprocessed_array_sha256": "ed95ab85ff736c21662669ad2e1ce9f5e093c8d464351415694a03a0e5e3d316"
+        },
+        {
+          "exact_native_cache_key": "4c2f2ab6fe66b378a01e3a02bd370dbfafca1103.pkl",
+          "pkl_sha256": "fd3c2c906224005afa3b769e61be5f231b3f3b21b57c58344f7f4501656dfd75",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S10",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Worsley,",
+              "exact_native_cache_key": "4c2f2ab6fe66b378a01e3a02bd370dbfafca1103.pkl",
+              "cache_input_text_sha256": "0bb0a1b38075d0384a6e5bfb3c8037466c8e8cd2bf5bd88b0e23e02ef90287df",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            19968
+          ],
+          "unprocessed_array_sha256": "f34d6daa1f06794ec2febd5644cd838e78334245c0d2ca913aeb7d3a95b213b8"
+        },
+        {
+          "exact_native_cache_key": "f13aa77368ff56d4c2b391df1d588258bd103677.pkl",
+          "pkl_sha256": "54ea31e4e3bbc45d10201a6ef923a909280e80dd435586624cb4871c35ff176d",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S10",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "and Tom Crean traversed its mountainous interior in about 36 exhausting hours,",
+              "exact_native_cache_key": "f13aa77368ff56d4c2b391df1d588258bd103677.pkl",
+              "cache_input_text_sha256": "4b33891bc1393583142a0a96cf1e5a943d51fcc8a8bd03f5e73ed4ca9c6eec74",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            134656
+          ],
+          "unprocessed_array_sha256": "d35c436ed306431e09766e2182222a1483c061a83734ea384a4bcfa842c20d92"
+        },
+        {
+          "exact_native_cache_key": "5665897c336a333921576b66d475a516ccd74be5.pkl",
+          "pkl_sha256": "2e3a69af5fd383e3efd9398af3b8012f0231ba4b88b51c41c6ec1e2d6fbc65b5",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S10",
+              "piece": 4,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "reaching the Stromness whaling station on 20 May.",
+              "exact_native_cache_key": "5665897c336a333921576b66d475a516ccd74be5.pkl",
+              "cache_input_text_sha256": "1adb1b52eb508e8bebd607dbeceb7050b0bfb5ce88b74e56849ba50b14645cc4",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            90624
+          ],
+          "unprocessed_array_sha256": "7f539c1cfac1176b2425b2593420b74426806cfa603640a0bd083b7543575d88"
+        },
+        {
+          "exact_native_cache_key": "8df8bcc0574c9023eac225638b9e823bd53b25c8.pkl",
+          "pkl_sha256": "d3fdbf53454c8c92fa8351735d098f42c15fa7b9f003f4c13ec9ebd3e374b12a",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Ice repelled three rescue attempts before the Yelcho, a Chilean tug, evacuated the 22 marooned men on 30 August.",
+              "exact_native_cache_key": "8df8bcc0574c9023eac225638b9e823bd53b25c8.pkl",
+              "cache_input_text_sha256": "0f2bb807ca01586528b29647079b40a3f6ee3b5ee163707f894b545a77f7374c",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            224768
+          ],
+          "unprocessed_array_sha256": "e8ec24eb72df577cdca8abee290237e8388604daea9d5e2c0c8db1620245d58e"
+        },
+        {
+          "exact_native_cache_key": "6e2f9b39f2e693968d853914998c595fecca55a6.pkl",
+          "pkl_sha256": "b2135cc8d974d30a21a0c451b3ab240d5cafeebf421b9bec3f0b75ac85e8c6f1",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Ice repelled three rescue attempts",
+              "exact_native_cache_key": "6e2f9b39f2e693968d853914998c595fecca55a6.pkl",
+              "cache_input_text_sha256": "890adfa3451a3575ae5382aaa7bbaedb8122bd419c19c1f2d197a52b05d4dbc8",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            50688
+          ],
+          "unprocessed_array_sha256": "e95e829624c65b299423e04845be7ddfa57756fe1a3583baa878c9a79bf12f2a"
+        },
+        {
+          "exact_native_cache_key": "2aced84f6a9a035263e8e563e922870ced54c82b.pkl",
+          "pkl_sha256": "c037aa93633434abb8bc35995daa2f7440662e8d953f7ebc90359eec483caba0",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "before the Yelcho, a Chilean tug, evacuated the 22 marooned men on 30 August.",
+              "exact_native_cache_key": "2aced84f6a9a035263e8e563e922870ced54c82b.pkl",
+              "cache_input_text_sha256": "9d7741b3a59adec0d48e6810568ebc9dac1cc548005854e490875c8f8cdc643e",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            161792
+          ],
+          "unprocessed_array_sha256": "22fb16ba521af4439fc26c4d93a698f7666cf7caed6f0ea57a7761a044067986"
+        },
+        {
+          "exact_native_cache_key": "05949453ac7eced4ce4706c334e583600539e67e.pkl",
+          "pkl_sha256": "6676ac429d5a3a4fc82f1427e06c89d7e3b98abd48d4ac0e664caa3e6e90bc56",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Ice repelled three rescue attempts before the Yelcho,",
+              "exact_native_cache_key": "05949453ac7eced4ce4706c334e583600539e67e.pkl",
+              "cache_input_text_sha256": "9b9bc302b0eb3d74fdb7229f09276f5dc4608515a7f043db21afd555b2f3ce6b",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            78848
+          ],
+          "unprocessed_array_sha256": "f9893eb1e5e7ddc449f6b94d549a47d2b921f3abd732f8d3319852d086781a1f"
+        },
+        {
+          "exact_native_cache_key": "3b7d7164924c206a187a5b697748942912f1c00d.pkl",
+          "pkl_sha256": "989c44f8ba8339679287ba8d1edc8d0258636cef95375c3be66c9562b5d56c35",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "a Chilean tug,",
+              "exact_native_cache_key": "3b7d7164924c206a187a5b697748942912f1c00d.pkl",
+              "cache_input_text_sha256": "c977a545209e05215ba09aa06430f0423d3c52dcd304580926eb627d18b2e897",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            29184
+          ],
+          "unprocessed_array_sha256": "aa5d643102d70e54c1f885a942b55dce9611d514e66aaf2929ac6f716bfd6426"
+        },
+        {
+          "exact_native_cache_key": "150c9f3e9f785a6440218502509657650913992c.pkl",
+          "pkl_sha256": "8a48401922dfeb9496faff406d9f7ccf8e9a82d7420c2c224a106c50936deba8",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "evacuated the 22 marooned men on 30 August.",
+              "exact_native_cache_key": "150c9f3e9f785a6440218502509657650913992c.pkl",
+              "cache_input_text_sha256": "12b561002b5b608ffa4f93f7e7c0938e177c6c7136a0a92135a67096171cc888",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            101888
+          ],
+          "unprocessed_array_sha256": "55ead57659e375782fe35b575e1d45f0de713268e9fb9611ac74ab996f23b5ba"
+        },
+        {
+          "exact_native_cache_key": "8bc5e152a972cd8109b85658bf6fb62c62ca915c.pkl",
+          "pkl_sha256": "60827587dda0691cef4fcb67af2e8afa870ed254ed6bb260b53ac595267f7a66",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S12",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "All 28 of Endurance's party survived their ordeal.",
+              "exact_native_cache_key": "8bc5e152a972cd8109b85658bf6fb62c62ca915c.pkl",
+              "cache_input_text_sha256": "8d151cfd0aba26a24bbd4118ea585d5dbd055a0e0a0797073246219056440063",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            90112
+          ],
+          "unprocessed_array_sha256": "e31f72be9da632b17510a45a91f89b7892d71ed51498f0af472c20702b025fc8"
+        },
+        {
+          "exact_native_cache_key": "2f94bbd4da97fc2a57b95c39d33fd7f38c475080.pkl",
+          "pkl_sha256": "30d61d15e85172eeb2e7c4cb6ca81f2150dbaaf2715c055d5a36651e3fb70b51",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S13",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "On 5 March 2022 searchers located the wreck 3,008 metres down, upright and intact.",
+              "exact_native_cache_key": "2f94bbd4da97fc2a57b95c39d33fd7f38c475080.pkl",
+              "cache_input_text_sha256": "032ece48312eb5de8466dbd91a982b8584bac5c6c44882abeac43162293848a7",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            204800
+          ],
+          "unprocessed_array_sha256": "d7044b1e02c6825eddcb2ca8deaaf47d3a5569d11a74819a7272808401f001ba"
+        },
+        {
+          "exact_native_cache_key": "5cdec20c5b9c664581c22c5bef46cea4ab216df0.pkl",
+          "pkl_sha256": "4341eea88ddd20872c9be87df6b00b554fb9eff4cb327f076216bd5fab2bf309",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S13",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "On 5 March 2022 searchers located the wreck 3,008 metres down,",
+              "exact_native_cache_key": "5cdec20c5b9c664581c22c5bef46cea4ab216df0.pkl",
+              "cache_input_text_sha256": "da38c5a089b36f4545588deab83e609950ae3d0b63c315ea8e64867d1b0565c9",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            177664
+          ],
+          "unprocessed_array_sha256": "647ac657fd6cb6050109f27b9dd1fddd48fb552c7118c86bbf44ab1e6677e146"
+        },
+        {
+          "exact_native_cache_key": "f4c75f1656326dc5c93c6845493a45f0dfef8eac.pkl",
+          "pkl_sha256": "a385572be9c63763ad2e7f39d57c4a77c7cd643aa0609cb96e983c3051e2edef",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S13",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "upright and intact.",
+              "exact_native_cache_key": "f4c75f1656326dc5c93c6845493a45f0dfef8eac.pkl",
+              "cache_input_text_sha256": "bc583e04e634cffccfb499d0c1ac6e1941bc938192da512b12a87bdd067583c4",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            32768
+          ],
+          "unprocessed_array_sha256": "85dde927f64626061db0142972008ebb17f9653fe2f88df2d12abc4d6be01edd"
+        },
+        {
+          "exact_native_cache_key": "86f3c2762040493cc1090d88279b4dc91d86eac2.pkl",
+          "pkl_sha256": "001bf0e001a30233defa5861a27d475c5d8ea6d8c8679be50af3180e07a730e8",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S14",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "She lay about four miles south of the spot Worsley recorded in November 1915, months before the voyage: a slight discrepancy for a calculation on shifting ice.",
+              "exact_native_cache_key": "86f3c2762040493cc1090d88279b4dc91d86eac2.pkl",
+              "cache_input_text_sha256": "5177e72e8b675f12c680d23d921b78966d59d091913f186f8affb3fa5408f5a4",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            283648
+          ],
+          "unprocessed_array_sha256": "d907b3f5dee42e662a83cdd4c4faf181abd1e52a5cdd409404d5558f467f74a6"
+        },
+        {
+          "exact_native_cache_key": "424726e4cae31d70d2290ae8030ce46da25f2b84.pkl",
+          "pkl_sha256": "4ee122d19b980d56263124c5abf78825c7dd8dd77d0e3bf8f2849122992478f1",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S14",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "She lay about four miles south of the spot Worsley recorded in November 1915, months before the voyage:",
+              "exact_native_cache_key": "424726e4cae31d70d2290ae8030ce46da25f2b84.pkl",
+              "cache_input_text_sha256": "76d95a8290df464e76f019918e7bab86ab9f3b0a8bc5a4f434bda571804f4e13",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            180736
+          ],
+          "unprocessed_array_sha256": "5fcbb8583ce4ddd945e5f39fc7d4ecc0eacecd960b3c51e774702095d6b4023e"
+        },
+        {
+          "exact_native_cache_key": "686d24adfe20b03cc7afbb71889ae20e11a433cf.pkl",
+          "pkl_sha256": "d7d83db3a6447298fe713ff6fa96f6a9ec90dfa68e8557ea9e846ce5795af3f4",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S14",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "a slight discrepancy for a calculation on shifting ice.",
+              "exact_native_cache_key": "686d24adfe20b03cc7afbb71889ae20e11a433cf.pkl",
+              "cache_input_text_sha256": "4915acab1776daf90f12713172218daf6cdd442e8423a1a212c146805718d80e",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S14",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "a slight discrepancy for a calculation on shifting ice.",
+              "exact_native_cache_key": "686d24adfe20b03cc7afbb71889ae20e11a433cf.pkl",
+              "cache_input_text_sha256": "4915acab1776daf90f12713172218daf6cdd442e8423a1a212c146805718d80e",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            90624
+          ],
+          "unprocessed_array_sha256": "9dc094ffe4afc06e5654c384a77f14f5466c3583199f3ff68718975f0ba04ff8"
+        },
+        {
+          "exact_native_cache_key": "cc2804ebfbc4b8139eb8a608977ae7ad88dab4e6.pkl",
+          "pkl_sha256": "f4d2faa60ab97a8e9e5b62139ba9511f392ad75df5b2c0d4ffc05ea3823967d1",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S14",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "She lay about four miles south of the spot Worsley recorded in November 1915,",
+              "exact_native_cache_key": "cc2804ebfbc4b8139eb8a608977ae7ad88dab4e6.pkl",
+              "cache_input_text_sha256": "c83123cffb205859247ef9d691ee8c80c4c62ab3c8091ac83c12c9ae41c0dca1",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            135680
+          ],
+          "unprocessed_array_sha256": "6f02fed8900de7ee9d00fe124cc21172728f95a4e57699081aafeee83909d44a"
+        },
+        {
+          "exact_native_cache_key": "8b152974be5863bd125570170909ccc611114f31.pkl",
+          "pkl_sha256": "95280b12250a0b3f62188d2ffd4518a0978e3bff856272a414c27b8a237bf6e4",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S14",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "months before the voyage:",
+              "exact_native_cache_key": "8b152974be5863bd125570170909ccc611114f31.pkl",
+              "cache_input_text_sha256": "dcfc12c564b7fcddc8dbc5f8bc394f19b216738d9f8f41ec99e71b213ad21809",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            34816
+          ],
+          "unprocessed_array_sha256": "1c34d95953d67de945b109d05ff44f14e123f0148e007e8f909f06880c033727"
+        },
+        {
+          "exact_native_cache_key": "45c1dca61d3a78312b40be8b257ba588f6e948fc.pkl",
+          "pkl_sha256": "6e42c57c755b6eafe0713617da1396e2edf927669fe7bc24728203e6e9b017fd",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S15",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Legend rightly salutes Shackleton for his charisma.",
+              "exact_native_cache_key": "45c1dca61d3a78312b40be8b257ba588f6e948fc.pkl",
+              "cache_input_text_sha256": "d57fd4be08d718e6060fddf6e53d102f8c45d89d0a1d4a0a7c6d0b936046b25a",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            73216
+          ],
+          "unprocessed_array_sha256": "a94b8d35df508f5957fa503e87a1ff7a4b2087855f8082991918af2a3fa38184"
+        },
+        {
+          "exact_native_cache_key": "f0201016257d4d22f7369a257cfdaf33c0228490.pkl",
+          "pkl_sha256": "4bee75df1550815794c35d76c88f489aa8508517813fce96b2e54d55431df3ef",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S16",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Yet both ends of the story hinge on Worsley's meticulous arithmetic.",
+              "exact_native_cache_key": "f0201016257d4d22f7369a257cfdaf33c0228490.pkl",
+              "cache_input_text_sha256": "889f011e4b63275aaadb29669bdfb040a966afbcca269738d26e998f07d60c4e",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            112640
+          ],
+          "unprocessed_array_sha256": "ab66f78f9ef5842287728aa1ca3a273900b1cc154e71b37de8c0ebfef691285d"
+        },
+        {
+          "exact_native_cache_key": "3e33bb0342fe29a8936445568d565a3ae9be2596.pkl",
+          "pkl_sha256": "ccf7cb49288bd365b76e4f42254268a135d68e8d71725e128507550e22fdf7df",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S17",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Leadership held 28 men together.",
+              "exact_native_cache_key": "3e33bb0342fe29a8936445568d565a3ae9be2596.pkl",
+              "cache_input_text_sha256": "082d462105a3eb87cf41c72683c7863586806803216dae3409f847a2155bad74",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            54784
+          ],
+          "unprocessed_array_sha256": "fedadc668db9dc3f378d069ec46c6281f4052beed529833de55b5765cc9f411b"
+        },
+        {
+          "exact_native_cache_key": "5972df4550be2b5851fe95d6e29641462300bcfc.pkl",
+          "pkl_sha256": "358e8d93a0786f83d79b61cc4bd3f60e05bba1c4493dc3fdc2e74125c2e16722",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S18",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Precision put six ashore within reach of help and, a century on, brought their ship back into view.",
+              "exact_native_cache_key": "5972df4550be2b5851fe95d6e29641462300bcfc.pkl",
+              "cache_input_text_sha256": "a30ceaf43f04ac5d73272cf5686adb8c4ffd1cf0f6108300f9422bbe7e185066",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            149504
+          ],
+          "unprocessed_array_sha256": "5bb2e60909c330322b7ce4a86ce3a089de9740a8f5c5a884ae6f0869dfe87620"
+        },
+        {
+          "exact_native_cache_key": "74ec41377e333b0242181c7b71aec3e21b528911.pkl",
+          "pkl_sha256": "11276e7d4598447d547ed5f0cd1ec6d85390f91f7fbb7a05e1cd8d13a6dadcbe",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S18",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Precision put six ashore within reach of help",
+              "exact_native_cache_key": "74ec41377e333b0242181c7b71aec3e21b528911.pkl",
+              "cache_input_text_sha256": "7021cd9b0fc002103376c8b2197abf42170f409ab14eb8debc36ac3a5a461412",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            62464
+          ],
+          "unprocessed_array_sha256": "da69d6d3cb2e03e5566675a2e9d1ec0a65723f2beac0cceee10c831fbb52ff2d"
+        },
+        {
+          "exact_native_cache_key": "7f34c4b34e24c82cde497515a4a9ce978e3f361e.pkl",
+          "pkl_sha256": "83c37a9a597b4b347246c5ab0ddb074d73265b1f3d18e2c0bcb586e60c7aa555",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S18",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "and, a century on, brought their ship back into view.",
+              "exact_native_cache_key": "7f34c4b34e24c82cde497515a4a9ce978e3f361e.pkl",
+              "cache_input_text_sha256": "fc81fa6499bfca18c8ca7fa389e04c405cdb51aefbebd2e6e4f88f8402fab60c",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            75776
+          ],
+          "unprocessed_array_sha256": "d03b859e3209a9456f2c86840ec53fc25d357dc2453796a0567d6d0832915185"
+        },
+        {
+          "exact_native_cache_key": "8c1f7d3f314fb4d9ba422002802286609531a320.pkl",
+          "pkl_sha256": "324ef62eb757bfa2ada9942a1c95587c4c6094a592a126836d9a7fc1ad358dc6",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S18",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Precision put six ashore within reach of help and,",
+              "exact_native_cache_key": "8c1f7d3f314fb4d9ba422002802286609531a320.pkl",
+              "cache_input_text_sha256": "661fc88f1ae6c41f069a1ed904d037692bb2f133375a07aea3c189d0f5616789",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            72704
+          ],
+          "unprocessed_array_sha256": "82908db129524cfa421f42c18f8bcb3a94dd878e672ea2690b6e68cf20969bee"
+        },
+        {
+          "exact_native_cache_key": "2e88a825b3db2c5edf93bd3471610a7d998950f5.pkl",
+          "pkl_sha256": "aad84234b18ae7a789f3e085fa5861ba7b022063ea82d542328e8c31af9090b4",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S18",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "a century on,",
+              "exact_native_cache_key": "2e88a825b3db2c5edf93bd3471610a7d998950f5.pkl",
+              "cache_input_text_sha256": "daefc4e91058133f9a40c00db9e8da8d03d88fcdd1c2accdd7d185ccec5e359b",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            26624
+          ],
+          "unprocessed_array_sha256": "0f7e17b7ce34093fa0b301eb933489c290c18cfd451b5604fcb5beb02eec5dc7"
+        },
+        {
+          "exact_native_cache_key": "2ff5c42383a54cd2f9119599a7efecec910669ae.pkl",
+          "pkl_sha256": "46369c01bdd4428dd0843cd5ab1bd41f60d6811d310e9388afc1d327fb0d6da0",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S18",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "brought their ship back into view.",
+              "exact_native_cache_key": "2ff5c42383a54cd2f9119599a7efecec910669ae.pkl",
+              "cache_input_text_sha256": "6d0adf30bb3f4ab125235b55f18814d4c5e0bb84a9bdbc8d0f68faf80738739c",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            42496
+          ],
+          "unprocessed_array_sha256": "9ca53ba0cbdcc4c1d26eef9bf8d144ef3ea5ff9d0f2deca19d03f5ca6cbc1ed1"
+        }
+      ],
+      "missing_reference_key_count": 0,
+      "observed_missing_keys_covered": [],
+      "new_private_cache_names": [],
+      "native_single_thread_marker_verified": true,
+      "single_thread_sessions": [
+        {
+          "intra_op_num_threads": 1,
+          "inter_op_num_threads": 1
+        },
+        {
+          "intra_op_num_threads": 1,
+          "inter_op_num_threads": 1
+        }
+      ],
+      "models_sha256": {
+        "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+        "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+        "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+      },
+      "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+      "existing_private_cache_count": 11514,
+      "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+      "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+      "existing_private_cache_bytes_unchanged": true,
+      "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+      "public_repository_cache_unchanged": true,
+      "producer_pcm_existed_before": false,
+      "producer_pcm_sha256_before": null,
+      "producer_pcm_sha256_after": null,
+      "accepted_aac_adts_sha256_before": "cf173abebc298d002ad5a00cc042ab781876e81c1359fcf5c92633861b3faf9f",
+      "accepted_aac_adts_sha256_after": "cf173abebc298d002ad5a00cc042ab781876e81c1359fcf5c92633861b3faf9f",
+      "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+      "private_cache_exported": false
+    },
+    "checker_reference_preparation_program_sha256": "f6f2a032e207085e7252d036e39430fb80b06e84a721c525b61196d021c5ca12",
+    "fresh_current_article_reference": {
+      "article": "24",
+      "removed_temporary_gt_files": [],
+      "processed_pcm_or_raw_mother_cache_modified": false,
+      "purpose": "Original synth/labels/audit rebuild fresh for this production; no old CPU GT reuse."
+    },
+    "temporary_output_reset": {
+      "removed": [],
+      "production_started_ns": 1794621808517458510,
+      "repository_outputs_modified": false
+    },
+    "reviewed_gain_control_preservation": [
+      {
+        "stage": "canonical-draft",
+        "requested_gain_controls": {},
+        "actual_gain_controls": {},
+        "exactly_preserved": true
+      },
+      {
+        "stage": "canonical-final4K",
+        "requested_gain_controls": {},
+        "actual_gain_controls": {},
+        "exactly_preserved": true
+      }
+    ],
+    "canonical_video_sha256": "3b59f2d6622296ecd7004cf952c32b339270889360b0342a1c6d06d78d615c01",
+    "canonical_aac_adts_sha256": "cf173abebc298d002ad5a00cc042ab781876e81c1359fcf5c92633861b3faf9f",
+    "canonical_pipeline_passed": true,
+    "cached_input_wav_sha256": null,
+    "final_wav_sha256": "3c7a3b96970da47badee32e95f95906bba3e13c73c9f3d951db5be08bedeefcd",
+    "accepted_prior_aac_identical": true,
+    "video_sha256": "e74abc05442d74b52f7b3101da09122e3f412b49dadc59889bcb61b6cdceae72",
+    "width": 3840,
+    "height": 2160,
+    "summary_seconds": 2,
+    "summary_frames": 60,
+    "summary_start_seconds": 148.96666666666667,
+    "delay_after_voice_seconds": 0.03166666666666629,
+    "actual_source_collection": {
+      "article": "24",
+      "kind": "actual-production-source-collection",
+      "new_quality_gate": false,
+      "files": {
+        "request_json": {
+          "file": "24-request-source.json",
+          "sha256": "f08620b534bb10b718f7515c805dcb541721427d855bd5a092b8954847a351b8",
+          "origin": "immutable_request"
+        },
+        "request_generator": {
+          "file": "24-request-gen.py",
+          "sha256": "ca6638792c3e19c9bd0d8ee291360af9c97cb4a7a54a263b3fb90d5ea9c76b23",
+          "origin": "immutable_request"
+        },
+        "used_generator": {
+          "file": "24-used-gen.py",
+          "sha256": "ca6638792c3e19c9bd0d8ee291360af9c97cb4a7a54a263b3fb90d5ea9c76b23",
+          "origin": "actual_production_filesystem"
+        },
+        "actual_working_source": {
+          "file": "24-actual-working-source.json",
+          "sha256": "c8903792176bbbe068af89d4826bfe19376f71bc61a121b065539644caafd834",
+          "origin": "actual_production_filesystem"
+        },
+        "request_manuscript": {
+          "file": "24-request-manuscript.md",
+          "sha256": "cb7f810d9a74256e0c00625290be4f16207feb90f5719ca87d5d7c9912b91307",
+          "origin": "immutable_request"
+        },
+        "actual_working_manuscript": {
+          "file": "24-actual-working-manuscript.md",
+          "sha256": "9c208ea9c971ded9b3d73ed3fa2fcabbf35a3c6e417bccdac8a5f9ecd1f1b544",
+          "origin": "actual_production_filesystem"
+        }
+      },
+      "generator_execution_observed": false,
+      "generator_execution_evidence": "No fresh generator execution log; do not claim this GEN was executed during rendering.",
+      "source_differences": {
+        "file": "24-actual-source-differences.json",
+        "sha256": "1193704306d771e90ae9fc8362f81d35b7bd8254db3f173af6e092a5c5fe9e4b"
+      }
+    }
+  },
+  "native_status_sha256": "8a51650b1d8e3eb745b58524649f98290650bdc5409cd18c6acb93b45980a12d"
+}
