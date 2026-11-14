@@ -1,0 +1,4178 @@
+{
+  "article": "12",
+  "passed": true,
+  "stage": "final4K-passed",
+  "original_audit_and_quality_thresholds_unchanged": true,
+  "original_maker_unchanged": true,
+  "core_repairs": [
+    {
+      "target": "视频/工具/草稿声音.sh",
+      "file": "files/视频/工具/草稿声音.sh",
+      "original_sha256": "0ce3277812cf16ed30438509b6dc97db0c26725db4c5db5d9b058c3ef6531aa2",
+      "patched_sha256": "957d7eb1598698ea33ff77d83379256ecae258d84d588753d561a902284be439",
+      "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+    },
+    {
+      "target": "视频/工具/句内响度.py",
+      "file": "files/视频/工具/句内响度.py",
+      "original_sha256": "58735b7173a3c03efa61fb300b4aed4039c164fa970e0593a40bae2a3f3cbd27",
+      "patched_sha256": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea",
+      "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+    },
+    {
+      "target": "视频/工具/独立复核/synth.py",
+      "file": "files/视频/工具/独立复核/synth.py",
+      "original_sha256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+      "patched_sha256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+      "repair_scope": "validated unprocessed raw-mother reference input only; independent transforms/audit/thresholds retained"
+    }
+  ],
+  "strict_production_cache": true,
+  "pdf_requested": false,
+  "check_summaries": {
+    "certified-core-original-stamp-verification.log": [],
+    "original-restored-stamp.log": [],
+    "canonical-module-copy.log": [],
+    "canonical-draft-00.log": [
+      "第12篇 做完（323 秒）：修了 1 处、疑点 18 处",
+      "① 文本：通过，自动修 1 处",
+      "② 声音：12 词尾辅音核对 问题数 0；12 纯人声核对（配音指纹 7cfa8c19b34e）问题数 0；问题数 0；12 句间停顿核对 问题数 0；问题数 0",
+      "③ 出片前核查：通过",
+      "⑤ 出片后核查：全部通过",
+      "⑥ 已拷 视频/视频/草稿1080p/12_1080p.mp4（--不推）"
+    ],
+    "canonical-final4K-00.log": [
+      "第12篇 用户定稿原话：有"
+    ],
+    "original-stamp-after-production.log": [],
+    "approved-audio-qc.log": []
+  },
+  "actual_native_core_certification": {
+    "run_id": 43535822030,
+    "job_id": 132264443476,
+    "commit": "395e8da264fafa2453a42ee70a3f7aed8303a769",
+    "actual_full_quickcheck_exit": 0,
+    "actual_full_quickcheck_seconds": 478.16,
+    "artifact_id": 14089812323,
+    "artifact_zip_sha256": "5e396c84e4a6fc7c6cc737ceb8648d7f15f397e9551806e032c93db8ab0963b8",
+    "full_original_quickcheck_log_sha256": "dbe7f6e08d2b7c3a5f9a2f925bb75a662aed725c780e1bc6714706807552a294",
+    "article_audio_or_video_passed_not_implied": true
+  },
+  "actual_native_fastcheck_stamp": {
+    "target": "视频/工具/新管/快测通过.json",
+    "file": "files/视频/工具/新管/快测通过.json",
+    "sha256": "6ebc7aa41f79f77258fa333b665af258e007daa36a4ea290de972cd3da7b42f2",
+    "origin": "actual unmodified original full quickcheck, native run43535822030"
+  },
+  "reviewed_regression_resource": {
+    "target": "视频/工具/新管/回归基准_27.json",
+    "file": "files/视频/工具/新管/回归基准_27.json",
+    "sha256": "b8ddb4656ae27cbfc7ec8e3b99511983b4e568997bd4ad4ee33c364f3926ae94",
+    "origin": "pre-existing root-reviewed 67-screen data; original voice/segment MD5 unchanged"
+  },
+  "core_repair_manifest_sha256": "1b1558108d15603e5711e200135651d6c7700a583d8bcf53ad8753683ed05a5e",
+  "reviewed_gain_preservation_mode": true,
+  "real_restored_stamp_validated": true,
+  "reviewed_cross_article_context": {
+    "provided": true,
+    "manifest_sha256": "e5d06b6488ca595da3ee2029e5208a061d8446278f6b1e2ca7c42f36e82c0f8f",
+    "files_sha256": {
+      "视频/脚本/01.json": "2be2f80a69af28703992204ac95f987c745362c326e62ad81b3cd8e0e0735d3a",
+      "新版定稿/01-the-robber-who-thought-lemon-juice-made-him-invisible.md": "572054065b5bb65446bf8939a21c789c1e9c7664d82da5117c43efdded894351",
+      "视频/脚本/02.json": "0403368c77fd3e0f91e1ee3780e1c7c147894ad13c16b5f14707d700a8f717c8",
+      "新版定稿/02-the-truth-about-one-marshmallow.md": "91b92505aad03f963861bec39e96f0a472c126d1d57c9fc538676c32f65e545c",
+      "视频/脚本/03.json": "527f3bf4a11843f4d606188dabc6ebce6830da3fb454a49c782e3a595cb47407",
+      "新版定稿/03-the-doctor-who-drank-bacteria-to-win-an-argument.md": "6dfb56504882e24854a3584fd740e7f6601e3f2532818aee3a56d5330d317aa3",
+      "视频/脚本/04.json": "93cc1ff58d65ebe43a65ecb2fb2dbd2da262d80877c05740bbdf4eab4eaca1e8",
+      "新版定稿/04-the-brain-that-learned-london.md": "a8ccb31ffff50aaae77de4b83de1847fafae1d585981cf960c5880c409f6cfc3",
+      "视频/脚本/05.json": "2282acbfa4b82825f93261ec6c18359eb47fd3f7c639319ac5058d126643e136",
+      "新版定稿/05-the-fingerprint-in-the-blood.md": "612deac4ed066489e04e214ca969f8f27dda05856e0ef0ed2e540e7a4a52ae34",
+      "视频/脚本/06.json": "2cbf1d6cd6e66a59285298ea830f5ef914590b64286d40b2ae5f3168aa27a2e9",
+      "新版定稿/06-the-horse-that-could-count.md": "7fd21ba491c7596c53c486f2bb0b0f2f6da8e67bac75461a4649a7caff822f74",
+      "视频/脚本/07.json": "842e44e5aa19fddcfa239cb6530c5152341cd86e11db959543d02d8670ca13e8",
+      "新版定稿/07-the-octopus-that-escaped.md": "b8544281bb2ada88fce9d1082cbc30233dcb63ee3e9c2bbefafc22cb28b8cb39",
+      "视频/脚本/08.json": "254832e09f12759d950384dd9f31f671ad5a3bc1590b7466065dd3ef5fe4b8d5",
+      "新版定稿/08-the-doctor-who-solved-the-cholera-mystery.md": "0b2bfa68070ce585a452f6b7034d03c3683e710dcabec5e86d7b221950dc7bab",
+      "视频/脚本/09.json": "fa3e429351d629de188c184d04e9986200e16e80606fcbec82332b6433301dae",
+      "新版定稿/09-the-great-emu-war.md": "af5c3e844bad15f94bfc43aeed6d7417c4bfae85f026b194da667a7a3bdb6196",
+      "视频/脚本/10.json": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
+      "新版定稿/10-the-stolen-smile.md": "ff63cf94e4d2c835e2e2f1ffd3e6c5642f0916f0b13c012f1f13c3dff716d47a",
+      "视频/脚本/11.json": "665cbb80cc70b700ecc0cc5813209fd100ad4fa8f0eead3929b9e53778d9d07f",
+      "新版定稿/11-move-37.md": "7e0b49b346c1fa3ab994a11a2301167c0d6a1bb00916508bdc0b1acf71e68053",
+      "视频/脚本/12.json": "e3bfbcce6f1a8e14cfe451d656574353321e297c90c62f5a7b422f37478311d5",
+      "新版定稿/12-the-79-days-of-new-coke.md": "5a23c1e0c81318527bcbf27573487d1845c5318905a2b1e020cc6e2eaf5d643f",
+      "视频/脚本/13.json": "3687b6c42a6d524d0d7e40a47ed02c37b18abe8d524db4f5914abad52019a63c",
+      "新版定稿/13-eleven-days-without-sleep.md": "72b842de127132e386e9e52a1719ec96765e94958f56687987f53e2801c69704",
+      "视频/脚本/14.json": "17141351875ddb8f0e308602c0b6ab85cbf5126a4d0118978c25c869db769fee",
+      "新版定稿/14-the-fungus-that-turns-ants-into-zombies.md": "e114c9e1783c80a2ffdb60af05e824f93a8ea8725905cb733560abe1c0ad01a8",
+      "视频/脚本/15.json": "95fd14da0704f4cb39120284bcd2c48836930ba3b9e9395edb0f4850d0eb0814",
+      "新版定稿/15-the-myth-of-the-unsinkable.md": "68e236868c4b466928ff2a60358250b9592dfe9287b66561b1e5a80b4d14de4f",
+      "视频/脚本/16.json": "d25aa07f3fac316c26c2ae1006d3efa7eb82a396b66150432b50239c1628396d",
+      "新版定稿/16-the-bread-made-from-air.md": "4da63148111213f6d77451b0eb4193893e6fc2fc170400bc39ce5f5ffcaa0b20",
+      "视频/脚本/17.json": "bd541a1b2881ea8ea7649cdfe571cc449672bde8792b50a2808a7832ce2a9ee1",
+      "新版定稿/17-the-curse-of-the-pharaoh.md": "a2e8d92f9136e1b22fcc0799f9a4d281092f0e547cc68242e090241d7b09e222",
+      "视频/脚本/18.json": "c9469b18874c389f20a890b41491f1284e318e47d91c0f3d519b055d2c9ba752",
+      "新版定稿/18-the-mould-that-changed-the-world.md": "ef41cea03f471fe3b9a53939c843e450da3325eb711f6414e108ae92a7518dd8",
+      "视频/脚本/19.json": "cc3c5eea0f7d9ec0712b2e58adba7e5ef8b61d6518a322f9b25a12fcc45282fb",
+      "新版定稿/19-tulip-mania.md": "3882d487383b759c31dda4785966091c362960cd873a5d83c530d08d52e2e97c",
+      "视频/脚本/20.json": "cc5ed6d7be8767e5e7e9b098e8f3836821c0b3f51c17581b2746722da1cf3001",
+      "新版定稿/20-the-5000-year-old-murder-in-the-ice.md": "8d55638070787f7ff5432c197292af1188c463a8b018e01bdefc32999b888e95",
+      "视频/脚本/21.json": "61c1569a26d7569ee0f586178be6b307b1c394c0a30c3cb02541c910038b0589",
+      "新版定稿/21-the-man-who-sold-the-eiffel-tower-twice.md": "e8e966b70f579235d696ba11fb01d3b2cae3fa26efb9071bbea95071be259e1f",
+      "视频/脚本/22.json": "e3027a42c532fee9935afcecdd0542713cbb907183802c2345b9472f93b75f59",
+      "新版定稿/22-the-building-that-melted-a-car.md": "49ae09483bc80bbc40a71551cd98aebec355d96d9ff7b2bcdea59a06fe599267",
+      "视频/脚本/23.json": "c4574a79fd3a58577a1402ce095ea9e4a0ea1f98883ce63e3cc60d126e819409",
+      "新版定稿/23-the-man-who-gave-machines-a-mind.md": "72ed3049e87fe75ce1e753d5e443bdbe6a7ab72f6e282e8467fbbb62be873169",
+      "视频/脚本/24.json": "f08620b534bb10b718f7515c805dcb541721427d855bd5a092b8954847a351b8",
+      "新版定稿/24-survival-in-the-ice.md": "cb7f810d9a74256e0c00625290be4f16207feb90f5719ca87d5d7c9912b91307",
+      "视频/脚本/25.json": "c73e854e052b3df9bd920d4a59fafb183dee19bd58765fa426af6ea3d7c9a329",
+      "新版定稿/25-apollo-13-the-successful-failure.md": "b6b7d55fe66e6e32116431ea955778fab779b8bda622df0ba1036c2f40a3969f",
+      "视频/脚本/26.json": "456cf19082860ca5d4a1f88b68aa7c8303d901a980f1db50ca130de5288bc891",
+      "新版定稿/26-the-language-the-children-invented.md": "9e9ad8021ddabc17157d73dc739383f9676df3583cf965e470fcd773e26a3761",
+      "视频/脚本/27.json": "966d26ab222e43b25d5d4ae569e451ec4364548e4231a9f1b9fc3cd8cc9754cf",
+      "新版定稿/27-life-in-the-forbidden-zone.md": "e276bcf76225b9ae16cd8cfda8c9b726b442fbd625d3718f532b47b09b21b16f",
+      "视频/脚本/28.json": "a6a4befc0291727f5cc3f8b50857ee954ef9f936738f014a978ebb4d37a28ea8",
+      "新版定稿/28-a-handful-of-wormwood-that-saved-millions.md": "b9817d3429767d07b6a2eb14cce5422a20cb4e3b89f8b03e6b3d5da2daf91d91",
+      "视频/脚本/29.json": "e916f33df7cacafe7666f0d51af6116bdbc639bc5e9a7a5a92a3420050f227a1",
+      "新版定稿/29-the-volcano-that-gave-us-frankenstein.md": "69045ee19a170c7ea9d0008b468c7e947bc28b639b834c0192dc0aeafc3ef4d0",
+      "视频/脚本/30.json": "b8e250df2282e388aa901c97be46b1bd610b14e38bc14a97d3aca262ef1d43f1",
+      "新版定稿/30-the-stink-that-built-londons-sewers.md": "84dbf19cee0045ea2608b13ee0677cb9623dd8fbb371c67093bf50c64186137a",
+      "视频/脚本/31.json": "d81f8645a1e5663ba8c84668e817cdb218bc6689079fbfd51326b3a7fd3cd384",
+      "新版定稿/31-the-book-twelve-publishers-turned-down.md": "7abd20fed44918dcf01586c056e9d0acd9d2ad3b90aa7d3d403762d9f06d2659",
+      "视频/脚本/32.json": "357aa59bed62154f7302a5efcf528859b303004e028657b93058138fe931bf85",
+      "新版定稿/32-the-planet-that-was-demoted.md": "1421f2b0921e7e9478ebc48777e3e8b2c979172de63d0124015107c3750a3542",
+      "视频/脚本/33.json": "ca51103c1a9d45c9159322765efc86c81f61f6ec78975f160019d21a1d9ee0d7",
+      "新版定稿/33-thirteen-in-the-cave.md": "9862078044ce45a9f6d51aa7d165afdfcf90066d1de98cbb317dd7e8f980610d",
+      "视频/脚本/34.json": "74921848a6bb25a2ba631813f60d4756c9ff90c64c03a2fb936ce34f310ce509",
+      "新版定稿/34-the-game-that-escaped-the-soviet-union.md": "e3244b67b21e283e67f4e88e932a1dbb85bf273a48ee009b3f435e1c5814831c",
+      "视频/脚本/35.json": "d8439077dc2c909b1c6cbd1347f31e9625f25fffe447d6f5945c9492561f1a16",
+      "新版定稿/35-the-bird-that-beat-the-letter-home.md": "ba8c38e38b21a3345624e2d44fd352561d3096cfb6f62214b48ea9b6e66faead",
+      "视频/脚本/36.json": "76daa28f421bd40d8e2744d4e785a34bb8ee67da1403b4b1546db9465c535cef",
+      "新版定稿/36-the-company-that-invented-its-own-killer.md": "411eeb96c8641ee7082b49a5abf4c7343d3f1dbb7ef331064d7c0f3c630fe58f",
+      "视频/脚本/37.json": "b1b8945ccf3581df48ade5714a2d0e93e4cc6812708f95bef6f5e44439106c99",
+      "新版定稿/37-dynamite-for-the-heart.md": "4933e24d2384471a96d9c8c26c15d5224a85dae98d9971a3fed15b4978dafc51",
+      "视频/脚本/38.json": "8d0379032000967c9f72e550574874949f798eefbfbfb58ab2b38e4e23ecbc6b",
+      "新版定稿/38-the-web-beneath-the-woods.md": "abb7eead9f3da0b2b326ceed5a649cfbf71fc28dad22e0d52f7b19caa798c54f",
+      "视频/脚本/39.json": "de2f83f5494d2218b0de6c6ede6b7b1e841e01988ec5ff6a3d7864be19a63494",
+      "新版定稿/39-y2k-the-crisis-that-success-erased.md": "abbc9804661126aa006595031ed8f201ce55e8eb5fd9e1ad5669c0c6fcdb80ab",
+      "视频/脚本/40.json": "1c50d1a47ee6f8528d0f7299e8a45bc8c30312622f3f465a964d21cc1395ee7f",
+      "新版定稿/40-the-glue-that-failed.md": "dce9f78f3a0828307843dd667b7eeebf3380a3630f03d234bd5824870aba61a1",
+      "视频/脚本/41.json": "6b6673ffc1db986f4c355f3685de6a0faf2272cee042c5e917f26a8b3057c2be",
+      "新版定稿/41-the-toad-that-invaded-australia.md": "eca590f97120f4e76d719e29aa07b094f9117cd462f5a70c029331a63b85f710",
+      "视频/脚本/42.json": "eceb10ae92aa4b9cd23180d1138149a7fa7b674385462c898bc0d2283c8739e7",
+      "新版定稿/42-the-telescope-that-needed-glasses.md": "d4aa049779a0eba06c555d76ca14103648378eef90465df424120126fa771280",
+      "视频/脚本/43.json": "f9a7e6b49e095b859de15b773a8560a5be917e5b066b5f4be95deb232bbe6645",
+      "新版定稿/43-from-a-garage-to-the-top-of-the-world.md": "bd70c83e5ac867238ca179f3c9f3548eb9cbdcae1f6df40994aef0bda721ae54",
+      "视频/脚本/44.json": "eb11422f14274c8d1b7cdb27064a4db03624a1af07c66b820899e08cfb4c9940",
+      "新版定稿/44-the-night-sweden-switched-sides.md": "d3f7ad2ac43f02aae9205a15b9808280ca3db597d6ef3b36aca8ca6176c5f74a",
+      "视频/脚本/45.json": "fb936d92e9f5a998cfefc2c26a7bb20829bc7a5b142c08fdb83ba7a48fdf2a98",
+      "新版定稿/45-the-record-humanity-threw-into-the-stars.md": "27deabec4a8478fe570f7f237a2fb850ffdce3deebfd952f512d82a60cf7314f",
+      "视频/脚本/46.json": "804ecfddb6060288b05eda0e1027c65e9bff0c08a9d010c201bf39306c769b62",
+      "新版定稿/46-lost-in-the-glare.md": "7aaa06e875fe56c5d78210b90a8769b8b2051714025ef10df37c2fe89db7a68c",
+      "视频/脚本/47.json": "0eb7b97ebb056249aa10d2c0d8950e4ae02e056d4772750d02a44ab7ee99c661",
+      "新版定稿/47-shadows-of-wolves-over-yellowstone.md": "34c68cf4d0f0ef3545ad68edf3367fcb76ab500174b11ae7f83b782cd5a80a2a",
+      "视频/脚本/48.json": "4f146ce6a70bb0bf5d2c6e1f6b47bd6a2bcc2f311be7a948092d7bde1a08f449",
+      "新版定稿/48-rice-for-the-world.md": "76416be21f857e8a05c37baa33ac90f5785812291485231c249e38a1d0edf15f",
+      "视频/脚本/49.json": "640168eb8a17c5d53d266c6604ffe287919314947371c2ee239eeea952d73b77",
+      "新版定稿/49-the-woman-who-won-two-nobels.md": "1e4fb068aa9ae4513d01b199a074b84dc9d819f57b2134df32588a0e4a4b6b6a",
+      "视频/脚本/50.json": "1d4a41824dfa5e8d11e5990b2a4b802ba2fcc3231d85b15ed6630396c6f027bf",
+      "新版定稿/50-microplastics.md": "5439589bacf1abb2abbb184eb658492bc02bcc5bdd8dfd8ababcd80ab93621cb",
+      "视频/脚本/51.json": "39886d83593a31fb575b124ecf6457190773dca695b6ff78f8434d52aebd6d7c",
+      "新版定稿/51-the-joke-that-became-ok.md": "8de30ea4846f4e88d8b71c8d5ced3ee63a73955e39b7dc3c5adad0971b854fd0",
+      "视频/脚本/52.json": "832249bb44617d38ede75560a5e57af6ba79ec284c9609407cb30ce879f6f862",
+      "新版定稿/52-the-killer-smog-of-1952.md": "179500361e4a837d7edb2e0497e08677d5abd425e8ad542f788205a6f7667b4b",
+      "视频/脚本/53.json": "893a7789ddf5f5a79e2a9168011c1c23e2709975d1b07b6b023d6cf5988b2bef",
+      "新版定稿/53-the-wind-that-kept-no-time.md": "6fab302dcadb5a2c509436f5fbf8d9ef925c008a36f5b422749bd405aa4701d3",
+      "视频/脚本/54.json": "b1fcb8ae86045b3d35ccfa0f52eb9594b8921d43063835769ee3ecc4543be75e",
+      "新版定稿/54-the-sound-that-shook-the-world.md": "abd5f4bfe11ed73bcc5326a92cf99b0a8e5ad70adaca1ce8d0c8f622b57fa519",
+      "视频/脚本/55.json": "06344fc0ad5975cba2f4dbe5262a9957dd7c024f9a05b9abbfa327f32ea8c719",
+      "新版定稿/55-the-secret-of-romes-undying-concrete.md": "a7759eddcc7ec06dfd6dab7912e06b3b5ef8576df0c025a97812006669d0be61",
+      "视频/脚本/56.json": "22ca3b4180a8ae6a37b4c8e25f5e357d5696d9b23bf148fb7064425d1403e59c",
+      "新版定稿/56-the-letter-that-startled-darwin.md": "aad1e2aab9ff28f534a510362e807ef401e0b502475240f4b2531e9e518a8d7a",
+      "视频/脚本/57.json": "a0ba65b769430289a33ec1f7bc6dbf91dad8d2c3b1d725348851de546563cd6f",
+      "新版定稿/57-a-change-of-anthem-in-the-deep.md": "0731d925a98bafc222718c111985362e166b38b9189c516219a481e36d0d4b6e",
+      "视频/脚本/58.json": "8b0bd3d7d39000518789e9907aec53bd52fab1b9d6b4f22a152d158635b6e8ee",
+      "新版定稿/58-from-a-scratch-to-a-world-without-smallpox.md": "1aa2a0d2c51da76f9c9ebb88d049dd1a55ab530791566fdbf6476e5aa48c15ee",
+      "视频/脚本/59.json": "df1db4174d942371166048b220ef6d55b0b700b2ce31c866edf6dfdf33b92f0c",
+      "新版定稿/59-saving-the-sky.md": "7bf9c4661e733e7af23dc2f11bc820b809ec93dad75a94fb6a12748226e8722c",
+      "视频/脚本/60.json": "eed1655c0919db32a3a016b24791b93d25683f287c7ccb2523e168a69bddc562",
+      "新版定稿/60-the-scientific-giant-who-changed-the-world.md": "9d1578e7af085559922394a3db01de4eb22dc1c520ca17de5cad68e5a38a31a8",
+      "视频/脚本/61.json": "72378937501769dfb3d934fe65ab1a69afeb5420a15e19890c161433717d2435",
+      "新版定稿/61-the-steel-box-that-remade-the-world.md": "135cc9cfbcbd68d957f831cf55558112a45b1cc3749366cb9a304507355c7d2c",
+      "视频/脚本/62.json": "4b3a97f2b6404e1b091537c21f01fc60088902f596803345983c38be52ec79eb",
+      "新版定稿/62-dolly-the-copied-sheep.md": "62817546ae33824b57255f941135c503e41a41f905331ed4af1e32850fa00960",
+      "视频/脚本/63.json": "5d266d80f9cf29cce6f7e34531449cf75191a42f180102685a5bcd04849e75c5",
+      "新版定稿/63-the-crowded-heavens.md": "6ef79d4310019dfefa7364b8a428411a6bc337678c69fa5cbc89b84689e253a4",
+      "视频/脚本/64.json": "b85ce0a5dcbce997ad82779a850298fecd9847e03d0b2adfc7045b2db54082cb",
+      "新版定稿/64-the-day-zero-that-never-came.md": "e0c83cbe36745adbbffd33a156fa8d0671704ea976cb13215cabb612639b37a5",
+      "视频/脚本/65.json": "78e60dd231df4ac71df83e21a26f82bbf706dc0bef80bee156a36bc287661ede",
+      "新版定稿/65-the-day-the-doomsday-vault-opened.md": "71a50d32e25955e713e6ca108ab68422a4fd5b77c914a9074eece1dc33cbff89",
+      "视频/脚本/66.json": "ad5324af4270834186285a5e7273a90213094077adc6f9e1d5c7b0ebff9cf035",
+      "新版定稿/66-the-burrs-that-became-velcro.md": "75dbe6c148ca97a7780ac1737f33f58bf8ee27a51aa729a83315705655b12b2a",
+      "视频/脚本/67.json": "8897cc1c2df1e4672eec3bbff2776d0565afb9c9fe84087a1758ebb15b2a233e",
+      "新版定稿/67-the-cave-found-by-a-dog.md": "10e37b81eeef4e3289448a6b4fd679f34d495a4fc087c57747e6dca949e00cf1",
+      "视频/脚本/68.json": "568f72dacac48e206811d35a57c7fa22e3da428783f64e507c184f2090e579f3",
+      "新版定稿/68-the-last-flight-of-the-hindenburg.md": "c25f58ffb0e3748336767bb7470dd7cef10374c53cbb48af89dba26f65b2dd5c",
+      "视频/脚本/69.json": "09fd3fdbbc834badd16a9b38d8c14e425193a6849d7db87253f26a782a1c4137",
+      "新版定稿/69-the-trial-of-the-father-of-the-atomic-bomb.md": "570eda5b7d979d71e9bcad1c67e295ed326ecdb8b61e663aba33272c8a9451bd",
+      "视频/脚本/70.json": "0f6827f02cef0d2416f9d7d69b7e1c5553acee7cf6dc89f3379201264587236c",
+      "新版定稿/70-the-stamp-that-changed-the-post.md": "edfd85cea33730ba67e4210e756da1f2945f1a21bce55c7e75497cb5f0095d80"
+    },
+    "source_file_count": 140,
+    "working_script_count": 70,
+    "target_request_exactly_matches_context": true
+  },
+  "request_source_sha256": {
+    "视频/脚本/12.json": "e3bfbcce6f1a8e14cfe451d656574353321e297c90c62f5a7b422f37478311d5",
+    "视频/工具/初稿生成/gen12.py": "59fd4dea9bc457c18f6b8d4475272dceb4050bee95beb154066e9d707717bf90",
+    "新版定稿/12-the-79-days-of-new-coke.md": "5a23c1e0c81318527bcbf27573487d1845c5318905a2b1e020cc6e2eaf5d643f",
+    "视频/制作记录/12_待改清单.md": "ddc5c676aee52bd968441835043e20b490a85c8ea51378cea8ee2252f201afd5"
+  },
+  "accepted_source": {
+    "id": "12",
+    "path": "最终版4K视频/12 - The 79 Days of New Coke - 新可乐的 79 天.mp4",
+    "sha256": "572b60c0f1feb8dace32f96e7032bee605cae212c4e5db1da2434037c7948a40",
+    "git_blob_sha": "2cb16c4ae1eda6ade164c4cb6ca2a1ded5fa0e1e",
+    "bytes": 12012929,
+    "width": 3840,
+    "height": 2160,
+    "summary_frames": 60,
+    "aac_adts_sha256": "8433d3e15d0cdc8482bd29fecc39b3d3f00f157dcb134d510ab6438f4c5692ea"
+  },
+  "checker_reference_preparation": {
+    "article": "12",
+    "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+    "reference_prepared": true,
+    "acceptance": false,
+    "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+    "source_sha256": "e3bfbcce6f1a8e14cfe451d656574353321e297c90c62f5a7b422f37478311d5",
+    "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+    "checker_program_sha256": {
+      "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+      "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+      "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+      "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+      "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+      "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+    },
+    "reference_calls": [
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-raw",
+        "method": "create",
+        "source_slice": "The 79 Days of New Coke",
+        "exact_native_cache_key": "95fae379a379d539e9e22fefb10ef8a173f82d92.pkl",
+        "cache_input_text_sha256": "5de1d2b8b1a028d90bf581f31a6a37a15b950e5486c03b1098e9ce6d349cf36b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-timed",
+        "method": "create_timed",
+        "source_slice": "The 79 Days of New Coke",
+        "exact_native_cache_key": "57d6ebffcfc46ff6149004d8003215b3f6a0f47b.pkl",
+        "cache_input_text_sha256": "5de1d2b8b1a028d90bf581f31a6a37a15b950e5486c03b1098e9ce6d349cf36b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Pepsi had set up booths in shopping centres across the US, inviting shoppers to sip two unmarked beverages and state a preference.",
+        "exact_native_cache_key": "c020c7a43fb0c5cbf4d5423b13646d4039f0ac28.pkl",
+        "cache_input_text_sha256": "2d928f3f575074d0bb3b840852056fb55450b8e47734a465cba3a35865271a68",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Pepsi had set up booths in shopping centres across the US, inviting shoppers to sip two unmarked beverages and state a preference.",
+        "exact_native_cache_key": "d7897bb20277dcafa926a49b138f811fcaa226fa.pkl",
+        "cache_input_text_sha256": "2d928f3f575074d0bb3b840852056fb55450b8e47734a465cba3a35865271a68",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Pepsi had set up booths in shopping centres across the US,",
+        "exact_native_cache_key": "5af9d1b920b0ef41c1f0beac883b3c02de974fd1.pkl",
+        "cache_input_text_sha256": "48687340138d0eb7aa3585db5316d5fdcee2481e335a865f2f80ed1627fe13eb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "inviting shoppers to sip two unmarked beverages",
+        "exact_native_cache_key": "2f3e45a324d6cec7933e92f4d4c7f0ff5fc04516.pkl",
+        "cache_input_text_sha256": "a320d9f811750d67b6641af4a45354d9e5ea8a0c49307e5cb8dc7b227afdafbb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and state a preference.",
+        "exact_native_cache_key": "ed923942bf30720e009abf3dd310188c981735ec.pkl",
+        "cache_input_text_sha256": "fe3f68bbbc24d4a5be1aa440d55633e2dc0b5872a61bb47e1e8b96058a9d1128",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Pepsi had set up booths in shopping centres across the US,",
+        "exact_native_cache_key": "5af9d1b920b0ef41c1f0beac883b3c02de974fd1.pkl",
+        "cache_input_text_sha256": "48687340138d0eb7aa3585db5316d5fdcee2481e335a865f2f80ed1627fe13eb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "inviting shoppers to sip two unmarked beverages and state a preference.",
+        "exact_native_cache_key": "fb006db18004ef2b86a188abe4afe6c386ec08bc.pkl",
+        "cache_input_text_sha256": "50477dd0be92f47c21248e793f0190730e65a0df322e895d0808cc8794a15433",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Figures varied by region, but tasters generally picked Pepsi more often.",
+        "exact_native_cache_key": "548756b6899d8d9cb889cf99c6b6d243f39bac82.pkl",
+        "cache_input_text_sha256": "48f6de38e029aed644c7e0f1e1eb25f0d151967b25b257d16db0abf4c30651dd",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Figures varied by region, but tasters generally picked Pepsi more often.",
+        "exact_native_cache_key": "fda251ee4833e169737e45f622bd1f5010e5aaeb.pkl",
+        "cache_input_text_sha256": "48f6de38e029aed644c7e0f1e1eb25f0d151967b25b257d16db0abf4c30651dd",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Figures varied by region,",
+        "exact_native_cache_key": "146aa7d5ca37163948afa8b7cd99a17b53a57e8a.pkl",
+        "cache_input_text_sha256": "0df339709da20358f1dda1c0407487c22603d217f139e8a1c4c2a05b4554bc9b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "but tasters generally picked Pepsi more often.",
+        "exact_native_cache_key": "e73f411db9c292d1715249dd7a6d264e834b358f.pkl",
+        "cache_input_text_sha256": "0cb6f9f4cceb1f74e7be70e533537575f72a7ee50d653f8531c30bccb9d2babb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Each stall, letting consumers judge by palate alone, doubled as publicity.",
+        "exact_native_cache_key": "adc8d6967d1e4d0b791aa46e54dc6d1fbad50fe4.pkl",
+        "cache_input_text_sha256": "45f4924c2e4e9989b787efe4f5a3d97694ce9ae66ccbe1bf9ef9ba9b8bcc509d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Each stall, letting consumers judge by palate alone, doubled as publicity.",
+        "exact_native_cache_key": "505b55971d0fc49b28084d0af115cf75cb161c69.pkl",
+        "cache_input_text_sha256": "45f4924c2e4e9989b787efe4f5a3d97694ce9ae66ccbe1bf9ef9ba9b8bcc509d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Each stall, letting consumers judge by palate alone,",
+        "exact_native_cache_key": "240b4b05c3a9a5e06952ea9314e513bed20c82da.pkl",
+        "cache_input_text_sha256": "e71ce977e62e7c2d5a0213f71e24e625fe2f21f61c55d9a4d2613805f784b94f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "doubled as publicity.",
+        "exact_native_cache_key": "5fc049dd37630ad18a1ad22b43f8e087088c9e3c.pkl",
+        "cache_input_text_sha256": "4b0542d40437621581dd55d12e164e27b3e47a8285ab08c0f35b978bcaae1b67",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Each stall,",
+        "exact_native_cache_key": "68a6f0aeaea3131f96b06c59b774627653fb8852.pkl",
+        "cache_input_text_sha256": "b58ef0d0d95e1f01551829c6a25d4cf047ca4a0e71aa7b8ccd8c0012306c8efa",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "letting consumers judge by palate alone,",
+        "exact_native_cache_key": "e3701c230b09f57a5bd9a874e7e417b104f6ab53.pkl",
+        "cache_input_text_sha256": "51fd266bc62e9d8c29ebcb4e5bddf4d960ef7ce79d782ad2f7227b32ca1ff7b3",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "doubled as publicity.",
+        "exact_native_cache_key": "5fc049dd37630ad18a1ad22b43f8e087088c9e3c.pkl",
+        "cache_input_text_sha256": "4b0542d40437621581dd55d12e164e27b3e47a8285ab08c0f35b978bcaae1b67",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Coca-Cola's testing was thorough and extensive.",
+        "exact_native_cache_key": "10e310a7e31883844bd69f99fffba62b79f2a399.pkl",
+        "cache_input_text_sha256": "873bd53f46cf2debde9cb2f149d87e42a59d65143da68e6e37baf9c1f2a0f6a9",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Coca-Cola's testing was thorough and extensive.",
+        "exact_native_cache_key": "c6073a8390f1bc6955130b01ad2c20042b837045.pkl",
+        "cache_input_text_sha256": "873bd53f46cf2debde9cb2f149d87e42a59d65143da68e6e37baf9c1f2a0f6a9",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Nearly 200,000 blind taste tests showed a sweeter formula beating the original and Pepsi.",
+        "exact_native_cache_key": "3499b65d43b09cc68979ed0f11390182b370c4c0.pkl",
+        "cache_input_text_sha256": "6207ffbe5154cdaf71e2daa56e7a0636e2a3c5a20a7e21189f42787b91b7885a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Nearly 200,000 blind taste tests showed a sweeter formula beating the original and Pepsi.",
+        "exact_native_cache_key": "a7c27d5d292c4cb36dac58f58f28c824f53a29ba.pkl",
+        "cache_input_text_sha256": "6207ffbe5154cdaf71e2daa56e7a0636e2a3c5a20a7e21189f42787b91b7885a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Nearly 200,000 blind taste tests showed",
+        "exact_native_cache_key": "1e7fcd856afa28874cc47fadb7952eb66e7df096.pkl",
+        "cache_input_text_sha256": "bbcd18d467df105b1cc7998c3a3ee00c45279f1b5435d54d0659358afc334ab5",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "a sweeter formula beating the original and Pepsi.",
+        "exact_native_cache_key": "f744a780a88d7afa8d83f7481163df48c271ee30.pkl",
+        "cache_input_text_sha256": "83c2806ca28dcaf700c1df6525ad983ac5d189315f7c2dc9cbd645d65824e46e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "On 23 April 1985 the company announced it would replace its 99-year-old syrup, a year short of its centenary.",
+        "exact_native_cache_key": "ba2ebfc7def4779e112cbace04c8961072e4f962.pkl",
+        "cache_input_text_sha256": "81c4da358123cb57a65dbce42026254ebe4e8ab36a19127601c2fe4c5090f752",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "On 23 April 1985 the company announced it would replace its 99-year-old syrup, a year short of its centenary.",
+        "exact_native_cache_key": "bcd738a8e204efd8d41a10d304fded2195131026.pkl",
+        "cache_input_text_sha256": "81c4da358123cb57a65dbce42026254ebe4e8ab36a19127601c2fe4c5090f752",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "On 23 April 1985 the company announced",
+        "exact_native_cache_key": "6f5f290001a93eccb8f7cbc01a588dc5b33bcce3.pkl",
+        "cache_input_text_sha256": "5916b84fc81b48bd975e278417abe952cd333c5d74245f050d9367f5ca428236",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "it would replace its 99-year-old syrup,",
+        "exact_native_cache_key": "c01be7d3af87032d58cbdf884d04efdcd68142b0.pkl",
+        "cache_input_text_sha256": "cdeb5856dedbedaf5e18fbe861586a1dc0b7e6b487b006e1fad84bdc51d50b1c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "a year short of its centenary.",
+        "exact_native_cache_key": "c3304dfa8f7bf08d94650ea9ab1f3a63a69d5d93.pkl",
+        "cache_input_text_sha256": "55d1aa4b6b8edd835ca5ec3911d8d8a277dcd519c95faa91f442ac8fd64cdfd5",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "On 23 April 1985 the company announced it would replace its 99-year-old syrup,",
+        "exact_native_cache_key": "464375c6944e9ca18c50589560809d2b718f8bfe.pkl",
+        "cache_input_text_sha256": "123c48adc8cb5b69ed70acafdb01d95a178b5f2d1113a976d78b9331da4d25c4",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "a year short of its centenary.",
+        "exact_native_cache_key": "c3304dfa8f7bf08d94650ea9ab1f3a63a69d5d93.pkl",
+        "cache_input_text_sha256": "55d1aa4b6b8edd835ca5ec3911d8d8a277dcd519c95faa91f442ac8fd64cdfd5",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The public called the soda New Coke.",
+        "exact_native_cache_key": "af86f9feb3102a0e872b5bc9177e75f59f8a3037.pkl",
+        "cache_input_text_sha256": "654a706af9944fc646a1686843237fe75a1d77919228c78432d96589035aaf92",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The public called the soda New Coke.",
+        "exact_native_cache_key": "8bddf31ea94343618810c13cd30b5cff9e388d59.pkl",
+        "cache_input_text_sha256": "654a706af9944fc646a1686843237fe75a1d77919228c78432d96589035aaf92",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Its sweetness had given it a winning flavour, but launching the concoction was a wager.",
+        "exact_native_cache_key": "ef1927d1aa184752569fd24d220bb611f3c2813b.pkl",
+        "cache_input_text_sha256": "96f4f6d51a1dfc9e8a002424291612487686aefe40111ccad1f6d9a6899def6f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Its sweetness had given it a winning flavour, but launching the concoction was a wager.",
+        "exact_native_cache_key": "22804ae8844ab6690494f4534b9f76d97a922caf.pkl",
+        "cache_input_text_sha256": "96f4f6d51a1dfc9e8a002424291612487686aefe40111ccad1f6d9a6899def6f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Its sweetness had given it a winning flavour,",
+        "exact_native_cache_key": "fc34c45cfc99d574d12e0a7e37fc0764b9b2842d.pkl",
+        "cache_input_text_sha256": "dcc8958d325de7ad49d0dcd21fc95dccef4bbd0d8287fea1df55e0698c49120a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "but launching the concoction was a wager.",
+        "exact_native_cache_key": "b5c5b7eace1b281fc71695da92a06a15bb515626.pkl",
+        "cache_input_text_sha256": "45e083ba089f8dd68a4c522bff5c9eb4070380dcc6585f768fbc63167f260793",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Its sweetness had given it a winning flavour,",
+        "exact_native_cache_key": "fc34c45cfc99d574d12e0a7e37fc0764b9b2842d.pkl",
+        "cache_input_text_sha256": "dcc8958d325de7ad49d0dcd21fc95dccef4bbd0d8287fea1df55e0698c49120a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "but launching the concoction was a wager.",
+        "exact_native_cache_key": "b5c5b7eace1b281fc71695da92a06a15bb515626.pkl",
+        "cache_input_text_sha256": "45e083ba089f8dd68a4c522bff5c9eb4070380dcc6585f768fbc63167f260793",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The backlash was a grassroots outcry.",
+        "exact_native_cache_key": "4b4bbefa4df72bf72c1e1ddd60fabb5ffb9aa565.pkl",
+        "cache_input_text_sha256": "7f368a28a8dba72884e2541fb425d292ce3d4a06a36119ad3d72bcc1dc52a0eb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The backlash was a grassroots outcry.",
+        "exact_native_cache_key": "007dd0342614898e3b0723c743930b8947050711.pkl",
+        "cache_input_text_sha256": "7f368a28a8dba72884e2541fb425d292ce3d4a06a36119ad3d72bcc1dc52a0eb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Consumer hotline calls rose from about 400 a day to about 1,500, almost all furious complaints.",
+        "exact_native_cache_key": "885be61ecf9d44857c953089995a2814155fe7b0.pkl",
+        "cache_input_text_sha256": "d97d4d9ca3ed9581624375f5984e29fbca5932a8d122e6bcc62b8f15b15a5510",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Consumer hotline calls rose from about 400 a day to about 1,500, almost all furious complaints.",
+        "exact_native_cache_key": "b419201bd93cfb17c19c8ef6748b20eed2d067cd.pkl",
+        "cache_input_text_sha256": "d97d4d9ca3ed9581624375f5984e29fbca5932a8d122e6bcc62b8f15b15a5510",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Consumer hotline calls rose from about 400 a day to about 1,500,",
+        "exact_native_cache_key": "662848c1049449878078fdc7217453482a7597e3.pkl",
+        "cache_input_text_sha256": "ba228146908566d6f31698ff89963061e989d602571cb33728132b94c3df24e7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "almost all furious complaints.",
+        "exact_native_cache_key": "202d8617c8ffd259f5ecb8cfa63bfd5b9ba749f8.pkl",
+        "cache_input_text_sha256": "9edc8784bc3899c42839087f9b2309e3e5e5b329048bad374bcb33bfb8e71afd",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Consumer hotline calls rose from about 400 a day to about 1,500,",
+        "exact_native_cache_key": "662848c1049449878078fdc7217453482a7597e3.pkl",
+        "cache_input_text_sha256": "ba228146908566d6f31698ff89963061e989d602571cb33728132b94c3df24e7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "almost all furious complaints.",
+        "exact_native_cache_key": "202d8617c8ffd259f5ecb8cfa63bfd5b9ba749f8.pkl",
+        "cache_input_text_sha256": "9edc8784bc3899c42839087f9b2309e3e5e5b329048bad374bcb33bfb8e71afd",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Protest groups were organised, and some faithful drinkers stocked up on the original.",
+        "exact_native_cache_key": "919c2cb98a22a13adc80d89ed892eddcf7500952.pkl",
+        "cache_input_text_sha256": "e3c1a3a9517d851e8a87f8f045d34eef8a016c69cbdfc7a377e017721845e5ec",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Protest groups were organised, and some faithful drinkers stocked up on the original.",
+        "exact_native_cache_key": "26da976436de777b0d284a9444b727903639b0dd.pkl",
+        "cache_input_text_sha256": "e3c1a3a9517d851e8a87f8f045d34eef8a016c69cbdfc7a377e017721845e5ec",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Protest groups were organised,",
+        "exact_native_cache_key": "ddd57751102518499af4443b886204b91124d5d3.pkl",
+        "cache_input_text_sha256": "b22984517c244a113f1d2807f4a7ac5697166fd985a6a3f67f380b8762e24efc",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and some faithful drinkers",
+        "exact_native_cache_key": "ba000645313620804c45a46f0366685717e1445e.pkl",
+        "cache_input_text_sha256": "3661ea586561090a2af099bc14afdda70d75e3a6a860afaaf036920ebf736658",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "stocked up on the original.",
+        "exact_native_cache_key": "a724a80ff7676899824e36f764904577c9012129.pkl",
+        "cache_input_text_sha256": "8c76c4b9fa93ad1f0dd01fd724e338315c24f648f2bee574bc877d87d65bf2b0",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Protest groups were organised,",
+        "exact_native_cache_key": "ddd57751102518499af4443b886204b91124d5d3.pkl",
+        "cache_input_text_sha256": "b22984517c244a113f1d2807f4a7ac5697166fd985a6a3f67f380b8762e24efc",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and some faithful drinkers stocked up on the original.",
+        "exact_native_cache_key": "fe06eacfd7b2c2bb52405ee8a38fc2ccc2b9413d.pkl",
+        "cache_input_text_sha256": "535e96d78044b575d3dd8a3d159ddc5e8b1d4e28d8e923f78da53fd2f8b46699",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "In June 1985 one protester, Gay Mullins, filed a lawsuit to keep New Coke out of packaging like the original's.",
+        "exact_native_cache_key": "386fb83f5ed10a3e0e9049627bd2cfdd9699ed21.pkl",
+        "cache_input_text_sha256": "4bd0e67d519ccdef54fc084f9fe6a19c7577b0277825fca827d2bdd58b63b41b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "In June 1985 one protester, Gay Mullins, filed a lawsuit to keep New Coke out of packaging like the original's.",
+        "exact_native_cache_key": "dbcc0a31ca8d9fa0a5441d9b7c264dfeb5c00ed4.pkl",
+        "cache_input_text_sha256": "4bd0e67d519ccdef54fc084f9fe6a19c7577b0277825fca827d2bdd58b63b41b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "In June 1985 one protester, Gay Mullins, filed a lawsuit",
+        "exact_native_cache_key": "c4d431bc10304cfc768af4befd3e908ff815e8e6.pkl",
+        "cache_input_text_sha256": "96a805e95ca91f7e756336b422a8bde554004ea19bf35cc7a4a3c60d5928e551",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "to keep New Coke out of packaging like the original's.",
+        "exact_native_cache_key": "c595e69bd901d172a5c32b9642effc9d9dbfd722.pkl",
+        "cache_input_text_sha256": "5ccd76bb13ae2a4f1cf68c9780856205a204f73344cb208ea62590841fc85b46",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "In June 1985 one protester,",
+        "exact_native_cache_key": "1e3e5f89f7751959b714c657d6b81c40dc090cea.pkl",
+        "cache_input_text_sha256": "3eaa9a5f9be10b5599eb5c598d530bd3ce314edeb76363985a39f4a65daa6643",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Gay Mullins,",
+        "exact_native_cache_key": "990c627b867eaafffc601aaea922528929de9bf3.pkl",
+        "cache_input_text_sha256": "21413d0cd40507327f524b2e8d6b659c04dac5e900d888345f18b0a9e314feeb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "filed a lawsuit to keep New Coke out of packaging like the original's.",
+        "exact_native_cache_key": "9eb4825462b9b919a23ab3c0f3360c5a3e32b22c.pkl",
+        "cache_input_text_sha256": "0d42ef7660cd4e1fc4ebc218eb8d3f002d78c448664e3dc548c838254b64b921",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Its dismissal came a week later.",
+        "exact_native_cache_key": "9e942e25668f8555f907f1a34119ad1513324a49.pkl",
+        "cache_input_text_sha256": "8284b4fd1418e7137a7c61cffee1b3cf78d43ed67df2d83faf9f497005252d12",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Its dismissal came a week later.",
+        "exact_native_cache_key": "257a32e8e0d75183ed51f63b3d93549f54b8d008.pkl",
+        "cache_input_text_sha256": "8284b4fd1418e7137a7c61cffee1b3cf78d43ed67df2d83faf9f497005252d12",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Pepsi's chief executive gave his employees a day off, treating the change as Coke's concession.",
+        "exact_native_cache_key": "562a0a80626a84a4b1ae984c857937fbccdc7dc8.pkl",
+        "cache_input_text_sha256": "36b35b37ffb398ba634efafd639d4ee3603e96aad4e3e7249618ab2bb9d4f9bb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Pepsi's chief executive gave his employees a day off, treating the change as Coke's concession.",
+        "exact_native_cache_key": "19dc98c9f48e3702adf57b8bfd2c5a3544e49435.pkl",
+        "cache_input_text_sha256": "36b35b37ffb398ba634efafd639d4ee3603e96aad4e3e7249618ab2bb9d4f9bb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Pepsi's chief executive gave his employees a day off,",
+        "exact_native_cache_key": "9592683bfc729d18da721c6834133a07fb76140f.pkl",
+        "cache_input_text_sha256": "123f1af9c542d3f1251fb630dcf44283a87374e526218066a0031cbf9fee8d3a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "treating the change as Coke's concession.",
+        "exact_native_cache_key": "a816aa3784b871808ee15305ff7fee4c33c899ad.pkl",
+        "cache_input_text_sha256": "6584b6b095547c19742326d4c7d886e41a23c022718d8810fde1503a58b09285",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Pepsi's chief executive gave his employees a day off,",
+        "exact_native_cache_key": "9592683bfc729d18da721c6834133a07fb76140f.pkl",
+        "cache_input_text_sha256": "123f1af9c542d3f1251fb630dcf44283a87374e526218066a0031cbf9fee8d3a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "treating the change as Coke's concession.",
+        "exact_native_cache_key": "a816aa3784b871808ee15305ff7fee4c33c899ad.pkl",
+        "cache_input_text_sha256": "6584b6b095547c19742326d4c7d886e41a23c022718d8810fde1503a58b09285",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "After 79 days, on 11 July 1985, the original formula was relaunched as Coca-Cola Classic.",
+        "exact_native_cache_key": "eec07201b995393e513be041ca1cea315932fcd4.pkl",
+        "cache_input_text_sha256": "9c34a95746e8caeca80f72d337b18061addbe9191512167b5d164787acd36973",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "After 79 days, on 11 July 1985, the original formula was relaunched as Coca-Cola Classic.",
+        "exact_native_cache_key": "731b96947eeaf6fa0a6866da6db9e344764d2b36.pkl",
+        "cache_input_text_sha256": "9c34a95746e8caeca80f72d337b18061addbe9191512167b5d164787acd36973",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "After 79 days, on 11 July 1985,",
+        "exact_native_cache_key": "6f52427a846d08f921aba926375d7c321731791b.pkl",
+        "cache_input_text_sha256": "bb655594693b93c272675bec3b10e1cc4d147963ee2d7f382e7d50dfb45b4bc9",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "the original formula was relaunched as Coca-Cola Classic.",
+        "exact_native_cache_key": "f46706b7ae8803783c9c1e9c56029b73f755c5cc.pkl",
+        "cache_input_text_sha256": "022ee1a97d12a960f2bfd6211d6ace751642918514f26992afd82efc0c5f66cd",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "After 79 days,",
+        "exact_native_cache_key": "d6da8d6815f823e842d91547f9388b092b73136e.pkl",
+        "cache_input_text_sha256": "73de24845bb0715b06f28a149d4c720c0808c95fb7d7fab8e3c689cd86a10709",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "on 11 July 1985,",
+        "exact_native_cache_key": "434f340c0dc7d4cc0856c9f41871d90a631ef52f.pkl",
+        "cache_input_text_sha256": "d8d0fd301a1e3ea5d4c734551eb51ee92f8eff72b8017e5b641f8446b1a324eb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "the original formula was relaunched as Coca-Cola Classic.",
+        "exact_native_cache_key": "f46706b7ae8803783c9c1e9c56029b73f755c5cc.pkl",
+        "cache_input_text_sha256": "022ee1a97d12a960f2bfd6211d6ace751642918514f26992afd82efc0c5f66cd",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The U-turn was a vindication for loyalists.",
+        "exact_native_cache_key": "496725261666197fc81688224e1fc4bf17bd2057.pkl",
+        "cache_input_text_sha256": "b90dbdb32b0162dad981bd3b69eb400ac0a170e282a9b87dd249c4ad6414f5ad",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The U-turn was a vindication for loyalists.",
+        "exact_native_cache_key": "3ba1a29f6eadf4ae834b8fdf837d8b7c0e4fff7b.pkl",
+        "cache_input_text_sha256": "b90dbdb32b0162dad981bd3b69eb400ac0a170e282a9b87dd249c4ad6414f5ad",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "ABC interrupted a soap opera to broadcast the comeback, which led two network news bulletins.",
+        "exact_native_cache_key": "04f5eb19664c683ba380560240bbce0e8a201e78.pkl",
+        "cache_input_text_sha256": "2f89e8be59bd64cbe0bed665deb7921a5e7db9c31f426a775db447ce8f075e48",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "ABC interrupted a soap opera to broadcast the comeback, which led two network news bulletins.",
+        "exact_native_cache_key": "1d893997dca2254e81800d7a3424736ba502e253.pkl",
+        "cache_input_text_sha256": "2f89e8be59bd64cbe0bed665deb7921a5e7db9c31f426a775db447ce8f075e48",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "ABC interrupted a soap opera to broadcast the comeback,",
+        "exact_native_cache_key": "42d01df009771330ffe1194cb56ab8d038533716.pkl",
+        "cache_input_text_sha256": "58c66da02637406527068afb56954338feb715b7a49f516a4d24a187bddd1bff",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "which led two network news bulletins.",
+        "exact_native_cache_key": "a2629eae747d551931f50e7e0397554050ede419.pkl",
+        "cache_input_text_sha256": "6eb444ad815f1bfc534c573d25a0e90f85b8870da77d0f67ee699b0916b54ba6",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "ABC interrupted a soap opera to broadcast the comeback,",
+        "exact_native_cache_key": "42d01df009771330ffe1194cb56ab8d038533716.pkl",
+        "cache_input_text_sha256": "58c66da02637406527068afb56954338feb715b7a49f516a4d24a187bddd1bff",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "which led two network news bulletins.",
+        "exact_native_cache_key": "a2629eae747d551931f50e7e0397554050ede419.pkl",
+        "cache_input_text_sha256": "6eb444ad815f1bfc534c573d25a0e90f85b8870da77d0f67ee699b0916b54ba6",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Coca-Cola had misjudged what the tests measured.",
+        "exact_native_cache_key": "05f81b2e972f9c4f58659e8479862cf96f1fd80e.pkl",
+        "cache_input_text_sha256": "a9e822ee27c27ce6122f28e28cb670e7ec1b1ab015fced31ae5c9b4be5a747c5",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Coca-Cola had misjudged what the tests measured.",
+        "exact_native_cache_key": "367c857241641837be05f17cb211383e66363403.pkl",
+        "cache_input_text_sha256": "a9e822ee27c27ce6122f28e28cb670e7ec1b1ab015fced31ae5c9b4be5a747c5",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "They captured a mouthful, not the emotional attachment that nearly a century of familiarity had built.",
+        "exact_native_cache_key": "610c2fb8fe91542432ba2b8783b50316516d8eea.pkl",
+        "cache_input_text_sha256": "3b1aae12ab80737785e4b76d2f80acb4904152d81de8663e47ceb5cfeb60d604",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "They captured a mouthful, not the emotional attachment that nearly a century of familiarity had built.",
+        "exact_native_cache_key": "7a5ce379bf6d67c6ed69a53729267086a17bc24a.pkl",
+        "cache_input_text_sha256": "3b1aae12ab80737785e4b76d2f80acb4904152d81de8663e47ceb5cfeb60d604",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "They captured a mouthful,",
+        "exact_native_cache_key": "4b944927971c1bc51e98ab484f387d5f48920a56.pkl",
+        "cache_input_text_sha256": "a7c7be9d0012945d7282986e25cc7af351373a41c7f8d1713dc840ad1dd67735",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "not the emotional attachment that nearly a century of familiarity had built.",
+        "exact_native_cache_key": "abb4e748bb700d87e34d3cd82404d4cd2f826952.pkl",
+        "cache_input_text_sha256": "f3c9d2f59f0abc7fe68a6310d3e4d9adc10af27eb748977a6b049442951b50b3",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "They captured a mouthful,",
+        "exact_native_cache_key": "4b944927971c1bc51e98ab484f387d5f48920a56.pkl",
+        "cache_input_text_sha256": "a7c7be9d0012945d7282986e25cc7af351373a41c7f8d1713dc840ad1dd67735",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "not the emotional attachment that nearly a century of familiarity had built.",
+        "exact_native_cache_key": "abb4e748bb700d87e34d3cd82404d4cd2f826952.pkl",
+        "cache_input_text_sha256": "f3c9d2f59f0abc7fe68a6310d3e4d9adc10af27eb748977a6b049442951b50b3",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S20",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "To many, the old taste carried nostalgia and heritage.",
+        "exact_native_cache_key": "595413137dd237b65df49bec44ca26930e815ea3.pkl",
+        "cache_input_text_sha256": "9bef3069a564afc72f8c93228d9cbb7a2118a1685f3fc2898e6492a3c8adf148",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S20",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "To many, the old taste carried nostalgia and heritage.",
+        "exact_native_cache_key": "78edade358e62be41013df4a1990b1e3af97fe83.pkl",
+        "cache_input_text_sha256": "9bef3069a564afc72f8c93228d9cbb7a2118a1685f3fc2898e6492a3c8adf148",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S20",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "To many,",
+        "exact_native_cache_key": "10a126850d9c42be1f9edfb7dc5e7799500031e4.pkl",
+        "cache_input_text_sha256": "9fcc807888576e9f3dadb11e8f9f0dae39224083106f87e6d45f9238766ea4c3",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S20",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "the old taste carried nostalgia and heritage.",
+        "exact_native_cache_key": "26c938c1817b966df33554341a82a47cb5bf1229.pkl",
+        "cache_input_text_sha256": "6f5ced903a7066eeb03f8f3bbcfefa1eab6d466629f6430778370a6305d4123d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S21",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The tests had hidden the brand from every taster, so they could not quantify what it meant to fiercely loyal drinkers.",
+        "exact_native_cache_key": "5422fdfd441b301f12808c49bae1c8daf7b4d6c6.pkl",
+        "cache_input_text_sha256": "52ac35cce04e99744748992839d9a6d844a1bfcc0047fe4f51f44294df33d754",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S21",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The tests had hidden the brand from every taster, so they could not quantify what it meant to fiercely loyal drinkers.",
+        "exact_native_cache_key": "8d43f2099d9f70c571d3148f88bb9fe92aa1dd2d.pkl",
+        "cache_input_text_sha256": "52ac35cce04e99744748992839d9a6d844a1bfcc0047fe4f51f44294df33d754",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S21",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "The tests had hidden the brand from every taster,",
+        "exact_native_cache_key": "529800098b7949131cead7139c5633c8a296caa1.pkl",
+        "cache_input_text_sha256": "a18ae7cae88d39acaa251d3e4e22d5525e53c233260ac8af36212da5f6de7ee5",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S21",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "so they could not quantify what it meant to fiercely loyal drinkers.",
+        "exact_native_cache_key": "bf85fd234845be2604532f1e1adef89f3f297218.pkl",
+        "cache_input_text_sha256": "6d121d80e879e7cfefe9bfa496d685eb2360f650bf9e8de8be9169035f22de68",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S21",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "The tests had hidden the brand from every taster,",
+        "exact_native_cache_key": "529800098b7949131cead7139c5633c8a296caa1.pkl",
+        "cache_input_text_sha256": "a18ae7cae88d39acaa251d3e4e22d5525e53c233260ac8af36212da5f6de7ee5",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S21",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "so they could not quantify what it meant to fiercely loyal drinkers.",
+        "exact_native_cache_key": "bf85fd234845be2604532f1e1adef89f3f297218.pkl",
+        "cache_input_text_sha256": "6d121d80e879e7cfefe9bfa496d685eb2360f650bf9e8de8be9169035f22de68",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      }
+    ],
+    "unique_reference_key_count": 87,
+    "raw_mother_cache_scalar_manifest": [
+      {
+        "exact_native_cache_key": "95fae379a379d539e9e22fefb10ef8a173f82d92.pkl",
+        "pkl_sha256": "335b1facf787e164e5c3454885966a1e75e23a2d6095ddd6a39d3ecfe5006268",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "标题",
+            "piece": null,
+            "reference_kind": "title-default-raw",
+            "method": "create",
+            "source_slice": "The 79 Days of New Coke",
+            "exact_native_cache_key": "95fae379a379d539e9e22fefb10ef8a173f82d92.pkl",
+            "cache_input_text_sha256": "5de1d2b8b1a028d90bf581f31a6a37a15b950e5486c03b1098e9ce6d349cf36b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          49152
+        ],
+        "unprocessed_array_sha256": "1eeb7a4b8e677f33ca3338481014e86d01fdeeb028d6c522269f12393c821935"
+      },
+      {
+        "exact_native_cache_key": "c020c7a43fb0c5cbf4d5423b13646d4039f0ac28.pkl",
+        "pkl_sha256": "c91ab2abbdc3fb5a409a30f703f221448002785fbb7dedbab5f67d8e9c17d93a",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Pepsi had set up booths in shopping centres across the US, inviting shoppers to sip two unmarked beverages and state a preference.",
+            "exact_native_cache_key": "c020c7a43fb0c5cbf4d5423b13646d4039f0ac28.pkl",
+            "cache_input_text_sha256": "2d928f3f575074d0bb3b840852056fb55450b8e47734a465cba3a35865271a68",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          210432
+        ],
+        "unprocessed_array_sha256": "61034e00cca6d9779269760ecc80351b04cdb5a83499aad65073cb1087b097e3"
+      },
+      {
+        "exact_native_cache_key": "5af9d1b920b0ef41c1f0beac883b3c02de974fd1.pkl",
+        "pkl_sha256": "95d3b49fe78552c2e2a2c00fc4f5a255bd39662ba4bbb8eecfba54cd2dbc32e5",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Pepsi had set up booths in shopping centres across the US,",
+            "exact_native_cache_key": "5af9d1b920b0ef41c1f0beac883b3c02de974fd1.pkl",
+            "cache_input_text_sha256": "48687340138d0eb7aa3585db5316d5fdcee2481e335a865f2f80ed1627fe13eb",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S1",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Pepsi had set up booths in shopping centres across the US,",
+            "exact_native_cache_key": "5af9d1b920b0ef41c1f0beac883b3c02de974fd1.pkl",
+            "cache_input_text_sha256": "48687340138d0eb7aa3585db5316d5fdcee2481e335a865f2f80ed1627fe13eb",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          88064
+        ],
+        "unprocessed_array_sha256": "2d9e0f2f9c7ce6a875b5ef4dfd1389b1cf4588b37e231a55e971d69ad23565a2"
+      },
+      {
+        "exact_native_cache_key": "2f3e45a324d6cec7933e92f4d4c7f0ff5fc04516.pkl",
+        "pkl_sha256": "642c0823575633704f5aaee4ab52723daa105803a569edfd4e5b36fc66dbd919",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "inviting shoppers to sip two unmarked beverages",
+            "exact_native_cache_key": "2f3e45a324d6cec7933e92f4d4c7f0ff5fc04516.pkl",
+            "cache_input_text_sha256": "a320d9f811750d67b6641af4a45354d9e5ea8a0c49307e5cb8dc7b227afdafbb",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          77824
+        ],
+        "unprocessed_array_sha256": "ab42c85eac4b15ba2ddeff2f79496d5a56d7d4f88176fde1aa2bc690cda6d378"
+      },
+      {
+        "exact_native_cache_key": "ed923942bf30720e009abf3dd310188c981735ec.pkl",
+        "pkl_sha256": "e27aa31308f337eb225dee77e21279e71ae642a8ffabf229b37cfaa5a99e8b2e",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and state a preference.",
+            "exact_native_cache_key": "ed923942bf30720e009abf3dd310188c981735ec.pkl",
+            "cache_input_text_sha256": "fe3f68bbbc24d4a5be1aa440d55633e2dc0b5872a61bb47e1e8b96058a9d1128",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          34304
+        ],
+        "unprocessed_array_sha256": "56c9fa9490beef1b8b9e3dbe6af29bd511d76c8bd87205dfaf6c37e952a9e6cd"
+      },
+      {
+        "exact_native_cache_key": "fb006db18004ef2b86a188abe4afe6c386ec08bc.pkl",
+        "pkl_sha256": "e66f3b7ff9b500b32cbffe87717c781f558b3f6133b116d7224029ad2ae0d7a0",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "inviting shoppers to sip two unmarked beverages and state a preference.",
+            "exact_native_cache_key": "fb006db18004ef2b86a188abe4afe6c386ec08bc.pkl",
+            "cache_input_text_sha256": "50477dd0be92f47c21248e793f0190730e65a0df322e895d0808cc8794a15433",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          108544
+        ],
+        "unprocessed_array_sha256": "90b79120001fe1bd962e13de7a9bc1d116eeb444767a78890ac8275427c2ae30"
+      },
+      {
+        "exact_native_cache_key": "548756b6899d8d9cb889cf99c6b6d243f39bac82.pkl",
+        "pkl_sha256": "0c0f7557a8d94fd1382724382c072cfc9e2250e1e53d7ae62dea7a985b3fcdef",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Figures varied by region, but tasters generally picked Pepsi more often.",
+            "exact_native_cache_key": "548756b6899d8d9cb889cf99c6b6d243f39bac82.pkl",
+            "cache_input_text_sha256": "48f6de38e029aed644c7e0f1e1eb25f0d151967b25b257d16db0abf4c30651dd",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          116736
+        ],
+        "unprocessed_array_sha256": "a085c61e40aef35156a4ccc9391db5cf186cc070baf25f1573fd7cb7b75af234"
+      },
+      {
+        "exact_native_cache_key": "146aa7d5ca37163948afa8b7cd99a17b53a57e8a.pkl",
+        "pkl_sha256": "0b80e1cdc9b08f7838127ab5e7e1472ab757b6395430a84a38973c15705f10ef",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Figures varied by region,",
+            "exact_native_cache_key": "146aa7d5ca37163948afa8b7cd99a17b53a57e8a.pkl",
+            "cache_input_text_sha256": "0df339709da20358f1dda1c0407487c22603d217f139e8a1c4c2a05b4554bc9b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          43008
+        ],
+        "unprocessed_array_sha256": "a1acc51b3f3d3f16ada00a273418f0f998d8434bca21abd905e77b3ccdc8455e"
+      },
+      {
+        "exact_native_cache_key": "e73f411db9c292d1715249dd7a6d264e834b358f.pkl",
+        "pkl_sha256": "9eec71e985148c5a6857d73ae8186ce8fba194cb835d992057d731799558e3de",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "but tasters generally picked Pepsi more often.",
+            "exact_native_cache_key": "e73f411db9c292d1715249dd7a6d264e834b358f.pkl",
+            "cache_input_text_sha256": "0cb6f9f4cceb1f74e7be70e533537575f72a7ee50d653f8531c30bccb9d2babb",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          65024
+        ],
+        "unprocessed_array_sha256": "5acf6582c44102a97d1aa5157b82b3f254dc89398be5c47d74119edc433399cf"
+      },
+      {
+        "exact_native_cache_key": "adc8d6967d1e4d0b791aa46e54dc6d1fbad50fe4.pkl",
+        "pkl_sha256": "c0ff70c7f96af7bfabcf157a20bb0addad30bab675922eedf5a9bfaa559a6fd3",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Each stall, letting consumers judge by palate alone, doubled as publicity.",
+            "exact_native_cache_key": "adc8d6967d1e4d0b791aa46e54dc6d1fbad50fe4.pkl",
+            "cache_input_text_sha256": "45f4924c2e4e9989b787efe4f5a3d97694ce9ae66ccbe1bf9ef9ba9b8bcc509d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          118784
+        ],
+        "unprocessed_array_sha256": "5ec79dddbce2e462a76dc873a1241393ac40957a3a4283934ed13fc584b15cc2"
+      },
+      {
+        "exact_native_cache_key": "240b4b05c3a9a5e06952ea9314e513bed20c82da.pkl",
+        "pkl_sha256": "1b0ead66fbf784713376a9a010b3f0847c8d8f9c2a4e418b5440d952f71ffdcf",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Each stall, letting consumers judge by palate alone,",
+            "exact_native_cache_key": "240b4b05c3a9a5e06952ea9314e513bed20c82da.pkl",
+            "cache_input_text_sha256": "e71ce977e62e7c2d5a0213f71e24e625fe2f21f61c55d9a4d2613805f784b94f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          78336
+        ],
+        "unprocessed_array_sha256": "2a7bec7038dbb7259b3886488f0cc7db7b797d3640ea21d0e2f484cb2b85c108"
+      },
+      {
+        "exact_native_cache_key": "5fc049dd37630ad18a1ad22b43f8e087088c9e3c.pkl",
+        "pkl_sha256": "24e8fe985f158ed0813969b792d305c3dcc8c2e41a945b8f20f03c23d88c646e",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "doubled as publicity.",
+            "exact_native_cache_key": "5fc049dd37630ad18a1ad22b43f8e087088c9e3c.pkl",
+            "cache_input_text_sha256": "4b0542d40437621581dd55d12e164e27b3e47a8285ab08c0f35b978bcaae1b67",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S3",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "doubled as publicity.",
+            "exact_native_cache_key": "5fc049dd37630ad18a1ad22b43f8e087088c9e3c.pkl",
+            "cache_input_text_sha256": "4b0542d40437621581dd55d12e164e27b3e47a8285ab08c0f35b978bcaae1b67",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          33792
+        ],
+        "unprocessed_array_sha256": "68cc68e0d3fb474e94e475e1baa34e8c9610f287be7543c7389960b4e9204788"
+      },
+      {
+        "exact_native_cache_key": "68a6f0aeaea3131f96b06c59b774627653fb8852.pkl",
+        "pkl_sha256": "ad97a10ac0ff6c0aab291b99909810b4cd748b20cce77b38bde4d738c00f4a58",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Each stall,",
+            "exact_native_cache_key": "68a6f0aeaea3131f96b06c59b774627653fb8852.pkl",
+            "cache_input_text_sha256": "b58ef0d0d95e1f01551829c6a25d4cf047ca4a0e71aa7b8ccd8c0012306c8efa",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          21504
+        ],
+        "unprocessed_array_sha256": "934c2dfb9edeec8310b29fad6d5c76f4fca944f776ebc4418ba9c9239a9a0c92"
+      },
+      {
+        "exact_native_cache_key": "e3701c230b09f57a5bd9a874e7e417b104f6ab53.pkl",
+        "pkl_sha256": "c3e9f9fe33879676adfa5b48268efaba3da094600990d8df61807313fd80e487",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "letting consumers judge by palate alone,",
+            "exact_native_cache_key": "e3701c230b09f57a5bd9a874e7e417b104f6ab53.pkl",
+            "cache_input_text_sha256": "51fd266bc62e9d8c29ebcb4e5bddf4d960ef7ce79d782ad2f7227b32ca1ff7b3",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          60416
+        ],
+        "unprocessed_array_sha256": "226a3952218f637f69da829ef3534ded52cdada5f1b5ca5f286c37d273414918"
+      },
+      {
+        "exact_native_cache_key": "10e310a7e31883844bd69f99fffba62b79f2a399.pkl",
+        "pkl_sha256": "f455f57f64cbb1be6d9531d96985e27c40ef37d70333d770d6f32dd1840dd4de",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Coca-Cola's testing was thorough and extensive.",
+            "exact_native_cache_key": "10e310a7e31883844bd69f99fffba62b79f2a399.pkl",
+            "cache_input_text_sha256": "873bd53f46cf2debde9cb2f149d87e42a59d65143da68e6e37baf9c1f2a0f6a9",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          66560
+        ],
+        "unprocessed_array_sha256": "40a5d2d6569241d49a652621b27b7214ea128c2e1cb419388cc03be9d9617c9a"
+      },
+      {
+        "exact_native_cache_key": "3499b65d43b09cc68979ed0f11390182b370c4c0.pkl",
+        "pkl_sha256": "e50cd7f4aa73e9549c54fedd1822cbca68a79d8e7609e6c173381ed5a2658c48",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Nearly 200,000 blind taste tests showed a sweeter formula beating the original and Pepsi.",
+            "exact_native_cache_key": "3499b65d43b09cc68979ed0f11390182b370c4c0.pkl",
+            "cache_input_text_sha256": "6207ffbe5154cdaf71e2daa56e7a0636e2a3c5a20a7e21189f42787b91b7885a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          164864
+        ],
+        "unprocessed_array_sha256": "dbdba8f8c66bccdd7ba22b8191ac47107c0cc58da08975e089fa9eaf0e6022d0"
+      },
+      {
+        "exact_native_cache_key": "1e7fcd856afa28874cc47fadb7952eb66e7df096.pkl",
+        "pkl_sha256": "14719f0a8f0249d787594e6b7360b8cab035e315f2d2e8254685445be3238a5c",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Nearly 200,000 blind taste tests showed",
+            "exact_native_cache_key": "1e7fcd856afa28874cc47fadb7952eb66e7df096.pkl",
+            "cache_input_text_sha256": "bbcd18d467df105b1cc7998c3a3ee00c45279f1b5435d54d0659358afc334ab5",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          73728
+        ],
+        "unprocessed_array_sha256": "b2fe162cfc012e83008afeb470ade6f27d3a2337bf8d124826082fdf5b2090c2"
+      },
+      {
+        "exact_native_cache_key": "f744a780a88d7afa8d83f7481163df48c271ee30.pkl",
+        "pkl_sha256": "f3682c3865e3832d6d18302563d613dccc1b1faa2e33842744f8469df6a1fd72",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "a sweeter formula beating the original and Pepsi.",
+            "exact_native_cache_key": "f744a780a88d7afa8d83f7481163df48c271ee30.pkl",
+            "cache_input_text_sha256": "83c2806ca28dcaf700c1df6525ad983ac5d189315f7c2dc9cbd645d65824e46e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          77824
+        ],
+        "unprocessed_array_sha256": "ed0af28c7d23d04a1aa3816cc9fb0491b141f087b0933f8b39805f7d88272dde"
+      },
+      {
+        "exact_native_cache_key": "ba2ebfc7def4779e112cbace04c8961072e4f962.pkl",
+        "pkl_sha256": "b95b19c875fe83da2481b6769f1be04d43923c45fb652bfc41691b094d65018b",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "On 23 April 1985 the company announced it would replace its 99-year-old syrup, a year short of its centenary.",
+            "exact_native_cache_key": "ba2ebfc7def4779e112cbace04c8961072e4f962.pkl",
+            "cache_input_text_sha256": "81c4da358123cb57a65dbce42026254ebe4e8ab36a19127601c2fe4c5090f752",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          240640
+        ],
+        "unprocessed_array_sha256": "ab2004413efb0f47ba8b82240a6fe8a99337ea30b5ff1dc01456a1984552bb08"
+      },
+      {
+        "exact_native_cache_key": "6f5f290001a93eccb8f7cbc01a588dc5b33bcce3.pkl",
+        "pkl_sha256": "c2685f07f3e1f824ab893d2bbdc6dfab1404416c01fccc75bb06545904dc0045",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "On 23 April 1985 the company announced",
+            "exact_native_cache_key": "6f5f290001a93eccb8f7cbc01a588dc5b33bcce3.pkl",
+            "cache_input_text_sha256": "5916b84fc81b48bd975e278417abe952cd333c5d74245f050d9367f5ca428236",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          103936
+        ],
+        "unprocessed_array_sha256": "08c9bea2a17eab9bcd81e0aa0314f961ddf902398cbbed96eca2e6539a24b412"
+      },
+      {
+        "exact_native_cache_key": "c01be7d3af87032d58cbdf884d04efdcd68142b0.pkl",
+        "pkl_sha256": "67cac14033ba976067e94a344ada37e04b1dc9258b7b0fc0b58b6386e3d167f9",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "it would replace its 99-year-old syrup,",
+            "exact_native_cache_key": "c01be7d3af87032d58cbdf884d04efdcd68142b0.pkl",
+            "cache_input_text_sha256": "cdeb5856dedbedaf5e18fbe861586a1dc0b7e6b487b006e1fad84bdc51d50b1c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          66048
+        ],
+        "unprocessed_array_sha256": "e7a042ba882239a270bf777969c92507b6271dca50f92a47b4585e901954746e"
+      },
+      {
+        "exact_native_cache_key": "c3304dfa8f7bf08d94650ea9ab1f3a63a69d5d93.pkl",
+        "pkl_sha256": "5261e19b9525bac53e833de3c7a56ec1f556787178d6345845c193b92a5137d7",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "a year short of its centenary.",
+            "exact_native_cache_key": "c3304dfa8f7bf08d94650ea9ab1f3a63a69d5d93.pkl",
+            "cache_input_text_sha256": "55d1aa4b6b8edd835ca5ec3911d8d8a277dcd519c95faa91f442ac8fd64cdfd5",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S6",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "a year short of its centenary.",
+            "exact_native_cache_key": "c3304dfa8f7bf08d94650ea9ab1f3a63a69d5d93.pkl",
+            "cache_input_text_sha256": "55d1aa4b6b8edd835ca5ec3911d8d8a277dcd519c95faa91f442ac8fd64cdfd5",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          43008
+        ],
+        "unprocessed_array_sha256": "f24330300061017b9cd3fdb0fce9de58bec6431e63759d2121023ba8f82e3fed"
+      },
+      {
+        "exact_native_cache_key": "464375c6944e9ca18c50589560809d2b718f8bfe.pkl",
+        "pkl_sha256": "4b6d4a58badd6de73b3d3e11e91bb3e3e11519eea4f95ae42cb225eb5ecbf54e",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "On 23 April 1985 the company announced it would replace its 99-year-old syrup,",
+            "exact_native_cache_key": "464375c6944e9ca18c50589560809d2b718f8bfe.pkl",
+            "cache_input_text_sha256": "123c48adc8cb5b69ed70acafdb01d95a178b5f2d1113a976d78b9331da4d25c4",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          189952
+        ],
+        "unprocessed_array_sha256": "bcacc22a660f3f4c1e55521ee8c566fe3c2957cbc4468a9e5a30bb77296f40e5"
+      },
+      {
+        "exact_native_cache_key": "af86f9feb3102a0e872b5bc9177e75f59f8a3037.pkl",
+        "pkl_sha256": "46fd754cacae6989b704f6c97645e67429ecd7aac63a0fe3ef9f6b2e386c768a",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The public called the soda New Coke.",
+            "exact_native_cache_key": "af86f9feb3102a0e872b5bc9177e75f59f8a3037.pkl",
+            "cache_input_text_sha256": "654a706af9944fc646a1686843237fe75a1d77919228c78432d96589035aaf92",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          47104
+        ],
+        "unprocessed_array_sha256": "3dcdd4ffb3f2fcc79fd01fc78919da964f1ffc3161799911e991bd618a1a4b8e"
+      },
+      {
+        "exact_native_cache_key": "ef1927d1aa184752569fd24d220bb611f3c2813b.pkl",
+        "pkl_sha256": "1d49d2ed8f659761758b1cb7b422694bc41c9c3267d4cf02610182eca92d29cc",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Its sweetness had given it a winning flavour, but launching the concoction was a wager.",
+            "exact_native_cache_key": "ef1927d1aa184752569fd24d220bb611f3c2813b.pkl",
+            "cache_input_text_sha256": "96f4f6d51a1dfc9e8a002424291612487686aefe40111ccad1f6d9a6899def6f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          126976
+        ],
+        "unprocessed_array_sha256": "2e6e053c5d7c50e42706f035e2bdc52b727d88c1837a7e1ccd87ca1be524c266"
+      },
+      {
+        "exact_native_cache_key": "fc34c45cfc99d574d12e0a7e37fc0764b9b2842d.pkl",
+        "pkl_sha256": "6d592277460d616e3a0a8154297b0078cddc44989ef74fecf18f63840e61328e",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Its sweetness had given it a winning flavour,",
+            "exact_native_cache_key": "fc34c45cfc99d574d12e0a7e37fc0764b9b2842d.pkl",
+            "cache_input_text_sha256": "dcc8958d325de7ad49d0dcd21fc95dccef4bbd0d8287fea1df55e0698c49120a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S8",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Its sweetness had given it a winning flavour,",
+            "exact_native_cache_key": "fc34c45cfc99d574d12e0a7e37fc0764b9b2842d.pkl",
+            "cache_input_text_sha256": "dcc8958d325de7ad49d0dcd21fc95dccef4bbd0d8287fea1df55e0698c49120a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          59904
+        ],
+        "unprocessed_array_sha256": "17da8b1eaed850cb06aa820c8b24b43785ee1ca234d7df3ea429101565eb7d80"
+      },
+      {
+        "exact_native_cache_key": "b5c5b7eace1b281fc71695da92a06a15bb515626.pkl",
+        "pkl_sha256": "ea7a070093e1f6aaabce9701f7d13ecd7bde1963babddaca88280391b7554166",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "but launching the concoction was a wager.",
+            "exact_native_cache_key": "b5c5b7eace1b281fc71695da92a06a15bb515626.pkl",
+            "cache_input_text_sha256": "45e083ba089f8dd68a4c522bff5c9eb4070380dcc6585f768fbc63167f260793",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S8",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "but launching the concoction was a wager.",
+            "exact_native_cache_key": "b5c5b7eace1b281fc71695da92a06a15bb515626.pkl",
+            "cache_input_text_sha256": "45e083ba089f8dd68a4c522bff5c9eb4070380dcc6585f768fbc63167f260793",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          56320
+        ],
+        "unprocessed_array_sha256": "4cc6f60b23a8f424b6780922b1c3bd0021a4a7dc2eaa207c7ecc965c71753f5b"
+      },
+      {
+        "exact_native_cache_key": "4b4bbefa4df72bf72c1e1ddd60fabb5ffb9aa565.pkl",
+        "pkl_sha256": "2f1094466419454f394168689b9a0edcf12a64f021f944c6f95c77320ce2b9fd",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The backlash was a grassroots outcry.",
+            "exact_native_cache_key": "4b4bbefa4df72bf72c1e1ddd60fabb5ffb9aa565.pkl",
+            "cache_input_text_sha256": "7f368a28a8dba72884e2541fb425d292ce3d4a06a36119ad3d72bcc1dc52a0eb",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          52736
+        ],
+        "unprocessed_array_sha256": "b9ddb59cda309820872cb322cd2d9ed8c1f10197d80289446cf1b9a789a5dbc1"
+      },
+      {
+        "exact_native_cache_key": "885be61ecf9d44857c953089995a2814155fe7b0.pkl",
+        "pkl_sha256": "63aa5f0f469ac28ee8d3297be6d5625ba0ac3332ade3f9b704bed96e75db15d6",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Consumer hotline calls rose from about 400 a day to about 1,500, almost all furious complaints.",
+            "exact_native_cache_key": "885be61ecf9d44857c953089995a2814155fe7b0.pkl",
+            "cache_input_text_sha256": "d97d4d9ca3ed9581624375f5984e29fbca5932a8d122e6bcc62b8f15b15a5510",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          216064
+        ],
+        "unprocessed_array_sha256": "f65d0f0cc3cc354a5d48b4d02a1263cee5ad4514da9d9d5f5bfedd0e01e9c2f3"
+      },
+      {
+        "exact_native_cache_key": "662848c1049449878078fdc7217453482a7597e3.pkl",
+        "pkl_sha256": "dd815f017860a7fef820b041dd7db6325e135294a85b52222a1ef709dd2da173",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Consumer hotline calls rose from about 400 a day to about 1,500,",
+            "exact_native_cache_key": "662848c1049449878078fdc7217453482a7597e3.pkl",
+            "cache_input_text_sha256": "ba228146908566d6f31698ff89963061e989d602571cb33728132b94c3df24e7",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S10",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Consumer hotline calls rose from about 400 a day to about 1,500,",
+            "exact_native_cache_key": "662848c1049449878078fdc7217453482a7597e3.pkl",
+            "cache_input_text_sha256": "ba228146908566d6f31698ff89963061e989d602571cb33728132b94c3df24e7",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          143872
+        ],
+        "unprocessed_array_sha256": "abec2aa36369728b4bd26299da708dd54b01dc7ce3a5b40a5cea7f06789e8385"
+      },
+      {
+        "exact_native_cache_key": "202d8617c8ffd259f5ecb8cfa63bfd5b9ba749f8.pkl",
+        "pkl_sha256": "cbc968533144ebf2de448d5ba6235b2ed42cd3c9dbf79c04605ca3dcabd51c54",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "almost all furious complaints.",
+            "exact_native_cache_key": "202d8617c8ffd259f5ecb8cfa63bfd5b9ba749f8.pkl",
+            "cache_input_text_sha256": "9edc8784bc3899c42839087f9b2309e3e5e5b329048bad374bcb33bfb8e71afd",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S10",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "almost all furious complaints.",
+            "exact_native_cache_key": "202d8617c8ffd259f5ecb8cfa63bfd5b9ba749f8.pkl",
+            "cache_input_text_sha256": "9edc8784bc3899c42839087f9b2309e3e5e5b329048bad374bcb33bfb8e71afd",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          47104
+        ],
+        "unprocessed_array_sha256": "8e5760d4c0e471d80564b8b2f12e330c22979f47ccf7689c267321aefc741fca"
+      },
+      {
+        "exact_native_cache_key": "919c2cb98a22a13adc80d89ed892eddcf7500952.pkl",
+        "pkl_sha256": "bd41943a2111fd1cd362098d045ab0342a73882f17add3ffc4f52634253e8cca",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Protest groups were organised, and some faithful drinkers stocked up on the original.",
+            "exact_native_cache_key": "919c2cb98a22a13adc80d89ed892eddcf7500952.pkl",
+            "cache_input_text_sha256": "e3c1a3a9517d851e8a87f8f045d34eef8a016c69cbdfc7a377e017721845e5ec",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          129536
+        ],
+        "unprocessed_array_sha256": "b2349d8593109aba1539ed870181e08a5b40d12d3279b16f0ebbf5250fab5bd8"
+      },
+      {
+        "exact_native_cache_key": "ddd57751102518499af4443b886204b91124d5d3.pkl",
+        "pkl_sha256": "5c24a065b65dca3e09d3991957a059f80a2b234cab1dfc2106bfed7f880424d7",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Protest groups were organised,",
+            "exact_native_cache_key": "ddd57751102518499af4443b886204b91124d5d3.pkl",
+            "cache_input_text_sha256": "b22984517c244a113f1d2807f4a7ac5697166fd985a6a3f67f380b8762e24efc",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S11",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Protest groups were organised,",
+            "exact_native_cache_key": "ddd57751102518499af4443b886204b91124d5d3.pkl",
+            "cache_input_text_sha256": "b22984517c244a113f1d2807f4a7ac5697166fd985a6a3f67f380b8762e24efc",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          44544
+        ],
+        "unprocessed_array_sha256": "25bcb44201ec99c50693d52b176d5d426b4e130afc4481fe971e76037162cd08"
+      },
+      {
+        "exact_native_cache_key": "ba000645313620804c45a46f0366685717e1445e.pkl",
+        "pkl_sha256": "6dfec05cca30f85f0786e9604c33f7d77df17f652d36dc52ad8b38599a534491",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and some faithful drinkers",
+            "exact_native_cache_key": "ba000645313620804c45a46f0366685717e1445e.pkl",
+            "cache_input_text_sha256": "3661ea586561090a2af099bc14afdda70d75e3a6a860afaaf036920ebf736658",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          37888
+        ],
+        "unprocessed_array_sha256": "e3c36a659101b44a7176942f43486df1ea57b9f3d4ca0af3f4a7aa8b612a1981"
+      },
+      {
+        "exact_native_cache_key": "a724a80ff7676899824e36f764904577c9012129.pkl",
+        "pkl_sha256": "7a18495708ce738f9e4416924db81fa4e2425620aa4eb14e0304be93c1d4a5b3",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "stocked up on the original.",
+            "exact_native_cache_key": "a724a80ff7676899824e36f764904577c9012129.pkl",
+            "cache_input_text_sha256": "8c76c4b9fa93ad1f0dd01fd724e338315c24f648f2bee574bc877d87d65bf2b0",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          38400
+        ],
+        "unprocessed_array_sha256": "146c790634a2a69683a841b1f6ad9bbbefb3cb8c8330570ef09c1878eaeb41e7"
+      },
+      {
+        "exact_native_cache_key": "fe06eacfd7b2c2bb52405ee8a38fc2ccc2b9413d.pkl",
+        "pkl_sha256": "d036764742c0603e0c78cc994cc5196fbb734dc8618d71f38055e0b36cf4ab0c",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and some faithful drinkers stocked up on the original.",
+            "exact_native_cache_key": "fe06eacfd7b2c2bb52405ee8a38fc2ccc2b9413d.pkl",
+            "cache_input_text_sha256": "535e96d78044b575d3dd8a3d159ddc5e8b1d4e28d8e923f78da53fd2f8b46699",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          73728
+        ],
+        "unprocessed_array_sha256": "52509712e324cbd7fc051b0ad7b99e139a275b733d8117abf8658d1725bd39ba"
+      },
+      {
+        "exact_native_cache_key": "386fb83f5ed10a3e0e9049627bd2cfdd9699ed21.pkl",
+        "pkl_sha256": "bb8994a108fb06875571284f07a4b4df4b13d33a4e5c4904ce594439d644fffe",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "In June 1985 one protester, Gay Mullins, filed a lawsuit to keep New Coke out of packaging like the original's.",
+            "exact_native_cache_key": "386fb83f5ed10a3e0e9049627bd2cfdd9699ed21.pkl",
+            "cache_input_text_sha256": "4bd0e67d519ccdef54fc084f9fe6a19c7577b0277825fca827d2bdd58b63b41b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          210432
+        ],
+        "unprocessed_array_sha256": "99c06f07872094685fbccd820ed3ae824cf74cb41d1943da157ea19ab6896fc5"
+      },
+      {
+        "exact_native_cache_key": "c4d431bc10304cfc768af4befd3e908ff815e8e6.pkl",
+        "pkl_sha256": "e6d825b5c35b0a46cdc8b46cfa603ae387b1129ae7da311bf271895c5897cc2e",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "In June 1985 one protester, Gay Mullins, filed a lawsuit",
+            "exact_native_cache_key": "c4d431bc10304cfc768af4befd3e908ff815e8e6.pkl",
+            "cache_input_text_sha256": "96a805e95ca91f7e756336b422a8bde554004ea19bf35cc7a4a3c60d5928e551",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          117248
+        ],
+        "unprocessed_array_sha256": "b38805cbb9bf82cb155235eee4704bba5a42e3bb5c70fec2f28cf0503134466d"
+      },
+      {
+        "exact_native_cache_key": "c595e69bd901d172a5c32b9642effc9d9dbfd722.pkl",
+        "pkl_sha256": "e8ee946eb3c34ddd702c235aeda400112af81aa29108334da7fa04886f34feb2",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "to keep New Coke out of packaging like the original's.",
+            "exact_native_cache_key": "c595e69bd901d172a5c32b9642effc9d9dbfd722.pkl",
+            "cache_input_text_sha256": "5ccd76bb13ae2a4f1cf68c9780856205a204f73344cb208ea62590841fc85b46",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          78848
+        ],
+        "unprocessed_array_sha256": "e4b57352f493afb404de235558566cd985a1e21581e4883d5311514dec9285b9"
+      },
+      {
+        "exact_native_cache_key": "1e3e5f89f7751959b714c657d6b81c40dc090cea.pkl",
+        "pkl_sha256": "f7fe658a99fa45e5174a792608932dbca2190431279ccbb2e3a3d1429075a5ef",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "In June 1985 one protester,",
+            "exact_native_cache_key": "1e3e5f89f7751959b714c657d6b81c40dc090cea.pkl",
+            "cache_input_text_sha256": "3eaa9a5f9be10b5599eb5c598d530bd3ce314edeb76363985a39f4a65daa6643",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          64000
+        ],
+        "unprocessed_array_sha256": "bc1d2e439dafd9b9e50c03873cc8d429c0497dd8a0856d2e4dc33d7d7f2eee44"
+      },
+      {
+        "exact_native_cache_key": "990c627b867eaafffc601aaea922528929de9bf3.pkl",
+        "pkl_sha256": "ee691678f93a796b794d1fd9286737c9804dc155680dae18006a33ef9e4da210",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Gay Mullins,",
+            "exact_native_cache_key": "990c627b867eaafffc601aaea922528929de9bf3.pkl",
+            "cache_input_text_sha256": "21413d0cd40507327f524b2e8d6b659c04dac5e900d888345f18b0a9e314feeb",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          22528
+        ],
+        "unprocessed_array_sha256": "7f5df6cdc56f4f90ed7b8ef1f876954e82694d0b2b5c09dfbdb82e1b06d7ffc1"
+      },
+      {
+        "exact_native_cache_key": "9eb4825462b9b919a23ab3c0f3360c5a3e32b22c.pkl",
+        "pkl_sha256": "5045874c316a84b915ac318710901ed43082c559fd13a9910a6b48291ba838f4",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "filed a lawsuit to keep New Coke out of packaging like the original's.",
+            "exact_native_cache_key": "9eb4825462b9b919a23ab3c0f3360c5a3e32b22c.pkl",
+            "cache_input_text_sha256": "0d42ef7660cd4e1fc4ebc218eb8d3f002d78c448664e3dc548c838254b64b921",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          104448
+        ],
+        "unprocessed_array_sha256": "97a0cba107222b53c213702b098019c5591e416aabb9f6dbc924737fa9eb91e7"
+      },
+      {
+        "exact_native_cache_key": "9e942e25668f8555f907f1a34119ad1513324a49.pkl",
+        "pkl_sha256": "9d410a66e3e7c27bd5f7f844b377ef7ef021f71fd80db0a92a4acdec5a8c7169",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Its dismissal came a week later.",
+            "exact_native_cache_key": "9e942e25668f8555f907f1a34119ad1513324a49.pkl",
+            "cache_input_text_sha256": "8284b4fd1418e7137a7c61cffee1b3cf78d43ed67df2d83faf9f497005252d12",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          46080
+        ],
+        "unprocessed_array_sha256": "76303e4f91b58c780706b74082b76ec8da10355091b3f068239be249e307b97a"
+      },
+      {
+        "exact_native_cache_key": "562a0a80626a84a4b1ae984c857937fbccdc7dc8.pkl",
+        "pkl_sha256": "b9923bac90d902f651e1549418ff4a3f86172055c041a3ffe94b88356e0e3623",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Pepsi's chief executive gave his employees a day off, treating the change as Coke's concession.",
+            "exact_native_cache_key": "562a0a80626a84a4b1ae984c857937fbccdc7dc8.pkl",
+            "cache_input_text_sha256": "36b35b37ffb398ba634efafd639d4ee3603e96aad4e3e7249618ab2bb9d4f9bb",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          149504
+        ],
+        "unprocessed_array_sha256": "bb6ac46f75456c29c021c22c57a29064213a4f3b7feca8dfecc9ca319d5a53ea"
+      },
+      {
+        "exact_native_cache_key": "9592683bfc729d18da721c6834133a07fb76140f.pkl",
+        "pkl_sha256": "7caeedca2557bcdb4ee2c05e4c4cd3ef11ac8aa5496f9eda5a7592f8375e7f1a",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Pepsi's chief executive gave his employees a day off,",
+            "exact_native_cache_key": "9592683bfc729d18da721c6834133a07fb76140f.pkl",
+            "cache_input_text_sha256": "123f1af9c542d3f1251fb630dcf44283a87374e526218066a0031cbf9fee8d3a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S14",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Pepsi's chief executive gave his employees a day off,",
+            "exact_native_cache_key": "9592683bfc729d18da721c6834133a07fb76140f.pkl",
+            "cache_input_text_sha256": "123f1af9c542d3f1251fb630dcf44283a87374e526218066a0031cbf9fee8d3a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          81920
+        ],
+        "unprocessed_array_sha256": "0d3497991d375a98eee632276cd072af3ece826e3f361e7d27d0acc472209a9d"
+      },
+      {
+        "exact_native_cache_key": "a816aa3784b871808ee15305ff7fee4c33c899ad.pkl",
+        "pkl_sha256": "60efa1396a1459c728bb0db72c23c40ae8472d396bfca4fdb055331289e0213c",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "treating the change as Coke's concession.",
+            "exact_native_cache_key": "a816aa3784b871808ee15305ff7fee4c33c899ad.pkl",
+            "cache_input_text_sha256": "6584b6b095547c19742326d4c7d886e41a23c022718d8810fde1503a58b09285",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S14",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "treating the change as Coke's concession.",
+            "exact_native_cache_key": "a816aa3784b871808ee15305ff7fee4c33c899ad.pkl",
+            "cache_input_text_sha256": "6584b6b095547c19742326d4c7d886e41a23c022718d8810fde1503a58b09285",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          54272
+        ],
+        "unprocessed_array_sha256": "ab2ebe2083595c0e5b0dbe0b36aa7dd434d6b578ebf021cc787355648dea1868"
+      },
+      {
+        "exact_native_cache_key": "eec07201b995393e513be041ca1cea315932fcd4.pkl",
+        "pkl_sha256": "7e2c44a14b304cb07415e7b0816065dc491c14caa529ed233479e4bf69c4a1cf",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "After 79 days, on 11 July 1985, the original formula was relaunched as Coca-Cola Classic.",
+            "exact_native_cache_key": "eec07201b995393e513be041ca1cea315932fcd4.pkl",
+            "cache_input_text_sha256": "9c34a95746e8caeca80f72d337b18061addbe9191512167b5d164787acd36973",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          225280
+        ],
+        "unprocessed_array_sha256": "29c26517dfdba4dd10a69a4b061603a9e88dd59f90f0bda3e2509ed106cce246"
+      },
+      {
+        "exact_native_cache_key": "6f52427a846d08f921aba926375d7c321731791b.pkl",
+        "pkl_sha256": "c3af88ead3f327dd3f50c787e4eb4f960e598c6a10d58cbeac2c7627f5f9ea91",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "After 79 days, on 11 July 1985,",
+            "exact_native_cache_key": "6f52427a846d08f921aba926375d7c321731791b.pkl",
+            "cache_input_text_sha256": "bb655594693b93c272675bec3b10e1cc4d147963ee2d7f382e7d50dfb45b4bc9",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          114688
+        ],
+        "unprocessed_array_sha256": "342e249f06a249756522d4f9f677b02d73f44d7ff03b86f47d0b8dd5314d89a5"
+      },
+      {
+        "exact_native_cache_key": "f46706b7ae8803783c9c1e9c56029b73f755c5cc.pkl",
+        "pkl_sha256": "4deccdc07d170ac5073af8620364394d1a97f93c05b3f5069b1709e2f58a97ae",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "the original formula was relaunched as Coca-Cola Classic.",
+            "exact_native_cache_key": "f46706b7ae8803783c9c1e9c56029b73f755c5cc.pkl",
+            "cache_input_text_sha256": "022ee1a97d12a960f2bfd6211d6ace751642918514f26992afd82efc0c5f66cd",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S15",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "the original formula was relaunched as Coca-Cola Classic.",
+            "exact_native_cache_key": "f46706b7ae8803783c9c1e9c56029b73f755c5cc.pkl",
+            "cache_input_text_sha256": "022ee1a97d12a960f2bfd6211d6ace751642918514f26992afd82efc0c5f66cd",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          95744
+        ],
+        "unprocessed_array_sha256": "3d86de781e923f4f43a8858f7904eed8be76adabf76e85ec889646eed7696176"
+      },
+      {
+        "exact_native_cache_key": "d6da8d6815f823e842d91547f9388b092b73136e.pkl",
+        "pkl_sha256": "937d961be84dfefcd9913c0c82f84037622b4067a6d54adb5ad34c4584905118",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "After 79 days,",
+            "exact_native_cache_key": "d6da8d6815f823e842d91547f9388b092b73136e.pkl",
+            "cache_input_text_sha256": "73de24845bb0715b06f28a149d4c720c0808c95fb7d7fab8e3c689cd86a10709",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          38400
+        ],
+        "unprocessed_array_sha256": "1f0b5b066b73a4b068d3122f4772655f05f046e36653b03963b1d2054f344f6e"
+      },
+      {
+        "exact_native_cache_key": "434f340c0dc7d4cc0856c9f41871d90a631ef52f.pkl",
+        "pkl_sha256": "2d97ea43bd4d9dea6743d4e5ab5d9c5f4d1137cb955731bb6ccebc03920d6fa8",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "on 11 July 1985,",
+            "exact_native_cache_key": "434f340c0dc7d4cc0856c9f41871d90a631ef52f.pkl",
+            "cache_input_text_sha256": "d8d0fd301a1e3ea5d4c734551eb51ee92f8eff72b8017e5b641f8446b1a324eb",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          64512
+        ],
+        "unprocessed_array_sha256": "c71d73a96b689fc2578f8b828be37aab5a51e18b968ce8ae8306e43c1e2def94"
+      },
+      {
+        "exact_native_cache_key": "496725261666197fc81688224e1fc4bf17bd2057.pkl",
+        "pkl_sha256": "2f20ca75657aaf1fbb8252ff1011c5f4f0947f5c645495073971aa6db0a25c82",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The U-turn was a vindication for loyalists.",
+            "exact_native_cache_key": "496725261666197fc81688224e1fc4bf17bd2057.pkl",
+            "cache_input_text_sha256": "b90dbdb32b0162dad981bd3b69eb400ac0a170e282a9b87dd249c4ad6414f5ad",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          69632
+        ],
+        "unprocessed_array_sha256": "bc2c7514f1b9b210f854086f9a8eece74ed38cf2b0e8feed6e9635463cf6f109"
+      },
+      {
+        "exact_native_cache_key": "04f5eb19664c683ba380560240bbce0e8a201e78.pkl",
+        "pkl_sha256": "98ce5709277b9e5c8a2e07aaf9365cddf65cee6530ae6c1cd85249b8832f4f91",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "ABC interrupted a soap opera to broadcast the comeback, which led two network news bulletins.",
+            "exact_native_cache_key": "04f5eb19664c683ba380560240bbce0e8a201e78.pkl",
+            "cache_input_text_sha256": "2f89e8be59bd64cbe0bed665deb7921a5e7db9c31f426a775db447ce8f075e48",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          158208
+        ],
+        "unprocessed_array_sha256": "e5894767b08c38b083242ed60fbe25630286e9f9b928cf397eb4f76c29ba63de"
+      },
+      {
+        "exact_native_cache_key": "42d01df009771330ffe1194cb56ab8d038533716.pkl",
+        "pkl_sha256": "4845c69b06f0296ad32990111e43c9ef73040e586f50c8df01977f9ca4f2cace",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "ABC interrupted a soap opera to broadcast the comeback,",
+            "exact_native_cache_key": "42d01df009771330ffe1194cb56ab8d038533716.pkl",
+            "cache_input_text_sha256": "58c66da02637406527068afb56954338feb715b7a49f516a4d24a187bddd1bff",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S17",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "ABC interrupted a soap opera to broadcast the comeback,",
+            "exact_native_cache_key": "42d01df009771330ffe1194cb56ab8d038533716.pkl",
+            "cache_input_text_sha256": "58c66da02637406527068afb56954338feb715b7a49f516a4d24a187bddd1bff",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          95232
+        ],
+        "unprocessed_array_sha256": "1445bca8d00ff67a6126767415baadd4c4b35dfdfd04ecaad1788598be279ce2"
+      },
+      {
+        "exact_native_cache_key": "a2629eae747d551931f50e7e0397554050ede419.pkl",
+        "pkl_sha256": "f02f995a9c87e49c818058129abf4323c96c3c948a1846a86682517fb74310f6",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "which led two network news bulletins.",
+            "exact_native_cache_key": "a2629eae747d551931f50e7e0397554050ede419.pkl",
+            "cache_input_text_sha256": "6eb444ad815f1bfc534c573d25a0e90f85b8870da77d0f67ee699b0916b54ba6",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S17",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "which led two network news bulletins.",
+            "exact_native_cache_key": "a2629eae747d551931f50e7e0397554050ede419.pkl",
+            "cache_input_text_sha256": "6eb444ad815f1bfc534c573d25a0e90f85b8870da77d0f67ee699b0916b54ba6",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          54272
+        ],
+        "unprocessed_array_sha256": "48eb05fa9f2e39eeafbc1dadf60567f167c78c52bd408e749bb7a87dab8da01f"
+      },
+      {
+        "exact_native_cache_key": "05f81b2e972f9c4f58659e8479862cf96f1fd80e.pkl",
+        "pkl_sha256": "a8e92679f89faba7ae572235ef5a936c8177cd9c2795225c1e4db7d07d0098e5",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Coca-Cola had misjudged what the tests measured.",
+            "exact_native_cache_key": "05f81b2e972f9c4f58659e8479862cf96f1fd80e.pkl",
+            "cache_input_text_sha256": "a9e822ee27c27ce6122f28e28cb670e7ec1b1ab015fced31ae5c9b4be5a747c5",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          71680
+        ],
+        "unprocessed_array_sha256": "89c13693ee2ae4604516d01681e70a0810202e5ff5f9e872cb3f21deafa59462"
+      },
+      {
+        "exact_native_cache_key": "610c2fb8fe91542432ba2b8783b50316516d8eea.pkl",
+        "pkl_sha256": "81dbfe04cb8e288c31ac3b3666aa6dd375cca1b67281d13a5d261ed99de6453a",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S19",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "They captured a mouthful, not the emotional attachment that nearly a century of familiarity had built.",
+            "exact_native_cache_key": "610c2fb8fe91542432ba2b8783b50316516d8eea.pkl",
+            "cache_input_text_sha256": "3b1aae12ab80737785e4b76d2f80acb4904152d81de8663e47ceb5cfeb60d604",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          154112
+        ],
+        "unprocessed_array_sha256": "6173f053ebf2d55bd81b6e39ba593f510ef5defc53793ecc1abd211edf3621a6"
+      },
+      {
+        "exact_native_cache_key": "4b944927971c1bc51e98ab484f387d5f48920a56.pkl",
+        "pkl_sha256": "75f61f9990c880e6a6f66132c6e98d59582a1bd42bc51415826a62cb7fb2fb48",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S19",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "They captured a mouthful,",
+            "exact_native_cache_key": "4b944927971c1bc51e98ab484f387d5f48920a56.pkl",
+            "cache_input_text_sha256": "a7c7be9d0012945d7282986e25cc7af351373a41c7f8d1713dc840ad1dd67735",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S19",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "They captured a mouthful,",
+            "exact_native_cache_key": "4b944927971c1bc51e98ab484f387d5f48920a56.pkl",
+            "cache_input_text_sha256": "a7c7be9d0012945d7282986e25cc7af351373a41c7f8d1713dc840ad1dd67735",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          34816
+        ],
+        "unprocessed_array_sha256": "ce373c8ad748fa7274eedb6679b9500dddc3394d5813ef4250afc3101fb6f93d"
+      },
+      {
+        "exact_native_cache_key": "abb4e748bb700d87e34d3cd82404d4cd2f826952.pkl",
+        "pkl_sha256": "54421c442eb6e80e70c753a7f23f4b7fe230b44ab93ac7723f03c77e8db289d0",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S19",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "not the emotional attachment that nearly a century of familiarity had built.",
+            "exact_native_cache_key": "abb4e748bb700d87e34d3cd82404d4cd2f826952.pkl",
+            "cache_input_text_sha256": "f3c9d2f59f0abc7fe68a6310d3e4d9adc10af27eb748977a6b049442951b50b3",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S19",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "not the emotional attachment that nearly a century of familiarity had built.",
+            "exact_native_cache_key": "abb4e748bb700d87e34d3cd82404d4cd2f826952.pkl",
+            "cache_input_text_sha256": "f3c9d2f59f0abc7fe68a6310d3e4d9adc10af27eb748977a6b049442951b50b3",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          122368
+        ],
+        "unprocessed_array_sha256": "56f2a5a83e6cd26ddf69ea4735c2c9f5f341c583b69278c59abf06f2889f3782"
+      },
+      {
+        "exact_native_cache_key": "595413137dd237b65df49bec44ca26930e815ea3.pkl",
+        "pkl_sha256": "8ffcdc20e1b8ad4818c5ce863fff4a8018a1c98866e90872d74d29be4df5d90a",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S20",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "To many, the old taste carried nostalgia and heritage.",
+            "exact_native_cache_key": "595413137dd237b65df49bec44ca26930e815ea3.pkl",
+            "cache_input_text_sha256": "9bef3069a564afc72f8c93228d9cbb7a2118a1685f3fc2898e6492a3c8adf148",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          78336
+        ],
+        "unprocessed_array_sha256": "33be451dbc2a0016c8bb9edd049f893ac8f6ee2a5ab4d1946089181cf8ce9063"
+      },
+      {
+        "exact_native_cache_key": "10a126850d9c42be1f9edfb7dc5e7799500031e4.pkl",
+        "pkl_sha256": "61b46505ecb994d29c8c5c0101b99c462e3cded15da29a8d5d65fbd7e35893df",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S20",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "To many,",
+            "exact_native_cache_key": "10a126850d9c42be1f9edfb7dc5e7799500031e4.pkl",
+            "cache_input_text_sha256": "9fcc807888576e9f3dadb11e8f9f0dae39224083106f87e6d45f9238766ea4c3",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          18944
+        ],
+        "unprocessed_array_sha256": "509f758b0335b3e1960f638c1aa2bc8894e07ba1cac2b3ea92f507610953a97e"
+      },
+      {
+        "exact_native_cache_key": "26c938c1817b966df33554341a82a47cb5bf1229.pkl",
+        "pkl_sha256": "05c1e488a7c3c33f270d200e0a99612051c6aaa25f3f2562ea62fc9b55593892",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S20",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "the old taste carried nostalgia and heritage.",
+            "exact_native_cache_key": "26c938c1817b966df33554341a82a47cb5bf1229.pkl",
+            "cache_input_text_sha256": "6f5ced903a7066eeb03f8f3bbcfefa1eab6d466629f6430778370a6305d4123d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          61952
+        ],
+        "unprocessed_array_sha256": "d040d1c335d078d5a4e9f6cbb25bcbc5e80e18252b859c7a45e8eb63b90774b7"
+      },
+      {
+        "exact_native_cache_key": "5422fdfd441b301f12808c49bae1c8daf7b4d6c6.pkl",
+        "pkl_sha256": "97e3c8a451de0491cbba79c42bd208b431b7d66af05d3c989f41c0d04ca5171a",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S21",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The tests had hidden the brand from every taster, so they could not quantify what it meant to fiercely loyal drinkers.",
+            "exact_native_cache_key": "5422fdfd441b301f12808c49bae1c8daf7b4d6c6.pkl",
+            "cache_input_text_sha256": "52ac35cce04e99744748992839d9a6d844a1bfcc0047fe4f51f44294df33d754",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          171520
+        ],
+        "unprocessed_array_sha256": "c58e34f6a40f4b9498c5e6689395e56f0accc22fbd286bc82435a21b595297f8"
+      },
+      {
+        "exact_native_cache_key": "529800098b7949131cead7139c5633c8a296caa1.pkl",
+        "pkl_sha256": "88ebeeb86a353dc121bc7e988c594b01d7be676b1dd22594fd4b5dbb35effb3f",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S21",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "The tests had hidden the brand from every taster,",
+            "exact_native_cache_key": "529800098b7949131cead7139c5633c8a296caa1.pkl",
+            "cache_input_text_sha256": "a18ae7cae88d39acaa251d3e4e22d5525e53c233260ac8af36212da5f6de7ee5",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S21",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "The tests had hidden the brand from every taster,",
+            "exact_native_cache_key": "529800098b7949131cead7139c5633c8a296caa1.pkl",
+            "cache_input_text_sha256": "a18ae7cae88d39acaa251d3e4e22d5525e53c233260ac8af36212da5f6de7ee5",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          64000
+        ],
+        "unprocessed_array_sha256": "dde42417dd9d005c221b890b0d9257998967aed7a24fb776e62450b2b4d75416"
+      },
+      {
+        "exact_native_cache_key": "bf85fd234845be2604532f1e1adef89f3f297218.pkl",
+        "pkl_sha256": "3850707a002137607d0e5ced34a8beefc9f70b40dbefc47649d88141ab9e7b2d",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S21",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "so they could not quantify what it meant to fiercely loyal drinkers.",
+            "exact_native_cache_key": "bf85fd234845be2604532f1e1adef89f3f297218.pkl",
+            "cache_input_text_sha256": "6d121d80e879e7cfefe9bfa496d685eb2360f650bf9e8de8be9169035f22de68",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S21",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "so they could not quantify what it meant to fiercely loyal drinkers.",
+            "exact_native_cache_key": "bf85fd234845be2604532f1e1adef89f3f297218.pkl",
+            "cache_input_text_sha256": "6d121d80e879e7cfefe9bfa496d685eb2360f650bf9e8de8be9169035f22de68",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          97792
+        ],
+        "unprocessed_array_sha256": "09c27016f41326f8e8aafe79b6185e5fb11fbb6d22ed119324e317ff19c629b2"
+      }
+    ],
+    "missing_reference_key_count": 0,
+    "observed_missing_keys_covered": [],
+    "new_private_cache_names": [],
+    "native_single_thread_marker_verified": true,
+    "single_thread_sessions": [
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      },
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      }
+    ],
+    "models_sha256": {
+      "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+      "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+      "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+    },
+    "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+    "existing_private_cache_count": 11514,
+    "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "existing_private_cache_bytes_unchanged": true,
+    "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+    "public_repository_cache_unchanged": true,
+    "producer_pcm_existed_before": false,
+    "producer_pcm_sha256_before": null,
+    "producer_pcm_sha256_after": null,
+    "accepted_aac_adts_sha256_before": "8433d3e15d0cdc8482bd29fecc39b3d3f00f157dcb134d510ab6438f4c5692ea",
+    "accepted_aac_adts_sha256_after": "8433d3e15d0cdc8482bd29fecc39b3d3f00f157dcb134d510ab6438f4c5692ea",
+    "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+    "private_cache_exported": false
+  },
+  "checker_reference_preparation_program_sha256": "f6f2a032e207085e7252d036e39430fb80b06e84a721c525b61196d021c5ca12",
+  "accepted_prior_pcm_probe": {
+    "article": "12",
+    "purpose": "diagnostic old accepted PCM reconstruction only; not a QC verdict",
+    "quality_acceptance": false,
+    "old_source_sha256": "faf256b2d06fe6db201963303c10cf5386c9b62bcd0af21061d9a55ba3cf2141",
+    "expected_accepted_pcm_md5_first12": "04f94362f377",
+    "old_pcm_matches_accepted_confirmation_fingerprint": true,
+    "private_PCM_or_cache_exported": false,
+    "original_maker_exit": 0,
+    "actual_old_pcm_md5_first12": "04f94362f377",
+    "actual_old_pcm_sha256": "5d26c9ea1c213aa7c8746447571c69b06f17374c7a1179c0724156c68b980d4b",
+    "old_reconstructed_aac_adts_sha256": "8433d3e15d0cdc8482bd29fecc39b3d3f00f157dcb134d510ab6438f4c5692ea",
+    "accepted_prior_aac_adts_sha256": "8433d3e15d0cdc8482bd29fecc39b3d3f00f157dcb134d510ab6438f4c5692ea",
+    "old_reconstructed_aac_exactly_matches_accepted": true,
+    "old_segment_metadata_sha256": "3138cad186e3ee5faa4111c361139b970a8cb80fc5241aed9ce0d526d347666d"
+  },
+  "prior_public_failed_audio_probe": {
+    "source_sha256": "ffc773f69993fdbb85e0b260545bab0656bc2353c747e5c1a5a28f0bb153122c",
+    "exact_public_failed_pcm_reproduced": true,
+    "original_maker_exit": 0,
+    "actual_pcm_sha256": "3baf197760f39e1dba3f78abcc7dfe1e256c71cd824da3a52b35f20c24d92961"
+  },
+  "original_confirmation_migration": {
+    "actual_current_audio_only_exit": 0,
+    "unchanged_original_program_sha256": "8d12b72841efba01ee1d8855158f56c4cbc4370d151bccf87ab770ece6ba6fde",
+    "attempts": [
+      {
+        "old_pcm_md5_first12": "04f94362f377",
+        "actual_pcm_md5_first12": "7cfa8c19b34e",
+        "exit": 0
+      },
+      {
+        "old_pcm_md5_first12": "9ef1fa1ebad9",
+        "actual_pcm_md5_first12": "7cfa8c19b34e",
+        "exit": 0
+      }
+    ],
+    "new_quality_gate": false,
+    "audio_modified_by_migration": false
+  },
+  "fresh_current_article_reference": {
+    "article": "12",
+    "removed_temporary_gt_files": [],
+    "processed_pcm_or_raw_mother_cache_modified": false,
+    "purpose": "Original synth/labels/audit rebuild fresh for this production; no old CPU GT reuse."
+  },
+  "temporary_output_reset": {
+    "removed": [
+      {
+        "name": "12.mp4",
+        "mtime_ns": 1794618933464850858,
+        "bytes": 2207542,
+        "was_symlink": false
+      },
+      {
+        "name": "12.mp4.指纹.json",
+        "mtime_ns": 1794618933638544867,
+        "bytes": 421,
+        "was_symlink": false
+      }
+    ],
+    "production_started_ns": 1794618936568861455,
+    "repository_outputs_modified": false
+  },
+  "reviewed_gain_control_preservation": [
+    {
+      "stage": "canonical-draft",
+      "requested_gain_controls": {},
+      "actual_gain_controls": {},
+      "exactly_preserved": true
+    },
+    {
+      "stage": "canonical-final4K",
+      "requested_gain_controls": {},
+      "actual_gain_controls": {},
+      "exactly_preserved": true
+    }
+  ],
+  "confirmation_continuity": {
+    "diagnostic_only": true,
+    "automatic_renewals": false,
+    "exit": 0,
+    "file": "12-confirmation-continuity.json",
+    "sha256": "81b8e246540605af244c7afc4a59078c557116d7b9a83f0175dfaeb08bbcbf5f"
+  },
+  "canonical_video_sha256": "efef2c02bfa4c7c8681c87ef2fe7155d11467b91a6092699a2da6187002e1d1e",
+  "canonical_aac_adts_sha256": "1553019fcdcb1b9c794c572a397183d3ba8e2b2552bab6b40de3bb47e10c602c",
+  "canonical_pipeline_passed": true,
+  "cached_input_wav_sha256": null,
+  "final_wav_sha256": "4f6778860d7a9fb3cb577d0730b4f8efebe30920becde1663b2b4ea42b57bded",
+  "approved_audio_qc": {
+    "article": "12",
+    "passed": true,
+    "validation_basis": "Actual accepted and reconstructed public MP4 decoded samples; no simulated values determine passed.",
+    "accepted_sha256": "572b60c0f1feb8dace32f96e7032bee605cae212c4e5db1da2434037c7948a40",
+    "canonical_sha256": "efef2c02bfa4c7c8681c87ef2fe7155d11467b91a6092699a2da6187002e1d1e",
+    "accepted_global": {
+      "integrated_lufs": -22.7,
+      "true_peak_dbtp": -0.4,
+      "lra_lu": 3.0
+    },
+    "actual_global": {
+      "integrated_lufs": -22.6,
+      "true_peak_dbtp": -0.5,
+      "lra_lu": 3.0
+    },
+    "accepted_units": {
+      "Coke_vowel": {
+        "start_s": 1.85,
+        "end_s": 2.29,
+        "crop_bs1770_lufs": -22.046542247113717,
+        "gated_400ms_lufs": -22.4,
+        "max_400ms_lufs": -22.4,
+        "active_10ms_rms_dbfs": -20.591663234840468,
+        "rms_dbfs": -21.840720848724015,
+        "sample_peak_dbfs": -3.044328181864833
+      }
+    },
+    "actual_units": {
+      "Coke_vowel": {
+        "start_s": 1.85,
+        "end_s": 2.29,
+        "crop_bs1770_lufs": -22.046542247113717,
+        "gated_400ms_lufs": -22.4,
+        "max_400ms_lufs": -22.4,
+        "active_10ms_rms_dbfs": -20.591663234840468,
+        "rms_dbfs": -21.840720848724015,
+        "sample_peak_dbfs": -3.044328181864833
+      }
+    },
+    "actual_waveform_fits": {},
+    "pitch_comparison": {
+      "Coke_vowel": {
+        "voiced_pairs": 10,
+        "median_absolute_cents": 0.0,
+        "p90_absolute_cents": 0.0,
+        "whole_decoded_crop_bit_identical": true,
+        "decoded_sample_count": 21120,
+        "decoded_dtype": "float64",
+        "accepted_crop_sha256": "81e63cc5e97032145b7a14180412fba4f6dcbcfac65fa3508444d3ad358881a3",
+        "actual_crop_sha256": "81e63cc5e97032145b7a14180412fba4f6dcbcfac65fa3508444d3ad358881a3",
+        "preservation_basis": "whole-decoded-crop-bit-identical"
+      }
+    },
+    "actual_public_piece_ranges": {},
+    "actual_title_A21": {
+      "accepted": {
+        "title_start_seconds": 0.4,
+        "last_audible_5ms_window_end_seconds": 2.505,
+        "method": "existing MP4 AAC decoded24kHz; unchanged original A21 pure functions;9 endpoint/frame-phase settings",
+        "settings": [
+          {
+            "analysis_end_video_seconds": 2.505,
+            "last_release": {
+              "full_peak_db": -30.043465749231135,
+              "hf_above2k_peak_db": -34.244915116948974,
+              "duration_ms": 85,
+              "interval_in_video_seconds": [
+                2.42,
+                2.505
+              ],
+              "closure_min_db": -94.19611773747135,
+              "spectral_centroid_hz": 2422,
+              "periodicity": 0.1510017925734205,
+              "below800hz_peak_db": -35.34457482662221
+            },
+            "previous_release": {
+              "full_peak_db": -27.33769455102047,
+              "hf_above2k_peak_db": -41.863078076346255,
+              "duration_ms": 75,
+              "interval_in_video_seconds": [
+                2.325,
+                2.4
+              ],
+              "closure_min_db": -106.2344961086538,
+              "spectral_centroid_hz": 1313,
+              "periodicity": 0.3797264962003752,
+              "below800hz_peak_db": -42.86425616051038
+            },
+            "double_release": [
+              -27.33769455102047,
+              20.0,
+              75,
+              1313
+            ],
+            "release_meets_original_A21": true
+          },
+          {
+            "analysis_end_video_seconds": 2.5075,
+            "last_release": {
+              "full_peak_db": -29.93119622996607,
+              "hf_above2k_peak_db": -34.41356688360344,
+              "duration_ms": 85,
+              "interval_in_video_seconds": [
+                2.4225,
+                2.5075
+              ],
+              "closure_min_db": -94.0908707731174,
+              "spectral_centroid_hz": 2342,
+              "periodicity": 0.15093168984159389,
+              "below800hz_peak_db": -36.62485188559419
+            },
+            "previous_release": {
+              "full_peak_db": -25.9396673036425,
+              "hf_above2k_peak_db": -40.015911020968,
+              "duration_ms": 80,
+              "interval_in_video_seconds": [
+                2.3225000000000002,
+                2.4025
+              ],
+              "closure_min_db": -105.70583066364418,
+              "spectral_centroid_hz": 1305,
+              "periodicity": 0.37971937293954705,
+              "below800hz_peak_db": -43.7587227933962
+            },
+            "double_release": [
+              -25.9396673036425,
+              20.0,
+              80,
+              1305
+            ],
+            "release_meets_original_A21": true
+          },
+          {
+            "analysis_end_video_seconds": 2.51,
+            "last_release": {
+              "full_peak_db": -30.043465749231135,
+              "hf_above2k_peak_db": -34.244915116948974,
+              "duration_ms": 85,
+              "interval_in_video_seconds": [
+                2.42,
+                2.505
+              ],
+              "closure_min_db": -94.19611773747135,
+              "spectral_centroid_hz": 2422,
+              "periodicity": 0.1510017925734205,
+              "below800hz_peak_db": -35.34457482662221
+            },
+            "previous_release": {
+              "full_peak_db": -27.33769455102047,
+              "hf_above2k_peak_db": -41.863078076346255,
+              "duration_ms": 75,
+              "interval_in_video_seconds": [
+                2.325,
+                2.4
+              ],
+              "closure_min_db": -106.2344961086538,
+              "spectral_centroid_hz": 1313,
+              "periodicity": 0.3797264962003752,
+              "below800hz_peak_db": -42.86425616051038
+            },
+            "double_release": [
+              -27.33769455102047,
+              20.0,
+              75,
+              1313
+            ],
+            "release_meets_original_A21": true
+          },
+          {
+            "analysis_end_video_seconds": 2.5124999999999997,
+            "last_release": {
+              "full_peak_db": -29.93119622996607,
+              "hf_above2k_peak_db": -34.41356688360344,
+              "duration_ms": 85,
+              "interval_in_video_seconds": [
+                2.4225,
+                2.5075
+              ],
+              "closure_min_db": -94.0908707731174,
+              "spectral_centroid_hz": 2342,
+              "periodicity": 0.15093168984159389,
+              "below800hz_peak_db": -36.62485188559419
+            },
+            "previous_release": {
+              "full_peak_db": -25.9396673036425,
+              "hf_above2k_peak_db": -40.015911020968,
+              "duration_ms": 80,
+              "interval_in_video_seconds": [
+                2.3225000000000002,
+                2.4025
+              ],
+              "closure_min_db": -105.70583066364418,
+              "spectral_centroid_hz": 1305,
+              "periodicity": 0.37971937293954705,
+              "below800hz_peak_db": -43.7587227933962
+            },
+            "double_release": [
+              -25.9396673036425,
+              20.0,
+              80,
+              1305
+            ],
+            "release_meets_original_A21": true
+          },
+          {
+            "analysis_end_video_seconds": 2.515,
+            "last_release": {
+              "full_peak_db": -30.043465749231135,
+              "hf_above2k_peak_db": -34.244915116948974,
+              "duration_ms": 85,
+              "interval_in_video_seconds": [
+                2.42,
+                2.505
+              ],
+              "closure_min_db": -94.19611773747135,
+              "spectral_centroid_hz": 2422,
+              "periodicity": 0.1510017925734205,
+              "below800hz_peak_db": -35.34457482662221
+            },
+            "previous_release": {
+              "full_peak_db": -27.33769455102047,
+              "hf_above2k_peak_db": -41.863078076346255,
+              "duration_ms": 75,
+              "interval_in_video_seconds": [
+                2.325,
+                2.4
+              ],
+              "closure_min_db": -106.2344961086538,
+              "spectral_centroid_hz": 1313,
+              "periodicity": 0.3797264962003752,
+              "below800hz_peak_db": -42.86425616051038
+            },
+            "double_release": [
+              -27.33769455102047,
+              20.0,
+              75,
+              1313
+            ],
+            "release_meets_original_A21": true
+          },
+          {
+            "analysis_end_video_seconds": 2.52,
+            "last_release": {
+              "full_peak_db": -30.043465749231135,
+              "hf_above2k_peak_db": -34.244915116948974,
+              "duration_ms": 85,
+              "interval_in_video_seconds": [
+                2.42,
+                2.505
+              ],
+              "closure_min_db": -94.19611773747135,
+              "spectral_centroid_hz": 2422,
+              "periodicity": 0.1510017925734205,
+              "below800hz_peak_db": -35.34457482662221
+            },
+            "previous_release": {
+              "full_peak_db": -27.33769455102047,
+              "hf_above2k_peak_db": -41.863078076346255,
+              "duration_ms": 75,
+              "interval_in_video_seconds": [
+                2.325,
+                2.4
+              ],
+              "closure_min_db": -106.2344961086538,
+              "spectral_centroid_hz": 1313,
+              "periodicity": 0.3797264962003752,
+              "below800hz_peak_db": -42.86425616051038
+            },
+            "double_release": [
+              -27.33769455102047,
+              20.0,
+              75,
+              1313
+            ],
+            "release_meets_original_A21": true
+          },
+          {
+            "analysis_end_video_seconds": 2.525,
+            "last_release": {
+              "full_peak_db": -30.043465749231135,
+              "hf_above2k_peak_db": -34.244915116948974,
+              "duration_ms": 85,
+              "interval_in_video_seconds": [
+                2.42,
+                2.505
+              ],
+              "closure_min_db": -94.19611773747135,
+              "spectral_centroid_hz": 2422,
+              "periodicity": 0.1510017925734205,
+              "below800hz_peak_db": -35.34457482662221
+            },
+            "previous_release": {
+              "full_peak_db": -27.33769455102047,
+              "hf_above2k_peak_db": -41.863078076346255,
+              "duration_ms": 75,
+              "interval_in_video_seconds": [
+                2.325,
+                2.4
+              ],
+              "closure_min_db": -106.2344961086538,
+              "spectral_centroid_hz": 1313,
+              "periodicity": 0.3797264962003752,
+              "below800hz_peak_db": -42.86425616051038
+            },
+            "double_release": [
+              -27.33769455102047,
+              20.0,
+              75,
+              1313
+            ],
+            "release_meets_original_A21": true
+          },
+          {
+            "analysis_end_video_seconds": 2.53,
+            "last_release": {
+              "full_peak_db": -30.043465749231135,
+              "hf_above2k_peak_db": -34.244915116948974,
+              "duration_ms": 85,
+              "interval_in_video_seconds": [
+                2.42,
+                2.505
+              ],
+              "closure_min_db": -94.19611773747135,
+              "spectral_centroid_hz": 2422,
+              "periodicity": 0.1510017925734205,
+              "below800hz_peak_db": -35.34457482662221
+            },
+            "previous_release": {
+              "full_peak_db": -27.33769455102047,
+              "hf_above2k_peak_db": -41.863078076346255,
+              "duration_ms": 75,
+              "interval_in_video_seconds": [
+                2.325,
+                2.4
+              ],
+              "closure_min_db": -106.2344961086538,
+              "spectral_centroid_hz": 1313,
+              "periodicity": 0.3797264962003752,
+              "below800hz_peak_db": -42.86425616051038
+            },
+            "double_release": [
+              -27.33769455102047,
+              20.0,
+              75,
+              1313
+            ],
+            "release_meets_original_A21": true
+          },
+          {
+            "analysis_end_video_seconds": 2.5349999999999997,
+            "last_release": {
+              "full_peak_db": -30.043465749231135,
+              "hf_above2k_peak_db": -34.244915116948974,
+              "duration_ms": 85,
+              "interval_in_video_seconds": [
+                2.42,
+                2.505
+              ],
+              "closure_min_db": -94.19611773747135,
+              "spectral_centroid_hz": 2422,
+              "periodicity": 0.1510017925734205,
+              "below800hz_peak_db": -35.34457482662221
+            },
+            "previous_release": {
+              "full_peak_db": -27.33769455102047,
+              "hf_above2k_peak_db": -41.863078076346255,
+              "duration_ms": 75,
+              "interval_in_video_seconds": [
+                2.325,
+                2.4
+              ],
+              "closure_min_db": -106.2344961086538,
+              "spectral_centroid_hz": 1313,
+              "periodicity": 0.3797264962003752,
+              "below800hz_peak_db": -42.86425616051038
+            },
+            "double_release": [
+              -27.33769455102047,
+              20.0,
+              75,
+              1313
+            ],
+            "release_meets_original_A21": true
+          }
+        ],
+        "has_double_release_all_settings": true,
+        "has_double_release_any_setting": true,
+        "release_passes_all_settings": true
+      },
+      "actual_canonical": {
+        "title_start_seconds": 0.4,
+        "last_audible_5ms_window_end_seconds": 2.4050000000000002,
+        "method": "existing MP4 AAC decoded24kHz; unchanged original A21 pure functions;9 endpoint/frame-phase settings",
+        "settings": [
+          {
+            "analysis_end_video_seconds": 2.405,
+            "last_release": {
+              "full_peak_db": -20.619261443240173,
+              "hf_above2k_peak_db": -34.888575655845464,
+              "duration_ms": 80,
+              "interval_in_video_seconds": [
+                2.325,
+                2.405
+              ],
+              "closure_min_db": -105.94249964095599,
+              "spectral_centroid_hz": 1311,
+              "periodicity": 0.34756695299987467,
+              "below800hz_peak_db": -35.32618854600109
+            },
+            "previous_release": null,
+            "double_release": null,
+            "release_meets_original_A21": true
+          },
+          {
+            "analysis_end_video_seconds": 2.4074999999999998,
+            "last_release": {
+              "full_peak_db": -19.359237347376585,
+              "hf_above2k_peak_db": -32.91542120299703,
+              "duration_ms": 85,
+              "interval_in_video_seconds": [
+                2.3225000000000002,
+                2.4074999999999998
+              ],
+              "closure_min_db": -105.46866762124834,
+              "spectral_centroid_hz": 1305,
+              "periodicity": 0.3475729835941018,
+              "below800hz_peak_db": -36.23051946714391
+            },
+            "previous_release": null,
+            "double_release": null,
+            "release_meets_original_A21": true
+          },
+          {
+            "analysis_end_video_seconds": 2.4099999999999997,
+            "last_release": {
+              "full_peak_db": -20.619261443240173,
+              "hf_above2k_peak_db": -34.888575655845464,
+              "duration_ms": 80,
+              "interval_in_video_seconds": [
+                2.325,
+                2.405
+              ],
+              "closure_min_db": -105.94249964095599,
+              "spectral_centroid_hz": 1311,
+              "periodicity": 0.34756695299987467,
+              "below800hz_peak_db": -35.32618854600109
+            },
+            "previous_release": null,
+            "double_release": null,
+            "release_meets_original_A21": true
+          },
+          {
+            "analysis_end_video_seconds": 2.4125,
+            "last_release": {
+              "full_peak_db": -19.359237347376585,
+              "hf_above2k_peak_db": -32.91542120299703,
+              "duration_ms": 85,
+              "interval_in_video_seconds": [
+                2.3225000000000002,
+                2.4074999999999998
+              ],
+              "closure_min_db": -105.46866762124834,
+              "spectral_centroid_hz": 1305,
+              "periodicity": 0.3475729835941018,
+              "below800hz_peak_db": -36.23051946714391
+            },
+            "previous_release": null,
+            "double_release": null,
+            "release_meets_original_A21": true
+          },
+          {
+            "analysis_end_video_seconds": 2.415,
+            "last_release": {
+              "full_peak_db": -20.619261443240173,
+              "hf_above2k_peak_db": -34.888575655845464,
+              "duration_ms": 80,
+              "interval_in_video_seconds": [
+                2.325,
+                2.405
+              ],
+              "closure_min_db": -105.94249964095599,
+              "spectral_centroid_hz": 1311,
+              "periodicity": 0.34756695299987467,
+              "below800hz_peak_db": -35.32618854600109
+            },
+            "previous_release": null,
+            "double_release": null,
+            "release_meets_original_A21": true
+          },
+          {
+            "analysis_end_video_seconds": 2.42,
+            "last_release": {
+              "full_peak_db": -20.619261443240173,
+              "hf_above2k_peak_db": -34.888575655845464,
+              "duration_ms": 80,
+              "interval_in_video_seconds": [
+                2.325,
+                2.405
+              ],
+              "closure_min_db": -105.94249964095599,
+              "spectral_centroid_hz": 1311,
+              "periodicity": 0.34756695299987467,
+              "below800hz_peak_db": -35.32618854600109
+            },
+            "previous_release": null,
+            "double_release": null,
+            "release_meets_original_A21": true
+          },
+          {
+            "analysis_end_video_seconds": 2.425,
+            "last_release": {
+              "full_peak_db": -20.619261443240173,
+              "hf_above2k_peak_db": -34.888575655845464,
+              "duration_ms": 80,
+              "interval_in_video_seconds": [
+                2.325,
+                2.405
+              ],
+              "closure_min_db": -105.94249964095599,
+              "spectral_centroid_hz": 1311,
+              "periodicity": 0.34756695299987467,
+              "below800hz_peak_db": -35.32618854600109
+            },
+            "previous_release": null,
+            "double_release": null,
+            "release_meets_original_A21": true
+          },
+          {
+            "analysis_end_video_seconds": 2.4299999999999997,
+            "last_release": {
+              "full_peak_db": -20.619261443240173,
+              "hf_above2k_peak_db": -34.888575655845464,
+              "duration_ms": 80,
+              "interval_in_video_seconds": [
+                2.325,
+                2.405
+              ],
+              "closure_min_db": -105.94249964095599,
+              "spectral_centroid_hz": 1311,
+              "periodicity": 0.34756695299987467,
+              "below800hz_peak_db": -35.32618854600109
+            },
+            "previous_release": null,
+            "double_release": null,
+            "release_meets_original_A21": true
+          },
+          {
+            "analysis_end_video_seconds": 2.435,
+            "last_release": {
+              "full_peak_db": -20.619261443240173,
+              "hf_above2k_peak_db": -34.888575655845464,
+              "duration_ms": 80,
+              "interval_in_video_seconds": [
+                2.325,
+                2.405
+              ],
+              "closure_min_db": -105.94249964095599,
+              "spectral_centroid_hz": 1311,
+              "periodicity": 0.34756695299987467,
+              "below800hz_peak_db": -35.32618854600109
+            },
+            "previous_release": null,
+            "double_release": null,
+            "release_meets_original_A21": true
+          }
+        ],
+        "has_double_release_all_settings": false,
+        "has_double_release_any_setting": false,
+        "release_passes_all_settings": true
+      },
+      "actual_voice_endpoint_shift_s": -0.09999999999999964
+    },
+    "checks": [
+      {
+        "name": "accepted-public-source-sha256",
+        "passed": true
+      },
+      {
+        "name": "actual-accepted-legacy-duplicate-confirmed",
+        "passed": true
+      },
+      {
+        "name": "actual-canonical-original-A21-passes-all-settings",
+        "passed": true
+      },
+      {
+        "name": "title-removal-duration-shift-only",
+        "passed": true,
+        "duration_delta_s": -0.10666666666666667,
+        "body_shift_s": -0.105,
+        "voice_endpoint_shift_s": -0.09999999999999964
+      },
+      {
+        "name": "unchanged-title-prefix-and-constant-body-timing",
+        "passed": true,
+        "title_prefix_lag_samples": 0,
+        "body_lags_samples": [
+          -5040,
+          -5040,
+          -5040
+        ]
+      },
+      {
+        "name": "actual-title-before-controlled-k-is-unchanged",
+        "passed": true,
+        "gain_db": 1.928654933106574e-15,
+        "correlation": 1.0,
+        "gain_compensated_residual_snr_db": 181.64467361749945
+      },
+      {
+        "name": "actual-original-audio-format",
+        "passed": true,
+        "actual": {
+          "sample_rate": "48000",
+          "channels": 1
+        }
+      },
+      {
+        "name": "actual-no-digital-clipping-or-nonfinite",
+        "passed": true,
+        "sample_peak_dbfs": -0.45616847392112053
+      },
+      {
+        "name": "actual-true-peak-below-zero",
+        "passed": true,
+        "measured_dbtp": -0.5
+      },
+      {
+        "name": "whole-track-level-preserved",
+        "passed": true,
+        "accepted": {
+          "integrated_lufs": -22.7,
+          "true_peak_dbtp": -0.4,
+          "lra_lu": 3.0
+        },
+        "actual": {
+          "integrated_lufs": -22.6,
+          "true_peak_dbtp": -0.5,
+          "lra_lu": 3.0
+        }
+      },
+      {
+        "name": "outside-approved-ranges-same-voice-timing-gain",
+        "passed": true,
+        "gain_db": 4.670318129403267e-05,
+        "correlation": 0.9999748880855955,
+        "gain_compensated_residual_snr_db": 42.99073823625009,
+        "p95_absolute_frame_gain_db": 0.054460346468596654
+      },
+      {
+        "name": "every-untouched-active-one-second-block-preserved",
+        "passed": true,
+        "checked_blocks": 132,
+        "failed_blocks": []
+      },
+      {
+        "name": "no-new-click-or-noise-in-modified-pauses",
+        "passed": true,
+        "maximum_actual_10ms_dbfs": -63.166908618231076
+      },
+      {
+        "name": "requested-control:/除阻加强/标题/句末",
+        "passed": true,
+        "actual": [
+          1.925,
+          2.0,
+          6.0
+        ],
+        "expected": [
+          1.925,
+          2.0,
+          6.0
+        ]
+      },
+      {
+        "name": "requested-removed-duplicate-control:/词尾除阻/标题/句末",
+        "passed": true
+      },
+      {
+        "name": "actual-production-piece-timings-present",
+        "passed": true
+      },
+      {
+        "name": "actual-pitch-preserved:Coke_vowel",
+        "passed": true,
+        "voiced_pairs": 10,
+        "median_absolute_cents": 0.0,
+        "p90_absolute_cents": 0.0,
+        "whole_decoded_crop_bit_identical": true,
+        "decoded_sample_count": 21120,
+        "decoded_dtype": "float64",
+        "accepted_crop_sha256": "81e63cc5e97032145b7a14180412fba4f6dcbcfac65fa3508444d3ad358881a3",
+        "actual_crop_sha256": "81e63cc5e97032145b7a14180412fba4f6dcbcfac65fa3508444d3ad358881a3",
+        "preservation_basis": "whole-decoded-crop-bit-identical"
+      }
+    ],
+    "public_listening_clips": [
+      "12-Coke-title-final-file-accepted.wav",
+      "12-Coke-title-final-file-actual.wav"
+    ],
+    "subjective_listening": "Public final-file clips saved for root listening; this program does not claim listening acceptance.",
+    "private_caches_or_GT_exported": false
+  },
+  "approved_audio_qc_program_sha256": "3a2bd846386b16bd74e9785c548e97283131efcad9989b9e886f64e86e57c7c6",
+  "accepted_prior_aac_identical": false,
+  "video_sha256": "38dac5383454f2795cf8eb6409fcce3ef7ca618b4e7df5aff898e959c83ac9d4",
+  "width": 3840,
+  "height": 2160,
+  "summary_seconds": 2,
+  "summary_frames": 60,
+  "summary_start_seconds": 143.16666666666666,
+  "delay_after_voice_seconds": 0.6266666666666667,
+  "actual_source_collection": {
+    "article": "12",
+    "kind": "actual-production-source-collection",
+    "new_quality_gate": false,
+    "files": {
+      "request_json": {
+        "file": "12-request-source.json",
+        "sha256": "e3bfbcce6f1a8e14cfe451d656574353321e297c90c62f5a7b422f37478311d5",
+        "origin": "immutable_request"
+      },
+      "request_generator": {
+        "file": "12-request-gen.py",
+        "sha256": "59fd4dea9bc457c18f6b8d4475272dceb4050bee95beb154066e9d707717bf90",
+        "origin": "immutable_request"
+      },
+      "used_generator": {
+        "file": "12-used-gen.py",
+        "sha256": "59fd4dea9bc457c18f6b8d4475272dceb4050bee95beb154066e9d707717bf90",
+        "origin": "actual_production_filesystem"
+      },
+      "actual_working_source": {
+        "file": "12-actual-working-source.json",
+        "sha256": "3c6c0aca64797808a0bc851f990462d7e050bc758953be3eb855471a1b02ef71",
+        "origin": "actual_production_filesystem"
+      },
+      "request_manuscript": {
+        "file": "12-request-manuscript.md",
+        "sha256": "5a23c1e0c81318527bcbf27573487d1845c5318905a2b1e020cc6e2eaf5d643f",
+        "origin": "immutable_request"
+      },
+      "actual_working_manuscript": {
+        "file": "12-actual-working-manuscript.md",
+        "sha256": "704edb584a2cc782b035b258b1a25618345e9a3c61a02ca17d04cf04bda82ebb",
+        "origin": "actual_production_filesystem"
+      }
+    },
+    "generator_execution_observed": false,
+    "generator_execution_evidence": "No fresh generator execution log; do not claim this GEN was executed during rendering.",
+    "source_differences": {
+      "file": "12-actual-source-differences.json",
+      "sha256": "ab17195851722853f5445d09d95ab67b677844fe6669d1a7173fc826bb7d2184"
+    }
+  },
+  "derived_role_alias_only": true,
+  "inherited_actual_passed_V3_handoff_sha256": "96f69fd842aba0f92745b773413b9cbde539d12353eb65b51462c47385ab18b2",
+  "original_raw_status_sha256": "c17151213fcc31ea021d550b15c40d9dbcbb95300b9a710832466c4ef2140078",
+  "preview_only": false,
+  "finalization_authorized": true,
+  "last_body_hold_frames": 18,
+  "last_body_hold_seconds": 0.6,
+  "summary_start_frame": 4295,
+  "postprocessing_only": true,
+  "original_producer_or_TTS_repeated": false,
+  "true_original_native_full_QA_run": 43538347790,
+  "inherited_original_summary_status_sha256": "0f820e5e3a76b1119ce5a7b830cca982714f014b78c09cf2834e08b4ad3abd20",
+  "final_hold_policy_sha256": "4bcae46b68b9584f107966f683af580b474fa9835f101834fe55ed6968dfc36b"
+}
