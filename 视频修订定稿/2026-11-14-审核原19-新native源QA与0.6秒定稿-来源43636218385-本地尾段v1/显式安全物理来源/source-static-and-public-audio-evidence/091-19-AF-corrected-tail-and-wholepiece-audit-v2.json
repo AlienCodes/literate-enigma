@@ -1,0 +1,1760 @@
+{
+  "kind": "source19-user105-corrected-actual-AF-clock-and-original-R-applicability-v2",
+  "source_id": "19",
+  "book_order": "38",
+  "actual_public_MP4_sha256": "fb8828bc717aedb38605b187a85d1ef6676bf8e51504f92a5154fe839c28d6e7",
+  "full_original_AAC_exact_binding": true,
+  "raw_WAV_sha256": "fe5819c52306836749f72d78979a02025c30cf7918fec915a43ac7a6a915d956",
+  "AAC_sha256": "bec515a6e5087e53d90e69671303ab9edf17d49cd66cb6cdbe4b0a534027e547",
+  "retained_prior_report": {
+    "path": "/dev/shm/source19-user105-audio-audit-20261114/19-original-bound-tail-and-wholetrack-audit.json",
+    "sha256": "c74ecaa65287fbc83ed5fa4615d4588686f83581a16d5dd840ff1158cf37c064",
+    "scope_correction": "Its raw-to-processed exact coda and cosine-fade figures and originalwhole health/R metrics remain valid. Its public coda measurement windows/figure annotations and source-span inside flags were not AF-offset calibrated; do not use them as final phonetic or gain-defect decisions."
+  },
+  "actual_AF_delay_calibration": {
+    "delay_samples24k": 600,
+    "delay_seconds": 0.025,
+    "four_actual_crosscorrelations": [
+      {
+        "source_window_s": [
+          18.6,
+          21.5
+        ],
+        "best_lag_samples_24k": 600,
+        "best_lag_seconds": 0.025,
+        "normalized_cross_correlation": 0.8753581538252653
+      },
+      {
+        "source_window_s": [
+          19.5,
+          20.5
+        ],
+        "best_lag_samples_24k": 600,
+        "best_lag_seconds": 0.025,
+        "normalized_cross_correlation": 0.8554366109920414
+      },
+      {
+        "source_window_s": [
+          126.8,
+          129.8
+        ],
+        "best_lag_samples_24k": 600,
+        "best_lag_seconds": 0.025,
+        "normalized_cross_correlation": 0.8886467883438819
+      },
+      {
+        "source_window_s": [
+          3.9,
+          7.0
+        ],
+        "best_lag_samples_24k": 600,
+        "best_lag_seconds": 0.025,
+        "normalized_cross_correlation": 0.9089922246713484
+      }
+    ]
+  },
+  "original_formal_R_source19": {
+    "program_sha256": "2bb89e427ec014a7fc1b4cc46ea6a11f91a786930f91e8cec720e0307940b85b",
+    "formal_invocation": "python3 响度一致性核对.py 19.mp4 --自检 then python3 响度一致性核对.py 19.mp4",
+    "original_delivery_program_sha256": "26e8e213a07747f6fc3654be18d64336011cba59ffd83bf74e4cf4759baf6976",
+    "source19_inside_formal_gate_enabled": false,
+    "reason": "Actual original交付核查.py only enables句内分段响度and8-health gating from source25. Source19audit here is supplemental evidence, not a newly invented formal failure. User109requires whole-audio review so the measured rows remain visible.",
+    "source19_shortpiece_correction_enabled": false,
+    "original_shortpiece_rule": "short bias applies only source>=65 or05/54; source19 is false",
+    "original_auto_level_source>=26_enabled_for19": false,
+    "existing_source_CF_not_renewed": true,
+    "original_R_whole_bad": [],
+    "original_R_whole_summary": "全片 -23.5 LUFS，峰值 -0.6 dBFS，17 句，逐句与全片差 -0.6～+1.7 LU"
+  },
+  "correct_actual_petals_coda_interval_s": [
+    21.8575,
+    21.88
+  ],
+  "correct_actual_petals_fade_interval_s": [
+    21.872,
+    21.88
+  ],
+  "correct_actual_soared_onset_s": 22.28,
+  "actual_public_coda_metrics": {
+    "actual_public_start_s": 21.8575,
+    "actual_public_end_s": 21.88,
+    "duration_s": 0.0224999999999973,
+    "BS1770_fullcrop_LUFS": null,
+    "speechactive10ms_rms_dbfs": -34.28432306478819,
+    "speechactive_fraction": 1.0,
+    "max400ms_LUFS": null,
+    "rms_dbfs": -34.763036805994865,
+    "sample_peak_dbfs": -26.742906338403536
+  },
+  "actual_public_soared_initial60ms_metrics": {
+    "actual_public_start_s": 22.28,
+    "actual_public_end_s": 22.34,
+    "duration_s": 0.05999999999999872,
+    "BS1770_fullcrop_LUFS": null,
+    "speechactive10ms_rms_dbfs": -29.117601959418113,
+    "speechactive_fraction": 1.0,
+    "max400ms_LUFS": null,
+    "rms_dbfs": -29.117601959418113,
+    "sample_peak_dbfs": -17.1020389107774
+  },
+  "actual_public_coda5ms_spectral_rows": [
+    {
+      "actual_public_start_s": 21.85,
+      "actual_public_end_s": 21.855,
+      "rms_dbfs": -33.91436777350614,
+      "centroid_Hz": 134.3471023160616,
+      "below150Hz_power_dB": -1.7623879269189473,
+      "periodicity20ms": 0.4446921291271688
+    },
+    {
+      "actual_public_start_s": 21.852500000000003,
+      "actual_public_end_s": 21.8575,
+      "rms_dbfs": -34.194893523724204,
+      "centroid_Hz": 263.9498380668279,
+      "below150Hz_power_dB": -4.301458262242133,
+      "periodicity20ms": 0.3212138682896326
+    },
+    {
+      "actual_public_start_s": 21.855000000000004,
+      "actual_public_end_s": 21.860000000000003,
+      "rms_dbfs": -33.654259886249285,
+      "centroid_Hz": 156.49781647474754,
+      "below150Hz_power_dB": -3.2648842569416874,
+      "periodicity20ms": 0.43124221240082483
+    },
+    {
+      "actual_public_start_s": 21.857500000000005,
+      "actual_public_end_s": 21.862500000000004,
+      "rms_dbfs": -32.92171062539292,
+      "centroid_Hz": 610.0309759664079,
+      "below150Hz_power_dB": -2.5658158093467054,
+      "periodicity20ms": 0.3846219414629603
+    },
+    {
+      "actual_public_start_s": 21.860000000000007,
+      "actual_public_end_s": 21.865000000000006,
+      "rms_dbfs": -33.16727453927142,
+      "centroid_Hz": 1550.5123847465045,
+      "below150Hz_power_dB": -2.5158256992156875,
+      "periodicity20ms": 0.4273088499573138
+    },
+    {
+      "actual_public_start_s": 21.862500000000008,
+      "actual_public_end_s": 21.867500000000007,
+      "rms_dbfs": -33.7255018752616,
+      "centroid_Hz": 372.5861380042286,
+      "below150Hz_power_dB": -2.977271186795358,
+      "periodicity20ms": 0.40717902888211727
+    },
+    {
+      "actual_public_start_s": 21.86500000000001,
+      "actual_public_end_s": 21.870000000000008,
+      "rms_dbfs": -37.456184256731795,
+      "centroid_Hz": 1206.3978822497588,
+      "below150Hz_power_dB": -2.1903058017728725,
+      "periodicity20ms": 0.35789550580314095
+    },
+    {
+      "actual_public_start_s": 21.86750000000001,
+      "actual_public_end_s": 21.87250000000001,
+      "rms_dbfs": -35.06020589433054,
+      "centroid_Hz": 833.6390632039868,
+      "below150Hz_power_dB": -2.223787108766517,
+      "periodicity20ms": 0.37589181786444203
+    },
+    {
+      "actual_public_start_s": 21.87000000000001,
+      "actual_public_end_s": 21.87500000000001,
+      "rms_dbfs": -34.15101886086176,
+      "centroid_Hz": 2615.6746943126927,
+      "below150Hz_power_dB": -11.969394110891148,
+      "periodicity20ms": 0.3182952674987181
+    },
+    {
+      "actual_public_start_s": 21.872500000000013,
+      "actual_public_end_s": 21.877500000000012,
+      "rms_dbfs": -36.10381954021314,
+      "centroid_Hz": 824.9985415031201,
+      "below150Hz_power_dB": -2.32903903252294,
+      "periodicity20ms": 0.3719700795962072
+    },
+    {
+      "actual_public_start_s": 21.875000000000014,
+      "actual_public_end_s": 21.880000000000013,
+      "rms_dbfs": -42.32806263047764,
+      "centroid_Hz": 2709.3334267564096,
+      "below150Hz_power_dB": -5.946272718285419,
+      "periodicity20ms": 0.29138772882715375
+    },
+    {
+      "actual_public_start_s": 21.877500000000015,
+      "actual_public_end_s": 21.882500000000014,
+      "rms_dbfs": -48.72474742498969,
+      "centroid_Hz": 138.19927416036455,
+      "below150Hz_power_dB": -1.2320437724703848,
+      "periodicity20ms": 0.3087512391355738
+    },
+    {
+      "actual_public_start_s": 21.880000000000017,
+      "actual_public_end_s": 21.885000000000016,
+      "rms_dbfs": -56.52212967110905,
+      "centroid_Hz": 661.3038651745462,
+      "below150Hz_power_dB": -1.8854462715052613,
+      "periodicity20ms": 0.12688553653766832
+    },
+    {
+      "actual_public_start_s": 21.882500000000018,
+      "actual_public_end_s": 21.887500000000017,
+      "rms_dbfs": -66.03695837990682,
+      "centroid_Hz": 2935.9091728448416,
+      "below150Hz_power_dB": -4.949423270987115,
+      "periodicity20ms": 0.0797209397093945
+    },
+    {
+      "actual_public_start_s": 21.88500000000002,
+      "actual_public_end_s": 21.89000000000002,
+      "rms_dbfs": -67.91072153010276,
+      "centroid_Hz": 1297.8278867356055,
+      "below150Hz_power_dB": -2.0232602956327086,
+      "periodicity20ms": 0.05024221017968743
+    }
+  ],
+  "raw_source_coda_full_samples": 540,
+  "raw_source_coda_before_original_fade_samples": 348,
+  "raw_to_processed_prefade_float32_exact": true,
+  "original_cosine_fade192samples_max_abs_error": 0.0,
+  "original_fade8ms_energy_change_dB": -4.534001451816242,
+  "manual_boundary_deleted_samples": 0,
+  "original_complete_all17_actual_punctuation_piece_metrics": [
+    {
+      "sentence": "S1",
+      "text": "In the winter of 1636–37, Dutch merchants and brokers met in taverns to trade contracts for tulip bulbs still in the ground, a speculative business they called windhandel, \"trading in the wind\".",
+      "source_start_s": 3.6999999999999997,
+      "actual_public_start_s": 3.7249999999999996,
+      "actual_public_end_s": 17.49,
+      "source_automatic_level": {},
+      "source_manual_segment_level": null,
+      "pieces": [
+        {
+          "piece": 1,
+          "text": "In the winter of 1636–37,",
+          "actual_public_start_s": 3.7249999999999996,
+          "actual_public_end_s": 6.65,
+          "duration_s": 2.9250000000000007,
+          "BS1770_fullcrop_LUFS": -22.795781316141774,
+          "speechactive10ms_rms_dbfs": -21.618019047191808,
+          "speechactive_fraction": 0.8972602739726028,
+          "max400ms_LUFS": -18.314758917924948,
+          "rms_dbfs": -22.095519463369897,
+          "sample_peak_dbfs": -6.083289474899596
+        },
+        {
+          "piece": 2,
+          "text": "Dutch merchants and brokers met in taverns to trade contracts for tulip bulbs still in the ground,",
+          "actual_public_start_s": 7.029999999999999,
+          "actual_public_end_s": 12.895,
+          "duration_s": 5.865,
+          "BS1770_fullcrop_LUFS": -24.102947120682803,
+          "speechactive10ms_rms_dbfs": -22.906173417969924,
+          "speechactive_fraction": 0.8839590443686007,
+          "max400ms_LUFS": -17.497558198130577,
+          "rms_dbfs": -23.444660620127134,
+          "sample_peak_dbfs": -1.6953460080000418
+        },
+        {
+          "piece": 3,
+          "text": "a speculative business they called windhandel,",
+          "actual_public_start_s": 13.275,
+          "actual_public_end_s": 15.92,
+          "duration_s": 2.6449999999999996,
+          "BS1770_fullcrop_LUFS": -23.688390062989846,
+          "speechactive10ms_rms_dbfs": -22.836477296491612,
+          "speechactive_fraction": 0.8863636363636364,
+          "max400ms_LUFS": -19.91693737857935,
+          "rms_dbfs": -23.367984323616774,
+          "sample_peak_dbfs": -3.958529190267688
+        },
+        {
+          "piece": 4,
+          "text": "\"trading in the wind\".",
+          "actual_public_start_s": 16.3,
+          "actual_public_end_s": 17.49,
+          "duration_s": 1.1899999999999977,
+          "BS1770_fullcrop_LUFS": -24.23658667582191,
+          "speechactive10ms_rms_dbfs": -22.81504811362857,
+          "speechactive_fraction": 0.8487394957983193,
+          "max400ms_LUFS": -21.42811682061425,
+          "rms_dbfs": -23.526356653760942,
+          "sample_peak_dbfs": -4.829744455064505
+        }
+      ]
+    },
+    {
+      "sentence": "S2",
+      "text": "Prices of prized \"broken\" tulips, with streaked petals, soared.",
+      "source_start_s": 18.465,
+      "actual_public_start_s": 18.49,
+      "actual_public_end_s": 22.839999999999996,
+      "source_automatic_level": {},
+      "source_manual_segment_level": null,
+      "pieces": [
+        {
+          "piece": 1,
+          "text": "Prices of prized \"broken\" tulips,",
+          "actual_public_start_s": 18.49,
+          "actual_public_end_s": 20.56,
+          "duration_s": 2.0700000000000003,
+          "BS1770_fullcrop_LUFS": -23.016929752565556,
+          "speechactive10ms_rms_dbfs": -21.656442580226294,
+          "speechactive_fraction": 0.9082125603864735,
+          "max400ms_LUFS": -19.020061836761375,
+          "rms_dbfs": -22.074354175234472,
+          "sample_peak_dbfs": -2.2456462199437417
+        },
+        {
+          "piece": 2,
+          "text": "with streaked petals,",
+          "actual_public_start_s": 20.939999999999998,
+          "actual_public_end_s": 21.88,
+          "duration_s": 0.9400000000000013,
+          "BS1770_fullcrop_LUFS": -23.050738220614395,
+          "speechactive10ms_rms_dbfs": -22.262694275260042,
+          "speechactive_fraction": 0.8191489361702128,
+          "max400ms_LUFS": -21.794958001238363,
+          "rms_dbfs": -23.128508328268822,
+          "sample_peak_dbfs": -7.438217196409701
+        },
+        {
+          "piece": 3,
+          "text": "soared.",
+          "actual_public_start_s": 22.279999999999998,
+          "actual_public_end_s": 22.839999999999996,
+          "duration_s": 0.5599999999999987,
+          "BS1770_fullcrop_LUFS": -25.34630766644626,
+          "speechactive10ms_rms_dbfs": -24.507102170137177,
+          "speechactive_fraction": 0.7857142857142857,
+          "max400ms_LUFS": -24.0227003468495,
+          "rms_dbfs": -25.55067650133171,
+          "sample_peak_dbfs": -10.936782641245147
+        }
+      ]
+    },
+    {
+      "sentence": "S3",
+      "text": "In early February 1637, at a sale in Haarlem, the hub of the trade, no one would bid.",
+      "source_start_s": 24.015,
+      "actual_public_start_s": 24.04,
+      "actual_public_end_s": 31.445,
+      "source_automatic_level": {},
+      "source_manual_segment_level": null,
+      "pieces": [
+        {
+          "piece": 1,
+          "text": "In early February 1637,",
+          "actual_public_start_s": 24.04,
+          "actual_public_end_s": 26.55,
+          "duration_s": 2.5100000000000016,
+          "BS1770_fullcrop_LUFS": -23.478632258821204,
+          "speechactive10ms_rms_dbfs": -22.53763993315824,
+          "speechactive_fraction": 0.8804780876494024,
+          "max400ms_LUFS": -19.663115545342336,
+          "rms_dbfs": -23.08993731451227,
+          "sample_peak_dbfs": -5.625722522964239
+        },
+        {
+          "piece": 2,
+          "text": "at a sale in Haarlem,",
+          "actual_public_start_s": 26.93,
+          "actual_public_end_s": 28.41,
+          "duration_s": 1.4800000000000004,
+          "BS1770_fullcrop_LUFS": -21.84559724265434,
+          "speechactive10ms_rms_dbfs": -21.671226045656763,
+          "speechactive_fraction": 0.9594594594594594,
+          "max400ms_LUFS": -20.21387240810022,
+          "rms_dbfs": -21.850779179812754,
+          "sample_peak_dbfs": -3.611018671157628
+        },
+        {
+          "piece": 3,
+          "text": "the hub of the trade,",
+          "actual_public_start_s": 28.79,
+          "actual_public_end_s": 29.904999999999998,
+          "duration_s": 1.1149999999999984,
+          "BS1770_fullcrop_LUFS": -25.356859714840574,
+          "speechactive10ms_rms_dbfs": -24.961012028038777,
+          "speechactive_fraction": 0.9009009009009009,
+          "max400ms_LUFS": -24.408691791648046,
+          "rms_dbfs": -25.4331352933275,
+          "sample_peak_dbfs": -6.3107170098442555
+        },
+        {
+          "piece": 4,
+          "text": "no one would bid.",
+          "actual_public_start_s": 30.285,
+          "actual_public_end_s": 31.445,
+          "duration_s": 1.1600000000000001,
+          "BS1770_fullcrop_LUFS": -23.60590525008403,
+          "speechactive10ms_rms_dbfs": -21.771700834946888,
+          "speechactive_fraction": 0.8189655172413793,
+          "max400ms_LUFS": -20.314973712435172,
+          "rms_dbfs": -22.637784966067272,
+          "sample_peak_dbfs": -6.558477427996695
+        }
+      ]
+    },
+    {
+      "sentence": "S4",
+      "text": "Days later, at an auction in Alkmaar, one bulb still fetched 5,200 guilders, the Dutch currency of the day, more than a decade's wages for a skilled craftsman.",
+      "source_start_s": 32.419999999999995,
+      "actual_public_start_s": 32.44499999999999,
+      "actual_public_end_s": 44.81999999999999,
+      "source_automatic_level": {},
+      "source_manual_segment_level": null,
+      "pieces": [
+        {
+          "piece": 1,
+          "text": "Days later,",
+          "actual_public_start_s": 32.44499999999999,
+          "actual_public_end_s": 33.23,
+          "duration_s": 0.7850000000000037,
+          "BS1770_fullcrop_LUFS": -20.239740565705315,
+          "speechactive10ms_rms_dbfs": -19.56601623720836,
+          "speechactive_fraction": 0.9615384615384616,
+          "max400ms_LUFS": -18.702113723107875,
+          "rms_dbfs": -19.763988523822192,
+          "sample_peak_dbfs": -6.945346868767494
+        },
+        {
+          "piece": 2,
+          "text": "at an auction in Alkmaar,",
+          "actual_public_start_s": 33.629999999999995,
+          "actual_public_end_s": 35.24999999999999,
+          "duration_s": 1.6199999999999974,
+          "BS1770_fullcrop_LUFS": -22.252553805710043,
+          "speechactive10ms_rms_dbfs": -21.608291945943723,
+          "speechactive_fraction": 0.8024691358024691,
+          "max400ms_LUFS": -19.336926549285923,
+          "rms_dbfs": -22.563466434463535,
+          "sample_peak_dbfs": -5.271134044272414
+        },
+        {
+          "piece": 3,
+          "text": "one bulb still fetched 5,200 guilders,",
+          "actual_public_start_s": 35.629999999999995,
+          "actual_public_end_s": 39.26,
+          "duration_s": 3.6300000000000026,
+          "BS1770_fullcrop_LUFS": -23.12246962104971,
+          "speechactive10ms_rms_dbfs": -21.99416990440308,
+          "speechactive_fraction": 0.8870523415977961,
+          "max400ms_LUFS": -17.05336788992765,
+          "rms_dbfs": -22.51380772316917,
+          "sample_peak_dbfs": -4.2550806230530815
+        },
+        {
+          "piece": 4,
+          "text": "the Dutch currency of the day,",
+          "actual_public_start_s": 39.63999999999999,
+          "actual_public_end_s": 41.285,
+          "duration_s": 1.6450000000000031,
+          "BS1770_fullcrop_LUFS": -23.030506794330318,
+          "speechactive10ms_rms_dbfs": -22.367899682940706,
+          "speechactive_fraction": 0.8841463414634146,
+          "max400ms_LUFS": -20.624523902379682,
+          "rms_dbfs": -22.9154561250715,
+          "sample_peak_dbfs": -4.528553628861029
+        },
+        {
+          "piece": 5,
+          "text": "more than a decade's wages for a skilled craftsman.",
+          "actual_public_start_s": 41.66499999999999,
+          "actual_public_end_s": 44.81999999999999,
+          "duration_s": 3.155000000000001,
+          "BS1770_fullcrop_LUFS": -24.739153046406194,
+          "speechactive10ms_rms_dbfs": -23.53315822158902,
+          "speechactive_fraction": 0.8761904761904762,
+          "max400ms_LUFS": -19.11254594431043,
+          "rms_dbfs": -24.113070783778955,
+          "sample_peak_dbfs": -6.806318261124956
+        }
+      ]
+    },
+    {
+      "sentence": "S5",
+      "text": "But the frenzy was over.",
+      "source_start_s": 45.794999999999995,
+      "actual_public_start_s": 45.81999999999999,
+      "actual_public_end_s": 47.24999999999999,
+      "source_automatic_level": {},
+      "source_manual_segment_level": null,
+      "pieces": [
+        {
+          "piece": 1,
+          "text": "But the frenzy was over.",
+          "actual_public_start_s": 45.81999999999999,
+          "actual_public_end_s": 47.24999999999999,
+          "duration_s": 1.4299999999999997,
+          "BS1770_fullcrop_LUFS": -21.796393685178327,
+          "speechactive10ms_rms_dbfs": -21.605626620407584,
+          "speechactive_fraction": 0.9090909090909091,
+          "max400ms_LUFS": -19.176429512006717,
+          "rms_dbfs": -22.018892858990885,
+          "sample_peak_dbfs": -3.611351345661608
+        }
+      ]
+    },
+    {
+      "sentence": "S6",
+      "text": "Prices collapsed, many buyers defaulted, and unsettled contracts piled up.",
+      "source_start_s": 48.224999999999994,
+      "actual_public_start_s": 48.24999999999999,
+      "actual_public_end_s": 53.35999999999999,
+      "source_automatic_level": {},
+      "source_manual_segment_level": null,
+      "pieces": [
+        {
+          "piece": 1,
+          "text": "Prices collapsed,",
+          "actual_public_start_s": 48.24999999999999,
+          "actual_public_end_s": 49.35999999999999,
+          "duration_s": 1.1099999999999994,
+          "BS1770_fullcrop_LUFS": -22.788667013357685,
+          "speechactive10ms_rms_dbfs": -21.65648441791173,
+          "speechactive_fraction": 0.8108108108108109,
+          "max400ms_LUFS": -20.071444220869736,
+          "rms_dbfs": -22.56638795769842,
+          "sample_peak_dbfs": -4.172345549716564
+        },
+        {
+          "piece": 2,
+          "text": "many buyers defaulted,",
+          "actual_public_start_s": 49.53999999999999,
+          "actual_public_end_s": 50.95499999999999,
+          "duration_s": 1.4149999999999991,
+          "BS1770_fullcrop_LUFS": -22.688620230348036,
+          "speechactive10ms_rms_dbfs": -21.52448081842037,
+          "speechactive_fraction": 0.8794326241134752,
+          "max400ms_LUFS": -19.85397368411885,
+          "rms_dbfs": -22.09702873175265,
+          "sample_peak_dbfs": -7.191269783553519
+        },
+        {
+          "piece": 3,
+          "text": "and unsettled contracts piled up.",
+          "actual_public_start_s": 51.13499999999999,
+          "actual_public_end_s": 53.35999999999999,
+          "duration_s": 2.2250000000000014,
+          "BS1770_fullcrop_LUFS": -24.578423780503034,
+          "speechactive10ms_rms_dbfs": -23.367685312667707,
+          "speechactive_fraction": 0.8198198198198198,
+          "max400ms_LUFS": -20.160089251774064,
+          "rms_dbfs": -24.239545844443327,
+          "sample_peak_dbfs": -7.6618409369496465
+        }
+      ]
+    },
+    {
+      "sentence": "S7",
+      "text": "Why the market turned so swiftly is still contested.",
+      "source_start_s": 54.334999999999994,
+      "actual_public_start_s": 54.35999999999999,
+      "actual_public_end_s": 57.42999999999999,
+      "source_automatic_level": {},
+      "source_manual_segment_level": null,
+      "pieces": [
+        {
+          "piece": 1,
+          "text": "Why the market turned so swiftly is still contested.",
+          "actual_public_start_s": 54.35999999999999,
+          "actual_public_end_s": 57.42999999999999,
+          "duration_s": 3.0700000000000003,
+          "BS1770_fullcrop_LUFS": -22.902188961563443,
+          "speechactive10ms_rms_dbfs": -21.466134886775528,
+          "speechactive_fraction": 0.8143322475570033,
+          "max400ms_LUFS": -17.13000353804343,
+          "rms_dbfs": -22.35727955695875,
+          "sample_peak_dbfs": -0.5494717276464183
+        }
+      ]
+    },
+    {
+      "sentence": "S8",
+      "text": "Two centuries later, Charles Mackay, a Scottish journalist, recounted the episode in a book on popular delusions, casting it as national hysteria.",
+      "source_start_s": 58.605,
+      "actual_public_start_s": 58.629999999999995,
+      "actual_public_end_s": 69.495,
+      "source_automatic_level": {},
+      "source_manual_segment_level": null,
+      "pieces": [
+        {
+          "piece": 1,
+          "text": "Two centuries later,",
+          "actual_public_start_s": 58.629999999999995,
+          "actual_public_end_s": 59.87,
+          "duration_s": 1.240000000000002,
+          "BS1770_fullcrop_LUFS": -22.31478984080886,
+          "speechactive10ms_rms_dbfs": -22.337053175994996,
+          "speechactive_fraction": 0.9838709677419355,
+          "max400ms_LUFS": -20.434912629253276,
+          "rms_dbfs": -22.40765331500967,
+          "sample_peak_dbfs": -5.563226604317915
+        },
+        {
+          "piece": 2,
+          "text": "Charles Mackay,",
+          "actual_public_start_s": 60.24999999999999,
+          "actual_public_end_s": 61.42999999999999,
+          "duration_s": 1.1799999999999997,
+          "BS1770_fullcrop_LUFS": -21.401674702688066,
+          "speechactive10ms_rms_dbfs": -20.76762273678241,
+          "speechactive_fraction": 0.9152542372881356,
+          "max400ms_LUFS": -18.588342657788786,
+          "rms_dbfs": -21.152031830567147,
+          "sample_peak_dbfs": -4.357650604748031
+        },
+        {
+          "piece": 3,
+          "text": "a Scottish journalist,",
+          "actual_public_start_s": 61.809999999999995,
+          "actual_public_end_s": 63.224999999999994,
+          "duration_s": 1.4149999999999991,
+          "BS1770_fullcrop_LUFS": -22.581789137163952,
+          "speechactive10ms_rms_dbfs": -22.463334992246423,
+          "speechactive_fraction": 0.8652482269503546,
+          "max400ms_LUFS": -21.084968071484475,
+          "rms_dbfs": -23.106663520583766,
+          "sample_peak_dbfs": -6.4708142683382555
+        },
+        {
+          "piece": 4,
+          "text": "recounted the episode in a book on popular delusions,",
+          "actual_public_start_s": 63.605,
+          "actual_public_end_s": 66.94500000000001,
+          "duration_s": 3.3400000000000105,
+          "BS1770_fullcrop_LUFS": -24.52867324628244,
+          "speechactive10ms_rms_dbfs": -23.359554829404054,
+          "speechactive_fraction": 0.8353293413173652,
+          "max400ms_LUFS": -21.004086124958636,
+          "rms_dbfs": -24.1399317104648,
+          "sample_peak_dbfs": -6.680861417454331
+        },
+        {
+          "piece": 5,
+          "text": "casting it as national hysteria.",
+          "actual_public_start_s": 67.325,
+          "actual_public_end_s": 69.495,
+          "duration_s": 2.1700000000000017,
+          "BS1770_fullcrop_LUFS": -25.7203073786789,
+          "speechactive10ms_rms_dbfs": -24.894128446480718,
+          "speechactive_fraction": 0.8940092165898618,
+          "max400ms_LUFS": -22.31359863315223,
+          "rms_dbfs": -25.37994818719512,
+          "sample_peak_dbfs": -5.56607188705483
+        }
+      ]
+    },
+    {
+      "sentence": "S9",
+      "text": "In his telling, rich and poor gambled, great merchants were reduced almost to begging, and Dutch commerce reeled.",
+      "source_start_s": 70.47,
+      "actual_public_start_s": 70.495,
+      "actual_public_end_s": 78.265,
+      "source_automatic_level": {},
+      "source_manual_segment_level": null,
+      "pieces": [
+        {
+          "piece": 1,
+          "text": "In his telling,",
+          "actual_public_start_s": 70.495,
+          "actual_public_end_s": 71.51525,
+          "duration_s": 1.02024999999999,
+          "BS1770_fullcrop_LUFS": -21.3753092740436,
+          "speechactive10ms_rms_dbfs": -20.758209039968,
+          "speechactive_fraction": 0.9313725490196079,
+          "max400ms_LUFS": -20.425609376339736,
+          "rms_dbfs": -21.067737533844525,
+          "sample_peak_dbfs": -5.368011871068647
+        },
+        {
+          "piece": 2,
+          "text": "rich and poor gambled,",
+          "actual_public_start_s": 71.91525,
+          "actual_public_end_s": 73.305,
+          "duration_s": 1.3897500000000065,
+          "BS1770_fullcrop_LUFS": -23.743985938592786,
+          "speechactive10ms_rms_dbfs": -22.49311437562279,
+          "speechactive_fraction": 0.9057971014492754,
+          "max400ms_LUFS": -20.380323868459914,
+          "rms_dbfs": -22.95295967025174,
+          "sample_peak_dbfs": -6.32932803266533
+        },
+        {
+          "piece": 3,
+          "text": "great merchants were reduced almost to begging,",
+          "actual_public_start_s": 73.685,
+          "actual_public_end_s": 76.33500000000001,
+          "duration_s": 2.6500000000000057,
+          "BS1770_fullcrop_LUFS": -22.61463528417417,
+          "speechactive10ms_rms_dbfs": -21.516407705971655,
+          "speechactive_fraction": 0.8566037735849057,
+          "max400ms_LUFS": -17.5960354066727,
+          "rms_dbfs": -22.187800449743,
+          "sample_peak_dbfs": -1.2490121048838174
+        },
+        {
+          "piece": 4,
+          "text": "and Dutch commerce reeled.",
+          "actual_public_start_s": 76.715,
+          "actual_public_end_s": 78.265,
+          "duration_s": 1.5499999999999972,
+          "BS1770_fullcrop_LUFS": -23.94332193283737,
+          "speechactive10ms_rms_dbfs": -23.31058413021426,
+          "speechactive_fraction": 0.8129032258064516,
+          "max400ms_LUFS": -21.608035497871285,
+          "rms_dbfs": -24.20883740499729,
+          "sample_peak_dbfs": -4.214455157766238
+        }
+      ]
+    },
+    {
+      "sentence": "S10",
+      "text": "His vivid account made tulip mania shorthand for bubbles fuelled by reckless buying.",
+      "source_start_s": 79.24,
+      "actual_public_start_s": 79.265,
+      "actual_public_end_s": 84.72,
+      "source_automatic_level": {},
+      "source_manual_segment_level": null,
+      "pieces": [
+        {
+          "piece": 1,
+          "text": "His vivid account made tulip mania shorthand for bubbles fuelled by reckless buying.",
+          "actual_public_start_s": 79.265,
+          "actual_public_end_s": 84.72,
+          "duration_s": 5.454999999999998,
+          "BS1770_fullcrop_LUFS": -22.845762935764693,
+          "speechactive10ms_rms_dbfs": -21.87322886927212,
+          "speechactive_fraction": 0.8366972477064221,
+          "max400ms_LUFS": -18.126356834642724,
+          "rms_dbfs": -22.650822331217583,
+          "sample_peak_dbfs": -2.5301942395962937
+        }
+      ]
+    },
+    {
+      "sentence": "S11",
+      "text": "Yet the archives tell a smaller story.",
+      "source_start_s": 85.895,
+      "actual_public_start_s": 85.92,
+      "actual_public_end_s": 88.045,
+      "source_automatic_level": {},
+      "source_manual_segment_level": null,
+      "pieces": [
+        {
+          "piece": 1,
+          "text": "Yet the archives tell a smaller story.",
+          "actual_public_start_s": 85.92,
+          "actual_public_end_s": 88.045,
+          "duration_s": 2.125,
+          "BS1770_fullcrop_LUFS": -22.787055784462723,
+          "speechactive10ms_rms_dbfs": -21.82995318691139,
+          "speechactive_fraction": 0.8632075471698113,
+          "max400ms_LUFS": -18.995985457890438,
+          "rms_dbfs": -22.478321873732177,
+          "sample_peak_dbfs": -4.738593206222269
+        }
+      ]
+    },
+    {
+      "sentence": "S12",
+      "text": "Mackay's story relied largely on satirical pamphlets of 1637 that preached against greed.",
+      "source_start_s": 89.02,
+      "actual_public_start_s": 89.045,
+      "actual_public_end_s": 96.16,
+      "source_automatic_level": {},
+      "source_manual_segment_level": null,
+      "pieces": [
+        {
+          "piece": 1,
+          "text": "Mackay's story relied largely on satirical pamphlets of 1637 that preached against greed.",
+          "actual_public_start_s": 89.045,
+          "actual_public_end_s": 96.16,
+          "duration_s": 7.114999999999995,
+          "BS1770_fullcrop_LUFS": -23.667616903012227,
+          "speechactive10ms_rms_dbfs": -22.553730265861876,
+          "speechactive_fraction": 0.8171589310829818,
+          "max400ms_LUFS": -18.977992484537896,
+          "rms_dbfs": -23.432935608989894,
+          "sample_peak_dbfs": -4.6722600336541635
+        }
+      ]
+    },
+    {
+      "sentence": "S13",
+      "text": "Anne Goldgar, a historian at King's College London, scoured Dutch records and counted only a few hundred traders, mostly merchants and craftsmen.",
+      "source_start_s": 97.13499999999999,
+      "actual_public_start_s": 97.16,
+      "actual_public_end_s": 107.795,
+      "source_automatic_level": {},
+      "source_manual_segment_level": null,
+      "pieces": [
+        {
+          "piece": 1,
+          "text": "Anne Goldgar,",
+          "actual_public_start_s": 97.16,
+          "actual_public_end_s": 98.235,
+          "duration_s": 1.0750000000000028,
+          "BS1770_fullcrop_LUFS": -19.307351454187916,
+          "speechactive10ms_rms_dbfs": -18.72210920209438,
+          "speechactive_fraction": 0.9626168224299065,
+          "max400ms_LUFS": -17.06308663849389,
+          "rms_dbfs": -18.90773717522977,
+          "sample_peak_dbfs": -5.511566754968897
+        },
+        {
+          "piece": 2,
+          "text": "a historian at King's College London,",
+          "actual_public_start_s": 98.615,
+          "actual_public_end_s": 101.0,
+          "duration_s": 2.385000000000005,
+          "BS1770_fullcrop_LUFS": -23.90639802080871,
+          "speechactive10ms_rms_dbfs": -23.34145117676868,
+          "speechactive_fraction": 0.8907563025210085,
+          "max400ms_LUFS": -19.660942324122555,
+          "rms_dbfs": -23.852643301512995,
+          "sample_peak_dbfs": -6.098034538873158
+        },
+        {
+          "piece": 3,
+          "text": "scoured Dutch records and counted only a few hundred traders,",
+          "actual_public_start_s": 101.38,
+          "actual_public_end_s": 105.47999999999999,
+          "duration_s": 4.099999999999994,
+          "BS1770_fullcrop_LUFS": -23.97883082978557,
+          "speechactive10ms_rms_dbfs": -22.958317725843564,
+          "speechactive_fraction": 0.8463414634146341,
+          "max400ms_LUFS": -18.868066300925193,
+          "rms_dbfs": -23.682241967518394,
+          "sample_peak_dbfs": -4.941648532821796
+        },
+        {
+          "piece": 4,
+          "text": "mostly merchants and craftsmen.",
+          "actual_public_start_s": 105.86,
+          "actual_public_end_s": 107.795,
+          "duration_s": 1.9350000000000023,
+          "BS1770_fullcrop_LUFS": -24.63986135650154,
+          "speechactive10ms_rms_dbfs": -23.896609546446076,
+          "speechactive_fraction": 0.8652849740932642,
+          "max400ms_LUFS": -21.3771174464396,
+          "rms_dbfs": -24.53463600564461,
+          "sample_peak_dbfs": -6.712358054516124
+        }
+      ]
+    },
+    {
+      "sentence": "S14",
+      "text": "She found no bankruptcy caused by tulips and no measurable harm to the economy.",
+      "source_start_s": 108.77,
+      "actual_public_start_s": 108.795,
+      "actual_public_end_s": 113.92,
+      "source_automatic_level": {},
+      "source_manual_segment_level": null,
+      "pieces": [
+        {
+          "piece": 1,
+          "text": "She found no bankruptcy caused by tulips and no measurable harm to the economy.",
+          "actual_public_start_s": 108.795,
+          "actual_public_end_s": 113.92,
+          "duration_s": 5.125,
+          "BS1770_fullcrop_LUFS": -23.66535473824796,
+          "speechactive10ms_rms_dbfs": -22.594522041603703,
+          "speechactive_fraction": 0.85546875,
+          "max400ms_LUFS": -19.252414905666576,
+          "rms_dbfs": -23.276190714265926,
+          "sample_peak_dbfs": -3.420675772608555
+        }
+      ]
+    },
+    {
+      "sentence": "S15",
+      "text": "Many buyers were later allowed to settle their contracts by paying a small fraction of the price, and few were ruined.",
+      "source_start_s": 114.895,
+      "actual_public_start_s": 114.92,
+      "actual_public_end_s": 122.285,
+      "source_automatic_level": {},
+      "source_manual_segment_level": null,
+      "pieces": [
+        {
+          "piece": 1,
+          "text": "Many buyers were later allowed to settle their contracts by paying a small fraction of the price,",
+          "actual_public_start_s": 114.92,
+          "actual_public_end_s": 120.54,
+          "duration_s": 5.6200000000000045,
+          "BS1770_fullcrop_LUFS": -23.494070008023698,
+          "speechactive10ms_rms_dbfs": -22.564823686141892,
+          "speechactive_fraction": 0.8932384341637011,
+          "max400ms_LUFS": -18.14808464875998,
+          "rms_dbfs": -23.0544784955799,
+          "sample_peak_dbfs": -3.6583770032337015
+        },
+        {
+          "piece": 2,
+          "text": "and few were ruined.",
+          "actual_public_start_s": 120.92,
+          "actual_public_end_s": 122.285,
+          "duration_s": 1.3649999999999949,
+          "BS1770_fullcrop_LUFS": -25.27828022755221,
+          "speechactive10ms_rms_dbfs": -23.323593997700623,
+          "speechactive_fraction": 0.7941176470588235,
+          "max400ms_LUFS": -23.209890941982696,
+          "rms_dbfs": -24.33918028522332,
+          "sample_peak_dbfs": -9.299645352354517
+        }
+      ]
+    },
+    {
+      "sentence": "S16",
+      "text": "The boom was real but fleeting.",
+      "source_start_s": 123.46,
+      "actual_public_start_s": 123.485,
+      "actual_public_end_s": 125.26,
+      "source_automatic_level": {},
+      "source_manual_segment_level": null,
+      "pieces": [
+        {
+          "piece": 1,
+          "text": "The boom was real but fleeting.",
+          "actual_public_start_s": 123.485,
+          "actual_public_end_s": 125.26,
+          "duration_s": 1.7750000000000057,
+          "BS1770_fullcrop_LUFS": -22.7892134703236,
+          "speechactive10ms_rms_dbfs": -21.701433039509183,
+          "speechactive_fraction": 0.9209039548022598,
+          "max400ms_LUFS": -18.80134959805163,
+          "rms_dbfs": -22.071207896810545,
+          "sample_peak_dbfs": -6.04643469880004
+        }
+      ]
+    },
+    {
+      "sentence": "S17",
+      "text": "What spread, and still circulates nearly four centuries on, was the moral: a sermon drawn from those pamphlets and retold by Mackay as history.",
+      "source_start_s": 126.235,
+      "actual_public_start_s": 126.26,
+      "actual_public_end_s": 138.26000000000002,
+      "source_automatic_level": {},
+      "source_manual_segment_level": null,
+      "pieces": [
+        {
+          "piece": 1,
+          "text": "What spread,",
+          "actual_public_start_s": 126.26,
+          "actual_public_end_s": 127.04358333333334,
+          "duration_s": 0.7835833333333397,
+          "BS1770_fullcrop_LUFS": -18.982302770304166,
+          "speechactive10ms_rms_dbfs": -17.777548549089467,
+          "speechactive_fraction": 0.8333333333333334,
+          "max400ms_LUFS": -18.202791209178447,
+          "rms_dbfs": -18.589072103386783,
+          "sample_peak_dbfs": -2.301559621593007
+        },
+        {
+          "piece": 2,
+          "text": "and still circulates nearly four centuries on,",
+          "actual_public_start_s": 127.44358333333334,
+          "actual_public_end_s": 130.445,
+          "duration_s": 3.001416666666657,
+          "BS1770_fullcrop_LUFS": -24.854852424349193,
+          "speechactive10ms_rms_dbfs": -24.474003714562084,
+          "speechactive_fraction": 0.92,
+          "max400ms_LUFS": -21.09090329730577,
+          "rms_dbfs": -24.836962310685124,
+          "sample_peak_dbfs": -7.287552725891841
+        },
+        {
+          "piece": 3,
+          "text": "was the moral:",
+          "actual_public_start_s": 130.82500000000002,
+          "actual_public_end_s": 131.78000000000003,
+          "duration_s": 0.9550000000000125,
+          "BS1770_fullcrop_LUFS": -22.105751072241667,
+          "speechactive10ms_rms_dbfs": -21.484025658119204,
+          "speechactive_fraction": 0.8947368421052632,
+          "max400ms_LUFS": -20.271531497013825,
+          "rms_dbfs": -21.989277959182182,
+          "sample_peak_dbfs": -6.892756969480378
+        },
+        {
+          "piece": 4,
+          "text": "a sermon drawn from those pamphlets and retold by Mackay as history.",
+          "actual_public_start_s": 132.46,
+          "actual_public_end_s": 138.26000000000002,
+          "duration_s": 5.800000000000011,
+          "BS1770_fullcrop_LUFS": -23.81222519313798,
+          "speechactive10ms_rms_dbfs": -23.0330773691899,
+          "speechactive_fraction": 0.8775862068965518,
+          "max400ms_LUFS": -17.722444435928583,
+          "rms_dbfs": -23.599458327249458,
+          "sample_peak_dbfs": -2.704484057398649
+        }
+      ]
+    }
+  ],
+  "corrected_supplemental_original_R_inside_all_rows": [
+    [
+      "S1",
+      1,
+      [
+        3.72,
+        6.640000000000001
+      ],
+      [
+        7.04,
+        12.870000000000001
+      ],
+      -1.2172580495875955
+    ],
+    [
+      "S1",
+      2,
+      [
+        7.04,
+        12.870000000000001
+      ],
+      [
+        13.290000000000001,
+        15.91
+      ],
+      0.4118947419064405
+    ],
+    [
+      "S1",
+      3,
+      [
+        13.290000000000001,
+        15.91
+      ],
+      [
+        16.31,
+        17.490000000000002
+      ],
+      -0.8697475254913485
+    ],
+    [
+      "S2",
+      1,
+      [
+        18.490000000000002,
+        20.54
+      ],
+      [
+        20.95,
+        21.89
+      ],
+      -0.11986852735410025
+    ],
+    [
+      "S2",
+      2,
+      [
+        20.95,
+        21.89
+      ],
+      [
+        22.28,
+        22.84
+      ],
+      -1.6317627430506079
+    ],
+    [
+      "S3",
+      1,
+      [
+        24.04,
+        26.52
+      ],
+      [
+        26.94,
+        28.39
+      ],
+      1.766338414857863
+    ],
+    [
+      "S3",
+      2,
+      [
+        26.94,
+        28.39
+      ],
+      [
+        28.810000000000002,
+        29.88
+      ],
+      -3.6085359805044774
+    ],
+    [
+      "S3",
+      3,
+      [
+        28.810000000000002,
+        29.88
+      ],
+      [
+        30.3,
+        31.44
+      ],
+      1.2949826541718572
+    ],
+    [
+      "S4",
+      1,
+      [
+        32.44,
+        33.22
+      ],
+      [
+        33.64,
+        35.230000000000004
+      ],
+      -1.9727059363875945
+    ],
+    [
+      "S4",
+      2,
+      [
+        33.64,
+        35.230000000000004
+      ],
+      [
+        35.660000000000004,
+        39.24
+      ],
+      -1.2073164809980952
+    ],
+    [
+      "S4",
+      3,
+      [
+        35.660000000000004,
+        39.24
+      ],
+      [
+        39.65,
+        41.25
+      ],
+      0.02738480760012152
+    ],
+    [
+      "S4",
+      4,
+      [
+        39.65,
+        41.25
+      ],
+      [
+        41.69,
+        44.82
+      ],
+      -1.5293906226405518
+    ],
+    [
+      "S8",
+      1,
+      [
+        58.63,
+        59.86
+      ],
+      [
+        60.26,
+        61.410000000000004
+      ],
+      1.112721128248353
+    ],
+    [
+      "S8",
+      2,
+      [
+        60.26,
+        61.410000000000004
+      ],
+      [
+        61.82,
+        63.2
+      ],
+      -1.1335671171560442
+    ],
+    [
+      "S8",
+      3,
+      [
+        61.82,
+        63.2
+      ],
+      [
+        63.65,
+        66.93
+      ],
+      -2.0071072610280076
+    ],
+    [
+      "S8",
+      4,
+      [
+        63.65,
+        66.93
+      ],
+      [
+        67.34,
+        69.5
+      ],
+      -1.249115259244018
+    ],
+    [
+      "S9",
+      1,
+      [
+        70.5,
+        71.51
+      ],
+      [
+        71.92,
+        73.28
+      ],
+      -2.547580299074717
+    ],
+    [
+      "S9",
+      2,
+      [
+        71.92,
+        73.28
+      ],
+      [
+        73.7,
+        76.3
+      ],
+      1.131654246576801
+    ],
+    [
+      "S9",
+      3,
+      [
+        73.7,
+        76.3
+      ],
+      [
+        76.72,
+        78.26
+      ],
+      -1.468711143702393
+    ],
+    [
+      "S13",
+      1,
+      [
+        97.16,
+        98.22
+      ],
+      [
+        98.62,
+        100.97
+      ],
+      -4.910891032739951
+    ],
+    [
+      "S13",
+      2,
+      [
+        98.62,
+        100.97
+      ],
+      [
+        101.39,
+        105.46000000000001
+      ],
+      -0.1337649507235561
+    ],
+    [
+      "S13",
+      3,
+      [
+        101.39,
+        105.46000000000001
+      ],
+      [
+        105.87,
+        107.8
+      ],
+      -0.7891610452353213
+    ],
+    [
+      "S15",
+      1,
+      [
+        114.92,
+        120.53
+      ],
+      [
+        120.93,
+        122.28
+      ],
+      -1.6723872520285177
+    ],
+    [
+      "S17",
+      1,
+      [
+        126.26,
+        127.05
+      ],
+      [
+        127.44,
+        130.43
+      ],
+      -5.849833991172126
+    ],
+    [
+      "S17",
+      2,
+      [
+        127.44,
+        130.43
+      ],
+      [
+        130.84,
+        131.76
+      ],
+      3.135858460146622
+    ],
+    [
+      "S17",
+      3,
+      [
+        130.84,
+        131.76
+      ],
+      [
+        132.47,
+        138.26
+      ],
+      -2.2963257748821313
+    ]
+  ],
+  "corrected_supplemental_original_R_inside_flags": [
+    [
+      "S3",
+      2,
+      [
+        26.94,
+        28.39
+      ],
+      [
+        28.810000000000002,
+        29.88
+      ],
+      -3.6085359805044774
+    ],
+    [
+      "S9",
+      1,
+      [
+        70.5,
+        71.51
+      ],
+      [
+        71.92,
+        73.28
+      ],
+      -2.547580299074717
+    ],
+    [
+      "S13",
+      1,
+      [
+        97.16,
+        98.22
+      ],
+      [
+        98.62,
+        100.97
+      ],
+      -4.910891032739951
+    ],
+    [
+      "S17",
+      1,
+      [
+        126.26,
+        127.05
+      ],
+      [
+        127.44,
+        130.43
+      ],
+      -5.849833991172126
+    ],
+    [
+      "S17",
+      2,
+      [
+        127.44,
+        130.43
+      ],
+      [
+        130.84,
+        131.76
+      ],
+      3.135858460146622
+    ]
+  ],
+  "five_row_detailed_mean_active_max400_comparisons": [
+    {
+      "original_R_tuple": [
+        "S3",
+        2,
+        [
+          26.94,
+          28.39
+        ],
+        [
+          28.810000000000002,
+          29.88
+        ],
+        -3.6085359805044774
+      ],
+      "previous_actual_piece": {
+        "piece": 2,
+        "text": "at a sale in Haarlem,",
+        "actual_public_start_s": 26.93,
+        "actual_public_end_s": 28.41,
+        "duration_s": 1.4800000000000004,
+        "BS1770_fullcrop_LUFS": -21.84559724265434,
+        "speechactive10ms_rms_dbfs": -21.671226045656763,
+        "speechactive_fraction": 0.9594594594594594,
+        "max400ms_LUFS": -20.21387240810022,
+        "rms_dbfs": -21.850779179812754,
+        "sample_peak_dbfs": -3.611018671157628
+      },
+      "next_actual_piece": {
+        "piece": 3,
+        "text": "the hub of the trade,",
+        "actual_public_start_s": 28.79,
+        "actual_public_end_s": 29.904999999999998,
+        "duration_s": 1.1149999999999984,
+        "BS1770_fullcrop_LUFS": -25.356859714840574,
+        "speechactive10ms_rms_dbfs": -24.961012028038777,
+        "speechactive_fraction": 0.9009009009009009,
+        "max400ms_LUFS": -24.408691791648046,
+        "rms_dbfs": -25.4331352933275,
+        "sample_peak_dbfs": -6.3107170098442555
+      },
+      "R_measured_previous_block": {
+        "actual_public_start_s": 26.94,
+        "actual_public_end_s": 28.39,
+        "duration_s": 1.4499999999999993,
+        "BS1770_fullcrop_LUFS": -21.56036487654901,
+        "speechactive10ms_rms_dbfs": -21.671226045656763,
+        "speechactive_fraction": 0.9793103448275862,
+        "max400ms_LUFS": -20.21387240810022,
+        "rms_dbfs": -21.76184401858725,
+        "sample_peak_dbfs": -3.611018671157628
+      },
+      "R_measured_next_block": {
+        "actual_public_start_s": 28.810000000000002,
+        "actual_public_end_s": 29.88,
+        "duration_s": 1.0699999999999967,
+        "BS1770_fullcrop_LUFS": -25.335132174374067,
+        "speechactive10ms_rms_dbfs": -24.961012028038777,
+        "speechactive_fraction": 0.9345794392523364,
+        "max400ms_LUFS": -24.408691791648046,
+        "rms_dbfs": -25.25422953753409,
+        "sample_peak_dbfs": -6.3107170098442555
+      },
+      "original_R_BS1770_previous_block": -21.773929951786155,
+      "original_R_BS1770_next_block": -25.382465932290632,
+      "not_yet_classified_as_defect_or_fixed": true
+    },
+    {
+      "original_R_tuple": [
+        "S9",
+        1,
+        [
+          70.5,
+          71.51
+        ],
+        [
+          71.92,
+          73.28
+        ],
+        -2.547580299074717
+      ],
+      "previous_actual_piece": {
+        "piece": 1,
+        "text": "In his telling,",
+        "actual_public_start_s": 70.495,
+        "actual_public_end_s": 71.51525,
+        "duration_s": 1.02024999999999,
+        "BS1770_fullcrop_LUFS": -21.3753092740436,
+        "speechactive10ms_rms_dbfs": -20.758209039968,
+        "speechactive_fraction": 0.9313725490196079,
+        "max400ms_LUFS": -20.425609376339736,
+        "rms_dbfs": -21.067737533844525,
+        "sample_peak_dbfs": -5.368011871068647
+      },
+      "next_actual_piece": {
+        "piece": 2,
+        "text": "rich and poor gambled,",
+        "actual_public_start_s": 71.91525,
+        "actual_public_end_s": 73.305,
+        "duration_s": 1.3897500000000065,
+        "BS1770_fullcrop_LUFS": -23.743985938592786,
+        "speechactive10ms_rms_dbfs": -22.49311437562279,
+        "speechactive_fraction": 0.9057971014492754,
+        "max400ms_LUFS": -20.380323868459914,
+        "rms_dbfs": -22.95295967025174,
+        "sample_peak_dbfs": -6.32932803266533
+      },
+      "R_measured_previous_block": {
+        "actual_public_start_s": 70.5,
+        "actual_public_end_s": 71.51,
+        "duration_s": 1.0100000000000051,
+        "BS1770_fullcrop_LUFS": -21.401922988966263,
+        "speechactive10ms_rms_dbfs": -20.757969718140057,
+        "speechactive_fraction": 0.9405940594059405,
+        "max400ms_LUFS": -20.405178598978715,
+        "rms_dbfs": -21.023897109994753,
+        "sample_peak_dbfs": -5.368011871068647
+      },
+      "R_measured_next_block": {
+        "actual_public_start_s": 71.92,
+        "actual_public_end_s": 73.28,
+        "duration_s": 1.3599999999999994,
+        "BS1770_fullcrop_LUFS": -23.787315193727846,
+        "speechactive10ms_rms_dbfs": -22.527594905428924,
+        "speechactive_fraction": 0.9264705882352942,
+        "max400ms_LUFS": -20.38584858877814,
+        "rms_dbfs": -22.858988536770642,
+        "sample_peak_dbfs": -6.32932803266533
+      },
+      "original_R_BS1770_previous_block": -21.5399718413135,
+      "original_R_BS1770_next_block": -24.087552140388215,
+      "not_yet_classified_as_defect_or_fixed": true
+    },
+    {
+      "original_R_tuple": [
+        "S13",
+        1,
+        [
+          97.16,
+          98.22
+        ],
+        [
+          98.62,
+          100.97
+        ],
+        -4.910891032739951
+      ],
+      "previous_actual_piece": {
+        "piece": 1,
+        "text": "Anne Goldgar,",
+        "actual_public_start_s": 97.16,
+        "actual_public_end_s": 98.235,
+        "duration_s": 1.0750000000000028,
+        "BS1770_fullcrop_LUFS": -19.307351454187916,
+        "speechactive10ms_rms_dbfs": -18.72210920209438,
+        "speechactive_fraction": 0.9626168224299065,
+        "max400ms_LUFS": -17.06308663849389,
+        "rms_dbfs": -18.90773717522977,
+        "sample_peak_dbfs": -5.511566754968897
+      },
+      "next_actual_piece": {
+        "piece": 2,
+        "text": "a historian at King's College London,",
+        "actual_public_start_s": 98.615,
+        "actual_public_end_s": 101.0,
+        "duration_s": 2.385000000000005,
+        "BS1770_fullcrop_LUFS": -23.90639802080871,
+        "speechactive10ms_rms_dbfs": -23.34145117676868,
+        "speechactive_fraction": 0.8907563025210085,
+        "max400ms_LUFS": -19.660942324122555,
+        "rms_dbfs": -23.852643301512995,
+        "sample_peak_dbfs": -6.098034538873158
+      },
+      "R_measured_previous_block": {
+        "actual_public_start_s": 97.16,
+        "actual_public_end_s": 98.22,
+        "duration_s": 1.0600000000000023,
+        "BS1770_fullcrop_LUFS": -19.307351547772516,
+        "speechactive10ms_rms_dbfs": -18.72210920209438,
+        "speechactive_fraction": 0.9716981132075472,
+        "max400ms_LUFS": -17.06308663849389,
+        "rms_dbfs": -18.846711440600586,
+        "sample_peak_dbfs": -5.511566754968897
+      },
+      "R_measured_next_block": {
+        "actual_public_start_s": 98.62,
+        "actual_public_end_s": 100.97,
+        "duration_s": 2.3499999999999943,
+        "BS1770_fullcrop_LUFS": -23.915509582974114,
+        "speechactive10ms_rms_dbfs": -23.341424510677204,
+        "speechactive_fraction": 0.902127659574468,
+        "max400ms_LUFS": -19.623267921405073,
+        "rms_dbfs": -23.788443155670095,
+        "sample_peak_dbfs": -6.098034538873158
+      },
+      "original_R_BS1770_previous_block": -18.947182532593175,
+      "original_R_BS1770_next_block": -23.858073565333125,
+      "not_yet_classified_as_defect_or_fixed": true
+    },
+    {
+      "original_R_tuple": [
+        "S17",
+        1,
+        [
+          126.26,
+          127.05
+        ],
+        [
+          127.44,
+          130.43
+        ],
+        -5.849833991172126
+      ],
+      "previous_actual_piece": {
+        "piece": 1,
+        "text": "What spread,",
+        "actual_public_start_s": 126.26,
+        "actual_public_end_s": 127.04358333333334,
+        "duration_s": 0.7835833333333397,
+        "BS1770_fullcrop_LUFS": -18.982302770304166,
+        "speechactive10ms_rms_dbfs": -17.777548549089467,
+        "speechactive_fraction": 0.8333333333333334,
+        "max400ms_LUFS": -18.202791209178447,
+        "rms_dbfs": -18.589072103386783,
+        "sample_peak_dbfs": -2.301559621593007
+      },
+      "next_actual_piece": {
+        "piece": 2,
+        "text": "and still circulates nearly four centuries on,",
+        "actual_public_start_s": 127.44358333333334,
+        "actual_public_end_s": 130.445,
+        "duration_s": 3.001416666666657,
+        "BS1770_fullcrop_LUFS": -24.854852424349193,
+        "speechactive10ms_rms_dbfs": -24.474003714562084,
+        "speechactive_fraction": 0.92,
+        "max400ms_LUFS": -21.09090329730577,
+        "rms_dbfs": -24.836962310685124,
+        "sample_peak_dbfs": -7.287552725891841
+      },
+      "R_measured_previous_block": {
+        "actual_public_start_s": 126.26,
+        "actual_public_end_s": 127.05,
+        "duration_s": 0.789999999999992,
+        "BS1770_fullcrop_LUFS": -18.98230094885013,
+        "speechactive10ms_rms_dbfs": -17.777548549089467,
+        "speechactive_fraction": 0.8227848101265823,
+        "max400ms_LUFS": -18.202791209178447,
+        "rms_dbfs": -18.624490701731162,
+        "sample_peak_dbfs": -2.301559621593007
+      },
+      "R_measured_next_block": {
+        "actual_public_start_s": 127.44,
+        "actual_public_end_s": 130.43,
+        "duration_s": 2.990000000000009,
+        "BS1770_fullcrop_LUFS": -24.8584241177583,
+        "speechactive10ms_rms_dbfs": -24.473819440182744,
+        "speechactive_fraction": 0.9230769230769231,
+        "max400ms_LUFS": -21.057375840904914,
+        "rms_dbfs": -24.820412420559634,
+        "sample_peak_dbfs": -7.287552725891841
+      },
+      "original_R_BS1770_previous_block": -18.95193981625995,
+      "original_R_BS1770_next_block": -24.801773807432077,
+      "not_yet_classified_as_defect_or_fixed": true
+    },
+    {
+      "original_R_tuple": [
+        "S17",
+        2,
+        [
+          127.44,
+          130.43
+        ],
+        [
+          130.84,
+          131.76
+        ],
+        3.135858460146622
+      ],
+      "previous_actual_piece": {
+        "piece": 2,
+        "text": "and still circulates nearly four centuries on,",
+        "actual_public_start_s": 127.44358333333334,
+        "actual_public_end_s": 130.445,
+        "duration_s": 3.001416666666657,
+        "BS1770_fullcrop_LUFS": -24.854852424349193,
+        "speechactive10ms_rms_dbfs": -24.474003714562084,
+        "speechactive_fraction": 0.92,
+        "max400ms_LUFS": -21.09090329730577,
+        "rms_dbfs": -24.836962310685124,
+        "sample_peak_dbfs": -7.287552725891841
+      },
+      "next_actual_piece": {
+        "piece": 3,
+        "text": "was the moral:",
+        "actual_public_start_s": 130.82500000000002,
+        "actual_public_end_s": 131.78000000000003,
+        "duration_s": 0.9550000000000125,
+        "BS1770_fullcrop_LUFS": -22.105751072241667,
+        "speechactive10ms_rms_dbfs": -21.484025658119204,
+        "speechactive_fraction": 0.8947368421052632,
+        "max400ms_LUFS": -20.271531497013825,
+        "rms_dbfs": -21.989277959182182,
+        "sample_peak_dbfs": -6.892756969480378
+      },
+      "R_measured_previous_block": {
+        "actual_public_start_s": 127.44,
+        "actual_public_end_s": 130.43,
+        "duration_s": 2.990000000000009,
+        "BS1770_fullcrop_LUFS": -24.8584241177583,
+        "speechactive10ms_rms_dbfs": -24.473819440182744,
+        "speechactive_fraction": 0.9230769230769231,
+        "max400ms_LUFS": -21.057375840904914,
+        "rms_dbfs": -24.820412420559634,
+        "sample_peak_dbfs": -7.287552725891841
+      },
+      "R_measured_next_block": {
+        "actual_public_start_s": 130.84,
+        "actual_public_end_s": 131.76,
+        "duration_s": 0.9199999999999875,
+        "BS1770_fullcrop_LUFS": -21.670492875637734,
+        "speechactive10ms_rms_dbfs": -21.48396513854941,
+        "speechactive_fraction": 0.9239130434782609,
+        "max400ms_LUFS": -20.279574390552835,
+        "rms_dbfs": -21.82713033842639,
+        "sample_peak_dbfs": -6.892756969480378
+      },
+      "original_R_BS1770_previous_block": -24.801773807432077,
+      "original_R_BS1770_next_block": -21.665915347285456,
+      "not_yet_classified_as_defect_or_fixed": true
+    }
+  ],
+  "public_only_evidence": [
+    {
+      "path": "/dev/shm/source19-user105-audio-audit-20261114/public-evidence-v2/19-petals-soared-actual-public-AF-corrected-waveform-spectrum.png",
+      "bytes": 882776,
+      "sha256": "25ab1a4141b4128dd6a0ebe3ab08b913cec6a5dfb5474a85a66224146f6ef7d1",
+      "origin": "Actual accepted public MP4 decoded only, never private raw/reference/cache audio"
+    },
+    {
+      "path": "/dev/shm/source19-user105-audio-audit-20261114/public-evidence-v2/19-petals-soared-AF-calibrated-public-context.wav",
+      "bytes": 96078,
+      "sha256": "967b8ecf674cda2fa9395e5c346e987b9aa43320252bb8331fab016a796ca850",
+      "origin": "Actual accepted public MP4 decoded only, never private raw/reference/cache audio"
+    }
+  ],
+  "no_source_GEN_CI_CF_DSP_or_PDF_changes": true,
+  "no_TTS_no_candidate_applied": true,
+  "new_native_quality_acceptance_not_claimed": true,
+  "human_listening_not_claimed": true,
+  "utc": "2026-11-14T18:58:32.397825+00:00"
+}

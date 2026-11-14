@@ -1,0 +1,108 @@
+{
+  "kind": "root-user105-source19-measured-audio-disposition-before-new109-native",
+  "utc": "2026-11-14T19:04:42.639710+00:00",
+  "actual_v2_report_read_and_selected_data_rechecked": true,
+  "v2_report_sha256": "ee5a31ffc177172ba8ada09706f28844798d87f86b8ac1ae0a90fc5f68b417ba",
+  "measured_facts": {
+    "raw_WAV_sha256": "fe5819c52306836749f72d78979a02025c30cf7918fec915a43ac7a6a915d956",
+    "AAC_sha256": "bec515a6e5087e53d90e69671303ab9edf17d49cd66cb6cdbe4b0a534027e547",
+    "full_original_AAC_exact_binding": true,
+    "correct_actual_petals_coda_interval_s": [
+      21.8575,
+      21.88
+    ],
+    "correct_actual_petals_fade_interval_s": [
+      21.872,
+      21.88
+    ],
+    "correct_actual_soared_onset_s": 22.28,
+    "raw_to_processed_prefade_float32_exact": true,
+    "original_cosine_fade192samples_max_abs_error": 0.0,
+    "manual_boundary_deleted_samples": 0,
+    "original_formal_R_source19": {
+      "program_sha256": "2bb89e427ec014a7fc1b4cc46ea6a11f91a786930f91e8cec720e0307940b85b",
+      "formal_invocation": "python3 响度一致性核对.py 19.mp4 --自检 then python3 响度一致性核对.py 19.mp4",
+      "original_delivery_program_sha256": "26e8e213a07747f6fc3654be18d64336011cba59ffd83bf74e4cf4759baf6976",
+      "source19_inside_formal_gate_enabled": false,
+      "reason": "Actual original交付核查.py only enables句内分段响度and8-health gating from source25. Source19audit here is supplemental evidence, not a newly invented formal failure. User109requires whole-audio review so the measured rows remain visible.",
+      "source19_shortpiece_correction_enabled": false,
+      "original_shortpiece_rule": "short bias applies only source>=65 or05/54; source19 is false",
+      "original_auto_level_source>=26_enabled_for19": false,
+      "existing_source_CF_not_renewed": true,
+      "original_R_whole_bad": [],
+      "original_R_whole_summary": "全片 -23.5 LUFS，峰值 -0.6 dBFS，17 句，逐句与全片差 -0.6～+1.7 LU"
+    },
+    "corrected_supplemental_original_R_inside_flags": [
+      [
+        "S3",
+        2,
+        [
+          26.94,
+          28.39
+        ],
+        [
+          28.810000000000002,
+          29.88
+        ],
+        -3.6085359805044774
+      ],
+      [
+        "S9",
+        1,
+        [
+          70.5,
+          71.51
+        ],
+        [
+          71.92,
+          73.28
+        ],
+        -2.547580299074717
+      ],
+      [
+        "S13",
+        1,
+        [
+          97.16,
+          98.22
+        ],
+        [
+          98.62,
+          100.97
+        ],
+        -4.910891032739951
+      ],
+      [
+        "S17",
+        1,
+        [
+          126.26,
+          127.05
+        ],
+        [
+          127.44,
+          130.43
+        ],
+        -5.849833991172126
+      ],
+      [
+        "S17",
+        2,
+        [
+          127.44,
+          130.43
+        ],
+        [
+          130.84,
+          131.76
+        ],
+        3.135858460146622
+      ]
+    ]
+  },
+  "decision": "Preserve current source19 voice/DSP for new109 visual final. Actual petals coda remains present in all22.5ms; no sample was deleted at that punctuation. Do not move the cut into soared /s/, use a stop-release graft on fricative, or alter maker. No measured truncation has been established, so do not claim a repaired cut.",
+  "wholepiece_disposition": "Retain all17 current mother voice segments. Supplemental5 adjacent-punctuation mean differences stay fully recorded; S9/S17last maximum400ms do not indicate equivalent gain dips, S13/S17first compare naturally stressed short names/topics with longer parentheticals. S3parenthetical is measured3.3–4.2dB below neighbors, but no missing phoneme or source/edit fault is demonstrated; do not automatically flatten or add gain to an unreported natural parenthetical solely because of additional exploratory threshold.",
+  "no_new_CF_or_gate_or_threshold": true,
+  "not_an_absolute_or_human_listening_perfection_claim": true,
+  "new_final_requirements": "Latest106–108 ca196 source andpairedGENMD; actual original native full source/audio/pron/2-ASR/cut/highlight gates, no omitted checks; preserve measured wholeAACpayload/time on newrender; independent source/finalV3 plus normal18 originalart60/summary60; specifically compare petals complete newpublic coda to old measured current reference. User gets actual new109 download for auditory review after all checks."
+}

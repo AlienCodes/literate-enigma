@@ -1,0 +1,26 @@
+{
+  "actual_positive_passed": true,
+  "negatives": [
+    {
+      "case": "wrong-source",
+      "rejected": true,
+      "reason": "Only actual successful user109 native19"
+    },
+    {
+      "case": "other-request-source-SHA",
+      "rejected": true,
+      "reason": "Exact user109 source/GEN differs"
+    },
+    {
+      "case": "other-accepted-container-SHA",
+      "rejected": true,
+      "reason": "Current19 prior accepted lineage differs; retain legacy history"
+    },
+    {
+      "case": "other-absolute-packet-projection",
+      "rejected": true,
+      "reason": "Actual current19 complete AAC/codec/side-data/absoluteclock proof differs"
+    }
+  ],
+  "acoustic_thresholds_legacy_and_media_unchanged": true
+}

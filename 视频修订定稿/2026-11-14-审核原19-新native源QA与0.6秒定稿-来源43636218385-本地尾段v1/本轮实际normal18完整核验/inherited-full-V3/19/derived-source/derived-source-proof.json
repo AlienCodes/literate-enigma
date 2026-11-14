@@ -1,0 +1,72 @@
+{
+  "status": "passed",
+  "article": "19",
+  "origin": "derived_after_final_QC",
+  "actual_original_job_execution_claimed": false,
+  "used_generator_observation": "exported_actual_production_file; execution observation is a separate original fact",
+  "source_json_sha256": "c6b48d84d5c6234f345b11b6cee23776da620a6c0e95bcedff3df1462728a891",
+  "derived_generator_sha256": "501c8d2140ad00d77bedb807c235fb0a88f8006d9da0cc385e16b88fc503ee03",
+  "request_json_sha256": "ca196f781beca21957844754dab4a2fc35543f62c09d5bf9601fd39a98635fc0",
+  "request_generator_sha256": "b3b56f5c9855caad9f169e681fbaa3d13585c28ab1b77557b3c17baade7516f2",
+  "request_manuscript_sha256": "71f1a84a3424ed2ff9accef2a6efc17e0fa2ba99cbc27ead98db3fda7d105d78",
+  "immutable_native_status_sha256": "4a9779310e93c4b0f9faa78d850e85db8093af93ac4435dd9979fdb24a7a94a8",
+  "factory_program_sha256": "1514e91aee9dc04424e5b755cee37b65b8dadef9717f3e6c0cede35f1c03e044",
+  "original_helper_sha256": {
+    "初稿生成/核对.py": "c635aee82e0fe4dff9f70dcae03e2f797aadb670c8ebe6c8f202b82a35a87a74",
+    "重点词被去掉.py": "b898e63bb0954f0f17b90f92c2af41b3264ca60b7fd264e1cfa632f3d1e86f93"
+  },
+  "original_helper_exit": 0,
+  "whole_JSON_roundtrip_exact": true,
+  "semantic_control_invariants": {
+    "visible_body_notes_summary_and_focus_unchanged": true,
+    "layout_only_newlines_and_T38_bold_allowed": true,
+    "audio_render_title_metadata_unchanged": false,
+    "effective_audio_render_title_controls_unchanged": true,
+    "same_accepted_audio_locator_metadata_reconciliations": [],
+    "official_regenerated_nonaudio_rationale_updates": [],
+    "observed_original_QC_interval_fingerprint_updates": [
+      {
+        "path": "/区间声音指纹",
+        "before": null,
+        "after": {
+          "S1": "3b47ad939188",
+          "S2": "9682092c3b11",
+          "S3": "786624d5f127",
+          "S4": "ead67f32a3cc",
+          "S6": "a4fac52c6a65",
+          "S8": "07796507d11d",
+          "S9": "4cd0836a4dcd",
+          "S10": "f91c5273ff64",
+          "S12": "40f5ac133e6d",
+          "S13": "f6ff3eb07b24",
+          "S14": "4a236c080116",
+          "S17": "e18e9c97f6b1"
+        },
+        "basis": "Original maker A45 observed raw-synthesis validity hashes, not physical audio controls. Both immutable source versions and actual native QC remain in the artifact; original full sound gates and actual approved AAC/absolute timing validation remain mandatory."
+      }
+    ]
+  },
+  "changed_paths": [
+    "/sentences/16/chunks/1/note",
+    "/区间声音指纹"
+  ],
+  "original_inputs_unchanged": true,
+  "manuscript_origin": "immutable request used for roundtrip; actual exported production manuscript recorded separately",
+  "manuscript_runtime_observed": true,
+  "no_repository_or_remote_write": true,
+  "scope": "data fidelity and regeneration only; final JSON artifact-member origin must additionally be checked by delivery validation/archive",
+  "final_JSON_artifact_origin_checked_here": false,
+  "observed_used_generator": {
+    "file": "19-used-gen.py",
+    "sha256": "b3b56f5c9855caad9f169e681fbaa3d13585c28ab1b77557b3c17baade7516f2",
+    "origin": "actual_production_filesystem"
+  },
+  "original_production_generator_execution_observed": false,
+  "original_production_generator_execution_evidence": "No fresh generator execution log; do not claim this GEN was executed during rendering.",
+  "actual_production_manuscript": {
+    "file": "19-actual-working-manuscript.md",
+    "sha256": "b62d2406f6b016491bba3a53de9ef6d0e19a2f0aa5dd24d49c0bbed8b5a87cfe",
+    "origin": "actual_production_filesystem"
+  },
+  "derived_generator_original_job_execution_claimed": false
+}

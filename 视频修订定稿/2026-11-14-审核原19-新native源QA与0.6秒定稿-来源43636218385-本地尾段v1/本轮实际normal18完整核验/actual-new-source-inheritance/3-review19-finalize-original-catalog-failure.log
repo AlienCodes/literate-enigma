@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "/dev/shm/native-inline-engine-reviewed19-v26-actual109-layout/ingest_inline_article.py", line 103, in <module>
+    else:D.require(a.boundary_review,'Actual five-frame review required');finalize(a)
+                                                                          ^^^^^^^^^^^
+  File "/dev/shm/native-inline-engine-reviewed19-v26-actual109-layout/ingest_inline_article.py", line 86, in finalize
+    import_one(root,n,out);D.write(out/n/'actual-boundary-frame-review.json',review)
+    ^^^^^^^^^^^^^^^^^^^^^^
+  File "/dev/shm/native-inline-engine-reviewed19-v26-actual109-layout/import_actual_article.py", line 201, in import_one
+    record=D.validate_article(config,item,old,reorder,images,compose,crop,changed_audio)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/dev/shm/native-inline-engine-reviewed19-v26-actual109-layout/delivery.py", line 561, in validate_article
+    require(native_status['accepted_source']['sha256']==old[n]['sha256'],'Native accepted audio reference differs from existing catalog baseline')
+  File "/dev/shm/native-inline-engine-reviewed19-v26-actual109-layout/delivery.py", line 23, in require
+    raise ValueError(message)
+ValueError: Native accepted audio reference differs from existing catalog baseline
