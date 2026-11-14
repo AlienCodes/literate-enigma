@@ -1,0 +1,29 @@
+name: Publish reviewed eleven days without sleep 4K final
+on:
+  push:
+    branches: [codex/reviewed-eleven-days-4k-v1]
+    paths: [.github/eleven-days-release/**, .github/workflows/publish-eleven-days-4k.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  publish:
+    if: github.repository == 'alienalgorithm/postgraduate-vocabulary'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify archived final bytes and publish one 4K video
+        run: python -u .github/eleven-days-release/publish_single.py
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eleven-days-release-verification-${{ github.run_id }}
+          path: single-release-output/RELEASE-VERIFICATION.json
+          if-no-files-found: warn
+          retention-days: 30
