@@ -1,0 +1,14 @@
+"""Original current source65 producer model/DSP input invariance for presentation edits only."""
+import hashlib,importlib.util,json
+from pathlib import Path
+H=Path(__file__).resolve().parent;B=Path('/workspace/work/video-audit70-20261113');sha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest()
+s=importlib.util.spec_from_file_location('original65_input_capture',B/'audio14-color-review-input-invariance/inspect14_audio_inputs.py');m=importlib.util.module_from_spec(s);s.loader.exec_module(m)
+assert hashlib.sha256(m.r.m.source.encode()).hexdigest()=='4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3'
+paths={'current_before':H/'before/视频/脚本/65.json','actual_existing_native_working_source':B/'audio65-69-source-readonly/65/65-failed-working-source.json','candidate_presentation_only':H/'candidate-payload/视频/脚本/65.json'}
+rows={k:m.source_inputs(p)for k,p in paths.items()}
+for row in rows.values():
+ d=row['audio_semantics'];d.pop('S12_and_other_legacy_DSP_conditions');d['article_control_condition']='Source65>=26 original automatic G36 level branch and >=46 tail guard branch are unchanged for all three current-source inputs; historical accepted-source/G36 provenance is diagnosed separately, not silently substituted.';row['audio_semantics_sha256']=hashlib.sha256(m.canonical(d)).hexdigest()
+baseline=rows['current_before']['audio_semantics'];assert all(row['audio_semantics']==baseline for row in rows.values())
+before=json.loads(paths['current_before'].read_text());after=json.loads(paths['candidate_presentation_only'].read_text());assert all(before.get(k)==after.get(k)for k in m.controls)
+r={'article':'65','book_order':'37','kind':'read_only_current_source_presentation_edit_input_invariance_not_audio_acceptance','passed_input_invariance':True,'no_TTS_or_new_waveform_or_video_or_cache_mutation':True,'quality_acceptance_for_existing_or_new_AAC_claimed':False,'current_source_and_existing_failed_native_audio_plans_equal':True,'all_presentation_country_focus_translation_font_changes_preserve_original_effective_model_inputs_and_DSP':True,'actual_effective_model_input_count':len(baseline['model_input_plans']),'original_maker_sha256':hashlib.sha256(m.r.m.source.encode()).hexdigest(),'audio_semantics_sha256':rows['candidate_presentation_only']['audio_semantics_sha256'],'sources':rows,'qualification':'The existing source65 native passed its original pipeline but did not preserve the published prior AAC; that gap and user092 weak initial phrase remain separate audio work. This report never promotes the failed e561 voice to accepted/final and never adopts legacy6bad as latest editing source.'}
+p=H/'original-current-audio-input-invariance.json';p.write_text(json.dumps(r,ensure_ascii=False,indent=2)+'\n');print(json.dumps({'passed_input_invariance':True,'plans':r['actual_effective_model_input_count'],'report':str(p),'sha256':sha(p)},ensure_ascii=False))

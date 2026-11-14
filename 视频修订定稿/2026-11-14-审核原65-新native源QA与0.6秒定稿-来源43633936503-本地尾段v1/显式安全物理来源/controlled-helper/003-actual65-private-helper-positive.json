@@ -1,0 +1,1305 @@
+{
+  "article": "65",
+  "kind": "controlled_audio_repair",
+  "passed": true,
+  "repair_applied": true,
+  "diagnostic_only": true,
+  "production_delivery_eligible": false,
+  "official_full_gates_are_separate_required_precondition": true,
+  "official_gates_replaced_or_thresholds_modified": false,
+  "subjective_listening_claimed": false,
+  "private_caches_GT_or_PCM_exported": false,
+  "program_sha256": "6adb4c748cdbf86f87843c90ce37e51e5571d25ab6e5d41aeffca9849144bc91",
+  "reference_file_sha256": "b3c7101180402da958448f26072aa0705cbe520b46b64c19daa8e0acf224bd6c",
+  "fingerprints": {
+    "request_source_sha256": "875ecf68f5e196bb02c198533c5b5928852a1c1083419f92acccc65617b3f670",
+    "request_generator_sha256": "c11c5d1e76be13e29844dd9327bfe8dc653d1db4b93bad09e5db30365236fe62",
+    "actual_full_source_sha256": "875ecf68f5e196bb02c198533c5b5928852a1c1083419f92acccc65617b3f670",
+    "actual_raw_WAV_sha256": "e541f0dde2498fac290a026f31e3352d50ea9f565c666553e2e83461b56b8707",
+    "accepted_video_sha256": "1aaf139459ac9efe7530113dff2fa71349a8546ca0f3362b397c0a24369e9057",
+    "canonical_video_sha256": "7ffdf832208756d4fff1dd07336c17f79e35a40ee4acba154d1db0394a87585b",
+    "accepted_AAC_ADTS_sha256": "e561c8319355ca7f96047b52c3a758cb89e92196553949e4532d06a2893a4125",
+    "canonical_AAC_ADTS_sha256": "ef97f43fe4c5f9925c8ad8b3fe10982c60db8adc09ef0835a9f01017fc5ee940"
+  },
+  "source_current_sha256": "875ecf68f5e196bb02c198533c5b5928852a1c1083419f92acccc65617b3f670",
+  "accepted_sha256": "1aaf139459ac9efe7530113dff2fa71349a8546ca0f3362b397c0a24369e9057",
+  "canonical_sha256": "7ffdf832208756d4fff1dd07336c17f79e35a40ee4acba154d1db0394a87585b",
+  "source_authorization_ids": [
+    "092",
+    "094",
+    "095"
+  ],
+  "accepted_global": {
+    "integrated_lufs": -24.3,
+    "true_peak_dbtp": -0.7,
+    "lra_lu": 3.5
+  },
+  "actual_global": {
+    "integrated_lufs": -24.3,
+    "true_peak_dbtp": -0.7,
+    "lra_lu": 3.6
+  },
+  "original_full_track_supplement": {
+    "metrics": {
+      "削波": [
+        0,
+        ""
+      ],
+      "直流偏移": [
+        5.514465733600995e-05,
+        "第5句"
+      ],
+      "咔哒": [
+        1.1856817912434294,
+        "第15句"
+      ],
+      "句尾截断": [
+        -56.3093675041814,
+        "第8句"
+      ],
+      "句首突起": [
+        -45.518126064242644,
+        "第3句"
+      ],
+      "齿音": [
+        2.845420635736428,
+        "第10句"
+      ],
+      "音色突变": [
+        0.6142997209661789,
+        "第7句"
+      ],
+      "语速突变": [
+        0.36700942585046403,
+        "第9句"
+      ]
+    },
+    "global_lufs": -24.331161489169276,
+    "sentence_lufs": [
+      -24.174976680744575,
+      -24.427052682698182,
+      -24.821546929782034,
+      -24.357272453211404,
+      -23.99086462949774,
+      -24.173864139198532,
+      -25.27885879560986,
+      -24.543908708644715,
+      -22.759111127145204,
+      -24.448510232771635,
+      -24.591692693799285,
+      -23.424515176952994,
+      -24.654665415011113,
+      -24.136287524418265,
+      -23.768741961335795,
+      -24.969334943220847,
+      -23.453360282730106
+    ],
+    "summary": "全片 -24.3 LUFS，峰值 -0.7 dBFS，17 句，逐句与全片差 -0.9～+1.6 LU",
+    "suppressed_segment_rule_not_added": true,
+    "official_ASR_and_original_gates_separate": true
+  },
+  "approved_audio_repair_scope": {
+    "source_control_leaf": {
+      "path": "/分段增益dB/S2/1",
+      "old_JSON_numeric_literal": "absent",
+      "new_JSON_numeric_literal": 1.5,
+      "relative_gain_dB": 1.5,
+      "original_automatic_gain_dB": -2.0,
+      "old_total_gain_dB": -2.0,
+      "new_total_gain_dB": -0.5,
+      "existing_manual_part2_plus1_preserved": true
+    },
+    "target_span_s": [
+      12.12,
+      12.895
+    ],
+    "unchanged_title_and_other_16_sentences": true,
+    "S2_other_two_punctuation_pieces_unchanged": true,
+    "ASR_confirmations_not_renewed_by_this_helper": true
+  },
+  "comparison_before_role": {
+    "kind": "latest-current-native-before-user092-gain",
+    "video_sha256": "1aaf139459ac9efe7530113dff2fa71349a8546ca0f3362b397c0a24369e9057",
+    "source_sha256": "10cce8b5be1949c746369bb091829dbca9bcdd59f65b5d8b24b4a2a0ffcd4327",
+    "WAV_sha256": "c655cba20b97c97ca431a6e5eb43e8c250a67d6fc6ea92e695ff58139aa3ed41",
+    "AAC_sha256": "e561c8319355ca7f96047b52c3a758cb89e92196553949e4532d06a2893a4125",
+    "completed_original_canonical_pipeline": true,
+    "outer_legacy_AAC_identity_guard_passed": false,
+    "formally_accepted_whole": false,
+    "accepted_parameter_name_is_ABI_only": true
+  },
+  "historical_accepted_legacy": {
+    "video_sha256": "6bad7b012ccbad87a60ced23ada2c3162c7a561b4e72ad52362004ee3313ea8c",
+    "AAC_sha256": "66f8c5cfdd6c5551f20779115574f896d849763cf5adf8042c503664bf7ab94f",
+    "role": "history-only; never used as current preservation baseline or rolled back"
+  },
+  "comparison_before_is_formally_accepted_whole": false,
+  "pitch_comparison": {
+    "title": {
+      "voiced_pairs": 116,
+      "median_absolute_cents": 0.0,
+      "p90_absolute_cents": 0.0,
+      "whole_decoded_crop_bit_identical": true,
+      "decoded_sample_count": 90000,
+      "decoded_dtype": "float64",
+      "accepted_crop_sha256": "395c9cfdd13856c84ff34d39405116e50cde87ad5cbdc117db0a07c773533292",
+      "actual_crop_sha256": "395c9cfdd13856c84ff34d39405116e50cde87ad5cbdc117db0a07c773533292",
+      "preservation_basis": "whole-decoded-crop-bit-identical"
+    },
+    "S1": {
+      "voiced_pairs": 463,
+      "median_absolute_cents": 0.0,
+      "p90_absolute_cents": 0.0,
+      "whole_decoded_crop_bit_identical": true,
+      "decoded_sample_count": 376560,
+      "decoded_dtype": "float64",
+      "accepted_crop_sha256": "ee88b98865407dc22ca84ee5b54b1161c174a5e28f5209a33897bc3f5e96c025",
+      "actual_crop_sha256": "ee88b98865407dc22ca84ee5b54b1161c174a5e28f5209a33897bc3f5e96c025",
+      "preservation_basis": "whole-decoded-crop-bit-identical"
+    },
+    "S2": {
+      "voiced_pairs": 483,
+      "median_absolute_cents": 0.0,
+      "p90_absolute_cents": 0.013234056716031575,
+      "whole_decoded_crop_bit_identical": false,
+      "decoded_sample_count": 425280,
+      "decoded_dtype": "float64",
+      "accepted_crop_sha256": "76f19c0734b25c1188c37517fbeacfbed5f358297aa9f16d99b3c932f840948d",
+      "actual_crop_sha256": "030b4bdd2d1f766ef44620155686e8674170297646da8568326f81ed66bdce63",
+      "preservation_basis": "measured-pitch-original-count-and-cent-limits"
+    },
+    "S3": {
+      "voiced_pairs": 795,
+      "median_absolute_cents": 0.0,
+      "p90_absolute_cents": 0.0,
+      "whole_decoded_crop_bit_identical": true,
+      "decoded_sample_count": 647520,
+      "decoded_dtype": "float64",
+      "accepted_crop_sha256": "27834d45c57f75afbd40898c0ba653d5615b8aa64ce0d7de33ac20f85564d162",
+      "actual_crop_sha256": "27834d45c57f75afbd40898c0ba653d5615b8aa64ce0d7de33ac20f85564d162",
+      "preservation_basis": "whole-decoded-crop-bit-identical"
+    },
+    "S4": {
+      "voiced_pairs": 206,
+      "median_absolute_cents": 0.0,
+      "p90_absolute_cents": 0.0,
+      "whole_decoded_crop_bit_identical": true,
+      "decoded_sample_count": 157680,
+      "decoded_dtype": "float64",
+      "accepted_crop_sha256": "7ef5e3c08704768d37b23b8fcd17c2a3ba575253389cabd9981c591137ad3191",
+      "actual_crop_sha256": "7ef5e3c08704768d37b23b8fcd17c2a3ba575253389cabd9981c591137ad3191",
+      "preservation_basis": "whole-decoded-crop-bit-identical"
+    },
+    "S5": {
+      "voiced_pairs": 305,
+      "median_absolute_cents": 0.0,
+      "p90_absolute_cents": 0.0,
+      "whole_decoded_crop_bit_identical": true,
+      "decoded_sample_count": 264240,
+      "decoded_dtype": "float64",
+      "accepted_crop_sha256": "59c1c95e42852d80279b9b042f4e5483689c74304783686b5f5d2c7175122b18",
+      "actual_crop_sha256": "59c1c95e42852d80279b9b042f4e5483689c74304783686b5f5d2c7175122b18",
+      "preservation_basis": "whole-decoded-crop-bit-identical"
+    },
+    "S6": {
+      "voiced_pairs": 231,
+      "median_absolute_cents": 0.0,
+      "p90_absolute_cents": 0.0,
+      "whole_decoded_crop_bit_identical": true,
+      "decoded_sample_count": 211440,
+      "decoded_dtype": "float64",
+      "accepted_crop_sha256": "2fdbb15f56778ebde7b4b688b3ce89bfc65166e98440295d56ef730743b52c24",
+      "actual_crop_sha256": "2fdbb15f56778ebde7b4b688b3ce89bfc65166e98440295d56ef730743b52c24",
+      "preservation_basis": "whole-decoded-crop-bit-identical"
+    },
+    "S7": {
+      "voiced_pairs": 312,
+      "median_absolute_cents": 0.0,
+      "p90_absolute_cents": 0.0,
+      "whole_decoded_crop_bit_identical": true,
+      "decoded_sample_count": 253440,
+      "decoded_dtype": "float64",
+      "accepted_crop_sha256": "852dcb665a04406e7af5e2946333b9794648d46c51b27d337b39759a653a16cc",
+      "actual_crop_sha256": "852dcb665a04406e7af5e2946333b9794648d46c51b27d337b39759a653a16cc",
+      "preservation_basis": "whole-decoded-crop-bit-identical"
+    },
+    "S8": {
+      "voiced_pairs": 482,
+      "median_absolute_cents": 0.0,
+      "p90_absolute_cents": 0.0,
+      "whole_decoded_crop_bit_identical": true,
+      "decoded_sample_count": 392880,
+      "decoded_dtype": "float64",
+      "accepted_crop_sha256": "c92aea6bac6eddd7335cf5c6a9d8f97de13200e7ae36aa756840f2d300e24d4c",
+      "actual_crop_sha256": "c92aea6bac6eddd7335cf5c6a9d8f97de13200e7ae36aa756840f2d300e24d4c",
+      "preservation_basis": "whole-decoded-crop-bit-identical"
+    },
+    "S9": {
+      "voiced_pairs": 746,
+      "median_absolute_cents": 0.0,
+      "p90_absolute_cents": 0.0,
+      "whole_decoded_crop_bit_identical": true,
+      "decoded_sample_count": 611280,
+      "decoded_dtype": "float64",
+      "accepted_crop_sha256": "4f7a81639f9f66e215ee5de36e0b5556a6c382bcce43381375f5fd0736b4fd41",
+      "actual_crop_sha256": "4f7a81639f9f66e215ee5de36e0b5556a6c382bcce43381375f5fd0736b4fd41",
+      "preservation_basis": "whole-decoded-crop-bit-identical"
+    },
+    "S10": {
+      "voiced_pairs": 303,
+      "median_absolute_cents": 0.0,
+      "p90_absolute_cents": 0.0,
+      "whole_decoded_crop_bit_identical": true,
+      "decoded_sample_count": 221280,
+      "decoded_dtype": "float64",
+      "accepted_crop_sha256": "a44389871622965c18250f721b332c70cc0ad9c3c29a7a6ae17d77bf3ed62276",
+      "actual_crop_sha256": "a44389871622965c18250f721b332c70cc0ad9c3c29a7a6ae17d77bf3ed62276",
+      "preservation_basis": "whole-decoded-crop-bit-identical"
+    },
+    "S11": {
+      "voiced_pairs": 428,
+      "median_absolute_cents": 0.0,
+      "p90_absolute_cents": 0.0,
+      "whole_decoded_crop_bit_identical": true,
+      "decoded_sample_count": 333360,
+      "decoded_dtype": "float64",
+      "accepted_crop_sha256": "1f9af14fdb0657ae8e8f49b74b2f715f773b8005268ab13ff2230d15fab0a14f",
+      "actual_crop_sha256": "1f9af14fdb0657ae8e8f49b74b2f715f773b8005268ab13ff2230d15fab0a14f",
+      "preservation_basis": "whole-decoded-crop-bit-identical"
+    },
+    "S12": {
+      "voiced_pairs": 600,
+      "median_absolute_cents": 0.0,
+      "p90_absolute_cents": 0.0,
+      "whole_decoded_crop_bit_identical": true,
+      "decoded_sample_count": 510240,
+      "decoded_dtype": "float64",
+      "accepted_crop_sha256": "ca6cc686b152c9b17b476c550d152c761f946aca41944e4ea25b28787cd8007a",
+      "actual_crop_sha256": "ca6cc686b152c9b17b476c550d152c761f946aca41944e4ea25b28787cd8007a",
+      "preservation_basis": "whole-decoded-crop-bit-identical"
+    },
+    "S13": {
+      "voiced_pairs": 105,
+      "median_absolute_cents": 0.0,
+      "p90_absolute_cents": 0.0,
+      "whole_decoded_crop_bit_identical": true,
+      "decoded_sample_count": 77280,
+      "decoded_dtype": "float64",
+      "accepted_crop_sha256": "a4b68feafe847aaed5b466cd2ef29a14c0660bc228f66933782fe91197623aa5",
+      "actual_crop_sha256": "a4b68feafe847aaed5b466cd2ef29a14c0660bc228f66933782fe91197623aa5",
+      "preservation_basis": "whole-decoded-crop-bit-identical"
+    },
+    "S14": {
+      "voiced_pairs": 459,
+      "median_absolute_cents": 0.0,
+      "p90_absolute_cents": 0.0,
+      "whole_decoded_crop_bit_identical": true,
+      "decoded_sample_count": 349440,
+      "decoded_dtype": "float64",
+      "accepted_crop_sha256": "e5cdc3c760d9645f7cf396670e84bcf31dc3ff78aa624996908cb99843e608c3",
+      "actual_crop_sha256": "e5cdc3c760d9645f7cf396670e84bcf31dc3ff78aa624996908cb99843e608c3",
+      "preservation_basis": "whole-decoded-crop-bit-identical"
+    },
+    "S15": {
+      "voiced_pairs": 307,
+      "median_absolute_cents": 0.0,
+      "p90_absolute_cents": 0.0,
+      "whole_decoded_crop_bit_identical": true,
+      "decoded_sample_count": 285600,
+      "decoded_dtype": "float64",
+      "accepted_crop_sha256": "fa799a7d157c46f1c26af33ae5e64ee60201e4e320e3cf2602c20903ad52374a",
+      "actual_crop_sha256": "fa799a7d157c46f1c26af33ae5e64ee60201e4e320e3cf2602c20903ad52374a",
+      "preservation_basis": "whole-decoded-crop-bit-identical"
+    },
+    "S16": {
+      "voiced_pairs": 182,
+      "median_absolute_cents": 0.0,
+      "p90_absolute_cents": 0.0,
+      "whole_decoded_crop_bit_identical": true,
+      "decoded_sample_count": 160560,
+      "decoded_dtype": "float64",
+      "accepted_crop_sha256": "036cebd0cf150fdb424219b689aa30c636a1ebde9a12bfc84c7ea6867584cb31",
+      "actual_crop_sha256": "036cebd0cf150fdb424219b689aa30c636a1ebde9a12bfc84c7ea6867584cb31",
+      "preservation_basis": "whole-decoded-crop-bit-identical"
+    },
+    "S17": {
+      "voiced_pairs": 407,
+      "median_absolute_cents": 0.0,
+      "p90_absolute_cents": 0.0,
+      "whole_decoded_crop_bit_identical": true,
+      "decoded_sample_count": 338160,
+      "decoded_dtype": "float64",
+      "accepted_crop_sha256": "1eebbb8a421a8dcad40028d5db86d4a6702d45917b46b3d2640fdec95d59d5c5",
+      "actual_crop_sha256": "1eebbb8a421a8dcad40028d5db86d4a6702d45917b46b3d2640fdec95d59d5c5",
+      "preservation_basis": "whole-decoded-crop-bit-identical"
+    }
+  },
+  "target_before": {
+    "start_s": 12.12,
+    "end_s": 12.895,
+    "crop_bs1770_lufs": -23.159215112346,
+    "gated_400ms_lufs": -22.96555233862076,
+    "max_400ms_lufs": -22.6,
+    "active_10ms_rms_dbfs": -21.959296523228666,
+    "rms_dbfs": -22.78964761729958,
+    "sample_peak_dbfs": -7.379545205789
+  },
+  "target_after": {
+    "start_s": 12.12,
+    "end_s": 12.895,
+    "crop_bs1770_lufs": -21.63943166382159,
+    "gated_400ms_lufs": -21.41209903580336,
+    "max_400ms_lufs": -21.0,
+    "active_10ms_rms_dbfs": -20.51477359495763,
+    "rms_dbfs": -21.27801702965787,
+    "sample_peak_dbfs": -5.84959863751878
+  },
+  "checks": [
+    {
+      "name": "exact-approved-fingerprint:request_source_sha256",
+      "passed": true,
+      "actual": "875ecf68f5e196bb02c198533c5b5928852a1c1083419f92acccc65617b3f670",
+      "expected": "875ecf68f5e196bb02c198533c5b5928852a1c1083419f92acccc65617b3f670"
+    },
+    {
+      "name": "exact-approved-fingerprint:request_generator_sha256",
+      "passed": true,
+      "actual": "c11c5d1e76be13e29844dd9327bfe8dc653d1db4b93bad09e5db30365236fe62",
+      "expected": "c11c5d1e76be13e29844dd9327bfe8dc653d1db4b93bad09e5db30365236fe62"
+    },
+    {
+      "name": "exact-approved-fingerprint:accepted_video_sha256",
+      "passed": true,
+      "actual": "1aaf139459ac9efe7530113dff2fa71349a8546ca0f3362b397c0a24369e9057",
+      "expected": "1aaf139459ac9efe7530113dff2fa71349a8546ca0f3362b397c0a24369e9057"
+    },
+    {
+      "name": "exact-approved-fingerprint:accepted_AAC_ADTS_sha256",
+      "passed": true,
+      "actual": "e561c8319355ca7f96047b52c3a758cb89e92196553949e4532d06a2893a4125",
+      "expected": "e561c8319355ca7f96047b52c3a758cb89e92196553949e4532d06a2893a4125"
+    },
+    {
+      "name": "exact-approved-fingerprint:actual_raw_WAV_sha256",
+      "passed": true,
+      "actual": "e541f0dde2498fac290a026f31e3352d50ea9f565c666553e2e83461b56b8707",
+      "expected": "e541f0dde2498fac290a026f31e3352d50ea9f565c666553e2e83461b56b8707"
+    },
+    {
+      "name": "exact-approved-fingerprint:canonical_AAC_ADTS_sha256",
+      "passed": true,
+      "actual": "ef97f43fe4c5f9925c8ad8b3fe10982c60db8adc09ef0835a9f01017fc5ee940",
+      "expected": "ef97f43fe4c5f9925c8ad8b3fe10982c60db8adc09ef0835a9f01017fc5ee940"
+    },
+    {
+      "name": "requested-entire-nonreview-source",
+      "passed": true
+    },
+    {
+      "name": "requested-exact-sole-S2-gain-plus1_5-control",
+      "passed": true
+    },
+    {
+      "name": "requested-all-original-spoken-English-preserved",
+      "passed": true
+    },
+    {
+      "name": "actual-entire-nonreview-source",
+      "passed": true,
+      "original_pending_consent_consumed": false,
+      "exact_history_move_valid": false,
+      "exact_observed_G35_note_linewrap_normalized": false,
+      "all_other_nonreview_document_exact": true
+    },
+    {
+      "name": "actual-exact-sole-S2-gain-plus1_5-control",
+      "passed": true
+    },
+    {
+      "name": "actual-all-original-spoken-English-preserved",
+      "passed": true
+    },
+    {
+      "name": "exact-original-PCM16-shape-and-duration",
+      "passed": true,
+      "actual": {
+        "rate": 24000,
+        "channels": 1,
+        "width": 2,
+        "samples": 3342720
+      }
+    },
+    {
+      "name": "native-raw-sample-exact:before-target",
+      "passed": true,
+      "sample_span_24k": [
+        0,
+        290880
+      ],
+      "actual_sha256": "2e60c93e73be000cbf14beff509e1e46b0538016cb3b61dfcc078d46c56dd81e"
+    },
+    {
+      "name": "native-raw-sample-exact:after-target",
+      "passed": true,
+      "sample_span_24k": [
+        309480,
+        3342720
+      ],
+      "actual_sha256": "fbc122f2c0165cbd8fc25f49c82cae611a7bc0fb84fd6196b1d9274ce9e576db"
+    },
+    {
+      "name": "native-raw-sample-exact:title",
+      "passed": true,
+      "sample_span_24k": [
+        9600,
+        54600
+      ],
+      "actual_sha256": "526242b139f2e0f7febd3a042060d9845266ef348e01c942b4accd239110ed98"
+    },
+    {
+      "name": "native-raw-sample-exact:S1",
+      "passed": true,
+      "sample_span_24k": [
+        78600,
+        266880
+      ],
+      "actual_sha256": "d7da25e2597141c19295dc2478dc926da08ebccf264eddf51ca94fba74600d0e"
+    },
+    {
+      "name": "native-raw-sample-exact:S3",
+      "passed": true,
+      "sample_span_24k": [
+        532320,
+        856080
+      ],
+      "actual_sha256": "780ac76fc95c03d299f2cdce4cf933c24441f120a18128a1cee555eccd53766c"
+    },
+    {
+      "name": "native-raw-sample-exact:S4",
+      "passed": true,
+      "sample_span_24k": [
+        880080,
+        958920
+      ],
+      "actual_sha256": "9cc8c864d676014bf73c1e109ba1aa50b5754d8f34bab67d351d73a83027158f"
+    },
+    {
+      "name": "native-raw-sample-exact:S5",
+      "passed": true,
+      "sample_span_24k": [
+        982920,
+        1115040
+      ],
+      "actual_sha256": "985363d4a0d17f2b0b5012bf4bd20f9825e87e684d9000dc1bea62b53b632b34"
+    },
+    {
+      "name": "native-raw-sample-exact:S6",
+      "passed": true,
+      "sample_span_24k": [
+        1139040,
+        1244760
+      ],
+      "actual_sha256": "7a1d0c54ce6fb0995abaf1e875401d0485bbc7b1a909ed9fd01c2011da278327"
+    },
+    {
+      "name": "native-raw-sample-exact:S7",
+      "passed": true,
+      "sample_span_24k": [
+        1273560,
+        1400280
+      ],
+      "actual_sha256": "d7a7a2f9836e98789e81f9080ecb7a05372458b92352c1aacfdbedf610806379"
+    },
+    {
+      "name": "native-raw-sample-exact:S8",
+      "passed": true,
+      "sample_span_24k": [
+        1424280,
+        1620720
+      ],
+      "actual_sha256": "07ce74fd11468008cf5cd447b77e2288ea28b1e22ef9b3a14288dac807c64501"
+    },
+    {
+      "name": "native-raw-sample-exact:S9",
+      "passed": true,
+      "sample_span_24k": [
+        1644720,
+        1950360
+      ],
+      "actual_sha256": "d6ee3cc54c1cedd0d57507b6fdb57b12a63e9075536694be81e172f07287df68"
+    },
+    {
+      "name": "native-raw-sample-exact:S10",
+      "passed": true,
+      "sample_span_24k": [
+        1974360,
+        2085000
+      ],
+      "actual_sha256": "05cae489b2488cdf25878f61d35e0038c4adc6f3cf272e5b3004c695778380f8"
+    },
+    {
+      "name": "native-raw-sample-exact:S11",
+      "passed": true,
+      "sample_span_24k": [
+        2113800,
+        2280480
+      ],
+      "actual_sha256": "0f82088a6d582c3e2878fc3e9cc13a045d6bf2f013591d50b99a457b935ba0cb"
+    },
+    {
+      "name": "native-raw-sample-exact:S12",
+      "passed": true,
+      "sample_span_24k": [
+        2304480,
+        2559600
+      ],
+      "actual_sha256": "cb0fae757d279b513f97597e3fd6b16f3c43677244e29e24520cbd5149006808"
+    },
+    {
+      "name": "native-raw-sample-exact:S13",
+      "passed": true,
+      "sample_span_24k": [
+        2588400,
+        2627040
+      ],
+      "actual_sha256": "fd7e2a5f7bf529fdefd9d42e326b533810701482e655413639e698909347cf22"
+    },
+    {
+      "name": "native-raw-sample-exact:S14",
+      "passed": true,
+      "sample_span_24k": [
+        2651040,
+        2825760
+      ],
+      "actual_sha256": "20304365bc3d81dfb8c0c1cf3ae04f5893beeedb7c012ae6cac0a3a93713bd87"
+    },
+    {
+      "name": "native-raw-sample-exact:S15",
+      "passed": true,
+      "sample_span_24k": [
+        2849760,
+        2992560
+      ],
+      "actual_sha256": "a8adf00ae0356ba1a851d045239069e1b76ebf71e15f357c63f33519181a9da0"
+    },
+    {
+      "name": "native-raw-sample-exact:S16",
+      "passed": true,
+      "sample_span_24k": [
+        3016560,
+        3096840
+      ],
+      "actual_sha256": "a25dc5dd0393b7c9e31b5721d5b8e3ea1a5c436b521ab1798b56562cc8185490"
+    },
+    {
+      "name": "native-raw-sample-exact:S17",
+      "passed": true,
+      "sample_span_24k": [
+        3125640,
+        3294720
+      ],
+      "actual_sha256": "f7cd4678f22643db0a86e3d3e2fe5880ca2d654bfb076963b4aa2e8c39cdd720"
+    },
+    {
+      "name": "native-raw-sample-exact:S2-other-two-punctuation-segments-and-pauses",
+      "passed": true,
+      "sample_span_24k": [
+        309480,
+        503520
+      ],
+      "actual_sha256": "85246d7aa32d22847c0c066dbb4c29d26834f7656af9a696a6ca281efad1cd0d"
+    },
+    {
+      "name": "original-audio-codec-clock",
+      "passed": true
+    },
+    {
+      "name": "exact-AAC-packet-locality-and-all-other-packets-preserved",
+      "passed": true,
+      "old_packet_count": 6530,
+      "new_packet_count": 6530,
+      "changed_packet_indices_0_based": [
+        568,
+        569,
+        570,
+        571,
+        572,
+        573,
+        574,
+        575,
+        576,
+        577,
+        578,
+        579,
+        580,
+        581,
+        582,
+        583,
+        584,
+        585,
+        586,
+        587,
+        588,
+        589,
+        590,
+        591,
+        592,
+        593,
+        594,
+        595,
+        596,
+        597,
+        598,
+        599,
+        600,
+        601,
+        602,
+        603,
+        604,
+        605,
+        606,
+        607,
+        608,
+        609,
+        610,
+        611,
+        612,
+        623,
+        624,
+        625,
+        626,
+        628,
+        630,
+        631,
+        632
+      ]
+    },
+    {
+      "name": "decoded-sample-clock-and-duration-preserved",
+      "passed": true
+    },
+    {
+      "name": "actual-no-clipping-or-nonfinite",
+      "passed": true,
+      "sample_peak_dbfs": -0.6805671756701872
+    },
+    {
+      "name": "decoded-all-samples-before-and-after-codec-context-exact",
+      "passed": true,
+      "measured_context_s": [
+        12.096,
+        13.503645833333334
+      ]
+    },
+    {
+      "name": "actual-decoded-change-support-bound-to-approved-measurement",
+      "passed": true,
+      "actual": [
+        12.096,
+        13.503645833333334
+      ]
+    },
+    {
+      "name": "actual-true-peak-below-zero",
+      "passed": true,
+      "actual_dbtp": -0.7
+    },
+    {
+      "name": "whole-track-original-level-preserved",
+      "passed": true,
+      "delta_lu": 0.0
+    },
+    {
+      "name": "all-eight-unchanged-original-health-rules",
+      "passed": true,
+      "metrics": {
+        "削波": [
+          0,
+          ""
+        ],
+        "直流偏移": [
+          5.514465733600995e-05,
+          "第5句"
+        ],
+        "咔哒": [
+          1.1856817912434294,
+          "第15句"
+        ],
+        "句尾截断": [
+          -56.3093675041814,
+          "第8句"
+        ],
+        "句首突起": [
+          -45.518126064242644,
+          "第3句"
+        ],
+        "齿音": [
+          2.845420635736428,
+          "第10句"
+        ],
+        "音色突变": [
+          0.6142997209661789,
+          "第7句"
+        ],
+        "语速突变": [
+          0.36700942585046403,
+          "第9句"
+        ]
+      },
+      "failures": [],
+      "original_confirmation_notes": []
+    },
+    {
+      "name": "unchanged-original-whole-sentence-R-rule",
+      "passed": true,
+      "failures": [],
+      "summary": "全片 -24.3 LUFS，峰值 -0.7 dBFS，17 句，逐句与全片差 -0.9～+1.6 LU"
+    },
+    {
+      "name": "independent-title-and-all17-body-sentences-mapped",
+      "passed": true
+    },
+    {
+      "name": "unchanged-original-within-sentence-R-rule",
+      "passed": true,
+      "failures": [],
+      "comparisons": [
+        [
+          "S1",
+          1,
+          [
+            3.29,
+            4.34
+          ],
+          [
+            4.75,
+            7.04
+          ],
+          -0.3574633525329567
+        ],
+        [
+          "S1",
+          2,
+          [
+            4.75,
+            7.04
+          ],
+          [
+            7.44,
+            11.15
+          ],
+          0.241973650225475
+        ],
+        [
+          "S2",
+          1,
+          [
+            12.13,
+            12.9
+          ],
+          [
+            13.31,
+            17.85
+          ],
+          -1.7436821940531217
+        ],
+        [
+          "S2",
+          2,
+          [
+            13.31,
+            17.85
+          ],
+          [
+            18.26,
+            21.01
+          ],
+          0.030378279693778154
+        ],
+        [
+          "S3",
+          1,
+          [
+            22.2,
+            33.17
+          ],
+          [
+            33.61,
+            35.78
+          ],
+          -0.224226738624683
+        ],
+        [
+          "S5",
+          1,
+          [
+            40.97,
+            43.28
+          ],
+          [
+            43.7,
+            46.57
+          ],
+          -0.5958499153518986
+        ],
+        [
+          "S6",
+          1,
+          [
+            47.480000000000004,
+            49.2
+          ],
+          [
+            49.660000000000004,
+            51.910000000000004
+          ],
+          -1.1432912374130773
+        ],
+        [
+          "S8",
+          1,
+          [
+            59.370000000000005,
+            59.96
+          ],
+          [
+            60.370000000000005,
+            63.36
+          ],
+          -1.4262266746657701
+        ],
+        [
+          "S8",
+          2,
+          [
+            60.370000000000005,
+            63.36
+          ],
+          [
+            63.79,
+            67.56
+          ],
+          -0.6057021971392054
+        ],
+        [
+          "S9",
+          1,
+          [
+            68.54,
+            74.54
+          ],
+          [
+            75.01,
+            81.36
+          ],
+          -0.7077690236293463
+        ],
+        [
+          "S12",
+          1,
+          [
+            96.04,
+            98.58
+          ],
+          [
+            99.01,
+            101.96000000000001
+          ],
+          -0.9265671528783237
+        ],
+        [
+          "S12",
+          2,
+          [
+            99.01,
+            101.96000000000001
+          ],
+          [
+            102.39,
+            104.25
+          ],
+          0.29436888223879265
+        ],
+        [
+          "S12",
+          3,
+          [
+            102.39,
+            104.25
+          ],
+          [
+            104.67,
+            106.69
+          ],
+          -0.26316980300699555
+        ],
+        [
+          "S14",
+          1,
+          [
+            110.48,
+            112.24000000000001
+          ],
+          [
+            112.66,
+            117.77
+          ],
+          -2.0101242995929276
+        ],
+        [
+          "S15",
+          1,
+          [
+            118.76,
+            120.89
+          ],
+          [
+            121.35000000000001,
+            124.77
+          ],
+          -1.295646534509956
+        ],
+        [
+          "S17",
+          1,
+          [
+            130.25,
+            134.6
+          ],
+          [
+            135.32,
+            137.32
+          ],
+          1.5159746604907411
+        ]
+      ]
+    },
+    {
+      "name": "S2-real-producer-sole-gain-times-and-original-pauses",
+      "passed": true,
+      "actual": [
+        {
+          "段": 1,
+          "增益": -0.5,
+          "停顿": 0.4,
+          "时刻": [
+            12.12,
+            12.895
+          ]
+        },
+        {
+          "段": 2,
+          "增益": 1.0,
+          "停顿": 0.4,
+          "时刻": [
+            13.275,
+            17.85
+          ]
+        },
+        {
+          "段": 3,
+          "增益": 0.0,
+          "停顿": null,
+          "时刻": [
+            18.23,
+            20.98
+          ]
+        }
+      ],
+      "expected": [
+        {
+          "段": 1,
+          "增益": -0.5,
+          "停顿": 0.4,
+          "时刻": [
+            12.12,
+            12.895
+          ]
+        },
+        {
+          "段": 2,
+          "增益": 1.0,
+          "停顿": 0.4,
+          "时刻": [
+            13.275,
+            17.85
+          ]
+        },
+        {
+          "段": 3,
+          "增益": 0.0,
+          "停顿": null,
+          "时刻": [
+            18.23,
+            20.98
+          ]
+        }
+      ],
+      "tolerance_s": 5.1666666666666664e-05
+    },
+    {
+      "name": "original-pitch-preserved:title",
+      "passed": true,
+      "voiced_pairs": 116,
+      "median_absolute_cents": 0.0,
+      "p90_absolute_cents": 0.0,
+      "whole_decoded_crop_bit_identical": true,
+      "decoded_sample_count": 90000,
+      "decoded_dtype": "float64",
+      "accepted_crop_sha256": "395c9cfdd13856c84ff34d39405116e50cde87ad5cbdc117db0a07c773533292",
+      "actual_crop_sha256": "395c9cfdd13856c84ff34d39405116e50cde87ad5cbdc117db0a07c773533292",
+      "preservation_basis": "whole-decoded-crop-bit-identical"
+    },
+    {
+      "name": "original-pitch-preserved:S1",
+      "passed": true,
+      "voiced_pairs": 463,
+      "median_absolute_cents": 0.0,
+      "p90_absolute_cents": 0.0,
+      "whole_decoded_crop_bit_identical": true,
+      "decoded_sample_count": 376560,
+      "decoded_dtype": "float64",
+      "accepted_crop_sha256": "ee88b98865407dc22ca84ee5b54b1161c174a5e28f5209a33897bc3f5e96c025",
+      "actual_crop_sha256": "ee88b98865407dc22ca84ee5b54b1161c174a5e28f5209a33897bc3f5e96c025",
+      "preservation_basis": "whole-decoded-crop-bit-identical"
+    },
+    {
+      "name": "original-pitch-preserved:S2",
+      "passed": true,
+      "voiced_pairs": 483,
+      "median_absolute_cents": 0.0,
+      "p90_absolute_cents": 0.013234056716031575,
+      "whole_decoded_crop_bit_identical": false,
+      "decoded_sample_count": 425280,
+      "decoded_dtype": "float64",
+      "accepted_crop_sha256": "76f19c0734b25c1188c37517fbeacfbed5f358297aa9f16d99b3c932f840948d",
+      "actual_crop_sha256": "030b4bdd2d1f766ef44620155686e8674170297646da8568326f81ed66bdce63",
+      "preservation_basis": "measured-pitch-original-count-and-cent-limits"
+    },
+    {
+      "name": "original-pitch-preserved:S3",
+      "passed": true,
+      "voiced_pairs": 795,
+      "median_absolute_cents": 0.0,
+      "p90_absolute_cents": 0.0,
+      "whole_decoded_crop_bit_identical": true,
+      "decoded_sample_count": 647520,
+      "decoded_dtype": "float64",
+      "accepted_crop_sha256": "27834d45c57f75afbd40898c0ba653d5615b8aa64ce0d7de33ac20f85564d162",
+      "actual_crop_sha256": "27834d45c57f75afbd40898c0ba653d5615b8aa64ce0d7de33ac20f85564d162",
+      "preservation_basis": "whole-decoded-crop-bit-identical"
+    },
+    {
+      "name": "original-pitch-preserved:S4",
+      "passed": true,
+      "voiced_pairs": 206,
+      "median_absolute_cents": 0.0,
+      "p90_absolute_cents": 0.0,
+      "whole_decoded_crop_bit_identical": true,
+      "decoded_sample_count": 157680,
+      "decoded_dtype": "float64",
+      "accepted_crop_sha256": "7ef5e3c08704768d37b23b8fcd17c2a3ba575253389cabd9981c591137ad3191",
+      "actual_crop_sha256": "7ef5e3c08704768d37b23b8fcd17c2a3ba575253389cabd9981c591137ad3191",
+      "preservation_basis": "whole-decoded-crop-bit-identical"
+    },
+    {
+      "name": "original-pitch-preserved:S5",
+      "passed": true,
+      "voiced_pairs": 305,
+      "median_absolute_cents": 0.0,
+      "p90_absolute_cents": 0.0,
+      "whole_decoded_crop_bit_identical": true,
+      "decoded_sample_count": 264240,
+      "decoded_dtype": "float64",
+      "accepted_crop_sha256": "59c1c95e42852d80279b9b042f4e5483689c74304783686b5f5d2c7175122b18",
+      "actual_crop_sha256": "59c1c95e42852d80279b9b042f4e5483689c74304783686b5f5d2c7175122b18",
+      "preservation_basis": "whole-decoded-crop-bit-identical"
+    },
+    {
+      "name": "original-pitch-preserved:S6",
+      "passed": true,
+      "voiced_pairs": 231,
+      "median_absolute_cents": 0.0,
+      "p90_absolute_cents": 0.0,
+      "whole_decoded_crop_bit_identical": true,
+      "decoded_sample_count": 211440,
+      "decoded_dtype": "float64",
+      "accepted_crop_sha256": "2fdbb15f56778ebde7b4b688b3ce89bfc65166e98440295d56ef730743b52c24",
+      "actual_crop_sha256": "2fdbb15f56778ebde7b4b688b3ce89bfc65166e98440295d56ef730743b52c24",
+      "preservation_basis": "whole-decoded-crop-bit-identical"
+    },
+    {
+      "name": "original-pitch-preserved:S7",
+      "passed": true,
+      "voiced_pairs": 312,
+      "median_absolute_cents": 0.0,
+      "p90_absolute_cents": 0.0,
+      "whole_decoded_crop_bit_identical": true,
+      "decoded_sample_count": 253440,
+      "decoded_dtype": "float64",
+      "accepted_crop_sha256": "852dcb665a04406e7af5e2946333b9794648d46c51b27d337b39759a653a16cc",
+      "actual_crop_sha256": "852dcb665a04406e7af5e2946333b9794648d46c51b27d337b39759a653a16cc",
+      "preservation_basis": "whole-decoded-crop-bit-identical"
+    },
+    {
+      "name": "original-pitch-preserved:S8",
+      "passed": true,
+      "voiced_pairs": 482,
+      "median_absolute_cents": 0.0,
+      "p90_absolute_cents": 0.0,
+      "whole_decoded_crop_bit_identical": true,
+      "decoded_sample_count": 392880,
+      "decoded_dtype": "float64",
+      "accepted_crop_sha256": "c92aea6bac6eddd7335cf5c6a9d8f97de13200e7ae36aa756840f2d300e24d4c",
+      "actual_crop_sha256": "c92aea6bac6eddd7335cf5c6a9d8f97de13200e7ae36aa756840f2d300e24d4c",
+      "preservation_basis": "whole-decoded-crop-bit-identical"
+    },
+    {
+      "name": "original-pitch-preserved:S9",
+      "passed": true,
+      "voiced_pairs": 746,
+      "median_absolute_cents": 0.0,
+      "p90_absolute_cents": 0.0,
+      "whole_decoded_crop_bit_identical": true,
+      "decoded_sample_count": 611280,
+      "decoded_dtype": "float64",
+      "accepted_crop_sha256": "4f7a81639f9f66e215ee5de36e0b5556a6c382bcce43381375f5fd0736b4fd41",
+      "actual_crop_sha256": "4f7a81639f9f66e215ee5de36e0b5556a6c382bcce43381375f5fd0736b4fd41",
+      "preservation_basis": "whole-decoded-crop-bit-identical"
+    },
+    {
+      "name": "original-pitch-preserved:S10",
+      "passed": true,
+      "voiced_pairs": 303,
+      "median_absolute_cents": 0.0,
+      "p90_absolute_cents": 0.0,
+      "whole_decoded_crop_bit_identical": true,
+      "decoded_sample_count": 221280,
+      "decoded_dtype": "float64",
+      "accepted_crop_sha256": "a44389871622965c18250f721b332c70cc0ad9c3c29a7a6ae17d77bf3ed62276",
+      "actual_crop_sha256": "a44389871622965c18250f721b332c70cc0ad9c3c29a7a6ae17d77bf3ed62276",
+      "preservation_basis": "whole-decoded-crop-bit-identical"
+    },
+    {
+      "name": "original-pitch-preserved:S11",
+      "passed": true,
+      "voiced_pairs": 428,
+      "median_absolute_cents": 0.0,
+      "p90_absolute_cents": 0.0,
+      "whole_decoded_crop_bit_identical": true,
+      "decoded_sample_count": 333360,
+      "decoded_dtype": "float64",
+      "accepted_crop_sha256": "1f9af14fdb0657ae8e8f49b74b2f715f773b8005268ab13ff2230d15fab0a14f",
+      "actual_crop_sha256": "1f9af14fdb0657ae8e8f49b74b2f715f773b8005268ab13ff2230d15fab0a14f",
+      "preservation_basis": "whole-decoded-crop-bit-identical"
+    },
+    {
+      "name": "original-pitch-preserved:S12",
+      "passed": true,
+      "voiced_pairs": 600,
+      "median_absolute_cents": 0.0,
+      "p90_absolute_cents": 0.0,
+      "whole_decoded_crop_bit_identical": true,
+      "decoded_sample_count": 510240,
+      "decoded_dtype": "float64",
+      "accepted_crop_sha256": "ca6cc686b152c9b17b476c550d152c761f946aca41944e4ea25b28787cd8007a",
+      "actual_crop_sha256": "ca6cc686b152c9b17b476c550d152c761f946aca41944e4ea25b28787cd8007a",
+      "preservation_basis": "whole-decoded-crop-bit-identical"
+    },
+    {
+      "name": "original-pitch-preserved:S13",
+      "passed": true,
+      "voiced_pairs": 105,
+      "median_absolute_cents": 0.0,
+      "p90_absolute_cents": 0.0,
+      "whole_decoded_crop_bit_identical": true,
+      "decoded_sample_count": 77280,
+      "decoded_dtype": "float64",
+      "accepted_crop_sha256": "a4b68feafe847aaed5b466cd2ef29a14c0660bc228f66933782fe91197623aa5",
+      "actual_crop_sha256": "a4b68feafe847aaed5b466cd2ef29a14c0660bc228f66933782fe91197623aa5",
+      "preservation_basis": "whole-decoded-crop-bit-identical"
+    },
+    {
+      "name": "original-pitch-preserved:S14",
+      "passed": true,
+      "voiced_pairs": 459,
+      "median_absolute_cents": 0.0,
+      "p90_absolute_cents": 0.0,
+      "whole_decoded_crop_bit_identical": true,
+      "decoded_sample_count": 349440,
+      "decoded_dtype": "float64",
+      "accepted_crop_sha256": "e5cdc3c760d9645f7cf396670e84bcf31dc3ff78aa624996908cb99843e608c3",
+      "actual_crop_sha256": "e5cdc3c760d9645f7cf396670e84bcf31dc3ff78aa624996908cb99843e608c3",
+      "preservation_basis": "whole-decoded-crop-bit-identical"
+    },
+    {
+      "name": "original-pitch-preserved:S15",
+      "passed": true,
+      "voiced_pairs": 307,
+      "median_absolute_cents": 0.0,
+      "p90_absolute_cents": 0.0,
+      "whole_decoded_crop_bit_identical": true,
+      "decoded_sample_count": 285600,
+      "decoded_dtype": "float64",
+      "accepted_crop_sha256": "fa799a7d157c46f1c26af33ae5e64ee60201e4e320e3cf2602c20903ad52374a",
+      "actual_crop_sha256": "fa799a7d157c46f1c26af33ae5e64ee60201e4e320e3cf2602c20903ad52374a",
+      "preservation_basis": "whole-decoded-crop-bit-identical"
+    },
+    {
+      "name": "original-pitch-preserved:S16",
+      "passed": true,
+      "voiced_pairs": 182,
+      "median_absolute_cents": 0.0,
+      "p90_absolute_cents": 0.0,
+      "whole_decoded_crop_bit_identical": true,
+      "decoded_sample_count": 160560,
+      "decoded_dtype": "float64",
+      "accepted_crop_sha256": "036cebd0cf150fdb424219b689aa30c636a1ebde9a12bfc84c7ea6867584cb31",
+      "actual_crop_sha256": "036cebd0cf150fdb424219b689aa30c636a1ebde9a12bfc84c7ea6867584cb31",
+      "preservation_basis": "whole-decoded-crop-bit-identical"
+    },
+    {
+      "name": "original-pitch-preserved:S17",
+      "passed": true,
+      "voiced_pairs": 407,
+      "median_absolute_cents": 0.0,
+      "p90_absolute_cents": 0.0,
+      "whole_decoded_crop_bit_identical": true,
+      "decoded_sample_count": 338160,
+      "decoded_dtype": "float64",
+      "accepted_crop_sha256": "1eebbb8a421a8dcad40028d5db86d4a6702d45917b46b3d2640fdec95d59d5c5",
+      "actual_crop_sha256": "1eebbb8a421a8dcad40028d5db86d4a6702d45917b46b3d2640fdec95d59d5c5",
+      "preservation_basis": "whole-decoded-crop-bit-identical"
+    },
+    {
+      "name": "target-phrase-original-pitch-preserved",
+      "passed": true,
+      "voiced_pairs": 52,
+      "median_absolute_cents": 0.17880328778871044,
+      "p90_absolute_cents": 0.6347353600235901,
+      "whole_decoded_crop_bit_identical": false,
+      "decoded_sample_count": 37200,
+      "decoded_dtype": "float64",
+      "accepted_crop_sha256": "d47a49c248f413307f201965118c88fb49dbdca7ba0d730aca7bd21718d02e67",
+      "actual_crop_sha256": "5b30bf4a16539ba8233aed7976c693eafb355ab00504b552ef4aeba7986f37de",
+      "preservation_basis": "measured-pitch-original-count-and-cent-limits"
+    },
+    {
+      "name": "actual-target-gain-and-preserved-voice-shape",
+      "passed": true,
+      "gain_db": 1.5112579249719738,
+      "correlation": 0.9999570965449771,
+      "gain_compensated_residual_snr_db": 40.66449787127848
+    },
+    {
+      "name": "real-candidate-positive-and-local-mutation-negatives",
+      "passed": true,
+      "actual_candidate_positive_passed": true,
+      "wrong_source_control_rejected": true,
+      "actual_one_sample_outside_target_mutation_rejected": true,
+      "actual_target_clipping_mutation_rejected": true,
+      "mutated_audio_not_written": true,
+      "native_ASR_not_simulated": true
+    }
+  ]
+}

@@ -2,8 +2,8 @@
   "kind": "validated-video-final-alias-plan-v1",
   "schema_version": 1,
   "requested_total": 70,
-  "current_count": 55,
-  "archived_passed_count": 60,
+  "current_count": 56,
+  "archived_passed_count": 61,
   "complete": false,
   "selection": "user146_latest_requests_bound_current_only",
   "validation_scope": "Existing canonical Git blob identity, mode and size; no new media validation or production",
@@ -19,14 +19,12 @@
     "48",
     "52",
     "54",
-    "65",
     "66",
     "68",
     "69",
     "70"
   ],
   "missing_new_ids": [
-    "37",
     "38",
     "40",
     "41",
@@ -81,6 +79,7 @@
     "修改记录/34 多莉：一只羊的复制.md",
     "修改记录/35 不合拍的风：塔科马大桥的陨落.md",
     "修改记录/36 爱因斯坦的诺奖之路.md",
+    "修改记录/37 末日种子库的第一次取种.md",
     "修改记录/39 一座火山，造出了《弗兰肯斯坦》.md",
     "修改记录/44 被拒绝了十二次的哈利·波特.md",
     "修改记录/48 光之殇.md",
@@ -4811,6 +4810,125 @@
       "video_order_authority_review_sha256": "3120efc6893981436cb81458ce57f6aca7601edc5e7326cce1388b68de959001"
     },
     {
+      "source_id": "65",
+      "new_id": "37",
+      "title_zh": "末日种子库的第一次取种",
+      "bytes": 16032155,
+      "sha256": "3189edd95ef18879528c161d97abcb5e78c58ae8eb4b452730f156f14e2ec0fc",
+      "source_run": 43633936503,
+      "asset_commit": "dc2a8b965611eed6eee366231e53de5b539b329b",
+      "original_path": "视频修订定稿/2026-11-14-审核原65-新native源QA与0.6秒定稿-来源43633936503-本地尾段v1/视频/37 末日种子库的第一次取种.mp4",
+      "alias_path": "最终定稿/视频/37 末日种子库的第一次取种.mp4",
+      "git_blob_sha": "c731b19d3c48c761a7e96efc718c07ccc8981d27",
+      "previous_versions": [],
+      "missing_metadata_fields": [],
+      "evidence_pointers": {
+        "original_video_repo_path": "视频修订定稿/2026-11-14-审核原65-新native源QA与0.6秒定稿-来源43633936503-本地尾段v1/视频/37 末日种子库的第一次取种.mp4",
+        "archive_prefix": "视频修订定稿/2026-11-14-审核原65-新native源QA与0.6秒定稿-来源43633936503-本地尾段v1",
+        "asset_commit": "dc2a8b965611eed6eee366231e53de5b539b329b",
+        "existing_archive_evidence_files": [
+          "视频修订定稿/2026-11-14-审核原65-新native源QA与0.6秒定稿-来源43633936503-本地尾段v1/archive-manifest.json",
+          "视频修订定稿/2026-11-14-审核原65-新native源QA与0.6秒定稿-来源43633936503-本地尾段v1/实际新native源QA原件非本轮最终片/report.json",
+          "视频修订定稿/2026-11-14-审核原65-新native源QA与0.6秒定稿-来源43633936503-本地尾段v1/本轮实际normal18完整核验/archive-handoff.json",
+          "视频修订定稿/2026-11-14-审核原65-新native源QA与0.6秒定稿-来源43633936503-本地尾段v1/本轮实际normal18完整核验/inherited-full-V3/report.json",
+          "视频修订定稿/2026-11-14-审核原65-新native源QA与0.6秒定稿-来源43633936503-本地尾段v1/本轮实际normal18完整核验/report.json"
+        ]
+      },
+      "current_inventory_row": {
+        "source_id": "65",
+        "new_id": "37",
+        "title_zh": "末日种子库的第一次取种",
+        "title_en": "The Day the Doomsday Vault Opened",
+        "video_repo_path": "视频修订定稿/2026-11-14-审核原65-新native源QA与0.6秒定稿-来源43633936503-本地尾段v1/视频/37 末日种子库的第一次取种.mp4",
+        "bytes": 16032155,
+        "sha256": "3189edd95ef18879528c161d97abcb5e78c58ae8eb4b452730f156f14e2ec0fc",
+        "passed_per_article": true,
+        "source_run": 43633936503,
+        "production_delivery_eligible": true,
+        "preview_only": false,
+        "media_origin": "actual_validated_normal18_local_tail_derivative_of_original_native_source",
+        "actual_runtime_GEN_or_voice_rerun_claimed": false,
+        "GEN_origin": "derived_after_final_QC",
+        "MD_origin": "actual_working_manuscript",
+        "final_GEN_claimed_as_runtime": false,
+        "canonical_audio_basis": "actual_new_native_source_QA_then_normal18_canonical_AAC_projection_identity",
+        "approved_audio_repair_applied": true,
+        "source_native_audio_repair_applied": true,
+        "local_tail_postprocessing_audio_repair_applied": false,
+        "local_postprocessing_only": true,
+        "post_reading_pause_seconds": 0.6,
+        "nominal_extra_hold_frames_at_30fps": 18,
+        "postprocessing_full_V3_handoff_sha256": "ae57b48bb9afc2e1eb5de846e356170ab39748c5763b82c9832ce11a139f6ea7",
+        "actual_new_native_source_QA_observed": true,
+        "actual_new_native_source_QA_handoff": {
+          "path": "/dev/shm/review65-sourceQA/43633936503/archive-handoff.json",
+          "bytes": 30988,
+          "sha256": "d587e8c06038aeeb719c4a38124ac7d921315779ab8e8abe45cc58f6fc7b310c"
+        },
+        "postprocessing_itself_claims_new_native_or_TTS": false,
+        "overall_native_matrix_success_claimed": false,
+        "source_native_audio_QC": {
+          "path": "/dev/shm/review65-sourceQA/43633936503/65/actual-qc-v3.json",
+          "bytes": 14335,
+          "sha256": "deea4bd009ddc07eb50294d3cfce96554c2d1998dae5aff756c23aece2c1dfcd"
+        },
+        "source_native_audio_lossless_copy": {
+          "canonical_video_sha256": "853cd980bab3bf02ecac6208027048805d9b276eb2f87442f8630c3b0cb6063a",
+          "final_video_sha256": "a30ca077d1e4c7b22e13c55989324ac462c6a5aa7bfb80c7b113a60208e69f7f",
+          "audio_packet_times_identical": true,
+          "canonical_aac_adts_sha256": "ef97f43fe4c5f9925c8ad8b3fe10982c60db8adc09ef0835a9f01017fc5ee940",
+          "canonical_packet_projection_sha256": "7d3f22a51ac1450be9a77844322bed34e4a9ac14a23e2f4f52bf5767afb8a18d",
+          "canonical_packet_count": 6530,
+          "final_aac_adts_sha256": "ef97f43fe4c5f9925c8ad8b3fe10982c60db8adc09ef0835a9f01017fc5ee940",
+          "final_packet_projection_sha256": "7d3f22a51ac1450be9a77844322bed34e4a9ac14a23e2f4f52bf5767afb8a18d",
+          "final_packet_count": 6530
+        },
+        "source_native_controlled_repair": {
+          "status": "passed",
+          "actual_new_output": true,
+          "canonical_video_sha256": "853cd980bab3bf02ecac6208027048805d9b276eb2f87442f8630c3b0cb6063a",
+          "reviewed_canonical_video_sha256": "26cc34023f095b1ed657756a63c806a1315b4a70f0ae28418b0ce01f65138b24",
+          "binding": "reviewed_native_pre_card_then_exact_audio_copy",
+          "report_sha256": "b92b65e30b8aa9e69c383f6172f807a99ba6d97cc1ccab5e0a6616191c3127d2",
+          "authorization": "Actual immutable native user-authorization/source request records and approved dedicated acoustic QC retained in evidence.",
+          "comparison_before_role": {
+            "kind": "latest-current-native-before-user092-gain",
+            "video_sha256": "1aaf139459ac9efe7530113dff2fa71349a8546ca0f3362b397c0a24369e9057",
+            "source_sha256": "10cce8b5be1949c746369bb091829dbca9bcdd59f65b5d8b24b4a2a0ffcd4327",
+            "WAV_sha256": "c655cba20b97c97ca431a6e5eb43e8c250a67d6fc6ea92e695ff58139aa3ed41",
+            "AAC_sha256": "e561c8319355ca7f96047b52c3a758cb89e92196553949e4532d06a2893a4125",
+            "completed_original_canonical_pipeline": true,
+            "outer_legacy_AAC_identity_guard_passed": false,
+            "formally_accepted_whole": false,
+            "accepted_parameter_name_is_ABI_only": true
+          },
+          "historical_accepted_legacy": {
+            "video_sha256": "6bad7b012ccbad87a60ced23ada2c3162c7a561b4e72ad52362004ee3313ea8c",
+            "AAC_sha256": "66f8c5cfdd6c5551f20779115574f896d849763cf5adf8042c503664bf7ab94f",
+            "role": "history-only; never used as current preservation baseline or rolled back"
+          },
+          "comparison_before_is_formally_accepted_whole": false,
+          "actual_qc_program": "audio65-controlled-qc.py",
+          "program_sha256": "6adb4c748cdbf86f87843c90ce37e51e5571d25ab6e5d41aeffca9849144bc91",
+          "approved_native_repair_scope": {
+            "kind": "controlled_audio_repair",
+            "repair_applied": true,
+            "request_source_sha256": "875ecf68f5e196bb02c198533c5b5928852a1c1083419f92acccc65617b3f670",
+            "reference_file_sha256": "b3c7101180402da958448f26072aa0705cbe520b46b64c19daa8e0acf224bd6c",
+            "actual_original_full_pipeline_passed_first": true,
+            "whole_track_actual_audio_and_approved_unchanged_regions_required": true
+          }
+        },
+        "asset_commit": "dc2a8b965611eed6eee366231e53de5b539b329b",
+        "archive_prefix": "视频修订定稿/2026-11-14-审核原65-新native源QA与0.6秒定稿-来源43633936503-本地尾段v1"
+      },
+      "title_en": "The Day the Doomsday Vault Opened",
+      "current_video_order": "37",
+      "original_book_order": "37",
+      "quality_book_order_unchanged": true,
+      "video_order_authority_review_sha256": "3120efc6893981436cb81458ce57f6aca7601edc5e7326cce1388b68de959001"
+    },
+    {
       "source_id": "29",
       "new_id": "39",
       "title_zh": "一座火山，造出了《弗兰肯斯坦》",
@@ -6198,7 +6316,6 @@
   "new_id_role_in_this_video_manifest": "current_video_order",
   "original_book_order_field": "original_book_order",
   "missing_frozen_book_orders": [
-    "37",
     "38",
     "40",
     "41",
@@ -6214,7 +6331,7 @@
     "57",
     "64"
   ],
-  "latest_deliverable_count": 55,
+  "latest_deliverable_count": 56,
   "latest_final_directory_policy": {
     "kind": "explicit-user146-unique-latest-final-video-directory",
     "authority_review_sha256": "e759548c0f1889fed996d8fd627e69eae26fe3c4ce0013a911a9f61ac61dd772",
@@ -6226,7 +6343,7 @@
     "new_current_and_raw_pending_updates_sync_directory_same_commit": true,
     "video_order090_and_frozen_quality_book_order_preserved": true
   },
-  "latest_requests_canonical_json_sha256": "74a39b58920b8dd4c4c6cdd11687de48412f15a220fee70cb1fc4bc34737fb39",
+  "latest_requests_canonical_json_sha256": "adf82db2f672aa1d8dd12e367b366a2e0e64e028218b9ea6babb2764bf9d671d",
   "excluded_older_accepted": [
     {
       "source_id": "19",
@@ -6311,20 +6428,6 @@
     }
   ],
   "pending_latest_user_requests": [
-    {
-      "source_id": "65",
-      "current_video_order": "37",
-      "original_book_order": "37",
-      "title_zh": "末日种子库的第一次取种",
-      "status": "finalization_pending_actual_audio_source_export_and_full_QA",
-      "latest_user_records": [
-        "091",
-        "092",
-        "093",
-        "094",
-        "095"
-      ]
-    },
     {
       "source_id": "19",
       "current_video_order": "38",
@@ -6433,14 +6536,12 @@
     "30",
     "48",
     "54",
-    "65",
     "66",
     "68",
     "69",
     "70"
   ],
   "archived_missing_frozen_book_orders": [
-    "37",
     "42",
     "45",
     "47",

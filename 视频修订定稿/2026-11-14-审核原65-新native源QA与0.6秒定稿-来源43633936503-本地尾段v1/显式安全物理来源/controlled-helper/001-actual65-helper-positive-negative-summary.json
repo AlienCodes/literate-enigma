@@ -1,0 +1,106 @@
+{
+  "kind": "source65-current-native-baseline-real-candidate-helper-positive-and-minimum-negatives",
+  "program_sha256": "6adb4c748cdbf86f87843c90ce37e51e5571d25ab6e5d41aeffca9849144bc91",
+  "reference_sha256": "b3c7101180402da958448f26072aa0705cbe520b46b64c19daa8e0acf224bd6c",
+  "diagnostic_positive_report_sha256": "ba695374713566bc5383b5b554c08496878dad2f8e388340d415c4bb9829a35d",
+  "actual_positive_checks": 67,
+  "tests": [
+    {
+      "case": "real-helper-entry-wrong-S2-first-gain-leaf",
+      "rejected": true,
+      "exit": 1,
+      "report_sha256": "a2890621ca43cfd741291fce0fb712b0cf6b211f68a7b61c45e396f0a7b83695"
+    },
+    {
+      "case": "real-helper-entry-one-PCM-byte-outside-target",
+      "rejected": true,
+      "exit": 1,
+      "report_sha256": "3279caa733539a66243af69fbd7f408e9dd0155bff2893d62180808e15ff2b3e"
+    },
+    {
+      "case": "same-clipping-predicate-on-real-candidate-target-one-sample",
+      "rejected": true,
+      "actual_sample_index": 595200
+    },
+    {
+      "case": "original-frozen-request-stays-exact",
+      "accepted": true,
+      "expected": true,
+      "details": {
+        "original_pending_consent_consumed": false,
+        "exact_history_move_valid": false,
+        "exact_observed_G35_note_linewrap_normalized": false,
+        "all_other_nonreview_document_exact": true
+      }
+    },
+    {
+      "case": "only-exact-original-S17-G35-linewrap-and-continuation-marker",
+      "accepted": true,
+      "expected": true,
+      "details": {
+        "original_pending_consent_consumed": false,
+        "exact_history_move_valid": false,
+        "exact_observed_G35_note_linewrap_normalized": true,
+        "all_other_nonreview_document_exact": true
+      }
+    },
+    {
+      "case": "same-original-G35-plus-pending-consent-history-consumption",
+      "accepted": true,
+      "expected": true,
+      "details": {
+        "original_pending_consent_consumed": true,
+        "exact_history_move_valid": true,
+        "exact_observed_G35_note_linewrap_normalized": true,
+        "all_other_nonreview_document_exact": true
+      }
+    },
+    {
+      "case": "note-meaning-addition",
+      "accepted": false,
+      "expected": false,
+      "details": {
+        "original_pending_consent_consumed": false,
+        "exact_history_move_valid": false,
+        "exact_observed_G35_note_linewrap_normalized": false,
+        "all_other_nonreview_document_exact": false
+      }
+    },
+    {
+      "case": "different-unobserved-extra-linewrap",
+      "accepted": false,
+      "expected": false,
+      "details": {
+        "original_pending_consent_consumed": false,
+        "exact_history_move_valid": false,
+        "exact_observed_G35_note_linewrap_normalized": false,
+        "all_other_nonreview_document_exact": false
+      }
+    },
+    {
+      "case": "consent-quote-modification",
+      "accepted": false,
+      "expected": false,
+      "details": {
+        "original_pending_consent_consumed": true,
+        "exact_history_move_valid": false
+      }
+    },
+    {
+      "case": "unrelated-body-change",
+      "accepted": false,
+      "expected": false,
+      "details": {
+        "original_pending_consent_consumed": false,
+        "exact_history_move_valid": false,
+        "exact_observed_G35_note_linewrap_normalized": false,
+        "all_other_nonreview_document_exact": false
+      }
+    }
+  ],
+  "all_cases_correct": true,
+  "comparison_before_is_latest_current_native_not_formally_accepted_whole": true,
+  "legacy_6bad_66f8_not_rolled_back": true,
+  "original_native_QA_ASR_and_new_4K_still_required": true,
+  "no_formal_source_GEN_CI_PDF_or_media_mutation": true
+}

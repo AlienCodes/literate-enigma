@@ -1,0 +1,1033 @@
+{
+  "kind": "source65-user092-minimal-opening-gain-candidates-on-latest-current-native-not-legacy",
+  "current_baseline_double_binding": {
+    "WAV_sha256": "c655cba20b97c97ca431a6e5eb43e8c250a67d6fc6ea92e695ff58139aa3ed41",
+    "WAV_md5_first12": "130d1dd4adb4",
+    "reconstructed_AAC_sha256": "e561c8319355ca7f96047b52c3a758cb89e92196553949e4532d06a2893a4125",
+    "actual_current_native_AAC_sha256": "e561c8319355ca7f96047b52c3a758cb89e92196553949e4532d06a2893a4125",
+    "whole_AAC_exact": true,
+    "samples": 3342720,
+    "rate": 24000
+  },
+  "baseline_source_sha256": "10cce8b5be1949c746369bb091829dbca9bcdd59f65b5d8b24b4a2a0ffcd4327",
+  "current_native_video_sha256": "1aaf139459ac9efe7530113dff2fa71349a8546ca0f3362b397c0a24369e9057",
+  "legacy_role": {
+    "video_sha256": "6bad7b012ccbad87a60ced23ada2c3162c7a561b4e72ad52362004ee3313ea8c",
+    "AAC_sha256": "66f8c5cfdd6c5551f20779115574f896d849763cf5adf8042c503664bf7ab94f",
+    "role": "only-the-older-review-user-heard-not-current-repair-baseline",
+    "not_AAC_identical_to_current": true
+  },
+  "current_vs_legacy_measured_delta": {
+    "S2_At_its_end_first_phrase_approximate": {
+      "RMS_including_silence_dBFS": 1.0075947980847246,
+      "peak_dBFS": 0.9835421795994783,
+      "speech_active_RMS_dBFS": 0.9759291587583334,
+      "loudest_400ms_RMS_dBFS": 1.0089091430518593
+    },
+    "S2_first_300ms_approximate": {
+      "RMS_including_silence_dBFS": 1.0045738364879107,
+      "peak_dBFS": 0.9835421795994783,
+      "speech_active_RMS_dBFS": 1.0045623514609332,
+      "loudest_400ms_RMS_dBFS": 1.0045738364879107
+    },
+    "S2_later_speech_context": {
+      "RMS_including_silence_dBFS": -0.0007991199161665463,
+      "peak_dBFS": 0.00028667721632613663,
+      "speech_active_RMS_dBFS": -0.0007992067519460022,
+      "loudest_400ms_RMS_dBFS": -0.001974164444721538
+    },
+    "S1_initial_location_context": {
+      "RMS_including_silence_dBFS": 0.49877118875278725,
+      "peak_dBFS": 0.47935879097216194,
+      "speech_active_RMS_dBFS": 0.4749757114932045,
+      "loudest_400ms_RMS_dBFS": 0.49655588165908426
+    }
+  },
+  "baseline_original_controls": {
+    "text": "At its end, cartons of precious seed sit silently in a sub-zero repository, insulated by permanently frozen ground.",
+    "pieces": [
+      [
+        0,
+        11
+      ],
+      [
+        12,
+        75
+      ],
+      [
+        76,
+        115
+      ]
+    ],
+    "piece_texts": [
+      "At its end,",
+      "cartons of precious seed sit silently in a sub-zero repository,",
+      "insulated by permanently frozen ground."
+    ],
+    "gaps": [
+      0.4,
+      0.4
+    ],
+    "tmap": [
+      [
+        0,
+        11,
+        0.0,
+        0.775
+      ],
+      [
+        12,
+        75,
+        1.155,
+        5.73
+      ],
+      [
+        76,
+        115,
+        6.11,
+        8.86
+      ]
+    ],
+    "automatic_level": {
+      "1": -2.0
+    },
+    "manual_segment_level": {
+      "2": 1.0
+    },
+    "LAST": {
+      "head": 960,
+      "segs": [
+        [
+          0,
+          18960,
+          -0.015,
+          []
+        ],
+        [
+          22440,
+          132240,
+          1.155,
+          []
+        ],
+        [
+          143160,
+          210496,
+          6.11,
+          []
+        ]
+      ],
+      "total": 8.86,
+      "cuts": [
+        [
+          18960,
+          22440,
+          0.38
+        ],
+        [
+          132240,
+          143160,
+          0.38
+        ]
+      ],
+      "grafts": [],
+      "gaps": [
+        0.4,
+        0.4
+      ],
+      "hs": 360
+    }
+  },
+  "target_source_span_s": [
+    12.12,
+    12.895
+  ],
+  "before_actual_current_metrics": {
+    "S2_exact_first_phrase": {
+      "span_seconds": [
+        12.12,
+        12.895
+      ],
+      "RMS_including_silence_dBFS": -22.78964761729958,
+      "speech_active_RMS_dBFS": -22.22217160056737,
+      "speech_active_sample_ratio": 0.8774193548387097,
+      "loudest_400ms_RMS_dBFS": -21.692947627236606,
+      "loudest_400ms_span_seconds": [
+        12.269395833333332,
+        12.669395833333333
+      ],
+      "crop_BS1770_LUFS": -23.159215112346,
+      "peak_dBFS": -7.379545205789,
+      "oversampled4x_true_peak_dbtp": -7.374017830757928,
+      "max_adjacent_sample_step": 0.11500919237732887
+    },
+    "S2_first300ms": {
+      "span_seconds": [
+        12.12,
+        12.42
+      ],
+      "RMS_including_silence_dBFS": -22.11085933113495,
+      "speech_active_RMS_dBFS": -21.405658958712944,
+      "speech_active_sample_ratio": 0.85,
+      "loudest_400ms_RMS_dBFS": -22.110859331134893,
+      "loudest_400ms_span_seconds": [
+        12.12,
+        12.42
+      ],
+      "crop_BS1770_LUFS": null,
+      "peak_dBFS": -7.379545205789,
+      "oversampled4x_true_peak_dbtp": -7.374017830757928,
+      "max_adjacent_sample_step": 0.11500919237732887
+    },
+    "S2_first1sec": {
+      "span_seconds": [
+        12.12,
+        13.12
+      ],
+      "RMS_including_silence_dBFS": -23.896627676444304,
+      "speech_active_RMS_dBFS": -22.22217160056737,
+      "speech_active_sample_ratio": 0.68,
+      "loudest_400ms_RMS_dBFS": -21.692947627236606,
+      "loudest_400ms_span_seconds": [
+        12.269395833333332,
+        12.669395833333333
+      ],
+      "crop_BS1770_LUFS": -23.621382128942365,
+      "peak_dBFS": -7.379545205789,
+      "oversampled4x_true_peak_dbtp": -7.374017830757928,
+      "max_adjacent_sample_step": 0.11500919237732887
+    },
+    "S2_exact_next_piece": {
+      "span_seconds": [
+        13.275,
+        17.85
+      ],
+      "RMS_including_silence_dBFS": -24.19750896430721,
+      "speech_active_RMS_dBFS": -23.878458962732335,
+      "speech_active_sample_ratio": 0.9289617486338798,
+      "loudest_400ms_RMS_dBFS": -17.820817557375722,
+      "loudest_400ms_span_seconds": [
+        13.391625000000001,
+        13.791625
+      ],
+      "crop_BS1770_LUFS": -24.771518725627597,
+      "peak_dBFS": -0.6805671756701872,
+      "oversampled4x_true_peak_dbtp": -0.6681782092825923,
+      "max_adjacent_sample_step": 0.15767773240804672
+    },
+    "S2_exact_last_piece": {
+      "span_seconds": [
+        18.23,
+        20.98
+      ],
+      "RMS_including_silence_dBFS": -23.506278562158545,
+      "speech_active_RMS_dBFS": -22.969856708697876,
+      "speech_active_sample_ratio": 0.8836363636363637,
+      "loudest_400ms_RMS_dBFS": -18.474354653632943,
+      "loudest_400ms_span_seconds": [
+        18.27475,
+        18.67475
+      ],
+      "crop_BS1770_LUFS": -24.887195773288468,
+      "peak_dBFS": -6.707859541247403,
+      "oversampled4x_true_peak_dbtp": -6.694004836887845,
+      "max_adjacent_sample_step": 0.11783549934625626
+    },
+    "S2_later_context": {
+      "span_seconds": [
+        13.05,
+        17.63
+      ],
+      "RMS_including_silence_dBFS": -24.21127504981374,
+      "speech_active_RMS_dBFS": -23.746875210266275,
+      "speech_active_sample_ratio": 0.898471615720524,
+      "loudest_400ms_RMS_dBFS": -17.820817557375722,
+      "loudest_400ms_span_seconds": [
+        13.391625000000001,
+        13.791625
+      ],
+      "crop_BS1770_LUFS": -24.16613923346328,
+      "peak_dBFS": -0.6805671756701872,
+      "oversampled4x_true_peak_dbtp": -0.6681782092825923,
+      "max_adjacent_sample_step": 0.15767773240804672
+    },
+    "S1_initial_context": {
+      "span_seconds": [
+        3.275,
+        4.72
+      ],
+      "RMS_including_silence_dBFS": -23.38691410793588,
+      "speech_active_RMS_dBFS": -21.402636365483183,
+      "speech_active_sample_ratio": 0.6332179930795848,
+      "loudest_400ms_RMS_dBFS": -18.71520275613572,
+      "loudest_400ms_span_seconds": [
+        3.3185208333333334,
+        3.7185208333333333
+      ],
+      "crop_BS1770_LUFS": -22.169074965411387,
+      "peak_dBFS": -6.380764838886793,
+      "oversampled4x_true_peak_dbtp": -6.358306550714107,
+      "max_adjacent_sample_step": 0.22340433299541473
+    }
+  },
+  "candidates": [
+    {
+      "relative_target_gain_dB": 1.0,
+      "source_control_single_leaf": {
+        "path": "/分段增益dB/S2/1",
+        "before_absent": true,
+        "after": 1.0,
+        "existing_part2_plus1_preserved": true
+      },
+      "original_automatic_first_gain_dB": -2.0,
+      "proposed_total_first_gain_dB": -1.0,
+      "WAV_sha256": "82e26cd939bd82c278090f2bdee08c13dc8133e9c9d3b66f02abf8ddccd1d0ba",
+      "WAV_md5_first12": "61f98f20e9e0",
+      "AAC_ADTS_sha256": "64650c1f64080d0f681db4de4de5650ebe5f2226f2550a098f799f2083e8af3b",
+      "whole_float32_samples_outside_target_exact": true,
+      "title_plus_other16_sentences_PCM16_exact": [
+        {
+          "sentence": "title",
+          "PCM16_sample_exact": true
+        },
+        {
+          "sentence": "S1",
+          "PCM16_sample_exact": true
+        },
+        {
+          "sentence": "S3",
+          "PCM16_sample_exact": true
+        },
+        {
+          "sentence": "S4",
+          "PCM16_sample_exact": true
+        },
+        {
+          "sentence": "S5",
+          "PCM16_sample_exact": true
+        },
+        {
+          "sentence": "S6",
+          "PCM16_sample_exact": true
+        },
+        {
+          "sentence": "S7",
+          "PCM16_sample_exact": true
+        },
+        {
+          "sentence": "S8",
+          "PCM16_sample_exact": true
+        },
+        {
+          "sentence": "S9",
+          "PCM16_sample_exact": true
+        },
+        {
+          "sentence": "S10",
+          "PCM16_sample_exact": true
+        },
+        {
+          "sentence": "S11",
+          "PCM16_sample_exact": true
+        },
+        {
+          "sentence": "S12",
+          "PCM16_sample_exact": true
+        },
+        {
+          "sentence": "S13",
+          "PCM16_sample_exact": true
+        },
+        {
+          "sentence": "S14",
+          "PCM16_sample_exact": true
+        },
+        {
+          "sentence": "S15",
+          "PCM16_sample_exact": true
+        },
+        {
+          "sentence": "S16",
+          "PCM16_sample_exact": true
+        },
+        {
+          "sentence": "S17",
+          "PCM16_sample_exact": true
+        }
+      ],
+      "S2_other_two_punctuation_segments_PCM16_exact": true,
+      "total_samples_all_sentence_clocks_exact": true,
+      "original_configured_pauses_unchanged_s": [
+        0.4,
+        0.4
+      ],
+      "original_actual_between_piece_gaps_unchanged_s": [
+        0.38,
+        0.38
+      ],
+      "target_gain_fit": {
+        "gain_db": 1.000000494110366,
+        "correlation": 0.9999999845457106,
+        "gain_compensated_residual_snr_db": 75.09920950638097
+      },
+      "target_F0_voiced_mask_equal": true,
+      "target_F0_frames": 146,
+      "target_F0_max_abs_change_Hz": 0.0068063638786668434,
+      "target_first_last_PCM16_before_after": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "whole_encoded_R128": {
+        "integrated_lufs": -24.3,
+        "true_peak_dbtp": -0.7,
+        "lra_lu": 3.5
+      },
+      "after_actual_encoded_metrics": {
+        "S2_exact_first_phrase": {
+          "span_seconds": [
+            12.12,
+            12.895
+          ],
+          "RMS_including_silence_dBFS": -21.78324793505309,
+          "speech_active_RMS_dBFS": -21.27908797390644,
+          "speech_active_sample_ratio": 0.8903225806451613,
+          "loudest_400ms_RMS_dBFS": -20.687839014716563,
+          "loudest_400ms_span_seconds": [
+            12.269395833333332,
+            12.669395833333333
+          ],
+          "crop_BS1770_LUFS": -22.147332347606618,
+          "peak_dBFS": -6.315149920379701,
+          "oversampled4x_true_peak_dbtp": -6.309622545348629,
+          "max_adjacent_sample_step": 0.13116690516471863
+        },
+        "S2_first300ms": {
+          "span_seconds": [
+            12.12,
+            12.42
+          ],
+          "RMS_including_silence_dBFS": -21.101987108877175,
+          "speech_active_RMS_dBFS": -20.48110185717111,
+          "speech_active_sample_ratio": 0.8666666666666667,
+          "loudest_400ms_RMS_dBFS": -21.101987108877125,
+          "loudest_400ms_span_seconds": [
+            12.12,
+            12.42
+          ],
+          "crop_BS1770_LUFS": null,
+          "peak_dBFS": -6.315149920379701,
+          "oversampled4x_true_peak_dbtp": -6.309622545348629,
+          "max_adjacent_sample_step": 0.13116690516471863
+        },
+        "S2_first1sec": {
+          "span_seconds": [
+            12.12,
+            13.12
+          ],
+          "RMS_including_silence_dBFS": -22.890227948552454,
+          "speech_active_RMS_dBFS": -21.27908797390644,
+          "speech_active_sample_ratio": 0.69,
+          "loudest_400ms_RMS_dBFS": -20.687839014716563,
+          "loudest_400ms_span_seconds": [
+            12.269395833333332,
+            12.669395833333333
+          ],
+          "crop_BS1770_LUFS": -22.609604895830387,
+          "peak_dBFS": -6.315149920379701,
+          "oversampled4x_true_peak_dbtp": -6.309622545348629,
+          "max_adjacent_sample_step": 0.13116690516471863
+        },
+        "S2_exact_next_piece": {
+          "span_seconds": [
+            13.275,
+            17.85
+          ],
+          "RMS_including_silence_dBFS": -24.19750896422945,
+          "speech_active_RMS_dBFS": -23.878458962654552,
+          "speech_active_sample_ratio": 0.9289617486338798,
+          "loudest_400ms_RMS_dBFS": -17.820817557375722,
+          "loudest_400ms_span_seconds": [
+            13.391625000000001,
+            13.791625
+          ],
+          "crop_BS1770_LUFS": -24.7715187255949,
+          "peak_dBFS": -0.6805671756701872,
+          "oversampled4x_true_peak_dbtp": -0.6681782092825923,
+          "max_adjacent_sample_step": 0.15767773240804672
+        },
+        "S2_exact_last_piece": {
+          "span_seconds": [
+            18.23,
+            20.98
+          ],
+          "RMS_including_silence_dBFS": -23.506278562158545,
+          "speech_active_RMS_dBFS": -22.969856708697876,
+          "speech_active_sample_ratio": 0.8836363636363637,
+          "loudest_400ms_RMS_dBFS": -18.474354653632943,
+          "loudest_400ms_span_seconds": [
+            18.27475,
+            18.67475
+          ],
+          "crop_BS1770_LUFS": -24.887195773288468,
+          "peak_dBFS": -6.707859541247403,
+          "oversampled4x_true_peak_dbtp": -6.694004836887845,
+          "max_adjacent_sample_step": 0.11783549934625626
+        },
+        "S2_later_context": {
+          "span_seconds": [
+            13.05,
+            17.63
+          ],
+          "RMS_including_silence_dBFS": -24.211275049735814,
+          "speech_active_RMS_dBFS": -23.746875210188342,
+          "speech_active_sample_ratio": 0.898471615720524,
+          "loudest_400ms_RMS_dBFS": -17.820817557375722,
+          "loudest_400ms_span_seconds": [
+            13.391625000000001,
+            13.791625
+          ],
+          "crop_BS1770_LUFS": -24.166139233368167,
+          "peak_dBFS": -0.6805671756701872,
+          "oversampled4x_true_peak_dbtp": -0.6681782092825923,
+          "max_adjacent_sample_step": 0.15767773240804672
+        },
+        "S1_initial_context": {
+          "span_seconds": [
+            3.275,
+            4.72
+          ],
+          "RMS_including_silence_dBFS": -23.38691410793588,
+          "speech_active_RMS_dBFS": -21.402636365483183,
+          "speech_active_sample_ratio": 0.6332179930795848,
+          "loudest_400ms_RMS_dBFS": -18.71520275613572,
+          "loudest_400ms_span_seconds": [
+            3.3185208333333334,
+            3.7185208333333333
+          ],
+          "crop_BS1770_LUFS": -22.169074965411387,
+          "peak_dBFS": -6.380764838886793,
+          "oversampled4x_true_peak_dbtp": -6.358306550714107,
+          "max_adjacent_sample_step": 0.22340433299541473
+        }
+      },
+      "original_health_metrics": {
+        "削波": [
+          0,
+          ""
+        ],
+        "直流偏移": [
+          5.510654217168362e-05,
+          "第5句"
+        ],
+        "咔哒": [
+          1.1784470938127578,
+          "第10句"
+        ],
+        "句尾截断": [
+          -103.74008976968807,
+          "第4句"
+        ],
+        "句首突起": [
+          -56.08476349576485,
+          "第3句"
+        ],
+        "齿音": [
+          3.9720807982638178,
+          "第8句"
+        ],
+        "音色突变": [
+          0.5528881750486407,
+          "第7句"
+        ],
+        "语速突变": [
+          0.3581376029529417,
+          "第9句"
+        ]
+      },
+      "original_health_violations": [],
+      "original_health_notes": [],
+      "original_R_whole_summary": "全片 -24.3 LUFS，峰值 -0.7 dBFS，17 句，逐句与全片差 -0.9～+1.6 LU",
+      "original_R_whole_violations": [],
+      "original_R_inside_violations": [],
+      "original_short_piece_standard_enabled": true,
+      "original_all_reported_algorithms_pass": true,
+      "RAM_source_WAV_private": "/dev/shm/source65-audio092-private/candidate-plus1.0dB/a.wav",
+      "RAM_candidate_AAC": "/dev/shm/source65-audio092-private/candidate-plus1.0dB/65.m4a",
+      "native_QA_ASR_or_final_acceptance_not_claimed": true
+    },
+    {
+      "relative_target_gain_dB": 1.5,
+      "source_control_single_leaf": {
+        "path": "/分段增益dB/S2/1",
+        "before_absent": true,
+        "after": 1.5,
+        "existing_part2_plus1_preserved": true
+      },
+      "original_automatic_first_gain_dB": -2.0,
+      "proposed_total_first_gain_dB": -0.5,
+      "WAV_sha256": "e541f0dde2498fac290a026f31e3352d50ea9f565c666553e2e83461b56b8707",
+      "WAV_md5_first12": "7fa49a5e903a",
+      "AAC_ADTS_sha256": "ef97f43fe4c5f9925c8ad8b3fe10982c60db8adc09ef0835a9f01017fc5ee940",
+      "whole_float32_samples_outside_target_exact": true,
+      "title_plus_other16_sentences_PCM16_exact": [
+        {
+          "sentence": "title",
+          "PCM16_sample_exact": true
+        },
+        {
+          "sentence": "S1",
+          "PCM16_sample_exact": true
+        },
+        {
+          "sentence": "S3",
+          "PCM16_sample_exact": true
+        },
+        {
+          "sentence": "S4",
+          "PCM16_sample_exact": true
+        },
+        {
+          "sentence": "S5",
+          "PCM16_sample_exact": true
+        },
+        {
+          "sentence": "S6",
+          "PCM16_sample_exact": true
+        },
+        {
+          "sentence": "S7",
+          "PCM16_sample_exact": true
+        },
+        {
+          "sentence": "S8",
+          "PCM16_sample_exact": true
+        },
+        {
+          "sentence": "S9",
+          "PCM16_sample_exact": true
+        },
+        {
+          "sentence": "S10",
+          "PCM16_sample_exact": true
+        },
+        {
+          "sentence": "S11",
+          "PCM16_sample_exact": true
+        },
+        {
+          "sentence": "S12",
+          "PCM16_sample_exact": true
+        },
+        {
+          "sentence": "S13",
+          "PCM16_sample_exact": true
+        },
+        {
+          "sentence": "S14",
+          "PCM16_sample_exact": true
+        },
+        {
+          "sentence": "S15",
+          "PCM16_sample_exact": true
+        },
+        {
+          "sentence": "S16",
+          "PCM16_sample_exact": true
+        },
+        {
+          "sentence": "S17",
+          "PCM16_sample_exact": true
+        }
+      ],
+      "S2_other_two_punctuation_segments_PCM16_exact": true,
+      "total_samples_all_sentence_clocks_exact": true,
+      "original_configured_pauses_unchanged_s": [
+        0.4,
+        0.4
+      ],
+      "original_actual_between_piece_gaps_unchanged_s": [
+        0.38,
+        0.38
+      ],
+      "target_gain_fit": {
+        "gain_db": 1.500000880845761,
+        "correlation": 0.9999999852348955,
+        "gain_compensated_residual_snr_db": 75.29733468535962
+      },
+      "target_F0_voiced_mask_equal": true,
+      "target_F0_frames": 146,
+      "target_F0_max_abs_change_Hz": 0.013050681363324657,
+      "target_first_last_PCM16_before_after": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "whole_encoded_R128": {
+        "integrated_lufs": -24.3,
+        "true_peak_dbtp": -0.7,
+        "lra_lu": 3.6
+      },
+      "after_actual_encoded_metrics": {
+        "S2_exact_first_phrase": {
+          "span_seconds": [
+            12.12,
+            12.895
+          ],
+          "RMS_including_silence_dBFS": -21.27801702965787,
+          "speech_active_RMS_dBFS": -20.773865030280234,
+          "speech_active_sample_ratio": 0.8903225806451613,
+          "loudest_400ms_RMS_dBFS": -20.18403009969585,
+          "loudest_400ms_span_seconds": [
+            12.269395833333332,
+            12.669395833333333
+          ],
+          "crop_BS1770_LUFS": -21.63943166382159,
+          "peak_dBFS": -5.84959863751878,
+          "oversampled4x_true_peak_dbtp": -5.844071262487708,
+          "max_adjacent_sample_step": 0.13958802819252014
+        },
+        "S2_first300ms": {
+          "span_seconds": [
+            12.12,
+            12.42
+          ],
+          "RMS_including_silence_dBFS": -20.597081637074734,
+          "speech_active_RMS_dBFS": -19.976203985282147,
+          "speech_active_sample_ratio": 0.8666666666666667,
+          "loudest_400ms_RMS_dBFS": -20.59708163707468,
+          "loudest_400ms_span_seconds": [
+            12.12,
+            12.42
+          ],
+          "crop_BS1770_LUFS": null,
+          "peak_dBFS": -5.84959863751878,
+          "oversampled4x_true_peak_dbtp": -5.844071262487708,
+          "max_adjacent_sample_step": 0.13958802819252014
+        },
+        "S2_first1sec": {
+          "span_seconds": [
+            12.12,
+            13.12
+          ],
+          "RMS_including_silence_dBFS": -22.38499712349832,
+          "speech_active_RMS_dBFS": -20.773865030280234,
+          "speech_active_sample_ratio": 0.69,
+          "loudest_400ms_RMS_dBFS": -20.18403009969585,
+          "loudest_400ms_span_seconds": [
+            12.269395833333332,
+            12.669395833333333
+          ],
+          "crop_BS1770_LUFS": -22.101598604789064,
+          "peak_dBFS": -5.84959863751878,
+          "oversampled4x_true_peak_dbtp": -5.844071262487708,
+          "max_adjacent_sample_step": 0.13958802819252014
+        },
+        "S2_exact_next_piece": {
+          "span_seconds": [
+            13.275,
+            17.85
+          ],
+          "RMS_including_silence_dBFS": -24.197127297672854,
+          "speech_active_RMS_dBFS": -23.87807721069883,
+          "speech_active_sample_ratio": 0.9289617486338798,
+          "loudest_400ms_RMS_dBFS": -17.819805919604445,
+          "loudest_400ms_span_seconds": [
+            13.391625000000001,
+            13.791625
+          ],
+          "crop_BS1770_LUFS": -24.771295657891798,
+          "peak_dBFS": -0.6805671756701872,
+          "oversampled4x_true_peak_dbtp": -0.6681782092825923,
+          "max_adjacent_sample_step": 0.15767773240804672
+        },
+        "S2_exact_last_piece": {
+          "span_seconds": [
+            18.23,
+            20.98
+          ],
+          "RMS_including_silence_dBFS": -23.506278562158545,
+          "speech_active_RMS_dBFS": -22.969856708697876,
+          "speech_active_sample_ratio": 0.8836363636363637,
+          "loudest_400ms_RMS_dBFS": -18.474354653632943,
+          "loudest_400ms_span_seconds": [
+            18.27475,
+            18.67475
+          ],
+          "crop_BS1770_LUFS": -24.887195773288468,
+          "peak_dBFS": -6.707859541247403,
+          "oversampled4x_true_peak_dbtp": -6.694004836887845,
+          "max_adjacent_sample_step": 0.11783549934625626
+        },
+        "S2_later_context": {
+          "span_seconds": [
+            13.05,
+            17.63
+          ],
+          "RMS_including_silence_dBFS": -24.21089258949337,
+          "speech_active_RMS_dBFS": -23.746492700932954,
+          "speech_active_sample_ratio": 0.898471615720524,
+          "loudest_400ms_RMS_dBFS": -17.819805919604445,
+          "loudest_400ms_span_seconds": [
+            13.391625000000001,
+            13.791625
+          ],
+          "crop_BS1770_LUFS": -24.16575118825031,
+          "peak_dBFS": -0.6805671756701872,
+          "oversampled4x_true_peak_dbtp": -0.6681782092825923,
+          "max_adjacent_sample_step": 0.15767773240804672
+        },
+        "S1_initial_context": {
+          "span_seconds": [
+            3.275,
+            4.72
+          ],
+          "RMS_including_silence_dBFS": -23.38691410793588,
+          "speech_active_RMS_dBFS": -21.402636365483183,
+          "speech_active_sample_ratio": 0.6332179930795848,
+          "loudest_400ms_RMS_dBFS": -18.71520275613572,
+          "loudest_400ms_span_seconds": [
+            3.3185208333333334,
+            3.7185208333333333
+          ],
+          "crop_BS1770_LUFS": -22.169074965411387,
+          "peak_dBFS": -6.380764838886793,
+          "oversampled4x_true_peak_dbtp": -6.358306550714107,
+          "max_adjacent_sample_step": 0.22340433299541473
+        }
+      },
+      "original_health_metrics": {
+        "削波": [
+          0,
+          ""
+        ],
+        "直流偏移": [
+          5.510654217168362e-05,
+          "第5句"
+        ],
+        "咔哒": [
+          1.1784470938127578,
+          "第10句"
+        ],
+        "句尾截断": [
+          -103.74008976968807,
+          "第4句"
+        ],
+        "句首突起": [
+          -56.08476349576485,
+          "第3句"
+        ],
+        "齿音": [
+          3.9720807982638178,
+          "第8句"
+        ],
+        "音色突变": [
+          0.5528881750486407,
+          "第7句"
+        ],
+        "语速突变": [
+          0.3581376029529417,
+          "第9句"
+        ]
+      },
+      "original_health_violations": [],
+      "original_health_notes": [],
+      "original_R_whole_summary": "全片 -24.3 LUFS，峰值 -0.7 dBFS，17 句，逐句与全片差 -0.9～+1.6 LU",
+      "original_R_whole_violations": [],
+      "original_R_inside_violations": [],
+      "original_short_piece_standard_enabled": true,
+      "original_all_reported_algorithms_pass": true,
+      "RAM_source_WAV_private": "/dev/shm/source65-audio092-private/candidate-plus1.5dB/a.wav",
+      "RAM_candidate_AAC": "/dev/shm/source65-audio092-private/candidate-plus1.5dB/65.m4a",
+      "native_QA_ASR_or_final_acceptance_not_claimed": true
+    }
+  ],
+  "formal_source_PAY_GEN_CI_text_or_PDF_mutated": false,
+  "new_TTS_or_human_listening_claimed": false,
+  "original_existing_source_automatic_peak_normalization_only": "Unmodified original maker function, with every sample outside target checked exact; no added whole-track normalization.",
+  "latest_baseline_sentence_PCM16_and_CF": [
+    {
+      "sentence": "title",
+      "sample_span_24k": [
+        9600,
+        54600
+      ],
+      "PCM16_sha256": "526242b139f2e0f7febd3a042060d9845266ef348e01c942b4accd239110ed98",
+      "machine_ASR_confirmation": null
+    },
+    {
+      "sentence": "S1",
+      "sample_span_24k": [
+        78600,
+        266880
+      ],
+      "PCM16_sha256": "d7da25e2597141c19295dc2478dc926da08ebccf264eddf51ca94fba74600d0e",
+      "machine_ASR_confirmation": null
+    },
+    {
+      "sentence": "S2",
+      "sample_span_24k": [
+        290880,
+        503520
+      ],
+      "PCM16_sha256": "106b9c50ae43594cf55e7cc60de34f648c2a045ca474ddd8fd4b6d94aa2a75c7",
+      "machine_ASR_confirmation": {
+        "配音指纹": "130d1dd4adb4",
+        "依据": "2026-11-07：precious seed sit：seed 的 /d/ 与 sit 的 /s/ 连读，small.en 听成 seeds；parakeet 听对；读音按脚本，非读错"
+      }
+    },
+    {
+      "sentence": "S3",
+      "sample_span_24k": [
+        532320,
+        856080
+      ],
+      "PCM16_sha256": "780ac76fc95c03d299f2cdce4cf933c24441f120a18128a1cee555eccd53766c",
+      "machine_ASR_confirmation": {
+        "配音指纹": "130d1dd4adb4",
+        "依据": "2026-11-07：insure 美式读 /ɪnˈʃʊr/，与 ensure 同音（Merriam-Webster 两词同音），两路识别器按常见词拼成 ensure；读音正确"
+      }
+    },
+    {
+      "sentence": "S4",
+      "sample_span_24k": [
+        880080,
+        958920
+      ],
+      "PCM16_sha256": "9cc8c864d676014bf73c1e109ba1aa50b5754d8f34bab67d351d73a83027158f",
+      "machine_ASR_confirmation": {
+        "配音指纹": "130d1dd4adb4",
+        "依据": "2026-11-07：four and a half million 两路识别器都写成数字“4.5 million”，and a half 已读出；读音正确"
+      }
+    },
+    {
+      "sentence": "S5",
+      "sample_span_24k": [
+        982920,
+        1115040
+      ],
+      "PCM16_sha256": "985363d4a0d17f2b0b5012bf4bd20f9825e87e684d9000dc1bea62b53b632b34",
+      "machine_ASR_confirmation": null
+    },
+    {
+      "sentence": "S6",
+      "sample_span_24k": [
+        1139040,
+        1244760
+      ],
+      "PCM16_sha256": "7a1d0c54ce6fb0995abaf1e875401d0485bbc7b1a909ed9fd01c2011da278327",
+      "machine_ASR_confirmation": null
+    },
+    {
+      "sentence": "S7",
+      "sample_span_24k": [
+        1273560,
+        1400280
+      ],
+      "PCM16_sha256": "d7a7a2f9836e98789e81f9080ecb7a05372458b92352c1aacfdbedf610806379",
+      "machine_ASR_confirmation": {
+        "配音指纹": "130d1dd4adb4",
+        "依据": "2026-11-07 实测 a.wav：amid 56.64–56.98，strife 的 /s/ 57.02–57.12（6 kHz）、/tr/ 57.14–57.20、aɪ 57.22–57.44、/f/ 57.46–57.52 全在；parakeet 把 amid strife 拼成 amidst，small.en 听对；非读错"
+      }
+    },
+    {
+      "sentence": "S8",
+      "sample_span_24k": [
+        1424280,
+        1620720
+      ],
+      "PCM16_sha256": "07ce74fd11468008cf5cd447b77e2288ea28b1e22ef9b3a14288dac807c64501",
+      "machine_ASR_confirmation": null
+    },
+    {
+      "sentence": "S9",
+      "sample_span_24k": [
+        1644720,
+        1950360
+      ],
+      "PCM16_sha256": "d6ee3cc54c1cedd0d57507b6fdb57b12a63e9075536694be81e172f07287df68",
+      "machine_ASR_confirmation": null
+    },
+    {
+      "sentence": "S10",
+      "sample_span_24k": [
+        1974360,
+        2085000
+      ],
+      "PCM16_sha256": "05cae489b2488cdf25878f61d35e0038c4adc6f3cf272e5b3004c695778380f8",
+      "machine_ASR_confirmation": null
+    },
+    {
+      "sentence": "S11",
+      "sample_span_24k": [
+        2113800,
+        2280480
+      ],
+      "PCM16_sha256": "0f82088a6d582c3e2878fc3e9cc13a045d6bf2f013591d50b99a457b935ba0cb",
+      "machine_ASR_confirmation": null
+    },
+    {
+      "sentence": "S12",
+      "sample_span_24k": [
+        2304480,
+        2559600
+      ],
+      "PCM16_sha256": "cb0fae757d279b513f97597e3fd6b16f3c43677244e29e24520cbd5149006808",
+      "machine_ASR_confirmation": null
+    },
+    {
+      "sentence": "S13",
+      "sample_span_24k": [
+        2588400,
+        2627040
+      ],
+      "PCM16_sha256": "fd7e2a5f7bf529fdefd9d42e326b533810701482e655413639e698909347cf22",
+      "machine_ASR_confirmation": null
+    },
+    {
+      "sentence": "S14",
+      "sample_span_24k": [
+        2651040,
+        2825760
+      ],
+      "PCM16_sha256": "20304365bc3d81dfb8c0c1cf3ae04f5893beeedb7c012ae6cac0a3a93713bd87",
+      "machine_ASR_confirmation": null
+    },
+    {
+      "sentence": "S15",
+      "sample_span_24k": [
+        2849760,
+        2992560
+      ],
+      "PCM16_sha256": "a8adf00ae0356ba1a851d045239069e1b76ebf71e15f357c63f33519181a9da0",
+      "machine_ASR_confirmation": null
+    },
+    {
+      "sentence": "S16",
+      "sample_span_24k": [
+        3016560,
+        3096840
+      ],
+      "PCM16_sha256": "a25dc5dd0393b7c9e31b5721d5b8e3ea1a5c436b521ab1798b56562cc8185490",
+      "machine_ASR_confirmation": null
+    },
+    {
+      "sentence": "S17",
+      "sample_span_24k": [
+        3125640,
+        3294720
+      ],
+      "PCM16_sha256": "f7cd4678f22643db0a86e3d3e2fe5880ca2d654bfb076963b4aa2e8c39cdd720",
+      "machine_ASR_confirmation": null
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "article": "65",
+  "kind": "controlled_audio_repair",
+  "passed": false,
+  "repair_applied": false,
+  "diagnostic_only": true,
+  "production_delivery_eligible": false,
+  "official_full_gates_are_separate_required_precondition": true,
+  "official_gates_replaced_or_thresholds_modified": false,
+  "subjective_listening_claimed": false,
+  "private_caches_GT_or_PCM_exported": false,
+  "program_sha256": "6adb4c748cdbf86f87843c90ce37e51e5571d25ab6e5d41aeffca9849144bc91",
+  "reference_file_sha256": "b3c7101180402da958448f26072aa0705cbe520b46b64c19daa8e0acf224bd6c",
+  "fingerprints": {
+    "request_source_sha256": "875ecf68f5e196bb02c198533c5b5928852a1c1083419f92acccc65617b3f670",
+    "request_generator_sha256": "c11c5d1e76be13e29844dd9327bfe8dc653d1db4b93bad09e5db30365236fe62",
+    "actual_full_source_sha256": "9101fcd299d0faffcbc0a4657c4b5afa383db00905a46a413607defab722778c",
+    "actual_raw_WAV_sha256": "e541f0dde2498fac290a026f31e3352d50ea9f565c666553e2e83461b56b8707",
+    "accepted_video_sha256": "1aaf139459ac9efe7530113dff2fa71349a8546ca0f3362b397c0a24369e9057",
+    "canonical_video_sha256": "7ffdf832208756d4fff1dd07336c17f79e35a40ee4acba154d1db0394a87585b",
+    "accepted_AAC_ADTS_sha256": "e561c8319355ca7f96047b52c3a758cb89e92196553949e4532d06a2893a4125",
+    "canonical_AAC_ADTS_sha256": "ef97f43fe4c5f9925c8ad8b3fe10982c60db8adc09ef0835a9f01017fc5ee940"
+  },
+  "source_current_sha256": "9101fcd299d0faffcbc0a4657c4b5afa383db00905a46a413607defab722778c",
+  "accepted_sha256": "1aaf139459ac9efe7530113dff2fa71349a8546ca0f3362b397c0a24369e9057",
+  "canonical_sha256": "7ffdf832208756d4fff1dd07336c17f79e35a40ee4acba154d1db0394a87585b",
+  "source_authorization_ids": [
+    "092",
+    "094",
+    "095"
+  ],
+  "error": {
+    "type": "ValueError",
+    "detail": "Exact source/raw/AAC binding failed; audio measurements cannot excuse it."
+  },
+  "checks": [
+    {
+      "name": "exact-approved-fingerprint:request_source_sha256",
+      "passed": true,
+      "actual": "875ecf68f5e196bb02c198533c5b5928852a1c1083419f92acccc65617b3f670",
+      "expected": "875ecf68f5e196bb02c198533c5b5928852a1c1083419f92acccc65617b3f670"
+    },
+    {
+      "name": "exact-approved-fingerprint:request_generator_sha256",
+      "passed": true,
+      "actual": "c11c5d1e76be13e29844dd9327bfe8dc653d1db4b93bad09e5db30365236fe62",
+      "expected": "c11c5d1e76be13e29844dd9327bfe8dc653d1db4b93bad09e5db30365236fe62"
+    },
+    {
+      "name": "exact-approved-fingerprint:accepted_video_sha256",
+      "passed": true,
+      "actual": "1aaf139459ac9efe7530113dff2fa71349a8546ca0f3362b397c0a24369e9057",
+      "expected": "1aaf139459ac9efe7530113dff2fa71349a8546ca0f3362b397c0a24369e9057"
+    },
+    {
+      "name": "exact-approved-fingerprint:accepted_AAC_ADTS_sha256",
+      "passed": true,
+      "actual": "e561c8319355ca7f96047b52c3a758cb89e92196553949e4532d06a2893a4125",
+      "expected": "e561c8319355ca7f96047b52c3a758cb89e92196553949e4532d06a2893a4125"
+    },
+    {
+      "name": "exact-approved-fingerprint:actual_raw_WAV_sha256",
+      "passed": true,
+      "actual": "e541f0dde2498fac290a026f31e3352d50ea9f565c666553e2e83461b56b8707",
+      "expected": "e541f0dde2498fac290a026f31e3352d50ea9f565c666553e2e83461b56b8707"
+    },
+    {
+      "name": "exact-approved-fingerprint:canonical_AAC_ADTS_sha256",
+      "passed": true,
+      "actual": "ef97f43fe4c5f9925c8ad8b3fe10982c60db8adc09ef0835a9f01017fc5ee940",
+      "expected": "ef97f43fe4c5f9925c8ad8b3fe10982c60db8adc09ef0835a9f01017fc5ee940"
+    },
+    {
+      "name": "requested-entire-nonreview-source",
+      "passed": true
+    },
+    {
+      "name": "requested-exact-sole-S2-gain-plus1_5-control",
+      "passed": true
+    },
+    {
+      "name": "requested-all-original-spoken-English-preserved",
+      "passed": true
+    },
+    {
+      "name": "actual-entire-nonreview-source",
+      "passed": false,
+      "original_pending_consent_consumed": false,
+      "exact_history_move_valid": false,
+      "exact_observed_G35_note_linewrap_normalized": false,
+      "all_other_nonreview_document_exact": false
+    },
+    {
+      "name": "actual-exact-sole-S2-gain-plus1_5-control",
+      "passed": false
+    },
+    {
+      "name": "actual-all-original-spoken-English-preserved",
+      "passed": true
+    }
+  ]
+}

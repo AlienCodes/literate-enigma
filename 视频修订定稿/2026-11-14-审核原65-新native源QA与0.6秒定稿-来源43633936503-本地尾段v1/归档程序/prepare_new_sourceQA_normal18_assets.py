@@ -1,0 +1,100 @@
+"""Archive actual new-native source QA followed by an independently validated normal18 final."""
+from pathlib import Path
+import argparse
+import errno
+import json
+import os
+import shutil
+import video_title_authorization as titles
+from archive_batch import digest, load, now, write
+
+B=Path(__file__).resolve().parent
+SAFE={'.json','.py','.sh','.md','.txt','.log','.csv','.diff','.patch','.yml','.yaml','.png','.jpg','.mp4','.zip'}
+BINARY={'.png','.jpg','.mp4','.zip'}
+
+def main():
+    ap=argparse.ArgumentParser();ap.add_argument('--handoff',required=True);ap.add_argument('--expected-handoff-sha256',required=True);ap.add_argument('--work-dir',required=True);ap.add_argument('--explicit-public-manifest',required=True);ap.add_argument('--explicit-public-manifest-sha256',required=True);ap.add_argument('--video-title-authorization');a=ap.parse_args()
+    hp=Path(a.handoff).resolve();assert digest(hp)==a.expected_handoff_sha256;h=load(hp)
+    assert h['status']=='passed_actual_normal18_post_only_for_permanent_archive' and h['kind']=='actual-new-native-source-QA-then-authorized-normal18-local-tail'
+    assert h['local_postprocessing_only'] is True and h['new_native_job_or_TTS_claimed'] is False and h['production_delivery_eligible'] is True and h['preview_only'] is False
+    assert len(h['articles'])==1;item=h['articles'][0];assert item['passed_per_article'] is True;sid=item['source_id'];nid=item['new_id']
+    w=Path(a.work_dir).resolve();assert w.parent==B and (w/'payload').is_symlink(), 'Explicit owned RAM payload must be initialized before collection'
+    assert h['actual_new_source_QA_then_final_normal18_verified'] is True
+    allowed_public_WAV={};public19=None
+    if sid=='19' and nid=='38':
+        import source19_public_diagnostic_contexts as public19
+        allowed_public_WAV=public19.allowed(sid,nid)
+    source_spec=h['current_source_validation_handoff'];source_hp=Path(source_spec['path']);assert source_hp.stat().st_size==source_spec['bytes'] and digest(source_hp)==source_spec['sha256']
+    source_qa=load(source_hp);assert source_qa['status']=='passed_actual_native_inline_article_for_permanent_archive' and source_qa['source_run']==h['source_run']
+    assert len(source_qa['articles'])==1 and source_qa['articles'][0]['source_id']==sid and source_qa['articles'][0]['passed_per_article'] is True
+    native_qc_spec=source_qa['articles'][0]['section']['qc'];native_qc_path=Path(native_qc_spec['path']);assert native_qc_path.stat().st_size==native_qc_spec['bytes'] and digest(native_qc_path)==native_qc_spec['sha256']
+    native_qc=load(native_qc_path);assert native_qc['status']=='passed';source_audio=native_qc['audio'];assert isinstance(source_audio['repair_applied'],bool)
+    book=load(h['global_approved_evidence']['book_illustrations']['path']);old_article=next(r for r in book['illustrations'] if r['source_id']==sid);assert old_article['new_id']==nid
+    video_title=old_article['title_zh'];title_auth=None
+    if sid=='60' and nid=='36':
+        actual_pair=source_qa['articles'][0]['section']['final_source'];actual_json=json.loads(titles.actual_file(actual_pair['json'],source_qa))
+        if actual_json['title_zh']!=video_title or a.video_title_authorization:
+            assert a.video_title_authorization,'Changed video title requires the exact explicit user077 authority'
+            up=Path(a.video_title_authorization);us={'path':str(up),'bytes':up.stat().st_size,'sha256':digest(up)}
+            title_auth=titles.build(h,old_article,us);video_title=title_auth['approved_video_title_zh']
+    else:assert a.video_title_authorization is None
+    old_asset={'asset_commit':None}
+    authority=Path('/workspace/work/first50-review-release/USER-REVIEW-2026-11-14-051.json');assert digest(authority)=='4bcae46b68b9584f107966f683af580b474fa9835f101834fe55ed6968dfc36b';assert load(authority)['required_behavior']['nominal_extra_hold_frames']==18
+    prefix=Path('视频修订定稿')/f"2026-11-14-审核原{sid}-新native源QA与0.6秒定稿-来源{h['source_run']}-本地尾段v1";pay=w/'payload';bindings=[];stored={}
+    def add(source,relative,size=None,sha=None):
+        source=Path(source)
+        if source.suffix.lower()=='.wav':
+            assert public19 is not None
+            public19.check(source,allowed_public_WAV)
+        else:assert source.suffix.lower() in SAFE
+        assert '__pycache__' not in source.parts and not source.name.startswith('CURRENT-ROOT-DELIVERY-STATE')
+        actual=digest(source);n=source.stat().st_size;assert size is None or n==size;assert sha is None or actual==sha
+        target=pay/relative;target.parent.mkdir(parents=True,exist_ok=True);key=(n,actual)
+        if target.exists():assert digest(target)==actual
+        elif source.suffix.lower() in BINARY:
+            try:os.link(stored.get(key,source),target)
+            except OSError as error:
+                if error.errno!=errno.EXDEV:raise
+                shutil.copyfile(source,target)
+        else:shutil.copyfile(source,target)
+        if source.suffix.lower() in BINARY:stored[key]=target
+        bindings.append({'original_path':str(source),'repo_path':str(relative),'bytes':n,'sha256':actual})
+    def spec(row,relative):add(row['path'],relative,row['bytes'],row['sha256'])
+    for source_row in source_qa['validation_files']:
+        relative=source_row.get('relative_validation_path',source_row.get('validation_relative_path'));assert relative;spec(source_row,prefix/'实际新native源QA原件非本轮最终片'/relative)
+    spec(source_spec,prefix/'实际新native源QA原件非本轮最终片/source-quality-handoff.json')
+    for row in h['validation_files']:
+        relative=row.get('relative_validation_path',row.get('validation_relative_path'));assert relative;spec(row,prefix/'本轮实际normal18完整核验'/relative)
+    add(hp,prefix/'本轮实际normal18完整核验/archive-handoff.json');add(h['report_path'],prefix/'本轮实际normal18完整核验/whole-report.json');add(h['input_path'],prefix/'本轮实际normal18完整核验/actual-input.json')
+    codes=Path(h['code_snapshot_path'])
+    for name,sha in h['tool_source_sha256'].items():add(codes/name,prefix/'本轮实际normal18核验程序'/name,sha=sha)
+    write(pay/prefix/'本轮实际normal18核验程序/archivist-exact-handoff-code-bindings.json',{'programs_from_original_passed_handoff':h['tool_source_sha256'],'handoff_sha256':a.expected_handoff_sha256,'not_a_fabricated_producer_snapshot_manifest':True})
+    for row in h['global_approved_evidence'].values():spec(row,prefix/'本轮实际批准依据'/Path(row['path']).name)
+    for number,row in enumerate(h.get('additional_public_media_inputs',[]),1):spec(row,prefix/'实际公开格式中间输入'/f'{number:02d}-{Path(row["path"]).name}')
+    manifest=Path(a.explicit_public_manifest).resolve();assert digest(manifest)==a.explicit_public_manifest_sha256;add(manifest,prefix/'显式安全物理来源/safe-public-evidence-manifest.json')
+    for number,row in enumerate(load(manifest)['files'],1):
+        source=Path(row.get('path',row.get('source_path','')));assert str(source) not in {'','.'};relative=row.get('archive_relative_path',row.get('safe_archive_relative_path',row.get('relative_path',f'{number:03d}-{source.name}')));assert not Path(relative).is_absolute() and '..' not in Path(relative).parts;add(source,prefix/'显式安全物理来源'/relative,row['bytes'],row['sha256'])
+    section=item['section']
+    for row in section.get('stills',[]):
+        assert row['video_sha256']==item['final_mp4']['sha256'];spec(row,prefix/'实际当前成片解码帧'/Path(row['path']).name)
+    video_path=prefix/'视频'/f"{nid} {video_title}.mp4";spec(item['final_mp4'],video_path);spec(item['canonical_source_mp4'],prefix/'原准确canonical底片'/Path(item['canonical_source_mp4']['path']).name);spec(item['immutable_native_zip'],prefix/'原生来源原ZIP非新Actions'/Path(item['immutable_native_zip']['path']).name)
+    add(authority,prefix/'用户051统一0.6秒实际授权.json');add(Path(__file__),prefix/'归档程序'/Path(__file__).name)
+    if allowed_public_WAV:
+        add(public19.REPORT,prefix/'仅已批准公开MP4诊断上下文/actual-audit-safe-handoff.json',5093,public19.REPORT_SHA);add(Path(public19.__file__),prefix/'归档程序'/Path(public19.__file__).name)
+    row={'source_id':sid,'new_id':nid,'title_zh':old_article['title_zh'],'title_en':old_article['title_en'],'video_repo_path':str(video_path),'bytes':item['final_mp4']['bytes'],'sha256':item['final_mp4']['sha256'],'passed_per_article':True,'source_run':h['source_run'],'production_delivery_eligible':True,'preview_only':False,'media_origin':'actual_validated_normal18_local_tail_derivative_of_original_native_source','new_native_Actions_run_claimed':False,'actual_runtime_GEN_or_voice_rerun_claimed':False,'GEN_origin':section['final_source']['gen'].get('origin'),'MD_origin':section['final_source']['md'].get('origin'),'final_GEN_claimed_as_runtime':False,'canonical_audio_basis':'inherited_full_V3_canonical_and_actual_postprocessing_AAC_projection_identity','approved_audio_repair_applied':source_audio['repair_applied'],'source_native_audio_repair_applied':source_audio['repair_applied'],'local_tail_postprocessing_audio_repair_applied':False,'local_postprocessing_only':True,'post_reading_pause_seconds':0.6,'nominal_extra_hold_frames_at_30fps':18,'inherited_full_native_archive_commit':old_asset['asset_commit'],'postprocessing_full_V3_handoff_sha256':a.expected_handoff_sha256}
+    row.pop('inherited_full_native_archive_commit')
+    row['title_zh']=video_title
+    if title_auth:
+        row.update(video_title_authorization=title_auth,actual_native_working_source_JSON_sha256=title_auth['actual_source_JSON_sha256'],actual_native_working_MD_sha256=title_auth['actual_working_MD_sha256'])
+        add(a.video_title_authorization,prefix/'用户077视频中文名实际授权.json');add(Path(titles.__file__),prefix/'归档程序'/Path(titles.__file__).name)
+    row.pop('new_native_Actions_run_claimed')
+    row.update(actual_new_native_source_QA_observed=True,actual_new_native_source_QA_handoff=source_spec,postprocessing_itself_claims_new_native_or_TTS=False,overall_native_matrix_success_claimed=False,canonical_audio_basis='actual_new_native_source_QA_then_normal18_canonical_AAC_projection_identity')
+    row['source_native_audio_QC']=native_qc_spec
+    row['source_native_audio_lossless_copy']=source_audio['lossless_copy']
+    if source_audio['repair_applied']:
+        assert source_audio['controlled_repair']['status']=='passed' and source_audio['controlled_repair']['actual_new_output'] is True
+        row['source_native_controlled_repair']=source_audio['controlled_repair']
+    meta={'kind':'actual-new-native-sourceQA-then-normal18-assets','created_utc':now(),'source_run':h['source_run'],'prefix':str(prefix),'asset_branch':f"codex/passed4k-assets-{h['source_run']}-{sid}-hold18-postonly-v1",'articles':[row],'actual_handoff_sha256':a.expected_handoff_sha256,'original_handoff_status':h['status'],'original_handoff_kind':h['kind'],'local_postprocessing_only':True,'new_native_job_or_TTS_claimed':False,'actual_new_native_source_QA_observed':True,'actual_new_native_source_QA_handoff':source_spec,'material_source_bindings':bindings,'canonical_active_index_or_alias_updated_by_preparation':False,'release_created':False,'all_PDF_work_paused':True}
+    write(pay/prefix/'archive-manifest.json',meta);write(w/'prepared-archive.json',meta);index=[{'repo_path':str(p.relative_to(pay)),'bytes':p.stat().st_size,'sha256':digest(p)} for p in sorted(pay.rglob('*')) if p.is_file()];write(w/'payload-file-index.json',index);print(json.dumps({'work_dir':str(w),'files':len(index),'logical_bytes':sum(r['bytes'] for r in index),'article':row,'only_declared_public_media_and_metadata_copied':True},ensure_ascii=False))
+
+if __name__=='__main__':main()

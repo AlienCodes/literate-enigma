@@ -1,0 +1,143 @@
+{
+  "article": "65",
+  "book_order": "37",
+  "kind": "read_only_existing_quality_gap_and_user092_objective_input_diagnosis",
+  "quality_acceptance": false,
+  "new_native_final_or_audio_repair_performed": false,
+  "last_actual_native_observation": {
+    "run_id": 43543967031,
+    "head": "751cbb58491b7918c7437f9cd91efe28d90fa32e",
+    "status_report_path": "/workspace/work/video-audit70-20261113/audio65-69-source-readonly/65/65-status.json",
+    "status_report_sha256": "e780a7525fc59559d59a5f67f21d5e9ffc3566cd7a285992179ca9890eb3b486",
+    "passed": false,
+    "canonical_pipeline_passed": true,
+    "stage": "original-stamp-after-production.log",
+    "error": "Canonical AAC differs from the accepted prior voice.",
+    "actual_working_source_sha256": "10cce8b5be1949c746369bb091829dbca9bcdd59f65b5d8b24b4a2a0ffcd4327",
+    "actual_failed_MP4_sha256": "1aaf139459ac9efe7530113dff2fa71349a8546ca0f3362b397c0a24369e9057",
+    "actual_failed_AAC_sha256": "e561c8319355ca7f96047b52c3a758cb89e92196553949e4532d06a2893a4125",
+    "actual_failed_WAV_sha256": "c655cba20b97c97ca431a6e5eb43e8c250a67d6fc6ea92e695ff58139aa3ed41",
+    "actual_original_stage_summaries": {
+      "approved-illustration-resource.log": [],
+      "certified-core-original-stamp-verification.log": [],
+      "original-restored-stamp.log": [],
+      "canonical-module-copy.log": [],
+      "canonical-draft-00.log": [
+        "第65篇 做完（431 秒）：修了 1 处、疑点 34 处",
+        "① 文本：通过，自动修 1 处",
+        "② 声音：65 词尾辅音核对 问题数 0；65 纯人声核对（配音指纹 130d1dd4adb4）问题数 0；问题数 0；65 句间停顿核对 问题数 0；问题数 0",
+        "③ 出片前核查：通过",
+        "⑤ 出片后核查：全部通过",
+        "⑥ 已拷 视频/视频/草稿1080p/65_1080p.mp4（--不推）"
+      ],
+      "canonical-final4K-00.log": [
+        "第65篇 用户定稿原话：有"
+      ],
+      "original-stamp-after-production.log": []
+    }
+  },
+  "reason_for_existing_full_QA_gap": "The original full production pipeline passed, but the preservation comparison rejected its canonical AAC because it differs from the prior published voice. This failed candidate is not the accepted voice or a current final. The mismatch has known historical G36 and segment-level control provenance; it does not itself establish a sonic defect.",
+  "current_published_video": {
+    "MP4_bytes": 12530393,
+    "MP4_sha256": "6bad7b012ccbad87a60ced23ada2c3162c7a561b4e72ad52362004ee3313ea8c",
+    "AAC_sha256": "66f8c5cfdd6c5551f20779115574f896d849763cf5adf8042c503664bf7ab94f",
+    "quality_status": "historical_published_review_video_pending_current_full_QA"
+  },
+  "exact_historical_voice_reproduction": {
+    "probe_path": "/workspace/work/video-audit70-20261113/audio65-69-source-readonly/65/65-real-historical-source-G36-AAC-probe.json",
+    "probe_sha256": "2e4eff06c25420c920de7fc811751f2d67e985abe8b332b1b24c8baadd81f235",
+    "historical_source_commit": "693812296745272e4ae83490896f27e1b9fb1aab",
+    "historical_source_sha256": "43bf0b00abc7cc4147fc6b95233d04ffb8ff935bf582f437993d4c0df89e0635",
+    "historical_original_G36_function_revision": "e6327aff",
+    "historical_manual_gain_fields": {
+      "S3": {
+        "4": 1.5
+      },
+      "S8": {
+        "1": -1.5
+      }
+    },
+    "whole_AAC_identical": true,
+    "decoded_sample_count_48k": [
+      6685696,
+      6685696
+    ],
+    "decoded_different_sample_count": 0
+  },
+  "S2_user092_input": {
+    "spoken_English": "At its end, cartons of precious seed sit silently in a sub-zero repository, insulated by permanently frozen ground.",
+    "whole_sentence_span_seconds": [
+      12.120000000000001,
+      20.98
+    ],
+    "historical_auto_level": {
+      "1": -4.0
+    },
+    "historical_manual_level": null,
+    "actual_raw_processed_fp": "71580144e9ba",
+    "LAST_scalar_timing": {
+      "head": 960,
+      "segs": [
+        [
+          0,
+          18960,
+          -0.015,
+          []
+        ],
+        [
+          22440,
+          132240,
+          1.155,
+          []
+        ],
+        [
+          143160,
+          210496,
+          6.11,
+          []
+        ]
+      ],
+      "total": 8.86,
+      "cuts": [
+        [
+          18960,
+          22440,
+          0.38
+        ],
+        [
+          132240,
+          143160,
+          0.38
+        ]
+      ],
+      "grafts": [],
+      "gaps": [
+        0.4,
+        0.4
+      ],
+      "hs": 360
+    },
+    "later_failed_native_auto_level": {
+      "1": -2.0
+    },
+    "later_failed_native_manual_level": {
+      "2": 1.0
+    },
+    "objective_report_path": "/workspace/work/video-audit70-20261113/article65-user-review-draft-20261114/audio092-readonly/actual-old65-speechactive-and-400ms-report.json",
+    "objective_report_sha256": "f09c5487e61d4b4dd658dbb91f46038eb713114c023482403396cee30f126a9e",
+    "mean_only_approval_not_used": true
+  },
+  "reference_gain_diagnostic": {
+    "count": 286,
+    "same_waveform_candidates": 270,
+    "median_fitted_gain": 0.7669480217664115,
+    "median_fitted_to_default_gain": 1.0000010987278485,
+    "fitted_gain_min": 0.7669003643894933,
+    "fitted_gain_max": 0.7669848364929824,
+    "inferred_kept_input_peak": 1.1604436998874825,
+    "default_gain_fails_original_2_2_lsb_limit_count": 0
+  },
+  "necessary_next_audio_work": "Measure/audition the actual published 6bad/66f8 S2 onset and neighbors; derive any minimal candidate from its exact historical cache/G36 basis, preserve unrelated samples and all timing. Do not use the failed e561 candidate as the accepted baseline, silently change global loudness, or resynthesize. No candidate or listening approval has been asserted here.",
+  "PDF_files_read_or_changed": false,
+  "recorded_utc": "2026-11-14T18:17:33.853513+00:00"
+}
