@@ -1,0 +1,239 @@
+{
+  "created_utc": "2026-11-14T08:38:54.544471+00:00",
+  "status": "passed_actual_two_vocabulary_coverage_frames_only",
+  "source_id": "36",
+  "book_order": "28",
+  "title_en": "The Company That Invented Its Own Killer",
+  "task_scope": "read-only actual new native36 MP4 two vocabulary coverage; independent full-file SHA and exact original frames; actual-working-source read only, no source mutation, audio/PDF access or video re-render",
+  "native_provenance": {
+    "run_id": 43574943542,
+    "job_id": 132387097456,
+    "artifact_id": 14106560518,
+    "original_zip_bytes_reported_by_parent": 43571383,
+    "original_zip_sha256_reported_by_parent": "e69c7d21ee8c04df7c349916eac8bfbe29152c9b455dac83422689668f360180",
+    "zip_downloaded_or_reopened_by_this_task": false,
+    "zip_hash_independently_rechecked_by_this_task": false,
+    "candidate_label_reported_by_parent_not_used_as_identity": "e35a"
+  },
+  "actual_video": {
+    "path": "/workspace/work/video-audit70-20261113/next-passed-native/43574943542/36/artifact-files/36-4K-正文-书中插图2秒-简述2秒.mp4",
+    "bytes": 17307420,
+    "sha256": "c1017335c5fd2c10db9f5599fbc4164b39f4410abbe506243b35aaf864520605",
+    "sha256_independently_recomputed_from_actual_new_native_file": true,
+    "probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "width": 3840,
+          "height": 2160,
+          "r_frame_rate": "30/1",
+          "avg_frame_rate": "30/1",
+          "time_base": "1/15360",
+          "start_pts": 0,
+          "start_time": "0.000000",
+          "duration": "159.500000",
+          "nb_frames": "4785"
+        }
+      ]
+    }
+  },
+  "immutable_actual_working_source": {
+    "path": "/workspace/work/video-audit70-20261113/next-passed-native/43574943542/36/artifact-files/36-actual-working-source.json",
+    "bytes": 51464,
+    "sha256": "d091ce90aeb07321b40cdd9269e256ba6eefa9524d9b4c51650ae4fb1cc581fe",
+    "only_source_read_for_this_review": true
+  },
+  "frames": [
+    {
+      "sentence": 16,
+      "chunk": 2,
+      "english_target": "fetched",
+      "chinese_highlight_targets": [
+        "以",
+        "卖给"
+      ],
+      "highlight_color_visually_observed": "pink",
+      "whole_english_target_same_color": true,
+      "english_chinese_target_color_matches": true,
+      "target_current_chunk_is_active": true,
+      "decoded_from_actual_video": true,
+      "source_original_zero_based_frame_index": 3600,
+      "source_original_one_based_frame_number": 3601,
+      "public_video_time_seconds": 120,
+      "exact_video_pts": 1843200,
+      "video_time_base": "1/15360",
+      "frame_index_basis": "original PTS / 512 ticks per frame at30/1fps; decoder-local showinfo n=0 after input seek is not the original index",
+      "png": {
+        "path": "/workspace/work/video-audit70-20261113/article36-user-review-20261114/native36/actual-new-vocabulary-frames/S16C2-fetched-active-4K.png",
+        "bytes": 827304,
+        "sha256": "f2f1b1659269774236604e150d382abbb1c41df2faee5d6cb998156922fafd97",
+        "width": 3840,
+        "height": 2160,
+        "scale_crop_or_overlay_applied": false
+      },
+      "decode_command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-nostdin",
+        "-copyts",
+        "-ss",
+        "120",
+        "-i",
+        "/workspace/work/video-audit70-20261113/next-passed-native/43574943542/36/artifact-files/36-4K-正文-书中插图2秒-简述2秒.mp4",
+        "-map",
+        "0:v:0",
+        "-frames:v",
+        "1",
+        "-vf",
+        "showinfo",
+        "-fps_mode",
+        "passthrough",
+        "/workspace/work/video-audit70-20261113/article36-user-review-20261114/native36/actual-new-vocabulary-frames/S16C2-fetched-active-4K.png"
+      ],
+      "decode_log": {
+        "path": "/workspace/work/video-audit70-20261113/article36-user-review-20261114/native36/actual-new-vocabulary-frames/S16C2-fetched-active-4K-decode.log",
+        "sha256": "48e9149c738c8b82a7a21f9bcf4d83d0eaba554df5392f2fcd2af53fa6855340"
+      },
+      "matching_actual_working_source_chunk": {
+        "en": "**fetched** about $525 million from a **consortium** of twelve **buyers**,",
+        "zh": "**以**(fetched)约5.25亿美元**卖给**(fetched)一个由十二家**买家**(buyers)组成的**财团**(consortium)，",
+        "align": [
+          [
+            "**fetched** about $525 million",
+            "**以**(fetched)约5.25亿美元**卖给**(fetched)"
+          ],
+          [
+            "from a **consortium** of twelve **buyers**,",
+            "一个由十二家**买家**(buyers)组成的**财团**(consortium)，"
+          ]
+        ],
+        "note": "（fetch：卖得（价钱）；a consortium of…：由……组成的财团）"
+      },
+      "original_small_note_complete_in_actual_frame": true,
+      "actually_viewed_full_4k_image": true,
+      "observed_layout_and_meaning_notes_zh": "fetched完整词和中文以、卖给同为粉色；约5.25亿美元为普通文字色，未随fetched高亮。英文about $525 million亦为普通文字色。目标完整、没有重叠或裁切；fetch卖得价钱的原说明完整可见。",
+      "visible_target_clipping": false,
+      "visible_target_overlap": false,
+      "layout_scope": "these two actual displayed vocabulary frames only; parent owns all five boundary and full V3 review",
+      "chinese_amount": "约5.25亿美元",
+      "chinese_amount_is_ordinary_text_color": true,
+      "chinese_fetched_color_applies_only_to": [
+        "以",
+        "卖给"
+      ],
+      "english_amount": "about $525 million",
+      "english_amount_is_ordinary_text_color": true
+    },
+    {
+      "sentence": 17,
+      "chunk": 1,
+      "english_target": "bankruptcy",
+      "chinese_highlight_targets": [
+        "破产"
+      ],
+      "highlight_color_visually_observed": "bright green",
+      "whole_english_target_same_color": true,
+      "english_chinese_target_color_matches": true,
+      "target_current_chunk_is_active": true,
+      "decoded_from_actual_video": true,
+      "source_original_zero_based_frame_index": 3900,
+      "source_original_one_based_frame_number": 3901,
+      "public_video_time_seconds": 130,
+      "exact_video_pts": 1996800,
+      "video_time_base": "1/15360",
+      "frame_index_basis": "original PTS / 512 ticks per frame at30/1fps; decoder-local showinfo n=0 after input seek is not the original index",
+      "png": {
+        "path": "/workspace/work/video-audit70-20261113/article36-user-review-20261114/native36/actual-new-vocabulary-frames/S17C1-bankruptcy-active-4K.png",
+        "bytes": 890584,
+        "sha256": "23b6550bd4344cf78f3687fb45b105e69d9ada6ea9a37b4460afc38785ff50d8",
+        "width": 3840,
+        "height": 2160,
+        "scale_crop_or_overlay_applied": false
+      },
+      "decode_command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-nostdin",
+        "-copyts",
+        "-ss",
+        "130",
+        "-i",
+        "/workspace/work/video-audit70-20261113/next-passed-native/43574943542/36/artifact-files/36-4K-正文-书中插图2秒-简述2秒.mp4",
+        "-map",
+        "0:v:0",
+        "-frames:v",
+        "1",
+        "-vf",
+        "showinfo",
+        "-fps_mode",
+        "passthrough",
+        "/workspace/work/video-audit70-20261113/article36-user-review-20261114/native36/actual-new-vocabulary-frames/S17C1-bankruptcy-active-4K.png"
+      ],
+      "decode_log": {
+        "path": "/workspace/work/video-audit70-20261113/article36-user-review-20261114/native36/actual-new-vocabulary-frames/S17C1-bankruptcy-active-4K-decode.log",
+        "sha256": "eb60a6a786fe45da9f16046b9d0d9f25814a0c8fac5024435ac7a2a66a65a853"
+      },
+      "matching_actual_working_source_chunk": {
+        "en": "After 19 months of **reorganisation**, the **once-mighty** Kodak left **bankruptcy** in September 2013,",
+        "zh": "经过19个月的**改组**(reorganisation)，**昔日强大的**(once-mighty)柯达于2013年9月走出**破产**(bankruptcy)，",
+        "align": [
+          [
+            "After",
+            "经过"
+          ],
+          [
+            "19 months",
+            "19个月"
+          ],
+          [
+            "of **reorganisation**,",
+            "的**改组**(reorganisation)，"
+          ],
+          [
+            "the **once-mighty**",
+            "**昔日强大的**(once-mighty)"
+          ],
+          [
+            "Kodak",
+            "柯达"
+          ],
+          [
+            "left **bankruptcy** in September 2013,",
+            "于2013年9月走出**破产**(bankruptcy)，"
+          ]
+        ],
+        "note": "（left bankruptcy：走出破产）"
+      },
+      "original_small_note_complete_in_actual_frame": true,
+      "actually_viewed_full_4k_image": true,
+      "observed_layout_and_meaning_notes_zh": "bankruptcy完整单词与中文破产同为亮绿色；原说明left bankruptcy：走出破产完整可见。目标完整、没有重叠或裁切。画面中原有下一块说明按原两行保留。",
+      "visible_target_clipping": false,
+      "visible_target_overlap": false,
+      "layout_scope": "these two actual displayed vocabulary frames only; parent owns all five boundary and full V3 review"
+    }
+  ],
+  "locator": {
+    "path": "/workspace/work/video-audit70-20261113/article36-user-review-20261114/native36/actual-new-vocabulary-frames/locator-100s-every-150frames.jpg",
+    "sha256": "b67bfbf69b36f4405f927d58beb30cb30bb7a3ebd6d875353163d9a2618c8f4e",
+    "first_public_seconds": 100,
+    "interval_frames": 150,
+    "interval_seconds": 5,
+    "resolution_per_cell": [
+      640,
+      360
+    ],
+    "actually_viewed": true,
+    "used_for_location_only": true
+  },
+  "no_word_timing_inferred": true,
+  "new_4k_still_images_written": 2,
+  "audio_decoded_or_identity_checked": false,
+  "private_audio_read": false,
+  "PDF_read_or_written": false,
+  "new_tts_or_video_rendered": false,
+  "append_postprocess_or_source_mutation": false,
+  "publish_or_launch": false,
+  "full_V3_claimed": false,
+  "conclusion_zh": "已从本次source36/book28实际4K新成片独立解码并逐张实际查看两张当前组高亮帧。fetched与中文以、卖给同粉色，金额约5.25亿美元普通；bankruptcy与破产同亮绿色。两词/中文义和原小字完整可见，未见目标裁切、重叠或错误着色。结论仅覆盖两目标帧，不替代完整V3或五边界。"
+}
