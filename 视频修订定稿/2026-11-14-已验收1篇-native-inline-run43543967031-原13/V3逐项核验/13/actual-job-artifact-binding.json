@@ -1,0 +1,3949 @@
+{
+  "actual_successful_job_verified": true,
+  "actual_genuine_upstream_pass_with_missing_art_recovery": false,
+  "actual_job_uploaded_selected_artifact": false,
+  "overall_matrix_success_required": false,
+  "acceptance_basis": "actual successful article job + immutable run artifact + actual native passed article/media/source identity; upload log is auxiliary",
+  "run": {
+    "id": 43543967031,
+    "name": "本轮改动篇目原缓存正式4K",
+    "node_id": "WFR_kwLODJcpM88AAAAKI2w1Nw",
+    "head_branch": "codex/finish-05-and-summaries-20261112",
+    "head_sha": "751cbb58491b7918c7437f9cd91efe28d90fa32e",
+    "path": ".github/workflows/produce-revision-batch4K.yml",
+    "display_title": "Rebuild revised articles in official4K: 01,02,03,04,05,06,08,09,13,14…",
+    "run_number": 14,
+    "event": "push",
+    "status": "in_progress",
+    "conclusion": null,
+    "workflow_id": 417752518,
+    "check_suite_id": 117906846498,
+    "check_suite_node_id": "CS_kwDODJcpM88AAAAbc8uzIg",
+    "url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43543967031",
+    "html_url": "https://github.com/AlienCodes/literate-enigma/actions/runs/43543967031",
+    "pull_requests": [],
+    "created_at": "2026-11-14T02:01:39Z",
+    "updated_at": "2026-11-14T02:35:50Z",
+    "actor": {
+      "login": "AlienCodes",
+      "id": 52247027,
+      "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/AlienCodes",
+      "html_url": "https://github.com/AlienCodes",
+      "followers_url": "https://api.github.com/users/AlienCodes/followers",
+      "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+      "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+      "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+      "repos_url": "https://api.github.com/users/AlienCodes/repos",
+      "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "run_attempt": 1,
+    "referenced_workflows": [],
+    "run_started_at": "2026-11-14T02:01:39Z",
+    "triggering_actor": {
+      "login": "AlienCodes",
+      "id": 52247027,
+      "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/AlienCodes",
+      "html_url": "https://github.com/AlienCodes",
+      "followers_url": "https://api.github.com/users/AlienCodes/followers",
+      "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+      "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+      "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+      "repos_url": "https://api.github.com/users/AlienCodes/repos",
+      "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "jobs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43543967031/attempts/1/jobs",
+    "logs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43543967031/attempts/1/logs",
+    "check_suite_url": "https://api.github.com/repos/AlienCodes/literate-enigma/check-suites/117906846498",
+    "artifacts_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43543967031/artifacts",
+    "cancel_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43543967031/cancel",
+    "rerun_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43543967031/rerun",
+    "previous_attempt_url": null,
+    "workflow_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/workflows/417752518",
+    "head_commit": {
+      "id": "751cbb58491b7918c7437f9cd91efe28d90fa32e",
+      "tree_id": "0914f9e0bf4e159fafeea9ae61cad85548219250",
+      "message": "Rebuild revised articles in official4K: 01,02,03,04,05,06,08,09,13,14,16,19,20,21,22,23,24,28,32,33,36,37,41,44,46,48,49,54,55,57,59,60,61,62,63,65,66,67,68,69,70",
+      "timestamp": "2026-11-14T02:01:37Z",
+      "author": {
+        "name": "the Sword God",
+        "email": "52247027+AlienCodes@users.noreply.github.com"
+      },
+      "committer": {
+        "name": "the Sword God",
+        "email": "52247027+AlienCodes@users.noreply.github.com"
+      }
+    },
+    "repository": {
+      "id": 211233075,
+      "node_id": "MDEwOlJlcG9zaXRvcnkyMTEyMzMwNzU=",
+      "name": "literate-enigma",
+      "full_name": "AlienCodes/literate-enigma",
+      "private": false,
+      "owner": {
+        "login": "AlienCodes",
+        "id": 52247027,
+        "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+        "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/AlienCodes",
+        "html_url": "https://github.com/AlienCodes",
+        "followers_url": "https://api.github.com/users/AlienCodes/followers",
+        "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+        "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+        "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+        "repos_url": "https://api.github.com/users/AlienCodes/repos",
+        "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/AlienCodes/literate-enigma",
+      "description": "I am exploring this world!",
+      "fork": false,
+      "url": "https://api.github.com/repos/AlienCodes/literate-enigma",
+      "forks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/forks",
+      "keys_url": "https://api.github.com/repos/AlienCodes/literate-enigma/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/AlienCodes/literate-enigma/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/AlienCodes/literate-enigma/teams",
+      "hooks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/hooks",
+      "issue_events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/events",
+      "assignees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/AlienCodes/literate-enigma/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/tags",
+      "blobs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/AlienCodes/literate-enigma/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/AlienCodes/literate-enigma/languages",
+      "stargazers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/stargazers",
+      "contributors_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contributors",
+      "subscribers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscribers",
+      "subscription_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscription",
+      "commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/AlienCodes/literate-enigma/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/AlienCodes/literate-enigma/merges",
+      "archive_url": "https://api.github.com/repos/AlienCodes/literate-enigma/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/AlienCodes/literate-enigma/downloads",
+      "issues_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/AlienCodes/literate-enigma/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/AlienCodes/literate-enigma/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/AlienCodes/literate-enigma/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/AlienCodes/literate-enigma/labels{/name}",
+      "releases_url": "https://api.github.com/repos/AlienCodes/literate-enigma/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/deployments"
+    },
+    "head_repository": {
+      "id": 211233075,
+      "node_id": "MDEwOlJlcG9zaXRvcnkyMTEyMzMwNzU=",
+      "name": "literate-enigma",
+      "full_name": "AlienCodes/literate-enigma",
+      "private": false,
+      "owner": {
+        "login": "AlienCodes",
+        "id": 52247027,
+        "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+        "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/AlienCodes",
+        "html_url": "https://github.com/AlienCodes",
+        "followers_url": "https://api.github.com/users/AlienCodes/followers",
+        "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+        "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+        "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+        "repos_url": "https://api.github.com/users/AlienCodes/repos",
+        "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/AlienCodes/literate-enigma",
+      "description": "I am exploring this world!",
+      "fork": false,
+      "url": "https://api.github.com/repos/AlienCodes/literate-enigma",
+      "forks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/forks",
+      "keys_url": "https://api.github.com/repos/AlienCodes/literate-enigma/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/AlienCodes/literate-enigma/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/AlienCodes/literate-enigma/teams",
+      "hooks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/hooks",
+      "issue_events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/events",
+      "assignees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/AlienCodes/literate-enigma/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/tags",
+      "blobs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/AlienCodes/literate-enigma/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/AlienCodes/literate-enigma/languages",
+      "stargazers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/stargazers",
+      "contributors_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contributors",
+      "subscribers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscribers",
+      "subscription_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscription",
+      "commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/AlienCodes/literate-enigma/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/AlienCodes/literate-enigma/merges",
+      "archive_url": "https://api.github.com/repos/AlienCodes/literate-enigma/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/AlienCodes/literate-enigma/downloads",
+      "issues_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/AlienCodes/literate-enigma/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/AlienCodes/literate-enigma/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/AlienCodes/literate-enigma/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/AlienCodes/literate-enigma/labels{/name}",
+      "releases_url": "https://api.github.com/repos/AlienCodes/literate-enigma/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/deployments"
+    }
+  },
+  "job": {
+    "id": 132290749441,
+    "run_id": 43543967031,
+    "workflow_name": "本轮改动篇目原缓存正式4K",
+    "head_branch": "codex/finish-05-and-summaries-20261112",
+    "run_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43543967031",
+    "run_attempt": 1,
+    "node_id": "CR_kwDODJcpM88AAAAezSSkAQ",
+    "head_sha": "751cbb58491b7918c7437f9cd91efe28d90fa32e",
+    "url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/jobs/132290749441",
+    "html_url": "https://github.com/AlienCodes/literate-enigma/actions/runs/43543967031/job/132290749441",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-11-14T02:01:45Z",
+    "started_at": "2026-11-14T02:16:45Z",
+    "completed_at": "2026-11-14T02:28:01Z",
+    "name": "produce (13)",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-11-14T02:16:46Z",
+        "completed_at": "2026-11-14T02:16:50Z"
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-11-14T02:16:50Z",
+        "completed_at": "2026-11-14T02:17:03Z"
+      },
+      {
+        "name": "按批准的原图清单解析本篇原生文件名",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3,
+        "started_at": "2026-11-14T02:17:03Z",
+        "completed_at": "2026-11-14T02:17:03Z"
+      },
+      {
+        "name": "取固定主仓中已批准的本篇书中原图",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4,
+        "started_at": "2026-11-14T02:17:03Z",
+        "completed_at": "2026-11-14T02:17:04Z"
+      },
+      {
+        "name": "先验本篇原图的主仓提交、原生blob和批准SHA",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5,
+        "started_at": "2026-11-14T02:17:04Z",
+        "completed_at": "2026-11-14T02:17:04Z"
+      },
+      {
+        "name": "Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6,
+        "started_at": "2026-11-14T02:17:04Z",
+        "completed_at": "2026-11-14T02:17:05Z"
+      },
+      {
+        "name": "Run actions/cache/restore@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7,
+        "started_at": "2026-11-14T02:17:05Z",
+        "completed_at": "2026-11-14T02:18:17Z"
+      },
+      {
+        "name": "确认恢复既有机器缓存",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8,
+        "started_at": "2026-11-14T02:18:17Z",
+        "completed_at": "2026-11-14T02:18:18Z"
+      },
+      {
+        "name": "准备原有核查工具",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 9,
+        "started_at": "2026-11-14T02:18:18Z",
+        "completed_at": "2026-11-14T02:19:23Z"
+      },
+      {
+        "name": "Run actions/cache/restore@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 10,
+        "started_at": "2026-11-14T02:19:23Z",
+        "completed_at": "2026-11-14T02:19:23Z"
+      },
+      {
+        "name": "确认原快测印章缓存命中",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 11,
+        "started_at": "2026-11-14T02:19:23Z",
+        "completed_at": "2026-11-14T02:19:23Z"
+      },
+      {
+        "name": "原程序做稿并正式定稿4K",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 12,
+        "started_at": "2026-11-14T02:19:23Z",
+        "completed_at": "2026-11-14T02:27:54Z"
+      },
+      {
+        "name": "仅保留本篇公开成片和核验材料",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 13,
+        "started_at": "2026-11-14T02:27:54Z",
+        "completed_at": "2026-11-14T02:27:57Z"
+      },
+      {
+        "name": "Post Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 24,
+        "started_at": "2026-11-14T02:27:57Z",
+        "completed_at": "2026-11-14T02:27:57Z"
+      },
+      {
+        "name": "Post 取固定主仓中已批准的本篇书中原图",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 25,
+        "started_at": "2026-11-14T02:27:57Z",
+        "completed_at": "2026-11-14T02:27:57Z"
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 26,
+        "started_at": "2026-11-14T02:27:57Z",
+        "completed_at": "2026-11-14T02:27:58Z"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 27,
+        "started_at": "2026-11-14T02:27:58Z",
+        "completed_at": "2026-11-14T02:27:58Z"
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/AlienCodes/literate-enigma/check-runs/132290749441",
+    "labels": [
+      "ubuntu-latest"
+    ],
+    "runner_id": 1000008416,
+    "runner_name": "GitHub Actions 1000008416",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  "artifact": {
+    "id": 14093189805,
+    "node_id": "MDg6QXJ0aWZhY3QxNDA5MzE4OTgwNQ==",
+    "name": "article13-revised-canonical-4K-final",
+    "size_in_bytes": 43801300,
+    "url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/artifacts/14093189805",
+    "archive_download_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/artifacts/14093189805/zip",
+    "expired": false,
+    "digest": "sha256:985842c3ee2f1721c1cf733c86fcbf3fd8ead3c9db2fb6c2d4f1d6046f6b5218",
+    "created_at": "2026-11-14T02:27:57Z",
+    "updated_at": "2026-11-14T02:27:57Z",
+    "expires_at": "2026-12-14T02:27:54Z",
+    "workflow_run": {
+      "id": 43543967031,
+      "repository_id": 211233075,
+      "head_repository_id": 211233075,
+      "head_branch": "codex/finish-05-and-summaries-20261112",
+      "head_sha": "751cbb58491b7918c7437f9cd91efe28d90fa32e"
+    }
+  },
+  "upload_step_proof": {
+    "unambiguous_selected_step_upload": false,
+    "auxiliary_only": true,
+    "reason": "Upload action log block is missing or ambiguous in selected API step interval",
+    "acceptance_blocked_by_log": false
+  },
+  "native_status": {
+    "article": "13",
+    "passed": true,
+    "stage": "final4K-passed",
+    "original_audit_and_quality_thresholds_unchanged": true,
+    "original_maker_unchanged": true,
+    "core_repairs": [
+      {
+        "target": "视频/工具/草稿声音.sh",
+        "file": "files/视频/工具/草稿声音.sh",
+        "original_sha256": "0ce3277812cf16ed30438509b6dc97db0c26725db4c5db5d9b058c3ef6531aa2",
+        "patched_sha256": "957d7eb1598698ea33ff77d83379256ecae258d84d588753d561a902284be439",
+        "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+      },
+      {
+        "target": "视频/工具/句内响度.py",
+        "file": "files/视频/工具/句内响度.py",
+        "original_sha256": "58735b7173a3c03efa61fb300b4aed4039c164fa970e0593a40bae2a3f3cbd27",
+        "patched_sha256": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea",
+        "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+      },
+      {
+        "target": "视频/工具/独立复核/synth.py",
+        "file": "files/视频/工具/独立复核/synth.py",
+        "original_sha256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+        "patched_sha256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+        "repair_scope": "validated unprocessed raw-mother reference input only; independent transforms/audit/thresholds retained"
+      }
+    ],
+    "strict_production_cache": true,
+    "pdf_requested": false,
+    "check_summaries": {
+      "approved-illustration-resource.log": [],
+      "certified-core-original-stamp-verification.log": [],
+      "original-restored-stamp.log": [],
+      "canonical-module-copy.log": [],
+      "canonical-draft-00.log": [
+        "第13篇 做完（223 秒）：修了 1 处、疑点 27 处",
+        "① 文本：通过，自动修 1 处",
+        "② 声音：13 词尾辅音核对 问题数 0；13 纯人声核对（配音指纹 17602218fec0）问题数 0；问题数 0；13 句间停顿核对 问题数 0；问题数 0",
+        "③ 出片前核查：通过",
+        "⑤ 出片后核查：全部通过",
+        "⑥ 已拷 视频/视频/草稿1080p/13_1080p.mp4（--不推）"
+      ],
+      "canonical-final4K-00.log": [
+        "第13篇 用户定稿原话：有"
+      ],
+      "original-stamp-after-production.log": []
+    },
+    "actual_native_core_certification": {
+      "run_id": 43535822030,
+      "job_id": 132264443476,
+      "commit": "395e8da264fafa2453a42ee70a3f7aed8303a769",
+      "actual_full_quickcheck_exit": 0,
+      "actual_full_quickcheck_seconds": 478.16,
+      "artifact_id": 14089812323,
+      "artifact_zip_sha256": "5e396c84e4a6fc7c6cc737ceb8648d7f15f397e9551806e032c93db8ab0963b8",
+      "full_original_quickcheck_log_sha256": "dbe7f6e08d2b7c3a5f9a2f925bb75a662aed725c780e1bc6714706807552a294",
+      "article_audio_or_video_passed_not_implied": true
+    },
+    "actual_native_fastcheck_stamp": {
+      "target": "视频/工具/新管/快测通过.json",
+      "file": "files/视频/工具/新管/快测通过.json",
+      "sha256": "6ebc7aa41f79f77258fa333b665af258e007daa36a4ea290de972cd3da7b42f2",
+      "origin": "actual unmodified original full quickcheck, native run43535822030"
+    },
+    "reviewed_regression_resource": {
+      "target": "视频/工具/新管/回归基准_27.json",
+      "file": "files/视频/工具/新管/回归基准_27.json",
+      "sha256": "b8ddb4656ae27cbfc7ec8e3b99511983b4e568997bd4ad4ee33c364f3926ae94",
+      "origin": "pre-existing root-reviewed 67-screen data; original voice/segment MD5 unchanged"
+    },
+    "core_repair_manifest_sha256": "1b1558108d15603e5711e200135651d6c7700a583d8bcf53ad8753683ed05a5e",
+    "reviewed_gain_preservation_mode": true,
+    "real_restored_stamp_validated": true,
+    "reviewed_cross_article_context": {
+      "provided": true,
+      "manifest_sha256": "eddfbdceea4e25f2398a2198f94d9852f1e30e35b35c4075c5a5ff0c8e32c096",
+      "files_sha256": {
+        "视频/脚本/01.json": "2be2f80a69af28703992204ac95f987c745362c326e62ad81b3cd8e0e0735d3a",
+        "新版定稿/01-the-robber-who-thought-lemon-juice-made-him-invisible.md": "572054065b5bb65446bf8939a21c789c1e9c7664d82da5117c43efdded894351",
+        "视频/脚本/02.json": "0403368c77fd3e0f91e1ee3780e1c7c147894ad13c16b5f14707d700a8f717c8",
+        "新版定稿/02-the-truth-about-one-marshmallow.md": "91b92505aad03f963861bec39e96f0a472c126d1d57c9fc538676c32f65e545c",
+        "视频/脚本/03.json": "527f3bf4a11843f4d606188dabc6ebce6830da3fb454a49c782e3a595cb47407",
+        "新版定稿/03-the-doctor-who-drank-bacteria-to-win-an-argument.md": "6dfb56504882e24854a3584fd740e7f6601e3f2532818aee3a56d5330d317aa3",
+        "视频/脚本/04.json": "93cc1ff58d65ebe43a65ecb2fb2dbd2da262d80877c05740bbdf4eab4eaca1e8",
+        "新版定稿/04-the-brain-that-learned-london.md": "a8ccb31ffff50aaae77de4b83de1847fafae1d585981cf960c5880c409f6cfc3",
+        "视频/脚本/05.json": "2282acbfa4b82825f93261ec6c18359eb47fd3f7c639319ac5058d126643e136",
+        "新版定稿/05-the-fingerprint-in-the-blood.md": "612deac4ed066489e04e214ca969f8f27dda05856e0ef0ed2e540e7a4a52ae34",
+        "视频/脚本/06.json": "2cbf1d6cd6e66a59285298ea830f5ef914590b64286d40b2ae5f3168aa27a2e9",
+        "新版定稿/06-the-horse-that-could-count.md": "7fd21ba491c7596c53c486f2bb0b0f2f6da8e67bac75461a4649a7caff822f74",
+        "视频/脚本/07.json": "842e44e5aa19fddcfa239cb6530c5152341cd86e11db959543d02d8670ca13e8",
+        "新版定稿/07-the-octopus-that-escaped.md": "b8544281bb2ada88fce9d1082cbc30233dcb63ee3e9c2bbefafc22cb28b8cb39",
+        "视频/脚本/08.json": "254832e09f12759d950384dd9f31f671ad5a3bc1590b7466065dd3ef5fe4b8d5",
+        "新版定稿/08-the-doctor-who-solved-the-cholera-mystery.md": "0b2bfa68070ce585a452f6b7034d03c3683e710dcabec5e86d7b221950dc7bab",
+        "视频/脚本/09.json": "fa3e429351d629de188c184d04e9986200e16e80606fcbec82332b6433301dae",
+        "新版定稿/09-the-great-emu-war.md": "af5c3e844bad15f94bfc43aeed6d7417c4bfae85f026b194da667a7a3bdb6196",
+        "视频/脚本/10.json": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
+        "新版定稿/10-the-stolen-smile.md": "ff63cf94e4d2c835e2e2f1ffd3e6c5642f0916f0b13c012f1f13c3dff716d47a",
+        "视频/脚本/11.json": "665cbb80cc70b700ecc0cc5813209fd100ad4fa8f0eead3929b9e53778d9d07f",
+        "新版定稿/11-move-37.md": "7e0b49b346c1fa3ab994a11a2301167c0d6a1bb00916508bdc0b1acf71e68053",
+        "视频/脚本/12.json": "e3bfbcce6f1a8e14cfe451d656574353321e297c90c62f5a7b422f37478311d5",
+        "新版定稿/12-the-79-days-of-new-coke.md": "5a23c1e0c81318527bcbf27573487d1845c5318905a2b1e020cc6e2eaf5d643f",
+        "视频/脚本/13.json": "3687b6c42a6d524d0d7e40a47ed02c37b18abe8d524db4f5914abad52019a63c",
+        "新版定稿/13-eleven-days-without-sleep.md": "72b842de127132e386e9e52a1719ec96765e94958f56687987f53e2801c69704",
+        "视频/脚本/14.json": "17141351875ddb8f0e308602c0b6ab85cbf5126a4d0118978c25c869db769fee",
+        "新版定稿/14-the-fungus-that-turns-ants-into-zombies.md": "e114c9e1783c80a2ffdb60af05e824f93a8ea8725905cb733560abe1c0ad01a8",
+        "视频/脚本/15.json": "0934aa067f19814028c398b0c70a400bb09e354f744bde4000742950d77f441e",
+        "新版定稿/15-the-myth-of-the-unsinkable.md": "68e236868c4b466928ff2a60358250b9592dfe9287b66561b1e5a80b4d14de4f",
+        "视频/脚本/16.json": "d25aa07f3fac316c26c2ae1006d3efa7eb82a396b66150432b50239c1628396d",
+        "新版定稿/16-the-bread-made-from-air.md": "4da63148111213f6d77451b0eb4193893e6fc2fc170400bc39ce5f5ffcaa0b20",
+        "视频/脚本/17.json": "2e9971ea5ce7857e119226fe95def06e6eb9c3ef9823d8e8c4f3456f46a3bbb0",
+        "新版定稿/17-the-curse-of-the-pharaoh.md": "a2e8d92f9136e1b22fcc0799f9a4d281092f0e547cc68242e090241d7b09e222",
+        "视频/脚本/18.json": "8cffbad6f0b8451e46ad1a65d5f629c450ceff2c771218445770c8cbfd77ebca",
+        "新版定稿/18-the-mould-that-changed-the-world.md": "ef41cea03f471fe3b9a53939c843e450da3325eb711f6414e108ae92a7518dd8",
+        "视频/脚本/19.json": "cc3c5eea0f7d9ec0712b2e58adba7e5ef8b61d6518a322f9b25a12fcc45282fb",
+        "新版定稿/19-tulip-mania.md": "3882d487383b759c31dda4785966091c362960cd873a5d83c530d08d52e2e97c",
+        "视频/脚本/20.json": "cc5ed6d7be8767e5e7e9b098e8f3836821c0b3f51c17581b2746722da1cf3001",
+        "新版定稿/20-the-5000-year-old-murder-in-the-ice.md": "8d55638070787f7ff5432c197292af1188c463a8b018e01bdefc32999b888e95",
+        "视频/脚本/21.json": "61c1569a26d7569ee0f586178be6b307b1c394c0a30c3cb02541c910038b0589",
+        "新版定稿/21-the-man-who-sold-the-eiffel-tower-twice.md": "e8e966b70f579235d696ba11fb01d3b2cae3fa26efb9071bbea95071be259e1f",
+        "视频/脚本/22.json": "e3027a42c532fee9935afcecdd0542713cbb907183802c2345b9472f93b75f59",
+        "新版定稿/22-the-building-that-melted-a-car.md": "49ae09483bc80bbc40a71551cd98aebec355d96d9ff7b2bcdea59a06fe599267",
+        "视频/脚本/23.json": "c4574a79fd3a58577a1402ce095ea9e4a0ea1f98883ce63e3cc60d126e819409",
+        "新版定稿/23-the-man-who-gave-machines-a-mind.md": "72ed3049e87fe75ce1e753d5e443bdbe6a7ab72f6e282e8467fbbb62be873169",
+        "视频/脚本/24.json": "f08620b534bb10b718f7515c805dcb541721427d855bd5a092b8954847a351b8",
+        "新版定稿/24-survival-in-the-ice.md": "cb7f810d9a74256e0c00625290be4f16207feb90f5719ca87d5d7c9912b91307",
+        "视频/脚本/25.json": "c73e854e052b3df9bd920d4a59fafb183dee19bd58765fa426af6ea3d7c9a329",
+        "新版定稿/25-apollo-13-the-successful-failure.md": "b6b7d55fe66e6e32116431ea955778fab779b8bda622df0ba1036c2f40a3969f",
+        "视频/脚本/26.json": "ab663b240eb5e27923f38e2ff296c0196e3d820766d0c909adb9faf19aa3cac9",
+        "新版定稿/26-the-language-the-children-invented.md": "9e9ad8021ddabc17157d73dc739383f9676df3583cf965e470fcd773e26a3761",
+        "视频/脚本/27.json": "61cd724c5fab6f07a46aa5ac069101617c4c8350311eb11a43f9fefdddb31d8b",
+        "新版定稿/27-life-in-the-forbidden-zone.md": "e276bcf76225b9ae16cd8cfda8c9b726b442fbd625d3718f532b47b09b21b16f",
+        "视频/脚本/28.json": "a6a4befc0291727f5cc3f8b50857ee954ef9f936738f014a978ebb4d37a28ea8",
+        "新版定稿/28-a-handful-of-wormwood-that-saved-millions.md": "b9817d3429767d07b6a2eb14cce5422a20cb4e3b89f8b03e6b3d5da2daf91d91",
+        "视频/脚本/29.json": "1e5f1d9f0c22b5d14b757f029be694c2a3969666d732ca79bb695282763de791",
+        "新版定稿/29-the-volcano-that-gave-us-frankenstein.md": "69045ee19a170c7ea9d0008b468c7e947bc28b639b834c0192dc0aeafc3ef4d0",
+        "视频/脚本/30.json": "cdf727cb4c6832063421df9da6ab8ae7729cf9df01d6be089a8981c92c360f06",
+        "新版定稿/30-the-stink-that-built-londons-sewers.md": "84dbf19cee0045ea2608b13ee0677cb9623dd8fbb371c67093bf50c64186137a",
+        "视频/脚本/31.json": "d81f8645a1e5663ba8c84668e817cdb218bc6689079fbfd51326b3a7fd3cd384",
+        "新版定稿/31-the-book-twelve-publishers-turned-down.md": "7abd20fed44918dcf01586c056e9d0acd9d2ad3b90aa7d3d403762d9f06d2659",
+        "视频/脚本/32.json": "357aa59bed62154f7302a5efcf528859b303004e028657b93058138fe931bf85",
+        "新版定稿/32-the-planet-that-was-demoted.md": "1421f2b0921e7e9478ebc48777e3e8b2c979172de63d0124015107c3750a3542",
+        "视频/脚本/33.json": "ca51103c1a9d45c9159322765efc86c81f61f6ec78975f160019d21a1d9ee0d7",
+        "新版定稿/33-thirteen-in-the-cave.md": "9862078044ce45a9f6d51aa7d165afdfcf90066d1de98cbb317dd7e8f980610d",
+        "视频/脚本/34.json": "74921848a6bb25a2ba631813f60d4756c9ff90c64c03a2fb936ce34f310ce509",
+        "新版定稿/34-the-game-that-escaped-the-soviet-union.md": "e3244b67b21e283e67f4e88e932a1dbb85bf273a48ee009b3f435e1c5814831c",
+        "视频/脚本/35.json": "d8439077dc2c909b1c6cbd1347f31e9625f25fffe447d6f5945c9492561f1a16",
+        "新版定稿/35-the-bird-that-beat-the-letter-home.md": "ba8c38e38b21a3345624e2d44fd352561d3096cfb6f62214b48ea9b6e66faead",
+        "视频/脚本/36.json": "76daa28f421bd40d8e2744d4e785a34bb8ee67da1403b4b1546db9465c535cef",
+        "新版定稿/36-the-company-that-invented-its-own-killer.md": "411eeb96c8641ee7082b49a5abf4c7343d3f1dbb7ef331064d7c0f3c630fe58f",
+        "视频/脚本/37.json": "b1b8945ccf3581df48ade5714a2d0e93e4cc6812708f95bef6f5e44439106c99",
+        "新版定稿/37-dynamite-for-the-heart.md": "4933e24d2384471a96d9c8c26c15d5224a85dae98d9971a3fed15b4978dafc51",
+        "视频/脚本/38.json": "8d0379032000967c9f72e550574874949f798eefbfbfb58ab2b38e4e23ecbc6b",
+        "新版定稿/38-the-web-beneath-the-woods.md": "abb7eead9f3da0b2b326ceed5a649cfbf71fc28dad22e0d52f7b19caa798c54f",
+        "视频/脚本/39.json": "6c3e9539f624b192335312912572a05fba2c7bcfb821b44c3c1dbb21b42527a7",
+        "新版定稿/39-y2k-the-crisis-that-success-erased.md": "abbc9804661126aa006595031ed8f201ce55e8eb5fd9e1ad5669c0c6fcdb80ab",
+        "视频/脚本/40.json": "1c50d1a47ee6f8528d0f7299e8a45bc8c30312622f3f465a964d21cc1395ee7f",
+        "新版定稿/40-the-glue-that-failed.md": "dce9f78f3a0828307843dd667b7eeebf3380a3630f03d234bd5824870aba61a1",
+        "视频/脚本/41.json": "6b6673ffc1db986f4c355f3685de6a0faf2272cee042c5e917f26a8b3057c2be",
+        "新版定稿/41-the-toad-that-invaded-australia.md": "eca590f97120f4e76d719e29aa07b094f9117cd462f5a70c029331a63b85f710",
+        "视频/脚本/42.json": "eceb10ae92aa4b9cd23180d1138149a7fa7b674385462c898bc0d2283c8739e7",
+        "新版定稿/42-the-telescope-that-needed-glasses.md": "d4aa049779a0eba06c555d76ca14103648378eef90465df424120126fa771280",
+        "视频/脚本/43.json": "aa9da1246e293c80408edf94a7c9bed65ef3178ae7cb5265a8273e8c4396687f",
+        "新版定稿/43-from-a-garage-to-the-top-of-the-world.md": "bd70c83e5ac867238ca179f3c9f3548eb9cbdcae1f6df40994aef0bda721ae54",
+        "视频/脚本/44.json": "87f531203ca38d88ae5e71ffd88190b1530715cdc0adba146c2a4a78ebe9b976",
+        "新版定稿/44-the-night-sweden-switched-sides.md": "d3f7ad2ac43f02aae9205a15b9808280ca3db597d6ef3b36aca8ca6176c5f74a",
+        "视频/脚本/45.json": "569406607d2bf18dce5e916052d6460509450d97fe17ac9820be524f59c2c3cc",
+        "新版定稿/45-the-record-humanity-threw-into-the-stars.md": "27deabec4a8478fe570f7f237a2fb850ffdce3deebfd952f512d82a60cf7314f",
+        "视频/脚本/46.json": "804ecfddb6060288b05eda0e1027c65e9bff0c08a9d010c201bf39306c769b62",
+        "新版定稿/46-lost-in-the-glare.md": "7aaa06e875fe56c5d78210b90a8769b8b2051714025ef10df37c2fe89db7a68c",
+        "视频/脚本/47.json": "0417489c8a672e7e63d46c2239d847acabda2d93160cabed3b0fb14f701ac39a",
+        "新版定稿/47-shadows-of-wolves-over-yellowstone.md": "34c68cf4d0f0ef3545ad68edf3367fcb76ab500174b11ae7f83b782cd5a80a2a",
+        "视频/脚本/48.json": "4f146ce6a70bb0bf5d2c6e1f6b47bd6a2bcc2f311be7a948092d7bde1a08f449",
+        "新版定稿/48-rice-for-the-world.md": "76416be21f857e8a05c37baa33ac90f5785812291485231c249e38a1d0edf15f",
+        "视频/脚本/49.json": "640168eb8a17c5d53d266c6604ffe287919314947371c2ee239eeea952d73b77",
+        "新版定稿/49-the-woman-who-won-two-nobels.md": "1e4fb068aa9ae4513d01b199a074b84dc9d819f57b2134df32588a0e4a4b6b6a",
+        "视频/脚本/50.json": "1d4a41824dfa5e8d11e5990b2a4b802ba2fcc3231d85b15ed6630396c6f027bf",
+        "新版定稿/50-microplastics.md": "5439589bacf1abb2abbb184eb658492bc02bcc5bdd8dfd8ababcd80ab93621cb",
+        "视频/脚本/51.json": "39886d83593a31fb575b124ecf6457190773dca695b6ff78f8434d52aebd6d7c",
+        "新版定稿/51-the-joke-that-became-ok.md": "8de30ea4846f4e88d8b71c8d5ced3ee63a73955e39b7dc3c5adad0971b854fd0",
+        "视频/脚本/52.json": "832249bb44617d38ede75560a5e57af6ba79ec284c9609407cb30ce879f6f862",
+        "新版定稿/52-the-killer-smog-of-1952.md": "179500361e4a837d7edb2e0497e08677d5abd425e8ad542f788205a6f7667b4b",
+        "视频/脚本/53.json": "28b604bfa72896534736293f79e9b3aabd8e3678672f4dc6c66337c02a8f1518",
+        "新版定稿/53-the-wind-that-kept-no-time.md": "6fab302dcadb5a2c509436f5fbf8d9ef925c008a36f5b422749bd405aa4701d3",
+        "视频/脚本/54.json": "b1fcb8ae86045b3d35ccfa0f52eb9594b8921d43063835769ee3ecc4543be75e",
+        "新版定稿/54-the-sound-that-shook-the-world.md": "abd5f4bfe11ed73bcc5326a92cf99b0a8e5ad70adaca1ce8d0c8f622b57fa519",
+        "视频/脚本/55.json": "06344fc0ad5975cba2f4dbe5262a9957dd7c024f9a05b9abbfa327f32ea8c719",
+        "新版定稿/55-the-secret-of-romes-undying-concrete.md": "a7759eddcc7ec06dfd6dab7912e06b3b5ef8576df0c025a97812006669d0be61",
+        "视频/脚本/56.json": "22ca3b4180a8ae6a37b4c8e25f5e357d5696d9b23bf148fb7064425d1403e59c",
+        "新版定稿/56-the-letter-that-startled-darwin.md": "aad1e2aab9ff28f534a510362e807ef401e0b502475240f4b2531e9e518a8d7a",
+        "视频/脚本/57.json": "a0ba65b769430289a33ec1f7bc6dbf91dad8d2c3b1d725348851de546563cd6f",
+        "新版定稿/57-a-change-of-anthem-in-the-deep.md": "0731d925a98bafc222718c111985362e166b38b9189c516219a481e36d0d4b6e",
+        "视频/脚本/58.json": "8b0bd3d7d39000518789e9907aec53bd52fab1b9d6b4f22a152d158635b6e8ee",
+        "新版定稿/58-from-a-scratch-to-a-world-without-smallpox.md": "1aa2a0d2c51da76f9c9ebb88d049dd1a55ab530791566fdbf6476e5aa48c15ee",
+        "视频/脚本/59.json": "df1db4174d942371166048b220ef6d55b0b700b2ce31c866edf6dfdf33b92f0c",
+        "新版定稿/59-saving-the-sky.md": "7bf9c4661e733e7af23dc2f11bc820b809ec93dad75a94fb6a12748226e8722c",
+        "视频/脚本/60.json": "eed1655c0919db32a3a016b24791b93d25683f287c7ccb2523e168a69bddc562",
+        "新版定稿/60-the-scientific-giant-who-changed-the-world.md": "9d1578e7af085559922394a3db01de4eb22dc1c520ca17de5cad68e5a38a31a8",
+        "视频/脚本/61.json": "72378937501769dfb3d934fe65ab1a69afeb5420a15e19890c161433717d2435",
+        "新版定稿/61-the-steel-box-that-remade-the-world.md": "135cc9cfbcbd68d957f831cf55558112a45b1cc3749366cb9a304507355c7d2c",
+        "视频/脚本/62.json": "4b3a97f2b6404e1b091537c21f01fc60088902f596803345983c38be52ec79eb",
+        "新版定稿/62-dolly-the-copied-sheep.md": "62817546ae33824b57255f941135c503e41a41f905331ed4af1e32850fa00960",
+        "视频/脚本/63.json": "5d266d80f9cf29cce6f7e34531449cf75191a42f180102685a5bcd04849e75c5",
+        "新版定稿/63-the-crowded-heavens.md": "6ef79d4310019dfefa7364b8a428411a6bc337678c69fa5cbc89b84689e253a4",
+        "视频/脚本/64.json": "12a36862765922d72ce6e5a4c5fe85f548364eed65fe3b3b284f0b38899a965f",
+        "新版定稿/64-the-day-zero-that-never-came.md": "e0c83cbe36745adbbffd33a156fa8d0671704ea976cb13215cabb612639b37a5",
+        "视频/脚本/65.json": "78e60dd231df4ac71df83e21a26f82bbf706dc0bef80bee156a36bc287661ede",
+        "新版定稿/65-the-day-the-doomsday-vault-opened.md": "71a50d32e25955e713e6ca108ab68422a4fd5b77c914a9074eece1dc33cbff89",
+        "视频/脚本/66.json": "ad5324af4270834186285a5e7273a90213094077adc6f9e1d5c7b0ebff9cf035",
+        "新版定稿/66-the-burrs-that-became-velcro.md": "75dbe6c148ca97a7780ac1737f33f58bf8ee27a51aa729a83315705655b12b2a",
+        "视频/脚本/67.json": "8897cc1c2df1e4672eec3bbff2776d0565afb9c9fe84087a1758ebb15b2a233e",
+        "新版定稿/67-the-cave-found-by-a-dog.md": "10e37b81eeef4e3289448a6b4fd679f34d495a4fc087c57747e6dca949e00cf1",
+        "视频/脚本/68.json": "568f72dacac48e206811d35a57c7fa22e3da428783f64e507c184f2090e579f3",
+        "新版定稿/68-the-last-flight-of-the-hindenburg.md": "c25f58ffb0e3748336767bb7470dd7cef10374c53cbb48af89dba26f65b2dd5c",
+        "视频/脚本/69.json": "09fd3fdbbc834badd16a9b38d8c14e425193a6849d7db87253f26a782a1c4137",
+        "新版定稿/69-the-trial-of-the-father-of-the-atomic-bomb.md": "570eda5b7d979d71e9bcad1c67e295ed326ecdb8b61e663aba33272c8a9451bd",
+        "视频/脚本/70.json": "0f6827f02cef0d2416f9d7d69b7e1c5553acee7cf6dc89f3379201264587236c",
+        "新版定稿/70-the-stamp-that-changed-the-post.md": "edfd85cea33730ba67e4210e756da1f2945f1a21bce55c7e75497cb5f0095d80"
+      },
+      "source_file_count": 140,
+      "working_script_count": 70,
+      "target_request_exactly_matches_context": true
+    },
+    "request_source_sha256": {
+      "视频/脚本/13.json": "3687b6c42a6d524d0d7e40a47ed02c37b18abe8d524db4f5914abad52019a63c",
+      "视频/工具/初稿生成/gen13.py": "769972cf2a0324fd7544a0d3c0186b3d06a25fe86829ab95c6cc1960b1f43160",
+      "新版定稿/13-eleven-days-without-sleep.md": "72b842de127132e386e9e52a1719ec96765e94958f56687987f53e2801c69704",
+      "视频/制作记录/13_待改清单.md": "e53d4e6bedbf30866bb2dc14b1b9f764b206626688c5da7cc6e9a62046d9f86a"
+    },
+    "accepted_source": {
+      "id": "13",
+      "path": "最终版4K视频/13 - Eleven Days Without Sleep - 十一天不睡觉的少年.mp4",
+      "sha256": "645476bf078e85bda91beca7e0fb74b301c6f74bf5c9e1c5507a6cff99c808b0",
+      "git_blob_sha": "32c0ca4d2f8fe957fa4d49449bd3f5d44749f729",
+      "bytes": 13806875,
+      "width": 3840,
+      "height": 2160,
+      "summary_frames": 60,
+      "aac_adts_sha256": "6a0abfb674e0c5cb5411e64412c0613eb016772b4c73be167eb526dba5b244a3"
+    },
+    "checker_reference_preparation": {
+      "article": "13",
+      "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+      "reference_prepared": true,
+      "acceptance": false,
+      "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+      "source_sha256": "3687b6c42a6d524d0d7e40a47ed02c37b18abe8d524db4f5914abad52019a63c",
+      "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+      "checker_program_sha256": {
+        "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+        "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+        "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+        "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+        "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+        "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+      },
+      "reference_calls": [
+        {
+          "sentence": "标题",
+          "piece": null,
+          "reference_kind": "title-default-raw",
+          "method": "create",
+          "source_slice": "Eleven Days Without Sleep",
+          "exact_native_cache_key": "6a54d46fc7df35e9b4dfdf396483653c540a160c.pkl",
+          "cache_input_text_sha256": "d17a34d1bd4ee5741a38ed7e25364476ecbcbe95c231ee21f8742f434eb58179",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "标题",
+          "piece": null,
+          "reference_kind": "title-default-timed",
+          "method": "create_timed",
+          "source_slice": "Eleven Days Without Sleep",
+          "exact_native_cache_key": "c5c0c71b0e4e85fa1bdc016ee36c226a94748b81.pkl",
+          "cache_input_text_sha256": "d17a34d1bd4ee5741a38ed7e25364476ecbcbe95c231ee21f8742f434eb58179",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "On 28 December 1963 Randy Gardner, a 17-year-old science enthusiast at a San Diego high school, set out to forgo slumber for a regional science fair.",
+          "exact_native_cache_key": "0b6ccfaa665d6e756fe3583d6c0f8d372440f614.pkl",
+          "cache_input_text_sha256": "55f06157d9cd595536d9799c55e1c84848d4f1005ac084cea4148e19b077187e",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "On 28 December 1963 Randy Gardner, a 17-year-old science enthusiast at a San Diego high school, set out to forgo slumber for a regional science fair.",
+          "exact_native_cache_key": "ce112f1384240021ca59e45bce449bbf53d974b0.pkl",
+          "cache_input_text_sha256": "55f06157d9cd595536d9799c55e1c84848d4f1005ac084cea4148e19b077187e",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "On 28 December 1963",
+          "exact_native_cache_key": "874a334ce1712a8f329c8efaa4ddfc055cc37a33.pkl",
+          "cache_input_text_sha256": "ad0e4e028ee359b12d24d38638577687ca4d3b134c38120cdd9a6aea78e19aa0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Randy Gardner, a 17-year-old science enthusiast at a San Diego high school,",
+          "exact_native_cache_key": "c2a1d9b95f616f9e1462f9d9a85363388eb02e4f.pkl",
+          "cache_input_text_sha256": "c2f12a6e3e8ba8627ecb52c2b90171f260b95378a9bb0ae16b2a372b8535590c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "set out to forgo slumber for a regional science fair.",
+          "exact_native_cache_key": "fb120784b1c1a877f596bd741964009fef63da8d.pkl",
+          "cache_input_text_sha256": "0c4522f7598a14f7546b69c73e5c7d22b87962dfc2dc88d7e14913e4f8e8a794",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "On 28 December 1963 Randy Gardner,",
+          "exact_native_cache_key": "320fb14d90b460b0d4a667f36725f5172009ca67.pkl",
+          "cache_input_text_sha256": "870f47cda858bb2d130f07e0ef311f6ea740d6ea26722a77ea08c00dd5d71336",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a 17-year-old science enthusiast at a San Diego high school,",
+          "exact_native_cache_key": "30dbac5efa84ee7cff6c90cdb6b41c63912a9eab.pkl",
+          "cache_input_text_sha256": "c992b5f8ffdb248824650aa02d21460bfdc9eda52eba8d01786c847b9e48a0f1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "set out to forgo slumber for a regional science fair.",
+          "exact_native_cache_key": "fb120784b1c1a877f596bd741964009fef63da8d.pkl",
+          "cache_input_text_sha256": "0c4522f7598a14f7546b69c73e5c7d22b87962dfc2dc88d7e14913e4f8e8a794",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Two companions diligently jolted him awake whenever his alertness waned and logged his mood.",
+          "exact_native_cache_key": "7c77613c367499eadcf7620adc7a48915bb453cf.pkl",
+          "cache_input_text_sha256": "34ccc754e5bf8d1d39febd3addbbcb067aa7bd3501679cdc5057c45f7ecf19c1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Two companions diligently jolted him awake whenever his alertness waned and logged his mood.",
+          "exact_native_cache_key": "dbd72af734a26577620cd04e86c4aaaf757ca212.pkl",
+          "cache_input_text_sha256": "34ccc754e5bf8d1d39febd3addbbcb067aa7bd3501679cdc5057c45f7ecf19c1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Two companions diligently",
+          "exact_native_cache_key": "de0d40339ab871e06be2911fd7e1291821461632.pkl",
+          "cache_input_text_sha256": "a665be6ecdc96eeaa91cd194ae2e498860fd7bd4ebefabbbf9839d4fb3d9a1e6",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "jolted him awake whenever his alertness waned",
+          "exact_native_cache_key": "ad4ddae40bb4d1af9fde384de5fb424545b7b8c8.pkl",
+          "cache_input_text_sha256": "59f41c12385b06df761f261eeb29250a56004d8ac945ff169d1ba03d05c8d06c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and logged his mood.",
+          "exact_native_cache_key": "f71530a6e442bd0006c326ff3a49ecca2b83c5c2.pkl",
+          "cache_input_text_sha256": "d01b80edaf5158f1ad262861b55bedf98df196a6ee175e1b06f78cd8578171f2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The project, a voluntary endeavour, went on to take first place.",
+          "exact_native_cache_key": "0228ec01abe11646e41f7882811174cd033770ba.pkl",
+          "cache_input_text_sha256": "5f0da84941ddfe3d47753d2130f303f03c9051a574357b1a3d67a4da9c0953b9",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "The project, a voluntary endeavour, went on to take first place.",
+          "exact_native_cache_key": "5c6a5c0b9c51086079b82ead2a7329a556d7be7f.pkl",
+          "cache_input_text_sha256": "5f0da84941ddfe3d47753d2130f303f03c9051a574357b1a3d67a4da9c0953b9",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "The project, a voluntary endeavour,",
+          "exact_native_cache_key": "b46a38751e2cbe8180b46f42579cc8b787d11fc1.pkl",
+          "cache_input_text_sha256": "f2730fd7f1dfa2ea651accf33572951bd453f9282e1abaa76c1002219d1f0bfd",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "went on to take first place.",
+          "exact_native_cache_key": "eb3d884f940b25fe352d8aab7c7bee0f492a431d.pkl",
+          "cache_input_text_sha256": "634a7d1168c04495ebb87993f6f0c9115991f0104ad50469652fa957b27e9c7d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "The project,",
+          "exact_native_cache_key": "9a4a90558eb71898d9247d30384cef26f69ab59c.pkl",
+          "cache_input_text_sha256": "faadafee75226a2584b625740485aaa949455ebac097542534ea3d3e53e1e576",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a voluntary endeavour,",
+          "exact_native_cache_key": "5a853f4b3d8ea630cc914aad6ef99838886acb2e.pkl",
+          "cache_input_text_sha256": "ede29b218aa31d1b5def24bd603f07ebce97a821ba66a46fcb4ad3db2d8046c8",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "went on to take first place.",
+          "exact_native_cache_key": "eb3d884f940b25fe352d8aab7c7bee0f492a431d.pkl",
+          "cache_input_text_sha256": "634a7d1168c04495ebb87993f6f0c9115991f0104ad50469652fa957b27e9c7d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "William Dement, a sleep researcher at Stanford, read press coverage of the attempt and was intrigued.",
+          "exact_native_cache_key": "9fdcea0fde10e70d37ea0fb679028f354034b4af.pkl",
+          "cache_input_text_sha256": "34db72e18fdb02c2887f7b748ad9b00b4cad344c6b89dacba8dfa1f881625a6f",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "William Dement, a sleep researcher at Stanford, read press coverage of the attempt and was intrigued.",
+          "exact_native_cache_key": "18b6906738e77e628ee9cb0f2862bccafa5ad1d2.pkl",
+          "cache_input_text_sha256": "34db72e18fdb02c2887f7b748ad9b00b4cad344c6b89dacba8dfa1f881625a6f",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "William Dement, a sleep researcher at Stanford,",
+          "exact_native_cache_key": "d5da2e8049af3dfb7a98b10f95cb0ebaee8a77c5.pkl",
+          "cache_input_text_sha256": "9dc0ecabffcd648914aec0a463ea9bdee92b22dcf0dcd29c57e3da988797f473",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "read press coverage of the attempt and was intrigued.",
+          "exact_native_cache_key": "fae4fcefdcbe4cc3c6e34689544482e165694fa4.pkl",
+          "cache_input_text_sha256": "f4516263da4a4ba457f79f50637fa8d7ec97e46f094699cf0be08b40df3644f7",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "William Dement,",
+          "exact_native_cache_key": "d18bd0daf7ba03eb425a4398c7123a8f34b10cc4.pkl",
+          "cache_input_text_sha256": "1ad25b98b06fef4ec0650e7a253b6958ed498ee25bf3386d9ccb94e6cdc77afc",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a sleep researcher at Stanford,",
+          "exact_native_cache_key": "f0e27ada36e08aa44605f3af538e82968af96996.pkl",
+          "cache_input_text_sha256": "2bb366d2b266533b850adb1681856e034980154c07c4dce89521df88e355e095",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "read press coverage of the attempt and was intrigued.",
+          "exact_native_cache_key": "fae4fcefdcbe4cc3c6e34689544482e165694fa4.pkl",
+          "cache_input_text_sha256": "f4516263da4a4ba457f79f50637fa8d7ec97e46f094699cf0be08b40df3644f7",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "He drove to San Diego and assisted John J. Ross, a Navy researcher, in monitoring the sleepless boy closely.",
+          "exact_native_cache_key": "fade1d698b88dc59cc40edbd3d1ce1c7c413f6a5.pkl",
+          "cache_input_text_sha256": "e0e3ba97c39b4315732bb53300ba71503fafca52e9916a6b02affbb4c1927495",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "He drove to San Diego and assisted John J. Ross, a Navy researcher, in monitoring the sleepless boy closely.",
+          "exact_native_cache_key": "af729f336f516a4ce0801190f6fe9dd7ebdaf329.pkl",
+          "cache_input_text_sha256": "e0e3ba97c39b4315732bb53300ba71503fafca52e9916a6b02affbb4c1927495",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "He drove to San Diego",
+          "exact_native_cache_key": "a9c933f16b310d538dc58b0f263fefac8d71bef2.pkl",
+          "cache_input_text_sha256": "7726f6204c293a86accb4800fab394f42e2ceac7099b8916a4f720fa7b84376a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and assisted John J. Ross, a Navy researcher, in monitoring the sleepless boy closely.",
+          "exact_native_cache_key": "f09acc5c4e7392707542782172bcf381d1e11f4a.pkl",
+          "cache_input_text_sha256": "a61ed2afbb1ed204e0ee44f27430761d82c465d250c3b40d2edf04fa6c9ab93e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "He drove to San Diego and assisted John J. Ross,",
+          "exact_native_cache_key": "899321fae27db6775d2e907d4a4bb1b60ca1497a.pkl",
+          "cache_input_text_sha256": "22b08388f795445ec0dcc4e684b4deb57a62b77206349566ed9c6a5da762c14b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a Navy researcher,",
+          "exact_native_cache_key": "378754a30674e0adadca2a3646b1abdf0a8241f2.pkl",
+          "cache_input_text_sha256": "288971732a627a2740f31da5f768e7d5dc78f220525bd9d6b0a2b425ab0ac4c1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "in monitoring the sleepless boy closely.",
+          "exact_native_cache_key": "d4d3356a487df448b3db529143bf08df022ff0c0.pkl",
+          "cache_input_text_sha256": "c65f9b107e370082c856cc0c9db0ad143540658b796073421e96b359b7ec7ade",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The two investigators attentively noted the fluctuations in his state as the deprivation progressively deepened.",
+          "exact_native_cache_key": "c7a7317241a2cfaa796b3b667647583e7babc6a3.pkl",
+          "cache_input_text_sha256": "2379556a745f098532df79660dd3bffb19062c6b59c44a6686109a684b8f26ae",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "The two investigators attentively noted the fluctuations in his state as the deprivation progressively deepened.",
+          "exact_native_cache_key": "28229801eed40642d484890ec15f7ce93ae95f8e.pkl",
+          "cache_input_text_sha256": "2379556a745f098532df79660dd3bffb19062c6b59c44a6686109a684b8f26ae",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "The two investigators attentively noted the fluctuations in his state",
+          "exact_native_cache_key": "8d61671e67161a234067a87aa40e1bb4c614d1fe.pkl",
+          "cache_input_text_sha256": "a2b3c181e19adf23a7a78ae3f40aef762ef58598171df53f2dbb735d25bff0f6",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "as the deprivation progressively deepened.",
+          "exact_native_cache_key": "8c2b7cca1437da29f6587f2afb9890254190af8a.pkl",
+          "cache_input_text_sha256": "200961956cbe82500daa99e694238be16305b94ee0d263b6d002a55849d77ad6",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The consequences soon mounted.",
+          "exact_native_cache_key": "24ac4f9193ba5f7be0ae00c4bbabe3fdb5df9159.pkl",
+          "cache_input_text_sha256": "130c2446cfbf84f3c8665265c9550af3ae4dbf320b61dc69f028b15a103a7c58",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "The consequences soon mounted.",
+          "exact_native_cache_key": "98a05ad2ce274c3414d893e5cd6c9641378ee3ec.pkl",
+          "cache_input_text_sha256": "130c2446cfbf84f3c8665265c9550af3ae4dbf320b61dc69f028b15a103a7c58",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Gardner grew moody, lost concentration, and found his short-term memory impaired.",
+          "exact_native_cache_key": "cc74b7111b822127faf2f8478358d05f454e07fa.pkl",
+          "cache_input_text_sha256": "e48f286c5e7b92144838cc681873ff9be046c43227e7ecf624fe157e54328f08",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Gardner grew moody, lost concentration, and found his short-term memory impaired.",
+          "exact_native_cache_key": "b3e7a947fcdecec9f7d2293f25ea35d41270f5d8.pkl",
+          "cache_input_text_sha256": "e48f286c5e7b92144838cc681873ff9be046c43227e7ecf624fe157e54328f08",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Gardner grew moody,",
+          "exact_native_cache_key": "371141f45a1bdc9f7f5d5676495f624a0116aab0.pkl",
+          "cache_input_text_sha256": "e72b3d2b783d5adb34ed914d5725680eb0d70d07fa1ccc1993cd0583748ea483",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "lost concentration,",
+          "exact_native_cache_key": "b6f22a8d8774b6dda40d3fc7b64e1cd7e8e420eb.pkl",
+          "cache_input_text_sha256": "7f729ef38c75fb4b906297e179972b61d30c568148462dd82b46ff3ed0b2ddc7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and found his short-term memory impaired.",
+          "exact_native_cache_key": "be68c309b5b97b1cc7225d3eff93e88b245bfc5d.pkl",
+          "cache_input_text_sha256": "0ad3e3e92e43342bb2fa17e6325dc5c459b2d10015108c3b1f7e00972bf9cbb8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Gardner grew moody,",
+          "exact_native_cache_key": "371141f45a1bdc9f7f5d5676495f624a0116aab0.pkl",
+          "cache_input_text_sha256": "e72b3d2b783d5adb34ed914d5725680eb0d70d07fa1ccc1993cd0583748ea483",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "lost concentration,",
+          "exact_native_cache_key": "b6f22a8d8774b6dda40d3fc7b64e1cd7e8e420eb.pkl",
+          "cache_input_text_sha256": "7f729ef38c75fb4b906297e179972b61d30c568148462dd82b46ff3ed0b2ddc7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and found his short-term memory impaired.",
+          "exact_native_cache_key": "be68c309b5b97b1cc7225d3eff93e88b245bfc5d.pkl",
+          "cache_input_text_sha256": "0ad3e3e92e43342bb2fa17e6325dc5c459b2d10015108c3b1f7e00972bf9cbb8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "He became suspicious, at times paranoid, and began to hallucinate.",
+          "exact_native_cache_key": "94a3b5ce57b9598effd2efcb9628537097e52bf5.pkl",
+          "cache_input_text_sha256": "b07c0396f1a7c08e0266726c9742fa3ebf842b12c0973bc35425a0139aad9e94",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "He became suspicious, at times paranoid, and began to hallucinate.",
+          "exact_native_cache_key": "8ccff42b51cedd18960dd00cd3aa1ca03f76b56c.pkl",
+          "cache_input_text_sha256": "b07c0396f1a7c08e0266726c9742fa3ebf842b12c0973bc35425a0139aad9e94",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "He became suspicious, at times paranoid,",
+          "exact_native_cache_key": "6d5596a86a04e9d2283329b40c7466da62fe12fb.pkl",
+          "cache_input_text_sha256": "dc9a9697859148221d4e5e21514391ffa581f96f6705cb4b834b342e718cc0e4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and began to hallucinate.",
+          "exact_native_cache_key": "297955d5a008e4825b1c8c63862ab3e85d9b7a35.pkl",
+          "cache_input_text_sha256": "b21b4ca95614a9cc242e402aec143ea8552b6e6f7690249fb981b0ce07d24528",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "He became suspicious,",
+          "exact_native_cache_key": "4cdf192a54d16b85bcb7d80682b03bae1d32e0dc.pkl",
+          "cache_input_text_sha256": "a97d57651d8d303c392e772db4968239a4f1574183782affc9c590a77d4a6acf",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "at times paranoid,",
+          "exact_native_cache_key": "0f73c113088e648c54fee23de565510e54a22bae.pkl",
+          "cache_input_text_sha256": "76882864cb868575dda841f08fac402bf48c37885904f27fee107724519a933b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and began to hallucinate.",
+          "exact_native_cache_key": "297955d5a008e4825b1c8c63862ab3e85d9b7a35.pkl",
+          "cache_input_text_sha256": "b21b4ca95614a9cc242e402aec143ea8552b6e6f7690249fb981b0ce07d24528",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "On the fourth day he was gripped by the delusion that he was a professional American football player.",
+          "exact_native_cache_key": "b0b5d86c92efeaf6ad8eb9194f3077fa5a1aa799.pkl",
+          "cache_input_text_sha256": "fa0abbb2878fae24ccc1d5a7feb6c60f195e376d9ab9abfed31aba4fc1e05816",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "On the fourth day he was gripped by the delusion that he was a professional American football player.",
+          "exact_native_cache_key": "8778b02472616d96bbf50e9811e325fbd24308e5.pkl",
+          "cache_input_text_sha256": "fa0abbb2878fae24ccc1d5a7feb6c60f195e376d9ab9abfed31aba4fc1e05816",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "On the fourth day he was gripped by the delusion",
+          "exact_native_cache_key": "d479ebfd776ac38473f13b1a7f901bd7bfa4a86a.pkl",
+          "cache_input_text_sha256": "945525b956a3429ac1ee9a9002df536d461e5e92a44edf53611dbb1d94fc1746",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "that he was a professional American football player.",
+          "exact_native_cache_key": "fc557f4602e59a42588ea1e45cccee2f740c6710.pkl",
+          "cache_input_text_sha256": "1d536a91bd8aae4814181afe9bc5cb73ef38c884411c731841bde0688894390a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Gardner ended the wearying attempt on 8 January 1964, after 264.4 hours, about 11 days and 25 minutes.",
+          "exact_native_cache_key": "8395b10e983237f1b265fd2f03d6512e8fb51f57.pkl",
+          "cache_input_text_sha256": "b071f114ec4ce215ee0fa624c859509bd4c4c2b5da657c148c9fb6ed119f0105",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Gardner ended the wearying attempt on 8 January 1964, after 264.4 hours, about 11 days and 25 minutes.",
+          "exact_native_cache_key": "d1297351c8ee9b6210e4d17795795d111cc2d220.pkl",
+          "cache_input_text_sha256": "b071f114ec4ce215ee0fa624c859509bd4c4c2b5da657c148c9fb6ed119f0105",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Gardner ended the wearying attempt on 8 January 1964,",
+          "exact_native_cache_key": "79e80fddb1611b1e968363c64a796a8289e1fe3c.pkl",
+          "cache_input_text_sha256": "6fe98eb33b1784aa8a5da771fc6cb1bea096208f81e65eeeac2a09a1fdd28569",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "after 264.4 hours, about 11 days and 25 minutes.",
+          "exact_native_cache_key": "2311b90bd5f86500b01a09b977b931bdc5f6c045.pkl",
+          "cache_input_text_sha256": "6035d3d594ad25cf32d65c7ec645584080984a885669914cd4111bbb90a7793d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Gardner ended the wearying attempt on 8 January 1964,",
+          "exact_native_cache_key": "79e80fddb1611b1e968363c64a796a8289e1fe3c.pkl",
+          "cache_input_text_sha256": "6fe98eb33b1784aa8a5da771fc6cb1bea096208f81e65eeeac2a09a1fdd28569",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "after 264.4 hours,",
+          "exact_native_cache_key": "6f3853d6f320127aead7174a6310989f38a9a30d.pkl",
+          "cache_input_text_sha256": "a6dcfb6d4577c701874da3df3402ebc6d9b1b2fc528020edc152d19dcfcf2b58",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "about 11 days and 25 minutes.",
+          "exact_native_cache_key": "8fb0d1968a02b9db1543a9403f02b0dbea4188fb.pkl",
+          "cache_input_text_sha256": "c55ca037117f3473c930ab45c7c245863676e1ac3be3211ad5f8afa422797183",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "He then slept soundly for about 14 hours and woke apparently refreshed.",
+          "exact_native_cache_key": "4b43f1f0dcdfa99f0e02f66bbc60e86edddb16b2.pkl",
+          "cache_input_text_sha256": "538ac7ab5b933c8863c929ba07dfedf290ed4b1601c4b52cb2fcf7ed91fb6e0f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "He then slept soundly for about 14 hours and woke apparently refreshed.",
+          "exact_native_cache_key": "d82d3c1596eb590875f824dab04e10d20d912c3f.pkl",
+          "cache_input_text_sha256": "538ac7ab5b933c8863c929ba07dfedf290ed4b1601c4b52cb2fcf7ed91fb6e0f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "He then slept soundly for about 14 hours",
+          "exact_native_cache_key": "902056eb6ad4167c4519de4d4f9b623a012a097a.pkl",
+          "cache_input_text_sha256": "a255aa65ea08911d04630b60cc5b276957c4c8b5efcf86aacdcaab9f7c62e34a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and woke apparently refreshed.",
+          "exact_native_cache_key": "f603029ca1fd85d154b6c7326170251c2f10c5e5.pkl",
+          "cache_input_text_sha256": "0158037b2174881169ebfc6ced6a810cfe78579d628a10ae6f652422f42a28db",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Researchers probed the case in a 1965 scholarly paper, which helped highlight microsleeps, involuntary lapses into sleep lasting a few seconds.",
+          "exact_native_cache_key": "aeb7178e31c6b46d97dead9e1ab9ff87e23614a3.pkl",
+          "cache_input_text_sha256": "5b810e30dc8f4747e807da25b23cc53f353794ca9fd4eb712eea5ca7604e1bcc",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Researchers probed the case in a 1965 scholarly paper, which helped highlight microsleeps, involuntary lapses into sleep lasting a few seconds.",
+          "exact_native_cache_key": "f4249a4ad86bb0a7df83722444cca4490e7968ff.pkl",
+          "cache_input_text_sha256": "5b810e30dc8f4747e807da25b23cc53f353794ca9fd4eb712eea5ca7604e1bcc",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Researchers probed the case in a 1965 scholarly paper,",
+          "exact_native_cache_key": "a7fba3e220516227ec57cae4741cae700af3c3ad.pkl",
+          "cache_input_text_sha256": "78af833c50fd52106a0ad7fc18338add7a4d403b683c6ff7ad4577aedbf1076b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "which helped highlight microsleeps,",
+          "exact_native_cache_key": "908cdfc87bebfff8c566a68c1396a48756ffa50d.pkl",
+          "cache_input_text_sha256": "bae69e8aeb1a59f770332291f7d5ecb6c858b017b9a75fa77806e5a0b9fbc484",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "involuntary lapses into sleep lasting a few seconds.",
+          "exact_native_cache_key": "923f69d88d13cd380b574fd7c37a8e72678a7e02.pkl",
+          "cache_input_text_sha256": "12618a8d94b80b303a8c2e4fa2fb40fff0247c0360cc3276f5f3a02d8dd60602",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Researchers probed the case in a 1965 scholarly paper,",
+          "exact_native_cache_key": "a7fba3e220516227ec57cae4741cae700af3c3ad.pkl",
+          "cache_input_text_sha256": "78af833c50fd52106a0ad7fc18338add7a4d403b683c6ff7ad4577aedbf1076b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "which helped highlight microsleeps,",
+          "exact_native_cache_key": "908cdfc87bebfff8c566a68c1396a48756ffa50d.pkl",
+          "cache_input_text_sha256": "bae69e8aeb1a59f770332291f7d5ecb6c858b017b9a75fa77806e5a0b9fbc484",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "involuntary lapses into sleep lasting a few seconds.",
+          "exact_native_cache_key": "923f69d88d13cd380b574fd7c37a8e72678a7e02.pkl",
+          "cache_input_text_sha256": "12618a8d94b80b303a8c2e4fa2fb40fff0247c0360cc3276f5f3a02d8dd60602",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Gardner may have had such momentary bouts without noticing.",
+          "exact_native_cache_key": "56da5c6c91cdd60892fd5fae289b86d8e40d19b8.pkl",
+          "cache_input_text_sha256": "daccdf412d9b372abed085b1019670da0aaf58a3b7e9b472dad9e79d968733aa",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Gardner may have had such momentary bouts without noticing.",
+          "exact_native_cache_key": "4ed85b5b8f435198356335a116faa4ad2646e6c9.pkl",
+          "cache_input_text_sha256": "daccdf412d9b372abed085b1019670da0aaf58a3b7e9b472dad9e79d968733aa",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In 1997 Guinness World Records discontinued monitoring such attempts because of the health perils, and others have since alleged longer stints awake.",
+          "exact_native_cache_key": "5dfb9787217e6156b63205c8ceaaf367e5a0cc95.pkl",
+          "cache_input_text_sha256": "78a5359885fe04c3af524998dee9de2510d500e06f0fb282dfc92a0d2850faa0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "In 1997 Guinness World Records discontinued monitoring such attempts because of the health perils, and others have since alleged longer stints awake.",
+          "exact_native_cache_key": "8941100bd758f35485ae098fb66174b251cfae55.pkl",
+          "cache_input_text_sha256": "78a5359885fe04c3af524998dee9de2510d500e06f0fb282dfc92a0d2850faa0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In 1997 Guinness World Records",
+          "exact_native_cache_key": "4f1aa30eaff4e7b2815d4a70d3989d2d0a81dcc6.pkl",
+          "cache_input_text_sha256": "b5484781a02c0a1b9477bcbe74bc865363c488a74ce5dd4c22c17f415537b0d7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "discontinued monitoring such attempts because of the health perils,",
+          "exact_native_cache_key": "f9dc3578a3b42aeaad217906587cd081752003f0.pkl",
+          "cache_input_text_sha256": "d3de98dcc4b478488e3815e6b3831aafed6679286df047a07ddfa7ffbf1969fe",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and others have since alleged longer stints awake.",
+          "exact_native_cache_key": "eb82fa92345b80a0177fe742978e4c87a08cfb71.pkl",
+          "cache_input_text_sha256": "07a5cb52c00b619040ec24b9f33cd0993601ee5f18dc3f210cef302d794232e5",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In 1997 Guinness World Records discontinued monitoring such attempts because of the health perils,",
+          "exact_native_cache_key": "7580c420c158d95c68582cc5c4569e2cc177af20.pkl",
+          "cache_input_text_sha256": "354fbc15bf0194b062703ea44bd50a2a4400193a66ebe6cb5b43eda8d5de401c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and others have since alleged longer stints awake.",
+          "exact_native_cache_key": "eb82fa92345b80a0177fe742978e4c87a08cfb71.pkl",
+          "cache_input_text_sha256": "07a5cb52c00b619040ec24b9f33cd0993601ee5f18dc3f210cef302d794232e5",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In a 2017 interview Gardner said severe insomnia had tormented him for about a decade, and he himself pinned the blame on the experiment.",
+          "exact_native_cache_key": "70033f898c690444c678cb17214da87d8dc97d2a.pkl",
+          "cache_input_text_sha256": "f641fcd6d9d98792f4271a1fee3e0a926effc056ef7ea1f396e66cfbc97bc284",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "In a 2017 interview Gardner said severe insomnia had tormented him for about a decade, and he himself pinned the blame on the experiment.",
+          "exact_native_cache_key": "aa64d3a6fa2f92db2ddb1a141b9c104675c1e8c0.pkl",
+          "cache_input_text_sha256": "f641fcd6d9d98792f4271a1fee3e0a926effc056ef7ea1f396e66cfbc97bc284",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In a 2017 interview Gardner said",
+          "exact_native_cache_key": "a8b0061aa36fee0b275041bcf421d1e99c48cfe8.pkl",
+          "cache_input_text_sha256": "05419a45f7733abd83e5ac6a4b65e3b8edd8981b3813384d0209318beecdef4c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "severe insomnia had tormented him for about a decade,",
+          "exact_native_cache_key": "b89fc688195c048f38b0d916bc89bcc605276de1.pkl",
+          "cache_input_text_sha256": "30a0a2cbd53a1f5a7d38ea96c062584abbda847d7c636c0ab53bc4991b2e5ef4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and he himself pinned the blame on the experiment.",
+          "exact_native_cache_key": "4e41a4f27e1219ceaf667c8db1ee0bd1fc639b15.pkl",
+          "cache_input_text_sha256": "764bb820e8af164fd2b14a08d2d95509b09b044cf42ce83a49341790eb1a79c5",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In a 2017 interview Gardner said severe insomnia had tormented him for about a decade,",
+          "exact_native_cache_key": "19fe9b1f1e6633ce7dd203dd0fe1e8ff4e239c37.pkl",
+          "cache_input_text_sha256": "72a7d087f94e476fdb92123efa21f00e58f1e7e2ec3796ac4a893d5c7f0a35d0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and he himself pinned the blame on the experiment.",
+          "exact_native_cache_key": "4e41a4f27e1219ceaf667c8db1ee0bd1fc639b15.pkl",
+          "cache_input_text_sha256": "764bb820e8af164fd2b14a08d2d95509b09b044cf42ce83a49341790eb1a79c5",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The boy who had seemed to bounce back from exhaustion with one long rest would, decades later, barely doze off.",
+          "exact_native_cache_key": "1aaeff2d66f802ce0f4ece9dbb3b8f0f4fdfb817.pkl",
+          "cache_input_text_sha256": "731bdc0674e527b2e8ec7c770b2406830c1d533a6b228fed0f70d1953acb6b4c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "The boy who had seemed to bounce back from exhaustion with one long rest would, decades later, barely doze off.",
+          "exact_native_cache_key": "ae246369edd8118162dbc3ce5c0fd31fe9092e50.pkl",
+          "cache_input_text_sha256": "731bdc0674e527b2e8ec7c770b2406830c1d533a6b228fed0f70d1953acb6b4c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "The boy who had seemed to bounce back from exhaustion with one long rest",
+          "exact_native_cache_key": "ff71346ee0e1ce270d6f3283fe7af1763f9ffd3c.pkl",
+          "cache_input_text_sha256": "c33710d2d40d1191d671bb2425c4083500dbfd81c938cbc4eee6a8cf5ca5236e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "would, decades later, barely doze off.",
+          "exact_native_cache_key": "967ec1a1b5c818c9de0f7f9edbdf437cb407efa2.pkl",
+          "cache_input_text_sha256": "ccfe77249a22786d955f94ebcc66172ddb8f3084a06c170dbd399e8c14752ee9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "The boy who had seemed to bounce back from exhaustion with one long rest would,",
+          "exact_native_cache_key": "8565e00395af2a42fe5e6aac96c76732e827ea0f.pkl",
+          "cache_input_text_sha256": "a59ca524cc7f07ad27b2e9224a74ab073ec0e0dff306567abb98c95c26de4f53",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "decades later,",
+          "exact_native_cache_key": "84bd9907ca3e425dc326b17bf9120932453326bf.pkl",
+          "cache_input_text_sha256": "a908afa8a8f41768ec3a258089aec65dba58182c081e8b2063cc262f5fba8b6b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "barely doze off.",
+          "exact_native_cache_key": "dc6857f8738fd1b918d6eb14ce50e9dd67f69f96.pkl",
+          "cache_input_text_sha256": "7fdf344bea62589fc8a10d086c6abed4920832d3c82134c4d55e8ce793cada46",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "unique_reference_key_count": 90,
+      "raw_mother_cache_scalar_manifest": [
+        {
+          "exact_native_cache_key": "6a54d46fc7df35e9b4dfdf396483653c540a160c.pkl",
+          "pkl_sha256": "7f95a524d2289bb381fe0c7450997296533bfb269b187183f3419bfa79751341",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "标题",
+              "piece": null,
+              "reference_kind": "title-default-raw",
+              "method": "create",
+              "source_slice": "Eleven Days Without Sleep",
+              "exact_native_cache_key": "6a54d46fc7df35e9b4dfdf396483653c540a160c.pkl",
+              "cache_input_text_sha256": "d17a34d1bd4ee5741a38ed7e25364476ecbcbe95c231ee21f8742f434eb58179",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            39424
+          ],
+          "unprocessed_array_sha256": "c760ef4cbc978587204796ef68f6fd1b45bd4659bda7687d2a19d2bca6322e83"
+        },
+        {
+          "exact_native_cache_key": "0b6ccfaa665d6e756fe3583d6c0f8d372440f614.pkl",
+          "pkl_sha256": "03eba5f1bc88d5f356594c6ff872be1e36ea7dfe02d4641af32d019398dedb6d",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "On 28 December 1963 Randy Gardner, a 17-year-old science enthusiast at a San Diego high school, set out to forgo slumber for a regional science fair.",
+              "exact_native_cache_key": "0b6ccfaa665d6e756fe3583d6c0f8d372440f614.pkl",
+              "cache_input_text_sha256": "55f06157d9cd595536d9799c55e1c84848d4f1005ac084cea4148e19b077187e",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            318464
+          ],
+          "unprocessed_array_sha256": "4d379a55b3dcf8ef71b322152ca821354fadb605c72c6da7e70c26bb4eb2ce19"
+        },
+        {
+          "exact_native_cache_key": "874a334ce1712a8f329c8efaa4ddfc055cc37a33.pkl",
+          "pkl_sha256": "bffbaa7b6b1d3346c9945284bcccea6757de60213503afd7710cfdde7f927f27",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "On 28 December 1963",
+              "exact_native_cache_key": "874a334ce1712a8f329c8efaa4ddfc055cc37a33.pkl",
+              "cache_input_text_sha256": "ad0e4e028ee359b12d24d38638577687ca4d3b134c38120cdd9a6aea78e19aa0",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            71168
+          ],
+          "unprocessed_array_sha256": "7155e36db455df4cb5cc23ab39da0ce9c5706fc3b61868607e181fa347e90545"
+        },
+        {
+          "exact_native_cache_key": "c2a1d9b95f616f9e1462f9d9a85363388eb02e4f.pkl",
+          "pkl_sha256": "a0c728c89d3ecbf3a4075246e7f03b55810acde2d5acf73054db464fae4f1977",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Randy Gardner, a 17-year-old science enthusiast at a San Diego high school,",
+              "exact_native_cache_key": "c2a1d9b95f616f9e1462f9d9a85363388eb02e4f.pkl",
+              "cache_input_text_sha256": "c2f12a6e3e8ba8627ecb52c2b90171f260b95378a9bb0ae16b2a372b8535590c",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            138752
+          ],
+          "unprocessed_array_sha256": "7b18959232ecf2a1b69b4bc9f062ca50339edd44e36cb00772f6c5c3cd3b05fc"
+        },
+        {
+          "exact_native_cache_key": "fb120784b1c1a877f596bd741964009fef63da8d.pkl",
+          "pkl_sha256": "9d67cef152e4cf4646f3cc9e57ac54018034922820014c426f610ed7c828e0e8",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": 3,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "set out to forgo slumber for a regional science fair.",
+              "exact_native_cache_key": "fb120784b1c1a877f596bd741964009fef63da8d.pkl",
+              "cache_input_text_sha256": "0c4522f7598a14f7546b69c73e5c7d22b87962dfc2dc88d7e14913e4f8e8a794",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S1",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "set out to forgo slumber for a regional science fair.",
+              "exact_native_cache_key": "fb120784b1c1a877f596bd741964009fef63da8d.pkl",
+              "cache_input_text_sha256": "0c4522f7598a14f7546b69c73e5c7d22b87962dfc2dc88d7e14913e4f8e8a794",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            77312
+          ],
+          "unprocessed_array_sha256": "cda3c6fc7de8830c3b69b98e7544d1515c36aa69da3f48b1d2343c5ba56030d5"
+        },
+        {
+          "exact_native_cache_key": "320fb14d90b460b0d4a667f36725f5172009ca67.pkl",
+          "pkl_sha256": "2f0ee0894750ecc4be03ce74fc581d9a15cc3e5f3d17388c65acf49ec772f539",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "On 28 December 1963 Randy Gardner,",
+              "exact_native_cache_key": "320fb14d90b460b0d4a667f36725f5172009ca67.pkl",
+              "cache_input_text_sha256": "870f47cda858bb2d130f07e0ef311f6ea740d6ea26722a77ea08c00dd5d71336",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            100352
+          ],
+          "unprocessed_array_sha256": "a0341fa6bc2e99b33c02a8d1510e638e23592fdb7a5892822c6e0afc06045146"
+        },
+        {
+          "exact_native_cache_key": "30dbac5efa84ee7cff6c90cdb6b41c63912a9eab.pkl",
+          "pkl_sha256": "d447dc21d58595d97c6fef04775da79c8f299706a92ffa862e3350aab6f0691a",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "a 17-year-old science enthusiast at a San Diego high school,",
+              "exact_native_cache_key": "30dbac5efa84ee7cff6c90cdb6b41c63912a9eab.pkl",
+              "cache_input_text_sha256": "c992b5f8ffdb248824650aa02d21460bfdc9eda52eba8d01786c847b9e48a0f1",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            111616
+          ],
+          "unprocessed_array_sha256": "04c712e940391b7a4349053f04a7c3015f18fad7de2c318f6c84d35d1092b8bc"
+        },
+        {
+          "exact_native_cache_key": "7c77613c367499eadcf7620adc7a48915bb453cf.pkl",
+          "pkl_sha256": "b15e0cc9cda43b70731f51c8a550f315f8a25e2e74d8446914644dbb6a527a36",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S2",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Two companions diligently jolted him awake whenever his alertness waned and logged his mood.",
+              "exact_native_cache_key": "7c77613c367499eadcf7620adc7a48915bb453cf.pkl",
+              "cache_input_text_sha256": "34ccc754e5bf8d1d39febd3addbbcb067aa7bd3501679cdc5057c45f7ecf19c1",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            151040
+          ],
+          "unprocessed_array_sha256": "b402471edb9410da73982d11682e15485a24adeb06b7212078348bd5c5e3aac6"
+        },
+        {
+          "exact_native_cache_key": "de0d40339ab871e06be2911fd7e1291821461632.pkl",
+          "pkl_sha256": "323ce379ca718847edb085def0dabcbe13c0775c6cb648c0185900473d557109",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S2",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Two companions diligently",
+              "exact_native_cache_key": "de0d40339ab871e06be2911fd7e1291821461632.pkl",
+              "cache_input_text_sha256": "a665be6ecdc96eeaa91cd194ae2e498860fd7bd4ebefabbbf9839d4fb3d9a1e6",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            40960
+          ],
+          "unprocessed_array_sha256": "805daff7e780aeea1da7ee6187f1d72c641bc64eac1c573e60a1466104b29a91"
+        },
+        {
+          "exact_native_cache_key": "ad4ddae40bb4d1af9fde384de5fb424545b7b8c8.pkl",
+          "pkl_sha256": "6131c56c1054457650e4f51677463dc7ccb0d67c10f1f71936d082bbf8272d56",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S2",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "jolted him awake whenever his alertness waned",
+              "exact_native_cache_key": "ad4ddae40bb4d1af9fde384de5fb424545b7b8c8.pkl",
+              "cache_input_text_sha256": "59f41c12385b06df761f261eeb29250a56004d8ac945ff169d1ba03d05c8d06c",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            68608
+          ],
+          "unprocessed_array_sha256": "127f5ee37c259f297a817776b85a3185a47300854580248731823085411076de"
+        },
+        {
+          "exact_native_cache_key": "f71530a6e442bd0006c326ff3a49ecca2b83c5c2.pkl",
+          "pkl_sha256": "a6561ae1b57377232fe703fd2b2f45b830023465d5846ff8b6cdd97432c680d5",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S2",
+              "piece": 3,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "and logged his mood.",
+              "exact_native_cache_key": "f71530a6e442bd0006c326ff3a49ecca2b83c5c2.pkl",
+              "cache_input_text_sha256": "d01b80edaf5158f1ad262861b55bedf98df196a6ee175e1b06f78cd8578171f2",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            29696
+          ],
+          "unprocessed_array_sha256": "61c0600c74ef6b097bce31311e10705b8555c6c987a0abd3fbbde671f2adc71b"
+        },
+        {
+          "exact_native_cache_key": "0228ec01abe11646e41f7882811174cd033770ba.pkl",
+          "pkl_sha256": "6e79f688c0fd1c857bc301f895ce35689aeaba3b5be797a6ee212c9131580532",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S3",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "The project, a voluntary endeavour, went on to take first place.",
+              "exact_native_cache_key": "0228ec01abe11646e41f7882811174cd033770ba.pkl",
+              "cache_input_text_sha256": "5f0da84941ddfe3d47753d2130f303f03c9051a574357b1a3d67a4da9c0953b9",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            98816
+          ],
+          "unprocessed_array_sha256": "890a746abccce4585e6a4d112bbba7ab37f7b68207983efc98027ad5ce538cf8"
+        },
+        {
+          "exact_native_cache_key": "b46a38751e2cbe8180b46f42579cc8b787d11fc1.pkl",
+          "pkl_sha256": "82225747e53aa885e07d67bb12f20699c8cc52caf289c9adf5b2a9bbd62c968f",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S3",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "The project, a voluntary endeavour,",
+              "exact_native_cache_key": "b46a38751e2cbe8180b46f42579cc8b787d11fc1.pkl",
+              "cache_input_text_sha256": "f2730fd7f1dfa2ea651accf33572951bd453f9282e1abaa76c1002219d1f0bfd",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            56832
+          ],
+          "unprocessed_array_sha256": "010c9e92745fa32c685307ac92ddb11d4994808d033853b6c7d54053493ce485"
+        },
+        {
+          "exact_native_cache_key": "eb3d884f940b25fe352d8aab7c7bee0f492a431d.pkl",
+          "pkl_sha256": "3ff2e6b3decabb8e85548f6a6a021727489c3884d1948f5ffb174b998d3ed896",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S3",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "went on to take first place.",
+              "exact_native_cache_key": "eb3d884f940b25fe352d8aab7c7bee0f492a431d.pkl",
+              "cache_input_text_sha256": "634a7d1168c04495ebb87993f6f0c9115991f0104ad50469652fa957b27e9c7d",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S3",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "went on to take first place.",
+              "exact_native_cache_key": "eb3d884f940b25fe352d8aab7c7bee0f492a431d.pkl",
+              "cache_input_text_sha256": "634a7d1168c04495ebb87993f6f0c9115991f0104ad50469652fa957b27e9c7d",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            39936
+          ],
+          "unprocessed_array_sha256": "268455af4e1aef205bd7e25f3c808e6ffa3dde736af5e3dd3cfd5f44b3d29806"
+        },
+        {
+          "exact_native_cache_key": "9a4a90558eb71898d9247d30384cef26f69ab59c.pkl",
+          "pkl_sha256": "d0d33ecee0498a3e8235b360d0b6450abfbadce669e42af640d1733c7cba1f6c",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S3",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "The project,",
+              "exact_native_cache_key": "9a4a90558eb71898d9247d30384cef26f69ab59c.pkl",
+              "cache_input_text_sha256": "faadafee75226a2584b625740485aaa949455ebac097542534ea3d3e53e1e576",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            23040
+          ],
+          "unprocessed_array_sha256": "a5e467b807dfccca46c9af7e16cda7ad8011696b19a8bdd4f084e8e2f20fa9a0"
+        },
+        {
+          "exact_native_cache_key": "5a853f4b3d8ea630cc914aad6ef99838886acb2e.pkl",
+          "pkl_sha256": "eacb6faabb7ed341dbc5a1160292535fcae9ee98a7204b6cf2923f2f3208be50",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S3",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "a voluntary endeavour,",
+              "exact_native_cache_key": "5a853f4b3d8ea630cc914aad6ef99838886acb2e.pkl",
+              "cache_input_text_sha256": "ede29b218aa31d1b5def24bd603f07ebce97a821ba66a46fcb4ad3db2d8046c8",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            34304
+          ],
+          "unprocessed_array_sha256": "73552a33f259fd42fb440e5a3d498cf2b9c76b92ef76ed992b374dd8b7b7a770"
+        },
+        {
+          "exact_native_cache_key": "9fdcea0fde10e70d37ea0fb679028f354034b4af.pkl",
+          "pkl_sha256": "a9877ec3ad4e09734d2489d1b042cb1dbb6e3e889ae4bc4830176eaf894982c6",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "William Dement, a sleep researcher at Stanford, read press coverage of the attempt and was intrigued.",
+              "exact_native_cache_key": "9fdcea0fde10e70d37ea0fb679028f354034b4af.pkl",
+              "cache_input_text_sha256": "34db72e18fdb02c2887f7b748ad9b00b4cad344c6b89dacba8dfa1f881625a6f",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            156672
+          ],
+          "unprocessed_array_sha256": "e132530c2e771a23910889811e60d82167c08868ec401cf18a68ca7e49661c4d"
+        },
+        {
+          "exact_native_cache_key": "d5da2e8049af3dfb7a98b10f95cb0ebaee8a77c5.pkl",
+          "pkl_sha256": "a6d7d9d33509be9afe5642260f7ee917eaee0a83966388fbbcaf6289e632125f",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "William Dement, a sleep researcher at Stanford,",
+              "exact_native_cache_key": "d5da2e8049af3dfb7a98b10f95cb0ebaee8a77c5.pkl",
+              "cache_input_text_sha256": "9dc0ecabffcd648914aec0a463ea9bdee92b22dcf0dcd29c57e3da988797f473",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            71168
+          ],
+          "unprocessed_array_sha256": "be4f01145d8144723b501b2af6bb9b49a4d0a29f2568ca3e8688a9378b1cee3c"
+        },
+        {
+          "exact_native_cache_key": "fae4fcefdcbe4cc3c6e34689544482e165694fa4.pkl",
+          "pkl_sha256": "35c0fc346ad3789e157de53a4a6c3bff52570ad01f04b3378cff7443f7ffc03f",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "read press coverage of the attempt and was intrigued.",
+              "exact_native_cache_key": "fae4fcefdcbe4cc3c6e34689544482e165694fa4.pkl",
+              "cache_input_text_sha256": "f4516263da4a4ba457f79f50637fa8d7ec97e46f094699cf0be08b40df3644f7",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S4",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "read press coverage of the attempt and was intrigued.",
+              "exact_native_cache_key": "fae4fcefdcbe4cc3c6e34689544482e165694fa4.pkl",
+              "cache_input_text_sha256": "f4516263da4a4ba457f79f50637fa8d7ec97e46f094699cf0be08b40df3644f7",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            72704
+          ],
+          "unprocessed_array_sha256": "a2702cf2136996fd5f7eb0a4772dbbf950ec94fe8686119cd65d0692bf8e432d"
+        },
+        {
+          "exact_native_cache_key": "d18bd0daf7ba03eb425a4398c7123a8f34b10cc4.pkl",
+          "pkl_sha256": "f8c8b628bdb0cbeff7086d7527b444618ecd722a7d33483ccdb4bac8ae420801",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "William Dement,",
+              "exact_native_cache_key": "d18bd0daf7ba03eb425a4398c7123a8f34b10cc4.pkl",
+              "cache_input_text_sha256": "1ad25b98b06fef4ec0650e7a253b6958ed498ee25bf3386d9ccb94e6cdc77afc",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            24576
+          ],
+          "unprocessed_array_sha256": "27ef5953120d6e3114b6419f30b6d06491b99e6ed9df5ad2056f3eedde4e683f"
+        },
+        {
+          "exact_native_cache_key": "f0e27ada36e08aa44605f3af538e82968af96996.pkl",
+          "pkl_sha256": "05b8790a298b5df0d147463b7b3056d30f6011698c1e24feec502b6412739c90",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "a sleep researcher at Stanford,",
+              "exact_native_cache_key": "f0e27ada36e08aa44605f3af538e82968af96996.pkl",
+              "cache_input_text_sha256": "2bb366d2b266533b850adb1681856e034980154c07c4dce89521df88e355e095",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            46592
+          ],
+          "unprocessed_array_sha256": "5be5727839fe265475896a2500c9203848383661f1f3839223c23bd54c8cc367"
+        },
+        {
+          "exact_native_cache_key": "fade1d698b88dc59cc40edbd3d1ce1c7c413f6a5.pkl",
+          "pkl_sha256": "daebf26a848a42f743616a7b0bd82a81c6356312c80ca41df54f3af52e1c2ea7",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "He drove to San Diego and assisted John J. Ross, a Navy researcher, in monitoring the sleepless boy closely.",
+              "exact_native_cache_key": "fade1d698b88dc59cc40edbd3d1ce1c7c413f6a5.pkl",
+              "cache_input_text_sha256": "e0e3ba97c39b4315732bb53300ba71503fafca52e9916a6b02affbb4c1927495",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            202240
+          ],
+          "unprocessed_array_sha256": "b6885c99684b913251d87fddc105da2e67d9fdc525097201672d4e6f1430c589"
+        },
+        {
+          "exact_native_cache_key": "a9c933f16b310d538dc58b0f263fefac8d71bef2.pkl",
+          "pkl_sha256": "b67590e8dc3bc0eefede8afdde489585e0bb7594db366023c933592b93b4f53b",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "He drove to San Diego",
+              "exact_native_cache_key": "a9c933f16b310d538dc58b0f263fefac8d71bef2.pkl",
+              "cache_input_text_sha256": "7726f6204c293a86accb4800fab394f42e2ceac7099b8916a4f720fa7b84376a",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            36352
+          ],
+          "unprocessed_array_sha256": "fa3052bcb7dc446058b9e5b280a243976662bde57a89205f11b58af07a1c7f72"
+        },
+        {
+          "exact_native_cache_key": "f09acc5c4e7392707542782172bcf381d1e11f4a.pkl",
+          "pkl_sha256": "f70abc8bfcad5a5d123bbe4b3f58817a46bb5d6309301635bb8393d150925674",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "and assisted John J. Ross, a Navy researcher, in monitoring the sleepless boy closely.",
+              "exact_native_cache_key": "f09acc5c4e7392707542782172bcf381d1e11f4a.pkl",
+              "cache_input_text_sha256": "a61ed2afbb1ed204e0ee44f27430761d82c465d250c3b40d2edf04fa6c9ab93e",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            157184
+          ],
+          "unprocessed_array_sha256": "e87f6fdcaa1a60a77ecf3dbffaf7a67c406635c5281d23e06a9d53911f7f9fbc"
+        },
+        {
+          "exact_native_cache_key": "899321fae27db6775d2e907d4a4bb1b60ca1497a.pkl",
+          "pkl_sha256": "005b37eb288fa4cd889cf30fb0a03b82ccd0b8426f23a853b41a794fd67a8533",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "He drove to San Diego and assisted John J. Ross,",
+              "exact_native_cache_key": "899321fae27db6775d2e907d4a4bb1b60ca1497a.pkl",
+              "cache_input_text_sha256": "22b08388f795445ec0dcc4e684b4deb57a62b77206349566ed9c6a5da762c14b",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            89600
+          ],
+          "unprocessed_array_sha256": "8e19064ca5f87f1063165a7c0007f334e66d5816e00b1dc056f114e4ef38bac3"
+        },
+        {
+          "exact_native_cache_key": "378754a30674e0adadca2a3646b1abdf0a8241f2.pkl",
+          "pkl_sha256": "952341cae040e8f1b8a32db5c8e6b24201b0cf706c246e3ea6a3d689e0e14137",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "a Navy researcher,",
+              "exact_native_cache_key": "378754a30674e0adadca2a3646b1abdf0a8241f2.pkl",
+              "cache_input_text_sha256": "288971732a627a2740f31da5f768e7d5dc78f220525bd9d6b0a2b425ab0ac4c1",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            31744
+          ],
+          "unprocessed_array_sha256": "e463defbc7057ef47d3c4a7bc658663322cb31037a4fb66f4f6cfbf8e4ae78e6"
+        },
+        {
+          "exact_native_cache_key": "d4d3356a487df448b3db529143bf08df022ff0c0.pkl",
+          "pkl_sha256": "563d82e58dbef7bdbc10bb85d61031b5ce16b4801f9ad6c0a2504245857d4faa",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "in monitoring the sleepless boy closely.",
+              "exact_native_cache_key": "d4d3356a487df448b3db529143bf08df022ff0c0.pkl",
+              "cache_input_text_sha256": "c65f9b107e370082c856cc0c9db0ad143540658b796073421e96b359b7ec7ade",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            55808
+          ],
+          "unprocessed_array_sha256": "6bb6d715663fb45e1410fefb51722229a8e4c436f451977f5b97a5078b37adcb"
+        },
+        {
+          "exact_native_cache_key": "c7a7317241a2cfaa796b3b667647583e7babc6a3.pkl",
+          "pkl_sha256": "da66546c98e02569a2b643c7c787fe3a7718e1030f241cbc9540ebcda4237e0b",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "The two investigators attentively noted the fluctuations in his state as the deprivation progressively deepened.",
+              "exact_native_cache_key": "c7a7317241a2cfaa796b3b667647583e7babc6a3.pkl",
+              "cache_input_text_sha256": "2379556a745f098532df79660dd3bffb19062c6b59c44a6686109a684b8f26ae",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            174592
+          ],
+          "unprocessed_array_sha256": "bc732c549cf14e556d9456624b3102dcbeb68d899d7d4dfbba78bd9f91f273c8"
+        },
+        {
+          "exact_native_cache_key": "8d61671e67161a234067a87aa40e1bb4c614d1fe.pkl",
+          "pkl_sha256": "6e66f47716424814b651d016369bdaf8596bd3b2709b78a415b9cd635a14d104",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "The two investigators attentively noted the fluctuations in his state",
+              "exact_native_cache_key": "8d61671e67161a234067a87aa40e1bb4c614d1fe.pkl",
+              "cache_input_text_sha256": "a2b3c181e19adf23a7a78ae3f40aef762ef58598171df53f2dbb735d25bff0f6",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            112128
+          ],
+          "unprocessed_array_sha256": "f22f5abcd7d59ef30edd2d6bcce417c78dbf91d1cfd9736a8d6f260a13630333"
+        },
+        {
+          "exact_native_cache_key": "8c2b7cca1437da29f6587f2afb9890254190af8a.pkl",
+          "pkl_sha256": "0e161bf6e44b02871ec79b7d47c806a0aa85cbf3b43a4026ca8c121955fc566c",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "as the deprivation progressively deepened.",
+              "exact_native_cache_key": "8c2b7cca1437da29f6587f2afb9890254190af8a.pkl",
+              "cache_input_text_sha256": "200961956cbe82500daa99e694238be16305b94ee0d263b6d002a55849d77ad6",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            61440
+          ],
+          "unprocessed_array_sha256": "47890793dea9fa727476d694e7e12337a5beac11548f0600b6e10a1a623b04ad"
+        },
+        {
+          "exact_native_cache_key": "24ac4f9193ba5f7be0ae00c4bbabe3fdb5df9159.pkl",
+          "pkl_sha256": "94047a009502eef68c116a2016a07050abd1eea43e1049238d50f8257a07658e",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S7",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "The consequences soon mounted.",
+              "exact_native_cache_key": "24ac4f9193ba5f7be0ae00c4bbabe3fdb5df9159.pkl",
+              "cache_input_text_sha256": "130c2446cfbf84f3c8665265c9550af3ae4dbf320b61dc69f028b15a103a7c58",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            43520
+          ],
+          "unprocessed_array_sha256": "4eb04c2a174e9de9e1b2267adb02b073d70fbb20db90e8ea93c9ca6a846779b3"
+        },
+        {
+          "exact_native_cache_key": "cc74b7111b822127faf2f8478358d05f454e07fa.pkl",
+          "pkl_sha256": "69e91c5742dbfe535a573c1b8e50e019326b8dc32afb3179db509cd0f72f3120",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Gardner grew moody, lost concentration, and found his short-term memory impaired.",
+              "exact_native_cache_key": "cc74b7111b822127faf2f8478358d05f454e07fa.pkl",
+              "cache_input_text_sha256": "e48f286c5e7b92144838cc681873ff9be046c43227e7ecf624fe157e54328f08",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            129024
+          ],
+          "unprocessed_array_sha256": "7ae08703e6e07e47e69fe5931e58a3259b90bd0194e0e101f68c4eae3c509e6b"
+        },
+        {
+          "exact_native_cache_key": "371141f45a1bdc9f7f5d5676495f624a0116aab0.pkl",
+          "pkl_sha256": "29d85ad4cab74b0abb7c1136d894064398713e7dcdc3feae1d8ee372a9a595fe",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Gardner grew moody,",
+              "exact_native_cache_key": "371141f45a1bdc9f7f5d5676495f624a0116aab0.pkl",
+              "cache_input_text_sha256": "e72b3d2b783d5adb34ed914d5725680eb0d70d07fa1ccc1993cd0583748ea483",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S8",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Gardner grew moody,",
+              "exact_native_cache_key": "371141f45a1bdc9f7f5d5676495f624a0116aab0.pkl",
+              "cache_input_text_sha256": "e72b3d2b783d5adb34ed914d5725680eb0d70d07fa1ccc1993cd0583748ea483",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            29184
+          ],
+          "unprocessed_array_sha256": "1386b1f0580e397ffec9d64c54e23f96d5835eb3f067fe4fbd976b573a381b95"
+        },
+        {
+          "exact_native_cache_key": "b6f22a8d8774b6dda40d3fc7b64e1cd7e8e420eb.pkl",
+          "pkl_sha256": "cf39870ff5ebd39c7fb9bc77705a106cea30285d436ba212a3874773d3cac18b",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "lost concentration,",
+              "exact_native_cache_key": "b6f22a8d8774b6dda40d3fc7b64e1cd7e8e420eb.pkl",
+              "cache_input_text_sha256": "7f729ef38c75fb4b906297e179972b61d30c568148462dd82b46ff3ed0b2ddc7",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S8",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "lost concentration,",
+              "exact_native_cache_key": "b6f22a8d8774b6dda40d3fc7b64e1cd7e8e420eb.pkl",
+              "cache_input_text_sha256": "7f729ef38c75fb4b906297e179972b61d30c568148462dd82b46ff3ed0b2ddc7",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            32768
+          ],
+          "unprocessed_array_sha256": "350b9ed50c6158a648d5b212f645d13c0973569aca5f9c490c17fc78edd5118e"
+        },
+        {
+          "exact_native_cache_key": "be68c309b5b97b1cc7225d3eff93e88b245bfc5d.pkl",
+          "pkl_sha256": "2e207786ab0406898b49a2ccb79bf744d35e50114925bbb00f2f1f64cca1167e",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": 3,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "and found his short-term memory impaired.",
+              "exact_native_cache_key": "be68c309b5b97b1cc7225d3eff93e88b245bfc5d.pkl",
+              "cache_input_text_sha256": "0ad3e3e92e43342bb2fa17e6325dc5c459b2d10015108c3b1f7e00972bf9cbb8",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S8",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "and found his short-term memory impaired.",
+              "exact_native_cache_key": "be68c309b5b97b1cc7225d3eff93e88b245bfc5d.pkl",
+              "cache_input_text_sha256": "0ad3e3e92e43342bb2fa17e6325dc5c459b2d10015108c3b1f7e00972bf9cbb8",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            54272
+          ],
+          "unprocessed_array_sha256": "8c3109d0381af3c3f9745e4979a494328a07b4cf9278727a7f9b58bbf7102276"
+        },
+        {
+          "exact_native_cache_key": "94a3b5ce57b9598effd2efcb9628537097e52bf5.pkl",
+          "pkl_sha256": "7b47ea068856fff949b83b0c783e5de6f6554d2e5e340b45980ed184f5b1647e",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S9",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "He became suspicious, at times paranoid, and began to hallucinate.",
+              "exact_native_cache_key": "94a3b5ce57b9598effd2efcb9628537097e52bf5.pkl",
+              "cache_input_text_sha256": "b07c0396f1a7c08e0266726c9742fa3ebf842b12c0973bc35425a0139aad9e94",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            105984
+          ],
+          "unprocessed_array_sha256": "7eab7d221c1d5db46f26ce9827eda7025b8fed6c14fe04e99c24f7b3a1c03754"
+        },
+        {
+          "exact_native_cache_key": "6d5596a86a04e9d2283329b40c7466da62fe12fb.pkl",
+          "pkl_sha256": "c8bccf6734b05064e2b10e9f26d1b15f51a096be7d1dd8b7aae65295cf9e4f61",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S9",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "He became suspicious, at times paranoid,",
+              "exact_native_cache_key": "6d5596a86a04e9d2283329b40c7466da62fe12fb.pkl",
+              "cache_input_text_sha256": "dc9a9697859148221d4e5e21514391ffa581f96f6705cb4b834b342e718cc0e4",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            66048
+          ],
+          "unprocessed_array_sha256": "45e32f51ef6595afd5619e916472843412328e2e9eb5ec923249d736dba1a169"
+        },
+        {
+          "exact_native_cache_key": "297955d5a008e4825b1c8c63862ab3e85d9b7a35.pkl",
+          "pkl_sha256": "e50ca5ce14331174df5e09df3affa1b1dd6af93420f627e37529e1aa803010a6",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S9",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "and began to hallucinate.",
+              "exact_native_cache_key": "297955d5a008e4825b1c8c63862ab3e85d9b7a35.pkl",
+              "cache_input_text_sha256": "b21b4ca95614a9cc242e402aec143ea8552b6e6f7690249fb981b0ce07d24528",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S9",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "and began to hallucinate.",
+              "exact_native_cache_key": "297955d5a008e4825b1c8c63862ab3e85d9b7a35.pkl",
+              "cache_input_text_sha256": "b21b4ca95614a9cc242e402aec143ea8552b6e6f7690249fb981b0ce07d24528",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            37888
+          ],
+          "unprocessed_array_sha256": "531154d8e4ca7c270c5301ec4e251e13dde3fa8f3a62225de58760cc0f54d9ad"
+        },
+        {
+          "exact_native_cache_key": "4cdf192a54d16b85bcb7d80682b03bae1d32e0dc.pkl",
+          "pkl_sha256": "8305e30d43b8f3910618ccf5d9ccdb34a77d467f91847c813be5926690a3fe91",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S9",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "He became suspicious,",
+              "exact_native_cache_key": "4cdf192a54d16b85bcb7d80682b03bae1d32e0dc.pkl",
+              "cache_input_text_sha256": "a97d57651d8d303c392e772db4968239a4f1574183782affc9c590a77d4a6acf",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            35328
+          ],
+          "unprocessed_array_sha256": "55486c869e16d0c4bc7de47c80327192a5c70ed23c1b8cbabdaba4d8bdbba560"
+        },
+        {
+          "exact_native_cache_key": "0f73c113088e648c54fee23de565510e54a22bae.pkl",
+          "pkl_sha256": "ba1dc7fed5b1d686be5194d392b40fb3e0f5fc7505cf9da28334e22d98abb968",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S9",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "at times paranoid,",
+              "exact_native_cache_key": "0f73c113088e648c54fee23de565510e54a22bae.pkl",
+              "cache_input_text_sha256": "76882864cb868575dda841f08fac402bf48c37885904f27fee107724519a933b",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            32768
+          ],
+          "unprocessed_array_sha256": "3e3a1b8656998ea5dabf9a6006ffa1e3638b0c38ea3eb818ef6330905a87be09"
+        },
+        {
+          "exact_native_cache_key": "b0b5d86c92efeaf6ad8eb9194f3077fa5a1aa799.pkl",
+          "pkl_sha256": "4775241b82dc3d6803b6607f762b98370a1b017b38bb835c8623c4199bcf5539",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S10",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "On the fourth day he was gripped by the delusion that he was a professional American football player.",
+              "exact_native_cache_key": "b0b5d86c92efeaf6ad8eb9194f3077fa5a1aa799.pkl",
+              "cache_input_text_sha256": "fa0abbb2878fae24ccc1d5a7feb6c60f195e376d9ab9abfed31aba4fc1e05816",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            131584
+          ],
+          "unprocessed_array_sha256": "a9306a715b99eabf7f66533aa88bc177ed1e3c111494f0bb8e17b675be9a33a1"
+        },
+        {
+          "exact_native_cache_key": "d479ebfd776ac38473f13b1a7f901bd7bfa4a86a.pkl",
+          "pkl_sha256": "327e53d3f560b329b1aa1fbd4fb81813a954cb08ded5b3dddd00ddf8039cb554",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S10",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "On the fourth day he was gripped by the delusion",
+              "exact_native_cache_key": "d479ebfd776ac38473f13b1a7f901bd7bfa4a86a.pkl",
+              "cache_input_text_sha256": "945525b956a3429ac1ee9a9002df536d461e5e92a44edf53611dbb1d94fc1746",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            61440
+          ],
+          "unprocessed_array_sha256": "088e1fa32e715acc4e8a7e549b349372eff0851a445cc2ebb0c22cc5bd70be6f"
+        },
+        {
+          "exact_native_cache_key": "fc557f4602e59a42588ea1e45cccee2f740c6710.pkl",
+          "pkl_sha256": "ac28f6a3f7db113878df4f03505097a8f05f0674c3acfdc41fe800e1a0e13c3e",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S10",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "that he was a professional American football player.",
+              "exact_native_cache_key": "fc557f4602e59a42588ea1e45cccee2f740c6710.pkl",
+              "cache_input_text_sha256": "1d536a91bd8aae4814181afe9bc5cb73ef38c884411c731841bde0688894390a",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            69120
+          ],
+          "unprocessed_array_sha256": "5128b5fed0dff1371525a0cd4182f85e33a4ebac55c9e32dd26bf65359c93250"
+        },
+        {
+          "exact_native_cache_key": "8395b10e983237f1b265fd2f03d6512e8fb51f57.pkl",
+          "pkl_sha256": "19a18974bbb09458511d215b6abff172c2bb170f5ae5f94502bae6cf47f3baf1",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Gardner ended the wearying attempt on 8 January 1964, after 264.4 hours, about 11 days and 25 minutes.",
+              "exact_native_cache_key": "8395b10e983237f1b265fd2f03d6512e8fb51f57.pkl",
+              "cache_input_text_sha256": "b071f114ec4ce215ee0fa624c859509bd4c4c2b5da657c148c9fb6ed119f0105",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            281088
+          ],
+          "unprocessed_array_sha256": "4a3bdcdd1a4ca9b43ae0594bdb04ad40d654d200363a50ab9a18957f6ef3a383"
+        },
+        {
+          "exact_native_cache_key": "79e80fddb1611b1e968363c64a796a8289e1fe3c.pkl",
+          "pkl_sha256": "8a22b40f5d5f3f3dc1aba09465eb8b368004e0a1018ae8b9e5a10c2c8135d724",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Gardner ended the wearying attempt on 8 January 1964,",
+              "exact_native_cache_key": "79e80fddb1611b1e968363c64a796a8289e1fe3c.pkl",
+              "cache_input_text_sha256": "6fe98eb33b1784aa8a5da771fc6cb1bea096208f81e65eeeac2a09a1fdd28569",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S11",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Gardner ended the wearying attempt on 8 January 1964,",
+              "exact_native_cache_key": "79e80fddb1611b1e968363c64a796a8289e1fe3c.pkl",
+              "cache_input_text_sha256": "6fe98eb33b1784aa8a5da771fc6cb1bea096208f81e65eeeac2a09a1fdd28569",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            121344
+          ],
+          "unprocessed_array_sha256": "0c5ea9434e96508c602b11c508a3f78b09104653e608c26f2ea72b0e9b4239f0"
+        },
+        {
+          "exact_native_cache_key": "2311b90bd5f86500b01a09b977b931bdc5f6c045.pkl",
+          "pkl_sha256": "b73b31638a2b592d2b7687a95d9307430fad4d6da396527ae944eb29bb04e360",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "after 264.4 hours, about 11 days and 25 minutes.",
+              "exact_native_cache_key": "2311b90bd5f86500b01a09b977b931bdc5f6c045.pkl",
+              "cache_input_text_sha256": "6035d3d594ad25cf32d65c7ec645584080984a885669914cd4111bbb90a7793d",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            144896
+          ],
+          "unprocessed_array_sha256": "ec3bfa5f6657ebc2caf6d1b665f81508a0b94925f31c1449961b1e6a743500a8"
+        },
+        {
+          "exact_native_cache_key": "6f3853d6f320127aead7174a6310989f38a9a30d.pkl",
+          "pkl_sha256": "813ed017d5a5ff6448bb03587a12dc8f1b201d7074ebc0fbd43116011b9f9182",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "after 264.4 hours,",
+              "exact_native_cache_key": "6f3853d6f320127aead7174a6310989f38a9a30d.pkl",
+              "cache_input_text_sha256": "a6dcfb6d4577c701874da3df3402ebc6d9b1b2fc528020edc152d19dcfcf2b58",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            72704
+          ],
+          "unprocessed_array_sha256": "22542980179ac59f5344d55b885b979176131c49f72270c6babaacc3e7beb098"
+        },
+        {
+          "exact_native_cache_key": "8fb0d1968a02b9db1543a9403f02b0dbea4188fb.pkl",
+          "pkl_sha256": "799e92d8b9383d725feb1001d9ea73e25e94b82ac15b05cd59afeb219ff962b4",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "about 11 days and 25 minutes.",
+              "exact_native_cache_key": "8fb0d1968a02b9db1543a9403f02b0dbea4188fb.pkl",
+              "cache_input_text_sha256": "c55ca037117f3473c930ab45c7c245863676e1ac3be3211ad5f8afa422797183",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            60928
+          ],
+          "unprocessed_array_sha256": "3635b7ea4e33b11cb058b72e3b28f9ed8d7d542518cc4ff65f17b13c4e431075"
+        },
+        {
+          "exact_native_cache_key": "4b43f1f0dcdfa99f0e02f66bbc60e86edddb16b2.pkl",
+          "pkl_sha256": "c09c45f15460019b99565adcaa4e688e5b9ce84cd72a0ea32cdc79e9df781a8e",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S12",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "He then slept soundly for about 14 hours and woke apparently refreshed.",
+              "exact_native_cache_key": "4b43f1f0dcdfa99f0e02f66bbc60e86edddb16b2.pkl",
+              "cache_input_text_sha256": "538ac7ab5b933c8863c929ba07dfedf290ed4b1601c4b52cb2fcf7ed91fb6e0f",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            115712
+          ],
+          "unprocessed_array_sha256": "afd141ed6c9ff72869c8262b0762a0ae586e80cfeddcfa31944f53de9bfec919"
+        },
+        {
+          "exact_native_cache_key": "902056eb6ad4167c4519de4d4f9b623a012a097a.pkl",
+          "pkl_sha256": "11caae28a478d7357906af1b3d663d4e8f63c2a017983325e9ccbd9aeac149d5",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S12",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "He then slept soundly for about 14 hours",
+              "exact_native_cache_key": "902056eb6ad4167c4519de4d4f9b623a012a097a.pkl",
+              "cache_input_text_sha256": "a255aa65ea08911d04630b60cc5b276957c4c8b5efcf86aacdcaab9f7c62e34a",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            65536
+          ],
+          "unprocessed_array_sha256": "dc8ef4f4ea09d55c8b1fbb283e76dbc0298e3ea093fbcab3fb5de7ee4068d4fd"
+        },
+        {
+          "exact_native_cache_key": "f603029ca1fd85d154b6c7326170251c2f10c5e5.pkl",
+          "pkl_sha256": "9e9c48a863936888d836e1953a808ab890a18a9d12f08d95ac49c53368c954be",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S12",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "and woke apparently refreshed.",
+              "exact_native_cache_key": "f603029ca1fd85d154b6c7326170251c2f10c5e5.pkl",
+              "cache_input_text_sha256": "0158037b2174881169ebfc6ced6a810cfe78579d628a10ae6f652422f42a28db",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            41984
+          ],
+          "unprocessed_array_sha256": "64aee853037541ebf267be2702d874dda236e5a8d80fab901cce8df3b04027ba"
+        },
+        {
+          "exact_native_cache_key": "aeb7178e31c6b46d97dead9e1ab9ff87e23614a3.pkl",
+          "pkl_sha256": "b07164de3f7849db6bcf90241ff7adb9d0875a79a40c52ec22cda7e33cb3610b",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S13",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Researchers probed the case in a 1965 scholarly paper, which helped highlight microsleeps, involuntary lapses into sleep lasting a few seconds.",
+              "exact_native_cache_key": "aeb7178e31c6b46d97dead9e1ab9ff87e23614a3.pkl",
+              "cache_input_text_sha256": "5b810e30dc8f4747e807da25b23cc53f353794ca9fd4eb712eea5ca7604e1bcc",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            264704
+          ],
+          "unprocessed_array_sha256": "31264cc0ef4e6b29185aeeb9ce74529800cf0cd1b24aa7c76e9512df259ae505"
+        },
+        {
+          "exact_native_cache_key": "a7fba3e220516227ec57cae4741cae700af3c3ad.pkl",
+          "pkl_sha256": "b1fd32f5b3bf171502a145336a624d5f29f4c1bf5513eae11f14f51bb56ac422",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S13",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Researchers probed the case in a 1965 scholarly paper,",
+              "exact_native_cache_key": "a7fba3e220516227ec57cae4741cae700af3c3ad.pkl",
+              "cache_input_text_sha256": "78af833c50fd52106a0ad7fc18338add7a4d403b683c6ff7ad4577aedbf1076b",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S13",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Researchers probed the case in a 1965 scholarly paper,",
+              "exact_native_cache_key": "a7fba3e220516227ec57cae4741cae700af3c3ad.pkl",
+              "cache_input_text_sha256": "78af833c50fd52106a0ad7fc18338add7a4d403b683c6ff7ad4577aedbf1076b",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            103936
+          ],
+          "unprocessed_array_sha256": "3a66ad345df92a379aac892a5ff0469f65d5a894cc154721eeea5dc6e8541d37"
+        },
+        {
+          "exact_native_cache_key": "908cdfc87bebfff8c566a68c1396a48756ffa50d.pkl",
+          "pkl_sha256": "1bd2cd6dbb195d9c4147cc035ebd6c99f6b1d40594858540e7f5c6ba109fd8bd",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S13",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "which helped highlight microsleeps,",
+              "exact_native_cache_key": "908cdfc87bebfff8c566a68c1396a48756ffa50d.pkl",
+              "cache_input_text_sha256": "bae69e8aeb1a59f770332291f7d5ecb6c858b017b9a75fa77806e5a0b9fbc484",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S13",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "which helped highlight microsleeps,",
+              "exact_native_cache_key": "908cdfc87bebfff8c566a68c1396a48756ffa50d.pkl",
+              "cache_input_text_sha256": "bae69e8aeb1a59f770332291f7d5ecb6c858b017b9a75fa77806e5a0b9fbc484",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            49664
+          ],
+          "unprocessed_array_sha256": "1e709c60a4a460de5fd96ae7bf72d39e3d4b2e92c638d5e41a839e3ad2538a34"
+        },
+        {
+          "exact_native_cache_key": "923f69d88d13cd380b574fd7c37a8e72678a7e02.pkl",
+          "pkl_sha256": "d7b8c45713d0e6263a6de2a0b38be8b2f4f65368cd16bf21c21511f9eb4caae7",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S13",
+              "piece": 3,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "involuntary lapses into sleep lasting a few seconds.",
+              "exact_native_cache_key": "923f69d88d13cd380b574fd7c37a8e72678a7e02.pkl",
+              "cache_input_text_sha256": "12618a8d94b80b303a8c2e4fa2fb40fff0247c0360cc3276f5f3a02d8dd60602",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S13",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "involuntary lapses into sleep lasting a few seconds.",
+              "exact_native_cache_key": "923f69d88d13cd380b574fd7c37a8e72678a7e02.pkl",
+              "cache_input_text_sha256": "12618a8d94b80b303a8c2e4fa2fb40fff0247c0360cc3276f5f3a02d8dd60602",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            86528
+          ],
+          "unprocessed_array_sha256": "d073820d3d0c09a12b914a9ccf6d56eab317e492416aa03f5d6f0f62462f2eaf"
+        },
+        {
+          "exact_native_cache_key": "56da5c6c91cdd60892fd5fae289b86d8e40d19b8.pkl",
+          "pkl_sha256": "6d4339084a6bf696c1819959c4050196e9a5ce9faa3f5c14dd5bea423e7654e7",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S14",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Gardner may have had such momentary bouts without noticing.",
+              "exact_native_cache_key": "56da5c6c91cdd60892fd5fae289b86d8e40d19b8.pkl",
+              "cache_input_text_sha256": "daccdf412d9b372abed085b1019670da0aaf58a3b7e9b472dad9e79d968733aa",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            90112
+          ],
+          "unprocessed_array_sha256": "e1ebcf1769dfa5f6017662ad576f602f459f62a5d1408fa6d1df65074ce5940c"
+        },
+        {
+          "exact_native_cache_key": "5dfb9787217e6156b63205c8ceaaf367e5a0cc95.pkl",
+          "pkl_sha256": "0e25b14337b52f7241b66cac130c0e41cc3312cb4c6d201892351847b0b57cf7",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S15",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "In 1997 Guinness World Records discontinued monitoring such attempts because of the health perils, and others have since alleged longer stints awake.",
+              "exact_native_cache_key": "5dfb9787217e6156b63205c8ceaaf367e5a0cc95.pkl",
+              "cache_input_text_sha256": "78a5359885fe04c3af524998dee9de2510d500e06f0fb282dfc92a0d2850faa0",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            257024
+          ],
+          "unprocessed_array_sha256": "bdfde6993a91f443595ae165073ae1aa3f05e56a732c1f1e8e9f81cbb84585a6"
+        },
+        {
+          "exact_native_cache_key": "4f1aa30eaff4e7b2815d4a70d3989d2d0a81dcc6.pkl",
+          "pkl_sha256": "a76489849587471f4385732b1d93eb40c76622242521ae67f02a5a894a31c363",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S15",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "In 1997 Guinness World Records",
+              "exact_native_cache_key": "4f1aa30eaff4e7b2815d4a70d3989d2d0a81dcc6.pkl",
+              "cache_input_text_sha256": "b5484781a02c0a1b9477bcbe74bc865363c488a74ce5dd4c22c17f415537b0d7",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            70144
+          ],
+          "unprocessed_array_sha256": "f4eefb1b6a1416bdc40fa1673c72012e04db7ffdf898368c3e220e06b5910f6c"
+        },
+        {
+          "exact_native_cache_key": "f9dc3578a3b42aeaad217906587cd081752003f0.pkl",
+          "pkl_sha256": "bdc0c12b522a1ad7dd8117946a8b43c1192ce37fb5db98aa70b1ab47663471d8",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S15",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "discontinued monitoring such attempts because of the health perils,",
+              "exact_native_cache_key": "f9dc3578a3b42aeaad217906587cd081752003f0.pkl",
+              "cache_input_text_sha256": "d3de98dcc4b478488e3815e6b3831aafed6679286df047a07ddfa7ffbf1969fe",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            100864
+          ],
+          "unprocessed_array_sha256": "295166a3cb8f54ce9123704708f2bd54ab6069e751dd73c42c7ac79bc6aeaefc"
+        },
+        {
+          "exact_native_cache_key": "eb82fa92345b80a0177fe742978e4c87a08cfb71.pkl",
+          "pkl_sha256": "5cc9029cf87286a2c64bee8e2e244d576b6330297912db47e9c586d3be9722f4",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S15",
+              "piece": 3,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "and others have since alleged longer stints awake.",
+              "exact_native_cache_key": "eb82fa92345b80a0177fe742978e4c87a08cfb71.pkl",
+              "cache_input_text_sha256": "07a5cb52c00b619040ec24b9f33cd0993601ee5f18dc3f210cef302d794232e5",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S15",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "and others have since alleged longer stints awake.",
+              "exact_native_cache_key": "eb82fa92345b80a0177fe742978e4c87a08cfb71.pkl",
+              "cache_input_text_sha256": "07a5cb52c00b619040ec24b9f33cd0993601ee5f18dc3f210cef302d794232e5",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            68608
+          ],
+          "unprocessed_array_sha256": "4095970de2df6e65d529e679876d1a7e69e34d13ecb11455d07c971ab5a89a5d"
+        },
+        {
+          "exact_native_cache_key": "7580c420c158d95c68582cc5c4569e2cc177af20.pkl",
+          "pkl_sha256": "5f079b12dae4ab564331f6f5f4f3c4d81c46e7fc78c62800a161b335414e7936",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S15",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "In 1997 Guinness World Records discontinued monitoring such attempts because of the health perils,",
+              "exact_native_cache_key": "7580c420c158d95c68582cc5c4569e2cc177af20.pkl",
+              "cache_input_text_sha256": "354fbc15bf0194b062703ea44bd50a2a4400193a66ebe6cb5b43eda8d5de401c",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            182272
+          ],
+          "unprocessed_array_sha256": "cbecbfffe47f7b9343142ca418a24eb96c02b48d080562c1adb55930ee932720"
+        },
+        {
+          "exact_native_cache_key": "70033f898c690444c678cb17214da87d8dc97d2a.pkl",
+          "pkl_sha256": "8a950e69707fbda6e4c7a6071f06cfb5cd28b748641962c779c66844864eb7bc",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S16",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "In a 2017 interview Gardner said severe insomnia had tormented him for about a decade, and he himself pinned the blame on the experiment.",
+              "exact_native_cache_key": "70033f898c690444c678cb17214da87d8dc97d2a.pkl",
+              "cache_input_text_sha256": "f641fcd6d9d98792f4271a1fee3e0a926effc056ef7ea1f396e66cfbc97bc284",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            244224
+          ],
+          "unprocessed_array_sha256": "80ad4a4ef79aca76b6006db539a0bd5d68a59004336f68be3d94bcca5ebc0cf9"
+        },
+        {
+          "exact_native_cache_key": "a8b0061aa36fee0b275041bcf421d1e99c48cfe8.pkl",
+          "pkl_sha256": "8fd8f09c9661a6d59efef7ef86555c6fbaa20bb7d52128e8fc8106630f18b215",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S16",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "In a 2017 interview Gardner said",
+              "exact_native_cache_key": "a8b0061aa36fee0b275041bcf421d1e99c48cfe8.pkl",
+              "cache_input_text_sha256": "05419a45f7733abd83e5ac6a4b65e3b8edd8981b3813384d0209318beecdef4c",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            74240
+          ],
+          "unprocessed_array_sha256": "5089a0da7889ddce8390b2b48ccd201ba8e56a8e3a0ad5fe1608e821ad4b48fc"
+        },
+        {
+          "exact_native_cache_key": "b89fc688195c048f38b0d916bc89bcc605276de1.pkl",
+          "pkl_sha256": "dda62d8e0134ebba859fbe42e62af197b789e2af1c562ff71d14eed4bcdc54be",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S16",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "severe insomnia had tormented him for about a decade,",
+              "exact_native_cache_key": "b89fc688195c048f38b0d916bc89bcc605276de1.pkl",
+              "cache_input_text_sha256": "30a0a2cbd53a1f5a7d38ea96c062584abbda847d7c636c0ab53bc4991b2e5ef4",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            89088
+          ],
+          "unprocessed_array_sha256": "80745960e5053f705d91528bd047014bc794bbcb003b8118242298666ea6cd69"
+        },
+        {
+          "exact_native_cache_key": "4e41a4f27e1219ceaf667c8db1ee0bd1fc639b15.pkl",
+          "pkl_sha256": "19887a119c90899932e0d21c67990d3941f15f6a752e7e16a66b9f2ed895a746",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S16",
+              "piece": 3,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "and he himself pinned the blame on the experiment.",
+              "exact_native_cache_key": "4e41a4f27e1219ceaf667c8db1ee0bd1fc639b15.pkl",
+              "cache_input_text_sha256": "764bb820e8af164fd2b14a08d2d95509b09b044cf42ce83a49341790eb1a79c5",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S16",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "and he himself pinned the blame on the experiment.",
+              "exact_native_cache_key": "4e41a4f27e1219ceaf667c8db1ee0bd1fc639b15.pkl",
+              "cache_input_text_sha256": "764bb820e8af164fd2b14a08d2d95509b09b044cf42ce83a49341790eb1a79c5",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            67072
+          ],
+          "unprocessed_array_sha256": "8a5cef0621dd5b6d598fd66652b1c472bdeac20e5c0ca583ddc395f86dcbd4db"
+        },
+        {
+          "exact_native_cache_key": "19fe9b1f1e6633ce7dd203dd0fe1e8ff4e239c37.pkl",
+          "pkl_sha256": "fe0a6d1827054b1cb11af3733cf131d41f395e68c9782b66c985d0ffd165d80d",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S16",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "In a 2017 interview Gardner said severe insomnia had tormented him for about a decade,",
+              "exact_native_cache_key": "19fe9b1f1e6633ce7dd203dd0fe1e8ff4e239c37.pkl",
+              "cache_input_text_sha256": "72a7d087f94e476fdb92123efa21f00e58f1e7e2ec3796ac4a893d5c7f0a35d0",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            168448
+          ],
+          "unprocessed_array_sha256": "88c9f9d5ffe5656d0e5d7a818e189f972bdd933d4efb01109ca275b95f00fb87"
+        },
+        {
+          "exact_native_cache_key": "1aaeff2d66f802ce0f4ece9dbb3b8f0f4fdfb817.pkl",
+          "pkl_sha256": "d71d3469d4a8169069cf2cb58560cce22cc8f0e8dbd3c6511aa32ebe6e767d16",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S17",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "The boy who had seemed to bounce back from exhaustion with one long rest would, decades later, barely doze off.",
+              "exact_native_cache_key": "1aaeff2d66f802ce0f4ece9dbb3b8f0f4fdfb817.pkl",
+              "cache_input_text_sha256": "731bdc0674e527b2e8ec7c770b2406830c1d533a6b228fed0f70d1953acb6b4c",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            172032
+          ],
+          "unprocessed_array_sha256": "3c82aa354a9ffcea50921835522ad78bb6bf8c9f8a438328808b1cec8ee614c4"
+        },
+        {
+          "exact_native_cache_key": "ff71346ee0e1ce270d6f3283fe7af1763f9ffd3c.pkl",
+          "pkl_sha256": "c01ee62c58b64873b0b85a947368d7a2f44926ebf418b559c519b2189dc9a56f",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S17",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "The boy who had seemed to bounce back from exhaustion with one long rest",
+              "exact_native_cache_key": "ff71346ee0e1ce270d6f3283fe7af1763f9ffd3c.pkl",
+              "cache_input_text_sha256": "c33710d2d40d1191d671bb2425c4083500dbfd81c938cbc4eee6a8cf5ca5236e",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            99328
+          ],
+          "unprocessed_array_sha256": "ed2fe5818844493cd690e5c31a9e863a2353f7b080f4c9b2db090d24b4bff798"
+        },
+        {
+          "exact_native_cache_key": "967ec1a1b5c818c9de0f7f9edbdf437cb407efa2.pkl",
+          "pkl_sha256": "ad8a475d6a1e6240829c3b6c25d2fa3b770a3901494025e1d51b399920657210",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S17",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "would, decades later, barely doze off.",
+              "exact_native_cache_key": "967ec1a1b5c818c9de0f7f9edbdf437cb407efa2.pkl",
+              "cache_input_text_sha256": "ccfe77249a22786d955f94ebcc66172ddb8f3084a06c170dbd399e8c14752ee9",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            58880
+          ],
+          "unprocessed_array_sha256": "970683d6f39d2dac69285cf59c5841e070be8c442c0590c7418b4c75680851e3"
+        },
+        {
+          "exact_native_cache_key": "8565e00395af2a42fe5e6aac96c76732e827ea0f.pkl",
+          "pkl_sha256": "36acd81eff8d118a617ae5a794983eb7fe4d95fb694fff17c95b0218ace9c75f",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S17",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "The boy who had seemed to bounce back from exhaustion with one long rest would,",
+              "exact_native_cache_key": "8565e00395af2a42fe5e6aac96c76732e827ea0f.pkl",
+              "cache_input_text_sha256": "a59ca524cc7f07ad27b2e9224a74ab073ec0e0dff306567abb98c95c26de4f53",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            111616
+          ],
+          "unprocessed_array_sha256": "2d45fb0a8702eebd93cc388f6cc2afef13868f471b2bb9965c5ba59b0051a71e"
+        },
+        {
+          "exact_native_cache_key": "84bd9907ca3e425dc326b17bf9120932453326bf.pkl",
+          "pkl_sha256": "cc98fa0f57fcf2f31aa441d7159426a2ac0818c8624ec3f2d054da9c9caa9da0",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S17",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "decades later,",
+              "exact_native_cache_key": "84bd9907ca3e425dc326b17bf9120932453326bf.pkl",
+              "cache_input_text_sha256": "a908afa8a8f41768ec3a258089aec65dba58182c081e8b2063cc262f5fba8b6b",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            26112
+          ],
+          "unprocessed_array_sha256": "ca066f407dcde775335fcf40defbd8ff8370ee1dcf9ae3d498b81b47c02a1f70"
+        },
+        {
+          "exact_native_cache_key": "dc6857f8738fd1b918d6eb14ce50e9dd67f69f96.pkl",
+          "pkl_sha256": "9aeb5386233071651e019a54a97a0f9bc98ed7b7bc3e678a8f19b68ed03a714a",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S17",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "barely doze off.",
+              "exact_native_cache_key": "dc6857f8738fd1b918d6eb14ce50e9dd67f69f96.pkl",
+              "cache_input_text_sha256": "7fdf344bea62589fc8a10d086c6abed4920832d3c82134c4d55e8ce793cada46",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            28672
+          ],
+          "unprocessed_array_sha256": "07894a97903f447a46f92e0b9c4cc689e9376874bb15a6d69b223b9ed8cc83f9"
+        }
+      ],
+      "missing_reference_key_count": 0,
+      "observed_missing_keys_covered": [],
+      "new_private_cache_names": [],
+      "native_single_thread_marker_verified": true,
+      "single_thread_sessions": [
+        {
+          "intra_op_num_threads": 1,
+          "inter_op_num_threads": 1
+        },
+        {
+          "intra_op_num_threads": 1,
+          "inter_op_num_threads": 1
+        }
+      ],
+      "models_sha256": {
+        "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+        "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+        "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+      },
+      "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+      "existing_private_cache_count": 11514,
+      "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+      "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+      "existing_private_cache_bytes_unchanged": true,
+      "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+      "public_repository_cache_unchanged": true,
+      "producer_pcm_existed_before": false,
+      "producer_pcm_sha256_before": null,
+      "producer_pcm_sha256_after": null,
+      "accepted_aac_adts_sha256_before": "6a0abfb674e0c5cb5411e64412c0613eb016772b4c73be167eb526dba5b244a3",
+      "accepted_aac_adts_sha256_after": "6a0abfb674e0c5cb5411e64412c0613eb016772b4c73be167eb526dba5b244a3",
+      "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+      "private_cache_exported": false
+    },
+    "checker_reference_preparation_program_sha256": "f6f2a032e207085e7252d036e39430fb80b06e84a721c525b61196d021c5ca12",
+    "fresh_current_article_reference": {
+      "article": "13",
+      "removed_temporary_gt_files": [],
+      "processed_pcm_or_raw_mother_cache_modified": false,
+      "purpose": "Original synth/labels/audit rebuild fresh for this production; no old CPU GT reuse."
+    },
+    "temporary_output_reset": {
+      "removed": [],
+      "production_started_ns": 1794622772176961526,
+      "repository_outputs_modified": false
+    },
+    "reviewed_gain_control_preservation": [
+      {
+        "stage": "canonical-draft",
+        "requested_gain_controls": {},
+        "actual_gain_controls": {},
+        "exactly_preserved": true
+      },
+      {
+        "stage": "canonical-final4K",
+        "requested_gain_controls": {},
+        "actual_gain_controls": {},
+        "exactly_preserved": true
+      }
+    ],
+    "canonical_video_sha256": "35dc68e6fcd560260c2db78e76aa1a35e21b391a2650eb3f49e7ab462e142533",
+    "canonical_aac_adts_sha256": "6a0abfb674e0c5cb5411e64412c0613eb016772b4c73be167eb526dba5b244a3",
+    "canonical_pipeline_passed": true,
+    "cached_input_wav_sha256": null,
+    "final_wav_sha256": "aa1a5951942a7c65a64a7cd849c04ad7495ef6960f027a5f9072d01743bba649",
+    "accepted_prior_aac_identical": true,
+    "video_sha256": "91209f95b2d6d9ecdf9b8f5cd6ffd73b160b58052bc6e9afc69291b11248b65e",
+    "width": 3840,
+    "height": 2160,
+    "summary_seconds": 2,
+    "summary_frames": 60,
+    "summary_start_seconds": 141.83333333333334,
+    "delay_after_voice_seconds": 0.013333333333349628,
+    "actual_source_collection": {
+      "article": "13",
+      "kind": "actual-production-source-collection",
+      "new_quality_gate": false,
+      "files": {
+        "request_json": {
+          "file": "13-request-source.json",
+          "sha256": "3687b6c42a6d524d0d7e40a47ed02c37b18abe8d524db4f5914abad52019a63c",
+          "origin": "immutable_request"
+        },
+        "request_generator": {
+          "file": "13-request-gen.py",
+          "sha256": "769972cf2a0324fd7544a0d3c0186b3d06a25fe86829ab95c6cc1960b1f43160",
+          "origin": "immutable_request"
+        },
+        "used_generator": {
+          "file": "13-used-gen.py",
+          "sha256": "769972cf2a0324fd7544a0d3c0186b3d06a25fe86829ab95c6cc1960b1f43160",
+          "origin": "actual_production_filesystem"
+        },
+        "actual_working_source": {
+          "file": "13-actual-working-source.json",
+          "sha256": "48c89c1470cc9996db5f654c6d8d5b837c39922234662828ef56442747450ccc",
+          "origin": "actual_production_filesystem"
+        },
+        "request_manuscript": {
+          "file": "13-request-manuscript.md",
+          "sha256": "72b842de127132e386e9e52a1719ec96765e94958f56687987f53e2801c69704",
+          "origin": "immutable_request"
+        },
+        "actual_working_manuscript": {
+          "file": "13-actual-working-manuscript.md",
+          "sha256": "e87a2248d1de75fd81be51c0601c695dd0276a9820cd1217604f0e4be1d22721",
+          "origin": "actual_production_filesystem"
+        }
+      },
+      "generator_execution_observed": false,
+      "generator_execution_evidence": "No fresh generator execution log; do not claim this GEN was executed during rendering.",
+      "source_differences": {
+        "file": "13-actual-source-differences.json",
+        "sha256": "7ab07584a00e9f0ea71c98a976415497ca5279f45ad778d2a04edf29cc11a9d1"
+      }
+    }
+  },
+  "native_status_sha256": "66fd92764e700de9e18b8a2ef1e6c84e1846e9840a441c935a2f0cfd6197cedd"
+}
