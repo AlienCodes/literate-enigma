@@ -160,64 +160,16 @@ def compose_illustration(source, choice, destination):
     result.save(destination)
 
 
-def preview_hold_contract(args, timing, body_frames=None):
-    """The only new branch: explicit article28, exactly9frames, review-only."""
-    hold = getattr(args, 'preview_last_body_hold_frames', 0)
-    assert type(hold) is int and hold in (0, 9), 'Only default0 or explicitly authorized9 hold frames are supported.'
-    if hold == 0:
-        if not args.validation_fixture:
-            assert not timing.get('preview_only', False) and not timing.get('preview_last_body_hold_frames', 0), 'Preview metadata requires the explicit article28 hold9 CLI.'
-        if body_frames is not None:
-            seconds = body_frames / FPS
-            assert 0 <= seconds - float(timing['source_voice_endpoint_seconds']) < 1/FPS + .000001
-        return False
-    assert args.source_id == '28', 'Nine-frame trial is authorized only for source28/book29.'
-    assert not args.validation_fixture, 'Preview acceptance requires actual new-canonical production provenance; synthetic fixtures are never preview deliveries.'
-    assert timing.get('kind') == 'preview-last-body-hold9-then-summary60', 'Wrong upstream preview stage kind.'
-    assert timing.get('preview_only') is True and type(timing.get('preview_last_body_hold_frames')) is int and timing['preview_last_body_hold_frames'] == 9, 'Missing exact preview-only hold9 declaration.'
-    if body_frames is not None:
-        endpoint = float(timing['source_voice_endpoint_seconds'])
-        gap = body_frames / FPS - endpoint
-        assert 9/FPS <= gap < 10/FPS + .000001, 'Voice-to-illustration gap is not the authorized9-frame ceiling hold.'
-        ceiling = __import__('math').ceil(endpoint * FPS - .000001)
-        assert body_frames == ceiling + 9, 'Hold must start after the actual measured speech ceiling and last exactly9frames.'
-    return True
-
-
-def verify_preview_hold(video, body_frames):
-    """Inspect the9 actual decoded hold frames against the final spoken-page frame.
-
-    The same existing <2 thumbnail MAE bound as static pages accommodates H264
-    chroma/rounding. All original body coded pictures/timing stay independently exact.
-    """
-    freeze_frame = body_frames - 10
-    assert freeze_frame >= 0
-    raw = run(['ffmpeg','-v','error','-ss',f'{max(0,(freeze_frame-.25)/FPS):.9f}',
-               '-i',video,'-map','0:v:0','-an','-frames:v','10',
-               '-vf','scale=384:216:flags=area','-pix_fmt','rgb24','-f','rawvideo','-'],capture=True)
-    stride = THUMB[0] * THUMB[1] * 3
-    assert len(raw) == 10 * stride, 'Could not inspect final spoken-page frame plus all9 held frames.'
-    reference = Image.frombytes('RGB', THUMB, raw[:stride])
-    errors = [sum(ImageStat.Stat(ImageChops.difference(reference, Image.frombytes('RGB', THUMB, raw[i*stride:(i+1)*stride]))).mean)/3 for i in range(1,10)]
-    assert max(errors) < 2, ('Preview held body page changed.', errors)
-    return {'preview_last_body_hold_frames':9, 'preview_last_body_hold_seconds':9/FPS,
-            'preview_hold_start_frame':body_frames-9, 'preview_hold_end_frame_inclusive':body_frames-1,
-            'preview_frozen_reference_frame':freeze_frame, 'preview_actual_held_frames_checked':9,
-            'preview_hold_thumbnail_MAE_each':errors, 'preview_hold_thumbnail_MAE_max':max(errors),
-            'preview_hold_visual_reference':'actual decoded last spoken-page frame before9-frame hold; existing static-page MAE<2 rule'}
-
-
 def provenance(args, source_sha, approved):
     timing = json.loads(args.verification.read_text())
     assert str(timing['article']).zfill(2) == args.source_id
     assert timing['video_sha256'] == source_sha, 'Input MP4 does not match its passed verification.'
-    is_preview = preview_hold_contract(args, timing)
     if args.validation_fixture:
         assert timing.get('synthetic_validation_fixture') is True
         assert timing.get('source_kind') == 'synthetic-validation-only'
         return timing, None, {'method':'synthetic_only_not_production_source_acceptance'}
     assert timing.get('source_kind') == 'new-canonical-4K', 'Historical accepted/failed sources are forbidden.'
-    assert timing.get('kind') == ('preview-last-body-hold9-then-summary60' if is_preview else 'immediate-standalone-summary'), 'Input is not the verified new two-second summary stage.'
+    assert timing.get('kind') == 'immediate-standalone-summary', 'Input is not the verified new two-second summary stage.'
     assert timing.get('canonical_pipeline_passed') is True
     assert timing.get('original_audio_identical') is True
     assert timing.get('original_audio_packet_timings_identical') is True
@@ -275,7 +227,6 @@ def main():
     ap.add_argument('--plan-only', action='store_true')
     ap.add_argument('--overwrite', action='store_true')
     ap.add_argument('--validation-fixture', action='store_true')
-    ap.add_argument('--preview-last-body-hold-frames', type=int, default=0, help='Only source28 authorized review variant: exactly9frames after actual final speech; default0 retains original contract.')
     args = ap.parse_args(); args.source_id = args.source_id.zfill(2)
     assert PILLOW_VERSION == '12.3.0', 'Use the approved Pillow12.3.0 production environment.'
     assert args.input.resolve() != args.output.resolve(), 'Write a separate new output; retain the verified input.'
@@ -294,7 +245,7 @@ def main():
         before_v = packets(args.input, 'v:0'); before_a = packets(args.input, 'a:0', payload=True)
         body_frames = int(timing['summary_start_frame']); body_seconds = body_frames / FPS
         assert body_frames > 0 and len(before_v) == body_frames + PAGE_FRAMES
-        is_preview = preview_hold_contract(args, timing, body_frames)
+        assert 0 <= body_seconds - float(timing['source_voice_endpoint_seconds']) < 1/FPS + .000001
         assert 'K' in before_v[body_frames]['flags'], 'Body boundary is not a closed IDR: rerun only the NEW end-card stage with a forced keyframe; no silent body re-encode.'
         assert round(float(before_v[body_frames]['pts_time']) * FPS) == body_frames
         assert boundary_is_idr(args.input,body_seconds), 'The summary keyframe is not an H.264 IDR; no silent body re-encode.'
@@ -312,9 +263,6 @@ def main():
                        'source_voice_endpoint_seconds':timing['source_voice_endpoint_seconds'],
                        'delay_after_voice_seconds':body_seconds-float(timing['source_voice_endpoint_seconds']),
                        'illustration_seconds': 2, 'summary_seconds': 2, 'closed_idr_boundary_verified': True})
-        if is_preview:
-            result.update({'preview_only':True,'preview_delivery_eligible':False,'production_delivery_eligible':False,'kind':'preview-last-body-hold9-then-approved-book-illustration60-then-approved-summary60'})
-            result.update(verify_preview_hold(args.input,body_frames))
         if args.plan_only:
             result['plan_passed'] = True
             args.report.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')
@@ -362,7 +310,7 @@ def main():
             assert {k:au.get(k) for k in audio_parameters} == {k:out_a.get(k) for k in audio_parameters}, 'Audio codec parameters changed.'
             page_checks = verify_static_pages(joined, body_frames, art, args.summary_image)
             result.update(page_checks)
-            result.update({'passed':True,'production_delivery_eligible':not args.validation_fixture and not is_preview,
+            result.update({'passed':True,'production_delivery_eligible':not args.validation_fixture,
                            'source_kind':'new-canonical-4K' if not args.validation_fixture else 'synthetic-validation-only',
                            'output_frames':len(after_v),'output_seconds':body_seconds+4,
                            'body_coded_pictures_identical':True,'body_packet_timings_identical':True,
@@ -371,9 +319,6 @@ def main():
                            'aac_packet_count':len(before_a),'aac_adts_sha256':old_aac,
                            'audio_packet_records_sha256':digest_bytes(json.dumps(before_a,sort_keys=True,separators=(',',':')).encode()),
                            'illustration_composed_4k_rgb_sha256':rgb_sha(art),'video_sha256':sha(joined)})
-            if is_preview:
-                result.update({'preview_only':True,'preview_delivery_eligible':True,'production_delivery_eligible':False})
-                result['output_preview_hold_validation'] = verify_preview_hold(joined,body_frames)
             result['illustration_preparation'] = {
                 'source_id':args.source_id, 'new_id':image_row['new_id'],
                 'native_image_sha256':image_row['sha256'],

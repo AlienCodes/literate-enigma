@@ -4,11 +4,11 @@
 ## 英文
 Dolly was born at Roslin, **Scotland**, on 5 July 1996. Her **genome** came from a Finn Dorset ewe's mammary cell, **fused with** a Blackface egg **stripped of** its **nucleus**. A Blackface **surrogate** carried the **embryo** through **pregnancy**, yet her white face was **proof of** a **genetically** different **lineage**. She alone survived from 277 attempts, an **extraordinary** failure rate.
 
-Dolly is **popularly** called the first **clone**, a **misconception**. Her **predecessors** included frogs cloned from **transplanted** nuclei in 1962 and Roslin's embryo-derived **duo**, Megan and Morag, in 1995. She was **genuinely** the first **mammal** cloned from an adult cell. Roslin's **announcement** on 22 February 1997 **coincided with** the paper, and her name, a mammary **pun**, **honoured** Dolly Parton.
+Dolly is **popularly** called the first **clone**, a **misconception**. Her **predecessors** included frogs cloned from **transplanted** nuclei in 1962 and Roslin's embryo-**derived** **duo**, Megan and Morag, in 1995. She was **genuinely** the first **mammal** cloned from an adult cell. Roslin's **announcement** on 22 February 1997 **coincided with** the paper, and her name, a mammary **pun**, **honoured** Dolly Parton.
 
-The news **provoked** **uproar** and **apprehension** about the **ethics** of human cloning. In March 1997 Clinton **prohibited** federal funding for such experiments. In 1999 her telomeres, or **chromosome** tips, were reported **shortened** by about 20% for her age. That fed **anxiety**; some **speculated** she was ageing **prematurely**.
+The news **provoked** **uproar** and **apprehension** about the **ethics** of human cloning. In March 1997 Clinton **prohibited** federal **funding** for such experiments. In 1999 her telomeres, or **chromosome** tips, were reported **shortened** by about 20% for her age. That fed **anxiety**; some **speculated** she was ageing **prematurely**.
 
-Dolly **was put down**, aged six, on 14 February 2003, with **arthritis** and a **progressive** **lung** disease caused by a sheep **virus**. Indoor **confinement** probably **contributed**. In July 2016, 13 clones, four from her cell line, were ageing normally, without **hypertension** or **diabetes**. In November 2017, her **skeletal** X-rays showed ordinary arthritis, and fears of early **onset** were judged **unfounded**.
+Dolly **was put down**, aged six, on 14 February 2003, with **arthritis** and a **progressive** **lung** disease caused by a sheep **virus**. Indoor **confinement** probably **contributed**. In July 2016, 13 clones, four from her cell line, were **ageing** normally, without **hypertension** or **diabetes**. In November 2017, her **skeletal** X-rays showed ordinary arthritis, and fears of early **onset** were judged **unfounded**.
 
 She bore six lambs by natural **mating**; Bonnie, first of these **descendants**, arrived in April 1998. Since 2003 her **stuffed** body, now **famously** an **icon** and **memorial**, has been **encased in** the National Museum of Scotland. Behind glass, her white face **plainly** **testifies to** her Finn Dorset **ancestry**.
 
@@ -16,13 +16,13 @@ She bore six lambs by natural **mating**; Bonnie, first of these **descendants**
 
 1996年7月5日，多莉在**苏格兰**(Scotland)罗斯林出生。她的**基因组**(genome)来自一只芬兰多塞特母羊的乳腺细胞，这个细胞**融合了**(fused with)一枚黑脸羊卵细胞，这枚卵已**去除了**(stripped of)**细胞核**(nucleus)。（fused with…：过去分词短语作后置定语，修饰 cell；stripped of…：过去分词短语作后置定语，修饰 egg；be stripped of：被去除）一只黑脸羊**代孕母羊**(surrogate)怀着这个**胚胎**(embryo)度过了**孕期**(pregnancy)，而多莉的白脸则是一个**基因上**(genetically)不同**血统**(lineage)的**证明**(proof of)。（proof of：……的证据；her 指 Dolly）只有她从277次尝试中存活了下来，一个**异乎寻常的**(extraordinary)失败率。（an extraordinary failure rate：同位语，评述前面整件事）
 
-多莉**一般**(popularly)被称为第一个**克隆体**(clone)，这是一个**错误的观念**(misconception)。（a misconception：同位语，评述前面整句）她的**前几代**(predecessors)包括于1962年由**移植**(transplanted)的细胞核克隆出的青蛙，以及罗斯林于1995年由胚胎衍生的**一对**(duo)绵羊：梅根和莫拉格。（cloned from…：过去分词短语作后置定语，修饰 frogs；nuclei 是 nucleus 的复数）（Megan and Morag：同位语，补充说明 duo）她**确实**(genuinely)是第一个用成年细胞克隆出的**哺乳动物**(mammal)。（cloned from an adult cell：过去分词短语作后置定语，修饰 mammal）1997年2月22日罗斯林的**公告**(announcement)**与**(coincided with)这篇论文**同时发生**(coincided with)，而她的名字，一个关于乳腺的**双关语**(pun)，**致敬了**(honoured)多莉·帕顿。（coincide with：与……同时发生）（a mammary pun：同位语，补充说明 her name）
+多莉**一般**(popularly)被称为第一个**克隆体**(clone)，这是一个**错误的观念**(misconception)。（a misconception：同位语，评述前面整句）她的**前几代**(predecessors)包括于1962年由**移植**(transplanted)的细胞核克隆出的青蛙，以及罗斯林于1995年由胚胎**衍生的**(derived)**一对**(duo)绵羊：梅根和莫拉格。（cloned from…：过去分词短语作后置定语，修饰 frogs；nuclei 是 nucleus 的复数）（Megan and Morag：同位语，补充说明 duo）她**确实**(genuinely)是第一个用成年细胞克隆出的**哺乳动物**(mammal)。（cloned from an adult cell：过去分词短语作后置定语，修饰 mammal）1997年2月22日罗斯林的**公告**(announcement)**与**(coincided with)这篇论文**同时发生**(coincided with)，而她的名字，一个关于乳腺的**双关语**(pun)，**致敬了**(honoured)多莉·帕顿。（coincide with：与……同时发生）（a mammary pun：同位语，补充说明 her name）
 
-这一消息**引发了**(provoked)**轩然大波**(uproar)，以及关于人类克隆**伦理**(ethics)的**忧虑**(apprehension)。（provoked 带两个宾语 uproar 和 apprehension；about the ethics…：后置定语，修饰 apprehension）1997年3月，克林顿**禁止**(prohibited)联邦资金用于这类实验。1999年，她的端粒，即**染色体**(chromosome)末端，据报道比同龄羊**缩短了**(shortened)约20%。（or chromosome tips：or 表示“即，也就是”，解释 telomeres）（be reported shortened：被报道为缩短了，shortened 作补语；for her age：就她的年龄而言）这加剧了人们的**焦虑**(anxiety)；有人**推测**(speculated)她正在**过早**(prematurely)衰老。（feed：加剧，助长）（she was ageing…：宾语从句，省略了 that）
+这一消息**引发了**(provoked)**轩然大波**(uproar)，以及关于人类克隆**伦理**(ethics)的**忧虑**(apprehension)。（provoked 带两个宾语 uproar 和 apprehension；about the ethics…：后置定语，修饰 apprehension）1997年3月，克林顿**禁止**(prohibited)联邦**提供资金**(funding)用于这类实验。1999年，她的端粒，即**染色体**(chromosome)末端，据报道比同龄羊**缩短了**(shortened)约20%。（or chromosome tips：or 表示“即，也就是”，解释 telomeres）（be reported shortened：被报道为缩短了，shortened 作补语；for her age：就她的年龄而言）这加剧了人们的**焦虑**(anxiety)；有人**推测**(speculated)她正在**过早**(prematurely)衰老。（feed：加剧，助长）（she was ageing…：宾语从句，省略了 that）
 
-多莉**被实施安乐死**(was put down)，时年六岁，那是2003年2月14日；她患有**关节炎**(arthritis)和一种**进行性的**(progressive)**肺部**(lung)疾病，引起它的是绵羊**病毒**(virus)。（put down：（给动物）实施安乐死；aged six：插入语，说明年龄）（with…：介词短语作伴随状语，说明她的病情；caused by…：过去分词短语作后置定语，修饰 disease）**被限制**(confinement)在室内很可能是**原因之一**(contributed)。（contribute：促成，是……的原因之一；这里省略了宾语）2016年7月，13只克隆羊，其中4只来自与她相同的细胞系，正在正常衰老，没有**高血压**(hypertension)，也没有**糖尿病**(diabetes)。（four from her cell line：插入语，补充说明 13 clones）2017年11月，她的**骨骼**(skeletal)X光片显示出寻常的关节炎，而对提前**发病**(onset)的担忧被判定为**毫无根据**(unfounded)。（fears of early onset：of 结构作后置定语，onset 指关节炎发病；be judged＋形容词：被判定为……）
+多莉**被实施安乐死**(was put down)，时年六岁，那是2003年2月14日；她患有**关节炎**(arthritis)和一种**进行性的**(progressive)**肺部**(lung)疾病，引起它的是绵羊**病毒**(virus)。（put down：（给动物）实施安乐死；aged six：插入语，说明年龄）（with…：介词短语作伴随状语，说明她的病情；caused by…：过去分词短语作后置定语，修饰 disease）**被限制**(confinement)在室内很可能是**原因之一**(contributed)。（contribute：促成，是……的原因之一；这里省略了宾语）2016年7月，13只克隆羊，其中4只来自与她相同的细胞系，正在正常**衰老**(ageing)，没有**高血压**(hypertension)，也没有**糖尿病**(diabetes)。（four from her cell line：插入语，补充说明 13 clones）2017年11月，她的**骨骼**(skeletal)X光片显示出寻常的关节炎，而对提前**发病**(onset)的担忧被判定为**毫无根据**(unfounded)。（fears of early onset：of 结构作后置定语，onset 指关节炎发病；be judged＋形容词：被判定为……）
 
-她产下六只小羊，是通过自然**交配**(mating)；邦妮是这些**后代**(descendants)中的第一只，生于1998年4月。（bore：bear 的过去式，“生（孩子），产下”）（first of these descendants：同位语，补充说明 Bonnie）自2003年起，她的**填充标本**(stuffed)，如今已成为**出了名**(famously)的**标志**(icon)和**纪念物**(memorial)，一直**封存在**(encased in)苏格兰国家博物馆。（now famously an icon and memorial：插入语，补充说明 her stuffed body）（has been encased：现在完成时被动语态，与 Since 2003 呼应；encase in：把……封在……里）隔着玻璃，她的白脸**清楚地**(plainly)**证明**(testifies to)着她的芬兰多塞特**祖源**(ancestry)。（testify to：证明，见证）（简述：1996年7月，多莉在苏格兰罗斯林出生，她的基因组来自芬兰多塞特母羊的乳腺细胞，由黑脸羊代孕，白脸证明了她的血统；277次尝试中只有她活了下来。她常被误称为第一个克隆体，其实此前已有克隆青蛙和梅根、莫拉格，她是第一个用成年细胞克隆的哺乳动物；1997年2月公布，名字向多莉·帕顿致敬。消息引发轩然大波和伦理忧虑，克林顿禁止联邦资金用于这类实验；1999年她的端粒被报道偏短，有人推测她过早衰老。2003年2月，六岁的她因关节炎和病毒引起的肺病被实施安乐死；后来的研究表明克隆羊正常衰老，早发关节炎的担忧毫无根据。她自然产下六只小羊，如今她的标本陈列在苏格兰国家博物馆，白脸依然见证着她的祖源。）
+她产下六只小羊，是通过自然**交配**(mating)；邦妮是这些**后代**(descendants)中的第一只，生于1998年4月。（bore：bear 的过去式，“生（孩子），产下”）（first of these descendants：同位语，补充说明 Bonnie）自2003年起，她的**填充标本**(stuffed)，如今已成为**出了名**(famously)的**标志**(icon)和**纪念物**(memorial)，一直**封存在**(encased in)苏格兰国家博物馆。（now famously an icon and memorial：插入语，补充说明 her stuffed body）（has been encased：现在完成时被动语态，与 Since 2003 呼应；encase in：把……封在……里）隔着玻璃，她的白脸**清楚地**(plainly)**证明**(testifies to)着她的芬兰多塞特**祖源**(ancestry)。（testify to：证明，见证）（多莉虽由另一品种母羊代孕，但遗传物质来自芬兰多塞特羊，因此保留了白脸特征。）（简述：▸诞生：研究者将去掉细胞核的卵细胞与成年母羊乳腺细胞融合，▹培育胚胎，1996年由代孕母羊产下多莉。▸突破：277次尝试仅多莉存活；她是首只由成年细胞克隆的哺乳动物，此前已能用胚胎细胞克隆羊。▸争议：成果引发人类克隆伦理争论；多莉的端粒（染色体末端）比同龄羊短约20%，又引起早衰猜测。▸离世：多莉自然交配育下六只小羊；患有关节炎和病毒性肺病，▹六岁时被实施安乐死，不能据此认定克隆导致早衰。▸复核：后续研究中13只克隆羊正常衰老；多莉骨骼复查也未支持关节炎过早出现的担忧。）
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -44,6 +44,7 @@ She bore six lambs by natural **mating**; Bonnie, first of these **descendants**
 | misconception | 本文：错误的观念；n. 错误的观念，误解（a common misconception） | 2 |
 | predecessors | 本文：前几代；n. (predecessor) 前几代，前任，前身（his predecessor in office） | 2 |
 | transplanted | 本文：移植；v. (transplant) 移植（transplant a heart/seedlings） | 2 |
+| derived | 本文：衍生的；adj. 衍生的；derive v. 源自，衍生（embryo-derived；derive from） | 2 |
 | duo | 本文：一对；n. 二人组，一对（a comedy duo） | 2 |
 | genuinely | 本文：确实；adv. 真正地，确实（genuinely surprised/concerned） | 2 |
 | mammal | 本文：哺乳动物；n. 哺乳动物（marine mammals） | 2 |
@@ -56,6 +57,7 @@ She bore six lambs by natural **mating**; Bonnie, first of these **descendants**
 | ethics | 本文：伦理；n. 伦理（medical ethics；a code of ethics） | 3 |
 | apprehension | 本文：忧虑；n. 忧虑，担心（a feeling of apprehension） | 3 |
 | prohibited | 本文：禁止；v. (prohibit) 禁止（prohibit smoking；be prohibited by law） | 3 |
+| funding | 本文：提供资金（资助、资金支持）；n. 资助，资金支持（federal funding）；fund v. 提供资金 | 3 |
 | chromosome | 本文：染色体；n. 染色体（the X chromosome） | 3 |
 | shortened | 本文：缩短了；v. (shorten) 缩短（shorten a skirt/the working week） | 3 |
 | anxiety | 本文：焦虑；n. 焦虑，担忧（anxiety about the future） | 3 |
@@ -68,6 +70,7 @@ She bore six lambs by natural **mating**; Bonnie, first of these **descendants**
 | virus | 本文：病毒；n. 病毒（a flu virus；catch a virus） | 4 |
 | confinement | 本文：被限制；n. 限制，禁闭，限制在某处（solitary confinement；confinement to bed） | 4 |
 | contributed | 本文：原因之一；v. (contribute) 促成，是……的原因之一（contribute to a problem） | 4 |
+| ageing | 本文：衰老；v. (age) 变老，衰老（ageing normally；英式拼写 ageing） | 4 |
 | hypertension | 本文：高血压；n. 高血压（treat hypertension） | 4 |
 | diabetes | 本文：糖尿病；n. 糖尿病（type 2 diabetes） | 4 |
 | skeletal | 本文：骨骼；adj. 骨骼的（skeletal remains；the skeletal system） | 4 |
