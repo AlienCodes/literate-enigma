@@ -3,9 +3,11 @@
 整句响度在 ±2 LU 内，句内逗号停顿前后两段却差 3～5 LU，听起来一段突然变小。这个程序按出片程序记下的分段（work_NN/分段.json）
 量 a.wav 里每句每段的响度（与交付核查的门同一个量法：响度一致性核对.py 的 段响度），句内相邻两段差超过 IN_ADJ 的句子，
 把偏离各段中位数超过 1 LU 的段算出增益（拉回中位数，0.5 dB 一档，累计 ±6 dB 以内），--写入 写进脚本 "分段增益dB"。
-只调音量（接点在标点停顿的静音里），不改音色。草稿声音.sh 自动跑：写入后重建，再查一遍。
+只调音量（接点在标点停顿的静音里），不改音色。草稿声音.sh 默认自动跑：写入后重建，再查一遍。
+修订重制可设 XG_KEEP_REVIEWED_GAIN=1，由草稿声音.sh 传入 --保持已审增益：照常测量、保留建议，
+即使同时传了 --写入 也不改请求中的任何增益；原响度核查和质量阈值不变，不合格仍须修复后重新审核。
 
-用法（视频工作目录）：python3 句内响度.py NN [--写入]；python3 句内响度.py --自检
+用法（视频工作目录）：python3 句内响度.py NN [--写入] [--保持已审增益]；python3 句内响度.py --自检
 """
 import sys, os, json, tempfile, subprocess, numpy as np
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -98,6 +100,15 @@ def 自检():
         json.dump({'no': '99', '停顿处除阻': {'S1': {'1': [1.0, 1.005, 't']}}}, open(f'{wd}/scripts/99.json', 'w'))
         subprocess.run([sys.executable, os.path.abspath(__file__), '99', '--写入'], cwd=wd, capture_output=True, text=True)
         if '3' not in json.load(open(f'{wd}/scripts/99.json')).get('分段增益dB', {}).get('S1', {}): f.append('误拦：有停顿处除阻的句子没写分段增益（K157）')
+        # 修订重制：同一真实量法发现轻段，保持模式不得写入任何 gain；原质量门仍必须报坏样本。
+        reviewed = {'no': '99', '分段增益dB': {'S1': {'1': -1.5, '4': 2.0}}, '段内渐变dB': {'S8': {'1': [-1.0, 1.0]}}}
+        jp = f'{wd}/scripts/99.json'; json.dump(reviewed, open(jp, 'w'), ensure_ascii=False, indent=1)
+        before = open(jp, 'rb').read()
+        keep = subprocess.run([sys.executable, os.path.abspath(__file__), '99', '--写入', '--保持已审增益'], cwd=wd, capture_output=True, text=True)
+        if keep.returncode or open(jp, 'rb').read() != before: f.append('没抓到：保持已审增益模式仍改了原 JSON 或测量失败')
+        if '→' not in keep.stdout or '未写入' not in keep.stdout: f.append('没抓到：保持模式没保留原响度测量和增益建议')
+        gate = subprocess.run([sys.executable, os.path.abspath(R.__file__), f'{wd}/work_99/a.wav', '--句内', '--分段', f'{wd}/work_99/分段.json'], capture_output=True, text=True)
+        if gate.returncode != 1 or '差超过' not in gate.stdout: f.append('没抓到：保持增益后原响度质量门没拦住轻 4 dB 的坏样本')
         shutil.rmtree(wd, ignore_errors=True)
         w, sr = mk([0, 0, -3.5, 0]); sr['S1'][1]['停顿'] = 0.25   # K144 坏样本：记的停顿比实际短（门照样在 0.4 秒静音处切开、报第 3 段轻），增益必须照门的切法算出来
         m, TM = 量(w, sr); g = 算增益(m, TM, {}); js = os.path.join(td, 'seg.json'); json.dump(sr, open(js, 'w')); rs = R.句内报(R.句内(w, None, TM, js))
@@ -137,6 +148,7 @@ def 自检():
 if __name__ == '__main__':
     if '--自检' in sys.argv:
         e = 自检(); print('\n'.join(e) or '句内响度 自检通过（一段轻 4 dB 只给这一段算出约 +4 dB、已有增益累加、一样响不误报）'); sys.exit(1 if e else 0)
+    保持 = '--保持已审增益' in sys.argv
     no = sys.argv[1]; sj = f'work_{no}/分段.json'
     if not os.path.exists(sj): raise SystemExit(f'【停止】没有 {sj}：先用现行出片程序出一次声音（快速重建核查.sh {no}）')
     d = json.load(open(f'scripts/{no}.json')); old = d.get('分段增益dB', {}); org = d.get('段内渐变dB', {}); rec = json.load(open(sj))
@@ -146,7 +158,8 @@ if __name__ == '__main__':
     drop = {s: [k for k in v if k in old.get(s, {})] for s, v in rg.items()}   # K163：这种段原来写的整段增益是误算（整句抬压），撤掉；渐变按相对差算，撤掉不影响句内前后
     for s, v in new.items(): print(f'{no} {s} 分段增益dB {old.get(s, {})} → {v}')
     for s, v in rg.items(): print(f'{no} {s} 段内渐变dB {org.get(s, {})} → {v}' + (f'（撤掉误写的分段增益dB 段 {drop[s]}）' if drop[s] else ''))
-    if '--写入' in sys.argv and (new or rg):
+    if 保持: print(f'{no} 保持已审增益：仅测量并保留建议，未写入分段增益dB/段内渐变dB；原响度核查照常拦截不合格声音')
+    if '--写入' in sys.argv and not 保持 and (new or rg):
         并入(d, new)
         for s, v in rg.items():
             d.setdefault('段内渐变dB', {}).setdefault(s, {}).update(v)

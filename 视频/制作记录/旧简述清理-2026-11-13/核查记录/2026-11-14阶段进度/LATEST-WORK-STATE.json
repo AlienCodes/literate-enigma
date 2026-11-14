@@ -12,9 +12,9 @@
     "release": "最新要求只放整本正式PDF和全部70部4K视频，编号篇名严格对齐书序；源码及详细QC保存在GitHub仓库",
     "old_release": "用户要求替换旧Release；等新整套实际验收及上传核对后处理明确旧对象，尚未删除任何Release或Git历史"
   },
-  "state": "COMPACT_BOOK_DUAL_ARCHIVED; ALL70_TEXT_LAYOUT_PASSED; FIVE_ILLUSTRATED_4K_VIDEOS_PASSED; REMAINING_AUDIO_PRODUCTION_IN_PROGRESS",
+  "state": "COMPACT_BOOK_DUAL_ARCHIVED; ALL70_TEXT_LAYOUT_PASSED; EIGHT_ILLUSTRATED_4K_VIDEOS_PASSED; REMAINING_AUDIO_PRODUCTION_IN_PROGRESS",
   "production": {
-    "new_final_videos_passed": 5,
+    "new_final_videos_passed": 8,
     "required_videos": 70,
     "passed_videos": [
       {
@@ -47,6 +47,27 @@
         "sha256": "5774c9a0e724fcec1906fef0d5445a645624d8b9b886875a675bc615f9f12684",
         "bytes": 16691614,
         "passed_handoff": "/workspace/work/video-revision-delivery/next-passed-validated/43532011110/29/archive-handoff.json"
+      },
+      {
+        "original_id": "39",
+        "book_order": "11",
+        "bytes": 16511048,
+        "sha256": "cf72981e15efde1b5e7b3202739dcd712e092570490e6ece45d4d60fd54e799c",
+        "passed_handoff": "/workspace/work/video-revision-delivery/next-passed-validated/43533004625/39/archive-handoff.json"
+      },
+      {
+        "original_id": "45",
+        "book_order": "70",
+        "bytes": 15760850,
+        "sha256": "96af2c088e534c311ae4d67088835598d9d4a2f795c84fa4ac06759d49bf2b66",
+        "passed_handoff": "/workspace/work/video-revision-delivery/next-passed-validated/43533004625/45/archive-handoff.json"
+      },
+      {
+        "original_id": "43",
+        "book_order": "40",
+        "bytes": 17303283,
+        "sha256": "8a47d5f83a33f6cc09f4844ec443292e3b1a7cd27a76f93a75184b38aabefb56",
+        "passed_handoff": "/workspace/work/video-revision-delivery/next-passed-validated/43533004625/43/archive-handoff.json"
       }
     ],
     "passed_video_ending": "实际正文结束后，书中对应插图60帧，再简述60帧；3840×2160、30fps；原正文编码与AAC包及绝对时间保持不变",
@@ -104,12 +125,24 @@
     "core_fixed_reference_diagnostic_run": 43533172028,
     "final_three_core_certification_run": 43535822030,
     "final_three_core_certification_commit": "395e8da264fafa2453a42ee70a3f7aed8303a769",
-    "final_three_core_certification_status": "awaiting_actual_original_full_fastcheck_with_prior_approved67screen_fixture",
-    "diagnostic51_status": "wrapper NameError re; actual PCM matched and synth/labels exited0; not a failed-audio conclusion"
+    "final_three_core_certification_status": "REAL_ORIGINAL_FULL_QUICKCHECK_PASSED; actual canonical5 staged for permanent main/backup archive",
+    "diagnostic51_status": "wrapper NameError re; actual PCM matched and synth/labels exited0; not a failed-audio conclusion",
+    "early44_51_fixed_diagnostic_run": 43536744065,
+    "next_formal_audio_renewal": "Use unchanged original 确认平移.py with strictly reconstructed old/current private PCM; normal original sound checks follow; no custom ASR renewal without per-sentence proof",
+    "core_program_full_original_quickcheck": {
+      "passed": true,
+      "run": 43535822030,
+      "commit": "395e8da264fafa2453a42ee70a3f7aed8303a769",
+      "job": 132264443476,
+      "seconds": 478.16,
+      "real_stamp_sha256": "6ebc7aa41f79f77258fa333b665af258e007daa36a4ea290de972cd3da7b42f2",
+      "thresholds_unchanged": true,
+      "not_article_audio_acceptance": true
+    }
   },
-  "primary_source_commit": "49a080e7385b1f09fb9d863ae52c279b5327a650",
-  "backup_source_commit": "a9688b3e57d3676c36353c3ca599e574bc197830",
-  "files_source_archive": 964,
+  "primary_source_commit": "d160c0d53886326224dfd865704036c61ea88d48",
+  "backup_source_commit": "2cd1e5e2ff260f325c4ebac60d6914599abc29f3",
+  "files_source_archive": 1331,
   "PDF": {
     "path": "/workspace/work/punk-print-20261113-v4-compact/signed/book/PUNK-ENGLISH-70-STORIES.pdf",
     "pages": 475,
@@ -139,9 +172,9 @@
     "replace explicitlyidentified oldRelease onlyafter newfullaccepted; preserveGithistory"
   ],
   "actual_video_archive": {
-    "count": 5,
-    "primary": "b0e5ccd26850b5cb405beccebd3766c7e2e4ad20",
-    "backup": "1612b68dad390849aa7b4a0ebebd6f9d85c322ff",
+    "count": 8,
+    "primary": "15df0e74a6a15b1a93c1518ffafeff4a9d0618a2",
+    "backup": "8664ff9d715d140c6a899e14d4b044e202816cda",
     "index": "视频修订定稿/已归档视频总清单.json"
   }
 }

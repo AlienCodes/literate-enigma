@@ -36,6 +36,9 @@ assert all(p.startswith(('视频/脚本/','视频/工具/初稿生成/','新版�
                          '视频/制作记录/本轮70篇GEN与文本预检-2026-11-13/',
                          '视频/制作记录/42_2026-11-13词汇修订/'))
            or p=='视频/工具/用户同意记录.json'
+           or p in {'视频/工具/草稿声音.sh','视频/工具/句内响度.py',
+                    '视频/工具/独立复核/synth.py','视频/工具/新管/回归基准_27.json',
+                    '视频/工具/新管/快测通过.json'}
            or re.fullmatch(r'视频/制作记录/(?:\d{2}_待改清单\.md|逐句确认/\d{2}\.json)',p) for p in canonical)
 assert not any(p.endswith(('.mp4','.pdf')) for p in files)
 
