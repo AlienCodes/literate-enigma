@@ -1,12 +1,14 @@
 {
   "kind": "pending_article_review_aggregate",
-  "updated_by_review": "063",
+  "updated_by_review": "065",
   "book_order": "36",
   "source_id": "60",
   "title_zh": "改变世界的科学巨匠",
   "review_ids": [
     "062",
-    "063"
+    "063",
+    "064",
+    "065"
   ],
   "record_only": true,
   "render_authorized": false,
@@ -22,5 +24,53 @@
     }
   ],
   "sync_article_vocabulary_table_when_authorized": true,
-  "source_GEN_MD_audio_video_PDF_changed": false
+  "source_GEN_MD_audio_video_PDF_changed": false,
+  "pending_changes": {
+    "focus_words": [
+      {
+        "english": "apparent",
+        "Chinese_focus_only": "看似"
+      },
+      {
+        "english": "Brazil",
+        "Chinese_focus_only": "巴西"
+      },
+      {
+        "english": "Royal",
+        "Chinese_focus_only": "皇家",
+        "two_occurrences_same_key": true
+      }
+    ],
+    "translation064": {
+      "complete_Chinese_translation": {
+        "from": "会使经过它附近的星光偏折。",
+        "to": "会使星光偏折/偏离方向。"
+      },
+      "existing_English_focus": "deflect",
+      "Chinese_focus_parts_same_key": [
+        "使",
+        "偏折/偏离方向"
+      ],
+      "Chinese_plain_parts": [
+        "会",
+        "星光"
+      ],
+      "article_vocabulary_meaning": "使……偏折/偏离方向",
+      "English_body_gravity_focus_and_existing_appositive_note_unchanged": true
+    },
+    "translation065": {
+      "from": "观测结果",
+      "to": "其观测结果"
+    },
+    "existing_findings_focus_only": "结果",
+    "sync_article_vocabulary_table_when_authorized": true
+  },
+  "unaccepted_explanatory_note_proposal": {
+    "author": "assistant",
+    "role": "suggestion_responding_to_user_question",
+    "text": "1919年11月6日，日食观测结果在两学会的联席会议上公布，人们认为它支持了爱因斯坦的预言：太阳引力会使星光偏折。",
+    "accepted_by_user": false,
+    "authorized_for_addition": false,
+    "applied": false
+  }
 }
