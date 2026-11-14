@@ -1,0 +1,15 @@
+[
+  "ffmpeg",
+  "-v",
+  "error",
+  "-nostdin",
+  "-i",
+  "/workspace/work/video-audit70-20261113/next-passed-native/43569401028/26/artifact-files/26-4K-正文-书中插图2秒-简述2秒.mp4",
+  "-vf",
+  "select='not(mod(n,150))',scale=640:360,drawtext=text='%{pts\\:hms}':x=10:y=10:fontsize=24:fontcolor=white:box=1:boxcolor=black@0.8,tile=5x6",
+  "-frames:v",
+  "1",
+  "-q:v",
+  "3",
+  "/workspace/work/video-audit70-20261113/article26-user-review-20261114/native26/actual-new-vocabulary-frames/locator-every-150frames.jpg"
+]
