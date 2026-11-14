@@ -1,0 +1,8 @@
+
+[0;93m2026-11-14 05:39:19.326739303 [W:onnxruntime:Default, device_discovery.cc:146 GetPciBusId] Skipping pci_bus_id for PCI path at "/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/5620e0c7-8062-4dce-aeb7-520c7ef76171" because filename "5620e0c7-8062-4dce-aeb7-520c7ef76171" did not match expected pattern of [0-9a-f]+:[0-9a-f]+:[0-9a-f]+[.][0-9a-f]+[m
+Traceback (most recent call last):
+  File "/home/runner/work/literate-enigma/literate-enigma/.github/producer-dispatch-certification/native-dispatch-tests.py", line 39, in <module>
+    exec(compile(new.split("if __name__")[0], str(a.tools / 'make_video.py'), 'exec'), ns)
+  File "/home/runner/work/literate-enigma/literate-enigma/official-main/视频/工具/make_video.py", line 5, in <module>
+    import render as R
+ModuleNotFoundError: No module named 'render'

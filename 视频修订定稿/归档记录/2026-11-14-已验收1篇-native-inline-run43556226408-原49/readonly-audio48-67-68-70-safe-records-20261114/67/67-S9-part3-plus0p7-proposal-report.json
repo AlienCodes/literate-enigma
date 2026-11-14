@@ -1,0 +1,1006 @@
+{
+  "source_id": "67",
+  "quality_acceptance": false,
+  "created_utc": "2026-11-14T04:49:25.184590+00:00",
+  "purpose": "minimal new current-source segment gain repair proposal after stable original-rule detection; pending root review and actual original production gates",
+  "program_sha256": "8f7781db74011b2b378aaf64e1e9033bf9858f66f0f626e4ff9f76e983bf9d22",
+  "original_current_maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+  "original_supplemental_audit_sha256": "5f742c1f76c1660180c9ea4a9c97901e2e0fc8da8bb64e450cbe90ecac0a4604",
+  "current_source_sha256": "8897cc1c2df1e4672eec3bbff2776d0565afb9c9fe84087a1758ebb15b2a233e",
+  "candidate_source_sha256": "ab973280bf1fffb1b333b66f923656b67bcbd491c673674a3dadf55c03c115a2",
+  "candidate_source_path": "/workspace/work/video-audit70-20261113/readonly-audio48-67-68-70-43543967031/67/67-proposed-S9-part3-plus0p7-source.json",
+  "only_source_candidate_change": "/分段增益dB/S9/3: absent to +0.7dB",
+  "reason": "Current native has original suppression at S9#3 in all25 boundary variants for both independently measured and producer boundaries. +0.7 gives peak margin4.6-.7=3.9dB under original4.0 rule without altering any existing repair.",
+  "existing_S1_name_gain_and_ramp_preserved": true,
+  "existing_S9_part4_gain_preserved": true,
+  "existing_S15_K134_approved_phrase_balance_preserved": true,
+  "actual_current_K134_cache_unchanged": true,
+  "all_visible_body_translation_notes_summary_unchanged": true,
+  "original_detected_target_interval_s": [
+    67.345,
+    68.91
+  ],
+  "all_preencoding_samples_outside_actual_target_segment_exact": true,
+  "outside_target_base_array_sha256": "566aadbb6fb176e42d3295d1f462a5f4f2e00685fbaee202b2e52f8b28c39201",
+  "outside_target_candidate_array_sha256": "566aadbb6fb176e42d3295d1f462a5f4f2e00685fbaee202b2e52f8b28c39201",
+  "same_total_sample_count": 3510360,
+  "actual_changed_preencoding_span_s": [
+    67.35,
+    68.90495833333334
+  ],
+  "candidate_WAV_sha256": "fe019102b0f867eef62a00dea4438af95b07c2c42026828afabfd981fe23f4a0",
+  "candidate_AAC_ADTS_sha256": "7f1b9f97556ca964307225a0437d7b04353aea0e63b1b106daf094b43255d7b9",
+  "original_fulltrack_supplementary_numeric_checks_passed": true,
+  "original_fulltrack_failures": [],
+  "all_title_and_body_sentence_mapping_valid": true,
+  "actual_measurement_report": "/workspace/work/video-audit70-20261113/readonly-audio48-67-68-70-43543967031/67/proposed-S9-part3-plus0p7-fulltrack-measurement/67-audio-audit.json",
+  "actual_measurement_report_sha256": "a45704785b02f76966d24af558f4f149386c2d0c12aa6c2a9e73a02daf3add17",
+  "original_rule_20_40ms_boundary_sensitivity": [
+    {
+      "boundary_basis": "independent_baseline_boundaries",
+      "suppression_count": 10,
+      "total": 25,
+      "rows": [
+        {
+          "start_s": 67.35,
+          "end_s": 68.88,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": -0.6631900989011221,
+              "peak_difference_lu": -0.9000000000000021,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 1.2491005430344586,
+              "peak_difference_lu": 3.8999999999999986,
+              "suppression": false
+            }
+          ],
+          "suppression": false
+        },
+        {
+          "start_s": 67.35,
+          "end_s": 68.9,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": -0.6631900989011221,
+              "peak_difference_lu": -0.9000000000000021,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 1.2491005430344586,
+              "peak_difference_lu": 3.8999999999999986,
+              "suppression": false
+            }
+          ],
+          "suppression": false
+        },
+        {
+          "start_s": 67.35,
+          "end_s": 68.92,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": -0.6631900989011221,
+              "peak_difference_lu": -0.9000000000000021,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 1.2491005430344586,
+              "peak_difference_lu": 3.8999999999999986,
+              "suppression": false
+            }
+          ],
+          "suppression": false
+        },
+        {
+          "start_s": 67.35,
+          "end_s": 68.94,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": -0.6631900989011221,
+              "peak_difference_lu": -0.9000000000000021,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 1.2491005430344586,
+              "peak_difference_lu": 3.8999999999999986,
+              "suppression": false
+            }
+          ],
+          "suppression": false
+        },
+        {
+          "start_s": 67.35,
+          "end_s": 68.96000000000001,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": -0.3735589485716204,
+              "peak_difference_lu": -0.9000000000000021,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 1.5387316933639603,
+              "peak_difference_lu": 3.8999999999999986,
+              "suppression": false
+            }
+          ],
+          "suppression": false
+        },
+        {
+          "start_s": 67.37,
+          "end_s": 68.88,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": -0.6631900989011221,
+              "peak_difference_lu": -0.9000000000000021,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 1.2491005430344586,
+              "peak_difference_lu": 3.8999999999999986,
+              "suppression": false
+            }
+          ],
+          "suppression": false
+        },
+        {
+          "start_s": 67.37,
+          "end_s": 68.9,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": -0.6631900989011221,
+              "peak_difference_lu": -0.9000000000000021,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 1.2491005430344586,
+              "peak_difference_lu": 3.8999999999999986,
+              "suppression": false
+            }
+          ],
+          "suppression": false
+        },
+        {
+          "start_s": 67.37,
+          "end_s": 68.92,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": -0.6631900989011221,
+              "peak_difference_lu": -0.9000000000000021,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 1.2491005430344586,
+              "peak_difference_lu": 3.8999999999999986,
+              "suppression": false
+            }
+          ],
+          "suppression": false
+        },
+        {
+          "start_s": 67.37,
+          "end_s": 68.94,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": -0.6631900989011221,
+              "peak_difference_lu": -0.9000000000000021,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 1.2491005430344586,
+              "peak_difference_lu": 3.8999999999999986,
+              "suppression": false
+            }
+          ],
+          "suppression": false
+        },
+        {
+          "start_s": 67.37,
+          "end_s": 68.96000000000001,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": -0.3735589485716204,
+              "peak_difference_lu": -0.9000000000000021,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 1.5387316933639603,
+              "peak_difference_lu": 3.8999999999999986,
+              "suppression": false
+            }
+          ],
+          "suppression": false
+        },
+        {
+          "start_s": 67.39,
+          "end_s": 68.88,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": 1.3368099010988779,
+              "peak_difference_lu": -0.9000000000000021,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 3.2491005430344586,
+              "peak_difference_lu": 3.8999999999999986,
+              "suppression": false
+            }
+          ],
+          "suppression": false
+        },
+        {
+          "start_s": 67.39,
+          "end_s": 68.9,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": -0.6631900989011221,
+              "peak_difference_lu": -0.9000000000000021,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 1.2491005430344586,
+              "peak_difference_lu": 3.8999999999999986,
+              "suppression": false
+            }
+          ],
+          "suppression": false
+        },
+        {
+          "start_s": 67.39,
+          "end_s": 68.92,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": -0.6631900989011221,
+              "peak_difference_lu": -0.9000000000000021,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 1.2491005430344586,
+              "peak_difference_lu": 3.8999999999999986,
+              "suppression": false
+            }
+          ],
+          "suppression": false
+        },
+        {
+          "start_s": 67.39,
+          "end_s": 68.94,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": -0.6631900989011221,
+              "peak_difference_lu": -0.9000000000000021,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 1.2491005430344586,
+              "peak_difference_lu": 3.8999999999999986,
+              "suppression": false
+            }
+          ],
+          "suppression": false
+        },
+        {
+          "start_s": 67.39,
+          "end_s": 68.96000000000001,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": -0.3735589485716204,
+              "peak_difference_lu": -0.9000000000000021,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 1.5387316933639603,
+              "peak_difference_lu": 3.8999999999999986,
+              "suppression": false
+            }
+          ],
+          "suppression": false
+        },
+        {
+          "start_s": 67.41,
+          "end_s": 68.88,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": 1.82783819136057,
+              "peak_difference_lu": 0.1999999999999993,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 3.7401288332961506,
+              "peak_difference_lu": 5.0,
+              "suppression": true
+            }
+          ],
+          "suppression": true
+        },
+        {
+          "start_s": 67.41,
+          "end_s": 68.9,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": 1.82783819136057,
+              "peak_difference_lu": 0.1999999999999993,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 3.7401288332961506,
+              "peak_difference_lu": 5.0,
+              "suppression": true
+            }
+          ],
+          "suppression": true
+        },
+        {
+          "start_s": 67.41,
+          "end_s": 68.92,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": -0.1721618086394301,
+              "peak_difference_lu": 0.1999999999999993,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 1.7401288332961506,
+              "peak_difference_lu": 5.0,
+              "suppression": true
+            }
+          ],
+          "suppression": true
+        },
+        {
+          "start_s": 67.41,
+          "end_s": 68.94,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": -0.1721618086394301,
+              "peak_difference_lu": 0.1999999999999993,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 1.7401288332961506,
+              "peak_difference_lu": 5.0,
+              "suppression": true
+            }
+          ],
+          "suppression": true
+        },
+        {
+          "start_s": 67.41,
+          "end_s": 68.96000000000001,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": 0.1349935408513332,
+              "peak_difference_lu": 0.1999999999999993,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 2.047284182786914,
+              "peak_difference_lu": 5.0,
+              "suppression": true
+            }
+          ],
+          "suppression": true
+        },
+        {
+          "start_s": 67.43,
+          "end_s": 68.88,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": 1.82783819136057,
+              "peak_difference_lu": 0.1999999999999993,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 3.7401288332961506,
+              "peak_difference_lu": 5.0,
+              "suppression": true
+            }
+          ],
+          "suppression": true
+        },
+        {
+          "start_s": 67.43,
+          "end_s": 68.9,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": 1.82783819136057,
+              "peak_difference_lu": 0.1999999999999993,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 3.7401288332961506,
+              "peak_difference_lu": 5.0,
+              "suppression": true
+            }
+          ],
+          "suppression": true
+        },
+        {
+          "start_s": 67.43,
+          "end_s": 68.92,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": 1.82783819136057,
+              "peak_difference_lu": 0.1999999999999993,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 3.7401288332961506,
+              "peak_difference_lu": 5.0,
+              "suppression": true
+            }
+          ],
+          "suppression": true
+        },
+        {
+          "start_s": 67.43,
+          "end_s": 68.94,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": -0.1721618086394301,
+              "peak_difference_lu": 0.1999999999999993,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 1.7401288332961506,
+              "peak_difference_lu": 5.0,
+              "suppression": true
+            }
+          ],
+          "suppression": true
+        },
+        {
+          "start_s": 67.43,
+          "end_s": 68.96000000000001,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": 0.1349935408513332,
+              "peak_difference_lu": 0.1999999999999993,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 2.047284182786914,
+              "peak_difference_lu": 5.0,
+              "suppression": true
+            }
+          ],
+          "suppression": true
+        }
+      ]
+    },
+    {
+      "boundary_basis": "actual_native_producer_tmap",
+      "suppression_count": 0,
+      "total": 25,
+      "rows": [
+        {
+          "start_s": 67.30499999999999,
+          "end_s": 68.86999999999999,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": -0.6631900989011221,
+              "peak_difference_lu": -0.9000000000000021,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 2.2200205546968164,
+              "peak_difference_lu": 3.8999999999999986,
+              "suppression": false
+            }
+          ],
+          "suppression": false
+        },
+        {
+          "start_s": 67.30499999999999,
+          "end_s": 68.89,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": -0.6631900989011221,
+              "peak_difference_lu": -0.9000000000000021,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 2.2200205546968164,
+              "peak_difference_lu": 3.8999999999999986,
+              "suppression": false
+            }
+          ],
+          "suppression": false
+        },
+        {
+          "start_s": 67.30499999999999,
+          "end_s": 68.91,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": -0.6631900989011221,
+              "peak_difference_lu": -0.9000000000000021,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 2.2200205546968164,
+              "peak_difference_lu": 3.8999999999999986,
+              "suppression": false
+            }
+          ],
+          "suppression": false
+        },
+        {
+          "start_s": 67.30499999999999,
+          "end_s": 68.92999999999999,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": -0.6631900989011221,
+              "peak_difference_lu": -0.9000000000000021,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 2.2200205546968164,
+              "peak_difference_lu": 3.8999999999999986,
+              "suppression": false
+            }
+          ],
+          "suppression": false
+        },
+        {
+          "start_s": 67.30499999999999,
+          "end_s": 68.95,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": -0.3735589485716204,
+              "peak_difference_lu": -0.9000000000000021,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 2.509651705026318,
+              "peak_difference_lu": 3.8999999999999986,
+              "suppression": false
+            }
+          ],
+          "suppression": false
+        },
+        {
+          "start_s": 67.325,
+          "end_s": 68.86999999999999,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": -0.6631900989011221,
+              "peak_difference_lu": -0.9000000000000021,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 2.2200205546968164,
+              "peak_difference_lu": 3.8999999999999986,
+              "suppression": false
+            }
+          ],
+          "suppression": false
+        },
+        {
+          "start_s": 67.325,
+          "end_s": 68.89,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": -0.6631900989011221,
+              "peak_difference_lu": -0.9000000000000021,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 2.2200205546968164,
+              "peak_difference_lu": 3.8999999999999986,
+              "suppression": false
+            }
+          ],
+          "suppression": false
+        },
+        {
+          "start_s": 67.325,
+          "end_s": 68.91,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": -0.6631900989011221,
+              "peak_difference_lu": -0.9000000000000021,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 2.2200205546968164,
+              "peak_difference_lu": 3.8999999999999986,
+              "suppression": false
+            }
+          ],
+          "suppression": false
+        },
+        {
+          "start_s": 67.325,
+          "end_s": 68.92999999999999,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": -0.6631900989011221,
+              "peak_difference_lu": -0.9000000000000021,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 2.2200205546968164,
+              "peak_difference_lu": 3.8999999999999986,
+              "suppression": false
+            }
+          ],
+          "suppression": false
+        },
+        {
+          "start_s": 67.325,
+          "end_s": 68.95,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": -0.3735589485716204,
+              "peak_difference_lu": -0.9000000000000021,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 2.509651705026318,
+              "peak_difference_lu": 3.8999999999999986,
+              "suppression": false
+            }
+          ],
+          "suppression": false
+        },
+        {
+          "start_s": 67.345,
+          "end_s": 68.86999999999999,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": -0.6631900989011221,
+              "peak_difference_lu": -0.9000000000000021,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 2.2200205546968164,
+              "peak_difference_lu": 3.8999999999999986,
+              "suppression": false
+            }
+          ],
+          "suppression": false
+        },
+        {
+          "start_s": 67.345,
+          "end_s": 68.89,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": -0.6631900989011221,
+              "peak_difference_lu": -0.9000000000000021,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 2.2200205546968164,
+              "peak_difference_lu": 3.8999999999999986,
+              "suppression": false
+            }
+          ],
+          "suppression": false
+        },
+        {
+          "start_s": 67.345,
+          "end_s": 68.91,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": -0.6631900989011221,
+              "peak_difference_lu": -0.9000000000000021,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 2.2200205546968164,
+              "peak_difference_lu": 3.8999999999999986,
+              "suppression": false
+            }
+          ],
+          "suppression": false
+        },
+        {
+          "start_s": 67.345,
+          "end_s": 68.92999999999999,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": -0.6631900989011221,
+              "peak_difference_lu": -0.9000000000000021,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 2.2200205546968164,
+              "peak_difference_lu": 3.8999999999999986,
+              "suppression": false
+            }
+          ],
+          "suppression": false
+        },
+        {
+          "start_s": 67.345,
+          "end_s": 68.95,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": -0.3735589485716204,
+              "peak_difference_lu": -0.9000000000000021,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 2.509651705026318,
+              "peak_difference_lu": 3.8999999999999986,
+              "suppression": false
+            }
+          ],
+          "suppression": false
+        },
+        {
+          "start_s": 67.365,
+          "end_s": 68.86999999999999,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": -0.6631900989011221,
+              "peak_difference_lu": -0.9000000000000021,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 2.2200205546968164,
+              "peak_difference_lu": 3.8999999999999986,
+              "suppression": false
+            }
+          ],
+          "suppression": false
+        },
+        {
+          "start_s": 67.365,
+          "end_s": 68.89,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": -0.6631900989011221,
+              "peak_difference_lu": -0.9000000000000021,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 2.2200205546968164,
+              "peak_difference_lu": 3.8999999999999986,
+              "suppression": false
+            }
+          ],
+          "suppression": false
+        },
+        {
+          "start_s": 67.365,
+          "end_s": 68.91,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": -0.6631900989011221,
+              "peak_difference_lu": -0.9000000000000021,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 2.2200205546968164,
+              "peak_difference_lu": 3.8999999999999986,
+              "suppression": false
+            }
+          ],
+          "suppression": false
+        },
+        {
+          "start_s": 67.365,
+          "end_s": 68.92999999999999,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": -0.6631900989011221,
+              "peak_difference_lu": -0.9000000000000021,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 2.2200205546968164,
+              "peak_difference_lu": 3.8999999999999986,
+              "suppression": false
+            }
+          ],
+          "suppression": false
+        },
+        {
+          "start_s": 67.365,
+          "end_s": 68.95,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": -0.3735589485716204,
+              "peak_difference_lu": -0.9000000000000021,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 2.509651705026318,
+              "peak_difference_lu": 3.8999999999999986,
+              "suppression": false
+            }
+          ],
+          "suppression": false
+        },
+        {
+          "start_s": 67.385,
+          "end_s": 68.86999999999999,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": 1.3368099010988779,
+              "peak_difference_lu": -0.9000000000000021,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 4.220020554696816,
+              "peak_difference_lu": 3.8999999999999986,
+              "suppression": false
+            }
+          ],
+          "suppression": false
+        },
+        {
+          "start_s": 67.385,
+          "end_s": 68.89,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": -0.6631900989011221,
+              "peak_difference_lu": -0.9000000000000021,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 2.2200205546968164,
+              "peak_difference_lu": 3.8999999999999986,
+              "suppression": false
+            }
+          ],
+          "suppression": false
+        },
+        {
+          "start_s": 67.385,
+          "end_s": 68.91,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": -0.6631900989011221,
+              "peak_difference_lu": -0.9000000000000021,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 2.2200205546968164,
+              "peak_difference_lu": 3.8999999999999986,
+              "suppression": false
+            }
+          ],
+          "suppression": false
+        },
+        {
+          "start_s": 67.385,
+          "end_s": 68.92999999999999,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": -0.6631900989011221,
+              "peak_difference_lu": -0.9000000000000021,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 2.2200205546968164,
+              "peak_difference_lu": 3.8999999999999986,
+              "suppression": false
+            }
+          ],
+          "suppression": false
+        },
+        {
+          "start_s": 67.385,
+          "end_s": 68.95,
+          "neighbors": [
+            {
+              "neighbor": 2,
+              "effective_difference_lu": -0.3735589485716204,
+              "peak_difference_lu": -0.9000000000000021,
+              "suppression": false
+            },
+            {
+              "neighbor": 4,
+              "effective_difference_lu": 2.509651705026318,
+              "peak_difference_lu": 3.8999999999999986,
+              "suppression": false
+            }
+          ],
+          "suppression": false
+        }
+      ]
+    }
+  ],
+  "no_TTS_no_production_no_source_or_existing_cache_or_core_or_threshold_changed": true,
+  "private_proposal_audio_deleted": true
+}

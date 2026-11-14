@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "/workspace/work/video-revision-delivery/native-inline-engine-frozen-20261114-v4-exact07-md-sync/ingest_inline_article.py", line 103, in <module>
+    else:D.require(a.boundary_review,'Actual five-frame review required');finalize(a)
+                                                                          ^^^^^^^^^^^
+  File "/workspace/work/video-revision-delivery/native-inline-engine-frozen-20261114-v4-exact07-md-sync/ingest_inline_article.py", line 86, in finalize
+    import_one(root,n,out);D.write(out/n/'actual-boundary-frame-review.json',review)
+    ^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/video-revision-delivery/native-inline-engine-frozen-20261114-v4-exact07-md-sync/import_actual_article.py", line 141, in import_one
+    record=D.validate_article(config,item,old,reorder,images,compose,crop,changed_audio)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/video-revision-delivery/native-inline-engine-frozen-20261114-v4-exact07-md-sync/delivery.py", line 476, in validate_article
+    actual_illustrated_tail_report(qc,run,item['evidence'],native_status_sha256,next(r for r in layouts['articles']if r['source_id']==n),book_map[n])
+  File "/workspace/work/video-revision-delivery/native-inline-engine-frozen-20261114-v4-exact07-md-sync/delivery.py", line 391, in actual_illustrated_tail_report
+    require(binding['actual_request_source_sha256']==qc['source_sha256']['request']['json'] and binding['approved_full_source_sha256']==layout_row['source_json_sha256']and binding['approved_ordered_layout_sha256']==layout_row['source_layout_structural_sha256'],'Actual approved layout and exact render request differ')
+  File "/workspace/work/video-revision-delivery/native-inline-engine-frozen-20261114-v4-exact07-md-sync/delivery.py", line 23, in require
+    raise ValueError(message)
+ValueError: Actual approved layout and exact render request differ

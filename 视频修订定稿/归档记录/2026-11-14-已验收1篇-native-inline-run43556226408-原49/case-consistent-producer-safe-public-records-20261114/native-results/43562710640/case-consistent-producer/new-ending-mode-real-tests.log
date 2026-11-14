@@ -1,0 +1,41 @@
+{
+  "status": "passed_real_complete_original_namespace_ending_mode_tests",
+  "production_audio_or_video_acceptance": false,
+  "good_original_source": {
+    "original_approved_points": [
+      45598,
+      57353
+    ],
+    "JSON_all_bytes_and_all_metadata_preserved": true,
+    "original_producer_guard_passed": true
+  },
+  "bad_front_and_tail": [
+    {
+      "channel": 0,
+      "sample": 38700,
+      "original_bad_point_gate_rejected": true,
+      "no_automatic_fallback_or_write": true
+    },
+    {
+      "channel": 1,
+      "sample": 48300,
+      "original_bad_point_gate_rejected": true,
+      "no_automatic_fallback_or_write": true
+    }
+  ],
+  "default_mode": {
+    "original_vs_candidate_auto_full_JSON_deep_exact": true,
+    "actual_auto_points": [
+      52620,
+      64500
+    ]
+  },
+  "no_existing_points_uses_exact_original_auto_algorithm": true,
+  "whole_speed_mode_preserves_JSON_bytes": true,
+  "actual_shell_pipeline_bad_point_exit_propagated": true,
+  "request_SHA256": "842e44e5aa19fddcfa239cb6530c5152341cd86e11db959543d02d8670ca13e8",
+  "candidate_tool_SHA256": "1a5d43c4f5483014b69bbea7ad43dddb0333a9a80e29bb2b4c8029d8915ff798",
+  "original_producer_namespace_not_replaced_by_mocks": true,
+  "private_raw_audio_exported": false
+}
+
