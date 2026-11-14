@@ -1,0 +1,3006 @@
+{
+  "article": "36",
+  "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+  "reference_prepared": true,
+  "acceptance": false,
+  "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+  "source_sha256": "76daa28f421bd40d8e2744d4e785a34bb8ee67da1403b4b1546db9465c535cef",
+  "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+  "checker_program_sha256": {
+    "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+    "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+    "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+    "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+    "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+    "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+  },
+  "reference_calls": [
+    {
+      "sentence": "标题",
+      "piece": null,
+      "reference_kind": "title-default-raw",
+      "method": "create",
+      "source_slice": "The Company That Invented Its Own Killer",
+      "exact_native_cache_key": "9ca69ffd8f6bab3292aea1fd47058f7cc56ea32c.pkl",
+      "cache_input_text_sha256": "8bc8bf7cb40eee4f079f72424845202cb2a09916c32f8df4604f2ac202726bfc",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "标题",
+      "piece": null,
+      "reference_kind": "title-default-timed",
+      "method": "create_timed",
+      "source_slice": "The Company That Invented Its Own Killer",
+      "exact_native_cache_key": "7ce052e4bf21622b156ea2fc1479622f354a9ff9.pkl",
+      "cache_input_text_sha256": "8bc8bf7cb40eee4f079f72424845202cb2a09916c32f8df4604f2ac202726bfc",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "In 1975 Kodak engineer Steven Sasson built the first digital camera.",
+      "exact_native_cache_key": "17e6cf54b5953387efc5e33f9372b5855a65d630.pkl",
+      "cache_input_text_sha256": "93ca8ec5cbff3001efb229717092645b28a9d32f1f75837df86d2891c5e727b3",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "In 1975 Kodak engineer Steven Sasson built the first digital camera.",
+      "exact_native_cache_key": "4848bef0523caeb3610bd4e6cfa4b5906ed75fc6.pkl",
+      "cache_input_text_sha256": "93ca8ec5cbff3001efb229717092645b28a9d32f1f75837df86d2891c5e727b3",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "The toaster-sized gadget, a cumbersome heavyweight of about eight pounds, was hardly portable, let alone handheld.",
+      "exact_native_cache_key": "861bff459c09ebfa06294c73ab62185a22c46f9a.pkl",
+      "cache_input_text_sha256": "e805b38642a74ee7dee226e5acf4f75cd0b98e24b210e9be3bb95324d4da1d2f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "The toaster-sized gadget, a cumbersome heavyweight of about eight pounds, was hardly portable, let alone handheld.",
+      "exact_native_cache_key": "f2d4be2298a57ac16ebe4206527075d5d2c8eac1.pkl",
+      "cache_input_text_sha256": "e805b38642a74ee7dee226e5acf4f75cd0b98e24b210e9be3bb95324d4da1d2f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "The toaster-sized gadget,",
+      "exact_native_cache_key": "680d41c4a13bc7e076f6d0a5106a69cd603a1606.pkl",
+      "cache_input_text_sha256": "aca397a3ecf0ef7b72ca4bcc64e7567002aeca781824caea07f068b4db07e0ad",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "a cumbersome heavyweight of about eight pounds,",
+      "exact_native_cache_key": "c7ae525d123ba465b24cd8cb7e3fad461011bfd1.pkl",
+      "cache_input_text_sha256": "453bf05acd4537afc950acd825abed8505b4f69d755cf1893f31a2b49d127ec2",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "was hardly portable, let alone handheld.",
+      "exact_native_cache_key": "22708023c2698b0ad12a3a6ad13c252313b64202.pkl",
+      "cache_input_text_sha256": "fb6223909aa9b2f540f53f2645c18014c114977abe0a5fde08e6f06d7619957b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "The toaster-sized gadget,",
+      "exact_native_cache_key": "680d41c4a13bc7e076f6d0a5106a69cd603a1606.pkl",
+      "cache_input_text_sha256": "aca397a3ecf0ef7b72ca4bcc64e7567002aeca781824caea07f068b4db07e0ad",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "a cumbersome heavyweight of about eight pounds,",
+      "exact_native_cache_key": "c7ae525d123ba465b24cd8cb7e3fad461011bfd1.pkl",
+      "cache_input_text_sha256": "453bf05acd4537afc950acd825abed8505b4f69d755cf1893f31a2b49d127ec2",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "was hardly portable,",
+      "exact_native_cache_key": "8dcd8ef200df284d9329972841d79989100f2535.pkl",
+      "cache_input_text_sha256": "7f97c8f7ea45e2183eaa682399fd03830c8f662c5b3533494aff5dfe5a94e739",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 4,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "let alone handheld.",
+      "exact_native_cache_key": "4c4df895823b5aee43e599ec609b45cd122803c7.pkl",
+      "cache_input_text_sha256": "6e19561d31cd08838eb03f815135612ef136612a82ecec7a506a566c844f240e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Its first rudimentary picture held 10,000 black-and-white pixels.",
+      "exact_native_cache_key": "a184ac996df7e7915c7d02c6e24aa6a3837d1aa2.pkl",
+      "cache_input_text_sha256": "d48c8f0562e99e59c665533a1288407415d874dcb621820df08f82069f291596",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Its first rudimentary picture held 10,000 black-and-white pixels.",
+      "exact_native_cache_key": "b365b5edad656d5abff64c502b0f110546ad0348.pkl",
+      "cache_input_text_sha256": "d48c8f0562e99e59c665533a1288407415d874dcb621820df08f82069f291596",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Recording it on a cassette took 23 seconds, and a playback unit showed it on a television.",
+      "exact_native_cache_key": "029b0aadd0d6f12c46c5ab5c050fa04c41d8d399.pkl",
+      "cache_input_text_sha256": "7b8d202a864c73e6f4dfd633aeda02b06d1185bb4ca256ca32b676f5642752ff",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Recording it on a cassette took 23 seconds, and a playback unit showed it on a television.",
+      "exact_native_cache_key": "709d58fcd52739da0e61f361359e7e811fdeb88d.pkl",
+      "cache_input_text_sha256": "7b8d202a864c73e6f4dfd633aeda02b06d1185bb4ca256ca32b676f5642752ff",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Recording it on a cassette took 23 seconds,",
+      "exact_native_cache_key": "678bf6a32d8d5fc6c29a0d79c4265f8055d6d29f.pkl",
+      "cache_input_text_sha256": "5a60658aa1e528276f7f575fc4b7f89eafebdd7d72f826d81c2bdb94003d8254",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "and a playback unit showed it on a television.",
+      "exact_native_cache_key": "54785fed306dd47c7ecda10ea27e8d18b579646e.pkl",
+      "cache_input_text_sha256": "79b9de9b67dff546524500176a37c669c1d876de52656675da5f0a0ab14224bc",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Recording it on a cassette took 23 seconds,",
+      "exact_native_cache_key": "678bf6a32d8d5fc6c29a0d79c4265f8055d6d29f.pkl",
+      "cache_input_text_sha256": "5a60658aa1e528276f7f575fc4b7f89eafebdd7d72f826d81c2bdb94003d8254",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "and a playback unit showed it on a television.",
+      "exact_native_cache_key": "54785fed306dd47c7ecda10ea27e8d18b579646e.pkl",
+      "cache_input_text_sha256": "79b9de9b67dff546524500176a37c669c1d876de52656675da5f0a0ab14224bc",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Kodak's revenues showed its dependence on film, the profitable pillar of its business.",
+      "exact_native_cache_key": "d4dc03f6735aa6624d87ddea964816a165685419.pkl",
+      "cache_input_text_sha256": "ded701344b573d3221a27220c8affd49c48f70172680fb504fa0c450c5623b22",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Kodak's revenues showed its dependence on film, the profitable pillar of its business.",
+      "exact_native_cache_key": "5f6ee82e875b7f471f61e9173592d1f6538bab6a.pkl",
+      "cache_input_text_sha256": "ded701344b573d3221a27220c8affd49c48f70172680fb504fa0c450c5623b22",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Kodak's revenues showed its dependence on film,",
+      "exact_native_cache_key": "7540bb5983acb17c17a23894e2af8c1a0e913688.pkl",
+      "cache_input_text_sha256": "2580249e6db94ed8a645e5b2cb4cfcc86673f49fbe4f6c130e16fced6aade36e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "the profitable pillar of its business.",
+      "exact_native_cache_key": "4f10337d8be51a719c4b57da3f925e189877c743.pkl",
+      "cache_input_text_sha256": "9198bc461952970f9ce5e8423f0007d2ba72787dd4f6c1e12b6294b181b95640",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Kodak's revenues showed its dependence on film,",
+      "exact_native_cache_key": "7540bb5983acb17c17a23894e2af8c1a0e913688.pkl",
+      "cache_input_text_sha256": "2580249e6db94ed8a645e5b2cb4cfcc86673f49fbe4f6c130e16fced6aade36e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "the profitable pillar of its business.",
+      "exact_native_cache_key": "4f10337d8be51a719c4b57da3f925e189877c743.pkl",
+      "cache_input_text_sha256": "9198bc461952970f9ce5e8423f0007d2ba72787dd4f6c1e12b6294b181b95640",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Technical staffers were appreciative of the camera, but it needed no film.",
+      "exact_native_cache_key": "fa2d50e301cb6b730fe7b83f2fc7221559056a48.pkl",
+      "cache_input_text_sha256": "cf646d2841896bb89028a9b1748a1334ac533c24a35a5f7f630d5ef88ef4adad",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Technical staffers were appreciative of the camera, but it needed no film.",
+      "exact_native_cache_key": "64bdc505585050ecb13b8a8d2ad478e49caffe72.pkl",
+      "cache_input_text_sha256": "cf646d2841896bb89028a9b1748a1334ac533c24a35a5f7f630d5ef88ef4adad",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Technical staffers were appreciative of the camera,",
+      "exact_native_cache_key": "922d0cbd6d44b028d5aa3f3cc7bfe923bb131a0b.pkl",
+      "cache_input_text_sha256": "b9f55690a35614665d89c5f9b90a41f9a187016b0ec3e4002b733620befc6036",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "but it needed no film.",
+      "exact_native_cache_key": "37f234b9f02407df41c697f734d915d08f1bc361.pkl",
+      "cache_input_text_sha256": "723355c4db6549efa256e26e68909850b3ce7929009d41e19987d10d00ea3352",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Technical staffers were appreciative of the camera,",
+      "exact_native_cache_key": "922d0cbd6d44b028d5aa3f3cc7bfe923bb131a0b.pkl",
+      "cache_input_text_sha256": "b9f55690a35614665d89c5f9b90a41f9a187016b0ec3e4002b733620befc6036",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "but it needed no film.",
+      "exact_native_cache_key": "37f234b9f02407df41c697f734d915d08f1bc361.pkl",
+      "cache_input_text_sha256": "723355c4db6549efa256e26e68909850b3ce7929009d41e19987d10d00ea3352",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "By Sasson's recollection, his superiors at headquarters called it cute and urged him to keep it hushed.",
+      "exact_native_cache_key": "c7917d063cf1ae5e209cb2c19676b3e867c1b168.pkl",
+      "cache_input_text_sha256": "774603c11dc34939eba967132f987a9a78fa375aaeefb0aef5c73bdf194cfa79",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "By Sasson's recollection, his superiors at headquarters called it cute and urged him to keep it hushed.",
+      "exact_native_cache_key": "7f4536f93e2d3739b45279c6d6ee6aca589d379b.pkl",
+      "cache_input_text_sha256": "774603c11dc34939eba967132f987a9a78fa375aaeefb0aef5c73bdf194cfa79",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "By Sasson's recollection,",
+      "exact_native_cache_key": "d9dea0468a6d1c7dc840577c4ddfa29fd776cac6.pkl",
+      "cache_input_text_sha256": "b4c3e584065a9e3d99b2cdf0b957e38b28c0aaac49cfaca68c271787e24bd185",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "his superiors at headquarters called it cute",
+      "exact_native_cache_key": "5a4abb0d88c4c847f35173f078f9ce45078c40ff.pkl",
+      "cache_input_text_sha256": "c7b98ee290e6829cc0d4402cc1c52fd91a6a14a0a22f3ad14eb921a1d30d757b",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "and urged him to keep it hushed.",
+      "exact_native_cache_key": "435f760676c244b579d5d2efc595ed4469dff72e.pkl",
+      "cache_input_text_sha256": "24f9bab3c31aaa46587a951bb40e1e87d5c2b671bf39266ef0d309142db76fb5",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "By Sasson's recollection,",
+      "exact_native_cache_key": "d9dea0468a6d1c7dc840577c4ddfa29fd776cac6.pkl",
+      "cache_input_text_sha256": "b4c3e584065a9e3d99b2cdf0b957e38b28c0aaac49cfaca68c271787e24bd185",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "his superiors at headquarters called it cute and urged him to keep it hushed.",
+      "exact_native_cache_key": "cf0acb19ce3225d7d4253197163029997daedf63.pkl",
+      "cache_input_text_sha256": "c8d509c127255c5bb4ceb7e9a26b42e6574f44631e7617a6d9c55cdfe72adf75",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "A patent followed in 1978.",
+      "exact_native_cache_key": "49f30763aef9d760b02d5d5515b793e0667484a5.pkl",
+      "cache_input_text_sha256": "553fbb617ed48ca85465cc48729aeb73766d5a3b4593d3b61a87eb79664f1717",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "A patent followed in 1978.",
+      "exact_native_cache_key": "724ac9c67f11117466f673b82bba3a5cc16e9f4d.pkl",
+      "cache_input_text_sha256": "553fbb617ed48ca85465cc48729aeb73766d5a3b4593d3b61a87eb79664f1717",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Production never did.",
+      "exact_native_cache_key": "86ea5d07eac4d2131f18ea257b2bfee11355b289.pkl",
+      "cache_input_text_sha256": "c816374ce40ee5cd606c23494a081ba2e01288c96d1786dc7c0f25e67021953f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Production never did.",
+      "exact_native_cache_key": "6b737a8e442eabf218cd4f0fa173912c691379ca.pkl",
+      "cache_input_text_sha256": "c816374ce40ee5cd606c23494a081ba2e01288c96d1786dc7c0f25e67021953f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "The advent of digital photography proved disruptive.",
+      "exact_native_cache_key": "a199fc209dbbbfd0f8b87e7364de579f88b66efe.pkl",
+      "cache_input_text_sha256": "5724e6b0404dd78248f8beaa29daa4f5474be70f64be52f92adc70626b3f47e9",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "The advent of digital photography proved disruptive.",
+      "exact_native_cache_key": "f2e9f1028c013721022ad51ce916bcc9733c474d.pkl",
+      "cache_input_text_sha256": "5724e6b0404dd78248f8beaa29daa4f5474be70f64be52f92adc70626b3f47e9",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "In June 2009 Kodak said it would stop making Kodachrome, its analogue film, citing lessened demand in the digital era.",
+      "exact_native_cache_key": "cbab5babc081ce581b142d6adce4899768070eea.pkl",
+      "cache_input_text_sha256": "ab92e2712748867d7aef12390928a765c4ae47e521fb4859a72d097aa1884ae4",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "In June 2009 Kodak said it would stop making Kodachrome, its analogue film, citing lessened demand in the digital era.",
+      "exact_native_cache_key": "894e725da8a5a091e85788dfbe01a7c19accf308.pkl",
+      "cache_input_text_sha256": "ab92e2712748867d7aef12390928a765c4ae47e521fb4859a72d097aa1884ae4",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "In June 2009 Kodak said it would stop making Kodachrome, its analogue film,",
+      "exact_native_cache_key": "619adacffaa38f047ed2536536a7aedfdaedf2c4.pkl",
+      "cache_input_text_sha256": "6f96e871ff1519e8e4718d437edfc8be9e8d9d300177e79735bfda8ce76b8822",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "citing lessened demand in the digital era.",
+      "exact_native_cache_key": "012c7583923ae78887c07c9c57e5f49995ebdd70.pkl",
+      "cache_input_text_sha256": "d481425b98824b7c3442b41ca493216b1650053b21092adc3731088c9a03cea3",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "In June 2009 Kodak said it would stop making Kodachrome,",
+      "exact_native_cache_key": "87c8bf1615d9b990f5382ac0c2d9bbd822375918.pkl",
+      "cache_input_text_sha256": "759766dff0a360776c4c9e0fdd5ed6534020a52b0991aa50092ecba84fd9f042",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "its analogue film,",
+      "exact_native_cache_key": "208876489f01d86f0ae78fe161c6430ec07fca30.pkl",
+      "cache_input_text_sha256": "05b746ebd29c04efb71c3469d4ca9112be96f9203ca52e99c6d7cc60d607a67c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "citing lessened demand in the digital era.",
+      "exact_native_cache_key": "012c7583923ae78887c07c9c57e5f49995ebdd70.pkl",
+      "cache_input_text_sha256": "d481425b98824b7c3442b41ca493216b1650053b21092adc3731088c9a03cea3",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Kodak's manpower had reached an apex of about 145,000 in the 1980s.",
+      "exact_native_cache_key": "55477b77ba02237d849ada7a609f3a3c296f9f89.pkl",
+      "cache_input_text_sha256": "6eba82db9b8101b134bd4cbb2f4609160839b224945b7d137a35bafd7fe37381",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Kodak's manpower had reached an apex of about 145,000 in the 1980s.",
+      "exact_native_cache_key": "5d7f56ffc51ecbe706086ab39a7d7f0f61d10402.pkl",
+      "cache_input_text_sha256": "6eba82db9b8101b134bd4cbb2f4609160839b224945b7d137a35bafd7fe37381",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "By 2012, layoffs since 2003 had slashed 47,000 jobs, alongside the shutdown of 13 factories and some 130 labs.",
+      "exact_native_cache_key": "461931a802cdc4846126edea92f5aceaf074fd71.pkl",
+      "cache_input_text_sha256": "0a4f6056d98752f218f641105301510b0ceb535a3163a2204a35eda2571af5f6",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "By 2012, layoffs since 2003 had slashed 47,000 jobs, alongside the shutdown of 13 factories and some 130 labs.",
+      "exact_native_cache_key": "b66bf876330977d0c4e4491793e3dd385d7c40d4.pkl",
+      "cache_input_text_sha256": "0a4f6056d98752f218f641105301510b0ceb535a3163a2204a35eda2571af5f6",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "By 2012, layoffs since 2003 had slashed 47,000 jobs,",
+      "exact_native_cache_key": "307776dd58c2955b70d37104f27e8e7f0cab823b.pkl",
+      "cache_input_text_sha256": "49e9754036874ff27593f7941abdd946bc909060db82845b2ec4f5303f028880",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "alongside the shutdown of 13 factories and some 130 labs.",
+      "exact_native_cache_key": "01417e1f18c73fe0fa7cb4884f6dc4051abcdb4c.pkl",
+      "cache_input_text_sha256": "c2485b006a4abf6885231f14c941c83c98fab3071651f7150129513113e7da86",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "By 2012,",
+      "exact_native_cache_key": "5590097de586c490deb55adb7a8b7f15c1ff4414.pkl",
+      "cache_input_text_sha256": "b4556c304d0d2d7af08f281f1d726434e6f1c1c167761912de3f748fb14eb636",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "layoffs since 2003 had slashed 47,000 jobs,",
+      "exact_native_cache_key": "c4e7f6854c55eef29a81a4d0ecbbbe2c5cd0fe08.pkl",
+      "cache_input_text_sha256": "893523c1af1a7bfb615b5d9c7454a88d334ead149824d854008a6aefcb2854f8",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "alongside the shutdown of 13 factories and some 130 labs.",
+      "exact_native_cache_key": "01417e1f18c73fe0fa7cb4884f6dc4051abcdb4c.pkl",
+      "cache_input_text_sha256": "c2485b006a4abf6885231f14c941c83c98fab3071651f7150129513113e7da86",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "On 19 January 2012 the 131-year-old firm sought Chapter 11 protection from its creditors, sapped by pension costs and years of slowness in going digital.",
+      "exact_native_cache_key": "c75b94189e6d0724602d2b01cd8a54c947c8d11b.pkl",
+      "cache_input_text_sha256": "149d476f829850c63ecb59a02675645db6e15dee3dd938838d3a282cdd4fb82c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "On 19 January 2012 the 131-year-old firm sought Chapter 11 protection from its creditors, sapped by pension costs and years of slowness in going digital.",
+      "exact_native_cache_key": "a8292c982a6c89571792fd5543d0201cd517623f.pkl",
+      "cache_input_text_sha256": "149d476f829850c63ecb59a02675645db6e15dee3dd938838d3a282cdd4fb82c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "On 19 January 2012 the 131-year-old firm sought Chapter 11 protection from its creditors,",
+      "exact_native_cache_key": "19f6c4ba41fa3f2592beb9eecf10a21695bf8c77.pkl",
+      "cache_input_text_sha256": "8fdcb8e61344fb7738ec495e09bb9a908a7708b5554075a16fad882ad9b88192",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "sapped by pension costs and years of slowness in going digital.",
+      "exact_native_cache_key": "89a7e70e7066b3be585861d10ec86d042657a154.pkl",
+      "cache_input_text_sha256": "79d2f8ac8d48b591d2c340dd2401d6e286c92d903eaa73709f160ad30d22d9f1",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "On 19 January 2012 the 131-year-old firm sought Chapter 11 protection from its creditors,",
+      "exact_native_cache_key": "19f6c4ba41fa3f2592beb9eecf10a21695bf8c77.pkl",
+      "cache_input_text_sha256": "8fdcb8e61344fb7738ec495e09bb9a908a7708b5554075a16fad882ad9b88192",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "sapped by pension costs and years of slowness in going digital.",
+      "exact_native_cache_key": "89a7e70e7066b3be585861d10ec86d042657a154.pkl",
+      "cache_input_text_sha256": "79d2f8ac8d48b591d2c340dd2401d6e286c92d903eaa73709f160ad30d22d9f1",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Citigroup, a lender, provided $950 million for its restructuring.",
+      "exact_native_cache_key": "0f13fb6f6c9a0042d45fdd4edf62bb845dc8dc3c.pkl",
+      "cache_input_text_sha256": "1f185ddf8036b1b59988e3d592f9d4d97c15178f6d99e74c4c2c14b2e84cfe8c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Citigroup, a lender, provided $950 million for its restructuring.",
+      "exact_native_cache_key": "1527ac746696067da829f5dd20c8c137553ad6a3.pkl",
+      "cache_input_text_sha256": "1f185ddf8036b1b59988e3d592f9d4d97c15178f6d99e74c4c2c14b2e84cfe8c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Citigroup,",
+      "exact_native_cache_key": "bc322ee4a554ad0b7b983b997394881b8eb541f0.pkl",
+      "cache_input_text_sha256": "0008c95e3add01a8359ca8e892182ee1cea40e00ec2398a32d61b395b10ce681",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "a lender,",
+      "exact_native_cache_key": "383342c9ac6ffe1a621b1805cfe662cb7cefb3cc.pkl",
+      "cache_input_text_sha256": "a4ed8d688c44619993dab6f83242b913850ab927797c500fcc6a00dc659e72b2",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "provided $950 million for its restructuring.",
+      "exact_native_cache_key": "3849bd42fc38976fe7c207a0e78ec441ec263f14.pkl",
+      "cache_input_text_sha256": "0dc1057c6cb989cbab76fe75d862f14bb85f540acdfdfaa0fa53e2adf51b84ce",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "A portfolio of 1,100 digital imaging patents fetched about $525 million from a consortium of twelve buyers, including the giants Apple and Google.",
+      "exact_native_cache_key": "95fe0385287f1ae70d16c02d2bf6181e1540da5a.pkl",
+      "cache_input_text_sha256": "806bdcf56300427df585b4a74113552f04970cf1dbeb25ca5570203bb512cac1",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "A portfolio of 1,100 digital imaging patents fetched about $525 million from a consortium of twelve buyers, including the giants Apple and Google.",
+      "exact_native_cache_key": "3d7e652741f8484f5ca37b793a017e98502a23fa.pkl",
+      "cache_input_text_sha256": "806bdcf56300427df585b4a74113552f04970cf1dbeb25ca5570203bb512cac1",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "A portfolio of 1,100 digital imaging patents",
+      "exact_native_cache_key": "c10a32b88d5f168a21119372da81aa584693765a.pkl",
+      "cache_input_text_sha256": "06d9aa7fa314e8a95ed9900e7c0cc42cac48b24499680302a51ac14368065af0",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "fetched about $525 million from a consortium of twelve buyers,",
+      "exact_native_cache_key": "63830cc30518fdd6619cab7ad5e87b8f71df4277.pkl",
+      "cache_input_text_sha256": "cef78b2032dc5675072c18818aa350329335338cc9f28b6dff3ac2f9d6b960e2",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "including the giants Apple and Google.",
+      "exact_native_cache_key": "2b95a23fd53968914497bf066daddf370e3c24ac.pkl",
+      "cache_input_text_sha256": "0a6caf96babc665377b640b55cd9bcdecb8ad3d28d4f90efba89d552d530dcd1",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "A portfolio of 1,100 digital imaging patents fetched about $525 million from a consortium of twelve buyers,",
+      "exact_native_cache_key": "431cead86b44354956da073de33cde14db3c73af.pkl",
+      "cache_input_text_sha256": "0c30eaecc8aa7575be2c48bab54cd00184a9fc5457eee2df262a34892e9282a9",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "including the giants Apple and Google.",
+      "exact_native_cache_key": "2b95a23fd53968914497bf066daddf370e3c24ac.pkl",
+      "cache_input_text_sha256": "0a6caf96babc665377b640b55cd9bcdecb8ad3d28d4f90efba89d552d530dcd1",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "After 19 months of reorganisation, the once-mighty Kodak left bankruptcy in September 2013, downsized, streamlined, and refocused as a commercial printer for business clients.",
+      "exact_native_cache_key": "be9944c0226a6ff42a365321fb415e73ac9027ac.pkl",
+      "cache_input_text_sha256": "5832766fbd80e66f8a513c81ab840e58809c75858f2b93832e3c81ddb49a5bf1",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "After 19 months of reorganisation, the once-mighty Kodak left bankruptcy in September 2013, downsized, streamlined, and refocused as a commercial printer for business clients.",
+      "exact_native_cache_key": "83f5388b946ddcb764b9b3e76fe382cd8c301206.pkl",
+      "cache_input_text_sha256": "5832766fbd80e66f8a513c81ab840e58809c75858f2b93832e3c81ddb49a5bf1",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "After 19 months of reorganisation, the once-mighty Kodak left bankruptcy in September 2013,",
+      "exact_native_cache_key": "ae37851b9588ea48bafe7c520220b8abeeec20dc.pkl",
+      "cache_input_text_sha256": "43bad1dde0fee53e383bab1d3e24969d9d076760cbdc6077047ac6653160719b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "downsized, streamlined, and refocused as a commercial printer for business clients.",
+      "exact_native_cache_key": "8cb7aef970e1a13b817127c49e4077791d6d727c.pkl",
+      "cache_input_text_sha256": "beeecef90c6829d315ad1b947a12da8111c1ff1013a1ba02a84f93f3753ee74d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "After 19 months of reorganisation,",
+      "exact_native_cache_key": "a1bf3e532b7b5cb1d9bb003a6be4e391735cce2a.pkl",
+      "cache_input_text_sha256": "deaa4e81a69cdfe4871df39880ce2d4e483809b949d5f2a71f2a89e391e36f9a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "the once-mighty Kodak left bankruptcy in September 2013,",
+      "exact_native_cache_key": "66481e42a1cb4502e24acf2ec630b2f6f6216118.pkl",
+      "cache_input_text_sha256": "8c0d930ac7d6a3c2bc1e556f73e5006a0378abe84e91f87d9c94ebecb21d9c20",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "downsized,",
+      "exact_native_cache_key": "9cf3d388613045d2487a559466cd6be40e734f9f.pkl",
+      "cache_input_text_sha256": "722023dde623f1a3e6830f96873ed80ec701767901e88c07a8ca10d05bde5a42",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": 4,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "streamlined,",
+      "exact_native_cache_key": "379d95498bb88eefe8ccae3c756c6b93d8ce86c0.pkl",
+      "cache_input_text_sha256": "06ac6ee4089c22083455955ac62f07f6b227434661089af81ea8270fbb4db9be",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": 5,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "and refocused as a commercial printer for business clients.",
+      "exact_native_cache_key": "365e592eef37ced1c72df72c2b198d91d002db05.pkl",
+      "cache_input_text_sha256": "845ee5bb18acb3ebf3683953822ff2664e3ad5f794381382839e664974d2246b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S18",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "In November 2009 President Obama had decorated Sasson with national laurels, commending his digital camera.",
+      "exact_native_cache_key": "5ba7f0b6c6fb5beaef84d43bd9d57a9b104edc7d.pkl",
+      "cache_input_text_sha256": "c52f4a6f8db95cbfca7901a10f33d5094631c39fee8bff42868a89967fcc5d1c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S18",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "In November 2009 President Obama had decorated Sasson with national laurels, commending his digital camera.",
+      "exact_native_cache_key": "d9cbd8bb9c81927303711c90298a0c4409d42122.pkl",
+      "cache_input_text_sha256": "c52f4a6f8db95cbfca7901a10f33d5094631c39fee8bff42868a89967fcc5d1c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S18",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "In November 2009 President Obama had decorated Sasson with national laurels,",
+      "exact_native_cache_key": "018e85657bf53c650aaccd25f77d26c91b25367f.pkl",
+      "cache_input_text_sha256": "13351440fc3fbea4cde38684bca6cf65c825159409e062928888402ca49fc7a4",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S18",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "commending his digital camera.",
+      "exact_native_cache_key": "17c42533e7a7d35afeafbcb3c81aed4358835f4d.pkl",
+      "cache_input_text_sha256": "a3525722e920a5eaf39324294f63072686ed61bbcf668c7162b98bd6eb7a7414",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S18",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "In November 2009 President Obama had decorated Sasson with national laurels,",
+      "exact_native_cache_key": "018e85657bf53c650aaccd25f77d26c91b25367f.pkl",
+      "cache_input_text_sha256": "13351440fc3fbea4cde38684bca6cf65c825159409e062928888402ca49fc7a4",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S18",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "commending his digital camera.",
+      "exact_native_cache_key": "17c42533e7a7d35afeafbcb3c81aed4358835f4d.pkl",
+      "cache_input_text_sha256": "a3525722e920a5eaf39324294f63072686ed61bbcf668c7162b98bd6eb7a7414",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S19",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "That medal's year also saw Kodak announce the end of Kodachrome.",
+      "exact_native_cache_key": "21d1e131d8f631e674060ac6a2c94de0f2cf147a.pkl",
+      "cache_input_text_sha256": "381cc00932c920a4ce76f0d7ff3325c9a2d6c6356e2d11eaa9d8e0e13c39d1ce",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S19",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "That medal's year also saw Kodak announce the end of Kodachrome.",
+      "exact_native_cache_key": "860b019370519793e93f0c64f36b71dbc81bac79.pkl",
+      "cache_input_text_sha256": "381cc00932c920a4ce76f0d7ff3325c9a2d6c6356e2d11eaa9d8e0e13c39d1ce",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    }
+  ],
+  "unique_reference_key_count": 81,
+  "raw_mother_cache_scalar_manifest": [
+    {
+      "exact_native_cache_key": "9ca69ffd8f6bab3292aea1fd47058f7cc56ea32c.pkl",
+      "pkl_sha256": "0e31e842d7c852a857c34f508499bc5094b148e9701ba4dad5a7c26b1cf8154c",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "标题",
+          "piece": null,
+          "reference_kind": "title-default-raw",
+          "method": "create",
+          "source_slice": "The Company That Invented Its Own Killer",
+          "exact_native_cache_key": "9ca69ffd8f6bab3292aea1fd47058f7cc56ea32c.pkl",
+          "cache_input_text_sha256": "8bc8bf7cb40eee4f079f72424845202cb2a09916c32f8df4604f2ac202726bfc",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "0e31e842d7c852a8",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        52736
+      ],
+      "unprocessed_array_sha256": "3f608f4343abc7bf83248031c884c68adfb53dae35e4bf50d4746ce2d381d906"
+    },
+    {
+      "exact_native_cache_key": "17e6cf54b5953387efc5e33f9372b5855a65d630.pkl",
+      "pkl_sha256": "56ed3194a9f0b490d4230b586e1122c85ff2cde0c64dc0264125275804d2ba3e",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In 1975 Kodak engineer Steven Sasson built the first digital camera.",
+          "exact_native_cache_key": "17e6cf54b5953387efc5e33f9372b5855a65d630.pkl",
+          "cache_input_text_sha256": "93ca8ec5cbff3001efb229717092645b28a9d32f1f75837df86d2891c5e727b3",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "56ed3194a9f0b490",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        146432
+      ],
+      "unprocessed_array_sha256": "4bd1b3fa188a31e196178f6988956e40dcb39debe836d88bdd2048e60d3d3fc7"
+    },
+    {
+      "exact_native_cache_key": "861bff459c09ebfa06294c73ab62185a22c46f9a.pkl",
+      "pkl_sha256": "958c568bf24e9d27cfaf9ae0d0ca139a118c4cdee3309800ce8a8a2c5d9fbb12",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The toaster-sized gadget, a cumbersome heavyweight of about eight pounds, was hardly portable, let alone handheld.",
+          "exact_native_cache_key": "861bff459c09ebfa06294c73ab62185a22c46f9a.pkl",
+          "cache_input_text_sha256": "e805b38642a74ee7dee226e5acf4f75cd0b98e24b210e9be3bb95324d4da1d2f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "958c568bf24e9d27",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        182272
+      ],
+      "unprocessed_array_sha256": "33c11c183d53cc8cd2297aca942e80ebc52b642bf6032a9013afa4bee4258800"
+    },
+    {
+      "exact_native_cache_key": "680d41c4a13bc7e076f6d0a5106a69cd603a1606.pkl",
+      "pkl_sha256": "b26cf2fa9b19b7e4c204705d72eeb3a7f84b6e619609ed50879d2b70662ba266",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "The toaster-sized gadget,",
+          "exact_native_cache_key": "680d41c4a13bc7e076f6d0a5106a69cd603a1606.pkl",
+          "cache_input_text_sha256": "aca397a3ecf0ef7b72ca4bcc64e7567002aeca781824caea07f068b4db07e0ad",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "The toaster-sized gadget,",
+          "exact_native_cache_key": "680d41c4a13bc7e076f6d0a5106a69cd603a1606.pkl",
+          "cache_input_text_sha256": "aca397a3ecf0ef7b72ca4bcc64e7567002aeca781824caea07f068b4db07e0ad",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "b26cf2fa9b19b7e4",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        36864
+      ],
+      "unprocessed_array_sha256": "44fb41647147c719ce6dbf7b2201efbbc8ad40818f3b882b286c047ed4a0c42f"
+    },
+    {
+      "exact_native_cache_key": "c7ae525d123ba465b24cd8cb7e3fad461011bfd1.pkl",
+      "pkl_sha256": "2fe7ede95be8afc6926adcd176ac6dca468647e6d5879739eb6918b7a1766478",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "a cumbersome heavyweight of about eight pounds,",
+          "exact_native_cache_key": "c7ae525d123ba465b24cd8cb7e3fad461011bfd1.pkl",
+          "cache_input_text_sha256": "453bf05acd4537afc950acd825abed8505b4f69d755cf1893f31a2b49d127ec2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a cumbersome heavyweight of about eight pounds,",
+          "exact_native_cache_key": "c7ae525d123ba465b24cd8cb7e3fad461011bfd1.pkl",
+          "cache_input_text_sha256": "453bf05acd4537afc950acd825abed8505b4f69d755cf1893f31a2b49d127ec2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "2fe7ede95be8afc6",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        65536
+      ],
+      "unprocessed_array_sha256": "f38c9398bb8a0d2ae24a713944543c931e24dde6d754fe6ed2be9c3a10199c53"
+    },
+    {
+      "exact_native_cache_key": "22708023c2698b0ad12a3a6ad13c252313b64202.pkl",
+      "pkl_sha256": "2db69c1f4ab10a3bfd6ff49dfa4f736571889c52e14611ded65a0303aec8c7f7",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "was hardly portable, let alone handheld.",
+          "exact_native_cache_key": "22708023c2698b0ad12a3a6ad13c252313b64202.pkl",
+          "cache_input_text_sha256": "fb6223909aa9b2f540f53f2645c18014c114977abe0a5fde08e6f06d7619957b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "2db69c1f4ab10a3b",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        64512
+      ],
+      "unprocessed_array_sha256": "e09241dc71099c4b7bbf991ae7e4c0245076b187b2919cbde195c55cd45b4a85"
+    },
+    {
+      "exact_native_cache_key": "8dcd8ef200df284d9329972841d79989100f2535.pkl",
+      "pkl_sha256": "fae352f872e75d21ddab34a8808ed01664c4539309a11db6af7b71f73cb9935f",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "was hardly portable,",
+          "exact_native_cache_key": "8dcd8ef200df284d9329972841d79989100f2535.pkl",
+          "cache_input_text_sha256": "7f97c8f7ea45e2183eaa682399fd03830c8f662c5b3533494aff5dfe5a94e739",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "fae352f872e75d21",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        33280
+      ],
+      "unprocessed_array_sha256": "4d243c5e8ec36addac4f8f9b18cb37632e629ee502c9c3eb9a5fe6ddd934be7d"
+    },
+    {
+      "exact_native_cache_key": "4c4df895823b5aee43e599ec609b45cd122803c7.pkl",
+      "pkl_sha256": "ef6968a0ac6cf97513f1b363fb6deb4e2ef53381b7e3a799af828ec923d7efd7",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "let alone handheld.",
+          "exact_native_cache_key": "4c4df895823b5aee43e599ec609b45cd122803c7.pkl",
+          "cache_input_text_sha256": "6e19561d31cd08838eb03f815135612ef136612a82ecec7a506a566c844f240e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "ef6968a0ac6cf975",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        31232
+      ],
+      "unprocessed_array_sha256": "c7a5bb814ac7ee292e2de4a51a3afe650bd9cb3c6a2681ab94f3bf1dcb9f26ca"
+    },
+    {
+      "exact_native_cache_key": "a184ac996df7e7915c7d02c6e24aa6a3837d1aa2.pkl",
+      "pkl_sha256": "6b9d73317e50e9353d9f1750275b35be0a6dd517fc628505caddbba3960c7773",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Its first rudimentary picture held 10,000 black-and-white pixels.",
+          "exact_native_cache_key": "a184ac996df7e7915c7d02c6e24aa6a3837d1aa2.pkl",
+          "cache_input_text_sha256": "d48c8f0562e99e59c665533a1288407415d874dcb621820df08f82069f291596",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "6b9d73317e50e935",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        112640
+      ],
+      "unprocessed_array_sha256": "5ce02be2948f61692101cd61025bfb467ad024b984cf41af53876725ffac0d2c"
+    },
+    {
+      "exact_native_cache_key": "029b0aadd0d6f12c46c5ab5c050fa04c41d8d399.pkl",
+      "pkl_sha256": "1116787aa026409755124fcbf31eb49c4aee8a4ec26be3c63c8c5566aff7eee4",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Recording it on a cassette took 23 seconds, and a playback unit showed it on a television.",
+          "exact_native_cache_key": "029b0aadd0d6f12c46c5ab5c050fa04c41d8d399.pkl",
+          "cache_input_text_sha256": "7b8d202a864c73e6f4dfd633aeda02b06d1185bb4ca256ca32b676f5642752ff",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "1116787aa0264097",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        140800
+      ],
+      "unprocessed_array_sha256": "930b3d9c1748fb383fecd6d91c33a68de4a8a28362609a70e2858b236f9f3655"
+    },
+    {
+      "exact_native_cache_key": "678bf6a32d8d5fc6c29a0d79c4265f8055d6d29f.pkl",
+      "pkl_sha256": "25dc126ea1a966b5d547c4f61c3bea2cb0d41bd24dae3df528928c9a743458ad",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Recording it on a cassette took 23 seconds,",
+          "exact_native_cache_key": "678bf6a32d8d5fc6c29a0d79c4265f8055d6d29f.pkl",
+          "cache_input_text_sha256": "5a60658aa1e528276f7f575fc4b7f89eafebdd7d72f826d81c2bdb94003d8254",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Recording it on a cassette took 23 seconds,",
+          "exact_native_cache_key": "678bf6a32d8d5fc6c29a0d79c4265f8055d6d29f.pkl",
+          "cache_input_text_sha256": "5a60658aa1e528276f7f575fc4b7f89eafebdd7d72f826d81c2bdb94003d8254",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "25dc126ea1a966b5",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        70144
+      ],
+      "unprocessed_array_sha256": "17c30765a015e77a33b72f629ba5c1e5817a15a105e71a1dbc494934da81dfbf"
+    },
+    {
+      "exact_native_cache_key": "54785fed306dd47c7ecda10ea27e8d18b579646e.pkl",
+      "pkl_sha256": "236c12eaf56451a0f38a79d01e09be1abc72646c534694d6c84ca25b2d6bce9d",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and a playback unit showed it on a television.",
+          "exact_native_cache_key": "54785fed306dd47c7ecda10ea27e8d18b579646e.pkl",
+          "cache_input_text_sha256": "79b9de9b67dff546524500176a37c669c1d876de52656675da5f0a0ab14224bc",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and a playback unit showed it on a television.",
+          "exact_native_cache_key": "54785fed306dd47c7ecda10ea27e8d18b579646e.pkl",
+          "cache_input_text_sha256": "79b9de9b67dff546524500176a37c669c1d876de52656675da5f0a0ab14224bc",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "236c12eaf56451a0",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        60928
+      ],
+      "unprocessed_array_sha256": "a900603bdf3457f669baab897cfc1fe9e09c3c653aeda2382eab6725c72e516f"
+    },
+    {
+      "exact_native_cache_key": "d4dc03f6735aa6624d87ddea964816a165685419.pkl",
+      "pkl_sha256": "0073a5f578f9d6a0f37f4c9f3b5299f769b02be4e1c8ab04a2ee003ad623f682",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Kodak's revenues showed its dependence on film, the profitable pillar of its business.",
+          "exact_native_cache_key": "d4dc03f6735aa6624d87ddea964816a165685419.pkl",
+          "cache_input_text_sha256": "ded701344b573d3221a27220c8affd49c48f70172680fb504fa0c450c5623b22",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "0073a5f578f9d6a0",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        134656
+      ],
+      "unprocessed_array_sha256": "8a7e32d4d98fe7846bed7cd2f8c3b067aa3dd0be7b26ef8a92e27e1073eece9a"
+    },
+    {
+      "exact_native_cache_key": "7540bb5983acb17c17a23894e2af8c1a0e913688.pkl",
+      "pkl_sha256": "ce148da65bfb5e3a6853e613ada71871f473d3212461c3aec6611a0b3a7e8793",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Kodak's revenues showed its dependence on film,",
+          "exact_native_cache_key": "7540bb5983acb17c17a23894e2af8c1a0e913688.pkl",
+          "cache_input_text_sha256": "2580249e6db94ed8a645e5b2cb4cfcc86673f49fbe4f6c130e16fced6aade36e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Kodak's revenues showed its dependence on film,",
+          "exact_native_cache_key": "7540bb5983acb17c17a23894e2af8c1a0e913688.pkl",
+          "cache_input_text_sha256": "2580249e6db94ed8a645e5b2cb4cfcc86673f49fbe4f6c130e16fced6aade36e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "ce148da65bfb5e3a",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        72192
+      ],
+      "unprocessed_array_sha256": "251e7ef7540cf3db656c3a4baa3df08f49215b66f8a8819806532998e5bbb131"
+    },
+    {
+      "exact_native_cache_key": "4f10337d8be51a719c4b57da3f925e189877c743.pkl",
+      "pkl_sha256": "bb600dc662ac22499a63888e34cd52b8321dbf536c92fad1c6ca5261b3a3ad21",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "the profitable pillar of its business.",
+          "exact_native_cache_key": "4f10337d8be51a719c4b57da3f925e189877c743.pkl",
+          "cache_input_text_sha256": "9198bc461952970f9ce5e8423f0007d2ba72787dd4f6c1e12b6294b181b95640",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "the profitable pillar of its business.",
+          "exact_native_cache_key": "4f10337d8be51a719c4b57da3f925e189877c743.pkl",
+          "cache_input_text_sha256": "9198bc461952970f9ce5e8423f0007d2ba72787dd4f6c1e12b6294b181b95640",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "bb600dc662ac2249",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        51200
+      ],
+      "unprocessed_array_sha256": "6c5e92a6420ccacb0240231acdd4af242fc1c7ae03047bace11d7e6cc606a5e1"
+    },
+    {
+      "exact_native_cache_key": "fa2d50e301cb6b730fe7b83f2fc7221559056a48.pkl",
+      "pkl_sha256": "aa7140a1efaf0fe01efddef148de1f75efd95b204a3bc389539baa9c44839362",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Technical staffers were appreciative of the camera, but it needed no film.",
+          "exact_native_cache_key": "fa2d50e301cb6b730fe7b83f2fc7221559056a48.pkl",
+          "cache_input_text_sha256": "cf646d2841896bb89028a9b1748a1334ac533c24a35a5f7f630d5ef88ef4adad",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "aa7140a1efaf0fe0",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        113152
+      ],
+      "unprocessed_array_sha256": "1ea0736eeb35c4136be9b79a19b9d041943fb18d9f29db6ceec617f48814a5c7"
+    },
+    {
+      "exact_native_cache_key": "922d0cbd6d44b028d5aa3f3cc7bfe923bb131a0b.pkl",
+      "pkl_sha256": "6e2fb1cb1b5b2db2f61c4e2dcc19acaab72505d8984dac067bb8da20a8f7741b",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Technical staffers were appreciative of the camera,",
+          "exact_native_cache_key": "922d0cbd6d44b028d5aa3f3cc7bfe923bb131a0b.pkl",
+          "cache_input_text_sha256": "b9f55690a35614665d89c5f9b90a41f9a187016b0ec3e4002b733620befc6036",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Technical staffers were appreciative of the camera,",
+          "exact_native_cache_key": "922d0cbd6d44b028d5aa3f3cc7bfe923bb131a0b.pkl",
+          "cache_input_text_sha256": "b9f55690a35614665d89c5f9b90a41f9a187016b0ec3e4002b733620befc6036",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "6e2fb1cb1b5b2db2",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        71680
+      ],
+      "unprocessed_array_sha256": "ebd44513927353fa4a9f07a14dc6683624b64a59486b46fead87d7a09bfe1bbe"
+    },
+    {
+      "exact_native_cache_key": "37f234b9f02407df41c697f734d915d08f1bc361.pkl",
+      "pkl_sha256": "f851a576abdf30c90da360e9eff7a98949f4c3ef078e6c6ead31a891667cbcdd",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "but it needed no film.",
+          "exact_native_cache_key": "37f234b9f02407df41c697f734d915d08f1bc361.pkl",
+          "cache_input_text_sha256": "723355c4db6549efa256e26e68909850b3ce7929009d41e19987d10d00ea3352",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "but it needed no film.",
+          "exact_native_cache_key": "37f234b9f02407df41c697f734d915d08f1bc361.pkl",
+          "cache_input_text_sha256": "723355c4db6549efa256e26e68909850b3ce7929009d41e19987d10d00ea3352",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "f851a576abdf30c9",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        33280
+      ],
+      "unprocessed_array_sha256": "ee3462a18dd978f5f3311ad2da98c2cc9f69f5da6a3e6d088d05141127f07dd9"
+    },
+    {
+      "exact_native_cache_key": "c7917d063cf1ae5e209cb2c19676b3e867c1b168.pkl",
+      "pkl_sha256": "95be729d183ec6d3c02d9d71e67d0bae410bbbd0a856fc952fc9611a0665bd34",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "By Sasson's recollection, his superiors at headquarters called it cute and urged him to keep it hushed.",
+          "exact_native_cache_key": "c7917d063cf1ae5e209cb2c19676b3e867c1b168.pkl",
+          "cache_input_text_sha256": "774603c11dc34939eba967132f987a9a78fa375aaeefb0aef5c73bdf194cfa79",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "95be729d183ec6d3",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        155648
+      ],
+      "unprocessed_array_sha256": "fe5f7522cf8da4ce2a8dd47233e88f9860103dcf55d87a7c6b9229b223777130"
+    },
+    {
+      "exact_native_cache_key": "d9dea0468a6d1c7dc840577c4ddfa29fd776cac6.pkl",
+      "pkl_sha256": "6bf32601de8b6b2c50707d2d888d3ad4a3b9faf62cbf101b1f304a55ee2af91a",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "By Sasson's recollection,",
+          "exact_native_cache_key": "d9dea0468a6d1c7dc840577c4ddfa29fd776cac6.pkl",
+          "cache_input_text_sha256": "b4c3e584065a9e3d99b2cdf0b957e38b28c0aaac49cfaca68c271787e24bd185",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "By Sasson's recollection,",
+          "exact_native_cache_key": "d9dea0468a6d1c7dc840577c4ddfa29fd776cac6.pkl",
+          "cache_input_text_sha256": "b4c3e584065a9e3d99b2cdf0b957e38b28c0aaac49cfaca68c271787e24bd185",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "6bf32601de8b6b2c",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        38400
+      ],
+      "unprocessed_array_sha256": "f902eed48ea8bcc25971373d63f3b6014de160b035d724988b82a410c7966a01"
+    },
+    {
+      "exact_native_cache_key": "5a4abb0d88c4c847f35173f078f9ce45078c40ff.pkl",
+      "pkl_sha256": "1c6491e8c8a87578ab70ce693fd6ae352dd213ec2a8b903300543b627025cd3f",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "his superiors at headquarters called it cute",
+          "exact_native_cache_key": "5a4abb0d88c4c847f35173f078f9ce45078c40ff.pkl",
+          "cache_input_text_sha256": "c7b98ee290e6829cc0d4402cc1c52fd91a6a14a0a22f3ad14eb921a1d30d757b",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "1c6491e8c8a87578",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        62464
+      ],
+      "unprocessed_array_sha256": "0cc3a5f31c7ad4f24a027cb0f127c497de4b94465f51654477f254027dd6b7ab"
+    },
+    {
+      "exact_native_cache_key": "435f760676c244b579d5d2efc595ed4469dff72e.pkl",
+      "pkl_sha256": "7adc3f3576c3ff97a4f6b02a38d57f3c5a4ff756f2bef5b26f8c1212ec24bfa1",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and urged him to keep it hushed.",
+          "exact_native_cache_key": "435f760676c244b579d5d2efc595ed4469dff72e.pkl",
+          "cache_input_text_sha256": "24f9bab3c31aaa46587a951bb40e1e87d5c2b671bf39266ef0d309142db76fb5",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "7adc3f3576c3ff97",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        43520
+      ],
+      "unprocessed_array_sha256": "e573e6522eeb4ca3f96898a37006272ac433306cd18d7dc5b29a8583d65f58b1"
+    },
+    {
+      "exact_native_cache_key": "cf0acb19ce3225d7d4253197163029997daedf63.pkl",
+      "pkl_sha256": "77b853be95ff1fba5c76578c603002bacfa3293ae6aa05c0ecd2c713fcf972a2",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "his superiors at headquarters called it cute and urged him to keep it hushed.",
+          "exact_native_cache_key": "cf0acb19ce3225d7d4253197163029997daedf63.pkl",
+          "cache_input_text_sha256": "c8d509c127255c5bb4ceb7e9a26b42e6574f44631e7617a6d9c55cdfe72adf75",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "77b853be95ff1fba",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        114688
+      ],
+      "unprocessed_array_sha256": "cfb193f1b8736ada868efe98cdf0046d8504c5a3ff5ad1ee01197350d754c7ea"
+    },
+    {
+      "exact_native_cache_key": "49f30763aef9d760b02d5d5515b793e0667484a5.pkl",
+      "pkl_sha256": "ccfd9cdc6534a985ab69c65315ca9b4b4a484498d87a2fe1fefabc5af5d8f041",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "A patent followed in 1978.",
+          "exact_native_cache_key": "49f30763aef9d760b02d5d5515b793e0667484a5.pkl",
+          "cache_input_text_sha256": "553fbb617ed48ca85465cc48729aeb73766d5a3b4593d3b61a87eb79664f1717",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "ccfd9cdc6534a985",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        63488
+      ],
+      "unprocessed_array_sha256": "57bafd4dab447408571fe4ac30460df5c6286fe2428b22e31ee508dd2b063d9b"
+    },
+    {
+      "exact_native_cache_key": "86ea5d07eac4d2131f18ea257b2bfee11355b289.pkl",
+      "pkl_sha256": "27b7bca118a37f4134e979e25b0ffc9aedf56484ab3a7f56cbdabff9ffab22ea",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Production never did.",
+          "exact_native_cache_key": "86ea5d07eac4d2131f18ea257b2bfee11355b289.pkl",
+          "cache_input_text_sha256": "c816374ce40ee5cd606c23494a081ba2e01288c96d1786dc7c0f25e67021953f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "27b7bca118a37f41",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        33280
+      ],
+      "unprocessed_array_sha256": "1e34648be6160ad4094dab357bb376466ac17fba862695a0e87573801b3bdc92"
+    },
+    {
+      "exact_native_cache_key": "a199fc209dbbbfd0f8b87e7364de579f88b66efe.pkl",
+      "pkl_sha256": "7ab738c38008fc415150c47e9a238e6153f381d600cbd9340078babf32a964a6",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The advent of digital photography proved disruptive.",
+          "exact_native_cache_key": "a199fc209dbbbfd0f8b87e7364de579f88b66efe.pkl",
+          "cache_input_text_sha256": "5724e6b0404dd78248f8beaa29daa4f5474be70f64be52f92adc70626b3f47e9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "7ab738c38008fc41",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        83456
+      ],
+      "unprocessed_array_sha256": "e7837b99d86a2ede9d583344680f88a3f3b0f8f85dd6f7a31b3194e8b36330ee"
+    },
+    {
+      "exact_native_cache_key": "cbab5babc081ce581b142d6adce4899768070eea.pkl",
+      "pkl_sha256": "af8757327245363e03c822fd7a2c59957c6f72bbe6066ae484679acee72dedf3",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In June 2009 Kodak said it would stop making Kodachrome, its analogue film, citing lessened demand in the digital era.",
+          "exact_native_cache_key": "cbab5babc081ce581b142d6adce4899768070eea.pkl",
+          "cache_input_text_sha256": "ab92e2712748867d7aef12390928a765c4ae47e521fb4859a72d097aa1884ae4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "af8757327245363e",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        221696
+      ],
+      "unprocessed_array_sha256": "79fc98bb4fadd92550da08152f45be9ec9247090d87b1af10dab20d1e5188d8b"
+    },
+    {
+      "exact_native_cache_key": "619adacffaa38f047ed2536536a7aedfdaedf2c4.pkl",
+      "pkl_sha256": "c596b8e7a49303b48efb84e62234c4dbf523f05750d2d5153d4931db78fc4a66",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In June 2009 Kodak said it would stop making Kodachrome, its analogue film,",
+          "exact_native_cache_key": "619adacffaa38f047ed2536536a7aedfdaedf2c4.pkl",
+          "cache_input_text_sha256": "6f96e871ff1519e8e4718d437edfc8be9e8d9d300177e79735bfda8ce76b8822",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "c596b8e7a49303b4",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        144896
+      ],
+      "unprocessed_array_sha256": "a6b0372e4ca76f11c16a89b684a36db73e763e7aecbcbf47ba0779e3bb0ece10"
+    },
+    {
+      "exact_native_cache_key": "012c7583923ae78887c07c9c57e5f49995ebdd70.pkl",
+      "pkl_sha256": "1bbbaad19f2916c3ce1e9d274656b022b269bfb0547bf8f7389adc8158414c13",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "citing lessened demand in the digital era.",
+          "exact_native_cache_key": "012c7583923ae78887c07c9c57e5f49995ebdd70.pkl",
+          "cache_input_text_sha256": "d481425b98824b7c3442b41ca493216b1650053b21092adc3731088c9a03cea3",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "citing lessened demand in the digital era.",
+          "exact_native_cache_key": "012c7583923ae78887c07c9c57e5f49995ebdd70.pkl",
+          "cache_input_text_sha256": "d481425b98824b7c3442b41ca493216b1650053b21092adc3731088c9a03cea3",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "1bbbaad19f2916c3",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        67072
+      ],
+      "unprocessed_array_sha256": "91a9c8aa37efc3f500c8540e2bf935e262b32364cd169a1453a654a8feb0f93a"
+    },
+    {
+      "exact_native_cache_key": "87c8bf1615d9b990f5382ac0c2d9bbd822375918.pkl",
+      "pkl_sha256": "ca947d4bcf5236e3cfc86fe9e322761525f3b184e19406a4774b5e0da37ee3bb",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In June 2009 Kodak said it would stop making Kodachrome,",
+          "exact_native_cache_key": "87c8bf1615d9b990f5382ac0c2d9bbd822375918.pkl",
+          "cache_input_text_sha256": "759766dff0a360776c4c9e0fdd5ed6534020a52b0991aa50092ecba84fd9f042",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "ca947d4bcf5236e3",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        108544
+      ],
+      "unprocessed_array_sha256": "d68f0505fdcf394a535ad4032490cdcde5741932c62545461d201166ac2dc40f"
+    },
+    {
+      "exact_native_cache_key": "208876489f01d86f0ae78fe161c6430ec07fca30.pkl",
+      "pkl_sha256": "6d938789e4ba6662a8900f570d89520aed22afb415b1a086d6c939bcb98fc38e",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "its analogue film,",
+          "exact_native_cache_key": "208876489f01d86f0ae78fe161c6430ec07fca30.pkl",
+          "cache_input_text_sha256": "05b746ebd29c04efb71c3469d4ca9112be96f9203ca52e99c6d7cc60d607a67c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "6d938789e4ba6662",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        31744
+      ],
+      "unprocessed_array_sha256": "f68c5fa60608fd55188e41b3671eca439b97a9e32eba7681480fc65d58ed522f"
+    },
+    {
+      "exact_native_cache_key": "55477b77ba02237d849ada7a609f3a3c296f9f89.pkl",
+      "pkl_sha256": "1601a26ed49e50840984c1f1c00951d3bffbf71cde6cd731cd47ed3e97501116",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Kodak's manpower had reached an apex of about 145,000 in the 1980s.",
+          "exact_native_cache_key": "55477b77ba02237d849ada7a609f3a3c296f9f89.pkl",
+          "cache_input_text_sha256": "6eba82db9b8101b134bd4cbb2f4609160839b224945b7d137a35bafd7fe37381",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "1601a26ed49e5084",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        156160
+      ],
+      "unprocessed_array_sha256": "404d110fe5a289569721c14aaa35b35e546428e1e5c57c7bb657a3898c70d97b"
+    },
+    {
+      "exact_native_cache_key": "461931a802cdc4846126edea92f5aceaf074fd71.pkl",
+      "pkl_sha256": "5c0123de8e279bd81d88c063b4e8efef88b4f123f516894535a16545d48bdaee",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "By 2012, layoffs since 2003 had slashed 47,000 jobs, alongside the shutdown of 13 factories and some 130 labs.",
+          "exact_native_cache_key": "461931a802cdc4846126edea92f5aceaf074fd71.pkl",
+          "cache_input_text_sha256": "0a4f6056d98752f218f641105301510b0ceb535a3163a2204a35eda2571af5f6",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "5c0123de8e279bd8",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        282624
+      ],
+      "unprocessed_array_sha256": "037fd1da59c8ba19605c3c26014a3a4a141b7d9f9360409f2e8c28c0a27b4c0c"
+    },
+    {
+      "exact_native_cache_key": "307776dd58c2955b70d37104f27e8e7f0cab823b.pkl",
+      "pkl_sha256": "9346d3bc6278d408d86aa4d4f34729add816d617b4b4749b06455f1e7f39aacc",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "By 2012, layoffs since 2003 had slashed 47,000 jobs,",
+          "exact_native_cache_key": "307776dd58c2955b70d37104f27e8e7f0cab823b.pkl",
+          "cache_input_text_sha256": "49e9754036874ff27593f7941abdd946bc909060db82845b2ec4f5303f028880",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "9346d3bc6278d408",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        177664
+      ],
+      "unprocessed_array_sha256": "d7b14c07b4ebd7b5d85eb04dbdf243e20b38fdc7d4836aa56edcdf42f67ff965"
+    },
+    {
+      "exact_native_cache_key": "01417e1f18c73fe0fa7cb4884f6dc4051abcdb4c.pkl",
+      "pkl_sha256": "7941fc937a9e419a578a7c350d69ed90e4b1cd6bd8d5d5ea1290ec22854326ad",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "alongside the shutdown of 13 factories and some 130 labs.",
+          "exact_native_cache_key": "01417e1f18c73fe0fa7cb4884f6dc4051abcdb4c.pkl",
+          "cache_input_text_sha256": "c2485b006a4abf6885231f14c941c83c98fab3071651f7150129513113e7da86",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "alongside the shutdown of 13 factories and some 130 labs.",
+          "exact_native_cache_key": "01417e1f18c73fe0fa7cb4884f6dc4051abcdb4c.pkl",
+          "cache_input_text_sha256": "c2485b006a4abf6885231f14c941c83c98fab3071651f7150129513113e7da86",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "7941fc937a9e419a",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        121344
+      ],
+      "unprocessed_array_sha256": "b20979708ae9e5771c1332c402fb6892b7646994e6d5117c375e13df5b8800c0"
+    },
+    {
+      "exact_native_cache_key": "5590097de586c490deb55adb7a8b7f15c1ff4414.pkl",
+      "pkl_sha256": "151d7ef463007f130f748d2ffe2cee823669e62eb6222de06e261b9ebdd3c397",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "By 2012,",
+          "exact_native_cache_key": "5590097de586c490deb55adb7a8b7f15c1ff4414.pkl",
+          "cache_input_text_sha256": "b4556c304d0d2d7af08f281f1d726434e6f1c1c167761912de3f748fb14eb636",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "151d7ef463007f13",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        35840
+      ],
+      "unprocessed_array_sha256": "0b4d7e381b6b3fa3e81f0afd1f0338aaaef2e2c633b021cac8249a784aa56527"
+    },
+    {
+      "exact_native_cache_key": "c4e7f6854c55eef29a81a4d0ecbbbe2c5cd0fe08.pkl",
+      "pkl_sha256": "95515ba59832b5e0460ce2263080422846c6dba05b104185fb287520b0371038",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "layoffs since 2003 had slashed 47,000 jobs,",
+          "exact_native_cache_key": "c4e7f6854c55eef29a81a4d0ecbbbe2c5cd0fe08.pkl",
+          "cache_input_text_sha256": "893523c1af1a7bfb615b5d9c7454a88d334ead149824d854008a6aefcb2854f8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "95515ba59832b5e0",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        128512
+      ],
+      "unprocessed_array_sha256": "732b78eda0b1aca9b1dde7c43dd3a866a643c5255a8ad217d6053c62830064a7"
+    },
+    {
+      "exact_native_cache_key": "c75b94189e6d0724602d2b01cd8a54c947c8d11b.pkl",
+      "pkl_sha256": "b0eac493b3326f02230faa2f9fcb410c36759588f5d88dbfb3a8edef9f24d340",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "On 19 January 2012 the 131-year-old firm sought Chapter 11 protection from its creditors, sapped by pension costs and years of slowness in going digital.",
+          "exact_native_cache_key": "c75b94189e6d0724602d2b01cd8a54c947c8d11b.pkl",
+          "cache_input_text_sha256": "149d476f829850c63ecb59a02675645db6e15dee3dd938838d3a282cdd4fb82c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "b0eac493b3326f02",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        321024
+      ],
+      "unprocessed_array_sha256": "8ffadb6fc5b5e3bc3294bab2e4a1701ab28e021bdb3203a134bd5169b65bef85"
+    },
+    {
+      "exact_native_cache_key": "19f6c4ba41fa3f2592beb9eecf10a21695bf8c77.pkl",
+      "pkl_sha256": "543a0510f483d044b1af9758212ff41178733ed35f94020a24d16a0d42100017",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "On 19 January 2012 the 131-year-old firm sought Chapter 11 protection from its creditors,",
+          "exact_native_cache_key": "19f6c4ba41fa3f2592beb9eecf10a21695bf8c77.pkl",
+          "cache_input_text_sha256": "8fdcb8e61344fb7738ec495e09bb9a908a7708b5554075a16fad882ad9b88192",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "On 19 January 2012 the 131-year-old firm sought Chapter 11 protection from its creditors,",
+          "exact_native_cache_key": "19f6c4ba41fa3f2592beb9eecf10a21695bf8c77.pkl",
+          "cache_input_text_sha256": "8fdcb8e61344fb7738ec495e09bb9a908a7708b5554075a16fad882ad9b88192",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "543a0510f483d044",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        218624
+      ],
+      "unprocessed_array_sha256": "f19217becae55200ab2788df4fa592a3e4220e477a3957188c3e5061a747f950"
+    },
+    {
+      "exact_native_cache_key": "89a7e70e7066b3be585861d10ec86d042657a154.pkl",
+      "pkl_sha256": "905613cd824defedcb690068b9fe8a75b8e5a5df525469d7b8ff0df4f264fa9c",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "sapped by pension costs and years of slowness in going digital.",
+          "exact_native_cache_key": "89a7e70e7066b3be585861d10ec86d042657a154.pkl",
+          "cache_input_text_sha256": "79d2f8ac8d48b591d2c340dd2401d6e286c92d903eaa73709f160ad30d22d9f1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "sapped by pension costs and years of slowness in going digital.",
+          "exact_native_cache_key": "89a7e70e7066b3be585861d10ec86d042657a154.pkl",
+          "cache_input_text_sha256": "79d2f8ac8d48b591d2c340dd2401d6e286c92d903eaa73709f160ad30d22d9f1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "905613cd824defed",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        96768
+      ],
+      "unprocessed_array_sha256": "6f22d280bfb7f75b9a223118d1e25fdd558e4a4d276e366815434ec4dd5e347c"
+    },
+    {
+      "exact_native_cache_key": "0f13fb6f6c9a0042d45fdd4edf62bb845dc8dc3c.pkl",
+      "pkl_sha256": "455f93512d6f5174e5cc75174a89bb46257d8104489093c6f7eaf0c8b3995f7a",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Citigroup, a lender, provided $950 million for its restructuring.",
+          "exact_native_cache_key": "0f13fb6f6c9a0042d45fdd4edf62bb845dc8dc3c.pkl",
+          "cache_input_text_sha256": "1f185ddf8036b1b59988e3d592f9d4d97c15178f6d99e74c4c2c14b2e84cfe8c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "455f93512d6f5174",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        137216
+      ],
+      "unprocessed_array_sha256": "5ea739ddc5c54530e33813f4efbd12dbc93da77646c94aa04b88d9850da258ab"
+    },
+    {
+      "exact_native_cache_key": "bc322ee4a554ad0b7b983b997394881b8eb541f0.pkl",
+      "pkl_sha256": "c3c2a68f33416067771f90459ee5d7e23116238d2144292b82b1f2dbefa483b3",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Citigroup,",
+          "exact_native_cache_key": "bc322ee4a554ad0b7b983b997394881b8eb541f0.pkl",
+          "cache_input_text_sha256": "0008c95e3add01a8359ca8e892182ee1cea40e00ec2398a32d61b395b10ce681",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "c3c2a68f33416067",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        22528
+      ],
+      "unprocessed_array_sha256": "3585d525fd7814989b51e92bf208795ae3b8b3058622e259583fa43c4b9d464a"
+    },
+    {
+      "exact_native_cache_key": "383342c9ac6ffe1a621b1805cfe662cb7cefb3cc.pkl",
+      "pkl_sha256": "784cae4f625c7c5946c838396d94ebe9e026584f9cee6bf65a562397486bfd67",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a lender,",
+          "exact_native_cache_key": "383342c9ac6ffe1a621b1805cfe662cb7cefb3cc.pkl",
+          "cache_input_text_sha256": "a4ed8d688c44619993dab6f83242b913850ab927797c500fcc6a00dc659e72b2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "784cae4f625c7c59",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        19968
+      ],
+      "unprocessed_array_sha256": "9cbdb662fa3500bde74e2436d4ca3441891d5adf6f7df933340b79a8f162d340"
+    },
+    {
+      "exact_native_cache_key": "3849bd42fc38976fe7c207a0e78ec441ec263f14.pkl",
+      "pkl_sha256": "967c69d7fce7bc4f94a0a81206ec988864dff4c76ff8190fc4804151b3b8c260",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "provided $950 million for its restructuring.",
+          "exact_native_cache_key": "3849bd42fc38976fe7c207a0e78ec441ec263f14.pkl",
+          "cache_input_text_sha256": "0dc1057c6cb989cbab76fe75d862f14bb85f540acdfdfaa0fa53e2adf51b84ce",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "967c69d7fce7bc4f",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        94208
+      ],
+      "unprocessed_array_sha256": "233d8ef0d7c0a9f573f3e291ed7f69d7fa00a922cd1392f05de21ef1bbfe180c"
+    },
+    {
+      "exact_native_cache_key": "95fe0385287f1ae70d16c02d2bf6181e1540da5a.pkl",
+      "pkl_sha256": "467c8eb73dec927681bd8d0247eed49f8a84f247bcc6e37ca058ee4e668d16fd",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S16",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "A portfolio of 1,100 digital imaging patents fetched about $525 million from a consortium of twelve buyers, including the giants Apple and Google.",
+          "exact_native_cache_key": "95fe0385287f1ae70d16c02d2bf6181e1540da5a.pkl",
+          "cache_input_text_sha256": "806bdcf56300427df585b4a74113552f04970cf1dbeb25ca5570203bb512cac1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "467c8eb73dec9276",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        312320
+      ],
+      "unprocessed_array_sha256": "bb891fd258bfd083f835b10f03dd86808ceb8321bcbde8a08d918d5e15090bf3"
+    },
+    {
+      "exact_native_cache_key": "c10a32b88d5f168a21119372da81aa584693765a.pkl",
+      "pkl_sha256": "3c8c5fb66769e95f5ac88b600d47c2a7f059beb57cc3743eea55983be864825a",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S16",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "A portfolio of 1,100 digital imaging patents",
+          "exact_native_cache_key": "c10a32b88d5f168a21119372da81aa584693765a.pkl",
+          "cache_input_text_sha256": "06d9aa7fa314e8a95ed9900e7c0cc42cac48b24499680302a51ac14368065af0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "3c8c5fb66769e95f",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        103424
+      ],
+      "unprocessed_array_sha256": "c3b52f41d13e806df1b8bc281420ae17800f89eb917b885b6b55f976c88f6001"
+    },
+    {
+      "exact_native_cache_key": "63830cc30518fdd6619cab7ad5e87b8f71df4277.pkl",
+      "pkl_sha256": "84c3092c13e25f346b30d98078d2557fa5577d1d5f99174858299b417d92f339",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S16",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "fetched about $525 million from a consortium of twelve buyers,",
+          "exact_native_cache_key": "63830cc30518fdd6619cab7ad5e87b8f71df4277.pkl",
+          "cache_input_text_sha256": "cef78b2032dc5675072c18818aa350329335338cc9f28b6dff3ac2f9d6b960e2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "84c3092c13e25f34",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        132096
+      ],
+      "unprocessed_array_sha256": "7153a6cfc15c9ac17b825a11f6574712df5d55d0902c8c37f9c76963e9bc3d85"
+    },
+    {
+      "exact_native_cache_key": "2b95a23fd53968914497bf066daddf370e3c24ac.pkl",
+      "pkl_sha256": "422387eb056f2be46e1fd1364d7e21f3ea7e453afb100d59415bf2db1cb4695b",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S16",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "including the giants Apple and Google.",
+          "exact_native_cache_key": "2b95a23fd53968914497bf066daddf370e3c24ac.pkl",
+          "cache_input_text_sha256": "0a6caf96babc665377b640b55cd9bcdecb8ad3d28d4f90efba89d552d530dcd1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "including the giants Apple and Google.",
+          "exact_native_cache_key": "2b95a23fd53968914497bf066daddf370e3c24ac.pkl",
+          "cache_input_text_sha256": "0a6caf96babc665377b640b55cd9bcdecb8ad3d28d4f90efba89d552d530dcd1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "422387eb056f2be4",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        51712
+      ],
+      "unprocessed_array_sha256": "5b9b9c41368d31eb252013e84b83c3eb410f3bbb7947e616625451dce378521b"
+    },
+    {
+      "exact_native_cache_key": "431cead86b44354956da073de33cde14db3c73af.pkl",
+      "pkl_sha256": "5c18999358c7ddb4d2c2a1d8a2fe86c42ca7577b2ae08e42191f6004ae0ad6d5",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S16",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "A portfolio of 1,100 digital imaging patents fetched about $525 million from a consortium of twelve buyers,",
+          "exact_native_cache_key": "431cead86b44354956da073de33cde14db3c73af.pkl",
+          "cache_input_text_sha256": "0c30eaecc8aa7575be2c48bab54cd00184a9fc5457eee2df262a34892e9282a9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "5c18999358c7ddb4",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        243200
+      ],
+      "unprocessed_array_sha256": "8ee99b88bd56f9c55b9b68949423c266cc59bb2efce9b399f765b7de1c851467"
+    },
+    {
+      "exact_native_cache_key": "be9944c0226a6ff42a365321fb415e73ac9027ac.pkl",
+      "pkl_sha256": "94d708527ecb06cac74485c70cacf819d2c633fa24304dfa793e50fb0838116d",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "After 19 months of reorganisation, the once-mighty Kodak left bankruptcy in September 2013, downsized, streamlined, and refocused as a commercial printer for business clients.",
+          "exact_native_cache_key": "be9944c0226a6ff42a365321fb415e73ac9027ac.pkl",
+          "cache_input_text_sha256": "5832766fbd80e66f8a513c81ab840e58809c75858f2b93832e3c81ddb49a5bf1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "94d708527ecb06ca",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        326144
+      ],
+      "unprocessed_array_sha256": "be904ee8725edef0558c547528a7f8eb9290a9b48e2d3587dd2d3ba8d7b73a21"
+    },
+    {
+      "exact_native_cache_key": "ae37851b9588ea48bafe7c520220b8abeeec20dc.pkl",
+      "pkl_sha256": "df146cc9a17898c526c644da5095dd1a9d6d49e6802d182420fbaf0ca5f95759",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "After 19 months of reorganisation, the once-mighty Kodak left bankruptcy in September 2013,",
+          "exact_native_cache_key": "ae37851b9588ea48bafe7c520220b8abeeec20dc.pkl",
+          "cache_input_text_sha256": "43bad1dde0fee53e383bab1d3e24969d9d076760cbdc6077047ac6653160719b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "df146cc9a17898c5",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        184832
+      ],
+      "unprocessed_array_sha256": "9c9bd84c82f0ebd6d9d4c451f904be0fd3f3f333a18f4288eaac800ce6ef1ca5"
+    },
+    {
+      "exact_native_cache_key": "8cb7aef970e1a13b817127c49e4077791d6d727c.pkl",
+      "pkl_sha256": "1bd3b7f2719047f297e17839fe261e4c66ce1a4a637268198608c2609401e4d1",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "downsized, streamlined, and refocused as a commercial printer for business clients.",
+          "exact_native_cache_key": "8cb7aef970e1a13b817127c49e4077791d6d727c.pkl",
+          "cache_input_text_sha256": "beeecef90c6829d315ad1b947a12da8111c1ff1013a1ba02a84f93f3753ee74d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "1bd3b7f2719047f2",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        130560
+      ],
+      "unprocessed_array_sha256": "8c7a275e2230c7aab24f00e670b1897be4b99bbc17d82505cf85d38a19113711"
+    },
+    {
+      "exact_native_cache_key": "a1bf3e532b7b5cb1d9bb003a6be4e391735cce2a.pkl",
+      "pkl_sha256": "7c0d3aeeb7417c7fb77dbe6b2da940db10531b35a3e501be54e58278d8bff9f7",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "After 19 months of reorganisation,",
+          "exact_native_cache_key": "a1bf3e532b7b5cb1d9bb003a6be4e391735cce2a.pkl",
+          "cache_input_text_sha256": "deaa4e81a69cdfe4871df39880ce2d4e483809b949d5f2a71f2a89e391e36f9a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "7c0d3aeeb7417c7f",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        60416
+      ],
+      "unprocessed_array_sha256": "c26a88b6ab75770c1db040dc4cb36b5b93d16393689408941ce0c6bb50f86bd6"
+    },
+    {
+      "exact_native_cache_key": "66481e42a1cb4502e24acf2ec630b2f6f6216118.pkl",
+      "pkl_sha256": "8e4686db5c294a0d5f98c1ba733a44e5d813b3a7047a92f91ec2432d8cd85eed",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "the once-mighty Kodak left bankruptcy in September 2013,",
+          "exact_native_cache_key": "66481e42a1cb4502e24acf2ec630b2f6f6216118.pkl",
+          "cache_input_text_sha256": "8c0d930ac7d6a3c2bc1e556f73e5006a0378abe84e91f87d9c94ebecb21d9c20",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "8e4686db5c294a0d",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        117760
+      ],
+      "unprocessed_array_sha256": "c80d14eacb21ea50c86c19665a4eaf1646e0ad4fd81d847d16d5c9bc1102f0ba"
+    },
+    {
+      "exact_native_cache_key": "9cf3d388613045d2487a559466cd6be40e734f9f.pkl",
+      "pkl_sha256": "293c29efb402e620443dd46cea92dab7712b2dc960c689fc2541239efefce633",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "downsized,",
+          "exact_native_cache_key": "9cf3d388613045d2487a559466cd6be40e734f9f.pkl",
+          "cache_input_text_sha256": "722023dde623f1a3e6830f96873ed80ec701767901e88c07a8ca10d05bde5a42",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "293c29efb402e620",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        25600
+      ],
+      "unprocessed_array_sha256": "8da32def1e91536ca7d562aeafbf8696ea4d5b3f867ffdd2b56ec343f812217b"
+    },
+    {
+      "exact_native_cache_key": "379d95498bb88eefe8ccae3c756c6b93d8ce86c0.pkl",
+      "pkl_sha256": "d99c6f0d301cd5c667667c317a25b351281af8751c8d9274be9e46b92f23b51c",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "streamlined,",
+          "exact_native_cache_key": "379d95498bb88eefe8ccae3c756c6b93d8ce86c0.pkl",
+          "cache_input_text_sha256": "06ac6ee4089c22083455955ac62f07f6b227434661089af81ea8270fbb4db9be",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "d99c6f0d301cd5c6",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        25088
+      ],
+      "unprocessed_array_sha256": "a4d76999823dd44f0e59fe458e80c0c623f804afb11d295fde56b1923055bb10"
+    },
+    {
+      "exact_native_cache_key": "365e592eef37ced1c72df72c2b198d91d002db05.pkl",
+      "pkl_sha256": "37d52e622a85edb9ee3cca4a1b15298b60aec9f98b799555de6272b16d13dbc4",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": 5,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and refocused as a commercial printer for business clients.",
+          "exact_native_cache_key": "365e592eef37ced1c72df72c2b198d91d002db05.pkl",
+          "cache_input_text_sha256": "845ee5bb18acb3ebf3683953822ff2664e3ad5f794381382839e664974d2246b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "37d52e622a85edb9",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        88064
+      ],
+      "unprocessed_array_sha256": "2f3e86a7d28c511d6fc4d46988443e5340adf75cb4345362944c387864e7bd73"
+    },
+    {
+      "exact_native_cache_key": "5ba7f0b6c6fb5beaef84d43bd9d57a9b104edc7d.pkl",
+      "pkl_sha256": "f92fb49faa974bab3be00ac457fc3bcd6f222ed23e98b675385c7a79aed9b8be",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S18",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In November 2009 President Obama had decorated Sasson with national laurels, commending his digital camera.",
+          "exact_native_cache_key": "5ba7f0b6c6fb5beaef84d43bd9d57a9b104edc7d.pkl",
+          "cache_input_text_sha256": "c52f4a6f8db95cbfca7901a10f33d5094631c39fee8bff42868a89967fcc5d1c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "f92fb49faa974bab",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        199168
+      ],
+      "unprocessed_array_sha256": "dc774001f57b0aa640ee89db833613f359d5479ad361aa1a1574469cc1afc307"
+    },
+    {
+      "exact_native_cache_key": "018e85657bf53c650aaccd25f77d26c91b25367f.pkl",
+      "pkl_sha256": "db2757a062721e575d14cf3010e21523634fddaf44593b72dff9a42e79aca720",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S18",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In November 2009 President Obama had decorated Sasson with national laurels,",
+          "exact_native_cache_key": "018e85657bf53c650aaccd25f77d26c91b25367f.pkl",
+          "cache_input_text_sha256": "13351440fc3fbea4cde38684bca6cf65c825159409e062928888402ca49fc7a4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S18",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In November 2009 President Obama had decorated Sasson with national laurels,",
+          "exact_native_cache_key": "018e85657bf53c650aaccd25f77d26c91b25367f.pkl",
+          "cache_input_text_sha256": "13351440fc3fbea4cde38684bca6cf65c825159409e062928888402ca49fc7a4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "db2757a062721e57",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        148992
+      ],
+      "unprocessed_array_sha256": "c31d92603def84b50d6ce3427e7db005c4ee4fcb4b4be95ba4c040c06885beab"
+    },
+    {
+      "exact_native_cache_key": "17c42533e7a7d35afeafbcb3c81aed4358835f4d.pkl",
+      "pkl_sha256": "9b5f02e8b3aaa6be35b5864b84c19b5c443ee3fd54763422146de4f50299b100",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S18",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "commending his digital camera.",
+          "exact_native_cache_key": "17c42533e7a7d35afeafbcb3c81aed4358835f4d.pkl",
+          "cache_input_text_sha256": "a3525722e920a5eaf39324294f63072686ed61bbcf668c7162b98bd6eb7a7414",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S18",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "commending his digital camera.",
+          "exact_native_cache_key": "17c42533e7a7d35afeafbcb3c81aed4358835f4d.pkl",
+          "cache_input_text_sha256": "a3525722e920a5eaf39324294f63072686ed61bbcf668c7162b98bd6eb7a7414",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "9b5f02e8b3aaa6be",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        43520
+      ],
+      "unprocessed_array_sha256": "fc3e5ded047ba949a0ba2c056e82e1c51c09ca2d9f1c0471bb3e5e14b1d8ea00"
+    },
+    {
+      "exact_native_cache_key": "21d1e131d8f631e674060ac6a2c94de0f2cf147a.pkl",
+      "pkl_sha256": "6d10eca22fa8295f3abfff3b2f0d2a04cf758387f43bf6bb52d0c45026c59223",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S19",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "That medal's year also saw Kodak announce the end of Kodachrome.",
+          "exact_native_cache_key": "21d1e131d8f631e674060ac6a2c94de0f2cf147a.pkl",
+          "cache_input_text_sha256": "381cc00932c920a4ce76f0d7ff3325c9a2d6c6356e2d11eaa9d8e0e13c39d1ce",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "6d10eca22fa8295f",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        104960
+      ],
+      "unprocessed_array_sha256": "db3d18d505af2e20710d679033e33deccd2ac717ef4f179b7ae71ee7518737ff"
+    }
+  ],
+  "missing_reference_key_count": 0,
+  "observed_missing_keys_covered": [],
+  "new_private_cache_names": [],
+  "native_single_thread_marker_verified": true,
+  "single_thread_sessions": [
+    {
+      "intra_op_num_threads": 1,
+      "inter_op_num_threads": 1
+    },
+    {
+      "intra_op_num_threads": 1,
+      "inter_op_num_threads": 1
+    }
+  ],
+  "models_sha256": {
+    "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+    "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+    "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+  },
+  "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+  "existing_private_cache_count": 11514,
+  "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+  "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+  "existing_private_cache_bytes_unchanged": true,
+  "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+  "public_repository_cache_unchanged": true,
+  "producer_pcm_existed_before": false,
+  "producer_pcm_sha256_before": null,
+  "producer_pcm_sha256_after": null,
+  "accepted_aac_adts_sha256_before": "b85dfb35a01cfc83d1d5b2f83f7247a7b7a5b3da53f7d799b6f290f564c04831",
+  "accepted_aac_adts_sha256_after": "b85dfb35a01cfc83d1d5b2f83f7247a7b7a5b3da53f7d799b6f290f564c04831",
+  "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+  "private_cache_exported": false
+}
