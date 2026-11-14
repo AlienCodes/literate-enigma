@@ -1,0 +1,110 @@
+{
+  "article": "12",
+  "purpose": "read-only exact failed-draft PCM replay for diagnosis",
+  "passed": false,
+  "quality_acceptance": false,
+  "final_deliverable": false,
+  "original_quality_thresholds_changed": false,
+  "private_GT_cache_model_PCM_exported": false,
+  "source_failed_run": 43522684973,
+  "replay_run": "43528832985",
+  "public_failed_binding": {
+    "source_sha256": "b4b7f80f3dbcb841d6f4dba31a735ce2df981398bdcf831c7780b2c4e378bb71",
+    "proof_sha256": "e7f906b26473552d50936786aa742de568a3b7cdbf43532a7f8b544119501aaf",
+    "failed_public_video_sha256": "cd40e721a62cb9c836063cb1b31d51a19690e937c983ea935e406effca842562",
+    "expected_exact_private_pcm_sha256": "3baf197760f39e1dba3f78abcc7dfe1e256c71cd824da3a52b35f20c24d92961"
+  },
+  "stage": "diagnostic-completed-no-acceptance",
+  "original_processes": {
+    "copy-original-modules": {
+      "exit": 0,
+      "public_scalar_error_lines": []
+    },
+    "exact-cached-audio-replay": {
+      "exit": 0,
+      "public_scalar_error_lines": []
+    },
+    "original-synth": {
+      "exit": 0,
+      "public_scalar_error_lines": []
+    },
+    "original-labels": {
+      "exit": 0,
+      "public_scalar_error_lines": []
+    },
+    "original-audit": {
+      "exit": 0,
+      "public_scalar_error_lines": [
+        "     cut tail=0ms onset=0ms (smpPk: 0/0) first5=-56.982155279102855 last5=-59.16222375553972",
+        "     edit raw 1.3800-1.3949 A 107.7650-107.7799 lost=14.9ms (max -57.0 dB re rmsPk, -65.8 re smpPk) shift=+0.0ms ins_nz=0 pre=-55.6 post=-56.0 | vindication",
+        "     cut tail=0ms onset=0ms (smpPk: 0/0) first5=-60.007100643397266 last5=-58.18683881271107",
+        "     edit raw 1.0100-1.0200 A 111.2150-111.2250 lost=10.0ms (max -58.2 dB re rmsPk, -66.1 re smpPk) shift=+0.0ms ins_nz=0 pre=-55.1 post=-58.4 | ABC",
+        "     cut tail=0ms onset=0ms (smpPk: 0/0) first5=-55.418491885214124 last5=-60.60356141544065",
+        "     edit raw 1.4150-1.4250 A 111.6200-111.6300 lost=10.0ms (max -55.4 dB re rmsPk, -63.3 re smpPk) shift=+0.0ms ins_nz=0 pre=-62.7 post=-58.1 | interrupted",
+        "     cut tail=0ms onset=0ms (smpPk: 0/0) first5=-60.762265794551865 last5=-62.58632493300341",
+        "     edit raw 1.4500-1.4650 A 111.6550-111.6700 lost=15.0ms (max -60.8 dB re rmsPk, -68.7 re smpPk) shift=+0.0ms ins_nz=0 pre=-57.4 post=-58.2 | interrupted",
+        "     cut tail=0ms onset=0ms (smpPk: 0/0) first5=-61.24823489388852 last5=-63.09520132624034",
+        "     edit raw 1.9951-2.0249 A 112.2001-112.2299 lost=29.8ms (max -56.4 dB re rmsPk, -64.3 re smpPk) shift=+0.0ms ins_nz=0 pre=-56.0 post=-56.2 | soap",
+        "     cut tail=0ms onset=0ms (smpPk: 0/0) first5=-56.78596178259576 last5=-56.72838704131178",
+        "     edit raw 2.2652-2.2700 A 112.4702-112.4750 lost=4.8ms (max -56.7 dB re rmsPk, -64.7 re smpPk) shift=+0.0ms ins_nz=0 pre=-56.0 post=-63.0 | opera",
+        "     cut tail=0ms onset=0ms (smpPk: 0/0) first5=-55.98896675953931 last5=-64.3633048335092",
+        "     edit raw 3.8750-3.9048 A 114.0800-114.1098 lost=29.8ms (max -56.0 dB re rmsPk, -63.9 re smpPk) shift=+0.0ms ins_nz=0 pre=-57.3 post=-59.5 | comeback,",
+        "     cut tail=0ms onset=0ms (smpPk: 0/0) first5=-62.01328154091598 last5=-64.57478044153785",
+        "     edit raw 3.9600-3.9950 A 114.1650-114.2000 lost=35.0ms (max -61.8 dB re rmsPk, -69.8 re smpPk) shift=+0.0ms ins_nz=0 pre=-57.9 post=-55.3 | comeback,",
+        "     cut tail=0ms onset=0ms (smpPk: 0/0) first5=-54.82045742891816 last5=-46.591155637342546",
+        "     edit raw 4.0750-4.3240 A 114.2800-114.6790 lost=249.0ms (max -40.0 dB re rmsPk, -47.9 re smpPk) shift=+150.0ms ins_nz=0 pre=-53.0 post=-47.0 | comeback,",
+        "     cut tail=0ms onset=0ms (smpPk: 0/0) first5=-58.52153409034515 last5=-62.926441330763524",
+        "     edit raw 4.8200-4.8450 A 115.1750-115.2000 lost=25.0ms (max -57.7 dB re rmsPk, -65.6 re smpPk) shift=+0.0ms ins_nz=0 pre=-58.2 post=-57.8 | led",
+        "     cut tail=0ms onset=0ms (smpPk: 0/0) first5=-59.09741935128949 last5=-55.35207613716847",
+        "     edit raw 1.6050-1.6250 A 119.6800-119.7000 lost=20.0ms (max -55.4 dB re rmsPk, -61.7 re smpPk) shift=+0.0ms ins_nz=0 pre=-56.2 post=-56.8 | misjudged",
+        "     cut tail=0ms onset=0ms (smpPk: 0/0) first5=-59.6005272987874 last5=-62.954390452213254",
+        "     edit raw 1.6900-1.7749 A 119.7650-119.8499 lost=84.9ms (max -55.7 dB re rmsPk, -62.1 re smpPk) shift=+0.0ms ins_nz=0 pre=-57.8 post=-58.6 | misjudged",
+        "     cut tail=0ms onset=0ms (smpPk: 0/0) first5=-58.09199990652867 last5=-58.09199990652867",
+        "     edit raw 1.9250-1.9300 A 120.0000-120.0050 lost=5.0ms (max -58.1 dB re rmsPk, -64.5 re smpPk) shift=+0.0ms ins_nz=0 pre=-61.2 post=-56.3 | what the",
+        "     cut tail=0ms onset=0ms (smpPk: 0/0) first5=-57.29090671848957 last5=-57.29090671848957",
+        "     edit raw 2.0400-2.0450 A 120.1150-120.1200 lost=5.0ms (max -57.3 dB re rmsPk, -63.7 re smpPk) shift=+0.0ms ins_nz=0 pre=-58.3 post=-57.9 | the",
+        "     cut tail=0ms onset=0ms (smpPk: 0/0) first5=-57.628588360910754 last5=-64.19089600160456",
+        "     edit raw 0.2150-0.2350 A 122.1900-122.2100 lost=20.0ms (max -57.6 dB re rmsPk, -66.8 re smpPk) shift=+0.0ms ins_nz=0 pre=-55.7 post=-65.8 | They",
+        "     cut tail=0ms onset=0ms (smpPk: 0/0) first5=-58.704028004651676 last5=-55.58292177400551",
+        "     edit raw 1.4800-1.8300 A 123.4550-123.8400 lost=350.0ms (max -44.1 dB re rmsPk, -53.4 re smpPk) shift=+35.0ms ins_nz=0 pre=-60.9 post=-50.8 | mouthful,",
+        "     cut tail=0ms onset=0ms (smpPk: 0/0) first5=-57.82688616516511 last5=-69.42055683946325",
+        "     edit raw 2.9600-2.9850 A 124.9700-124.9950 lost=25.0ms (max -57.8 dB re rmsPk, -67.0 re smpPk) shift=+0.0ms ins_nz=0 pre=-56.5 post=-57.1 | attachment",
+        "     cut tail=0ms onset=0ms (smpPk: 0/0) first5=-58.09154970201678 last5=-64.67925450997274",
+        "     edit raw 3.5650-3.6000 A 125.5750-125.6100 lost=35.0ms (max -58.1 dB re rmsPk, -67.3 re smpPk) shift=+0.0ms ins_nz=0 pre=-56.1 post=-59.9 | attachment",
+        "     cut tail=0ms onset=0ms (smpPk: 0/0) first5=-56.164045143843225 last5=-59.29102808484667",
+        "     edit raw 0.5850-0.6500 A 129.9450-130.3300 lost=65.0ms (max -55.0 dB re rmsPk, -65.0 re smpPk) shift=+320.0ms ins_nz=0 pre=-54.7 post=-58.1 | many,",
+        "     cut tail=0ms onset=0ms (smpPk: 0/0) first5=-56.28136469210912 last5=-56.28136469210912",
+        "     edit raw 1.0400-1.0450 A 130.7200-130.7250 lost=5.0ms (max -56.3 dB re rmsPk, -66.2 re smpPk) shift=+0.0ms ins_nz=0 pre=-62.9 post=-60.6 | old",
+        "     cut tail=0ms onset=0ms (smpPk: 0/0) first5=-56.244341445071655 last5=-56.244341445071655",
+        "     edit raw 1.3900-1.3950 A 131.0700-131.0750 lost=5.0ms (max -56.2 dB re rmsPk, -66.2 re smpPk) shift=+0.0ms ins_nz=0 pre=-57.7 post=-60.6 | taste",
+        "     cut tail=0ms onset=0ms (smpPk: 0/0) first5=-64.21306979661895 last5=-58.55710405351286",
+        "     edit raw 1.9050-1.9200 A 131.5850-131.6000 lost=15.0ms (max -58.6 dB re rmsPk, -68.5 re smpPk) shift=+0.0ms ins_nz=0 pre=-56.5 post=-59.2 | nostalgia",
+        "     cut tail=0ms onset=0ms (smpPk: 0/0) first5=-60.056035153105185 last5=-65.82738688339185",
+        "     edit raw 0.1650-0.1800 A 134.0250-134.0400 lost=15.0ms (max -60.1 dB re rmsPk, -67.8 re smpPk) shift=+0.0ms ins_nz=0 pre=-59.9 post=-60.3 | The",
+        "     cut tail=0ms onset=0ms (smpPk: 0/0) first5=-64.50040264911978 last5=-65.16452741702628",
+        "     edit raw 1.9100-1.9350 A 135.7700-135.7950 lost=25.0ms (max -58.1 dB re rmsPk, -65.8 re smpPk) shift=+0.0ms ins_nz=0 pre=-60.1 post=-62.4 | brand",
+        "     cut tail=0ms onset=0ms (smpPk: 0/0) first5=-61.671915135842106 last5=-65.07886222643283",
+        "     edit raw 2.5750-2.5949 A 136.4350-136.4549 lost=19.9ms (max -60.7 dB re rmsPk, -68.5 re smpPk) shift=+0.0ms ins_nz=0 pre=-58.2 post=-61.5 | every",
+        "     cut tail=0ms onset=0ms (smpPk: 0/0) first5=-60.81046015170664 last5=-56.90702259002939",
+        "     edit raw 2.8250-3.2299 A 136.6850-137.3749 lost=404.9ms (max -43.3 dB re rmsPk, -51.0 re smpPk) shift=+285.0ms ins_nz=0 pre=-60.8 post=-60.6 | taster,",
+        "     cut tail=0ms onset=0ms (smpPk: 0/0) first5=-57.95792028489831 last5=-61.865437792130564",
+        "     edit raw 3.6400-3.6550 A 137.7850-137.8000 lost=15.0ms (max -58.0 dB re rmsPk, -65.7 re smpPk) shift=+0.0ms ins_nz=0 pre=-56.2 post=-56.5 | ",
+        "     cut tail=0ms onset=0ms (smpPk: 0/0) first5=-64.43789365140226 last5=-66.06294230396041",
+        "     edit raw 4.1900-4.2499 A 138.3350-138.3949 lost=59.9ms (max -56.1 dB re rmsPk, -63.8 re smpPk) shift=+0.0ms ins_nz=0 pre=-57.7 post=-58.5 | could not",
+        "     cut tail=0ms onset=0ms (smpPk: 0/0) first5=-60.68899188123559 last5=-70.81116984720188",
+        "     edit raw 5.9150-5.9650 A 140.0600-140.1100 lost=50.0ms (max -57.0 dB re rmsPk, -64.8 re smpPk) shift=+0.0ms ins_nz=0 pre=-55.0 post=-62.2 | meant",
+        "A10 edge violations (cut not inside -55 dB on both sides, or removed part above -40 dB): 4",
+        "extra non-zero runs not explained by raw copies: 0"
+      ]
+    },
+    "scalar-diagnostic": {
+      "exit": 0,
+      "public_scalar_error_lines": []
+    }
+  },
+  "original_failed_maker_modules_match": true,
+  "actual_private_pcm_sha256": "3baf197760f39e1dba3f78abcc7dfe1e256c71cd824da3a52b35f20c24d92961",
+  "exact_failed_pcm_reproduced": true,
+  "scalar_diagnostic_sha256": "0c6c601d39042122b1f06aefce361bd012f05f3e90af05e5fe984391743397a3",
+  "scalar_diagnostic_error": null
+}
