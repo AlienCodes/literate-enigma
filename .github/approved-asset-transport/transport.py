@@ -1,10 +1,10 @@
-"""Copy only two frozen, already-approved PUBLIC asset Git commits to backup.
+"""Copy only three frozen, already-approved PUBLIC asset Git commits to backup.
 
 No synthesis, model/cache/PCM access, video edits or quality reclassification.
 This runs on GitHub's own runner to avoid a stalled workstation receive-pack.
 """
 import argparse,datetime,hashlib,json,os,pathlib,subprocess,tempfile
-p=argparse.ArgumentParser();p.add_argument('--input',required=True);p.add_argument('--out',required=True);a=p.parse_args();cfg=json.loads(pathlib.Path(a.input).read_text());DEST='AlienCodes/literate-enigma';SOURCE='alienalgorithm/postgraduate-vocabulary';MASTER='6355a02864ebae616b693200d9d26f74f5da80e9';assert os.environ['GITHUB_REPOSITORY']==DEST;assert cfg['destination']==DEST and cfg['source']==SOURCE;assert {x['source_id']for x in cfg['assets']}=={'02','49'}
+p=argparse.ArgumentParser();p.add_argument('--input',required=True);p.add_argument('--out',required=True);a=p.parse_args();cfg=json.loads(pathlib.Path(a.input).read_text());DEST='AlienCodes/literate-enigma';SOURCE='alienalgorithm/postgraduate-vocabulary';MASTER='6355a02864ebae616b693200d9d26f74f5da80e9';assert os.environ['GITHUB_REPOSITORY']==DEST;assert cfg['destination']==DEST and cfg['source']==SOURCE;assert {x['source_id']for x in cfg['assets']}=={'61','15','17'}
 report={'scope':'PUBLIC approved Git asset transport only, no synthesis/source or quality changes','source_repository':SOURCE,'destination_repository':DEST,'native_transport_run_id':os.environ['GITHUB_RUN_ID'],'native_transport_commit':os.environ['GITHUB_SHA'],'copied':[],'passed':False,'does_not_claim_new_video_quality_acceptance':True,'main_master_or_dedicated_source_branch_modified':False}
 def save():pathlib.Path(a.out).write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
 def run(args,cwd=None,binary=False):
@@ -17,12 +17,13 @@ def protected():
 protected();save()
 try:
  for item in cfg['assets']:
-  assert item['asset_branch'].startswith('codex/passed4k-assets-') and item['source_id']in['02','49'];assert len(item['asset_commit'])==40
+  assert item['asset_branch'].startswith('codex/passed4k-assets-') and item['source_id']in['61','15','17'];assert len(item['asset_commit'])==40
   d=pathlib.Path(tempfile.mkdtemp(prefix='approved-public-'+item['source_id']+'-',dir=os.environ['RUNNER_TEMP']));g=d/'objects.git';run(['git','init','--bare',str(g)])
   def git(*args,binary=False):return run(['git','--git-dir='+str(g),*args],binary=binary)
-  # This source ref is an orphan assets-only history with exactly two commits;
+  # This source ref is an orphan assets-only history bounded by its original commit list;
   # no default-branch history, private producer cache or model tree is fetched.
-  git('-c','credential.helper=','fetch','--no-tags','--depth=2',source,'refs/heads/'+item['asset_branch']);assert git('rev-parse','FETCH_HEAD')==item['asset_commit'];assert git('rev-parse',item['asset_commit']+':'+item['prefix'])==item['video_tree_sha']
+  git('-c','credential.helper=','fetch','--no-tags','--depth='+str(len(item['commits'])),source,'refs/heads/'+item['asset_branch']);assert git('rev-parse','FETCH_HEAD')==item['asset_commit'];assert git('rev-parse',item['asset_commit']+':'+item['prefix'])==item['video_tree_sha']
+  assert git('rev-list','--reverse',item['asset_commit']).splitlines()==item['commits']
   checked=[]
   for f in item['files_index']:
    blob=git('rev-parse',item['asset_commit']+':'+f['repo_path']);assert blob==f['git_blob_sha'];raw=git('cat-file','blob',blob,binary=True);assert len(raw)==f['bytes']and hashlib.sha256(raw).hexdigest()==f['sha256'];checked.append({'path':f['repo_path'],'git_blob_sha':blob,'bytes':len(raw),'sha256':f['sha256']})
