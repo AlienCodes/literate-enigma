@@ -1,4 +1,4 @@
-name: 原48正确原生词典上下文仅新全名S15两原母与实测
+name: 原48正确词典新全名原缓存整轨实际身份诊断
 on:
   push:
     branches: [codex/finish-05-and-summaries-20261112]
@@ -37,12 +37,12 @@ jobs:
         id: exact-new-name
         with:
           path: |
-            ${{ runner.temp }}/completion-machine/tts/cache_tts/2e780fe5d9534eaf29b922271342d8f40cf7d5e6.pkl
-            ${{ runner.temp }}/completion-machine/tts/cache_tts/2e780fe5d9534eaf29b922271342d8f40cf7d5e6.pkl.单线程
-            ${{ runner.temp }}/completion-machine/tts/cache_tts/3d2776ec4567d58a25236c22d669506f238edb1d.pkl
-            ${{ runner.temp }}/completion-machine/tts/cache_tts/3d2776ec4567d58a25236c22d669506f238edb1d.pkl.单线程
-            ${{ runner.temp }}/completion-machine/tts/cache_tts/调平_d3ee28c1a0d096e2302fb782cbd15f5b853f1116.json
-          key: Linux-native48-YuanLongping-43635240084
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/5277782c078c7fbb56cd99004114eaeae82ec430.pkl
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/5277782c078c7fbb56cd99004114eaeae82ec430.pkl.单线程
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/586bd56cd87532d8969be74dde574dc5ef09a448.pkl
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/586bd56cd87532d8969be74dde574dc5ef09a448.pkl.单线程
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/调平_55b4f1b37a71b4de9c91b384a2cee79d0d89761c.json
+          key: Linux-native48-correctcontext-YuanLongping-43646876571
       - name: 确认精确新全名私母已恢复
         env:
           CACHE_HIT: ${{ steps.exact-new-name.outputs.cache-hit }}
@@ -81,10 +81,11 @@ jobs:
           XG_NOPUSH: '1'
         run: |
           python official-main/视频/工具/出片指纹.py --拷 "$RUNNER_TEMP/completion-machine/video"
-      - name: 正确原生上下文仅S15两母实做与原G36及两ASR标量诊断
+      - name: 严格原缓存全轨原声与新S15母实际身份诊断
         id: target
         env:
           XG_NOPUSH: '1'
+          STRICT_CACHE: '1'
           AUDIO_ONLY: '1'
           XG_KEEP_REVIEWED_GAIN: '1'
           XG_KEEP_REVIEWED_ENDING: '1'
@@ -104,18 +105,12 @@ jobs:
           else:
               work.symlink_to(tools,target_is_directory=True)
           PYENV
-          python -u .github/target48-whole-cached-diagnostic/native48_correct_context_S15_two_mothers.py --tools "$GITHUB_WORKSPACE/official-main/视频/工具" --video-root "$RUNNER_TEMP/completion-machine" --request "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48.json" --missing-witness "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/actual-correct-alias-STRICT-missing-new-S15-witness.json" --root-decision "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/root-source48-correct-native-dictionary-context-hold-and-only-S15-remeasurement-decision.json" --previous-cache-identity "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/native48-new-S15-private-cache-identity.json" --output "$GITHUB_WORKSPACE/target48-whole-public/48-only-correct-context-S15-measurement.json" --cache-path-output "$GITHUB_OUTPUT"
-      - name: 仅私有保存正确context两母marker及原G36五小文件
-        if: always() && steps.target.outputs.cache_key != ''
-        uses: actions/cache/save@v4
-        with:
-          path: ${{ steps.target.outputs.cache_paths }}
-          key: ${{ steps.target.outputs.cache_key }}
+          python -u .github/target48-whole-cached-diagnostic/native48_whole_audio_correct_context_scope.py --tools "$GITHUB_WORKSPACE/official-main/视频/工具" --video-root "$RUNNER_TEMP/completion-machine" --request "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48.json" --baseline-source "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48-current-baseline.json" --cache-identity "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48-correct-context-S15-private-cache-identity.json" --gain-decision "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/root-source48-correct-native-context-actual-two-mother-name-only-plus1-reselection-decision.json" --output "$GITHUB_WORKSPACE/target48-whole-public/48-correct-context-whole-strict-cached-diagnostic.json"
       - name: 仅保存安全标量JSON不导母料音频
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: native48-correct-native-context-only-S15-diagnostic
+          name: native48-correct-context-strict-cached-whole-scope-diagnostic
           path: |
             target48-whole-public/*.json
           retention-days: 30
