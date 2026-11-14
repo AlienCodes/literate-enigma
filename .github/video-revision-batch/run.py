@@ -35,7 +35,7 @@ for key in ('YAOWENBEN', 'OLD_IV_VOID', 'AUDIO_ONLY', 'VIDEO_S'):
 status = {'article': NO, 'passed': False, 'stage': 'start',
           'original_audit_and_quality_thresholds_unchanged': True, 'original_maker_unchanged': True,
           'core_repairs': [],
-          'strict_production_cache': True, 'pdf_requested': False, 'review_only':True, 'user_individual_finalization_authorized':False, 'specific_review_authorization_102_sha256':'baf7b2fc59a11d2b1b135051a3e9c0aec2782c7789b055c87c782d7a67aba536'}
+          'strict_production_cache': True, 'pdf_requested': False}
 PRODUCTION_STARTED_NS = None
 BASELINE_AUDIO_FILES = None
 
@@ -114,15 +114,15 @@ def prepare_accepted_pcm_continuity(baseline_bytes, accepted_aac):
     expected = {'10':'15f47fa51add', '11':'5da69def8d01', '12':'04f94362f377',
                 '44':'21efe6263229', '51':'ff0728857c2d',
                 '15':'7e5ea2bdb6d3', '17':'0ef19e50999f',
-                '18':'05efc6de075d', '30':'93a277750d35', '02':None,
+                '18':'76b99c620981', '30':'93a277750d35', '02':None,
                 '69':'8b8618454b80', '05':'1e25fbe69f6f',
                 '67':'c34294a522a7', '16':'630cbdf1eae2'}
-    exact_old_pcm = {'18':'e2ae360b8e63bad45972054dfab0e74bb448983de82b5d8a2571d6ee916f65fd','02':'c21872d4db894f37b1b8b5db752917f9f6ef60680834ca4cccef9b806b5c1c52',
+    exact_old_pcm = {'02':'c21872d4db894f37b1b8b5db752917f9f6ef60680834ca4cccef9b806b5c1c52',
                      '69':'d04e5e1b057dfaa788bf86dcd6fe7da7b88fc1a254f8abd0a695621f074c2837',
                      '05':'4c20eb528b935e7a315e3f41b3f4168fe82cd5e26e0b33d16ea4bfce2609cb64',
                      '67':'39f7defdcfad7a4dae00c9677c7998d8f70c984247583e136e09e6efe9392bae',
                      '16':'3a2239772fe1941d4a5de28be034ff49670fedcf6ced0d1c0e61e5476912b93d'}
-    prior_public_aac = {'18':'0a223ab49b6f4fe997f542bc50a6da7f3d087a09ee344db92dd7c2d5c9b4f526','69':'2b15b4811866afd03ef5962f6ce99717d28d7e97704750d9ede91bd7799eed15',
+    prior_public_aac = {'69':'2b15b4811866afd03ef5962f6ce99717d28d7e97704750d9ede91bd7799eed15',
                         '67':'d5d57519d6b60e31eeb92bd1bf0b0505192b49ee9c1e34ae02b5c9ddc9532856'}
     if NO not in expected:
         return
@@ -141,10 +141,6 @@ def prepare_accepted_pcm_continuity(baseline_bytes, accepted_aac):
         exact_prior = TASK / 'accepted-pcm-source-reference/67-prior-native.json'
         assert sha(exact_prior) == '8897cc1c2df1e4672eec3bbff2776d0565afb9c9fe84087a1758ebb15b2a233e'
         baseline_bytes = exact_prior.read_bytes()
-    if NO == '18':
-        exact_prior = TASK / 'accepted-pcm-source-reference/18-prior-native.json'
-        assert sha(exact_prior) == '0be588e72e2daf950787b7243ee78b29e8255969288cf2abfb6c748f300bdde5'
-        baseline_bytes = exact_prior.read_bytes()
     script = W / f'scripts/{NO}.json'
     current = script.read_bytes()
     old_source = LOG / 'accepted-prior-source.json'
@@ -162,8 +158,6 @@ def prepare_accepted_pcm_continuity(baseline_bytes, accepted_aac):
                       'expected_prior_public_native_pcm_md5_first12':expected[NO],
                       'expected_prior_public_native_pcm_sha256':exact_old_pcm[NO],
                       'expected_prior_public_native_aac_adts_sha256':prior_public_aac[NO]})
-    if NO == '18':
-        proof.update(reference_kind='actual-original3p5-public-native-before-root4p5-not-legacy-accepted-graft', original_public_run_id=None, reference_source_role='exact e2ae source from actual first4K A21 artifact', legacy_accepted_AAC_adts_sha256=accepted_aac, formally_accepted_whole=False)
     proof_file = OUT / f'{NO}-accepted-prior-pcm-probe.json'
     private_reference_inputs = {}
     try:
@@ -230,7 +224,7 @@ def prepare_accepted_pcm_continuity(baseline_bytes, accepted_aac):
             proof_file.write_text(json.dumps(proof, ensure_ascii=False, indent=2) + '\n')
             save()
             return
-    if NO != '18' and NO in A21_AUDIO_REPAIRS | {'02', '05', '16'} and not proof.get('old_reconstructed_aac_exactly_matches_accepted', False):
+    if NO in A21_AUDIO_REPAIRS | {'02', '05', '16'} and not proof.get('old_reconstructed_aac_exactly_matches_accepted', False):
         proof['migration_not_attempted'] = 'Old reconstruction did not exactly reproduce the accepted AAC.'
         proof_file.write_text(json.dumps(proof, ensure_ascii=False, indent=2) + '\n')
         save()
@@ -992,10 +986,10 @@ try:
             assert actual_record['篇'] == NO
             if actual_record not in records['记录']:
                 records['记录'].append(actual_record)
-    if NO == '18':
+    if NO == '54':
         supplement = request / '真实用户同意补充.json'
-        assert sha(supplement) == 'e5979c92d17a9db5b40871e9f7fb3a27043d87782c5a444ad14aba19998c770c'
-        assert sha(request / 'root-source18-dormant-original-t-exact-review-decision.json') == '477fa3370cbf0c987d624eefbee4dc9fdff307a3dab582de299211d3365d1ba2'
+        assert sha(supplement) == '442a49f406a3305fce00766e2636bb54a8dd28a029528917d2612764aba42f8c'
+        assert sha(request / 'root-source54-specific-two-existing-CF-and-current-reference-review-rebuild-decision.json') == 'e04a52c1a6e3027d0fd515a017593c31ed60315c4f37281d7e0d2eed4595aed6'
         for actual_record in json.loads(supplement.read_text())['records']:
             assert actual_record['篇'] == NO
             if actual_record not in records['记录']:
@@ -1080,19 +1074,22 @@ try:
             'file':exact_transfer.name, 'sha256':sha(exact_transfer),
             'program_sha256':sha(installer), 'does_not_change_audio_or_ASR_rules':True}
         save()
-    if NO == '18':
-        installer = TASK / 'install18-specific-nine-and-one-objective-confirmations.py'
-        assert sha(installer) == 'f1d2d49b17baaa9b28c341a0de289acbd8350906b7cf7ff727af10348c231624'
-        assert sha(installer.with_name('install18-specific-nine-and-one-reference.json')) == '79bcaf7aef1ce211f55b2493317ed3fc8a9eaea109bdcdf3ee514e8a453de433'
-        assert sha(TASK / 'root-source18-specific-nine-typed-plus-one-objective-word-basis-correction-decision.json') == 'c70db70f96af4d8ee7c0efc6fced36e5fdc40b3b69b44cfd9df4a6cb0858cb15'
-        target = OUT / '18-specific-nine-plus-one-runtime-confirmation-transfer.json'
-        checked(['python3', installer, '--work', W, '--request', request,
-                 '--actual-audio', W / '18.mp4', '--accepted-source', source_video,
-                 '--write-runtime', '--output', target], '18-specific-nine-plus-one-runtime-confirmation-transfer.log', W)
-        evidence = json.loads(target.read_text())
-        assert evidence['passed'] and evidence['runtime_metadata_applied'] and evidence['all_other_source_fields_exact']
-        assert evidence['quality_acceptance'] is False and evidence['PV_changes'] == []
-        status['root_specific_nine_FPs_and_one_objective_word_basis_registration'] = {'file':target.name,'sha256':sha(target),'program_sha256':sha(installer),'reference_sha256':sha(installer.with_name('install18-specific-nine-and-one-reference.json')),'no_new_audio_or_ASR_or_quality_acceptance':True}
+    if NO == '54':
+        # Produce actual approved current PCM using only the original strict cached maker, then measure exact metadata eligibility.
+        # Original canonical draft/final and all their checks run normally AFTER this identity-only preparation.
+        with (LOG / '54-original-cached-current-AUDIO_ONLY-before-two-CF-registration.log').open('w') as original_log:
+            original_result = subprocess.run(['python3',W/'make_video.py',W/'scripts/54.json',W/'54.mp4'],cwd=W,env={**ENV,'AUDIO_ONLY':'1'},stdout=original_log,stderr=subprocess.STDOUT)
+        assert original_result.returncode == 0, 'Original cached current54 AUDIO_ONLY failed.'
+        installer = TASK / 'install54_exact_two_existing_loudness_confirmations.py'
+        assert sha(installer) == '3f39c9b74de12146abe27ab1cc76f420c3414544bf4d2d2ba8a75d969f8f7a3b'
+        assert sha(installer.with_name('install54_exact_two_existing_loudness_confirmations_reference.json')) == '854ba8712296dec73b9df8f1357a1bd6dec7517b024647baf86b0664905641b2'
+        target = OUT / '54-specific-two-existing-loudness-runtime-registration.json'
+        checked(['python3',installer,'--work',W,'--request',request,'--actual-audio',W/'54.mp4','--write-runtime','--output',target],
+                '54-specific-two-existing-loudness-runtime-registration.log',W)
+        registration=json.loads(target.read_text())
+        assert registration['passed'] and registration['runtime_confirmation_transfer_applied']
+        assert registration['only_two_existing_fingerprints_changed'] and registration['quality_acceptance'] is False
+        status['root_specific_two_existing_loudness_registration']={'file':target.name,'sha256':sha(target),'program_sha256':sha(installer),'reference_sha256':sha(installer.with_name('install54_exact_two_existing_loudness_confirmations_reference.json')),'quality_acceptance_not_granted':True}
         save()
     clear_current_reference_cache()
     clear_temporary_video()
@@ -1115,15 +1112,30 @@ try:
     if NO == '07':
         assert status['canonical_aac_adts_sha256'] == '16b6293adfc7a3c35224408ae39d831317e1932f8d47876824e129129c9115d8'
         assert sha(W / 'work_07/a.wav') == '11edc969af0797bcd7121034f43de130d72ca9186508e64e3330aff6c4069643'
-    if NO == '18':
-        assert status['canonical_aac_adts_sha256'] == 'f3dc4bbcfee0688dc9d30551944f028d29a11230f27eed51800d6e03eb4047ce'
-        assert sha(W / 'work_18/a.wav') == '916e594a32542618c6d5321f88fadc482adb4d3a6dabf3472cebc53f55c0d088'
     status['canonical_pipeline_passed'] = True
     status['cached_input_wav_sha256'] = start_wav
     status['final_wav_sha256'] = sha(W / f'work_{NO}/a.wav')
     save()
     canonical_aac = aac_hash(canonical)
-    if NO in APPROVED_AUDIO_REPAIRS:
+    if NO == '54':
+        assert status['canonical_pipeline_passed'] is True
+        profile_path=TASK/'54-specific-current-reference-and-only-two-existing-CF-profile.json'
+        assert sha(profile_path)=='70469afeec6fe37b8997575d87ae36493426ef11ad0fb2e8828d9edba03882fa'
+        verifier=TASK/'verify54_exact_current_reference.py'
+        assert sha(verifier)=='cf946dd36c42d4fcbe8661869cf2adcb81b1ac302da143e3d9a67f5dbaffce7d'
+        spec=importlib.util.spec_from_file_location('source54_exact_current_identity',verifier)
+        identity=importlib.util.module_from_spec(spec);spec.loader.exec_module(identity)
+        comparison=TASK/'54-two-existing-confirmations-whole-sentence-and-comparison-context-v2.json'
+        evidence=identity.validate(json.loads(profile_path.read_text()),json.loads((request/'视频/脚本/54.json').read_text()),current,
+            sha(request/'视频/脚本/54.json'),sha(request/'视频/工具/初稿生成/gen54.py'),sha(W/'work_54/a.wav'),canonical_aac,accepted_aac,sha(comparison))
+        evidence.update(program_sha256=sha(verifier),reference_sha256=sha(profile_path),request_source_sha256=sha(request/'视频/脚本/54.json'),canonical_sha256=sha(canonical),actual_whole_WAV_sha256=sha(W/'work_54/a.wav'),actual_current_AAC_adts_sha256=canonical_aac,actual_legacy_AAC_adts_sha256=accepted_aac,original_complete_pipeline_passed_before_identity_binding=True,root_exact_decision_sha256='e04a52c1a6e3027d0fd515a017593c31ed60315c4f37281d7e0d2eed4595aed6')
+        evidence_path=OUT/'54-exact-current-native-voice-and-two-existing-CF-identity-binding.json'
+        evidence_path.write_text(json.dumps(evidence,ensure_ascii=False,indent=2)+'\n')
+        assert evidence['identity_binding_passed'] and evidence['checks'] and all(c['passed']for c in evidence['checks'])
+        assert evidence['formal_quality_acceptance'] is False and evidence['repair_applied'] is False
+        status['approved_current_reference_review_binding']=evidence
+        status['review_only']=True;status['user_individual_finalization_authorized']=False
+    elif NO in APPROVED_AUDIO_REPAIRS:
         # Root supplies actual approved audio-change validation. No gain/overlay implementation is assumed here.
         helper_name = ('audio05-tail-qc.py' if NO == '05' else
                        'audio67-controlled-qc.py' if NO == '67' else
@@ -1201,7 +1213,10 @@ try:
     assert timing['end_page_frames'] == 60 and timing['end_page_seconds'] == 2
     assert timing['original_audio_identical'] and timing['original_audio_packet_timings_identical']
     assert aac_hash(processed[0]) == canonical_aac, 'Exact-card processing changed the canonical AAC stream.'
-    if NO not in APPROVED_AUDIO_REPAIRS:
+    if NO == '54':
+        assert status['approved_current_reference_review_binding']['identity_binding_passed']
+        assert aac_hash(processed[0]) == canonical_aac
+    elif NO not in APPROVED_AUDIO_REPAIRS:
         assert aac_hash(processed[0]) == accepted_aac, 'Final AAC differs from accepted prior voice.'
     final = OUT / f'{NO}-4K-读完即转简述2秒.mp4'
     shutil.copyfile(processed[0], final)
