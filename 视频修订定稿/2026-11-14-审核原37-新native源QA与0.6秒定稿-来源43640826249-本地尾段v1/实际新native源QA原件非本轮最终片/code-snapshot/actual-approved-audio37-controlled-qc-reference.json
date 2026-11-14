@@ -1,0 +1,951 @@
+{
+  "article": "37",
+  "enabled": true,
+  "state": "root-selected-exact-S10-plus1-S13-plus075-opening-repair",
+  "source_authorization_ids": [
+    "129",
+    "130",
+    "131",
+    "132",
+    "133"
+  ],
+  "fingerprints": {
+    "request_source_sha256": "d0c522ca50335950878202f8c1bdb4da5970f9e185d4156eb2352b8ec86507e5",
+    "request_generator_sha256": "f9dc4427fbf6a293e7e81d6c4b07c1a7129276284aec884079669d35388ffba4",
+    "accepted_video_sha256": "decc63c0423eee0526315aa78e5a3c867300b335296006cf108891ccf1d5f174",
+    "accepted_AAC_ADTS_sha256": "60f3893386a8fc86d9f72b08b0b7eada024dcb350a7bb9bad9a37588b771d572",
+    "actual_raw_WAV_sha256": "7467340d87a8dfc67ca7ab9c8dea7f2ce9d5ca5d895e85651836a5fcf10f3c1b",
+    "canonical_AAC_ADTS_sha256": "408fce7746df68c8fe6aaf54dd09bea7466d7700d2491e8f647cec6db64cf1fd"
+  },
+  "comparison_before_role": {
+    "kind": "latest-formally-accepted-current-native43543967031",
+    "video_sha256": "decc63c0423eee0526315aa78e5a3c867300b335296006cf108891ccf1d5f174",
+    "actual_source_sha256": "cf4d7618f46155f222d9ce016c5411fbd3904aa6296834048c486c286ed2e40d",
+    "request_source_sha256": "b1b8945ccf3581df48ade5714a2d0e93e4cc6812708f95bef6f5e44439106c99",
+    "WAV_sha256": "e7a06c4300cb662793594b8c013b7e87442d38e529afe62f964bfe832771ef0c",
+    "AAC_sha256": "60f3893386a8fc86d9f72b08b0b7eada024dcb350a7bb9bad9a37588b771d572",
+    "completed_original_canonical_pipeline": true,
+    "formally_accepted_whole": true,
+    "legacy_accepted_container_not_substituted": true
+  },
+  "old_baseline_WAV_sha256": "e7a06c4300cb662793594b8c013b7e87442d38e529afe62f964bfe832771ef0c",
+  "approved_nonreview_document_sha256": "3ccb58b7a1c219d18bb0d73e899441fc4ac18cc37d20e9cd0b038cdfcb4c01ff",
+  "review_only_top_level_keys": [
+    "核对确认",
+    "区间声音指纹"
+  ],
+  "approved_audio_controls": {
+    "高亮按实际开口": true,
+    "高亮开口门槛": 40,
+    "非人声区间": {
+      "S1": [
+        [
+          1.855,
+          2.135
+        ],
+        [
+          7.015,
+          7.12
+        ]
+      ],
+      "S3": [
+        [
+          2.72,
+          3.045
+        ]
+      ],
+      "S4": [
+        [
+          2.035,
+          2.285
+        ]
+      ],
+      "S5": [
+        [
+          3.025,
+          3.31
+        ]
+      ],
+      "S11": [
+        [
+          1.619083,
+          1.77,
+          "紧贴词尾"
+        ]
+      ],
+      "S13": [
+        [
+          3.425,
+          3.735
+        ]
+      ],
+      "S15": [
+        [
+          5.275,
+          5.48
+        ]
+      ],
+      "S16": [
+        [
+          1.65,
+          1.945
+        ]
+      ],
+      "S17": [
+        [
+          6.26,
+          6.470167,
+          "紧贴词头"
+        ]
+      ],
+      "S9": [
+        [
+          2.655,
+          2.927583,
+          "紧贴词头"
+        ]
+      ],
+      "S18": [
+        [
+          3.371,
+          3.517583,
+          "紧贴两头"
+        ]
+      ]
+    },
+    "停顿处除阻": null,
+    "词尾除阻": {
+      "S6": {
+        "1": [
+          2.96,
+          "t"
+        ]
+      },
+      "S13": {
+        "句末": [
+          6.48,
+          "k"
+        ]
+      }
+    },
+    "除阻加强": null,
+    "停顿插入点": {
+      "S13": {
+        "2": [
+          1.702625,
+          "交界"
+        ],
+        "3": [
+          2.46725,
+          "交界"
+        ]
+      },
+      "S19": {
+        "2": [
+          3.28925,
+          "交界"
+        ]
+      }
+    },
+    "停顿删除区间": null,
+    "结尾句": {
+      "S19": {
+        "前段语速": 0.9,
+        "最后一段语速": 0.78,
+        "最后一段前停顿": 0.7,
+        "接点": [
+          140700,
+          183060
+        ],
+        "依据": "全篇结尾句按 07 定下的标准（用户 2026-10-10 同意并要求所有视频统一）：前段 0.9、最后一段“quoted his ironic letter.” 0.78、前面停 0.7 秒。接点由 结尾句接点.py 自动找：0.9 那遍最后一个标点后最长静音（45 ms）的正中 5.862 s，0.78 那遍（55 ms）的正中 7.628 s，所在帧和两侧各 5 ms 都低于 -55 dB（程序以 08 校准：与人工核实的接点落在同一段静音里）"
+      }
+    },
+    "合成标点": null,
+    "分段增益dB": {
+      "S10": {
+        "1": 1.0
+      },
+      "S13": {
+        "1": 0.75
+      }
+    },
+    "段内渐变dB": {
+      "S13": {
+        "5": [
+          -2.5,
+          3.0
+        ]
+      }
+    },
+    "句子增益dB": {
+      "S14": -1.0
+    },
+    "分段包络dB": null
+  },
+  "original_audio_controls": {
+    "高亮按实际开口": true,
+    "高亮开口门槛": 40,
+    "非人声区间": {
+      "S1": [
+        [
+          1.855,
+          2.135
+        ],
+        [
+          7.015,
+          7.12
+        ]
+      ],
+      "S3": [
+        [
+          2.72,
+          3.045
+        ]
+      ],
+      "S4": [
+        [
+          2.035,
+          2.285
+        ]
+      ],
+      "S5": [
+        [
+          3.025,
+          3.31
+        ]
+      ],
+      "S11": [
+        [
+          1.619083,
+          1.77,
+          "紧贴词尾"
+        ]
+      ],
+      "S13": [
+        [
+          3.425,
+          3.735
+        ]
+      ],
+      "S15": [
+        [
+          5.275,
+          5.48
+        ]
+      ],
+      "S16": [
+        [
+          1.65,
+          1.945
+        ]
+      ],
+      "S17": [
+        [
+          6.26,
+          6.470167,
+          "紧贴词头"
+        ]
+      ],
+      "S9": [
+        [
+          2.655,
+          2.927583,
+          "紧贴词头"
+        ]
+      ],
+      "S18": [
+        [
+          3.371,
+          3.517583,
+          "紧贴两头"
+        ]
+      ]
+    },
+    "停顿处除阻": null,
+    "词尾除阻": {
+      "S6": {
+        "1": [
+          2.96,
+          "t"
+        ]
+      },
+      "S13": {
+        "句末": [
+          6.48,
+          "k"
+        ]
+      }
+    },
+    "除阻加强": null,
+    "停顿插入点": {
+      "S13": {
+        "2": [
+          1.702625,
+          "交界"
+        ],
+        "3": [
+          2.46725,
+          "交界"
+        ]
+      },
+      "S19": {
+        "2": [
+          3.28925,
+          "交界"
+        ]
+      }
+    },
+    "停顿删除区间": null,
+    "结尾句": {
+      "S19": {
+        "前段语速": 0.9,
+        "最后一段语速": 0.78,
+        "最后一段前停顿": 0.7,
+        "接点": [
+          140700,
+          183060
+        ],
+        "依据": "全篇结尾句按 07 定下的标准（用户 2026-10-10 同意并要求所有视频统一）：前段 0.9、最后一段“quoted his ironic letter.” 0.78、前面停 0.7 秒。接点由 结尾句接点.py 自动找：0.9 那遍最后一个标点后最长静音（45 ms）的正中 5.862 s，0.78 那遍（55 ms）的正中 7.628 s，所在帧和两侧各 5 ms 都低于 -55 dB（程序以 08 校准：与人工核实的接点落在同一段静音里）"
+      }
+    },
+    "合成标点": null,
+    "分段增益dB": null,
+    "段内渐变dB": {
+      "S13": {
+        "5": [
+          -2.5,
+          3.0
+        ]
+      }
+    },
+    "句子增益dB": {
+      "S14": -1.0
+    },
+    "分段包络dB": null
+  },
+  "spoken_title_and_sentences_sha256": "40fad10dee0781fa6997f1ae88bd3a8246e5569605dce62e84f0663dcc8a079b",
+  "source_control_leaves": {
+    "/分段增益dB/S10/1": 1.0,
+    "/分段增益dB/S13/1": 0.75
+  },
+  "raw_WAV_shape": {
+    "rate": 24000,
+    "channels": 1,
+    "width": 2,
+    "samples": 3871320
+  },
+  "unchanged_title_and_other_17_sentences": [
+    {
+      "name": "title",
+      "sample_span_24k": [
+        9600,
+        41640
+      ],
+      "PCM16_sample_bytes_sha256": "af90400971db4f25b3da98d5556f12372ee9dfa84876222b04e9c39d958d9c99"
+    },
+    {
+      "name": "S1",
+      "sample_span_24k": [
+        65640,
+        293280
+      ],
+      "PCM16_sample_bytes_sha256": "b143116f85084b2cc146ac9f93f4240a56a6f98f075e5d16cca63577abeaf3b5"
+    },
+    {
+      "name": "S2",
+      "sample_span_24k": [
+        317280,
+        459960
+      ],
+      "PCM16_sample_bytes_sha256": "197c177b4a8e68d45cc0bd6947cdc60d715d6b85eac2ebf46d3c75892b87d9d0"
+    },
+    {
+      "name": "S3",
+      "sample_span_24k": [
+        483960,
+        629280
+      ],
+      "PCM16_sample_bytes_sha256": "335e02ecc389f8633ebe25ee4b67725748935b4fb5f2bdefaab0b5a4a35e5726"
+    },
+    {
+      "name": "S4",
+      "sample_span_24k": [
+        653280,
+        777240
+      ],
+      "PCM16_sample_bytes_sha256": "0b77d4c9a6f9835672bc64773f4761c17c16866e2195ce9f9301253fa7048208"
+    },
+    {
+      "name": "S5",
+      "sample_span_24k": [
+        806040,
+        975000
+      ],
+      "PCM16_sample_bytes_sha256": "a14166f2bcdd7ecc22277f72a818cff1ba3842de0784f154c122264cf7107a0e"
+    },
+    {
+      "name": "S6",
+      "sample_span_24k": [
+        999000,
+        1207680
+      ],
+      "PCM16_sample_bytes_sha256": "b82966482b1c3c61fe26111d4af5f2942dac8cd49655096f7cc9fb7a876ed3f4"
+    },
+    {
+      "name": "S7",
+      "sample_span_24k": [
+        1231680,
+        1407720
+      ],
+      "PCM16_sample_bytes_sha256": "9a2096de874eb74b8be63069ca6f8b6409c8461b33b916ffa99e590da2ff565b"
+    },
+    {
+      "name": "S8",
+      "sample_span_24k": [
+        1436520,
+        1483680
+      ],
+      "PCM16_sample_bytes_sha256": "801319e93a3a0e0683bc60221b48a2f790527a02feda7634de8c91e07ab30fb8"
+    },
+    {
+      "name": "S9",
+      "sample_span_24k": [
+        1507680,
+        1677720
+      ],
+      "PCM16_sample_bytes_sha256": "d53af3e76893d684a6e5bd9c45aff72cca3fad3922e529bc05b4eacef7d0b615"
+    },
+    {
+      "name": "S11",
+      "sample_span_24k": [
+        1877040,
+        2100840
+      ],
+      "PCM16_sample_bytes_sha256": "92873155a146a654948814ff05fae175097deacf8a1036ecc0779b8f1174be13"
+    },
+    {
+      "name": "S12",
+      "sample_span_24k": [
+        2129640,
+        2427960
+      ],
+      "PCM16_sample_bytes_sha256": "a6eb49f68f492e9d378d8ca0d9a9435fc128c6b60660eb29ef34b5865023417d"
+    },
+    {
+      "name": "S14",
+      "sample_span_24k": [
+        2660280,
+        2691120
+      ],
+      "PCM16_sample_bytes_sha256": "2a185b5db0d4f69e832e4db076e559485b1d26c92c0e730af96744a06184f797"
+    },
+    {
+      "name": "S15",
+      "sample_span_24k": [
+        2715120,
+        2904960
+      ],
+      "PCM16_sample_bytes_sha256": "077275b1bd06155316a780e691819b544f29a2782cd617b52cdacb546693b3ac"
+    },
+    {
+      "name": "S16",
+      "sample_span_24k": [
+        2933760,
+        3139800
+      ],
+      "PCM16_sample_bytes_sha256": "1ecf73b47656b2ce8c6e36efc35834b68556f15b222920d5ae03fd185090cbe3"
+    },
+    {
+      "name": "S17",
+      "sample_span_24k": [
+        3163800,
+        3435360
+      ],
+      "PCM16_sample_bytes_sha256": "1dc558abd4e055595f7d34e06127c8b1cd2b540da41f8c04b9a418b58933bed6"
+    },
+    {
+      "name": "S18",
+      "sample_span_24k": [
+        3459360,
+        3588480
+      ],
+      "PCM16_sample_bytes_sha256": "e9670fc7340b00cdc61f0fe01884950f8a86807dfd7b6c4741f9623996583fbb"
+    },
+    {
+      "name": "S19",
+      "sample_span_24k": [
+        3612480,
+        3823320
+      ],
+      "PCM16_sample_bytes_sha256": "6c5e4c800403697ba5d1a7f49f5805f668f83b99b3a0711a05aa5cb6b0987862"
+    }
+  ],
+  "raw_outside_changed_support": [
+    {
+      "name": "outside1",
+      "sample_span_24k": [
+        0,
+        1701720
+      ],
+      "PCM16_sample_bytes_sha256": "8f1947b7f2ee918191d6cc0b8b70297e8bdf6a0f04162a1890eac4d1819bcce9"
+    },
+    {
+      "name": "outside2",
+      "sample_span_24k": [
+        1739520,
+        2451960
+      ],
+      "PCM16_sample_bytes_sha256": "e9f0f82a81900e7a185966c1383ec1142a9c1ac478331eb2eca9836b76733fd7"
+    },
+    {
+      "name": "outside3",
+      "sample_span_24k": [
+        2471400,
+        3871320
+      ],
+      "PCM16_sample_bytes_sha256": "b6df74dda5e36100084dc612d6ace09c3a1dd9f1c4190c1fcd370337ed132d3f"
+    }
+  ],
+  "unchanged_target_sentence_other_pieces": [
+    {
+      "name": "S10-other-punctuation-pieces",
+      "sample_span_24k": [
+        1739520,
+        1853040
+      ],
+      "PCM16_sample_bytes_sha256": "7247880f882dc8adf03cf9d003b8b3a30db73d1d30e9832c53ef72ac85812e81"
+    },
+    {
+      "name": "S13-other-punctuation-pieces",
+      "sample_span_24k": [
+        2471400,
+        2636280
+      ],
+      "PCM16_sample_bytes_sha256": "388c7526725fa44290850667936b57cf6d504e2e4da45464a1f70851f67dd895"
+    }
+  ],
+  "target_spans": [
+    {
+      "sentence": "S10",
+      "piece": 1,
+      "gain_dB": 1.0,
+      "source_span_s": [
+        70.905,
+        72.48
+      ],
+      "public_span_s": [
+        70.93,
+        72.505
+      ]
+    },
+    {
+      "sentence": "S13",
+      "piece": 1,
+      "gain_dB": 0.75,
+      "source_span_s": [
+        102.165,
+        102.975
+      ],
+      "public_span_s": [
+        102.19,
+        103.0
+      ]
+    }
+  ],
+  "sentence_spans_s": [
+    {
+      "sentence": "title",
+      "span_s": [
+        0.42500000000000004,
+        1.7599999999999998
+      ]
+    },
+    {
+      "sentence": "S1",
+      "span_s": [
+        2.76,
+        12.245
+      ]
+    },
+    {
+      "sentence": "S2",
+      "span_s": [
+        13.245000000000001,
+        19.189999999999998
+      ]
+    },
+    {
+      "sentence": "S3",
+      "span_s": [
+        20.189999999999998,
+        26.244999999999997
+      ]
+    },
+    {
+      "sentence": "S4",
+      "span_s": [
+        27.245,
+        32.410000000000004
+      ]
+    },
+    {
+      "sentence": "S5",
+      "span_s": [
+        33.61,
+        40.65
+      ]
+    },
+    {
+      "sentence": "S6",
+      "span_s": [
+        41.65,
+        50.345
+      ]
+    },
+    {
+      "sentence": "S7",
+      "span_s": [
+        51.345,
+        58.68
+      ]
+    },
+    {
+      "sentence": "S8",
+      "span_s": [
+        59.879999999999995,
+        61.845
+      ]
+    },
+    {
+      "sentence": "S9",
+      "span_s": [
+        62.845,
+        69.93
+      ]
+    },
+    {
+      "sentence": "S10",
+      "span_s": [
+        70.93,
+        77.23500000000001
+      ]
+    },
+    {
+      "sentence": "S11",
+      "span_s": [
+        78.235,
+        87.56
+      ]
+    },
+    {
+      "sentence": "S12",
+      "span_s": [
+        88.76,
+        101.19
+      ]
+    },
+    {
+      "sentence": "S13",
+      "span_s": [
+        102.19,
+        109.87
+      ]
+    },
+    {
+      "sentence": "S14",
+      "span_s": [
+        110.87,
+        112.155
+      ]
+    },
+    {
+      "sentence": "S15",
+      "span_s": [
+        113.155,
+        121.065
+      ]
+    },
+    {
+      "sentence": "S16",
+      "span_s": [
+        122.265,
+        130.85
+      ]
+    },
+    {
+      "sentence": "S17",
+      "span_s": [
+        131.85000000000002,
+        143.16500000000002
+      ]
+    },
+    {
+      "sentence": "S18",
+      "span_s": [
+        144.16500000000002,
+        149.54500000000002
+      ]
+    },
+    {
+      "sentence": "S19",
+      "span_s": [
+        150.54500000000002,
+        159.33
+      ]
+    }
+  ],
+  "approved_target_producer_group_metadata": {
+    "S10": [
+      {
+        "段": 1,
+        "增益": -2.5,
+        "停顿": 0.4,
+        "时刻": [
+          70.905,
+          72.48
+        ]
+      },
+      {
+        "段": 2,
+        "增益": 0.0,
+        "停顿": 0.4,
+        "时刻": [
+          72.86,
+          74.78
+        ]
+      },
+      {
+        "段": 3,
+        "增益": 0.0,
+        "停顿": null,
+        "时刻": [
+          75.16,
+          77.21
+        ]
+      }
+    ],
+    "S13": [
+      {
+        "段": 1,
+        "增益": -1.75,
+        "停顿": 0.4,
+        "时刻": [
+          102.165,
+          102.975
+        ]
+      },
+      {
+        "段": 2,
+        "增益": 0.0,
+        "停顿": 0.4,
+        "时刻": [
+          103.355,
+          104.1776
+        ]
+      },
+      {
+        "段": 3,
+        "增益": -1.0,
+        "停顿": 0.4,
+        "时刻": [
+          104.5776,
+          105.3422
+        ]
+      },
+      {
+        "段": 4,
+        "增益": 3.0,
+        "停顿": 0.4,
+        "时刻": [
+          105.7422,
+          106.64
+        ]
+      },
+      {
+        "段": 5,
+        "增益": 0.0,
+        "停顿": null,
+        "时刻": [
+          107.02,
+          109.845
+        ]
+      }
+    ]
+  },
+  "group_time_tolerance_s": 5.1666666666666664e-05,
+  "AAC_packet_count": 7563,
+  "changed_AAC_packet_indices_0_based": [
+    3324,
+    3325,
+    3326,
+    3327,
+    3328,
+    3329,
+    3330,
+    3331,
+    3332,
+    3333,
+    3334,
+    3335,
+    3336,
+    3337,
+    3338,
+    3339,
+    3340,
+    3341,
+    3342,
+    3343,
+    3344,
+    3345,
+    3346,
+    3347,
+    3348,
+    3349,
+    3350,
+    3351,
+    3352,
+    3353,
+    3354,
+    3355,
+    3356,
+    3357,
+    3358,
+    3359,
+    3360,
+    3361,
+    3362,
+    3363,
+    3364,
+    3365,
+    3366,
+    3367,
+    3368,
+    3369,
+    3370,
+    3371,
+    3372,
+    3373,
+    3374,
+    3375,
+    3376,
+    3377,
+    3378,
+    3379,
+    3380,
+    3381,
+    3382,
+    3383,
+    3384,
+    3385,
+    3386,
+    3387,
+    3388,
+    3389,
+    3390,
+    3391,
+    3392,
+    3393,
+    3394,
+    3395,
+    3396,
+    3397,
+    3398,
+    3399,
+    3400,
+    3401,
+    3402,
+    3403,
+    3404,
+    3405,
+    3406,
+    3407,
+    3416,
+    3418,
+    3424,
+    4789,
+    4790,
+    4791,
+    4792,
+    4793,
+    4794,
+    4795,
+    4796,
+    4797,
+    4798,
+    4799,
+    4800,
+    4801,
+    4802,
+    4803,
+    4804,
+    4805,
+    4806,
+    4807,
+    4808,
+    4809,
+    4810,
+    4811,
+    4812,
+    4813,
+    4814,
+    4815,
+    4816,
+    4817,
+    4818,
+    4819,
+    4820,
+    4821,
+    4822,
+    4823,
+    4824,
+    4825,
+    4826,
+    4827,
+    4828,
+    4829,
+    4830,
+    4831,
+    4832,
+    4833,
+    4834,
+    4835,
+    4836,
+    4837
+  ],
+  "public_decoded_change_support_s": [
+    [
+      70.89066666666666,
+      73.04933333333334
+    ],
+    [
+      102.144,
+      103.21066666666667
+    ]
+  ],
+  "public_decoded_samples_total": 7743488,
+  "numeric_utilities_sha256": "3a2bd846386b16bd74e9785c548e97283131efcad9989b9e886f64e86e57c7c6",
+  "original_tool_sha256": {
+    "make_video.py": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+    "clean.py": "86b3872cbca83437e24da2c7ada5fffd916f06cacdd2b32fee2a78c9b134178d",
+    "响度一致性核对.py": "2bb89e427ec014a7fc1b4cc46ea6a11f91a786930f91e8cec720e0307940b85b",
+    "音频体检.py": "708a28bb13a270e250e2ba1354cd3856beac29f183e84e6f5bf469fe0ccb8757",
+    "音频体检基准.json": "5624187514c9ad391f155a315d771de4770ad64027a9ab05e416bedadcb2c7d1"
+  },
+  "original_thresholds": {
+    "whole_track_delta_LU": 0.5,
+    "pitch_median_cents": 40.0,
+    "pitch_p90_cents": 150.0,
+    "gain_tolerance_dB": 0.5,
+    "gain_fit_minimum_correlation": 0.98,
+    "gain_compensated_minimum_SNR_dB": 20.0
+  },
+  "exact_observed_original_G35_note_variant": {
+    "requested_exact_note": "（quote：引用，引述）\n（简述：▸危险：约1847年，索布雷罗制得极不稳定的硝酸甘油；1864年，一次爆炸夺去五人生命，包括诺贝尔的弟弟。▸致富：诺贝尔把这种液体与硅藻土混合，制成较易使用的炸药，1867年获专利，积累的财富后来用于设立诺贝尔奖。▸药用：接触硝酸甘油的工人会头痛，但医生又发现它能治疗心绞痛，1879年已有相关报告。▸反差：诺贝尔晚年也患心绞痛，医生竟把他用来造炸药的同一种物质开给他治病。他写信感叹命运讽刺，也没有遵医嘱；同年因脑出血去世。▸解释：后来研究查明，硝酸甘油会释放一氧化氮，使血管扩张。三位相关研究者获1998年医学诺奖，颁奖致辞在诺贝尔忌日引用了那封信。）",
+    "actual_original_G35_exact_note": "（quote：引用，引述）\n（简述：▸危险：约1847年，索布雷罗制得极不稳定的硝酸甘油；1864年，一次爆炸夺去五人生命，包括诺贝尔的弟弟。\n▸致富：诺贝尔把这种液体与硅藻土混合，制成较易使用的炸药，1867年获专利，积累的财富后来用于设立诺贝尔奖。\n▸药用：接触硝酸甘油的工人会头痛，但医生又发现它能治疗心绞痛，1879年已有相关报告。\n▸反差：诺贝尔晚年也患心绞痛，医生竟把他用来造炸药的同一种物质开给他治病。\n▹他写信感叹命运讽刺，也没有遵医嘱；同年因脑出血去世。\n▸解释：后来研究查明，硝酸甘油会释放一氧化氮，使血管扩张。\n▹三位相关研究者获1998年医学诺奖，颁奖致辞在诺贝尔忌日引用了那封信。）"
+  },
+  "root_selection_sha256": "6f90b3619129ce7012d05e7326d8865edd45e6b1ae2a1209b4792606298b6fb1",
+  "candidate_numeric_proposal_sha256": "e5192d2a7bfa8f2c9423ebe638b22e951772984e2d2bbbcb8e5c93cd70b90ed0",
+  "protected_S13_ramp_final_k_and_S19_controls_locked": true,
+  "private_mother_PCM_cache_GT_not_exported": true,
+  "reference_group_metadata_role": "original_cache_replay_expectation; private diagnostic work is not actual new native observation; production must supply actual output and bound status."
+}

@@ -1,0 +1,10 @@
+from pathlib import Path
+import hashlib,json
+H=Path(__file__).parent;C=H/'candidate-payload';sha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest();p=C/'视频/脚本/37.json';d=json.loads(p.read_text());assert d['sentences'][17]['chunks'][0]['align'][1]==['shared','共同获得了'];authp=C/'视频/工具/用户同意记录.json';auth=json.loads(authp.read_text());w=C/'视频/制作记录/37_待改清单.md';work=w.read_text();bind=[]
+quotes={132:'这个地方这个分享了，改为共同获得了。在这个这个这个分享了，分享了，改为共同获得了。',133:'4k 定稿 记住记住所有的这些让你处理的这个事情啊，认认真真核查一下这一篇里面  这个这个音频，这个音频。一定要确保我们的音频质量达到最高，坚决不可以出现任何的问题。然后定稿，然后定稿，记住0.6秒。'}
+for n in[131,132,133]:
+ rp=Path(f'/dev/shm/archive-writer-user-review-20261114/USER-REVIEW-2026-11-14-{n}.json')
+ if rp.exists():q=json.loads(rp.read_text())['user_instruction_verbatim'];origin={'path':str(rp),'sha256':sha(rp)}
+ else:q=quotes[n];origin={'kind':'parent_root_relayed_explicit_user_verbatim','raw_ledger_not_yet_local':True,'not_claimed_authoritative_ledger_file':True}
+ rec={'篇':'37','日期':'2026-11-14','原话':q,'用于':f'用户{n} source37/book43：131 blood vessels血管整体重点；132 onlyS18共同获得了且shared普通；133本篇4K定稿与0.6s、原图2s简述2s。129130音诊候选待root实读决定，不能旧母或旧片替新。','来源':origin};auth['记录'].append(rec);work+='\n### 用户'+str(n)+'原话及本轮用途\n\n'+q+'\n';bind.append({'feedback':n,'origin':origin,'user_instruction_verbatim':q})
+authp.write_text(json.dumps(auth,ensure_ascii=False,indent=2)+'\n');w.write_text(work+'\n实施定位：只S18C1原分享了→共同获得了，shared保持普通；此更改依据用户132，133已明确4K定稿，本篇名称和脚本号37保持，非Jobs43。\n');r={'source_id':'37','frozen_book_order':'43','user133_final_authorized':True,'source_sha256':sha(p),'GEN_sha256':sha(C/'视频/工具/初稿生成/gen37.py'),'MD_sha256':sha(C/'新版定稿/37-dynamite-for-the-heart.md'),'S18_shared_onlyCN_joint_award_plain_EN':True,'all_voice_DSP_still_exact_before_audio_decision':True,'feedback_binding':bind,'earlier_application_missing_raw132_failure_retained':True,'new_native_or_audio_quality_passed_not_claimed':True};out=H/'current131132133-feedback-and-purpose-binding.json';out.write_text(json.dumps(r,ensure_ascii=False,indent=2)+'\n');print(json.dumps(r,ensure_ascii=False))
