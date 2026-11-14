@@ -1,0 +1,3078 @@
+{
+  "article": "51",
+  "purpose": "One-pass inventory of every existing whole-PCM-bound confirmation; exact safe/pending scope",
+  "quality_acceptance": false,
+  "source_audio_programs_or_thresholds_modified": false,
+  "base_payload_source_sha256": "efb069793b6f325a0f0c0910c8dddf72df67ab8d3c2bc224fde5a59c2d3fc7b8",
+  "current_pcm_sha256": "202d6b8cbbfe20cf33647bc024ac20cdcb780a2f4a8c7abc36d9f951f80fce65",
+  "current_pcm_md5_first12": "b86f2f88ba42",
+  "actual_native_working_source_sha256": "dd410ed3f1d9534e35e09d1e7ca1e592678c75e9d17b5a84e2f93a1c2de9dd80",
+  "actual_native_proof_sha256": "4423effcba2643c68d8991c12343120d922fc3dca7e0f67e73f6bb68ae6fd64b",
+  "summary": {
+    "fingerprinted_record_count": 49,
+    "fingerprinted_records_by_category": {
+      "响度骤降": 1,
+      "删除段": 15,
+      "非人声": 27,
+      "机器复听": 6
+    },
+    "legacy_untyped_delete_record_count": 1,
+    "already_current_count": 10,
+    "safe_to_renew_count": 48,
+    "safe_stale_record_count": 38,
+    "pending_count": 1
+  },
+  "inputs": {
+    "/workspace/work/video-audit70-20261113/payload/视频/脚本/51.json": "efb069793b6f325a0f0c0910c8dddf72df67ab8d3c2bc224fde5a59c2d3fc7b8",
+    "/workspace/work/video-audit70-20261113/ci-direct-43526354790-51/51-failed-working-source.json": "dd410ed3f1d9534e35e09d1e7ca1e592678c75e9d17b5a84e2f93a1c2de9dd80",
+    "/workspace/work/video-audit70-20261113/ci-direct-43526354790-51/51-status.json": "3a7b77872c965cb4ee984c3d768c4b6839a04a2c9e8b128e5232415e7cac081b",
+    "/workspace/work/video-audit70-20261113/ci-direct-43526354790-51/51-failed-draft-proof.json": "4423effcba2643c68d8991c12343120d922fc3dca7e0f67e73f6bb68ae6fd64b",
+    "/workspace/work/video-audit70-20261113/readonly-audio-replay-43528832985/51-reference-gain-diagnostic.json": "02a204d18e9bfa79109901603d354cbff830063e3e3919e1455e71b086756b2a",
+    "/workspace/work/video-audit70-20261113/audio51-remaining-edits/51-existing-ASR-confirmation-continuity.json": "5e24a43c60e8201814a7a6f8d3195adc13f93c3c25bcddec65629f9914aaf6f5",
+    "/workspace/work/video-audit70-20261113/audio51-remaining-edits/51-remaining-edit-proof.json": "6cb08065bc69dbec788104f29d2317fa880139e706be56397385da6914e596b6"
+  },
+  "rows": [
+    {
+      "category": "响度骤降",
+      "key": "9.2–9.7s",
+      "source_fingerprint": "ff0728857c2d",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": false,
+      "original_entry": {
+        "配音指纹": "ff0728857c2d",
+        "低": 6.0,
+        "句子": "S1 OK, often said to be the planet's most frequently spoken word, began as a newspaper gag.",
+        "依据": "2026-11-06 逐 50 ms 实测（a.wav，配音指纹 ff0728857c2d）：句末 newspaper gag.：9.20、9.35 是 /p/ 除阻（2 kHz 以上占 -7.6～-10.4 dB，清楚），9.40–9.50 是 ɐ/æ 浊音元音（-14.6～-22.7 dB、低频 -4.6～-6.7 dB），9.55 起句末降调自然衰减到 9.75 -60 dB；读音清楚、不闷不哑，是句末降调变轻（正好压在 6.0 dB 门槛上），机器复听两路这句都通过",
+        "用户原话": "用户 2026-11-04（CLAUDE.md 守则22，主会话是总负责人）：“你拥有最高决策权……你是总负责人……你来帮我做最好的决定，但是前提是这个决定他能够是最好的。”声音按实测定，交主会话核定"
+      },
+      "safe_to_renew": false,
+      "exact_original_confirmation_window_comparison": {
+        "actual_public_seconds": [
+          9.2,
+          9.7
+        ],
+        "decoded_sample_rate": 48000,
+        "decoded_dtype": "float64",
+        "sample_count": 24000,
+        "whole_region_bit_identical": false,
+        "accepted_crop_sha256": "b76be9c73b5edf712db04b1f4e5475627ae5fe932fc3497387b203a457bc8402",
+        "actual_crop_sha256": "f51ca56a725074de775bcaa56cf0d5d90829fb43df6076cdd037378d25033a3f",
+        "different_sample_count": 3774,
+        "maximum_absolute_sample_difference": 0.00036628544330596924,
+        "gain_db": -2.4626208105860395e-07,
+        "correlation": 0.9999997551444706,
+        "residual_snr_db": 63.100599294065134
+      },
+      "status": "pending_strict_sample_identity_not_proven",
+      "reason": "The original confirmation migration rule requires exact samples. Decoded AAC is not identical; NCC or near-zero gain is insufficient and is not used to renew this fingerprint. No old raw producer PCM is available locally; native preparation explicitly recorded no preexisting work51/a.wav.",
+      "next_safe_options": [
+        "Read-only native reconstruction from the exact accepted old source and original unprocessed mother caches; bind reconstructed full oldPCM MD5 ff0728857c2d before comparing this window against current rawPCM.",
+        "Perform a new specific actual-voice measurement/confirmation under the unchanged original loudness policy, with root review, instead of falsely calling this an identical-sample migration."
+      ]
+    },
+    {
+      "category": "删除段",
+      "key": "S10 raw 5.3200-5.6250",
+      "source_fingerprint": "b86f2f88ba42",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": true,
+      "original_entry": {
+        "类型": "紧贴词尾的非人声",
+        "配音指纹": "b86f2f88ba42",
+        "依据": "2026-11-06 逐 10 ms 实测（w，配音指纹 ff0728857c2d，O.K. 改连读后重合成）：S10 w 5.30–5.595：birthplace 的 /s/（重心 5.1–5.7 kHz）衰减到 5.29，5.32–5.58 是吸气（-41～-53 dB、低频 -12～-25 dB、重心 2.0–2.8 kHz），5.59–5.62 -53～-57 dB，5.63 起 formed 的 /f/；/s/ 尾与吸气之间没有 -55 dB 低谷，紧贴词尾切；被算作词尾被切的 5 ms 是 /s/ 衰减末端；2026-11-14 本轮实际成片复核：producer PCM完整SHA256为202d6b8cbbfe20cf33647bc024ac20cdcb780a2f4a8c7abc36d9f951f80fce65，当前配音指纹b86f2f88ba42；此精确删除段及前后各150 ms在新旧已公开MP4解码中逐样本完全相同（48 kHz，33120样本，float64 SHA256 9590fe42b53987eb26eafdd79c99c2bc06a5553f27082bafb7a0c7d2269ee47d），原确认的删除类型、词边界和处理位置均不变；见audio51-remaining-edits/51-remaining-edit-proof.json。"
+      },
+      "safe_to_renew": true,
+      "status": "already_renewed_exact_reported_edit",
+      "specific_proof": {
+        "exact_source_key": "S10 raw 5.3200-5.6250",
+        "existing_type": "紧贴词尾的非人声",
+        "original_confirmation_fingerprint": "ff0728857c2d",
+        "proposed_current_fingerprint": "b86f2f88ba42",
+        "official_raw_seconds": [
+          5.32,
+          5.625
+        ],
+        "official_actual_seconds": [
+          74.915,
+          75.305
+        ],
+        "original_official_tail_cut_ms": 5.0,
+        "original_official_onset_cut_ms": 0.0,
+        "original_official_edge_sides": [],
+        "existing_exact_type_covers_all_reported_flags": true,
+        "public_actual_comparison": {
+          "public_time_seconds": [
+            74.765,
+            75.45500000000001
+          ],
+          "margin_each_side_seconds": 0.15,
+          "decoded_sample_rate": 48000,
+          "decoded_dtype": "float64",
+          "decoded_sample_count": 33120,
+          "whole_crop_bit_identical": true,
+          "accepted_crop_sha256": "9590fe42b53987eb26eafdd79c99c2bc06a5553f27082bafb7a0c7d2269ee47d",
+          "actual_crop_sha256": "9590fe42b53987eb26eafdd79c99c2bc06a5553f27082bafb7a0c7d2269ee47d",
+          "gain_db": 0.0,
+          "correlation": 1.0,
+          "gain_compensated_residual_snr_db": null
+        },
+        "word_label_correction": null
+      }
+    },
+    {
+      "category": "删除段",
+      "key": "S10 raw 8.0013-8.2523",
+      "source_fingerprint": "b86f2f88ba42",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": true,
+      "original_entry": {
+        "类型": "紧贴两头的非人声",
+        "配音指纹": "b86f2f88ba42",
+        "依据": "2026-11-06 逐 10 ms 实测（w，配音指纹 ff0728857c2d，O.K. 改连读后重合成）：S10 w 7.981–8.232：Club 的 /b/ 衰减到 7.97（低频 -2 dB），8.01–8.18 是吸气（-40～-47 dB、低频 -11～-29 dB、重心 2.1–3.5 kHz），8.19–8.22 低频 0～-3 dB 是一下声门声，8.23–8.25 静音，8.26 起 making 的 /m/；两头都没有 -55 dB 低谷，紧贴两头切在过零点；2026-11-14 本轮实际成片复核：producer PCM完整SHA256为202d6b8cbbfe20cf33647bc024ac20cdcb780a2f4a8c7abc36d9f951f80fce65，当前配音指纹b86f2f88ba42；此精确删除段及前后各150 ms在新旧已公开MP4解码中逐样本完全相同（48 kHz，33408样本，float64 SHA256 efad10b8660ddd7c7a425a1e5441ea037f352a6a3f23f5ee62b5701fcbc6fb59），原确认的删除类型、词边界和处理位置均不变；见audio51-remaining-edits/51-remaining-edit-proof.json。"
+      },
+      "safe_to_renew": true,
+      "status": "already_renewed_exact_reported_edit",
+      "specific_proof": {
+        "exact_source_key": "S10 raw 8.0013-8.2523",
+        "existing_type": "紧贴两头的非人声",
+        "original_confirmation_fingerprint": "ff0728857c2d",
+        "proposed_current_fingerprint": "b86f2f88ba42",
+        "official_raw_seconds": [
+          8.001333333333333,
+          8.252333333333333
+        ],
+        "official_actual_seconds": [
+          77.68133333333333,
+          78.07733333333333
+        ],
+        "original_official_tail_cut_ms": 0.0,
+        "original_official_onset_cut_ms": 0.0,
+        "original_official_edge_sides": [
+          "pre",
+          "lost"
+        ],
+        "existing_exact_type_covers_all_reported_flags": true,
+        "public_actual_comparison": {
+          "public_time_seconds": [
+            77.53133333333332,
+            78.22733333333333
+          ],
+          "margin_each_side_seconds": 0.15,
+          "decoded_sample_rate": 48000,
+          "decoded_dtype": "float64",
+          "decoded_sample_count": 33408,
+          "whole_crop_bit_identical": true,
+          "accepted_crop_sha256": "efad10b8660ddd7c7a425a1e5441ea037f352a6a3f23f5ee62b5701fcbc6fb59",
+          "actual_crop_sha256": "efad10b8660ddd7c7a425a1e5441ea037f352a6a3f23f5ee62b5701fcbc6fb59",
+          "gain_db": 0.0,
+          "correlation": 1.0000000000000002,
+          "gain_compensated_residual_snr_db": null
+        },
+        "word_label_correction": null
+      }
+    },
+    {
+      "category": "删除段",
+      "key": "S12 raw 8.7587-9.0233",
+      "source_fingerprint": "b86f2f88ba42",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": true,
+      "original_entry": {
+        "类型": "紧贴两头的非人声",
+        "配音指纹": "b86f2f88ba42",
+        "依据": "2026-11-06 逐 10 ms 实测（w，配音指纹 ff0728857c2d，O.K. 改连读后重合成）：S12 w 8.669–8.933：Jackson 的 /n/ 衰减到 8.67（-56 dB、低频 -1 dB），8.68–8.89 是吸气（-38～-53 dB、低频 -9～-23 dB、重心 2.2–3.0 kHz），8.90–8.93 低频 0～-6 dB 是 a 的声门预发声起头（8.94 起保留），8.96 起 ɐ；两头都没有 -55 dB 低谷，紧贴两头切在过零点；2026-11-14 本轮实际成片复核：producer PCM完整SHA256为202d6b8cbbfe20cf33647bc024ac20cdcb780a2f4a8c7abc36d9f951f80fce65，当前配音指纹b86f2f88ba42；此精确删除段及前后各150 ms在新旧已公开MP4解码中逐样本完全相同（48 kHz，33578样本，float64 SHA256 6628b346aec36540ff34bfda467c8fcbababb5edc6ed1c180aad51f6547ccfaa），原确认的删除类型、词边界和处理位置均不变；见audio51-remaining-edits/51-remaining-edit-proof.json。"
+      },
+      "safe_to_renew": true,
+      "status": "already_renewed_exact_reported_edit",
+      "specific_proof": {
+        "exact_source_key": "S12 raw 8.7587-9.0233",
+        "existing_type": "紧贴两头的非人声",
+        "original_confirmation_fingerprint": "ff0728857c2d",
+        "proposed_current_fingerprint": "b86f2f88ba42",
+        "official_raw_seconds": [
+          8.75875,
+          9.023291666666667
+        ],
+        "official_actual_seconds": [
+          98.00375,
+          98.40329166666666
+        ],
+        "original_official_tail_cut_ms": 0.0,
+        "original_official_onset_cut_ms": 0.0,
+        "original_official_edge_sides": [
+          "pre",
+          "lost"
+        ],
+        "existing_exact_type_covers_all_reported_flags": true,
+        "public_actual_comparison": {
+          "public_time_seconds": [
+            97.85374999999999,
+            98.55329166666667
+          ],
+          "margin_each_side_seconds": 0.15,
+          "decoded_sample_rate": 48000,
+          "decoded_dtype": "float64",
+          "decoded_sample_count": 33578,
+          "whole_crop_bit_identical": true,
+          "accepted_crop_sha256": "6628b346aec36540ff34bfda467c8fcbababb5edc6ed1c180aad51f6547ccfaa",
+          "actual_crop_sha256": "6628b346aec36540ff34bfda467c8fcbababb5edc6ed1c180aad51f6547ccfaa",
+          "gain_db": 0.0,
+          "correlation": 1.0000000000000002,
+          "gain_compensated_residual_snr_db": null
+        },
+        "word_label_correction": null
+      }
+    },
+    {
+      "category": "删除段",
+      "key": "S12 raw 10.8740-11.1600",
+      "source_fingerprint": "b86f2f88ba42",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": true,
+      "original_entry": {
+        "类型": "紧贴词尾的非人声",
+        "配音指纹": "b86f2f88ba42",
+        "依据": "2026-11-06 逐 10 ms 实测（w，配音指纹 ff0728857c2d，O.K. 改连读后重合成）：S12 w 10.784–11.07：speller 的 ɚ 浊音衰减到 10.80（低频 -1～-7 dB），10.81–11.05 是吸气（-38～-46 dB、低频 -10～-28 dB、重心 2.0–3.4 kHz），11.07 -59 dB，11.08 起 had 的 /h/；ɚ 尾与吸气之间没有 -55 dB 低谷，紧贴词尾切；2026-11-14 本轮实际成片复核：producer PCM完整SHA256为202d6b8cbbfe20cf33647bc024ac20cdcb780a2f4a8c7abc36d9f951f80fce65，当前配音指纹b86f2f88ba42；此精确删除段及前后各150 ms在新旧已公开MP4解码中逐样本完全相同（48 kHz，33410样本，float64 SHA256 00dfdcd6d14755900820319fc471eaac8b2126e2830c5c39ce25db78f72608bd），原确认的删除类型、词边界和处理位置均不变；见audio51-remaining-edits/51-remaining-edit-proof.json。"
+      },
+      "safe_to_renew": true,
+      "status": "already_renewed_exact_reported_edit",
+      "specific_proof": {
+        "exact_source_key": "S12 raw 10.8740-11.1600",
+        "existing_type": "紧贴词尾的非人声",
+        "original_confirmation_fingerprint": "ff0728857c2d",
+        "proposed_current_fingerprint": "b86f2f88ba42",
+        "official_raw_seconds": [
+          10.873958333333333,
+          11.16
+        ],
+        "official_actual_seconds": [
+          100.25395833333333,
+          100.65
+        ],
+        "original_official_tail_cut_ms": 0.0,
+        "original_official_onset_cut_ms": 0.0,
+        "original_official_edge_sides": [
+          "pre",
+          "lost"
+        ],
+        "existing_exact_type_covers_all_reported_flags": true,
+        "public_actual_comparison": {
+          "public_time_seconds": [
+            100.10395833333332,
+            100.80000000000001
+          ],
+          "margin_each_side_seconds": 0.15,
+          "decoded_sample_rate": 48000,
+          "decoded_dtype": "float64",
+          "decoded_sample_count": 33410,
+          "whole_crop_bit_identical": true,
+          "accepted_crop_sha256": "00dfdcd6d14755900820319fc471eaac8b2126e2830c5c39ce25db78f72608bd",
+          "actual_crop_sha256": "00dfdcd6d14755900820319fc471eaac8b2126e2830c5c39ce25db78f72608bd",
+          "gain_db": 0.0,
+          "correlation": 1.0000000000000002,
+          "gain_compensated_residual_snr_db": null
+        },
+        "word_label_correction": null
+      }
+    },
+    {
+      "category": "删除段",
+      "key": "S10 raw 5.0301-5.1625",
+      "source_fingerprint": "ff0728857c2d",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": false,
+      "original_entry": {
+        "类型": "紧贴两头的非人声",
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06 逐 5 ms 实测（w，配音指纹 ff0728857c2d）：S10 w 4.880–5.0125：birthplace 的 /s/ 4.80–4.87（重心 5.7–6.1 kHz）衰减到 4.875（-34 dB），4.88–5.01 是一口吸气（-31～-47 dB、最响 4.895 -26.6 dB、重心 2.6–4.5 kHz、低频 -10～-26 dB），5.015 起 formed 的 /f/；吸气与 /s/ 尾、/f/ 头之间都没有 -55 dB 低谷，紧贴两头切在过零点（非人声区间第4项“吸气”，主会话 2026-11-06 定），停顿删除区间 [4.905, 5.005] 删在换成静音的段里；被算作词尾被切的 125 ms 就是这口吸气本身"
+      },
+      "safe_to_renew": true,
+      "status": "safe_whole_sentence_exact_continuity_existing_dormant_edit_only",
+      "proof_scope": "This raw edit is not one of the current9 abnormal edits; exact old/new whole sentence identity is a conservative continuity proof, not a new raw-to-actual location claim.",
+      "whole_sentence_comparison": {
+        "actual_public_seconds": [
+          69.06,
+          80.725
+        ],
+        "decoded_sample_rate": 48000,
+        "decoded_dtype": "float64",
+        "sample_count": 559920,
+        "whole_region_bit_identical": true,
+        "accepted_crop_sha256": "1294d6604ce6164ef659265186243453dcab4ef7c7d44cae28d6b18b7d06f3bc",
+        "actual_crop_sha256": "1294d6604ce6164ef659265186243453dcab4ef7c7d44cae28d6b18b7d06f3bc",
+        "different_sample_count": 0,
+        "maximum_absolute_sample_difference": 0.0,
+        "gain_db": 0.0,
+        "correlation": 0.9999999999999999,
+        "residual_snr_db": null
+      }
+    },
+    {
+      "category": "删除段",
+      "key": "S2 raw 4.8200-5.1786",
+      "source_fingerprint": "b86f2f88ba42",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": true,
+      "original_entry": {
+        "类型": "紧贴两头的非人声",
+        "配音指纹": "b86f2f88ba42",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S2 w 4.79–5.159：papers, 的 /z/ 衰减到 4.785，4.79–4.82 -48～-56 dB 余音，4.825–5.13 是吸气（-35～-44 dB、低频 -12～-31 dB、重心 2.4–3.5 kHz），直接连到 5.135–5.17 and 的声门预发声（低频 0 dB），两头都没有 -55 dB 低谷，紧贴两头切在过零点；被算作词尾被切的 5 ms 是 /z/ 衰减末端的余音；2026-11-14 本轮实际成片复核：producer PCM完整SHA256为202d6b8cbbfe20cf33647bc024ac20cdcb780a2f4a8c7abc36d9f951f80fce65，当前配音指纹b86f2f88ba42；此精确删除段及前后各150 ms在新旧已公开MP4解码中逐样本完全相同（48 kHz，33532样本，float64 SHA256 b4712230ae08d55f874280a1aa7f60ce8f9166c6ef7999a4c819bb8c562febe1），原确认的删除类型、词边界和处理位置均不变；见audio51-remaining-edits/51-remaining-edit-proof.json。"
+      },
+      "safe_to_renew": true,
+      "status": "already_renewed_exact_reported_edit",
+      "specific_proof": {
+        "exact_source_key": "S2 raw 4.8200-5.1786",
+        "existing_type": "紧贴两头的非人声",
+        "original_confirmation_fingerprint": "ff0728857c2d",
+        "proposed_current_fingerprint": "b86f2f88ba42",
+        "official_raw_seconds": [
+          4.82,
+          5.178583333333333
+        ],
+        "official_actual_seconds": [
+          15.56,
+          15.958583333333333
+        ],
+        "original_official_tail_cut_ms": 5.0,
+        "original_official_onset_cut_ms": 0.0,
+        "original_official_edge_sides": [
+          "post",
+          "lost"
+        ],
+        "existing_exact_type_covers_all_reported_flags": true,
+        "public_actual_comparison": {
+          "public_time_seconds": [
+            15.41,
+            16.108583333333332
+          ],
+          "margin_each_side_seconds": 0.15,
+          "decoded_sample_rate": 48000,
+          "decoded_dtype": "float64",
+          "decoded_sample_count": 33532,
+          "whole_crop_bit_identical": true,
+          "accepted_crop_sha256": "b4712230ae08d55f874280a1aa7f60ce8f9166c6ef7999a4c819bb8c562febe1",
+          "actual_crop_sha256": "b4712230ae08d55f874280a1aa7f60ce8f9166c6ef7999a4c819bb8c562febe1",
+          "gain_db": 0.0,
+          "correlation": 0.9999999999999999,
+          "gain_compensated_residual_snr_db": null
+        },
+        "word_label_correction": null
+      }
+    },
+    {
+      "category": "删除段",
+      "key": "S2 raw 10.2300-10.5745",
+      "source_fingerprint": "b86f2f88ba42",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": true,
+      "original_entry": {
+        "类型": "紧贴词头的非人声",
+        "配音指纹": "b86f2f88ba42",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S2 w 10.21–10.555：O.W. 的 uː 衰减到 10.20，10.21–10.38 -55～-66 dB 静音夹着 10.37/10.39 两下 -54 dB 碎声，10.40–10.55 是吸气（-48～-57 dB、低频 -12～-23 dB、重心 2–2.5 kHz），10.555 起 for 的 /f/（重心 4–4.9 kHz）；非人声区间 [10.350458, 10.5545] 紧贴 /f/ 词头切在过零点，整段成连续静音后压到标准长度；2026-11-14 本轮实际成片复核：producer PCM完整SHA256为202d6b8cbbfe20cf33647bc024ac20cdcb780a2f4a8c7abc36d9f951f80fce65，当前配音指纹b86f2f88ba42；此精确删除段在批准的O.W.连续增益段19.675–22.030 s内，不声称与旧轨逐样本相同。旧轨按批准增益曲线预测后，该处含前后各150 ms的相关系数0.999971274、剩余噪声比42.41 dB；整段真实音轨20项辅助核验全部通过，局部原删除位置和类型不变；见audio51-remaining-edits/51-remaining-edit-proof.json。"
+      },
+      "safe_to_renew": true,
+      "status": "already_renewed_exact_reported_edit",
+      "specific_proof": {
+        "exact_source_key": "S2 raw 10.2300-10.5745",
+        "existing_type": "紧贴词头的非人声",
+        "original_confirmation_fingerprint": "ff0728857c2d",
+        "proposed_current_fingerprint": "b86f2f88ba42",
+        "official_raw_seconds": [
+          10.23,
+          10.5745
+        ],
+        "official_actual_seconds": [
+          20.925,
+          21.0995
+        ],
+        "original_official_tail_cut_ms": 0.0,
+        "original_official_onset_cut_ms": 0.0,
+        "original_official_edge_sides": [
+          "post"
+        ],
+        "existing_exact_type_covers_all_reported_flags": true,
+        "public_actual_comparison": {
+          "public_time_seconds": [
+            20.775000000000002,
+            21.249499999999998
+          ],
+          "margin_each_side_seconds": 0.15,
+          "decoded_sample_rate": 48000,
+          "decoded_dtype": "float64",
+          "decoded_sample_count": 22776,
+          "whole_crop_bit_identical": false,
+          "accepted_crop_sha256": "471a88f5abc8abfe9927b4dcb2fb8a4087eda1626eb54e79c468c5095847593b",
+          "actual_crop_sha256": "f3b95a724a6ea7fb88c860ff8090bdf582a77c5b6f4d80ebf7ec443b140594cd",
+          "gain_db": 0.9135708701871891,
+          "correlation": 0.9998920369713389,
+          "gain_compensated_residual_snr_db": 36.65624609068244,
+          "approved_ramp_prediction_fit": {
+            "gain_db": -0.0428342659442427,
+            "correlation": 0.999971274194842,
+            "gain_compensated_residual_snr_db": 42.40679080426024
+          },
+          "approved_actual_piece_range_seconds": [
+            19.675,
+            22.03
+          ],
+          "approved_ramp_delta_db": [
+            -2,
+            2.5
+          ],
+          "interpretation": "This location is inside the approved continuous OW ramp; sample identity is not claimed. The original full actual-audio QC also passes the entire ramp."
+        },
+        "word_label_correction": null
+      }
+    },
+    {
+      "category": "删除段",
+      "key": "S2 raw 11.4263-11.5150",
+      "status": "legacy_untyped_no_fingerprint_preserve_unchanged",
+      "original_basis": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S2 第3个标点 wright', 后：停顿处除阻 S2“3”把 /t/ 闭塞后的弱除阻换成供体 t 除阻（11.405–11.41），换掉的原声是 -28.8 dB 以下的弱除阻和停顿里的静音，两侧 -65 dB 干净；词本身不动"
+    },
+    {
+      "category": "删除段",
+      "key": "S4 raw 2.8176-3.0800",
+      "source_fingerprint": "b86f2f88ba42",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": true,
+      "original_entry": {
+        "类型": "紧贴词尾的非人声",
+        "配音指纹": "b86f2f88ba42",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S4 w 2.757–3.02：thirty-nine 的 /n/ 衰减到 2.76（-51 dB、低频 -3 dB），2.78–2.98 是吸气（-37～-45 dB、低频 -8～-29 dB、重心 2.4–3.5 kHz），2.99–3.01 低频 0 dB 是 against 的 ɐ 声门预发声（保留），/n/ 尾与吸气之间没有 -55 dB 低谷，紧贴词尾切在过零点；2026-11-14 本轮实际成片复核：producer PCM完整SHA256为202d6b8cbbfe20cf33647bc024ac20cdcb780a2f4a8c7abc36d9f951f80fce65，当前配音指纹b86f2f88ba42；此精确删除段及前后各150 ms在新旧已公开MP4解码中逐样本完全相同（48 kHz，22916样本，float64 SHA256 aa3e990a180ceea0d07671580d6d51c71fa8930c37c8f1f434731ab134013bb9），原确认的删除类型、词边界和处理位置均不变；见audio51-remaining-edits/51-remaining-edit-proof.json。"
+      },
+      "safe_to_renew": true,
+      "status": "already_renewed_exact_reported_edit",
+      "specific_proof": {
+        "exact_source_key": "S4 raw 2.8176-3.0800",
+        "existing_type": "紧贴词尾的非人声",
+        "original_confirmation_fingerprint": "ff0728857c2d",
+        "proposed_current_fingerprint": "b86f2f88ba42",
+        "official_raw_seconds": [
+          2.8175833333333333,
+          3.08
+        ],
+        "official_actual_seconds": [
+          32.91258333333333,
+          33.09
+        ],
+        "original_official_tail_cut_ms": 0.0,
+        "original_official_onset_cut_ms": 0.0,
+        "original_official_edge_sides": [
+          "pre",
+          "lost"
+        ],
+        "existing_exact_type_covers_all_reported_flags": true,
+        "public_actual_comparison": {
+          "public_time_seconds": [
+            32.76258333333333,
+            33.24
+          ],
+          "margin_each_side_seconds": 0.15,
+          "decoded_sample_rate": 48000,
+          "decoded_dtype": "float64",
+          "decoded_sample_count": 22916,
+          "whole_crop_bit_identical": true,
+          "accepted_crop_sha256": "aa3e990a180ceea0d07671580d6d51c71fa8930c37c8f1f434731ab134013bb9",
+          "actual_crop_sha256": "aa3e990a180ceea0d07671580d6d51c71fa8930c37c8f1f434731ab134013bb9",
+          "gain_db": 0.0,
+          "correlation": 0.9999999999999998,
+          "gain_compensated_residual_snr_db": null
+        },
+        "word_label_correction": "Original basis called the preceding word ordinance, but the current unchanged S4 text and original timed cache place this cut after thirty-nine. The proposed basis corrects this word label; no timing or physical sound change."
+      }
+    },
+    {
+      "category": "删除段",
+      "key": "S10 raw 1.3650-1.5900",
+      "source_fingerprint": "ff0728857c2d",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": false,
+      "original_entry": {
+        "类型": "紧贴词尾的非人声",
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S10 w 1.235–1.41：backers, 的 /z/（重心 5.6 kHz）衰减到 1.23，1.235–1.36 是吸气（-40～-50 dB、低频 -15～-25 dB、重心 2.2–3.0 kHz），1.365–1.405 低频 0 dB 的一下声门噗声（punning 的 /p/ 是清音），1.41–1.46 静音，1.465 起 /p/ 除阻；/z/ 尾与吸气之间没有 -55 dB 低谷，紧贴词尾切在过零点"
+      },
+      "safe_to_renew": true,
+      "status": "safe_whole_sentence_exact_continuity_existing_dormant_edit_only",
+      "proof_scope": "This raw edit is not one of the current9 abnormal edits; exact old/new whole sentence identity is a conservative continuity proof, not a new raw-to-actual location claim.",
+      "whole_sentence_comparison": {
+        "actual_public_seconds": [
+          69.06,
+          80.725
+        ],
+        "decoded_sample_rate": 48000,
+        "decoded_dtype": "float64",
+        "sample_count": 559920,
+        "whole_region_bit_identical": true,
+        "accepted_crop_sha256": "1294d6604ce6164ef659265186243453dcab4ef7c7d44cae28d6b18b7d06f3bc",
+        "actual_crop_sha256": "1294d6604ce6164ef659265186243453dcab4ef7c7d44cae28d6b18b7d06f3bc",
+        "different_sample_count": 0,
+        "maximum_absolute_sample_difference": 0.0,
+        "gain_db": 0.0,
+        "correlation": 0.9999999999999999,
+        "residual_snr_db": null
+      }
+    },
+    {
+      "category": "删除段",
+      "key": "S10 raw 4.0000-4.0050",
+      "source_fingerprint": "ff0728857c2d",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": false,
+      "original_entry": {
+        "类型": "紧贴词尾的非人声",
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S10 w 3.845–3.85：停顿处除阻 S10“2”（短供体）放 Kinderhook 词尾 k 的除阻；前面 3.784–3.843 是模型发出的无闭塞擦音，已用 除阻加强“假擦音”压低 -40 dB 当闭塞（4 种注音、2 档语速都去不掉，主会话 2026-11-05/06 定），原始合成里那段擦音还在，所以 pre 侧 -30.9 dB；换掉的 5 ms 原来是 -59 dB 静音"
+      },
+      "safe_to_renew": true,
+      "status": "safe_whole_sentence_exact_continuity_existing_dormant_edit_only",
+      "proof_scope": "This raw edit is not one of the current9 abnormal edits; exact old/new whole sentence identity is a conservative continuity proof, not a new raw-to-actual location claim.",
+      "whole_sentence_comparison": {
+        "actual_public_seconds": [
+          69.06,
+          80.725
+        ],
+        "decoded_sample_rate": 48000,
+        "decoded_dtype": "float64",
+        "sample_count": 559920,
+        "whole_region_bit_identical": true,
+        "accepted_crop_sha256": "1294d6604ce6164ef659265186243453dcab4ef7c7d44cae28d6b18b7d06f3bc",
+        "actual_crop_sha256": "1294d6604ce6164ef659265186243453dcab4ef7c7d44cae28d6b18b7d06f3bc",
+        "different_sample_count": 0,
+        "maximum_absolute_sample_difference": 0.0,
+        "gain_db": 0.0,
+        "correlation": 0.9999999999999999,
+        "residual_snr_db": null
+      }
+    },
+    {
+      "category": "删除段",
+      "key": "S12 raw 5.7600-6.2408",
+      "source_fingerprint": "ff0728857c2d",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": false,
+      "original_entry": {
+        "类型": "紧贴词头的非人声",
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S12 w 5.84–6.181：smear: 停顿里，5.80–5.89 -52～-58 dB 余音，5.90–6.12 是吸气（-36～-52 dB、低频 -11～-25 dB、重心 2.1–3.9 kHz），6.14–6.17 低频 0 dB 是 the 的浊音预发声，6.19 起 /ð/；吸气与 the 之间没有 -55 dB 低谷，紧贴词头切在过零点"
+      },
+      "safe_to_renew": true,
+      "status": "safe_whole_sentence_exact_continuity_existing_dormant_edit_only",
+      "proof_scope": "This raw edit is not one of the current9 abnormal edits; exact old/new whole sentence identity is a conservative continuity proof, not a new raw-to-actual location claim.",
+      "whole_sentence_comparison": {
+        "actual_public_seconds": [
+          89.415,
+          104.17999999999999
+        ],
+        "decoded_sample_rate": 48000,
+        "decoded_dtype": "float64",
+        "sample_count": 708720,
+        "whole_region_bit_identical": true,
+        "accepted_crop_sha256": "2b058e8ead3660746e820a83d55de829b849470159fd71e4412a8bfbaaa3fbd2",
+        "actual_crop_sha256": "2b058e8ead3660746e820a83d55de829b849470159fd71e4412a8bfbaaa3fbd2",
+        "different_sample_count": 0,
+        "maximum_absolute_sample_difference": 0.0,
+        "gain_db": 0.0,
+        "correlation": 1.0,
+        "residual_snr_db": null
+      }
+    },
+    {
+      "category": "删除段",
+      "key": "S12 raw 8.3052-8.4226",
+      "source_fingerprint": "ff0728857c2d",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": false,
+      "original_entry": {
+        "类型": "紧贴两头的非人声",
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S12 w 8.245–8.363：Jackson, 的 ən 衰减到 8.24（-46 dB、低频 -1.6～-4.8 dB），8.25–8.36 是吸气（-34～-42 dB、低频 -11～-39 dB、重心 2.3–3.1 kHz），8.365–8.415 低频 0～-7 dB 是 a 的声门预发声（保留）；两头都没有 -55 dB 低谷，紧贴两头切在过零点；被算作词头被切的 115 ms 就是这段吸气本身，停顿删除区间 [8.25, 8.355] 删在换成静音的段里"
+      },
+      "safe_to_renew": true,
+      "status": "safe_whole_sentence_exact_continuity_existing_dormant_edit_only",
+      "proof_scope": "This raw edit is not one of the current9 abnormal edits; exact old/new whole sentence identity is a conservative continuity proof, not a new raw-to-actual location claim.",
+      "whole_sentence_comparison": {
+        "actual_public_seconds": [
+          89.415,
+          104.17999999999999
+        ],
+        "decoded_sample_rate": 48000,
+        "decoded_dtype": "float64",
+        "sample_count": 708720,
+        "whole_region_bit_identical": true,
+        "accepted_crop_sha256": "2b058e8ead3660746e820a83d55de829b849470159fd71e4412a8bfbaaa3fbd2",
+        "actual_crop_sha256": "2b058e8ead3660746e820a83d55de829b849470159fd71e4412a8bfbaaa3fbd2",
+        "different_sample_count": 0,
+        "maximum_absolute_sample_difference": 0.0,
+        "gain_db": 0.0,
+        "correlation": 1.0,
+        "residual_snr_db": null
+      }
+    },
+    {
+      "category": "删除段",
+      "key": "S13 raw 1.8900-2.1270",
+      "source_fingerprint": "ff0728857c2d",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": false,
+      "original_entry": {
+        "类型": "紧贴词头的非人声",
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S13 w 1.88–2.117：well 的 /l/ 衰减到 1.87（-54 dB、低频 -1 dB），1.90–2.08 是吸气（-38～-47 dB、低频 -13～-25 dB、重心 2.0–2.9 kHz），2.09–2.12 低频 0～-5 dB 是 and 的声门预发声，2.14 起 æ；吸气与 and 之间没有 -55 dB 低谷，紧贴词头切在过零点"
+      },
+      "safe_to_renew": true,
+      "status": "safe_whole_sentence_exact_continuity_existing_dormant_edit_only",
+      "proof_scope": "This raw edit is not one of the current9 abnormal edits; exact old/new whole sentence identity is a conservative continuity proof, not a new raw-to-actual location claim.",
+      "whole_sentence_comparison": {
+        "actual_public_seconds": [
+          104.98,
+          109.32499999999999
+        ],
+        "decoded_sample_rate": 48000,
+        "decoded_dtype": "float64",
+        "sample_count": 208560,
+        "whole_region_bit_identical": true,
+        "accepted_crop_sha256": "2582d8d6be01cd5350e3a8288b59337d597f9b4a82ca06c5ae5d932213212089",
+        "actual_crop_sha256": "2582d8d6be01cd5350e3a8288b59337d597f9b4a82ca06c5ae5d932213212089",
+        "different_sample_count": 0,
+        "maximum_absolute_sample_difference": 0.0,
+        "gain_db": 0.0,
+        "correlation": 1.0000000000000002,
+        "residual_snr_db": null
+      }
+    },
+    {
+      "category": "删除段",
+      "key": "S18 raw 2.5353-2.7950",
+      "source_fingerprint": "b86f2f88ba42",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": true,
+      "original_entry": {
+        "类型": "紧贴词尾的非人声",
+        "配音指纹": "b86f2f88ba42",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S18 w 2.525–2.773：sixty-four 的 ɹ 浊音衰减到 2.52（-50～-54 dB、低频 -1～-6 dB），2.53–2.72 是吸气（-39～-50 dB、低频 -9～-23 dB、重心 1.9–2.4 kHz），2.73–2.76 一下声门噗声（低频 0 dB，与 the 之间隔着 2.77 -62 dB 静音），2.79 起 /ð/；ɹ 尾与吸气之间没有 -55 dB 低谷，紧贴词尾切在过零点；2026-11-14 本轮实际成片复核：producer PCM完整SHA256为202d6b8cbbfe20cf33647bc024ac20cdcb780a2f4a8c7abc36d9f951f80fce65，当前配音指纹b86f2f88ba42；此精确删除段及前后各150 ms在新旧已公开MP4解码中逐样本完全相同（48 kHz，22782样本，float64 SHA256 5ceafc04892bd8d8e28e5c02430d73fe7e3178504846b5da6a39d90702b97da3），原确认的删除类型、词边界和处理位置均不变；见audio51-remaining-edits/51-remaining-edit-proof.json。"
+      },
+      "safe_to_renew": true,
+      "status": "already_renewed_exact_reported_edit",
+      "specific_proof": {
+        "exact_source_key": "S18 raw 2.5353-2.7950",
+        "existing_type": "紧贴词尾的非人声",
+        "original_confirmation_fingerprint": "ff0728857c2d",
+        "proposed_current_fingerprint": "b86f2f88ba42",
+        "official_raw_seconds": [
+          2.5353333333333334,
+          2.794958333333333
+        ],
+        "official_actual_seconds": [
+          133.44033333333334,
+          133.61495833333333
+        ],
+        "original_official_tail_cut_ms": 0.0,
+        "original_official_onset_cut_ms": 0.0,
+        "original_official_edge_sides": [
+          "pre",
+          "lost"
+        ],
+        "existing_exact_type_covers_all_reported_flags": true,
+        "public_actual_comparison": {
+          "public_time_seconds": [
+            133.29033333333334,
+            133.76495833333334
+          ],
+          "margin_each_side_seconds": 0.15,
+          "decoded_sample_rate": 48000,
+          "decoded_dtype": "float64",
+          "decoded_sample_count": 22782,
+          "whole_crop_bit_identical": true,
+          "accepted_crop_sha256": "5ceafc04892bd8d8e28e5c02430d73fe7e3178504846b5da6a39d90702b97da3",
+          "actual_crop_sha256": "5ceafc04892bd8d8e28e5c02430d73fe7e3178504846b5da6a39d90702b97da3",
+          "gain_db": 0.0,
+          "correlation": 1.0,
+          "gain_compensated_residual_snr_db": null
+        },
+        "word_label_correction": null
+      }
+    },
+    {
+      "category": "删除段",
+      "key": "S18 raw 4.7751-4.8700",
+      "source_fingerprint": "b86f2f88ba42",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": true,
+      "original_entry": {
+        "类型": "紧贴词尾的非人声",
+        "配音指纹": "b86f2f88ba42",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S18 w 4.765–4.849：Read 的 /d/ 浊音衰减到 4.76（-44～-49 dB、低频 -1.7～-2.3 dB），4.77–4.84 是吸气（-48～-57 dB、低频 -7～-15 dB、重心 2.1–2.8 kHz），4.85 起 -60 dB 静音；/d/ 尾与吸气之间没有 -55 dB 低谷，紧贴词尾切在过零点；2026-11-14 本轮实际成片复核：producer PCM完整SHA256为202d6b8cbbfe20cf33647bc024ac20cdcb780a2f4a8c7abc36d9f951f80fce65，当前配音指纹b86f2f88ba42；此精确删除段及前后各150 ms在新旧已公开MP4解码中逐样本完全相同（48 kHz，18956样本，float64 SHA256 3b384435ddaf0203ddc7eb064022d9349a0bc5c43e1d31083e413aa6097e44d6），原确认的删除类型、词边界和处理位置均不变；见audio51-remaining-edits/51-remaining-edit-proof.json。"
+      },
+      "safe_to_renew": true,
+      "status": "already_renewed_exact_reported_edit",
+      "specific_proof": {
+        "exact_source_key": "S18 raw 4.7751-4.8700",
+        "existing_type": "紧贴词尾的非人声",
+        "original_confirmation_fingerprint": "ff0728857c2d",
+        "proposed_current_fingerprint": "b86f2f88ba42",
+        "official_raw_seconds": [
+          4.775083333333333,
+          4.87
+        ],
+        "official_actual_seconds": [
+          135.59508333333332,
+          135.69
+        ],
+        "original_official_tail_cut_ms": 0.0,
+        "original_official_onset_cut_ms": 0.0,
+        "original_official_edge_sides": [
+          "pre"
+        ],
+        "existing_exact_type_covers_all_reported_flags": true,
+        "public_actual_comparison": {
+          "public_time_seconds": [
+            135.44508333333332,
+            135.84
+          ],
+          "margin_each_side_seconds": 0.15,
+          "decoded_sample_rate": 48000,
+          "decoded_dtype": "float64",
+          "decoded_sample_count": 18956,
+          "whole_crop_bit_identical": true,
+          "accepted_crop_sha256": "3b384435ddaf0203ddc7eb064022d9349a0bc5c43e1d31083e413aa6097e44d6",
+          "actual_crop_sha256": "3b384435ddaf0203ddc7eb064022d9349a0bc5c43e1d31083e413aa6097e44d6",
+          "gain_db": 0.0,
+          "correlation": 1.0,
+          "gain_compensated_residual_snr_db": null
+        },
+        "word_label_correction": null
+      }
+    },
+    {
+      "category": "非人声",
+      "key": "9.62–9.77s",
+      "source_fingerprint": "ff0728857c2d",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": false,
+      "original_entry": {
+        "实测": {
+          "最响dB": -37.7,
+          "重心Hz": 2684,
+          "周期": 0.17,
+          "低频dB": -2.6
+        },
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S1 w 6.26–6.405：gag. 句尾，ɡ 除阻后的浊音衰减（-36～-50 dB、低频占 -2～-5 dB、重心 1.1–2.6 kHz），一路衰减到 6.42 -72 dB，中间没有低谷，是 gag 词尾的一部分（气声收尾）"
+      },
+      "safe_to_renew": true,
+      "public_local_comparison_with_150ms_each_side": {
+        "actual_public_seconds": [
+          9.469999999999999,
+          9.92
+        ],
+        "decoded_sample_rate": 48000,
+        "decoded_dtype": "float64",
+        "sample_count": 21600,
+        "whole_region_bit_identical": false,
+        "accepted_crop_sha256": "c6c8cce3d141e164962302721806dbc1f8c8528ae13e98043d5320cdba9438f4",
+        "actual_crop_sha256": "7a0a04bb836779611ab29aa0d19a5c971643c9717480941db9496739c7cb57f8",
+        "different_sample_count": 2046,
+        "maximum_absolute_sample_difference": 0.00036628544330596924,
+        "gain_db": -7.731692819308398e-07,
+        "correlation": 0.9999992280248536,
+        "residual_snr_db": 58.11366182773858
+      },
+      "status": "safe_exact_native_confirmation_migration_observed_and_G43_passed",
+      "actual_native_working_entry": {
+        "实测": {
+          "最响dB": -37.7,
+          "重心Hz": 2684,
+          "周期": 0.17,
+          "低频dB": -2.6
+        },
+        "配音指纹": "b86f2f88ba42",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S1 w 6.26–6.405：gag. 句尾，ɡ 除阻后的浊音衰减（-36～-50 dB、低频占 -2～-5 dB、重心 1.1–2.6 kHz），一路衰减到 6.42 -72 dB，中间没有低谷，是 gag 词尾的一部分（气声收尾）"
+      },
+      "actual_native_entry_differs_only_in_fingerprint": true,
+      "actual_original_G43_pass_status_lines": [
+        "✔ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：51 纯人声核对（配音指纹 b86f2f88ba42）问题数 0"
+      ],
+      "evidence_kind": "Actual435263 working JSON/MP4-proof/sourceSHA/currentPCM binding plus original formal migration and original purevoice check, not a guessed new exemption."
+    },
+    {
+      "category": "非人声",
+      "key": "9.68–9.69s",
+      "source_fingerprint": "ff0728857c2d",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": false,
+      "original_entry": {
+        "实测": {
+          "最响dB": -37.7,
+          "重心Hz": 1484,
+          "周期": 0.0,
+          "低频dB": -0.9
+        },
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S1 w 6.31–6.325：gag. 词尾浊音衰减段内部（-37～-45 dB、低频 -1.8～-3 dB），与前后连续，是 gag 词尾的一部分"
+      },
+      "safe_to_renew": true,
+      "public_local_comparison_with_150ms_each_side": {
+        "actual_public_seconds": [
+          9.53,
+          9.84
+        ],
+        "decoded_sample_rate": 48000,
+        "decoded_dtype": "float64",
+        "sample_count": 14880,
+        "whole_region_bit_identical": true,
+        "accepted_crop_sha256": "d47d7bb56657e462abb5fd27ec0a238862f40f78430629874a261b06e96b51ff",
+        "actual_crop_sha256": "d47d7bb56657e462abb5fd27ec0a238862f40f78430629874a261b06e96b51ff",
+        "different_sample_count": 0,
+        "maximum_absolute_sample_difference": 0.0,
+        "gain_db": 0.0,
+        "correlation": 1.0,
+        "residual_snr_db": null
+      },
+      "status": "safe_exact_native_confirmation_migration_observed_and_G43_passed",
+      "actual_native_working_entry": {
+        "实测": {
+          "最响dB": -37.7,
+          "重心Hz": 1484,
+          "周期": 0.0,
+          "低频dB": -0.9
+        },
+        "配音指纹": "b86f2f88ba42",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S1 w 6.31–6.325：gag. 词尾浊音衰减段内部（-37～-45 dB、低频 -1.8～-3 dB），与前后连续，是 gag 词尾的一部分"
+      },
+      "actual_native_entry_differs_only_in_fingerprint": true,
+      "actual_original_G43_pass_status_lines": [
+        "✔ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：51 纯人声核对（配音指纹 b86f2f88ba42）问题数 0"
+      ],
+      "evidence_kind": "Actual435263 working JSON/MP4-proof/sourceSHA/currentPCM binding plus original formal migration and original purevoice check, not a guessed new exemption."
+    },
+    {
+      "category": "非人声",
+      "key": "9.70–9.72s",
+      "source_fingerprint": "ff0728857c2d",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": false,
+      "original_entry": {
+        "实测": {
+          "最响dB": -39.7,
+          "重心Hz": 1680,
+          "周期": 0.31,
+          "低频dB": -2.8
+        },
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S1 w 6.33–6.36：gag. 词尾浊音衰减段尾部（-42～-57 dB、低频 -1.4～-3 dB），连续衰减无低谷，是 gag 词尾的一部分"
+      },
+      "safe_to_renew": true,
+      "public_local_comparison_with_150ms_each_side": {
+        "actual_public_seconds": [
+          9.549999999999999,
+          9.870000000000001
+        ],
+        "decoded_sample_rate": 48000,
+        "decoded_dtype": "float64",
+        "sample_count": 15360,
+        "whole_region_bit_identical": true,
+        "accepted_crop_sha256": "8cb61c8074ec769cfc790f170561ab6c861bad77391706ba59cbd6fd686275b8",
+        "actual_crop_sha256": "8cb61c8074ec769cfc790f170561ab6c861bad77391706ba59cbd6fd686275b8",
+        "different_sample_count": 0,
+        "maximum_absolute_sample_difference": 0.0,
+        "gain_db": 0.0,
+        "correlation": 1.0,
+        "residual_snr_db": null
+      },
+      "status": "safe_exact_native_confirmation_migration_observed_and_G43_passed",
+      "actual_native_working_entry": {
+        "实测": {
+          "最响dB": -39.7,
+          "重心Hz": 1680,
+          "周期": 0.31,
+          "低频dB": -2.8
+        },
+        "配音指纹": "b86f2f88ba42",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S1 w 6.33–6.36：gag. 词尾浊音衰减段尾部（-42～-57 dB、低频 -1.4～-3 dB），连续衰减无低谷，是 gag 词尾的一部分"
+      },
+      "actual_native_entry_differs_only_in_fingerprint": true,
+      "actual_original_G43_pass_status_lines": [
+        "✔ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：51 纯人声核对（配音指纹 b86f2f88ba42）问题数 0"
+      ],
+      "evidence_kind": "Actual435263 working JSON/MP4-proof/sourceSHA/currentPCM binding plus original formal migration and original purevoice check, not a guessed new exemption."
+    },
+    {
+      "category": "非人声",
+      "key": "15.96–15.97s",
+      "source_fingerprint": "ff0728857c2d",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": false,
+      "original_entry": {
+        "实测": {
+          "最响dB": -42.7,
+          "重心Hz": 1690,
+          "周期": 0.0,
+          "低频dB": -0.5
+        },
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S2 w 5.155–5.17：papers, 停顿（吸气已删 4.8–5.15）之后、and 开口前，-41～-47 dB、低频占 -0.5～-3.6 dB，5.175 起 æ，连续无低谷，是 and 的声门预发声（词的一部分）"
+      },
+      "safe_to_renew": true,
+      "public_local_comparison_with_150ms_each_side": {
+        "actual_public_seconds": [
+          15.81,
+          16.12
+        ],
+        "decoded_sample_rate": 48000,
+        "decoded_dtype": "float64",
+        "sample_count": 14880,
+        "whole_region_bit_identical": true,
+        "accepted_crop_sha256": "a31998b2812a62ef43d14ef1e67c6e62124ea42fc3dc6df264d657e5ebbde257",
+        "actual_crop_sha256": "a31998b2812a62ef43d14ef1e67c6e62124ea42fc3dc6df264d657e5ebbde257",
+        "different_sample_count": 0,
+        "maximum_absolute_sample_difference": 0.0,
+        "gain_db": 0.0,
+        "correlation": 0.9999999999999999,
+        "residual_snr_db": null
+      },
+      "status": "safe_exact_native_confirmation_migration_observed_and_G43_passed",
+      "actual_native_working_entry": {
+        "实测": {
+          "最响dB": -42.7,
+          "重心Hz": 1690,
+          "周期": 0.0,
+          "低频dB": -0.5
+        },
+        "配音指纹": "b86f2f88ba42",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S2 w 5.155–5.17：papers, 停顿（吸气已删 4.8–5.15）之后、and 开口前，-41～-47 dB、低频占 -0.5～-3.6 dB，5.175 起 æ，连续无低谷，是 and 的声门预发声（词的一部分）"
+      },
+      "actual_native_entry_differs_only_in_fingerprint": true,
+      "actual_original_G43_pass_status_lines": [
+        "✔ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：51 纯人声核对（配音指纹 b86f2f88ba42）问题数 0"
+      ],
+      "evidence_kind": "Actual435263 working JSON/MP4-proof/sourceSHA/currentPCM binding plus original formal migration and original purevoice check, not a guessed new exemption."
+    },
+    {
+      "category": "非人声",
+      "key": "20.22–20.26s",
+      "source_fingerprint": "ff0728857c2d",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": false,
+      "original_entry": {
+        "实测": {
+          "最响dB": -30.5,
+          "重心Hz": 760,
+          "周期": 0.65,
+          "低频dB": -0.9
+        },
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S2 w 9.505–9.54：O.W. 的 W（dˈʌbəljuː）开头，-31～-47 dB、低频占 -1.5～-2 dB、重心 0.4–0.7 kHz、周期 0.65，接着 9.55 起元音（-25 dB），是 /d/ 的浊音闭塞（词的一部分）"
+      },
+      "safe_to_renew": true,
+      "public_local_comparison_with_150ms_each_side": {
+        "actual_public_seconds": [
+          20.07,
+          20.41
+        ],
+        "decoded_sample_rate": 48000,
+        "decoded_dtype": "float64",
+        "sample_count": 16320,
+        "whole_region_bit_identical": false,
+        "accepted_crop_sha256": "298a8a2c6861c19ea52af3d09adfc99bd35121329959c06227db25ad0e9ab3ff",
+        "actual_crop_sha256": "dd39c6f2fc03441481fa95cb89de4fa66881228f14e88b7a1bf4b60670c4067a",
+        "different_sample_count": 16320,
+        "maximum_absolute_sample_difference": 0.033905625343322754,
+        "gain_db": -0.7082723060684604,
+        "correlation": 0.9999088204110188,
+        "residual_snr_db": 37.39012972826747
+      },
+      "status": "safe_exact_native_confirmation_migration_observed_and_G43_passed",
+      "actual_native_working_entry": {
+        "实测": {
+          "最响dB": -30.5,
+          "重心Hz": 760,
+          "周期": 0.65,
+          "低频dB": -0.9
+        },
+        "配音指纹": "b86f2f88ba42",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S2 w 9.505–9.54：O.W. 的 W（dˈʌbəljuː）开头，-31～-47 dB、低频占 -1.5～-2 dB、重心 0.4–0.7 kHz、周期 0.65，接着 9.55 起元音（-25 dB），是 /d/ 的浊音闭塞（词的一部分）"
+      },
+      "actual_native_entry_differs_only_in_fingerprint": true,
+      "actual_original_G43_pass_status_lines": [
+        "✔ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：51 纯人声核对（配音指纹 b86f2f88ba42）问题数 0"
+      ],
+      "evidence_kind": "Actual435263 working JSON/MP4-proof/sourceSHA/currentPCM binding plus original formal migration and original purevoice check, not a guessed new exemption."
+    },
+    {
+      "category": "非人声",
+      "key": "28.89–28.98s",
+      "source_fingerprint": "ff0728857c2d",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": false,
+      "original_entry": {
+        "实测": {
+          "最响dB": -35.0,
+          "重心Hz": 1574,
+          "周期": 0.28,
+          "低频dB": -3.7
+        },
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S3 w 3.78–3.87：bumpkin. 句尾 /n/ 浊音衰减（-33～-58 dB、低频占 -2～-7 dB、重心 0.9–2.4 kHz），连续衰减到 3.88 -69 dB，是 bumpkin 词尾的一部分"
+      },
+      "safe_to_renew": true,
+      "public_local_comparison_with_150ms_each_side": {
+        "actual_public_seconds": [
+          28.740000000000002,
+          29.13
+        ],
+        "decoded_sample_rate": 48000,
+        "decoded_dtype": "float64",
+        "sample_count": 18720,
+        "whole_region_bit_identical": true,
+        "accepted_crop_sha256": "70c5352805935c719e464f884a11f7c4866fc019c9a8bad3b4c8b1f6276a019e",
+        "actual_crop_sha256": "70c5352805935c719e464f884a11f7c4866fc019c9a8bad3b4c8b1f6276a019e",
+        "different_sample_count": 0,
+        "maximum_absolute_sample_difference": 0.0,
+        "gain_db": 0.0,
+        "correlation": 0.9999999999999999,
+        "residual_snr_db": null
+      },
+      "status": "safe_exact_native_confirmation_migration_observed_and_G43_passed",
+      "actual_native_working_entry": {
+        "实测": {
+          "最响dB": -35.0,
+          "重心Hz": 1574,
+          "周期": 0.28,
+          "低频dB": -3.7
+        },
+        "配音指纹": "b86f2f88ba42",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S3 w 3.78–3.87：bumpkin. 句尾 /n/ 浊音衰减（-33～-58 dB、低频占 -2～-7 dB、重心 0.9–2.4 kHz），连续衰减到 3.88 -69 dB，是 bumpkin 词尾的一部分"
+      },
+      "actual_native_entry_differs_only_in_fingerprint": true,
+      "actual_original_G43_pass_status_lines": [
+        "✔ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：51 纯人声核对（配音指纹 b86f2f88ba42）问题数 0"
+      ],
+      "evidence_kind": "Actual435263 working JSON/MP4-proof/sourceSHA/currentPCM binding plus original formal migration and original purevoice check, not a guessed new exemption."
+    },
+    {
+      "category": "非人声",
+      "key": "43.48–43.59s",
+      "source_fingerprint": "ff0728857c2d",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": false,
+      "original_entry": {
+        "实测": {
+          "最响dB": -38.4,
+          "重心Hz": 2025,
+          "周期": 0.23,
+          "低频dB": -6.1
+        },
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S4 w 13.48–13.58：bells. 的 /l/ 浊音（-38～-54 dB、低频 -2.4～-17 dB、重心 1.0–2.6 kHz），13.57 起 /z/（重心 4.5–5.7 kHz），连续无低谷，是 bells 的一部分"
+      },
+      "safe_to_renew": true,
+      "public_local_comparison_with_150ms_each_side": {
+        "actual_public_seconds": [
+          43.33,
+          43.74
+        ],
+        "decoded_sample_rate": 48000,
+        "decoded_dtype": "float64",
+        "sample_count": 19680,
+        "whole_region_bit_identical": true,
+        "accepted_crop_sha256": "e8e05efe843210cccb253c25e9783fbddad2dfbc5981747a28fb448ec42bcd9a",
+        "actual_crop_sha256": "e8e05efe843210cccb253c25e9783fbddad2dfbc5981747a28fb448ec42bcd9a",
+        "different_sample_count": 0,
+        "maximum_absolute_sample_difference": 0.0,
+        "gain_db": 0.0,
+        "correlation": 0.9999999999999998,
+        "residual_snr_db": null
+      },
+      "status": "safe_exact_native_confirmation_migration_observed_and_G43_passed",
+      "actual_native_working_entry": {
+        "实测": {
+          "最响dB": -38.4,
+          "重心Hz": 2025,
+          "周期": 0.23,
+          "低频dB": -6.1
+        },
+        "配音指纹": "b86f2f88ba42",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S4 w 13.48–13.58：bells. 的 /l/ 浊音（-38～-54 dB、低频 -2.4～-17 dB、重心 1.0–2.6 kHz），13.57 起 /z/（重心 4.5–5.7 kHz），连续无低谷，是 bells 的一部分"
+      },
+      "actual_native_entry_differs_only_in_fingerprint": true,
+      "actual_original_G43_pass_status_lines": [
+        "✔ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：51 纯人声核对（配音指纹 b86f2f88ba42）问题数 0"
+      ],
+      "evidence_kind": "Actual435263 working JSON/MP4-proof/sourceSHA/currentPCM binding plus original formal migration and original purevoice check, not a guessed new exemption."
+    },
+    {
+      "category": "非人声",
+      "key": "46.94–46.97s",
+      "source_fingerprint": "ff0728857c2d",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": false,
+      "original_entry": {
+        "实测": {
+          "最响dB": -53.2,
+          "重心Hz": 3370,
+          "周期": 0.27,
+          "低频dB": -0.4
+        },
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S5 w 2.01–2.035：OK, 停顿之后、glossed 开口前，-51～-63 dB、低频占 -1～-4 dB 的弱浊音，2.055 起 /ɡ/，连续无低谷，是 glossed 的 /ɡ/ 浊音预发声（词的一部分）"
+      },
+      "safe_to_renew": true,
+      "public_local_comparison_with_150ms_each_side": {
+        "actual_public_seconds": [
+          46.79,
+          47.12
+        ],
+        "decoded_sample_rate": 48000,
+        "decoded_dtype": "float64",
+        "sample_count": 15840,
+        "whole_region_bit_identical": true,
+        "accepted_crop_sha256": "2dfadba217e4cb995b4959e646a3f6a22d52fb5e907de810cb7852fc00b63059",
+        "actual_crop_sha256": "2dfadba217e4cb995b4959e646a3f6a22d52fb5e907de810cb7852fc00b63059",
+        "different_sample_count": 0,
+        "maximum_absolute_sample_difference": 0.0,
+        "gain_db": 0.0,
+        "correlation": 1.0000000000000002,
+        "residual_snr_db": null
+      },
+      "status": "safe_exact_native_confirmation_migration_observed_and_G43_passed",
+      "actual_native_working_entry": {
+        "实测": {
+          "最响dB": -53.2,
+          "重心Hz": 3370,
+          "周期": 0.27,
+          "低频dB": -0.4
+        },
+        "配音指纹": "b86f2f88ba42",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S5 w 2.01–2.035：OK, 停顿之后、glossed 开口前，-51～-63 dB、低频占 -1～-4 dB 的弱浊音，2.055 起 /ɡ/，连续无低谷，是 glossed 的 /ɡ/ 浊音预发声（词的一部分）"
+      },
+      "actual_native_entry_differs_only_in_fingerprint": true,
+      "actual_original_G43_pass_status_lines": [
+        "✔ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：51 纯人声核对（配音指纹 b86f2f88ba42）问题数 0"
+      ],
+      "evidence_kind": "Actual435263 working JSON/MP4-proof/sourceSHA/currentPCM binding plus original formal migration and original purevoice check, not a guessed new exemption."
+    },
+    {
+      "category": "非人声",
+      "key": "48.29–48.31s",
+      "source_fingerprint": "ff0728857c2d",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": false,
+      "original_entry": {
+        "实测": {
+          "最响dB": -42.9,
+          "重心Hz": 1740,
+          "周期": 0.22,
+          "低频dB": -6.0
+        },
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S5 w 3.36–3.385：correct. 句尾，3.33–3.35 是 /t/ 闭塞（-57～-63 dB），3.37 除阻 -40.8 dB、重心 1.7 kHz，衰减到 3.39 -64 dB，是 correct 词尾 t 的除阻（词的一部分）"
+      },
+      "safe_to_renew": true,
+      "public_local_comparison_with_150ms_each_side": {
+        "actual_public_seconds": [
+          48.14,
+          48.46
+        ],
+        "decoded_sample_rate": 48000,
+        "decoded_dtype": "float64",
+        "sample_count": 15360,
+        "whole_region_bit_identical": true,
+        "accepted_crop_sha256": "567b25fc6d69687db61d3abda539f6365c8d07b22e49bde5a337d6e289a3b7c1",
+        "actual_crop_sha256": "567b25fc6d69687db61d3abda539f6365c8d07b22e49bde5a337d6e289a3b7c1",
+        "different_sample_count": 0,
+        "maximum_absolute_sample_difference": 0.0,
+        "gain_db": 0.0,
+        "correlation": 1.0,
+        "residual_snr_db": null
+      },
+      "status": "safe_exact_native_confirmation_migration_observed_and_G43_passed",
+      "actual_native_working_entry": {
+        "实测": {
+          "最响dB": -42.9,
+          "重心Hz": 1740,
+          "周期": 0.22,
+          "低频dB": -6.0
+        },
+        "配音指纹": "b86f2f88ba42",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S5 w 3.36–3.385：correct. 句尾，3.33–3.35 是 /t/ 闭塞（-57～-63 dB），3.37 除阻 -40.8 dB、重心 1.7 kHz，衰减到 3.39 -64 dB，是 correct 词尾 t 的除阻（词的一部分）"
+      },
+      "actual_native_entry_differs_only_in_fingerprint": true,
+      "actual_original_G43_pass_status_lines": [
+        "✔ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：51 纯人声核对（配音指纹 b86f2f88ba42）问题数 0"
+      ],
+      "evidence_kind": "Actual435263 working JSON/MP4-proof/sourceSHA/currentPCM binding plus original formal migration and original purevoice check, not a guessed new exemption."
+    },
+    {
+      "category": "非人声",
+      "key": "61.28–61.31s",
+      "source_fingerprint": "ff0728857c2d",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": false,
+      "original_entry": {
+        "实测": {
+          "最响dB": -34.3,
+          "重心Hz": 1228,
+          "周期": 0.46,
+          "低频dB": -1.9
+        },
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S8 w 3.30–3.33：nationwide. 词尾 /d/ 除阻后的浊音衰减（-37～-47 dB、低频占 -2.2 dB、重心 1.2–2.5 kHz），是 nationwide 词尾的一部分"
+      },
+      "safe_to_renew": true,
+      "public_local_comparison_with_150ms_each_side": {
+        "actual_public_seconds": [
+          61.13,
+          61.46
+        ],
+        "decoded_sample_rate": 48000,
+        "decoded_dtype": "float64",
+        "sample_count": 15840,
+        "whole_region_bit_identical": true,
+        "accepted_crop_sha256": "281102ed6b41d31684ebfbb9de75d6c4905b4adce7f31c2384836b06f43f474b",
+        "actual_crop_sha256": "281102ed6b41d31684ebfbb9de75d6c4905b4adce7f31c2384836b06f43f474b",
+        "different_sample_count": 0,
+        "maximum_absolute_sample_difference": 0.0,
+        "gain_db": 0.0,
+        "correlation": 1.0,
+        "residual_snr_db": null
+      },
+      "status": "safe_exact_native_confirmation_migration_observed_and_G43_passed",
+      "actual_native_working_entry": {
+        "实测": {
+          "最响dB": -34.3,
+          "重心Hz": 1228,
+          "周期": 0.46,
+          "低频dB": -1.9
+        },
+        "配音指纹": "b86f2f88ba42",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S8 w 3.30–3.33：nationwide. 词尾 /d/ 除阻后的浊音衰减（-37～-47 dB、低频占 -2.2 dB、重心 1.2–2.5 kHz），是 nationwide 词尾的一部分"
+      },
+      "actual_native_entry_differs_only_in_fingerprint": true,
+      "actual_original_G43_pass_status_lines": [
+        "✔ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：51 纯人声核对（配音指纹 b86f2f88ba42）问题数 0"
+      ],
+      "evidence_kind": "Actual435263 working JSON/MP4-proof/sourceSHA/currentPCM binding plus original formal migration and original purevoice check, not a guessed new exemption."
+    },
+    {
+      "category": "非人声",
+      "key": "65.39–65.41s",
+      "source_fingerprint": "ff0728857c2d",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": false,
+      "original_entry": {
+        "实测": {
+          "最响dB": -32.8,
+          "重心Hz": 2407,
+          "周期": 0.28,
+          "低频dB": -1.6
+        },
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S9 w 2.69–2.71：Buren, 停顿之后、the 开口前，-36～-52 dB 渐升、低频占 -1～-2.5 dB，2.73 起 /ð/，连续无低谷，是 the 的浊音预发声（词的一部分）"
+      },
+      "safe_to_renew": true,
+      "public_local_comparison_with_150ms_each_side": {
+        "actual_public_seconds": [
+          65.24,
+          65.56
+        ],
+        "decoded_sample_rate": 48000,
+        "decoded_dtype": "float64",
+        "sample_count": 15360,
+        "whole_region_bit_identical": true,
+        "accepted_crop_sha256": "c5b4fc2e80d3486824507b9f48d6050be80fba2b78507d85b9ee5565ad64edaa",
+        "actual_crop_sha256": "c5b4fc2e80d3486824507b9f48d6050be80fba2b78507d85b9ee5565ad64edaa",
+        "different_sample_count": 0,
+        "maximum_absolute_sample_difference": 0.0,
+        "gain_db": 0.0,
+        "correlation": 1.0000000000000002,
+        "residual_snr_db": null
+      },
+      "status": "safe_exact_native_confirmation_migration_observed_and_G43_passed",
+      "actual_native_working_entry": {
+        "实测": {
+          "最响dB": -32.8,
+          "重心Hz": 2407,
+          "周期": 0.28,
+          "低频dB": -1.6
+        },
+        "配音指纹": "b86f2f88ba42",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S9 w 2.69–2.71：Buren, 停顿之后、the 开口前，-36～-52 dB 渐升、低频占 -1～-2.5 dB，2.73 起 /ð/，连续无低谷，是 the 的浊音预发声（词的一部分）"
+      },
+      "actual_native_entry_differs_only_in_fingerprint": true,
+      "actual_original_G43_pass_status_lines": [
+        "✔ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：51 纯人声核对（配音指纹 b86f2f88ba42）问题数 0"
+      ],
+      "evidence_kind": "Actual435263 working JSON/MP4-proof/sourceSHA/currentPCM binding plus original formal migration and original purevoice check, not a guessed new exemption."
+    },
+    {
+      "category": "非人声",
+      "key": "68.07–68.15s",
+      "source_fingerprint": "ff0728857c2d",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": false,
+      "original_entry": {
+        "实测": {
+          "最响dB": -35.4,
+          "重心Hz": 1933,
+          "周期": 0.34,
+          "低频dB": -2.8
+        },
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S9 w 5.13–5.21：re-election. 句尾 /n/ 浊音衰减（-38～-56 dB、低频占 -2～-6 dB、重心 0.9–2.2 kHz），连续衰减到 5.23 -74 dB，是词尾的一部分"
+      },
+      "safe_to_renew": true,
+      "public_local_comparison_with_150ms_each_side": {
+        "actual_public_seconds": [
+          67.91999999999999,
+          68.30000000000001
+        ],
+        "decoded_sample_rate": 48000,
+        "decoded_dtype": "float64",
+        "sample_count": 18240,
+        "whole_region_bit_identical": true,
+        "accepted_crop_sha256": "efcfeb27c29fa833b66c98617b945f056dd848d73f9eaa6fe981c650254ccfb8",
+        "actual_crop_sha256": "efcfeb27c29fa833b66c98617b945f056dd848d73f9eaa6fe981c650254ccfb8",
+        "different_sample_count": 0,
+        "maximum_absolute_sample_difference": 0.0,
+        "gain_db": 0.0,
+        "correlation": 1.0000000000000002,
+        "residual_snr_db": null
+      },
+      "status": "safe_exact_native_confirmation_migration_observed_and_G43_passed",
+      "actual_native_working_entry": {
+        "实测": {
+          "最响dB": -35.4,
+          "重心Hz": 1933,
+          "周期": 0.34,
+          "低频dB": -2.8
+        },
+        "配音指纹": "b86f2f88ba42",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S9 w 5.13–5.21：re-election. 句尾 /n/ 浊音衰减（-38～-56 dB、低频占 -2～-6 dB、重心 0.9–2.2 kHz），连续衰减到 5.23 -74 dB，是词尾的一部分"
+      },
+      "actual_native_entry_differs_only_in_fingerprint": true,
+      "actual_original_G43_pass_status_lines": [
+        "✔ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：51 纯人声核对（配音指纹 b86f2f88ba42）问题数 0"
+      ],
+      "evidence_kind": "Actual435263 working JSON/MP4-proof/sourceSHA/currentPCM binding plus original formal migration and original purevoice check, not a guessed new exemption."
+    },
+    {
+      "category": "非人声",
+      "key": "75.31–75.33s",
+      "source_fingerprint": "ff0728857c2d",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": false,
+      "original_entry": {
+        "实测": {
+          "最响dB": -50.1,
+          "重心Hz": 3714,
+          "周期": 0.0,
+          "低频dB": -1.2
+        },
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S10 w 5.61–5.625：birthplace, 停顿之后、formed 开口前，-52～-57 dB、低频占 -1～-3 dB 的弱声，紧接 5.63 起 /f/（重心 5–6.4 kHz），连续无低谷，是 formed 起音前的过渡（词的一部分，-50 dB 以下）"
+      },
+      "safe_to_renew": true,
+      "public_local_comparison_with_150ms_each_side": {
+        "actual_public_seconds": [
+          75.16,
+          75.48
+        ],
+        "decoded_sample_rate": 48000,
+        "decoded_dtype": "float64",
+        "sample_count": 15360,
+        "whole_region_bit_identical": true,
+        "accepted_crop_sha256": "d37233b207b716872b8d2a57f9893bda31ed99bc404e6fdbd54a4f691f5affa6",
+        "actual_crop_sha256": "d37233b207b716872b8d2a57f9893bda31ed99bc404e6fdbd54a4f691f5affa6",
+        "different_sample_count": 0,
+        "maximum_absolute_sample_difference": 0.0,
+        "gain_db": 0.0,
+        "correlation": 1.0,
+        "residual_snr_db": null
+      },
+      "status": "safe_exact_native_confirmation_migration_observed_and_G43_passed",
+      "actual_native_working_entry": {
+        "实测": {
+          "最响dB": -50.1,
+          "重心Hz": 3714,
+          "周期": 0.0,
+          "低频dB": -1.2
+        },
+        "配音指纹": "b86f2f88ba42",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S10 w 5.61–5.625：birthplace, 停顿之后、formed 开口前，-52～-57 dB、低频占 -1～-3 dB 的弱声，紧接 5.63 起 /f/（重心 5–6.4 kHz），连续无低谷，是 formed 起音前的过渡（词的一部分，-50 dB 以下）"
+      },
+      "actual_native_entry_differs_only_in_fingerprint": true,
+      "actual_original_G43_pass_status_lines": [
+        "✔ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：51 纯人声核对（配音指纹 b86f2f88ba42）问题数 0"
+      ],
+      "evidence_kind": "Actual435263 working JSON/MP4-proof/sourceSHA/currentPCM binding plus original formal migration and original purevoice check, not a guessed new exemption."
+    },
+    {
+      "category": "非人声",
+      "key": "88.23–88.31s",
+      "source_fingerprint": "ff0728857c2d",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": false,
+      "original_entry": {
+        "实测": {
+          "最响dB": -36.0,
+          "重心Hz": 3150,
+          "周期": 0.25,
+          "低频dB": -2.5
+        },
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S11 w 6.67–6.75：sixty. 句尾 /i/ 收尾（-29～-56 dB、低频占 -1.4～-12 dB、重心 2.0–3.8 kHz，i 的 F2 高），连续衰减到 6.78 -81 dB，是 sixty 词尾的一部分"
+      },
+      "safe_to_renew": true,
+      "public_local_comparison_with_150ms_each_side": {
+        "actual_public_seconds": [
+          88.08,
+          88.46000000000001
+        ],
+        "decoded_sample_rate": 48000,
+        "decoded_dtype": "float64",
+        "sample_count": 18240,
+        "whole_region_bit_identical": true,
+        "accepted_crop_sha256": "3d033664e08c4f52a28e7b48257b14a3c1d8287b8edc13d0cc8c43bf8478b2ee",
+        "actual_crop_sha256": "3d033664e08c4f52a28e7b48257b14a3c1d8287b8edc13d0cc8c43bf8478b2ee",
+        "different_sample_count": 0,
+        "maximum_absolute_sample_difference": 0.0,
+        "gain_db": 0.0,
+        "correlation": 1.0,
+        "residual_snr_db": null
+      },
+      "status": "safe_exact_native_confirmation_migration_observed_and_G43_passed",
+      "actual_native_working_entry": {
+        "实测": {
+          "最响dB": -36.0,
+          "重心Hz": 3150,
+          "周期": 0.25,
+          "低频dB": -2.5
+        },
+        "配音指纹": "b86f2f88ba42",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S11 w 6.67–6.75：sixty. 句尾 /i/ 收尾（-29～-56 dB、低频占 -1.4～-12 dB、重心 2.0–3.8 kHz，i 的 F2 高），连续衰减到 6.78 -81 dB，是 sixty 词尾的一部分"
+      },
+      "actual_native_entry_differs_only_in_fingerprint": true,
+      "actual_original_G43_pass_status_lines": [
+        "✔ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：51 纯人声核对（配音指纹 b86f2f88ba42）问题数 0"
+      ],
+      "evidence_kind": "Actual435263 working JSON/MP4-proof/sourceSHA/currentPCM binding plus original formal migration and original purevoice check, not a guessed new exemption."
+    },
+    {
+      "category": "非人声",
+      "key": "88.27–88.28s",
+      "source_fingerprint": "ff0728857c2d",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": false,
+      "original_entry": {
+        "实测": {
+          "最响dB": -36.0,
+          "重心Hz": 3355,
+          "周期": 0.0,
+          "低频dB": -2.5
+        },
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S11 w 6.70–6.715：sixty. 词尾 /i/ 收尾段内部（-34～-44 dB、低频 -1.4～-2.6 dB），连续无低谷，是词尾的一部分"
+      },
+      "safe_to_renew": true,
+      "public_local_comparison_with_150ms_each_side": {
+        "actual_public_seconds": [
+          88.11999999999999,
+          88.43
+        ],
+        "decoded_sample_rate": 48000,
+        "decoded_dtype": "float64",
+        "sample_count": 14880,
+        "whole_region_bit_identical": true,
+        "accepted_crop_sha256": "c9963be3826adf5468e8d4ce5b30c01c76125963bb276c9e4a535793127c4ba1",
+        "actual_crop_sha256": "c9963be3826adf5468e8d4ce5b30c01c76125963bb276c9e4a535793127c4ba1",
+        "different_sample_count": 0,
+        "maximum_absolute_sample_difference": 0.0,
+        "gain_db": 0.0,
+        "correlation": 1.0,
+        "residual_snr_db": null
+      },
+      "status": "safe_exact_native_confirmation_migration_observed_and_G43_passed",
+      "actual_native_working_entry": {
+        "实测": {
+          "最响dB": -36.0,
+          "重心Hz": 3355,
+          "周期": 0.0,
+          "低频dB": -2.5
+        },
+        "配音指纹": "b86f2f88ba42",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S11 w 6.70–6.715：sixty. 词尾 /i/ 收尾段内部（-34～-44 dB、低频 -1.4～-2.6 dB），连续无低谷，是词尾的一部分"
+      },
+      "actual_native_entry_differs_only_in_fingerprint": true,
+      "actual_original_G43_pass_status_lines": [
+        "✔ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：51 纯人声核对（配音指纹 b86f2f88ba42）问题数 0"
+      ],
+      "evidence_kind": "Actual435263 working JSON/MP4-proof/sourceSHA/currentPCM binding plus original formal migration and original purevoice check, not a guessed new exemption."
+    },
+    {
+      "category": "非人声",
+      "key": "101.21–101.22s",
+      "source_fingerprint": "ff0728857c2d",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": false,
+      "original_entry": {
+        "实测": {
+          "最响dB": -45.0,
+          "重心Hz": 2181,
+          "周期": 0.0,
+          "低频dB": -0.2
+        },
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S12 w 11.63–11.645：marked 与 paperwork 之间，-45～-58 dB、低频占 -0.3～-0.7 dB 的浊音，11.65 起 /p/ 除阻（-17 dB），是 /p/ 闭塞里的浊音延续（词的一部分）"
+      },
+      "safe_to_renew": true,
+      "public_local_comparison_with_150ms_each_side": {
+        "actual_public_seconds": [
+          101.05999999999999,
+          101.37
+        ],
+        "decoded_sample_rate": 48000,
+        "decoded_dtype": "float64",
+        "sample_count": 14880,
+        "whole_region_bit_identical": true,
+        "accepted_crop_sha256": "0c18d48c534b0d85f410d10eb52cdc1b5d2c0551108c672f7172d3b49baac183",
+        "actual_crop_sha256": "0c18d48c534b0d85f410d10eb52cdc1b5d2c0551108c672f7172d3b49baac183",
+        "different_sample_count": 0,
+        "maximum_absolute_sample_difference": 0.0,
+        "gain_db": 0.0,
+        "correlation": 1.0,
+        "residual_snr_db": null
+      },
+      "status": "safe_exact_native_confirmation_migration_observed_and_G43_passed",
+      "actual_native_working_entry": {
+        "实测": {
+          "最响dB": -45.0,
+          "重心Hz": 2181,
+          "周期": 0.0,
+          "低频dB": -0.2
+        },
+        "配音指纹": "b86f2f88ba42",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S12 w 11.63–11.645：marked 与 paperwork 之间，-45～-58 dB、低频占 -0.3～-0.7 dB 的浊音，11.65 起 /p/ 除阻（-17 dB），是 /p/ 闭塞里的浊音延续（词的一部分）"
+      },
+      "actual_native_entry_differs_only_in_fingerprint": true,
+      "actual_original_G43_pass_status_lines": [
+        "✔ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：51 纯人声核对（配音指纹 b86f2f88ba42）问题数 0"
+      ],
+      "evidence_kind": "Actual435263 working JSON/MP4-proof/sourceSHA/currentPCM binding plus original formal migration and original purevoice check, not a guessed new exemption."
+    },
+    {
+      "category": "非人声",
+      "key": "107.94–107.96s",
+      "source_fingerprint": "ff0728857c2d",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": false,
+      "original_entry": {
+        "实测": {
+          "最响dB": -49.5,
+          "重心Hz": 2718,
+          "周期": 0.0,
+          "低频dB": -1.0
+        },
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S13 w 3.035–3.05：marked 与 documents 之间，-47～-56 dB、低频占 -1～-3 dB，接着 3.06 起电平升高（-38→-26 dB、重心降到 0.3–0.8 kHz）进入 /d/，连续无低谷，是 documents 的 /d/ 浊音预发声（词的一部分）"
+      },
+      "safe_to_renew": true,
+      "public_local_comparison_with_150ms_each_side": {
+        "actual_public_seconds": [
+          107.78999999999999,
+          108.11
+        ],
+        "decoded_sample_rate": 48000,
+        "decoded_dtype": "float64",
+        "sample_count": 15360,
+        "whole_region_bit_identical": true,
+        "accepted_crop_sha256": "9c6e23d40e71fcb0cd9bfb7c593816f6e9dc664d97497dfad8f38767624c5ffb",
+        "actual_crop_sha256": "9c6e23d40e71fcb0cd9bfb7c593816f6e9dc664d97497dfad8f38767624c5ffb",
+        "different_sample_count": 0,
+        "maximum_absolute_sample_difference": 0.0,
+        "gain_db": 0.0,
+        "correlation": 1.0,
+        "residual_snr_db": null
+      },
+      "status": "safe_exact_native_confirmation_migration_observed_and_G43_passed",
+      "actual_native_working_entry": {
+        "实测": {
+          "最响dB": -49.5,
+          "重心Hz": 2718,
+          "周期": 0.0,
+          "低频dB": -1.0
+        },
+        "配音指纹": "b86f2f88ba42",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S13 w 3.035–3.05：marked 与 documents 之间，-47～-56 dB、低频占 -1～-3 dB，接着 3.06 起电平升高（-38→-26 dB、重心降到 0.3–0.8 kHz）进入 /d/，连续无低谷，是 documents 的 /d/ 浊音预发声（词的一部分）"
+      },
+      "actual_native_entry_differs_only_in_fingerprint": true,
+      "actual_original_G43_pass_status_lines": [
+        "✔ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：51 纯人声核对（配音指纹 b86f2f88ba42）问题数 0"
+      ],
+      "evidence_kind": "Actual435263 working JSON/MP4-proof/sourceSHA/currentPCM binding plus original formal migration and original purevoice check, not a guessed new exemption."
+    },
+    {
+      "category": "非人声",
+      "key": "107.97–107.98s",
+      "source_fingerprint": "ff0728857c2d",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": false,
+      "original_entry": {
+        "实测": {
+          "最响dB": -34.5,
+          "重心Hz": 752,
+          "周期": 0.44,
+          "低频dB": -0.5
+        },
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S13 w 3.055–3.075：documents 的 /d/ 浊音闭塞（-35～-38 dB、低频占 -1～-2 dB、重心 0.55–0.76 kHz、周期 0.44），3.08 起 -27 dB，是 /d/ 的一部分"
+      },
+      "safe_to_renew": true,
+      "public_local_comparison_with_150ms_each_side": {
+        "actual_public_seconds": [
+          107.82,
+          108.13000000000001
+        ],
+        "decoded_sample_rate": 48000,
+        "decoded_dtype": "float64",
+        "sample_count": 14880,
+        "whole_region_bit_identical": true,
+        "accepted_crop_sha256": "8a66a56147eaf108f079c0ae20c6d5e149a46df62eff676f70cd638ce565b764",
+        "actual_crop_sha256": "8a66a56147eaf108f079c0ae20c6d5e149a46df62eff676f70cd638ce565b764",
+        "different_sample_count": 0,
+        "maximum_absolute_sample_difference": 0.0,
+        "gain_db": 0.0,
+        "correlation": 0.9999999999999999,
+        "residual_snr_db": null
+      },
+      "status": "safe_exact_native_confirmation_migration_observed_and_G43_passed",
+      "actual_native_working_entry": {
+        "实测": {
+          "最响dB": -34.5,
+          "重心Hz": 752,
+          "周期": 0.44,
+          "低频dB": -0.5
+        },
+        "配音指纹": "b86f2f88ba42",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S13 w 3.055–3.075：documents 的 /d/ 浊音闭塞（-35～-38 dB、低频占 -1～-2 dB、重心 0.55–0.76 kHz、周期 0.44），3.08 起 -27 dB，是 /d/ 的一部分"
+      },
+      "actual_native_entry_differs_only_in_fingerprint": true,
+      "actual_original_G43_pass_status_lines": [
+        "✔ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：51 纯人声核对（配音指纹 b86f2f88ba42）问题数 0"
+      ],
+      "evidence_kind": "Actual435263 working JSON/MP4-proof/sourceSHA/currentPCM binding plus original formal migration and original purevoice check, not a guessed new exemption."
+    },
+    {
+      "category": "非人声",
+      "key": "109.14–109.22s",
+      "source_fingerprint": "ff0728857c2d",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": false,
+      "original_entry": {
+        "实测": {
+          "最响dB": -37.8,
+          "重心Hz": 3373,
+          "周期": 0.22,
+          "低频dB": -6.7
+        },
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S13 w 4.235–4.315：句末 OK. 的 eɪ 气声收尾（-33～-56 dB、低频 -4～-14 dB、重心 2.8–3.9 kHz），紧接元音连续衰减到 4.32 -68 dB，无低谷，是 OK 元音的气声收尾（词的一部分）"
+      },
+      "safe_to_renew": true,
+      "public_local_comparison_with_150ms_each_side": {
+        "actual_public_seconds": [
+          108.99,
+          109.37
+        ],
+        "decoded_sample_rate": 48000,
+        "decoded_dtype": "float64",
+        "sample_count": 18240,
+        "whole_region_bit_identical": true,
+        "accepted_crop_sha256": "314df0cc026c80c13157f8c326f12a77f097ce63aa09b2269b2f5a362a2ab200",
+        "actual_crop_sha256": "314df0cc026c80c13157f8c326f12a77f097ce63aa09b2269b2f5a362a2ab200",
+        "different_sample_count": 0,
+        "maximum_absolute_sample_difference": 0.0,
+        "gain_db": 0.0,
+        "correlation": 1.0,
+        "residual_snr_db": null
+      },
+      "status": "safe_exact_native_confirmation_migration_observed_and_G43_passed",
+      "actual_native_working_entry": {
+        "实测": {
+          "最响dB": -37.8,
+          "重心Hz": 3373,
+          "周期": 0.22,
+          "低频dB": -6.7
+        },
+        "配音指纹": "b86f2f88ba42",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S13 w 4.235–4.315：句末 OK. 的 eɪ 气声收尾（-33～-56 dB、低频 -4～-14 dB、重心 2.8–3.9 kHz），紧接元音连续衰减到 4.32 -68 dB，无低谷，是 OK 元音的气声收尾（词的一部分）"
+      },
+      "actual_native_entry_differs_only_in_fingerprint": true,
+      "actual_original_G43_pass_status_lines": [
+        "✔ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：51 纯人声核对（配音指纹 b86f2f88ba42）问题数 0"
+      ],
+      "evidence_kind": "Actual435263 working JSON/MP4-proof/sourceSHA/currentPCM binding plus original formal migration and original purevoice check, not a guessed new exemption."
+    },
+    {
+      "category": "非人声",
+      "key": "113.49–113.55s",
+      "source_fingerprint": "ff0728857c2d",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": false,
+      "original_entry": {
+        "实测": {
+          "最响dB": -33.4,
+          "重心Hz": 3540,
+          "周期": 0.21,
+          "低频dB": -13.2
+        },
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S14 w 3.12–3.18：earnest. 句尾 /t/ 除阻送气（-32～-53 dB、重心 2.0–3.8 kHz、低频 -8～-31 dB），前面 3.10–3.11 是 /s/ 后的闭塞（-57～-65 dB），是 earnest 词尾 t 的一部分",
+        "词尾": "t"
+      },
+      "safe_to_renew": true,
+      "public_local_comparison_with_150ms_each_side": {
+        "actual_public_seconds": [
+          113.33999999999999,
+          113.7
+        ],
+        "decoded_sample_rate": 48000,
+        "decoded_dtype": "float64",
+        "sample_count": 17280,
+        "whole_region_bit_identical": true,
+        "accepted_crop_sha256": "83550db653927f67374be59a12e71d68ec0fdd906a227556ad26657607cd6650",
+        "actual_crop_sha256": "83550db653927f67374be59a12e71d68ec0fdd906a227556ad26657607cd6650",
+        "different_sample_count": 0,
+        "maximum_absolute_sample_difference": 0.0,
+        "gain_db": 0.0,
+        "correlation": 1.0,
+        "residual_snr_db": null
+      },
+      "status": "safe_exact_native_confirmation_migration_observed_and_G43_passed",
+      "actual_native_working_entry": {
+        "实测": {
+          "最响dB": -33.4,
+          "重心Hz": 3540,
+          "周期": 0.21,
+          "低频dB": -13.2
+        },
+        "配音指纹": "b86f2f88ba42",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S14 w 3.12–3.18：earnest. 句尾 /t/ 除阻送气（-32～-53 dB、重心 2.0–3.8 kHz、低频 -8～-31 dB），前面 3.10–3.11 是 /s/ 后的闭塞（-57～-65 dB），是 earnest 词尾 t 的一部分",
+        "词尾": "t"
+      },
+      "actual_native_entry_differs_only_in_fingerprint": true,
+      "actual_original_G43_pass_status_lines": [
+        "✔ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：51 纯人声核对（配音指纹 b86f2f88ba42）问题数 0"
+      ],
+      "evidence_kind": "Actual435263 working JSON/MP4-proof/sourceSHA/currentPCM binding plus original formal migration and original purevoice check, not a guessed new exemption."
+    },
+    {
+      "category": "非人声",
+      "key": "115.76–115.77s",
+      "source_fingerprint": "ff0728857c2d",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": false,
+      "original_entry": {
+        "实测": {
+          "最响dB": -53.8,
+          "重心Hz": 2119,
+          "周期": 0.0,
+          "低频dB": -1.4
+        },
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S15 w 1.225–1.24：notation 的 /n/ 浊音尾（-46～-54 dB、低频占 -1.1～-3.3 dB），之后 1.245–1.358 的吸气已删，是 notation 词尾的一部分"
+      },
+      "safe_to_renew": true,
+      "public_local_comparison_with_150ms_each_side": {
+        "actual_public_seconds": [
+          115.61,
+          115.92
+        ],
+        "decoded_sample_rate": 48000,
+        "decoded_dtype": "float64",
+        "sample_count": 14880,
+        "whole_region_bit_identical": true,
+        "accepted_crop_sha256": "390e675bfaa9bb61f860b3317de0e3054877d6e9a7176d98318c2be58fdc6ce3",
+        "actual_crop_sha256": "390e675bfaa9bb61f860b3317de0e3054877d6e9a7176d98318c2be58fdc6ce3",
+        "different_sample_count": 0,
+        "maximum_absolute_sample_difference": 0.0,
+        "gain_db": 0.0,
+        "correlation": 0.9999999999999999,
+        "residual_snr_db": null
+      },
+      "status": "safe_exact_native_confirmation_migration_observed_and_G43_passed",
+      "actual_native_working_entry": {
+        "实测": {
+          "最响dB": -53.8,
+          "重心Hz": 2119,
+          "周期": 0.0,
+          "低频dB": -1.4
+        },
+        "配音指纹": "b86f2f88ba42",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S15 w 1.225–1.24：notation 的 /n/ 浊音尾（-46～-54 dB、低频占 -1.1～-3.3 dB），之后 1.245–1.358 的吸气已删，是 notation 词尾的一部分"
+      },
+      "actual_native_entry_differs_only_in_fingerprint": true,
+      "actual_original_G43_pass_status_lines": [
+        "✔ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：51 纯人声核对（配音指纹 b86f2f88ba42）问题数 0"
+      ],
+      "evidence_kind": "Actual435263 working JSON/MP4-proof/sourceSHA/currentPCM binding plus original formal migration and original purevoice check, not a guessed new exemption."
+    },
+    {
+      "category": "非人声",
+      "key": "120.38–120.39s",
+      "source_fingerprint": "ff0728857c2d",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": false,
+      "original_entry": {
+        "实测": {
+          "最响dB": -54.0,
+          "重心Hz": 2611,
+          "周期": 0.0,
+          "低频dB": -0.5
+        },
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S16 w 1.915–1.93：exotic 与 pedigrees 之间，-47～-57 dB、低频占 -0.3～-1.7 dB 的弱浊音，1.94 起 /p/ 除阻（-17 dB），是 /k/→/p/ 之间的声门过渡（词的一部分）"
+      },
+      "safe_to_renew": true,
+      "public_local_comparison_with_150ms_each_side": {
+        "actual_public_seconds": [
+          120.22999999999999,
+          120.54
+        ],
+        "decoded_sample_rate": 48000,
+        "decoded_dtype": "float64",
+        "sample_count": 14880,
+        "whole_region_bit_identical": true,
+        "accepted_crop_sha256": "de507eda41f56fe5bd6991e5dc5d5d03847dd50e4b865b39ae715f3a2ae7865a",
+        "actual_crop_sha256": "de507eda41f56fe5bd6991e5dc5d5d03847dd50e4b865b39ae715f3a2ae7865a",
+        "different_sample_count": 0,
+        "maximum_absolute_sample_difference": 0.0,
+        "gain_db": 0.0,
+        "correlation": 1.0,
+        "residual_snr_db": null
+      },
+      "status": "safe_exact_native_confirmation_migration_observed_and_G43_passed",
+      "actual_native_working_entry": {
+        "实测": {
+          "最响dB": -54.0,
+          "重心Hz": 2611,
+          "周期": 0.0,
+          "低频dB": -0.5
+        },
+        "配音指纹": "b86f2f88ba42",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S16 w 1.915–1.93：exotic 与 pedigrees 之间，-47～-57 dB、低频占 -0.3～-1.7 dB 的弱浊音，1.94 起 /p/ 除阻（-17 dB），是 /k/→/p/ 之间的声门过渡（词的一部分）"
+      },
+      "actual_native_entry_differs_only_in_fingerprint": true,
+      "actual_original_G43_pass_status_lines": [
+        "✔ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：51 纯人声核对（配音指纹 b86f2f88ba42）问题数 0"
+      ],
+      "evidence_kind": "Actual435263 working JSON/MP4-proof/sourceSHA/currentPCM binding plus original formal migration and original purevoice check, not a guessed new exemption."
+    },
+    {
+      "category": "非人声",
+      "key": "127.41–127.43s",
+      "source_fingerprint": "ff0728857c2d",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": false,
+      "original_entry": {
+        "实测": {
+          "最响dB": -37.8,
+          "重心Hz": 1565,
+          "周期": 0.23,
+          "低频dB": -10.3
+        },
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S17 w 2.415–2.435：favoured 词尾 /d/ 除阻（2.42 -35 dB、重心 1.6 kHz）及其浊音衰减（-52～-56 dB、低频 -1 dB），是 favoured 词尾 d 的一部分"
+      },
+      "safe_to_renew": true,
+      "public_local_comparison_with_150ms_each_side": {
+        "actual_public_seconds": [
+          127.25999999999999,
+          127.58000000000001
+        ],
+        "decoded_sample_rate": 48000,
+        "decoded_dtype": "float64",
+        "sample_count": 15360,
+        "whole_region_bit_identical": true,
+        "accepted_crop_sha256": "8dc4ba1ecc415cef642cc3d0c817659940bedb2da4a65d1b226099000a552d98",
+        "actual_crop_sha256": "8dc4ba1ecc415cef642cc3d0c817659940bedb2da4a65d1b226099000a552d98",
+        "different_sample_count": 0,
+        "maximum_absolute_sample_difference": 0.0,
+        "gain_db": 0.0,
+        "correlation": 0.9999999999999999,
+        "residual_snr_db": null
+      },
+      "status": "safe_exact_native_confirmation_migration_observed_and_G43_passed",
+      "actual_native_working_entry": {
+        "实测": {
+          "最响dB": -37.8,
+          "重心Hz": 1565,
+          "周期": 0.23,
+          "低频dB": -10.3
+        },
+        "配音指纹": "b86f2f88ba42",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S17 w 2.415–2.435：favoured 词尾 /d/ 除阻（2.42 -35 dB、重心 1.6 kHz）及其浊音衰减（-52～-56 dB、低频 -1 dB），是 favoured 词尾 d 的一部分"
+      },
+      "actual_native_entry_differs_only_in_fingerprint": true,
+      "actual_original_G43_pass_status_lines": [
+        "✔ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：51 纯人声核对（配音指纹 b86f2f88ba42）问题数 0"
+      ],
+      "evidence_kind": "Actual435263 working JSON/MP4-proof/sourceSHA/currentPCM binding plus original formal migration and original purevoice check, not a guessed new exemption."
+    },
+    {
+      "category": "非人声",
+      "key": "139.73–139.75s",
+      "source_fingerprint": "ff0728857c2d",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": false,
+      "original_entry": {
+        "实测": {
+          "最响dB": -51.3,
+          "重心Hz": 2270,
+          "周期": 0.0,
+          "低频dB": -1.0
+        },
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S18 w 8.90–8.915：newspapers 的 /z/ 与 /p/ 之间，-50～-53 dB、低频占 -0.4～-2.7 dB 的浊音延续，8.94 起 /p/ 除阻（-24 dB），是 /p/ 闭塞里的浊音（词的一部分）"
+      },
+      "safe_to_renew": true,
+      "public_local_comparison_with_150ms_each_side": {
+        "actual_public_seconds": [
+          139.57999999999998,
+          139.9
+        ],
+        "decoded_sample_rate": 48000,
+        "decoded_dtype": "float64",
+        "sample_count": 15360,
+        "whole_region_bit_identical": true,
+        "accepted_crop_sha256": "837384217ab99067c330edd59082be1fab4e76776a5e556746413e1b36360b80",
+        "actual_crop_sha256": "837384217ab99067c330edd59082be1fab4e76776a5e556746413e1b36360b80",
+        "different_sample_count": 0,
+        "maximum_absolute_sample_difference": 0.0,
+        "gain_db": 0.0,
+        "correlation": 1.0,
+        "residual_snr_db": null
+      },
+      "status": "safe_exact_native_confirmation_migration_observed_and_G43_passed",
+      "actual_native_working_entry": {
+        "实测": {
+          "最响dB": -51.3,
+          "重心Hz": 2270,
+          "周期": 0.0,
+          "低频dB": -1.0
+        },
+        "配音指纹": "b86f2f88ba42",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S18 w 8.90–8.915：newspapers 的 /z/ 与 /p/ 之间，-50～-53 dB、低频占 -0.4～-2.7 dB 的浊音延续，8.94 起 /p/ 除阻（-24 dB），是 /p/ 闭塞里的浊音（词的一部分）"
+      },
+      "actual_native_entry_differs_only_in_fingerprint": true,
+      "actual_original_G43_pass_status_lines": [
+        "✔ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：51 纯人声核对（配音指纹 b86f2f88ba42）问题数 0"
+      ],
+      "evidence_kind": "Actual435263 working JSON/MP4-proof/sourceSHA/currentPCM binding plus original formal migration and original purevoice check, not a guessed new exemption."
+    },
+    {
+      "category": "非人声",
+      "key": "144.60–144.64s",
+      "source_fingerprint": "ff0728857c2d",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": false,
+      "original_entry": {
+        "实测": {
+          "最响dB": -37.5,
+          "重心Hz": 813,
+          "周期": 0.79,
+          "低频dB": -0.2
+        },
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S19 w 0.345–0.385：most 与 dictionaries 之间，-38～-46 dB、低频占 -1～-2 dB、重心 0.6–1.1 kHz、周期 0.79，0.39 起 /d/ 除阻，是 dictionaries 的 /d/ 浊音闭塞（词的一部分）"
+      },
+      "safe_to_renew": true,
+      "public_local_comparison_with_150ms_each_side": {
+        "actual_public_seconds": [
+          144.45,
+          144.79
+        ],
+        "decoded_sample_rate": 48000,
+        "decoded_dtype": "float64",
+        "sample_count": 16320,
+        "whole_region_bit_identical": true,
+        "accepted_crop_sha256": "a0560a5f62f0ddacf8886ce8a8ddb05304912c6f9a1462e2d97556ef8df25223",
+        "actual_crop_sha256": "a0560a5f62f0ddacf8886ce8a8ddb05304912c6f9a1462e2d97556ef8df25223",
+        "different_sample_count": 0,
+        "maximum_absolute_sample_difference": 0.0,
+        "gain_db": 0.0,
+        "correlation": 0.9999999999999999,
+        "residual_snr_db": null
+      },
+      "status": "safe_exact_native_confirmation_migration_observed_and_G43_passed",
+      "actual_native_working_entry": {
+        "实测": {
+          "最响dB": -37.5,
+          "重心Hz": 813,
+          "周期": 0.79,
+          "低频dB": -0.2
+        },
+        "配音指纹": "b86f2f88ba42",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S19 w 0.345–0.385：most 与 dictionaries 之间，-38～-46 dB、低频占 -1～-2 dB、重心 0.6–1.1 kHz、周期 0.79，0.39 起 /d/ 除阻，是 dictionaries 的 /d/ 浊音闭塞（词的一部分）"
+      },
+      "actual_native_entry_differs_only_in_fingerprint": true,
+      "actual_original_G43_pass_status_lines": [
+        "✔ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：51 纯人声核对（配音指纹 b86f2f88ba42）问题数 0"
+      ],
+      "evidence_kind": "Actual435263 working JSON/MP4-proof/sourceSHA/currentPCM binding plus original formal migration and original purevoice check, not a guessed new exemption."
+    },
+    {
+      "category": "非人声",
+      "key": "151.97–152.06s",
+      "source_fingerprint": "ff0728857c2d",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": false,
+      "original_entry": {
+        "实测": {
+          "最响dB": -36.1,
+          "重心Hz": 1728,
+          "周期": 0.21,
+          "低频dB": -11.2
+        },
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S19 w 7.465–7.555：satire. 句尾 ɚ 的气声收尾（-25～-48 dB、低频 -6～-22 dB、重心 1.1–2.2 kHz），紧接元音连续衰减到 7.58 -76 dB，无低谷，是 satire 词尾的一部分（结尾句慢速）"
+      },
+      "safe_to_renew": true,
+      "public_local_comparison_with_150ms_each_side": {
+        "actual_public_seconds": [
+          151.82,
+          152.21
+        ],
+        "decoded_sample_rate": 48000,
+        "decoded_dtype": "float64",
+        "sample_count": 18720,
+        "whole_region_bit_identical": true,
+        "accepted_crop_sha256": "04cad9b4926a535dfcc7451c92cf8423e402a42c776a2ea74e811a619437bb77",
+        "actual_crop_sha256": "04cad9b4926a535dfcc7451c92cf8423e402a42c776a2ea74e811a619437bb77",
+        "different_sample_count": 0,
+        "maximum_absolute_sample_difference": 0.0,
+        "gain_db": 0.0,
+        "correlation": 0.9999999999999998,
+        "residual_snr_db": null
+      },
+      "status": "safe_exact_native_confirmation_migration_observed_and_G43_passed",
+      "actual_native_working_entry": {
+        "实测": {
+          "最响dB": -36.1,
+          "重心Hz": 1728,
+          "周期": 0.21,
+          "低频dB": -11.2
+        },
+        "配音指纹": "b86f2f88ba42",
+        "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S19 w 7.465–7.555：satire. 句尾 ɚ 的气声收尾（-25～-48 dB、低频 -6～-22 dB、重心 1.1–2.2 kHz），紧接元音连续衰减到 7.58 -76 dB，无低谷，是 satire 词尾的一部分（结尾句慢速）"
+      },
+      "actual_native_entry_differs_only_in_fingerprint": true,
+      "actual_original_G43_pass_status_lines": [
+        "✔ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：51 纯人声核对（配音指纹 b86f2f88ba42）问题数 0"
+      ],
+      "evidence_kind": "Actual435263 working JSON/MP4-proof/sourceSHA/currentPCM binding plus original formal migration and original purevoice check, not a guessed new exemption."
+    },
+    {
+      "category": "非人声",
+      "key": "21.93–22.02s",
+      "source_fingerprint": "b86f2f88ba42",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": true,
+      "original_entry": {
+        "实测": {
+          "最响dB": -30.5,
+          "重心Hz": 4656,
+          "周期": 0.16,
+          "低频dB": -26.0
+        },
+        "配音指纹": "b86f2f88ba42",
+        "词尾": "t",
+        "依据": "2026-11-13 实际failed draft d2430c450c0e19a4d40209c380743a69ca75db755aaf26d1819faf50e41b1e39 诊断：S2第三个标点wright后，源停顿处除阻[11.405,11.410,t]的已设A21供体；同区间与旧已验收公开音轨波形相关0.99830，且21.935–22.005秒模板在S9同源t供体66.635秒复现(NCC0.95771)。原A21纯数值函数在实际公开MP4的21.98–22.02/03秒识别40–50ms释放，高频-33.71dB、重心约4.29kHz、周期0.189、低频低于-50dB、闭塞低于-73dB，五个结束点都过原t判定，无双爆破；21.93秒之前未识别第二次释放。此记录的最响/重心/周期/低频采用本轮原post实际24k生产检查数值，非48k派生诊断数值。仅绑定本轮b86f2f88ba42实际配音指纹；不涵盖仍待定位的2处切词和8处边缘违规。"
+      },
+      "safe_to_renew": true,
+      "public_local_comparison_with_150ms_each_side": {
+        "actual_public_seconds": [
+          21.78,
+          22.169999999999998
+        ],
+        "decoded_sample_rate": 48000,
+        "decoded_dtype": "float64",
+        "sample_count": 18720,
+        "whole_region_bit_identical": false,
+        "accepted_crop_sha256": "dc1f74c72bed8f571bdd7c0f244c1c0ed89f3aed1f30a57a83d57fb2b8ab5923",
+        "actual_crop_sha256": "30a6e5f2e60507ea19aa5191f2608d896d23abc1cc7473eb03275844825886bc",
+        "different_sample_count": 18720,
+        "maximum_absolute_sample_difference": 0.06384067237377167,
+        "gain_db": 2.076200605599356,
+        "correlation": 0.9998596900106865,
+        "residual_snr_db": 35.517900015207665
+      },
+      "status": "already_current_native_G43_pass",
+      "actual_native_working_entry": {
+        "实测": {
+          "最响dB": -30.5,
+          "重心Hz": 4656,
+          "周期": 0.16,
+          "低频dB": -26.0
+        },
+        "配音指纹": "b86f2f88ba42",
+        "词尾": "t",
+        "依据": "2026-11-13 实际failed draft d2430c450c0e19a4d40209c380743a69ca75db755aaf26d1819faf50e41b1e39 诊断：S2第三个标点wright后，源停顿处除阻[11.405,11.410,t]的已设A21供体；同区间与旧已验收公开音轨波形相关0.99830，且21.935–22.005秒模板在S9同源t供体66.635秒复现(NCC0.95771)。原A21纯数值函数在实际公开MP4的21.98–22.02/03秒识别40–50ms释放，高频-33.71dB、重心约4.29kHz、周期0.189、低频低于-50dB、闭塞低于-73dB，五个结束点都过原t判定，无双爆破；21.93秒之前未识别第二次释放。此记录的最响/重心/周期/低频采用本轮原post实际24k生产检查数值，非48k派生诊断数值。仅绑定本轮b86f2f88ba42实际配音指纹；不涵盖仍待定位的2处切词和8处边缘违规。"
+      },
+      "actual_native_entry_differs_only_in_fingerprint": true,
+      "actual_original_G43_pass_status_lines": [
+        "✔ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：51 纯人声核对（配音指纹 b86f2f88ba42）问题数 0"
+      ],
+      "evidence_kind": "Actual435263 working JSON/MP4-proof/sourceSHA/currentPCM binding plus original formal migration and original purevoice check, not a guessed new exemption."
+    },
+    {
+      "category": "机器复听",
+      "key": "S2",
+      "source_fingerprint": "ff0728857c2d",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": false,
+      "original_entry": {
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06（配音指纹 ff0728857c2d）：oll 是 all 的故意错拼（Merriam-Webster OK 词源），已核实读音照 all 读 ˈɑːl，两路都听成 all 正是读对了"
+      },
+      "safe_to_renew": true,
+      "status": "safe_existing_ASR_basis_continuity_only",
+      "specific_proof": {
+        "sentence": "S2",
+        "source_English": "From 1838 **abbreviations** were **all the vogue** in Boston's papers, and the **craze** turned **comic** through **deliberate** **misspellings**: O.W. for 'oll wright', K.Y. for 'know yuse'.",
+        "existing_confirmation": {
+          "配音指纹": "ff0728857c2d",
+          "依据": "2026-11-06（配音指纹 ff0728857c2d）：oll 是 all 的故意错拼（Merriam-Webster OK 词源），已核实读音照 all 读 ˈɑːl，两路都听成 all 正是读对了"
+        },
+        "native_actual_segment_times": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "停顿": 0.4,
+            "时刻": [
+              10.77,
+              15.56
+            ]
+          },
+          {
+            "段": 2,
+            "增益": 0.0,
+            "停顿": 0.4,
+            "时刻": [
+              15.95,
+              19.295
+            ]
+          },
+          {
+            "段": 3,
+            "增益": 0.0,
+            "停顿": 0.4,
+            "时刻": [
+              19.675,
+              22.03
+            ]
+          },
+          {
+            "段": 4,
+            "增益": 1.5,
+            "停顿": null,
+            "时刻": [
+              22.415,
+              24.225
+            ]
+          }
+        ],
+        "actual_public_sentence_window_seconds": [
+          10.67,
+          24.325000000000003
+        ],
+        "margin_seconds": 0.1,
+        "whole_sentence_comparison": {
+          "decoded_sample_count": 655440,
+          "decoded_dtype": "float64",
+          "whole_region_bit_identical": false,
+          "accepted_decoded_sha256": "982d5442724121e18a619232ed7a5f35bdb29dcc9dbf11f77c5617733818f378",
+          "actual_decoded_sha256": "6d1fd48c6449898e29724121e60dfa9cef4d679fc2c88038b8a1da8ec0fb2981",
+          "different_sample_count": 132684
+        },
+        "all_samples_outside_approved_audio_change_window": {
+          "approved_change_window_seconds": [
+            19.55,
+            22.18
+          ],
+          "compared_windows_seconds": [
+            [
+              10.67,
+              19.55
+            ],
+            [
+              22.18,
+              24.325000000000003
+            ]
+          ],
+          "decoded_sample_count": 529200,
+          "decoded_dtype": "float64",
+          "whole_region_bit_identical": false,
+          "accepted_decoded_sha256": "e5e9f12b8d23ca13e09e2149ab14d63d61b915ef33e529316d252b84f5bf047a",
+          "actual_decoded_sha256": "c0e1f0a1c34633a1d965967f53def260fa5580875efc584f6d2adda03a4dde49",
+          "different_sample_count": 14284,
+          "fit": {
+            "gain_db": -5.626844742216756e-06,
+            "correlation": 0.9999999851797147,
+            "gain_compensated_residual_snr_db": 75.28113435590086
+          }
+        },
+        "per_actual_piece_comparison": [
+          {
+            "piece": 1,
+            "actual_time_seconds": [
+              10.77,
+              15.56
+            ],
+            "decoded_sample_count": 229920,
+            "decoded_dtype": "float64",
+            "whole_region_bit_identical": false,
+            "accepted_decoded_sha256": "6f1127c661bb450bb7caf7a003a0a29ff2b135f9dee4fd38a3b56cf37e5944f3",
+            "actual_decoded_sha256": "8b205be72e2dbbcc97e312a9ea7016024de51f21a4fe73a3897fabc67b337b19",
+            "different_sample_count": 3072,
+            "direct_waveform_fit": {
+              "gain_db": 2.846077511640081e-10,
+              "correlation": 0.9999999999970968,
+              "gain_compensated_residual_snr_db": 112.36102143370358
+            }
+          },
+          {
+            "piece": 2,
+            "actual_time_seconds": [
+              15.95,
+              19.295
+            ],
+            "decoded_sample_count": 160560,
+            "decoded_dtype": "float64",
+            "whole_region_bit_identical": true,
+            "accepted_decoded_sha256": "adb49bf5d0c632867ac9c06ee6eba32d0e96bf95674279f854231f3fd44ebbae",
+            "actual_decoded_sha256": "adb49bf5d0c632867ac9c06ee6eba32d0e96bf95674279f854231f3fd44ebbae",
+            "different_sample_count": 0,
+            "direct_waveform_fit": {
+              "gain_db": 0.0,
+              "correlation": 1.0,
+              "gain_compensated_residual_snr_db": 276.19663066175286
+            }
+          },
+          {
+            "piece": 3,
+            "actual_time_seconds": [
+              19.675,
+              22.03
+            ],
+            "decoded_sample_count": 113040,
+            "decoded_dtype": "float64",
+            "whole_region_bit_identical": false,
+            "accepted_decoded_sha256": "604063d1dfa1db6e3d51223da4898825943221072d244495dca41178d1b70ecc",
+            "actual_decoded_sha256": "f017e62a21b535cf4a5b270aed1b7e1e8113870cc167e1c8ca7d0fe3adab8ed7",
+            "different_sample_count": 110928,
+            "direct_waveform_fit": {
+              "gain_db": -0.6367666383694346,
+              "correlation": 0.9861288677767256,
+              "gain_compensated_residual_snr_db": 15.477480095561862
+            },
+            "approved_delta_gain_endpoints_db": [
+              -2,
+              2.5
+            ],
+            "approved_ramp_prediction_fit": {
+              "gain_db": -0.04832036843950636,
+              "correlation": 0.9999792711524972,
+              "gain_compensated_residual_snr_db": 43.82381343974036
+            }
+          },
+          {
+            "piece": 4,
+            "actual_time_seconds": [
+              22.415,
+              24.225
+            ],
+            "decoded_sample_count": 86880,
+            "decoded_dtype": "float64",
+            "whole_region_bit_identical": false,
+            "accepted_decoded_sha256": "a376b84281b4380885eea6bb5cc9fcea87a1b6193184296c03bdcad6712fcc57",
+            "actual_decoded_sha256": "9386dc5c3e48046a816fafe7dc0e9f1ec7901ae2fde06211159309282b1effd1",
+            "different_sample_count": 5068,
+            "direct_waveform_fit": {
+              "gain_db": -3.650581992828027e-05,
+              "correlation": 0.9999999072423761,
+              "gain_compensated_residual_snr_db": 67.31620328448871
+            }
+          }
+        ],
+        "original_full_actual_audio_qc_ramp_checks": [
+          {
+            "name": "actual-approved-smooth-ramp",
+            "passed": true,
+            "median_error_db": 0.046788568257577934,
+            "p95_error_db": 0.07596957924181655,
+            "actual_piece_range": [
+              19.675,
+              22.03
+            ]
+          },
+          {
+            "name": "actual-ramp-same-waveform-no-new-distortion",
+            "passed": true,
+            "gain_db": -0.04831987928265489,
+            "correlation": 0.999979333121763,
+            "gain_compensated_residual_snr_db": 43.83681660142632
+          },
+          {
+            "name": "actual-pitch-preserved:oll_wright",
+            "passed": true,
+            "voiced_pairs": 50,
+            "median_absolute_cents": 0.07798888687092319,
+            "p90_absolute_cents": 0.39086381600718606,
+            "whole_decoded_crop_bit_identical": false,
+            "decoded_sample_count": 39840,
+            "decoded_dtype": "float64",
+            "accepted_crop_sha256": "b9021c15e2af11eb0b0e0e810e02fd46b379901f93e89c406f8a25c234efe439",
+            "actual_crop_sha256": "05ea6b3db23cf1044e67f9128fbf77ce1188151edd0c0885ab2112ad35885d7f",
+            "preservation_basis": "measured-pitch-original-count-and-cent-limits"
+          }
+        ],
+        "minimal_update": {
+          "old_fingerprint": "ff0728857c2d",
+          "new_fingerprint": "b86f2f88ba42",
+          "existing_original_ASR_basis_retained_verbatim": true,
+          "new_ASR_exception_introduced": false
+        }
+      }
+    },
+    {
+      "category": "机器复听",
+      "key": "S5",
+      "source_fingerprint": "ff0728857c2d",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": false,
+      "original_entry": {
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06（配音指纹 ff0728857c2d）：只有 small.en 一路把 glossed as 的 as 听成 is，parakeet 听对；as 弱读 əz，读音核对通过；'o.k.' 按用户 2026-11-06 原话改连读 ˌoʊkˈeɪ"
+      },
+      "safe_to_renew": true,
+      "status": "safe_existing_ASR_basis_continuity_only",
+      "specific_proof": {
+        "sentence": "S5",
+        "source_English": "It carried the first known 'o.k.', **glossed as** 'all correct'.",
+        "existing_confirmation": {
+          "配音指纹": "ff0728857c2d",
+          "依据": "2026-11-06（配音指纹 ff0728857c2d）：只有 small.en 一路把 glossed as 的 as 听成 is，parakeet 听对；as 弱读 əz，读音核对通过；'o.k.' 按用户 2026-11-06 原话改连读 ˌoʊkˈeɪ"
+        },
+        "native_actual_segment_times": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "停顿": 0.4,
+            "时刻": [
+              44.725,
+              46.52
+            ]
+          },
+          {
+            "段": 2,
+            "增益": 0.0,
+            "停顿": null,
+            "时刻": [
+              46.9,
+              48.42
+            ]
+          }
+        ],
+        "actual_public_sentence_window_seconds": [
+          44.625,
+          48.52
+        ],
+        "margin_seconds": 0.1,
+        "whole_sentence_comparison": {
+          "decoded_sample_count": 186960,
+          "decoded_dtype": "float64",
+          "whole_region_bit_identical": true,
+          "accepted_decoded_sha256": "9ab586164640c41be31684a72a00a1b22a108e0330b0e232438fc5ea316ab5b2",
+          "actual_decoded_sha256": "9ab586164640c41be31684a72a00a1b22a108e0330b0e232438fc5ea316ab5b2",
+          "different_sample_count": 0
+        },
+        "minimal_update": {
+          "old_fingerprint": "ff0728857c2d",
+          "new_fingerprint": "b86f2f88ba42",
+          "existing_original_ASR_basis_retained_verbatim": true,
+          "new_ASR_exception_introduced": false
+        }
+      }
+    },
+    {
+      "category": "机器复听",
+      "key": "S6",
+      "source_fingerprint": "ff0728857c2d",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": false,
+      "original_entry": {
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06（配音指纹 ff0728857c2d）：oll korrect 是 all correct 的故意错拼，已核实读音照 all correct 读（korrect kəɹˈɛkt），两路听成 all correct 正是读对了；letters 只有 small.en 一路听成 letter，parakeet 听对，词尾 /z/ 在"
+      },
+      "safe_to_renew": true,
+      "status": "safe_existing_ASR_basis_continuity_only",
+      "specific_proof": {
+        "sentence": "S6",
+        "source_English": "The letters **stood for** a **knowingly** **illiterate** 'oll korrect'.",
+        "existing_confirmation": {
+          "配音指纹": "ff0728857c2d",
+          "依据": "2026-11-06（配音指纹 ff0728857c2d）：oll korrect 是 all correct 的故意错拼，已核实读音照 all correct 读（korrect kəɹˈɛkt），两路听成 all correct 正是读对了；letters 只有 small.en 一路听成 letter，parakeet 听对，词尾 /z/ 在"
+        },
+        "native_actual_segment_times": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "停顿": null,
+            "时刻": [
+              49.42,
+              52.33
+            ]
+          }
+        ],
+        "actual_public_sentence_window_seconds": [
+          49.32,
+          52.43
+        ],
+        "margin_seconds": 0.1,
+        "whole_sentence_comparison": {
+          "decoded_sample_count": 149280,
+          "decoded_dtype": "float64",
+          "whole_region_bit_identical": true,
+          "accepted_decoded_sha256": "59b9ee743c351a473bb53e5c6a6df640561b31116cf6eae2a8ec4205346a82c3",
+          "actual_decoded_sha256": "59b9ee743c351a473bb53e5c6a6df640561b31116cf6eae2a8ec4205346a82c3",
+          "different_sample_count": 0
+        },
+        "minimal_update": {
+          "old_fingerprint": "ff0728857c2d",
+          "new_fingerprint": "b86f2f88ba42",
+          "existing_original_ASR_basis_retained_verbatim": true,
+          "new_ASR_exception_introduced": false
+        }
+      }
+    },
+    {
+      "category": "机器复听",
+      "key": "S12",
+      "source_fingerprint": "ff0728857c2d",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": false,
+      "original_entry": {
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06（配音指纹 ff0728857c2d）：按用户 2026-11-06 原话把 O.K. 改连读 ˌoʊkˈeɪ（脚本字面仍是 O.K.，比对时拆成 o k）；parakeet 听到 “…paperwork ok for correct”：ok 就是连读的 OK，Ole Kurrek 是 all correct 的故意错拼（已核实 Ole ˈoʊl、Kurrek kəɹˈɛk），听成 correct 正是读对了；small.en 也听成 correct"
+      },
+      "safe_to_renew": true,
+      "status": "safe_existing_ASR_basis_continuity_only",
+      "specific_proof": {
+        "sentence": "S12",
+        "source_English": "On 30 March 1840 the New York Morning Herald printed a **fabricated** **smear**: the former president Andrew Jackson, a **supposedly** **inept** speller, had marked **paperwork** O.K., for 'Ole Kurrek'.",
+        "existing_confirmation": {
+          "配音指纹": "ff0728857c2d",
+          "依据": "2026-11-06（配音指纹 ff0728857c2d）：按用户 2026-11-06 原话把 O.K. 改连读 ˌoʊkˈeɪ（脚本字面仍是 O.K.，比对时拆成 o k）；parakeet 听到 “…paperwork ok for correct”：ok 就是连读的 OK，Ole Kurrek 是 all correct 的故意错拼（已核实 Ole ˈoʊl、Kurrek kəɹˈɛk），听成 correct 正是读对了；small.en 也听成 correct"
+        },
+        "native_actual_segment_times": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "停顿": 0.4,
+            "时刻": [
+              89.515,
+              95.43
+            ]
+          },
+          {
+            "段": 2,
+            "增益": -1.5,
+            "停顿": 0.4,
+            "时刻": [
+              95.81,
+              98.015
+            ]
+          },
+          {
+            "段": 3,
+            "增益": -1.5,
+            "停顿": 0.4,
+            "时刻": [
+              98.395,
+              100.265
+            ]
+          },
+          {
+            "段": 4,
+            "增益": 0.0,
+            "停顿": 0.4,
+            "时刻": [
+              100.645,
+              102.595
+            ]
+          },
+          {
+            "段": 5,
+            "增益": 0.0,
+            "停顿": null,
+            "时刻": [
+              102.975,
+              104.08
+            ]
+          }
+        ],
+        "actual_public_sentence_window_seconds": [
+          89.415,
+          104.17999999999999
+        ],
+        "margin_seconds": 0.1,
+        "whole_sentence_comparison": {
+          "decoded_sample_count": 708720,
+          "decoded_dtype": "float64",
+          "whole_region_bit_identical": true,
+          "accepted_decoded_sha256": "2b058e8ead3660746e820a83d55de829b849470159fd71e4412a8bfbaaa3fbd2",
+          "actual_decoded_sha256": "2b058e8ead3660746e820a83d55de829b849470159fd71e4412a8bfbaaa3fbd2",
+          "different_sample_count": 0
+        },
+        "minimal_update": {
+          "old_fingerprint": "ff0728857c2d",
+          "new_fingerprint": "b86f2f88ba42",
+          "existing_original_ASR_basis_retained_verbatim": true,
+          "new_ASR_exception_introduced": false
+        }
+      }
+    },
+    {
+      "category": "机器复听",
+      "key": "S16",
+      "source_fingerprint": "ff0728857c2d",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": false,
+      "original_entry": {
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06（配音指纹 ff0728857c2d）：Choctaw tʃˈɑːktɔː、okeh、ola kala（kɑːlˈɑː）都已核实读音；识别器词表里没有这几个外语/专名，small.en 写成 chakto oke、olokala，parakeet 写成 oke，是拼写不同、读音对得上"
+      },
+      "safe_to_renew": true,
+      "status": "safe_existing_ASR_basis_continuity_only",
+      "specific_proof": {
+        "sentence": "S16",
+        "source_English": "Rival stories offered **exotic** **pedigrees**: Choctaw 'okeh' and Greek 'ola kala'.",
+        "existing_confirmation": {
+          "配音指纹": "ff0728857c2d",
+          "依据": "2026-11-06（配音指纹 ff0728857c2d）：Choctaw tʃˈɑːktɔː、okeh、ola kala（kɑːlˈɑː）都已核实读音；识别器词表里没有这几个外语/专名，small.en 写成 chakto oke、olokala，parakeet 写成 oke，是拼写不同、读音对得上"
+        },
+        "native_actual_segment_times": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "停顿": 0.4,
+            "时刻": [
+              118.47,
+              121.08
+            ]
+          },
+          {
+            "段": 2,
+            "增益": 0.0,
+            "停顿": null,
+            "时刻": [
+              121.46,
+              124.02
+            ]
+          }
+        ],
+        "actual_public_sentence_window_seconds": [
+          118.37,
+          124.11999999999999
+        ],
+        "margin_seconds": 0.1,
+        "whole_sentence_comparison": {
+          "decoded_sample_count": 276000,
+          "decoded_dtype": "float64",
+          "whole_region_bit_identical": true,
+          "accepted_decoded_sha256": "9a209bb60490bdd7ba4599394f1f481cd69eb18beabf83e5b7c5f95113c8a518",
+          "actual_decoded_sha256": "9a209bb60490bdd7ba4599394f1f481cd69eb18beabf83e5b7c5f95113c8a518",
+          "different_sample_count": 0
+        },
+        "minimal_update": {
+          "old_fingerprint": "ff0728857c2d",
+          "new_fingerprint": "b86f2f88ba42",
+          "existing_original_ASR_basis_retained_verbatim": true,
+          "new_ASR_exception_introduced": false
+        }
+      }
+    },
+    {
+      "category": "机器复听",
+      "key": "S18",
+      "source_fingerprint": "ff0728857c2d",
+      "current_fingerprint": "b86f2f88ba42",
+      "already_current": false,
+      "original_entry": {
+        "配音指纹": "ff0728857c2d",
+        "依据": "2026-11-06（配音指纹 ff0728857c2d）：只有 parakeet 一路把 provenance 听成 provence，small.en 听对；读音已按 Merriam-Webster 改正为 pɹˈɑːvənəns（读音核对通过）"
+      },
+      "safe_to_renew": true,
+      "status": "safe_existing_ASR_basis_continuity_only",
+      "specific_proof": {
+        "sentence": "S18",
+        "source_English": "In 1963–64 the linguist Allen Walker Read **excavated** the **neglected** Boston **provenance** from **archival** newspapers in six **influential** American Speech articles.",
+        "existing_confirmation": {
+          "配音指纹": "ff0728857c2d",
+          "依据": "2026-11-06（配音指纹 ff0728857c2d）：只有 parakeet 一路把 provenance 听成 provence，small.en 听对；读音已按 Merriam-Webster 改正为 pɹˈɑːvənəns（读音核对通过）"
+        },
+        "native_actual_segment_times": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "停顿": null,
+            "时刻": [
+              130.94,
+              143.27
+            ]
+          }
+        ],
+        "actual_public_sentence_window_seconds": [
+          130.84,
+          143.37
+        ],
+        "margin_seconds": 0.1,
+        "whole_sentence_comparison": {
+          "decoded_sample_count": 601440,
+          "decoded_dtype": "float64",
+          "whole_region_bit_identical": true,
+          "accepted_decoded_sha256": "5b804d0334b9ea0cb3f0fd8de11a9a9b446011b6a04ad61258913f6b52960947",
+          "actual_decoded_sha256": "5b804d0334b9ea0cb3f0fd8de11a9a9b446011b6a04ad61258913f6b52960947",
+          "different_sample_count": 0
+        },
+        "minimal_update": {
+          "old_fingerprint": "ff0728857c2d",
+          "new_fingerprint": "b86f2f88ba42",
+          "existing_original_ASR_basis_retained_verbatim": true,
+          "new_ASR_exception_introduced": false
+        }
+      }
+    }
+  ],
+  "safe_existing_only_metadata_update_proposal": {
+    "核对确认": {
+      "删除段": {
+        "S10 raw 5.0301-5.1625": {
+          "类型": "紧贴两头的非人声",
+          "配音指纹": "b86f2f88ba42",
+          "依据": "2026-11-06 逐 5 ms 实测（w，配音指纹 ff0728857c2d）：S10 w 4.880–5.0125：birthplace 的 /s/ 4.80–4.87（重心 5.7–6.1 kHz）衰减到 4.875（-34 dB），4.88–5.01 是一口吸气（-31～-47 dB、最响 4.895 -26.6 dB、重心 2.6–4.5 kHz、低频 -10～-26 dB），5.015 起 formed 的 /f/；吸气与 /s/ 尾、/f/ 头之间都没有 -55 dB 低谷，紧贴两头切在过零点（非人声区间第4项“吸气”，主会话 2026-11-06 定），停顿删除区间 [4.905, 5.005] 删在换成静音的段里；被算作词尾被切的 125 ms 就是这口吸气本身；2026-11-14 本轮连续性复核：当前配音指纹b86f2f88ba42；此已有raw位置所属S10整句及前后100 ms（实际成片69.060–80.725 s）与旧已验MP4的559920个48 kHz float64样本逐字节完全相同，SHA256 1294d6604ce6164ef659265186243453dcab4ef7c7d44cae28d6b18b7d06f3bc。该键不是本轮9处异常之一，不声称新增raw位置映射；保留既有删除类型和原依据，只续同声音的当前指纹。详见51-all-whole-fingerprint-inventory.json。"
+        },
+        "S10 raw 1.3650-1.5900": {
+          "类型": "紧贴词尾的非人声",
+          "配音指纹": "b86f2f88ba42",
+          "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S10 w 1.235–1.41：backers, 的 /z/（重心 5.6 kHz）衰减到 1.23，1.235–1.36 是吸气（-40～-50 dB、低频 -15～-25 dB、重心 2.2–3.0 kHz），1.365–1.405 低频 0 dB 的一下声门噗声（punning 的 /p/ 是清音），1.41–1.46 静音，1.465 起 /p/ 除阻；/z/ 尾与吸气之间没有 -55 dB 低谷，紧贴词尾切在过零点；2026-11-14 本轮连续性复核：当前配音指纹b86f2f88ba42；此已有raw位置所属S10整句及前后100 ms（实际成片69.060–80.725 s）与旧已验MP4的559920个48 kHz float64样本逐字节完全相同，SHA256 1294d6604ce6164ef659265186243453dcab4ef7c7d44cae28d6b18b7d06f3bc。该键不是本轮9处异常之一，不声称新增raw位置映射；保留既有删除类型和原依据，只续同声音的当前指纹。详见51-all-whole-fingerprint-inventory.json。"
+        },
+        "S10 raw 4.0000-4.0050": {
+          "类型": "紧贴词尾的非人声",
+          "配音指纹": "b86f2f88ba42",
+          "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S10 w 3.845–3.85：停顿处除阻 S10“2”（短供体）放 Kinderhook 词尾 k 的除阻；前面 3.784–3.843 是模型发出的无闭塞擦音，已用 除阻加强“假擦音”压低 -40 dB 当闭塞（4 种注音、2 档语速都去不掉，主会话 2026-11-05/06 定），原始合成里那段擦音还在，所以 pre 侧 -30.9 dB；换掉的 5 ms 原来是 -59 dB 静音；2026-11-14 本轮连续性复核：当前配音指纹b86f2f88ba42；此已有raw位置所属S10整句及前后100 ms（实际成片69.060–80.725 s）与旧已验MP4的559920个48 kHz float64样本逐字节完全相同，SHA256 1294d6604ce6164ef659265186243453dcab4ef7c7d44cae28d6b18b7d06f3bc。该键不是本轮9处异常之一，不声称新增raw位置映射；保留既有删除类型和原依据，只续同声音的当前指纹。详见51-all-whole-fingerprint-inventory.json。"
+        },
+        "S12 raw 5.7600-6.2408": {
+          "类型": "紧贴词头的非人声",
+          "配音指纹": "b86f2f88ba42",
+          "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S12 w 5.84–6.181：smear: 停顿里，5.80–5.89 -52～-58 dB 余音，5.90–6.12 是吸气（-36～-52 dB、低频 -11～-25 dB、重心 2.1–3.9 kHz），6.14–6.17 低频 0 dB 是 the 的浊音预发声，6.19 起 /ð/；吸气与 the 之间没有 -55 dB 低谷，紧贴词头切在过零点；2026-11-14 本轮连续性复核：当前配音指纹b86f2f88ba42；此已有raw位置所属S12整句及前后100 ms（实际成片89.415–104.180 s）与旧已验MP4的708720个48 kHz float64样本逐字节完全相同，SHA256 2b058e8ead3660746e820a83d55de829b849470159fd71e4412a8bfbaaa3fbd2。该键不是本轮9处异常之一，不声称新增raw位置映射；保留既有删除类型和原依据，只续同声音的当前指纹。详见51-all-whole-fingerprint-inventory.json。"
+        },
+        "S12 raw 8.3052-8.4226": {
+          "类型": "紧贴两头的非人声",
+          "配音指纹": "b86f2f88ba42",
+          "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S12 w 8.245–8.363：Jackson, 的 ən 衰减到 8.24（-46 dB、低频 -1.6～-4.8 dB），8.25–8.36 是吸气（-34～-42 dB、低频 -11～-39 dB、重心 2.3–3.1 kHz），8.365–8.415 低频 0～-7 dB 是 a 的声门预发声（保留）；两头都没有 -55 dB 低谷，紧贴两头切在过零点；被算作词头被切的 115 ms 就是这段吸气本身，停顿删除区间 [8.25, 8.355] 删在换成静音的段里；2026-11-14 本轮连续性复核：当前配音指纹b86f2f88ba42；此已有raw位置所属S12整句及前后100 ms（实际成片89.415–104.180 s）与旧已验MP4的708720个48 kHz float64样本逐字节完全相同，SHA256 2b058e8ead3660746e820a83d55de829b849470159fd71e4412a8bfbaaa3fbd2。该键不是本轮9处异常之一，不声称新增raw位置映射；保留既有删除类型和原依据，只续同声音的当前指纹。详见51-all-whole-fingerprint-inventory.json。"
+        },
+        "S13 raw 1.8900-2.1270": {
+          "类型": "紧贴词头的非人声",
+          "配音指纹": "b86f2f88ba42",
+          "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S13 w 1.88–2.117：well 的 /l/ 衰减到 1.87（-54 dB、低频 -1 dB），1.90–2.08 是吸气（-38～-47 dB、低频 -13～-25 dB、重心 2.0–2.9 kHz），2.09–2.12 低频 0～-5 dB 是 and 的声门预发声，2.14 起 æ；吸气与 and 之间没有 -55 dB 低谷，紧贴词头切在过零点；2026-11-14 本轮连续性复核：当前配音指纹b86f2f88ba42；此已有raw位置所属S13整句及前后100 ms（实际成片104.980–109.325 s）与旧已验MP4的208560个48 kHz float64样本逐字节完全相同，SHA256 2582d8d6be01cd5350e3a8288b59337d597f9b4a82ca06c5ae5d932213212089。该键不是本轮9处异常之一，不声称新增raw位置映射；保留既有删除类型和原依据，只续同声音的当前指纹。详见51-all-whole-fingerprint-inventory.json。"
+        }
+      },
+      "非人声": {
+        "9.62–9.77s": {
+          "实测": {
+            "最响dB": -37.7,
+            "重心Hz": 2684,
+            "周期": 0.17,
+            "低频dB": -2.6
+          },
+          "配音指纹": "b86f2f88ba42",
+          "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S1 w 6.26–6.405：gag. 句尾，ɡ 除阻后的浊音衰减（-36～-50 dB、低频占 -2～-5 dB、重心 1.1–2.6 kHz），一路衰减到 6.42 -72 dB，中间没有低谷，是 gag 词尾的一部分（气声收尾）"
+        },
+        "9.68–9.69s": {
+          "实测": {
+            "最响dB": -37.7,
+            "重心Hz": 1484,
+            "周期": 0.0,
+            "低频dB": -0.9
+          },
+          "配音指纹": "b86f2f88ba42",
+          "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S1 w 6.31–6.325：gag. 词尾浊音衰减段内部（-37～-45 dB、低频 -1.8～-3 dB），与前后连续，是 gag 词尾的一部分"
+        },
+        "9.70–9.72s": {
+          "实测": {
+            "最响dB": -39.7,
+            "重心Hz": 1680,
+            "周期": 0.31,
+            "低频dB": -2.8
+          },
+          "配音指纹": "b86f2f88ba42",
+          "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S1 w 6.33–6.36：gag. 词尾浊音衰减段尾部（-42～-57 dB、低频 -1.4～-3 dB），连续衰减无低谷，是 gag 词尾的一部分"
+        },
+        "15.96–15.97s": {
+          "实测": {
+            "最响dB": -42.7,
+            "重心Hz": 1690,
+            "周期": 0.0,
+            "低频dB": -0.5
+          },
+          "配音指纹": "b86f2f88ba42",
+          "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S2 w 5.155–5.17：papers, 停顿（吸气已删 4.8–5.15）之后、and 开口前，-41～-47 dB、低频占 -0.5～-3.6 dB，5.175 起 æ，连续无低谷，是 and 的声门预发声（词的一部分）"
+        },
+        "20.22–20.26s": {
+          "实测": {
+            "最响dB": -30.5,
+            "重心Hz": 760,
+            "周期": 0.65,
+            "低频dB": -0.9
+          },
+          "配音指纹": "b86f2f88ba42",
+          "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S2 w 9.505–9.54：O.W. 的 W（dˈʌbəljuː）开头，-31～-47 dB、低频占 -1.5～-2 dB、重心 0.4–0.7 kHz、周期 0.65，接着 9.55 起元音（-25 dB），是 /d/ 的浊音闭塞（词的一部分）"
+        },
+        "28.89–28.98s": {
+          "实测": {
+            "最响dB": -35.0,
+            "重心Hz": 1574,
+            "周期": 0.28,
+            "低频dB": -3.7
+          },
+          "配音指纹": "b86f2f88ba42",
+          "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S3 w 3.78–3.87：bumpkin. 句尾 /n/ 浊音衰减（-33～-58 dB、低频占 -2～-7 dB、重心 0.9–2.4 kHz），连续衰减到 3.88 -69 dB，是 bumpkin 词尾的一部分"
+        },
+        "43.48–43.59s": {
+          "实测": {
+            "最响dB": -38.4,
+            "重心Hz": 2025,
+            "周期": 0.23,
+            "低频dB": -6.1
+          },
+          "配音指纹": "b86f2f88ba42",
+          "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S4 w 13.48–13.58：bells. 的 /l/ 浊音（-38～-54 dB、低频 -2.4～-17 dB、重心 1.0–2.6 kHz），13.57 起 /z/（重心 4.5–5.7 kHz），连续无低谷，是 bells 的一部分"
+        },
+        "46.94–46.97s": {
+          "实测": {
+            "最响dB": -53.2,
+            "重心Hz": 3370,
+            "周期": 0.27,
+            "低频dB": -0.4
+          },
+          "配音指纹": "b86f2f88ba42",
+          "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S5 w 2.01–2.035：OK, 停顿之后、glossed 开口前，-51～-63 dB、低频占 -1～-4 dB 的弱浊音，2.055 起 /ɡ/，连续无低谷，是 glossed 的 /ɡ/ 浊音预发声（词的一部分）"
+        },
+        "48.29–48.31s": {
+          "实测": {
+            "最响dB": -42.9,
+            "重心Hz": 1740,
+            "周期": 0.22,
+            "低频dB": -6.0
+          },
+          "配音指纹": "b86f2f88ba42",
+          "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S5 w 3.36–3.385：correct. 句尾，3.33–3.35 是 /t/ 闭塞（-57～-63 dB），3.37 除阻 -40.8 dB、重心 1.7 kHz，衰减到 3.39 -64 dB，是 correct 词尾 t 的除阻（词的一部分）"
+        },
+        "61.28–61.31s": {
+          "实测": {
+            "最响dB": -34.3,
+            "重心Hz": 1228,
+            "周期": 0.46,
+            "低频dB": -1.9
+          },
+          "配音指纹": "b86f2f88ba42",
+          "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S8 w 3.30–3.33：nationwide. 词尾 /d/ 除阻后的浊音衰减（-37～-47 dB、低频占 -2.2 dB、重心 1.2–2.5 kHz），是 nationwide 词尾的一部分"
+        },
+        "65.39–65.41s": {
+          "实测": {
+            "最响dB": -32.8,
+            "重心Hz": 2407,
+            "周期": 0.28,
+            "低频dB": -1.6
+          },
+          "配音指纹": "b86f2f88ba42",
+          "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S9 w 2.69–2.71：Buren, 停顿之后、the 开口前，-36～-52 dB 渐升、低频占 -1～-2.5 dB，2.73 起 /ð/，连续无低谷，是 the 的浊音预发声（词的一部分）"
+        },
+        "68.07–68.15s": {
+          "实测": {
+            "最响dB": -35.4,
+            "重心Hz": 1933,
+            "周期": 0.34,
+            "低频dB": -2.8
+          },
+          "配音指纹": "b86f2f88ba42",
+          "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S9 w 5.13–5.21：re-election. 句尾 /n/ 浊音衰减（-38～-56 dB、低频占 -2～-6 dB、重心 0.9–2.2 kHz），连续衰减到 5.23 -74 dB，是词尾的一部分"
+        },
+        "75.31–75.33s": {
+          "实测": {
+            "最响dB": -50.1,
+            "重心Hz": 3714,
+            "周期": 0.0,
+            "低频dB": -1.2
+          },
+          "配音指纹": "b86f2f88ba42",
+          "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S10 w 5.61–5.625：birthplace, 停顿之后、formed 开口前，-52～-57 dB、低频占 -1～-3 dB 的弱声，紧接 5.63 起 /f/（重心 5–6.4 kHz），连续无低谷，是 formed 起音前的过渡（词的一部分，-50 dB 以下）"
+        },
+        "88.23–88.31s": {
+          "实测": {
+            "最响dB": -36.0,
+            "重心Hz": 3150,
+            "周期": 0.25,
+            "低频dB": -2.5
+          },
+          "配音指纹": "b86f2f88ba42",
+          "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S11 w 6.67–6.75：sixty. 句尾 /i/ 收尾（-29～-56 dB、低频占 -1.4～-12 dB、重心 2.0–3.8 kHz，i 的 F2 高），连续衰减到 6.78 -81 dB，是 sixty 词尾的一部分"
+        },
+        "88.27–88.28s": {
+          "实测": {
+            "最响dB": -36.0,
+            "重心Hz": 3355,
+            "周期": 0.0,
+            "低频dB": -2.5
+          },
+          "配音指纹": "b86f2f88ba42",
+          "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S11 w 6.70–6.715：sixty. 词尾 /i/ 收尾段内部（-34～-44 dB、低频 -1.4～-2.6 dB），连续无低谷，是词尾的一部分"
+        },
+        "101.21–101.22s": {
+          "实测": {
+            "最响dB": -45.0,
+            "重心Hz": 2181,
+            "周期": 0.0,
+            "低频dB": -0.2
+          },
+          "配音指纹": "b86f2f88ba42",
+          "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S12 w 11.63–11.645：marked 与 paperwork 之间，-45～-58 dB、低频占 -0.3～-0.7 dB 的浊音，11.65 起 /p/ 除阻（-17 dB），是 /p/ 闭塞里的浊音延续（词的一部分）"
+        },
+        "107.94–107.96s": {
+          "实测": {
+            "最响dB": -49.5,
+            "重心Hz": 2718,
+            "周期": 0.0,
+            "低频dB": -1.0
+          },
+          "配音指纹": "b86f2f88ba42",
+          "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S13 w 3.035–3.05：marked 与 documents 之间，-47～-56 dB、低频占 -1～-3 dB，接着 3.06 起电平升高（-38→-26 dB、重心降到 0.3–0.8 kHz）进入 /d/，连续无低谷，是 documents 的 /d/ 浊音预发声（词的一部分）"
+        },
+        "107.97–107.98s": {
+          "实测": {
+            "最响dB": -34.5,
+            "重心Hz": 752,
+            "周期": 0.44,
+            "低频dB": -0.5
+          },
+          "配音指纹": "b86f2f88ba42",
+          "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S13 w 3.055–3.075：documents 的 /d/ 浊音闭塞（-35～-38 dB、低频占 -1～-2 dB、重心 0.55–0.76 kHz、周期 0.44），3.08 起 -27 dB，是 /d/ 的一部分"
+        },
+        "109.14–109.22s": {
+          "实测": {
+            "最响dB": -37.8,
+            "重心Hz": 3373,
+            "周期": 0.22,
+            "低频dB": -6.7
+          },
+          "配音指纹": "b86f2f88ba42",
+          "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S13 w 4.235–4.315：句末 OK. 的 eɪ 气声收尾（-33～-56 dB、低频 -4～-14 dB、重心 2.8–3.9 kHz），紧接元音连续衰减到 4.32 -68 dB，无低谷，是 OK 元音的气声收尾（词的一部分）"
+        },
+        "113.49–113.55s": {
+          "实测": {
+            "最响dB": -33.4,
+            "重心Hz": 3540,
+            "周期": 0.21,
+            "低频dB": -13.2
+          },
+          "配音指纹": "b86f2f88ba42",
+          "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S14 w 3.12–3.18：earnest. 句尾 /t/ 除阻送气（-32～-53 dB、重心 2.0–3.8 kHz、低频 -8～-31 dB），前面 3.10–3.11 是 /s/ 后的闭塞（-57～-65 dB），是 earnest 词尾 t 的一部分",
+          "词尾": "t"
+        },
+        "115.76–115.77s": {
+          "实测": {
+            "最响dB": -53.8,
+            "重心Hz": 2119,
+            "周期": 0.0,
+            "低频dB": -1.4
+          },
+          "配音指纹": "b86f2f88ba42",
+          "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S15 w 1.225–1.24：notation 的 /n/ 浊音尾（-46～-54 dB、低频占 -1.1～-3.3 dB），之后 1.245–1.358 的吸气已删，是 notation 词尾的一部分"
+        },
+        "120.38–120.39s": {
+          "实测": {
+            "最响dB": -54.0,
+            "重心Hz": 2611,
+            "周期": 0.0,
+            "低频dB": -0.5
+          },
+          "配音指纹": "b86f2f88ba42",
+          "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S16 w 1.915–1.93：exotic 与 pedigrees 之间，-47～-57 dB、低频占 -0.3～-1.7 dB 的弱浊音，1.94 起 /p/ 除阻（-17 dB），是 /k/→/p/ 之间的声门过渡（词的一部分）"
+        },
+        "127.41–127.43s": {
+          "实测": {
+            "最响dB": -37.8,
+            "重心Hz": 1565,
+            "周期": 0.23,
+            "低频dB": -10.3
+          },
+          "配音指纹": "b86f2f88ba42",
+          "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S17 w 2.415–2.435：favoured 词尾 /d/ 除阻（2.42 -35 dB、重心 1.6 kHz）及其浊音衰减（-52～-56 dB、低频 -1 dB），是 favoured 词尾 d 的一部分"
+        },
+        "139.73–139.75s": {
+          "实测": {
+            "最响dB": -51.3,
+            "重心Hz": 2270,
+            "周期": 0.0,
+            "低频dB": -1.0
+          },
+          "配音指纹": "b86f2f88ba42",
+          "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S18 w 8.90–8.915：newspapers 的 /z/ 与 /p/ 之间，-50～-53 dB、低频占 -0.4～-2.7 dB 的浊音延续，8.94 起 /p/ 除阻（-24 dB），是 /p/ 闭塞里的浊音（词的一部分）"
+        },
+        "144.60–144.64s": {
+          "实测": {
+            "最响dB": -37.5,
+            "重心Hz": 813,
+            "周期": 0.79,
+            "低频dB": -0.2
+          },
+          "配音指纹": "b86f2f88ba42",
+          "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S19 w 0.345–0.385：most 与 dictionaries 之间，-38～-46 dB、低频占 -1～-2 dB、重心 0.6–1.1 kHz、周期 0.79，0.39 起 /d/ 除阻，是 dictionaries 的 /d/ 浊音闭塞（词的一部分）"
+        },
+        "151.97–152.06s": {
+          "实测": {
+            "最响dB": -36.1,
+            "重心Hz": 1728,
+            "周期": 0.21,
+            "低频dB": -11.2
+          },
+          "配音指纹": "b86f2f88ba42",
+          "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S19 w 7.465–7.555：satire. 句尾 ɚ 的气声收尾（-25～-48 dB、低频 -6～-22 dB、重心 1.1–2.2 kHz），紧接元音连续衰减到 7.58 -76 dB，无低谷，是 satire 词尾的一部分（结尾句慢速）"
+        }
+      },
+      "机器复听": {
+        "S2": {
+          "配音指纹": "b86f2f88ba42",
+          "依据": "2026-11-06（配音指纹 ff0728857c2d）：oll 是 all 的故意错拼（Merriam-Webster OK 词源），已核实读音照 all 读 ˈɑːl，两路都听成 all 正是读对了；2026-11-14 本轮声音连续性实证：当前配音指纹b86f2f88ba42，完整producer PCM SHA256 202d6b8cbbfe20cf33647bc024ac20cdcb780a2f4a8c7abc36d9f951f80fce65。S2真实段时刻10.770–24.225 s，第2段15.950–19.295 s与旧已验成片逐字节相同；第1/4段解码AAC存在微小残差，声波相关系数分别0.999999999997和0.999999907，局部增益分别约0 dB和−0.0000365 dB，不夸称逐样本相同。第3段19.675–22.030 s按获准连续增益差−2→+2.5 dB预测，实际声波形状及oll wright音高由20项真实音轨辅助检查通过。本次不新增拼写/外语或ASR例外，只保留原oll/all识别依据并续当前指纹。详见51-existing-ASR-confirmation-continuity.json。"
+        },
+        "S5": {
+          "配音指纹": "b86f2f88ba42",
+          "依据": "2026-11-06（配音指纹 ff0728857c2d）：只有 small.en 一路把 glossed as 的 as 听成 is，parakeet 听对；as 弱读 əz，读音核对通过；'o.k.' 按用户 2026-11-06 原话改连读 ˌoʊkˈeɪ；2026-11-14 本轮声音连续性实证：当前配音指纹b86f2f88ba42，完整producer PCM SHA256 202d6b8cbbfe20cf33647bc024ac20cdcb780a2f4a8c7abc36d9f951f80fce65。按真实分段记录取整句44.625–48.520 s（两侧各100 ms）直接比较新旧公开MP4解码，186960个48 kHz float64样本逐字节完全相同，SHA256 9ab586164640c41be31684a72a00a1b22a108e0330b0e232438fc5ea316ab5b2。原句词音与原误识别解释均未变；本次只续已有确认的当前指纹，不新增ASR依据或豁免。详见51-existing-ASR-confirmation-continuity.json。"
+        },
+        "S6": {
+          "配音指纹": "b86f2f88ba42",
+          "依据": "2026-11-06（配音指纹 ff0728857c2d）：oll korrect 是 all correct 的故意错拼，已核实读音照 all correct 读（korrect kəɹˈɛkt），两路听成 all correct 正是读对了；letters 只有 small.en 一路听成 letter，parakeet 听对，词尾 /z/ 在；2026-11-14 本轮声音连续性实证：当前配音指纹b86f2f88ba42，完整producer PCM SHA256 202d6b8cbbfe20cf33647bc024ac20cdcb780a2f4a8c7abc36d9f951f80fce65。按真实分段记录取整句49.320–52.430 s（两侧各100 ms）直接比较新旧公开MP4解码，149280个48 kHz float64样本逐字节完全相同，SHA256 59b9ee743c351a473bb53e5c6a6df640561b31116cf6eae2a8ec4205346a82c3。原句词音与原误识别解释均未变；本次只续已有确认的当前指纹，不新增ASR依据或豁免。详见51-existing-ASR-confirmation-continuity.json。"
+        },
+        "S12": {
+          "配音指纹": "b86f2f88ba42",
+          "依据": "2026-11-06（配音指纹 ff0728857c2d）：按用户 2026-11-06 原话把 O.K. 改连读 ˌoʊkˈeɪ（脚本字面仍是 O.K.，比对时拆成 o k）；parakeet 听到 “…paperwork ok for correct”：ok 就是连读的 OK，Ole Kurrek 是 all correct 的故意错拼（已核实 Ole ˈoʊl、Kurrek kəɹˈɛk），听成 correct 正是读对了；small.en 也听成 correct；2026-11-14 本轮声音连续性实证：当前配音指纹b86f2f88ba42，完整producer PCM SHA256 202d6b8cbbfe20cf33647bc024ac20cdcb780a2f4a8c7abc36d9f951f80fce65。按真实分段记录取整句89.415–104.180 s（两侧各100 ms）直接比较新旧公开MP4解码，708720个48 kHz float64样本逐字节完全相同，SHA256 2b058e8ead3660746e820a83d55de829b849470159fd71e4412a8bfbaaa3fbd2。原句词音与原误识别解释均未变；本次只续已有确认的当前指纹，不新增ASR依据或豁免。详见51-existing-ASR-confirmation-continuity.json。"
+        },
+        "S16": {
+          "配音指纹": "b86f2f88ba42",
+          "依据": "2026-11-06（配音指纹 ff0728857c2d）：Choctaw tʃˈɑːktɔː、okeh、ola kala（kɑːlˈɑː）都已核实读音；识别器词表里没有这几个外语/专名，small.en 写成 chakto oke、olokala，parakeet 写成 oke，是拼写不同、读音对得上；2026-11-14 本轮声音连续性实证：当前配音指纹b86f2f88ba42，完整producer PCM SHA256 202d6b8cbbfe20cf33647bc024ac20cdcb780a2f4a8c7abc36d9f951f80fce65。按真实分段记录取整句118.370–124.120 s（两侧各100 ms）直接比较新旧公开MP4解码，276000个48 kHz float64样本逐字节完全相同，SHA256 9a209bb60490bdd7ba4599394f1f481cd69eb18beabf83e5b7c5f95113c8a518。原句词音与原误识别解释均未变；本次只续已有确认的当前指纹，不新增ASR依据或豁免。详见51-existing-ASR-confirmation-continuity.json。"
+        },
+        "S18": {
+          "配音指纹": "b86f2f88ba42",
+          "依据": "2026-11-06（配音指纹 ff0728857c2d）：只有 parakeet 一路把 provenance 听成 provence，small.en 听对；读音已按 Merriam-Webster 改正为 pɹˈɑːvənəns（读音核对通过）；2026-11-14 本轮声音连续性实证：当前配音指纹b86f2f88ba42，完整producer PCM SHA256 202d6b8cbbfe20cf33647bc024ac20cdcb780a2f4a8c7abc36d9f951f80fce65。按真实分段记录取整句130.840–143.370 s（两侧各100 ms）直接比较新旧公开MP4解码，601440个48 kHz float64样本逐字节完全相同，SHA256 5b804d0334b9ea0cb3f0fd8de11a9a9b446011b6a04ad61258913f6b52960947。原句词音与原误识别解释均未变；本次只续已有确认的当前指纹，不新增ASR依据或豁免。详见51-existing-ASR-confirmation-continuity.json。"
+        }
+      }
+    }
+  },
+  "pending_records_do_not_renew": [
+    {
+      "category": "响度骤降",
+      "key": "9.2–9.7s",
+      "reason": "The original confirmation migration rule requires exact samples. Decoded AAC is not identical; NCC or near-zero gain is insufficient and is not used to renew this fingerprint. No old raw producer PCM is available locally; native preparation explicitly recorded no preexisting work51/a.wav."
+    }
+  ],
+  "original_checker_source_hashes": {
+    "确认按位置迁移.py": "7fa13f40cb200a2139c2dc1a4bd9ca4b17b52ae65c04db71ee1442b818ebaacf",
+    "纯人声核对.py": "1050d1df51eb21ed0dbd19e9a97a8325c4dbfa1f58e9834760f8e5e5ba0b414f",
+    "机器复听.py": "40caf651184d50efeb8d3b4477cd7a2b85911a495360554db1b3cd09ab596229",
+    "交付核查.py": "26e8e213a07747f6fc3654be18d64336011cba59ffd83bf74e4cf4759baf6976"
+  },
+  "limits": [
+    "Safe is a scoped source-confirmation continuity proposal, not final video acceptance. Original checks and all selftests remain mandatory.",
+    "Nonvoice27 current native confirmations already passed the original G43 on the exact current PCM. Their binding is real formal working-source evidence, not a blanket hand-stamped exemption.",
+    "Loudness9.2–9.7s is explicitly pending because decoded samples differ; no NCC/gain substitute is used.",
+    "Six dormant raw deletion entries are supported by whole-sentence exact identity only; no new actual edit mapping or new exception is claimed."
+  ],
+  "recursive_whole_source_fingerprint_scan": {
+    "field": "配音指纹",
+    "matched_paths": [
+      "/核对确认/响度骤降/9.2–9.7s/配音指纹",
+      "/核对确认/删除段/S10 raw 5.3200-5.6250/配音指纹",
+      "/核对确认/删除段/S10 raw 8.0013-8.2523/配音指纹",
+      "/核对确认/删除段/S12 raw 8.7587-9.0233/配音指纹",
+      "/核对确认/删除段/S12 raw 10.8740-11.1600/配音指纹",
+      "/核对确认/删除段/S10 raw 5.0301-5.1625/配音指纹",
+      "/核对确认/删除段/S2 raw 4.8200-5.1786/配音指纹",
+      "/核对确认/删除段/S2 raw 10.2300-10.5745/配音指纹",
+      "/核对确认/删除段/S4 raw 2.8176-3.0800/配音指纹",
+      "/核对确认/删除段/S10 raw 1.3650-1.5900/配音指纹",
+      "/核对确认/删除段/S10 raw 4.0000-4.0050/配音指纹",
+      "/核对确认/删除段/S12 raw 5.7600-6.2408/配音指纹",
+      "/核对确认/删除段/S12 raw 8.3052-8.4226/配音指纹",
+      "/核对确认/删除段/S13 raw 1.8900-2.1270/配音指纹",
+      "/核对确认/删除段/S18 raw 2.5353-2.7950/配音指纹",
+      "/核对确认/删除段/S18 raw 4.7751-4.8700/配音指纹",
+      "/核对确认/非人声/9.62–9.77s/配音指纹",
+      "/核对确认/非人声/9.68–9.69s/配音指纹",
+      "/核对确认/非人声/9.70–9.72s/配音指纹",
+      "/核对确认/非人声/15.96–15.97s/配音指纹",
+      "/核对确认/非人声/20.22–20.26s/配音指纹",
+      "/核对确认/非人声/28.89–28.98s/配音指纹",
+      "/核对确认/非人声/43.48–43.59s/配音指纹",
+      "/核对确认/非人声/46.94–46.97s/配音指纹",
+      "/核对确认/非人声/48.29–48.31s/配音指纹",
+      "/核对确认/非人声/61.28–61.31s/配音指纹",
+      "/核对确认/非人声/65.39–65.41s/配音指纹",
+      "/核对确认/非人声/68.07–68.15s/配音指纹",
+      "/核对确认/非人声/75.31–75.33s/配音指纹",
+      "/核对确认/非人声/88.23–88.31s/配音指纹",
+      "/核对确认/非人声/88.27–88.28s/配音指纹",
+      "/核对确认/非人声/101.21–101.22s/配音指纹",
+      "/核对确认/非人声/107.94–107.96s/配音指纹",
+      "/核对确认/非人声/107.97–107.98s/配音指纹",
+      "/核对确认/非人声/109.14–109.22s/配音指纹",
+      "/核对确认/非人声/113.49–113.55s/配音指纹",
+      "/核对确认/非人声/115.76–115.77s/配音指纹",
+      "/核对确认/非人声/120.38–120.39s/配音指纹",
+      "/核对确认/非人声/127.41–127.43s/配音指纹",
+      "/核对确认/非人声/139.73–139.75s/配音指纹",
+      "/核对确认/非人声/144.60–144.64s/配音指纹",
+      "/核对确认/非人声/151.97–152.06s/配音指纹",
+      "/核对确认/非人声/21.93–22.02s/配音指纹",
+      "/核对确认/机器复听/S2/配音指纹",
+      "/核对确认/机器复听/S5/配音指纹",
+      "/核对确认/机器复听/S6/配音指纹",
+      "/核对确认/机器复听/S12/配音指纹",
+      "/核对确认/机器复听/S16/配音指纹",
+      "/核对确认/机器复听/S18/配音指纹"
+    ],
+    "count": 49,
+    "all_matched_paths_accounted_for_in_inventory": true
+  },
+  "supplemental_actual_original_audio_qc_observation": {
+    "original_program": "/workspace/work/audit-repo/视频/工具/audio_qc.py",
+    "original_program_sha256": "3595b544fd87013fafaf5af1fa13fbc623595e94fd6978feee70bb754f836104",
+    "actual_public_inputs": [
+      {
+        "role": "accepted",
+        "path": "/workspace/work/video-audit70-20261113/audio51-independent/51-accepted-public.mp4",
+        "exit_code": 1,
+        "observed_stdout": "9.2–9.7s 响度比全片低 6.0 dB（疑似发闷/变小，需试听）"
+      },
+      {
+        "role": "current_failed",
+        "path": "/workspace/work/video-audit70-20261113/ci-relayed-43522684973/51-failed-draft.mp4",
+        "exit_code": 1,
+        "observed_stdout": "9.2–9.7s 响度比全片低 6.0 dB（疑似发闷/变小，需试听）"
+      }
+    ],
+    "interpretation": "Original loudness classification and measured rounded6.0dB match, but this does not substitute for exact old/current rawPCM identity and does not authorize fingerprint renewal. The loudness record remains pending."
+  }
+}

@@ -1,0 +1,195 @@
+{
+  "kind": "read-only-line-specific-native-runtime-and-interval-diagnosis",
+  "quality_acceptance": false,
+  "producer_run": 43523430839,
+  "producer_commit": "1ec776c9c214ef668cab4c27b43780bc12c38c19",
+  "original_tool_snapshot": "/workspace/work/video-audit70-20261113/readonly-indexerror-interval-20261114/original-tool-snapshot.json",
+  "original_core_tool_files_modified": false,
+  "source_or_audio_modified": false,
+  "private_PCM_GT_cache_payload_accessed_or_exported_by_this_local_audit": false,
+  "actual_next_worker_scalar_observations_available_yet": false,
+  "actual_runtime_error_articles": [
+    {
+      "article": "54",
+      "actual_native_status": "/workspace/work/video-audit70-20261113/ci63-final-43523430839/public-evidence/54/54-status.json",
+      "actual_native_status_sha256": "d6a74a527ba4bd83750ce9dd85cccfa8a9e0a8dd1ea24bb08a2d1d2ae643bf43",
+      "native_passed": false,
+      "native_failure_stage": "canonical-draft-00.log",
+      "actual_failed_source": "/workspace/work/video-audit70-20261113/ci63-final-43523430839/public-evidence/54/54-failed-working-source.json",
+      "actual_failed_source_sha256": "e92175ea0d1064c0bf6a20febf6a8475988ce4d7d382f59a460e7cd787a8288c",
+      "immutable_consumed_request_sha256": "b1fcb8ae86045b3d35ccfa0f52eb9594b8921d43063835769ee3ecc4543be75e",
+      "current_source_sha256": "b1fcb8ae86045b3d35ccfa0f52eb9594b8921d43063835769ee3ecc4543be75e",
+      "actual_failed_source_and_current_gain_interval_controls_identical": true,
+      "request_current_and_failed_spoken_English_identical": true,
+      "source_level_changed_top_keys": [
+        "sentences"
+      ],
+      "actual_diagnostic_lines": [
+        "✘ 自动音频检查（削波、电流音、停顿超长、响度骤降）",
+        "✔ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：54 纯人声核对（配音指纹 d9e2abbede1a）问题数 0",
+        "✔ 句间停顿核对（A20：片头 0.4、标题后 1.0、句号 1.0、换段 1.2、片尾 2 秒，词到词 ±0.01 秒）：54 句间停顿核对 问题数 0",
+        "✘ 核查程序自检：词尾轻切（7.52s，剪 11 ms）没抓到、词头轻切（7.91s，剪 10 ms）没抓到、词尾重切（8.81s，剪 35 ms）没抓到、词头重切（9.20s，剪 10 ms）没抓到、杂音（152.12s）没抓到",
+        "IndexError: list index out of range",
+        "✘ 独立复核：0 处改动，词尾/词头被切 = 0，删除处两侧未衰减到 -55 dB 或删掉了 -40 dB 以上的声音 = []（未经实际声音确认的 0），多余声音 = []",
+        "IndexError: list index out of range"
+      ],
+      "tool_root_cause_confirmed": "audit.py line213 unconditionally indexes an empty list of exact sample-match segments; no valid matched segment was available",
+      "exact_reference_item_not_recorded_in_existing_public_log": true,
+      "why_zero_edits_is_not_pass": "Original audit crashed and no report was completed; parent regex sees no edits and zero cuts but exit status was nonzero, so native quality gate remains failed.",
+      "program_bug_or_actual_audio": "Unguarded empty-list indexing is a checker runtime error; why all reference blocks failed to match is not determined by existing public evidence. Do not call audio fixed or counts reliable.",
+      "minimal_next_step": "Keep original audit and all thresholds unchanged; use approved3core/keep-reviewed-gain native rerun and capture the opt-in safe scalar hook in the same job.",
+      "no_source_audio_or_core_change_made": true
+    },
+    {
+      "article": "57",
+      "actual_native_status": "/workspace/work/video-audit70-20261113/ci63-final-43523430839/public-evidence/57/57-status.json",
+      "actual_native_status_sha256": "549961d57dc248e74b561beab237c15486e194b356254dacf85566067d9d161e",
+      "native_passed": false,
+      "native_failure_stage": "canonical-draft-00.log",
+      "actual_failed_source": "/workspace/work/video-audit70-20261113/ci63-final-43523430839/public-evidence/57/57-failed-working-source.json",
+      "actual_failed_source_sha256": "badcb7dc426a59ec9300dc6a1eb23a1d4cfa541f5eb7244912661e30b5575e18",
+      "immutable_consumed_request_sha256": "a0ba65b769430289a33ec1f7bc6dbf91dad8d2c3b1d725348851de546563cd6f",
+      "current_source_sha256": "a0ba65b769430289a33ec1f7bc6dbf91dad8d2c3b1d725348851de546563cd6f",
+      "actual_failed_source_and_current_gain_interval_controls_identical": true,
+      "request_current_and_failed_spoken_English_identical": true,
+      "source_level_changed_top_keys": [
+        "sentences"
+      ],
+      "actual_diagnostic_lines": [
+        "✔ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：57 纯人声核对（配音指纹 98c6b392ade6）问题数 0",
+        "✔ 句间停顿核对（A20：片头 0.4、标题后 1.0、句号 1.0、换段 1.2、片尾 2 秒，词到词 ±0.01 秒）：57 句间停顿核对 问题数 0",
+        "✘ 核查程序自检：词尾轻切（3.67s，剪 13 ms）没抓到、词头轻切（3.87s，剪 11 ms）没抓到、词尾重切（6.52s，剪 15 ms）没抓到、词头重切（6.91s，剪 23 ms）没抓到、杂音（141.08s）没抓到",
+        "IndexError: list index out of range",
+        "✘ 独立复核：0 处改动，词尾/词头被切 = 0，删除处两侧未衰减到 -55 dB 或删掉了 -40 dB 以上的声音 = []（未经实际声音确认的 0），多余声音 = []",
+        "IndexError: list index out of range"
+      ],
+      "tool_root_cause_confirmed": "audit.py line213 unconditionally indexes an empty list of exact sample-match segments; no valid matched segment was available",
+      "exact_reference_item_not_recorded_in_existing_public_log": true,
+      "why_zero_edits_is_not_pass": "Original audit crashed and no report was completed; parent regex sees no edits and zero cuts but exit status was nonzero, so native quality gate remains failed.",
+      "program_bug_or_actual_audio": "Unguarded empty-list indexing is a checker runtime error; why all reference blocks failed to match is not determined by existing public evidence. Do not call audio fixed or counts reliable.",
+      "minimal_next_step": "Keep original audit and all thresholds unchanged; use approved3core/keep-reviewed-gain native rerun and capture the opt-in safe scalar hook in the same job.",
+      "no_source_audio_or_core_change_made": true
+    },
+    {
+      "article": "67",
+      "actual_native_status": "/workspace/work/video-audit70-20261113/ci63-final-43523430839/public-evidence/67/67-status.json",
+      "actual_native_status_sha256": "00470fa6710f914c2d077db6693e907ba800bb9dca8fc64a9d300b3c0af09faf",
+      "native_passed": false,
+      "native_failure_stage": "canonical-draft-00.log",
+      "actual_failed_source": "/workspace/work/video-audit70-20261113/ci63-final-43523430839/public-evidence/67/67-failed-working-source.json",
+      "actual_failed_source_sha256": "58636a9e184c2838674977d5fed502c132ba8de486f602b4f68c9b0a3b42818d",
+      "immutable_consumed_request_sha256": "8897cc1c2df1e4672eec3bbff2776d0565afb9c9fe84087a1758ebb15b2a233e",
+      "current_source_sha256": "8897cc1c2df1e4672eec3bbff2776d0565afb9c9fe84087a1758ebb15b2a233e",
+      "actual_failed_source_and_current_gain_interval_controls_identical": true,
+      "request_current_and_failed_spoken_English_identical": true,
+      "source_level_changed_top_keys": [
+        "sentences"
+      ],
+      "actual_diagnostic_lines": [
+        "✔ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：67 纯人声核对（配音指纹 c34294a522a7）问题数 0",
+        "✔ 句间停顿核对（A20：片头 0.4、标题后 1.0、句号 1.0、换段 1.2、片尾 2 秒，词到词 ±0.01 秒）：67 句间停顿核对 问题数 0",
+        "✘ 核查程序自检：词尾轻切（4.16s，剪 10 ms）没抓到、词头轻切（4.55s，剪 10 ms）没抓到、词尾重切（5.16s，剪 26 ms）没抓到、词头重切（5.55s，剪 15 ms）没抓到、杂音（142.51s）没抓到",
+        "IndexError: list index out of range",
+        "✘ 独立复核：0 处改动，词尾/词头被切 = 0，删除处两侧未衰减到 -55 dB 或删掉了 -40 dB 以上的声音 = []（未经实际声音确认的 0），多余声音 = []",
+        "IndexError: list index out of range"
+      ],
+      "tool_root_cause_confirmed": "audit.py line213 unconditionally indexes an empty list of exact sample-match segments; no valid matched segment was available",
+      "exact_reference_item_not_recorded_in_existing_public_log": true,
+      "why_zero_edits_is_not_pass": "Original audit crashed and no report was completed; parent regex sees no edits and zero cuts but exit status was nonzero, so native quality gate remains failed.",
+      "program_bug_or_actual_audio": "Unguarded empty-list indexing is a checker runtime error; why all reference blocks failed to match is not determined by existing public evidence. Do not call audio fixed or counts reliable.",
+      "minimal_next_step": "Keep original audit and all thresholds unchanged; use approved3core/keep-reviewed-gain native rerun and capture the opt-in safe scalar hook in the same job.",
+      "no_source_audio_or_core_change_made": true
+    }
+  ],
+  "interval_article06": {
+    "article": "06",
+    "source_sentence": "S19",
+    "spoken_sentence": "Hans went, on his owner's death in June 1909, to a jeweller still convinced that such animals reasoned.",
+    "actual_native_status_path": "/workspace/work/video-audit70-20261113/ci63-diagnostics-43523430839/relay-files/06-status.json",
+    "actual_native_status_sha256": "3a23aeec14ccd394ee0fb251f1cc8954b393cadb79f4220e1ca47b0c71d4d3f7",
+    "actual_native_failure_stage": "canonical-draft-00.log",
+    "current_source_sha256": "2cbf1d6cd6e66a59285298ea830f5ef914590b64286d40b2ae5f3168aa27a2e9",
+    "immutable_consumed_request_sha256": "2cbf1d6cd6e66a59285298ea830f5ef914590b64286d40b2ae5f3168aa27a2e9",
+    "source_gain_and_interval_controls_identical_to_actual_request": true,
+    "invalidated_interval": [
+      3.613833,
+      4.055,
+      "紧贴词尾"
+    ],
+    "sample_rate": 24000,
+    "rounded_sample_indices": [
+      86732,
+      97320
+    ],
+    "duration_samples": 10588,
+    "duration_seconds": 0.44116666666666665,
+    "start_positive_and_order_valid": true,
+    "current_sentence_samples_not_in_public_evidence": true,
+    "actual_native_complete_video_available": false,
+    "historical_actual_voice_review": {
+      "source_key": "核对确认/删除段/S19 raw 3.6338-4.1000",
+      "historical_a_wav_MD5_prefix": "eb1f501e945c",
+      "identified_sound": "June1909 comma before to a jeweller: breath followed by pop, immediately after the final /n/ in nine.",
+      "old_verified_voice_end_w_seconds": 3.6138,
+      "old_verified_to_release_w_seconds": 4.0825,
+      "old_interval_start_w_seconds": 3.613833,
+      "old_external_post5ms_dB": -64.7,
+      "historical_observations_not_relabelled_as_current_measurements": true
+    },
+    "confirmed_failure": "Original make_video._nonvoice composite guard rejected this exact existing source interval; no original log disambiguates which condition.",
+    "not_proven": "No current length, boundary samples, RMS/5ms-peak or outside-post5ms measurements exist here, so neither true time-range overflow nor a specific new cut point is proved.",
+    "active_original_conditions_for_this_flag": [
+      "0<x0<x1<len(w)",
+      "region RMS <= -30dB",
+      "every aligned5ms frame < -30dB",
+      "post-boundary external5ms < -55dB",
+      "attached start must be zero crossing or absolute sample <=1e-4"
+    ],
+    "inactive_original_conditions_for_this_flag": [
+      "External pre5ms quiet check is exempt for 紧贴词尾",
+      "Attached end zero-crossing check applies only to 紧贴词头/紧贴两头"
+    ],
+    "next_step": "Capture exact original failure predicates in the same next official native job via safe scalar hook; restore accepted reference/gain state if that is the cause. Only if actual measured boundaries are wrong, measure/listen before proposing a minimum endpoint correction; never clamp blindly or relax thresholds/flags.",
+    "core_or_source_or_audio_changed": false
+  },
+  "confirmed_tool_lines": {
+    "audit.py": {
+      "default_global_gain": 102,
+      "anchor_NCC_search": 119,
+      "matched_blocks": 133,
+      "construct_exact_segments": 135,
+      "unguarded_empty_segment_index": 213
+    },
+    "make_video.py": {
+      "nonvoice_function": 446,
+      "composite_guard": 455,
+      "raise": 458,
+      "native_output_peak_normalization": 1177
+    },
+    "synth.py": {
+      "actual_recorded_segment_gains_take_priority": 94
+    }
+  },
+  "candidate_unconfirmed_causes_for_empty_segments": [
+    "Reference/native waveforms differ across legacy-vs-current CPU/cache synthesis",
+    "Actual automatic gain metadata differs from reviewed/used reference",
+    "Global normalization differs because reference raw peak is not the retained constructed-PCM peak",
+    "Anchor matched another location or current/reference synthesis is otherwise inconsistent"
+  ],
+  "forbidden_shortcuts": [
+    "Do not treat an empty matched-segment list or parsed zero edits as passed.",
+    "Do not change TOL/A10/noise thresholds, change gain for the checker, or skip selftests.",
+    "Do not replace source audio or rewrite existing interval endpoints without actual evidence."
+  ],
+  "probe_validation": {
+    "path": "/workspace/work/video-audit70-20261113/readonly-indexerror-interval-20261114/probe-unit-validation.json",
+    "sha256": "8c861f5c6b6e48f57607d8f914a9ea8f7331b0a5d450113f165d3c3044bf7704",
+    "scope": "8 in-memory fixture checks only; not a real native failure measurement"
+  },
+  "startup_hook_validation": {
+    "path": "/workspace/work/video-audit70-20261113/readonly-indexerror-interval-20261114/startup-hook-validation.json",
+    "sha256": "27abe80e19b5163cd2611a5879693ac8734b61bc932b5082a147a03a4a25828c",
+    "actual_opt_in_startup_tested": true,
+    "synthetic_fixture_only": true
+  }
+}

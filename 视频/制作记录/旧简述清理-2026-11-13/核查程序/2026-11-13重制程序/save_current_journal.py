@@ -90,6 +90,12 @@ record={
  'observed_source_sha256_at_recording':{f'{n:02d}':hashlib.sha256((PAY/f'视频/脚本/{n:02d}.json').read_bytes()).hexdigest() for n in range(1,71)},
  'hash_note':'本记录为当前逐文件观察值，后续metadata/最终排版可变化；最终源冻结清单与正式验收另存。',
 }
+live_path=BASE/'LATEST-WORK-STATE.json'
+if live_path.exists():
+    live=json.loads(live_path.read_text())
+    record['state']=live['state']
+    record['production']=live['production']
+    record['production_snapshot_basis']='LATEST-WORK-STATE.json，按实际成片验收与原生run观察更新；不把队列、诊断或失败候选计入定稿数'
 raw=(json.dumps(record,ensure_ascii=False,indent=2)+'\n').encode()
 dest=PAY/REL;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(raw)
 receipts=[]

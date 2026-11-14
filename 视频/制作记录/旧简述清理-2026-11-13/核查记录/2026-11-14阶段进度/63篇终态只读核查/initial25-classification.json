@@ -1,0 +1,944 @@
+{
+  "kind": "read-only-first25-native-final-failure-classification",
+  "producer_run_id": 43523430839,
+  "generated_utc": "2026-11-14T00:09:26.779529+00:00",
+  "input_original_diagnostic_report": "/workspace/work/video-audit70-20261113/ci63-diagnostics-43523430839/ci63-diagnostic-report.json",
+  "input_original_diagnostic_report_sha256": "a53ed426143d62e6f88121d86ef9368b03b0b786043107d6db3493e9b4be3dff",
+  "native_status_count": 25,
+  "all_status_files_SHA256_match_original_public_diagnostic_report": true,
+  "network_or_media_or_private_reference_data_read": false,
+  "source_or_official_checks_modified": false,
+  "classifications_are_not_new_quality_acceptance": true,
+  "primary_counts": {
+    "missing_reference_cache": 6,
+    "text_table_parser_data": 1,
+    "cross_article_context": 1,
+    "audio_interval_data_invalid": 1,
+    "reported_audio_quality_gates": 5,
+    "independent_cut_review": 3,
+    "audio_double_release": 4,
+    "wrapper_summary_decoration": 3,
+    "checker_selftest_failure": 1
+  },
+  "fixed_wrapper_only_retry_ids": [
+    "26",
+    "27",
+    "29"
+  ],
+  "articles": [
+    {
+      "article": "01",
+      "native_status_path": "/workspace/work/video-audit70-20261113/ci63-diagnostics-43523430839/relay-files/01-status.json",
+      "native_status_sha256": "d86f31eba850f2a602d2c31b49ae3ab68ba130390400b8826938d4ce2ba0e471",
+      "native_status_passed": false,
+      "stage": "canonical-draft-00.log",
+      "failure_step": "canonical-draft-00.log",
+      "primary_class": "missing_reference_cache",
+      "primary_explanation": "Terminal missing exact reference/cache key; other reported audio failures remain unresolved and cannot be erased by fixing the missing reference.",
+      "secondary_classes": [
+        "reported_nonvoice_noise",
+        "independent_cut_edges_unresolved",
+        "highlight_timing_unresolved",
+        "highlight_selftest_failure"
+      ],
+      "final_error": "Command '['git', 'show', 'HEAD:视频/配音缓存/d013574bbe8e517a573b89344723110a3396c736.pkl']' returned non-zero exit status 128.",
+      "terminal_missing_reference_key": "d013574bbe8e517a573b89344723110a3396c736.pkl",
+      "diagnostics": [
+        {
+          "category": "missing_reference_cache",
+          "native_diagnostic": "git show HEAD:视频/配音缓存/d013574bbe8e517a573b89344723110a3396c736.pkl returned exit128; exact Git reference/cache object absent"
+        },
+        {
+          "category": "reported_nonvoice_noise",
+          "native_diagnostic": "✘ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：01 纯人声核对（配音指纹 75e0c262b68b）问题数 18"
+        },
+        {
+          "category": "independent_cut_edges_unresolved",
+          "native_diagnostic": "✘ 独立复核：85 处改动，词尾/词头被切 = 0，删除处两侧未衰减到 -55 dB 或删掉了 -40 dB 以上的声音 = ['8']（未经实际声音确认的 5），多余声音 = ['0']"
+        },
+        {
+          "category": "highlight_timing_unresolved",
+          "native_diagnostic": "✘ 高亮同步核对（L14：每一块的高亮在这一块开始读时切换，误差 ≤ 0.15 秒；两种独立办法都要满足，不一致处须用实际声音核实）"
+        },
+        {
+          "category": "highlight_selftest_failure",
+          "native_diagnostic": "✘ 高亮同步核对 自检：S2 第2块故意提前 0.4 秒、S1 第2块故意推后 0.4 秒，必须正好报出这两处"
+        }
+      ],
+      "original_draft_postchecks_explicitly_all_passed": false,
+      "original_4K_finalize_then_stamp_reached": false,
+      "original_checks_all_passed_proven_before_wrapper": false,
+      "wrapper_only_immediate_retry_after_fixed_strict_wrapper": false,
+      "wrapper_evidence": null,
+      "actual_audio_listening_or_new_acoustic_acceptance_performed": false,
+      "candidate_audio_fault_not_independently_proven_by_this_classification": true,
+      "acceptance": false
+    },
+    {
+      "article": "02",
+      "native_status_path": "/workspace/work/video-audit70-20261113/ci63-diagnostics-43523430839/relay-files/02-status.json",
+      "native_status_sha256": "84586b2577f40450c96dc842dbc35f702576856d3a00f247a9c93c739a46b6db",
+      "native_status_passed": false,
+      "stage": "canonical-draft-00.log",
+      "failure_step": "canonical-draft-00.log",
+      "primary_class": "missing_reference_cache",
+      "primary_explanation": "Terminal missing exact reference/cache key; other reported audio failures remain unresolved and cannot be erased by fixing the missing reference.",
+      "secondary_classes": [
+        "reported_nonvoice_noise",
+        "independent_cut_edges_unresolved",
+        "highlight_timing_unresolved",
+        "highlight_selftest_failure"
+      ],
+      "final_error": "Command '['git', 'show', 'HEAD:视频/配音缓存/4c35c03463d2c50b26937683f489da5dd4428e64.pkl']' returned non-zero exit status 128.",
+      "terminal_missing_reference_key": "4c35c03463d2c50b26937683f489da5dd4428e64.pkl",
+      "diagnostics": [
+        {
+          "category": "missing_reference_cache",
+          "native_diagnostic": "git show HEAD:视频/配音缓存/4c35c03463d2c50b26937683f489da5dd4428e64.pkl returned exit128; exact Git reference/cache object absent"
+        },
+        {
+          "category": "reported_nonvoice_noise",
+          "native_diagnostic": "✘ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：02 纯人声核对（配音指纹 141f1b03c7f6）问题数 15"
+        },
+        {
+          "category": "independent_cut_edges_unresolved",
+          "native_diagnostic": "✘ 独立复核：90 处改动，词尾/词头被切 = 1，删除处两侧未衰减到 -55 dB 或删掉了 -40 dB 以上的声音 = ['6']（未经实际声音确认的 5），多余声音 = ['0']"
+        },
+        {
+          "category": "highlight_timing_unresolved",
+          "native_diagnostic": "✘ 高亮同步核对（L14：每一块的高亮在这一块开始读时切换，误差 ≤ 0.15 秒；两种独立办法都要满足，不一致处须用实际声音核实）"
+        },
+        {
+          "category": "highlight_selftest_failure",
+          "native_diagnostic": "✘ 高亮同步核对 自检：S3 第2块故意提前 0.4 秒、S1 第2块故意推后 0.4 秒，必须正好报出这两处"
+        }
+      ],
+      "original_draft_postchecks_explicitly_all_passed": false,
+      "original_4K_finalize_then_stamp_reached": false,
+      "original_checks_all_passed_proven_before_wrapper": false,
+      "wrapper_only_immediate_retry_after_fixed_strict_wrapper": false,
+      "wrapper_evidence": null,
+      "actual_audio_listening_or_new_acoustic_acceptance_performed": false,
+      "candidate_audio_fault_not_independently_proven_by_this_classification": true,
+      "acceptance": false
+    },
+    {
+      "article": "03",
+      "native_status_path": "/workspace/work/video-audit70-20261113/ci63-diagnostics-43523430839/relay-files/03-status.json",
+      "native_status_sha256": "a2e38c1e2f1f8d30fb1a126fc08c90352a2c1236d7d686f6250531dbdbbb0c81",
+      "native_status_passed": false,
+      "stage": "canonical-draft-00.log",
+      "failure_step": "canonical-draft-00.log",
+      "primary_class": "text_table_parser_data",
+      "primary_explanation": "Original sync_article K98 cannot read a usable part-of-speech/meaning entry for germ.",
+      "secondary_classes": [],
+      "final_error": "canonical-draft: official quality check failed; see article status JSON",
+      "terminal_missing_reference_key": null,
+      "diagnostics": [
+        {
+          "category": "text_table_parser_data",
+          "native_diagnostic": "【停止】速查表这些新重点词缺词性和词义，70 篇文章里也查不到，请在文章速查表里补全再跑：['germ']"
+        }
+      ],
+      "original_draft_postchecks_explicitly_all_passed": false,
+      "original_4K_finalize_then_stamp_reached": false,
+      "original_checks_all_passed_proven_before_wrapper": false,
+      "wrapper_only_immediate_retry_after_fixed_strict_wrapper": false,
+      "wrapper_evidence": null,
+      "actual_audio_listening_or_new_acoustic_acceptance_performed": false,
+      "candidate_audio_fault_not_independently_proven_by_this_classification": true,
+      "acceptance": false
+    },
+    {
+      "article": "04",
+      "native_status_path": "/workspace/work/video-audit70-20261113/ci63-diagnostics-43523430839/relay-files/04-status.json",
+      "native_status_sha256": "21d3cfed5cd03d1f3ca66398f92b65da0fcf3bd73945b1acb7377bb12c369c30",
+      "native_status_passed": false,
+      "stage": "canonical-draft-00.log",
+      "failure_step": "canonical-draft-00.log",
+      "primary_class": "missing_reference_cache",
+      "primary_explanation": "Terminal missing exact reference/cache key; other reported audio failures remain unresolved and cannot be erased by fixing the missing reference.",
+      "secondary_classes": [
+        "reported_nonvoice_noise",
+        "independent_cut_edges_unresolved",
+        "highlight_timing_unresolved",
+        "highlight_selftest_failure",
+        "reported_loudness_mismatch"
+      ],
+      "final_error": "Command '['git', 'show', 'HEAD:视频/配音缓存/99bb0e46f4fa591e31c135b00fe761ec2647ed0b.pkl']' returned non-zero exit status 128.",
+      "terminal_missing_reference_key": "99bb0e46f4fa591e31c135b00fe761ec2647ed0b.pkl",
+      "diagnostics": [
+        {
+          "category": "missing_reference_cache",
+          "native_diagnostic": "git show HEAD:视频/配音缓存/99bb0e46f4fa591e31c135b00fe761ec2647ed0b.pkl returned exit128; exact Git reference/cache object absent"
+        },
+        {
+          "category": "reported_nonvoice_noise",
+          "native_diagnostic": "✘ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：04 纯人声核对（配音指纹 db5495fd4dd5）问题数 13"
+        },
+        {
+          "category": "independent_cut_edges_unresolved",
+          "native_diagnostic": "✘ 独立复核：82 处改动，词尾/词头被切 = 2，删除处两侧未衰减到 -55 dB 或删掉了 -40 dB 以上的声音 = ['9']（未经实际声音确认的 5），多余声音 = ['0']"
+        },
+        {
+          "category": "highlight_timing_unresolved",
+          "native_diagnostic": "✘ 高亮同步核对（L14：每一块的高亮在这一块开始读时切换，误差 ≤ 0.15 秒；两种独立办法都要满足，不一致处须用实际声音核实）"
+        },
+        {
+          "category": "highlight_selftest_failure",
+          "native_diagnostic": "✘ 高亮同步核对 自检：S3 第2块故意提前 0.4 秒、S1 第2块故意推后 0.4 秒，必须正好报出这两处"
+        },
+        {
+          "category": "reported_loudness_mismatch",
+          "native_diagnostic": "第14→15段（131.7s）相邻两句相差 2.8 LU（标准 ≤2.5）"
+        }
+      ],
+      "original_draft_postchecks_explicitly_all_passed": false,
+      "original_4K_finalize_then_stamp_reached": false,
+      "original_checks_all_passed_proven_before_wrapper": false,
+      "wrapper_only_immediate_retry_after_fixed_strict_wrapper": false,
+      "wrapper_evidence": null,
+      "actual_audio_listening_or_new_acoustic_acceptance_performed": false,
+      "candidate_audio_fault_not_independently_proven_by_this_classification": true,
+      "acceptance": false
+    },
+    {
+      "article": "05",
+      "native_status_path": "/workspace/work/video-audit70-20261113/ci63-diagnostics-43523430839/relay-files/05-status.json",
+      "native_status_sha256": "0c2a84315a24430d71e55fd9375e194d107d530718d29d0b1292d3fdb25611d9",
+      "native_status_passed": false,
+      "stage": "canonical-draft-00.log",
+      "failure_step": "canonical-draft-00.log",
+      "primary_class": "cross_article_context",
+      "primary_explanation": "Original T12 sees convicted of highlighted in baseline article23 inside a per-article job; install the consistent approved all70 context before rechecking.",
+      "secondary_classes": [],
+      "final_error": "canonical-draft: official quality check failed; see article status JSON",
+      "terminal_missing_reference_key": null,
+      "diagnostics": [
+        {
+          "category": "cross_article_context",
+          "native_diagnostic": "[check_all] T12 新加重点词撞词（按规则应去掉并提醒用户）: convicted of 也在第 23 篇加粗（convicted of）"
+        }
+      ],
+      "original_draft_postchecks_explicitly_all_passed": false,
+      "original_4K_finalize_then_stamp_reached": false,
+      "original_checks_all_passed_proven_before_wrapper": false,
+      "wrapper_only_immediate_retry_after_fixed_strict_wrapper": false,
+      "wrapper_evidence": null,
+      "actual_audio_listening_or_new_acoustic_acceptance_performed": false,
+      "candidate_audio_fault_not_independently_proven_by_this_classification": true,
+      "acceptance": false
+    },
+    {
+      "article": "06",
+      "native_status_path": "/workspace/work/video-audit70-20261113/ci63-diagnostics-43523430839/relay-files/06-status.json",
+      "native_status_sha256": "3a23aeec14ccd394ee0fb251f1cc8954b393cadb79f4220e1ca47b0c71d4d3f7",
+      "native_status_passed": false,
+      "stage": "canonical-draft-00.log",
+      "failure_step": "canonical-draft-00.log",
+      "primary_class": "audio_interval_data_invalid",
+      "primary_explanation": "Actual configured nonvoice interval is rejected before rendering; generated fingerprint/report files subsequently absent are downstream context failures.",
+      "secondary_classes": [
+        "audio_nonvoice_interval_invalid",
+        "checker_untrusted",
+        "missing_generated_fingerprint_context"
+      ],
+      "final_error": "canonical-draft: official quality check failed; see article status JSON",
+      "terminal_missing_reference_key": null,
+      "diagnostics": [
+        {
+          "category": "audio_nonvoice_interval_invalid",
+          "native_diagnostic": "FAIL 06 19 【停止】非人声区间不对（有词的声音、两头不够安静，或紧贴词尾/词头的一头不在过零点）：Hans went, on his owner's death in June 1909, to a jeweller  [3.613833, 4.055, '紧贴词尾']"
+        },
+        {
+          "category": "checker_untrusted",
+          "native_diagnostic": "【核查程序失灵，下面的词尾辅音核对不可信】"
+        },
+        {
+          "category": "missing_generated_fingerprint_context",
+          "native_diagnostic": "FileNotFoundError: [Errno 2] No such file or directory: 'work_06/句子声音指纹.json'"
+        }
+      ],
+      "original_draft_postchecks_explicitly_all_passed": false,
+      "original_4K_finalize_then_stamp_reached": false,
+      "original_checks_all_passed_proven_before_wrapper": false,
+      "wrapper_only_immediate_retry_after_fixed_strict_wrapper": false,
+      "wrapper_evidence": null,
+      "actual_audio_listening_or_new_acoustic_acceptance_performed": false,
+      "candidate_audio_fault_not_independently_proven_by_this_classification": true,
+      "acceptance": false
+    },
+    {
+      "article": "08",
+      "native_status_path": "/workspace/work/video-audit70-20261113/ci63-diagnostics-43523430839/relay-files/08-status.json",
+      "native_status_sha256": "c0747965d465239f0ec58c9ee24230ffa71c84c71e4032f5f930398cd60f04aa",
+      "native_status_passed": false,
+      "stage": "canonical-draft-00.log",
+      "failure_step": "canonical-draft-00.log",
+      "primary_class": "missing_reference_cache",
+      "primary_explanation": "Terminal missing exact reference/cache key; other reported audio failures remain unresolved and cannot be erased by fixing the missing reference.",
+      "secondary_classes": [
+        "reported_nonvoice_noise",
+        "independent_cut_edges_unresolved",
+        "highlight_timing_unresolved",
+        "highlight_selftest_failure"
+      ],
+      "final_error": "Command '['git', 'show', 'HEAD:视频/配音缓存/d256fc2d26c0d0408fddcc9e4b85c549b8c065f7.pkl']' returned non-zero exit status 128.",
+      "terminal_missing_reference_key": "d256fc2d26c0d0408fddcc9e4b85c549b8c065f7.pkl",
+      "diagnostics": [
+        {
+          "category": "missing_reference_cache",
+          "native_diagnostic": "git show HEAD:视频/配音缓存/d256fc2d26c0d0408fddcc9e4b85c549b8c065f7.pkl returned exit128; exact Git reference/cache object absent"
+        },
+        {
+          "category": "reported_nonvoice_noise",
+          "native_diagnostic": "✘ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：08 纯人声核对（配音指纹 0624f01acf10）问题数 16"
+        },
+        {
+          "category": "independent_cut_edges_unresolved",
+          "native_diagnostic": "✘ 独立复核：92 处改动，词尾/词头被切 = 0，删除处两侧未衰减到 -55 dB 或删掉了 -40 dB 以上的声音 = ['5']（未经实际声音确认的 3），多余声音 = ['0']"
+        },
+        {
+          "category": "highlight_timing_unresolved",
+          "native_diagnostic": "✘ 高亮同步核对（L14：每一块的高亮在这一块开始读时切换，误差 ≤ 0.15 秒；两种独立办法都要满足，不一致处须用实际声音核实）"
+        },
+        {
+          "category": "highlight_selftest_failure",
+          "native_diagnostic": "✘ 高亮同步核对 自检：S1 第2块故意提前 0.4 秒、S3 第2块故意推后 0.4 秒，必须正好报出这两处"
+        }
+      ],
+      "original_draft_postchecks_explicitly_all_passed": false,
+      "original_4K_finalize_then_stamp_reached": false,
+      "original_checks_all_passed_proven_before_wrapper": false,
+      "wrapper_only_immediate_retry_after_fixed_strict_wrapper": false,
+      "wrapper_evidence": null,
+      "actual_audio_listening_or_new_acoustic_acceptance_performed": false,
+      "candidate_audio_fault_not_independently_proven_by_this_classification": true,
+      "acceptance": false
+    },
+    {
+      "article": "09",
+      "native_status_path": "/workspace/work/video-audit70-20261113/ci63-diagnostics-43523430839/relay-files/09-status.json",
+      "native_status_sha256": "eb56b481b785737f4f0aabd3caba11fe9acc4aa20df8af85e1fe71264041a9bf",
+      "native_status_passed": false,
+      "stage": "canonical-draft-00.log",
+      "failure_step": "canonical-draft-00.log",
+      "primary_class": "missing_reference_cache",
+      "primary_explanation": "Terminal missing exact reference/cache key; other reported audio failures remain unresolved and cannot be erased by fixing the missing reference.",
+      "secondary_classes": [
+        "reported_nonvoice_noise",
+        "independent_cut_edges_unresolved",
+        "highlight_timing_unresolved",
+        "highlight_selftest_failure"
+      ],
+      "final_error": "Command '['git', 'show', 'HEAD:视频/配音缓存/49afd42fdc79d57d786add076abbfdb8be55b604.pkl']' returned non-zero exit status 128.",
+      "terminal_missing_reference_key": "49afd42fdc79d57d786add076abbfdb8be55b604.pkl",
+      "diagnostics": [
+        {
+          "category": "missing_reference_cache",
+          "native_diagnostic": "git show HEAD:视频/配音缓存/49afd42fdc79d57d786add076abbfdb8be55b604.pkl returned exit128; exact Git reference/cache object absent"
+        },
+        {
+          "category": "reported_nonvoice_noise",
+          "native_diagnostic": "✘ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：09 纯人声核对（配音指纹 4bf816d09467）问题数 17"
+        },
+        {
+          "category": "independent_cut_edges_unresolved",
+          "native_diagnostic": "✘ 独立复核：101 处改动，词尾/词头被切 = 3，删除处两侧未衰减到 -55 dB 或删掉了 -40 dB 以上的声音 = ['13']（未经实际声音确认的 5），多余声音 = ['0']"
+        },
+        {
+          "category": "highlight_timing_unresolved",
+          "native_diagnostic": "✘ 高亮同步核对（L14：每一块的高亮在这一块开始读时切换，误差 ≤ 0.15 秒；两种独立办法都要满足，不一致处须用实际声音核实）"
+        },
+        {
+          "category": "highlight_selftest_failure",
+          "native_diagnostic": "✘ 高亮同步核对 自检：S1 第2块故意提前 0.4 秒、S17 第2块故意推后 0.4 秒，必须正好报出这两处"
+        }
+      ],
+      "original_draft_postchecks_explicitly_all_passed": false,
+      "original_4K_finalize_then_stamp_reached": false,
+      "original_checks_all_passed_proven_before_wrapper": false,
+      "wrapper_only_immediate_retry_after_fixed_strict_wrapper": false,
+      "wrapper_evidence": null,
+      "actual_audio_listening_or_new_acoustic_acceptance_performed": false,
+      "candidate_audio_fault_not_independently_proven_by_this_classification": true,
+      "acceptance": false
+    },
+    {
+      "article": "13",
+      "native_status_path": "/workspace/work/video-audit70-20261113/ci63-diagnostics-43523430839/relay-files/13-status.json",
+      "native_status_sha256": "9ef39e6b021ea0afb0e9de71efe066850e0c6df58903f1616a71928c7013147c",
+      "native_status_passed": false,
+      "stage": "canonical-draft-00.log",
+      "failure_step": "canonical-draft-00.log",
+      "primary_class": "reported_audio_quality_gates",
+      "primary_explanation": "Native checker reports unresolved noise/cut/highlight issues; audio was not listened to for this read-only classification.",
+      "secondary_classes": [
+        "reported_nonvoice_noise",
+        "independent_cut_edges_unresolved",
+        "highlight_timing_unresolved"
+      ],
+      "final_error": "canonical-draft: official quality check failed; see article status JSON",
+      "terminal_missing_reference_key": null,
+      "diagnostics": [
+        {
+          "category": "reported_nonvoice_noise",
+          "native_diagnostic": "✘ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：13 纯人声核对（配音指纹 8f88f217a8b8）问题数 1"
+        },
+        {
+          "category": "independent_cut_edges_unresolved",
+          "native_diagnostic": "✘ 独立复核：97 处改动，词尾/词头被切 = 1，删除处两侧未衰减到 -55 dB 或删掉了 -40 dB 以上的声音 = ['8']（未经实际声音确认的 8），多余声音 = ['0']"
+        },
+        {
+          "category": "highlight_timing_unresolved",
+          "native_diagnostic": "✘ 高亮同步核对（L14：每一块的高亮在这一块开始读时切换，误差 ≤ 0.15 秒；两种独立办法都要满足，不一致处须用实际声音核实）"
+        }
+      ],
+      "original_draft_postchecks_explicitly_all_passed": false,
+      "original_4K_finalize_then_stamp_reached": false,
+      "original_checks_all_passed_proven_before_wrapper": false,
+      "wrapper_only_immediate_retry_after_fixed_strict_wrapper": false,
+      "wrapper_evidence": null,
+      "actual_audio_listening_or_new_acoustic_acceptance_performed": false,
+      "candidate_audio_fault_not_independently_proven_by_this_classification": true,
+      "acceptance": false
+    },
+    {
+      "article": "14",
+      "native_status_path": "/workspace/work/video-audit70-20261113/ci63-diagnostics-43523430839/relay-files/14-status.json",
+      "native_status_sha256": "56b3b11ae0515a2bc8ba62981c4d8ddab38e5b727ed2995371c5a13cb1c55ba2",
+      "native_status_passed": false,
+      "stage": "canonical-draft-00.log",
+      "failure_step": "canonical-draft-00.log",
+      "primary_class": "independent_cut_review",
+      "primary_explanation": "Native independent cut/edge review is not passed; no conclusion that audio is acceptable follows from other checks passing.",
+      "secondary_classes": [
+        "independent_cut_edges_unresolved"
+      ],
+      "final_error": "canonical-draft: official quality check failed; see article status JSON",
+      "terminal_missing_reference_key": null,
+      "diagnostics": [
+        {
+          "category": "independent_cut_edges_unresolved",
+          "native_diagnostic": "✘ 独立复核：77 处改动，词尾/词头被切 = 0，删除处两侧未衰减到 -55 dB 或删掉了 -40 dB 以上的声音 = ['7']（未经实际声音确认的 5），多余声音 = ['0']"
+        }
+      ],
+      "original_draft_postchecks_explicitly_all_passed": false,
+      "original_4K_finalize_then_stamp_reached": false,
+      "original_checks_all_passed_proven_before_wrapper": false,
+      "wrapper_only_immediate_retry_after_fixed_strict_wrapper": false,
+      "wrapper_evidence": null,
+      "actual_audio_listening_or_new_acoustic_acceptance_performed": false,
+      "candidate_audio_fault_not_independently_proven_by_this_classification": true,
+      "acceptance": false
+    },
+    {
+      "article": "15",
+      "native_status_path": "/workspace/work/video-audit70-20261113/ci63-diagnostics-43523430839/relay-files/15-status.json",
+      "native_status_sha256": "4a6eaddc8c66f218f408116f1e8efbb625569777faf7af2648235ab21f8d361c",
+      "native_status_passed": false,
+      "stage": "canonical-draft-00.log",
+      "failure_step": "canonical-draft-00.log",
+      "primary_class": "audio_double_release",
+      "primary_explanation": "Original A21 reports duplicated transplanted release over an existing original release, requiring specific acoustic/data review.",
+      "secondary_classes": [],
+      "final_error": "canonical-draft: official quality check failed; see article status JSON",
+      "terminal_missing_reference_key": null,
+      "diagnostics": [
+        {
+          "category": "audio_double_release",
+          "native_diagnostic": "15 S8 第1个标点 ˈeɪt /t/ BAD 双爆破：移植的除阻前 10 ms 原声已有一下除阻（-29.4 dB），会听成两个 t（55 ms、重心 1635 Hz）；删掉这条移植，改用 除阻加强 加强原声那一下（46 S4）"
+        }
+      ],
+      "original_draft_postchecks_explicitly_all_passed": false,
+      "original_4K_finalize_then_stamp_reached": false,
+      "original_checks_all_passed_proven_before_wrapper": false,
+      "wrapper_only_immediate_retry_after_fixed_strict_wrapper": false,
+      "wrapper_evidence": null,
+      "actual_audio_listening_or_new_acoustic_acceptance_performed": false,
+      "candidate_audio_fault_not_independently_proven_by_this_classification": true,
+      "acceptance": false
+    },
+    {
+      "article": "16",
+      "native_status_path": "/workspace/work/video-audit70-20261113/ci63-diagnostics-43523430839/relay-files/16-status.json",
+      "native_status_sha256": "8f09107581269d00f347656ebdb628d4166f41f0b8ce476f92d7d1129cb97b6c",
+      "native_status_passed": false,
+      "stage": "canonical-draft-00.log",
+      "failure_step": "canonical-draft-00.log",
+      "primary_class": "missing_reference_cache",
+      "primary_explanation": "Terminal missing exact reference/cache key; other reported audio failures remain unresolved and cannot be erased by fixing the missing reference.",
+      "secondary_classes": [
+        "pronunciation_replacement_incomplete",
+        "checker_untrusted"
+      ],
+      "final_error": "Command '['git', 'show', 'HEAD:视频/配音缓存/dce6d1ce3af5043cfc8b6d30acf416eab118b916.pkl']' returned non-zero exit status 128.",
+      "terminal_missing_reference_key": "dce6d1ce3af5043cfc8b6d30acf416eab118b916.pkl",
+      "diagnostics": [
+        {
+          "category": "missing_reference_cache",
+          "native_diagnostic": "git show HEAD:视频/配音缓存/dce6d1ce3af5043cfc8b6d30acf416eab118b916.pkl returned exit128; exact Git reference/cache object absent"
+        },
+        {
+          "category": "pronunciation_replacement_incomplete",
+          "native_diagnostic": "✘ 【停止】读音改正没有全部换到（A23）：Haber 出现 2 次，换了 1 次：About half the nitrogen in our proteins and DNA has passed t"
+        },
+        {
+          "category": "checker_untrusted",
+          "native_diagnostic": "【核查程序失灵，下面的读音核对不可信】"
+        }
+      ],
+      "original_draft_postchecks_explicitly_all_passed": false,
+      "original_4K_finalize_then_stamp_reached": false,
+      "original_checks_all_passed_proven_before_wrapper": false,
+      "wrapper_only_immediate_retry_after_fixed_strict_wrapper": false,
+      "wrapper_evidence": null,
+      "actual_audio_listening_or_new_acoustic_acceptance_performed": false,
+      "candidate_audio_fault_not_independently_proven_by_this_classification": true,
+      "acceptance": false
+    },
+    {
+      "article": "17",
+      "native_status_path": "/workspace/work/video-audit70-20261113/ci63-diagnostics-43523430839/relay-files/17-status.json",
+      "native_status_sha256": "a1b7633f6a561054f1466dbe76db9fd0a2c8b554d77006b7bb20be0dbd9e55c3",
+      "native_status_passed": false,
+      "stage": "canonical-draft-00.log",
+      "failure_step": "canonical-draft-00.log",
+      "primary_class": "audio_double_release",
+      "primary_explanation": "Original A21 reports duplicated transplanted release over an existing original release, requiring specific acoustic/data review.",
+      "secondary_classes": [],
+      "final_error": "canonical-draft: official quality check failed; see article status JSON",
+      "terminal_missing_reference_key": null,
+      "diagnostics": [
+        {
+          "category": "audio_double_release",
+          "native_diagnostic": "17 S1 句末 ɹˈɑːk /k/ BAD 双爆破：移植的除阻前 25 ms 原声已有一下除阻（-27.5 dB），会听成两个 k（65 ms、重心 2082 Hz）；删掉这条移植，改用 除阻加强 加强原声那一下（46 S4）"
+        }
+      ],
+      "original_draft_postchecks_explicitly_all_passed": false,
+      "original_4K_finalize_then_stamp_reached": false,
+      "original_checks_all_passed_proven_before_wrapper": false,
+      "wrapper_only_immediate_retry_after_fixed_strict_wrapper": false,
+      "wrapper_evidence": null,
+      "actual_audio_listening_or_new_acoustic_acceptance_performed": false,
+      "candidate_audio_fault_not_independently_proven_by_this_classification": true,
+      "acceptance": false
+    },
+    {
+      "article": "18",
+      "native_status_path": "/workspace/work/video-audit70-20261113/ci63-diagnostics-43523430839/relay-files/18-status.json",
+      "native_status_sha256": "ba98597f54f193e0e856fcc2c6d1937bfc0813e0e7792e1856a8282d13923871",
+      "native_status_passed": false,
+      "stage": "canonical-draft-00.log",
+      "failure_step": "canonical-draft-00.log",
+      "primary_class": "audio_double_release",
+      "primary_explanation": "Original A21 reports duplicated transplanted release over an existing original release, requiring specific acoustic/data review.",
+      "secondary_classes": [],
+      "final_error": "canonical-draft: official quality check failed; see article status JSON",
+      "terminal_missing_reference_key": null,
+      "diagnostics": [
+        {
+          "category": "audio_double_release",
+          "native_diagnostic": "18 S6 第2个标点 dˈɔːɹmənt /t/ BAD 双爆破：移植的除阻前 15 ms 原声已有一下除阻（-29.3 dB），会听成两个 t（55 ms、重心 1447 Hz）；删掉这条移植，改用 除阻加强 加强原声那一下（46 S4）"
+        }
+      ],
+      "original_draft_postchecks_explicitly_all_passed": false,
+      "original_4K_finalize_then_stamp_reached": false,
+      "original_checks_all_passed_proven_before_wrapper": false,
+      "wrapper_only_immediate_retry_after_fixed_strict_wrapper": false,
+      "wrapper_evidence": null,
+      "actual_audio_listening_or_new_acoustic_acceptance_performed": false,
+      "candidate_audio_fault_not_independently_proven_by_this_classification": true,
+      "acceptance": false
+    },
+    {
+      "article": "19",
+      "native_status_path": "/workspace/work/video-audit70-20261113/ci63-diagnostics-43523430839/relay-files/19-status.json",
+      "native_status_sha256": "2cdef949fa8bcc26bd0a02485fa93a0474a08cb2a91c1325a42273871db7d843",
+      "native_status_passed": false,
+      "stage": "canonical-draft-00.log",
+      "failure_step": "canonical-draft-00.log",
+      "primary_class": "independent_cut_review",
+      "primary_explanation": "Native independent cut/edge review is not passed; no conclusion that audio is acceptable follows from other checks passing.",
+      "secondary_classes": [
+        "independent_cut_edges_unresolved",
+        "highlight_timing_unresolved"
+      ],
+      "final_error": "canonical-draft: official quality check failed; see article status JSON",
+      "terminal_missing_reference_key": null,
+      "diagnostics": [
+        {
+          "category": "independent_cut_edges_unresolved",
+          "native_diagnostic": "✘ 独立复核：81 处改动，词尾/词头被切 = 5，删除处两侧未衰减到 -55 dB 或删掉了 -40 dB 以上的声音 = ['12']（未经实际声音确认的 11），多余声音 = ['8']"
+        },
+        {
+          "category": "highlight_timing_unresolved",
+          "native_diagnostic": "✘ 高亮同步核对（L14：每一块的高亮在这一块开始读时切换，误差 ≤ 0.15 秒；两种独立办法都要满足，不一致处须用实际声音核实）"
+        }
+      ],
+      "original_draft_postchecks_explicitly_all_passed": false,
+      "original_4K_finalize_then_stamp_reached": false,
+      "original_checks_all_passed_proven_before_wrapper": false,
+      "wrapper_only_immediate_retry_after_fixed_strict_wrapper": false,
+      "wrapper_evidence": null,
+      "actual_audio_listening_or_new_acoustic_acceptance_performed": false,
+      "candidate_audio_fault_not_independently_proven_by_this_classification": true,
+      "acceptance": false
+    },
+    {
+      "article": "20",
+      "native_status_path": "/workspace/work/video-audit70-20261113/ci63-diagnostics-43523430839/relay-files/20-status.json",
+      "native_status_sha256": "0026279e26f7d25b19ec680a995197ea81947e93937772239ab08ef8e7dd7f87",
+      "native_status_passed": false,
+      "stage": "canonical-draft-00.log",
+      "failure_step": "canonical-draft-00.log",
+      "primary_class": "reported_audio_quality_gates",
+      "primary_explanation": "Native checker reports unresolved noise/cut/highlight issues; audio was not listened to for this read-only classification.",
+      "secondary_classes": [
+        "reported_nonvoice_noise",
+        "independent_cut_edges_unresolved"
+      ],
+      "final_error": "canonical-draft: official quality check failed; see article status JSON",
+      "terminal_missing_reference_key": null,
+      "diagnostics": [
+        {
+          "category": "reported_nonvoice_noise",
+          "native_diagnostic": "✘ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：20 纯人声核对（配音指纹 36106d0136bf）问题数 1"
+        },
+        {
+          "category": "independent_cut_edges_unresolved",
+          "native_diagnostic": "✘ 独立复核：83 处改动，词尾/词头被切 = 0，删除处两侧未衰减到 -55 dB 或删掉了 -40 dB 以上的声音 = ['9']（未经实际声音确认的 6），多余声音 = ['0']"
+        }
+      ],
+      "original_draft_postchecks_explicitly_all_passed": false,
+      "original_4K_finalize_then_stamp_reached": false,
+      "original_checks_all_passed_proven_before_wrapper": false,
+      "wrapper_only_immediate_retry_after_fixed_strict_wrapper": false,
+      "wrapper_evidence": null,
+      "actual_audio_listening_or_new_acoustic_acceptance_performed": false,
+      "candidate_audio_fault_not_independently_proven_by_this_classification": true,
+      "acceptance": false
+    },
+    {
+      "article": "21",
+      "native_status_path": "/workspace/work/video-audit70-20261113/ci63-diagnostics-43523430839/relay-files/21-status.json",
+      "native_status_sha256": "b0203257e7de74465621aa6c2e91dd9d23ab083ec42deca42ab3f76cbcbc2b85",
+      "native_status_passed": false,
+      "stage": "canonical-draft-00.log",
+      "failure_step": "canonical-draft-00.log",
+      "primary_class": "reported_audio_quality_gates",
+      "primary_explanation": "Native checker reports unresolved noise/cut/highlight issues; audio was not listened to for this read-only classification.",
+      "secondary_classes": [
+        "reported_nonvoice_noise",
+        "independent_cut_edges_unresolved"
+      ],
+      "final_error": "canonical-draft: official quality check failed; see article status JSON",
+      "terminal_missing_reference_key": null,
+      "diagnostics": [
+        {
+          "category": "reported_nonvoice_noise",
+          "native_diagnostic": "✘ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：21 纯人声核对（配音指纹 386afe8f5689）问题数 2"
+        },
+        {
+          "category": "independent_cut_edges_unresolved",
+          "native_diagnostic": "✘ 独立复核：94 处改动，词尾/词头被切 = 1，删除处两侧未衰减到 -55 dB 或删掉了 -40 dB 以上的声音 = ['7']（未经实际声音确认的 7），多余声音 = ['0']"
+        }
+      ],
+      "original_draft_postchecks_explicitly_all_passed": false,
+      "original_4K_finalize_then_stamp_reached": false,
+      "original_checks_all_passed_proven_before_wrapper": false,
+      "wrapper_only_immediate_retry_after_fixed_strict_wrapper": false,
+      "wrapper_evidence": null,
+      "actual_audio_listening_or_new_acoustic_acceptance_performed": false,
+      "candidate_audio_fault_not_independently_proven_by_this_classification": true,
+      "acceptance": false
+    },
+    {
+      "article": "22",
+      "native_status_path": "/workspace/work/video-audit70-20261113/ci63-diagnostics-43523430839/relay-files/22-status.json",
+      "native_status_sha256": "227f18a835ba01b126e4b0ea20dbb7c82101bfec407cf2b8256efcd45ccab304",
+      "native_status_passed": false,
+      "stage": "canonical-draft-00.log",
+      "failure_step": "canonical-draft-00.log",
+      "primary_class": "independent_cut_review",
+      "primary_explanation": "Native independent cut/edge review is not passed; no conclusion that audio is acceptable follows from other checks passing.",
+      "secondary_classes": [
+        "independent_cut_edges_unresolved"
+      ],
+      "final_error": "canonical-draft: official quality check failed; see article status JSON",
+      "terminal_missing_reference_key": null,
+      "diagnostics": [
+        {
+          "category": "independent_cut_edges_unresolved",
+          "native_diagnostic": "✘ 独立复核：94 处改动，词尾/词头被切 = 0，删除处两侧未衰减到 -55 dB 或删掉了 -40 dB 以上的声音 = ['4']（未经实际声音确认的 2），多余声音 = ['0']"
+        }
+      ],
+      "original_draft_postchecks_explicitly_all_passed": false,
+      "original_4K_finalize_then_stamp_reached": false,
+      "original_checks_all_passed_proven_before_wrapper": false,
+      "wrapper_only_immediate_retry_after_fixed_strict_wrapper": false,
+      "wrapper_evidence": null,
+      "actual_audio_listening_or_new_acoustic_acceptance_performed": false,
+      "candidate_audio_fault_not_independently_proven_by_this_classification": true,
+      "acceptance": false
+    },
+    {
+      "article": "23",
+      "native_status_path": "/workspace/work/video-audit70-20261113/ci63-diagnostics-43523430839/relay-files/23-status.json",
+      "native_status_sha256": "789ca2ebb6789770180a5252af900ba6151bd8c877fa2f6d686757b0897e5904",
+      "native_status_passed": false,
+      "stage": "canonical-draft-00.log",
+      "failure_step": "canonical-draft-00.log",
+      "primary_class": "reported_audio_quality_gates",
+      "primary_explanation": "Native checker reports unresolved noise/cut/highlight issues; audio was not listened to for this read-only classification.",
+      "secondary_classes": [
+        "reported_nonvoice_noise",
+        "independent_cut_edges_unresolved"
+      ],
+      "final_error": "canonical-draft: official quality check failed; see article status JSON",
+      "terminal_missing_reference_key": null,
+      "diagnostics": [
+        {
+          "category": "reported_nonvoice_noise",
+          "native_diagnostic": "✘ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：23 纯人声核对（配音指纹 61dd4b3315f9）问题数 2"
+        },
+        {
+          "category": "independent_cut_edges_unresolved",
+          "native_diagnostic": "✘ 独立复核：101 处改动，词尾/词头被切 = 0，删除处两侧未衰减到 -55 dB 或删掉了 -40 dB 以上的声音 = ['11']（未经实际声音确认的 11），多余声音 = ['0']"
+        }
+      ],
+      "original_draft_postchecks_explicitly_all_passed": false,
+      "original_4K_finalize_then_stamp_reached": false,
+      "original_checks_all_passed_proven_before_wrapper": false,
+      "wrapper_only_immediate_retry_after_fixed_strict_wrapper": false,
+      "wrapper_evidence": null,
+      "actual_audio_listening_or_new_acoustic_acceptance_performed": false,
+      "candidate_audio_fault_not_independently_proven_by_this_classification": true,
+      "acceptance": false
+    },
+    {
+      "article": "24",
+      "native_status_path": "/workspace/work/video-audit70-20261113/ci63-diagnostics-43523430839/relay-files/24-status.json",
+      "native_status_sha256": "a637ded1e71887ba6ffea69d853168dd5ec13f62333cd98d371742dd2b2e6438",
+      "native_status_passed": false,
+      "stage": "canonical-draft-00.log",
+      "failure_step": "canonical-draft-00.log",
+      "primary_class": "reported_audio_quality_gates",
+      "primary_explanation": "Native checker reports unresolved noise/cut/highlight issues; audio was not listened to for this read-only classification.",
+      "secondary_classes": [
+        "reported_nonvoice_noise",
+        "independent_cut_edges_unresolved",
+        "highlight_timing_unresolved"
+      ],
+      "final_error": "canonical-draft: official quality check failed; see article status JSON",
+      "terminal_missing_reference_key": null,
+      "diagnostics": [
+        {
+          "category": "reported_nonvoice_noise",
+          "native_diagnostic": "✘ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：24 纯人声核对（配音指纹 e61423aabec5）问题数 1"
+        },
+        {
+          "category": "independent_cut_edges_unresolved",
+          "native_diagnostic": "✘ 独立复核：99 处改动，词尾/词头被切 = 1，删除处两侧未衰减到 -55 dB 或删掉了 -40 dB 以上的声音 = ['8']（未经实际声音确认的 8），多余声音 = ['0']"
+        },
+        {
+          "category": "highlight_timing_unresolved",
+          "native_diagnostic": "✘ 高亮同步核对（L14：每一块的高亮在这一块开始读时切换，误差 ≤ 0.15 秒；两种独立办法都要满足，不一致处须用实际声音核实）"
+        }
+      ],
+      "original_draft_postchecks_explicitly_all_passed": false,
+      "original_4K_finalize_then_stamp_reached": false,
+      "original_checks_all_passed_proven_before_wrapper": false,
+      "wrapper_only_immediate_retry_after_fixed_strict_wrapper": false,
+      "wrapper_evidence": null,
+      "actual_audio_listening_or_new_acoustic_acceptance_performed": false,
+      "candidate_audio_fault_not_independently_proven_by_this_classification": true,
+      "acceptance": false
+    },
+    {
+      "article": "26",
+      "native_status_path": "/workspace/work/video-audit70-20261113/ci63-diagnostics-43523430839/relay-files/26-status.json",
+      "native_status_sha256": "f81a757053cb50309a7b6fc233eb6a82239f28c5ff43a2c1aade2e3c0fa6c5f7",
+      "native_status_passed": false,
+      "stage": "original-stamp-after-production.log",
+      "failure_step": null,
+      "primary_class": "wrapper_summary_decoration",
+      "primary_explanation": "Original draft post-checks pass, official4K/stamp stage completes, and only renderer line-leading continuation marks plus whitespace differ in the summary; rerun the strict wrapper, never relabel the failed artifact as passed.",
+      "secondary_classes": [],
+      "final_error": "",
+      "terminal_missing_reference_key": null,
+      "diagnostics": [
+        {
+          "category": "wrapper_summary_decoration",
+          "native_diagnostic": "⑤ 出片后核查：全部通过；随后已到 original-stamp-after-production.log；现存3840×2160 proof，摘要仅行首▹和空白差异。"
+        }
+      ],
+      "original_draft_postchecks_explicitly_all_passed": true,
+      "original_4K_finalize_then_stamp_reached": true,
+      "original_checks_all_passed_proven_before_wrapper": true,
+      "wrapper_only_immediate_retry_after_fixed_strict_wrapper": true,
+      "wrapper_evidence": {
+        "source": "previous report exact source/summary comparison plus actual native status and4K failed-current proof",
+        "source_evidence_report_sha256": "a53ed426143d62e6f88121d86ef9368b03b0b786043107d6db3493e9b4be3dff",
+        "only_line_leading_continuation_marks_and_whitespace_differ": true,
+        "main_summary_points_preserved": 5,
+        "added_line_leading_continuation_marks": 4,
+        "actual_working_source_sha256": "d470991d32d1e59b7556b8a8178ff9a990087ecf179f71caada48e64e9a864b2",
+        "failed_current_4K_proof_path": "/workspace/work/video-audit70-20261113/ci63-diagnostics-43523430839/relay-files/26-failed-draft-proof.json",
+        "failed_current_4K_proof_sha256": "91a4031182e25de379790badb008d80ddab70463a8b93ad6d6adc5ff003f4d75",
+        "accepted_prior_AAC_exact_equal": true,
+        "canonical_finalization_returned_before_observed_stamp_stage": true,
+        "explicit_native_canonical_pipeline_passed_flag": null,
+        "does_not_convert_native_failed_status_to_passed": true
+      },
+      "actual_audio_listening_or_new_acoustic_acceptance_performed": false,
+      "candidate_audio_fault_not_independently_proven_by_this_classification": false,
+      "acceptance": false
+    },
+    {
+      "article": "27",
+      "native_status_path": "/workspace/work/video-audit70-20261113/ci63-diagnostics-43523430839/relay-files/27-status.json",
+      "native_status_sha256": "0e930ab1e0cb086f6d08f19bbe9067add8221c76ef10d267aaa3db30e6890822",
+      "native_status_passed": false,
+      "stage": "original-stamp-after-production.log",
+      "failure_step": null,
+      "primary_class": "wrapper_summary_decoration",
+      "primary_explanation": "Original draft post-checks pass, official4K/stamp stage completes, and only renderer line-leading continuation marks plus whitespace differ in the summary; rerun the strict wrapper, never relabel the failed artifact as passed.",
+      "secondary_classes": [],
+      "final_error": "",
+      "terminal_missing_reference_key": null,
+      "diagnostics": [
+        {
+          "category": "wrapper_summary_decoration",
+          "native_diagnostic": "⑤ 出片后核查：全部通过；随后已到 original-stamp-after-production.log；现存3840×2160 proof，摘要仅行首▹和空白差异。"
+        }
+      ],
+      "original_draft_postchecks_explicitly_all_passed": true,
+      "original_4K_finalize_then_stamp_reached": true,
+      "original_checks_all_passed_proven_before_wrapper": true,
+      "wrapper_only_immediate_retry_after_fixed_strict_wrapper": true,
+      "wrapper_evidence": {
+        "source": "previous report exact source/summary comparison plus actual native status and4K failed-current proof",
+        "source_evidence_report_sha256": "a53ed426143d62e6f88121d86ef9368b03b0b786043107d6db3493e9b4be3dff",
+        "only_line_leading_continuation_marks_and_whitespace_differ": true,
+        "main_summary_points_preserved": 5,
+        "added_line_leading_continuation_marks": 1,
+        "actual_working_source_sha256": "2069152f9cc74a3b8f5c927d2f5b7c4de8da62cb4a9406ddc65014504c3c4a49",
+        "failed_current_4K_proof_path": "/workspace/work/video-audit70-20261113/ci63-diagnostics-43523430839/relay-files/27-failed-draft-proof.json",
+        "failed_current_4K_proof_sha256": "087058f4b1fe8c0894a8c90dd5b58dbe26a3438afb0a1b1647c3e578bcbcb0c1",
+        "accepted_prior_AAC_exact_equal": true,
+        "canonical_finalization_returned_before_observed_stamp_stage": true,
+        "explicit_native_canonical_pipeline_passed_flag": null,
+        "does_not_convert_native_failed_status_to_passed": true
+      },
+      "actual_audio_listening_or_new_acoustic_acceptance_performed": false,
+      "candidate_audio_fault_not_independently_proven_by_this_classification": false,
+      "acceptance": false
+    },
+    {
+      "article": "28",
+      "native_status_path": "/workspace/work/video-audit70-20261113/ci63-diagnostics-43523430839/relay-files/28-status.json",
+      "native_status_sha256": "cac2b621e9c0418c0b05430cafb0776bbb1071f521cb449b764f38cfff10d214",
+      "native_status_passed": false,
+      "stage": "canonical-draft-00.log",
+      "failure_step": "canonical-draft-00.log",
+      "primary_class": "checker_selftest_failure",
+      "primary_explanation": "Original checker selftest fails, so its downstream cut counts are explicitly untrusted and cannot be treated as a valid acoustic verdict.",
+      "secondary_classes": [
+        "independent_cut_edges_unresolved",
+        "checker_untrusted"
+      ],
+      "final_error": "canonical-draft: official quality check failed; see article status JSON",
+      "terminal_missing_reference_key": null,
+      "diagnostics": [
+        {
+          "category": "independent_cut_edges_unresolved",
+          "native_diagnostic": "✘ 独立复核：100 处改动，词尾/词头被切 = 72，删除处两侧未衰减到 -55 dB 或删掉了 -40 dB 以上的声音 = ['93']（未经实际声音确认的 92），多余声音 = ['147']"
+        },
+        {
+          "category": "checker_selftest_failure",
+          "native_diagnostic": "✘ 核查程序自检：词尾轻切（5.95s，剪 15 ms）没抓到、词头轻切（6.33s，剪 10 ms）抓到、词尾重切（12.38s，剪 27 ms）没抓到、词头重切（10.32s，剪 44 ms）没抓到、杂音（150.74s）没抓到"
+        },
+        {
+          "category": "checker_untrusted",
+          "native_diagnostic": "【核查程序失灵，下面的独立复核结果不可信，不得交付】"
+        }
+      ],
+      "original_draft_postchecks_explicitly_all_passed": false,
+      "original_4K_finalize_then_stamp_reached": false,
+      "original_checks_all_passed_proven_before_wrapper": false,
+      "wrapper_only_immediate_retry_after_fixed_strict_wrapper": false,
+      "wrapper_evidence": null,
+      "actual_audio_listening_or_new_acoustic_acceptance_performed": false,
+      "candidate_audio_fault_not_independently_proven_by_this_classification": true,
+      "acceptance": false
+    },
+    {
+      "article": "29",
+      "native_status_path": "/workspace/work/video-audit70-20261113/ci63-diagnostics-43523430839/relay-files/29-status.json",
+      "native_status_sha256": "e7779ce34ac53131d7f002d9194fcec9b5d3823244a39fc758ff0e41d4afea64",
+      "native_status_passed": false,
+      "stage": "original-stamp-after-production.log",
+      "failure_step": null,
+      "primary_class": "wrapper_summary_decoration",
+      "primary_explanation": "Original draft post-checks pass, official4K/stamp stage completes, and only renderer line-leading continuation marks plus whitespace differ in the summary; rerun the strict wrapper, never relabel the failed artifact as passed.",
+      "secondary_classes": [],
+      "final_error": "",
+      "terminal_missing_reference_key": null,
+      "diagnostics": [
+        {
+          "category": "wrapper_summary_decoration",
+          "native_diagnostic": "⑤ 出片后核查：全部通过；随后已到 original-stamp-after-production.log；现存3840×2160 proof，摘要仅行首▹和空白差异。"
+        }
+      ],
+      "original_draft_postchecks_explicitly_all_passed": true,
+      "original_4K_finalize_then_stamp_reached": true,
+      "original_checks_all_passed_proven_before_wrapper": true,
+      "wrapper_only_immediate_retry_after_fixed_strict_wrapper": true,
+      "wrapper_evidence": {
+        "source": "previous report exact source/summary comparison plus actual native status and4K failed-current proof",
+        "source_evidence_report_sha256": "a53ed426143d62e6f88121d86ef9368b03b0b786043107d6db3493e9b4be3dff",
+        "only_line_leading_continuation_marks_and_whitespace_differ": true,
+        "main_summary_points_preserved": 5,
+        "added_line_leading_continuation_marks": 2,
+        "actual_working_source_sha256": "95679092c9b0f913ef8adef4d3e0a1c4e29cbb761e242c35faec5f3b94c97f44",
+        "failed_current_4K_proof_path": "/workspace/work/video-audit70-20261113/ci63-diagnostics-43523430839/relay-files/29-failed-draft-proof.json",
+        "failed_current_4K_proof_sha256": "c476cdc041800fa1a6649355204ee88db19a5ef1e942a2d20868b4377a49a5ab",
+        "accepted_prior_AAC_exact_equal": true,
+        "canonical_finalization_returned_before_observed_stamp_stage": true,
+        "explicit_native_canonical_pipeline_passed_flag": null,
+        "does_not_convert_native_failed_status_to_passed": true
+      },
+      "actual_audio_listening_or_new_acoustic_acceptance_performed": false,
+      "candidate_audio_fault_not_independently_proven_by_this_classification": false,
+      "acceptance": false
+    },
+    {
+      "article": "30",
+      "native_status_path": "/workspace/work/video-audit70-20261113/ci63-diagnostics-43523430839/relay-files/30-status.json",
+      "native_status_sha256": "f3d1c16e0e42e1bc09ad74cd09c2bfc7a71ae0741c041e0d67e64a86d81670bc",
+      "native_status_passed": false,
+      "stage": "canonical-draft-00.log",
+      "failure_step": "canonical-draft-00.log",
+      "primary_class": "audio_double_release",
+      "primary_explanation": "Original A21 reports duplicated transplanted release over an existing original release, requiring specific acoustic/data review.",
+      "secondary_classes": [],
+      "final_error": "canonical-draft: official quality check failed; see article status JSON",
+      "terminal_missing_reference_key": null,
+      "diagnostics": [
+        {
+          "category": "audio_double_release",
+          "native_diagnostic": "30 S9 第1个标点 ˈiːst /t/ BAD 双爆破：移植的除阻前 10 ms 原声已有一下除阻（-30.8 dB），会听成两个 t（50 ms、重心 1712 Hz）；删掉这条移植，改用 除阻加强 加强原声那一下（46 S4）"
+        }
+      ],
+      "original_draft_postchecks_explicitly_all_passed": false,
+      "original_4K_finalize_then_stamp_reached": false,
+      "original_checks_all_passed_proven_before_wrapper": false,
+      "wrapper_only_immediate_retry_after_fixed_strict_wrapper": false,
+      "wrapper_evidence": null,
+      "actual_audio_listening_or_new_acoustic_acceptance_performed": false,
+      "candidate_audio_fault_not_independently_proven_by_this_classification": true,
+      "acceptance": false
+    }
+  ]
+}

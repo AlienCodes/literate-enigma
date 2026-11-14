@@ -1,0 +1,84 @@
+--- frozen27-29/run.py
++++ current/run.py
+@@ -40,6 +40,70 @@
+ 
+ def save():
+     (OUT / f'{NO}-status.json').write_text(json.dumps(status, ensure_ascii=False, indent=2) + '\n')
++
++
++def collect_actual_public_sources(request, current_source):
++    """Archive actual source files honestly; this creates no extra QC verdict."""
++    manifest = {'article': NO, 'kind': 'actual-production-source-collection',
++                'new_quality_gate': False, 'files': {}}
++    paths = [('request_json', request / f'视频/脚本/{NO}.json', f'{NO}-request-source.json'),
++             ('request_generator', request / f'视频/工具/初稿生成/gen{NO}.py', f'{NO}-request-gen.py'),
++             ('used_generator', T / f'初稿生成/gen{NO}.py', f'{NO}-used-gen.py'),
++             ('actual_working_source', current_source, f'{NO}-actual-working-source.json')]
++    request_md = next((request / '新版定稿').glob(f'{NO}-*.md'))
++    paths += [('request_manuscript', request_md, f'{NO}-request-manuscript.md'),
++              ('actual_working_manuscript', ROOT / '新版定稿' / request_md.name,
++               f'{NO}-actual-working-manuscript.md')]
++    for role, source, name in paths:
++        destination = OUT / name
++        shutil.copyfile(source, destination)
++        manifest['files'][role] = {'file': name, 'sha256': sha(destination),
++                                   'origin': 'actual_production_filesystem' if role.startswith(('used_', 'actual_')) else 'immutable_request'}
++    log = W / f'做_{NO}/生成.log'
++    observed = bool(log.is_file() and PRODUCTION_STARTED_NS is not None
++                    and log.stat().st_mtime_ns >= PRODUCTION_STARTED_NS)
++    manifest['generator_execution_observed'] = observed
++    manifest['generator_execution_evidence'] = 'fresh official 做/生成.log' if observed else 'No fresh generator execution log; do not claim this GEN was executed during rendering.'
++    if observed:
++        shutil.copyfile(log, OUT / f'{NO}-used-generator-execution.log')
++    (OUT / f'{NO}-actual-source-collection.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n')
++    status['actual_source_collection'] = manifest
++
++
++def add_approved_illustrated_tail(request, final, verification):
++    """Keep the genuine passed body/AAC, then approved book art60 + summary60."""
++    helper = TASK / 'illustrated_tail.py'
++    # The upstream verdict is genuine and complete before this independent
++    # packet-preserving composition step; preserve it as a separate record.
++    upstream_status = OUT / f'{NO}-canonical-summary-passed-status.json'
++    shutil.copyfile(OUT / f'{NO}-status.json', upstream_status)
++    image = ROOT / '插图阅读小册/illustrations' / ('01-preview.png' if NO == '01' else f'{NO}.png')
++    output = OUT / f'{NO}-4K-正文-书中插图2秒-简述2秒.mp4'
++    report = OUT / f'{NO}-illustrated-tail-verification.json'
++    checked(['python3', helper, '--source-id', NO, '--input', final,
++             '--verification', verification, '--illustration-manifest', TASK / 'illustration-manifest70.json',
++             '--order-manifest', TASK / 'book-order-manifest.json', '--crop-review', TASK / 'illustration-crop-review70.json',
++             '--illustration', image, '--summary-image', OUT / f'{NO}-简述.png',
++             '--layout-approval', TASK / 'approved-video-layouts70.json', '--output', output,
++             '--report', report, '--status', upstream_status, '--source-script', request / f'视频/脚本/{NO}.json',
++             '--work', M / f'{NO}-illustrated-tail', '--preview-dir', OUT / f'{NO}-illustrated-tail-previews',
++             '--prepared-illustration-output', OUT / f'{NO}-批准插图4K.png'], 'approved-illustrated-tail.log', ROOT)
++    proof = json.loads(report.read_text())
++    assert proof['passed'] is True and aac_hash(output) == status['canonical_aac_adts_sha256']
++    assert proof['production_delivery_eligible'] is True and proof['source_kind'] == 'new-canonical-4K'
++    assert proof['input_video_sha256'] == sha(final) and proof['video_sha256'] == sha(output)
++    status.update({'passed': True, 'stage': 'final4K-passed', 'video_sha256': sha(output),
++                   'final_video_file': output.name, 'illustration_frames': 60, 'illustration_seconds': 2,
++                   'summary_start_seconds': proof['summary_start_seconds'],
++                   'illustration_start_frame': proof['illustration_start_frame'],
++                   'illustration_start_seconds': proof['illustration_start_seconds'],
++                   'summary_start_frame': proof['summary_start_frame'],
++                   'output_frames': proof['output_frames'], 'output_seconds': proof['output_seconds'],
++                   'first_tail_page': 'illustration',
++                   'final_decoded_frame_previews': proof.get('decoded_frame_previews', []),
++                   'illustrated_tail_verification': {'file': report.name, 'sha256': sha(report)}})
++    # The predecessor and its actual passed proof remain archived for lineage.
++    return output
+ 
+ 
+ def install_reviewed_context(request):
+@@ -614,6 +678,10 @@
+                    'summary_start_seconds': timing['summary_start_seconds'],
+                    'delay_after_voice_seconds': timing['delay_after_voice_seconds']})
+     save()
++    collect_actual_public_sources(request, W / f'scripts/{NO}.json')
++    save()
++    final = add_approved_illustrated_tail(request, final, OUT / f'{NO}-summary-verification.json')
++    save()
+     print(json.dumps(status, ensure_ascii=False), flush=True)
+ except Exception as exc:
+     status['passed'] = False

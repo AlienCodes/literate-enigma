@@ -1,0 +1,466 @@
+{
+  "purpose": "Specific51 existing deletion-confirmation fingerprint renewal proposal; no audio acceptance/final verdict",
+  "quality_acceptance": false,
+  "source_audio_or_program_modified": false,
+  "article": "51",
+  "observations": {
+    "exact_failed_pcm_reproduced": true,
+    "producer_pcm_sha256": "202d6b8cbbfe20cf33647bc024ac20cdcb780a2f4a8c7abc36d9f951f80fce65",
+    "current_pcm_md5_first12": "b86f2f88ba42",
+    "reference_gain_original_2_2_lsb_failures": 0,
+    "reference_same_waveform_candidates": 307,
+    "original_official_cuts": 2,
+    "original_official_edges": 8,
+    "original_official_extra_runs": 0,
+    "abnormal_locations": 9,
+    "public_old_new_crop_bit_identical_count": 8,
+    "existing_exact_types_cover_all_reported_flags": true,
+    "actual_public_audio_qc_passed": true,
+    "actual_public_audio_qc_check_count": 20
+  },
+  "inputs": {
+    "/workspace/work/video-audit70-20261113/readonly-audio-replay-43528832985/51-reference-gain-diagnostic.json": "02a204d18e9bfa79109901603d354cbff830063e3e3919e1455e71b086756b2a",
+    "/workspace/work/video-audit70-20261113/ci-relayed-43522684973/51-failed-working-source.json": "cc5300076cd11d6aa9e14e1aebb13ede653e7ed4147eb852cb99dd9d78baf3bd",
+    "/workspace/work/video-audit70-20261113/payload/视频/脚本/51.json": "dc06b8312b8bcd2041e0a904caa95147b3d4274ed5dc87949ab5088c892fcc45",
+    "/workspace/work/video-audit70-20261113/audio51-remaining-edits/51-public-actual-change-qc-with-native-timings.json": "900ddbb4d074c6602b4c35e0fc8481040089e1dd037c3fac982f246dd8b49e79",
+    "/workspace/work/video-audit70-20261113/audio51-independent/51-accepted-decoded.wav": "4f9d8385578b4dfddbd3c47b5cd80fc9a7544ec2063d0c9f4e91cb034c8df8c8",
+    "/workspace/work/video-audit70-20261113/audio51-independent/51-failed-decoded.wav": "d57872dfa4f282d73f6a81acf6d396d51fa77aa72ddd809131b0e0eb6ac14330"
+  },
+  "rows": [
+    {
+      "exact_source_key": "S2 raw 4.8200-5.1786",
+      "existing_type": "紧贴两头的非人声",
+      "original_confirmation_fingerprint": "ff0728857c2d",
+      "proposed_current_fingerprint": "b86f2f88ba42",
+      "official_raw_seconds": [
+        4.82,
+        5.178583333333333
+      ],
+      "official_actual_seconds": [
+        15.56,
+        15.958583333333333
+      ],
+      "original_official_tail_cut_ms": 5.0,
+      "original_official_onset_cut_ms": 0.0,
+      "original_official_edge_sides": [
+        "post",
+        "lost"
+      ],
+      "existing_exact_type_covers_all_reported_flags": true,
+      "public_actual_comparison": {
+        "public_time_seconds": [
+          15.41,
+          16.108583333333332
+        ],
+        "margin_each_side_seconds": 0.15,
+        "decoded_sample_rate": 48000,
+        "decoded_dtype": "float64",
+        "decoded_sample_count": 33532,
+        "whole_crop_bit_identical": true,
+        "accepted_crop_sha256": "b4712230ae08d55f874280a1aa7f60ce8f9166c6ef7999a4c819bb8c562febe1",
+        "actual_crop_sha256": "b4712230ae08d55f874280a1aa7f60ce8f9166c6ef7999a4c819bb8c562febe1",
+        "gain_db": 0.0,
+        "correlation": 0.9999999999999999,
+        "gain_compensated_residual_snr_db": null
+      },
+      "word_label_correction": null
+    },
+    {
+      "exact_source_key": "S2 raw 10.2300-10.5745",
+      "existing_type": "紧贴词头的非人声",
+      "original_confirmation_fingerprint": "ff0728857c2d",
+      "proposed_current_fingerprint": "b86f2f88ba42",
+      "official_raw_seconds": [
+        10.23,
+        10.5745
+      ],
+      "official_actual_seconds": [
+        20.925,
+        21.0995
+      ],
+      "original_official_tail_cut_ms": 0.0,
+      "original_official_onset_cut_ms": 0.0,
+      "original_official_edge_sides": [
+        "post"
+      ],
+      "existing_exact_type_covers_all_reported_flags": true,
+      "public_actual_comparison": {
+        "public_time_seconds": [
+          20.775000000000002,
+          21.249499999999998
+        ],
+        "margin_each_side_seconds": 0.15,
+        "decoded_sample_rate": 48000,
+        "decoded_dtype": "float64",
+        "decoded_sample_count": 22776,
+        "whole_crop_bit_identical": false,
+        "accepted_crop_sha256": "471a88f5abc8abfe9927b4dcb2fb8a4087eda1626eb54e79c468c5095847593b",
+        "actual_crop_sha256": "f3b95a724a6ea7fb88c860ff8090bdf582a77c5b6f4d80ebf7ec443b140594cd",
+        "gain_db": 0.9135708701871891,
+        "correlation": 0.9998920369713389,
+        "gain_compensated_residual_snr_db": 36.65624609068244,
+        "approved_ramp_prediction_fit": {
+          "gain_db": -0.0428342659442427,
+          "correlation": 0.999971274194842,
+          "gain_compensated_residual_snr_db": 42.40679080426024
+        },
+        "approved_actual_piece_range_seconds": [
+          19.675,
+          22.03
+        ],
+        "approved_ramp_delta_db": [
+          -2,
+          2.5
+        ],
+        "interpretation": "This location is inside the approved continuous OW ramp; sample identity is not claimed. The original full actual-audio QC also passes the entire ramp."
+      },
+      "word_label_correction": null
+    },
+    {
+      "exact_source_key": "S4 raw 2.8176-3.0800",
+      "existing_type": "紧贴词尾的非人声",
+      "original_confirmation_fingerprint": "ff0728857c2d",
+      "proposed_current_fingerprint": "b86f2f88ba42",
+      "official_raw_seconds": [
+        2.8175833333333333,
+        3.08
+      ],
+      "official_actual_seconds": [
+        32.91258333333333,
+        33.09
+      ],
+      "original_official_tail_cut_ms": 0.0,
+      "original_official_onset_cut_ms": 0.0,
+      "original_official_edge_sides": [
+        "pre",
+        "lost"
+      ],
+      "existing_exact_type_covers_all_reported_flags": true,
+      "public_actual_comparison": {
+        "public_time_seconds": [
+          32.76258333333333,
+          33.24
+        ],
+        "margin_each_side_seconds": 0.15,
+        "decoded_sample_rate": 48000,
+        "decoded_dtype": "float64",
+        "decoded_sample_count": 22916,
+        "whole_crop_bit_identical": true,
+        "accepted_crop_sha256": "aa3e990a180ceea0d07671580d6d51c71fa8930c37c8f1f434731ab134013bb9",
+        "actual_crop_sha256": "aa3e990a180ceea0d07671580d6d51c71fa8930c37c8f1f434731ab134013bb9",
+        "gain_db": 0.0,
+        "correlation": 0.9999999999999998,
+        "gain_compensated_residual_snr_db": null
+      },
+      "word_label_correction": "Original basis called the preceding word ordinance, but the current unchanged S4 text and original timed cache place this cut after thirty-nine. The proposed basis corrects this word label; no timing or physical sound change."
+    },
+    {
+      "exact_source_key": "S10 raw 5.3200-5.6250",
+      "existing_type": "紧贴词尾的非人声",
+      "original_confirmation_fingerprint": "ff0728857c2d",
+      "proposed_current_fingerprint": "b86f2f88ba42",
+      "official_raw_seconds": [
+        5.32,
+        5.625
+      ],
+      "official_actual_seconds": [
+        74.915,
+        75.305
+      ],
+      "original_official_tail_cut_ms": 5.0,
+      "original_official_onset_cut_ms": 0.0,
+      "original_official_edge_sides": [],
+      "existing_exact_type_covers_all_reported_flags": true,
+      "public_actual_comparison": {
+        "public_time_seconds": [
+          74.765,
+          75.45500000000001
+        ],
+        "margin_each_side_seconds": 0.15,
+        "decoded_sample_rate": 48000,
+        "decoded_dtype": "float64",
+        "decoded_sample_count": 33120,
+        "whole_crop_bit_identical": true,
+        "accepted_crop_sha256": "9590fe42b53987eb26eafdd79c99c2bc06a5553f27082bafb7a0c7d2269ee47d",
+        "actual_crop_sha256": "9590fe42b53987eb26eafdd79c99c2bc06a5553f27082bafb7a0c7d2269ee47d",
+        "gain_db": 0.0,
+        "correlation": 1.0,
+        "gain_compensated_residual_snr_db": null
+      },
+      "word_label_correction": null
+    },
+    {
+      "exact_source_key": "S10 raw 8.0013-8.2523",
+      "existing_type": "紧贴两头的非人声",
+      "original_confirmation_fingerprint": "ff0728857c2d",
+      "proposed_current_fingerprint": "b86f2f88ba42",
+      "official_raw_seconds": [
+        8.001333333333333,
+        8.252333333333333
+      ],
+      "official_actual_seconds": [
+        77.68133333333333,
+        78.07733333333333
+      ],
+      "original_official_tail_cut_ms": 0.0,
+      "original_official_onset_cut_ms": 0.0,
+      "original_official_edge_sides": [
+        "pre",
+        "lost"
+      ],
+      "existing_exact_type_covers_all_reported_flags": true,
+      "public_actual_comparison": {
+        "public_time_seconds": [
+          77.53133333333332,
+          78.22733333333333
+        ],
+        "margin_each_side_seconds": 0.15,
+        "decoded_sample_rate": 48000,
+        "decoded_dtype": "float64",
+        "decoded_sample_count": 33408,
+        "whole_crop_bit_identical": true,
+        "accepted_crop_sha256": "efad10b8660ddd7c7a425a1e5441ea037f352a6a3f23f5ee62b5701fcbc6fb59",
+        "actual_crop_sha256": "efad10b8660ddd7c7a425a1e5441ea037f352a6a3f23f5ee62b5701fcbc6fb59",
+        "gain_db": 0.0,
+        "correlation": 1.0000000000000002,
+        "gain_compensated_residual_snr_db": null
+      },
+      "word_label_correction": null
+    },
+    {
+      "exact_source_key": "S12 raw 8.7587-9.0233",
+      "existing_type": "紧贴两头的非人声",
+      "original_confirmation_fingerprint": "ff0728857c2d",
+      "proposed_current_fingerprint": "b86f2f88ba42",
+      "official_raw_seconds": [
+        8.75875,
+        9.023291666666667
+      ],
+      "official_actual_seconds": [
+        98.00375,
+        98.40329166666666
+      ],
+      "original_official_tail_cut_ms": 0.0,
+      "original_official_onset_cut_ms": 0.0,
+      "original_official_edge_sides": [
+        "pre",
+        "lost"
+      ],
+      "existing_exact_type_covers_all_reported_flags": true,
+      "public_actual_comparison": {
+        "public_time_seconds": [
+          97.85374999999999,
+          98.55329166666667
+        ],
+        "margin_each_side_seconds": 0.15,
+        "decoded_sample_rate": 48000,
+        "decoded_dtype": "float64",
+        "decoded_sample_count": 33578,
+        "whole_crop_bit_identical": true,
+        "accepted_crop_sha256": "6628b346aec36540ff34bfda467c8fcbababb5edc6ed1c180aad51f6547ccfaa",
+        "actual_crop_sha256": "6628b346aec36540ff34bfda467c8fcbababb5edc6ed1c180aad51f6547ccfaa",
+        "gain_db": 0.0,
+        "correlation": 1.0000000000000002,
+        "gain_compensated_residual_snr_db": null
+      },
+      "word_label_correction": null
+    },
+    {
+      "exact_source_key": "S12 raw 10.8740-11.1600",
+      "existing_type": "紧贴词尾的非人声",
+      "original_confirmation_fingerprint": "ff0728857c2d",
+      "proposed_current_fingerprint": "b86f2f88ba42",
+      "official_raw_seconds": [
+        10.873958333333333,
+        11.16
+      ],
+      "official_actual_seconds": [
+        100.25395833333333,
+        100.65
+      ],
+      "original_official_tail_cut_ms": 0.0,
+      "original_official_onset_cut_ms": 0.0,
+      "original_official_edge_sides": [
+        "pre",
+        "lost"
+      ],
+      "existing_exact_type_covers_all_reported_flags": true,
+      "public_actual_comparison": {
+        "public_time_seconds": [
+          100.10395833333332,
+          100.80000000000001
+        ],
+        "margin_each_side_seconds": 0.15,
+        "decoded_sample_rate": 48000,
+        "decoded_dtype": "float64",
+        "decoded_sample_count": 33410,
+        "whole_crop_bit_identical": true,
+        "accepted_crop_sha256": "00dfdcd6d14755900820319fc471eaac8b2126e2830c5c39ce25db78f72608bd",
+        "actual_crop_sha256": "00dfdcd6d14755900820319fc471eaac8b2126e2830c5c39ce25db78f72608bd",
+        "gain_db": 0.0,
+        "correlation": 1.0000000000000002,
+        "gain_compensated_residual_snr_db": null
+      },
+      "word_label_correction": null
+    },
+    {
+      "exact_source_key": "S18 raw 2.5353-2.7950",
+      "existing_type": "紧贴词尾的非人声",
+      "original_confirmation_fingerprint": "ff0728857c2d",
+      "proposed_current_fingerprint": "b86f2f88ba42",
+      "official_raw_seconds": [
+        2.5353333333333334,
+        2.794958333333333
+      ],
+      "official_actual_seconds": [
+        133.44033333333334,
+        133.61495833333333
+      ],
+      "original_official_tail_cut_ms": 0.0,
+      "original_official_onset_cut_ms": 0.0,
+      "original_official_edge_sides": [
+        "pre",
+        "lost"
+      ],
+      "existing_exact_type_covers_all_reported_flags": true,
+      "public_actual_comparison": {
+        "public_time_seconds": [
+          133.29033333333334,
+          133.76495833333334
+        ],
+        "margin_each_side_seconds": 0.15,
+        "decoded_sample_rate": 48000,
+        "decoded_dtype": "float64",
+        "decoded_sample_count": 22782,
+        "whole_crop_bit_identical": true,
+        "accepted_crop_sha256": "5ceafc04892bd8d8e28e5c02430d73fe7e3178504846b5da6a39d90702b97da3",
+        "actual_crop_sha256": "5ceafc04892bd8d8e28e5c02430d73fe7e3178504846b5da6a39d90702b97da3",
+        "gain_db": 0.0,
+        "correlation": 1.0,
+        "gain_compensated_residual_snr_db": null
+      },
+      "word_label_correction": null
+    },
+    {
+      "exact_source_key": "S18 raw 4.7751-4.8700",
+      "existing_type": "紧贴词尾的非人声",
+      "original_confirmation_fingerprint": "ff0728857c2d",
+      "proposed_current_fingerprint": "b86f2f88ba42",
+      "official_raw_seconds": [
+        4.775083333333333,
+        4.87
+      ],
+      "official_actual_seconds": [
+        135.59508333333332,
+        135.69
+      ],
+      "original_official_tail_cut_ms": 0.0,
+      "original_official_onset_cut_ms": 0.0,
+      "original_official_edge_sides": [
+        "pre"
+      ],
+      "existing_exact_type_covers_all_reported_flags": true,
+      "public_actual_comparison": {
+        "public_time_seconds": [
+          135.44508333333332,
+          135.84
+        ],
+        "margin_each_side_seconds": 0.15,
+        "decoded_sample_rate": 48000,
+        "decoded_dtype": "float64",
+        "decoded_sample_count": 18956,
+        "whole_crop_bit_identical": true,
+        "accepted_crop_sha256": "3b384435ddaf0203ddc7eb064022d9349a0bc5c43e1d31083e413aa6097e44d6",
+        "actual_crop_sha256": "3b384435ddaf0203ddc7eb064022d9349a0bc5c43e1d31083e413aa6097e44d6",
+        "gain_db": 0.0,
+        "correlation": 1.0,
+        "gain_compensated_residual_snr_db": null
+      },
+      "word_label_correction": null
+    }
+  ],
+  "minimal_proposal": {
+    "scope": "Only the9 existing exact deletion records below: current fingerprint plus per-location actual proof appended; correct one stale S4 word label. No audio/control/timing/content/layout changes. Other confirmation records unchanged.",
+    "base_payload_source_sha256": "dc06b8312b8bcd2041e0a904caa95147b3d4274ed5dc87949ab5088c892fcc45",
+    "metadata_updates": {
+      "核对确认": {
+        "删除段": {
+          "S2 raw 4.8200-5.1786": {
+            "类型": "紧贴两头的非人声",
+            "配音指纹": "b86f2f88ba42",
+            "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S2 w 4.79–5.159：papers, 的 /z/ 衰减到 4.785，4.79–4.82 -48～-56 dB 余音，4.825–5.13 是吸气（-35～-44 dB、低频 -12～-31 dB、重心 2.4–3.5 kHz），直接连到 5.135–5.17 and 的声门预发声（低频 0 dB），两头都没有 -55 dB 低谷，紧贴两头切在过零点；被算作词尾被切的 5 ms 是 /z/ 衰减末端的余音；2026-11-14 本轮实际成片复核：producer PCM完整SHA256为202d6b8cbbfe20cf33647bc024ac20cdcb780a2f4a8c7abc36d9f951f80fce65，当前配音指纹b86f2f88ba42；此精确删除段及前后各150 ms在新旧已公开MP4解码中逐样本完全相同（48 kHz，33532样本，float64 SHA256 b4712230ae08d55f874280a1aa7f60ce8f9166c6ef7999a4c819bb8c562febe1），原确认的删除类型、词边界和处理位置均不变；见audio51-remaining-edits/51-remaining-edit-proof.json。"
+          },
+          "S2 raw 10.2300-10.5745": {
+            "类型": "紧贴词头的非人声",
+            "配音指纹": "b86f2f88ba42",
+            "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S2 w 10.21–10.555：O.W. 的 uː 衰减到 10.20，10.21–10.38 -55～-66 dB 静音夹着 10.37/10.39 两下 -54 dB 碎声，10.40–10.55 是吸气（-48～-57 dB、低频 -12～-23 dB、重心 2–2.5 kHz），10.555 起 for 的 /f/（重心 4–4.9 kHz）；非人声区间 [10.350458, 10.5545] 紧贴 /f/ 词头切在过零点，整段成连续静音后压到标准长度；2026-11-14 本轮实际成片复核：producer PCM完整SHA256为202d6b8cbbfe20cf33647bc024ac20cdcb780a2f4a8c7abc36d9f951f80fce65，当前配音指纹b86f2f88ba42；此精确删除段在批准的O.W.连续增益段19.675–22.030 s内，不声称与旧轨逐样本相同。旧轨按批准增益曲线预测后，该处含前后各150 ms的相关系数0.999971274、剩余噪声比42.41 dB；整段真实音轨20项辅助核验全部通过，局部原删除位置和类型不变；见audio51-remaining-edits/51-remaining-edit-proof.json。"
+          },
+          "S4 raw 2.8176-3.0800": {
+            "类型": "紧贴词尾的非人声",
+            "配音指纹": "b86f2f88ba42",
+            "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S4 w 2.757–3.02：thirty-nine 的 /n/ 衰减到 2.76（-51 dB、低频 -3 dB），2.78–2.98 是吸气（-37～-45 dB、低频 -8～-29 dB、重心 2.4–3.5 kHz），2.99–3.01 低频 0 dB 是 against 的 ɐ 声门预发声（保留），/n/ 尾与吸气之间没有 -55 dB 低谷，紧贴词尾切在过零点；2026-11-14 本轮实际成片复核：producer PCM完整SHA256为202d6b8cbbfe20cf33647bc024ac20cdcb780a2f4a8c7abc36d9f951f80fce65，当前配音指纹b86f2f88ba42；此精确删除段及前后各150 ms在新旧已公开MP4解码中逐样本完全相同（48 kHz，22916样本，float64 SHA256 aa3e990a180ceea0d07671580d6d51c71fa8930c37c8f1f434731ab134013bb9），原确认的删除类型、词边界和处理位置均不变；见audio51-remaining-edits/51-remaining-edit-proof.json。"
+          },
+          "S10 raw 5.3200-5.6250": {
+            "类型": "紧贴词尾的非人声",
+            "配音指纹": "b86f2f88ba42",
+            "依据": "2026-11-06 逐 10 ms 实测（w，配音指纹 ff0728857c2d，O.K. 改连读后重合成）：S10 w 5.30–5.595：birthplace 的 /s/（重心 5.1–5.7 kHz）衰减到 5.29，5.32–5.58 是吸气（-41～-53 dB、低频 -12～-25 dB、重心 2.0–2.8 kHz），5.59–5.62 -53～-57 dB，5.63 起 formed 的 /f/；/s/ 尾与吸气之间没有 -55 dB 低谷，紧贴词尾切；被算作词尾被切的 5 ms 是 /s/ 衰减末端；2026-11-14 本轮实际成片复核：producer PCM完整SHA256为202d6b8cbbfe20cf33647bc024ac20cdcb780a2f4a8c7abc36d9f951f80fce65，当前配音指纹b86f2f88ba42；此精确删除段及前后各150 ms在新旧已公开MP4解码中逐样本完全相同（48 kHz，33120样本，float64 SHA256 9590fe42b53987eb26eafdd79c99c2bc06a5553f27082bafb7a0c7d2269ee47d），原确认的删除类型、词边界和处理位置均不变；见audio51-remaining-edits/51-remaining-edit-proof.json。"
+          },
+          "S10 raw 8.0013-8.2523": {
+            "类型": "紧贴两头的非人声",
+            "配音指纹": "b86f2f88ba42",
+            "依据": "2026-11-06 逐 10 ms 实测（w，配音指纹 ff0728857c2d，O.K. 改连读后重合成）：S10 w 7.981–8.232：Club 的 /b/ 衰减到 7.97（低频 -2 dB），8.01–8.18 是吸气（-40～-47 dB、低频 -11～-29 dB、重心 2.1–3.5 kHz），8.19–8.22 低频 0～-3 dB 是一下声门声，8.23–8.25 静音，8.26 起 making 的 /m/；两头都没有 -55 dB 低谷，紧贴两头切在过零点；2026-11-14 本轮实际成片复核：producer PCM完整SHA256为202d6b8cbbfe20cf33647bc024ac20cdcb780a2f4a8c7abc36d9f951f80fce65，当前配音指纹b86f2f88ba42；此精确删除段及前后各150 ms在新旧已公开MP4解码中逐样本完全相同（48 kHz，33408样本，float64 SHA256 efad10b8660ddd7c7a425a1e5441ea037f352a6a3f23f5ee62b5701fcbc6fb59），原确认的删除类型、词边界和处理位置均不变；见audio51-remaining-edits/51-remaining-edit-proof.json。"
+          },
+          "S12 raw 8.7587-9.0233": {
+            "类型": "紧贴两头的非人声",
+            "配音指纹": "b86f2f88ba42",
+            "依据": "2026-11-06 逐 10 ms 实测（w，配音指纹 ff0728857c2d，O.K. 改连读后重合成）：S12 w 8.669–8.933：Jackson 的 /n/ 衰减到 8.67（-56 dB、低频 -1 dB），8.68–8.89 是吸气（-38～-53 dB、低频 -9～-23 dB、重心 2.2–3.0 kHz），8.90–8.93 低频 0～-6 dB 是 a 的声门预发声起头（8.94 起保留），8.96 起 ɐ；两头都没有 -55 dB 低谷，紧贴两头切在过零点；2026-11-14 本轮实际成片复核：producer PCM完整SHA256为202d6b8cbbfe20cf33647bc024ac20cdcb780a2f4a8c7abc36d9f951f80fce65，当前配音指纹b86f2f88ba42；此精确删除段及前后各150 ms在新旧已公开MP4解码中逐样本完全相同（48 kHz，33578样本，float64 SHA256 6628b346aec36540ff34bfda467c8fcbababb5edc6ed1c180aad51f6547ccfaa），原确认的删除类型、词边界和处理位置均不变；见audio51-remaining-edits/51-remaining-edit-proof.json。"
+          },
+          "S12 raw 10.8740-11.1600": {
+            "类型": "紧贴词尾的非人声",
+            "配音指纹": "b86f2f88ba42",
+            "依据": "2026-11-06 逐 10 ms 实测（w，配音指纹 ff0728857c2d，O.K. 改连读后重合成）：S12 w 10.784–11.07：speller 的 ɚ 浊音衰减到 10.80（低频 -1～-7 dB），10.81–11.05 是吸气（-38～-46 dB、低频 -10～-28 dB、重心 2.0–3.4 kHz），11.07 -59 dB，11.08 起 had 的 /h/；ɚ 尾与吸气之间没有 -55 dB 低谷，紧贴词尾切；2026-11-14 本轮实际成片复核：producer PCM完整SHA256为202d6b8cbbfe20cf33647bc024ac20cdcb780a2f4a8c7abc36d9f951f80fce65，当前配音指纹b86f2f88ba42；此精确删除段及前后各150 ms在新旧已公开MP4解码中逐样本完全相同（48 kHz，33410样本，float64 SHA256 00dfdcd6d14755900820319fc471eaac8b2126e2830c5c39ce25db78f72608bd），原确认的删除类型、词边界和处理位置均不变；见audio51-remaining-edits/51-remaining-edit-proof.json。"
+          },
+          "S18 raw 2.5353-2.7950": {
+            "类型": "紧贴词尾的非人声",
+            "配音指纹": "b86f2f88ba42",
+            "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S18 w 2.525–2.773：sixty-four 的 ɹ 浊音衰减到 2.52（-50～-54 dB、低频 -1～-6 dB），2.53–2.72 是吸气（-39～-50 dB、低频 -9～-23 dB、重心 1.9–2.4 kHz），2.73–2.76 一下声门噗声（低频 0 dB，与 the 之间隔着 2.77 -62 dB 静音），2.79 起 /ð/；ɹ 尾与吸气之间没有 -55 dB 低谷，紧贴词尾切在过零点；2026-11-14 本轮实际成片复核：producer PCM完整SHA256为202d6b8cbbfe20cf33647bc024ac20cdcb780a2f4a8c7abc36d9f951f80fce65，当前配音指纹b86f2f88ba42；此精确删除段及前后各150 ms在新旧已公开MP4解码中逐样本完全相同（48 kHz，22782样本，float64 SHA256 5ceafc04892bd8d8e28e5c02430d73fe7e3178504846b5da6a39d90702b97da3），原确认的删除类型、词边界和处理位置均不变；见audio51-remaining-edits/51-remaining-edit-proof.json。"
+          },
+          "S18 raw 4.7751-4.8700": {
+            "类型": "紧贴词尾的非人声",
+            "配音指纹": "b86f2f88ba42",
+            "依据": "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S18 w 4.765–4.849：Read 的 /d/ 浊音衰减到 4.76（-44～-49 dB、低频 -1.7～-2.3 dB），4.77–4.84 是吸气（-48～-57 dB、低频 -7～-15 dB、重心 2.1–2.8 kHz），4.85 起 -60 dB 静音；/d/ 尾与吸气之间没有 -55 dB 低谷，紧贴词尾切在过零点；2026-11-14 本轮实际成片复核：producer PCM完整SHA256为202d6b8cbbfe20cf33647bc024ac20cdcb780a2f4a8c7abc36d9f951f80fce65，当前配音指纹b86f2f88ba42；此精确删除段及前后各150 ms在新旧已公开MP4解码中逐样本完全相同（48 kHz，18956样本，float64 SHA256 3b384435ddaf0203ddc7eb064022d9349a0bc5c43e1d31083e413aa6097e44d6），原确认的删除类型、词边界和处理位置均不变；见audio51-remaining-edits/51-remaining-edit-proof.json。"
+          }
+        }
+      }
+    }
+  },
+  "limitations": [
+    "The decoded AAC identity proof covers the existing edit and150ms on each side, not the removed private raw samples. It proves no new physical cut was introduced there relative to the accepted prior MP4.",
+    "The S2 OW location has a genuine approved gain ramp; identity is not claimed. Both local ramp-prediction residual and full actual public-audio QC are supplied.",
+    "Existing original raw nonvoice analysis is retained as historical evidence; this report does not claim subjective listening.",
+    "Official fresh reference-fix QA, all five bad-sample selftests and canonical final checks remain required. No threshold is weakened and no passed/final claim is issued."
+  ],
+  "original_mother_cache_scalar_bindings": {
+    "file": "/workspace/work/video-audit70-20261113/audio51-remaining-edits/51-original-mother-cache-scalar-bindings.json",
+    "sha256": "e60646bbfe5e128f71b1bd0f1718a866ed9c089a8353b538895a592baf3a132d",
+    "individual_native_full_hash_match_pending": true
+  },
+  "actual_public_mp4_decode_bindings": [
+    {
+      "role": "accepted",
+      "source_mp4": "/workspace/work/video-audit70-20261113/audio51-independent/51-accepted-public.mp4",
+      "source_mp4_sha256": "791318f1d7408d738f4024088114386f4de7035a2e4663f4b8c8b815bd9550d2",
+      "decoded_float32_bytes_sha256": "d734bea04187719f0e982192a96574e0a4efe8da0ed3fa616ce5bfb147f59889",
+      "decoded_samples": 7395328,
+      "existing_public_decode_exactly_matches_fresh_direct_mp4_decode": true
+    },
+    {
+      "role": "actual_failed",
+      "source_mp4": "/workspace/work/video-audit70-20261113/ci-relayed-43522684973/51-failed-draft.mp4",
+      "source_mp4_sha256": "d2430c450c0e19a4d40209c380743a69ca75db755aaf26d1819faf50e41b1e39",
+      "decoded_float32_bytes_sha256": "47b2ae932d94822531d1e8c55804992d3d849e71d387a261d57501a5daff4f65",
+      "decoded_samples": 7395328,
+      "existing_public_decode_exactly_matches_fresh_direct_mp4_decode": true
+    }
+  ]
+}

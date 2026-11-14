@@ -1,0 +1,41 @@
+--- frozen27-29/audio-qc.py
++++ current/audio-qc.py
+@@ -81,6 +81,25 @@
+     return {'gain_db':float(20*np.log10(max(gain,1e-20))),
+         'correlation':float(np.dot(old,new)/(np.linalg.norm(old)*np.linalg.norm(new)+1e-30)),
+         'gain_compensated_residual_snr_db':float(10*np.log10((np.mean((gain*old)**2)+1e-30)/(np.mean(residual**2)+1e-30)))}
++
++
++def pitch_preservation(old_crop, new_crop):
++    """Exact decoded sample identity proves unchanged pitch without estimation."""
++    import parselmouth
++    old_crop=np.ascontiguousarray(old_crop,dtype=np.float64)
++    new_crop=np.ascontiguousarray(new_crop,dtype=np.float64)
++    old_hash=hashlib.sha256(old_crop.tobytes()).hexdigest()
++    new_hash=hashlib.sha256(new_crop.tobytes()).hexdigest()
++    identical=(old_crop.size>0 and np.isfinite(old_crop).all() and np.isfinite(new_crop).all()
++               and np.array_equal(old_crop,new_crop) and old_hash==new_hash)
++    pitches=[parselmouth.Sound(v,sampling_frequency=SR).to_pitch_ac(time_step=.01,pitch_floor=60,pitch_ceiling=400).selected_array['frequency'] for v in (old_crop,new_crop)]
++    size=min(map(len,pitches));a,b=(v[:size] for v in pitches);good=(a>0)&(b>0);cents=abs(1200*np.log2(b[good]/a[good]))
++    result={'voiced_pairs':int(good.sum()),'median_absolute_cents':float(np.median(cents)) if len(cents) else None,
++            'p90_absolute_cents':float(np.percentile(cents,90)) if len(cents) else None,
++            'whole_decoded_crop_bit_identical':bool(identical),'decoded_sample_count':int(old_crop.size),
++            'decoded_dtype':'float64','accepted_crop_sha256':old_hash,'actual_crop_sha256':new_hash,
++            'preservation_basis':'whole-decoded-crop-bit-identical' if identical else 'measured-pitch-original-count-and-cent-limits'}
++    return bool(identical or (len(cents)>10 and result['median_absolute_cents']<=40 and result['p90_absolute_cents']<=150)),result
+ 
+ 
+ def alignment_lag(old,new,spans,margin_seconds=.03):
+@@ -279,10 +298,8 @@
+         pitch_results={}
+         for key in ref['pitch_units']:
+             start,end=ref['units'][key];lo=round(start*SR);hi=round(end*SR)
+-            pitches=[parselmouth.Sound(v[lo:hi],sampling_frequency=SR).to_pitch_ac(time_step=.01,pitch_floor=60,pitch_ceiling=400).selected_array['frequency'] for v in (old,new)]
+-            size=min(map(len,pitches));a,b=(v[:size] for v in pitches);good=(a>0)&(b>0);cents=abs(1200*np.log2(b[good]/a[good]))
+-            result={'voiced_pairs':int(good.sum()),'median_absolute_cents':float(np.median(cents)) if len(cents) else None,'p90_absolute_cents':float(np.percentile(cents,90)) if len(cents) else None};pitch_results[key]=result
+-            check('actual-pitch-preserved:'+key,len(cents)>10 and result['median_absolute_cents']<=40 and result['p90_absolute_cents']<=150,**result)
++            preserved,result=pitch_preservation(old[lo:hi],new[lo:hi]);pitch_results[key]=result
++            check('actual-pitch-preserved:'+key,preserved,**result)
+     except ImportError:
+         pitch_results={};check('actual-pitch-measurement-available',False)
+     import soundfile as sf

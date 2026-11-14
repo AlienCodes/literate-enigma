@@ -1,0 +1,71 @@
+{
+  "purpose": "Exact accepted old-source input for a safe read-only native rawPCM comparison; not a reconstructed reference",
+  "quality_acceptance": false,
+  "source_commit": "64621068034f8b6e09836a6d97210a0e9b2f1ed6",
+  "source_path": "视频/脚本/51.json",
+  "exported_original_public_source": "/workspace/work/video-audit70-20261113/audio51-remaining-edits/51-exact-old-accepted-source.json",
+  "full_source_sha256": "7fca159025b86543fac322224ce756a1975813982168918714e7fbcd978bf404",
+  "all_old_confirmations_expected_pcm_md5_first12": "ff0728857c2d",
+  "actual_current_source_sha256": "dd410ed3f1d9534e35e09d1e7ca1e592678c75e9d17b5a84e2f93a1c2de9dd80",
+  "actual_current_pcm_sha256": "202d6b8cbbfe20cf33647bc024ac20cdcb780a2f4a8c7abc36d9f951f80fce65",
+  "actual_current_pcm_md5_first12": "b86f2f88ba42",
+  "spoken_English_identical": true,
+  "known_physical_control_changes": {
+    "分段增益dB": {
+      "old": {
+        "S2": {
+          "4": 1.5
+        },
+        "S10": {
+          "1": -1.0,
+          "4": -1.0
+        },
+        "S14": {
+          "1": -1.5,
+          "2": 1.5
+        }
+      },
+      "current": {
+        "S2": {
+          "4": 1.5
+        },
+        "S10": {
+          "1": -1.0,
+          "4": -1.0
+        },
+        "S14": {
+          "1": -1.5,
+          "2": 1.5
+        },
+        "S1": {
+          "1": 1.5
+        }
+      }
+    },
+    "段内渐变dB": {
+      "old": {
+        "S2": {
+          "3": [
+            0.5,
+            -6.0
+          ]
+        }
+      },
+      "current": {
+        "S2": {
+          "3": [
+            -1.5,
+            -3.5
+          ]
+        }
+      }
+    }
+  },
+  "required_native_proof_sequence": [
+    "Strict-cache original maker AUDIO_ONLY using this exact original public source in an isolated working folder; do not use inverse gain or AAC as a source.",
+    "Require whole reconstructed old a.wav MD5 first12 exactly ff0728857c2d; if not, stop this continuity proof and leave the existing loudness confirmation pending.",
+    "Rebuild the current actual failed source with original maker and unchanged physical controls; require current fullPCM SHA202d6b8cbbfe20cf33647bc024ac20cdcb780a2f4a8c7abc36d9f951f80fce65.",
+    "Compare old/current raw sample arrays in exact9.2–9.7 seconds at original24k; publish hashes/count/exact equality only, not PCM bytes.",
+    "Renew the old loudness fingerprint only if that exact raw crop is identical. Original audio_qc/current loudness constraints must still run."
+  ]
+}

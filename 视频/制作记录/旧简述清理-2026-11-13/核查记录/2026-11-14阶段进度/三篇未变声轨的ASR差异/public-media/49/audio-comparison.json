@@ -1,0 +1,105 @@
+{
+  "article": "49",
+  "sentence": "S8",
+  "checked_utc": "2026-11-14T00:34:04.011706+00:00",
+  "human_listening_performed": false,
+  "audio_controls_sources_thresholds_or_confirmations_modified": false,
+  "media_retrieval": {
+    "article": "49",
+    "public_media_only": true,
+    "failed": {
+      "path": "/workspace/work/video-audit70-20261113/asr46-49-55-readonly-20261114/public-media/49/49-failed-draft.mp4",
+      "bytes": 7750559,
+      "sha256": "659528a10f3515d76087ce8b4080827204f540a6a7d349757633c2e2e75b6bd9",
+      "purpose": "diagnosis only; not an accepted deliverable"
+    },
+    "accepted": {
+      "path": "/workspace/work/video-audit70-20261113/asr46-49-55-readonly-20261114/public-media/49/49-accepted.mp4",
+      "bytes": 13452894,
+      "sha256": "a95abb22587640d560f529d63dd03ccbcd61f3c60a7356f968779ac45a62d3eb",
+      "repository": "alienalgorithm/postgraduate-vocabulary",
+      "pinned_commit": "3d82f20ce7ecfea2e4e0a2aa93c340a779e646d3",
+      "repo_path": "最终版4K视频/49 - The Woman Who Won Two Nobels - 两度摘得诺奖的女人.mp4"
+    },
+    "original_artifact_id": 14085880700,
+    "artifact_zip_sha256": "733f43a2f196e6c6d0047c50032bd33d586308c37507a2908fb3cfadb112ef8d",
+    "artifact_zip_removed_after_MP4_extraction": true,
+    "private_GT_cache_models_or_PCM_extracted": false
+  },
+  "actual_adts": {
+    "accepted": {
+      "bytes": 2351586,
+      "sha256": "6d68121b448428148efca585cb2b2ad9fbf52825f9cec76b15325a1b28a4069c"
+    },
+    "failed": {
+      "bytes": 2351586,
+      "sha256": "6d68121b448428148efca585cb2b2ad9fbf52825f9cec76b15325a1b28a4069c"
+    }
+  },
+  "ADTS_payload_and_headers_byte_identical": true,
+  "audio_codec_parameters_equal": true,
+  "codec_parameters": {
+    "accepted": {
+      "codec_name": "aac",
+      "profile": "LC",
+      "sample_rate": "48000",
+      "channels": 1,
+      "channel_layout": "mono",
+      "time_base": "1/48000",
+      "start_pts": 0,
+      "start_time": "0.000000",
+      "extradata_size": 5,
+      "extradata_hash": "SHA256:643b0e23faf2831be78dddd3de11c0f1b4aac4d4f762554c9bdaab7cc1e9e409"
+    },
+    "failed": {
+      "codec_name": "aac",
+      "profile": "LC",
+      "sample_rate": "48000",
+      "channels": 1,
+      "channel_layout": "mono",
+      "time_base": "1/48000",
+      "start_pts": 0,
+      "start_time": "0.000000",
+      "extradata_size": 5,
+      "extradata_hash": "SHA256:643b0e23faf2831be78dddd3de11c0f1b4aac4d4f762554c9bdaab7cc1e9e409"
+    }
+  },
+  "packet_counts": {
+    "accepted": 7033,
+    "failed": 7033
+  },
+  "AAC_payload_absolute_pts_dts_duration_sizes_equal": true,
+  "packet_projection_sha256": {
+    "accepted": "7bfd7f4b87fbc6de27b16ff63e3436c9ff0d3cfc448e5b4541f2b292e72bc0d1",
+    "failed": "7bfd7f4b87fbc6de27b16ff63e3436c9ff0d3cfc448e5b4541f2b292e72bc0d1"
+  },
+  "decoded_public_PCM": {
+    "format": "native ffmpeg float32le, original audio channel count/sample rate; no gain, filtering, resampling or alignment fit",
+    "sample_rate": "48000",
+    "channels": 1,
+    "accepted_bytes": 28803072,
+    "failed_bytes": 28803072,
+    "accepted_sha256": "05462178e74bc64be0d677d5527e01f6e2da92fa449515de7837a34444f32a63",
+    "failed_sha256": "05462178e74bc64be0d677d5527e01f6e2da92fa449515de7837a34444f32a63",
+    "entire_decoded_track_byte_identical": true,
+    "samples_each": 7200768,
+    "max_abs_sample_difference": 0.0
+  },
+  "sentence_script": "The nomination had initially left her out; at Pierre's insistence, the omission was rectified.",
+  "existing_machine_confirmation_for_target": null,
+  "existing_machine_confirmation_sentence_keys": [],
+  "public_silence_span_count": 18,
+  "expected_title_plus_sentence_count": 18,
+  "public_clip_locator_logic": "official 音频体检.句段: consecutive abs(sample)<1e-6 for>=0.7seconds; keep spans>0.3seconds",
+  "actual_public_sentence_clip": {
+    "path": "/workspace/work/video-audit70-20261113/asr46-49-55-readonly-20261114/public-media/49/49-S8-actual-failed-public-sentence.wav",
+    "bytes": 1252476,
+    "sha256": "5b70008fccc33893879ee3d768e9263bf058ad0b4bf1f0ec6db94a59f0b9fa48",
+    "sample_start": 3496851,
+    "sample_end": 3809947,
+    "seconds_start": 72.8510625,
+    "seconds_end": 79.37389583333334,
+    "derived_only_from_public_MP4": true,
+    "entire_target_interval_matches_approved_samples": true
+  }
+}

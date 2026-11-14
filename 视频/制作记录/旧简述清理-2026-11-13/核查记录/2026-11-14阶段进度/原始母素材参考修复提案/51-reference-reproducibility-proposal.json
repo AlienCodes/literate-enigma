@@ -1,0 +1,331 @@
+{
+  "purpose": "51 cross-CPU raw-reference incompatibility and minimal repair proposal",
+  "article": "51",
+  "acceptance": false,
+  "source_or_checker_modified_by_this_review": false,
+  "evidence_inputs": [
+    {
+      "path": "/workspace/work/video-audit70-20261113/ci-relayed-43522684973/51-reference-gain-diagnostic.json",
+      "sha256": "ab32bb7bf800ef5b2a8f4dac2c95e18eee091b489e2e87605e8318e53cb606e6"
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/ci-direct-43526354790-51/51-reference-gain-diagnostic.json",
+      "sha256": "99c534e0251342d258608bd6bd50ededdb66ccba9a124f147eed0269e2fc7af9"
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/ci-relayed-43522684973/51-checker-reference-preparation.json",
+      "sha256": "c7dac634fd5c9c9af653b74697f91e2726e042f369f87081600a5a611a1e0fe5"
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/ci-direct-43526354790-51/51-checker-reference-preparation.json",
+      "sha256": "701b8a65e41ae9817ae67609e881c1c1a8179877fc7970d92c56a8976e8e34d7"
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/ci-relayed-43522684973/51-failed-draft-proof.json",
+      "sha256": "d9bc413a13ff1bb4f7e8037eddff12b5ac32a70df328b61d0c456e360e155466"
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/ci-direct-43526354790-51/51-failed-draft-proof.json",
+      "sha256": "4423effcba2643c68d8991c12343120d922fc3dca7e0f67e73f6bb68ae6fd64b"
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/core-overlays/reference-reproducibility/51-raw-mother-provenance.json",
+      "sha256": "9fd84c228a775234fcad9438e33bc185556640af73d49c497084324dea688088"
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/core-overlays/reference-reproducibility/51-title-original-mother-vs-reference.json",
+      "sha256": "f563bef9d6ab972e180c34d836eef1cd610e57089c6e171f212aeb7510b86fb3"
+    }
+  ],
+  "actual_outputs": {
+    "old_mp4_sha256": "d2430c450c0e19a4d40209c380743a69ca75db755aaf26d1819faf50e41b1e39",
+    "new_mp4_sha256": "4abbdc23ca4f9518b6577743d12b47ebd2fba095dbb77d97f46664dc22b02d5f",
+    "actual_internal_pcm_sha256_unchanged": "202d6b8cbbfe20cf33647bc024ac20cdcb780a2f4a8c7abc36d9f951f80fce65",
+    "actual_aac_adts_sha256_unchanged": "ff3303283d702f40fc29522222dd332b76144f29811ce8f48802d6329a3644e0",
+    "actual_pcm_scalar_metadata": {
+      "sample_rate": 24000,
+      "samples": 3697320,
+      "duration_s": 154.055,
+      "sample_peak": 0.8900146484375,
+      "peak_time_s": 147.85279166666666
+    },
+    "working_source_differences": [
+      "/核对确认/非人声/21.93–22.02s"
+    ],
+    "audio_controls_and_spoken_content_unchanged": true,
+    "both_original_drafts_failed_acceptance": true
+  },
+  "reference_comparison": {
+    "old_cpu": {
+      "vendor_id": "AuthenticAMD",
+      "model name": "AMD EPYC 9V45 96-Core Processor",
+      "flags": "3a6ca04c99210487292079bbdb3e868f4dc903d72a546e51cc5c32eef706099d"
+    },
+    "new_cpu": {
+      "vendor_id": "AuthenticAMD",
+      "model name": "AMD EPYC 7763 64-Core Processor",
+      "flags": "9c39b836959294af15642451b3307a084bdf18b26aa8e3b4b2d37a09aff1a4b7"
+    },
+    "unchanged_fields": {
+      "gt_meta_sha256": "4edc33614d167886264d2b59d362bd002f04544ce234c3d7b727a7a3aaf29be6",
+      "tool_sha256": {
+        "make_video.py": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+        "clean.py": "86b3872cbca83437e24da2c7ada5fffd916f06cacdd2b32fee2a78c9b134178d",
+        "独立复核/audit.py": "bfe12dab6bec96c9b765faea286ae30a067589f6c5ef78461b21d12b955f1e22",
+        "独立复核/synth.py": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+        "交付核查.py": "26e8e213a07747f6fc3654be18d64336011cba59ffd83bf74e4cf4759baf6976"
+      },
+      "model_sha256": {
+        "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+        "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d",
+        "voice_mb.npy": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8"
+      },
+      "versions": {
+        "numpy": "2.4.6",
+        "soundfile": "0.14.0",
+        "onnxruntime": "1.30.0",
+        "kokoro-onnx": "0.6.1",
+        "phonemizer": "3.4.0",
+        "scipy": "1.17.1"
+      },
+      "segment_record_sha256": "1b479325ccb61000951fc2b1c0d75c7337ba49a60288f7a605c8788791ce53d3",
+      "actual_pcm": {
+        "sample_rate": 24000,
+        "samples": 3697320,
+        "duration_s": 154.055,
+        "sample_peak": 0.8900146484375,
+        "peak_time_s": 147.85279166666666
+      }
+    },
+    "old_private_cache_inventory": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "new_private_cache_inventory": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "private_cache_inventory_unchanged_between_runs": true,
+    "old_public_cache_inventory": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+    "new_public_cache_inventory": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+    "old_reference_peak": {
+      "absolute": 1.0330930948257446,
+      "text_index": 18,
+      "time_in_reference_s": 3.3727916666666666
+    },
+    "new_reference_peak": {
+      "absolute": 1.0388673543930054,
+      "text_index": 18,
+      "time_in_reference_s": 3.3727916666666666
+    },
+    "old_gain": 0.8614906095661392,
+    "new_gain": 0.8567022500384697,
+    "gt_array_hash_changes": [
+      {
+        "text_index": -1,
+        "old_sha256": "0e360d5ec2ce81c124a5e8a7f2960a198d1d92534a0c7fc02507f935f1a6ebc6",
+        "new_sha256": "b7b766e3db75aa49bf7ece2dfd9f39615599f91e4bdc868c5f836f2fccea8987",
+        "equal": false
+      },
+      {
+        "text_index": 0,
+        "old_sha256": "2ed518c57dea7cf6cef03ee4467eb48a7d066f3ea1b3033c07ee0af96665229a",
+        "new_sha256": "fc413f91b334ab681555f7186bc00cabffedff4c66efcdae8afaa56756521ac3",
+        "equal": false
+      },
+      {
+        "text_index": 1,
+        "old_sha256": "9813f4a586a110d474e53dc0be6e9fa3763c3c4551285e81237e1cdefa9e0d9b",
+        "new_sha256": "6930a57b98ff5b1d17093e8e4a53f7e0793a5c3f8df4a2698db36ec23c13fd70",
+        "equal": false
+      },
+      {
+        "text_index": 2,
+        "old_sha256": "5b077fba54aae2f94f5fe764ce7063e6ea8841a24099a53a809c80f1287cb1fb",
+        "new_sha256": "a19588c7a0c40acbf57520bcab20982dc90e51ab01969f11b8ff132166d85437",
+        "equal": false
+      },
+      {
+        "text_index": 3,
+        "old_sha256": "f773efedd394b94f1a33dc9724ef8a5950497ad1b7afe1e30bf5db7cf6c5fefd",
+        "new_sha256": "b86044b22d1671610909e18f4af79ad036f95edeee481507eb27d465644aa872",
+        "equal": false
+      },
+      {
+        "text_index": 4,
+        "old_sha256": "652d028cb994a9419c5cec6614f0b94e4d7fbc0e3a85585d2a2b659768bce038",
+        "new_sha256": "e94e72eeb1a851b0cec6591a504f00bc42b9174f48e6f8a4d4319ab1cb7b0283",
+        "equal": false
+      },
+      {
+        "text_index": 5,
+        "old_sha256": "cacf093cb57c66041269d0256dc71618e00f6ed9a3d533b406c30e18870c81b9",
+        "new_sha256": "d42fc323eaba4f7648dfdf2058ebe4b645986108665f337634248aea6c1988e1",
+        "equal": false
+      },
+      {
+        "text_index": 6,
+        "old_sha256": "b507c4ca13a15e69d65fd1349c809e0e1c840831f947685585cce0f3f6ef2440",
+        "new_sha256": "98c3b2eed8ea081fa1781149866b3427cbd1706f0fe89a828987aa4d26416deb",
+        "equal": false
+      },
+      {
+        "text_index": 7,
+        "old_sha256": "7b3dd7a3d201c148ee99c3ab2ae7c544df76290ad59ef0d711a9909ba7cf5d30",
+        "new_sha256": "d60f0218f9a6a0a932d84febf4cd3c2bc47b7d727ff5f1fa4936770098837d48",
+        "equal": false
+      },
+      {
+        "text_index": 8,
+        "old_sha256": "d4dae788aa767276fadd58107090da2a69e1b4219015c265c46121e8949309f0",
+        "new_sha256": "a11553552c432ac141ce3fbce68ffa581af265a428d94fda9a5f64f8c40d8bc2",
+        "equal": false
+      },
+      {
+        "text_index": 9,
+        "old_sha256": "e442e769e3e35d79820e995e713c00d6374a2b569c17de60e5916b7064fb5f1a",
+        "new_sha256": "7d4e5f027619ecc6f1d34e6d810c5ca1d87cbd1d8f4a0c149e429ffc4ca22da6",
+        "equal": false
+      },
+      {
+        "text_index": 10,
+        "old_sha256": "573c53be5684ef5b8f33babf8c646a2eef04ed020a944c73981889e1394affc5",
+        "new_sha256": "e3a40032c6a8f7e676274e6869412e8b77b7b5bded64a79b7218d8e0b5989638",
+        "equal": false
+      },
+      {
+        "text_index": 11,
+        "old_sha256": "eeee3729a7f2621dd65ebcdcc88ef06b6f2641f6c4e6f33865433f71eae1ed79",
+        "new_sha256": "058948e13fb7eb77f87be02ee10ba8cc4db1e402937d95a730d7221ace4a2f59",
+        "equal": false
+      },
+      {
+        "text_index": 12,
+        "old_sha256": "44c5e5b0ed6e25967c539eaebe088d15fbdb91cd1a809b49c5fdc197b07f7792",
+        "new_sha256": "cd13aced7bf0a5fd6053a88310426e93ec4dccbe0650243ac79199b8cc232e11",
+        "equal": false
+      },
+      {
+        "text_index": 13,
+        "old_sha256": "e2bb57a8201e224dc56d472fde99dea389a74671a190fe180a7df2d3b3c1051e",
+        "new_sha256": "9492dcd5f3309d423a4a3b1578aa09e499f9782f89083b316b62942ea3cdade3",
+        "equal": false
+      },
+      {
+        "text_index": 14,
+        "old_sha256": "7ab7c3c7446169bb19d2c6b82c065a5483ac39a23f8c9a3fcde799c024e94a52",
+        "new_sha256": "efdef5e36f6a8064a8540702026fae455cf3554dbc51a99d6f1d6668d7ca7f08",
+        "equal": false
+      },
+      {
+        "text_index": 15,
+        "old_sha256": "df35de4ac70f8eec9cb1aef0b2b1dffbe0548bfcfc947ca06af94202cf76d59c",
+        "new_sha256": "1b682480313d767d4d3a75d2f839ff0a97a8bf13f3584210dd51bec317f2c8ee",
+        "equal": false
+      },
+      {
+        "text_index": 16,
+        "old_sha256": "74ab869a52e477c35ca65362c26fc7cb7d07442e77245c2bcdf9cead98e0364d",
+        "new_sha256": "e6c1246a49510b3482e3954605f6cff87a5e6a80f046b11391308e593e5bcbae",
+        "equal": false
+      },
+      {
+        "text_index": 17,
+        "old_sha256": "d40a612158f43e8d85bc69322d0bf0ca8774853e8daaca3fe98b4e38dd7c61a3",
+        "new_sha256": "c11bbef1eef9ca1c574885a700f74d46b732c7c2921de8f6aaf3a6fa0f1eb379",
+        "equal": false
+      },
+      {
+        "text_index": 18,
+        "old_sha256": "c6c47c3e00d994cc0030b205faab5dc498fbb48f42f279b6a0925d61ff0a0b18",
+        "new_sha256": "9a0549f7d8f51611687f93bd34f11f0f4388aff5a0cd437a1731a0a84dd13b3b",
+        "equal": false
+      }
+    ],
+    "changed_gt_array_count": 20,
+    "total_gt_array_count": 20,
+    "old_anchor_summary": {
+      "count": 316,
+      "same_waveform_candidates": 307,
+      "median_fitted_gain": 0.8614915356257166,
+      "median_fitted_to_default_gain": 1.0000010749502863,
+      "fitted_gain_min": 0.8614175579045232,
+      "fitted_gain_max": 0.8615332967454162,
+      "inferred_kept_input_peak": 1.0330919843032205,
+      "default_gain_fails_original_2_2_lsb_limit_count": 0
+    },
+    "new_anchor_summary": {
+      "count": 316,
+      "same_waveform_candidates": 0
+    },
+    "old_official_audit": {
+      "report_sha256": "a39028934ebdddbb652843de084d6896ae13436b6558c734c043b00af376d75b",
+      "fixed_gain": 0.8614906072616577,
+      "text_count": 20,
+      "unmatched_blocks": 835,
+      "edit_count": 111,
+      "edits_with_nonzero_tail_or_onset_cut": 2,
+      "a10_edge_violations": 8,
+      "extra_nonzero_run_count": 0
+    },
+    "new_official_audit": {
+      "report_sha256": "e43987b2a0306ad17c4e97f45f1f2de5150e95c153766fdfa8e5dc1e9fed0a8e",
+      "fixed_gain": 0.8567022085189819,
+      "text_count": 20,
+      "unmatched_blocks": 12226,
+      "edit_count": 144,
+      "edits_with_nonzero_tail_or_onset_cut": 100,
+      "a10_edge_violations": 125,
+      "extra_nonzero_run_count": 181
+    },
+    "old_official_selftests": [
+      "✔ 核查程序自检：词尾轻切（3.70s，剪 17 ms）抓到、词头轻切（4.09s，剪 10 ms）抓到、词尾重切（7.48s，剪 29 ms）抓到、词头重切（7.87s，剪 10 ms）抓到、杂音（147.49s）抓到"
+    ],
+    "new_official_selftests": [
+      "✘ 核查程序自检：词尾轻切（3.70s，剪 17 ms）没抓到、词头轻切（4.09s，剪 10 ms）没抓到、词尾重切（7.48s，剪 29 ms）抓到、词头重切（7.87s，剪 10 ms）没抓到、杂音（147.49s）没抓到",
+      "【核查程序失灵，下面的独立复核结果不可信，不得交付】"
+    ],
+    "interpretation": "The exact same actual PCM/AAC is compared against 20 different GT arrays on a different CPU. The new checker itself reports self-test failure. Its 100 cut and 125 edge findings cannot be treated as new verified sound defects. The prior 2 cut and 8 edge findings remain unresolved until reproduced with a compatible reference."
+  },
+  "root_cause": {
+    "producer": "maker._cached verifies native marker or registered legacy SHA, then returns the original direct create pickle for both classes. The tuple is stored before say/cleaning/grafts/gain/fades/pause cuts/assembly.",
+    "independent_synth": "synth._按缓存 reads only legacy cache. For a valid .单线程 entry it verifies the stored bytes but discards them and calls _raw_create on the current CPU. Single-thread settings do not guarantee identical ONNX floating point across these CPUs.",
+    "gt_key_gap": "GT cache filename/meta binds text, model-derived phonemes and transform parameters, but does not bind raw mother array SHA. Same GT filename/meta can therefore contain different waveform bytes.",
+    "raw_mother_schema_proof": {
+      "report": "/workspace/work/video-audit70-20261113/core-overlays/reference-reproducibility/51-raw-mother-provenance.json",
+      "sha256": "9fd84c228a775234fcad9438e33bc185556640af73d49c497084324dea688088",
+      "verified_native_marker_entries": 3
+    },
+    "untransformed_title_direct_bit_identity": {
+      "purpose": "Untransformed title original mother serialized independently in memory, compared to actual native GT file hashes",
+      "acceptance": false,
+      "source_title_has_no_graft_or_gain_or_fade_or_ramp": true,
+      "title_raw_original_cache_sha256": "b5406233929e7a71dfbcb21cb0be64b63d614bae84fbc0c99fcaab4fe6f939d2",
+      "in_memory_raw_mother_npy_sha256": "0e360d5ec2ce81c124a5e8a7f2960a198d1d92534a0c7fc02507f935f1a6ebc6",
+      "old_actual_native_gt_npy_sha256": "0e360d5ec2ce81c124a5e8a7f2960a198d1d92534a0c7fc02507f935f1a6ebc6",
+      "new_actual_native_gt_npy_sha256": "b7b766e3db75aa49bf7ece2dfd9f39615599f91e4bdc868c5f836f2fccea8987",
+      "raw_mother_equals_old_native_gt": true,
+      "raw_mother_equals_new_native_gt": false,
+      "no_raw_cache_or_npy_or_waveform_exported": true
+    }
+  },
+  "minimal_proposal": {
+    "patch": "/workspace/work/video-audit70-20261113/core-overlays/reference-reproducibility/synth-raw-mother-proposal.patch",
+    "patch_sha256": "bbf1295dbf1c66d26135ec84a4893e111886ce7acec311274e60e75bdb4e5268",
+    "base_synth_sha256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+    "patch_scope": "Only the synth raw-create input loader: return exact source-verified original create pickle for both marker-verified and registered legacy entries; verify tuple2/float32/1D/finite/24000 schema; missing mother stops.",
+    "independence_preserved": "Reference creation receives original unprocessed model output. Original independent GT graft/gain/fade/ramp/pause processing, labels, sample audit and five deliberate bad-audio selftests execute normally. No actual a.wav or GT array is read to derive the mother.",
+    "untouched_controls": [
+      "source JSON and spoken English",
+      "all gain and boundary metadata",
+      "2.2/32768 sample tolerance",
+      "original -55/-40 dB boundaries",
+      "original five bad-sample injections",
+      "actual source PCM/AAC bytes"
+    ],
+    "mandatory_native_preflight": [
+      "For every actual loader call, compute exact create key from original model ID, full model SHA, voice array SHA1/full voice-file SHA, exact spoken/phoneme input SHA, speed .95, lang, sorted kwargs. Record only these scalar values.",
+      "Read a raw create tuple from the pinned repository cache or the original private producer cache with a fullSHA comparison to that pinned raw entry. Keep original marker/registered-legacy checks. Emit actual per-key fullSHA and schema, never pickle/waveform bytes. The local three-entry proof does not itself prove all native private entry bytes.",
+      "Use a fresh empty QC_DIR for the first native replay, so existing same-name GT files cannot skip synthesis. For persistent GT reuse, bind the complete mother-manifest SHA in the GT cache namespace or a checked sidecar; reject a different manifest.",
+      "Record loaded raw-mother hashes and independently produced GT hashes. Repeat on a second CPU/runtime only after all per-key mother identities match; both should then yield identical independently transformed GT hashes.",
+      "Run the original checker selftests and require five of five caught. Verify known good anchors/PCM do not acquire global false residuals. Preserve and inspect all remaining genuine cut/edge findings.",
+      "Prove actual internal PCM and AAC fullSHA remain the values recorded in actual_outputs. This is a read-only reference replay; audio controls are not a repair target for CPU drift."
+    ],
+    "native_result": "NOT RUN by this review; root approval and actual native 5/5/unchanged-PCM evidence required before adoption.",
+    "current_2cuts_8edges": "Still blocked; obtain exact current-source times and original amplitudes from a compatible-reference native report before proposing any audio metadata correction."
+  }
+}
