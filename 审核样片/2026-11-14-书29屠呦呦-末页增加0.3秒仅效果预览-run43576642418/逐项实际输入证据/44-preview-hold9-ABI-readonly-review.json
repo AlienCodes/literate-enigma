@@ -1,0 +1,411 @@
+{
+  "created_utc": "2026-11-14T08:31:00.026968+00:00",
+  "kind": "readonly_source28_preview_hold9_ABI_intake_recommendation",
+  "status": "interface_review_only_actual_native_preview_pending",
+  "source_id": "28",
+  "book_order": "29",
+  "quality_acceptance": false,
+  "actual_preview_native_observed": false,
+  "production_delivery_eligible": false,
+  "review_scope": "Read current isolated hold9 helper/profile/tests and frozen D/R import/validation code; write this advisory JSON only. No production execution, remote access, source edits, media generation or additional quality/approval gates.",
+  "input_files": [
+    {
+      "path": "/workspace/work/video-audit70-20261113/article28-user-review-20261114/hold9-integrator/illustrated_tail.py",
+      "bytes": 28238,
+      "sha256": "f90e399b59ec5d1c7bc83a9d8c4c0134b7ba4dbe1627a2bde6ab91daa6c06562"
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/article28-user-review-20261114/hold9-integrator/illustrated_tail.original-dc204b.py",
+      "bytes": 24007,
+      "sha256": "dc204b91415e28297b844e9666087b0e23e67194944b359cb5fb5ddbca0f1208"
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/article28-user-review-20261114/hold9-integrator/isolated-helper-freeze-profile.json",
+      "bytes": 2210,
+      "sha256": "2f031abbc607de93ded479a4d690fdab8b82763fd15a3fd8de65e2e604b09492"
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/article28-user-review-20261114/hold9-integrator/hold9-contract-and-legacy-compatibility-tests.json",
+      "bytes": 10554,
+      "sha256": "69e0ef61e6e85a9a8625a34eb90cd4cb395586fbfe196fc0ffc6e0aaefbe4c55"
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/article28-user-review-20261114/hold9-integrator/actual-nine-frame-decoder-positive-and-negative-tests.json",
+      "bytes": 1312,
+      "sha256": "86cabe099a6a0285c2103e0010e50dd0573e2e0a13066f68eb7f74e564731016"
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/article28-user-review-20261114/hold9-integrator/legacy-synthetic-compatibility-report.json",
+      "bytes": 4158,
+      "sha256": "8575605b1fab870f526e23a011ee2e84adadb50bd4669be46dfcc261fe9248ad"
+    },
+    {
+      "path": "/workspace/work/video-revision-delivery/native-inline-engine-frozen-20261114-v11-reviewed15-layout-latest-accepted-reference/delivery.py",
+      "bytes": 90271,
+      "sha256": "1a5a8c9e8b3637b5ee9cb4c90abbe0158ac1c01dd3c423e0611038ab47f96d0b"
+    },
+    {
+      "path": "/workspace/work/video-revision-delivery/native-inline-engine-frozen-20261114-v11-reviewed15-layout-latest-accepted-reference/release_contract.py",
+      "bytes": 31696,
+      "sha256": "9f075e63ccb68099f8b056b781a4814d0e5d95c68b3b10f4f3421a498965ae9b"
+    },
+    {
+      "path": "/workspace/work/video-revision-delivery/native-inline-engine-frozen-20261114-v11-reviewed15-layout-latest-accepted-reference/ingest_inline_article.py",
+      "bytes": 14408,
+      "sha256": "f2eeec8f7ecefeeb41278ef6bc2ccede2c74dc4ab13c1f256d09d7dbae9b25b9"
+    },
+    {
+      "path": "/workspace/work/video-revision-delivery/native-inline-engine-frozen-20261114-v11-reviewed15-layout-latest-accepted-reference/import_actual_article.py",
+      "bytes": 18964,
+      "sha256": "6888ec963343ec75a047975f234dd7af872d7233b918e7051a554d891e95572f"
+    }
+  ],
+  "authorization_and_delivery_scope": {
+    "existing_user_record": "/workspace/work/video-audit70-20261113/article28-user-review-20261114/feedback/USER-REVIEW-2026-11-14-032.json",
+    "user_record_sha256_as_frozen_in_profile": "74f3c5f1c9e9dc8c3f44d68533b0731e819709170fe6fb25d24eb3ceee8b5029",
+    "authorized_variant": "source28/book29 4K preview only; exact9 extra final-body frames, illustration60, summary60",
+    "current_active_final_must_remain_active": true,
+    "normal70_final_assembly_inclusion_authorized": false,
+    "new_human_approval_requested_by_this_review": false,
+    "eligibility_semantics": "A real preview may pass its own technical contract with preview_only=true and preview_delivery_eligible=true while production_delivery_eligible=false. Do not relabel it as a permanent final or production passed article."
+  },
+  "current_helper_real_ABI": {
+    "program_sha256": "f90e399b59ec5d1c7bc83a9d8c4c0134b7ba4dbe1627a2bde6ab91daa6c06562",
+    "profile_sha256": "2f031abbc607de93ded479a4d690fdab8b82763fd15a3fd8de65e2e604b09492",
+    "scope_argument": {
+      "source_id": "28",
+      "preview-last-body-hold-frames": 9,
+      "validation-fixture": false
+    },
+    "input_verification_required_kind": "preview-last-body-hold9-then-summary60",
+    "input_verification_required_flags": {
+      "preview_only": true,
+      "preview_last_body_hold_frames": 9,
+      "source_kind": "new-canonical-4K",
+      "canonical_pipeline_passed": true,
+      "original_audio_identical": true,
+      "original_audio_packet_timings_identical": true,
+      "end_page_frames": 60,
+      "end_page_seconds": 2
+    },
+    "input_upstream_status_current_requirements": {
+      "article": "28",
+      "passed": true,
+      "canonical_pipeline_passed": true,
+      "stage": "final4K-passed",
+      "video_sha256": "actual input MP4 hash",
+      "canonical_video_sha256": "verification.canonical_source_video_sha256",
+      "temporary_output_reset.production_started_ns": ">0"
+    },
+    "actual_success_output_kind": "preview-last-body-hold9-then-approved-book-illustration60-then-approved-summary60",
+    "actual_success_output_flags": {
+      "passed": true,
+      "preview_only": true,
+      "preview_delivery_eligible": true,
+      "production_delivery_eligible": false,
+      "source_kind": "new-canonical-4K"
+    },
+    "output_time_fields": [
+      "source_voice_endpoint_seconds",
+      "body_frames",
+      "illustration_start_frame",
+      "illustration_start_seconds",
+      "summary_start_frame",
+      "summary_start_seconds",
+      "delay_after_voice_seconds",
+      "output_frames",
+      "output_seconds"
+    ],
+    "output_hold_fields": [
+      "preview_last_body_hold_frames",
+      "preview_last_body_hold_seconds",
+      "preview_hold_start_frame",
+      "preview_hold_end_frame_inclusive",
+      "preview_frozen_reference_frame",
+      "preview_actual_held_frames_checked",
+      "preview_hold_thumbnail_MAE_each",
+      "preview_hold_thumbnail_MAE_max",
+      "preview_hold_visual_reference"
+    ],
+    "output_hold_repeat": "output_preview_hold_validation contains the same hold verification fields measured again from the actual joined output.",
+    "output_identity_and_preservation_fields": [
+      "postprocessor_sha256",
+      "input_video_sha256",
+      "video_sha256",
+      "upstream_verification_sha256",
+      "upstream_status_sha256",
+      "canonical_source_video_sha256",
+      "source_script_layout_binding",
+      "closed_idr_boundary_verified",
+      "body_reencoded_frames",
+      "audio_reencoded_or_added_packets",
+      "body_coded_pictures_identical",
+      "body_coded_pictures_sha256",
+      "body_packet_timings_identical",
+      "body_codec_and_display_parameters_identical",
+      "audio_codec_parameters_identical",
+      "aac_packet_payload_and_absolute_timings_identical",
+      "aac_packet_count",
+      "aac_adts_sha256",
+      "audio_packet_records_sha256",
+      "illustration_preparation",
+      "illustration_frames_checked",
+      "summary_frames_checked",
+      "decoded_frame_previews"
+    ],
+    "important_scope": "The illustrated-tail helper requires the9 held frames to exist in the genuine upstream new end-card input. It never creates or re-encodes those body frames; its zero body/audio re-encode claim applies to this input-to-tail-output step. plan_only is not a passed deliverable."
+  },
+  "voice_versus_body_timeline": {
+    "basis": "Requested/known endpoint157.33s; expected geometry only until the actual fresh native verification/report arrives. Bind to actual source_voice_endpoint_seconds then, retaining the raw value.",
+    "actual_voice_endpoint_seconds_expected": 157.33,
+    "speech_ceiling_formula": "ceil(source_voice_endpoint_seconds*30 - 0.000001)",
+    "actual_voice_ceiling_frame_expected": 4720,
+    "last_spoken_page_reference_frame_expected": 4719,
+    "extra_hold_frame_range_zero_based_inclusive": [
+      4720,
+      4728
+    ],
+    "extra_hold_frame_count": 9,
+    "held_body_end_frame_exclusive_expected": 4729,
+    "illustration_frame_range_inclusive_expected": [
+      4729,
+      4788
+    ],
+    "summary_frame_range_inclusive_expected": [
+      4789,
+      4848
+    ],
+    "output_frame_count_expected": 4849,
+    "illustration_start_seconds_expected": 157.63333333333333,
+    "summary_start_seconds_expected": 159.63333333333333,
+    "output_seconds_expected": 161.63333333333333,
+    "voice_to_illustration_gap_expected_seconds": 0.30333333333331325,
+    "strict_existing_helper_rule": "hold is an integer exactly9, only source28, body_frames == ceil(actual_endpoint*30-1e-6)+9; 9/30 <= gap < 10/30+1e-6. No general300ms allowance or8/10-frame relaxation.",
+    "proposed_qc_mapping_not_existing_helper_fields": {
+      "speech_end.end_frame": 4720,
+      "speech_end.endpoint_seconds": 157.33,
+      "preview_hold.start_frame": 4720,
+      "preview_hold.end_frame_exclusive": 4729,
+      "preview_hold.frames": 9,
+      "body_end.end_frame_exclusive": 4729,
+      "illustration.start_frame": 4729,
+      "summary.start_frame": 4789
+    },
+    "mapping_warning": "Current importer end=raw.body_frames must split into actual voice ceiling and held-body end. Never write4729 into a field claiming the measured speech ceiling. Proposed field names above are advisory; bind the final frozen status/report ABI without inventing raw fields.",
+    "five_existing_boundary_frames_expected": [
+      4728,
+      4729,
+      4788,
+      4789,
+      4848
+    ],
+    "five_boundary_label_note": "body-last is the final held frame4728, not the last spoken frame4719. Existing all9-frame decoded numeric verification supplies hold continuity; no new human-review gate is proposed."
+  },
+  "narrow_adapter_locations": [
+    {
+      "file": "/workspace/work/video-revision-delivery/native-inline-engine-frozen-20261114-v11-reviewed15-layout-latest-accepted-reference/ingest_inline_article.py",
+      "function": "prepare",
+      "lines": [
+        39,
+        41,
+        44,
+        47
+      ],
+      "current_literals": "passed native final + proof.production_delivery_eligible is True + normal approved-book-illustration60-then-approved-summary60 kind",
+      "preview_only_adaptation": "A separate exact source28/book29 preview branch should read the actual frozen main status, require the actual preview proof kind and preview eligibility true with production false, preserve original members and hashes, and retain the actual canonical/upstream/new-preview media chain. Keep the normal production branch unchanged.",
+      "not_yet_bindable": "Final main status stage/final_video_file/preview flags and upstream member names are being integrated by audio owner; do not infer or rewrite them before actual frozen artifacts."
+    },
+    {
+      "file": "/workspace/work/video-revision-delivery/native-inline-engine-frozen-20261114-v11-reviewed15-layout-latest-accepted-reference/import_actual_article.py",
+      "function": "import_one",
+      "lines": [
+        133,
+        145,
+        146,
+        148
+      ],
+      "current_literals": "end=report.body_frames; qc.speech_end.end_frame=end; qc.status passed iff production_delivery_eligible",
+      "preview_only_adaptation": "Split actual voice ceiling from held-body end, set actual illustration comparison start to body end4729, retain summary4789 and total4849, and distinguish preview contract pass from production eligibility. Do not turn productionfalse into failed audio or into final approval."
+    },
+    {
+      "file": "/workspace/work/video-revision-delivery/native-inline-engine-frozen-20261114-v11-reviewed15-layout-latest-accepted-reference/import_actual_article.py",
+      "function": "explicit_approved_layout_reference",
+      "current_literals": "Explicit per-article layout hash allowlist does not yet contain source28.",
+      "preview_only_adaptation": "If the frozen28 preview uses an explicit newly frozen layout manifest, bind that exact source28 request/layout reference locally. Preserve existing70 composition and all other article layout references; do not substitute a live mutable manifest."
+    },
+    {
+      "file": "/workspace/work/video-revision-delivery/native-inline-engine-frozen-20261114-v11-reviewed15-layout-latest-accepted-reference/delivery.py",
+      "function": "actual_illustrated_tail_report",
+      "lines": [
+        382,
+        385,
+        387
+      ],
+      "three_current_production_assumptions": [
+        "production_delivery_eligible true plus normal production kind",
+        "raw.body_frames == illustration_start_frame == qc.speech_end.end_frame",
+        "voice-to-illustration delay is less than one frame"
+      ],
+      "preview_only_adaptation": "Only the exact28 preview branch accepts previeweligible true/productionfalse and preview kind, uses raw.body_frames=held-body end while checking actual voice ceiling plus9, and retains the existing120-frame/source/layout/body/AAC checks. Keep all normal production assumptions unchanged."
+    },
+    {
+      "file": "/workspace/work/video-revision-delivery/native-inline-engine-frozen-20261114-v11-reviewed15-layout-latest-accepted-reference/delivery.py",
+      "function": "validate_article preparation program binding",
+      "line": 473,
+      "current_literals": "preparation.preparer_program_sha256 == original composition review postprocessor_sha256 (dc204...)",
+      "preview_only_adaptation": "Record the actual new f90... preparer truthfully and use the frozen single28 preview compatibility bridge below. Do not edit the old composition record or pretend the new helper has the old full-file SHA."
+    },
+    {
+      "file": "/workspace/work/video-revision-delivery/native-inline-engine-frozen-20261114-v11-reviewed15-layout-latest-accepted-reference/release_contract.py",
+      "function": "tail_contract",
+      "lines": [
+        338,
+        341,
+        344,
+        346,
+        347
+      ],
+      "current_literals": "Illustration starts exactly at speech_end.end_frame; summary starts speech+60.",
+      "preview_only_adaptation": "A separate exact28 preview contract keeps measured speech end4720 and checks illustration_start == speech_ceiling+9 == held_body_end, with9 actual held frames plus60+60. Existing normal tail contract remains immediate and unchanged. Report both endpoints instead of returning4729 as speech_end_frame."
+    },
+    {
+      "file": "/workspace/work/video-revision-delivery/native-inline-engine-frozen-20261114-v11-reviewed15-layout-latest-accepted-reference/ingest_inline_article.py",
+      "function": "finalize handoff plus production staging boundary",
+      "lines": [
+        81,
+        94
+      ],
+      "current_literals": "Normal finalize emits passed_per_article=true and passed_actual_native_inline_article_for_permanent_archive.",
+      "preview_only_adaptation": "Use a separate truthful preview intake/handoff identity, preview_only=true, preview_delivery_eligible=true and production_delivery_eligible=false after real preview validation. Keep the current final active and exclude this record from normal70final assembly, permanent-final replacement and production release paths. Retain original preview MP4 bytes; no local append/re-render is needed."
+    }
+  ],
+  "original_D_R_checks_to_keep": [
+    "Actual successful article job/run/attempt/artifact ZIP/member SHA binding and exact source/order28→29 mapping; no filename-derived success.",
+    "Immutable request/working JSON, working MD, executed GEN observation and separately labelled derived GEN roundtrip/source invariants.",
+    "Actual original complete native sound gates and actual canonical source identity;28 remains unchanged audio, with exact accepted AAC where the existing canonical contract requires it.",
+    "Canonical→upstream preview end-card→inline preview AAC ADTS, packet payload, side data/priming, packet count and absolute PTS/DTS/duration identity. Do not offset AAC by300ms or append nine audio packets.",
+    "Closed IDR at the held-body-to-art boundary and exact coded-body prefix/packet timing across this illustrated-tail helper.",
+    "Original native illustration/book/crop/Pillow12.3.0/LANCZOS/composed RGB proof and current approved summary image/font/text.",
+    "All60 illustration and60 summary frames compared with the existing MAE<2 algorithm, actual geometry/continuous30fps timestamps, and original five-boundary frame identities.",
+    "Existing production validators, archive paths and70-final assembly rules for every normal final; this report proposes no broad relaxation or new acoustic/approval gate."
+  ],
+  "original_composition_to_new_helper_bridge": {
+    "original_composition_program_sha256": "dc204b91415e28297b844e9666087b0e23e67194944b359cb5fb5ddbca0f1208",
+    "actual_preview_tail_integrator_program_sha256": "f90e399b59ec5d1c7bc83a9d8c4c0134b7ba4dbe1627a2bde6ab91daa6c06562",
+    "isolated_freeze_profile_sha256": "2f031abbc607de93ded479a4d690fdab8b82763fd15a3fd8de65e2e604b09492",
+    "evidence_type": "Static AST comparison only, independently reread in this review; no helper import/execution or image/media generation.",
+    "unchanged_functions": [
+      {
+        "function": "run",
+        "original_and_new_AST_identical": true,
+        "normalized_AST_sha256": "a63ffd0940cbc7a1f13e058e51a4e8f271f772aa6b0d2d5dd20133c7221751da"
+      },
+      {
+        "function": "digest_bytes",
+        "original_and_new_AST_identical": true,
+        "normalized_AST_sha256": "4f1a94d4811727e4aae2b2fd78d58133adfe0adb7ff7787f6a042fb56c27e6aa"
+      },
+      {
+        "function": "sha",
+        "original_and_new_AST_identical": true,
+        "normalized_AST_sha256": "3a050d28ead4dbc75bbbc4d9cf8680580b2018d378e3f62345d07a79aab99e1b"
+      },
+      {
+        "function": "probe",
+        "original_and_new_AST_identical": true,
+        "normalized_AST_sha256": "d65ca8ada8b9955934a2f81f87e0354c68f73033e1d17682c0507a38ac3eb813"
+      },
+      {
+        "function": "packets",
+        "original_and_new_AST_identical": true,
+        "normalized_AST_sha256": "afe4492d3fff5650af72cf13e156d3a817f6a38649f6b94a6e7085652d978524"
+      },
+      {
+        "function": "packet_timing",
+        "original_and_new_AST_identical": true,
+        "normalized_AST_sha256": "0411150cd9b758cf74e70d5a0a9f7c693f52cbf2bbbcbf6ad7204429ae3b6dd9"
+      },
+      {
+        "function": "coded_pictures_sha",
+        "original_and_new_AST_identical": true,
+        "normalized_AST_sha256": "0d20314471e81bab1fa99852ba791448bdda31e04be1a6f6f6d07f738fae898f"
+      },
+      {
+        "function": "boundary_is_idr",
+        "original_and_new_AST_identical": true,
+        "normalized_AST_sha256": "37916a7dcae99baf8ca046a228f00922c05e630dfbd22518a42bcc00468d667a"
+      },
+      {
+        "function": "aac_sha",
+        "original_and_new_AST_identical": true,
+        "normalized_AST_sha256": "1b12817e8d8fc27c9df11e71ec1536506bcaf1a85ed5dee84aaaf7516e8b43f8"
+      },
+      {
+        "function": "rgb_sha",
+        "original_and_new_AST_identical": true,
+        "normalized_AST_sha256": "ef93e42de223b8360adcb1f8ebd0c701a89cf2a2559babae162d7a00cf339132"
+      },
+      {
+        "function": "source_layout_digest",
+        "original_and_new_AST_identical": true,
+        "normalized_AST_sha256": "5aa15e5dd5c9141f4e231b0057602937a07ae49774ff44f13f5b6924b1aa105a"
+      },
+      {
+        "function": "source_layout_binding",
+        "original_and_new_AST_identical": true,
+        "normalized_AST_sha256": "47a9006ea0189cf5192948e1925fe162ea21d21871a9974623e06e6d098a7426"
+      },
+      {
+        "function": "approved_inputs",
+        "original_and_new_AST_identical": true,
+        "normalized_AST_sha256": "a55fc462a325385bb53e0708c3222463714cdae72f1807d65aca1444bb81c231"
+      },
+      {
+        "function": "compose_illustration",
+        "original_and_new_AST_identical": true,
+        "normalized_AST_sha256": "132160c4df7386bca34a0882086b3d8601e9ead8de5775c852a39ed0586b09b5"
+      },
+      {
+        "function": "verify_static_pages",
+        "original_and_new_AST_identical": true,
+        "normalized_AST_sha256": "d2f8d831cb2973b2a9a080a4c26b09932b79b9ed4635217170c4db8cd80059e6"
+      }
+    ],
+    "bridge_scope": "Only source28/book29, explicitly preview-only exact9 branch, frozen original/new helper pair. Preserve the actual new postprocessor/preparer SHA alongside the original approved composition provenance.",
+    "pixel_algorithm": "compose_illustration, approved_inputs, rgb_sha and verify_static_pages are AST-identical to dc204. Existing D.approved_illustration_pixels continues to compare actual approved native pixels/crop/Pillow output and original composed RGB; no alternate image algorithm or threshold is introduced.",
+    "not_permitted": "Do not globally replace composition-qc70.postprocessor_sha256, rewrite original reports, waive actual prepared RGB equality, or allow arbitrary helper versions."
+  },
+  "existing_diagnostic_evidence_scope": {
+    "contract_and_legacy_tests": {
+      "path": "/workspace/work/video-audit70-20261113/article28-user-review-20261114/hold9-integrator/hold9-contract-and-legacy-compatibility-tests.json",
+      "sha256": "69e0ef61e6e85a9a8625a34eb90cd4cb395586fbfe196fc0ffc6e0aaefbe4c55",
+      "test_count": 33,
+      "meaning": "existing static/unit and legacy synthetic compatibility evidence, not actual new28 preview acceptance"
+    },
+    "all9_actual_decoding_diagnostic": {
+      "path": "/workspace/work/video-audit70-20261113/article28-user-review-20261114/hold9-integrator/actual-nine-frame-decoder-positive-and-negative-tests.json",
+      "sha256": "86cabe099a6a0285c2103e0010e50dd0573e2e0a13066f68eb7f74e564731016",
+      "meaning": "Existing synthetic fixture decoded9 static frames and rejected a transition; does not prove new source28 preview media."
+    },
+    "old28_diagnostic_used_as_preview_success": false,
+    "synthetic_fixture_used_as_actual_native_success": false,
+    "genuine_source28_preview_positive_still_pending": true
+  },
+  "pending_actual_artifact_binding": [
+    "Actual frozen audio-owner end-card/helper/status versions and output kind/stage/eligibility field names; if they differ, bind their genuine ABI rather than this draft expectation.",
+    "Actual new28 successful job/run/artifact ZIP and original canonical/upstream/inline preview MP4/member hashes.",
+    "Actual source_voice_endpoint_seconds,9-frame output hold validation, preparation RGB/SHA,120-frame verification, AAC absolute-packet evidence and existing boundary review.",
+    "Actual immutable request/layout manifest and used-source collection. No current report or synthetic hash can substitute for those inputs."
+  ],
+  "actions": {
+    "code_or_source_changed": false,
+    "remote_calls": false,
+    "production_or_validator_executed": false,
+    "helper_imported_or_executed": false,
+    "media_generated": false,
+    "old_final_replaced": false,
+    "extra_quality_gate_added": false,
+    "extra_human_approval_requested": false,
+    "only_output_file": "/workspace/work/video-revision-delivery/article28-review-intake-20261114/preview-hold9-ABI-readonly-review.json"
+  }
+}
