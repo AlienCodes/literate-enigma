@@ -16,7 +16,7 @@ ROOT = Path.cwd()
 TASK = ROOT / '.github/video-revision-batch'
 NO = os.environ.get('ARTICLE_NO', '12').zfill(2)
 ALLOWED = {f'{n:02d}' for n in range(1, 71)}
-A21_AUDIO_REPAIRS = {'15', '18', '30'}  #17 is a pure text review preserving its latest fully accepted +6 voice.
+A21_AUDIO_REPAIRS = {'15', '17', '18', '30'}
 CONTROLLED_AUDIO_REPAIRS = {'05', '16', '27', '67'}
 APPROVED_AUDIO_REPAIRS = {'10', '12', '44', '51'} | A21_AUDIO_REPAIRS | CONTROLLED_AUDIO_REPAIRS
 SELECTED = json.loads((TASK / 'articles.json').read_text())
@@ -119,13 +119,11 @@ def prepare_accepted_pcm_continuity(baseline_bytes, accepted_aac):
                 '67':'c34294a522a7', '16':'630cbdf1eae2', '27':'79f315bb8b44'}
     exact_old_pcm = {'02':'c21872d4db894f37b1b8b5db752917f9f6ef60680834ca4cccef9b806b5c1c52',
                      '69':'d04e5e1b057dfaa788bf86dcd6fe7da7b88fc1a254f8abd0a695621f074c2837',
-                     '17':'ca5fb9ebaa8cc1bdf386cc048aa315f7301cf0c423db17cbfcec4826d9667e46',
                      '05':'4c20eb528b935e7a315e3f41b3f4168fe82cd5e26e0b33d16ea4bfce2609cb64',
                      '67':'39f7defdcfad7a4dae00c9677c7998d8f70c984247583e136e09e6efe9392bae',
                      '16':'3a2239772fe1941d4a5de28be034ff49670fedcf6ced0d1c0e61e5476912b93d',
                      '27':'e15a2d05428e3219216ac8d10780669007f903071b0fcfc3c6bf377c517b8d7f'}
-    prior_public_aac = {'17':'67cfce1c3eca849174a5a53342241980a3dd24e6e08ef4e1494eb1de7475460a',
-                        '69':'2b15b4811866afd03ef5962f6ce99717d28d7e97704750d9ede91bd7799eed15',
+    prior_public_aac = {'69':'2b15b4811866afd03ef5962f6ce99717d28d7e97704750d9ede91bd7799eed15',
                         '67':'d5d57519d6b60e31eeb92bd1bf0b0505192b49ee9c1e34ae02b5c9ddc9532856'}
     if NO not in expected:
         return
@@ -153,8 +151,7 @@ def prepare_accepted_pcm_continuity(baseline_bytes, accepted_aac):
     if NO in prior_public_aac:
         proof.update({'purpose':'diagnostic exact prior public native PCM for original confirmation migration; not a QC verdict',
                       'reference_kind':'actual_prior_public_native_render_not_the_accepted_voice',
-                      'original_public_run_id':None if NO == '17' else 43543967031,
-                      'historical_accepted_confirmation_reference':NO == '17',
+                      'original_public_run_id':43543967031,
                       'expected_prior_public_native_pcm_md5_first12':expected[NO],
                       'expected_prior_public_native_pcm_sha256':exact_old_pcm[NO],
                       'expected_prior_public_native_aac_adts_sha256':prior_public_aac[NO]})
@@ -364,7 +361,7 @@ def verify_correct_origin_reference_cache(request, after_references=False):
 
 def verify_unchanged_review_audio_packets(accepted_video, canonical_video):
     """Pure visual13/14/26 revisions preserve their own accepted audio packets."""
-    if NO not in {'13', '14', '17', '26'}:
+    if NO not in {'13', '14', '26', '36'}:
         return
     status['stage'] = f'{NO}-accepted-audio-packet-preservation'
     save()
