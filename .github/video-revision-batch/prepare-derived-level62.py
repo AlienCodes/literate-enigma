@@ -151,6 +151,16 @@ def copy_isolated_work(work, isolated):
         shutil.copytree(work / 'fonts', isolated / 'fonts')
 
 
+def verify_exact62_request(request, maker):
+    assert sha(request) == EXPECTED_REQUEST, 'Only the frozen user-reviewed62 source is authorized.'
+    assert sha(maker) == EXPECTED_MAKER
+    data = json.loads(Path(request).read_text())
+    assert str(data['no']) == '62'
+    assert data['停顿插入点']['S15']['2'] == [3.584083, '交界']
+    assert data.get('合成标点', {}).get('S15') is None
+    return data
+
+
 def prepare(args, report):
     assert os.environ.get('STRICT_CACHE') == '1'
     assert os.environ.get('XG_NOPUSH') == '1'
@@ -161,12 +171,7 @@ def prepare(args, report):
     assert cache.is_dir() and not cache.is_symlink()
     assert not args.output.resolve().is_relative_to(root)
     request = work / 'scripts/62.json'
-    assert sha(request) == EXPECTED_REQUEST, 'Only the exact root-approved62 source is authorized.'
-    assert sha(work / 'make_video.py') == EXPECTED_MAKER
-    data = json.loads(request.read_text())
-    assert str(data['no']) == '62'
-    assert not data.get('停顿处除阻', {}).get('S9')
-    assert data['除阻加强']['S9'] == {'1': [6.245, 6.625, 4.5]}
+    data = verify_exact62_request(request, work / 'make_video.py')
     model_ids = json.loads((repository / '视频/工具/环境/模型校验码.json').read_text())
     model_hashes = {}
     for name in ('kokoro-v1.0.onnx', 'kokoro-v1.0-timed.onnx', 'voices-v1.0.bin'):
