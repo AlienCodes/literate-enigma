@@ -93,8 +93,13 @@ def install(args):
         for pin in ref['evidence']:
             ep=HERE/pin['file'];require(sha(ep)==pin['sha256'],'Pinned actual prior evidence changed: '+pin['file'])
         doc=json.loads(actual.read_text())
-        require(canonical(without_targets(doc,ref))==ref['outside_ten_target_fields_canonical_sha256'],
-            'A field outside ten selected metadata entries changed; PV, voice and text must stay exact')
+        outside_hash=canonical(without_targets(doc,ref))
+        allowed_stages={ref['outside_ten_target_fields_canonical_sha256']:'observed-post-draft',
+            ref['exact_original_pre_draft_stage']['outside_ten_target_fields_canonical_sha256']:'original-pre-draft-mapper-replay'}
+        report.update(actual_source_sha256_before=sha(actual),actual_outside_target_canonical_sha256=outside_hash,
+            exact_original_stage_binding=allowed_stages.get(outside_hash))
+        require(outside_hash in allowed_stages,
+            'Actual source is not either complete exact original stage; no PV or field may be ignored')
         revised=copy.deepcopy(doc)
         changes=[]
         for row in ref['nine']:
