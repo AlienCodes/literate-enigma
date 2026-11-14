@@ -73,6 +73,7 @@ jobs:
           if-no-files-found: error
       - name: 独立分支保存公开认证证据
         if: always()
+        continue-on-error: true
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CERT_VARIANT: ${{ matrix.variant }}

@@ -27,6 +27,15 @@ try:
   src=PKG/'historical-fixtures'/f['path'];assert sha(src)==f['SHA256'];dst=REPO/f['path'];dst.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(src,dst)
   if f['path'].startswith('视频/脚本/'):
    (W/'scripts').mkdir(exist_ok=True);shutil.copyfile(src,W/'scripts'/Path(f['path']).name)
+ # Adopt only the pre-existing, independently proved visual resource explicitly approved by root.
+ baseline_resource=PKG/'approved-regression/回归基准_27.json'
+ baseline_info=json.loads((PKG/'approved-regression/approved-baseline-manifest.json').read_text())
+ assert sha(baseline_resource)==baseline_info['source_SHA256']
+ shutil.copyfile(baseline_resource,T/'新管/回归基准_27.json')
+ report['approved_existing_visual_baseline']=baseline_info
+ for proof in (PKG/'approved-regression').glob('*.json'):
+  target='approved-'+('visual-baseline.json' if proof.name=='回归基准_27.json' else proof.name)
+  shutil.copyfile(proof,OUT/target)
  # Both modes use the same historical, immutable regression fixtures, never production requests.
  if a.variant=='keep-reviewed-gain':
   for f in manifest['files']:
