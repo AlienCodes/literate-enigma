@@ -1,0 +1,29 @@
+name: Publish latest qualified books38-70 review 4K
+on:
+  push:
+    branches: [codex/books38-70-latest-review-4k-20261114-v2]
+    paths: [.github/latest33-review-release/MANIFEST.json]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  publish:
+    if: github.repository == 'alienalgorithm/postgraduate-vocabulary'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify all33 latest identities, real V3, dual files and exact ZIP
+        run: python -u .github/latest33-review-release/publish_latest_review.py
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: latest33-review-release-verification-${{ github.run_id }}
+          path: latest-review-release-output/RELEASE-VERIFICATION.json
+          if-no-files-found: warn
+          retention-days: 30
