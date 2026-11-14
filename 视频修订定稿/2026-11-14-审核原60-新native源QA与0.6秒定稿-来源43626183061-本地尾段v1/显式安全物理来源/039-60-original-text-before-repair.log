@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/workspace/work/video-audit70-20261113/article60-user-review-draft-20261114/thin-validation/mirror/视频/工具/踩坑核查.py", line 991, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/workspace/work/video-audit70-20261113/article60-user-review-draft-20261114/thin-validation/mirror/视频/工具/踩坑核查.py", line 937, in main
+    fails = selftest() + _YW.自检() + KZ_自检() + selftest_record_human() + selftest_l19() + selftest_l20() + selftest_record_meta() + selftest_folders() + selftest_phrase() + selftest_idiom() + selftest_note() + selftest_term() + selftest_meaning() + selftest_gloss() + selftest_zhdup() + selftest_meta() + selftest_ending() + selftest_linestart() + __import__('破折号').自检()
+                                                                                                                                       ^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/video-audit70-20261113/article60-user-review-draft-20261114/thin-validation/mirror/视频/工具/踩坑核查.py", line 594, in selftest_folders
+    with tempfile.TemporaryDirectory() as r:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/tempfile.py", line 886, in __init__
+    self.name = mkdtemp(suffix, prefix, dir)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/tempfile.py", line 384, in mkdtemp
+    _os.mkdir(file, 0o700)
+OSError: [Errno 28] No space left on device: '/tmp/tmpmu87xw28'

@@ -1,0 +1,84 @@
+{
+  "article": "60",
+  "book_order": "36",
+  "source_sha256": "75c99a0419b88fb91b5f59f8922277a404d83384332f9623852f7929eb989370",
+  "GEN_sha256": "d536c688dad9bbee72e5fc8c60d5b486e91f3a0079146de05a8ab92b70ff0d5d",
+  "MD_sha256": "c4858b81a419e8a685b66e419f60120eb76744295c75138712a9205e50d94493",
+  "original_generator_exit": 0,
+  "whole_JSON_roundtrip_exact": true,
+  "JSON_differences": [],
+  "original_text_before_repair_exit": 1,
+  "original_repair_exit": 0,
+  "original_text_after_repair_exit": 1,
+  "original_text_hard_errors": [
+    "  ✘ [T10改稿] S3 第2块中文改了“经过它附近的”，待改清单（用户原话）里找不到——已发给用户的中文没有用户允许一律不改（铁13，守则4：说啥只改啥）",
+    "  ✘ [T10改稿] S4 第2块说明改了“1919年11月6日，日食观测结果在两学”，待改清单（用户原话）里找不到——已发给用户的中文没有用户允许一律不改（铁13，守则4：说啥只改啥）",
+    "  ✘ [T10改稿] S6 第2块中文改了“举世皆知”，待改清单（用户原话）里找不到——已发给用户的中文没有用户允许一律不改（铁13，守则4：说啥只改啥）",
+    "  ✘ [T34] S1-2 stars in its apparent vicinity  ← 两个以上重点词挤在一组、中文先后和英文一样：拆开，每个重点词的中文放在它自己的英文正下方。自动拆（中文一字不改）：python3 工具/拆分组.py NN --写入"
+  ],
+  "original_text_pending_confirmations": [
+    "  ？ [逐句确认] S15 是新的或改过：逐条核对 T2/T3 词性、T4 方向、T5 不横跨、T7 通顺、T8 读者看得懂、T9 对齐粗细、T13 整句读通、T21 重点词贴合语境，再跑 python3 工具/逐句确认.py 60 S15 \"核对结论\""
+  ],
+  "original_mechanical_repair_differences": [
+    {
+      "path": "/sentences/14/chunks/1/note",
+      "reason": "value",
+      "expected": "（carried there by…：过去分词短语作状语；\nthe prize had honoured：定语从句，修饰 man）\n（简述：▸成名：1919年日食观测被誉为证实太阳引力会使星光偏折，这一相对论预言让爱因斯坦迅速举世闻名。▸分歧：委员古尔斯特兰德认为相对论证据不足；1921年因无提名达标，物理学奖按章程保留一年。▸授奖：1922年，保留的1921年度物理学奖授予爱因斯坦，表彰理论物理贡献，尤其是发现光电效应定律。▸区别：光电效应指光使金属释放电子，这一定律帮助奠定量子理论基础；授奖决定次日的信件明确：该奖不考虑相对论。▸演讲：爱因斯坦赴日错过颁奖典礼；1923年，他的诺贝尔演讲却专讲相对论，让被奖项绕开的理论登上讲台。）",
+      "actual": "（carried there by…：过去分词短语作状语；\nthe prize had honoured：定语从句，修饰 man）\n（简述：▸成名：1919年日食观测被誉为证实太阳引力会使星光偏折，这一相对论预言让爱因斯坦迅速举世闻名。\n▸分歧：委员古尔斯特兰德认为相对论证据不足；1921年因无提名达标，物理学奖按章程保留一年。\n▸授奖：1922年，保留的1921年度物理学奖授予爱因斯坦，表彰理论物理贡献，尤其是发现光电效应定律。\n▸区别：光电效应指光使金属释放电子，这一定律帮助奠定量子理论基础；\n▹授奖决定次日的信件明确：该奖不考虑相对论。\n▸演讲：爱因斯坦赴日错过颁奖典礼；1923年，他的诺贝尔演讲却专讲相对论，让被奖项绕开的理论登上讲台。）"
+    }
+  ],
+  "original_sentence_text_reviews": [
+    {
+      "sentence": "S1",
+      "exit": 0
+    },
+    {
+      "sentence": "S2",
+      "exit": 0
+    },
+    {
+      "sentence": "S3",
+      "exit": 0
+    },
+    {
+      "sentence": "S4",
+      "exit": 0
+    },
+    {
+      "sentence": "S5",
+      "exit": 0
+    },
+    {
+      "sentence": "S6",
+      "exit": 0
+    },
+    {
+      "sentence": "S15",
+      "exit": 0
+    }
+  ],
+  "core_before_sha256": {
+    "视频/工具/初稿生成/核对.py": "c635aee82e0fe4dff9f70dcae03e2f797aadb670c8ebe6c8f202b82a35a87a74",
+    "视频/工具/踩坑核查.py": "f6efb9df33705fadac3d78d588adb722b4f07eab134818983a869f1d9e0c748d",
+    "视频/工具/check_all.py": "aaae1a04c1adb91ea17906374dc5f13fd52ae2894cceeb1ae2f2e62ebe4b51f2",
+    "视频/工具/新管/印章.py": "631d1d504e75b1b6fc01f3b1c6fec5bdee303f992ed005878062c9ed5f02bda8"
+  },
+  "core_after_sha256": {
+    "视频/工具/初稿生成/核对.py": "c635aee82e0fe4dff9f70dcae03e2f797aadb670c8ebe6c8f202b82a35a87a74",
+    "视频/工具/踩坑核查.py": "f6efb9df33705fadac3d78d588adb722b4f07eab134818983a869f1d9e0c748d",
+    "视频/工具/check_all.py": "aaae1a04c1adb91ea17906374dc5f13fd52ae2894cceeb1ae2f2e62ebe4b51f2",
+    "视频/工具/新管/印章.py": "631d1d504e75b1b6fc01f3b1c6fec5bdee303f992ed005878062c9ed5f02bda8"
+  },
+  "actual_original_last_sent_snapshot": {
+    "path": "/workspace/work/article36-source60-readonly-native-baseline-20261114/actual-root-last-sent60-at-native43543967031.json",
+    "sha256": "b80b63905ed193fc9c9592c10952cfa250750a5a02d6a2110d0476faf52d4350",
+    "immutable_native_run": 43543967031,
+    "exact_original_L13_lookup": "/workspace/work/video-audit70-20261113/article60-user-review-draft-20261114/thin-validation/mirror/视频/脚本/已发版本/60.json",
+    "missing_snapshot_skip_not_used": true
+  },
+  "source_input_unchanged": true,
+  "no_audio_video_or_dispatch": true,
+  "draft_only": true,
+  "final_native_or_PAY_CI_install_authorized": false,
+  "passed": false
+}

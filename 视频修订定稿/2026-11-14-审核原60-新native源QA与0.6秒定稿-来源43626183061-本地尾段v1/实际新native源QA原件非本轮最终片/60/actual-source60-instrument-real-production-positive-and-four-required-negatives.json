@@ -1,0 +1,32 @@
+{
+  "kind": "actual-production-report-ABI-test-not-a-second-acoustic-measurement",
+  "source_id": "60",
+  "actual_native_run": 43626183061,
+  "actual_production_report_scope_positive_passed": true,
+  "actual_original_checks_count": 65,
+  "actual_original_checks_all_true": true,
+  "necessary_bad_envelopes_rejected": [
+    {
+      "case": "wrong-source-ID",
+      "rejected": true,
+      "reason": "User077 source60 instrument belongs to another source"
+    },
+    {
+      "case": "wrong-request-source-SHA",
+      "rejected": true,
+      "reason": "Source60 actual immutable request/GEN differs from user077 frozen source"
+    },
+    {
+      "case": "native-full-QA-not-passed",
+      "rejected": true,
+      "reason": "Source60 supplement requires the actual complete original native quality gates"
+    },
+    {
+      "case": "failed-actual-supplement-check",
+      "rejected": true,
+      "reason": "Source60 actual original acoustic checks are incomplete, duplicated or failed"
+    }
+  ],
+  "actual_source_or_final_whole_V3_not_claimed_by_this_unit": true,
+  "acoustic_thresholds_or_audio_changed": false
+}

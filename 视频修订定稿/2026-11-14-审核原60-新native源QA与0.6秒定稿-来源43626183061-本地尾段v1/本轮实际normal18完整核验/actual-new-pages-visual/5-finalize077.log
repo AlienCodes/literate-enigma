@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/dev/shm/review36-hold06-intake/code/validate_single_article_new_native077.py", line 106, in <module>
+    main(p.parse_args())
+  File "/dev/shm/review36-hold06-intake/code/validate_single_article_new_native077.py", line 59, in main
+    V.validate(SimpleNamespace(upstream_record=str(adapter_path),
+  File "/dev/shm/review36-hold06-intake/code/validate_single_article_post_only.py", line 51, in validate
+    review_path=Path(a.boundary_review);review=D.load(review_path);require(review['actually_visually_reviewed']is True and review['video_sha256']==raw['video_sha256'],'Actual current boundary review required')
+                                                                           ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'actually_visually_reviewed'
