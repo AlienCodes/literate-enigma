@@ -7,9 +7,9 @@ The bridge had opened in July 1940 as the third-longest **suspension** **span** 
 
 **Textbooks** have long **invoked** **resonance**: a **periodic** push that matches an object's natural **frequency** can **amplify** its motion, as when **well-timed** **shoves** **propel** a child on a swing. The **analogy** is **intuitive** but **deceptive**. That morning's wind did not **pulse** in time with the bridge; it blew fairly **steadily**.
 
-The **mechanism** was **subtler**. Each twist **altered** the passing airflow, which **reinforced** the next twist: a **feedback** loop that kept **tapping** the wind for energy. In March 1941 a federal **panel** blamed the deck's **flexibility** and wing-like lift. Later analysis called the mechanism flutter; in February 1991 two engineers **asserted** in a physics journal that textbooks had **erred**.
+The **mechanism** was **subtler**. Each twist **altered** the passing airflow, which **reinforced** the next twist: a **feedback** loop that kept **tapping** the wind for energy. In March 1941 a federal **panel** blamed the deck's **flexibility** and wing-like lift. Later **analysis** called the **mechanism** flutter; in February 1991 two engineers **asserted** in a physics journal that textbooks had **erred**.
 
-The panel urged **wind-tunnel** tests, and trials on **scaled-down** **replicas** **gradually** became **customary** for suspension bridges. A **sturdier** **replacement** opened in October 1950. Gertie's fall may still **instruct** engineers, if read **accurately**: the wind never kept time with the bridge, the bridge's own motion turned a sustained wind **destructive**.
+The panel urged **wind-tunnel** tests, and trials on **scaled-down** **replicas** **gradually** became **customary** for suspension bridges. A **sturdier** **replacement** opened in October 1950. Gertie's fall may still **instruct** engineers, if read **accurately**: the wind never **kept time with** the bridge, the bridge's own motion turned a sustained wind **destructive**.
 
 ## 中文
 
@@ -19,9 +19,9 @@ The panel urged **wind-tunnel** tests, and trials on **scaled-down** **replicas*
 
 **教科书**(Textbooks)长期以来一直**援引**(invoked)**共振**(resonance)来解释：与物体固有**频率**(frequency)相匹配的**周期性的**(periodic)推力能**放大**(amplify)其运动，就像**时机恰到好处的**(well-timed)一次次**猛推**(shoves)**推动**(propel)秋千上的孩子一样。（have long done：现在完成时，长期以来一直……）（that matches…：定语从句，修饰 push）（as when…：就像……的时候那样）这个**类比**(analogy)**直观**(intuitive)却**具有迷惑性**(deceptive)。那天上午的风没有与大桥**有节奏地跳动**(pulse)；它吹得相当**平稳**(steadily)。（in time with：合着……的节拍）
 
-其**机理**(mechanism)要**更为微妙**(subtler)。每一次扭动都**改变了**(altered)掠过的气流，而气流又**加强了**(reinforced)下一次扭动：这是一个不断从风中**汲取**(tapping)能量的**反馈**(feedback)回路。（which…：非限制性定语从句，指代 the passing airflow）（a feedback loop：同位语，概括前面的过程；keep doing：不断做；tap A for B：从 A 汲取 B）1941年3月，一个联邦**调查委员会**(panel)把原因归于桥面的**柔性**(flexibility)和类似机翼的升力。（blame…：把（事故）归咎于……）后来的分析把这一机理称为颤振；1991年2月，两位工程师在一份物理学期刊上**断言**(asserted)，教科书**出错了**(erred)。（call A B：把 A 称为 B）（that…：宾语从句，作 asserted 的宾语；had erred：过去完成时）
+其**机理**(mechanism)要**更为微妙**(subtler)。每一次扭动都**改变了**(altered)掠过的气流，而气流又**加强了**(reinforced)下一次扭动：这是一个不断从风中**汲取**(tapping)能量的**反馈**(feedback)回路。（which…：非限制性定语从句，指代 the passing airflow）（a feedback loop：同位语，概括前面的过程；keep doing：不断做；tap A for B：从 A 汲取 B）1941年3月，一个联邦**调查委员会**(panel)把原因归于桥面的**柔性**(flexibility)和类似机翼的升力。（blame…：把（事故）归咎于……）后来的**分析**(analysis)把这一**机理**(mechanism)称为颤振；1991年2月，两位工程师在一份物理学期刊上**断言**(asserted)，教科书**出错了**(erred)。（call A B：把 A 称为 B）（that…：宾语从句，作 asserted 的宾语；had erred：过去完成时）
 
-该委员会力主进行**风洞**(wind-tunnel)试验，并且对**按比例缩小的**(scaled-down)**复制品**(replicas)进行试验，对于悬索桥而言也**渐渐**(gradually)成为了**惯例**(customary)。（trials on…：对……进行的试验；become customary：成为惯例）一个**更坚固的**(sturdier)**替代品**(replacement)于1950年10月通车（开放）。格蒂的倒塌或许仍能**指导着**(instruct)工程师，如果解读得**精准**(accurately)：风从未与大桥合拍，是大桥自身的运动使一股持续的风**具有了破坏力**(destructive)。（if read accurately：省略形式，= if it is read accurately）（keep time with：与……合拍；turn A＋形容词：使 A 变得……）（简述：▸事故：1940年，刚通车数月的塔科马大桥在持续大风中剧烈扭转，最终断裂坍塌，无人遇难。▸隐患：加固桥面的梁较浅，虽然轻巧、省钱，抵抗变形的能力却不足；连微风都能使桥起伏，早有“奔腾的格蒂”之名。▸纠误：课本常用共振解释事故，好比按秋千的节拍反复推它；但当天的风相当平稳，并未按桥的节拍吹。▸机制：桥每扭一下就改变周围气流，气流又推动它扭得更厉害，形成越扭越大的循环；这叫颤振，与课本的解释不同。▸后续：事故推动悬索桥用缩小模型做风洞试验成为惯例，检验桥在风中是否稳定；更坚固的新桥于1950年通车。）
+该委员会敦促进行**风洞**(wind-tunnel)试验，并且对**按比例缩小的**(scaled-down)**复制品**(replicas)进行试验，对于悬索桥而言也**渐渐**(gradually)成为了**惯例**(customary)。（trials on…：对……进行的试验；become customary：成为惯例）一个**更坚固的**(sturdier)**替代品**(replacement)于1950年10月通车（开放）。格蒂的倒塌或许仍能**指导着**(instruct)工程师，如果解读得**精准**(accurately)：风从未**与**(kept time with)大桥**合拍**(kept time with)，是大桥自身的运动使一股持续的风**具有了破坏力**(destructive)。（if read accurately：省略形式，= if it is read accurately）（keep time with：与……合拍；turn A＋形容词：使 A 变得……）（简述：▸事故：1940年，刚通车数月的塔科马大桥在持续大风中剧烈扭转，最终断裂坍塌，无人遇难。▸隐患：加固桥面的梁较浅，虽然轻巧、省钱，抵抗变形的能力却不足；连微风都能使桥起伏，早有“奔腾的格蒂”之名。▸纠误：课本常用共振解释事故，好比按秋千的节拍反复推它；但当天的风相当平稳，并未按桥的节拍吹。▸机制：桥每扭一下就改变周围气流，气流又推动它扭得更厉害，形成越扭越大的循环；这叫颤振，与课本的解释不同。▸后续：事故推动悬索桥用缩小模型做风洞试验成为惯例，检验桥在风中是否稳定；更坚固的新桥于1950年通车。）
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -64,6 +64,7 @@ The panel urged **wind-tunnel** tests, and trials on **scaled-down** **replicas*
 | deceptive | 本文：具有迷惑性；adj. 迷惑人的，具有欺骗性的，造成假象的（Appearances can be deceptive. 人不可貌相）；deceive v. | 3 |
 | pulse | 本文：有节奏地跳动；v. 有节奏地涌动，搏动（pulse in time with 合着节拍起伏）；n. 脉搏（take sb's pulse）；节奏 | 3 |
 | steadily | 本文：平稳；adv. 平稳地，持续地（blow/grow steadily）；steady adj. 稳定的 | 3 |
+| analysis | 本文：分析；n. 分析，分析结果（an analysis of sth）；复数 analyses；analyse v. 分析 | 4 |
 | mechanism | 本文：机理；n. 机理，机制（the mechanism of/behind sth）；机械装置（a defence mechanism 防御机制） | 4 |
 | subtler | 本文：更为微妙；adj. (subtle 比较级) 更微妙的，不易察觉的（subtle differences）；巧妙的；subtlety n. | 4 |
 | altered | 本文：改变了；v. (alter) 改变，更改（alter the airflow/plans）；修改（衣服）；alteration n. | 4 |
@@ -83,6 +84,7 @@ The panel urged **wind-tunnel** tests, and trials on **scaled-down** **replicas*
 | replacement | 本文：替代品；n. 替代物，替换者（a replacement for sth）；替换，更换（hip replacement 髋关节置换）；replace v. | 5 |
 | instruct | 本文：指导着；v. 教导，给以教益；指示，命令（instruct sb to do sth）；instruction n.；instructive adj. 有教育意义的 | 5 |
 | accurately | 本文：精准；adv. 准确地，精确地（read/measure accurately）；accurate adj.；accuracy n. | 5 |
+| kept time with | 本文：与……合拍；v. (keep time with) 与……合拍，跟上……的节奏；kept 是 keep 的过去式 | 5 |
 | destructive | 本文：具有了破坏力；adj. 破坏性的，毁灭性的（a destructive storm/force）；destruction n.；destroy v. | 5 |
 
 ## 史实与来源
