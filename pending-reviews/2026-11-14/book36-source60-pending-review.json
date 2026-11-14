@@ -1,6 +1,6 @@
 {
   "kind": "pending_article_review_aggregate",
-  "updated_by_review": "065",
+  "updated_by_review": "069",
   "book_order": "36",
   "source_id": "60",
   "title_zh": "改变世界的科学巨匠",
@@ -8,9 +8,13 @@
     "062",
     "063",
     "064",
-    "065"
+    "065",
+    "066",
+    "067",
+    "068",
+    "069"
   ],
-  "record_only": true,
+  "record_only": false,
   "render_authorized": false,
   "review_collection_open": true,
   "pending_focus_words": [
@@ -24,7 +28,6 @@
     }
   ],
   "sync_article_vocabulary_table_when_authorized": true,
-  "source_GEN_MD_audio_video_PDF_changed": false,
   "pending_changes": {
     "focus_words": [
       {
@@ -39,6 +42,16 @@
         "english": "Royal",
         "Chinese_focus_only": "皇家",
         "two_occurrences_same_key": true
+      },
+      {
+        "english": "Revolution",
+        "Chinese_focus_only": "革命",
+        "Chinese_plain_neighbor": "科学"
+      },
+      {
+        "english": "askew",
+        "Chinese_focus_only": "歪了",
+        "Chinese_plain_neighbor": "全"
       }
     ],
     "translation064": {
@@ -63,14 +76,24 @@
       "to": "其观测结果"
     },
     "existing_findings_focus_only": "结果",
-    "sync_article_vocabulary_table_when_authorized": true
+    "sync_article_vocabulary_table_when_authorized": true,
+    "translation069": {
+      "from": "成了举世皆知的名人",
+      "to": "成了一位全球性的名人"
+    },
+    "existing_celebrity_and_Chinese_名人_focus_preserved": true
   },
-  "unaccepted_explanatory_note_proposal": {
-    "author": "assistant",
-    "role": "suggestion_responding_to_user_question",
+  "isolated_source_GEN_MD_static_draft_updates_authorized": true,
+  "canonical_source_or_published_video_and_final_alias_changed": false,
+  "PDF_work_paused": true,
+  "explanatory_note": {
     "text": "1919年11月6日，日食观测结果在两学会的联席会议上公布，人们认为它支持了爱因斯坦的预言：太阳引力会使星光偏折。",
-    "accepted_by_user": false,
-    "authorized_for_addition": false,
-    "applied": false
+    "accepted_by_user": true,
+    "authorized_for_isolated_draft_insertion": true,
+    "acceptance_review_ids": [
+      "066",
+      "067"
+    ],
+    "application_to_current_published_video_claimed": false
   }
 }
