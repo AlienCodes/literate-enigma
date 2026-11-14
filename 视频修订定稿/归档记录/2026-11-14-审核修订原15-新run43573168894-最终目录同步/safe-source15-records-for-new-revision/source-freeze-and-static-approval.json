@@ -1,0 +1,180 @@
+{
+  "article": "15",
+  "book_order": "25",
+  "source_freeze_complete": true,
+  "created_utc": "2026-11-14T07:42:26.243360+00:00",
+  "two_user_feedback_implemented": true,
+  "source_JSON_sha256": "9b42f089b79e4e0c54c254c948ac4d9ae28d224585095a373607122a0d7c6898",
+  "GEN_sha256": "a5fbf922acd8eeb3e1aee0c4e2a78e3898ab346e7bd6dd44d69104e78454aef9",
+  "MD_sha256": "bc2d0c8613437b39149cd6e66729104b26efceb8681fb645f782a97b40007584",
+  "GEN_sources_sha256": "a5fbf922acd8eeb3e1aee0c4e2a78e3898ab346e7bd6dd44d69104e78454aef9",
+  "GEN_sources_baseline_existed": true,
+  "files_applied": [
+    {
+      "path": "/workspace/work/video-audit70-20261113/payload/视频/脚本/15.json",
+      "before_sha256": "181b21b9d960292284ce34ed7cdf56b0ce3592b255b7480941c5924aaf713b33",
+      "after_sha256": "9b42f089b79e4e0c54c254c948ac4d9ae28d224585095a373607122a0d7c6898",
+      "bytes": 48523
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/payload/视频/工具/初稿生成/gen15.py",
+      "before_sha256": "8f45c4da77382463595711c13a7ae6d98773bb2d0f5a0ae64ca422894f368181",
+      "after_sha256": "a5fbf922acd8eeb3e1aee0c4e2a78e3898ab346e7bd6dd44d69104e78454aef9",
+      "bytes": 39553
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/payload/新版定稿/15-the-myth-of-the-unsinkable.md",
+      "before_sha256": "68e236868c4b466928ff2a60358250b9592dfe9287b66561b1e5a80b4d14de4f",
+      "after_sha256": "bc2d0c8613437b39149cd6e66729104b26efceb8681fb645f782a97b40007584",
+      "bytes": 20505
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/payload/视频/制作记录/15_待改清单.md",
+      "before_sha256": "6a4f9b3c7dd30dfd5883db105ef590e5ee2c8ed592ba739fbf459fc4ed38e49c",
+      "after_sha256": "e5adb79ab39243f8ef447b051e13655f963e5fdd40bf24922bf5724760026181",
+      "bytes": 17385
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/gen-sources/gen15.py",
+      "before_sha256": "0370ee78f3b0c3bc1cf175154dc748705662b902e678a995d9bbe09abbf1526b",
+      "after_sha256": "a5fbf922acd8eeb3e1aee0c4e2a78e3898ab346e7bd6dd44d69104e78454aef9",
+      "bytes": 39553
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/payload/视频/工具/用户同意记录.json",
+      "before_sha256": "196858a4401483c42a319b523ecfa19ce920bce7f335ef6299e09c22601edc41",
+      "after_sha256": "e25157d93af240294018acff165be2049034ec62ffe1f0d1b335c7655046b005",
+      "scope": "Only two exact source15 consent records appended to fresh current data; unrelated entries retained."
+    }
+  ],
+  "exact_JSON_diff": [
+    {
+      "path": "/allow_clash",
+      "reason": "list_length",
+      "expected_length": 3,
+      "actual_length": 5
+    },
+    {
+      "path": "/allow_clash/3",
+      "reason": "unexpected_item",
+      "actual": "inquiries"
+    },
+    {
+      "path": "/allow_clash/4",
+      "reason": "unexpected_item",
+      "actual": "patrol"
+    },
+    {
+      "path": "/sentences/12/chunks/0/align/1/0",
+      "reason": "value",
+      "expected": "inquiries in Washington and London",
+      "actual": "**inquiries** in Washington and London"
+    },
+    {
+      "path": "/sentences/12/chunks/0/align/1/1",
+      "reason": "value",
+      "expected": "华盛顿和伦敦的调查",
+      "actual": "华盛顿和伦敦的**调查**(inquiries)"
+    },
+    {
+      "path": "/sentences/12/chunks/0/en",
+      "reason": "value",
+      "expected": "Between April and July 1912, inquiries in Washington and London",
+      "actual": "Between April and July 1912, **inquiries** in Washington and London"
+    },
+    {
+      "path": "/sentences/12/chunks/0/zh",
+      "reason": "value",
+      "expected": "1912年4月至7月，华盛顿和伦敦的调查",
+      "actual": "1912年4月至7月，华盛顿和伦敦的**调查**(inquiries)"
+    },
+    {
+      "path": "/sentences/15/chunks/1/align/0/0",
+      "reason": "value",
+      "expected": "the patrol",
+      "actual": "the **patrol**"
+    },
+    {
+      "path": "/sentences/15/chunks/1/align/0/1",
+      "reason": "value",
+      "expected": "然而冰情巡逻",
+      "actual": "然而冰情**巡逻**(patrol)"
+    },
+    {
+      "path": "/sentences/15/chunks/1/en",
+      "reason": "value",
+      "expected": "the patrol went ahead **regardless**.",
+      "actual": "the **patrol** went ahead **regardless**."
+    },
+    {
+      "path": "/sentences/15/chunks/1/zh",
+      "reason": "value",
+      "expected": "然而冰情巡逻**不管怎样**(regardless)依然进行。",
+      "actual": "然而冰情**巡逻**(patrol)**不管怎样**(regardless)依然进行。"
+    }
+  ],
+  "original_GEN_JSON_text_checks": {
+    "path": "/workspace/work/video-audit70-20261113/article15-user-review-20261114/gen-text-validation-v3/report.json",
+    "sha256": "f4275d37b0ff5b790b7fe1b0bab21a0abcc285b65576ff07dea912ae1dfeb233",
+    "all_passed": true,
+    "earlier_missing_mirror_fixture_runs_preserved": true
+  },
+  "independent_semantic_review": {
+    "path": "/workspace/work/video-revision-delivery/article15-review-intake-20261114/independent-two-feedback-candidate-review.json",
+    "sha256": "1d1b9c47289bde12fff31883cbc3de3726df47f84d6e9ce82531f6162ba65330",
+    "passed": true
+  },
+  "actual_static_1080_and_4K": {
+    "path": "/workspace/work/video-audit70-20261113/article15-user-review-20261114/static-render-report.json",
+    "sha256": "9d7996c050c4c4b45a8b2f4f94fffd839bb5e98d41500a37897b5358b6b6744f",
+    "all_passed": true,
+    "three_sources_actual_latest_A21_native_current_before_and_candidate": true,
+    "actual_changed_page_renders": 4,
+    "actual_visual_review_sha256": "4bf8a78d474b39b8fead543b1603d4f33b6abdd0a69164d1ae66194280d00e21"
+  },
+  "CI_approved_manifest": {
+    "path": "/workspace/work/video-revision-batch-ci/.github/video-revision-batch/approved-video-layouts70.json",
+    "before_sha256": "a0ccdae04318a1917fdd8455f5ae79ef7c482afa7d43b8e50700f8b1bf0bb49b",
+    "after_sha256": "929a23c88336899fea69003d2a8384f94a59da0a41c9036471a4a399671ee80a",
+    "before_row": {
+      "source_id": "15",
+      "new_id": "25",
+      "source_json_sha256": "181b21b9d960292284ce34ed7cdf56b0ce3592b255b7480941c5924aaf713b33",
+      "approved_summary_text_sha256": "b5ef28040d6fd26904eca6b473306b35f7b15812ef753badf19a3be907b4fe84",
+      "summary_png_sha256": "87b0ef4cbdcf2631ad8fb6a6292f3ea859402eeb82dd499e863420539e8829bc",
+      "summary_rgb_sha256": "726a8f62bf32dbb028c937d33aaae5c7b95eba7c497a9d5bc043f1d8092607e6",
+      "summary_font_4k_px": 111,
+      "source_layout_structural_sha256": "8a72774f01cd0ecb5375668df4086f4dd7407da13650a40d1896d3b9d0134081"
+    },
+    "after_row": {
+      "source_id": "15",
+      "new_id": "25",
+      "source_json_sha256": "9b42f089b79e4e0c54c254c948ac4d9ae28d224585095a373607122a0d7c6898",
+      "approved_summary_text_sha256": "b5ef28040d6fd26904eca6b473306b35f7b15812ef753badf19a3be907b4fe84",
+      "summary_png_sha256": "87b0ef4cbdcf2631ad8fb6a6292f3ea859402eeb82dd499e863420539e8829bc",
+      "summary_rgb_sha256": "726a8f62bf32dbb028c937d33aaae5c7b95eba7c497a9d5bc043f1d8092607e6",
+      "summary_font_4k_px": 111,
+      "source_layout_structural_sha256": "273da4d4b349b6255d2dfdacc79c2c97442616a15b6c2ed5970134a4c67fa7cb"
+    },
+    "only_two_article15_source_digest_leaves_changed": true,
+    "unchanged_approved_summary_canonical_text_RGB_font": true
+  },
+  "spoken_English_and_chunk_boundaries_exact": true,
+  "all_current_DSP_CF_and_audio_controls_exact": true,
+  "A21_plus5_exact": true,
+  "latest_passed_A21_audio_source_readonly_comparison": {
+    "path": "/workspace/work/video-audit70-20261113/article15-user-review-20261114/latest-A21-readonly-source-identity.json",
+    "sha256": "487ab1bcb202ce9b001b9e99ff5399485887eb7791303c860d8ac3724a1f6718",
+    "known_latest_CF_and_original_summary_wrap_differences_not_substituted": true,
+    "latest_native_source_sha256": "3c6324bbcba5f24f2f3639b99f6f767f20e3c3315205090b002844fe62b13bc4",
+    "required_native_video_sha256": "46e616b986839c44cb0f37bb0a6c779a814de4df7e05963313bbb3a19391c348",
+    "latest_native_voice_binding_and_acceptance_not_claimed_by_text_writer": true
+  },
+  "current_five_point_summary_and_full_last_note_exact": true,
+  "existing_S15_ice_patrol_sentence_exact": true,
+  "body_tail_geometry_and_font_exact": true,
+  "body_tail_RGB_identity_claimed": false,
+  "official_core_or_renderer_modified": false,
+  "native_video_or_audio_generated_or_dispatched_by_this_agent": false,
+  "sole_next_native_launcher": "/root/resume_audio_ci"
+}

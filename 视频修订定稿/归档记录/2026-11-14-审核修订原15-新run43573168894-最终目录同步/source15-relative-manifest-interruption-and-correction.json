@@ -1,0 +1,10 @@
+{
+  "kind": "archivist-safe-manifest-packaging-only-interruption",
+  "recorded_utc": "2026-11-14T08:22:27.472268+00:00",
+  "original_error": "source15 manifest paths are relative to its own directory; first collector tried them relative to cwd. Next operation/push could not complete prepared metadata.",
+  "all_three_exit_codes": 1,
+  "native_source15_quality_and_media_unchanged": true,
+  "remote_refs_or_blobs_written_by_failed_packaging": false,
+  "preserved_incomplete_operation": "history/source15-operation-incomplete-relative-manifest",
+  "corrective_change": "Resolve and constrain relative paths under the explicit manifest parent; stop dependent orchestration on nonzero exit."
+}

@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "/workspace/work/video-audit70-20261113/article14-user-review-20261114/gen-text-validation/mirror/视频/工具/踩坑核查.py", line 991, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/workspace/work/video-audit70-20261113/article14-user-review-20261114/gen-text-validation/mirror/视频/工具/踩坑核查.py", line 937, in main
+    fails = selftest() + _YW.自检() + KZ_自检() + selftest_record_human() + selftest_l19() + selftest_l20() + selftest_record_meta() + selftest_folders() + selftest_phrase() + selftest_idiom() + selftest_note() + selftest_term() + selftest_meaning() + selftest_gloss() + selftest_zhdup() + selftest_meta() + selftest_ending() + selftest_linestart() + __import__('破折号').自检()
+            ^^^^^^^^^^
+  File "/workspace/work/video-audit70-20261113/article14-user-review-20261114/gen-text-validation/mirror/视频/工具/踩坑核查.py", line 515, in selftest
+    ids = [i for i, _, _ in pit_rows()]
+                            ^^^^^^^^^^
+  File "/workspace/work/video-audit70-20261113/article14-user-review-20261114/gen-text-validation/mirror/视频/工具/踩坑核查.py", line 27, in pit_rows
+    return 坑行()
+           ^^^^^^
+  File "/workspace/work/video-audit70-20261113/article14-user-review-20261114/gen-text-validation/mirror/视频/工具/坑表.py", line 6, in 坑行
+    text = open(STD).read() if text is None else text
+           ^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/work/video-audit70-20261113/article14-user-review-20261114/gen-text-validation/mirror/视频/制作硬性标准与踩坑总结.md'
