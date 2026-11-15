@@ -1,0 +1,268 @@
+{
+  "kind": "pure-source54-user148-identity-binding-data-and-original-packet-function-tests",
+  "all_tests_passed": true,
+  "cases": [
+    {
+      "name": "exact_scalar_contract_fixture_only_not_actual_gate_or_media_pass",
+      "expected_identity_passed": true,
+      "actual_identity_passed": true,
+      "correct_rejection_or_scalar_fixture": true,
+      "failed_predicates": []
+    },
+    {
+      "name": "wrong_request_file:视频/脚本/54.json",
+      "expected_identity_passed": false,
+      "actual_identity_passed": false,
+      "correct_rejection_or_scalar_fixture": true,
+      "failed_predicates": [
+        "actual_request_file_exact:视频/脚本/54.json"
+      ]
+    },
+    {
+      "name": "wrong_request_file:视频/工具/初稿生成/gen54.py",
+      "expected_identity_passed": false,
+      "actual_identity_passed": false,
+      "correct_rejection_or_scalar_fixture": true,
+      "failed_predicates": [
+        "actual_request_file_exact:视频/工具/初稿生成/gen54.py"
+      ]
+    },
+    {
+      "name": "wrong_request_file:新版定稿/54-the-sound-that-shook-the-world.md",
+      "expected_identity_passed": false,
+      "actual_identity_passed": false,
+      "correct_rejection_or_scalar_fixture": true,
+      "failed_predicates": [
+        "actual_request_file_exact:新版定稿/54-the-sound-that-shook-the-world.md"
+      ]
+    },
+    {
+      "name": "wrong_request_file:视频/制作记录/54_待改清单.md",
+      "expected_identity_passed": false,
+      "actual_identity_passed": false,
+      "correct_rejection_or_scalar_fixture": true,
+      "failed_predicates": [
+        "actual_request_file_exact:视频/制作记录/54_待改清单.md"
+      ]
+    },
+    {
+      "name": "wrong_request_file:视频/制作记录/逐句确认/54.json",
+      "expected_identity_passed": false,
+      "actual_identity_passed": false,
+      "correct_rejection_or_scalar_fixture": true,
+      "failed_predicates": [
+        "actual_request_file_exact:视频/制作记录/逐句确认/54.json"
+      ]
+    },
+    {
+      "name": "changed_CF_same_actual_source_rejected",
+      "expected_identity_passed": false,
+      "actual_identity_passed": false,
+      "correct_rejection_or_scalar_fixture": true,
+      "failed_predicates": [
+        "actual_current_source_deep_equals_exact_request_including_all_CF"
+      ]
+    },
+    {
+      "name": "source_note_even_one_space_rejected",
+      "expected_identity_passed": false,
+      "actual_identity_passed": false,
+      "correct_rejection_or_scalar_fixture": true,
+      "failed_predicates": [
+        "actual_current_source_deep_equals_exact_request_including_all_CF"
+      ]
+    },
+    {
+      "name": "wrong_authorization_bytes",
+      "expected_identity_passed": false,
+      "actual_identity_passed": false,
+      "correct_rejection_or_scalar_fixture": true,
+      "failed_predicates": [
+        "actual_native_authorization_file_exact"
+      ]
+    },
+    {
+      "name": "review102_cannot_be_final148",
+      "expected_identity_passed": false,
+      "actual_identity_passed": false,
+      "correct_rejection_or_scalar_fixture": true,
+      "failed_predicates": [
+        "actual_user148_final_authorized_not_prior_review102"
+      ]
+    },
+    {
+      "name": "wrong_actual_file:root_actual_S6_decision",
+      "expected_identity_passed": false,
+      "actual_identity_passed": false,
+      "correct_rejection_or_scalar_fixture": true,
+      "failed_predicates": [
+        "actual_file_exact:root_actual_S6_decision"
+      ]
+    },
+    {
+      "name": "wrong_actual_file:actual_S6_report",
+      "expected_identity_passed": false,
+      "actual_identity_passed": false,
+      "correct_rejection_or_scalar_fixture": true,
+      "failed_predicates": [
+        "actual_file_exact:actual_S6_report"
+      ]
+    },
+    {
+      "name": "wrong_actual_file:core_manifest",
+      "expected_identity_passed": false,
+      "actual_identity_passed": false,
+      "correct_rejection_or_scalar_fixture": true,
+      "failed_predicates": [
+        "actual_file_exact:core_manifest"
+      ]
+    },
+    {
+      "name": "wrong_actual_runtime:草稿声音.sh",
+      "expected_identity_passed": false,
+      "actual_identity_passed": false,
+      "correct_rejection_or_scalar_fixture": true,
+      "failed_predicates": [
+        "actual_runtime_file_exact:草稿声音.sh"
+      ]
+    },
+    {
+      "name": "wrong_actual_runtime:句内响度.py",
+      "expected_identity_passed": false,
+      "actual_identity_passed": false,
+      "correct_rejection_or_scalar_fixture": true,
+      "failed_predicates": [
+        "actual_runtime_file_exact:句内响度.py"
+      ]
+    },
+    {
+      "name": "wrong_actual_runtime:独立复核/synth.py",
+      "expected_identity_passed": false,
+      "actual_identity_passed": false,
+      "correct_rejection_or_scalar_fixture": true,
+      "failed_predicates": [
+        "actual_runtime_file_exact:独立复核/synth.py"
+      ]
+    },
+    {
+      "name": "wrong_actual_runtime:结尾句接点.py",
+      "expected_identity_passed": false,
+      "actual_identity_passed": false,
+      "correct_rejection_or_scalar_fixture": true,
+      "failed_predicates": [
+        "actual_runtime_file_exact:结尾句接点.py"
+      ]
+    },
+    {
+      "name": "wrong_actual_runtime:读音核对.py",
+      "expected_identity_passed": false,
+      "actual_identity_passed": false,
+      "correct_rejection_or_scalar_fixture": true,
+      "failed_predicates": [
+        "actual_runtime_file_exact:读音核对.py"
+      ]
+    },
+    {
+      "name": "wrong_actual_runtime:make_video.py",
+      "expected_identity_passed": false,
+      "actual_identity_passed": false,
+      "correct_rejection_or_scalar_fixture": true,
+      "failed_predicates": [
+        "actual_runtime_file_exact:make_video.py"
+      ]
+    },
+    {
+      "name": "wrong_actual_runtime:新管/回归基准_27.json",
+      "expected_identity_passed": false,
+      "actual_identity_passed": false,
+      "correct_rejection_or_scalar_fixture": true,
+      "failed_predicates": [
+        "actual_runtime_file_exact:新管/回归基准_27.json"
+      ]
+    },
+    {
+      "name": "wrong_actual_runtime:新管/快测通过.json",
+      "expected_identity_passed": false,
+      "actual_identity_passed": false,
+      "correct_rejection_or_scalar_fixture": true,
+      "failed_predicates": [
+        "actual_runtime_file_exact:新管/快测通过.json"
+      ]
+    },
+    {
+      "name": "wrong_whole_WAV",
+      "expected_identity_passed": false,
+      "actual_identity_passed": false,
+      "correct_rejection_or_scalar_fixture": true,
+      "failed_predicates": [
+        "actual_entire_current_WAV_exact"
+      ]
+    },
+    {
+      "name": "legacy_AAC_as_current",
+      "expected_identity_passed": false,
+      "actual_identity_passed": false,
+      "correct_rejection_or_scalar_fixture": true,
+      "failed_predicates": [
+        "actual_entire_current_AAC_exact",
+        "current_is_distinct_from_legacy_and_not_relabelled_as_accepted_whole"
+      ]
+    },
+    {
+      "name": "wrong_absolute_clock",
+      "expected_identity_passed": false,
+      "actual_identity_passed": false,
+      "correct_rejection_or_scalar_fixture": true,
+      "failed_predicates": [
+        "actual_current_absolute_packet_payload_side_and_rational_clock_exact"
+      ]
+    },
+    {
+      "name": "wrong_packet_count",
+      "expected_identity_passed": false,
+      "actual_identity_passed": false,
+      "correct_rejection_or_scalar_fixture": true,
+      "failed_predicates": [
+        "actual_current_packet_count_exact"
+      ]
+    },
+    {
+      "name": "wrong_legacy_video",
+      "expected_identity_passed": false,
+      "actual_identity_passed": false,
+      "correct_rejection_or_scalar_fixture": true,
+      "failed_predicates": [
+        "actual_legacy_video_and_AAC_exact_historical_provenance"
+      ]
+    },
+    {
+      "name": "current_as_legacy",
+      "expected_identity_passed": false,
+      "actual_identity_passed": false,
+      "correct_rejection_or_scalar_fixture": true,
+      "failed_predicates": [
+        "actual_legacy_video_and_AAC_exact_historical_provenance",
+        "current_is_distinct_from_legacy_and_not_relabelled_as_accepted_whole"
+      ]
+    },
+    {
+      "name": "canonical_false_is_not_identity_admission",
+      "expected_identity_passed": false,
+      "actual_identity_passed": false,
+      "correct_rejection_or_scalar_fixture": true,
+      "failed_predicates": [
+        "actual_original_canonical_pipeline_passed_before_identity"
+      ]
+    }
+  ],
+  "count": 28,
+  "actual_request_file_SHA_checks_performed": true,
+  "actual_native_acoustic_checks_executed": false,
+  "actual_media_QA_pass_claimed": false,
+  "original_function_AST_exact": {
+    "require": true,
+    "digest": true,
+    "command": true,
+    "actual_aac": true
+  }
+}

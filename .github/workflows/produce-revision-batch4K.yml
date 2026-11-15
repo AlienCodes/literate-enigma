@@ -106,51 +106,6 @@ jobs:
             ${{ runner.temp }}/completion-machine
             ~/asr
           key: completion-05-machine-43294745262
-      - uses: actions/cache/restore@v4
-        id: exact-spoken-whole-cache
-        with:
-          path: ${{ runner.temp }}/completion-machine/tts/spoken-comma-whole-reference-cache
-          key: Linux-spoken43-52-whole-reference-43643745207
-      - name: 真正读取全部14原母marker和原G36的完整SHA
-        env:
-          CACHE_HIT: ${{ steps.exact-spoken-whole-cache.outputs.cache-hit }}
-        run: |
-          test "$CACHE_HIT" = true
-          python - <<'PYCACHE'
-          import hashlib,json,os,shutil
-          from pathlib import Path
-          M=Path(os.environ['RUNNER_TEMP'])/'completion-machine/tts'
-          data=json.loads(Path('.github/video-revision-batch/actual-spoken-whole-reference-cache14.json').read_text())
-          assert len(data)==14
-          for name,h in data.items():
-              assert Path(name).name==name
-              src=M/'spoken-comma-whole-reference-cache'/name;dst=M/'cache_tts'/name
-              assert hashlib.sha256(src.read_bytes()).hexdigest()==h
-              if dst.exists():assert hashlib.sha256(dst.read_bytes()).hexdigest()==h
-              else:shutil.copyfile(src,dst)
-          PYCACHE
-      - uses: actions/cache/restore@v4
-        id: selected52-final-S4-original-math
-        with:
-          path: ${{ runner.temp }}/completion-machine/tts/source52-two-NV-candidate-reference-cache
-          key: Linux-source52-two-NV-candidate-reference-43653828088
-      - name: 严格读取真实已保存5d2d原目录版本并安装唯一新JSON
-        env:
-          MATH_HIT: ${{ steps.selected52-final-S4-original-math.outputs.cache-hit }}
-        run: |
-          test "$MATH_HIT" = true
-          python - <<'PYS4'
-          import os,hashlib,shutil
-          from pathlib import Path
-          M=Path(os.environ['RUNNER_TEMP'])/'completion-machine/tts'
-          name='调平_5d2d6bab45b9b765994454b448b0cfc3c61dde90.json'
-          source=M/'source52-two-NV-candidate-reference-cache'/name
-          expected='44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a'
-          assert hashlib.sha256(source.read_bytes()).hexdigest()==expected
-          target=M/'cache_tts'/name
-          if target.exists():assert hashlib.sha256(target.read_bytes()).hexdigest()==expected
-          else:shutil.copyfile(source,target)
-          PYS4
       - name: 确认恢复既有机器缓存
         env:
           CACHE_HIT: ${{ steps.original-cache.outputs.cache-hit }}
