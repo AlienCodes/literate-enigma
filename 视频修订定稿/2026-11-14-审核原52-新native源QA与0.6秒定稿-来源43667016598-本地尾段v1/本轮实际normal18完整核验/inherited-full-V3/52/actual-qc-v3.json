@@ -1,0 +1,178 @@
+{
+  "article": "52",
+  "status": "passed",
+  "actual_new_mp4": true,
+  "video_sha256": "e9067d090e9f81bfa91f1b25b555327d682e9514db9e77b8d679ecf828ad4475",
+  "video_bytes": 14902185,
+  "official_run": {
+    "repository": "AlienCodes/literate-enigma",
+    "run_id": 43667016598,
+    "run_attempt": 1,
+    "status": "completed",
+    "conclusion": "success",
+    "head_sha": "e9425356115368bbfac844e901677b6b2999ac9c",
+    "workflow_path": ".github/workflows/produce-revision-batch4K.yml",
+    "entrypoint": "视频/工具/新管/定稿.sh",
+    "stage": "4K",
+    "canonical_selection": "native_final_official_passed",
+    "artifact_id": 14143201830,
+    "artifact_zip": {
+      "path": "/workspace/work/review52-native/43667016598/52/article52-passed-output.zip",
+      "bytes": 37348700,
+      "sha256": "7bb2be61f03754e6f03eaff6d52c14068f398df7c250ec2be6e371be9808f4c3"
+    },
+    "artifact_zip_sha256": "7bb2be61f03754e6f03eaff6d52c14068f398df7c250ec2be6e371be9808f4c3",
+    "artifact_status_member": "52-canonical-summary-passed-status.json",
+    "artifact_mp4_member": "52-4K-读完即转简述2秒.mp4",
+    "artifact_mp4_sha256": "45bf4b31feae10f983012533450bd7bef832780c11d54ffb379886610c5705de",
+    "job": {
+      "id": 132668668080,
+      "name": "produce (52)",
+      "article": "52",
+      "run_attempt": 1,
+      "status": "completed",
+      "conclusion": "success",
+      "upload_step_name": "仅保留本篇公开成片和核验材料"
+    },
+    "artifact_main_status_member": "52-status.json",
+    "artifact_main_status_sha256": "d938ae245b493358c3e4068acdcdbf27ab9eb1d7c2b9e1cb476d908d7dca2065",
+    "native_inline_final_original_bytes_preserved": true
+  },
+  "actual_probe": {
+    "width": 3840,
+    "height": 2160,
+    "frames": 4302,
+    "fps": "30/1",
+    "duration_seconds": 143.4
+  },
+  "speech_end": {
+    "actual_new_output": true,
+    "measured_from_actual_audio": true,
+    "end_frame": 4182,
+    "report_sha256": "ade6b12340bec33681d495ece901d879d42b91952aebe5cbdc273622fc9c0a4a"
+  },
+  "illustration": {
+    "decoded_from_actual_mp4": true,
+    "frames": 60,
+    "start_frame": 4182,
+    "width": 3840,
+    "height": 2160,
+    "approved_illustration_sha256": "667a7df0b1b95f0f1d1cf8b060e9fe59ed2366f97141c5a84950135f3f643394",
+    "book_source_sha256": "667a7df0b1b95f0f1d1cf8b060e9fe59ed2366f97141c5a84950135f3f643394",
+    "preparation": {
+      "source_id": "52",
+      "new_id": "41",
+      "native_image_sha256": "667a7df0b1b95f0f1d1cf8b060e9fe59ed2366f97141c5a84950135f3f643394",
+      "native_pixel_dimensions": [
+        1536,
+        1024
+      ],
+      "prepared_png_sha256": "bc6a017610de61a88abf86080a77f14bb878ea4320886b0ef79daaa7ec5e433c",
+      "prepared_rgb_sha256": "f4e11315a53753824c34af6bd8ad74539d018bd0912b6156bd84f291cff20f9a",
+      "prepared_pixel_dimensions": [
+        3840,
+        2160
+      ],
+      "mode": "contain_blur",
+      "Pillow": "12.3.0",
+      "native_source_crop_box": null,
+      "resampling": "Pillow Image.Resampling.LANCZOS",
+      "same_image_background_gaussian_blur_radius": 64,
+      "derived_in_this_process_from_exact_approved_native_image": true,
+      "generated_or_substituted_artwork": false,
+      "added_text_or_graphics": false,
+      "preparer_program_sha256": "dc204b91415e28297b844e9666087b0e23e67194944b359cb5fb5ddbca0f1208",
+      "prepared_image_path": "/home/runner/work/literate-enigma/literate-enigma/article52-delivery/52-批准插图4K.png"
+    },
+    "frame_comparison": {
+      "status": "passed",
+      "actual_new_output": true,
+      "decoded_from_actual_mp4": true,
+      "frames_checked": 60,
+      "start_frame": 4182,
+      "video_sha256": "e9067d090e9f81bfa91f1b25b555327d682e9514db9e77b8d679ecf828ad4475",
+      "reference_sha256": "bc6a017610de61a88abf86080a77f14bb878ea4320886b0ef79daaa7ec5e433c",
+      "report_sha256": "f0d44c28f1526e461ff60d2103d86c46f7b3210f5991a9fabb71085b59607e21"
+    }
+  },
+  "summary": {
+    "decoded_from_actual_mp4": true,
+    "frames": 60,
+    "start_frame": 4242,
+    "overflow": false,
+    "normal_font_size": true,
+    "font_px": 116,
+    "text_sha256": "3c94ef021be8014a36862aa9cd1952f0aaab267ed17b2c3db589793aabeafaed",
+    "approved_request_text_sha256": "3788432468767d6ab35f078b511d9e59070943270d3dd0729bb9dec29bfa8423"
+  },
+  "audio": {
+    "canonical_qc": {
+      "tool": "audio52-controlled-qc.py",
+      "actual_new_output": true,
+      "status": "passed",
+      "canonical_video_sha256": "45bf4b31feae10f983012533450bd7bef832780c11d54ffb379886610c5705de",
+      "reviewed_canonical_video_sha256": "296cca25dc16019f015aa01201ec3a2698a5524646fa0a284123f21b8e21f263",
+      "binding": "reviewed_native_pre_card_then_exact_audio_copy",
+      "copy_verification_sha256": "ade6b12340bec33681d495ece901d879d42b91952aebe5cbdc273622fc9c0a4a",
+      "report_sha256": "dbbd4dee1830d0e22b380fd255def9ed3e5491aab4b07f87c4e333fa8eed5e34",
+      "program_sha256": "cb04e73b69abfedd8b775e7594cb8f1d51956f2989b02860f343fb137d8b847f",
+      "reference_file_sha256": "ab2ca83dd0e05c4f5e4c62b9c96b9e250e8e6dacd0f6ceb2c9526fdecae22f1a",
+      "request_source_sha256": "f9e3fa65ddf161a0d7b83e17fe60ac56552535566bf64512ca0f785e21e49862"
+    },
+    "repair_applied": true,
+    "lossless_copy": {
+      "canonical_video_sha256": "45bf4b31feae10f983012533450bd7bef832780c11d54ffb379886610c5705de",
+      "final_video_sha256": "e9067d090e9f81bfa91f1b25b555327d682e9514db9e77b8d679ecf828ad4475",
+      "audio_packet_times_identical": true,
+      "canonical_aac_adts_sha256": "13001a1a50207c5609b02e8858789825d23852f4db0d4023b29ec0af26bfad09",
+      "canonical_packet_projection_sha256": "2ddea3d9afc88eb8baa9d0dc520a907e788cfef2c31639dc107865905523a47a",
+      "canonical_packet_count": 6628,
+      "final_aac_adts_sha256": "13001a1a50207c5609b02e8858789825d23852f4db0d4023b29ec0af26bfad09",
+      "final_packet_projection_sha256": "2ddea3d9afc88eb8baa9d0dc520a907e788cfef2c31639dc107865905523a47a",
+      "final_packet_count": 6628
+    },
+    "targeted_review": {
+      "article": "52",
+      "actual_new_output": true,
+      "status": "passed",
+      "canonical_video_sha256": "45bf4b31feae10f983012533450bd7bef832780c11d54ffb379886610c5705de",
+      "reviewed_canonical_video_sha256": "296cca25dc16019f015aa01201ec3a2698a5524646fa0a284123f21b8e21f263",
+      "binding": "reviewed_native_pre_card_then_exact_audio_copy",
+      "report_sha256": "dbbd4dee1830d0e22b380fd255def9ed3e5491aab4b07f87c4e333fa8eed5e34",
+      "whole_track_loudness_review": true
+    },
+    "controlled_repair": {
+      "status": "passed",
+      "actual_new_output": true,
+      "canonical_video_sha256": "45bf4b31feae10f983012533450bd7bef832780c11d54ffb379886610c5705de",
+      "reviewed_canonical_video_sha256": "296cca25dc16019f015aa01201ec3a2698a5524646fa0a284123f21b8e21f263",
+      "binding": "reviewed_native_pre_card_then_exact_audio_copy",
+      "report_sha256": "dbbd4dee1830d0e22b380fd255def9ed3e5491aab4b07f87c4e333fa8eed5e34",
+      "authorization": "Actual immutable native user-authorization/source request records and approved dedicated acoustic QC retained in evidence."
+    }
+  },
+  "source_sha256": {
+    "request": {
+      "json": "f9e3fa65ddf161a0d7b83e17fe60ac56552535566bf64512ca0f785e21e49862",
+      "gen": "015ff440b86dac3423da4ca936f2cb91f1752c42dc485b563163285a88251177",
+      "md": "5ce7dc40cb82cc8918b24fd25ac295d7fe90b65884633a08e13cc58a03402af7"
+    },
+    "final": {
+      "json": "e2f221636610e87eb835f1bd0a2c4d9e7118a2bdecb3de379ba3c7d98b218937",
+      "gen": "1a996ed66c7ecb4b7c49e30cab87c92e0d3ee7577e7b94f71dd2a10dff37a9bc",
+      "md": "8df3746196a7df3612529acbd7db1c24417435097b13ec46ec2a6eb6e399b80a"
+    }
+  },
+  "source_transform": {
+    "status": "passed",
+    "actual_working_copy": true,
+    "operations": [
+      "L19"
+    ],
+    "report_sha256": "c78987bc3be3acd958f044ec4fb01b75ee9eb4be372754ea444c02eb47a6dd44",
+    "changed_paths": [
+      "/sentences/17/chunks/1/note"
+    ]
+  },
+  "adapter_scope": "Explicit actual native status + raw real postprocessor report field mapping; not fabricated audio-qc.py or unobserved runtime GEN/MD."
+}

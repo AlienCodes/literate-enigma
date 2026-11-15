@@ -1,0 +1,439 @@
+{
+  "kind": "source52-user117119122-safe-original-audio-audit-and-minimal-two-leaf-recommendation",
+  "source_id": "52",
+  "frozen_book_order": "41",
+  "current_source_identity": {
+    "PAY_sha256": "832249bb44617d38ede75560a5e57af6ba79ec284c9609407cb30ce879f6f862",
+    "actual_source_sha256": "2a92386d5f459ad115685d5c3904cc2cf834659f44f6b836caf0bcbc70245c24",
+    "actual_native_run": "43533004625",
+    "actual_MP4_sha256": "1d0cf6064c36ec7ed223956ebf98b7aabf21aa63241202f01d1895acc094b280",
+    "exact_original_WAV_sha256": "db6876d0726994def80e7bac30d5aa221924efd063a322a5ece7ece055a35bbd",
+    "actual_and_reconstructed_AAC_sha256": "ecabdc3b21c705715a83ade00e644d2e8888b9a43443958078ffc15ab4d8cd2c",
+    "AAC_packet_count": 6733,
+    "original_duration_s": 143.61,
+    "new_TTS_for_current_binding": false
+  },
+  "actual_original_program_sha256": {
+    "make_video.py": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+    "clean.py": "86b3872cbca83437e24da2c7ada5fffd916f06cacdd2b32fee2a78c9b134178d",
+    "响度一致性核对.py": "2bb89e427ec014a7fc1b4cc46ea6a11f91a786930f91e8cec720e0307940b85b",
+    "音频体检.py": "708a28bb13a270e250e2ba1354cd3856beac29f183e84e6f5bf469fe0ccb8757",
+    "音频体检基准.json": "5624187514c9ad391f155a315d771de4770ad64027a9ab05e416bedadcb2c7d1",
+    "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e"
+  },
+  "whole18_actual_piece_and_boundary_measurements_completed": true,
+  "AF_actual_delay_samples24k": 600,
+  "AF_delay_seconds": 0.025,
+  "original_fulltrack_8_and_R_whole_inside_flags": {
+    "8": [],
+    "wholeR": [],
+    "insideR": []
+  },
+  "historical_whole_R_first9sec_skip_unchanged": "Original R historical whole segmentation skips initial9s; explicit all18 piece metrics here separately measure cold at6.685–7.295s, not omitted. No algorithm threshold altered.",
+  "user117_cold": {
+    "piece": "S1#2",
+    "original_auto_dB": -4.5,
+    "original_manual_gain_absent": true,
+    "public_interval_s": [
+      6.685,
+      7.295
+    ],
+    "current_LUFS": -21.29409192896428,
+    "current_max400_LUFS": -20.531602801847097,
+    "adjacent_max400_LUFS": [
+      -16.79882874234915,
+      -18.1071258464671
+    ],
+    "cause": "Short-piece mean matches neighbors but original auto depresses short-word strongest400ms relative to adjacent phrases. Not a deleted phoneme.",
+    "original_voiced_d_release_present_ms": 50,
+    "original_A21_voiced_stop_info_not_judged": true
+  },
+  "user119_ThatSmoke": {
+    "piece": "S5#1",
+    "original_auto_dB": -5.5,
+    "original_manual_gain_absent": true,
+    "public_interval_s": [
+      30.985,
+      31.721
+    ],
+    "current_LUFS": -22.006674938374378,
+    "current_max400_LUFS": -21.128850063894834,
+    "adjacent_max400_LUFS": [
+      -17.47876791041915,
+      -17.82408626733159
+    ],
+    "existing_original_burst_BOOST_preserved": {
+      "1": [
+        0.7,
+        0.751,
+        3
+      ]
+    },
+    "original_A21_formal_preauto_passed": true,
+    "additional_postgain_baseline_k_HF_dB": -37.26235085802783,
+    "additional_postgain_plus1_5_k_HF_dB": -35.762351012649006,
+    "additional_postgain_plus1_5_k_metrics": {
+      "duration_ms": 60,
+      "centroid_Hz": 1200,
+      "periodicity": 0.2592931832574366,
+      "below800_peak_dB": -31.48595561191822,
+      "double_release": null
+    },
+    "no_false_relabel_of_original_native_formal_A21": true
+  },
+  "readonly_candidate_comparison": [
+    {
+      "gain_leaf_S1_2": 1.25,
+      "gain_leaf_S5_1": 1.25,
+      "candidate_source_sha256": "f9f8d9302c808c3710d0f5be0d9224cdf7d699469aba8428eb7f3c3f51acd1c2",
+      "private_WAV_sha256": "acf20e12649008e15db3554ba7f23278433ebf7c96eca8ff82cc71281102c52e",
+      "candidate_AAC_sha256": "5d547afb1a71fc2b3754a0040a1d787fc5a1e42dd08a74db15652d8fb4760ef3",
+      "full_duration_and_piece_timing_unchanged": true,
+      "outside_two_target_windows_float32_bitexact": true,
+      "source_target_windows_s": [
+        [
+          6.66,
+          7.27
+        ],
+        [
+          30.96,
+          31.696
+        ]
+      ],
+      "changed_preSF_samples": 31103,
+      "non_target_16_sentences_plus_title_pre_normalized_exact": [
+        "title",
+        "S2",
+        "S3",
+        "S4",
+        "S6",
+        "S7",
+        "S8",
+        "S9",
+        "S10",
+        "S11",
+        "S12",
+        "S13",
+        "S14",
+        "S15",
+        "S16",
+        "S17",
+        "S18"
+      ],
+      "original_R_whole_flags": [],
+      "original_R_inside_flags": [],
+      "original_8_health_flags": [],
+      "original_8_health_metrics": {
+        "削波": [
+          0,
+          ""
+        ],
+        "直流偏移": [
+          7.731358701358898e-05,
+          "第18句"
+        ],
+        "咔哒": [
+          1.8148878399454407,
+          "第18句"
+        ],
+        "句尾截断": [
+          -56.547787396113314,
+          "第1句"
+        ],
+        "句首突起": [
+          -44.89600953482153,
+          "第16句"
+        ],
+        "齿音": [
+          4.795202907764974,
+          "第18句"
+        ],
+        "音色突变": [
+          0.3671230170950717,
+          "第12句"
+        ],
+        "语速突变": [
+          0.2627447473765364,
+          "第1句"
+        ]
+      },
+      "original_R_summary": "全片 -21.8 LUFS，峰值 -0.8 dBFS，17 句，逐句与全片差 -0.8～+1.3 LU",
+      "cold_public_metrics": {
+        "LUFS": -20.040587191276447,
+        "max400ms_LUFS": -19.278805741124554,
+        "active10ms_RMS_dBFS": -19.910714802233315,
+        "peak_dBFS": -6.72768426627306
+      },
+      "ThatSmoke_public_metrics": {
+        "LUFS": -20.7434866912918,
+        "max400ms_LUFS": -19.865259514171836,
+        "active10ms_RMS_dBFS": -20.084031944433512,
+        "peak_dBFS": -6.217186658514635
+      },
+      "preserved_S5_original_boost": {
+        "1": [
+          0.7,
+          0.751,
+          3.0
+        ]
+      },
+      "no_new_source_control_or_CF_or_TTS_or_native_applied": true,
+      "original_ASR_not_run_in_diagnostic": true
+    },
+    {
+      "gain_leaf_S1_2": 1.5,
+      "gain_leaf_S5_1": 1.5,
+      "candidate_source_sha256": "70e1c26db50d73259050a029e2c7237ebf386b210b2d06f12c8fd1141a2e8850",
+      "private_WAV_sha256": "b4cf7127c1a85e4a44d3f6fabb41671815a59daf1d0e055fa8755bdd68b7c26f",
+      "candidate_AAC_sha256": "33114e066f921a641c849d42f8ff4eb9744815ecb98359ee547fa8a112aab330",
+      "full_duration_and_piece_timing_unchanged": true,
+      "outside_two_target_windows_float32_bitexact": true,
+      "source_target_windows_s": [
+        [
+          6.66,
+          7.27
+        ],
+        [
+          30.96,
+          31.696
+        ]
+      ],
+      "changed_preSF_samples": 31103,
+      "non_target_16_sentences_plus_title_pre_normalized_exact": [
+        "title",
+        "S2",
+        "S3",
+        "S4",
+        "S6",
+        "S7",
+        "S8",
+        "S9",
+        "S10",
+        "S11",
+        "S12",
+        "S13",
+        "S14",
+        "S15",
+        "S16",
+        "S17",
+        "S18"
+      ],
+      "original_R_whole_flags": [],
+      "original_R_inside_flags": [],
+      "original_8_health_flags": [],
+      "original_8_health_metrics": {
+        "削波": [
+          0,
+          ""
+        ],
+        "直流偏移": [
+          7.731358701358898e-05,
+          "第18句"
+        ],
+        "咔哒": [
+          1.8148878399454407,
+          "第18句"
+        ],
+        "句尾截断": [
+          -56.547787396113314,
+          "第1句"
+        ],
+        "句首突起": [
+          -44.89600953482153,
+          "第16句"
+        ],
+        "齿音": [
+          4.795202907764974,
+          "第18句"
+        ],
+        "音色突变": [
+          0.3671189460703359,
+          "第12句"
+        ],
+        "语速突变": [
+          0.2627518930884651,
+          "第1句"
+        ]
+      },
+      "original_R_summary": "全片 -21.8 LUFS，峰值 -0.8 dBFS，17 句，逐句与全片差 -0.8～+1.3 LU",
+      "cold_public_metrics": {
+        "LUFS": -19.790380372694486,
+        "max400ms_LUFS": -19.028686885715466,
+        "active10ms_RMS_dBFS": -19.66053486458797,
+        "peak_dBFS": -6.476294788262721
+      },
+      "ThatSmoke_public_metrics": {
+        "LUFS": -20.489095196063438,
+        "max400ms_LUFS": -19.61066608280756,
+        "active10ms_RMS_dBFS": -19.830808158428702,
+        "peak_dBFS": -5.960929033256171
+      },
+      "preserved_S5_original_boost": {
+        "1": [
+          0.7,
+          0.751,
+          3.0
+        ]
+      },
+      "no_new_source_control_or_CF_or_TTS_or_native_applied": true,
+      "original_ASR_not_run_in_diagnostic": true
+    },
+    {
+      "gain_leaf_S1_2": 2.0,
+      "gain_leaf_S5_1": 2.0,
+      "candidate_source_sha256": "1aa6e624e2c9260943477d4cf8ca5572bd578c7e3c31c62f933701f2cdf7ce61",
+      "private_WAV_sha256": "540cd45f5dcd42494e4790dff24db99aa2d62c8b2a2d01de3be8d11ca05a430f",
+      "candidate_AAC_sha256": "0c9ff07147c887b3b2c19fe3e69a17005721966d5c0fc97472d17f3bc5c50838",
+      "full_duration_and_piece_timing_unchanged": true,
+      "outside_two_target_windows_float32_bitexact": true,
+      "source_target_windows_s": [
+        [
+          6.66,
+          7.27
+        ],
+        [
+          30.96,
+          31.696
+        ]
+      ],
+      "changed_preSF_samples": 31103,
+      "non_target_16_sentences_plus_title_pre_normalized_exact": [
+        "title",
+        "S2",
+        "S3",
+        "S4",
+        "S6",
+        "S7",
+        "S8",
+        "S9",
+        "S10",
+        "S11",
+        "S12",
+        "S13",
+        "S14",
+        "S15",
+        "S16",
+        "S17",
+        "S18"
+      ],
+      "original_R_whole_flags": [],
+      "original_R_inside_flags": [],
+      "original_8_health_flags": [],
+      "original_8_health_metrics": {
+        "削波": [
+          0,
+          ""
+        ],
+        "直流偏移": [
+          7.731358701358898e-05,
+          "第18句"
+        ],
+        "咔哒": [
+          1.8148878399454407,
+          "第18句"
+        ],
+        "句尾截断": [
+          -56.547787396113314,
+          "第1句"
+        ],
+        "句首突起": [
+          -44.12095191822697,
+          "第5句"
+        ],
+        "齿音": [
+          4.795202907764974,
+          "第18句"
+        ],
+        "音色突变": [
+          0.3670791005848963,
+          "第12句"
+        ],
+        "语速突变": [
+          0.2628028101246544,
+          "第1句"
+        ]
+      },
+      "original_R_summary": "全片 -21.8 LUFS，峰值 -0.8 dBFS，17 句，逐句与全片差 -0.8～+1.3 LU",
+      "cold_public_metrics": {
+        "LUFS": -19.291825756837486,
+        "max400ms_LUFS": -18.530549215914768,
+        "active10ms_RMS_dBFS": -19.16187005616398,
+        "peak_dBFS": -5.97529667275365
+      },
+      "ThatSmoke_public_metrics": {
+        "LUFS": -19.98556061480564,
+        "max400ms_LUFS": -19.107266180915534,
+        "active10ms_RMS_dBFS": -19.329468119146995,
+        "peak_dBFS": -5.457494680015255
+      },
+      "preserved_S5_original_boost": {
+        "1": [
+          0.7,
+          0.751,
+          3.0
+        ]
+      },
+      "no_new_source_control_or_CF_or_TTS_or_native_applied": true,
+      "original_ASR_not_run_in_diagnostic": true
+    }
+  ],
+  "recommended_candidate_not_applied": {
+    "leaf_changes": [
+      {
+        "path": "/分段增益dB/S1/2",
+        "before": "absent",
+        "candidate": 1.5
+      },
+      {
+        "path": "/分段增益dB/S5/1",
+        "before": "absent",
+        "candidate": 1.5
+      }
+    ],
+    "reason": "Smallest tested quarter-step variant giving both a modest shortword rise and safe original postgain/k/threshold margin; +1.25S5 remains -36.012dB marginal, +2.0 uses more gain without a need.",
+    "private_same-old-S4S18_candidate_WAV_sha256": "b4cf7127c1a85e4a44d3f6fabb41671815a59daf1d0e055fa8755bdd68b7c26f",
+    "private_same-old-S4S18_candidate_AAC_sha256": "33114e066f921a641c849d42f8ff4eb9744815ecb98359ee547fa8a112aab330",
+    "all16_other_body_sentences_plus_title_prePCM_exact": true,
+    "outside_two_target_source_windows_float32_exact": true,
+    "source_target_windows_s": [
+      [
+        6.66,
+        7.27
+      ],
+      [
+        30.96,
+        31.696
+      ]
+    ],
+    "old_timing_duration_kept": true,
+    "new_S4_S18_re_read_combined_whole_fingerprints_still_pending": "These diagnostic wholehashes must never stand in for final newS4/newS18 PCM/AAC.",
+    "requires_root_measured_selection_before_parent_source_merge": true
+  },
+  "user118_though": {
+    "measured_public_though_interval_s": [
+      22.765,
+      22.9275
+    ],
+    "original_two_fixed_added_pause_s": [
+      0.4,
+      0.4
+    ],
+    "raw_deleted_samples_at_those_cuts": 0,
+    "cause": "Two400ms standard insertions isolate a162.5ms word, causing the observed clipped rhythm without deleting the word.",
+    "new_spoken_projection_plan_sha256": "372d30761439cb42a1753647d73f611ee2ef5a76f3b48f65943c861620170ad6",
+    "display_commas_unchanged": true
+  },
+  "user122_final_sentence": {
+    "scope": "EntireS18 spoken drops all4commas, display retains all; original model only thisS18 if inference needed, not wholearticleTTS.",
+    "old_S4_S18_mother_seconds_and_piece_maps_invalid_for_new_mother": "Explicitly listed in projection plan; native producer must compute new timing/control evidence and fullASR."
+  },
+  "source_write_owner": "parentlayout",
+  "projection_core_owner": "tetris34_audio_audit",
+  "formal_native_producer": "audioCI",
+  "public_source_and_voice_repair_not_yet_applied": true,
+  "root_selected_gain_pending": true,
+  "human_listening_or_new_native_acceptance_not_claimed": true,
+  "private_PCM_GT_raw_cache_arrays_not_exported": true,
+  "no_source_GEN_MD_CI_CF_threshold_PDF_or_Release_changes": true,
+  "utc": "2026-11-14T19:23:13.338147+00:00"
+}

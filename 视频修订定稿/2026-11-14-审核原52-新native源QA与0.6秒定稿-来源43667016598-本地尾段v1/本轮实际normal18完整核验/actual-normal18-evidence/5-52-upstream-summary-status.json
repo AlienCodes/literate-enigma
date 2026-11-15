@@ -1,0 +1,4085 @@
+{
+  "article": "52",
+  "passed": true,
+  "stage": "final4K-passed",
+  "original_audit_and_quality_thresholds_unchanged": true,
+  "original_maker_unchanged": false,
+  "core_repairs": [
+    {
+      "target": "视频/工具/make_video.py",
+      "file": "files/视频/工具/make_video.py",
+      "original_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+      "baseline_six_sha256": "6945e9bee6db143029bace6c04b4f4df7110c41ba647eee7236b0d0e5ed75203",
+      "patched_sha256": "23d886be9cf999eabc682159e1ab2fc2cf6c4ccb0597f32d60d5e90a34606c0e",
+      "repair_scope": "explicit selected spoken-comma dataflow only; default behavior and all existing numeric predicates/thresholds retained"
+    },
+    {
+      "target": "视频/工具/停顿位置精确核对.py",
+      "file": "files/视频/工具/停顿位置精确核对.py",
+      "original_sha256": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+      "baseline_six_sha256": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+      "patched_sha256": "1c94b0b10a246ed85d380b3a744dc8398f0880de41f27139c49bf3700d378e64",
+      "repair_scope": "explicit selected spoken-comma dataflow only; default behavior and all existing numeric predicates/thresholds retained"
+    },
+    {
+      "target": "视频/工具/句内响度.py",
+      "file": "files/视频/工具/句内响度.py",
+      "original_sha256": "58735b7173a3c03efa61fb300b4aed4039c164fa970e0593a40bae2a3f3cbd27",
+      "baseline_six_sha256": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea",
+      "patched_sha256": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea",
+      "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+    },
+    {
+      "target": "视频/工具/可闻声保全核对.py",
+      "file": "files/视频/工具/可闻声保全核对.py",
+      "original_sha256": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+      "baseline_six_sha256": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+      "patched_sha256": "61a08806ca4c4470c94e0e137c506b052e9fe2ae9ef616015ce0717c83197ec9",
+      "repair_scope": "explicit selected spoken-comma dataflow only; default behavior and all existing numeric predicates/thresholds retained"
+    },
+    {
+      "target": "视频/工具/成片时刻对照.py",
+      "file": "files/视频/工具/成片时刻对照.py",
+      "original_sha256": "1d691022b6344a3af22fe21eb30d200f9513c6c157b6c3de3e733152d77f975e",
+      "baseline_six_sha256": "1d691022b6344a3af22fe21eb30d200f9513c6c157b6c3de3e733152d77f975e",
+      "patched_sha256": "eae00519354ba18311c2de4be12c5748521c41c2405480f5f8869603c38c9a6d",
+      "repair_scope": "explicit selected spoken-comma dataflow only; default behavior and all existing numeric predicates/thresholds retained"
+    },
+    {
+      "target": "视频/工具/新管/快测.py",
+      "file": "files/视频/工具/新管/快测.py",
+      "original_sha256": "0ee9f05daaa719521ef2503630c25fe198630533ddd71502cff50da7da1c16b1",
+      "baseline_six_sha256": "0ee9f05daaa719521ef2503630c25fe198630533ddd71502cff50da7da1c16b1",
+      "patched_sha256": "2f2c2e4c50cd9268129b751094fa01b49b3dc7ea153b26720eca4bbba9befe7f",
+      "repair_scope": "explicit selected spoken-comma dataflow only; default behavior and all existing numeric predicates/thresholds retained"
+    },
+    {
+      "target": "视频/工具/无标点停顿核对.py",
+      "file": "files/视频/工具/无标点停顿核对.py",
+      "original_sha256": "77e8907f9b3e9f5337803f76dc9996d2cd7f4aa39f505ca0b9dced60a70440cd",
+      "baseline_six_sha256": "77e8907f9b3e9f5337803f76dc9996d2cd7f4aa39f505ca0b9dced60a70440cd",
+      "patched_sha256": "6d2a6c9d084ee7b2ac8bfe4e585e88116173cb3b8607091ef6808eb2e8cafb84",
+      "repair_scope": "explicit selected spoken-comma dataflow only; default behavior and all existing numeric predicates/thresholds retained"
+    },
+    {
+      "target": "视频/工具/标点停顿核对.py",
+      "file": "files/视频/工具/标点停顿核对.py",
+      "original_sha256": "eb9903c624e312647b2618fab972e05f0c64ade858bd71f244efbe4807961b71",
+      "baseline_six_sha256": "eb9903c624e312647b2618fab972e05f0c64ade858bd71f244efbe4807961b71",
+      "patched_sha256": "e957ea3cd5ff899de55bdc8eaabd75b553dedf7945ec376c0e6dbd8e2d377883",
+      "repair_scope": "explicit selected spoken-comma dataflow only; default behavior and all existing numeric predicates/thresholds retained"
+    },
+    {
+      "target": "视频/工具/独立复核/labels.py",
+      "file": "files/视频/工具/独立复核/labels.py",
+      "original_sha256": "9dc510ac2d7f5ed3f0d5b666c10eea92f2f22c14a9e5681739b87cb376571c2d",
+      "baseline_six_sha256": "9dc510ac2d7f5ed3f0d5b666c10eea92f2f22c14a9e5681739b87cb376571c2d",
+      "patched_sha256": "9ec0bc9bd65989d4fa6038c568aed9478145aafa933927b8a331e4ea6d25c3fd",
+      "repair_scope": "explicit selected spoken-comma dataflow only; default behavior and all existing numeric predicates/thresholds retained"
+    },
+    {
+      "target": "视频/工具/独立复核/synth.py",
+      "file": "files/视频/工具/独立复核/synth.py",
+      "original_sha256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+      "baseline_six_sha256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+      "patched_sha256": "499f74e365e7a7d38411c63fd89ce3cbadcc9c1c0f2670fc869ab873ec79d92f",
+      "repair_scope": "explicit selected spoken-comma dataflow only; default behavior and all existing numeric predicates/thresholds retained"
+    },
+    {
+      "target": "视频/工具/疑点清单.py",
+      "file": "files/视频/工具/疑点清单.py",
+      "original_sha256": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea",
+      "baseline_six_sha256": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea",
+      "patched_sha256": "a3b7604fbcbdd31fecd0b548382426e70ddab810fc923ff895027c084f30eab2",
+      "repair_scope": "explicit selected spoken-comma dataflow only; default behavior and all existing numeric predicates/thresholds retained"
+    },
+    {
+      "target": "视频/工具/结尾句接点.py",
+      "file": "files/视频/工具/结尾句接点.py",
+      "original_sha256": "15303682c605dd4544172c92d42c016d8d0536e0c6d1f9816d0d38dd5d2b9a61",
+      "baseline_six_sha256": "1a5d43c4f5483014b69bbea7ad43dddb0333a9a80e29bb2b4c8029d8915ff798",
+      "patched_sha256": "1a5d43c4f5483014b69bbea7ad43dddb0333a9a80e29bb2b4c8029d8915ff798",
+      "repair_scope": "validate existing ending entry with original producer guard then keep it; bad points fail, missing points use original algorithm; default unchanged"
+    },
+    {
+      "target": "视频/工具/草稿声音.sh",
+      "file": "files/视频/工具/草稿声音.sh",
+      "original_sha256": "0ce3277812cf16ed30438509b6dc97db0c26725db4c5db5d9b058c3ef6531aa2",
+      "baseline_six_sha256": "43fc6a1acdae6bb1c2252178bf034407400bbbe92eb1752053f3047da9760491",
+      "patched_sha256": "43fc6a1acdae6bb1c2252178bf034407400bbbe92eb1752053f3047da9760491",
+      "repair_scope": "explicit revision flags keep reviewed gain, existing valid ending and reviewed physical cuts; automatic cuts still measured/proposed without --写入 in CUTS=1 mode; default full JSON/PCM/AAC exact to prior5; all original later quality checks retained"
+    },
+    {
+      "target": "视频/工具/词尾实测.py",
+      "file": "files/视频/工具/词尾实测.py",
+      "original_sha256": "7cb71c5b4e60e5391bff7ba2843f553548e074a3ac7b71965bc62f2836817ad4",
+      "baseline_six_sha256": "7cb71c5b4e60e5391bff7ba2843f553548e074a3ac7b71965bc62f2836817ad4",
+      "patched_sha256": "87a05bebdc0cd5c50ce9fe3c7e9376498731fd077f6778e86a7aed1e5a90e4c9",
+      "repair_scope": "explicit selected spoken-comma dataflow only; default behavior and all existing numeric predicates/thresholds retained"
+    },
+    {
+      "target": "视频/工具/词尾辅音核对.py",
+      "file": "files/视频/工具/词尾辅音核对.py",
+      "original_sha256": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+      "baseline_six_sha256": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+      "patched_sha256": "e64ed781a2e27991e3ff8aa97e41e1cc1bc09515a4f61cbc943fec27e0e41508",
+      "repair_scope": "explicit selected spoken-comma dataflow only; default behavior and all existing numeric predicates/thresholds retained"
+    },
+    {
+      "target": "视频/工具/读音核对.py",
+      "file": "files/视频/工具/读音核对.py",
+      "original_sha256": "0a3b97e1179e47c0593f69286f4206eecc123cc7ec5d5adf4f5e62457c228a41",
+      "baseline_six_sha256": "50f4363bb2fc2930be59904cdccfa44fd46f14393a0385c7846028ee25b4e84c",
+      "patched_sha256": "a32bee516f108594f28bda2a3566754e383f27fd78d5a0121e58fb5d49a84428",
+      "repair_scope": "explicit selected spoken-comma dataflow only; default behavior and all existing numeric predicates/thresholds retained"
+    },
+    {
+      "target": "视频/工具/高亮同步核对.py",
+      "file": "files/视频/工具/高亮同步核对.py",
+      "original_sha256": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+      "baseline_six_sha256": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+      "patched_sha256": "0041d8ef2f9d4a231c437d3b49cfcaa556ecd4a760b45c79ccf4abc6a7d02e0d",
+      "repair_scope": "explicit selected spoken-comma dataflow only; default behavior and all existing numeric predicates/thresholds retained"
+    }
+  ],
+  "strict_production_cache": true,
+  "pdf_requested": false,
+  "check_summaries": {
+    "approved-illustration-resource.log": [],
+    "certified-core-original-stamp-verification.log": [],
+    "original-restored-stamp.log": [],
+    "canonical-module-copy.log": [],
+    "canonical-draft-00.log": [
+      "第52篇 做完（224 秒）：修了 1 处、疑点 72 处",
+      "① 文本：通过，自动修 1 处",
+      "② 声音：52 词尾辅音核对 问题数 0；52 纯人声核对（配音指纹 99d707b2f757）问题数 0；问题数 0；52 句间停顿核对 问题数 0；问题数 0",
+      "③ 出片前核查：通过",
+      "⑤ 出片后核查：全部通过",
+      "⑥ 已拷 视频/视频/草稿1080p/52_1080p.mp4（--不推）"
+    ],
+    "canonical-final4K-00.log": [
+      "第52篇 用户定稿原话：有"
+    ],
+    "original-stamp-after-production.log": [],
+    "approved-audio-qc.log": []
+  },
+  "actual_native_core_certification": {
+    "run_id": 43638178374,
+    "job_id": 132579525452,
+    "commit": "663bb2fe98aabe186d35638379c111ce2cb21f51",
+    "actual_full_quickcheck_exit": 0,
+    "actual_full_quickcheck_seconds": 478.33,
+    "artifact_id": 14130939578,
+    "artifact_zip_sha256": "2a3b52b05e7cf43c562dd800c9884ff41ddfd76f9343e1f8801272ee9d03dabe",
+    "certification_JSON_sha256": "d91deb458a69b03288144fc2fbce75b848f3af096e2676b0b54c2b919626bc7a",
+    "full_original_quickcheck_log_sha256": "82422628d628273e250396d8a1796a3aae0604dcbfd5a95dd90c143407810e77",
+    "actual_three_sentence_model_timing_report_sha256": "62fe27ae2c18d2f1a172ba7369b57e8ca88a25e6beec572b4b4548c069a66e91",
+    "actual_article_audio_or_video_acceptance_not_implied": true,
+    "all_six_original_input_cache_hits": true,
+    "new_cache_files": []
+  },
+  "actual_native_fastcheck_stamp": {
+    "target": "视频/工具/新管/快测通过.json",
+    "file": "files/视频/工具/新管/快测通过.json",
+    "sha256": "3c251c77fb58b775ae1389a52ce31467686201ba98b842af545f2923357a6c32",
+    "origin": "actual original full fastcheck110 native43638178374"
+  },
+  "reviewed_regression_resource": {
+    "target": "视频/工具/新管/回归基准_27.json",
+    "file": "files/视频/工具/新管/回归基准_27.json",
+    "sha256": "b8ddb4656ae27cbfc7ec8e3b99511983b4e568997bd4ad4ee33c364f3926ae94",
+    "origin": "pre-existing root-reviewed 67-screen data; original voice/segment MD5 unchanged"
+  },
+  "core_repair_manifest_sha256": "0bbff31f0d45b9412ec0e1a9f68b0e9603f199c2495f071320b18e82b192008f",
+  "reviewed_gain_preservation_mode": true,
+  "reviewed_existing_ending_preservation_mode": false,
+  "reviewed_existing_physical_cuts_preservation_mode": true,
+  "source52_exact_no_ending_entry_zero_spoken_comma_original_default_mode": true,
+  "real_restored_stamp_validated": true,
+  "reviewed_cross_article_context": {
+    "provided": true,
+    "manifest_sha256": "b8888953e5c400ab5c0757e747ae03132bad8a69a2cdae02e455808ef11dde9d",
+    "files_sha256": {
+      "视频/脚本/01.json": "2be2f80a69af28703992204ac95f987c745362c326e62ad81b3cd8e0e0735d3a",
+      "新版定稿/01-the-robber-who-thought-lemon-juice-made-him-invisible.md": "572054065b5bb65446bf8939a21c789c1e9c7664d82da5117c43efdded894351",
+      "视频/脚本/02.json": "0403368c77fd3e0f91e1ee3780e1c7c147894ad13c16b5f14707d700a8f717c8",
+      "新版定稿/02-the-truth-about-one-marshmallow.md": "91b92505aad03f963861bec39e96f0a472c126d1d57c9fc538676c32f65e545c",
+      "视频/脚本/03.json": "527f3bf4a11843f4d606188dabc6ebce6830da3fb454a49c782e3a595cb47407",
+      "新版定稿/03-the-doctor-who-drank-bacteria-to-win-an-argument.md": "6dfb56504882e24854a3584fd740e7f6601e3f2532818aee3a56d5330d317aa3",
+      "视频/脚本/04.json": "93cc1ff58d65ebe43a65ecb2fb2dbd2da262d80877c05740bbdf4eab4eaca1e8",
+      "新版定稿/04-the-brain-that-learned-london.md": "a8ccb31ffff50aaae77de4b83de1847fafae1d585981cf960c5880c409f6cfc3",
+      "视频/脚本/05.json": "96116f6806b8783cc8abe9583424047683505025dab6c3bc5b38629bbafb418b",
+      "新版定稿/05-the-fingerprint-in-the-blood.md": "612deac4ed066489e04e214ca969f8f27dda05856e0ef0ed2e540e7a4a52ae34",
+      "视频/脚本/06.json": "2cbf1d6cd6e66a59285298ea830f5ef914590b64286d40b2ae5f3168aa27a2e9",
+      "新版定稿/06-the-horse-that-could-count.md": "7fd21ba491c7596c53c486f2bb0b0f2f6da8e67bac75461a4649a7caff822f74",
+      "视频/脚本/07.json": "842e44e5aa19fddcfa239cb6530c5152341cd86e11db959543d02d8670ca13e8",
+      "新版定稿/07-the-octopus-that-escaped.md": "b8544281bb2ada88fce9d1082cbc30233dcb63ee3e9c2bbefafc22cb28b8cb39",
+      "视频/脚本/08.json": "254832e09f12759d950384dd9f31f671ad5a3bc1590b7466065dd3ef5fe4b8d5",
+      "新版定稿/08-the-doctor-who-solved-the-cholera-mystery.md": "0b2bfa68070ce585a452f6b7034d03c3683e710dcabec5e86d7b221950dc7bab",
+      "视频/脚本/09.json": "fa3e429351d629de188c184d04e9986200e16e80606fcbec82332b6433301dae",
+      "新版定稿/09-the-great-emu-war.md": "af5c3e844bad15f94bfc43aeed6d7417c4bfae85f026b194da667a7a3bdb6196",
+      "视频/脚本/10.json": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
+      "新版定稿/10-the-stolen-smile.md": "ff63cf94e4d2c835e2e2f1ffd3e6c5642f0916f0b13c012f1f13c3dff716d47a",
+      "视频/脚本/11.json": "665cbb80cc70b700ecc0cc5813209fd100ad4fa8f0eead3929b9e53778d9d07f",
+      "新版定稿/11-move-37.md": "7e0b49b346c1fa3ab994a11a2301167c0d6a1bb00916508bdc0b1acf71e68053",
+      "视频/脚本/12.json": "e3bfbcce6f1a8e14cfe451d656574353321e297c90c62f5a7b422f37478311d5",
+      "新版定稿/12-the-79-days-of-new-coke.md": "5a23c1e0c81318527bcbf27573487d1845c5318905a2b1e020cc6e2eaf5d643f",
+      "视频/脚本/13.json": "c22ccc9eb34a92380ecbd2ea72189db492264c4730141c73024685b3fca5fd1e",
+      "新版定稿/13-eleven-days-without-sleep.md": "41998b355721703f761685dd351fbf4628b2be67dfed8b3d37276f9e8f929ecb",
+      "视频/脚本/14.json": "2889a9b31bc7945ee55c306d3507b8557bf1efe371af8a97483a61172be800b8",
+      "新版定稿/14-the-fungus-that-turns-ants-into-zombies.md": "618900d05bd2cecc8d577c446146e4df98d71e070c0b779b40992820d1fdd332",
+      "视频/脚本/15.json": "9b42f089b79e4e0c54c254c948ac4d9ae28d224585095a373607122a0d7c6898",
+      "新版定稿/15-the-myth-of-the-unsinkable.md": "bc2d0c8613437b39149cd6e66729104b26efceb8681fb645f782a97b40007584",
+      "视频/脚本/16.json": "d25aa07f3fac316c26c2ae1006d3efa7eb82a396b66150432b50239c1628396d",
+      "新版定稿/16-the-bread-made-from-air.md": "4da63148111213f6d77451b0eb4193893e6fc2fc170400bc39ce5f5ffcaa0b20",
+      "视频/脚本/17.json": "9750857c3e2c67e6abe5ea6913cb0602347be8b58836bbbc03e2c4153bb12e1b",
+      "新版定稿/17-the-curse-of-the-pharaoh.md": "0dc7b6ee7f4ef05d5e4382beeb077d57578d0bb6a6b69415485008facae98717",
+      "视频/脚本/18.json": "5192b78e582c36fd7d5a34973d8314c5b23e13b8313c8960ac29653bd7fa5d8c",
+      "新版定稿/18-the-mould-that-changed-the-world.md": "ef41cea03f471fe3b9a53939c843e450da3325eb711f6414e108ae92a7518dd8",
+      "视频/脚本/19.json": "cc3c5eea0f7d9ec0712b2e58adba7e5ef8b61d6518a322f9b25a12fcc45282fb",
+      "新版定稿/19-tulip-mania.md": "3882d487383b759c31dda4785966091c362960cd873a5d83c530d08d52e2e97c",
+      "视频/脚本/20.json": "cc5ed6d7be8767e5e7e9b098e8f3836821c0b3f51c17581b2746722da1cf3001",
+      "新版定稿/20-the-5000-year-old-murder-in-the-ice.md": "8d55638070787f7ff5432c197292af1188c463a8b018e01bdefc32999b888e95",
+      "视频/脚本/21.json": "61c1569a26d7569ee0f586178be6b307b1c394c0a30c3cb02541c910038b0589",
+      "新版定稿/21-the-man-who-sold-the-eiffel-tower-twice.md": "e8e966b70f579235d696ba11fb01d3b2cae3fa26efb9071bbea95071be259e1f",
+      "视频/脚本/22.json": "e3027a42c532fee9935afcecdd0542713cbb907183802c2345b9472f93b75f59",
+      "新版定稿/22-the-building-that-melted-a-car.md": "49ae09483bc80bbc40a71551cd98aebec355d96d9ff7b2bcdea59a06fe599267",
+      "视频/脚本/23.json": "c4574a79fd3a58577a1402ce095ea9e4a0ea1f98883ce63e3cc60d126e819409",
+      "新版定稿/23-the-man-who-gave-machines-a-mind.md": "72ed3049e87fe75ce1e753d5e443bdbe6a7ab72f6e282e8467fbbb62be873169",
+      "视频/脚本/24.json": "f08620b534bb10b718f7515c805dcb541721427d855bd5a092b8954847a351b8",
+      "新版定稿/24-survival-in-the-ice.md": "cb7f810d9a74256e0c00625290be4f16207feb90f5719ca87d5d7c9912b91307",
+      "视频/脚本/25.json": "c73e854e052b3df9bd920d4a59fafb183dee19bd58765fa426af6ea3d7c9a329",
+      "新版定稿/25-apollo-13-the-successful-failure.md": "b6b7d55fe66e6e32116431ea955778fab779b8bda622df0ba1036c2f40a3969f",
+      "视频/脚本/26.json": "22349b0a29f05689aae5bd5e9d0907846a68e6ad42949eb0b8cc392d6dce18d6",
+      "新版定稿/26-the-language-the-children-invented.md": "f64089bc9487e756522746058fba2e27c45e56ffc339d8590038643012eb496d",
+      "视频/脚本/27.json": "e1214d8e9314a1cb54da82e2532889198bec555d6be9189fbfb43b5fdedcd728",
+      "新版定稿/27-life-in-the-forbidden-zone.md": "c592b44a8e6ec26f3c2e96ed19191958e57c81d31e54329c20d726e538c10e52",
+      "视频/脚本/28.json": "e0c8e6c644ab0c5d52d99c23461b99e9ae1574aa574369e56feb35e2ac20698b",
+      "新版定稿/28-a-handful-of-wormwood-that-saved-millions.md": "d609cd99ab982365c6f0167e211c55b31e52a354d50918780f3da66ef702a5bb",
+      "视频/脚本/29.json": "1e5f1d9f0c22b5d14b757f029be694c2a3969666d732ca79bb695282763de791",
+      "新版定稿/29-the-volcano-that-gave-us-frankenstein.md": "69045ee19a170c7ea9d0008b468c7e947bc28b639b834c0192dc0aeafc3ef4d0",
+      "视频/脚本/30.json": "34eb48747f1ea7d14b41ccc0cf45aa1592907aacf6618999b3506944e2ff4a0c",
+      "新版定稿/30-the-stink-that-built-londons-sewers.md": "84dbf19cee0045ea2608b13ee0677cb9623dd8fbb371c67093bf50c64186137a",
+      "视频/脚本/31.json": "d81f8645a1e5663ba8c84668e817cdb218bc6689079fbfd51326b3a7fd3cd384",
+      "新版定稿/31-the-book-twelve-publishers-turned-down.md": "7abd20fed44918dcf01586c056e9d0acd9d2ad3b90aa7d3d403762d9f06d2659",
+      "视频/脚本/32.json": "357aa59bed62154f7302a5efcf528859b303004e028657b93058138fe931bf85",
+      "新版定稿/32-the-planet-that-was-demoted.md": "1421f2b0921e7e9478ebc48777e3e8b2c979172de63d0124015107c3750a3542",
+      "视频/脚本/33.json": "da87d68fdee3401e499aa145c23d9b2c663ce3b27f79feec5eca1ddb0d794e72",
+      "新版定稿/33-thirteen-in-the-cave.md": "b96faac786ace911140b835d9f9c6e37eeb0c5f3e7a077b913805b8942c56067",
+      "视频/脚本/34.json": "5350c08cdc6dfa5579f0bdc6960805cbe079a1c471c46bb2250f11b32da34868",
+      "新版定稿/34-the-game-that-escaped-the-soviet-union.md": "fdfd966f8624bc506b7cfe16da04f2f7382ce5566fab3bcb35c3d99dd6d4a5f2",
+      "视频/脚本/35.json": "d8439077dc2c909b1c6cbd1347f31e9625f25fffe447d6f5945c9492561f1a16",
+      "新版定稿/35-the-bird-that-beat-the-letter-home.md": "ba8c38e38b21a3345624e2d44fd352561d3096cfb6f62214b48ea9b6e66faead",
+      "视频/脚本/36.json": "e35a3dcb2ff0f0c7054493331370c0364190771ecf56e0dad6dbee3af860a628",
+      "新版定稿/36-the-company-that-invented-its-own-killer.md": "4b0f1d016d3e94bd7f77d3a36bfc423700006c7a23c0b0cae5ca68d5c5af883f",
+      "视频/脚本/37.json": "b1b8945ccf3581df48ade5714a2d0e93e4cc6812708f95bef6f5e44439106c99",
+      "新版定稿/37-dynamite-for-the-heart.md": "4933e24d2384471a96d9c8c26c15d5224a85dae98d9971a3fed15b4978dafc51",
+      "视频/脚本/38.json": "8d0379032000967c9f72e550574874949f798eefbfbfb58ab2b38e4e23ecbc6b",
+      "新版定稿/38-the-web-beneath-the-woods.md": "abb7eead9f3da0b2b326ceed5a649cfbf71fc28dad22e0d52f7b19caa798c54f",
+      "视频/脚本/39.json": "6c3e9539f624b192335312912572a05fba2c7bcfb821b44c3c1dbb21b42527a7",
+      "新版定稿/39-y2k-the-crisis-that-success-erased.md": "abbc9804661126aa006595031ed8f201ce55e8eb5fd9e1ad5669c0c6fcdb80ab",
+      "视频/脚本/40.json": "1c50d1a47ee6f8528d0f7299e8a45bc8c30312622f3f465a964d21cc1395ee7f",
+      "新版定稿/40-the-glue-that-failed.md": "dce9f78f3a0828307843dd667b7eeebf3380a3630f03d234bd5824870aba61a1",
+      "视频/脚本/41.json": "6b6673ffc1db986f4c355f3685de6a0faf2272cee042c5e917f26a8b3057c2be",
+      "新版定稿/41-the-toad-that-invaded-australia.md": "eca590f97120f4e76d719e29aa07b094f9117cd462f5a70c029331a63b85f710",
+      "视频/脚本/42.json": "eceb10ae92aa4b9cd23180d1138149a7fa7b674385462c898bc0d2283c8739e7",
+      "新版定稿/42-the-telescope-that-needed-glasses.md": "d4aa049779a0eba06c555d76ca14103648378eef90465df424120126fa771280",
+      "视频/脚本/43.json": "aa9da1246e293c80408edf94a7c9bed65ef3178ae7cb5265a8273e8c4396687f",
+      "新版定稿/43-from-a-garage-to-the-top-of-the-world.md": "bd70c83e5ac867238ca179f3c9f3548eb9cbdcae1f6df40994aef0bda721ae54",
+      "视频/脚本/44.json": "87f531203ca38d88ae5e71ffd88190b1530715cdc0adba146c2a4a78ebe9b976",
+      "新版定稿/44-the-night-sweden-switched-sides.md": "d3f7ad2ac43f02aae9205a15b9808280ca3db597d6ef3b36aca8ca6176c5f74a",
+      "视频/脚本/45.json": "569406607d2bf18dce5e916052d6460509450d97fe17ac9820be524f59c2c3cc",
+      "新版定稿/45-the-record-humanity-threw-into-the-stars.md": "27deabec4a8478fe570f7f237a2fb850ffdce3deebfd952f512d82a60cf7314f",
+      "视频/脚本/46.json": "c8c7ce7a76226f5274a91af693d24410d5eacfa59206b085a70d133f3634c12b",
+      "新版定稿/46-lost-in-the-glare.md": "7aaa06e875fe56c5d78210b90a8769b8b2051714025ef10df37c2fe89db7a68c",
+      "视频/脚本/47.json": "4c33bb0764a9b98e914a55806486ce841a1503efda1ff001cd2f8c9bb1626c06",
+      "新版定稿/47-shadows-of-wolves-over-yellowstone.md": "6b51ae76b8ec4ffd0ff1748c5902ef59754fa446479fc40357e9946a9aaac7a1",
+      "视频/脚本/48.json": "4f146ce6a70bb0bf5d2c6e1f6b47bd6a2bcc2f311be7a948092d7bde1a08f449",
+      "新版定稿/48-rice-for-the-world.md": "76416be21f857e8a05c37baa33ac90f5785812291485231c249e38a1d0edf15f",
+      "视频/脚本/49.json": "fdcc3a438e50a32fdf8c7bcbe27a97d20fc101b6169ca305f920fedbd3303c3c",
+      "新版定稿/49-the-woman-who-won-two-nobels.md": "1e4fb068aa9ae4513d01b199a074b84dc9d819f57b2134df32588a0e4a4b6b6a",
+      "视频/脚本/50.json": "1d4a41824dfa5e8d11e5990b2a4b802ba2fcc3231d85b15ed6630396c6f027bf",
+      "新版定稿/50-microplastics.md": "5439589bacf1abb2abbb184eb658492bc02bcc5bdd8dfd8ababcd80ab93621cb",
+      "视频/脚本/51.json": "39886d83593a31fb575b124ecf6457190773dca695b6ff78f8434d52aebd6d7c",
+      "新版定稿/51-the-joke-that-became-ok.md": "8de30ea4846f4e88d8b71c8d5ced3ee63a73955e39b7dc3c5adad0971b854fd0",
+      "视频/脚本/52.json": "f9e3fa65ddf161a0d7b83e17fe60ac56552535566bf64512ca0f785e21e49862",
+      "新版定稿/52-the-killer-smog-of-1952.md": "5ce7dc40cb82cc8918b24fd25ac295d7fe90b65884633a08e13cc58a03402af7",
+      "视频/脚本/53.json": "73393dad5d67261f2ec7819f3749a6589278900e2f214a1da06b0dbde55fe31b",
+      "新版定稿/53-the-wind-that-kept-no-time.md": "5d8007a8c953bc0dd47bfb2536e6f3b3308c0bcf93ca607d6f1c6d02dcac457f",
+      "视频/脚本/54.json": "b1fcb8ae86045b3d35ccfa0f52eb9594b8921d43063835769ee3ecc4543be75e",
+      "新版定稿/54-the-sound-that-shook-the-world.md": "abd5f4bfe11ed73bcc5326a92cf99b0a8e5ad70adaca1ce8d0c8f622b57fa519",
+      "视频/脚本/55.json": "06344fc0ad5975cba2f4dbe5262a9957dd7c024f9a05b9abbfa327f32ea8c719",
+      "新版定稿/55-the-secret-of-romes-undying-concrete.md": "a7759eddcc7ec06dfd6dab7912e06b3b5ef8576df0c025a97812006669d0be61",
+      "视频/脚本/56.json": "22ca3b4180a8ae6a37b4c8e25f5e357d5696d9b23bf148fb7064425d1403e59c",
+      "新版定稿/56-the-letter-that-startled-darwin.md": "aad1e2aab9ff28f534a510362e807ef401e0b502475240f4b2531e9e518a8d7a",
+      "视频/脚本/57.json": "a0ba65b769430289a33ec1f7bc6dbf91dad8d2c3b1d725348851de546563cd6f",
+      "新版定稿/57-a-change-of-anthem-in-the-deep.md": "0731d925a98bafc222718c111985362e166b38b9189c516219a481e36d0d4b6e",
+      "视频/脚本/58.json": "8b0bd3d7d39000518789e9907aec53bd52fab1b9d6b4f22a152d158635b6e8ee",
+      "新版定稿/58-from-a-scratch-to-a-world-without-smallpox.md": "1aa2a0d2c51da76f9c9ebb88d049dd1a55ab530791566fdbf6476e5aa48c15ee",
+      "视频/脚本/59.json": "df1db4174d942371166048b220ef6d55b0b700b2ce31c866edf6dfdf33b92f0c",
+      "新版定稿/59-saving-the-sky.md": "7bf9c4661e733e7af23dc2f11bc820b809ec93dad75a94fb6a12748226e8722c",
+      "视频/脚本/60.json": "cd10eb60e8ea365ce653938ba4339901001cf8d6535c50096c2e736a385b844e",
+      "新版定稿/60-the-scientific-giant-who-changed-the-world.md": "130158a4a5cd0bb680bf8ebaa83fb309e3ae3b41e1818bfd3179eadb13c26810",
+      "视频/脚本/61.json": "2d08704376faff25b06d334d7567a381460975a56a4cef6b4ae97b3580ea8dbc",
+      "新版定稿/61-the-steel-box-that-remade-the-world.md": "135cc9cfbcbd68d957f831cf55558112a45b1cc3749366cb9a304507355c7d2c",
+      "视频/脚本/62.json": "0779c44ccd17679ec853adc3fcc733623fc774e3cb6f68e59c7bb2c4ae62d541",
+      "新版定稿/62-dolly-the-copied-sheep.md": "9edfbd3ebacdecc8c3aa3034d38dd371a105c19382282e8c0de2d08a1713f863",
+      "视频/脚本/63.json": "5d266d80f9cf29cce6f7e34531449cf75191a42f180102685a5bcd04849e75c5",
+      "新版定稿/63-the-crowded-heavens.md": "6ef79d4310019dfefa7364b8a428411a6bc337678c69fa5cbc89b84689e253a4",
+      "视频/脚本/64.json": "12a36862765922d72ce6e5a4c5fe85f548364eed65fe3b3b284f0b38899a965f",
+      "新版定稿/64-the-day-zero-that-never-came.md": "e0c83cbe36745adbbffd33a156fa8d0671704ea976cb13215cabb612639b37a5",
+      "视频/脚本/65.json": "875ecf68f5e196bb02c198533c5b5928852a1c1083419f92acccc65617b3f670",
+      "新版定稿/65-the-day-the-doomsday-vault-opened.md": "24b59a22149441c5cf39b4295ca0c2296eb4aec18e7eb3f10011df8a2e76fa23",
+      "视频/脚本/66.json": "ad5324af4270834186285a5e7273a90213094077adc6f9e1d5c7b0ebff9cf035",
+      "新版定稿/66-the-burrs-that-became-velcro.md": "75dbe6c148ca97a7780ac1737f33f58bf8ee27a51aa729a83315705655b12b2a",
+      "视频/脚本/67.json": "6839a46ebdb51cdcff6a65ca238efc228f1e114efd1734cee6c994ca659a29cb",
+      "新版定稿/67-the-cave-found-by-a-dog.md": "10e37b81eeef4e3289448a6b4fd679f34d495a4fc087c57747e6dca949e00cf1",
+      "视频/脚本/68.json": "568f72dacac48e206811d35a57c7fa22e3da428783f64e507c184f2090e579f3",
+      "新版定稿/68-the-last-flight-of-the-hindenburg.md": "c25f58ffb0e3748336767bb7470dd7cef10374c53cbb48af89dba26f65b2dd5c",
+      "视频/脚本/69.json": "c493528f054e2d572e56b8ea15be0950158e86e3d3271b0f94237e8d296163ff",
+      "新版定稿/69-the-trial-of-the-father-of-the-atomic-bomb.md": "570eda5b7d979d71e9bcad1c67e295ed326ecdb8b61e663aba33272c8a9451bd",
+      "视频/脚本/70.json": "0f6827f02cef0d2416f9d7d69b7e1c5553acee7cf6dc89f3379201264587236c",
+      "新版定稿/70-the-stamp-that-changed-the-post.md": "edfd85cea33730ba67e4210e756da1f2945f1a21bce55c7e75497cb5f0095d80"
+    },
+    "source_file_count": 140,
+    "working_script_count": 70,
+    "target_request_exactly_matches_context": true
+  },
+  "request_source_sha256": {
+    "视频/脚本/52.json": "f9e3fa65ddf161a0d7b83e17fe60ac56552535566bf64512ca0f785e21e49862",
+    "视频/工具/初稿生成/gen52.py": "015ff440b86dac3423da4ca936f2cb91f1752c42dc485b563163285a88251177",
+    "新版定稿/52-the-killer-smog-of-1952.md": "5ce7dc40cb82cc8918b24fd25ac295d7fe90b65884633a08e13cc58a03402af7",
+    "视频/制作记录/52_待改清单.md": "14ef2ddec97e2f7923d9d0d8f947402b8ad7dc5b1c2429f6d53746418f573cac",
+    "视频/制作记录/逐句确认/52.json": "adf762f8b9a8ff683cc7a365e2ec70ec6ef50fdb6a2c1004ee2e280527a9271e"
+  },
+  "accepted_source": {
+    "id": "52",
+    "path": "最终版4K视频/52 - The Killer Smog of 1952 - 夺命毒雾：伦敦1952.mp4",
+    "sha256": "67cbe85472b247b9db0c4311cf51e4c056e25a45701f75860213f67748e5505d",
+    "git_blob_sha": "498d5f8159863f97e68f3b944a69328c979a1cbc",
+    "bytes": 11612797,
+    "width": 3840,
+    "height": 2160,
+    "summary_frames": 60,
+    "aac_adts_sha256": "ecabdc3b21c705715a83ade00e644d2e8888b9a43443958078ffc15ab4d8cd2c"
+  },
+  "checker_reference_preparation": {
+    "article": "52",
+    "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+    "reference_prepared": true,
+    "acceptance": false,
+    "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+    "source_sha256": "f9e3fa65ddf161a0d7b83e17fe60ac56552535566bf64512ca0f785e21e49862",
+    "maker_sha256": "23d886be9cf999eabc682159e1ab2fc2cf6c4ccb0597f32d60d5e90a34606c0e",
+    "checker_program_sha256": {
+      "停顿位置精确核对.py": "1c94b0b10a246ed85d380b3a744dc8398f0880de41f27139c49bf3700d378e64",
+      "高亮同步核对.py": "0041d8ef2f9d4a231c437d3b49cfcaa556ecd4a760b45c79ccf4abc6a7d02e0d",
+      "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+      "可闻声保全核对.py": "61a08806ca4c4470c94e0e137c506b052e9fe2ae9ef616015ce0717c83197ec9",
+      "词尾辅音核对.py": "e64ed781a2e27991e3ff8aa97e41e1cc1bc09515a4f61cbc943fec27e0e41508",
+      "疑点清单.py": "a3b7604fbcbdd31fecd0b548382426e70ddab810fc923ff895027c084f30eab2"
+    },
+    "reference_calls": [
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-raw",
+        "method": "create",
+        "source_slice": "The Killer Smog of 1952",
+        "exact_native_cache_key": "d75afb2f809b2025a22a5c8ff6dd5a7b872a7f36.pkl",
+        "cache_input_text_sha256": "6fdda62b28c069c5f26abaf6d2839b1a83f8b86afeaf942bf088e3984b359287",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-timed",
+        "method": "create_timed",
+        "source_slice": "The Killer Smog of 1952",
+        "exact_native_cache_key": "1925d6f4fcfda7a51620945ef9ecd70cd84e65cd.pkl",
+        "cache_input_text_sha256": "6fdda62b28c069c5f26abaf6d2839b1a83f8b86afeaf942bf088e3984b359287",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "On Friday 5 December 1952, cold, stagnant air descended on London.",
+        "exact_native_cache_key": "70393452e8ddc71e96e53511ef53cfe4caca5a32.pkl",
+        "cache_input_text_sha256": "22311b027654857cd1781e811674907d9fbbf04c69824b8cc532f50582905db2",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "On Friday 5 December 1952, cold, stagnant air descended on London.",
+        "exact_native_cache_key": "bfe3a627f98d85ea1eb1d4ce2d1cccc18be145c3.pkl",
+        "cache_input_text_sha256": "22311b027654857cd1781e811674907d9fbbf04c69824b8cc532f50582905db2",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "On Friday 5 December 1952,",
+        "exact_native_cache_key": "bf543751e3fa7f20c9ae064611e6bbadd52d54fc.pkl",
+        "cache_input_text_sha256": "8323a6031798f632624a2d403dfc0dadd8a79fa017f4aa9947d9d5dd4a069477",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "cold,",
+        "exact_native_cache_key": "d4ea4cfa9d59f60e19ae035d9d45757baa38d268.pkl",
+        "cache_input_text_sha256": "63332c2ba313f19a660eb859967cad3949dd4bd831c76ae0e218d8c1ea9099f1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "stagnant air descended on London.",
+        "exact_native_cache_key": "0a9990ba9d7ee7bd751af0cbaef9093f6e0fb604.pkl",
+        "cache_input_text_sha256": "8fd113c7823916020f857b7fe325442393e4e7b42e3227519db8f7e3d28be0a7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Overhead, warmer air pressed down like a lid, holding the chill captive beneath.",
+        "exact_native_cache_key": "de1958512d29c7daf489fb0468988dc113655446.pkl",
+        "cache_input_text_sha256": "524338451c5d0c6df3ab045c0687fa3c95a7cf162212d065a6ba11e11c5e162d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Overhead, warmer air pressed down like a lid, holding the chill captive beneath.",
+        "exact_native_cache_key": "4c44890edbb479581226737adf566c7e7b4e01ca.pkl",
+        "cache_input_text_sha256": "524338451c5d0c6df3ab045c0687fa3c95a7cf162212d065a6ba11e11c5e162d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Overhead, warmer air pressed down like a lid,",
+        "exact_native_cache_key": "5fba6dea78a2340e26c37841a726390011f66a2b.pkl",
+        "cache_input_text_sha256": "d46112841858a9e0c0155dd301f955619cc1894836ab68fd32d383228251aeb5",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "holding the chill captive beneath.",
+        "exact_native_cache_key": "b3ce43201a045ad34418614d3047c5c80484aefb.pkl",
+        "cache_input_text_sha256": "9c368f9692024f7b7d438c98061ebcd1d0cf3ff82b30c757f8f443357563eddc",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Overhead,",
+        "exact_native_cache_key": "ca914bb95696890bc0865c2abc91f7e7fd24517b.pkl",
+        "cache_input_text_sha256": "5c9f3ebd86d14b2a9a6a1d04d12a013b2cd541fd2780c5f74209cc6de7497bfb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "warmer air pressed down like a lid,",
+        "exact_native_cache_key": "fcd4f3b1a1710a0b8f6dfb8ce05ccf27ddc7fb4e.pkl",
+        "cache_input_text_sha256": "05f50c1eab5aaa72339c5823be92fec9014040d3f9393741d31758c8a0a508b2",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "holding the chill captive beneath.",
+        "exact_native_cache_key": "b3ce43201a045ad34418614d3047c5c80484aefb.pkl",
+        "cache_input_text_sha256": "9c368f9692024f7b7d438c98061ebcd1d0cf3ff82b30c757f8f443357563eddc",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Londoners were accustomed to murky, dreary winters.",
+        "exact_native_cache_key": "f19b42504bc4ee6d948a39ac849fd10a6046a885.pkl",
+        "cache_input_text_sha256": "3d066f2da0a9165960db46fa8c800f5fcec13b0577e81f972e94311d92269236",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Londoners were accustomed to murky, dreary winters.",
+        "exact_native_cache_key": "0289a61b69cf34f5c051a25a13e0d0a50bb071b4.pkl",
+        "cache_input_text_sha256": "3d066f2da0a9165960db46fa8c800f5fcec13b0577e81f972e94311d92269236",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Londoners were accustomed to murky,",
+        "exact_native_cache_key": "03cad1be779b7d65686b0124331db2042c4107e0.pkl",
+        "cache_input_text_sha256": "c383dd27e2ddf6b71ebe20900cd2980e8c8300431dfbae5e7f33dcf1c0b4f2ca",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "dreary winters.",
+        "exact_native_cache_key": "614a8b85198964b194bb65ef915fd4f42537218d.pkl",
+        "cache_input_text_sha256": "7332f0a3e5a59762a199e7e1485c89a2f14adfb7ce4e9952c29417b37d2b170c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "This time, though, the capital's smoke was trapped too, thickening into a choking smog, a mix of smoke and fog.",
+        "exact_native_cache_key": "626269a6aa2d824c4cd3922d6c9aea1cd91e2aad.pkl",
+        "cache_input_text_sha256": "fe602f6d1ce4f1f6ff7508c7f7cc5eb038f0803c236f0b2ff2ed510f5a0e6d8c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "This time, though, the capital's smoke was trapped too, thickening into a choking smog, a mix of smoke and fog.",
+        "exact_native_cache_key": "5033658f57d8e204ccb64b3d53b4cd8d3908fc87.pkl",
+        "cache_input_text_sha256": "fe602f6d1ce4f1f6ff7508c7f7cc5eb038f0803c236f0b2ff2ed510f5a0e6d8c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "This time though the capital's smoke was trapped too,",
+        "exact_native_cache_key": "818342b9ea40e763800e3a762bd2c84092c8929a.pkl",
+        "cache_input_text_sha256": "11884093f4fbff02602828208a0e3f49b7aa638692468cca49cbde051ffa541a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S4",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "thickening into a choking smog, a mix of smoke and fog.",
+        "exact_native_cache_key": "4f3594c0f23d11256297067adff550bd4f628d00.pkl",
+        "cache_input_text_sha256": "2c8f0aed11f2178fb7837658c683142bfeae65aebb3a8b4a9839bd866697f9ad",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "This time though the capital's smoke was trapped too,",
+        "exact_native_cache_key": "818342b9ea40e763800e3a762bd2c84092c8929a.pkl",
+        "cache_input_text_sha256": "11884093f4fbff02602828208a0e3f49b7aa638692468cca49cbde051ffa541a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S4",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "thickening into a choking smog,",
+        "exact_native_cache_key": "af9072585a3a2c12b147535b3db4a297ea3e5743.pkl",
+        "cache_input_text_sha256": "0abc788a7b6f7f3f3c567bf041c6ddb86eed57d4f2ff109eb00927c70b742ed4",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "a mix of smoke and fog.",
+        "exact_native_cache_key": "23f7820b8467c09ea8a229e293a9a657487eefae.pkl",
+        "cache_input_text_sha256": "ed823fc1e51537719b45806fece04191c68064a4e5af9f9744e80b8eac20a726",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "That smoke, from coal burned in domestic fireplaces and power stations, was laden with soot and noxious sulphur dioxide.",
+        "exact_native_cache_key": "5b349374510101235856c4551eb48040e254b274.pkl",
+        "cache_input_text_sha256": "51db415d921f35bed54756c46eaeccdcac8709f8c04674058b2da6b72ab7271d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "That smoke, from coal burned in domestic fireplaces and power stations, was laden with soot and noxious sulphur dioxide.",
+        "exact_native_cache_key": "6eb53b52cd04c22cf6c41a1d643353f7ef120ee4.pkl",
+        "cache_input_text_sha256": "51db415d921f35bed54756c46eaeccdcac8709f8c04674058b2da6b72ab7271d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "That smoke, from coal burned in domestic fireplaces and power stations,",
+        "exact_native_cache_key": "ece88af044635ca32ca3f7dd9c2264d5912c06af.pkl",
+        "cache_input_text_sha256": "c57b0fec2e060c4aaf55e2492de802bcd30d3638b30b9773e2456d15cc8e787f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "was laden with soot and noxious sulphur dioxide.",
+        "exact_native_cache_key": "8b853293c57e25e8765009b3a6892eadcadd58cd.pkl",
+        "cache_input_text_sha256": "b1b7939bb4144fabaaeba09b60744656f47869f65f8df677063f5d822b368f2e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "That smoke,",
+        "exact_native_cache_key": "7439febc72dcb7d78ef250d095760447e48891b0.pkl",
+        "cache_input_text_sha256": "d1a194ec9b8a42b6005d0400046c87b85d4b695d91f899d6c54f69647929eb87",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "from coal burned in domestic fireplaces and power stations,",
+        "exact_native_cache_key": "01e82348f738e53e2128f58defd8705e983a3f0d.pkl",
+        "cache_input_text_sha256": "1ee5c3c627e1f4f315231dafac88f65f697a34b5dc09cb3bcde86184ddfed2cc",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "was laden with soot and noxious sulphur dioxide.",
+        "exact_native_cache_key": "8b853293c57e25e8765009b3a6892eadcadd58cd.pkl",
+        "cache_input_text_sha256": "b1b7939bb4144fabaaeba09b60744656f47869f65f8df677063f5d822b368f2e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "In places, visibility fell to a few metres.",
+        "exact_native_cache_key": "75759ce7a254547244a1aa2c5c9ef32919b8ffb7.pkl",
+        "cache_input_text_sha256": "dd39eda76370d47f724951c970d0e6a1c238bffdbc9a077d02d8249e53c3f22e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "In places, visibility fell to a few metres.",
+        "exact_native_cache_key": "d4c4f13b42e1eaa7424756a4cdeedbd7270bc430.pkl",
+        "cache_input_text_sha256": "dd39eda76370d47f724951c970d0e6a1c238bffdbc9a077d02d8249e53c3f22e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "In places,",
+        "exact_native_cache_key": "826bb39ba21c1506c2b881d13858eda2b6bed123.pkl",
+        "cache_input_text_sha256": "7014ebe263ffc2b2902338a8f0d7341d5f5a46a91aff40a10f22c9e551089546",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "visibility fell to a few metres.",
+        "exact_native_cache_key": "e0fde084d1c904bcc48533ac9e8fc6f28c7f0b9f.pkl",
+        "cache_input_text_sha256": "6693bf7b93b72940593f867be5a61215cb8edf454a363f02c5bc8f64d23e4fe4",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Ambulance services were suspended, an opera at the Sadler's Wells theatre was abandoned at the interval, and prize cattle at the Smithfield agricultural show died or had to be slaughtered.",
+        "exact_native_cache_key": "a9497844f6663b8a3238251acb33a6adeaed5e65.pkl",
+        "cache_input_text_sha256": "6244beffd60d81f7f690e948a59c5369f02434f09173f7670286a9b32405e2b9",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Ambulance services were suspended, an opera at the Sadler's Wells theatre was abandoned at the interval, and prize cattle at the Smithfield agricultural show died or had to be slaughtered.",
+        "exact_native_cache_key": "1a596c749d39e33f946515c458dfd885bac89edd.pkl",
+        "cache_input_text_sha256": "6244beffd60d81f7f690e948a59c5369f02434f09173f7670286a9b32405e2b9",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Ambulance services were suspended,",
+        "exact_native_cache_key": "9a75c96858d80f44c151043adb48a8240e3125d4.pkl",
+        "cache_input_text_sha256": "4cb4b692aa9843c6536cf081d7e092a40722c818be04746dea97eee72f2a8e03",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "an opera at the Sadler's Wells theatre was abandoned at the interval,",
+        "exact_native_cache_key": "08acda25a04601952c08268ec0ef496c0eb60162.pkl",
+        "cache_input_text_sha256": "1ecc5a4cac11da1dd14543c4f6af041a3d00deacae8224604e70ed502e0e3619",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and prize cattle at the Smithfield agricultural show died or had to be slaughtered.",
+        "exact_native_cache_key": "e6e60b75acd41309deef6f5789b57c1e61441a16.pkl",
+        "cache_input_text_sha256": "9d1a12b269f98392dad98f9088931fe3585adefd86bd5421a40d2a71ddc9f0a6",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Ambulance services were suspended,",
+        "exact_native_cache_key": "9a75c96858d80f44c151043adb48a8240e3125d4.pkl",
+        "cache_input_text_sha256": "4cb4b692aa9843c6536cf081d7e092a40722c818be04746dea97eee72f2a8e03",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "an opera at the Sadler's Wells theatre was abandoned at the interval,",
+        "exact_native_cache_key": "08acda25a04601952c08268ec0ef496c0eb60162.pkl",
+        "cache_input_text_sha256": "1ecc5a4cac11da1dd14543c4f6af041a3d00deacae8224604e70ed502e0e3619",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and prize cattle at the Smithfield agricultural show died or had to be slaughtered.",
+        "exact_native_cache_key": "e6e60b75acd41309deef6f5789b57c1e61441a16.pkl",
+        "cache_input_text_sha256": "9d1a12b269f98392dad98f9088931fe3585adefd86bd5421a40d2a71ddc9f0a6",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The smog dissipated on Tuesday 9 December.",
+        "exact_native_cache_key": "e784fec7ca8a71c56ee0e1e4ff6f9ccfdae49be9.pkl",
+        "cache_input_text_sha256": "142bcb9260c338ae9017d48edb5f937ace89fa55c2a52d9ea61056e542c5fb56",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The smog dissipated on Tuesday 9 December.",
+        "exact_native_cache_key": "185024564664f57a0534df9790aed0742d9e1e06.pkl",
+        "cache_input_text_sha256": "142bcb9260c338ae9017d48edb5f937ace89fa55c2a52d9ea61056e542c5fb56",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Officials at the time put the excess deaths at about 4,000, but a 1954 Ministry of Health report blamed later deaths on influenza.",
+        "exact_native_cache_key": "0e860c7b5f4aedfc9feb4b2c204955624b4111b7.pkl",
+        "cache_input_text_sha256": "b54260bd5711bd4c7233caa430905cd05afcf0a0fdb03ed5c1b4edb560e495ab",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Officials at the time put the excess deaths at about 4,000, but a 1954 Ministry of Health report blamed later deaths on influenza.",
+        "exact_native_cache_key": "799de6fa1b06272edc3ebb31cdadae4aacb5ac19.pkl",
+        "cache_input_text_sha256": "b54260bd5711bd4c7233caa430905cd05afcf0a0fdb03ed5c1b4edb560e495ab",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Officials at the time put the excess deaths at about 4,000,",
+        "exact_native_cache_key": "01afe54eb1629a3375733ac82f244d17cda1bd58.pkl",
+        "cache_input_text_sha256": "97c8ed2402ba13129ed91e411f3784cccd361b63fa176ddda70fa9d017249a1a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "but a 1954 Ministry of Health report blamed later deaths on influenza.",
+        "exact_native_cache_key": "51c9551cc69034928783e83bc29ce6999646761b.pkl",
+        "cache_input_text_sha256": "17daa380c66c9798f716dd2869c993ab0f18df1074493e8353a6d3a4ee2242ab",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Officials at the time put the excess deaths at about 4,000,",
+        "exact_native_cache_key": "01afe54eb1629a3375733ac82f244d17cda1bd58.pkl",
+        "cache_input_text_sha256": "97c8ed2402ba13129ed91e411f3784cccd361b63fa176ddda70fa9d017249a1a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "but a 1954 Ministry of Health report blamed later deaths on influenza.",
+        "exact_native_cache_key": "51c9551cc69034928783e83bc29ce6999646761b.pkl",
+        "cache_input_text_sha256": "17daa380c66c9798f716dd2869c993ab0f18df1074493e8353a6d3a4ee2242ab",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "A study published in Environmental Health Perspectives in 2001 reassessed the evidence and cast doubt on that explanation, estimating about 12,000 excess deaths between December 1952 and February 1953.",
+        "exact_native_cache_key": "9c2253efcb851fff9993cbfb7e52f0ae96f6d2e1.pkl",
+        "cache_input_text_sha256": "764d3d2ef86117224daa95b5f84c98b6d08a8d797c815d762e33f9d22fb4de3f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "A study published in Environmental Health Perspectives in 2001 reassessed the evidence and cast doubt on that explanation, estimating about 12,000 excess deaths between December 1952 and February 1953.",
+        "exact_native_cache_key": "4974b5228d3f63ba22d33d6a34f63168f1a92c67.pkl",
+        "cache_input_text_sha256": "764d3d2ef86117224daa95b5f84c98b6d08a8d797c815d762e33f9d22fb4de3f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "A study published in Environmental Health Perspectives in 2001",
+        "exact_native_cache_key": "a23f3773ab6220da45a523ac936888d9ee66a10b.pkl",
+        "cache_input_text_sha256": "b803726f45a7388db10b654996913295d1920b65b07ed0fa132fadeebb609b75",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "reassessed the evidence",
+        "exact_native_cache_key": "c9541532c2e56b8d542de73e9a56a860071ed570.pkl",
+        "cache_input_text_sha256": "1fac225943fbd9608bb285d45ec977e146f26b2fb6ca21e1dfb12de7508083f9",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and cast doubt on that explanation,",
+        "exact_native_cache_key": "2fed2efdf229983052a4fd0ad78e9a54a023e608.pkl",
+        "cache_input_text_sha256": "b2254bf32993288025de06467e42eae1446d16cfc10b903d283713c1b890c5c2",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 4,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "estimating about 12,000 excess deaths between December 1952 and February 1953.",
+        "exact_native_cache_key": "a76a0a080649d6073f897aa9d841f08a13d305a5.pkl",
+        "cache_input_text_sha256": "cca9ca4d9c7d00b6c883569a7b17ae394749427c75f658ab2b2ce186fe76747d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "A study published in Environmental Health Perspectives in 2001 reassessed the evidence and cast doubt on that explanation,",
+        "exact_native_cache_key": "3612b25ffc9549b7c7d8592f2fb4b315aae7e4bb.pkl",
+        "cache_input_text_sha256": "12b139944721371d2f8bf402fedc2a416ec0423b5f0124764455cd476f636d9d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "estimating about 12,000 excess deaths between December 1952 and February 1953.",
+        "exact_native_cache_key": "a76a0a080649d6073f897aa9d841f08a13d305a5.pkl",
+        "cache_input_text_sha256": "cca9ca4d9c7d00b6c883569a7b17ae394749427c75f658ab2b2ce186fe76747d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "For decades Londoners had tolerated the smoke as a nuisance.",
+        "exact_native_cache_key": "f8279780e0b88963df0dbb34f8ac784ac3d0cd61.pkl",
+        "cache_input_text_sha256": "783f54a18c6e708025a2143076186ccaf336ad8535683abdf7c6358cd5c88ead",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "For decades Londoners had tolerated the smoke as a nuisance.",
+        "exact_native_cache_key": "08cc84444cb22d7774ce7bb23eaeef7296922976.pkl",
+        "cache_input_text_sha256": "783f54a18c6e708025a2143076186ccaf336ad8535683abdf7c6358cd5c88ead",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "One villain flickered in their own grates, a source of warmth and comfort so habitual that few thought to accuse it.",
+        "exact_native_cache_key": "f90d2a4b517ab6948d18d19af5585237f3e3f83b.pkl",
+        "cache_input_text_sha256": "74fd0b383a2f4adaebcca83d53a50f15d5c7bb8dd37db8370274e68f4aaa34be",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "One villain flickered in their own grates, a source of warmth and comfort so habitual that few thought to accuse it.",
+        "exact_native_cache_key": "f67a2edf4e42a76db907e62aec056d5a9960fdfb.pkl",
+        "cache_input_text_sha256": "74fd0b383a2f4adaebcca83d53a50f15d5c7bb8dd37db8370274e68f4aaa34be",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "One villain flickered in their own grates,",
+        "exact_native_cache_key": "5f8ee2568f0a8ea9f3e743d88c73bf8d07ec5a49.pkl",
+        "cache_input_text_sha256": "968c77ff82dd9505ba3c191efa0126900b6b511c519bd5dcbe8eebeaec8cbe0c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "a source of warmth and comfort so habitual",
+        "exact_native_cache_key": "29b962bf8aafaab742235141e91e8d57db29232c.pkl",
+        "cache_input_text_sha256": "4090d47815afbd6887f7f075480eb13dbd8aafeb49d1d64fa22c25d0033c73ef",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "that few thought to accuse it.",
+        "exact_native_cache_key": "c60b49267ff8063c274a266fd699aeb6e7814d4a.pkl",
+        "cache_input_text_sha256": "1d9e5f84443f23cee771d0546e1bea4dd051014ced2ddeba5e18ca884eab27b2",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "One villain flickered in their own grates,",
+        "exact_native_cache_key": "5f8ee2568f0a8ea9f3e743d88c73bf8d07ec5a49.pkl",
+        "cache_input_text_sha256": "968c77ff82dd9505ba3c191efa0126900b6b511c519bd5dcbe8eebeaec8cbe0c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "a source of warmth and comfort so habitual that few thought to accuse it.",
+        "exact_native_cache_key": "e76db306147383f394d54bb5ae29c03dafb827f4.pkl",
+        "cache_input_text_sha256": "6cd7cdbb0e917f58d14e8e59807f45275c4a616ac7bb547ba09a81e9cb324380",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Such complacency may help to explain the government's grudging response.",
+        "exact_native_cache_key": "94749bf67b49022a72322b86ef844447156a2d0b.pkl",
+        "cache_input_text_sha256": "fe0202e0aa16e5baaa6131847bb5b03c9f5bafea910848765bee828e6473fd41",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Such complacency may help to explain the government's grudging response.",
+        "exact_native_cache_key": "07f8309fd446289a9f3293a49f252ffcf3349628.pkl",
+        "cache_input_text_sha256": "fe0202e0aa16e5baaa6131847bb5b03c9f5bafea910848765bee828e6473fd41",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "It withstood pressure for an inquiry until May 1953.",
+        "exact_native_cache_key": "760b2bdc26ff0e8362f3d060cfca705400086d85.pkl",
+        "cache_input_text_sha256": "17f48aab9b55c38bba5bf04e037fff6491ebbddd3dcc1fbd25be2faed73ae80e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "It withstood pressure for an inquiry until May 1953.",
+        "exact_native_cache_key": "2325b0b8d456664998e545de475f0aff731ef304.pkl",
+        "cache_input_text_sha256": "17f48aab9b55c38bba5bf04e037fff6491ebbddd3dcc1fbd25be2faed73ae80e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Reform proved protracted, slowed by official inertia.",
+        "exact_native_cache_key": "48afb760de1ba45093c0acba70c1c3d92f5b0847.pkl",
+        "cache_input_text_sha256": "b1f1d54100f4b1af6492631174a41d989ba3a6981477426c600304846ddaf01d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Reform proved protracted, slowed by official inertia.",
+        "exact_native_cache_key": "8f159958bba49d095f7dda394d62f88dd3838a23.pkl",
+        "cache_input_text_sha256": "b1f1d54100f4b1af6492631174a41d989ba3a6981477426c600304846ddaf01d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Reform proved protracted,",
+        "exact_native_cache_key": "87f898124c067b6f3b186402ea5f5613d2ab46ff.pkl",
+        "cache_input_text_sha256": "0c77449caaec41743e1786538b994cf2d419163c308eb6d2dc9337649a79671c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "slowed by official inertia.",
+        "exact_native_cache_key": "b0001ac9eda9498dd61026200a86d69709c90624.pkl",
+        "cache_input_text_sha256": "7d63d62afe914c4e7811141a75594a745fde1277b40578363b73197b7230326f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The Clean Air Act became law on 5 July 1956, three and a half years after the smog.",
+        "exact_native_cache_key": "6a8d96c99a317b514abf4912e96f152292d0f80c.pkl",
+        "cache_input_text_sha256": "b8f2d34431dd21d12235a88bd5461c24c2de2c539e37895809bf0e56199f99c7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The Clean Air Act became law on 5 July 1956, three and a half years after the smog.",
+        "exact_native_cache_key": "293f79bc950c2c569a245ddbfaca5dc3acf86f2e.pkl",
+        "cache_input_text_sha256": "b8f2d34431dd21d12235a88bd5461c24c2de2c539e37895809bf0e56199f99c7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "The Clean Air Act became law on 5 July 1956,",
+        "exact_native_cache_key": "a6daa008e3a5d72095a9a99c3f35f1a142446eea.pkl",
+        "cache_input_text_sha256": "ee2303309a5a2965cd7972cf81a27ee9904224257ea6b2cd3c3613e0810f0159",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "three and a half years after the smog.",
+        "exact_native_cache_key": "9640033bd7c264ad7c1e443b915862109abf104d.pkl",
+        "cache_input_text_sha256": "09fc8015680e3b66b2925a70b02d5f1e02349cd296af6452a457f8cfe6519d7d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "The Clean Air Act became law on 5 July 1956,",
+        "exact_native_cache_key": "a6daa008e3a5d72095a9a99c3f35f1a142446eea.pkl",
+        "cache_input_text_sha256": "ee2303309a5a2965cd7972cf81a27ee9904224257ea6b2cd3c3613e0810f0159",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "three and a half years after the smog.",
+        "exact_native_cache_key": "9640033bd7c264ad7c1e443b915862109abf104d.pkl",
+        "cache_input_text_sha256": "09fc8015680e3b66b2925a70b02d5f1e02349cd296af6452a457f8cfe6519d7d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "It empowered municipal councils to create smokeless zones, combating smoke at its source.",
+        "exact_native_cache_key": "c210779c9cfcc0cece39c5346dc7744de37dd9f9.pkl",
+        "cache_input_text_sha256": "ee4b2d1224237848e3cd0c966acffdcdaf40fd0b862c62c3d7df8e41b1f8d436",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "It empowered municipal councils to create smokeless zones, combating smoke at its source.",
+        "exact_native_cache_key": "0139437e9155394294f373f4621e421c044b63b1.pkl",
+        "cache_input_text_sha256": "ee4b2d1224237848e3cd0c966acffdcdaf40fd0b862c62c3d7df8e41b1f8d436",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "It empowered municipal councils to create smokeless zones,",
+        "exact_native_cache_key": "5650afe369938bf0ea1ab88f0177f1b72ba940e9.pkl",
+        "cache_input_text_sha256": "53cf305a4b9892672f48d4127539d93fb25784f0928343d1e7161d550d1fa9c5",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "combating smoke at its source.",
+        "exact_native_cache_key": "7e179f68808aa03000c003f62cea0ef39eff5c7d.pkl",
+        "cache_input_text_sha256": "e378425978b50b487486ff79dd5080f2f954c6c205e7771f222beddd006fd58a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "It empowered municipal councils to create smokeless zones,",
+        "exact_native_cache_key": "5650afe369938bf0ea1ab88f0177f1b72ba940e9.pkl",
+        "cache_input_text_sha256": "53cf305a4b9892672f48d4127539d93fb25784f0928343d1e7161d550d1fa9c5",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "combating smoke at its source.",
+        "exact_native_cache_key": "7e179f68808aa03000c003f62cea0ef39eff5c7d.pkl",
+        "cache_input_text_sha256": "e378425978b50b487486ff79dd5080f2f954c6c205e7771f222beddd006fd58a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The cosy hearth, beloved of British families, had, all along, been among the chief offenders.",
+        "exact_native_cache_key": "6940455e9f7664736554b2e950b3628c9e32befd.pkl",
+        "cache_input_text_sha256": "f2d2488edea39c769c9c8bd1e73d343640ec2187d9ba9a7336386fbf5d6eae62",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The cosy hearth, beloved of British families, had, all along, been among the chief offenders.",
+        "exact_native_cache_key": "6c861948342a1c639e9b762e441198355c5b3326.pkl",
+        "cache_input_text_sha256": "f2d2488edea39c769c9c8bd1e73d343640ec2187d9ba9a7336386fbf5d6eae62",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "The cosy hearth beloved of British families",
+        "exact_native_cache_key": "a31c4cc7797022fc244e4a779c77e20a50e747d1.pkl",
+        "cache_input_text_sha256": "2400620ec602ddccab9ad00fcdd8a0ec12f68b6e5b5b68a93aeafd0382a2ec69",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S18",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "had all along been among the chief offenders.",
+        "exact_native_cache_key": "a144761815ef6809064df0fe0e7f6daf41a08898.pkl",
+        "cache_input_text_sha256": "4fddc24b2a13cd3f1ca062901a2a66f5cfbfeb990b7290ab327d6815145f4f1f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      }
+    ],
+    "unique_reference_key_count": 79,
+    "raw_mother_cache_scalar_manifest": [
+      {
+        "exact_native_cache_key": "d75afb2f809b2025a22a5c8ff6dd5a7b872a7f36.pkl",
+        "pkl_sha256": "2ccf973ae9acab00e80f1a8ec1119eca862e022d72fb9a9d240eef502b799ca0",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "标题",
+            "piece": null,
+            "reference_kind": "title-default-raw",
+            "method": "create",
+            "source_slice": "The Killer Smog of 1952",
+            "exact_native_cache_key": "d75afb2f809b2025a22a5c8ff6dd5a7b872a7f36.pkl",
+            "cache_input_text_sha256": "6fdda62b28c069c5f26abaf6d2839b1a83f8b86afeaf942bf088e3984b359287",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "2ccf973ae9acab00",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          52224
+        ],
+        "unprocessed_array_sha256": "d5505058f63f587cd7a27afab6e982c7fbd99e51fdbd4785cccdbb54e5c369d5"
+      },
+      {
+        "exact_native_cache_key": "70393452e8ddc71e96e53511ef53cfe4caca5a32.pkl",
+        "pkl_sha256": "ba1d7b27e9c55b9bfa664a429504068f4e95a8dcac7548e83a4b545ae9b82625",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "On Friday 5 December 1952, cold, stagnant air descended on London.",
+            "exact_native_cache_key": "70393452e8ddc71e96e53511ef53cfe4caca5a32.pkl",
+            "cache_input_text_sha256": "22311b027654857cd1781e811674907d9fbbf04c69824b8cc532f50582905db2",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "ba1d7b27e9c55b9b",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          155136
+        ],
+        "unprocessed_array_sha256": "c40581d466f3cfc8a67b58e373cf5a83dbbbcd7fbd3265df36a5730263759123"
+      },
+      {
+        "exact_native_cache_key": "bf543751e3fa7f20c9ae064611e6bbadd52d54fc.pkl",
+        "pkl_sha256": "916d019707d52a44f0eac0e346b5c477128ac6fa65c967b446ca85ae95dd08d5",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "On Friday 5 December 1952,",
+            "exact_native_cache_key": "bf543751e3fa7f20c9ae064611e6bbadd52d54fc.pkl",
+            "cache_input_text_sha256": "8323a6031798f632624a2d403dfc0dadd8a79fa017f4aa9947d9d5dd4a069477",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "916d019707d52a44",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          78336
+        ],
+        "unprocessed_array_sha256": "52ac6aaad14f5f1c03bb24422bc9f7208cd5ce772038933c6b377b304472bf19"
+      },
+      {
+        "exact_native_cache_key": "d4ea4cfa9d59f60e19ae035d9d45757baa38d268.pkl",
+        "pkl_sha256": "eb8b0e79427853c0f4dd8fe9c85b927b238ddfdacf5a6c6b68f1a11de6719d7c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "cold,",
+            "exact_native_cache_key": "d4ea4cfa9d59f60e19ae035d9d45757baa38d268.pkl",
+            "cache_input_text_sha256": "63332c2ba313f19a660eb859967cad3949dd4bd831c76ae0e218d8c1ea9099f1",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "eb8b0e79427853c0",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          15360
+        ],
+        "unprocessed_array_sha256": "5cc9a916671c8cd730f21cefcd27445c96b09580b2c11799a5b5b2e9cd19807f"
+      },
+      {
+        "exact_native_cache_key": "0a9990ba9d7ee7bd751af0cbaef9093f6e0fb604.pkl",
+        "pkl_sha256": "d0bad7b1293b1fa1c6d1c544015cc7b39820e786df93ad917e668e8b57de14a4",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "stagnant air descended on London.",
+            "exact_native_cache_key": "0a9990ba9d7ee7bd751af0cbaef9093f6e0fb604.pkl",
+            "cache_input_text_sha256": "8fd113c7823916020f857b7fe325442393e4e7b42e3227519db8f7e3d28be0a7",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "d0bad7b1293b1fa1",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          50176
+        ],
+        "unprocessed_array_sha256": "5e80d703bf5412cc33f8e20da2e40afa4c189b254c239a29f02113c19c9d0127"
+      },
+      {
+        "exact_native_cache_key": "de1958512d29c7daf489fb0468988dc113655446.pkl",
+        "pkl_sha256": "791464b82d7d401bd6d463eae03cd5927d0620068cfa1982a433bc2e49ef353b",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Overhead, warmer air pressed down like a lid, holding the chill captive beneath.",
+            "exact_native_cache_key": "de1958512d29c7daf489fb0468988dc113655446.pkl",
+            "cache_input_text_sha256": "524338451c5d0c6df3ab045c0687fa3c95a7cf162212d065a6ba11e11c5e162d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "791464b82d7d401b",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          123904
+        ],
+        "unprocessed_array_sha256": "2ccb62b2fc5f8b9a1949f7b418a00aaf302bb4e900331fe7c82b66ac8e21903c"
+      },
+      {
+        "exact_native_cache_key": "5fba6dea78a2340e26c37841a726390011f66a2b.pkl",
+        "pkl_sha256": "9868eb2d71f8897432069e875722fecac19e2175a2357e0e39886e7ce0b4a089",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Overhead, warmer air pressed down like a lid,",
+            "exact_native_cache_key": "5fba6dea78a2340e26c37841a726390011f66a2b.pkl",
+            "cache_input_text_sha256": "d46112841858a9e0c0155dd301f955619cc1894836ab68fd32d383228251aeb5",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "9868eb2d71f88974",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          67072
+        ],
+        "unprocessed_array_sha256": "014ed1c31044a7be9b2e7227435bfa1ff4d4d82a079b266fdc12e47ae107b6bf"
+      },
+      {
+        "exact_native_cache_key": "b3ce43201a045ad34418614d3047c5c80484aefb.pkl",
+        "pkl_sha256": "d8abff84904dc5f4dc833da545bf5835a61b44602a7ed96feb25ae6efdffcf3f",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "holding the chill captive beneath.",
+            "exact_native_cache_key": "b3ce43201a045ad34418614d3047c5c80484aefb.pkl",
+            "cache_input_text_sha256": "9c368f9692024f7b7d438c98061ebcd1d0cf3ff82b30c757f8f443357563eddc",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S2",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "holding the chill captive beneath.",
+            "exact_native_cache_key": "b3ce43201a045ad34418614d3047c5c80484aefb.pkl",
+            "cache_input_text_sha256": "9c368f9692024f7b7d438c98061ebcd1d0cf3ff82b30c757f8f443357563eddc",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "d8abff84904dc5f4",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          44544
+        ],
+        "unprocessed_array_sha256": "82b00f0d425a9bfdc5fb83a37a56ebae02653c962e6b4764dea9789350549d97"
+      },
+      {
+        "exact_native_cache_key": "ca914bb95696890bc0865c2abc91f7e7fd24517b.pkl",
+        "pkl_sha256": "3178c94981ddff7d15f12783aca7bd9a0b92599e28c276733933eae5bbb51dd6",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Overhead,",
+            "exact_native_cache_key": "ca914bb95696890bc0865c2abc91f7e7fd24517b.pkl",
+            "cache_input_text_sha256": "5c9f3ebd86d14b2a9a6a1d04d12a013b2cd541fd2780c5f74209cc6de7497bfb",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "3178c94981ddff7d",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          20480
+        ],
+        "unprocessed_array_sha256": "571b6a3e88e079a543ae430d653502444677c2b0b197be4abfb6a96e1a9e98cf"
+      },
+      {
+        "exact_native_cache_key": "fcd4f3b1a1710a0b8f6dfb8ce05ccf27ddc7fb4e.pkl",
+        "pkl_sha256": "ac82ef6b63cfc022bc9cd90998b0bf0c6ae8ece7a2021f8ad0a30544017cef31",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "warmer air pressed down like a lid,",
+            "exact_native_cache_key": "fcd4f3b1a1710a0b8f6dfb8ce05ccf27ddc7fb4e.pkl",
+            "cache_input_text_sha256": "05f50c1eab5aaa72339c5823be92fec9014040d3f9393741d31758c8a0a508b2",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "ac82ef6b63cfc022",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          47616
+        ],
+        "unprocessed_array_sha256": "80f13954ab59cf21d263c049fb6912a51b4fb36957bf4de9093dea6245744378"
+      },
+      {
+        "exact_native_cache_key": "f19b42504bc4ee6d948a39ac849fd10a6046a885.pkl",
+        "pkl_sha256": "90348f53d3aff272e8bfedecc511b159c482a63a7e3694de5847c9349cb73d03",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Londoners were accustomed to murky, dreary winters.",
+            "exact_native_cache_key": "f19b42504bc4ee6d948a39ac849fd10a6046a885.pkl",
+            "cache_input_text_sha256": "3d066f2da0a9165960db46fa8c800f5fcec13b0577e81f972e94311d92269236",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "90348f53d3aff272",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          75776
+        ],
+        "unprocessed_array_sha256": "70d36671ccb4601ced9a3362e18f43e4b93028bda94b6f648055d3703ef9b8cb"
+      },
+      {
+        "exact_native_cache_key": "03cad1be779b7d65686b0124331db2042c4107e0.pkl",
+        "pkl_sha256": "31cd471302f64116164eb0e56f9aa93334d7d545c0e1a034df7293e6cb75d71c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Londoners were accustomed to murky,",
+            "exact_native_cache_key": "03cad1be779b7d65686b0124331db2042c4107e0.pkl",
+            "cache_input_text_sha256": "c383dd27e2ddf6b71ebe20900cd2980e8c8300431dfbae5e7f33dcf1c0b4f2ca",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "31cd471302f64116",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          48128
+        ],
+        "unprocessed_array_sha256": "0abe2ff39b23b4deb2a50f430c7e9e98de41191097cd4bb1c5645a307ea90570"
+      },
+      {
+        "exact_native_cache_key": "614a8b85198964b194bb65ef915fd4f42537218d.pkl",
+        "pkl_sha256": "db570fb60d9b117bc9f618cabc00aa6855639cdadb11ff72e7ad1a6ff8e07d25",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "dreary winters.",
+            "exact_native_cache_key": "614a8b85198964b194bb65ef915fd4f42537218d.pkl",
+            "cache_input_text_sha256": "7332f0a3e5a59762a199e7e1485c89a2f14adfb7ce4e9952c29417b37d2b170c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "db570fb60d9b117b",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          27136
+        ],
+        "unprocessed_array_sha256": "6ecfe4034f968b62f9c0d3ecad6d8fd9e66c4f9939296eafe28d5faa747b8f18"
+      },
+      {
+        "exact_native_cache_key": "626269a6aa2d824c4cd3922d6c9aea1cd91e2aad.pkl",
+        "pkl_sha256": "c1e5fe1ba457b0589c29a72819da56ec8c9511899edf9c5971fe3e4287a10cd2",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "This time, though, the capital's smoke was trapped too, thickening into a choking smog, a mix of smoke and fog.",
+            "exact_native_cache_key": "626269a6aa2d824c4cd3922d6c9aea1cd91e2aad.pkl",
+            "cache_input_text_sha256": "fe602f6d1ce4f1f6ff7508c7f7cc5eb038f0803c236f0b2ff2ed510f5a0e6d8c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "c1e5fe1ba457b058",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          167424
+        ],
+        "unprocessed_array_sha256": "87b7254d7fea645cb5b027d47c9527cf181dab40a416d2884ddabe9104f2ed35"
+      },
+      {
+        "exact_native_cache_key": "818342b9ea40e763800e3a762bd2c84092c8929a.pkl",
+        "pkl_sha256": "ad2aff526ae8e125a374762ead16feeb466ba102140ffafca62ce68974911f5f",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "This time though the capital's smoke was trapped too,",
+            "exact_native_cache_key": "818342b9ea40e763800e3a762bd2c84092c8929a.pkl",
+            "cache_input_text_sha256": "11884093f4fbff02602828208a0e3f49b7aa638692468cca49cbde051ffa541a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S4",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "This time though the capital's smoke was trapped too,",
+            "exact_native_cache_key": "818342b9ea40e763800e3a762bd2c84092c8929a.pkl",
+            "cache_input_text_sha256": "11884093f4fbff02602828208a0e3f49b7aa638692468cca49cbde051ffa541a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "ad2aff526ae8e125",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          66048
+        ],
+        "unprocessed_array_sha256": "adbb0233c6c35398958624cd9a539cd422fa63b78441ea29f45dbcabcba1048a"
+      },
+      {
+        "exact_native_cache_key": "4f3594c0f23d11256297067adff550bd4f628d00.pkl",
+        "pkl_sha256": "48bd810f9e04e22caa6d860c51c07124d168ef2801bb4ed07523349e8fef197b",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "thickening into a choking smog, a mix of smoke and fog.",
+            "exact_native_cache_key": "4f3594c0f23d11256297067adff550bd4f628d00.pkl",
+            "cache_input_text_sha256": "2c8f0aed11f2178fb7837658c683142bfeae65aebb3a8b4a9839bd866697f9ad",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "48bd810f9e04e22c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          87040
+        ],
+        "unprocessed_array_sha256": "18c3e51b89319b1e48e7e5427a52a5a406a240ff3dfdca1e02f74df500df9527"
+      },
+      {
+        "exact_native_cache_key": "af9072585a3a2c12b147535b3db4a297ea3e5743.pkl",
+        "pkl_sha256": "e451b4c72792aea3d901a49626e6aa0d4fd93ece98886b6f089109b015fd64cb",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "thickening into a choking smog,",
+            "exact_native_cache_key": "af9072585a3a2c12b147535b3db4a297ea3e5743.pkl",
+            "cache_input_text_sha256": "0abc788a7b6f7f3f3c567bf041c6ddb86eed57d4f2ff109eb00927c70b742ed4",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "e451b4c72792aea3",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          45056
+        ],
+        "unprocessed_array_sha256": "91bd761fa7ffd248dd701a40b6d62262224f5b8394878f6c538be6a44595fcdf"
+      },
+      {
+        "exact_native_cache_key": "23f7820b8467c09ea8a229e293a9a657487eefae.pkl",
+        "pkl_sha256": "de2f12a759f70c346b7a94b6d4e2993bbc7d20784f9dfb26b76e4a6749088536",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "a mix of smoke and fog.",
+            "exact_native_cache_key": "23f7820b8467c09ea8a229e293a9a657487eefae.pkl",
+            "cache_input_text_sha256": "ed823fc1e51537719b45806fece04191c68064a4e5af9f9744e80b8eac20a726",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "de2f12a759f70c34",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          39936
+        ],
+        "unprocessed_array_sha256": "206be356d4a0c4d68240ee1865d15c3ed3a45e342c39835be18746d08b4d06c4"
+      },
+      {
+        "exact_native_cache_key": "5b349374510101235856c4551eb48040e254b274.pkl",
+        "pkl_sha256": "0e8385ea370e56cad26418de9a599be889e79ea9979d5f7140abe08e29f68c7d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "That smoke, from coal burned in domestic fireplaces and power stations, was laden with soot and noxious sulphur dioxide.",
+            "exact_native_cache_key": "5b349374510101235856c4551eb48040e254b274.pkl",
+            "cache_input_text_sha256": "51db415d921f35bed54756c46eaeccdcac8709f8c04674058b2da6b72ab7271d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "0e8385ea370e56ca",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          203776
+        ],
+        "unprocessed_array_sha256": "59d73f72a296e23b2ff886566d5588241cfb4d5c49da18668cb1dcd54c9bc45e"
+      },
+      {
+        "exact_native_cache_key": "ece88af044635ca32ca3f7dd9c2264d5912c06af.pkl",
+        "pkl_sha256": "1f44f4052bede828aa44af3b5f92b8c34344feaeef2058b99b17584e7bb079f6",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "That smoke, from coal burned in domestic fireplaces and power stations,",
+            "exact_native_cache_key": "ece88af044635ca32ca3f7dd9c2264d5912c06af.pkl",
+            "cache_input_text_sha256": "c57b0fec2e060c4aaf55e2492de802bcd30d3638b30b9773e2456d15cc8e787f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "1f44f4052bede828",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          110592
+        ],
+        "unprocessed_array_sha256": "19b639e744ffb47845b9be15f23f204c398c9ed74d47baccad8f68e5750cbc2e"
+      },
+      {
+        "exact_native_cache_key": "8b853293c57e25e8765009b3a6892eadcadd58cd.pkl",
+        "pkl_sha256": "feffebcb82d5389fc23e7236a81c4fdcf399a5809c94ad878d0020b8e070c131",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "was laden with soot and noxious sulphur dioxide.",
+            "exact_native_cache_key": "8b853293c57e25e8765009b3a6892eadcadd58cd.pkl",
+            "cache_input_text_sha256": "b1b7939bb4144fabaaeba09b60744656f47869f65f8df677063f5d822b368f2e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S5",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "was laden with soot and noxious sulphur dioxide.",
+            "exact_native_cache_key": "8b853293c57e25e8765009b3a6892eadcadd58cd.pkl",
+            "cache_input_text_sha256": "b1b7939bb4144fabaaeba09b60744656f47869f65f8df677063f5d822b368f2e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "feffebcb82d5389f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          79360
+        ],
+        "unprocessed_array_sha256": "2c40f6c0aff3ec3de96d6a80c45eb2bf98a384a404d9bca983e090fd9c451141"
+      },
+      {
+        "exact_native_cache_key": "7439febc72dcb7d78ef250d095760447e48891b0.pkl",
+        "pkl_sha256": "8220b27596aef21d0c76628b3049a3f50543c9b95b4d65ed80ae2d81472885d8",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "That smoke,",
+            "exact_native_cache_key": "7439febc72dcb7d78ef250d095760447e48891b0.pkl",
+            "cache_input_text_sha256": "d1a194ec9b8a42b6005d0400046c87b85d4b695d91f899d6c54f69647929eb87",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "8220b27596aef21d",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          22528
+        ],
+        "unprocessed_array_sha256": "d57cf15bfb96a65d90ef457024371e2f1ed7f1de48eec538da7b246e0fd82f1b"
+      },
+      {
+        "exact_native_cache_key": "01e82348f738e53e2128f58defd8705e983a3f0d.pkl",
+        "pkl_sha256": "ec51f3d78ae0e688d36a070bb904dfb4e7596994256aa6f1aa0513185cfaa394",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "from coal burned in domestic fireplaces and power stations,",
+            "exact_native_cache_key": "01e82348f738e53e2128f58defd8705e983a3f0d.pkl",
+            "cache_input_text_sha256": "1ee5c3c627e1f4f315231dafac88f65f697a34b5dc09cb3bcde86184ddfed2cc",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "ec51f3d78ae0e688",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          97792
+        ],
+        "unprocessed_array_sha256": "064d0400f8474e0cdde0945d549342d60e1050f5aecfcdbed49048aa379a8de8"
+      },
+      {
+        "exact_native_cache_key": "75759ce7a254547244a1aa2c5c9ef32919b8ffb7.pkl",
+        "pkl_sha256": "00d338fc18d2df46f296a1ffd223df6d9a64a57aa213802d34eb69f312be369b",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "In places, visibility fell to a few metres.",
+            "exact_native_cache_key": "75759ce7a254547244a1aa2c5c9ef32919b8ffb7.pkl",
+            "cache_input_text_sha256": "dd39eda76370d47f724951c970d0e6a1c238bffdbc9a077d02d8249e53c3f22e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "00d338fc18d2df46",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          71680
+        ],
+        "unprocessed_array_sha256": "121620b6bcb13159e7826e22337e53f0163c24ab2365ea078aedb80fa21fa57e"
+      },
+      {
+        "exact_native_cache_key": "826bb39ba21c1506c2b881d13858eda2b6bed123.pkl",
+        "pkl_sha256": "c7bf60d7c1f4f60cddd326f1ec3fe33250cdac697096ea9155916b4aedc6965f",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "In places,",
+            "exact_native_cache_key": "826bb39ba21c1506c2b881d13858eda2b6bed123.pkl",
+            "cache_input_text_sha256": "7014ebe263ffc2b2902338a8f0d7341d5f5a46a91aff40a10f22c9e551089546",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "c7bf60d7c1f4f60c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          23040
+        ],
+        "unprocessed_array_sha256": "645bb065c5feb73e53d0d323fa17f87681c421e5b97e7b826b9c0e1ac57ce8f9"
+      },
+      {
+        "exact_native_cache_key": "e0fde084d1c904bcc48533ac9e8fc6f28c7f0b9f.pkl",
+        "pkl_sha256": "1d9248ef190f3a72a6fe4d83bc1bf9aed0469722fe75b441d3ea04ab9f17786d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "visibility fell to a few metres.",
+            "exact_native_cache_key": "e0fde084d1c904bcc48533ac9e8fc6f28c7f0b9f.pkl",
+            "cache_input_text_sha256": "6693bf7b93b72940593f867be5a61215cb8edf454a363f02c5bc8f64d23e4fe4",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "1d9248ef190f3a72",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          48640
+        ],
+        "unprocessed_array_sha256": "2d1c1b16febd6ccf59727e0a947897ec0f4d61869069f77d95919917427feb7e"
+      },
+      {
+        "exact_native_cache_key": "a9497844f6663b8a3238251acb33a6adeaed5e65.pkl",
+        "pkl_sha256": "4cdadb17f8153c0fdaede143d43a6d44925d6058659c8bdbd077f03fb97c69c5",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Ambulance services were suspended, an opera at the Sadler's Wells theatre was abandoned at the interval, and prize cattle at the Smithfield agricultural show died or had to be slaughtered.",
+            "exact_native_cache_key": "a9497844f6663b8a3238251acb33a6adeaed5e65.pkl",
+            "cache_input_text_sha256": "6244beffd60d81f7f690e948a59c5369f02434f09173f7670286a9b32405e2b9",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "4cdadb17f8153c0f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          297472
+        ],
+        "unprocessed_array_sha256": "ec2be77074ed7cfd3854f8533fd73296a28e6718a8f59885b909b62560f89ae1"
+      },
+      {
+        "exact_native_cache_key": "9a75c96858d80f44c151043adb48a8240e3125d4.pkl",
+        "pkl_sha256": "77eea0a6730d7e4b12fa096991525341791a725656a79690e045b00b83fd0a6d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Ambulance services were suspended,",
+            "exact_native_cache_key": "9a75c96858d80f44c151043adb48a8240e3125d4.pkl",
+            "cache_input_text_sha256": "4cb4b692aa9843c6536cf081d7e092a40722c818be04746dea97eee72f2a8e03",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S7",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Ambulance services were suspended,",
+            "exact_native_cache_key": "9a75c96858d80f44c151043adb48a8240e3125d4.pkl",
+            "cache_input_text_sha256": "4cb4b692aa9843c6536cf081d7e092a40722c818be04746dea97eee72f2a8e03",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "77eea0a6730d7e4b",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          48640
+        ],
+        "unprocessed_array_sha256": "0a37692aadf42a2f78c3a68679bca6ec5d3c7b0ca051a33049241e4187ce6457"
+      },
+      {
+        "exact_native_cache_key": "08acda25a04601952c08268ec0ef496c0eb60162.pkl",
+        "pkl_sha256": "525ae1f8238cba2964a122e8ccf520bb1ad216daf0ba0208491830457ba3a0bb",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "an opera at the Sadler's Wells theatre was abandoned at the interval,",
+            "exact_native_cache_key": "08acda25a04601952c08268ec0ef496c0eb60162.pkl",
+            "cache_input_text_sha256": "1ecc5a4cac11da1dd14543c4f6af041a3d00deacae8224604e70ed502e0e3619",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S7",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "an opera at the Sadler's Wells theatre was abandoned at the interval,",
+            "exact_native_cache_key": "08acda25a04601952c08268ec0ef496c0eb60162.pkl",
+            "cache_input_text_sha256": "1ecc5a4cac11da1dd14543c4f6af041a3d00deacae8224604e70ed502e0e3619",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "525ae1f8238cba29",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          102400
+        ],
+        "unprocessed_array_sha256": "e1efbfbdb446304df0f46ce9db09ac9477419d49015485a8175c7f3e6bde2c65"
+      },
+      {
+        "exact_native_cache_key": "e6e60b75acd41309deef6f5789b57c1e61441a16.pkl",
+        "pkl_sha256": "1c4d4d27f5565196cc7a968b823cf8dbc4b44229cb1041c27175decf6776ac2e",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and prize cattle at the Smithfield agricultural show died or had to be slaughtered.",
+            "exact_native_cache_key": "e6e60b75acd41309deef6f5789b57c1e61441a16.pkl",
+            "cache_input_text_sha256": "9d1a12b269f98392dad98f9088931fe3585adefd86bd5421a40d2a71ddc9f0a6",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S7",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and prize cattle at the Smithfield agricultural show died or had to be slaughtered.",
+            "exact_native_cache_key": "e6e60b75acd41309deef6f5789b57c1e61441a16.pkl",
+            "cache_input_text_sha256": "9d1a12b269f98392dad98f9088931fe3585adefd86bd5421a40d2a71ddc9f0a6",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "1c4d4d27f5565196",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          127488
+        ],
+        "unprocessed_array_sha256": "4f240cefbb36b377a99b808a7dcdbe648f33d8050f4f1cd4cf819fcafbe14107"
+      },
+      {
+        "exact_native_cache_key": "e784fec7ca8a71c56ee0e1e4ff6f9ccfdae49be9.pkl",
+        "pkl_sha256": "90dfedac2e654d0463460a8e0df18da21e4c790afd542ff9298a8a7e87005322",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The smog dissipated on Tuesday 9 December.",
+            "exact_native_cache_key": "e784fec7ca8a71c56ee0e1e4ff6f9ccfdae49be9.pkl",
+            "cache_input_text_sha256": "142bcb9260c338ae9017d48edb5f937ace89fa55c2a52d9ea61056e542c5fb56",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "90dfedac2e654d04",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          86016
+        ],
+        "unprocessed_array_sha256": "f9b99ef566f50d21ac0cc58549d24300201843ec15f5aac403936dfcacbf93ca"
+      },
+      {
+        "exact_native_cache_key": "0e860c7b5f4aedfc9feb4b2c204955624b4111b7.pkl",
+        "pkl_sha256": "f5b6c5ab635dfee5b9843ea5eed68e5ea143423a1387af2f00065fb01b6cd276",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Officials at the time put the excess deaths at about 4,000, but a 1954 Ministry of Health report blamed later deaths on influenza.",
+            "exact_native_cache_key": "0e860c7b5f4aedfc9feb4b2c204955624b4111b7.pkl",
+            "cache_input_text_sha256": "b54260bd5711bd4c7233caa430905cd05afcf0a0fdb03ed5c1b4edb560e495ab",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "f5b6c5ab635dfee5",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          242688
+        ],
+        "unprocessed_array_sha256": "5106a065887e168a8afaa9a51c3b13f2c40623cf431b19d0812d844dc7040e7a"
+      },
+      {
+        "exact_native_cache_key": "01afe54eb1629a3375733ac82f244d17cda1bd58.pkl",
+        "pkl_sha256": "4c187bd8a449310d3855b0e5de064f1fe85c23e3309169620f1a2f7b955b5558",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Officials at the time put the excess deaths at about 4,000,",
+            "exact_native_cache_key": "01afe54eb1629a3375733ac82f244d17cda1bd58.pkl",
+            "cache_input_text_sha256": "97c8ed2402ba13129ed91e411f3784cccd361b63fa176ddda70fa9d017249a1a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S9",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Officials at the time put the excess deaths at about 4,000,",
+            "exact_native_cache_key": "01afe54eb1629a3375733ac82f244d17cda1bd58.pkl",
+            "cache_input_text_sha256": "97c8ed2402ba13129ed91e411f3784cccd361b63fa176ddda70fa9d017249a1a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "4c187bd8a449310d",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          120320
+        ],
+        "unprocessed_array_sha256": "ef84819b852674f4abdac431bb17492b3c22cf9a43701beabc4836b8fc298fbd"
+      },
+      {
+        "exact_native_cache_key": "51c9551cc69034928783e83bc29ce6999646761b.pkl",
+        "pkl_sha256": "2c89f0e0daa61231dc9f2bcf1a4a3055f6f0460cb7650572cb72ddb012fba7d8",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "but a 1954 Ministry of Health report blamed later deaths on influenza.",
+            "exact_native_cache_key": "51c9551cc69034928783e83bc29ce6999646761b.pkl",
+            "cache_input_text_sha256": "17daa380c66c9798f716dd2869c993ab0f18df1074493e8353a6d3a4ee2242ab",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S9",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "but a 1954 Ministry of Health report blamed later deaths on influenza.",
+            "exact_native_cache_key": "51c9551cc69034928783e83bc29ce6999646761b.pkl",
+            "cache_input_text_sha256": "17daa380c66c9798f716dd2869c993ab0f18df1074493e8353a6d3a4ee2242ab",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "2c89f0e0daa61231",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          132608
+        ],
+        "unprocessed_array_sha256": "eceab31713d59c95e6d63171f79aa37e9f6f07d71083fa07124ab2d4ab1c148a"
+      },
+      {
+        "exact_native_cache_key": "9c2253efcb851fff9993cbfb7e52f0ae96f6d2e1.pkl",
+        "pkl_sha256": "bd8151533605fd8696e103f25da1dd662a468a605f8475ac2326a113bc0a140c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "A study published in Environmental Health Perspectives in 2001 reassessed the evidence and cast doubt on that explanation, estimating about 12,000 excess deaths between December 1952 and February 1953.",
+            "exact_native_cache_key": "9c2253efcb851fff9993cbfb7e52f0ae96f6d2e1.pkl",
+            "cache_input_text_sha256": "764d3d2ef86117224daa95b5f84c98b6d08a8d797c815d762e33f9d22fb4de3f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "bd8151533605fd86",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          404992
+        ],
+        "unprocessed_array_sha256": "27914824d806161c24ebd8b09780cd4d4472feb6fc1af0969d37d071d5e3b9cc"
+      },
+      {
+        "exact_native_cache_key": "a23f3773ab6220da45a523ac936888d9ee66a10b.pkl",
+        "pkl_sha256": "f5948ac3c157ba41f511413ecdf8baad854fb719f4e2a4180ff66ce8508d6f2a",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "A study published in Environmental Health Perspectives in 2001",
+            "exact_native_cache_key": "a23f3773ab6220da45a523ac936888d9ee66a10b.pkl",
+            "cache_input_text_sha256": "b803726f45a7388db10b654996913295d1920b65b07ed0fa132fadeebb609b75",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "f5948ac3c157ba41",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          111104
+        ],
+        "unprocessed_array_sha256": "a06d8f7b362d8d9f139fddce320a295f8d868b9d0f45783c201183effdac1ba9"
+      },
+      {
+        "exact_native_cache_key": "c9541532c2e56b8d542de73e9a56a860071ed570.pkl",
+        "pkl_sha256": "34a8f342677cae1f9a6b85dcce132e5335a1031c1436076170b76482b8774de5",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "reassessed the evidence",
+            "exact_native_cache_key": "c9541532c2e56b8d542de73e9a56a860071ed570.pkl",
+            "cache_input_text_sha256": "1fac225943fbd9608bb285d45ec977e146f26b2fb6ca21e1dfb12de7508083f9",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "34a8f342677cae1f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          36352
+        ],
+        "unprocessed_array_sha256": "964814afaa9f4ea0f50654e7e7b32772a75186b12aec8799973d834eb8629440"
+      },
+      {
+        "exact_native_cache_key": "2fed2efdf229983052a4fd0ad78e9a54a023e608.pkl",
+        "pkl_sha256": "2260fc2a3cc3edd050d6a728547482fa53ffdb0bf89af72bfafe6da628a546e9",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and cast doubt on that explanation,",
+            "exact_native_cache_key": "2fed2efdf229983052a4fd0ad78e9a54a023e608.pkl",
+            "cache_input_text_sha256": "b2254bf32993288025de06467e42eae1446d16cfc10b903d283713c1b890c5c2",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "2260fc2a3cc3edd0",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          48128
+        ],
+        "unprocessed_array_sha256": "c8c46f9ec15ab354edf9c3c90d6443e0d98ee1008ac00ee768b08f674eaf75f8"
+      },
+      {
+        "exact_native_cache_key": "a76a0a080649d6073f897aa9d841f08a13d305a5.pkl",
+        "pkl_sha256": "76e22abd137005ea874858316c999f832b9a677f0dc35b104095bf21fc591cc0",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 4,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "estimating about 12,000 excess deaths between December 1952 and February 1953.",
+            "exact_native_cache_key": "a76a0a080649d6073f897aa9d841f08a13d305a5.pkl",
+            "cache_input_text_sha256": "cca9ca4d9c7d00b6c883569a7b17ae394749427c75f658ab2b2ce186fe76747d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S10",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "estimating about 12,000 excess deaths between December 1952 and February 1953.",
+            "exact_native_cache_key": "a76a0a080649d6073f897aa9d841f08a13d305a5.pkl",
+            "cache_input_text_sha256": "cca9ca4d9c7d00b6c883569a7b17ae394749427c75f658ab2b2ce186fe76747d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "76e22abd137005ea",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          191488
+        ],
+        "unprocessed_array_sha256": "bc1e44963b67041b5b2a8674ea995dc3401de720db551af2c99b4d2b155014ca"
+      },
+      {
+        "exact_native_cache_key": "3612b25ffc9549b7c7d8592f2fb4b315aae7e4bb.pkl",
+        "pkl_sha256": "cd885e19b8b9fe0f5ca6a1c989a4f73abee64c024cb30d22c035fa77a06a1f0b",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "A study published in Environmental Health Perspectives in 2001 reassessed the evidence and cast doubt on that explanation,",
+            "exact_native_cache_key": "3612b25ffc9549b7c7d8592f2fb4b315aae7e4bb.pkl",
+            "cache_input_text_sha256": "12b139944721371d2f8bf402fedc2a416ec0423b5f0124764455cd476f636d9d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "cd885e19b8b9fe0f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          215552
+        ],
+        "unprocessed_array_sha256": "f4290153db94661cf41a3f9f8e81eb019ae86c74c67713334e9726febd547831"
+      },
+      {
+        "exact_native_cache_key": "f8279780e0b88963df0dbb34f8ac784ac3d0cd61.pkl",
+        "pkl_sha256": "e55256243f3d6073ce0239397151b8bd7fce79158176da5b949be4c0b333cb99",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "For decades Londoners had tolerated the smoke as a nuisance.",
+            "exact_native_cache_key": "f8279780e0b88963df0dbb34f8ac784ac3d0cd61.pkl",
+            "cache_input_text_sha256": "783f54a18c6e708025a2143076186ccaf336ad8535683abdf7c6358cd5c88ead",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "e55256243f3d6073",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          92160
+        ],
+        "unprocessed_array_sha256": "f442898a71f1fa0400c2c3f4eeffdbbdf099485b9c58813741f7f4549f8df2c6"
+      },
+      {
+        "exact_native_cache_key": "f90d2a4b517ab6948d18d19af5585237f3e3f83b.pkl",
+        "pkl_sha256": "20e84ea8135bd3dcb68daba1631bfb7e0e8027871e3ede319f055b5633394340",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "One villain flickered in their own grates, a source of warmth and comfort so habitual that few thought to accuse it.",
+            "exact_native_cache_key": "f90d2a4b517ab6948d18d19af5585237f3e3f83b.pkl",
+            "cache_input_text_sha256": "74fd0b383a2f4adaebcca83d53a50f15d5c7bb8dd37db8370274e68f4aaa34be",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "20e84ea8135bd3dc",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          169984
+        ],
+        "unprocessed_array_sha256": "3c0b41610940844a7e4a344a98a27dfa01aa7d68ddde44740ae27c8b933289ed"
+      },
+      {
+        "exact_native_cache_key": "5f8ee2568f0a8ea9f3e743d88c73bf8d07ec5a49.pkl",
+        "pkl_sha256": "00c031cf9bd52fc7a284c278eb0b54944dd92a0133b3ab5076f2bb7ffaf8b1d6",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "One villain flickered in their own grates,",
+            "exact_native_cache_key": "5f8ee2568f0a8ea9f3e743d88c73bf8d07ec5a49.pkl",
+            "cache_input_text_sha256": "968c77ff82dd9505ba3c191efa0126900b6b511c519bd5dcbe8eebeaec8cbe0c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S12",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "One villain flickered in their own grates,",
+            "exact_native_cache_key": "5f8ee2568f0a8ea9f3e743d88c73bf8d07ec5a49.pkl",
+            "cache_input_text_sha256": "968c77ff82dd9505ba3c191efa0126900b6b511c519bd5dcbe8eebeaec8cbe0c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "00c031cf9bd52fc7",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          50176
+        ],
+        "unprocessed_array_sha256": "63541c65207131cb8af362e5a84bf03a2b8c6ec0bfabaf953fa749a6a64cf7a5"
+      },
+      {
+        "exact_native_cache_key": "29b962bf8aafaab742235141e91e8d57db29232c.pkl",
+        "pkl_sha256": "858125be685dcd4d303a38fddc60c353d33d9a6965c0ce847ec290c9dcf962f5",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "a source of warmth and comfort so habitual",
+            "exact_native_cache_key": "29b962bf8aafaab742235141e91e8d57db29232c.pkl",
+            "cache_input_text_sha256": "4090d47815afbd6887f7f075480eb13dbd8aafeb49d1d64fa22c25d0033c73ef",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "858125be685dcd4d",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          62976
+        ],
+        "unprocessed_array_sha256": "8bf6e9d33bf04be8d4d7fe7a08700db87830dfd2a6b0331eb3dee1d9890f4bde"
+      },
+      {
+        "exact_native_cache_key": "c60b49267ff8063c274a266fd699aeb6e7814d4a.pkl",
+        "pkl_sha256": "f0a875f3fa58e0f07324670aa605a2364f047b79c85d7e5be39c7837a41f5971",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "that few thought to accuse it.",
+            "exact_native_cache_key": "c60b49267ff8063c274a266fd699aeb6e7814d4a.pkl",
+            "cache_input_text_sha256": "1d9e5f84443f23cee771d0546e1bea4dd051014ced2ddeba5e18ca884eab27b2",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "f0a875f3fa58e0f0",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          39424
+        ],
+        "unprocessed_array_sha256": "c403e280f21886aa71556ece33ab3b21cad1713eae759f0a980042c5439c970c"
+      },
+      {
+        "exact_native_cache_key": "e76db306147383f394d54bb5ae29c03dafb827f4.pkl",
+        "pkl_sha256": "0f804a4e665e59f05a94cea4f6e0458dd2676b4c8e91ae0adb8139fd69aa43d7",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "a source of warmth and comfort so habitual that few thought to accuse it.",
+            "exact_native_cache_key": "e76db306147383f394d54bb5ae29c03dafb827f4.pkl",
+            "cache_input_text_sha256": "6cd7cdbb0e917f58d14e8e59807f45275c4a616ac7bb547ba09a81e9cb324380",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "0f804a4e665e59f0",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          106496
+        ],
+        "unprocessed_array_sha256": "459dfcbf263c31066824ead65cb39cccaad40b21adbb4ee99191a4ad06f6528f"
+      },
+      {
+        "exact_native_cache_key": "94749bf67b49022a72322b86ef844447156a2d0b.pkl",
+        "pkl_sha256": "b0ad462ae2a4431c630cfd13bff76994629151243fbc59a189ab8de3967725ff",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Such complacency may help to explain the government's grudging response.",
+            "exact_native_cache_key": "94749bf67b49022a72322b86ef844447156a2d0b.pkl",
+            "cache_input_text_sha256": "fe0202e0aa16e5baaa6131847bb5b03c9f5bafea910848765bee828e6473fd41",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "b0ad462ae2a4431c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          110592
+        ],
+        "unprocessed_array_sha256": "b72317bf45b9448e36bd81a3ddb902bd443c5d4f5bca9b76f6a92b436092ab03"
+      },
+      {
+        "exact_native_cache_key": "760b2bdc26ff0e8362f3d060cfca705400086d85.pkl",
+        "pkl_sha256": "8f933899f8bcd7fa8c0be0649b202bbbb7c8837090cd5b018be43e95b75d9361",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "It withstood pressure for an inquiry until May 1953.",
+            "exact_native_cache_key": "760b2bdc26ff0e8362f3d060cfca705400086d85.pkl",
+            "cache_input_text_sha256": "17f48aab9b55c38bba5bf04e037fff6491ebbddd3dcc1fbd25be2faed73ae80e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "8f933899f8bcd7fa",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          101376
+        ],
+        "unprocessed_array_sha256": "11356287ba8eef3e50630ed90edd0b2eac12e2812d63c8584e35bf50caa2974a"
+      },
+      {
+        "exact_native_cache_key": "48afb760de1ba45093c0acba70c1c3d92f5b0847.pkl",
+        "pkl_sha256": "9e2a31ff90f2d22fe07bf6b6dd632759c1bcce8b933721156a8cb531d9571e38",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Reform proved protracted, slowed by official inertia.",
+            "exact_native_cache_key": "48afb760de1ba45093c0acba70c1c3d92f5b0847.pkl",
+            "cache_input_text_sha256": "b1f1d54100f4b1af6492631174a41d989ba3a6981477426c600304846ddaf01d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "9e2a31ff90f2d22f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          89088
+        ],
+        "unprocessed_array_sha256": "7f6d6141d1b6727fe52eb7c18adc5ddbda4d9b9c367c9b778dc32f76c8a425f5"
+      },
+      {
+        "exact_native_cache_key": "87f898124c067b6f3b186402ea5f5613d2ab46ff.pkl",
+        "pkl_sha256": "6eb996a6b8f86bfc653d1d41d7fdce85ab98bf94fbe3976d67e984fda9485601",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Reform proved protracted,",
+            "exact_native_cache_key": "87f898124c067b6f3b186402ea5f5613d2ab46ff.pkl",
+            "cache_input_text_sha256": "0c77449caaec41743e1786538b994cf2d419163c308eb6d2dc9337649a79671c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "6eb996a6b8f86bfc",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          40448
+        ],
+        "unprocessed_array_sha256": "72e5fd9596ccbe46b3d05dca58ff5761cdb2ef2e3669478bddb94c9779a05b5e"
+      },
+      {
+        "exact_native_cache_key": "b0001ac9eda9498dd61026200a86d69709c90624.pkl",
+        "pkl_sha256": "580b69dc510c878dede4a7e1e837ddf141783bca364a6c007411b3d1a030ede7",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "slowed by official inertia.",
+            "exact_native_cache_key": "b0001ac9eda9498dd61026200a86d69709c90624.pkl",
+            "cache_input_text_sha256": "7d63d62afe914c4e7811141a75594a745fde1277b40578363b73197b7230326f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "580b69dc510c878d",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          40960
+        ],
+        "unprocessed_array_sha256": "508331fbd8db5248a68ecd29c7faec2236ed2333acdd89059ef13a945cfc64c0"
+      },
+      {
+        "exact_native_cache_key": "6a8d96c99a317b514abf4912e96f152292d0f80c.pkl",
+        "pkl_sha256": "e98e66af6c9df99ed8b8794e8c34ea060c0397f751cc07d14c5bf972abda610d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The Clean Air Act became law on 5 July 1956, three and a half years after the smog.",
+            "exact_native_cache_key": "6a8d96c99a317b514abf4912e96f152292d0f80c.pkl",
+            "cache_input_text_sha256": "b8f2d34431dd21d12235a88bd5461c24c2de2c539e37895809bf0e56199f99c7",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "e98e66af6c9df99e",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          175616
+        ],
+        "unprocessed_array_sha256": "5d920b65151ef67764cc061e2d942639aca09820a0d402057581ab16f1a78e50"
+      },
+      {
+        "exact_native_cache_key": "a6daa008e3a5d72095a9a99c3f35f1a142446eea.pkl",
+        "pkl_sha256": "1add0ec536e5a3ef60d48830e3cd758ceae93877992e2c4267d4906040d2a5c7",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "The Clean Air Act became law on 5 July 1956,",
+            "exact_native_cache_key": "a6daa008e3a5d72095a9a99c3f35f1a142446eea.pkl",
+            "cache_input_text_sha256": "ee2303309a5a2965cd7972cf81a27ee9904224257ea6b2cd3c3613e0810f0159",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S16",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "The Clean Air Act became law on 5 July 1956,",
+            "exact_native_cache_key": "a6daa008e3a5d72095a9a99c3f35f1a142446eea.pkl",
+            "cache_input_text_sha256": "ee2303309a5a2965cd7972cf81a27ee9904224257ea6b2cd3c3613e0810f0159",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "1add0ec536e5a3ef",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          116224
+        ],
+        "unprocessed_array_sha256": "60f40545c8b03085a093bbc825cd1e39b58c8fc75014e9ed9b78bae8d9436616"
+      },
+      {
+        "exact_native_cache_key": "9640033bd7c264ad7c1e443b915862109abf104d.pkl",
+        "pkl_sha256": "514b8a4d5c94358278bdcf248b2d85cb985eab9ac2b275ef46fe33ec575de11e",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "three and a half years after the smog.",
+            "exact_native_cache_key": "9640033bd7c264ad7c1e443b915862109abf104d.pkl",
+            "cache_input_text_sha256": "09fc8015680e3b66b2925a70b02d5f1e02349cd296af6452a457f8cfe6519d7d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S16",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "three and a half years after the smog.",
+            "exact_native_cache_key": "9640033bd7c264ad7c1e443b915862109abf104d.pkl",
+            "cache_input_text_sha256": "09fc8015680e3b66b2925a70b02d5f1e02349cd296af6452a457f8cfe6519d7d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "514b8a4d5c943582",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          50176
+        ],
+        "unprocessed_array_sha256": "d1391fdf9588230f39ef014927bd3ef08769d6c5724bc16641b473ae0f3ce50a"
+      },
+      {
+        "exact_native_cache_key": "c210779c9cfcc0cece39c5346dc7744de37dd9f9.pkl",
+        "pkl_sha256": "093d5254a432dc408e443c16a9cb385d1a868d05c992f1ce11f6cae0d888b036",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "It empowered municipal councils to create smokeless zones, combating smoke at its source.",
+            "exact_native_cache_key": "c210779c9cfcc0cece39c5346dc7744de37dd9f9.pkl",
+            "cache_input_text_sha256": "ee4b2d1224237848e3cd0c966acffdcdaf40fd0b862c62c3d7df8e41b1f8d436",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "093d5254a432dc40",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          147968
+        ],
+        "unprocessed_array_sha256": "151f2315bbbcbf1b18dd5fc5cef059b699edcba76a5c599aaf5b79f71f64548e"
+      },
+      {
+        "exact_native_cache_key": "5650afe369938bf0ea1ab88f0177f1b72ba940e9.pkl",
+        "pkl_sha256": "cccf9c0ef9a9825a0feb116f9601e32dba83f843776d35bcc6655744ddf888e5",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "It empowered municipal councils to create smokeless zones,",
+            "exact_native_cache_key": "5650afe369938bf0ea1ab88f0177f1b72ba940e9.pkl",
+            "cache_input_text_sha256": "53cf305a4b9892672f48d4127539d93fb25784f0928343d1e7161d550d1fa9c5",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S17",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "It empowered municipal councils to create smokeless zones,",
+            "exact_native_cache_key": "5650afe369938bf0ea1ab88f0177f1b72ba940e9.pkl",
+            "cache_input_text_sha256": "53cf305a4b9892672f48d4127539d93fb25784f0928343d1e7161d550d1fa9c5",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "cccf9c0ef9a9825a",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          95744
+        ],
+        "unprocessed_array_sha256": "1384f001bc33f57f44dcf3ac74bfad2243bd81983771226621064767e2054d13"
+      },
+      {
+        "exact_native_cache_key": "7e179f68808aa03000c003f62cea0ef39eff5c7d.pkl",
+        "pkl_sha256": "8fce5b2c2f8ea29fb020579d534dc5926e67170606eb4734fa81b4bd41d4bfc2",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "combating smoke at its source.",
+            "exact_native_cache_key": "7e179f68808aa03000c003f62cea0ef39eff5c7d.pkl",
+            "cache_input_text_sha256": "e378425978b50b487486ff79dd5080f2f954c6c205e7771f222beddd006fd58a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S17",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "combating smoke at its source.",
+            "exact_native_cache_key": "7e179f68808aa03000c003f62cea0ef39eff5c7d.pkl",
+            "cache_input_text_sha256": "e378425978b50b487486ff79dd5080f2f954c6c205e7771f222beddd006fd58a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "8fce5b2c2f8ea29f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          43008
+        ],
+        "unprocessed_array_sha256": "ff3a3a49336efb0ff7b9372597ed6b7a3780f33d5fdedcf7ccb4e89da2e610fb"
+      },
+      {
+        "exact_native_cache_key": "6940455e9f7664736554b2e950b3628c9e32befd.pkl",
+        "pkl_sha256": "9d5d272e573a926c949578e2220cee561a07ac4f7f0601785a96a6451eae4f8e",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The cosy hearth, beloved of British families, had, all along, been among the chief offenders.",
+            "exact_native_cache_key": "6940455e9f7664736554b2e950b3628c9e32befd.pkl",
+            "cache_input_text_sha256": "f2d2488edea39c769c9c8bd1e73d343640ec2187d9ba9a7336386fbf5d6eae62",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "9d5d272e573a926c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          134656
+        ],
+        "unprocessed_array_sha256": "83ba9608a6922f91b460f832e1ee382810dc0b04651a2e2aa63573870d20239a"
+      },
+      {
+        "exact_native_cache_key": "a31c4cc7797022fc244e4a779c77e20a50e747d1.pkl",
+        "pkl_sha256": "a0d2789c55622354837b4c0585a0f588ca24944db5dfe4ffc7288c617ea1760b",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "The cosy hearth beloved of British families",
+            "exact_native_cache_key": "a31c4cc7797022fc244e4a779c77e20a50e747d1.pkl",
+            "cache_input_text_sha256": "2400620ec602ddccab9ad00fcdd8a0ec12f68b6e5b5b68a93aeafd0382a2ec69",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "a0d2789c55622354",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          59392
+        ],
+        "unprocessed_array_sha256": "13f8d182e20957547fc5a1332a16b4119c7006737943f4fc4e719b8586182fc4"
+      },
+      {
+        "exact_native_cache_key": "a144761815ef6809064df0fe0e7f6daf41a08898.pkl",
+        "pkl_sha256": "9e3727ebd0b1b29233af328d7552feb60baee2fe8d87c418c251f4d88ed2fdfd",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "had all along been among the chief offenders.",
+            "exact_native_cache_key": "a144761815ef6809064df0fe0e7f6daf41a08898.pkl",
+            "cache_input_text_sha256": "4fddc24b2a13cd3f1ca062901a2a66f5cfbfeb990b7290ab327d6815145f4f1f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "9e3727ebd0b1b292",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          57344
+        ],
+        "unprocessed_array_sha256": "c6a948ae655b92af01b94d2e27e45b1c64c50d718e3431c3d7286e9189ac3b47"
+      }
+    ],
+    "missing_reference_key_count": 3,
+    "observed_missing_keys_covered": [],
+    "new_private_cache_names": [
+      "818342b9ea40e763800e3a762bd2c84092c8929a.pkl",
+      "818342b9ea40e763800e3a762bd2c84092c8929a.pkl.单线程",
+      "a144761815ef6809064df0fe0e7f6daf41a08898.pkl",
+      "a144761815ef6809064df0fe0e7f6daf41a08898.pkl.单线程",
+      "a31c4cc7797022fc244e4a779c77e20a50e747d1.pkl",
+      "a31c4cc7797022fc244e4a779c77e20a50e747d1.pkl.单线程"
+    ],
+    "native_single_thread_marker_verified": true,
+    "single_thread_sessions": [
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      },
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      }
+    ],
+    "models_sha256": {
+      "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+      "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+      "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+    },
+    "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+    "existing_private_cache_count": 11529,
+    "existing_private_cache_inventory_sha256_before": "b4519a211f7e7fb04c0fa039a9b80019f703ee5c3fbcac8cf3f05174020b46b2",
+    "existing_private_cache_inventory_sha256_after": "b4519a211f7e7fb04c0fa039a9b80019f703ee5c3fbcac8cf3f05174020b46b2",
+    "existing_private_cache_bytes_unchanged": true,
+    "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+    "public_repository_cache_unchanged": true,
+    "producer_pcm_existed_before": false,
+    "producer_pcm_sha256_before": null,
+    "producer_pcm_sha256_after": null,
+    "accepted_aac_adts_sha256_before": "ecabdc3b21c705715a83ade00e644d2e8888b9a43443958078ffc15ab4d8cd2c",
+    "accepted_aac_adts_sha256_after": "ecabdc3b21c705715a83ade00e644d2e8888b9a43443958078ffc15ab4d8cd2c",
+    "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+    "private_cache_exported": false
+  },
+  "checker_reference_preparation_program_sha256": "f2eee9b99368c72e7135d2af3b955f588d56d1e827e48e5a1e3ce74efc5fce9e",
+  "fresh_current_article_reference": {
+    "article": "52",
+    "removed_temporary_gt_files": [],
+    "processed_pcm_or_raw_mother_cache_modified": false,
+    "purpose": "Original synth/labels/audit rebuild fresh for this production; no old CPU GT reuse."
+  },
+  "temporary_output_reset": {
+    "removed": [],
+    "production_started_ns": 1794709157435458511,
+    "repository_outputs_modified": false
+  },
+  "reviewed_gain_control_preservation": [
+    {
+      "stage": "canonical-draft",
+      "requested_gain_controls": {
+        "/句子增益dB": {
+          "S6": -1.0
+        },
+        "/分段增益dB": {
+          "S1": {
+            "2": 1.5
+          },
+          "S5": {
+            "1": 1.5
+          }
+        }
+      },
+      "actual_gain_controls": {
+        "/句子增益dB": {
+          "S6": -1.0
+        },
+        "/分段增益dB": {
+          "S1": {
+            "2": 1.5
+          },
+          "S5": {
+            "1": 1.5
+          }
+        }
+      },
+      "exactly_preserved": true
+    },
+    {
+      "stage": "canonical-final4K",
+      "requested_gain_controls": {
+        "/句子增益dB": {
+          "S6": -1.0
+        },
+        "/分段增益dB": {
+          "S1": {
+            "2": 1.5
+          },
+          "S5": {
+            "1": 1.5
+          }
+        }
+      },
+      "actual_gain_controls": {
+        "/句子增益dB": {
+          "S6": -1.0
+        },
+        "/分段增益dB": {
+          "S1": {
+            "2": 1.5
+          },
+          "S5": {
+            "1": 1.5
+          }
+        }
+      },
+      "exactly_preserved": true
+    }
+  ],
+  "canonical_video_sha256": "296cca25dc16019f015aa01201ec3a2698a5524646fa0a284123f21b8e21f263",
+  "canonical_aac_adts_sha256": "13001a1a50207c5609b02e8858789825d23852f4db0d4023b29ec0af26bfad09",
+  "canonical_pipeline_passed": true,
+  "cached_input_wav_sha256": null,
+  "final_wav_sha256": "c7f8109501ae2a0efb384eef993cadf7079de7e98f5f383efbcd601797dcc79f",
+  "approved_audio_qc_comparison_reference": {
+    "kind": "actual-latest-formally-accepted-current-before-resource-only-for-controlled-QC",
+    "source_native_run": 43533004625,
+    "file": "controlled-QC-current-before52.mp4",
+    "sha256": "1d0cf6064c36ec7ed223956ebf98b7aabf21aa63241202f01d1895acc094b280",
+    "bytes": 14797917,
+    "AAC_ADTS_sha256": "ecabdc3b21c705715a83ade00e644d2e8888b9a43443958078ffc15ab4d8cd2c",
+    "original_native_pipeline_historical_accepted_source_unchanged": true
+  },
+  "approved_audio_qc": {
+    "article": "52",
+    "kind": "controlled_audio_repair",
+    "passed": true,
+    "repair_applied": true,
+    "diagnostic_only": false,
+    "production_delivery_eligible": true,
+    "official_full_gates_are_separate_required_precondition": true,
+    "official_gates_replaced_or_thresholds_modified": false,
+    "subjective_listening_claimed": false,
+    "private_caches_GT_or_PCM_exported": false,
+    "program_sha256": "cb04e73b69abfedd8b775e7594cb8f1d51956f2989b02860f343fb137d8b847f",
+    "reference_file_sha256": "ab2ca83dd0e05c4f5e4c62b9c96b9e250e8e6dacd0f6ceb2c9526fdecae22f1a",
+    "fingerprints": {
+      "request_source_sha256": "f9e3fa65ddf161a0d7b83e17fe60ac56552535566bf64512ca0f785e21e49862",
+      "request_generator_sha256": "015ff440b86dac3423da4ca936f2cb91f1752c42dc485b563163285a88251177",
+      "actual_full_source_sha256": "e2f221636610e87eb835f1bd0a2c4d9e7118a2bdecb3de379ba3c7d98b218937",
+      "actual_raw_WAV_sha256": "c7f8109501ae2a0efb384eef993cadf7079de7e98f5f383efbcd601797dcc79f",
+      "accepted_video_sha256": "1d0cf6064c36ec7ed223956ebf98b7aabf21aa63241202f01d1895acc094b280",
+      "canonical_video_sha256": "296cca25dc16019f015aa01201ec3a2698a5524646fa0a284123f21b8e21f263",
+      "accepted_AAC_ADTS_sha256": "ecabdc3b21c705715a83ade00e644d2e8888b9a43443958078ffc15ab4d8cd2c",
+      "canonical_AAC_ADTS_sha256": "13001a1a50207c5609b02e8858789825d23852f4db0d4023b29ec0af26bfad09"
+    },
+    "source_current_sha256": "e2f221636610e87eb835f1bd0a2c4d9e7118a2bdecb3de379ba3c7d98b218937",
+    "accepted_sha256": "1d0cf6064c36ec7ed223956ebf98b7aabf21aa63241202f01d1895acc094b280",
+    "canonical_sha256": "296cca25dc16019f015aa01201ec3a2698a5524646fa0a284123f21b8e21f263",
+    "source_authorization_ids": [
+      "user117",
+      "user118",
+      "user119",
+      "user120",
+      "user122",
+      "user123",
+      "user124"
+    ],
+    "private_cache_identity_scalars": [
+      {
+        "name": "626269a6aa2d824c4cd3922d6c9aea1cd91e2aad.pkl",
+        "actual_SHA256": "c1e5fe1ba457b0589c29a72819da56ec8c9511899edf9c5971fe3e4287a10cd2"
+      },
+      {
+        "name": "626269a6aa2d824c4cd3922d6c9aea1cd91e2aad.pkl.单线程",
+        "actual_SHA256": "5b3db3912651bf8bc63c08667799599c3667fdd271b0bab325f6783d3ce6cff6"
+      },
+      {
+        "name": "5033658f57d8e204ccb64b3d53b4cd8d3908fc87.pkl",
+        "actual_SHA256": "eba87320de4f861a31d7d43c80349a99ffc5c054201a6e2e80e5146f178c539a"
+      },
+      {
+        "name": "5033658f57d8e204ccb64b3d53b4cd8d3908fc87.pkl.单线程",
+        "actual_SHA256": "5a92819dd15dc4c72ccd9f014e035b2377fa2311c6d4c919e39919bb8a8329d7"
+      },
+      {
+        "name": "6940455e9f7664736554b2e950b3628c9e32befd.pkl",
+        "actual_SHA256": "9d5d272e573a926c949578e2220cee561a07ac4f7f0601785a96a6451eae4f8e"
+      },
+      {
+        "name": "6940455e9f7664736554b2e950b3628c9e32befd.pkl.单线程",
+        "actual_SHA256": "676e84873f1406513f29591451c85087601d9c86df6524e7f32d458c82c939ad"
+      },
+      {
+        "name": "6c861948342a1c639e9b762e441198355c5b3326.pkl",
+        "actual_SHA256": "15dd7ea8f66599dff69377a269ceb27077d85515ea5882bda84c4028ce31c0e4"
+      },
+      {
+        "name": "6c861948342a1c639e9b762e441198355c5b3326.pkl.单线程",
+        "actual_SHA256": "26420a40d9ef031e9f5e7d4417d8b4b6bff86df74b6038225b57ab01a3075d0e"
+      },
+      {
+        "name": "调平_4984c8df6b04e6ce5c068372f49331464b416b2b.json",
+        "actual_SHA256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+      },
+      {
+        "name": "调平_5d2d6bab45b9b765994454b448b0cfc3c61dde90.json",
+        "actual_SHA256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+      }
+    ],
+    "accepted_global": {
+      "integrated_lufs": -21.8,
+      "true_peak_dbtp": -0.8,
+      "lra_lu": 3.5
+    },
+    "actual_global": {
+      "integrated_lufs": -21.7,
+      "true_peak_dbtp": -0.8,
+      "lra_lu": 3.4
+    },
+    "original_full_track_supplement": {
+      "metrics": {
+        "削波": [
+          0,
+          ""
+        ],
+        "直流偏移": [
+          4.819235631122202e-05,
+          "第15句"
+        ],
+        "咔哒": [
+          1.2083722294246844,
+          "第2句"
+        ],
+        "句尾截断": [
+          -54.321647919941,
+          "第7句"
+        ],
+        "句首突起": [
+          -44.91139689407902,
+          "第16句"
+        ],
+        "齿音": [
+          2.678328770852108,
+          "第2句"
+        ],
+        "音色突变": [
+          0.4516794180534187,
+          "第12句"
+        ],
+        "语速突变": [
+          0.3079293658353569,
+          "第1句"
+        ]
+      },
+      "global_lufs": -21.740357165304072,
+      "sentence_lufs": [
+        -21.808848053397096,
+        -21.806702111079954,
+        -21.341218854305257,
+        -21.84318986553202,
+        -20.418149326758595,
+        -22.703544321775976,
+        -21.11570074097389,
+        -21.940051451443363,
+        -22.113745375617437,
+        -21.641873026597448,
+        -21.745532768215668,
+        -21.38966101649409,
+        -20.921337353382686,
+        -20.69852535175494,
+        -21.958087307290064,
+        -21.80888381044295,
+        -21.480672503528005
+      ],
+      "summary": "全片 -21.7 LUFS，峰值 -0.8 dBFS，17 句，逐句与全片差 -1.0～+1.3 LU",
+      "suppressed_segment_rule_not_added": true,
+      "official_original_ASR_gates_separate": true
+    },
+    "approved_audio_repair_scope": {
+      "source_id": "52",
+      "spoken_comma_new_mother_sentences": [
+        "S4",
+        "S18"
+      ],
+      "approved_gain_only_sentences": [
+        "S1",
+        "S5"
+      ],
+      "only_voice_changed_sentences": [
+        "S1",
+        "S4",
+        "S5",
+        "S18"
+      ],
+      "non_target_title_and_body_pre_master_identity_count": 15,
+      "non_target_pre_master_identity_basis": "actual-native-whole-track-diagnostic exact arrays plus this runtime entire new RAW/AAC cryptographic identity",
+      "master_multiplier_before": 1.0502536769937203,
+      "master_multiplier_after": 1.0502536769937203,
+      "ASR_confirmations_not_renewed_by_this_helper": true,
+      "old_new_whole_duration_AAC_packets_or_new_mother_pitch_not_claimed_equal": true
+    },
+    "comparison_before_is_formally_accepted_whole": true,
+    "accepted_AAC_is_intentionally_different_after_approved_new_mothers": true,
+    "checks": [
+      {
+        "name": "actual-native-whole-track-proof-bytes-and-precise-voice-scope",
+        "passed": true,
+        "actual_native_diagnostic_run": 43660239427,
+        "proof_is_diagnostic_and_not_substituted_for_formal_gates": true
+      },
+      {
+        "name": "exact-approved-fingerprint:request_source_sha256",
+        "passed": true,
+        "actual": "f9e3fa65ddf161a0d7b83e17fe60ac56552535566bf64512ca0f785e21e49862",
+        "expected": "f9e3fa65ddf161a0d7b83e17fe60ac56552535566bf64512ca0f785e21e49862"
+      },
+      {
+        "name": "exact-approved-fingerprint:request_generator_sha256",
+        "passed": true,
+        "actual": "015ff440b86dac3423da4ca936f2cb91f1752c42dc485b563163285a88251177",
+        "expected": "015ff440b86dac3423da4ca936f2cb91f1752c42dc485b563163285a88251177"
+      },
+      {
+        "name": "exact-approved-fingerprint:actual_raw_WAV_sha256",
+        "passed": true,
+        "actual": "c7f8109501ae2a0efb384eef993cadf7079de7e98f5f383efbcd601797dcc79f",
+        "expected": "c7f8109501ae2a0efb384eef993cadf7079de7e98f5f383efbcd601797dcc79f"
+      },
+      {
+        "name": "exact-approved-fingerprint:accepted_video_sha256",
+        "passed": true,
+        "actual": "1d0cf6064c36ec7ed223956ebf98b7aabf21aa63241202f01d1895acc094b280",
+        "expected": "1d0cf6064c36ec7ed223956ebf98b7aabf21aa63241202f01d1895acc094b280"
+      },
+      {
+        "name": "exact-approved-fingerprint:accepted_AAC_ADTS_sha256",
+        "passed": true,
+        "actual": "ecabdc3b21c705715a83ade00e644d2e8888b9a43443958078ffc15ab4d8cd2c",
+        "expected": "ecabdc3b21c705715a83ade00e644d2e8888b9a43443958078ffc15ab4d8cd2c"
+      },
+      {
+        "name": "exact-approved-fingerprint:canonical_AAC_ADTS_sha256",
+        "passed": true,
+        "actual": "13001a1a50207c5609b02e8858789825d23852f4db0d4023b29ec0af26bfad09",
+        "expected": "13001a1a50207c5609b02e8858789825d23852f4db0d4023b29ec0af26bfad09"
+      },
+      {
+        "name": "requested-entire-nonreview-source",
+        "passed": true
+      },
+      {
+        "name": "requested-only-exact-approved-spoken-and-gain-controls",
+        "passed": true
+      },
+      {
+        "name": "requested-all-display-spoken-English-words-preserved",
+        "passed": true
+      },
+      {
+        "name": "requested-new-S18-no-ENDING-and-only-selected-measured-NV",
+        "passed": true
+      },
+      {
+        "name": "actual-entire-source-except-original-review-and-exact-mechanical-metadata",
+        "passed": true,
+        "original_pending_consent_consumed": false,
+        "exact_original_pending_history_move": false,
+        "exact_observed_G35_note_paths_normalized": [
+          [
+            "sentences",
+            17,
+            "chunks",
+            1,
+            "note"
+          ]
+        ],
+        "all_other_nonreview_data_exact": true
+      },
+      {
+        "name": "actual-only-exact-approved-spoken-and-gain-controls",
+        "passed": true
+      },
+      {
+        "name": "actual-all-display-spoken-English-words-preserved",
+        "passed": true
+      },
+      {
+        "name": "actual-new-S18-no-ENDING-and-only-selected-measured-NV",
+        "passed": true
+      },
+      {
+        "name": "unchanged-full-native-pipeline-all-gates-already-really-passed",
+        "passed": true,
+        "status_file_sha256": "f70f5416f8da979f170958b5aef4be78f476e14f66cd92d80c7afcb45505c94e",
+        "original_two_ASR_and_full_gates_not_replaced": true
+      },
+      {
+        "name": "actual-raw-PCM16-shape-bytes-and-duration",
+        "passed": true,
+        "actual": {
+          "rate": 24000,
+          "channels": 1,
+          "width": 2,
+          "samples": 3392640
+        },
+        "actual_bytes": 6785324
+      },
+      {
+        "name": "all-actual-producer-gain-groups-times-and-cuts-metadata-bound",
+        "passed": true,
+        "actual_sha256": "235e0086d222aaf9b2d9d2a1bdf8596e2a8bc210c3492cc1b99a921a493c56d8"
+      },
+      {
+        "name": "exact-original-private-cache-input:626269a6aa2d824c4cd3922d6c9aea1cd91e2aad.pkl",
+        "passed": true
+      },
+      {
+        "name": "exact-original-private-cache-input:626269a6aa2d824c4cd3922d6c9aea1cd91e2aad.pkl.单线程",
+        "passed": true
+      },
+      {
+        "name": "exact-original-private-cache-input:5033658f57d8e204ccb64b3d53b4cd8d3908fc87.pkl",
+        "passed": true
+      },
+      {
+        "name": "exact-original-private-cache-input:5033658f57d8e204ccb64b3d53b4cd8d3908fc87.pkl.单线程",
+        "passed": true
+      },
+      {
+        "name": "exact-original-private-cache-input:6940455e9f7664736554b2e950b3628c9e32befd.pkl",
+        "passed": true
+      },
+      {
+        "name": "exact-original-private-cache-input:6940455e9f7664736554b2e950b3628c9e32befd.pkl.单线程",
+        "passed": true
+      },
+      {
+        "name": "exact-original-private-cache-input:6c861948342a1c639e9b762e441198355c5b3326.pkl",
+        "passed": true
+      },
+      {
+        "name": "exact-original-private-cache-input:6c861948342a1c639e9b762e441198355c5b3326.pkl.单线程",
+        "passed": true
+      },
+      {
+        "name": "exact-original-private-cache-input:调平_4984c8df6b04e6ce5c068372f49331464b416b2b.json",
+        "passed": true
+      },
+      {
+        "name": "exact-original-private-cache-input:调平_5d2d6bab45b9b765994454b448b0cfc3c61dde90.json",
+        "passed": true
+      },
+      {
+        "name": "original-public-AAC-mono-48k-clock",
+        "passed": true
+      },
+      {
+        "name": "actual-canonical-4K-video-present",
+        "passed": true
+      },
+      {
+        "name": "actual-no-clipping-or-nonfinite-samples",
+        "passed": true,
+        "sample_peak_dbfs": -0.7678997744739466
+      },
+      {
+        "name": "actual-true-peak-below-zero",
+        "passed": true,
+        "actual_dbtp": -0.8
+      },
+      {
+        "name": "original-controlled-whole-track-level-difference-limit",
+        "passed": true,
+        "delta_lu": 0.10000000000000142
+      },
+      {
+        "name": "all-eight-unchanged-original-health-rules",
+        "passed": true,
+        "metrics": {
+          "削波": [
+            0,
+            ""
+          ],
+          "直流偏移": [
+            4.819235631122202e-05,
+            "第15句"
+          ],
+          "咔哒": [
+            1.2083722294246844,
+            "第2句"
+          ],
+          "句尾截断": [
+            -54.321647919941,
+            "第7句"
+          ],
+          "句首突起": [
+            -44.91139689407902,
+            "第16句"
+          ],
+          "齿音": [
+            2.678328770852108,
+            "第2句"
+          ],
+          "音色突变": [
+            0.4516794180534187,
+            "第12句"
+          ],
+          "语速突变": [
+            0.3079293658353569,
+            "第1句"
+          ]
+        },
+        "failures": [],
+        "original_confirmation_notes": []
+      },
+      {
+        "name": "unchanged-original-whole-sentence-R-rule",
+        "passed": true,
+        "failures": [],
+        "summary": "全片 -21.7 LUFS，峰值 -0.8 dBFS，17 句，逐句与全片差 -1.0～+1.3 LU"
+      },
+      {
+        "name": "unchanged-original-within-sentence-R-rule",
+        "passed": true,
+        "comparisons": [
+          [
+            "S1",
+            1,
+            [
+              3.5,
+              6.28
+            ],
+            [
+              6.7,
+              7.2700000000000005
+            ],
+            1.4907912244833028
+          ],
+          [
+            "S1",
+            2,
+            [
+              6.7,
+              7.2700000000000005
+            ],
+            [
+              7.7,
+              10.0
+            ],
+            -1.9971709626607144
+          ],
+          [
+            "S2",
+            1,
+            [
+              11.0,
+              11.72
+            ],
+            [
+              12.11,
+              14.08
+            ],
+            -1.044167472011555
+          ],
+          [
+            "S2",
+            2,
+            [
+              12.11,
+              14.08
+            ],
+            [
+              14.51,
+              16.46
+            ],
+            0.4154236558261388
+          ],
+          [
+            "S3",
+            1,
+            [
+              17.46,
+              19.28
+            ],
+            [
+              19.7,
+              20.76
+            ],
+            -0.7935677770048564
+          ],
+          [
+            "S4",
+            1,
+            [
+              21.76,
+              24.54
+            ],
+            [
+              24.96,
+              26.810000000000002
+            ],
+            0.5333304460141228
+          ],
+          [
+            "S4",
+            2,
+            [
+              24.96,
+              26.810000000000002
+            ],
+            [
+              27.240000000000002,
+              28.88
+            ],
+            -0.2601945719719154
+          ],
+          [
+            "S5",
+            1,
+            [
+              30.080000000000002,
+              30.84
+            ],
+            [
+              31.25,
+              35.03
+            ],
+            -1.2592949401684876
+          ],
+          [
+            "S5",
+            2,
+            [
+              31.25,
+              35.03
+            ],
+            [
+              35.44,
+              38.86
+            ],
+            0.16703680035278978
+          ],
+          [
+            "S6",
+            1,
+            [
+              39.86,
+              40.6
+            ],
+            [
+              41.04,
+              42.99
+            ],
+            0.040270817653290436
+          ],
+          [
+            "S7",
+            1,
+            [
+              43.99,
+              46.01
+            ],
+            [
+              46.44,
+              50.370000000000005
+            ],
+            -0.5660835177891776
+          ],
+          [
+            "S7",
+            2,
+            [
+              46.44,
+              50.370000000000005
+            ],
+            [
+              50.81,
+              56.26
+            ],
+            -0.4319749862676545
+          ],
+          [
+            "S9",
+            1,
+            [
+              61.85,
+              66.01
+            ],
+            [
+              66.43,
+              71.72
+            ],
+            -0.32621038199069474
+          ],
+          [
+            "S10",
+            1,
+            [
+              72.72,
+              81.15
+            ],
+            [
+              81.56,
+              89.12
+            ],
+            -1.511978662102642
+          ],
+          [
+            "S12",
+            1,
+            [
+              95.08,
+              97.36
+            ],
+            [
+              97.77,
+              102.14
+            ],
+            -1.7632900421373954
+          ],
+          [
+            "S15",
+            1,
+            [
+              113.82000000000001,
+              115.45
+            ],
+            [
+              115.9,
+              117.62
+            ],
+            -0.2052385013446667
+          ],
+          [
+            "S16",
+            1,
+            [
+              118.62,
+              123.28
+            ],
+            [
+              123.71000000000001,
+              125.9
+            ],
+            -0.9723733919442665
+          ],
+          [
+            "S17",
+            1,
+            [
+              126.9,
+              130.6
+            ],
+            [
+              131.01,
+              132.98
+            ],
+            0.8965442138777213
+          ]
+        ],
+        "failures": []
+      },
+      {
+        "name": "actual-runtime-positive-and-one-byte-control-clipping-negatives",
+        "passed": true,
+        "actual_new_source_and_full_raw_AAC_identity_positive": true,
+        "wrong_gain_or_source_control_rejected": true,
+        "actual_one_PCM16_sample_byte_mutation_rejected": true,
+        "actual_decoded_clipping_mutation_rejected": true,
+        "mutated_audio_written": false,
+        "ASR_simulated": false
+      }
+    ]
+  },
+  "approved_audio_qc_program_sha256": "cb04e73b69abfedd8b775e7594cb8f1d51956f2989b02860f343fb137d8b847f",
+  "approved_audio_repair_scope": {
+    "kind": "controlled_audio_repair",
+    "repair_applied": true,
+    "request_source_sha256": "f9e3fa65ddf161a0d7b83e17fe60ac56552535566bf64512ca0f785e21e49862",
+    "reference_file_sha256": "ab2ca83dd0e05c4f5e4c62b9c96b9e250e8e6dacd0f6ceb2c9526fdecae22f1a",
+    "actual_original_full_pipeline_passed_first": true,
+    "whole_track_actual_audio_and_approved_unchanged_regions_required": true
+  },
+  "accepted_prior_aac_identical": false,
+  "video_sha256": "87748859758dbefcc29039630f47f21de5a43ad5fcc1c71f09bc8b6c02bcafee",
+  "width": 3840,
+  "height": 2160,
+  "summary_seconds": 2,
+  "summary_frames": 60,
+  "summary_start_seconds": 140.0,
+  "delay_after_voice_seconds": 0.61,
+  "actual_source_collection": {
+    "article": "52",
+    "kind": "actual-production-source-collection",
+    "new_quality_gate": false,
+    "files": {
+      "request_json": {
+        "file": "52-request-source.json",
+        "sha256": "f9e3fa65ddf161a0d7b83e17fe60ac56552535566bf64512ca0f785e21e49862",
+        "origin": "immutable_request"
+      },
+      "request_generator": {
+        "file": "52-request-gen.py",
+        "sha256": "015ff440b86dac3423da4ca936f2cb91f1752c42dc485b563163285a88251177",
+        "origin": "immutable_request"
+      },
+      "used_generator": {
+        "file": "52-used-gen.py",
+        "sha256": "015ff440b86dac3423da4ca936f2cb91f1752c42dc485b563163285a88251177",
+        "origin": "actual_production_filesystem"
+      },
+      "actual_working_source": {
+        "file": "52-actual-working-source.json",
+        "sha256": "e2f221636610e87eb835f1bd0a2c4d9e7118a2bdecb3de379ba3c7d98b218937",
+        "origin": "actual_production_filesystem"
+      },
+      "request_manuscript": {
+        "file": "52-request-manuscript.md",
+        "sha256": "5ce7dc40cb82cc8918b24fd25ac295d7fe90b65884633a08e13cc58a03402af7",
+        "origin": "immutable_request"
+      },
+      "actual_working_manuscript": {
+        "file": "52-actual-working-manuscript.md",
+        "sha256": "8df3746196a7df3612529acbd7db1c24417435097b13ec46ec2a6eb6e399b80a",
+        "origin": "actual_production_filesystem"
+      }
+    },
+    "generator_execution_observed": false,
+    "generator_execution_evidence": "No fresh generator execution log; do not claim this GEN was executed during rendering.",
+    "source_differences": {
+      "file": "52-actual-source-differences.json",
+      "sha256": "72cc9c41ea56766076b159ad5d72ae2b6aa2759c0fc573ec31e9c55ef8ba81f9"
+    }
+  },
+  "preview_only": false,
+  "finalization_authorized": true,
+  "last_body_hold_frames": 18,
+  "last_body_hold_seconds": 0.6,
+  "summary_start_frame": 4200,
+  "postprocessing_only": true,
+  "original_producer_or_TTS_repeated": false,
+  "true_original_native_full_QA_run": 43667016598,
+  "inherited_original_summary_status_sha256": "e81913dc1d77bb4cebc0d73a043a3892cba777447d9cd3e0b34c8820484665e6",
+  "final_hold_policy_sha256": "4bcae46b68b9584f107966f683af580b474fa9835f101834fe55ed6968dfc36b"
+}

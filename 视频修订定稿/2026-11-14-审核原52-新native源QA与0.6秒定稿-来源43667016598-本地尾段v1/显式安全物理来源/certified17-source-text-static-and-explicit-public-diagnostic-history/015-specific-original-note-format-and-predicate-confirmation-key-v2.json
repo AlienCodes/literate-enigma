@@ -1,0 +1,29 @@
+{
+  "source_id": "52",
+  "kind": "minimal_original_note_format_and_exact_predicate_confirmation_key",
+  "source_before_sha256": "568b97279792894eac617d32d884b175b64a3258722f090229acb381159cf098",
+  "source_after_sha256": "1566d782c9a9eea7f9ceff1717a2f111124f3b98d8f9e78072e6603b4939a0ff",
+  "GEN_sha256": "ae35ad3484da599be84b13cea9d0182edc169cd9b4a81a775cfc12178544d67d",
+  "MD_sha256": "5ce7dc40cb82cc8918b24fd25ac295d7fe90b65884633a08e13cc58a03402af7",
+  "original_first_text_failure_retained": "thin-validation-v1/report-v2-user122-initial.json",
+  "caption_content_no_new_or_removed_Chinese_character": true,
+  "only_source_two_format_and_CF_key_changes": [
+    {
+      "path": "/sentences/12/chunks/0/note",
+      "reason": "value",
+      "expected": "人们把煤烟当成寻常的生活麻烦，\n很少想到家中取暖的煤火也是污染元凶。\n这种掉以轻心，或许也是政府应对不够积极的原因之一。",
+      "actual": "（人们把煤烟当成寻常的生活麻烦，\n很少想到家中取暖的煤火也是污染元凶。\n这种掉以轻心，或许也是政府应对不够积极的原因之一。）"
+    },
+    {
+      "path": "/核对确认/同词异译/blamed on：归咎于~1把",
+      "reason": "unexpected_field",
+      "actual": "不是两种译法：blame A on B 是把A归咎于B，本文blamed later deaths on influenza；英文blamed和on是同一用法的两部分，中文把和归咎于是同一谓语的两部分，A后来的死亡普通，原influenza流感重点保留。"
+    },
+    {
+      "path": "/核对确认/同词异译/blamed on：把~1归咎于",
+      "reason": "missing_field",
+      "expected": "不是两种译法：blame A on B 是把A归咎于B，本文blamed later deaths on influenza；英文blamed和on是同一用法的两部分，中文把和归咎于是同一谓语的两部分，A后来的死亡普通，原influenza流感重点保留。"
+    }
+  ],
+  "no_checker_threshold_or_other_source_changed": true
+}
