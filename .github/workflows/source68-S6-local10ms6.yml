@@ -1,0 +1,92 @@
+name: 书53仅S6十毫秒六分贝局部条件测量
+on:
+  push:
+    branches: [codex/finish-05-and-summaries-20261112]
+    paths: ['.github/source68-S6-local10ms6/**', '.github/workflows/source68-S6-local10ms6.yml']
+permissions:
+  contents: read
+jobs:
+  only-S6-local10ms6:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github/source68-S6-local10ms6
+      - uses: actions/checkout@v4
+        with:
+          repository: alienalgorithm/postgraduate-vocabulary
+          ref: fc0b56af9a0ac0e97015548b756d4e51d66dc2ea
+          path: official-main
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /视频/工具/
+            /视频/配音缓存/*.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/cache/restore@v4
+        id: original-cache
+        with:
+          path: |
+            ${{ runner.temp }}/completion-machine
+            ~/asr
+          key: completion-05-machine-43294745262
+      - name: 既有原机器缓存必须命中
+        env:
+          CACHE_HIT: ${{ steps.original-cache.outputs.cache-hit }}
+        run: |
+          test "$CACHE_HIT" = true
+          test -f "$RUNNER_TEMP/completion-machine/tts/kokoro-v1.0.onnx"
+      - name: 安装原运行依赖
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg espeak-ng
+          python -m pip install --quiet -r official-main/视频/工具/环境/requirements.txt
+      - uses: actions/cache/restore@v4
+        id: selected-target-mothers
+        with:
+          path: |
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/957f2b32009a98dec0354ea08bc770a90a477c6d.pkl
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/957f2b32009a98dec0354ea08bc770a90a477c6d.pkl.单线程
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/ade031d5fbb2952cfc8aa8483ba9eef5751f2c08.pkl
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/ade031d5fbb2952cfc8aa8483ba9eef5751f2c08.pkl.单线程
+          key: Linux-native68-exact-S2-first-spoken-comma-43702410293
+      - uses: actions/cache/restore@v4
+        id: existing-original-S2-G36
+        with:
+          path: ${{ runner.temp }}/completion-machine/tts/source68-only-target-whole-original-math-cache/调平_e55a8ac21608c0b20b2761284675f784cb01d85f.json
+          key: Linux-native68-only-target-whole-original-math-43722945326
+      - name: 实际ROOT185b与独立父审绑定，仅S6局部条件原数学测量
+        env:
+          S2_MOTHER_CACHE_HIT: ${{ steps.selected-target-mothers.outputs.cache-hit }}
+          S2_G36_CACHE_HIT: ${{ steps.existing-original-S2-G36.outputs.cache-hit }}
+          AUDIO_ONLY: '1'
+          STRICT_CACHE: '1'
+          XG_NOPUSH: '1'
+          XG_KEEP_REVIEWED_GAIN: '1'
+          XG_KEEP_REVIEWED_ENDING: '1'
+          XG_KEEP_REVIEWED_CUTS: '1'
+        id: local-measurement
+        run: |
+          parent_sha=$(cat .github/source68-S6-local10ms6/actual-parent-independent-onlyS6-review.sha256)
+          python -u .github/source68-S6-local10ms6/run_onlyS6_local_two_phase.py \
+            --actual-root-execution-adoption .github/source68-S6-local10ms6/root-onlyS6-local-execution-scope.json \
+            --actual-root-execution-adoption-sha256 185b3e1502aeb77d1af7bac4c7f05af298924c49e2f0b9448db6313b127a6da2 \
+            --actual-parent-review-adoption .github/source68-S6-local10ms6/actual-parent-independent-onlyS6-review.json \
+            --actual-parent-review-adoption-sha256 "$parent_sha"
+      - name: 只保存真实单S6新原数学JSON（独立于PV结果）
+        if: always() && steps.local-measurement.outputs.cache_key != ''
+        uses: actions/cache/save@v4
+        with:
+          key: ${{ steps.local-measurement.outputs.cache_key }}
+          path: ${{ steps.local-measurement.outputs.cache_paths }}
+      - name: 仅上传实际标量JSON
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: source68-onlyS6-local10ms6-conditional-math
+          path: source68-only-S6-local10ms6-public/*.json
+          retention-days: 30
+          if-no-files-found: error
