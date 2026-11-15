@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "/workspace/work/video-archive-batches-20261114/install_book70_source45_existing_normal18_current_final.py", line 119, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/workspace/work/video-archive-batches-20261114/install_book70_source45_existing_normal18_current_final.py", line 36, in main
+    user=Path('/workspace/work/book70-source45-final-source-and-normal18-data-only-preparation-20261115/USER-BOOK68-SOURCE25-APOLLO13-FINALIZATION-20261115.json');us=spec(user)
+                                                                                                                                                                      ^^^^^^^^^^
+  File "/workspace/work/video-archive-batches-20261114/install_book70_source45_existing_normal18_current_final.py", line 8, in spec
+    p=Path(p);b=p.read_bytes();return {'path':str(p),'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest()}
+                ^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1019, in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/work/book70-source45-final-source-and-normal18-data-only-preparation-20261115/USER-BOOK68-SOURCE25-APOLLO13-FINALIZATION-20261115.json'
