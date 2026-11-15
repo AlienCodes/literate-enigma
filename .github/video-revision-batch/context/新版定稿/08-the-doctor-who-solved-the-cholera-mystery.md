@@ -1,13 +1,13 @@
 # EN: The Doctor Who Solved the Cholera Mystery
 # ZH: 破解霍乱之谜的医生
 ## 英文
-In the first ten days of September 1854, cholera **ravaged** an **overcrowded** corner of London's Soho; **upwards of** 500 people **perished**. Most doctors **attributed** **epidemics** **to** miasma, **foul** air **arising** from **filth**. John Snow, a **physician** who had been **convinced** since 1849 that cholera's poison was **swallowed**, not **inhaled**, suspected the Broad Street pump.
+In the first ten days of September 1854, cholera **ravaged** an **overcrowded** corner of London's Soho; **upwards of** 500 people **perished**. Most doctors **attributed** **epidemics** **to** miasma, **foul** air **arising** from **filth**. John Snow, a **physician** who had been **convinced** since 1849 that cholera's **poison** was **swallowed**, not **inhaled**, suspected the Broad Street pump.
 
-Finding little visible impurity, he **hesitated**, then **consulted** the death **register** and questioned **bereaved** families. Most **victims** lived near the pump and drank from it. At his **urging**, **parish** officials removed the handle, but daily **fatal** attacks had already **plunged** from a **peak** of 143 to 12. He later mapped the deaths.
+Finding little **visible** **impurity**, he **hesitated**, then **consulted** the death **register** and questioned **bereaved** families. Most **victims** lived near the pump and drank from it. At his **urging**, **parish** officials removed the handle, but daily **fatal** attacks had already **plunged** from a **peak** of 143 to 12. He later mapped the deaths.
 
 In 1855 Edmund Parkes, a professor of **clinical medicine**, **interpreted** the **cluster** on that map as a **poison** **drifting** through the air. Yet a map could **chart** where people died, not what they drank.
 
-The **crucial** evidence, gathered in 1854, **lay in** **exceptions**. **Amid** the deaths in the **surrounding** streets, a **workhouse** with its own well lost **a mere** five of 535 **inmates**. More than 70 nearby brewery workers, with a beer **allowance** and their own well, escaped severe cholera.
+The **crucial** evidence, **gathered** in 1854, **lay in** **exceptions**. **Amid** the deaths in the **surrounding** streets, a **workhouse** with its own well lost **a mere** five of 535 **inmates**. More than 70 nearby **brewery** workers, with a beer **allowance** and their own well, escaped severe cholera.
 
 **Conversely**, a Hampstead **widow** who had not **set foot in** Soho for months had the pump's water **carted** to her daily. She died, as did a visiting **niece** who drank it. Hampstead **then** had no cholera.
 
@@ -15,19 +15,17 @@ In 1855 a government **inquiry** **declined to** **condemn** the pump, **contend
 
 ## 中文
 
-1854年9月上旬，霍乱在伦敦苏豪区一个**拥挤不堪的**(overcrowded)角落**肆虐**(ravaged)；**超过/多于**(upwards of)500人**丧生**(perished)。多数医生**把**(attributed to)**流行病**(epidemics)**归因于**(attributed to)瘴气，也就是从**污秽**(filth)中**产生**(arising)的、**污浊的**(foul)空气。（attribute A to B：把A归因于B；foul air…：同位语，解释 miasma）约翰·斯诺，一位**内科医生**(physician)，自1849年起就**确信**(convinced)霍乱的毒素是**吞**(swallowed)进去的，而不是**吸**(inhaled)进去的，他怀疑问题出在宽街那口水泵上。
+1854年9月上旬，霍乱在伦敦苏豪区一个**拥挤不堪的**(overcrowded)角落**肆虐**(ravaged)；**超过/多于**(upwards of)500人**丧生**(perished)。多数医生**把**(attributed to)这次 **流行病/（霍乱）疫情**(epidemics)**归因于**(attributed to)瘴气，也就是从**污秽**(filth)中**产生**(arising)的、**污浊的**(foul)空气。（attribute A to B：把A归因于B；foul air…：同位语，解释 miasma）约翰·斯诺，一位**内科医生**(physician)，自1849年起就**确信**(convinced)霍乱的**毒素**(poison)是被**吞**(swallowed)进体内的，而非**吸**(inhaled)入体内的，他怀疑问题出在宽街那口水泵上。
 
-在泵水里没发现多少肉眼可见的杂质，他一时**犹豫**(hesitated)，随后**查阅了**(consulted)死亡**登记册**(register)，又去询问**痛失亲人的**(bereaved)家庭。（Finding…：现在分词短语作状语，表示原因）**罹难者**(victims)大多住在这口泵附近，也喝过它的水。在他的**敦促**(urging)下，**教区**(parish)官员卸下了泵柄，可这时每天新发的**致死**(fatal)病例早已从143例的**峰值**(peak)**骤降**(plunged)到12例。（attack：疾病发作；plunge from A to B：从A骤降到B）他后来把死亡病例标在了地图上。
+在泵水里没发现多少**肉眼可见的**(visible)**杂质**(impurity)，他一时**犹豫**(hesitated)，随后**查阅了**(consulted)死亡**登记册**(register)，又去询问**痛失亲人的**(bereaved)家庭。（Finding…：现在分词短语作状语，表示原因）**罹难者**(victims)大多住在这口泵附近，也喝过它的水。在他的**敦促**(urging)下，**教区**(parish)官员卸下了泵柄，可这时每天新发的**致死**(fatal)病例早已从143例的**峰值**(peak)**骤降**(plunged)到12例。（attack：疾病发作；plunge from A to B：从A骤降到B）他后来把死亡病例标在了地图上。
 
 1855年，埃德蒙·帕克斯，一位**临床医学**(clinical medicine)教授，看到那张地图上死者扎堆，便把这种**聚集**(cluster)**解读**(interpreted)为空气中**飘散**(drifting)的**毒素**(poison)所致。（interpret A as B：把A解读为B；drifting…：现在分词短语作后置定语）可地图只能**绘制/记录**(chart)人死在哪里，绘制/记录不了他们喝了什么。
 
-**至关重要的/决定性的**(crucial)证据早在1854年就已收集到，就**在于**(lay in)那些**例外/个例**(exceptions)**中**(lay in)。（gathered…：过去分词短语作后置定语，gathered = which was gathered，省略了 which was；lay：lie 的过去式，lie in 存在于）**在**(Amid)**周围的**(surrounding)街巷死者接连不断的**期间内**(Amid)，一所自有水井的**济贫院**(workhouse)（收容贫民的机构）里，535名**被收容者**(inmates)只死了**区区**(a mere)五人。（lose：失去某人，这里指有人死去；five of 535：535人中的五人）附近一家啤酒厂的70多名工人有啤酒**津贴**(allowance)，（免费的啤酒补贴）厂里也有自己的水井，都逃过了重症霍乱。
+**至关重要的/决定性的**(crucial)证据早在1854年就已**收集**(gathered)到，就**在于**(lay in)那些**例外/个例**(exceptions)**中**(lay in)。（gathered…：过去分词短语作后置定语，gathered = which was gathered，省略了 which was；lay：lie 的过去式，lie in 存在于）**在**(Amid)**周围的**(surrounding)街巷死者接连不断的**期间内**(Amid)，一所自有水井的**济贫院**(workhouse)（收容贫民的机构）里，535名**被收容者**(inmates)只死了**区区**(a mere)五人。（lose：失去某人，这里指有人死去；five of 535：535人中的五人）附近一家**啤酒厂**(brewery)的70多名工人有啤酒**津贴**(allowance)，（免费的啤酒补贴）厂里也有自己的水井，都逃过了重症霍乱。
 
 **反过来**(Conversely)，汉普斯特德的一位**寡妇**(widow)已有几个月没**踏进过**(set foot in)苏豪，却让人把这口泵的水每天**用车运来**(carted)。（have sth done：让人做某事；set foot in：踏进）她死了，来探望她并喝了这水的**侄女**(niece)也死了。（as did…：倒装，= and so did a visiting niece）汉普斯特德**那时**(then)并没有霍乱。
 
-1855年，政府的**调查委员会**(inquiry)（官方调查程序；被任命进行调查的委员会）**拒绝**(declined to)（谢绝；婉言拒绝（方式比较体面，礼貌））给这口泵**定罪**(condemn)，**坚称**(contending)泵水至多是**吸收了**(absorbed)**经空气传播的**(airborne)毒素。（contending…：现在分词短语作伴随状语，后面省略了 that；at most：充其量）**与此同时**(Meanwhile)，**心存怀疑的**(sceptical)副牧师（协助教区牧师的低级神职人员）亨利·怀特黑德**一心想**(set out to)（带着明确的目标开始做某事，或者下定决心要去完成某事）**驳倒**(refute)斯诺，却发现喝泵水的人**死于**(succumb to)这种病的可能性远高于旁人，反倒**证明了**(vindicating)斯诺是**正确的**(vindicating)。（succumb to：本义屈服于，这里指死于某病；vindicating…：现在分词短语作结果状语）
-
-（简述：▸疫情：1854年，伦敦苏豪区霍乱在十天内夺走逾500人性命；多数医生认为臭气传播疾病，斯诺医生却怀疑饮水。▸追查：斯诺查死亡记录、访问家属，发现许多死者喝过宽街水泵的水，并促使官员拆下泵柄。▸对照：自备水井的济贫院535人中仅5人死亡，附近啤酒厂70多名工人均未患重症；远处原本无疫情的地区，却有两人喝过这口泵水后死亡。▸辨因：每日致死病例在拆泵柄前已大幅减少，不能把死亡减少全归功于拆柄；死亡地图也只显示人死在哪里，关键证据是各人喝过什么水。▸验证：官方调查仍用空气传播解释疫情；原想驳倒斯诺的牧师怀特黑德却发现，喝这口泵水者更易死于霍乱，反而支持了斯诺。）
+1855年，政府的**调查委员会**(inquiry)（官方调查程序；被任命进行调查的委员会）**拒绝**(declined to)（谢绝；婉言拒绝（方式比较体面，礼貌））给这口泵**定罪**(condemn)，**坚称**(contending)泵水至多是**吸收了**(absorbed)**经空气传播的**(airborne)毒素。（contending…：现在分词短语作伴随状语，后面省略了 that；at most：充其量）**与此同时**(Meanwhile)，**心存怀疑的**(sceptical)副牧师（协助教区牧师的低级神职人员）亨利·怀特黑德**一心想**(set out to)（带着明确的目标开始做某事，或者下定决心要去完成某事）**驳倒**(refute)斯诺，却发现那些饮用该水泵的 水的人比其他人更可能**死于**(succumb to)这种疾病，反倒**证明了**(vindicating)斯诺是**正确的**(vindicating)。（succumb to：本义屈服于，这里指死于某病；vindicating…：现在分词短语作结果状语）（简述：▸疫情：1854年，伦敦苏豪区霍乱在十天内夺走逾500人性命；多数医生认为臭气传播疾病，斯诺医生却怀疑饮水。▸追查：斯诺查死亡记录、访问家属，发现许多死者喝过宽街水泵的水，并促使官员拆下泵柄。▸对照：自备水井的济贫院535人中仅5人死亡，附近啤酒厂70多名工人均未患重症；远处原本无疫情的地区，却有两人喝过这口泵水后死亡。▸辨因：每日致死病例在拆泵柄前已大幅减少，不能把死亡减少全归功于拆柄；死亡地图也只显示人死在哪里，关键证据是各人喝过什么水。▸验证：官方调查仍用空气传播解释疫情；原想驳倒斯诺的牧师怀特黑德却发现，喝这口泵水者更易死于霍乱，反而支持了斯诺。）
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -37,14 +35,17 @@ In 1855 a government **inquiry** **declined to** **condemn** the pump, **contend
 | upwards of | 本文：超过/多于；短语. 超过，……以上（= more than） | 1 |
 | perished | 本文：丧生；v. (perish) 死亡，丧生（多指灾难、战争、疫病中成批死亡）；毁灭，消亡；（材料）老化，腐烂 | 1 |
 | attributed to | 本文：把……归因于；v. (attribute) 把……归因于（attribute A to B）；认为……是某人所作；n. 属性，特质 | 1 |
-| epidemics | 本文：流行病；n. (epidemic) 流行病，疫病；（坏事的）盛行；adj. 流行性的 | 1 |
+| epidemics | 本文：流行病/（霍乱）疫情；n. (epidemic) 流行病，疫病；（坏事的）盛行；adj. 流行性的 | 1 |
 | filth | 本文：污秽；n. 污秽，污物；下流话，淫秽内容 | 1 |
 | arising | 本文：产生；v. (arise) 产生，出现（arise from 由……引起）；起身，起床 | 1 |
 | foul | 本文：污浊的；adj. 污浊的，恶臭的；恶劣的，邪恶的；n./v.（体育）犯规 | 1 |
 | physician | 本文：内科医生；n. 内科医生；医生（注意区别 physicist 物理学家） | 1 |
 | convinced | 本文：确信；adj. 确信的，深信的（be convinced that/of）；v. (convince) 使确信，说服 | 1 |
+| poison | 本文：毒素；n. 毒物，毒药；毒素（19世纪常指致病物质，文中即瘴气论所说空气中的致病毒素）；有害的东西；v. 毒害，下毒；污染 | 1 |
 | swallowed | 本文：吞；v. (swallow) 吞下，咽下；轻信（swallow a story）；忍受，压下（怒气等）；n. 燕子 | 1 |
 | inhaled | 本文：吸；v. (inhale) 吸入，吸气（反义 exhale 呼出） | 1 |
+| visible | 本文：肉眼可见的；adj. 可见的，能看见的 | 2 |
+| impurity | 本文：杂质；n. 杂质，不纯之物 | 2 |
 | hesitated | 本文：犹豫；v. (hesitate) 犹豫，迟疑（hesitate to do sth 不敢贸然做某事） | 2 |
 | consulted | 本文：查阅了；v. (consult) 查阅（资料）；咨询，请教；商量 | 2 |
 | register | 本文：登记册；n. 登记簿，名册；（语言学）语域；v. 登记，注册；（仪表）显示；流露（情绪） | 2 |
@@ -59,9 +60,9 @@ In 1855 a government **inquiry** **declined to** **condemn** the pump, **contend
 | cluster | 本文：聚集；n.（病例等的）聚集，群，簇；v. 聚集，扎堆 | 3 |
 | interpreted | 本文：解读；v. (interpret) 解读，理解（interpret A as B 把 A 理解为 B）；口译 | 3 |
 | drifting | 本文：飘散；v. (drift) 飘散，漂流；逐渐转变，渐渐陷入；n. 趋势；大意 | 3 |
-| poison | 本文：毒素；n. 毒物，毒药；毒素（19世纪常指致病物质，文中即瘴气论所说空气中的致病毒素）；有害的东西；v. 毒害，下毒；污染 | 3 |
 | chart | 本文：绘制/记录；v. 绘制（地图、图表），用图表示；记录（变化、进展）；制订（计划）；n. 图表；排行榜 | 3 |
 | crucial | 本文：至关重要的/决定性的；adj. 关键的，至关重要的，决定性的 | 4 |
+| gathered | 本文：收集；v. 收集，搜集（原文 gathered） | 4 |
 | lay in | 本文：在于……中；短语. (lie in 的过去式) 在于，存在于（The problem lies in… 问题在于……） | 4 |
 | exceptions | 本文：例外/个例；n. (exception) 例外，例外情况，个例（with the exception of 除……之外；make an exception 破例） | 4 |
 | Amid | 本文：在……期间内；prep. 在……之中，被……包围；在……期间（amid concerns 在一片担忧声中） | 4 |
@@ -69,6 +70,7 @@ In 1855 a government **inquiry** **declined to** **condemn** the pump, **contend
 | workhouse | 本文：济贫院；n.（英国旧时）济贫院（收容贫民的机构，被收容者要做工换取食宿） | 4 |
 | inmates | 本文：被收容者；n. (inmate) （济贫院、精神病院等机构的）被收容者；（监狱的）囚犯 | 4 |
 | a mere | 本文：区区；短语. 仅仅，区区（mere adj. 仅仅的，只不过的） | 4 |
+| brewery | 本文：啤酒厂；n. 啤酒厂 | 4 |
 | allowance | 本文：津贴（免费的啤酒补贴）；n. 配给量，定量；津贴，零用钱；make allowance(s) for 考虑到，体谅 | 4 |
 | Conversely | 本文：反过来；adv. 反过来，相反地 | 5 |
 | widow | 本文：寡妇；n. 寡妇（widower 鳏夫；widowed adj. 丧偶的） | 5 |

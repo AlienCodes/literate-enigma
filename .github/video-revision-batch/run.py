@@ -36,7 +36,7 @@ status = {'article': NO, 'passed': False, 'stage': 'start',
           'core_repairs': [],
           'strict_production_cache': True, 'pdf_requested': False,
           'review_only': False, 'user_individual_finalization_authorized': True,
-          'specific_final_authorization_sha256': '8bdaaa08ced24377833ab3cc22bf551726499d6731e6dd52e68364c82b48df73'}
+          'specific_final_authorization_sha256': '2e0882ff9de5ebf3bbd40891d342972ced5735c8b398eff34a04a318a3b04a52'}
 PRODUCTION_STARTED_NS = None
 BASELINE_AUDIO_FILES = None
 
@@ -969,7 +969,18 @@ try:
     status['final_wav_sha256'] = sha(W / f'work_{NO}/a.wav')
     save()
     canonical_aac = aac_hash(canonical)
-    if NO in APPROVED_AUDIO_REPAIRS:
+    if NO == '70':
+        # Current review reference remains distinct from legacy accepted audio.
+        binding_path = TASK / 'source70_exact_original_voice_binding.py'
+        assert sha(binding_path) == 'ba5c9714fa0f3ff8f18956d6ff26f1f1560a9c5135167776b758849e180a031b'
+        spec70 = importlib.util.spec_from_file_location('source70_exact_original_voice_binding', binding_path)
+        module70 = importlib.util.module_from_spec(spec70);spec70.loader.exec_module(module70)
+        evidence70 = module70.bind(request, W / 'work_70/a.wav', canonical, TASK, T, status['canonical_pipeline_passed'], accepted_aac)
+        assert evidence70['identity_binding_passed'] is True and evidence70['formal_quality_acceptance'] is False and evidence70['repair_applied'] is False
+        status['source70_original_current_review_voice_identity'] = evidence70
+        status.update({'book_order':50, 'review_only':False, 'user_individual_finalization_authorized':True,
+                       'specific_final_authorization_sha256':'2e0882ff9de5ebf3bbd40891d342972ced5735c8b398eff34a04a318a3b04a52', 'current_reference_is_review_only_not_legacy_accepted':True})
+    elif NO in APPROVED_AUDIO_REPAIRS:
         # Root supplies actual approved audio-change validation. No gain/overlay implementation is assumed here.
         audio_qc = TASK / ('audio-a21-qc.py' if NO in A21_AUDIO_REPAIRS else 'audio-qc.py')
         assert audio_qc.exists(), f'Root must attach approved audio QC for article {NO}.'
@@ -992,14 +1003,6 @@ try:
         assert canonical_aac == accepted_aac, 'Canonical AAC differs from the accepted prior voice.'
     status['accepted_prior_aac_identical'] = canonical_aac == accepted_aac
     save()
-    if NO == '69':
-        binding_path = TASK / 'source69_exact_original_voice_binding.py'
-        spec69 = importlib.util.spec_from_file_location('source69_exact_original_voice_binding', binding_path)
-        module69 = importlib.util.module_from_spec(spec69); spec69.loader.exec_module(module69)
-        status['source69_original_voice_identity'] = module69.bind(request, W / 'work_69/a.wav', canonical, TASK, T, status['canonical_pipeline_passed'])
-        status.update({'book_order':56, 'review_only':False, 'user_individual_finalization_authorized':True,
-                       'specific_final_authorization_sha256':'8bdaaa08ced24377833ab3cc22bf551726499d6731e6dd52e68364c82b48df73'})
-        save()
     # Original tested end_card algorithm, with only its explicit source/summary loader supplied.
     module_file = ROOT / '.github/video-batch/run.py'
     spec = importlib.util.spec_from_file_location('revision_exact_summary', module_file)
@@ -1035,7 +1038,10 @@ try:
     assert timing['end_page_frames'] == 60 and timing['end_page_seconds'] == 2
     assert timing['original_audio_identical'] and timing['original_audio_packet_timings_identical']
     assert aac_hash(processed[0]) == canonical_aac, 'Exact-card processing changed the canonical AAC stream.'
-    if NO not in APPROVED_AUDIO_REPAIRS:
+    if NO == '70':
+        assert status['source70_original_current_review_voice_identity']['identity_binding_passed']
+        assert aac_hash(processed[0]) == canonical_aac, 'Final AAC differs from exact latest current review voice.'
+    elif NO not in APPROVED_AUDIO_REPAIRS:
         assert aac_hash(processed[0]) == accepted_aac, 'Final AAC differs from accepted prior voice.'
     final = OUT / f'{NO}-4K-读完即转简述2秒.mp4'
     shutil.copyfile(processed[0], final)
