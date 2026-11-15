@@ -2,7 +2,7 @@ from pathlib import Path
 import hashlib,json,os,subprocess,sys
 N=Path(__file__).resolve().parent;ROOT=Path(os.environ['GITHUB_WORKSPACE']);M=Path(os.environ['RUNNER_TEMP'])/'completion-machine';T=ROOT/'official-main/视频/工具'
 def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
-EXPECTED_ROOT_SHA='da6bc36acbad1097993f3feb21397e0d277998675d295de57c0dc4c0eb20ea98';EXPECTED_HELPER_SHA='a6284d6454b655479473b1c7b2a44e31a8eb517f3fac1d4069eebd0435cd3add';EXPECTED_PROFILE_SHA='7c860bc890e5e88ae087b5e16b6ac9e271fea2497930898f0a70b20223fc9669';EXPECTED_ARGV_SHA='abab6f4c6bfb1017036d40efc920c3abc8c84180b6a8ffcd82634ec02eb38dd2'
+EXPECTED_ROOT_SHA='922dfa8744dd02097decc611c9dab4196a37dcc84578c594b164f8c10070d781';EXPECTED_HELPER_SHA='128de00687a82daa6c784e0c7884e4c9fc48d0d4c9ef7f32ed80558f2388aede';EXPECTED_PROFILE_SHA='7c860bc890e5e88ae087b5e16b6ac9e271fea2497930898f0a70b20223fc9669';EXPECTED_ARGV_SHA='64be299c8a29f8578dd608efabcec4f1deb9bd798fb8dea9b89e9609a985d356'
 assert sha(N/'root-actual-whole-observer-code-adoption.json')==EXPECTED_ROOT_SHA
 assert sha(N/'observe68_strict_cached_baseline_and_selected_whole.py')==EXPECTED_HELPER_SHA and sha(N/'source68-strict-cached-whole-profile.json')==EXPECTED_PROFILE_SHA and sha(N/'native-arguments.json')==EXPECTED_ARGV_SHA
 mapping={'{{TOOLS}}':str(T),'{{VIDEO_ROOT}}':str(M),'{{GITHUB_WORKSPACE}}':str(ROOT),'{{ACTUAL_ROOT_EXECUTION_ADOPTION_JSON}}':str(N/'root-actual-whole-observer-code-adoption.json'),'{{ACTUAL_ROOT_EXECUTION_ADOPTION_FULLSHA}}':EXPECTED_ROOT_SHA,'{{GITHUB_OUTPUT}}':os.environ['GITHUB_OUTPUT']}
