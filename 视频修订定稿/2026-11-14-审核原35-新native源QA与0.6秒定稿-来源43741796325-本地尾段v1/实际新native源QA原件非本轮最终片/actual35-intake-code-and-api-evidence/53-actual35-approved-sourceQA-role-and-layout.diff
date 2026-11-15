@@ -1,0 +1,37 @@
+--- /workspace/work/book63-source64-actual43728310644-original-HOST-preparation-20261115/source-consumer-code/import_actual_article.py
++++ /workspace/work/source35-book54-formal-new-S15-voice-HOST-role-CODE-ONLY-20261115-v2-truthful-controlled-card/import_actual_article.py
+@@ -70,7 +70,8 @@
+                 '49': '7f312d6fe6c9ac64f1f5292502256039db303f3f14498bd971151e4c2b45b089',
+                 '15': '929a23c88336899fea69003d2a8384f94a59da0a41c9036471a4a399671ee80a',
+                 '17': '35acd87bcbd994c98951bddd5c83c54f24c35283808bcb76e3da4b20612f0894',
+-                '30': '978fc02952ea1b9c10371b24012fe8f21b9b85180aec3adb25b81d3ffe1dd056'}
++                '30': '978fc02952ea1b9c10371b24012fe8f21b9b85180aec3adb25b81d3ffe1dd056',
++                '35': 'e40a10770d932dcba7989d6bf6f10701561cb07f51db8412262d6df464b35008'}
+     D.require(article in approved and explicit['sha256'] == approved[article],
+               'Only the exact approved immutable article layout manifest is accepted here')
+     source = D.checked_file(explicit)
+@@ -177,6 +178,10 @@
+             'source_sha256':{'request':{k:v['sha256']for k,v in asked.items()},'final':{k:v['sha256']for k,v in sources.items()}},
+             'source_transform':{'status':provenance['status'],'actual_working_copy':True,'operations':['L19']+(['production_qc_metadata']if any(not p.startswith('/sentences/')for p in provenance['changed_paths'])else[]),'report_sha256':proof['sha256'],'changed_paths':provenance['changed_paths']},
+             'adapter_scope':'Explicit actual native status + raw real postprocessor report field mapping; not fabricated audio-qc.py or unobserved runtime GEN/MD.'}
++        authorized_new_S15_35=False
++        if inline and n=='35' and native.get('review_only')is False:
++            from exact_formal_new35 import is_candidate as new35_candidate
++            authorized_new_S15_35=new35_candidate(n,native)
+         current_reference_review=bool(inline and n in {'68','70'} and native.get('review_only')is True and native.get('approved_current_reference_review_binding',{}).get('kind')=='source-specific-current-native-voice-identity-binding-only')
+         current_reference_review=current_reference_review or bool(inline and n=='54' and native.get('review_only')is True and native.get('approved_current_reference_review_binding',{}).get('kind')=='source54-specific-current-reference-and-two-existing-CF-identity-only')
+         repaired=bool(inline and native_audio['aac_adts_sha256']!=native['accepted_source']['aac_adts_sha256'] and not current_reference_review)
+@@ -186,7 +191,12 @@
+         # copied AAC already equals the accepted reference; record repair by
+         # observed bytes, rather than by the article's historical issue list.
+         changed_audio=({n}if repaired else set())if inline else {'10','12','51'}
+-        if inline and (n in {'10','12','44','51'}or repaired):
++        if authorized_new_S15_35:
++            from exact_formal_new35 import role_metadata as new35_role_metadata, controlled_repair_card as new35_controlled_card
++            D.require(repaired is True,'Exact new S15 must remain a real changed-audio repair, not legacy equality')
++            new35_card=new35_controlled_card(qc['audio']['canonical_qc'],native,n,D.digest(canonical),native_audio,{e['sha256']for e in evidence},D.digest(files/f'{n}-status.json'),D.require)
++            qc['audio'].update(repair_applied=True,authorized_new_S15_role=new35_role_metadata(),controlled_repair=new35_card)
++        if inline and (n in {'10','12','44','51'}or repaired) and not authorized_new_S15_35:
+             raw_path=Path(inline['dedicated_audio_qc_local']);raw_audio=D.load(raw_path)
+             a21=native.get('approved_audio_repair_scope',{}).get('kind')=='one-root-approved-original-release-instead-of-grafted-release'
+             opening27=n=='27'and raw_audio.get('kind')=='exact-two-approved-opening-pieces-controlled-audio-repair'

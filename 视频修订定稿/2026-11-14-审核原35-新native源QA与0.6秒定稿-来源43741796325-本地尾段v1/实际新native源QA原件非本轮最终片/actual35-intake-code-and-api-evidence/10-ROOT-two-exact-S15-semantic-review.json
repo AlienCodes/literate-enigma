@@ -1,0 +1,64 @@
+{
+  "kind": "ROOT-assistant-actual-phoneme-acoustic-semantic-review-of-two-exact-S15-PV-false-positive-candidates-not-human-listening",
+  "utc": "2026-11-15T17:18:08.985513+00:00",
+  "source_id": "35",
+  "book_order": 54,
+  "sentence": "S15",
+  "display_English": "In 2014 came an eerie, man-made twist.",
+  "actual_evidence_H": {
+    "path": "/workspace/work/source35-S15-twoPV43738508157-actual-original/ACTUAL-S15-TWO-PV-WINDOWS-PHONEME-ACOUSTIC-AND-RESTORATION-ROOT-SEMANTIC-REVIEW-HANDOFF.json",
+    "bytes": 8488,
+    "sha256": "e148058e80d3f3ef76acbc486b03f37a8585030ae8952f9f8d805d99eda632f4"
+  },
+  "actual_original_scalar_report": {
+    "path": "/workspace/work/source35-S15-twoPV43738508157-actual-original/files/35-only-S15-two-actual-PV-original-cached-scalars.json",
+    "bytes": 267080,
+    "sha256": "e3764e8f7f60dfbc67707cfa6d721fef6a5f37345cc7b0e6f96214c20059a191"
+  },
+  "actual_selected_whole_WAV_SHA256": "8de7327875c72f9cb5f91ec94a08a88af8c2e881ea6046bda57c8a3f0c53cd90",
+  "actual_selected_whole_MD5": "7c7afa6f721a1311976e81993c8a7ced",
+  "actual_raw_S15_FP": "6a4205ab64e1",
+  "actual_semantic_review_by": "ROOT assistant, using independently measured original raw/timed and complete local acoustic profiles",
+  "human_listening_or_user_confirmation_performed": false,
+  "two_exact_decisions": [
+    {
+      "native_PV_id": 12,
+      "absolute_window_s": [
+        100.725,
+        100.825
+      ],
+      "native_displayed_window_s": [
+        100.72,
+        100.83
+      ],
+      "raw_w_window_s": [
+        1.295,
+        1.395
+      ],
+      "decision": "retain_speech_do_not_cut; permit exact-window assistant-reviewed speech false-positive metadata",
+      "basis": "Exact original to_w mapping places the complete candidate at the long-vowel/nasal ending of fourteen, not an inter-word or non-speech gap. The independently cached timed sequence places vowel length through1.312139 and /n/ through1.456618. Its measurable low-frequency contribution (-5.7177dB aggregate, locally as high as -1.7598dB) and changing periodic components are consistent with a weak voiced word ending. The original breath heuristic is only29%, below its70% automatic breath-removal condition. Pre/post-G35 scalar profiles are identical for this window. Timing labels alone were not treated as a verdict; combined evidence favors retaining the speech-bearing interval."
+    },
+    {
+      "native_PV_id": 13,
+      "absolute_window_s": [
+        102.665,
+        102.72
+      ],
+      "native_displayed_window_s": [
+        102.67,
+        102.72
+      ],
+      "raw_w_window_s": [
+        3.235,
+        3.29
+      ],
+      "decision": "retain_twist_final_t_release_do_not_cut; permit exact-window assistant-reviewed speech false-positive metadata",
+      "basis": "The actual sampled interval follows the measured /s/ and lies within the final /t/ of twist in the separate original timed cache. It is a55ms high-frequency burst (centroid3196.77Hz, peak -30.7506dB), consistent with a final voiceless-stop release, rather than detached inter-sentence noise. It is precisely where the actual original A21/G35 requested the already measured +4dB final-release boost, and its level clears the original /t/ -36dB criterion. Removing the window would cut the intended consonant release."
+    }
+  ],
+  "permitted_metadata_change": "only these two actual original formatted PV keys plus truthful assistant phoneme/acoustic-review bases at actual7c7 fingerprint; preserve all19 original NV intervals for genuine original exact-PCM migration; no new cuts/grafts/boosts/English/source layout/audio change",
+  "do_not_fabricate_human_listening_metadata": "If the existing interface explicitly requires actual human-listening or a user confirmation rather than a generic reviewed false-positive record, do not set such a field; report the exact remaining requirement and export the already-authorized bounded audition excerpts.",
+  "original_complete_native_still_required": "all unchanged original A21 checks, ASR, independent-reference, packet/whole identity, negative controls, source layout, 4K and later normal18/V3/dual archive remain hard gates; this record grants no whole-video acceptance",
+  "full_audio_identity_to_be_preserved": "actual8de732 WAV / actual8d6e AAC6722 and actual measured standardclock, no new mother/math/GT permitted by this semantic review",
+  "no_quality_threshold_waiver_or_fake_user_grant": true
+}
