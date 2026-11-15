@@ -1,0 +1,161 @@
+{
+  "kind": "source35_only_actual_S15_plus4BOOST_two_existing_PV_windows_readonly_scalar_not_quality",
+  "source_id": "35",
+  "book_order": 54,
+  "target_sentence": "S15",
+  "maker_SHA256": "0e6c4ff6dd4ab4e3774bc060188de72356cd9aa37a7bc092d1f28a5508cc1c36",
+  "dictionary_SHA256": "5f558c61f8ffb99009a89989afcc07a9ce168b2b70a6c9377289040d14ec402b",
+  "context_SHA256": "4d8905dc1a87f97b707270f03f41ea0fdf2b207ca218ed74608cdb134e3dc8e3",
+  "old_registry_SHA256": "91ccecd61ade5284de72f27235c82df3fdff6350576abfac02d2e0db0f346a9a",
+  "dossier_SHA256": "a3b7604fbcbdd31fecd0b548382426e70ddab810fc923ff895027c084f30eab2",
+  "PV_SHA256": "1050d1df51eb21ed0dbd19e9a97a8325c4dbfa1f58e9834760f8e5e5ba0b414f",
+  "target_effective_DSP": {
+    "非人声区间": null,
+    "词尾除阻": null,
+    "停顿处除阻": null,
+    "除阻加强": {
+      "句末": [
+        3.235,
+        3.295,
+        4.0
+      ]
+    },
+    "停顿删除区间": null,
+    "停顿插入点": null,
+    "区间声音指纹": "6a4205ab64e1",
+    "分段增益dB": null,
+    "句子增益dB": null,
+    "段内渐变dB": null,
+    "结尾句": null,
+    "合成标点": null,
+    "列举逗号": null
+  },
+  "actual_selected_WAV_SHA256": "8de7327875c72f9cb5f91ec94a08a88af8c2e881ea6046bda57c8a3f0c53cd90",
+  "actual_selected_AAC_SHA256": "8d6eaafcee6b69260d6490276fbd51ad674f07350cbc40e0fd3f9282a45a5057",
+  "pre_master_SHA256": "0dffccdcdc83cc77f29c973f18d16d02f1bfa909c5ac4b94603a0a4c2b3cac46",
+  "post_master_SHA256": "0c555249df1a80706d797952211f1b4d74180e1309dea5d726e134ee082fb863",
+  "windows": [
+    {
+      "id": 12,
+      "kind": "呼吸声",
+      "global_span_s": [
+        100.72,
+        100.83
+      ],
+      "local_span_s": [
+        1.27,
+        1.38
+      ],
+      "actual_displayed_metrics": {
+        "duration_ms": 100,
+        "max_dB": -36.1,
+        "centroid_Hz": 2406,
+        "periodicity": 0.21,
+        "low_frequency_dB": -5.7
+      }
+    },
+    {
+      "id": 13,
+      "kind": "孤立杂音",
+      "global_span_s": [
+        102.67,
+        102.72
+      ],
+      "local_span_s": [
+        3.22,
+        3.27
+      ],
+      "actual_displayed_metrics": {
+        "duration_ms": 55,
+        "max_dB": -30.8,
+        "centroid_Hz": 3197,
+        "periodicity": 0.18,
+        "low_frequency_dB": -12.0
+      }
+    }
+  ],
+  "input_windows_are_actual_native_displayed_precision_not_falsely_claimed_unrounded_tuples": true,
+  "original_local_PV_scan_must_recover_full_tuple_and_match_every_displayed_metric_before_profiles": true,
+  "sparse_context_is_original_only_S15_PCM16_plus_zeros_not_new_whole_or_whole_fingerprint": true,
+  "in_memory_WAV_PCM16_container_only_to_use_original_writer_no_audio_file_or_array_export": true,
+  "actual_four_private_files": {
+    "3f83831048941d66ea88c111fccbf8dcd055496a.pkl": "005e6e9b842be83ca6a9bcddc8f8160f4d99c14c46b3e3aa2d18b5c38b71e161",
+    "3f83831048941d66ea88c111fccbf8dcd055496a.pkl.单线程": "3c42a6c7202ac881e8731a75e718149e203f335075efbc4cf19913ac862ddd6a",
+    "52b0bb10ca17f206906f1844abcdec44897d3149.pkl": "d83241f13c861d0d0d5540a42f1d2cce86c17b2486a4669e82647c9e8eb4f8a6",
+    "52b0bb10ca17f206906f1844abcdec44897d3149.pkl.单线程": "6e4112ee07bd9ca7b76631b522c6e505a3e2bf6dcca8519a20d29b0d33c33417"
+  },
+  "actual_private_cache_key": "Linux-native35-exact-S15-first-spoken-comma-43702588103",
+  "actual_private_cache_version": "96af834956a276ae2c767eac2c2ee6c16371dadc68676ecd14ce713b81eef536",
+  "inputs": {
+    "source": {
+      "file": "target-inputs/source.json",
+      "bytes": 48604,
+      "sha256": "b1d15c955c8eafeace4fed878dc446848dd5ff674971185caaef0f26efca8bcd"
+    },
+    "GEN": {
+      "file": "target-inputs/GEN.py",
+      "bytes": 45195,
+      "sha256": "b7220a53c0b7c7ca5a496f077037c56be67d6444a2b36ab5c2e5ccb9a1655d89"
+    },
+    "pair_H": {
+      "file": "target-inputs/pair_H.json",
+      "bytes": 4397,
+      "sha256": "d614220ff5cf836d42a92cc83e149d12bbedb10c83f6a8e8f0f266aedb883cfb"
+    },
+    "whole_report": {
+      "file": "target-inputs/whole_report.json",
+      "bytes": 321124,
+      "sha256": "e361023045ed5f3287b0717abaf20ee1f7246057a901bc2f91e38cfb08b7aee4"
+    },
+    "whole_H": {
+      "file": "target-inputs/whole_H.json",
+      "bytes": 5581,
+      "sha256": "973c739960c48e546e21f97541adfb2478ad9e9d3ddfffd31c849fe97fcb44d0"
+    },
+    "failed_proof": {
+      "file": "target-inputs/failed_proof.json",
+      "bytes": 4845,
+      "sha256": "bdc44a5589935a620afce27497e52e39665ed53fe528817f749cb117dd745146"
+    },
+    "failed_status": {
+      "file": "target-inputs/failed_status.json",
+      "bytes": 174265,
+      "sha256": "59c868d26c44fdaf4851c0f38995e4cc72dc9d626115ac4a5e922cbb2ec48ced"
+    },
+    "physical_root_scope": {
+      "file": "target-inputs/physical_root_scope.json",
+      "bytes": 2906,
+      "sha256": "f3aa158510cc662779ab26585ca11e3a6a257039d7e06c8952c385b08efde4e2"
+    },
+    "parent_probe_scope": {
+      "file": "target-inputs/parent_probe_scope.json",
+      "bytes": 771,
+      "sha256": "d34950028cf9d7bb650967d8535fa7e9137dda359b70dd7c450b76b6a0317ba6"
+    },
+    "mother_helper": {
+      "file": "target-inputs/mother_helper.py",
+      "bytes": 36168,
+      "sha256": "18adcff27d911a630416f79e4df399a29a81882ad71ec7e197d76d67725f2986"
+    },
+    "whole_helper": {
+      "file": "target-inputs/whole_helper.py",
+      "bytes": 43557,
+      "sha256": "f1be19bf37a450332fd55f99dd55f2e1d74b92a3fb519c867cb6cac8adf5e4a2"
+    },
+    "identity": {
+      "file": "target-inputs/identity.json",
+      "bytes": 5119,
+      "sha256": "6a433937296a7755bc496791fe24c60a2c577e51fb3e45d7d247e1242dc5a8d8"
+    },
+    "overlay": {
+      "file": "target-inputs/overlay.json",
+      "bytes": 10927,
+      "sha256": "4b8f093bfe6bf48c0933b457007cb006f33a00450a718c10c1faa9961294b73d"
+    },
+    "certificate": {
+      "file": "target-inputs/certificate.json",
+      "bytes": 39422,
+      "sha256": "50a3abb8d8388ba4587eed0baab4eed5b57afad9fc73cbdb1aa4b48bbaa56c01"
+    }
+  }
+}
