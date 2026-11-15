@@ -1,0 +1,44 @@
+{
+  "kind": "actual-source24-native43750563023-A45-identity-writer-one-field-drop-cause-pure-reproduction",
+  "actual_run": 43750563023,
+  "actual_repository": "AlienCodes/literate-enigma",
+  "actual_failed_source": {
+    "path": "/workspace/work/source24-native43750563023-actual-small-failed-original/files/24-failed-working-source.json",
+    "bytes": 41837,
+    "sha256": "cf301f206532bd8fc463a08b5156d05f65e819ea002e3f9750075fa0969b665b"
+  },
+  "current_input": {
+    "path": "/workspace/work/source24-book49-fresh-fe94-A23-reader-canonical-G35-data-only-final-native-20261115/source24-book49-fe94-real-G35-static-S18-record-full-native-v2-READY/.github/video-revision-batch/request/24/视频/脚本/24.json",
+    "bytes": 47368,
+    "sha256": "34afbcb1e517c10db4ebb963bbf59615b1c5cf439fee5156e85b14717f7edb13"
+  },
+  "actual_measurement": {
+    "path": "/workspace/work/source24-gainwhole43730714508-actual-original/files/24-oldcurrent-and-selected-tailpiece2-gain-STRICT-whole-scalar.json",
+    "bytes": 323947,
+    "sha256": "8b86e718b7ee54f4d0ad20bc658f9dba7f2973090df834d9555fff20473ae54e"
+  },
+  "original_utility": {
+    "path": "/workspace/work/source24-book49-fresh-fe94-A23-reader-canonical-G35-data-only-final-native-20261115/exact-original-text-runtime/mirror/视频/工具/区间作废.py",
+    "bytes": 4565,
+    "sha256": "d7bc6ec887ce191d651ae8f19786b20bc5d428533062ac4b02985253e396c390"
+  },
+  "original_writer_function": "def 记(d, 指纹):\n    fp = {S: v for S, v in 指纹.items() if v and any(S in d.get(k, {}) for k in 键)}\n    if fp: d['区间声音指纹'] = fp\n    else: d.pop('区间声音指纹', None)\n    return fp",
+  "actual_input_VFP_count": 13,
+  "actual_output_VFP_count": 12,
+  "dropped_required_only_target_field": "区间声音指纹.S18=e43769675c69",
+  "pure_original_writer_on_true_input_and_actual_rawtable_exactly_reproduces_whole_actual_output_VFP": true,
+  "original_scope_fields_for_writer": [
+    "非人声区间",
+    "词尾除阻",
+    "除阻加强",
+    "停顿处除阻",
+    "停顿删除区间",
+    "停顿插入点"
+  ],
+  "reason": "S18 only selected manual piece2 gain needs original A45 mother identity; original interval-only writer omits gain-only active spoken sentence. No actual mother/raw/gain change occurred.",
+  "all_original_physical_controls_and_gains_and_schema_typed_equal_actual_failedworking": true,
+  "original_A45_actual_bound_input_positive": true,
+  "original_A45_missing_binding_negative_exact_actual_error": "【停止】朗读删逗号的新母不能盲套旧段增益、秒点或区间；先清旧控制，原算法重测后按新母指纹绑定（A45）",
+  "no_checker_or_original_maker_or_parameters_modified": true,
+  "patch_not_yet_prepared_or_executed": true
+}
