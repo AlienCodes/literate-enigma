@@ -6,8 +6,8 @@ from pathlib import Path
 import argparse, hashlib, importlib.util, json, os, re, subprocess, sys, traceback
 sys.dont_write_bytecode=True
 ROOT_SHA='185b3e1502aeb77d1af7bac4c7f05af298924c49e2f0b9448db6313b127a6da2'
-HELPER_SHA='532d048ab093da5f45d4975f6c784f0aae195f8821fbc317d83ccdb5c2360670'
-PROFILE_SHA='0495882f67602077d47c1e22cdcb0314f9d121daedb9c9f512fd54ab5b320f3b'
+HELPER_SHA='e112aa14a3f3300c63964fc2a53773b45bf0738d95b6f6360fb726ffa976f9c6'
+PROFILE_SHA='d66a6074caa2792dc0b2a65489f8b165a41fa63abe21fcac587549a89bce0950'
 SOURCE_SHA='e122c817946c4ed6e7cd1394749879276ef2afe9d01ad691b4142c6bbd9ec9b4'
 MOTHER_KEY='Linux-native68-exact-S2-first-spoken-comma-43702410293'
 MOTHER_VERSION='1876e5e5b689945a432f2564472935c78443d40f5d021a2378395bf71140c1d5'
