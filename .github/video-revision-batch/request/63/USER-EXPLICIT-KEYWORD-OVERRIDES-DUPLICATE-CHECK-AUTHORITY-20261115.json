@@ -1,0 +1,13 @@
+{
+  "kind": "actual-user-explicit-keyword-selection-priority-over-cross-article-duplication-check",
+  "date": "2026-11-15",
+  "actual_user_messages": [
+    "就一件事儿，记住一件事儿，我只要跟你说过标注为重点词汇了，不用管，重复检查，拦住ok就直接标注就行，不用管那么多，这是我给你的授权。",
+    "也就是说只要我跟你说这个单词要标注为重点词汇，你就标注就行，不用管那么多。这是最高规则，这是最高执行命令。"
+  ],
+  "effective_rule": "Whenever the user explicitly selects a word or phrase as a keyword, mark that exact requested vocabulary and its corresponding Chinese meaning, color and alignment even if another article uses the same word or lemma. Cross-article duplicate-keyword checks must use this actual authorization automatically; do not ask the user for confirmation or remove the requested keyword because it repeats.",
+  "applies_to": "All already stated and future explicit keyword requests in this lesson production task, including current book58 visible and gathered(surface)/gather(requested lemma).",
+  "implementation": "Use the original checker supported explicit duplicate-consent data at exact word/lemma scope; retain current source words and existing original audio/layout quality verification. Record this actual user authority with the source metadata, and mechanically synchronize JSON/GEN/MD as needed. No global word deduplication may undo an explicit user choice.",
+  "source_publication_eight_article_consent_9034_not_modified_or_expanded": true,
+  "audio_or_visual_quality_acceptance_not_claimed": true
+}
