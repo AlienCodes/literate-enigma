@@ -2,27 +2,27 @@
 # ZH: 为机器点燃思想的人
 
 ## 英文
-Born in June 1912, Alan Turing had a **formidable** **intellect** by his early twenties. In a paper read in November 1936, he **outlined** a "universal machine": a **device** able to **execute** any **computation**, given the right instructions. That **abstract** **construct**, **rooted in** **mathematical** **logic**, became the **theoretical** **blueprint** of the modern computer.
+Born in June 1912, Alan Turing had a **formidable** **intellect** by his early twenties. In a paper read in November 1936, he **outlined** a "universal machine": a **device** able to **execute** any **computation**, given the right **instructions**. That **abstract** **construct**, **rooted in** **mathematical** **logic**, became the **theoretical** **blueprint** of the modern computer.
 
 On 4 September 1939 he joined the **classified** **codebreaking effort** at Bletchley Park, leading work on **naval** Enigma, Germany's **encryption** machine. Polish mathematicians had **deciphered** Enigma by late 1932 and shared their **insights** with Britain and France in July 1939. His team's machines **exploited** them and, **operational** from March 1940, **automated** the **laborious** search for each day's **rotor** settings.
 
-In October 1950, writing in the **philosophy** journal Mind, he **posed** a **provocative** question: "Can machines think?" He **proposed** a **practical** **substitute**, the imitation game, now **widely** called the Turing test. An **interrogator** exchanges typed messages with two **concealed** players, one human and one machine. If the interrogator cannot **consistently** **distinguish** them, the machine passes.
+In October 1950, writing in the **philosophy** journal Mind, he **posed** a **provocative** question: "Can machines think?" He **proposed** a **practical** **substitute**, the **imitation** game, now **widely** called the Turing test. An **interrogator** exchanges typed messages with two **concealed** players, one human and one machine. If the interrogator cannot **consistently** **distinguish** them, the machine passes.
 
 His **exceptional** **wartime** **contribution** did not protect him. On 31 March 1952 he was **convicted of** "gross indecency", the charge then used against gay men. He **forfeited** his **security clearance** and, to **avert** **imprisonment**, **submitted to** **hormone** **injections**. He died of **cyanide poisoning** on 7 June 1954. A **coroner**'s inquest ruled it **suicide**, though some doubt it.
 
-**Recognition** **lagged**. On 10 September 2009 Britain's prime minister **publicly** **apologised**, and on 24 December 2013 Turing **was** **posthumously** **granted** a royal **pardon**. On 23 June 2021, his birthday, a fifty-pound note bearing his **portrait** entered **circulation**. The country that **prosecuted** him put his face on its money.
+**Recognition** **lagged**. On 10 September 2009 **Britain**'s prime minister **publicly** **apologised**, and on 24 December 2013 Turing **was** **posthumously** **granted** a royal **pardon**. On 23 June 2021, his birthday, a fifty-pound note bearing his **portrait** entered **circulation**. The country that **prosecuted** him put his face on its money.
 
 ## 中文
 
-艾伦·图灵生于1912年6月，他已拥有**强大的**(formidable)**才智**(intellect)，二十出头时。（Born in…：过去分词短语作状语，说明出生时间；by…：到……时为止；formidable 常译为“强大的、令人敬畏的”，多指实力极强、规模宏大或难度极高，足以给人带来压迫感或让人难以应对）在1936年11月宣读的一篇论文中，他**勾勒了**(outlined)一种“通用机器”：一种能**执行**(execute)任何**计算**(computation)的**装置**(device)，只要给出正确的指令。（read in…：过去分词短语作后置定语，修饰 paper）（冒号后是同位语，说明 universal machine；able to…：形容词短语作后置定语，修饰 device；given…：只要给出……，表条件）这一**抽象的**(abstract)**构想**(construct)**根源于**(rooted in)**数理**(mathematical)**逻辑**(logic)，后来成为了现代计算机的**理论**(theoretical)**蓝图**(blueprint)。（rooted in…：过去分词短语，插入说明 construct；mathematical logic：数理逻辑）
+艾伦·图灵生于1912年6月，他已拥有**强大的**(formidable)**才智**(intellect)，二十出头时。（Born in…：过去分词短语作状语，说明出生时间；by…：到……时为止；formidable 常译为“强大的、令人敬畏的”，多指实力极强、规模宏大或难度极高，足以给人带来压迫感或让人难以应对）在1936年11月宣读的一篇论文中，他**勾勒了**(outlined)一种“通用机器”：一种能**执行**(execute)任何**计算**(computation)的**装置**(device)，只要给出正确的**指令**(instructions)。（read in…：过去分词短语作后置定语，修饰 paper）（冒号后是同位语，说明 universal machine；able to…：形容词短语作后置定语，修饰 device；given…：只要给出……，表条件）这一**抽象的**(abstract)**构想**(construct)**根源于**(rooted in)**数理**(mathematical)**逻辑**(logic)，后来成为了现代计算机的**理论**(theoretical)**蓝图**(blueprint)。（rooted in…：过去分词短语，插入说明 construct；mathematical logic：数理逻辑）
 
 1939年9月4日，他加入了布莱切利园的**保密的**(classified)**破译工作**(codebreaking effort)，领导关于**海军**(naval)恩尼格玛密码机的工作，即德国的**加密**(encryption)机器。（leading…：现在分词短语作伴随状语；Germany's encryption machine：同位语，说明 Enigma）波兰数学家早在1932年底就已**破译了**(deciphered)恩尼格玛，并将他们的**深刻见解**(insights)（破解思路）于1939年7月告知了英国和法国。（had deciphered：过去完成时，发生在1939年之前；share A with B：把 A 告知 B）他团队（研制的）的机器**利用了**(exploited)这些见解和思路，并且从1940年3月起**投入运行**(operational)，**自动化了**(automated)每天搜寻**转子**(rotor)设置这项**耗时费力的**(laborious)工作。（them：指波兰数学家的 insights；operational from…：形容词短语插在 and 与谓语之间）（automate：使……自动化；search for…：对……的搜寻）
 
-1950年10月，他在**哲学**(philosophy)期刊《心灵》（Mind）上撰文，**提出了**(posed)一个**发人深省的**(provocative)问题——“机器能思考吗？”（writing in…：现在分词短语作伴随状语）（pose a question：提出问题）他**建议**(proposed)用一种**切实可行的**(practical)**替代办法**(substitute)取而代之，即模仿游戏，如今**普遍**(widely)称为图灵测试。（the imitation game：同位语，说明 substitute；now widely called…：过去分词短语，补充说明）一名**审问者**(interrogator)通过打字，与两个**隐藏起来的**(concealed)参与者交流，其中一个是人，一个是机器。（exchange messages with sb：与某人互通消息；one human and one machine：同位语，说明 players）如果审问者无法**始终如一地**(consistently)**区分出**(distinguish)二者，机器就算通过测试。（them：指人和机器两个参与者；pass：通过测试）
+1950年10月，他在**哲学**(philosophy)期刊《心灵》（Mind）上撰文，**提出了**(posed)一个**发人深省的**(provocative)问题——“机器能思考吗？”（writing in…：现在分词短语作伴随状语）（pose a question：提出问题）他**建议**(proposed)用一种**切实可行的**(practical)**替代办法**(substitute)取而代之，即**模仿**(imitation)游戏，如今**普遍**(widely)称为图灵测试。（the imitation game：同位语，说明 substitute；now widely called…：过去分词短语，补充说明）一名**审问者**(interrogator)通过打字，与两个**隐藏起来的**(concealed)参与者交流，其中一个是人，一个是机器。（exchange messages with sb：与某人互通消息；one human and one machine：同位语，说明 players）如果审问者无法**始终如一地**(consistently)**区分出**(distinguish)二者，机器就算通过测试。（them：指人和机器两个参与者；pass：通过测试）
 
 他**杰出的**(exceptional)**战时**(wartime)**贡献**(contribution)，并没有保护到他。1952年3月31日，他**被判定犯有**(convicted of)“严重猥亵”**罪**(convicted of)，这是当时用来惩治男同性恋者的罪名。（be convicted of：被判定犯有……罪）（the charge…：同位语，说明 gross indecency；then used against…：过去分词短语作后置定语，修饰 charge）他**被剥夺/丧失了**(forfeited)他的**安全许可**(security clearance)，并且为了**避免**(avert)**入狱**(imprisonment)，**被迫接受了**(submitted to)**激素**(hormone)**注射**(injections)。（to avert…：不定式表目的，插在 and 与谓语之间；submit to：接受，服从）他死于**氰化物中毒**(cyanide poisoning)，1954年6月7日。（die of：死于……）**验尸官**(coroner)的死因调查裁定为**自杀**(suicide)，不过有人对此存疑。（rule it suicide：裁定为自杀；though…：让步状语从句）
 
-（对于图灵的）**认可**(Recognition)**滞后了**(lagged)。2009年9月10日，英国首相**公开**(publicly)**道歉了**(apologised)；2013年12月24日，图灵在**死后**(posthumously)**被授予了**(was granted)皇室**赦免**(pardon)。（be granted sth：被授予某物，被动语态）2021年6月23日，也就是他的生日，印有他**肖像**(portrait)的五十英镑钞票开始**流通**(circulation)。（his birthday：同位语，说明日期；bearing…：现在分词短语作后置定语，修饰 note；enter circulation：开始流通）**起诉**(prosecuted)他的国家，把他的头像印上了自己的钞票。（简述：▸理论：1936年，图灵提出按指令执行各种计算的通用机器模型，为现代计算机奠定理论基础。▸破译：图灵团队借鉴波兰的破译成果，1940年用机器自动搜索德国海军密码机每天的设置，加速破译。▸测试：1950年，他提出模仿游戏：通过打字交谈，负责问话的人若不能稳定分清人和机器，机器就通过测试。▸迫害：1952年图灵因同性恋行为获罪，被取消涉密资格，为免入狱接受激素注射；1954年死于氰化物中毒。▸追认：其死被判为自杀，但有人质疑。英国2009年道歉、2013年给予身后赦免；2021年肖像登上50镑钞票。）
+（对于图灵的）**认可**(Recognition)**滞后了**(lagged)。2009年9月10日，**英国**(Britain)首相**公开**(publicly)**道歉了**(apologised)；2013年12月24日，图灵在**死后**(posthumously)**被授予了**(was granted)皇室**赦免**(pardon)。（be granted sth：被授予某物，被动语态）2021年6月23日，也就是他的生日，印有他**肖像**(portrait)的五十英镑钞票开始**流通**(circulation)。（his birthday：同位语，说明日期；bearing…：现在分词短语作后置定语，修饰 note；enter circulation：开始流通）**起诉**(prosecuted)他的国家，把他的头像印上了自己的钞票。（简述：▸理论：1936年，图灵提出按指令执行各种计算的通用机器模型，为现代计算机奠定理论基础。▸破译：图灵团队借鉴波兰的破译成果，▹1940年用机器自动搜索德国海军密码机每天的设置，加速破译。▸测试：1950年，他提出模仿游戏：通过打字交谈，▹负责问话的人若不能稳定分清人和机器，机器就通过测试。▸迫害：1952年图灵因同性恋行为获罪，被取消涉密资格，▹为免入狱接受激素注射；1954年死于氰化物中毒。▸追认：其死被判为自杀，但有人质疑。英国2009年道歉、▹2013年给予身后赦免；2021年肖像登上50镑钞票。）
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -33,6 +33,7 @@ His **exceptional** **wartime** **contribution** did not protect him. On 31 Marc
 | execute | 本文：执行；v. 执行，实施（execute a program/command/plan）；处决 | 1 |
 | computation | 本文：计算；n. 计算（mathematical computation；perform a computation） | 1 |
 | device | 本文：装置；n. 装置，设备（an electronic/a safety device；a device for measuring speed） | 1 |
+| instructions | 本文：指令；n. 指令，指示（instruction 的复数形式） | 1 |
 | abstract | 本文：抽象的；adj. 抽象的（abstract ideas/thought；in the abstract） | 1 |
 | construct | 本文：构想；n. 构想，概念（a theoretical construct；a social construct）；v. 建造 | 1 |
 | rooted in | 本文：根源于；v. (be rooted in) 根源于，植根于（be rooted in tradition/history；deeply rooted in culture） | 1 |
@@ -57,6 +58,7 @@ His **exceptional** **wartime** **contribution** did not protect him. On 31 Marc
 | proposed | 本文：建议；v. (propose) 提议，建议（propose a plan/solution；propose that…） | 3 |
 | practical | 本文：切实可行的；adj. 切实可行的，实际的（a practical solution/approach；for practical purposes） | 3 |
 | substitute | 本文：替代办法；n. 替代品，替代办法（a substitute for sth；no substitute for experience）；v. 代替 | 3 |
+| imitation | 本文：模仿；n. 模仿；仿制品，仿造物 | 3 |
 | widely | 本文：普遍；adv. 普遍地，广泛地（widely known/used/regarded as） | 3 |
 | interrogator | 本文：审问者；n. 讯问者，提问者（a skilled interrogator；questioned by military interrogators） | 3 |
 | concealed | 本文：隐藏起来的；adj./v. (conceal) 隐藏的，隐蔽的（a concealed camera/weapon；conceal the truth） | 3 |
@@ -78,6 +80,7 @@ His **exceptional** **wartime** **contribution** did not protect him. On 31 Marc
 | suicide | 本文：自杀；n. 自杀（commit suicide；a verdict of suicide） | 4 |
 | Recognition | 本文：认可；n. 认可，赞誉（in recognition of；gain/win recognition）；认出 | 5 |
 | lagged | 本文：滞后了；v. (lag) 落后，滞后（lag behind sb/sth；wages lagged behind inflation）；n. 时间差（a time lag） | 5 |
+| Britain | 本文：英国；n. 英国，不列颠 | 5 |
 | publicly | 本文：公开；adv. 公开地（publicly apologise/announce；publicly funded） | 5 |
 | apologised | 本文：道歉了；v. (apologise) 道歉（apologise to sb for sth；apologise publicly） | 5 |
 | posthumously | 本文：死后；adv. 死后，身后（be awarded/published posthumously） | 5 |
