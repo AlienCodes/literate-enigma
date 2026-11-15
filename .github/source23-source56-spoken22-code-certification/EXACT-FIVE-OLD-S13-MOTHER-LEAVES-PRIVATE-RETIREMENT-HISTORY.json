@@ -1,0 +1,183 @@
+{
+  "status": "private_shadow_proposal_not_adopted_no_production_source_retirement",
+  "baseline_audio_H": {
+    "path": "/workspace/work/book62-source23-instructions-collecting-20261115/actual-accepted-source23-audio-baseline-readonly/SOURCE23-BOOK62-S13-ACTUAL-ACCEPTED-BASELINE-AUDIO-READONLY-HANDOFF.json",
+    "bytes": 14504,
+    "sha256": "8753f7356f949424c86c52f12e75b1012ad72538825e637bb48ee6eb79507706"
+  },
+  "production_review_source": {
+    "path": "/workspace/work/book62-source23-instructions-collecting-20261115/final-source-v8-EXACT23-S13-CONTRACT-ROOT-REVIEW-NOT-AUDIO-ACCEPTED/23.json",
+    "bytes": 57869,
+    "sha256": "fdb946be34bb940a99c0931895e295c171a7312ea06a2c06266b6f7f3a7b222b"
+  },
+  "shadow": {
+    "path": "/workspace/work/book62-source23-instructions-collecting-20261115/private-shadow-v8-EXACT23-S13-FIVE-OLD-MOTHER-LEAVES-RETIRED-NOT-ADOPTED/23-shadow.json",
+    "bytes": 56914,
+    "sha256": "4866d7df34f4ffe72c69451874a8b39347181b481e3576ebbe602106e657935f"
+  },
+  "shadow_pure_GEN_not_executed": {
+    "path": "/workspace/work/book62-source23-instructions-collecting-20261115/private-shadow-v8-EXACT23-S13-FIVE-OLD-MOTHER-LEAVES-RETIRED-NOT-ADOPTED/gen23-shadow.py",
+    "bytes": 54296,
+    "sha256": "d10d39a45c264c2f0e186d4a135cbf34bcbf4eb94f2f4686f1398b3b672fa12a"
+  },
+  "five_retired_entries": [
+    {
+      "path": "/非人声区间/S13",
+      "old_value": [
+        [
+          2.559083,
+          2.815,
+          "紧贴词尾"
+        ]
+      ],
+      "parent_key_order_before_removal": [
+        "S3",
+        "S4",
+        "S5",
+        "S6",
+        "S7",
+        "S12",
+        "S14",
+        "S19",
+        "S17",
+        "S11",
+        "S8",
+        "S13"
+      ],
+      "basis": "Old actual accepted S13 mother-dependent entry identified in frozen baseline H8753; private candidate only, not production deletion."
+    },
+    {
+      "path": "/词尾除阻/S13",
+      "old_value": {
+        "2": [
+          4.135,
+          "t"
+        ]
+      },
+      "parent_key_order_before_removal": [
+        "S4",
+        "S13",
+        "S15"
+      ],
+      "basis": "Old actual accepted S13 mother-dependent entry identified in frozen baseline H8753; private candidate only, not production deletion."
+    },
+    {
+      "path": "/区间声音指纹/S13",
+      "old_value": "662daf5f3713",
+      "parent_key_order_before_removal": [
+        "S3",
+        "S4",
+        "S5",
+        "S6",
+        "S7",
+        "S8",
+        "S11",
+        "S12",
+        "S13",
+        "S14",
+        "S15",
+        "S17",
+        "S19"
+      ],
+      "basis": "Old actual accepted S13 mother-dependent entry identified in frozen baseline H8753; private candidate only, not production deletion."
+    },
+    {
+      "path": "/核对确认/非人声/116.95–117.03s",
+      "old_value": {
+        "配音指纹": "8179587baaef",
+        "依据": "2026-10-23 逐段看声音（S13 w 6.25–6.33s，呼吸声）：injections 词中 /n/→/z/ 过渡（连着后面的 /z/ 擦音，重心 3.5–5.5 kHz）"
+      },
+      "parent_key_order_before_removal": [
+        "24.18–24.20s",
+        "26.64–26.69s",
+        "32.53–32.54s",
+        "41.12–41.13s",
+        "48.72–48.80s",
+        "48.98–48.99s",
+        "53.61–53.72s",
+        "64.08–64.16s",
+        "64.14–64.16s",
+        "67.25–67.42s",
+        "81.43–81.49s",
+        "103.95–103.97s",
+        "116.95–117.03s",
+        "131.81–131.82s",
+        "136.36–136.46s",
+        "136.57–136.62s",
+        "152.71–152.79s",
+        "137.02–137.04s"
+      ],
+      "basis": "Old actual accepted S13 mother-dependent entry identified in frozen baseline H8753; private candidate only, not production deletion."
+    },
+    {
+      "path": "/核对确认/删除段/S13 raw 2.5591-2.8350",
+      "old_value": {
+        "类型": "紧贴词尾的非人声",
+        "配音指纹": "8179587baaef",
+        "依据": "2026-10-15 删除段对应 非人声区间 [[2.559083, 2.815, '紧贴词尾']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost', 'pre'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"
+      },
+      "parent_key_order_before_removal": [
+        "S3 raw 3.8800-4.3050",
+        "S4 raw 2.8963-3.2199",
+        "S5 raw 4.8450-5.2559",
+        "S6 raw 2.6615-2.9250",
+        "S7 raw 4.2471-4.5450",
+        "S8 raw 3.7165-3.9838",
+        "S11 raw 2.3915-2.5950",
+        "S12 raw 2.9818-3.3450",
+        "S13 raw 2.5591-2.8350",
+        "S17 raw 11.4579-11.6150",
+        "S7 raw 1.9101-1.9150"
+      ],
+      "basis": "Old actual accepted S13 mother-dependent entry identified in frozen baseline H8753; private candidate only, not production deletion."
+    }
+  ],
+  "full_source_to_shadow_typed_diff": [
+    {
+      "path": "/区间声音指纹/S13",
+      "reason": "missing_field",
+      "expected": "662daf5f3713"
+    },
+    {
+      "path": "/核对确认/删除段/S13 raw 2.5591-2.8350",
+      "reason": "missing_field",
+      "expected": {
+        "类型": "紧贴词尾的非人声",
+        "配音指纹": "8179587baaef",
+        "依据": "2026-10-15 删除段对应 非人声区间 [[2.559083, 2.815, '紧贴词尾']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost', 'pre'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"
+      }
+    },
+    {
+      "path": "/核对确认/非人声/116.95–117.03s",
+      "reason": "missing_field",
+      "expected": {
+        "配音指纹": "8179587baaef",
+        "依据": "2026-10-23 逐段看声音（S13 w 6.25–6.33s，呼吸声）：injections 词中 /n/→/z/ 过渡（连着后面的 /z/ 擦音，重心 3.5–5.5 kHz）"
+      }
+    },
+    {
+      "path": "/词尾除阻/S13",
+      "reason": "missing_field",
+      "expected": {
+        "2": [
+          4.135,
+          "t"
+        ]
+      }
+    },
+    {
+      "path": "/非人声区间/S13",
+      "reason": "missing_field",
+      "expected": [
+        [
+          2.559083,
+          2.815,
+          "紧贴词尾"
+        ]
+      ]
+    }
+  ],
+  "inverse_restoration_entire_JSON_typed_exact": true,
+  "inverse_restoration_full_canonical_JSON_bytes_exact": true,
+  "all_non_target_controls_and_full_S19_ending_summary_English_display_exact": true
+}
