@@ -1,0 +1,4133 @@
+{
+  "article": "54",
+  "passed": true,
+  "stage": "final4K-passed",
+  "original_audit_and_quality_thresholds_unchanged": true,
+  "original_maker_unchanged": true,
+  "core_repairs": [
+    {
+      "target": "视频/工具/草稿声音.sh",
+      "file": "files/视频/工具/草稿声音.sh",
+      "original_sha256": "0ce3277812cf16ed30438509b6dc97db0c26725db4c5db5d9b058c3ef6531aa2",
+      "patched_sha256": "43fc6a1acdae6bb1c2252178bf034407400bbbe92eb1752053f3047da9760491",
+      "repair_scope": "explicit revision flags keep reviewed gain, existing valid ending and reviewed physical cuts; automatic cuts still measured/proposed without --写入 in CUTS=1 mode; default full JSON/PCM/AAC exact to prior5; all original later quality checks retained"
+    },
+    {
+      "target": "视频/工具/句内响度.py",
+      "file": "files/视频/工具/句内响度.py",
+      "original_sha256": "58735b7173a3c03efa61fb300b4aed4039c164fa970e0593a40bae2a3f3cbd27",
+      "patched_sha256": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea",
+      "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+    },
+    {
+      "target": "视频/工具/独立复核/synth.py",
+      "file": "files/视频/工具/独立复核/synth.py",
+      "original_sha256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+      "patched_sha256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+      "repair_scope": "validated unprocessed raw-mother reference input only; independent transforms/audit/thresholds retained"
+    },
+    {
+      "target": "视频/工具/结尾句接点.py",
+      "file": "files/视频/工具/结尾句接点.py",
+      "original_sha256": "15303682c605dd4544172c92d42c016d8d0536e0c6d1f9816d0d38dd5d2b9a61",
+      "patched_sha256": "1a5d43c4f5483014b69bbea7ad43dddb0333a9a80e29bb2b4c8029d8915ff798",
+      "repair_scope": "validate existing ending entry with original producer guard then keep it; bad points fail, missing points use original algorithm; default unchanged"
+    },
+    {
+      "target": "视频/工具/读音核对.py",
+      "file": "files/视频/工具/读音核对.py",
+      "original_sha256": "0a3b97e1179e47c0593f69286f4206eecc123cc7ec5d5adf4f5e62457c228a41",
+      "patched_sha256": "50f4363bb2fc2930be59904cdccfa44fd46f14393a0385c7846028ee25b4e84c",
+      "repair_scope": "selftest-only fault injection keeps compound registry and injects actual uncorrected espeak IPA; normal checker AST/output and dictionaries unchanged; unrelated exceptions propagate with restoration"
+    }
+  ],
+  "strict_production_cache": true,
+  "pdf_requested": false,
+  "check_summaries": {
+    "approved-illustration-resource.log": [],
+    "certified-core-original-stamp-verification.log": [],
+    "original-restored-stamp.log": [],
+    "canonical-module-copy.log": [],
+    "canonical-draft-00.log": [
+      "第54篇 做完（520 秒）：修了 0 处、疑点 81 处",
+      "① 文本：通过",
+      "② 声音：54 词尾辅音核对 问题数 0；54 纯人声核对（配音指纹 d9e2abbede1a）问题数 0；问题数 0；54 句间停顿核对 问题数 0；问题数 0",
+      "③ 出片前核查：通过",
+      "⑤ 出片后核查：全部通过",
+      "⑥ 已拷 视频/视频/草稿1080p/54_1080p.mp4（--不推）"
+    ],
+    "canonical-final4K-00.log": [
+      "第54篇 用户定稿原话：有"
+    ],
+    "original-stamp-after-production.log": []
+  },
+  "actual_native_core_certification": {
+    "run_id": 43550422832,
+    "job_id": 132311381738,
+    "commit": "5ecda5ba57c151cb74fc3d36193b60fa59f51c26",
+    "actual_full_quickcheck_exit": 0,
+    "actual_full_quickcheck_seconds": 384.1,
+    "artifact_id": 14096681983,
+    "artifact_zip_sha256": "19dee7da557610e78f39567446bd7dd17ee2c1fe58a0070bb2d6f2c11c22b347",
+    "full_original_quickcheck_log_sha256": "43e1f723087d59c15e78593b23dc37cd2360ba3526474cc5484fbe80edc253d8",
+    "article_audio_or_video_passed_not_implied": true
+  },
+  "actual_native_fastcheck_stamp": {
+    "target": "视频/工具/新管/快测通过.json",
+    "file": "files/视频/工具/新管/快测通过.json",
+    "sha256": "bb75875985ff106abe142caf7ecbf0a5eb76a1412309bf78d77bf146f64512af",
+    "origin": "actual unmodified original full quickcheck, native run43550422832"
+  },
+  "reviewed_regression_resource": {
+    "target": "视频/工具/新管/回归基准_27.json",
+    "file": "files/视频/工具/新管/回归基准_27.json",
+    "sha256": "b8ddb4656ae27cbfc7ec8e3b99511983b4e568997bd4ad4ee33c364f3926ae94",
+    "origin": "pre-existing root-reviewed 67-screen data; original voice/segment MD5 unchanged"
+  },
+  "core_repair_manifest_sha256": "24766577a0001a4920f21cf4887c4cff080d233c34d57cf45a83b7ac660cdcac",
+  "reviewed_gain_preservation_mode": true,
+  "reviewed_existing_ending_preservation_mode": true,
+  "reviewed_existing_physical_cuts_preservation_mode": true,
+  "real_restored_stamp_validated": true,
+  "reviewed_cross_article_context": {
+    "provided": true,
+    "manifest_sha256": "7ccdeafde99efd659ce30267bf4f5bbafea329649dc115ec1ec3425687bb0c04",
+    "files_sha256": {
+      "视频/脚本/01.json": "2be2f80a69af28703992204ac95f987c745362c326e62ad81b3cd8e0e0735d3a",
+      "新版定稿/01-the-robber-who-thought-lemon-juice-made-him-invisible.md": "572054065b5bb65446bf8939a21c789c1e9c7664d82da5117c43efdded894351",
+      "视频/脚本/02.json": "0403368c77fd3e0f91e1ee3780e1c7c147894ad13c16b5f14707d700a8f717c8",
+      "新版定稿/02-the-truth-about-one-marshmallow.md": "91b92505aad03f963861bec39e96f0a472c126d1d57c9fc538676c32f65e545c",
+      "视频/脚本/03.json": "527f3bf4a11843f4d606188dabc6ebce6830da3fb454a49c782e3a595cb47407",
+      "新版定稿/03-the-doctor-who-drank-bacteria-to-win-an-argument.md": "6dfb56504882e24854a3584fd740e7f6601e3f2532818aee3a56d5330d317aa3",
+      "视频/脚本/04.json": "93cc1ff58d65ebe43a65ecb2fb2dbd2da262d80877c05740bbdf4eab4eaca1e8",
+      "新版定稿/04-the-brain-that-learned-london.md": "a8ccb31ffff50aaae77de4b83de1847fafae1d585981cf960c5880c409f6cfc3",
+      "视频/脚本/05.json": "96116f6806b8783cc8abe9583424047683505025dab6c3bc5b38629bbafb418b",
+      "新版定稿/05-the-fingerprint-in-the-blood.md": "612deac4ed066489e04e214ca969f8f27dda05856e0ef0ed2e540e7a4a52ae34",
+      "视频/脚本/06.json": "2cbf1d6cd6e66a59285298ea830f5ef914590b64286d40b2ae5f3168aa27a2e9",
+      "新版定稿/06-the-horse-that-could-count.md": "7fd21ba491c7596c53c486f2bb0b0f2f6da8e67bac75461a4649a7caff822f74",
+      "视频/脚本/07.json": "842e44e5aa19fddcfa239cb6530c5152341cd86e11db959543d02d8670ca13e8",
+      "新版定稿/07-the-octopus-that-escaped.md": "b8544281bb2ada88fce9d1082cbc30233dcb63ee3e9c2bbefafc22cb28b8cb39",
+      "视频/脚本/08.json": "254832e09f12759d950384dd9f31f671ad5a3bc1590b7466065dd3ef5fe4b8d5",
+      "新版定稿/08-the-doctor-who-solved-the-cholera-mystery.md": "0b2bfa68070ce585a452f6b7034d03c3683e710dcabec5e86d7b221950dc7bab",
+      "视频/脚本/09.json": "fa3e429351d629de188c184d04e9986200e16e80606fcbec82332b6433301dae",
+      "新版定稿/09-the-great-emu-war.md": "af5c3e844bad15f94bfc43aeed6d7417c4bfae85f026b194da667a7a3bdb6196",
+      "视频/脚本/10.json": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
+      "新版定稿/10-the-stolen-smile.md": "ff63cf94e4d2c835e2e2f1ffd3e6c5642f0916f0b13c012f1f13c3dff716d47a",
+      "视频/脚本/11.json": "665cbb80cc70b700ecc0cc5813209fd100ad4fa8f0eead3929b9e53778d9d07f",
+      "新版定稿/11-move-37.md": "7e0b49b346c1fa3ab994a11a2301167c0d6a1bb00916508bdc0b1acf71e68053",
+      "视频/脚本/12.json": "e3bfbcce6f1a8e14cfe451d656574353321e297c90c62f5a7b422f37478311d5",
+      "新版定稿/12-the-79-days-of-new-coke.md": "5a23c1e0c81318527bcbf27573487d1845c5318905a2b1e020cc6e2eaf5d643f",
+      "视频/脚本/13.json": "c22ccc9eb34a92380ecbd2ea72189db492264c4730141c73024685b3fca5fd1e",
+      "新版定稿/13-eleven-days-without-sleep.md": "41998b355721703f761685dd351fbf4628b2be67dfed8b3d37276f9e8f929ecb",
+      "视频/脚本/14.json": "2889a9b31bc7945ee55c306d3507b8557bf1efe371af8a97483a61172be800b8",
+      "新版定稿/14-the-fungus-that-turns-ants-into-zombies.md": "618900d05bd2cecc8d577c446146e4df98d71e070c0b779b40992820d1fdd332",
+      "视频/脚本/15.json": "9b42f089b79e4e0c54c254c948ac4d9ae28d224585095a373607122a0d7c6898",
+      "新版定稿/15-the-myth-of-the-unsinkable.md": "bc2d0c8613437b39149cd6e66729104b26efceb8681fb645f782a97b40007584",
+      "视频/脚本/16.json": "d25aa07f3fac316c26c2ae1006d3efa7eb82a396b66150432b50239c1628396d",
+      "新版定稿/16-the-bread-made-from-air.md": "4da63148111213f6d77451b0eb4193893e6fc2fc170400bc39ce5f5ffcaa0b20",
+      "视频/脚本/17.json": "9750857c3e2c67e6abe5ea6913cb0602347be8b58836bbbc03e2c4153bb12e1b",
+      "新版定稿/17-the-curse-of-the-pharaoh.md": "0dc7b6ee7f4ef05d5e4382beeb077d57578d0bb6a6b69415485008facae98717",
+      "视频/脚本/18.json": "5192b78e582c36fd7d5a34973d8314c5b23e13b8313c8960ac29653bd7fa5d8c",
+      "新版定稿/18-the-mould-that-changed-the-world.md": "ef41cea03f471fe3b9a53939c843e450da3325eb711f6414e108ae92a7518dd8",
+      "视频/脚本/19.json": "cc3c5eea0f7d9ec0712b2e58adba7e5ef8b61d6518a322f9b25a12fcc45282fb",
+      "新版定稿/19-tulip-mania.md": "3882d487383b759c31dda4785966091c362960cd873a5d83c530d08d52e2e97c",
+      "视频/脚本/20.json": "cc5ed6d7be8767e5e7e9b098e8f3836821c0b3f51c17581b2746722da1cf3001",
+      "新版定稿/20-the-5000-year-old-murder-in-the-ice.md": "8d55638070787f7ff5432c197292af1188c463a8b018e01bdefc32999b888e95",
+      "视频/脚本/21.json": "61c1569a26d7569ee0f586178be6b307b1c394c0a30c3cb02541c910038b0589",
+      "新版定稿/21-the-man-who-sold-the-eiffel-tower-twice.md": "e8e966b70f579235d696ba11fb01d3b2cae3fa26efb9071bbea95071be259e1f",
+      "视频/脚本/22.json": "e3027a42c532fee9935afcecdd0542713cbb907183802c2345b9472f93b75f59",
+      "新版定稿/22-the-building-that-melted-a-car.md": "49ae09483bc80bbc40a71551cd98aebec355d96d9ff7b2bcdea59a06fe599267",
+      "视频/脚本/23.json": "c4574a79fd3a58577a1402ce095ea9e4a0ea1f98883ce63e3cc60d126e819409",
+      "新版定稿/23-the-man-who-gave-machines-a-mind.md": "72ed3049e87fe75ce1e753d5e443bdbe6a7ab72f6e282e8467fbbb62be873169",
+      "视频/脚本/24.json": "f08620b534bb10b718f7515c805dcb541721427d855bd5a092b8954847a351b8",
+      "新版定稿/24-survival-in-the-ice.md": "cb7f810d9a74256e0c00625290be4f16207feb90f5719ca87d5d7c9912b91307",
+      "视频/脚本/25.json": "c73e854e052b3df9bd920d4a59fafb183dee19bd58765fa426af6ea3d7c9a329",
+      "新版定稿/25-apollo-13-the-successful-failure.md": "b6b7d55fe66e6e32116431ea955778fab779b8bda622df0ba1036c2f40a3969f",
+      "视频/脚本/26.json": "22349b0a29f05689aae5bd5e9d0907846a68e6ad42949eb0b8cc392d6dce18d6",
+      "新版定稿/26-the-language-the-children-invented.md": "f64089bc9487e756522746058fba2e27c45e56ffc339d8590038643012eb496d",
+      "视频/脚本/27.json": "e1214d8e9314a1cb54da82e2532889198bec555d6be9189fbfb43b5fdedcd728",
+      "新版定稿/27-life-in-the-forbidden-zone.md": "c592b44a8e6ec26f3c2e96ed19191958e57c81d31e54329c20d726e538c10e52",
+      "视频/脚本/28.json": "e0c8e6c644ab0c5d52d99c23461b99e9ae1574aa574369e56feb35e2ac20698b",
+      "新版定稿/28-a-handful-of-wormwood-that-saved-millions.md": "d609cd99ab982365c6f0167e211c55b31e52a354d50918780f3da66ef702a5bb",
+      "视频/脚本/29.json": "1e5f1d9f0c22b5d14b757f029be694c2a3969666d732ca79bb695282763de791",
+      "新版定稿/29-the-volcano-that-gave-us-frankenstein.md": "69045ee19a170c7ea9d0008b468c7e947bc28b639b834c0192dc0aeafc3ef4d0",
+      "视频/脚本/30.json": "34eb48747f1ea7d14b41ccc0cf45aa1592907aacf6618999b3506944e2ff4a0c",
+      "新版定稿/30-the-stink-that-built-londons-sewers.md": "84dbf19cee0045ea2608b13ee0677cb9623dd8fbb371c67093bf50c64186137a",
+      "视频/脚本/31.json": "d81f8645a1e5663ba8c84668e817cdb218bc6689079fbfd51326b3a7fd3cd384",
+      "新版定稿/31-the-book-twelve-publishers-turned-down.md": "7abd20fed44918dcf01586c056e9d0acd9d2ad3b90aa7d3d403762d9f06d2659",
+      "视频/脚本/32.json": "357aa59bed62154f7302a5efcf528859b303004e028657b93058138fe931bf85",
+      "新版定稿/32-the-planet-that-was-demoted.md": "1421f2b0921e7e9478ebc48777e3e8b2c979172de63d0124015107c3750a3542",
+      "视频/脚本/33.json": "da87d68fdee3401e499aa145c23d9b2c663ce3b27f79feec5eca1ddb0d794e72",
+      "新版定稿/33-thirteen-in-the-cave.md": "b96faac786ace911140b835d9f9c6e37eeb0c5f3e7a077b913805b8942c56067",
+      "视频/脚本/34.json": "5350c08cdc6dfa5579f0bdc6960805cbe079a1c471c46bb2250f11b32da34868",
+      "新版定稿/34-the-game-that-escaped-the-soviet-union.md": "fdfd966f8624bc506b7cfe16da04f2f7382ce5566fab3bcb35c3d99dd6d4a5f2",
+      "视频/脚本/35.json": "d8439077dc2c909b1c6cbd1347f31e9625f25fffe447d6f5945c9492561f1a16",
+      "新版定稿/35-the-bird-that-beat-the-letter-home.md": "ba8c38e38b21a3345624e2d44fd352561d3096cfb6f62214b48ea9b6e66faead",
+      "视频/脚本/36.json": "e35a3dcb2ff0f0c7054493331370c0364190771ecf56e0dad6dbee3af860a628",
+      "新版定稿/36-the-company-that-invented-its-own-killer.md": "4b0f1d016d3e94bd7f77d3a36bfc423700006c7a23c0b0cae5ca68d5c5af883f",
+      "视频/脚本/37.json": "b1b8945ccf3581df48ade5714a2d0e93e4cc6812708f95bef6f5e44439106c99",
+      "新版定稿/37-dynamite-for-the-heart.md": "4933e24d2384471a96d9c8c26c15d5224a85dae98d9971a3fed15b4978dafc51",
+      "视频/脚本/38.json": "8d0379032000967c9f72e550574874949f798eefbfbfb58ab2b38e4e23ecbc6b",
+      "新版定稿/38-the-web-beneath-the-woods.md": "abb7eead9f3da0b2b326ceed5a649cfbf71fc28dad22e0d52f7b19caa798c54f",
+      "视频/脚本/39.json": "6c3e9539f624b192335312912572a05fba2c7bcfb821b44c3c1dbb21b42527a7",
+      "新版定稿/39-y2k-the-crisis-that-success-erased.md": "abbc9804661126aa006595031ed8f201ce55e8eb5fd9e1ad5669c0c6fcdb80ab",
+      "视频/脚本/40.json": "1c50d1a47ee6f8528d0f7299e8a45bc8c30312622f3f465a964d21cc1395ee7f",
+      "新版定稿/40-the-glue-that-failed.md": "dce9f78f3a0828307843dd667b7eeebf3380a3630f03d234bd5824870aba61a1",
+      "视频/脚本/41.json": "6b6673ffc1db986f4c355f3685de6a0faf2272cee042c5e917f26a8b3057c2be",
+      "新版定稿/41-the-toad-that-invaded-australia.md": "eca590f97120f4e76d719e29aa07b094f9117cd462f5a70c029331a63b85f710",
+      "视频/脚本/42.json": "eceb10ae92aa4b9cd23180d1138149a7fa7b674385462c898bc0d2283c8739e7",
+      "新版定稿/42-the-telescope-that-needed-glasses.md": "d4aa049779a0eba06c555d76ca14103648378eef90465df424120126fa771280",
+      "视频/脚本/43.json": "aa9da1246e293c80408edf94a7c9bed65ef3178ae7cb5265a8273e8c4396687f",
+      "新版定稿/43-from-a-garage-to-the-top-of-the-world.md": "bd70c83e5ac867238ca179f3c9f3548eb9cbdcae1f6df40994aef0bda721ae54",
+      "视频/脚本/44.json": "87f531203ca38d88ae5e71ffd88190b1530715cdc0adba146c2a4a78ebe9b976",
+      "新版定稿/44-the-night-sweden-switched-sides.md": "d3f7ad2ac43f02aae9205a15b9808280ca3db597d6ef3b36aca8ca6176c5f74a",
+      "视频/脚本/45.json": "569406607d2bf18dce5e916052d6460509450d97fe17ac9820be524f59c2c3cc",
+      "新版定稿/45-the-record-humanity-threw-into-the-stars.md": "27deabec4a8478fe570f7f237a2fb850ffdce3deebfd952f512d82a60cf7314f",
+      "视频/脚本/46.json": "c8c7ce7a76226f5274a91af693d24410d5eacfa59206b085a70d133f3634c12b",
+      "新版定稿/46-lost-in-the-glare.md": "7aaa06e875fe56c5d78210b90a8769b8b2051714025ef10df37c2fe89db7a68c",
+      "视频/脚本/47.json": "4c33bb0764a9b98e914a55806486ce841a1503efda1ff001cd2f8c9bb1626c06",
+      "新版定稿/47-shadows-of-wolves-over-yellowstone.md": "6b51ae76b8ec4ffd0ff1748c5902ef59754fa446479fc40357e9946a9aaac7a1",
+      "视频/脚本/48.json": "4f146ce6a70bb0bf5d2c6e1f6b47bd6a2bcc2f311be7a948092d7bde1a08f449",
+      "新版定稿/48-rice-for-the-world.md": "76416be21f857e8a05c37baa33ac90f5785812291485231c249e38a1d0edf15f",
+      "视频/脚本/49.json": "fdcc3a438e50a32fdf8c7bcbe27a97d20fc101b6169ca305f920fedbd3303c3c",
+      "新版定稿/49-the-woman-who-won-two-nobels.md": "1e4fb068aa9ae4513d01b199a074b84dc9d819f57b2134df32588a0e4a4b6b6a",
+      "视频/脚本/50.json": "1d4a41824dfa5e8d11e5990b2a4b802ba2fcc3231d85b15ed6630396c6f027bf",
+      "新版定稿/50-microplastics.md": "5439589bacf1abb2abbb184eb658492bc02bcc5bdd8dfd8ababcd80ab93621cb",
+      "视频/脚本/51.json": "39886d83593a31fb575b124ecf6457190773dca695b6ff78f8434d52aebd6d7c",
+      "新版定稿/51-the-joke-that-became-ok.md": "8de30ea4846f4e88d8b71c8d5ced3ee63a73955e39b7dc3c5adad0971b854fd0",
+      "视频/脚本/52.json": "832249bb44617d38ede75560a5e57af6ba79ec284c9609407cb30ce879f6f862",
+      "新版定稿/52-the-killer-smog-of-1952.md": "179500361e4a837d7edb2e0497e08677d5abd425e8ad542f788205a6f7667b4b",
+      "视频/脚本/53.json": "73393dad5d67261f2ec7819f3749a6589278900e2f214a1da06b0dbde55fe31b",
+      "新版定稿/53-the-wind-that-kept-no-time.md": "5d8007a8c953bc0dd47bfb2536e6f3b3308c0bcf93ca607d6f1c6d02dcac457f",
+      "视频/脚本/54.json": "ca30f9d590db5b8d12945daebf6ec01a23887c64d75ce25bfa88b2c7bfb3be6d",
+      "新版定稿/54-the-sound-that-shook-the-world.md": "3247ed37a6fe9804df2c5db2c087727f9bea1ab07f9c2ec71369759b53a3eb64",
+      "视频/脚本/55.json": "06344fc0ad5975cba2f4dbe5262a9957dd7c024f9a05b9abbfa327f32ea8c719",
+      "新版定稿/55-the-secret-of-romes-undying-concrete.md": "a7759eddcc7ec06dfd6dab7912e06b3b5ef8576df0c025a97812006669d0be61",
+      "视频/脚本/56.json": "22ca3b4180a8ae6a37b4c8e25f5e357d5696d9b23bf148fb7064425d1403e59c",
+      "新版定稿/56-the-letter-that-startled-darwin.md": "aad1e2aab9ff28f534a510362e807ef401e0b502475240f4b2531e9e518a8d7a",
+      "视频/脚本/57.json": "a0ba65b769430289a33ec1f7bc6dbf91dad8d2c3b1d725348851de546563cd6f",
+      "新版定稿/57-a-change-of-anthem-in-the-deep.md": "0731d925a98bafc222718c111985362e166b38b9189c516219a481e36d0d4b6e",
+      "视频/脚本/58.json": "8b0bd3d7d39000518789e9907aec53bd52fab1b9d6b4f22a152d158635b6e8ee",
+      "新版定稿/58-from-a-scratch-to-a-world-without-smallpox.md": "1aa2a0d2c51da76f9c9ebb88d049dd1a55ab530791566fdbf6476e5aa48c15ee",
+      "视频/脚本/59.json": "df1db4174d942371166048b220ef6d55b0b700b2ce31c866edf6dfdf33b92f0c",
+      "新版定稿/59-saving-the-sky.md": "7bf9c4661e733e7af23dc2f11bc820b809ec93dad75a94fb6a12748226e8722c",
+      "视频/脚本/60.json": "cd10eb60e8ea365ce653938ba4339901001cf8d6535c50096c2e736a385b844e",
+      "新版定稿/60-the-scientific-giant-who-changed-the-world.md": "130158a4a5cd0bb680bf8ebaa83fb309e3ae3b41e1818bfd3179eadb13c26810",
+      "视频/脚本/61.json": "2d08704376faff25b06d334d7567a381460975a56a4cef6b4ae97b3580ea8dbc",
+      "新版定稿/61-the-steel-box-that-remade-the-world.md": "135cc9cfbcbd68d957f831cf55558112a45b1cc3749366cb9a304507355c7d2c",
+      "视频/脚本/62.json": "0779c44ccd17679ec853adc3fcc733623fc774e3cb6f68e59c7bb2c4ae62d541",
+      "新版定稿/62-dolly-the-copied-sheep.md": "9edfbd3ebacdecc8c3aa3034d38dd371a105c19382282e8c0de2d08a1713f863",
+      "视频/脚本/63.json": "5d266d80f9cf29cce6f7e34531449cf75191a42f180102685a5bcd04849e75c5",
+      "新版定稿/63-the-crowded-heavens.md": "6ef79d4310019dfefa7364b8a428411a6bc337678c69fa5cbc89b84689e253a4",
+      "视频/脚本/64.json": "12a36862765922d72ce6e5a4c5fe85f548364eed65fe3b3b284f0b38899a965f",
+      "新版定稿/64-the-day-zero-that-never-came.md": "e0c83cbe36745adbbffd33a156fa8d0671704ea976cb13215cabb612639b37a5",
+      "视频/脚本/65.json": "875ecf68f5e196bb02c198533c5b5928852a1c1083419f92acccc65617b3f670",
+      "新版定稿/65-the-day-the-doomsday-vault-opened.md": "24b59a22149441c5cf39b4295ca0c2296eb4aec18e7eb3f10011df8a2e76fa23",
+      "视频/脚本/66.json": "ad5324af4270834186285a5e7273a90213094077adc6f9e1d5c7b0ebff9cf035",
+      "新版定稿/66-the-burrs-that-became-velcro.md": "75dbe6c148ca97a7780ac1737f33f58bf8ee27a51aa729a83315705655b12b2a",
+      "视频/脚本/67.json": "6839a46ebdb51cdcff6a65ca238efc228f1e114efd1734cee6c994ca659a29cb",
+      "新版定稿/67-the-cave-found-by-a-dog.md": "10e37b81eeef4e3289448a6b4fd679f34d495a4fc087c57747e6dca949e00cf1",
+      "视频/脚本/68.json": "568f72dacac48e206811d35a57c7fa22e3da428783f64e507c184f2090e579f3",
+      "新版定稿/68-the-last-flight-of-the-hindenburg.md": "c25f58ffb0e3748336767bb7470dd7cef10374c53cbb48af89dba26f65b2dd5c",
+      "视频/脚本/69.json": "c493528f054e2d572e56b8ea15be0950158e86e3d3271b0f94237e8d296163ff",
+      "新版定稿/69-the-trial-of-the-father-of-the-atomic-bomb.md": "570eda5b7d979d71e9bcad1c67e295ed326ecdb8b61e663aba33272c8a9451bd",
+      "视频/脚本/70.json": "0f6827f02cef0d2416f9d7d69b7e1c5553acee7cf6dc89f3379201264587236c",
+      "新版定稿/70-the-stamp-that-changed-the-post.md": "edfd85cea33730ba67e4210e756da1f2945f1a21bce55c7e75497cb5f0095d80"
+    },
+    "source_file_count": 140,
+    "working_script_count": 70,
+    "target_request_exactly_matches_context": true
+  },
+  "request_source_sha256": {
+    "视频/脚本/54.json": "ca30f9d590db5b8d12945daebf6ec01a23887c64d75ce25bfa88b2c7bfb3be6d",
+    "视频/工具/初稿生成/gen54.py": "8704111d9d9584470c3fdb069d969e7c35c168c02fd365157cf23df7fbed458a",
+    "新版定稿/54-the-sound-that-shook-the-world.md": "3247ed37a6fe9804df2c5db2c087727f9bea1ab07f9c2ec71369759b53a3eb64",
+    "视频/制作记录/54_待改清单.md": "b20abda46459dbecb4f14b0c4b8d814973081ddb95097d736efd6427b1f57fe5",
+    "视频/制作记录/逐句确认/54.json": "19dd02ed6765ccf1f07c2b3a6205f05f0a7640ae022cf9b99e359859d9d88a59"
+  },
+  "accepted_source": {
+    "id": "54",
+    "path": "最终版4K视频/54 - The Sound That Shook the World - 震动世界的一声巨响.mp4",
+    "sha256": "c9b1c7a4f5a47f3fc230cc6b2bfa44af1bdefe784e314d231cd8b06f25a6fff2",
+    "git_blob_sha": "44e88f29be7d063d54c9d2f556f87d4acc45aedf",
+    "bytes": 14453615,
+    "width": 3840,
+    "height": 2160,
+    "summary_frames": 60,
+    "aac_adts_sha256": "e0db71dcddd5bc28addf36b644a24caf51b4685538a617cd200ebf0f466b3d1a"
+  },
+  "checker_reference_preparation": {
+    "article": "54",
+    "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+    "reference_prepared": true,
+    "acceptance": false,
+    "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+    "source_sha256": "ca30f9d590db5b8d12945daebf6ec01a23887c64d75ce25bfa88b2c7bfb3be6d",
+    "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+    "checker_program_sha256": {
+      "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+      "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+      "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+      "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+      "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+      "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+    },
+    "reference_calls": [
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-raw",
+        "method": "create",
+        "source_slice": "The Sound That Shook the World",
+        "exact_native_cache_key": "5ad6472656af690ce575c54e72850f70a4dc6505.pkl",
+        "cache_input_text_sha256": "4f18ba93186257ffe9bfd2ff2fcb831bb7498ceaa6afa6ced67a2711d1fe1281",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-timed",
+        "method": "create_timed",
+        "source_slice": "The Sound That Shook the World",
+        "exact_native_cache_key": "a85067d11d1eeaa38e683f2ae90e0f9612c771d3.pkl",
+        "cache_input_text_sha256": "4f18ba93186257ffe9bfd2ff2fcb831bb7498ceaa6afa6ced67a2711d1fe1281",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Shortly after ten in the morning on 27 August 1883, Krakatoa, a volcanic island in the Sunda Strait, unleashed its most thunderous explosion.",
+        "exact_native_cache_key": "8a98dab1208290685f6b5427d531f423b67ec7ad.pkl",
+        "cache_input_text_sha256": "afa89a574ab671a8820eeaa5dcd8fdc15575679bb896baeb8ba90a439a3a391d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Shortly after ten in the morning on 27 August 1883, Krakatoa, a volcanic island in the Sunda Strait, unleashed its most thunderous explosion.",
+        "exact_native_cache_key": "fd1ea02654c0cbd4f09ae04b9fc67654b72066ae.pkl",
+        "cache_input_text_sha256": "afa89a574ab671a8820eeaa5dcd8fdc15575679bb896baeb8ba90a439a3a391d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Shortly after ten in the morning on 27 August 1883,",
+        "exact_native_cache_key": "eb6f333c2b994001115f367bfd2cb3a4920fc857.pkl",
+        "cache_input_text_sha256": "8b27a2544d288807fd3907d838ce9d356ba7964dad5d2b3851ab1c808c2f2c8e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Krakatoa, a volcanic island in the Sunda Strait,",
+        "exact_native_cache_key": "784c5da88fecf86215faae1a167a7f9df46a5f65.pkl",
+        "cache_input_text_sha256": "4c722c332f139133b7e9bb6fb273759e27b0751b65b16f8eeb796422747940a1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "unleashed its most thunderous explosion.",
+        "exact_native_cache_key": "4a612d30ea8a6264247c63b51474ec3f57c4b934.pkl",
+        "cache_input_text_sha256": "3d46e1e01d63a759121bc849e93e948350a1edf6cca6c831c8226feee6a22eda",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Shortly after ten in the morning on 27 August 1883,",
+        "exact_native_cache_key": "eb6f333c2b994001115f367bfd2cb3a4920fc857.pkl",
+        "cache_input_text_sha256": "8b27a2544d288807fd3907d838ce9d356ba7964dad5d2b3851ab1c808c2f2c8e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Krakatoa,",
+        "exact_native_cache_key": "75ead62102f09f8bc97e29263813c9dc2fc6fcaa.pkl",
+        "cache_input_text_sha256": "99dafcf8f5bce4fef8549a9a800028e789288721b608ca0b67ebe683659af23a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "a volcanic island in the Sunda Strait,",
+        "exact_native_cache_key": "8dc7f031561cf9a27fb70acbe964eaafab9273d5.pkl",
+        "cache_input_text_sha256": "7bf1335f3fbc6f6386119e648da0f183c9979b84b008ee357e3c75cc6e13bf8e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "unleashed its most thunderous explosion.",
+        "exact_native_cache_key": "4a612d30ea8a6264247c63b51474ec3f57c4b934.pkl",
+        "cache_input_text_sha256": "3d46e1e01d63a759121bc849e93e948350a1edf6cca6c831c8226feee6a22eda",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "About four hours later, islanders on Rodrigues, nearly 4,800 kilometres across the Indian Ocean, took the roar for distant gunfire.",
+        "exact_native_cache_key": "ccfb0d8066dc9916ad8be0e653188fad1f2b8556.pkl",
+        "cache_input_text_sha256": "46be651e5c8a67b13b6c1511158a7cb97c4a04dc5fd0cdb011165db2aac254cd",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "About four hours later, islanders on Rodrigues, nearly 4,800 kilometres across the Indian Ocean, took the roar for distant gunfire.",
+        "exact_native_cache_key": "8bc9700b47ef36b6d2d1364cf8039396cfa1d1ec.pkl",
+        "cache_input_text_sha256": "46be651e5c8a67b13b6c1511158a7cb97c4a04dc5fd0cdb011165db2aac254cd",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "About four hours later, islanders on Rodrigues,",
+        "exact_native_cache_key": "49b940f51a5623257fc99c4b7af920d34b73f3e7.pkl",
+        "cache_input_text_sha256": "317f7d78ef96b75eb60b5016957e5b9e4b443b04a5a976634f9ea46a771802db",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "nearly 4,800 kilometres across the Indian Ocean,",
+        "exact_native_cache_key": "7ef3c218204fd4074e40a0884e7a63fd47fb8d51.pkl",
+        "cache_input_text_sha256": "5c590f850b233899c33b713a098827f0fd293ff97d0dd4e3b12d8a6851492a95",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "took the roar for distant gunfire.",
+        "exact_native_cache_key": "0a3851f855a1654f8b45592559f47896b630c3e3.pkl",
+        "cache_input_text_sha256": "ec5ac0df84b90557537a63dfd446094de6776440633966a0328dca49fd7b2ad5",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "About four hours later,",
+        "exact_native_cache_key": "12a2583383d96e2d3d84959653d6e3a23fa770ed.pkl",
+        "cache_input_text_sha256": "db4d22320ca4de6819646486e2e93bd84927607de0f7343bc02d1815b079bbaa",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "islanders on Rodrigues,",
+        "exact_native_cache_key": "7c02c0cb77e094ce36ce2cea969c13457dcbffa1.pkl",
+        "cache_input_text_sha256": "945f3ee0eccd79bf919653a4c933e721d4559b098437bcefa4543c53e4657785",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "nearly 4,800 kilometres across the Indian Ocean,",
+        "exact_native_cache_key": "7ef3c218204fd4074e40a0884e7a63fd47fb8d51.pkl",
+        "cache_input_text_sha256": "5c590f850b233899c33b713a098827f0fd293ff97d0dd4e3b12d8a6851492a95",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "took the roar for distant gunfire.",
+        "exact_native_cache_key": "0a3851f855a1654f8b45592559f47896b630c3e3.pkl",
+        "cache_input_text_sha256": "ec5ac0df84b90557537a63dfd446094de6776440633966a0328dca49fd7b2ad5",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Barometers worldwide recorded the atmospheric pressure wave, some of them seven times in about five days.",
+        "exact_native_cache_key": "aa4cea1669557c297d7c3cfaa87f67142fd4f5e2.pkl",
+        "cache_input_text_sha256": "7ee446927155ec9cfe28a3603b3123b78132f01c1e8e75ee5312ae68a5feace8",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Barometers worldwide recorded the atmospheric pressure wave, some of them seven times in about five days.",
+        "exact_native_cache_key": "ad1aa0053bdae54bbf36877371150c81997468f3.pkl",
+        "cache_input_text_sha256": "7ee446927155ec9cfe28a3603b3123b78132f01c1e8e75ee5312ae68a5feace8",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Barometers worldwide recorded the atmospheric pressure wave,",
+        "exact_native_cache_key": "80d4742ad91e1974580854180dd757b9d00a3565.pkl",
+        "cache_input_text_sha256": "fac41735f331346aeb4531d3991ffdb4af65f32e560171acacfae41959668d22",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "some of them seven times in about five days.",
+        "exact_native_cache_key": "a5d546fd15f1e24bb0b0d02b2f1ed71f8ec29a02.pkl",
+        "cache_input_text_sha256": "0a520fdea607b8ead58a080adb4f7f8d9d00563a947c634a6ea35b80a3853806",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Barometers worldwide recorded the atmospheric pressure wave,",
+        "exact_native_cache_key": "80d4742ad91e1974580854180dd757b9d00a3565.pkl",
+        "cache_input_text_sha256": "fac41735f331346aeb4531d3991ffdb4af65f32e560171acacfae41959668d22",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "some of them seven times in about five days.",
+        "exact_native_cache_key": "a5d546fd15f1e24bb0b0d02b2f1ed71f8ec29a02.pkl",
+        "cache_input_text_sha256": "0a520fdea607b8ead58a080adb4f7f8d9d00563a947c634a6ea35b80a3853806",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Restless since 20 May, the volcano reached a catastrophic climax on 26–27 August.",
+        "exact_native_cache_key": "0a380bb9415497cf83b3ccf8f1a39e776542bdad.pkl",
+        "cache_input_text_sha256": "44f5c74247bfc5eb2b545209f12cfaff4ea06f25aa4687fa0bd3dbd51163d839",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Restless since 20 May, the volcano reached a catastrophic climax on 26–27 August.",
+        "exact_native_cache_key": "9f6f3fbe313f1c1b857043820ad58902b6246276.pkl",
+        "cache_input_text_sha256": "44f5c74247bfc5eb2b545209f12cfaff4ea06f25aa4687fa0bd3dbd51163d839",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Restless since 20 May,",
+        "exact_native_cache_key": "0c483510198d97847a40a2f62e52dc48f416d251.pkl",
+        "cache_input_text_sha256": "21b669da3b2489b01086c6f61680b32f8d724f85b995f270a68d87419fa1f534",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "the volcano reached a catastrophic climax on 26–27 August.",
+        "exact_native_cache_key": "4cf5a4d62ee800b61155d7c311a52b28445c068f.pkl",
+        "cache_input_text_sha256": "d6fc451f80eb72ea0057d6c804be51e87670a1da60253a1b996eee2bb61ca2c6",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Restless since 20 May,",
+        "exact_native_cache_key": "0c483510198d97847a40a2f62e52dc48f416d251.pkl",
+        "cache_input_text_sha256": "21b669da3b2489b01086c6f61680b32f8d724f85b995f270a68d87419fa1f534",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "the volcano reached a catastrophic climax on 26–27 August.",
+        "exact_native_cache_key": "4cf5a4d62ee800b61155d7c311a52b28445c068f.pkl",
+        "cache_input_text_sha256": "d6fc451f80eb72ea0057d6c804be51e87670a1da60253a1b996eee2bb61ca2c6",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "About two-thirds of the island collapsed into its emptied magma chamber, vanishing beneath the sea.",
+        "exact_native_cache_key": "6760cc1300148f0f002615ae0d71725b131e7fb1.pkl",
+        "cache_input_text_sha256": "718879d42646b04bde680c35b6ade726898fd21ff339c57608d9de0eb8d48b29",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "About two-thirds of the island collapsed into its emptied magma chamber, vanishing beneath the sea.",
+        "exact_native_cache_key": "a966ed98508d6718aa436ff062a4fc31bd0f6d6d.pkl",
+        "cache_input_text_sha256": "718879d42646b04bde680c35b6ade726898fd21ff339c57608d9de0eb8d48b29",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "About two-thirds of the island collapsed into its emptied magma chamber,",
+        "exact_native_cache_key": "5090ad9555c1d18c799a57a34b7520c1c22261b8.pkl",
+        "cache_input_text_sha256": "30a876550b92884fedb8226122415952db45b39c11233b9c22cc94b69b9df4a7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "vanishing beneath the sea.",
+        "exact_native_cache_key": "705ddc30511ef51caaaf08ae935b58a492647040.pkl",
+        "cache_input_text_sha256": "a1d597076bd102fb6c31dd3c0b0e222dc5cdf2d70c73c5d560fcaafe17ac9955",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "About two-thirds of the island collapsed into its emptied magma chamber,",
+        "exact_native_cache_key": "5090ad9555c1d18c799a57a34b7520c1c22261b8.pkl",
+        "cache_input_text_sha256": "30a876550b92884fedb8226122415952db45b39c11233b9c22cc94b69b9df4a7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "vanishing beneath the sea.",
+        "exact_native_cache_key": "705ddc30511ef51caaaf08ae935b58a492647040.pkl",
+        "cache_input_text_sha256": "a1d597076bd102fb6c31dd3c0b0e222dc5cdf2d70c73c5d560fcaafe17ac9955",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Tsunamis, reportedly over 30 metres high in places, swamped coastal settlements on Java and Sumatra.",
+        "exact_native_cache_key": "a737a6bd81c222f4a912323556cc656f7dbde97f.pkl",
+        "cache_input_text_sha256": "575665755d9c8ffa6a9e59c441697f492f45c1d26e9c94e32536553261fead92",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Tsunamis, reportedly over 30 metres high in places, swamped coastal settlements on Java and Sumatra.",
+        "exact_native_cache_key": "c305b1ea7890f64a199fd5b56ed85be8768e68d6.pkl",
+        "cache_input_text_sha256": "575665755d9c8ffa6a9e59c441697f492f45c1d26e9c94e32536553261fead92",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Tsunamis, reportedly over 30 metres high in places,",
+        "exact_native_cache_key": "9a453cb5f20cb48532131fc47893443021a42449.pkl",
+        "cache_input_text_sha256": "07e670e297a7b7178e693ad4d542b5ca6faee8620571abc2e46eaad71d9948ea",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "swamped coastal settlements on Java and Sumatra.",
+        "exact_native_cache_key": "c296869c08e7971bad6a93a111d702b7e72c51b7.pkl",
+        "cache_input_text_sha256": "9491722958416ae790bbd61b03d597c88c3ec54c6d48afac75ee95c90821458f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Tsunamis,",
+        "exact_native_cache_key": "ed2905f554144e2fde21142bcc1b100655e1079d.pkl",
+        "cache_input_text_sha256": "a0ee339a0271c7256eb6ddce995931adabc89741f7fdf415b336685455a55ab6",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "reportedly over 30 metres high in places,",
+        "exact_native_cache_key": "e2bc33f6321718ac0f5ce1c37ecaccccc9e01307.pkl",
+        "cache_input_text_sha256": "fa1936952003487e7913de23fcf5c6a564b1af6f8b85b5b99fbd7f800bfa6ad3",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "swamped coastal settlements on Java and Sumatra.",
+        "exact_native_cache_key": "c296869c08e7971bad6a93a111d702b7e72c51b7.pkl",
+        "cache_input_text_sha256": "9491722958416ae790bbd61b03d597c88c3ec54c6d48afac75ee95c90821458f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Dutch colonial administrators counted 36,417 dead, mostly drowned, perhaps underestimating the toll.",
+        "exact_native_cache_key": "db4cf2cbf52466d174660421ec9358a5dcb2c2e6.pkl",
+        "cache_input_text_sha256": "d3153b10e4e89a41a83b4064ec9f8f2d93fd520a8f1713baba31a41d3b65d367",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Dutch colonial administrators counted 36,417 dead, mostly drowned, perhaps underestimating the toll.",
+        "exact_native_cache_key": "458fbd9c5e6bc00e88ae087bb9ee19efddc77f29.pkl",
+        "cache_input_text_sha256": "d3153b10e4e89a41a83b4064ec9f8f2d93fd520a8f1713baba31a41d3b65d367",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Dutch colonial administrators counted 36,417 dead,",
+        "exact_native_cache_key": "627fc669d525e8acfde75182aa959f5e3b25e88e.pkl",
+        "cache_input_text_sha256": "9f4efe779772b749f9e47b05f026f7df2cd3f5cb1212886e171eabc58aba7016",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "mostly drowned,",
+        "exact_native_cache_key": "7cecb168d76b22b709d8d1a5b09034a3cd950c5d.pkl",
+        "cache_input_text_sha256": "4ebe16c0c530aefa5c1a08fe4acad2fe5489616ed21ccda5861fdc4e81be519e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "perhaps underestimating the toll.",
+        "exact_native_cache_key": "7da007b111942821c3eda703ade02332fcff7fb3.pkl",
+        "cache_input_text_sha256": "3bb3296391e5126e285316a473e8647ea10e89a2291313a270aee30988ff04ed",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Dutch colonial administrators counted 36,417 dead,",
+        "exact_native_cache_key": "627fc669d525e8acfde75182aa959f5e3b25e88e.pkl",
+        "cache_input_text_sha256": "9f4efe779772b749f9e47b05f026f7df2cd3f5cb1212886e171eabc58aba7016",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "mostly drowned,",
+        "exact_native_cache_key": "7cecb168d76b22b709d8d1a5b09034a3cd950c5d.pkl",
+        "cache_input_text_sha256": "4ebe16c0c530aefa5c1a08fe4acad2fe5489616ed21ccda5861fdc4e81be519e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "perhaps underestimating the toll.",
+        "exact_native_cache_key": "7da007b111942821c3eda703ade02332fcff7fb3.pkl",
+        "cache_input_text_sha256": "3bb3296391e5126e285316a473e8647ea10e89a2291313a270aee30988ff04ed",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Telegrams from Batavia (now Jakarta), relayed by submarine cable, reached London within hours.",
+        "exact_native_cache_key": "c9734a9927f34c38911d4467e08758f8873719f5.pkl",
+        "cache_input_text_sha256": "275857bd39cda9fdb3294eca0577be031da4e2fb0bb92a54a54305fb09accd95",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Telegrams from Batavia (now Jakarta), relayed by submarine cable, reached London within hours.",
+        "exact_native_cache_key": "4572931064672be8521cb6e0904883ce7b4f5c4b.pkl",
+        "cache_input_text_sha256": "275857bd39cda9fdb3294eca0577be031da4e2fb0bb92a54a54305fb09accd95",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Telegrams from Batavia (now Jakarta),",
+        "exact_native_cache_key": "7d114855cb65ca883b8fd2da70adeccf743d8762.pkl",
+        "cache_input_text_sha256": "82a8e3c4fc6ccc14396430ef8556f9c9f8444010d64f357a97d62c2ded653440",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "relayed by submarine cable,",
+        "exact_native_cache_key": "2e6008fb64b78e3b77e378ba07b405a510fd860e.pkl",
+        "cache_input_text_sha256": "9c764ca0e8509fe173437e76d6b0f70e4e656a5648adb3140dc240d75f9fae8c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "reached London within hours.",
+        "exact_native_cache_key": "cc834d0478d7e4985203194d06f595426a9c422c.pkl",
+        "cache_input_text_sha256": "11bba11e2339f464062963c7e13ca2e9801e596d1cf1cc12698eb33b83b26da0",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Telegrams from Batavia (now Jakarta),",
+        "exact_native_cache_key": "7d114855cb65ca883b8fd2da70adeccf743d8762.pkl",
+        "cache_input_text_sha256": "82a8e3c4fc6ccc14396430ef8556f9c9f8444010d64f357a97d62c2ded653440",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "relayed by submarine cable,",
+        "exact_native_cache_key": "2e6008fb64b78e3b77e378ba07b405a510fd860e.pkl",
+        "cache_input_text_sha256": "9c764ca0e8509fe173437e76d6b0f70e4e656a5648adb3140dc240d75f9fae8c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "reached London within hours.",
+        "exact_native_cache_key": "cc834d0478d7e4985203194d06f595426a9c422c.pkl",
+        "cache_input_text_sha256": "11bba11e2339f464062963c7e13ca2e9801e596d1cf1cc12698eb33b83b26da0",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Western newspapers soon began chronicling what is often called the first global news event.",
+        "exact_native_cache_key": "0bddeadd2813089ee8000f18015618c5fcb48b74.pkl",
+        "cache_input_text_sha256": "f58baeb1a914ea4c3da23d425d15f6aa2d19752a5b9863b1100f1e4f06078123",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Western newspapers soon began chronicling what is often called the first global news event.",
+        "exact_native_cache_key": "8965878548c32c8addeecb1494c32d67e2248b4c.pkl",
+        "cache_input_text_sha256": "f58baeb1a914ea4c3da23d425d15f6aa2d19752a5b9863b1100f1e4f06078123",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Western newspapers soon began chronicling",
+        "exact_native_cache_key": "82e3b9ea8e4abad28984b9b6778775fa1479726d.pkl",
+        "cache_input_text_sha256": "672ea3d3a94e75b48b55733cf43dd04ac4b3c9beb2305501f71667cd650c9cf7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "what is often called the first global news event.",
+        "exact_native_cache_key": "7559166210355bc0b538ab39a277e5f7ace90ee1.pkl",
+        "cache_input_text_sha256": "c26d18503ed239bebdcd20274f39aa31234877b6cde6cc16c88c0d3e72626da4",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Yet early dispatches were terse; the magnitude of the devastation emerged piecemeal over days.",
+        "exact_native_cache_key": "843c4da0a3b09711bd097f51d57db53fb419e031.pkl",
+        "cache_input_text_sha256": "a4a79c66d8964c69cc0fd03a88d1e3f359f89d01f4500682548a775c9a7def71",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Yet early dispatches were terse; the magnitude of the devastation emerged piecemeal over days.",
+        "exact_native_cache_key": "5c25d85b93f02b55ba6ebfc1f881277023f71da9.pkl",
+        "cache_input_text_sha256": "a4a79c66d8964c69cc0fd03a88d1e3f359f89d01f4500682548a775c9a7def71",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Yet early dispatches were terse;",
+        "exact_native_cache_key": "1e1d0c9c221507df92741e0a6d2c378805c5f656.pkl",
+        "cache_input_text_sha256": "639ba0701e4e0db2e8e2bd18c02d10c002fca5e2f1fe0367763d9e807aea4734",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "the magnitude of the devastation emerged piecemeal over days.",
+        "exact_native_cache_key": "4c170e9240c93f3b47d1739e99589bcdca168267.pkl",
+        "cache_input_text_sha256": "2f264c07b24edbbeed0bbc41407123eaccdc352da901edf4f3e6ddd3c5a22ed1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Yet early dispatches were terse;",
+        "exact_native_cache_key": "1e1d0c9c221507df92741e0a6d2c378805c5f656.pkl",
+        "cache_input_text_sha256": "639ba0701e4e0db2e8e2bd18c02d10c002fca5e2f1fe0367763d9e807aea4734",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "the magnitude of the devastation emerged piecemeal over days.",
+        "exact_native_cache_key": "4c170e9240c93f3b47d1739e99589bcdca168267.pkl",
+        "cache_input_text_sha256": "2f264c07b24edbbeed0bbc41407123eaccdc352da901edf4f3e6ddd3c5a22ed1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Ash and sulphur dioxide, hurled tens of kilometres high, formed a haze that circled the equator in about two weeks.",
+        "exact_native_cache_key": "286ee07d560dafb2319c887ac319ddc771e19fac.pkl",
+        "cache_input_text_sha256": "a0fb07c7e10cf604f8841df9926a9f7a2938be56e8b9464c9d394e4cdd37e9d0",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Ash and sulphur dioxide, hurled tens of kilometres high, formed a haze that circled the equator in about two weeks.",
+        "exact_native_cache_key": "246f15310bd26309a021ac6ca13c4eea8191fc39.pkl",
+        "cache_input_text_sha256": "a0fb07c7e10cf604f8841df9926a9f7a2938be56e8b9464c9d394e4cdd37e9d0",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Ash and sulphur dioxide, hurled tens of kilometres high,",
+        "exact_native_cache_key": "ba1f4510f393647d72e5611fe2c17231ca0a6af4.pkl",
+        "cache_input_text_sha256": "120dbb83932cad96dfe1d4a20cb7835042d53ebb3c7cda68f60ac7cb3ff9c05c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "formed a haze that circled the equator in about two weeks.",
+        "exact_native_cache_key": "eb5db85fd87d011ffa8d6cdcb340f899d4eb2c5a.pkl",
+        "cache_input_text_sha256": "0679d5a0b6961e868a620fc5a298686d1a01214a1fcf2d9844b1a607ac185550",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Ash and sulphur dioxide,",
+        "exact_native_cache_key": "9f101767081dd130fb950446ddef8afe5d9445b4.pkl",
+        "cache_input_text_sha256": "430ba9e47725d835d5600e02252fb277529e3898f5e6f1b9bf119dd13ad8e5f1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "hurled tens of kilometres high,",
+        "exact_native_cache_key": "c45719cb52cb5bcef3bf2b33261c9b3182b661b7.pkl",
+        "cache_input_text_sha256": "fb18009049856c5b35ef4193799a63e6350c1205b57321df3d3a04c9044949de",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "formed a haze that circled the equator in about two weeks.",
+        "exact_native_cache_key": "eb5db85fd87d011ffa8d6cdcb340f899d4eb2c5a.pkl",
+        "cache_input_text_sha256": "0679d5a0b6961e868a620fc5a298686d1a01214a1fcf2d9844b1a607ac185550",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "In November 1883, crimson sunsets glowed over Europe and North America, summoning firefighters in New York and Connecticut to phantom blazes.",
+        "exact_native_cache_key": "3b8112d353381d4e4ce4f5d985fc649088f6712a.pkl",
+        "cache_input_text_sha256": "cb9989012df47efba0aac29bf51f17709e4c0b2a767c18cc451a5bd96db6380a",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "In November 1883, crimson sunsets glowed over Europe and North America, summoning firefighters in New York and Connecticut to phantom blazes.",
+        "exact_native_cache_key": "24db1430dd89aebcdcee7ad8bdf5bd3d046ab557.pkl",
+        "cache_input_text_sha256": "cb9989012df47efba0aac29bf51f17709e4c0b2a767c18cc451a5bd96db6380a",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "In November 1883, crimson sunsets glowed over Europe and North America,",
+        "exact_native_cache_key": "51a20707f9300143db4bfdca93a2da188d9c1be0.pkl",
+        "cache_input_text_sha256": "0d189b14f9256ba36796ab1154a912cd374c494537370ef8518a4dd0b4b8c6ea",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "summoning firefighters in New York and Connecticut to phantom blazes.",
+        "exact_native_cache_key": "395341d4da9d6e7b341bf1d1526aac2f4637e9ba.pkl",
+        "cache_input_text_sha256": "2236f7f96bdd5c95d0bf0579060137fab04b6cfbf452b1ea1bc8d96b0bb55d60",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "In November 1883,",
+        "exact_native_cache_key": "6dba617ad682c91581912a7aa930ba52e83b29a9.pkl",
+        "cache_input_text_sha256": "eff0ff5ef1dd0277990c4c52d9bc44e2c3b037bd5fbd78a5dd92c0f0a6124a46",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "crimson sunsets glowed over Europe and North America,",
+        "exact_native_cache_key": "7fb35643928beb6411017b5478e3b763d3153511.pkl",
+        "cache_input_text_sha256": "8c45d1bc7d7d91ba9a0c3b4e410e4c39b9b6060a9cab1ae88bda0845d0405a51",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "summoning firefighters in New York and Connecticut to phantom blazes.",
+        "exact_native_cache_key": "395341d4da9d6e7b341bf1d1526aac2f4637e9ba.pkl",
+        "cache_input_text_sha256": "2236f7f96bdd5c95d0bf0579060137fab04b6cfbf452b1ea1bc8d96b0bb55d60",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Later climate reconstructions suggest global temperatures dipped a few tenths of a degree the following year.",
+        "exact_native_cache_key": "777330d2a687923b04895466e601627e044919a0.pkl",
+        "cache_input_text_sha256": "3ac76279fc45bc2375a2dcad012b162723e6675f467da782d31f8685ee501daf",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Later climate reconstructions suggest global temperatures dipped a few tenths of a degree the following year.",
+        "exact_native_cache_key": "23b36287a144c39544a3bb8bcdd80355f0c9e65f.pkl",
+        "cache_input_text_sha256": "3ac76279fc45bc2375a2dcad012b162723e6675f467da782d31f8685ee501daf",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Later climate reconstructions suggest",
+        "exact_native_cache_key": "10924b4592a5f5b7a3aa5a81d7f6405a039800d8.pkl",
+        "cache_input_text_sha256": "599f77f0d2174995c4287db90a357accbe0e466dea38c97f028ac1ee6e3cdb5c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "global temperatures dipped a few tenths of a degree the following year.",
+        "exact_native_cache_key": "c3a14f6196b148bd3e6ec8829f3c600af045a85b.pkl",
+        "cache_input_text_sha256": "8813b44fe8ccc87168c2488686f0f7fd726eb2df7799cca92aea559c3f83bfeb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Some experts discounted the volcanic explanation, blaming the sunsets on moisture at high altitude or cosmic dust.",
+        "exact_native_cache_key": "ae00245f4f207395cee91a049bedde3f43f671ad.pkl",
+        "cache_input_text_sha256": "c9dec289589c87eb7d48ce2f1c29f58735fd25dad35616a421f920e7031510ea",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Some experts discounted the volcanic explanation, blaming the sunsets on moisture at high altitude or cosmic dust.",
+        "exact_native_cache_key": "5360238d2fd3cd6c47560127b59dfa11c69824f8.pkl",
+        "cache_input_text_sha256": "c9dec289589c87eb7d48ce2f1c29f58735fd25dad35616a421f920e7031510ea",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Some experts discounted the volcanic explanation,",
+        "exact_native_cache_key": "b35aed821498e73e336df4dad274b1f8173cd02f.pkl",
+        "cache_input_text_sha256": "a2c40d6c49fd43a1df7b9ab5a855b3586e5cfdb87868f1bddd711756e79433ab",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "blaming the sunsets on moisture at high altitude or cosmic dust.",
+        "exact_native_cache_key": "0cdd7fe89413b04779e49976a87829757b8d0d98.pkl",
+        "cache_input_text_sha256": "df4f8bd909c9636cb823594ac1c77ec7a8be6b63b89f0e99d0c37e8a10355157",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Some experts discounted the volcanic explanation,",
+        "exact_native_cache_key": "b35aed821498e73e336df4dad274b1f8173cd02f.pkl",
+        "cache_input_text_sha256": "a2c40d6c49fd43a1df7b9ab5a855b3586e5cfdb87868f1bddd711756e79433ab",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "blaming the sunsets on moisture at high altitude or cosmic dust.",
+        "exact_native_cache_key": "0cdd7fe89413b04779e49976a87829757b8d0d98.pkl",
+        "cache_input_text_sha256": "df4f8bd909c9636cb823594ac1c77ec7a8be6b63b89f0e99d0c37e8a10355157",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "In February 1884, Britain's Royal Society appealed in The Times for dated observations, eliciting worldwide replies; the Society's 1888 report tied the glow to Krakatoa.",
+        "exact_native_cache_key": "b584d09f37a3c8c2425fcd5b0095a035ec77f439.pkl",
+        "cache_input_text_sha256": "6504fdc2414265d3a15d9e545b6f32fbfaa5363b29884f7bb1047b0ec8f03fb6",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "In February 1884, Britain's Royal Society appealed in The Times for dated observations, eliciting worldwide replies; the Society's 1888 report tied the glow to Krakatoa.",
+        "exact_native_cache_key": "8f56c32ca774c5a7b120bbb519c85097296cc53e.pkl",
+        "cache_input_text_sha256": "6504fdc2414265d3a15d9e545b6f32fbfaa5363b29884f7bb1047b0ec8f03fb6",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "In February 1884, Britain's Royal Society appealed in The Times for dated observations,",
+        "exact_native_cache_key": "39654e4a1a3e50f52bd84bd44315e949907d7e3f.pkl",
+        "cache_input_text_sha256": "745f7d1939c50759dfe3c98f0bdfd80c4ea4d41d58a587bc43163dfaacb10f74",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "eliciting worldwide replies;",
+        "exact_native_cache_key": "a6249c6baf12d6ea382c18834989fc467ab54dfa.pkl",
+        "cache_input_text_sha256": "f6203ce51ff048ce7c4b411157608d9bff557208d47d81810822a3ad1dbf42b4",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "the Society's 1888 report tied the glow to Krakatoa.",
+        "exact_native_cache_key": "8ecf9544caecd89938c4adbe1891af22091b88d3.pkl",
+        "cache_input_text_sha256": "fe4cf086db3f7ae23b7f0c5b1d21890797d03b2b7a2ce03395593decabfae871",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "In February 1884,",
+        "exact_native_cache_key": "0e964651299231ce36fba3aa2ea49a0965413a4a.pkl",
+        "cache_input_text_sha256": "abcb5962498219ec7438795cf00a9b4449c980252886b0f8069cd87b40a83835",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Britain's Royal Society appealed in The Times for dated observations,",
+        "exact_native_cache_key": "0a9e2a0b6b48f2e6c8e3e7962efa50527bf44046.pkl",
+        "cache_input_text_sha256": "26f55140859e525c48d99c6785cba99b26b69d9bc0380679e9bc964c5d75da1e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "eliciting worldwide replies;",
+        "exact_native_cache_key": "a6249c6baf12d6ea382c18834989fc467ab54dfa.pkl",
+        "cache_input_text_sha256": "f6203ce51ff048ce7c4b411157608d9bff557208d47d81810822a3ad1dbf42b4",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "the Society's 1888 report tied the glow to Krakatoa.",
+        "exact_native_cache_key": "8ecf9544caecd89938c4adbe1891af22091b88d3.pkl",
+        "cache_input_text_sha256": "fe4cf086db3f7ae23b7f0c5b1d21890797d03b2b7a2ce03395593decabfae871",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Through barometers, cables, and crimson skies, far-flung observers began to glimpse how interconnected the planet already was.",
+        "exact_native_cache_key": "eadeb613eb24b83f8cf3b3bac9eaf9909185bc95.pkl",
+        "cache_input_text_sha256": "0df6f2dfc2bad91ca2a1c6835ae4cb37861bd4dfcca862785e2442a91793d836",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Through barometers, cables, and crimson skies, far-flung observers began to glimpse how interconnected the planet already was.",
+        "exact_native_cache_key": "2805abd384de31c072fe799f34438d00c0ee7728.pkl",
+        "cache_input_text_sha256": "0df6f2dfc2bad91ca2a1c6835ae4cb37861bd4dfcca862785e2442a91793d836",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Through barometers, cables, and crimson skies,",
+        "exact_native_cache_key": "1d0538ed2745e2a28195ddf4d3867fb27c2fa546.pkl",
+        "cache_input_text_sha256": "468961ff53d2bc96c176800acac6d12a66ca2fcb2f52249f733ae1fa8ef0184d",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "far-flung observers began to glimpse",
+        "exact_native_cache_key": "51c0c164f7710cac19953625a51f6c429622d974.pkl",
+        "cache_input_text_sha256": "158fe5516da24d40cdecb5f3640c002091a7875ad07b086580d7d572307d8062",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "how interconnected the planet already was.",
+        "exact_native_cache_key": "a98055cb0fd8ada61c355637374554130099c32b.pkl",
+        "cache_input_text_sha256": "8a3afb3d340288137761521e9eb1b583ce2ae753ec14e70bc1c775984c70412b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Through barometers,",
+        "exact_native_cache_key": "36f1d5747c25547a931eba2fafef84304816cab0.pkl",
+        "cache_input_text_sha256": "1cb0cb2ea34b0146b3e569f5a89911a4b4a98d7dde696a89e43c4e8217068649",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "cables,",
+        "exact_native_cache_key": "bb48e5db657480ab961a01edab5400e18bd34e0d.pkl",
+        "cache_input_text_sha256": "f8cb627812af78458b6953be12c5d8f9eb092c3e62af6b51195fdc2d5b50cbda",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and crimson skies,",
+        "exact_native_cache_key": "701be60850b0de58b495c350be9a8c12f54e6710.pkl",
+        "cache_input_text_sha256": "1958b88447f579e4f567973884182a4ef54900a5da7f1f361b1889fb3acf1b81",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "far-flung observers began to glimpse how interconnected the planet already was.",
+        "exact_native_cache_key": "dd3e745c593a96df9154a6ce21790f6b96e824fc.pkl",
+        "cache_input_text_sha256": "4b73618fd779b255e8af12b001daaa94e3932e4c1fe6cc1bcecbbadce7ef8c71",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      }
+    ],
+    "unique_reference_key_count": 88,
+    "raw_mother_cache_scalar_manifest": [
+      {
+        "exact_native_cache_key": "5ad6472656af690ce575c54e72850f70a4dc6505.pkl",
+        "pkl_sha256": "de40674bac94c979c85e38acca45ce540deb639564d24a34123c91bf1e3344a8",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "标题",
+            "piece": null,
+            "reference_kind": "title-default-raw",
+            "method": "create",
+            "source_slice": "The Sound That Shook the World",
+            "exact_native_cache_key": "5ad6472656af690ce575c54e72850f70a4dc6505.pkl",
+            "cache_input_text_sha256": "4f18ba93186257ffe9bfd2ff2fcb831bb7498ceaa6afa6ced67a2711d1fe1281",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "de40674bac94c979",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          37376
+        ],
+        "unprocessed_array_sha256": "6eecad52d3ed0d0bc0598058c39d6dd3df8bd2a3960ed85c148103f8fec2c665"
+      },
+      {
+        "exact_native_cache_key": "8a98dab1208290685f6b5427d531f423b67ec7ad.pkl",
+        "pkl_sha256": "5edf60091d88db750a16f96bcdd0fb89e1b43f297c992bfd3ba0aa5e93a88906",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Shortly after ten in the morning on 27 August 1883, Krakatoa, a volcanic island in the Sunda Strait, unleashed its most thunderous explosion.",
+            "exact_native_cache_key": "8a98dab1208290685f6b5427d531f423b67ec7ad.pkl",
+            "cache_input_text_sha256": "afa89a574ab671a8820eeaa5dcd8fdc15575679bb896baeb8ba90a439a3a391d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "5edf60091d88db75",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          286720
+        ],
+        "unprocessed_array_sha256": "e5557f969f72cdf2048bfa6c540a678733069d283ab164127e04cac32086786a"
+      },
+      {
+        "exact_native_cache_key": "eb6f333c2b994001115f367bfd2cb3a4920fc857.pkl",
+        "pkl_sha256": "df4451567cd231c68e1b250d4b82a391648210a3cf287345e227d6ad845c120e",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Shortly after ten in the morning on 27 August 1883,",
+            "exact_native_cache_key": "eb6f333c2b994001115f367bfd2cb3a4920fc857.pkl",
+            "cache_input_text_sha256": "8b27a2544d288807fd3907d838ce9d356ba7964dad5d2b3851ab1c808c2f2c8e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S1",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Shortly after ten in the morning on 27 August 1883,",
+            "exact_native_cache_key": "eb6f333c2b994001115f367bfd2cb3a4920fc857.pkl",
+            "cache_input_text_sha256": "8b27a2544d288807fd3907d838ce9d356ba7964dad5d2b3851ab1c808c2f2c8e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "df4451567cd231c6",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          120832
+        ],
+        "unprocessed_array_sha256": "2e2415b899ad7b7b6d720924aaea4f9147382dca0fb58c2567e12324ebdff396"
+      },
+      {
+        "exact_native_cache_key": "784c5da88fecf86215faae1a167a7f9df46a5f65.pkl",
+        "pkl_sha256": "3a3353559d080140a6e0a446bd96f813fd8cd1410a063a7fe6be108aab030bd4",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Krakatoa, a volcanic island in the Sunda Strait,",
+            "exact_native_cache_key": "784c5da88fecf86215faae1a167a7f9df46a5f65.pkl",
+            "cache_input_text_sha256": "4c722c332f139133b7e9bb6fb273759e27b0751b65b16f8eeb796422747940a1",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "3a3353559d080140",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          79872
+        ],
+        "unprocessed_array_sha256": "316feabca5b9833101d335b532eef3f467fd35b7455bfe5eb621d8d4d3058306"
+      },
+      {
+        "exact_native_cache_key": "4a612d30ea8a6264247c63b51474ec3f57c4b934.pkl",
+        "pkl_sha256": "e67de0eb451f040c8ca6a006387d128da77c83137cf4c6b86c687fc27e7f4e28",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "unleashed its most thunderous explosion.",
+            "exact_native_cache_key": "4a612d30ea8a6264247c63b51474ec3f57c4b934.pkl",
+            "cache_input_text_sha256": "3d46e1e01d63a759121bc849e93e948350a1edf6cca6c831c8226feee6a22eda",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S1",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "unleashed its most thunderous explosion.",
+            "exact_native_cache_key": "4a612d30ea8a6264247c63b51474ec3f57c4b934.pkl",
+            "cache_input_text_sha256": "3d46e1e01d63a759121bc849e93e948350a1edf6cca6c831c8226feee6a22eda",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "e67de0eb451f040c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          58368
+        ],
+        "unprocessed_array_sha256": "b6c07a606ec2faadc61751e95ef42f30075ae5a112b9f311d81a2ad9aa0a13da"
+      },
+      {
+        "exact_native_cache_key": "75ead62102f09f8bc97e29263813c9dc2fc6fcaa.pkl",
+        "pkl_sha256": "739a885be9358316389b04d1012622d710245e929c3ef6df64a4361d4e325392",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Krakatoa,",
+            "exact_native_cache_key": "75ead62102f09f8bc97e29263813c9dc2fc6fcaa.pkl",
+            "cache_input_text_sha256": "99dafcf8f5bce4fef8549a9a800028e789288721b608ca0b67ebe683659af23a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "739a885be9358316",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          24576
+        ],
+        "unprocessed_array_sha256": "d9104d8839ff5d3e4abf950bbc252f1132db53c3b6fd6bf5a6554715e265b3e8"
+      },
+      {
+        "exact_native_cache_key": "8dc7f031561cf9a27fb70acbe964eaafab9273d5.pkl",
+        "pkl_sha256": "0d102bfe0b23461e4b211c413534adb4818d89a688d6afe9e02b6ff15f89b16d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "a volcanic island in the Sunda Strait,",
+            "exact_native_cache_key": "8dc7f031561cf9a27fb70acbe964eaafab9273d5.pkl",
+            "cache_input_text_sha256": "7bf1335f3fbc6f6386119e648da0f183c9979b84b008ee357e3c75cc6e13bf8e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "0d102bfe0b23461e",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          57344
+        ],
+        "unprocessed_array_sha256": "ab14ed3e26495b150752ede9fb09fd9c2b9e450cbbe0017774cffb4b3845608a"
+      },
+      {
+        "exact_native_cache_key": "ccfb0d8066dc9916ad8be0e653188fad1f2b8556.pkl",
+        "pkl_sha256": "a7475c4814c1875104557b61fe8284182f773c8d27eb48d695ba3dfca70fb843",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "About four hours later, islanders on Rodrigues, nearly 4,800 kilometres across the Indian Ocean, took the roar for distant gunfire.",
+            "exact_native_cache_key": "ccfb0d8066dc9916ad8be0e653188fad1f2b8556.pkl",
+            "cache_input_text_sha256": "46be651e5c8a67b13b6c1511158a7cb97c4a04dc5fd0cdb011165db2aac254cd",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "a7475c4814c18751",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          256512
+        ],
+        "unprocessed_array_sha256": "fadb958898d0eeb39360f9c53068b0904a70e8a99b2834267c4b07f0348103ba"
+      },
+      {
+        "exact_native_cache_key": "49b940f51a5623257fc99c4b7af920d34b73f3e7.pkl",
+        "pkl_sha256": "2831714b9e43bd3cedab7da9487e1f6ed83be05e01259eb66b72926fede9dd60",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "About four hours later, islanders on Rodrigues,",
+            "exact_native_cache_key": "49b940f51a5623257fc99c4b7af920d34b73f3e7.pkl",
+            "cache_input_text_sha256": "317f7d78ef96b75eb60b5016957e5b9e4b443b04a5a976634f9ea46a771802db",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "2831714b9e43bd3c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          78848
+        ],
+        "unprocessed_array_sha256": "5bef7a6d85c22837cd24a0fc12c7e065a3bd6c80a5273a8d1451721d8499e874"
+      },
+      {
+        "exact_native_cache_key": "7ef3c218204fd4074e40a0884e7a63fd47fb8d51.pkl",
+        "pkl_sha256": "b6ffd55cf10c3a9543855f843f5853e7a538ff639fbdc8e1a4afa265c0ae167d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "nearly 4,800 kilometres across the Indian Ocean,",
+            "exact_native_cache_key": "7ef3c218204fd4074e40a0884e7a63fd47fb8d51.pkl",
+            "cache_input_text_sha256": "5c590f850b233899c33b713a098827f0fd293ff97d0dd4e3b12d8a6851492a95",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S2",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "nearly 4,800 kilometres across the Indian Ocean,",
+            "exact_native_cache_key": "7ef3c218204fd4074e40a0884e7a63fd47fb8d51.pkl",
+            "cache_input_text_sha256": "5c590f850b233899c33b713a098827f0fd293ff97d0dd4e3b12d8a6851492a95",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "b6ffd55cf10c3a95",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          97792
+        ],
+        "unprocessed_array_sha256": "0ca1762f47e97ac6066caaba27e50d762ade7fe0b46dcb8b02d5daec49a7b294"
+      },
+      {
+        "exact_native_cache_key": "0a3851f855a1654f8b45592559f47896b630c3e3.pkl",
+        "pkl_sha256": "8e54e73d5042e695e065b07afc5e3498760253fd8e65d53bf4803c7e5bfcdb84",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "took the roar for distant gunfire.",
+            "exact_native_cache_key": "0a3851f855a1654f8b45592559f47896b630c3e3.pkl",
+            "cache_input_text_sha256": "ec5ac0df84b90557537a63dfd446094de6776440633966a0328dca49fd7b2ad5",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S2",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "took the roar for distant gunfire.",
+            "exact_native_cache_key": "0a3851f855a1654f8b45592559f47896b630c3e3.pkl",
+            "cache_input_text_sha256": "ec5ac0df84b90557537a63dfd446094de6776440633966a0328dca49fd7b2ad5",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "8e54e73d5042e695",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          50176
+        ],
+        "unprocessed_array_sha256": "a9376928a65be6d5300dad3c667639dd275dbb2109fcf428decce4d71ebd6643"
+      },
+      {
+        "exact_native_cache_key": "12a2583383d96e2d3d84959653d6e3a23fa770ed.pkl",
+        "pkl_sha256": "b7cadf7431621575885a09fc48115d456efb461f28252a27f2381c79401cc286",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "About four hours later,",
+            "exact_native_cache_key": "12a2583383d96e2d3d84959653d6e3a23fa770ed.pkl",
+            "cache_input_text_sha256": "db4d22320ca4de6819646486e2e93bd84927607de0f7343bc02d1815b079bbaa",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "b7cadf7431621575",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          35840
+        ],
+        "unprocessed_array_sha256": "ebb63a707dc8435be0b4266825e3de8938f7f17ecbf0d320096681bfe9ec2ef1"
+      },
+      {
+        "exact_native_cache_key": "7c02c0cb77e094ce36ce2cea969c13457dcbffa1.pkl",
+        "pkl_sha256": "a2584bec2c1c17304d47122e597f1ee545e0b305ffdf56e96da7de164fd5afdb",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "islanders on Rodrigues,",
+            "exact_native_cache_key": "7c02c0cb77e094ce36ce2cea969c13457dcbffa1.pkl",
+            "cache_input_text_sha256": "945f3ee0eccd79bf919653a4c933e721d4559b098437bcefa4543c53e4657785",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "a2584bec2c1c1730",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          39936
+        ],
+        "unprocessed_array_sha256": "dcd7e5dc64f88286e682a457eb9ae5d76a1aa496e46e5812438be266eb359fb2"
+      },
+      {
+        "exact_native_cache_key": "aa4cea1669557c297d7c3cfaa87f67142fd4f5e2.pkl",
+        "pkl_sha256": "28f967c97b158f118e674769decaf7a60b7d93bf4ca3631fc1362c35c4f5b27b",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Barometers worldwide recorded the atmospheric pressure wave, some of them seven times in about five days.",
+            "exact_native_cache_key": "aa4cea1669557c297d7c3cfaa87f67142fd4f5e2.pkl",
+            "cache_input_text_sha256": "7ee446927155ec9cfe28a3603b3123b78132f01c1e8e75ee5312ae68a5feace8",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "28f967c97b158f11",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          172032
+        ],
+        "unprocessed_array_sha256": "857d91c6dc37fb7f2c7e861299032359e3f718b5ee7d43e66fec8ab31f51abc7"
+      },
+      {
+        "exact_native_cache_key": "80d4742ad91e1974580854180dd757b9d00a3565.pkl",
+        "pkl_sha256": "e7f8dc18f6f31133f7e8389fdc57a2f873d834dbf80e4c2b713e128427910b69",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Barometers worldwide recorded the atmospheric pressure wave,",
+            "exact_native_cache_key": "80d4742ad91e1974580854180dd757b9d00a3565.pkl",
+            "cache_input_text_sha256": "fac41735f331346aeb4531d3991ffdb4af65f32e560171acacfae41959668d22",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S3",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Barometers worldwide recorded the atmospheric pressure wave,",
+            "exact_native_cache_key": "80d4742ad91e1974580854180dd757b9d00a3565.pkl",
+            "cache_input_text_sha256": "fac41735f331346aeb4531d3991ffdb4af65f32e560171acacfae41959668d22",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "e7f8dc18f6f31133",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          91136
+        ],
+        "unprocessed_array_sha256": "3fb5d7c5ab7e5e0a0079b5c09006b0f3c1a22a906e6087712fe4589e404a5f4d"
+      },
+      {
+        "exact_native_cache_key": "a5d546fd15f1e24bb0b0d02b2f1ed71f8ec29a02.pkl",
+        "pkl_sha256": "05b6e27d40c365375faf2118cd5f73eed1c5d183a2bd9ee9187c5fe2ea7e40f0",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "some of them seven times in about five days.",
+            "exact_native_cache_key": "a5d546fd15f1e24bb0b0d02b2f1ed71f8ec29a02.pkl",
+            "cache_input_text_sha256": "0a520fdea607b8ead58a080adb4f7f8d9d00563a947c634a6ea35b80a3853806",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S3",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "some of them seven times in about five days.",
+            "exact_native_cache_key": "a5d546fd15f1e24bb0b0d02b2f1ed71f8ec29a02.pkl",
+            "cache_input_text_sha256": "0a520fdea607b8ead58a080adb4f7f8d9d00563a947c634a6ea35b80a3853806",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "05b6e27d40c36537",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          68096
+        ],
+        "unprocessed_array_sha256": "87d285ebeae161eccc3190ebccf55d03a58f6f16814bdedc85d35875d96a7b5d"
+      },
+      {
+        "exact_native_cache_key": "0a380bb9415497cf83b3ccf8f1a39e776542bdad.pkl",
+        "pkl_sha256": "bc002fb01580fac2eec734673d0c751e7cec8c5e0995fd85fa8ecc8a8cf1638f",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Restless since 20 May, the volcano reached a catastrophic climax on 26–27 August.",
+            "exact_native_cache_key": "0a380bb9415497cf83b3ccf8f1a39e776542bdad.pkl",
+            "cache_input_text_sha256": "44f5c74247bfc5eb2b545209f12cfaff4ea06f25aa4687fa0bd3dbd51163d839",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "bc002fb01580fac2",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          194560
+        ],
+        "unprocessed_array_sha256": "284797d8e79a3e3593d42fa0e97d62f08b66ddb7a2ce579b635e06102eb081a2"
+      },
+      {
+        "exact_native_cache_key": "0c483510198d97847a40a2f62e52dc48f416d251.pkl",
+        "pkl_sha256": "118bf6a5c5b32975337826390b7545917a3447460075bedec00c59399fbc6ac3",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Restless since 20 May,",
+            "exact_native_cache_key": "0c483510198d97847a40a2f62e52dc48f416d251.pkl",
+            "cache_input_text_sha256": "21b669da3b2489b01086c6f61680b32f8d724f85b995f270a68d87419fa1f534",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S4",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Restless since 20 May,",
+            "exact_native_cache_key": "0c483510198d97847a40a2f62e52dc48f416d251.pkl",
+            "cache_input_text_sha256": "21b669da3b2489b01086c6f61680b32f8d724f85b995f270a68d87419fa1f534",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "118bf6a5c5b32975",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          44544
+        ],
+        "unprocessed_array_sha256": "6ebe6dcba8452337422a90208aeb9c682f7142f4c402fdf26ce5df9767a13eb9"
+      },
+      {
+        "exact_native_cache_key": "4cf5a4d62ee800b61155d7c311a52b28445c068f.pkl",
+        "pkl_sha256": "7b6eff47de376c3fcfcc0c7fd4561a665b3584e632d9d5f672afcc6f562a2954",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "the volcano reached a catastrophic climax on 26–27 August.",
+            "exact_native_cache_key": "4cf5a4d62ee800b61155d7c311a52b28445c068f.pkl",
+            "cache_input_text_sha256": "d6fc451f80eb72ea0057d6c804be51e87670a1da60253a1b996eee2bb61ca2c6",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S4",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "the volcano reached a catastrophic climax on 26–27 August.",
+            "exact_native_cache_key": "4cf5a4d62ee800b61155d7c311a52b28445c068f.pkl",
+            "cache_input_text_sha256": "d6fc451f80eb72ea0057d6c804be51e87670a1da60253a1b996eee2bb61ca2c6",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "7b6eff47de376c3f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          138240
+        ],
+        "unprocessed_array_sha256": "c04958fa06386872600974d8b9f3331d32397ada94395e91ad1e57c15d4dd689"
+      },
+      {
+        "exact_native_cache_key": "6760cc1300148f0f002615ae0d71725b131e7fb1.pkl",
+        "pkl_sha256": "f23c8345ce53e19b81fda1968e09707ea40adcca77be21c0a5bf4e0c8a1f968c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "About two-thirds of the island collapsed into its emptied magma chamber, vanishing beneath the sea.",
+            "exact_native_cache_key": "6760cc1300148f0f002615ae0d71725b131e7fb1.pkl",
+            "cache_input_text_sha256": "718879d42646b04bde680c35b6ade726898fd21ff339c57608d9de0eb8d48b29",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "f23c8345ce53e19b",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          146944
+        ],
+        "unprocessed_array_sha256": "923da49d71d98dc2b1c6263908d19955626a9f01f25efb9db98ab3cbe7aa13e1"
+      },
+      {
+        "exact_native_cache_key": "5090ad9555c1d18c799a57a34b7520c1c22261b8.pkl",
+        "pkl_sha256": "903983cad6d130ea189bb760679d8ddedd8ca98f1c1cc1de06664432a5460d9a",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "About two-thirds of the island collapsed into its emptied magma chamber,",
+            "exact_native_cache_key": "5090ad9555c1d18c799a57a34b7520c1c22261b8.pkl",
+            "cache_input_text_sha256": "30a876550b92884fedb8226122415952db45b39c11233b9c22cc94b69b9df4a7",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S5",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "About two-thirds of the island collapsed into its emptied magma chamber,",
+            "exact_native_cache_key": "5090ad9555c1d18c799a57a34b7520c1c22261b8.pkl",
+            "cache_input_text_sha256": "30a876550b92884fedb8226122415952db45b39c11233b9c22cc94b69b9df4a7",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "903983cad6d130ea",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          105984
+        ],
+        "unprocessed_array_sha256": "0f200dbffb211529321d50e5d9d748c859595d4dcef67e7e2744cb5bcd479994"
+      },
+      {
+        "exact_native_cache_key": "705ddc30511ef51caaaf08ae935b58a492647040.pkl",
+        "pkl_sha256": "6dc6858ec3829902ce70211bfd99e8628d0d7d95b09a5d898f88700f4316bcad",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "vanishing beneath the sea.",
+            "exact_native_cache_key": "705ddc30511ef51caaaf08ae935b58a492647040.pkl",
+            "cache_input_text_sha256": "a1d597076bd102fb6c31dd3c0b0e222dc5cdf2d70c73c5d560fcaafe17ac9955",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S5",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "vanishing beneath the sea.",
+            "exact_native_cache_key": "705ddc30511ef51caaaf08ae935b58a492647040.pkl",
+            "cache_input_text_sha256": "a1d597076bd102fb6c31dd3c0b0e222dc5cdf2d70c73c5d560fcaafe17ac9955",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "6dc6858ec3829902",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          37376
+        ],
+        "unprocessed_array_sha256": "769285feb3678bb6e5877a480f9d23fc92ba2fcea3abadaf0a5a152c55c20fb5"
+      },
+      {
+        "exact_native_cache_key": "a737a6bd81c222f4a912323556cc656f7dbde97f.pkl",
+        "pkl_sha256": "799e58a14fdc8953ae6fc52d855a4565a39c757c7c28ea8f4463600becd0af66",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Tsunamis, reportedly over 30 metres high in places, swamped coastal settlements on Java and Sumatra.",
+            "exact_native_cache_key": "a737a6bd81c222f4a912323556cc656f7dbde97f.pkl",
+            "cache_input_text_sha256": "575665755d9c8ffa6a9e59c441697f492f45c1d26e9c94e32536553261fead92",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "799e58a14fdc8953",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          179712
+        ],
+        "unprocessed_array_sha256": "724010c16e1896c7c02f1385a70ed2717adc15dcbfe7a954a059b5ad04bbe02e"
+      },
+      {
+        "exact_native_cache_key": "9a453cb5f20cb48532131fc47893443021a42449.pkl",
+        "pkl_sha256": "6408bc94f71b99636c42d43aedc8f40896ccabb24d85d96072f1fe59e266693e",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Tsunamis, reportedly over 30 metres high in places,",
+            "exact_native_cache_key": "9a453cb5f20cb48532131fc47893443021a42449.pkl",
+            "cache_input_text_sha256": "07e670e297a7b7178e693ad4d542b5ca6faee8620571abc2e46eaad71d9948ea",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "6408bc94f71b9963",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          91136
+        ],
+        "unprocessed_array_sha256": "ed32044efe0dee40a4fad4d23f3e0cd50566a58c8ecc56ef241f7ea65d054792"
+      },
+      {
+        "exact_native_cache_key": "c296869c08e7971bad6a93a111d702b7e72c51b7.pkl",
+        "pkl_sha256": "7f853bf6bec69f81640794a5e862b6b1753a0064fdb2b8ba6a9b762eedaccf05",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "swamped coastal settlements on Java and Sumatra.",
+            "exact_native_cache_key": "c296869c08e7971bad6a93a111d702b7e72c51b7.pkl",
+            "cache_input_text_sha256": "9491722958416ae790bbd61b03d597c88c3ec54c6d48afac75ee95c90821458f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S6",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "swamped coastal settlements on Java and Sumatra.",
+            "exact_native_cache_key": "c296869c08e7971bad6a93a111d702b7e72c51b7.pkl",
+            "cache_input_text_sha256": "9491722958416ae790bbd61b03d597c88c3ec54c6d48afac75ee95c90821458f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "7f853bf6bec69f81",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          75264
+        ],
+        "unprocessed_array_sha256": "302dcedf6f191332a188a75bf6c661039601a50dbebde4b17bc86ed389b6b838"
+      },
+      {
+        "exact_native_cache_key": "ed2905f554144e2fde21142bcc1b100655e1079d.pkl",
+        "pkl_sha256": "33f6bf853cce550ff522d584d9682e8a716213a8c6de57e029046b3178fb9609",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Tsunamis,",
+            "exact_native_cache_key": "ed2905f554144e2fde21142bcc1b100655e1079d.pkl",
+            "cache_input_text_sha256": "a0ee339a0271c7256eb6ddce995931adabc89741f7fdf415b336685455a55ab6",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "33f6bf853cce550f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          23040
+        ],
+        "unprocessed_array_sha256": "83b1999b8c36e9fa657ea7bd594b527c7a38ff11e8975584300b49a9ac63f727"
+      },
+      {
+        "exact_native_cache_key": "e2bc33f6321718ac0f5ce1c37ecaccccc9e01307.pkl",
+        "pkl_sha256": "7a4413af89c542b9e2aaf6b83c2cac584321b59668f97befd05b1400860c2199",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "reportedly over 30 metres high in places,",
+            "exact_native_cache_key": "e2bc33f6321718ac0f5ce1c37ecaccccc9e01307.pkl",
+            "cache_input_text_sha256": "fa1936952003487e7913de23fcf5c6a564b1af6f8b85b5b99fbd7f800bfa6ad3",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "7a4413af89c542b9",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          71168
+        ],
+        "unprocessed_array_sha256": "ee5dd2c07d98f127502b4757aa88ffa8f7336bfa93a5715aff2c5abddca26bb4"
+      },
+      {
+        "exact_native_cache_key": "db4cf2cbf52466d174660421ec9358a5dcb2c2e6.pkl",
+        "pkl_sha256": "f2f9c01040ac9cfafa7a964be135374957f917a56c40a599fde78bcb994daf8c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Dutch colonial administrators counted 36,417 dead, mostly drowned, perhaps underestimating the toll.",
+            "exact_native_cache_key": "db4cf2cbf52466d174660421ec9358a5dcb2c2e6.pkl",
+            "cache_input_text_sha256": "d3153b10e4e89a41a83b4064ec9f8f2d93fd520a8f1713baba31a41d3b65d367",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "f2f9c01040ac9cfa",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          226304
+        ],
+        "unprocessed_array_sha256": "051f3871eac3083eef98b9ecf4e8eb01f292e63887d3ab018139219d04b4fed7"
+      },
+      {
+        "exact_native_cache_key": "627fc669d525e8acfde75182aa959f5e3b25e88e.pkl",
+        "pkl_sha256": "fa9d24f7078645603089ae155b6cc5aef9a52c9c2934582b1354b72605a2e6c9",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Dutch colonial administrators counted 36,417 dead,",
+            "exact_native_cache_key": "627fc669d525e8acfde75182aa959f5e3b25e88e.pkl",
+            "cache_input_text_sha256": "9f4efe779772b749f9e47b05f026f7df2cd3f5cb1212886e171eabc58aba7016",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S7",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Dutch colonial administrators counted 36,417 dead,",
+            "exact_native_cache_key": "627fc669d525e8acfde75182aa959f5e3b25e88e.pkl",
+            "cache_input_text_sha256": "9f4efe779772b749f9e47b05f026f7df2cd3f5cb1212886e171eabc58aba7016",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "fa9d24f707864560",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          123392
+        ],
+        "unprocessed_array_sha256": "754a54b935c8470371d68e724d0d8541070304283b314a5fc900e51c61564b71"
+      },
+      {
+        "exact_native_cache_key": "7cecb168d76b22b709d8d1a5b09034a3cd950c5d.pkl",
+        "pkl_sha256": "1db89c0f52ad8d906ea10deeed8d64430e2b8a39deedbcd830dc0a815db60a80",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "mostly drowned,",
+            "exact_native_cache_key": "7cecb168d76b22b709d8d1a5b09034a3cd950c5d.pkl",
+            "cache_input_text_sha256": "4ebe16c0c530aefa5c1a08fe4acad2fe5489616ed21ccda5861fdc4e81be519e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S7",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "mostly drowned,",
+            "exact_native_cache_key": "7cecb168d76b22b709d8d1a5b09034a3cd950c5d.pkl",
+            "cache_input_text_sha256": "4ebe16c0c530aefa5c1a08fe4acad2fe5489616ed21ccda5861fdc4e81be519e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "1db89c0f52ad8d90",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          26112
+        ],
+        "unprocessed_array_sha256": "854e974abcdcfc9e1d13b490d148f0210a9b60afbea0e0f8876b1e895d788718"
+      },
+      {
+        "exact_native_cache_key": "7da007b111942821c3eda703ade02332fcff7fb3.pkl",
+        "pkl_sha256": "41c2777653b87282f92a936e526e22962b75be1f85092f107cf74da3cf955959",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "perhaps underestimating the toll.",
+            "exact_native_cache_key": "7da007b111942821c3eda703ade02332fcff7fb3.pkl",
+            "cache_input_text_sha256": "3bb3296391e5126e285316a473e8647ea10e89a2291313a270aee30988ff04ed",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S7",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "perhaps underestimating the toll.",
+            "exact_native_cache_key": "7da007b111942821c3eda703ade02332fcff7fb3.pkl",
+            "cache_input_text_sha256": "3bb3296391e5126e285316a473e8647ea10e89a2291313a270aee30988ff04ed",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "41c2777653b87282",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          48640
+        ],
+        "unprocessed_array_sha256": "d1c6b7976486d7b9c4d94c8b6715f7ec24abc54dd542bb3eb8c8827d1f5c21dc"
+      },
+      {
+        "exact_native_cache_key": "c9734a9927f34c38911d4467e08758f8873719f5.pkl",
+        "pkl_sha256": "699da0ee59f4a3b233dae0f4fdc4cd49c3894a727c7d9313b98bc54ab6b01062",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Telegrams from Batavia (now Jakarta), relayed by submarine cable, reached London within hours.",
+            "exact_native_cache_key": "c9734a9927f34c38911d4467e08758f8873719f5.pkl",
+            "cache_input_text_sha256": "275857bd39cda9fdb3294eca0577be031da4e2fb0bb92a54a54305fb09accd95",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "699da0ee59f4a3b2",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          168960
+        ],
+        "unprocessed_array_sha256": "4580673bdb3e2e7fc9b6d46cc4c5075f387860fecf08d21ebefd6132c4fa3086"
+      },
+      {
+        "exact_native_cache_key": "7d114855cb65ca883b8fd2da70adeccf743d8762.pkl",
+        "pkl_sha256": "93709908745f612967e9da5ea246001d9996f8df1b1df06ae9ebdc34925853fb",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Telegrams from Batavia (now Jakarta),",
+            "exact_native_cache_key": "7d114855cb65ca883b8fd2da70adeccf743d8762.pkl",
+            "cache_input_text_sha256": "82a8e3c4fc6ccc14396430ef8556f9c9f8444010d64f357a97d62c2ded653440",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S8",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Telegrams from Batavia (now Jakarta),",
+            "exact_native_cache_key": "7d114855cb65ca883b8fd2da70adeccf743d8762.pkl",
+            "cache_input_text_sha256": "82a8e3c4fc6ccc14396430ef8556f9c9f8444010d64f357a97d62c2ded653440",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "93709908745f6129",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          66560
+        ],
+        "unprocessed_array_sha256": "3d79f82b7dee670f14d2a55364ec719cf192378f6b8e475b32eb5aa473fc1d8d"
+      },
+      {
+        "exact_native_cache_key": "2e6008fb64b78e3b77e378ba07b405a510fd860e.pkl",
+        "pkl_sha256": "a797881cf78143316207034f799c7dd3aa2b3568d3152b685a5bbbf77ccc78fd",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "relayed by submarine cable,",
+            "exact_native_cache_key": "2e6008fb64b78e3b77e378ba07b405a510fd860e.pkl",
+            "cache_input_text_sha256": "9c764ca0e8509fe173437e76d6b0f70e4e656a5648adb3140dc240d75f9fae8c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S8",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "relayed by submarine cable,",
+            "exact_native_cache_key": "2e6008fb64b78e3b77e378ba07b405a510fd860e.pkl",
+            "cache_input_text_sha256": "9c764ca0e8509fe173437e76d6b0f70e4e656a5648adb3140dc240d75f9fae8c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "a797881cf7814331",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          42496
+        ],
+        "unprocessed_array_sha256": "412d4a7bd292680bd4be5b7fdb5ea4fd46d628f5fb56dab3a1d1bf743d2c022e"
+      },
+      {
+        "exact_native_cache_key": "cc834d0478d7e4985203194d06f595426a9c422c.pkl",
+        "pkl_sha256": "e2d5322d2764f57c2cc3dc2e3a87c63582285f4f6b3f471f01bf2044b50ca4e8",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "reached London within hours.",
+            "exact_native_cache_key": "cc834d0478d7e4985203194d06f595426a9c422c.pkl",
+            "cache_input_text_sha256": "11bba11e2339f464062963c7e13ca2e9801e596d1cf1cc12698eb33b83b26da0",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S8",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "reached London within hours.",
+            "exact_native_cache_key": "cc834d0478d7e4985203194d06f595426a9c422c.pkl",
+            "cache_input_text_sha256": "11bba11e2339f464062963c7e13ca2e9801e596d1cf1cc12698eb33b83b26da0",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "e2d5322d2764f57c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          40960
+        ],
+        "unprocessed_array_sha256": "e63a8c504d234a49ff4c7ff849fd3b4fcd37858ff512ab2c320c9e9967b6d0f8"
+      },
+      {
+        "exact_native_cache_key": "0bddeadd2813089ee8000f18015618c5fcb48b74.pkl",
+        "pkl_sha256": "09520781eff0948e053c73f58f20db1e2417b5c018765b4167eb7c8b1245e02a",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Western newspapers soon began chronicling what is often called the first global news event.",
+            "exact_native_cache_key": "0bddeadd2813089ee8000f18015618c5fcb48b74.pkl",
+            "cache_input_text_sha256": "f58baeb1a914ea4c3da23d425d15f6aa2d19752a5b9863b1100f1e4f06078123",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "09520781eff0948e",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          147456
+        ],
+        "unprocessed_array_sha256": "b638afe377e190e055d5b1e4c4e8eb4267cf6ef05bfde4e4d12c1752bd14e0f0"
+      },
+      {
+        "exact_native_cache_key": "82e3b9ea8e4abad28984b9b6778775fa1479726d.pkl",
+        "pkl_sha256": "b3fe93b502e696669bb7b47385e4cd340f20e170f29061d4a31b7738c626d099",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Western newspapers soon began chronicling",
+            "exact_native_cache_key": "82e3b9ea8e4abad28984b9b6778775fa1479726d.pkl",
+            "cache_input_text_sha256": "672ea3d3a94e75b48b55733cf43dd04ac4b3c9beb2305501f71667cd650c9cf7",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "b3fe93b502e69666",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          59392
+        ],
+        "unprocessed_array_sha256": "607fb1918b090c3816b27f15a1d5b3f87fcb22ca2ed6082befe8c3f5c40a45f2"
+      },
+      {
+        "exact_native_cache_key": "7559166210355bc0b538ab39a277e5f7ace90ee1.pkl",
+        "pkl_sha256": "0b6132b0b98e158a8d50f570c306c1fd330c65de8f454562a8ed6dcd6da6f8a8",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "what is often called the first global news event.",
+            "exact_native_cache_key": "7559166210355bc0b538ab39a277e5f7ace90ee1.pkl",
+            "cache_input_text_sha256": "c26d18503ed239bebdcd20274f39aa31234877b6cde6cc16c88c0d3e72626da4",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "0b6132b0b98e158a",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          68608
+        ],
+        "unprocessed_array_sha256": "ab6edb66c4e824dd66d9de023a08e6a85ac45b218a1fbfc9f17f4c48986f8dd1"
+      },
+      {
+        "exact_native_cache_key": "843c4da0a3b09711bd097f51d57db53fb419e031.pkl",
+        "pkl_sha256": "38576b3db5dcc72cf0ed4dc996153478baf862cfa44948becd18237e305ba56a",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Yet early dispatches were terse; the magnitude of the devastation emerged piecemeal over days.",
+            "exact_native_cache_key": "843c4da0a3b09711bd097f51d57db53fb419e031.pkl",
+            "cache_input_text_sha256": "a4a79c66d8964c69cc0fd03a88d1e3f359f89d01f4500682548a775c9a7def71",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "38576b3db5dcc72c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          162304
+        ],
+        "unprocessed_array_sha256": "5d8ec7cf9bbc44dcddce116109d9530e96d32d69b3d08abd4e3ab68c4686f29d"
+      },
+      {
+        "exact_native_cache_key": "1e1d0c9c221507df92741e0a6d2c378805c5f656.pkl",
+        "pkl_sha256": "a0cc10c11554249f498f01deeb30ca29bbd2a9cccd48cd4000e0b11af2443c70",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Yet early dispatches were terse;",
+            "exact_native_cache_key": "1e1d0c9c221507df92741e0a6d2c378805c5f656.pkl",
+            "cache_input_text_sha256": "639ba0701e4e0db2e8e2bd18c02d10c002fca5e2f1fe0367763d9e807aea4734",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S10",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Yet early dispatches were terse;",
+            "exact_native_cache_key": "1e1d0c9c221507df92741e0a6d2c378805c5f656.pkl",
+            "cache_input_text_sha256": "639ba0701e4e0db2e8e2bd18c02d10c002fca5e2f1fe0367763d9e807aea4734",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "a0cc10c11554249f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          48128
+        ],
+        "unprocessed_array_sha256": "dc500ca415294d1bf5f014012f2e5d8a7977f4bf94f1ae86a76176ea46237687"
+      },
+      {
+        "exact_native_cache_key": "4c170e9240c93f3b47d1739e99589bcdca168267.pkl",
+        "pkl_sha256": "5de28637a1789ac25284400d94e9b21b6aa4a8819dcbf9e077a94caa32943877",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "the magnitude of the devastation emerged piecemeal over days.",
+            "exact_native_cache_key": "4c170e9240c93f3b47d1739e99589bcdca168267.pkl",
+            "cache_input_text_sha256": "2f264c07b24edbbeed0bbc41407123eaccdc352da901edf4f3e6ddd3c5a22ed1",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S10",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "the magnitude of the devastation emerged piecemeal over days.",
+            "exact_native_cache_key": "4c170e9240c93f3b47d1739e99589bcdca168267.pkl",
+            "cache_input_text_sha256": "2f264c07b24edbbeed0bbc41407123eaccdc352da901edf4f3e6ddd3c5a22ed1",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "5de28637a1789ac2",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          102912
+        ],
+        "unprocessed_array_sha256": "8ead062c1e0a8842119e38ae0dd8b8bf12959ef795c8e883f7d53fba30ce1328"
+      },
+      {
+        "exact_native_cache_key": "286ee07d560dafb2319c887ac319ddc771e19fac.pkl",
+        "pkl_sha256": "dc0a457f43569fba2d9acfabe482cadf18e8c8e6a6e24b3a0f35539d3e55d5dc",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Ash and sulphur dioxide, hurled tens of kilometres high, formed a haze that circled the equator in about two weeks.",
+            "exact_native_cache_key": "286ee07d560dafb2319c887ac319ddc771e19fac.pkl",
+            "cache_input_text_sha256": "a0fb07c7e10cf604f8841df9926a9f7a2938be56e8b9464c9d394e4cdd37e9d0",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "dc0a457f43569fba",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          198144
+        ],
+        "unprocessed_array_sha256": "18d14f86535186d57dd7ae0406ebc341161654eccc2fcb94fba567156f74dd99"
+      },
+      {
+        "exact_native_cache_key": "ba1f4510f393647d72e5611fe2c17231ca0a6af4.pkl",
+        "pkl_sha256": "9981122489767a7bca43d90c22650af03e5853b4f44c53cefa5aaa936309ebd4",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Ash and sulphur dioxide, hurled tens of kilometres high,",
+            "exact_native_cache_key": "ba1f4510f393647d72e5611fe2c17231ca0a6af4.pkl",
+            "cache_input_text_sha256": "120dbb83932cad96dfe1d4a20cb7835042d53ebb3c7cda68f60ac7cb3ff9c05c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "9981122489767a7b",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          98816
+        ],
+        "unprocessed_array_sha256": "3017bbaabda4d6b356fe74dba9150fe7eb3546fa7498a9a3f86a5e312975cd02"
+      },
+      {
+        "exact_native_cache_key": "eb5db85fd87d011ffa8d6cdcb340f899d4eb2c5a.pkl",
+        "pkl_sha256": "5332b691a36c5bd31061330298054a77e3770aa533deb5365e797957b46d78d5",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "formed a haze that circled the equator in about two weeks.",
+            "exact_native_cache_key": "eb5db85fd87d011ffa8d6cdcb340f899d4eb2c5a.pkl",
+            "cache_input_text_sha256": "0679d5a0b6961e868a620fc5a298686d1a01214a1fcf2d9844b1a607ac185550",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S11",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "formed a haze that circled the equator in about two weeks.",
+            "exact_native_cache_key": "eb5db85fd87d011ffa8d6cdcb340f899d4eb2c5a.pkl",
+            "cache_input_text_sha256": "0679d5a0b6961e868a620fc5a298686d1a01214a1fcf2d9844b1a607ac185550",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "5332b691a36c5bd3",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          83456
+        ],
+        "unprocessed_array_sha256": "0435bbea13ac6219c72b4ffa1c2e2f0e7a6dc645a7723eababe61bb707a70d1b"
+      },
+      {
+        "exact_native_cache_key": "9f101767081dd130fb950446ddef8afe5d9445b4.pkl",
+        "pkl_sha256": "ee5ef884cfd811ce96e891c70db9e145194320570568b4b023f58cf9062dca49",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Ash and sulphur dioxide,",
+            "exact_native_cache_key": "9f101767081dd130fb950446ddef8afe5d9445b4.pkl",
+            "cache_input_text_sha256": "430ba9e47725d835d5600e02252fb277529e3898f5e6f1b9bf119dd13ad8e5f1",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "ee5ef884cfd811ce",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          43008
+        ],
+        "unprocessed_array_sha256": "c2a5f4fb69d44ac8106b95101fd7be9e21048c2b0123296e2b5634b96281e3cf"
+      },
+      {
+        "exact_native_cache_key": "c45719cb52cb5bcef3bf2b33261c9b3182b661b7.pkl",
+        "pkl_sha256": "53bc9fa867146b7d1818cfeff0ec8c26ba4ebd062ac3c6f77b014382247db3b1",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "hurled tens of kilometres high,",
+            "exact_native_cache_key": "c45719cb52cb5bcef3bf2b33261c9b3182b661b7.pkl",
+            "cache_input_text_sha256": "fb18009049856c5b35ef4193799a63e6350c1205b57321df3d3a04c9044949de",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "53bc9fa867146b7d",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          46080
+        ],
+        "unprocessed_array_sha256": "2ce8c09c69f3821cc3e4119846f0aa5cc4a8aa0f78f5053234087125b7adc15b"
+      },
+      {
+        "exact_native_cache_key": "3b8112d353381d4e4ce4f5d985fc649088f6712a.pkl",
+        "pkl_sha256": "b9d59dddbb4e373b2239440617bdfb950a0e7d6404fb4f04033b50429f99d25c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "In November 1883, crimson sunsets glowed over Europe and North America, summoning firefighters in New York and Connecticut to phantom blazes.",
+            "exact_native_cache_key": "3b8112d353381d4e4ce4f5d985fc649088f6712a.pkl",
+            "cache_input_text_sha256": "cb9989012df47efba0aac29bf51f17709e4c0b2a767c18cc451a5bd96db6380a",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "b9d59dddbb4e373b",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          254976
+        ],
+        "unprocessed_array_sha256": "b50fc40967b97b0d0c99f7a8f9b77302ac2c8e4fff9fcc00d457185964383af4"
+      },
+      {
+        "exact_native_cache_key": "51a20707f9300143db4bfdca93a2da188d9c1be0.pkl",
+        "pkl_sha256": "51254fdc3035e41e417c1c214f8ba8cad438dc939aa82cafe5e6f94b37041ce0",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "In November 1883, crimson sunsets glowed over Europe and North America,",
+            "exact_native_cache_key": "51a20707f9300143db4bfdca93a2da188d9c1be0.pkl",
+            "cache_input_text_sha256": "0d189b14f9256ba36796ab1154a912cd374c494537370ef8518a4dd0b4b8c6ea",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "51254fdc3035e41e",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          136192
+        ],
+        "unprocessed_array_sha256": "792845633f3aa76e2f949879ae0e34c152bf1da6c1c169f1e4e17dc7b4a7cbf9"
+      },
+      {
+        "exact_native_cache_key": "395341d4da9d6e7b341bf1d1526aac2f4637e9ba.pkl",
+        "pkl_sha256": "dec8e539f8cf7b9bb41a6c7b49174f65a1cf22ed0bedf6315cdd03ddc23ce257",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "summoning firefighters in New York and Connecticut to phantom blazes.",
+            "exact_native_cache_key": "395341d4da9d6e7b341bf1d1526aac2f4637e9ba.pkl",
+            "cache_input_text_sha256": "2236f7f96bdd5c95d0bf0579060137fab04b6cfbf452b1ea1bc8d96b0bb55d60",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S12",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "summoning firefighters in New York and Connecticut to phantom blazes.",
+            "exact_native_cache_key": "395341d4da9d6e7b341bf1d1526aac2f4637e9ba.pkl",
+            "cache_input_text_sha256": "2236f7f96bdd5c95d0bf0579060137fab04b6cfbf452b1ea1bc8d96b0bb55d60",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "dec8e539f8cf7b9b",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          106496
+        ],
+        "unprocessed_array_sha256": "696790e8c1fedc6c556f493f4314770198e3d0c5a8227cbbc72765c53d4c0e26"
+      },
+      {
+        "exact_native_cache_key": "6dba617ad682c91581912a7aa930ba52e83b29a9.pkl",
+        "pkl_sha256": "317b90b54d985bf995118921bc648eef795ff67c13bda8e2fb76a440c760b42f",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "In November 1883,",
+            "exact_native_cache_key": "6dba617ad682c91581912a7aa930ba52e83b29a9.pkl",
+            "cache_input_text_sha256": "eff0ff5ef1dd0277990c4c52d9bc44e2c3b037bd5fbd78a5dd92c0f0a6124a46",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "317b90b54d985bf9",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          46080
+        ],
+        "unprocessed_array_sha256": "8f4f45879dee09e23b2ba4b774af5b373646cc7b5fa31f5c29faec37fc0d9234"
+      },
+      {
+        "exact_native_cache_key": "7fb35643928beb6411017b5478e3b763d3153511.pkl",
+        "pkl_sha256": "a00b50ba9a2798d85d2400e26066d6b2640a2fe093ddb778f8dade7c65a8ab1a",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "crimson sunsets glowed over Europe and North America,",
+            "exact_native_cache_key": "7fb35643928beb6411017b5478e3b763d3153511.pkl",
+            "cache_input_text_sha256": "8c45d1bc7d7d91ba9a0c3b4e410e4c39b9b6060a9cab1ae88bda0845d0405a51",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "a00b50ba9a2798d8",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          76800
+        ],
+        "unprocessed_array_sha256": "a75582a1b021df2c5813b260374a2e75d4335f7741efb651555e6b55558f9fcb"
+      },
+      {
+        "exact_native_cache_key": "777330d2a687923b04895466e601627e044919a0.pkl",
+        "pkl_sha256": "6b00d9a8452523c0674b1fea17a33c3fa1e64efb7d66f6f23fbed678cebcecf6",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Later climate reconstructions suggest global temperatures dipped a few tenths of a degree the following year.",
+            "exact_native_cache_key": "777330d2a687923b04895466e601627e044919a0.pkl",
+            "cache_input_text_sha256": "3ac76279fc45bc2375a2dcad012b162723e6675f467da782d31f8685ee501daf",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "6b00d9a8452523c0",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          173568
+        ],
+        "unprocessed_array_sha256": "7ee8dd3911b76eb566b46ce11bd6fd9a6fe5c2cecc89a663e2cbd40f5ad9d057"
+      },
+      {
+        "exact_native_cache_key": "10924b4592a5f5b7a3aa5a81d7f6405a039800d8.pkl",
+        "pkl_sha256": "5e4d6df79fa1583aab93b11bfa65cdaff552a0692e8af091971d56be25e5af91",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Later climate reconstructions suggest",
+            "exact_native_cache_key": "10924b4592a5f5b7a3aa5a81d7f6405a039800d8.pkl",
+            "cache_input_text_sha256": "599f77f0d2174995c4287db90a357accbe0e466dea38c97f028ac1ee6e3cdb5c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "5e4d6df79fa1583a",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          56320
+        ],
+        "unprocessed_array_sha256": "0bf5af360c45a8c8189f8315d160717387e73140e9efbeefa4adcdaac848c6a6"
+      },
+      {
+        "exact_native_cache_key": "c3a14f6196b148bd3e6ec8829f3c600af045a85b.pkl",
+        "pkl_sha256": "a88e2657e7bd7d11cfc6444d4f2177c139557f799bed7ed812ee37f31975c4dc",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "global temperatures dipped a few tenths of a degree the following year.",
+            "exact_native_cache_key": "c3a14f6196b148bd3e6ec8829f3c600af045a85b.pkl",
+            "cache_input_text_sha256": "8813b44fe8ccc87168c2488686f0f7fd726eb2df7799cca92aea559c3f83bfeb",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "a88e2657e7bd7d11",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          105984
+        ],
+        "unprocessed_array_sha256": "c7de8ef382d6b6bfd1a750ce4b621352e7f07321467d272ef7c6a195e314567b"
+      },
+      {
+        "exact_native_cache_key": "ae00245f4f207395cee91a049bedde3f43f671ad.pkl",
+        "pkl_sha256": "59a05166732a17837832046f5dbf373d67d2a06dfdff59b450fd199771326dd6",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Some experts discounted the volcanic explanation, blaming the sunsets on moisture at high altitude or cosmic dust.",
+            "exact_native_cache_key": "ae00245f4f207395cee91a049bedde3f43f671ad.pkl",
+            "cache_input_text_sha256": "c9dec289589c87eb7d48ce2f1c29f58735fd25dad35616a421f920e7031510ea",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "59a05166732a1783",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          203264
+        ],
+        "unprocessed_array_sha256": "d7696ff5067f69c03e26105719d3b30eb037fe4dc08e350892de5368508a9d52"
+      },
+      {
+        "exact_native_cache_key": "b35aed821498e73e336df4dad274b1f8173cd02f.pkl",
+        "pkl_sha256": "668cee94b379fd05ac70419fe9a97f997b3a0c50dbe24c8ee88164ba706512db",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Some experts discounted the volcanic explanation,",
+            "exact_native_cache_key": "b35aed821498e73e336df4dad274b1f8173cd02f.pkl",
+            "cache_input_text_sha256": "a2c40d6c49fd43a1df7b9ab5a855b3586e5cfdb87868f1bddd711756e79433ab",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S14",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Some experts discounted the volcanic explanation,",
+            "exact_native_cache_key": "b35aed821498e73e336df4dad274b1f8173cd02f.pkl",
+            "cache_input_text_sha256": "a2c40d6c49fd43a1df7b9ab5a855b3586e5cfdb87868f1bddd711756e79433ab",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "668cee94b379fd05",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          78336
+        ],
+        "unprocessed_array_sha256": "84eaa395e89a5e397328a2b2a29729f66ec0a7275eb09de51abadd64140c17f7"
+      },
+      {
+        "exact_native_cache_key": "0cdd7fe89413b04779e49976a87829757b8d0d98.pkl",
+        "pkl_sha256": "59242811ec59c9bc54fae58816215e1dde3975def76fc56f6ab60516c4976fa9",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "blaming the sunsets on moisture at high altitude or cosmic dust.",
+            "exact_native_cache_key": "0cdd7fe89413b04779e49976a87829757b8d0d98.pkl",
+            "cache_input_text_sha256": "df4f8bd909c9636cb823594ac1c77ec7a8be6b63b89f0e99d0c37e8a10355157",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S14",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "blaming the sunsets on moisture at high altitude or cosmic dust.",
+            "exact_native_cache_key": "0cdd7fe89413b04779e49976a87829757b8d0d98.pkl",
+            "cache_input_text_sha256": "df4f8bd909c9636cb823594ac1c77ec7a8be6b63b89f0e99d0c37e8a10355157",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "59242811ec59c9bc",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          103424
+        ],
+        "unprocessed_array_sha256": "7c57f2845da3679a973ddd0c7ef5db6caf96a9de3565efec989e0f8385798857"
+      },
+      {
+        "exact_native_cache_key": "b584d09f37a3c8c2425fcd5b0095a035ec77f439.pkl",
+        "pkl_sha256": "9594fd1dbde6d119efb241d92b2157d1933471e838a9505e4f1ad0358635d5ce",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "In February 1884, Britain's Royal Society appealed in The Times for dated observations, eliciting worldwide replies; the Society's 1888 report tied the glow to Krakatoa.",
+            "exact_native_cache_key": "b584d09f37a3c8c2425fcd5b0095a035ec77f439.pkl",
+            "cache_input_text_sha256": "6504fdc2414265d3a15d9e545b6f32fbfaa5363b29884f7bb1047b0ec8f03fb6",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "9594fd1dbde6d119",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          357888
+        ],
+        "unprocessed_array_sha256": "2c7d4bb0924a8967969d07d1c1ebcb5c2acd61137da3bbfa9ee422d37ed50c31"
+      },
+      {
+        "exact_native_cache_key": "39654e4a1a3e50f52bd84bd44315e949907d7e3f.pkl",
+        "pkl_sha256": "bf165463c245a3ed2b26098443e2514deb7fbd5a1fcfb348a34ef6b0b46b9f3f",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "In February 1884, Britain's Royal Society appealed in The Times for dated observations,",
+            "exact_native_cache_key": "39654e4a1a3e50f52bd84bd44315e949907d7e3f.pkl",
+            "cache_input_text_sha256": "745f7d1939c50759dfe3c98f0bdfd80c4ea4d41d58a587bc43163dfaacb10f74",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "bf165463c245a3ed",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          171520
+        ],
+        "unprocessed_array_sha256": "5870ee383ea34d86031bb7127e5f0e2323fa49878bb7f4d742c49f22bb078c8b"
+      },
+      {
+        "exact_native_cache_key": "a6249c6baf12d6ea382c18834989fc467ab54dfa.pkl",
+        "pkl_sha256": "bcc8c1962aec7100633f8cd6e360165dd12d1d38fadabc07cf1f5020d0bd4db6",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "eliciting worldwide replies;",
+            "exact_native_cache_key": "a6249c6baf12d6ea382c18834989fc467ab54dfa.pkl",
+            "cache_input_text_sha256": "f6203ce51ff048ce7c4b411157608d9bff557208d47d81810822a3ad1dbf42b4",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S15",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "eliciting worldwide replies;",
+            "exact_native_cache_key": "a6249c6baf12d6ea382c18834989fc467ab54dfa.pkl",
+            "cache_input_text_sha256": "f6203ce51ff048ce7c4b411157608d9bff557208d47d81810822a3ad1dbf42b4",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "bcc8c1962aec7100",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          45568
+        ],
+        "unprocessed_array_sha256": "3674478fbcbdd8cb6cec23d595b9680676ad6f8dbc9a7422c35edba4075327f5"
+      },
+      {
+        "exact_native_cache_key": "8ecf9544caecd89938c4adbe1891af22091b88d3.pkl",
+        "pkl_sha256": "9a06a394c20e11c8153df2e9e500bf5c73168b44322f8038fd3250a56d38f124",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "the Society's 1888 report tied the glow to Krakatoa.",
+            "exact_native_cache_key": "8ecf9544caecd89938c4adbe1891af22091b88d3.pkl",
+            "cache_input_text_sha256": "fe4cf086db3f7ae23b7f0c5b1d21890797d03b2b7a2ce03395593decabfae871",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S15",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "the Society's 1888 report tied the glow to Krakatoa.",
+            "exact_native_cache_key": "8ecf9544caecd89938c4adbe1891af22091b88d3.pkl",
+            "cache_input_text_sha256": "fe4cf086db3f7ae23b7f0c5b1d21890797d03b2b7a2ce03395593decabfae871",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "9a06a394c20e11c8",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          112128
+        ],
+        "unprocessed_array_sha256": "2e047e0e12012aadedf9d2086b1543925fdf5142b2825b7e0421bd7acbf80619"
+      },
+      {
+        "exact_native_cache_key": "0e964651299231ce36fba3aa2ea49a0965413a4a.pkl",
+        "pkl_sha256": "aef09d35d6eba4b4dc7da249f6ea6ed4708c52fa28438414a4d0b3ec41d21a5e",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "In February 1884,",
+            "exact_native_cache_key": "0e964651299231ce36fba3aa2ea49a0965413a4a.pkl",
+            "cache_input_text_sha256": "abcb5962498219ec7438795cf00a9b4449c980252886b0f8069cd87b40a83835",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "aef09d35d6eba4b4",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          46080
+        ],
+        "unprocessed_array_sha256": "bcda0e5f2824df731ee218aaf3c82508080ac0236e83ed674715238502a4212e"
+      },
+      {
+        "exact_native_cache_key": "0a9e2a0b6b48f2e6c8e3e7962efa50527bf44046.pkl",
+        "pkl_sha256": "893b473cb0cfa6575a06e9d7255123eba3a49601c733d2301fe9ccfd1b795935",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Britain's Royal Society appealed in The Times for dated observations,",
+            "exact_native_cache_key": "0a9e2a0b6b48f2e6c8e3e7962efa50527bf44046.pkl",
+            "cache_input_text_sha256": "26f55140859e525c48d99c6785cba99b26b69d9bc0380679e9bc964c5d75da1e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "893b473cb0cfa657",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          110592
+        ],
+        "unprocessed_array_sha256": "6c8a776a6637355b60181b75ecbf02414528c1ade524fb7e1f9e409cf1132ec0"
+      },
+      {
+        "exact_native_cache_key": "eadeb613eb24b83f8cf3b3bac9eaf9909185bc95.pkl",
+        "pkl_sha256": "2383bfc570e56dae4af64efeb5d5b74a967432da00c64c16c70e8612d4bcca74",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Through barometers, cables, and crimson skies, far-flung observers began to glimpse how interconnected the planet already was.",
+            "exact_native_cache_key": "eadeb613eb24b83f8cf3b3bac9eaf9909185bc95.pkl",
+            "cache_input_text_sha256": "0df6f2dfc2bad91ca2a1c6835ae4cb37861bd4dfcca862785e2442a91793d836",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "2383bfc570e56dae",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          205824
+        ],
+        "unprocessed_array_sha256": "2f448c7e8f856d53f917655e00bff7139e156ff99cbc9102ec6faa9e8670c99e"
+      },
+      {
+        "exact_native_cache_key": "1d0538ed2745e2a28195ddf4d3867fb27c2fa546.pkl",
+        "pkl_sha256": "c9499b613100a660c69b606bfda94d51f2b479efdb805a95a2178d27e5e2b584",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Through barometers, cables, and crimson skies,",
+            "exact_native_cache_key": "1d0538ed2745e2a28195ddf4d3867fb27c2fa546.pkl",
+            "cache_input_text_sha256": "468961ff53d2bc96c176800acac6d12a66ca2fcb2f52249f733ae1fa8ef0184d",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "c9499b613100a660",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          67584
+        ],
+        "unprocessed_array_sha256": "66ea44aae559a5b855b3f9e1cd126c46777de8c1eb119c5bbd5fc9f60b5dc4eb"
+      },
+      {
+        "exact_native_cache_key": "51c0c164f7710cac19953625a51f6c429622d974.pkl",
+        "pkl_sha256": "3308f78b2064e1003d3ad0e5210f58423eec476af70359b404491df04bff9a61",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "far-flung observers began to glimpse",
+            "exact_native_cache_key": "51c0c164f7710cac19953625a51f6c429622d974.pkl",
+            "cache_input_text_sha256": "158fe5516da24d40cdecb5f3640c002091a7875ad07b086580d7d572307d8062",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "3308f78b2064e100",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          54784
+        ],
+        "unprocessed_array_sha256": "f01673c4e6c659c75159ec0301f3c9765e6ee1318254d8736eb5cdc56d434e33"
+      },
+      {
+        "exact_native_cache_key": "a98055cb0fd8ada61c355637374554130099c32b.pkl",
+        "pkl_sha256": "250574f0fa91b40b4008fc109e43332b1fa3fcdc307e9bac1eb42df570791b72",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "how interconnected the planet already was.",
+            "exact_native_cache_key": "a98055cb0fd8ada61c355637374554130099c32b.pkl",
+            "cache_input_text_sha256": "8a3afb3d340288137761521e9eb1b583ce2ae753ec14e70bc1c775984c70412b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "250574f0fa91b40b",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          62976
+        ],
+        "unprocessed_array_sha256": "32720cfda350e22cb3893d768cc955dabd17f5668587f2884bde27b480d766e1"
+      },
+      {
+        "exact_native_cache_key": "36f1d5747c25547a931eba2fafef84304816cab0.pkl",
+        "pkl_sha256": "3a5e65d961f6af9faf0ef2e14b5a25eb47896cff1ac82b2864e7f4670178bc6f",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Through barometers,",
+            "exact_native_cache_key": "36f1d5747c25547a931eba2fafef84304816cab0.pkl",
+            "cache_input_text_sha256": "1cb0cb2ea34b0146b3e569f5a89911a4b4a98d7dde696a89e43c4e8217068649",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "3a5e65d961f6af9f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          27648
+        ],
+        "unprocessed_array_sha256": "57cd8b3a116d13aa3610fb0fad6f068fcd1bbeb2f6f8700251d3e120ded52072"
+      },
+      {
+        "exact_native_cache_key": "bb48e5db657480ab961a01edab5400e18bd34e0d.pkl",
+        "pkl_sha256": "bdf9f2b506b5d656b4c521cbaa5eface20c1ad4548276ea17b7fc3695394bdf0",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "cables,",
+            "exact_native_cache_key": "bb48e5db657480ab961a01edab5400e18bd34e0d.pkl",
+            "cache_input_text_sha256": "f8cb627812af78458b6953be12c5d8f9eb092c3e62af6b51195fdc2d5b50cbda",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "bdf9f2b506b5d656",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          19456
+        ],
+        "unprocessed_array_sha256": "35db9eba28b96028a24de9f4756344a7a4db5250c88781cb4a3e4c14cb7e113a"
+      },
+      {
+        "exact_native_cache_key": "701be60850b0de58b495c350be9a8c12f54e6710.pkl",
+        "pkl_sha256": "1e49bcabbc025290aef4989331882ea557fa1ea61cacae93c8987843407f00d8",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and crimson skies,",
+            "exact_native_cache_key": "701be60850b0de58b495c350be9a8c12f54e6710.pkl",
+            "cache_input_text_sha256": "1958b88447f579e4f567973884182a4ef54900a5da7f1f361b1889fb3acf1b81",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "1e49bcabbc025290",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          31232
+        ],
+        "unprocessed_array_sha256": "9358e40d1c07b02f50e53e923653b2d4948af339f17fb3228ac798a8fb2e49b9"
+      },
+      {
+        "exact_native_cache_key": "dd3e745c593a96df9154a6ce21790f6b96e824fc.pkl",
+        "pkl_sha256": "8b478c464693cb36d2b7143dddda20c45a1147c20f888477365289388297962c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "far-flung observers began to glimpse how interconnected the planet already was.",
+            "exact_native_cache_key": "dd3e745c593a96df9154a6ce21790f6b96e824fc.pkl",
+            "cache_input_text_sha256": "4b73618fd779b255e8af12b001daaa94e3932e4c1fe6cc1bcecbbadce7ef8c71",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "8b478c464693cb36",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          128512
+        ],
+        "unprocessed_array_sha256": "c2b5e8852a3c0282515a53cda474de92ee339d2e1c8189692d85ce4df3a6c50d"
+      }
+    ],
+    "missing_reference_key_count": 0,
+    "observed_missing_keys_covered": [],
+    "new_private_cache_names": [],
+    "native_single_thread_marker_verified": true,
+    "single_thread_sessions": [
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      },
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      }
+    ],
+    "models_sha256": {
+      "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+      "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+      "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+    },
+    "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+    "existing_private_cache_count": 11514,
+    "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "existing_private_cache_bytes_unchanged": true,
+    "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+    "public_repository_cache_unchanged": true,
+    "producer_pcm_existed_before": false,
+    "producer_pcm_sha256_before": null,
+    "producer_pcm_sha256_after": null,
+    "accepted_aac_adts_sha256_before": "e0db71dcddd5bc28addf36b644a24caf51b4685538a617cd200ebf0f466b3d1a",
+    "accepted_aac_adts_sha256_after": "e0db71dcddd5bc28addf36b644a24caf51b4685538a617cd200ebf0f466b3d1a",
+    "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+    "private_cache_exported": false
+  },
+  "checker_reference_preparation_program_sha256": "f6f2a032e207085e7252d036e39430fb80b06e84a721c525b61196d021c5ca12",
+  "fresh_current_article_reference": {
+    "article": "54",
+    "removed_temporary_gt_files": [],
+    "processed_pcm_or_raw_mother_cache_modified": false,
+    "purpose": "Original synth/labels/audit rebuild fresh for this production; no old CPU GT reuse."
+  },
+  "temporary_output_reset": {
+    "removed": [],
+    "production_started_ns": 1794709835068984309,
+    "repository_outputs_modified": false
+  },
+  "read_only_failure_scalar_probe": {
+    "enabled": true,
+    "no_original_exception_or_result_changed": true,
+    "hook_sha256": {
+      "sitecustomize.py": "f981dfb191e82190450402f7221798832d00a530db42cac136f4574ea69d13d3",
+      "safe_scalar_probe.py": "f1a293eb432c14ea8d1f8c9819cc83ca6ab06daa14040eca8de54a1773b3eb55"
+    }
+  },
+  "reviewed_gain_control_preservation": [
+    {
+      "stage": "canonical-draft",
+      "requested_gain_controls": {},
+      "actual_gain_controls": {},
+      "exactly_preserved": true
+    },
+    {
+      "stage": "canonical-final4K",
+      "requested_gain_controls": {},
+      "actual_gain_controls": {},
+      "exactly_preserved": true
+    }
+  ],
+  "canonical_video_sha256": "6c69a06ed4aef8968bd5f9f2ece3b2bb5108f9b49ab506fa4ab2a18686266bd9",
+  "canonical_aac_adts_sha256": "6b1d1ea290fdb15d80b53db0d5bee5ce82afae23c2582953665e944b80ea11d3",
+  "canonical_pipeline_passed": true,
+  "cached_input_wav_sha256": null,
+  "final_wav_sha256": "e77312ef90418fa489d23bb05c0904db74b2a4098873a88255de55c098d73c80",
+  "approved_current_reference_final_binding": {
+    "kind": "source54-user148-specific-current-native-final-identity-only",
+    "article": "54",
+    "book_order": "47",
+    "identity_binding_passed": true,
+    "checks": [
+      {
+        "name": "only_exact54_user148_reference",
+        "passed": true
+      },
+      {
+        "name": "actual_original_canonical_pipeline_passed_before_identity",
+        "passed": true
+      },
+      {
+        "name": "actual_request_file_exact:视频/脚本/54.json",
+        "passed": true
+      },
+      {
+        "name": "actual_request_file_exact:视频/工具/初稿生成/gen54.py",
+        "passed": true
+      },
+      {
+        "name": "actual_request_file_exact:新版定稿/54-the-sound-that-shook-the-world.md",
+        "passed": true
+      },
+      {
+        "name": "actual_request_file_exact:视频/制作记录/54_待改清单.md",
+        "passed": true
+      },
+      {
+        "name": "actual_request_file_exact:视频/制作记录/逐句确认/54.json",
+        "passed": true
+      },
+      {
+        "name": "actual_current_source_deep_equals_exact_request_including_all_CF",
+        "passed": true
+      },
+      {
+        "name": "actual_native_authorization_file_exact",
+        "passed": true
+      },
+      {
+        "name": "actual_user148_final_authorized_not_prior_review102",
+        "passed": true
+      },
+      {
+        "name": "actual_file_exact:root_actual_S6_decision",
+        "passed": true
+      },
+      {
+        "name": "actual_file_exact:actual_S6_report",
+        "passed": true
+      },
+      {
+        "name": "actual_file_exact:core_manifest",
+        "passed": true
+      },
+      {
+        "name": "actual_runtime_file_exact:草稿声音.sh",
+        "passed": true
+      },
+      {
+        "name": "actual_runtime_file_exact:句内响度.py",
+        "passed": true
+      },
+      {
+        "name": "actual_runtime_file_exact:独立复核/synth.py",
+        "passed": true
+      },
+      {
+        "name": "actual_runtime_file_exact:结尾句接点.py",
+        "passed": true
+      },
+      {
+        "name": "actual_runtime_file_exact:读音核对.py",
+        "passed": true
+      },
+      {
+        "name": "actual_runtime_file_exact:make_video.py",
+        "passed": true
+      },
+      {
+        "name": "actual_runtime_file_exact:新管/回归基准_27.json",
+        "passed": true
+      },
+      {
+        "name": "actual_runtime_file_exact:新管/快测通过.json",
+        "passed": true
+      },
+      {
+        "name": "actual_entire_current_WAV_exact",
+        "passed": true
+      },
+      {
+        "name": "actual_entire_current_AAC_exact",
+        "passed": true
+      },
+      {
+        "name": "actual_current_absolute_packet_payload_side_and_rational_clock_exact",
+        "passed": true
+      },
+      {
+        "name": "actual_current_packet_count_exact",
+        "passed": true
+      },
+      {
+        "name": "actual_legacy_video_and_AAC_exact_historical_provenance",
+        "passed": true
+      },
+      {
+        "name": "current_is_distinct_from_legacy_and_not_relabelled_as_accepted_whole",
+        "passed": true
+      }
+    ],
+    "formal_quality_acceptance": false,
+    "repair_applied": false,
+    "current_reference_not_formally_accepted_whole": true,
+    "user148_final_authorized": true,
+    "review_only": false,
+    "user_individual_finalization_authorized": true,
+    "original_complete_pipeline_passed_before_identity_binding": true,
+    "no_original_gate_threshold_audio_or_confirmation_waiver": true,
+    "actual_source_and_final_media_V3_still_required": true,
+    "legacy_accepted_table_and_failure_history_preserved": true,
+    "reference_sha256": "673c534d75973f58a2b0deced5d49a8400755edc8b446f607cc4e6709840ea6e",
+    "program_sha256": "4753a334955dae380737374dd0ed67708976ad8eb7eb75d72ac2956dd449228f",
+    "request_files": {
+      "视频/脚本/54.json": {
+        "bytes": 48512,
+        "sha256": "ca30f9d590db5b8d12945daebf6ec01a23887c64d75ce25bfa88b2c7bfb3be6d"
+      },
+      "视频/工具/初稿生成/gen54.py": {
+        "bytes": 44138,
+        "sha256": "8704111d9d9584470c3fdb069d969e7c35c168c02fd365157cf23df7fbed458a"
+      },
+      "新版定稿/54-the-sound-that-shook-the-world.md": {
+        "bytes": 24136,
+        "sha256": "3247ed37a6fe9804df2c5db2c087727f9bea1ab07f9c2ec71369759b53a3eb64"
+      },
+      "视频/制作记录/54_待改清单.md": {
+        "bytes": 14987,
+        "sha256": "b20abda46459dbecb4f14b0c4b8d814973081ddb95097d736efd6427b1f57fe5"
+      },
+      "视频/制作记录/逐句确认/54.json": {
+        "bytes": 11465,
+        "sha256": "19dd02ed6765ccf1f07c2b3a6205f05f0a7640ae022cf9b99e359859d9d88a59"
+      }
+    },
+    "native_user_authorization": {
+      "bytes": 1495,
+      "sha256": "6abe7de0d9ac4c64daff5af54d1efde21edcfd12c79ca90bbdbbd4805e58bfb7"
+    },
+    "root_actual_S6_decision": {
+      "bytes": 2678,
+      "sha256": "b141d33960b5c45372f45942698c503a2fbb212b01d47d5e0c2b29e72a0fc49d"
+    },
+    "actual_S6_report": {
+      "bytes": 48633,
+      "sha256": "5f8c3402b39da149eedf15be7cf577da8a5be0461deaef1803231b1ea5202966"
+    },
+    "actual_core_manifest": {
+      "bytes": 5564,
+      "sha256": "24766577a0001a4920f21cf4887c4cff080d233c34d57cf45a83b7ac660cdcac"
+    },
+    "actual_runtime_files": {
+      "草稿声音.sh": {
+        "bytes": 3519,
+        "sha256": "43fc6a1acdae6bb1c2252178bf034407400bbbe92eb1752053f3047da9760491"
+      },
+      "句内响度.py": {
+        "bytes": 17943,
+        "sha256": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea"
+      },
+      "独立复核/synth.py": {
+        "bytes": 13886,
+        "sha256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264"
+      },
+      "结尾句接点.py": {
+        "bytes": 14685,
+        "sha256": "1a5d43c4f5483014b69bbea7ad43dddb0333a9a80e29bb2b4c8029d8915ff798"
+      },
+      "读音核对.py": {
+        "bytes": 28356,
+        "sha256": "50f4363bb2fc2930be59904cdccfa44fd46f14393a0385c7846028ee25b4e84c"
+      },
+      "make_video.py": {
+        "bytes": 119424,
+        "sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3"
+      },
+      "新管/回归基准_27.json": {
+        "bytes": 2277,
+        "sha256": "b8ddb4656ae27cbfc7ec8e3b99511983b4e568997bd4ad4ee33c364f3926ae94"
+      },
+      "新管/快测通过.json": {
+        "bytes": 4582,
+        "sha256": "bb75875985ff106abe142caf7ecbf0a5eb76a1412309bf78d77bf146f64512af"
+      }
+    },
+    "actual_current_audio": {
+      "whole_WAV_sha256": "e77312ef90418fa489d23bb05c0904db74b2a4098873a88255de55c098d73c80",
+      "AAC_ADTS_sha256": "6b1d1ea290fdb15d80b53db0d5bee5ce82afae23c2582953665e944b80ea11d3",
+      "absolute_packet_projection_sha256": "8cfbf63be921f409badd16b8b40a1ba6fe3f58a778509191ed152e7c8aba7861",
+      "packets": 7546
+    },
+    "actual_legacy_audio": {
+      "video_sha256": "c9b1c7a4f5a47f3fc230cc6b2bfa44af1bdefe784e314d231cd8b06f25a6fff2",
+      "AAC_ADTS_sha256": "e0db71dcddd5bc28addf36b644a24caf51b4685538a617cd200ebf0f466b3d1a"
+    },
+    "actual_canonical_video_sha256": "6c69a06ed4aef8968bd5f9f2ece3b2bb5108f9b49ab506fa4ab2a18686266bd9"
+  },
+  "review_only": false,
+  "user_individual_finalization_authorized": true,
+  "accepted_prior_aac_identical": false,
+  "video_sha256": "d5e4bd5b42a442eca9c9ee0dff3a6450ff33dba879bcda3e3260fc25eaddf071",
+  "width": 3840,
+  "height": 2160,
+  "summary_seconds": 2,
+  "summary_frames": 60,
+  "summary_start_seconds": 159.56666666666666,
+  "delay_after_voice_seconds": 0.6016666666666667,
+  "actual_source_collection": {
+    "article": "54",
+    "kind": "actual-production-source-collection",
+    "new_quality_gate": false,
+    "files": {
+      "request_json": {
+        "file": "54-request-source.json",
+        "sha256": "ca30f9d590db5b8d12945daebf6ec01a23887c64d75ce25bfa88b2c7bfb3be6d",
+        "origin": "immutable_request"
+      },
+      "request_generator": {
+        "file": "54-request-gen.py",
+        "sha256": "8704111d9d9584470c3fdb069d969e7c35c168c02fd365157cf23df7fbed458a",
+        "origin": "immutable_request"
+      },
+      "used_generator": {
+        "file": "54-used-gen.py",
+        "sha256": "8704111d9d9584470c3fdb069d969e7c35c168c02fd365157cf23df7fbed458a",
+        "origin": "actual_production_filesystem"
+      },
+      "actual_working_source": {
+        "file": "54-actual-working-source.json",
+        "sha256": "0b5a23c782d606bd8333c468438c8d975f98ab97116a73975b84a8bcba4dac18",
+        "origin": "actual_production_filesystem"
+      },
+      "request_manuscript": {
+        "file": "54-request-manuscript.md",
+        "sha256": "3247ed37a6fe9804df2c5db2c087727f9bea1ab07f9c2ec71369759b53a3eb64",
+        "origin": "immutable_request"
+      },
+      "actual_working_manuscript": {
+        "file": "54-actual-working-manuscript.md",
+        "sha256": "3247ed37a6fe9804df2c5db2c087727f9bea1ab07f9c2ec71369759b53a3eb64",
+        "origin": "actual_production_filesystem"
+      }
+    },
+    "generator_execution_observed": false,
+    "generator_execution_evidence": "No fresh generator execution log; do not claim this GEN was executed during rendering.",
+    "source_differences": {
+      "file": "54-actual-source-differences.json",
+      "sha256": "6745b573e2a47a8cc756d4cb0d9cbf2067ce74dc53c7d0454f51280e64db3149"
+    }
+  },
+  "preview_only": false,
+  "finalization_authorized": true,
+  "last_body_hold_frames": 18,
+  "last_body_hold_seconds": 0.6,
+  "summary_start_frame": 4787,
+  "postprocessing_only": true,
+  "original_producer_or_TTS_repeated": false,
+  "true_original_native_full_QA_run": 43667925349,
+  "inherited_original_summary_status_sha256": "b41c066cc3fc624cbb5885d6247bf4cf7f7b1908f74d383c120d892a868b632d",
+  "final_hold_policy_sha256": "4bcae46b68b9584f107966f683af580b474fa9835f101834fe55ed6968dfc36b"
+}

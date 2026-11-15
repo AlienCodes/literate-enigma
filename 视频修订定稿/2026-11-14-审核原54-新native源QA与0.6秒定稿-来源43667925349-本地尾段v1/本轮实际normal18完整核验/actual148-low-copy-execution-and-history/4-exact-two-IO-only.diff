@@ -1,0 +1,18 @@
+--- original-adopted-produce_new_native148_upstream.py
++++ produce_new_native148_upstream_low_copy.py
+@@ -54,13 +54,13 @@
+  (tools/'fonts').symlink_to(B/'final-layout/fonts',target_is_directory=True)
+  batch.ROOT=td/'toolroot';batch.OUT=td/'output';batch.OUT.mkdir();batch.LOCAL_SOURCE=str(SOURCE);batch.LOCAL_SCRIPT=copy.deepcopy(DATA)
+  lo=body.index('    paths = tree_paths()');hi=body.index('    info = probe(source)')
+- loader=("    originals = [f'actual-new-canonical-body-inherited-native:{no}']\n    source = OUT / f'{no}-original.mp4'\n    source.write_bytes(Path(LOCAL_SOURCE).read_bytes())\n    data = copy.deepcopy(LOCAL_SCRIPT)\n    changed = add_summary(data, no)\n")
++ loader=("    originals = [f'actual-new-canonical-body-inherited-native:{no}']\n    source = OUT / f'{no}-original.mp4'\n    __import__('os').link(Path(LOCAL_SOURCE), source)\n    assert source.stat().st_dev == Path(LOCAL_SOURCE).stat().st_dev and source.stat().st_ino == Path(LOCAL_SOURCE).stat().st_ino\n    data = copy.deepcopy(LOCAL_SCRIPT)\n    changed = add_summary(data, no)\n")
+  body=body[:lo]+loader+body[hi:];exec(compile(body,str(MODULE)+'#user051-normal18-post-only','exec'),batch.__dict__)
+  os.environ['RUNNER_TEMP']=str(td/'renderer-cache');os.chdir(LOCAL);batch.end_card(no)
+  movie,=batch.OUT.glob('*.mp4');timing=json.loads((batch.OUT/f'{no}-verification.json').read_text());assert timing['source_voice_endpoint_seconds']==timing0['source_voice_endpoint_seconds'];assert timing['summary_start_frame']==timing['unheld_voice_ceiling_frame']+18
+  assert timing['last_body_hold_frames']==18 and timing['preview_only'] is False
+  assert timing['original_audio_identical'] and timing['original_audio_packet_timings_identical'];assert reader.packets(movie,'a:0',payload=True)==source_a
+- dest=OUT/f'{no}-4K-末句后停0.6秒-简述2秒-private-upstream.mp4';shutil.copyfile(movie,dest)
++ dest=OUT/f'{no}-4K-末句后停0.6秒-简述2秒-private-upstream.mp4';os.replace(movie,dest)
+  for p in batch.OUT.glob('*'):
+   if p.suffix in ('.json','.png'):shutil.copyfile(p,OUT/p.name)
+  timing.update(source_kind='new-canonical-4K',canonical_source_video_sha256=timing0['canonical_source_video_sha256'],canonical_pipeline_passed=True,postprocessing_only=True,inherited_true_native_full_QA_run=run,final_hold_policy_sha256=P.POLICY_SHA256)
