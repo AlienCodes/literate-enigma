@@ -778,8 +778,8 @@ try:
             'approved-illustration-resource.log', ROOT)
     assert (M / 'tts/kokoro-v1.0.onnx').exists(), 'Original warm machine cache was not restored.'
     W.mkdir(parents=True, exist_ok=True)
-    if NO == '64':
-        stock_path = TASK / 'install_source64_stock_code.py'
+    if NO == '58':
+        stock_path = TASK / 'install_source58_stock_code.py'
         stock_spec = importlib.util.spec_from_file_location('source_stock_code_installer', stock_path)
         stock_module = importlib.util.module_from_spec(stock_spec); stock_spec.loader.exec_module(stock_module)
         stock_module.install(ROOT, TASK, ENV, status, checked, save)
@@ -862,7 +862,7 @@ try:
         records['记录'].append(authorization)
     agreement.write_text(json.dumps(records, ensure_ascii=False, indent=2) + '\n')
     (OUT / f'{NO}-user-authorization.json').write_text(json.dumps(authorization, ensure_ascii=False, indent=2) + '\n')
-    roles_path = TASK / 'original_text_data_roles64.py'
+    roles_path = TASK / 'original_text_data_roles58.py'
     roles_spec = importlib.util.spec_from_file_location('original_text_data_roles', roles_path)
     roles_module = importlib.util.module_from_spec(roles_spec); roles_spec.loader.exec_module(roles_module)
     status['actual_original_text_data_roles'] = roles_module.install(request, ROOT, T, NO)
@@ -956,13 +956,13 @@ try:
         assert canonical_aac == accepted_aac, 'Canonical AAC differs from the accepted prior voice.'
     status['accepted_prior_aac_identical'] = canonical_aac == accepted_aac
     save()
-    if NO == '64':
-        binding_path = TASK / 'source64_exact_original_voice_binding.py'
+    if NO == '58':
+        binding_path = TASK / 'source58_exact_original_voice_binding.py'
         binding_spec = importlib.util.spec_from_file_location('source_original_voice_binding', binding_path)
         binding_module = importlib.util.module_from_spec(binding_spec); binding_spec.loader.exec_module(binding_module)
-        status['source64_original_voice_identity'] = binding_module.bind(request, W / 'work_64/a.wav', canonical, TASK, T, status['canonical_pipeline_passed'], ENV)
-        status.update({'book_order':63, 'review_only':False, 'user_individual_finalization_authorized':True,
-                       'specific_final_authorization_sha256':'45d8173b4e70dd58e4f910410f709e72db3e2593a14dc5d8232d21c44717f638'})
+        status['source58_original_voice_identity'] = binding_module.bind(request, W / 'work_58/a.wav', canonical, TASK, T, status['canonical_pipeline_passed'], ENV)
+        status.update({'book_order':67, 'review_only':False, 'user_individual_finalization_authorized':True,
+                       'specific_final_authorization_sha256':'584a40908d831f219eebd0af1c2ac0f140de452a39cbec29fb8dd9daa09b74ed'})
         save()
     # Original tested end_card algorithm, with only its explicit source/summary loader supplied.
     module_file = ROOT / '.github/video-batch/run.py'
