@@ -942,13 +942,13 @@ try:
         assert canonical_aac == accepted_aac, 'Canonical AAC differs from the accepted prior voice.'
     status['accepted_prior_aac_identical'] = canonical_aac == accepted_aac
     save()
-    if NO == '08':
-        binding_path = TASK / 'source08_exact_original_voice_binding.py'
-        spec08 = importlib.util.spec_from_file_location('source08_exact_original_voice_binding', binding_path)
-        module08 = importlib.util.module_from_spec(spec08); spec08.loader.exec_module(module08)
-        status['source08_original_voice_identity'] = module08.bind(request, W / 'work_08/a.wav', canonical, TASK, T, status['canonical_pipeline_passed'])
-        status.update({'book_order':58, 'review_only':False, 'user_individual_finalization_authorized':True,
-                       'specific_final_authorization_sha256':'58d4b8c492d064ff0bd5f4e1c2111b540fd488c285332d7dfbcac2aff067c32d'})
+    if NO == '32':
+        binding_path = TASK / 'source32_exact_original_voice_binding.py'
+        spec32 = importlib.util.spec_from_file_location('source32_exact_original_voice_binding', binding_path)
+        module32 = importlib.util.module_from_spec(spec32); spec32.loader.exec_module(module32)
+        status['source32_original_voice_identity'] = module32.bind(request, W / 'work_32/a.wav', canonical, TASK, T, status['canonical_pipeline_passed'])
+        status.update({'book_order':60, 'review_only':False, 'user_individual_finalization_authorized':True,
+                       'specific_final_authorization_sha256':'4f16c0247d28479a650ff4b9d53730fb09fb89adc92764179723729e7885e3b1'})
         save()
     # Original tested end_card algorithm, with only its explicit source/summary loader supplied.
     module_file = ROOT / '.github/video-batch/run.py'
