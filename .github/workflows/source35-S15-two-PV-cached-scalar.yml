@@ -1,0 +1,79 @@
+name: 书54仅S15两个真实PV窗原缓存音素声学标量
+on:
+  push:
+    branches: [codex/finish-05-and-summaries-20261112]
+    paths: ['.github/source35-S15-two-PV-cached-scalar/**', '.github/workflows/source35-S15-two-PV-cached-scalar.yml']
+permissions:
+  contents: read
+jobs:
+  strict-cached-whole:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github/source35-S15-two-PV-cached-scalar
+      - uses: actions/checkout@v4
+        with:
+          repository: alienalgorithm/postgraduate-vocabulary
+          ref: fc0b56af9a0ac0e97015548b756d4e51d66dc2ea
+          path: official-main
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /视频/工具/
+            /视频/配音缓存/*.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/cache/restore@v4
+        id: original-cache
+        with:
+          path: |
+            ${{ runner.temp }}/completion-machine
+            ~/asr
+          key: completion-05-machine-43294745262
+      - name: 既有母音模型机器必须命中
+        env:
+          CACHE_HIT: ${{ steps.original-cache.outputs.cache-hit }}
+        run: |
+          test "$CACHE_HIT" = true
+          test -f "$RUNNER_TEMP/completion-machine/tts/kokoro-v1.0.onnx"
+      - name: 安装原运行依赖
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg espeak-ng
+          python -m pip install --quiet -r official-main/视频/工具/环境/requirements.txt
+      - name: 仅安装本次真实新110程序印章与原词典上下文
+        run: python .github/source35-S15-two-PV-cached-scalar/install_actual_certified20_context.py
+      - uses: actions/cache/restore@v4
+        id: selected-target-mothers
+        with:
+          path: |
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/3f83831048941d66ea88c111fccbf8dcd055496a.pkl
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/3f83831048941d66ea88c111fccbf8dcd055496a.pkl.单线程
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/52b0bb10ca17f206906f1844abcdec44897d3149.pkl
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/52b0bb10ca17f206906f1844abcdec44897d3149.pkl.单线程
+          key: Linux-native35-exact-S15-first-spoken-comma-43702588103
+      - name: 已实际保存的四叶缓存版本必须命中
+        env:
+          CACHE_HIT: ${{ steps.selected-target-mothers.outputs.cache-hit }}
+        run: test "$CACHE_HIT" = true
+      - name: 仅原S15两既有母与两个真实PV窗原只读标量
+        id: whole-observer
+        env:
+          AUDIO_ONLY: '1'
+          STRICT_CACHE: '1'
+          XG_NOPUSH: '1'
+          XG_KEEP_REVIEWED_GAIN: '1'
+          XG_KEEP_REVIEWED_ENDING: '1'
+          XG_KEEP_REVIEWED_CUTS: '1'
+        run: python -u .github/source35-S15-two-PV-cached-scalar/run_strict_cached_whole.py
+      - name: 仅上传实际安全标量JSON
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: source35-only-S15-two-actual-PV-original-cached-scalar
+          path: source35-only-S15-two-PV-public/*.json
+          retention-days: 30
+          if-no-files-found: error
