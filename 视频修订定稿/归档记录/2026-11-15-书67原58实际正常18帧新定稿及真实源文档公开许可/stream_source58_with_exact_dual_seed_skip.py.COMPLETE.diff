@@ -1,0 +1,73 @@
+--- /workspace/work/source18-book64-hybrid-lowdisk-transport-CODE-ONLY-20261115/stream_source18_with_exact_dual_seed_skip.py
++++ /workspace/work/source58-book67-hybrid-lowdisk-transport-CODE-ONLY-20261115/stream_source58_with_exact_dual_seed_skip.py
+@@ -1,4 +1,4 @@
+-"""CODE-ONLY exact source18/book64 seeded publicZIP skip around the unchanged builder.
++"""CODE-ONLY exact source58/book67 seeded publicZIP skip around the unchanged builder.
+ Only that exact blob in the two fixed repositories skips POST; mandatory original
+ whole-raw verify_blob, trees, commit, create-only ref, and three input pins remain.
+ Default plans locally; actual invocation requires a real dual-seed proof/adoption.
+@@ -6,12 +6,12 @@
+ from pathlib import Path
+ import argparse,hashlib,json,sys,types
+ from safe_transport_observer import safe_chain,safe_stage
+-CODE='eed0dc0d0c0c6efa517c210ffbfffdba8940dc4c5b62880fa1bcbcc2619d31bf'
+-SEED_CODE='4f38613369993876bd482c5f4408d47c6e21f5d463c860bbce5db810c2a85216'
+-BLOB='b2bddcf06730e7515e97ad5ade0416c9d988c66d';ZIP='6e20f6c7d18fdd4091b979c464b5d73f35d7dccd177f8889bb300d7cfc237c05';SIZE=46854038
+-HS='1146e58a20d50f0496291064fbe0574fada14a7e52e774adb264d7a0879a9996';PS='66501f451411890105f5f7b482ce5badd06ce49d266d75cd4ae78f2be85f2b59';IS='287e8659c3929446a7c3068ceea2b27c93a103d8e886622b909a8f718c470a4d'
+-WORK_DIR='/workspace/work/video-archive-batches-20261114/book64-source18-full-host-isolated-assets-rsb_zhl5/run43731802299-18-book64-review-normal18-v1';HANDOFF='/workspace/work/review18-finalV3/43731802299-normal18/archive-handoff.json'
+-REPOS={'alienalgorithm/postgraduate-vocabulary','AlienCodes/literate-enigma'};SEED_REF='codex/source18-book64-exact-public-nativeZIP-seed-20261115';SEED_TREE='2e4b91d2bf0a7db9b2594bd597c8a29886e003f4';SEED_COMMIT='e39b2fbbf348bb7229ab8d69747ade47b892c8a7'
++CODE='ddb4b4d9fef4b973ab68fc03234635bb2e87459814acad8d133a7e539dc4fbb4'
++SEED_CODE='462aae949b27215a597a9588212c818754c8e731a5530846412c0edba2379b20'
++BLOB='f9ba08794fd65d468c51b63f5baa2cec77668e52';ZIP='24c201dbab377886d978032f81728dca362dda8433246cd667b40dac2adfa694';SIZE=47792157
++HS='4c833c5b9581e4974fd28a92658711578219989ca9092c60b531ce215572fe82';PS='ac0900e47bc7cbda28c12f2a5b8721cd07023fc1aa89bc2040873a09f74271a1';IS='c024adcec11e61540a43031932b8fc57796cd0f0b2fc34742f1826e2b15c7bd6'
++WORK_DIR='/workspace/work/video-archive-batches-20261114/book67-source58-full-host-isolated-assets-wtg5g5a2/run43736478355-58-book67-review-normal18-v1';HANDOFF='/workspace/work/review58-finalV3/43736478355-normal18/archive-handoff.json'
++REPOS={'alienalgorithm/postgraduate-vocabulary','AlienCodes/literate-enigma'};SEED_REF='codex/source58-book67-exact-public-nativeZIP-seed-20261115';SEED_TREE='73edc5c46554e8b8085005df6a7345cef6310f7a';SEED_COMMIT='c388ac2bcac25d93d13800296782e359f0cce251'
+ 
+ def sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+ def install_exact_skip(module,record):
+@@ -25,8 +25,8 @@
+     return original
+ 
+ def validate_seed_proof(proof):
+-    assert proof['kind']=='actual-source18-book64-single-public-ZIP-two-repository-seed-fullraw-proof'
+-    assert proof['source_id']=='18'and proof['book_order']=='64'and proof['native_source_run']==43731802299
++    assert proof['kind']=='actual-source58-book67-single-public-ZIP-two-repository-seed-fullraw-proof'
++    assert proof['source_id']=='58'and proof['book_order']=='67'and proof['native_source_run']==43736478355
+     assert proof['handoff_sha256']==HS and proof['prepared_sha256']==PS and proof['index_sha256']==IS
+     assert proof['ZIP_bytes']==SIZE and proof['ZIP_SHA256']==ZIP and proof['git_blob_sha']==BLOB
+     assert proof['seed_ref']==SEED_REF and proof['seed_tree']==SEED_TREE and proof['seed_commit']==SEED_COMMIT
+@@ -43,7 +43,7 @@
+ 
+ def load_exact_source_module(file):
+     raw=Path(file).read_bytes();assert hashlib.sha256(raw).hexdigest()==CODE
+-    name='exact_source18_book64_seeded_stream_runtime';assert name not in sys.modules,'Preloaded runtime refused'
++    name='exact_source58_book67_seeded_stream_runtime';assert name not in sys.modules,'Preloaded runtime refused'
+     module=types.ModuleType(name);module.__file__=str(file);module.__package__='';sys.modules[name]=module
+     try:exec(compile(raw,str(file),'exec'),module.__dict__)
+     except BaseException:sys.modules.pop(name,None);raise
+@@ -59,20 +59,20 @@
+     m=load_exact_source_module(file)
+     if not a.execute:
+         b=m.prepare_bundle(WORK_DIR,HANDOFF,HS,PS,IS)
+-        print(json.dumps({'kind':'source18-book64-dual-seed-skip-wrapper-local-plan','network_executed':False,'files':len(b['files']),'unique_blobs':len(b['blobs']),'asset_commit':b['commit']['sha'],'payload_root_tree':b['hashes'][''],'requires_actual_dual_seed_proof':True,'only_exact_public_ZIP_POST_will_skip_after_real_seed':True,'original_raw_tree_commit_ref_guards_retained':True}));return
++        print(json.dumps({'kind':'source58-book67-dual-seed-skip-wrapper-local-plan','network_executed':False,'files':len(b['files']),'unique_blobs':len(b['blobs']),'asset_commit':b['commit']['sha'],'payload_root_tree':b['hashes'][''],'requires_actual_dual_seed_proof':True,'only_exact_public_ZIP_POST_will_skip_after_real_seed':True,'original_raw_tree_commit_ref_guards_retained':True}));return
+     assert a.seed_proof and a.seed_proof_sha256 and a.receipt and '--execute'in args
+     approval=json.loads(Path(value('--approval')).read_text())
+-    assert approval['kind']=='root-reviewed-exact-source18-streaming-asset-transport'and approval['approved']is True and approval['only_new_isolated_ref_or_exact_readonly_resume']is True
++    assert approval['kind']=='root-reviewed-exact-source58-streaming-asset-transport'and approval['approved']is True and approval['only_new_isolated_ref_or_exact_readonly_resume']is True
+     assert approval['handoff_sha256']==HS and approval['prepared_sha256']==PS and approval['index_sha256']==IS
+     assert approval['exact_dual_seed_skip_wrapper_sha256']==sha(__file__)and approval['approved_seed_proof_sha256']==a.seed_proof_sha256
+-    assert approval['approved_module_sha256']==CODE and approval['source_id']=='18'and approval['new_id']=='64'
++    assert approval['approved_module_sha256']==CODE and approval['source_id']=='58'and approval['new_id']=='67'
+     assert sha(a.seed_proof)==a.seed_proof_sha256;proof=validate_seed_proof(json.loads(Path(a.seed_proof).read_bytes()))
+-    out=Path(a.receipt).resolve();assert out.parent==Path(WORK_DIR).parent and out.name.startswith('actual-book64-exact-dual-seed-wrapper-')and not out.exists()
++    out=Path(a.receipt).resolve();assert out.parent==Path(WORK_DIR).parent and out.name.startswith('actual-book67-exact-dual-seed-wrapper-')and not out.exists()
+     token=m.subprocess.check_output(['gh','auth','token'],text=True).strip();client=m.GitDataClient(token)
+     for repo in sorted(REPOS):assert client.api(repo,'git/ref/heads/'+SEED_REF)['object']['sha']==SEED_COMMIT
+     records=[];before_verify=m.GitDataClient.verify_blob;install_exact_skip(m,records.append);assert m.GitDataClient.verify_blob is before_verify
+     w=Path(WORK_DIR);before={d.name for d in w.glob('streaming-attempt-*')};sys.argv=[str(file),*args]
+-    base={'kind':'actual-source18-book64-exact-dual-seed-blob-route-not-READY','module_sha256':CODE,'wrapper_sha256':sha(__file__),'seed_proof_sha256':a.seed_proof_sha256,'whole_transport_role':'standard-Git-one-ZIP-dual-seed-then-bounded-streaming-builder','builder_itself_has_no_local_Git_not_claimed_for_whole_transport':True,'only_two_repositories_exact_one_blob_POST_skipped_not_claimed201':True,'original_whole_raw_tree_commit_ref_and_three_frozen_input_guards_unchanged':True}
++    base={'kind':'actual-source58-book67-exact-dual-seed-blob-route-not-READY','module_sha256':CODE,'wrapper_sha256':sha(__file__),'seed_proof_sha256':a.seed_proof_sha256,'whole_transport_role':'standard-Git-one-ZIP-dual-seed-then-bounded-streaming-builder','builder_itself_has_no_local_Git_not_claimed_for_whole_transport':True,'only_two_repositories_exact_one_blob_POST_skipped_not_claimed201':True,'original_whole_raw_tree_commit_ref_and_three_frozen_input_guards_unchanged':True}
+     def write(result):
+         with out.open('x')as stream:json.dump(result,stream,indent=2);stream.write('\n')
+     try:m.main()
