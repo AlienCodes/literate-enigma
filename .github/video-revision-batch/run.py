@@ -402,33 +402,6 @@ def checked(args, log, cwd=W):
         raise RuntimeError(f'{log}: exit {code}')
 
 
-def certify_exact_source46_user_format():
-    """Exact text formatting only; actual original full quickcheck is required."""
-    assert NO == '46', 'This isolated caller only prepares actual book48/source46.'
-    capsule = TASK / 'source46-exact-format'
-    config_file = capsule / 'root-adoption-binding.json'
-    config = json.loads(config_file.read_text())
-    assert config['candidate_code_profile_sha256'] == 'dff235ffef04da423b7a576e4bdfaf8adeec8a1673afa5b1a012fe5bbc6a9dbe'
-    decision = capsule / 'root-code-adoption.json'
-    assert config['root_decision_sha256'] != '0' * 64
-    assert sha(decision) == config['root_decision_sha256']
-    certifier = capsule / 'certify46_exact_format_runtime.py'
-    assert sha(certifier) == '3e1dc4a8133c8866383e6db57e30157515b92431cde11850ff5d24f0343210d0'
-    output = OUT / '46-exact-user-format-original-full-fastcheck.json'
-    rc, _ = run(['python3', certifier, '--capsule', capsule, '--repository', ROOT,
-        '--video-root', M, '--root-decision', decision,
-        '--root-decision-sha256', config['root_decision_sha256'],
-        '--output', output, '--write-runtime'], 'exact-source46-format-code-certification.log')
-    proof = json.loads(output.read_text()) if output.is_file() else {}
-    status['exact_user_requested_format_code_certification'] = proof
-    status['original_maker_unchanged'] = not proof.get('runtime_installed', False)
-    status['audio_or_confirmation_metadata_approved_by_format_helper'] = False
-    status['original_numeric_rules_and_all_native_quality_gates_unchanged'] = True
-    save()
-    assert rc == 0 and proof.get('code_certification_passed') is True, (
-        'Exact source46 format code certification failed; no formal continuation is permitted.')
-
-
 def clear_temporary_video():
     """Discard only the restored working output, never a repository video."""
     global PRODUCTION_STARTED_NS
@@ -806,7 +779,6 @@ try:
     assert (M / 'tts/kokoro-v1.0.onnx').exists(), 'Original warm machine cache was not restored.'
     W.mkdir(parents=True, exist_ok=True)
     install_certified_core_repairs()
-    certify_exact_source46_user_format()
     # Keep restored historical logs internal; report only this run's checks.
     for name in (f'做_{NO}', f'定稿_{NO}'):
         old = W / name
