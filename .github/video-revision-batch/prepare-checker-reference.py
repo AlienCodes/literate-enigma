@@ -60,9 +60,9 @@ def bind_specific_spoken_reference_context(module, no, maker_sha, source_sha, so
     """Use the certified shared plan only for the two exact approved requests."""
     if not source_data.get('朗读删逗号'):
         return False
-    sources = {'68': 'e122c817946c4ed6e7cd1394749879276ef2afe9d01ad691b4142c6bbd9ec9b4'}
+    sources = {'23': '2cb78384a724f150646d919a26d13d7a9c0ab44780e68b672bbd6994499bc499'}
     assert no in sources and str(source_data.get('no')) == no, 'Specific spoken-reference source id mismatch.'
-    assert maker_sha == '0e6c4ff6dd4ab4e3774bc060188de72356cd9aa37a7bc092d1f28a5508cc1c36', 'Specific spoken-reference maker mismatch.'
+    assert maker_sha == '1b87c1d4d1685bdd59325587184cca35f853354a015e6fe89c11f150cd2a6239', 'Specific spoken-reference maker mismatch.'
     assert source_sha == sources[no], 'Specific spoken-reference request mismatch.'
     module._SPOKEN_SOURCE_NO = no
     return True
