@@ -1,0 +1,40 @@
+{"work_dir": "/workspace/work/video-archive-batches-20261114/user116-source43-host-isolated-assets-i23auq8g/operations-user116-source43-current-final", "prefix": "视频修订定稿/归档记录/2026-11-14-用户116书40词义配色及两处朗读修复实际定稿与146最新目录", "files": 19, "bytes": 368974, "article_source_ids": ["43"], "resulting_count": 62}
+{"asset_commit": "c7a76ff0198450d5da2db7cae1b9e1c3bb314410", "commits": ["c7a76ff0198450d5da2db7cae1b9e1c3bb314410"], "asset_branch": "codex/user116-source43-current-final-records", "root_tree": "bdd4cec9280381421474bb39116a5b1747c24985", "repository": "alienalgorithm/postgraduate-vocabulary", "video_tree_sha": "1e83e7c34c9e3e2493478cb996fe8fb749abdfcb", "files": 19, "remote_asset_ref_verified": true, "main_or_master_changed": false}
+{"asset_commit": "c7a76ff0198450d5da2db7cae1b9e1c3bb314410", "commits": ["c7a76ff0198450d5da2db7cae1b9e1c3bb314410"], "asset_branch": "codex/user116-source43-current-final-records", "root_tree": "bdd4cec9280381421474bb39116a5b1747c24985", "repository": "AlienCodes/literate-enigma", "video_tree_sha": "1e83e7c34c9e3e2493478cb996fe8fb749abdfcb", "files": 19, "remote_asset_ref_verified": true, "main_or_master_changed": false}
+Traceback (most recent call last):
+  File "/dev/shm/archive-writer-main061/integrate_verified_batch.py", line 119, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/dev/shm/archive-writer-main061/integrate_verified_batch.py", line 87, in main
+    vtree=api(repo,'git/trees','POST',{'tree':list(updated.values())})['sha'];current=tree(repo,vtree,True)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/dev/shm/archive-writer-main061/integrate_verified_batch.py", line 26, in api
+    with urllib.request.urlopen(q,timeout=90)as r:return json.loads(r.read())
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/urllib/request.py", line 215, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/urllib/request.py", line 521, in open
+    response = meth(req, response)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/urllib/request.py", line 630, in http_response
+    response = self.parent.error(
+               ^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/urllib/request.py", line 559, in error
+    return self._call_chain(*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/urllib/request.py", line 639, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 422: Unprocessable Entity
+Traceback (most recent call last):
+  File "/workspace/work/video-archive-batches-20261114/install_user116_source43_host_final.py", line 31, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/workspace/work/video-archive-batches-20261114/install_user116_source43_host_final.py", line 27, in main
+    subprocess.run([sys.executable,str(C/'integrate_verified_batch.py'),'--plan',str(pp),'--execute'],check=True,env=env)
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python', '/dev/shm/archive-writer-main061/integrate_verified_batch.py', '--plan', '/dev/shm/archive-writer-main061/integration-plan-user116-source43-final.json', '--execute']' returned non-zero exit status 1.

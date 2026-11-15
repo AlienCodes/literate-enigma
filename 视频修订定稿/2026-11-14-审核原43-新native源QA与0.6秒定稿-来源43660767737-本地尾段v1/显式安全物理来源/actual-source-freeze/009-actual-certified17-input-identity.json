@@ -1,0 +1,140 @@
+{
+  "kind": "source43-current-presentation-plus-exact-selected-gain-and-native-certified17-input-identity",
+  "source_id": "43",
+  "book_order": "40",
+  "source_sha256": "bacc7abafe824031e0d85349f80327b66947839472008a18bd679cf6cdc3b53e",
+  "GEN_sha256": "e039bc6ee6b49acea7fc7cd35b1b8052891fc645742b7adb8b38137423ab06a5",
+  "MD_sha256": "b548684f400daa3b76d972b2f17b0d7249e8df0ae9a9663f3f26d69db8d61fb4",
+  "certified17_manifest_sha256": "0bbff31f0d45b9412ec0e1a9f68b0e9603f199c2495f071320b18e82b192008f",
+  "all17_runtime_sha_match": true,
+  "actual_model_cache_contract_sha256": "9d133939b08a08b78cb6810028708618b92a2f2449cf56a67bd9b82506887b79",
+  "actual_certification_native_run": 43638178374,
+  "strict_new_S16_rule": {
+    "no": "43",
+    "label": "S16",
+    "original": "Apple, he later said, had been weeks from ruin.",
+    "projected": "Apple he later said, had been weeks from ruin.",
+    "positions": [
+      5
+    ],
+    "needs_mother_binding": false
+  },
+  "total_actual_producer_model_plans": 43,
+  "only_two_S16_raw_timed_inputs_changed": [
+    {
+      "before": {
+        "sentence": "S16",
+        "method": "create",
+        "input_text": "Apple; he later said, had been weeks from ruin.",
+        "input_text_sha256": "a5f90b8e9fbd1f17fb880e05dd8a7315588f5060b6fc524503201a1fab9a8ba6",
+        "is_phonemes": false,
+        "speed": 0.95,
+        "lang": "en-us",
+        "kwargs": {},
+        "model": "kokoro-v1.0.onnx:7d5df8ecf7d4b187",
+        "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+        "cache_key": "20b91736d81c8f88dddd13e2cc256f0ff058dee8.pkl"
+      },
+      "after": {
+        "sentence": "S16",
+        "method": "create",
+        "input_text": "Apple he later said, had been weeks from ruin.",
+        "input_text_sha256": "a716195f3b1fe3058fa567811a35190d9b8bedfd455cae624572460314b30932",
+        "is_phonemes": false,
+        "speed": 0.95,
+        "lang": "en-us",
+        "kwargs": {},
+        "model": "kokoro-v1.0.onnx:7d5df8ecf7d4b187",
+        "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+        "cache_key": "ccb9fddc3511d31dff6cad74ca3efd8154964cef.pkl"
+      }
+    },
+    {
+      "before": {
+        "sentence": "S16",
+        "method": "create_timed",
+        "input_text": "Apple; he later said, had been weeks from ruin.",
+        "input_text_sha256": "a5f90b8e9fbd1f17fb880e05dd8a7315588f5060b6fc524503201a1fab9a8ba6",
+        "is_phonemes": false,
+        "speed": 0.95,
+        "lang": "en-us",
+        "kwargs": {
+          "clause_pause": 0,
+          "sentence_pause": 0
+        },
+        "model": "kokoro-v1.0-timed.onnx:beb0d1848dee9a49",
+        "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+        "cache_key": "d07f1ac6dde903e453a8e3cffc5ba727a7509491.pkl"
+      },
+      "after": {
+        "sentence": "S16",
+        "method": "create_timed",
+        "input_text": "Apple he later said, had been weeks from ruin.",
+        "input_text_sha256": "a716195f3b1fe3058fa567811a35190d9b8bedfd455cae624572460314b30932",
+        "is_phonemes": false,
+        "speed": 0.95,
+        "lang": "en-us",
+        "kwargs": {
+          "clause_pause": 0,
+          "sentence_pause": 0
+        },
+        "model": "kokoro-v1.0-timed.onnx:beb0d1848dee9a49",
+        "voice_array_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+        "cache_key": "500ce320ebdad6a292cb2cec9fb64782d3417a2e.pkl"
+      }
+    }
+  ],
+  "title_and_other20_sentences_41_model_inputs_exact": true,
+  "S13_models_exact_with_only_selected_postproducer_gain": true,
+  "actual_new_S16_native_cached_mothers_input_key_marker_crosscheck": [
+    {
+      "method": "create",
+      "actual_native_cache_key": "ccb9fddc3511d31dff6cad74ca3efd8154964cef.pkl",
+      "actual_native_PKL_sha256": "f4f234e5cd985990d63c901d2d07396cd216d29d08a5d8edec8d8534f5f6599a",
+      "actual_native_marker_sha256": "82fb007c6c95ec28d031dbf2a91eee2a16d60e0a0fa852737f7f9b5ca0a62a1b",
+      "effective_input_and_native_key_exact": true
+    },
+    {
+      "method": "create_timed",
+      "actual_native_cache_key": "500ce320ebdad6a292cb2cec9fb64782d3417a2e.pkl",
+      "actual_native_PKL_sha256": "d5cbc1f52cb73d7ca469bf84880b4092b58d1742519f24adfb47cdbb4e026dd2",
+      "actual_native_marker_sha256": "35be90d6b8033746ab790064bb06fc37fa309f487b0aa842249a154713ef9e72",
+      "effective_input_and_native_key_exact": true
+    }
+  ],
+  "actual_native_S16_tmap_and_cuts_for_future_remeasurement_only": {
+    "tmap": [
+      [
+        0,
+        21,
+        0.0,
+        1.275
+      ],
+      [
+        22,
+        47,
+        1.66,
+        2.985
+      ]
+    ],
+    "cuts": [
+      [
+        31080,
+        31080,
+        0.385
+      ]
+    ],
+    "raw_fp": "4c97c3273743"
+  },
+  "render_input_fields_byte_values_exact": [
+    "sentences",
+    "title_en",
+    "title_zh",
+    "title_fx",
+    "重点词颜色",
+    "字号上限"
+  ],
+  "no_new_timing_or_new_mother_controls_inferred_or_installed": true,
+  "native_fullASR_audio_final_media_QA_required": true,
+  "no_model_inference_no_PDF_no_native_dispatch_no_PAY_mutation": true
+}
