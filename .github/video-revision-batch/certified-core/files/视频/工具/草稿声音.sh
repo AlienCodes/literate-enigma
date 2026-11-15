@@ -10,8 +10,26 @@ export OLD_IV_VOID=1
 ea=$(python3 -c "import json;e=list(json.load(open('scripts/$no.json')).get('结尾句',{}).values());e=e[0] if e else {};ks=('前段语速','最后一段语速','最后一段前停顿');print(*(e[k] for k in ks) if all(k in e for k in ks) else '')")
 # 修订重制只验证并保留已有已审接点；坏点原门停止，不用自动新点替代。
 if [ "${XG_KEEP_REVIEWED_ENDING:-0}" = "1" ]; then
-    python3 $T/结尾句接点.py $no $ea --写入 --保持已审接点 2>&1 | grep -E "接点样本|保持已审|停止|没有句中标点" | cut -c1-160
-    ending_rc=${PIPESTATUS[0]}
+    reviewed_none_root=${XG_P:-/home/user/postgraduate-vocabulary}
+    reviewed_none_case="$reviewed_none_root/.github/video-revision-batch/request/24/reviewed-none-ending24-case.json"
+    if [ "$no" = "24" ] && { [ -e "$reviewed_none_case" ] || [ -L "$reviewed_none_case" ]; }; then
+        python3 - "$reviewed_none_root" "$T" "$no" <<'PY_REVIEWED_NONE_24'
+from pathlib import Path
+import hashlib,importlib.util,json,os,sys
+root=Path(sys.argv[1]);helper=root/'.github/video-revision-batch/reviewed_none_ending24.py'
+if not helper.is_file() or helper.is_symlink() or hashlib.sha256(helper.read_bytes()).hexdigest()!='a60611151cef21d4e729e342587be2531c39bbecd832e2384085f8b3ac2880d0':
+    raise SystemExit('停止：source24 reviewed-NONE constructor helper identity differs')
+spec=importlib.util.spec_from_file_location('exact_reviewed_none_ending24',helper)
+module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+proof=module.verify(root,Path(sys.argv[2]),Path.cwd(),sys.argv[3],os.environ.get('XG_KEEP_REVIEWED_ENDING'))
+print('保持已审 NONE，仅保持实测source24/S18无结尾构造；其它原核查仍必须全过')
+print(json.dumps(proof,ensure_ascii=False,sort_keys=True))
+PY_REVIEWED_NONE_24
+        ending_rc=$?
+    else
+        python3 $T/结尾句接点.py $no $ea --写入 --保持已审接点 2>&1 | grep -E "接点样本|保持已审|停止|没有句中标点" | cut -c1-160
+        ending_rc=${PIPESTATUS[0]}
+    fi
     if [ "$ending_rc" -ne 0 ]; then exit "$ending_rc"; fi
 else
     python3 $T/结尾句接点.py $no $ea --写入 2>&1 | grep -E "接点样本|停止|没有句中标点" | cut -c1-160
