@@ -74,6 +74,8 @@ jobs:
           python -u .github/source68-S6-local10ms6/run_onlyS6_local_two_phase.py \
             --actual-root-execution-adoption .github/source68-S6-local10ms6/root-onlyS6-local-execution-scope.json \
             --actual-root-execution-adoption-sha256 185b3e1502aeb77d1af7bac4c7f05af298924c49e2f0b9448db6313b127a6da2 \
+            --actual-tail-shape-adoption .github/source68-S6-local10ms6/probe/inputs/actual_tail_shape_scope.json \
+            --actual-tail-shape-adoption-sha256 ff59708ea754b5d3817448f20e023b6283603a99168ba35c4cd894df63d0d326 \
             --actual-parent-review-adoption .github/source68-S6-local10ms6/actual-parent-independent-onlyS6-review.json \
             --actual-parent-review-adoption-sha256 "$parent_sha"
       - name: 只保存真实单S6新原数学JSON（独立于PV结果）
