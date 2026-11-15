@@ -111,7 +111,7 @@
     "missing_or_pending_items_are_production_pending_not_legacy_fillers": true
   },
   "all70_latest_complete": false,
-  "latest_requested_revision_completed_count": 51,
+  "latest_requested_revision_completed_count": 52,
   "articles": [
     {
       "source_id": "07",
@@ -4030,19 +4030,55 @@
       "pending_newer_request_blocks_old_fallback": true,
       "older_accepted_archive_is_history_until_newest_request_qualified": true,
       "previously_accepted_cloud_final": {
-        "asset_commit": "8fed16741bb1c604c8b58425ef142508cdd3ec95",
-        "video_repo_path": "视频修订定稿/2026-11-14-已验收1篇-run43533004625-原25/视频/68 阿波罗13号：成功的失败.mp4",
-        "bytes": 15961042,
-        "sha256": "88609ba7641873b55044a23708453dac2057b6a7f2578fb163f0db51eec23eac"
+        "asset_commit": "8953e1a54dd561b56f5ce3739c48ed3eb62f053d",
+        "video_repo_path": "视频修订定稿/2026-11-14-审核原25-0.6秒定稿-原生来源43533004625-本地尾段v1/视频/68 阿波罗13号：成功的失败.mp4",
+        "bytes": 15969007,
+        "sha256": "06af27da5d079a24aa8434f426a8417882e42b4686ecdfd874251ecc9ea0ce46"
       },
-      "status": "latest_existing_files_audit_not_yet_fully_bound",
-      "latest_requested_revision_complete": false,
-      "actual_complete_validation_passed": false,
-      "actual_dual_permanent_archive_passed": false,
-      "newest_user_revision_records": [],
-      "user_request_SHA256": {},
+      "status": "latest_qualified_cloud_final",
+      "latest_requested_revision_complete": true,
+      "actual_complete_validation_passed": true,
+      "actual_dual_permanent_archive_passed": true,
+      "newest_user_revision_records": [
+        "book68-source25-apollo13-finalization-20261115"
+      ],
+      "user_request_SHA256": {
+        "book68-source25-apollo13-finalization-20261115": "c9640c633ed9daac77730f01e9bb4228208b09977b9f0a6d0a3c4d6f7da18f7a"
+      },
       "single_article_download_link_requested": false,
-      "completed_final_delivery": "permanent_GitHub_cloud_final_under079"
+      "completed_final_delivery": "permanent_GitHub_cloud_final_under079",
+      "latest_finalization_authority": "book68-source25-apollo13-finalization-20261115",
+      "final_4K_generation_authorized": true,
+      "latest_revision_final": {
+        "asset_commit": "8953e1a54dd561b56f5ce3739c48ed3eb62f053d",
+        "video_repo_path": "视频修订定稿/2026-11-14-审核原25-0.6秒定稿-原生来源43533004625-本地尾段v1/视频/68 阿波罗13号：成功的失败.mp4",
+        "bytes": 15969007,
+        "sha256": "06af27da5d079a24aa8434f426a8417882e42b4686ecdfd874251ecc9ea0ce46"
+      },
+      "validation_handoff_sha256": "d149ef0fee2c13f575ef47de57f5f5e4e67427c8864a6cf68a32542c2f6d72a7",
+      "post_reading_pause_seconds": 0.6,
+      "illustration_seconds": 2,
+      "summary_card_seconds": 2,
+      "source_and_GEN_MD": {
+        "json": {
+          "bytes": 52742,
+          "sha256": "4754878dc91a933f4150607b6d8312900e998ccffeaa1d370dbf383da8c4d743",
+          "origin": "official_artifact_working_copy"
+        },
+        "gen": {
+          "bytes": 51033,
+          "sha256": "39a1f6c4afb88cf6e116ece6cb58525485a0acc3e9527d537d6571bd0ee8c432",
+          "origin": "derived_after_final_QC",
+          "derived_from_json_sha256": "4754878dc91a933f4150607b6d8312900e998ccffeaa1d370dbf383da8c4d743"
+        },
+        "md": {
+          "bytes": 24066,
+          "sha256": "b6b7d55fe66e6e32116431ea955778fab779b8bda622df0ba1036c2f40a3969f",
+          "origin": "request_manuscript_with_verified_final_source_equivalence",
+          "derived_from_json_sha256": "4754878dc91a933f4150607b6d8312900e998ccffeaa1d370dbf383da8c4d743"
+        }
+      },
+      "source_roles_preserved": true
     },
     {
       "source_id": "59",
