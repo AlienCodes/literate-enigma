@@ -1,0 +1,158 @@
+{
+  "kind": "actual-native43666667752-two-text-errors-minimum-two-file-repair-original-all-text-regression",
+  "actual_failed_native_run": 43666667752,
+  "actual_failed_status": {
+    "path": "/workspace/work/source54-user148-formal-failure-43666667752/files/54-status.json",
+    "bytes": 181378,
+    "sha256": "94718922e1a8f13f5dd99b1d2533f72687006d898e6860aae835665df0ff523f"
+  },
+  "actual_failed_working_source": {
+    "path": "/workspace/work/source54-user148-formal-failure-43666667752/files/54-failed-working-source.json",
+    "bytes": 48512,
+    "sha256": "ca30f9d590db5b8d12945daebf6ec01a23887c64d75ce25bfa88b2c7bfb3be6d"
+  },
+  "actual_failed_source_identical_to_unchanged_candidate": true,
+  "old_inputs_preserved_at": "/workspace/work/article54-user147-review-draft-20261114/candidate-payload",
+  "new_five_inputs": {
+    "视频/脚本/54.json": {
+      "path": "/workspace/work/article54-user147-review-draft-20261114/text-repair-after-native43666667752/candidate-payload/视频/脚本/54.json",
+      "bytes": 48512,
+      "sha256": "ca30f9d590db5b8d12945daebf6ec01a23887c64d75ce25bfa88b2c7bfb3be6d"
+    },
+    "视频/工具/初稿生成/gen54.py": {
+      "path": "/workspace/work/article54-user147-review-draft-20261114/text-repair-after-native43666667752/candidate-payload/视频/工具/初稿生成/gen54.py",
+      "bytes": 44138,
+      "sha256": "8704111d9d9584470c3fdb069d969e7c35c168c02fd365157cf23df7fbed458a"
+    },
+    "新版定稿/54-the-sound-that-shook-the-world.md": {
+      "path": "/workspace/work/article54-user147-review-draft-20261114/text-repair-after-native43666667752/candidate-payload/新版定稿/54-the-sound-that-shook-the-world.md",
+      "bytes": 24136,
+      "sha256": "3247ed37a6fe9804df2c5db2c087727f9bea1ab07f9c2ec71369759b53a3eb64"
+    },
+    "视频/制作记录/54_待改清单.md": {
+      "path": "/workspace/work/article54-user147-review-draft-20261114/text-repair-after-native43666667752/candidate-payload/视频/制作记录/54_待改清单.md",
+      "bytes": 14987,
+      "sha256": "b20abda46459dbecb4f14b0c4b8d814973081ddb95097d736efd6427b1f57fe5"
+    },
+    "视频/制作记录/逐句确认/54.json": {
+      "path": "/workspace/work/article54-user147-review-draft-20261114/text-repair-after-native43666667752/candidate-payload/视频/制作记录/逐句确认/54.json",
+      "bytes": 11465,
+      "sha256": "19dd02ed6765ccf1f07c2b3a6205f05f0a7640ae022cf9b99e359859d9d88a59"
+    }
+  },
+  "only_changed_files": [
+    "新版定稿/54-the-sound-that-shook-the-world.md",
+    "视频/制作记录/54_待改清单.md"
+  ],
+  "two_changes": {
+    "pending": "English required literal gets the original supported 英文要有 label. T25 checks Chinese fields for 画面上要有 and English fields for 英文要有. The actual source phrase is unchanged.",
+    "MD": "Complete in places quick table row with phr. general definition and an example; context meaning remains exact 局部."
+  },
+  "patches": [
+    {
+      "path": "/workspace/work/article54-user147-review-draft-20261114/text-repair-after-native43666667752/54-the-sound-that-shook-the-world.md.patch",
+      "bytes": 1109,
+      "sha256": "7113550bc2644a5d8b8c2832459275994b41ebedc4c5e4edef7bbbf20b1e122c"
+    },
+    {
+      "path": "/workspace/work/article54-user147-review-draft-20261114/text-repair-after-native43666667752/54_待改清单.md.patch",
+      "bytes": 938,
+      "sha256": "046eb6910ffa7064fa0c33da9dc25359d9dc31dc77aac70abd18753e768421ca"
+    }
+  ],
+  "original_full_text_before": {
+    "exit": 1,
+    "errors": 2,
+    "unconfirmed": 0,
+    "log": {
+      "path": "/workspace/work/article54-user147-review-draft-20261114/text-repair-after-native43666667752/before-full-original-text-with-current-baseline.log",
+      "bytes": 892,
+      "sha256": "5c6b1a8d0d562057c491a7d0214e0e0dd8ea4cce1a85b5e5047f9e8ffe2d54f0"
+    },
+    "current_prior_source_sha256": "22da36911cc96e2fb42e33333e95c78b89af24bef8726f7e0fcf3ba6f40d7909"
+  },
+  "original_GEN_after": {
+    "exit": 0,
+    "whole_JSON_exact": true,
+    "source_raw_bytes_exact": false,
+    "sole_byte_difference": "Original GEN writes no final LF: output48511B/0b5a23c..., frozen request48512B/ca30 has one final LF. No JSON field differs. Frozen request is not changed.",
+    "actual_generated_source": {
+      "path": "/workspace/work/article54-user147-review-draft-20261114/text-repair-after-native43666667752/original-fulltext-mirror/_text-work/scripts/54.json",
+      "bytes": 48511,
+      "sha256": "0b5a23c782d606bd8333c468438c8d975f98ab97116a73975b84a8bcba4dac18"
+    },
+    "log": {
+      "path": "/workspace/work/article54-user147-review-draft-20261114/text-repair-after-native43666667752/after-original-GEN-whole-JSON-roundtrip.log",
+      "bytes": 360,
+      "sha256": "d45c8dbce1bb80c92f19da7f053d292023847de763f31ae464d716c0d832138d"
+    }
+  },
+  "original_mechanical_repair_after": {
+    "exit": 0,
+    "JSON_source_changed": false,
+    "repair_output_empty": true,
+    "log": {
+      "path": "/workspace/work/article54-user147-review-draft-20261114/text-repair-after-native43666667752/after-original-text-mechanical-repair.log",
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    }
+  },
+  "original_full_text_after": {
+    "exit": 0,
+    "errors": 0,
+    "unconfirmed": 0,
+    "includes_T25_and_original_check_all": true,
+    "original_selftests_passed": true,
+    "tested_source": {
+      "path": "/workspace/work/article54-user147-review-draft-20261114/text-repair-after-native43666667752/original-fulltext-mirror/_text-work/scripts/54.json",
+      "bytes": 48511,
+      "sha256": "0b5a23c782d606bd8333c468438c8d975f98ab97116a73975b84a8bcba4dac18"
+    },
+    "tested_source_JSON_equal_to_frozen_ca30": true,
+    "log": {
+      "path": "/workspace/work/article54-user147-review-draft-20261114/text-repair-after-native43666667752/after-full-original-text.log",
+      "bytes": 622,
+      "sha256": "c4afb09bf4adfeb5ccf8573439d5296604151a9c7b4591ab823e4875228088fb"
+    },
+    "existing_nonblocking_T1_and_G6_C3_C4_G79_reminders_retained": true
+  },
+  "original_article_sync_trial_after": {
+    "exit": 0,
+    "log": {
+      "path": "/workspace/work/article54-user147-review-draft-20261114/text-repair-after-native43666667752/after-original-article-sync-trial.log",
+      "bytes": 8,
+      "sha256": "cc494b6111be3c27f36ed434c1ea3d0606a496825407543ecc39f4af78502ee7"
+    },
+    "trial_MD": {
+      "path": "/workspace/work/article54-user147-review-draft-20261114/text-repair-after-native43666667752/article-sync-trial.md",
+      "bytes": 24136,
+      "sha256": "3247ed37a6fe9804df2c5db2c087727f9bea1ab07f9c2ec71369759b53a3eb64"
+    },
+    "synced_MD_bytes_identical": true
+  },
+  "original_checker_programs_SHA256": {
+    "踩坑核查.py": "f6efb9df33705fadac3d78d588adb722b4f07eab134818983a869f1d9e0c748d",
+    "check_all.py": "aaae1a04c1adb91ea17906374dc5f13fd52ae2894cceeb1ae2f2e62ebe4b51f2",
+    "速查表.py": "471155d083a5204e426959f16417dca9f5f0cf1a104484b0d8b133260e91a81e",
+    "译文核查.py": "f68089bad35c5f41f7a08936a95f408da8a477b2b1cb1ca450bca6eacbd2dc5c",
+    "sync_article.py": "af22d9b97912bf74fb4f4bfae4c595a1475fdfe86c7a473f4e2789d1cccb85d6",
+    "新管/修.py": "1a6662012752c2d2152d87e1690f1dbb1fd2ced583455a365c022b8b91bdd34d",
+    "初稿生成/核对.py": "c635aee82e0fe4dff9f70dcae03e2f797aadb670c8ebe6c8f202b82a35a87a74",
+    "重点词被去掉.py": "b898e63bb0954f0f17b90f92c2af41b3264ca60b7fd264e1cfa632f3d1e86f93"
+  },
+  "all_checker_programs_byte_exact_original": true,
+  "source_and_GEN_all_audio_controls_all_existing_CF_d9_art_and_layout_unchanged": true,
+  "audio_TTS_mother_GT_signal_math_gain_or_new_native_launched": false,
+  "actual_whole_native_or_final_media_acceptance": false,
+  "required_pin_updates_only": {
+    "新版定稿/54-the-sound-that-shook-the-world.md": {
+      "old": "b21fd6f1ee6c5bf3e930ddb1c714555c8b82e0e41fe124cf8b9f5c840ad8d284",
+      "new": "3247ed37a6fe9804df2c5db2c087727f9bea1ab07f9c2ec71369759b53a3eb64"
+    },
+    "视频/制作记录/54_待改清单.md": {
+      "old": "dcef85dfd553c15c4c03da4f7f883a7aef56f16f38bdbddc2d3a7b775bf08042",
+      "new": "b20abda46459dbecb4f14b0c4b8d814973081ddb95097d736efd6427b1f57fe5"
+    }
+  },
+  "consumer_code_unchanged": "Only two exact_request_source_sha256 values and matching native producer/reference bundle pins need root reviewed update; profile remains inactive. Layout/source/GEN/actualS6 finding/audio identity unchanged. If actual fresh GEN emits the known0b5a one-final-LF formatting variant, bind actual observed source role exactly; do not overwrite artifact or falsely claim ca30 raw equality."
+}
