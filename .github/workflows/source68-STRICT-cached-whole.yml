@@ -1,4 +1,4 @@
-name: 书53原两母V3严格缓存整轨观测无新语音
+name: 书53原a628语境整轨仅补实际WAV-MD5标量
 on:
   push:
     branches: [codex/finish-05-and-summaries-20261112]
@@ -48,7 +48,7 @@ jobs:
         run: python .github/source68-S2-strict-whole/install_actual_certified20_context.py
       - name: 安装已审S13真实原母输入语境到producer与checker两路径
         run: |
-          python .github/source68-S2-strict-whole/apply_exact_existing_S13_context_data.py --tools "$GITHUB_WORKSPACE/official-main/视频/工具" --work "$RUNNER_TEMP/completion-machine/video" --context .github/source68-S2-strict-whole/inputs/source68-S13-context.json --adoption .github/source68-S2-strict-whole/inputs/root-source68-S13-context-adoption.json --output "$GITHUB_WORKSPACE/source68-strict-whole-public/actual-shared-S13-context-data-install.json"
+          python .github/source68-S2-strict-whole/apply_exact_existing_S13_context_data.py --tools "$GITHUB_WORKSPACE/official-main/视频/工具" --work "$RUNNER_TEMP/completion-machine/video" --context .github/source68-S2-strict-whole/inputs/source68-S13-context.json --adoption .github/source68-S2-strict-whole/inputs/root-source68-S13-context-adoption.json --output "$GITHUB_WORKSPACE/source68-strict-whole-WAV-MD5-only-public/actual-shared-S13-context-data-install.json"
       - uses: actions/cache/restore@v4
         id: selected-target-mothers
         with:
@@ -62,6 +62,15 @@ jobs:
         env:
           CACHE_HIT: ${{ steps.selected-target-mothers.outputs.cache-hit }}
         run: test "$CACHE_HIT" = true
+      - uses: actions/cache/restore@v4
+        id: existing-original-S2-G36
+        with:
+          path: ${{ runner.temp }}/completion-machine/tts/source68-only-target-whole-original-math-cache/调平_e55a8ac21608c0b20b2761284675f784cb01d85f.json
+          key: Linux-native68-only-target-whole-original-math-43722945326
+      - name: 仅恢复已实测原S2-G36的同字节JSON到normalcache，禁止重算
+        env:
+          CACHE_HIT: ${{ steps.existing-original-S2-G36.outputs.cache-hit }}
+        run: python .github/source68-S2-strict-whole/restore_exact_existing_S2_G36_JSON.py
       - name: 仅旧current及selected各一次严格缓存整轨观测
         id: whole-observer
         env:
@@ -82,7 +91,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: source68-exactCTX-baseline-selected-whole-scalar-only
-          path: source68-strict-whole-public/*.json
+          name: source68-originala628-exactCTX-WAV-MD5-only-whole-scalar
+          path: source68-strict-whole-WAV-MD5-only-public/*.json
           retention-days: 30
           if-no-files-found: error
