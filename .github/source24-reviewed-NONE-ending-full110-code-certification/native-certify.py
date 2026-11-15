@@ -12,6 +12,9 @@ try:
  # Separate external dependency: the original tools-tree stamp still has110 entries.
  assert len(a.reviewed_none_code_adoption_sha256)==64 and sha(a.reviewed_none_code_adoption)==a.reviewed_none_code_adoption_sha256,'Actual ROOT reviewed-NONE code adoption is required; review templates cannot execute'
  binding=json.loads((PKG/'reviewed-none-codecert-execution-binding.json').read_text())
+ alias=binding['A23_selftest_alias_repair'];assert alias['execution_authorized_by_actual_ROOT_review']is True,'Actual ROOT A23 selftest-alias code adoption required'
+ assert sha(PKG/'actual-A23-alias-code-adoption.json')==alias['actual_ROOT_adoption_SHA256'] and len(alias['actual_ROOT_adoption_SHA256'])==64
+ assert sha(PKG/'patch/视频/工具/读音核对.py')==alias['candidate_checker_SHA256']=='b0b4f1a2d3151489aa8174e8bd734bb3f963e89fffb22e3dc170535327a2feb4' and alias['only_reader_selftest_changes_beyond_actual628d']is True
  assert binding['execution_authorized_by_actual_ROOT_review']is True and binding['root_adoption_SHA256']==a.reviewed_none_code_adoption_sha256
  assert binding['helper_SHA256']=='a60611151cef21d4e729e342587be2531c39bbecd832e2384085f8b3ac2880d0' and binding['patched_shell_SHA256']=='b66729435d893dc562beaea53c347503ad8c1a906193de6fe988c0e953516c59'
  assert binding['actual_prior20_stamp_SHA256']=='7d7ebf20b78143231992f8880f70e3cf1581c75acd2d977bc054e3ff151a1a41'
@@ -116,10 +119,10 @@ try:
  fresh_stamp=json.loads(prior_stamp.read_text());assert len(fresh_stamp['程序'])==110 and fresh_stamp['程序']['make_video.py']=='0e6c4ff6dd4ab4e3'
  assert sha(prior_stamp)!='3c251c77fb58b775ae1389a52ce31467686201ba98b842af545f2923357a6c32'
  assert sha(prior_stamp)!='7d7ebf20b78143231992f8880f70e3cf1581c75acd2d977bc054e3ff151a1a41','Old successful spoken20 stamp cannot certify the new constructor shell'
- old20stamp_path=PKG/'fixtures/actual-prior-spoken20-110-stamp.json';assert sha(old20stamp_path)==binding['actual_prior20_stamp_SHA256']
- old20stamp=json.loads(old20stamp_path.read_text());expected_programs=dict(old20stamp['程序']);expected_programs['草稿声音.sh']=binding['patched_shell_SHA256'][:16]
- assert fresh_stamp['程序']==expected_programs and fresh_stamp['规则表版本']==old20stamp['规则表版本'],'All original110 program identities must be exact except the reviewed constructor shell'
- report['all_109_other_original_program_hashes_equal_actual_successful20_stamp']=True
+ oldNONEstamp_path=PKG/'fixtures/actual-prior-reviewedNONE-110-stamp.json';assert sha(oldNONEstamp_path)==alias['actual_prior_constructor_110_stamp_SHA256']
+ oldNONEstamp=json.loads(oldNONEstamp_path.read_text());expected_programs=dict(oldNONEstamp['程序']);expected_programs['读音核对.py']=alias['candidate_checker_SHA256'][:16]
+ assert fresh_stamp['程序']==expected_programs and fresh_stamp['规则表版本']==oldNONEstamp['规则表版本'],'All original110 program identities must be exact except the reviewed reader selftest'
+ report['all_109_other_original_program_hashes_equal_actual_successful_reviewedNONE_stamp']=True
  report['new_shell_stamp_entry_full_dependency_is_separately_declared']=True
  report['new_actual_110_program_stamp_created_after_full_quickcheck']=True
  report['original_full_fastcheck_passed']=True
