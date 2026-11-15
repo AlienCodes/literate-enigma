@@ -3,7 +3,7 @@
 ## 英文
 One of **ecology**'s most **romantic** ideas **grew out of** plastic bags. In a Canadian forest, researchers **enclosed** paper birch and Douglas fir **seedlings** **in** them, then **bathed** each species in carbon dioxide **laced with** a different **tracer**. Carbon **shuttled** both ways, **apparently** via **fungi** **linking** the trees' roots, yet the firs ran a **slight** **surplus**, larger in deeper **shade**.
 
-Most **terrestrial** plants **harbour** such **fungi**, whose **filaments** **forage for** water and **nutrients** including **nitrogen**, **swapping** them for plant sugars. One fungus can **knit** plants **into** a **shared network**. The journal Nature **unveiled** the study on 7 August 1997, its cover offering a **catchy** **coinage**: the "wood-wide web".
+Most **terrestrial** plants **harbour** such **fungi**, whose **filaments** **forage for** water and **nutrients** including **nitrogen**, **swapping** them **for** plant sugars. One fungus can **knit** plants **into** a **shared network**. The journal Nature **unveiled** the study on 7 August 1997, its cover offering a **catchy** **coinage**: the "wood-wide web".
 
 The **metaphor** proved **irresistible**. Between 2015 and 2021, a forester's **bestseller**, an **acclaimed** novel, and an ecologist's **memoir** told readers that trees **converse**, **warn one another**, and, as "mother trees", **nurture** their **kin**. Yet the 1997 trees were seedlings, not **elderly** mothers.
 
@@ -15,13 +15,13 @@ None of this **disproves** the networks' **existence**. In January 2025, **defen
 
 **生态学**(ecology)中最**浪漫的**(romantic)观念之一，**萌生于**(grew out of)塑料袋之中。（One of…：……之一；grow out of…：从……中产生）在加拿大的一片森林里，研究人员**把**(enclosed in)纸桦和花旗松的**幼苗**(seedlings)**罩进**(enclosed in)袋**里**(enclosed in)，再让两种幼苗分别**沐浴**(bathed)在**掺有**(laced with)不同**示踪物**(tracer)的二氧化碳中。（enclose A in B：把 A 罩进 B 里；them：指上句的 plastic bags）（each species：指纸桦和花旗松两种幼苗；laced with…：过去分词短语作后置定语，修饰 carbon dioxide；科学家给两棵树吸了加了不同“追踪器”的二氧化碳，就是为了看清楚它们有没有在地下互相交换碳元素）碳在两种树之间双向**穿梭**(shuttled)，**似乎**(apparently)是经由**连接**(linking)两者根系的**真菌**(fungi)；不过，花旗松最终出现了碳的**小幅**(slight)**盈余**(surplus)，在更深的**遮荫**(shade)下盈余更大。（both ways：双向，来回）（linking the trees' roots：现在分词短语作后置定语，修饰 fungi）（run a surplus：出现盈余）（larger in deeper shade：省略结构，即 the surplus was larger in deeper shade）
 
-大多数**陆生**(terrestrial)植物身上都**包含/携带着**(harbour)这类**真菌**(fungi)，它们的**菌丝**(filaments)四处**搜寻/寻找**(forage for)水分和**氮**(nitrogen)等**养分**(nutrients)，再拿去**换取**(swapping)植物的糖分。（harbour：英式拼写，美式 harbor）（whose…：非限制性定语从句，修饰 such fungi；including nitrogen：介词短语，修饰 nutrients）（swapping…：现在分词短语作伴随状语；swap A for B：用 A 换 B）单个真菌就能**把**(knit into)多株植物**编织进**(knit into)同一张**共享网络**(shared network)。（knit A into B：把 A 编织进 B）《自然》杂志于1997年8月7日**公布/发表了**(unveiled)这项研究，当期封面还送上一个**响亮好记的**(catchy)**新造词**(coinage)：“林木万维网”（wood-wide web）。（The journal Nature：杂志名 Nature，即《自然》）（its cover offering…：独立主格结构，补充说明当期封面；wood-wide web：仿 world wide web（万维网）造的词；catchy：非常吸引人，并且容易让人记住。比如说我们平时说的洗脑音乐就是 catchy music。换句话来说就是容易洗脑的，这里的洗脑说的是容易让人们记住，并且在大脑里面会不断循环）
+大多数**陆生的**(terrestrial)植物身上都**包含/携带着**(harbour)这类**真菌**(fungi)，它们的**菌丝**(filaments)四处**搜寻/寻找**(forage for)水分和**氮**(nitrogen)等**养分**(nutrients)，**用**(swapping for)它们 **换取**(swapping for) 植物的糖分。（harbour：英式拼写，美式 harbor）（whose…：非限制性定语从句，修饰 such fungi；including nitrogen：介词短语，修饰 nutrients）（swapping…：现在分词短语作伴随状语；swap A for B：用 A 换 B）单个真菌就能**把**(knit into)多株植物**编织进**(knit into)同一张**共享网络**(shared network)。（knit A into B：把 A 编织进 B）《自然》杂志于1997年8月7日**公布/发表了**(unveiled)这项研究，当期封面还送上一个**响亮好记的**(catchy)**新造词**(coinage)：“林木万维网”（wood-wide web）。（The journal Nature：杂志名 Nature，即《自然》）（its cover offering…：独立主格结构，补充说明当期封面；wood-wide web：仿 world wide web（万维网）造的词；catchy：非常吸引人，并且容易让人记住。比如说我们平时说的洗脑音乐就是 catchy music。换句话来说就是容易洗脑的，这里的洗脑说的是容易让人们记住，并且在大脑里面会不断循环）
 
 结果，这个**比喻**(metaphor)**令人难以抗拒**(irresistible)。（prove＋形容词：结果是……，事实证明……）2015年至2021年间，一位护林人的**畅销书**(bestseller)、一部**广受赞誉的**(acclaimed)小说和一位生态学家的**回忆录**(memoir)都向读者讲述，树木会**交谈**(converse)，会**互相示警**(warn one another)，还会作为“母树”**哺育/养育**(nurture)自己的**亲族**(kin)。（a forester's bestseller, an acclaimed novel, and an ecologist's memoir：三个名词短语并列作主语）（that 引导宾语从句；converse, warn, and nurture：三个谓语动词并列；as "mother trees"：作为“母树”，插入语）然而，1997年实验里的树都还是幼苗，并非**年迈的**(elderly)母亲。（the 1997 trees：指1997年那项实验里的树）
 
 2023年2月，三位研究者**梳理了**(combed through)野外证据。（comb through…：仔细梳理，逐一查看）他们认为，这些证据或过于**稀少**(sparse)，或**互不一致**(inconsistent)，或**含糊不清**(ambiguous)，不足以**证明**(demonstrate)共享网络**普遍存在**(widespread)。（judge A (to be) B：认为 A 是 B；it：指 the field evidence）（too…to…：太……而不能……；that 引导宾语从句）在26项野外研究中，网络帮助和**阻碍**(hindered)幼苗的频率大致相同，并且**中性的**(neutral)效应**占据大多数**(predominating)。（about equally often：次数大致一样多）（with＋名词＋现在分词：with 复合结构作伴随状语）没有任何一项经**同行评审的**(peer-reviewed)野外研究表明，**成年**(mature)树木会**偏爱**(favouring)自己的**后代**(offspring)。（show A doing：表明 A 在做某事；favouring：英式拼写，美式 favoring）在后来的论文中，**缺乏依据的**(Unsupported)**论断/断言**(assertions)在25年间**增加了一倍/翻了一倍**(doubled)，**引用**(citations)也**偏向**(skewed towards)**于**(skewed towards)**正面结果**(positive results)。（in later papers：介词短语作后置定语，修饰 assertions；had doubled：过去完成时）（with＋名词＋过去分词：with 复合结构作伴随状语；skewed towards…：偏向……）
 
-这一切都不能**否定**(disproves)这些网络的**存在**(existence)。（None of this…：这一切都不……，全部否定）2025年1月，共享网络说的**拥护者**(defenders)**挑出了**(faulted)这篇**批评文章**(critique)方法上的**问题**(faulted)。（defenders：指为共享网络之说辩护的研究者；fault：挑出……的问题；the critique：指2023年的那篇批评文章）**批评者**(critics)也**承认**(concede)，碳和养分可以经由地下在树与树之间**迁移**(migrate)。（that 引导宾语从句；underground：副词，在地下）唯有在真实森林中**发掘**(unearthed)出的证据（而非家族**传奇**(saga)的**魅力**(allure)），才能裁定网络究竟**输送了**(convey)多少，以及这件事**重不重要**(matters)。（It is…that…：强调句，强调 evidence…；unearthed in real forests：过去分词短语作后置定语）（how much… 和 whether…：两个宾语从句并列，作 settle 的宾语）（简述：▸发现：1997年，实验发现两种幼树之间有碳转移，似乎经由连接树根的真菌传递，“林木万维网”的说法由此走红。▸想象：真菌能为植物找水和养分，换取植物的糖，还能连接多株植物。畅销书把它讲成树木互相交流、母树照顾自家幼树的故事。▸复核：2023年研究者重看野外证据，认为不足以证明这种网络普遍存在；接入网络对幼苗有利、不利都出现过，最常见的是没有明显影响。▸疑点：没有经同行评审的野外研究证明大树偏爱亲生后代，论文引用还偏向有利结果；原先实验用的也是幼苗。▸未定：2025年支持者质疑复核方法。双方承认地下有物质转移，争论的是网络到底传了多少、对森林有多重要，还需实证。）
+这一切都不能**否定**(disproves)这些网络的**存在**(existence)。（None of this…：这一切都不……，全部否定）2025年1月，共享网络说的**拥护者**(defenders)**挑出了**(faulted)这篇**批评文章**(critique)方法上的**问题**(faulted)。（defenders：指为共享网络之说辩护的研究者；fault：挑出……的问题；the critique：指2023年的那篇批评文章）**批评者**(critics)也**承认**(concede)，碳和养分可以经由地下在树与树之间**迁移**(migrate)。（that 引导宾语从句；underground：副词，在地下）唯有在真实森林中**发掘**(unearthed)出的证据（而非家族**传奇**(saga)的**魅力**(allure)），才能裁定网络究竟**输送了**(convey)多少，以及这件事是否**重要**(matters)。（It is…that…：强调句，强调 evidence…；unearthed in real forests：过去分词短语作后置定语）（how much… 和 whether…：两个宾语从句并列，作 settle 的宾语）（简述：▸发现：1997年，实验发现两种幼树之间有碳转移，似乎经由连接树根的真菌传递，“林木万维网”的说法由此走红。▸想象：真菌能为植物找水和养分，换取植物的糖，还能连接多株植物。畅销书把它讲成树木互相交流、母树照顾自家幼树的故事。▸复核：2023年研究者重看野外证据，认为不足以证明这种网络普遍存在；接入网络对幼苗有利、不利都出现过，最常见的是没有明显影响。▸疑点：没有经同行评审的野外研究证明大树偏爱亲生后代，论文引用还偏向有利结果；原先实验用的也是幼苗。▸未定：2025年支持者质疑复核方法。双方承认地下有物质转移，争论的是网络到底传了多少、对森林有多重要，还需实证。）
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -41,13 +41,13 @@ None of this **disproves** the networks' **existence**. In January 2025, **defen
 | slight | 本文：小幅；adj. 小幅的，轻微的（a slight gain/increase/difference；not in the slightest 一点也不）；纤细的；v./n. 怠慢，轻视 | 1 |
 | surplus | 本文：盈余；n. 盈余，剩余额，过剩（run a surplus 出现盈余；a trade/budget surplus 贸易顺差/预算盈余；本文指花旗松收到的碳多于送出的碳）；adj. 过剩的（surplus food） | 1 |
 | shade | 本文：遮荫；n. 遮荫，阴凉处，树荫（in the shade；in deep shade 在浓荫下；provide shade）；色度；细微差别（shades of meaning）；v. 遮蔽，遮挡（光线） | 1 |
-| terrestrial | 本文：陆生；adj. 陆生的，陆地的（terrestrial plants/animals/ecosystems）；地球的（extraterrestrial 地外的）；（电视）地面传输的 | 2 |
+| terrestrial | 本文：陆生的；adj. 陆生的，陆地的（terrestrial plants/animals/ecosystems）；地球的（extraterrestrial 地外的）；（电视）地面传输的 | 2 |
 | harbour | 本文：包含/携带着；v. （体内或身上）带有，为……提供栖身之所（harbour fungi/bacteria/pests）；怀有（harbour doubts/a grudge）；窝藏（harbour a criminal）；n. 港口（美式 harbor） | 2 |
 | filaments | 本文：菌丝；n. (filament) （真菌的）菌丝（fungal filaments）；细丝；（灯泡的）灯丝 | 2 |
 | forage for | 本文：搜寻/寻找；v. 搜寻（食物、养分）（forage for food/nutrients/water）；n. 草料，饲料 | 2 |
 | nitrogen | 本文：氮；n. 氮，氮气（化学元素 N；nitrogen and phosphorus 氮和磷；nitrogen fertiliser 氮肥） | 2 |
 | nutrients | 本文：养分；n. (nutrient) 养分，营养物（absorb nutrients；nutrients such as nitrogen and phosphorus） | 2 |
-| swapping | 本文：换取；v. (swap) 用……换取，交换（swap A for B 用 A 换 B；swap places 交换位置）；n. 交换 | 2 |
+| swapping for | 本文：用……换取；v. (swap) 用……换取，交换（swap A for B 用 A 换 B；swap places 交换位置）；n. (swap) 交换 | 2 |
 | knit into | 本文：把……编织进；v. 编织（knit a sweater）；（使）紧密联结（knit A and B together；knit sth into a whole/network）；（断骨）愈合 | 2 |
 | shared network | 本文：共享网络；n. 共享网络（a shared network；本文指一个真菌把多株植物连成的地下网络，也称 common mycorrhizal network 共享菌根网络） | 2 |
 | unveiled | 本文：公布/发表了；v. (unveil) 推出，公布，首次展示（unveil a plan/study/new model）；为……揭幕（unveil a statue） | 2 |
@@ -94,7 +94,7 @@ None of this **disproves** the networks' **existence**. In January 2025, **defen
 | saga | 本文：传奇；n. 传奇，长篇故事（a family saga 家族传奇，家世小说）；（冗长的）一连串事件（the saga of…）；（北欧）萨迦 | 5 |
 | allure | 本文：魅力；n. 魅力，诱惑力（the allure of sth；lose its allure）；v. 吸引，诱惑 | 5 |
 | convey | 本文：输送了；v. 输送，运送（convey water/goods/nutrients）；传达，表达（convey a message/meaning） | 5 |
-| matters | 本文：重不重要；v. (matter) 重要，要紧（it matters 这很重要；it doesn't matter 没关系；what matters is… 重要的是……）；n. 事情，问题；物质 | 5 |
+| matters | 本文：重要；v. (matter) 重要，要紧（it matters 这很重要；it doesn't matter 没关系；what matters is… 重要的是……）；n. 事情，问题；物质 | 5 |
 
 ## 史实与来源
 - 【T1/T2】1997年8月7日，《自然》第388卷579–582页刊出加拿大不列颠哥伦比亚省的野外实验论文（作者6人，领衔者为当地林业研究者，正文不写名，写 In a Canadian forest, researchers）：把纸桦和花旗松幼苗罩进塑料标记袋，分别通入碳-13、碳-14标记的二氧化碳（互换标记），随后收获测定标记碳去向。正文写 bathed each species in carbon dioxide laced with a different tracer，不写同位素名称，不写“九天”。IDEAS/RePEc：https://ideas.repec.org/a/nat/nature/v388y1997i6642d10.1038_41557.html ；Mother Tree Project：https://mothertreeproject.org/background/journal-articles/ ；Lifeboat 2023年3月：https://lifeboat.com/blog/2023/03/net-transfer-of-carbon-between-ectomycorrhizal-tree-species-in-the-field ；Arbor Day：https://www.arborday.org/perspectives/paper-birch-douglasfir-odd-relationship（作者6人中3人在美国机构，故正文写 In a Canadian forest, researchers…，不写 Canadian researchers；两种幼苗分别用碳-13、碳-14 标记，故写 a different tracer）
