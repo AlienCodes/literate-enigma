@@ -1,0 +1,11 @@
+--- original-HOST-produce_new_native128_upstream.py
++++ RAM-namespace-produce_new_native128_upstream.py
+@@ -9,7 +9,7 @@
+ sha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest()
+ def load(n,p):
+  s=importlib.util.spec_from_file_location(n,p);m=importlib.util.module_from_spec(s);sys.modules[n]=m;s.loader.exec_module(m);return m
+-parser=argparse.ArgumentParser();parser.add_argument('article');parser.add_argument('--native-root',required=True,type=Path);parser.add_argument('--native-run',required=True,type=int);parser.add_argument('--native-head',required=True);parser.add_argument('--output-root',type=Path,default=Path('/workspace/work/book42-source48-user128-S10-specific-c856-hold06-20261115/media/upstream'));a=parser.parse_args();no=a.article.zfill(2)
++parser=argparse.ArgumentParser();parser.add_argument('article');parser.add_argument('--native-root',required=True,type=Path);parser.add_argument('--native-run',required=True,type=int);parser.add_argument('--native-head',required=True);parser.add_argument('--output-root',type=Path,default=Path('/dev/shm/book42-source48-user128-S10-specific-c856-hold06-20261115/media/upstream'));a=parser.parse_args();no=a.article.zfill(2)
+ P=load('normal18_new_native_transform',H/'final_hold18.py');assert no == '48';assert sha(POLICY)==P.POLICY_SHA256
+ assert len(a.native_head)==40 and all(c in '0123456789abcdef' for c in a.native_head)
+ ART=a.native_root.resolve();run=a.native_run

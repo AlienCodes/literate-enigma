@@ -1,0 +1,67 @@
+diff --git a/workspace/work/source48-low-disk-streaming-transport-review-20261115/streaming_git_data_asset_transport.py b/workspace/work/source48-low-disk-streaming-transport-review-20261115/streaming_git_data_asset_transport_proxy_v2.py
+index 9069f5c..5061331 100644
+--- a/workspace/work/source48-low-disk-streaming-transport-review-20261115/streaming_git_data_asset_transport.py
++++ b/workspace/work/source48-low-disk-streaming-transport-review-20261115/streaming_git_data_asset_transport_proxy_v2.py
+@@ -19,6 +19,7 @@ import subprocess
+ import uuid
+ from typing import BinaryIO, Callable
+ import urllib.parse
++import urllib.request
+ 
+ CHUNK=196608  # 192 KiB; encoded chunks at most 256 KiB.
+ PREFIX=b'{"encoding":"base64","content":"'
+@@ -168,12 +169,28 @@ def prepare_bundle(work_dir, handoff_path, handoff_sha, prepared_sha, index_sha)
+ def recheck_controls(bundle):
+     for path,expected in bundle.get('control_pins',[]):read_pinned_json(path,expected)
+ 
++def environment_https_connection():
++    """Use the same environment HTTP CONNECT route as urllib/gh, never log its URL."""
++    proxy=urllib.request.getproxies().get('https')
++    if not proxy or urllib.request.proxy_bypass('api.github.com'):
++        return http.client.HTTPSConnection('api.github.com',timeout=90)
++    route=urllib.parse.urlsplit(proxy)
++    require(route.scheme=='http' and route.hostname and not route.query and not route.fragment and route.path in ('','/'),'Unsupported environment HTTPS proxy route')
++    c=http.client.HTTPSConnection(route.hostname,port=route.port or 80,timeout=90)
++    headers={}
++    if route.username is not None:
++        credentials=urllib.parse.unquote(route.username)+':'+urllib.parse.unquote(route.password or '')
++        headers['Proxy-Authorization']='Basic '+base64.b64encode(credentials.encode()).decode('ascii')
++    c.set_tunnel('api.github.com',443,headers=headers)
++    return c
++
+ class GitDataClient:
+     def __init__(self, token, connection_factory=None):
+-        self._token=token;self._factory=connection_factory or (lambda:http.client.HTTPSConnection('api.github.com',timeout=90))
++        self._token=token;self._factory=connection_factory or environment_https_connection;self.safe_stage=None
+     def _headers(self,accept='application/vnd.github+json'):
+         return {'Authorization':'Bearer '+self._token,'Accept':accept,'Accept-Encoding':'identity','Content-Type':'application/json','User-Agent':'Codex-reviewed-source48-streaming-asset-transport','X-GitHub-Api-Version':'2022-11-28'}
+     def api(self,repo,path,method='GET',data=None,allow404=False):
++        self.safe_stage={'method':method,'git_endpoint':path}
+         c=self._factory(); raw=None if data is None else json.dumps(data,separators=(',',':'),ensure_ascii=False).encode()
+         try:
+             c.request(method,'/repos/'+repo+'/'+urllib.parse.quote(path,safe='/?=&%'),body=raw,headers=self._headers());r=c.getresponse()
+@@ -184,6 +201,7 @@ class GitDataClient:
+             except (ValueError,UnicodeError) as e: raise GuardError('Malformed Git API JSON; no ref progression') from e
+         finally:c.close()
+     def post_blob(self,repo,blob):
++        self.safe_stage={'method':'POST','git_endpoint':'git/blobs','expected_git_blob_sha':blob.git_sha}
+         c=self._factory()
+         try:
+             c.putrequest('POST','/repos/'+repo+'/git/blobs',skip_accept_encoding=True)
+@@ -199,6 +217,7 @@ class GitDataClient:
+             require(result.get('sha')==blob.git_sha,'Blob POST returned wrong Git SHA; no ref progression')
+         finally:c.close()
+     def verify_blob(self,repo,blob):
++        self.safe_stage={'method':'GET','git_endpoint':'git/blobs/'+blob.git_sha}
+         c=self._factory()
+         try:
+             c.request('GET','/repos/'+repo+'/git/blobs/'+blob.git_sha,headers=self._headers('application/vnd.github.raw+json'));r=c.getresponse()
+@@ -316,7 +335,7 @@ def main():
+         write_small(attempt/'dual-transport-completion-not-READY.json',{'kind':'actual-dual-isolated-assets-raw-object-transport-not-READY','source_id':'48','new_id':'42','asset_commit':results[0]['asset_commit'],'handoff_sha256':a.handoff_sha256,'all_blobs_both_repos_full_raw_SHA256_verified':True,'owned_controlled_file_and_directory_allocated_budget_bytes':sum(allocated_budget(x,block) for x in owned),'owned_metadata_logical_file_bytes':sum(x.stat().st_size for x in owned if x.is_file()),'host_available_before':before,'host_available_after':os.statvfs(b['w']).f_bavail*os.statvfs(b['w']).f_frsize,'requires_original_dual_blob_verifier_complete_MP4_HTTP_and_emit_READY':True,'main_or_master_modified':False},owned)
+     except Exception as e:
+         # Store only class and safe stage summary; no token, source content, or response bodies.
+-        write_small(attempt/'stopped-not-READY.json',{'kind':'streaming-transport-stopped-not-READY','error_class':type(e).__name__,'completed_journal_records':len(records),'no_automatic_write_retry':True,'inspect_remote_exact_state_before_any_retry':True,'may_have_orphan_blobs_trees_commit_or_one_completed_isolated_ref':True,'main_or_master_modified':False},owned)
++        write_small(attempt/'stopped-not-READY.json',{'kind':'streaming-transport-stopped-not-READY','error_class':type(e).__name__,'safe_Git_stage':getattr(locals().get('client'),'safe_stage',None),'completed_journal_records':len(records),'no_automatic_write_retry':True,'inspect_remote_exact_state_before_any_retry':True,'may_have_orphan_blobs_trees_commit_or_one_completed_isolated_ref':True,'main_or_master_modified':False},owned)
+         raise GuardError('Transport stopped without READY; inspect safe stop receipt and exact remote state')from None
+     print(json.dumps({'source_id':'48','asset_commit':results[0]['asset_commit'],'dual_raw_objects_exact':True,'READY_created':False,'main_or_master_modified':False}))
+ if __name__=='__main__':main()

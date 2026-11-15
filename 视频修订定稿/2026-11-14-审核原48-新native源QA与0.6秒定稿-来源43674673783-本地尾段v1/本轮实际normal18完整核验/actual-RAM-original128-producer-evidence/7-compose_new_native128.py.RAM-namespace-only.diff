@@ -1,0 +1,10 @@
+--- original-HOST-compose_new_native128.py
++++ RAM-namespace-compose_new_native128.py
+@@ -1,6 +1,6 @@
+ from pathlib import Path
+ import argparse,hashlib,json,subprocess
+-W=Path(__file__).resolve().parent;RAM=Path('/workspace/work/book42-source48-user128-S10-specific-c856-hold06-20261115/media');PY='/workspace/work/video-venv/bin/python';sha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest()
++W=Path(__file__).resolve().parent;RAM=Path('/dev/shm/book42-source48-user128-S10-specific-c856-hold06-20261115/media');PY='/workspace/work/video-venv/bin/python';sha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest()
+ p=argparse.ArgumentParser();p.add_argument('--article',choices=['48'],required=True);p.add_argument('--native-root',type=Path,required=True);p.add_argument('--layout',type=Path,required=True);a=p.parse_args();no=a.article;book='42';tag=f'book{book}-source{no}';ART=a.native_root;up=RAM/'upstream'/no
+ original_status=ART/f'{no}-status.json';ns=json.loads(original_status.read_text());assert ns['passed'] and ns['canonical_pipeline_passed'];assert ns['accepted_prior_aac_identical'] is False and ns['canonical_aac_adts_sha256']=='d77ff0f972b81aa5c44a6203b01ca2a55266862817d9650fac37e970cd449b4f'
+ record=up/f'{no}-post-only-normal18-upstream-record.json';r0=json.loads(record.read_text());assert r0['prior_full_delivery_V3_claimed']is False and r0['all_audio_packet_payload_side_data_absolute_clock_exact']

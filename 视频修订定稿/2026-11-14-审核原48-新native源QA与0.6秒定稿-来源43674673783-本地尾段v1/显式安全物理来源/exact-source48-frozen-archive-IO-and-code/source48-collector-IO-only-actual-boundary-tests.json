@@ -1,0 +1,18 @@
+{
+  "kind": "source48-collector-IO-only-synthetic-samefs-crossfs-actual-contract-check",
+  "passed": true,
+  "checks": [
+    "samefs HOST source exact hardlink",
+    "RAM source sameSHA existingHOST candidate exact hardlink",
+    "unique crossfs copied once then sameSHA reuse linked",
+    "wrong source SHA rejected",
+    "wrong candidate SHA rejected",
+    "wrong candidate size rejected",
+    "all originals unchanged; no overwrite or deletion"
+  ],
+  "private_or_media_or_PDF_read": false,
+  "canonical_or_external_network_changed": false,
+  "original_collector_unchanged_sha256": "1a9b92473c96f3133fc2be0ffae9e7a0a307b079ae0e41ea1f2a3c53ac5ad64e",
+  "isolated_collector_sha256": "a3516aeba62aa83aa4f4376b6f4de5c54600118236f33f4a06711a4dff8e33b3",
+  "helper_sha256": "3de3baecb1f70435debc368b58ee9e2fddb8625b51f77eb457f3baebbf9aa0b0"
+}
