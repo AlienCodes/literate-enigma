@@ -15,7 +15,7 @@ VOICE='1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8'
 MODELS={'kokoro-v1.0.onnx':'7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5','kokoro-v1.0-timed.onnx':'beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a','voices-v1.0.bin':'bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d'}
 FLAGS=('STRICT_CACHE','XG_NOPUSH','XG_KEEP_REVIEWED_GAIN','XG_KEEP_REVIEWED_ENDING','XG_KEEP_REVIEWED_CUTS')
 DSP_KEYS=('非人声区间','词尾除阻','除阻加强','停顿插入点','停顿删除区间','停顿处除阻','分段增益dB','段内渐变dB','句子增益dB','分段包络dB','列举逗号','结尾句','合成标点','区间声音指纹','朗读删逗号')
-PROFILE_SHA='19e4242fddc847c9f92e5f32e97061b363aad2987957fde1801b562e876830d4'
+PROFILE_SHA='a43d607a8edc2eec9220910418a245b8af6562b963f7688eb2315d54125db5bc'
 
 
 def require(value, message):
@@ -321,26 +321,6 @@ def measure_PV_and_context(m, pcm, expected, tokens, mapping, profile):
     # The actual whole has >=1.0s digitalgap before this lastsentence and2s after it.
     # Zero padding reproduces its isolated original PV segment, without building a whole or changing output samples.
     allrows=PV.scan(pad);global_start=expected['global_start_s'];wanted=set(expected['expected_requested_PV_displayed_keys']);hits=[]
-    # Pure scalar I/O before the unchanged exact-clock assertion: retain every
-    # original scan row, including both requested flags even if the first rejects.
-    actualscan=[]
-    for r in allrows:
-        local=[r[1]-lead/SR,r[2]-lead/SR];globaltimes=[t+global_start for t in local]
-        g=(r[0],*globaltimes,*r[3:]);displaykey=PV.key(g)
-        actualsamples=[int(round(t*SR))for t in local]
-        guessed=expected['expected_actual_PV_intervals'].get(displaykey)
-        actualscan.append({'original_padded_local_full_tuple':list(r),'original_global_full_tuple':list(g),
-            'actual_local_float_seconds':local,'actual_global_float_seconds':globaltimes,
-            'actual_local_integer_samples':actualsamples,'actual_global_integer_samples':[int(round(t*SR))for t in globaltimes],
-            'actual_original_displayed_key':displaykey,'actual_original_class':r[0],'actual_original_rounded_scalar':PV.实测(g),
-            'requested_native_displayed_flag':displaykey in wanted,
-            'prior_display_derived_guess_not_native_sample_evidence':guessed,
-            'actual_local_minus_prior_guessed_samples':None if guessed is None else [actualsamples[i]-guessed['local_samples'][i]for i in (0,1)]})
-    tokens['actual_preassert_original_scan_and_requested_clocks']={
-        'all_original_scan_flags':actualscan,
-        'both_requested_rows_recorded_before_any_exact_clock_assert':[r for r in actualscan if r['requested_native_displayed_flag']],
-        'prior_clock_guess_provenance':'Original profile values inferred from rounded2 stdout, not measured native sample coordinates',
-        'all_original_assertions_and_failure_exit_unchanged':True,'quality_or_CF_acceptance':False}
     for row in allrows:
         local0,local1=row[1]-lead/SR,row[2]-lead/SR
         globalrow=(row[0],local0+global_start,local1+global_start,*row[3:]);key=PV.key(globalrow)

@@ -64,7 +64,7 @@ jobs:
           parent_sha=$(cat .github/source24-S18-two-real-PV/actual-parent-onlyS18-PV-review.sha256)
           python -u .github/source24-S18-two-real-PV/run24_onlyS18_two_actual_PV_cached_scalar.py \
             --actual-root-execution-adoption .github/source24-S18-two-real-PV/actual-ROOT-onlyS18-PV-execution-adoption.json \
-            --actual-root-execution-adoption-sha256 001ba4531716163454e4c79de9fdc7aec17a49cd04f7d74f3c94b60edea1acc1 \
+            --actual-root-execution-adoption-sha256 dd5c388f45bd437297e44fad69a3610a25278dcc37de6e3c824344f153354274 \
             --actual-parent-review-adoption .github/source24-S18-two-real-PV/actual-parent-onlyS18-PV-review.json \
             --actual-parent-review-adoption-sha256 "$parent_sha"
       - name: 仅安全标量，不上传WAV或PKL或模型

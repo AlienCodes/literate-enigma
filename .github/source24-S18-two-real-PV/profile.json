@@ -210,12 +210,12 @@
     "expected_actual_PV_intervals": {
       "147.07–147.09s": {
         "local_samples": [
-          115560,
-          116040
+          115680,
+          116160
         ],
         "global_seconds": [
-          147.07,
-          147.09
+          147.075,
+          147.095
         ]
       },
       "147.10–147.12s": {
@@ -255,5 +255,54 @@
   "no_TTS_math_ASR_GT_native_whole_or_audio_export_scope": true,
   "original_window_context_ms": 60,
   "descriptive_frame_ms": 2.5,
-  "actual_source_and_mother_cache_roles_hardpinned": true
+  "actual_source_and_mother_cache_roles_hardpinned": true,
+  "actual_measured_PV_clock_provenance": {
+    "actual_ROOT_data_adoption": {
+      "path": "/workspace/work/ROOT-source24-S18-actual43769897299-two-fullprecision-PV-clocks-data-adoption-20261115.json",
+      "bytes": 5126,
+      "sha256": "9076b12e7e798af14d212304c2fbf0da37c1c2167ea171273c8ecc821dd31a9c"
+    },
+    "actual_fullscan_report": {
+      "path": "/workspace/work/source24-S18-PV43769897299-actual-preassert-allscan-clocks-original/files/24-S18-two-actual-PV-true-timed-scalar.json",
+      "bytes": 97111,
+      "sha256": "dc616c4ba16cc4d956fd3669aab2edff650f93e0d1139b48fd39a6bbc4ebc141"
+    },
+    "original_round2_display_derived_guesses_history_not_sample_evidence": {
+      "147.07–147.09s": {
+        "local_samples": [
+          115560,
+          116040
+        ],
+        "global_seconds": [
+          147.07,
+          147.09
+        ]
+      },
+      "147.10–147.12s": {
+        "local_samples": [
+          116280,
+          116760
+        ],
+        "global_seconds": [
+          147.1,
+          147.12
+        ]
+      }
+    },
+    "actual_global_sample_intervals_by_preserved_displaykey": {
+      "147.07–147.09s": [
+        3529800,
+        3530280
+      ],
+      "147.10–147.12s": [
+        3530400,
+        3530880
+      ]
+    },
+    "only_first_clock_corrected_by_samples": [
+      120,
+      120
+    ],
+    "class_original_roundmetrics_keys_and_all_other_expected_fields_unchanged": true
+  }
 }
