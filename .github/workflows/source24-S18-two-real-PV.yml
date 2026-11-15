@@ -1,0 +1,77 @@
+name: 书49仅S18两处实际PV原缓存真实音素标量
+on:
+  push:
+    branches: [codex/finish-05-and-summaries-20261112]
+    paths: ['.github/source24-S18-two-real-PV/**', '.github/workflows/source24-S18-two-real-PV.yml']
+permissions:
+  contents: read
+jobs:
+  onlyS18-two-actual-PV-cached-scalar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github/source24-S18-two-real-PV
+      - uses: actions/checkout@v4
+        with:
+          repository: alienalgorithm/postgraduate-vocabulary
+          ref: fc0b56af9a0ac0e97015548b756d4e51d66dc2ea
+          path: official-main
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /视频/工具/
+            /视频/配音缓存/*.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/cache/restore@v4
+        id: original-cache
+        with:
+          path: |
+            ${{ runner.temp }}/completion-machine
+            ~/asr
+          key: completion-05-machine-43294745262
+      - name: 原机器必须命中，不重建母音或模型
+        env:
+          CACHE_HIT: ${{ steps.original-cache.outputs.cache-hit }}
+        run: test "$CACHE_HIT" = true
+      - name: 原固定运行依赖
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg espeak-ng
+          python -m pip install --quiet -r official-main/视频/工具/环境/requirements.txt
+      - uses: actions/cache/restore@v4
+        id: actual-S18-mothers
+        with:
+          path: |
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/6ad3a3b41ce97d4b86f5bcd2cf23d997a661b81b.pkl
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/6ad3a3b41ce97d4b86f5bcd2cf23d997a661b81b.pkl.单线程
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/a89de4f946c6cfc5c23a98384b5f48a5e659038b.pkl
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/a89de4f946c6cfc5c23a98384b5f48a5e659038b.pkl.单线程
+          key: Linux-native24-exact-S18-first-spoken-comma-43702270266
+      - name: 实际ROOT97c与独立父审绑定的S18原缓存音素和PV标量
+        env:
+          ACTUAL_S18_MOTHER_CACHE_HIT: ${{ steps.actual-S18-mothers.outputs.cache-hit }}
+          AUDIO_ONLY: '1'
+          STRICT_CACHE: '1'
+          XG_NOPUSH: '1'
+          XG_KEEP_REVIEWED_GAIN: '1'
+          XG_KEEP_REVIEWED_ENDING: '1'
+          XG_KEEP_REVIEWED_CUTS: '1'
+        run: |
+          parent_sha=$(cat .github/source24-S18-two-real-PV/actual-parent-onlyS18-PV-review.sha256)
+          python -u .github/source24-S18-two-real-PV/run24_onlyS18_two_actual_PV_cached_scalar.py \
+            --actual-root-execution-adoption .github/source24-S18-two-real-PV/actual-ROOT-onlyS18-PV-execution-adoption.json \
+            --actual-root-execution-adoption-sha256 97c73d52b1adff5c732decc81d47aefc1152154f51835bec30c0ddd74dbec010 \
+            --actual-parent-review-adoption .github/source24-S18-two-real-PV/actual-parent-onlyS18-PV-review.json \
+            --actual-parent-review-adoption-sha256 "$parent_sha"
+      - name: 仅安全标量，不上传WAV或PKL或模型
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: source24-onlyS18-two-actual-PV-true-timed-scalar-only
+          path: source24-two-PV-public/*.json
+          retention-days: 30
+          if-no-files-found: error
