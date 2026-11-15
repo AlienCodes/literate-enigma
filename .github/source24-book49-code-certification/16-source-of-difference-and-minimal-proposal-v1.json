@@ -1,0 +1,94 @@
+{
+  "kind": "16-exact-source-pronunciation-causality-and-minimal-review-proposal-v1",
+  "quality_acceptance": false,
+  "historical_real_media_binding": [
+    {
+      "commit": "188e5bbc7c4739d0781b9cec83fd5e8b963931b4",
+      "git_blob_sha1": "6af9c8cfef0fc0013e616fa022d4f27333c44ec7",
+      "MP4_full_SHA256": "086abfadf6d53dff62bb201782469881eca1fe9ea5c5ebcdf036c853b676a52b",
+      "AAC_ADTS_SHA256": "bbd43027b230cfd0e569c7d55c6c33737ad7c7a498f762a19d7f5c021007c4d6"
+    },
+    {
+      "commit": "8d04dcb07580fae2f4717683dfa562262b45cd2a",
+      "git_blob_sha1": "10519c5d1529bc931ecfb3e5899428050a7a2b71",
+      "MP4_full_SHA256": "0de06318591cb0ef1bce2c3ab4c9a49a836ddc07c0b6ec968af1f19ee754f091",
+      "AAC_ADTS_SHA256": "bbd43027b230cfd0e569c7d55c6c33737ad7c7a498f762a19d7f5c021007c4d6"
+    },
+    {
+      "commit": "5bef90a8c8797ea953c5943cbab5cb0380339f94",
+      "git_blob_sha1": "766f1be7dfaaa29df165082d0184dfa018290ad5",
+      "MP4_full_SHA256": "e44f0c33eb7501d04d7b9c955a906e8741be09854298713bd384a2ce9acd242d",
+      "AAC_ADTS_SHA256": "bbd43027b230cfd0e569c7d55c6c33737ad7c7a498f762a19d7f5c021007c4d6"
+    }
+  ],
+  "real_historical_dictionary_full_replay": {
+    "current_maker_with_real188_dictionaries_exact_accepted_AAC": true,
+    "WAV_SHA256": "3a2239772fe1941d4a5de28be034ff49670fedcf6ced0d1c0e61e5476912b93d",
+    "AAC_ADTS_SHA256": "bbd43027b230cfd0e569c7d55c6c33737ad7c7a498f762a19d7f5c021007c4d6",
+    "report_SHA256": "bcbcdc1dba6aa5b1391485e06b6e97498bc272677ac4256b849fa6ceda8257fe"
+  },
+  "two_concrete_changes": {
+    "S13_plain_next": {
+      "historical_current_IPA_identical": true,
+      "company_NeXT_is_not_case_exact_match_to_plain_next": true,
+      "outer_pron_trigger_uses_re_I_but_inner_replacement_uses_wf": true,
+      "dispatch_changed_plaintext_to_same_IPA_is_phonemes_true": true,
+      "new_entry_does_not_target_this_plain_word": true
+    },
+    "S15_origin": {
+      "old_IPA": "ˈɔːɹɪdʒˌɪn",
+      "current_IPA": "ˈɔːɹɪdʒɪn",
+      "Haber_IPA_unchanged": "hˈɑːbɚ",
+      "correct_new_normal_word_secondary_stress_removal": true,
+      "historical_raw_samples": 215040,
+      "actual_native_current_raw_samples": 213504,
+      "raw_duration_delta_seconds": -0.064,
+      "historical_processed_sentence_seconds": 9.004999999999995,
+      "actual_current_processed_sentence_seconds": 8.935000000000002,
+      "actual_processed_duration_delta_seconds": -0.06999999999999318,
+      "this_is_the_later_70ms_shift": true
+    }
+  },
+  "current_full_PCM_replay_status": {
+    "exact125c94_not_claimed": true,
+    "reason": "Actual new S15 raw/timed keys were created in native reference preparation and are absent from pinned public cache. Read-only diagnosis forbids inference. No substitute raw mother or falsified header was used.",
+    "actual_native_expected_PCM_SHA256": "125c94fc725a2936d35e6242b915e75fd200f220938e9cfa9e1c2f41caecaf08",
+    "actual_native_expected_AAC_ADTS_SHA256": "a9739417cd48f4bc2d3a6237a09de2de84545a1cc994b85a4a0a11e91e1234a6",
+    "actual_native_new_raw_cache_scalar_manifest": {
+      "exact_native_cache_key": "dce6d1ce3af5043cfc8b6d30acf416eab118b916.pkl",
+      "pkl_sha256": "79c17683e2379d53fd44fda36ea9e8708d5123b425a089ea3c7d3c66d4edcd43",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Of Jewish origin, Haber left Germany an outcast after Hitler's regime seized power, dying in Basel in 1934.",
+          "exact_native_cache_key": "dce6d1ce3af5043cfc8b6d30acf416eab118b916.pkl",
+          "cache_input_text_sha256": "6b9bb1a229fbdbd8150ab8745b7e82d63e76fea334a2c6814f47ad9567e4d4a5",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": false
+        }
+      ],
+      "native_single_thread_marker_value": "79c17683e2379d53",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        213504
+      ],
+      "unprocessed_array_sha256": "9085903b024f884e76ed6a937393bb853962a7dc954a13e19790ff16493377a6"
+    }
+  },
+  "minimal_legal_proposal_for_root_review": {
+    "source_controls_English_or_lexical_changes": null,
+    "one_producer_dispatch_fix_if_root_approves": "In _pron dictionary activation re.search, flags=re.I -> flags=_wf(w_), exactly matching the case rule already used by phonemes_of. This preserves ordinary next on old plaintext cache; proper NeXT remains corrected.",
+    "keep_correct_Origin_pronunciation_and_no_old_wrong_secondary_stress_restore": true,
+    "if_kept_origin_needs_explicit_delivery_audio_scope": "Only S15 corrected origin pronunciation and resulting timeline change; all other audio must be independently aligned and preserved, including prior S13 cache after dispatch fix. Original all quality gates still mandatory.",
+    "exact_current_replay_requires_actual_matching_native_private_raw_timed_cache": "Read existing dce6/989b entries inside native private environment and verify recorded fullSHA, without exporting GT/raw/cache."
+  },
+  "no_source_PAY_core_dictionary_threshold_cache_change_or_TTS_inference": true
+}
