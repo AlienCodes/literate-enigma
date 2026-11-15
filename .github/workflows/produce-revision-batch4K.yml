@@ -129,27 +129,71 @@ jobs:
           STAMP_HIT: ${{ steps.fastcheck-cache.outputs.cache-hit }}
         run: test "$STAMP_HIT" = true
       - uses: actions/cache/restore@v4
-        id: exact-source24-S18-mothers
+        id: exact-source56-S11-mothers
         with:
           path: |
-            ${{ runner.temp }}/completion-machine/tts/cache_tts/6ad3a3b41ce97d4b86f5bcd2cf23d997a661b81b.pkl
-            ${{ runner.temp }}/completion-machine/tts/cache_tts/6ad3a3b41ce97d4b86f5bcd2cf23d997a661b81b.pkl.单线程
-            ${{ runner.temp }}/completion-machine/tts/cache_tts/a89de4f946c6cfc5c23a98384b5f48a5e659038b.pkl
-            ${{ runner.temp }}/completion-machine/tts/cache_tts/a89de4f946c6cfc5c23a98384b5f48a5e659038b.pkl.单线程
-          key: Linux-native24-exact-S18-first-spoken-comma-43702270266
-      - name: 真实保存的S18四叶缓存必须命中且逐SHA不变
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/13ae7e344fdf2409fd9e771216e7192076890acd.pkl
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/13ae7e344fdf2409fd9e771216e7192076890acd.pkl.单线程
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/9b367dbd8656c1be8d5167b0c639ad5fad2c794b.pkl
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/9b367dbd8656c1be8d5167b0c639ad5fad2c794b.pkl.单线程
+          key: Linux-native56-exact-S11-first-spoken-comma-43721094194
+      - name: 真实S11两母四叶严格命中并逐SHA核
         env:
-          CACHE_HIT: ${{ steps.exact-source24-S18-mothers.outputs.cache-hit }}
+          CACHE_HIT: ${{ steps.exact-source56-S11-mothers.outputs.cache-hit }}
         run: |
           test "$CACHE_HIT" = true
           python - <<'PY'
           import os,json,hashlib
           from pathlib import Path
-          x=json.loads(Path('.github/video-revision-batch/actual-source24-S18-four-private-leaf-identity.json').read_text())
+          x=json.loads(Path('.github/video-revision-batch/actual-source56-S11-four-private-leaf-identity.json').read_text())
           c=Path(os.environ['RUNNER_TEMP'])/'completion-machine/tts/cache_tts'
           assert len(x['actual_four_private_files'])==4
           assert all(hashlib.sha256((c/n).read_bytes()).hexdigest()==s for n,s in x['actual_four_private_files'].items())
           PY
+      - uses: actions/cache/restore@v4
+        id: existing-original-S11-G36
+        with:
+          path: ${{ runner.temp }}/completion-machine/tts/source56-only-target-whole-original-math-cache/调平_22842078959011da4b6986b549453b7eafee80d9.json
+          key: Linux-native56-only-target-whole-original-math-43729197848
+      - name: 只恢复真实已SAVE唯一原调平JSON，禁止重算
+        env:
+          CACHE_HIT: ${{ steps.existing-original-S11-G36.outputs.cache-hit }}
+        run: |
+          python .github/video-revision-batch/restore_exact_existing_S11_G36_JSON.py
+          cp source56-strict-whole-WAV-MD5-only-public/actual-existing-S11-original-G36-JSON-restore-readback.json article56-delivery/56-original-S11-G36-restore-readback.json
+      - uses: actions/cache/restore@v4
+        id: exact-CMU2-S11-mothers
+        with:
+          path: |
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/42d32206d7fda7443c0e489a1ee1ac1b11d9e3fa.pkl
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/42d32206d7fda7443c0e489a1ee1ac1b11d9e3fa.pkl.单线程
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/a387fbeb6dd6337c40167612b2f8f3c56170122f.pkl
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/a387fbeb6dd6337c40167612b2f8f3c56170122f.pkl.单线程
+          key: Linux-native56-exact-S11-CMU2-Wallace-pronCTX-43759374449
+      - name: 真实已SAVE的CMU2两母四叶必须严格命中
+        env:
+          CACHE_HIT: ${{ steps.exact-CMU2-S11-mothers.outputs.cache-hit }}
+        run: |
+          test "$CACHE_HIT" = true
+          python - <<'PYFIX'
+          import os,json,hashlib
+          from pathlib import Path
+          x=json.loads(Path('.github/video-revision-batch/actual-CMU2-two-mother-identity.json').read_text())
+          c=Path(os.environ['RUNNER_TEMP'])/'completion-machine/tts/cache_tts'
+          assert len(x['actual_four_private_files'])==4
+          assert all(hashlib.sha256((c/n).read_bytes()).hexdigest()==v for n,v in x['actual_four_private_files'].items())
+          PYFIX
+      - uses: actions/cache/restore@v4
+        id: actual-CMU2-S11-G36
+        with:
+          path: ${{ runner.temp }}/completion-machine/tts/source56-only-S11-CMU2-whole-original-math-cache/调平_f8530296a68d023c59d49bcc027d1e23c0bd9a2c.json
+          key: Linux-native56-only-S11-CMU2-whole-original-math-43765008177
+      - name: 只恢复实际已SAVE的新CMU2原数学JSON，不重算
+        env:
+          CACHE_HIT: ${{ steps.actual-CMU2-S11-G36.outputs.cache-hit }}
+        run: |
+          python .github/video-revision-batch/restore_exact_existing_S11_CMU2_G36_JSON.py
+          cp source56-CMU2-existing-math-public/actual-existing-S11-CMU2-original-G36-JSON-restore-readback.json article56-delivery/56-actual-CMU2-original-G36-restore-readback.json
       - name: 原程序做稿并正式定稿4K
         run: python -u .github/video-revision-batch/run.py
       - name: 仅保留本篇公开成片和核验材料

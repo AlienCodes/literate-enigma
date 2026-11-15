@@ -19,21 +19,21 @@ import tempfile
 import traceback
 
 sys.dont_write_bytecode = True
-SOURCE = 'c7e90cc34e1275659d4648d26bbc5bb6ad18efbe5697311138e28b9647ff7cc6'
-SOURCE_NO = '23'
-BOOK_ORDER = 62
-TARGET = 'S13'
-SENTENCE_COUNT = 19
+SOURCE = '7189bd56036efc81ecf0078f19cca806918ffbde5753c8900680dacf5896cdda'
+SOURCE_NO = '56'
+BOOK_ORDER = 65
+TARGET = 'S11'
+SENTENCE_COUNT = 17
 RETIRE_COUNT = 5
 SCHEMA_ADDED = False
 CERTIFICATE_SHA = 'c05b6ed258dc9783bdb453f1e7382dac8b40d27f66ac30c26b3ee079c3933c19'
 STAMP_SHA = '9aa653ec47c686d9bb0b6c4393444bb50c3c8d2d249fe10a843b0959854f7ea6'
-SHADOW = '878a365c1f85e52a8f760f510d05a11c95fadf88d67d05293bc5b6cc37a11c72'
-PROFILE_SHA = 'f0820f9ddee11b88105a8fa79d26871f81b7ac9f6d2ab92005b7d5384367794c'
+SHADOW = '5958e748e091d4f25bc004890177914ed35b9bfc5f6bf3007262e124bd6e7597'
+PROFILE_SHA = '05dd9f5ce292c51c34daf20ee35247ddeb7b4e0ab92c8e9c2275dc2751498aeb'
 MAKER = '1b87c1d4d1685bdd59325587184cca35f853354a015e6fe89c11f150cd2a6239'
 PROVIDER_SOURCE_SHA = '32602bee21b14ed161fdfd3c8b921b267782ad143a49c3ebd256c16c473808f5'
 DELEGATE_GUARD_SHA = '8f94c2ffbcdc981c177c4f8547bbf0bb7481628b9d8355165cd04db4bf5b6521'
-AUTH = 'b5741a1f9e9c7b32e414826e52dec07907df5893cb08f730189d1ded6a0af604'
+AUTH = '7eda217cbd99104c0cf780e65265f0dc428fe683768d763fe44f8c63c09616cc'
 DICT = '5f558c61f8ffb99009a89989afcc07a9ce168b2b70a6c9377289040d14ec402b'
 CTX = '4d8905dc1a87f97b707270f03f41ea0fdf2b207ca218ed74608cdb134e3dc8e3'
 OLDREG = '91ccecd61ade5284de72f27235c82df3fdff6350576abfac02d2e0db0f346a9a'
@@ -43,11 +43,11 @@ MODELS = {
     'kokoro-v1.0-timed.onnx': 'beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a',
     'voices-v1.0.bin': 'bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d',
 }
-DISPLAY = 'He forfeited his security clearance and, to avert imprisonment, submitted to hormone injections.'
-PROJECTED = 'He forfeited his security clearance and to avert imprisonment, submitted to hormone injections.'
-ROOT_SOURCE_ADOPTION_SHA = '6dfb5a782832e49bdb89c38da9a78e4d70144193080d533e2c8a7239efb2b448'
-BASELINE_AUDIO_H_SHA = '8753f7356f949424c86c52f12e75b1012ad72538825e637bb48ee6eb79507706'
-CODE_ADOPTION_SHA = '43fa711ca1957f1d54fa8e35995f681ecd1094a154b97273377438bdc63bee2e'
+DISPLAY = 'The compromise, struck without Wallace, may have kept rivalry over precedence at bay.'
+PROJECTED = 'The compromise struck without Wallace, may have kept rivalry over precedence at bay.'
+ROOT_SOURCE_ADOPTION_SHA = '2cbd8635a18637633d23c0119578b7519094950a06aa6ff62a33b59a5209968c'
+BASELINE_AUDIO_H_SHA = 'a328e1a564e3bacb1d9e426114e84651b4e092a223b742a60ba73f94789e075a'
+CODE_ADOPTION_SHA = '38e62ca0071c79d5a3052c44e700b387f1da9f15031118b02c33acfca6d6050e'
 FLAGS = ('STRICT_CACHE', 'XG_NOPUSH', 'XG_KEEP_REVIEWED_GAIN',
          'XG_KEEP_REVIEWED_ENDING', 'XG_KEEP_REVIEWED_CUTS')
 
@@ -89,46 +89,48 @@ def typed(value):
 
 def verify_request(request, shadow, history):
     require(str(request.get('no')) == SOURCE_NO and len(request['sentences']) == SENTENCE_COUNT,
-            'Wrong exact source23/V9 sentence count')
-    require(history['production_review_source']['sha256'] == SOURCE and history['shadow']['sha256'] == SHADOW,
-            'Wrong actual V9 source/private retirement provenance')
+            'Wrong exact source56/sentence count')
+    require(history['production_review_source']['sha256'] == SOURCE and
+            history['shadow']['sha256'] == SHADOW and
+            history['actual_baseline_audio_H']['sha256'] == BASELINE_AUDIO_H_SHA,
+            'Wrong actual source56 private retirement provenance')
     restored = copy.deepcopy(shadow)
-    rows = history['five_retired_entries']
-    expected_paths = {'/非人声区间/S13', '/词尾除阻/S13', '/区间声音指纹/S13',
-                      '/核对确认/非人声/116.95–117.03s', '/核对确认/删除段/S13 raw 2.5591-2.8350'}
+    rows = history['five_exact_retired_entries']
+    expected_paths = {'/停顿插入点/S11', '/非人声区间/S11', '/区间声音指纹/S11',
+                      '/核对确认/机器复听/S11',
+                      '/核对确认/停顿位置/S11 compromise, ~1 struck @1.100'}
     require(len(rows) == RETIRE_COUNT and {row['path'] for row in rows} == expected_paths,
-            'Only the exact five reviewed old S13 mother-bound leaves may be retired')
+            'Only the exact five reviewed old S11 mother-bound leaves may be retired')
     for row in rows:
         keys = [key.replace('~1', '/').replace('~0', '~') for key in row['path'].split('/')[1:]]
         parent = restored
-        for key in keys[:-1]: parent = parent[key]
+        for key in keys[:-1]:
+            parent = parent[key]
         key = keys[-1]
         require(key not in parent, 'Retired explicit old target leaf still active')
         parent[key] = copy.deepcopy(row['old_value'])
-        order = row['parent_key_order_before_removal']
-        require(set(parent) == set(order), 'Retired leaf parent key set changed')
-        ordered = {name: parent[name] for name in order}
+        require(set(parent) == set(row['parent_original_key_order']), 'Retired leaf parent key set changed')
+        ordered = {name: parent[name] for name in row['parent_original_key_order']}
         parent.clear(); parent.update(ordered)
-    expected_spec = {'篇号': 23, '原文': DISPLAY, '逗号序号': [1]}
+    expected_spec = {'篇号': 56, '原文': DISPLAY, '逗号序号': [1]}
     require(typed(shadow.get('朗读删逗号', {}).get(TARGET)) == typed(expected_spec), 'Exact target schema required')
     require(typed(restored) == typed(request), 'Exact five-leaf inverse must reconstruct entire immutable typed source')
-    require(typed(request['sentences']) == typed(shadow['sentences']), 'Private retirement changed display or summary')
-    require(typed(request.get('结尾句')) == typed(shadow.get('结尾句')), 'Original complete S19 point8 ending changed')
+    require(typed(request['sentences']) == typed(shadow['sentences']), 'Private retirement changed any display/summary')
     require(not shadow.get('结尾句', {}).get(TARGET), 'Target is not an ending-splice sentence')
-    require(' '.join(c['en'].replace('**', '') for c in shadow['sentences'][12]['chunks']) == DISPLAY,
-            'Exact S13 display and second imprisonment comma must remain')
+    require(' '.join(c['en'].replace('**', '') for c in shadow['sentences'][10]['chunks']) == DISPLAY,
+            'Exact full S11 display required; without and second comma must remain')
     return True
 
 
 def validate_source_adoption(adopted):
-    require(adopted.get('H', {}).get('sha256') == 'ca00b01acfe65d10d16bed8fbee746177ecea7762cf07fd802db95eaa625bb69' and
-            adopted.get('selected_source', {}).get('sha256') == SOURCE and
-            adopted.get('selected_shadow', {}).get('sha256') == SHADOW and
-            adopted.get('shadow_history', {}).get('sha256') == '45006f2a5f1e0addafb0dcc2ddaedb1fcd9d9e7aeec36add99181552f443ae44' and
-            adopted.get('true_final_authority', {}).get('sha256') == AUTH and
-            adopted.get('code22_actual_certificate_separate_adopted') == '17e5b43e734200eafa2da43b63fea913bffe62c42525630712a2d203a81ee716' and
-            adopted.get('future_two_mother_only_exact_new_frozen_caller_requires_separate_review') is True,
-            'Actual root source23 V9 source/shadow/five-leaf adoption required')
+    require(adopted.get('source_id') == SOURCE_NO and adopted.get('book_order') == BOOK_ORDER and
+            adopted.get('target_sentence') == TARGET and
+            adopted.get('source_H', {}).get('sha256') == '69092d9858b0b1fb343a56d2ce33d1ea39c17092d0a6f953f4c8919d32892e3e' and
+            adopted.get('selected_production_files', {}).get('视频/脚本/56.json', {}).get('sha256') == SOURCE and
+            adopted.get('selected_private_shadow', {}).get('sha256') == SHADOW and
+            adopted.get('selected_retirement_history', {}).get('sha256') == 'fa38a4d7b9a760f3ed7b248a67f3fb0bb11c335336ec63dc655e46dd91755b88' and
+            adopted.get('after_actual22_codecert_success_prepare_exact_only_S11_two_whole_mother_calls_authorized') is True,
+            'Actual root source56 source/shadow/five-leaf adoption required')
     return True
 
 
@@ -236,8 +238,8 @@ def validate_certificate(tools, manifest, certificate):
     require(certificate.get('overlay_manifest') == manifest and
             len(certificate.get('source68_code_adoption_SHA256', '')) == 64 and
             len(certificate.get('source35_code_adoption_SHA256', '')) == 64 and
-            len(certificate.get('source56_code_adoption_SHA256', '')) == 64 and
-            certificate.get('source23_code_adoption_SHA256') == CODE_ADOPTION_SHA,
+            len(certificate.get('source23_code_adoption_SHA256', '')) == 64 and
+            certificate.get('source56_code_adoption_SHA256') == CODE_ADOPTION_SHA,
             'Actual combined22 certificate must bind this runtime contract and separate68/35 code adoption')
     for row in manifest['files']:
         rel = Path(row['path']).relative_to('视频/工具')

@@ -10,7 +10,7 @@ Lyell and the **botanist** Joseph Hooker **arranged for** both papers to be read
 
 The papers' **publication** on 20 August 1858 met a **muted** **reception**. In May 1859 the Society's president **remarked** in his **yearly** address that the year had been **barren of** **revolutionary** discoveries. The **sensation** came on 24 November 1859 with Darwin's **treatise**, **On the Origin of Species**: booksellers had **subscribed for** every copy of its first **impression**, 1,250 in all.
 
-Wallace had **readily** **signified** his **acceptance** in October 1858, **assuring** Hooker in a **cordial** letter of his **satisfaction** with the **arrangement**. In 1889 he published a **lengthy** **exposition** of the idea and **entitled** it Darwinism. Wallace never **named** the theory **after** himself.
+Wallace had **readily** **signified** his **acceptance** in October 1858, **assuring** Hooker in a **cordial** letter of his **satisfaction** with the **arrangement**. In 1889 he published a **lengthy** **exposition** of the idea and **entitled** it **Darwinism**. Wallace never **named** the theory **after** himself.
 
 ## 中文
 
@@ -22,7 +22,7 @@ Wallace had **readily** **signified** his **acceptance** in October 1858, **assu
 
 这些论文于1858年8月20日的**发表**(publication)，遭遇了一个**很不热烈的**(muted)**反响**(reception)。（The papers' publication：名词化结构，相当于 the papers were published；meet a … reception：遭遇……的反响）1859年5月，学会会长在**年度**(yearly)致辞中**评论**(remarked)说，这一年一直**毫无**(barren of)**革命性的**(revolutionary)发现。（the Society：指林奈学会；remark that…：说到、评论……）（that…：宾语从句，作 remarked 的宾语；be barren of…：缺乏……，毫无……）这场**轰动**(sensation)于1859年11月24日随着达尔文的**专著**(treatise)**《物种起源》**(On the Origin of Species)到来：书商们已**订购了**(subscribed for)该书首**次印刷**(impression)的每一册，总计1,250册。（The sensation came with…：轰动随着……到来；On the Origin of Species：同位语，说明 treatise，即书名《物种起源》）（subscribe for…：订购……；its first impression：该书的首次印刷；in all：总计）
 
-华莱士早已**欣然**(readily)**表明了**(signified)**接受**(acceptance)的态度，那是在1858年10月；他在一封**亲切的**(cordial)信中**向**(assuring)胡克**保证**(assuring)，自己对这一**安排**(arrangement)感到**满意**(satisfaction)。（had signified：过去完成时，表示早在那之前；signify one's acceptance：表示接受）（assuring…：现在分词短语作伴随状语；assure sb of sth：向某人保证某事；satisfaction with…：对……满意）1889年，他出版了一部**长篇的**(lengthy)**阐述**(exposition)解释这一思想，并**将**(entitled)其**命名为**(entitled)《达尔文主义》。（an exposition of…：对……的阐述；entitle A B：将 A 命名为 B）华莱士从未**用**(named after)自己的名字**为**(named after)这一理论**命名**(named after)。（name A after B：以 B 的名字给 A 命名）（简述：▸酝酿：达尔文1838年构想自然选择：更适应环境的生物较容易存活，并把自身特征传给后代。1844年他已写成230页手稿，仍继续搜集证据，没有发表。▸来信：华莱士独立想出同一原理，1858年寄来的文章几乎与达尔文一致，令达尔文担心自己的首创地位。▸折中：莱尔、胡克安排两人成果于1858年7月同场宣读；两位作者都未出席，华莱士也未参与商定办法。▸反响：论文发表初期反响冷淡；1859年《物种起源》引起轰动，首印1250册已被书商全部订购。▸认可：华莱士1858年10月事后致信认可安排；1889年又以《达尔文主义》阐述自然选择，未用自己名字命名理论。）
+华莱士早已**欣然**(readily)**表明了**(signified)**接受**(acceptance)的态度，那是在1858年10月；他在一封**亲切的**(cordial)信中**向**(assuring)胡克**保证**(assuring)，自己对这一**安排**(arrangement)感到**满意**(satisfaction)。（had signified：过去完成时，表示早在那之前；signify one's acceptance：表示接受）（assuring…：现在分词短语作伴随状语；assure sb of sth：向某人保证某事；satisfaction with…：对……满意）1889年，他出版了一部**长篇的**(lengthy)**阐述**(exposition)解释这一思想，并**将**(entitled)其**命名为**(entitled)《**达尔文主义**(Darwinism)》。（an exposition of…：对……的阐述；entitle A B：将 A 命名为 B）华莱士从未**用**(named after)自己的名字**为**(named after)这一理论**命名**(named after)。（name A after B：以 B 的名字给 A 命名）（简述：▸酝酿：达尔文1838年构想自然选择：更适应环境的生物较容易存活，▹并把自身特征传给后代。1844年他已写成230页手稿，仍继续搜集证据，没有发表。▸来信：华莱士独立想出同一原理，▹1858年寄来的文章几乎与达尔文一致，令达尔文担心自己的首创地位。▸折中：莱尔、胡克安排两人成果于1858年7月同场宣读；▹两位作者都未出席，华莱士也未参与商定办法。▸反响：论文发表初期反响冷淡；▹1859年《物种起源》引起轰动，首印1250册已被书商全部订购。▸认可：华莱士1858年10月事后致信认可安排；▹1889年又以《达尔文主义》阐述自然选择，未用自己名字命名理论。）
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -85,6 +85,7 @@ Wallace had **readily** **signified** his **acceptance** in October 1858, **assu
 | lengthy | 本文：长篇的；adj. 长的，长时间的（常含过长之意）（after lengthy negotiations；a lengthy delay） | 5 |
 | exposition | 本文：阐述；n. 阐述，详细说明（a clear exposition of the theory）；博览会 | 5 |
 | entitled | 本文：将……命名为；v. (entitle) 给（书等）题名（a poem entitled "Spring"）；使有权 | 5 |
+| Darwinism | 本文：达尔文主义；n. 达尔文主义，达尔文学说 | 5 |
 | named after | 本文：用……为……命名；v. phr. (name A after B) 用 B 的名字为 A 命名（be named after his grandfather） | 5 |
 
 ## 史实与来源
