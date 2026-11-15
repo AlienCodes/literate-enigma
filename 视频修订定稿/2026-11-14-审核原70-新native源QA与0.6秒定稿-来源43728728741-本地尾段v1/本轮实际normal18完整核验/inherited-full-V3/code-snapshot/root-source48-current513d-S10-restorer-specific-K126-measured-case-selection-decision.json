@@ -1,0 +1,29 @@
+{
+  "kind": "root-source48-current513d-S10-restorer-specific-original-K126-measured-case-selection",
+  "utc": "2026-11-15T03:40:49.987782+00:00",
+  "source_id": "48",
+  "book_order": 42,
+  "actual_current_formal_failure_run": 43669261842,
+  "actual_local_observation_run": 43672610198,
+  "candidate_sha256": "c92cf223323930eff3a3ab28fac5dde1053e8d2ebb508a59c602fb8d8928d4ef",
+  "actual_observation_report_sha256": "cb4aed097b154174b8587b77cb7f6669ceb8e0b14dc7dd753eabfb855900ddf9",
+  "root_entire_candidate_and_original_K126_lines291_302_and_current_original_producer_to_w_purify_code_read": true,
+  "root_complete280_raw_plus280_current_profile_rows_reviewed_in_two_tables_and_exact_subwindow_counts_SHA_bindings_independently_verified": true,
+  "selected_specific_machine_confirmation": {
+    "配音指纹": "513d66309055",
+    "依据": "2026-11-15 当前正式原流程43669261842：全片WAV f8a78e41、AAC d77ff0f9、配音指纹513d66309055；原机器复听本次只有small.en把S10的restorer写成restore。当前S10原母w指纹a7bfe647cf1c，整句203280样本的pre9c78f696/post7dba27d2硬同实际57f6及077记录。唯一原缓存局部观测43672610198报告cb4aed097b：pre_assert_observation_complete=true，完整probe因额外raw幅值零差断言仍为失败，未据此冒称全部核查通过；原cache/source/core/work恢复均真。实测w7.75–8.45的16800位置完整映射，唯一差840样本在7.915–7.95：原RMS为-63.524dB，current为数字零；该极弱低谷在7.96爆破前，远早于本次-er尾部，不将原_purify静态可能性说成已经实测定位的原因。关键尾部/连读过渡w8.23–8.34共2640样本，当前pre逐点等于原w，当前post逐点等于原float32归一后的w；8.34–8.45的line衔接2640样本也全等。8.23及8.24的当前pre均回升到约-10.4dB，8.23–8.34的44帧周期为0.316–0.492、低150Hz比约-6.23至-0.84dB、重心505–1534Hz，为连续有声尾段，实际输出没有把这段截掉；2640样本含尾部及连读过渡，不能将全段均标成独占ɚ。已缓存原phoneme-word为ɹᵻstˈɔːɹɚ，ɚ槽约8.2284–8.2779，line的/l/槽约8.3274起，仅作定位注释，不能单凭标签或这些谱标量唯一证明ɚ或代替人听。以上当前原声与实际输出证据支持保留这个词的尾音；只把本次S10 restorer→restore这一具体识别差异按原K126记录为交用户听的疑点，不记为已经有人听过，也不由此改变其他词句处理规则。"
+  },
+  "selected_record_canonical_JSON_sha256": "a8e894327d151abff1dcb76f175d9e33164abc5e2372a1353bc176dd3f17e847",
+  "selection_reason": "Retain this existing restorer word. Actual current S10 fullpre9c78/post7dba/rawa7bf/203280 samples matches57f6/077. Current expected suffix/transition raww8.23–8.34 andline8.34–8.45 each2640 samples exactly preserved beforemastering and under originalfloat32mastering, with continuous voiced44frames. Expectedcachedɚ slot8.2284–8.2779 is only annotation; nearby current voicing supports this specific tail-preservation case. Do not globally normalize restore/restorer, regenerate mothers or alter phonemes/gain/cuts merely to silence this one recognizer.",
+  "limits": {
+    "probe_whole_diagnostic_and_scope_flags_remain_false_exit1_preserved": true,
+    "sole840sample_difference7_915_7_95_rawRMSminus63_524_tozero_not_er_segment": true,
+    "purify_actual_phase_cause_not_instrumented_or_claimed": true,
+    "numeric_spectrum_does_not_uniquely_identify_phoneme_or_substitute_human_hearing": true,
+    "human_listening_performed": false,
+    "original_K126_user_listening_doubt_record_semantics_preserved_not_relabelled_as_both_ASR_literal_zero_mismatch": true,
+    "root_prior_two_boundary_limits_d981_unchanged": true
+  },
+  "only_authorized_next": "Sole owner prepare new isolated source/GEN with exactly 核对确认.机器复听.S10 object above; entire restsource/audio controls/display/notes/Hl/fonts/MD669 unchanged. OriginalGEN wholeJSON/text before-repair-after must reallypass. Freeze old4980/3178/old8253 record and allnegative evidence. Exact new QC/nameguard/layout request pins and evidence_valid inverse permit only this S10 ASR leaf (not general ASR section reset), with this rootselectedrecord bound. No new mother/G36/GT/whole diagnostic. Root reviews final new input and code/pin diffs before soleCI one original ENDING1 fullformal and actualsource/finalV3.",
+  "production_delivery_eligible": false
+}
