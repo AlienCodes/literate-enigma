@@ -1,0 +1,24 @@
+{
+  "kind": "safe-frozen-proxy-v2-one-call-observer",
+  "module_sha256": "f1ccae7441da87e8a030335273f61ae33c974953f523683a218bb0809a00f5c3",
+  "observer_sha256": "047f336652ba1e2e74695d43afd109a072c5accb908e7cf3590343f06b6f2c73",
+  "observer_adds_no_network_request_or_retry": true,
+  "arbitrary_exception_text_URL_token_response_not_recorded": true,
+  "original_call_failed": true,
+  "safe_exception_chain": [
+    {
+      "class": "GuardError",
+      "HTTP_status_from_exact_owned_template": null
+    },
+    {
+      "class": "GuardError",
+      "HTTP_status_from_exact_owned_template": 422
+    }
+  ],
+  "safe_stage": {
+    "method": "POST",
+    "Git_endpoint_category": "git/blobs",
+    "expected_git_blob_sha": "84ad88085bcb64a41ba0bacf4cce90f5357f8b0c"
+  },
+  "same_original_exception_reraised": true
+}
