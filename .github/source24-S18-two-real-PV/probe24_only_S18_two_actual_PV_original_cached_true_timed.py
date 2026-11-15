@@ -265,14 +265,11 @@ def load_PV(tools, profile, np):
     return types.SimpleNamespace(**namespace)
 
 
-def describe_true_timed_words(m, sent, raw, timed, last, mapping):
+def describe_true_timed_words(m, sent, raw, timed, last, mapping, tools):
     toks=timed[2];SR=m.SR;scale=len(raw[0])/len(timed[0])
     require(len(toks)==105 and all(isinstance(t.phoneme,str) and len(t.phoneme)==1 for t in toks) and math.isclose(scale,last['scale'],rel_tol=0,abs_tol=1e-12),'Actual timed count/single-label ABI/rawscale differs')
     full=''.join(t.phoneme for t in toks)
     require(full==m.phonemes_of(m._synth_punct(m.spoken(sent))), 'Actual complete timed phonemes mismatch original current projected input')
-    words=m.re.findall(r'\S+',sent);require(' '.join(words)==sent,'Display word splitting must retain both exact commas')
-    starts=m.chunk_token_starts(words,toks)
-    require(len(starts)==len(words)and all(0<=x<len(toks)for x in starts),'Original word-token mapper failed')
     rows=[]
     for i,t in enumerate(toks):
         require(isinstance(t.phoneme,str)and math.isfinite(t.start)and math.isfinite(t.end)and 0<=t.start<=t.end<=len(timed[0])/SR+1e-5,'Invalid actual timed label')
@@ -281,13 +278,33 @@ def describe_true_timed_words(m, sent, raw, timed, last, mapping):
                      'actual_unprocessed_raw_scaled_sample_interval':[lo,hi],
                      'sample_conversion':'original chunk_times int(round(actual timed boundary * actual LAST.scale * SR))',
                      'actual_original_processed_intersections':mapped_raw_interval(lo,hi,mapping,last['head'])})
+    # This is the original dossier phonetic grouping ABI, not the producer's
+    # display-chunk L14 aligner. It observes the actual complete timed sequence.
+    dossier=Path(tools)/'疑点清单.py'
+    require(digest(dossier)=='a3b7604fbcbdd31fecd0b548382426e70ddab810fc923ff895027c084f30eab2','Actual stamped original dossier required')
+    node=next(n for n in ast.parse(dossier.read_text()).body if isinstance(n,ast.FunctionDef)and n.name=='words')
+    ns={'SR':SR};exec(compile(ast.Module(body=[node],type_ignores=[]),str(dossier)+':unchanged-original-words','exec'),ns)
+    actual_groups=ns['words']({'toks':[(t.phoneme,t.start,t.end)for t in toks],'scale':scale,'head':last['head']})
+    index_groups=[];group=[]
+    for i,ph in [(i,t.phoneme)for i,t in enumerate(toks)]+[(len(toks),' ')]:
+        if not ph.strip():
+            if group and ''.join(toks[j].phoneme for j in group).strip(',;:.!?'):index_groups.append((group[0],group[-1]+1))
+            group=[]
+        else:group.append(i)
+    require(len(index_groups)==len(actual_groups),'Original phonetic group index ABI differs')
+    display=m.re.findall(r'\S+',sent);require(' '.join(display)==sent,'Display splitting must preserve original punctuation')
+    ambiguous=len(display)!=len(actual_groups)
     out=[]
-    for j,(word,lo)in enumerate(zip(words,starts)):
-        hi=starts[j+1]if j+1<len(starts)else len(toks)
-        out.append({'display_word_with_original_punctuation':word,'token_index_interval':[lo,hi],
-                    'actual_joined_timed_phonemes':''.join(t.phoneme for t in toks[lo:hi]),
-                    'basis':'unchanged original chunk_token_starts SequenceMatcher on true complete timed tokens; annotation not ASR/hearing'})
+    for j,((phonemes,t0,t1),(lo,hi))in enumerate(zip(actual_groups,index_groups)):
+        require(phonemes==''.join(t.phoneme for t in toks[lo:hi]),'Original phonetic group content differs')
+        out.append({'token_index_interval':[lo,hi],'actual_joined_timed_phonemes':phonemes,
+                    'original_dossier_clean_raw_seconds':[t0,t1],
+                    'display_word_with_original_punctuation':None if ambiguous else display[j],
+                    'basis':'original dossier.words phonetic group; any equal-count English label is sequential annotation only, not L14 forced alignment, ASR, hearing or word identity proof'})
     return {'all_actual105_timed_tokens':rows,'original_word_token_alignment':out,
+            'original_dossier_words_AST_SHA256':ast_sha(node),'english_annotation_ambiguous':ambiguous,
+            'display_word_count':len(display),'actual_phonetic_group_count':len(actual_groups),
+            'english_annotation_is_only_sequential_not_word_identity_or_quality':True,
             'full_true_joined_phonemes':full,'raw_timed_duration_scale':scale,
             'not_guessed_ship_back_or_stop_consonant':True}
 
@@ -325,7 +342,8 @@ def measure_PV_and_context(m, pcm, expected, tokens, mapping, profile):
             if any(max(i0,r['processed_samples'][0])<min(i1,r['processed_samples'][1])for r in t['actual_original_processed_intersections']):matching.append(t['token_index'])
         words=[r for r in tokens['original_word_token_alignment']if any(r['token_index_interval'][0]<=i<r['token_index_interval'][1]for i in matching)]
         hit={'original_PV_full_actual_tuple':list(globalrow),'original_PV_displayed_key':key,'original_PV_rounded_scalar_measurements':PV.实测(globalrow),'actual_local_interval_s':[local0,local1],
-             'actual_local_sample_interval':[i0,i1],'actual_overlapping_token_indices':matching,'actual_original_wordmapper_rows':words,
+             'actual_local_sample_interval':[i0,i1],'actual_overlapping_token_indices':matching,'actual_original_phonetic_group_rows':words,'english_annotation_ambiguous':tokens['english_annotation_ambiguous'],
+             'english_annotations_are_sequential_only_not_L14_ASR_hearing_or_word_identity':True,
              'actual_context_overlapping_token_indices':[t['token_index']for t in tokens['all_actual105_timed_tokens']if any(max(contextlo,r['processed_samples'][0])<min(contexthi,r['processed_samples'][1])for r in t['actual_original_processed_intersections'])],
              'context60ms_each_side_2p5ms_acoustic_frames':frames,
              'original_PV_贴词头_observation':bool(PV.贴词头(pad,row)),
@@ -382,7 +400,8 @@ def observe(a, profile, report):
             require(np.array_equal(np.concatenate(clips),pcm),'Original clipconcat identity failed')
             mapping=kept_raw_to_processed_segments(last,m.SR,len(pcm));result['actual_original_LAST_scalar_mapper']={k:v for k,v in last.items()if k in ['scale','head','segs','total','cuts','grafts','gaps','fades','hs']}
             result['derived_kept_raw_to_processed_segments']=mapping
-            result['actual_true_timed_and_original_word_mapping']=describe_true_timed_words(m,ns['sent'],values['create'],values['create_timed'],last,mapping)
+            result['actual_true_timed_and_original_word_mapping']=describe_true_timed_words(m,ns['sent'],values['create'],values['create_timed'],last,mapping,T)
+            save(a.output,report)
             pp=dict(profile);pp['_actual_tools']=str(T)
             result['actual_original_PV_and_context']=measure_PV_and_context(m,pcm,expected,result['actual_true_timed_and_original_word_mapping'],mapping,pp)
             require(arrsha(pcm)==expected['S18']['pre_master_PCM_sha256'],'Diagnostic modifiedoriginalsamples')
