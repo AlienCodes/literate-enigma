@@ -17,7 +17,7 @@ import sys
 
 PROFILE_SHA256 = 'dff235ffef04da423b7a576e4bdfaf8adeec8a1673afa5b1a012fe5bbc6a9dbe'
 CI_ROOT = Path('/home/runner/work/literate-enigma/literate-enigma')
-FIXTURE_CONTEXT_SHA256 = '425a8f3a27a0ef003dc6d89729e37ae476e820e3708f9cfe6a10caacc2f4c5a9'
+FIXTURE_CONTEXT_SHA256 = 'f8bfcf8b8a455070b13e51adabb08dee55de10166ae46e6dcbc4f5113262c104'
 HISTORICAL_FIXTURE_MANIFEST_SHA256 = 'e81d2f49eea100c89a75cbe286b1f8422e4e80e993f59e05c0db3d3e361805bd'
 OLD_STAMP_SHA256 = '95a51b15bb4b71b8842851da8d16bb4109231f1ba69e24826792f2a718ef4a4a'
 OLD_FIVE_CORE = {
@@ -96,7 +96,7 @@ def main():
         require(sha(fixture_module)==FIXTURE_CONTEXT_SHA256, 'fixture restoration module mismatch')
         fixture_spec=importlib.util.spec_from_file_location('_source46_actual95_fixture_context',fixture_module)
         F=importlib.util.module_from_spec(fixture_spec);fixture_spec.loader.exec_module(F)
-        F.validate_runtime_context(root,T,W)
+        report['actual_original_font_context'] = F.validate_runtime_context(root,T,W)
         fixture_package=args.historical_fixtures.resolve(strict=True) if args.historical_fixtures else capsule/'original95-certification-fixtures'
         F.prepare_fixture_plan(root,W,fixture_package)
         report['actual_setup_fix_root_code_adoption']={'file':str(args.setup_fix_decision),'sha256':sha(args.setup_fix_decision)}
