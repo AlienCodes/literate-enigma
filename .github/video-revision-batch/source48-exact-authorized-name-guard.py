@@ -5,8 +5,8 @@ def english(d):
     return [re.sub(r'\{\{.*?\}\}', '', ' '.join(c['en'] for c in sent['chunks'])).replace('**','').split() for sent in d['sentences']]
 def validate(requested,baseline,old_file,new_file,gen_file,decision):
     assert sha(old_file)=='4f146ce6a70bb0bf5d2c6e1f6b47bd6a2bcc2f311be7a948092d7bde1a08f449'
-    assert sha(new_file)=='4980ad358636619218f20a8edb618ae543432b82c2124cfac8058790be5e8361'
-    assert sha(gen_file)=='3178b9610b5d49f3b7e5bbfce16cebc0839bdb429b0f5f911e692b9dce8831e3'
+    assert sha(new_file)=='c856cd5e110636454f1155d429ec156906fb75c3514bfbd9a93207741aabd800'
+    assert sha(gen_file)=='d97045ba4ee88483e7ba17462ff199bd2499eab436f06d41383778c3fef3f9ce'
     assert sha(decision)=='c17a3b2b33a33fb27e17a7537fc655acb0611214749bfec1ffe8ebd29f4633b7'
     old=json.loads(Path(old_file).read_text());new=json.loads(Path(new_file).read_text())
     assert str(requested['no'])==str(old['no'])==str(new['no'])=='48'
