@@ -1,0 +1,108 @@
+name: 目录47原54仅S6原缓存起音标量诊断
+on:
+  push:
+    branches: [codex/finish-05-and-summaries-20261112]
+    paths: ['.github/target54-S6-cached-probe/**', '.github/workflows/target54-S6-cached-probe.yml']
+permissions:
+  contents: read
+jobs:
+  prepare-name:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github/target54-S6-cached-probe
+      - uses: actions/checkout@v4
+        with:
+          repository: alienalgorithm/postgraduate-vocabulary
+          ref: fc0b56af9a0ac0e97015548b756d4e51d66dc2ea
+          path: official-main
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /视频/工具/
+            /视频/配音缓存/*.json
+            /视频/脚本/
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/cache/restore@v4
+        id: original-cache
+        with:
+          path: |
+            ${{ runner.temp }}/completion-machine
+            ~/asr
+          key: completion-05-machine-43294745262
+      - name: 确认原母模型缓存
+        env:
+          CACHE_HIT: ${{ steps.original-cache.outputs.cache-hit }}
+        run: |
+          test "$CACHE_HIT" = true
+          test -f "$RUNNER_TEMP/completion-machine/tts/kokoro-v1.0.onnx"
+      - name: 安装原核查依赖
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg espeak-ng
+          python -m pip install --quiet -r official-main/视频/工具/环境/requirements.txt
+      - name: 安装真正已认证五core原CUTS程序和实际110T
+        run: python .github/target54-S6-cached-probe/install_exact_core5.py
+      - name: 恢复正式原native既有仓库别名上下文不改任何原母
+        run: |
+          python - <<'PYALIAS'
+          from pathlib import Path
+          import os,subprocess
+          root=Path(os.environ['GITHUB_WORKSPACE'])/'official-main'
+          alias=Path('/home/user/postgraduate-vocabulary')
+          if not alias.exists():
+              subprocess.run(['sudo','mkdir','-p',str(alias.parent)],check=True)
+              subprocess.run(['sudo','ln','-s',str(root),str(alias)],check=True)
+          assert alias.resolve()==root.resolve()
+          assert (alias/'视频/工具/发音词典/读音改正.json').is_file()
+          assert (alias/'视频/工具/发音词典/按语境读音.json').is_file()
+          assert (alias/'视频/配音缓存/老条目指纹.json').is_file()
+          PYALIAS
+      - name: 仅准备原工具工作目录并先安装actual22da源再freshimport
+        env:
+          XG_NOPUSH: '1'
+          STRICT_CACHE: '1'
+          CUTS: '1'
+        run: |
+          python - <<'PYSETUP'
+          from pathlib import Path
+          import os,shutil,hashlib
+          T=Path(os.environ['GITHUB_WORKSPACE'])/'official-main/视频/工具'
+          M=Path(os.environ['RUNNER_TEMP'])/'completion-machine'
+          W=T/'_work';assert not W.exists();(W/'scripts').mkdir(parents=True)
+          source=T.parent/'脚本';allfiles=sorted(source.glob('*.json'));assert len(allfiles)==70
+          for p in allfiles:shutil.copyfile(p,W/'scripts'/p.name)
+          actual=Path('.github/target54-S6-cached-probe/54-actual-current-source22da.json')
+          assert hashlib.sha256(actual.read_bytes()).hexdigest()=='22da36911cc96e2fb42e33333e95c78b89af24bef8726f7e0fcf3ba6f40d7909'
+          shutil.copyfile(actual,W/'scripts/54.json')
+          link=T/'tts'
+          if link.exists():assert link.resolve()==(M/'tts').resolve()
+          else:link.symlink_to(M/'tts',target_is_directory=True)
+          assert hashlib.sha256((T/'make_video.py').read_bytes()).hexdigest()=='4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3'
+          for name,h in {'读音改正.json':'5f558c61f8ffb99009a89989afcc07a9ce168b2b70a6c9377289040d14ec402b','按语境读音.json':'4d8905dc1a87f97b707270f03f41ea0fdf2b207ca218ed74608cdb134e3dc8e3'}.items():
+              assert hashlib.sha256((T/'发音词典'/name).read_bytes()).hexdigest()==h
+          PYSETUP
+      - name: 只S6两条已有母缓存与原clean原句增益观察
+        env:
+          XG_NOPUSH: '1'
+          STRICT_CACHE: '1'
+          CUTS: '1'
+          XG_KEEP_REVIEWED_GAIN: '1'
+          XG_KEEP_REVIEWED_CUTS: '1'
+        run: |
+          unset AUDIO_ONLY OLD_IV_VOID NEW_CACHE VOICE AFFILE
+          python -u .github/target54-S6-cached-probe/probe54_S6_cached_onset.py --runtime-work "$GITHUB_WORKSPACE/official-main/视频/工具/_work" --out "$GITHUB_WORKSPACE/source54-S6-public/54-S6-cached-raw-onset-observations.json"
+      - name: 只导S6标量及原cachekey日志不导配音母数据
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: source54-S6-original-cached-onset-scalar
+          path: |
+            source54-S6-public/*.json
+            source54-S6-public/*.log
+          retention-days: 30
+          if-no-files-found: error
