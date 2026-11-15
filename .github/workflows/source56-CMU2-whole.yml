@@ -1,0 +1,100 @@
+name: 书65仅S11真实CMU2既有母原缓存整篇标量
+on:
+  push:
+    branches: [codex/finish-05-and-summaries-20261112]
+    paths: ['.github/source56-CMU2-whole/**', '.github/workflows/source56-CMU2-whole.yml']
+permissions:
+  contents: read
+jobs:
+  only-S11-CMU2-cachedwhole:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github/source56-CMU2-whole
+      - uses: actions/checkout@v4
+        with:
+          repository: alienalgorithm/postgraduate-vocabulary
+          ref: fc0b56af9a0ac0e97015548b756d4e51d66dc2ea
+          path: official-main
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /视频/工具/
+            /视频/配音缓存/*.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/cache/restore@v4
+        id: original-cache
+        with:
+          path: |
+            ${{ runner.temp }}/completion-machine
+            ~/asr
+          key: completion-05-machine-43294745262
+      - name: 原机器必须命中，禁止重建模型缓存
+        env:
+          CACHE_HIT: ${{ steps.original-cache.outputs.cache-hit }}
+        run: test "$CACHE_HIT" = true
+      - name: 安装原运行依赖
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg espeak-ng
+          python -m pip install --quiet -r official-main/视频/工具/环境/requirements.txt
+      - uses: actions/cache/restore@v4
+        id: old-S11-mothers
+        with:
+          path: |
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/13ae7e344fdf2409fd9e771216e7192076890acd.pkl
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/13ae7e344fdf2409fd9e771216e7192076890acd.pkl.单线程
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/9b367dbd8656c1be8d5167b0c639ad5fad2c794b.pkl
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/9b367dbd8656c1be8d5167b0c639ad5fad2c794b.pkl.单线程
+          key: Linux-native56-exact-S11-first-spoken-comma-43721094194
+      - uses: actions/cache/restore@v4
+        id: new-S11-CMU2-mothers
+        with:
+          path: |
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/42d32206d7fda7443c0e489a1ee1ac1b11d9e3fa.pkl
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/42d32206d7fda7443c0e489a1ee1ac1b11d9e3fa.pkl.单线程
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/a387fbeb6dd6337c40167612b2f8f3c56170122f.pkl
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/a387fbeb6dd6337c40167612b2f8f3c56170122f.pkl.单线程
+          key: Linux-native56-exact-S11-CMU2-Wallace-pronCTX-43759374449
+      - uses: actions/cache/restore@v4
+        id: existing-S11-G36
+        with:
+          path: ${{ runner.temp }}/completion-machine/tts/source56-only-target-whole-original-math-cache/调平_22842078959011da4b6986b549453b7eafee80d9.json
+          key: Linux-native56-only-target-whole-original-math-43729197848
+      - name: 实际ROOTa430与独立父审绑定的两阶段原缓存整篇测量
+        id: cachedwhole
+        env:
+          OLD_S11_MOTHER_CACHE_HIT: ${{ steps.old-S11-mothers.outputs.cache-hit }}
+          NEW_S11_CMU2_MOTHER_CACHE_HIT: ${{ steps.new-S11-CMU2-mothers.outputs.cache-hit }}
+          OLD_S11_G36_CACHE_HIT: ${{ steps.existing-S11-G36.outputs.cache-hit }}
+          AUDIO_ONLY: '1'
+          STRICT_CACHE: '1'
+          XG_NOPUSH: '1'
+          XG_KEEP_REVIEWED_GAIN: '1'
+          XG_KEEP_REVIEWED_ENDING: '1'
+          XG_KEEP_REVIEWED_CUTS: '1'
+        run: |
+          parent_sha=$(cat .github/source56-CMU2-whole/actual-parent-CMU2-whole-review.sha256)
+          python -u .github/source56-CMU2-whole/run56_CMU2_cachedwhole.py \
+            --actual-root-execution-adoption .github/source56-CMU2-whole/root-CMU2-whole-execution-scope.json \
+            --actual-root-execution-adoption-sha256 a430159b2c827fcabcdf242f8407b33d546f1d5cfac336558b4537c90577efa4 \
+            --actual-parent-review-adoption .github/source56-CMU2-whole/actual-parent-CMU2-whole-review.json \
+            --actual-parent-review-adoption-sha256 "$parent_sha"
+      - name: 所有内外恢复后只保存实际单S11新原数学JSON
+        if: always() && steps.cachedwhole.outputs.cache_key != ''
+        uses: actions/cache/save@v4
+        with:
+          key: ${{ steps.cachedwhole.outputs.cache_key }}
+          path: ${{ steps.cachedwhole.outputs.cache_paths }}
+      - name: 只上传实际标量JSON，不上传音频模型或缓存母
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: source56-CMU2-onlyS11-cachedwhole-actual-scalar-only
+          path: source56-CMU2-whole-public/*.json
+          retention-days: 30
+          if-no-files-found: error
