@@ -1,113 +1,91 @@
 {
-  "kind": "book65 source56 S11 original-cache-only bounded breath diagnostic COMPLETE CODE-ONLY HANDOFF; not native result or quality acceptance",
+  "kind": "source56 S11 exact two outer spoken/pron ABI guard correction COMPLETE CODE-ONLY handoff; no native retry by child",
   "source_id": "56",
   "book_order": 65,
   "target_sentence": "S11",
-  "parent_sole_transporter": "/root/resume_audio_ci",
-  "root_authorized_scope": "Prepare code/H/diff/positive-and-bad fixtures only; do not launch. No further literal reconfirmation was requested for this preparation.",
-  "code_only_preparation_complete": true,
-  "native_probe_run": false,
-  "human_listening_performed": false,
-  "quality_acceptance": false,
-  "native_audio_sampling_by_child": false,
-  "actual_evidence_receipt": {
-    "artifact": 14172913518,
-    "run": 43743797716,
-    "job": 132902623742,
-    "API_verified_ZIP_bytes": 167949,
-    "API_verified_ZIP_sha256": "97ac2bc1a04fd7d6089b62351aa975025a4d47cc6974bb71e10af6719dc482c9",
-    "CRC_passed": true,
-    "full_stdout_entire_JSON_and_parent_status_and_artifact_status_equal": true,
-    "small_files_path": "/workspace/work/inspect65-S11-breath-readonly-metadata-20261115/small-artifact-files"
+  "native_failure": {
+    "run": 43749286691,
+    "head_prefix": "c0bd6f",
+    "actual_scalar_path": "/workspace/work/source56-S11-bounded43749286691-actual-original/files/56-S11-bounded-original-breath-scalar.json",
+    "actual_scalar_sha256": "42bfdb61e5853a841c841d39d77958b413be7aac8091957bf6234a754624d37f",
+    "exported_failure": "Source-first original context differs",
+    "native_subconditions_not_individually_logged": true
   },
-  "actual_failure_conclusion": "Official original A19 still fails with about .25s breath after without Wallace retained comma. Four original automatic candidate kinds all round to 69%, below unchanged 70%. Existing scalar evidence lacks candidate boundaries and per-frame/phoneme detail, so no safe narrower cut can be selected yet.",
-  "read_only_findings_report": {
-    "path": "/workspace/work/inspect65-S11-breath-readonly-metadata-20261115/READONLY-S11-A19-BREATH-WINDOW-DIAGNOSIS-AND-NARROW-H.json",
-    "sha256": "af9c0a0560fafb3d181a385e495e081fa9df69b1ba35941aa546575ce8241d08"
+  "diagnosis": "Actual original spoken() keeps both display commas. Only later _pron -> _synth_punct -> _speech_spoken_projection removes the first spoken comma. Prior153b incorrectly compared the pre-pron outer input against PROJECTED in two places, and its old fake spoken=lambdaPROJECTED fixtures masked the ABI mismatch.",
+  "exact_two_deltas": [
+    {
+      "function": "validate_model_tuple",
+      "before": "text == m.spoken(sent) == PROJECTED",
+      "after": "text == m.spoken(sent) == DISPLAY"
+    },
+    {
+      "function": "main context guard",
+      "before": "m.spoken(sent) == PROJECTED",
+      "after": "m.spoken(sent) == DISPLAY"
+    }
+  ],
+  "no_either_layer_or_alternative_acceptance": true,
+  "no_third_runtime_change": true,
+  "post_pron_guard_remains": "key == row[name] and actual_text == PROJECTED; actual post-pron text SHA5319b2e3ec80b1f95add80e1ccaa1c69f6f17579387e56d65a889413b1110c4a and both exact13ae/9b367 keys independently reproduced by real original AST.",
+  "outer_report_field_retained": "actual_spoken_model_text keeps its existing field name and reports the actual original spoken() outer DISPLAY result; post-pron identity remains separately captured in actual_cached_reads. No report-schema change was added.",
+  "new_helper": {
+    "path": "/workspace/work/source56-S11-original-spoken-pron-ABI-two-guard-correction-CODE-ONLY-20261115/corrected-closure/observe56_only_S11_breath_scalar.py",
+    "bytes": 36637,
+    "sha256": "d3965b92489d1c83bdb7ed72d23288a8b5d8507b3ed8c091c806afe3cb4188b3"
   },
-  "closed_program": {
+  "original_helper": {
     "path": "/workspace/work/inspect65-S11-breath-readonly-metadata-20261115/code-only/observe56_only_S11_breath_scalar.py",
     "bytes": 36641,
-    "sha256": "153b4daae5908691a05a9d0f7cefdb752cbef644d64ce37a424d8da452c47f63"
+    "sha256": "153b4daae5908691a05a9d0f7cefdb752cbef644d64ce37a424d8da452c47f63",
+    "left_unchanged": true
   },
-  "closed_profile": {
-    "path": "/workspace/work/inspect65-S11-breath-readonly-metadata-20261115/code-only/profile.json",
+  "profile": {
+    "path": "/workspace/work/source56-S11-original-spoken-pron-ABI-two-guard-correction-CODE-ONLY-20261115/corrected-closure/profile.json",
     "bytes": 7164,
-    "sha256": "1dd0651c9c27bb34977334bb9bc7410b3b54dce978f2f971e46c7a1605dc7fc7"
+    "sha256": "1dd0651c9c27bb34977334bb9bc7410b3b54dce978f2f971e46c7a1605dc7fc7",
+    "byte_identical_old_profile": true,
+    "all13_old_inputs_byte_identical": true
   },
-  "complete_diff_vs_approved35": {
-    "path": "/workspace/work/inspect65-S11-breath-readonly-metadata-20261115/code-only/observer-vs-approved35-complete.diff",
-    "sha256": "b11672d719095983ba31eddcfe651f077452454a510114fde6c793703b897e17"
-  },
-  "pure_fixture_proof": {
-    "path": "/workspace/work/inspect65-S11-breath-readonly-metadata-20261115/code-only/ACTUAL-PURE-FIXTURES-COMPILE-AND-ORIGINAL-AST-PROOF.json",
-    "sha256": "ed753cac8de564c20b135ca0bb8f50a7b2a22f2971218e443456897302e14ca9",
-    "passed": 16,
-    "explicitly_not_actual_acoustics": true
-  },
-  "manifest": {
-    "path": "/workspace/work/inspect65-S11-breath-readonly-metadata-20261115/code-only/CLOSED-CODE-ONLY-FILE-MANIFEST.json",
-    "sha256": "2d7318c2cc3edd3f2acb68c36e74ba70690d4317ca1a443ea789e573d0d1d06c"
-  },
-  "caller_role_document": {
-    "path": "/workspace/work/inspect65-S11-breath-readonly-metadata-20261115/code-only/CONCRETE-CALLER-ARGUMENT-ROLES-NOT-A-LAUNCH.json",
-    "sha256": "d63607b0e369c9675246fdc4339fbe71ca08edda38e25f4d0e6e6b571648fb61"
-  },
-  "runtime_scope": {
-    "source": "Only exact already-staged immutable dc3fec8cb898d8a7279739b6c4c62d38caf509580e26511acd95d07f1bbc18ef final request; failed-working source is evidence only and never used as runtime input.",
-    "raw_w_envelope_s": [
-      1.95,
-      2.7
+  "complete_inverse": {
+    "path": "/workspace/work/source56-S11-original-spoken-pron-ABI-two-guard-correction-CODE-ONLY-20261115/EXACT-TWO-OUTER-GUARDS-ONLY.diff",
+    "sha256": "a96fa4713efc4ed90193c5ee4a5c6f29f564229f939151c1257016d296b5817e",
+    "inverse_restores_entire153b_source_bytes": true,
+    "all_other_function_AST_exact": true,
+    "only_changed_functions": [
+      "validate_model_tuple",
+      "main"
     ],
-    "envelope_not_deletion_proposal": true,
-    "original_maker": "1b87c1d4d1685bdd59325587184cca35f853354a015e6fe89c11f150cd2a6239",
-    "actual_current_S11_premaster_sha256": "1497bbffd71c24b0ca05a4ca45767980a3af3a223745a0ba3c0783539d64110a",
-    "actual_current_S11_postmaster_float_sha256": "54beedaf1230cc8e317310b2446baf04a5bc7a10f5b6db4fd19e2e6496d9830b",
-    "original_raw_fingerprint": "5e39565cea68",
-    "only_original_unique_cached_mothers": 2,
-    "expected_raw_cached_reads": 2,
-    "expected_timed_cached_reads": 1,
-    "only_original_existing_G36_read": {
-      "name": "调平_22842078959011da4b6986b549453b7eafee80d9.json",
-      "sha256": "98c2e92f9fe36307e60e0a857a97d5595015278b2add1fed2bcea10248eb43d6",
-      "calls": 1,
-      "STRICT_before_after": true,
-      "new_math_authorized": false
-    },
-    "original_G35_and_all_other_DSP": "Reuse unchanged maker sentence_audio and 句增益; exact actual premaster/ordered target normalization/cuts/tmap/fingerprint must reproduce before scalar export. Unknown source/DSP/runtime module/cache key hard stops.",
-    "original_algorithms": "Extract unchanged original dossier functions and A19 candidate-loop AST; quantize only the exact target to PCM16 in BytesIO then original PV sparse-clock local scan; execute unchanged original automatic first candidate-loop AST, observing with a read-only per-candidate trace before unchanged70% gate. No prefix/dossier whole, merge, writer, new interval or nonvoice acceptance is run.",
-    "actual_automatic_fields": [
-      "candidate kinds and original t0/t1",
-      "original to_w and LAST/head/scale/nearby native timed phones",
-      "expanded x0/x1/tl/tr/pl/nl",
-      "exact audible/breath numerator-denominator and per2.5ms level/centroid/low150Hz/autocorrelation/zero-crossings",
-      "1.95–2.70 raw clean_tail original scalar profile"
+    "remaining_PROJECTED_comparisons": [
+      "actual_text == PROJECTED"
     ],
-    "G27_actual_runtime_dependency_binding": {
-      "local_module_count": 8,
-      "purge_and_finally_restore_all_old_local_modules": true,
-      "original_import_precedence": "../tts before W",
-      "full_SHA_at_actual_path_and_loaded___file___required": true,
-      "actual_T_W_tts_files_watched_unchanged": true
-    },
-    "restoration": "finally restore all four original object methods, native closure endpoints, original gain/soundfile/build/title methods, all module objects including preexisting LQ, cwd/env/sys.path/trace/dont_write_bytecode; private/public cache inventory, W/scripts inode+all bytes, W/work56 inode+all bytes, every frozen input/program byte must remain exact.",
-    "default_output": "scalar JSON only; no WAV/container/array/model cache export. If parent later chooses a literal original small clip, that requires a separate bounded export change; this code cannot export audio.",
-    "no_whole_or_all_non_target_replay": "No whole build or new title/non-target audio calls. All immutable non-target input bytes stay exact; this diagnostic does not newly prove full native quality or identity.",
-    "screen_compromise_comma_and_without_Wallace_comma": "Full display stays exact with both commas; spoken model removes only first comma. Existing second-comma .4s pause is reproduced and not altered."
+    "original_acoustic_algorithm_thresholds_G35_G36_model_cache_identity_and_speech_projection_unchanged": true
   },
-  "meaningful_negative_fixture_groups": [
-    "wrong source/book/target/sentence/comma mask",
-    "unknown target DSP or source/reference/threshold/envelope",
-    "missing/changed/symlink pinned input/cache/mother/marker",
-    "wrong model tuple speed/voice/text/lang/typed bool kwargs",
-    "native endpoints blocked and callback never reached",
-    "unknown/missing/changed/symlink G36; never invoke fallback",
-    "original AST fullSHA and exact unchanged loop; threshold mutation rejected",
-    "to_w inserted silence is None",
-    "synthetic69% remains rejected; no nonvoice writer",
-    "trace/process-state exception restoration",
-    "actual ../tts precedence and loaded __file__/SHA reject stale/misbound LQ",
-    "old LQ purge and object restoration"
+  "real_original_AST_cold_proof": {
+    "path": "/workspace/work/source56-S11-original-spoken-pron-ABI-two-guard-correction-CODE-ONLY-20261115/ACTUAL-PURE-REAL-ORIGINAL-SPOKEN-PRON-AND-TWO-GUARD-PROOF.json",
+    "sha256": "49a32dfe2d882d5f21e4d494c3b501a660eb7bec3935f529afb37d5739de775f",
+    "tests_passed": 21,
+    "revised_original16_have_real_spoken_and_pron_not_old_projected_fake": true,
+    "additional5_real_ABI_tests": true,
+    "metadata_context_witness": "Original registry/dictionary/context and source-data AST under exact frozen source data produce91cc/5f/4d and SENT_NO56; old full context conjunction false, corrected full conjunction true. This is pure AST reproduction, not native individual-subcondition logging.",
+    "actual_spoken_outer": "The compromise, struck without Wallace, may have kept rivalry over precedence at bay.",
+    "actual_post_pron_capture": "The compromise struck without Wallace, may have kept rivalry over precedence at bay.",
+    "create_native_key": "13ae7e344fdf2409fd9e771216e7192076890acd.pkl",
+    "timed_native_key": "9b367dbd8656c1be8d5167b0c639ad5fad2c794b.pkl",
+    "native_model_tokenizer_audio_reads_or_execution": false
+  },
+  "full_new_code_pins": {
+    "path": "/workspace/work/source56-S11-original-spoken-pron-ABI-two-guard-correction-CODE-ONLY-20261115/NEW-CODE-CLOSURE-FULL-PINS.json",
+    "sha256": "328d4b73aee60ddbbac470f1a2bfc31b5e449e3605cf20cd40fa8def08adf6d6"
+  },
+  "authorization_binding": "Original f188 delegates parent independent review and necessary two-layer ABI correction. f188 originally names153b and must not be represented as directly pinning d396. Parent may materialize a fresh actual adoption binding f188 + old153b + newd396 + two-line inverse + unchanged1dd and pure proof, then sole launch once; ROOT/parent said no repeated literal loop is needed. Child has not created a fake actual parent adoption or dispatched.",
+  "next": "New concrete caller shall preserve old failed48F and same realAPI56/e64 strict restore, swap only this helper, rebind pins and explicit fresh parent-adoption CLI. No original source/GEN/CF/interval/threshold/TTS/math/GT/ASR/whole change.",
+  "old_artifacts_frozen": [
+    "old153b/1dd/codeH6a190",
+    "oldconcreteF48/H8faf",
+    "actualfailed43749286691/3JSON/4KB original artifact"
   ],
-  "writes_by_child": "Only this independent small metadata directory. No parent F/source/GEN/CF/mother/private audio/canonical Git mutation, no launch/dispatch/upload/external write, no large ZIP."
+  "quality_acceptance": false,
+  "safe_new_cut_known": false,
+  "actual_new_acoustics_claimed": false,
+  "child_launched_or_external_mutation": false
 }

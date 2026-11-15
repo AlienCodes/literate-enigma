@@ -1,4 +1,4 @@
-"""Concrete f188 wrapper. Existing installer and immutable observer only.
+"""Concrete ROOT-delegated parent-adoption wrapper. Existing installer and immutable observer only.
 
 No whole observer, original maker main/build, TTS, ASR or gain computation runs.
 The original cached machine's video inode is isolated and restored by the same
@@ -8,11 +8,11 @@ from pathlib import Path
 import argparse, hashlib, importlib.util, json, os, subprocess, sys, traceback
 sys.dont_write_bytecode = True
 
-ROOT_SHA = 'f188560294cd4a373ed2bde7495d23639cf928b28aef329864d1106fd6986490'
-HELPER_SHA = '153b4daae5908691a05a9d0f7cefdb752cbef644d64ce37a424d8da452c47f63'
+ROOT_SHA = 'e5d73ac12e20634b73002a121c83591c936e98fd38ec562f02bd1e7cbaf62901'
+HELPER_SHA = 'd3965b92489d1c83bdb7ed72d23288a8b5d8507b3ed8c091c806afe3cb4188b3'
 PROFILE_SHA = '1dd0651c9c27bb34977334bb9bc7410b3b54dce978f2f971e46c7a1605dc7fc7'
-ARGV_SHA = '661a572a939908d76c4ec02fae6b13fa36b74df48fa4dcd34d84f5fc2e8546b1'
-H_SHA = '6a1903302b95a72b496072cfd2df3bd3c23e50b156c00fd5a2ed2fe6cf286b0c'
+ARGV_SHA = '4d7c225d3e9e9df872e911f28c1ea158eec27b820650b6076983306c0e1ebb3d'
+H_SHA = '736cc7d1b32001fdc014bf1ea5a2a039dcae80165eefdfaf883e0e325edb6087'
 SOURCE_SHA = 'dc3fec8cb898d8a7279739b6c4c62d38caf509580e26511acd95d07f1bbc18ef'
 MOTHER_KEY = 'Linux-native56-exact-S11-first-spoken-comma-43721094194'
 MOTHER_VERSION = '7368862e74747836adc191d99e433a5c870b2d184e3f9e387280fecd8c07432c'
@@ -37,14 +37,15 @@ def load(name, path):
 def validate_root(path, literal_sha, package):
     p = Path(path)
     require(literal_sha == ROOT_SHA and p.is_file() and not p.is_symlink() and sha(p) == ROOT_SHA,
-            'Mandatory actual f188 ROOT CLI file/fullSHA required before setup')
-    require(p.read_bytes() == (Path(package) / 'root-S11-breath-execution-adoption.json').read_bytes(), 'ROOT transport copy differs')
+            'Mandatory actual parent-adoption CLI file/fullSHA required before setup')
+    require(p.read_bytes() == (Path(package) / 'parent-two-outer-ABI-execution-adoption.json').read_bytes(), 'ROOT transport copy differs')
     value = json.loads(p.read_text())
     require(value['reviewed_handoff']['sha256'] == H_SHA and value['program']['sha256'] == HELPER_SHA and
             value['profile']['sha256'] == PROFILE_SHA and value['exact_profile_scope'] ==
             {'source': '56', 'book': 65, 'sentence': 'S11', 'w_seconds': [1.95, 2.7],
              'only_first_spoken_comma_removed_display_both_commas_kept': True, 'BREATH_FRAC': .7},
             'Actual ROOT record must bind this exact reviewed S11 program/profile/scope')
+    require(value['original_ROOT_execution_adoption']['sha256'] == 'f188560294cd4a373ed2bde7495d23639cf928b28aef329864d1106fd6986490' and value['original_helper']['sha256'] == '153b4daae5908691a05a9d0f7cefdb752cbef644d64ce37a424d8da452c47f63' and value['two_original_outer_ABI_guards_only_corrected'] is True and value['independent_review_passed'] is True, 'Exact actual delegated two-guard parent record required')
     return value
 
 
@@ -118,8 +119,8 @@ def main():
     scratch = M / ('_source56_S11_breath_scalar_setup_' + runid)
     require(not scratch.exists(), 'Do not reuse an old diagnostic setup namespace')
     scratch.mkdir(); O.mkdir()
-    report = {'kind': 'actual-f188-bound-original-setup-and-only-S11-scalar-caller',
-        'ROOT_execution_adoption_sha256': ROOT_SHA, 'helper_sha256': HELPER_SHA, 'profile_sha256': PROFILE_SHA,
+    report = {'kind': 'actual-parent-two-outer-ABI-bound-original-setup-and-only-S11-scalar-caller',
+        'actual_parent_execution_adoption_sha256': ROOT_SHA, 'original_ROOT_execution_adoption_sha256': 'f188560294cd4a373ed2bde7495d23639cf928b28aef329864d1106fd6986490', 'helper_sha256': HELPER_SHA, 'profile_sha256': PROFILE_SHA,
         'argv_sha256': ARGV_SHA, 'source_sha256': SOURCE_SHA, 'transport_pin_count': len(pins),
         'quality_acceptance': False, 'no_whole_TTS_new_math_GT_ASR_render_or_audio_export': True,
         'restoration': {}, 'errors': []}
