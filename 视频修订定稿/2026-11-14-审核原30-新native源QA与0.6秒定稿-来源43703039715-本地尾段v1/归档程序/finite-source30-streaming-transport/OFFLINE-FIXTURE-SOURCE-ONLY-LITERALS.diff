@@ -1,0 +1,24 @@
+--- 
++++ 
+@@ -115,7 +115,7 @@
+ def fixture_bundle():
+     b=blob(b'offline');files=[{'repo_path':'视频修订定稿/测试/payload.fixture','bytes':b.size,'sha256':b.sha256,'git_blob_sha':b.git_sha}]
+     trees,hashes=m.make_trees(files)
+-    return {'blobs':{b.git_sha:b},'files':files,'trees':trees,'hashes':hashes,'prefix':'视频修订定稿/测试','meta':{'asset_branch':'codex/passed4k-assets-123-48-hold18-postonly-v1'},'commit':m.commit_spec(hashes[''],'2026-11-15T01:02:03Z')}
++    return {'blobs':{b.git_sha:b},'files':files,'trees':trees,'hashes':hashes,'prefix':'视频修订定稿/测试','meta':{'asset_branch':'codex/passed4k-assets-123-30-hold18-postonly-v1'},'commit':m.commit_spec(hashes[''],'2026-11-15T01:02:03Z')}
+ 
+ class FakeGit:
+     def __init__(self,bundle,fail=None):self.b=bundle;self.head=None;self.calls=[];self.fail=fail;self.posts=[]
+@@ -209,9 +209,9 @@
+     def test_prepare_bundle_is_local_only_and_wrong_approval_prevents_auth_network(self):
+         with tempfile.TemporaryDirectory()as d:
+             w=Path(d);prefix='视频修订定稿/离线测试';pay=w/'payload';(pay/prefix).mkdir(parents=True);data=b'offline synthetic not media';final=pay/prefix/'final.fixture';final.write_bytes(data)
+-            hsfile=w/'handoff.json';h={'status':'passed_actual_normal18_post_only_for_permanent_archive','kind':'actual-new-native-source-QA-then-authorized-normal18-local-tail','actual_new_source_QA_then_final_normal18_verified':True,'source_run':123,'production_delivery_eligible':True,'preview_only':False,'articles':[{'source_id':'48','new_id':'42','passed_per_article':True,'final_mp4':{'bytes':len(data),'sha256':hashlib.sha256(data).hexdigest()}}]};hsfile.write_text(json.dumps(h));hs=m.sha256(hsfile);(pay/prefix/'H.fixture').write_bytes(hsfile.read_bytes())
+-            row={'source_id':'48','new_id':'42','passed_per_article':True,'production_delivery_eligible':True,'preview_only':False,'bytes':len(data),'sha256':hashlib.sha256(data).hexdigest(),'postprocessing_full_V3_handoff_sha256':hs,'video_repo_path':prefix+'/final.fixture'}
+-            meta={'created_utc':'2026-11-15T01:02:03Z','prefix':prefix,'asset_branch':'codex/passed4k-assets-123-48-hold18-postonly-v1','actual_handoff_sha256':hs,'articles':[row]};(w/'prepared-archive.json').write_text(json.dumps(meta))
++            hsfile=w/'handoff.json';h={'status':'passed_actual_normal18_post_only_for_permanent_archive','kind':'actual-new-native-source-QA-then-authorized-normal18-local-tail','actual_new_source_QA_then_final_normal18_verified':True,'source_run':123,'production_delivery_eligible':True,'preview_only':False,'articles':[{'source_id':'30','new_id':'55','passed_per_article':True,'final_mp4':{'bytes':len(data),'sha256':hashlib.sha256(data).hexdigest()}}]};hsfile.write_text(json.dumps(h));hs=m.sha256(hsfile);(pay/prefix/'H.fixture').write_bytes(hsfile.read_bytes())
++            row={'source_id':'30','new_id':'55','passed_per_article':True,'production_delivery_eligible':True,'preview_only':False,'bytes':len(data),'sha256':hashlib.sha256(data).hexdigest(),'postprocessing_full_V3_handoff_sha256':hs,'video_repo_path':prefix+'/final.fixture'}
++            meta={'created_utc':'2026-11-15T01:02:03Z','prefix':prefix,'asset_branch':'codex/passed4k-assets-123-30-hold18-postonly-v1','actual_handoff_sha256':hs,'articles':[row]};(w/'prepared-archive.json').write_text(json.dumps(meta))
+             index=[{'repo_path':str(p.relative_to(pay)),'bytes':p.stat().st_size,'sha256':m.sha256(p)}for p in pay.rglob('*')if p.is_file()];(w/'payload-file-index.json').write_text(json.dumps(index));ps=m.sha256(w/'prepared-archive.json');ix=m.sha256(w/'payload-file-index.json')
+             b=m.prepare_bundle(w,hsfile,hs,ps,ix);self.assertEqual(len(b['files']),2)
+             approval=w/'wrong-approval.json';approval.write_text('{}')
