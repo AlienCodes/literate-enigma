@@ -1,0 +1,90 @@
+{
+  "kind": "ROOT-source24-onlyS18-two-actual-PV-machine-evidence-specific-phonetic-transition-CF-metadata-and-original-fullnative-scope-adoption",
+  "UTC": "2026-11-15T22:50:47.089023+00:00",
+  "source_id": "24",
+  "book_order": 49,
+  "actual_successful_diagnostic_run": 43770906866,
+  "actual_HEAD": "2f9f0309297b5b442f9132cb8e2c5d7ac23a744d",
+  "actual_report": {
+    "path": "/workspace/work/source24-S18-PV43770906866-actual-true-clocks-context-original/files/24-S18-two-actual-PV-true-timed-scalar.json",
+    "bytes": 154988,
+    "sha256": "fa1558ad95f9c3448f15184f7cab0602a3ff7118bc482229a5e3930311407bd4"
+  },
+  "actual_handoff": {
+    "path": "/workspace/work/source24-S18-PV43770906866-actual-true-clocks-context-original/ACTUAL-TWO-PV-TRUE-CLOCKS-56FRAMES-EACH-ALLRESTORES-DIAGNOSTIC-HANDOFF.json",
+    "bytes": 3956,
+    "sha256": "4077543ecc24957b41bd68e73f9afde41967dc2abe752306f3f87508be839a7f"
+  },
+  "whole_master_WAV_SHA256": "0bfc44bac414b289ee12dae0fa74a7db64a8b2a33d5d6d2a19ac6161a635aa40",
+  "whole_master_MD5": "994a3189e31357492ea91673a4a67d97",
+  "whole_AAC_SHA256": "a29acdef660de64aea665c93f173a2ce6e42b55adfefdf7f10298b1c630f4fd8",
+  "actual_S18_post_float_SHA256": "55a03f558af9a6c76ae86d439cef8887e4162c2e1dab885305b82e691b23566f",
+  "actual_S18_PCM16_SHA256": "03e8c0a6e878318bc35cd6ef5a84b273aea06af9c3257ab4dc850709191214fe",
+  "ROOT_actual_read_scope": "Both complete56x2.5ms acoustic frames, all actual flag scalars/predicates, true105-token mapping/LAST and earlier native/sample/gain provenance read. Independent source24_real_pv_semantics agrees on preservation, not human listening or quality approval.",
+  "exact_two_metadata_decisions": [
+    {
+      "actual_original_flag_tuple": [
+        "噗声",
+        147.075,
+        147.095,
+        -50.675207979478635,
+        1815.0591834337522,
+        0.3380323451640027,
+        -0.5032086793330723
+      ],
+      "actual_native_key": "147.07–147.09s",
+      "actual_native_rounded_scalar": {
+        "最响dB": -50.7,
+        "重心Hz": 1815,
+        "周期": 0.34,
+        "低频dB": -0.5
+      },
+      "actual_local_sample_interval": [
+        115680,
+        116160
+      ],
+      "decision": "preserve current PCM; original exact-key metadata confirmation based on measured phonetic transition",
+      "specific_reason": "实际音素/p/尾段与该20ms窗重叠16ms，35ms真实数字零闭塞后出现释放；原5ms和20ms爆破起均True。保留词尾除阻，机器声学与音素证据，不是人耳认证。",
+      "original_贴词头": false,
+      "original_爆破5ms": true,
+      "original_爆破20ms": true
+    },
+    {
+      "actual_original_flag_tuple": [
+        "噗声",
+        147.1,
+        147.12,
+        -47.17425956954728,
+        1922.0708970283742,
+        0.3399020559313067,
+        -0.3138917840286654
+      ],
+      "actual_native_key": "147.10–147.12s",
+      "actual_native_rounded_scalar": {
+        "最响dB": -47.2,
+        "重心Hz": 1922,
+        "周期": 0.34,
+        "低频dB": -0.3
+      },
+      "actual_local_sample_interval": [
+        116280,
+        116760
+      ],
+      "decision": "preserve current PCM; original exact-key metadata confirmation based on measured phonetic transition",
+      "specific_reason": "该窗在原timed空格内，距下一实际/b/音素起点500样本，原贴词头True而爆破5/20ms均False。其后2.5ms包络从-43.680逐步接入-38.073、-33.400至-21.116dB主声，无数字零再隔断；保留相邻/b/前的低频词头过渡，不宣称独立英语词身份或人耳认证。",
+      "original_贴词头": true,
+      "original_爆破5ms": false,
+      "original_爆破20ms": false
+    }
+  ],
+  "non_decisions": [
+    "No waveform cut, gain or new mother authorized.",
+    "Do not claim flag2 explosion predicate true; actual both5/20ms False remains.",
+    "5ms low-energy valley4.840-4.845 exists; no claim of flat/valley-free continuity between flags.",
+    "Actual timed token87 is a space and coarse timing is not independent word identity.",
+    "source24<25 original checker early-return compatibility is not evidence of speech.",
+    "The20ms/absence of60ms sigh criterion alone is not evidence.",
+    "No human listened or independent ASR has yet approved these local observations."
+  ],
+  "authorized_execution": "Parent full-read existing original formatter/caller/profile and bind exactly these two actual native keys/scalars to this unchanged current whole MD5. Add only their truthful evidence-backed CF metadata with independent evidence attachment, no checker/threshold or legacy guard changes. Rebind concrete source/GEN and latest genuine full110 code certificate59443 from run43762548440 using unchanged original latest programs, then execute original full native including all A19/G35/GT/ASR/PV/A21/LQ gates. Parent may routine data/serialization/ABI packaging corrections after independent review without another ROOT literal; any new audio change or semantic flag requires actual evidence. Formal acceptance only after genuine fullnative and HOST/final/archive."
+}

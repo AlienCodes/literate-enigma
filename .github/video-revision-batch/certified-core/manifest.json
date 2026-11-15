@@ -1,11 +1,11 @@
 {
-  "kind": "actual-original-fastcheck-certified-seventeen-program-spoken-comma-repair",
+  "kind": "actual-original-fastcheck-certified-eighteen-program-spoken-bound-writer-repair",
   "core_files": [
     {
       "target": "视频/工具/make_video.py",
       "file": "files/视频/工具/make_video.py",
       "original_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
-      "patched_sha256": "1b87c1d4d1685bdd59325587184cca35f853354a015e6fe89c11f150cd2a6239"
+      "patched_sha256": "0e6c4ff6dd4ab4e3774bc060188de72356cd9aa37a7bc092d1f28a5508cc1c36"
     },
     {
       "target": "视频/工具/停顿位置精确核对.py",
@@ -59,7 +59,7 @@
       "target": "视频/工具/独立复核/synth.py",
       "file": "files/视频/工具/独立复核/synth.py",
       "original_sha256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
-      "patched_sha256": "499f74e365e7a7d38411c63fd89ce3cbadcc9c1c0f2670fc869ab873ec79d92f"
+      "patched_sha256": "d3ef082e903c0412e65c5ce53e54c3b27f9cea71b253cb39bd24e22ca3f54e4f"
     },
     {
       "target": "视频/工具/疑点清单.py",
@@ -77,7 +77,7 @@
       "target": "视频/工具/草稿声音.sh",
       "file": "files/视频/工具/草稿声音.sh",
       "original_sha256": "0ce3277812cf16ed30438509b6dc97db0c26725db4c5db5d9b058c3ef6531aa2",
-      "patched_sha256": "43fc6a1acdae6bb1c2252178bf034407400bbbe92eb1752053f3047da9760491"
+      "patched_sha256": "b66729435d893dc562beaea53c347503ad8c1a906193de6fe988c0e953516c59"
     },
     {
       "target": "视频/工具/词尾实测.py",
@@ -95,13 +95,19 @@
       "target": "视频/工具/读音核对.py",
       "file": "files/视频/工具/读音核对.py",
       "original_sha256": "0a3b97e1179e47c0593f69286f4206eecc123cc7ec5d5adf4f5e62457c228a41",
-      "patched_sha256": "a32bee516f108594f28bda2a3566754e383f27fd78d5a0121e58fb5d49a84428"
+      "patched_sha256": "b0b4f1a2d3151489aa8174e8bd734bb3f963e89fffb22e3dc170535327a2feb4"
     },
     {
       "target": "视频/工具/高亮同步核对.py",
       "file": "files/视频/工具/高亮同步核对.py",
       "original_sha256": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
       "patched_sha256": "0041d8ef2f9d4a231c437d3b49cfcaa556ecd4a760b45c79ccf4abc6a7d02e0d"
+    },
+    {
+      "target": "视频/工具/区间作废.py",
+      "file": "files/视频/工具/区间作废.py",
+      "original_sha256": "d7bc6ec887ce191d651ae8f19786b20bc5d428533062ac4b02985253e396c390",
+      "patched_sha256": "ece967ee62c56839ff848f59d401f47640abfd99c060a068aa7e541abcf0f88c"
     }
   ],
   "reviewed_regression_resource": {
@@ -118,18 +124,77 @@
   "actual_native_fastcheck_stamp": {
     "target": "视频/工具/新管/快测通过.json",
     "file": "files/视频/工具/新管/快测通过.json",
-    "sha256": "9aa653ec47c686d9bb0b6c4393444bb50c3c8d2d249fe10a843b0959854f7ea6"
+    "sha256": "59443ea9596d1dfe3841a0f56ecd8109884b0714caefbd3eae1f90b67a3f1f57"
   },
   "actual_native_certification": {
-    "run_id": 43714183305,
-    "certificate_file": "actual-spoken22-certification.json",
-    "certificate_SHA256": "c05b6ed258dc9783bdb453f1e7382dac8b40d27f66ac30c26b3ee079c3933c19",
-    "original_full_fastcheck_passed": true
+    "run_id": 43762548440,
+    "certificate_file": "actual-GT-fullprecision18-certification43762548440.json",
+    "certificate_SHA256": "e98d291c818ea19f6e0141b8acdb5b409caa2898fe62a47309c0a5b93c590e5c",
+    "original_full_fastcheck_passed": true,
+    "original_fullquick_seconds": 448.98,
+    "separately_tested_external_helper_SHA256": "a60611151cef21d4e729e342587be2531c39bbecd832e2384085f8b3ac2880d0",
+    "external_helper_NOT_part_of_original110": true,
+    "actual_reader_logic_ROOT_adoption_SHA256": "53ff26336e2f5c18855b7611ded35b2349a6c2c66ce2532070cbd3cedb6cf35d",
+    "actual_writer_logic_ROOT_adoption_SHA256": "a941554951cbde2fd0f366746ff2659ce073e87551f2c2709addaa6dd4c942d3",
+    "actual_GT_fullprecision_logic_ROOT_adoption_SHA256": "d9e92e8a7f14f541f04d88a4651c3cf44b7386fd8cccd1dfc445dbe230d8a47c"
   },
   "scoped_production_source_ids": [
-    "56"
+    "24"
   ],
-  "actual_overlay17_SHA256": "d1531ccfd315444bdbbe741459429d109c54a70468711570c1c8235e52eaabd9",
-  "maker_SHA256": "1b87c1d4d1685bdd59325587184cca35f853354a015e6fe89c11f150cd2a6239",
-  "no_new_codecert_or_stamp_constructed": true
+  "maker_SHA256": "0e6c4ff6dd4ab4e3774bc060188de72356cd9aa37a7bc092d1f28a5508cc1c36",
+  "no_new_codecert_or_stamp_constructed": true,
+  "reviewed_NONE_external_dependency": {
+    "path": ".github/video-revision-batch/reviewed_none_ending24.py",
+    "SHA256": "a60611151cef21d4e729e342587be2531c39bbecd832e2384085f8b3ac2880d0",
+    "actual_ROOT_adoption_SHA256": "13f82c08f6e55a9bd8c4cf87a0e611437eba291677c751840f3bef8e56319c80",
+    "original110_new_shell_SHA256": "b66729435d893dc562beaea53c347503ad8c1a906193de6fe988c0e953516c59"
+  },
+  "actual_A23_reader_root_logic_adoption": {
+    "path": "/workspace/work/ROOT-source24-A23-selftest-only-coherent-alias-BAD-input-logic-adoption-20261115.json",
+    "bytes": 1899,
+    "sha256": "53ff26336e2f5c18855b7611ded35b2349a6c2c66ce2532070cbd3cedb6cf35d"
+  },
+  "prior_reviewed_NONE_shell_actual_certificate_is_historical": {
+    "run_id": 43737359642,
+    "certificate_file": "request/24/approval-evidence/historical-prior628d-certificate43737359642.json",
+    "certificate_SHA256": "da065242bad835491c87b2a29cf0736eba1fb80e335e669b8652d73b2328ca11",
+    "original_full_fastcheck_passed": true,
+    "original_fullquick_seconds": 538.47,
+    "separately_tested_external_helper_SHA256": "a60611151cef21d4e729e342587be2531c39bbecd832e2384085f8b3ac2880d0",
+    "external_helper_NOT_part_of_original110": true
+  },
+  "prior_fe94_reader17_certificate_is_historical": {
+    "run_id": 43746661808,
+    "certificate_file": "actual-A23-reader110-certification43746661808.json",
+    "certificate_SHA256": "0cc1c5d7962555e450125e3df5b76b04e54a66ab6dc8baf14325e4bf2d098186",
+    "original_full_fastcheck_passed": true,
+    "original_fullquick_seconds": 392.21,
+    "separately_tested_external_helper_SHA256": "a60611151cef21d4e729e342587be2531c39bbecd832e2384085f8b3ac2880d0",
+    "external_helper_NOT_part_of_original110": true,
+    "actual_reader_logic_ROOT_adoption_SHA256": "53ff26336e2f5c18855b7611ded35b2349a6c2c66ce2532070cbd3cedb6cf35d"
+  },
+  "actual_overlay18_SHA256": "fbea439a3a5af3abd5bfcd1932b4206989d6dcbdef20d0515effd76eb17ae49b",
+  "prior_overlay17_SHA256_is_history": "e8c1635e507b41f0f27c550f7b7a2f3a9cc8fc47916b1a13a1f2137882274a34",
+  "actual_current_runtime_program_count": 18,
+  "new_utility_writer_full110_actual_intake": {
+    "path": "/workspace/work/source24-A45-writer110-codecert43754825550-actual-original/ACTUAL-NEW-A45-WRITER-18PATCH-TRUE110-ALLCHECKS-AND51MEMBERS-INDEPENDENT-ADOPTION-HANDOFF.json",
+    "bytes": 29308,
+    "sha256": "da5e5241bd51a69fd4590cfdf12ca7c8b25f4c764dee32c6b6bd35e70339f282"
+  },
+  "prior_b086_18_program_certificate_is_history": {
+    "run_id": 43754825550,
+    "certificate_file": "actual-A45-writer18-certification43754825550.json",
+    "certificate_SHA256": "b0865478f50da33293c2ccaae6d2dcef7886e54fae2ae2a31a33b391a6a8f82e",
+    "original_full_fastcheck_passed": true,
+    "original_fullquick_seconds": 441.15,
+    "separately_tested_external_helper_SHA256": "a60611151cef21d4e729e342587be2531c39bbecd832e2384085f8b3ac2880d0",
+    "external_helper_NOT_part_of_original110": true,
+    "actual_reader_logic_ROOT_adoption_SHA256": "53ff26336e2f5c18855b7611ded35b2349a6c2c66ce2532070cbd3cedb6cf35d",
+    "actual_writer_logic_ROOT_adoption_SHA256": "a941554951cbde2fd0f366746ff2659ce073e87551f2c2709addaa6dd4c942d3"
+  },
+  "new_GT_actual_110_certificate_intake": {
+    "path": "/workspace/work/source24-GT-fullprecision110-43762548440-actual-original/ACTUAL-FRESH-GT-FULL110-CERTIFICATE-53MEMBERS-AND-ORIGINAL-BADCONTROLS-INDEPENDENT-HANDOFF.json",
+    "bytes": 15368,
+    "sha256": "279b03ed3d8b258bf9e74260e7dd04333c81bb1b9c6b5de2f521cabfdabd0491"
+  }
 }

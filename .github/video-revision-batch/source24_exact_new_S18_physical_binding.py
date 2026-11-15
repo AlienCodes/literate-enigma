@@ -2,7 +2,7 @@
 from pathlib import Path
 from fractions import Fraction
 import hashlib,json,subprocess,tempfile
-REFERENCE_SHA = '2efcb6a3639a0ec235a5269fc026483ba97db70b3e9273552a45b006ed8f7172'
+REFERENCE_SHA = 'b404a14f7d60a1621878ea36ba2a7462d58e71427c16ed2fefe6922d3aa48cab'
 
 def require(ok, message):
     if not ok:
@@ -81,7 +81,7 @@ def bind(request, wav, canonical_video, accepted_video, task, tools, canonical_p
                 'file_specs': files, 'RAW_SHA256': digest(wav),
                 **{k: aac[k] for k in ['aac_adts_sha256', 'packet_count', 'packet_projection_sha256']},
                 'codec': aac['projection']['codec'], 'maker_SHA256': digest(tools / 'make_video.py'),
-                'certificate_SHA256': digest(task / 'actual-A45-writer18-certification43754825550.json'),
+                'certificate_SHA256': digest(task / 'actual-GT-fullprecision18-certification43762548440.json'),
                 'stamp_SHA256': digest(tools / '新管/快测通过.json'),
                 'actual_original20_program_SHA256': {p: digest(tools / p) for p in reference['actual_original20_program_SHA256']},
                 'accepted_legacy_video_SHA256': digest(accepted_video), 'accepted_legacy_AAC_SHA256': legacy['aac_adts_sha256']}
