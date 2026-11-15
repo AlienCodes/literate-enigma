@@ -1,0 +1,204 @@
+{
+  "article": "38",
+  "status": "passed",
+  "actual_new_mp4": true,
+  "video_sha256": "6bc3bb45c1fcf669d1af40d348c40eb07415b886508ee1b14e2f273e04751866",
+  "video_bytes": 16698522,
+  "official_run": {
+    "repository": "AlienCodes/literate-enigma",
+    "run_id": 43702211337,
+    "run_attempt": 1,
+    "status": "completed",
+    "conclusion": "success",
+    "head_sha": "7158d11d86da1755f7410d7a51f421e786411e2c",
+    "workflow_path": ".github/workflows/produce-revision-batch4K.yml",
+    "entrypoint": "视频/工具/新管/定稿.sh",
+    "stage": "4K",
+    "canonical_selection": "native_final_official_passed",
+    "artifact_id": 14157258785,
+    "artifact_zip": {
+      "path": "/workspace/work/review38-native/43702211337/38/article38-passed-output.zip",
+      "bytes": 44219530,
+      "sha256": "e8ab0d7e16819a026203dbcbd9f03dee6cb19a8e901615f00e182ba1998ba669"
+    },
+    "artifact_zip_sha256": "e8ab0d7e16819a026203dbcbd9f03dee6cb19a8e901615f00e182ba1998ba669",
+    "artifact_status_member": "38-canonical-summary-passed-status.json",
+    "artifact_mp4_member": "38-4K-读完即转简述2秒.mp4",
+    "artifact_mp4_sha256": "aef916a91402a2ea3c3fb7263e6e4bb372ced19dd1d784a7dc3cb2febbcae1bd",
+    "job": {
+      "id": 132775730192,
+      "name": "produce (38)",
+      "article": "38",
+      "run_attempt": 1,
+      "status": "completed",
+      "conclusion": "success",
+      "upload_step_name": "仅保留本篇公开成片和核验材料"
+    },
+    "artifact_main_status_member": "38-status.json",
+    "artifact_main_status_sha256": "32fbfaaa40f6b27014cee80a20141d8fe62fd670875d10f92ad0e6d40ba936f5",
+    "inherited_native_inline_final_original_bytes_preserved": true,
+    "current_final_is_local_tail_derivative": true
+  },
+  "actual_probe": {
+    "width": 3840,
+    "height": 2160,
+    "frames": 4559,
+    "fps": "30/1",
+    "duration_seconds": 151.966667
+  },
+  "speech_end": {
+    "actual_new_output": true,
+    "measured_from_actual_audio": true,
+    "end_frame": 4421,
+    "report_sha256": "a14077b2ba9aff3027639c3d9a4495443283bab928cc6bf714bc55318c95d37e",
+    "endpoint_seconds": 147.36
+  },
+  "illustration": {
+    "decoded_from_actual_mp4": true,
+    "frames": 60,
+    "start_frame": 4439,
+    "width": 3840,
+    "height": 2160,
+    "approved_illustration_sha256": "7f7c0f94edddff2335d471afe91df5326e13dd83fab774b8e0096f0ed4b850ae",
+    "book_source_sha256": "7f7c0f94edddff2335d471afe91df5326e13dd83fab774b8e0096f0ed4b850ae",
+    "preparation": {
+      "source_id": "38",
+      "new_id": "51",
+      "native_image_sha256": "7f7c0f94edddff2335d471afe91df5326e13dd83fab774b8e0096f0ed4b850ae",
+      "native_pixel_dimensions": [
+        1536,
+        1024
+      ],
+      "prepared_png_sha256": "52511d759bbcf9d50be950d1fa542113ce179c344933f0ed20250226f12ae213",
+      "prepared_rgb_sha256": "f1d68abd6785dec390fc5e3ccb7cc7a9afb396a009e37229669718413281214e",
+      "prepared_pixel_dimensions": [
+        3840,
+        2160
+      ],
+      "mode": "contain_blur",
+      "Pillow": "12.3.0",
+      "native_source_crop_box": null,
+      "resampling": "Pillow Image.Resampling.LANCZOS",
+      "same_image_background_gaussian_blur_radius": 64,
+      "derived_in_this_process_from_exact_approved_native_image": true,
+      "generated_or_substituted_artwork": false,
+      "added_text_or_graphics": false,
+      "preparer_program_sha256": "dde135601652df1455c0a113c1f7ef8553a3e0a5c896b5afa4f79377228b9eee",
+      "prepared_image_path": "/workspace/work/book51-source38-original-normal18-20261115/media/book51-source38/38-approved-art4K.png"
+    },
+    "frame_comparison": {
+      "status": "passed",
+      "actual_new_output": true,
+      "decoded_from_actual_mp4": true,
+      "frames_checked": 60,
+      "start_frame": 4439,
+      "video_sha256": "6bc3bb45c1fcf669d1af40d348c40eb07415b886508ee1b14e2f273e04751866",
+      "reference_sha256": "52511d759bbcf9d50be950d1fa542113ce179c344933f0ed20250226f12ae213",
+      "report_sha256": "be4855a409059dd5ac1683682c756a336375ef5cc6a3d8767b5a249c1ef96584"
+    }
+  },
+  "summary": {
+    "decoded_from_actual_mp4": true,
+    "frames": 60,
+    "start_frame": 4499,
+    "overflow": false,
+    "normal_font_size": true,
+    "font_px": 116,
+    "text_sha256": "fe41f35a560af8c018d0b468f431e7c5e70757a997eac4326a7f26ba674da4a9",
+    "approved_request_text_sha256": "a6068469dd0f11e0f4542ee59852cbc08aa0564c15d8448babd7428f0f4aa307"
+  },
+  "audio": {
+    "canonical_qc": {
+      "tool": "native_official_audio_gates",
+      "actual_new_output": true,
+      "status": "passed",
+      "canonical_video_sha256": "aef916a91402a2ea3c3fb7263e6e4bb372ced19dd1d784a7dc3cb2febbcae1bd",
+      "report_sha256": "f774895ceb1bb8f7c28fa43571c471ff46cdc58057d1ae407b3020737659062e"
+    },
+    "repair_applied": false,
+    "lossless_copy": {
+      "canonical_video_sha256": "aef916a91402a2ea3c3fb7263e6e4bb372ced19dd1d784a7dc3cb2febbcae1bd",
+      "final_video_sha256": "6bc3bb45c1fcf669d1af40d348c40eb07415b886508ee1b14e2f273e04751866",
+      "audio_packet_times_identical": true,
+      "canonical_aac_adts_sha256": "b6357ce558441de2ccb79dbaa3be278500a6fcd41266795605e7ea69dce6da22",
+      "canonical_packet_projection_sha256": "0d5ec85f156eb66874c400055e43baebbf515844acf5f7667738eda8a8f1d0e7",
+      "canonical_packet_count": 7002,
+      "final_aac_adts_sha256": "b6357ce558441de2ccb79dbaa3be278500a6fcd41266795605e7ea69dce6da22",
+      "final_packet_projection_sha256": "0d5ec85f156eb66874c400055e43baebbf515844acf5f7667738eda8a8f1d0e7",
+      "final_packet_count": 7002
+    }
+  },
+  "source_sha256": {
+    "request": {
+      "json": "db13df9bd000e82f751c773d1e55075f5822dfc491a73a4e59be2995014ad705",
+      "gen": "e9ebb5bda85ea6e55270373af5a906f695d7d1678d5705c3302cd2a785ba4f3f",
+      "md": "6ccf104a61366e176199717e1b25c6be5b65f7bdf1e066c9fb7f6804df17187d"
+    },
+    "final": {
+      "json": "61b869d73ec57b6f7f98442cbd9339db2802c7bfb021dd0b88ff2c9a4f48dadf",
+      "gen": "9e44f6f63f34b5ad7fdc148d65c78cbbff340d0627e5d2bcb16ca5094a345fa5",
+      "md": "b19352ab19d1f4ab94a50f5080769cc222aab5f96d1c158867af7498b2c00015"
+    }
+  },
+  "source_transform": {
+    "status": "passed",
+    "actual_working_copy": true,
+    "operations": [
+      "L19"
+    ],
+    "report_sha256": "3989520ba7e339144247da5b02eede12df25f4e36efb590baeb0fadbd9e62925",
+    "changed_paths": [
+      "/sentences/17/chunks/1/note"
+    ]
+  },
+  "adapter_scope": "Explicit actual native status + raw real postprocessor report field mapping; not fabricated audio-qc.py or unobserved runtime GEN/MD.",
+  "preview_only": false,
+  "production_delivery_eligible": true,
+  "local_postprocessing_only": true,
+  "new_native_quality_run_claimed": false,
+  "inherited_full_V3_handoff": {
+    "path": "/workspace/work/review38-sourceQA/43702211337/archive-handoff.json",
+    "bytes": 52938,
+    "sha256": "ee4a9c53c4819d60269ad1d3cbe6a5fadca320ff224ffd3d65e3b2baaab79c62"
+  },
+  "body_hold": {
+    "speech_ceiling_frame": 4421,
+    "hold_start_frame": 4421,
+    "hold_end_frame_inclusive": 4438,
+    "held_body_end_frame_exclusive": 4439,
+    "frozen_reference_frame": 4420,
+    "extra_body_frames": 18,
+    "voice_to_picture_seconds": 0.6066666666666667,
+    "actual_decoded_hold_validation": {
+      "last_body_hold_frames": 18,
+      "last_body_hold_seconds": 0.6,
+      "hold_start_frame": 4421,
+      "hold_end_frame_inclusive": 4438,
+      "frozen_reference_frame": 4420,
+      "actual_held_frames_checked": 18,
+      "hold_thumbnail_MAE_each": [
+        0.00034963348765432097,
+        0.0003215020576131687,
+        0.0003215020576131687,
+        0.0003335583847736625,
+        0.0004742155349794239,
+        0.0004541216563786008,
+        0.0004541216563786008,
+        0.0004541216563786008,
+        0.0005706661522633744,
+        0.0006349665637860083,
+        0.0006349665637860083,
+        0.0006349665637860083,
+        0.0007113233024691358,
+        0.0007595486111111111,
+        0.0007595486111111111,
+        0.0007595486111111111,
+        0.0007957175925925927,
+        0.0007997363683127572
+      ],
+      "hold_thumbnail_MAE_max": 0.0007997363683127572,
+      "hold_visual_reference": "actual decoded last spoken-page frame before18-frame hold; existing static-page MAE<2 rule"
+    }
+  },
+  "audio_repair_applied_in_this_tail_postprocess": false
+}

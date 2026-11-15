@@ -1,0 +1,11 @@
+--- /workspace/work/review52-source09-E46-normal18-intake/code/validate_single_article_new_native148.py
++++ /workspace/work/review51-source38-E48-normal18-intake/code/validate_single_article_new_native148.py
+@@ -25,7 +25,7 @@
+     raw_path = Path(a.upstream_record)
+     raw = V.D.load(raw_path)
+     n = raw['article']
+-    V.require(n in {'09'} and raw['prior_full_delivery_V3_claimed'] is False,
++    V.require(n in {'38'} and raw['prior_full_delivery_V3_claimed'] is False,
+               'Only an actually new approved source with an honest raw inheritance record')
+     quality_path = Path(a.source_validation_handoff)
+     quality = V.D.load(quality_path)

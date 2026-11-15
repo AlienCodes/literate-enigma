@@ -1,0 +1,98 @@
+{
+  "scope": "Original E46 whole-byte inverse except source/book/authority/engine data only, no new media or audio QA claim",
+  "compile_all_four_modules": true,
+  "code_changes": [
+    {
+      "original": {
+        "path": "/workspace/work/review52-source09-E46-normal18-intake/code/validate_single_article_post_only.py",
+        "bytes": 11749,
+        "sha256": "0aa214614b6f1856c79a99d86dc41b9542effdf3f94e8b526e3f0bd75ce2274b"
+      },
+      "candidate": {
+        "path": "/workspace/work/review51-source38-E48-normal18-intake/code/validate_single_article_post_only.py",
+        "bytes": 11763,
+        "sha256": "ca4853678b454f86eebfde479e4b03b4c4890645ecb9528b3fb48fa8de149560"
+      },
+      "literal_data_replacements": [
+        {
+          "old": "/workspace/work/native-inline-engine-reviewed09-E45-actual43696282268",
+          "new": "/workspace/work/native-inline-engine-reviewed38-E47-actual43702211337"
+        },
+        {
+          "old": "/dev/shm/USER-BOOK52-FINALIZATION-AFTER-CLAIMED-20261115.json",
+          "new": "/workspace/work/USER-BOOK51-FINALIZATION-AFTER-MATTERS-20261115.json"
+        }
+      ],
+      "inverse_entire_original_bytes_exact": true
+    },
+    {
+      "original": {
+        "path": "/workspace/work/review52-source09-E46-normal18-intake/code/normal18_contract.py",
+        "bytes": 7361,
+        "sha256": "5a6e01f55fe1eb2686b0607bd6ea2d0cf39358b44c1eb17bce1ea2471f1ff277"
+      },
+      "candidate": {
+        "path": "/workspace/work/review51-source38-E48-normal18-intake/code/normal18_contract.py",
+        "bytes": 7373,
+        "sha256": "f06a25684b5c456b612d8c36ae6a59aecec368a7839225adba9d54abbea95cbd"
+      },
+      "literal_data_replacements": [
+        {
+          "old": "article == '09' and new_id == '52'",
+          "new": "article == '38' and new_id == '51'"
+        },
+        {
+          "old": "9519e488124361403fabf524f016c8985119c7c93d6bd1b58bbde735b371b076",
+          "new": "3b898afb6b397ac1df00c7e735c8fa928c861948174788335ee311f868048e4c"
+        },
+        {
+          "old": "single_article_review_book_order') == '52'",
+          "new": "single_article_review_book_order') == '51'"
+        },
+        {
+          "old": "single_article_review_source_id') == '09'",
+          "new": "single_article_review_source_id') == '38'"
+        },
+        {
+          "old": "book52-finalization-after-claimed-20261115",
+          "new": "book51-finalization-after-matters-exact-focus-20261115"
+        }
+      ],
+      "inverse_entire_original_bytes_exact": true
+    },
+    {
+      "original": {
+        "path": "/workspace/work/review52-source09-E46-normal18-intake/code/validate_single_article_new_native148.py",
+        "bytes": 5815,
+        "sha256": "583fd2b6c26762879988b49e5217af9baf1947d1139d64abbd5c0f871cf35ed2"
+      },
+      "candidate": {
+        "path": "/workspace/work/review51-source38-E48-normal18-intake/code/validate_single_article_new_native148.py",
+        "bytes": 5815,
+        "sha256": "e9132e486e7063d60b18707fd49d060d140f2fa10ad9509df0b7c373ac4a6f2c"
+      },
+      "literal_data_replacements": [
+        {
+          "old": "n in {'09'}",
+          "new": "n in {'38'}"
+        }
+      ],
+      "inverse_entire_original_bytes_exact": true
+    },
+    {
+      "original": {
+        "path": "/workspace/work/review52-source09-E46-normal18-intake/code/hold18_geometry.py",
+        "bytes": 3973,
+        "sha256": "f962e9a2173b36c22f2bd7fa1ab1d70d418eaa416baa005c68547225fcf18f2c"
+      },
+      "candidate": {
+        "path": "/workspace/work/review51-source38-E48-normal18-intake/code/hold18_geometry.py",
+        "bytes": 3973,
+        "sha256": "f962e9a2173b36c22f2bd7fa1ab1d70d418eaa416baa005c68547225fcf18f2c"
+      },
+      "literal_data_replacements": [],
+      "inverse_entire_original_bytes_exact": true
+    }
+  ],
+  "geometry_entirebytes_identical": true
+}
