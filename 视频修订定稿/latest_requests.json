@@ -111,7 +111,7 @@
     "missing_or_pending_items_are_production_pending_not_legacy_fillers": true
   },
   "all70_latest_complete": false,
-  "latest_requested_revision_completed_count": 47,
+  "latest_requested_revision_completed_count": 48,
   "articles": [
     {
       "source_id": "07",
@@ -3287,15 +3287,15 @@
       "pending_newer_request_blocks_old_fallback": true,
       "older_accepted_archive_is_history_until_newest_request_qualified": true,
       "previously_accepted_cloud_final": {
-        "asset_commit": "743d529813a5776281d4524503d824844a15377b",
-        "video_repo_path": "视频修订定稿/2026-11-14-已验收1篇-native-inline-run43543967031-原09/视频/52 向鸸鹋宣战.mp4",
-        "bytes": 15965496,
-        "sha256": "ba91acf6a53bbc0b1b4600b6d3c71b6a5300ffc2bc57c70319ec43b1bccba9d3"
+        "asset_commit": "7f040c6e1678ac1de5879eb5d527134327b6cc80",
+        "video_repo_path": "视频修订定稿/2026-11-14-审核原09-新native源QA与0.6秒定稿-来源43696282268-本地尾段v1/视频/52 向鸸鹋宣战.mp4",
+        "bytes": 16144933,
+        "sha256": "632c1c94e596083fa3b457960af2c919dde84ce07b81205d6b4e123b34041361"
       },
-      "status": "latest_authorized_revision_in_production",
-      "latest_requested_revision_complete": false,
-      "actual_complete_validation_passed": false,
-      "actual_dual_permanent_archive_passed": false,
+      "status": "latest_qualified_cloud_final",
+      "latest_requested_revision_complete": true,
+      "actual_complete_validation_passed": true,
+      "actual_dual_permanent_archive_passed": true,
       "newest_user_revision_records": [
         "book52-a-quarter-focus",
         "book52-drought-focus",
@@ -3351,7 +3351,36 @@
         "original_summary_card_seconds": 2,
         "actual_source_native_fullQA_dual_current_still_pending": true,
         "no_media_or_QA_pass_claimed": true
-      }
+      },
+      "latest_revision_final": {
+        "asset_commit": "7f040c6e1678ac1de5879eb5d527134327b6cc80",
+        "video_repo_path": "视频修订定稿/2026-11-14-审核原09-新native源QA与0.6秒定稿-来源43696282268-本地尾段v1/视频/52 向鸸鹋宣战.mp4",
+        "bytes": 16144933,
+        "sha256": "632c1c94e596083fa3b457960af2c919dde84ce07b81205d6b4e123b34041361"
+      },
+      "validation_handoff_sha256": "fb79dc7bfb203bf151a812af5d02a0808718cf01a9f03b8569786b60b92dffa2",
+      "post_reading_pause_seconds": 0.6,
+      "illustration_seconds": 2,
+      "summary_card_seconds": 2,
+      "source_and_GEN_MD": {
+        "json": {
+          "bytes": 75438,
+          "sha256": "853ef50e634a69190838f10361978caf9477811a217453511a35f626f0d7881e",
+          "origin": "official_artifact_working_copy"
+        },
+        "gen": {
+          "bytes": 86722,
+          "sha256": "f6ee6384599eb8f30f33b2187d1106c242e0014373d6a5d2afbd8cab1336f3d7",
+          "origin": "derived_after_final_QC",
+          "derived_from_json_sha256": "853ef50e634a69190838f10361978caf9477811a217453511a35f626f0d7881e"
+        },
+        "md": {
+          "bytes": 15239,
+          "sha256": "e69ea540344ae5415cc0ff08a3e681da6285313546531cf23ee8f521544b3ed1",
+          "origin": "actual_working_manuscript"
+        }
+      },
+      "source_roles_preserved": true
     },
     {
       "source_id": "68",

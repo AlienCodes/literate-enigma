@@ -1,0 +1,3782 @@
+{
+  "article": "09",
+  "passed": true,
+  "stage": "final4K-passed",
+  "original_audit_and_quality_thresholds_unchanged": true,
+  "original_maker_unchanged": true,
+  "core_repairs": [
+    {
+      "target": "视频/工具/草稿声音.sh",
+      "file": "files/视频/工具/草稿声音.sh",
+      "original_sha256": "0ce3277812cf16ed30438509b6dc97db0c26725db4c5db5d9b058c3ef6531aa2",
+      "patched_sha256": "c45c66e3cf68a380f5c829600cf6b0ed69f49f24c65e91c0330ed17d1a85475e",
+      "repair_scope": "explicit revision flags keep reviewed gain and existing valid ending entry; original pipeline and quality gates retained; bad ending failures propagate"
+    },
+    {
+      "target": "视频/工具/句内响度.py",
+      "file": "files/视频/工具/句内响度.py",
+      "original_sha256": "58735b7173a3c03efa61fb300b4aed4039c164fa970e0593a40bae2a3f3cbd27",
+      "patched_sha256": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea",
+      "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+    },
+    {
+      "target": "视频/工具/独立复核/synth.py",
+      "file": "files/视频/工具/独立复核/synth.py",
+      "original_sha256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+      "patched_sha256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+      "repair_scope": "validated unprocessed raw-mother reference input only; independent transforms/audit/thresholds retained"
+    },
+    {
+      "target": "视频/工具/结尾句接点.py",
+      "file": "files/视频/工具/结尾句接点.py",
+      "original_sha256": "15303682c605dd4544172c92d42c016d8d0536e0c6d1f9816d0d38dd5d2b9a61",
+      "patched_sha256": "1a5d43c4f5483014b69bbea7ad43dddb0333a9a80e29bb2b4c8029d8915ff798",
+      "repair_scope": "validate existing ending entry with original producer guard then keep it; bad points fail, missing points use original algorithm; default unchanged"
+    },
+    {
+      "target": "视频/工具/读音核对.py",
+      "file": "files/视频/工具/读音核对.py",
+      "original_sha256": "0a3b97e1179e47c0593f69286f4206eecc123cc7ec5d5adf4f5e62457c228a41",
+      "patched_sha256": "50f4363bb2fc2930be59904cdccfa44fd46f14393a0385c7846028ee25b4e84c",
+      "repair_scope": "selftest-only fault injection keeps compound registry and injects actual uncorrected espeak IPA; normal checker AST/output and dictionaries unchanged; unrelated exceptions propagate with restoration"
+    }
+  ],
+  "strict_production_cache": true,
+  "pdf_requested": false,
+  "check_summaries": {
+    "approved-illustration-resource.log": [],
+    "certified-core-original-stamp-verification.log": [],
+    "original-restored-stamp.log": [],
+    "canonical-module-copy.log": [],
+    "canonical-draft-00.log": [
+      "第09篇 做完（223 秒）：修了 0 处、疑点 21 处",
+      "① 文本：通过",
+      "② 声音：09 词尾辅音核对 问题数 0；09 纯人声核对（配音指纹 1194e5fd37aa）问题数 0；问题数 0；09 句间停顿核对 问题数 0；问题数 0",
+      "③ 出片前核查：通过",
+      "⑤ 出片后核查：全部通过",
+      "⑥ 已拷 视频/视频/草稿1080p/09_1080p.mp4（--不推）"
+    ],
+    "canonical-final4K-00.log": [
+      "第09篇 用户定稿原话：有"
+    ],
+    "original-stamp-after-production.log": []
+  },
+  "actual_native_core_certification": {
+    "run_id": 43547136057,
+    "job_id": 132300968704,
+    "commit": "d14c0b19b391974a6766255c18591a4e60909bbf",
+    "actual_full_quickcheck_exit": 0,
+    "actual_full_quickcheck_seconds": 554.94,
+    "artifact_id": 14094801836,
+    "artifact_zip_sha256": "80ff77c6637b57144dae07651e115df440b0845ffc4fca1c357f72547c5bfb7f",
+    "full_original_quickcheck_log_sha256": "b8345d5711ad66f567cd5d5415fd4abb3e32e364c0726b81b91d7c545b309900",
+    "article_audio_or_video_passed_not_implied": true
+  },
+  "actual_native_fastcheck_stamp": {
+    "target": "视频/工具/新管/快测通过.json",
+    "file": "files/视频/工具/新管/快测通过.json",
+    "sha256": "95a51b15bb4b71b8842851da8d16bb4109231f1ba69e24826792f2a718ef4a4a",
+    "origin": "actual unmodified original full quickcheck, native run43547136057"
+  },
+  "reviewed_regression_resource": {
+    "target": "视频/工具/新管/回归基准_27.json",
+    "file": "files/视频/工具/新管/回归基准_27.json",
+    "sha256": "b8ddb4656ae27cbfc7ec8e3b99511983b4e568997bd4ad4ee33c364f3926ae94",
+    "origin": "pre-existing root-reviewed 67-screen data; original voice/segment MD5 unchanged"
+  },
+  "core_repair_manifest_sha256": "f169b9b2110bff4b346f010661033c4b6bc5367e31ea1bfcecf015d435db778c",
+  "reviewed_gain_preservation_mode": true,
+  "reviewed_existing_ending_preservation_mode": true,
+  "real_restored_stamp_validated": true,
+  "reviewed_cross_article_context": {
+    "provided": true,
+    "manifest_sha256": "4fb018ac0e240ddb08dc7a8a1bfad6c41f1e0f716fbd4e4991cdd1447c32e32e",
+    "files_sha256": {
+      "视频/脚本/01.json": "2be2f80a69af28703992204ac95f987c745362c326e62ad81b3cd8e0e0735d3a",
+      "新版定稿/01-the-robber-who-thought-lemon-juice-made-him-invisible.md": "572054065b5bb65446bf8939a21c789c1e9c7664d82da5117c43efdded894351",
+      "视频/脚本/02.json": "0403368c77fd3e0f91e1ee3780e1c7c147894ad13c16b5f14707d700a8f717c8",
+      "新版定稿/02-the-truth-about-one-marshmallow.md": "91b92505aad03f963861bec39e96f0a472c126d1d57c9fc538676c32f65e545c",
+      "视频/脚本/03.json": "527f3bf4a11843f4d606188dabc6ebce6830da3fb454a49c782e3a595cb47407",
+      "新版定稿/03-the-doctor-who-drank-bacteria-to-win-an-argument.md": "6dfb56504882e24854a3584fd740e7f6601e3f2532818aee3a56d5330d317aa3",
+      "视频/脚本/04.json": "93cc1ff58d65ebe43a65ecb2fb2dbd2da262d80877c05740bbdf4eab4eaca1e8",
+      "新版定稿/04-the-brain-that-learned-london.md": "a8ccb31ffff50aaae77de4b83de1847fafae1d585981cf960c5880c409f6cfc3",
+      "视频/脚本/05.json": "47fa4c8746deecb0583e08633d1b52751ed3e6046ee5c1e46d032c443d220fba",
+      "新版定稿/05-the-fingerprint-in-the-blood.md": "612deac4ed066489e04e214ca969f8f27dda05856e0ef0ed2e540e7a4a52ae34",
+      "视频/脚本/06.json": "2cbf1d6cd6e66a59285298ea830f5ef914590b64286d40b2ae5f3168aa27a2e9",
+      "新版定稿/06-the-horse-that-could-count.md": "7fd21ba491c7596c53c486f2bb0b0f2f6da8e67bac75461a4649a7caff822f74",
+      "视频/脚本/07.json": "842e44e5aa19fddcfa239cb6530c5152341cd86e11db959543d02d8670ca13e8",
+      "新版定稿/07-the-octopus-that-escaped.md": "b8544281bb2ada88fce9d1082cbc30233dcb63ee3e9c2bbefafc22cb28b8cb39",
+      "视频/脚本/08.json": "254832e09f12759d950384dd9f31f671ad5a3bc1590b7466065dd3ef5fe4b8d5",
+      "新版定稿/08-the-doctor-who-solved-the-cholera-mystery.md": "0b2bfa68070ce585a452f6b7034d03c3683e710dcabec5e86d7b221950dc7bab",
+      "视频/脚本/09.json": "651f4e0057c363613fbb3984fe872b190adf826b264507807c3e4ac8b14f1909",
+      "新版定稿/09-the-great-emu-war.md": "18561381ea8aff83fa0c6f769d81cc09543d879adcf4a16230f7c3c1d211dbc0",
+      "视频/脚本/10.json": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
+      "新版定稿/10-the-stolen-smile.md": "ff63cf94e4d2c835e2e2f1ffd3e6c5642f0916f0b13c012f1f13c3dff716d47a",
+      "视频/脚本/11.json": "665cbb80cc70b700ecc0cc5813209fd100ad4fa8f0eead3929b9e53778d9d07f",
+      "新版定稿/11-move-37.md": "7e0b49b346c1fa3ab994a11a2301167c0d6a1bb00916508bdc0b1acf71e68053",
+      "视频/脚本/12.json": "e3bfbcce6f1a8e14cfe451d656574353321e297c90c62f5a7b422f37478311d5",
+      "新版定稿/12-the-79-days-of-new-coke.md": "5a23c1e0c81318527bcbf27573487d1845c5318905a2b1e020cc6e2eaf5d643f",
+      "视频/脚本/13.json": "3687b6c42a6d524d0d7e40a47ed02c37b18abe8d524db4f5914abad52019a63c",
+      "新版定稿/13-eleven-days-without-sleep.md": "72b842de127132e386e9e52a1719ec96765e94958f56687987f53e2801c69704",
+      "视频/脚本/14.json": "17141351875ddb8f0e308602c0b6ab85cbf5126a4d0118978c25c869db769fee",
+      "新版定稿/14-the-fungus-that-turns-ants-into-zombies.md": "e114c9e1783c80a2ffdb60af05e824f93a8ea8725905cb733560abe1c0ad01a8",
+      "视频/脚本/15.json": "0934aa067f19814028c398b0c70a400bb09e354f744bde4000742950d77f441e",
+      "新版定稿/15-the-myth-of-the-unsinkable.md": "68e236868c4b466928ff2a60358250b9592dfe9287b66561b1e5a80b4d14de4f",
+      "视频/脚本/16.json": "d25aa07f3fac316c26c2ae1006d3efa7eb82a396b66150432b50239c1628396d",
+      "新版定稿/16-the-bread-made-from-air.md": "4da63148111213f6d77451b0eb4193893e6fc2fc170400bc39ce5f5ffcaa0b20",
+      "视频/脚本/17.json": "2e9971ea5ce7857e119226fe95def06e6eb9c3ef9823d8e8c4f3456f46a3bbb0",
+      "新版定稿/17-the-curse-of-the-pharaoh.md": "a2e8d92f9136e1b22fcc0799f9a4d281092f0e547cc68242e090241d7b09e222",
+      "视频/脚本/18.json": "8cffbad6f0b8451e46ad1a65d5f629c450ceff2c771218445770c8cbfd77ebca",
+      "新版定稿/18-the-mould-that-changed-the-world.md": "ef41cea03f471fe3b9a53939c843e450da3325eb711f6414e108ae92a7518dd8",
+      "视频/脚本/19.json": "cc3c5eea0f7d9ec0712b2e58adba7e5ef8b61d6518a322f9b25a12fcc45282fb",
+      "新版定稿/19-tulip-mania.md": "3882d487383b759c31dda4785966091c362960cd873a5d83c530d08d52e2e97c",
+      "视频/脚本/20.json": "cc5ed6d7be8767e5e7e9b098e8f3836821c0b3f51c17581b2746722da1cf3001",
+      "新版定稿/20-the-5000-year-old-murder-in-the-ice.md": "8d55638070787f7ff5432c197292af1188c463a8b018e01bdefc32999b888e95",
+      "视频/脚本/21.json": "61c1569a26d7569ee0f586178be6b307b1c394c0a30c3cb02541c910038b0589",
+      "新版定稿/21-the-man-who-sold-the-eiffel-tower-twice.md": "e8e966b70f579235d696ba11fb01d3b2cae3fa26efb9071bbea95071be259e1f",
+      "视频/脚本/22.json": "e3027a42c532fee9935afcecdd0542713cbb907183802c2345b9472f93b75f59",
+      "新版定稿/22-the-building-that-melted-a-car.md": "49ae09483bc80bbc40a71551cd98aebec355d96d9ff7b2bcdea59a06fe599267",
+      "视频/脚本/23.json": "c4574a79fd3a58577a1402ce095ea9e4a0ea1f98883ce63e3cc60d126e819409",
+      "新版定稿/23-the-man-who-gave-machines-a-mind.md": "72ed3049e87fe75ce1e753d5e443bdbe6a7ab72f6e282e8467fbbb62be873169",
+      "视频/脚本/24.json": "f08620b534bb10b718f7515c805dcb541721427d855bd5a092b8954847a351b8",
+      "新版定稿/24-survival-in-the-ice.md": "cb7f810d9a74256e0c00625290be4f16207feb90f5719ca87d5d7c9912b91307",
+      "视频/脚本/25.json": "c73e854e052b3df9bd920d4a59fafb183dee19bd58765fa426af6ea3d7c9a329",
+      "新版定稿/25-apollo-13-the-successful-failure.md": "b6b7d55fe66e6e32116431ea955778fab779b8bda622df0ba1036c2f40a3969f",
+      "视频/脚本/26.json": "ab663b240eb5e27923f38e2ff296c0196e3d820766d0c909adb9faf19aa3cac9",
+      "新版定稿/26-the-language-the-children-invented.md": "9e9ad8021ddabc17157d73dc739383f9676df3583cf965e470fcd773e26a3761",
+      "视频/脚本/27.json": "61cd724c5fab6f07a46aa5ac069101617c4c8350311eb11a43f9fefdddb31d8b",
+      "新版定稿/27-life-in-the-forbidden-zone.md": "e276bcf76225b9ae16cd8cfda8c9b726b442fbd625d3718f532b47b09b21b16f",
+      "视频/脚本/28.json": "a6a4befc0291727f5cc3f8b50857ee954ef9f936738f014a978ebb4d37a28ea8",
+      "新版定稿/28-a-handful-of-wormwood-that-saved-millions.md": "b9817d3429767d07b6a2eb14cce5422a20cb4e3b89f8b03e6b3d5da2daf91d91",
+      "视频/脚本/29.json": "1e5f1d9f0c22b5d14b757f029be694c2a3969666d732ca79bb695282763de791",
+      "新版定稿/29-the-volcano-that-gave-us-frankenstein.md": "69045ee19a170c7ea9d0008b468c7e947bc28b639b834c0192dc0aeafc3ef4d0",
+      "视频/脚本/30.json": "cdf727cb4c6832063421df9da6ab8ae7729cf9df01d6be089a8981c92c360f06",
+      "新版定稿/30-the-stink-that-built-londons-sewers.md": "84dbf19cee0045ea2608b13ee0677cb9623dd8fbb371c67093bf50c64186137a",
+      "视频/脚本/31.json": "d81f8645a1e5663ba8c84668e817cdb218bc6689079fbfd51326b3a7fd3cd384",
+      "新版定稿/31-the-book-twelve-publishers-turned-down.md": "7abd20fed44918dcf01586c056e9d0acd9d2ad3b90aa7d3d403762d9f06d2659",
+      "视频/脚本/32.json": "357aa59bed62154f7302a5efcf528859b303004e028657b93058138fe931bf85",
+      "新版定稿/32-the-planet-that-was-demoted.md": "1421f2b0921e7e9478ebc48777e3e8b2c979172de63d0124015107c3750a3542",
+      "视频/脚本/33.json": "ca51103c1a9d45c9159322765efc86c81f61f6ec78975f160019d21a1d9ee0d7",
+      "新版定稿/33-thirteen-in-the-cave.md": "9862078044ce45a9f6d51aa7d165afdfcf90066d1de98cbb317dd7e8f980610d",
+      "视频/脚本/34.json": "74921848a6bb25a2ba631813f60d4756c9ff90c64c03a2fb936ce34f310ce509",
+      "新版定稿/34-the-game-that-escaped-the-soviet-union.md": "e3244b67b21e283e67f4e88e932a1dbb85bf273a48ee009b3f435e1c5814831c",
+      "视频/脚本/35.json": "d8439077dc2c909b1c6cbd1347f31e9625f25fffe447d6f5945c9492561f1a16",
+      "新版定稿/35-the-bird-that-beat-the-letter-home.md": "ba8c38e38b21a3345624e2d44fd352561d3096cfb6f62214b48ea9b6e66faead",
+      "视频/脚本/36.json": "76daa28f421bd40d8e2744d4e785a34bb8ee67da1403b4b1546db9465c535cef",
+      "新版定稿/36-the-company-that-invented-its-own-killer.md": "411eeb96c8641ee7082b49a5abf4c7343d3f1dbb7ef331064d7c0f3c630fe58f",
+      "视频/脚本/37.json": "b1b8945ccf3581df48ade5714a2d0e93e4cc6812708f95bef6f5e44439106c99",
+      "新版定稿/37-dynamite-for-the-heart.md": "4933e24d2384471a96d9c8c26c15d5224a85dae98d9971a3fed15b4978dafc51",
+      "视频/脚本/38.json": "8d0379032000967c9f72e550574874949f798eefbfbfb58ab2b38e4e23ecbc6b",
+      "新版定稿/38-the-web-beneath-the-woods.md": "abb7eead9f3da0b2b326ceed5a649cfbf71fc28dad22e0d52f7b19caa798c54f",
+      "视频/脚本/39.json": "6c3e9539f624b192335312912572a05fba2c7bcfb821b44c3c1dbb21b42527a7",
+      "新版定稿/39-y2k-the-crisis-that-success-erased.md": "abbc9804661126aa006595031ed8f201ce55e8eb5fd9e1ad5669c0c6fcdb80ab",
+      "视频/脚本/40.json": "1c50d1a47ee6f8528d0f7299e8a45bc8c30312622f3f465a964d21cc1395ee7f",
+      "新版定稿/40-the-glue-that-failed.md": "dce9f78f3a0828307843dd667b7eeebf3380a3630f03d234bd5824870aba61a1",
+      "视频/脚本/41.json": "6b6673ffc1db986f4c355f3685de6a0faf2272cee042c5e917f26a8b3057c2be",
+      "新版定稿/41-the-toad-that-invaded-australia.md": "eca590f97120f4e76d719e29aa07b094f9117cd462f5a70c029331a63b85f710",
+      "视频/脚本/42.json": "eceb10ae92aa4b9cd23180d1138149a7fa7b674385462c898bc0d2283c8739e7",
+      "新版定稿/42-the-telescope-that-needed-glasses.md": "d4aa049779a0eba06c555d76ca14103648378eef90465df424120126fa771280",
+      "视频/脚本/43.json": "aa9da1246e293c80408edf94a7c9bed65ef3178ae7cb5265a8273e8c4396687f",
+      "新版定稿/43-from-a-garage-to-the-top-of-the-world.md": "bd70c83e5ac867238ca179f3c9f3548eb9cbdcae1f6df40994aef0bda721ae54",
+      "视频/脚本/44.json": "87f531203ca38d88ae5e71ffd88190b1530715cdc0adba146c2a4a78ebe9b976",
+      "新版定稿/44-the-night-sweden-switched-sides.md": "d3f7ad2ac43f02aae9205a15b9808280ca3db597d6ef3b36aca8ca6176c5f74a",
+      "视频/脚本/45.json": "569406607d2bf18dce5e916052d6460509450d97fe17ac9820be524f59c2c3cc",
+      "新版定稿/45-the-record-humanity-threw-into-the-stars.md": "27deabec4a8478fe570f7f237a2fb850ffdce3deebfd952f512d82a60cf7314f",
+      "视频/脚本/46.json": "c8c7ce7a76226f5274a91af693d24410d5eacfa59206b085a70d133f3634c12b",
+      "新版定稿/46-lost-in-the-glare.md": "7aaa06e875fe56c5d78210b90a8769b8b2051714025ef10df37c2fe89db7a68c",
+      "视频/脚本/47.json": "0417489c8a672e7e63d46c2239d847acabda2d93160cabed3b0fb14f701ac39a",
+      "新版定稿/47-shadows-of-wolves-over-yellowstone.md": "34c68cf4d0f0ef3545ad68edf3367fcb76ab500174b11ae7f83b782cd5a80a2a",
+      "视频/脚本/48.json": "4f146ce6a70bb0bf5d2c6e1f6b47bd6a2bcc2f311be7a948092d7bde1a08f449",
+      "新版定稿/48-rice-for-the-world.md": "76416be21f857e8a05c37baa33ac90f5785812291485231c249e38a1d0edf15f",
+      "视频/脚本/49.json": "a7ea38ae5c2461fb3a2e2f18dc65577300f6873b139a75d7c89b9b7c70652ed8",
+      "新版定稿/49-the-woman-who-won-two-nobels.md": "1e4fb068aa9ae4513d01b199a074b84dc9d819f57b2134df32588a0e4a4b6b6a",
+      "视频/脚本/50.json": "1d4a41824dfa5e8d11e5990b2a4b802ba2fcc3231d85b15ed6630396c6f027bf",
+      "新版定稿/50-microplastics.md": "5439589bacf1abb2abbb184eb658492bc02bcc5bdd8dfd8ababcd80ab93621cb",
+      "视频/脚本/51.json": "39886d83593a31fb575b124ecf6457190773dca695b6ff78f8434d52aebd6d7c",
+      "新版定稿/51-the-joke-that-became-ok.md": "8de30ea4846f4e88d8b71c8d5ced3ee63a73955e39b7dc3c5adad0971b854fd0",
+      "视频/脚本/52.json": "832249bb44617d38ede75560a5e57af6ba79ec284c9609407cb30ce879f6f862",
+      "新版定稿/52-the-killer-smog-of-1952.md": "179500361e4a837d7edb2e0497e08677d5abd425e8ad542f788205a6f7667b4b",
+      "视频/脚本/53.json": "28b604bfa72896534736293f79e9b3aabd8e3678672f4dc6c66337c02a8f1518",
+      "新版定稿/53-the-wind-that-kept-no-time.md": "6fab302dcadb5a2c509436f5fbf8d9ef925c008a36f5b422749bd405aa4701d3",
+      "视频/脚本/54.json": "b1fcb8ae86045b3d35ccfa0f52eb9594b8921d43063835769ee3ecc4543be75e",
+      "新版定稿/54-the-sound-that-shook-the-world.md": "abd5f4bfe11ed73bcc5326a92cf99b0a8e5ad70adaca1ce8d0c8f622b57fa519",
+      "视频/脚本/55.json": "06344fc0ad5975cba2f4dbe5262a9957dd7c024f9a05b9abbfa327f32ea8c719",
+      "新版定稿/55-the-secret-of-romes-undying-concrete.md": "a7759eddcc7ec06dfd6dab7912e06b3b5ef8576df0c025a97812006669d0be61",
+      "视频/脚本/56.json": "22ca3b4180a8ae6a37b4c8e25f5e357d5696d9b23bf148fb7064425d1403e59c",
+      "新版定稿/56-the-letter-that-startled-darwin.md": "aad1e2aab9ff28f534a510362e807ef401e0b502475240f4b2531e9e518a8d7a",
+      "视频/脚本/57.json": "a0ba65b769430289a33ec1f7bc6dbf91dad8d2c3b1d725348851de546563cd6f",
+      "新版定稿/57-a-change-of-anthem-in-the-deep.md": "0731d925a98bafc222718c111985362e166b38b9189c516219a481e36d0d4b6e",
+      "视频/脚本/58.json": "8b0bd3d7d39000518789e9907aec53bd52fab1b9d6b4f22a152d158635b6e8ee",
+      "新版定稿/58-from-a-scratch-to-a-world-without-smallpox.md": "1aa2a0d2c51da76f9c9ebb88d049dd1a55ab530791566fdbf6476e5aa48c15ee",
+      "视频/脚本/59.json": "df1db4174d942371166048b220ef6d55b0b700b2ce31c866edf6dfdf33b92f0c",
+      "新版定稿/59-saving-the-sky.md": "7bf9c4661e733e7af23dc2f11bc820b809ec93dad75a94fb6a12748226e8722c",
+      "视频/脚本/60.json": "eed1655c0919db32a3a016b24791b93d25683f287c7ccb2523e168a69bddc562",
+      "新版定稿/60-the-scientific-giant-who-changed-the-world.md": "9d1578e7af085559922394a3db01de4eb22dc1c520ca17de5cad68e5a38a31a8",
+      "视频/脚本/61.json": "72378937501769dfb3d934fe65ab1a69afeb5420a15e19890c161433717d2435",
+      "新版定稿/61-the-steel-box-that-remade-the-world.md": "135cc9cfbcbd68d957f831cf55558112a45b1cc3749366cb9a304507355c7d2c",
+      "视频/脚本/62.json": "4b3a97f2b6404e1b091537c21f01fc60088902f596803345983c38be52ec79eb",
+      "新版定稿/62-dolly-the-copied-sheep.md": "62817546ae33824b57255f941135c503e41a41f905331ed4af1e32850fa00960",
+      "视频/脚本/63.json": "5d266d80f9cf29cce6f7e34531449cf75191a42f180102685a5bcd04849e75c5",
+      "新版定稿/63-the-crowded-heavens.md": "6ef79d4310019dfefa7364b8a428411a6bc337678c69fa5cbc89b84689e253a4",
+      "视频/脚本/64.json": "12a36862765922d72ce6e5a4c5fe85f548364eed65fe3b3b284f0b38899a965f",
+      "新版定稿/64-the-day-zero-that-never-came.md": "e0c83cbe36745adbbffd33a156fa8d0671704ea976cb13215cabb612639b37a5",
+      "视频/脚本/65.json": "78e60dd231df4ac71df83e21a26f82bbf706dc0bef80bee156a36bc287661ede",
+      "新版定稿/65-the-day-the-doomsday-vault-opened.md": "71a50d32e25955e713e6ca108ab68422a4fd5b77c914a9074eece1dc33cbff89",
+      "视频/脚本/66.json": "ad5324af4270834186285a5e7273a90213094077adc6f9e1d5c7b0ebff9cf035",
+      "新版定稿/66-the-burrs-that-became-velcro.md": "75dbe6c148ca97a7780ac1737f33f58bf8ee27a51aa729a83315705655b12b2a",
+      "视频/脚本/67.json": "8897cc1c2df1e4672eec3bbff2776d0565afb9c9fe84087a1758ebb15b2a233e",
+      "新版定稿/67-the-cave-found-by-a-dog.md": "10e37b81eeef4e3289448a6b4fd679f34d495a4fc087c57747e6dca949e00cf1",
+      "视频/脚本/68.json": "568f72dacac48e206811d35a57c7fa22e3da428783f64e507c184f2090e579f3",
+      "新版定稿/68-the-last-flight-of-the-hindenburg.md": "c25f58ffb0e3748336767bb7470dd7cef10374c53cbb48af89dba26f65b2dd5c",
+      "视频/脚本/69.json": "09fd3fdbbc834badd16a9b38d8c14e425193a6849d7db87253f26a782a1c4137",
+      "新版定稿/69-the-trial-of-the-father-of-the-atomic-bomb.md": "570eda5b7d979d71e9bcad1c67e295ed326ecdb8b61e663aba33272c8a9451bd",
+      "视频/脚本/70.json": "0f6827f02cef0d2416f9d7d69b7e1c5553acee7cf6dc89f3379201264587236c",
+      "新版定稿/70-the-stamp-that-changed-the-post.md": "edfd85cea33730ba67e4210e756da1f2945f1a21bce55c7e75497cb5f0095d80"
+    },
+    "source_file_count": 140,
+    "working_script_count": 70,
+    "target_request_exactly_matches_context": true
+  },
+  "request_source_sha256": {
+    "视频/脚本/09.json": "651f4e0057c363613fbb3984fe872b190adf826b264507807c3e4ac8b14f1909",
+    "视频/工具/初稿生成/gen09.py": "8560c1ba5b53b65697fe0927eefdea45550a29cb8b8b1fb7c88745f8e991b9c9",
+    "新版定稿/09-the-great-emu-war.md": "18561381ea8aff83fa0c6f769d81cc09543d879adcf4a16230f7c3c1d211dbc0",
+    "视频/制作记录/09_待改清单.md": "ed01020d676987c5c9ecd8be488cc1e05cd53b3adf2b72c82b711a033d9b7207",
+    "视频/制作记录/逐句确认/09.json": "35bf83291f2f13ec513754e0a11bd49d1d447fe06df3531aaa8fde6c744da360"
+  },
+  "actual_supplemental_user_feedback_rows": {
+    "applied": true,
+    "source_id": "09",
+    "book_order": 52,
+    "exact_supplement_list_sha256": "304ae3d331925195563e01fe18798b9a6215c203ca2cbba948b8e5e925b52b7d",
+    "actual_proof_sha256": {
+      "five-feedback.json": "a0a1e01919f343e201f35f9029f13655db1847066c7881759ebfee9a2dad61db",
+      "sixth-feedback.json": "8ccaf2f216a9ee4028ddf4cec362bf36c38c740ff375e095b4728ea552f2fb77",
+      "actual-final-authority.json": "9519e488124361403fabf524f016c8985119c7c93d6bd1b58bbde735b371b076"
+    },
+    "original_registry_prefix_and_headers_unchanged": true,
+    "actual_separate_user_message_rows_added": [
+      {
+        "篇": "09",
+        "日期": "2026-11-15",
+        "原话": "Drought, drought. 在这地方标注为重点词汇。",
+        "用于": "用户书序52当前明确点名重点词：drought；仅保留本处原话指定焦点，非人工听审",
+        "来源": "book52-drought-focus；实际五反馈原件 SHA256 a0a1e01919f343e201f35f9029f13655db1847066c7881759ebfee9a2dad61db"
+      },
+      {
+        "篇": "09",
+        "日期": "2026-11-15",
+        "原话": "这里的 dented 标注为重点词汇，标注为重点词汇。 所对应的意思为削弱。 barely 所对应的意思为几乎没 Barely也标注为重点词汇。",
+        "用于": "用户书序52当前明确点名重点词：dented,barely；仅保留本处原话指定焦点，非人工听审",
+        "来源": "book52-dented-barely-focus-and-gloss；实际五反馈原件 SHA256 a0a1e01919f343e201f35f9029f13655db1847066c7881759ebfee9a2dad61db"
+      },
+      {
+        "篇": "09",
+        "日期": "2026-11-15",
+        "原话": "\n\n\n\n> **上面的意思不太对，改为：在1934年的六个月里，农民们申领了超过5.7万 笔 款项 (政府赏金)，是梅雷迪思986次击杀数的五十多倍。**\n\n\n\n&#x20;claim标注重点词汇： 申领&#x20;\n\n\n\n\n\n**claim 凭资格或规定向官方正式“申领、索要”（钱财或物品）**",
+        "用于": "用户书序52当前明确 claimed 对应申领、payments对应款项与整句翻译及claim小字；非人工听审",
+        "来源": "book52-sixth-claimed-feedback；实际第六反馈原件 SHA256 8ccaf2f216a9ee4028ddf4cec362bf36c38c740ff375e095b4728ea552f2fb77"
+      }
+    ],
+    "independent_final_row_still_appended_by_original_protocol": true,
+    "new_T12_or_audio_exception_or_quality_pass_granted": false
+  },
+  "accepted_source": {
+    "id": "09",
+    "path": "最终版4K视频/09 - The Great Emu War - 向鸸鹋宣战.mp4",
+    "sha256": "bf9e6b9310aa480cfed3ed9ad66969f3d4b636619f007d53ad5b6d1628bd25aa",
+    "git_blob_sha": "dcf7d4cdcb41a7b73cf5a8f89237e886bd0a25d0",
+    "bytes": 12554174,
+    "width": 3840,
+    "height": 2160,
+    "summary_frames": 60,
+    "aac_adts_sha256": "2f58c4c347cb705649a07310439b92909a111d165066e6cf80de08cfa51d5d9e"
+  },
+  "checker_reference_preparation": {
+    "article": "09",
+    "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+    "reference_prepared": true,
+    "acceptance": false,
+    "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+    "source_sha256": "651f4e0057c363613fbb3984fe872b190adf826b264507807c3e4ac8b14f1909",
+    "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+    "checker_program_sha256": {
+      "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+      "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+      "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+      "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+      "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+      "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+    },
+    "reference_calls": [
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-raw",
+        "method": "create",
+        "source_slice": "The Great Emu War",
+        "exact_native_cache_key": "c5e73aa689df5761b5a2c39ef91d9d06d1883ca7.pkl",
+        "cache_input_text_sha256": "d20c80c6f96c4027907fddcf5a11b0f775ddf2bdabcb456de88ce67d2c4f546b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-timed",
+        "method": "create_timed",
+        "source_slice": "The Great Emu War",
+        "exact_native_cache_key": "c060c8abdb4a8c5d365c346953b36e61127388f4.pkl",
+        "cache_input_text_sha256": "d20c80c6f96c4027907fddcf5a11b0f775ddf2bdabcb456de88ce67d2c4f546b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Around Campion, Western Australia, most farmers were First World War veterans, settlers placed by a government scheme on marginal parcels of farmland.",
+        "exact_native_cache_key": "acf3b96aee33383ece8f5ab8c8ec056661c51092.pkl",
+        "cache_input_text_sha256": "9d3549d53f3a76f012e11c0163800dc770167bcc8dcb51a798ba76af25526583",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Around Campion, Western Australia, most farmers were First World War veterans, settlers placed by a government scheme on marginal parcels of farmland.",
+        "exact_native_cache_key": "1cffc047be8c3ed116c9507538628bc4b510ba12.pkl",
+        "cache_input_text_sha256": "9d3549d53f3a76f012e11c0163800dc770167bcc8dcb51a798ba76af25526583",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Around Campion, Western Australia,",
+        "exact_native_cache_key": "49afd42fdc79d57d786add076abbfdb8be55b604.pkl",
+        "cache_input_text_sha256": "25880ab824d9d6679c8a9ad330ef44c484c9e81dbdd4b4fc06e74dbaf37697c7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S1",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "most farmers were First World War veterans,",
+        "exact_native_cache_key": "7b30fe4e112bc065f61abfe1ad0f11ece0f15239.pkl",
+        "cache_input_text_sha256": "c70f4a712923d2ff56f1fea4e17190d7e219f83d600443f91dde27024703569f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S1",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "settlers placed by a government scheme on marginal parcels of farmland.",
+        "exact_native_cache_key": "563f323c52c9546be87c9e77eeb398b545052b0b.pkl",
+        "cache_input_text_sha256": "0ed890700ef3d8a6b96d3493e95a14bc1b6a8335389c753d860d5307dc35ed26",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S1",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Around Campion,",
+        "exact_native_cache_key": "58a8947da6d2a5c515d316d5333865f013ee2172.pkl",
+        "cache_input_text_sha256": "918b43698f3754d76865b9048b9fadadd30c9144e3b5585bc63eeed2d7ac51b2",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S1",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Western Australia,",
+        "exact_native_cache_key": "4294476cdce30db5c48b77565d5bb14985550154.pkl",
+        "cache_input_text_sha256": "a42fbee5563f7811963243657a3a017c39e58f571d6243e3c11952187ab936bc",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S1",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "most farmers were First World War veterans,",
+        "exact_native_cache_key": "7b30fe4e112bc065f61abfe1ad0f11ece0f15239.pkl",
+        "cache_input_text_sha256": "c70f4a712923d2ff56f1fea4e17190d7e219f83d600443f91dde27024703569f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S1",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "settlers placed by a government scheme on marginal parcels of farmland.",
+        "exact_native_cache_key": "563f323c52c9546be87c9e77eeb398b545052b0b.pkl",
+        "cache_input_text_sha256": "0ed890700ef3d8a6b96d3493e95a14bc1b6a8335389c753d860d5307dc35ed26",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "They were inexperienced growers, and a quarter had already quit.",
+        "exact_native_cache_key": "bc378456c5dbc1d37d642fcc085571177f7ea0ba.pkl",
+        "cache_input_text_sha256": "3ff98428ec49b475292ed2a71e9f99245a874e7a1d711169503f3bc0743c509e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "They were inexperienced growers, and a quarter had already quit.",
+        "exact_native_cache_key": "d84b78d942e783db280e50b000b0d1522bf11853.pkl",
+        "cache_input_text_sha256": "3ff98428ec49b475292ed2a71e9f99245a874e7a1d711169503f3bc0743c509e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "They were inexperienced growers,",
+        "exact_native_cache_key": "00edec357f9ef24ab75c8d6fdb778a14222ed3a6.pkl",
+        "cache_input_text_sha256": "87839155bf74f8061605cc1074ef64642c1b8527ec34c59b2389b321fa179f74",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S2",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and a quarter had already quit.",
+        "exact_native_cache_key": "b8203f523aa770f48d6f2917b752e1fbaeab4abc.pkl",
+        "cache_input_text_sha256": "fca895c9f5a2051b52dd92c3d32f6d73f55acc9d4692cdc0bbe66f4ecb1a035f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S2",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "They were inexperienced growers,",
+        "exact_native_cache_key": "00edec357f9ef24ab75c8d6fdb778a14222ed3a6.pkl",
+        "cache_input_text_sha256": "87839155bf74f8061605cc1074ef64642c1b8527ec34c59b2389b321fa179f74",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S2",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and a quarter had already quit.",
+        "exact_native_cache_key": "b8203f523aa770f48d6f2917b752e1fbaeab4abc.pkl",
+        "cache_input_text_sha256": "fca895c9f5a2051b52dd92c3d32f6d73f55acc9d4692cdc0bbe66f4ecb1a035f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "In 1932, after drought, roughly 20,000 emus swarmed in from arid country in flocks and trampled the wheat crops.",
+        "exact_native_cache_key": "ce8584aaf9654d3a80ab3fc7f0f25348083fb6b5.pkl",
+        "cache_input_text_sha256": "29cd8d30d1ed175c1b68f5c8976ae39b1653117b323247d55a4131d3544407c8",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "In 1932, after drought, roughly 20,000 emus swarmed in from arid country in flocks and trampled the wheat crops.",
+        "exact_native_cache_key": "4bc5201d3102e9a848fa0e068992e7bc6cc9a949.pkl",
+        "cache_input_text_sha256": "29cd8d30d1ed175c1b68f5c8976ae39b1653117b323247d55a4131d3544407c8",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "In 1932, after drought,",
+        "exact_native_cache_key": "ec5d8722810e76227fb49cb18b7893ede044ae29.pkl",
+        "cache_input_text_sha256": "9a323d54d64be8f69db30ce8d25948bde4386ab12d2d53d30bb9cfcb1f6d4be3",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S3",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "roughly 20,000 emus swarmed in from arid country in flocks",
+        "exact_native_cache_key": "e269993d5a8ecebc4633093864c42c597f498519.pkl",
+        "cache_input_text_sha256": "2162f86408c203119166c58641c9b3ac2e6889b683e33f8beda991b72799c64b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S3",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and trampled the wheat crops.",
+        "exact_native_cache_key": "0b82920c179b6a82bbe85ef8d05e3b846d20d7f0.pkl",
+        "cache_input_text_sha256": "be381f94c2936a815c12acf5c1e01f6e7479fbd53014ff41942ad17cf04ce97c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S3",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "In 1932,",
+        "exact_native_cache_key": "1270bbe26b0d715ada6f8872608f8fdfd8698ca6.pkl",
+        "cache_input_text_sha256": "b33cb67574e516fa16d1d1ec8a2ff3d2b24efb57c91e30c0848097a4f91cfb35",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S3",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "after drought,",
+        "exact_native_cache_key": "36715fefd7f811c69a7fb340f770fc39a0844fdd.pkl",
+        "cache_input_text_sha256": "4231cc19f99e11382a7e325900dd203e44e6ad56f9fa87cdb1d880f04f353f29",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S3",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "roughly 20,000 emus swarmed in from arid country in flocks and trampled the wheat crops.",
+        "exact_native_cache_key": "a1e851969519a77166a4752ba11c7f34fa4e0621.pkl",
+        "cache_input_text_sha256": "59b6bc7bafed33061e4dae5ef0c603fbe204134e25f58d5a395dc4eddc9643fa",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The farmers' plight took a military turn.",
+        "exact_native_cache_key": "ba0ed918a29f9f1692cb6df8614f906517e3243f.pkl",
+        "cache_input_text_sha256": "9e6b53bdd16546a0fad32d42c744f236bba56ebae77117cc417acb8dbb494ca3",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The farmers' plight took a military turn.",
+        "exact_native_cache_key": "b3129b484b9d9e8243214fe0114febbb0d042ff1.pkl",
+        "cache_input_text_sha256": "9e6b53bdd16546a0fad32d42c744f236bba56ebae77117cc417acb8dbb494ca3",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "In desperation, a delegation of ex-soldiers aired their grievances and asked the Defence Minister for machine-guns.",
+        "exact_native_cache_key": "db1f9ac7f95c11b93a0547037e505126309fc4c8.pkl",
+        "cache_input_text_sha256": "8638a2ca7d20590635d92d1ccb0d99ee263ee9171182c381aabf8f54c291c89f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "In desperation, a delegation of ex-soldiers aired their grievances and asked the Defence Minister for machine-guns.",
+        "exact_native_cache_key": "def81eaa67a5ef8a194131c0bbc4cff60f3e3bb1.pkl",
+        "cache_input_text_sha256": "8638a2ca7d20590635d92d1ccb0d99ee263ee9171182c381aabf8f54c291c89f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "In desperation,",
+        "exact_native_cache_key": "161f7761dd763f9cf5c36a4162db6f72e7e23f81.pkl",
+        "cache_input_text_sha256": "42bd868904c200e3921d8e788f1aeb3e7f0bdbb19cb76870f54f46bfec7a49fc",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S5",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "a delegation of ex-soldiers aired their grievances",
+        "exact_native_cache_key": "901943a455cd153034220226eb5febf927822135.pkl",
+        "cache_input_text_sha256": "4fc00221c9a75c1228287b7123fcdb6e54e3fb584a213152df9cc1081f35960a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S5",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and asked the Defence Minister for machine-guns.",
+        "exact_native_cache_key": "ffa9d48f9481b8e0c395c332ce318243096b5ec1.pkl",
+        "cache_input_text_sha256": "ebdeafc9c78e0ab96a8109961c0c7cdb5ffb371fa4bb2d5a0bcaf4bd3dbebb72",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S5",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "In desperation,",
+        "exact_native_cache_key": "161f7761dd763f9cf5c36a4162db6f72e7e23f81.pkl",
+        "cache_input_text_sha256": "42bd868904c200e3921d8e788f1aeb3e7f0bdbb19cb76870f54f46bfec7a49fc",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S5",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "a delegation of ex-soldiers aired their grievances and asked the Defence Minister for machine-guns.",
+        "exact_native_cache_key": "ae3c617806ee86d369ab6597e565a33d706851e3.pkl",
+        "cache_input_text_sha256": "3554c074f58602a3601f63c094122a413269da082183e97c5ff8d72750ac3dec",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "He agreed, sending not a battalion but a detachment: Major Meredith, an artillery officer, with two soldiers, two Lewis guns, and 10,000 rounds of ammunition.",
+        "exact_native_cache_key": "26cd12801f5f87fef0a76b645a97e4bde68e8f3f.pkl",
+        "cache_input_text_sha256": "7867a6ce2ee398a864c209df35f3e9d09a910fa8a9a608ad0ede03bd76ac838f",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "He agreed, sending not a battalion but a detachment: Major Meredith, an artillery officer, with two soldiers, two Lewis guns, and 10,000 rounds of ammunition.",
+        "exact_native_cache_key": "934dd20b2ccbf501dc5bf6bc789ef3a054fed778.pkl",
+        "cache_input_text_sha256": "7867a6ce2ee398a864c209df35f3e9d09a910fa8a9a608ad0ede03bd76ac838f",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "He agreed, sending not a battalion but a detachment:",
+        "exact_native_cache_key": "1deade14ac1de9fb026b96c3b828adb3b42a2bac.pkl",
+        "cache_input_text_sha256": "07f58ca24a3011dc45df040f179da1fa824072cdfe5f0b147e5356ff6be41790",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S6",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Major Meredith, an artillery officer,",
+        "exact_native_cache_key": "11891e480956a28fa6ba845394aff4f00e48a250.pkl",
+        "cache_input_text_sha256": "569f11f6d9f4df693ee5c2e72d867f28636d972e6e8e0a29695ac386ac9d2bba",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S6",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "with two soldiers, two Lewis guns, and 10,000 rounds of ammunition.",
+        "exact_native_cache_key": "08fdf1eded4d742c0a7391249c68f2a76127bfaf.pkl",
+        "cache_input_text_sha256": "0f94323c8a655cffb186933d7b3b424c18ef65517499fd723ed915903fbe75f7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S6",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "He agreed,",
+        "exact_native_cache_key": "86804dcc26b170ec8b541f5960bb3c44ed9ad8a3.pkl",
+        "cache_input_text_sha256": "084770d1d7f5049ce3fb68ee322aff77931f6e9f07db3f9c7c35708c89587646",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S6",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "sending not a battalion but a detachment:",
+        "exact_native_cache_key": "2a5eaef7eda2e02dcec5604026085838c0688be1.pkl",
+        "cache_input_text_sha256": "9cccf0f880f4e856d2cd0c005757716cb96775fb07f7ce29ba2d0bcfcca86a58",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S6",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Major Meredith,",
+        "exact_native_cache_key": "c48d69f4b87720ee91c9bc87cb3b136bab8132b0.pkl",
+        "cache_input_text_sha256": "2c691fa2c4b139cf18a51105c954dc02bfb0dac6693a0656a439826b144514aa",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S6",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "an artillery officer,",
+        "exact_native_cache_key": "208849f9aaae3c406402525a7a1f62faf45603a4.pkl",
+        "cache_input_text_sha256": "c6b07f99acdd81c3576bc19f94baf41953d1bac17c1c3987e57256d84f2afc54",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S6",
+        "piece": 5,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "with two soldiers,",
+        "exact_native_cache_key": "bd299fcdbfba83d1d68daa277d82ab38c9c29392.pkl",
+        "cache_input_text_sha256": "528f7d31288c29b058a1bcb91ece9b9b27d4abe820cd00a0cb1856750e1f9921",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S6",
+        "piece": 6,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "two Lewis guns,",
+        "exact_native_cache_key": "31e218568112cbb488082ac39068bae21782e895.pkl",
+        "cache_input_text_sha256": "80173f23f4984acf8e86678735437c2f00f5eeeeacd817c7707cd76983194c0a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S6",
+        "piece": 7,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and 10,000 rounds of ammunition.",
+        "exact_native_cache_key": "4a6d45ffe96f8987f8b81eb4bb08bf77945f2f06.pkl",
+        "cache_input_text_sha256": "dc5e3f6fa1a9af96d0f93a2116001b9fe35d526cdfe5365675d4aa6f2344e98e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The offensive began on 2 November 1932.",
+        "exact_native_cache_key": "a39bd2b3d2d5f507f8691a537cb15af9da8fe65d.pkl",
+        "cache_input_text_sha256": "f106cc89658877530361373a193fb822ddd050e37b90a885484be018c4b6a3bc",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The offensive began on 2 November 1932.",
+        "exact_native_cache_key": "074fcf3ffa1992cde17c6aa58c5d066950c47c6f.pkl",
+        "cache_input_text_sha256": "f106cc89658877530361373a193fb822ddd050e37b90a885484be018c4b6a3bc",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "At a dam, about a thousand birds approached an ambush, but a gun jammed after a dozen fell.",
+        "exact_native_cache_key": "f6b38bdb70b1b8c3e2d98a0627312d8ad07b9139.pkl",
+        "cache_input_text_sha256": "77c9c5198458139649bdb572e4e2b731d66d123d44e6067eb649c506244c5611",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "At a dam, about a thousand birds approached an ambush, but a gun jammed after a dozen fell.",
+        "exact_native_cache_key": "3cd26e42d7028d0f5a123564a6fd09da76d145f8.pkl",
+        "cache_input_text_sha256": "77c9c5198458139649bdb572e4e2b731d66d123d44e6067eb649c506244c5611",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "At a dam, about a thousand birds approached an ambush,",
+        "exact_native_cache_key": "b2edd3f678d2362f9a2107e006ae25e17f37a3c7.pkl",
+        "cache_input_text_sha256": "3b075431ef6d4028171adc7eaa0c7c822891a13887940e7503ffe5fa0c71dbd9",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S8",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "but a gun jammed after a dozen fell.",
+        "exact_native_cache_key": "95d2e1df0083d423e58afed3304c4a90483776de.pkl",
+        "cache_input_text_sha256": "d9330879004b193e87452065bfb7f0b6b807add16a49e648f5773cdef7342c7a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S8",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "At a dam,",
+        "exact_native_cache_key": "b1d81bfe81d9912a1e9e39b7aeaa8470edd5e0cc.pkl",
+        "cache_input_text_sha256": "17bec06eec1835ad66c32d8cf436e742e204b36f240bc06c666bc96492cfdb30",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S8",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "about a thousand birds approached an ambush,",
+        "exact_native_cache_key": "a2d471d1be230f8d01bb475772919e5dc97f3587.pkl",
+        "cache_input_text_sha256": "78fdf8078ad41083ce6e22d8c470c9a1f71bfad4c748863e241c1b90223c3bab",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S8",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "but a gun jammed after a dozen fell.",
+        "exact_native_cache_key": "95d2e1df0083d423e58afed3304c4a90483776de.pkl",
+        "cache_input_text_sha256": "d9330879004b193e87452065bfb7f0b6b807add16a49e648f5773cdef7342c7a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The flocks broke formation into small, agile groups, frustrating each tactical plan, and a truck-mounted gun proved futile.",
+        "exact_native_cache_key": "2e8bf74dd648d10db201d67321570a38dba7ece2.pkl",
+        "cache_input_text_sha256": "a0f1d70e71de2caa21741e90245e529a3ae9bcdfa4caf5ad25b48a38adfedf08",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The flocks broke formation into small, agile groups, frustrating each tactical plan, and a truck-mounted gun proved futile.",
+        "exact_native_cache_key": "6d8077f883a3d23cc6ed584a170bc04bd18d110f.pkl",
+        "cache_input_text_sha256": "a0f1d70e71de2caa21741e90245e529a3ae9bcdfa4caf5ad25b48a38adfedf08",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "The flocks broke formation into small, agile groups,",
+        "exact_native_cache_key": "bcd9702a22a808560385054d100b70f7b1a4b6b2.pkl",
+        "cache_input_text_sha256": "06113ec3f9217565607fd7897db2bc19e5a18209c113784957b91916113eec43",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S9",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "frustrating each tactical plan,",
+        "exact_native_cache_key": "9befc91e26ac32830f5fd5bba22ee1ceb4ca2f82.pkl",
+        "cache_input_text_sha256": "5cea58c485ae3838adafb1ec5e31436a49c41de0e15b7e4f5f352a3de2741adf",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S9",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and a truck-mounted gun proved futile.",
+        "exact_native_cache_key": "ee848ce809d17122d4cc0e844bb4137f48f1b758.pkl",
+        "cache_input_text_sha256": "0646a1ca5e1142c4cad2ebbbde08838d65f4dfefd1ace35bbd4464348e4f2423",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S9",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "The flocks broke formation into small,",
+        "exact_native_cache_key": "c5d24e660ec4b013093d988f4fc80eb839739834.pkl",
+        "cache_input_text_sha256": "51ac2a7a69a2e7fa851e8cfb8003c9862ba210ee1f3f3b03f43eb4013750ec5e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S9",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "agile groups,",
+        "exact_native_cache_key": "591a24a3b8869c02b11e5618d6d50195ba747d3e.pkl",
+        "cache_input_text_sha256": "ee947ceb75309d62c8ef9a3840eff895773007d018ff53c0b2128d4f1628142f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S9",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "frustrating each tactical plan,",
+        "exact_native_cache_key": "9befc91e26ac32830f5fd5bba22ee1ceb4ca2f82.pkl",
+        "cache_input_text_sha256": "5cea58c485ae3838adafb1ec5e31436a49c41de0e15b7e4f5f352a3de2741adf",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S9",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and a truck-mounted gun proved futile.",
+        "exact_native_cache_key": "ee848ce809d17122d4cc0e844bb4137f48f1b758.pkl",
+        "cache_input_text_sha256": "0646a1ca5e1142c4cad2ebbbde08838d65f4dfefd1ace35bbd4464348e4f2423",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Six days of wasteful firing spent 2,500 rounds on perhaps 50 to 200 birds, a ludicrous return.",
+        "exact_native_cache_key": "633e495e2b304d196220042bf47a72029cbf3591.pkl",
+        "cache_input_text_sha256": "8348e63b4fd1ac77e42436af830b543e14d3a4076cb6d54fdb856dfd3be294e1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Six days of wasteful firing spent 2,500 rounds on perhaps 50 to 200 birds, a ludicrous return.",
+        "exact_native_cache_key": "799ea800c3c26ec45fa60642967ba36ad9d614de.pkl",
+        "cache_input_text_sha256": "8348e63b4fd1ac77e42436af830b543e14d3a4076cb6d54fdb856dfd3be294e1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Six days of wasteful firing spent 2,500 rounds on perhaps 50 to 200 birds,",
+        "exact_native_cache_key": "1df3be551f4bd8ff0614191052720ba4c9c450e2.pkl",
+        "cache_input_text_sha256": "c3ce7ab09a7e0370ec4b2360d526ea2a30fcce8793a846328a7e44339e8e091d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S10",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "a ludicrous return.",
+        "exact_native_cache_key": "62be8ec7a8237e0f07bea7791615c4a05c5f0186.pkl",
+        "cache_input_text_sha256": "12f61e3cb76ae929b706acc3729ac99e79ca25a6b378b726c6c216507082b3b7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S10",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Six days of wasteful firing spent 2,500 rounds on perhaps 50 to 200 birds,",
+        "exact_native_cache_key": "1df3be551f4bd8ff0614191052720ba4c9c450e2.pkl",
+        "cache_input_text_sha256": "c3ce7ab09a7e0370ec4b2360d526ea2a30fcce8793a846328a7e44339e8e091d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S10",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "a ludicrous return.",
+        "exact_native_cache_key": "62be8ec7a8237e0f07bea7791615c4a05c5f0186.pkl",
+        "cache_input_text_sha256": "12f61e3cb76ae929b706acc3729ac99e79ca25a6b378b726c6c216507082b3b7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "After parliamentary questions and press ridicule, an embarrassing withdrawal came on 8 November, though shooting restarted within days.",
+        "exact_native_cache_key": "4d8ec7ef05f028358ee6dcc70eacfb69e7a804de.pkl",
+        "cache_input_text_sha256": "828c646ca46f9902c28e510191a49ec630b15353b49ea54740ebeffca7edd4bb",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "After parliamentary questions and press ridicule, an embarrassing withdrawal came on 8 November, though shooting restarted within days.",
+        "exact_native_cache_key": "79c6d6249af4da27481c899a279ebaa82aaa5bf1.pkl",
+        "cache_input_text_sha256": "828c646ca46f9902c28e510191a49ec630b15353b49ea54740ebeffca7edd4bb",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "After parliamentary questions and press ridicule,",
+        "exact_native_cache_key": "29c8e622df8100cc565a0547a0dfbb105a0cda20.pkl",
+        "cache_input_text_sha256": "d88bef9c4e183b8f42334664ed7a8a8b4de386458333bc9dd597c57cd46869b1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S11",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "an embarrassing withdrawal came on 8 November,",
+        "exact_native_cache_key": "21eff357f32305ee94d6cdf4ac02e3cd4693072f.pkl",
+        "cache_input_text_sha256": "cd7ee52c4dd22adc293599bb2e4be21f40eee1bf907be766a76a54e64a21e1c5",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S11",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "though shooting restarted within days.",
+        "exact_native_cache_key": "4ba11d9b11ef90cfd1149ac87efdc54cb605f24a.pkl",
+        "cache_input_text_sha256": "c6e24fadda858e3d0e322401799f1088476f8d912d76f1b10f8c77a4b955d510",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S11",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "After parliamentary questions and press ridicule,",
+        "exact_native_cache_key": "29c8e622df8100cc565a0547a0dfbb105a0cda20.pkl",
+        "cache_input_text_sha256": "d88bef9c4e183b8f42334664ed7a8a8b4de386458333bc9dd597c57cd46869b1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S11",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "an embarrassing withdrawal came on 8 November,",
+        "exact_native_cache_key": "21eff357f32305ee94d6cdf4ac02e3cd4693072f.pkl",
+        "cache_input_text_sha256": "cd7ee52c4dd22adc293599bb2e4be21f40eee1bf907be766a76a54e64a21e1c5",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S11",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "though shooting restarted within days.",
+        "exact_native_cache_key": "4ba11d9b11ef90cfd1149ac87efdc54cb605f24a.pkl",
+        "cache_input_text_sha256": "c6e24fadda858e3d0e322401799f1088476f8d912d76f1b10f8c77a4b955d510",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Meredith was recalled on 10 December.",
+        "exact_native_cache_key": "be0540f859bb6abea3f1f3a16a81014d8ef77a56.pkl",
+        "cache_input_text_sha256": "ace50adff8e87f857da42f98ed4a4e47de4b7c115f1b44125515a7bd5de81963",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Meredith was recalled on 10 December.",
+        "exact_native_cache_key": "934b669eccfb116cd771e28f6279949c38a3e711.pkl",
+        "cache_input_text_sha256": "ace50adff8e87f857da42f98ed4a4e47de4b7c115f1b44125515a7bd5de81963",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "His memo's inventory counted 986 kills from 9,860 rounds, a ratio of ten bullets to one bird.",
+        "exact_native_cache_key": "058f4a143f90f1c83578ba76653736545915b534.pkl",
+        "cache_input_text_sha256": "724d355b38607495c7b7fd3a9a7dcc208a8fe83610595534f024a9d0fffdf624",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "His memo's inventory counted 986 kills from 9,860 rounds, a ratio of ten bullets to one bird.",
+        "exact_native_cache_key": "a7425e01b9316454096abe05dd160d59ada89b68.pkl",
+        "cache_input_text_sha256": "724d355b38607495c7b7fd3a9a7dcc208a8fe83610595534f024a9d0fffdf624",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "His memo's inventory counted 986 kills from 9,860 rounds,",
+        "exact_native_cache_key": "3f4a54e2f278ddcd2621d7c66ac8d3b4a2e342c5.pkl",
+        "cache_input_text_sha256": "138c6ecc5358b68c8c9a45ddd102e4661d3ab9579047a2e0bfb1e1602fc30914",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S13",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "a ratio of ten bullets to one bird.",
+        "exact_native_cache_key": "08129e9bd18ab46fed95ea3b03f304c0619bf9c8.pkl",
+        "cache_input_text_sha256": "617d7611a29621ebe6aa1c8dfe159003a483007faf8b44f2d1d39422236bf6f2",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S13",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "His memo's inventory counted 986 kills from 9,860 rounds,",
+        "exact_native_cache_key": "3f4a54e2f278ddcd2621d7c66ac8d3b4a2e342c5.pkl",
+        "cache_input_text_sha256": "138c6ecc5358b68c8c9a45ddd102e4661d3ab9579047a2e0bfb1e1602fc30914",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S13",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "a ratio of ten bullets to one bird.",
+        "exact_native_cache_key": "08129e9bd18ab46fed95ea3b03f304c0619bf9c8.pkl",
+        "cache_input_text_sha256": "617d7611a29621ebe6aa1c8dfe159003a483007faf8b44f2d1d39422236bf6f2",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "He likened the resilient birds' toughness to the armour of tanks.",
+        "exact_native_cache_key": "c1b09b8f068fe0e14fbc9b63ebb91cfe784cbe47.pkl",
+        "cache_input_text_sha256": "4dc104ddb805bcfac85dbe97542a9486820270e61ac65dd707ff3ee83130ba31",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "He likened the resilient birds' toughness to the armour of tanks.",
+        "exact_native_cache_key": "0fdab99c0ce2e38bde4a80436cc25f992400d96e.pkl",
+        "cache_input_text_sha256": "4dc104ddb805bcfac85dbe97542a9486820270e61ac65dd707ff3ee83130ba31",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Five weeks of warfare had barely dented the hardy flocks' endurance.",
+        "exact_native_cache_key": "582f2df9068cafa8d1525786cb1869b99d6ff98a.pkl",
+        "cache_input_text_sha256": "920e61fe1861465334fde7e185447ec8e43f4c467890418e38f67f0d4e2c7be0",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Five weeks of warfare had barely dented the hardy flocks' endurance.",
+        "exact_native_cache_key": "2e32c761e5362f47d327d3139d12818f75bb8468.pkl",
+        "cache_input_text_sha256": "920e61fe1861465334fde7e185447ec8e43f4c467890418e38f67f0d4e2c7be0",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Later pleas for reinforcements were refused, and intervention gave way to a bounty sanctioned by the government.",
+        "exact_native_cache_key": "346361edb7f55989b5470aa64e9f887936cc66ea.pkl",
+        "cache_input_text_sha256": "cbff741e39b11e256c5d11d4d23f5a7a7e28d3e45dd1c3c78eb3e584b326c9b0",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Later pleas for reinforcements were refused, and intervention gave way to a bounty sanctioned by the government.",
+        "exact_native_cache_key": "75e49787615b9cc5074dda0c54719f28e1f0d135.pkl",
+        "cache_input_text_sha256": "cbff741e39b11e256c5d11d4d23f5a7a7e28d3e45dd1c3c78eb3e584b326c9b0",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Later pleas for reinforcements were refused,",
+        "exact_native_cache_key": "36c0130fd5584bb18621ede3b2802ddb8ad6bfeb.pkl",
+        "cache_input_text_sha256": "b137a272176832d31771d6b39584825659651b580e572c4cb696dbee168ffe69",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S16",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and intervention gave way to a bounty sanctioned by the government.",
+        "exact_native_cache_key": "8ca049f9af6d2e7b7f5db3f9a12480b2d0ddf230.pkl",
+        "cache_input_text_sha256": "496ae9da3fe63fe9df5245ab61ab12717474234705f78f51ca645a349e826708",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S16",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Later pleas for reinforcements were refused,",
+        "exact_native_cache_key": "36c0130fd5584bb18621ede3b2802ddb8ad6bfeb.pkl",
+        "cache_input_text_sha256": "b137a272176832d31771d6b39584825659651b580e572c4cb696dbee168ffe69",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S16",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and intervention gave way to a bounty sanctioned by the government.",
+        "exact_native_cache_key": "8ca049f9af6d2e7b7f5db3f9a12480b2d0ddf230.pkl",
+        "cache_input_text_sha256": "496ae9da3fe63fe9df5245ab61ab12717474234705f78f51ca645a349e826708",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S17",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "This payout per bird gave farmers compensation and an incentive for extermination.",
+        "exact_native_cache_key": "bd58de11989003bcb5e06091f4a3180de8dc45d6.pkl",
+        "cache_input_text_sha256": "289848b111c3b87b50ca4ed0af6e01c76287c58c07fbf047e77331d3bc81e670",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "This payout per bird gave farmers compensation and an incentive for extermination.",
+        "exact_native_cache_key": "272ef13d1fd7f44cede58c4c6346923b106f283f.pkl",
+        "cache_input_text_sha256": "289848b111c3b87b50ca4ed0af6e01c76287c58c07fbf047e77331d3bc81e670",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "This payout per bird gave farmers compensation",
+        "exact_native_cache_key": "fb9a22a4f57b0646f2fc4cf2fa8786161a338064.pkl",
+        "cache_input_text_sha256": "c411f01cf6fe92bc79c9c4fe2a66da01b1921c78d1b57cbb709ef52014d53b5a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S17",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and an incentive for extermination.",
+        "exact_native_cache_key": "c70e1e41f30b0a704d275c6fbf41cb11aa694a9d.pkl",
+        "cache_input_text_sha256": "77ff9646a450e3134ac2ddbe69df2ba1adf0b2c6d43ef7bb0739b6c5ebe4c111",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S18",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Farmers claimed over 57,000 payments in six months of 1934, more than fifty-seven times Meredith's 986 kills.",
+        "exact_native_cache_key": "18e23978e4c781694a3ad963079a57055a141504.pkl",
+        "cache_input_text_sha256": "897b9d7d91655bb0f20f114ff67065d454306f2a7f3a9d41271251fad74e7e52",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Farmers claimed over 57,000 payments in six months of 1934, more than fifty-seven times Meredith's 986 kills.",
+        "exact_native_cache_key": "3b725b9226c25cea84d14e269380fee752fb8c55.pkl",
+        "cache_input_text_sha256": "897b9d7d91655bb0f20f114ff67065d454306f2a7f3a9d41271251fad74e7e52",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Farmers claimed over 57,000 payments in six months of 1934,",
+        "exact_native_cache_key": "d33eb84c37c6cc5beb17a4a6c4cfc25b3f03a3bc.pkl",
+        "cache_input_text_sha256": "b1a280afa794a829064b387af4386a67bb7ae9237eab14f27ea5fe3dd7d227b1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S18",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "more than fifty-seven times Meredith's 986 kills.",
+        "exact_native_cache_key": "fd2bfef3996fe417d4083202806dbc3c2e4c2973.pkl",
+        "cache_input_text_sha256": "f628fa157aa704141717f0cb648765ae2e454eca4adf0c07e45c351d5480ace8",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S18",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Farmers claimed over 57,000 payments in six months of 1934,",
+        "exact_native_cache_key": "d33eb84c37c6cc5beb17a4a6c4cfc25b3f03a3bc.pkl",
+        "cache_input_text_sha256": "b1a280afa794a829064b387af4386a67bb7ae9237eab14f27ea5fe3dd7d227b1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": false
+      },
+      {
+        "sentence": "S18",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "more than fifty-seven times Meredith's 986 kills.",
+        "exact_native_cache_key": "fd2bfef3996fe417d4083202806dbc3c2e4c2973.pkl",
+        "cache_input_text_sha256": "f628fa157aa704141717f0cb648765ae2e454eca4adf0c07e45c351d5480ace8",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": false
+      }
+    ],
+    "unique_reference_key_count": 87,
+    "raw_mother_cache_scalar_manifest": [
+      {
+        "exact_native_cache_key": "c5e73aa689df5761b5a2c39ef91d9d06d1883ca7.pkl",
+        "pkl_sha256": "a031c5bb7ba66f1682d64550f3678b412fa50cb3f231ee615a3d0f699daaab36",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "标题",
+            "piece": null,
+            "reference_kind": "title-default-raw",
+            "method": "create",
+            "source_slice": "The Great Emu War",
+            "exact_native_cache_key": "c5e73aa689df5761b5a2c39ef91d9d06d1883ca7.pkl",
+            "cache_input_text_sha256": "d20c80c6f96c4027907fddcf5a11b0f775ddf2bdabcb456de88ce67d2c4f546b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          31744
+        ],
+        "unprocessed_array_sha256": "b84a5f9f97e65ebda3f9bc7ca1eb2a04180d7b78a450e5d0dc01947733d7a337"
+      },
+      {
+        "exact_native_cache_key": "acf3b96aee33383ece8f5ab8c8ec056661c51092.pkl",
+        "pkl_sha256": "c19ce66bed670f5bdc79c951888c66af13c6b6e8b3ca61b7aeabd7cf819266ba",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Around Campion, Western Australia, most farmers were First World War veterans, settlers placed by a government scheme on marginal parcels of farmland.",
+            "exact_native_cache_key": "acf3b96aee33383ece8f5ab8c8ec056661c51092.pkl",
+            "cache_input_text_sha256": "9d3549d53f3a76f012e11c0163800dc770167bcc8dcb51a798ba76af25526583",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          254464
+        ],
+        "unprocessed_array_sha256": "4c91be3224873a2812d1fb7bcc210e58bdbdb626b945fc1cda86c7ff24b1776f"
+      },
+      {
+        "exact_native_cache_key": "49afd42fdc79d57d786add076abbfdb8be55b604.pkl",
+        "pkl_sha256": "c599690ca6db1bd3604c1983ac86b342f67031805b3c44cb0ad60f7b7852cec2",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Around Campion, Western Australia,",
+            "exact_native_cache_key": "49afd42fdc79d57d786add076abbfdb8be55b604.pkl",
+            "cache_input_text_sha256": "25880ab824d9d6679c8a9ad330ef44c484c9e81dbdd4b4fc06e74dbaf37697c7",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "c599690ca6db1bd3",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          57344
+        ],
+        "unprocessed_array_sha256": "c54c521dbf92eac05e56c5099cd7c8f8925897c2323786553f6b6e2a1d17a925"
+      },
+      {
+        "exact_native_cache_key": "7b30fe4e112bc065f61abfe1ad0f11ece0f15239.pkl",
+        "pkl_sha256": "866e0ac21456d7d34f45940cbc0fd9ab131d3349b74379180e7838134b1002d6",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "most farmers were First World War veterans,",
+            "exact_native_cache_key": "7b30fe4e112bc065f61abfe1ad0f11ece0f15239.pkl",
+            "cache_input_text_sha256": "c70f4a712923d2ff56f1fea4e17190d7e219f83d600443f91dde27024703569f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S1",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "most farmers were First World War veterans,",
+            "exact_native_cache_key": "7b30fe4e112bc065f61abfe1ad0f11ece0f15239.pkl",
+            "cache_input_text_sha256": "c70f4a712923d2ff56f1fea4e17190d7e219f83d600443f91dde27024703569f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "866e0ac21456d7d3",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          64000
+        ],
+        "unprocessed_array_sha256": "bd599120e68a9c0b6026d6367cc2cb5867d857c24aedb6884328ea7755f7e512"
+      },
+      {
+        "exact_native_cache_key": "563f323c52c9546be87c9e77eeb398b545052b0b.pkl",
+        "pkl_sha256": "c40c17576fbb37168225b7f80e64a0f83ebd36e5db697037a10aa8c27e4ea0b2",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "settlers placed by a government scheme on marginal parcels of farmland.",
+            "exact_native_cache_key": "563f323c52c9546be87c9e77eeb398b545052b0b.pkl",
+            "cache_input_text_sha256": "0ed890700ef3d8a6b96d3493e95a14bc1b6a8335389c753d860d5307dc35ed26",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S1",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "settlers placed by a government scheme on marginal parcels of farmland.",
+            "exact_native_cache_key": "563f323c52c9546be87c9e77eeb398b545052b0b.pkl",
+            "cache_input_text_sha256": "0ed890700ef3d8a6b96d3493e95a14bc1b6a8335389c753d860d5307dc35ed26",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "c40c17576fbb3716",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          113152
+        ],
+        "unprocessed_array_sha256": "ee1e74a2401d677e12fe7c2d9284a89beb9192982b6c165334ce5bca4cf30b83"
+      },
+      {
+        "exact_native_cache_key": "58a8947da6d2a5c515d316d5333865f013ee2172.pkl",
+        "pkl_sha256": "cc25898c15e49d80f1fa145bc8f3b3600cab3a5aa4047be4522bb174daa91c73",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Around Campion,",
+            "exact_native_cache_key": "58a8947da6d2a5c515d316d5333865f013ee2172.pkl",
+            "cache_input_text_sha256": "918b43698f3754d76865b9048b9fadadd30c9144e3b5585bc63eeed2d7ac51b2",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "cc25898c15e49d80",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          27648
+        ],
+        "unprocessed_array_sha256": "ae2c71833e3198c138c63f55e705d01ec0971d75c55309ffd861359286d7d885"
+      },
+      {
+        "exact_native_cache_key": "4294476cdce30db5c48b77565d5bb14985550154.pkl",
+        "pkl_sha256": "73857d29af95966da8af2cda436829b2d9b1c1188054494fe17414197f1037f0",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Western Australia,",
+            "exact_native_cache_key": "4294476cdce30db5c48b77565d5bb14985550154.pkl",
+            "cache_input_text_sha256": "a42fbee5563f7811963243657a3a017c39e58f571d6243e3c11952187ab936bc",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "73857d29af95966d",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          31744
+        ],
+        "unprocessed_array_sha256": "884829bb78daf0efe7b44ddeb0efa5f4f2bc8a2c9cd44733024468f31e1cd192"
+      },
+      {
+        "exact_native_cache_key": "bc378456c5dbc1d37d642fcc085571177f7ea0ba.pkl",
+        "pkl_sha256": "9396dc385a7836dfd2ad8945a3d8be8237516a53f2b3669c0abe207cfeae902a",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "They were inexperienced growers, and a quarter had already quit.",
+            "exact_native_cache_key": "bc378456c5dbc1d37d642fcc085571177f7ea0ba.pkl",
+            "cache_input_text_sha256": "3ff98428ec49b475292ed2a71e9f99245a874e7a1d711169503f3bc0743c509e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          92672
+        ],
+        "unprocessed_array_sha256": "aeac6f660a9e574e414115613bfad96c80494d9dcff3cd5135580f35bd217117"
+      },
+      {
+        "exact_native_cache_key": "00edec357f9ef24ab75c8d6fdb778a14222ed3a6.pkl",
+        "pkl_sha256": "b1c74e8bacc947c641d4b64ce9475320af02be969ca5e0bf2631055afecac2cb",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "They were inexperienced growers,",
+            "exact_native_cache_key": "00edec357f9ef24ab75c8d6fdb778a14222ed3a6.pkl",
+            "cache_input_text_sha256": "87839155bf74f8061605cc1074ef64642c1b8527ec34c59b2389b321fa179f74",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S2",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "They were inexperienced growers,",
+            "exact_native_cache_key": "00edec357f9ef24ab75c8d6fdb778a14222ed3a6.pkl",
+            "cache_input_text_sha256": "87839155bf74f8061605cc1074ef64642c1b8527ec34c59b2389b321fa179f74",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "b1c74e8bacc947c6",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          43520
+        ],
+        "unprocessed_array_sha256": "8b4ef477e5ae3aaa3ee9703b6f47c2d5ebe500af4e3cb2bf7172affcdba07368"
+      },
+      {
+        "exact_native_cache_key": "b8203f523aa770f48d6f2917b752e1fbaeab4abc.pkl",
+        "pkl_sha256": "9b03763cadcec8d06b431c1c424caa247054890ab67bcd99feb6764550594d6f",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and a quarter had already quit.",
+            "exact_native_cache_key": "b8203f523aa770f48d6f2917b752e1fbaeab4abc.pkl",
+            "cache_input_text_sha256": "fca895c9f5a2051b52dd92c3d32f6d73f55acc9d4692cdc0bbe66f4ecb1a035f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S2",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and a quarter had already quit.",
+            "exact_native_cache_key": "b8203f523aa770f48d6f2917b752e1fbaeab4abc.pkl",
+            "cache_input_text_sha256": "fca895c9f5a2051b52dd92c3d32f6d73f55acc9d4692cdc0bbe66f4ecb1a035f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "9b03763cadcec8d0",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          42496
+        ],
+        "unprocessed_array_sha256": "706518406cd07194c88dee6c80849d7a47d4f89a86b2fd098880b2b03e8b81dd"
+      },
+      {
+        "exact_native_cache_key": "ce8584aaf9654d3a80ab3fc7f0f25348083fb6b5.pkl",
+        "pkl_sha256": "e579410d8116e7e431f628a940f97924b387f094eac9c0b96847dc62bd125cb7",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "In 1932, after drought, roughly 20,000 emus swarmed in from arid country in flocks and trampled the wheat crops.",
+            "exact_native_cache_key": "ce8584aaf9654d3a80ab3fc7f0f25348083fb6b5.pkl",
+            "cache_input_text_sha256": "29cd8d30d1ed175c1b68f5c8976ae39b1653117b323247d55a4131d3544407c8",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          223232
+        ],
+        "unprocessed_array_sha256": "457dff54048067edf4e0dffee3e124e0b3a9de6955d0022b4729ef1025554d25"
+      },
+      {
+        "exact_native_cache_key": "ec5d8722810e76227fb49cb18b7893ede044ae29.pkl",
+        "pkl_sha256": "23ffeef20ed3ccc447341f438fb5d7bbc22b42908a97d27c3eb9499a7c50bdef",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "In 1932, after drought,",
+            "exact_native_cache_key": "ec5d8722810e76227fb49cb18b7893ede044ae29.pkl",
+            "cache_input_text_sha256": "9a323d54d64be8f69db30ce8d25948bde4386ab12d2d53d30bb9cfcb1f6d4be3",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "23ffeef20ed3ccc4",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          53248
+        ],
+        "unprocessed_array_sha256": "9166bf3fe07af4e061d740eaa31905307e2f7c532918b670b1704c1f6d4d1ae3"
+      },
+      {
+        "exact_native_cache_key": "e269993d5a8ecebc4633093864c42c597f498519.pkl",
+        "pkl_sha256": "8c1b3953cda1e066608b2d2f044785ba927c57c65fe92746f98d5df3132ec4e9",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "roughly 20,000 emus swarmed in from arid country in flocks",
+            "exact_native_cache_key": "e269993d5a8ecebc4633093864c42c597f498519.pkl",
+            "cache_input_text_sha256": "2162f86408c203119166c58641c9b3ac2e6889b683e33f8beda991b72799c64b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "8c1b3953cda1e066",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          109056
+        ],
+        "unprocessed_array_sha256": "d392af0b0744d7870d86aa4ad4bb9e953e79c1a4141106e7a87185cb2aa8fb29"
+      },
+      {
+        "exact_native_cache_key": "0b82920c179b6a82bbe85ef8d05e3b846d20d7f0.pkl",
+        "pkl_sha256": "417150b7cc154db6a8f6146c7d08350c33ec3553275e543ab41991ed9e83cc68",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and trampled the wheat crops.",
+            "exact_native_cache_key": "0b82920c179b6a82bbe85ef8d05e3b846d20d7f0.pkl",
+            "cache_input_text_sha256": "be381f94c2936a815c12acf5c1e01f6e7479fbd53014ff41942ad17cf04ce97c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "417150b7cc154db6",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          39936
+        ],
+        "unprocessed_array_sha256": "65d9827d4790363688b8ea3a60e8c7a8d7fa6452e85bdf85bc405431c219ef00"
+      },
+      {
+        "exact_native_cache_key": "1270bbe26b0d715ada6f8872608f8fdfd8698ca6.pkl",
+        "pkl_sha256": "39ed4ecda2ec08537320bcde2e622996de45b6e8c1ff61044bf027256e6c7c7b",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "In 1932,",
+            "exact_native_cache_key": "1270bbe26b0d715ada6f8872608f8fdfd8698ca6.pkl",
+            "cache_input_text_sha256": "b33cb67574e516fa16d1d1ec8a2ff3d2b24efb57c91e30c0848097a4f91cfb35",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "39ed4ecda2ec0853",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          35840
+        ],
+        "unprocessed_array_sha256": "f275c6a5ca94487a5cedf97d811b47a9b5380008fa468a86f252e67d309d804d"
+      },
+      {
+        "exact_native_cache_key": "36715fefd7f811c69a7fb340f770fc39a0844fdd.pkl",
+        "pkl_sha256": "de6977fa8e6211b7b69374505c9c8c6468eea947f76aa024dde24ac8d19d9ef7",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "after drought,",
+            "exact_native_cache_key": "36715fefd7f811c69a7fb340f770fc39a0844fdd.pkl",
+            "cache_input_text_sha256": "4231cc19f99e11382a7e325900dd203e44e6ad56f9fa87cdb1d880f04f353f29",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "de6977fa8e6211b7",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          24064
+        ],
+        "unprocessed_array_sha256": "da0885e5c246931b7643b918412f3d23e2e2b93dabaebb27a5debb045e6553ca"
+      },
+      {
+        "exact_native_cache_key": "a1e851969519a77166a4752ba11c7f34fa4e0621.pkl",
+        "pkl_sha256": "ca0529432c495b79756649e60145dc0193c8bf68d1f6a76ff08089a0b50b2dcd",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "roughly 20,000 emus swarmed in from arid country in flocks and trampled the wheat crops.",
+            "exact_native_cache_key": "a1e851969519a77166a4752ba11c7f34fa4e0621.pkl",
+            "cache_input_text_sha256": "59b6bc7bafed33061e4dae5ef0c603fbe204134e25f58d5a395dc4eddc9643fa",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "ca0529432c495b79",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          159744
+        ],
+        "unprocessed_array_sha256": "7305c9919570a81d69aeb034b985d34b3f9f5c1c303ebf3f43d17bb5c4e570d3"
+      },
+      {
+        "exact_native_cache_key": "ba0ed918a29f9f1692cb6df8614f906517e3243f.pkl",
+        "pkl_sha256": "11ac02149b0a4efce00101a383358cafe8d3a33158ac1bd24fde1f3a2b9882df",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The farmers' plight took a military turn.",
+            "exact_native_cache_key": "ba0ed918a29f9f1692cb6df8614f906517e3243f.pkl",
+            "cache_input_text_sha256": "9e6b53bdd16546a0fad32d42c744f236bba56ebae77117cc417acb8dbb494ca3",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          56832
+        ],
+        "unprocessed_array_sha256": "4e1aece90b8927a0608ffdd25326f05274aa87fb720663c699b18f3bd4eff194"
+      },
+      {
+        "exact_native_cache_key": "db1f9ac7f95c11b93a0547037e505126309fc4c8.pkl",
+        "pkl_sha256": "c5dc53293eb74dd19297db1cd85f3d46cb1787992670b48e4db6541dfb939ef6",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "In desperation, a delegation of ex-soldiers aired their grievances and asked the Defence Minister for machine-guns.",
+            "exact_native_cache_key": "db1f9ac7f95c11b93a0547037e505126309fc4c8.pkl",
+            "cache_input_text_sha256": "8638a2ca7d20590635d92d1ccb0d99ee263ee9171182c381aabf8f54c291c89f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          186368
+        ],
+        "unprocessed_array_sha256": "f7e1cb2ae8e8f92161c9b7adcd1f836346fe3cb786b27edf46c331cbe13cdb42"
+      },
+      {
+        "exact_native_cache_key": "161f7761dd763f9cf5c36a4162db6f72e7e23f81.pkl",
+        "pkl_sha256": "d5afb7ea93a6af38eb6b4f46a199121702d8e78e6562b9389288231c9dee4ce2",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "In desperation,",
+            "exact_native_cache_key": "161f7761dd763f9cf5c36a4162db6f72e7e23f81.pkl",
+            "cache_input_text_sha256": "42bd868904c200e3921d8e788f1aeb3e7f0bdbb19cb76870f54f46bfec7a49fc",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S5",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "In desperation,",
+            "exact_native_cache_key": "161f7761dd763f9cf5c36a4162db6f72e7e23f81.pkl",
+            "cache_input_text_sha256": "42bd868904c200e3921d8e788f1aeb3e7f0bdbb19cb76870f54f46bfec7a49fc",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "d5afb7ea93a6af38",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          27136
+        ],
+        "unprocessed_array_sha256": "b7ba641e435d7324abbcd5c70b09e22c8a7d30061769ccfad5618a0ac514007e"
+      },
+      {
+        "exact_native_cache_key": "901943a455cd153034220226eb5febf927822135.pkl",
+        "pkl_sha256": "42965678b48a725c35be335d8192176d74307e28ca70a15a7f2428d991b31d57",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "a delegation of ex-soldiers aired their grievances",
+            "exact_native_cache_key": "901943a455cd153034220226eb5febf927822135.pkl",
+            "cache_input_text_sha256": "4fc00221c9a75c1228287b7123fcdb6e54e3fb584a213152df9cc1081f35960a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "42965678b48a725c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          79360
+        ],
+        "unprocessed_array_sha256": "69b842c2b31cb62c3dcbb120a57f9807abdcf591a80030e13e53708d03e335b0"
+      },
+      {
+        "exact_native_cache_key": "ffa9d48f9481b8e0c395c332ce318243096b5ec1.pkl",
+        "pkl_sha256": "f3b59e607e1c655f237c93a5bbe1f7b3596d6f0bcf693357f17788bf3cd29a31",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and asked the Defence Minister for machine-guns.",
+            "exact_native_cache_key": "ffa9d48f9481b8e0c395c332ce318243096b5ec1.pkl",
+            "cache_input_text_sha256": "ebdeafc9c78e0ab96a8109961c0c7cdb5ffb371fa4bb2d5a0bcaf4bd3dbebb72",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "f3b59e607e1c655f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          62976
+        ],
+        "unprocessed_array_sha256": "b83f72dbf19fd7c38c50eb39fa4c5a54d03970376f02e9cdae4d3ff2b58d46a6"
+      },
+      {
+        "exact_native_cache_key": "ae3c617806ee86d369ab6597e565a33d706851e3.pkl",
+        "pkl_sha256": "5694f4a930acaeb3b62f69162fc9db16100be7b22ab5b8612c2e2fc0f6e32661",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "a delegation of ex-soldiers aired their grievances and asked the Defence Minister for machine-guns.",
+            "exact_native_cache_key": "ae3c617806ee86d369ab6597e565a33d706851e3.pkl",
+            "cache_input_text_sha256": "3554c074f58602a3601f63c094122a413269da082183e97c5ff8d72750ac3dec",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "5694f4a930acaeb3",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          154112
+        ],
+        "unprocessed_array_sha256": "00d7be3f5cd6e80ff723f740e3d537263ccaf8be30771739d6fb392fc29cfef1"
+      },
+      {
+        "exact_native_cache_key": "26cd12801f5f87fef0a76b645a97e4bde68e8f3f.pkl",
+        "pkl_sha256": "35cd504015dcc51f55309357665c07706fa8afbe12798421bccb17b63be274eb",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "He agreed, sending not a battalion but a detachment: Major Meredith, an artillery officer, with two soldiers, two Lewis guns, and 10,000 rounds of ammunition.",
+            "exact_native_cache_key": "26cd12801f5f87fef0a76b645a97e4bde68e8f3f.pkl",
+            "cache_input_text_sha256": "7867a6ce2ee398a864c209df35f3e9d09a910fa8a9a608ad0ede03bd76ac838f",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          279552
+        ],
+        "unprocessed_array_sha256": "bf7a1fcc52af93717662ce0910f4a8a3127dba27a13cc1396e7c894a311eb7ff"
+      },
+      {
+        "exact_native_cache_key": "1deade14ac1de9fb026b96c3b828adb3b42a2bac.pkl",
+        "pkl_sha256": "52435d30d9f82a98e03048397d7f1116cfcc6be1e10237f05faf5d9430d8d30e",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "He agreed, sending not a battalion but a detachment:",
+            "exact_native_cache_key": "1deade14ac1de9fb026b96c3b828adb3b42a2bac.pkl",
+            "cache_input_text_sha256": "07f58ca24a3011dc45df040f179da1fa824072cdfe5f0b147e5356ff6be41790",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "52435d30d9f82a98",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          78336
+        ],
+        "unprocessed_array_sha256": "1a95ada92866a3967a989bec03b3679cb4d4564f5303499b8f72b68a417d830a"
+      },
+      {
+        "exact_native_cache_key": "11891e480956a28fa6ba845394aff4f00e48a250.pkl",
+        "pkl_sha256": "af33731aea17f0aa0faa62fe21fd58ae7e3e7e55d8296254a6c737ce89840324",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Major Meredith, an artillery officer,",
+            "exact_native_cache_key": "11891e480956a28fa6ba845394aff4f00e48a250.pkl",
+            "cache_input_text_sha256": "569f11f6d9f4df693ee5c2e72d867f28636d972e6e8e0a29695ac386ac9d2bba",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "af33731aea17f0aa",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          63488
+        ],
+        "unprocessed_array_sha256": "8d78e936011b45ce66de3038a4c209dfa374b7cb0f4a91de63a5de4934f90218"
+      },
+      {
+        "exact_native_cache_key": "08fdf1eded4d742c0a7391249c68f2a76127bfaf.pkl",
+        "pkl_sha256": "cf97eeda40b540a5892fc2754b7042cf64f3309a1fad18d4499003f90ddaa502",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "with two soldiers, two Lewis guns, and 10,000 rounds of ammunition.",
+            "exact_native_cache_key": "08fdf1eded4d742c0a7391249c68f2a76127bfaf.pkl",
+            "cache_input_text_sha256": "0f94323c8a655cffb186933d7b3b424c18ef65517499fd723ed915903fbe75f7",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "cf97eeda40b540a5",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          117760
+        ],
+        "unprocessed_array_sha256": "ac732ef66752c1accc14e50bf0476362e44ac18e9e51df4363d10fa0cdd64a4f"
+      },
+      {
+        "exact_native_cache_key": "86804dcc26b170ec8b541f5960bb3c44ed9ad8a3.pkl",
+        "pkl_sha256": "533962b9da4d6daf93aa95ec0f1a93a9ae5cc721c38e996ef8920268aea8491d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "He agreed,",
+            "exact_native_cache_key": "86804dcc26b170ec8b541f5960bb3c44ed9ad8a3.pkl",
+            "cache_input_text_sha256": "084770d1d7f5049ce3fb68ee322aff77931f6e9f07db3f9c7c35708c89587646",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "533962b9da4d6daf",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          22528
+        ],
+        "unprocessed_array_sha256": "04e335c47ff9cc7ca8016374d4a0914fc1098478ff06c21ceabfecc1fd6cbc8d"
+      },
+      {
+        "exact_native_cache_key": "2a5eaef7eda2e02dcec5604026085838c0688be1.pkl",
+        "pkl_sha256": "cabd9755e241fa88b24007fd5a335a0ba0bdf15bd615734586d5b9b6b1936fe1",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "sending not a battalion but a detachment:",
+            "exact_native_cache_key": "2a5eaef7eda2e02dcec5604026085838c0688be1.pkl",
+            "cache_input_text_sha256": "9cccf0f880f4e856d2cd0c005757716cb96775fb07f7ce29ba2d0bcfcca86a58",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "cabd9755e241fa88",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          61440
+        ],
+        "unprocessed_array_sha256": "6345e6a424dc6a0c00699a4d347486d00d46b269299db0f8c9ad19479bf9164a"
+      },
+      {
+        "exact_native_cache_key": "c48d69f4b87720ee91c9bc87cb3b136bab8132b0.pkl",
+        "pkl_sha256": "f75a468a018b6a0f83e38ca4487ce54cfc4b9339b7b915944dff5de002540f6a",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Major Meredith,",
+            "exact_native_cache_key": "c48d69f4b87720ee91c9bc87cb3b136bab8132b0.pkl",
+            "cache_input_text_sha256": "2c691fa2c4b139cf18a51105c954dc02bfb0dac6693a0656a439826b144514aa",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "f75a468a018b6a0f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          27136
+        ],
+        "unprocessed_array_sha256": "bb41a7ecef0b3617eec1e2ed5169cc46ab5ec70bb05289a629e4de9eeab7ac64"
+      },
+      {
+        "exact_native_cache_key": "208849f9aaae3c406402525a7a1f62faf45603a4.pkl",
+        "pkl_sha256": "31e0b5901e052d53ea582bb3a072cf01a42c534a6ff809cb5a720b18a1a122b6",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "an artillery officer,",
+            "exact_native_cache_key": "208849f9aaae3c406402525a7a1f62faf45603a4.pkl",
+            "cache_input_text_sha256": "c6b07f99acdd81c3576bc19f94baf41953d1bac17c1c3987e57256d84f2afc54",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "31e0b5901e052d53",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          35840
+        ],
+        "unprocessed_array_sha256": "277cf6855e51c4edce73b3384e3ed304a192fd6caa3bdbe6875f0d25596ad98f"
+      },
+      {
+        "exact_native_cache_key": "bd299fcdbfba83d1d68daa277d82ab38c9c29392.pkl",
+        "pkl_sha256": "7f1a24e702424166b314924403442a8f2b46122ed4bdc19d8a62daaf77636d9b",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 5,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "with two soldiers,",
+            "exact_native_cache_key": "bd299fcdbfba83d1d68daa277d82ab38c9c29392.pkl",
+            "cache_input_text_sha256": "528f7d31288c29b058a1bcb91ece9b9b27d4abe820cd00a0cb1856750e1f9921",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "7f1a24e702424166",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          30720
+        ],
+        "unprocessed_array_sha256": "c86c77ba096ab39e1c71a8152645c3847ccd303802792ffa7d86dc2045126c99"
+      },
+      {
+        "exact_native_cache_key": "31e218568112cbb488082ac39068bae21782e895.pkl",
+        "pkl_sha256": "dc82b76e69737a7af23286962d2a83e218bfcd733c33cea5df72b1407755bd05",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 6,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "two Lewis guns,",
+            "exact_native_cache_key": "31e218568112cbb488082ac39068bae21782e895.pkl",
+            "cache_input_text_sha256": "80173f23f4984acf8e86678735437c2f00f5eeeeacd817c7707cd76983194c0a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "dc82b76e69737a7a",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          28160
+        ],
+        "unprocessed_array_sha256": "214a7dce54a0cb7f6b9a22718678ee6aea12473fd45dd4c9a833421564585a9a"
+      },
+      {
+        "exact_native_cache_key": "4a6d45ffe96f8987f8b81eb4bb08bf77945f2f06.pkl",
+        "pkl_sha256": "d904c86b0aedea70afcf230ddb0b52f46ae93abead429169f759c8c9c3467c9d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 7,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and 10,000 rounds of ammunition.",
+            "exact_native_cache_key": "4a6d45ffe96f8987f8b81eb4bb08bf77945f2f06.pkl",
+            "cache_input_text_sha256": "dc5e3f6fa1a9af96d0f93a2116001b9fe35d526cdfe5365675d4aa6f2344e98e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "d904c86b0aedea70",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          56832
+        ],
+        "unprocessed_array_sha256": "8e20bb01ec0c8fe4ed488d68e98ad1cc8fd911c534248bdd67c5ddbbfd05f963"
+      },
+      {
+        "exact_native_cache_key": "a39bd2b3d2d5f507f8691a537cb15af9da8fe65d.pkl",
+        "pkl_sha256": "3e382f9d360844e910ba3c7a4986e5293baaf09b04f2e9cb85f36b7ad3cdabd9",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The offensive began on 2 November 1932.",
+            "exact_native_cache_key": "a39bd2b3d2d5f507f8691a537cb15af9da8fe65d.pkl",
+            "cache_input_text_sha256": "f106cc89658877530361373a193fb822ddd050e37b90a885484be018c4b6a3bc",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          100864
+        ],
+        "unprocessed_array_sha256": "fffe7f11cbbe4b2ae34c31d5f738347ed1c08344e166799e04d1e9d0b935511c"
+      },
+      {
+        "exact_native_cache_key": "f6b38bdb70b1b8c3e2d98a0627312d8ad07b9139.pkl",
+        "pkl_sha256": "7649ff42ff34faa21720845ded2f3925ca100498f7f7473be1422d64632386a8",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "At a dam, about a thousand birds approached an ambush, but a gun jammed after a dozen fell.",
+            "exact_native_cache_key": "f6b38bdb70b1b8c3e2d98a0627312d8ad07b9139.pkl",
+            "cache_input_text_sha256": "77c9c5198458139649bdb572e4e2b731d66d123d44e6067eb649c506244c5611",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          147968
+        ],
+        "unprocessed_array_sha256": "19023456f260b0a986cb51662436195e62715eb37db62ab26824ca509dce82b9"
+      },
+      {
+        "exact_native_cache_key": "b2edd3f678d2362f9a2107e006ae25e17f37a3c7.pkl",
+        "pkl_sha256": "bda080b8e28e52d4c86bab880a9b44bf31ffed2dcd5657aac8c4f58c13a89fe7",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "At a dam, about a thousand birds approached an ambush,",
+            "exact_native_cache_key": "b2edd3f678d2362f9a2107e006ae25e17f37a3c7.pkl",
+            "cache_input_text_sha256": "3b075431ef6d4028171adc7eaa0c7c822891a13887940e7503ffe5fa0c71dbd9",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "bda080b8e28e52d4",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          81920
+        ],
+        "unprocessed_array_sha256": "6bae08247b9d92842306018075610115c63efc952ba2776ee1b8ed9a6d42c594"
+      },
+      {
+        "exact_native_cache_key": "95d2e1df0083d423e58afed3304c4a90483776de.pkl",
+        "pkl_sha256": "3bd41c3080c7024e982c192d7094e8b982af921c46922d9cf5768b395feb225f",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "but a gun jammed after a dozen fell.",
+            "exact_native_cache_key": "95d2e1df0083d423e58afed3304c4a90483776de.pkl",
+            "cache_input_text_sha256": "d9330879004b193e87452065bfb7f0b6b807add16a49e648f5773cdef7342c7a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S8",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "but a gun jammed after a dozen fell.",
+            "exact_native_cache_key": "95d2e1df0083d423e58afed3304c4a90483776de.pkl",
+            "cache_input_text_sha256": "d9330879004b193e87452065bfb7f0b6b807add16a49e648f5773cdef7342c7a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "3bd41c3080c7024e",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          54784
+        ],
+        "unprocessed_array_sha256": "c964f49c7ccfe0e1ab0b98821fa3ae07eb81faa38f2da04f6ceaac4ebbb5caa8"
+      },
+      {
+        "exact_native_cache_key": "b1d81bfe81d9912a1e9e39b7aeaa8470edd5e0cc.pkl",
+        "pkl_sha256": "9cb67ec03dd92e5408f6b629445d9cbded8566f7941b92c137ee2cff75ce16db",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "At a dam,",
+            "exact_native_cache_key": "b1d81bfe81d9912a1e9e39b7aeaa8470edd5e0cc.pkl",
+            "cache_input_text_sha256": "17bec06eec1835ad66c32d8cf436e742e204b36f240bc06c666bc96492cfdb30",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "9cb67ec03dd92e54",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          21504
+        ],
+        "unprocessed_array_sha256": "8951cabb3c88bf9a79410813315b49d8954d4d82dbbf8fe09aef575fc3620888"
+      },
+      {
+        "exact_native_cache_key": "a2d471d1be230f8d01bb475772919e5dc97f3587.pkl",
+        "pkl_sha256": "cc72c8f06db56c0c114d1f00b7bd7f6c9850a3da00aedc00bc2525904dbabf97",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "about a thousand birds approached an ambush,",
+            "exact_native_cache_key": "a2d471d1be230f8d01bb475772919e5dc97f3587.pkl",
+            "cache_input_text_sha256": "78fdf8078ad41083ce6e22d8c470c9a1f71bfad4c748863e241c1b90223c3bab",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "cc72c8f06db56c0c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          60928
+        ],
+        "unprocessed_array_sha256": "8c16e9b09a713943d3407295760302bc1ad0049d3bd37c5676ae8a5be7756558"
+      },
+      {
+        "exact_native_cache_key": "2e8bf74dd648d10db201d67321570a38dba7ece2.pkl",
+        "pkl_sha256": "0ebdbc90a1c8d3b326685870217f5e94510e3bbd7f1436f1d59b8cb6b8ad30dc",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The flocks broke formation into small, agile groups, frustrating each tactical plan, and a truck-mounted gun proved futile.",
+            "exact_native_cache_key": "2e8bf74dd648d10db201d67321570a38dba7ece2.pkl",
+            "cache_input_text_sha256": "a0f1d70e71de2caa21741e90245e529a3ae9bcdfa4caf5ad25b48a38adfedf08",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          206848
+        ],
+        "unprocessed_array_sha256": "84322a3e13f193ccb6f24af0fe5bffacb66be10d5edba9116673d20a63cce602"
+      },
+      {
+        "exact_native_cache_key": "bcd9702a22a808560385054d100b70f7b1a4b6b2.pkl",
+        "pkl_sha256": "743d59757261105468179d74e221d67c81691bb7d504f8db977ddc429f9a60e4",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "The flocks broke formation into small, agile groups,",
+            "exact_native_cache_key": "bcd9702a22a808560385054d100b70f7b1a4b6b2.pkl",
+            "cache_input_text_sha256": "06113ec3f9217565607fd7897db2bc19e5a18209c113784957b91916113eec43",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "743d597572611054",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          79872
+        ],
+        "unprocessed_array_sha256": "ad1a59e237e058fc1893267dbcf6abab79338c757812075f12dc7a5541aec604"
+      },
+      {
+        "exact_native_cache_key": "9befc91e26ac32830f5fd5bba22ee1ceb4ca2f82.pkl",
+        "pkl_sha256": "ac1aa4ad2f508c9dff5787f6e494bd76b701ef8c2ec17acbd5517c53dd310086",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "frustrating each tactical plan,",
+            "exact_native_cache_key": "9befc91e26ac32830f5fd5bba22ee1ceb4ca2f82.pkl",
+            "cache_input_text_sha256": "5cea58c485ae3838adafb1ec5e31436a49c41de0e15b7e4f5f352a3de2741adf",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S9",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "frustrating each tactical plan,",
+            "exact_native_cache_key": "9befc91e26ac32830f5fd5bba22ee1ceb4ca2f82.pkl",
+            "cache_input_text_sha256": "5cea58c485ae3838adafb1ec5e31436a49c41de0e15b7e4f5f352a3de2741adf",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "ac1aa4ad2f508c9d",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          51200
+        ],
+        "unprocessed_array_sha256": "25772d849815c3297026a7f8bc664b6940526ad5f98940869566a2d7a87a2dac"
+      },
+      {
+        "exact_native_cache_key": "ee848ce809d17122d4cc0e844bb4137f48f1b758.pkl",
+        "pkl_sha256": "14d9fef793ea751542b0491d537d03538ac2c36de690ffb9445b0df0ca9dfae7",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and a truck-mounted gun proved futile.",
+            "exact_native_cache_key": "ee848ce809d17122d4cc0e844bb4137f48f1b758.pkl",
+            "cache_input_text_sha256": "0646a1ca5e1142c4cad2ebbbde08838d65f4dfefd1ace35bbd4464348e4f2423",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S9",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and a truck-mounted gun proved futile.",
+            "exact_native_cache_key": "ee848ce809d17122d4cc0e844bb4137f48f1b758.pkl",
+            "cache_input_text_sha256": "0646a1ca5e1142c4cad2ebbbde08838d65f4dfefd1ace35bbd4464348e4f2423",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "14d9fef793ea7515",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          52736
+        ],
+        "unprocessed_array_sha256": "d3c857e7e2ed10eba1f3a4c919e163b08abc96ff1016325da474fbebbf953eda"
+      },
+      {
+        "exact_native_cache_key": "c5d24e660ec4b013093d988f4fc80eb839739834.pkl",
+        "pkl_sha256": "f4b2e293a050daa2f172d89ff36578c92599dc282317eaf65ee802b89c34a22d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "The flocks broke formation into small,",
+            "exact_native_cache_key": "c5d24e660ec4b013093d988f4fc80eb839739834.pkl",
+            "cache_input_text_sha256": "51ac2a7a69a2e7fa851e8cfb8003c9862ba210ee1f3f3b03f43eb4013750ec5e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "f4b2e293a050daa2",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          53760
+        ],
+        "unprocessed_array_sha256": "eabfaf5e27d372ca26c233561a49c9043ca98614f069e9c61652b73bd2cd8988"
+      },
+      {
+        "exact_native_cache_key": "591a24a3b8869c02b11e5618d6d50195ba747d3e.pkl",
+        "pkl_sha256": "5c41bacd05cd1cfe5219aeac506db56d275fe843c8842aa971fc41197ced103c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "agile groups,",
+            "exact_native_cache_key": "591a24a3b8869c02b11e5618d6d50195ba747d3e.pkl",
+            "cache_input_text_sha256": "ee947ceb75309d62c8ef9a3840eff895773007d018ff53c0b2128d4f1628142f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "5c41bacd05cd1cfe",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          26112
+        ],
+        "unprocessed_array_sha256": "f16b09c3ba5c237a087a0b2a82ca229ee9baee8e3f8cb9597bccbad3d09b2536"
+      },
+      {
+        "exact_native_cache_key": "633e495e2b304d196220042bf47a72029cbf3591.pkl",
+        "pkl_sha256": "4045e16669830dfd37117d901ffe6282c137c1dc5003e997f06ffe6f1f058456",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Six days of wasteful firing spent 2,500 rounds on perhaps 50 to 200 birds, a ludicrous return.",
+            "exact_native_cache_key": "633e495e2b304d196220042bf47a72029cbf3591.pkl",
+            "cache_input_text_sha256": "8348e63b4fd1ac77e42436af830b543e14d3a4076cb6d54fdb856dfd3be294e1",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          209920
+        ],
+        "unprocessed_array_sha256": "114d2ee6d8d0f5b8bdb067d399c61adb78cec7f1e205f85d036167b4a8ad92a6"
+      },
+      {
+        "exact_native_cache_key": "1df3be551f4bd8ff0614191052720ba4c9c450e2.pkl",
+        "pkl_sha256": "9c5eede178e1858587aea164ef912d8af7d470f5ae336cc9a4c3125d35642f6c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Six days of wasteful firing spent 2,500 rounds on perhaps 50 to 200 birds,",
+            "exact_native_cache_key": "1df3be551f4bd8ff0614191052720ba4c9c450e2.pkl",
+            "cache_input_text_sha256": "c3ce7ab09a7e0370ec4b2360d526ea2a30fcce8793a846328a7e44339e8e091d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S10",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Six days of wasteful firing spent 2,500 rounds on perhaps 50 to 200 birds,",
+            "exact_native_cache_key": "1df3be551f4bd8ff0614191052720ba4c9c450e2.pkl",
+            "cache_input_text_sha256": "c3ce7ab09a7e0370ec4b2360d526ea2a30fcce8793a846328a7e44339e8e091d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "9c5eede178e18585",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          164864
+        ],
+        "unprocessed_array_sha256": "9aa689513a4244d7597dacd62d329c9f4d60ca071fbf232ad8e1f3297cee241d"
+      },
+      {
+        "exact_native_cache_key": "62be8ec7a8237e0f07bea7791615c4a05c5f0186.pkl",
+        "pkl_sha256": "4eb4259331eb7de31c99ac533e6ca62570d84f0986fc3a504a1473360caa1326",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "a ludicrous return.",
+            "exact_native_cache_key": "62be8ec7a8237e0f07bea7791615c4a05c5f0186.pkl",
+            "cache_input_text_sha256": "12f61e3cb76ae929b706acc3729ac99e79ca25a6b378b726c6c216507082b3b7",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S10",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "a ludicrous return.",
+            "exact_native_cache_key": "62be8ec7a8237e0f07bea7791615c4a05c5f0186.pkl",
+            "cache_input_text_sha256": "12f61e3cb76ae929b706acc3729ac99e79ca25a6b378b726c6c216507082b3b7",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "4eb4259331eb7de3",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          33280
+        ],
+        "unprocessed_array_sha256": "08a46496e42716bf0439584e5c454fd4537f96fa5b0a0feee35f3140f312e096"
+      },
+      {
+        "exact_native_cache_key": "4d8ec7ef05f028358ee6dcc70eacfb69e7a804de.pkl",
+        "pkl_sha256": "80d14d56e29b531b8ef3e625a5f6b3a3cbef1046b36c2e55ec3bc127e527141e",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "After parliamentary questions and press ridicule, an embarrassing withdrawal came on 8 November, though shooting restarted within days.",
+            "exact_native_cache_key": "4d8ec7ef05f028358ee6dcc70eacfb69e7a804de.pkl",
+            "cache_input_text_sha256": "828c646ca46f9902c28e510191a49ec630b15353b49ea54740ebeffca7edd4bb",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          231424
+        ],
+        "unprocessed_array_sha256": "8fd29b93a53cb73329206d06e7b8a437f581b7217ea2638a8fc3b069bb7ebc4b"
+      },
+      {
+        "exact_native_cache_key": "29c8e622df8100cc565a0547a0dfbb105a0cda20.pkl",
+        "pkl_sha256": "68b9d5455e9b4b9d957c43d779e66ec1d7c5519ea6c82e02dbfbae46480f85df",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "After parliamentary questions and press ridicule,",
+            "exact_native_cache_key": "29c8e622df8100cc565a0547a0dfbb105a0cda20.pkl",
+            "cache_input_text_sha256": "d88bef9c4e183b8f42334664ed7a8a8b4de386458333bc9dd597c57cd46869b1",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S11",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "After parliamentary questions and press ridicule,",
+            "exact_native_cache_key": "29c8e622df8100cc565a0547a0dfbb105a0cda20.pkl",
+            "cache_input_text_sha256": "d88bef9c4e183b8f42334664ed7a8a8b4de386458333bc9dd597c57cd46869b1",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "68b9d5455e9b4b9d",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          75264
+        ],
+        "unprocessed_array_sha256": "d2e304fbc61f3984266541eb16ec73b2648bca2d7ac6234c36780503577cd3c9"
+      },
+      {
+        "exact_native_cache_key": "21eff357f32305ee94d6cdf4ac02e3cd4693072f.pkl",
+        "pkl_sha256": "ab49ef6896f090921793d85d23be1c94e20fea7f92e0b590a0f213debc71f80c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "an embarrassing withdrawal came on 8 November,",
+            "exact_native_cache_key": "21eff357f32305ee94d6cdf4ac02e3cd4693072f.pkl",
+            "cache_input_text_sha256": "cd7ee52c4dd22adc293599bb2e4be21f40eee1bf907be766a76a54e64a21e1c5",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S11",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "an embarrassing withdrawal came on 8 November,",
+            "exact_native_cache_key": "21eff357f32305ee94d6cdf4ac02e3cd4693072f.pkl",
+            "cache_input_text_sha256": "cd7ee52c4dd22adc293599bb2e4be21f40eee1bf907be766a76a54e64a21e1c5",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "ab49ef6896f09092",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          74752
+        ],
+        "unprocessed_array_sha256": "f06b31067cd77d938e6db8ea83c38d6a847a57543c0e25e8fc25f1ad15520259"
+      },
+      {
+        "exact_native_cache_key": "4ba11d9b11ef90cfd1149ac87efdc54cb605f24a.pkl",
+        "pkl_sha256": "78c24dc7c5567c387ad1e30505573ea7ea9ece349c4826c1dbb4d5a3839d689a",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "though shooting restarted within days.",
+            "exact_native_cache_key": "4ba11d9b11ef90cfd1149ac87efdc54cb605f24a.pkl",
+            "cache_input_text_sha256": "c6e24fadda858e3d0e322401799f1088476f8d912d76f1b10f8c77a4b955d510",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S11",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "though shooting restarted within days.",
+            "exact_native_cache_key": "4ba11d9b11ef90cfd1149ac87efdc54cb605f24a.pkl",
+            "cache_input_text_sha256": "c6e24fadda858e3d0e322401799f1088476f8d912d76f1b10f8c77a4b955d510",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "78c24dc7c5567c38",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          51712
+        ],
+        "unprocessed_array_sha256": "12b89bb3296f26354fc30fadeeb6ea2283358e58e48ebc9b5958f1399a086d1e"
+      },
+      {
+        "exact_native_cache_key": "be0540f859bb6abea3f1f3a16a81014d8ef77a56.pkl",
+        "pkl_sha256": "20a68da36e480d7ac71bb6cc6af30c91880a09e0b1b85cf3ba714c92d20b8aab",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Meredith was recalled on 10 December.",
+            "exact_native_cache_key": "be0540f859bb6abea3f1f3a16a81014d8ef77a56.pkl",
+            "cache_input_text_sha256": "ace50adff8e87f857da42f98ed4a4e47de4b7c115f1b44125515a7bd5de81963",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          69632
+        ],
+        "unprocessed_array_sha256": "63368d9252549911c7d9e37fa03696bb0797840cebb74565a41e2a3837515f2c"
+      },
+      {
+        "exact_native_cache_key": "058f4a143f90f1c83578ba76653736545915b534.pkl",
+        "pkl_sha256": "01bfb914a8ac2ce785f9e805f782c25ea8f38a8501c5e8d90be2820be1e041c9",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "His memo's inventory counted 986 kills from 9,860 rounds, a ratio of ten bullets to one bird.",
+            "exact_native_cache_key": "058f4a143f90f1c83578ba76653736545915b534.pkl",
+            "cache_input_text_sha256": "724d355b38607495c7b7fd3a9a7dcc208a8fe83610595534f024a9d0fffdf624",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          234496
+        ],
+        "unprocessed_array_sha256": "84549e0ed4d28f574ba6f6985f8670e395941c5cc30b858824a66fdcc12ed4a7"
+      },
+      {
+        "exact_native_cache_key": "3f4a54e2f278ddcd2621d7c66ac8d3b4a2e342c5.pkl",
+        "pkl_sha256": "722910ec5c8eacb1f6e86f672c9f8fb0f97136896ffb3330cb8a1af20c473e93",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "His memo's inventory counted 986 kills from 9,860 rounds,",
+            "exact_native_cache_key": "3f4a54e2f278ddcd2621d7c66ac8d3b4a2e342c5.pkl",
+            "cache_input_text_sha256": "138c6ecc5358b68c8c9a45ddd102e4661d3ab9579047a2e0bfb1e1602fc30914",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S13",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "His memo's inventory counted 986 kills from 9,860 rounds,",
+            "exact_native_cache_key": "3f4a54e2f278ddcd2621d7c66ac8d3b4a2e342c5.pkl",
+            "cache_input_text_sha256": "138c6ecc5358b68c8c9a45ddd102e4661d3ab9579047a2e0bfb1e1602fc30914",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "722910ec5c8eacb1",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          157184
+        ],
+        "unprocessed_array_sha256": "acbd4957faf773442ac8f3eac53df59752adbff60e7a33bdb17e716a527d5a6d"
+      },
+      {
+        "exact_native_cache_key": "08129e9bd18ab46fed95ea3b03f304c0619bf9c8.pkl",
+        "pkl_sha256": "c9bcc5b0ed1e905c2ba555f215dae347284d96bf81ba9a411b8694584f653024",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "a ratio of ten bullets to one bird.",
+            "exact_native_cache_key": "08129e9bd18ab46fed95ea3b03f304c0619bf9c8.pkl",
+            "cache_input_text_sha256": "617d7611a29621ebe6aa1c8dfe159003a483007faf8b44f2d1d39422236bf6f2",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S13",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "a ratio of ten bullets to one bird.",
+            "exact_native_cache_key": "08129e9bd18ab46fed95ea3b03f304c0619bf9c8.pkl",
+            "cache_input_text_sha256": "617d7611a29621ebe6aa1c8dfe159003a483007faf8b44f2d1d39422236bf6f2",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "c9bcc5b0ed1e905c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          56320
+        ],
+        "unprocessed_array_sha256": "c0b67aecd9c28b48eabc29a6c96af9d0115990c789aa492784034a647f35396f"
+      },
+      {
+        "exact_native_cache_key": "c1b09b8f068fe0e14fbc9b63ebb91cfe784cbe47.pkl",
+        "pkl_sha256": "accd088cd37bc1ae9a577a321c7b5f9090da850866703f206dbfc5b33424423c",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "He likened the resilient birds' toughness to the armour of tanks.",
+            "exact_native_cache_key": "c1b09b8f068fe0e14fbc9b63ebb91cfe784cbe47.pkl",
+            "cache_input_text_sha256": "4dc104ddb805bcfac85dbe97542a9486820270e61ac65dd707ff3ee83130ba31",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          88576
+        ],
+        "unprocessed_array_sha256": "dec4426bf8d19b1a5426182539f7dca64e3bb55a246f861dc56c37c8857b7b67"
+      },
+      {
+        "exact_native_cache_key": "582f2df9068cafa8d1525786cb1869b99d6ff98a.pkl",
+        "pkl_sha256": "2c9f2189bd36fea0cd9784cbb1b2d072b531110e19ba996da6899086f3255d2f",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Five weeks of warfare had barely dented the hardy flocks' endurance.",
+            "exact_native_cache_key": "582f2df9068cafa8d1525786cb1869b99d6ff98a.pkl",
+            "cache_input_text_sha256": "920e61fe1861465334fde7e185447ec8e43f4c467890418e38f67f0d4e2c7be0",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          105984
+        ],
+        "unprocessed_array_sha256": "2072bc1d11a2963157fcff188f6ed9274d2ee68d7e9ab40027f6e81d34cdf83b"
+      },
+      {
+        "exact_native_cache_key": "346361edb7f55989b5470aa64e9f887936cc66ea.pkl",
+        "pkl_sha256": "835ae82fb8e03d34dc029b3eba138e34d42ea77dbe8c185466c13810a9a2030a",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Later pleas for reinforcements were refused, and intervention gave way to a bounty sanctioned by the government.",
+            "exact_native_cache_key": "346361edb7f55989b5470aa64e9f887936cc66ea.pkl",
+            "cache_input_text_sha256": "cbff741e39b11e256c5d11d4d23f5a7a7e28d3e45dd1c3c78eb3e584b326c9b0",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          171008
+        ],
+        "unprocessed_array_sha256": "2f99ca8528eb38a0184946c5f6c7d049153764dc3a38d9eeeeea4023c0413e9f"
+      },
+      {
+        "exact_native_cache_key": "36c0130fd5584bb18621ede3b2802ddb8ad6bfeb.pkl",
+        "pkl_sha256": "c97811d699cdc17cfac8841ca164b8a3a0628a1da8a98e6d1f68efefe0b94518",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Later pleas for reinforcements were refused,",
+            "exact_native_cache_key": "36c0130fd5584bb18621ede3b2802ddb8ad6bfeb.pkl",
+            "cache_input_text_sha256": "b137a272176832d31771d6b39584825659651b580e572c4cb696dbee168ffe69",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S16",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Later pleas for reinforcements were refused,",
+            "exact_native_cache_key": "36c0130fd5584bb18621ede3b2802ddb8ad6bfeb.pkl",
+            "cache_input_text_sha256": "b137a272176832d31771d6b39584825659651b580e572c4cb696dbee168ffe69",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "c97811d699cdc17c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          64000
+        ],
+        "unprocessed_array_sha256": "c7f55443e3891ea973c4152b683151e94194d228a308156f781cdf1556212766"
+      },
+      {
+        "exact_native_cache_key": "8ca049f9af6d2e7b7f5db3f9a12480b2d0ddf230.pkl",
+        "pkl_sha256": "1908f74e84d2a19df9cd963444275cf19c1452eaa25e5e38dcc9880311af39aa",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and intervention gave way to a bounty sanctioned by the government.",
+            "exact_native_cache_key": "8ca049f9af6d2e7b7f5db3f9a12480b2d0ddf230.pkl",
+            "cache_input_text_sha256": "496ae9da3fe63fe9df5245ab61ab12717474234705f78f51ca645a349e826708",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S16",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and intervention gave way to a bounty sanctioned by the government.",
+            "exact_native_cache_key": "8ca049f9af6d2e7b7f5db3f9a12480b2d0ddf230.pkl",
+            "cache_input_text_sha256": "496ae9da3fe63fe9df5245ab61ab12717474234705f78f51ca645a349e826708",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "1908f74e84d2a19d",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          100864
+        ],
+        "unprocessed_array_sha256": "4db754ddca72fd8bf1934ca447c0a8914c3858c3d5b448978b77f12a5c453f4d"
+      },
+      {
+        "exact_native_cache_key": "bd58de11989003bcb5e06091f4a3180de8dc45d6.pkl",
+        "pkl_sha256": "26093c745063c21caa7b9cec7c8e08e4fe2592fc6a7b0af3eb3a859f0c5396c1",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "This payout per bird gave farmers compensation and an incentive for extermination.",
+            "exact_native_cache_key": "bd58de11989003bcb5e06091f4a3180de8dc45d6.pkl",
+            "cache_input_text_sha256": "289848b111c3b87b50ca4ed0af6e01c76287c58c07fbf047e77331d3bc81e670",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          137728
+        ],
+        "unprocessed_array_sha256": "ace044098bb110dcb33dd3e29176cb4e9d7ca21dac7538ce45f7920b2d4aa563"
+      },
+      {
+        "exact_native_cache_key": "fb9a22a4f57b0646f2fc4cf2fa8786161a338064.pkl",
+        "pkl_sha256": "925bfee30b305f2dd41607a16163113ceb86aa6993a5ea0d26783cbb86a2c65b",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "This payout per bird gave farmers compensation",
+            "exact_native_cache_key": "fb9a22a4f57b0646f2fc4cf2fa8786161a338064.pkl",
+            "cache_input_text_sha256": "c411f01cf6fe92bc79c9c4fe2a66da01b1921c78d1b57cbb709ef52014d53b5a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "925bfee30b305f2d",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          70656
+        ],
+        "unprocessed_array_sha256": "6800d5b60455f198f002481a4b5c3decfdbdd6c63219f388f5914159f0baf418"
+      },
+      {
+        "exact_native_cache_key": "c70e1e41f30b0a704d275c6fbf41cb11aa694a9d.pkl",
+        "pkl_sha256": "8fcf5ccf17c6a19c9f3844cb312efc5c14d60598aba0b1e2330fda2466f313fe",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and an incentive for extermination.",
+            "exact_native_cache_key": "c70e1e41f30b0a704d275c6fbf41cb11aa694a9d.pkl",
+            "cache_input_text_sha256": "77ff9646a450e3134ac2ddbe69df2ba1adf0b2c6d43ef7bb0739b6c5ebe4c111",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "8fcf5ccf17c6a19c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          50688
+        ],
+        "unprocessed_array_sha256": "e9fcae0cfc1aaf823b1858d80d4524545600a3d1358aa280afb898e78e3494b2"
+      },
+      {
+        "exact_native_cache_key": "18e23978e4c781694a3ad963079a57055a141504.pkl",
+        "pkl_sha256": "04840faacb20b3b802abdc52c54daf0fb67bfaf48f354dde8ce63b190619eb19",
+        "native_single_thread_marker_present": false,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Farmers claimed over 57,000 payments in six months of 1934, more than fifty-seven times Meredith's 986 kills.",
+            "exact_native_cache_key": "18e23978e4c781694a3ad963079a57055a141504.pkl",
+            "cache_input_text_sha256": "897b9d7d91655bb0f20f114ff67065d454306f2a7f3a9d41271251fad74e7e52",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          252416
+        ],
+        "unprocessed_array_sha256": "4d4fc437d313da6a732c2c6953f299224c085b4ab529907ed4a246a473452f5d"
+      },
+      {
+        "exact_native_cache_key": "d33eb84c37c6cc5beb17a4a6c4cfc25b3f03a3bc.pkl",
+        "pkl_sha256": "3403078ae4b8da17a7f1b716026e125bd9c5ba0dd445b6ace88e2bf51126e8eb",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Farmers claimed over 57,000 payments in six months of 1934,",
+            "exact_native_cache_key": "d33eb84c37c6cc5beb17a4a6c4cfc25b3f03a3bc.pkl",
+            "cache_input_text_sha256": "b1a280afa794a829064b387af4386a67bb7ae9237eab14f27ea5fe3dd7d227b1",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S18",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Farmers claimed over 57,000 payments in six months of 1934,",
+            "exact_native_cache_key": "d33eb84c37c6cc5beb17a4a6c4cfc25b3f03a3bc.pkl",
+            "cache_input_text_sha256": "b1a280afa794a829064b387af4386a67bb7ae9237eab14f27ea5fe3dd7d227b1",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "3403078ae4b8da17",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          160256
+        ],
+        "unprocessed_array_sha256": "3833c42fc54c4cdd2bd8c45027119b24d140fa0e1bbd2d0a48347346d4076322"
+      },
+      {
+        "exact_native_cache_key": "fd2bfef3996fe417d4083202806dbc3c2e4c2973.pkl",
+        "pkl_sha256": "dcf1f26956c0d26edfa7553a9179c35d07713bbb7da4b7ec4fa4d1efbebd9cf5",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "more than fifty-seven times Meredith's 986 kills.",
+            "exact_native_cache_key": "fd2bfef3996fe417d4083202806dbc3c2e4c2973.pkl",
+            "cache_input_text_sha256": "f628fa157aa704141717f0cb648765ae2e454eca4adf0c07e45c351d5480ace8",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": false
+          },
+          {
+            "sentence": "S18",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "more than fifty-seven times Meredith's 986 kills.",
+            "exact_native_cache_key": "fd2bfef3996fe417d4083202806dbc3c2e4c2973.pkl",
+            "cache_input_text_sha256": "f628fa157aa704141717f0cb648765ae2e454eca4adf0c07e45c351d5480ace8",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": false
+          }
+        ],
+        "native_single_thread_marker_value": "dcf1f26956c0d26e",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          108032
+        ],
+        "unprocessed_array_sha256": "946f65e185f0d507f980624c2950933a3172ab859e73df565a669bc13f0d0e36"
+      }
+    ],
+    "missing_reference_key_count": 49,
+    "observed_missing_keys_covered": [],
+    "new_private_cache_names": [
+      "00edec357f9ef24ab75c8d6fdb778a14222ed3a6.pkl",
+      "00edec357f9ef24ab75c8d6fdb778a14222ed3a6.pkl.单线程",
+      "08129e9bd18ab46fed95ea3b03f304c0619bf9c8.pkl",
+      "08129e9bd18ab46fed95ea3b03f304c0619bf9c8.pkl.单线程",
+      "08fdf1eded4d742c0a7391249c68f2a76127bfaf.pkl",
+      "08fdf1eded4d742c0a7391249c68f2a76127bfaf.pkl.单线程",
+      "0b82920c179b6a82bbe85ef8d05e3b846d20d7f0.pkl",
+      "0b82920c179b6a82bbe85ef8d05e3b846d20d7f0.pkl.单线程",
+      "11891e480956a28fa6ba845394aff4f00e48a250.pkl",
+      "11891e480956a28fa6ba845394aff4f00e48a250.pkl.单线程",
+      "1270bbe26b0d715ada6f8872608f8fdfd8698ca6.pkl",
+      "1270bbe26b0d715ada6f8872608f8fdfd8698ca6.pkl.单线程",
+      "161f7761dd763f9cf5c36a4162db6f72e7e23f81.pkl",
+      "161f7761dd763f9cf5c36a4162db6f72e7e23f81.pkl.单线程",
+      "1deade14ac1de9fb026b96c3b828adb3b42a2bac.pkl",
+      "1deade14ac1de9fb026b96c3b828adb3b42a2bac.pkl.单线程",
+      "1df3be551f4bd8ff0614191052720ba4c9c450e2.pkl",
+      "1df3be551f4bd8ff0614191052720ba4c9c450e2.pkl.单线程",
+      "208849f9aaae3c406402525a7a1f62faf45603a4.pkl",
+      "208849f9aaae3c406402525a7a1f62faf45603a4.pkl.单线程",
+      "21eff357f32305ee94d6cdf4ac02e3cd4693072f.pkl",
+      "21eff357f32305ee94d6cdf4ac02e3cd4693072f.pkl.单线程",
+      "29c8e622df8100cc565a0547a0dfbb105a0cda20.pkl",
+      "29c8e622df8100cc565a0547a0dfbb105a0cda20.pkl.单线程",
+      "2a5eaef7eda2e02dcec5604026085838c0688be1.pkl",
+      "2a5eaef7eda2e02dcec5604026085838c0688be1.pkl.单线程",
+      "31e218568112cbb488082ac39068bae21782e895.pkl",
+      "31e218568112cbb488082ac39068bae21782e895.pkl.单线程",
+      "36715fefd7f811c69a7fb340f770fc39a0844fdd.pkl",
+      "36715fefd7f811c69a7fb340f770fc39a0844fdd.pkl.单线程",
+      "36c0130fd5584bb18621ede3b2802ddb8ad6bfeb.pkl",
+      "36c0130fd5584bb18621ede3b2802ddb8ad6bfeb.pkl.单线程",
+      "3f4a54e2f278ddcd2621d7c66ac8d3b4a2e342c5.pkl",
+      "3f4a54e2f278ddcd2621d7c66ac8d3b4a2e342c5.pkl.单线程",
+      "4294476cdce30db5c48b77565d5bb14985550154.pkl",
+      "4294476cdce30db5c48b77565d5bb14985550154.pkl.单线程",
+      "49afd42fdc79d57d786add076abbfdb8be55b604.pkl",
+      "49afd42fdc79d57d786add076abbfdb8be55b604.pkl.单线程",
+      "4a6d45ffe96f8987f8b81eb4bb08bf77945f2f06.pkl",
+      "4a6d45ffe96f8987f8b81eb4bb08bf77945f2f06.pkl.单线程",
+      "4ba11d9b11ef90cfd1149ac87efdc54cb605f24a.pkl",
+      "4ba11d9b11ef90cfd1149ac87efdc54cb605f24a.pkl.单线程",
+      "563f323c52c9546be87c9e77eeb398b545052b0b.pkl",
+      "563f323c52c9546be87c9e77eeb398b545052b0b.pkl.单线程",
+      "58a8947da6d2a5c515d316d5333865f013ee2172.pkl",
+      "58a8947da6d2a5c515d316d5333865f013ee2172.pkl.单线程",
+      "591a24a3b8869c02b11e5618d6d50195ba747d3e.pkl",
+      "591a24a3b8869c02b11e5618d6d50195ba747d3e.pkl.单线程",
+      "62be8ec7a8237e0f07bea7791615c4a05c5f0186.pkl",
+      "62be8ec7a8237e0f07bea7791615c4a05c5f0186.pkl.单线程",
+      "7b30fe4e112bc065f61abfe1ad0f11ece0f15239.pkl",
+      "7b30fe4e112bc065f61abfe1ad0f11ece0f15239.pkl.单线程",
+      "86804dcc26b170ec8b541f5960bb3c44ed9ad8a3.pkl",
+      "86804dcc26b170ec8b541f5960bb3c44ed9ad8a3.pkl.单线程",
+      "8ca049f9af6d2e7b7f5db3f9a12480b2d0ddf230.pkl",
+      "8ca049f9af6d2e7b7f5db3f9a12480b2d0ddf230.pkl.单线程",
+      "901943a455cd153034220226eb5febf927822135.pkl",
+      "901943a455cd153034220226eb5febf927822135.pkl.单线程",
+      "95d2e1df0083d423e58afed3304c4a90483776de.pkl",
+      "95d2e1df0083d423e58afed3304c4a90483776de.pkl.单线程",
+      "9befc91e26ac32830f5fd5bba22ee1ceb4ca2f82.pkl",
+      "9befc91e26ac32830f5fd5bba22ee1ceb4ca2f82.pkl.单线程",
+      "a1e851969519a77166a4752ba11c7f34fa4e0621.pkl",
+      "a1e851969519a77166a4752ba11c7f34fa4e0621.pkl.单线程",
+      "a2d471d1be230f8d01bb475772919e5dc97f3587.pkl",
+      "a2d471d1be230f8d01bb475772919e5dc97f3587.pkl.单线程",
+      "ae3c617806ee86d369ab6597e565a33d706851e3.pkl",
+      "ae3c617806ee86d369ab6597e565a33d706851e3.pkl.单线程",
+      "b1d81bfe81d9912a1e9e39b7aeaa8470edd5e0cc.pkl",
+      "b1d81bfe81d9912a1e9e39b7aeaa8470edd5e0cc.pkl.单线程",
+      "b2edd3f678d2362f9a2107e006ae25e17f37a3c7.pkl",
+      "b2edd3f678d2362f9a2107e006ae25e17f37a3c7.pkl.单线程",
+      "b8203f523aa770f48d6f2917b752e1fbaeab4abc.pkl",
+      "b8203f523aa770f48d6f2917b752e1fbaeab4abc.pkl.单线程",
+      "bcd9702a22a808560385054d100b70f7b1a4b6b2.pkl",
+      "bcd9702a22a808560385054d100b70f7b1a4b6b2.pkl.单线程",
+      "bd299fcdbfba83d1d68daa277d82ab38c9c29392.pkl",
+      "bd299fcdbfba83d1d68daa277d82ab38c9c29392.pkl.单线程",
+      "c48d69f4b87720ee91c9bc87cb3b136bab8132b0.pkl",
+      "c48d69f4b87720ee91c9bc87cb3b136bab8132b0.pkl.单线程",
+      "c5d24e660ec4b013093d988f4fc80eb839739834.pkl",
+      "c5d24e660ec4b013093d988f4fc80eb839739834.pkl.单线程",
+      "c70e1e41f30b0a704d275c6fbf41cb11aa694a9d.pkl",
+      "c70e1e41f30b0a704d275c6fbf41cb11aa694a9d.pkl.单线程",
+      "d33eb84c37c6cc5beb17a4a6c4cfc25b3f03a3bc.pkl",
+      "d33eb84c37c6cc5beb17a4a6c4cfc25b3f03a3bc.pkl.单线程",
+      "e269993d5a8ecebc4633093864c42c597f498519.pkl",
+      "e269993d5a8ecebc4633093864c42c597f498519.pkl.单线程",
+      "ec5d8722810e76227fb49cb18b7893ede044ae29.pkl",
+      "ec5d8722810e76227fb49cb18b7893ede044ae29.pkl.单线程",
+      "ee848ce809d17122d4cc0e844bb4137f48f1b758.pkl",
+      "ee848ce809d17122d4cc0e844bb4137f48f1b758.pkl.单线程",
+      "fb9a22a4f57b0646f2fc4cf2fa8786161a338064.pkl",
+      "fb9a22a4f57b0646f2fc4cf2fa8786161a338064.pkl.单线程",
+      "fd2bfef3996fe417d4083202806dbc3c2e4c2973.pkl",
+      "fd2bfef3996fe417d4083202806dbc3c2e4c2973.pkl.单线程",
+      "ffa9d48f9481b8e0c395c332ce318243096b5ec1.pkl",
+      "ffa9d48f9481b8e0c395c332ce318243096b5ec1.pkl.单线程"
+    ],
+    "native_single_thread_marker_verified": true,
+    "single_thread_sessions": [
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      },
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      }
+    ],
+    "models_sha256": {
+      "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+      "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+      "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+    },
+    "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+    "existing_private_cache_count": 11514,
+    "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "existing_private_cache_bytes_unchanged": true,
+    "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+    "public_repository_cache_unchanged": true,
+    "producer_pcm_existed_before": false,
+    "producer_pcm_sha256_before": null,
+    "producer_pcm_sha256_after": null,
+    "accepted_aac_adts_sha256_before": "2f58c4c347cb705649a07310439b92909a111d165066e6cf80de08cfa51d5d9e",
+    "accepted_aac_adts_sha256_after": "2f58c4c347cb705649a07310439b92909a111d165066e6cf80de08cfa51d5d9e",
+    "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+    "private_cache_exported": false
+  },
+  "checker_reference_preparation_program_sha256": "f6f2a032e207085e7252d036e39430fb80b06e84a721c525b61196d021c5ca12",
+  "fresh_current_article_reference": {
+    "article": "09",
+    "removed_temporary_gt_files": [],
+    "processed_pcm_or_raw_mother_cache_modified": false,
+    "purpose": "Original synth/labels/audit rebuild fresh for this production; no old CPU GT reuse."
+  },
+  "temporary_output_reset": {
+    "removed": [],
+    "production_started_ns": 1794732834743810510,
+    "repository_outputs_modified": false
+  },
+  "reviewed_gain_control_preservation": [
+    {
+      "stage": "canonical-draft",
+      "requested_gain_controls": {},
+      "actual_gain_controls": {},
+      "exactly_preserved": true
+    },
+    {
+      "stage": "canonical-final4K",
+      "requested_gain_controls": {},
+      "actual_gain_controls": {},
+      "exactly_preserved": true
+    }
+  ],
+  "canonical_video_sha256": "37bcb35f0e47b98b10a96e7758b374dce511af5ad05af5e32fea6bf577562fee",
+  "canonical_aac_adts_sha256": "2f58c4c347cb705649a07310439b92909a111d165066e6cf80de08cfa51d5d9e",
+  "canonical_pipeline_passed": true,
+  "cached_input_wav_sha256": null,
+  "final_wav_sha256": "e551aefd008381ad0401d5e54293307958d465960496792f51d3118ff4968e78",
+  "accepted_prior_aac_identical": true,
+  "video_sha256": "25b6219ec2dbe8ba438efc1c320177452fe14713cb5121bcd3c3a6913723e11d",
+  "width": 3840,
+  "height": 2160,
+  "summary_seconds": 2,
+  "summary_frames": 60,
+  "summary_start_seconds": 149.7,
+  "delay_after_voice_seconds": 0.6,
+  "actual_source_collection": {
+    "article": "09",
+    "kind": "actual-production-source-collection",
+    "new_quality_gate": false,
+    "files": {
+      "request_json": {
+        "file": "09-request-source.json",
+        "sha256": "651f4e0057c363613fbb3984fe872b190adf826b264507807c3e4ac8b14f1909",
+        "origin": "immutable_request"
+      },
+      "request_generator": {
+        "file": "09-request-gen.py",
+        "sha256": "8560c1ba5b53b65697fe0927eefdea45550a29cb8b8b1fb7c88745f8e991b9c9",
+        "origin": "immutable_request"
+      },
+      "used_generator": {
+        "file": "09-used-gen.py",
+        "sha256": "8560c1ba5b53b65697fe0927eefdea45550a29cb8b8b1fb7c88745f8e991b9c9",
+        "origin": "actual_production_filesystem"
+      },
+      "actual_working_source": {
+        "file": "09-actual-working-source.json",
+        "sha256": "853ef50e634a69190838f10361978caf9477811a217453511a35f626f0d7881e",
+        "origin": "actual_production_filesystem"
+      },
+      "request_manuscript": {
+        "file": "09-request-manuscript.md",
+        "sha256": "18561381ea8aff83fa0c6f769d81cc09543d879adcf4a16230f7c3c1d211dbc0",
+        "origin": "immutable_request"
+      },
+      "actual_working_manuscript": {
+        "file": "09-actual-working-manuscript.md",
+        "sha256": "e69ea540344ae5415cc0ff08a3e681da6285313546531cf23ee8f521544b3ed1",
+        "origin": "actual_production_filesystem"
+      }
+    },
+    "generator_execution_observed": false,
+    "generator_execution_evidence": "No fresh generator execution log; do not claim this GEN was executed during rendering.",
+    "source_differences": {
+      "file": "09-actual-source-differences.json",
+      "sha256": "3d4aec49c58ca172a91c1fb14937a8bd52a15d08541fbde054c325cfacf022d3"
+    }
+  },
+  "preview_only": false,
+  "finalization_authorized": true,
+  "last_body_hold_frames": 18,
+  "last_body_hold_seconds": 0.6,
+  "summary_start_frame": 4491,
+  "postprocessing_only": true,
+  "original_producer_or_TTS_repeated": false,
+  "true_original_native_full_QA_run": 43696282268,
+  "inherited_original_summary_status_sha256": "7b3b2bdd1a014e2b9e2080310e11dae078d2a872808b2d8deb5e6e55b72619c2",
+  "final_hold_policy_sha256": "4bcae46b68b9584f107966f683af580b474fa9835f101834fe55ed6968dfc36b"
+}

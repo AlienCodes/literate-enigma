@@ -1,0 +1,20 @@
+--- /workspace/work/review47-source54-user148-E41-actual-hold06-intake/code/validate_single_article_new_native148.py
++++ /workspace/work/review52-source09-E46-normal18-intake/code/validate_single_article_new_native148.py
+@@ -25,7 +25,7 @@
+     raw_path = Path(a.upstream_record)
+     raw = V.D.load(raw_path)
+     n = raw['article']
+-    V.require(n in {'54'} and raw['prior_full_delivery_V3_claimed'] is False,
++    V.require(n in {'09'} and raw['prior_full_delivery_V3_claimed'] is False,
+               'Only an actually new approved source with an honest raw inheritance record')
+     quality_path = Path(a.source_validation_handoff)
+     quality = V.D.load(quality_path)
+@@ -62,6 +62,8 @@
+     hpath = out/'archive-handoff.json'
+     hand = V.D.load(hpath)
+     evidence = [raw_path, native_inheritance, Path(__file__)]
++    producer_profile = V.D.load(Path(__file__).resolve().parent / 'normal18-actual-final-frozen-producer-profile.json')
++    evidence += [V.checked(row) for row in producer_profile['actual_producer_programs'].values()]
+     hand.update(kind='actual-new-native-source-QA-then-authorized-normal18-local-tail',
+                 current_source_validation_handoff=spec(quality_path),
+                 original_producer_claimed_prior_delivery_V3=False,

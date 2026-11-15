@@ -1,0 +1,381 @@
+{
+  "request_source_root": "/workspace/work/review09-sourceQA/43696282268/request-source",
+  "final_source_root": "/workspace/work/review09-sourceQA/43696282268/final-source",
+  "catalog_path": "/workspace/work/review09-sourceQA/43696282268/frozen-primary/来源视频清单.json",
+  "order_map_path": "/workspace/work/review09-sourceQA/43696282268/frozen-primary/篇号对照.json",
+  "book_illustrations": {
+    "path": "/workspace/work/punk-print-20261113-v4-compact/archive-payload/考研学人印刷版/2026-11-13-v4/核验/book-illustrations70.json",
+    "bytes": 34325,
+    "sha256": "083da8975cd2204e3f8325f48373d04987aac24c7f9b5c40c5a81282e1cdaf9c"
+  },
+  "illustration_composition_review": {
+    "path": "/workspace/work/video-audit70-20261113/illustrated-tail/composition-qc70.json",
+    "bytes": 45987,
+    "sha256": "e89a77c1079ccffb8dab44a3c81ab79670c41c3b2b5945c33d02fad458bd2592"
+  },
+  "illustration_crop_review": {
+    "path": "/workspace/work/video-audit70-20261113/illustrated-tail/illustration-crop-review70.json",
+    "bytes": 38354,
+    "sha256": "c3117181bb4a39be0823db0781dc53f4dd387853713f53056851da9d869bfeba"
+  },
+  "video_layout_approval": {
+    "path": "/workspace/work/review09-sourceQA/43696282268/09/approved-video-layouts70-frozen.json",
+    "bytes": 42434,
+    "sha256": "c503e190d9fe5404d4334e9b4d4a37a2b1870829f1a6b81b24e06b2dde49a9a1"
+  },
+  "source_derivation": {
+    "factory": {
+      "path": "/workspace/work/video-audit70-20261113/generator_text_preflight.py",
+      "bytes": 21823,
+      "sha256": "1514e91aee9dc04424e5b755cee37b65b8dadef9717f3e6c0cede35f1c03e044"
+    },
+    "original_tools_root": "/workspace/work/video-audit70-20261113/preflight-frozen66-v2-part1/mirror/视频/工具"
+  },
+  "articles": [
+    {
+      "id": "09",
+      "mp4": {
+        "path": "/workspace/work/review09-native/43696282268/09/09-4K-正文后插图2秒-简述2秒.mp4",
+        "bytes": 16138363,
+        "sha256": "1dd511409481847b1a5ea79bf5b54392aa429015a810281e06d4b6dcc7b79d77"
+      },
+      "canonical_mp4": {
+        "path": "/workspace/work/review09-native/43696282268/09/files/09-4K-读完即转简述2秒.mp4",
+        "bytes": 12383207,
+        "sha256": "2c03d8da4eb1282dbd9d6662a415fa58a6d82ccd628b76e85e12579666f5a155"
+      },
+      "qc": {
+        "path": "/workspace/work/review09-sourceQA/43696282268/09/actual-qc-v3.json",
+        "bytes": 6583,
+        "sha256": "8f2b7790078d6c9628d7ea3be53583bc9f518ac1e702d3d5c477dcf6e718b3a4"
+      },
+      "request_source": {
+        "json": {
+          "path": "视频/脚本/09.json",
+          "bytes": 76436,
+          "sha256": "651f4e0057c363613fbb3984fe872b190adf826b264507807c3e4ac8b14f1909"
+        },
+        "gen": {
+          "path": "视频/工具/初稿生成/gen09.py",
+          "bytes": 88091,
+          "sha256": "8560c1ba5b53b65697fe0927eefdea45550a29cb8b8b1fb7c88745f8e991b9c9"
+        },
+        "md": {
+          "path": "新版定稿/09-the-great-emu-war.md",
+          "bytes": 15227,
+          "sha256": "18561381ea8aff83fa0c6f769d81cc09543d879adcf4a16230f7c3c1d211dbc0"
+        }
+      },
+      "final_source": {
+        "json": {
+          "path": "视频/脚本/09.json",
+          "bytes": 75438,
+          "sha256": "853ef50e634a69190838f10361978caf9477811a217453511a35f626f0d7881e",
+          "origin": "official_artifact_working_copy",
+          "artifact_id": 14154628152,
+          "artifact_member": "09-actual-working-source.json"
+        },
+        "gen": {
+          "path": "视频/工具/初稿生成/gen09.py",
+          "bytes": 86722,
+          "sha256": "f6ee6384599eb8f30f33b2187d1106c242e0014373d6a5d2afbd8cab1336f3d7",
+          "origin": "derived_after_final_QC",
+          "derived_from_json_sha256": "853ef50e634a69190838f10361978caf9477811a217453511a35f626f0d7881e",
+          "derivation_proof": {
+            "path": "/workspace/work/review09-sourceQA/43696282268/09/derived-source/derived-source-proof.json",
+            "bytes": 3694,
+            "sha256": "b7cfe4ca6ae9eca7fc92fb6ea064a0c84808ea657477b948c7be5ba6a8f97895"
+          }
+        },
+        "md": {
+          "path": "新版定稿/09-the-great-emu-war.md",
+          "bytes": 15239,
+          "sha256": "e69ea540344ae5415cc0ff08a3e681da6285313546531cf23ee8f521544b3ed1",
+          "origin": "actual_working_manuscript",
+          "artifact_id": 14154628152,
+          "artifact_member": "09-actual-working-manuscript.md"
+        }
+      },
+      "illustration": {
+        "source_id": "09",
+        "new_id": "52",
+        "approved": true,
+        "book_source_sha256": "2f5a8e2cd5364283f158f76a66cd2f239d50974f69f4ac79f18f114abfd9bf41",
+        "path": "/workspace/work/review09-native/43696282268/09/09-插图4K.png",
+        "bytes": 10634149,
+        "sha256": "0007a88a9828ac700c51a5db679611f47ff91a3fc3064a65f1880c3baccc725c",
+        "native_source": {
+          "path": "/workspace/work/booklet70/illustrations/09.png",
+          "bytes": 3216075,
+          "sha256": "2f5a8e2cd5364283f158f76a66cd2f239d50974f69f4ac79f18f114abfd9bf41"
+        }
+      },
+      "stills": [
+        {
+          "path": "/workspace/work/review09-native/43696282268/09/decoded-tail-previews/09-body-last.jpg",
+          "bytes": 172743,
+          "sha256": "5d927249746e46b21d448525b65a1d2e78bcc1f4fb71db7782f656ddb6c7a3ed",
+          "kind": "body_end",
+          "frame": 4472,
+          "video_sha256": "1dd511409481847b1a5ea79bf5b54392aa429015a810281e06d4b6dcc7b79d77",
+          "decoded_from_actual_mp4": true
+        },
+        {
+          "path": "/workspace/work/review09-native/43696282268/09/decoded-tail-previews/09-illustration-first.jpg",
+          "bytes": 581009,
+          "sha256": "60052d75edde84ece9053f78a072dcc022e8e8411de2c055ee20968eea55ba39",
+          "kind": "illustration",
+          "frame": 4473,
+          "video_sha256": "1dd511409481847b1a5ea79bf5b54392aa429015a810281e06d4b6dcc7b79d77",
+          "decoded_from_actual_mp4": true
+        },
+        {
+          "path": "/workspace/work/review09-native/43696282268/09/decoded-tail-previews/09-illustration-last.jpg",
+          "bytes": 581233,
+          "sha256": "74672258f613af4888da6cfa106998f9cdc397e48f7588babfbf50b73c96bd6b",
+          "kind": "illustration",
+          "frame": 4532,
+          "video_sha256": "1dd511409481847b1a5ea79bf5b54392aa429015a810281e06d4b6dcc7b79d77",
+          "decoded_from_actual_mp4": true
+        },
+        {
+          "path": "/workspace/work/review09-native/43696282268/09/decoded-tail-previews/09-summary-first.jpg",
+          "bytes": 301902,
+          "sha256": "77a6ffd3dfe09dd02c517eb926452d16e81fc811afa357e07e111c7d56e05b84",
+          "kind": "summary",
+          "frame": 4533,
+          "video_sha256": "1dd511409481847b1a5ea79bf5b54392aa429015a810281e06d4b6dcc7b79d77",
+          "decoded_from_actual_mp4": true
+        },
+        {
+          "path": "/workspace/work/review09-native/43696282268/09/decoded-tail-previews/09-summary-last.jpg",
+          "bytes": 301880,
+          "sha256": "414da38a7340ceb4eca657dc3f5605dc18abb24f67c53ebf41e7f4c2d913d9c4",
+          "kind": "summary",
+          "frame": 4592,
+          "video_sha256": "1dd511409481847b1a5ea79bf5b54392aa429015a810281e06d4b6dcc7b79d77",
+          "decoded_from_actual_mp4": true
+        }
+      ],
+      "evidence": [
+        {
+          "path": "/workspace/work/review09-native/43696282268/09/09-illustrated-tail-verification.json",
+          "bytes": 6401,
+          "sha256": "0d19a74f86fc5e428e2bea2ba7f8b71e4d8bf42f1572a59bf377aa8f52b26c35"
+        },
+        {
+          "path": "/workspace/work/review09-native/43696282268/09/files/09-status.json",
+          "bytes": 177758,
+          "sha256": "7b3b2bdd1a014e2b9e2080310e11dae078d2a872808b2d8deb5e6e55b72619c2"
+        },
+        {
+          "path": "/workspace/work/review09-native/43696282268/09/files/09-summary-verification.json",
+          "bytes": 2130,
+          "sha256": "a6fb59e10847208b8ebc665df92f9183f9d1d3f465a23e35014de05ca2a415bc"
+        },
+        {
+          "path": "/workspace/work/review09-sourceQA/43696282268/09/derived-source/derived-source-proof.json",
+          "bytes": 3694,
+          "sha256": "b7cfe4ca6ae9eca7fc92fb6ea064a0c84808ea657477b948c7be5ba6a8f97895"
+        },
+        {
+          "path": "/workspace/work/review09-sourceQA/43696282268/09/actual-lossless-packet-proof.json",
+          "bytes": 5883071,
+          "sha256": "ca26d6e6ccde04550cd31e9fccc0176a66d2a1587d680c2da845f4d4c19f294f"
+        },
+        {
+          "path": "/workspace/work/review09-sourceQA/43696282268/09/actual-job-artifact-binding.json",
+          "bytes": 207043,
+          "sha256": "397aa56e7910d05f665301f32bc46b2799402ed00d82de376b82feb7ad43600c"
+        },
+        {
+          "path": "/workspace/work/review09-native/43696282268/09/artifact-files/09-status.json",
+          "bytes": 180474,
+          "sha256": "29b29028ab60844c9148d3a12d99135b563a5ea6c477da4e134a401e61d8128c"
+        },
+        {
+          "path": "/workspace/work/review09-native/43696282268/09/artifact-files/09-actual-source-collection.json",
+          "bytes": 1650,
+          "sha256": "2091d7567658bbb46745b3f83d9ace542dc67e6a44e5748137b93a1e36069c0b"
+        },
+        {
+          "path": "/workspace/work/review09-native/43696282268/09/artifact-files/09-request-source.json",
+          "bytes": 76436,
+          "sha256": "651f4e0057c363613fbb3984fe872b190adf826b264507807c3e4ac8b14f1909"
+        },
+        {
+          "path": "/workspace/work/review09-native/43696282268/09/artifact-files/09-request-gen.py",
+          "bytes": 88091,
+          "sha256": "8560c1ba5b53b65697fe0927eefdea45550a29cb8b8b1fb7c88745f8e991b9c9"
+        },
+        {
+          "path": "/workspace/work/review09-native/43696282268/09/artifact-files/09-used-gen.py",
+          "bytes": 88091,
+          "sha256": "8560c1ba5b53b65697fe0927eefdea45550a29cb8b8b1fb7c88745f8e991b9c9"
+        },
+        {
+          "path": "/workspace/work/review09-native/43696282268/09/artifact-files/09-actual-working-source.json",
+          "bytes": 75438,
+          "sha256": "853ef50e634a69190838f10361978caf9477811a217453511a35f626f0d7881e"
+        },
+        {
+          "path": "/workspace/work/review09-native/43696282268/09/artifact-files/09-request-manuscript.md",
+          "bytes": 15227,
+          "sha256": "18561381ea8aff83fa0c6f769d81cc09543d879adcf4a16230f7c3c1d211dbc0"
+        },
+        {
+          "path": "/workspace/work/review09-native/43696282268/09/artifact-files/09-actual-working-manuscript.md",
+          "bytes": 15239,
+          "sha256": "e69ea540344ae5415cc0ff08a3e681da6285313546531cf23ee8f521544b3ed1"
+        },
+        {
+          "path": "/workspace/work/review09-native/43696282268/09/artifact-files/09-actual-source-differences.json",
+          "bytes": 5921,
+          "sha256": "3d4aec49c58ca172a91c1fb14937a8bd52a15d08541fbde054c325cfacf022d3"
+        },
+        {
+          "path": "/workspace/work/review09-native/43696282268/09/artifact-files/09-user-authorization.json",
+          "bytes": 431,
+          "sha256": "1988db5e1993ec1ea4c82ff275ef81597c1010328fe01e14bfcdcec3e1e48240"
+        },
+        {
+          "path": "/dev/shm/source09-book52-six-feedback-v3-FINAL-INPUT-PREPARATION-20261115/SOURCE09-BOOK52-SIX-FEEDBACK-V3-FINAL-INPUT-PREPARATION-HANDOFF.json",
+          "bytes": 9097,
+          "sha256": "8d172ebc9183f9d2e1b754fd8b9de841cd7a8f32078f7dfdb60b630e7d498256"
+        },
+        {
+          "path": "/dev/shm/USER-BOOK52-FINALIZATION-AFTER-CLAIMED-20261115.json",
+          "bytes": 1898,
+          "sha256": "9519e488124361403fabf524f016c8985119c7c93d6bd1b58bbde735b371b076"
+        },
+        {
+          "path": "/dev/shm/USER-BOOK52-CLAIM-TRANSLATION-AND-FOCUS-20261115.json",
+          "bytes": 923,
+          "sha256": "8ccaf2f216a9ee4028ddf4cec362bf36c38c740ff375e095b4728ea552f2fb77"
+        },
+        {
+          "path": "/workspace/work/source09-book52-five-feedback-COLLECTING-NOT-FINAL-20261115/USER-BOOK52-FIVE-ACTUAL-TEXT-FEEDBACK-COLLECTING.json",
+          "bytes": 2048,
+          "sha256": "a0a1e01919f343e201f35f9029f13655db1847066c7881759ebfee9a2dad61db"
+        },
+        {
+          "path": "/dev/shm/root-source09-book52-final-input-and-actual-consent-data-adoption-20261115.json",
+          "bytes": 1535,
+          "sha256": "f91a017b74bbcae84e27edccb72f0db5f9616bc47402076bc5a48322441fc20a"
+        },
+        {
+          "path": "/dev/shm/root-source09-three-genuine-user-rows-caller-and-existing-fivecore-profile-adoption-20261115.json",
+          "bytes": 8181,
+          "sha256": "575a5308dea038a46731e6ee9f820eca6a927d1893748aefaf411df743672c0e"
+        },
+        {
+          "path": "/dev/shm/video-official09-book52-original-fivecore-three-genuine-feedback-rows-full-native-20261115/.github/video-revision-batch/approved-video-layouts70.json",
+          "bytes": 42434,
+          "sha256": "c503e190d9fe5404d4334e9b4d4a37a2b1870829f1a6b81b24e06b2dde49a9a1"
+        },
+        {
+          "path": "/workspace/work/review09-native/43696282268/09/actual-unique-native-artifact-intake.json",
+          "bytes": 811,
+          "sha256": "bb8e1dddc27af270308b2d86c5076fe6d470d16d815d80a898a232fab3f61da3"
+        },
+        {
+          "path": "/workspace/work/review09-native/43696282268/09/actual-request-versus-working-manuscript.diff",
+          "bytes": 6093,
+          "sha256": "762ee446c80d310e3788e01c592ada97f83d2c03cd0ad30bfaf49b49eca6adc0"
+        },
+        {
+          "path": "/dev/shm/source09-book52-six-feedback-v3-FINAL-INPUT-PREPARATION-20261115/final-inputs/视频/脚本/09.json",
+          "bytes": 76436,
+          "sha256": "651f4e0057c363613fbb3984fe872b190adf826b264507807c3e4ac8b14f1909"
+        },
+        {
+          "path": "/dev/shm/source09-book52-six-feedback-v3-FINAL-INPUT-PREPARATION-20261115/final-inputs/视频/工具/初稿生成/gen09.py",
+          "bytes": 88091,
+          "sha256": "8560c1ba5b53b65697fe0927eefdea45550a29cb8b8b1fb7c88745f8e991b9c9"
+        },
+        {
+          "path": "/dev/shm/source09-book52-six-feedback-v3-FINAL-INPUT-PREPARATION-20261115/final-inputs/新版定稿/09-the-great-emu-war.md",
+          "bytes": 15227,
+          "sha256": "18561381ea8aff83fa0c6f769d81cc09543d879adcf4a16230f7c3c1d211dbc0"
+        },
+        {
+          "path": "/dev/shm/source09-book52-six-feedback-v3-FINAL-INPUT-PREPARATION-20261115/final-inputs/视频/制作记录/09_待改清单.md",
+          "bytes": 5056,
+          "sha256": "ed01020d676987c5c9ecd8be488cc1e05cd53b3adf2b72c82b711a033d9b7207"
+        },
+        {
+          "path": "/dev/shm/source09-book52-six-feedback-v3-FINAL-INPUT-PREPARATION-20261115/final-inputs/视频/制作记录/逐句确认/09.json",
+          "bytes": 5723,
+          "sha256": "35bf83291f2f13ec513754e0a11bd49d1d447fe06df3531aaa8fde6c744da360"
+        },
+        {
+          "path": "/workspace/work/review09-native/43696282268/09/actual-five-native-boundary-visual-review.json",
+          "bytes": 2168,
+          "sha256": "d35dc90b25fc9d328316b12836ea04b5c0bee6096d7023edd8b27d43da27d5a3"
+        },
+        {
+          "path": "/workspace/work/review09-native/43696282268/09/independent-actual09-source-scope-and-native-status-readonly.json",
+          "bytes": 7741,
+          "sha256": "f989773d3731984a05829c38788368b2c0cbd7e6caea8d544d32ac7ef67d2b8f"
+        },
+        {
+          "path": "/workspace/work/review09-native/43696282268/09/actual-original-function-canonical-to-inline-full-AAC-clock-proof.json",
+          "bytes": 2941882,
+          "sha256": "312d8278b397401cae38eba8a44f732b4f1158c80728f874e7ebac46d4977030"
+        },
+        {
+          "path": "/dev/shm/root-source09-E45-actual-API-and-single-layout-manifest-sourceQA-entry-adoption-20261115.json",
+          "bytes": 2302,
+          "sha256": "f7e1a03b53c01720bca5b2025bb15bc22c8c50f11b544da6518ef991ab1ff446"
+        },
+        {
+          "path": "/workspace/work/review09-native/43696282268/09/actual-video-target-frames/actual-target-frame-identities.json",
+          "bytes": 2742,
+          "sha256": "be5c4f6bd21278ed474b7118bae87fc6f626a7b0d30eb6b0f3b683a869234d85"
+        },
+        {
+          "path": "/workspace/work/review09-native/43696282268/09/actual-video-target-frames/actual-six-feedback-target-native-visual-review.json",
+          "bytes": 3500,
+          "sha256": "b4ccf6c2913e2fc2e17b03f6129e022d1aeeb47e2e00b5a1a1da7aa017c70642"
+        },
+        {
+          "path": "/workspace/work/review09-native/43696282268/09/actual-video-target-frames/S2C2-quarter-actual-frame525.jpg",
+          "bytes": 257379,
+          "sha256": "e85a9e43ab777b81623c1629262cb854cab2754aedfb15bfd7f68c66e1e17a12"
+        },
+        {
+          "path": "/workspace/work/review09-native/43696282268/09/actual-video-target-frames/S3C1-drought-actual-frame675.jpg",
+          "bytes": 390553,
+          "sha256": "204172d7e20697ce8e413df6c7841013499b845c9f7592634556ff8774018662"
+        },
+        {
+          "path": "/workspace/work/review09-native/43696282268/09/actual-video-target-frames/S7C1-offensive-actual-frame1725.jpg",
+          "bytes": 199896,
+          "sha256": "1a46b0fba607691313f3392e1efa84dacd3ebdebe26592a260b0ae2b0af6ab02"
+        },
+        {
+          "path": "/workspace/work/review09-native/43696282268/09/actual-video-target-frames/S12C1-was-recalled-actual-frame2925.jpg",
+          "bytes": 178124,
+          "sha256": "fc4869c2480b1adbd23153ee461f72e2a43ffd22164c797a570a36682f09a969"
+        },
+        {
+          "path": "/workspace/work/review09-native/43696282268/09/actual-video-target-frames/S15C1-barely-dented-actual-frame3525.jpg",
+          "bytes": 379944,
+          "sha256": "555f9cfb6b71f6dbf2bd59058c9a6364162e778db56d5fdf71953dd069f636c2"
+        },
+        {
+          "path": "/workspace/work/review09-native/43696282268/09/actual-video-target-frames/S18C2-claimed-and-note-actual-frame4275.jpg",
+          "bytes": 392402,
+          "sha256": "b8befdbe9026283d1d7fff0ecdb3126a0d75452ff95ba4e20fe5f626e7d08866"
+        },
+        {
+          "path": "/workspace/work/review09-sourceQA/43696282268/09/approved-video-layouts70-frozen.json",
+          "bytes": 42434,
+          "sha256": "c503e190d9fe5404d4334e9b4d4a37a2b1870829f1a6b81b24e06b2dde49a9a1"
+        }
+      ]
+    }
+  ],
+  "mapping_commit": "8404ddff99dfa094aa005fec70643d9da55e21fc",
+  "audio_changed_articles": []
+}
