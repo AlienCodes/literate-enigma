@@ -2,7 +2,7 @@
 from pathlib import Path
 from fractions import Fraction
 import hashlib,json,subprocess,tempfile
-REFERENCE_SHA = 'ba8cd14d98c14f456470705515aeafac0b044e328fbc3c20ec5a27e371a2e845'
+REFERENCE_SHA = '6cf01b6b4a02da7c26e332930dc1ba4ee18a0f74bfda057e015f029f3eb97ed5'
 
 def require(ok, message):
     if not ok:
