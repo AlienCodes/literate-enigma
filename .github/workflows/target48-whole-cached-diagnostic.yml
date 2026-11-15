@@ -135,7 +135,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: native48-only-S10-restorer-current513d-cached-scalar
+          name: native48-only-S10-restorer-preassert-labeled-cached-scalar
           path: |
             target48-whole-public/*.json
           retention-days: 30
