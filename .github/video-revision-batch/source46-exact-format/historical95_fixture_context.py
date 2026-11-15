@@ -13,6 +13,7 @@ import uuid
 
 MANIFEST_SHA256 = 'e81d2f49eea100c89a75cbe286b1f8422e4e80e993f59e05c0db3d3e361805bd'
 COMMIT = 'b24406d11f2ddd936f65bcc344aa9a7d32d074da'
+ORIGINAL_FONT_FILES = {'Inter.ttf': '29160a80ff49ddcab2c97711247e08b1fab27a484a329ce8b813d820dc559031', 'MaShanZheng-Regular.ttf': '6d2546bb189c732a8ca29af9e22457b152387d158aa459e4ac2ce1e51788b7fb', 'NotoSansSC.ttf': 'a3041811a78c361b1de50f953c805e0244951c21c5bd412f7232ef0d899af0da', 'ZCOOLQingKeHuangYou-Regular.ttf': '54f0c0df4308cd74cd0f2fd3494ae054dbc4a1fd6fa7d71f4807eb4cdd8b4136'}
 
 
 def require(ok, message):
@@ -48,9 +49,20 @@ def validate_runtime_context(root, tools, work, alias=Path('/home/user/postgradu
             'Original canonical repository alias must exist before format quickcheck')
     fonts = tools / 'fonts'
     require(fonts.is_dir(), 'Original tools fonts missing')
-    for path in (root / '视频/资源/字体', work / 'fonts'):
-        require(path.is_dir() and path.resolve(strict=True) == fonts.resolve(strict=True),
-                'Original font setup must precede format quickcheck: ' + str(path))
+    observations = []
+    # The real original checkout has two distinct directories containing the
+    # same immutable font blobs. Bind content, not directory inode identity.
+    for path in (fonts, root / '视频/资源/字体', work / 'fonts'):
+        require(path.is_dir(), 'Original font setup must precede format quickcheck: ' + str(path))
+        values = {}
+        for name, expected in ORIGINAL_FONT_FILES.items():
+            font = path / name
+            require(font.is_file() and sha(font) == expected,
+                    'Original font bytes mismatch: ' + str(font))
+            values[name] = {'sha256': sha(font), 'bytes': font.stat().st_size}
+        observations.append({'path': str(path), 'realpath': str(path.resolve(strict=True)), 'files': values})
+    return {'canonical_repository_alias_exact': True, 'original_four_font_fullSHA_exact_in_all_three_roles': True,
+            'font_roles': observations, 'font_files_changed': False}
 
 
 def prepare_fixture_plan(root, work, package):
