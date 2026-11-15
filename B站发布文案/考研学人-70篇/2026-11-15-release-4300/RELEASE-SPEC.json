@@ -1,0 +1,70 @@
+{
+  "kind": "ROOT-reviewable-separately-namespaced-small-release-code-specification",
+  "repository": "alienalgorithm/postgraduate-vocabulary",
+  "backup_code_archive_repository": "AlienCodes/literate-enigma",
+  "backup_code_archive_branch": "codex/all-deliverables-20261113",
+  "backup_master_write_allowed": false,
+  "tag": "bilibili-4300-covers-and-description-2026.11.15",
+  "name": "考研学人｜4300封面与趣味简介（4:3／16:9）",
+  "source_policy": "No rendering or reencoding. Fetch exact existing original bytes independently by unauthenticated immutable raw HTTP from both permanent archives; require exact size and full SHA256 on all22 complete streams.",
+  "input_contract": {
+    "release_originals": 10,
+    "final_images": 4,
+    "latest_emoji_copy_TXT": 6,
+    "verification_only_bilingual_catalog": 1,
+    "all_other_31_materials": "Remain permanently in GitHub; old drafts, prompts, raw generated images and user request records are not Release assets.",
+    "images": "1440x1080 PNG/JPEG and1600x900 PNG/JPEG; actual header dimensions and format must match exact allowlisted filenames.",
+    "titles": "Exact catalog01..70, unique source IDs; full bilingual directory and short Chinese directory must match each catalog title verbatim after emoji; concatenated four parts must equal full directory row for row."
+  },
+  "exact_release_asset_contract": {
+    "individual_originals": 10,
+    "MANIFEST.json": 1,
+    "SHA256SUMS.txt": 1,
+    "BILIBILI-4300-COVERS-AND-DESCRIPTION-2026.11.15.zip": 1,
+    "total": 13,
+    "ZIP_members": 12,
+    "ZIP_members_explanation": "Only ten original files, MANIFEST.json and SHA256SUMS.txt; no folders, duplicate names or extra entries. Deterministic ZIP_STORED, original bytes unchanged. SHA256SUMS covers all ten originals plus MANIFEST; ZIP SHA256 is in Release body and permanent verification report to avoid self-referential checksums.",
+    "ZIP_verification": "Full ZIP CRC test, exact member set and exact bytes for every member before upload and after public whole-download."
+  },
+  "required_ROOT_and_sole_writer_completion": [
+    "Wait for actual latest V6-or-later image generation/export, ROOT visual/header verification, new handoff and permanent dualarchives; populate only the four real final image data entries and cover_source_prefix from that evidence. Script rejects V5 prefix even if accidentally armed.",
+    "Confirm actual text17 dualarchive closure and independent readback evidence, now primary e42df1bd9f988c70413f9be653f1470beecf1a64 and backup13a5ff03ae9e9bc50b54c5d552c7cf881ba9fdab; all31 archive materials are already permanent.",
+    "Insert ROOT actual new release authority event SHA256 and approved=true in a new release-config.json; ready=true only after ROOT review. Keep raw user messages, ROOT state and private references outside public code and assets.",
+    "Archive code through sole writer on an isolated namespaced publication branch or after61-asset canonical Git guard closes. Preserve all existing video workflows, exact70 contract, old covers and old Releases.",
+    "Install separately named workflow and code/config on primary through sole writer. Backup only archives source/config; workflow itself is restricted to primary repository.",
+    "Run installed workflow_dispatch at exact intended full commit and supply full config SHA256. The unique release tag binds to this exact workflow commit; never overwrite or move an old tag.",
+    "Archive successful INPUT-DUAL-HTTP-READBACK.json and PUBLIC-RELEASE-VERIFICATION.json permanently through sole writer in both repositories. The temporary Actions artifact is only transport, never the sole permanent record.",
+    "Only report release completion after public whole-download SHA256 for all13 assets and ZIP CRC/internal bytes pass."
+  ],
+  "collision_and_write_policy": {
+    "creation": "Create draft first using exact unique tag, full workflow commit and deterministic marker containing config SHA256 plus manifest SHA256. Existing orphan tag is rejected.",
+    "draft_resume": "Only exact tag/name/target/body/marker, same commit, and existing asset subset whose server digest/size/state all match. Absent tag may be resumed only for an exact matching draft because GitHub may create its tag at publication.",
+    "published_resume": "Verify-only; require all13 existing assets. No upload or edit of an existing published release.",
+    "mutations": "No delete, clobber, git commit, branch update, tag update or backup Release API. Only primary create draft, upload missing matching assets, and publish that draft.",
+    "public_verification": "Unauthenticated whole HTTP200 download of every asset; exact complete size/full SHA256 and original bytes, plus ZIP CRC/internal bytes. Server digest must also equal expected full SHA256."
+  },
+  "isolation": {
+    "new_workflow": ".github/workflows/publish-bilibili-4300-cover-description.yml",
+    "new_code_root": "B站发布文案/考研学人-70篇/2026-11-15-release-4300",
+    "existing_main70_video_workflow_changed": false,
+    "existing_main70_asset_contract_changed": false,
+    "old_V4_or_V5_input_bytes_changed": false,
+    "completed70_video_claim": false,
+    "current_completed_video_count": 57,
+    "Bilibili_posting": false
+  },
+  "offline_tests": "python3 -m unittest -v test_publish_release.py; eight self-contained tests cover pending/mutable config rejection, exact dualreadback tampering, image header dimensions/truncation, full70 title/order/part checks, deterministic original-byte ZIP and corruption, draft create/resume, public verify-only and collision/server digest rejection.",
+  "public_package_excludes": [
+    "credentials",
+    "environment caches",
+    "models",
+    "ROOTSTATE",
+    "raw user messages",
+    "private access references",
+    "historical drafts",
+    "raw generated images",
+    "prompts",
+    "videos"
+  ],
+  "latest_cover_requirement": "The book facing viewers in both ratios must visibly carry 考研学人. V5 is historical and must not be armed or released. Exact qualified V6-or-later four final image bytes and dualarchive commits remain pending."
+}

@@ -1,0 +1,23 @@
+--- original-manual-workflow
++++ new-scoped-branch-push-and-exact-config-pin
+@@ -1,6 +1,11 @@
+ name: Publish 4300 Bilibili covers and emoji description
+ 
+ on:
++  push:
++    branches:
++      - codex/bilibili-4300-small-release-20261115
++    paths:
++      - 'B站发布文案/考研学人-70篇/2026-11-15-release-4300/RELEASE-TRIGGER.json'
+   workflow_dispatch:
+     inputs:
+       config_sha256:
+@@ -21,7 +26,7 @@
+     runs-on: ubuntu-latest
+     timeout-minutes: 20
+     env:
+-      CONFIG_SHA256: ${{ inputs.config_sha256 }}
++      CONFIG_SHA256: ${{ inputs.config_sha256 || '7e16d7d7ad5f596a6a3664179ae47a087ea2201d10125b2f9c57024f1d769333' }}
+       RELEASE_OUTPUT: ${{ runner.temp }}/bilibili-4300-cover-description-release
+     steps:
+       - name: Check out the separately scoped publisher

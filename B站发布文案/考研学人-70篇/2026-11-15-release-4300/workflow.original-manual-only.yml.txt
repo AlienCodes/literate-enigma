@@ -1,0 +1,55 @@
+name: Publish 4300 Bilibili covers and emoji description
+
+on:
+  workflow_dispatch:
+    inputs:
+      config_sha256:
+        description: Full SHA256 of ROOT reviewed armed release-config.json
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: bilibili-4300-covers-and-description-2026.11.15
+  cancel-in-progress: false
+
+jobs:
+  publish-small-release:
+    if: github.repository == 'alienalgorithm/postgraduate-vocabulary'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      CONFIG_SHA256: ${{ inputs.config_sha256 }}
+      RELEASE_OUTPUT: ${{ runner.temp }}/bilibili-4300-cover-description-release
+    steps:
+      - name: Check out the separately scoped publisher
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: false
+          sparse-checkout: |
+            B站发布文案/考研学人-70篇/2026-11-15-release-4300
+      - name: Run offline guards
+        working-directory: B站发布文案/考研学人-70篇/2026-11-15-release-4300
+        run: python3 -m unittest -v test_publish_release.py
+      - name: Download archived originals, verify, and publish the small release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          python3 B站发布文案/考研学人-70篇/2026-11-15-release-4300/publish_release.py
+          --config B站发布文案/考研学人-70篇/2026-11-15-release-4300/release-config.json
+          --config-sha256 "$CONFIG_SHA256"
+          --output "$RELEASE_OUTPUT"
+          --publish
+      - name: Preserve runner verification report for sole writer permanent archival
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bilibili-4300-public-release-verification
+          path: |
+            ${{ runner.temp }}/bilibili-4300-cover-description-release/PUBLIC-RELEASE-VERIFICATION.json
+            ${{ runner.temp }}/bilibili-4300-cover-description-release/INPUT-DUAL-HTTP-READBACK.json
+          retention-days: 7
+          if-no-files-found: error
