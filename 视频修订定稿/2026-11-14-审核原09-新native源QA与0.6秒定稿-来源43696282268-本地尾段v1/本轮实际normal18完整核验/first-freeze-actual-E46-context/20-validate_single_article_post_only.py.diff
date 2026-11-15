@@ -1,0 +1,29 @@
+--- /workspace/work/review47-source54-user148-E41-actual-hold06-intake/code/validate_single_article_post_only.py
++++ /workspace/work/review52-source09-E46-normal18-intake/code/validate_single_article_post_only.py
+@@ -6,7 +6,7 @@
+ import argparse,copy,hashlib,importlib.util,json,shutil,sys
+ from pathlib import Path
+ HERE=Path(__file__).resolve().parent
+-BASE=Path('/workspace/work/native-inline-engine-reviewed54-v41-actual148-corrected-native')
++BASE=Path('/workspace/work/native-inline-engine-reviewed09-E45-actual43696282268')
+ sys.path.insert(0,str(BASE))
+ import delivery as D
+ from normal18_contract import actual_normal_tail,current_stills,fresh_derived_record
+@@ -64,7 +64,7 @@
+     record.update(local_postprocessing_only=True,new_native_job_claimed=False)
+     D.write(out/'validated-article-record.json',record);D.write(out/'actual-current-QC.json',qc)
+     item=copy.deepcopy(original['section']);item.update(mp4=spec(movie),qc=spec(out/'actual-current-QC.json'),stills=stills)
+-    item['evidence'].extend(spec(p)for p in(raw_path,review_path,ufile,profile_path,Path('/workspace/work/first50-review-release/USER-REVIEW-2026-11-14-148.json')))
++    item['evidence'].extend(spec(p)for p in(raw_path,review_path,ufile,profile_path,Path('/dev/shm/USER-BOOK52-FINALIZATION-AFTER-CLAIMED-20261115.json')))
+     report={'status':'passed_actual_normal18_post_only','source_id':n,'new_id':original['new_id'],'source_run':prior['source_run'],'local_postprocessing_only':True,'new_native_job_or_TTS_claimed':False,'actual_MP4':spec(movie),'actual_probe':probe,'actual_geometry':g,'actual_audio_chain':[compact_audio(x)for x in audio],'inherited_full_V3':spec(prior_path),'actual_new_tail_proof':spec(raw_path),'actual_visual_review':spec(review_path),'production_delivery_eligible':True,'preview_only':False,'original_source_GEN_MD_voice_QA_unchanged':True}
+     D.write(out/'report.json',report);D.write(out/'actual-sample-input.json',{'kind':'normal18-post-only-inheriting-real-full-V3','articles':[item]})
+     snapshot=out/'code-snapshot';snapshot.mkdir(exist_ok=True);hashes={}
+@@ -72,7 +72,7 @@
+         target=snapshot/p.name;shutil.copyfile(p,target);hashes[p.name]=D.digest(target)
+     validation=[{**r,'relative_validation_path':'inherited-full-V3/'+r['relative_validation_path']}for r in prior['validation_files']]
+     require(D.digest(profile['composition_bridge']['path'])==profile['composition_bridge']['sha256'],'Actual composition bridge differs')
+-    extras=[ufile,raw_path,review_path,timing_path,adapted_path,status_path,profile_path,Path('/workspace/work/first50-review-release/USER-REVIEW-2026-11-14-148.json'),Path(profile['composition_bridge']['path']),*folder.glob('*.png'),*[Path(r['path'])for r in raw['decoded_frame_previews']]]
++    extras=[ufile,raw_path,review_path,timing_path,adapted_path,status_path,profile_path,Path('/dev/shm/USER-BOOK52-FINALIZATION-AFTER-CLAIMED-20261115.json'),Path(profile['composition_bridge']['path']),*folder.glob('*.png'),*[Path(r['path'])for r in raw['decoded_frame_previews']]]
+     validation +=[{**spec(p),'relative_validation_path':'actual-normal18-evidence/'+str(i)+'-'+p.name}for i,p in enumerate(dict.fromkeys(extras))]
+     validation +=[{**spec(p),'relative_validation_path':str(p.relative_to(out))}for p in out.rglob('*')if p.is_file()and p.name!='archive-handoff.json']
+     hand={'status':'passed_actual_normal18_post_only_for_permanent_archive','kind':'authorized-normal18-local-tail-derivative','source_run':prior['source_run'],'local_postprocessing_only':True,'new_native_job_or_TTS_claimed':False,'complete70_release_validated':False,'publishing_or_remote_mutation_executed':False,'preview_only':False,'production_delivery_eligible':True,'articles':[{'source_id':n,'new_id':original['new_id'],'passed_per_article':True,'final_mp4':spec(movie),'canonical_source_mp4':original['canonical_source_mp4'],'immutable_native_zip':original['immutable_native_zip'],'validated_record':str(out/'validated-article-record.json'),'section':item}],'additional_public_media_inputs':[spec(up)],'report_path':str(out/'report.json'),'input_path':str(out/'actual-sample-input.json'),'validation_files':validation,'global_approved_evidence':prior['global_approved_evidence'],'tool_source_sha256':hashes,'code_snapshot_path':str(snapshot),'native_root':prior['native_root'],'inherited_full_V3':spec(prior_path)}
