@@ -46,6 +46,9 @@ jobs:
           python -m pip install --quiet -r official-main/视频/工具/环境/requirements.txt
       - name: 仅安装本次真实新110程序印章与原词典上下文
         run: python .github/source68-S2-strict-whole/install_actual_certified20_context.py
+      - name: 安装已审S13真实原母输入语境到producer与checker两路径
+        run: |
+          python .github/source68-S2-strict-whole/apply_exact_existing_S13_context_data.py --tools "$GITHUB_WORKSPACE/official-main/视频/工具" --work "$RUNNER_TEMP/completion-machine/video" --context .github/source68-S2-strict-whole/inputs/source68-S13-context.json --adoption .github/source68-S2-strict-whole/inputs/root-source68-S13-context-adoption.json --output "$GITHUB_WORKSPACE/source68-strict-whole-public/actual-shared-S13-context-data-install.json"
       - uses: actions/cache/restore@v4
         id: selected-target-mothers
         with:
@@ -79,7 +82,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: source68-V3-baseline-selected-whole-scalar-only
+          name: source68-exactCTX-baseline-selected-whole-scalar-only
           path: source68-strict-whole-public/*.json
           retention-days: 30
           if-no-files-found: error

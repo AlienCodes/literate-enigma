@@ -13,14 +13,15 @@ SOURCE_NO = '68'
 BOOK_ORDER = 53
 TARGET = 'S2'
 COUNT = 19
-PROFILE_SHA256 = 'f9edf45f39fa96f32bf8ded014049a456175d73e27ea7d4e3dd00be43eb24e5a'
+PROFILE_SHA256 = '7c860bc890e5e88ae087b5e16b6ac9e271fea2497930898f0a70b20223fc9669'
 MAKER_SHA256 = '0e6c4ff6dd4ab4e3774bc060188de72356cd9aa37a7bc092d1f28a5508cc1c36'
 CERTIFICATE_SHA256 = '50a3abb8d8388ba4587eed0baab4eed5b57afad9fc73cbdb1aa4b48bbaa56c01'
 STAMP_SHA256 = '7d7ebf20b78143231992f8880f70e3cf1581c75acd2d977bc054e3ff151a1a41'
 OVERLAY_SHA256 = '4b8f093bfe6bf48c0933b457007cb006f33a00450a718c10c1faa9961294b73d'
 REGISTRY_SHA256 = 'dfde6c065a3558b74923ce82865a3b01dae1f839af4456b74de55dc3ff492312'
 DICT_SHA256 = '5f558c61f8ffb99009a89989afcc07a9ce168b2b70a6c9377289040d14ec402b'
-CTX_SHA256 = '4d8905dc1a87f97b707270f03f41ea0fdf2b207ca218ed74608cdb134e3dc8e3'
+CTX_SHA256 = 'ef53a5cc5795929b5477b40550cab61ee709156112a0f2bc7a2deb071845552c'
+CTX_DATA_ADOPTION_SHA256 = '4183cd29926539889575addae04420f28a1662a6783b2cfd5ece983b0826991b'
 OLD_REGISTRY_SHA256 = '91ccecd61ade5284de72f27235c82df3fdff6350576abfac02d2e0db0f346a9a'
 AUDIO_KEYS = ['非人声区间','词尾除阻','停顿处除阻','除阻加强','停顿删除区间','停顿插入点',
               '区间声音指纹','分段增益dB','句子增益dB','段内渐变dB','结尾句','合成标点','列举逗号']
@@ -496,6 +497,9 @@ def main():
         require(digest(a.profile)==PROFILE_SHA256,'Wrong source-specific frozen whole profile')
         profile=json.loads(a.profile.read_text());require(profile['source_id']==SOURCE_NO and profile['target_sentence']==TARGET,'Wrong profile source scope')
         inputs=bind_inputs(a.inputs,profile)
+        require(digest(inputs['exact_S13_context'])==CTX_SHA256 and digest(inputs['S13_context_adoption'])==CTX_DATA_ADOPTION_SHA256, 'Exact independently adopted S13 context input binding differs')
+        context_adoption=json.loads(inputs['S13_context_adoption'].read_text())
+        require(context_adoption['selected_context']['sha256']==CTX_SHA256 and context_adoption['future_producer_and_independent_checkers_must_share_same_declared_context_binding'] is True, 'S13 context data must be shared by producer and all original checker namespaces')
         require(digest(a.execution_adoption)==a.execution_adoption_sha256 and len(a.execution_adoption_sha256)==64,'Separate actual root adoption SHA must be literal-pinned')
         validate_adoption(json.loads(a.execution_adoption.read_text()),digest(__file__),profile['inputs']['mother_intake']['sha256'],profile['allow_selected_target_G36_math'])
         require(Path('/home/user/postgraduate-vocabulary').resolve()==T.parent.parent,'Original canonical ROOT alias differs')
@@ -554,7 +558,10 @@ def main():
                 report['all_frozen_inputs_exact_after']=all(digest(v)==profile['inputs'][k]['sha256']for k,v in inputs.items())
                 report['runtime_contract_files_exact_after']=all(digest(T/Path(r['path']).relative_to('视频/工具'))==r['patch_SHA256']for r in json.loads(inputs['overlay'].read_text())['files'])
                 report['normal_original110_stamp_exact_after']=digest(T/'新管/快测通过.json')==STAMP_SHA256
-                guards=['all_existing_private_cache_files_exact_before_after','only_actual_new_target_original_G36_JSON_added','public_cache_bytes_exact_before_after','original_tools_and_work_maker_bytes_exact_after','all_frozen_inputs_exact_after','runtime_contract_files_exact_after','normal_original110_stamp_exact_after']
+                report['declared_S13_context_sha256']=CTX_SHA256
+                report['declared_S13_context_data_adoption_sha256']=CTX_DATA_ADOPTION_SHA256
+                report['tools_and_work_context_data_exact_after']=digest(T/'发音词典/按语境读音.json')==digest(W/'按语境读音.json')==CTX_SHA256
+                guards=['all_existing_private_cache_files_exact_before_after','only_actual_new_target_original_G36_JSON_added','public_cache_bytes_exact_before_after','original_tools_and_work_maker_bytes_exact_after','all_frozen_inputs_exact_after','runtime_contract_files_exact_after','normal_original110_stamp_exact_after','tools_and_work_context_data_exact_after']
                 report['exact_scope_proved']=bool(report['diagnostic_completed'] and all(report.get(k)is True for k in guards) and all(report['restoration'].get(k)is True for k in ['normal_scripts_namespace_restored','environment_cwd_sys_path_restored','normal_work_inode_and_PCM_restored']))
             math_save_integrity=bool(new_math and all(v.get('strict_readback_exact') is True for v in new_math.values())
                 and all(report.get(k)is True for k in guards)
