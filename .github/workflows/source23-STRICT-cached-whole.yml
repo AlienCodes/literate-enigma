@@ -1,4 +1,4 @@
-name: 书62原成功整轨仅补实际WAV-MD5两标量
+name: 书62唯一原A21词尾t移植严格缓存整轨测量
 on:
   push:
     branches: [codex/finish-05-and-summaries-20261112]
@@ -59,7 +59,7 @@ jobs:
         env:
           CACHE_HIT: ${{ steps.selected-target-mothers.outputs.cache-hit }}
         run: test "$CACHE_HIT" = true
-      - name: 仅旧current及selected各一次严格缓存整轨观测
+      - name: 仅真baseline及唯一原A21修复candidate各一次严格缓存整轨观测
         id: whole-observer
         env:
           AUDIO_ONLY: '1'
