@@ -1,4 +1,4 @@
-name: 目录42原48十二局部PV及两个HL原缓存标量核查
+name: 目录42原48仅S10restorer词尾原缓存标量核实
 on:
   push:
     branches: [codex/finish-05-and-summaries-20261112]
@@ -130,12 +130,12 @@ jobs:
           else:
               work.symlink_to(tools,target_is_directory=True)
           PYENV
-          python -u .github/target48-whole-cached-diagnostic/run_local513d_original_cached_scalar.py
+          python -u .github/target48-whole-cached-diagnostic/run_only_S10_restorer_original_cached_scalar.py
       - name: 仅保存安全标量JSON不导母料音频
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: native48-current513d-twelve-PV-two-HL-cached-scalar
+          name: native48-only-S10-restorer-current513d-cached-scalar
           path: |
             target48-whole-public/*.json
           retention-days: 30

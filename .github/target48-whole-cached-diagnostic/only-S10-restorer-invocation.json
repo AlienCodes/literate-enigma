@@ -1,0 +1,78 @@
+{
+  "files": {
+    "helper": {
+      "name": "native48_only_S10_restorer_current513d_original_cached_scalar.py",
+      "sha256": "dbde90749db98f367d90c16a6e64edfc41d9bd8ae3530ffbbe45e916d3fcc951"
+    },
+    "request": {
+      "name": "48.json",
+      "sha256": "4980ad358636619218f20a8edb618ae543432b82c2124cfac8058790be5e8361"
+    },
+    "baseline-source": {
+      "name": "baseline-source--48.json",
+      "sha256": "0193cbd1859525690e12a470c517cce2f120a1054b204fcfa3c0c392c92abbd7"
+    },
+    "cache-identity": {
+      "name": "48-correct-context-S15-mothers-and-actual-whole3089-private-cache-identity.json",
+      "sha256": "29f7d58ebd14d3ee50c1a779eb7dc95ecb60fd10f9812bff788bdfcf5af8ebe1"
+    },
+    "gain-decision": {
+      "name": "root-actual-whole3089-gain-reconfirmation-decision.json",
+      "sha256": "8ca6078044bb7fea7d308c387f8c0ecc104ab00fbb5639cb61895e61b71739db"
+    },
+    "whole-tuple-measurement": {
+      "name": "48-actual-whole-G36-3089-original-math-and-levels.json",
+      "sha256": "15489d7d69af8dba0d68584873e90353527305e5c63b7f2041ccafa5e7796367"
+    },
+    "whole-report": {
+      "name": "48-four-protection-one-selected-whole-original-scalar.json",
+      "sha256": "57f6f444908d130a327a172a7e2d9e871eb80ded982f515fb101c3e72c292655"
+    },
+    "windows": {
+      "name": "48-current-S10-restorer-w775-845-cached-window-input.json",
+      "sha256": "639c69e137244f75f941c92cfde837cb2385eb18413624f0d1281fdc20edc87c"
+    },
+    "S9-cache-save": {
+      "name": "48-actual-S9-only-private-cache-save-path.json",
+      "sha256": "0587799ef08a4c86d5a0102c13f6edf0a7a47187f8f9e723b6d276e8d21a28a8"
+    },
+    "failed-source": {
+      "name": "48-failed-working-source.json",
+      "sha256": "ecd41e64c7787233054975d4b02998a1767a9fb1c7b304f3568e81eb498b950e"
+    },
+    "failed-proof": {
+      "name": "48-failed-draft-proof.json",
+      "sha256": "1e0ee40d157a39f09589bdbece6d2f5e5935d99a24f4d18c667de59459395ca1"
+    }
+  },
+  "CLI": [
+    "python3",
+    "{helper}",
+    "--tools",
+    "{T}",
+    "--video-root",
+    "{M}",
+    "--request",
+    "{request}",
+    "--baseline-source",
+    "{baseline-source}",
+    "--cache-identity",
+    "{cache-identity}",
+    "--gain-decision",
+    "{gain-decision}",
+    "--whole-tuple-measurement",
+    "{whole-tuple-measurement}",
+    "--whole-report",
+    "{whole-report}",
+    "--windows",
+    "{windows}",
+    "--S9-cache-save",
+    "{S9-cache-save}",
+    "--failed-source",
+    "{failed-source}",
+    "--failed-proof",
+    "{failed-proof}",
+    "--output",
+    "{public-output}/48-only-S10-restorer-current513d-original-cached-scalar.json"
+  ]
+}
