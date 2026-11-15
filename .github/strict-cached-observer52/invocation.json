@@ -1,22 +1,20 @@
 {
   "article": "52",
-  "helper": "observe52_single_final_candidate_whole.py",
-  "helper_sha256": "a473452dba8cd83e9792119f265ef06e457d1f4e076c6902a9ca0a455ac2eced",
+  "helper": "observe52_S3_cached_intermediate_only.py",
+  "helper_sha256": "759d3d466ca70492b8db20ee3c1750a15b58ee926bd2b9261ae86e25c12471ab",
   "arguments": [
-    "--reference",
-    "{namespace}/source52-final-conservative-single-whole-reference.json",
     "--tools",
     "{tools}",
     "--video-root",
     "{video_root}",
-    "--request-source",
-    "{namespace}/52-request-source-c00.json",
+    "--source",
+    "{namespace}/52-selected-physical-source2e49.json",
     "--baseline-report",
-    "{namespace}/actual-two-NV-baseline555946.json",
+    "{namespace}/actual-two-NV555946.json",
+    "--first-whole-report",
+    "{namespace}/actual-first-whole5c4a.json",
     "--mother-contract",
     "{namespace}/actual-six-spoken-mother-cache-contract.json",
-    "--edge-report",
-    "{namespace}/actual-S18-preserved-peak-acb4de.json",
     "--output",
     "{output}"
   ],
@@ -37,13 +35,11 @@
     "调平_4984c8df6b04e6ce5c068372f49331464b416b2b.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
   },
   "included_files": {
-    "source52-final-conservative-single-whole-reference.json": "a27775e2e1ff190c6ee468e7572a4b60117f62aa2efb72421202f0baeda5919d",
-    "52-request-source-c00.json": "c00eb5707f1b269d2ce88fed455f592962d674d46e3bf172ba00cfe6597245f3",
-    "actual-two-NV-baseline555946.json": "55594624daca4a4601146e4cb1822e813782e14e1cdc0a5e65774e8602045822",
-    "actual-S18-preserved-peak-acb4de.json": "acb4de759707e6d123374e6b8db29d0d5dac827758716e71eee17217a67075c1",
+    "52-selected-physical-source2e49.json": "2e494dd76be71f2661f5935b26911b1b94f677627b4b990a3c0376a865030686",
+    "actual-two-NV555946.json": "55594624daca4a4601146e4cb1822e813782e14e1cdc0a5e65774e8602045822",
+    "actual-first-whole5c4a.json": "5c4a2e62624ade5d119086c9525a8d90588efc7507fdbdd04678219dd8f4a156",
     "actual-six-spoken-mother-cache-contract.json": "9d133939b08a08b78cb6810028708618b92a2f2449cf56a67bd9b82506887b79",
-    "SOURCE52-SINGLE-FINAL-CANDIDATE-WHOLE-ROOT-ADOPTION-HANDOFF.json": "3cfdd93ca5a0616c5b3363caf39acacdd43b8fc2aa351364764f929529c12826",
-    "root-source52-conservative-single-final-candidate-whole-code-adoption-decision.json": "398849708c252e706f1fa988795c5a21afa9b917f2604db8c509f67d644023c0"
+    "root-source52-only-S3-actual-local-intermediate-and-quantized-diagnostic-code-adoption-decision.json": "7e35d1d3f86212b1c04b9fb1ab59c109f3b7b4cf581abca4883210c774d242d8"
   },
   "diagnostic_only": true,
   "new_model_inference_authorized": false
