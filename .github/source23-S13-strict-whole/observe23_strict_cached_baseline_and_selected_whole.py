@@ -13,7 +13,7 @@ SOURCE_NO = '23'
 BOOK_ORDER = 62
 TARGET = 'S13'
 COUNT = 19
-PROFILE_SHA256 = 'dd4f2d98703bacdef9e920d96d60e2c7810a730f836a93bd2d54141ed17bb227'
+PROFILE_SHA256 = 'f8de7b465cb2f880bf7b54a6c5ef128546b65cd6cda66e2c33206780bf3576b1'
 MAKER_SHA256 = '1b87c1d4d1685bdd59325587184cca35f853354a015e6fe89c11f150cd2a6239'
 CERTIFICATE_SHA256 = 'c05b6ed258dc9783bdb453f1e7382dac8b40d27f66ac30c26b3ee079c3933c19'
 STAMP_SHA256 = '9aa653ec47c686d9bb0b6c4393444bb50c3c8d2d249fe10a843b0959854f7ea6'
@@ -480,6 +480,37 @@ def compare_phases(profile,report):
     require(report['all_non_target_post_master_float_and_PCM16_exact'],'Non-target mastered samples changed; retain actual ratio and fail scope')
     report['target_pre_master_array_changed']=not np.array_equal(phase_arrays['baseline'][TARGET],phase_arrays['selected'][TARGET])
 
+def exact_data_diff(a,b,path=''):
+    if type(a)is not type(b):return[{'path':path,'before':a,'after':b,'type_changed':True}]
+    if isinstance(a,dict):
+        out=[]
+        for k in sorted(a.keys()|b.keys()):
+            if k not in a or k not in b:out.append({'path':path+'/'+str(k),'before':a.get(k),'after':b.get(k),'missing_before':k not in a,'missing_after':k not in b})
+            else:out+=exact_data_diff(a[k],b[k],path+'/'+str(k))
+        return out
+    if isinstance(a,list)and len(a)==len(b):return sum((exact_data_diff(x,y,path+'/'+str(i))for i,(x,y)in enumerate(zip(a,b))),[])
+    return[]if a==b else[{'path':path,'before':a,'after':b}]
+
+def verify_current_one_graft_candidate(inputs,profile,historical_selected):
+    current_raw=inputs['current_final'].read_bytes();candidate_raw=inputs['candidate'].read_bytes()
+    current=json.loads(current_raw);candidate=json.loads(candidate_raw);scope=profile['exact_one_graft_candidate']
+    require(digest(inputs['current_final'])==scope['current_final_SHA256']and digest(inputs['candidate'])==scope['candidate_SHA256'],'Wrong exact current/candidate full-source roles')
+    require(exact_data_diff(historical_selected,current)==scope['historical_shadow_to_current_exact11_metadata_delta'],'Historical mother shadow is not current final and may not be relabelled')
+    delta=exact_data_diff(current,candidate)
+    require(delta==scope['current_to_candidate_exact_delta'],'Unknown physical DSP/metadata delta outside one original graft plus known S13 raw identity')
+    inverse=candidate_raw
+    for edit in reversed(scope['raw_candidate_inverse_edits']):
+        a,b=edit['candidate_start'],edit['candidate_end'];require(inverse[a:b].hex()==edit['candidate_hex'],'Exact candidate inverse bytes changed')
+        inverse=inverse[:a]+bytes.fromhex(edit['current_hex'])+inverse[b:]
+    require(inverse==current_raw,'Entire raw candidate inverse must equal frozen current source bytes')
+    require(candidate.get('词尾除阻',{}).get('S13')=={'1':[3.7,'t']}and candidate.get('区间声音指纹',{}).get('S13')==scope['actual_S13_mother_fingerprint'],'Wrong original graft/actual raw identity')
+    measured=json.loads(inputs['actual_A21_precheck'].read_text());prior=json.loads(inputs['actual_successful_no_graft_whole'].read_text())
+    require(measured['diagnostic_completed']is True and measured['phases']['selected']['source_sha256']==scope['current_final_SHA256'],'Actual source23 precheck/current role proof required')
+    for known in [measured['phases']['selected'],prior['phases']['selected']]:
+        require(known['actual_voice_fingerprint_table']['指纹']['S13']==scope['actual_S13_mother_fingerprint']and known['observed_sentences']['S13']['actual_raw_w_fingerprint']==scope['actual_S13_mother_fingerprint'],'New graft must bind only the actually measured same two-mother S13 raw identity')
+        require(known['actual_complete_WAV']['file_sha256']==scope['historical_no_graft_WAV_SHA256']and known['actual_codec_packet_payload_side_and_absolute_clock']==scope['historical_no_graft_standard_AAC'],'No-graft history identity is historical only, must be real and exact')
+    return candidate
+
 def main():
     global CACHE
     p=argparse.ArgumentParser()
@@ -522,6 +553,11 @@ def main():
         owner,selected=json.loads(inputs['source'].read_text()),json.loads(inputs['shadow'].read_text())
         baseline=json.loads(inputs['baseline'].read_text());history=json.loads(inputs['history'].read_text())
         support.verify_request(owner,selected,history)
+        historical_selected=selected
+        selected=verify_current_one_graft_candidate(inputs,profile,historical_selected)
+        donor=profile['strict_existing_donor'];require(digest(CACHE/donor['name'])==donor['sha256'],'Exact existing original t donor must hit; no synthesis or replacement')
+        report['historical_fixture_shadow_is_not_new_candidate']=True
+        report['actual_selected_candidate_source_SHA256']=profile['inputs']['candidate']['sha256']
         require(all(str(x['no'])==SOURCE_NO and len(x['sentences'])==COUNT for x in [owner,selected,baseline]),'Wrong actual baseline/request sentence scope')
         require(baseline['title_en']==selected['title_en'],'Non-target title changed')
         bare=lambda d:[' '.join(re.sub(r'\*\*|\{\{.*?\}\}','',c['en']).strip()for c in s['chunks'])for s in d['sentences']]
@@ -533,12 +569,14 @@ def main():
         report.update({'helper_sha256':digest(__file__),'profile_sha256':PROFILE_SHA256,'actual_root_execution_adoption_sha256':a.execution_adoption_sha256,'actual_inputs':{k:digest(v)for k,v in inputs.items()},'actual_used_cache_entries':[],'original_source_first_fresh_import_per_phase':True})
         with support.environment_and_cwd(W,report['restoration']):
             with work_namespace(W/('work_'+SOURCE_NO),scratch,report['restoration']):
-                for label,role in [('baseline','baseline'),('selected','shadow')]:
+                for label,role in [('baseline','baseline'),('selected','candidate')]:
                     report['restoration']['normal_scripts_namespace_restored']=False
                     with support.source_namespace(W,inputs[role].read_bytes(),report['restoration']):
                         run_phase(label,inputs[role].read_bytes(),profile['inputs'][role]['sha256'],paths,support,profile,report,used,new_math)
         report['both_actual_original_whole_observations_completed']=True
         compare_phases(profile,report)
+        require(report['actual_global_master_scale_ratio_selected_over_baseline']==1.0,'Master coefficient must remain exactly one relative to true baseline')
+        require(not new_math,'No original G36 calculation or private SAVE is authorized')
         require(not report['forbidden_model_events'],'Forbidden model endpoint was reached')
         report['diagnostic_completed']=True
     except BaseException as error:

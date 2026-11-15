@@ -1,0 +1,94 @@
+{
+  "kind": "actual-original-A21-target-S13-first-comma-t-graft-one-leaf-and-existing-donor-CODE-ONLY",
+  "source_id": "23",
+  "book_order": 62,
+  "actual_native_run": 43743709345,
+  "actual_original_A21_report": {
+    "path": "/workspace/work/source23-native43743709345-actual-small-precondition-original/files/23-physical-metadata-precheck.json",
+    "bytes": 210163,
+    "sha256": "0443f12a3bb417436153745fc9f0b8c744d5b2fe6d42d24bf37a880dc029d2e1"
+  },
+  "diagnostic_completed_all_restores_true_and_unknown_DSP_gate_honestly_false": true,
+  "actual_original_bad": [
+    [
+      "S13",
+      0,
+      1,
+      "t",
+      "23 S13 第1个标点 ɪmpɹˈɪzənmənt /t/ BAD 除阻全频 -42.8 dB、2 kHz 以上 -70.7 dB、10 ms、闭塞最低 -52.8 dB、重心 175 Hz（门槛：2 kHz 以上 ≥ -36 dB、≤ 110 ms、重心 ≥ 1000 Hz）"
+    ]
+  ],
+  "actual_exact_one_physical_delta": [
+    {
+      "path": "/词尾除阻/S13",
+      "before": null,
+      "after": {
+        "1": [
+          3.7,
+          "t"
+        ]
+      },
+      "missing_before": true,
+      "missing_after": false
+    }
+  ],
+  "source_before": {
+    "path": "/workspace/work/source23-source56-source68-original-W-three-data-dependency-staging-retry-CODE-ONLY-20261115/source23-book62-finite-original-W-data-staged-A21-native-READY/.github/video-revision-batch/request/23/视频/脚本/23.json",
+    "bytes": 57586,
+    "sha256": "2cb78384a724f150646d919a26d13d7a9c0ab44780e68b672bbd6994499bc499"
+  },
+  "GEN_before": {
+    "path": "/workspace/work/source23-source56-source68-original-W-three-data-dependency-staging-retry-CODE-ONLY-20261115/source23-book62-finite-original-W-data-staged-A21-native-READY/.github/video-revision-batch/request/23/视频/工具/初稿生成/gen23.py",
+    "bytes": 55010,
+    "sha256": "52c0a5d234f1f489c8d26dfe5ad654d45c73b655d0ee980cf3bc36a86e9d8be4"
+  },
+  "candidate_source": {
+    "path": "/workspace/work/source23-actual-A21-S13-first-stop-original-graft-one-leaf-measurement-CODE-ONLY-20261115/one-original-A21-S13-graft-candidate/视频/脚本/23.json",
+    "bytes": 57634,
+    "sha256": "ccb47ebe3b8888d0b5ec1fc051eb35c927b4a5f4be4f77d7d806f1ea32b5eaff"
+  },
+  "candidate_GEN": {
+    "path": "/workspace/work/source23-actual-A21-S13-first-stop-original-graft-one-leaf-measurement-CODE-ONLY-20261115/one-original-A21-S13-graft-candidate/视频/工具/初稿生成/gen23.py",
+    "bytes": 55036,
+    "sha256": "0925064082e0ec088c1949085345d2f1116435e56585221c7ba5b5180ef579e5"
+  },
+  "candidate_exact_actual_A21_writer_private_typed_result": true,
+  "only_one_graft_leaf_inverse_entire_original_indent1_rawbytes_exact": true,
+  "GEN_original_before_rawbytes_exact_and_new_wholeJSON_encoder_succeeded": true,
+  "all_other_EN_DSP_CF_S19point8_and_target_actual_new_mother_unchanged": true,
+  "actual_original_t_donor_text": "Bring a pipe, and then they left.",
+  "actual_donor_already_strict_read_both_original_paths": [
+    {
+      "role": "actual_original_selected_whole",
+      "actual_strict_existing_donor": {
+        "name": "571a8bf3ca794cc237ae6677290bf279717abe8d.pkl",
+        "sha256": "aecbbe5468313e5e8d6179f79e8cbe5275e3b159ed92fec9fc9a4a867c7b0d3b",
+        "method": "create",
+        "actual_model_input_sha256": "ca580df610a2f0521f13596e69bb978271adc6dbc745e8efcfe6a580718cc1c5"
+      }
+    },
+    {
+      "role": "actual_original_A21_check_writer",
+      "actual_strict_existing_donor": {
+        "name": "571a8bf3ca794cc237ae6677290bf279717abe8d.pkl",
+        "sha256": "aecbbe5468313e5e8d6179f79e8cbe5275e3b159ed92fec9fc9a4a867c7b0d3b",
+        "method": "create",
+        "actual_model_input_sha256": "ca580df610a2f0521f13596e69bb978271adc6dbc745e8efcfe6a580718cc1c5"
+      }
+    }
+  ],
+  "unchanged_donor_array_MD5_first12_hard_gate": "ac4047d887b8",
+  "original_maker": {
+    "path": "/workspace/work/source23-source56-source68-original-W-three-data-dependency-staging-retry-CODE-ONLY-20261115/source23-book62-finite-original-W-data-staged-A21-native-READY/.github/video-revision-batch/certified-core/files/视频/工具/make_video.py",
+    "bytes": 127248,
+    "sha256": "1b87c1d4d1685bdd59325587184cca35f853354a015e6fe89c11f150cd2a6239"
+  },
+  "actual_original_donor_and_graft_full_functions": {
+    "_donor": "def _donor(kind):\n    \"\"\"供体的爆破送气（从闭塞最低点之后到最后一个能听见的帧），归一到最响 5 ms 帧 = 1\"\"\"\n    if kind not in _DON:\n        txt,md=DONOR[kind]; x,_=k.create(txt,voice=V,speed=SPEED,lang='en-us'); x=np.asarray(x,np.float32)\n        if _hl.md5(x.tobytes()).hexdigest()[:12]!=md: raise SystemExit(f'【停止】供体的合成变了（A21）：{txt}')\n        F_=int(0.005*SR); e=_env5(x); pf=int(np.where(e>=AUD_DB)[0][-1])+1; z=_release(e,pf)\n        if z is None: raise SystemExit(f'【停止】供体里找不到除阻（A21）：{txt}')\n        seg=x[z[0]*F_:z[1]*F_]; m_=len(seg)//F_\n        _DON[kind]=seg/np.sqrt(np.mean(seg[:m_*F_].reshape(m_,F_)**2,axis=1)).max()\n    return _DON[kind]",
+    "_graft": "def _graft(w,items,label):\n    \"\"\"w 里每一处（秒，供体种类）起换成供体的爆破送气（两头各 2 ms 淡入淡出），响度 = 本句最响 5 ms 帧 GRAFT_DB。\n    守门：换掉的那一段原来不能有 ≥-30 dB 的帧（只能是弱除阻和停顿里的静音，不能碰到词）；紧挨着的前 5 ms 必须是闭塞（<-40 dB）。\"\"\"\n    F_=int(0.005*SR); e=_env5(w); rr=np.sqrt(np.mean(w[:len(e)*F_].reshape(len(e),F_)**2,axis=1)).max(); w=w.copy()\n    lv=lambda x:20*np.log10(np.sqrt(np.mean(x**2))/(rr+1e-12)+1e-12) if len(x) else -240.0\n    for g,(sec,kind) in items.items():\n        d=_donor(kind); p=int(round(float(sec)*SR)); n=len(d)\n        if p+n>len(w): w=np.concatenate([w,np.zeros(p+n-len(w),np.float32)])\n        seg=w[p:p+n]; m_=n//F_\n        if p<F_ or max(lv(seg[i*F_:(i+1)*F_]) for i in range(m_))>=-30 or lv(w[p-F_:p])>=-40:\n            raise SystemExit(f'【停止】词尾除阻的位置不对（换掉的部分有词的声音，或前面不是闭塞）（A21）：{label[:60]} {g} {sec}')\n        h=int(0.002*SR); r=np.ones(n,np.float32); r[:h]=np.linspace(0,1,h); r[-h:]=np.linspace(1,0,h)\n        w[p:p+n]=(d*rr*10**(GRAFT_DB/20)).astype(np.float32)*r          # 整段换掉（两头 2 ms 从零淡入淡出；原来这里只有闭塞和停顿里的静音，不与原声混）\n    return w"
+  },
+  "GRAFT_DB": -27,
+  "no_new_donor_inference_or_math_or_model_or_whole_or_native_or_audio_run_here": true,
+  "first_local_serialization_assertion_honest_history": "Initial candidate preflight incorrectly assumed indent2+newline; failed before any candidate file was written. Actual original source uses indent1 without newline. Corrected only the test serializer and proved entire source inverse. No frozen source/F touched.",
+  "next_measurement_scope": "Only original cached whole with this exact target leaf. Keep prior no-graft93d7/f7bc/7477 historical; actual new whole WAV/AAC/MD5/clock unknown until measured. Every title+18nontarget pre/postPCM16/master equality and cache/restoration must remain hard. No new TTS/G36/GT/ASR or claimed audio acceptance."
+}
