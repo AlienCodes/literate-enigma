@@ -2,7 +2,7 @@
 # ZH: 原子弹之父的审判
 
 ## 英文
-J. Robert **Oppenheimer**, born in New York on 22 April 1904, was an **accomplished** physicist and **prominent** **lecturer** at Berkeley and Caltech. From April 1943 he **oversaw** a **secretive** weapons **installation** at Los Alamos, whose **bombs** were the **collaborative** **creation** of a **thousands-strong** **workforce**.
+J. Robert Oppenheimer, born in New York on 22 April 1904, was an **accomplished** physicist and **prominent** **lecturer** at Berkeley and Caltech. From April 1943 he **oversaw** a **secretive** weapons **installation** at Los Alamos, whose **bombs** were the **collaborative** **creation** of a **thousands-strong** **workforce**.
 
 In the **pre-dawn** darkness of 16 July 1945, the first nuclear test **illuminated** the **desolate** New Mexico **landscape** with a **blinding glare**, its **explosive** force roughly 20 kilotons. On 6 and 9 August 1945 atomic **bombings** **devastated** Hiroshima and Nagasaki, where **year-end** **fatalities** numbered well over 100,000 and about 70,000 **respectively**.
 
@@ -14,25 +14,24 @@ On 2 December 1963 President Johnson **bestowed on** him the Fermi Award, which 
 
 ## 中文
 
-J·罗伯特·**奥本海默**(Oppenheimer)1904年4月22日生于纽约，是一位**卓有成就的**(accomplished)物理学家，也是伯克利和加州理工学院的**知名**(prominent)**讲师**(lecturer)。（born in New York…：过去分词短语，补充说明 Oppenheimer）（at Berkeley and Caltech：后置定语，修饰 lecturer）从1943年4月起，他**主管**(oversaw)洛斯阿拉莫斯的一处**秘密的**(secretive)武器**设施**(installation)；这里的**炸弹**(bombs)是**数千人的**(thousands-strong)**劳动力**(workforce)**共同协作的**(collaborative)**创造成果**(creation)。（at Los Alamos：后置定语，修饰 installation）（whose…：非限制性定语从句，修饰 installation；the creation of A：A 的创造成果）
+J·罗伯特·奥本海默1904年4月22日生于纽约，是一位**卓有成就的**(accomplished)物理学家，也是伯克利和加州理工学院的**知名**(prominent)**教师**(lecturer)。（born in New York…：过去分词短语，补充说明 Oppenheimer）（at Berkeley and Caltech：后置定语，修饰 lecturer）从1943年4月起，他**主管**(oversaw)洛斯阿拉莫斯的一处**秘密**(secretive)武器**设施**(installation)；这里的**炸弹**(bombs)是**数千人的**(thousands-strong)**劳动力**(workforce)**共同协作的**(collaborative)**创造成果**(creation)。（at Los Alamos：后置定语，修饰 installation）（whose…：非限制性定语从句，修饰 installation；the creation of A：A 的创造成果）
 
 1945年7月16日**黎明前的**(pre-dawn)黑暗中，第一次核试验以一道**刺眼的强光**(blinding glare)**照亮了**(illuminated)新墨西哥州**荒凉的**(desolate)**景观**(landscape)，其**爆炸**(explosive)威力约合2万吨TNT当量。（of 16 July 1945：后置定语，修饰 darkness）（with a blinding glare：方式状语）（its explosive force roughly 20 kilotons：独立主格结构，补充说明 test）1945年8月6日和9日，原子弹**轰炸**(bombings)**摧毁了**(devastated)广岛和长崎，在这两地，**年底的**(year-end)**死亡人数**(fatalities)**分别**(respectively)达到了远超十万和约七万。（where…：非限制性定语从句，修饰 Hiroshima and Nagasaki；A and B respectively：分别是 A 和 B）
 
-1945年10月，**奥本海默**(Oppenheimer)离开洛斯阿拉莫斯；从1947年起，他**掌管/执掌**(presided over)普林斯顿高等研究院。（preside over：掌管，执掌）1949年10月，他担任主席的**顾问**(advisory)委员会表达了**疑虑**(misgivings)，并**全体一致地/无异议地**(unanimously)**建议拒绝**(counselled against)一项针对**氢**(hydrogen)弹的**紧急计划**(crash programme)，一种**极其**(vastly)更加具有**毁灭性的**(destructive)武器。（he chaired：定语从句，省略了关系代词，修饰 committee）（expressing misgivings：现在分词短语作伴随状语）（counsel against：建议拒绝……；for the hydrogen bomb：后置定语，修饰 programme）（a vastly more destructive weapon：同位语，补充说明 the hydrogen bomb）1953年12月，一道**总统的**(presidential)**指令**(directive)**切断了**(severed)他**接触**(access to)**机密**(confidential)**文件**(documentation)**的权限**(access to)。（access to A：接触到 A 的权限）
+1945年10月，**奥本海默**(Oppenheimer)离开洛斯阿拉莫斯；从1947年起，他**掌管/执掌**(presided over)普林斯顿高等研究院。（preside over：掌管，执掌）1949年10月，他担任主席的**顾问**(advisory)委员会表达了**疑虑**(misgivings)，并**一致**(unanimously)**建议拒绝**(counselled against)一项针对**氢**(hydrogen)弹的**紧急计划**(crash programme)，一种**极其**(vastly)更加具有**毁灭性的**(destructive)武器。（he chaired：定语从句，省略了关系代词，修饰 committee）（expressing misgivings：现在分词短语作伴随状语）（counsel against：建议拒绝……；for the hydrogen bomb：后置定语，修饰 programme）（a vastly more destructive weapon：同位语，补充说明 the hydrogen bomb）1953年12月，一道**总统的**(presidential)**指令**(directive)**切断了**(severed)他**接触**(access to)**机密**(confidential)**文件**(documentation)**的权限**(access to)。（access to A：接触到 A 的权限）
 
 1954年4月12日至5月6日，他在一场安全**听证会**(hearing)上接受**盘问**(cross-examined)，这场听证会是**行政的**(administrative)**程序**(proceeding)，而非刑事的**起诉**(prosecution)。（was cross-examined：一般过去时的被动语态）（an administrative proceeding…：同位语，补充说明 hearing）1954年6月29日，**原子能**(Atomic Energy)委员会以4比1投票反对让他**恢复**(regain)**安全许可**(clearance)，在他的**咨询**(consultancy)合同预计要**到期**(expire)之前，还剩两天。（vote against doing：投票反对做……）（be due to do：按期要做……）裁决没有认定他**不忠**(disloyal)，但**仍然**(nonetheless)质疑了他的品格和他所**结交的人**(associates)。（find sb + adj.：认定某人……）
 
-1963年12月2日，约翰逊总统**授予**(bestowed on)他费米奖，该奖项是肯尼迪在**遇刺**(assassination)前**批准**(authorised)的。（bestow A on B：把 A 授予 B，这里 A 放在 B 后面）（which…：非限制性定语从句，修饰 the Fermi Award；had authorised：过去完成时）奥本海默于1967年2月18日去世。2022年12月，能源**部长**(secretary)**正式**(officially)**撤销了**(vacated)1954年的**裁定**(determination)，称当年的程序是**有缺陷的**(flawed)且**违背了**(contrary to)委员会的规定。（calling…：现在分词短语作伴随状语；call A + adj.：称 A……；contrary to：违背）**撤销**(revocation)安全许可带来的**污名**(stigma)，在他的**一生**(lifetime)结束之后，又**持续了**(persisted)五十五年。（of the revocation：后置定语，修饰 stigma）（had persisted：过去完成时；beyond his lifetime：在他身后）（简述：▸造弹：物理学家奥本海默领导数千人造出原子弹，▹1945年完成首次核试验，随后原子弹用于轰炸广岛、长崎。▸分歧：战后，他主持的顾问委员会一致反对紧急推进氢弹计划；▹氢弹是一种比原子弹破坏力更强的核武器。▸听证：1954年他接受安全听证，这是行政审查，并非刑事起诉；裁定也未认定他不忠。▸失权：原子能委员会以4比1拒绝恢复他接触机密资料的资格，质疑其品格和交往，使其背负污名。▸撤销：1963年虽获费米奖，▹1954年裁定直到2022年才由能源部长以程序违规为由撤销，距他去世已55年。）
+1963年12月2日，约翰逊总统**授予**(bestowed on)他费米奖，该奖项是肯尼迪在**遇刺**(assassination)前**批准**(authorised)的。（bestow A on B：把 A 授予 B，这里 A 放在 B 后面）（which…：非限制性定语从句，修饰 the Fermi Award；had authorised：过去完成时）奥本海默于1967年2月18日去世。2022年12月，能源**部长**(secretary)**正式**(officially)**撤销了**(vacated)1954年的**裁定**(determination)，称当年的程序是**有缺陷的**(flawed)且**违背了**(contrary to)委员会的规定。（calling…：现在分词短语作伴随状语；call A + adj.：称 A……；contrary to：违背）**撤销**(revocation)安全许可带来的**污名**(stigma)，在他的**一生**(lifetime)结束之后，又**持续了**(persisted)五十五年。（of the revocation：后置定语，修饰 stigma）（had persisted：过去完成时；beyond his lifetime：在他身后）（简述：J·罗伯特·奥本海默是知名物理学家，1943年起主管洛斯阿拉莫斯的秘密武器设施，数千人的劳动力在这里共同协作造出了原子弹。1945年7月16日，第一次核试验照亮了新墨西哥州的荒原；同年8月，广岛和长崎遭原子弹轰炸。战后他掌管普林斯顿高等研究院；1949年，他担任主席的顾问委员会一致建议拒绝研制氢弹的紧急计划。1953年12月，总统的指令切断了他接触机密文件的权限；1954年安全听证会后，原子能委员会投票反对让他恢复安全许可，裁决没有认定他不忠，却质疑他的品格和他所结交的人。1963年他获颁费米奖，1967年去世；2022年12月，能源部长正式撤销了1954年的裁定，这时距他去世已五十五年。）
 
 ## 速查表
 | 词 | 释义 | 段 |
 |---|---|---|
-| Oppenheimer | 本文：奥本海默；n. 奥本海默（J. Robert Oppenheimer，美国理论物理学家，“原子弹之父”） | 1 |
 | accomplished | 本文：卓有成就的；adj. 有成就的，技艺娴熟的（an accomplished pianist/writer） | 1 |
 | prominent | 本文：知名；adj. 著名的，重要的；显眼的（a prominent figure/politician） | 1 |
-| lecturer | 本文：讲师；n. 讲课者，（大学）教师（a university lecturer；a senior lecturer in law） | 1 |
+| lecturer | 本文：教师；n. 讲课者，（大学）教师（a university lecturer；a senior lecturer in law） | 1 |
 | oversaw | 本文：主管；v. (oversee) 监督，主管（oversee a project/the work） | 1 |
-| secretive | 本文：秘密的；adj. 保密的，遮遮掩掩的（a secretive organisation；be secretive about sth） | 1 |
+| secretive | 本文：秘密；adj. 保密的，遮遮掩掩的（a secretive organisation；be secretive about sth） | 1 |
 | installation | 本文：设施；n. 设施，装置；安装（a military/nuclear installation） | 1 |
 | bombs | 本文：炸弹；n. (bomb) 炸弹（an atomic bomb；a bomb attack） | 1 |
 | thousands-strong | 本文：数千人的；adj. 数千人规模的（a thousands-strong crowd/protest） | 1 |
@@ -50,10 +49,11 @@ J·罗伯特·**奥本海默**(Oppenheimer)1904年4月22日生于纽约，是一
 | year-end | 本文：年底的；adj./n. 年底（的）（year-end figures/results） | 2 |
 | fatalities | 本文：死亡人数；n. (fatality) 死亡（人数）（road fatalities；cause fatalities） | 2 |
 | respectively | 本文：分别；adv. 分别地，各自地（A and B scored 8 and 6 respectively） | 2 |
+| Oppenheimer | 本文：奥本海默；n. 奥本海默（J. Robert Oppenheimer，美国理论物理学家，“原子弹之父”） | 3 |
 | presided over | 本文：掌管/执掌；v. (preside) 主持，执掌（preside over a meeting/company） | 3 |
 | advisory | 本文：顾问；adj. 顾问的，咨询的（an advisory committee/board） | 3 |
 | misgivings | 本文：疑虑；n. (misgiving) 疑虑，担忧（have serious misgivings about sth） | 3 |
-| unanimously | 本文：全体一致地/无异议地；adv. 一致地，全体同意地（vote/agree unanimously） | 3 |
+| unanimously | 本文：一致；adv. 一致地，全体同意地（vote/agree unanimously） | 3 |
 | counselled against | 本文：建议拒绝；v. (counsel) 建议，劝告（counsel caution；counsel sb against doing sth） | 3 |
 | hydrogen | 本文：氢；n. 氢（hydrogen gas；a hydrogen bomb） | 3 |
 | crash programme | 本文：紧急计划；n. 紧急计划，应急计划（a crash programme to build ships） | 3 |
