@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/workspace/work/video-archive-batches-20261114/prepare_actual_source35_book54_host_assets.py", line 28, in <module>
+    assert digest(IO/'INDEPENDENT-SOLE-WRITER-EXACT58-MASTER-COLLECTOR-IO-ADOPTION.json')=='7181ea3e7a32f9ca780485866c2dcc8a24eff84b2db2961d63fefae2b474cb42'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/video-archive-batches-20261114/prepare_actual_source35_book54_host_assets.py", line 9, in digest
+    def digest(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+                                        ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1019, in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/work/source35-book54-standalone-public-master-collector-IO-CODE-ONLY-20261115/INDEPENDENT-SOLE-WRITER-EXACT58-MASTER-COLLECTOR-IO-ADOPTION.json'

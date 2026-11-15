@@ -1,0 +1,87 @@
+--- /workspace/work/source58-book67-hybrid-lowdisk-transport-CODE-ONLY-20261115/seed_source58_one_public_zip_dual_git.py
++++ /workspace/work/source35-book54-hybrid-lowdisk-transport-CODE-ONLY-20261115/seed_source35_one_public_zip_dual_git.py
+@@ -1,13 +1,13 @@
+-"""CODE-ONLY exact source58/book67 one-public-ZIP dual Git seed. Default is local plan.
++"""CODE-ONLY exact source35/book54 one-public-ZIP dual Git seed. Default is local plan.
+ No encoding/media changes; actual execution requires exact code/three-input approval.
+ The original standard-Git helper functions are unchanged from the accepted48 seed.
+ """
+ from pathlib import Path
+ import argparse,datetime,hashlib,json,os,shutil,subprocess,tempfile,urllib.request,zlib,re
+-HS='4c833c5b9581e4974fd28a92658711578219989ca9092c60b531ce215572fe82';PS='ac0900e47bc7cbda28c12f2a5b8721cd07023fc1aa89bc2040873a09f74271a1';IS='c024adcec11e61540a43031932b8fc57796cd0f0b2fc34742f1826e2b15c7bd6'
+-WORK_DIR='/workspace/work/video-archive-batches-20261114/book67-source58-full-host-isolated-assets-wtg5g5a2/run43736478355-58-book67-review-normal18-v1';HANDOFF='/workspace/work/review58-finalV3/43736478355-normal18/archive-handoff.json'
+-ZIP_SHA='24c201dbab377886d978032f81728dca362dda8433246cd667b40dac2adfa694';BLOB='f9ba08794fd65d468c51b63f5baa2cec77668e52';SIZE=47792157
+-REF='codex/source58-book67-exact-public-nativeZIP-seed-20261115';NAME='source58-original-public-native-artifact.zip';MESSAGE='Transport only exact source58 book67 public native ZIP; no final or quality change [skip ci]\n'
++HS='478962d68b9959caea78f72ab053e31590f3d7cb9a5fe4c4db2f91827fb09873';PS='73baa0890347f74ebcad42185c1175b9a929999f4265f4b9fdd8967aca8e68bd';IS='ff686289939e2d0128600edad79e29b28fae6ed73539dafa50a8f789ac0a6cc9'
++WORK_DIR='/workspace/work/video-archive-batches-20261114/book54-source35-full-host-isolated-assets-u4yi970z/run43741796325-35-book54-review-normal18-v1';HANDOFF='/workspace/work/review35-finalV3/43741796325-normal18/archive-handoff.json'
++ZIP_SHA='12d1791d3095652e378b17cccf7cdce75ac12d6313ec36d93f84b1930ab29d29';BLOB='4801e4e0029b018d58a51516b0ea1e920e543ea5';SIZE=47964978
++REF='codex/source35-book54-exact-public-nativeZIP-seed-20261115';NAME='source35-original-public-native-artifact.zip';MESSAGE='Transport only exact source35 book54 public native ZIP; no final or quality change [skip ci]\n'
+ REPOS=(('primary','alienalgorithm/postgraduate-vocabulary'),('backup','AlienCodes/literate-enigma'))
+ MASTER='6355a02864ebae616b693200d9d26f74f5da80e9'
+ FLOOR=419430400;GIT_METADATA=2*1024*1024;BUDDY_MISC=40*1024*1024
+@@ -59,12 +59,12 @@
+     w=Path(work_dir).resolve();assert str(w)==WORK_DIR and str(Path(handoff).resolve())==HANDOFF
+     h=pinned(handoff,HS);meta=pinned(w/'prepared-archive.json',PS);index=pinned(w/'payload-file-index.json',IS)
+     assert h['kind']=='actual-new-native-source-QA-then-authorized-normal18-local-tail'and h['status']=='passed_actual_normal18_post_only_for_permanent_archive'
+-    assert h['production_delivery_eligible']is True and h['preview_only']is False and h['source_run']==43736478355
++    assert h['production_delivery_eligible']is True and h['preview_only']is False and h['source_run']==43741796325
+     assert len(h['articles'])==len(meta['articles'])==1
+     a=h['articles'][0];row=meta['articles'][0]
+-    assert a['source_id']==row['source_id']=='58'and a['new_id']==row['new_id']=='67'and a['passed_per_article']is row['passed_per_article']is True
++    assert a['source_id']==row['source_id']=='35'and a['new_id']==row['new_id']=='54'and a['passed_per_article']is row['passed_per_article']is True
+     assert meta['actual_handoff_sha256']==row['postprocessing_full_V3_handoff_sha256']==HS
+-    assert a['final_mp4']['bytes']==row['bytes']==16765169 and a['final_mp4']['sha256']==row['sha256']=='55b0450125e66dc5d79249405aaf6bea6bc1f114b7ee689d6c9b3698b048f1ee'
++    assert a['final_mp4']['bytes']==row['bytes']==16825815 and a['final_mp4']['sha256']==row['sha256']=='b44489f1bd20cdcdd6bfd1484ca1676f088577567aa0fbe1eca8f8f3bf38bf0d'
+     x=next(x for x in index if x['bytes']==SIZE and x['sha256']==ZIP_SHA)
+     source=(w/'payload'/x['repo_path']).resolve();assert source.is_file()and source.stat().st_size==SIZE and sha(source)==ZIP_SHA
+     gg=hashlib.sha1(f'blob {SIZE}\0'.encode());z=zlib.compressobj(1);compressed=len(z.compress(f'blob {SIZE}\0'.encode()))
+@@ -72,12 +72,12 @@
+         for part in iter(lambda:stream.read(196608),b''):gg.update(part);compressed+=len(z.compress(part))
+     compressed+=len(z.flush());assert gg.hexdigest()==BLOB
+     tree,commit,stamp=identities(BLOB,meta['created_utc']);allocated=((compressed+4095)//4096)*4096
+-    plan={'kind':'exact-source58-book67-single-public-ZIP-two-repository-standard-Git-seed-plan','source_id':'58','book_order':'67','handoff_sha256':HS,'prepared_sha256':PS,'index_sha256':IS,'native_source_run':43736478355,'ZIP_bytes':SIZE,'ZIP_SHA256':ZIP_SHA,'git_blob_sha':BLOB,'seed_ref':REF,'seed_tree':tree,'seed_commit':commit,'actual_zlib1_loose_object_bytes':compressed,'estimated_loose_allocated4KiB':allocated,'Git_metadata_reserved_bytes':GIT_METADATA,'worker8MiB_and_misc32MiB':BUDDY_MISC,'original400MiB_reserve':FLOOR,'required_available_before_seed':FLOOR+allocated+GIT_METADATA+BUDDY_MISC,'no_ZIP_pack_copy_or_base64_body_file':True,'outbound_pack_is_original_standard_Git_stdout_and_HTTP_buffer_heap':True,'network_executed':False,'protected_refs_are_only_supplied_and_freshchecked_at_actual_execution':True}
++    plan={'kind':'exact-source35-book54-single-public-ZIP-two-repository-standard-Git-seed-plan','source_id':'35','book_order':'54','handoff_sha256':HS,'prepared_sha256':PS,'index_sha256':IS,'native_source_run':43741796325,'ZIP_bytes':SIZE,'ZIP_SHA256':ZIP_SHA,'git_blob_sha':BLOB,'seed_ref':REF,'seed_tree':tree,'seed_commit':commit,'actual_zlib1_loose_object_bytes':compressed,'estimated_loose_allocated4KiB':allocated,'Git_metadata_reserved_bytes':GIT_METADATA,'worker8MiB_and_misc32MiB':BUDDY_MISC,'original400MiB_reserve':FLOOR,'required_available_before_seed':FLOOR+allocated+GIT_METADATA+BUDDY_MISC,'no_ZIP_pack_copy_or_base64_body_file':True,'outbound_pack_is_original_standard_Git_stdout_and_HTTP_buffer_heap':True,'network_executed':False,'protected_refs_are_only_supplied_and_freshchecked_at_actual_execution':True}
+     return plan,source,stamp
+ 
+ def actual_raw(repo):
+     token=run(['gh','auth','token'])
+-    request=urllib.request.Request('https://api.github.com/repos/'+repo+'/git/blobs/'+BLOB,headers={'Authorization':'Bearer '+token,'Accept':'application/vnd.github.raw+json','Accept-Encoding':'identity','User-Agent':'exact-source58-book67-public-ZIP-seed-proof'})
++    request=urllib.request.Request('https://api.github.com/repos/'+repo+'/git/blobs/'+BLOB,headers={'Authorization':'Bearer '+token,'Accept':'application/vnd.github.raw+json','Accept-Encoding':'identity','User-Agent':'exact-source35-book54-public-ZIP-seed-proof'})
+     full=hashlib.sha256();gg=hashlib.sha1(f'blob {SIZE}\0'.encode());n=0
+     with urllib.request.urlopen(request,timeout=120)as response:
+         assert response.status==200 and response.getheader('Content-Encoding')in(None,'identity')
+@@ -91,16 +91,16 @@
+     if not a.execute:print(json.dumps(plan));return
+     assert a.approval,'Explicit exact execution adoption required; code-only is not execution'
+     approval=json.loads(Path(a.approval).read_text())
+-    assert approval['kind']=='root-approved-source58-book67-exact-public-ZIP-two-repository-Git-seed'and approval['approved']is True and approval['approved_seed_code_sha256']==sha(__file__)
+-    assert approval['source_id']=='58'and approval['new_id']=='67'
++    assert approval['kind']=='root-approved-source35-book54-exact-public-ZIP-two-repository-Git-seed'and approval['approved']is True and approval['approved_seed_code_sha256']==sha(__file__)
++    assert approval['source_id']=='35'and approval['new_id']=='54'
+     assert approval['handoff_sha256']==HS and approval['prepared_sha256']==PS and approval['index_sha256']==IS and approval['seed_ref']==REF and approval['seed_commit']==plan['seed_commit']
+-    assert os.environ.get('EXACT58_BOOK67_SEED_ORIGINAL400_MONITORED')=='1','Run via reviewed0.5s400MiB monitor'
++    assert os.environ.get('EXACT35_BOOK54_SEED_ORIGINAL400_MONITORED')=='1','Run via reviewed0.5s400MiB monitor'
+     expected=expected_refs(approval['expected_protected_refs']);root=Path(a.work_dir).resolve().parent
+     assert os.statvfs(root).f_bavail*os.statvfs(root).f_frsize>=plan['required_available_before_seed']
+     before=refs(expected);auth=['-c','credential.helper=!gh auth git-credential']
+     for _,repo in REPOS:
+         assert not run(['git',*auth,'ls-remote','https://github.com/'+repo+'.git','refs/heads/'+REF]),'New seed ref must be absent in both repositories'
+-    own=Path(tempfile.mkdtemp(prefix='source58-book67-exact-one-ZIP-seed-',dir=str(root)));g=own/'objects.git'
++    own=Path(tempfile.mkdtemp(prefix='source35-book54-exact-one-ZIP-seed-',dir=str(root)));g=own/'objects.git'
+     local_objects(g,source,BLOB,plan['seed_tree'],plan['seed_commit'],stamp)
+     rows=[]
+     for role,repo in REPOS:
+@@ -115,10 +115,10 @@
+     assert refs(expected)==before
+     assert pinned(a.handoff,HS)and pinned(Path(a.work_dir)/'prepared-archive.json',PS)and pinned(Path(a.work_dir)/'payload-file-index.json',IS)
+     run(['git','--git-dir='+str(g),'fsck','--full']);logical=sum(p.stat().st_size for p in g.rglob('*')if p.is_file())
+-    assert g.parent==own and own.parent==root and own.name.startswith('source58-book67-exact-one-ZIP-seed-')and not g.is_symlink()
++    assert g.parent==own and own.parent==root and own.name.startswith('source35-book54-exact-one-ZIP-seed-')and not g.is_symlink()
+     shutil.rmtree(g)
+-    result={**plan,'kind':'actual-source58-book67-single-public-ZIP-two-repository-seed-fullraw-proof','network_executed':True,'approved_seed_code_sha256':sha(__file__),'actual_rows':rows,'protected_refs_before':before,'protected_refs_after':refs(expected),'source_and_all_frozen_controls_unchanged':True,'git_fsck_exit_code':0,'only_own_seed_Git_removed_after_dual_raw_and_fsck':True,'own_seed_Git_logical_bytes_removed':logical,'no_asset_READY_or_current_claimed':True,'whole_transport_role':'one-standard-Git-publicZIP-seed-then-separate-streaming-Git-data-builder'}
+-    out=root/'ACTUAL-BOOK67-EXACT-PUBLIC-ZIP-DUAL-GIT-SEED-FULLRAW-PROOF.json'
++    result={**plan,'kind':'actual-source35-book54-single-public-ZIP-two-repository-seed-fullraw-proof','network_executed':True,'approved_seed_code_sha256':sha(__file__),'actual_rows':rows,'protected_refs_before':before,'protected_refs_after':refs(expected),'source_and_all_frozen_controls_unchanged':True,'git_fsck_exit_code':0,'only_own_seed_Git_removed_after_dual_raw_and_fsck':True,'own_seed_Git_logical_bytes_removed':logical,'no_asset_READY_or_current_claimed':True,'whole_transport_role':'one-standard-Git-publicZIP-seed-then-separate-streaming-Git-data-builder'}
++    out=root/'ACTUAL-BOOK54-EXACT-PUBLIC-ZIP-DUAL-GIT-SEED-FULLRAW-PROOF.json'
+     with out.open('x')as stream:json.dump(result,stream,indent=2);stream.write('\n')
+     print(json.dumps({'seed_proof':str(out),'seed_proof_sha256':sha(out),'only_own_Git_removed':logical,'no_asset_READY_or_current_claimed':True}))
+ if __name__=='__main__':main()
