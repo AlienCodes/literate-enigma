@@ -1,0 +1,50 @@
+--- /workspace/work/source18-book64-hybrid-lowdisk-transport-CODE-ONLY-20261115/test_source18_hybrid_seed_and_skip.py
++++ /workspace/work/source58-book67-hybrid-lowdisk-transport-CODE-ONLY-20261115/test_source58_hybrid_seed_and_skip.py
+@@ -2,16 +2,16 @@
+ import ast,contextlib,copy,hashlib,io,json,sys,tempfile,types,unittest
+ from pathlib import Path
+ from unittest.mock import patch
+-import seed_source18_one_public_zip_dual_git as seed
+-import stream_source18_with_exact_dual_seed_skip as skip
++import seed_source58_one_public_zip_dual_git as seed
++import stream_source58_with_exact_dual_seed_skip as skip
+ import streaming_git_data_asset_transport_proxy_v2 as original
+-import run_source18_hybrid_phase_with_original400_monitor as monitor
++import run_source58_hybrid_phase_with_original400_monitor as monitor
+ from test_streaming_git_data_asset_transport_proxy_v2 import FakeGit
+ F=Path(__file__).resolve().parent
+ REFS={'alienalgorithm/postgraduate-vocabulary:main':'1'*40,'AlienCodes/literate-enigma:codex/all-deliverables-20261113':'2'*40,'AlienCodes/literate-enigma:master':seed.MASTER}
+ 
+ def seedproof():
+-    return {'kind':'actual-source18-book64-single-public-ZIP-two-repository-seed-fullraw-proof','source_id':'18','book_order':'64','native_source_run':43731802299,'handoff_sha256':skip.HS,'prepared_sha256':skip.PS,'index_sha256':skip.IS,'ZIP_bytes':skip.SIZE,'ZIP_SHA256':skip.ZIP,'git_blob_sha':skip.BLOB,'seed_ref':skip.SEED_REF,'seed_tree':skip.SEED_TREE,'seed_commit':skip.SEED_COMMIT,'network_executed':True,'approved_seed_code_sha256':skip.SEED_CODE,'git_fsck_exit_code':0,'only_own_seed_Git_removed_after_dual_raw_and_fsck':True,'source_and_all_frozen_controls_unchanged':True,'protected_refs_before':REFS,'protected_refs_after':REFS,'actual_rows':[{'repository':repo,'http_status':200,'bytes':skip.SIZE,'sha256':skip.ZIP,'git_blob_sha':skip.BLOB,'entire_raw_HTTP_verified':True,'seed_ref':skip.SEED_REF,'seed_commit':skip.SEED_COMMIT}for repo in sorted(skip.REPOS)]}
++    return {'kind':'actual-source58-book67-single-public-ZIP-two-repository-seed-fullraw-proof','source_id':'58','book_order':'67','native_source_run':43736478355,'handoff_sha256':skip.HS,'prepared_sha256':skip.PS,'index_sha256':skip.IS,'ZIP_bytes':skip.SIZE,'ZIP_SHA256':skip.ZIP,'git_blob_sha':skip.BLOB,'seed_ref':skip.SEED_REF,'seed_tree':skip.SEED_TREE,'seed_commit':skip.SEED_COMMIT,'network_executed':True,'approved_seed_code_sha256':skip.SEED_CODE,'git_fsck_exit_code':0,'only_own_seed_Git_removed_after_dual_raw_and_fsck':True,'source_and_all_frozen_controls_unchanged':True,'protected_refs_before':REFS,'protected_refs_after':REFS,'actual_rows':[{'repository':repo,'http_status':200,'bytes':skip.SIZE,'sha256':skip.ZIP,'git_blob_sha':skip.BLOB,'entire_raw_HTTP_verified':True,'seed_ref':skip.SEED_REF,'seed_commit':skip.SEED_COMMIT}for repo in sorted(skip.REPOS)]}
+ 
+ class Contracts(unittest.TestCase):
+     def test_original_Git_helpers_AST_exact_and_real_tiny_fixture(self):
+@@ -29,7 +29,7 @@
+     def fixture(self,fail=None):
+         blob=types.SimpleNamespace(path=Path('never-read.fixture'),size=skip.SIZE,sha256=skip.ZIP,git_sha=skip.BLOB)
+         files=[{'repo_path':'视频修订定稿/fixture/public.fixture','bytes':skip.SIZE,'sha256':skip.ZIP,'git_blob_sha':skip.BLOB}];trees,hashes=original.make_trees(files)
+-        bundle={'blobs':{skip.BLOB:blob},'files':files,'trees':trees,'hashes':hashes,'prefix':'视频修订定稿/fixture','meta':{'asset_branch':'codex/passed4k-assets-123-18-hold18-postonly-v1'},'commit':original.commit_spec(hashes[''],'2026-11-15T01:02:03Z')}
++        bundle={'blobs':{skip.BLOB:blob},'files':files,'trees':trees,'hashes':hashes,'prefix':'视频修订定稿/fixture','meta':{'asset_branch':'codex/passed4k-assets-123-58-hold18-postonly-v1'},'commit':original.commit_spec(hashes[''],'2026-11-15T01:02:03Z')}
+         class Client(FakeGit):pass
+         module=types.SimpleNamespace(GitDataClient=Client,require=original.require);records=[];before=Client.verify_blob;skip.install_exact_skip(module,records.append);self.assertIs(Client.verify_blob,before)
+         return bundle,Client(bundle,fail),records,module,blob
+@@ -70,7 +70,7 @@
+         with patch.object(seed,'refs',side_effect=AssertionError('network must not run')),patch.object(sys,'argv',args+['--execute']):
+             with self.assertRaises(AssertionError):seed.main()
+     def test_source_loader_ignores_pyc_and_refuses_wrong_SHA_or_preloaded_runtime(self):
+-        name='exact_source18_book64_seeded_stream_runtime';self.assertNotIn(name,sys.modules)
++        name='exact_source58_book67_seeded_stream_runtime';self.assertNotIn(name,sys.modules)
+         m=skip.load_exact_source_module(F/'streaming_git_data_asset_transport_proxy_v2.py');self.assertEqual(m.CHUNK,196608)
+         try:
+             with self.assertRaises(AssertionError):skip.load_exact_source_module(F/'streaming_git_data_asset_transport_proxy_v2.py')
+@@ -80,7 +80,7 @@
+             with self.assertRaises(AssertionError):skip.load_exact_source_module(p)
+     def test_400_floor_monitor_stops_group_and_records_failure_no_automatic_retry(self):
+         with tempfile.TemporaryDirectory(dir=F)as d:
+-            r=Path(d);approval=r/'approval.json';approval.write_text(json.dumps({'approved':True,'kind':'root-approved-source18-book64-exact-public-ZIP-two-repository-Git-seed','source_id':'18','new_id':'64','approved_monitor_sha256':monitor.sha(monitor.__file__),'approved_seed_code_sha256':monitor.sha(F/'seed_source18_one_public_zip_dual_git.py'),'handoff_sha256':monitor.HS,'prepared_sha256':monitor.PS,'index_sha256':monitor.IS,'expected_protected_refs':REFS}))
++            r=Path(d);approval=r/'approval.json';approval.write_text(json.dumps({'approved':True,'kind':'root-approved-source58-book67-exact-public-ZIP-two-repository-Git-seed','source_id':'58','new_id':'67','approved_monitor_sha256':monitor.sha(monitor.__file__),'approved_seed_code_sha256':monitor.sha(F/'seed_source58_one_public_zip_dual_git.py'),'handoff_sha256':monitor.HS,'prepared_sha256':monitor.PS,'index_sha256':monitor.IS,'expected_protected_refs':REFS}))
+             class Child:
+                 pid=12345
+                 def poll(self):return None
