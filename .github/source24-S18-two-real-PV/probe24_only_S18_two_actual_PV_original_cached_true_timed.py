@@ -321,6 +321,26 @@ def measure_PV_and_context(m, pcm, expected, tokens, mapping, profile):
     # The actual whole has >=1.0s digitalgap before this lastsentence and2s after it.
     # Zero padding reproduces its isolated original PV segment, without building a whole or changing output samples.
     allrows=PV.scan(pad);global_start=expected['global_start_s'];wanted=set(expected['expected_requested_PV_displayed_keys']);hits=[]
+    # Pure scalar I/O before the unchanged exact-clock assertion: retain every
+    # original scan row, including both requested flags even if the first rejects.
+    actualscan=[]
+    for r in allrows:
+        local=[r[1]-lead/SR,r[2]-lead/SR];globaltimes=[t+global_start for t in local]
+        g=(r[0],*globaltimes,*r[3:]);displaykey=PV.key(g)
+        actualsamples=[int(round(t*SR))for t in local]
+        guessed=expected['expected_actual_PV_intervals'].get(displaykey)
+        actualscan.append({'original_padded_local_full_tuple':list(r),'original_global_full_tuple':list(g),
+            'actual_local_float_seconds':local,'actual_global_float_seconds':globaltimes,
+            'actual_local_integer_samples':actualsamples,'actual_global_integer_samples':[int(round(t*SR))for t in globaltimes],
+            'actual_original_displayed_key':displaykey,'actual_original_class':r[0],'actual_original_rounded_scalar':PV.实测(g),
+            'requested_native_displayed_flag':displaykey in wanted,
+            'prior_display_derived_guess_not_native_sample_evidence':guessed,
+            'actual_local_minus_prior_guessed_samples':None if guessed is None else [actualsamples[i]-guessed['local_samples'][i]for i in (0,1)]})
+    tokens['actual_preassert_original_scan_and_requested_clocks']={
+        'all_original_scan_flags':actualscan,
+        'both_requested_rows_recorded_before_any_exact_clock_assert':[r for r in actualscan if r['requested_native_displayed_flag']],
+        'prior_clock_guess_provenance':'Original profile values inferred from rounded2 stdout, not measured native sample coordinates',
+        'all_original_assertions_and_failure_exit_unchanged':True,'quality_or_CF_acceptance':False}
     for row in allrows:
         local0,local1=row[1]-lead/SR,row[2]-lead/SR
         globalrow=(row[0],local0+global_start,local1+global_start,*row[3:]);key=PV.key(globalrow)
