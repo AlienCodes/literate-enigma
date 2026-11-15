@@ -479,8 +479,10 @@ out = {'no': '63',
                     'instead of，中文语序变了随之换行',
              'S11': '用户 2026-11-08 原话要 S11 整句改为“2012年1月，国际空间站启动了它的推进器，以躲开/避开一块铱星33号的残片。”、fired 标重点词、“space '
                     'station 整体标注重点词汇”，字变多随之换行；另 11-07 原话（篇 61-65）“对齐需要改换行”视为同意'}],
- 'allow_clash': ['intact'],
- '换行变更已获同意': {'S6': '用户本轮明确原话“forecast 标注为重点词汇，标注为重点词汇。”；只将had/forecast原组拆出，分别对应普通曾与重点预报，英语实际词标点及原声保持。'}}
+ 'allow_clash': ['intact', 'forecast', 'military', 'satellites'],
+ '换行变更已获同意': {'S6': '用户本轮实际原话“forecast 标注为重点词汇，标注为重点词汇。”；实现记录（不是用户逐字说过同意换行）：为了让新重点词 forecast 与预报单独同色对应，只将原 had '
+                    'forecast 组拆成普通 had/曾与重点 '
+                    'forecast/预报，原英文词标点、全部中文语序与音频控制均保留。这是落实该词标色所需的最窄分组，未引用或伪造新的用户换行回复。'}}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对
