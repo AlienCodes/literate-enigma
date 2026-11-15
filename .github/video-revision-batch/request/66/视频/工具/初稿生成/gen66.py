@@ -9,8 +9,8 @@ S = [(1,
      ('a **Swiss**', '一位**瑞士的**(Swiss)'),
      ('engineer,', '工程师，')],
     '（a Swiss engineer：同位语，补充说明 George de Mestral）'],
-   [[('returned from hunting in the Alps with his **hound**, an Irish Pointer.',
-      '带着他的**猎犬**(hound)，一只爱尔兰的指示犬，从阿尔卑斯山的打猎中归来。')],
+   [[('**returned from** hunting in the Alps with his **hound**, an Irish Pointer.',
+      '带着他的**猎犬**(hound)，一只爱尔兰的指示犬，\n**从**(returned from)阿尔卑斯山的打猎中**归来**(returned from)。')],
     '（an Irish Pointer：同位语，补充说明 hound）']]),
  (1,
   [[[('**Prickly**', '**多刺的**(Prickly)'),
@@ -38,13 +38,15 @@ S = [(1,
  (2,
   [[[('In Lyon,', '在里昂，'), ('then', '当时的'), ('a **weaving** centre,', '一个**纺织**(weaving)中心，')],
     '（then a weaving centre：同位语，补充说明 Lyon）'],
-   [[('a cotton', '一个棉制'),
+   [[('a **cotton**', '一个**棉制的**(cotton)'),
      ('version', '版本'),
      ('proved', '被证明'),
      ('too', '太'),
      ('**frail**', '**脆弱**(frail)，'),
      ('to survive **abrasion**.', '以至于无法在**磨损**(abrasion)中存活下来。')],
-    '（too A to do：太 A 而不能……）']]),
+    '（too A to do：太 A 而不能……）\n'
+    '（a cotton version：棉制魔术贴试样；survive abrasion：经受住摩擦磨损。\n'
+    'too frail to… 表示“太不结实，以致无法……”，这里强调棉制试样不耐磨。）']]),
  (2,
   [[[('Working with a **textiles** firm,', '与一家**纺织品**(textiles)公司合作，')], '（Working with…：现在分词短语作伴随状语）'],
    [[('he', '他'), ('turned to', '转向了'), ('**nylon**,', '**尼龙**(nylon)，')], '（turn to：转而采用）'],
@@ -71,7 +73,7 @@ S = [(1,
    [[('velours, meaning', 'velours 意为'),
      ('**velvet**,', '**天鹅绒**(velvet)，'),
      ('and crochet, meaning', 'crochet 意为'),
-     ('hook.', '钩子。')],
+     ('**hook**.', '**钩子**(hook)。')],
     '（velours… and crochet…：同位语，补充说明 words；\nmeaning…：现在分词短语，说明词义）']]),
  (3, [[[('A US patent **duly** followed in 1955.', '1955年，一项美国专利**如期**(duly)而至。')]]]),
  (3,
@@ -336,7 +338,13 @@ out = {'no': '66',
                                 '不发音，dictionary.com），识别器拼成 velour / belur（同音、少不发音的 s）；读音按已核实读音，非读错'},
                    'S10': {'配音指纹': 'b4ac745defc1',
                            '依据': '2026-11-08 接手会话：apparel 按词典 əpˈɛɹəl 读，识别器拼成 a '
-                                 'peril（əˈpɛɹəl，同音拆成两词）；读音按词典，非读错'}},
+                                 'peril（əˈpɛɹəl，同音拆成两词）；读音按词典，非读错'},
+                   'S9': {'配音指纹': 'b4ac745defc1',
+                          '依据': '2026-11-14基于原机器复听程序实际测量，本句参考文为 A US patent duly followed in '
+                                '1955.，当前原始配音指纹b4ac745defc1。原始句窗59.11–62.455秒：small.en全文为 A U.S. patent dually '
+                                'followed in 1955.；parakeet全文为 A U.S. patent duly followed in '
+                                '1955.。实际公开MP4上下文58.99–62.575秒仍为相同的一词分歧，其他词无差。2026-11-08已有公开纠音及已核实读音把duly定为美式dˈuːli；实际原G72单线程母素材的合成音素输入含dˈuːli，未把dually泛称同音。当前完整AAC、6101个包的payload和绝对PTS/DTS/duration/priming、6246400个float32样本与不可变6462106已验收66旧轨逐字节相同，maxdiff=0。本记录仅保存该句、该指纹的两种识别器分歧和既有纠音/声音保持实测，按既有K126疑点记录机制交复听；不声称用户已听审，也不改声音。依据：实际collector '
+                                'c133f01703a81c95d6fe47d6c8a184880a85ab677340647065cad66d5c520609；完整对照报告SHA256=4b62fb76aae3c60e82e703efb0eec6a30754c33e5808d935c9382d9d60a24945。'}},
           '停顿位置': {'S8 words, / velours, @2.391': '2026-11-08 逐 2.5 ms 看声音实测（S8 w，合成标点后）：words 的 /z/ '
                                                   '2.27–2.39（-12～-28 dB、重心 4.3–6.0 kHz、低频 -2～-42 dB），2.3925 起 '
                                                   'velours 的 /v/（重心降到 3.1、2.6、2.5 kHz，2.405 起 1.3 kHz '
@@ -354,7 +362,12 @@ out = {'no': '66',
                  'S10 stitched … with': '不是搭配：with the fasteners 引出缝上去的东西，stitch 单独就是“缝”',
                  'S11 charmed … of': '不是搭配：of 属于 because of（是因为），和 charmed 无关',
                  'S12 in … outer': '不是搭配：in 只表示位置，中文“在……”已译出，outer space 已整体标成重点词（外太空）',
-                 'S13 in … mid-air': '不是搭配：in 只表示位置，中文“在……中”已译出，mid-air 单独就是“半空”（速查表 n. 半空中）'}},
+                 'S13 in … mid-air': '不是搭配：in 只表示位置，中文“在……中”已译出，mid-air 单独就是“半空”（速查表 n. 半空中）',
+                 'S5 frail … to': '不是搭配：too frail to survive abrasion 属于 too A to do 结果结构，to 引出不定式survive '
+                                  'abrasion，frail是形容词；不是frail to固定搭配。原too A to说明保留，新增用户接受的小字解释棉制魔术贴不耐磨。'},
+          '同词异译': {'returned from：从/归来': 'returned '
+                                         'from在S1指从某处归来，中文从和归来是一个分隔短语的两个部分，阿尔卑斯山的打猎中夹在中间；用户本次明确点名从/归来，二者共用returned '
+                                         'from同一key，不是两种译法。'}},
  '结尾解说': '简述',
  '高亮按实际开口': True,
  '高亮开口门槛': 40,
@@ -422,7 +435,14 @@ out = {'no': '66',
             {'日期': '2026-11-10',
              'S13': '用户 2026-11-10 原话：“To keep gear anchored  in weightlessness '
                     '这个作为一行这个标这个弄一行。这个弄一行，这个弄一行，ok。后面的 so that  开头的那部分作为另外一行。”',
-             'S16': '用户 2026-11-10 原话：“这个地方不要说台湾，中国大陆和韩国……你这个from后面可以直接跟上一个其他国家……直接换成其他国家就行了”（英文改短，换行随之变）'}]}
+             'S16': '用户 2026-11-10 原话：“这个地方不要说台湾，中国大陆和韩国……你这个from后面可以直接跟上一个其他国家……直接换成其他国家就行了”（英文改短，换行随之变）'}],
+ '换行变更已获同意': {'S1': '本次用户实际定稿原话“50第57篇，第57篇定稿，第57篇定稿。记得配上插图，记得配上插图，我发现这个最后是没有插图的，最后面是没有插图的。4k 定稿 '
+                    '我发现这后面是没有插图的。”。落实returned '
+                    'from/从…归来新增重点后的实际预览出现中文句号孤立一行，因此只在原中文指示犬逗号后加入既有显示LF；原English、两chunk、中文非空白字句及声控均保持。用户未指定这个具体LF，此处如实记录本次定稿排版的必要实现，不伪称用户专门要求S1换行。实际before/after图片与独立视觉观察已保存。',
+              'S5': '本次用户实际定稿原话“50第57篇，第57篇定稿，第57篇定稿。记得配上插图，记得配上插图，我发现这个最后是没有插图的，最后面是没有插图的。4k 定稿 '
+                    '我发现这后面是没有插图的。”。原独立反馈实际说“cotton 标注为词汇，重点词汇。 下面所对应的意思由棉制改为棉制的 。 '
+                    '然后把这个小字加上去，把这个小字加上去。”；这段小字是另附assistant原提案经该反馈接受，非用户逐字写作。原too A '
+                    'to整条先保留，仅原说明分行程序在新增说明标点处加LF，所有字句、English、声控均保持。'}}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对

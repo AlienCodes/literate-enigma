@@ -2,11 +2,11 @@
 # ZH: 一颗刺果钩出的发明
 
 ## 英文
-In 1941 George de Mestral, a **Swiss** engineer, returned from hunting in the Alps with his **hound**, an Irish Pointer. **Prickly** burdock **seed-heads** had **hitched** themselves to his clothes and lay **tangled** in the dog's **fur**. Under a microscope he saw thousands of tiny **barbs**, each a **hook** **grasping** the small **loops** in cloth.
+In 1941 George de Mestral, a **Swiss** engineer, **returned from** hunting in the Alps with his **hound**, an Irish Pointer. **Prickly** burdock **seed-heads** had **hitched** themselves to his clothes and lay **tangled** in the dog's **fur**. Under a microscope he saw thousands of tiny **barbs**, each a **hook** **grasping** the small **loops** in cloth.
 
-Few **took** his idea **seriously** at first. In Lyon, then a **weaving** centre, a cotton version proved too **frail** to survive **abrasion**. Working with a **textiles** firm, he turned to **nylon**, whose hooks were **stiff** enough to hold yet easy to **pull apart**. The **trial-and-error** at the **looms** and **mills** lasted about ten years.
+Few **took** his idea **seriously** at first. In Lyon, then a **weaving** centre, a **cotton** version proved too **frail** to survive **abrasion**. Working with a **textiles** firm, he turned to **nylon**, whose hooks were **stiff** enough to hold yet easy to **pull apart**. The **trial-and-error** at the **looms** and **mills** lasted about ten years.
 
-The name Velcro **merged** two French words, velours, meaning **velvet**, and crochet, meaning hook. A US patent **duly** followed in 1955. In 1959 a New York fashion show sent **apparel** **stitched** with the **fasteners** down the **runway**. The public was less **charmed** than expected, **mostly** because of the **aesthetic**.
+The name Velcro **merged** two French words, velours, meaning **velvet**, and crochet, meaning **hook**. A US patent **duly** followed in 1955. In 1959 a New York fashion show sent **apparel** **stitched** with the **fasteners** down the **runway**. The public was less **charmed** than expected, **mostly** because of the **aesthetic**.
 
 The **underdog** proved its **utility** in **outer space**. NASA used it in the **Apollo programme** to keep **gear** **anchored** **in weightlessness**, so that nothing would **hover** in **mid-air**. Apollo 11 was **equipped with** a **sizeable** amount, about 3,300 square inches. NASA did not invent the nylon **clasp**.
 
@@ -14,11 +14,11 @@ When the patent **ran out** in 1978, **cut-price** **knock-offs** from other cou
 
 ## 中文
 
-1941年，乔治·德·梅斯特拉尔，一位**瑞士的**(Swiss)工程师，带着他的**猎犬**(hound)，一只爱尔兰的指示犬，从阿尔卑斯山的打猎中归来。（a Swiss engineer：同位语，补充说明 George de Mestral）（an Irish Pointer：同位语，补充说明 hound）**多刺的**(Prickly)牛蒡**种子头**(seed-heads)已把它们自己**钩在了**(hitched)他的衣服上，并**缠绕**(tangled)在狗的**毛皮**(fur)里。（had hitched：过去完成时；hitch oneself to：挂在……上）（lay tangled：系表结构，lay 是 lie 的过去式）在显微镜下，他看到成千上万个细小的**倒刺**(barbs)，每一个（如同）一个**钩子**(hook)，**抓住**(grasping)布料上的小**圈**(loops)。（each a hook…：独立主格结构，补充说明 barbs；grasping…：现在分词短语，修饰 hook）
+1941年，乔治·德·梅斯特拉尔，一位**瑞士的**(Swiss)工程师，带着他的**猎犬**(hound)，一只爱尔兰的指示犬，**从**(returned from)阿尔卑斯山的打猎中**归来**(returned from)。（a Swiss engineer：同位语，补充说明 George de Mestral）（an Irish Pointer：同位语，补充说明 hound）**多刺的**(Prickly)牛蒡**种子头**(seed-heads)已把它们自己**钩在了**(hitched)他的衣服上，并**缠绕**(tangled)在狗的**毛皮**(fur)里。（had hitched：过去完成时；hitch oneself to：挂在……上）（lay tangled：系表结构，lay 是 lie 的过去式）在显微镜下，他看到成千上万个细小的**倒刺**(barbs)，每一个（如同）一个**钩子**(hook)，**抓住**(grasping)布料上的小**圈**(loops)。（each a hook…：独立主格结构，补充说明 barbs；grasping…：现在分词短语，修饰 hook）
 
-起初，很少有人**认真看待**(took seriously)他的想法。（take A seriously：认真看待 A）在里昂，当时的一个**纺织**(weaving)中心，一个棉制版本被证明太**脆弱**(frail)，以至于无法在**磨损**(abrasion)中存活下来。（then a weaving centre：同位语，补充说明 Lyon）（too A to do：太 A 而不能……）与一家**纺织品**(textiles)公司合作，他转向了**尼龙**(nylon)，其钩子足够**坚硬且不易弯曲**(stiff)，既能扣住，又容易**拉开**(pull apart)。（Working with…：现在分词短语作伴随状语）（turn to：转而采用）（whose…：非限制性定语从句，修饰 nylon；A enough to do：足够 A，能……；pull apart：拉开）在**织机**(looms)旁和**工厂**(mills)里的**反复试验**(trial-and-error)持续了约十年。（at the looms and mills：后置定语，修饰 trial-and-error）
+起初，很少有人**认真看待**(took seriously)他的想法。（take A seriously：认真看待 A）在里昂，当时的一个**纺织**(weaving)中心，一个**棉制的**(cotton)版本被证明太**脆弱**(frail)，以至于无法在**磨损**(abrasion)中存活下来。（then a weaving centre：同位语，补充说明 Lyon）（too A to do：太 A 而不能……）（a cotton version：棉制魔术贴试样；survive abrasion：经受住摩擦磨损。too frail to… 表示“太不结实，以致无法……”，这里强调棉制试样不耐磨。）与一家**纺织品**(textiles)公司合作，他转向了**尼龙**(nylon)，其钩子足够**坚硬且不易弯曲**(stiff)，既能扣住，又容易**拉开**(pull apart)。（Working with…：现在分词短语作伴随状语）（turn to：转而采用）（whose…：非限制性定语从句，修饰 nylon；A enough to do：足够 A，能……；pull apart：拉开）在**织机**(looms)旁和**工厂**(mills)里的**反复试验**(trial-and-error)持续了约十年。（at the looms and mills：后置定语，修饰 trial-and-error）
 
-Velcro 这个名字**合并了**(merged)两个法语词，velours 意为**天鹅绒**(velvet)，crochet 意为钩子。（velours… and crochet…：同位语，补充说明 words；meaning…：现在分词短语，说明词义）1955年，一项美国专利**如期**(duly)而至。1959年，纽约一场时装秀让**缝有**(stitched)这种**搭扣**(fasteners)的**服装**(apparel)走上**T台**(runway)。（stitched with…：过去分词短语作后置定语，修饰 apparel；send A down B：让 A 走上 B）公众却不如预期那样**着迷**(charmed)，**主要**(mostly)是因为它的**审美**(aesthetic)。（less A than expected：不如预期那样 A）
+Velcro 这个名字**合并了**(merged)两个法语词，velours 意为**天鹅绒**(velvet)，crochet 意为**钩子**(hook)。（velours… and crochet…：同位语，补充说明 words；meaning…：现在分词短语，说明词义）1955年，一项美国专利**如期**(duly)而至。1959年，纽约一场时装秀让**缝有**(stitched)这种**搭扣**(fasteners)的**服装**(apparel)走上**T台**(runway)。（stitched with…：过去分词短语作后置定语，修饰 apparel；send A down B：让 A 走上 B）公众却不如预期那样**着迷**(charmed)，**主要**(mostly)是因为它的**审美**(aesthetic)。（less A than expected：不如预期那样 A）
 
 这个**不被看好的（发明）**(underdog)在**外太空**(outer space)证明了自己的**用处**(utility)。（underdog：不被看好的一方 / 处于劣势的弱者，同样也指大家不太看好的东西或者是发明等等）美国航天局在**阿波罗计划**(Apollo programme)中使用了它，以便在**失重状态下**(in weightlessness)保持**装备**(gear)**固定**(anchored)，从而没有任何东西会在**半空**(mid-air)中**飘浮**(hover)。（to keep…：不定式作目的状语；keep A anchored：让 A 保持固定）（so that…：引导目的状语从句）阿波罗11号**配备了**(equipped with)**相当多的**(sizeable)用量，约3,300平方英寸。（be equipped with：配备有；about 3,300 square inches：同位语，补充说明 amount）美国航天局并没有发明这种尼龙**扣件**(clasp)。
 
@@ -29,6 +29,7 @@ Velcro 这个名字**合并了**(merged)两个法语词，velours 意为**天鹅
 |---|---|---|
 | Swiss | 本文：瑞士的；adj. 瑞士的（a Swiss watch；Swiss chocolate） | 1 |
 | hound | 本文：猎犬；n. 猎犬（a fox hound） | 1 |
+| returned from | 本文：从……归来；v. (return from) 从……归来（return from a trip） | 1 |
 | Prickly | 本文：多刺的；adj. 多刺的；易怒的（a prickly bush；a prickly character） | 1 |
 | seed-heads | 本文：种子头；n. (seed-head) 种子头，种穗（dandelion seed-heads） | 1 |
 | hitched | 本文：钩在了；v. (hitch) 钩住，挂住；搭（便车）（hitch a ride；hitched to a post） | 1 |
@@ -40,6 +41,7 @@ Velcro 这个名字**合并了**(merged)两个法语词，velours 意为**天鹅
 | loops | 本文：圈；n. (loop) 环，圈；（织物的）毛圈（a loop of string；terry loops） | 1 |
 | took seriously | 本文：认真看待；短语. (take sb/sth seriously) 认真看待，重视（take the warning seriously） | 2 |
 | weaving | 本文：纺织；n. 纺织，编织（a weaving mill） | 2 |
+| cotton | 本文：棉制的；adj. 棉制的 | 2 |
 | frail | 本文：脆弱；adj. 脆弱的，虚弱的（a frail old man；frail material） | 2 |
 | abrasion | 本文：磨损；n. 磨损，擦伤（resistant to abrasion） | 2 |
 | textiles | 本文：纺织品；n. (textile) 纺织品（the textiles industry） | 2 |

@@ -19,11 +19,11 @@ import tempfile
 
 
 EXPECTED_MAKER = '4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3'
-EXPECTED_REQUEST = 'cdf727cb4c6832063421df9da6ab8ae7729cf9df01d6be089a8981c92c360f06'
-EXPECTED_KEY = '5684a76d239dd589c24e3483bd1e378b5dcf7a12'
+EXPECTED_REQUEST = '34eb48747f1ea7d14b41ccc0cf45aa1592907aacf6618999b3506944e2ff4a0c'
+EXPECTED_KEY = '6bff50328510323f354b3f4809c0a792c0932b52'
 EXPECTED_NAME = f'调平_{EXPECTED_KEY}.json'
 EXPECTED_CLIP_HASHES = [
-    'f1feec87a7a1174555696abd7c0672df1e0974b3a2273664ec11e557bae587d9',
+    'fe4082b221d7e6cb2bcabb853b6eb0690c2725b38ab38ac441bfb8b5096fe89a',
     '1150614eeef2a65b28a3da2abfca749b4906da643a8f6e4737da2fd50916c1e6',
     '3a3a2f169cf51d183757d5b5ee7b30689f9abae1aae577a542434a6bf0aa5316',
 ]
@@ -167,7 +167,7 @@ def prepare(args, report):
     data = json.loads(request.read_text())
     assert str(data['no']) == '30'
     assert not data.get('停顿处除阻', {}).get('S9')
-    assert data['除阻加强']['S9'] == {'1': [6.245, 6.305, 3.5]}
+    assert data['除阻加强']['S9'] == {'1': [6.245, 6.305, 4.5]}
     model_ids = json.loads((repository / '视频/工具/环境/模型校验码.json').read_text())
     model_hashes = {}
     for name in ('kokoro-v1.0.onnx', 'kokoro-v1.0-timed.onnx', 'voices-v1.0.bin'):
