@@ -9,11 +9,11 @@ from fractions import Fraction
 import argparse, ast, contextlib, copy, gc, hashlib, importlib.util, inspect, json
 import math, os, re, shutil, subprocess, sys, tempfile, traceback
 sys.dont_write_bytecode = True
-SOURCE_NO = '56'
-BOOK_ORDER = 65
-TARGET = 'S11'
-COUNT = 17
-PROFILE_SHA256 = '4d3d81cee09183b14fda0f89a68dabe55ac8f927ab638270576031e8d7d2adc1'
+SOURCE_NO = '23'
+BOOK_ORDER = 62
+TARGET = 'S13'
+COUNT = 19
+PROFILE_SHA256 = 'dd4f2d98703bacdef9e920d96d60e2c7810a730f836a93bd2d54141ed17bb227'
 MAKER_SHA256 = '1b87c1d4d1685bdd59325587184cca35f853354a015e6fe89c11f150cd2a6239'
 CERTIFICATE_SHA256 = 'c05b6ed258dc9783bdb453f1e7382dac8b40d27f66ac30c26b3ee079c3933c19'
 STAMP_SHA256 = '9aa653ec47c686d9bb0b6c4393444bb50c3c8d2d249fe10a843b0959854f7ea6'
@@ -108,8 +108,7 @@ def validate_adoption(value, helper_sha, intake_sha, allow_math):
                 'strict_cached_whole_two_phase_authorized': True,
                 'actual_two_mother_intake_sha256': intake_sha,
                 'only_selected_target_original_math_if_missing_authorized': allow_math,
-                'new_target_or_non_target_TTS_authorized': False,
-                'conditional_selected_target_original_math_scope_sha256': '3626852722ae9f0172dd4dd0600db4ca88300ed1965ecdd5a77b7f2efe0bb980'}
+                'new_target_or_non_target_TTS_authorized': False}
     require(all(type(value.get(k)) is type(v) and value.get(k) == v for k,v in required.items()),
             'Exact separate whole-observer root adoption fields required')
 
@@ -357,7 +356,7 @@ def run_phase(label, input_bytes, expected_source, paths, support, profile, repo
                 return value
 
         def observe_write(path, actual_mastered, rate, *a, **kw):
-                if Path(path) == Path('work_56/a.wav'):
+                if Path(path) == Path('work_23/a.wav'):
                     frame = inspect.currentframe().f_back
                     assert frame.f_code is m.build.__code__ and rate == SR
                     raw_parts = frame.f_locals['audio']
@@ -365,7 +364,7 @@ def run_phase(label, input_bytes, expected_source, paths, support, profile, repo
                     peak = float(np.max(np.abs(pre)))
                     actual_formula = pre/np.abs(pre).max()*.89
                     assert np.array_equal(actual_mastered, actual_formula), 'Original maker normalization differs.'
-                    assert len(waves) == 18 and set(waves) == {'title'}|{'S'+str(i) for i in range(1,18)}
+                    assert len(waves) == 20 and set(waves) == {'title'}|{'S'+str(i) for i in range(1,20)}
                     cursor, positions = 0, {}
                     for part in raw_parts:
                         for sid, pcm in waves.items():
@@ -373,8 +372,8 @@ def run_phase(label, input_bytes, expected_source, paths, support, profile, repo
                                 assert sid not in positions
                                 positions[sid] = (cursor, cursor+len(pcm))
                         cursor += len(part)
-                    assert len(positions) == 18 and cursor == len(pre)
-                    result['actual_original_pre_master_peak_ownership_metadata']=premaster_peak_metadata(np,raw_parts,waves,positions,pre,peak,SR,'S11')
+                    assert len(positions) == 20 and cursor == len(pre)
+                    result['actual_original_pre_master_peak_ownership_metadata']=premaster_peak_metadata(np,raw_parts,waves,positions,pre,peak,SR,'S13')
                     result['title_pre_master_PCM_sha256'] = array_sha(waves['title'])
                     result['actual_original_mastering'] = {
                         'pre_master_full_PCM_sha256': array_sha(pre), 'pre_master_dtype': str(pre.dtype),
