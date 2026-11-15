@@ -853,11 +853,6 @@ try:
         records['记录'].append(authorization)
     agreement.write_text(json.dumps(records, ensure_ascii=False, indent=2) + '\n')
     (OUT / f'{NO}-user-authorization.json').write_text(json.dumps(authorization, ensure_ascii=False, indent=2) + '\n')
-    roles_path = TASK / 'original_text_data_roles57.py'
-    assert sha(roles_path) == '86a5c7e26ac528086b6b8773e803cdcc975bbc852f0dbf958adb6cef172c0467', 'Exact existing text-role installer differs'
-    roles_spec = importlib.util.spec_from_file_location('original_text_data_roles57', roles_path)
-    roles_module = importlib.util.module_from_spec(roles_spec); roles_spec.loader.exec_module(roles_module)
-    status['actual_original_text_data_roles'] = roles_module.install(request, ROOT, T, NO)
     (W / 'scripts').mkdir(exist_ok=True)
     # Write after genNN, so 做.py consumes the exact supplied script and preserves audio confirmations.
     (W / f'scripts/{NO}.json').write_bytes((ROOT / script_rel).read_bytes())
@@ -947,13 +942,13 @@ try:
         assert canonical_aac == accepted_aac, 'Canonical AAC differs from the accepted prior voice.'
     status['accepted_prior_aac_identical'] = canonical_aac == accepted_aac
     save()
-    if NO == '57':
-        binding_path = TASK / 'source57_exact_original_voice_binding.py'
-        spec08 = importlib.util.spec_from_file_location('source57_exact_original_voice_binding', binding_path)
-        module08 = importlib.util.module_from_spec(spec08); spec08.loader.exec_module(module08)
-        status['source57_original_voice_identity'] = module08.bind(request, W / 'work_57/a.wav', canonical, TASK, T, status['canonical_pipeline_passed'])
-        status.update({'book_order':61, 'review_only':False, 'user_individual_finalization_authorized':True,
-                       'specific_final_authorization_sha256':'ea0e487911876f994c4584206f753fb3942fcd70b5a0ab6382440e18f5066d54'})
+    if NO == '41':
+        binding_path = TASK / 'source41_exact_original_voice_binding.py'
+        spec41 = importlib.util.spec_from_file_location('source41_exact_original_voice_binding', binding_path)
+        module41 = importlib.util.module_from_spec(spec41); spec41.loader.exec_module(module41)
+        status['source41_original_voice_identity'] = module41.bind(request, W / 'work_41/a.wav', canonical, TASK, T, status['canonical_pipeline_passed'])
+        status.update({'book_order':66, 'review_only':False, 'user_individual_finalization_authorized':True,
+                       'specific_final_authorization_sha256':'9f19cf0c548babad0571a4b3d6221593c22a5a6ac11a04ae2ab1a002c1a1cdfe'})
         save()
     # Original tested end_card algorithm, with only its explicit source/summary loader supplied.
     module_file = ROOT / '.github/video-batch/run.py'
@@ -1015,6 +1010,23 @@ try:
     collect_actual_public_sources(request, W / f'scripts/{NO}.json')
     save()
     final = add_approved_illustrated_tail(request, final, OUT / f'{NO}-summary-verification.json')
+    # Separate project-output IO after genuine canonical/final/illustrated quality success.
+    # Failure here never changes the original acoustic/production verdict.
+    try:
+        master_exporter = TASK / 'original_program_master_export.py'
+        assert sha(master_exporter) == 'd4735d1b66ee59879be266a9b48f5d7e658b5c8a62d66a969e95fcaf4d4597a7', 'Master exporter program SHA mismatch.'
+        master_spec = importlib.util.spec_from_file_location('original_program_master_export', master_exporter)
+        master_module = importlib.util.module_from_spec(master_spec)
+        master_spec.loader.exec_module(master_module)
+        status['original_program_master_export'] = master_module.export_passed_original_master(
+            NO, W, OUT, status, final, TASK / 'original-master-export-authority.json')
+    except Exception as master_export_error:
+        status['original_program_master_export'] = {
+            'kind': 'passed-original-program-master-WAV-export', 'article': NO,
+            'exported': False, 'role': 'original-program-master/pre-video-AF',
+            'quality_verdict_changed': False, 'evidence_written': False,
+            'archive_remote_verified': False, 'all_generated_assets_complete_claimed': False,
+            'error': {'type': type(master_export_error).__name__, 'code': 'export-module-load-or-call-error'}}
     save()
     print(json.dumps(status, ensure_ascii=False), flush=True)
 except Exception as exc:

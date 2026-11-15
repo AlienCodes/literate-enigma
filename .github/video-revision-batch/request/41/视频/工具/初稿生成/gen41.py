@@ -24,7 +24,7 @@ S = [(1,
      ('**imported**', '从夏威夷**引进了**(imported)'),
      ('102', '102只'),
      ('cane', '甘蔗'),
-     ('toads,', '蟾蜍，')]],
+     ('**toads**,', '**蟾蜍**(toads)，')]],
    [[('**bulky**', '这是一种**原产于**(native to)美洲、**庞大笨重的**(bulky)'),
      ('**amphibians** **native to** the Americas, from Hawaii.', '**两栖动物**(amphibians)。')],
     '（bulky amphibians native to the Americas：同位语，补充说明 cane toads；\n'
@@ -96,7 +96,7 @@ S = [(1,
   [[[('Their', '它们的'),
      ('**invasion**', '**入侵**(invasion)'),
      ('**frontier**,', '**前沿**(frontier)'),
-     ('creeping about ten kilometres a year at first,', '起初每年缓慢行进约十公里，')],
+     ('**creeping** about ten kilometres a year at first,', '起初每年**缓慢行进**(creeping)约十公里，')],
     '（creeping…：现在分词短语作插入语，补充说明 frontier；\ncreep：缓慢移动）'],
    [[('**accelerated** to about 50 a year in the **tropical** north.',
       '到了**热带**(tropical)北部，**加快**(accelerated)到每年约50公里。')],
@@ -184,7 +184,13 @@ S = [(1,
      ('**loose**,', '**放出**(loose)，'),
      ('may never be **recalled**.', '就可能再也**召不回来**(recalled)。')],
     '（once loose：省略的状语从句，等于 once it is loose）\n'
-    '（简述：▸引进：1935年，澳大利亚为对付危害甘蔗的甲虫，引进甘蔗蟾蜍，再把约2400只后代放进野外，希望它们吃掉害虫。▸冒进：专家曾促成暂停释放，但地方游说让计划恢复；放出前却缺少检查蟾蜍究竟吃什么的试验。▸失控：甲虫没被明显消灭，蟾蜍却因天敌少、繁殖快而不断扩散，在热带北部每年推进约50公里。▸伤害：蟾蜍皮肤有毒，捕食它们的巨蜥、北袋鼬在一些地方大幅减少，部分袋鼬种群消失；对不同物种的影响并不一致。▸教训：此前引进仙人掌螟时，试验发现它的幼虫宁可饿死也不吃另外15种植物，后来才用于控制仙人掌；蟾蜍没有经过同类食性检验。未经检验的“帮手”一旦失控，可能再也收不回来。）']])]
+    '（简述：▸引进：1935年，澳大利亚为对付危害甘蔗的甲虫，引进甘蔗蟾蜍，再把约2400只后代放进野外，希望它们吃掉害虫。\n'
+    '▸冒进：专家曾促成暂停释放，但地方游说让计划恢复；放出前却缺少检查蟾蜍究竟吃什么的试验。\n'
+    '▸失控：甲虫没被明显消灭，蟾蜍却因天敌少、繁殖快而不断扩散，在热带北部每年推进约50公里。\n'
+    '▸伤害：蟾蜍皮肤有毒，捕食它们的巨蜥、北袋鼬在一些地方大幅减少，\n'
+    '▹部分袋鼬种群消失；对不同物种的影响并不一致。\n'
+    '▸教训：此前引进仙人掌螟时，试验发现它的幼虫宁可饿死也不吃另外15种植物，\n'
+    '▹后来才用于控制仙人掌；蟾蜍没有经过同类食性检验。未经检验的“帮手”一旦失控，可能再也收不回来。）']])]
 
 out = {'no': '41',
  'title_en': 'The Toad That Invaded Australia',
@@ -476,7 +482,7 @@ out = {'no': '41',
                  'S9 spawning … of': '不是搭配：of 属于 thousands of eggs，和 spawning 无关',
                  'S10 accelerated … to': '不是搭配：to 只引出加快后达到的速度（到每年约50公里），accelerated 本身就是“加快”'}},
  '结尾解说': '简述',
- 'allow_clash': ['prickly', 'starved', 'loose', 'ally'],
+ 'allow_clash': ['prickly', 'starved', 'loose', 'ally', 'toads', 'creeping'],
  '重点词颜色': {'multiplied': '#FBBF24', 'unchecked': '#2DD4BF'},
  '高亮按实际开口': True,
  '高亮开口门槛': 40,
