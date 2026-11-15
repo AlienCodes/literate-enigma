@@ -157,19 +157,22 @@ for _p_ in sorted(__import__('glob').glob('scripts/*.json')):
             if not _合成标点可收(a_,b_): raise SystemExit(f'【停止】合成标点只许把逗号换成分号、去掉人名首字母后的点（G57）：{_p_} {_k_} {a_} → {b_}')
         SYNTH_PUNCT[(_p_,_k_)]=(_disp_,[tuple(x) for x in _v_])
 # SPOKEN_COMMA_PURE_START: only three explicitly requested source sentences.
-_SPOKEN_COMMA_ALLOWED={('43','S16'):(1,),('52','S4'):(1,2),('52','S18'):(1,2,3,4)}
+_SPOKEN_COMMA_ALLOWED={('43','S16'):(1,),('52','S4'):(1,2),('52','S18'):(1,2,3,4),('24','S18'):(1,),('68','S2'):(1,),('35','S15'):(1,)}
 def _speech_comma_spec(data,label):
     table=data.get('朗读删逗号',{})
     if not isinstance(table,dict): raise SystemExit('【停止】朗读删逗号必须按 S句号写字典')
     if label not in table: return None
     spec=table[label]; no=str(data.get('no',''))
     if not re.fullmatch(r'S[1-9][0-9]*',label) or not 1<=int(label[1:])<=len(data.get('sentences',[])): raise SystemExit('【停止】朗读删逗号句号不存在')
-    if (no,label)not in _SPOKEN_COMMA_ALLOWED: raise SystemExit('【停止】朗读删逗号只能用于已明确指定的43S16、52S4、52S18')
+    if (no,label)not in _SPOKEN_COMMA_ALLOWED: raise SystemExit('【停止】朗读删逗号只能用于已明确指定的43S16、52S4、52S18、24S18、68S2、35S15')
     if not isinstance(spec,dict)or set(spec)!={'篇号','原文','逗号序号'}: raise SystemExit('【停止】朗读删逗号只许篇号、原文、逗号序号三个字段')
     if type(spec['篇号'])is not int or str(spec['篇号'])!=no: raise SystemExit('【停止】朗读删逗号篇号与当前源不符')
     sentence=data['sentences'][int(label[1:])-1]
     original=' '.join(re.sub(r'\*\*','',re.sub(r'\{\{.*?\}\}','',c['en'])).strip()for c in sentence['chunks'])
     if not isinstance(spec['原文'],str)or spec['原文']!=original: raise SystemExit('【停止】朗读删逗号原文与当前完整展示英文不符')
+    if (no,label)==('24','S18')and original!='Precision put six ashore within reach of help and, a century on, brought their ship back into view.': raise SystemExit('【停止】24S18朗读删逗号必须精确绑定本次用户指定的完整展示英文')
+    if (no,label)==('68','S2')and original!='Its amenities included a lounge and, that year, a grand piano.': raise SystemExit('【停止】68S2朗读删逗号必须精确绑定本次用户指定的完整展示英文')
+    if (no,label)==('35','S15')and original!='In 2014 came an eerie, man-made twist.': raise SystemExit('【停止】35S15朗读删逗号必须精确绑定本次用户指定的完整展示英文')
     marks=list(re.finditer(r',(?=\s)',original)); selected=spec['逗号序号']
     if not isinstance(selected,list)or not selected or any(type(x)is not int for x in selected)or selected!=sorted(set(selected))or any(x<1 or x>len(marks)for x in selected): raise SystemExit('【停止】朗读删逗号序号必须是有后空格ASCII逗号的升序不重复有效整数')
     if tuple(selected)!=_SPOKEN_COMMA_ALLOWED[(no,label)]: raise SystemExit('【停止】朗读删逗号序号超出这一句明确指定的范围')
