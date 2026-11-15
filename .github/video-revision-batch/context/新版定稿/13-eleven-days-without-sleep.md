@@ -2,7 +2,7 @@
 # ZH: 十一天不睡觉的少年
 
 ## 英文
-On 28 December 1963 Randy Gardner, a 17-year-old science **enthusiast** at a San Diego high school, set out to **forgo** **slumber** for a **regional** science fair. Two **companions** **diligently** **jolted** him **awake** whenever his **alertness** **waned** and **logged** his **mood**. The project, a **voluntary** **endeavour**, went on to **take first place**.
+On 28 December 1963 Randy Gardner, a 17-year-old science **enthusiast** at a San Diego high school, set out to **forgo** **slumber** for a **regional** science fair. Two **companions** **diligently** **jolted** him **awake** whenever his **alertness** **waned** and logged his **mood**. The project, a **voluntary** **endeavour**, went on to **take first place**.
 
 William Dement, a sleep researcher at Stanford, read press **coverage** of the attempt and was **intrigued**. He drove to San Diego and **assisted** John J. Ross, a Navy researcher, **in** monitoring the **sleepless** boy **closely**. The two **investigators** **attentively** noted the **fluctuations** in his state as the **deprivation** **progressively** **deepened**.
 
@@ -10,11 +10,11 @@ The **consequences** soon **mounted**. Gardner grew **moody**, lost **concentrat
 
 Gardner ended the **wearying** attempt on 8 January 1964, after 264.4 hours, about 11 days and 25 minutes. He then slept **soundly** for about 14 hours and woke apparently **refreshed**. Researchers **probed** the case in a 1965 **scholarly** paper, which helped **highlight** microsleeps, **involuntary** **lapses into** sleep lasting a few seconds. Gardner may have had such **momentary** **bouts** without noticing.
 
-In 1997 **Guinness World Records** **discontinued** monitoring such attempts because of the health **perils**, and others have since **alleged** longer **stints** awake. In a 2017 interview Gardner said severe **insomnia** had **tormented** him for about a decade, and he himself **pinned the blame on** the experiment. The boy who had seemed to **bounce back from** **exhaustion** with one long rest would, decades later, **barely** **doze off**.
+In 1997 Guinness World Records **discontinued** monitoring such attempts because of the health **perils**, and others have since **alleged** longer **stints** awake. In a 2017 interview Gardner said severe **insomnia** had **tormented** him for about a decade, and he himself **pinned the blame on** the experiment. The boy who had seemed to **bounce back from** **exhaustion** with one long rest would, decades later, **barely** **doze off**.
 
 ## 中文
 
-1963年12月28日，圣迭戈一名17岁的高中科学**爱好者**(enthusiast)兰迪·加德纳，为了参加一场**地区性的**(regional)科学展，开始尝试**放弃**(forgo)**睡眠**(slumber)。（a 17-year-old science enthusiast…：同位语，说明 Randy Gardner 的身份；set out to do：着手做，开始尝试做）两名**同伴**(companions)**尽心尽力**(diligently)，每当他的**警觉**(alertness)**减弱**(waned)，就**让**(jolted awake)他**猛然清醒过来**(jolted awake)，并**记录了**(logged)他的**情绪**(mood)。（jolt sb awake：使某人猛然清醒；whenever…：时间状语从句，每当……）这个项目，一次**自愿的**(voluntary)**尝试**(endeavour)，继而**夺得了第一名**(take first place)。（a voluntary endeavour：同位语，补充说明 the project；go on to do：后来接着做成……）
+1963年12月28日，圣迭戈一名17岁的高中科学**爱好者**(enthusiast)兰迪·加德纳，为了参加一场**地区性的**(regional)科学展，开始尝试**放弃**(forgo)**睡眠**(slumber)。（a 17-year-old science enthusiast…：同位语，说明 Randy Gardner 的身份；set out to do：着手做，开始尝试做）两名**同伴**(companions)**尽心尽力**(diligently)，每当他的**警觉**(alertness)**减弱**(waned)，就**让**(jolted awake)他**猛然清醒过来**(jolted awake)，并记录了他的**情绪**(mood)。（jolt sb awake：使某人猛然清醒；whenever…：时间状语从句，每当……）这个项目，一次**自愿的**(voluntary)**尝试**(endeavour)，继而**夺得了第一名**(take first place)。（a voluntary endeavour：同位语，补充说明 the project；go on to do：后来接着做成……）
 
 威廉·德门特，斯坦福大学的睡眠研究者，读到了媒体对这次尝试的**报道**(coverage)，并且**非常感兴趣**(intrigued)。他驾车前往圣迭戈，**协助**(assisted in)约翰·J·罗斯，一位海军研究员，去**密切**(closely)监视这个**不眠的**(sleepless)少年。（assist sb in doing：协助某人做……；a Navy researcher：同位语，说明 Ross 的身份）两位**研究人员**(investigators)**专心地**(attentively)记下了他状态的种种**波动**(fluctuations)，其间睡眠**剥夺**(deprivation)**逐步**(progressively)**加深**(deepened)。（as…：时间状语从句，在……的过程中）（睡眠剥夺（sleep deprivation）通常译为“睡眠剥夺”，日常也常说“睡眠不足”，指睡眠时间不足、睡眠被反复打断或完全缺乏睡眠，进而影响身心功能的状态。）
 
@@ -22,7 +22,7 @@ In 1997 **Guinness World Records** **discontinued** monitoring such attempts bec
 
 加德纳于1964年1月8日结束了这场**令人疲惫的**(wearying)尝试，共历时264.4小时，约合11天零25分钟。随后他**酣畅地/深度地**(soundly)睡了约14小时，醒来时似乎**神清气爽/恢复精神的**(refreshed)。（@soundly 是专门用来表示这个睡眠非常的酣畅深度。）研究者们在1965年的一篇**学术**(scholarly)论文中**探究了/深入研究**(probed)这一案例，该论文有助于**凸显**(highlight)微睡眠——指**不由自主地**(involuntary)**陷入**(lapses into)持续几秒钟短暂睡眠的状态。（which…：非限制性定语从句，指这篇论文；involuntary lapses into sleep…：同位语，解释 microsleeps；lasting…：现在分词短语作后置定语）@lapses into|（lapse into: 不知不觉地陷入（某种状态），@lapses into|尤指无意识的、非自愿的，或者是不太好的状态。）加德纳可能经历过这种**短暂的**(momentary)**发作**(bouts)而未曾察觉。（may have done：对过去情况的推测，可能已经……）@bouts|（bout 一阵、一场、一回、一次发作@bouts|（通常指疾病、情绪或活动的阵发性发作，@bouts|如 a bout of fever 一阵发烧））
 
-1997年，**吉尼斯世界纪录**(Guinness World Records)因健康**风险**(perils)**停止了**(discontinued)监测此类尝试；此后，其他人**声称/宣称**(alleged)有过更长的清醒**时段**(stints)。（discontinue doing：停止做……；have since done：从那以后已经……；stints awake：清醒的时段）在2017年的一次采访中，加德纳说严重的**失眠**(insomnia)**折磨了**(tormented)他约十年，他本人**把**(pinned the blame on)它**归咎于**(pinned the blame on)这次实验。（pin the blame on…：把责任归到……身上，归咎于……；he himself：他本人，强调是他自己的看法）那个曾看似只要睡个长觉，
+1997年，吉尼斯世界纪录因健康**风险**(perils)**停止了**(discontinued)监测此类尝试；此后，其他人**声称/宣称**(alleged)有过更长的清醒**时段**(stints)。（discontinue doing：停止做……；have since done：从那以后已经……；stints awake：清醒的时段）在2017年的一次采访中，加德纳说严重的**失眠**(insomnia)**折磨了**(tormented)他约十年，他本人**把**(pinned the blame on)它**归咎于**(pinned the blame on)这次实验。（pin the blame on…：把责任归到……身上，归咎于……；he himself：他本人，强调是他自己的看法）那个曾看似只要睡个长觉，
 就能**从**(bounce back from)**精疲力竭**(exhaustion)**中迅速恢复**(bounce back from)的少年，几十年后，却**几乎**(barely)连**打个盹**(doze off)都费劲。（who…：定语从句，修饰 the boy；bounce back from：从……中恢复过来；doze off：打盹/打瞌睡/凑合着短睡一下）（简述：▸挑战：1963年底，17岁高中生兰迪·加德纳为参加科学展尝试不睡觉；同伴帮他保持清醒，睡眠研究者随后加入监测。▸损害：他逐渐情绪不稳，注意力和短时记忆受损，出现多疑和幻觉，甚至误以为自己是职业橄榄球员。▸休息：264.4小时、约11天后，他结束挑战；酣睡约14小时，醒来时似乎恢复了精神。▸疑点：他可能曾不自觉地睡着几秒，这叫微睡眠，本人未必察觉；吉尼斯1997年因健康风险停止记录此类挑战。▸晚年：2017年，他说严重失眠已折磨自己约十年，并认为是当年实验造成的；文章没有证明两者有因果关系。）
 
 ## 速查表
@@ -37,7 +37,6 @@ In 1997 **Guinness World Records** **discontinued** monitoring such attempts bec
 | alertness | 本文：警觉；n. 警觉，清醒（mental alertness；increase alertness） | 1 |
 | waned | 本文：减弱；v. (wane) 减弱，衰退（interest/enthusiasm waned；wax and wane） | 1 |
 | jolted awake | 本文：让……猛然清醒过来；v. (jolt) 使猛然一震；使猛然清醒（jolt sb awake；jolt sb out of complacency） | 1 |
-| logged | 本文：记录；v. (log) 记录（log observations/data） | 1 |
 | mood | 本文：情绪；n. 心情，情绪（in a good/bad mood；mood swings） | 1 |
 | voluntary | 本文：自愿的；adj. 自愿的；志愿的（voluntary work；on a voluntary basis） | 1 |
 | endeavour | 本文：尝试；n. 努力，尝试（a scientific endeavour；human endeavour） | 1 |
@@ -74,7 +73,6 @@ In 1997 **Guinness World Records** **discontinued** monitoring such attempts bec
 | lapses into | 本文：陷入；n. (lapse) 短暂失误；陷入，滑入（a lapse of memory/concentration；a lapse into silence） | 4 |
 | momentary | 本文：短暂的；adj. 片刻的，短暂的（a momentary pause/hesitation） | 4 |
 | bouts | 本文：发作；n. (bout) 一阵，一次发作（a bout of flu/coughing） | 4 |
-| Guinness World Records | 本文：吉尼斯世界纪录；n. 吉尼斯世界纪录（专有名称） | 5 |
 | perils | 本文：风险；n. (peril) 危险，风险（the perils of the sea；in mortal peril） | 5 |
 | discontinued | 本文：停止了；v. (discontinue) 停止，中止（discontinue a service/product） | 5 |
 | alleged | 本文：声称/宣称；v. (allege) 宣称，声称（未经证实）（allege that…；the alleged victim） | 5 |
