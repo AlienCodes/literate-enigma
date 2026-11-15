@@ -5,7 +5,7 @@ This module grants no quality pass and never repairs a source or audio file.
 from pathlib import Path
 from fractions import Fraction
 import hashlib,json,subprocess,tempfile
-REFERENCE_SHA='08f225ad2e3904a1060f068876dd8cb209f61efcd91611b821624bd651605fb8'
+REFERENCE_SHA='2f8f22b02e51d77718b1fb1c9ecc8d367be88ddd277d3e33f2f52730fca16276'
 
 def require(ok, message):
     if not ok:
@@ -73,7 +73,7 @@ def validate_values(reference,observed):
             'actual_codec':observed['codec'],'source_documents_publication_role':'actual book58 final authority; prior9034 eight-only consent is not modified or expanded'}
 
 
-def bind(request_dir,wav_path,canonical_video,task,tools,canonical_pipeline_passed):
+def bind(request_dir,wav_path,canonical_video,task,tools,canonical_pipeline_passed,observed_before_validation=None):
     refpath=Path(__file__).with_name('source08_exact_original_voice_reference.json')
     require(digest(refpath)==REFERENCE_SHA,'Pinned source08 exact identity reference differs')
     reference=json.loads(refpath.read_text());request_dir=Path(request_dir)
@@ -89,4 +89,7 @@ def bind(request_dir,wav_path,canonical_video,task,tools,canonical_pipeline_pass
               'stamp_SHA256':digest(Path(tools)/'新管/快测通过.json'),
               **{k:aac[k]for k in ['aac_adts_sha256','packet_count','packet_projection_sha256']},
               'codec':aac['projection']['codec']}
+    if observed_before_validation is not None:
+        require(type(observed_before_validation) is dict, 'Actual identity scalar capture must be a dictionary')
+        observed_before_validation.update(observed)
     return validate_values(reference,observed)
