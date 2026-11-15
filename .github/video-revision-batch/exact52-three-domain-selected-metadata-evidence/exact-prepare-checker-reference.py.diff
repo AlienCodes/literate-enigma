@@ -1,0 +1,11 @@
+--- root-adopted97152/prepare-checker-reference.py
++++ root-selected-f9e3/prepare-checker-reference.py
+@@ -62,7 +62,7 @@
+         return False
+     sources = {
+         '43': 'bacc7abafe824031e0d85349f80327b66947839472008a18bd679cf6cdc3b53e',
+-        '52': '97152c3408e320ddec7acb1cedb426c1ec44e2a3a796ad90aedb4229735f1764',
++        '52': 'f9e3fa65ddf161a0d7b83e17fe60ac56552535566bf64512ca0f785e21e49862',
+     }
+     assert no in sources and str(source_data.get('no')) == no, 'Specific spoken-reference source id mismatch.'
+     assert maker_sha == '23d886be9cf999eabc682159e1ab2fc2cf6c4ccb0597f32d60d5e90a34606c0e', 'Specific spoken-reference maker mismatch.'

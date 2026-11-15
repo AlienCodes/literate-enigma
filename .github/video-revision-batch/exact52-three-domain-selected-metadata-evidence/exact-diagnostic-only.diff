@@ -1,0 +1,38 @@
+--- original-run.py
++++ candidate-run.py
+@@ -788,6 +788,23 @@
+     return True
+ 
+ 
++def source52_original_failed_autoaudio_detail(lines, article):
++    """Retain actual original failed log detail; this never runs or admits a check."""
++    if article != '52':
++        return []
++    for index, line in enumerate(lines):
++        if line.lstrip().startswith('✘ 自动音频检查'):
++            selected = [line]
++            for detail in lines[index + 1:]:
++                if detail.lstrip().startswith(('✔', '✘', '△')):
++                    break
++                selected.append(detail)
++                if len(selected) >= 120:
++                    break
++            return selected
++    return []
++
++
+ def official(args, label):
+     # Retry only the specific cache misses reported by the unchanged producer.
+     for attempt in range(100):
+@@ -821,6 +838,11 @@
+             for group in (f'做_{NO}', f'定稿_{NO}'):
+                 for source in (W / group).glob('*.log'):
+                     lines = source.read_text(errors='replace').splitlines()
++                    if NO == '52' and source.name == '出片后.log':
++                        audio_details = source52_original_failed_autoaudio_detail(lines, NO)
++                        if audio_details:
++                            diagnostics[f'{group}/{source.name}:actual_automatic_audio_check_details'] = [
++                                line[:2000].replace(str(M), '<private-machine>') for line in audio_details]
+                     if source.name == '声音.log':
+                         # Preserve actual early exits (for example a final sentence
+                         # without an inner comma) even when the legacy summary
