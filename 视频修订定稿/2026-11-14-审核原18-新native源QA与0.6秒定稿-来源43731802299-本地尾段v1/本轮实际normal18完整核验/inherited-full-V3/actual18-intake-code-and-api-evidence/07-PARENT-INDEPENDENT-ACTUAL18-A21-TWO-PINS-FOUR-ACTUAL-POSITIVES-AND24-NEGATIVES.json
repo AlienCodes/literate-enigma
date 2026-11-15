@@ -1,0 +1,210 @@
+{
+  "kind": "actual18-A21-two-pin-compatibility-with-real15-17-30-controls-metadata-only-tests",
+  "positive": [
+    {
+      "case": "actual18-original-A21-fivephase-report-new-exact-request-ref",
+      "passed": true,
+      "old_contract_rejected_actual_pair": true,
+      "native_and_report": {
+        "path": "/workspace/work/source18-native43731802299-actual-job-stdout.parsed-actual-status-from-stdout.json",
+        "bytes": 269072,
+        "sha256": "d81371cc37633dab8fa0df984d2bd732ea969efb87edc95b218daf2d71a7cef7"
+      }
+    },
+    {
+      "case": "actual15-original-A21-control-stays-passed",
+      "passed": true,
+      "native_and_report": {
+        "path": "/workspace/work/video-audit70-20261113/next-passed-native/43562525001/15/files/15-status.json",
+        "bytes": 253332,
+        "sha256": "9f313f1fa20e860d49b6c9ab06eea95d41a14a1538ad37030ac9d5edf28f5cff"
+      }
+    },
+    {
+      "case": "actual17-original-A21-control-stays-passed",
+      "passed": true,
+      "native_and_report": {
+        "path": "/workspace/work/video-audit70-20261113/next-passed-native/43562525001/17/files/17-status.json",
+        "bytes": 233782,
+        "sha256": "1f4e4725d86535553c75e5a39ed3070a02f473883910ed92dab25b6803591661"
+      }
+    },
+    {
+      "case": "actual30-original-A21-control-stays-passed",
+      "passed": true,
+      "native_and_report": {
+        "path": "/workspace/work/review30-native/43703039715/30/artifact-files/30-status.json",
+        "bytes": 245638,
+        "sha256": "4d573d378b2673c2ae55789eeb24178b3845a23818eeb4f05cbb068eee5ed6d7"
+      }
+    }
+  ],
+  "negative": [
+    {
+      "case": "old18-request5192-not-reused",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "A21 request differs from the exact approved reference"
+    },
+    {
+      "case": "old18-reference1af-not-reused",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "A21 actual reference differs from the approved file"
+    },
+    {
+      "case": "wrong-program",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Actual A21 QC program identity differs"
+    },
+    {
+      "case": "wrong-repair-scope",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Actual approved original-release repair scope absent"
+    },
+    {
+      "case": "native-canonical-not-passed",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Actual complete original pipeline/A21 report not passed"
+    },
+    {
+      "case": "native-not-passed",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Actual complete original pipeline/A21 report not passed"
+    },
+    {
+      "case": "raw-report-not-passed",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Actual complete original pipeline/A21 report not passed"
+    },
+    {
+      "case": "changed-original-sound-gates",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "A21 report is not the approved actual public-MP4/original-function measurement"
+    },
+    {
+      "case": "privatePCM-read-claim",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "A21 report is not the approved actual public-MP4/original-function measurement"
+    },
+    {
+      "case": "wrong-original-A21-program",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "A21 report is not the approved actual public-MP4/original-function measurement"
+    },
+    {
+      "case": "one-original-phase-failed",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Actual repaired release did not pass every unchanged original A21 phase"
+    },
+    {
+      "case": "double-release-in-one-phase",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Actual repaired release did not pass every unchanged original A21 phase"
+    },
+    {
+      "case": "wrong-fivephase-offset",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Actual repaired release did not pass every unchanged original A21 phase"
+    },
+    {
+      "case": "four-phases-only",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Actual repaired release did not pass every unchanged original A21 phase"
+    },
+    {
+      "case": "untouched-sentence-review-failed",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Actual A21 repair has failed checks"
+    },
+    {
+      "case": "untouched-pitch-review-failed",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Actual A21 repair has failed checks"
+    },
+    {
+      "case": "missing-whole-level-check",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "A21 actual control/five-phase/untouched-voice evidence is incomplete"
+    },
+    {
+      "case": "duplicate-required-check",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "A21 actual control/five-phase/untouched-voice evidence is incomplete"
+    },
+    {
+      "case": "15-cannot-borrow18-reference5429",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "A21 actual reference differs from the approved file"
+    },
+    {
+      "case": "15-cannot-borrow18-request7243",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "A21 request differs from the exact approved reference"
+    },
+    {
+      "case": "17-cannot-borrow18-reference5429",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "A21 actual reference differs from the approved file"
+    },
+    {
+      "case": "17-cannot-borrow18-request7243",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "A21 request differs from the exact approved reference"
+    },
+    {
+      "case": "30-cannot-borrow18-reference5429",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "A21 actual reference differs from the approved file"
+    },
+    {
+      "case": "30-cannot-borrow18-request7243",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "A21 request differs from the exact approved reference"
+    }
+  ],
+  "actual_18_counts": {
+    "phases": 5,
+    "untouched_whole_sentences": 15,
+    "voiced_prefix_pairs": 265,
+    "whole_prefix_decoded_crop_bit_identical": true
+  },
+  "same_program4bd_and_original_A21_b479": true,
+  "all_existing_function_predicates_thresholds_and_only_data_inverse_verified": [
+    {
+      "file": "release_contract.py",
+      "only_changed_function_data": [
+        "actual_A21_repair_scope"
+      ]
+    },
+    {
+      "file": "produce_new_native_upstream.py",
+      "only_changed_function_data": []
+    }
+  ],
+  "no_book_order_key_added_to_native": true,
+  "raw_native_and_reports_read_only_no_PCM_or_MP4_read": true,
+  "not_HOST_sourceQA_or_new_acoustic_QA_acceptance": true
+}
