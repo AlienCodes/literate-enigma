@@ -916,13 +916,15 @@ try:
     assert (M / 'tts/kokoro-v1.0.onnx').exists(), 'Original warm machine cache was not restored.'
     W.mkdir(parents=True, exist_ok=True)
     install_certified_core_repairs()
+    assert sha(TASK / 'root-source43-exact-nine-plus-one-CF-only-source-GEN-selection-decision.json') == '56a36f7e80a06a5dd1ba71eac62166a3b834f5fb952d787916cb655ea152117f'
+    assert sha(TASK / 'root-source43-exact-CF-metadata-formal-aux-QC-layout-adoption-decision.json') == '9c246d680cf8195b38e26c47167094db59ab4a6e1beef7543e43ceec3cf7235f'
     assert sha(TASK / 'root-source43-final-NV-two-real-stage-controlled-QC-code-adoption-decision.json') == 'f660e62cfd5415661977ba4373245a4995959c16749075710dd3c8973ec22598'
     assert sha(TASK / 'root-source43-formal-aux-reference-exact-e000-data-pin-update-adoption-decision.json') == 'df1b47e856429ddb25e1708ebda8cb5b0144292942722584b61ab97ed0a6c719'
     assert sha(TASK / 'root-source43-exact-measured-post-d-NV-physical-input-selection-decision.json') == '2f14e9bea5a6703148b43ae7a5f84c9838b7851dac9b294be419b5ccad1b8b17'
     assert sha(TASK / 'root-source43-exact-no-ending-entry-unchanged-S21-original-default-mode-decision.json') == '53fd8aff11672ca330381203cbcedf09b1ccf7bc666d05014a2716e44b406dca'
     assert NO == '43'
-    assert sha(TASK / 'request/43/视频/脚本/43.json') == 'e000223b06902520aa354e496be9292c9ce91aa6e1e5886bfff7366f815d4cea'
-    assert sha(TASK / 'request/43/视频/工具/初稿生成/gen43.py') == '32b33f5d74f871fa6e2b0b264722000dc0c207047715d5e2a6b1da156862e6c8'
+    assert sha(TASK / 'request/43/视频/脚本/43.json') == 'db8fadbd6ab1e4247dbb66dbea557dcad28cafd518d71702b281768088d36597'
+    assert sha(TASK / 'request/43/视频/工具/初稿生成/gen43.py') == '5edec8ed8e983efccabcc2e96af5e4f77d036c9af82b521c7648a74352afff84'
     ENV['XG_KEEP_REVIEWED_ENDING'] = '0'
     status['reviewed_existing_ending_preservation_mode'] = False
     status['source43_exact_unchanged_S21_no_ending_entry_original_default_mode'] = True
@@ -1046,7 +1048,7 @@ try:
         # any selected article. Prepare only missing references privately;
         # official production and every checker remain STRICT_CACHE=1.
         reference_helper = TASK / 'prepare-checker-reference.py'
-        assert sha(reference_helper) == '5c8749981dd700d4a0f3d3e22df84e8ec86563a8234ad919a68642874327c498'
+        assert sha(reference_helper) == 'd4b46812705a2e4e7ee58bcf311f28345b2aa57bf5fb0ae0470c4e186f715241'
         assert sha(TASK / 'root43-52-specific-auxiliary-reference-caller-context-and-shared-plan-adoption.json') == '92e6533ef3a2837553985aa4ca703ed1858b9e6e4bb8f6dc4019627bb3433f56'
         reference_evidence = OUT / f'{NO}-checker-reference-preparation.json'
         reference_env = {k: v for k, v in ENV.items() if k != 'STRICT_CACHE'}
