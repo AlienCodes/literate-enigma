@@ -402,41 +402,6 @@ def checked(args, log, cwd=W):
         raise RuntimeError(f'{log}: exit {code}')
 
 
-def certify_exact_source46_user_format():
-    """Exact text formatting only; actual original full quickcheck is required."""
-    assert NO == '46', 'This isolated caller only prepares actual book48/source46.'
-    capsule = TASK / 'source46-exact-format'
-    config_file = capsule / 'root-adoption-binding.json'
-    config = json.loads(config_file.read_text())
-    assert config['candidate_code_profile_sha256'] == 'dff235ffef04da423b7a576e4bdfaf8adeec8a1673afa5b1a012fe5bbc6a9dbe'
-    decision = capsule / 'root-code-adoption.json'
-    assert config['root_decision_sha256'] != '0' * 64
-    assert sha(decision) == config['root_decision_sha256']
-    certifier = capsule / 'certify46_exact_format_runtime.py'
-    assert sha(certifier) == '40a07b4549ae09ea0f4f33df8fde2b04d20f0b8db0b1dca12788cd548618d2dd'
-    fixture_context = capsule / 'historical95_fixture_context.py'
-    assert sha(fixture_context) == '425a8f3a27a0ef003dc6d89729e37ae476e820e3708f9cfe6a10caacc2f4c5a9'
-    setup_decision = capsule / 'root-setup-fix-code-adoption.json'
-    assert config['setup_fix_root_decision_sha256'] != '0' * 64
-    assert sha(setup_decision) == config['setup_fix_root_decision_sha256']
-    output = OUT / '46-exact-user-format-original-full-fastcheck.json'
-    rc, _ = run(['python3', certifier, '--capsule', capsule, '--repository', ROOT,
-        '--video-root', M, '--root-decision', decision,
-        '--root-decision-sha256', config['root_decision_sha256'],
-        '--setup-fix-decision', setup_decision,
-        '--setup-fix-decision-sha256', config['setup_fix_root_decision_sha256'],
-        '--historical-fixtures', capsule / 'original95-certification-fixtures',
-        '--output', output, '--write-runtime'], 'exact-source46-format-code-certification.log')
-    proof = json.loads(output.read_text()) if output.is_file() else {}
-    status['exact_user_requested_format_code_certification'] = proof
-    status['original_maker_unchanged'] = not proof.get('runtime_installed', False)
-    status['audio_or_confirmation_metadata_approved_by_format_helper'] = False
-    status['original_numeric_rules_and_all_native_quality_gates_unchanged'] = True
-    save()
-    assert rc == 0 and proof.get('code_certification_passed') is True, (
-        'Exact source46 format code certification failed; no formal continuation is permitted.')
-
-
 def clear_temporary_video():
     """Discard only the restored working output, never a repository video."""
     global PRODUCTION_STARTED_NS
@@ -833,7 +798,6 @@ try:
     assert alias.resolve() == ROOT.resolve(), 'Canonical repository alias points elsewhere.'
     if not (W / 'fonts').exists():
         (W / 'fonts').symlink_to(T / 'fonts', target_is_directory=True)
-    certify_exact_source46_user_format()
     checked(['python3', T / '新管/印章.py'], 'original-restored-stamp.log')
     status['real_restored_stamp_validated'] = True
     checked(['python3', T / '出片指纹.py', '--拷', W], 'canonical-module-copy.log', ROOT)
@@ -885,6 +849,14 @@ try:
         agreement.write_bytes(supplied_agreement.read_bytes())
         records = supplied_records
         status['request_source_sha256']['视频/工具/用户同意记录.json'] = sha(supplied_agreement)
+    if NO == '09':
+        actual_rows_program = TASK / 'append09_exact_actual_user_rows.py'
+        assert sha(actual_rows_program) == '7c1936a36f1f24454cbedb0b925aed7935a829bb55b8b643716ae6c83f4e6363'
+        actual_rows_spec = importlib.util.spec_from_file_location('exact_source09_actual_user_rows', actual_rows_program)
+        actual_rows_module = importlib.util.module_from_spec(actual_rows_spec)
+        actual_rows_spec.loader.exec_module(actual_rows_module)
+        status['actual_supplemental_user_feedback_rows'] = actual_rows_module.append_exact_source09_feedback_rows(
+            NO, request, authorization, records)
     if authorization not in records['记录']:
         records['记录'].append(authorization)
     agreement.write_text(json.dumps(records, ensure_ascii=False, indent=2) + '\n')

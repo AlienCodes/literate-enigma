@@ -2,27 +2,27 @@
 # ZH: 向鸸鹋宣战
 
 ## 英文
-Around Campion, Western Australia, most farmers were First World War **veterans**, **settlers** placed by a government scheme on **marginal** **parcels** of **farmland**. They were **inexperienced** **growers**, and a quarter had already quit. In 1932, after drought, roughly 20,000 emus **swarmed** in from **arid** country **in flocks** and **trampled** the wheat **crops**.
+Around Campion, Western Australia, most farmers were First World War **veterans**, **settlers** placed by a government scheme on **marginal** **parcels** of **farmland**. They were **inexperienced** **growers**, and **a quarter** had already quit. In 1932, after **drought**, roughly 20,000 emus **swarmed** in from **arid** country **in flocks** and **trampled** the wheat **crops**.
 
 The farmers' **plight** took a military turn. **In desperation**, a **delegation** of ex-soldiers **aired** their **grievances** and asked the Defence Minister for **machine-guns**. He agreed, sending not a **battalion** but a **detachment**: Major Meredith, an **artillery** officer, with two soldiers, two Lewis guns, and 10,000 rounds of **ammunition**. The **offensive** began on 2 November 1932.
 
 At a dam, about a thousand birds approached an **ambush**, but a gun **jammed** after a dozen fell. The flocks broke **formation** into small, **agile** groups, **frustrating** each **tactical** plan, and a truck-mounted gun proved **futile**. Six days of **wasteful** firing spent 2,500 rounds on perhaps 50 to 200 birds, a **ludicrous** return. After **parliamentary** questions and press **ridicule**, an **embarrassing** **withdrawal** came on 8 November, though shooting restarted within days.
 
-Meredith was recalled on 10 December. His **memo**'s **inventory** counted 986 kills from 9,860 rounds, a **ratio** of ten **bullets** to one bird. He **likened** the **resilient** birds' **toughness** **to** the **armour** of tanks. Five weeks of **warfare** had barely dented the **hardy** flocks' **endurance**.
+Meredith **was recalled** on 10 December. His **memo**'s **inventory** counted 986 kills from 9,860 rounds, a **ratio** of ten **bullets** to one bird. He **likened** the **resilient** birds' **toughness** **to** the **armour** of tanks. Five weeks of **warfare** had **barely** **dented** the **hardy** flocks' **endurance**.
 
-Later **pleas** for **reinforcements** were refused, and **intervention** **gave way to** a **bounty** **sanctioned** by the government. This **payout** per bird gave farmers **compensation** and an **incentive** for **extermination**. Farmers claimed over 57,000 **payments** in six months of 1934, more than fifty-seven times Meredith's 986 kills.
+Later **pleas** for **reinforcements** were refused, and **intervention** **gave way to** a **bounty** **sanctioned** by the government. This **payout** per bird gave farmers **compensation** and an **incentive** for **extermination**. Farmers **claimed** over 57,000 **payments** in six months of 1934, more than fifty-seven times Meredith's 986 kills.
 
 ## 中文
 
-在西澳大利亚州坎皮恩一带，大多数农民是第一次世界大战的**退伍军人**(veterans)，他们作为**定居者**(settlers)，由政府计划安置在**贫瘠的/边缘的**(marginal)**小块土地**(parcels)上，以这些**农地**(farmland)为生。（settlers…：同位语，说明 veterans；placed…：过去分词短语作后置定语，placed = who were placed，省略了 who were）他们是**缺乏经验的**(inexperienced)**种植者**(growers)，已有四分之一的人放弃了土地。1932年，旱灾过后，约2万只鸸鹋**成群地**(in flocks)从**干旱**(arid)地区**蜂拥而至**(swarmed)，**践踏了**(trampled)（指动物破坏）小麦**庄稼**(crops)。
+在西澳大利亚州坎皮恩一带，大多数农民是第一次世界大战的**退伍军人**(veterans)，他们作为**定居者**(settlers)，由政府计划安置在**贫瘠的/边缘的**(marginal)**小块土地**(parcels)上，以这些**农地**(farmland)为生。（settlers…：同位语，说明 veterans；placed…：过去分词短语作后置定语，placed = who were placed，省略了 who were）他们是**缺乏经验的**(inexperienced)**种植者**(growers)，已有**四分之一**(a quarter)的人放弃了土地。1932年，**旱灾**(drought)过后，约2万只鸸鹋**成群地**(in flocks)从**干旱**(arid)地区**蜂拥而至**(swarmed)，**践踏了**(trampled)（指动物破坏）小麦**庄稼**(crops)。
 
-农民的**困境**(plight)由此走向了军事手段。**绝望之中**(In desperation)，一个由退伍士兵组成的**代表团**(delegation)**公开表达了**(aired)他们的**不满/委屈**(grievances)，请求国防部长提供**机枪**(machine-guns)。（air：作动词，公开说出；ask sb for sth：向某人要某物）部长同意了，但派出的不是**一个营**(battalion)，而是一支**小分队**(detachment)：梅雷迪思少校，一名**炮兵**(artillery)军官，带着两名士兵、两挺刘易斯机枪和1万发**弹药**(ammunition)。（sending…：现在分词短语作伴随状语；not A but B：不是A而是B；冒号后具体说明 detachment）**进攻**(offensive)于1932年11月2日展开。
+农民的**困境**(plight)由此走向了军事手段。**绝望之中**(In desperation)，一个由退伍士兵组成的**代表团**(delegation)**公开表达了**(aired)他们的**不满/委屈**(grievances)，请求国防部长提供**机枪**(machine-guns)。（air：作动词，公开说出；ask sb for sth：向某人要某物）部长同意了，但派出的不是**一个营**(battalion)，而是一支**小分队**(detachment)：梅雷迪思少校，一名**炮兵**(artillery)军官，带着两名士兵、两挺刘易斯机枪和1万发**弹药**(ammunition)。（sending…：现在分词短语作伴随状语；not A but B：不是A而是B；冒号后具体说明 detachment）这场**（军事）进攻**(offensive)开始于1932年11月2日。
 
 在一处水坝，约一千只鸟靠近了**埋伏/伏击范围**(ambush)，但打倒十来只后，一挺机枪就**卡壳了**(jammed)。鸟群打乱了（它们自己的）**队形**(formation)，（它们）分成了**灵活的**(agile)小群体，**挫败了**(frustrating)每一个**战术**(tactical)计划；装在卡车上的机枪也**徒劳无功**(futile)。（frustrating…：现在分词短语作结果状语；prove + 形容词：结果是……）六天的**浪费的**(wasteful)射击花费了/消耗了2,500发，只打死大约50至200只鸟，这是一个**荒唐可笑的**(ludicrous)回报。（spend A on B：在B上花掉A；a ludicrous return：同位语，评价前面这件事）在**议会**(parliamentary)质询和报界**嘲笑/嘲讽**(ridicule)之后，一场**尴尬的**(embarrassing)**撤退**(withdrawal)发生在11月8日；不过没过几天，射击又重新开始了。
 
-梅雷迪思于12月10日被召回。他在**备忘录**(memo)里开列的**清单**(inventory)计数（显示），9,860发打死了986只，**比例**(ratio)是十发**子弹**(bullets)对一只鸟。（a ratio of A to B：A比B的比例；a ratio…：同位语，说明前面的数字）他**把**(likened to)这些**耐打的**(resilient)鸟的（（人或动物）对困境有承受力的，有复原力的）**坚韧**(toughness)**比作**(likened to)坦克的**装甲**(armour)。（liken A to B：把A比作B）五个星期的**战事**(warfare)几乎没有削弱这些**顽强的**(hardy)鸟群的**耐受力/抗造力**(endurance)。（dent：本义压出凹痕，这里指削弱）
+梅雷迪思于12月10日**被召回**(was recalled)。他在**备忘录**(memo)里开列的**清单**(inventory)计数（显示），9,860发打死了986只，**比例**(ratio)是十发**子弹**(bullets)对一只鸟。（a ratio of A to B：A比B的比例；a ratio…：同位语，说明前面的数字）他**把**(likened to)这些**耐打的**(resilient)鸟的（（人或动物）对困境有承受力的，有复原力的）**坚韧**(toughness)**比作**(likened to)坦克的**装甲**(armour)。（liken A to B：把A比作B）五个星期的**战事**(warfare)**几乎没**(barely)**削弱**(dented)这些**顽强的**(hardy)鸟群的**耐受力/抗造力**(endurance)。（dent：本义压出凹痕，这里指削弱）
 
-后来请求**增援**(reinforcements)的**恳求**(pleas)都遭到拒绝，**干预**(intervention)**转变为**(gave way to)（让步于）政府**批准**(sanctioned)的**悬赏**(bounty)。（give way to：转变为，让步于；sanctioned…：过去分词短语作后置定语，sanctioned = which was sanctioned，省略了 which was）这种按只计算的**钱款支出**(payout)（赏金）给了农民**补偿**(compensation)，也成为**彻底消灭**(extermination)鸸鹋的**激励**(incentive)。农民在1934年的六个月里领取了5.7万多笔（赏金）**支付**(payments)，是梅雷迪思那986只战果的五十七倍多。（claim：这里指申领；fifty-seven times + 名词：是……的五十七倍）（简述：▸困境：1932年旱灾后，约两万只鸸鹋涌入西澳农田、践踏小麦；当地许多农户是退伍军人，向军方求助。▸出兵：军方派一名少校和两名士兵，携两挺机枪、一万发子弹，试图射杀侵入农田的鸸鹋。▸受挫：伏击时机枪卡壳，鸟群又分散成灵活小群，卡车上的机枪也没奏效；媒体嘲讽这场行动，议会提出质询。▸撤军：部队一度撤离又恢复射击，约五周后被召回；报告登记消耗9860发子弹、击杀986只，平均约十发子弹一只，鸟患仍未解决。▸转向：政府拒绝增援，改为农民每杀一只鸟就可申领一笔赏金；1934年半年内申领逾5.7万笔，按只计的数量远超军方登记战果。）
+后来请求**增援**(reinforcements)的**恳求**(pleas)都遭到拒绝，**干预**(intervention)**转变为**(gave way to)（让步于）政府**批准**(sanctioned)的**悬赏**(bounty)。（give way to：转变为，让步于；sanctioned…：过去分词短语作后置定语，sanctioned = which was sanctioned，省略了 which was）这种按只计算的**钱款支出**(payout)（赏金）给了农民**补偿**(compensation)，也成为**彻底消灭**(extermination)鸸鹋的**激励**(incentive)。在1934年的六个月里，农民们**申领**(claimed)了超过5.7万 笔 **款项**(payments) （政府赏金），是梅雷迪思986次击杀数的五十多倍。（claim 凭资格或规定向官方正式“申领、索要”（钱财或物品）；fifty-seven times + 名词：是……的五十七倍）（简述：▸困境：1932年旱灾后，约两万只鸸鹋涌入西澳农田、践踏小麦；当地许多农户是退伍军人，向军方求助。▸出兵：军方派一名少校和两名士兵，携两挺机枪、一万发子弹，试图射杀侵入农田的鸸鹋。▸受挫：伏击时机枪卡壳，鸟群又分散成灵活小群，卡车上的机枪也没奏效；媒体嘲讽这场行动，议会提出质询。▸撤军：部队一度撤离又恢复射击，约五周后被召回；报告登记消耗9860发子弹、击杀986只，平均约十发子弹一只，鸟患仍未解决。▸转向：政府拒绝增援，改为农民每杀一只鸟就可申领一笔赏金；1934年半年内申领逾5.7万笔，按只计的数量远超军方登记战果。）
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -36,6 +36,8 @@ Later **pleas** for **reinforcements** were refused, and **intervention** **gave
 | growers | 本文：种植者；n. (grower) 种植者（coffee growers） | 1 |
 | in flocks | 本文：成群地；短语. 成群地，一群群地（birds flying in flocks）；flock n. （鸟、羊）群（a flock of sheep/birds） | 1 |
 | arid | 本文：干旱；adj. 干旱的（an arid climate/region） | 1 |
+| a quarter | 本文：四分之一（1/4）；phr. 四分之一（a quarter of the farmers） | 1 |
+| drought | 本文：旱灾；n. 旱灾，干旱（a severe drought） | 1 |
 | swarmed | 本文：蜂拥而至；v. (swarm) 蜂拥，成群移动（fans swarmed onto the pitch） | 1 |
 | trampled | 本文：践踏了（指动物破坏）；v. (trample) 踩坏，践踏（trample the flowers） | 1 |
 | crops | 本文：庄稼；n. (crop) 庄稼，作物（harvest the crops；crop failure） | 1 |
@@ -49,7 +51,7 @@ Later **pleas** for **reinforcements** were refused, and **intervention** **gave
 | detachment | 本文：小分队；n. 小分队，支队；超然（a detachment of soldiers） | 2 |
 | artillery | 本文：炮兵；n. 炮兵；大炮（an artillery regiment） | 2 |
 | ammunition | 本文：弹药；n. 弹药（run out of ammunition） | 2 |
-| offensive | 本文：进攻；n./adj. 攻势，进攻；冒犯的（launch an offensive；offensive remarks） | 2 |
+| offensive | 本文：军事进攻；n./adj. 攻势，进攻；冒犯的（launch an offensive；offensive remarks） | 2 |
 | ambush | 本文：埋伏/伏击范围；n./v. 埋伏，伏击（lie in ambush；be ambushed） | 3 |
 | jammed | 本文：卡壳了；v. (jam) 卡住；塞满（the printer jammed；roads jammed with cars） | 3 |
 | formation | 本文：队形；n. 队形，编队；形成（fly in formation） | 3 |
@@ -63,6 +65,7 @@ Later **pleas** for **reinforcements** were refused, and **intervention** **gave
 | ridicule | 本文：嘲笑/嘲讽；n./v. 嘲笑，奚落（an object of ridicule） | 3 |
 | embarrassing | 本文：尴尬的；adj. 令人尴尬的（an embarrassing mistake） | 3 |
 | withdrawal | 本文：撤退；n. 撤退，撤出；取款（troop withdrawal；cash withdrawal） | 3 |
+| was recalled | 本文：被召回；v. (recall) 召回（be recalled） | 4 |
 | memo | 本文：备忘录；n. 备忘录（send a memo to all staff） | 4 |
 | inventory | 本文：清单；n. 清单，存货清单（make/take an inventory of sth） | 4 |
 | ratio | 本文：比例；n. 比例，比率（a ratio of three to one） | 4 |
@@ -72,6 +75,8 @@ Later **pleas** for **reinforcements** were refused, and **intervention** **gave
 | toughness | 本文：坚韧；n. 坚韧，强硬（mental toughness） | 4 |
 | armour | 本文：装甲；n. 装甲；盔甲（a suit of armour；tank armour） | 4 |
 | warfare | 本文：战事；n. 战争，作战（modern/guerrilla warfare） | 4 |
+| barely | 本文：几乎没；adv. 几乎不，勉强（barely dented） | 4 |
+| dented | 本文：削弱；v. (dent) 削弱，损害；本义压出凹痕（dent confidence） | 4 |
 | hardy | 本文：顽强的；adj. 耐寒的，顽强的（hardy plants；a hardy breed） | 4 |
 | endurance | 本文：耐受力/抗造力；n. 耐力，耐受力，忍耐（a test of endurance） | 4 |
 | reinforcements | 本文：增援；n. (reinforcement) 援军，增援（call for reinforcements） | 5 |
@@ -84,7 +89,8 @@ Later **pleas** for **reinforcements** were refused, and **intervention** **gave
 | compensation | 本文：补偿；n. 补偿，赔偿（claim compensation for damage） | 5 |
 | extermination | 本文：彻底消灭；n. 灭绝，根除，彻底消灭（the extermination of pests） | 5 |
 | incentive | 本文：激励；n. 激励，动力（tax incentives；an incentive to work harder） | 5 |
-| payments | 本文：支付；n. (payment) 付款，款项，支付（monthly payments） | 5 |
+| claimed | 本文：申领；v. (claim) 凭资格或规定向官方正式“申领、索要”（钱财或物品）（claim a bounty） | 5 |
+| payments | 本文：款项；n. (payment) 付款，款项，支付（monthly payments） | 5 |
 
 ## 史实与来源
 - 【T1】坎皮恩的农户以一战退伍军人为主，按政府计划被安置在贫瘠土地上；缺乏经验；到1932年已有四分之一放弃土地。S2
