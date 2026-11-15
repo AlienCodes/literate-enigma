@@ -1,0 +1,19 @@
+--- /workspace/work/review52-source09-E46-normal18-intake/code/normal18_contract.py
++++ /workspace/work/review51-source38-E48-normal18-intake/code/normal18_contract.py
+@@ -18,11 +18,11 @@
+             'Actual normal18 producer/program/article identity differs')
+     require(raw['passed'] is True and raw['source_kind'] == 'new-canonical-4K'
+             and raw.get('preview_only') is False, 'Real quality-passed normal output required')
+-    require(article == '09' and new_id == '52'
+-            and raw.get('single_article_review_authorization_sha256') == '9519e488124361403fabf524f016c8985119c7c93d6bd1b58bbde735b371b076'
+-            and raw.get('single_article_review_book_order') == '52'
+-            and raw.get('single_article_review_source_id') == '09'
+-            and raw.get('specific_authorization_id') == 'book52-finalization-after-claimed-20261115'
++    require(article == '38' and new_id == '51'
++            and raw.get('single_article_review_authorization_sha256') == '3b898afb6b397ac1df00c7e735c8fa928c861948174788335ee311f868048e4c'
++            and raw.get('single_article_review_book_order') == '51'
++            and raw.get('single_article_review_source_id') == '38'
++            and raw.get('specific_authorization_id') == 'book51-finalization-after-matters-exact-focus-20261115'
+             and raw.get('finalization_authorized') is True
+             and raw.get('last_body_hold_frames') == 18
+             and raw.get('final_hold_policy_sha256') == '4bcae46b68b9584f107966f683af580b474fa9835f101834fe55ed6968dfc36b',
