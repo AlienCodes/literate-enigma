@@ -1,0 +1,53 @@
+{
+  "article": "66",
+  "status": "specific_root_review_proposal_not_applied",
+  "created_utc": "2026-11-14T05:29:24.515109+00:00",
+  "case_classification": "two_recognizer_spelling_disagreement_on_unchanged_historically_corrected_voice",
+  "source_before_sha256": "23464ca177c9b19e02641ecbf486752fc58484d54b407dc445845a11e1f326e0",
+  "target_data_path": "/核对确认/机器复听/S9",
+  "target_currently_absent": true,
+  "proposed_value": {
+    "配音指纹": "b4ac745defc1",
+    "依据": "2026-11-14基于原机器复听程序实际测量，本句参考文为 A US patent duly followed in 1955.，当前原始配音指纹b4ac745defc1。原始句窗59.11–62.455秒：small.en全文为 A U.S. patent dually followed in 1955.；parakeet全文为 A U.S. patent duly followed in 1955.。实际公开MP4上下文58.99–62.575秒仍为相同的一词分歧，其他词无差。2026-11-08已有公开纠音及已核实读音把duly定为美式dˈuːli；实际原G72单线程母素材的合成音素输入含dˈuːli，未把dually泛称同音。当前完整AAC、6101个包的payload和绝对PTS/DTS/duration/priming、6246400个float32样本与不可变6462106已验收66旧轨逐字节相同，maxdiff=0。本记录仅保存该句、该指纹的两种识别器分歧和既有纠音/声音保持实测，按既有K126疑点记录机制交复听；不声称用户已听审，也不改声音。依据：实际collector c133f01703a81c95d6fe47d6c8a184880a85ab677340647065cad66d5c520609；完整对照报告SHA256=4b62fb76aae3c60e82e703efb0eec6a30754c33e5808d935c9382d9d60a24945。"
+  },
+  "scope": "Only this existing voice fingerprint and S9 disagreement; preserve S8/S10 and all English, Chinese, physical sound/display controls. No CF applied by this diagnosis.",
+  "actual_evidence": [
+    {
+      "path": "/workspace/work/video-audit70-20261113/diagnosis66-actual-two-ASR-43557051705/files/66-original-ASR-target-evidence.json",
+      "bytes": 2101,
+      "sha256": "c133f01703a81c95d6fe47d6c8a184880a85ab677340647065cad66d5c520609"
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/diagnosis66-actual-two-ASR-43557051705/actual66-ASR-and-complete-accepted-audio-comparison.json",
+      "bytes": 5146,
+      "sha256": "4b62fb76aae3c60e82e703efb0eec6a30754c33e5808d935c9382d9d60a24945"
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/diagnosis66-actual-two-ASR-43557051705/actual-historical-duly-correction.json",
+      "bytes": 1960,
+      "sha256": "bd123c4bd0c9d523e066416dc94fb5dd971610122708162f5019e6a53ee59f6d"
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/diagnosis66-actual-two-ASR-43557051705/actual-original-duly-phoneme-input.json",
+      "bytes": 1799,
+      "sha256": "09d8e86a60e941974d57a750d40b37016148f63fc59c497d42f0a0fd378756dc"
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/diagnosis66-actual-two-ASR-43557051705/historical66-production-record-original.md",
+      "bytes": 1788,
+      "sha256": "f5a3fe688ee7014bab82aeafdce823562be14c80cef7c90f777dd48dbf46dcf7"
+    }
+  ],
+  "historical_record_reference": {
+    "pinned_commit": "64621068034f8b6e09836a6d97210a0e9b2f1ed6",
+    "repository_path": "视频/制作记录/66.md",
+    "SHA256": "f5a3fe688ee7014bab82aeafdce823562be14c80cef7c90f777dd48dbf46dcf7",
+    "finding": "2026-11-08原制作记录明确记duly等五项先纠音清零，机器复听待复核项列velours/apparel；未据此伪造S9旧CF。"
+  },
+  "phonetic_distinction": "Stored US gold distinguishes duly dˈuli from dually djˈuəli. Recognizer strings are not a new acoustic finding; original model input is historical corrected dˈuːli.",
+  "outer_job_conclusion_preserved": "failure",
+  "quality_acceptance": false,
+  "source_GEN_or_checker_changed": false,
+  "subjective_user_listening_confirmation_claimed": false,
+  "next_if_root_adopts": "Apply only the specific measured-data entry and paired GEN, retain all original failed evidence and pronunciation records, then run unchanged actual full production/audio/selftest/4K/inline-tail and trueV3. No existing failure/status is relabeled as passed."
+}

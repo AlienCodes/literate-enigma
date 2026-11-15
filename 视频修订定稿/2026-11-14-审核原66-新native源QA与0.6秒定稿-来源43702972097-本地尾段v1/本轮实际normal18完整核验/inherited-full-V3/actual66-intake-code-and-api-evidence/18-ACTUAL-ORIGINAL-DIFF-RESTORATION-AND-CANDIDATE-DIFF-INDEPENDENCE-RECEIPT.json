@@ -1,0 +1,58 @@
+{
+  "kind": "actual-correction-of-code-only-hardlinked-diff-write-mistake-before-any-execution",
+  "bad_original_diff_bytes_preserved": [
+    {
+      "original_expected": {
+        "path": "/workspace/work/review48-source46-E52-normal18-intake/code/validate_single_article_post_only.py.diff",
+        "bytes": 4371,
+        "sha256": "ffb2e934d81811f18b178d8390fb0acee512fee95be06cd328cab3393400f3dd"
+      },
+      "wrong_data_preserved_path": "/workspace/work/preflight-native66-30-codeonly-20261115/HISTORY-INITIAL-CODE-ONLY-SHARED-DIFF-WRITE-ERROR/validate_single_article_post_only.py.diff",
+      "wrong_bytes": 4351,
+      "wrong_SHA256": "e9357ba055b2530f030416d8d3d34d97f572341344bc9672c577c1310a9f5f34",
+      "original_inode_before_after": 1454256,
+      "restored_exact_original_H_pin": true
+    },
+    {
+      "original_expected": {
+        "path": "/workspace/work/review48-source46-E52-normal18-intake/code/normal18_contract.py.diff",
+        "bytes": 1539,
+        "sha256": "2d1aec9ac1a15e5e0d61570c66a3a938bd00e0cca9eba8ad7b49e6d964ad50c9"
+      },
+      "wrong_data_preserved_path": "/workspace/work/preflight-native66-30-codeonly-20261115/HISTORY-INITIAL-CODE-ONLY-SHARED-DIFF-WRITE-ERROR/normal18_contract.py.diff",
+      "wrong_bytes": 1530,
+      "wrong_SHA256": "03c0eef8a78bca5875a65041a9b43ad45acf2c926bc484c9540ca60ff0a0fb00",
+      "original_inode_before_after": 1454262,
+      "restored_exact_original_H_pin": true
+    },
+    {
+      "original_expected": {
+        "path": "/workspace/work/review48-source46-E52-normal18-intake/code/validate_single_article_new_native148.py.diff",
+        "bytes": 663,
+        "sha256": "a8f8cb310921d67401784302778eabbab002a5d4c6e2cee99630747f0c54f502"
+      },
+      "wrong_data_preserved_path": "/workspace/work/preflight-native66-30-codeonly-20261115/HISTORY-INITIAL-CODE-ONLY-SHARED-DIFF-WRITE-ERROR/validate_single_article_new_native148.py.diff",
+      "wrong_bytes": 617,
+      "wrong_SHA256": "4252f74a5050d4ece8a7b3d0edd62e6e6f60e418b80b116b829d3aa745a1d384",
+      "original_inode_before_after": 1454264,
+      "restored_exact_original_H_pin": true
+    }
+  ],
+  "original_E52_three_diff_H_pins_restored_byteexact_same_original_inodes": true,
+  "source_base_and_actual_original_Python_programs_media_H_not_modified": true,
+  "all_finite_candidate_diffs_now_separate_inodes": true,
+  "all_two_source_H_declared_specs_current_exact": [
+    {
+      "source": "66",
+      "H_SHA256": "fba3f9910e6bdc09492d615dc2433c1b45908a56dbe51c1e7d9730ddda9bbf91",
+      "all_declared_file_specs_exact_after_restoration": true
+    },
+    {
+      "source": "30",
+      "H_SHA256": "e5237e1043e22ead83b8e4c0dedcfb683572876a2e9c7e1acf1395a85862a7b4",
+      "all_declared_file_specs_exact_after_restoration": true
+    }
+  ],
+  "builder_fix": "diff(path) unlinks candidate hardlink before any write",
+  "no_native_sourceQA_or_media_execution": true
+}
