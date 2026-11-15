@@ -1,0 +1,49 @@
+{
+  "kind": "exact-three-site-original-byte-and-function-preservation",
+  "maker_reverse_entire_bytes_equals_4c85": true,
+  "maker_original": {
+    "path": "/workspace/work/video-audit70-20261113/core-overlays/reviewed-five-core/production-full-T-install-mirror/视频/工具/make_video.py",
+    "bytes": 119424,
+    "sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3"
+  },
+  "maker_candidate": {
+    "path": "/dev/shm/source46-official-exact-format-text-projection-CI-v3-20261115/candidate/视频/工具/make_video.py",
+    "bytes": 119539,
+    "sha256": "935fe59fa6c212b1d43ad325f17cedd6392dcc774f7e43e0171479e419ffd5b9"
+  },
+  "new_maker_only_changes": [
+    "one helper import",
+    "original T36 list comprehension per-match same-note guard"
+  ],
+  "original_T36_regex_unchanged": true,
+  "two_checker_candidates_byte_equal_prior_exact_proposal": {
+    "踩坑核查.py": true,
+    "破折号.py": true
+  },
+  "all_other_maker_functions_AST_exact": {
+    "make_video.py": {
+      "total_functions": 63,
+      "changed_functions": [
+        "build"
+      ],
+      "all_remaining_exact": true
+    }
+  },
+  "all_other_checker_functions_AST_exact": {
+    "踩坑核查.py": {
+      "total_functions": 52,
+      "changed_functions": [
+        "text_checks"
+      ],
+      "all_remaining_exact": true
+    },
+    "破折号.py": {
+      "total_functions": 4,
+      "changed_functions": [
+        "查"
+      ],
+      "all_remaining_exact": true
+    }
+  },
+  "no_audio_quality_numeric_or_regex_changes": true
+}

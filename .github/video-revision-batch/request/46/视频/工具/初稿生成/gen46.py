@@ -4,13 +4,13 @@ import os
 import sys
 
 S = [(1,
-  [[[('A moth', '一只飞蛾'),
+  [[[('A **moth**', '一只**飞蛾**(moth)'),
      ('**skims over**', '**掠过**(skims over)'),
      ('an', '一盏'),
-     ('ultraviolet', '紫外'),
+     ('**ultraviolet**', '**紫外线**(ultraviolet)'),
      ('lamp', '灯，')]],
    [[('and', '随即'),
-     ('flips upside down,', '上下颠倒地翻过身来，'),
+     ('**flips upside down**,', '**上下颠倒地翻过身来**(flips upside down)，'),
      ('**belly**', '**肚皮**(belly)'),
      ('to the sky.', '朝天。')],
     '（flip upside down：翻个底朝天；\nbelly to the sky：独立结构，补充说明翻身后的样子）']]),
@@ -32,7 +32,7 @@ S = [(1,
      ('puzzle,', '谜团，')],
     '（that unravelled…：定语从句，修饰 study）'],
    [[('the **helpless** **swirl** of insects round **porch** lights.',
-      '那就是昆虫为什么会**身不由己地**(helpless)绕着**门廊**(porch)灯**打转**(swirl)。')],
+      '那就是昆虫为什么会**情不自禁的**(helpless)绕着**门廊**(porch)灯**打转**(swirl)。')],
     '（the helpless swirl of…：同位语，补充说明 puzzle）']]),
  (2,
   [[[('**Folk wisdom**', '**民间的老说法**(Folk wisdom)'),
@@ -41,14 +41,14 @@ S = [(1,
     '（blame A on B：把 A 归咎于 B）']]),
  (2,
   [[[('In fact,', '事实上，'),
-     ('insects', '昆虫会'),
+     ('insects', '昆虫'),
      ('**instinctively**', '**本能地**(instinctively)'),
-     ('keep', '让'),
+     ('keep', '保持'),
      ('their backs', '背部'),
      ('to', '朝向'),
-     ('whatever shines brightest,', '最亮的东西，')],
+     ('whatever shines brightest,', '任何最亮的东西, ')],
     "（keep one's back to…：背朝……；\nwhatever shines brightest：名词性从句，作 to 的宾语）"],
-   [[('normally', '那通常是'), ('the sky,', '天空，'), ('to stay', '以此保持'), ('level.', '平稳。')],
+   [[('normally', '通常是'), ('the sky,', '天空, '), ('to stay', '以保持'), ('level.', '平稳。')],
     '（normally the sky：同位语，补充说明 whatever shines brightest；\nto stay level：目的状语）']]),
  (2,
   [[[('A lamp,', '灯'), ('a', '成了一片'), ('**counterfeit**', '**冒牌的**(counterfeit)'), ('sky,', '天空，')],
@@ -68,36 +68,41 @@ S = [(1,
      ('477', '477段'),
      ('field', '野外'),
      ('**clips**,', '**视频片段**(clips)中，'),
-     ('**precious few** **darted** straight at the light.', '**径直冲**(darted)向灯光的昆虫**寥寥无几**(precious few)。')],
-    '（precious few：极少，寥寥无几；\ndart at…：猛冲向……）']]),
+     ('**precious few**', '**极少数**(precious few)昆虫'),
+     ('**darted** straight', '径直**冲**(darted)'),
+     ('at the light.', '向了灯光。')],
+    '（precious few：极少数；\ndart at…：冲向……）']]),
  (3,
   [[[('Many', '许多'),
-     ('fireflies', '萤火虫'),
+     ('**fireflies**', '**萤火虫**(fireflies)'),
      ('**flirt** with their **lanterns**.', '用自己的**灯笼**(lanterns)来**调情**(flirt)。')],
     '（with their lanterns：方式状语，\nlanterns 比喻萤火虫的发光器）']]),
  (3,
-  [[[('A male', '雄虫'), ('**blinks**', '**闪烁**(blinks)着奏出'), ('an **overture**,', '一段**序曲**(overture)，')],
+  [[[('A male', '雄虫'), ('**blinks**', '**闪烁**(blinks)出'), ('an **overture**,', '一段**序曲**(overture)，')],
     '（blink an overture：用闪光“奏”出求偶的序曲）'],
-   [[('a female', '雌虫'), ('**winks**', '**眨眼**(winks)般'), ('back,', '回应，')], '（wink back：眨眼回应）'],
+   [[('a female', '雌虫'), ('**winks**', '**眨眼**(winks)'), ('back,', '回应，')], '（wink back：眨眼回应）'],
    [[('and', '而'),
-     ('bright', '太亮的'),
+     ('bright', '明亮的'),
      ('nights', '夜晚'),
-     ('**smother**', '会**淹没**(smother)'),
-     ('the **banter**.', '这番**调笑**(banter)。')]]]),
+     ('**smother**', '则会**淹没**(smother)'),
+     ('the **banter**.', '这番**打趣/戏谑**(banter)。')]]]),
  (3,
   [[[('At', '在'),
      ('Tufts University,', '塔夫茨大学，'),
-     ('**suitors** under artificial light', '处在人造光下的**求偶者**(suitors)')],
+     ('**suitors** under **artificial** light', '**人造的**(artificial) 光下的**求偶者**(suitors)')],
     '（under artificial light：后置定语，修饰 suitors）'],
-   [[('**mustered** about five flash patterns a minute', '每分钟只**勉强打出**(mustered)约五组闪光，'),
+   [[('**mustered** about five flash', '每分钟 **集中/聚集出**(mustered) 约五组闪光'),
+     ('**patterns** a minute', '**模式**(patterns)，'),
      ('instead of', '而不是'),
      ('ten.', '十组。')],
     '（a minute：每分钟；instead of：而不是）']]),
  (3,
   [[[('Females', '雌虫'),
-     ('**reciprocated** about half as often under red or blue light,', '在红光或蓝光下**回应**(reciprocated)的次数约减半，')],
-    '（half as often：次数只有一半；\nunder red or blue light：条件状语）'],
-   [[('scarcely at all under white,', '在白光下几乎不回应，'), ('and never under **amber**.', '在**琥珀色**(amber)光下则从不回应。')],
+     ('**reciprocated**', '在红光或蓝光下**回应**(reciprocated)的'),
+     ('**about half as often** under red or blue light,', '**次数大约只有一半**(about half as often)，')],
+    '（under red or blue light：条件状语）\n（reciprocate - 指情感上和行为上的回应）'],
+   [[('**scarcely** at all under white,', '在白光下**几乎不**(scarcely)回应，'),
+     ('and never under **amber**.', '在**琥珀色**(amber)光下从不回应。')],
     '（scarcely at all / never：前面都省略了 reciprocated）']]),
  (4,
   [[[('The harm', '危害'),
@@ -105,37 +110,39 @@ S = [(1,
      ('the **ecosystem**.', '整个**生态系统**(ecosystem)。')],
     '（spill into…：蔓延到……）']]),
  (4,
-  [[[('Along', '在'), ('55 Thames Valley', '泰晤士河谷的55处'), ('**roadsides**,', '**路边**(roadsides)，')],
+  [[[('Along', '沿着'), ('55 Thames Valley', '泰晤士河谷的55处'), ('**roadsides**,', '**路边**(roadsides)，')],
     '（Thames Valley：泰晤士河谷，在英格兰南部）'],
    [[('**lamp-lit**', '**有灯照明的**(lamp-lit)'),
-     ('**hedges**', '**树篱**(hedges)里，'),
-     ('held 47% fewer moth **caterpillars** than dark ones,', '蛾类**毛虫**(caterpillars)比没灯的地方少47%，')],
+     ('**hedges**', '**树篱**(hedges)'),
+     ('**held**', '**容纳**(held)了'),
+     ('47% fewer moth **caterpillars** than dark ones,', '比黑暗的树篱少47%的蛾类**毛虫**(caterpillars)，')],
     '（47% fewer A than B：A 比 B 少47%；\ndark ones：ones 指 hedges）'],
-   [[('with', '而'),
+   [[('with', '其中'),
      ('**harsh**', '**刺眼的**(harsh)'),
      ('white', '白色'),
-     ('LEDs', 'LED'),
+     ('LEDs', 'LED灯'),
      ('worse than', '比'),
      ('**mellower**', '**更柔和的**(mellower)'),
      ('**sodium lamps**.', '**钠灯**(sodium lamps)更糟。')],
-    '（with＋名词＋形容词：独立结构，补充说明情况）']]),
+    '（with＋名词＋形容词：独立结构，补充说明情况）\n（mellow :（颜色或光线）柔和的，温暖的；）']]),
  (4,
   [[[('Street lamps **rigged up** in seven of 14 Swiss **meadows**',
-      '在瑞士14片**草甸**(meadows)中的7片，**临时架起**(rigged up)的路灯')],
+      '在14片瑞士**草甸**(meadows)中的7片中，**临时搭建**(rigged up) 的路灯，')],
     '（rig up：临时搭建，架设；\nrigged up in…：过去分词短语作后置定语，修饰 Street lamps）'],
-   [[('cut', '让'),
+   [[('**cut**', '**削减**(cut)了'),
      ('**nocturnal**', '**夜间**(nocturnal)'),
      ('pollinator', '传粉者的'),
-     ('visits', '造访'),
-     ('by 62%.', '减少了62%。')],
+     ('visits', '造访，'),
+     ('by 62%.', '削减了62%。')],
     '（cut A by 62%：使 A 减少62%）']]),
  (4,
-  [[[('The plants', '植物'), ('set fewer fruit,', '结的果实变少了，')], '（set fruit：结果实）'],
+  [[[('The plants', '植物'), ('**set** fewer **fruit**,', '**结出**(set fruit)了更少的**果实**(set fruit)，')],
+    '（set fruit：结果实）'],
    [[('and', '而'),
-     ('daytime', '白天的'),
+     ('**daytime**', '**白天的**(daytime)'),
      ('pollinators', '传粉者'),
-     ('proved', '也只是'),
-     ('poor', '不称职的'),
+     ('proved', '被证明是'),
+     ('poor', '糟糕的'),
      ('**understudies**.', '**替补**(understudies)。')],
     '（prove＋名词：结果是……；\nunderstudy：替补演员，这里比喻顶替夜间传粉者的白天传粉者）']]),
  (5,
@@ -155,7 +162,7 @@ S = [(1,
      ('star counts from 2011 to 2022', '2011年至2022年的数星记录'),
      ('show', '显示，'),
      ('the sky', '夜空'),
-     ('brightening about 9.6% a year.', '每年约变亮9.6%。')],
+     ('**brightening** about 9.6% a year.', '每年约**变亮**(brightening)9.6%。')],
     '（citizen scientist：参与科研的普通公众；\nshow sth doing：显示某事正在发生）']]),
  (5,
   [[[('At', '按'),
@@ -167,7 +174,15 @@ S = [(1,
     '（born where…：过去分词短语作后置定语，修饰 child；\nwhere 250 stars twinkle：地点状语从句）'],
    [[('would see about 100 by their eighteenth birthday.', '到18岁生日时只能看到约100颗。')],
     '（by their eighteenth birthday：到18岁生日时）\n'
-    '（简述：▸飞行：昆虫本来靠把背部朝向明亮天空保持平衡。2024年研究发现，路灯成了“假天空”，昆虫把背转向灯，反而绕圈甚至翻身。▸求偶：萤火虫靠闪光寻找配偶。实验中，人造光使雄虫发光减少，雌虫也更少回应，彼此传递的求偶信号受到干扰。▸幼虫：英国路边调查发现，有灯树篱的蛾类毛虫比暗处少47%；白色LED的影响比钠灯更重。▸传粉：瑞士实验中，有路灯的草甸比无灯草甸少了62%的夜间传粉昆虫来访，植物结出的果实也更少；白天的昆虫没能补上这份损失。▸夜空：全球超过八成人口生活在光污染下，超过三分之一看不到银河。灯光不只遮住星星，也在改变昆虫的飞行、繁殖和植物的传粉。）']])]
+    '（简述：▸飞行：昆虫本来靠把背部朝向明亮天空保持平衡。2024年研究发现，\n'
+    '▹路灯成了“假天空”，昆虫把背转向灯，反而绕圈甚至翻身。\n'
+    '▸求偶：萤火虫靠闪光寻找配偶。实验中，人造光使雄虫发光减少，\n'
+    '▹雌虫也更少回应，彼此传递的求偶信号受到干扰。\n'
+    '▸幼虫：英国路边调查发现，有灯树篱的蛾类毛虫比暗处少47%；白色LED的影响比钠灯更重。\n'
+    '▸传粉：瑞士实验中，有路灯的草甸比无灯草甸少了62%的夜间传粉昆虫来访，\n'
+    '▹植物结出的果实也更少；白天的昆虫没能补上这份损失。\n'
+    '▸夜空：全球超过八成人口生活在光污染下，超过三分之一看不到银河。\n'
+    '▹灯光不只遮住星星，也在改变昆虫的飞行、繁殖和植物的传粉。）']])]
 
 out = {'no': '46',
  'title_en': 'Lost in the Glare',
@@ -185,22 +200,26 @@ out = {'no': '46',
                  'S3 blames the circling on': '对齐不了：blame A on B 中文“把 A 归咎于 B”，“把”字句 A 必须提到动词前',
                  'S4 whatever shines brightest': '对齐不了：whatever shines brightest 是名词性从句，中文“最亮的东西”，whatever '
                                                  '化成“东西”放到最后',
-                 'S6 precious few darted straight at the light': '对齐不了：precious few '
-                                                                 '作主语（指昆虫），中文“……的昆虫寥寥无几”，precious few '
-                                                                 '化成谓语放到最后，darted straight at the light 成了定语提前',
-                 'S9 suitors under artificial light': '对齐不了：under artificial light 是后置定语，修饰 '
-                                                      'suitors，中文“处在人造光下的求偶者”必须提前',
-                 'S9 mustered about five flash patterns a minute': '对齐不了：a '
-                                                                   'minute（每分钟）是频率，中文“每分钟只勉强打出约五组闪光”必须放到动词前',
+                 'S6 precious few darted straight at the light': '对齐不了：darted straight 中的 straight '
+                                                                 '是方式副词，中文“径直”放在动词“冲”前；precious few '
+                                                                 '译“极少数”，所指昆虫在中文补出，整体为“极少数昆虫径直冲向了灯光”。',
+                 'S9 suitors under artificial light': '对齐不了：under artificial light 是后置定语，修饰 suitors，中文“人造的 '
+                                                      '光下的求偶者”须放在名词前，保留用户指定空格。',
+                 'S9 mustered about five flash patterns a minute': '对齐不了：a minute '
+                                                                   '是频率状语，只有“每分钟”前置到“集中/聚集出”之前；about five '
+                                                                   'flash 依次译“约五组闪光”，patterns '
+                                                                   '对应“模式”，用户指定的三个空格完整保留。',
                  'S10 reciprocated about half as often under red or blue light': '对齐不了：under red or blue light '
-                                                                                 '是条件状语，中文“在红光或蓝光下”必须提前；half '
-                                                                                 'as often 化成“次数约减半”放到最后',
-                 'S10 scarcely at all under white': '对齐不了：省略了 reciprocated，under white 是条件状语，中文“在白光下几乎不回应”必须提前',
-                 'S10 and never under amber': '对齐不了：省略了 reciprocated，under amber 是条件状语，中文“在琥珀色光下则从不回应”必须提前；and '
-                                              '化成“则”',
-                 'S12 held 47% fewer moth caterpillars than dark ones': '对齐不了：A held 47% fewer B than C 中文“B 比 '
-                                                                        'C 少47%”，比较结构语序必须倒过来',
-                 'S14 set fewer fruit': '对齐不了：fewer 中文化成谓语“变少了”放到最后，“结的果实”在前',
+                                                                                 '是条件状语，中文“在红光或蓝光下”前置到动词“回应”之前；about '
+                                                                                 'half as often '
+                                                                                 '译“次数大约只有一半”，放在“回应的”之后。',
+                 'S10 scarcely at all under white': '对齐不了：省略了 reciprocated，under white '
+                                                    '是条件状语，中文仅将“在白光下”前置到动词“回应”之前；scarcely 译“几乎不”。',
+                 'S10 and never under amber': '对齐不了：省略了 reciprocated，under amber '
+                                              '是条件状语，中文仅将“在琥珀色光下”前置到动词“回应”之前；and 的并列关系由连续分句体现，用户译文不加“则”。',
+                 'S12 held 47% fewer moth caterpillars than dark ones': '对齐不了：than dark ones '
+                                                                        '是比较对象，中文将“比黑暗的树篱少47%的”放在“蛾类毛虫”之前；held '
+                                                                        '译“容纳”，比较结构合组以保留对应语序。',
                  'S15 lives beneath': '对齐不了：beneath A 中文“在 A 之下”，“之下”包住后面的词',
                  'S15 hides the pale ribbon of the Milky Way from more than a third': '对齐不了：hide A from B 中文“让 '
                                                                                       'B 看不见 A”，语序必须倒过来；the '
@@ -213,7 +232,16 @@ out = {'no': '46',
                                                                          '是时间状语，中文“到18岁生日时只能看到约100颗”必须放到动词前',
                  'S13 Street lamps rigged up in seven of 14 Swiss meadows': '对齐不了：rigged up in… '
                                                                             '是过去分词短语作后置定语，修饰 Street '
-                                                                            'lamps，中文“在瑞士14片草甸中的7片，临时架起的路灯”定语提前、地点放最前'},
+                                                                            'lamps；中文“在14片瑞士草甸中的7片中，临时搭建 '
+                                                                            '的路灯，”将地点前置，将“临时搭建 '
+                                                                            '的”置于“路灯”之前，保留用户指定空格和重复“中”。',
+                 'S10 about half as often under red or blue light': '对齐不了：under red or blue light '
+                                                                    '是条件状语，只有中文“在红光或蓝光下”前置到前格动词“回应”之前；本格保留整组 '
+                                                                    'about half as often '
+                                                                    '对应“次数大约只有一半”，条件介词短语不能再按英文顺序逐词切中文。',
+                 'S12 47% fewer moth caterpillars than dark ones': '对齐不了：than dark ones '
+                                                                   '是比较对象，中文“比黑暗的树篱少47%的”须放于“蛾类毛虫”前，47% '
+                                                                   'fewer、moth caterpillars 与比较对象共同构成该名词比较结构。'},
           '对齐': {'S15-2 hides the pale ribbon of the M': '对齐不了：hide A from B 中文“让 B 看不见 A”，语序必须倒过来；the pale '
                                                          'ribbon of the Milky Way 是 of 结构',
                  'S2-2 caught such acrobatics for a 2': '对齐不了：for a 2024 Imperial College study '
@@ -221,24 +249,24 @@ out = {'no': '46',
                  'S2-4 the helpless swirl of insects ': '对齐不了：the helpless swirl of insects 是 of 结构，中文把名词 '
                                                         'swirl 化成动词“打转”放到最后，insects 提到最前，round porch lights '
                                                         '放在“打转”前',
-                 'S6-1 precious few darted straight a': '对齐不了：precious few 作主语（指昆虫），中文“……的昆虫寥寥无几”，precious few '
-                                                        '化成谓语放到最后，darted straight at the light 成了定语提前',
-                 'S9-2 mustered about five flash patt': '对齐不了：a minute（每分钟）是频率，中文“每分钟只勉强打出约五组闪光”必须放到动词前',
-                 'S10-1 reciprocated about half as oft': '对齐不了：under red or blue light '
-                                                         '是条件状语，中文“在红光或蓝光下”必须提前；half as often 化成“次数约减半”放到最后',
                  'S10-2 scarcely at all under white,': '对齐不了：省略了 reciprocated，under white '
-                                                       '是条件状语，中文“在白光下几乎不回应”必须提前',
-                 'S12-2 held 47% fewer moth caterpilla': '对齐不了：A held 47% fewer B than C 中文“B 比 C '
-                                                         '少47%”，比较结构语序必须倒过来',
+                                                       '是条件状语，中文仅将“在白光下”前置到动词“回应”之前；scarcely 译“几乎不”。',
                  'S13-1 Street lamps rigged up in seve': '对齐不了：rigged up in… 是过去分词短语作后置定语，修饰 Street '
-                                                         'lamps，中文“在瑞士14片草甸中的7片，临时架起的路灯”定语提前、地点放最前',
+                                                         'lamps；中文“在14片瑞士草甸中的7片中，临时搭建 的路灯，”将地点前置，将“临时搭建 '
+                                                         '的”置于“路灯”之前，保留用户指定空格和重复“中”。',
                  'S15-2 {{=}}hides the pale ribbon of ': '对齐不了：hide A from B 中文“让 B 看不见 A”，语序必须倒过来；the pale '
                                                          'ribbon of the Milky Way 是 of 结构',
                  'S16-1 star counts from 2011 to 2022': '对齐不了：from 2011 to 2022 是后置定语，修饰 star '
                                                         'counts，中文“2011年至2022年的数星记录”必须提前',
                  'S16-1 brightening about 9.6% a year.': '对齐不了：a year（每年）是频率，中文“每年约变亮9.6%”必须放到动词前',
                  'S17-2 would see about 100 by their e': '对齐不了：by their eighteenth birthday '
-                                                         '是时间状语，中文“到18岁生日时只能看到约100颗”必须放到动词前'},
+                                                         '是时间状语，中文“到18岁生日时只能看到约100颗”必须放到动词前',
+                 'S10-1 about half as often under red ': '对齐不了：under red or blue light '
+                                                         '是条件状语，中文“在红光或蓝光下”前置到动词“回应”之前；about half as often '
+                                                         '译“次数大约只有一半”，放在“回应的”之后。',
+                 'S12-2 47% fewer moth caterpillars th': '对齐不了：than dark ones '
+                                                         '是比较对象，“比黑暗的树篱少47%的”在中文须放于“蛾类毛虫”前；数量比较和名词中心语必须同组，held '
+                                                         '已单独对应“容纳了”。'},
           '短语': {'S1 skims … to': '不是搭配：to 属于 belly to the sky，和 skims 无关',
                  'S1 belly … to': '不是搭配：belly to the sky 是独立结构（肚皮朝天），to 表示朝向，中文“朝天”已译出',
                  'S2 unravelled … of': '不是搭配：of 属于 the helpless swirl of insects，和 unravelled 无关',
@@ -253,7 +281,11 @@ out = {'no': '46',
                  'S13 rigged … of': '不是搭配：of 属于 seven of 14（14片中的7片），和 rigged up 无关',
                  'S13 up … in': '不是搭配：rigged up 已整体标，in 引出地点（在瑞士草甸中）',
                  'S15 veil … of': '不是搭配：of 属于 the pale ribbon of the Milky Way，和 veil 无关',
-                 'S15 ribbon … of': '不是搭配：ribbon of the Milky Way 是普通 of 结构（银河的光带）'},
+                 'S15 ribbon … of': '不是搭配：ribbon of the Milky Way 是普通 of 结构（银河的光带）',
+                 'S10 scarcely … at': '不是搭配：scarcely 是程度副词，at all 是程度状语，under white 是条件状语；本处用户只指定 scarcely '
+                                      '对应“几乎不”，at 不属于新增重点词组。',
+                 'S13 cut … by': '不是搭配：cut 是“削减”的动词，pollinator visits 是宾语，by 62% 表示削减幅度；by 不表示被动施事，也不是 cut '
+                                 '的固定小品词，中文末尾“削减了62%”表达该幅度。'},
           '即': {'S1-2 即': '“随即”是常用词（紧接着），不是文言的“即”，沿用文章定稿'},
           '数字写法': {'S13-1 seven': '沿用文章定稿“14片草甸中的7片”，和同组的14并列，统一写阿拉伯数字'},
           '方向': {'S15-2 more→让三分之一以上的人看不见': 'more than a third 译“三分之一以上”，“以上”就是 more than，方向一致'},
@@ -363,7 +395,17 @@ out = {'no': '46',
                    'S8': {'配音指纹': 'f51746024861',
                           '依据': '2026-11-04 实测（配音指纹 f51746024861）：整句注音 əmeɪlblɪŋksənoʊvəɹtjʊɹ，an 在句中是弱读 '
                                 '/ən/（blinks an overture 连读 blɪŋksən）；parakeet 整句听对 an overture，small.en 把弱读 '
-                                'ən 听成 in（近音），不是读错'}},
+                                'ən 听成 in（近音），不是读错'},
+                   'S6': {'配音指纹': 'f51746024861',
+                          '依据': '2026-11-14按原机器复听方法实测S6，当前配音指纹f51746024861。原始句窗48.29–53.49秒：small.en=In 477 '
+                                'field clips, precious few darted straight at the light.；parakeet=In 477 field '
+                                'clips, precious few darted straight at the '
+                                'lights.。实际公开MP4扩大前后各120毫秒上下文（48.17–53.61秒）：small.en=In 477 field clips, '
+                                'precious few darted straight at the light.；parakeet=In 477 field clips, '
+                                'precious few darted straight at the light.；两路逐词比较差异均为空。当前公开整轨AAC '
+                                'ADTS字节、所有包的payload及绝对PTS/DTS/duration/size与codec参数均与已验旧轨严格相同，6988800个float32解码样本逐字节相同、maxdiff=0。本记录只对应本句、本指纹的两种识别器上下文差异实测。依据：comparison-report.json '
+                                'SHA256=d9d4a9bf77504a762bbbb15519f7f1a1c88289ca6ddc54588831d153f67be3d7；46-original-ASR-target-evidence.json '
+                                'SHA256=e9ccae4ca6e4ff7f1308e0e011196ced7fef264581366275a4a0503a860a713f。'}},
           '删除段': {'S5 raw 1.9700-2.2700': '2026-11-04 46 逐 10 ms 实测原声（S5 sky, / hijacks 的停顿）：删掉的 raw 1.97–2.27 '
                                           '是 -40～-55 dB、重心 0.9–1.7 kHz、低频占比 -3～-19 dB 的吸气声；左边 sky 的 aɪ 到 1.95 '
                                           '已降到 -45→-51 dB，右边 2.28 -52.6 dB，hijacks 的 /h/（2.29 起，重心 1.7–2.1 '
@@ -408,7 +450,15 @@ out = {'no': '46',
                                                   '1.605–1.87 是 -43～-65 dB、重心 0.6–1.8 kHz、低频占比 -2～-14 dB '
                                                   '的吸气声；左边 fruit 的 /t/ 到 1.595 已 -52.7 dB；右边 and 的预发声 '
                                                   '1.875–1.905（-43～-51 dB、0.3–0.5 kHz、低频 0 dB）没有低谷直接接 and 的 '
-                                                  'æ（1.915 起），留着没碰，切在它前面的过零点'}}},
+                                                  'æ（1.915 起），留着没碰，切在它前面的过零点'}},
+          '同词异译': {'set fruit：果实/结出': '同一动词词组的两个不连续部分：英文 set 与 fruit 被 fewer 分隔，中文“结出”与“果实”共享 (set fruit) '
+                                      '键，一起表示“结果实”，不是该词组在不同句中的异译。'},
+          '了不并': {'S12-2': '用户本次给定词义只标“容纳”，了是体标记；原话“hold '
+                           '在这个地方也标注为重点词汇容纳。容纳就容纳这个数量。”，已逐字记录本次实际用户反馈。本次全部反馈后最终制作授权原话“48篇定稿，第48篇定稿。这一篇定稿，这一篇定稿。记住，记住最后这个0.6，记住最后这个0.6。然后然然后这个前47天都已经弄好了吗？全都搞定了吗？”，仅对本处指定词汇范围适用。',
+                  'S13-2': '用户本次点名 cut 只对应“削减”，了为体标记；原话“cut '
+                           '标注为重点词汇削减。所对的意思为削减。。”，首个削减为重点，末尾数量展开保持普通文字。本次全部反馈后最终制作授权原话“48篇定稿，第48篇定稿。这一篇定稿，这一篇定稿。记住，记住最后这个0.6，记住最后这个0.6。然后然然后这个前47天都已经弄好了吗？全都搞定了吗？”，仅对本处指定词汇范围适用。',
+                  'S14-1': '用户点名“Set fruit，set fruit标注为重点词汇。Daytime白天的标准用语词汇。”；该词组分隔标“结出”和“果实”，了是体标记，fewer '
+                           '所译“更少的”是数量修饰。本次全部反馈后最终制作授权原话“48篇定稿，第48篇定稿。这一篇定稿，这一篇定稿。记住，记住最后这个0.6，记住最后这个0.6。然后然然后这个前47天都已经弄好了吗？全都搞定了吗？”，仅对本处指定词汇范围适用。'}},
  '结尾解说': '简述',
  '非人声区间': {'S8': [[1.72, 1.970958, '紧贴词头']],
            'S10': [[4.535, 4.82]],
@@ -463,7 +513,40 @@ out = {'no': '46',
             'S15': '1843dca89927',
             'S16': '80429df314a4',
             'S17': '303d693256d8'},
- '分段增益dB': {'S4': {'1': -3.5, '4': 1.5}}}
+ '分段增益dB': {'S4': {'1': -3.5, '4': 1.5}},
+ '换行变更已获同意': {'S6': '本次用户先明确指定本句文字和重点，再明确授权本篇定稿；原T34程序拆分与精细对齐仅重组格子，英文、中文和说明字词均保留。实际本句原话“这个地方的翻译改一下，这个地方翻译改一下。改为：极少数昆虫径直冲向了灯光。\n'
+                    '\n'
+                    '在这个地方precious few对应极少数。 Darted 对应 冲 '
+                    '”；最新定稿原话“48篇定稿，第48篇定稿。这一篇定稿，这一篇定稿。记住，记住最后这个0.6，记住最后这个0.6。然后然然后这个前47天都已经弄好了吗？全都搞定了吗？”。本记录指本次制作授权和原程序机械对齐，不表示新的音频听审。',
+              'S9': '本次用户先明确指定本句文字和重点，再明确授权本篇定稿；原T34程序拆分与精细对齐仅重组格子，英文、中文和说明字词均保留。实际本句原话“这个翻译不太精准，把翻译改成这个：\n'
+                    '\n'
+                    '在塔夫茨大学，人造的 光下的求偶者每分钟 集中/聚集出 约五组闪光模式，而不是十组。\\\n'
+                    'muster 所对应的意思为 集中/聚集出 Pattern标注为重点词汇所对应的意思为 模式。\n'
+                    '\n'
+                    'Artificial artificial.也标注为重点词汇，所对应的意思为人造的。\n'
+                    '\\”；最新定稿原话“48篇定稿，第48篇定稿。这一篇定稿，这一篇定稿。记住，记住最后这个0.6，记住最后这个0.6。然后然然后这个前47天都已经弄好了吗？全都搞定了吗？”。本记录指本次制作授权和原程序机械对齐，不表示新的音频听审。',
+              'S10': '本次用户先明确指定本句文字和重点，再明确授权本篇定稿；原T34程序拆分与精细对齐仅重组格子，英文、中文和说明字词均保留。实际本句原话“**翻译不对，上面的翻译不对，改成这个翻译：雌虫在红光或蓝光下回应的次数大约只有一半，在白光下几乎不回应，在琥珀色光下从不回应。** '
+                     '&#x20;\n'
+                     '\n'
+                     '\n'
+                     'about Half as often 标注为重点词汇，标注为重点词汇。所对应的意思为 次数大约只有一半。\n'
+                     '\n'
+                     'scarcely  标注为重点词汇所对应的中文意思为 几乎不\n'
+                     '\n'
+                     '写上这个小字，小字，小字：reciprocate - 指情感上和行为上的回应\n'
+                     '\n'
+                     '\n'
+                     '截图的这块小字截图，原本截图的这块小字就是那个次数只有一半删掉。”；最新定稿原话“48篇定稿，第48篇定稿。这一篇定稿，这一篇定稿。记住，记住最后这个0.6，记住最后这个0.6。然后然然后这个前47天都已经弄好了吗？全都搞定了吗？”。本记录指本次制作授权和原程序机械对齐，不表示新的音频听审。',
+              'S12': '本次用户先明确指定本句文字和重点，再明确授权本篇定稿；原T34程序拆分与精细对齐仅重组格子，英文、中文和说明字词均保留。实际本句原话“咱这个翻译不对，上面这个翻译不对，改成下面这个翻译: '
+                     '&#x20;\n'
+                     '\n'
+                     '\n'
+                     '**沿着泰晤士河谷的55处路边，有灯照明的树篱容纳了比黑暗的树篱少47%的蛾类毛虫，其中刺眼的白色LED灯比更柔和的钠灯更糟。**\\\n'
+                     '&#x20; hold 在这个地方也标注为重点词汇容纳。容纳就容纳这个数量。\n'
+                     '\n'
+                     '加上 小字。 mellow '
+                     ':（颜色或光线）柔和的，温暖的；”；最新定稿原话“48篇定稿，第48篇定稿。这一篇定稿，这一篇定稿。记住，记住最后这个0.6，记住最后这个0.6。然后然然后这个前47天都已经弄好了吗？全都搞定了吗？”。本记录指本次制作授权和原程序机械对齐，不表示新的音频听审。'},
+ 'allow_clash': ['artificial', 'moth', 'scarcely', 'ultraviolet']}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对
