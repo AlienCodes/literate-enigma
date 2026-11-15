@@ -1,0 +1,80 @@
+name: 书65新CMU2母仅S11原边界守门只读标量
+on:
+  push:
+    branches: [codex/finish-05-and-summaries-20261112]
+    paths: ['.github/source56-CMU2-bounded-readonly/**', '.github/workflows/source56-CMU2-bounded-readonly.yml']
+permissions:
+  contents: read
+jobs:
+  only-CMU2-S11-readonly-scalar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github/source56-CMU2-bounded-readonly
+      - uses: actions/checkout@v4
+        with:
+          repository: alienalgorithm/postgraduate-vocabulary
+          ref: fc0b56af9a0ac0e97015548b756d4e51d66dc2ea
+          path: official-main
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /视频/工具/
+            /视频/配音缓存/*.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/cache/restore@v4
+        id: original-cache
+        with:
+          path: |
+            ${{ runner.temp }}/completion-machine
+            ~/asr
+          key: completion-05-machine-43294745262
+      - name: 必须恢复真实原机器缓存
+        env:
+          HIT: ${{ steps.original-cache.outputs.cache-hit }}
+        run: test "$HIT" = true
+      - name: 原运行依赖
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg espeak-ng
+          python -m pip install --quiet -r official-main/视频/工具/环境/requirements.txt
+      - uses: actions/cache/restore@v4
+        id: CMU2-S11-mothers
+        with:
+          path: |
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/42d32206d7fda7443c0e489a1ee1ac1b11d9e3fa.pkl
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/42d32206d7fda7443c0e489a1ee1ac1b11d9e3fa.pkl.单线程
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/a387fbeb6dd6337c40167612b2f8f3c56170122f.pkl
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/a387fbeb6dd6337c40167612b2f8f3c56170122f.pkl.单线程
+          key: Linux-native56-exact-S11-CMU2-Wallace-pronCTX-43759374449
+      - uses: actions/cache/restore@v4
+        id: CMU2-S11-math
+        with:
+          path: ${{ runner.temp }}/completion-machine/tts/source56-only-S11-CMU2-whole-original-math-cache/调平_f8530296a68d023c59d49bcc027d1e23c0bd9a2c.json
+          key: Linux-native56-only-S11-CMU2-whole-original-math-43765008177
+      - name: 父已独审绑定的原S11只读候选测量（不切不写CF不运行全篇）
+        env:
+          CMU2_S11_MOTHER_CACHE_HIT: ${{ steps.CMU2-S11-mothers.outputs.cache-hit }}
+          CMU2_S11_G36_CACHE_HIT: ${{ steps.CMU2-S11-math.outputs.cache-hit }}
+          AUDIO_ONLY: '1'
+          STRICT_CACHE: '1'
+          XG_NOPUSH: '1'
+          XG_KEEP_REVIEWED_GAIN: '1'
+          XG_KEEP_REVIEWED_ENDING: '1'
+          XG_KEEP_REVIEWED_CUTS: '1'
+        run: |
+          parent_sha=$(cat .github/source56-CMU2-bounded-readonly/actual-parent-CMU2-bounded-review.sha256)
+          python -u .github/source56-CMU2-bounded-readonly/run_CMU2_S11_bounded_readonly.py \
+            --actual-parent-review-adoption .github/source56-CMU2-bounded-readonly/actual-parent-CMU2-bounded-review.json \
+            --actual-parent-review-adoption-sha256 "$parent_sha"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: source56-CMU2-onlyS11-wordprotected-readonly-original-scalar
+          path: source56-CMU2-bounded-readonly-public/*.json
+          retention-days: 30
+          if-no-files-found: error
