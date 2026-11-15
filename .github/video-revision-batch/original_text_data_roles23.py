@@ -1,7 +1,7 @@
 """Exact existing issued-reference and genuine consent data. No quality rule changes."""
 from pathlib import Path
 import json,hashlib,copy
-CONTRACT = {'source_id': '23', 'request_source_SHA256': '4cc92e97af6b5f8470003de831fc6f9beeec9381a72ff6848f6f2e3e069aa560', 'actual_current_final_authorization_SHA256': '3edfd29e1c7181668394c3c6b0116a3ef681759a4ab39a859b83f0485f520c21', 'original_fc0b_issued_SHA256': '1f8d3bd7a0fd22c37c3423379f7083c274e9cce6f1c7fcc5a464ee84e9bc714a', 'actual_accepted_reference_SHA256': 'f028b036adbf5a45c44af93ef7a6c841ddc9da3de58384971d7925a71180baf0', 'feedback_SHA256': '064856f7c90a0571b85711c8c61242d5477ddfd8daf8caa7ff5b8c74236c5558', 'feedback_count': 1}
+CONTRACT = {'source_id': '23', 'request_source_SHA256': 'bef8e2cc7ace04b25ea56084a31bbc6122c6c0a5fe4569fbd7ccedf7ceec0356', 'actual_current_final_authorization_SHA256': '3edfd29e1c7181668394c3c6b0116a3ef681759a4ab39a859b83f0485f520c21', 'original_fc0b_issued_SHA256': '1f8d3bd7a0fd22c37c3423379f7083c274e9cce6f1c7fcc5a464ee84e9bc714a', 'actual_accepted_reference_SHA256': 'f028b036adbf5a45c44af93ef7a6c841ddc9da3de58384971d7925a71180baf0', 'feedback_SHA256': '064856f7c90a0571b85711c8c61242d5477ddfd8daf8caa7ff5b8c74236c5558', 'feedback_count': 1}
 def digest(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
