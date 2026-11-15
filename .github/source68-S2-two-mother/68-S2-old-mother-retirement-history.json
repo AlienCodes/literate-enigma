@@ -1,0 +1,93 @@
+{
+  "kind": "private-two-mother-target-input-retirement-history-not-production-source",
+  "source_id": "68",
+  "book_order": 53,
+  "target_sentence": "S2",
+  "before_source": {
+    "path": "/dev/shm/book53-source68-final-c61-presentation-preparation-20261115/preaudio-final-inputs/68.json",
+    "bytes": 55441,
+    "sha256": "75f0f57deeb4abdf339a12f3c32e5d3fa7184bc29a6bcd3bb4684100d6e36623"
+  },
+  "schema_added_in_private_shadow": true,
+  "exact_private_schema": {
+    "篇号": 68,
+    "原文": "Its amenities included a lounge and, that year, a grand piano.",
+    "逗号序号": [
+      1
+    ]
+  },
+  "retired_entries": [
+    {
+      "JSON_path": [
+        "非人声区间",
+        "S2"
+      ],
+      "exact_old_value": [
+        [
+          1.922958,
+          2.207708,
+          "紧贴词头"
+        ]
+      ],
+      "role": "Explicit old target mother physical/timed data only; not a fresh-waveform acceptance"
+    },
+    {
+      "JSON_path": [
+        "停顿插入点",
+        "S2"
+      ],
+      "exact_old_value": {
+        "1": [
+          2.345958,
+          "交界"
+        ]
+      },
+      "role": "Explicit old target mother physical/timed data only; not a fresh-waveform acceptance"
+    },
+    {
+      "JSON_path": [
+        "分段增益dB",
+        "S2"
+      ],
+      "exact_old_value": {
+        "1": 2.0,
+        "2": -1.0,
+        "3": 1.5
+      },
+      "role": "Explicit old target mother physical/timed data only; not a fresh-waveform acceptance"
+    },
+    {
+      "JSON_path": [
+        "区间声音指纹",
+        "S2"
+      ],
+      "exact_old_value": "8c3978167985",
+      "role": "Explicit old target mother physical/timed data only; not a fresh-waveform acceptance"
+    },
+    {
+      "JSON_path": [
+        "核对确认",
+        "停顿位置",
+        "S2 and, / that @2.346"
+      ],
+      "exact_old_value": "2026-11-09 逐 2.5 ms 实测（S2 w）：and 的 æn 2.23–2.34（-8～-18 dB、周期 0.5–0.6），d 浊音到 2.343（-20 dB、重心 1.3 kHz），2.345 起 that 的 ð（重心 3.3→4.4 kHz、周期降到 0.2–0.35）；插入点 2.346 正好在 and 与 that 之间（DTW 把 that 开头放到 2.400 晚了 54 ms）",
+      "role": "Explicit old target mother physical/timed data only; not a fresh-waveform acceptance"
+    },
+    {
+      "JSON_path": [
+        "核对确认",
+        "删除段",
+        "S2 raw 1.9300-2.2177"
+      ],
+      "exact_old_value": {
+        "类型": "紧贴词头的非人声",
+        "配音指纹": "a4f76dab45bd",
+        "依据": "2026-10-15 删除段对应 非人声区间 [[1.922958, 2.207708, '紧贴词头']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"
+      },
+      "role": "Explicit old target mother physical/timed data only; not a fresh-waveform acceptance"
+    }
+  ],
+  "explicit_leaf_count": 6,
+  "global_clock_PV_target_membership_not_claimed_exhaustive": true,
+  "no_new_CF_or_physical_control_accepted": true
+}
