@@ -111,7 +111,7 @@
     "missing_or_pending_items_are_production_pending_not_legacy_fillers": true
   },
   "all70_latest_complete": false,
-  "latest_requested_revision_completed_count": 56,
+  "latest_requested_revision_completed_count": 57,
   "articles": [
     {
       "source_id": "07",
@@ -4005,15 +4005,15 @@
       "pending_newer_request_blocks_old_fallback": true,
       "older_accepted_archive_is_history_until_newest_request_qualified": true,
       "previously_accepted_cloud_final": {
-        "asset_commit": "8e819abe8bdb1849e7d8974fcb5294b5f8c15148",
-        "video_repo_path": "视频修订定稿/2026-11-14-已验收1篇-native-inline-run43543967031-原32/视频/60 被降级的冥王星.mp4",
-        "bytes": 15936335,
-        "sha256": "3c29440cd79bbe6e0d6827cf95341591e6e8c8fa48906aeafe917f465053d44b"
+        "asset_commit": "d75aa7fee00a48a2319c89d17b2bba264f35d981",
+        "video_repo_path": "视频修订定稿/2026-11-14-审核原32-新native源QA与0.6秒定稿-来源43719331245-本地尾段v1/视频/60 被降级的冥王星.mp4",
+        "bytes": 16156101,
+        "sha256": "5be9f9f637d9ccd24d95785e7819229afeb168f46fe14ce3733d62823239e9ee"
       },
-      "status": "latest_authorized_revision_in_production",
-      "latest_requested_revision_complete": false,
-      "actual_complete_validation_passed": false,
-      "actual_dual_permanent_archive_passed": false,
+      "status": "latest_qualified_cloud_final",
+      "latest_requested_revision_complete": true,
+      "actual_complete_validation_passed": true,
+      "actual_dual_permanent_archive_passed": true,
       "newest_user_revision_records": [
         "assistant-derived-record-key-final-book60-source32-4f16c0247d28"
       ],
@@ -4033,7 +4033,36 @@
         "authority_record_key": "assistant-derived-record-key-final-book60-source32-4f16c0247d28",
         "latest_qualified_full_H_and_complete_dual_permanent_archive_still_required": true,
         "no_new_media_or_source_or_complete_pass_claimed": true
-      }
+      },
+      "latest_revision_final": {
+        "asset_commit": "d75aa7fee00a48a2319c89d17b2bba264f35d981",
+        "video_repo_path": "视频修订定稿/2026-11-14-审核原32-新native源QA与0.6秒定稿-来源43719331245-本地尾段v1/视频/60 被降级的冥王星.mp4",
+        "bytes": 16156101,
+        "sha256": "5be9f9f637d9ccd24d95785e7819229afeb168f46fe14ce3733d62823239e9ee"
+      },
+      "validation_handoff_sha256": "abf6ea3330740b86532a701bafb7e55b001c87c0e0d36bdd1ad9afb7e4c3448a",
+      "post_reading_pause_seconds": 0.6,
+      "illustration_seconds": 2,
+      "summary_card_seconds": 2,
+      "source_and_GEN_MD": {
+        "json": {
+          "bytes": 35347,
+          "sha256": "658c214658059571ffb665b4d80bf527d57a0b65e53d239d9e0f1694c1b54b64",
+          "origin": "official_artifact_working_copy"
+        },
+        "gen": {
+          "bytes": 28722,
+          "sha256": "25a9ef8690ba32e645926319494181f1d3f37ff3fcfc869b98a2c7d6b7aecf74",
+          "origin": "derived_after_final_QC",
+          "derived_from_json_sha256": "658c214658059571ffb665b4d80bf527d57a0b65e53d239d9e0f1694c1b54b64"
+        },
+        "md": {
+          "bytes": 16183,
+          "sha256": "79950df3f313d46c0386bfc36f3c65b5cfa25533a02786a7db4e91df10420536",
+          "origin": "actual_working_manuscript"
+        }
+      },
+      "source_roles_preserved": true
     },
     {
       "source_id": "57",
