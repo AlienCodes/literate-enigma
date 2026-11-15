@@ -1,0 +1,34 @@
+{
+  "kind": "readonly-actual-native-failure-facts-not-a-status-replacement",
+  "actual_full_status_pin": {
+    "path": "/workspace/work/source56-native43769221504-actual-CMU2-A19-A23-failed-original/files/56-status.json",
+    "bytes": 388708,
+    "sha256": "bdac20d3ede8bb36d261841dd81b7feb77e5f1048be23cbe46074832d90bcd25"
+  },
+  "run": 43769221504,
+  "passed": false,
+  "stage": "canonical-draft-00.log",
+  "actual_A19_A23_lines": [
+    "✘ 标点停顿核对（A9/A10：停顿时长、不切词；A19：停顿后不留吸气声）",
+    "    56 S11 BAD A19 「 without Wallace,」 停顿后有 0.30s 不是词的声音（吸气声），词到词比标准长：用实际声音找出切点写进“停顿删除区间”或“非人声区间”（纯人声，不留任何呼吸声）",
+    "    56 S11 BAD 「 without Wallace,」 标准 0.4s，实际听到 0.40s",
+    "✘ 读音核对（A23：每个词的读音与独立发音词典一致；人名、地名、机构名、缩写逐个查证权威读音）",
+    "    56 BAD（已核实，但配音读法与核实的读音不一致，加进 PRON_FIX） [专有名词] Wallace  配音读作 /wˈɔːlɪs/  ｜词典：CMU: W AO1 L AH0 S；CMU: W AO1 L IH0 S；CMU: W AO1 L AH0 S；CMU: W AO1 L IH0 S｜出现在 S11"
+  ],
+  "actual_auto_S11_suggestion_occurrences": [
+    "  删 S11 [[2.195, 2.46625, '紧贴词头']]",
+    "  删 S11 [[2.195, 2.46625, '紧贴词头']]",
+    "  删 S11 [[2.195, 2.46625, '紧贴词头']]"
+  ],
+  "candidate_was_written_to_source": false,
+  "new_current_request_pin": {
+    "path": "/workspace/work/source56-CMU2-measured9d0-99c-final-pair-and-original-native-CODE-ONLY-20261115/V3-exact-db04-truthful-format-receipt-CODE-ONLY/source56-book65-CMU2-9d0-99c-original-full-native-DATA-CODE-ONLY/.github/video-revision-batch/request/56/视频/脚本/56.json",
+    "bytes": 48988,
+    "sha256": "98f19d88462902693e5cdb579c2d539150d22cff9be5b42a7f57ebc1d42ecb7b"
+  },
+  "actual_failed_working_pin": {
+    "path": "/workspace/work/source56-native43769221504-actual-CMU2-A19-A23-failed-original/files/56-failed-working-source.json",
+    "bytes": 51199,
+    "sha256": "49a903c261f64989e27c0e42d33571a31ba87570182233834b207b29dd26fec2"
+  }
+}

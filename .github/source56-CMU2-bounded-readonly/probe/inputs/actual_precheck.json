@@ -1,0 +1,5110 @@
+{
+  "kind": "same_job_selected_original_cached_whole_and_A21_physical_metadata_precondition",
+  "diagnostic_completed": true,
+  "physical_metadata_precheck_ready": true,
+  "quality_acceptance": false,
+  "production_delivery_eligible": false,
+  "forbidden_model_events": [],
+  "errors": [],
+  "restoration": {
+    "normal_scripts_namespace_restored": true,
+    "normal_work_inode_and_PCM_restored": true,
+    "environment_cwd_sys_path_restored": true,
+    "original_observer_math_factory_restored": true
+  },
+  "phases": {
+    "selected": {
+      "source_sha256": "98f19d88462902693e5cdb579c2d539150d22cff9be5b42a7f57ebc1d42ecb7b",
+      "sample_rate": 24000,
+      "original_speed": 0.95,
+      "AF_sha256": "4138814dceac7be3ca5ce543e2f50484e11556f06dac9ce5ad59d0d5bb49dca1",
+      "AF_expression": "highpass=f=70,afftdn=nf=-40:nr=4,bandreject=f=4800:t=h:w=40,bandreject=f=4800:t=h:w=40,bandreject=f=9600:t=h:w=60,bandreject=f=9600:t=h:w=60,equalizer=f=180:t=q:w=1:g=1.5,equalizer=f=3000:t=q:w=1.5:g=1.5,lowpass=f=11000,aresample=48000:resampler=soxr",
+      "actual_own_sentence_source_numbers": [
+        "56",
+        "56",
+        "56",
+        "56",
+        "56",
+        "56",
+        "56",
+        "56",
+        "56",
+        "56",
+        "56",
+        "56",
+        "56",
+        "56",
+        "56",
+        "56",
+        "56"
+      ],
+      "observed_sentences": {
+        "S1": {
+          "plain_English_sha256": "efa22204d48165f4df0813df4679c217e53f03e751a07385ae4bfa1d6d7a2cd8",
+          "pre_master_PCM_sha256": "e963dc0f2d42f335112fd861df106484b31be87050c6dc1a78a2ea37460a250a",
+          "PCM_dtype": "float32",
+          "samples": 128280,
+          "duration_s": 5.345,
+          "automatic_gain_dB": {},
+          "manual_gain_dB": null,
+          "actual_raw_w_fingerprint": "6d86b8b5a88a",
+          "actual_raw_cuts": [],
+          "piece_clips_sha256": [
+            "e963dc0f2d42f335112fd861df106484b31be87050c6dc1a78a2ea37460a250a"
+          ],
+          "effective_source_DSP": {
+            "非人声区间": [
+              [
+                3.24,
+                3.51
+              ]
+            ],
+            "词尾除阻": null,
+            "停顿处除阻": null,
+            "除阻加强": null,
+            "停顿删除区间": null,
+            "停顿插入点": null,
+            "区间声音指纹": "6d86b8b5a88a",
+            "分段增益dB": null,
+            "句子增益dB": null,
+            "段内渐变dB": null,
+            "结尾句": null,
+            "合成标点": null,
+            "列举逗号": null
+          }
+        },
+        "S2": {
+          "plain_English_sha256": "efb4de80b7fc42a98bb1fc4c3c6b7ad7a9d58a76ce916c2983ef807ce3d88ac4",
+          "pre_master_PCM_sha256": "73dae0268ee7f3bb2df0cb1776f70859f487c5fdaeda9e5520ebefde04ed4d13",
+          "PCM_dtype": "float32",
+          "samples": 291960,
+          "duration_s": 12.165,
+          "automatic_gain_dB": {},
+          "manual_gain_dB": null,
+          "actual_raw_w_fingerprint": "f2773e12714e",
+          "actual_raw_cuts": [
+            [
+              140880,
+              155160,
+              0.38
+            ]
+          ],
+          "piece_clips_sha256": [
+            "ab8421bf22a71c5e833a169a22614e7af2677353171f00e99bba5db6aa660452",
+            "1150614eeef2a65b28a3da2abfca749b4906da643a8f6e4737da2fd50916c1e6",
+            "85342e027e0a2c3bc44037dfbf827f65b782ad4df03733ab9888a051fb814d9d"
+          ],
+          "effective_source_DSP": {
+            "非人声区间": [
+              [
+                0.37,
+                0.385
+              ],
+              [
+                2.06,
+                2.375
+              ]
+            ],
+            "词尾除阻": null,
+            "停顿处除阻": null,
+            "除阻加强": null,
+            "停顿删除区间": null,
+            "停顿插入点": null,
+            "区间声音指纹": "f2773e12714e",
+            "分段增益dB": null,
+            "句子增益dB": null,
+            "段内渐变dB": null,
+            "结尾句": null,
+            "合成标点": null,
+            "列举逗号": null
+          }
+        },
+        "S3": {
+          "plain_English_sha256": "7c0bfc4e450582e5753e7a58ff390335aefea40fea0bc8d5ba85de0924c71fb5",
+          "pre_master_PCM_sha256": "79c176420483016db9461b2425fa028c087d5f018bebf56b5d8976cbd7d84e9f",
+          "PCM_dtype": "float32",
+          "samples": 225600,
+          "duration_s": 9.4,
+          "automatic_gain_dB": {
+            "1": 1.5
+          },
+          "manual_gain_dB": null,
+          "actual_raw_w_fingerprint": "3ca2a5f660bc",
+          "actual_raw_cuts": [
+            [
+              119520,
+              128880,
+              0.38
+            ],
+            [
+              169080,
+              176760,
+              0.38
+            ]
+          ],
+          "piece_clips_sha256": [
+            "fd028e30e15f83866fa2ad42e68c359ac54919547eee9ba11278554531acff44",
+            "1150614eeef2a65b28a3da2abfca749b4906da643a8f6e4737da2fd50916c1e6",
+            "d03a2f86cea884efc57a93e3540ce3b43b7a86836c8cf7a19f2f9d0bc3fa6a1f",
+            "1150614eeef2a65b28a3da2abfca749b4906da643a8f6e4737da2fd50916c1e6",
+            "76941f5b4fecacd5ad1456f40ede765486f95dc76b3d77dc34a1f220e0751fda"
+          ],
+          "effective_source_DSP": {
+            "非人声区间": null,
+            "词尾除阻": null,
+            "停顿处除阻": null,
+            "除阻加强": null,
+            "停顿删除区间": null,
+            "停顿插入点": null,
+            "区间声音指纹": null,
+            "分段增益dB": null,
+            "句子增益dB": null,
+            "段内渐变dB": null,
+            "结尾句": null,
+            "合成标点": null,
+            "列举逗号": null
+          }
+        },
+        "S4": {
+          "plain_English_sha256": "591a956290b4ecbc3d6f19e86299f39471877bc60770e28007893642de96f023",
+          "pre_master_PCM_sha256": "cc37ed68a0142a11bc4ddf24ab770614043ceb90af329df65c72746821812087",
+          "PCM_dtype": "float32",
+          "samples": 339360,
+          "duration_s": 14.14,
+          "automatic_gain_dB": {
+            "3": -2.0,
+            "4": 2.0,
+            "5": 1.5
+          },
+          "manual_gain_dB": null,
+          "actual_raw_w_fingerprint": "179f77aff2a4",
+          "actual_raw_cuts": [
+            [
+              48720,
+              54720,
+              0.38
+            ],
+            [
+              116640,
+              126600,
+              0.38
+            ],
+            [
+              164040,
+              171960,
+              0.38
+            ],
+            [
+              261480,
+              271920,
+              0.38
+            ]
+          ],
+          "piece_clips_sha256": [
+            "54e53bb80ed6e6136e0c65e5611ed519c5f7b8426768aaa8a7319d7d00f8f963",
+            "1150614eeef2a65b28a3da2abfca749b4906da643a8f6e4737da2fd50916c1e6",
+            "1fb407c53aa81b293231a41d638476d077948057347611d1323e96188b916022",
+            "1150614eeef2a65b28a3da2abfca749b4906da643a8f6e4737da2fd50916c1e6",
+            "722d3e7fe8f1f6161e5813c6dd6274bc546120463a1ebe9c3823a8221d81de7d",
+            "1150614eeef2a65b28a3da2abfca749b4906da643a8f6e4737da2fd50916c1e6",
+            "0dbc7f239b24412fff06182bfc9d48bd645a956d5dac258ba0885ad7fcecd0b9",
+            "1150614eeef2a65b28a3da2abfca749b4906da643a8f6e4737da2fd50916c1e6",
+            "277c83c66a0ecd075e2643a9433bae9e0b8af9f62e0bd248c1f7e0a810daa3b7"
+          ],
+          "effective_source_DSP": {
+            "非人声区间": [
+              [
+                10.895,
+                11.265
+              ]
+            ],
+            "词尾除阻": {
+              "1": [
+                1.955,
+                "t"
+              ],
+              "2": [
+                4.785,
+                "t"
+              ]
+            },
+            "停顿处除阻": null,
+            "除阻加强": null,
+            "停顿删除区间": null,
+            "停顿插入点": null,
+            "区间声音指纹": "179f77aff2a4",
+            "分段增益dB": null,
+            "句子增益dB": null,
+            "段内渐变dB": null,
+            "结尾句": null,
+            "合成标点": null,
+            "列举逗号": null
+          }
+        },
+        "S5": {
+          "plain_English_sha256": "4a2c90a1806962dcb931b1d3a5779c61df50738c9bc694cb81b10be5ee64bd64",
+          "pre_master_PCM_sha256": "f78ec17ce99d310db78ecf00a5d652e0cf2c3cefcd21fd711b50245054bd069f",
+          "PCM_dtype": "float32",
+          "samples": 116520,
+          "duration_s": 4.855,
+          "automatic_gain_dB": {},
+          "manual_gain_dB": null,
+          "actual_raw_w_fingerprint": "37e338e91064",
+          "actual_raw_cuts": [],
+          "piece_clips_sha256": [
+            "f78ec17ce99d310db78ecf00a5d652e0cf2c3cefcd21fd711b50245054bd069f"
+          ],
+          "effective_source_DSP": {
+            "非人声区间": [
+              [
+                2.196292,
+                2.356083,
+                "紧贴两头"
+              ]
+            ],
+            "词尾除阻": {
+              "句末": [
+                4.805,
+                "t"
+              ]
+            },
+            "停顿处除阻": null,
+            "除阻加强": null,
+            "停顿删除区间": null,
+            "停顿插入点": null,
+            "区间声音指纹": "37e338e91064",
+            "分段增益dB": null,
+            "句子增益dB": null,
+            "段内渐变dB": null,
+            "结尾句": null,
+            "合成标点": null,
+            "列举逗号": null
+          }
+        },
+        "S6": {
+          "plain_English_sha256": "9bdeb9a7063c68c7a4acbd797b00576d4195315400a15dccc0220ce916a5713e",
+          "pre_master_PCM_sha256": "3582a5a47c2b1186f8804eed5458fb556112f87e3675a7ab46851f1eb98ae090",
+          "PCM_dtype": "float32",
+          "samples": 204960,
+          "duration_s": 8.54,
+          "automatic_gain_dB": {},
+          "manual_gain_dB": null,
+          "actual_raw_w_fingerprint": "fda63f2f57e4",
+          "actual_raw_cuts": [
+            [
+              92280,
+              103200,
+              0.38
+            ]
+          ],
+          "piece_clips_sha256": [
+            "5248b4a01463d55193c3e8b84b89d664ff66a490c86ebaf739eb6a714bfcb96f",
+            "1150614eeef2a65b28a3da2abfca749b4906da643a8f6e4737da2fd50916c1e6",
+            "4a2853fe7e6f88f4dc07c8dfbfbdb6370e2511f3edfef43a791c9ca0fed989d7"
+          ],
+          "effective_source_DSP": {
+            "非人声区间": null,
+            "词尾除阻": null,
+            "停顿处除阻": null,
+            "除阻加强": null,
+            "停顿删除区间": null,
+            "停顿插入点": null,
+            "区间声音指纹": null,
+            "分段增益dB": null,
+            "句子增益dB": null,
+            "段内渐变dB": null,
+            "结尾句": null,
+            "合成标点": null,
+            "列举逗号": null
+          }
+        },
+        "S7": {
+          "plain_English_sha256": "15581c25196fa7692b98d97a106f7e1ac224a2dff72da5c73a20daa8ebea09b4",
+          "pre_master_PCM_sha256": "19a8117df5229b4a7e7159c9585e97eea10b044064bf35ed0fa402a662ce681d",
+          "PCM_dtype": "float32",
+          "samples": 51600,
+          "duration_s": 2.15,
+          "automatic_gain_dB": {},
+          "manual_gain_dB": null,
+          "actual_raw_w_fingerprint": "811613574599",
+          "actual_raw_cuts": [],
+          "piece_clips_sha256": [
+            "19a8117df5229b4a7e7159c9585e97eea10b044064bf35ed0fa402a662ce681d"
+          ],
+          "effective_source_DSP": {
+            "非人声区间": null,
+            "词尾除阻": null,
+            "停顿处除阻": null,
+            "除阻加强": null,
+            "停顿删除区间": null,
+            "停顿插入点": null,
+            "区间声音指纹": null,
+            "分段增益dB": null,
+            "句子增益dB": null,
+            "段内渐变dB": null,
+            "结尾句": null,
+            "合成标点": null,
+            "列举逗号": null
+          }
+        },
+        "S8": {
+          "plain_English_sha256": "47f4974f1832fd78101adfa01aa1b3eb1bc69b53d6445e8ab2a0905e80897faa",
+          "pre_master_PCM_sha256": "013cf44c461fb756ad93dd21587e1ee5a6e90072069da1f947f49cfadf9c21c1",
+          "PCM_dtype": "float32",
+          "samples": 319320,
+          "duration_s": 13.305,
+          "automatic_gain_dB": {},
+          "manual_gain_dB": null,
+          "actual_raw_w_fingerprint": "b66042cc021d",
+          "actual_raw_cuts": [
+            [
+              180720,
+              191400,
+              0.38
+            ],
+            [
+              248160,
+              257520,
+              0.38
+            ]
+          ],
+          "piece_clips_sha256": [
+            "a82343608fc0d0e4a0bea436700735292795d91437cf5e48df5bf9d055d1cb39",
+            "1150614eeef2a65b28a3da2abfca749b4906da643a8f6e4737da2fd50916c1e6",
+            "8e599da78b81f2b9a7cc8f6046c94956576dd1129968f02fc88992b392753603",
+            "1150614eeef2a65b28a3da2abfca749b4906da643a8f6e4737da2fd50916c1e6",
+            "7be013e5bc3663c4b5ee287f3394e750b060cef5a1f5fef1629f3dd30aa37d51"
+          ],
+          "effective_source_DSP": {
+            "非人声区间": [
+              [
+                7.71,
+                7.981125,
+                "紧贴词头"
+              ]
+            ],
+            "词尾除阻": {
+              "句末": [
+                13.33,
+                "t"
+              ]
+            },
+            "停顿处除阻": null,
+            "除阻加强": null,
+            "停顿删除区间": null,
+            "停顿插入点": null,
+            "区间声音指纹": "b66042cc021d",
+            "分段增益dB": null,
+            "句子增益dB": null,
+            "段内渐变dB": null,
+            "结尾句": null,
+            "合成标点": null,
+            "列举逗号": null
+          }
+        },
+        "S9": {
+          "plain_English_sha256": "e93e7d659341ffd7f3887fdbd155c013ea8a7f49309574fa71a742b5f68fe06f",
+          "pre_master_PCM_sha256": "48f3f29486256af6e29f1f7b1632100fec1634bea08c69801d9d0b41d04171b9",
+          "PCM_dtype": "float32",
+          "samples": 55200,
+          "duration_s": 2.3,
+          "automatic_gain_dB": {},
+          "manual_gain_dB": null,
+          "actual_raw_w_fingerprint": "301302217c79",
+          "actual_raw_cuts": [],
+          "piece_clips_sha256": [
+            "48f3f29486256af6e29f1f7b1632100fec1634bea08c69801d9d0b41d04171b9"
+          ],
+          "effective_source_DSP": {
+            "非人声区间": null,
+            "词尾除阻": null,
+            "停顿处除阻": null,
+            "除阻加强": null,
+            "停顿删除区间": null,
+            "停顿插入点": null,
+            "区间声音指纹": null,
+            "分段增益dB": null,
+            "句子增益dB": null,
+            "段内渐变dB": null,
+            "结尾句": null,
+            "合成标点": null,
+            "列举逗号": null
+          }
+        },
+        "S10": {
+          "plain_English_sha256": "6de067e8fb5a7d5645acd11cdafbcee185797e130a23c18adbdbea3582ae3f19",
+          "pre_master_PCM_sha256": "b08521e1e81ca13e6cd5470e840c7408b63d7e1dbf93c508e9353ecfbddd5791",
+          "PCM_dtype": "float32",
+          "samples": 187680,
+          "duration_s": 7.82,
+          "automatic_gain_dB": {
+            "1": -3.0,
+            "3": 1.5
+          },
+          "manual_gain_dB": null,
+          "actual_raw_w_fingerprint": "41307d4debb4",
+          "actual_raw_cuts": [
+            [
+              33840,
+              36120,
+              0.38
+            ],
+            [
+              68520,
+              79200,
+              0.38
+            ]
+          ],
+          "piece_clips_sha256": [
+            "c89097c075bd59aa6e22d0e9c5156732558e5b4a4c7f97951ad6d1cea8ce64c2",
+            "1150614eeef2a65b28a3da2abfca749b4906da643a8f6e4737da2fd50916c1e6",
+            "2e90db0892e48dbf0f9105669ff541ffa3f6bc08021fa898f7c928bf3ec581ee",
+            "1150614eeef2a65b28a3da2abfca749b4906da643a8f6e4737da2fd50916c1e6",
+            "79fb45b6c58b447109e0c9edb2d0ea025a3757bb99ae636712922869c3c0d876"
+          ],
+          "effective_source_DSP": {
+            "非人声区间": null,
+            "词尾除阻": null,
+            "停顿处除阻": null,
+            "除阻加强": null,
+            "停顿删除区间": null,
+            "停顿插入点": null,
+            "区间声音指纹": null,
+            "分段增益dB": null,
+            "句子增益dB": null,
+            "段内渐变dB": null,
+            "结尾句": null,
+            "合成标点": null,
+            "列举逗号": null
+          }
+        },
+        "S11": {
+          "plain_English_sha256": "cd4013cfb0dc2173c4089a737245170a88ad286eca2d2e3b250ac9c37da0f85d",
+          "pre_master_PCM_sha256": "1780272b00cf9fcb63815080f14ecc420788972accc03b9c78de3db870a084cf",
+          "PCM_dtype": "float32",
+          "samples": 133680,
+          "duration_s": 5.57,
+          "automatic_gain_dB": {
+            "1": -1.5,
+            "2": 1.5
+          },
+          "manual_gain_dB": null,
+          "actual_raw_w_fingerprint": "9d0aed73b729",
+          "actual_raw_cuts": [
+            [
+              51720,
+              52440,
+              0.38
+            ]
+          ],
+          "piece_clips_sha256": [
+            "f06d2b49387051a7262dcda3523d2c9df9c82a6ad9d137fb358620cee570f87b",
+            "1150614eeef2a65b28a3da2abfca749b4906da643a8f6e4737da2fd50916c1e6",
+            "bef66752e177628b93995543e9551bd432afd3bf31c5a83ec9d99e57705d25b2"
+          ],
+          "effective_source_DSP": {
+            "非人声区间": null,
+            "词尾除阻": null,
+            "停顿处除阻": null,
+            "除阻加强": null,
+            "停顿删除区间": null,
+            "停顿插入点": null,
+            "区间声音指纹": "9d0aed73b729",
+            "分段增益dB": null,
+            "句子增益dB": null,
+            "段内渐变dB": null,
+            "结尾句": null,
+            "合成标点": null,
+            "列举逗号": null
+          }
+        },
+        "S12": {
+          "plain_English_sha256": "09f4a83b909f38ca59bcf40fe442172a56befb840aca673263400629826738fa",
+          "pre_master_PCM_sha256": "a9eb71b5fc5c6a1212a75ad0411a7b1041e1a0a5fdc25d1abeab34a21f9f3896",
+          "PCM_dtype": "float32",
+          "samples": 133680,
+          "duration_s": 5.57,
+          "automatic_gain_dB": {},
+          "manual_gain_dB": null,
+          "actual_raw_w_fingerprint": "584f4a866ec8",
+          "actual_raw_cuts": [],
+          "piece_clips_sha256": [
+            "a9eb71b5fc5c6a1212a75ad0411a7b1041e1a0a5fdc25d1abeab34a21f9f3896"
+          ],
+          "effective_source_DSP": {
+            "非人声区间": [
+              [
+                3.93,
+                4.29
+              ]
+            ],
+            "词尾除阻": null,
+            "停顿处除阻": null,
+            "除阻加强": null,
+            "停顿删除区间": null,
+            "停顿插入点": null,
+            "区间声音指纹": "584f4a866ec8",
+            "分段增益dB": null,
+            "句子增益dB": null,
+            "段内渐变dB": null,
+            "结尾句": null,
+            "合成标点": null,
+            "列举逗号": null
+          }
+        },
+        "S13": {
+          "plain_English_sha256": "c9a436d3a567546e179bc6e013e3f46e984e1ab8190238f90a177148f6c01b4f",
+          "pre_master_PCM_sha256": "edbc75651167438f9e2baf7139667f73f59062e063e3c884c5fce9f0a716e52f",
+          "PCM_dtype": "float32",
+          "samples": 216240,
+          "duration_s": 9.01,
+          "automatic_gain_dB": {},
+          "manual_gain_dB": null,
+          "actual_raw_w_fingerprint": "cdd68425bc39",
+          "actual_raw_cuts": [],
+          "piece_clips_sha256": [
+            "edbc75651167438f9e2baf7139667f73f59062e063e3c884c5fce9f0a716e52f"
+          ],
+          "effective_source_DSP": {
+            "非人声区间": [
+              [
+                1.83,
+                2.055
+              ],
+              [
+                5.48,
+                5.805
+              ]
+            ],
+            "词尾除阻": null,
+            "停顿处除阻": null,
+            "除阻加强": null,
+            "停顿删除区间": null,
+            "停顿插入点": null,
+            "区间声音指纹": "cdd68425bc39",
+            "分段增益dB": null,
+            "句子增益dB": null,
+            "段内渐变dB": null,
+            "结尾句": null,
+            "合成标点": null,
+            "列举逗号": null
+          }
+        },
+        "S14": {
+          "plain_English_sha256": "3adc1fb47af2aed96b1c87f3e922af5b0c386bbe5fe836b38ee3cbb6dd4bed8b",
+          "pre_master_PCM_sha256": "f83ad3f890aa9b20c030479d3e68894d6da0dcfcefbdf5516acb3a34c92cf7c6",
+          "PCM_dtype": "float32",
+          "samples": 362640,
+          "duration_s": 15.11,
+          "automatic_gain_dB": {
+            "2": -1.5
+          },
+          "manual_gain_dB": null,
+          "actual_raw_w_fingerprint": "14c915d525ac",
+          "actual_raw_cuts": [
+            [
+              136800,
+              145080,
+              0.38
+            ],
+            [
+              189000,
+              201240,
+              0.38
+            ],
+            [
+              298080,
+              305880,
+              0.38
+            ]
+          ],
+          "piece_clips_sha256": [
+            "54b2d7981ef3bb251d0bc64977bfc2dbaaf831091174f8f35b6da098933d4ff2",
+            "1150614eeef2a65b28a3da2abfca749b4906da643a8f6e4737da2fd50916c1e6",
+            "a2da8eee094f885656498b00f70d17abe7ab0f986a4b4f889c43615becec6845",
+            "1150614eeef2a65b28a3da2abfca749b4906da643a8f6e4737da2fd50916c1e6",
+            "dd652d1bc362348d4f17dee9ceb4b4930dfad5269a0c7deffed137d40965e14f",
+            "1150614eeef2a65b28a3da2abfca749b4906da643a8f6e4737da2fd50916c1e6",
+            "89382f17ef79ade6970eab1c3a36f76a5cbed630cf56e48492ffc3f0e0ea63fd"
+          ],
+          "effective_source_DSP": {
+            "非人声区间": [
+              [
+                5.695,
+                6.050792,
+                "紧贴词头"
+              ],
+              [
+                12.45,
+                12.755417,
+                "紧贴词头"
+              ]
+            ],
+            "词尾除阻": null,
+            "停顿处除阻": null,
+            "除阻加强": null,
+            "停顿删除区间": null,
+            "停顿插入点": null,
+            "区间声音指纹": "14c915d525ac",
+            "分段增益dB": null,
+            "句子增益dB": null,
+            "段内渐变dB": null,
+            "结尾句": null,
+            "合成标点": null,
+            "列举逗号": null
+          }
+        },
+        "S15": {
+          "plain_English_sha256": "7c8bbb84a2a4dd0e8b172e0323efc9834464ef593a5bd0a959ef51796677aedb",
+          "pre_master_PCM_sha256": "1441d96a32269de7b6e275951b599c8594cb5adae3344541820956a6ba02f3ba",
+          "PCM_dtype": "float32",
+          "samples": 234240,
+          "duration_s": 9.76,
+          "automatic_gain_dB": {},
+          "manual_gain_dB": null,
+          "actual_raw_w_fingerprint": "6595fe25e543",
+          "actual_raw_cuts": [
+            [
+              120120,
+              130200,
+              0.38
+            ]
+          ],
+          "piece_clips_sha256": [
+            "1da58adb67b59b02af10725b76fd68131cc14f81dc0dbb1f1425f02912756cae",
+            "1150614eeef2a65b28a3da2abfca749b4906da643a8f6e4737da2fd50916c1e6",
+            "bdf0cdd12022b51e07506e6a240a9f0db2b9a8fc238e33e32543bd651e979a38"
+          ],
+          "effective_source_DSP": {
+            "非人声区间": [
+              [
+                5.18,
+                5.43
+              ]
+            ],
+            "词尾除阻": {
+              "1": [
+                4.93,
+                "t"
+              ],
+              "句末": [
+                9.76,
+                "t"
+              ]
+            },
+            "停顿处除阻": null,
+            "除阻加强": null,
+            "停顿删除区间": null,
+            "停顿插入点": null,
+            "区间声音指纹": "6595fe25e543",
+            "分段增益dB": null,
+            "句子增益dB": null,
+            "段内渐变dB": null,
+            "结尾句": null,
+            "合成标点": null,
+            "列举逗号": null
+          }
+        },
+        "S16": {
+          "plain_English_sha256": "13fb7171a5730669d90943dd9c4f1e944672e196261f2a566fd126ae4bdae19e",
+          "pre_master_PCM_sha256": "056dda52a0999501582d7c5c9a0a5185af29b21bbfb5c149d01a41a5ff4ce02c",
+          "PCM_dtype": "float32",
+          "samples": 152640,
+          "duration_s": 6.36,
+          "automatic_gain_dB": {},
+          "manual_gain_dB": null,
+          "actual_raw_w_fingerprint": "58077460df6e",
+          "actual_raw_cuts": [],
+          "piece_clips_sha256": [
+            "056dda52a0999501582d7c5c9a0a5185af29b21bbfb5c149d01a41a5ff4ce02c"
+          ],
+          "effective_source_DSP": {
+            "非人声区间": [
+              [
+                1.51,
+                1.72
+              ],
+              [
+                4.54,
+                4.905
+              ]
+            ],
+            "词尾除阻": null,
+            "停顿处除阻": null,
+            "除阻加强": null,
+            "停顿删除区间": null,
+            "停顿插入点": null,
+            "区间声音指纹": "58077460df6e",
+            "分段增益dB": null,
+            "句子增益dB": null,
+            "段内渐变dB": null,
+            "结尾句": null,
+            "合成标点": null,
+            "列举逗号": null
+          }
+        },
+        "S17": {
+          "plain_English_sha256": "5f318b324af21043ee1498411c7c29193d4b3c026d1b6a10cf0e8ed986c74734",
+          "pre_master_PCM_sha256": "43ec49338c88d0017a853ca6673217cc6cf4f8512ac84ff453fceb9329d2cffc",
+          "PCM_dtype": "float32",
+          "samples": 65400,
+          "duration_s": 2.725,
+          "automatic_gain_dB": {},
+          "manual_gain_dB": null,
+          "actual_raw_w_fingerprint": "a48cd56e3a35",
+          "actual_raw_cuts": [],
+          "piece_clips_sha256": [
+            "43ec49338c88d0017a853ca6673217cc6cf4f8512ac84ff453fceb9329d2cffc"
+          ],
+          "effective_source_DSP": {
+            "非人声区间": null,
+            "词尾除阻": null,
+            "停顿处除阻": null,
+            "除阻加强": null,
+            "停顿删除区间": null,
+            "停顿插入点": null,
+            "区间声音指纹": null,
+            "分段增益dB": null,
+            "句子增益dB": null,
+            "段内渐变dB": null,
+            "结尾句": {
+              "整句语速": 0.95
+            },
+            "合成标点": null,
+            "列举逗号": null
+          }
+        }
+      },
+      "cached_model_calls": 39,
+      "original_G36_calls": [
+        {
+          "sentence": "S2",
+          "phase": "selected",
+          "original_key": "1ba1711d7455284f1b615a6d25c2bc7491b42071",
+          "source_no": "56",
+          "clip_SHA256": [
+            "ab8421bf22a71c5e833a169a22614e7af2677353171f00e99bba5db6aa660452",
+            "1150614eeef2a65b28a3da2abfca749b4906da643a8f6e4737da2fd50916c1e6",
+            "85342e027e0a2c3bc44037dfbf827f65b782ad4df03733ab9888a051fb814d9d"
+          ],
+          "clip_samples": [
+            135960,
+            9120,
+            146880
+          ],
+          "gaps": [
+            0.4
+          ],
+          "original_tmap": [
+            [
+              0,
+              74,
+              0.0,
+              5.665
+            ],
+            [
+              75,
+              168,
+              6.045,
+              12.165
+            ]
+          ],
+          "original_rounds": 2,
+          "actual_math_created": false,
+          "file": "调平_1ba1711d7455284f1b615a6d25c2bc7491b42071.json",
+          "existed": true,
+          "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "value": {},
+          "strict_after": true
+        },
+        {
+          "sentence": "S3",
+          "phase": "selected",
+          "original_key": "7f46778a7e98d7437c64ec3e488b3e153037aad4",
+          "source_no": "56",
+          "clip_SHA256": [
+            "d16b7527d019b47116716651ab8b0a897eda85f134a63712633a58853049bd6a",
+            "1150614eeef2a65b28a3da2abfca749b4906da643a8f6e4737da2fd50916c1e6",
+            "d03a2f86cea884efc57a93e3540ce3b43b7a86836c8cf7a19f2f9d0bc3fa6a1f",
+            "1150614eeef2a65b28a3da2abfca749b4906da643a8f6e4737da2fd50916c1e6",
+            "b27dc3986b84f89d14ce7f44cf5489655d1b73ee577e3f3da5f9003f248119e6"
+          ],
+          "clip_samples": [
+            119040,
+            9120,
+            40200,
+            9120,
+            48120
+          ],
+          "gaps": [
+            0.4,
+            0.4
+          ],
+          "original_tmap": [
+            [
+              0,
+              46,
+              0.0,
+              4.960000000000001
+            ],
+            [
+              47,
+              71,
+              5.340000000000001,
+              7.015000000000001
+            ],
+            [
+              72,
+              101,
+              7.3950000000000005,
+              9.4
+            ]
+          ],
+          "original_rounds": 2,
+          "actual_math_created": false,
+          "file": "调平_7f46778a7e98d7437c64ec3e488b3e153037aad4.json",
+          "existed": true,
+          "sha256": "c5466f806fd8bf6b6cf0161665afc3f39396752f12626f211203181625f290ca",
+          "value": {
+            "1": 1.5
+          },
+          "strict_after": true
+        },
+        {
+          "sentence": "S4",
+          "phase": "selected",
+          "original_key": "a46f14cf76284b552f58351b2cf3b6a3db52b47f",
+          "source_no": "56",
+          "clip_SHA256": [
+            "54e53bb80ed6e6136e0c65e5611ed519c5f7b8426768aaa8a7319d7d00f8f963",
+            "1150614eeef2a65b28a3da2abfca749b4906da643a8f6e4737da2fd50916c1e6",
+            "1fb407c53aa81b293231a41d638476d077948057347611d1323e96188b916022",
+            "1150614eeef2a65b28a3da2abfca749b4906da643a8f6e4737da2fd50916c1e6",
+            "6775cbfef19020dbaef58e1038662e5ee1c8c15412950fcaa79a501304ed616d",
+            "1150614eeef2a65b28a3da2abfca749b4906da643a8f6e4737da2fd50916c1e6",
+            "e7872696fb22a4efdde0233d2c539e62d4cf4a66c373fda991c058723fdb8c92",
+            "1150614eeef2a65b28a3da2abfca749b4906da643a8f6e4737da2fd50916c1e6",
+            "5d5ddb96bb992ae9fdf0c1a1946b559e58c5e878a644ce8c500b0f971721f1d2"
+          ],
+          "clip_samples": [
+            48360,
+            9120,
+            61920,
+            9120,
+            37440,
+            9120,
+            89520,
+            9120,
+            65640
+          ],
+          "gaps": [
+            0.4,
+            0.4,
+            0.4,
+            0.4
+          ],
+          "original_tmap": [
+            [
+              0,
+              17,
+              0.0,
+              2.0149999999999997
+            ],
+            [
+              18,
+              59,
+              2.3949999999999996,
+              4.9750000000000005
+            ],
+            [
+              60,
+              82,
+              5.355,
+              6.915
+            ],
+            [
+              83,
+              140,
+              7.295,
+              11.024999999999999
+            ],
+            [
+              141,
+              179,
+              11.405,
+              14.14
+            ]
+          ],
+          "original_rounds": 2,
+          "actual_math_created": false,
+          "file": "调平_a46f14cf76284b552f58351b2cf3b6a3db52b47f.json",
+          "existed": true,
+          "sha256": "6766af04b647a977e9d91e5360069fc98804bb45cfd30f4415e53b7f6fa723d2",
+          "value": {
+            "3": -2.0,
+            "4": 2.0,
+            "5": 1.5
+          },
+          "strict_after": true
+        },
+        {
+          "sentence": "S6",
+          "phase": "selected",
+          "original_key": "9383615f875470bdc5d086fffc9fa92d158bdb7e",
+          "source_no": "56",
+          "clip_SHA256": [
+            "5248b4a01463d55193c3e8b84b89d664ff66a490c86ebaf739eb6a714bfcb96f",
+            "1150614eeef2a65b28a3da2abfca749b4906da643a8f6e4737da2fd50916c1e6",
+            "4a2853fe7e6f88f4dc07c8dfbfbdb6370e2511f3edfef43a791c9ca0fed989d7"
+          ],
+          "clip_samples": [
+            91800,
+            9120,
+            104040
+          ],
+          "gaps": [
+            0.4
+          ],
+          "original_tmap": [
+            [
+              0,
+              54,
+              0.0,
+              3.825
+            ],
+            [
+              55,
+              125,
+              4.205000000000001,
+              8.54
+            ]
+          ],
+          "original_rounds": 2,
+          "actual_math_created": false,
+          "file": "调平_9383615f875470bdc5d086fffc9fa92d158bdb7e.json",
+          "existed": true,
+          "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "value": {},
+          "strict_after": true
+        },
+        {
+          "sentence": "S8",
+          "phase": "selected",
+          "original_key": "46ed682d4cb6da6f518a6131fcf9cb7918cee9de",
+          "source_no": "56",
+          "clip_SHA256": [
+            "a82343608fc0d0e4a0bea436700735292795d91437cf5e48df5bf9d055d1cb39",
+            "1150614eeef2a65b28a3da2abfca749b4906da643a8f6e4737da2fd50916c1e6",
+            "8e599da78b81f2b9a7cc8f6046c94956576dd1129968f02fc88992b392753603",
+            "1150614eeef2a65b28a3da2abfca749b4906da643a8f6e4737da2fd50916c1e6",
+            "7be013e5bc3663c4b5ee287f3394e750b060cef5a1f5fef1629f3dd30aa37d51"
+          ],
+          "clip_samples": [
+            180360,
+            9120,
+            56760,
+            9120,
+            63960
+          ],
+          "gaps": [
+            0.4,
+            0.4
+          ],
+          "original_tmap": [
+            [
+              0,
+              111,
+              0.0,
+              7.515000000000001
+            ],
+            [
+              112,
+              147,
+              7.8950000000000005,
+              10.26
+            ],
+            [
+              148,
+              163,
+              10.64,
+              13.305
+            ]
+          ],
+          "original_rounds": 2,
+          "actual_math_created": false,
+          "file": "调平_46ed682d4cb6da6f518a6131fcf9cb7918cee9de.json",
+          "existed": true,
+          "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "value": {},
+          "strict_after": true
+        },
+        {
+          "sentence": "S10",
+          "phase": "selected",
+          "original_key": "4ec435314426e6b08fd6fc463700e2e89d080276",
+          "source_no": "56",
+          "clip_SHA256": [
+            "ec98b39e6e84045659cdffd51552a63ba6a2abe50009d64790a825dc6de9c1a4",
+            "1150614eeef2a65b28a3da2abfca749b4906da643a8f6e4737da2fd50916c1e6",
+            "2e90db0892e48dbf0f9105669ff541ffa3f6bc08021fa898f7c928bf3ec581ee",
+            "1150614eeef2a65b28a3da2abfca749b4906da643a8f6e4737da2fd50916c1e6",
+            "5bbd23b9b65027b0ff7a45435d198ea03f57f8e28dcadaa876e6aacdac15b54e"
+          ],
+          "clip_samples": [
+            33360,
+            9120,
+            32400,
+            9120,
+            103680
+          ],
+          "gaps": [
+            0.4,
+            0.4
+          ],
+          "original_tmap": [
+            [
+              0,
+              19,
+              0.0,
+              1.39
+            ],
+            [
+              20,
+              44,
+              1.77,
+              3.12
+            ],
+            [
+              45,
+              96,
+              3.5,
+              7.82
+            ]
+          ],
+          "original_rounds": 2,
+          "actual_math_created": false,
+          "file": "调平_4ec435314426e6b08fd6fc463700e2e89d080276.json",
+          "existed": true,
+          "sha256": "9d34d77d0811da75ce73d0cbae773ed41ac21d5ae3850121be5b019c4e5f69e1",
+          "value": {
+            "1": -3.0,
+            "3": 1.5
+          },
+          "strict_after": true
+        },
+        {
+          "sentence": "S11",
+          "phase": "selected",
+          "original_key": "f8530296a68d023c59d49bcc027d1e23c0bd9a2c",
+          "source_no": "56",
+          "clip_SHA256": [
+            "560ad63639e0b97637b4851dc991081c2132846eee14645066803802ac0457c5",
+            "1150614eeef2a65b28a3da2abfca749b4906da643a8f6e4737da2fd50916c1e6",
+            "279b6c216529b03bf1f076456182e5a05a89d9643cbdb2f7656dbd913132e41e"
+          ],
+          "clip_samples": [
+            51480,
+            9120,
+            73080
+          ],
+          "gaps": [
+            0.4
+          ],
+          "original_tmap": [
+            [
+              0,
+              39,
+              0.0,
+              2.145
+            ],
+            [
+              40,
+              85,
+              2.525,
+              5.57
+            ]
+          ],
+          "original_rounds": 2,
+          "actual_math_created": false,
+          "file": "调平_f8530296a68d023c59d49bcc027d1e23c0bd9a2c.json",
+          "existed": true,
+          "sha256": "98c2e92f9fe36307e60e0a857a97d5595015278b2add1fed2bcea10248eb43d6",
+          "value": {
+            "1": -1.5,
+            "2": 1.5
+          },
+          "strict_after": true
+        },
+        {
+          "sentence": "S14",
+          "phase": "selected",
+          "original_key": "a8deab4da097581611b884f47eea606e94b20bb4",
+          "source_no": "56",
+          "clip_SHA256": [
+            "54b2d7981ef3bb251d0bc64977bfc2dbaaf831091174f8f35b6da098933d4ff2",
+            "1150614eeef2a65b28a3da2abfca749b4906da643a8f6e4737da2fd50916c1e6",
+            "57be1d88570f3dc1681b4415b9a787f7f599c26a00f12c4174301679d8a1f154",
+            "1150614eeef2a65b28a3da2abfca749b4906da643a8f6e4737da2fd50916c1e6",
+            "dd652d1bc362348d4f17dee9ceb4b4930dfad5269a0c7deffed137d40965e14f",
+            "1150614eeef2a65b28a3da2abfca749b4906da643a8f6e4737da2fd50916c1e6",
+            "89382f17ef79ade6970eab1c3a36f76a5cbed630cf56e48492ffc3f0e0ea63fd"
+          ],
+          "clip_samples": [
+            136440,
+            9120,
+            43920,
+            9120,
+            96840,
+            9120,
+            58080
+          ],
+          "gaps": [
+            0.4,
+            0.4,
+            0.4
+          ],
+          "original_tmap": [
+            [
+              0,
+              62,
+              0.0,
+              5.6850000000000005
+            ],
+            [
+              63,
+              88,
+              6.065,
+              7.8950000000000005
+            ],
+            [
+              89,
+              155,
+              8.275,
+              12.31
+            ],
+            [
+              156,
+              169,
+              12.690000000000001,
+              15.11
+            ]
+          ],
+          "original_rounds": 2,
+          "actual_math_created": false,
+          "file": "调平_a8deab4da097581611b884f47eea606e94b20bb4.json",
+          "existed": true,
+          "sha256": "a6d5d936b58b3769b26719dd349975c18a1db7a1fbd365a30b820e35f8cc6225",
+          "value": {
+            "2": -1.5
+          },
+          "strict_after": true
+        },
+        {
+          "sentence": "S15",
+          "phase": "selected",
+          "original_key": "1ffb8d95d8291a8b4f023b93ec9752b2c25cb745",
+          "source_no": "56",
+          "clip_SHA256": [
+            "1da58adb67b59b02af10725b76fd68131cc14f81dc0dbb1f1425f02912756cae",
+            "1150614eeef2a65b28a3da2abfca749b4906da643a8f6e4737da2fd50916c1e6",
+            "bdf0cdd12022b51e07506e6a240a9f0db2b9a8fc238e33e32543bd651e979a38"
+          ],
+          "clip_samples": [
+            119520,
+            9120,
+            105600
+          ],
+          "gaps": [
+            0.4
+          ],
+          "original_tmap": [
+            [
+              0,
+              61,
+              0.0,
+              4.9799999999999995
+            ],
+            [
+              62,
+              139,
+              5.359999999999999,
+              9.76
+            ]
+          ],
+          "original_rounds": 2,
+          "actual_math_created": false,
+          "file": "调平_1ffb8d95d8291a8b4f023b93ec9752b2c25cb745.json",
+          "existed": true,
+          "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "value": {},
+          "strict_after": true
+        }
+      ],
+      "actual_original_pre_master_peak_ownership_metadata": {
+        "kind": "read_only_actual_original_pre_master_audio_list_peak_ownership",
+        "original_whole_pre_master_absolute_peak": 1.097201943397522,
+        "target_segment": "S11",
+        "non_target_callback_count": 17,
+        "whole_first_absolute_peak_sample": 543037,
+        "whole_first_absolute_peak_seconds": 22.626541666666668,
+        "whole_first_peak_signed_sample_value": -1.097201943397522,
+        "whole_first_peak_owning_original_parts": [
+          {
+            "original_audio_list_index": 10,
+            "callback_segments_by_object_identity": [
+              "S3"
+            ],
+            "start_sample": 541680,
+            "end_sample_exclusive": 767280,
+            "part_role": "actual_callback_segment",
+            "samples": 225600,
+            "dtype": "float32",
+            "absolute_peak": 1.097201943397522,
+            "first_peak_local_sample": 1357,
+            "first_peak_global_sample": 543037,
+            "first_peak_global_seconds": 22.626541666666668,
+            "signed_first_peak_sample_value": -1.097201943397522,
+            "samples_at_this_absolute_peak": 1,
+            "contains_actual_whole_peak": true
+          }
+        ],
+        "all_original_parts_tied_at_whole_absolute_peak": [
+          {
+            "original_audio_list_index": 10,
+            "callback_segments_by_object_identity": [
+              "S3"
+            ],
+            "start_sample": 541680,
+            "end_sample_exclusive": 767280,
+            "part_role": "actual_callback_segment",
+            "samples": 225600,
+            "dtype": "float32",
+            "absolute_peak": 1.097201943397522,
+            "first_peak_local_sample": 1357,
+            "first_peak_global_sample": 543037,
+            "first_peak_global_seconds": 22.626541666666668,
+            "signed_first_peak_sample_value": -1.097201943397522,
+            "samples_at_this_absolute_peak": 1,
+            "contains_actual_whole_peak": true
+          }
+        ],
+        "all_callback_segments_tied_at_whole_absolute_peak": [
+          "S3"
+        ],
+        "all_non_target_callback_absolute_peak": 1.097201943397522,
+        "all_non_target_callback_peak_segments": [
+          "S3"
+        ],
+        "actual_callback_segment_peaks": [
+          {
+            "segment": "title",
+            "start_sample": 9600,
+            "end_sample_exclusive": 49440,
+            "samples": 39840,
+            "dtype": "float32",
+            "absolute_peak": 0.5265735387802124,
+            "first_peak_local_sample": 4439,
+            "first_peak_global_sample": 14039,
+            "first_peak_global_seconds": 0.5849583333333334,
+            "signed_first_peak_sample_value": -0.5265735387802124,
+            "samples_at_this_absolute_peak": 1,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "segment": "S1",
+            "start_sample": 73440,
+            "end_sample_exclusive": 201720,
+            "samples": 128280,
+            "dtype": "float32",
+            "absolute_peak": 0.6430579423904419,
+            "first_peak_local_sample": 36180,
+            "first_peak_global_sample": 109620,
+            "first_peak_global_seconds": 4.5675,
+            "signed_first_peak_sample_value": -0.6430579423904419,
+            "samples_at_this_absolute_peak": 1,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "segment": "S2",
+            "start_sample": 225720,
+            "end_sample_exclusive": 517680,
+            "samples": 291960,
+            "dtype": "float32",
+            "absolute_peak": 0.8081457614898682,
+            "first_peak_local_sample": 150381,
+            "first_peak_global_sample": 376101,
+            "first_peak_global_seconds": 15.670875,
+            "signed_first_peak_sample_value": -0.8081457614898682,
+            "samples_at_this_absolute_peak": 1,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "segment": "S3",
+            "start_sample": 541680,
+            "end_sample_exclusive": 767280,
+            "samples": 225600,
+            "dtype": "float32",
+            "absolute_peak": 1.097201943397522,
+            "first_peak_local_sample": 1357,
+            "first_peak_global_sample": 543037,
+            "first_peak_global_seconds": 22.626541666666668,
+            "signed_first_peak_sample_value": -1.097201943397522,
+            "samples_at_this_absolute_peak": 1,
+            "contains_actual_whole_peak": true
+          },
+          {
+            "segment": "S4",
+            "start_sample": 796080,
+            "end_sample_exclusive": 1135440,
+            "samples": 339360,
+            "dtype": "float32",
+            "absolute_peak": 0.7788721323013306,
+            "first_peak_local_sample": 6752,
+            "first_peak_global_sample": 802832,
+            "first_peak_global_seconds": 33.45133333333333,
+            "signed_first_peak_sample_value": -0.7788721323013306,
+            "samples_at_this_absolute_peak": 1,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "segment": "S5",
+            "start_sample": 1159440,
+            "end_sample_exclusive": 1275960,
+            "samples": 116520,
+            "dtype": "float32",
+            "absolute_peak": 0.7238982915878296,
+            "first_peak_local_sample": 45474,
+            "first_peak_global_sample": 1204914,
+            "first_peak_global_seconds": 50.20475,
+            "signed_first_peak_sample_value": -0.7238982915878296,
+            "samples_at_this_absolute_peak": 1,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "segment": "S6",
+            "start_sample": 1299960,
+            "end_sample_exclusive": 1504920,
+            "samples": 204960,
+            "dtype": "float32",
+            "absolute_peak": 0.7782317399978638,
+            "first_peak_local_sample": 6075,
+            "first_peak_global_sample": 1306035,
+            "first_peak_global_seconds": 54.418125,
+            "signed_first_peak_sample_value": -0.7782317399978638,
+            "samples_at_this_absolute_peak": 1,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "segment": "S7",
+            "start_sample": 1528920,
+            "end_sample_exclusive": 1580520,
+            "samples": 51600,
+            "dtype": "float32",
+            "absolute_peak": 0.5622403025627136,
+            "first_peak_local_sample": 42898,
+            "first_peak_global_sample": 1571818,
+            "first_peak_global_seconds": 65.49241666666667,
+            "signed_first_peak_sample_value": 0.5622403025627136,
+            "samples_at_this_absolute_peak": 1,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "segment": "S8",
+            "start_sample": 1609320,
+            "end_sample_exclusive": 1928640,
+            "samples": 319320,
+            "dtype": "float32",
+            "absolute_peak": 0.9131343960762024,
+            "first_peak_local_sample": 3012,
+            "first_peak_global_sample": 1612332,
+            "first_peak_global_seconds": 67.1805,
+            "signed_first_peak_sample_value": -0.9131343960762024,
+            "samples_at_this_absolute_peak": 1,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "segment": "S9",
+            "start_sample": 1952640,
+            "end_sample_exclusive": 2007840,
+            "samples": 55200,
+            "dtype": "float32",
+            "absolute_peak": 0.6962786316871643,
+            "first_peak_local_sample": 14097,
+            "first_peak_global_sample": 1966737,
+            "first_peak_global_seconds": 81.947375,
+            "signed_first_peak_sample_value": -0.6962786316871643,
+            "samples_at_this_absolute_peak": 1,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "segment": "S10",
+            "start_sample": 2031840,
+            "end_sample_exclusive": 2219520,
+            "samples": 187680,
+            "dtype": "float32",
+            "absolute_peak": 0.7960382699966431,
+            "first_peak_local_sample": 89945,
+            "first_peak_global_sample": 2121785,
+            "first_peak_global_seconds": 88.40770833333333,
+            "signed_first_peak_sample_value": -0.7960382699966431,
+            "samples_at_this_absolute_peak": 1,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "segment": "S11",
+            "start_sample": 2243520,
+            "end_sample_exclusive": 2377200,
+            "samples": 133680,
+            "dtype": "float32",
+            "absolute_peak": 0.6279276013374329,
+            "first_peak_local_sample": 72208,
+            "first_peak_global_sample": 2315728,
+            "first_peak_global_seconds": 96.48866666666666,
+            "signed_first_peak_sample_value": -0.6279276013374329,
+            "samples_at_this_absolute_peak": 1,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "segment": "S12",
+            "start_sample": 2406000,
+            "end_sample_exclusive": 2539680,
+            "samples": 133680,
+            "dtype": "float32",
+            "absolute_peak": 0.7906585335731506,
+            "first_peak_local_sample": 57721,
+            "first_peak_global_sample": 2463721,
+            "first_peak_global_seconds": 102.65504166666666,
+            "signed_first_peak_sample_value": -0.7906585335731506,
+            "samples_at_this_absolute_peak": 1,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "segment": "S13",
+            "start_sample": 2563680,
+            "end_sample_exclusive": 2779920,
+            "samples": 216240,
+            "dtype": "float32",
+            "absolute_peak": 0.767403244972229,
+            "first_peak_local_sample": 89874,
+            "first_peak_global_sample": 2653554,
+            "first_peak_global_seconds": 110.56475,
+            "signed_first_peak_sample_value": -0.767403244972229,
+            "samples_at_this_absolute_peak": 1,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "segment": "S14",
+            "start_sample": 2803920,
+            "end_sample_exclusive": 3166560,
+            "samples": 362640,
+            "dtype": "float32",
+            "absolute_peak": 0.7764440774917603,
+            "first_peak_local_sample": 308100,
+            "first_peak_global_sample": 3112020,
+            "first_peak_global_seconds": 129.6675,
+            "signed_first_peak_sample_value": -0.7764440774917603,
+            "samples_at_this_absolute_peak": 1,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "segment": "S15",
+            "start_sample": 3195360,
+            "end_sample_exclusive": 3429600,
+            "samples": 234240,
+            "dtype": "float32",
+            "absolute_peak": 0.9320141077041626,
+            "first_peak_local_sample": 3965,
+            "first_peak_global_sample": 3199325,
+            "first_peak_global_seconds": 133.30520833333333,
+            "signed_first_peak_sample_value": -0.9320141077041626,
+            "samples_at_this_absolute_peak": 1,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "segment": "S16",
+            "start_sample": 3453600,
+            "end_sample_exclusive": 3606240,
+            "samples": 152640,
+            "dtype": "float32",
+            "absolute_peak": 0.7030004262924194,
+            "first_peak_local_sample": 45641,
+            "first_peak_global_sample": 3499241,
+            "first_peak_global_seconds": 145.80170833333332,
+            "signed_first_peak_sample_value": -0.7030004262924194,
+            "samples_at_this_absolute_peak": 1,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "segment": "S17",
+            "start_sample": 3630240,
+            "end_sample_exclusive": 3695640,
+            "samples": 65400,
+            "dtype": "float32",
+            "absolute_peak": 0.8660985231399536,
+            "first_peak_local_sample": 3528,
+            "first_peak_global_sample": 3633768,
+            "first_peak_global_seconds": 151.407,
+            "signed_first_peak_sample_value": -0.8660985231399536,
+            "samples_at_this_absolute_peak": 1,
+            "contains_actual_whole_peak": false
+          }
+        ],
+        "every_original_audio_list_part_peaks": [
+          {
+            "original_audio_list_index": 0,
+            "callback_segments_by_object_identity": [],
+            "start_sample": 0,
+            "end_sample_exclusive": 9600,
+            "part_role": "unmapped_original_audio_list_part",
+            "samples": 9600,
+            "dtype": "float32",
+            "absolute_peak": 0.0,
+            "first_peak_local_sample": 0,
+            "first_peak_global_sample": 0,
+            "first_peak_global_seconds": 0.0,
+            "signed_first_peak_sample_value": 0.0,
+            "samples_at_this_absolute_peak": 9600,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 1,
+            "callback_segments_by_object_identity": [
+              "title"
+            ],
+            "start_sample": 9600,
+            "end_sample_exclusive": 49440,
+            "part_role": "actual_callback_segment",
+            "samples": 39840,
+            "dtype": "float32",
+            "absolute_peak": 0.5265735387802124,
+            "first_peak_local_sample": 4439,
+            "first_peak_global_sample": 14039,
+            "first_peak_global_seconds": 0.5849583333333334,
+            "signed_first_peak_sample_value": -0.5265735387802124,
+            "samples_at_this_absolute_peak": 1,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 2,
+            "callback_segments_by_object_identity": [],
+            "start_sample": 49440,
+            "end_sample_exclusive": 63840,
+            "part_role": "unmapped_original_audio_list_part",
+            "samples": 14400,
+            "dtype": "float32",
+            "absolute_peak": 0.0,
+            "first_peak_local_sample": 0,
+            "first_peak_global_sample": 49440,
+            "first_peak_global_seconds": 2.06,
+            "signed_first_peak_sample_value": 0.0,
+            "samples_at_this_absolute_peak": 14400,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 3,
+            "callback_segments_by_object_identity": [],
+            "start_sample": 63840,
+            "end_sample_exclusive": 73440,
+            "part_role": "unmapped_original_audio_list_part",
+            "samples": 9600,
+            "dtype": "float32",
+            "absolute_peak": 0.0,
+            "first_peak_local_sample": 0,
+            "first_peak_global_sample": 63840,
+            "first_peak_global_seconds": 2.66,
+            "signed_first_peak_sample_value": 0.0,
+            "samples_at_this_absolute_peak": 9600,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 4,
+            "callback_segments_by_object_identity": [
+              "S1"
+            ],
+            "start_sample": 73440,
+            "end_sample_exclusive": 201720,
+            "part_role": "actual_callback_segment",
+            "samples": 128280,
+            "dtype": "float32",
+            "absolute_peak": 0.6430579423904419,
+            "first_peak_local_sample": 36180,
+            "first_peak_global_sample": 109620,
+            "first_peak_global_seconds": 4.5675,
+            "signed_first_peak_sample_value": -0.6430579423904419,
+            "samples_at_this_absolute_peak": 1,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 5,
+            "callback_segments_by_object_identity": [],
+            "start_sample": 201720,
+            "end_sample_exclusive": 218520,
+            "part_role": "unmapped_original_audio_list_part",
+            "samples": 16800,
+            "dtype": "float32",
+            "absolute_peak": 0.0,
+            "first_peak_local_sample": 0,
+            "first_peak_global_sample": 201720,
+            "first_peak_global_seconds": 8.405,
+            "signed_first_peak_sample_value": 0.0,
+            "samples_at_this_absolute_peak": 16800,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 6,
+            "callback_segments_by_object_identity": [],
+            "start_sample": 218520,
+            "end_sample_exclusive": 225720,
+            "part_role": "unmapped_original_audio_list_part",
+            "samples": 7200,
+            "dtype": "float32",
+            "absolute_peak": 0.0,
+            "first_peak_local_sample": 0,
+            "first_peak_global_sample": 218520,
+            "first_peak_global_seconds": 9.105,
+            "signed_first_peak_sample_value": 0.0,
+            "samples_at_this_absolute_peak": 7200,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 7,
+            "callback_segments_by_object_identity": [
+              "S2"
+            ],
+            "start_sample": 225720,
+            "end_sample_exclusive": 517680,
+            "part_role": "actual_callback_segment",
+            "samples": 291960,
+            "dtype": "float32",
+            "absolute_peak": 0.8081457614898682,
+            "first_peak_local_sample": 150381,
+            "first_peak_global_sample": 376101,
+            "first_peak_global_seconds": 15.670875,
+            "signed_first_peak_sample_value": -0.8081457614898682,
+            "samples_at_this_absolute_peak": 1,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 8,
+            "callback_segments_by_object_identity": [],
+            "start_sample": 517680,
+            "end_sample_exclusive": 534480,
+            "part_role": "unmapped_original_audio_list_part",
+            "samples": 16800,
+            "dtype": "float32",
+            "absolute_peak": 0.0,
+            "first_peak_local_sample": 0,
+            "first_peak_global_sample": 517680,
+            "first_peak_global_seconds": 21.57,
+            "signed_first_peak_sample_value": 0.0,
+            "samples_at_this_absolute_peak": 16800,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 9,
+            "callback_segments_by_object_identity": [],
+            "start_sample": 534480,
+            "end_sample_exclusive": 541680,
+            "part_role": "unmapped_original_audio_list_part",
+            "samples": 7200,
+            "dtype": "float32",
+            "absolute_peak": 0.0,
+            "first_peak_local_sample": 0,
+            "first_peak_global_sample": 534480,
+            "first_peak_global_seconds": 22.27,
+            "signed_first_peak_sample_value": 0.0,
+            "samples_at_this_absolute_peak": 7200,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 10,
+            "callback_segments_by_object_identity": [
+              "S3"
+            ],
+            "start_sample": 541680,
+            "end_sample_exclusive": 767280,
+            "part_role": "actual_callback_segment",
+            "samples": 225600,
+            "dtype": "float32",
+            "absolute_peak": 1.097201943397522,
+            "first_peak_local_sample": 1357,
+            "first_peak_global_sample": 543037,
+            "first_peak_global_seconds": 22.626541666666668,
+            "signed_first_peak_sample_value": -1.097201943397522,
+            "samples_at_this_absolute_peak": 1,
+            "contains_actual_whole_peak": true
+          },
+          {
+            "original_audio_list_index": 11,
+            "callback_segments_by_object_identity": [],
+            "start_sample": 767280,
+            "end_sample_exclusive": 784080,
+            "part_role": "unmapped_original_audio_list_part",
+            "samples": 16800,
+            "dtype": "float32",
+            "absolute_peak": 0.0,
+            "first_peak_local_sample": 0,
+            "first_peak_global_sample": 767280,
+            "first_peak_global_seconds": 31.97,
+            "signed_first_peak_sample_value": 0.0,
+            "samples_at_this_absolute_peak": 16800,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 12,
+            "callback_segments_by_object_identity": [],
+            "start_sample": 784080,
+            "end_sample_exclusive": 796080,
+            "part_role": "unmapped_original_audio_list_part",
+            "samples": 12000,
+            "dtype": "float32",
+            "absolute_peak": 0.0,
+            "first_peak_local_sample": 0,
+            "first_peak_global_sample": 784080,
+            "first_peak_global_seconds": 32.67,
+            "signed_first_peak_sample_value": 0.0,
+            "samples_at_this_absolute_peak": 12000,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 13,
+            "callback_segments_by_object_identity": [
+              "S4"
+            ],
+            "start_sample": 796080,
+            "end_sample_exclusive": 1135440,
+            "part_role": "actual_callback_segment",
+            "samples": 339360,
+            "dtype": "float32",
+            "absolute_peak": 0.7788721323013306,
+            "first_peak_local_sample": 6752,
+            "first_peak_global_sample": 802832,
+            "first_peak_global_seconds": 33.45133333333333,
+            "signed_first_peak_sample_value": -0.7788721323013306,
+            "samples_at_this_absolute_peak": 1,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 14,
+            "callback_segments_by_object_identity": [],
+            "start_sample": 1135440,
+            "end_sample_exclusive": 1152240,
+            "part_role": "unmapped_original_audio_list_part",
+            "samples": 16800,
+            "dtype": "float32",
+            "absolute_peak": 0.0,
+            "first_peak_local_sample": 0,
+            "first_peak_global_sample": 1135440,
+            "first_peak_global_seconds": 47.31,
+            "signed_first_peak_sample_value": 0.0,
+            "samples_at_this_absolute_peak": 16800,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 15,
+            "callback_segments_by_object_identity": [],
+            "start_sample": 1152240,
+            "end_sample_exclusive": 1159440,
+            "part_role": "unmapped_original_audio_list_part",
+            "samples": 7200,
+            "dtype": "float32",
+            "absolute_peak": 0.0,
+            "first_peak_local_sample": 0,
+            "first_peak_global_sample": 1152240,
+            "first_peak_global_seconds": 48.01,
+            "signed_first_peak_sample_value": 0.0,
+            "samples_at_this_absolute_peak": 7200,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 16,
+            "callback_segments_by_object_identity": [
+              "S5"
+            ],
+            "start_sample": 1159440,
+            "end_sample_exclusive": 1275960,
+            "part_role": "actual_callback_segment",
+            "samples": 116520,
+            "dtype": "float32",
+            "absolute_peak": 0.7238982915878296,
+            "first_peak_local_sample": 45474,
+            "first_peak_global_sample": 1204914,
+            "first_peak_global_seconds": 50.20475,
+            "signed_first_peak_sample_value": -0.7238982915878296,
+            "samples_at_this_absolute_peak": 1,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 17,
+            "callback_segments_by_object_identity": [],
+            "start_sample": 1275960,
+            "end_sample_exclusive": 1292760,
+            "part_role": "unmapped_original_audio_list_part",
+            "samples": 16800,
+            "dtype": "float32",
+            "absolute_peak": 0.0,
+            "first_peak_local_sample": 0,
+            "first_peak_global_sample": 1275960,
+            "first_peak_global_seconds": 53.165,
+            "signed_first_peak_sample_value": 0.0,
+            "samples_at_this_absolute_peak": 16800,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 18,
+            "callback_segments_by_object_identity": [],
+            "start_sample": 1292760,
+            "end_sample_exclusive": 1299960,
+            "part_role": "unmapped_original_audio_list_part",
+            "samples": 7200,
+            "dtype": "float32",
+            "absolute_peak": 0.0,
+            "first_peak_local_sample": 0,
+            "first_peak_global_sample": 1292760,
+            "first_peak_global_seconds": 53.865,
+            "signed_first_peak_sample_value": 0.0,
+            "samples_at_this_absolute_peak": 7200,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 19,
+            "callback_segments_by_object_identity": [
+              "S6"
+            ],
+            "start_sample": 1299960,
+            "end_sample_exclusive": 1504920,
+            "part_role": "actual_callback_segment",
+            "samples": 204960,
+            "dtype": "float32",
+            "absolute_peak": 0.7782317399978638,
+            "first_peak_local_sample": 6075,
+            "first_peak_global_sample": 1306035,
+            "first_peak_global_seconds": 54.418125,
+            "signed_first_peak_sample_value": -0.7782317399978638,
+            "samples_at_this_absolute_peak": 1,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 20,
+            "callback_segments_by_object_identity": [],
+            "start_sample": 1504920,
+            "end_sample_exclusive": 1521720,
+            "part_role": "unmapped_original_audio_list_part",
+            "samples": 16800,
+            "dtype": "float32",
+            "absolute_peak": 0.0,
+            "first_peak_local_sample": 0,
+            "first_peak_global_sample": 1504920,
+            "first_peak_global_seconds": 62.705,
+            "signed_first_peak_sample_value": 0.0,
+            "samples_at_this_absolute_peak": 16800,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 21,
+            "callback_segments_by_object_identity": [],
+            "start_sample": 1521720,
+            "end_sample_exclusive": 1528920,
+            "part_role": "unmapped_original_audio_list_part",
+            "samples": 7200,
+            "dtype": "float32",
+            "absolute_peak": 0.0,
+            "first_peak_local_sample": 0,
+            "first_peak_global_sample": 1521720,
+            "first_peak_global_seconds": 63.405,
+            "signed_first_peak_sample_value": 0.0,
+            "samples_at_this_absolute_peak": 7200,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 22,
+            "callback_segments_by_object_identity": [
+              "S7"
+            ],
+            "start_sample": 1528920,
+            "end_sample_exclusive": 1580520,
+            "part_role": "actual_callback_segment",
+            "samples": 51600,
+            "dtype": "float32",
+            "absolute_peak": 0.5622403025627136,
+            "first_peak_local_sample": 42898,
+            "first_peak_global_sample": 1571818,
+            "first_peak_global_seconds": 65.49241666666667,
+            "signed_first_peak_sample_value": 0.5622403025627136,
+            "samples_at_this_absolute_peak": 1,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 23,
+            "callback_segments_by_object_identity": [],
+            "start_sample": 1580520,
+            "end_sample_exclusive": 1597320,
+            "part_role": "unmapped_original_audio_list_part",
+            "samples": 16800,
+            "dtype": "float32",
+            "absolute_peak": 0.0,
+            "first_peak_local_sample": 0,
+            "first_peak_global_sample": 1580520,
+            "first_peak_global_seconds": 65.855,
+            "signed_first_peak_sample_value": 0.0,
+            "samples_at_this_absolute_peak": 16800,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 24,
+            "callback_segments_by_object_identity": [],
+            "start_sample": 1597320,
+            "end_sample_exclusive": 1609320,
+            "part_role": "unmapped_original_audio_list_part",
+            "samples": 12000,
+            "dtype": "float32",
+            "absolute_peak": 0.0,
+            "first_peak_local_sample": 0,
+            "first_peak_global_sample": 1597320,
+            "first_peak_global_seconds": 66.555,
+            "signed_first_peak_sample_value": 0.0,
+            "samples_at_this_absolute_peak": 12000,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 25,
+            "callback_segments_by_object_identity": [
+              "S8"
+            ],
+            "start_sample": 1609320,
+            "end_sample_exclusive": 1928640,
+            "part_role": "actual_callback_segment",
+            "samples": 319320,
+            "dtype": "float32",
+            "absolute_peak": 0.9131343960762024,
+            "first_peak_local_sample": 3012,
+            "first_peak_global_sample": 1612332,
+            "first_peak_global_seconds": 67.1805,
+            "signed_first_peak_sample_value": -0.9131343960762024,
+            "samples_at_this_absolute_peak": 1,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 26,
+            "callback_segments_by_object_identity": [],
+            "start_sample": 1928640,
+            "end_sample_exclusive": 1945440,
+            "part_role": "unmapped_original_audio_list_part",
+            "samples": 16800,
+            "dtype": "float32",
+            "absolute_peak": 0.0,
+            "first_peak_local_sample": 0,
+            "first_peak_global_sample": 1928640,
+            "first_peak_global_seconds": 80.36,
+            "signed_first_peak_sample_value": 0.0,
+            "samples_at_this_absolute_peak": 16800,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 27,
+            "callback_segments_by_object_identity": [],
+            "start_sample": 1945440,
+            "end_sample_exclusive": 1952640,
+            "part_role": "unmapped_original_audio_list_part",
+            "samples": 7200,
+            "dtype": "float32",
+            "absolute_peak": 0.0,
+            "first_peak_local_sample": 0,
+            "first_peak_global_sample": 1945440,
+            "first_peak_global_seconds": 81.06,
+            "signed_first_peak_sample_value": 0.0,
+            "samples_at_this_absolute_peak": 7200,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 28,
+            "callback_segments_by_object_identity": [
+              "S9"
+            ],
+            "start_sample": 1952640,
+            "end_sample_exclusive": 2007840,
+            "part_role": "actual_callback_segment",
+            "samples": 55200,
+            "dtype": "float32",
+            "absolute_peak": 0.6962786316871643,
+            "first_peak_local_sample": 14097,
+            "first_peak_global_sample": 1966737,
+            "first_peak_global_seconds": 81.947375,
+            "signed_first_peak_sample_value": -0.6962786316871643,
+            "samples_at_this_absolute_peak": 1,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 29,
+            "callback_segments_by_object_identity": [],
+            "start_sample": 2007840,
+            "end_sample_exclusive": 2024640,
+            "part_role": "unmapped_original_audio_list_part",
+            "samples": 16800,
+            "dtype": "float32",
+            "absolute_peak": 0.0,
+            "first_peak_local_sample": 0,
+            "first_peak_global_sample": 2007840,
+            "first_peak_global_seconds": 83.66,
+            "signed_first_peak_sample_value": 0.0,
+            "samples_at_this_absolute_peak": 16800,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 30,
+            "callback_segments_by_object_identity": [],
+            "start_sample": 2024640,
+            "end_sample_exclusive": 2031840,
+            "part_role": "unmapped_original_audio_list_part",
+            "samples": 7200,
+            "dtype": "float32",
+            "absolute_peak": 0.0,
+            "first_peak_local_sample": 0,
+            "first_peak_global_sample": 2024640,
+            "first_peak_global_seconds": 84.36,
+            "signed_first_peak_sample_value": 0.0,
+            "samples_at_this_absolute_peak": 7200,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 31,
+            "callback_segments_by_object_identity": [
+              "S10"
+            ],
+            "start_sample": 2031840,
+            "end_sample_exclusive": 2219520,
+            "part_role": "actual_callback_segment",
+            "samples": 187680,
+            "dtype": "float32",
+            "absolute_peak": 0.7960382699966431,
+            "first_peak_local_sample": 89945,
+            "first_peak_global_sample": 2121785,
+            "first_peak_global_seconds": 88.40770833333333,
+            "signed_first_peak_sample_value": -0.7960382699966431,
+            "samples_at_this_absolute_peak": 1,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 32,
+            "callback_segments_by_object_identity": [],
+            "start_sample": 2219520,
+            "end_sample_exclusive": 2236320,
+            "part_role": "unmapped_original_audio_list_part",
+            "samples": 16800,
+            "dtype": "float32",
+            "absolute_peak": 0.0,
+            "first_peak_local_sample": 0,
+            "first_peak_global_sample": 2219520,
+            "first_peak_global_seconds": 92.48,
+            "signed_first_peak_sample_value": 0.0,
+            "samples_at_this_absolute_peak": 16800,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 33,
+            "callback_segments_by_object_identity": [],
+            "start_sample": 2236320,
+            "end_sample_exclusive": 2243520,
+            "part_role": "unmapped_original_audio_list_part",
+            "samples": 7200,
+            "dtype": "float32",
+            "absolute_peak": 0.0,
+            "first_peak_local_sample": 0,
+            "first_peak_global_sample": 2236320,
+            "first_peak_global_seconds": 93.18,
+            "signed_first_peak_sample_value": 0.0,
+            "samples_at_this_absolute_peak": 7200,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 34,
+            "callback_segments_by_object_identity": [
+              "S11"
+            ],
+            "start_sample": 2243520,
+            "end_sample_exclusive": 2377200,
+            "part_role": "actual_callback_segment",
+            "samples": 133680,
+            "dtype": "float32",
+            "absolute_peak": 0.6279276013374329,
+            "first_peak_local_sample": 72208,
+            "first_peak_global_sample": 2315728,
+            "first_peak_global_seconds": 96.48866666666666,
+            "signed_first_peak_sample_value": -0.6279276013374329,
+            "samples_at_this_absolute_peak": 1,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 35,
+            "callback_segments_by_object_identity": [],
+            "start_sample": 2377200,
+            "end_sample_exclusive": 2394000,
+            "part_role": "unmapped_original_audio_list_part",
+            "samples": 16800,
+            "dtype": "float32",
+            "absolute_peak": 0.0,
+            "first_peak_local_sample": 0,
+            "first_peak_global_sample": 2377200,
+            "first_peak_global_seconds": 99.05,
+            "signed_first_peak_sample_value": 0.0,
+            "samples_at_this_absolute_peak": 16800,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 36,
+            "callback_segments_by_object_identity": [],
+            "start_sample": 2394000,
+            "end_sample_exclusive": 2406000,
+            "part_role": "unmapped_original_audio_list_part",
+            "samples": 12000,
+            "dtype": "float32",
+            "absolute_peak": 0.0,
+            "first_peak_local_sample": 0,
+            "first_peak_global_sample": 2394000,
+            "first_peak_global_seconds": 99.75,
+            "signed_first_peak_sample_value": 0.0,
+            "samples_at_this_absolute_peak": 12000,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 37,
+            "callback_segments_by_object_identity": [
+              "S12"
+            ],
+            "start_sample": 2406000,
+            "end_sample_exclusive": 2539680,
+            "part_role": "actual_callback_segment",
+            "samples": 133680,
+            "dtype": "float32",
+            "absolute_peak": 0.7906585335731506,
+            "first_peak_local_sample": 57721,
+            "first_peak_global_sample": 2463721,
+            "first_peak_global_seconds": 102.65504166666666,
+            "signed_first_peak_sample_value": -0.7906585335731506,
+            "samples_at_this_absolute_peak": 1,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 38,
+            "callback_segments_by_object_identity": [],
+            "start_sample": 2539680,
+            "end_sample_exclusive": 2556480,
+            "part_role": "unmapped_original_audio_list_part",
+            "samples": 16800,
+            "dtype": "float32",
+            "absolute_peak": 0.0,
+            "first_peak_local_sample": 0,
+            "first_peak_global_sample": 2539680,
+            "first_peak_global_seconds": 105.82,
+            "signed_first_peak_sample_value": 0.0,
+            "samples_at_this_absolute_peak": 16800,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 39,
+            "callback_segments_by_object_identity": [],
+            "start_sample": 2556480,
+            "end_sample_exclusive": 2563680,
+            "part_role": "unmapped_original_audio_list_part",
+            "samples": 7200,
+            "dtype": "float32",
+            "absolute_peak": 0.0,
+            "first_peak_local_sample": 0,
+            "first_peak_global_sample": 2556480,
+            "first_peak_global_seconds": 106.52,
+            "signed_first_peak_sample_value": 0.0,
+            "samples_at_this_absolute_peak": 7200,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 40,
+            "callback_segments_by_object_identity": [
+              "S13"
+            ],
+            "start_sample": 2563680,
+            "end_sample_exclusive": 2779920,
+            "part_role": "actual_callback_segment",
+            "samples": 216240,
+            "dtype": "float32",
+            "absolute_peak": 0.767403244972229,
+            "first_peak_local_sample": 89874,
+            "first_peak_global_sample": 2653554,
+            "first_peak_global_seconds": 110.56475,
+            "signed_first_peak_sample_value": -0.767403244972229,
+            "samples_at_this_absolute_peak": 1,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 41,
+            "callback_segments_by_object_identity": [],
+            "start_sample": 2779920,
+            "end_sample_exclusive": 2796720,
+            "part_role": "unmapped_original_audio_list_part",
+            "samples": 16800,
+            "dtype": "float32",
+            "absolute_peak": 0.0,
+            "first_peak_local_sample": 0,
+            "first_peak_global_sample": 2779920,
+            "first_peak_global_seconds": 115.83,
+            "signed_first_peak_sample_value": 0.0,
+            "samples_at_this_absolute_peak": 16800,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 42,
+            "callback_segments_by_object_identity": [],
+            "start_sample": 2796720,
+            "end_sample_exclusive": 2803920,
+            "part_role": "unmapped_original_audio_list_part",
+            "samples": 7200,
+            "dtype": "float32",
+            "absolute_peak": 0.0,
+            "first_peak_local_sample": 0,
+            "first_peak_global_sample": 2796720,
+            "first_peak_global_seconds": 116.53,
+            "signed_first_peak_sample_value": 0.0,
+            "samples_at_this_absolute_peak": 7200,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 43,
+            "callback_segments_by_object_identity": [
+              "S14"
+            ],
+            "start_sample": 2803920,
+            "end_sample_exclusive": 3166560,
+            "part_role": "actual_callback_segment",
+            "samples": 362640,
+            "dtype": "float32",
+            "absolute_peak": 0.7764440774917603,
+            "first_peak_local_sample": 308100,
+            "first_peak_global_sample": 3112020,
+            "first_peak_global_seconds": 129.6675,
+            "signed_first_peak_sample_value": -0.7764440774917603,
+            "samples_at_this_absolute_peak": 1,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 44,
+            "callback_segments_by_object_identity": [],
+            "start_sample": 3166560,
+            "end_sample_exclusive": 3183360,
+            "part_role": "unmapped_original_audio_list_part",
+            "samples": 16800,
+            "dtype": "float32",
+            "absolute_peak": 0.0,
+            "first_peak_local_sample": 0,
+            "first_peak_global_sample": 3166560,
+            "first_peak_global_seconds": 131.94,
+            "signed_first_peak_sample_value": 0.0,
+            "samples_at_this_absolute_peak": 16800,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 45,
+            "callback_segments_by_object_identity": [],
+            "start_sample": 3183360,
+            "end_sample_exclusive": 3195360,
+            "part_role": "unmapped_original_audio_list_part",
+            "samples": 12000,
+            "dtype": "float32",
+            "absolute_peak": 0.0,
+            "first_peak_local_sample": 0,
+            "first_peak_global_sample": 3183360,
+            "first_peak_global_seconds": 132.64,
+            "signed_first_peak_sample_value": 0.0,
+            "samples_at_this_absolute_peak": 12000,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 46,
+            "callback_segments_by_object_identity": [
+              "S15"
+            ],
+            "start_sample": 3195360,
+            "end_sample_exclusive": 3429600,
+            "part_role": "actual_callback_segment",
+            "samples": 234240,
+            "dtype": "float32",
+            "absolute_peak": 0.9320141077041626,
+            "first_peak_local_sample": 3965,
+            "first_peak_global_sample": 3199325,
+            "first_peak_global_seconds": 133.30520833333333,
+            "signed_first_peak_sample_value": -0.9320141077041626,
+            "samples_at_this_absolute_peak": 1,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 47,
+            "callback_segments_by_object_identity": [],
+            "start_sample": 3429600,
+            "end_sample_exclusive": 3446400,
+            "part_role": "unmapped_original_audio_list_part",
+            "samples": 16800,
+            "dtype": "float32",
+            "absolute_peak": 0.0,
+            "first_peak_local_sample": 0,
+            "first_peak_global_sample": 3429600,
+            "first_peak_global_seconds": 142.9,
+            "signed_first_peak_sample_value": 0.0,
+            "samples_at_this_absolute_peak": 16800,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 48,
+            "callback_segments_by_object_identity": [],
+            "start_sample": 3446400,
+            "end_sample_exclusive": 3453600,
+            "part_role": "unmapped_original_audio_list_part",
+            "samples": 7200,
+            "dtype": "float32",
+            "absolute_peak": 0.0,
+            "first_peak_local_sample": 0,
+            "first_peak_global_sample": 3446400,
+            "first_peak_global_seconds": 143.6,
+            "signed_first_peak_sample_value": 0.0,
+            "samples_at_this_absolute_peak": 7200,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 49,
+            "callback_segments_by_object_identity": [
+              "S16"
+            ],
+            "start_sample": 3453600,
+            "end_sample_exclusive": 3606240,
+            "part_role": "actual_callback_segment",
+            "samples": 152640,
+            "dtype": "float32",
+            "absolute_peak": 0.7030004262924194,
+            "first_peak_local_sample": 45641,
+            "first_peak_global_sample": 3499241,
+            "first_peak_global_seconds": 145.80170833333332,
+            "signed_first_peak_sample_value": -0.7030004262924194,
+            "samples_at_this_absolute_peak": 1,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 50,
+            "callback_segments_by_object_identity": [],
+            "start_sample": 3606240,
+            "end_sample_exclusive": 3623040,
+            "part_role": "unmapped_original_audio_list_part",
+            "samples": 16800,
+            "dtype": "float32",
+            "absolute_peak": 0.0,
+            "first_peak_local_sample": 0,
+            "first_peak_global_sample": 3606240,
+            "first_peak_global_seconds": 150.26,
+            "signed_first_peak_sample_value": 0.0,
+            "samples_at_this_absolute_peak": 16800,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 51,
+            "callback_segments_by_object_identity": [],
+            "start_sample": 3623040,
+            "end_sample_exclusive": 3630240,
+            "part_role": "unmapped_original_audio_list_part",
+            "samples": 7200,
+            "dtype": "float32",
+            "absolute_peak": 0.0,
+            "first_peak_local_sample": 0,
+            "first_peak_global_sample": 3623040,
+            "first_peak_global_seconds": 150.96,
+            "signed_first_peak_sample_value": 0.0,
+            "samples_at_this_absolute_peak": 7200,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 52,
+            "callback_segments_by_object_identity": [
+              "S17"
+            ],
+            "start_sample": 3630240,
+            "end_sample_exclusive": 3695640,
+            "part_role": "actual_callback_segment",
+            "samples": 65400,
+            "dtype": "float32",
+            "absolute_peak": 0.8660985231399536,
+            "first_peak_local_sample": 3528,
+            "first_peak_global_sample": 3633768,
+            "first_peak_global_seconds": 151.407,
+            "signed_first_peak_sample_value": -0.8660985231399536,
+            "samples_at_this_absolute_peak": 1,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 53,
+            "callback_segments_by_object_identity": [],
+            "start_sample": 3695640,
+            "end_sample_exclusive": 3712440,
+            "part_role": "unmapped_original_audio_list_part",
+            "samples": 16800,
+            "dtype": "float32",
+            "absolute_peak": 0.0,
+            "first_peak_local_sample": 0,
+            "first_peak_global_sample": 3695640,
+            "first_peak_global_seconds": 153.985,
+            "signed_first_peak_sample_value": 0.0,
+            "samples_at_this_absolute_peak": 16800,
+            "contains_actual_whole_peak": false
+          },
+          {
+            "original_audio_list_index": 54,
+            "callback_segments_by_object_identity": [],
+            "start_sample": 3712440,
+            "end_sample_exclusive": 3743640,
+            "part_role": "unmapped_original_audio_list_part",
+            "samples": 31200,
+            "dtype": "float32",
+            "absolute_peak": 0.0,
+            "first_peak_local_sample": 0,
+            "first_peak_global_sample": 3712440,
+            "first_peak_global_seconds": 154.685,
+            "signed_first_peak_sample_value": 0.0,
+            "samples_at_this_absolute_peak": 31200,
+            "contains_actual_whole_peak": false
+          }
+        ],
+        "original_audio_list_total_samples": 3743640,
+        "metadata_only_no_gain_or_DSP_or_normalization_selected": true
+      },
+      "title_pre_master_PCM_sha256": "6c9d702638206fabd83b9080cdf3342f82a521e01d03277f1153f433923c2418",
+      "actual_original_mastering": {
+        "pre_master_full_PCM_sha256": "d6e1a69b5cd6ff7bbb389bd0b783eaf04c8927c328c21e02ebd0d3190a432aea",
+        "pre_master_dtype": "float32",
+        "pre_master_samples": 3743640,
+        "pre_master_absolute_peak": 1.097201943397522,
+        "actual_maker_formula": "A = concatenate(actual audio list); A = A / abs(A).max() * 0.89",
+        "logical_normalization_scale": 0.8111542322319314,
+        "observed_normalized_full_PCM_sha256": "0e789f2a7e87f32d78a3fd0dd5f663267f2364d42ce3b084e3b14cab4df33706",
+        "observed_normalized_absolute_peak": 0.8899999856948853,
+        "original_ordered_formula_exact_to_sf_write_argument": true,
+        "source_of_raw_parts": "actual original build frame audio list, not a guessed reconstruction"
+      },
+      "actual_sample_clock": {
+        "title": {
+          "start_sample": 9600,
+          "end_sample_exclusive": 49440,
+          "start_s": 0.4,
+          "end_s": 2.06,
+          "observed_post_master_float_PCM_sha256": "c3c79967e1fc49310f3b59ce992f73d48d8f5f9574cb27926186241eccf70445",
+          "observed_post_master_RMS_dBFS": -23.378144222612928
+        },
+        "S1": {
+          "start_sample": 73440,
+          "end_sample_exclusive": 201720,
+          "start_s": 3.06,
+          "end_s": 8.405,
+          "observed_post_master_float_PCM_sha256": "d3fd75eedf1a7c806b2c92e6a0cef401ac351d790e6c25e67336457cb89c0baa",
+          "observed_post_master_RMS_dBFS": -24.340595755084017
+        },
+        "S2": {
+          "start_sample": 225720,
+          "end_sample_exclusive": 517680,
+          "start_s": 9.405,
+          "end_s": 21.57,
+          "observed_post_master_float_PCM_sha256": "11d8292f0afbfe19cf45d47d1c7f029eb0173d5551d1ba5563211d217eeacca2",
+          "observed_post_master_RMS_dBFS": -24.11069418451193
+        },
+        "S3": {
+          "start_sample": 541680,
+          "end_sample_exclusive": 767280,
+          "start_s": 22.57,
+          "end_s": 31.97,
+          "observed_post_master_float_PCM_sha256": "e59a1b79afa478f5140f51cda1ff77acfc81b845c8322ad3884470f6fe306bf9",
+          "observed_post_master_RMS_dBFS": -23.215718297828882
+        },
+        "S4": {
+          "start_sample": 796080,
+          "end_sample_exclusive": 1135440,
+          "start_s": 33.17,
+          "end_s": 47.31,
+          "observed_post_master_float_PCM_sha256": "1677cc4ce44c0186d08b6371bb8c415c283b1bbf7bce0ce7deeb4377cdb37b02",
+          "observed_post_master_RMS_dBFS": -23.685599972346637
+        },
+        "S5": {
+          "start_sample": 1159440,
+          "end_sample_exclusive": 1275960,
+          "start_s": 48.31,
+          "end_s": 53.165,
+          "observed_post_master_float_PCM_sha256": "6f7541fbf0641319292fd2d13bcddef578ada612c72173e0defa21ac0dc8b00b",
+          "observed_post_master_RMS_dBFS": -24.035297468896637
+        },
+        "S6": {
+          "start_sample": 1299960,
+          "end_sample_exclusive": 1504920,
+          "start_s": 54.165,
+          "end_s": 62.705,
+          "observed_post_master_float_PCM_sha256": "0a4dd05a62dc4edf20ca4e45a113eb247e2ed8cc8f89ca60dfc1c298351fd205",
+          "observed_post_master_RMS_dBFS": -24.74048940571555
+        },
+        "S7": {
+          "start_sample": 1528920,
+          "end_sample_exclusive": 1580520,
+          "start_s": 63.705,
+          "end_s": 65.855,
+          "observed_post_master_float_PCM_sha256": "6d006a7a72ea95d0dab779b3e09f21bd8f031e18345139429043fc2ca806e21f",
+          "observed_post_master_RMS_dBFS": -23.303757214968964
+        },
+        "S8": {
+          "start_sample": 1609320,
+          "end_sample_exclusive": 1928640,
+          "start_s": 67.055,
+          "end_s": 80.36,
+          "observed_post_master_float_PCM_sha256": "1a71cac66dff75a7ee82550464e3a79eefe585fce9871669055aa96c3c52a911",
+          "observed_post_master_RMS_dBFS": -24.55077430878932
+        },
+        "S9": {
+          "start_sample": 1952640,
+          "end_sample_exclusive": 2007840,
+          "start_s": 81.36,
+          "end_s": 83.66,
+          "observed_post_master_float_PCM_sha256": "cb234fe8bcf0bed4cab3dd8f25487d74afe3aefa4d79728742f5fba4114f054c",
+          "observed_post_master_RMS_dBFS": -22.464900056476445
+        },
+        "S10": {
+          "start_sample": 2031840,
+          "end_sample_exclusive": 2219520,
+          "start_s": 84.66,
+          "end_s": 92.48,
+          "observed_post_master_float_PCM_sha256": "8c3f3c858ea35c3fb7765701ec15b46b493fac7c58637a659d8809aa9a0ffc6a",
+          "observed_post_master_RMS_dBFS": -24.118141718683447
+        },
+        "S11": {
+          "start_sample": 2243520,
+          "end_sample_exclusive": 2377200,
+          "start_s": 93.48,
+          "end_s": 99.05,
+          "observed_post_master_float_PCM_sha256": "4f1fc139915fef937be408e5fc81cff49d810981b559f8a72a809c28166e54cd",
+          "observed_post_master_RMS_dBFS": -24.368159237542084
+        },
+        "S12": {
+          "start_sample": 2406000,
+          "end_sample_exclusive": 2539680,
+          "start_s": 100.25,
+          "end_s": 105.82,
+          "observed_post_master_float_PCM_sha256": "87fd90c8725522406464fe7d9f0d90d3e34713a965eafd1560cf83bee4deb881",
+          "observed_post_master_RMS_dBFS": -23.73364992697116
+        },
+        "S13": {
+          "start_sample": 2563680,
+          "end_sample_exclusive": 2779920,
+          "start_s": 106.82,
+          "end_s": 115.83,
+          "observed_post_master_float_PCM_sha256": "1d63e12ac5cf0df31c9d9235b7145b52ba9d5fd483d748cf9c950f1433787ac1",
+          "observed_post_master_RMS_dBFS": -24.346466501124166
+        },
+        "S14": {
+          "start_sample": 2803920,
+          "end_sample_exclusive": 3166560,
+          "start_s": 116.83,
+          "end_s": 131.94,
+          "observed_post_master_float_PCM_sha256": "e687873caa77481488037b71a1bc666909e1ba291e9efcdfa0c0fdc6cd0f6743",
+          "observed_post_master_RMS_dBFS": -24.538293426076343
+        },
+        "S15": {
+          "start_sample": 3195360,
+          "end_sample_exclusive": 3429600,
+          "start_s": 133.14,
+          "end_s": 142.9,
+          "observed_post_master_float_PCM_sha256": "c907833fa9be68ed35f29611eb8fff420d7b14dc56a7a6deb99552c423fd5dd8",
+          "observed_post_master_RMS_dBFS": -24.080064731887106
+        },
+        "S16": {
+          "start_sample": 3453600,
+          "end_sample_exclusive": 3606240,
+          "start_s": 143.9,
+          "end_s": 150.26,
+          "observed_post_master_float_PCM_sha256": "8b2adf4c8c3f3594c7b0305b760e37fba58fb5b2ccab24d0714b3c345ce4dfb5",
+          "observed_post_master_RMS_dBFS": -24.395313287578237
+        },
+        "S17": {
+          "start_sample": 3630240,
+          "end_sample_exclusive": 3695640,
+          "start_s": 151.26,
+          "end_s": 153.985,
+          "observed_post_master_float_PCM_sha256": "1688ae24da33b9d90ef7d1a0da13bdbda53d0118b01e1597eb7e555999b1d379",
+          "observed_post_master_RMS_dBFS": -22.86432029425301
+        }
+      },
+      "actual_complete_WAV": {
+        "file_sha256": "d4c11ab7d634a835b6d537f31573abc3f4fc01c4feebc2f445ac0b18c9bd7854",
+        "file_bytes": 7487324,
+        "sample_rate": 24000,
+        "samples": 3743640,
+        "duration_s": 155.985,
+        "subtype": "PCM_16",
+        "file_md5": "99c01d26bde1d0812c8d57fdbcc73f91",
+        "file_md5_first12": "99c01d26bde1"
+      },
+      "actual_complete_AAC": {
+        "file_sha256": "d5d794ca916f45180abdc171bc0ca6fb128b40304ba30eca878ec612375c78e1",
+        "file_bytes": 2427988,
+        "AAC_ADTS_sha256": "4b7c4aec233d816c02384f129ef0fe83b73e8e318c521066d5ab6d76b95e7c9c",
+        "AAC_ADTS_bytes": 2449089,
+        "packet_count": 7313,
+        "full_actual_packet_clock_metadata_sha256": "353c23e4b04db6a7ac120035d171a6b3d597591685a4a89c01258c80ae49acb8",
+        "first_packet": {
+          "pts": -1024,
+          "pts_time": "-0.021333",
+          "dts": -1024,
+          "dts_time": "-0.021333",
+          "duration": 1024,
+          "duration_time": "0.021333",
+          "size": "19",
+          "flags": "KD_",
+          "side_data_list": [
+            {
+              "side_data_type": "Skip Samples",
+              "skip_samples": 1024,
+              "discard_padding": 0,
+              "skip_reason": 0,
+              "discard_reason": 0
+            }
+          ]
+        },
+        "last_packet": {
+          "pts": 7486464,
+          "pts_time": "155.968000",
+          "dts": 7486464,
+          "dts_time": "155.968000",
+          "duration": 816,
+          "duration_time": "0.017000",
+          "size": "4",
+          "flags": "K__"
+        },
+        "sum_packet_duration_units": 7488304,
+        "audio_streams": [
+          {
+            "index": 0,
+            "codec_name": "aac",
+            "codec_long_name": "AAC (Advanced Audio Coding)",
+            "profile": "LC",
+            "codec_type": "audio",
+            "codec_tag_string": "mp4a",
+            "codec_tag": "0x6134706d",
+            "sample_fmt": "fltp",
+            "sample_rate": "48000",
+            "channels": 1,
+            "channel_layout": "mono",
+            "bits_per_sample": 0,
+            "initial_padding": 0,
+            "id": "0x1",
+            "r_frame_rate": "0/0",
+            "avg_frame_rate": "0/0",
+            "time_base": "1/48000",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "duration_ts": 7487280,
+            "duration": "155.985000",
+            "bit_rate": "122964",
+            "nb_frames": "7313",
+            "extradata_size": 5,
+            "disposition": {
+              "default": 1,
+              "dub": 0,
+              "original": 0,
+              "comment": 0,
+              "lyrics": 0,
+              "karaoke": 0,
+              "forced": 0,
+              "hearing_impaired": 0,
+              "visual_impaired": 0,
+              "clean_effects": 0,
+              "attached_pic": 0,
+              "timed_thumbnails": 0,
+              "non_diegetic": 0,
+              "captions": 0,
+              "descriptions": 0,
+              "metadata": 0,
+              "dependent": 0,
+              "still_image": 0,
+              "multilayer": 0
+            },
+            "tags": {
+              "language": "und",
+              "handler_name": "SoundHandler",
+              "vendor_id": "[0][0][0][0]"
+            }
+          }
+        ],
+        "format_duration_s": "155.985000",
+        "actual_original_AudioOnly_canonical_2s_tail_not_final_06_image_card_audio": true
+      },
+      "actual_codec_packet_payload_side_and_absolute_clock": {
+        "aac_adts_sha256": "4b7c4aec233d816c02384f129ef0fe83b73e8e318c521066d5ab6d76b95e7c9c",
+        "packet_projection_sha256": "9cdf27787c9da172f54cbb179a23467dd0b5202daab9d8f87704b4568a81a71d",
+        "packet_count": 7313
+      },
+      "actual_voice_fingerprint_table": {
+        "指纹": {
+          "S1": "6d86b8b5a88a",
+          "S2": "f2773e12714e",
+          "S3": "3ca2a5f660bc",
+          "S4": "179f77aff2a4",
+          "S5": "37e338e91064",
+          "S6": "fda63f2f57e4",
+          "S7": "811613574599",
+          "S8": "b66042cc021d",
+          "S9": "301302217c79",
+          "S10": "41307d4debb4",
+          "S11": "9d0aed73b729",
+          "S12": "584f4a866ec8",
+          "S13": "cdd68425bc39",
+          "S14": "14c915d525ac",
+          "S15": "6595fe25e543",
+          "S16": "58077460df6e",
+          "S17": "a48cd56e3a35"
+        },
+        "作废": []
+      },
+      "actual_original_piece_time_table": {
+        "S1": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "原始": [
+              240,
+              1000000240
+            ],
+            "停顿": null,
+            "时刻": [
+              3.06,
+              8.405
+            ]
+          }
+        ],
+        "S2": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "原始": [
+              480,
+              141360
+            ],
+            "停顿": 0.4,
+            "时刻": [
+              9.405,
+              15.07
+            ]
+          },
+          {
+            "段": 2,
+            "增益": 0.0,
+            "原始": [
+              155640,
+              1000000480
+            ],
+            "停顿": null,
+            "时刻": [
+              15.45,
+              21.57
+            ]
+          }
+        ],
+        "S3": [
+          {
+            "段": 1,
+            "增益": 1.5,
+            "原始": [
+              240,
+              119760
+            ],
+            "停顿": 0.4,
+            "时刻": [
+              22.57,
+              27.53
+            ]
+          },
+          {
+            "段": 2,
+            "增益": 0.0,
+            "原始": [
+              129120,
+              169320
+            ],
+            "停顿": 0.4,
+            "时刻": [
+              27.91,
+              29.585
+            ]
+          },
+          {
+            "段": 3,
+            "增益": 0.0,
+            "原始": [
+              177000,
+              1000000240
+            ],
+            "停顿": null,
+            "时刻": [
+              29.965,
+              31.97
+            ]
+          }
+        ],
+        "S4": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "原始": [
+              480,
+              49200
+            ],
+            "停顿": 0.4,
+            "时刻": [
+              33.17,
+              35.185
+            ]
+          },
+          {
+            "段": 2,
+            "增益": 0.0,
+            "原始": [
+              55200,
+              117120
+            ],
+            "停顿": 0.4,
+            "时刻": [
+              35.565,
+              38.145
+            ]
+          },
+          {
+            "段": 3,
+            "增益": -2.0,
+            "原始": [
+              127080,
+              164520
+            ],
+            "停顿": 0.4,
+            "时刻": [
+              38.525,
+              40.085
+            ]
+          },
+          {
+            "段": 4,
+            "增益": 2.0,
+            "原始": [
+              172440,
+              261960
+            ],
+            "停顿": 0.4,
+            "时刻": [
+              40.465,
+              44.195
+            ]
+          },
+          {
+            "段": 5,
+            "增益": 1.5,
+            "原始": [
+              272400,
+              1000000480
+            ],
+            "停顿": null,
+            "时刻": [
+              44.575,
+              47.31
+            ]
+          }
+        ],
+        "S5": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "原始": [
+              480,
+              1000000480
+            ],
+            "停顿": null,
+            "时刻": [
+              48.31,
+              53.165
+            ]
+          }
+        ],
+        "S6": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "原始": [
+              480,
+              92760
+            ],
+            "停顿": 0.4,
+            "时刻": [
+              54.165,
+              57.99
+            ]
+          },
+          {
+            "段": 2,
+            "增益": 0.0,
+            "原始": [
+              103680,
+              1000000480
+            ],
+            "停顿": null,
+            "时刻": [
+              58.37,
+              62.705
+            ]
+          }
+        ],
+        "S7": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "原始": [
+              480,
+              1000000480
+            ],
+            "停顿": null,
+            "时刻": [
+              63.705,
+              65.855
+            ]
+          }
+        ],
+        "S8": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "原始": [
+              240,
+              180960
+            ],
+            "停顿": 0.4,
+            "时刻": [
+              67.055,
+              74.57
+            ]
+          },
+          {
+            "段": 2,
+            "增益": 0.0,
+            "原始": [
+              191640,
+              248400
+            ],
+            "停顿": 0.4,
+            "时刻": [
+              74.95,
+              77.315
+            ]
+          },
+          {
+            "段": 3,
+            "增益": 0.0,
+            "原始": [
+              257760,
+              1000000240
+            ],
+            "停顿": null,
+            "时刻": [
+              77.695,
+              80.36
+            ]
+          }
+        ],
+        "S9": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "原始": [
+              240,
+              1000000240
+            ],
+            "停顿": null,
+            "时刻": [
+              81.36,
+              83.66
+            ]
+          }
+        ],
+        "S10": [
+          {
+            "段": 1,
+            "增益": -3.0,
+            "原始": [
+              240,
+              34080
+            ],
+            "停顿": 0.4,
+            "时刻": [
+              84.66,
+              86.05
+            ]
+          },
+          {
+            "段": 2,
+            "增益": 0.0,
+            "原始": [
+              36360,
+              68760
+            ],
+            "停顿": 0.4,
+            "时刻": [
+              86.43,
+              87.78
+            ]
+          },
+          {
+            "段": 3,
+            "增益": 1.5,
+            "原始": [
+              79440,
+              1000000240
+            ],
+            "停顿": null,
+            "时刻": [
+              88.16,
+              92.48
+            ]
+          }
+        ],
+        "S11": [
+          {
+            "段": 1,
+            "增益": -1.5,
+            "原始": [
+              720,
+              52440
+            ],
+            "停顿": 0.4,
+            "时刻": [
+              93.48,
+              95.625
+            ]
+          },
+          {
+            "段": 2,
+            "增益": 1.5,
+            "原始": [
+              53160,
+              1000000720
+            ],
+            "停顿": null,
+            "时刻": [
+              96.005,
+              99.05
+            ]
+          }
+        ],
+        "S12": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "原始": [
+              720,
+              1000000720
+            ],
+            "停顿": null,
+            "时刻": [
+              100.25,
+              105.82
+            ]
+          }
+        ],
+        "S13": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "原始": [
+              480,
+              1000000480
+            ],
+            "停顿": null,
+            "时刻": [
+              106.82,
+              115.83
+            ]
+          }
+        ],
+        "S14": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "原始": [
+              480,
+              137280
+            ],
+            "停顿": 0.4,
+            "时刻": [
+              116.83,
+              122.515
+            ]
+          },
+          {
+            "段": 2,
+            "增益": -1.5,
+            "原始": [
+              145560,
+              189480
+            ],
+            "停顿": 0.4,
+            "时刻": [
+              122.895,
+              124.725
+            ]
+          },
+          {
+            "段": 3,
+            "增益": 0.0,
+            "原始": [
+              201720,
+              298560
+            ],
+            "停顿": 0.4,
+            "时刻": [
+              125.105,
+              129.14
+            ]
+          },
+          {
+            "段": 4,
+            "增益": 0.0,
+            "原始": [
+              306360,
+              1000000480
+            ],
+            "停顿": null,
+            "时刻": [
+              129.52,
+              131.94
+            ]
+          }
+        ],
+        "S15": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "原始": [
+              240,
+              120360
+            ],
+            "停顿": 0.4,
+            "时刻": [
+              133.14,
+              138.12
+            ]
+          },
+          {
+            "段": 2,
+            "增益": 0.0,
+            "原始": [
+              130440,
+              1000000240
+            ],
+            "停顿": null,
+            "时刻": [
+              138.5,
+              142.9
+            ]
+          }
+        ],
+        "S16": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "原始": [
+              240,
+              1000000240
+            ],
+            "停顿": null,
+            "时刻": [
+              143.9,
+              150.26
+            ]
+          }
+        ],
+        "S17": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "原始": [
+              240,
+              1000000240
+            ],
+            "停顿": null,
+            "时刻": [
+              151.26,
+              153.985
+            ]
+          }
+        ]
+      },
+      "no_picture_rendered": true,
+      "private_work_preserved_path": "/home/runner/work/_temp/completion-machine/_A21_metadata_selected_56_43769221504/selected-private-original-work56"
+    }
+  },
+  "no_baseline_GT_ASR_or_render": true,
+  "source_id": "56",
+  "book_order": 65,
+  "same_job_exact_selected_whole_reproduced_before_metadata_preview": true,
+  "selected_work_binding_restoration": {
+    "normal_work_inode_and_PCM_restored": true,
+    "selected_phase_inode_and_all_files_restored": true,
+    "actual_selected_phase_bound_at_original_work_path": true
+  },
+  "A21_metadata_preview": {
+    "restoration": {
+      "normal_scripts_namespace_restored": true,
+      "environment_cwd_sys_path_restored": true,
+      "original_level_method_restored": true,
+      "all_original_cached_object_methods_restored": true,
+      "all_original_native_closure_cells_restored": true
+    },
+    "quality_acceptance": false,
+    "only_original_A21_check_and_writegrafts_executed": true,
+    "original_rows": [
+      "56 S3 第1个标点 mˈænjuːskɹˌɪpt /t/ OK  除阻全频 -28.9 dB、2 kHz 以上 -31.6 dB、50 ms、闭塞最低 -240.0 dB、重心 2457 Hz（门槛：2 kHz 以上 ≥ -36 dB、≤ 110 ms、重心 ≥ 1000 Hz）",
+      "56 S3 第2个标点 ʌnpˈʌblɪʃt /t/ OK  除阻全频 -31.7 dB、2 kHz 以上 -34.1 dB、55 ms、闭塞最低 -240.0 dB、重心 2493 Hz（门槛：2 kHz 以上 ≥ -36 dB、≤ 110 ms、重心 ≥ 1000 Hz）",
+      "56 S4 第1个标点 fˈɪftiˈeɪt /t/ OK  除阻全频 -27.0 dB、2 kHz 以上 -27.1 dB、60 ms、闭塞最低 -68.7 dB、重心 4332 Hz（门槛：2 kHz 以上 ≥ -36 dB、≤ 110 ms、重心 ≥ 1000 Hz）",
+      "56 S4 第2个标点 ˈɪnsaɪt /t/ OK  除阻全频 -27.0 dB、2 kHz 以上 -27.1 dB、65 ms、闭塞最低 -240.0 dB、重心 4333 Hz（门槛：2 kHz 以上 ≥ -36 dB、≤ 110 ms、重心 ≥ 1000 Hz）",
+      "56 S5 句末 fˈɪftiˈeɪt /t/ OK  除阻全频 -27.0 dB、2 kHz 以上 -27.1 dB、65 ms、闭塞最低 -240.0 dB、重心 4333 Hz（门槛：2 kHz 以上 ≥ -36 dB、≤ 110 ms、重心 ≥ 1000 Hz）",
+      "56 S8 句末 fˈɪftiˈeɪt /t/ OK  除阻全频 -27.0 dB、2 kHz 以上 -27.1 dB、65 ms、闭塞最低 -240.0 dB、重心 4333 Hz（门槛：2 kHz 以上 ≥ -36 dB、≤ 110 ms、重心 ≥ 1000 Hz）",
+      "56 S15 第1个标点 fˈɪftiˈeɪt /t/ OK  除阻全频 -27.0 dB、2 kHz 以上 -27.1 dB、65 ms、闭塞最低 -240.0 dB、重心 4333 Hz（门槛：2 kHz 以上 ≥ -36 dB、≤ 110 ms、重心 ≥ 1000 Hz）",
+      "56 S15 句末 ɚɹˈeɪndʒmənt /t/ OK  除阻全频 -27.0 dB、2 kHz 以上 -27.1 dB、65 ms、闭塞最低 -240.0 dB、重心 4333 Hz（门槛：2 kHz 以上 ≥ -36 dB、≤ 110 ms、重心 ≥ 1000 Hz）"
+    ],
+    "original_bad": [],
+    "original_info": [
+      "56 S7 句末 θɹˈɛʔnd（浊塞音，不判）除阻全频 -29.9 dB、2 kHz 以上 -35.6 dB、50 ms、闭塞最低 -49.6 dB",
+      "56 S10 第1个标点 ɐbɹˈɔːd（浊塞音，不判）除阻全频 -24.0 dB、2 kHz 以上 -31.7 dB、65 ms、闭塞最低 -40.9 dB"
+    ],
+    "original_bad_count": 0,
+    "original_writer_invoked": false,
+    "original_writer_count": 0,
+    "equivalent_original_CLI_exit": 0,
+    "full_source_JSON_delta": [],
+    "actual_physical_audio_source_delta": [],
+    "private_after_source_JSON": {
+      "no": "56",
+      "title_en": "The Letter That Startled Darwin",
+      "title_zh": "一封信惊醒了达尔文",
+      "title_fx": {
+        "hl": [
+          "Letter",
+          "Startled"
+        ],
+        "ghost": []
+      },
+      "sentences": [
+        {
+          "para": 1,
+          "chunks": [
+            {
+              "en": "Charles Darwin **disembarked** from HMS Beagle in October 1836.",
+              "zh": "1836年10月，查尔斯·达尔文从小猎犬号上**登岸**(disembarked)。",
+              "align": [
+                [
+                  "Charles Darwin **disembarked** from HMS Beagle in October 1836.",
+                  "1836年10月，查尔斯·达尔文从小猎犬号上**登岸**(disembarked)。"
+                ]
+              ],
+              "note": "（disembark from…：从（船、飞机）上下来；\nHMS Beagle：英国皇家海军舰船小猎犬号）"
+            }
+          ]
+        },
+        {
+          "para": 1,
+          "chunks": [
+            {
+              "en": "In September 1838 he began **formulating** the **principle** of natural **selection**:",
+              "zh": "1838年9月，他开始**构想并明确表述**(formulating)自然**选择**(selection)的**原理**(principle)：",
+              "align": [
+                [
+                  "In September 1838",
+                  "1838年9月，"
+                ],
+                [
+                  "he",
+                  "他"
+                ],
+                [
+                  "began",
+                  "开始"
+                ],
+                [
+                  "**formulating**",
+                  "**构想并明确表述**(formulating)"
+                ],
+                [
+                  "the **principle** of natural **selection**:",
+                  "自然**选择**(selection)的**原理**(principle)："
+                ]
+              ],
+              "note": "（began formulating：begin doing，开始做某事；\nthe principle of natural selection：of 结构，自然选择的原理）"
+            },
+            {
+              "en": "individuals better **adapted to** their **surroundings** survive and **pass on** their **hereditary** **traits**.",
+              "zh": "**对**(adapted to)**周围环境**(surroundings)**适应**(adapted to)得更好的个体存活下来，并将**传递**(pass on)他们自身**遗传的**(hereditary)**性状**(traits)（给后代）。",
+              "align": [
+                [
+                  "individuals better **adapted to** their **surroundings**",
+                  "**对**(adapted to)**周围环境**(surroundings)**适应**(adapted to)得更好的个体"
+                ],
+                [
+                  "survive",
+                  "存活下来，"
+                ],
+                [
+                  "and",
+                  "并"
+                ],
+                [
+                  "**pass on**",
+                  "将**传递**(pass on)"
+                ],
+                [
+                  "their",
+                  "他们自身"
+                ],
+                [
+                  "**hereditary**",
+                  "**遗传的**(hereditary)"
+                ],
+                [
+                  "**traits**.",
+                  "**性状**(traits)（给后代）。"
+                ]
+              ],
+              "note": "（better adapted to…：过去分词短语作后置定语，\n修饰 individuals；be adapted to…：适应……；\npass on：传递）"
+            }
+          ]
+        },
+        {
+          "para": 1,
+          "chunks": [
+            {
+              "en": "By 1844 he had **composed** a 230-page **manuscript**,",
+              "zh": "到1844年，他已**撰写了**(composed)一份230页的**手稿**(manuscript)，",
+              "align": [
+                [
+                  "By 1844",
+                  "到1844年，"
+                ],
+                [
+                  "he",
+                  "他"
+                ],
+                [
+                  "had **composed**",
+                  "已**撰写了**(composed)"
+                ],
+                [
+                  "a 230-page",
+                  "一份230页的"
+                ],
+                [
+                  "**manuscript**,",
+                  "**手稿**(manuscript)，"
+                ]
+              ],
+              "note": "（By 1844：到1844年为止；\nhad composed：过去完成时，表示到那时已经完成）"
+            },
+            {
+              "en": "yet kept it **unpublished**, **cautiously** **amassing** evidence.",
+              "zh": "却一直**未予发表**(unpublished)，**谨慎地**(cautiously)**积累着**(amassing)证据。",
+              "align": [
+                [
+                  "yet",
+                  "却"
+                ],
+                [
+                  "kept it",
+                  "一直"
+                ],
+                [
+                  "**unpublished**,",
+                  "**未予发表**(unpublished)，"
+                ],
+                [
+                  "**cautiously**",
+                  "**谨慎地**(cautiously)"
+                ],
+                [
+                  "**amassing**",
+                  "**积累着**(amassing)"
+                ],
+                [
+                  "evidence.",
+                  "证据。"
+                ]
+              ],
+              "note": "（keep it unpublished：keep + 宾语 + 补语，使它保持未发表；\ncautiously amassing evidence：现在分词短语作伴随状语）"
+            }
+          ]
+        },
+        {
+          "para": 2,
+          "chunks": [
+            {
+              "en": "In February 1858, two decades after Darwin's first insight,",
+              "zh": "1858年2月，达尔文最初的洞察出现后的二十年，",
+              "align": [
+                [
+                  "In February 1858,",
+                  "1858年2月，"
+                ],
+                [
+                  "two decades after Darwin's first insight,",
+                  "达尔文最初的洞察出现后的二十年，"
+                ]
+              ],
+              "note": "（two decades after…：插入的时间说明，\n补充这时离达尔文最初的洞察已有多久）"
+            },
+            {
+              "en": "Alfred Russel Wallace, a **naturalist** **afflicted by** fever in the Malay Archipelago,",
+              "zh": "**博物学家**(naturalist)阿尔弗雷德·拉塞尔·华莱士在马来群岛**饱受**(afflicted by)热病**的折磨**(afflicted by)，",
+              "align": [
+                [
+                  "Alfred Russel Wallace, a **naturalist**",
+                  "**博物学家**(naturalist)阿尔弗雷德·拉塞尔·华莱士"
+                ],
+                [
+                  "**afflicted by** fever in the Malay Archipelago,",
+                  "在马来群岛**饱受**(afflicted by)热病**的折磨**(afflicted by)，"
+                ]
+              ],
+              "note": "（a naturalist…：同位语，说明 Wallace；\nafflicted by…：过去分词短语作后置定语，\nbe afflicted by：饱受……的折磨）"
+            },
+            {
+              "en": "**independently** **conceived** the same idea.",
+              "zh": "**独自一人**(independently)**构想出**(conceived)了同一个想法。",
+              "align": [
+                [
+                  "**independently**",
+                  "**独自一人**(independently)"
+                ],
+                [
+                  "**conceived**",
+                  "**构想出**(conceived)了"
+                ],
+                [
+                  "the same",
+                  "同一个"
+                ],
+                [
+                  "idea.",
+                  "想法。"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "para": 2,
+          "chunks": [
+            {
+              "en": "His **concise** essay reached Darwin on 18 June 1858.",
+              "zh": "华莱士这篇**简明的**(concise)文章于1858年6月18日到达了达尔文的手里。",
+              "align": [
+                [
+                  "His",
+                  "华莱士这篇"
+                ],
+                [
+                  "**concise**",
+                  "**简明的**(concise)"
+                ],
+                [
+                  "essay",
+                  "文章"
+                ],
+                [
+                  "reached Darwin on 18 June 1858.",
+                  "于1858年6月18日到达了达尔文的手里。"
+                ]
+              ],
+              "note": "（His：指华莱士；reach sb：送到某人手中）"
+            }
+          ]
+        },
+        {
+          "para": 2,
+          "chunks": [
+            {
+              "en": "Its argument **paralleled** Darwin's own almost **precisely**;",
+              "zh": "文中的论证**与**(paralleled)达尔文自己的几乎**完全**(precisely)**一样**(paralleled)；",
+              "align": [
+                [
+                  "Its",
+                  "文中的"
+                ],
+                [
+                  "argument",
+                  "论证"
+                ],
+                [
+                  "**paralleled** Darwin's own almost **precisely**;",
+                  "**与**(paralleled)达尔文自己的几乎**完全**(precisely)**一样**(paralleled)；"
+                ]
+              ],
+              "note": "（Its：指华莱士的文章；paralleled：与……极其相似；\nDarwin's own：达尔文自己的论证，own 后面省略了 argument）"
+            },
+            {
+              "en": "he told Charles Lyell he had never seen a more **remarkable** **coincidence**.",
+              "zh": "达尔文告诉查尔斯·莱尔，自己从未见过比这更**惊人的**(remarkable)**巧合**(coincidence)。",
+              "align": [
+                [
+                  "he told",
+                  "达尔文告诉"
+                ],
+                [
+                  "Charles Lyell",
+                  "查尔斯·莱尔，"
+                ],
+                [
+                  "he",
+                  "自己"
+                ],
+                [
+                  "had never",
+                  "从未"
+                ],
+                [
+                  "seen",
+                  "见过"
+                ],
+                [
+                  "a more",
+                  "比这更"
+                ],
+                [
+                  "**remarkable**",
+                  "**惊人的**(remarkable)"
+                ],
+                [
+                  "**coincidence**.",
+                  "**巧合**(coincidence)。"
+                ]
+              ],
+              "note": "（he had never seen…：宾语从句，省略了 that；\nhad never seen：过去完成时）"
+            }
+          ]
+        },
+        {
+          "para": 2,
+          "chunks": [
+            {
+              "en": "His claim to **priority** seemed **threatened**.",
+              "zh": "他对**优先权**(priority)的主张似乎**受到了威胁**(threatened)。",
+              "align": [
+                [
+                  "His claim to **priority**",
+                  "他对**优先权**(priority)的主张"
+                ],
+                [
+                  "seemed",
+                  "似乎"
+                ],
+                [
+                  "**threatened**.",
+                  "**受到了威胁**(threatened)。"
+                ]
+              ],
+              "note": "（claim to…：对……的主张、要求；\nseem + 过去分词：似乎被……）"
+            }
+          ]
+        },
+        {
+          "para": 3,
+          "chunks": [
+            {
+              "en": "Lyell and the **botanist** Joseph Hooker **arranged for** both papers",
+              "zh": "莱尔和**植物学家**(botanist)约瑟夫·胡克**安排**(arranged for)这两篇论文，",
+              "align": [
+                [
+                  "Lyell",
+                  "莱尔"
+                ],
+                [
+                  "and",
+                  "和"
+                ],
+                [
+                  "the **botanist**",
+                  "**植物学家**(botanist)"
+                ],
+                [
+                  "Joseph Hooker",
+                  "约瑟夫·胡克"
+                ],
+                [
+                  "**arranged for**",
+                  "**安排**(arranged for)"
+                ],
+                [
+                  "both",
+                  "这两篇"
+                ],
+                [
+                  "papers",
+                  "论文，"
+                ]
+              ],
+              "note": "（arrange for sth to be done：安排、促成某事被做）"
+            },
+            {
+              "en": "to be read **simultaneously** at the Linnean Society, a scientific **institution** in London, on 1 July 1858.",
+              "zh": "于1858年7月1日在伦敦的科学**机构**(institution)林奈学会上被**同时**(simultaneously)宣读。",
+              "align": [
+                [
+                  "to be read **simultaneously** at the Linnean Society, a scientific **institution** in London, on 1 July 1858.",
+                  "于1858年7月1日在伦敦的科学**机构**(institution)林奈学会上被**同时**(simultaneously)宣读。"
+                ]
+              ],
+              "note": "（to be read：不定式的被动式；\na scientific institution in London：同位语，\n说明 the Linnean Society）"
+            }
+          ]
+        },
+        {
+          "para": 3,
+          "chunks": [
+            {
+              "en": "Neither author attended the **proceedings**.",
+              "zh": "两位作者都没有出席这场**会议**(proceedings)。",
+              "align": [
+                [
+                  "Neither author",
+                  "两位作者都没有"
+                ],
+                [
+                  "attended",
+                  "出席"
+                ],
+                [
+                  "the **proceedings**.",
+                  "这场**会议**(proceedings)。"
+                ]
+              ],
+              "note": "（Neither…：两者都不；\nproceedings：在学术语境下，\n特指学会的会议、活动议程或会议记录）"
+            }
+          ]
+        },
+        {
+          "para": 3,
+          "chunks": [
+            {
+              "en": "Wallace was abroad, and Darwin was **grieving**:",
+              "zh": "华莱士身在海外，达尔文则处于**哀痛**(grieving)之中：",
+              "align": [
+                [
+                  "Wallace",
+                  "华莱士"
+                ],
+                [
+                  "was abroad,",
+                  "身在海外，"
+                ],
+                [
+                  "and Darwin",
+                  "达尔文则"
+                ],
+                [
+                  "was **grieving**:",
+                  "处于**哀痛**(grieving)之中："
+                ]
+              ],
+              "note": "（was grieving：过去进行时，当时正处于悲痛中；\ngrieve 指因失去某人（尤指亲人离世）而承受极度的悲伤与痛苦（即哀悼））"
+            },
+            {
+              "en": "**scarlet** fever had killed his **infant** son on 28 June.",
+              "zh": "**猩红**(scarlet)热在6月28日夺去了他**幼子**(infant)的生命。",
+              "align": [
+                [
+                  "**scarlet**",
+                  "**猩红**(scarlet)"
+                ],
+                [
+                  "fever",
+                  "热"
+                ],
+                [
+                  "had killed his **infant** son on 28 June.",
+                  "在6月28日夺去了他**幼子**(infant)的生命。"
+                ]
+              ],
+              "note": "（scarlet fever：猩红热；\nhad killed：过去完成时，发生在会议之前）"
+            }
+          ]
+        },
+        {
+          "para": 3,
+          "chunks": [
+            {
+              "en": "The **compromise**, struck without Wallace,",
+              "zh": "这一**折中办法**(compromise)在华莱士未参与的情况下达成，",
+              "align": [
+                [
+                  "The **compromise**,",
+                  "这一**折中办法**(compromise)"
+                ],
+                [
+                  "struck without Wallace,",
+                  "在华莱士未参与的情况下达成，"
+                ]
+              ],
+              "note": "（struck without Wallace：过去分词短语作后置定语，\n修饰 compromise；strike a compromise：达成折中办法）"
+            },
+            {
+              "en": "may have kept **rivalry** over **precedence** at bay.",
+              "zh": "或许避免了围绕**先后次序**(precedence)的**竞争**(rivalry)。",
+              "align": [
+                [
+                  "may have kept **rivalry** over **precedence** at bay.",
+                  "或许避免了围绕**先后次序**(precedence)的**竞争**(rivalry)。"
+                ]
+              ],
+              "note": "（may have done：对过去的推测；\nkeep sth at bay：使……无法逼近，避免……；\nrivalry over…：围绕……的竞争）"
+            }
+          ]
+        },
+        {
+          "para": 4,
+          "chunks": [
+            {
+              "en": "The papers' **publication** on 20 August 1858 met a **muted** **reception**.",
+              "zh": "这些论文于1858年8月20日的**发表**(publication)，遭遇了一个**很不热烈的**(muted)**反响**(reception)。",
+              "align": [
+                [
+                  "The papers'",
+                  "这些论文"
+                ],
+                [
+                  "**publication** on 20 August 1858",
+                  "于1858年8月20日的**发表**(publication)，"
+                ],
+                [
+                  "met",
+                  "遭遇了"
+                ],
+                [
+                  "a **muted**",
+                  "一个**很不热烈的**(muted)"
+                ],
+                [
+                  "**reception**.",
+                  "**反响**(reception)。"
+                ]
+              ],
+              "note": "（The papers' publication：名词化结构，\n相当于 the papers were published；\nmeet a … reception：遭遇……的反响）"
+            }
+          ]
+        },
+        {
+          "para": 4,
+          "chunks": [
+            {
+              "en": "In May 1859 the Society's president **remarked** in his **yearly** address",
+              "zh": "1859年5月，学会会长在**年度**(yearly)致辞中**评论**(remarked)说，",
+              "align": [
+                [
+                  "In May 1859",
+                  "1859年5月，"
+                ],
+                [
+                  "the Society's",
+                  "学会"
+                ],
+                [
+                  "president",
+                  "会长"
+                ],
+                [
+                  "**remarked** in his **yearly** address",
+                  "在**年度**(yearly)致辞中**评论**(remarked)说，"
+                ]
+              ],
+              "note": "（the Society：指林奈学会；\nremark that…：说到、评论……）"
+            },
+            {
+              "en": "that the year had been **barren of** **revolutionary** discoveries.",
+              "zh": "这一年一直**毫无**(barren of)**革命性的**(revolutionary)发现。",
+              "align": [
+                [
+                  "that the year",
+                  "这一年"
+                ],
+                [
+                  "had been",
+                  "一直"
+                ],
+                [
+                  "**barren of**",
+                  "**毫无**(barren of)"
+                ],
+                [
+                  "**revolutionary**",
+                  "**革命性的**(revolutionary)"
+                ],
+                [
+                  "discoveries.",
+                  "发现。"
+                ]
+              ],
+              "note": "（that…：宾语从句，作 remarked 的宾语；\nbe barren of…：缺乏……，毫无……）"
+            }
+          ]
+        },
+        {
+          "para": 4,
+          "chunks": [
+            {
+              "en": "The **sensation** came on 24 November 1859 with Darwin's **treatise**, **On the Origin of Species**:",
+              "zh": "这场**轰动**(sensation)于1859年11月24日随着达尔文的**专著**(treatise)**《物种起源》**(On the Origin of Species)到来：",
+              "align": [
+                [
+                  "The **sensation**",
+                  "这场**轰动**(sensation)"
+                ],
+                [
+                  "came on 24 November 1859",
+                  "于1859年11月24日"
+                ],
+                [
+                  "with Darwin's",
+                  "随着达尔文的"
+                ],
+                [
+                  "**treatise**,",
+                  "**专著**(treatise)"
+                ],
+                [
+                  "**On the Origin of Species**:",
+                  "**《物种起源》**(On the Origin of Species)到来："
+                ]
+              ],
+              "note": "（The sensation came with…：轰动随着……到来；\nOn the Origin of Species：同位语，说明 treatise，\n即书名《物种起源》）"
+            },
+            {
+              "en": "booksellers had **subscribed for** every copy of its first **impression**, 1,250 in all.",
+              "zh": "书商们已**订购了**(subscribed for)该书首**次印刷**(impression)的每一册，总计1,250册。",
+              "align": [
+                [
+                  "booksellers",
+                  "书商们"
+                ],
+                [
+                  "had",
+                  "已"
+                ],
+                [
+                  "**subscribed for**",
+                  "**订购了**(subscribed for)"
+                ],
+                [
+                  "every copy of its first **impression**,",
+                  "该书首**次印刷**(impression)的每一册，"
+                ],
+                [
+                  "1,250 in all.",
+                  "总计1,250册。"
+                ]
+              ],
+              "note": "（subscribe for…：订购……；\nits first impression：该书的首次印刷；in all：总计）"
+            }
+          ]
+        },
+        {
+          "para": 5,
+          "chunks": [
+            {
+              "en": "Wallace had **readily** **signified** his **acceptance** in October 1858,",
+              "zh": "华莱士早已**欣然**(readily)**表明了**(signified)**接受**(acceptance)的态度，那是在1858年10月；",
+              "align": [
+                [
+                  "Wallace",
+                  "华莱士"
+                ],
+                [
+                  "had **readily**",
+                  "早已**欣然**(readily)"
+                ],
+                [
+                  "**signified**",
+                  "**表明了**(signified)"
+                ],
+                [
+                  "his **acceptance**",
+                  "**接受**(acceptance)的态度，"
+                ],
+                [
+                  "in October 1858,",
+                  "那是在1858年10月；"
+                ]
+              ],
+              "note": "（had signified：过去完成时，表示早在那之前；\nsignify one's acceptance：表示接受）"
+            },
+            {
+              "en": "**assuring** Hooker in a **cordial** letter of his **satisfaction** with the **arrangement**.",
+              "zh": "他在一封**亲切的**(cordial)信中**向**(assuring)胡克**保证**(assuring)，自己对这一**安排**(arrangement)感到**满意**(satisfaction)。",
+              "align": [
+                [
+                  "**assuring** Hooker in a **cordial** letter",
+                  "他在一封**亲切的**(cordial)信中**向**(assuring)胡克**保证**(assuring)，"
+                ],
+                [
+                  "of his",
+                  "自己"
+                ],
+                [
+                  "**satisfaction** with the **arrangement**.",
+                  "对这一**安排**(arrangement)感到**满意**(satisfaction)。"
+                ]
+              ],
+              "note": "（assuring…：现在分词短语作伴随状语；\nassure sb of sth：向某人保证某事；\nsatisfaction with…：对……满意）"
+            }
+          ]
+        },
+        {
+          "para": 5,
+          "chunks": [
+            {
+              "en": "In 1889 he published a **lengthy** **exposition** of the idea and **entitled** it **Darwinism**.",
+              "zh": "1889年，他出版了一部**长篇的**(lengthy)**阐述**(exposition)解释这一思想，并**将**(entitled)其**命名为**(entitled)《**达尔文主义**(Darwinism)》。",
+              "align": [
+                [
+                  "In 1889",
+                  "1889年，"
+                ],
+                [
+                  "he",
+                  "他"
+                ],
+                [
+                  "published",
+                  "出版了"
+                ],
+                [
+                  "a **lengthy**",
+                  "一部**长篇的**(lengthy)"
+                ],
+                [
+                  "**exposition**",
+                  "**阐述**(exposition)"
+                ],
+                [
+                  "of the idea",
+                  "解释这一思想，"
+                ],
+                [
+                  "and",
+                  "并"
+                ],
+                [
+                  "**entitled** it",
+                  "**将**(entitled)其**命名为**(entitled)"
+                ],
+                [
+                  "**Darwinism**.",
+                  "《**达尔文主义**(Darwinism)》。"
+                ]
+              ],
+              "note": "（an exposition of…：对……的阐述；\nentitle A B：将 A 命名为 B）"
+            }
+          ]
+        },
+        {
+          "para": 5,
+          "chunks": [
+            {
+              "en": "Wallace never **named** the theory **after** himself.",
+              "zh": "华莱士从未**用**(named after)自己的名字**为**(named after)这一理论**命名**(named after)。",
+              "align": [
+                [
+                  "Wallace",
+                  "华莱士"
+                ],
+                [
+                  "never",
+                  "从未"
+                ],
+                [
+                  "**named** the theory **after** himself.",
+                  "**用**(named after)自己的名字**为**(named after)这一理论**命名**(named after)。"
+                ]
+              ],
+              "note": "（name A after B：以 B 的名字给 A 命名）\n（简述：▸酝酿：达尔文1838年构想自然选择：更适应环境的生物较容易存活，\n▹并把自身特征传给后代。1844年他已写成230页手稿，仍继续搜集证据，没有发表。\n▸来信：华莱士独立想出同一原理，\n▹1858年寄来的文章几乎与达尔文一致，令达尔文担心自己的首创地位。\n▸折中：莱尔、胡克安排两人成果于1858年7月同场宣读；\n▹两位作者都未出席，华莱士也未参与商定办法。\n▸反响：论文发表初期反响冷淡；\n▹1859年《物种起源》引起轰动，首印1250册已被书商全部订购。\n▸认可：华莱士1858年10月事后致信认可安排；\n▹1889年又以《达尔文主义》阐述自然选择，未用自己名字命名理论。）"
+            }
+          ]
+        }
+      ],
+      "核对确认": {
+        "合组": {
+          "S12 The papers' publication on 20 August 1858": "对齐不了：on 20 August 1858 是后置的时间说明，中文“1858年8月20日，两篇论文刊出”时间必须放到句首",
+          "S1 Charles Darwin disembarked from HMS Beagle in October 1836": "对齐不了：in October 1836 是时间状语，中文“1836年10月”必须放到句首；disembark from… 中文“从……上登岸”，“登岸”必须放到船名后面",
+          "S2 the principle of natural selection": "对齐不了：the principle of… 是 of 结构，中文“自然选择的原理”，“原理”必须放到最后",
+          "S2 individuals better adapted to their surroundings": "对齐不了：better adapted to… 是过去分词短语作后置定语，修饰 individuals，中文“对环境适应得更好的个体”定语必须提前",
+          "S2 and pass on their hereditary traits": "对齐不了：pass on… 中文“把……传递下去”，“传递下去”必须放到宾语后面",
+          "S4 Alfred Russel Wallace, a naturalist": "对齐不了：a naturalist 是同位语，中文“博物学家阿尔弗雷德·拉塞尔·华莱士”身份必须放到人名前",
+          "S4 afflicted by fever in the Malay Archipelago": "对齐不了：in the Malay Archipelago 是地点状语，中文“在马来群岛饱受热病的折磨”地点必须放到动词前，热病又夹在“饱受……的折磨”中间",
+          "S5 reached Darwin on 18 June 1858": "对齐不了：on 18 June 1858 是时间状语，中文“于1858年6月18日到达了达尔文的手里”时间必须放到动词前",
+          "S6 paralleled Darwin's own almost precisely": "对齐不了：paralleled… almost precisely 中文“与达尔文本人的论证几乎完全相合”，比较对象和程度必须放到动词“相合”前",
+          "S6 a more remarkable coincidence": "对齐不了：a more remarkable coincidence 中文“比这更惊人的巧合”，“比这”是 more 的比较对象，必须一起放在前面",
+          "S7 His claim to priority": "对齐不了：claim to priority 中文“对优先权的主张”，介词短语必须提前",
+          "S8 to be read simultaneously at the Linnean Society, a scientific institution in London, on 1 July 1858": "对齐不了：时间状语 on 1 July 1858、地点状语 at the Linnean Society 和同位语 a scientific institution in London，中文“于1858年7月1日在伦敦的科学机构林奈学会同时宣读”都必须放到动词“宣读”前，整组语序倒过来",
+          "S10 had killed his infant son on 28 June": "对齐不了：on 28 June 是时间状语，中文“在6月28日”必须放到动词前；kill his son 中文“夺去了他幼子的生命”，“生命”必须放到最后",
+          "S4 two decades after Darwin's first insight": "对齐不了：two decades after… 中文“达尔文最初的洞察出现后的二十年”，after 引出的起算点必须放到“二十年”前，整组语序倒过来",
+          "S11 struck without Wallace": "对齐不了：without Wallace 中文“在华莱士未参与的情况下”必须放到动词“达成”前",
+          "S14 On the Origin of Species": "对齐不了：书名《物种起源》，不能拆",
+          "S17 named the theory after himself": "对齐不了：name A after B 中文“用 B 的名字为 A 命名”，after himself 必须放到动词前，the theory 化成“为这一理论”也在动词前",
+          "S11 may have kept rivalry over precedence at bay": "对齐不了：keep A at bay 中文“避免了 A”，at bay 不能单独成组；rivalry over precedence 中文“围绕先后次序的竞争”定语必须提前",
+          "S12 publication on 20 August 1858": "对齐不了：on 20 August 1858 是后置的时间说明，中文“于1858年8月20日的发表”时间必须放到“发表”前",
+          "S12 met a muted reception": "对齐不了：met a muted reception 中文“得到的反响却很平淡”，muted 必须改成谓语放到最后",
+          "S13 remarked in his yearly address": "对齐不了：in his yearly address 是地点状语，中文“在年度致辞中谈到”必须放到动词前",
+          "S14 The sensation came on 24 November 1859 with Darwin's treatise, On the Origin of Species": "对齐不了：时间状语 on 24 November 1859 和 with Darwin's treatise… 中文“1859年11月24日，达尔文的专著《物种起源》问世，引起轰动”都必须放到 sensation 前，整组语序倒过来",
+          "S14 every copy of its first impression": "对齐不了：every copy of… 是 of 结构，中文“该书第一次印刷的每一册”，“每一册”必须放到最后",
+          "S15 Wallace had readily signified his acceptance in October 1858": "对齐不了：in October 1858 是时间状语，中文“1858年10月”必须放到句首",
+          "S15 assuring Hooker in a cordial letter": "对齐不了：in a cordial letter 是方式状语，中文“在一封亲切的信中向胡克保证”必须放到动词前",
+          "S15 of his satisfaction with the arrangement": "对齐不了：satisfaction with… 中文“对这一安排感到满意”，“满意”必须放到最后",
+          "S16 a lengthy exposition of the idea": "对齐不了：an exposition of… 中文“一部长篇论述阐释这一思想”，of the idea 必须化成后面的“阐释这一思想”",
+          "S16 and entitled it Darwinism": "对齐不了：entitle A B 中文“将 A 定名为 B”，“为”必须放到书名前，不能拆",
+          "S17 never named the theory after himself": "对齐不了：name A after B 中文“用 B 的名字为 A 命名”，after himself 必须放到动词前",
+          "S14 came on 24 November 1859": "对齐不了：came 的意思“到来”在中文句末（随着……《物种起源》到来），时间“于1859年11月24日”必须放在前面，came 只能和时间合成一组"
+        },
+        "数字写法": {
+          "S4-1 two": "two decades 中文“二十年”，数值相同（two decades = 20年）"
+        },
+        "方向": {
+          "S4-1 after→距达尔文最初的设想已有二": "two decades after… 的 after 表示“在……之后”，中文“距……已有二十年”的“距……已有”就是从那之后算起，方向一致",
+          "S4-1 after→达尔文最初的洞察出现后的": "two decades after… 的 after 表示“在……之后”，中文“……出现后的二十年”的“后”就是从那之后算起，方向一致",
+          "S17-1 after→用自己的名字为这一理论命": "name A after B 的 after 是“以……命名”的固定用法（按照），不是时间先后，中文“用自己的名字为……命名”意思一致"
+        },
+        "对齐": {
+          "S2-2 and pass on their hereditary t": "pass on… 中文“把……传递下去”，“传递下去”必须放到宾语后面",
+          "S12-1 The papers' publication on 20 ": "on 20 August 1858 是后置的时间说明，中文“1858年8月20日，两篇论文刊出”时间必须放到句首",
+          "S1-1 Charles Darwin disembarked fro": "in October 1836 是时间状语，中文“1836年10月”必须放到句首；disembark from… 中文“从……上登岸”，“登岸”必须放到船名后面",
+          "S2-1 the principle of natural selec": "the principle of… 是 of 结构，中文“自然选择的原理”，“原理”必须放到最后",
+          "S2-2 individuals better adapted to ": "better adapted to… 是过去分词短语作后置定语，修饰 individuals，中文“对环境适应得更好的个体”定语必须提前",
+          "S4-1 two decades after Darwin's fir": "two decades after… 中文“达尔文最初的洞察出现后的二十年”，after 引出的起算点必须放到“二十年”前，整组语序倒过来",
+          "S4-2 Alfred Russel Wallace, a natur": "a naturalist 是同位语，中文“博物学家阿尔弗雷德·拉塞尔·华莱士”身份必须放到人名前",
+          "S4-2 afflicted by fever in the Mala": "in the Malay Archipelago 是地点状语，中文“在马来群岛饱受热病的折磨”地点必须放到动词前，热病又夹在“饱受……的折磨”中间",
+          "S5-1 reached Darwin on 18 June 1858": "on 18 June 1858 是时间状语，中文“于1858年6月18日到达了达尔文的手里”时间必须放到动词前",
+          "S6-1 paralleled Darwin's own almost": "paralleled… almost precisely 中文“与达尔文本人的论证几乎完全相合”，比较对象和程度必须放到动词“相合”前",
+          "S8-2 to be read simultaneously at t": "时间状语 on 1 July 1858、地点状语 at the Linnean Society 和同位语 a scientific institution in London，中文“于1858年7月1日在伦敦的科学机构林奈学会同时宣读”都必须放到动词“宣读”前，整组语序倒过来",
+          "S10-2 had killed his infant son on 2": "on 28 June 是时间状语，中文“在6月28日”必须放到动词前；kill his son 中文“夺去了他幼子的生命”，“生命”必须放到最后",
+          "S11-2 may have kept rivalry over pre": "keep A at bay 中文“避免了 A”，at bay 不能单独成组；rivalry over precedence 中文“围绕先后次序的竞争”定语必须提前",
+          "S12-1 publication on 20 August 1858": "on 20 August 1858 是后置的时间说明，中文“于1858年8月20日的发表”时间必须放到“发表”前",
+          "S13-1 remarked in his yearly address": "in his yearly address 是地点状语，中文“在年度致辞中谈到”必须放到动词前",
+          "S14-1 On the Origin of Species:": "书名《物种起源》，不能拆",
+          "S14-2 every copy of its first impres": "every copy of… 是 of 结构，中文“该书第一次印刷的每一册”，“每一册”必须放到最后",
+          "S15-2 assuring Hooker in a cordial l": "in a cordial letter 是方式状语，中文“在一封亲切的信中向胡克保证”必须放到动词前",
+          "S17-1 named the theory after himself": "name A after B 中文“用 B 的名字为 A 命名”，after himself 必须放到动词前，the theory 化成“为这一理论”也在动词前",
+          "S14-1 came on 24 November 1859": "came 的意思“到来”在中文句末（随着……《物种起源》到来），时间“于1859年11月24日”必须放在前面，came 只能和时间合成一组（用户 2026-11-07 给定的译文语序）"
+        },
+        "短语": {
+          "S4 afflicted … by": "不是搭配：by 是被动句引出施动者（热病），afflicted 单独就是“身患”（受……折磨）",
+          "S1 disembarked … from": "不是搭配：from 只引出从哪条船上下来，disembarked 单独就是“登岸”",
+          "S2 formulating … of": "不是搭配：of 属于 the principle of natural selection（of 结构），和 formulating 无关",
+          "S2 principle … of": "不是搭配：of natural selection 是 of 结构的后置修饰（自然选择的原理），principle 单独就是“原理”",
+          "S2 adapted … to": "不是搭配：to 引出适应的对象（对环境），adapted 单独就是“适应”，沿用文章定稿只标 adapted",
+          "S8 arranged … to": "不是搭配：短语已整体标 arranged for（促成）；to be read 是 for 后面引出的不定式，不属于短语本身",
+          "S8 for … to": "不是搭配：to be read 是 arranged for 后面的不定式宾补，for 已随 arranged for 整体标",
+          "S8 institution … in": "不是搭配：in London 只说明机构在哪里，institution 单独就是“机构”",
+          "S11 rivalry … over": "不是搭配：over precedence 引出竞争的内容（围绕先后次序），rivalry 单独就是“竞争”",
+          "S14 treatise … on": "不是搭配：On the Origin of Species 是书名（同位语），和 treatise 无关",
+          "S14 subscribed … of": "不是搭配：短语已整体标 subscribed for（认购）；of 属于 every copy of its first impression（of 结构）",
+          "S15 acceptance … of": "不是搭配：of 属于后面的 assuring Hooker … of his satisfaction，和 acceptance 无关",
+          "S15 assuring … of": "不是搭配：assure sb of sth 的 of 只引出保证的内容（自己对安排满意），assure 单独就是“保证”；意思“向……保证”被“胡克”隔开，“向”和“保证”两处都标 assuring（T23）",
+          "S15 assuring … with": "不是搭配：with 属于 satisfaction with the arrangement（对安排满意），和 assuring 无关",
+          "S15 satisfaction … with": "不是搭配：with 引出满意的对象（对这一安排），satisfaction 单独就是“满意”",
+          "S16 exposition … of": "不是搭配：of the idea 是 of 结构，说明阐述的内容，exposition 单独就是“论述”"
+        },
+        "同词异译": {
+          "assuring：向/保证": "不是两种译法：assure sb 的意思“向……保证”被“胡克”隔开，“向”和“保证”是同一个意思的两部分（T23）",
+          "assuring：保证/向": "不是两种译法：assure sb 的意思“向……保证”被“胡克”隔开，“向”和“保证”是同一个意思的两部分（T23）",
+          "adapted to：对/适应": "不是两种译法：adapted to 的意思“对……适应”被“周围环境”隔开，“对”和“适应”是同一个意思的两部分（T23，用户 2026-11-07 原话“adapt to 重点词汇 整体”）",
+          "afflicted by：的折磨/饱受": "不是两种译法：afflicted by 的意思“饱受……的折磨”被“热病”隔开，“饱受”和“的折磨”是同一个意思的两部分（T23，用户 2026-11-07 原话“中文意思对应：饱受.....的折磨”）",
+          "paralleled：一样/与": "不是两种译法：paralleled 的意思“与……一样”被“达尔文自己的几乎完全”隔开，“与”和“一样”是同一个意思的两部分（T23，用户 2026-11-07 原话“与.....一样 对应 paralleled 的中文意思”）",
+          "entitled：命名为/将": "不是两种译法：entitle A B 的意思“将……命名为”被“其”隔开，“将”和“命名为”是同一个意思的两部分（T23，用户 2026-11-07 原话“entitle 意思为：将...命名为”）",
+          "named after：为/命名/用": "不是三种译法：name A after B 的意思“用……为……命名”被“自己的名字”“这一理论”隔开，“用”“为”“命名”是同一个意思的三部分（T23，用户 2026-11-07 原话“用....为.....命名”）"
+        },
+        "非人声": {
+          "17.08–17.09s": {
+            "配音指纹": "3f09f415a035",
+            "实测": {
+              "最响dB": -40.4,
+              "重心Hz": 3467,
+              "周期": 0.0,
+              "低频dB": -15.8
+            },
+            "词尾": "d",
+            "依据": "2026-11-07 逐 2.5 ms 实测（dossier_56，配音指纹 3f09f415a035）：S2 w 8.095：adapted 的 -ted，/d/ 闭塞 8.07–8.09（-62～-68 dB）后一下除阻（-38 dB、重心 3.8 kHz、5 ms），8.10–8.13 又静音，8.135 起 to 的 /t/；是 adapted 词尾 /d/ 的除阻（词的一部分）"
+          },
+          "22.57–22.59s": {
+            "配音指纹": "3f09f415a035",
+            "实测": {
+              "最响dB": -31.0,
+              "重心Hz": 586,
+              "周期": 0.0,
+              "低频dB": -2.7
+            },
+            "词头": "b",
+            "依据": "2026-11-07 逐 2.5 ms 实测（dossier_56，配音指纹 3f09f415a035）：S3 w 0.02–0.035：-52→-45→-31→-28 dB 连续升高、重心 0.4–0.9 kHz、低频占 -2 dB，0.05 起 By 的元音（-8 dB）；是 By 的 /b/ 浊音起始（词的一部分）"
+          },
+          "27.43–27.45s": {
+            "配音指纹": "3f09f415a035",
+            "实测": {
+              "最响dB": -37.5,
+              "重心Hz": 2675,
+              "周期": 0.0,
+              "低频dB": -21.2
+            },
+            "依据": "2026-11-07 逐 2.5 ms 实测（dossier_56，配音指纹 3f09f415a035）：S3 w 4.8875：manuscript 的 -script，/p/ 闭塞 4.86–4.885（-59～-71 dB）后一下除阻（-36 dB、重心 2.8 kHz），4.90–4.92 /t/ 闭塞，4.9275 /t/ 除阻（-28 dB、重心 2.7–4.2 kHz）；是 script 中 /p/ 的除阻（词的一部分）"
+          },
+          "28.45–28.45s": {
+            "配音指纹": "3f09f415a035",
+            "实测": {
+              "最响dB": -43.9,
+              "重心Hz": 2839,
+              "周期": 0.0,
+              "低频dB": -15.7
+            },
+            "依据": "2026-11-07 逐 2.5 ms 实测（dossier_56，配音指纹 3f09f415a035）：S3 w 5.905：kept 的 ɛ 衰减到 5.885（-59 dB），/p/ 闭塞 5.89–5.90，5.905 一下除阻（-42 dB、重心 3.6 kHz），5.915–5.94 /t/ 闭塞（-66～-69 dB），5.945 起 /t/ 除阻接 it；是 kept 中 /p/ 的除阻（词的一部分）"
+          },
+          "29.52–29.57s": {
+            "配音指纹": "3f09f415a035",
+            "实测": {
+              "最响dB": -31.7,
+              "重心Hz": 3444,
+              "周期": 0.12,
+              "低频dB": -13.0
+            },
+            "词尾": "t",
+            "依据": "2026-11-07 逐 2.5 ms 实测（dossier_56，配音指纹 3f09f415a035）：S3 w 6.985–7.035：unpublished 的 /ʃ/ 6.905–6.955（重心 4.5–5.2 kHz、低频 -40～-57 dB），6.965–6.985 闭塞（-67～-70 dB），6.99 起 /t/ 除阻送气（-34→-59 dB 衰减、重心 2.4–3.5 kHz）；是 unpublished 词尾 /t/ 的除阻（词的一部分）"
+          },
+          "62.45–62.52s": {
+            "配音指纹": "3f09f415a035",
+            "实测": {
+              "最响dB": -35.8,
+              "重心Hz": 2093,
+              "周期": 0.32,
+              "低频dB": -3.7
+            },
+            "依据": "2026-11-07 逐 2.5 ms 实测（dossier_56，配音指纹 3f09f415a035）：S6 w 8.375–8.455：coincidence. 的 -dence，/n/ 衰减（-39～-55 dB、低频占 -3～-8 dB 浊音、周期 0.3），8.46–8.475 静音，8.48 起句末 /s/（重心 3.2–6.3 kHz、低频 -28～-54 dB）；是 /n/ 的浊音收尾（词的一部分）"
+          },
+          "106.02–106.11s": {
+            "配音指纹": "3f09f415a035",
+            "实测": {
+              "最响dB": -35.6,
+              "重心Hz": 1605,
+              "周期": 0.3,
+              "低频dB": -3.0
+            },
+            "依据": "2026-11-07 逐 2.5 ms 实测（dossier_56，配音指纹 3f09f415a035）：S12 w 5.68–5.77：reception. 句末 -ʃən 的 /n/ 衰减（-30～-59 dB、低频占 -3～-8 dB、重心 0.6–2.5 kHz），5.78 后降到 -67～-108 dB；是 /n/ 的浊音收尾（词的一部分）"
+          },
+          "113.30–113.40s": {
+            "配音指纹": "3f09f415a035",
+            "实测": {
+              "最响dB": -35.2,
+              "重心Hz": 2159,
+              "周期": 0.19,
+              "低频dB": -13.7
+            },
+            "词头": "h",
+            "依据": "2026-11-07 逐 2.5 ms 实测（dossier_56，配音指纹 3f09f415a035）：S13 w 6.53–6.63：year 的 ɹ 到 6.53，6.55–6.63 送气（-39～-48 dB、低频 -11～-31 dB、重心 1.6–2.6 kHz）一路升到 6.635 -31、6.65 -22、6.67 起 had 的元音（-16 dB、低频 -5 dB），中间没有 -55 dB 低谷；是 had 的词头 /h/ 送气（词的一部分）"
+          },
+          "115.89–115.99s": {
+            "配音指纹": "3f09f415a035",
+            "实测": {
+              "最响dB": -36.3,
+              "重心Hz": 2908,
+              "周期": 0.22,
+              "低频dB": -3.1
+            },
+            "依据": "2026-11-07 逐 2.5 ms 实测（dossier_56，配音指纹 3f09f415a035）：S13 w 9.125–9.22：discoveries. 的 -iz，iː 衰减（-36～-53 dB、低频 -2～-9 dB 浊音），9.21 起重心升到 4.3–5.6 kHz、低频 -30～-53 dB 的句末 /z/ 清化段，连续无低谷；是 iː 到 /z/ 的过渡（词的一部分）"
+          },
+          "124.78–124.89s": {
+            "配音指纹": "3f09f415a035",
+            "实测": {
+              "最响dB": -36.4,
+              "重心Hz": 2433,
+              "周期": 0.3,
+              "低频dB": -4.4
+            },
+            "依据": "2026-11-07 逐 2.5 ms 实测（dossier_56，配音指纹 3f09f415a035）：S14 w 7.64–7.75：Species 的 -piːsiːz，iː 衰减（-35～-58 dB、低频 -1～-13 dB、周期 0.3），7.745 起中间那个 /s/（重心 4.4–5.5 kHz、低频 -22～-48 dB）连续无低谷；是 iː 到 /s/ 的过渡（词的一部分）"
+          },
+          "129.82–129.84s": {
+            "配音指纹": "3f09f415a035",
+            "实测": {
+              "最响dB": -45.8,
+              "重心Hz": 2171,
+              "周期": 0.37,
+              "低频dB": -0.5
+            },
+            "词头": "w",
+            "依据": "2026-11-07 逐 2.5 ms 实测（dossier_56，配音指纹 3f09f415a035）：S14 w 12.755–12.78：impression, 后的非人声区间到 12.7554 为止，12.755–12.78 低频占 0～-8 dB（浊音）、周期 0.37，12.785 -36、12.79 -26、12.795 -17 连续升高进 one 的 /w/；是 one 的 /w/ 浊音起始（词的一部分）"
+          },
+          "136.10–136.10s": {
+            "配音指纹": "3f09f415a035",
+            "实测": {
+              "最响dB": -41.9,
+              "重心Hz": 3103,
+              "周期": 0.0,
+              "低频dB": -21.8
+            },
+            "依据": "2026-11-07 逐 2.5 ms 实测（dossier_56，配音指纹 3f09f415a035）：S15 w 2.695：acceptance 的 -ccept-，/p/ 闭塞 2.655–2.69（-58～-70 dB）后一下除阻（-43 dB、重心 3.1 kHz），2.70–2.735 /t/ 闭塞，2.74 起 /t/ 除阻（-20 dB、重心 3.2–4.1 kHz）；是 accept 中 /p/ 的除阻（词的一部分）"
+          }
+        },
+        "机器复听": {},
+        "删除段": {
+          "S2 raw 0.3700-0.4250": "2026-11-07 逐 2.5 ms 实测（dossier_56 S2 w）：in 的 /n/ 衰减到 0.345（-59 dB），0.345–0.37 -58～-65 dB，0.375 一下 5 ms 孤立咔哒（-36 dB、重心 3.8 kHz、低频 -24 dB、无周期），0.38–0.405 -51～-70 dB，0.41 起 September 的 /s/（重心 3.5–6.2 kHz）；咔哒两边都隔着静音、不连词，手写非人声区间 [0.37, 0.385]；复核报 lost 是删掉的咔哒本身",
+          "S5 raw 2.2163-2.3759": {
+            "类型": "紧贴两头的非人声",
+            "配音指纹": "99c01d26bde1",
+            "依据": "2026-10-15 删除段对应 非人声区间 [[2.196292, 2.356083, '紧贴两头']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost', 'post', 'pre'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"
+          },
+          "S8 raw 7.5350-7.9911": {
+            "类型": "紧贴词头的非人声",
+            "配音指纹": "99c01d26bde1",
+            "依据": "2026-10-15 删除段对应 非人声区间 [[7.71, 7.981125, '紧贴词头']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"
+          },
+          "S14 raw 5.7150-6.0708": {
+            "类型": "紧贴词头的非人声",
+            "配音指纹": "99c01d26bde1",
+            "依据": "2026-10-15 删除段对应 非人声区间 [[5.695, 6.050792, '紧贴词头']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost', 'post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"
+          },
+          "S14 raw 12.4350-12.7754": {
+            "类型": "紧贴词头的非人声",
+            "配音指纹": "99c01d26bde1",
+            "依据": "2026-10-15 删除段对应 非人声区间 [[12.45, 12.755417, '紧贴词头']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"
+          },
+          "S15 raw 5.0100-5.4400": "2026-10-15 删除段对应 非人声区间 [[5.18, 5.43]]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"
+        },
+        "响度骤降": {
+          "124.3–124.8s": {
+            "配音指纹": "3f09f415a035",
+            "低": 6.3,
+            "句子": "S14 The sensation came on 24 November 1859 with Darwin's treatise, On the Origin of Species: ...",
+            "依据": "2026-11-07 逐 50 ms 实测（a.wav 对照本句原始合成 w，配音指纹 3f09f415a035）：这一段是 Species 的 -piːsiː（w 7.13–7.68）；a.wav 相对本句有声平均的电平逐格都比原始合成 w 低 1.3 dB，正好是这一段（S14 第2段）的句内调平 -1.5 dB，曲线形状完全一致（124.30 -4.1/-2.9、124.45 -7.0/-5.7、124.60 -7.7/-6.4、124.70 -19.0/-17.8、124.80 -31.4/-30.1）；124.25 一格是 /p/ 闭塞静音，124.55–124.85 是 iː 衰减进中间 /s/ 的清辅音段，原始合成里同样低；不是拼接或调平造成，读音清楚，机器复听两路都听对 Species"
+          }
+        },
+        "中文重复": {
+          "安排": "用户 2026-11-07 原话（问 S8 arranged for 与 S15 arrangement 都译“安排”）：“两个都用‘安排’”；两词同根（arrange），S8 是动作“安排两篇论文宣读”，S15 是这件事的结果“这一安排”，意思一脉相承"
+        },
+        "了不并": {
+          "S4-3": "用户 2026-11-08 原话：“把了加上 但是不要标色”"
+        },
+        "的不并": {
+          "S10-2": "主会话 2026-11-07 定：“他**幼子**(infant)的生命”的“的”是所属（幼子的生命），不是形容词 infant 的“的”，标色只标意思本身；T38（修.py 的并进）不并"
+        },
+        "停顿位置": {
+          "S15 1858, / assuring @5.005": "2026-11-07 逐 2.5 ms 实测（S15 w）：1858 的 eight 闭塞 4.91–4.94（-63 dB）、/t/ 除阻 4.945–4.97（-43～-49 dB），4.975–5.43 全是 -60～-72 dB 静音，5.435 起 assuring 的 ə（-28 dB、周期 0.55）；对齐器把前词末音素起点标在 5.044（已在静音里），停顿 5.005–5.425 在两词之间"
+        }
+      },
+      "结尾解说": "简述",
+      "停顿插入点": {},
+      "非人声区间": {
+        "S13": [
+          [
+            1.83,
+            2.055
+          ],
+          [
+            5.48,
+            5.805
+          ]
+        ],
+        "S15": [
+          [
+            5.18,
+            5.43
+          ]
+        ],
+        "S4": [
+          [
+            10.895,
+            11.265
+          ]
+        ],
+        "S8": [
+          [
+            7.71,
+            7.981125,
+            "紧贴词头"
+          ]
+        ],
+        "S14": [
+          [
+            5.695,
+            6.050792,
+            "紧贴词头"
+          ],
+          [
+            12.45,
+            12.755417,
+            "紧贴词头"
+          ]
+        ],
+        "S1": [
+          [
+            3.24,
+            3.51
+          ]
+        ],
+        "S2": [
+          [
+            0.37,
+            0.385
+          ],
+          [
+            2.06,
+            2.375
+          ]
+        ],
+        "S5": [
+          [
+            2.196292,
+            2.356083,
+            "紧贴两头"
+          ]
+        ],
+        "S12": [
+          [
+            3.93,
+            4.29
+          ]
+        ],
+        "S16": [
+          [
+            1.51,
+            1.72
+          ],
+          [
+            4.54,
+            4.905
+          ]
+        ]
+      },
+      "词尾除阻": {
+        "S4": {
+          "1": [
+            1.955,
+            "t"
+          ],
+          "2": [
+            4.785,
+            "t"
+          ]
+        },
+        "S5": {
+          "句末": [
+            4.805,
+            "t"
+          ]
+        },
+        "S8": {
+          "句末": [
+            13.33,
+            "t"
+          ]
+        },
+        "S15": {
+          "1": [
+            4.93,
+            "t"
+          ],
+          "句末": [
+            9.76,
+            "t"
+          ]
+        }
+      },
+      "allow_clash": [
+        "traits"
+      ],
+      "高亮按实际开口": true,
+      "高亮开口门槛": 40,
+      "术语": {
+        "Charles Darwin": "查尔斯·达尔文",
+        "HMS Beagle": "小猎犬号",
+        "Alfred Russel Wallace": "阿尔弗雷德·拉塞尔·华莱士",
+        "Malay Archipelago": "马来群岛",
+        "Charles Lyell": "查尔斯·莱尔",
+        "Joseph Hooker": "约瑟夫·胡克",
+        "Linnean Society": "林奈学会",
+        "London": "伦敦",
+        "On the Origin of Species": "《物种起源》",
+        "Darwinism": "《达尔文主义》"
+      },
+      "区间声音指纹": {
+        "S1": "6d86b8b5a88a",
+        "S2": "f2773e12714e",
+        "S4": "179f77aff2a4",
+        "S5": "37e338e91064",
+        "S8": "b66042cc021d",
+        "S12": "584f4a866ec8",
+        "S13": "cdd68425bc39",
+        "S14": "14c915d525ac",
+        "S15": "6595fe25e543",
+        "S16": "58077460df6e",
+        "S11": "9d0aed73b729"
+      },
+      "朗读删逗号": {
+        "S11": {
+          "篇号": 56,
+          "原文": "The compromise, struck without Wallace, may have kept rivalry over precedence at bay.",
+          "逗号序号": [
+            1
+          ]
+        }
+      },
+      "结尾句": {
+        "S17": {
+          "整句语速": 0.95
+        }
+      }
+    },
+    "private_after_source_SHA256": "98f19d88462902693e5cdb579c2d539150d22cff9be5b42a7f57ebc1d42ecb7b",
+    "original_preview_log": "",
+    "cached_model_calls": 48,
+    "actual_used_existing_cache_entries": [
+      {
+        "name": "d58e4bfd8a8bbf925bdad94ec4e5ec0cb056c142.pkl",
+        "sha256": "02d2b93ab29e4bf9fce06348f0206009b6b2a18bd4b024890369c8df8ca1e404",
+        "method": "create",
+        "actual_model_input_sha256": "59691adb316aa8fc89e6c34854a1f723fb33e555097fb653b12d696eff0be0bc",
+        "single_thread_marker_sha256": "5712d37106a9247fc592399b74c2c11cc4e1ccb19aedb5d75227081de765b0b4",
+        "single_thread_marker_value": "02d2b93ab29e4bf9"
+      },
+      {
+        "name": "c7090d19c1e4d3c363a7fdb0eb99fa16fa663eaa.pkl",
+        "sha256": "2bce536db930e347a2187bb527528e7b5d2ec5b3332d1858bfc5b4a183124e2a",
+        "method": "create_timed",
+        "actual_model_input_sha256": "59691adb316aa8fc89e6c34854a1f723fb33e555097fb653b12d696eff0be0bc",
+        "single_thread_marker_sha256": "2a1b289f0017fd5a5603d4efc2c4360b898b7aebb947ce28a9183bcc75bc3494",
+        "single_thread_marker_value": "2bce536db930e347"
+      },
+      {
+        "name": "6c97f50430a14fcb85e28ba8fc5a354a561f7f6c.pkl",
+        "sha256": "e5c5b54cf8c7e420904051285a1d1c4035489116315654aaf5852284abc26195",
+        "method": "create",
+        "actual_model_input_sha256": "67bf6f11f88372cf76d3cd58ff46011497d10370b35ad5795e35fb89897dfb1e",
+        "single_thread_marker_sha256": "eff8dfbdc8c8d38c049ed03f16ebed57e7a54b83bfe26da7abe094792e3f75af",
+        "single_thread_marker_value": "e5c5b54cf8c7e420"
+      },
+      {
+        "name": "b07427413d0feb77441ae7592597ae3a57aed381.pkl",
+        "sha256": "c3a07bd88967236cad1192cf056d033d50def5b867a5e1fac53d2312867011b0",
+        "method": "create_timed",
+        "actual_model_input_sha256": "67bf6f11f88372cf76d3cd58ff46011497d10370b35ad5795e35fb89897dfb1e",
+        "single_thread_marker_sha256": "f10193f47ff8f144a2e5006c288f7ce28bb4401e3c11e7df3a3fa3fbecd81c60",
+        "single_thread_marker_value": "c3a07bd88967236c"
+      },
+      {
+        "name": "c366715eab285f3561bcf40aee0b9336e402efd2.pkl",
+        "sha256": "8179317e5e0e69c592a7d651ab2b8739972eceb1ed5c30b4c106f61af44d6c30",
+        "method": "create",
+        "actual_model_input_sha256": "690c20396fc20d582f3598d392be6bd4e3136f189e4aeff73a240a481c18f2d2",
+        "single_thread_marker_sha256": "a45cb6c2dcfc2dc6666e77e0efadfd056a85efd47be325e6f7156590b42adc29",
+        "single_thread_marker_value": "8179317e5e0e69c5"
+      },
+      {
+        "name": "67900317778e57e8424b6070e89f04e946dc6942.pkl",
+        "sha256": "83175a0248aa74f203b35ad8814c042ac496107c010853346781af1be590fdb0",
+        "method": "create_timed",
+        "actual_model_input_sha256": "690c20396fc20d582f3598d392be6bd4e3136f189e4aeff73a240a481c18f2d2",
+        "single_thread_marker_sha256": "ae983ad63a65af66a9fc807e85c9a051b79a768841b5e65c061c7232ddf5f276",
+        "single_thread_marker_value": "83175a0248aa74f2"
+      },
+      {
+        "name": "38f4cf2ad328b5684f876666fbe1648ef5efd949.pkl",
+        "sha256": "90ae948e8037413e7882ff90f5d7e637ecf9bfaa9b61c83aee2f69a829dcbebe",
+        "method": "create",
+        "actual_model_input_sha256": "72e6d4e0f43d14d1f73d1259559586e40913e4a0ea308baafd3e427a9bc7a1b6",
+        "single_thread_marker_sha256": "f50bd77cb1cb41d6d8510738107bcf15d1f02d602487b7bf88d9a8bd1209d0df",
+        "single_thread_marker_value": "90ae948e8037413e"
+      },
+      {
+        "name": "bccaefe84c8361132c42fb0cc96c255feb0b404f.pkl",
+        "sha256": "abfd658173d4e8710ca1525d10288d2fe69a530cf3588e14a4946937fa47bce9",
+        "method": "create_timed",
+        "actual_model_input_sha256": "72e6d4e0f43d14d1f73d1259559586e40913e4a0ea308baafd3e427a9bc7a1b6",
+        "single_thread_marker_sha256": "11813b451b68bca2231e923d1d4bc91215c460b1a08023079a40bedb27939b50",
+        "single_thread_marker_value": "abfd658173d4e871"
+      },
+      {
+        "name": "2ca444c62b871ffea675949351ee87cee71e0931.pkl",
+        "sha256": "d50c4d8eca6cc384eab86ed0b56698f1f5b870147f79553119a305bb994da090",
+        "method": "create",
+        "actual_model_input_sha256": "707acbb7811933799d1c5af60f450f07c3d513bb5f956bd64f89dd1464b9b5e9",
+        "single_thread_marker_sha256": "0eaa1e3948343dec8d8f6240ff1c03f15c0b55d206739626f7127265c55da5cb",
+        "single_thread_marker_value": "d50c4d8eca6cc384"
+      },
+      {
+        "name": "3abf4953cedead49380fc6d873d1654b5287d6bc.pkl",
+        "sha256": "113cfca3835e24aa7af094109354da106ba1d75f859b7d49b8e9f7ebb152fcbe",
+        "method": "create_timed",
+        "actual_model_input_sha256": "707acbb7811933799d1c5af60f450f07c3d513bb5f956bd64f89dd1464b9b5e9",
+        "single_thread_marker_sha256": "4544381bf8c5c391121f4acf7b375226bd22134ce810477ac4741bda8cec24fb",
+        "single_thread_marker_value": "113cfca3835e24aa"
+      },
+      {
+        "name": "fb77921e45d8769e38c53a16730bf57f7127cd3b.pkl",
+        "sha256": "b31d78b8ca1db8878978fd62c4671625cdfdf3d59721b81daf0b9824ca4541ca",
+        "method": "create",
+        "actual_model_input_sha256": "2fbd2be21f0a484fef6f968a5f621ca1e5d5c882aa30225a883b881770db5d60",
+        "single_thread_marker_sha256": "7f74e85aea88334375bd911e58e84baede492fddab7112e76e202652efbf513f",
+        "single_thread_marker_value": "b31d78b8ca1db887"
+      },
+      {
+        "name": "80e512b5b2b66fa49ec702a15e213490d19e912c.pkl",
+        "sha256": "ea2eaffec21129828fa11ce292a325cdbc2914ca1ef7b141690bdc603b6a6e74",
+        "method": "create_timed",
+        "actual_model_input_sha256": "2fbd2be21f0a484fef6f968a5f621ca1e5d5c882aa30225a883b881770db5d60",
+        "single_thread_marker_sha256": "320794beed0feefc789a24632d244b4fc00fc3c4f8ed06937de2fdff60987a86",
+        "single_thread_marker_value": "ea2eaffec2112982"
+      },
+      {
+        "name": "0cdbe0b3d4e8291e46d6c8c04e341e878ee6d70e.pkl",
+        "sha256": "453f3ff0b814404d22790378ef24ec675e4108e2fb03f1e369f2f822eeb20c5a",
+        "method": "create",
+        "actual_model_input_sha256": "3800b1e1ceeec510f07294589f6fdb8ed5906e537d04bf61e08344f134537861",
+        "single_thread_marker_sha256": "6e04a37ac9471608262aad532efd97731a3b0d22c179d114897c978dca48162d",
+        "single_thread_marker_value": "453f3ff0b814404d"
+      },
+      {
+        "name": "e7a04810aa10f4c1ec066f354703dddf014fb9d5.pkl",
+        "sha256": "6aae901ba5c30e85e7bdcea2e5c7beb1396b954e10bf32042fa41374c668451f",
+        "method": "create_timed",
+        "actual_model_input_sha256": "3800b1e1ceeec510f07294589f6fdb8ed5906e537d04bf61e08344f134537861",
+        "single_thread_marker_sha256": "c7072353756c758043d5ab5785bd7b80c2f2c14a1ec2a87049f6f36dbab62589",
+        "single_thread_marker_value": "6aae901ba5c30e85"
+      },
+      {
+        "name": "e98852808fe25a21538ebf7f0293557eb088ab97.pkl",
+        "sha256": "94d7b6f9c46d84e60162322586a8d03ffc93c2184fdb7adc4158945e5531ae29",
+        "method": "create",
+        "actual_model_input_sha256": "923705a8db4a669e4a1acde90cfdc0b35bef6b1590292ba04148b3bd69bbcb88",
+        "single_thread_marker_sha256": "aa770c3cf1e5611201c17fd47b90fd3f7e16ca2a57d1965f7d8b806b1f6d761c",
+        "single_thread_marker_value": "94d7b6f9c46d84e6"
+      },
+      {
+        "name": "8159327fe06e9dd05e4732940c54e6b0ec36a152.pkl",
+        "sha256": "d11d18ab7aa2f38284f2a217b38ccbf0463fc0d932affce7165532dc3d6e8400",
+        "method": "create_timed",
+        "actual_model_input_sha256": "923705a8db4a669e4a1acde90cfdc0b35bef6b1590292ba04148b3bd69bbcb88",
+        "single_thread_marker_sha256": "35a05d9a465d097b06fd43502b7ddc0d8c4d7d788684562d94f88aa5d63e77d3",
+        "single_thread_marker_value": "d11d18ab7aa2f382"
+      },
+      {
+        "name": "571a8bf3ca794cc237ae6677290bf279717abe8d.pkl",
+        "sha256": "aecbbe5468313e5e8d6179f79e8cbe5275e3b159ed92fec9fc9a4a867c7b0d3b",
+        "method": "create",
+        "actual_model_input_sha256": "ca580df610a2f0521f13596e69bb978271adc6dbc745e8efcfe6a580718cc1c5"
+      },
+      {
+        "name": "e620502e5cd7d756fadb6518976f4ad6cdc970f7.pkl",
+        "sha256": "ca608f0c91f4713cef4da194a24b32ac0ad4b2477e10bb71e872151a9e38b5a3",
+        "method": "create",
+        "actual_model_input_sha256": "5c9df94d73a599325b7e796208dd172f28a65040a109a5a09930fd58398108e4",
+        "single_thread_marker_sha256": "53fb4491081d4ec63d03da8bb9a8164740442a4e6b3636100a6ed3d787aa65ed",
+        "single_thread_marker_value": "ca608f0c91f4713c"
+      },
+      {
+        "name": "e269f9bd418e1bc158293d20639529e449fe9e58.pkl",
+        "sha256": "1e06f26a2099d7b14a7adb67aae339e1a48f9a4b98959772512f0efd1afc0f52",
+        "method": "create_timed",
+        "actual_model_input_sha256": "5c9df94d73a599325b7e796208dd172f28a65040a109a5a09930fd58398108e4",
+        "single_thread_marker_sha256": "73d65434aeb4144bb7994bd8a0fb91c14c4bbe2b32b94358838910898b039824",
+        "single_thread_marker_value": "1e06f26a2099d7b1"
+      },
+      {
+        "name": "ca5f6dc1c25a784a3ef81aed11eab959a7400e02.pkl",
+        "sha256": "6b84bfe010172b01c8fde5db3c9348fa153494d25766f1a845171cb0a1fa721d",
+        "method": "create",
+        "actual_model_input_sha256": "15581c25196fa7692b98d97a106f7e1ac224a2dff72da5c73a20daa8ebea09b4",
+        "single_thread_marker_sha256": "0164087586065ae79b753439b10cb10f30c19a99949bb223861bae4a3da54b43",
+        "single_thread_marker_value": "6b84bfe010172b01"
+      },
+      {
+        "name": "9b1ae32360558c9dc9392bcee93699d578aa0d8f.pkl",
+        "sha256": "f80c319c1343f2138b64a22919705dd697a714c97d2a72e81bd93428a2f80184",
+        "method": "create_timed",
+        "actual_model_input_sha256": "15581c25196fa7692b98d97a106f7e1ac224a2dff72da5c73a20daa8ebea09b4",
+        "single_thread_marker_sha256": "acfc72281413cca894a3e21f8aa426b36b2372196ea8314cb65ea78051a24dae",
+        "single_thread_marker_value": "f80c319c1343f213"
+      },
+      {
+        "name": "ff0684b89bb89f54c2cd617972b81e37345cb2b2.pkl",
+        "sha256": "b435b13d464a39b8bc0e6229499d5890f38235aa739d2761ad33043910f44929",
+        "method": "create",
+        "actual_model_input_sha256": "e93e7d659341ffd7f3887fdbd155c013ea8a7f49309574fa71a742b5f68fe06f",
+        "single_thread_marker_sha256": "208f7f84e3a9065a0731e0e1176cb63f09d38dad9bffb10a693d657b9b3699bf",
+        "single_thread_marker_value": "b435b13d464a39b8"
+      },
+      {
+        "name": "74dbb471f2c462e5c02e9a219516784f616bf028.pkl",
+        "sha256": "a47e2aaff2f9f2a6a5c7cd4735c98c06d03c041eca7bd32cf50862b4544e081f",
+        "method": "create_timed",
+        "actual_model_input_sha256": "e93e7d659341ffd7f3887fdbd155c013ea8a7f49309574fa71a742b5f68fe06f",
+        "single_thread_marker_sha256": "3c2df6e07a17639b18cfd446c019158bef2a0ca79cfab01a7d6aa58044510e46",
+        "single_thread_marker_value": "a47e2aaff2f9f2a6"
+      },
+      {
+        "name": "72f30e40b43f24484d4257f5585f06563119dd2b.pkl",
+        "sha256": "49df7a9906904c76a528e38fe70ad168f990c6f11700d911e479555369e83eb3",
+        "method": "create",
+        "actual_model_input_sha256": "43bfd3f9d660abd0fe1c3384c2d1fd22c21dd22b0357588e4f8f9d1019aa3541",
+        "single_thread_marker_sha256": "679283ec0789607ac43a175b83cb116e5b249dff4ad1ac26d024518fd8061a70",
+        "single_thread_marker_value": "49df7a9906904c76"
+      },
+      {
+        "name": "06b5ce2ece0350a8b86a7a5c67e691c30e1002c8.pkl",
+        "sha256": "66afe450d16b13361d674870b48511e892257031548942cf40d92c72254fd36f",
+        "method": "create_timed",
+        "actual_model_input_sha256": "43bfd3f9d660abd0fe1c3384c2d1fd22c21dd22b0357588e4f8f9d1019aa3541",
+        "single_thread_marker_sha256": "90a0246a018e5d311fe279888e8c52e5b3edef593c30819ace5d594a0db71f29",
+        "single_thread_marker_value": "66afe450d16b1336"
+      },
+      {
+        "name": "a387fbeb6dd6337c40167612b2f8f3c56170122f.pkl",
+        "sha256": "dc264d5814ed0bd944f06a0ae2ac99bf6801d5458fe14898ed2f88670b8ed1de",
+        "method": "create",
+        "actual_model_input_sha256": "7ab4087b2c5293e715b5a63769102df98c294a405f7d0e5368c328f51388492a",
+        "single_thread_marker_sha256": "dd049abbaa96ade4ea32774679d996ff5f84b0d96cb3ed113b2e57efba5cccb4",
+        "single_thread_marker_value": "dc264d5814ed0bd9"
+      },
+      {
+        "name": "42d32206d7fda7443c0e489a1ee1ac1b11d9e3fa.pkl",
+        "sha256": "280f34b33b29a3fb0b4ee69723cd351f128688cd3faa720065239cc2562d2186",
+        "method": "create_timed",
+        "actual_model_input_sha256": "7ab4087b2c5293e715b5a63769102df98c294a405f7d0e5368c328f51388492a",
+        "single_thread_marker_sha256": "b0befcb69e8e3c5e01c47b430b6b4f7c43264a696569bdc618cacc305da59a9e",
+        "single_thread_marker_value": "280f34b33b29a3fb"
+      },
+      {
+        "name": "b6b57c8cee03f4f2c242fc5d3d5dadb21bc84aaa.pkl",
+        "sha256": "6d79edf22a6095e480b6068232cd545917daa07c946380a628982ad1705dc8fe",
+        "method": "create",
+        "actual_model_input_sha256": "f1852674032ac08c135a3d927d23992c50d5dcf992b201ebc1805fc8aadf7134",
+        "single_thread_marker_sha256": "df8db964ef162ee74c32e22096b4f8c048aaa6ded29764e36fda0f740c96c3d0",
+        "single_thread_marker_value": "6d79edf22a6095e4"
+      },
+      {
+        "name": "19299e21b3778be131a5458c9730b74b7f4db7c6.pkl",
+        "sha256": "8cadbdbc3ef926e74d02408fa452728d343624544108c61ed8fb642ad6a7332d",
+        "method": "create_timed",
+        "actual_model_input_sha256": "f1852674032ac08c135a3d927d23992c50d5dcf992b201ebc1805fc8aadf7134",
+        "single_thread_marker_sha256": "b50d7007f389763aebd66f11fda2b6a2acaef6267fb1951372922116b29ae6fc",
+        "single_thread_marker_value": "8cadbdbc3ef926e7"
+      },
+      {
+        "name": "ce9bb35fa3bde79d3a96e5bda0a398d7bdfeba88.pkl",
+        "sha256": "bb06036298e574cc58da7228493d356b5447e5247f22a45566efaa807064c41e",
+        "method": "create",
+        "actual_model_input_sha256": "d366e92fd6667283635cfa3225983b12e717677e739a3659662da58daf3ebf66",
+        "single_thread_marker_sha256": "0968c41b8cda8f1d1d63332592ade941c2e1954bc3bca9ae7968a2c80366b1bb",
+        "single_thread_marker_value": "bb06036298e574cc"
+      },
+      {
+        "name": "afb5e63cd7aa4d7fe6691a5e93db1f548909d097.pkl",
+        "sha256": "95dc39f259227b1d8a13205cee58c0aacea494115f93b27a343d4376a232fc0e",
+        "method": "create_timed",
+        "actual_model_input_sha256": "d366e92fd6667283635cfa3225983b12e717677e739a3659662da58daf3ebf66",
+        "single_thread_marker_sha256": "d4024a81855b6a8654a6721f3e7afcd20b589927ced4ff9889465aae65d786d4",
+        "single_thread_marker_value": "95dc39f259227b1d"
+      },
+      {
+        "name": "c4ad59732a5ab38a61622d039cbaeff0be736789.pkl",
+        "sha256": "5bbd52fcf3ce0e495157172de267154bba7e500b9055a50b261d44e2bad34ef2",
+        "method": "create",
+        "actual_model_input_sha256": "a141b423425daddab2b056ee5cd2455d5337bcf9d4591d8c75c73406a13d8084",
+        "single_thread_marker_sha256": "0e1056cd68202633b82dd4a6b31fb8636d92d2ba07cc72b9ff7c565933e3203e",
+        "single_thread_marker_value": "5bbd52fcf3ce0e49"
+      },
+      {
+        "name": "5ab226c1bab58391703fcb594c41ea36fa817f64.pkl",
+        "sha256": "519225d96cb19aff199ac5749af4908dc506321cd3f1c7bbe67b8d55323b5ae9",
+        "method": "create_timed",
+        "actual_model_input_sha256": "a141b423425daddab2b056ee5cd2455d5337bcf9d4591d8c75c73406a13d8084",
+        "single_thread_marker_sha256": "6ca917f26b42e59d643ed5a02c82b38bceabb8888142012879e0e01e382a3595",
+        "single_thread_marker_value": "519225d96cb19aff"
+      },
+      {
+        "name": "e2a1e08b05ec2f61ddac6679286eb22c5deec63d.pkl",
+        "sha256": "f7dc2450a895a56d0730af9a95f53c7254cf1828c60b01de39ab34e40dc9826c",
+        "method": "create",
+        "actual_model_input_sha256": "8d9efa62046605e766f2b809d467e96a1b16ce5df889e1c45612d100a84b1296",
+        "single_thread_marker_sha256": "19ca433a0a0d4308bc5ccdf9202f9551f7977f1b5cd2a5b0d665f5e557d195d6",
+        "single_thread_marker_value": "f7dc2450a895a56d"
+      },
+      {
+        "name": "0ed72ae38cada50fbe65b1e8ae538f54eabdd817.pkl",
+        "sha256": "8fd439f41d9008f961cb8c1248b7af105215eac523af9db6e67a3a788874fc9c",
+        "method": "create_timed",
+        "actual_model_input_sha256": "8d9efa62046605e766f2b809d467e96a1b16ce5df889e1c45612d100a84b1296",
+        "single_thread_marker_sha256": "2c8044f9239c87004da3da66c1621d4131c46f1d2c06a455ca9c522408d94259",
+        "single_thread_marker_value": "8fd439f41d9008f9"
+      },
+      {
+        "name": "98fa510468f594e111fd4b4074effc99052f3d2b.pkl",
+        "sha256": "e8544b5fcf52b86b3dffa8bf35544afb5eafd1686aeed35d796774eaaf85351b",
+        "method": "create",
+        "actual_model_input_sha256": "5f318b324af21043ee1498411c7c29193d4b3c026d1b6a10cf0e8ed986c74734",
+        "single_thread_marker_sha256": "a60c74b410308268e725729907cdb25e04aa637ffcad9b087d12a2bc3fe663d9",
+        "single_thread_marker_value": "e8544b5fcf52b86b"
+      },
+      {
+        "name": "c74e9c55100b564114f391a1edf85f1b73616342.pkl",
+        "sha256": "6b7858909458163f1463f27f50621e8528f945a5fe82c1ec46afc834fc59d0a7",
+        "method": "create_timed",
+        "actual_model_input_sha256": "5f318b324af21043ee1498411c7c29193d4b3c026d1b6a10cf0e8ed986c74734",
+        "single_thread_marker_sha256": "e7a98025b37772bc8696944f107cb5dc7fcef62934abd3c7dc75636c1ae1fa14",
+        "single_thread_marker_value": "6b7858909458163f"
+      }
+    ],
+    "all_raw_fingerprints_match_actual_samejob_whole": true,
+    "physical_audio_fields_would_change": false,
+    "original_A21_no_bad_and_physical_fields_unchanged": true
+  },
+  "cached_original_G36_reads": [
+    {
+      "existing_key": "1ba1711d7455284f1b615a6d25c2bc7491b42071",
+      "strict_before_after": true,
+      "new_math": false
+    },
+    {
+      "existing_key": "7f46778a7e98d7437c64ec3e488b3e153037aad4",
+      "strict_before_after": true,
+      "new_math": false
+    },
+    {
+      "existing_key": "a46f14cf76284b552f58351b2cf3b6a3db52b47f",
+      "strict_before_after": true,
+      "new_math": false
+    },
+    {
+      "existing_key": "9383615f875470bdc5d086fffc9fa92d158bdb7e",
+      "strict_before_after": true,
+      "new_math": false
+    },
+    {
+      "existing_key": "46ed682d4cb6da6f518a6131fcf9cb7918cee9de",
+      "strict_before_after": true,
+      "new_math": false
+    },
+    {
+      "existing_key": "4ec435314426e6b08fd6fc463700e2e89d080276",
+      "strict_before_after": true,
+      "new_math": false
+    },
+    {
+      "existing_key": "f8530296a68d023c59d49bcc027d1e23c0bd9a2c",
+      "strict_before_after": true,
+      "new_math": false
+    },
+    {
+      "existing_key": "a8deab4da097581611b884f47eea606e94b20bb4",
+      "strict_before_after": true,
+      "new_math": false
+    },
+    {
+      "existing_key": "1ffb8d95d8291a8b4f023b93ec9752b2c25cb745",
+      "strict_before_after": true,
+      "new_math": false
+    }
+  ],
+  "new_original_G36_JSONs": {},
+  "whole_original_cached_model_entries": [
+    {
+      "name": "2ca444c62b871ffea675949351ee87cee71e0931.pkl",
+      "sha256": "d50c4d8eca6cc384eab86ed0b56698f1f5b870147f79553119a305bb994da090",
+      "method": "create",
+      "actual_model_input_sha256": "707acbb7811933799d1c5af60f450f07c3d513bb5f956bd64f89dd1464b9b5e9",
+      "single_thread_marker_sha256": "0eaa1e3948343dec8d8f6240ff1c03f15c0b55d206739626f7127265c55da5cb",
+      "single_thread_marker_value": "d50c4d8eca6cc384"
+    },
+    {
+      "name": "fb77921e45d8769e38c53a16730bf57f7127cd3b.pkl",
+      "sha256": "b31d78b8ca1db8878978fd62c4671625cdfdf3d59721b81daf0b9824ca4541ca",
+      "method": "create",
+      "actual_model_input_sha256": "2fbd2be21f0a484fef6f968a5f621ca1e5d5c882aa30225a883b881770db5d60",
+      "single_thread_marker_sha256": "7f74e85aea88334375bd911e58e84baede492fddab7112e76e202652efbf513f",
+      "single_thread_marker_value": "b31d78b8ca1db887"
+    },
+    {
+      "name": "80e512b5b2b66fa49ec702a15e213490d19e912c.pkl",
+      "sha256": "ea2eaffec21129828fa11ce292a325cdbc2914ca1ef7b141690bdc603b6a6e74",
+      "method": "create_timed",
+      "actual_model_input_sha256": "2fbd2be21f0a484fef6f968a5f621ca1e5d5c882aa30225a883b881770db5d60",
+      "single_thread_marker_sha256": "320794beed0feefc789a24632d244b4fc00fc3c4f8ed06937de2fdff60987a86",
+      "single_thread_marker_value": "ea2eaffec2112982"
+    },
+    {
+      "name": "0cdbe0b3d4e8291e46d6c8c04e341e878ee6d70e.pkl",
+      "sha256": "453f3ff0b814404d22790378ef24ec675e4108e2fb03f1e369f2f822eeb20c5a",
+      "method": "create",
+      "actual_model_input_sha256": "3800b1e1ceeec510f07294589f6fdb8ed5906e537d04bf61e08344f134537861",
+      "single_thread_marker_sha256": "6e04a37ac9471608262aad532efd97731a3b0d22c179d114897c978dca48162d",
+      "single_thread_marker_value": "453f3ff0b814404d"
+    },
+    {
+      "name": "e7a04810aa10f4c1ec066f354703dddf014fb9d5.pkl",
+      "sha256": "6aae901ba5c30e85e7bdcea2e5c7beb1396b954e10bf32042fa41374c668451f",
+      "method": "create_timed",
+      "actual_model_input_sha256": "3800b1e1ceeec510f07294589f6fdb8ed5906e537d04bf61e08344f134537861",
+      "single_thread_marker_sha256": "c7072353756c758043d5ab5785bd7b80c2f2c14a1ec2a87049f6f36dbab62589",
+      "single_thread_marker_value": "6aae901ba5c30e85"
+    },
+    {
+      "name": "e98852808fe25a21538ebf7f0293557eb088ab97.pkl",
+      "sha256": "94d7b6f9c46d84e60162322586a8d03ffc93c2184fdb7adc4158945e5531ae29",
+      "method": "create",
+      "actual_model_input_sha256": "923705a8db4a669e4a1acde90cfdc0b35bef6b1590292ba04148b3bd69bbcb88",
+      "single_thread_marker_sha256": "aa770c3cf1e5611201c17fd47b90fd3f7e16ca2a57d1965f7d8b806b1f6d761c",
+      "single_thread_marker_value": "94d7b6f9c46d84e6"
+    },
+    {
+      "name": "8159327fe06e9dd05e4732940c54e6b0ec36a152.pkl",
+      "sha256": "d11d18ab7aa2f38284f2a217b38ccbf0463fc0d932affce7165532dc3d6e8400",
+      "method": "create_timed",
+      "actual_model_input_sha256": "923705a8db4a669e4a1acde90cfdc0b35bef6b1590292ba04148b3bd69bbcb88",
+      "single_thread_marker_sha256": "35a05d9a465d097b06fd43502b7ddc0d8c4d7d788684562d94f88aa5d63e77d3",
+      "single_thread_marker_value": "d11d18ab7aa2f382"
+    },
+    {
+      "name": "d58e4bfd8a8bbf925bdad94ec4e5ec0cb056c142.pkl",
+      "sha256": "02d2b93ab29e4bf9fce06348f0206009b6b2a18bd4b024890369c8df8ca1e404",
+      "method": "create",
+      "actual_model_input_sha256": "59691adb316aa8fc89e6c34854a1f723fb33e555097fb653b12d696eff0be0bc",
+      "single_thread_marker_sha256": "5712d37106a9247fc592399b74c2c11cc4e1ccb19aedb5d75227081de765b0b4",
+      "single_thread_marker_value": "02d2b93ab29e4bf9"
+    },
+    {
+      "name": "571a8bf3ca794cc237ae6677290bf279717abe8d.pkl",
+      "sha256": "aecbbe5468313e5e8d6179f79e8cbe5275e3b159ed92fec9fc9a4a867c7b0d3b",
+      "method": "create",
+      "actual_model_input_sha256": "ca580df610a2f0521f13596e69bb978271adc6dbc745e8efcfe6a580718cc1c5"
+    },
+    {
+      "name": "c7090d19c1e4d3c363a7fdb0eb99fa16fa663eaa.pkl",
+      "sha256": "2bce536db930e347a2187bb527528e7b5d2ec5b3332d1858bfc5b4a183124e2a",
+      "method": "create_timed",
+      "actual_model_input_sha256": "59691adb316aa8fc89e6c34854a1f723fb33e555097fb653b12d696eff0be0bc",
+      "single_thread_marker_sha256": "2a1b289f0017fd5a5603d4efc2c4360b898b7aebb947ce28a9183bcc75bc3494",
+      "single_thread_marker_value": "2bce536db930e347"
+    },
+    {
+      "name": "6c97f50430a14fcb85e28ba8fc5a354a561f7f6c.pkl",
+      "sha256": "e5c5b54cf8c7e420904051285a1d1c4035489116315654aaf5852284abc26195",
+      "method": "create",
+      "actual_model_input_sha256": "67bf6f11f88372cf76d3cd58ff46011497d10370b35ad5795e35fb89897dfb1e",
+      "single_thread_marker_sha256": "eff8dfbdc8c8d38c049ed03f16ebed57e7a54b83bfe26da7abe094792e3f75af",
+      "single_thread_marker_value": "e5c5b54cf8c7e420"
+    },
+    {
+      "name": "b07427413d0feb77441ae7592597ae3a57aed381.pkl",
+      "sha256": "c3a07bd88967236cad1192cf056d033d50def5b867a5e1fac53d2312867011b0",
+      "method": "create_timed",
+      "actual_model_input_sha256": "67bf6f11f88372cf76d3cd58ff46011497d10370b35ad5795e35fb89897dfb1e",
+      "single_thread_marker_sha256": "f10193f47ff8f144a2e5006c288f7ce28bb4401e3c11e7df3a3fa3fbecd81c60",
+      "single_thread_marker_value": "c3a07bd88967236c"
+    },
+    {
+      "name": "e620502e5cd7d756fadb6518976f4ad6cdc970f7.pkl",
+      "sha256": "ca608f0c91f4713cef4da194a24b32ac0ad4b2477e10bb71e872151a9e38b5a3",
+      "method": "create",
+      "actual_model_input_sha256": "5c9df94d73a599325b7e796208dd172f28a65040a109a5a09930fd58398108e4",
+      "single_thread_marker_sha256": "53fb4491081d4ec63d03da8bb9a8164740442a4e6b3636100a6ed3d787aa65ed",
+      "single_thread_marker_value": "ca608f0c91f4713c"
+    },
+    {
+      "name": "e269f9bd418e1bc158293d20639529e449fe9e58.pkl",
+      "sha256": "1e06f26a2099d7b14a7adb67aae339e1a48f9a4b98959772512f0efd1afc0f52",
+      "method": "create_timed",
+      "actual_model_input_sha256": "5c9df94d73a599325b7e796208dd172f28a65040a109a5a09930fd58398108e4",
+      "single_thread_marker_sha256": "73d65434aeb4144bb7994bd8a0fb91c14c4bbe2b32b94358838910898b039824",
+      "single_thread_marker_value": "1e06f26a2099d7b1"
+    },
+    {
+      "name": "ca5f6dc1c25a784a3ef81aed11eab959a7400e02.pkl",
+      "sha256": "6b84bfe010172b01c8fde5db3c9348fa153494d25766f1a845171cb0a1fa721d",
+      "method": "create",
+      "actual_model_input_sha256": "15581c25196fa7692b98d97a106f7e1ac224a2dff72da5c73a20daa8ebea09b4",
+      "single_thread_marker_sha256": "0164087586065ae79b753439b10cb10f30c19a99949bb223861bae4a3da54b43",
+      "single_thread_marker_value": "6b84bfe010172b01"
+    },
+    {
+      "name": "9b1ae32360558c9dc9392bcee93699d578aa0d8f.pkl",
+      "sha256": "f80c319c1343f2138b64a22919705dd697a714c97d2a72e81bd93428a2f80184",
+      "method": "create_timed",
+      "actual_model_input_sha256": "15581c25196fa7692b98d97a106f7e1ac224a2dff72da5c73a20daa8ebea09b4",
+      "single_thread_marker_sha256": "acfc72281413cca894a3e21f8aa426b36b2372196ea8314cb65ea78051a24dae",
+      "single_thread_marker_value": "f80c319c1343f213"
+    },
+    {
+      "name": "c366715eab285f3561bcf40aee0b9336e402efd2.pkl",
+      "sha256": "8179317e5e0e69c592a7d651ab2b8739972eceb1ed5c30b4c106f61af44d6c30",
+      "method": "create",
+      "actual_model_input_sha256": "690c20396fc20d582f3598d392be6bd4e3136f189e4aeff73a240a481c18f2d2",
+      "single_thread_marker_sha256": "a45cb6c2dcfc2dc6666e77e0efadfd056a85efd47be325e6f7156590b42adc29",
+      "single_thread_marker_value": "8179317e5e0e69c5"
+    },
+    {
+      "name": "67900317778e57e8424b6070e89f04e946dc6942.pkl",
+      "sha256": "83175a0248aa74f203b35ad8814c042ac496107c010853346781af1be590fdb0",
+      "method": "create_timed",
+      "actual_model_input_sha256": "690c20396fc20d582f3598d392be6bd4e3136f189e4aeff73a240a481c18f2d2",
+      "single_thread_marker_sha256": "ae983ad63a65af66a9fc807e85c9a051b79a768841b5e65c061c7232ddf5f276",
+      "single_thread_marker_value": "83175a0248aa74f2"
+    },
+    {
+      "name": "ff0684b89bb89f54c2cd617972b81e37345cb2b2.pkl",
+      "sha256": "b435b13d464a39b8bc0e6229499d5890f38235aa739d2761ad33043910f44929",
+      "method": "create",
+      "actual_model_input_sha256": "e93e7d659341ffd7f3887fdbd155c013ea8a7f49309574fa71a742b5f68fe06f",
+      "single_thread_marker_sha256": "208f7f84e3a9065a0731e0e1176cb63f09d38dad9bffb10a693d657b9b3699bf",
+      "single_thread_marker_value": "b435b13d464a39b8"
+    },
+    {
+      "name": "74dbb471f2c462e5c02e9a219516784f616bf028.pkl",
+      "sha256": "a47e2aaff2f9f2a6a5c7cd4735c98c06d03c041eca7bd32cf50862b4544e081f",
+      "method": "create_timed",
+      "actual_model_input_sha256": "e93e7d659341ffd7f3887fdbd155c013ea8a7f49309574fa71a742b5f68fe06f",
+      "single_thread_marker_sha256": "3c2df6e07a17639b18cfd446c019158bef2a0ca79cfab01a7d6aa58044510e46",
+      "single_thread_marker_value": "a47e2aaff2f9f2a6"
+    },
+    {
+      "name": "72f30e40b43f24484d4257f5585f06563119dd2b.pkl",
+      "sha256": "49df7a9906904c76a528e38fe70ad168f990c6f11700d911e479555369e83eb3",
+      "method": "create",
+      "actual_model_input_sha256": "43bfd3f9d660abd0fe1c3384c2d1fd22c21dd22b0357588e4f8f9d1019aa3541",
+      "single_thread_marker_sha256": "679283ec0789607ac43a175b83cb116e5b249dff4ad1ac26d024518fd8061a70",
+      "single_thread_marker_value": "49df7a9906904c76"
+    },
+    {
+      "name": "06b5ce2ece0350a8b86a7a5c67e691c30e1002c8.pkl",
+      "sha256": "66afe450d16b13361d674870b48511e892257031548942cf40d92c72254fd36f",
+      "method": "create_timed",
+      "actual_model_input_sha256": "43bfd3f9d660abd0fe1c3384c2d1fd22c21dd22b0357588e4f8f9d1019aa3541",
+      "single_thread_marker_sha256": "90a0246a018e5d311fe279888e8c52e5b3edef593c30819ace5d594a0db71f29",
+      "single_thread_marker_value": "66afe450d16b1336"
+    },
+    {
+      "name": "a387fbeb6dd6337c40167612b2f8f3c56170122f.pkl",
+      "sha256": "dc264d5814ed0bd944f06a0ae2ac99bf6801d5458fe14898ed2f88670b8ed1de",
+      "method": "create",
+      "actual_model_input_sha256": "7ab4087b2c5293e715b5a63769102df98c294a405f7d0e5368c328f51388492a",
+      "single_thread_marker_sha256": "dd049abbaa96ade4ea32774679d996ff5f84b0d96cb3ed113b2e57efba5cccb4",
+      "single_thread_marker_value": "dc264d5814ed0bd9"
+    },
+    {
+      "name": "42d32206d7fda7443c0e489a1ee1ac1b11d9e3fa.pkl",
+      "sha256": "280f34b33b29a3fb0b4ee69723cd351f128688cd3faa720065239cc2562d2186",
+      "method": "create_timed",
+      "actual_model_input_sha256": "7ab4087b2c5293e715b5a63769102df98c294a405f7d0e5368c328f51388492a",
+      "single_thread_marker_sha256": "b0befcb69e8e3c5e01c47b430b6b4f7c43264a696569bdc618cacc305da59a9e",
+      "single_thread_marker_value": "280f34b33b29a3fb"
+    },
+    {
+      "name": "b6b57c8cee03f4f2c242fc5d3d5dadb21bc84aaa.pkl",
+      "sha256": "6d79edf22a6095e480b6068232cd545917daa07c946380a628982ad1705dc8fe",
+      "method": "create",
+      "actual_model_input_sha256": "f1852674032ac08c135a3d927d23992c50d5dcf992b201ebc1805fc8aadf7134",
+      "single_thread_marker_sha256": "df8db964ef162ee74c32e22096b4f8c048aaa6ded29764e36fda0f740c96c3d0",
+      "single_thread_marker_value": "6d79edf22a6095e4"
+    },
+    {
+      "name": "19299e21b3778be131a5458c9730b74b7f4db7c6.pkl",
+      "sha256": "8cadbdbc3ef926e74d02408fa452728d343624544108c61ed8fb642ad6a7332d",
+      "method": "create_timed",
+      "actual_model_input_sha256": "f1852674032ac08c135a3d927d23992c50d5dcf992b201ebc1805fc8aadf7134",
+      "single_thread_marker_sha256": "b50d7007f389763aebd66f11fda2b6a2acaef6267fb1951372922116b29ae6fc",
+      "single_thread_marker_value": "8cadbdbc3ef926e7"
+    },
+    {
+      "name": "ce9bb35fa3bde79d3a96e5bda0a398d7bdfeba88.pkl",
+      "sha256": "bb06036298e574cc58da7228493d356b5447e5247f22a45566efaa807064c41e",
+      "method": "create",
+      "actual_model_input_sha256": "d366e92fd6667283635cfa3225983b12e717677e739a3659662da58daf3ebf66",
+      "single_thread_marker_sha256": "0968c41b8cda8f1d1d63332592ade941c2e1954bc3bca9ae7968a2c80366b1bb",
+      "single_thread_marker_value": "bb06036298e574cc"
+    },
+    {
+      "name": "afb5e63cd7aa4d7fe6691a5e93db1f548909d097.pkl",
+      "sha256": "95dc39f259227b1d8a13205cee58c0aacea494115f93b27a343d4376a232fc0e",
+      "method": "create_timed",
+      "actual_model_input_sha256": "d366e92fd6667283635cfa3225983b12e717677e739a3659662da58daf3ebf66",
+      "single_thread_marker_sha256": "d4024a81855b6a8654a6721f3e7afcd20b589927ced4ff9889465aae65d786d4",
+      "single_thread_marker_value": "95dc39f259227b1d"
+    },
+    {
+      "name": "c4ad59732a5ab38a61622d039cbaeff0be736789.pkl",
+      "sha256": "5bbd52fcf3ce0e495157172de267154bba7e500b9055a50b261d44e2bad34ef2",
+      "method": "create",
+      "actual_model_input_sha256": "a141b423425daddab2b056ee5cd2455d5337bcf9d4591d8c75c73406a13d8084",
+      "single_thread_marker_sha256": "0e1056cd68202633b82dd4a6b31fb8636d92d2ba07cc72b9ff7c565933e3203e",
+      "single_thread_marker_value": "5bbd52fcf3ce0e49"
+    },
+    {
+      "name": "5ab226c1bab58391703fcb594c41ea36fa817f64.pkl",
+      "sha256": "519225d96cb19aff199ac5749af4908dc506321cd3f1c7bbe67b8d55323b5ae9",
+      "method": "create_timed",
+      "actual_model_input_sha256": "a141b423425daddab2b056ee5cd2455d5337bcf9d4591d8c75c73406a13d8084",
+      "single_thread_marker_sha256": "6ca917f26b42e59d643ed5a02c82b38bceabb8888142012879e0e01e382a3595",
+      "single_thread_marker_value": "519225d96cb19aff"
+    },
+    {
+      "name": "38f4cf2ad328b5684f876666fbe1648ef5efd949.pkl",
+      "sha256": "90ae948e8037413e7882ff90f5d7e637ecf9bfaa9b61c83aee2f69a829dcbebe",
+      "method": "create",
+      "actual_model_input_sha256": "72e6d4e0f43d14d1f73d1259559586e40913e4a0ea308baafd3e427a9bc7a1b6",
+      "single_thread_marker_sha256": "f50bd77cb1cb41d6d8510738107bcf15d1f02d602487b7bf88d9a8bd1209d0df",
+      "single_thread_marker_value": "90ae948e8037413e"
+    },
+    {
+      "name": "bccaefe84c8361132c42fb0cc96c255feb0b404f.pkl",
+      "sha256": "abfd658173d4e8710ca1525d10288d2fe69a530cf3588e14a4946937fa47bce9",
+      "method": "create_timed",
+      "actual_model_input_sha256": "72e6d4e0f43d14d1f73d1259559586e40913e4a0ea308baafd3e427a9bc7a1b6",
+      "single_thread_marker_sha256": "11813b451b68bca2231e923d1d4bc91215c460b1a08023079a40bedb27939b50",
+      "single_thread_marker_value": "abfd658173d4e871"
+    },
+    {
+      "name": "e2a1e08b05ec2f61ddac6679286eb22c5deec63d.pkl",
+      "sha256": "f7dc2450a895a56d0730af9a95f53c7254cf1828c60b01de39ab34e40dc9826c",
+      "method": "create",
+      "actual_model_input_sha256": "8d9efa62046605e766f2b809d467e96a1b16ce5df889e1c45612d100a84b1296",
+      "single_thread_marker_sha256": "19ca433a0a0d4308bc5ccdf9202f9551f7977f1b5cd2a5b0d665f5e557d195d6",
+      "single_thread_marker_value": "f7dc2450a895a56d"
+    },
+    {
+      "name": "0ed72ae38cada50fbe65b1e8ae538f54eabdd817.pkl",
+      "sha256": "8fd439f41d9008f961cb8c1248b7af105215eac523af9db6e67a3a788874fc9c",
+      "method": "create_timed",
+      "actual_model_input_sha256": "8d9efa62046605e766f2b809d467e96a1b16ce5df889e1c45612d100a84b1296",
+      "single_thread_marker_sha256": "2c8044f9239c87004da3da66c1621d4131c46f1d2c06a455ca9c522408d94259",
+      "single_thread_marker_value": "8fd439f41d9008f9"
+    },
+    {
+      "name": "98fa510468f594e111fd4b4074effc99052f3d2b.pkl",
+      "sha256": "e8544b5fcf52b86b3dffa8bf35544afb5eafd1686aeed35d796774eaaf85351b",
+      "method": "create",
+      "actual_model_input_sha256": "5f318b324af21043ee1498411c7c29193d4b3c026d1b6a10cf0e8ed986c74734",
+      "single_thread_marker_sha256": "a60c74b410308268e725729907cdb25e04aa637ffcad9b087d12a2bc3fe663d9",
+      "single_thread_marker_value": "e8544b5fcf52b86b"
+    },
+    {
+      "name": "c74e9c55100b564114f391a1edf85f1b73616342.pkl",
+      "sha256": "6b7858909458163f1463f27f50621e8528f945a5fe82c1ec46afc834fc59d0a7",
+      "method": "create_timed",
+      "actual_model_input_sha256": "5f318b324af21043ee1498411c7c29193d4b3c026d1b6a10cf0e8ed986c74734",
+      "single_thread_marker_sha256": "e7a98025b37772bc8696944f107cb5dc7fcef62934abd3c7dc75636c1ae1fa14",
+      "single_thread_marker_value": "6b7858909458163f"
+    }
+  ],
+  "original_private_execution_log": "/home/runner/work/_temp/completion-machine/_A21_metadata_selected_56_43769221504/selected-actual-original-canonical.m4a 156.0 s 只出声音（没有画面）\n",
+  "entire_existing_private_cache_unchanged": true,
+  "original_public_cache_unchanged": true,
+  "normal_work_inode_and_all_files_restored": true,
+  "new_private_phase_work_not_modified_by_metadata_preview": true,
+  "all_frozen_inputs_and_original_program_bytes_unchanged": true,
+  "scope_limit": "One original selected-only cached AudioOnly proves actual private phase identity, then only original A21 check/write_grafts metadata is previewed. No baseline/GT/ASR/render or full canonical QA is run. Original full shell and every original quality gate remain mandatory. Unknown metadata changes are reported and never adopted."
+}
