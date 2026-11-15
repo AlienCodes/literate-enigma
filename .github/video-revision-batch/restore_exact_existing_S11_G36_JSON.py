@@ -8,7 +8,7 @@ import tempfile
 
 NAME = '调平_22842078959011da4b6986b549453b7eafee80d9.json'
 SHA256 = '98c2e92f9fe36307e60e0a857a97d5595015278b2add1fed2bcea10248eb43d6'
-KEY = 'Linux-native68-only-target-whole-original-math-43729197848'
+KEY = 'Linux-native56-only-target-whole-original-math-43729197848'
 VERSION = 'e64dc6e131ead6fee8e56c8b20ae45b4234f00b5f4a12a556d02eaa69af30a6c'
 
 
