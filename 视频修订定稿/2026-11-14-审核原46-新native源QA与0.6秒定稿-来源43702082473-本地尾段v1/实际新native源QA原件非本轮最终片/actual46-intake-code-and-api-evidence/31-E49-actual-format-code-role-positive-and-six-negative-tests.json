@@ -1,0 +1,42 @@
+{
+  "scope": "Only actual code-certificate roles and negative entry data, not full source/audio acceptance",
+  "actual_role_positive": {
+    "actual_code_certificate_and_new_stamp_verified": true,
+    "modified_maker_role_retained_false": true,
+    "article_audio_acceptance_from_format_helper_claimed": false,
+    "original_fastcheck_log_and_new_stamp_verified": true
+  },
+  "negative_cases": [
+    {
+      "case": "wrong-source",
+      "rejected": true,
+      "error": "Only actual source46 run43702082473 format-code roles"
+    },
+    {
+      "case": "failed-native",
+      "rejected": true,
+      "error": "Real native gates and truthful modified-maker/code-only roles required"
+    },
+    {
+      "case": "fake-unchanged-maker",
+      "rejected": true,
+      "error": "Real native gates and truthful modified-maker/code-only roles required"
+    },
+    {
+      "case": "audio-waiver-claim",
+      "rejected": true,
+      "error": "Real native gates and truthful modified-maker/code-only roles required"
+    },
+    {
+      "case": "wrong-core",
+      "rejected": true,
+      "error": "Actual original fivecore/GAIN/ENDING roles required"
+    },
+    {
+      "case": "wrong-request",
+      "rejected": true,
+      "error": "Actual46 request differs"
+    }
+  ],
+  "passed": true
+}
