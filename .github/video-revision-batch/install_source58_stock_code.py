@@ -6,10 +6,10 @@ import ast,glob,hashlib,json,os,re,shutil
 SOURCE_ID='58'
 BOOK_ORDER=67
 PROFILE_FOLDER='stock-certified58'
-PROFILE_KIND='actual-original-full110-stock-code-profile-no-runtime-overlay'
-PROFILE_SHA='0a73419e74c138222d21344d08ed17036d314f717d70c55ba8ffed5e06ceffb1'
-EXPECTED_CHANGED_PROGRAMS=()
-INSTALL_TARGETS=('视频/工具/新管/回归基准_27.json', '视频/工具/新管/快测通过.json')
+PROFILE_KIND='actual-original-stock109-plus-exact-single-reference-raw-cache-IO-full110-profile'
+PROFILE_SHA='d53a780360169676d43b739215c1880f0e44b67f8cc07ba61398df3ffed851f2'
+EXPECTED_CHANGED_PROGRAMS=('独立复核/synth.py',)
+INSTALL_TARGETS=('视频/工具/独立复核/synth.py', '视频/工具/新管/回归基准_27.json', '视频/工具/新管/快测通过.json')
 
 def require(ok,message):
     if not ok:raise ValueError(message)

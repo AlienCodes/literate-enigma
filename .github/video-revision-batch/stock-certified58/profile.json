@@ -1,5 +1,5 @@
 {
-  "kind": "actual-original-full110-stock-code-profile-no-runtime-overlay",
+  "kind": "actual-original-stock109-plus-exact-single-reference-raw-cache-IO-full110-profile",
   "source_id": "58",
   "book_order": 67,
   "production_audio_or_video_acceptance": false,
@@ -7,30 +7,30 @@
   "mode_environment": {},
   "certified_core_overlay_permitted": false,
   "actual_native_certification": {
-    "run_id": 43722115133,
-    "head_sha": "ea47d50c36d8921c37c3f847d66dc4142c5acfc8",
-    "artifact_id": 14165276815,
-    "certification_SHA256": "778e7b8501124316a19fbd3384789bbb4030da4c6de993c19db6329af95f31ff",
+    "run_id": 43733139121,
+    "head_sha": "2171f2f78dd0b0ab8ef789342038cc9f16b5bb58",
+    "artifact_id": 14169600947,
+    "certification_SHA256": "2c8de34d9f1d637ce50d5d2dc767df6321ddd89eee58321ec8da35d738058b85",
     "original_fullquick_exit": 0,
-    "original_fullquick_seconds": 545.72,
-    "original_fullquick_log_SHA256": "d825d512cf519e184cdeb4a268d4790e6df2c1dbac3dc90f6eda2ba0e420104f"
+    "original_fullquick_seconds": 473.52,
+    "original_fullquick_log_SHA256": "7f19084b109db4342090a2f8a888ec0c9bebe511d65f3dd0c95a72d8f607ebcb"
   },
   "original_stamp_verifier_SHA256": "631d1d504e75b1b6fc01f3b1c6fec5bdee303f992ed005878062c9ed5f02bda8",
   "files": {
     "real-fastcheck-stamp.json": {
       "file": "files/real-fastcheck-stamp.json",
       "bytes": 4582,
-      "sha256": "7097b0f1359f602c274b2c40c33f73b119f242c00de4d40d4329659892515e4b"
+      "sha256": "a5b7d65975509b54e8380df1e717458d7f95ca121be1530efadf09ab8ce2842f"
     },
     "certification.json": {
       "file": "files/certification.json",
-      "bytes": 31636,
-      "sha256": "778e7b8501124316a19fbd3384789bbb4030da4c6de993c19db6329af95f31ff"
+      "bytes": 32850,
+      "sha256": "2c8de34d9f1d637ce50d5d2dc767df6321ddd89eee58321ec8da35d738058b85"
     },
     "ROOT-codecert-adoption.json": {
       "file": "files/ROOT-codecert-adoption.json",
-      "bytes": 1997,
-      "sha256": "3b3c63eb8283d81559a9de103ac5043d8c67666ab20d328d834defd113a3e424"
+      "bytes": 3274,
+      "sha256": "d1e20809f66bae747f6bd22c2e1fb6f7b982758d4a20b61112f2397bf30e2fb3"
     },
     "regression27.json": {
       "file": "files/regression27.json",
@@ -44,16 +44,26 @@
     },
     "full110-inventory.json": {
       "file": "files/full110-inventory.json",
-      "bytes": 33841,
-      "sha256": "6b8f7b8620eed61fc8ee5010870e1f82b06acc8efef377c8c7b51d372281db93"
+      "bytes": 34054,
+      "sha256": "f4742d46b9408277d8975e27bbfca71e5ac2d301337d4b424115b0d5f5ff24b8"
     },
     "final-authority.json": {
       "file": "files/final-authority.json",
       "bytes": 614,
       "sha256": "584a40908d831f219eebd0af1c2ac0f140de452a39cbec29fb8dd9daa09b74ed"
+    },
+    "reference-synth.py": {
+      "file": "files/reference-synth.py",
+      "bytes": 13886,
+      "sha256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264"
     }
   },
   "install_only": [
+    {
+      "file": "files/reference-synth.py",
+      "target": "视频/工具/独立复核/synth.py",
+      "sha256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264"
+    },
     {
       "file": "files/regression27.json",
       "target": "视频/工具/新管/回归基准_27.json",
@@ -62,7 +72,7 @@
     {
       "file": "files/real-fastcheck-stamp.json",
       "target": "视频/工具/新管/快测通过.json",
-      "sha256": "7097b0f1359f602c274b2c40c33f73b119f242c00de4d40d4329659892515e4b"
+      "sha256": "a5b7d65975509b54e8380df1e717458d7f95ca121be1530efadf09ab8ce2842f"
     }
   ],
   "actual_stock_program_count": 110,
@@ -110,11 +120,11 @@
       true
     ],
     [
-      "new_original_stock110_stamp_created_after_original_fullquick",
+      "new_exact_single_reference_IO_overlay110_stamp_created_after_original_fullquick",
       true
     ],
     [
-      "all110_actual_programs_match_original_stock_exact",
+      "all110_actual_programs_match_exact_stock109_plus_reference_IO_only_overlay",
       true
     ],
     [
@@ -124,6 +134,22 @@
     [
       "actual_source58_original_stock_profile_no_KEEP_flags_and_no_target_audio_rerun",
       true
+    ],
+    [
+      "actual_reference_loader_code_adoption_SHA256",
+      "d1e20809f66bae747f6bd22c2e1fb6f7b982758d4a20b61112f2397bf30e2fb3"
+    ],
+    [
+      "actual_reference_IO_only_overlay_SHA256",
+      {
+        "视频/工具/独立复核/synth.py": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264"
+      }
     ]
-  ]
+  ],
+  "exact_reference_IO_overlay_permitted": {
+    "target": "视频/工具/独立复核/synth.py",
+    "original_SHA256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+    "actual_SHA256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+    "does_not_modify_primary_audio_producer_or_quality_thresholds": true
+  }
 }
