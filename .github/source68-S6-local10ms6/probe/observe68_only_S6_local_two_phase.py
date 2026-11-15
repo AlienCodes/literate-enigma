@@ -14,6 +14,25 @@ def require(x,msg):
  if not x:raise AssertionError(msg)
 def load(name,path):
  s=importlib.util.spec_from_file_location(name,path);m=importlib.util.module_from_spec(s);sys.modules[name]=m;s.loader.exec_module(m);return m
+def restore_task_owned_modules(snapshot,roots):
+ # Extension modules retain their actual loaded lifetime. Only new modules
+ # physically owned by this exact task are removed; all preexisting object
+ # identities are restored. New external libraries are explicitly reported.
+ roots=tuple(Path(p).resolve() for p in roots);removed=[]
+ for name in set(sys.modules)-set(snapshot):
+  module=sys.modules.get(name);filename=getattr(module,'__file__',None)
+  owned=False
+  if filename:
+   path=Path(filename).resolve()
+   owned=any(path.is_relative_to(root) for root in roots)
+  if owned:sys.modules.pop(name,None);removed.append(name)
+ for name,module in snapshot.items():sys.modules[name]=module
+ retained=sorted(set(sys.modules)-set(snapshot))
+ require(all(sys.modules.get(k) is v for k,v in snapshot.items()),'Preexisting module object identity was not restored')
+ for name in retained:
+  filename=getattr(sys.modules.get(name),'__file__',None)
+  require(not filename or not any(Path(filename).resolve().is_relative_to(root) for root in roots),'Task-owned module leaked after restoration')
+ return {'preexisting_module_object_identities_restored':True,'new_task_owned_modules_removed':sorted(removed),'new_non_task_library_modules_retained':retained,'namespace_key_set_exact':set(sys.modules)==set(snapshot),'third_party_extensions_unloaded':False}
 def inventory(path):
  return {p.name:digest(p) for p in Path(path).iterdir() if p.is_file()}
 def exact_delta(old,new):
@@ -175,7 +194,13 @@ def main():
   require(original_baseline_targets==('S6','S2'),'Expected original observation list before exact S6 subset')
   try:
    base.TARGETS=('S6',)
-   sys.argv=[str(inp['baseline_helper']),'--tools',str(a.tools),'--video-root',str(a.video_root),'--inputs',str(a.inputs),'--profile',str(inp['baseline_profile']),'--output',str(baseline_output)];status=base.main()
+   sys.argv=[str(inp['baseline_helper']),'--tools',str(a.tools),'--video-root',str(a.video_root),'--inputs',str(a.inputs),'--profile',str(inp['baseline_profile']),'--output',str(baseline_output)]
+   original_baseline_module_restore=base.restore_modules
+   def baseline_task_module_restore(snapshot):
+    report['baseline_module_lifecycle']=restore_task_owned_modules(snapshot,[a.tools,a.video_root,a.inputs])
+   base.restore_modules=baseline_task_module_restore
+   try:status=base.main()
+   finally:base.restore_modules=original_baseline_module_restore
   finally:
    base.TARGETS=original_baseline_targets
    sys.argv=argv
@@ -203,9 +228,9 @@ def main():
     report['private_original_math_save']={'cache_key':key,'exact_paths':saved,'files':new_math,'save_success_not_claimed':True}
   except BaseException as e:report['measurement_completed']=False;report['errors'].append({'type':type(e).__name__,'detail':str(e),'during':'restoration-or-math-save'})
   os.environ.clear();os.environ.update(env);os.chdir(cwd);sys.path[:]=path;sys.settrace(trace)
-  for k in set(sys.modules)-set(modules):sys.modules.pop(k,None)
-  for k,v in modules.items():sys.modules[k]=v
-  report['all_original_modules_trace_env_cwd_path_restored']=set(sys.modules)==set(modules) and all(sys.modules[k] is v for k,v in modules.items()) and dict(os.environ)==env and Path.cwd()==cwd and sys.path==path and sys.gettrace() is trace
+  report['final_module_lifecycle']=restore_task_owned_modules(modules,[a.tools,a.video_root,a.inputs])
+  report['all_original_modules_trace_env_cwd_path_restored']=all(sys.modules[k] is v for k,v in modules.items()) and dict(os.environ)==env and Path.cwd()==cwd and sys.path==path and sys.gettrace() is trace
+  report['module_restoration_role']='All preexisting module objects plus task-owned modules restored; new non-task library modules deliberately retained; namespace-set equality is separately reported, never assumed'
   restored=report['all_original_modules_trace_env_cwd_path_restored'] and report.get('all_frozen_inputs_unchanged') is True and all(report['restoration'].get(k) is True for k in ['normal_scripts_namespace_restored','environment_cwd_sys_path_restored'])
   report['measurement_completed']=bool(report['measurement_completed'] and restored and not report['errors'] and not report['forbidden_model_events'])
   report['diagnostic_passed']=bool(report['measurement_completed'] and report['candidate_local_original_gates_passed'])
