@@ -38,6 +38,28 @@ jobs:
         with:
           path: ${{ runner.temp }}/completion-machine/tts/spoken-comma-whole-reference-cache
           key: Linux-spoken43-52-whole-reference-43643745207
+      - uses: actions/cache/restore@v4
+        id: selected52-S4-math
+        with:
+          path: ${{ runner.temp }}/completion-machine/tts/source52-two-NV-candidate-reference-cache
+          key: Linux-source52-two-NV-candidate-reference-43653828088
+      - name: 校验真实已保存的唯一S4原数学JSON并只读安装normalcache
+        env:
+          MATH_HIT: ${{ steps.selected52-S4-math.outputs.cache-hit }}
+        run: |
+          test "$MATH_HIT" = true
+          python - <<'PYMATH'
+          import os,hashlib,shutil
+          from pathlib import Path
+          M=Path(os.environ['RUNNER_TEMP'])/'completion-machine/tts'
+          name='调平_5d2d6bab45b9b765994454b448b0cfc3c61dde90.json'
+          source=M/'source52-two-NV-candidate-reference-cache'/name
+          expected='44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a'
+          assert hashlib.sha256(source.read_bytes()).hexdigest()==expected
+          target=M/'cache_tts'/name
+          if target.exists():assert hashlib.sha256(target.read_bytes()).hexdigest()==expected
+          else:shutil.copyfile(source,target)
+          PYMATH
       - name: 两类原缓存必须真实命中
         env:
           OLD_HIT: ${{ steps.original-cache.outputs.cache-hit }}

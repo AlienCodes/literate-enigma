@@ -1,20 +1,22 @@
 {
   "article": "52",
-  "helper": "observe52_S18_first_zero_only.py",
-  "helper_sha256": "560c7a451f621be8e172dcbf00e0ea1cf5fa4407bef2dc20001368f13bf0a205",
+  "helper": "observe52_single_final_candidate_whole.py",
+  "helper_sha256": "a473452dba8cd83e9792119f265ef06e457d1f4e076c6902a9ca0a455ac2eced",
   "arguments": [
+    "--reference",
+    "{namespace}/source52-final-conservative-single-whole-reference.json",
     "--tools",
     "{tools}",
     "--video-root",
     "{video_root}",
     "--request-source",
-    "{namespace}/52-request-source.json",
-    "--old-private-candidate",
-    "{namespace}/52-private-only-two-NV-and-measured-mother-pins-candidate.json",
+    "{namespace}/52-request-source-c00.json",
+    "--baseline-report",
+    "{namespace}/actual-two-NV-baseline555946.json",
     "--mother-contract",
     "{namespace}/actual-six-spoken-mother-cache-contract.json",
-    "--actual-observation",
-    "{namespace}/source52-strict-cached-observation.json",
+    "--edge-report",
+    "{namespace}/actual-S18-preserved-peak-acb4de.json",
     "--output",
     "{output}"
   ],
@@ -35,12 +37,13 @@
     "调平_4984c8df6b04e6ce5c068372f49331464b416b2b.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
   },
   "included_files": {
-    "52-request-source.json": "c00eb5707f1b269d2ce88fed455f592962d674d46e3bf172ba00cfe6597245f3",
-    "52-private-only-two-NV-and-measured-mother-pins-candidate.json": "448f3733ebba009945f555eac4ddb551dc7e996db7b9b60ef8c44835099d9e91",
+    "source52-final-conservative-single-whole-reference.json": "a27775e2e1ff190c6ee468e7572a4b60117f62aa2efb72421202f0baeda5919d",
+    "52-request-source-c00.json": "c00eb5707f1b269d2ce88fed455f592962d674d46e3bf172ba00cfe6597245f3",
+    "actual-two-NV-baseline555946.json": "55594624daca4a4601146e4cb1822e813782e14e1cdc0a5e65774e8602045822",
+    "actual-S18-preserved-peak-acb4de.json": "acb4de759707e6d123374e6b8db29d0d5dac827758716e71eee17217a67075c1",
     "actual-six-spoken-mother-cache-contract.json": "9d133939b08a08b78cb6810028708618b92a2f2449cf56a67bd9b82506887b79",
-    "source52-strict-cached-observation.json": "55594624daca4a4601146e4cb1822e813782e14e1cdc0a5e65774e8602045822",
-    "SOURCE52-S18-ONLY-FIRST-ZERO-LOCAL-OBSERVER-HANDOFF.json": "1d074d5666430606a73f90c4c5e0487de76d47648b0d87d3e6a89e148654fa27",
-    "root-source52-S18-only-conservative-first-zero-local-code-adoption-decision.json": "61329fa73714fa729d4db047c122c405598badf8f9391ad3c45eede95308f314"
+    "SOURCE52-SINGLE-FINAL-CANDIDATE-WHOLE-ROOT-ADOPTION-HANDOFF.json": "3cfdd93ca5a0616c5b3363caf39acacdd43b8fc2aa351364764f929529c12826",
+    "root-source52-conservative-single-final-candidate-whole-code-adoption-decision.json": "398849708c252e706f1fa988795c5a21afa9b917f2604db8c509f67d644023c0"
   },
   "diagnostic_only": true,
   "new_model_inference_authorized": false
