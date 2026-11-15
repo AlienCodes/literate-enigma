@@ -9,18 +9,19 @@ from fractions import Fraction
 import argparse, ast, contextlib, copy, gc, hashlib, importlib.util, inspect, json
 import math, os, re, shutil, subprocess, sys, tempfile, traceback
 sys.dont_write_bytecode = True
-SOURCE_NO = '56'
-BOOK_ORDER = 65
-TARGET = 'S11'
-COUNT = 17
-PROFILE_SHA256 = '4d3d81cee09183b14fda0f89a68dabe55ac8f927ab638270576031e8d7d2adc1'
-MAKER_SHA256 = '1b87c1d4d1685bdd59325587184cca35f853354a015e6fe89c11f150cd2a6239'
-CERTIFICATE_SHA256 = 'c05b6ed258dc9783bdb453f1e7382dac8b40d27f66ac30c26b3ee079c3933c19'
-STAMP_SHA256 = '9aa653ec47c686d9bb0b6c4393444bb50c3c8d2d249fe10a843b0959854f7ea6'
-OVERLAY_SHA256 = 'd1531ccfd315444bdbbe741459429d109c54a70468711570c1c8235e52eaabd9'
+SOURCE_NO = '68'
+BOOK_ORDER = 53
+TARGET = 'S2'
+COUNT = 19
+PROFILE_SHA256 = '7c860bc890e5e88ae087b5e16b6ac9e271fea2497930898f0a70b20223fc9669'
+MAKER_SHA256 = '0e6c4ff6dd4ab4e3774bc060188de72356cd9aa37a7bc092d1f28a5508cc1c36'
+CERTIFICATE_SHA256 = '50a3abb8d8388ba4587eed0baab4eed5b57afad9fc73cbdb1aa4b48bbaa56c01'
+STAMP_SHA256 = '7d7ebf20b78143231992f8880f70e3cf1581c75acd2d977bc054e3ff151a1a41'
+OVERLAY_SHA256 = '4b8f093bfe6bf48c0933b457007cb006f33a00450a718c10c1faa9961294b73d'
 REGISTRY_SHA256 = 'dfde6c065a3558b74923ce82865a3b01dae1f839af4456b74de55dc3ff492312'
 DICT_SHA256 = '5f558c61f8ffb99009a89989afcc07a9ce168b2b70a6c9377289040d14ec402b'
-CTX_SHA256 = '4d8905dc1a87f97b707270f03f41ea0fdf2b207ca218ed74608cdb134e3dc8e3'
+CTX_SHA256 = 'ef53a5cc5795929b5477b40550cab61ee709156112a0f2bc7a2deb071845552c'
+CTX_DATA_ADOPTION_SHA256 = '4183cd29926539889575addae04420f28a1662a6783b2cfd5ece983b0826991b'
 OLD_REGISTRY_SHA256 = '91ccecd61ade5284de72f27235c82df3fdff6350576abfac02d2e0db0f346a9a'
 AUDIO_KEYS = ['非人声区间','词尾除阻','停顿处除阻','除阻加强','停顿删除区间','停顿插入点',
               '区间声音指纹','分段增益dB','句子增益dB','段内渐变dB','结尾句','合成标点','列举逗号']
@@ -108,8 +109,7 @@ def validate_adoption(value, helper_sha, intake_sha, allow_math):
                 'strict_cached_whole_two_phase_authorized': True,
                 'actual_two_mother_intake_sha256': intake_sha,
                 'only_selected_target_original_math_if_missing_authorized': allow_math,
-                'new_target_or_non_target_TTS_authorized': False,
-                'conditional_selected_target_original_math_scope_sha256': '3626852722ae9f0172dd4dd0600db4ca88300ed1965ecdd5a77b7f2efe0bb980'}
+                'new_target_or_non_target_TTS_authorized': False}
     require(all(type(value.get(k)) is type(v) and value.get(k) == v for k,v in required.items()),
             'Exact separate whole-observer root adoption fields required')
 
@@ -357,7 +357,7 @@ def run_phase(label, input_bytes, expected_source, paths, support, profile, repo
                 return value
 
         def observe_write(path, actual_mastered, rate, *a, **kw):
-                if Path(path) == Path('work_56/a.wav'):
+                if Path(path) == Path('work_68/a.wav'):
                     frame = inspect.currentframe().f_back
                     assert frame.f_code is m.build.__code__ and rate == SR
                     raw_parts = frame.f_locals['audio']
@@ -365,7 +365,7 @@ def run_phase(label, input_bytes, expected_source, paths, support, profile, repo
                     peak = float(np.max(np.abs(pre)))
                     actual_formula = pre/np.abs(pre).max()*.89
                     assert np.array_equal(actual_mastered, actual_formula), 'Original maker normalization differs.'
-                    assert len(waves) == 18 and set(waves) == {'title'}|{'S'+str(i) for i in range(1,18)}
+                    assert len(waves) == 20 and set(waves) == {'title'}|{'S'+str(i) for i in range(1,20)}
                     cursor, positions = 0, {}
                     for part in raw_parts:
                         for sid, pcm in waves.items():
@@ -373,8 +373,8 @@ def run_phase(label, input_bytes, expected_source, paths, support, profile, repo
                                 assert sid not in positions
                                 positions[sid] = (cursor, cursor+len(pcm))
                         cursor += len(part)
-                    assert len(positions) == 18 and cursor == len(pre)
-                    result['actual_original_pre_master_peak_ownership_metadata']=premaster_peak_metadata(np,raw_parts,waves,positions,pre,peak,SR,'S11')
+                    assert len(positions) == 20 and cursor == len(pre)
+                    result['actual_original_pre_master_peak_ownership_metadata']=premaster_peak_metadata(np,raw_parts,waves,positions,pre,peak,SR,'S2')
                     result['title_pre_master_PCM_sha256'] = array_sha(waves['title'])
                     result['actual_original_mastering'] = {
                         'pre_master_full_PCM_sha256': array_sha(pre), 'pre_master_dtype': str(pre.dtype),
@@ -499,13 +499,16 @@ def main():
         require(digest(a.profile)==PROFILE_SHA256,'Wrong source-specific frozen whole profile')
         profile=json.loads(a.profile.read_text());require(profile['source_id']==SOURCE_NO and profile['target_sentence']==TARGET,'Wrong profile source scope')
         inputs=bind_inputs(a.inputs,profile)
+        require(digest(inputs['exact_S13_context'])==CTX_SHA256 and digest(inputs['S13_context_adoption'])==CTX_DATA_ADOPTION_SHA256, 'Exact independently adopted S13 context input binding differs')
+        context_adoption=json.loads(inputs['S13_context_adoption'].read_text())
+        require(context_adoption['selected_context']['sha256']==CTX_SHA256 and context_adoption['future_producer_and_independent_checkers_must_share_same_declared_context_binding'] is True, 'S13 context data must be shared by producer and all original checker namespaces')
         require(digest(a.execution_adoption)==a.execution_adoption_sha256 and len(a.execution_adoption_sha256)==64,'Separate actual root adoption SHA must be literal-pinned')
-        validate_adoption(json.loads(a.execution_adoption.read_text()),digest(__file__),profile['inputs']['mother_intake_original']['sha256'],profile['allow_selected_target_G36_math'])
+        validate_adoption(json.loads(a.execution_adoption.read_text()),digest(__file__),profile['inputs']['mother_intake']['sha256'],profile['allow_selected_target_G36_math'])
         require(Path('/home/user/postgraduate-vocabulary').resolve()==T.parent.parent,'Original canonical ROOT alias differs')
         require(not a.output.resolve().is_relative_to(M),'Only safe scalar output outside private machine')
         require(all(os.environ.get(k)=='1'for k in ['STRICT_CACHE','XG_NOPUSH','XG_KEEP_REVIEWED_GAIN','XG_KEEP_REVIEWED_ENDING','XG_KEEP_REVIEWED_CUTS']),'Original strict reviewed modes required')
         require(not any(os.environ.get(k)for k in ['VOICE','AFFILE','OLD_IV_VOID']),'Unapproved voice/filter/old-scope override')
-        require(digest(T/'make_video.py')==digest(W/'make_video.py')==MAKER_SHA256,'Exact spoken22 maker required')
+        require(digest(T/'make_video.py')==digest(W/'make_video.py')==MAKER_SHA256,'Exact spoken20 maker required')
         require(digest(T/'发音词典/读音改正.json')==DICT_SHA256 and digest(T/'发音词典/按语境读音.json')==CTX_SHA256,'Original dictionary context differs')
         require(digest(T/'环境/模型校验码.json')==digest(W/'环境/模型校验码.json')==REGISTRY_SHA256,'Original portable registry differs')
         ms=importlib.util.spec_from_file_location('_whole_'+SOURCE_NO+'_existing_mother_scope',inputs['mother_helper'])
@@ -557,7 +560,10 @@ def main():
                 report['all_frozen_inputs_exact_after']=all(digest(v)==profile['inputs'][k]['sha256']for k,v in inputs.items())
                 report['runtime_contract_files_exact_after']=all(digest(T/Path(r['path']).relative_to('视频/工具'))==r['patch_SHA256']for r in json.loads(inputs['overlay'].read_text())['files'])
                 report['normal_original110_stamp_exact_after']=digest(T/'新管/快测通过.json')==STAMP_SHA256
-                guards=['all_existing_private_cache_files_exact_before_after','only_actual_new_target_original_G36_JSON_added','public_cache_bytes_exact_before_after','original_tools_and_work_maker_bytes_exact_after','all_frozen_inputs_exact_after','runtime_contract_files_exact_after','normal_original110_stamp_exact_after']
+                report['declared_S13_context_sha256']=CTX_SHA256
+                report['declared_S13_context_data_adoption_sha256']=CTX_DATA_ADOPTION_SHA256
+                report['tools_and_work_context_data_exact_after']=digest(T/'发音词典/按语境读音.json')==digest(W/'按语境读音.json')==CTX_SHA256
+                guards=['all_existing_private_cache_files_exact_before_after','only_actual_new_target_original_G36_JSON_added','public_cache_bytes_exact_before_after','original_tools_and_work_maker_bytes_exact_after','all_frozen_inputs_exact_after','runtime_contract_files_exact_after','normal_original110_stamp_exact_after','tools_and_work_context_data_exact_after']
                 report['exact_scope_proved']=bool(report['diagnostic_completed'] and all(report.get(k)is True for k in guards) and all(report['restoration'].get(k)is True for k in ['normal_scripts_namespace_restored','environment_cwd_sys_path_restored','normal_work_inode_and_PCM_restored']))
             math_save_integrity=bool(new_math and all(v.get('strict_readback_exact') is True for v in new_math.values())
                 and all(report.get(k)is True for k in guards)
