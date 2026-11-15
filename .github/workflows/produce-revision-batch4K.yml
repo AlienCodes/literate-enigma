@@ -129,27 +129,38 @@ jobs:
           STAMP_HIT: ${{ steps.fastcheck-cache.outputs.cache-hit }}
         run: test "$STAMP_HIT" = true
       - uses: actions/cache/restore@v4
-        id: exact-source35-S15-mothers
+        id: exact-source68-S2-mothers
         with:
           path: |
-            ${{ runner.temp }}/completion-machine/tts/cache_tts/3f83831048941d66ea88c111fccbf8dcd055496a.pkl
-            ${{ runner.temp }}/completion-machine/tts/cache_tts/3f83831048941d66ea88c111fccbf8dcd055496a.pkl.单线程
-            ${{ runner.temp }}/completion-machine/tts/cache_tts/52b0bb10ca17f206906f1844abcdec44897d3149.pkl
-            ${{ runner.temp }}/completion-machine/tts/cache_tts/52b0bb10ca17f206906f1844abcdec44897d3149.pkl.单线程
-          key: Linux-native35-exact-S15-first-spoken-comma-43702588103
-      - name: 真实保存的S15四叶缓存必须命中且逐SHA不变
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/957f2b32009a98dec0354ea08bc770a90a477c6d.pkl
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/957f2b32009a98dec0354ea08bc770a90a477c6d.pkl.单线程
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/ade031d5fbb2952cfc8aa8483ba9eef5751f2c08.pkl
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/ade031d5fbb2952cfc8aa8483ba9eef5751f2c08.pkl.单线程
+          key: Linux-native68-exact-S2-first-spoken-comma-43702410293
+      - name: 真实保存的S2四叶缓存必须命中且逐SHA不变
         env:
-          CACHE_HIT: ${{ steps.exact-source35-S15-mothers.outputs.cache-hit }}
+          CACHE_HIT: ${{ steps.exact-source68-S2-mothers.outputs.cache-hit }}
         run: |
           test "$CACHE_HIT" = true
           python - <<'PY'
           import os,json,hashlib
           from pathlib import Path
-          x=json.loads(Path('.github/video-revision-batch/actual-source35-S15-four-private-leaf-identity.json').read_text())
+          x=json.loads(Path('.github/video-revision-batch/actual-source68-S2-four-private-leaf-identity.json').read_text())
           c=Path(os.environ['RUNNER_TEMP'])/'completion-machine/tts/cache_tts'
           assert len(x['actual_four_private_files'])==4
           assert all(hashlib.sha256((c/n).read_bytes()).hexdigest()==s for n,s in x['actual_four_private_files'].items())
           PY
+      - uses: actions/cache/restore@v4
+        id: existing-original-S2-G36
+        with:
+          path: ${{ runner.temp }}/completion-machine/tts/source68-only-target-whole-original-math-cache/调平_e55a8ac21608c0b20b2761284675f784cb01d85f.json
+          key: Linux-native68-only-target-whole-original-math-43722945326
+      - name: 仅恢复已实测原S2-G36的同字节JSON到normalcache，禁止重算
+        env:
+          CACHE_HIT: ${{ steps.existing-original-S2-G36.outputs.cache-hit }}
+        run: |
+          python .github/video-revision-batch/restore_exact_existing_S2_G36_JSON.py
+          cp source68-strict-whole-WAV-MD5-only-public/actual-existing-S2-original-G36-JSON-restore-readback.json article68-delivery/68-actual-existing-S2-G36-restore-readback.json
       - name: 原程序做稿并正式定稿4K
         run: python -u .github/video-revision-batch/run.py
       - name: 仅保留本篇公开成片和核验材料

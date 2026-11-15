@@ -10,11 +10,11 @@ Of the 97 aboard, 62 survived, a **proportion** close to **two-thirds**, while *
 
 Newsreel cameras and **photographers** caught the disaster. A radio **correspondent**'s **eyewitness** **commentary** was not live; **audiences** heard it the next day. The cause has not been **definitively** established, but **static electricity** **igniting** **leaking** hydrogen is the **leading explanation**. A **theory** blaming the **doped** **fabric** has been **rejected**.
 
-The 1933 crash of USS Akron killed 73 yet won less **notoriety**. The filmed fire left a **fateful** **image** that **abruptly** wrecked **confidence**. As public **perception** **soured**, Graf Zeppelin was **withdrawn**, later **scrapped**, and a **glamorous** **epoch** of **aviation** closed. The **doomed** airship's first journey to North America had begun on 6 May 1936, exactly a year before the fire.
+The 1933 crash of USS Akron killed 73 yet won less **notoriety**. The filmed fire left a **fateful** **image** that **abruptly** wrecked **confidence**. As public **perception** **soured**, Graf Zeppelin was **withdrawn**, later **scrapped**, and a **glamorous** **epoch** of **aviation** closed. The **doomed** airship's first journey to North America had begun on 6 May 1936, **exactly** a year before the fire.
 
 ## 中文
 
-1936年，**巨大的**(colossal)兴登堡号完成了17次跨大西洋**往返飞行**(round trips)，这是一个**奢华**(luxury)与**魅力**(glamour)的**奇观**(marvel)。（a marvel of…：同位语，补充说明前面整句）它的**便利设施**(amenities)包括一间**休息厅**(lounge)，以及，在那一年，一架三角钢琴。（that year：插入语，指1936年）美国对**氦气**(helium)**出口**(export)的**禁运**(embargo)已经使得这艘飞艇只能依赖于**氢气**(hydrogen)。（embargo on…：对……的禁运）（leave sb doing：使某人处于某种状态；had left：过去完成时）因为氢气**易燃**(combustible)，**吸烟者**(smokers)只能**坐在**(sat behind)一道带有**电子点烟器**(electric lighter)的气闸**后面**(sat behind)。（Because 引导原因状语从句；that gas 指 hydrogen）
+1936年，**巨大的**(colossal)兴登堡号完成了17次跨大西洋**往返飞行**(round trips)，这是一个**奢华**(luxury)与**魅力**(glamour)的**奇观**(marvel)。（a marvel of…：同位语，补充说明前面整句）它的**便利设施**(amenities)包括一间**休息厅**(lounge)，以及，在那一年，一架三角钢琴。（that year：插入语，指1936年）美国对**氦气**(helium)**出口**(export)的**禁运**(embargo)已经使得这艘飞艇只能依赖于**氢气**(hydrogen)。（embargo on…：对……的禁运）（leave sb doing：使某人处于某种状态；had left：过去完成时）因为氢气是**易燃的**(combustible)，**吸烟者**(smokers)只能**坐在**(sat behind)一道带有**电子点烟器**(electric lighter)的气闸**后面**(sat behind)。（Because 引导原因状语从句；that gas 指 hydrogen）
 
 1937年5月3日，**飞艇**(airship)离开法兰克福。它比**时刻表**(timetable)晚了几个小时，在莱克赫斯特遇到**雷暴**(thunderstorms)，**盘旋了**(circled)一个多小时，**才开始**(before)朝着**系留塔架**(mooring mast)**下降**(descent)。（Hours behind its timetable：形容词短语作状语）（towards the mooring mast：介词短语，修饰 descent）（mooring mast 地面上一根专门用来拴住飞艇机头、防止它被风吹跑的高大铁塔（系留塔））5月6日晚上约7点25分，**火焰**(flames)出现在了飞艇的**尾部**(stern)附近。这场**无法控制的大火**(inferno)在大约半分钟内就**焚毁了**(incinerated)这艘飞艇，留下了一副**扭曲变形的**(crumpled)**骨架**(frame)。（leaving…：现在分词短语作结果状语）
 
@@ -22,7 +22,7 @@ The 1933 crash of USS Akron killed 73 yet won less **notoriety**. The filmed fir
 
 新闻纪录片摄影机和**摄影师**(photographers)拍下了这场灾难。一位电台的**专题记者**(correspondent)的**目击**(eyewitness)**实况报道**(commentary)并不是直播；**听众**(audiences)在第二天才听到。（it 指 commentary）（当时有个电台记者就在现场，一边看爆炸一边崩溃地录了解说。不过那年头没法搞现场直播，全美国的老百姓，是到了第二天才在收音机里听到他这段绝望的录音的。）起火原因尚未**清楚地**(definitively)得到确认，但**静电**(static electricity)**点燃**(igniting)**泄漏的**(leaking)氢气是**最主要的解释**(leading explanation)。（has not been established：现在完成时的被动语态）（igniting leaking hydrogen：现在分词短语作后置定语，修饰 static electricity）一种将责任归咎于**上过涂料的**(doped)**蒙皮织物**(fabric)的**未被证实的看法**(theory)，并**没有被接受**(rejected)。（blaming…：现在分词短语作后置定语，修饰 theory）
 
-1933年阿克伦号失事造成73人死亡，**恶名**(notoriety)却没那么大。（USS：United States Ship，美国海军舰艇名前缀）被拍下的大火留下了一幅**带来厄运的**(fateful)**画面**(image)，**骤然**(abruptly)摧毁了人们的**信心**(confidence)。（that 引导定语从句，修饰 image）（飞艇烧毁的视频一传开，全世界都吓傻了。大家对飞艇的安全彻底失去了信心，再也没人敢坐，这个曾经风光无限的行业就这么完蛋了。）随着公众的**看法**(perception)**变糟**(soured)，格拉夫·齐柏林号**退役**(withdrawn)，随后被**报废处理**(scrapped)，而**航空业**(aviation)的一个**充满魅力的**(glamorous)**时代**(epoch)结束了。（As 引导时间状语从句）（later scrapped：省略了 was）（of aviation：介词短语作后置定语，修饰 epoch）这艘**注定毁灭的**(doomed)飞艇首次飞往北美的航程，始于1936年5月6日，恰好是那场大火的一年前。（had begun：过去完成时）（简述：▸隐患：兴登堡号是豪华跨洋飞艇；美国禁运氦气，使它只能靠易燃氢气浮空，留下安全隐患。▸失事：1937年5月6日，它在美国降落、准备停靠地面塔架时尾部起火，约半分钟就烧成扭曲骨架。▸伤亡：艇上97人中62人生还、35人遇难；地面另有1人死亡，遇难者合计36人。▸原因：火因尚无定论，主要解释是静电点燃泄漏氢气；归咎外层布料涂层的说法被否定。▸落幕：1933年另一飞艇事故死73人，却不及兴登堡号出名；这次影像和次日播出的现场录音重创信心，飞艇客运时代落幕。）
+1933年阿克伦号失事造成73人死亡，然而**恶名**(notoriety)却没那么大。（USS：United States Ship，美国海军舰艇名前缀）被拍下的大火留下了一幅**带来厄运的**(fateful)**画面**(image)，**骤然**(abruptly)摧毁了人们的**信心**(confidence)。（that 引导定语从句，修饰 image）（飞艇烧毁的视频一传开，全世界都吓傻了。大家对飞艇的安全彻底失去了信心，再也没人敢坐，这个曾经风光无限的行业就这么完蛋了。）随着公众的**看法**(perception)**变糟**(soured)，格拉夫·齐柏林号**退役**(withdrawn)，随后被**报废处理**(scrapped)，而**航空业**(aviation)的一个**充满魅力的**(glamorous)**时代**(epoch)结束了。（As 引导时间状语从句）（later scrapped：省略了 was）（of aviation：介词短语作后置定语，修饰 epoch）这艘**注定毁灭的**(doomed)飞艇首次飞往北美的航程，始于1936年5月6日，**恰好**(exactly)是那场大火的一年前。（had begun：过去完成时）（简述：▸隐患：兴登堡号是豪华跨洋飞艇；美国禁运氦气，使它只能靠易燃氢气浮空，留下安全隐患。▸失事：1937年5月6日，它在美国降落、准备停靠地面塔架时尾部起火，约半分钟就烧成扭曲骨架。▸伤亡：艇上97人中62人生还、35人遇难；地面另有1人死亡，遇难者合计36人。▸原因：火因尚无定论，主要解释是静电点燃泄漏氢气；归咎外层布料涂层的说法被否定。▸落幕：1933年另一飞艇事故死73人，却不及兴登堡号出名；▹这次影像和次日播出的现场录音重创信心，飞艇客运时代落幕。）
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -38,7 +38,7 @@ The 1933 crash of USS Akron killed 73 yet won less **notoriety**. The filmed fir
 | export | 本文：出口；n./v. 出口（export goods；an export ban） | 1 |
 | embargo | 本文：禁运；n. 禁运，禁令（an arms/trade embargo；lift an embargo） | 1 |
 | hydrogen | 本文：氢气；n. 氢，氢气（hydrogen gas；liquid hydrogen） | 1 |
-| combustible | 本文：易燃；adj. 易燃的，可燃的（combustible materials） | 1 |
+| combustible | 本文：易燃的；adj. 易燃的，可燃的（combustible materials） | 1 |
 | smokers | 本文：吸烟者；n. (smoker) 吸烟者（a heavy smoker；non-smokers） | 1 |
 | sat behind | 本文：坐在……后面；v. (sit behind) 坐在……后面（sit behind the desk；sit behind a screen） | 1 |
 | electric lighter | 本文：电子点烟器；n. 电子点烟器，电点火器（an electric lighter in the car） | 1 |
@@ -93,6 +93,7 @@ The 1933 crash of USS Akron killed 73 yet won less **notoriety**. The filmed fir
 | glamorous | 本文：充满魅力的；adj. 富有魅力的，光彩夺目的（a glamorous lifestyle/star） | 5 |
 | epoch | 本文：时代；n. 时代，纪元（mark a new epoch） | 5 |
 | doomed | 本文：注定毁灭的；adj. 注定失败的，注定毁灭的（a doomed attempt；doomed to fail） | 5 |
+| exactly | 本文：恰好；adv. 恰好，正好（exactly a year before；exactly right） | 5 |
 
 ## 史实与来源
 - 【T1】1936年兴登堡号完成17次大西洋往返（34次横渡）。S6
