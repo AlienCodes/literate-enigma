@@ -48,6 +48,8 @@ def guarded_original_math(m,observer,original,cache,expected,boost_capture,sourc
   require(str(no)=='68' and rounds==2 and os.environ.get('STRICT_CACHE')=='1','Math must enter original strict source68/rounds2')
   require(digest(source_path)==NEW_SOURCE_SHA and boost_capture.get('original_candidate_guard_passed') is True,'Candidate source/original boost must genuinely pass before math')
   require(not calls,'Only one selected S6 G36 invocation permitted');calls.append(True)
+  last=m.LAST;SR=m.SR;head=last['head'];scale=last['scale']
+  boost_capture['actual_original_candidate_before_math_guard']={'clip_samples':[len(x) for x in clips],'clip_dtypes':[str(x.dtype) for x in clips],'clip_SHA256':[hashlib.sha256(m.np.ascontiguousarray(x).tobytes()).hexdigest() for x in clips],'clip_absolute_peaks':[float(m.np.abs(x).max()) if len(x) else 0. for x in clips],'actual_tmap':[list(x) for x in tmap],'actual_gaps':list(gaps),'unchanged_expected_clip_samples':expected['clip_samples'],'unchanged_expected_tmap':expected['original_tmap'],'unchanged_expected_gaps':expected['gaps'],'shape_equal': [len(x) for x in clips]==expected['clip_samples'],'tmap_equal':[list(x) for x in tmap]==expected['original_tmap'],'gaps_equal':list(gaps)==expected['gaps'],'actual_original_LAST':{k:last[k] for k in ['head','hs','scale','segs','total','cuts','gaps','fades','grafts']},'actual_timed_last10_phonemes':[{'phoneme':t.phoneme,'timed_start_s':t.start,'timed_end_s':t.end,'raw_w_start_sample':round(t.start*scale*SR)-head,'raw_w_end_sample':round(t.end*scale*SR)-head} for t in list(last['toks'])[-10:]],'timed_annotation_not_ASR_or_safety_acceptance':True,'original_math_or_new_key_not_yet_executed':True}
   require([len(x) for x in clips]==expected['clip_samples'] and list(gaps)==expected['gaps'] and [list(x) for x in tmap]==expected['original_tmap'],'Candidate original duration/tmap/gaps changed')
   cur=m._auto_level;m._auto_level=original
   try:key=observer.auto_key(m,clips,tmap,gaps,no)
@@ -157,6 +159,9 @@ def run_candidate(a,profile,inp,base,baseline,report,new_math):
     report['candidate']['baseline_global_peak_not_exceeded_prerequisite_only']=peak_compatible
     report['actual_candidate_cache_reads']=used;report['actual_candidate_G36']=reads;report['candidate_local_original_gates_passed']=bool(passed and peak_compatible)
  finally:
+  report['actual_candidate_boost_and_premath_prefix']={k:v for k,v in capture.items() if k not in ['input','output']}
+  report['actual_candidate_cache_reads_before_any_guard_stop']=used
+  report['actual_candidate_original_math_reads_before_any_guard_stop']=reads
   if m is not None:
    if old_auto is not None:m._auto_level=old_auto
    if old_boost is not None:m._boost=old_boost
