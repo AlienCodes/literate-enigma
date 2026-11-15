@@ -959,7 +959,7 @@ try:
                 .replace('**', '').split() for sentence in data['sentences']]
     if NO == '48':
         scope_path = TASK / 'source48-exact-authorized-name-guard.py'
-        assert sha(scope_path) == 'e4836b71d58e2c78c1b40747b1c78d71a71940f2fdfb8d72755e4dc4e8d938fd'
+        assert sha(scope_path) == '41b313abbd48b44e4a57f06a2b90480e779707a8dde75f389bdcdf1bace2819e'
         scope_spec = importlib.util.spec_from_file_location('exact48_native_name_scope', scope_path)
         scope_module = importlib.util.module_from_spec(scope_spec)
         scope_spec.loader.exec_module(scope_module)
@@ -997,7 +997,7 @@ try:
     if NO == '48':
         exact_supplement = request / '真实用户同意补充.json'
         assert sha(exact_supplement) == 'be7a9c0971db84441ac62bd976140d66116f4605fabc2b6c83e89555fb4cdec0'
-        assert sha(request / 'root-source48-final4980-current513d-source-pair-and-exact-proof-QC-code-adoption-decision.json') == '0adaad1903df4de524019998b169d476c5f44bef5cad943827d8b19d2908d3d8'
+        assert sha(request / 'root-source48-c856-d970-specific-S10-K126-source-QC-request-pins-code-adoption-decision.json') == 'd9798fe15a8ed1aee6eefa17a90bb396c7c712be2b4204086806bdc14501030f'
         for exact_record in json.loads(exact_supplement.read_text())['records']:
             assert str(exact_record['篇']).zfill(2) == NO
             if exact_record not in records['记录']: records['记录'].append(exact_record)

@@ -1,0 +1,17 @@
+--- adopted-bf113-current513d-evidence-guard
++++ exact-root-selected-S10-leaf-inverse-only
+@@ -95,6 +95,14 @@
+   if requested['高亮开始'].get(key)!=value:return False
+   if key in old.get('高亮开始',{}):restored['高亮开始'][key]=old['高亮开始'][key]
+   else:restored['高亮开始'].pop(key,None)
++ # Exact root-selected S10 leaf only; never reset the entire machine-ASR section.
++ case_file=HERE/p['root_selected_S10_machine_case_file']
++ if sha(case_file)!=p['root_selected_S10_machine_case_sha256']:return False
++ case=json.loads(case_file.read_text());selected=case['selected_specific_machine_confirmation']
++ if not(case['source_id']=='48'and case['selected_record_canonical_JSON_sha256']==p['approved_S10_machine_case_canonical_SHA256']and canonical(selected)==p['approved_S10_machine_case_canonical_SHA256']):return False
++ actual_machine=requested['核对确认'].get('机器复听',{});original_machine=old['核对确认'].get('机器复听',{})
++ if not('S10'in original_machine and actual_machine.get('S10')==selected and {k:v for k,v in actual_machine.items()if k!='S10'}=={k:v for k,v in original_machine.items()if k!='S10'}):return False
++ restored['核对确认']['机器复听']['S10']=copy.deepcopy(original_machine['S10'])
+  if restored!=old or not control_valid(requested,p):return False
+  c=e['phases']['selected_four_protection']
+  if not(c['source_sha256']==p['physical_source_sha256']and c['actual_complete_WAV']['file_sha256']==p['fingerprints']['actual_raw_WAV_sha256']and c['actual_complete_AAC']['AAC_ADTS_sha256']==p['fingerprints']['canonical_AAC_ADTS_sha256']and c['actual_complete_AAC']['packet_count']==p['approved_canonical_audio_packet_provenance']['packet_count']and c['actual_full_WAV_original_PV_fingerprint_md5_12']==p['actual_current_whole_PV_fingerprint']):return False
