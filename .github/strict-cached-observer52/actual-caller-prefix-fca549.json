@@ -1,0 +1,356 @@
+{
+  "kind": "source52-original-a473-builder-prefix-through-S3-only-observation",
+  "diagnostic_only": true,
+  "formal_audio_or_video_accepted": false,
+  "production_delivery_eligible": false,
+  "baseline_rebuilt": false,
+  "new_model_inference": false,
+  "new_G36_math_or_cache": false,
+  "production_source_or_CF_written": false,
+  "completed": false,
+  "program_SHA256": "195aeb9815ad54f601bc67210ad14efc2c7420d93a2bf2e4740ebb6af6a66a48",
+  "reference_SHA256": "a27775e2e1ff190c6ee468e7572a4b60117f62aa2efb72421202f0baeda5919d",
+  "S3_prefix_cache_start": 7,
+  "actual_S3_caller_before_gain": {
+    "no": "52",
+    "no_python_type": "str",
+    "si": 2,
+    "si_python_type": "int",
+    "sentence": "Londoners were accustomed to murky, dreary winters.",
+    "state": {
+      "sid": "S3",
+      "n": 3
+    },
+    "pieces": [
+      [
+        0,
+        35
+      ],
+      [
+        36,
+        51
+      ]
+    ],
+    "gaps": [
+      0.4
+    ],
+    "array": {
+      "samples": 79080,
+      "dtype": "float32",
+      "SHA256": "7596f3cb080ddb1ad7bc7f4b4e6b88b11bb524eb8620669dbac12ee229a21394"
+    },
+    "clips": [
+      {
+        "samples": 43680,
+        "dtype": "float32",
+        "SHA256": "2fa4b229661edaa59defd9a101feaa863a1089d66dfa9cedb33844b8898a59a9"
+      },
+      {
+        "samples": 9120,
+        "dtype": "float32",
+        "SHA256": "1150614eeef2a65b28a3da2abfca749b4906da643a8f6e4737da2fd50916c1e6"
+      },
+      {
+        "samples": 26280,
+        "dtype": "float32",
+        "SHA256": "20ec05ee1e6dcbe8e25e235f3f14180b5f6a950be3637d85032a99f42d8643ae"
+      }
+    ],
+    "raw_fingerprint": "fbb395bf4698",
+    "tmap": [
+      [
+        0,
+        35,
+        0.0,
+        1.82
+      ],
+      [
+        36,
+        51,
+        2.1999999999999997,
+        3.295
+      ]
+    ],
+    "cuts": [
+      [
+        44040,
+        48240,
+        0.38
+      ]
+    ],
+    "S3_source_controls": {}
+  },
+  "actual_S3_caller_after_gain": {
+    "array": {
+      "samples": 79080,
+      "dtype": "float32",
+      "SHA256": "8e56f34c5476c294526d989caa0e7901a36dcfb409de7a22adf36e6981e227c1"
+    },
+    "concatenated_returned_clips": {
+      "samples": 79080,
+      "dtype": "float32",
+      "SHA256": "8e56f34c5476c294526d989caa0e7901a36dcfb409de7a22adf36e6981e227c1"
+    },
+    "automatic_gain": {
+      "1": -1.5,
+      "2": 1.5
+    },
+    "manual_gain": null,
+    "actual_original_tail": [
+      {
+        "input": {
+          "samples": 79080,
+          "dtype": "float32",
+          "SHA256": "8d3214f0c52f137ec64745435c03d2429dc67ec8a3477585bd0ce7bc69ed4c21"
+        },
+        "output": {
+          "samples": 79080,
+          "dtype": "float32",
+          "SHA256": "8e56f34c5476c294526d989caa0e7901a36dcfb409de7a22adf36e6981e227c1"
+        },
+        "changed_sample_count": 1199
+      }
+    ],
+    "actual_S3_stored_G36": [
+      {
+        "sentence": "S3",
+        "name": "调平_64b17b10a83920f4f639f4dc44bdce9b4904cbd9.json",
+        "JSON_SHA256": "98c2e92f9fe36307e60e0a857a97d5595015278b2add1fed2bcea10248eb43d6",
+        "actual_gain": {
+          "1": -1.5,
+          "2": 1.5
+        },
+        "no_new_math": true
+      }
+    ],
+    "actual_S3_cache_reads": [
+      {
+        "filename": "f19b42504bc4ee6d948a39ac849fd10a6046a885.pkl",
+        "SHA256": "90348f53d3aff272e8bfedecc511b159c482a63a7e3694de5847c9349cb73d03",
+        "marker_SHA256": "3fb5b153b12dc5a77302e99ec27b03595accbb0ab52b2252b4333ab32ffa0806"
+      },
+      {
+        "filename": "0289a61b69cf34f5c051a25a13e0d0a50bb071b4.pkl",
+        "SHA256": "ff1255cdd02cc55bee72e5a7cb3f3a10f141d1acaf0f5f44a6ac50e7afd2de65",
+        "marker_SHA256": "e34a5cd5385d04e0ceea37f3738e1ab411d969dfe6342c7df93d76feb0c6cf80"
+      },
+      {
+        "filename": "调平_64b17b10a83920f4f639f4dc44bdce9b4904cbd9.json",
+        "SHA256": "98c2e92f9fe36307e60e0a857a97d5595015278b2add1fed2bcea10248eb43d6",
+        "marker_SHA256": null
+      }
+    ],
+    "actual_imported_module_files": {
+      "clean": {
+        "basename": "clean.py",
+        "SHA256": "86b3872cbca83437e24da2c7ada5fffd916f06cacdd2b32fee2a78c9b134178d"
+      },
+      "render": {
+        "basename": "render.py",
+        "SHA256": "477a516f7100ac05dab15d3b176e2d8c49779aa4bd8713087b737f4d25833b67"
+      },
+      "title2": {
+        "basename": "title2.py",
+        "SHA256": "681f5fff1f17174f3d3d627c9ce27077977c2cc02b6de79181bb43db9a540011"
+      },
+      "kokoro_onnx": {
+        "basename": "__init__.py",
+        "SHA256": "32602bee21b14ed161fdfd3c8b921b267782ad143a49c3ebd256c16c473808f5"
+      }
+    },
+    "SR": 24000,
+    "AUD_DB": -55,
+    "short_start": false,
+    "SENT_NO": "52",
+    "spoken_source_no": "52",
+    "source_file_SHA256": "2e494dd76be71f2661f5935b26911b1b94f677627b4b990a3c0376a865030686",
+    "normalized_PCM16_float64": {
+      "samples": 79080,
+      "dtype": "float64",
+      "SHA256": "325a4b3b8fcf0e46aaae895867c19ef57804ee0f016b0ed9aba28ad3cb7ec805"
+    }
+  },
+  "records_captured_before_original_hard_assertions": {
+    "title": {
+      "samples": 50400,
+      "pre_master_float32_SHA256": "64b96aeebeb9cf372eb2cfa6b1f0373b17a4ee6086dd88ec99f93227042d6677"
+    },
+    "S1": {
+      "before_gain_samples": 156000,
+      "before_gain_float32_SHA256": "e194ebd73598033dadc416436c7ed81def8e1f07e4aaacd51f035dbdf39422f7",
+      "raw_w_fingerprint": "a473b36ec806",
+      "actual_tmap": [
+        [
+          0,
+          26,
+          0.0,
+          2.78
+        ],
+        [
+          27,
+          32,
+          3.1599999999999997,
+          3.7699999999999996
+        ],
+        [
+          33,
+          66,
+          4.15,
+          6.5
+        ]
+      ],
+      "actual_cuts": [
+        [
+          67080,
+          76320,
+          0.38
+        ],
+        [
+          90960,
+          95760,
+          0.38
+        ]
+      ],
+      "samples": 156000,
+      "pre_master_float32_SHA256": "05463a651a8fc4b18298e5f2f0fc8809b407b86793f1c083bdd79bdb5e14df3c",
+      "automatic_gain": {
+        "2": -4.5
+      },
+      "manual_gain": {
+        "2": 1.5
+      }
+    },
+    "S2": {
+      "before_gain_samples": 131040,
+      "before_gain_float32_SHA256": "14da5669f1e797e924ce6736e7f07194d9cd6a0358f2ea0fd87f7ef23255e45e",
+      "raw_w_fingerprint": "ecbe5d398b65",
+      "actual_tmap": [
+        [
+          0,
+          9,
+          0.0,
+          0.692
+        ],
+        [
+          10,
+          45,
+          1.092,
+          3.08
+        ],
+        [
+          46,
+          80,
+          3.46,
+          5.46
+        ]
+      ],
+      "actual_cuts": [
+        [
+          17088,
+          17088,
+          0.4
+        ],
+        [
+          64800,
+          72720,
+          0.38
+        ]
+      ],
+      "samples": 131040,
+      "pre_master_float32_SHA256": "2ea043f0edd0609dfc2917ae8484a0da30e08eb59f72421169775df6595f546a",
+      "automatic_gain": {
+        "1": -3.0
+      },
+      "manual_gain": null
+    },
+    "S3": {
+      "before_gain_samples": 79080,
+      "before_gain_float32_SHA256": "7596f3cb080ddb1ad7bc7f4b4e6b88b11bb524eb8620669dbac12ee229a21394",
+      "raw_w_fingerprint": "fbb395bf4698",
+      "actual_tmap": [
+        [
+          0,
+          35,
+          0.0,
+          1.82
+        ],
+        [
+          36,
+          51,
+          2.1999999999999997,
+          3.295
+        ]
+      ],
+      "actual_cuts": [
+        [
+          44040,
+          48240,
+          0.38
+        ]
+      ],
+      "samples": 79080,
+      "pre_master_float32_SHA256": "8e56f34c5476c294526d989caa0e7901a36dcfb409de7a22adf36e6981e227c1",
+      "automatic_gain": {
+        "1": -1.5,
+        "2": 1.5
+      },
+      "manual_gain": null
+    }
+  },
+  "actual_G36_captured_before_original_hard_assertions": [
+    {
+      "sentence": "S1",
+      "name": "调平_ee8789ce1fa3230c6bb746a24f6db999478eac1e.json",
+      "JSON_SHA256": "220445dacb845f36c2793c87e2c92a0dcb510909b644fa5b519123dd459a056d",
+      "actual_gain": {
+        "2": -4.5
+      },
+      "no_new_math": true
+    },
+    {
+      "sentence": "S2",
+      "name": "调平_66fab95483bfcbcd36694083f7ee64421a36d203.json",
+      "JSON_SHA256": "a65f55dff548cf0740091f84d09325cb1af7fca00059004a9965448a3929752a",
+      "actual_gain": {
+        "1": -3.0
+      },
+      "no_new_math": true
+    },
+    {
+      "sentence": "S3",
+      "name": "调平_64b17b10a83920f4f639f4dc44bdce9b4904cbd9.json",
+      "JSON_SHA256": "98c2e92f9fe36307e60e0a857a97d5595015278b2add1fed2bcea10248eb43d6",
+      "actual_gain": {
+        "1": -1.5,
+        "2": 1.5
+      },
+      "no_new_math": true
+    }
+  ],
+  "actual_standalone_S3_report_SHA256": "696f92b6d9fa74e461c5b6defec09b5616e9e972e7ef2aa75e8ac4ded2f380f2",
+  "historical_expected_postgain555": "4871c0a4b3920e82a0d7d6bc7eaa5386349088319251ada49bbd6b0f012a0269",
+  "historical_expected_quantized555": "325a4b3b8fcf0e46aaae895867c19ef57804ee0f016b0ed9aba28ad3cb7ec805",
+  "intentional_stop_at_S3_original_gain_return": true,
+  "all_private_cache_stats_and_keys_unchanged": true,
+  "all_models_byte_exact_after": true,
+  "all_input_and_tools_byte_exact_after": true,
+  "original_full_2ASR_gates_and_final_V3_still_required": true,
+  "private_PCM_PKL_GT_or_media_exported": false,
+  "original_observer_build_attempt_counter": 1,
+  "whole_build_count": 0,
+  "whole_WAV_or_AAC_or_video_encoded": false,
+  "observation_completed": true,
+  "original_expected_Stop_exception": {
+    "type": "PrefixComplete",
+    "detail": "Intentional S3-only original caller prefix stop; no S4 or whole WAV/AAC"
+  },
+  "base_helper_SHA256": "a473452dba8cd83e9792119f265ef06e457d1f4e076c6902a9ca0a455ac2eced",
+  "instrumentation_exact_anchor_count": 5,
+  "fulltrack_or_formal_acceptance": false,
+  "strict_comparisons": {
+    "before_gain_same_as_standalone_and555": true,
+    "post_gain_same_as_standalone_and555": false,
+    "quantized_same_as_standalone_and555": true,
+    "no_previous_expected_hash_replaced": true
+  }
+}
