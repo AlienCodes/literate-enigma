@@ -111,7 +111,7 @@
     "missing_or_pending_items_are_production_pending_not_legacy_fillers": true
   },
   "all70_latest_complete": false,
-  "latest_requested_revision_completed_count": 54,
+  "latest_requested_revision_completed_count": 55,
   "articles": [
     {
       "source_id": "07",
@@ -3842,15 +3842,15 @@
       "pending_newer_request_blocks_old_fallback": true,
       "older_accepted_archive_is_history_until_newest_request_qualified": true,
       "previously_accepted_cloud_final": {
-        "asset_commit": "eed20e51dc04e697388ff81948ca51c7bc29123a",
-        "video_repo_path": "视频修订定稿/2026-11-14-已验收1篇-native-inline-run43543967031-原08/视频/58 破解霍乱之谜的医生.mp4",
-        "bytes": 16012252,
-        "sha256": "9ce6fc8c0ed172d765286310c27a9b27635eb4a7b87bf6e61307582ce29d1ec0"
+        "asset_commit": "d34c585699e511201bb87bc4ead032d5c425fa66",
+        "video_repo_path": "视频修订定稿/2026-11-14-审核原08-新native源QA与0.6秒定稿-来源43717644753-本地尾段v1/视频/58 破解霍乱之谜的医生.mp4",
+        "bytes": 16167898,
+        "sha256": "6556312d32fcc9aa64807a7f1abf0264573f3bdd0e1ee4f6bfc45cc1320d8de1"
       },
-      "status": "latest_authorized_revision_in_production",
-      "latest_requested_revision_complete": false,
-      "actual_complete_validation_passed": false,
-      "actual_dual_permanent_archive_passed": false,
+      "status": "latest_qualified_cloud_final",
+      "latest_requested_revision_complete": true,
+      "actual_complete_validation_passed": true,
+      "actual_dual_permanent_archive_passed": true,
       "newest_user_revision_records": [
         "book58-source08-epidemics-context-gloss-collecting-20261115",
         "book58-source08-poison-focus-and-swallowed-inhaled-translation-collecting-20261115",
@@ -3897,7 +3897,36 @@
           "S3C2_new_translation_plain_exact": "是被吞进体内的，而非吸入体内的",
           "original_swallowed_inhaled_focus_keys_boundaries_and_English_punctuation_preserved": true
         }
-      ]
+      ],
+      "latest_revision_final": {
+        "asset_commit": "d34c585699e511201bb87bc4ead032d5c425fa66",
+        "video_repo_path": "视频修订定稿/2026-11-14-审核原08-新native源QA与0.6秒定稿-来源43717644753-本地尾段v1/视频/58 破解霍乱之谜的医生.mp4",
+        "bytes": 16167898,
+        "sha256": "6556312d32fcc9aa64807a7f1abf0264573f3bdd0e1ee4f6bfc45cc1320d8de1"
+      },
+      "validation_handoff_sha256": "655882230c54a998d7c06e309e1027be59128264cd872e716503488a4f02f9df",
+      "post_reading_pause_seconds": 0.6,
+      "illustration_seconds": 2,
+      "summary_card_seconds": 2,
+      "source_and_GEN_MD": {
+        "json": {
+          "bytes": 36928,
+          "sha256": "b27f10734dd2d7526f7b4f7165f3d647992dd257cc52360249a265cec3a21955",
+          "origin": "official_artifact_working_copy"
+        },
+        "gen": {
+          "bytes": 33408,
+          "sha256": "b98ca3cf2665d51451b90b1aca6e8870a2b0b7d04ed4302e7062403a5dc2df12",
+          "origin": "derived_after_final_QC",
+          "derived_from_json_sha256": "b27f10734dd2d7526f7b4f7165f3d647992dd257cc52360249a265cec3a21955"
+        },
+        "md": {
+          "bytes": 21022,
+          "sha256": "fb11a95bfd3d08e89271da0f8ca1b8095a23bd6039700b82ea2cad17770baab3",
+          "origin": "actual_working_manuscript"
+        }
+      },
+      "source_roles_preserved": true
     },
     {
       "source_id": "63",
