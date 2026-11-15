@@ -1,4 +1,4 @@
-name: 书62唯一原A21词尾t移植严格缓存整轨测量
+name: 书62仅S16原句增益负0.2严格缓存整轨与原LQ测量
 on:
   push:
     branches: [codex/finish-05-and-summaries-20261112]
@@ -59,7 +59,7 @@ jobs:
         env:
           CACHE_HIT: ${{ steps.selected-target-mothers.outputs.cache-hit }}
         run: test "$CACHE_HIT" = true
-      - name: 仅真baseline及唯一原A21修复candidate各一次严格缓存整轨观测
+      - name: 当前真graft及仅S16负0.2各一次原严格缓存整轨观测
         id: whole-observer
         env:
           AUDIO_ONLY: '1'
@@ -73,7 +73,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: source23-original-successful-whole-with-WAV-MD5-safe-scalars
-          path: source23-strict-whole-with-MD5-public/*.json
+          name: source23-onlyS16-minus0p2-original-LQ-safe-scalars
+          path: source23-onlyS16-minus0p2-whole-LQ-public/*.json
           retention-days: 30
           if-no-files-found: error
