@@ -56,18 +56,6 @@ def aac_hash(path):
     return hashlib.sha256(raw).hexdigest()
 
 
-def bind_specific_spoken_reference_context(module, no, maker_sha, source_sha, source_data):
-    """Use the certified shared plan only for the two exact approved requests."""
-    if not source_data.get('朗读删逗号'):
-        return False
-    sources = {'35': 'db2b3905ec91f32bed14411b063b42677e19ed02283b622803e869d58bb3d828'}
-    assert no in sources and str(source_data.get('no')) == no, 'Specific spoken-reference source id mismatch.'
-    assert maker_sha == '0e6c4ff6dd4ab4e3774bc060188de72356cd9aa37a7bc092d1f28a5508cc1c36', 'Specific spoken-reference maker mismatch.'
-    assert source_sha == sources[no], 'Specific spoken-reference request mismatch.'
-    module._SPOKEN_SOURCE_NO = no
-    return True
-
-
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--article', required=True, choices=[f'{n:02d}' for n in range(1, 71)])
@@ -108,8 +96,6 @@ def main():
     module = importlib.util.module_from_spec(spec)
     sys.modules[spec.name] = module
     spec.loader.exec_module(module)
-    specific_spoken_plan = bind_specific_spoken_reference_context(
-        module, no, module_before, source_before, source_data)
     # Original cache provenance checks remain active. Only the automatic copy
     # destination is a nonexistent private path so no pkl is exported to ROOT.
     module._REPO_CACHE = str(root / 'do-not-export-reference-cache')
@@ -168,10 +154,9 @@ def main():
         reference(sentence, label, 'whole-default-raw')
         reference(sentence, label, 'whole-default-timed', method='create_timed')
         if len(texts) > 1:
-            reference_texts = module._speech_chunk_texts(texts) if specific_spoken_plan else texts
-            for ci, text in enumerate(reference_texts, 1):
+            for ci, text in enumerate(texts, 1):
                 reference(text, label, 'highlight-display-chunk', piece=ci)
-        punctuation = list(module._speech_marks(sentence)) if specific_spoken_plan else list(re.finditer(r'[,;:](?=\s)', sentence))
+        punctuation = list(re.finditer(r'[,;:](?=\s)', sentence))
         if not punctuation:
             continue
         pieces = []
@@ -181,8 +166,7 @@ def main():
             previous = item.end() + 1
         pieces.append((previous, len(sentence)))
         for pi, (begin, end) in enumerate(pieces, 1):
-            piece_text = module._speech_piece(sentence, begin, end) if specific_spoken_plan else sentence[begin:end]
-            reference(piece_text, label, 'pause-punctuation-slice', piece=pi)
+            reference(sentence[begin:end], label, 'pause-punctuation-slice', piece=pi)
     assert OBSERVED_MISSING.get(no, set()) <= set(unique), 'Actual observed missing keys are not in original checker enumeration.'
     missing_keys = set(unique) - set(private_before)
     for key, (method, text_slice, kwargs) in unique.items():

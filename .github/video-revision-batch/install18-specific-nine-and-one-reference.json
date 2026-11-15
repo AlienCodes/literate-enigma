@@ -3,8 +3,8 @@
   "root_decision_sha256": "c70db70f96af4d8ee7c0efc6fced36e5fdc40b3b69b44cfd9df4a6cb0858cb15",
   "nine_proposal_sha256": "2709d7cccae41ffdb854a1007360e9e28ab64b5b7d2032b243814925a968843e",
   "one_proposal_sha256": "89504f9e6a7b5525c0f71f5375193b8f7f443f473bf2cf2ddce7134d97d62044",
-  "request_sha256": "534bfa4314daa89036fa58ef264f7868f077262788633e3692c4dbc1a7872426",
-  "GEN_sha256": "e0cd22e6f129acc21ba4516de67363cd9c5b7e4373ae916eb2ab3dcdbf07eeeb",
+  "request_sha256": "7243a2a3b7f63f158d38a006dd67cd823c66bd91aa422f09dbb0eb8d8978c1d5",
+  "GEN_sha256": "3229db700c1ec609ba31e2ee384bd92dd1deaae8b088ad3ca4c040d67ec8853c",
   "actual_WAV_sha256": "916e594a32542618c6d5321f88fadc482adb4d3a6dabf3472cebc53f55c0d088",
   "actual_fingerprint": "6f05ea0e0ece",
   "actual_AAC_sha256": "f3dc4bbcfee0688dc9d30551944f028d29a11230f27eed51800d6e03eb4047ce",
@@ -221,9 +221,39 @@
       "file": "actual-pre-draft-source-metadata.json",
       "bytes": 49983,
       "sha256": "e16734949a0b0e30bbff1125f5c4e0646e482695a6d39e8cc2f81fc7bb4e3dfe"
+    },
+    {
+      "file": "ROOT-DELEGATED-INDEPENDENT-SOURCE18-FOUR-LEAF-PAIR-ADOPTION.json",
+      "bytes": 6777,
+      "sha256": "9aa06a4d9878618e59b3b380c2d20ba38e770c75b2a01b9f0397f66bfd298f72"
+    },
+    {
+      "file": "stage-generation-and-known-stage-exact-inverse-proof.json",
+      "bytes": 17342,
+      "sha256": "6035f68e43ea012666135956da888cd15f8382d99b1cb1292510e30c1cc079f0"
+    },
+    {
+      "file": "pre_audioonly_request_before_G35.json",
+      "bytes": 55441,
+      "sha256": "7243a2a3b7f63f158d38a006dd67cd823c66bd91aa422f09dbb0eb8d8978c1d5"
+    },
+    {
+      "file": "pre_draft_after_source_only_G35_and_mapper_metadata_identity.json",
+      "bytes": 55464,
+      "sha256": "f380f69019c5d5639101ea0175b278ac22ec4b990ce8f6d074281c0d13520096"
+    },
+    {
+      "file": "expected_late_after_original_pipeline_before_nine_plus_one.json",
+      "bytes": 55864,
+      "sha256": "ce9ac0a66c67b345a78e433726ba21f856fcde58030359ee95fc83519e1fab57"
+    },
+    {
+      "file": "expected_late_after_same_nine_plus_one.json",
+      "bytes": 56636,
+      "sha256": "4262870087e95dc200fb17ace5ecb0798a90bb4782dee3e2fe54397d5a0bf07d"
     }
   ],
-  "outside_ten_target_fields_canonical_sha256": "f790418a68c9dfa79db338be67949b453ae93b568ef8843e6a9e7c5dd0399f81",
+  "outside_ten_target_fields_canonical_sha256": "0a9581586caa1ff020cf1e902e3b8ebc76198bdf85a809cea612e1e5987c3464",
   "all16_current_PV_canonical_sha256": "29a8c1060ae03d4f95f96157a49e5d3c8f9ffc82d9508b435edeedc2ed3aeb6a",
   "actual_packet_count": 7106,
   "actual_clock_projection_sha256": "7690630b9b9b4116d54f53bd08dae38a4b27c03ead2bb15ba7bc2f0a48b60a53",
@@ -234,6 +264,15 @@
     "all_other_notes_and_all_text_fields_remain_exact": true
   },
   "exact_original_pre_draft_stage": {
+    "full_source_sha256": "f380f69019c5d5639101ea0175b278ac22ec4b990ce8f6d074281c0d13520096",
+    "outside_ten_target_fields_canonical_sha256": "1fcc9fc02552b23ef7e118ff915a91514de8a54992bdfc1da083fb1d8f0548cf",
+    "original_mapper_sha256": "8d12b72841efba01ee1d8855158f56c4cbc4370d151bccf87ab770ece6ba6fde",
+    "role": "Expected complete original pre-draft stage mechanically derived from adopted7243. Original source-only修/G35 actually run; original mapper mutation AST is identity because no05ef FP matches. No new AUDIO_ONLY or native export claimed; whole916e/f3dc/7106/clock hardguards must actually match before install.",
+    "original_historical534b_mapper_replay_is_recorded_only_in_historical_original_pre_draft_stage_not_relabelled": true,
+    "PV_entries_unchanged_by_this_installer": true,
+    "original_full_canonical_pipeline_will_generate_current_PV_and_raw_fingerprints_then_validate": true
+  },
+  "historical_original_pre_draft_stage_not_relabelled": {
     "full_source_sha256": "e16734949a0b0e30bbff1125f5c4e0646e482695a6d39e8cc2f81fc7bb4e3dfe",
     "outside_ten_target_fields_canonical_sha256": "d7b5f372edcc2d226cdee63fe15ff241fbe67a3d073fffff47984f73503e5a3c",
     "original_mapper_sha256": "8d12b72841efba01ee1d8855158f56c4cbc4370d151bccf87ab770ece6ba6fde",

@@ -128,28 +128,6 @@ jobs:
         env:
           STAMP_HIT: ${{ steps.fastcheck-cache.outputs.cache-hit }}
         run: test "$STAMP_HIT" = true
-      - uses: actions/cache/restore@v4
-        id: exact-source35-S15-mothers
-        with:
-          path: |
-            ${{ runner.temp }}/completion-machine/tts/cache_tts/3f83831048941d66ea88c111fccbf8dcd055496a.pkl
-            ${{ runner.temp }}/completion-machine/tts/cache_tts/3f83831048941d66ea88c111fccbf8dcd055496a.pkl.单线程
-            ${{ runner.temp }}/completion-machine/tts/cache_tts/52b0bb10ca17f206906f1844abcdec44897d3149.pkl
-            ${{ runner.temp }}/completion-machine/tts/cache_tts/52b0bb10ca17f206906f1844abcdec44897d3149.pkl.单线程
-          key: Linux-native35-exact-S15-first-spoken-comma-43702588103
-      - name: 真实保存的S15四叶缓存必须命中且逐SHA不变
-        env:
-          CACHE_HIT: ${{ steps.exact-source35-S15-mothers.outputs.cache-hit }}
-        run: |
-          test "$CACHE_HIT" = true
-          python - <<'PY'
-          import os,json,hashlib
-          from pathlib import Path
-          x=json.loads(Path('.github/video-revision-batch/actual-source35-S15-four-private-leaf-identity.json').read_text())
-          c=Path(os.environ['RUNNER_TEMP'])/'completion-machine/tts/cache_tts'
-          assert len(x['actual_four_private_files'])==4
-          assert all(hashlib.sha256((c/n).read_bytes()).hexdigest()==s for n,s in x['actual_four_private_files'].items())
-          PY
       - name: 原程序做稿并正式定稿4K
         run: python -u .github/video-revision-batch/run.py
       - name: 仅保留本篇公开成片和核验材料
@@ -159,7 +137,6 @@ jobs:
           name: article${{ matrix.article }}-revised-canonical-4K-final
           path: |
             article${{ matrix.article }}-delivery/*.mp4
-            article${{ matrix.article }}-delivery/*.wav
             article${{ matrix.article }}-delivery/*.json
             article${{ matrix.article }}-delivery/*.png
             article${{ matrix.article }}-delivery/*.wav

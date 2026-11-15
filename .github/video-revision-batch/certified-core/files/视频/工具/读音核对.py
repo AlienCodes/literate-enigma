@@ -173,15 +173,12 @@ def words_of(text):
 
 
 def check(no):
-    global _SPOKEN_SOURCE_NO
-    _SPOKEN_SOURCE_NO=str(no)
     d = json.load(open(f'scripts/{no}.json'))
     conf = d.get('核对确认', {}).get('读音', {})
     texts = [('标题', d['title_en'])] + [(f'S{i}', ' '.join(re.sub(r'\*\*', '', R.strip_gloss(c['en'])).strip() for c in s['chunks'])) for i, s in enumerate(d['sentences'], 1)]
     rows = []; seen = {}
     for lab, t in texts:
         sp = spoken(re.sub(r'\*\*', '', R.strip_gloss(t)))
-        sp = _speech_spoken_projection(sp)
         ph_sent = re.sub(r'[ˈˌ\s]', '', phonemes_of(sp))
         ws = words_of(sp)
         ctx_ = {v_['词'].lower(): v_['读音'] for c_, v_ in PRON_CTX.items() if re.search(r"(?<![A-Za-z])" + re.escape(c_) + r"(?![A-Za-z])", sp, flags=re.I)}   # K151（43 S14 Mac OS X）：按语境读音换过的词，这一句里按语境的读音核（原来单读 X 得 ˈɛks，又碰巧在同句 NeXT 的 nˈɛkst 里找到，误判成配音读了 ˈɛks）
