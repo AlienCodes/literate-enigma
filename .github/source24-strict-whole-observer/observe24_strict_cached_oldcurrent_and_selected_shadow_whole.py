@@ -262,6 +262,50 @@ def restore_native(originals):
         else:setattr(target[0],target[1],value)
 
 
+def premaster_peak_metadata(np, raw_parts, waves, positions, pre, peak, sample_rate, target_segment):
+    """Read only the exact original audio-list/callback arrays; export scalars."""
+    def summary(array, start):
+        magnitude=np.abs(array)
+        local=int(np.argmax(magnitude)) if len(array) else None
+        maximum=float(magnitude[local]) if local is not None else 0.0
+        return {'samples':len(array),'dtype':str(array.dtype),'absolute_peak':maximum,
+                'first_peak_local_sample':local,
+                'first_peak_global_sample':start+local if local is not None else None,
+                'first_peak_global_seconds':(start+local)/sample_rate if local is not None else None,
+                'signed_first_peak_sample_value':float(array[local]) if local is not None else None,
+                'samples_at_this_absolute_peak':int(np.count_nonzero(magnitude==maximum)),
+                'contains_actual_whole_peak':bool(local is not None and maximum==peak)}
+    segments=[]
+    for sid,(lo,hi) in positions.items():
+        row={'segment':sid,'start_sample':lo,'end_sample_exclusive':hi}
+        row.update(summary(waves[sid],lo));segments.append(row)
+    parts=[];cursor=0
+    for index,part in enumerate(raw_parts):
+        names=[sid for sid,pcm in waves.items() if part is pcm]
+        row={'original_audio_list_index':index,'callback_segments_by_object_identity':names,
+             'start_sample':cursor,'end_sample_exclusive':cursor+len(part),
+             'part_role':'actual_callback_segment' if names else 'unmapped_original_audio_list_part'}
+        row.update(summary(part,cursor));parts.append(row);cursor+=len(part)
+    first=int(np.argmax(np.abs(pre))) if len(pre) else None
+    owning_parts=[r for r in parts if first is not None and r['start_sample']<=first<r['end_sample_exclusive']]
+    non_target=[r for r in segments if r['segment']!=target_segment]
+    peak_non_target=max((r['absolute_peak'] for r in non_target),default=0.0)
+    return {'kind':'read_only_actual_original_pre_master_audio_list_peak_ownership',
+            'original_whole_pre_master_absolute_peak':peak,'target_segment':target_segment,
+            'non_target_callback_count':len(non_target),
+            'whole_first_absolute_peak_sample':first,
+            'whole_first_absolute_peak_seconds':first/sample_rate if first is not None else None,
+            'whole_first_peak_signed_sample_value':float(pre[first]) if first is not None else None,
+            'whole_first_peak_owning_original_parts':owning_parts,
+            'all_original_parts_tied_at_whole_absolute_peak':[r for r in parts if r['contains_actual_whole_peak']],
+            'all_callback_segments_tied_at_whole_absolute_peak':[r['segment'] for r in segments if r['contains_actual_whole_peak']],
+            'all_non_target_callback_absolute_peak':peak_non_target,
+            'all_non_target_callback_peak_segments':[r['segment'] for r in non_target if r['absolute_peak']==peak_non_target],
+            'actual_callback_segment_peaks':segments,'every_original_audio_list_part_peaks':parts,
+            'original_audio_list_total_samples':cursor,
+            'metadata_only_no_gain_or_DSP_or_normalization_selected':True}
+
+
 def observe_phase(label,input_bytes,expected_source,a,profile,report,scratch,arrays,wavarrays):
     T,M=a.tools.resolve(),a.video_root.resolve();W=M/'video';C=M/'tts/cache_tts';work=W/'work_24'
     require(not work.exists()and not work.is_symlink(),'Phase must start with no old working audio')
@@ -334,6 +378,7 @@ def observe_phase(label,input_bytes,expected_source,a,profile,report,scratch,arr
                             if part is pcm:require(sid not in positions,'Duplicate part identity');positions[sid]=(cursor,cursor+len(pcm))
                         cursor+=len(part)
                     require(len(positions)==19 and cursor==len(pre),'Original build audio-list identity incomplete')
+                    result['actual_original_pre_master_peak_ownership_metadata']=premaster_peak_metadata(np,raw_parts,waves,positions,pre,peak,SR,'S18')
                     result['title_pre_master_PCM_sha256']=array_sha(waves['title'])
                     result['actual_original_mastering']={'pre_master_full_PCM_sha256':array_sha(pre),'pre_master_dtype':str(pre.dtype),'pre_master_samples':len(pre),
                         'pre_master_absolute_peak':peak,'logical_normalization_scale':.89/peak,'observed_normalized_full_PCM_sha256':array_sha(actual_mastered),

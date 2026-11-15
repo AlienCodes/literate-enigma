@@ -72,7 +72,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: source24-STRICT-oldcurrent-selected-whole-scalar-only
-          path: whole24-public/*.json
+          name: source24-STRICT-oldcurrent-selected-peak-ownership-scalar-only
+          path: whole24-peak-public/*.json
           retention-days: 30
           if-no-files-found: error
