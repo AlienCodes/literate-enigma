@@ -14,13 +14,13 @@ Yet that **sanitation** **rested on** a **fallacy**. The **predominant** **belie
 
 Cholera **resurfaced** in 1866 and killed about 5,600 people in the East End, the one **locality** not yet connected.
 
-A **remedy** **aimed at** the nose protected the **gut**.
+A remedy **aimed at** the nose protected the **gut**.
 
 ## 中文
 
-在**酷热**(fierce heat)的1858年夏天，新落成的**议会大厦**(Houses of Parliament)里的窗帘垂挂着，沉甸甸地浸湿了氯化**石灰**(lime)，这是一种**漂白剂**(bleach)，用来让空气变得**可以忍受**(tolerable)。（hang heavy with…：沉甸甸地浸满……；chloride of lime：氯化石灰，即漂白粉）（a bleach…：同位语，补充说明 chloride of lime；make + 宾语 + 形容词：使……变得……）泰晤士河正在**溃烂发臭**(festered)，并且议员们**考虑**(contemplated)过搬离这里。（contemplate doing…：考虑做……；MP：议员，即 Member of Parliament）（contemplate 指深入、反复权衡的“仔细考虑”，或陷入“沉思/凝视”（比普通的 think 更有深度和画面感））
+在**酷热**(fierce heat)的1858年夏天，新落成的**议会大厦**(Houses of Parliament)里的窗帘垂挂着，沉甸甸地浸湿了氯化**石灰**(lime)，这是一种**漂白剂**(bleach)，用来让空气变得**可以忍受**(tolerable)。（hang heavy with…：沉甸甸地浸满……；chloride of lime：氯化石灰，即漂白粉）（a bleach…：同位语，补充说明 chloride of lime；make + 宾语 + 形容词：使……变得……）泰晤士河正在**溃烂发臭**(festered)，而议员们**考虑**(contemplated)过搬离这里。（contemplate doing…：考虑做……；MP：议员，即 Member of Parliament）（contemplate 指深入、反复权衡的“仔细考虑”，或陷入“沉思/凝视”（比普通的 think 更有深度和画面感））
 
-这条河已经成了伦敦的**厕所**(lavatory)。（lavatory 是一个非常正式、偏书面、且带有英式英语色彩的词（美式英语在飞机上也常写这个，因为航空业的标识要求全球标准化）。• Lavatory：正式、文雅（飞机上天天见，外刊讽刺文里最爱用）。• Toilet：最直白、最常用（英式日常通用）。• Restroom / Washroom：美式英语中的公共洗手间（商场、餐厅）。• Bathroom：美国家庭里的卫生间（或者美式公共场合的委婉语）。• Loo：英国人的超级口语（比如 "I'm going to the loo"）。）**老旧的**(Antiquated)下水道和**排污口**(outlets)**排放**(discharged)**未经处理的**(untreated)**污水**(sewage)，它们来自约三百万城市**居民**(dwellers)，排入河的**水流**(currents)中，在那里，**粪便**(excrement)**处于/闷在炎热的空气中**(stewed)并**腐败**(decayed)。（discharge A into B：把 A 排放到 B 中；some three million：约三百万，some 表示“大约”；city dweller：城市居民）（where…：非限制性定语从句，where 指 its currents；stew：炖，这里指在闷热中闷着、沤着）**令人恶心的**(vile)**刺鼻气体**(fumes)变得如此**极其强烈的/令人难以忍受**(overpowering)，以至于**这段时期**(episode)赢得了一个名字，大**恶臭**(Stink)。（so…that…：如此……以至于……；the Great Stink：同位语，补充说明 a name）
+这条河已经成了伦敦的**厕所**(lavatory)。（had become：过去完成时，表示到那时已经……）**老旧的**(Antiquated)下水道和**排污口**(outlets)**排放**(discharged)**未经处理的**(untreated)**污水**(sewage)，它们来自约三百万城市**居民**(dwellers)，排入河的**水流**(currents)中，在那里，**粪便**(excrement)**处于炎热的空气中**(stewed)并**腐败**(decayed)。（discharge A into B：把 A 排放到 B 中；some three million：约三百万，some 表示“大约”；city dweller：城市居民）（where…：非限制性定语从句，where 指 its currents；stew：炖，这里指在闷热中闷着、沤着）**令人恶心的**(vile)**刺鼻气体**(fumes)变得如此**极其强烈的/令人难以忍受**(overpowering)，以至于**这段时期**(episode)赢得了一个名字，大**恶臭**(Stink)。（so…that…：如此……以至于……；the Great Stink：同位语，补充说明 a name）
 
 这股**厌恶**(Disgust)找到了代言人，是在7月15日，当时**财政大臣**(Chancellor of the Exchequer)本杰明·迪斯雷利**公开抨击**(denounced as)这条河**是**(denounced as)一潭**地狱般的**(hellish)池水，满是**令人无法忍受的**(unbearable)恐怖。（find a voice：找到表达的出口，这里指有了代言人）（the Chancellor of the Exchequer：英国财政大臣；Benjamin Disraeli：同位语，补充说明 the Chancellor；denounce A as B：痛斥 A 是 B）一项为新下水道拨款的**法案**(bill)**被快速推进/被加速审批**(fast-tracked)，成为法律，只用了约18天。（funding new sewers：现在分词短语作后置定语，修饰 a bill；fast-track A into law：加快把 A 变成法律）
 
@@ -28,14 +28,14 @@ A **remedy** **aimed at** the nose protected the **gut**.
 
 然而，这套**卫生设施/下水道设施**(sanitation)**建立在**(rested on)一个**谬误**(fallacy)**之上**(rested on)。（rest on…：建立在……之上，以……为基础）当时**占主导地位的**(predominant)**看法**(belief)是瘴气说，把疾病归咎于**污浊的空气**(foul air)和臭水的**蒸汽**(vapours)，所以下水道修建的目的**主要**(principally)是为了**压住**(suppress)臭味。（miasma：瘴气说，同位语，补充说明 belief；blame A on B：把 A 归咎于 B）（be intended to do：目的是做……，打算用来……）它们奏效，却是出于一个**意料之外的**(unintended)原因，那就是守住了伦敦人饮用水的**洁净**(purity)。（work：这里指奏效，起作用）（guarding…：现在分词短语，解释 reason；the water Londoners drank：省略 that 的定语从句）
 
-霍乱**再次出现**(resurfaced)于1866年，夺去了约5,600人的生命，在伦敦东区，那是唯一下水道尚未接入的**地区**(locality)。（the East End：伦敦东区）（the one locality…：同位语，补充说明 the East End；not yet connected：过去分词短语作后置定语）
+霍乱**再次出现**(resurfaced)于1866年，夺去了约5,600人的生命，在伦敦东区，那是唯一尚未接入的**地区**(locality)。（the East End：伦敦东区）（the one locality…：同位语，补充说明 the East End；not yet connected：过去分词短语作后置定语）
 
-一项**针对**(aimed at)鼻子的**解决办法**(remedy) 却 保护了**肠道**(gut)。（aimed at…：过去分词短语作后置定语，修饰 remedy；the gut：肠胃，与 the nose 对比）（简述：▸危机：1858年酷暑，伦敦把未经处理的污水排进泰晤士河，臭到议员都想搬走，这场“大恶臭”推动了下水道建设。▸行动：拨款法案约18天获通过，工程师巴泽尔杰特主持修建新管网，并把算出的管径再加倍。▸工程：新管道在污水入河前先截住它，再送到城市下游，减少城市饮用水被污水污染。▸误判：当时人们以为臭气本身会致病，主要想靠下水道除臭；工程真正保护健康的原因，却是改善了饮用水。▸结果：1866年，尚未接入管网的东区约5600人死于霍乱。管网到1875年基本完工，大部分至今仍使用，形成了“本想管臭味，实际护住肠胃”的反差。）
+一项**冲着**(aimed at)鼻子**去的**(aimed at)补救措施，护住的却是**肠胃**(gut)。（aimed at…：过去分词短语作后置定语，修饰 remedy；the gut：肠胃，与 the nose 对比）（简述：▸危机：1858年酷暑，伦敦把未经处理的污水排进泰晤士河，臭到议员都想搬走，这场“大恶臭”推动了下水道建设。▸行动：拨款法案约18天获通过，工程师巴泽尔杰特主持修建新管网，并把算出的管径再加倍。▸工程：新管道在污水入河前先截住它，再送到城市下游，减少城市饮用水被污水污染。▸误判：当时人们以为臭气本身会致病，主要想靠下水道除臭；工程真正保护健康的原因，却是改善了饮用水。▸结果：1866年，尚未接入管网的东区约5600人死于霍乱。管网到1875年基本完工，大部分至今仍使用，形成了“本想管臭味，实际护住肠胃”的反差。）
 
 ## 速查表
 | 词 | 释义 | 段 |
 |---|---|---|
-| fierce heat | 本文：酷热；n. phr. 酷热，炎热（fierce heat） | 1 |
+| fierce heat | 本文：酷热；adj. 猛烈的，酷烈的（fierce heat/competition） | 1 |
 | Houses of Parliament | 本文：议会大厦；n. 议会大厦（英国议会所在地，the Houses of Parliament） | 1 |
 | lime | 本文：石灰；n. 石灰；酸橙（chloride of lime） | 1 |
 | bleach | 本文：漂白剂；n. 漂白剂（household bleach） | 1 |
@@ -51,7 +51,7 @@ A **remedy** **aimed at** the nose protected the **gut**.
 | dwellers | 本文：居民；n. (dweller) 居民（city dwellers） | 2 |
 | currents | 本文：水流；n. (current) 水流，气流（strong currents） | 2 |
 | excrement | 本文：粪便；n. 粪便（animal excrement） | 2 |
-| stewed | 本文：处于/闷在炎热的空气中；v. (stew) 炖；（在闷热中）闷着，沤着（stew in the heat） | 2 |
+| stewed | 本文：处于炎热的空气中；v. (stew) 炖；（在闷热中）闷着，沤着（stew in the heat） | 2 |
 | decayed | 本文：腐败；v. (decay) 腐烂（decayed teeth/wood） | 2 |
 | vile | 本文：令人恶心的；adj. 极讨厌的，恶劣的（a vile smell） | 2 |
 | fumes | 本文：刺鼻气体；n. (fume) 难闻的气体，烟雾（exhaust fumes） | 2 |
@@ -96,9 +96,8 @@ A **remedy** **aimed at** the nose protected the **gut**.
 | purity | 本文：洁净；n. 纯净，纯洁（the purity of water） | 5 |
 | resurfaced | 本文：再次出现；v. (resurface) 重新出现（the problem resurfaced） | 6 |
 | locality | 本文：地区；n. 地区，地方（in the locality） | 6 |
-| aimed at | 本文：针对；v. (aim at) 冲着……去的，针对（be aimed at） | 7 |
-| remedy | 本文：解决办法；n. 解决办法，补救措施（a remedy for） | 7 |
-| gut | 本文：肠道；n. 肠胃，内脏；直觉（a gut feeling） | 7 |
+| aimed at | 本文：冲着……去的；v. (aim at) 冲着……去的，针对（be aimed at） | 7 |
+| gut | 本文：肠胃；n. 肠胃，内脏；直觉（a gut feeling） | 7 |
 
 ## 史实与来源
 - 【T1】到1858年，约三百万伦敦人的污水经老旧下水道和排污口直接排入泰晤士河；1858年夏天炎热（英文 fierce heat），腐烂的污水散发出难以忍受的恶臭，史称"大恶臭"。英文 London's lavatory 为比喻，three million city dwellers 即约三百万城市居民；excrement、stewed、vile 为描写。S1
