@@ -16,7 +16,7 @@ In 1967 the WHO launched an **intensified**, **concerted** campaign to **eradica
 
 **天花**(Smallpox)，一种**传染性的**(contagious)**疾病**(affliction)，夺去了约三成**患者**(sufferers)的生命，并且估计有3亿人在20世纪丧命。（a contagious affliction：同位语，补充说明 Smallpox）（three in ten：十分之三，即约三成；killed 的宾语有两个：three in ten of its sufferers 和 300 million）一种早期的**防护手段**(safeguard)，是**有意**(deliberately)把天花**脓疮**(sores)中的**物质**(matter)**植入**(implanting)健康人体内，到16世纪，中国已在**施行**(practised)这种方法，1721年又传入英国。（deliberately implanting…：现在分词短语作同位语，说明 safeguard 的内容；implant A in B：把 A 植入 B；the healthy：健康的人）（by the 16th century：到16世纪时（已经））这种**做法**(procedure)本身可能导致**严重的**(grave)**疾病**(sickness)或死亡，尽管不如自然天花那样**频繁**(frequently)。（if less frequently than…：= though less frequently than…，虽然不如……频繁）
 
-**乡间**(Rustic)**传说**(lore)认为，挤奶女工若得过牛痘这种**牲畜**(livestock)的**轻微**(mild)**病症**(ailment)，（一般指牛的牛痘，轻微病症）就**对**(immune to)天花**免疫**(immune to)。（hold that…：认为……）（a mild ailment of livestock：同位语，补充说明 cowpox）1774年，本杰明·杰斯蒂，一位多塞特郡农夫，**使用**(employed)牛痘来保护他的妻子和两个儿子。（a Dorset farmer：同位语，补充说明 Benjamin Jesty；Dorset：多塞特郡，在英格兰西南部）1796年5月14日，爱德华·詹纳，一位**地方**(provincial)**执业医师**(practitioner)，将取自一名挤奶女工牛痘疮的**液体**(fluid)，**注入**(inserted)8岁的詹姆斯·菲普斯身上的一道**伤痕/划痕**(scratch)中。（a provincial practitioner：同位语，补充说明 Edward Jenner）（insert A into B：把 A 注入 B；on eight-year-old James Phipps：后置定语，修饰 scratch）
+**乡间**(Rustic)**传说**(lore)认为，挤奶女工若得过牛痘这种**牲畜**(livestock)的**轻微**(mild)**病症**(ailment)，（一般指牛的牛痘，轻微病症）就**对**(immune to)天花**免疫**(immune to)。（hold that…：认为……）（a mild ailment of livestock：同位语，补充说明 cowpox）1774年，本杰明·杰斯蒂，一位多塞特郡农夫，**使用**(employed)牛痘来保护他的妻子和两个儿子。（a Dorset farmer：同位语，补充说明 Benjamin Jesty；Dorset：多塞特郡，在英格兰西南部）1796年5月14日，爱德华·詹纳，一位**地方**(provincial)**执业医师**(practitioner)，将取自一名挤奶女工牛痘疮的**液体**(fluid)，**注入**(inserted)8岁的詹姆斯·菲普斯的一道**划痕**(scratch)中。（a provincial practitioner：同位语，补充说明 Edward Jenner）（insert A into B：把 A 注入 B；on eight-year-old James Phipps：后置定语，修饰 scratch）
 
 1796年7月1日，詹纳**让**(exposed to)这个男孩**接触**(exposed to)天花；任何**症状**(symptoms)都没有**随之出现**(ensued)。（expose A to B：使 A 接触 B）1797年，皇家学会拒绝去**发表**(publish)他的论文，认为他的证据**缺乏说服力**(unconvincing)。（judging his evidence unconvincing：现在分词短语作原因状语；judge＋宾语＋形容词：认为……）1798年6月，他**私人**(privately)**出资**(funded)出版了他的著作《探究》，书中附上了**补充**(supplementary)病例。（the Inquiry：同位语，补充说明 his book，全名《关于牛痘的原因与效果的探究》）表示**疫苗**(vaccine)的英文词**源自**(derives from)**拉丁语**(Latin)的vacca，意思是牛。（vacca, cow：cow 是 vacca 的同位语，说明词义）
 
@@ -52,7 +52,7 @@ In 1967 the WHO launched an **intensified**, **concerted** campaign to **eradica
 | practitioner | 本文：执业医师；n. 从业者，（尤指）开业医生（a general practitioner；medical practitioners） | 2 |
 | fluid | 本文：液体；n. 液体，流体（drink plenty of fluids；body fluids） | 2 |
 | inserted | 本文：注入；v. (insert) 插入，注入（insert a coin/key；insert a needle into a vein） | 2 |
-| scratch | 本文：伤痕/划痕；n. 划痕，抓痕（a scratch on the car；escape without a scratch） | 2 |
+| scratch | 本文：划痕；n. 划痕，抓痕（a scratch on the car；escape without a scratch） | 2 |
 | exposed to | 本文：让……接触；v. 使暴露，使接触（be exposed to 暴露于；expose sb to risk 使某人面临风险） | 3 |
 | symptoms | 本文：症状；n. (symptom) 症状（flu symptoms；show symptoms of stress） | 3 |
 | ensued | 本文：随之出现；v. (ensue) 随之发生（a long silence ensued；in the ensuing chaos） | 3 |

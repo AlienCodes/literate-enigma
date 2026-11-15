@@ -1,27 +1,27 @@
 # EN: The Day Zero That Never Came
 # ZH: 没有到来的零日
 ## 英文
-In January 2018, Cape Town **issued** a **stark** **alert**: Day Zero could arrive in April. The term **denoted** a **grim** **threshold**, reached when water in the city's **reservoirs**, as a **percentage** of **capacity**, fell to 13.5 per cent. Most **taps** would then be shut, and **residents** would **queue** at about 200 **designated** collection points.
+In January 2018, Cape Town **issued** a **stark** **alert**: Day Zero could arrive in April. The term **denoted** a **grim** **threshold**, reached when water in the city's **reservoirs**, as a **percentage** of **capacity**, fell to 13.5 per cent. Most taps would then be shut, and **residents** would queue at about 200 **designated** collection points.
 
-The **prospect** was **genuine**. Three **consecutive** years of **meagre** rainfall, from 2015 to 2017, had **diminished** the reservoirs serving a **metropolitan area** of about four million people. By early 2018 the **dams** were **roughly** a fifth full. The **countdown** turned a **chronic** **shortage** into an **imminent** **deadline**.
+The **prospect** was **genuine**. Three **consecutive** years of **meagre** rainfall, from 2015 to 2017, had **diminished** the reservoirs serving a **metropolitan** area of about four million people. By early 2018 the **dams** were **roughly** a fifth full. The **countdown** turned a **chronic** **shortage** into an **imminent** deadline.
 
 The city paired **mandatory** **restrictions** with **unprecedented** **transparency**. From 1 February 2018, each person was **allotted** 50 **litres** a day. **Officials** **disclosed** dam levels and **household** **consumption**; the published **tallies** made **thrift** **visible** and let neighbours **benchmark** their use. Daily use was more than **halved**, from about 1.2 billion litres in 2015 to about 500 million by early 2018.
 
-Other forces **intervened**. In February 2018, **upstream** farmers released water from their **irrigation** dams; with farms drawing less, Day Zero was **postponed** to July. In March 2018, officials judged Day Zero **unlikely** that year. Winter rains **subsequently** **replenished** the **reservoirs**, which were about half full by July. The 50-litre limit was **eased** in October 2018.
+Other forces **intervened**. In February 2018, **upstream** farmers released water from their **irrigation** dams; with farms drawing less, Day Zero was **postponed** to July. In March 2018, officials judged Day Zero **unlikely** that year. Winter rains **subsequently** **replenished** the reservoirs, which were about half full by July. The 50-litre limit was **eased** in October 2018.
 
-The **burden**, critics argued, fell **unevenly**. **Townships**, poor areas **segregated** by race under **apartheid**, had long **made do with** **scant** water, yet **steeper** **tariffs** **squeezed** them hardest. Others blamed **alarmist** warnings for tourist **cancellations**. Households, farmers, and rain kept the collection points **idle**, but the **sacrifice** weighed heaviest on those with the least to give.
+The **burden**, critics argued, fell **unevenly**. **Townships**, poor areas **segregated** by race under **apartheid**, had long made do with **scant** water, yet **steeper** **tariffs** **squeezed** them hardest. Others blamed **alarmist** warnings for tourist **cancellations**. Households, farmers, and rain kept the collection points **idle**, but the **sacrifice** weighed heaviest on those with the least to give.
 
 ## 中文
 
-2018年1月，开普敦**发出了**(issued)一则**严峻的**(stark)**警报**(alert)，称零日可能在4月到来。（Day Zero could arrive in April：冒号后补充说明 alert 的内容）（2018年初，南非开普敦发出了恐怖的警告：到了4月份，全城的水库可能就要彻底干涸，也就是“零日”要来了（届时全城将断水，只能排队领水）。）这个词**指的是**(denoted)一道**严酷的**(grim)**门槛**(threshold)：即当该市**水库**(reservoirs)的存水按占水库**容量**(capacity)的**百分比**(percentage)降至13.5%时达到的门槛。（reached when…：过去分词短语作后置定语，修饰 threshold；as a percentage of capacity：插入语）大部分**水龙头**(taps)届时将被关闭，**居民**(residents)要到约200个**指定的**(designated)取水点**排队**(queue)取水。
+2018年1月，开普敦**发出了**(issued)一则**严峻的**(stark)**警报**(alert)，称零日可能在4月到来。（Day Zero could arrive in April：冒号后补充说明 alert 的内容）（2018年初，南非开普敦发出了恐怖的警告：到了4月份，全城的水库可能就要彻底干涸，也就是“零日”要来了（届时全城将断水，只能排队领水）。）这个词**指的是**(denoted)一道**严酷的**(grim)**门槛**(threshold)：即当该市**水库**(reservoirs)的存水按占水库**容量**(capacity)的**百分比**(percentage)降至13.5%时达到的门槛。（reached when…：过去分词短语作后置定语，修饰 threshold；as a percentage of capacity：插入语）大部分水龙头届时将被关闭，**居民**(residents)要到约200个**指定的**(designated)取水点排队取水。
 
-这一**前景**(prospect)是**真实存在的**(genuine)。**连续**(consecutive)三年**贫乏的**(meagre)降雨，从2015到2017年，**减少了**(diminished)水库的蓄水，这些水库给一个**大都市区**(metropolitan area)供水，大约400万人口。（serving…：现在分词短语作后置定语，修饰 reservoirs）到2018年初，**水库**(dams)只剩**约**(roughly)五分之一的蓄水。**倒计时**(countdown)把一场**长期的**(chronic)**短缺**(shortage)变成了一个**迫在眉睫的**(imminent)**最后期限**(deadline)。（turn A into B：把 A 变成 B）
+这一**前景**(prospect)是**真实存在的**(genuine)。**连续**(consecutive)三年**贫乏的**(meagre)降雨，从2015到2017年，**减少了**(diminished)水库的蓄水，这些水库给一个**大都市**(metropolitan)区供水，大约400万人口。（serving…：现在分词短语作后置定语，修饰 reservoirs）到2018年初，**水库**(dams)只剩**约**(roughly)五分之一的蓄水。**倒计时**(countdown)把一场**长期的**(chronic)**短缺**(shortage)变成了一个**迫在眉睫的**(imminent)最后期限。（turn A into B：把 A 变成 B）
 
 该市把**强制性的**(mandatory)**限制措施**(restrictions)与**前所未有的**(unprecedented)**透明度**(transparency)结合起来。（pair A with B：把 A 与 B 结合起来）（因为马上要全城断水，硬管怕老百姓暴乱，只能连哄带吓。强制手段：每人每天限用50升水，超额收十倍水费，不听话直接上门装限流器。透明度：每天公布水库真实水位和“断水倒计时”，吓得老百姓自己乖乖拼命省水。）自2018年2月1日起，每人被**分配**(allotted)每天50**升**(litres)水。**官员们**(Officials)**公布**(disclosed)水库水位和**家庭**(household)**消耗量**(consumption)；公开的**统计数字**(tallies)让**节俭**(thrift)成效**一目了然**(visible)，也让邻里之间得以**对标**(benchmark)他们的用水量。（make A visible：使 A 一目了然）（let sb do：让某人做……；let 的主语仍是 the published tallies）日常的用水量**减少了一半**(halved)以上，从2015年的约12亿升降至2018年初的约5亿升。（more than halved：减半还不止）（from A to B：从 A 降到 B；500 million 后承前省略了 litres）
 
-其他力量也**介入了**(intervened)。2018年2月，**上游的**(upstream)农民从他们的**灌溉**(irrigation)水坝中放出了水；加上农场用水减少，零日被**推迟**(postponed)到7月。（release A from B：从 B 中放出 A）（with farms drawing less：with 复合结构作状语，表示伴随的原因）2018年3月，官员们判断零日**不太可能**(unlikely)在当年发生。（judge A unlikely：判断 A 不太可能发生）（到了2018年3月，官方终于松了一口气，对外宣布：今年这“零日”（彻底断水）应该是不会发生了。）冬雨**随后**(subsequently)**重新装满了**(replenished)各**水库**(reservoirs)，到7月时水库已约半满。（which were…：非限制性定语从句，修饰 the reservoirs）50升的限额于2018年10月**放宽**(eased)。
+其他力量也**介入了**(intervened)。2018年2月，**上游的**(upstream)农民从他们的**灌溉**(irrigation)水坝中放出了水；加上农场用水减少，零日被**推迟**(postponed)到7月。（release A from B：从 B 中放出 A）（with farms drawing less：with 复合结构作状语，表示伴随的原因）2018年3月，官员们判断零日**不太可能**(unlikely)在当年发生。（judge A unlikely：判断 A 不太可能发生）（到了2018年3月，官方终于松了一口气，对外宣布：今年这“零日”（彻底断水）应该是不会发生了。）冬雨**随后**(subsequently)**重新装满了**(replenished)各水库，到7月时水库已约半满。（which were…：非限制性定语从句，修饰 the reservoirs）50升的限额于2018年10月**放宽**(eased)。
 
-批评者认为，**负担**(burden)分配得**并不均衡**(unevenly)。（critics argued：插入语）**城镇区**(Townships)，在**种族隔离制度**(apartheid)下按种族被**隔离**(segregated)出来的贫困地区，长期以来就**靠**(made do with)**很少的**(scant)水**勉强对付**(made do with)，然而**更高的**(steeper)**水价**(tariffs)最大程度地**压榨了**(squeezed)他们。（poor areas segregated…：同位语，补充说明 Townships；segregated by race：过去分词短语作后置定语，修饰 areas）（make do with + 名词，意思是“靠……勉强凑合/将就着用”。）（them 指 Townships）另一些人则责备**危言耸听的**(alarmist)警告，因为这些警告造成了游客**取消行程**(cancellations)。（blame A for B：把 B 归咎于 A）家庭、农民和雨水让取水点一直**闲置**(idle)，但这份**牺牲**(sacrifice)最沉重地落在了那些最没有能力付出的人身上。（keep A idle：因为省水成功没断水，取水点没用上，一直闲置）（weigh on：压在……身上；with the least to give：后置定语，修饰 those）（简述：▸危机：连续三年少雨使南非开普敦水库告急。2018年初，当局警告，四月可能迎来大范围停水的“零日”。▸门槛：零日指蓄水降至总容量的13.5%，届时大部分水龙头关闭，居民必须到指定地点领水。▸节水：全市日用水量由2015年约12亿升降至2018年初约5亿升；2月起每人每日限用50升，并公开水位及用量。▸转机：居民节水、上游农民放水，以及农场减少取水，使零日一再推迟；随后冬雨补充水库，避免了当年大范围停水。▸负担：贫困社区原本用水就少，却最难承受上涨水价。批评者指出，危机虽被避开，节水代价并没有被公平分担。）
+批评者认为，**负担**(burden)分配得**并不均衡**(unevenly)。（critics argued：插入语）**城镇区**(Townships)，在**种族隔离制度**(apartheid)下按种族被**隔离**(segregated)出来的贫困地区，长期以来就靠**很少的**(scant)水勉强对付，然而**更高的**(steeper)**水价**(tariffs)最大程度地**压榨了**(squeezed)他们。（poor areas segregated…：同位语，补充说明 Townships；segregated by race：过去分词短语作后置定语，修饰 areas）（make do with + 名词，意思是“靠……勉强凑合/将就着用”。）（them 指 Townships）另一些人则责备**危言耸听的**(alarmist)警告，因为这些警告造成了游客**取消行程**(cancellations)。（blame A for B：把 B 归咎于 A）家庭、农民和雨水让取水点一直**闲置**(idle)，但这份**牺牲**(sacrifice)最沉重地落在了那些最没有能力付出的人身上。（keep A idle：因为省水成功没断水，取水点没用上，一直闲置）（weigh on：压在……身上；with the least to give：后置定语，修饰 those）（简述：▸危机：连续三年少雨使南非开普敦水库告急。2018年初，当局警告，四月可能迎来大范围停水的“零日”。▸门槛：零日指蓄水降至总容量的13.5%，届时大部分水龙头关闭，居民必须到指定地点领水。▸节水：全市日用水量由2015年约12亿升降至2018年初约5亿升；2月起每人每日限用50升，并公开水位及用量。▸转机：居民节水、上游农民放水，以及农场减少取水，使零日一再推迟；随后冬雨补充水库，避免了当年大范围停水。▸负担：贫困社区原本用水就少，却最难承受上涨水价。批评者指出，危机虽被避开，节水代价并没有被公平分担。）
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -35,23 +35,20 @@ The **burden**, critics argued, fell **unevenly**. **Townships**, poor areas **s
 | reservoirs | 本文：水库；n. (reservoir) 水库，蓄水池；（知识、人才的）储备，宝库（a reservoir of talent） | 1 |
 | capacity | 本文：容量；n. 容量，容积；（可容纳的）最大数量（at full capacity 满负荷）；能力（capacity for/to do） | 1 |
 | percentage | 本文：百分比；n. 百分比，比例（as a percentage of capacity 占库容的百分比） | 1 |
-| taps | 本文：水龙头；n. (tap) 水龙头 | 1 |
 | residents | 本文：居民；n. (resident) 居民，住户（local residents）；adj. 居住的；residence n. 住所 | 1 |
 | designated | 本文：指定的；adj./v. (designate) 指定的，选定的（designated collection points/areas）；任命 | 1 |
-| queue | 本文：排队；v. 排队，列队等候 | 1 |
 | prospect | 本文：前景；n. 前景，可能性（the prospect of sth；bright prospects 光明前景）；v. 勘探 | 2 |
 | genuine | 本文：真实存在的；adj. 真实的，真正的（a genuine threat/concern）；真诚的 | 2 |
 | consecutive | 本文：连续；adj. 连续的（three consecutive years；for the fifth consecutive day） | 2 |
 | meagre | 本文：贫乏的；adj. 少量的，不足的（meagre rainfall/income/resources）；美式拼写 meager | 2 |
 | diminished | 本文：减少了；v. (diminish) 减少，削弱（diminish reserves/the importance of sth）；贬低 | 2 |
-| metropolitan area | 本文：大都市区；n. 大都市区，都市圈 | 2 |
+| metropolitan | 本文：大都市；adj. 大都市的（a metropolitan area 都市区）；metropolis n. 大都市 | 2 |
 | dams | 本文：水库；n. (dam) 水坝，水库（build a dam；irrigation dams 灌溉水坝）；v. 筑坝拦水 | 2 |
 | roughly | 本文：约；adv. 大约，大致（roughly a fifth/half；roughly speaking 粗略地说）；粗暴地 | 2 |
 | countdown | 本文：倒计时；n. 倒计时（the countdown to sth 迈向……的倒计时） | 2 |
 | chronic | 本文：长期的；adj. 长期的，慢性的（a chronic shortage/disease）；积习难改的 | 2 |
 | shortage | 本文：短缺；n. 短缺，不足（a water/labour shortage；a shortage of sth） | 2 |
 | imminent | 本文：迫在眉睫的；adj. 迫在眉睫的，即将发生的（an imminent threat/danger） | 2 |
-| deadline | 本文：最后期限；n. 最后期限，截止日期 | 2 |
 | mandatory | 本文：强制性的；adj. 强制的，法定的（mandatory restrictions/retirement）；同 compulsory | 3 |
 | restrictions | 本文：限制措施；n. (restriction) 限制，约束（impose/lift restrictions on sth） | 3 |
 | unprecedented | 本文：前所未有的；adj. 前所未有的，史无前例的（on an unprecedented scale） | 3 |
@@ -80,7 +77,6 @@ The **burden**, critics argued, fell **unevenly**. **Townships**, poor areas **s
 | Townships | 本文：城镇区；n. (township) （南非）种族隔离时期划给非白人的城镇区；（美）镇区 | 5 |
 | apartheid | 本文：种族隔离制度；n. （南非）种族隔离制度（under apartheid） | 5 |
 | segregated | 本文：隔离；v./adj. (segregate) 隔离（racially segregated）；segregation n. | 5 |
-| made do with | 本文：靠……勉强对付；v. (make do with) 靠……勉强凑合，将就使用 | 5 |
 | scant | 本文：很少的；adj. 很少的，不足的（scant attention/evidence/resources；make do with scant water） | 5 |
 | steeper | 本文：更高的；adj. (steep 比较级) （价格、涨幅）过高的，急剧的（steep prices/rise）；陡峭的 | 5 |
 | tariffs | 本文：水价；n. (tariff) （水电等）收费标准，价目；关税（impose tariffs on imports） | 5 |
