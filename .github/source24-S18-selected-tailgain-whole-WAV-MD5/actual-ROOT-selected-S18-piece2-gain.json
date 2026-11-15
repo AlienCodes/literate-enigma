@@ -1,0 +1,36 @@
+{
+  "kind": "ROOT-book49-source24-S18-only-piece2-original-legal-gain-selection-for-full-scope-retest",
+  "source_id": "24",
+  "book_order": 49,
+  "measurement": {
+    "path": "/workspace/work/source24-S18-five-clips43725353921-actual-original/files/24-S18-only-five-speechclip-original-scalars.json",
+    "bytes": 30886,
+    "sha256": "eb7db7f34954b77e929990012491e74a3ef909c59cfaac59c508e1b92f639afa"
+  },
+  "actual_measurement_complete_not_quality": true,
+  "selected_original_source_field": {
+    "分段增益dB": {
+      "S18": {
+        "2": -1.109697858091752
+      }
+    }
+  },
+  "first_piece_gain_unchanged": true,
+  "sentence_gain_not_added": true,
+  "measured_reason": {
+    "old_tail_peak": 0.9396410584449768,
+    "new_tail_peak": 1.0676941871643066,
+    "exact_ratio_gain_db": -1.109697858091752,
+    "original_float32_gain_factor": 0.8800657391548157,
+    "original_float32_effective_new_peak": 0.9396410584449768,
+    "new_tail_LUFS_after_gain_predicted_only": -22.733530858091754,
+    "new_first_LUFS_observed": -22.743488,
+    "old_tail_LUFS_observed": -23.36506,
+    "new_tail_RMS_after_gain_predicted_only": -21.021670858091753,
+    "old_tail_RMS_observed": -21.843688
+  },
+  "original_legality": "Original manual per-piece accepts any numeric within ±6dB; not the sentence ±1dB field. Source24 excluded by original _短起(no) condition, so no short-piece nonnegative clamp. All original functions/thresholds remain unchanged.",
+  "ROOT_actual_pure_float32_proof": "Read original certified20句增益 and original short-piece eligibility. Real NumPy ratio scalar produces old peak exactly; adjacent float32 gain factors produce unequal peaks. No waveform loaded or reconstructed by this pure arithmetic proof.",
+  "authorized_next": "SoleCI with independent actual source/GEN one-leaf inverse and original fulltext preflight may freeze exact one-gain selected pair then replay original cached whole once. No new TTS/G36/other DSP/quality waiver. Require baseline identity plus all nontarget title/sentences pre/post/PCM16 exact and actual master ratio1; verify selected manual2 factor and real target/newwhole numbers before accepting or full native. Mathematical prediction is not actual fullwhole pass.",
+  "created_utc": "2026-11-15T14:46:11.741211+00:00"
+}

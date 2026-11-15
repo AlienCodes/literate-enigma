@@ -1,0 +1,785 @@
+{
+  "kind": "source24_S18_old3_new2_original_clip_scalar_not_gain_selection",
+  "source_id": "24",
+  "book_order": 49,
+  "completed": true,
+  "quality_acceptance": false,
+  "formal_acceptance": false,
+  "gain_or_source_CF_selection_performed": false,
+  "no_whole_build_non_target_inference_G36_ASR_GT_render_or_production_lossy_encoding": true,
+  "private_temporary_meter_FLOAT_PCM_inputs_expected_and_deleted": true,
+  "phases": {
+    "baseline_current": {
+      "source_sha256": "c8903792176bbbe068af89d4826bfe19376f71bc61a121b065539644caafd834",
+      "cached_model_calls": 2,
+      "_active_segment": "S18",
+      "actual_original_mother_reads_by_segment": [
+        {
+          "segment": "S18",
+          "method": "create",
+          "name": "5972df4550be2b5851fe95d6e29641462300bcfc.pkl",
+          "pkl_sha256": "358e8d93a0786f83d79b61cc4bd3f60e05bba1c4493dc3fdc2e74125c2e16722",
+          "actual_model_input_sha256": "a30ceaf43f04ac5d73272cf5686adb8c4ffd1cf0f6108300f9422bbe7e185066",
+          "unprocessed_array_sha256": "5bb2e60909c330322b7ce4a86ce3a089de9740a8f5c5a884ae6f0869dfe87620",
+          "samples": 149504,
+          "dtype": "float32"
+        },
+        {
+          "segment": "S18",
+          "method": "create_timed",
+          "name": "f297d69416661c2f93351d145e0bc28b95e08e92.pkl",
+          "pkl_sha256": "d7d4f8454190c95b54d7880fd6adf6361fbf11aef315ec396f8fc8256117705d",
+          "actual_model_input_sha256": "a30ceaf43f04ac5d73272cf5686adb8c4ffd1cf0f6108300f9422bbe7e185066",
+          "unprocessed_array_sha256": "64a92b9d26669b7488c023adbaca28a576e656a2315849d69cafcce5ee90534d",
+          "samples": 150016,
+          "dtype": "float32"
+        }
+      ],
+      "actual_S18_observation_before_hard_assert": {
+        "plain_English_sha256": "a30ceaf43f04ac5d73272cf5686adb8c4ffd1cf0f6108300f9422bbe7e185066",
+        "before_gain_PCM_sha256": "95385660927ecc8f044235bfba3bff1be27a33552875043da401244e89222590",
+        "before_gain_dtype": "float32",
+        "before_gain_samples": 159600,
+        "pre_master_PCM_sha256": "95385660927ecc8f044235bfba3bff1be27a33552875043da401244e89222590",
+        "PCM_dtype": "float32",
+        "samples": 159600,
+        "duration_s": 6.65,
+        "automatic_gain_dB": {},
+        "manual_gain_dB": null,
+        "exact_effective_DSP": {
+          "非人声区间": [
+            [
+              2.635,
+              2.875
+            ],
+            [
+              3.118958,
+              3.29,
+              "紧贴词尾"
+            ]
+          ],
+          "停顿插入点": {
+            "2": [
+              4.425,
+              "交界"
+            ]
+          },
+          "区间声音指纹": "44b73ada53b6"
+        },
+        "actual_raw_w_fingerprint": "44b73ada53b6",
+        "actual_raw_cuts": [
+          [
+            75120,
+            79080,
+            0.38
+          ],
+          [
+            106200,
+            106200,
+            0.4
+          ]
+        ],
+        "actual_fades": [
+          [
+            106248,
+            106440,
+            106632
+          ]
+        ],
+        "actual_grafts": [],
+        "actual_head": 240,
+        "actual_internal_hs": 600,
+        "pre_gain_piece_clips_sha256": [
+          "cf6905e88e8b576a03c1232673a88661758257a836e08d936b9c85cd5547d137",
+          "1150614eeef2a65b28a3da2abfca749b4906da643a8f6e4737da2fd50916c1e6",
+          "7e2e32278bfaae15eb787639c629a2410ce6e633ad76fb59638ee0567b526897",
+          "5c9b37300155c1f3338bc88f17d69c51fb248b0de0155630962ca6504d789bba",
+          "c57ef699f336a910f8a6f91a43e44074a0c9183d9250624ed065cafbf96fbdd1"
+        ],
+        "pre_gain_tmap": [
+          [
+            0,
+            50,
+            0.0,
+            3.0
+          ],
+          [
+            51,
+            64,
+            3.38,
+            4.51
+          ],
+          [
+            65,
+            99,
+            4.91,
+            6.65
+          ]
+        ],
+        "piece_clips_sha256": [
+          "cf6905e88e8b576a03c1232673a88661758257a836e08d936b9c85cd5547d137",
+          "1150614eeef2a65b28a3da2abfca749b4906da643a8f6e4737da2fd50916c1e6",
+          "7e2e32278bfaae15eb787639c629a2410ce6e633ad76fb59638ee0567b526897",
+          "5c9b37300155c1f3338bc88f17d69c51fb248b0de0155630962ca6504d789bba",
+          "c57ef699f336a910f8a6f91a43e44074a0c9183d9250624ed065cafbf96fbdd1"
+        ],
+        "actual_pieces": [
+          [
+            0,
+            50
+          ],
+          [
+            51,
+            64
+          ],
+          [
+            65,
+            99
+          ]
+        ],
+        "actual_gaps": [
+          0.4,
+          0.4
+        ]
+      },
+      "S18_hard_identity_exact_to_actual_f062": true,
+      "actual_original_S18_piece_gain_dB": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "speech_clips": [
+        {
+          "one_based_speech_piece": 1,
+          "original_clips_index": 0,
+          "display_character_span": [
+            0,
+            50
+          ],
+          "actual_display_English": "Precision put six ashore within reach of help and,",
+          "actual_local_tmap": [
+            0,
+            50,
+            0.0,
+            3.0
+          ],
+          "original_pre_master": {
+            "samples": 72000,
+            "dtype": "float32",
+            "shape": [
+              72000
+            ],
+            "PCM_sha256": "cf6905e88e8b576a03c1232673a88661758257a836e08d936b9c85cd5547d137",
+            "duration_s": 3.0,
+            "absolute_peak": 0.533441960811615,
+            "first_absolute_peak_local_sample": 6439,
+            "signed_first_peak_value": -0.533441960811615,
+            "samples_at_absolute_peak": 1,
+            "RMS_linear": 0.07894847747638806,
+            "RMS_dBFS": -22.053124819124896,
+            "nonzero_sample_count": 66455,
+            "original_meter_gated_LUFS": -22.646002756816983,
+            "original_meter_function": "unmodified momentary -> 段响度 -> gated; start0/end exact clip duration",
+            "original_momentary_blocks": 30,
+            "FLOAT_input_roundtrip_array_exact": true,
+            "temporary_FLOAT_peak_above1_preserved": true,
+            "lossy_or_production_audio_video_encoding": false,
+            "private_FLOAT_input_removed": true
+          },
+          "one_common_old_whole_master_basis": {
+            "samples": 72000,
+            "dtype": "float32",
+            "shape": [
+              72000
+            ],
+            "PCM_sha256": "18c87d9c3cfac6ca8b6a7c0a01134341db4f8ff04badfdc7f2063cebaac7655f",
+            "duration_s": 3.0,
+            "absolute_peak": 0.5052603483200073,
+            "first_absolute_peak_local_sample": 6439,
+            "signed_first_peak_value": -0.5052603483200073,
+            "samples_at_absolute_peak": 1,
+            "RMS_linear": 0.0747776432388872,
+            "RMS_dBFS": -22.52456453182414,
+            "nonzero_sample_count": 66455,
+            "original_meter_gated_LUFS": -23.113696131390952,
+            "original_meter_function": "unmodified momentary -> 段响度 -> gated; start0/end exact clip duration",
+            "original_momentary_blocks": 30,
+            "FLOAT_input_roundtrip_array_exact": true,
+            "temporary_FLOAT_peak_above1_preserved": true,
+            "lossy_or_production_audio_video_encoding": false,
+            "private_FLOAT_input_removed": true
+          },
+          "common_old_master_peak_denominator": 0.9396410584449768,
+          "ordered_view_formula": "clip / np.float32(actual_old_whole_peak) * 0.89",
+          "independent_per_clip_normalization_or_gain_selection": false,
+          "original_clip_bytes_unchanged": true
+        },
+        {
+          "one_based_speech_piece": 2,
+          "original_clips_index": 2,
+          "display_character_span": [
+            51,
+            64
+          ],
+          "actual_display_English": "a century on,",
+          "actual_local_tmap": [
+            51,
+            64,
+            3.38,
+            4.51
+          ],
+          "original_pre_master": {
+            "samples": 27120,
+            "dtype": "float32",
+            "shape": [
+              27120
+            ],
+            "PCM_sha256": "7e2e32278bfaae15eb787639c629a2410ce6e633ad76fb59638ee0567b526897",
+            "duration_s": 1.13,
+            "absolute_peak": 0.5384929776191711,
+            "first_absolute_peak_local_sample": 5458,
+            "signed_first_peak_value": -0.5384929776191711,
+            "samples_at_absolute_peak": 1,
+            "RMS_linear": 0.0795517948298761,
+            "RMS_dBFS": -21.98700034902988,
+            "nonzero_sample_count": 27119,
+            "original_meter_gated_LUFS": -22.02157966117767,
+            "original_meter_function": "unmodified momentary -> 段响度 -> gated; start0/end exact clip duration",
+            "original_momentary_blocks": 11,
+            "FLOAT_input_roundtrip_array_exact": true,
+            "temporary_FLOAT_peak_above1_preserved": true,
+            "lossy_or_production_audio_video_encoding": false,
+            "private_FLOAT_input_removed": true
+          },
+          "one_common_old_whole_master_basis": {
+            "samples": 27120,
+            "dtype": "float32",
+            "shape": [
+              27120
+            ],
+            "PCM_sha256": "053830dbb7f4f5f22e28cbe129b6bbcc3603412096654cbaabac8d41a298d0bf",
+            "duration_s": 1.13,
+            "absolute_peak": 0.5100444555282593,
+            "first_absolute_peak_local_sample": 5458,
+            "signed_first_peak_value": -0.5100444555282593,
+            "samples_at_absolute_peak": 1,
+            "RMS_linear": 0.07534908739444916,
+            "RMS_dBFS": -22.458440067240485,
+            "nonzero_sample_count": 27119,
+            "original_meter_gated_LUFS": -22.479607981084644,
+            "original_meter_function": "unmodified momentary -> 段响度 -> gated; start0/end exact clip duration",
+            "original_momentary_blocks": 11,
+            "FLOAT_input_roundtrip_array_exact": true,
+            "temporary_FLOAT_peak_above1_preserved": true,
+            "lossy_or_production_audio_video_encoding": false,
+            "private_FLOAT_input_removed": true
+          },
+          "common_old_master_peak_denominator": 0.9396410584449768,
+          "ordered_view_formula": "clip / np.float32(actual_old_whole_peak) * 0.89",
+          "independent_per_clip_normalization_or_gain_selection": false,
+          "original_clip_bytes_unchanged": true
+        },
+        {
+          "one_based_speech_piece": 3,
+          "original_clips_index": 4,
+          "display_character_span": [
+            65,
+            99
+          ],
+          "actual_display_English": "brought their ship back into view.",
+          "actual_local_tmap": [
+            65,
+            99,
+            4.91,
+            6.65
+          ],
+          "original_pre_master": {
+            "samples": 41760,
+            "dtype": "float32",
+            "shape": [
+              41760
+            ],
+            "PCM_sha256": "c57ef699f336a910f8a6f91a43e44074a0c9183d9250624ed065cafbf96fbdd1",
+            "duration_s": 1.74,
+            "absolute_peak": 0.9396410584449768,
+            "first_absolute_peak_local_sample": 4462,
+            "signed_first_peak_value": -0.9396410584449768,
+            "samples_at_absolute_peak": 1,
+            "RMS_linear": 0.08087524594967054,
+            "RMS_dBFS": -21.84368771177001,
+            "nonzero_sample_count": 40439,
+            "original_meter_gated_LUFS": -23.36506030583494,
+            "original_meter_function": "unmodified momentary -> 段响度 -> gated; start0/end exact clip duration",
+            "original_momentary_blocks": 17,
+            "FLOAT_input_roundtrip_array_exact": true,
+            "temporary_FLOAT_peak_above1_preserved": true,
+            "lossy_or_production_audio_video_encoding": false,
+            "private_FLOAT_input_removed": true
+          },
+          "one_common_old_whole_master_basis": {
+            "samples": 41760,
+            "dtype": "float32",
+            "shape": [
+              41760
+            ],
+            "PCM_sha256": "44aad2312435417212a84eb2835889bd45aafd8c99fd4541bc05a8b62aceb7cb",
+            "duration_s": 1.74,
+            "absolute_peak": 0.8899999856948853,
+            "first_absolute_peak_local_sample": 4462,
+            "signed_first_peak_value": -0.8899999856948853,
+            "samples_at_absolute_peak": 1,
+            "RMS_linear": 0.0766026208317154,
+            "RMS_dBFS": -22.31512742894564,
+            "nonzero_sample_count": 40439,
+            "original_meter_gated_LUFS": -23.8578331812194,
+            "original_meter_function": "unmodified momentary -> 段响度 -> gated; start0/end exact clip duration",
+            "original_momentary_blocks": 17,
+            "FLOAT_input_roundtrip_array_exact": true,
+            "temporary_FLOAT_peak_above1_preserved": true,
+            "lossy_or_production_audio_video_encoding": false,
+            "private_FLOAT_input_removed": true
+          },
+          "common_old_master_peak_denominator": 0.9396410584449768,
+          "ordered_view_formula": "clip / np.float32(actual_old_whole_peak) * 0.89",
+          "independent_per_clip_normalization_or_gain_selection": false,
+          "original_clip_bytes_unchanged": true
+        }
+      ],
+      "silence_clips": [
+        {
+          "original_clips_index": 1,
+          "actual_silence_duration_s": 0.38,
+          "requested_build_gap_before_original_sentence_processing": 0.4,
+          "samples": 9120,
+          "dtype": "float32",
+          "shape": [
+            9120
+          ],
+          "PCM_sha256": "1150614eeef2a65b28a3da2abfca749b4906da643a8f6e4737da2fd50916c1e6",
+          "duration_s": 0.38,
+          "absolute_peak": 0.0,
+          "first_absolute_peak_local_sample": 0,
+          "signed_first_peak_value": 0.0,
+          "samples_at_absolute_peak": 9120,
+          "RMS_linear": 0.0,
+          "RMS_dBFS": -400.0,
+          "nonzero_sample_count": 0
+        },
+        {
+          "original_clips_index": 3,
+          "actual_silence_duration_s": 0.4,
+          "requested_build_gap_before_original_sentence_processing": 0.4,
+          "samples": 9600,
+          "dtype": "float32",
+          "shape": [
+            9600
+          ],
+          "PCM_sha256": "5c9b37300155c1f3338bc88f17d69c51fb248b0de0155630962ca6504d789bba",
+          "duration_s": 0.4,
+          "absolute_peak": 0.0,
+          "first_absolute_peak_local_sample": 0,
+          "signed_first_peak_value": 0.0,
+          "samples_at_absolute_peak": 9600,
+          "RMS_linear": 0.0,
+          "RMS_dBFS": -400.0,
+          "nonzero_sample_count": 0
+        }
+      ],
+      "original_gain_inputs_and_outputs_byteexact_after_measurement": true,
+      "original_methods_native_closures_restored": true
+    },
+    "selected_private_shadow": {
+      "source_sha256": "e31e54fddbb46d3b7852891d676655fde985005376e5b93ac0534d685aaca2b2",
+      "cached_model_calls": 2,
+      "_active_segment": "S18",
+      "actual_original_mother_reads_by_segment": [
+        {
+          "segment": "S18",
+          "method": "create",
+          "name": "a89de4f946c6cfc5c23a98384b5f48a5e659038b.pkl",
+          "pkl_sha256": "5b74821fba55e3448fa1869c7b0662f19ec91cf20396fd2614e9b9eb861195a7",
+          "actual_model_input_sha256": "3ad9713c65dda3b006cf1a1d542244a710a073400281e8be5cd5b3395aeddf93",
+          "unprocessed_array_sha256": "8bb0c2de238bcb544a20da8217565b69ea866ba7772eec9e08d7a3735f45e78e",
+          "samples": 140288,
+          "dtype": "float32"
+        },
+        {
+          "segment": "S18",
+          "method": "create_timed",
+          "name": "6ad3a3b41ce97d4b86f5bcd2cf23d997a661b81b.pkl",
+          "pkl_sha256": "e8f41af581b9a21846fc98c74ee7f64dd88b8c6ea1b8337020901c08f568cf8c",
+          "actual_model_input_sha256": "3ad9713c65dda3b006cf1a1d542244a710a073400281e8be5cd5b3395aeddf93",
+          "unprocessed_array_sha256": "b2638f69a721704c7b72b1ac0a0471cd04bb0496abcfa60be474fb1285deb84f",
+          "samples": 140800,
+          "dtype": "float32"
+        }
+      ],
+      "actual_S18_observation_before_hard_assert": {
+        "plain_English_sha256": "a30ceaf43f04ac5d73272cf5686adb8c4ffd1cf0f6108300f9422bbe7e185066",
+        "before_gain_PCM_sha256": "46027903a5a8a2e6225b2b8d76c9218a8e7123fca7d381490de48ed7a4c9086d",
+        "before_gain_dtype": "float32",
+        "before_gain_samples": 139080,
+        "pre_master_PCM_sha256": "46027903a5a8a2e6225b2b8d76c9218a8e7123fca7d381490de48ed7a4c9086d",
+        "PCM_dtype": "float32",
+        "samples": 139080,
+        "duration_s": 5.795,
+        "automatic_gain_dB": {},
+        "manual_gain_dB": null,
+        "exact_effective_DSP": {
+          "朗读删逗号": {
+            "篇号": 24,
+            "原文": "Precision put six ashore within reach of help and, a century on, brought their ship back into view.",
+            "逗号序号": [
+              1
+            ]
+          }
+        },
+        "actual_raw_w_fingerprint": "e43769675c69",
+        "actual_raw_cuts": [
+          [
+            87600,
+            96000,
+            0.38
+          ]
+        ],
+        "actual_fades": [],
+        "actual_grafts": [],
+        "actual_head": 240,
+        "actual_internal_hs": 600,
+        "pre_gain_piece_clips_sha256": [
+          "5a2f361f88330bbe549ab7eb35d360613d28e8106b672e4535015ecbb0d33728",
+          "1150614eeef2a65b28a3da2abfca749b4906da643a8f6e4737da2fd50916c1e6",
+          "f76cb06c6c70c688328d4df222e036dca48599d0fd8e01cfc74c55714d440bba"
+        ],
+        "pre_gain_tmap": [
+          [
+            0,
+            64,
+            0.0,
+            3.625
+          ],
+          [
+            65,
+            99,
+            4.005,
+            5.795
+          ]
+        ],
+        "piece_clips_sha256": [
+          "5a2f361f88330bbe549ab7eb35d360613d28e8106b672e4535015ecbb0d33728",
+          "1150614eeef2a65b28a3da2abfca749b4906da643a8f6e4737da2fd50916c1e6",
+          "f76cb06c6c70c688328d4df222e036dca48599d0fd8e01cfc74c55714d440bba"
+        ],
+        "actual_pieces": [
+          [
+            0,
+            64
+          ],
+          [
+            65,
+            99
+          ]
+        ],
+        "actual_gaps": [
+          0.4
+        ]
+      },
+      "S18_hard_identity_exact_to_actual_f062": true,
+      "actual_original_S18_piece_gain_dB": [
+        0.0,
+        0.0
+      ],
+      "speech_clips": [
+        {
+          "one_based_speech_piece": 1,
+          "original_clips_index": 0,
+          "display_character_span": [
+            0,
+            64
+          ],
+          "actual_display_English": "Precision put six ashore within reach of help and, a century on,",
+          "actual_local_tmap": [
+            0,
+            64,
+            0.0,
+            3.625
+          ],
+          "original_pre_master": {
+            "samples": 87000,
+            "dtype": "float32",
+            "shape": [
+              87000
+            ],
+            "PCM_sha256": "5a2f361f88330bbe549ab7eb35d360613d28e8106b672e4535015ecbb0d33728",
+            "duration_s": 3.625,
+            "absolute_peak": 0.5490995645523071,
+            "first_absolute_peak_local_sample": 6474,
+            "signed_first_peak_value": -0.5490995645523071,
+            "samples_at_absolute_peak": 1,
+            "RMS_linear": 0.07757293825429633,
+            "RMS_dBFS": -22.205795166743467,
+            "nonzero_sample_count": 85920,
+            "original_meter_gated_LUFS": -22.743487800417387,
+            "original_meter_function": "unmodified momentary -> 段响度 -> gated; start0/end exact clip duration",
+            "original_momentary_blocks": 36,
+            "FLOAT_input_roundtrip_array_exact": true,
+            "temporary_FLOAT_peak_above1_preserved": true,
+            "lossy_or_production_audio_video_encoding": false,
+            "private_FLOAT_input_removed": true
+          },
+          "one_common_old_whole_master_basis": {
+            "samples": 87000,
+            "dtype": "float32",
+            "shape": [
+              87000
+            ],
+            "PCM_sha256": "2d4a013ec976e40da7a8f69e9dcc5694295ffba660f0ff62c07f4190db671208",
+            "duration_s": 3.625,
+            "absolute_peak": 0.5200907588005066,
+            "first_absolute_peak_local_sample": 6474,
+            "signed_first_peak_value": -0.5200907588005066,
+            "samples_at_absolute_peak": 1,
+            "RMS_linear": 0.0734747734898349,
+            "RMS_dBFS": -22.6772348821785,
+            "nonzero_sample_count": 85920,
+            "original_meter_gated_LUFS": -23.21736901114489,
+            "original_meter_function": "unmodified momentary -> 段响度 -> gated; start0/end exact clip duration",
+            "original_momentary_blocks": 36,
+            "FLOAT_input_roundtrip_array_exact": true,
+            "temporary_FLOAT_peak_above1_preserved": true,
+            "lossy_or_production_audio_video_encoding": false,
+            "private_FLOAT_input_removed": true
+          },
+          "common_old_master_peak_denominator": 0.9396410584449768,
+          "ordered_view_formula": "clip / np.float32(actual_old_whole_peak) * 0.89",
+          "independent_per_clip_normalization_or_gain_selection": false,
+          "original_clip_bytes_unchanged": true
+        },
+        {
+          "one_based_speech_piece": 2,
+          "original_clips_index": 2,
+          "display_character_span": [
+            65,
+            99
+          ],
+          "actual_display_English": "brought their ship back into view.",
+          "actual_local_tmap": [
+            65,
+            99,
+            4.005,
+            5.795
+          ],
+          "original_pre_master": {
+            "samples": 42960,
+            "dtype": "float32",
+            "shape": [
+              42960
+            ],
+            "PCM_sha256": "f76cb06c6c70c688328d4df222e036dca48599d0fd8e01cfc74c55714d440bba",
+            "duration_s": 1.79,
+            "absolute_peak": 1.0676941871643066,
+            "first_absolute_peak_local_sample": 4414,
+            "signed_first_peak_value": -1.0676941871643066,
+            "samples_at_absolute_peak": 1,
+            "RMS_linear": 0.10101860683779393,
+            "RMS_dBFS": -19.911972504006663,
+            "nonzero_sample_count": 40680,
+            "original_meter_gated_LUFS": -21.623833065951313,
+            "original_meter_function": "unmodified momentary -> 段响度 -> gated; start0/end exact clip duration",
+            "original_momentary_blocks": 17,
+            "FLOAT_input_roundtrip_array_exact": true,
+            "temporary_FLOAT_peak_above1_preserved": true,
+            "lossy_or_production_audio_video_encoding": false,
+            "private_FLOAT_input_removed": true
+          },
+          "one_common_old_whole_master_basis": {
+            "samples": 42960,
+            "dtype": "float32",
+            "shape": [
+              42960
+            ],
+            "PCM_sha256": "65723d910ed850fe1248f40a1774484ef8ccdf34d464a4fa3146902f8ed04f7f",
+            "duration_s": 1.79,
+            "absolute_peak": 1.011288046836853,
+            "first_absolute_peak_local_sample": 4414,
+            "signed_first_peak_value": -1.011288046836853,
+            "samples_at_absolute_peak": 1,
+            "RMS_linear": 0.09568181141030345,
+            "RMS_dBFS": -20.38341222772102,
+            "nonzero_sample_count": 40680,
+            "original_meter_gated_LUFS": -22.100382653649998,
+            "original_meter_function": "unmodified momentary -> 段响度 -> gated; start0/end exact clip duration",
+            "original_momentary_blocks": 17,
+            "FLOAT_input_roundtrip_array_exact": true,
+            "temporary_FLOAT_peak_above1_preserved": true,
+            "lossy_or_production_audio_video_encoding": false,
+            "private_FLOAT_input_removed": true
+          },
+          "common_old_master_peak_denominator": 0.9396410584449768,
+          "ordered_view_formula": "clip / np.float32(actual_old_whole_peak) * 0.89",
+          "independent_per_clip_normalization_or_gain_selection": false,
+          "original_clip_bytes_unchanged": true
+        }
+      ],
+      "silence_clips": [
+        {
+          "original_clips_index": 1,
+          "actual_silence_duration_s": 0.38,
+          "requested_build_gap_before_original_sentence_processing": 0.4,
+          "samples": 9120,
+          "dtype": "float32",
+          "shape": [
+            9120
+          ],
+          "PCM_sha256": "1150614eeef2a65b28a3da2abfca749b4906da643a8f6e4737da2fd50916c1e6",
+          "duration_s": 0.38,
+          "absolute_peak": 0.0,
+          "first_absolute_peak_local_sample": 0,
+          "signed_first_peak_value": 0.0,
+          "samples_at_absolute_peak": 9120,
+          "RMS_linear": 0.0,
+          "RMS_dBFS": -400.0,
+          "nonzero_sample_count": 0
+        }
+      ],
+      "original_gain_inputs_and_outputs_byteexact_after_measurement": true,
+      "original_methods_native_closures_restored": true
+    }
+  },
+  "phase_restore": {
+    "baseline_current": {
+      "normal_scripts_namespace_restored": true,
+      "environment_cwd_sys_path_restored": true
+    },
+    "selected_private_shadow": {
+      "normal_scripts_namespace_restored": true,
+      "environment_cwd_sys_path_restored": true
+    }
+  },
+  "errors": [],
+  "first_content_comparison": {
+    "old_first_two_speech_union_without_gap": {
+      "original_pre_master": {
+        "samples": 99120,
+        "dtype": "float32",
+        "shape": [
+          99120
+        ],
+        "PCM_sha256": "d54b5dbc91081f067d98ddd573e43f0c50316c13f0fe015769029eecb30d99b8",
+        "duration_s": 4.13,
+        "absolute_peak": 0.5384929776191711,
+        "first_absolute_peak_local_sample": 77458,
+        "signed_first_peak_value": -0.5384929776191711,
+        "samples_at_absolute_peak": 1,
+        "RMS_linear": 0.07911400698195419,
+        "RMS_dBFS": -22.03493237393177,
+        "nonzero_sample_count": 93574,
+        "original_meter_gated_LUFS": -22.36106777632073,
+        "original_meter_function": "unmodified momentary -> 段响度 -> gated; start0/end exact clip duration",
+        "original_momentary_blocks": 41,
+        "FLOAT_input_roundtrip_array_exact": true,
+        "temporary_FLOAT_peak_above1_preserved": true,
+        "lossy_or_production_audio_video_encoding": false,
+        "private_FLOAT_input_removed": true
+      },
+      "one_common_old_whole_master_basis": {
+        "samples": 99120,
+        "dtype": "float32",
+        "shape": [
+          99120
+        ],
+        "PCM_sha256": "0de42e0cda8adc4c76d8eb15833ee084ca409ac93cc591dbd7833b298f3c22a1",
+        "duration_s": 4.13,
+        "absolute_peak": 0.5100444555282593,
+        "first_absolute_peak_local_sample": 77458,
+        "signed_first_peak_value": -0.5100444555282593,
+        "samples_at_absolute_peak": 1,
+        "RMS_linear": 0.07493442783651255,
+        "RMS_dBFS": -22.5063720881557,
+        "nonzero_sample_count": 93574,
+        "original_meter_gated_LUFS": -22.826730951889147,
+        "original_meter_function": "unmodified momentary -> 段响度 -> gated; start0/end exact clip duration",
+        "original_momentary_blocks": 41,
+        "FLOAT_input_roundtrip_array_exact": true,
+        "temporary_FLOAT_peak_above1_preserved": true,
+        "lossy_or_production_audio_video_encoding": false,
+        "private_FLOAT_input_removed": true
+      },
+      "common_old_master_peak_denominator": 0.9396410584449768,
+      "ordered_view_formula": "clip / np.float32(actual_old_whole_peak) * 0.89",
+      "independent_per_clip_normalization_or_gain_selection": false,
+      "original_clip_bytes_unchanged": true
+    },
+    "old_first_two_span_including_actual_first_gap": {
+      "original_pre_master": {
+        "samples": 108240,
+        "dtype": "float32",
+        "shape": [
+          108240
+        ],
+        "PCM_sha256": "8a3492f2a03f3a20d619bf3207a75b8a281b2b1366830f1c4d036cfa1f445c24",
+        "duration_s": 4.51,
+        "absolute_peak": 0.5384929776191711,
+        "first_absolute_peak_local_sample": 86578,
+        "signed_first_peak_value": -0.5384929776191711,
+        "samples_at_absolute_peak": 1,
+        "RMS_linear": 0.07570771458647176,
+        "RMS_dBFS": -22.417197276147366,
+        "nonzero_sample_count": 93574,
+        "original_meter_gated_LUFS": -22.690888343485472,
+        "original_meter_function": "unmodified momentary -> 段响度 -> gated; start0/end exact clip duration",
+        "original_momentary_blocks": 45,
+        "FLOAT_input_roundtrip_array_exact": true,
+        "temporary_FLOAT_peak_above1_preserved": true,
+        "lossy_or_production_audio_video_encoding": false,
+        "private_FLOAT_input_removed": true
+      },
+      "one_common_old_whole_master_basis": {
+        "samples": 108240,
+        "dtype": "float32",
+        "shape": [
+          108240
+        ],
+        "PCM_sha256": "6e061d8539bc821e37b2a98f9a03e0dd26393bfa6556cf1a9ed248039f5348fc",
+        "duration_s": 4.51,
+        "absolute_peak": 0.5100444555282593,
+        "first_absolute_peak_local_sample": 86578,
+        "signed_first_peak_value": -0.5100444555282593,
+        "samples_at_absolute_peak": 1,
+        "RMS_linear": 0.07170808927224842,
+        "RMS_dBFS": -22.888636990371296,
+        "nonzero_sample_count": 93574,
+        "original_meter_gated_LUFS": -23.166590229373323,
+        "original_meter_function": "unmodified momentary -> 段响度 -> gated; start0/end exact clip duration",
+        "original_momentary_blocks": 45,
+        "FLOAT_input_roundtrip_array_exact": true,
+        "temporary_FLOAT_peak_above1_preserved": true,
+        "lossy_or_production_audio_video_encoding": false,
+        "private_FLOAT_input_removed": true
+      },
+      "common_old_master_peak_denominator": 0.9396410584449768,
+      "ordered_view_formula": "clip / np.float32(actual_old_whole_peak) * 0.89",
+      "independent_per_clip_normalization_or_gain_selection": false,
+      "original_clip_bytes_unchanged": true
+    },
+    "old_first_gap_samples": 9120,
+    "old_first_gap_seconds": 0.38,
+    "new_first_piece_measurement_reference": "phases.selected_private_shadow.speech_clips[0]",
+    "old_union_excludes_gap_and_no_resynthesis_or_production_audio_created": true
+  },
+  "same_tail_comparison": {
+    "old_piece3_reference": "phases.baseline_current.speech_clips[2]",
+    "new_piece2_reference": "phases.selected_private_shadow.speech_clips[1]",
+    "both_common_basis_uses_actual_old_whole_peak": 0.9396410584449768,
+    "no_independent_piece_normalization_or_gain_choice": true
+  },
+  "all_existing_private_cache_full_bytes_unchanged": true,
+  "public_repository_cache_bytes_unchanged": true,
+  "all_immutable_inputs_bytes_unchanged": true,
+  "normal_all_source_scripts_bytes_unchanged": true,
+  "normal_work24_inode_and_WAV_untouched": true,
+  "work_environment_existence_restored": true,
+  "original_runtime_models_voice_dictionaries_exact_after": true,
+  "both_source_namespace_env_restored": true,
+  "all_private_meter_temp_containers_removed": true
+}
