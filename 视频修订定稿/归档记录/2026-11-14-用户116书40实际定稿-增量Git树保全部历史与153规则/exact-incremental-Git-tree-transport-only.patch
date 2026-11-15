@@ -1,0 +1,42 @@
+--- before-full-shallow-Git-tree-POST
++++ actual-exact-base_tree-incremental-transport
+@@ -15,6 +15,19 @@
+ def load(p):return json.loads(pathlib.Path(p).read_text())
+ def save(p,o):pathlib.Path(p).write_text(json.dumps(o,ensure_ascii=False,indent=2)+'\n')
+ def gitblob(raw):return hashlib.sha1(b'blob '+str(len(raw)).encode()+b'\0'+raw).hexdigest()
++def post_incremental_tree(api,repo,entries,base_sha,base_entries):
++ assert set(base_entries)<=set(entries),'Transport recovery must not remove prior entries'
++ fields=('path','mode','type','sha')
++ delta=[{k:v[k]for k in fields}for n,v in entries.items()if n not in base_entries or any(v[k]!=base_entries[n][k]for k in fields)]
++ assert 1<=len(delta)<=5,'This exact recovery is bounded to five actual changed entries'
++ raw=b''.join((str(int(v['mode']))+' '+v['path']).encode()+b'\0'+bytes.fromhex(v['sha'])for v in sorted(entries.values(),key=lambda v:(v['path']+('/'if v['type']=='tree'else'')).encode()))
++ expected=hashlib.sha1(b'tree '+str(len(raw)).encode()+b'\0'+raw).hexdigest()
++ got=api(repo,'git/trees','POST',{'base_tree':base_sha,'tree':delta})['sha'];assert got==expected
++ actual=api(repo,'git/trees/'+got);assert not actual.get('truncated')
++ assert {(v['path'],v['mode'],v['type'],v['sha'])for v in actual['tree']}=={(v['path'],v['mode'],v['type'],v['sha'])for v in entries.values()}
++ print(json.dumps({'kind':'actual-exact-incremental-Git-tree-transport','repository':repo,'base_tree':base_sha,'expected_tree':expected,'actual_tree':got,'changed_paths':[v['path']for v in delta],'all_prior_entries_retained':True,'full_resulting_shallow_tree_identity_verified':True},ensure_ascii=False),flush=True)
++ return got
++
+ def main():
+  a=argparse.ArgumentParser();a.add_argument('--plan',required=True);a.add_argument('--execute',action='store_true');args=a.parse_args();assert args.execute,'Explicit root-granted writer window required'
+  plan=load(args.plan);assert plan['writer_window_granted_by_root'] is True
+@@ -79,16 +92,16 @@
+    for f in asset['files_index']:
+     rel=f['repo_path'][len(prefix)+1:];r=remote[rel];assert r['type']=='blob' and r['sha']==f['git_blob_sha'] and r['size']==f['bytes']
+    if relprefix.startswith('归档记录/'):
+-    child=shallow(tree(repo,video['归档记录']['sha'])) if '归档记录' in video else {};name=relprefix.split('/',1)[1];assert name not in child;child[name]={'path':name,'mode':'040000','type':'tree','sha':asset['video_tree_sha']};newchild=api(repo,'git/trees','POST',{'tree':list(child.values())})['sha'];updated['归档记录']={'path':'归档记录','mode':'040000','type':'tree','sha':newchild}
++    child=shallow(tree(repo,video['归档记录']['sha'])) if '归档记录' in video else {};name=relprefix.split('/',1)[1];assert name not in child;child[name]={'path':name,'mode':'040000','type':'tree','sha':asset['video_tree_sha']};newchild=post_incremental_tree(api,repo,child,video['归档记录']['sha'],tree(repo,video['归档记录']['sha']));updated['归档记录']={'path':'归档记录','mode':'040000','type':'tree','sha':newchild}
+    else:
+     assert '/' not in relprefix and relprefix not in updated;updated[relprefix]={'path':relprefix,'mode':'040000','type':'tree','sha':asset['video_tree_sha']}
+   blob=api(repo,'git/blobs','POST',{'content':base64.b64encode(latest).decode(),'encoding':'base64'})['sha'];assert blob==gitblob(latest)
+   updated['已归档视频总清单.json']={'path':'已归档视频总清单.json','mode':'100644','type':'blob','sha':blob}
+-  vtree=api(repo,'git/trees','POST',{'tree':list(updated.values())})['sha'];current=tree(repo,vtree,True)
++  vtree=post_incremental_tree(api,repo,updated,root['视频修订定稿']['sha'],video);current=tree(repo,vtree,True)
+   if managed_final:
+    active_alias_plan=alias_builder.build(inventory,current,catalog,latest_requests=completed_tracking if tracking_raw is not None else None);final_sync[role]=final_alias_git.create_final_tree(api,repo,active_alias_plan)
+    updated['最终定稿']={'path':'最终定稿','mode':'040000','type':'tree','sha':final_sync[role]['final_tree_sha']}
+-   vtree=api(repo,'git/trees','POST',{'tree':list(updated.values())})['sha'];current=tree(repo,vtree,True)
++   vtree=post_incremental_tree(api,repo,updated,root['视频修订定稿']['sha'],video);current=tree(repo,vtree,True)
+   assert all(n=='已归档视频总清单.json' or (tracking_raw is not None and n=='latest_requests.json') or (managed_final and n.startswith('最终定稿/')) or (n in current and current[n]['sha']==v['sha'] and current[n]['mode']==v['mode']) for n,v in oldfull.items() if v['type']=='blob')
+   roots=shallow(root);roots['视频修订定稿']={'path':'视频修订定稿','mode':'040000','type':'tree','sha':vtree};rtree=api(repo,'git/trees','POST',{'tree':list(roots.values())})['sha']
+   commit=api(repo,'git/commits','POST',{'message':plan['message'],'tree':rtree,'parents':[expected]})['sha'];prepared.append((role,repo,branch,expected,commit,vtree,rtree,root))
