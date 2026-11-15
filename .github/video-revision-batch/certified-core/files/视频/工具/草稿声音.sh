@@ -8,8 +8,20 @@ python3 $T/方法进化表.py --上下文 || echo "（提醒：会话上下文�
 export OLD_IV_VOID=1
 # 已定过结尾句语速的（20 前段 0.96，A27）照原语速重找接点，不改回默认值
 ea=$(python3 -c "import json;e=list(json.load(open('scripts/$no.json')).get('结尾句',{}).values());e=e[0] if e else {};ks=('前段语速','最后一段语速','最后一段前停顿');print(*(e[k] for k in ks) if all(k in e for k in ks) else '')")
-python3 $T/结尾句接点.py $no $ea --写入 2>&1 | grep -E "接点样本|停止|没有句中标点" | cut -c1-160
-for i in 1 2 3; do bash $T/快速重建核查.sh $no >/dev/null 2>&1; python3 $T/区间作废.py $no 2>&1 | grep -v "没有读音"; python3 $T/疑点清单.py $no >/dev/null 2>&1; python3 $T/自动切点.py $no --写入 2>&1 | grep -E "^$no 疑点|停止"; done
+# 修订重制只验证并保留已有已审接点；坏点原门停止，不用自动新点替代。
+if [ "${XG_KEEP_REVIEWED_ENDING:-0}" = "1" ]; then
+    python3 $T/结尾句接点.py $no $ea --写入 --保持已审接点 2>&1 | grep -E "接点样本|保持已审|停止|没有句中标点" | cut -c1-160
+    ending_rc=${PIPESTATUS[0]}
+    if [ "$ending_rc" -ne 0 ]; then exit "$ending_rc"; fi
+else
+    python3 $T/结尾句接点.py $no $ea --写入 2>&1 | grep -E "接点样本|停止|没有句中标点" | cut -c1-160
+fi
+cut_args=(--写入); cut_filter="^$no 疑点|停止"
+# 修订重制：原自动切点仍逐轮计算建议，显式模式只取消这一步写入；后续原声音门照跑。
+if [ "${XG_KEEP_REVIEWED_CUTS:-0}" = "1" ]; then
+    cut_args=(); cut_filter="^$no 疑点|^  删|^  人看|停止"
+fi
+for i in 1 2 3; do bash $T/快速重建核查.sh $no >/dev/null 2>&1; python3 $T/区间作废.py $no 2>&1 | grep -v "没有读音"; python3 $T/疑点清单.py $no >/dev/null 2>&1; python3 $T/自动切点.py $no "${cut_args[@]}" 2>&1 | grep -E "$cut_filter"; done
 python3 $T/词尾辅音核对.py $no --写入 2>&1 | grep -E "写入|问题数" | tail -3
 gain_args=(--写入); gain_filter="写入|停止"
 # 修订重制：保留请求中已审的增益；只量响度、打印原建议，后面的原声音核查照跑。
