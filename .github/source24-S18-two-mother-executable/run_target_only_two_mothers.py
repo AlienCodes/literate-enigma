@@ -2,8 +2,8 @@ from pathlib import Path
 import os,json,subprocess,sys,hashlib
 N=Path(__file__).resolve().parent;ROOT=Path(os.environ['GITHUB_WORKSPACE']);M=Path(os.environ['RUNNER_TEMP'])/'completion-machine';T=ROOT/'official-main/视频/工具';O=ROOT/'mother24-public';O.mkdir(exist_ok=True)
 def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
-assert sha(N/'prepare24_only_S18_two_mothers_spoken20.py')=='e0d0f1ee1d9d716f85a0c2dd23814399d97fead2b508f02acd3f2ecca41eab90'
-d=json.loads((N/'native-arguments-spoken20.json').read_text());mapping={'{{TOOLS}}':str(T),'{{VIDEO_ROOT}}':str(M),'{{ACTUAL_ROOT_EXECUTION_ADOPTION_JSON}}':str(N/'actual-root-two-mother-execution-adoption.json'),'{{ACTUAL_ROOT_EXECUTION_ADOPTION_FULLSHA}}':'755849ec13209b619897279a690f31e266609f564e93ee119a0d6fda437826de','{{ACTUAL_COMBINED20_CERTIFICATION_PUBLIC_JSON}}':str(N/'actual-spoken20-certification.json'),'{{GITHUB_OUTPUT}}':os.environ['GITHUB_OUTPUT']}
+assert sha(N/'prepare24_only_S18_two_mothers_spoken20_internal_delegate_fixed.py')=='9eb456290065ee2aa02818db53ba7e420455ec8b159221776a504825c5ab0c5b'
+d=json.loads((N/'native-arguments-internal-delegate-fixed.json').read_text());mapping={'{{TOOLS}}':str(T),'{{VIDEO_ROOT}}':str(M),'{{ACTUAL_ROOT_EXECUTION_ADOPTION_JSON}}':str(N/'actual-root-two-mother-execution-adoption.json'),'{{ACTUAL_ROOT_EXECUTION_ADOPTION_FULLSHA}}':'992e591c4374570a70bdb14f23c4fbf3de0722554dd786af8aa2c7fe4d6b8ea6','{{ACTUAL_COMBINED20_CERTIFICATION_PUBLIC_JSON}}':str(N/'actual-spoken20-certification.json'),'{{GITHUB_OUTPUT}}':os.environ['GITHUB_OUTPUT']}
 args=[]
 for key,value in d['arguments'].items():
  if value in mapping:value=mapping[value]
