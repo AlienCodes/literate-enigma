@@ -29,7 +29,8 @@ def module(name,path):
 def capture(cmd):return subprocess.check_output([str(x)for x in cmd])
 def aac(path):return capture(['ffmpeg','-v','error','-nostdin','-i',path,'-map','0:a:0','-c:a','copy','-f','adts','-'])
 def spoken(data):return [data['title_en']]+[' '.join(re.sub(r'\{\{.*?\}\}|\*\*','',c['en'])for c in s['chunks'])for s in data['sentences']]
-def control_valid(data,p):return str(data.get('no'))==p['article']and {k:data.get(k)for k in p['approved_audio_controls']}==p['approved_audio_controls']
+def control_valid(data,p):
+ return str(data.get('no'))==p['article']and {k:data.get(k)for k in p['approved_audio_controls']}==p['approved_audio_controls']and all(data.get('区间声音指纹',{}).get(k)==v for k,v in p['new_mother_interval_bindings'].items())
 def nonclipped(a):return bool(len(a)>0 and np.isfinite(a).all()and np.max(np.abs(a))<1.)
 def fingerprints_valid(measured,p):return all(measured.get(k)==v for k,v in p['fingerprints'].items())
 def at(data,path):
@@ -60,17 +61,36 @@ def actual_nonreview_binding(actual,requested,p):
  return valid,{'original_pending_consent_consumed':moved,'exact_original_pending_history_move':bool(moved),'exact_observed_G35_note_paths_normalized':normalized,'all_other_nonreview_data_exact':valid}
 
 def evidence_valid(e,p):
- if not(e.get('passed')is True and e.get('diagnostic_only')is True and e.get('formal_audio_or_video_accepted')is False and e.get('new_model_inference')is False):return False
- case=next((x for x in e['cases']if str(x['source_id'])==p['article']),None)
- if not case:return False
- b,c=case['baseline'],case['candidate'];outside=c['all_title_and_non_target_pre_master_PCM_exact'];allowed=set(p['approved_voice_changed_sentences']);want=({'title'}|{f'S{i}'for i in range(1,p['body_sentence_count']+1)})-allowed
- if not(b.get('actual_current_native_WAV_AAC_double_bound')is True and b['AAC_ADTS_sha256']==p['fingerprints']['accepted_AAC_ADTS_sha256']and c['raw_WAV_sha256']==p['fingerprints']['actual_raw_WAV_sha256']and c['AAC_ADTS_sha256']==p['fingerprints']['canonical_AAC_ADTS_sha256']):return False
- if not(b['master_ideal_multiplier']==c['master_ideal_multiplier']==p['actual_master_multiplier_after']==p['actual_master_multiplier_before']and set(outside)==want and outside==p['non_target_pre_master_identity']):return False
- if not all(x['same_samples']and x['array_equal']and x['old_SHA256']==x['new_SHA256']for x in outside.values()):return False
- if set(c['only_authorized_changed_sentence_pre_master_PCM'])!=allowed:return False
+ # Stage1 is the unchanged actual legacy/current double reconstruction. Stage2
+ # is the separately measured single final-NV candidate; no synthetic rerun role.
+ if not(e.get('passed')is True and e.get('diagnostic_only')is True and e.get('formal_audio_or_video_accepted')is False and e.get('new_model_inference')is False and e.get('source_GEN_CF_or_core_modified')is False and e.get('candidate_whole_build_count')==1 and e.get('old_or_baseline_whole_replay_performed')is False):return False
+ bp=HERE/p['legacy_to_spoken_evidence_file']
+ if sha(bp)!=p['legacy_to_spoken_evidence_sha256']:return False
+ bridge=json.loads(bp.read_text())
+ if not(bridge.get('passed')is True and bridge.get('diagnostic_only')is True and bridge.get('formal_audio_or_video_accepted')is False and bridge.get('new_model_inference')is False):return False
+ case=next((x for x in bridge['cases']if str(x['source_id'])=='43'),None)
+ if not case or p['article']!='43':return False
+ b,c=case['baseline'],case['candidate'];stage=p['intermediate_spoken_before_NV'];fp=p['fingerprints'];allids={'title'}|{f'S{i}'for i in range(1,p['body_sentence_count']+1)};allowed=set(p['approved_voice_changed_sentences']);outside=allids-allowed;unchanged_stage2=allids-{'S16'}
+ if not(b.get('actual_current_native_WAV_AAC_double_bound')is True and b['raw_WAV_sha256']==stage['legacy_accepted_raw_WAV_sha256']and b['AAC_ADTS_sha256']==fp['accepted_AAC_ADTS_sha256']and c['raw_WAV_sha256']==stage['raw_WAV_sha256']and c['AAC_ADTS_sha256']==stage['AAC_ADTS_sha256']):return False
+ ip=e['input_SHA256']
+ if not(ip['before_source']==stage['request_source_sha256']and ip['whole_reference']==p['legacy_to_spoken_evidence_sha256']and ip['source']==fp['request_source_sha256']and ip['GEN']==fp['request_generator_sha256']and ip['mother_contract']==p['actual_six_mother_contract_sha256']):return False
+ if not(e['actual_new_whole_RAW_WAV_SHA256']==fp['actual_raw_WAV_sha256']and e['actual_new_whole_AAC_ADTS_SHA256']==fp['canonical_AAC_ADTS_sha256']and e['actual_new_whole_WAV_MD5_first12']==p['actual_new_whole_raw_fingerprint']and e['actual_new_raw_WAV_bytes']==p['raw_WAV_bytes']):return False
+ if not(e['master_exact_to_5c4a']is True and b['master_ideal_multiplier']==c['master_ideal_multiplier']==e['master_ideal_multiplier']==p['actual_master_multiplier_before']==p['actual_master_multiplier_after']and e['master_pre_peak']==c['master_pre_peak']):return False
+ oldrows=b['sentence_pre_master_records'];midrows=c['sentence_pre_master_records'];newrows=e['sentence_pre_master_records'];links=e['sentence_pre_master_identity_to_actual5c4a'];oldoutside=c['all_title_and_non_target_pre_master_PCM_exact']
+ if not(set(oldrows)==set(midrows)==set(newrows)==set(links)==allids and set(oldoutside)==outside and oldoutside==p['non_target_pre_master_identity']and set(c['only_authorized_changed_sentence_pre_master_PCM'])==allowed):return False
+ for sid in outside:
+  z=oldoutside[sid]
+  if not(z['same_samples']and z['array_equal']and z['old_SHA256']==z['new_SHA256']==oldrows[sid]['pre_master_float32_SHA256']==midrows[sid]['pre_master_float32_SHA256']==newrows[sid]['pre_master_float32_SHA256']and oldrows[sid]['samples']==midrows[sid]['samples']==newrows[sid]['samples']):return False
+ for sid in unchanged_stage2:
+  z=links[sid]
+  if not(z['same_samples']is True and z['pre_master_SHA256_identity']is True and z['old_pre_master_SHA256']==z['new_pre_master_SHA256']==midrows[sid]['pre_master_float32_SHA256']==newrows[sid]['pre_master_float32_SHA256']and midrows[sid]['samples']==newrows[sid]['samples']):return False
+ if e['non_target_count_including_title_and_S13']!=len(unchanged_stage2):return False
  for sid in p['approved_gain_only_sentences']:
-  if not(b['sentence_pre_master_records'][sid]['before_gain_float32_SHA256']==c['sentence_pre_master_records'][sid]['before_gain_float32_SHA256']==p['gain_only_pre_gain_identity'][sid]):return False
- return canonical(c['actual_segment_record'])==p['approved_producer_segments_sha256']
+  if not(oldrows[sid]['before_gain_float32_SHA256']==midrows[sid]['before_gain_float32_SHA256']==newrows[sid]['before_gain_float32_SHA256']==p['gain_only_pre_gain_identity'][sid]):return False
+ target=newrows['S16'];targetpin=p['actual_new_S16_record'];math=e['original_math_records']
+ if not(target==targetpin and target['raw_fingerprint']=='4c97c3273743'and math==p['new_G36_actual_math']and len(math)==1 and math[0]['source_id']==43 and math[0]['sentence']=='S16'and math[0]['original_math_algorithm_unchanged']is True and math[0]['strict_cache_readback_exact']is True and math[0]['new_model_inference']is False):return False
+ if not(e['new_S16_raw_noise_events']==[]and e['input_files_byte_exact']is True and e['models_byte_exact']is True and e['only_new_cache_files_original_math_JSON']is True):return False
+ return canonical(e['actual_segment_clock'])==p['approved_producer_segments_sha256']and canonical(e['sentence_pre_master_records'])==p['actual_final_sentence_records_sha256']
 
 def runtime_mutation_tests(actual,p,fp,raw_bytes,decoded):
  wrong=copy.deepcopy(actual);sid=p['approved_gain_only_sentences'][0];piece=next(iter(wrong['分段增益dB'][sid]));wrong['分段增益dB'][sid][piece]=0.
@@ -88,7 +108,7 @@ def audit(args):
  report={'article':no,'kind':'controlled_audio_repair','passed':False,'repair_applied':False,'diagnostic_only':bool(args.diagnostic),'production_delivery_eligible':False,'official_full_gates_are_separate_required_precondition':True,'official_gates_replaced_or_thresholds_modified':False,'subjective_listening_claimed':False,'private_caches_GT_or_PCM_exported':False,'program_sha256':sha(__file__)}
  def add(name,passed,**kw):checks.append(dict(name=name,passed=bool(passed),**safe(kw)))
  try:
-  profile_path=Path(args.reference or HERE/f'audio{no}-controlled-qc-reference.json');p=json.loads(profile_path.read_text());report['reference_file_sha256']=sha(profile_path);assert no==p['article']and no in('43','52')and p['enabled']is True
+  profile_path=Path(args.reference or HERE/f'audio{no}-controlled-qc-reference.json');p=json.loads(profile_path.read_text());report['reference_file_sha256']=sha(profile_path);assert no==p['article']=='43'and p['enabled']is True
   assert p['review_only_top_level_keys']==['核对确认','区间声音指纹'];utility=Path(args.numeric_utilities or HERE/'audio-qc.py');assert sha(utility)==p['numeric_utilities_sha256'];U=module('spoken_unchanged_numeric_utilities_'+no,utility)
   ep=HERE/p['whole_track_evidence_file'];add('actual-native-whole-track-proof-bytes-and-precise-voice-scope',sha(ep)==p['whole_track_evidence_sha256']and evidence_valid(json.loads(ep.read_text()),p),actual_native_diagnostic_run=p['actual_whole_native_diagnostic_run'],proof_is_diagnostic_and_not_substituted_for_formal_gates=True)
   request=Path(args.request).resolve();work=Path(args.work).resolve();reqpath=request/f'视频/脚本/{no}.json';genpath=request/f'视频/工具/初稿生成/gen{no}.py';actualpath=Path(args.actual_source or work/f'scripts/{no}.json');rawpath=Path(args.raw_pcm or work/f'work_{no}/a.wav');requested=json.loads(reqpath.read_text());actual=json.loads(actualpath.read_text());oldaac=aac(args.accepted_source);newaac=aac(args.canonical_video)
@@ -127,7 +147,7 @@ def audit(args):
   add('all-eight-unchanged-original-health-rules',not bad,metrics=metrics,failures=bad,original_confirmation_notes=notes);add('unchanged-original-whole-sentence-R-rule',not rbad,failures=rbad,summary=summary);add('unchanged-original-within-sentence-R-rule',not ibad,comparisons=inside,failures=ibad)
   report['original_full_track_supplement']={'metrics':metrics,'global_lufs':I,'sentence_lufs':levels,'summary':summary,'suppressed_segment_rule_not_added':True,'official_original_ASR_gates_separate':True}
   mutations=runtime_mutation_tests(actual,p,fp,raw_bytes,decoded);add('actual-runtime-positive-and-one-byte-control-clipping-negatives',all(v for k,v in mutations.items()if k not in('mutated_audio_written','ASR_simulated')),**mutations)
-  report['approved_audio_repair_scope']={'source_id':no,'spoken_comma_new_mother_sentences':p['approved_new_mother_sentences'],'approved_gain_only_sentences':p['approved_gain_only_sentences'],'only_voice_changed_sentences':p['approved_voice_changed_sentences'],'non_target_title_and_body_pre_master_identity_count':len(p['non_target_pre_master_identity']),'non_target_pre_master_identity_basis':'actual-native-whole-track-diagnostic exact arrays plus this runtime entire new RAW/AAC cryptographic identity','master_multiplier_before':p['actual_master_multiplier_before'],'master_multiplier_after':p['actual_master_multiplier_after'],'ASR_confirmations_not_renewed_by_this_helper':True,'old_new_whole_duration_AAC_packets_or_new_mother_pitch_not_claimed_equal':True}
+  report['approved_audio_repair_scope']={'source_id':no,'spoken_comma_new_mother_sentences':p['approved_new_mother_sentences'],'approved_gain_only_sentences':p['approved_gain_only_sentences'],'only_voice_changed_sentences':p['approved_voice_changed_sentences'],'non_target_title_and_body_pre_master_identity_count':len(p['non_target_pre_master_identity']),'non_target_pre_master_identity_basis':'actual43643745207 legacy-to-spoken double reconstruction and actual43655794845 single finalNV candidate pre-master SHA chain; this runtime full new RAW/AAC identity','master_multiplier_before':p['actual_master_multiplier_before'],'master_multiplier_after':p['actual_master_multiplier_after'],'ASR_confirmations_not_renewed_by_this_helper':True,'selected_new_mother_NV':p['selected_new_mother_NV'],'actual_stage1_diagnostic_run':p['actual_legacy_to_spoken_native_diagnostic_run'],'actual_single_final_candidate_diagnostic_run':p['actual_whole_native_diagnostic_run'],'old_new_whole_duration_AAC_packets_or_new_mother_pitch_not_claimed_equal':True}
   report['comparison_before_is_formally_accepted_whole']=True;report['accepted_AAC_is_intentionally_different_after_approved_new_mothers']=True;report['passed']=bool(checks)and all(x['passed']for x in checks);report['repair_applied']=report['passed'];report['production_delivery_eligible']=report['passed']and not args.diagnostic
  except BaseException as exc:report['error']={'type':type(exc).__name__,'detail':str(exc)}
  report['checks']=checks;output.write_text(json.dumps(safe(report),ensure_ascii=False,indent=2)+'\n');return 0 if report['passed']else 1
