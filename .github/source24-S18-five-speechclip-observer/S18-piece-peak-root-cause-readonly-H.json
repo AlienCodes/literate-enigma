@@ -1,0 +1,441 @@
+{
+  "kind": "independent read-only SOURCE24 BOOK49 S18 per-piece attribution and smallest proposed measurement; no gain selection or waveform acceptance",
+  "source_id": "24",
+  "book_order": 49,
+  "actual_whole_two_phase_report": {
+    "path": "/workspace/work/source24-peak43709870340-actual-original/files/24-oldcurrent-and-selected-shadow-STRICT-whole-scalar.json",
+    "bytes": 322850,
+    "sha256": "f062e84d92fa4d095be81a310cbd6ec6edae5b8755fd3e26d67215dff84434f0"
+  },
+  "actual_peak_owner_readback": {
+    "path": "/workspace/work/source24-peak43709870340-actual-original/ACTUAL-PEAK-OWNER-AND-FIRST-WHOLE-IDENTITY-EXACT-READBACK.json",
+    "bytes": 2779,
+    "sha256": "340cbf95fceb122dc6e0fcc6e7d901c1f8277a6d55db9b512208d1d9ee769b0b"
+  },
+  "actual_entire_original_scalar_inverse": {
+    "path": "/workspace/work/source24-peak43709870340-actual-original/ACTUAL-ENTIRE-ORIGINAL-SCALAR-INVERSE-AND-ALL-RESTORE-IDENTITY-FACTS.json",
+    "bytes": 1543,
+    "sha256": "ad4c97607f4504dbd9d94ce6d148af8bc8d79d18c67b146af45afec30fb101d2"
+  },
+  "original_frozen_profile": {
+    "path": "/dev/shm/source24-book49-strict-cached-two-phase-whole-observer-proposal-20261115/source24-strict-whole-observer-input-profile.json",
+    "bytes": 5683,
+    "sha256": "f892aec714f6a682f2c315f4f70f31334510c11c9ba113e9ac406878a5478325"
+  },
+  "original_observer": {
+    "path": "/workspace/work/source24-book49-original-two-phase-peak-ownership-metadata-V2-exact-caller-20261115/.github/source24-strict-whole-observer/observe24_strict_cached_oldcurrent_and_selected_shadow_whole.py",
+    "bytes": 41053,
+    "sha256": "9178e9c642ed0152a262e6a9bc4323cae8c12c1d0190e892d8a9d6abe2a7311e"
+  },
+  "actual_certified20_maker": {
+    "path": "/dev/shm/source24-source68-source35-spoken20-code-only-proposal-20261115/make_video.py",
+    "bytes": 126697,
+    "sha256": "0e6c4ff6dd4ab4e3774bc060188de72356cd9aa37a7bc092d1f28a5508cc1c36"
+  },
+  "original_gain_function": {
+    "path": "/workspace/work/source24-book49-readonly-S18-piece-peak-diagnosis-20261115/EXACT-ACTUAL-CERTIFIED20-ORIGINAL-GAIN-FUNCTION-READONLY.txt",
+    "bytes": 5104,
+    "sha256": "05ff80cb6c451d0eaded960a2484751c3939babdfdf9a38e1ea8d2c7b67b066a"
+  },
+  "original_gain_function_AST_identical_to_stock4c85": true,
+  "original_gain_rules": {
+    "sentence_gain_field": "句子增益dB.S18",
+    "sentence_gain_limit_dB": [
+      -1,
+      1
+    ],
+    "piece_gain_field": "分段增益dB.S18.<one_based_piece>",
+    "piece_gain_limit_dB": [
+      -6,
+      6
+    ],
+    "piece_application": "clips[2*(piece_number-1)] *= np.float32(10**(gain_dB/20)); then a=np.concatenate(clips). No limiter/compressor or extra mastering.",
+    "manual_piece_gain_has_no_half_dB_quantization_guard": "Half-dB steps belong to automatic/suggested gain calculation, not the original manual field parser.",
+    "source24_G36_inactive": "Original source number24<26; observer explicitly forbids _auto_level, and both actual auto maps are empty.",
+    "source24_short_piece_caps_inactive": "_短起 only>=65 or5/54. Source24 not affected.",
+    "source24_post_gain_end_fade_inactive": "Original _收句尾 branch requires source>=46. Source24 not affected.",
+    "guardrails_unchanged": true,
+    "not_an_authorization_to_disguise_whole_sentence_gain_as_two_identical_piece_gains": true
+  },
+  "phases": {
+    "baseline_current": {
+      "actual_source": {
+        "path": "/workspace/work/video-audit70-20261113/next-passed-native/43543967031/24/artifact-files/24-actual-working-source.json",
+        "bytes": 43083,
+        "sha256": "c8903792176bbbe068af89d4826bfe19376f71bc61a121b065539644caafd834"
+      },
+      "S18_whole_peak": 0.9396410584449768,
+      "actual_whole_peak_local_sample": 122302,
+      "actual_whole_peak_local_seconds": 5.095916666666667,
+      "global_peak_seconds": 147.35091666666668,
+      "pieces": [
+        {
+          "one_based_piece": 1,
+          "actual_display_character_span": [
+            0,
+            50
+          ],
+          "actual_English_text": "Precision put six ashore within reach of help and,",
+          "sentence_time_range_s": [
+            0.0,
+            3.0
+          ],
+          "sentence_sample_range_half_open": [
+            0,
+            72000
+          ],
+          "piece_samples": 72000,
+          "actual_global_time_s": [
+            142.255,
+            145.255
+          ],
+          "actual_report_gain_dB": 0.0,
+          "actual_raw_range": [
+            240,
+            75360
+          ],
+          "owns_measured_whole_peak": false,
+          "actual_peak_if_proved_by_global_argmax_and_time_map": null,
+          "local_peak_sample_inside_piece": null,
+          "local_peak_seconds_inside_piece": null,
+          "piece_specific_RMS_dBFS": null,
+          "piece_specific_LUFS": null,
+          "independent_piece_peak_not_exported": true
+        },
+        {
+          "one_based_piece": 2,
+          "actual_display_character_span": [
+            51,
+            64
+          ],
+          "actual_English_text": "a century on,",
+          "sentence_time_range_s": [
+            3.38,
+            4.51
+          ],
+          "sentence_sample_range_half_open": [
+            81120,
+            108240
+          ],
+          "piece_samples": 27120,
+          "actual_global_time_s": [
+            145.635,
+            146.765
+          ],
+          "actual_report_gain_dB": 0.0,
+          "actual_raw_range": [
+            79320,
+            106440
+          ],
+          "owns_measured_whole_peak": false,
+          "actual_peak_if_proved_by_global_argmax_and_time_map": null,
+          "local_peak_sample_inside_piece": null,
+          "local_peak_seconds_inside_piece": null,
+          "piece_specific_RMS_dBFS": null,
+          "piece_specific_LUFS": null,
+          "independent_piece_peak_not_exported": true
+        },
+        {
+          "one_based_piece": 3,
+          "actual_display_character_span": [
+            65,
+            99
+          ],
+          "actual_English_text": "brought their ship back into view.",
+          "sentence_time_range_s": [
+            4.91,
+            6.65
+          ],
+          "sentence_sample_range_half_open": [
+            117840,
+            159600
+          ],
+          "piece_samples": 41760,
+          "actual_global_time_s": [
+            147.165,
+            148.905
+          ],
+          "actual_report_gain_dB": 0.0,
+          "actual_raw_range": [
+            106440,
+            1000000240
+          ],
+          "owns_measured_whole_peak": true,
+          "actual_peak_if_proved_by_global_argmax_and_time_map": 0.9396410584449768,
+          "local_peak_sample_inside_piece": 4462,
+          "local_peak_seconds_inside_piece": 0.18591666666666667,
+          "piece_specific_RMS_dBFS": null,
+          "piece_specific_LUFS": null,
+          "independent_piece_peak_not_exported": false
+        }
+      ],
+      "whole_S18_original_before_gain_and_pre_master_PCM_SHA_equal": true,
+      "actual_whole_S18_post_master_RMS_dBFS": -22.99063491129777,
+      "whole_S18_pre_master_RMS_arithmetic_from_recorded_master_not_new_measurement": -22.519195336182094,
+      "original_master_scale": 0.9471701901499192,
+      "original_mastering": {
+        "pre_master_full_PCM_sha256": "e3b79c4535e49432aaae020ce1221ad9ed520b7bba40da6dadd7ebd9505e3d49",
+        "pre_master_dtype": "float32",
+        "pre_master_samples": 3621720,
+        "pre_master_absolute_peak": 0.9396410584449768,
+        "logical_normalization_scale": 0.9471701901499192,
+        "observed_normalized_full_PCM_sha256": "176c2b6a6636476c47daa3096975bf8c3b478f3a4aaef919c09abad9b9154b11",
+        "actual_maker_formula": "A = concatenate(actual audio list); A = A / abs(A).max() * 0.89",
+        "original_ordered_formula_exact_to_sf_write_argument": true,
+        "source_of_raw_parts": "actual original build frame audio list, not guessed reconstruction"
+      },
+      "actual_effective_S18_DSP": {
+        "非人声区间": [
+          [
+            2.635,
+            2.875
+          ],
+          [
+            3.118958,
+            3.29,
+            "紧贴词尾"
+          ]
+        ],
+        "停顿插入点": {
+          "2": [
+            4.425,
+            "交界"
+          ]
+        },
+        "区间声音指纹": "44b73ada53b6"
+      },
+      "actual_raw_cuts": [
+        [
+          75120,
+          79080,
+          0.38
+        ],
+        [
+          106200,
+          106200,
+          0.4
+        ]
+      ],
+      "actual_gaps": [
+        0.4,
+        0.4
+      ],
+      "actual_original_mother_cache_reads": [
+        {
+          "segment": "S18",
+          "method": "create",
+          "name": "5972df4550be2b5851fe95d6e29641462300bcfc.pkl",
+          "pkl_sha256": "358e8d93a0786f83d79b61cc4bd3f60e05bba1c4493dc3fdc2e74125c2e16722",
+          "actual_model_input_sha256": "a30ceaf43f04ac5d73272cf5686adb8c4ffd1cf0f6108300f9422bbe7e185066",
+          "unprocessed_array_sha256": "5bb2e60909c330322b7ce4a86ce3a089de9740a8f5c5a884ae6f0869dfe87620",
+          "samples": 149504,
+          "dtype": "float32"
+        },
+        {
+          "segment": "S18",
+          "method": "create_timed",
+          "name": "f297d69416661c2f93351d145e0bc28b95e08e92.pkl",
+          "pkl_sha256": "d7d4f8454190c95b54d7880fd6adf6361fbf11aef315ec396f8fc8256117705d",
+          "actual_model_input_sha256": "a30ceaf43f04ac5d73272cf5686adb8c4ffd1cf0f6108300f9422bbe7e185066",
+          "unprocessed_array_sha256": "64a92b9d26669b7488c023adbaca28a576e656a2315849d69cafcce5ee90534d",
+          "samples": 150016,
+          "dtype": "float32"
+        }
+      ]
+    },
+    "selected_private_shadow": {
+      "actual_source": {
+        "path": "/workspace/work/source24-book49-native-caller-and-S18-mother-proposal-20261115/proposal-only-shadow24-with-old-S18-mother-controls-and-confirmations-retired.json",
+        "bytes": 47265,
+        "sha256": "e31e54fddbb46d3b7852891d676655fde985005376e5b93ac0534d685aaca2b2"
+      },
+      "S18_whole_peak": 1.0676941871643066,
+      "actual_whole_peak_local_sample": 100534,
+      "actual_whole_peak_local_seconds": 4.188916666666667,
+      "global_peak_seconds": 146.44391666666667,
+      "pieces": [
+        {
+          "one_based_piece": 1,
+          "actual_display_character_span": [
+            0,
+            64
+          ],
+          "actual_English_text": "Precision put six ashore within reach of help and, a century on,",
+          "sentence_time_range_s": [
+            0.0,
+            3.625
+          ],
+          "sentence_sample_range_half_open": [
+            0,
+            87000
+          ],
+          "piece_samples": 87000,
+          "actual_global_time_s": [
+            142.255,
+            145.88
+          ],
+          "actual_report_gain_dB": 0.0,
+          "actual_raw_range": [
+            240,
+            87840
+          ],
+          "owns_measured_whole_peak": false,
+          "actual_peak_if_proved_by_global_argmax_and_time_map": null,
+          "local_peak_sample_inside_piece": null,
+          "local_peak_seconds_inside_piece": null,
+          "piece_specific_RMS_dBFS": null,
+          "piece_specific_LUFS": null,
+          "independent_piece_peak_not_exported": true
+        },
+        {
+          "one_based_piece": 2,
+          "actual_display_character_span": [
+            65,
+            99
+          ],
+          "actual_English_text": "brought their ship back into view.",
+          "sentence_time_range_s": [
+            4.005,
+            5.795
+          ],
+          "sentence_sample_range_half_open": [
+            96120,
+            139080
+          ],
+          "piece_samples": 42960,
+          "actual_global_time_s": [
+            146.26,
+            148.05
+          ],
+          "actual_report_gain_dB": 0.0,
+          "actual_raw_range": [
+            96240,
+            1000000240
+          ],
+          "owns_measured_whole_peak": true,
+          "actual_peak_if_proved_by_global_argmax_and_time_map": 1.0676941871643066,
+          "local_peak_sample_inside_piece": 4414,
+          "local_peak_seconds_inside_piece": 0.18391666666666667,
+          "piece_specific_RMS_dBFS": null,
+          "piece_specific_LUFS": null,
+          "independent_piece_peak_not_exported": false
+        }
+      ],
+      "whole_S18_original_before_gain_and_pre_master_PCM_SHA_equal": true,
+      "actual_whole_S18_post_master_RMS_dBFS": -23.182375758194596,
+      "whole_S18_pre_master_RMS_arithmetic_from_recorded_master_not_new_measurement": -21.601238324987165,
+      "original_master_scale": 0.8335720196845453,
+      "original_mastering": {
+        "pre_master_full_PCM_sha256": "f252eeb46cd90d6c025ca600f506ac08e3a0939737fa3d70e38375c82dddcf91",
+        "pre_master_dtype": "float32",
+        "pre_master_samples": 3601200,
+        "pre_master_absolute_peak": 1.0676941871643066,
+        "logical_normalization_scale": 0.8335720196845453,
+        "observed_normalized_full_PCM_sha256": "dbbc0ca774fb645c04baea6980f30d8fde01cece459b12f8597d7803185b4151",
+        "actual_maker_formula": "A = concatenate(actual audio list); A = A / abs(A).max() * 0.89",
+        "original_ordered_formula_exact_to_sf_write_argument": true,
+        "source_of_raw_parts": "actual original build frame audio list, not guessed reconstruction"
+      },
+      "actual_effective_S18_DSP": {
+        "朗读删逗号": {
+          "篇号": 24,
+          "原文": "Precision put six ashore within reach of help and, a century on, brought their ship back into view.",
+          "逗号序号": [
+            1
+          ]
+        }
+      },
+      "actual_raw_cuts": [
+        [
+          87600,
+          96000,
+          0.38
+        ]
+      ],
+      "actual_gaps": [
+        0.4
+      ],
+      "actual_original_mother_cache_reads": [
+        {
+          "segment": "S18",
+          "method": "create",
+          "name": "a89de4f946c6cfc5c23a98384b5f48a5e659038b.pkl",
+          "pkl_sha256": "5b74821fba55e3448fa1869c7b0662f19ec91cf20396fd2614e9b9eb861195a7",
+          "actual_model_input_sha256": "3ad9713c65dda3b006cf1a1d542244a710a073400281e8be5cd5b3395aeddf93",
+          "unprocessed_array_sha256": "8bb0c2de238bcb544a20da8217565b69ea866ba7772eec9e08d7a3735f45e78e",
+          "samples": 140288,
+          "dtype": "float32"
+        },
+        {
+          "segment": "S18",
+          "method": "create_timed",
+          "name": "6ad3a3b41ce97d4b86f5bcd2cf23d997a661b81b.pkl",
+          "pkl_sha256": "e8f41af581b9a21846fc98c74ee7f64dd88b8c6ea1b8337020901c08f568cf8c",
+          "actual_model_input_sha256": "3ad9713c65dda3b006cf1a1d542244a710a073400281e8be5cd5b3395aeddf93",
+          "unprocessed_array_sha256": "b2638f69a721704c7b72b1ac0a0471cd04bb0496abcfa60be474fb1285deb84f",
+          "samples": 140800,
+          "dtype": "float32"
+        }
+      ]
+    }
+  },
+  "correspondence": {
+    "new_piece1": "Old piece1 and old piece2 have been joined by spoken comma omission. Compare old two-piece speech content as union, preserve old gap separately in the report; do not compare raw duration-including-gap RMS without noting the gap effect.",
+    "new_piece2": "Corresponds exactly to old piece3 same display characters65:99. New global peak is in newpiece2; old global peak is in oldpiece3.",
+    "peak_token_identity_not_claimed": "Only time/sample segment identity proved; no ASR/phoneme label inferred."
+  },
+  "root_cause": {
+    "title_plus17_premaster_arrays_unchanged": true,
+    "all18_non_target_final_PCM16_changed": true,
+    "old_global_peak_owner": "S18 old piece3",
+    "new_global_peak_owner": "S18 new piece2",
+    "same_tail_peak_old": 0.9396410584449768,
+    "same_tail_peak_new": 1.0676941871643066,
+    "tail_peak_difference_dB": 1.1096978580917518,
+    "nontarget_max_S16": 0.9233680963516235,
+    "old_peak_over_nontarget_peak_dB": 0.1517424080607269,
+    "new_over_old_master_ratio": 0.8800657245691047,
+    "reason": "Original whole normalization divides every sample by the new absolute global maximum. Changed S18 tail now owns a larger maximum; therefore unchanged title and other17 sentence premaster arrays are all rescaled in the final PCM16."
+  },
+  "available_information_limits": {
+    "new_piece1_absolute_peak_not_exported": true,
+    "old_piece1_and_piece2_absolute_peaks_not_exported": true,
+    "all5_piece_RMS_and_LUFS_not_exported": true,
+    "whole_S18_RMS_not_substitute_for_piece_or_active_speech_loudness": true,
+    "waveforms_and_private_cache_not_present_in_safe_scalar_export": true,
+    "recursive_numeric_inventory": {
+      "path": "/workspace/work/source24-book49-readonly-S18-piece-peak-diagnosis-20261115/ACTUAL-ENTIRE-REPORT-NUMERIC-PEAK-RMS-FIELD-INVENTORY.json",
+      "bytes": 201159,
+      "sha256": "966371338d8c49cfef665266e227fa6890f86df4c41dc2f5ee9158b73905a744"
+    },
+    "cannot_choose_a_piece_gain_from_current_evidence": true
+  },
+  "arithmetic_constraints_only_not_selected_gain": {
+    "if_new_piece1_peak_at_or_below_old_whole_peak_then_only_new_piece2_is_candidate_to_measure": "First measure newpiece1 peak. If it exceeds old peak too, single-tail adjustment cannot restore original master peak.",
+    "old_master_recovery_requires_original_division_peak_float32_exact": "Simply reducing new peak to below1 or belowS16 changes master again. Verify actual original master denominator and all18 non-target final PCM16, not logical ratio alone.",
+    "same_tail_peak_equalization_dB_arithmetic_only": -1.109697858091752,
+    "same_tail_peak_equalization_amplitude_ratio_arithmetic_only": 0.8800657245691047,
+    "minus1dB_tail_peak_arithmetic_only": 0.9515834459501352,
+    "minus1point5dB_tail_peak_arithmetic_only": 0.8983527018428633,
+    "not_a_gain_input_or_proposal_selected": true,
+    "uniform_two_piece_minus1point1097_forbidden": "Would disguise a whole-sentence change exceeding the original ±1dB sentence guard and would modify the first piece without evidence. Not proposed."
+  },
+  "smallest_remeasurement_proposal_NOT_executed": {
+    "purpose": "Obtain missing actual old3/new2 S18 piece peaks and comparable loudness before selecting any native legal data change.",
+    "stage1_if_original_private_arrays_still_available": "Add scalar-only observation at existing observe_gain before original gain call, using actual clips[2*j], actual tmap, and actual pieces. Record each of5 speech clips, separately from silence clips: shape/dtype/SHA/peak/argmax/signedpeak/RMS and active-speech duration. Record oldfirsttwo union both excluding gap and whole-span including gap. No per-piece normalization.",
+    "stage1_if_arrays_no_longer_available": "With ROOT concrete adoption only, reuse already generated exact old and new S18 cached raw+timed mothers, same certified20 maker/dictionaries/voice/AF, source-first old and shadow namespace. Strict cache hit-only or stop. Invoke only original S18 assembly and gain observation, no create inference, no new mothers, no G36, no title/17others rebuild, no whole encoding/render/ASR/GT. Export scalar-only5 clips metadata, preserve all inputs/cache/source restore guards. This agent has not prepared or dispatched such a run.",
+    "loudness_comparison": "Use the existing original meter for same tail oldpiece3 vs newpiece2 and original first-two speech union vs newpiece1. Report direct premaster RMS plus actual original meter loudness, using one common old mastering reference if normalized measurement is required. Preserve both original normalizations in parallel; do not independently normalize each clip. If the original meter requires AF/AAC measurement, request that exact local cached diagnostic separately; do not infer from peak/RMS.",
+    "scope_of_possible_future_data_proposal": "Only after measurements support it: independently consider the original 分段增益dB.S18.2 field for the new peak-owning tail, leave newpiece1 and all other sentence controls unchanged. Any precise value remains unselected. Compare required peak match against actual loudness; refuse if the objectives conflict with original quality thresholds.",
+    "stage2_after_ROOT_selected_data_only": "One necessary original strict cached whole observer with the reviewed exact target-only gain, same cache/model identities and original master formula. Require actual old master denominator recovery and all title+17 finalPCM16 sample identities, then run complete original loudness, listening/2ASR/sourceQA/finalV3 gates. Arithmetic scalar plausibility alone never counts as physicalscope or quality acceptance.",
+    "stage1_and_stage2_not_authorized_or_executed_by_this_report": true
+  },
+  "no_source_GEN_MD_CF_DSP_native_cache_model_master_math_or_checker_changed": true,
+  "no_new_TTS_model_worker_cloud_native_or_media_executed": true,
+  "quality_acceptance": false,
+  "formal_acceptance": false,
+  "report_script": {
+    "path": "/workspace/work/source24-book49-readonly-S18-piece-peak-diagnosis-20261115.py",
+    "bytes": 13332,
+    "sha256": "4f052a4ba302726ffda9e97533d5692a8954bc8bbf005d6ab619235c2bd149d9"
+  }
+}
