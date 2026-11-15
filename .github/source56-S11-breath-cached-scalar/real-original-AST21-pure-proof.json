@@ -1,0 +1,82 @@
+{
+  "kind": "actual original spoken/pron/data AST pure fixtures; no models or audio",
+  "tests_run": 21,
+  "passed": true,
+  "native_or_model_or_audio_read_or_run": false,
+  "new_helper_SHA256": "d3965b92489d1c83bdb7ed72d23288a8b5d8507b3ed8c091c806afe3cb4188b3",
+  "unchanged_profile_SHA256": "1dd0651c9c27bb34977334bb9bc7410b3b54dce978f2f971e46c7a1605dc7fc7",
+  "actual_native_failure_run": 43749286691,
+  "actual_native_failure_exported_only_conjunction_not_subconditions": true,
+  "witnesses": [
+    {
+      "kind": "actual_original_pron_and_native_key",
+      "method": "create",
+      "outer_original_spoken": "The compromise, struck without Wallace, may have kept rivalry over precedence at bay.",
+      "post_pron_capture": "The compromise struck without Wallace, may have kept rivalry over precedence at bay.",
+      "post_pron_SHA256": "5319b2e3ec80b1f95add80e1ccaa1c69f6f17579387e56d65a889413b1110c4a",
+      "exact_native_cache_key": "13ae7e344fdf2409fd9e771216e7192076890acd.pkl",
+      "portable_mid": "kokoro-v1.0.onnx:7d5df8ecf7d4b187",
+      "voice_hash_from_prior_actual_metadata_no_voice_array_read": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "typed_kwargs": [
+        "dict",
+        []
+      ],
+      "forbidden_model_events": []
+    },
+    {
+      "kind": "actual_original_pron_and_native_key",
+      "method": "create_timed",
+      "outer_original_spoken": "The compromise, struck without Wallace, may have kept rivalry over precedence at bay.",
+      "post_pron_capture": "The compromise struck without Wallace, may have kept rivalry over precedence at bay.",
+      "post_pron_SHA256": "5319b2e3ec80b1f95add80e1ccaa1c69f6f17579387e56d65a889413b1110c4a",
+      "exact_native_cache_key": "9b367dbd8656c1be8d5167b0c639ad5fad2c794b.pkl",
+      "portable_mid": "kokoro-v1.0-timed.onnx:beb0d1848dee9a49",
+      "voice_hash_from_prior_actual_metadata_no_voice_array_read": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "typed_kwargs": [
+        "dict",
+        [
+          [
+            "clause_pause",
+            [
+              "int",
+              0
+            ]
+          ],
+          [
+            "sentence_pause",
+            [
+              "int",
+              0
+            ]
+          ]
+        ]
+      ],
+      "forbidden_model_events": []
+    },
+    {
+      "kind": "complete_two_guard_inverse",
+      "changed_functions_only": [
+        "validate_model_tuple",
+        "main"
+      ],
+      "inverse_SHA256": "153b4daae5908691a05a9d0f7cefdb752cbef644d64ce37a424d8da452c47f63",
+      "remaining_PROJECTED_comparisons": [
+        "actual_text == PROJECTED"
+      ],
+      "all_original_acoustic_threshold_cache_guard_functions_unchanged": true
+    },
+    {
+      "kind": "original_source_context",
+      "old_registry_SHA256": "91ccecd61ade5284de72f27235c82df3fdff6350576abfac02d2e0db0f346a9a",
+      "dictionary_SHA256": "5f558c61f8ffb99009a89989afcc07a9ce168b2b70a6c9377289040d14ec402b",
+      "context_SHA256": "4d8905dc1a87f97b707270f03f41ea0fdf2b207ca218ed74608cdb134e3dc8e3",
+      "actual_original_SENT_NO": "56",
+      "actual_original_spoken_output": "The compromise, struck without Wallace, may have kept rivalry over precedence at bay.",
+      "all_metadata_subconditions_true": true,
+      "old_guard_false": true,
+      "corrected_guard_true": true,
+      "pure_AST_data_reproduction_not_native_single_subcondition_log": true,
+      "forbidden_model_events": []
+    }
+  ]
+}

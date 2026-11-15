@@ -1,0 +1,20 @@
+--- actual-failed-adopted153b.py
++++ corrected-real-original-spoken-display-outer-guards.py
+@@ -146,7 +146,7 @@
+ 
+ 
+ def validate_model_tuple(m, np, text, voice, speed, lang, kw, method, sent):
+-    require(os.environ.get('STRICT_CACHE') == '1' and text == m.spoken(sent) == PROJECTED and
++    require(os.environ.get('STRICT_CACHE') == '1' and text == m.spoken(sent) == DISPLAY and
+             type(speed) is float and speed == .95 and lang == 'en-us' and
+             np.array_equal(voice, m.V), 'Only the exact current S11 cache tuple is authorized')
+     expected = {} if method == 'create' else {'clause_pause': 0, 'sentence_pause': 0}
+@@ -418,7 +418,7 @@
+             require(Path(m._CACHE).resolve() == C.resolve() and m.SR == 24000 and type(m.SPEED) is float and m.SPEED == .95, 'Wrong native cache/rate/speed')
+             require(m._OLDF and digest(m._OLDF) == profile['old_registry_sha256'] and
+                     digest(m._cand) == profile['dictionary_sha256'] and digest(m._CTX_PATH) == profile['context_sha256'] and
+-                    m.SENT_NO[sent] == SOURCE_NO and m.spoken(sent) == PROJECTED, 'Source-first original context differs')
++                    m.SENT_NO[sent] == SOURCE_NO and m.spoken(sent) == DISPLAY, 'Source-first original context differs')
+             # Load the original local gain dependency now, after purging any
+             # preexisting module and before evaluating its original key rule.
+             importlib.import_module('响度一致性核对')

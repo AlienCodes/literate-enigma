@@ -58,7 +58,7 @@ jobs:
         with:
           path: ${{ runner.temp }}/completion-machine/tts/source56-only-target-whole-original-math-cache/调平_22842078959011da4b6986b549453b7eafee80d9.json
           key: Linux-native56-only-target-whole-original-math-43729197848
-      - name: 实际f188绑定，仅初始化独立W并作原S11只读标量
+      - name: 实际父审两outer ABI修复绑定，仅初始化独立W并作原S11只读标量
         env:
           S11_MOTHER_CACHE_HIT: ${{ steps.selected-target-mothers.outputs.cache-hit }}
           S11_G36_CACHE_HIT: ${{ steps.existing-original-S11-G36.outputs.cache-hit }}
@@ -70,8 +70,8 @@ jobs:
           XG_KEEP_REVIEWED_CUTS: '1'
         run: >-
           python -u .github/source56-S11-breath-cached-scalar/run_only_S11_breath_scalar.py
-          --actual-root-execution-adoption .github/source56-S11-breath-cached-scalar/root-S11-breath-execution-adoption.json
-          --actual-root-execution-adoption-sha256 f188560294cd4a373ed2bde7495d23639cf928b28aef329864d1106fd6986490
+          --actual-root-execution-adoption .github/source56-S11-breath-cached-scalar/parent-two-outer-ABI-execution-adoption.json
+          --actual-root-execution-adoption-sha256 e5d73ac12e20634b73002a121c83591c936e98fd38ec562f02bd1e7cbaf62901
       - name: 仅上传实际标量JSON
         if: always()
         uses: actions/upload-artifact@v4
