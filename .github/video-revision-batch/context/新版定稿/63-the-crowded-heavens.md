@@ -1,41 +1,45 @@
 # EN: The Crowded Heavens
 # ZH: 拥挤的苍穹
 ## 英文
-On 10 February 2009, nearly 790 kilometres above Siberia, two satellites **slammed** together at about 42,000 kilometres an hour. Iridium 33 **belonged to** an American satellite-phone **constellation**; Kosmos 2251, a Russian military satellite, had been **derelict** since about 1995. Both **shattered** in the first **accidental** **collision** between two intact satellites.
+On 10 February 2009, nearly 790 kilometres above Siberia, two **satellites** **slammed** together at about 42,000 kilometres an hour. Iridium 33 **belonged to** an American satellite-phone **constellation**; Kosmos 2251, a Russian **military** satellite, had been **derelict** since about 1995. Both **shattered** in the first **accidental** **collision** between two **intact** satellites.
 
-Neither craft **swerved**. The Russian **hulk**, lacking **propulsion**, could not. A public collision-warning service had forecast a **narrow miss** of about 584 metres, yet the predicted **encounter** was not among the week's closest; such warnings were **frequent** and **imprecise**. One owner's **discarded** **relic** **demolished** another's working **asset**.
+Neither craft **swerved**. The Russian **hulk**, lacking **propulsion**, could not. A public collision-warning service had **forecast** a **narrow miss** of about 584 metres, yet the predicted **encounter** was not among the week's closest; such warnings were **frequent** and **imprecise**. One owner's **discarded** **relic** **demolished** another's working **asset**.
 
 The **wreckage**, however, **endangered** everyone else. The **impact** **flung out** more than 2,000 **catalogued** fragments and **a multitude of** others too small to **pinpoint**. At that height **air drag** is **feeble**, so many would **linger** for decades. In January 2012, the International **Space Station** **fired** its **thrusters** to **dodge** an Iridium 33 **remnant**.
 
 In June 1978, two NASA scientists **envisaged** a **vicious spiral**, later named the Kessler **syndrome**: each collision would **scatter** fragments, **raising the odds of** **subsequent** crashes. The 2009 crash **illustrated** that **premise** without **triggering** a **runaway** **chain reaction**. By the end of 2024, **surveillance** networks tracked about 40,000 objects, only some 11,000 of them **functional**.
 
-Such a cascade would **unfold** over decades, though, and is not **inevitable**; the risk can be **mitigated**. Operators now **routinely** **manoeuvre** satellites **out of harm's way**. In September 2022, America's Federal Communications Commission, which licenses satellites, **mandated** **disposal** of low-orbit craft within five years of **retirement** **instead of** 25. Years after the crash, spacecraft whose owners **had no part in** it kept swerving around its **splinters**.
+Such a **cascade** would **unfold** over decades, though, and is not **inevitable**; the risk can be **mitigated**. Operators now **routinely** **manoeuvre** satellites **out of harm's way**. In September 2022, America's Federal Communications Commission, which **licenses** satellites, **mandated** **disposal** of low-orbit craft within five years of **retirement** **instead of** 25. Years after the crash, spacecraft whose owners **had no part in** it kept swerving around its **splinters**.
 
 ## 中文
 
-2009年2月10日，在西伯利亚上空近790公里处，两颗卫星**猛撞**(slammed)在一起，时速约42,000公里。（at about 42,000 kilometres an hour：表示速度；an hour：每小时）铱星33号**属于**(belonged to)美国的一个卫星电话**星座**(constellation)；宇宙2251号是一颗俄罗斯军用卫星，约自1995年起便已**废弃**(derelict)。（constellation：卫星星座，指由多颗协同工作的卫星组成的网络）（a Russian military satellite：同位语，补充说明 Kosmos 2251；had been…since：过去完成时，表示一直处于废弃状态）两星双双**粉碎**(shattered)，这是首次有**意外**(accidental)**相撞**(collision)发生在两颗完整卫星之间。（between two intact satellites：后置定语，修饰 collision；intact：完好无损的）
+2009年2月10日，在西伯利亚上空近790公里处，两颗**卫星**(satellites)**猛撞**(slammed)在一起，时速约42,000公里。（at about 42,000 kilometres an hour：表示速度；an hour：每小时）铱星33号**属于**(belonged to)美国的一个卫星电话**星座**(constellation)；宇宙2251号是一颗俄罗斯**军用的**(military)卫星，自从大概1995年以来就 **荒废/废弃了**(derelict)。（constellation：卫星星座，指由多颗协同工作的卫星组成的网络）（derelict 被长期遗弃、彻底无人照管的（废弃状态）。比如 a derelict stadium（废弃的体育场）、a derelict factory（废弃的工厂））两星双双**粉碎**(shattered)，这是首次**意外**(accidental)**相撞**(collision)发生在两颗**完整的**(intact)卫星之间。（between two intact satellites：后置定语，修饰 collision；intact：完好无损的）
 
-两个飞行器都没有**紧急转向避让**(swerved)。（neither：两者都不）那个俄罗斯的（卫星）**残骸**(hulk)，由于缺乏**推进力**(propulsion)，无法转向。（hulk：本文指失效卫星的残骸；lacking propulsion：现在分词短语作原因状语；could not 后省略了 swerve）一项公开的碰撞预警服务曾预报，两星将**惊险擦过**(narrow miss)，相距约584米，但预测中的这次**交会**(encounter)并未排进当周距离最近的几次之列；这类预警既**频繁**(frequent)又**不精确**(imprecise)。（a narrow miss：惊险擦过，险些相撞；of about 584 metres：后置定语，修饰 miss）（the week's closest：当周预测中距离最近的几次，closest 后省略了 encounters）一方**弃置的**(discarded)**遗物**(relic)，**意外毁坏了**(demolished)另一方仍在工作的**资产**(asset)。（another's：another owner's，省略了 owner）
+两个飞行器都没有**紧急转向避让**(swerved)。（neither：两者都不）swerve 突然转向、猛地拐弯（通常为了躲避）The car swerved to avoid a dog.（那辆车猛地急转，为了躲开一条狗。）那个俄罗斯的（卫星）**残骸**(hulk)，由于缺乏**推进力**(propulsion)，无法转向。（hulk：本文指失效卫星的残骸；lacking propulsion：现在分词短语作原因状语；could not 后省略了 swerve）一项公开的碰撞预警服务曾**预报**(forecast)，两星将**惊险擦过**(narrow miss)，相距约584米，但预测中的这次**交会**(encounter)并未排进当周距离最近的几次之列；这类预警既**频繁**(frequent)又**不精确**(imprecise)。（a narrow miss：惊险擦过，险些相撞；of about 584 metres：后置定语，修饰 miss）（the week's closest：当周预测中距离最近的几次，closest 后省略了 encounters）一方**弃置的**(discarded)**遗物**(relic)，**意外毁坏了**(demolished)另一方仍在工作的**资产**(asset)。（another's：another owner's，省略了 owner）（demolish 彻底摧毁、砸毁（本意多指建筑物被拆毁，在此处指卫星被彻底撞碎）。）
 
-这些**残骸**(wreckage)却**危及了**(endangered)所有其他人。（however：插入语，表示转折）**撞击**(impact)**抛出了**(flung out)2,000多块**已编目的**(catalogued)碎片，另有**大量**(a multitude of)碎片太小，无法**精确定位**(pinpoint)。（fling out：猛抛出，flung 是 fling 的过去式）（a multitude of others：大量其他碎片，others 指 fragments；too…to…：太……而不能……）在那个高度，**空气阻力**(air drag)**微弱**(feeble)，因此许多碎片会在轨道上**滞留**(linger)数十年。（many：many fragments，省略了 fragments）2012年1月，国际**空间站**(Space Station)**点火了**(fired)它的**推进器**(thrusters)，以**躲开/避开**(dodge)一块铱星33号的**残片**(remnant)。（to dodge…：不定式作目的状语）
+这些**残骸**(wreckage)却**危及了**(endangered)所有其他人。（however：插入语，表示转折）**撞击**(impact)**抛出了**(flung out)2,000多块**已编目的**(catalogued)碎片，并且**大量的**(a multitude of)其他碎片太小，无法**精确定位**(pinpoint)。（fling out：猛抛出，flung 是 fling 的过去式）（a multitude of others：大量其他碎片，others 指 fragments；too…to…：太……而不能……）在那个高度，**空气阻力**(air drag)**微弱**(feeble)，因此许多碎片会在轨道上**滞留**(linger)数十年。（many：many fragments，省略了 fragments）2012年1月，国际**空间站**(Space Station)**点火了**(fired)它的**推进器**(thrusters)，以**躲开/避开**(dodge)一块铱星33号的**残片**(remnant)。（to dodge…：不定式作目的状语）
 
 1978年6月，两位美国国家航空航天局（NASA）的科学家**设想了**(envisaged)一种**恶性循环**(vicious spiral)，后来被称为凯斯勒**综合征**(syndrome)：每次相撞都会**散布**(scatter)碎片，**提高了**(raising the odds of)**后续**(subsequent)相撞**的几率**(raising the odds of)。（a vicious spiral：恶性循环）（later named…：过去分词短语作后置定语，修饰 spiral；冒号后面说明这一设想的内容）（raising the odds of…：现在分词短语作结果状语，使……更有可能）2009年的这次相撞**例证了**(illustrated)这一**前提**(premise)，却并未**引发**(triggering)**失控的**(runaway)**连锁反应**(chain reaction)。（without＋动名词：而没有……）（2009年那次卫星相撞事件，虽然验证了科学家之前的可怕猜想，但万幸的是，它并没有引发那种彻底失控的连环大爆炸。）截至2024年底，太空**监视**(surveillance)网络跟踪了约40,000个物体，其中只有约11,000个能**正常运行**(functional)。（only some 11,000 of them functional：独立主格结构，补充说明 objects；some＋数字：大约）
 
-不过，这样的连锁效应会逐步**展开**(unfold)，历时几十年，而且并非**不可避免**(inevitable)，风险也可以**加以缓解**(mitigated)。（though：放在句中，表示转折“不过”）（这就像高速公路上的连环追尾，虽然可怕，但它是个持续几十年的慢动作。既然不是瞬间毁灭，我们就有机会去清理垃圾、把风险摁住。）运营方如今会**例行**(routinely)**操纵**(manoeuvre)卫星**避开危险**(out of harm's way)。（manoeuvre A out of harm's way：操纵 A 避开危险）2022年9月，负责为卫星发放许可的美国联邦通信委员会**强制要求**(mandated)，低轨航天器须在**退役**(retirement)后五年内**处置**(disposal)，**而不是**(instead of)25年。（which licenses satellites：非限制性定语从句，修饰 Commission）（disposal：本文指卫星退役后离轨销毁；within five years of…：……后五年内；25 后省略了 years）相撞多年之后，那些所有者**与**(had no part in)此事**毫无瓜葛**(had no part in)的航天器，仍不得不一再转向，绕开那次相撞留下的**碎片**(splinters)。（whose owners…：定语从句，修饰 spacecraft；have no part in：与……无关；it 指 the crash）（keep doing：一再做……；its 指 the crash's）（简述：▸相撞：2009年，两颗完整卫星首次意外相撞：失效的宇宙2251号撞上仍工作的铱星33号。▸预警：公开预警频繁且不准，预计两星会隔约584米擦过，并非当周最近交会；失效卫星也无法避让。▸碎片：碰撞留下两千多块被登记追踪的碎片；截至2024年底，全球跟踪约4万个在轨物体，只有约1.1万个正常运行。▸风险：高空空气阻力小，碎片能留上数十年，还可能撞出更多碎片；此次没有触发失控连锁反应，恶性循环并非必然。▸应对：运营方加强卫星避让；美国联邦通信委员会要求其监管的低轨卫星，退役后5年内离轨处置，缩短了原来的25年期限。）
+不过，这样的**连锁效应**(cascade)会逐步**展开**(unfold)，历时几十年，而且并非**不可避免**(inevitable)，风险也可以**加以缓解**(mitigated)。（though：放在句中，表示转折“不过”）（cascade 原意是“小瀑布”，在这里比喻像瀑布倾泻一样、一环扣一环且不断扩大的灾难性连锁反应。）（这就像高速公路上的连环追尾，虽然可怕，但它是个持续几十年的慢动作。既然不是瞬间毁灭，我们就有机会去清理垃圾、把风险摁住。）运营方如今会**例行**(routinely)**操纵**(manoeuvre)卫星**避开危险**(out of harm's way)。（manoeuvre A out of harm's way：操纵 A 避开危险）2022年9月，负责**为**(licenses)卫星**发放许可**(licenses)的美国联邦通信委员会**强制要求**(mandated)，低轨航天器须在**退役**(retirement)后五年内**处置**(disposal)，**而不是**(instead of)25年。（which licenses satellites：非限制性定语从句，修饰 Commission）（disposal：本文指卫星退役后离轨销毁；within five years of…：……后五年内；25 后省略了 years）相撞多年之后，那些所有者**与**(had no part in)此事**毫无瓜葛**(had no part in)的航天器，仍不得不一再转向，绕开那次相撞留下的**碎片**(splinters)。（whose owners…：定语从句，修饰 spacecraft；have no part in：与……无关；it 指 the crash）（keep doing：一再做……；its 指 the crash's）（简述：▸相撞：2009年，两颗完整卫星首次意外相撞：失效的宇宙2251号撞上仍工作的铱星33号。▸预警：公开预警频繁且不准，预计两星会隔约584米擦过，并非当周最近交会；失效卫星也无法避让。▸碎片：碰撞留下两千多块被登记追踪的碎片；截至2024年底，全球跟踪约4万个在轨物体，只有约1.1万个正常运行。▸风险：高空空气阻力小，碎片能留上数十年，还可能撞出更多碎片；▹此次没有触发失控连锁反应，恶性循环并非必然。▸应对：运营方加强卫星避让；美国联邦通信委员会要求其监管的低轨卫星，▹退役后5年内离轨处置，缩短了原来的25年期限。）
 
 ## 速查表
 | 词 | 释义 | 段 |
 |---|---|---|
+| satellites | 本文：卫星；n. (satellite) 卫星，人造卫星 | 1 |
 | slammed | 本文：猛撞；v. (slam) 猛撞，猛烈撞击（slam into a wall；two cars slammed together）；砰地关上（slam the door）；猛烈抨击（slam a decision） | 1 |
 | belonged to | 本文：属于；v. phr. (belong to) 属于，归……所有（belong to sb/sth；the book belongs to me） | 1 |
 | constellation | 本文：星座；n. 卫星星座（由多颗协同工作的卫星组成的网络，a satellite constellation）；（天文）星座；（一组）相关的人或事物（a constellation of problems） | 1 |
-| derelict | 本文：废弃；adj. 被遗弃的，废弃的，年久失修的（a derelict building/ship/satellite）；n. 无家可归者 | 1 |
+| military | 本文：军用的；adj. 军事的，军用的 | 1 |
+| derelict | 本文：荒废/废弃了；adj. 被遗弃的，废弃的，年久失修的（a derelict building/ship/satellite）；n. 无家可归者 | 1 |
 | shattered | 本文：粉碎；v. (shatter) 粉碎，破碎（the glass shattered；shatter into pieces）；使破灭（shatter hopes/illusions） | 1 |
 | accidental | 本文：意外；adj. 意外的，偶然的（an accidental collision/death/discovery）；accidentally adv. 意外地 | 1 |
 | collision | 本文：相撞；n. 相撞，碰撞（a head-on collision；collision avoidance 避撞）；（利益、观点的）冲突（a collision of interests） | 1 |
+| intact | 本文：完整的；adj. 完整的，完好无损的 | 1 |
 | swerved | 本文：紧急转向避让；v. (swerve) 突然转向，急转避让（swerve to avoid sth；swerve off the road）；n. 急转 | 2 |
 | hulk | 本文：残骸；n. （报废的）空壳，残骸（a rusting hulk；本文指失效卫星的空壳）；废船体；庞然大物，大块头 | 2 |
 | propulsion | 本文：推进力；n. 推进（力），推进装置（a propulsion system 推进系统；jet propulsion 喷气推进） | 2 |
+| forecast | 本文：预报；v. 预报，预测（forecast the weather/a result）；n. 预报，预测 | 2 |
 | narrow miss | 本文：惊险擦过；adj. 险些的，勉强的（a narrow miss 惊险擦过，险些相撞；a narrow escape 死里逃生；a narrow victory/margin）；窄的；狭隘的 | 2 |
 | encounter | 本文：交会；n. （航天器的）交会，相遇（a close encounter）；遭遇；v. 遇到（encounter problems/resistance） | 2 |
 | frequent | 本文：频繁；adj. 频繁的，经常的（frequent warnings/visits；a frequent flyer）；v. 常去（某地） | 2 |
@@ -49,7 +53,7 @@ Such a cascade would **unfold** over decades, though, and is not **inevitable**;
 | impact | 本文：撞击；n. 撞击，冲击（on impact 在撞击时；the force of the impact）；影响（have an impact on） | 3 |
 | flung out | 本文：抛出了；v. (fling，过去式及过去分词 flung) 猛抛，抛出（fling sth out/into the air；fling open the door 猛地推开门） | 3 |
 | catalogued | 本文：已编目的；adj. 已编目的；v. (catalogue) 把……编入目录（catalogue objects/specimens）；n. 目录（美式 catalog） | 3 |
-| a multitude of | 本文：大量；phr. 大量，众多（a multitude of fragments/reasons/problems）；multitude n. 大量，众多；（the multitude）大众 | 3 |
+| a multitude of | 本文：大量的；phr. 大量，众多（a multitude of fragments/reasons/problems）；multitude n. 大量，众多；（the multitude）大众 | 3 |
 | pinpoint | 本文：精确定位；v. 精确定位，准确指出（pinpoint the location/cause）；adj. 精确的（pinpoint accuracy） | 3 |
 | air drag | 本文：空气阻力；n. phr. 空气阻力（air/atmospheric drag；reduce drag）；drag n. （空气）阻力，拖曳力（air/atmospheric drag；reduce drag）；拖累，累赘（a drag on the economy）；v. 拖，拽 | 3 |
 | feeble | 本文：微弱；adj. 微弱的，无力的（a feeble signal/light/force）；（借口等）站不住脚的（a feeble excuse） | 3 |
@@ -72,12 +76,14 @@ Such a cascade would **unfold** over decades, though, and is not **inevitable**;
 | chain reaction | 本文：连锁反应；n. phr. 连锁反应（set off/trigger a chain reaction） | 4 |
 | surveillance | 本文：监视；n. 监视，监测（space surveillance 太空监视；under surveillance 受到监视；surveillance cameras） | 4 |
 | functional | 本文：正常运行；adj. 正常运行的，在用的（本文义；fully functional）；功能性的，实用的（functional design） | 4 |
+| cascade | 本文：连锁效应；n. 小瀑布；接连发生的一系列事件（a cascade of events）；v. 倾泻，倾注 | 5 |
 | unfold | 本文：展开；v. （事态）逐步展开，发生（events unfold；unfold over decades）；展开（折叠的东西） | 5 |
 | inevitable | 本文：不可避免；adj. 不可避免的，必然的（an inevitable result/consequence；it is inevitable that…） | 5 |
 | mitigated | 本文：加以缓解；v. (mitigate) 缓解，减轻（mitigate risks/the effects of sth）；mitigation n. 缓解 | 5 |
 | routinely | 本文：例行；adv. 例行地，惯常地（be routinely checked/used）；routine n./adj. 常规（的） | 5 |
 | manoeuvre | 本文：操纵；v. 操纵（使……移动），调动（manoeuvre a satellite/car into position）；n. 机动，（技巧性）动作（an avoidance manoeuvre 避让机动）；美式 maneuver | 5 |
 | out of harm's way | 本文：避开危险；phr. 避开危险，在安全的地方（move/keep sb/sth out of harm's way） | 5 |
+| licenses | 本文：为……发放许可；v. (license) 发放许可证，批准许可（license satellites）；n. 许可证（英式名词 licence） | 5 |
 | mandated | 本文：强制要求；v. (mandate) 强制要求，以法规规定（mandate that…；mandate the use of sth）；n. 授权，指令 | 5 |
 | retirement | 本文：退役；n. 退役（本文指卫星任务结束、停止使用）；退休（take early retirement；retirement age） | 5 |
 | disposal | 本文：处置；n. 处置，处理（本文指卫星退役后离轨销毁；waste disposal 废物处理）；at sb's disposal 供某人支配 | 5 |
