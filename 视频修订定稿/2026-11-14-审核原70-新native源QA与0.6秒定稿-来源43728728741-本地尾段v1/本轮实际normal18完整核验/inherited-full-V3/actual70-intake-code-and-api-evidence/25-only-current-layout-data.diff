@@ -1,0 +1,30 @@
+--- /workspace/work/book58-source08-actual43717644753-original-HOST-preparation-20261115-v2/source-consumer-code/import_actual_article.py
++++ /workspace/work/source70-book50-formal-current-review-voice-HOST-role-CODE-ONLY-20261115/import_actual_article.py
+@@ -50,7 +50,7 @@
+                 '16': '0dcbe5ee0b0c406e6704a57f4e20242f8a8e44bb20480c10bdeaccec4f789c18',
+                 '54': '4192bd822046c9e216fc5868ba296a4bb62f63e6d84a86dcf95fa8e14eba0eb9',
+                 '68': '4192bd822046c9e216fc5868ba296a4bb62f63e6d84a86dcf95fa8e14eba0eb9',
+-                '70': '4192bd822046c9e216fc5868ba296a4bb62f63e6d84a86dcf95fa8e14eba0eb9',
++                '70': '354ad8bcf3d5515fb58b71e91f94bf3b5ce5cfaff6679de5ca9c41df04bfd380',
+                 '69': 'ca43e7a01e0ff5d56f383235b1df701314bcf2a00b0c1228ce8b321ec2295ae3',
+                 '66': 'f6d4e960e54ead8ae50a9b112f7b1ed59e23b7c168f3daa4d9ede1660bad3013',
+                 '60': '02ed9814a9ba57868c687a8da2680c63cf02840e2ece3339921b366e29c4eb57',
+@@ -176,11 +176,17 @@
+             'source_sha256':{'request':{k:v['sha256']for k,v in asked.items()},'final':{k:v['sha256']for k,v in sources.items()}},
+             'source_transform':{'status':provenance['status'],'actual_working_copy':True,'operations':['L19']+(['production_qc_metadata']if any(not p.startswith('/sentences/')for p in provenance['changed_paths'])else[]),'report_sha256':proof['sha256'],'changed_paths':provenance['changed_paths']},
+             'adapter_scope':'Explicit actual native status + raw real postprocessor report field mapping; not fabricated audio-qc.py or unobserved runtime GEN/MD.'}
++        formal_current_reference70=False
++        if inline and n=='70' and native.get('review_only')is False:
++            from exact_formal_current70 import is_candidate as exact_formal70_candidate
++            formal_current_reference70=exact_formal70_candidate(n,native)
+         current_reference_review=bool(inline and n in {'68','70'} and native.get('review_only')is True and native.get('approved_current_reference_review_binding',{}).get('kind')=='source-specific-current-native-voice-identity-binding-only')
+         current_reference_review=current_reference_review or bool(inline and n=='54' and native.get('review_only')is True and native.get('approved_current_reference_review_binding',{}).get('kind')=='source54-specific-current-reference-and-two-existing-CF-identity-only')
+-        repaired=bool(inline and native_audio['aac_adts_sha256']!=native['accepted_source']['aac_adts_sha256'] and not current_reference_review)
++        repaired=bool(inline and native_audio['aac_adts_sha256']!=native['accepted_source']['aac_adts_sha256'] and not current_reference_review and not formal_current_reference70)
+         if current_reference_review:
+             qc['audio'].update(current_reference_role='latest-current-native-not-formally-accepted-whole',current_reference_identity_binding=native['approved_current_reference_review_binding'],current_and_legacy_AAC_equal=False,review_only=True,user_individual_finalization_authorized=False)
++        if formal_current_reference70:
++            qc['audio'].update(current_reference_role='individually-final-authorized-original-current-reference',current_reference_identity_binding=native['source70_original_current_review_voice_identity'],current_and_legacy_AAC_equal=False,review_only=False,user_individual_finalization_authorized=True,audio_repair_applied_by_this_native_or_postprocessing=False)
+         # Native inline status preserves an actual dedicated review even when
+         # copied AAC already equals the accepted reference; record repair by
+         # observed bytes, rather than by the article's historical issue list.
