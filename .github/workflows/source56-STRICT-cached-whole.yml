@@ -1,4 +1,4 @@
-name: 书65原两母V3严格缓存整轨观测无新语音
+name: 书65首次原整轨仅补实际WAV-MD5两标量
 on:
   push:
     branches: [codex/finish-05-and-summaries-20261112]
@@ -79,7 +79,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: source56-V3-baseline-selected-whole-scalar-only
-          path: source56-strict-whole-public/*.json
+          name: source56-first-original-whole-with-WAV-MD5-safe-scalars
+          path: source56-strict-whole-with-MD5-public/*.json
           retention-days: 30
           if-no-files-found: error

@@ -1,6 +1,6 @@
 from pathlib import Path
 import os,json,hashlib,shutil,subprocess,sys
-N=Path(__file__).resolve().parent;ROOT=Path(os.environ['GITHUB_WORKSPACE']);REPO=ROOT/'official-main';T=REPO/'视频/工具';M=Path(os.environ['RUNNER_TEMP'])/'completion-machine';W=M/'video';O=ROOT/'source56-strict-whole-public';O.mkdir(exist_ok=True)
+N=Path(__file__).resolve().parent;ROOT=Path(os.environ['GITHUB_WORKSPACE']);REPO=ROOT/'official-main';T=REPO/'视频/工具';M=Path(os.environ['RUNNER_TEMP'])/'completion-machine';W=M/'video';O=ROOT/'source56-strict-whole-with-MD5-public';O.mkdir(exist_ok=True)
 sha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest()
 assert subprocess.check_output(['git','rev-parse','HEAD'],cwd=REPO,text=True).strip()=='fc0b56af9a0ac0e97015548b756d4e51d66dc2ea'
 pins=json.loads((N/'transport-file-pins.json').read_text());assert all(sha(N/r['relative'])==r['sha256'] and (N/r['relative']).stat().st_size==r['bytes'] for r in pins)
