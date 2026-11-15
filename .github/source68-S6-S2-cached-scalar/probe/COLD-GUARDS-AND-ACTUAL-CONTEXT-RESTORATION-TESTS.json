@@ -1,0 +1,307 @@
+{
+  "kind": "CODE-ONLY cold tests; actual public inputs and synthetic tiny files, no original cache/audio/model execution",
+  "passed": true,
+  "tests": [
+    {
+      "name": "real_public_inputs_and_exact_actual_source_scope",
+      "passed": true,
+      "expected_rejection": false
+    },
+    {
+      "name": "actual_profile_SHA",
+      "passed": true,
+      "expected_rejection": false
+    },
+    {
+      "name": "reject_profile_['source_id']",
+      "passed": true,
+      "expected_rejection": true,
+      "error": "Wrong bounded source/target role"
+    },
+    {
+      "name": "reject_profile_['target_sentences']",
+      "passed": true,
+      "expected_rejection": true,
+      "error": "Wrong bounded source/target role"
+    },
+    {
+      "name": "reject_profile_['cache_entries', 'S6', 'create', 'name']",
+      "passed": true,
+      "expected_rejection": true,
+      "error": "Wrong finite original cache identity"
+    },
+    {
+      "name": "reject_profile_['cache_entries', 'S2', 'create_timed', 'single_thread_marker_value']",
+      "passed": true,
+      "expected_rejection": true,
+      "error": "Wrong finite original cache identity"
+    },
+    {
+      "name": "reject_source_['除阻加强', 'S6', '句末']",
+      "passed": true,
+      "expected_rejection": true,
+      "error": "Wrong original S6 boost/mother role"
+    },
+    {
+      "name": "reject_source_['朗读删逗号', 'S2', '逗号序号']",
+      "passed": true,
+      "expected_rejection": true,
+      "error": "Wrong S2 spoken input role"
+    },
+    {
+      "name": "reject_source_['分段增益dB', 'S2']",
+      "passed": true,
+      "expected_rejection": true,
+      "error": "Unknown source target DSP S2/分段增益dB"
+    },
+    {
+      "name": "reject_whole_['actual_global_master_scale_ratio_selected_over_baseline']",
+      "passed": true,
+      "expected_rejection": true,
+      "error": "Actual completed whole reference required; this observer never builds it"
+    },
+    {
+      "name": "reject_failed_['internal_pcm_sha256']",
+      "passed": true,
+      "expected_rejection": true,
+      "error": "Wrong actual selected whole WAV identity"
+    },
+    {
+      "name": "reject_failed_['aac_adts_sha256']",
+      "passed": true,
+      "expected_rejection": true,
+      "error": "Wrong actual selected AAC identity"
+    },
+    {
+      "name": "reject_actual_['physical_metadata_precheck_ready']",
+      "passed": true,
+      "expected_rejection": true,
+      "error": "Actual native selected metadata prerequisite differs"
+    },
+    {
+      "name": "reject_actual_['phases', 'selected', 'observed_sentences', 'S2', 'pre_master_PCM_sha256']",
+      "passed": true,
+      "expected_rejection": true,
+      "error": "Wrong actual sentence identity S2"
+    },
+    {
+      "name": "reject_actual_['phases', 'selected', 'original_G36_calls', 1, 'original_key']",
+      "passed": true,
+      "expected_rejection": true,
+      "error": "Wrong actual original math role S2"
+    },
+    {
+      "name": "synthetic_authenticated_key_calls_only_stub_cache_reader",
+      "passed": true,
+      "expected_rejection": false
+    },
+    {
+      "name": "reject_unknown_text_before_stub_reader",
+      "passed": true,
+      "expected_rejection": true,
+      "error": "Only exact active S6/S2 cached tuple authorized"
+    },
+    {
+      "name": "reject_unapproved_method_kwargs_before_stub_reader",
+      "passed": true,
+      "expected_rejection": true,
+      "error": "Wrong original target cache kwargs"
+    },
+    {
+      "name": "reject_wrong_PKL_SHA_before_stub_reader",
+      "passed": true,
+      "expected_rejection": true,
+      "error": "Actual original PKL or marker differs"
+    },
+    {
+      "name": "reject_wrong_marker_SHA_before_stub_reader",
+      "passed": true,
+      "expected_rejection": true,
+      "error": "Actual original PKL or marker differs"
+    },
+    {
+      "name": "reject_wrong_post_pron_input_SHA_before_stub_reader",
+      "passed": true,
+      "expected_rejection": true,
+      "error": "Actual post-pron input differs"
+    },
+    {
+      "name": "reject_missing_PKL_before_stub_reader",
+      "passed": true,
+      "expected_rejection": true,
+      "error": "Unknown, linked or missing raw/timed mother; no fallback"
+    },
+    {
+      "name": "reject_linked_PKL_even_with_matching_hash",
+      "passed": true,
+      "expected_rejection": true,
+      "error": "Unknown, linked or missing raw/timed mother; no fallback"
+    },
+    {
+      "name": "all_bad_cache_guards_prevent_original_stub_read",
+      "passed": true,
+      "expected_rejection": false
+    },
+    {
+      "name": "synthetic_existing_math_exact_tuple_and_strict_read",
+      "passed": true,
+      "expected_rejection": false
+    },
+    {
+      "name": "reject_unknown_math_key_before_original_stub",
+      "passed": true,
+      "expected_rejection": true,
+      "error": "Unmeasured original G36 key or group role"
+    },
+    {
+      "name": "reject_wrong_math_clip_tuple_before_original_stub",
+      "passed": true,
+      "expected_rejection": true,
+      "error": "Actual original G36 inputs differ"
+    },
+    {
+      "name": "reject_wrong_math_SHA_before_original_stub",
+      "passed": true,
+      "expected_rejection": true,
+      "error": "Only exact saved existing regular G36 JSON permitted; no calculation"
+    },
+    {
+      "name": "reject_nonstrict_math_before_original_stub",
+      "passed": true,
+      "expected_rejection": true,
+      "error": "Original math scope must remain strict"
+    },
+    {
+      "name": "reject_missing_math_no_recalculation",
+      "passed": true,
+      "expected_rejection": true,
+      "error": "Only exact saved existing regular G36 JSON permitted; no calculation"
+    },
+    {
+      "name": "reject_linked_math_even_with_matching_hash",
+      "passed": true,
+      "expected_rejection": true,
+      "error": "Only exact saved existing regular G36 JSON permitted; no calculation"
+    },
+    {
+      "name": "all_bad_math_guards_prevent_original_calculation",
+      "passed": true,
+      "expected_rejection": false
+    },
+    {
+      "name": "real_original_auto_level_existing_cache_returns_int_keys_no_measurement",
+      "passed": true,
+      "expected_rejection": false
+    },
+    {
+      "name": "real_original_auto_level_guard_missing_cannot_calculate",
+      "passed": true,
+      "expected_rejection": true,
+      "error": "Only exact saved existing regular G36 JSON permitted; no calculation"
+    },
+    {
+      "name": "unchanged_block_native_rejects_create_k",
+      "passed": true,
+      "expected_rejection": true,
+      "error": "No target or non-target original model inference is authorized"
+    },
+    {
+      "name": "unchanged_block_native_rejects_create_timed_KT",
+      "passed": true,
+      "expected_rejection": true,
+      "error": "No target or non-target original model inference is authorized"
+    },
+    {
+      "name": "unchanged_block_native_rejects_create_timed_k",
+      "passed": true,
+      "expected_rejection": true,
+      "error": "No target or non-target original model inference is authorized"
+    },
+    {
+      "name": "unchanged_block_native_rejects_create_KT",
+      "passed": true,
+      "expected_rejection": true,
+      "error": "No target or non-target original model inference is authorized"
+    },
+    {
+      "name": "blocked_native_never_entered_synthetic_native",
+      "passed": true,
+      "expected_rejection": false
+    },
+    {
+      "name": "unchanged_native_closure_restore",
+      "passed": true,
+      "expected_rejection": false
+    },
+    {
+      "name": "actual_inherited_context_restores_initial_AUDIO_ONLY_None_exception_False",
+      "passed": true
+    },
+    {
+      "name": "actual_inherited_context_restores_initial_AUDIO_ONLY_None_exception_True",
+      "passed": true
+    },
+    {
+      "name": "actual_inherited_context_restores_initial_AUDIO_ONLY_0_exception_False",
+      "passed": true
+    },
+    {
+      "name": "actual_inherited_context_restores_initial_AUDIO_ONLY_0_exception_True",
+      "passed": true
+    },
+    {
+      "name": "actual_inherited_context_restores_initial_AUDIO_ONLY_1_exception_False",
+      "passed": true
+    },
+    {
+      "name": "actual_inherited_context_restores_initial_AUDIO_ONLY_1_exception_True",
+      "passed": true
+    },
+    {
+      "name": "actual_module_restore_added_and_replaced_identities",
+      "passed": true,
+      "expected_rejection": false
+    },
+    {
+      "name": "finite_input_positive",
+      "passed": true,
+      "expected_rejection": false
+    },
+    {
+      "name": "finite_input_rejects_wrong_bytes_before_execution",
+      "passed": true,
+      "expected_rejection": true,
+      "error": "Wrong frozen input a"
+    },
+    {
+      "name": "finite_input_rejects_namespace_escape",
+      "passed": true,
+      "expected_rejection": true,
+      "error": "Input escaped frozen namespace"
+    },
+    {
+      "name": "five_mature_ABI_functions_entire_bytes_unchanged",
+      "passed": true,
+      "expected_rejection": false
+    },
+    {
+      "name": "coordinate_inverse_original_to_w_exact_with_deleted_intervals_0",
+      "passed": true,
+      "expected_rejection": false
+    },
+    {
+      "name": "coordinate_inverse_original_to_w_exact_with_deleted_intervals_1",
+      "passed": true,
+      "expected_rejection": false
+    },
+    {
+      "name": "coordinate_inverse_refuses_inserted_gap_or_outside_raw_segment",
+      "passed": true,
+      "expected_rejection": false
+    }
+  ],
+  "tests_count": 54,
+  "helper_sha256": "d53aebdd61c992473b6f3f455c23a852b979cd3fe8dce11f3fad35c576851ea4",
+  "profile_sha256": "6ac2d576251651ef5d3ffdfd70f399c351b4af268df03d7259425027db128c7a",
+  "actual_audio_or_model_inference_or_cloud_or_ASR_executed": false
+}
