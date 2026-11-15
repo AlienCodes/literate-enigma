@@ -1,0 +1,133 @@
+{
+  "kind": "actual-original-deletion-type-and-existing-S12-record-parser-tests-only",
+  "original_delivery_checker_path": "/dev/shm/spoken-comma-feature-20261114/full-T/视频/工具/交付核查.py",
+  "original_delivery_checker_SHA256": "26e8e213a07747f6fc3654be18d64336011cba59ffd83bf74e4cf4759baf6976",
+  "original_type_function_and_loop_AST_SHA256": "47d1b3345df561a170c0740f10609a89039e49ad875781cddf5eb831bc7f8597",
+  "actual_diag_path": "/workspace/work/source43-selected-NV-formal-failure-43658361556/files/43-reference-gain-diagnostic.json",
+  "actual_diag_SHA256": "60cf57829fb6d7adc78a59644e62f2817073fc7ee7a3e6b4ff23394ae202928b",
+  "actual_rows_are_reconstructed_from_true_scalar_fields_not_new_audio_checks": true,
+  "old_status_reproduced2cut7edge": true,
+  "new_actual_full_audio_or_G45_or_ASR_model_run": false,
+  "full_original_native_gates_still_required": true,
+  "cases": [
+    {
+      "name": "actual_failed_oldmetadata_reproduces_original2cut7edge",
+      "passed": true,
+      "actual": {
+        "cut_tail_onset_unconfirmed": 2,
+        "edge_unconfirmed": 7,
+        "bad": [
+          [
+            "S6 raw 2.9350-3.2900",
+            [
+              5.0,
+              0.0
+            ]
+          ],
+          [
+            "S17 raw 1.7950-2.1629",
+            [
+              0.0,
+              5.0
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "name": "exact9FP_plus_S16type_original_parser_actual8rows_positive",
+      "passed": true,
+      "actual": {
+        "cut_tail_onset_unconfirmed": 0,
+        "edge_unconfirmed": 0,
+        "bad": []
+      }
+    },
+    {
+      "name": "S3wrongoldFP_negative",
+      "passed": true,
+      "actual": {
+        "cut_tail_onset_unconfirmed": 0,
+        "edge_unconfirmed": 1,
+        "bad": []
+      }
+    },
+    {
+      "name": "S6wrongheadType_cannot_cover_tail_negative",
+      "passed": true,
+      "actual": {
+        "cut_tail_onset_unconfirmed": 1,
+        "edge_unconfirmed": 0,
+        "bad": [
+          [
+            "S6 raw 2.9350-3.2900",
+            [
+              5.0,
+              0.0
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "name": "S17wrongtailType_cannot_cover_onset_negative",
+      "passed": true,
+      "actual": {
+        "cut_tail_onset_unconfirmed": 1,
+        "edge_unconfirmed": 1,
+        "bad": [
+          [
+            "S17 raw 1.7950-2.1629",
+            [
+              0.0,
+              5.0
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "name": "S16wrongheadType_cannot_cover_pre_negative",
+      "passed": true,
+      "actual": {
+        "cut_tail_onset_unconfirmed": 0,
+        "edge_unconfirmed": 1,
+        "bad": []
+      }
+    },
+    {
+      "name": "wrong_S16_exact_endpoint_key_negative",
+      "passed": true,
+      "actual": {
+        "cut_tail_onset_unconfirmed": 0,
+        "edge_unconfirmed": 1,
+        "bad": []
+      }
+    },
+    {
+      "name": "same_S16tailType_does_not_accept_new_unapproved_post_side_negative",
+      "passed": true,
+      "actual": {
+        "cut_tail_onset_unconfirmed": 0,
+        "edge_unconfirmed": 1,
+        "bad": []
+      }
+    },
+    {
+      "name": "actual_S12_mismatch_oldFP_filter_rejected",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "same_existing_weak_an_case_currentFP_filter_positive",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "recognition_basis_too_short_negative",
+      "passed": true,
+      "actual": null
+    }
+  ],
+  "passed": true
+}

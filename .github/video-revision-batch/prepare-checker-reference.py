@@ -61,7 +61,7 @@ def bind_specific_spoken_reference_context(module, no, maker_sha, source_sha, so
     if not source_data.get('朗读删逗号'):
         return False
     sources = {
-        '43': 'e000223b06902520aa354e496be9292c9ce91aa6e1e5886bfff7366f815d4cea',
+        '43': 'db8fadbd6ab1e4247dbb66dbea557dcad28cafd518d71702b281768088d36597',
         '52': 'c00eb5707f1b269d2ce88fed455f592962d674d46e3bf172ba00cfe6597245f3',
     }
     assert no in sources and str(source_data.get('no')) == no, 'Specific spoken-reference source id mismatch.'
