@@ -36,7 +36,7 @@ status = {'article': NO, 'passed': False, 'stage': 'start',
           'core_repairs': [],
           'strict_production_cache': True, 'pdf_requested': False,
           'review_only': False, 'user_individual_finalization_authorized': True,
-          'specific_final_authorization_sha256': '2e0882ff9de5ebf3bbd40891d342972ced5735c8b398eff34a04a318a3b04a52'}
+          'specific_final_authorization_sha256': '18a7d06adaf59aa0d4bb671c31f30c0835aaf3f1ce926fd80537e21d51fdcf9d'}
 PRODUCTION_STARTED_NS = None
 BASELINE_AUDIO_FILES = None
 
@@ -59,15 +59,29 @@ def install_certified_core_repairs():
     assert manifest['kind'] in {'actual-original-fastcheck-certified-three-core-repair',
                                 'actual-original-fastcheck-certified-four-core-repair',
                                 'actual-original-fastcheck-certified-five-core-repair',
-                                'actual-original-fastcheck-certified-five-core-reviewed-cuts-repair'}
+                                'actual-original-fastcheck-certified-five-core-reviewed-cuts-repair',
+                                'actual-original-fastcheck-certified-six-core-case-consistent-producer-repair',
+                                'actual-original-fastcheck-certified-seventeen-program-spoken-comma-repair'}
     allowed = {'视频/工具/草稿声音.sh','视频/工具/句内响度.py','视频/工具/独立复核/synth.py'}
     keep_ending = manifest['kind'] != 'actual-original-fastcheck-certified-three-core-repair'
     if keep_ending:
         allowed.add('视频/工具/结尾句接点.py')
-    keep_cuts = manifest['kind'] == 'actual-original-fastcheck-certified-five-core-reviewed-cuts-repair'
+    keep_cuts = manifest['kind'] in {'actual-original-fastcheck-certified-five-core-reviewed-cuts-repair',
+                                    'actual-original-fastcheck-certified-six-core-case-consistent-producer-repair',
+                                'actual-original-fastcheck-certified-seventeen-program-spoken-comma-repair'}
     if manifest['kind'] in {'actual-original-fastcheck-certified-five-core-repair',
-                            'actual-original-fastcheck-certified-five-core-reviewed-cuts-repair'}:
+                            'actual-original-fastcheck-certified-five-core-reviewed-cuts-repair',
+                            'actual-original-fastcheck-certified-six-core-case-consistent-producer-repair',
+                                'actual-original-fastcheck-certified-seventeen-program-spoken-comma-repair'}:
         allowed.add('视频/工具/读音核对.py')
+    if manifest['kind'] == 'actual-original-fastcheck-certified-six-core-case-consistent-producer-repair':
+        allowed.add('视频/工具/make_video.py')
+    if manifest['kind'] == 'actual-original-fastcheck-certified-seventeen-program-spoken-comma-repair':
+        assert NO == '35' and sha(manifest_file) == 'dbad530189cffa26bb29c26ad85b95c992b36254f88f8385b401cc6b1f5d1c5d'
+        assert manifest['actual_native_certification']['run_id'] == 43693920217
+        assert manifest['actual_native_fastcheck_stamp']['sha256'] == '7d7ebf20b78143231992f8880f70e3cf1581c75acd2d977bc054e3ff151a1a41'
+        keep_cuts = True
+        allowed = {'视频/工具/停顿位置精确核对.py', '视频/工具/高亮同步核对.py', '视频/工具/读音核对.py', '视频/工具/草稿声音.sh', '视频/工具/make_video.py', '视频/工具/新管/快测.py', '视频/工具/标点停顿核对.py', '视频/工具/成片时刻对照.py', '视频/工具/可闻声保全核对.py', '视频/工具/无标点停顿核对.py', '视频/工具/结尾句接点.py', '视频/工具/疑点清单.py', '视频/工具/词尾辅音核对.py', '视频/工具/独立复核/labels.py', '视频/工具/独立复核/synth.py', '视频/工具/词尾实测.py', '视频/工具/句内响度.py'}
     assert {item['target'] for item in manifest['core_files']} == allowed
     for item in manifest['core_files']:
         source = folder / item['file']
@@ -92,6 +106,8 @@ def install_certified_core_repairs():
         assert manifest['environment_for_revision_jobs']['XG_KEEP_REVIEWED_CUTS'] == '1'
         ENV['XG_KEEP_REVIEWED_CUTS'] = '1'
     status['core_repairs'] = manifest['core_files']
+    status['original_maker_unchanged'] = not any(item['target'] == '视频/工具/make_video.py'
+                                               for item in manifest['core_files'])
     status['actual_native_core_certification'] = manifest['actual_native_certification']
     status['actual_native_fastcheck_stamp'] = stamp
     status['reviewed_regression_resource'] = data
@@ -969,17 +985,14 @@ try:
     status['final_wav_sha256'] = sha(W / f'work_{NO}/a.wav')
     save()
     canonical_aac = aac_hash(canonical)
-    if NO == '70':
-        # Current review reference remains distinct from legacy accepted audio.
-        binding_path = TASK / 'source70_exact_original_voice_binding.py'
-        assert sha(binding_path) == 'ba5c9714fa0f3ff8f18956d6ff26f1f1560a9c5135167776b758849e180a031b'
-        spec70 = importlib.util.spec_from_file_location('source70_exact_original_voice_binding', binding_path)
-        module70 = importlib.util.module_from_spec(spec70);spec70.loader.exec_module(module70)
-        evidence70 = module70.bind(request, W / 'work_70/a.wav', canonical, TASK, T, status['canonical_pipeline_passed'], accepted_aac)
-        assert evidence70['identity_binding_passed'] is True and evidence70['formal_quality_acceptance'] is False and evidence70['repair_applied'] is False
-        status['source70_original_current_review_voice_identity'] = evidence70
-        status.update({'book_order':50, 'review_only':False, 'user_individual_finalization_authorized':True,
-                       'specific_final_authorization_sha256':'2e0882ff9de5ebf3bbd40891d342972ced5735c8b398eff34a04a318a3b04a52', 'current_reference_is_review_only_not_legacy_accepted':True})
+    if NO == '35':
+        physical_path = TASK / 'source35_exact_new_S15_physical_binding.py'
+        assert sha(physical_path) == '7899922be66e160f25d19671063cc56097f7ec90291744eaae9921dace1bd2c0', 'source35 physical binding program SHA mismatch'
+        physical_spec = importlib.util.spec_from_file_location('source35_exact_new_S15_physical_binding', physical_path)
+        physical_module = importlib.util.module_from_spec(physical_spec)
+        physical_spec.loader.exec_module(physical_module)
+        status['source35_authorized_new_S15_physical_identity'] = physical_module.bind(
+            request, W / 'work_35/a.wav', canonical, source_video, TASK, T, status['canonical_pipeline_passed'])
     elif NO in APPROVED_AUDIO_REPAIRS:
         # Root supplies actual approved audio-change validation. No gain/overlay implementation is assumed here.
         audio_qc = TASK / ('audio-a21-qc.py' if NO in A21_AUDIO_REPAIRS else 'audio-qc.py')
@@ -1038,10 +1051,7 @@ try:
     assert timing['end_page_frames'] == 60 and timing['end_page_seconds'] == 2
     assert timing['original_audio_identical'] and timing['original_audio_packet_timings_identical']
     assert aac_hash(processed[0]) == canonical_aac, 'Exact-card processing changed the canonical AAC stream.'
-    if NO == '70':
-        assert status['source70_original_current_review_voice_identity']['identity_binding_passed']
-        assert aac_hash(processed[0]) == canonical_aac, 'Final AAC differs from exact latest current review voice.'
-    elif NO not in APPROVED_AUDIO_REPAIRS:
+    if NO != '35' and NO not in APPROVED_AUDIO_REPAIRS:
         assert aac_hash(processed[0]) == accepted_aac, 'Final AAC differs from accepted prior voice.'
     final = OUT / f'{NO}-4K-读完即转简述2秒.mp4'
     shutil.copyfile(processed[0], final)
