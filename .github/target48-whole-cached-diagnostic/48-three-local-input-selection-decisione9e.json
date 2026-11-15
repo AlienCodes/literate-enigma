@@ -1,0 +1,78 @@
+{
+  "kind": "root-source48-actual935f-selected-three-sentence-conservative-preservation-test-input-selection",
+  "at": "2026-11-15T00:40:09.440197+00:00",
+  "evidence": {
+    "path": "/dev/shm/article48-user125128-final-20261114/source48-actual9-per-interval-disposition-and-unique-preservation-test-PROPOSAL.json",
+    "bytes": 101274,
+    "sha256": "b74f3ed40b7145eec66def61f16b60d2418c30721be30de0016c132fe78b16b3"
+  },
+  "source_unchanged": "0193cbd1859525690e12a470c517cce2f120a1054b204fcfa3c0c392c92abbd7",
+  "selected_in_memory_only_candidate": {
+    "S9": {
+      "action": "shorten only second NV right edge",
+      "old": [
+        6.13,
+        6.306208,
+        "紧贴词头"
+      ],
+      "candidate": [
+        6.13,
+        6.290125,
+        "紧贴词头"
+      ],
+      "old_end_sample": 151349,
+      "new_end_sample": 150963,
+      "preserved_raw_w_sample_range": [
+        150963,
+        151349
+      ],
+      "preserved_samples": 386,
+      "reason": "Last16.083ms low-frequency/periodicity return should be preserved conservatively; actual zero crossing6.290125 precedes sustained return. Test may change automatic punctuation cut and must report actual mapper/clock; do not assume fixed output."
+    },
+    "S10": {
+      "action": "remove only13.042ms tiny NV record",
+      "old": [
+        6.155,
+        6.168042,
+        "紧贴词头"
+      ],
+      "candidate": null,
+      "preserved_raw_w_sample_range": [
+        147720,
+        148033
+      ],
+      "preserved_samples": 313,
+      "reason": "Weak/ambiguous low-frequency onset into first, not adequately identified as breath. Keep original samples."
+    },
+    "S12": {
+      "action": "shorten NV only by later left edge",
+      "old": [
+        4.503,
+        4.635,
+        "紧贴词尾"
+      ],
+      "candidate": [
+        4.541083333333333,
+        4.635,
+        "紧贴词尾"
+      ],
+      "old_start_sample": 108072,
+      "new_start_sample": 108986,
+      "preserved_raw_w_sample_range": [
+        108072,
+        108986
+      ],
+      "preserved_samples": 914,
+      "reason": "Restore ambiguous about weak tail/release; selected measured zero crossing in a local low-energy trough before later broadband breath."
+    }
+  },
+  "S9_first_NV_unchanged": true,
+  "why": "Protect ambiguous weak lexical onsets and tails; no claim that all old edges were proven speech loss. S9 automatic cuts must be measured, not assumed.",
+  "root_read_scope": "All 12 interval dispositions and selected spectral frames including S9 second, S10 tiny, S12 about, and all 56 S8 coda neighborhood frames. No human listening claimed.",
+  "S8_nationwide_coda": "Preserve final /d/ burst and decay; candidate specific normal lexical PV confirmation, no typed phoneme exemption. Exact full tuple and actual raw neighborhood required.",
+  "other_unchanged_NV": "Only fresh per-interval current evidence may support candidate confirmation; do not renew old8253 en bloc.",
+  "local_helper_requires_separate_exact_code_adoption": true,
+  "experiment_scope": "Only original cached S9 S10 S12 baseline hard identity then one candidate per sentence, original NV guards and mapper sample identity; no new mothers, whole audio, new G36 or production writes.",
+  "hard_fail": "Any formerly retained voiced sample newly dropped, baseline mismatch, raw mutation or original guard failure.",
+  "formal_acceptance": false
+}
