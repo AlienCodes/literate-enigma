@@ -1,0 +1,23 @@
+{
+  "kind": "actual-post-upstream-additional-only-compose-conditional-budget",
+  "phase": "compose",
+  "created_UTC": "2026-11-15T14:21:35.174479+00:00",
+  "original_reserve_bytes": 419430400,
+  "actual_upstream_bytes_already_occupied": 12630838,
+  "actual_upstream_sha256": "0ef09157f04e52039303b6be16337ce035f0920e0b143f504c1cbd7d2a6dda67",
+  "existing_upstream_PNG_and_all_upstream_outputs_already_in_available_baseline": true,
+  "observed_available_bytes": 774303744,
+  "conditional_caps_not_measured_future_output_sizes": {
+    "new_art_PNG": 9185586,
+    "copied_body_prefix": 13679414,
+    "new_static_tail": 5242880,
+    "new_final_MP4": 20971520,
+    "new_JPGs": 3145728,
+    "metadata": 8388608
+  },
+  "additional_peak_planning_bytes": 78439528,
+  "available_minus_additional_planning_bytes": 695864216,
+  "algebra": "max(A+Pbody+T+2F+metadata,2A+Pbody+T+F+JPG+metadata); existing U and upstream PNGs are not charged twice",
+  "not_a_measured_future_peak_claim": true,
+  "outer_actual_free_monitor_retains_original400MiB_stop": true
+}
