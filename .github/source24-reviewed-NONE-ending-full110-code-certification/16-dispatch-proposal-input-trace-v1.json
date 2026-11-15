@@ -1,0 +1,100 @@
+{
+  "kind": "16-one-line-case-consistent-dispatch-review-proposal-and-pure-input-trace",
+  "quality_acceptance": false,
+  "production_core_file_unchanged": true,
+  "original_full_SHA256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+  "hypothetical_single_line_full_source_SHA256": "6945e9bee6db143029bace6c04b4f4df7110c41ba647eee7236b0d0e5ed75203",
+  "diff_SHA256": "53f71d4cc12a25050cbe3cf495a984ff4646b74cf39cc3186f0534fd759f13ac",
+  "changed_AST_nodes_only_activation_flags": true,
+  "actual_original_wrapper_vs_in_memory_candidate_callback_traces": [
+    {
+      "case": "ordinary-next",
+      "source_text": "The next day the widower left for the Eastern Front.",
+      "original_actual_dispatch": {
+        "input_text": "ðə nˈɛkst dˈeɪ ðə wˈɪdoʊɚ lˈɛft fɚðɪ ˈiːstɚn fɹˈʌnt.",
+        "input_text_SHA256": "6e4084322330c3cc6e3ec6ed92e0ae686ef41fb93667576e97136bc81583b853",
+        "speed": 0.95,
+        "lang": "en-us",
+        "kw": {
+          "is_phonemes": true
+        }
+      },
+      "candidate_dispatch": {
+        "input_text": "The next day the widower left for the Eastern Front.",
+        "input_text_SHA256": "2f19624f31e37e5598fe1ff0c0720242b0c9997b8a1399b9204279926f889511",
+        "speed": 0.95,
+        "lang": "en-us",
+        "kw": {}
+      }
+    },
+    {
+      "case": "correct-origin-Haber",
+      "source_text": "Of Jewish origin, Haber left Germany an outcast after Hitler's regime seized power, dying in Basel in nineteen thirty-four.",
+      "original_actual_dispatch": {
+        "input_text": "ʌv dʒˈuːɪʃ ˈɔːɹɪdʒɪn, hˈɑːbɚ lˈɛft dʒˈɜːməni ɐn ˈaʊtkæst ˈæftɚ hˈɪtlɚz ɹeɪʒˈiːm sˈiːzd pˈaʊɚ, dˈaɪɪŋ ɪn bˈɑːzəl ɪn nˈaɪntiːn θˈɜːɾifˈɔːɹ.",
+        "input_text_SHA256": "6b9bb1a229fbdbd8150ab8745b7e82d63e76fea334a2c6814f47ad9567e4d4a5",
+        "speed": 0.95,
+        "lang": "en-us",
+        "kw": {
+          "is_phonemes": true
+        }
+      },
+      "candidate_dispatch": {
+        "input_text": "ʌv dʒˈuːɪʃ ˈɔːɹɪdʒɪn, hˈɑːbɚ lˈɛft dʒˈɜːməni ɐn ˈaʊtkæst ˈæftɚ hˈɪtlɚz ɹeɪʒˈiːm sˈiːzd pˈaʊɚ, dˈaɪɪŋ ɪn bˈɑːzəl ɪn nˈaɪntiːn θˈɜːɾifˈɔːɹ.",
+        "input_text_SHA256": "6b9bb1a229fbdbd8150ab8745b7e82d63e76fea334a2c6814f47ad9567e4d4a5",
+        "speed": 0.95,
+        "lang": "en-us",
+        "kw": {
+          "is_phonemes": true
+        }
+      }
+    },
+    {
+      "case": "literal-company-NeXT",
+      "source_text": "He founded NeXT.",
+      "original_actual_dispatch": {
+        "input_text": "hiː fˈaʊndᵻd nˈɛkst.",
+        "input_text_SHA256": "27327eb32df1f30cf8d0812ccb97af1b45cb8c82847893b5e058999d2271d073",
+        "speed": 0.95,
+        "lang": "en-us",
+        "kw": {
+          "is_phonemes": true
+        }
+      },
+      "candidate_dispatch": {
+        "input_text": "hiː fˈaʊndᵻd nˈɛkst.",
+        "input_text_SHA256": "27327eb32df1f30cf8d0812ccb97af1b45cb8c82847893b5e058999d2271d073",
+        "speed": 0.95,
+        "lang": "en-us",
+        "kw": {
+          "is_phonemes": true
+        }
+      }
+    },
+    {
+      "case": "BASF-possessive",
+      "source_text": "BASF's Carl Bosch scaled the method up, and from nineteen thirteen a gigantic plant at Oppau mass-produced ammonia.",
+      "original_actual_dispatch": {
+        "input_text": "bˌiːˌeɪˌɛsˈɛfs kˈɑːɹl bˈɑːʃ skˈeɪld ðə mˈɛθəd ˈʌp, ænd fɹʌm nˈaɪntiːn θˈɜːtiːn ɐ dʒaɪɡˈæntɪk plˈænt æɾ ˈɑːpaʊ mˈæspɹədˈuːst əmˈoʊniə.",
+        "input_text_SHA256": "b798a65265d4ff44ba3561cc46c27ebb8b0970feb5b8f48cc404b0cb8165cde2",
+        "speed": 0.95,
+        "lang": "en-us",
+        "kw": {
+          "is_phonemes": true
+        }
+      },
+      "candidate_dispatch": {
+        "input_text": "bˌiːˌeɪˌɛsˈɛfs kˈɑːɹl bˈɑːʃ skˈeɪld ðə mˈɛθəd ˈʌp, ænd fɹʌm nˈaɪntiːn θˈɜːtiːn ɐ dʒaɪɡˈæntɪk plˈænt æɾ ˈɑːpaʊ mˈæspɹədˈuːst əmˈoʊniə.",
+        "input_text_SHA256": "b798a65265d4ff44ba3561cc46c27ebb8b0970feb5b8f48cc404b0cb8165cde2",
+        "speed": 0.95,
+        "lang": "en-us",
+        "kw": {
+          "is_phonemes": true
+        }
+      }
+    }
+  ],
+  "all_four_meaningful_dispatch_expectations_true": true,
+  "raw_TTS_inference_or_cache_writes": false,
+  "original_full_quickcheck_and_native_render_not_run_for_candidate": true
+}
