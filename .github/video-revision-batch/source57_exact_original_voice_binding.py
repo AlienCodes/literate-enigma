@@ -5,7 +5,7 @@ This module grants no quality pass and never repairs a source or audio file.
 from pathlib import Path
 from fractions import Fraction
 import hashlib,json,subprocess,tempfile
-REFERENCE_SHA='cbc91888885dd90e0b8546f1f33494ec3892e3be644c748fcf045935a862b316'
+REFERENCE_SHA='38505fd85c70d9ab4f57ec2fc20f89732b9d5a4801468979b31f1e8f761cf42b'
 
 def require(ok, message):
     if not ok:
