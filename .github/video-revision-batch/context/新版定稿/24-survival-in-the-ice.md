@@ -3,7 +3,7 @@
 ## 英文
 On 5 December 1914 Endurance **departed** South Georgia, a **remote** **whaling** **outpost**, **for** Antarctica's Weddell Sea. In January 1915 ice **trapped** the **vessel**. On 27 October, her **hull** **buckling**, the men **abandoned** ship. She **foundered** on 21 November; her captain, Frank Worsley, **logged** the spot.
 
-The **stranded** men **endured** over five **gruelling** months on the ice. Their **floe** split on 9 April 1916; on 15 April their **lifeboats** reached Elephant Island, a **bleak**, **uninhabited** rock far from **shipping lanes**.
+The **stranded** men **endured** over five **gruelling** months on the ice. Their **floe** **split** on 9 April 1916; on 15 April their **lifeboats** reached Elephant Island, a **bleak**, **uninhabited** rock far from **shipping lanes**.
 
 On 24 April Shackleton and five others **embarked** **in** the James Caird, a **fragile** lifeboat, **on** a **perilous** **voyage** of some 1,300 kilometres. As **ferocious** **gales** **battered** the boat, Worsley **snatched** only four **sights of the sun**, **deducing** the rest by **dead reckoning** from **course**, speed, and **time elapsed**. On 10 May they **landed on** South Georgia's **deserted** south coast.
 
@@ -17,11 +17,11 @@ Legend **rightly** **salutes** Shackleton **for** his **charisma**. Yet both end
 
 1914年12月5日，坚忍号**驶离了**(departed for)南乔治亚岛，一处**偏远的**(remote)**捕鲸**(whaling)**前哨**(outpost)，**开往**(departed for)南极洲的威德尔海。（a remote whaling outpost：同位语，说明 South Georgia；depart A for B：离开 A，前往 B）1915年1月，冰**困住了**(trapped)这艘**船**(vessel)。10月27日，**船体**(hull)**受压弯曲**(buckling)，众人**弃**(abandoned)船。（her hull buckling：独立主格结构，说明弃船时的情形；buckle：（受压力等外力作用而）弯曲变形；abandon ship：弃船）它**沉没**(foundered)于11月21日；它的船长弗兰克·沃斯利**把**(logged)沉没地点**记入了航海日志**(logged)。（she / her：指坚忍号，英语常用 she 指船；her captain, Frank Worsley：同位语）
 
-**被困住的**(stranded)众人**熬过了**(endured)五个多月**艰苦累人的**(gruelling)冰上日子。（gruelling：艰难的；令人疲劳的）他们脚下的**浮冰**(floe)裂开了，那天是1916年4月9日；4月15日，他们的**救生艇**(lifeboats)抵达了象岛，一座**荒凉**(bleak)、**无人居住的**(uninhabited)岩岛，远离**航线**(shipping lanes)。（floe：浮冰块）（a bleak, uninhabited rock：同位语，说明 Elephant Island；far from…：形容词短语作后置定语，修饰 rock）
+**被困住的**(stranded)众人**熬过了**(endured)五个多月**艰苦累人的**(gruelling)冰上日子。（gruelling：艰难的；令人疲劳的）他们脚下的**浮冰**(floe)**裂开**(split)了，那天是1916年4月9日；4月15日，他们的**救生艇**(lifeboats)抵达了大象岛，一座**荒凉的**(bleak)、**无人居住的**(uninhabited)岩岛，远离**航线**(shipping lanes)。（floe：浮冰块）（a bleak, uninhabited rock：同位语，说明 Elephant Island；far from…：形容词短语作后置定语，修饰 rock）
 
-4月24日，沙克尔顿和另外五人**登上了**(embarked in)詹姆斯·凯尔德号，一艘单薄**脆弱的**(fragile)救生艇，**踏上**(embarked on)一段**极度危险的**(perilous)**航程**(voyage)，约1,300公里。（embark in…：登上（船）；a fragile lifeboat：同位语，说明 James Caird）（embark on：“开始”或“踏上”，语气比较正式。当你准备开启一段重要的新经历（比如新事业、大冒险），或者准备干一件全新的大事、新计划时，就可以用它。on 前面其实应该有个 embark，不过是被省略了；of some…：some 修饰数字，表示“大约”）当**狂暴的/猛烈的**(ferocious)**大风**(gales)**多次猛击**(battered)小艇的时候，沃斯利**抓住了**(snatched)仅仅四次**测日**(sights of the sun)**机会**(snatched)，**推断**(deducing)出剩余路途中船的位置坐标，只能靠**航位推算**(dead reckoning)，根据**航向**(course)、航速和**经过的时间**(time elapsed)。（As…：时间状语从句）（sight：测日，航海上 take a sight 指对太阳做一次观测，据此定船位）（deducing…：现在分词短语作伴随状语；time elapsed：elapsed 作后置定语，修饰 time）5月10日，他们**登上了**(landed on)南乔治亚岛**空无一人的**(deserted)南岸。
+4月24日，沙克尔顿和另外五人**登上了**(embarked in)詹姆斯·凯尔德号，一艘**脆弱的**(fragile)救生艇，**踏上**(embarked on)一段**极度危险的**(perilous)**航程**(voyage)，约1,300公里。（embark in…：登上（船）；a fragile lifeboat：同位语，说明 James Caird）（embark on：“开始”或“踏上”，语气比较正式。当你准备开启一段重要的新经历（比如新事业、大冒险），或者准备干一件全新的大事、新计划时，就可以用它。on 前面其实应该有个 embark，不过是被省略了；of some…：some 修饰数字，表示“大约”）当**狂暴的/猛烈的**(ferocious)**大风**(gales)**多次猛击**(battered)小艇的时候，沃斯利**抓住了**(snatched)仅仅四次**测日**(sights of the sun)**机会**(snatched)，**推断**(deducing)出剩余路途中船的位置坐标，只能靠**航位推算**(dead reckoning)，根据**航向**(course)、航速和**经过的时间**(time elapsed)。（As…：时间状语从句）（sight：测日，航海上 take a sight 指对太阳做一次观测，据此定船位）（deducing…：现在分词短语作伴随状语；time elapsed：elapsed 作后置定语，修饰 time）5月10日，他们**登上了**(landed on)南乔治亚岛**空无一人的**(deserted)南岸。
 
-沙克尔顿、沃斯利和汤姆·克林**横越了**(traversed)岛上**山峦重叠的**(mountainous)**腹地**(interior)，用了约36个**令人精疲力竭的**(exhausting)小时，于5月20日抵达斯特罗姆内斯捕鲸站。（its：指南乔治亚岛的）（reaching…：现在分词短语，表示结果）浮冰**逼退/击退了**(repelled)三次**救援行动**(rescue attempts)，直到8月30日，“耶乔号”，一艘智利的**拖船**(tug)，才**撤出了**(evacuated)22个**被困于荒岛的**(marooned)人。（before…：在……之前，这里译作“直到……才……”；a Chilean tug：同位语，说明 Yelcho；marooned：更强调被遗弃或与外界隔绝，常让人联想到荒岛、荒野或偏远地点）全部28个坚忍号的成员挺过了他们的这场**磨难**(ordeal)。
+沙克尔顿、沃斯利和汤姆·克林**横越了**(traversed)岛上**山峦重叠的**(mountainous)**腹地**(interior)，用了约36个**令人精疲力竭的**(exhausting)小时，于5月20日抵达斯特罗姆内斯捕鲸站。（its：指南乔治亚岛的）（reaching…：现在分词短语，表示结果）浮冰**逼退/击退了**(repelled)三次**救援行动**(rescue attempts)，直到8月30日，“耶乔号”，一艘智利的**拖船**(tug)，才**撤出了**(evacuated)22个**被困于荒岛的**(marooned)人。（before…：在……之前，这里译作“直到……才……”；a Chilean tug：同位语，说明 Yelcho；marooned：更强调被遗弃或与外界隔绝，常让人联想到荒岛、荒野或偏远地点）全部28个坚忍号的成员挺过了他们的这场**磨难**(ordeal)。（ordeal: 指一段漫长、痛苦且极其严酷的折磨或生死考验。）
 
 2022年3月5日，搜寻队**找到了**(located)**残骸**(wreck)，位于3,008米深的海底，**直立**(upright)，并且**完好无损**(intact)。（3,008 metres down：在水下3,008米处；upright and intact：补充说明残骸的状态）它位于沃斯利所记位置以南约四英里处，那个位置记于1915年11月，是小艇出航前几个月测算的；只有一点轻微的**差异**(discrepancy)，对在**漂移的**(shifting)冰面上**计算**(calculation)出的位置来说，已属难得。（Worsley recorded…：定语从句，省略 that，修饰 spot；months before the voyage：补充说明 November 1915）（冒号后是同位语，评价这一偏差；for…：就……而言）
 
@@ -45,8 +45,9 @@ Legend **rightly** **salutes** Shackleton **for** his **charisma**. Yet both end
 | endured | 本文：熬过了；v. (endure) 忍受，熬过；持续，持久（endure for centuries） | 2 |
 | gruelling | 本文：艰苦累人的；adj. （美式 grueling）累垮人的，极其艰苦的 | 2 |
 | floe | 本文：浮冰；n. 浮冰（块）（ice floe 浮冰） | 2 |
+| split | 本文：裂开；v. (split) 裂开，分裂；分开；n. 裂缝，分裂 | 2 |
 | lifeboats | 本文：救生艇；n. (lifeboat) 救生艇，救生船 | 2 |
-| bleak | 本文：荒凉；adj. 荒凉的，阴冷的；（前景）暗淡的，无望的（a bleak future） | 2 |
+| bleak | 本文：荒凉的；adj. 荒凉的，阴冷的；（前景）暗淡的，无望的（a bleak future） | 2 |
 | uninhabited | 本文：无人居住的；adj. 无人居住的，荒无人烟的（inhabit v. 居住于） | 2 |
 | shipping lanes | 本文：航线；短语. 航线，海上航道；shipping n. 航运；lane n. 小路，车道，航道 | 2 |
 | embarked in | 本文：登上了；v. (embark) 上船，登机；embark on/upon 开始，着手（新的事业、旅程） | 3 |
