@@ -6,10 +6,10 @@ from fractions import Fraction
 import hashlib,json,subprocess,tempfile
 SOURCE_ID='58'
 BOOK_ORDER=67
-REFERENCE_SHA='21260b56b109c4732620f319653499f8d2c994182d82dc110dfa83ea6f619792'
+REFERENCE_SHA='153eb47770069e2ec821a04dafc58d633ef87d848d5030f187b541dc70294bf2'
 REFERENCE_FILE='source58_exact_original_voice_reference.json'
 INSTALLER_FILE='install_source58_stock_code.py'
-INSTALLER_SHA='b6ce66b13f8c977c88d427548e8fcf865454f707917b17a8c02f577d795856f4'
+INSTALLER_SHA='04e0c8a7754d8e9b38677f165564af525b1a014d5952b620e356dfaed7a66a49'
 
 def require(ok, message):
     if not ok:

@@ -4,7 +4,7 @@
 ## 英文
 On a **rattling** bus in Managua, deaf pupils kept up a **brisk**, **voiceless** **hubbub** across the **aisle**, **palms** **fluttering**, **wrists** **flicking**. Their teachers could not follow a word.
 
-Before the late 1970s Nicaragua had no deaf **community**. Most deaf people led **secluded** lives, sharing a **homemade** **repertoire** of **gestures** with parents and **siblings**. In 1977 a **special-education** centre opened in Managua's San Judas **district** with 50 deaf **pupils**. By 1983 the centre and a **vocational school** for **teenage** pupils held more than 400.
+Before the late 1970s Nicaragua had no deaf **community**. Most deaf people led **secluded** lives, sharing a **homemade** **repertoire** of gestures with parents and **siblings**. In 1977 a **special-education** centre opened in Managua's San Judas **district** with 50 deaf **pupils**. By 1983 the centre and a **vocational school** for **teenage** pupils held more than 400.
 
 The **curriculum** **hinged on** **oral** Spanish and **lipreading**, and teachers signed only the **alphabet**. Pupils studied **lips** **in vain**, and most failed to **grasp** what a Spanish word was. **At recess**, in the street, and on the buses, they **mingled** gestures **with** home signs. A **rough** **jumble** **ripened** **rapidly** **into** a **coherent** language **entirely** their own.
 
@@ -12,13 +12,13 @@ The teachers found it **unintelligible**, and in June 1986 **the Ministry of Edu
 
 In a 2004 study, gesturing Spanish speakers and the earliest signers described something **rolling** **downhill** by **welding** how it moved and where it went **into** one **undivided** movement. Later signers **dismantled** it **into** **discrete** **segments** in **linear order**, a **framework** found **nowhere** in the gestures around them.
 
-**Linguists** had a rare chance to watch a language grow from **infancy** to **maturity**. Its **builders** were not teachers or experts but deaf **playmates** in playgrounds, streets, and buses.
+Linguists had a rare chance to watch a language grow from **infancy** to **maturity**. Its **builders** were not teachers or experts but deaf **playmates** in playgrounds, streets, and buses.
 
 ## 中文
 
 在一辆**哐当作响的**(rattling)马那瓜市的公车上，聋人学生们一直进行着一场**轻快的**(brisk)、**无声的**(voiceless)**喧闹**(hubbub)，隔着**过道**(aisle)，**手掌**(palms)**拍动着**(fluttering)，**手腕**(wrists)**轻弹**(flicking)。（keep up：使持续，保持；hubbub：嘈杂声，喧闹，这里指无声的手语交谈热热闹闹）（palms fluttering, wrists flicking：两个独立主格结构，描写他们打手语时的样子）他们的老师一个字也看不懂。（follow：看懂，跟得上；not…a word：一个字也不）
 
-1970年代末以前，尼加拉瓜没有聋人**群体**(community)。大多数聋人过着**与世隔绝的**(secluded)生活，共用**自制的**(homemade)**一整套/全部**(repertoire)**手势**(gestures)，在父母和**兄弟姐妹**(siblings)之间。（sharing…：现在分词短语作伴随状语；repertoire：全部本领，全部节目，这里指全部手势）1977年，一所**特殊教育**(special-education)中心开办于马那瓜的圣胡达斯**区**(district)，共有50个聋哑**学生**(pupils)。（with 50 deaf pupils：介词短语作伴随状语，说明开办时的规模；pupil：一般指高中以下的学生，大多用来指代小学生）到1983年，这所中心和一所面向**青少年**(teenage)学生的**职业学校**(vocational school)，共有超过400多个聋哑学生。（for teenage pupils：介词短语作后置定语，修饰 school；hold：容纳，有）
+1970年代末以前，尼加拉瓜没有聋人**群体**(community)。大多数聋人过着**与世隔绝的**(secluded)生活，共用**自制的**(homemade)**一整套/全部**(repertoire)手势，在父母和**兄弟姐妹**(siblings)之间。（sharing…：现在分词短语作伴随状语；repertoire：全部本领，全部节目，这里指全部手势）1977年，一所**特殊教育**(special-education)中心开办于马那瓜的圣胡达斯**区**(district)，共有50个聋哑**学生**(pupils)。（with 50 deaf pupils：介词短语作伴随状语，说明开办时的规模；pupil：一般指高中以下的学生，大多用来指代小学生）到1983年，这所中心和一所面向**青少年**(teenage)学生的**职业学校**(vocational school)，共有超过400多个聋哑学生。（for teenage pupils：介词短语作后置定语，修饰 school；hold：容纳，有）
 
 **课程**(curriculum)**以**(hinged on)西班牙语**口语**(oral)和**唇读**(lipreading)**为中心**(hinged on)，并且老师们只用手语比划**字母（表）**(alphabet)。（hinge on…：取决于……，以……为中心）（sign：打手语）学生们仔细观察着**唇语**(lips)，却是**徒劳无功**(in vain)，多数人没能**弄明白/理解**(grasp)什么是一个西班牙语单词。（in vain：徒劳，白费力气）（what a Spanish word was：宾语从句，作 grasp 的宾语）**在课间休息时**(At recess)，在街上，以及在公共汽车上，他们**混合了**(mingled with)手势**与**(mingled with)自家手势。（mingle A with B：把 A 与 B 混合；home signs：家庭手势，聋人在家里和家人自创的手势）一堆**粗糙的**(rough)**杂乱的东西**(jumble)**迅速地**(rapidly)**成熟为**(ripened into)一门**连贯的**(coherent)语言，**完全**(entirely)属于他们自己。（ripen into…：逐渐成熟为……；jumble：杂乱的一堆）（entirely their own：后置定语，修饰 language）
 
@@ -26,7 +26,7 @@ In a 2004 study, gesturing Spanish speakers and the earliest signers described s
 
 在2004年的一项研究中，打手势的西班牙语使用者和最早一批手语者描述某个东西**滚**(rolling downhill)**下坡**(rolling downhill)是通过**把**(welding into)它怎样运动和往哪里去**熔接成**(welding into)一个**完整的/统一的**(undivided)动作。（weld A into B：把 A 熔接成 B；how it moved and where it went：两个宾语从句，作 weld 的宾语）后来的手语者把它**拆解**(dismantled into)**成**(dismantled into)**离散的**(discrete)**片段**(segments)，按**线性顺序**(linear order)排列，这种**框架/结构**(framework)在他们周围的手势中**无处**(nowhere)可寻。（dismantle A into B：把 A 拆解成 B）（a framework…：同位语，概括前面整句；found nowhere…：过去分词短语作后置定语，修饰 framework）
 
-**语言学家**(Linguists)难得有机会看着一门语言从**婴儿期**(infancy)长到**成熟期**(maturity)。（grow from A to B：从 A 长到 B；watch sth do：看着……做）它的**建造者**(builders)不是老师或专家，而是聋哑人的**玩伴们**(playmates)，他们在游乐场，在街头，以及在巴士上。（not A but B：不是 A 而是 B；in playgrounds…：介词短语作后置定语，修饰 playmates）（简述：▸相聚：1977年，尼加拉瓜的学校让原本彼此隔绝的聋童聚到一起。此前，他们大多只与家人用自创手势交流。▸受阻：学校教西班牙语口语和看口形，多数孩子学不会；课外，他们却在操场、街头和公车上用手势交流。▸诞生：孩子们把各家的手势混合起来，逐渐形成一门大家都能使用、老师却看不懂的新语言。▸成长：年龄更小和后来入学的孩子，让表达规则更统一、更复杂。例如说“滚下坡”，早期用一个动作一起比划，后来会把“怎么动”和“往哪去”分开，按顺序表达。▸意义：这门语言是在孩子们的同伴交流中发展出来的，语言学家因而有机会亲眼观察一门语言逐步成熟。）
+语言学家难得有机会看着一门语言从**婴儿期**(infancy)长到**成熟期**(maturity)。（grow from A to B：从 A 长到 B；watch sth do：看着……做）它的**建造者**(builders)不是老师或专家，而是聋哑人的**玩伴们**(playmates)，他们在游乐场，在街头，以及在巴士上。（not A but B：不是 A 而是 B；in playgrounds…：介词短语作后置定语，修饰 playmates）（简述：▸相聚：1977年，尼加拉瓜的学校让原本彼此隔绝的聋童聚到一起。此前，他们大多只与家人用自创手势交流。▸受阻：学校教西班牙语口语和看口形，多数孩子学不会；课外，他们却在操场、街头和公车上用手势交流。▸诞生：孩子们把各家的手势混合起来，逐渐形成一门大家都能使用、老师却看不懂的新语言。▸成长：年龄更小和后来入学的孩子，让表达规则更统一、更复杂。例如说“滚下坡”，早期用一个动作一起比划，后来会把“怎么动”和“往哪去”分开，按顺序表达。▸意义：这门语言是在孩子们的同伴交流中发展出来的，语言学家因而有机会亲眼观察一门语言逐步成熟。）
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -44,7 +44,6 @@ In a 2004 study, gesturing Spanish speakers and the earliest signers described s
 | secluded | 本文：与世隔绝的；adj. 隐居的，与世隔绝的（a secluded life） | 2 |
 | homemade | 本文：自制的；adj. 自制的（homemade bread） | 2 |
 | repertoire | 本文：一整套/全部；n. 全部本领；保留曲目（a wide repertoire of songs） | 2 |
-| gestures | 本文：手势；n. (gesture) 手势，姿势（make a gesture） | 2 |
 | siblings | 本文：兄弟姐妹；n. (sibling) 兄弟姐妹（sibling rivalry） | 2 |
 | special-education | 本文：特殊教育；adj. 特殊教育的（special-education teachers；special education 特殊教育） | 2 |
 | district | 本文：区；n. 区，地区；行政区（a school district） | 2 |

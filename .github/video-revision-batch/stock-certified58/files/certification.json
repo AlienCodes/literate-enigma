@@ -3,16 +3,26 @@
   "passed": true,
   "production_audio_or_video_acceptance": false,
   "official_main_commit": "fc0b56af9a0ac0e97015548b756d4e51d66dc2ea",
-  "stage": "source58-role-true-stock4c85-render477a-original-fullquick-code-certified-not-article-quality",
+  "stage": "source58-reference-IO-only-stock109-full110-original-fullquick-code-certified-not-article-quality",
   "stock_runtime_manifest": {
-    "kind": "exact-stock-all110-no-runtime-overlay",
-    "files": [],
-    "stock_program_count": 110,
-    "maker_SHA256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
-    "renderer_SHA256": "477a516f7100ac05dab15d3b176e2d8c49779aa4bd8713087b737f4d25833b67",
+    "kind": "source58-reference-only-single-synth-raw-cache-IO-overlay-on-true-stock110",
+    "files": [
+      {
+        "path": "视频/工具/独立复核/synth.py",
+        "main_SHA256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+        "patch_SHA256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+        "scope": "Existing original a0c9 raw-mother cache I/O only; all original GT transforms and audit unchanged. No producer, gain, threshold or geometry change."
+      }
+    ],
     "no_KEEP_REVIEWED_flags": true,
+    "stock_maker_SHA256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+    "stock_renderer_SHA256": "477a516f7100ac05dab15d3b176e2d8c49779aa4bd8713087b737f4d25833b67",
+    "original_audit_SHA256": "bfe12dab6bec96c9b765faea286ae30a067589f6c5ef78461b21d12b955f1e22",
+    "actual_full_program_count": 110,
+    "new_fullquick_matching110_stamp_required": true,
     "not_source58_article_or_audio_quality_acceptance": true
   },
+  "actual_reference_loader_code_adoption_SHA256": "d1e20809f66bae747f6bd22c2e1fb6f7b982758d4a20b61112f2397bf30e2fb3",
   "actual_source58_original_stock_final_source_scope_adoption_SHA256": "da74c2afe807d755e84a8bb573ab648e2bdcca15180b25baea434ef553bba041",
   "actual_source58_original_stock_profile_no_KEEP_flags_and_no_target_audio_rerun": true,
   "actual_dependency_observations": {
@@ -276,20 +286,20 @@
     {
       "name": "current24-positive",
       "exit": 0,
-      "seconds": 0.07,
+      "seconds": 0.21,
       "log_SHA256": "7cd565ff445526786b21ba9d4bea8809947abe15d05525dbffa0ca9a765bcdcf"
     },
     {
       "name": "canonical-module-copy",
       "exit": 0,
-      "seconds": 0.16,
+      "seconds": 0.14,
       "log_SHA256": "cf7fb1d94f674135fa89934bb399789885d339f95ddedd413e9c3296ac852013"
     },
     {
       "name": "original-full-fastcheck",
       "exit": 0,
-      "seconds": 545.72,
-      "log_SHA256": "d825d512cf519e184cdeb4a268d4790e6df2c1dbac3dc90f6eda2ba0e420104f"
+      "seconds": 473.52,
+      "log_SHA256": "7f19084b109db4342090a2f8a888ec0c9bebe511d65f3dd0c95a72d8f607ebcb"
     },
     {
       "name": "real-stamp-validation",
@@ -414,7 +424,7 @@
     "audio_golden_or_thresholds_changed": false,
     "candidate_record_baseline_flag_used": false
   },
-  "actual_stock_program_SHA256": {
+  "actual_stock_program_SHA256_before_reference_IO_overlay": {
     "audio_qc.py": "3595b544fd87013fafaf5af1fa13fbc623595e94fd6978feee70bb754f836104",
     "build_html.py": "62899b6ddd239ea227e7ea2641e7e3565b71de42c1945c06b22ab2047ae6a542",
     "check_all.py": "aaae1a04c1adb91ea17906374dc5f13fd52ae2894cceeb1ae2f2e62ebe4b51f2",
@@ -526,10 +536,16 @@
     "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
     "高亮对齐.py": "50d27d8763a246a1bcd6c7cdbe1110351264aba976ba10bd44ed99cec41fbcf2"
   },
-  "all110_actual_programs_match_original_stock_exact": true,
+  "actual_reference_IO_only_overlay_SHA256": {
+    "视频/工具/独立复核/synth.py": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264"
+  },
+  "all110_actual_programs_match_exact_stock109_plus_reference_IO_only_overlay": true,
+  "fresh_reference_27_temporary_files_removed": [],
+  "unchanged_independent_audit_SHA256": "bfe12dab6bec96c9b765faea286ae30a067589f6c5ef78461b21d12b955f1e22",
+  "fresh_reference_is_original_raw_cache_not_processed_PCM": true,
   "prior_stamp_historical_not_reused_SHA256": "b0164aef43907addc76326f4960dbf740f30cef94ab83ab5da6f9c7cf6a8877e",
   "original_full_fastcheck_passed": true,
-  "new_original_stock110_stamp_created_after_original_fullquick": true,
+  "new_exact_single_reference_IO_overlay110_stamp_created_after_original_fullquick": true,
   "gain_mode_specific_conditional_tests_not_applicable_stock_original_variant": true,
-  "real_fastcheck_stamp_SHA256": "7097b0f1359f602c274b2c40c33f73b119f242c00de4d40d4329659892515e4b"
+  "real_fastcheck_stamp_SHA256": "a5b7d65975509b54e8380df1e717458d7f95ca121be1530efadf09ab8ce2842f"
 }
