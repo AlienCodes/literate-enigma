@@ -6,8 +6,9 @@ from pathlib import Path
 import argparse, hashlib, importlib.util, json, os, re, subprocess, sys, traceback
 sys.dont_write_bytecode=True
 ROOT_SHA='185b3e1502aeb77d1af7bac4c7f05af298924c49e2f0b9448db6313b127a6da2'
-HELPER_SHA='f804301caa20b9fc3fd8a14f2675877d4ce22cdac18aec3f8cfa3ec16aba3afc'
-PROFILE_SHA='d66a6074caa2792dc0b2a65489f8b165a41fa63abe21fcac587549a89bce0950'
+HELPER_SHA='7a79bb37d510b72917ea3fb39d4005677cec6b23f0d69197b88de9eb854858d5'
+PROFILE_SHA='a161336f87e1965c80a0bbcbd57c653290439386e42a48cff75c82ae9e1bb9c9'
+TAIL_SHAPE_SHA='ff59708ea754b5d3817448f20e023b6283603a99168ba35c4cd894df63d0d326'
 SOURCE_SHA='e122c817946c4ed6e7cd1394749879276ef2afe9d01ad691b4142c6bbd9ec9b4'
 MOTHER_KEY='Linux-native68-exact-S2-first-spoken-comma-43702410293'
 MOTHER_VERSION='1876e5e5b689945a432f2564472935c78443d40f5d021a2378395bf71140c1d5'
@@ -41,6 +42,11 @@ def validate_root(path,literal_sha,package):
     require(value['actual_H']['sha256']==sha(N/'probe/inputs/data_H.json') and value['actual_new_candidate_sound_or_quality_accepted'] is False,'Actual ROOT data provenance differs')
     return value
 
+def validate_tail_shape(path,literal,N):
+    path,N=Path(path),Path(N)
+    require(literal==TAIL_SHAPE_SHA and path.is_file() and not path.is_symlink() and sha(path)==TAIL_SHAPE_SHA and path.read_bytes()==(N/'probe/inputs/actual_tail_shape_scope.json').read_bytes(),'Mandatory actual ROOTff597 file/fullSHA before setup or firstHTTP')
+    value=json.loads(path.read_text());require(value['source_id']=='68' and value['target_sentence']=='S6' and value['specific_selected_total_samples']==214200 and value['actual_evidence']['sha256']==sha(N/'probe/inputs/actual_tail_shape_evidence.json'),'Wrong selected actual A20 source/shape/evidence');return value
+
 def verify_transport(package):
     N=Path(package);rows=json.loads((N/'transport-file-pins.json').read_text())
     require(rows and len({r['relative'] for r in rows})==len(rows),'Finite unique transport pins required')
@@ -57,14 +63,14 @@ def validate_parent_review(path,literal_sha,package):
     require(p.read_bytes()==(N/'actual-parent-independent-onlyS6-review.json').read_bytes() and (N/'actual-parent-independent-onlyS6-review.sha256').read_text().strip()==literal_sha,'Actual independent parent review transport copy/literal differs')
     v=json.loads(p.read_text())
     require(v['kind']=='ROOT-DELEGATED-independent-source68-onlyS6-local10ms6-conditional-one-original-math-execution-adoption','Wrong independent actual review role')
-    require(v['root_scope']['sha256']==ROOT_SHA and v['program_SHA256']==HELPER_SHA and v['profile_SHA256']==PROFILE_SHA,'Actual parent review must bind current ROOT/helper/profile')
+    require(v['root_scope']['sha256']==ROOT_SHA and v['program_SHA256']==HELPER_SHA and v['profile_SHA256']==PROFILE_SHA and v['tail_shape_scope']['sha256']==TAIL_SHAPE_SHA,'Actual parent review must bind current ROOT/helper/profile/tail-shape')
     require(v['source_id']=='68' and v['changed_sentence']=='S6' and v['original_mother_scope_target']=='S2' and v['independent_review_passed'] is True and v['allow_only_S6_one_original_math_if_missing'] is True and v['new_TTS_GT_ASR_whole_or_CF_write_authorized'] is False,'Parent independent scope incomplete')
     return v
 
 def helper_argv(package,repo,machine,tools,public):
     N=Path(package);helper=N/'probe/observe68_only_S6_local_two_phase.py';require(sha(helper)==HELPER_SHA,'Wrong onlyS6 local helper')
     root=N/'root-onlyS6-local-execution-scope.json'
-    return [sys.executable,str(helper),'--tools',str(tools),'--video-root',str(machine),'--inputs',str(N/'probe'),'--profile',str(N/'probe/profile.json'),'--execution-adoption',str(root),'--execution-adoption-sha256',ROOT_SHA,'--output',str(Path(public)/'68-onlyS6-local-two-phase-measurement.json'),'--cache-path-output',str(Path(public)/'68-onlyS6-private-math-step-output.txt')]
+    return [sys.executable,str(helper),'--tools',str(tools),'--video-root',str(machine),'--inputs',str(N/'probe'),'--profile',str(N/'probe/profile.json'),'--execution-adoption',str(root),'--execution-adoption-sha256',ROOT_SHA,'--actual-tail-shape-adoption',str(N/'probe/inputs/actual_tail_shape_scope.json'),'--actual-tail-shape-adoption-sha256',TAIL_SHAPE_SHA,'--output',str(Path(public)/'68-onlyS6-local-two-phase-measurement.json'),'--cache-path-output',str(Path(public)/'68-onlyS6-private-math-step-output.txt')]
 
 def verify_actual_original_G27(package,tools,work):
     N,T,W=map(Path,(package,tools,work))
@@ -114,7 +120,9 @@ def main():
     parser.add_argument('--actual-root-execution-adoption-sha256',required=True)
     parser.add_argument('--actual-parent-review-adoption',type=Path,required=True)
     parser.add_argument('--actual-parent-review-adoption-sha256',required=True)
+    parser.add_argument('--actual-tail-shape-adoption',type=Path,required=True);parser.add_argument('--actual-tail-shape-adoption-sha256',required=True)
     a=parser.parse_args();N=Path(__file__).resolve().parent
+    validate_tail_shape(a.actual_tail_shape_adoption,a.actual_tail_shape_adoption_sha256,N)
     validate_root(a.actual_root_execution_adoption,a.actual_root_execution_adoption_sha256,N);validate_parent_review(a.actual_parent_review_adoption,a.actual_parent_review_adoption_sha256,N);pins=verify_transport(N)
     ROOT=Path(os.environ['GITHUB_WORKSPACE']);M=Path(os.environ['RUNNER_TEMP'])/'completion-machine';W=M/'video';T=ROOT/'official-main/视频/工具';O=ROOT/'source68-only-S6-local10ms6-public'
     require(not O.exists(),'Fresh scalar output namespace required')

@@ -3,7 +3,8 @@ from pathlib import Path
 import argparse,copy,gc,hashlib,importlib.util,inspect,io,json,os,re,shutil,sys,traceback
 sys.dont_write_bytecode=True
 ROOT_SHA='185b3e1502aeb77d1af7bac4c7f05af298924c49e2f0b9448db6313b127a6da2'
-PROFILE_SHA='d66a6074caa2792dc0b2a65489f8b165a41fa63abe21fcac587549a89bce0950'
+PROFILE_SHA='a161336f87e1965c80a0bbcbd57c653290439386e42a48cff75c82ae9e1bb9c9'
+TAIL_SHAPE_SHA='ff59708ea754b5d3817448f20e023b6283603a99168ba35c4cd894df63d0d326'
 BASELINE_HELPER_SHA='d53aebdd61c992473b6f3f455c23a852b979cd3fe8dce11f3fad35c576851ea4'
 BASELINE_PROFILE_SHA='6ac2d576251651ef5d3ffdfd70f399c351b4af268df03d7259425027db128c7a'
 OLD_SOURCE_SHA='e122c817946c4ed6e7cd1394749879276ef2afe9d01ad691b4142c6bbd9ec9b4'
@@ -42,6 +43,24 @@ def exact_delta(old,new):
  require(len(new['sentences'])==19 and str(new['no'])=='68','Wrong source schema')
 def cache_scope(before,after,new_math):
  return (all(after.get(k)==v for k,v in before.items()) and not(set(before)-set(after)) and set(after)-set(before)==set(new_math) and len(new_math)<=1 and all(after.get(k)==v['sha256'] for k,v in new_math.items()))
+def selected_shape_contract(adoption,evidence,baseline):
+ require(adoption['source_id']=='68' and adoption['target_sentence']=='S6' and adoption['prior_scope_185b_and2efa_continue'] is True,'Wrong actual ROOT A20 selected scope')
+ actual=evidence['actual_candidate_boost_and_premath_prefix']['actual_original_candidate_before_math_guard'];specific=adoption['specific_selected_pre_math']
+ require(actual==specific,'Actual candidate scalar must exactly equal ROOT-selected original A20 evidence')
+ require(baseline['clip_samples']==adoption['old_expected_baseline_shape']==[45240,9120,159960] and baseline['original_tmap']==specific['unchanged_expected_tmap'] and baseline['gaps']==specific['unchanged_expected_gaps'],'Original baseline geometry must remain old214320/8.93 exact')
+ require(specific['clip_samples']==[45240,9120,159840] and sum(specific['clip_samples'])==adoption['specific_selected_total_samples']==214200 and specific['actual_tmap']==[[0,27,0.,1.885],[28,135,2.265,8.925]] and specific['actual_gaps']==[.4],'Only actual selected original A20 5ms shape permitted')
+ expected=copy.deepcopy(baseline);expected.update(clip_samples=specific['clip_samples'],original_tmap=specific['actual_tmap'],gaps=specific['actual_gaps'],selected_actual_guard=copy.deepcopy(specific));return expected
+
+def validate_selected_pre_math(actual,expected):
+ e=expected['selected_actual_guard']
+ fields=['clip_samples','clip_dtypes','clip_SHA256','clip_absolute_peaks','actual_tmap','actual_gaps','actual_original_LAST','actual_timed_last10_phonemes']
+ require(all(json.loads(json.dumps(actual[k]))==e[k] for k in fields),'Candidate selected A20 geometry/SHA/LAST/timed-tail differs from actual ROOT bound scalar')
+ require(sum(actual['clip_samples'])==214200,'Candidate selected total differs')
+
+def validate_selected_post_math(m,sent,clips,tmap,gaps,pcm,expected):
+ e=expected['selected_actual_guard'];last={k:m.LAST[k] for k in ['head','hs','scale','segs','total','cuts','gaps','fades','grafts']}
+ require(m.SENT_FP[sent]=='3f9afd2d248b' and len(pcm)==214200 and [len(x) for x in clips]==expected['clip_samples'] and [list(x) for x in tmap]==expected['original_tmap'] and list(gaps)==expected['gaps'] and json.loads(json.dumps(last))==e['actual_original_LAST'],'Candidate raw mother/selected original A20 duration/tmap/LAST changed')
+
 def guarded_original_math(m,observer,original,cache,expected,boost_capture,source_path,reads,new_math):
  calls=[]
  def strict(clips,tmap,gaps,no='',rounds=2):
@@ -50,6 +69,7 @@ def guarded_original_math(m,observer,original,cache,expected,boost_capture,sourc
   require(not calls,'Only one selected S6 G36 invocation permitted');calls.append(True)
   last=m.LAST;SR=m.SR;head=last['head'];scale=last['scale']
   boost_capture['actual_original_candidate_before_math_guard']={'clip_samples':[len(x) for x in clips],'clip_dtypes':[str(x.dtype) for x in clips],'clip_SHA256':[hashlib.sha256(m.np.ascontiguousarray(x).tobytes()).hexdigest() for x in clips],'clip_absolute_peaks':[float(m.np.abs(x).max()) if len(x) else 0. for x in clips],'actual_tmap':[list(x) for x in tmap],'actual_gaps':list(gaps),'unchanged_expected_clip_samples':expected['clip_samples'],'unchanged_expected_tmap':expected['original_tmap'],'unchanged_expected_gaps':expected['gaps'],'shape_equal': [len(x) for x in clips]==expected['clip_samples'],'tmap_equal':[list(x) for x in tmap]==expected['original_tmap'],'gaps_equal':list(gaps)==expected['gaps'],'actual_original_LAST':{k:last[k] for k in ['head','hs','scale','segs','total','cuts','gaps','fades','grafts']},'actual_timed_last10_phonemes':[{'phoneme':t.phoneme,'timed_start_s':t.start,'timed_end_s':t.end,'raw_w_start_sample':round(t.start*scale*SR)-head,'raw_w_end_sample':round(t.end*scale*SR)-head} for t in list(last['toks'])[-10:]],'timed_annotation_not_ASR_or_safety_acceptance':True,'original_math_or_new_key_not_yet_executed':True}
+  validate_selected_pre_math(boost_capture['actual_original_candidate_before_math_guard'],expected)
   require([len(x) for x in clips]==expected['clip_samples'] and list(gaps)==expected['gaps'] and [list(x) for x in tmap]==expected['original_tmap'],'Candidate original duration/tmap/gaps changed')
   cur=m._auto_level;m._auto_level=original
   try:key=observer.auto_key(m,clips,tmap,gaps,no)
@@ -102,7 +122,7 @@ def actual_local_PV(base,m,T,normalized,whole,source,prior):
  burst=base.original_burst_details(pv,context,fixed)
  # This uses only the prior window times to locate the acoustic onset. Fixed f
  # spectral fields remain historical and are never reused as new PV metrics.
- result={'coordinate':'baseline-current selected absolute clock; candidate duration unchanged','mastering_role':'conditional normalization using original baseline whole peak only; no new whole/master1 claim','all_original_candidate_scan_flags':rows,'original_burst_at_fixed_old_window':burst,'fixed_window_tuple_role':'Only times locate current measured onset; historical spectral metrics not asserted current','candidate_original_PCM16_decoded_SHA256':hashlib.sha256(m.np.ascontiguousarray(pcm).tobytes()).hexdigest(),'waveform_or_container_exported':False,'CF_mutated':False}
+ result={'coordinate':'baseline-current S6 start clock; actual selected A20 tail5ms shorter; later whole clocks unmeasured','mastering_role':'conditional normalization using original baseline whole peak only; no new whole/master1 claim','all_original_candidate_scan_flags':rows,'original_burst_at_fixed_old_window':burst,'fixed_window_tuple_role':'Only times locate current measured onset; historical spectral metrics not asserted current','candidate_original_PCM16_decoded_SHA256':hashlib.sha256(m.np.ascontiguousarray(pcm).tobytes()).hexdigest(),'waveform_or_container_exported':False,'CF_mutated':False}
  passed=local_gate_decision(burst['original_爆破起_result'],rows)
  return result,passed
 def run_candidate(a,profile,inp,base,baseline,report,new_math):
@@ -133,7 +153,7 @@ def run_candidate(a,profile,inp,base,baseline,report,new_math):
     def forbid(*args,**kwargs):report['forbidden_model_events'].append('forbidden_whole_or_title');raise AssertionError('No whole/build/title execution allowed')
     m.build=m.title_audio=forbid;m.sf.write=write_guard(m,old_auto,old_write,report['forbidden_model_events'])
     sent=' '.join(m.re.sub(r'\*\*','',m.R.strip_gloss(c['en'])).strip() for c in candidate['sentences'][5]['chunks']);require(m.SENT_NO[sent]=='68','Source must precede maker import')
-    expected=oldprofile['expected']['S6'];prior=json.loads(inp['actual_bounded'].read_text());target_prior=prior['targets']['S6'];sha=lambda x:hashlib.sha256(np.ascontiguousarray(x).tobytes()).hexdigest()
+    expected=copy.deepcopy(oldprofile['expected']['S6']);expected['original_G36']=selected_shape_contract(json.loads(inp['actual_tail_shape_scope'].read_text()),json.loads(inp['actual_tail_shape_evidence'].read_text()),oldprofile['expected']['S6']['original_G36']);prior=json.loads(inp['actual_bounded'].read_text());target_prior=prior['targets']['S6'];sha=lambda x:hashlib.sha256(np.ascontiguousarray(x).tobytes()).hexdigest()
     def guarded_boost(w,items,label,off=0):
      require(items==NEW_BOOST and label==sent and off==0 and not capture,'Only one exact new S6 original boost allowed')
      before_w=w.copy();require(sha(before_w)==target_prior['raw_scalar_profiles']['actual_boost_input']['array_SHA256'],'Actual unchanged unboosted S6 input differs')
@@ -149,7 +169,7 @@ def run_candidate(a,profile,inp,base,baseline,report,new_math):
     for mark in m._speech_marks(sent):pieces.append((p0,mark.end()));p0=mark.end()+1;gaps.append(m.P_LIST if mark.start() in listing else m.P_COMMA)
     pieces.append((p0,len(sent)));clips,tmap=m.sentence_audio(sent,pieces,gaps);clips,pcm,auto,manual=m.句增益(candidate,'68',5,sent,pieces,gaps,clips,tmap,np.concatenate(clips))
     require(capture.get('original_candidate_guard_passed') and len(reads)==1,'Actual original candidate boost/math not observed')
-    require(m.SENT_FP[sent]=='3f9afd2d248b' and len(pcm)==expected['observed']['samples'] and [list(x) for x in m.LAST['cuts']]==expected['observed']['actual_raw_cuts'],'Candidate raw mother/duration/original cuts changed')
+    validate_selected_post_math(m,sent,clips,tmap,gaps,pcm,expected['original_G36'])
     peak=np.float32(baseline['actual_original_master_absolute_peak']);normalized=pcm/peak*.89
     pv,passed=actual_local_PV(base,m,T,normalized,json.loads(inp['whole_report'].read_text()),oldsource,prior)
     functions=base.original_dossier_functions(T/'疑点清单.py',np,SR)
@@ -179,7 +199,7 @@ def run_candidate(a,profile,inp,base,baseline,report,new_math):
 def main():
  p=argparse.ArgumentParser()
  for k in ['tools','video-root','inputs','profile','execution-adoption','output','cache-path-output']:p.add_argument('--'+k,type=Path,required=True)
- p.add_argument('--execution-adoption-sha256',required=True);a=p.parse_args()
+ p.add_argument('--execution-adoption-sha256',required=True);p.add_argument('--actual-tail-shape-adoption',type=Path,required=True);p.add_argument('--actual-tail-shape-adoption-sha256',required=True);a=p.parse_args()
  report={'kind':'source68-onlyS6-exact10ms6-original-cached-local-two-phase-conditional-one-math-measurement','source_id':'68','book_order':53,'changed_sentence':'S6','original_mother_provenance_target':'S2','measurement_completed':False,'diagnostic_passed':False,'quality_acceptance':False,'whole_master1_proved':False,'new_TTS_GT_ASR_whole_or_native_authorized':False,'CF_or_production_source_written':False,'candidate_local_original_gates_passed':False,'restoration':{},'forbidden_model_events':[],'errors':[]}
  modules=dict(sys.modules);env=dict(os.environ);cwd=Path.cwd();path=list(sys.path);trace=sys.gettrace();profile=inp=None;new_math={};base=None
  try:
@@ -190,6 +210,10 @@ def main():
   require(not a.output.exists() and not a.output.with_name('68-existing-S6-S2-baseline-scalars.json').exists(),'Fresh scalar evidence output required')
   for k,row in profile['inputs'].items():
    rel=Path(row['file']);require(not rel.is_absolute() and '..' not in rel.parts,'Input path escaped');q=a.inputs/rel;require(q.stat().st_size==row['bytes'] and digest(q)==row['sha256'],'Frozen input differs '+k);inp[k]=q
+  require(a.actual_tail_shape_adoption_sha256==TAIL_SHAPE_SHA and digest(a.actual_tail_shape_adoption)==TAIL_SHAPE_SHA and a.actual_tail_shape_adoption.read_bytes()==inp['actual_tail_shape_scope'].read_bytes(),'Mandatory actual ROOTff597 fullSHA tail-shape binding')
+  tail=json.loads(inp['actual_tail_shape_scope'].read_text());require(digest(inp['actual_tail_shape_evidence'])==tail['actual_evidence']['sha256']=='b0c905dcf2819fcc456fd8d498e4018cb6c388ce78389060a356276b4340686b','Actual original candidate scalar evidence differs')
+  selected_shape_contract(tail,json.loads(inp['actual_tail_shape_evidence'].read_text()),json.loads(inp['baseline_profile'].read_text())['expected']['S6']['original_G36'])
+  report['actual_ROOT_A20_tail_shape_scope_SHA256']=TAIL_SHAPE_SHA;report['actual_original_A20_tail_shape_evidence_SHA256']=digest(inp['actual_tail_shape_evidence']);report['actual_original_A20_tail_shape_and_timed_tail']=tail['specific_selected_pre_math'];report['bound_prior_original_A20_quiet_tail_reason_not_a_new_measurement']=tail['A20_reason_not_an_extra_manual_cut'];report['A20_shape_binding_is_not_speech_quality_or_burst_acceptance']=True
   require(digest(inp['baseline_helper'])==BASELINE_HELPER_SHA and digest(inp['baseline_profile'])==BASELINE_PROFILE_SHA,'Original55 helper/profile must remain byteexact')
   require(digest(inp['source'])==OLD_SOURCE_SHA and digest(inp['selected_source'])==NEW_SOURCE_SHA,'Exact baseline and one-leaf candidate required');exact_delta(json.loads(inp['source'].read_text()),json.loads(inp['selected_source'].read_text()))
   require(digest(inp['root_scope'])==ROOT_SHA and digest(inp['data_H'])==root['actual_H']['sha256'],'Root data-role provenance differs')
