@@ -1,0 +1,151 @@
+{
+  "kind": "SOURCE56-ONLYS11-EXACT-PROJECTED-STANDARD-WALLACE-DIFFERENT-PHONES-CMU2-TWO-MOTHER-ROOT-REVIEW-HANDOFF",
+  "state": "CODE-ONLY-substantive-ROOT-review-required-no-model-or-new-pair-executed",
+  "source_id": "56",
+  "book_order": 65,
+  "actual_source_sentence_count": 17,
+  "unchanged_non_target_segments_title_plus16": 17,
+  "scope_authority": "Current ROOT instruction forwarded verbatim in parent /root/resume_audio_ci message: only S11 new pronCTX two-mother CODE, standarden-us Wallace, fullPROJECTED, samevoice/.95, firstcomma-only deletion; ROOT substantive newpair review is required. This is not an invented native message ID or a synthesized execution adoption.",
+  "contract": {
+    "path": "/workspace/work/source56-S11-exact-projected-Wallace-CMU-standard-pronCTX-two-mother-CODE-ONLY-20261115/SOURCE56-S11-FULL-PROJECTED-CMU-WALLACE-TWO-MOTHER-CODE-CONTRACT.json",
+    "bytes": 5008,
+    "sha256": "bbeebc570093d978f1ce618b6212afe93bdf65a8f2eafa34967df3d64ec210f1"
+  },
+  "actual_CPU_proof": {
+    "path": "/workspace/work/source56-S11-exact-projected-Wallace-CMU-standard-pronCTX-two-mother-CODE-ONLY-20261115/ACTUAL-ORIGINAL-TOKENIZER-CMU-VARIANT-POSTPRON-KEYS-NO-MODEL-PROOF.json",
+    "bytes": 29975,
+    "sha256": "527df8f382d9a75f3a3589ddefc4cef85fac1d2ed51ede5549481649f1210682"
+  },
+  "actual_standard_dictionary_evidence": {
+    "path": "/workspace/work/source56-S11-exact-projected-Wallace-CMU-standard-pronCTX-two-mother-CODE-ONLY-20261115/ACTUAL-CMU-WALLACE-TWO-STANDARD-PRONUNCIATIONS-READONLY-EVIDENCE.json",
+    "bytes": 988,
+    "sha256": "7a79e394a71cd2f54cec95f7e5edd18d16035df36ac77e50f0cf88829e979bb7"
+  },
+  "candidate_context": {
+    "path": "/workspace/work/source56-S11-exact-projected-Wallace-CMU-standard-pronCTX-two-mother-CODE-ONLY-20261115/candidate-exact-projected-S11-Wallace-CMU2-context-NOT-ADOPTED.json",
+    "bytes": 10296,
+    "sha256": "db04a700c9778e45db7c934ce0f4cf8f44349ff3a924599d4194aa90a363440f"
+  },
+  "context_diff": {
+    "path": "/workspace/work/source56-S11-exact-projected-Wallace-CMU-standard-pronCTX-two-mother-CODE-ONLY-20261115/OLD-TO-CANDIDATE-ONE-CONTEXT-ENTRY.diff",
+    "bytes": 20285,
+    "sha256": "2af614585ffb400953d0167fcf50fbf794de21b3070f57005ee373ffe8672c06"
+  },
+  "program": {
+    "path": "/workspace/work/source56-S11-exact-projected-Wallace-CMU-standard-pronCTX-two-mother-CODE-ONLY-20261115/prepare_and_measure_original_tokenizer_only.py",
+    "bytes": 12409,
+    "sha256": "7454481db7afcd202c1e5a83ff4d613a43251d83ba9fc2523d50b3be257c5236"
+  },
+  "tests": {
+    "path": "/workspace/work/source56-S11-exact-projected-Wallace-CMU-standard-pronCTX-two-mother-CODE-ONLY-20261115/test_actual_original_pronunciation_scope.py",
+    "bytes": 3400,
+    "sha256": "aad5be8cf20c9ffba766d496144e20eea2a7933b35193df2bfa22770fe3ce43d"
+  },
+  "actual_test_result": {
+    "command": "/workspace/work/video-venv/bin/python test_actual_original_pronunciation_scope.py",
+    "tests": 10,
+    "passed": 10,
+    "failed": 0,
+    "negative_same_internal_phones_default_context": true,
+    "negative_display_not_projected_context": true,
+    "negative_retained_Wallace_comma_removed": true,
+    "additional_bad_cases": [
+      "existing context modified",
+      "notCMUvariant",
+      "wrongspeed",
+      "wrongtimedpause"
+    ]
+  },
+  "actual_findings": {
+    "default_standard_eSpeak_Wallace": "wˈɑːlɪs",
+    "default_context_cannot_create_different_physical_model_input": "True default original phonemes_of equals old internal tokenizer; adding is_phonemesTrue changes cache key but is not a new internal phone sequence. This option is rejected.",
+    "legitimate_distinct_variant": "CMU US dictionary alternate wallace(2) W AO1 L IH0 S -> wˈɔːlɪs; exactly one vowel versus wˈɑːlɪs, no changed stress/consonants/unstressed /ɪs/.",
+    "real_original_phonemes_of_with_CMU2": "ðə kˈɑːmpɹəmˌaɪz stɹˈʌk wɪðˌaʊt wˈɔːlɪs, mˌeɪhɐv kˈɛpt ɹˈaɪvəlɹi ˌoʊvɚ pɹˈɛsᵻdəns æt bˈeɪ.",
+    "real_model_token_ids_differ": true,
+    "actual_old_raw_and_timed_portable_keys_reproduced": [
+      {
+        "method": "create",
+        "name": "13ae7e344fdf2409fd9e771216e7192076890acd.pkl",
+        "post_pron_input_SHA256": "5319b2e3ec80b1f95add80e1ccaa1c69f6f17579387e56d65a889413b1110c4a",
+        "kwargs": {}
+      },
+      {
+        "method": "create_timed",
+        "name": "9b367dbd8656c1be8d5167b0c639ad5fad2c794b.pkl",
+        "post_pron_input_SHA256": "5319b2e3ec80b1f95add80e1ccaa1c69f6f17579387e56d65a889413b1110c4a",
+        "kwargs": {
+          "clause_pause": 0,
+          "sentence_pause": 0
+        }
+      }
+    ],
+    "candidate_two_keys_not_created": [
+      {
+        "method": "create",
+        "name": "a387fbeb6dd6337c40167612b2f8f3c56170122f.pkl",
+        "post_pron_input_SHA256": "7ab4087b2c5293e715b5a63769102df98c294a405f7d0e5368c328f51388492a",
+        "kwargs": {
+          "is_phonemes": true
+        }
+      },
+      {
+        "method": "create_timed",
+        "name": "42d32206d7fda7443c0e489a1ee1ac1b11d9e3fa.pkl",
+        "post_pron_input_SHA256": "7ab4087b2c5293e715b5a63769102df98c294a405f7d0e5368c328f51388492a",
+        "kwargs": {
+          "is_phonemes": true,
+          "clause_pause": 0,
+          "sentence_pause": 0
+        }
+      }
+    ],
+    "all17_non_target_postpron_keys_exact": true,
+    "ONNX_InferenceSession_entries": 0
+  },
+  "what_was_actually_run": "Existing venv standalone Tokenizer with local espeak shared library and exact original maker pure AST functions, original dictionary/context, real fixed voice array for key hashing only; official CMUdict read-only HTTPS evidence; ten pure tests.",
+  "what_was_not_run": [
+    "No Kokoro instance/modelweights/ONNX session",
+    "No raw/timed new mother or audio PCM/cache export",
+    "No newG36/math/GT/ASR/native/whole",
+    "No shared source/GEN/CF/context/cache/ROOTSTATE mutation"
+  ],
+  "old_timed_full_sequence_status": "Unknown until future private existing-only mother read; actual local evidence contains bounded cached timed annotations agreeing with /ɑːlɪs/, not full oldPKL. Full-timed actual comparison is mandatory before newpair.",
+  "further_action": "ROOT must substantively review the dictionary alternate and exact scope before parent prepares/transports the original two-call mother caller. No native/pair dispatch is part of this handoff.",
+  "all_existing_input_pins_after": [
+    {
+      "path": "/workspace/work/source23-source56-source68-original-W-three-data-dependency-staging-retry-CODE-ONLY-20261115/source56-book65-finite-original-W-data-staged-A21-native-READY/.github/video-revision-batch/certified-core/files/视频/工具/make_video.py",
+      "bytes": 127248,
+      "sha256": "1b87c1d4d1685bdd59325587184cca35f853354a015e6fe89c11f150cd2a6239"
+    },
+    {
+      "path": "/workspace/work/source23-source56-source68-original-W-three-data-dependency-staging-retry-CODE-ONLY-20261115/source56-book65-finite-original-W-data-staged-A21-native-READY/.github/video-revision-batch/request/56/视频/脚本/56.json",
+      "bytes": 48988,
+      "sha256": "dc3fec8cb898d8a7279739b6c4c62d38caf509580e26511acd95d07f1bbc18ef"
+    },
+    {
+      "path": "/workspace/work/audit-repo/视频/工具/发音词典/按语境读音.json",
+      "bytes": 9591,
+      "sha256": "4d8905dc1a87f97b707270f03f41ea0fdf2b207ca218ed74608cdb134e3dc8e3"
+    },
+    {
+      "path": "/workspace/work/audit-repo/视频/工具/发音词典/读音改正.json",
+      "bytes": 124817,
+      "sha256": "5f558c61f8ffb99009a89989afcc07a9ce168b2b70a6c9377289040d14ec402b"
+    },
+    {
+      "path": "/workspace/work/audit-repo/视频/工具/环境/模型校验码.json",
+      "bytes": 603,
+      "sha256": "dfde6c065a3558b74923ce82865a3b01dae1f839af4456b74de55dc3ff492312"
+    },
+    {
+      "path": "/workspace/work/book49-source24-final-preparation-after-and-comma-20261115/text-validation-v1/mirror/视频/工具/配音/voice_mb.npy",
+      "bytes": 522368,
+      "sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8"
+    },
+    {
+      "path": "/workspace/work/source56-S11-bounded43753271259-actual-original/files/56-S11-bounded-original-breath-scalar.json",
+      "bytes": 482912,
+      "sha256": "ba6dd818800b1338b3e566a184c0682156ff8295d13677cf8e9abc6b95947fc6"
+    }
+  ]
+}
