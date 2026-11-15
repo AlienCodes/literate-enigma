@@ -1,0 +1,82 @@
+name: 书65仅S11原缓存呼吸窗只读标量
+on:
+  push:
+    branches: [codex/finish-05-and-summaries-20261112]
+    paths: ['.github/source56-S11-breath-cached-scalar/**', '.github/workflows/source56-S11-breath-cached-scalar.yml']
+permissions:
+  contents: read
+jobs:
+  only-S11-original-cached-scalar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github/source56-S11-breath-cached-scalar
+      - uses: actions/checkout@v4
+        with:
+          repository: alienalgorithm/postgraduate-vocabulary
+          ref: fc0b56af9a0ac0e97015548b756d4e51d66dc2ea
+          path: official-main
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /视频/工具/
+            /视频/配音缓存/*.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/cache/restore@v4
+        id: original-cache
+        with:
+          path: |
+            ${{ runner.temp }}/completion-machine
+            ~/asr
+          key: completion-05-machine-43294745262
+      - name: 既有原机器缓存必须命中
+        env:
+          CACHE_HIT: ${{ steps.original-cache.outputs.cache-hit }}
+        run: |
+          test "$CACHE_HIT" = true
+          test -f "$RUNNER_TEMP/completion-machine/tts/kokoro-v1.0.onnx"
+      - name: 安装原运行依赖
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg espeak-ng
+          python -m pip install --quiet -r official-main/视频/工具/环境/requirements.txt
+      - uses: actions/cache/restore@v4
+        id: selected-target-mothers
+        with:
+          path: |
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/13ae7e344fdf2409fd9e771216e7192076890acd.pkl
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/13ae7e344fdf2409fd9e771216e7192076890acd.pkl.单线程
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/9b367dbd8656c1be8d5167b0c639ad5fad2c794b.pkl
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/9b367dbd8656c1be8d5167b0c639ad5fad2c794b.pkl.单线程
+          key: Linux-native56-exact-S11-first-spoken-comma-43721094194
+      - uses: actions/cache/restore@v4
+        id: existing-original-S11-G36
+        with:
+          path: ${{ runner.temp }}/completion-machine/tts/source56-only-target-whole-original-math-cache/调平_22842078959011da4b6986b549453b7eafee80d9.json
+          key: Linux-native56-only-target-whole-original-math-43729197848
+      - name: 实际f188绑定，仅初始化独立W并作原S11只读标量
+        env:
+          S11_MOTHER_CACHE_HIT: ${{ steps.selected-target-mothers.outputs.cache-hit }}
+          S11_G36_CACHE_HIT: ${{ steps.existing-original-S11-G36.outputs.cache-hit }}
+          AUDIO_ONLY: '1'
+          STRICT_CACHE: '1'
+          XG_NOPUSH: '1'
+          XG_KEEP_REVIEWED_GAIN: '1'
+          XG_KEEP_REVIEWED_ENDING: '1'
+          XG_KEEP_REVIEWED_CUTS: '1'
+        run: >-
+          python -u .github/source56-S11-breath-cached-scalar/run_only_S11_breath_scalar.py
+          --actual-root-execution-adoption .github/source56-S11-breath-cached-scalar/root-S11-breath-execution-adoption.json
+          --actual-root-execution-adoption-sha256 f188560294cd4a373ed2bde7495d23639cf928b28aef329864d1106fd6986490
+      - name: 仅上传实际标量JSON
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: source56-only-S11-original-cached-breath-scalar
+          path: source56-only-S11-breath-public/*.json
+          retention-days: 30
+          if-no-files-found: error
