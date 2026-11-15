@@ -1,0 +1,137 @@
+{
+  "status": "actual-frozen41-WAV-and-record-positive-exact-sameFS-nested-add-and16-negative-rejections",
+  "actual_frozen_master_WAV": {
+    "path": "/workspace/work/review41-sourceQA/43723634020/actual-original-program-master-export/41-original-program-master-pre-video-AF.wav",
+    "bytes": 7391084,
+    "sha256": "d6d6a3e63a819ee552f3920b702f9da67a5a5ecae1a0899de76715237174f272"
+  },
+  "actual_original_export_evidence": {
+    "path": "/workspace/work/review41-sourceQA/43723634020/actual-original-program-master-export/41-original-program-master-export.json",
+    "bytes": 1606,
+    "sha256": "a42688d71f3ce688a8371dea1d585863ad447ff5a2ad7c6c020e81efc4448915"
+  },
+  "actual_native_status": {
+    "path": "/workspace/work/review41-sourceQA/43723634020/actual-original-program-master-export/41-status.json",
+    "bytes": 187048,
+    "sha256": "6cf951231c5f40016f917c8d79229b154cdf8a0a9d3f365f09140fb9f302eda6"
+  },
+  "actual_sourceQA_H": {
+    "path": "/workspace/work/review41-sourceQA/43723634020/archive-handoff.json",
+    "bytes": 48606,
+    "sha256": "cc6ac1b1fde58cd9b54dba8d00d0863a1579e9e38bd0b6d33dbf2ee5ece21555"
+  },
+  "actual_finalV3_H": {
+    "path": "/workspace/work/review41-finalV3/43723634020-normal18/archive-handoff.json",
+    "bytes": 64107,
+    "sha256": "aef997eb1826fcbf36472cf361392c681420c58cd15c8c39627779918618663f"
+  },
+  "strict_declared_WAV_paths": [
+    "/workspace/work/review41-sourceQA/43723634020/actual-original-program-master-export/41-original-program-master-pre-video-AF.wav"
+  ],
+  "sameFS_physical_positive": {
+    "same_inode_source_and_two_destinations": true,
+    "bytes": 7391084,
+    "SHA": "d6d6a3e63a819ee552f3920b702f9da67a5a5ecae1a0899de76715237174f272",
+    "new_media_bytes_copied": 0
+  },
+  "negative_cases": [
+    {
+      "name": "wrong-source",
+      "rejected": true,
+      "type": "AssertionError",
+      "reason": ""
+    },
+    {
+      "name": "wrong-book",
+      "rejected": true,
+      "type": "AssertionError",
+      "reason": ""
+    },
+    {
+      "name": "wrong-final-H-path",
+      "rejected": true,
+      "type": "AssertionError",
+      "reason": ""
+    },
+    {
+      "name": "wrong-WAV-SHA",
+      "rejected": true,
+      "type": "AssertionError",
+      "reason": ""
+    },
+    {
+      "name": "undeclared-private-cache-WAV-role",
+      "rejected": true,
+      "type": "AssertionError",
+      "reason": ""
+    },
+    {
+      "name": "not-exported",
+      "rejected": true,
+      "type": "AssertionError",
+      "reason": "native did not export this master"
+    },
+    {
+      "name": "evidence-not-written",
+      "rejected": true,
+      "type": "AssertionError",
+      "reason": "native did not export this master"
+    },
+    {
+      "name": "wrong-master-role",
+      "rejected": true,
+      "type": "AssertionError",
+      "reason": "wrong master role"
+    },
+    {
+      "name": "wrong-state-final-WAV-SHA",
+      "rejected": true,
+      "type": "AssertionError",
+      "reason": "master identity chain differs"
+    },
+    {
+      "name": "wrong-declared-format",
+      "rejected": true,
+      "type": "AssertionError",
+      "reason": ""
+    },
+    {
+      "name": "wrong-native-video-equals-new-normal-video",
+      "rejected": true,
+      "type": "AssertionError",
+      "reason": "master identity chain differs"
+    },
+    {
+      "name": "changed-original-export-evidence",
+      "rejected": true,
+      "type": "AssertionError",
+      "reason": "original evidence differs from actual native status"
+    },
+    {
+      "name": "actual-stereo-PCM-header",
+      "rejected": true,
+      "type": "ExportRejected",
+      "reason": "master-must-be-PCM16-mono-24000Hz"
+    },
+    {
+      "name": "samebytes-other-path-still-not-approved-role",
+      "rejected": true,
+      "type": "AssertionError",
+      "reason": ""
+    },
+    {
+      "name": "cross-FS-master-copy-fallback-forbidden",
+      "rejected": true,
+      "type": "AssertionError",
+      "reason": "Exact source41 public master requires same-filesystem hardlink"
+    },
+    {
+      "name": "all-other-unapproved-WAV-still-denied",
+      "rejected": true,
+      "type": "AssertionError",
+      "reason": ""
+    }
+  ],
+  "all_original_native_quality_and_QA_and_CAS_functions_unchanged": true,
+  "collector_main_or_install_or_remote_write_or_new_audio_execution": false
+}
