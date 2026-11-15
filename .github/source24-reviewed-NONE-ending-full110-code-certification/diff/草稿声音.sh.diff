@@ -1,0 +1,18 @@
+--- pinned/草稿声音.sh
++++ candidate/草稿声音.sh
+@@ -8,7 +8,14 @@
+ export OLD_IV_VOID=1
+ # 已定过结尾句语速的（20 前段 0.96，A27）照原语速重找接点，不改回默认值
+ ea=$(python3 -c "import json;e=list(json.load(open('scripts/$no.json')).get('结尾句',{}).values());e=e[0] if e else {};ks=('前段语速','最后一段语速','最后一段前停顿');print(*(e[k] for k in ks) if all(k in e for k in ks) else '')")
+-python3 $T/结尾句接点.py $no $ea --写入 2>&1 | grep -E "接点样本|停止|没有句中标点" | cut -c1-160
++# 修订重制只验证并保留已有已审接点；坏点原门停止，不用自动新点替代。
++if [ "${XG_KEEP_REVIEWED_ENDING:-0}" = "1" ]; then
++    python3 $T/结尾句接点.py $no $ea --写入 --保持已审接点 2>&1 | grep -E "接点样本|保持已审|停止|没有句中标点" | cut -c1-160
++    ending_rc=${PIPESTATUS[0]}
++    if [ "$ending_rc" -ne 0 ]; then exit "$ending_rc"; fi
++else
++    python3 $T/结尾句接点.py $no $ea --写入 2>&1 | grep -E "接点样本|停止|没有句中标点" | cut -c1-160
++fi
+ for i in 1 2 3; do bash $T/快速重建核查.sh $no >/dev/null 2>&1; python3 $T/区间作废.py $no 2>&1 | grep -v "没有读音"; python3 $T/疑点清单.py $no >/dev/null 2>&1; python3 $T/自动切点.py $no --写入 2>&1 | grep -E "^$no 疑点|停止"; done
+ python3 $T/词尾辅音核对.py $no --写入 2>&1 | grep -E "写入|问题数" | tail -3
+ gain_args=(--写入); gain_filter="写入|停止"
