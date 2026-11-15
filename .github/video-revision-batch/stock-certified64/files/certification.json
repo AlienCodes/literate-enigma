@@ -1,148 +1,29 @@
 {
-  "variant": "case-consistent-producer",
+  "variant": "original",
   "passed": true,
   "production_audio_or_video_acceptance": false,
   "official_main_commit": "fc0b56af9a0ac0e97015548b756d4e51d66dc2ea",
-  "stage": "independent-core-certification-passed",
+  "stage": "source64-stock323d-renderer-only-original-fullquick-code-certified-not-article-quality",
   "overlay_manifest": {
+    "kind": "source64-book63-stock-maker-plus-explicit-renderer-only-codecert-proposal",
     "base_repository": "alienalgorithm/postgraduate-vocabulary",
     "immutable_main_HEAD": "fc0b56af9a0ac0e97015548b756d4e51d66dc2ea",
-    "mode_environment": {
-      "XG_KEEP_REVIEWED_GAIN": "1"
-    },
-    "CLI": "--保持已审增益",
-    "default_unchanged": true,
+    "default_audio_programs_unchanged": true,
+    "mode_environment": {},
     "files": [
       {
-        "path": "视频/工具/make_video.py",
-        "main_SHA256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
-        "patch_SHA256": "23d886be9cf999eabc682159e1ab2fc2cf6c4ccb0597f32d60d5e90a34606c0e",
-        "baseline_certified_six_SHA256": "6945e9bee6db143029bace6c04b4f4df7110c41ba647eee7236b0d0e5ed75203",
-        "scope": "explicit selected spoken-comma dataflow only; default behavior and all existing numeric predicates/thresholds retained"
-      },
-      {
-        "path": "视频/工具/停顿位置精确核对.py",
-        "main_SHA256": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
-        "patch_SHA256": "1c94b0b10a246ed85d380b3a744dc8398f0880de41f27139c49bf3700d378e64",
-        "baseline_certified_six_SHA256": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
-        "scope": "explicit selected spoken-comma dataflow only; default behavior and all existing numeric predicates/thresholds retained"
-      },
-      {
-        "path": "视频/工具/句内响度.py",
-        "main_SHA256": "58735b7173a3c03efa61fb300b4aed4039c164fa970e0593a40bae2a3f3cbd27",
-        "patch_SHA256": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea",
-        "baseline_certified_six_SHA256": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea",
-        "scope": "keep reviewed source gain; original measurement and quality checks retained"
-      },
-      {
-        "path": "视频/工具/可闻声保全核对.py",
-        "main_SHA256": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
-        "patch_SHA256": "61a08806ca4c4470c94e0e137c506b052e9fe2ae9ef616015ce0717c83197ec9",
-        "baseline_certified_six_SHA256": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
-        "scope": "explicit selected spoken-comma dataflow only; default behavior and all existing numeric predicates/thresholds retained"
-      },
-      {
-        "path": "视频/工具/成片时刻对照.py",
-        "main_SHA256": "1d691022b6344a3af22fe21eb30d200f9513c6c157b6c3de3e733152d77f975e",
-        "patch_SHA256": "eae00519354ba18311c2de4be12c5748521c41c2405480f5f8869603c38c9a6d",
-        "baseline_certified_six_SHA256": "1d691022b6344a3af22fe21eb30d200f9513c6c157b6c3de3e733152d77f975e",
-        "scope": "explicit selected spoken-comma dataflow only; default behavior and all existing numeric predicates/thresholds retained"
-      },
-      {
-        "path": "视频/工具/新管/快测.py",
-        "main_SHA256": "0ee9f05daaa719521ef2503630c25fe198630533ddd71502cff50da7da1c16b1",
-        "patch_SHA256": "2f2c2e4c50cd9268129b751094fa01b49b3dc7ea153b26720eca4bbba9befe7f",
-        "baseline_certified_six_SHA256": "0ee9f05daaa719521ef2503630c25fe198630533ddd71502cff50da7da1c16b1",
-        "scope": "explicit selected spoken-comma dataflow only; default behavior and all existing numeric predicates/thresholds retained"
-      },
-      {
-        "path": "视频/工具/无标点停顿核对.py",
-        "main_SHA256": "77e8907f9b3e9f5337803f76dc9996d2cd7f4aa39f505ca0b9dced60a70440cd",
-        "patch_SHA256": "6d2a6c9d084ee7b2ac8bfe4e585e88116173cb3b8607091ef6808eb2e8cafb84",
-        "baseline_certified_six_SHA256": "77e8907f9b3e9f5337803f76dc9996d2cd7f4aa39f505ca0b9dced60a70440cd",
-        "scope": "explicit selected spoken-comma dataflow only; default behavior and all existing numeric predicates/thresholds retained"
-      },
-      {
-        "path": "视频/工具/标点停顿核对.py",
-        "main_SHA256": "eb9903c624e312647b2618fab972e05f0c64ade858bd71f244efbe4807961b71",
-        "patch_SHA256": "e957ea3cd5ff899de55bdc8eaabd75b553dedf7945ec376c0e6dbd8e2d377883",
-        "baseline_certified_six_SHA256": "eb9903c624e312647b2618fab972e05f0c64ade858bd71f244efbe4807961b71",
-        "scope": "explicit selected spoken-comma dataflow only; default behavior and all existing numeric predicates/thresholds retained"
-      },
-      {
-        "path": "视频/工具/独立复核/labels.py",
-        "main_SHA256": "9dc510ac2d7f5ed3f0d5b666c10eea92f2f22c14a9e5681739b87cb376571c2d",
-        "patch_SHA256": "9ec0bc9bd65989d4fa6038c568aed9478145aafa933927b8a331e4ea6d25c3fd",
-        "baseline_certified_six_SHA256": "9dc510ac2d7f5ed3f0d5b666c10eea92f2f22c14a9e5681739b87cb376571c2d",
-        "scope": "explicit selected spoken-comma dataflow only; default behavior and all existing numeric predicates/thresholds retained"
-      },
-      {
-        "path": "视频/工具/独立复核/synth.py",
-        "main_SHA256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
-        "patch_SHA256": "499f74e365e7a7d38411c63fd89ce3cbadcc9c1c0f2670fc869ab873ec79d92f",
-        "baseline_certified_six_SHA256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
-        "scope": "explicit selected spoken-comma dataflow only; default behavior and all existing numeric predicates/thresholds retained"
-      },
-      {
-        "path": "视频/工具/疑点清单.py",
-        "main_SHA256": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea",
-        "patch_SHA256": "a3b7604fbcbdd31fecd0b548382426e70ddab810fc923ff895027c084f30eab2",
-        "baseline_certified_six_SHA256": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea",
-        "scope": "explicit selected spoken-comma dataflow only; default behavior and all existing numeric predicates/thresholds retained"
-      },
-      {
-        "path": "视频/工具/结尾句接点.py",
-        "main_SHA256": "15303682c605dd4544172c92d42c016d8d0536e0c6d1f9816d0d38dd5d2b9a61",
-        "patch_SHA256": "1a5d43c4f5483014b69bbea7ad43dddb0333a9a80e29bb2b4c8029d8915ff798",
-        "baseline_certified_six_SHA256": "1a5d43c4f5483014b69bbea7ad43dddb0333a9a80e29bb2b4c8029d8915ff798",
-        "scope": "validate existing ending entry with original producer guard then keep it; bad points fail, missing points use original algorithm; default unchanged"
-      },
-      {
-        "path": "视频/工具/草稿声音.sh",
-        "main_SHA256": "0ce3277812cf16ed30438509b6dc97db0c26725db4c5db5d9b058c3ef6531aa2",
-        "patch_SHA256": "43fc6a1acdae6bb1c2252178bf034407400bbbe92eb1752053f3047da9760491",
-        "baseline_certified_six_SHA256": "43fc6a1acdae6bb1c2252178bf034407400bbbe92eb1752053f3047da9760491",
-        "scope": "explicit revision flags keep reviewed gain, existing valid ending and reviewed physical cuts; automatic cuts still measured/proposed without --写入 in CUTS=1 mode; default full JSON/PCM/AAC exact to prior5; all original later quality checks retained"
-      },
-      {
-        "path": "视频/工具/词尾实测.py",
-        "main_SHA256": "7cb71c5b4e60e5391bff7ba2843f553548e074a3ac7b71965bc62f2836817ad4",
-        "patch_SHA256": "87a05bebdc0cd5c50ce9fe3c7e9376498731fd077f6778e86a7aed1e5a90e4c9",
-        "baseline_certified_six_SHA256": "7cb71c5b4e60e5391bff7ba2843f553548e074a3ac7b71965bc62f2836817ad4",
-        "scope": "explicit selected spoken-comma dataflow only; default behavior and all existing numeric predicates/thresholds retained"
-      },
-      {
-        "path": "视频/工具/词尾辅音核对.py",
-        "main_SHA256": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
-        "patch_SHA256": "e64ed781a2e27991e3ff8aa97e41e1cc1bc09515a4f61cbc943fec27e0e41508",
-        "baseline_certified_six_SHA256": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
-        "scope": "explicit selected spoken-comma dataflow only; default behavior and all existing numeric predicates/thresholds retained"
-      },
-      {
-        "path": "视频/工具/读音核对.py",
-        "main_SHA256": "0a3b97e1179e47c0593f69286f4206eecc123cc7ec5d5adf4f5e62457c228a41",
-        "patch_SHA256": "a32bee516f108594f28bda2a3566754e383f27fd78d5a0121e58fb5d49a84428",
-        "baseline_certified_six_SHA256": "50f4363bb2fc2930be59904cdccfa44fd46f14393a0385c7846028ee25b4e84c",
-        "scope": "explicit selected spoken-comma dataflow only; default behavior and all existing numeric predicates/thresholds retained"
-      },
-      {
-        "path": "视频/工具/高亮同步核对.py",
-        "main_SHA256": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
-        "patch_SHA256": "0041d8ef2f9d4a231c437d3b49cfcaa556ecd4a760b45c79ccf4abc6a7d02e0d",
-        "baseline_certified_six_SHA256": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
-        "scope": "explicit selected spoken-comma dataflow only; default behavior and all existing numeric predicates/thresholds retained"
+        "path": "视频/工具/render.py",
+        "main_SHA256": "477a516f7100ac05dab15d3b176e2d8c49779aa4bd8713087b737f4d25833b67",
+        "patch_SHA256": "323d8440d89659783cdc36615c5fa84069a51dfff33a8b1a3cf3f83002b58122",
+        "scope": "Explicit boolTrue normal-column link opt-in only; unchanged original link primitive; no audio, measurements or font/glyph changes."
       }
     ],
-    "final_integrated_program_count": 17,
-    "first_two_gain_program_SHAs_unchanged": true,
-    "scope": "Actual prior certified CUTS5 core plus one producer dispatch flag fix. No dictionary, thresholds, golden audio or current source edits.",
-    "kind": "root-approved-exact-selected-spoken-comma-seventeen-runtime-real-certification",
-    "root_decision_sha256": "4cd83eb2ca61ee5fcf675c650f10acaef3a7dcdd296c25894f0aaa4a216050c3",
-    "source_contract_sha256": "ad0f3eadfc433777efe75c2ec549197432193ecd1da1ae05017d53bd80f0cd92",
-    "all_existing_numeric_audit_and_sound_thresholds_unchanged": true,
-    "new_true_original_full_fastcheck_and_stamp_required": true,
-    "root_actual_three_caller_binding_fix_sha256": "7be5481496335175168168af33038fab03f0cf49c0f0f1c673882e302725e6d5"
+    "unchanged_stock_maker_SHA256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+    "actual_program_count_from_original_stamp_function": 110,
+    "true_original_full_fastcheck_and_fresh_matching_stamp_required": true
   },
+  "actual_source64_renderer_code_adoption_SHA256": "f0afb38dcbded114957bdaa08952ea1de74adabb09cac3672eeb2e8b66091527",
+  "actual_source64_stock_profile_no_KEEP_flags_and_no_target_audio_rerun": true,
   "actual_dependency_observations": {
     "formal_cache_map_present": true,
     "formal_cache_map_SHA256": "91ccecd61ade5284de72f27235c82df3fdff6350576abfac02d2e0db0f346a9a",
@@ -404,116 +285,32 @@
     {
       "name": "current24-positive",
       "exit": 0,
-      "seconds": 0.07,
+      "seconds": 0.05,
       "log_SHA256": "7cd565ff445526786b21ba9d4bea8809947abe15d05525dbffa0ca9a765bcdcf"
     },
     {
       "name": "canonical-module-copy",
       "exit": 0,
-      "seconds": 0.55,
+      "seconds": 0.1,
       "log_SHA256": "cf7fb1d94f674135fa89934bb399789885d339f95ddedd413e9c3296ac852013"
     },
     {
-      "name": "new-dispatch-real-native-tests",
+      "name": "new-renderer-original-AB-static-controls",
       "exit": 0,
-      "seconds": 3.59,
-      "log_SHA256": "06b5ef5840ca393f52e31e6dd0798ec6a5b4d7f16d3fda1cd46cf5420e5e4daa"
-    },
-    {
-      "name": "new-cuts-mode-real-tests",
-      "exit": 0,
-      "seconds": 285.08,
-      "log_SHA256": "2874ba9852e8e82e4c888b1646cec708ec3ae482a09c9f88d4c90ab813d7715a"
-    },
-    {
-      "name": "new-pronunciation-selftest-real-tests",
-      "exit": 0,
-      "seconds": 13.66,
-      "log_SHA256": "b4fac55c9f86924b858e897570578ec503ac917706207d4ca202059fd77bc05d"
-    },
-    {
-      "name": "new-ending-mode-real-tests",
-      "exit": 0,
-      "seconds": 19.17,
-      "log_SHA256": "d345084c9606f521d1b91754f7891b4067ab8a31f8908150d2a09e84378362da"
+      "seconds": 5.39,
+      "log_SHA256": "4e87ce980b5c5fe51d0f11adc5678d950e0fd298bff735f55dee217cecfdaefd"
     },
     {
       "name": "original-full-fastcheck",
       "exit": 0,
-      "seconds": 478.33,
-      "log_SHA256": "82422628d628273e250396d8a1796a3aae0604dcbfd5a95dd90c143407810e77"
+      "seconds": 289.3,
+      "log_SHA256": "efa515c7ce179e708b0e203072e898f9034ef6b4ac74b5ff60749506979d9acb"
     },
     {
       "name": "real-stamp-validation",
       "exit": 0,
-      "seconds": 0.04,
+      "seconds": 0.03,
       "log_SHA256": "2b9ce913f6ca4e065681ca4d7870d6dc65329fee7c004e28680dfc0e9e41fabe"
-    },
-    {
-      "name": "new-mode-functional-tests",
-      "exit": 0,
-      "seconds": 4.04,
-      "log_SHA256": "d3fd58142c118be893a88051b4aaf2d77ded2afbff0a44d1d30659bc95ed8c9f"
-    },
-    {
-      "name": "real10-cached-audio",
-      "exit": 0,
-      "seconds": 6.61,
-      "log_SHA256": "3f43c97afe3d5e30429d51b3420070837060673d713e11db02a8762bf4981f52"
-    },
-    {
-      "name": "real10-readonly-measurement",
-      "exit": 0,
-      "seconds": 4.64,
-      "log_SHA256": "25f7b045a453fff9340e4b7fbe32b22f2417a922bb27c563929825b02833cfe6"
-    },
-    {
-      "name": "real10-unchanged-loudness-gate",
-      "exit": 1,
-      "seconds": 0.47,
-      "log_SHA256": "8096f438ae26ec9f04c71d1ac87481413788b41e3766194aac34dd24e662e7f5"
-    },
-    {
-      "name": "real11-cached-audio",
-      "exit": 0,
-      "seconds": 6.68,
-      "log_SHA256": "9cc0987b261bedc5f75bbfc9569a07c834149342c78a8b0656313ae325371e9f"
-    },
-    {
-      "name": "real11-readonly-measurement",
-      "exit": 0,
-      "seconds": 4.8,
-      "log_SHA256": "c98706355baf24bd3ed66281c0168b6514731634047b00c2123a2b928884d520"
-    },
-    {
-      "name": "real11-unchanged-loudness-gate",
-      "exit": 1,
-      "seconds": 0.47,
-      "log_SHA256": "fea83c5bc82405da9b008cfbda469cd3dd1fecdc8fdd589462fa00da2cd37284"
-    },
-    {
-      "name": "real12-cached-audio",
-      "exit": 0,
-      "seconds": 6.65,
-      "log_SHA256": "5e6a1e614a609d245ccbc74517eeb4c8080463f87de269a52637c251d7f1325e"
-    },
-    {
-      "name": "real12-readonly-measurement",
-      "exit": 0,
-      "seconds": 4.87,
-      "log_SHA256": "69779ef072e5f48d1806b412dc726fb918d957f76ed0ccd55dc65d199c9cad45"
-    },
-    {
-      "name": "real12-unchanged-loudness-gate",
-      "exit": 1,
-      "seconds": 0.49,
-      "log_SHA256": "48775bde26adb3edc82bcd77ac81d757595f284cbecfbb4d89db128c2d4a889f"
-    },
-    {
-      "name": "prepare-three-exact-spoken-comma-mothers-and-real-timing",
-      "exit": 0,
-      "seconds": 3.45,
-      "log_SHA256": "df4d0886db929e81498b0f132676eb9fa27ca904808c514dcf678d7ed20bcbbc"
     }
   ],
   "historical_fixture_provenance": {
@@ -633,61 +430,12 @@
     "candidate_record_baseline_flag_used": false
   },
   "actual_core_SHA256": {
-    "视频/工具/make_video.py": "23d886be9cf999eabc682159e1ab2fc2cf6c4ccb0597f32d60d5e90a34606c0e",
-    "视频/工具/停顿位置精确核对.py": "1c94b0b10a246ed85d380b3a744dc8398f0880de41f27139c49bf3700d378e64",
-    "视频/工具/句内响度.py": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea",
-    "视频/工具/可闻声保全核对.py": "61a08806ca4c4470c94e0e137c506b052e9fe2ae9ef616015ce0717c83197ec9",
-    "视频/工具/成片时刻对照.py": "eae00519354ba18311c2de4be12c5748521c41c2405480f5f8869603c38c9a6d",
-    "视频/工具/新管/快测.py": "2f2c2e4c50cd9268129b751094fa01b49b3dc7ea153b26720eca4bbba9befe7f",
-    "视频/工具/无标点停顿核对.py": "6d2a6c9d084ee7b2ac8bfe4e585e88116173cb3b8607091ef6808eb2e8cafb84",
-    "视频/工具/标点停顿核对.py": "e957ea3cd5ff899de55bdc8eaabd75b553dedf7945ec376c0e6dbd8e2d377883",
-    "视频/工具/独立复核/labels.py": "9ec0bc9bd65989d4fa6038c568aed9478145aafa933927b8a331e4ea6d25c3fd",
-    "视频/工具/独立复核/synth.py": "499f74e365e7a7d38411c63fd89ce3cbadcc9c1c0f2670fc869ab873ec79d92f",
-    "视频/工具/疑点清单.py": "a3b7604fbcbdd31fecd0b548382426e70ddab810fc923ff895027c084f30eab2",
-    "视频/工具/结尾句接点.py": "1a5d43c4f5483014b69bbea7ad43dddb0333a9a80e29bb2b4c8029d8915ff798",
-    "视频/工具/草稿声音.sh": "43fc6a1acdae6bb1c2252178bf034407400bbbe92eb1752053f3047da9760491",
-    "视频/工具/词尾实测.py": "87a05bebdc0cd5c50ce9fe3c7e9376498731fd077f6778e86a7aed1e5a90e4c9",
-    "视频/工具/词尾辅音核对.py": "e64ed781a2e27991e3ff8aa97e41e1cc1bc09515a4f61cbc943fec27e0e41508",
-    "视频/工具/读音核对.py": "a32bee516f108594f28bda2a3566754e383f27fd78d5a0121e58fb5d49a84428",
-    "视频/工具/高亮同步核对.py": "0041d8ef2f9d4a231c437d3b49cfcaa556ecd4a760b45c79ccf4abc6a7d02e0d"
+    "视频/工具/render.py": "323d8440d89659783cdc36615c5fa84069a51dfff33a8b1a3cf3f83002b58122"
   },
-  "fresh_reference_27_temporary_files_removed": [],
-  "unchanged_independent_audit_SHA256": "bfe12dab6bec96c9b765faea286ae30a067589f6c5ef78461b21d12b955f1e22",
-  "fresh_reference_is_original_raw_cache_not_processed_PCM": true,
+  "all110_actual_programs_match_stock_except_adopted_renderer": true,
+  "prior_stamp_historical_not_reused_SHA256": "b0164aef43907addc76326f4960dbf740f30cef94ab83ab5da6f9c7cf6a8877e",
   "original_full_fastcheck_passed": true,
-  "real_fastcheck_stamp_SHA256": "3c251c77fb58b775ae1389a52ce31467686201ba98b842af545f2923357a6c32",
-  "real_cached_source_measurements": [
-    {
-      "article": "10",
-      "actual_frozen_request_source_SHA256": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
-      "actual_cached_audio_PCM_file_SHA256": "394320a6392c001f2588adc922053d089b85329abfb5e369cacc20fb67bd8caf",
-      "source_JSON_and_approved_gain_byte_exact_after_measurement": true,
-      "actual_audio_file_byte_exact_after_measurement": true,
-      "original_loudness_gate_exit": 1,
-      "article_audio_quality_rejected": true,
-      "article_audio_or_video_acceptance": false
-    },
-    {
-      "article": "11",
-      "actual_frozen_request_source_SHA256": "665cbb80cc70b700ecc0cc5813209fd100ad4fa8f0eead3929b9e53778d9d07f",
-      "actual_cached_audio_PCM_file_SHA256": "28f545b4a90fadf05c4f94238e4ca0b867236902da08da6b25bb0e54583169aa",
-      "source_JSON_and_approved_gain_byte_exact_after_measurement": true,
-      "actual_audio_file_byte_exact_after_measurement": true,
-      "original_loudness_gate_exit": 1,
-      "article_audio_quality_rejected": true,
-      "article_audio_or_video_acceptance": false
-    },
-    {
-      "article": "12",
-      "actual_frozen_request_source_SHA256": "e3bfbcce6f1a8e14cfe451d656574353321e297c90c62f5a7b422f37478311d5",
-      "actual_cached_audio_PCM_file_SHA256": "4f6778860d7a9fb3cb577d0730b4f8efebe30920becde1663b2b4ea42b57bded",
-      "source_JSON_and_approved_gain_byte_exact_after_measurement": true,
-      "actual_audio_file_byte_exact_after_measurement": true,
-      "original_loudness_gate_exit": 1,
-      "article_audio_quality_rejected": true,
-      "article_audio_or_video_acceptance": false
-    }
-  ],
-  "three_exact_spoken_sentences_reference_cache_prepared_not_article_quality_accepted": true,
-  "native16_cache_preparation_not_repeated_existing_separate_certificate_preserved": true
+  "new_original_stock110_stamp_created_after_fullquick_for_exact_renderer": true,
+  "gain_mode_specific_conditional_tests_not_applicable_stock_original_variant": true,
+  "real_fastcheck_stamp_SHA256": "b61e7f0fbd159ec239b93cb521b723dd564e06008428482a0966ec5684be5960"
 }
