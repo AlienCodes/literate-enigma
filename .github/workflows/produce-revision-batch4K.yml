@@ -129,23 +129,23 @@ jobs:
           STAMP_HIT: ${{ steps.fastcheck-cache.outputs.cache-hit }}
         run: test "$STAMP_HIT" = true
       - uses: actions/cache/restore@v4
-        id: exact-source24-S18-mothers
+        id: exact-source23-S13-mothers
         with:
           path: |
-            ${{ runner.temp }}/completion-machine/tts/cache_tts/6ad3a3b41ce97d4b86f5bcd2cf23d997a661b81b.pkl
-            ${{ runner.temp }}/completion-machine/tts/cache_tts/6ad3a3b41ce97d4b86f5bcd2cf23d997a661b81b.pkl.单线程
-            ${{ runner.temp }}/completion-machine/tts/cache_tts/a89de4f946c6cfc5c23a98384b5f48a5e659038b.pkl
-            ${{ runner.temp }}/completion-machine/tts/cache_tts/a89de4f946c6cfc5c23a98384b5f48a5e659038b.pkl.单线程
-          key: Linux-native24-exact-S18-first-spoken-comma-43702270266
-      - name: 真实保存的S18四叶缓存必须命中且逐SHA不变
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/53c8e23363dba474e1a5730ae0a13cdeb3396680.pkl
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/53c8e23363dba474e1a5730ae0a13cdeb3396680.pkl.单线程
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/85ef408c26a8eeef9bcebec5f03b9fad556bc261.pkl
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/85ef408c26a8eeef9bcebec5f03b9fad556bc261.pkl.单线程
+          key: Linux-native23-exact-S13-first-spoken-comma-43721118485
+      - name: 真实保存的S13四叶缓存必须命中且逐SHA不变
         env:
-          CACHE_HIT: ${{ steps.exact-source24-S18-mothers.outputs.cache-hit }}
+          CACHE_HIT: ${{ steps.exact-source23-S13-mothers.outputs.cache-hit }}
         run: |
           test "$CACHE_HIT" = true
           python - <<'PY'
           import os,json,hashlib
           from pathlib import Path
-          x=json.loads(Path('.github/video-revision-batch/actual-source24-S18-four-private-leaf-identity.json').read_text())
+          x=json.loads(Path('.github/video-revision-batch/actual-source23-S13-four-private-leaf-identity.json').read_text())
           c=Path(os.environ['RUNNER_TEMP'])/'completion-machine/tts/cache_tts'
           assert len(x['actual_four_private_files'])==4
           assert all(hashlib.sha256((c/n).read_bytes()).hexdigest()==s for n,s in x['actual_four_private_files'].items())
