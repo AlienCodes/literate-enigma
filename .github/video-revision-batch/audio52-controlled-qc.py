@@ -59,7 +59,7 @@ def actual_nonreview_binding(actual,requested,p):
  core={k:v for k,v in current.items()if k not in p['review_only_top_level_keys']};valid=canonical(core)==p['approved_nonreview_document_sha256']
  return valid,{'original_pending_consent_consumed':moved,'exact_original_pending_history_move':bool(moved),'exact_observed_G35_note_paths_normalized':normalized,'all_other_nonreview_data_exact':valid}
 
-def evidence_valid(e,p):
+def legacy_evidence_valid(e,p):
  if not(e.get('passed')is True and e.get('diagnostic_only')is True and e.get('formal_audio_or_video_accepted')is False and e.get('new_model_inference')is False):return False
  case=next((x for x in e['cases']if str(x['source_id'])==p['article']),None)
  if not case:return False
@@ -71,6 +71,38 @@ def evidence_valid(e,p):
  for sid in p['approved_gain_only_sentences']:
   if not(b['sentence_pre_master_records'][sid]['before_gain_float32_SHA256']==c['sentence_pre_master_records'][sid]['before_gain_float32_SHA256']==p['gain_only_pre_gain_identity'][sid]):return False
  return canonical(c['actual_segment_record'])==p['approved_producer_segments_sha256']
+
+def evidence_valid(e,p):
+ if p['article']!='52' or 'bridge_selected_whole_file'not in p:return legacy_evidence_valid(e,p)
+ def pinned(file_key,hash_key):
+  path=HERE/p[file_key]
+  if sha(path)!=p[hash_key]:raise ValueError('Exact52 stage evidence bytes changed: '+file_key)
+  return json.loads(path.read_text())
+ old=pinned('bridge_stage0_original_profile_file','bridge_stage0_original_profile_SHA256')
+ if not legacy_evidence_valid(e,old):return False
+ n=pinned('bridge_selected_whole_file','bridge_selected_whole_SHA256');v=pinned('bridge_two_NV_reference_file','bridge_two_NV_reference_SHA256');edge=pinned('bridge_selected_edge_file','bridge_selected_edge_SHA256')
+ physical=pinned('bridge_physical_source_file','bridge_physical_source_SHA256');stage0=pinned('bridge_stage0_request_file','bridge_stage0_request_SHA256')
+ if not(n.get('completed')is True and n.get('diagnostic_only')is True and n.get('formal_audio_or_video_accepted')is False and n.get('production_delivery_eligible')is False and n.get('whole_build_count')==1 and n.get('baseline_rebuilt')is False and n.get('new_model_inference')is False and n.get('new_G36_math_or_cache')is False and n.get('production_source_or_CF_written')is False):return False
+ if not(n['program_SHA256']=='ab05e41a86a0fe191a4efb26c9aab85fbc0db732bf0da8ee627f63437dd0cd0a'and n['reference_SHA256']=='294572fb87cb35e6de21c2603059bf68f9b004a9bdb2f3101cee9e725dbfdc65'and n['actual_private_candidate_source_SHA256']==p['bridge_physical_source_SHA256']):return False
+ if not(n['all_private_cache_stats_and_keys_unchanged']and n['all_models_byte_exact_after']and n['all_input_and_tools_byte_exact_after']and n['original_Q8_R_withinR']['completed']and n['original_Q8_R_withinR']['all_passed']):return False
+ if not(n['actual_PV_total_scan_count']==n['actual_PV_unconfirmed_count']==19 and n['known_historical_float_differences']==['S3','S5','S6']):return False
+ if not(n['whole_RAW']['SHA256']==p['fingerprints']['actual_raw_WAV_sha256']and n['whole_AAC']['ADTS_SHA256']==p['fingerprints']['canonical_AAC_ADTS_sha256']and n['whole_RAW']['md5_first12']==p['exact_selected_final_whole_fp']and n['whole_AAC']['packet_count']==p['exact_selected_final_AAC_packet_count']):return False
+ if not(n['actual_master_pre_peak']==.8474143147468567 and p['actual_master_multiplier_before']==p['actual_master_multiplier_after']==old['actual_master_multiplier_after']):return False
+ if canonical(n['actual_segment_clock'])!=p['approved_producer_segments_sha256']:return False
+ if not(n['title_and_S1_S17_pre_master_exact_to_explicit_original_producer_phase']and n['all_S1_S17_before_gain_clip_tmap_rawfp_and_effective_gains_exact_to_555']and len(n['S1_S17_actual_quantized_sentence_proof'])==17):return False
+ last=v['cases'][-1]
+ for sid in [f'S{k}'for k in range(1,18)]:
+  x=n['S1_S17_actual_quantized_sentence_proof'][sid]
+  if not(x['equals_actual555_final_case']and x['quantized_float64_SHA256']==last['old_to_current_actual_sentence_PCM_identity'][sid]['new_quantized_float64_sha256']and n['actual_segment_clock'][sid]==last['actual_segment_clock'][sid]):return False
+ selected=next(x for x in edge['cases']if x['stage']=='conservative_first_zero')
+ if not(n['sentence_records']['S18']['pre_master_float32_SHA256']==n['sentence_records']['S18']['before_gain_float32_SHA256']==selected['processed_float32_sha256']=='01047eb79caeac42caa17a23d1c03d0c38c37bfc26711fa370760f3de8ff20ab'and n['sentence_records']['S18']['samples']==selected['processed_samples']==129240 and selected['disputed_2p710_to2p7125_original_peak_final_processed_samples_exact']):return False
+ nv={'S4':[[4.985,5.2185,'紧贴词头']],'S18':[[2.7125,3.015,'紧贴词尾']]};want=copy.deepcopy(stage0)
+ for sid in nv:want.setdefault('非人声区间',{})[sid]=nv[sid];want.setdefault('区间声音指纹',{})[sid]=p['selected_newmother_NV_pins'][sid]
+ if physical!=want or n['actual_candidate_NV']!=nv:return False
+ if p['approved_audio_controls']!={k:physical.get(k)for k in old['approved_audio_controls']}:return False
+ if canonical({k:v for k,v in physical.items()if k not in p['review_only_top_level_keys']})!=p['approved_nonreview_document_sha256']:return False
+ if not(p['fingerprints']['accepted_video_sha256']==old['fingerprints']['accepted_video_sha256']and p['fingerprints']['accepted_AAC_ADTS_sha256']==old['fingerprints']['accepted_AAC_ADTS_sha256']):return False
+ return True
 
 def runtime_mutation_tests(actual,p,fp,raw_bytes,decoded):
  wrong=copy.deepcopy(actual);sid=p['approved_gain_only_sentences'][0];piece=next(iter(wrong['分段增益dB'][sid]));wrong['分段增益dB'][sid][piece]=0.
@@ -99,7 +131,7 @@ def audit(args):
    if label=='actual':valid,meta=actual_nonreview_binding(actual,requested,p);add(label+'-entire-source-except-original-review-and-exact-mechanical-metadata',valid,**meta)
    else:add(label+'-entire-nonreview-source',canonical({k:v for k,v in data.items()if k not in p['review_only_top_level_keys']})==p['approved_nonreview_document_sha256'])
    add(label+'-only-exact-approved-spoken-and-gain-controls',control_valid(data,p));add(label+'-all-display-spoken-English-words-preserved',canonical(spoken(data))==p['spoken_title_and_sentences_sha256'])
-   if no=='52':add(label+'-new-S18-no-ENDING-no-stale-intervals',not data.get('结尾句',{}).get('S18')and not data.get('停顿插入点',{}).get('S18')and not data.get('非人声区间',{}).get('S18'))
+   if no=='52':add(label+'-new-S18-no-ENDING-and-only-selected-measured-NV',not data.get('结尾句',{}).get('S18')and not data.get('停顿插入点',{}).get('S18')and data.get('非人声区间',{}).get('S18')==[[2.7125,3.015,'紧贴词尾']]and{sid:data.get('区间声音指纹',{}).get(sid)for sid in ['S4','S18']}==p['selected_newmother_NV_pins'])
   if not all(x['passed']for x in checks):raise ValueError('Exact new-source/raw/AAC or actual voice-scope identity failed.')
   if not args.diagnostic:
    statuspath=Path(args.official_status or output.parent/f'{no}-status.json');status=json.loads(statuspath.read_text());passed=status.get('canonical_pipeline_passed')is True and status.get('canonical_video_sha256')==fp['canonical_video_sha256']and status.get('canonical_aac_adts_sha256')==fp['canonical_AAC_ADTS_sha256']and status.get('final_wav_sha256')==fp['actual_raw_WAV_sha256'];add('unchanged-full-native-pipeline-all-gates-already-really-passed',passed,status_file_sha256=sha(statuspath),original_two_ASR_and_full_gates_not_replaced=True)

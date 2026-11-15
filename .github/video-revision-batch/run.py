@@ -17,7 +17,7 @@ TASK = ROOT / '.github/video-revision-batch'
 NO = os.environ.get('ARTICLE_NO', '12').zfill(2)
 ALLOWED = {f'{n:02d}' for n in range(1, 71)}
 A21_AUDIO_REPAIRS = {'15', '17', '18', '30'}
-CONTROLLED_AUDIO_REPAIRS = {'05', '67', '43'}
+CONTROLLED_AUDIO_REPAIRS = {'05', '67', '52'}
 APPROVED_AUDIO_REPAIRS = {'10', '12', '44', '51'} | A21_AUDIO_REPAIRS | CONTROLLED_AUDIO_REPAIRS
 SELECTED = json.loads((TASK / 'articles.json').read_text())
 assert NO in ALLOWED and NO in SELECTED, f'Article {NO} is outside the pinned revision scope.'
@@ -76,11 +76,11 @@ def install_certified_core_repairs():
     if manifest['kind'] == 'actual-original-fastcheck-certified-six-core-case-consistent-producer-repair':
         allowed.add('视频/工具/make_video.py')
     if manifest['kind'] == 'actual-original-fastcheck-certified-seventeen-program-spoken-comma-repair':
-        assert NO == '43' and sha(manifest_file) == '0bbff31f0d45b9412ec0e1a9f68b0e9603f199c2495f071320b18e82b192008f'
+        assert NO == '52' and sha(manifest_file) == '0bbff31f0d45b9412ec0e1a9f68b0e9603f199c2495f071320b18e82b192008f'
         assert manifest['actual_native_certification']['run_id'] == 43638178374
         assert manifest['actual_native_fastcheck_stamp']['sha256'] == '3c251c77fb58b775ae1389a52ce31467686201ba98b842af545f2923357a6c32'
         keep_cuts = True
-        allowed = {'视频/工具/停顿位置精确核对.py', '视频/工具/高亮同步核对.py', '视频/工具/读音核对.py', '视频/工具/草稿声音.sh', '视频/工具/make_video.py', '视频/工具/新管/快测.py', '视频/工具/标点停顿核对.py', '视频/工具/成片时刻对照.py', '视频/工具/可闻声保全核对.py', '视频/工具/无标点停顿核对.py', '视频/工具/结尾句接点.py', '视频/工具/疑点清单.py', '视频/工具/词尾辅音核对.py', '视频/工具/独立复核/labels.py', '视频/工具/独立复核/synth.py', '视频/工具/词尾实测.py', '视频/工具/句内响度.py'}
+        allowed = {'视频/工具/独立复核/labels.py', '视频/工具/独立复核/synth.py', '视频/工具/成片时刻对照.py', '视频/工具/词尾实测.py', '视频/工具/结尾句接点.py', '视频/工具/高亮同步核对.py', '视频/工具/疑点清单.py', '视频/工具/停顿位置精确核对.py', '视频/工具/词尾辅音核对.py', '视频/工具/可闻声保全核对.py', '视频/工具/草稿声音.sh', '视频/工具/读音核对.py', '视频/工具/无标点停顿核对.py', '视频/工具/标点停顿核对.py', '视频/工具/make_video.py', '视频/工具/句内响度.py', '视频/工具/新管/快测.py'}
     assert {item['target'] for item in manifest['core_files']} == allowed
     for item in manifest['core_files']:
         source = folder / item['file']
@@ -916,19 +916,15 @@ try:
     assert (M / 'tts/kokoro-v1.0.onnx').exists(), 'Original warm machine cache was not restored.'
     W.mkdir(parents=True, exist_ok=True)
     install_certified_core_repairs()
-    assert sha(TASK / 'root-source43-exact-nine-plus-one-CF-only-source-GEN-selection-decision.json') == '56a36f7e80a06a5dd1ba71eac62166a3b834f5fb952d787916cb655ea152117f'
-    assert sha(TASK / 'root-source43-exact-CF-metadata-formal-aux-QC-layout-adoption-decision.json') == '9c246d680cf8195b38e26c47167094db59ab4a6e1beef7543e43ceec3cf7235f'
-    assert sha(TASK / 'root-source43-final-NV-two-real-stage-controlled-QC-code-adoption-decision.json') == 'f660e62cfd5415661977ba4373245a4995959c16749075710dd3c8973ec22598'
-    assert sha(TASK / 'root-source43-formal-aux-reference-exact-e000-data-pin-update-adoption-decision.json') == 'df1b47e856429ddb25e1708ebda8cb5b0144292942722584b61ab97ed0a6c719'
-    assert sha(TASK / 'root-source43-exact-measured-post-d-NV-physical-input-selection-decision.json') == '2f14e9bea5a6703148b43ae7a5f84c9838b7851dac9b294be419b5ccad1b8b17'
-    assert sha(TASK / 'root-source43-exact-no-ending-entry-unchanged-S21-original-default-mode-decision.json') == '53fd8aff11672ca330381203cbcedf09b1ccf7bc666d05014a2716e44b406dca'
-    assert NO == '43'
-    assert sha(TASK / 'request/43/视频/脚本/43.json') == 'db8fadbd6ab1e4247dbb66dbea557dcad28cafd518d71702b281768088d36597'
-    assert sha(TASK / 'request/43/视频/工具/初稿生成/gen43.py') == '5edec8ed8e983efccabcc2e96af5e4f77d036c9af82b521c7648a74352afff84'
+    assert sha(TASK / 'root-source52-actual99d-specific19-CF-only-source-GEN-selection-decision.json') == 'd23c50244f46cf9374d3aa42307e1c28899aa608a22957941fa9c83bc94d766e'
+    assert sha(TASK / 'root-source52-final99d-formal-QC-aux-layout-code-adoption-decision.json') == '28308b7047c1b7f15a50753cc863a2738913209cfc09edc8d908b8a9a214f15c'
+    assert NO == '52'
+    assert sha(TASK / 'request/52/视频/脚本/52.json') == '97152c3408e320ddec7acb1cedb426c1ec44e2a3a796ad90aedb4229735f1764'
+    assert sha(TASK / 'request/52/视频/工具/初稿生成/gen52.py') == '6459a6db54cf34dfdc2f2488e57a9a61bf0645ca48ff48a60928fe84a706bec7'
+    assert sha(TASK / 'request/52/root-source52-specific-zero-spoken-comma-no-entry-original-default-mode-decision.json') == 'abbd535ce4c90a89892431bf4a6fe3de1d531e1c9205a51041082e94d412b9df'
     ENV['XG_KEEP_REVIEWED_ENDING'] = '0'
     status['reviewed_existing_ending_preservation_mode'] = False
-    status['source43_exact_unchanged_S21_no_ending_entry_original_default_mode'] = True
-    status['actual_source43_final_NV_two_stage_QC_root_adoption_sha256'] = 'f660e62cfd5415661977ba4373245a4995959c16749075710dd3c8973ec22598'
+    status['source52_exact_no_ending_entry_zero_spoken_comma_original_default_mode'] = True
     # Keep restored historical logs internal; report only this run's checks.
     for name in (f'做_{NO}', f'定稿_{NO}'):
         old = W / name
@@ -1008,9 +1004,9 @@ try:
             assert actual_record['篇'] == NO
             if actual_record not in records['记录']:
                 records['记录'].append(actual_record)
-    if NO == '43':
+    if NO == '52':
         exact_supplement = request / '真实用户同意补充.json'
-        assert sha(exact_supplement) == '5efe60cb184af2dbc6f8509d32eb8eaf7b618ddbc1e3f324081891fbb836f395'
+        assert sha(exact_supplement) == 'd2f027f84cde0e055a159ec5d9f93f71c96d9c2242865aeadd7984fc1f18e3c7'
         assert sha(request / 'root-source43-52-actual-new-spoken-mothers-and-openings-controlled-formal-QC-adoption-decision.json') == 'fe9a0866cb33a058097954c834cd7660dd4dadbed31c595a76b191b0b4ee8a48'
         for exact_record in json.loads(exact_supplement.read_text())['records']:
             assert str(exact_record['篇']).zfill(2) == NO
@@ -1048,7 +1044,7 @@ try:
         # any selected article. Prepare only missing references privately;
         # official production and every checker remain STRICT_CACHE=1.
         reference_helper = TASK / 'prepare-checker-reference.py'
-        assert sha(reference_helper) == 'd4b46812705a2e4e7ee58bcf311f28345b2aa57bf5fb0ae0470c4e186f715241'
+        assert sha(reference_helper) == '1552b63956e5965fa1eeb4eb71c8182db4bf5d13c51851d1165e90988122e152'
         assert sha(TASK / 'root43-52-specific-auxiliary-reference-caller-context-and-shared-plan-adoption.json') == '92e6533ef3a2837553985aa4ca703ed1858b9e6e4bb8f6dc4019627bb3433f56'
         reference_evidence = OUT / f'{NO}-checker-reference-preparation.json'
         reference_env = {k: v for k, v in ENV.items() if k != 'STRICT_CACHE'}
@@ -1126,16 +1122,16 @@ try:
     canonical_aac = aac_hash(canonical)
     if NO in APPROVED_AUDIO_REPAIRS:
         # Root supplies actual approved audio-change validation. No gain/overlay implementation is assumed here.
-        helper_name = ('audio43-controlled-qc.py' if NO == '43' else 'audio05-tail-qc.py' if NO == '05' else
+        helper_name = ('audio52-controlled-qc.py' if NO == '52' else 'audio05-tail-qc.py' if NO == '05' else
                        'audio67-controlled-qc.py' if NO == '67' else
                        'audio-controlled-qc.py' if NO in CONTROLLED_AUDIO_REPAIRS else
                        'audio-a21-qc.py' if NO in A21_AUDIO_REPAIRS else 'audio-qc.py')
         audio_qc = TASK / helper_name
         assert audio_qc.exists(), f'Root must attach approved audio QC for article {NO}.'
         evidence = OUT / f'{NO}-approved-audio-qc.json'
-        qc_comparison_before = TASK / 'controlled-QC-current-before43.mp4'
-        assert sha(qc_comparison_before) == '8a47d5f83a33f6cc09f4844ec443292e3b1a7cd27a76f93a75184b38aabefb56'
-        assert aac_hash(qc_comparison_before) == 'e68a0dd1514bb41bbf798893ad6b8855212c6755bd19efc6b580af26ec816b3a'
+        qc_comparison_before = TASK / 'controlled-QC-current-before52.mp4'
+        assert sha(qc_comparison_before) == '1d0cf6064c36ec7ed223956ebf98b7aabf21aa63241202f01d1895acc094b280'
+        assert aac_hash(qc_comparison_before) == 'ecabdc3b21c705715a83ade00e644d2e8888b9a43443958078ffc15ab4d8cd2c'
         status['approved_audio_qc_comparison_reference'] = {'kind':'actual-latest-formally-accepted-current-before-resource-only-for-controlled-QC','source_native_run':43533004625,'file':qc_comparison_before.name,'sha256':sha(qc_comparison_before),'bytes':qc_comparison_before.stat().st_size,'AAC_ADTS_sha256':aac_hash(qc_comparison_before),'original_native_pipeline_historical_accepted_source_unchanged':True}
         save()
         checked(['python3', audio_qc, '--article', NO, '--accepted-source', qc_comparison_before,
@@ -1159,7 +1155,7 @@ try:
             if NO != '05':
                 assert audio_evidence.get('diagnostic_only') is False
                 assert audio_evidence.get('production_delivery_eligible') is True
-            reference_file = TASK / ('audio43-controlled-qc-reference.json' if NO == '43' else 'audio05-tail-qc-reference.json' if NO == '05' else
+            reference_file = TASK / ('audio52-controlled-qc-reference.json' if NO == '52' else 'audio05-tail-qc-reference.json' if NO == '05' else
                                      'audio67-controlled-qc-reference.json' if NO == '67' else
                                      'audio-controlled-qc-reference.json')
             status['approved_audio_repair_scope'] = {
