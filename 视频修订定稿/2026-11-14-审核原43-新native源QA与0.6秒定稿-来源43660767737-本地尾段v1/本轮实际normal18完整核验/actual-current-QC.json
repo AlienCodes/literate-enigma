@@ -1,0 +1,261 @@
+{
+  "article": "43",
+  "status": "passed",
+  "actual_new_mp4": true,
+  "video_sha256": "482d050968722f4d00a846bc69b26376010053d6808262e68325582ef2daa801",
+  "video_bytes": 21590255,
+  "official_run": {
+    "repository": "AlienCodes/literate-enigma",
+    "run_id": 43660767737,
+    "run_attempt": 1,
+    "status": "completed",
+    "conclusion": "success",
+    "head_sha": "0ade57bb1466114775fd956fcb53eb8f6a107e86",
+    "workflow_path": ".github/workflows/produce-revision-batch4K.yml",
+    "entrypoint": "视频/工具/新管/定稿.sh",
+    "stage": "4K",
+    "canonical_selection": "native_final_official_passed",
+    "artifact_id": 14140705927,
+    "artifact_zip": {
+      "path": "/workspace/work/review43-native/43660767737/43/article43-passed-output.zip",
+      "bytes": 43122221,
+      "sha256": "f87315c66eec0a883cf690d4e25069eabf23df4f4e33473cb27855cc096c1709"
+    },
+    "artifact_zip_sha256": "f87315c66eec0a883cf690d4e25069eabf23df4f4e33473cb27855cc096c1709",
+    "artifact_status_member": "43-canonical-summary-passed-status.json",
+    "artifact_mp4_member": "43-4K-读完即转简述2秒.mp4",
+    "artifact_mp4_sha256": "11ac9efb02c1c13e7fa5c0e4dc9b53a015142961fb374e5c3701c8d8b56347f6",
+    "job": {
+      "id": 132649441793,
+      "name": "produce (43)",
+      "article": "43",
+      "run_attempt": 1,
+      "status": "completed",
+      "conclusion": "success",
+      "upload_step_name": "仅保留本篇公开成片和核验材料"
+    },
+    "artifact_main_status_member": "43-status.json",
+    "artifact_main_status_sha256": "8fb2c64a8c7912a981539354af6bb6ea3dc89b57435085f8dfa042c38e0a189c",
+    "inherited_native_inline_final_original_bytes_preserved": true,
+    "current_final_is_local_tail_derivative": true
+  },
+  "actual_probe": {
+    "width": 3840,
+    "height": 2160,
+    "frames": 5208,
+    "fps": "30/1",
+    "duration_seconds": 173.6
+  },
+  "speech_end": {
+    "actual_new_output": true,
+    "measured_from_actual_audio": true,
+    "end_frame": 5070,
+    "report_sha256": "d868b2260da5b8deb970fa6a2648c74e26f0a274b7f160f630f13ec1915a5bc7",
+    "endpoint_seconds": 168.985
+  },
+  "illustration": {
+    "decoded_from_actual_mp4": true,
+    "frames": 60,
+    "start_frame": 5088,
+    "width": 3840,
+    "height": 2160,
+    "approved_illustration_sha256": "1d8a77933282b9d6ebae739500c265d8cb88b6cc62539a913d940219ab8caab5",
+    "book_source_sha256": "1d8a77933282b9d6ebae739500c265d8cb88b6cc62539a913d940219ab8caab5",
+    "preparation": {
+      "source_id": "43",
+      "new_id": "40",
+      "native_image_sha256": "1d8a77933282b9d6ebae739500c265d8cb88b6cc62539a913d940219ab8caab5",
+      "native_pixel_dimensions": [
+        1536,
+        1024
+      ],
+      "prepared_png_sha256": "2081ee68c01b33eab28b917546395d19c24d5238977b7a62533365e5a279a6fd",
+      "prepared_rgb_sha256": "0c5f60387a94de3cf740262bc596706e0c43a259fa64002643ecfdd7bb8c4d56",
+      "prepared_pixel_dimensions": [
+        3840,
+        2160
+      ],
+      "mode": "cover",
+      "Pillow": "12.3.0",
+      "native_source_crop_box": [
+        0,
+        80,
+        1536,
+        944
+      ],
+      "resampling": "Pillow Image.Resampling.LANCZOS",
+      "same_image_background_gaussian_blur_radius": null,
+      "derived_in_this_process_from_exact_approved_native_image": true,
+      "generated_or_substituted_artwork": false,
+      "added_text_or_graphics": false,
+      "preparer_program_sha256": "f1eab5eb18f26076222eaf015219f57765445b710b228d3fb495789e2b40b012",
+      "prepared_image_path": "/workspace/work/book40-source43-user116-hold06-20261115/media/book40-source43/43-approved-art4K.png"
+    },
+    "frame_comparison": {
+      "status": "passed",
+      "actual_new_output": true,
+      "decoded_from_actual_mp4": true,
+      "frames_checked": 60,
+      "start_frame": 5088,
+      "video_sha256": "482d050968722f4d00a846bc69b26376010053d6808262e68325582ef2daa801",
+      "reference_sha256": "2081ee68c01b33eab28b917546395d19c24d5238977b7a62533365e5a279a6fd",
+      "report_sha256": "c56ca368853fedcf5e99e86158761e6f22722c247bfb6b112d79eb67806767ed"
+    }
+  },
+  "summary": {
+    "decoded_from_actual_mp4": true,
+    "frames": 60,
+    "start_frame": 5148,
+    "overflow": false,
+    "normal_font_size": true,
+    "font_px": 106,
+    "text_sha256": "965d649806454eb96822820a3446f7572b96d1cd9e59ed351b8f6c70321e5d5b",
+    "approved_request_text_sha256": "d6b14e83dc38dd57761c3b3167200d90d443e562c8ddc2980598bc92ff915d41"
+  },
+  "audio": {
+    "canonical_qc": {
+      "tool": "audio43-controlled-qc.py",
+      "actual_new_output": true,
+      "status": "passed",
+      "canonical_video_sha256": "11ac9efb02c1c13e7fa5c0e4dc9b53a015142961fb374e5c3701c8d8b56347f6",
+      "reviewed_canonical_video_sha256": "9588ee5718c9faec2776fe957d74df7c19614e9a3704c32b5c2a3c3bd330d910",
+      "binding": "reviewed_native_pre_card_then_exact_audio_copy",
+      "copy_verification_sha256": "d868b2260da5b8deb970fa6a2648c74e26f0a274b7f160f630f13ec1915a5bc7",
+      "report_sha256": "02841056f1b9e90fa2a5a960d9d4da82b898635aa5b8b3c051a017b5055749ea",
+      "program_sha256": "5b1b09a41ac19eaf72432a40221a4cd2b0a9afb9ee30e1cf06275575dcb9d1f4",
+      "reference_file_sha256": "7cce2c405a0ee03638da4c99b6c7895f2ed32e5b0c77e7503a0f795ea4b884f5",
+      "request_source_sha256": "db8fadbd6ab1e4247dbb66dbea557dcad28cafd518d71702b281768088d36597"
+    },
+    "repair_applied": true,
+    "lossless_copy": {
+      "canonical_video_sha256": "11ac9efb02c1c13e7fa5c0e4dc9b53a015142961fb374e5c3701c8d8b56347f6",
+      "final_video_sha256": "482d050968722f4d00a846bc69b26376010053d6808262e68325582ef2daa801",
+      "audio_packet_times_identical": true,
+      "canonical_aac_adts_sha256": "8ad52864847505c569847c3728f162690f259e6e7d20a5b301460a6349939b8e",
+      "canonical_packet_projection_sha256": "883e48ed30f8182415fb785535d55aa8e209673799a744dc20fe39dfee077c73",
+      "canonical_packet_count": 8015,
+      "final_aac_adts_sha256": "8ad52864847505c569847c3728f162690f259e6e7d20a5b301460a6349939b8e",
+      "final_packet_projection_sha256": "883e48ed30f8182415fb785535d55aa8e209673799a744dc20fe39dfee077c73",
+      "final_packet_count": 8015
+    },
+    "targeted_review": {
+      "article": "43",
+      "actual_new_output": true,
+      "status": "passed",
+      "canonical_video_sha256": "11ac9efb02c1c13e7fa5c0e4dc9b53a015142961fb374e5c3701c8d8b56347f6",
+      "reviewed_canonical_video_sha256": "9588ee5718c9faec2776fe957d74df7c19614e9a3704c32b5c2a3c3bd330d910",
+      "binding": "reviewed_native_pre_card_then_exact_audio_copy",
+      "report_sha256": "02841056f1b9e90fa2a5a960d9d4da82b898635aa5b8b3c051a017b5055749ea",
+      "whole_track_loudness_review": true
+    },
+    "controlled_repair": {
+      "status": "passed",
+      "actual_new_output": true,
+      "canonical_video_sha256": "11ac9efb02c1c13e7fa5c0e4dc9b53a015142961fb374e5c3701c8d8b56347f6",
+      "reviewed_canonical_video_sha256": "9588ee5718c9faec2776fe957d74df7c19614e9a3704c32b5c2a3c3bd330d910",
+      "binding": "reviewed_native_pre_card_then_exact_audio_copy",
+      "report_sha256": "02841056f1b9e90fa2a5a960d9d4da82b898635aa5b8b3c051a017b5055749ea",
+      "authorization": "Actual immutable native user-authorization/source request records and approved dedicated acoustic QC retained in evidence."
+    }
+  },
+  "source_sha256": {
+    "request": {
+      "json": "db8fadbd6ab1e4247dbb66dbea557dcad28cafd518d71702b281768088d36597",
+      "gen": "5edec8ed8e983efccabcc2e96af5e4f77d036c9af82b521c7648a74352afff84",
+      "md": "b548684f400daa3b76d972b2f17b0d7249e8df0ae9a9663f3f26d69db8d61fb4"
+    },
+    "final": {
+      "json": "103211d63f45a60b1657dbba682567dd1e6f701e58a2eb87909474c38a04056d",
+      "gen": "fdd14fdec69693fffc83fe5003d6ab330298649b4ef126eae47b701d059576e8",
+      "md": "b548684f400daa3b76d972b2f17b0d7249e8df0ae9a9663f3f26d69db8d61fb4"
+    }
+  },
+  "source_transform": {
+    "status": "passed",
+    "actual_working_copy": true,
+    "operations": [
+      "L19",
+      "production_qc_metadata"
+    ],
+    "report_sha256": "c90c5cd219032a312df6ea7de75152a355563b3e676031fc249d808d36a09a9d",
+    "changed_paths": [
+      "/换行变更已获同意",
+      "/换行变更记录",
+      "/核对确认/非人声/104.61–104.63s/配音指纹",
+      "/核对确认/非人声/114.85–114.89s/配音指纹",
+      "/核对确认/非人声/120.91–120.92s/配音指纹",
+      "/核对确认/非人声/122.04–122.06s/配音指纹",
+      "/核对确认/非人声/123.83–124.09s/配音指纹",
+      "/核对确认/非人声/123.86–123.95s/配音指纹",
+      "/核对确认/非人声/130.90–130.92s",
+      "/核对确认/非人声/131.34–131.36s",
+      "/核对确认/非人声/139.79–139.84s",
+      "/核对确认/非人声/14.29–14.39s",
+      "/核对确认/非人声/140.24–140.28s",
+      "/核对确认/非人声/15.21–15.24s/配音指纹",
+      "/核对确认/非人声/15.76–15.78s/配音指纹",
+      "/核对确认/非人声/20.17–20.18s/配音指纹",
+      "/核对确认/非人声/20.53–20.55s/配音指纹",
+      "/核对确认/非人声/24.07–24.11s/配音指纹",
+      "/核对确认/非人声/27.73–27.74s/配音指纹",
+      "/核对确认/非人声/33.98–33.99s/配音指纹",
+      "/核对确认/非人声/39.24–39.26s/配音指纹",
+      "/核对确认/非人声/57.34–57.41s/配音指纹",
+      "/核对确认/非人声/57.37–57.38s/配音指纹",
+      "/核对确认/非人声/59.41–59.44s/配音指纹",
+      "/核对确认/非人声/63.15–63.24s/配音指纹",
+      "/核对确认/非人声/70.29–70.33s/配音指纹",
+      "/核对确认/非人声/71.94–71.97s/配音指纹"
+    ]
+  },
+  "adapter_scope": "Explicit actual native status + raw real postprocessor report field mapping; not fabricated audio-qc.py or unobserved runtime GEN/MD.",
+  "preview_only": false,
+  "production_delivery_eligible": true,
+  "local_postprocessing_only": true,
+  "new_native_quality_run_claimed": false,
+  "inherited_full_V3_handoff": {
+    "path": "/workspace/work/review43-sourceQA/43660767737/archive-handoff.json",
+    "bytes": 40540,
+    "sha256": "41b4f576f6e931a5d5329cc17815151f1d84223039956bfe4067a21388c361b8"
+  },
+  "body_hold": {
+    "speech_ceiling_frame": 5070,
+    "hold_start_frame": 5070,
+    "hold_end_frame_inclusive": 5087,
+    "held_body_end_frame_exclusive": 5088,
+    "frozen_reference_frame": 5069,
+    "extra_body_frames": 18,
+    "voice_to_picture_seconds": 0.615,
+    "actual_decoded_hold_validation": {
+      "last_body_hold_frames": 18,
+      "last_body_hold_seconds": 0.6,
+      "hold_start_frame": 5070,
+      "hold_end_frame_inclusive": 5087,
+      "frozen_reference_frame": 5069,
+      "actual_held_frames_checked": 18,
+      "hold_thumbnail_MAE_each": [
+        4.4206532921810695e-05,
+        4.018775720164609e-05,
+        0.0004058963477366255,
+        0.0004058963477366255,
+        0.0004380465534979424,
+        0.0004058963477366255,
+        0.00048225308641975306,
+        0.0005184220679012346,
+        0.0005505722736625514,
+        0.0005184220679012346,
+        0.000719360853909465,
+        0.0007756237139917695,
+        0.0007756237139917695,
+        0.0007756237139917695,
+        0.0008921682098765432,
+        0.0008600180041152264,
+        0.0009323559670781893,
+        0.0009243184156378601
+      ],
+      "hold_thumbnail_MAE_max": 0.0009323559670781893,
+      "hold_visual_reference": "actual decoded last spoken-page frame before18-frame hold; existing static-page MAE<2 rule"
+    }
+  },
+  "audio_repair_applied_in_this_tail_postprocess": false
+}
