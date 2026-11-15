@@ -1,0 +1,55 @@
+{
+  "original": {
+    "path": "/workspace/work/book69_source59_actual_native_intake_43723690942_CODE_ONLY.py",
+    "bytes": 4136,
+    "sha256": "1c1703c1b0ca82a948228c2550d7e6a5226d55dfbf55efd1dd33451a136a254e"
+  },
+  "bounded_candidate": {
+    "path": "/workspace/work/book69_source59_actual_native_intake_43723690942_CODE_ONLY-bounded-INTAKE-ONLY-v2.py",
+    "bytes": 4244,
+    "sha256": "2289ae61ef17822cc8508a87d2a724c17e12f4d577a4df560f8045a533554220"
+  },
+  "complete_diff": {
+    "path": "/workspace/work/book69-source59-actual43723690942-original-HOST-preparation-20261115/INTAKE-ONLY-128MiB-AND-WRITER8-MISC32-STORAGE-GUARD-ONLY.diff",
+    "bytes": 1787,
+    "sha256": "6df3fa8e347c3be3fda3472849c46694b325f16a621e2bfb82de5032fb3c49a0"
+  },
+  "entire_original_inverse_bytes_AST_exact": true,
+  "only_two_stronger_storage_assertions": true,
+  "no_QA_audio_codec_or_clock_math_changed": true,
+  "pure_budget_cases": [
+    {
+      "ZIP": 48063423,
+      "expanded": 53500000,
+      "free": 723000000,
+      "next": 48063423,
+      "passed": true,
+      "expected": true
+    },
+    {
+      "ZIP": 48063423,
+      "expanded": 90000000,
+      "free": 723000000,
+      "next": 48063423,
+      "passed": false,
+      "expected": false
+    },
+    {
+      "ZIP": 48063423,
+      "expanded": 53500000,
+      "free": 450000000,
+      "next": 48063423,
+      "passed": false,
+      "expected": false
+    },
+    {
+      "ZIP": 48063423,
+      "expanded": 53500000,
+      "free": 419430399,
+      "next": 0,
+      "passed": false,
+      "expected": false
+    }
+  ],
+  "actual_ZIP_table_not_yet_observed": true
+}
