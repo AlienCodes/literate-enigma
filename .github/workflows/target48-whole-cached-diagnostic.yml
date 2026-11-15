@@ -1,4 +1,4 @@
-name: 原48三句单候选保守声样本保全局部诊断
+name: 原48单S13保弱词尾声样本单候选局部诊断
 on:
   push:
     branches: [codex/finish-05-and-summaries-20261112]
@@ -114,12 +114,12 @@ jobs:
           else:
               work.symlink_to(tools,target_is_directory=True)
           PYENV
-          python -u .github/target48-whole-cached-diagnostic/native48_three_cached_sentence_single_conservative_NV_preservation_test.py --tools "$GITHUB_WORKSPACE/official-main/视频/工具" --video-root "$RUNNER_TEMP/completion-machine" --request "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48.json" --baseline-source "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48-current-baseline.json" --cache-identity "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48-correct-context-S15-mothers-and-actual-whole3089-private-cache-identity.json" --gain-decision "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/root-source48-real-whole3089-actual-gain-plus1-reconfirmation-decision.json" --whole-tuple-measurement "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48-actual-whole-G36-3089-original-math-and-levels.json" --whole-report "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48-real-whole3089-strict-cached-diagnostic.json" --failed-proof "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48-failed-draft-proof.json" --original-report2 "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/report2_48.json" --actual-nine-report "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48-actual-nine-report935f.json" --preservation-proposal "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48-actual-nine-preservation-proposalb74f.json" --local-input-decision "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48-three-local-input-selection-decisione9e.json" --output "$GITHUB_WORKSPACE/target48-whole-public/48-three-cached-sentence-single-conservative-preservation-test.json"
+          python -u .github/target48-whole-cached-diagnostic/native48_S13_one_cached_sentence_single_conservative_NV_preservation_test.py --tools "$GITHUB_WORKSPACE/official-main/视频/工具" --video-root "$RUNNER_TEMP/completion-machine" --request "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48.json" --baseline-source "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48-current-baseline.json" --cache-identity "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48-correct-context-S15-mothers-and-actual-whole3089-private-cache-identity.json" --gain-decision "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/root-source48-real-whole3089-actual-gain-plus1-reconfirmation-decision.json" --whole-tuple-measurement "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48-actual-whole-G36-3089-original-math-and-levels.json" --whole-report "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48-real-whole3089-strict-cached-diagnostic.json" --failed-proof "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48-failed-draft-proof.json" --original-report2 "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/report2_48.json" --actual-nine-report "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48-actual-nine-report935f.json" --preservation-proposal "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48-S13-actual-nine-preservation-proposal.json" --local-input-decision "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48-S13-local-input-selection-decision.json" --output "$GITHUB_WORKSPACE/target48-whole-public/48-S13-one-cached-sentence-single-conservative-preservation-test.json"
       - name: 仅保存安全标量JSON不导母料音频
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: native48-three-cached-sentences-single-conservative-preservation-test
+          name: native48-S13-one-cached-sentence-single-conservative-preservation-test
           path: |
             target48-whole-public/*.json
           retention-days: 30
