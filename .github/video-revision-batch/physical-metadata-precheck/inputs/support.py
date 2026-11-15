@@ -19,21 +19,21 @@ import tempfile
 import traceback
 
 sys.dont_write_bytecode = True
-SOURCE = '75f0f57deeb4abdf339a12f3c32e5d3fa7184bc29a6bcd3bb4684100d6e36623'
-SOURCE_NO = '68'
-BOOK_ORDER = 53
-TARGET = 'S2'
+SOURCE = 'c7e90cc34e1275659d4648d26bbc5bb6ad18efbe5697311138e28b9647ff7cc6'
+SOURCE_NO = '23'
+BOOK_ORDER = 62
+TARGET = 'S13'
 SENTENCE_COUNT = 19
-RETIRE_COUNT = 6
-SCHEMA_ADDED = True
-CERTIFICATE_SHA = '50a3abb8d8388ba4587eed0baab4eed5b57afad9fc73cbdb1aa4b48bbaa56c01'
-STAMP_SHA = '7d7ebf20b78143231992f8880f70e3cf1581c75acd2d977bc054e3ff151a1a41'
-SHADOW = 'f5c533a9411f0f6e746363039092311b02951807d126791e11cff87d51b98145'
-PROFILE_SHA = '0e83d45366c066d888932206f8bca4c1e48addd5f0ad7dbf35775d710d5343cb'
-MAKER = '0e6c4ff6dd4ab4e3774bc060188de72356cd9aa37a7bc092d1f28a5508cc1c36'
+RETIRE_COUNT = 5
+SCHEMA_ADDED = False
+CERTIFICATE_SHA = 'c05b6ed258dc9783bdb453f1e7382dac8b40d27f66ac30c26b3ee079c3933c19'
+STAMP_SHA = '9aa653ec47c686d9bb0b6c4393444bb50c3c8d2d249fe10a843b0959854f7ea6'
+SHADOW = '878a365c1f85e52a8f760f510d05a11c95fadf88d67d05293bc5b6cc37a11c72'
+PROFILE_SHA = 'f0820f9ddee11b88105a8fa79d26871f81b7ac9f6d2ab92005b7d5384367794c'
+MAKER = '1b87c1d4d1685bdd59325587184cca35f853354a015e6fe89c11f150cd2a6239'
 PROVIDER_SOURCE_SHA = '32602bee21b14ed161fdfd3c8b921b267782ad143a49c3ebd256c16c473808f5'
 DELEGATE_GUARD_SHA = '8f94c2ffbcdc981c177c4f8547bbf0bb7481628b9d8355165cd04db4bf5b6521'
-AUTH = 'c61ac0483b54f6c6c2092d27e3e697ebea63ee23b95e85e33f2ff1a509f027d0'
+AUTH = 'b5741a1f9e9c7b32e414826e52dec07907df5893cb08f730189d1ded6a0af604'
 DICT = '5f558c61f8ffb99009a89989afcc07a9ce168b2b70a6c9377289040d14ec402b'
 CTX = '4d8905dc1a87f97b707270f03f41ea0fdf2b207ca218ed74608cdb134e3dc8e3'
 OLDREG = '91ccecd61ade5284de72f27235c82df3fdff6350576abfac02d2e0db0f346a9a'
@@ -43,8 +43,11 @@ MODELS = {
     'kokoro-v1.0-timed.onnx': 'beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a',
     'voices-v1.0.bin': 'bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d',
 }
-DISPLAY = 'Its amenities included a lounge and, that year, a grand piano.'
-PROJECTED = 'Its amenities included a lounge and that year, a grand piano.'
+DISPLAY = 'He forfeited his security clearance and, to avert imprisonment, submitted to hormone injections.'
+PROJECTED = 'He forfeited his security clearance and to avert imprisonment, submitted to hormone injections.'
+ROOT_SOURCE_ADOPTION_SHA = '6dfb5a782832e49bdb89c38da9a78e4d70144193080d533e2c8a7239efb2b448'
+BASELINE_AUDIO_H_SHA = '8753f7356f949424c86c52f12e75b1012ad72538825e637bb48ee6eb79507706'
+CODE_ADOPTION_SHA = '43fa711ca1957f1d54fa8e35995f681ecd1094a154b97273377438bdc63bee2e'
 FLAGS = ('STRICT_CACHE', 'XG_NOPUSH', 'XG_KEEP_REVIEWED_GAIN',
          'XG_KEEP_REVIEWED_ENDING', 'XG_KEEP_REVIEWED_CUTS')
 
@@ -76,34 +79,56 @@ def inventory(directory):
     return {p.name: sha(p) for p in Path(directory).iterdir() if p.is_file()}
 
 
+def typed(value):
+    if isinstance(value, dict):
+        return ('dict', tuple(sorted((key, typed(item)) for key, item in value.items())))
+    if isinstance(value, (list, tuple)):
+        return (type(value).__name__, tuple(typed(item) for item in value))
+    return (type(value).__name__, value)
+
+
 def verify_request(request, shadow, history):
     require(str(request.get('no')) == SOURCE_NO and len(request['sentences']) == SENTENCE_COUNT,
-            'Wrong independent source/sentence count')
-    require(history['source_id'] == SOURCE_NO and history['book_order'] == BOOK_ORDER and
-            history['target_sentence'] == TARGET and
-            history['before_source']['sha256'] == SOURCE and
-            history['schema_added_in_private_shadow'] is SCHEMA_ADDED,
-            'Wrong independent target retirement provenance')
+            'Wrong exact source23/V9 sentence count')
+    require(history['production_review_source']['sha256'] == SOURCE and history['shadow']['sha256'] == SHADOW,
+            'Wrong actual V9 source/private retirement provenance')
     restored = copy.deepcopy(shadow)
-    rows = history['retired_entries']
-    require(len(rows) == RETIRE_COUNT and len({tuple(x['JSON_path']) for x in rows}) == RETIRE_COUNT,
-            'Exact independent target retirement count/paths required')
+    rows = history['five_retired_entries']
+    expected_paths = {'/非人声区间/S13', '/词尾除阻/S13', '/区间声音指纹/S13',
+                      '/核对确认/非人声/116.95–117.03s', '/核对确认/删除段/S13 raw 2.5591-2.8350'}
+    require(len(rows) == RETIRE_COUNT and {row['path'] for row in rows} == expected_paths,
+            'Only the exact five reviewed old S13 mother-bound leaves may be retired')
     for row in rows:
+        keys = [key.replace('~1', '/').replace('~0', '~') for key in row['path'].split('/')[1:]]
         parent = restored
-        for key in row['JSON_path'][:-1]:
-            parent = parent[key]
-        key = row['JSON_path'][-1]
+        for key in keys[:-1]: parent = parent[key]
+        key = keys[-1]
         require(key not in parent, 'Retired explicit old target leaf still active')
-        parent[key] = row['exact_old_value']
-    expected_spec = {'篇号': int(SOURCE_NO), '原文': DISPLAY, '逗号序号': [1]}
-    require(shadow.get('朗读删逗号', {}).get(TARGET) == expected_spec, 'Exact target schema required')
-    if SCHEMA_ADDED:
-        require('朗读删逗号' not in request and restored.get('朗读删逗号') == {TARGET: expected_spec},
-                'Only this originally absent target schema may be added')
-        restored.pop('朗读删逗号')
-    require(restored == request, 'Exact retirement/schema inverse must reconstruct entire immutable request')
-    require(request['sentences'] == shadow['sentences'], 'Private retirement changed display text')
+        parent[key] = copy.deepcopy(row['old_value'])
+        order = row['parent_key_order_before_removal']
+        require(set(parent) == set(order), 'Retired leaf parent key set changed')
+        ordered = {name: parent[name] for name in order}
+        parent.clear(); parent.update(ordered)
+    expected_spec = {'篇号': 23, '原文': DISPLAY, '逗号序号': [1]}
+    require(typed(shadow.get('朗读删逗号', {}).get(TARGET)) == typed(expected_spec), 'Exact target schema required')
+    require(typed(restored) == typed(request), 'Exact five-leaf inverse must reconstruct entire immutable typed source')
+    require(typed(request['sentences']) == typed(shadow['sentences']), 'Private retirement changed display or summary')
+    require(typed(request.get('结尾句')) == typed(shadow.get('结尾句')), 'Original complete S19 point8 ending changed')
     require(not shadow.get('结尾句', {}).get(TARGET), 'Target is not an ending-splice sentence')
+    require(' '.join(c['en'].replace('**', '') for c in shadow['sentences'][12]['chunks']) == DISPLAY,
+            'Exact S13 display and second imprisonment comma must remain')
+    return True
+
+
+def validate_source_adoption(adopted):
+    require(adopted.get('H', {}).get('sha256') == 'ca00b01acfe65d10d16bed8fbee746177ecea7762cf07fd802db95eaa625bb69' and
+            adopted.get('selected_source', {}).get('sha256') == SOURCE and
+            adopted.get('selected_shadow', {}).get('sha256') == SHADOW and
+            adopted.get('shadow_history', {}).get('sha256') == '45006f2a5f1e0addafb0dcc2ddaedb1fcd9d9e7aeec36add99181552f443ae44' and
+            adopted.get('true_final_authority', {}).get('sha256') == AUTH and
+            adopted.get('code22_actual_certificate_separate_adopted') == '17e5b43e734200eafa2da43b63fea913bffe62c42525630712a2d203a81ee716' and
+            adopted.get('future_two_mother_only_exact_new_frozen_caller_requires_separate_review') is True,
+            'Actual root source23 V9 source/shadow/five-leaf adoption required')
     return True
 
 
@@ -116,7 +141,7 @@ def validate_model_input(method, text, voice_id, speed, lang, kwargs, expected):
     require(method in expected, 'Unexpected model method')
     e = expected[method]
     require((text, voice_id, float(speed), lang, kwargs) ==
-            (e['text'], e['voice_id'], .95, 'en-us', e['kwargs']),
+            (e['text'], e['voice_id'], .95, 'en-us', e['kwargs']) and typed(kwargs) == typed(e['kwargs']),
             'Non-target model tuple rejected')
     return e
 
@@ -198,8 +223,10 @@ def validate_execution_adoption(adopted, helper_sha):
             adopted.get('target_two_original_model_calls_authorized') is True and
             adopted.get('helper_sha256') == helper_sha and
             adopted.get('request_sha256') == SOURCE and adopted.get('shadow_sha256') == SHADOW and
-            adopted.get('actual20_certificate_sha256') == CERTIFICATE_SHA and
-            adopted.get('actual20_stamp_sha256') == STAMP_SHA,
+            adopted.get('actual22_certificate_sha256') == CERTIFICATE_SHA and
+            adopted.get('actual22_stamp_sha256') == STAMP_SHA and
+            adopted.get('source_adoption_sha256') == ROOT_SOURCE_ADOPTION_SHA and
+            adopted.get('delegate_guard_sha256') == DELEGATE_GUARD_SHA,
             'Actual root execution adoption must bind this independent source/target/helper/inputs/certificate')
     return True
 
@@ -208,16 +235,18 @@ def validate_certificate(tools, manifest, certificate):
     require(len(manifest['files']) == 17, 'Expected exact 17 runtime files')
     require(certificate.get('overlay_manifest') == manifest and
             len(certificate.get('source68_code_adoption_SHA256', '')) == 64 and
-            len(certificate.get('source35_code_adoption_SHA256', '')) == 64,
-            'Actual combined20 certificate must bind this runtime contract and separate68/35 code adoption')
+            len(certificate.get('source35_code_adoption_SHA256', '')) == 64 and
+            len(certificate.get('source56_code_adoption_SHA256', '')) == 64 and
+            certificate.get('source23_code_adoption_SHA256') == CODE_ADOPTION_SHA,
+            'Actual combined22 certificate must bind this runtime contract and separate68/35 code adoption')
     for row in manifest['files']:
         rel = Path(row['path']).relative_to('视频/工具')
         require(sha(tools / rel) == row['patch_SHA256'], 'Runtime contract mismatch: ' + str(rel))
     stamp_path = tools / '新管/快测通过.json'
     stamp = read(stamp_path)
-    require(sha(stamp_path) == STAMP_SHA, 'Actual certified20 stamp7d7ebf required')
+    require(sha(stamp_path) == STAMP_SHA, 'Actual certified22 stamp9aa653 required')
     require(len(stamp['程序']) == 110 and stamp['程序']['make_video.py'] == MAKER[:16],
-            'A new actual 110-program stamp for0e6c4 spoken20 is required')
+            'A new actual 110-program stamp for1b87 spoken22 is required')
     require(sha(stamp_path) != '3c251c77fb58b775ae1389a52ce31467686201ba98b842af545f2923357a6c32',
             'Old17 stamp is historical only')
     require(certificate.get('passed') is True and
@@ -252,17 +281,21 @@ def run(a):
                             ('authority', a.authority), ('raw_audio_authority', a.raw_audio_authority), ('code_adoption', a.code_adoption),
                             ('GEN', a.GEN), ('MD', a.MD), ('overlay', a.overlay),
                             ('input_H', a.input_H),
-                            ('pending_text', a.pending_text), ('sentence_confirmations', a.sentence_confirmations), ('certification_report', a.certification_report)]:
+                            ('pending_text', a.pending_text), ('sentence_confirmations', a.sentence_confirmations), ('certification_report', a.certification_report),
+                            ('source_adoption', a.source_adoption), ('baseline_audio_H', a.baseline_audio_H)]:
             require(sha(path) == profile['file_sha256'][label], 'Wrong pinned input: ' + label)
+        require(sha(a.source_adoption) == ROOT_SOURCE_ADOPTION_SHA and sha(a.baseline_audio_H) == BASELINE_AUDIO_H_SHA,
+                'Exact root source adoption and actual audio baseline H required')
+        validate_source_adoption(read(a.source_adoption))
         require(sha(a.request) == SOURCE and sha(a.shadow) == SHADOW and sha(a.authority) == AUTH,
                 'Exact source/shadow/user authorization required')
         require(len(a.execution_adoption_sha256) == 64 and
                 sha(a.execution_adoption) == a.execution_adoption_sha256,
                 'Launcher must pin separate root executable/mother-scope adoption')
         validate_execution_adoption(read(a.execution_adoption), sha(__file__))
-        require(sha(a.certification_report) == CERTIFICATE_SHA, 'Only actual43693920217 combined20 certificate accepted')
+        require(sha(a.certification_report) == CERTIFICATE_SHA, 'Only actual43714183305 combined22 certificate accepted')
         require(sha(T / 'make_video.py') == sha(W / 'make_video.py') == MAKER,
-                'Candidate spoken20 must be physically installed in tools and work')
+                'Candidate spoken22 must be physically installed in tools and work')
         stamp_sha = validate_certificate(T, read(a.overlay), read(a.certification_report))
         require(os.environ.get('STRICT_CACHE') == '1' and os.environ.get('XG_NOPUSH') == '1',
                 'Begin under strict cache and no-push')
@@ -378,6 +411,9 @@ def run(a):
                              'speed': .95, 'lang': 'en-us', 'kwargs': e['kwargs'],
                              'cache_preexisted': e['preexisted']}
                             for method, e in expected.items()]
+                        planned_leaves = sorted({name for e in expected.values() for name in (e['key'], e['key'] + '.单线程')})
+                        require(len(planned_leaves) == 4, 'Exactly four private cache leaves must be witnessed before inference')
+                        report['planned_four_private_leaf_names_before_possible_inference'] = planned_leaves
                         report['planned_input_witness_written_before_possible_inference'] = True
                         save(a.output, report)
                         originals, changed_cells = {}, []
@@ -416,7 +452,7 @@ def run(a):
                                 def logical_guard(text, voice, speed=1.0, lang='en-us',
                                                   _method=method, _outer=outer, **kw):
                                     require(text == logical_text and speed == .95 and lang == 'en-us' and
-                                            kw == expected[_method]['logical_kwargs'] and
+                                            typed(kw) == typed(expected[_method]['logical_kwargs']) and
                                             np.array_equal(voice, m.V), 'Non-target logical model call forbidden')
                                     report['model_calls'].append({'method': _method, 'strict_cache': os.environ.get('STRICT_CACHE') == '1'})
                                     return _outer(text, voice=voice, speed=speed, lang=lang, **kw)
@@ -466,6 +502,8 @@ def run(a):
                                                             lang='en-us', **expected[method]['logical_kwargs'])
                                 require(np.array_equal(value[0], values[method][0]) and value[1] == values[method][1] and (method != 'create_timed' or m._pk.dumps(value[2]) == m._pk.dumps(values[method][2])),
                                         'Original strict cache readback differs')
+                            require(all(native_counts[method] == (0 if e['preexisted'] else 1) for method, e in expected.items()),
+                                    'Each missing target method must have exactly one original entry; existing target entries must never regenerate')
                             report['actual_native_original_method_entry_count'] = sum(native_counts.values())
                             require(report['actual_native_original_method_entry_count'] <= 2, 'Original logical model-method entry scope exceeded')
                             report['both_original_STRICT_cache_readbacks_exact'] = True
@@ -475,8 +513,14 @@ def run(a):
                                 setattr(obj, method, original)
                             for cell, native in changed_cells:
                                 cell.cell_contents = native
+                            require(all(getattr(obj, method) is original for obj, method, original in originals.values()) and
+                                    all(cell.cell_contents is native for cell, native in changed_cells),
+                                    'Original methods or cached native creator closures were not restored')
+                            restoration['original_methods_and_creator_closures_restored'] = True
                     finally:
                         sys.modules.pop(name, None)
+                        require(name not in sys.modules, 'Fresh maker module namespace was not removed')
+                        restoration['fresh_module_namespace_removed'] = True
             finally:
                 report.update(restoration)
         report.update(restoration)
@@ -509,6 +553,9 @@ def run(a):
                 report['completed'] = False
         try:
             if report['completed']:
+                require(all(restoration.get(key) is True for key in ('normal_scripts_namespace_restored',
+                        'environment_cwd_sys_path_restored', 'original_methods_and_creator_closures_restored',
+                        'fresh_module_namespace_removed')), 'All original namespaces/environment/methods must restore before private fixture output')
                 names = sorted({x for e in expected.values() for x in (e['key'], e['key'] + '.单线程')})
                 require(len(names) == 4, 'Exactly four actual private leaves required')
                 runid = os.environ.get('GITHUB_RUN_ID', '')
@@ -544,7 +591,7 @@ def main():
     p = argparse.ArgumentParser()
     for key in ('tools', 'video-root', 'profile', 'request', 'shadow', 'history', 'GEN', 'MD',
                 'authority', 'raw-audio-authority', 'code-adoption', 'execution-adoption', 'overlay', 'certification-report',
-                'input-H', 'pending-text', 'sentence-confirmations', 'output', 'cache-path-output'):
+                'input-H', 'pending-text', 'sentence-confirmations', 'source-adoption', 'baseline-audio-H', 'output', 'cache-path-output'):
         p.add_argument('--' + key, type=Path, required=True)
     p.add_argument('--execution-adoption-sha256', required=True)
     return run(p.parse_args())
