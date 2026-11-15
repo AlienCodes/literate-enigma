@@ -849,14 +849,6 @@ try:
         agreement.write_bytes(supplied_agreement.read_bytes())
         records = supplied_records
         status['request_source_sha256']['视频/工具/用户同意记录.json'] = sha(supplied_agreement)
-    if NO == '09':
-        actual_rows_program = TASK / 'append09_exact_actual_user_rows.py'
-        assert sha(actual_rows_program) == '7c1936a36f1f24454cbedb0b925aed7935a829bb55b8b643716ae6c83f4e6363'
-        actual_rows_spec = importlib.util.spec_from_file_location('exact_source09_actual_user_rows', actual_rows_program)
-        actual_rows_module = importlib.util.module_from_spec(actual_rows_spec)
-        actual_rows_spec.loader.exec_module(actual_rows_module)
-        status['actual_supplemental_user_feedback_rows'] = actual_rows_module.append_exact_source09_feedback_rows(
-            NO, request, authorization, records)
     if authorization not in records['记录']:
         records['记录'].append(authorization)
     agreement.write_text(json.dumps(records, ensure_ascii=False, indent=2) + '\n')
