@@ -9,10 +9,10 @@ S = [(1,
      ('**humpback whales**,', '**座头鲸**(humpback whales)，'),
      ('and only males,', '而且只有雄性，')],
     '（and only males：插入语，强调只有雄性）'],
-   [[('fill their **breeding grounds**', '会让它们的**繁殖地**(breeding grounds)回荡着'),
+   [[('fill their **breeding grounds**', '会让它们的**繁殖地**(breeding grounds)到处充斥着'),
      ('with a **haunting**', '一段**萦绕于心头的**(haunting)'),
      ('**melody**.', '**旋律**(melody)。')],
-    '（fill A with B：让 A 充满 B）']]),
+    '（fill A with B：让 A 充满 B）\n（haunting：形容声音或画面极具感染力，听过就挥之不去，\n深深萦绕在心头（常带有优美或神秘的哀伤感）。）']]),
  (1,
   [[[('**Sound units**', '若干**声音单元**(Sound units)'),
      ('**constitute**', '**构成**(constitute)'),
@@ -102,7 +102,7 @@ S = [(1,
      ('**resembled** that of the Indian Ocean population off western Australia,',
       '**与**(resembled)澳大利亚西部海域印度洋种群的歌**相似**(resembled)，')],
     '（that：指代 song）'],
-   [[('apparently', '似乎是'),
+   [[('**apparently**', '**似乎是**(apparently)'),
      ('**ferried** east by **a handful of** visiting **performers**.',
       '由**一小批**(a handful of)来访的**歌手**(performers)向东**带来**(ferried)的。')],
     '（ferried east by…：过去分词短语作状语，被……向东带来）']]),
@@ -180,7 +180,13 @@ S = [(1,
      ('a few **outsiders** off eastern Australia', '澳大利亚东部海域的一小批**外来者**(outsiders)，')],
     '（Whatever the label：让步状语，无论贴什么标签）'],
    [[('**reshaped**', '**重塑了**(reshaped)'), ('an entire', '整个'), ("population's music.", '种群的音乐。')],
-    '（简述：▸常态：同一群体的雄性座头鲸会唱同一个版本的歌，通常每年只作细微改变，歌唱可能用于求偶。▸换歌：研究者在澳洲东部录到的82头鲸中，最初仅两头唱全新歌；约两年后，几乎整个鲸群都改唱新歌。▸来源：新歌与澳洲西部鲸群的歌相似，研究推测是少量来访鲸把它带到了东部。▸传播：六个南太平洋鲸群的十余年录音显示，新歌多从澳洲东部出现，再逐群向东传播，通常约两年传到法属波利尼西亚。▸解释：变化快得来不及靠基因一代代改变，支持鲸会相互模仿、学习的解释；为何换歌、是否等同人类文化，仍有争议。）']])]
+    '（简述：▸常态：同一群体的雄性座头鲸会唱同一个版本的歌，通常每年只作细微改变，歌唱可能用于求偶。\n'
+    '▸换歌：研究者在澳洲东部录到的82头鲸中，最初仅两头唱全新歌；约两年后，几乎整个鲸群都改唱新歌。\n'
+    '▸来源：新歌与澳洲西部鲸群的歌相似，研究推测是少量来访鲸把它带到了东部。\n'
+    '▸传播：六个南太平洋鲸群的十余年录音显示，新歌多从澳洲东部出现，\n'
+    '▹再逐群向东传播，通常约两年传到法属波利尼西亚。\n'
+    '▸解释：变化快得来不及靠基因一代代改变，支持鲸会相互模仿、\n'
+    '▹学习的解释；为何换歌、是否等同人类文化，仍有争议。）']])]
 
 out = {'no': '57',
  'title_en': 'A Change of Anthem in the Deep',
@@ -518,7 +524,7 @@ out = {'no': '57',
                    '依据': '用户 2026-11-07 特批：问“S5 小字放不下，怎么处理？”时用户选“S5 小字放宽到全屏宽”（只对 S5 这段小字，不受“不比英文宽”限制，按屏宽折行）'},
             'S11': {'倍数': '屏宽',
                     '依据': '用户 2026-11-07 特批：问“S11 详细语法小字太宽，怎么处理？”时用户选“S11 也放宽到全屏宽”（只对 S11 这段小字，按屏宽折行）'}},
- 'allow_clash': ['spurs'],
+ 'allow_clash': ['spurs', 'apparently'],
  '分段增益dB': {'S7': {'3': 1.5}},
  '换行变更记录': [{'日期': '2026-11-07',
              'S18': '用户 2026-11-07（看 S18 a few outsiders / off eastern Australia '

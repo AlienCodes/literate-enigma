@@ -4,25 +4,25 @@
 ## 英文
 On 18 February 1930, comparing **photographic** plates at the Lowell Observatory, the **astronomer** Clyde Tombaugh **perceived** a **dim** **dot** that shifted between them. An eleven-year-old English girl **put forward** the name, after the Roman **deity** of the **underworld**. For 76 years Pluto held the ninth **slot** on the **planetary** **roster**.
 
-In January 2005, astronomers found a **far-off** body, later named Eris, at first thought larger than **Pluto**. NASA **briefly** called it the tenth planet. The **contender** posed an **awkward** **dilemma**. The term "planet" had **hitherto** been used **loosely**, and with more **icy** worlds likely to be found, a **precise** **definition** became a **necessity**.
+In January 2005, astronomers found a **far-off** body, later named Eris, at first thought larger than Pluto. NASA briefly called it the tenth planet. The **contender** posed an **awkward** **dilemma**. The term "planet" had **hitherto** been used **loosely**, and with more **icy** worlds likely to be found, a **precise** **definition** became a **necessity**.
 
 On 24 August 2006 the International Astronomical Union, **convened** in Prague, voted that a planet must **revolve around** the Sun, be nearly **spherical**, and have cleared the **neighbourhood** around its orbit. Pluto failed that last **criterion** and was **reclassified as** a **dwarf** planet, leaving eight. Pluto was **physically** **unaltered**; only the **boundary** had moved.
 
-The vote was **valid**, yet its **legitimacy** drew **criticism**: only 424 of some 10,000 members took part. Hundreds of **dissenting** astronomers signed a **petition**. The American **Dialect** Society made "plutoed", **playful** **slang** for "to **devalue**", its word of 2006, and New Mexico and Illinois **lawmakers** passed **resolutions** **affirming** that Pluto was a planet.
+The vote was **valid**, yet its **legitimacy** drew **criticism**: only 424 of some 10,000 members took part. Hundreds of **dissenting** astronomers signed a **petition**. The American Dialect Society made "plutoed", **playful** **slang** for "to **devalue**", its word of 2006, and New Mexico and Illinois **lawmakers** passed **resolutions** **affirming** that Pluto was a planet.
 
-Amid the **controversy**, an **irony** was already **in transit**. New Horizons **was** **launched** on 19 January 2006, seven months before the vote, carrying **a pinch of** Tombaugh's ashes. On 14 July 2015 the **unmanned** craft flew past Pluto, **transmitting** images of an **enormous** **heart-shaped** plain, **fittingly** named Tombaugh Regio. The **discoverer**'s ashes **swept past** the heart that bears his name.
+Amid the **controversy**, an **irony** was already **in transit**. New Horizons was launched on 19 January 2006, seven months before the vote, carrying **a pinch of** Tombaugh's ashes. On 14 July 2015 the **unmanned** craft flew past Pluto, **transmitting** images of an **enormous** **heart-shaped** plain, **fittingly** named Tombaugh Regio. The **discoverer**'s ashes **swept past** the heart that bears his name.
 
 ## 中文
 
 1930年2月18日，在洛厄尔天文台比对**照相**(photographic)底片时，**天文学家**(astronomer)克莱德·汤博**察觉**(perceived)到一个**暗淡的**(dim)**小点**(dot)，它在底片之间移动过。（comparing…：现在分词短语作时间状语；Lowell Observatory：洛厄尔天文台）（the astronomer Clyde Tombaugh：the astronomer 和人名是同位关系）（that shifted between them：定语从句，修饰 a dim dot；them 指 plates）一名11岁的英国女孩**提议了**(put forward)它的名字，名字取自罗马神话中的**冥界**(underworld)**神灵**(deity)。（put forward：提出，提议）（after…：以……命名；the Roman deity of the underworld：罗马神话中的冥界之神）此后76年里，冥王星一直占据**行星**(planetary)**名单**(roster)上的第九个**位置**(slot)。（hold the ninth slot：占据第九个位置；slot：指名单、序列或时间表上的“位置、名额”；on the planetary roster：介词短语作后置定语，修饰 slot）
 
-2005年1月，天文学家发现了一个**遥远的**(far-off)天体，它后来被命名为厄里斯，起初被认为比**冥王星**(Pluto)还要大。（body：天体）（later named Eris、at first thought larger than Pluto：两个过去分词短语作后置定语，修饰 a far-off body）美国航天局曾**短暂地**(briefly)称它为第十大行星。（call A B：称 A 为 B；NASA：美国国家航空航天局）这个**竞争者**(contender)造成了一个**尴尬的**(awkward)**两难困境**(dilemma)。（pose：造成，引发（问题、困难）；contender 指 Eris；dilemma：指陷入“进退维谷”的境地，无论选择哪一方，都必须承受相应的损失或代价）“行星”一词**此前**(hitherto)一直被用得很**不严谨/宽泛**(loosely)，而随着更多**冰冷**(icy)天体很可能被发现，一个**精确的**(precise)**定义**(definition)便成了**必需**(necessity)。（had been used：过去完成时的被动语态；hitherto：迄今，此前）（with + 名词 + 不定式：with 复合结构，作原因状语）（become a necessity：成为必需）
+2005年1月，天文学家发现了一个**遥远的**(far-off)天体，它后来被命名为厄里斯，起初被认为比冥王星还要大。（body：天体）（later named Eris、at first thought larger than Pluto：两个过去分词短语作后置定语，修饰 a far-off body）美国航天局曾短暂地称它为第十大行星。（call A B：称 A 为 B；NASA：美国国家航空航天局）这个**竞争者**(contender)造成了一个**尴尬的**(awkward)**两难困境**(dilemma)。（pose：造成，引发（问题、困难）；contender 指 Eris；dilemma：指陷入“进退维谷”的境地，无论选择哪一方，都必须承受相应的损失或代价）“行星”一词**此前**(hitherto)一直被用得很**不严谨/宽泛**(loosely)，而随着更多**冰冷**(icy)天体很可能被发现，一个**精确的**(precise)**定义**(definition)便成了**必需**(necessity)。（had been used：过去完成时的被动语态；hitherto：迄今，此前）（with + 名词 + 不定式：with 复合结构，作原因状语）（become a necessity：成为必需）
 
 2006年8月24日，国际天文学联合会在布拉格**召开会议**(convened)，投票决定：一颗行星必须**围绕**(revolve around)太阳**转动**(revolve around)、形状接近**球形**(spherical)，并且已清空其轨道附近的**区域**(neighbourhood)。（convened in Prague：过去分词短语作插入语，补充说明 the International Astronomical Union）（that 引导宾语从句，作 voted 的宾语；revolve around…：绕……运行）（must revolve…, be…, and have cleared…：三个并列谓语，共用 must）冥王星不符合最后一条**标准**(criterion)，并被**重新归类为**(reclassified as)**矮行星**(dwarf)，行星只剩下八颗。（fail a criterion：不符合标准）（reclassify A as B：把 A 重新归类为 B；leaving eight：现在分词短语作结果状语）冥王星在**物理上**(physically)**毫无改变**(unaltered)，只有**界线**(boundary)移动了。（physically：物理上，实际上）（分号连接两个前后对照的分句）
 
-这次表决虽然是**有效的**(valid)，但其**正当性**(legitimacy)却招致了**批评**(criticism)：约1万名成员中仅有424人参加。（draw criticism：招致批评；冒号后面说明受批评的原因）（424 of some 10,000 members：约1万名会员中的424人；some：大约）数百名**持异议的**(dissenting)天文学家签署了一份**请愿书**(petition)。（dissenting：持异议的，持不同意见的）（petition 很多人联名签字、向官方或权威机构表达正式诉求的“请愿书”（或联名信）。）美国**方言**(Dialect)学会把“plutoed”，这个**戏谑的**(playful)**俚语**(slang)，意思是“**贬低**(devalue)”，评为2006年度词汇，而新墨西哥州和伊利诺伊州的**立法者**(lawmakers)通过**决议**(resolutions)，**确认**(affirming)冥王星是行星。（made A B：把 A 评为 B；playful slang for "to devalue"：同位语，补充说明 plutoed）（affirming that…：现在分词短语作后置定语，修饰 resolutions）
+这次表决虽然是**有效的**(valid)，但其**正当性**(legitimacy)却招致了**批评**(criticism)：约1万名成员中仅有424人参加。（draw criticism：招致批评；冒号后面说明受批评的原因）（424 of some 10,000 members：约1万名会员中的424人；some：大约）数百名**持异议的**(dissenting)天文学家签署了一份**请愿书**(petition)。（dissenting：持异议的，持不同意见的）美国方言学会把“plutoed”，这个**戏谑的**(playful)**俚语**(slang)，意思是“**贬低**(devalue)”，评为2006年度词汇，而新墨西哥州和伊利诺伊州的**立法者**(lawmakers)通过**决议**(resolutions)，**确认**(affirming)冥王星是行星。（made A B：把 A 评为 B；playful slang for "to devalue"：同位语，补充说明 plutoed）（affirming that…：现在分词短语作后置定语，修饰 resolutions）
 
-就在一片**争议**(controversy)声中，一件**颇具讽刺意味的事**(irony)早已**在途中**(in transit)。（in transit：在途中，在运送中；irony：具有讽刺意味的事）（irony : 事情的发展与预期（或常理）完全相反，让人觉得荒诞、可笑又充满戏剧性的情况。）新视野号**被**(was launched)**发射**(was launched)于2006年1月19日，比那次表决早七个月，携带着**一小撮**(a pinch of)汤博的骨灰。（seven months before the vote：补充说明发射的时间）（carrying…：现在分词短语作伴随状语；a pinch of…：一小撮……）2015年7月14日，这艘**无人**(unmanned)飞船飞掠过冥王星，**传回了**(transmitting)图像，图像上是一片**巨大的**(enormous)**心形**(heart-shaped)平原，这片平原**恰如其分地**(fittingly)被命名为汤博区。（craft：飞行器，这里指飞船）（transmitting…：现在分词短语作伴随状语；of…：介词短语作后置定语，修饰 images）（fittingly named…：过去分词短语作后置定语，修饰 plain；Tombaugh Regio：汤博区）这位**发现者**(discoverer)的骨灰**掠过了**(swept past)那颗以他命名的心。（that bears his name：定语从句，修饰 the heart；bear one's name：以某人的名字命名）（简述：▸发现：1930年，汤博发现冥王星。此后76年，人们一直把它列为太阳系第九颗行星。▸重审：2005年发现厄里斯，起初以为它比冥王星还大；▹类似天体可能越来越多，天文学家需要说清什么才算行星。▸改类：2006年新规要求行星绕太阳、接近球形，还要靠引力主导轨道周边区域。▹冥王星达不到最后一条，改列矮行星，太阳系行星剩八颗。▸争议：这只是分类标准变了，冥王星本身没有变化。表决合乎程序，▹但约一万会员只有424人参与，决定的代表性受到质疑。▸探访：2015年，新视野号带着少量汤博骨灰飞掠冥王星，传回一个以汤博命名的巨大心形区域的图像。）
+就在一片**争议**(controversy)声中，一件颇具**讽刺**(irony)意味的事早已**在途中**(in transit)。（in transit：在途中，在运送中；irony：具有讽刺意味的事）新视野号于2006年1月19日发射，比那次表决早七个月，携带着**一小撮**(a pinch of)汤博的骨灰。（seven months before the vote：补充说明发射的时间）（carrying…：现在分词短语作伴随状语；a pinch of…：一小撮……）2015年7月14日，这艘**无人**(unmanned)飞船飞掠过冥王星，**传回了**(transmitting)图像，图像上是一片**巨大的**(enormous)**心形**(heart-shaped)平原，这片平原**恰如其分地**(fittingly)被命名为汤博区。（craft：飞行器，这里指飞船）（transmitting…：现在分词短语作伴随状语；of…：介词短语作后置定语，修饰 images）（fittingly named…：过去分词短语作后置定语，修饰 plain；Tombaugh Regio：汤博区）这位**发现者**(discoverer)的骨灰**掠过了**(swept past)那颗以他命名的心。（that bears his name：定语从句，修饰 the heart；bear one's name：以某人的名字命名）（简述：▸发现：1930年，汤博发现冥王星。此后76年，人们一直把它列为太阳系第九颗行星。▸重审：2005年发现厄里斯，起初以为它比冥王星还大；类似天体可能越来越多，天文学家需要说清什么才算行星。▸改类：2006年新规要求行星绕太阳、接近球形，还要靠引力主导轨道周边区域。冥王星达不到最后一条，改列矮行星，太阳系行星剩八颗。▸争议：这只是分类标准变了，冥王星本身没有变化。表决合乎程序，但约一万会员只有424人参与，决定的代表性受到质疑。▸探访：2015年，新视野号带着少量汤博骨灰飞掠冥王星，传回一个以汤博命名的巨大心形区域的图像。）
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -39,8 +39,6 @@ Amid the **controversy**, an **irony** was already **in transit**. New Horizons 
 | roster | 本文：名单；n. 名单，花名册；值勤表（a duty roster；the team roster） | 1 |
 | slot | 本文：位置；n. 位置，名额；狭槽（a time slot；a coin slot） | 1 |
 | far-off | 本文：遥远的；adj. 遥远的（a far-off land/country） | 2 |
-| Pluto | 本文：冥王星；n. 冥王星；（罗马神话）冥王 | 2 |
-| briefly | 本文：短暂地；adv. 短暂地；简短地，简要地 | 2 |
 | contender | 本文：竞争者；n. 竞争者，有力人选（a strong contender for the title） | 2 |
 | awkward | 本文：尴尬的；adj. 棘手的，令人尴尬的（an awkward question/situation） | 2 |
 | dilemma | 本文：两难困境；n. 困境，两难（face a dilemma；a moral dilemma） | 2 |
@@ -65,7 +63,6 @@ Amid the **controversy**, an **irony** was already **in transit**. New Horizons 
 | criticism | 本文：批评；n. 批评（face/draw criticism；constructive criticism） | 4 |
 | dissenting | 本文：持异议的；adj. 持异议的（a dissenting voice/opinion） | 4 |
 | petition | 本文：请愿书；n. 请愿书（sign a petition against sth） | 4 |
-| Dialect | 本文：方言；n. 方言，地方话 | 4 |
 | playful | 本文：戏谑的；adj. 开玩笑的，戏谑的；爱玩的（a playful remark；a playful puppy） | 4 |
 | slang | 本文：俚语；n. 俚语（army slang；a slang word） | 4 |
 | devalue | 本文：贬低；v. 贬低；使（货币）贬值（devalue sb's work；devalue the currency） | 4 |
@@ -73,9 +70,8 @@ Amid the **controversy**, an **irony** was already **in transit**. New Horizons 
 | resolutions | 本文：决议；n. (resolution) 决议，正式决定（pass/adopt a resolution） | 4 |
 | affirming | 本文：确认；v. (affirm) 确认，申明（affirm one's commitment/support） | 4 |
 | controversy | 本文：争议；n. 争议，争论（cause/spark controversy） | 5 |
-| irony | 本文：颇具讽刺意味的事；n. 讽刺，具有讽刺意味的事（the irony is that…；by a twist of irony） | 5 |
+| irony | 本文：讽刺；n. 讽刺，具有讽刺意味的事（the irony is that…；by a twist of irony） | 5 |
 | in transit | 本文：在途中；n. 运输，在途（goods damaged in transit） | 5 |
-| was launched | 本文：被……发射；v. 被发射（launch 的一般过去时被动形式） | 5 |
 | a pinch of | 本文：一小撮；n. 一撮，少量（a pinch of salt） | 5 |
 | unmanned | 本文：无人；adj. 无人的，无人驾驶的（an unmanned spacecraft/aircraft） | 5 |
 | transmitting | 本文：传回了；v. (transmit) 传输，发送（transmit signals/data） | 5 |
