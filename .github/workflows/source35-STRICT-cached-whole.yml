@@ -1,4 +1,4 @@
-name: 书54原两母V3严格缓存整轨观测无新语音
+name: 书54原89d8整轨仅补实际WAV-MD5标量
 on:
   push:
     branches: [codex/finish-05-and-summaries-20261112]
@@ -73,7 +73,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: source35-V3-baseline-selected-whole-scalar-only
-          path: source35-strict-whole-public/*.json
+          name: source35-original89d8-WAV-MD5-only-whole-scalar
+          path: source35-strict-whole-WAV-MD5-only-public/*.json
           retention-days: 30
           if-no-files-found: error
