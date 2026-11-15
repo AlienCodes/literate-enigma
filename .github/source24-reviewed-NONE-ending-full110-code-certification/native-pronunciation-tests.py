@@ -21,7 +21,7 @@ candidate = (a.tools / '读音核对.py').read_text()
 original = a.original_tool.read_text()
 sha = lambda p: hashlib.sha256(Path(p).read_bytes()).hexdigest()
 assert hashlib.sha256(original.encode()).hexdigest() == '0a3b97e1179e47c0593f69286f4206eecc123cc7ec5d5adf4f5e62457c228a41'
-assert hashlib.sha256(candidate.encode()).hexdigest() == 'a32bee516f108594f28bda2a3566754e383f27fd78d5a0121e58fb5d49a84428'
+assert hashlib.sha256(candidate.encode()).hexdigest() == 'b0b4f1a2d3151489aa8174e8bd734bb3f963e89fffb22e3dc170535327a2feb4'
 strip_selftest = lambda text: [ast.dump(n, include_attributes=False) for n in ast.parse(text).body if not isinstance(n, ast.FunctionDef) or n.name != 'selftest']
 def remove_exact_feature_input_context(text):
     tree=ast.parse(text);check=next(n for n in tree.body if isinstance(n,ast.FunctionDef)and n.name=='check')
