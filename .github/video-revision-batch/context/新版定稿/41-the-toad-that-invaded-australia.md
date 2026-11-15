@@ -1,11 +1,11 @@
 # EN: The Toad That Invaded Australia
 # ZH: 入侵澳洲的毒蟾
 ## 英文
-Greyback cane **beetles**, whose **larvae** **devour** roots, were **plaguing** **lucrative** sugar **plantations** in Queensland, north-eastern Australia. In June 1935 Queensland **imported** 102 cane **toads**, **bulky** **amphibians** **native to** the Americas, from Hawaii. That August about 2,400 of their young were **released**. **Biological** control, setting one **species** against a **pest**, had an **ambitious** new **recruit**.
+Greyback cane **beetles**, whose **larvae** **devour** roots, were **plaguing** **lucrative** sugar **plantations** in Queensland, north-eastern Australia. In June 1935 Queensland **imported** 102 cane toads, **bulky** **amphibians** **native to** the Americas, from Hawaii. That August about 2,400 of their young were **released**. **Biological** control, setting one **species** against a **pest**, had an **ambitious** new **recruit**.
 
 The **hasty** plan met **opposition**. In November 1935 an insect expert, Walter Froggatt, **persuaded** officials to **halt** releases; after Queensland's **lobbying**, they **resumed** in September 1936. The **scheme** **flopped**: the toads barely **dented** beetle numbers, perhaps because the insects stayed high up on cane **stalks**.
 
-The toads **thrived** instead. With few **foes** and **fertile** females **spawning** thousands of eggs, they **multiplied** **unchecked**. Their **invasion** **frontier**, **creeping** about ten kilometres a year at first, **accelerated** to about 50 a year in the **tropical** north. In February 2009 the first known toad **breached** Western Australia's border.
+The toads **thrived** instead. With few **foes** and **fertile** females **spawning** thousands of eggs, they **multiplied** **unchecked**. Their **invasion** **frontier**, creeping about ten kilometres a year at first, **accelerated** to about 50 a year in the **tropical** north. In February 2009 the first known toad **breached** Western Australia's border.
 
 **Toxin** **glands** in their skin make them a deadly meal. Numbers of goannas (large **lizards**) and northern quolls (small **marsupial** hunters) have **slumped** in places; some local quoll populations were **wiped out**. The toads have **wreaked** **havoc**, but the damage is **uneven**; some species have **prospered**.
 
@@ -13,15 +13,15 @@ Biological control can **triumph**. From 1926 the cactus **moth**, Cactoblastis,
 
 ## 中文
 
-灰背蔗**甲虫**(beetles)它的**幼虫**(larvae)**啃食**(devour)根系，正**困扰**(plaguing)着**利润丰厚的**(lucrative)甘蔗**种植园**(plantations)，此种植园位于澳大利亚东北部的昆士兰州。（whose larvae devour roots：定语从句，修饰 beetles）（in Queensland：后置定语，修饰 plantations；north-eastern Australia：同位语，补充说明 Queensland）1935年6月，昆士兰州从夏威夷**引进了**(imported)102只甘蔗**蟾蜍**(toads)，这是一种**原产于**(native to)美洲、**庞大笨重的**(bulky)**两栖动物**(amphibians)。（bulky amphibians native to the Americas：同位语，补充说明 cane toads；native to…：原产于……；from Hawaii：修饰 imported）同年8月，它们的约2,400只后代被**释放**(released)到野外。（young：名词，指动物的幼崽、后代）**生物的**(Biological)防治，即用一个**物种**(species)去对付一种**害虫**(pest)，就此迎来了一名**雄心勃勃的**(ambitious)**新兵**(recruit)。（setting one species against a pest：现在分词短语，补充说明 Biological control；set A against B：用 A 对付 B）（recruit：新兵，这里指刚被派上场的甘蔗蟾蜍）
+灰背蔗**甲虫**(beetles)它的**幼虫**(larvae)**啃食**(devour)根系，正**困扰**(plaguing)着**利润丰厚的**(lucrative)甘蔗**种植园**(plantations)，此种植园位于澳大利亚东北部的昆士兰州。（whose larvae devour roots：定语从句，修饰 beetles）（in Queensland：后置定语，修饰 plantations；north-eastern Australia：同位语，补充说明 Queensland）1935年6月，昆士兰州从夏威夷**引进了**(imported)102只甘蔗蟾蜍，这是一种**原产于**(native to)美洲、**庞大笨重的**(bulky)**两栖动物**(amphibians)。（bulky amphibians native to the Americas：同位语，补充说明 cane toads；native to…：原产于……；from Hawaii：修饰 imported）同年8月，它们的约2,400只后代被**释放**(released)到野外。（young：名词，指动物的幼崽、后代）**生物的**(Biological)防治，即用一个**物种**(species)去对付一种**害虫**(pest)，就此迎来了一名**雄心勃勃的**(ambitious)**新兵**(recruit)。（setting one species against a pest：现在分词短语，补充说明 Biological control；set A against B：用 A 对付 B）（recruit：新兵，这里指刚被派上场的甘蔗蟾蜍）
 
 这个**草率的**(hasty)计划遭到了**反对**(opposition)。（meet opposition：遭到反对）1935年11月，昆虫专家沃尔特·弗罗格特**说服**(persuaded)官员**停止**(halt)释放；经昆士兰州**游说**(lobbying)，释放于1936年9月**恢复**(resumed)。（Walter Froggatt：同位语，补充说明 an insect expert；persuade sb to do sth：说服某人做某事）（they：指 releases，即释放）这套**计划/方案**(scheme)**彻底失败**(flopped)：蟾蜍几乎没能**削减**(dented)甲虫的数量，或许是因为这些昆虫一直待在甘蔗**茎秆**(stalks)的高处。（barely：几乎不，带否定意味；冒号后的分句具体说明 flopped）（perhaps because…：原因状语从句，表推测）
 
-蟾蜍自己反倒**兴旺**(thrived)起来。（instead：反而，和上文甲虫没被消灭形成对照）**天敌**(foes)寥寥，**能生育的**(fertile)雌蟾**产下**(spawning)数千枚卵，它们**不受遏制地**(unchecked)**大量繁殖**(multiplied)。（with＋名词＋现在分词：with 复合结构作原因状语；foes：敌人，这里指天敌）（unchecked：形容词作状语，说明繁殖的状态）它们的**入侵**(invasion)**前沿**(frontier)起初每年**缓慢行进**(creeping)约十公里，到了**热带**(tropical)北部，**加快**(accelerated)到每年约50公里。（creeping…：现在分词短语作插入语，补充说明 frontier；creep：缓慢移动）（about 50 a year：省略了 kilometres）2009年2月，已知的第一只蟾蜍**突破了**(breached)西澳大利亚州的边界。（first known：已知的第一个）
+蟾蜍自己反倒**兴旺**(thrived)起来。（instead：反而，和上文甲虫没被消灭形成对照）**天敌**(foes)寥寥，**能生育的**(fertile)雌蟾**产下**(spawning)数千枚卵，它们**不受遏制地**(unchecked)**大量繁殖**(multiplied)。（with＋名词＋现在分词：with 复合结构作原因状语；foes：敌人，这里指天敌）（unchecked：形容词作状语，说明繁殖的状态）它们的**入侵**(invasion)**前沿**(frontier)起初每年缓慢行进约十公里，到了**热带**(tropical)北部，**加快**(accelerated)到每年约50公里。（creeping…：现在分词短语作插入语，补充说明 frontier；creep：缓慢移动）（about 50 a year：省略了 kilometres）2009年2月，已知的第一只蟾蜍**突破了**(breached)西澳大利亚州的边界。（first known：已知的第一个）
 
 它们皮肤里的**毒素**(Toxin)**腺体**(glands)，使它们成为了一顿致命的餐食。（make A B：使 A 成为 B；Toxin glands：毒腺，toxin 作定语）巨蜥（大型**蜥蜴**(lizards)）和北袋鼬（一种小型**有袋类**(marsupial)猎手）的数量在一些地方**锐减**(slumped)；部分地方的袋鼬种群被**彻底消灭**(wiped out)。（Numbers of…：……的数量，of 结构语序倒过来；goannas：巨蜥，括号里 large lizards 意为大型蜥蜴）（in places：在一些地方）（wipe out：彻底消灭）蟾蜍**造成了**(wreaked havoc)**严重破坏**(wreaked havoc)，但损害并**不均衡**(uneven)；有些物种反而**繁荣了**(prospered)起来。（wreak havoc：造成严重破坏）（the damage is uneven：各地受害程度不一样）
 
-生物防治也能**大获成功**(triumph)。从1926年起，仙人掌螟这种**蛾子**(moth)在约十年内清除了大部分“**带刺的**(prickly)梨”，这是一种**外来入侵的**(invasive)**仙人掌**(cactus)，清除范围遍及昆士兰州和新南威尔士州。（Cactoblastis：同位语，补充说明 the cactus moth，即仙人掌螟）（an invasive cactus：同位语，补充说明 prickly pear；clear A from B：把 A 从 B 清除掉）这种蛾子放出前经过检验，其**幼虫**(larvae)宁可**饿死**(starved)也不吃另外十五种植物；蟾蜍却从未受过这样的检验。（Tested first：过去分词短语作状语，逻辑主语是这种蛾子；rather than：宁可……也不……）（no such…：没有这样的……）根据1984年10月通过的一部法律，如今新兵都要经过**严格的**(stringent)**认真彻底的审查**(scrutiny)。（Under…law：依据……法律；recruits：新兵，这里指准备引进来做生物防治的物种）这个**大错**(blunder)起于**仓促**(haste)，又因**游说**(lobbying)**压过了**(overrode)警告而成定局：**未经检验的**(untested)**盟友**(ally)一旦**放出**(loose)，就可能再也**召不回来**(recalled)。（be born of…：源于……；that overrode a warning：定语从句，修饰 lobbying）（once loose：省略的状语从句，等于 once it is loose）（简述：▸引进：1935年，澳大利亚为对付危害甘蔗的甲虫，引进甘蔗蟾蜍，再把约2400只后代放进野外，希望它们吃掉害虫。▸冒进：专家曾促成暂停释放，但地方游说让计划恢复；放出前却缺少检查蟾蜍究竟吃什么的试验。▸失控：甲虫没被明显消灭，蟾蜍却因天敌少、繁殖快而不断扩散，在热带北部每年推进约50公里。▸伤害：蟾蜍皮肤有毒，捕食它们的巨蜥、北袋鼬在一些地方大幅减少，▹部分袋鼬种群消失；对不同物种的影响并不一致。▸教训：此前引进仙人掌螟时，试验发现它的幼虫宁可饿死也不吃另外15种植物，▹后来才用于控制仙人掌；蟾蜍没有经过同类食性检验。未经检验的“帮手”一旦失控，可能再也收不回来。）
+生物防治也能**大获成功**(triumph)。从1926年起，仙人掌螟这种**蛾子**(moth)在约十年内清除了大部分“**带刺的**(prickly)梨”，这是一种**外来入侵的**(invasive)**仙人掌**(cactus)，清除范围遍及昆士兰州和新南威尔士州。（Cactoblastis：同位语，补充说明 the cactus moth，即仙人掌螟）（an invasive cactus：同位语，补充说明 prickly pear；clear A from B：把 A 从 B 清除掉）这种蛾子放出前经过检验，其**幼虫**(larvae)宁可**饿死**(starved)也不吃另外十五种植物；蟾蜍却从未受过这样的检验。（Tested first：过去分词短语作状语，逻辑主语是这种蛾子；rather than：宁可……也不……）（no such…：没有这样的……）根据1984年10月通过的一部法律，如今新兵都要经过**严格的**(stringent)**认真彻底的审查**(scrutiny)。（Under…law：依据……法律；recruits：新兵，这里指准备引进来做生物防治的物种）这个**大错**(blunder)起于**仓促**(haste)，又因**游说**(lobbying)**压过了**(overrode)警告而成定局：**未经检验的**(untested)**盟友**(ally)一旦**放出**(loose)，就可能再也**召不回来**(recalled)。（be born of…：源于……；that overrode a warning：定语从句，修饰 lobbying）（once loose：省略的状语从句，等于 once it is loose）（简述：▸引进：1935年，澳大利亚为对付危害甘蔗的甲虫，引进甘蔗蟾蜍，再把约2400只后代放进野外，希望它们吃掉害虫。▸冒进：专家曾促成暂停释放，但地方游说让计划恢复；放出前却缺少检查蟾蜍究竟吃什么的试验。▸失控：甲虫没被明显消灭，蟾蜍却因天敌少、繁殖快而不断扩散，在热带北部每年推进约50公里。▸伤害：蟾蜍皮肤有毒，捕食它们的巨蜥、北袋鼬在一些地方大幅减少，部分袋鼬种群消失；对不同物种的影响并不一致。▸教训：此前引进仙人掌螟时，试验发现它的幼虫宁可饿死也不吃另外15种植物，后来才用于控制仙人掌；蟾蜍没有经过同类食性检验。未经检验的“帮手”一旦失控，可能再也收不回来。）
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -33,7 +33,6 @@ Biological control can **triumph**. From 1926 the cactus **moth**, Cactoblastis,
 | lucrative | 本文：利润丰厚的；adj. 赚钱的，获利丰厚的（a lucrative business/contract/market） | 1 |
 | plantations | 本文：种植园；n. (plantation) 种植园，大农场（a sugar/rubber/tea plantation）；人造林 | 1 |
 | imported | 本文：引进了；v. (import) 进口，引进（import goods from abroad；import sth into…）；n. 进口；进口商品（imports 进口额）；反义 export | 1 |
-| toads | 本文：蟾蜍；n. toad 的复数，蟾蜍 | 1 |
 | native to | 本文：原产于；phr. 原产于……的，土生土长的（be native to 原产于；plants native to China 原产中国的植物）；native adj. 本地的，母语的（a native speaker 说母语的人）；n. 本地人 | 1 |
 | bulky | 本文：庞大笨重的；adj. 庞大笨重的，体积大的（a bulky parcel）；（人）魁梧的，粗壮的；bulk n. 大块，大部分（the bulk of 大部分；in bulk 大批） | 1 |
 | amphibians | 本文：两栖动物；n. (amphibian) 两栖动物（蛙、蟾蜍、蝾螈等）；水陆两用飞机/车辆；amphibious adj. 两栖的；水陆两用的 | 1 |
@@ -61,7 +60,6 @@ Biological control can **triumph**. From 1926 the cactus **moth**, Cactoblastis,
 | multiplied | 本文：大量繁殖；v. (multiply) （动植物）繁殖；（使）成倍增加，大量增加；乘（multiply 3 by 4）；multiple adj. 多个的；multiplication n. 乘法 | 3 |
 | invasion | 本文：入侵；n. 入侵，侵略（an invasion of…；invasion of privacy 侵犯隐私）；（大批）涌入；invade v. 入侵 | 3 |
 | frontier | 本文：前沿；n. 边境，边界（a frontier town 边境城镇）；（知识等的）前沿（the frontiers of science 科学前沿）；（美国史）边疆（文中：入侵前沿） | 3 |
-| creeping | 本文：缓慢行进；v. 缓慢行进（creep 的现在分词） | 3 |
 | tropical | 本文：热带；adj. 热带的（tropical rainforest/fruit/storms）；（天气）炎热潮湿的；the tropics n. 热带地区 | 3 |
 | accelerated | 本文：加快；v. (accelerate) （使）加快，加速（accelerate growth/the process）；acceleration n. 加速；accelerator n. 油门 | 3 |
 | breached | 本文：突破了；v. (breach) 突破，攻破（breach a wall/defences）；违反（breach a contract/the law）；n. 违反（a breach of contract）；缺口，裂口 | 3 |

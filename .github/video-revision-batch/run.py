@@ -34,7 +34,9 @@ for key in ('YAOWENBEN', 'OLD_IV_VOID', 'AUDIO_ONLY', 'VIDEO_S'):
 status = {'article': NO, 'passed': False, 'stage': 'start',
           'original_audit_and_quality_thresholds_unchanged': True, 'original_maker_unchanged': True,
           'core_repairs': [],
-          'strict_production_cache': True, 'pdf_requested': False}
+          'strict_production_cache': True, 'pdf_requested': False,
+          'review_only': False, 'user_individual_finalization_authorized': True,
+          'specific_final_authorization_sha256': '18a7d06adaf59aa0d4bb671c31f30c0835aaf3f1ce926fd80537e21d51fdcf9d'}
 PRODUCTION_STARTED_NS = None
 BASELINE_AUDIO_FILES = None
 
@@ -56,13 +58,30 @@ def install_certified_core_repairs():
     manifest = json.loads(manifest_file.read_text())
     assert manifest['kind'] in {'actual-original-fastcheck-certified-three-core-repair',
                                 'actual-original-fastcheck-certified-four-core-repair',
-                                'actual-original-fastcheck-certified-five-core-repair'}
+                                'actual-original-fastcheck-certified-five-core-repair',
+                                'actual-original-fastcheck-certified-five-core-reviewed-cuts-repair',
+                                'actual-original-fastcheck-certified-six-core-case-consistent-producer-repair',
+                                'actual-original-fastcheck-certified-seventeen-program-spoken-comma-repair'}
     allowed = {'视频/工具/草稿声音.sh','视频/工具/句内响度.py','视频/工具/独立复核/synth.py'}
     keep_ending = manifest['kind'] != 'actual-original-fastcheck-certified-three-core-repair'
     if keep_ending:
         allowed.add('视频/工具/结尾句接点.py')
-    if manifest['kind'] == 'actual-original-fastcheck-certified-five-core-repair':
+    keep_cuts = manifest['kind'] in {'actual-original-fastcheck-certified-five-core-reviewed-cuts-repair',
+                                    'actual-original-fastcheck-certified-six-core-case-consistent-producer-repair',
+                                'actual-original-fastcheck-certified-seventeen-program-spoken-comma-repair'}
+    if manifest['kind'] in {'actual-original-fastcheck-certified-five-core-repair',
+                            'actual-original-fastcheck-certified-five-core-reviewed-cuts-repair',
+                            'actual-original-fastcheck-certified-six-core-case-consistent-producer-repair',
+                                'actual-original-fastcheck-certified-seventeen-program-spoken-comma-repair'}:
         allowed.add('视频/工具/读音核对.py')
+    if manifest['kind'] == 'actual-original-fastcheck-certified-six-core-case-consistent-producer-repair':
+        allowed.add('视频/工具/make_video.py')
+    if manifest['kind'] == 'actual-original-fastcheck-certified-seventeen-program-spoken-comma-repair':
+        assert NO == '35' and sha(manifest_file) == 'dbad530189cffa26bb29c26ad85b95c992b36254f88f8385b401cc6b1f5d1c5d'
+        assert manifest['actual_native_certification']['run_id'] == 43693920217
+        assert manifest['actual_native_fastcheck_stamp']['sha256'] == '7d7ebf20b78143231992f8880f70e3cf1581c75acd2d977bc054e3ff151a1a41'
+        keep_cuts = True
+        allowed = {'视频/工具/停顿位置精确核对.py', '视频/工具/高亮同步核对.py', '视频/工具/读音核对.py', '视频/工具/草稿声音.sh', '视频/工具/make_video.py', '视频/工具/新管/快测.py', '视频/工具/标点停顿核对.py', '视频/工具/成片时刻对照.py', '视频/工具/可闻声保全核对.py', '视频/工具/无标点停顿核对.py', '视频/工具/结尾句接点.py', '视频/工具/疑点清单.py', '视频/工具/词尾辅音核对.py', '视频/工具/独立复核/labels.py', '视频/工具/独立复核/synth.py', '视频/工具/词尾实测.py', '视频/工具/句内响度.py'}
     assert {item['target'] for item in manifest['core_files']} == allowed
     for item in manifest['core_files']:
         source = folder / item['file']
@@ -83,21 +102,33 @@ def install_certified_core_repairs():
     ENV['XG_KEEP_REVIEWED_GAIN'] = '1'
     if keep_ending:
         ENV['XG_KEEP_REVIEWED_ENDING'] = '1'
+    if keep_cuts:
+        assert manifest['environment_for_revision_jobs']['XG_KEEP_REVIEWED_CUTS'] == '1'
+        ENV['XG_KEEP_REVIEWED_CUTS'] = '1'
     status['core_repairs'] = manifest['core_files']
+    status['original_maker_unchanged'] = not any(item['target'] == '视频/工具/make_video.py'
+                                               for item in manifest['core_files'])
     status['actual_native_core_certification'] = manifest['actual_native_certification']
     status['actual_native_fastcheck_stamp'] = stamp
     status['reviewed_regression_resource'] = data
     status['core_repair_manifest_sha256'] = sha(manifest_file)
     status['reviewed_gain_preservation_mode'] = True
     status['reviewed_existing_ending_preservation_mode'] = keep_ending
+    status['reviewed_existing_physical_cuts_preservation_mode'] = keep_cuts
     save()
 
 
 def prepare_accepted_pcm_continuity(baseline_bytes, accepted_aac):
     """Rebuild genuine old PCM privately for exact confirmation comparisons."""
     global BASELINE_AUDIO_FILES
-    expected = {'10':'15f47fa51add', '11':'5da69def8d01', '12':'04f94362f377',
-                '44':'21efe6263229', '51':'ff0728857c2d'}
+    expected = {'35':'88dfc3dbe8d5', '10':'15f47fa51add', '11':'5da69def8d01', '12':'04f94362f377',
+                '44':'21efe6263229', '51':'ff0728857c2d',
+                '15':'7e5ea2bdb6d3', '17':'0ef19e50999f',
+                '18':'76b99c620981', '30':'93a277750d35', '02':None,
+                '69':'8b8618454b80'}
+    exact_old_pcm = {'35':'9d760bcd4e30cdef907e87a062bda976d014682ad40bef5ff615160fbca42b55', '02':'c21872d4db894f37b1b8b5db752917f9f6ef60680834ca4cccef9b806b5c1c52',
+                     '69':'d04e5e1b057dfaa788bf86dcd6fe7da7b88fc1a254f8abd0a695621f074c2837'}
+    prior_public_aac = {'69':'2b15b4811866afd03ef5962f6ce99717d28d7e97704750d9ede91bd7799eed15'}
     if NO not in expected:
         return
     script = W / f'scripts/{NO}.json'
@@ -106,9 +137,17 @@ def prepare_accepted_pcm_continuity(baseline_bytes, accepted_aac):
     old_source.write_bytes(baseline_bytes)
     proof = {'article':NO, 'purpose':'diagnostic old accepted PCM reconstruction only; not a QC verdict',
              'quality_acceptance':False, 'old_source_sha256':sha(old_source),
-             'expected_accepted_pcm_md5_first12':expected[NO],
+             'expected_accepted_pcm_md5_first12':expected[NO] if NO not in prior_public_aac else None,
+             'expected_accepted_pcm_sha256':exact_old_pcm.get(NO) if NO not in prior_public_aac else None,
              'old_pcm_matches_accepted_confirmation_fingerprint':False,
              'private_PCM_or_cache_exported':False}
+    if NO in prior_public_aac:
+        proof.update({'purpose':'diagnostic exact prior public native PCM for original confirmation migration; not a QC verdict',
+                      'reference_kind':'actual_prior_public_native_render_not_the_accepted_voice',
+                      'original_public_run_id':43543967031,
+                      'expected_prior_public_native_pcm_md5_first12':expected[NO],
+                      'expected_prior_public_native_pcm_sha256':exact_old_pcm[NO],
+                      'expected_prior_public_native_aac_adts_sha256':prior_public_aac[NO]})
     proof_file = OUT / f'{NO}-accepted-prior-pcm-probe.json'
     try:
         script.write_bytes(baseline_bytes)
@@ -124,11 +163,16 @@ def prepare_accepted_pcm_continuity(baseline_bytes, accepted_aac):
             shutil.copyfile(W / f'work_{NO}/分段.json', old_segments)
             actual_fp = hashlib.md5(old_wav.read_bytes()).hexdigest()[:12]
             proof.update({'actual_old_pcm_md5_first12':actual_fp, 'actual_old_pcm_sha256':sha(old_wav),
-                          'old_pcm_matches_accepted_confirmation_fingerprint':actual_fp == expected[NO],
+                          'old_pcm_matches_accepted_confirmation_fingerprint':actual_fp == expected[NO] and NO not in prior_public_aac,
+                          'old_pcm_matches_existing_confirmation_fingerprint':actual_fp == expected[NO],
                           'old_reconstructed_aac_adts_sha256':aac_hash(output),
                           'accepted_prior_aac_adts_sha256':accepted_aac,
                           'old_reconstructed_aac_exactly_matches_accepted':aac_hash(output) == accepted_aac,
                           'old_segment_metadata_sha256':sha(old_segments)})
+            old_pcm_bound = (sha(old_wav) == exact_old_pcm[NO]) if NO in exact_old_pcm else actual_fp == expected[NO]
+            proof['old_pcm_matches_independently_bound_reference'] = old_pcm_bound
+            proof['old_pcm_matches_independently_bound_accepted_reference'] = (
+                old_pcm_bound and proof['old_reconstructed_aac_exactly_matches_accepted'])
             BASELINE_AUDIO_FILES = {'old_wav':old_wav, 'old_source':old_source,
                                     'old_segments':old_segments, 'proof':proof_file}
     except Exception as exc:
@@ -138,7 +182,21 @@ def prepare_accepted_pcm_continuity(baseline_bytes, accepted_aac):
         proof_file.write_text(json.dumps(proof, ensure_ascii=False, indent=2) + '\n')
         status['accepted_prior_pcm_probe'] = proof
         save()
-    if not BASELINE_AUDIO_FILES or not proof['old_pcm_matches_accepted_confirmation_fingerprint']:
+    if not BASELINE_AUDIO_FILES or not proof.get('old_pcm_matches_independently_bound_reference', False):
+        return
+    if NO in prior_public_aac:
+        bound = proof.get('old_reconstructed_aac_adts_sha256') == prior_public_aac[NO]
+        proof['old_reconstructed_aac_exactly_matches_prior_public_native'] = bound
+        proof_file.write_text(json.dumps(proof, ensure_ascii=False, indent=2) + '\n')
+        if not bound:
+            proof['migration_not_attempted'] = 'Prior native reconstruction did not reproduce its actual public AAC.'
+            proof_file.write_text(json.dumps(proof, ensure_ascii=False, indent=2) + '\n')
+            save()
+            return
+    if NO in A21_AUDIO_REPAIRS | {'02'} and not proof.get('old_reconstructed_aac_exactly_matches_accepted', False):
+        proof['migration_not_attempted'] = 'Old reconstruction did not exactly reproduce the accepted AAC.'
+        proof_file.write_text(json.dumps(proof, ensure_ascii=False, indent=2) + '\n')
+        save()
         return
     # Original precise confirmations may refer to a previously public failed
     # draft (12's reviewed highlight), as well as the accepted prior voice.
@@ -628,7 +686,7 @@ def export_failed_current_video():
 
 def collect_original_asr_target_evidence():
     """A failed original ASR check remains failed; collect the two actual texts."""
-    if NO not in {'46', '49', '55'} or not status.get('failed_current_video', {}).get('exported'):
+    if NO not in {'46', '49', '55', '66'} or not status.get('failed_current_video', {}).get('exported'):
         return
     output = OUT / f'{NO}-original-ASR-target-evidence.json'
     process = subprocess.run(list(map(str, ['python3', TASK / 'collect_asr_target_evidence.py',
@@ -692,6 +750,14 @@ def official(args, label):
             for group in (f'做_{NO}', f'定稿_{NO}'):
                 for source in (W / group).glob('*.log'):
                     lines = source.read_text(errors='replace').splitlines()
+                    if source.name == '声音.log':
+                        # Preserve actual early exits (for example a final sentence
+                        # without an inner comma) even when the legacy summary
+                        # only prints lines containing a QA counter.
+                        diagnostics[f'{group}/{source.name}:actual_text_tail'] = [
+                            line[:2000].replace(str(M), '<private-machine>') for line in lines[-180:]
+                            if not any(marker in line for marker in
+                                       ('onnxruntime:', 'VerifyEachNodeIsAssignedToAnEp'))]
                     selected = [line[:1600] for line in lines
                                 if any(mark in line for mark in
                                        ('✘', 'BAD', 'FAIL', 'Error', 'Exception',
@@ -778,13 +844,7 @@ try:
             'approved-illustration-resource.log', ROOT)
     assert (M / 'tts/kokoro-v1.0.onnx').exists(), 'Original warm machine cache was not restored.'
     W.mkdir(parents=True, exist_ok=True)
-    if NO == '58':
-        stock_path = TASK / 'install_source58_stock_code.py'
-        stock_spec = importlib.util.spec_from_file_location('source_stock_code_installer', stock_path)
-        stock_module = importlib.util.module_from_spec(stock_spec); stock_spec.loader.exec_module(stock_module)
-        stock_module.install(ROOT, TASK, ENV, status, checked, save)
-    else:
-        install_certified_core_repairs()
+    install_certified_core_repairs()
     # Keep restored historical logs internal; report only this run's checks.
     for name in (f'做_{NO}', f'定稿_{NO}'):
         old = W / name
@@ -821,9 +881,6 @@ try:
     confirmations = request / f'视频/制作记录/逐句确认/{NO}.json'
     if confirmations.is_file():
         files.append((confirmations, ROOT / f'视频/制作记录/逐句确认/{NO}.json'))
-    record = request / f'视频/制作记录/{NO}.md'
-    if record.is_file():
-        files.append((record, ROOT / f'视频/制作记录/{NO}.md'))
     # Keep the accepted original English baseline before installing updated
     # cross-article context; context cannot erase this invariant.
     baseline_bytes = (ROOT / script_rel).read_bytes()
@@ -862,11 +919,6 @@ try:
         records['记录'].append(authorization)
     agreement.write_text(json.dumps(records, ensure_ascii=False, indent=2) + '\n')
     (OUT / f'{NO}-user-authorization.json').write_text(json.dumps(authorization, ensure_ascii=False, indent=2) + '\n')
-    roles_path = TASK / 'original_text_data_roles58.py'
-    roles_spec = importlib.util.spec_from_file_location('original_text_data_roles', roles_path)
-    roles_module = importlib.util.module_from_spec(roles_spec); roles_spec.loader.exec_module(roles_module)
-    status['actual_original_text_data_roles'] = roles_module.install(request, ROOT, T, NO)
-    save()
     (W / 'scripts').mkdir(exist_ok=True)
     # Write after genNN, so 做.py consumes the exact supplied script and preserves audio confirmations.
     (W / f'scripts/{NO}.json').write_bytes((ROOT / script_rel).read_bytes())
@@ -933,7 +985,15 @@ try:
     status['final_wav_sha256'] = sha(W / f'work_{NO}/a.wav')
     save()
     canonical_aac = aac_hash(canonical)
-    if NO in APPROVED_AUDIO_REPAIRS:
+    if NO == '35':
+        physical_path = TASK / 'source35_exact_new_S15_physical_binding.py'
+        assert sha(physical_path) == 'c25559793a79763beab4eaf2162cb5eafecd4db6d6c8d1c263ddf1cee1298553', 'source35 physical binding program SHA mismatch'
+        physical_spec = importlib.util.spec_from_file_location('source35_exact_new_S15_physical_binding', physical_path)
+        physical_module = importlib.util.module_from_spec(physical_spec)
+        physical_spec.loader.exec_module(physical_module)
+        status['source35_authorized_new_S15_physical_identity'] = physical_module.bind(
+            request, W / 'work_35/a.wav', canonical, source_video, TASK, T, status['canonical_pipeline_passed'])
+    elif NO in APPROVED_AUDIO_REPAIRS:
         # Root supplies actual approved audio-change validation. No gain/overlay implementation is assumed here.
         audio_qc = TASK / ('audio-a21-qc.py' if NO in A21_AUDIO_REPAIRS else 'audio-qc.py')
         assert audio_qc.exists(), f'Root must attach approved audio QC for article {NO}.'
@@ -956,14 +1016,6 @@ try:
         assert canonical_aac == accepted_aac, 'Canonical AAC differs from the accepted prior voice.'
     status['accepted_prior_aac_identical'] = canonical_aac == accepted_aac
     save()
-    if NO == '58':
-        binding_path = TASK / 'source58_exact_original_voice_binding.py'
-        binding_spec = importlib.util.spec_from_file_location('source_original_voice_binding', binding_path)
-        binding_module = importlib.util.module_from_spec(binding_spec); binding_spec.loader.exec_module(binding_module)
-        status['source58_original_voice_identity'] = binding_module.bind(request, W / 'work_58/a.wav', canonical, TASK, T, status['canonical_pipeline_passed'], ENV)
-        status.update({'book_order':67, 'review_only':False, 'user_individual_finalization_authorized':True,
-                       'specific_final_authorization_sha256':'584a40908d831f219eebd0af1c2ac0f140de452a39cbec29fb8dd9daa09b74ed'})
-        save()
     # Original tested end_card algorithm, with only its explicit source/summary loader supplied.
     module_file = ROOT / '.github/video-batch/run.py'
     spec = importlib.util.spec_from_file_location('revision_exact_summary', module_file)
@@ -999,7 +1051,7 @@ try:
     assert timing['end_page_frames'] == 60 and timing['end_page_seconds'] == 2
     assert timing['original_audio_identical'] and timing['original_audio_packet_timings_identical']
     assert aac_hash(processed[0]) == canonical_aac, 'Exact-card processing changed the canonical AAC stream.'
-    if NO not in APPROVED_AUDIO_REPAIRS:
+    if NO != '35' and NO not in APPROVED_AUDIO_REPAIRS:
         assert aac_hash(processed[0]) == accepted_aac, 'Final AAC differs from accepted prior voice.'
     final = OUT / f'{NO}-4K-读完即转简述2秒.mp4'
     shutil.copyfile(processed[0], final)

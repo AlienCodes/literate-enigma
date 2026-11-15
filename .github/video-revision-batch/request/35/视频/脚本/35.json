@@ -760,12 +760,12 @@
    "S18 raw 3.3450-3.7400": "2026-10-15 删除段对应 非人声区间 [[3.39, 3.685]]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词",
    "S2 raw 3.7250-4.0637": {
     "类型": "紧贴词头的非人声",
-    "配音指纹": "e24deca216e8",
+    "配音指纹": "7c7afa6f721a",
     "依据": "2026-10-15 删除段对应 非人声区间 [[3.755, 4.043792, '紧贴词头']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost', 'post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"
    },
    "S6 raw 4.1500-4.4637": {
     "类型": "紧贴词头的非人声",
-    "配音指纹": "e24deca216e8",
+    "配音指纹": "7c7afa6f721a",
     "依据": "2026-10-15 删除段对应 非人声区间 [[4.13, 4.443708, '紧贴词头']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost', 'post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"
    }
   },
@@ -987,23 +987,43 @@
      "周期": 0.18,
      "低频dB": -5.8
     }
+   },
+   "100.72–100.83s": {
+    "配音指纹": "7c7afa6f721a",
+    "依据": "2026-11-15 ROOT assistant依据原缓存音素与实际声学标量语义复核，非人耳听审、非用户确认；actual report SHA256 e3764e8f7f60dfbc67707cfa6d721fef6a5f37345cc7b0e6f96214c20059a191；Exact original to_w mapping places the complete candidate at the long-vowel/nasal ending of fourteen, not an inter-word or non-speech gap. The independently cached timed sequence places vowel length through1.312139 and /n/ through1.456618. Its measurable low-frequency contribution (-5.7177dB aggregate, locally as high as -1.7598dB) and changing periodic components are consistent with a weak voiced word ending. The original breath heuristic is only29%, below its70% automatic breath-removal condition. Pre/post-G35 scalar profiles are identical for this window. Timing labels alone were not treated as a verdict; combined evidence favors retaining the speech-bearing interval.",
+    "实测": {
+     "最响dB": -36.1,
+     "重心Hz": 2406,
+     "周期": 0.21,
+     "低频dB": -5.7
+    }
+   },
+   "102.67–102.72s": {
+    "配音指纹": "7c7afa6f721a",
+    "依据": "2026-11-15 ROOT assistant依据原缓存音素与实际声学标量语义复核，非人耳听审、非用户确认；actual report SHA256 e3764e8f7f60dfbc67707cfa6d721fef6a5f37345cc7b0e6f96214c20059a191；The actual sampled interval follows the measured /s/ and lies within the final /t/ of twist in the separate original timed cache. It is a55ms high-frequency burst (centroid3196.77Hz, peak -30.7506dB), consistent with a final voiceless-stop release, rather than detached inter-sentence noise. It is precisely where the actual original A21/G35 requested the already measured +4dB final-release boost, and its level clears the original /t/ -36dB criterion. Removing the window would cut the intended consonant release.",
+    "实测": {
+     "最响dB": -30.8,
+     "重心Hz": 3197,
+     "周期": 0.18,
+     "低频dB": -12.0
+    }
    }
   },
   "机器复听": {
    "S2": {
-    "配音指纹": "e24deca216e8",
+    "配音指纹": "7c7afa6f721a",
     "依据": "2026-10-29 实测（配音指纹 88dfc3dbe8d5）：burrow 配音音标 bˈɜːɹoʊ，读音核对 0；parakeet 听成 borough：美音 burrow 与 borough 同音（Merriam-Webster burrow ˈbər-(ˌ)ō、borough ˈbər-(ˌ)ō），small.en 听对，不是读错"
    },
    "S9": {
-    "配音指纹": "e24deca216e8",
+    "配音指纹": "7c7afa6f721a",
     "依据": "2026-10-29 实测（配音指纹 88dfc3dbe8d5）：buntings steered 同音连读：S9 w /ŋ/ 到 0.665，0.675–0.795 是 120 ms 连续咝音（-13～-22 dB、重心 4.1–6.1 kHz、低频 -10～-53 dB），复数 -s 和 steered 的 /s/ 连成一段（单个 /s/ 的约两倍长），0.81–0.865 /t/ 闭塞、0.87 除阻；两路都听成 bunting 是复数尾音被并进下一个 /s/，不是缺音（同 34 magnate's son）"
    },
    "S16": {
-    "配音指纹": "e24deca216e8",
+    "配音指纹": "7c7afa6f721a",
     "依据": "2026-10-29 实测（配音指纹 88dfc3dbe8d5）：robins in campus：S16 w /z/ 2.52–2.55，in 的元音 2.56–2.64（约 80 ms 短元音、周期 0.45–0.61），/n/ 2.65–2.70（低频 -0.7～-1.1 dB 鼻音），2.72 /k/ 闭塞、2.73 除阻；parakeet 听对 in，只有 small.en 一路听成 and"
    },
    "S17": {
-    "配音指纹": "e24deca216e8",
+    "配音指纹": "7c7afa6f721a",
     "依据": "2026-10-29 实测（配音指纹 88dfc3dbe8d5）：huts clad in grounded：S17 w clad 的 /d/ 连进 in，元音 0.96–1.08（周期 0.45–0.56），/n/ 1.08–1.11（低频 -0.5～-1.2 dB 鼻音），1.12 起 grounded 的 /g/；parakeet 听对 huts clad in，只有 small.en 一路连成 hutzklad and"
    }
   },
@@ -1234,6 +1254,15 @@
    "原文": "In 2014 came an eerie, man-made twist.",
    "逗号序号": [
     1
+   ]
+  }
+ },
+ "除阻加强": {
+  "S15": {
+   "句末": [
+    3.235,
+    3.295,
+    4.0
    ]
   }
  }
