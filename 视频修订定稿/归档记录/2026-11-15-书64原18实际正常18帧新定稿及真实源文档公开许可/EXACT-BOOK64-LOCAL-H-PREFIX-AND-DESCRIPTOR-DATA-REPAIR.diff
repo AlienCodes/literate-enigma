@@ -1,0 +1,29 @@
+--- /workspace/work/video-archive-batches-20261114/prepare_actual_source18_book64_host_assets-first-local-prefix-stop-history.py
++++ /workspace/work/video-archive-batches-20261114/prepare_actual_source18_book64_host_assets.py
+@@ -2,7 +2,7 @@
+ from pathlib import Path
+ import tempfile,shutil,json,hashlib,subprocess,sys,os
+ B=Path(__file__).parent;C=Path('/dev/shm/archive-writer-main061')
+-H=Path('/workspace/work/review70-finalV3/43731802299-normal18/archive-handoff.json')
++H=Path('/workspace/work/review18-finalV3/43731802299-normal18/archive-handoff.json')
+ HS='1146e58a20d50f0496291064fbe0574fada14a7e52e774adb264d7a0879a9996'
+ CONSENT=Path('/workspace/work/all-project-deliverables-and-final70-release-authorities-20261115/USER-ALL-PROJECT-GENERATED-DELIVERABLES-GITHUB-ARCHIVE-AUTHORITY.json')
+ CS='b00a133cc88ed37496e225a181898863ce52e9a774e6b5c2991a310691fd4312'
+@@ -45,7 +45,7 @@
+ add('/workspace/work/book64-source18-actual43731802299-original-HOST-preparation-20261115/bind_actual_exported_master_exact18.py','original-master-explicit-IO-contract/bind_actual_exported_master.py','dcbca51d9ad19f8f84dd3099c5cba7fbb6f328c317a052e70bb7cc98785dfbdd')
+ M=R/'explicit-safe-source18-book64-public-evidence.json'
+ M.write_text(json.dumps({'kind':'exact-source18-final-H-declared-material-and-actual-all-project-user-publication-consent',
+- 'source_id':'70','book_order':'50','files':rows,'source_publication_consent_sha256':CS,
++ 'source_id':'18','book_order':'64','files':rows,'source_publication_consent_sha256':CS,
+  'frozen_quality_H_original_publication_scope_preserved_not_rewritten':True,
+  'new_publication_authority_is_actual_b00_user_project_archive_message_not_implied_by_QA':True,
+  'all_source_native_normal18_and_failure_history_already_declared_in_frozen_H':True,
+@@ -62,7 +62,7 @@
+ (W/'payload-file-index.json').write_text(json.dumps(idx,ensure_ascii=False,indent=2)+'\n')
+ deny={'b9a257a23820944ee95d568b67d1cd78947b1c1814bb70dc99a45871f488f778','55026ce1b7cdb7e9c1a72da2f715e3d9e6e6f45050a8ddd575dc052b09dca872','bcb37d8930d804988c95da94b9cfeaaab2c7b026df96e6e4567f9b698ce88fbf'}
+ assert not any(x['sha256'] in deny for x in idx)
+-loc={'root':str(R),'work_dir':str(W),'source_id':'70','new_id':'50','handoff':str(H),'handoff_sha256':HS,
++loc={'root':str(R),'work_dir':str(W),'source_id':'18','new_id':'64','handoff':str(H),'handoff_sha256':HS,
+  'source_publication_consent':str(CONSENT),'source_publication_consent_sha256':CS,
+  'files':len(idx),'logical_bytes':sum(x['bytes'] for x in idx),'source_native_audio_repair_applied':row['source_native_audio_repair_applied'],
+  'host_hardlinks_and_host_Git_TMPDIR_only':True,'no_remote_write_by_this_local_preparation':True}
