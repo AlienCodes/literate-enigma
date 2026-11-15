@@ -1,0 +1,202 @@
+{
+  "article": "64",
+  "status": "passed",
+  "actual_new_mp4": true,
+  "video_sha256": "f0b058d5689c08f6f95d94610c26c725397e957b5f1ef170612a32b5d59d3b1f",
+  "video_bytes": 16404902,
+  "official_run": {
+    "repository": "AlienCodes/literate-enigma",
+    "run_id": 43728310644,
+    "run_attempt": 1,
+    "status": "completed",
+    "conclusion": "success",
+    "head_sha": "adbbf39d2ec172b62dc7d5d46cf95b8fd58446dc",
+    "workflow_path": ".github/workflows/produce-revision-batch4K.yml",
+    "entrypoint": "视频/工具/新管/定稿.sh",
+    "stage": "4K",
+    "canonical_selection": "native_final_official_passed",
+    "artifact_id": 14167976418,
+    "artifact_zip": {
+      "path": "/workspace/work/review64-native/43728310644/64/article64-passed-output.zip",
+      "bytes": 46858906,
+      "sha256": "deb1bf8f75314223802ef4d25039c31d011a1def39ded1e01e944082c43e7768"
+    },
+    "artifact_zip_sha256": "deb1bf8f75314223802ef4d25039c31d011a1def39ded1e01e944082c43e7768",
+    "artifact_status_member": "64-canonical-summary-passed-status.json",
+    "artifact_mp4_member": "64-4K-读完即转简述2秒.mp4",
+    "artifact_mp4_sha256": "8c619005d88451fee70b488953fd9dabfc7b488096dc5fd62c9f6c525bcb5cff",
+    "job": {
+      "id": 132855100634,
+      "name": "produce (64)",
+      "article": "64",
+      "run_attempt": 1,
+      "status": "completed",
+      "conclusion": "success",
+      "upload_step_name": "仅保留本篇公开成片和核验材料"
+    },
+    "artifact_main_status_member": "64-status.json",
+    "artifact_main_status_sha256": "c010e990f4caef7d9c6a682a1cf26dd9b3d9cad2c387fda7cd6a8f85d8e2d0c0",
+    "inherited_native_inline_final_original_bytes_preserved": true,
+    "current_final_is_local_tail_derivative": true
+  },
+  "actual_probe": {
+    "width": 3840,
+    "height": 2160,
+    "frames": 4703,
+    "fps": "30/1",
+    "duration_seconds": 156.766667
+  },
+  "speech_end": {
+    "actual_new_output": true,
+    "measured_from_actual_audio": true,
+    "end_frame": 4565,
+    "report_sha256": "750c9311263fa84949aa087a9b094b0f6f1d8a580d27d535fbdeabf4a7b4679f",
+    "endpoint_seconds": 152.16
+  },
+  "illustration": {
+    "decoded_from_actual_mp4": true,
+    "frames": 60,
+    "start_frame": 4583,
+    "width": 3840,
+    "height": 2160,
+    "approved_illustration_sha256": "47e7af906fa4f136b499a1293ee6f36b72e7368001bd6cdb32ff45cf316e8021",
+    "book_source_sha256": "47e7af906fa4f136b499a1293ee6f36b72e7368001bd6cdb32ff45cf316e8021",
+    "preparation": {
+      "source_id": "64",
+      "new_id": "63",
+      "native_image_sha256": "47e7af906fa4f136b499a1293ee6f36b72e7368001bd6cdb32ff45cf316e8021",
+      "native_pixel_dimensions": [
+        1536,
+        1024
+      ],
+      "prepared_png_sha256": "d1458d68b7eaf29ab8137c27e58eb0d99031e071f56d9b6a81d3278b77d618a4",
+      "prepared_rgb_sha256": "d1338e0413ea47e30d36d66966cf9019932c2f7c1fea3fb9201852ab505ef7fe",
+      "prepared_pixel_dimensions": [
+        3840,
+        2160
+      ],
+      "mode": "contain_blur",
+      "Pillow": "12.3.0",
+      "native_source_crop_box": null,
+      "resampling": "Pillow Image.Resampling.LANCZOS",
+      "same_image_background_gaussian_blur_radius": 64,
+      "derived_in_this_process_from_exact_approved_native_image": true,
+      "generated_or_substituted_artwork": false,
+      "added_text_or_graphics": false,
+      "preparer_program_sha256": "4322fac44ebfe242243867989609534789b6587ca4d3279d3cd278a04133dfa6",
+      "prepared_image_path": "/workspace/work/book63-source64-original-normal18-20261115/media/book63-source64/64-approved-art4K.png"
+    },
+    "frame_comparison": {
+      "status": "passed",
+      "actual_new_output": true,
+      "decoded_from_actual_mp4": true,
+      "frames_checked": 60,
+      "start_frame": 4583,
+      "video_sha256": "f0b058d5689c08f6f95d94610c26c725397e957b5f1ef170612a32b5d59d3b1f",
+      "reference_sha256": "d1458d68b7eaf29ab8137c27e58eb0d99031e071f56d9b6a81d3278b77d618a4",
+      "report_sha256": "6cde47b5691fbada1952a69c99df98358078582bbadd7ddcfba0a4a68cd072de"
+    }
+  },
+  "summary": {
+    "decoded_from_actual_mp4": true,
+    "frames": 60,
+    "start_frame": 4643,
+    "overflow": false,
+    "normal_font_size": true,
+    "font_px": 128,
+    "text_sha256": "b0ff67c40fa6c13bde0c1dd843780a3bc1163a86efa1991d06e3f39e958fe68e",
+    "approved_request_text_sha256": "282a57662a435b985274abace5c5b91ed53f015dab3f6c685178cf79651a4a47"
+  },
+  "audio": {
+    "canonical_qc": {
+      "tool": "native_official_audio_gates",
+      "actual_new_output": true,
+      "status": "passed",
+      "canonical_video_sha256": "8c619005d88451fee70b488953fd9dabfc7b488096dc5fd62c9f6c525bcb5cff",
+      "report_sha256": "2cbf20f716e9691357de915d164f706087a7d4308392ef5340234f6f2262d232"
+    },
+    "repair_applied": false,
+    "lossless_copy": {
+      "canonical_video_sha256": "8c619005d88451fee70b488953fd9dabfc7b488096dc5fd62c9f6c525bcb5cff",
+      "final_video_sha256": "f0b058d5689c08f6f95d94610c26c725397e957b5f1ef170612a32b5d59d3b1f",
+      "audio_packet_times_identical": true,
+      "canonical_aac_adts_sha256": "ce6f20885b6ecc2401a8825c253388f6c90de5f73667bb696ebf60e42b8ee23f",
+      "canonical_packet_projection_sha256": "dd9164bd3e66c8b152662d928f5509134b96f30d2cecb417da8ad767b71e19ce",
+      "canonical_packet_count": 7227,
+      "final_aac_adts_sha256": "ce6f20885b6ecc2401a8825c253388f6c90de5f73667bb696ebf60e42b8ee23f",
+      "final_packet_projection_sha256": "dd9164bd3e66c8b152662d928f5509134b96f30d2cecb417da8ad767b71e19ce",
+      "final_packet_count": 7227
+    }
+  },
+  "source_sha256": {
+    "request": {
+      "json": "c1625706d1674fb8b05fef0cb66ce4fd929bd35e536891a294bf8066c6b32f8e",
+      "gen": "bc9d300f9bbb2eb4e2c102526c1d488457c4dc1c48c131c1784ac297037e9ef9",
+      "md": "2261ad2643d52b7529b83fa0ff1d4ed871cb2652fb7d87ffed4f1f82438da0ab"
+    },
+    "final": {
+      "json": "c1625706d1674fb8b05fef0cb66ce4fd929bd35e536891a294bf8066c6b32f8e",
+      "gen": "bc9d300f9bbb2eb4e2c102526c1d488457c4dc1c48c131c1784ac297037e9ef9",
+      "md": "2261ad2643d52b7529b83fa0ff1d4ed871cb2652fb7d87ffed4f1f82438da0ab"
+    }
+  },
+  "source_transform": {
+    "status": "passed",
+    "actual_working_copy": true,
+    "operations": [
+      "L19"
+    ],
+    "report_sha256": "248c5999f91a63b12efbbf22442a2cc4a6bcf72b1449d2e48fd35fcdfbeccac8",
+    "changed_paths": []
+  },
+  "adapter_scope": "Explicit actual native status + raw real postprocessor report field mapping; not fabricated audio-qc.py or unobserved runtime GEN/MD.",
+  "preview_only": false,
+  "production_delivery_eligible": true,
+  "local_postprocessing_only": true,
+  "new_native_quality_run_claimed": false,
+  "inherited_full_V3_handoff": {
+    "path": "/workspace/work/review64-sourceQA/43728310644/archive-handoff.json",
+    "bytes": 49199,
+    "sha256": "ea9000f12214411519bfc92a66c99fe7e6c91ee13ae95385fca5b4ce7aac3915"
+  },
+  "body_hold": {
+    "speech_ceiling_frame": 4565,
+    "hold_start_frame": 4565,
+    "hold_end_frame_inclusive": 4582,
+    "held_body_end_frame_exclusive": 4583,
+    "frozen_reference_frame": 4564,
+    "extra_body_frames": 18,
+    "voice_to_picture_seconds": 0.6066666666666667,
+    "actual_decoded_hold_validation": {
+      "last_body_hold_frames": 18,
+      "last_body_hold_seconds": 0.6,
+      "hold_start_frame": 4565,
+      "hold_end_frame_inclusive": 4582,
+      "frozen_reference_frame": 4564,
+      "actual_held_frames_checked": 18,
+      "hold_thumbnail_MAE_each": [
+        9.243184156378601e-05,
+        9.243184156378601e-05,
+        9.243184156378601e-05,
+        0.00018486368312757202,
+        0.00016476980452674898,
+        0.00016476980452674898,
+        0.00016476980452674898,
+        0.00018486368312757202,
+        0.00024112654320987653,
+        0.00024112654320987653,
+        0.00024112654320987653,
+        0.00031748328189300413,
+        0.00031748328189300413,
+        0.00031748328189300413,
+        0.00031748328189300413,
+        0.00036168981481481485,
+        0.00042197145061728393,
+        0.00042197145061728393
+      ],
+      "hold_thumbnail_MAE_max": 0.00042197145061728393,
+      "hold_visual_reference": "actual decoded last spoken-page frame before18-frame hold; existing static-page MAE<2 rule"
+    }
+  },
+  "audio_repair_applied_in_this_tail_postprocess": false
+}

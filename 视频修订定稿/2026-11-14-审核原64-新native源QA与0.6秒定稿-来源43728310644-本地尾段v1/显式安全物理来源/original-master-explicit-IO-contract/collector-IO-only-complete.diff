@@ -1,0 +1,42 @@
+--- /workspace/work/video-archive-batches-20261114/prepare_new_sourceQA_normal18_assets.py
++++ /workspace/work/source64-book63-standalone-public-master-collector-IO-CODE-ONLY-20261115/prepare_new_sourceQA_normal18_assets.py
+@@ -30,6 +30,9 @@
+     elif sid=='52' and nid=='41':
+         import source52_public_diagnostic_contexts as public19
+         allowed_public_WAV=public19.allowed(sid,nid)
++    elif sid=='64' and nid=='63':
++        import source64_public_master_export as public19
++        allowed_public_WAV=public19.allowed(sid,nid,h,hp)
+     source_spec=h['current_source_validation_handoff'];source_hp=Path(source_spec['path']);assert source_hp.stat().st_size==source_spec['bytes'] and digest(source_hp)==source_spec['sha256']
+     source_qa=load(source_hp);assert source_qa['status']=='passed_actual_native_inline_article_for_permanent_archive' and source_qa['source_run']==h['source_run']
+     assert len(source_qa['articles'])==1 and source_qa['articles'][0]['source_id']==sid and source_qa['articles'][0]['passed_per_article'] is True
+@@ -57,13 +60,14 @@
+         actual=digest(source);n=source.stat().st_size;assert size is None or n==size;assert sha is None or actual==sha
+         target=pay/relative;target.parent.mkdir(parents=True,exist_ok=True);key=(n,actual)
+         if target.exists():assert digest(target)==actual
+-        elif source.suffix.lower() in BINARY:
++        elif source.suffix.lower() in BINARY or (sid=='64' and nid=='63' and source.suffix.lower()=='.wav'):
+             try:os.link(stored.get(key,source),target)
+             except OSError as error:
+                 if error.errno!=errno.EXDEV:raise
++                assert not (sid=='64' and nid=='63' and source.suffix.lower()=='.wav'), 'Exact source64 public master requires same-filesystem hardlink'
+                 shutil.copyfile(source,target)
+         else:shutil.copyfile(source,target)
+-        if source.suffix.lower() in BINARY:stored[key]=target
++        if source.suffix.lower() in BINARY or (sid=='64' and nid=='63' and source.suffix.lower()=='.wav'):stored[key]=target
+         bindings.append({'original_path':str(source),'repo_path':str(relative),'bytes':n,'sha256':actual})
+     def spec(row,relative):add(row['path'],relative,row['bytes'],row['sha256'])
+     for source_row in source_qa['validation_files']:
+@@ -86,7 +90,11 @@
+     video_path=prefix/'视频'/f"{nid} {video_title}.mp4";spec(item['final_mp4'],video_path);spec(item['canonical_source_mp4'],prefix/'原准确canonical底片'/Path(item['canonical_source_mp4']['path']).name);spec(item['immutable_native_zip'],prefix/'原生来源原ZIP非新Actions'/Path(item['immutable_native_zip']['path']).name)
+     add(authority,prefix/'用户051统一0.6秒实际授权.json');add(Path(__file__),prefix/'归档程序'/Path(__file__).name)
+     if allowed_public_WAV:
+-        add(public19.REPORT,prefix/'仅已批准公开MP4诊断上下文/actual-audit-safe-handoff.json',public19.REPORT.stat().st_size,public19.REPORT_SHA);add(Path(public19.__file__),prefix/'归档程序'/Path(public19.__file__).name)
++        if sid=='64' and nid=='63':
++            for asset in public19.standalone_assets():spec(asset,prefix/'原节目母带WAV'/Path(asset['path']).name)
++            add(Path(public19.__file__),prefix/'归档程序'/Path(public19.__file__).name)
++        else:
++            add(public19.REPORT,prefix/'仅已批准公开MP4诊断上下文/actual-audit-safe-handoff.json',public19.REPORT.stat().st_size,public19.REPORT_SHA);add(Path(public19.__file__),prefix/'归档程序'/Path(public19.__file__).name)
+     row={'source_id':sid,'new_id':nid,'title_zh':old_article['title_zh'],'title_en':old_article['title_en'],'video_repo_path':str(video_path),'bytes':item['final_mp4']['bytes'],'sha256':item['final_mp4']['sha256'],'passed_per_article':True,'source_run':h['source_run'],'production_delivery_eligible':True,'preview_only':False,'media_origin':'actual_validated_normal18_local_tail_derivative_of_original_native_source','new_native_Actions_run_claimed':False,'actual_runtime_GEN_or_voice_rerun_claimed':False,'GEN_origin':section['final_source']['gen'].get('origin'),'MD_origin':section['final_source']['md'].get('origin'),'final_GEN_claimed_as_runtime':False,'canonical_audio_basis':'inherited_full_V3_canonical_and_actual_postprocessing_AAC_projection_identity','approved_audio_repair_applied':source_audio['repair_applied'],'source_native_audio_repair_applied':source_audio['repair_applied'],'local_tail_postprocessing_audio_repair_applied':False,'local_postprocessing_only':True,'post_reading_pause_seconds':0.6,'nominal_extra_hold_frames_at_30fps':18,'inherited_full_native_archive_commit':old_asset['asset_commit'],'postprocessing_full_V3_handoff_sha256':a.expected_handoff_sha256}
+     row.pop('inherited_full_native_archive_commit')
+     row['title_zh']=video_title
