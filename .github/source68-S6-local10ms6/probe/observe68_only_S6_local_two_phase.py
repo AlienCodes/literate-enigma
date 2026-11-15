@@ -3,7 +3,7 @@ from pathlib import Path
 import argparse,copy,gc,hashlib,importlib.util,inspect,io,json,os,re,shutil,sys,traceback
 sys.dont_write_bytecode=True
 ROOT_SHA='185b3e1502aeb77d1af7bac4c7f05af298924c49e2f0b9448db6313b127a6da2'
-PROFILE_SHA='0495882f67602077d47c1e22cdcb0314f9d121daedb9c9f512fd54ab5b320f3b'
+PROFILE_SHA='d66a6074caa2792dc0b2a65489f8b165a41fa63abe21fcac587549a89bce0950'
 BASELINE_HELPER_SHA='d53aebdd61c992473b6f3f455c23a852b979cd3fe8dce11f3fad35c576851ea4'
 BASELINE_PROFILE_SHA='6ac2d576251651ef5d3ffdfd70f399c351b4af268df03d7259425027db128c7a'
 OLD_SOURCE_SHA='e122c817946c4ed6e7cd1394749879276ef2afe9d01ad691b4142c6bbd9ec9b4'
@@ -170,9 +170,17 @@ def main():
   require(digest(inp['source'])==OLD_SOURCE_SHA and digest(inp['selected_source'])==NEW_SOURCE_SHA,'Exact baseline and one-leaf candidate required');exact_delta(json.loads(inp['source'].read_text()),json.loads(inp['selected_source'].read_text()))
   require(digest(inp['root_scope'])==ROOT_SHA and digest(inp['data_H'])==root['actual_H']['sha256'],'Root data-role provenance differs')
   base=load('_onlyS6_original55_baseline_helper',inp['baseline_helper']);baseline_output=a.output.with_name('68-existing-S6-S2-baseline-scalars.json');argv=list(sys.argv)
+  require(digest(inp['actual_onlyS6_baseline_observation_scope'])=='2efaf635e7924c1bf38ed62a1d4b661cf63b3373f87aca1511bf517021af8231','Actual ROOT2efa exact onlyS6 observation scope required before baseline')
+  original_baseline_targets=base.TARGETS
+  require(original_baseline_targets==('S6','S2'),'Expected original observation list before exact S6 subset')
   try:
+   base.TARGETS=('S6',)
    sys.argv=[str(inp['baseline_helper']),'--tools',str(a.tools),'--video-root',str(a.video_root),'--inputs',str(a.inputs),'--profile',str(inp['baseline_profile']),'--output',str(baseline_output)];status=base.main()
-  finally:sys.argv=argv
+  finally:
+   base.TARGETS=original_baseline_targets
+   sys.argv=argv
+  require(base.TARGETS==original_baseline_targets,'Original observer observation-list data was not restored')
+  report['explicit_baseline_observation_scope']={'original_program_bytes_unchanged':True,'observed':['S6'],'extra_oldS2_not_replayed':True,'oldS2_run43759678069_pre_master_failure_not_resolved_or_waived':True,'original_TARGETS_restored':True,'originalS6_model_cache_math_PCM_PV_guards_unchanged':True,'no_formal_audio_quality_verdict':True}
   baseline=json.loads(baseline_output.read_text());require(status==0 and baseline['diagnostic_completed'] and not baseline['errors'],'Original baseline must complete before any candidate')
   require(baseline['targets']['S6']['pre_master_SHA256']=='66ca4d94cd7ea8775f9702a4c9afc77c772853a19345ffcecbb56225d277379a' and baseline['targets']['S6']['post_master_float_SHA256']=='4b85804895a6d5865b81c3ba106518e78f0e5220a095d6e83e45bcea4102c480','Actual native baseline66ca/4b858 mismatch')
   report['baseline']={'scalar_SHA256':digest(baseline_output),'pre_master_SHA256':baseline['targets']['S6']['pre_master_SHA256'],'post_master_SHA256':baseline['targets']['S6']['post_master_float_SHA256'],'actual_saved_math_reads':baseline['actual_existing_G36_reads'],'all_restores_exact':all(baseline.get(k) is True for k in ['normal_work_inode_and_files_unchanged','all_private_cache_bytes_unchanged','all_public_cache_bytes_unchanged','all_frozen_inputs_unchanged','all_original_module_identities_restored'])}
