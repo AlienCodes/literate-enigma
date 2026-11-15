@@ -1,0 +1,53 @@
+--- adopted009254_adapter_d5c344a
++++ same_original_math_new73ac_actual86a_binding
+@@ -9,10 +9,8 @@
+ from pathlib import Path
+ import contextlib,hashlib,io,json,os,runpy,sys
+ 
+-SOURCE='0193cbd1859525690e12a470c517cce2f120a1054b204fcfa3c0c392c92abbd7'
+-WHOLE='295fd087864e9ffbd2ad63edddb2da5d10af818b960c8a030e1ccdbd5537c591'
+-RAW='57117316e44d9148513d4a63f80a9af5c6dca95f88258a4face5f11f075f5c11'
+-AAC='8024210e91b17be5e8d8935b03bbce2fe709fc563567becddf86b668461fc1de'
++SOURCE='73ac6fe3fdc0d203eaa1d8a4de6399381f15a14140aaf2dbe6bc4fde30b16610'
++ADOPTED_MAIN_HELPER='86a36966f42d6567c09bffe826a6b7e70c1e40d3151071f02bfb4b0536e36028'
+ PROGRAMS={'独立复核/synth.py':'a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264',
+  '独立复核/labels.py':'9dc510ac2d7f5ed3f0d5b666c10eea92f2f22c14a9e5681739b87cb376571c2d',
+  '独立复核/audit.py':'bfe12dab6bec96c9b765faea286ae30a067589f6c5ef78461b21d12b955f1e22'}
+@@ -30,9 +28,18 @@
+  M,T=Path(video_root).resolve(),Path(official_tools).resolve()
+  source_path=Path(source_path);whole_report_path=Path(whole_report_path)
+  private_qc_dir=Path(private_qc_dir);public_scalar_dir=Path(public_scalar_dir)
+- assert sha(source_path)==SOURCE and sha(whole_report_path)==WHOLE
++ assert sha(source_path)==SOURCE
+  source=json.loads(source_path.read_text());whole=json.loads(whole_report_path.read_text())
++ assert whole['helper_sha256']==ADOPTED_MAIN_HELPER and whole['source_request_sha256']==SOURCE
++ assert whole['kind']=='source48_four_actual_local_protection_selected_only_strict_cached_original_whole_observer'
+  assert whole['exact_scope_proved']and whole['errors']==[]
++ assert whole['root_four_physical_selection_sha256']=='11df709068690c56d4ee5be2cd2b46e19ddaf105e11ab8f7e5330ff392ec3f66'
++ assert whole['all_protected_title_and13_pre_and_post_master_exact295']and whole['all_four_final_restored_values_exact_raw_and_normalized']
++ assert set(whole['phases'])=={'selected_four_protection'}
++ actual=whole['phases']['selected_four_protection']
++ WHOLE=sha(whole_report_path);RAW=actual['actual_complete_WAV']['file_sha256'];AAC=actual['actual_complete_AAC']['AAC_ADTS_sha256']
++ assert len(RAW)==len(AAC)==64
++
+  assert os.environ.get('STRICT_CACHE')=='1'and os.environ.get('XG_NOPUSH')=='1'
+  assert os.environ.get('AUDIO_ONLY')=='1'and not os.environ.get('OLD_IV_VOID')
+  assert {name:sha(T/name)for name in PROGRAMS}==PROGRAMS
+@@ -41,7 +48,7 @@
+  assert m._OLDF and sha(m._OLDF)=='91ccecd61ade5284de72f27235c82df3fdff6350576abfac02d2e0db0f346a9a'
+  assert m._CTX_PATH and sha(m._CTX_PATH)=='4d8905dc1a87f97b707270f03f41ea0fdf2b207ca218ed74608cdb134e3dc8e3'
+  wav=M/'video/work_48/a.wav';assert sha(wav)==RAW
+- assert hashlib.md5(wav.read_bytes()).hexdigest()[:12]=='3bf9427c6935'
++ assert hashlib.md5(wav.read_bytes()).hexdigest()[:12]==actual['actual_full_WAV_original_PV_fingerprint_md5_12']
+  import subprocess
+  adts=subprocess.check_output(['ffmpeg','-v','error','-i',str(replay_canonical_m4a),'-map','0:a:0','-c:a','copy','-f','adts','-'])
+  assert hashlib.sha256(adts).hexdigest()==AAC
+@@ -53,7 +60,7 @@
+  fades=M/'video/work_48/淡入淡出.json';segments=M/'video/work_48/分段.json'
+  assert fades.is_file()and segments.is_file()
+  auxiliary_before={str(p):sha(p)for p in (fades,segments)}
+- report={'kind':'source48_original_fresh_GT_and_complete_report2_diagnostic_after_exact_cached_replay',
++ report={'kind':'source48_original_fresh_GT_and_complete_report2_after_selected86a_actual_whole_without_rebuild',
+   'source_sha256':SOURCE,'actual_whole_report_sha256':WHOLE,'replay_RAW_sha256':RAW,
+   'replay_AAC_ADTS_sha256':AAC,'root_adopted_labels_only_cached_IO':True,
+   'no_new_TTS_or_G36_math_or_render':True,'source_or_CF_or_cut_or_threshold_written':False,

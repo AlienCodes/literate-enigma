@@ -1,4 +1,4 @@
-name: 原48单S13保弱词尾声样本单候选局部诊断
+name: 原48四处保声唯一候选原算法整轨实测
 on:
   push:
     branches: [codex/finish-05-and-summaries-20261112]
@@ -90,7 +90,7 @@ jobs:
           XG_NOPUSH: '1'
         run: |
           python official-main/视频/工具/出片指纹.py --拷 "$RUNNER_TEMP/completion-machine/video"
-      - name: 严格原缓存全轨原声与新S15母实际身份诊断
+      - name: 四处保声单候选整轨与唯一S9原数学实测
         id: target
         env:
           XG_NOPUSH: '1'
@@ -114,13 +114,67 @@ jobs:
           else:
               work.symlink_to(tools,target_is_directory=True)
           PYENV
-          python -u .github/target48-whole-cached-diagnostic/native48_S13_one_cached_sentence_single_conservative_NV_preservation_test.py --tools "$GITHUB_WORKSPACE/official-main/视频/工具" --video-root "$RUNNER_TEMP/completion-machine" --request "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48.json" --baseline-source "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48-current-baseline.json" --cache-identity "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48-correct-context-S15-mothers-and-actual-whole3089-private-cache-identity.json" --gain-decision "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/root-source48-real-whole3089-actual-gain-plus1-reconfirmation-decision.json" --whole-tuple-measurement "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48-actual-whole-G36-3089-original-math-and-levels.json" --whole-report "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48-real-whole3089-strict-cached-diagnostic.json" --failed-proof "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48-failed-draft-proof.json" --original-report2 "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/report2_48.json" --actual-nine-report "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48-actual-nine-report935f.json" --preservation-proposal "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48-S13-actual-nine-preservation-proposal.json" --local-input-decision "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48-S13-local-input-selection-decision.json" --output "$GITHUB_WORKSPACE/target48-whole-public/48-S13-one-cached-sentence-single-conservative-preservation-test.json"
+          python -u .github/target48-whole-cached-diagnostic/native48_four_physical_protection_one_selected_whole_original_observer.py --tools "$GITHUB_WORKSPACE/official-main/视频/工具" --video-root "$RUNNER_TEMP/completion-machine" --request "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48-selected-four-protection.json" --baseline-source "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48-prior-actual295-physical-source0193.json" --cache-identity "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48-correct-context-S15-mothers-and-actual-whole3089-private-cache-identity.json" --gain-decision "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/root-source48-real-whole3089-actual-gain-plus1-reconfirmation-decision.json" --whole-tuple-measurement "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48-actual-whole-G36-3089-original-math-and-levels.json" --whole-reference "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48-prior-actual295-whole-reference.json" --three-local-report "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48-three-protection-local7a570.json" --S13-local-report "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48-S13-protection-localbe565.json" --physical-selection "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48-root-four-protection-physical-selection.json" --source-freeze "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48-selected-four-protection-source-freeze.json" --output "$GITHUB_WORKSPACE/target48-whole-public/48-four-protection-one-selected-whole-original-scalar.json"
+      - name: 只核真正成功新增的唯一S9原数学JSON并记录实际私缓存路径
+        id: selected-S9-math
+        if: success()
+        run: |
+          python - <<'PYSAVE'
+          import os,json,hashlib
+          from pathlib import Path
+          O=Path(os.environ['GITHUB_WORKSPACE'])/'target48-whole-public'
+          report=json.loads((O/'48-four-protection-one-selected-whole-original-scalar.json').read_text())
+          assert report['diagnostic_completed'] and report['exact_scope_proved']
+          row=report['phases']['selected_four_protection']['actual_new_S9_G51']
+          assert row['actual_original_gains']=={}
+          name=row['name'];assert Path(name).name==name and name.startswith('调平_')and name.endswith('.json')
+          path=Path(os.environ['RUNNER_TEMP'])/'completion-machine/tts/cache_tts'/name
+          assert hashlib.sha256(path.read_bytes()).hexdigest()==row['sha256']
+          newly_written=row['cache_existed_before_original_function']is False
+          assert row['original_math_derived_only_if_missing']==newly_written
+          key='Linux-native48-four-protection-S9-G51-'+os.environ['GITHUB_RUN_ID'] if newly_written else None
+          receipt={'kind':'actual-success-only-one-S9-original-math-private-cache-save-path','new_cache_saved_eligible':newly_written,'private_key':key,'original_saved_path':str(path)if newly_written else None,'filename':name,'SHA256':row['sha256'],'no_model_PCM_GT_or_other_cache_exported':True}
+          (O/'48-actual-S9-only-private-cache-save-path.json').write_text(json.dumps(receipt,ensure_ascii=False,indent=2)+'\n')
+          with open(os.environ['GITHUB_OUTPUT'],'a')as f:
+              f.write('save='+str(newly_written).lower()+'\n')
+              if newly_written:f.write('path='+str(path)+'\nkey='+key+'\n')
+          PYSAVE
+      - name: 仅私有保存本次真实新增S9调平JSON原单文件路径版本
+        if: success() && steps.selected-S9-math.outputs.save == 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ steps.selected-S9-math.outputs.path }}
+          key: ${{ steps.selected-S9-math.outputs.key }}
+      - name: 同一次真实新整轨后只读原PV全tuple及原GT18独立report2
+        if: always() && steps.target.outcome == 'success'
+        env:
+          XG_NOPUSH: '1'
+          STRICT_CACHE: '1'
+          AUDIO_ONLY: '1'
+          XG_KEEP_REVIEWED_GAIN: '1'
+          XG_KEEP_REVIEWED_ENDING: '1'
+          XG_KEEP_REVIEWED_CUTS: '1'
+        run: >-
+          python -u .github/target48-whole-cached-diagnostic/native48_post_selected86a_original_PV_and_report2.py
+          --tools "$GITHUB_WORKSPACE/official-main/视频/工具"
+          --video-root "$RUNNER_TEMP/completion-machine"
+          --request "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48-selected-four-protection.json"
+          --whole-observation "$GITHUB_WORKSPACE/target48-whole-public/48-four-protection-one-selected-whole-original-scalar.json"
+          --cache-identity "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48-correct-context-S15-mothers-and-actual-whole3089-private-cache-identity.json"
+          --adapter "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/original48_reference_and_report2_after_selected86a_adapter.py"
+          --main-code-adoption "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/root-source48-selected-four-protection-one-whole-code-adoption-decision.json"
+          --output-dir "$GITHUB_WORKSPACE/target48-whole-public/post-selected86a"
       - name: 仅保存安全标量JSON不导母料音频
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: native48-S13-one-cached-sentence-single-conservative-preservation-test
+          name: native48-four-protection-one-selected-whole-original-scalar
           path: |
             target48-whole-public/*.json
+            target48-whole-public/post-selected86a/48-actual-new-whole-original-PV-full-tuples.json
+            target48-whole-public/post-selected86a/48-same-native-post-original-PV-and-report2-scope.json
+            target48-whole-public/post-selected86a/original-report2-safe-scalars/report2_48.json
+            target48-whole-public/post-selected86a/original-report2-safe-scalars/report2_48.txt
+            target48-whole-public/post-selected86a/original-report2-safe-scalars/48-original-reference-report2-observation.json
           retention-days: 30
           if-no-files-found: error
