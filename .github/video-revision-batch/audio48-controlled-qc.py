@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Exact source48 certified-original-fivecore new-S15 + approved first-piece gain supplement.
+"""Exact source48 certified-original-fivecore new-S15 plus four measured word-preservation controls supplement.
 
 Runs only after the unchanged actual full native pipeline. No inference, repair,
 source writing, CF renewal, numeric-threshold changes, or human-listening claim.
@@ -59,7 +59,7 @@ def actual_nonreview_binding(actual,requested,p):
  core={k:v for k,v in current.items()if k not in p['review_only_top_level_keys']};valid=canonical(core)==p['approved_nonreview_document_sha256']
  return valid,{'original_pending_consent_consumed':moved,'exact_original_pending_history_move':bool(moved),'exact_observed_G35_note_paths_normalized':normalized,'all_other_nonreview_data_exact':valid}
 
-def evidence_valid(e,p):
+def prior_evidence_valid(e,p):
  if p.get('whole_profile_bound')is not True:return False
  if not(e.get('diagnostic_only')is True and e.get('production_delivery_eligible')is False and e.get('quality_acceptance')is False and e.get('diagnostic_completed')is True and e.get('exact_scope_proved')is True and e.get('old_and_new_model_inference_forbidden')is True):return False
  if not(e.get('article')=='48'and e.get('source_request_sha256')==p['fingerprints']['request_source_sha256']and e.get('baseline_current_request_sha256')==p['current_diagnostic_baseline']['request_source_sha256']and e.get('baseline_is_historical_legacy_f7d')is False):return False
@@ -75,6 +75,43 @@ def evidence_valid(e,p):
  if not(target['automatic_gain_dB']==p['actual_selected_S15_automatic_gain_dB']and target['manual_gain_dB']=={'1':1.0}and target['actual_raw_w_fingerprint']==p['actual_selected_S15_raw_fingerprint']and e['target_S15_changed_as_explicitly_authorized']is True):return False
  if not(e['all_existing_private_cache_files_exact_before_after']is True and e['normal_W_scripts48_exact_restored']is True and e['all_other_W_source_scripts_exact']is True and e['original_maker_file_exact_after']is True and e['all_original_seven_runtime_core_files_exact_after']is True and e['original_request_and_baseline_files_exact_after']is True):return False
  return canonical(c['actual_original_piece_time_table'])==p['approved_producer_segments_sha256']
+
+
+def evidence_valid(e,p):
+ # Original295's independently captured proper-context new-name scope stays bound;
+ # current513d adds only four measured physical protections and specific metadata.
+ prior=p['proper295_physical_reference'];ep=HERE/prior['evidence_file'];pp=HERE/prior['profile_file']
+ if not(sha(ep)==prior['evidence_sha256']and sha(pp)==prior['profile_sha256']and prior_evidence_valid(json.loads(ep.read_text()),json.loads(pp.read_text()))):return False
+ if not(p.get('whole_profile_bound')is True and e.get('article')=='48'and e.get('diagnostic_only')is True and e.get('production_delivery_eligible')is False and e.get('quality_acceptance')is False and e.get('diagnostic_completed')is True and e.get('exact_scope_proved')is True and e.get('errors')==[]):return False
+ if not(e['old_and_new_model_inference_forbidden']is True and e['no_baseline_rebuild_or_other_new_math']is True and e['source_request_sha256']==p['physical_source_sha256']and e['baseline_current_request_sha256']==prior['request_source_sha256']and e['baseline_is_historical_legacy_f7d']is False and e['prior0193_whole_reference_only_not_rebuilt']is True):return False
+ if not(e['same_original_maker_sha256']==p['original_tool_sha256']['make_video.py']and e['required_original_fivecore_contract_sha256']==p['certified_original_fivecore_contract_sha256']and e['actual_correct_context_gain_reselection_decision_sha256']==p['root_gain_selection_sha256']):return False
+ if not(e['original_dictionary_sha256']==p['original_tool_sha256']['发音词典/读音改正.json']and e['context_dictionary_sha256']==p['original_tool_sha256']['发音词典/按语境读音.json']and e['original_old_cache_registry_sha256']==p['actual_old_registry_sha256']):return False
+ if not(e['root_four_physical_selection_sha256']==p['root_four_physical_selection_sha256']and e['source_and_GEN_only_four_NV_freeze_sha256']==p['source_and_GEN_only_four_NV_freeze_sha256']):return False
+ physical=HERE/p['physical_source_file'];final=HERE/p['final_request_source_file'];decision=HERE/p['root_current_specific_metadata_decision_file']
+ if not(sha(physical)==p['physical_source_sha256']and sha(final)==p['fingerprints']['request_source_sha256']and sha(decision)==p['root_current_specific_metadata_decision_sha256']):return False
+ old=json.loads(physical.read_text());requested=json.loads(final.read_text());restored=copy.deepcopy(requested)
+ for key in p['metadata_only_since_actual57_allowed_CF_sections']:restored['核对确认'][key]=copy.deepcopy(old['核对确认'][key])
+ for key,value in p['metadata_only_since_actual57_allowed_display_HL'].items():
+  if requested['高亮开始'].get(key)!=value:return False
+  if key in old.get('高亮开始',{}):restored['高亮开始'][key]=old['高亮开始'][key]
+  else:restored['高亮开始'].pop(key,None)
+ if restored!=old or not control_valid(requested,p):return False
+ c=e['phases']['selected_four_protection']
+ if not(c['source_sha256']==p['physical_source_sha256']and c['actual_complete_WAV']['file_sha256']==p['fingerprints']['actual_raw_WAV_sha256']and c['actual_complete_AAC']['AAC_ADTS_sha256']==p['fingerprints']['canonical_AAC_ADTS_sha256']and c['actual_complete_AAC']['packet_count']==p['approved_canonical_audio_packet_provenance']['packet_count']and c['actual_full_WAV_original_PV_fingerprint_md5_12']==p['actual_current_whole_PV_fingerprint']):return False
+ if not(c['actual_original_mastering']==p['actual_selected_mastering']and c['actual_original_mastering']['original_ordered_formula_exact_to_sf_write_argument']is True and e['actual_global_scale_ratio_new_over_prior295']==1.0 and c['actual_sample_clock']==p['actual_current_sample_clock']):return False
+ identity=e['protected_title_and13_sentence_physical_identity'];want={'title'}|{f'S{i}'for i in range(1,18)if i not in(9,10,12,13)}
+ if not({r['segment']for r in identity}==want and identity==p['protected_title_and13_physical_identity']and all(r['pre_master_exact_to_actual295']is True and r['post_master_float_exact_to_actual295']is True for r in identity)and e['all_protected_title_and13_pre_and_post_master_exact295']is True):return False
+ four=c['four_final_restored_sample_values_independent_vs_raw']
+ if not(four==p['actual_four_final_restored_ranges']and set(four)=={'S9','S10','S12','S13'}and e['all_four_final_restored_values_exact_raw_and_normalized']is True):return False
+ for row in four.values():
+  if not(row['selected_raw_samples']==row['actual_final_mapped_samples']and row['final_pre_master_values_equal_original_raw']is True and row['final_pre_master_mismatched_samples']==0 and row['final_mastered_selected_values_equal_raw_under_original_normalization']is True and row['final_mastered_mismatched_samples']==0 and row['original_sf_write_read_PCM16_quantization_equal_per_sample']is True and row['PCM16_quantized_mismatched_samples']==0):return False
+ target=c['observed_sentences']['S15']
+ if not(target['automatic_gain_dB']==p['actual_selected_S15_automatic_gain_dB']and target['manual_gain_dB']=={'1':1.0}and target['actual_raw_w_fingerprint']==p['actual_selected_S15_raw_fingerprint']):return False
+ gain=c['actual_new_S9_G51']
+ if not(gain==p['actual_original_S9_only_gain_cache']and gain['actual_original_gains']=={}and gain['sha256']=='44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a'and e['S9_only_missing_original_math_result_empty']is True and e['only_allowed_new_S9_G51_cache_written']is True):return False
+ if not all(e[k]is True for k in ['all_existing_private_cache_files_exact_before_after','normal_W_scripts48_exact_restored','normal_W_preexisting_work48_PCM_exact_restored','all_other_W_source_scripts_exact','original_maker_file_exact_after','all_original_seven_runtime_core_files_exact_after','original_request_and_baseline_files_exact_after']):return False
+ return canonical(c['actual_original_piece_time_table'])==p['approved_producer_segments_sha256']
+
 
 def runtime_mutation_tests(actual,p,fp,raw_bytes,decoded):
  wrong=copy.deepcopy(actual);sid='S15';piece='1';wrong['分段增益dB'][sid][piece]=0.
@@ -130,8 +167,8 @@ def audit(args):
   add('all-eight-unchanged-original-health-rules',not bad,metrics=metrics,failures=bad,original_confirmation_notes=notes);add('unchanged-original-whole-sentence-R-rule',not rbad,failures=rbad,summary=summary);add('unchanged-original-within-sentence-R-rule',not ibad,comparisons=inside,failures=ibad)
   report['original_full_track_supplement']={'metrics':metrics,'global_lufs':I,'sentence_lufs':levels,'summary':summary,'suppressed_segment_rule_not_added':True,'official_original_ASR_gates_separate':True}
   mutations=runtime_mutation_tests(actual,p,fp,raw_bytes,decoded);add('actual-runtime-positive-and-one-byte-control-clipping-negatives',all(v for k,v in mutations.items()if k not in('mutated_audio_written','ASR_simulated')),**mutations)
-  report['approved_audio_repair_scope']={'source_id':no,'approved_new_S15_mother_sentences':p['approved_new_mother_sentences'],'approved_gain_only_sentences':p['approved_gain_only_sentences'],'only_voice_changed_sentences':p['approved_voice_changed_sentences'],'non_target_title_and_body_pre_master_identity_count':len(p['non_target_pre_master_identity']),'non_target_pre_master_identity_basis':'actual current4f diagnostic exact arrays, explicitly not formalaccepted legacy, plus runtime entire selected0193 RAW/AAC cryptographic identity','master_multiplier_before':p['actual_master_multiplier_before'],'master_multiplier_after':p['actual_master_multiplier_after'],'ASR_confirmations_not_renewed_by_this_helper':True,'old_new_whole_duration_AAC_packets_or_new_mother_pitch_not_claimed_equal':True}
-  report['comparison_before_is_formally_accepted_whole']=False;report['comparison_before_role']='strict-bound actual current4f native diagnostic, not formalaccepted legacy';report['legacy_accepted_source_role']='exact wrapper accepted-videos48 input and measured whole-level reference only';report['legacy_accepted_file_not_falsely_used_for_16sentence_premaster_identity']=True;report['accepted_AAC_is_intentionally_different_after_approved_new_mothers']=True;report['passed']=bool(checks)and all(x['passed']for x in checks);report['repair_applied']=report['passed'];report['production_delivery_eligible']=report['passed']and not args.diagnostic
+  report['approved_audio_repair_scope']={'source_id':no,'approved_new_S15_mother_sentences':p['approved_new_mother_sentences'],'approved_gain_only_sentences':p['approved_gain_only_sentences'],'only_voice_changed_sentences':p['approved_voice_changed_sentences'],'non_target_title_and_body_pre_master_identity_count':len(p['non_target_pre_master_identity']),'non_target_pre_master_identity_basis':'current57 actual four restored ranges and title+13 exact proper295 arrays, with independently validated prior proper295/old4f diagnostic provenance, plus runtime entire current513d RAW/AAC identity','master_multiplier_before':p['actual_master_multiplier_before'],'master_multiplier_after':p['actual_master_multiplier_after'],'ASR_confirmations_not_renewed_by_this_helper':True,'old_new_whole_duration_AAC_packets_or_new_mother_pitch_not_claimed_equal':True}
+  report['comparison_before_is_formally_accepted_whole']=False;report['comparison_before_role']='current513d scalar proof and proper295 physical-reference chain; older4f remains diagnostic, not formalaccepted legacy';report['legacy_accepted_source_role']='exact wrapper accepted-videos48 input and measured whole-level reference only';report['legacy_accepted_file_not_falsely_used_for_16sentence_premaster_identity']=True;report['accepted_AAC_is_intentionally_different_after_approved_new_mothers']=True;report['passed']=bool(checks)and all(x['passed']for x in checks);report['repair_applied']=report['passed'];report['production_delivery_eligible']=report['passed']and not args.diagnostic
  except BaseException as exc:report['error']={'type':type(exc).__name__,'detail':str(exc)}
  report['checks']=checks;output.write_text(json.dumps(safe(report),ensure_ascii=False,indent=2)+'\n');return 0 if report['passed']else 1
 

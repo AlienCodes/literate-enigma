@@ -1,0 +1,39 @@
+--- original-formal48-workflow.yml
++++ current513d-final4980-workflow.yml
+@@ -114,25 +114,33 @@
+             ${{ runner.temp }}/completion-machine/tts/cache_tts/5277782c078c7fbb56cd99004114eaeae82ec430.pkl.单线程
+             ${{ runner.temp }}/completion-machine/tts/cache_tts/586bd56cd87532d8969be74dde574dc5ef09a448.pkl
+             ${{ runner.temp }}/completion-machine/tts/cache_tts/586bd56cd87532d8969be74dde574dc5ef09a448.pkl.单线程
++            ${{ runner.temp }}/completion-machine/tts/cache_tts/调平_55b4f1b37a71b4de9c91b384a2cee79d0d89761c.json
+           key: Linux-native48-correctcontext-YuanLongping-43646876571
+       - uses: actions/cache/restore@v4
+         id: exact48-whole3089
+         with:
+           path: ${{ runner.temp }}/completion-machine/tts/cache_tts/调平_3089bf1e9ad992be5bc42ea6c586ae366b1b1a40.json
+           key: Linux-native48-correctcontext-whole-G36-3089-43649749759
+-      - name: 精确读取正确原母及真实whole3089五叶完整SHA
++      - uses: actions/cache/restore@v4
++        id: exact48-current-S9-f172-single-file
++        with:
++          path: ${{ runner.temp }}/completion-machine/tts/cache_tts/调平_f17212ff25b6c3d8b0582cdfcfff978551a0ecac.json
++          key: Linux-native48-four-protection-S9-G51-43663443133
++      - name: 精确读取本次真实当前六叶原母及3089和f172完整SHA
+         env:
+           MOTHER_HIT: ${{ steps.exact48-correct-mothers.outputs.cache-hit }}
+           LEVEL_HIT: ${{ steps.exact48-whole3089.outputs.cache-hit }}
++          S9_HIT: ${{ steps.exact48-current-S9-f172-single-file.outputs.cache-hit }}
+         run: |
+           test "$MOTHER_HIT" = true
+           test "$LEVEL_HIT" = true
++          test "$S9_HIT" = true
+           python - <<'PYCACHE'
+           import hashlib,json,os
+           from pathlib import Path
+           M=Path(os.environ['RUNNER_TEMP'])/'completion-machine/tts/cache_tts'
+-          data=json.loads(Path('.github/video-revision-batch/actual48-correct-mothers-and-whole3089-private-cache.json').read_text())
+-          assert len(data)==5
++          data=json.loads(Path('.github/video-revision-batch/actual48-current513d-six-selected-original-cache-files.json').read_text())
++          assert len(data)==6
+           for name,h in data.items():
+               assert Path(name).name==name and hashlib.sha256((M/name).read_bytes()).hexdigest()==h
+           PYCACHE

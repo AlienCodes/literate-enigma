@@ -17,7 +17,7 @@ TASK = ROOT / '.github/video-revision-batch'
 NO = os.environ.get('ARTICLE_NO', '12').zfill(2)
 ALLOWED = {f'{n:02d}' for n in range(1, 71)}
 A21_AUDIO_REPAIRS = {'15', '17', '18', '30'}
-CONTROLLED_AUDIO_REPAIRS = {'05', '67'}
+CONTROLLED_AUDIO_REPAIRS = {'05', '67', '48'}
 APPROVED_AUDIO_REPAIRS = {'10', '12', '44', '51'} | A21_AUDIO_REPAIRS | CONTROLLED_AUDIO_REPAIRS
 SELECTED = json.loads((TASK / 'articles.json').read_text())
 assert NO in ALLOWED and NO in SELECTED, f'Article {NO} is outside the pinned revision scope.'
@@ -907,10 +907,6 @@ try:
     assert (M / 'tts/kokoro-v1.0.onnx').exists(), 'Original warm machine cache was not restored.'
     W.mkdir(parents=True, exist_ok=True)
     install_certified_core_repairs()
-    assert NO == '54'
-    assert sha(TASK / 'request/54/user-authorization.json') == '6abe7de0d9ac4c64daff5af54d1efde21edcfd12c79ca90bbdbbd4805e58bfb7'
-    assert sha(TASK / 'request/54/视频/脚本/54.json') == 'ca30f9d590db5b8d12945daebf6ec01a23887c64d75ce25bfa88b2c7bfb3be6d'
-    assert sha(TASK / 'request/54/视频/工具/初稿生成/gen54.py') == '8704111d9d9584470c3fdb069d969e7c35c168c02fd365157cf23df7fbed458a'
     # Keep restored historical logs internal; report only this run's checks.
     for name in (f'做_{NO}', f'定稿_{NO}'):
         old = W / name
@@ -961,7 +957,15 @@ try:
     def english(data):
         return [re.sub(r'\{\{.*?\}\}', '', ' '.join(c['en'] for c in sentence['chunks']))
                 .replace('**', '').split() for sentence in data['sentences']]
-    assert english(requested) == english(baseline), 'Spoken English changed.'
+    if NO == '48':
+        scope_path = TASK / 'source48-exact-authorized-name-guard.py'
+        assert sha(scope_path) == 'e4836b71d58e2c78c1b40747b1c78d71a71940f2fdfb8d72755e4dc4e8d938fd'
+        scope_spec = importlib.util.spec_from_file_location('exact48_native_name_scope', scope_path)
+        scope_module = importlib.util.module_from_spec(scope_spec)
+        scope_spec.loader.exec_module(scope_module)
+        status['exact_user127_name_insertion_scope'] = scope_module.validate(requested, baseline, TASK / 'source48-current-before-original-EN-scope.json', ROOT / script_rel, ROOT / gen_rel, request / 'root-source48-exact-user127-name-insertion-original-spoken-English-guard-scope-decision.json')
+    else:
+        assert english(requested) == english(baseline), 'Spoken English changed.'
     requested_summary = summary(requested)
     status['request_source_sha256'] = {str(dst.relative_to(ROOT)): sha(src) for src, dst in files}
     authorization = json.loads((request / 'user-authorization.json').read_text())
@@ -990,6 +994,13 @@ try:
             assert actual_record['篇'] == NO
             if actual_record not in records['记录']:
                 records['记录'].append(actual_record)
+    if NO == '48':
+        exact_supplement = request / '真实用户同意补充.json'
+        assert sha(exact_supplement) == 'be7a9c0971db84441ac62bd976140d66116f4605fabc2b6c83e89555fb4cdec0'
+        assert sha(request / 'root-source48-final4980-current513d-source-pair-and-exact-proof-QC-code-adoption-decision.json') == '0adaad1903df4de524019998b169d476c5f44bef5cad943827d8b19d2908d3d8'
+        for exact_record in json.loads(exact_supplement.read_text())['records']:
+            assert str(exact_record['篇']).zfill(2) == NO
+            if exact_record not in records['记录']: records['记录'].append(exact_record)
     supplied_agreement = request / '视频/工具/用户同意记录.json'
     if supplied_agreement.is_file():
         supplied_records = json.loads(supplied_agreement.read_text())
@@ -1096,29 +1107,9 @@ try:
     status['final_wav_sha256'] = sha(W / f'work_{NO}/a.wav')
     save()
     canonical_aac = aac_hash(canonical)
-    if NO == '54':
-        # Only a new user148 final under the original complete gates; current voice is not legacy acceptance.
-        assert status['canonical_pipeline_passed'] is True
-        identity_program = TASK / 'identity54_user148_current.py'
-        identity_reference = TASK / 'identity54_user148_current-reference.json'
-        assert sha(identity_program) == '4753a334955dae380737374dd0ed67708976ad8eb7eb75d72ac2956dd449228f'
-        assert sha(identity_reference) == '673c534d75973f58a2b0deced5d49a8400755edc8b446f607cc4e6709840ea6e'
-        spec = importlib.util.spec_from_file_location('source54_exact_user148_current_identity', identity_program)
-        identity = importlib.util.module_from_spec(spec);spec.loader.exec_module(identity)
-        evidence = identity.bind(request, current, W / 'work_54/a.wav', canonical, source_video, T, TASK,
-                                 status['canonical_pipeline_passed'])
-        assert evidence['identity_binding_passed'] is True
-        assert evidence['formal_quality_acceptance'] is False and evidence['repair_applied'] is False
-        assert evidence['current_reference_not_formally_accepted_whole'] is True
-        assert evidence['user148_final_authorized'] is True
-        evidence_path = OUT / '54-user148-exact-current-native-identity-binding.json'
-        evidence_path.write_text(json.dumps(evidence, ensure_ascii=False, indent=2) + '\n')
-        status['approved_current_reference_final_binding'] = evidence
-        status['review_only'] = False
-        status['user_individual_finalization_authorized'] = True
-    elif NO in APPROVED_AUDIO_REPAIRS:
+    if NO in APPROVED_AUDIO_REPAIRS:
         # Root supplies actual approved audio-change validation. No gain/overlay implementation is assumed here.
-        helper_name = ('audio05-tail-qc.py' if NO == '05' else
+        helper_name = ('audio48-controlled-qc.py' if NO == '48' else 'audio05-tail-qc.py' if NO == '05' else
                        'audio67-controlled-qc.py' if NO == '67' else
                        'audio-controlled-qc.py' if NO in CONTROLLED_AUDIO_REPAIRS else
                        'audio-a21-qc.py' if NO in A21_AUDIO_REPAIRS else 'audio-qc.py')
@@ -1146,7 +1137,7 @@ try:
             if NO != '05':
                 assert audio_evidence.get('diagnostic_only') is False
                 assert audio_evidence.get('production_delivery_eligible') is True
-            reference_file = TASK / ('audio05-tail-qc-reference.json' if NO == '05' else
+            reference_file = TASK / ('audio48-controlled-qc-reference.json' if NO == '48' else 'audio05-tail-qc-reference.json' if NO == '05' else
                                      'audio67-controlled-qc-reference.json' if NO == '67' else
                                      'audio-controlled-qc-reference.json')
             status['approved_audio_repair_scope'] = {
@@ -1194,10 +1185,7 @@ try:
     assert timing['end_page_frames'] == 60 and timing['end_page_seconds'] == 2
     assert timing['original_audio_identical'] and timing['original_audio_packet_timings_identical']
     assert aac_hash(processed[0]) == canonical_aac, 'Exact-card processing changed the canonical AAC stream.'
-    if NO == '54':
-        assert status['approved_current_reference_final_binding']['identity_binding_passed']
-        assert aac_hash(processed[0]) == canonical_aac
-    elif NO not in APPROVED_AUDIO_REPAIRS:
+    if NO not in APPROVED_AUDIO_REPAIRS:
         assert aac_hash(processed[0]) == accepted_aac, 'Final AAC differs from accepted prior voice.'
     final = OUT / f'{NO}-4K-读完即转简述2秒.mp4'
     shutil.copyfile(processed[0], final)
