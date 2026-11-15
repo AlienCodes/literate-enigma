@@ -43,6 +43,74 @@ def texts_for(no):
     return d, out
 
 
+def _source24_exact_full_precision_manual_reference(d, no, idx, pn, segments, identity):
+    """One reviewed manual-gain precision role only; other paths retain original guards.
+
+    This function does not approve confirmation metadata: independent A21/PV/audit
+    and all original source/CF checks still run. Its immutable whole text+audio
+    projection excludes only 核对确认, with exactly the two observed S18 note roles.
+    """
+    if str(no) != '24' or idx != 17 or str(d.get('no', '')) != '24': return None
+    try:
+        stable = json.loads(json.dumps(d, ensure_ascii=False, allow_nan=False))
+        note = stable['sentences'][17]['chunks'][1]['note']
+        note_sha = _hl.sha256(note.encode()).hexdigest()
+        if note_sha not in ('827e12cd63d072dc698378ee2a2d8e860a0e49838a3a1320cb650f07eef2f298', '8f2d48e37e4c9fcdb16ca87250afb5b3cb246d4f77020c6e3008494e783711c9'): return None
+        stable['sentences'][17]['chunks'][1]['note'] = '<exact-known-source24-S18-note-role:827e12cd63d072dc698378ee2a2d8e860a0e49838a3a1320cb650f07eef2f298>'
+        stable.pop('核对确认', None)
+        stable_raw = json.dumps(stable, ensure_ascii=False, sort_keys=True, separators=(',', ':'), allow_nan=False)
+        if _hl.sha256(stable_raw.encode()).hexdigest() != '2f8c7ae97d1ce4c82a0dca750dc68c0c2d7c80eb7733c1cf58615cf0a01e66ee': return None
+        if pn != {'2': -1.109697858091752} or type(pn.get('2')) is not float: return None
+        if d.get('结尾句', {}).get('S18') or d.get('合成标点', {}).get('S18'): return None
+        if d.get('朗读删逗号', {}).get('S18') != {'篇号': 24, '原文': 'Precision put six ashore within reach of help and, a century on, brought their ship back into view.', '逗号序号': [1]}: return None
+        if d.get('区间声音指纹', {}).get('S18') != 'e43769675c69': return None
+        if set(identity) != {'producer_SHA256', 'master_WAV_SHA256', 'source_matches_actual_disk', 'actual_raw_fingerprint_table'}: return None
+        if identity['producer_SHA256'] != '0e6c4ff6dd4ab4e3774bc060188de72356cd9aa37a7bc092d1f28a5508cc1c36' or identity['master_WAV_SHA256'] != '0bfc44bac414b289ee12dae0fa74a7db64a8b2a33d5d6d2a19ac6161a635aa40': return None
+        if identity['source_matches_actual_disk'] is not True: return None
+        raw_table = identity['actual_raw_fingerprint_table']
+        if set(raw_table) != {'指纹', '作废'} or raw_table['指纹'].get('S18') != 'e43769675c69': return None
+        if not isinstance(raw_table['作废'], list) or 'S18' in raw_table['作废']: return None
+        expected = [{'段': 1, '增益': 0.0, '原始': [240, 87840], '停顿': 0.4, '时刻': [0.0, 3.625]}, {'段': 2, '增益': -1.11, '原始': [96240, 1000000240], '停顿': None, '时刻': [4.005, 5.795]}]
+        # Type-sensitive equality preserves the actual original producer metadata schema.
+        exact = lambda x: json.dumps(x, ensure_ascii=False, sort_keys=True, separators=(',', ':'), allow_nan=False)
+        if exact(segments) != exact(expected): return None
+        if len(segments) != 2 or segments[0]['增益'] != 0.0: return None
+        if segments[1]['增益'] != round(pn['2'], 3): return None
+        # source24 cannot invoke original G36; all zero/one manual fields, raw identity
+        # and full master bytes above must match the measured no-auto-level route.
+        return [(r['原始'][0], r['原始'][1], float(pn[str(r['段'])]))
+                for r in segments if str(r['段']) in pn]
+    except (KeyError, TypeError, ValueError, AttributeError):
+        return None
+
+
+def _source24_bound_full_precision_manual_reference(d, no, idx, pn, segments, root):
+    """Read only original current source/master/raw metadata; no model/DSP/cache writes."""
+    if str(no) != '24' or idx != 17 or str(d.get('no', '')) != '24': return None
+    try:
+        work = os.path.join(root, 'video')
+        paths = {'source': os.path.join(work, 'scripts', '24.json'),
+                 'producer': os.path.join(work, 'make_video.py'),
+                 'master': os.path.join(work, 'work_24', 'a.wav'),
+                 'raw_table': os.path.join(work, 'work_24', '句子声音指纹.json')}
+        if any(not os.path.isfile(p) or os.path.islink(p) for p in paths.values()): return None
+        def full_sha(path):
+            h = _hl.sha256()
+            with open(path, 'rb') as src:
+                for block in iter(lambda: src.read(1 << 20), b''): h.update(block)
+            return h.hexdigest()
+        with open(paths['source'], encoding='utf-8') as src: current = json.load(src)
+        same = json.dumps(current, ensure_ascii=False, sort_keys=True, separators=(',', ':'), allow_nan=False) == json.dumps(d, ensure_ascii=False, sort_keys=True, separators=(',', ':'), allow_nan=False)
+        with open(paths['raw_table'], encoding='utf-8') as src: raw_table = json.load(src)
+        identity = {'producer_SHA256': full_sha(paths['producer']),
+                    'master_WAV_SHA256': full_sha(paths['master']),
+                    'source_matches_actual_disk': same,
+                    'actual_raw_fingerprint_table': raw_table}
+        return _source24_exact_full_precision_manual_reference(d, no, idx, pn, segments, identity)
+    except (OSError, KeyError, TypeError, ValueError):
+        return None
+
+
 if __name__ == '__main__':
     import onnxruntime as _ort, pickle as _pk
     TTS = S + '/tts'; _CACHE = TTS + '/cache_tts'
@@ -101,7 +169,10 @@ if __name__ == '__main__':
             if sr2_ and any('增益' in r for r in sr2_):   # G36 源头调平（26 起）：出片程序自动算的增益 + 脚本写的，记在分段.json 的“增益”里；有它就以它为准
                 pr_ = [(r['原始'][0], r['原始'][1], float(r['增益'])) for r in sr2_ if r.get('增益')]
                 if pn_ and any(abs(float(r.get('增益', 0)) - float(pn_.get(str(r['段']), 0))) > 1e-6 for r in sr2_) and not (str(d.get('no', no)).isdigit() and (int(d.get('no', no)) >= 26 or int(d.get('no', no)) == 5)):   # 05：K134 短段收过的增益以分段记录为准
-                    raise SystemExit(f'【停止】分段记录的增益与脚本 分段增益dB 对不上（26 前没有自动调平）：S{idx + 1}')
+                    _exact24_pr = _source24_bound_full_precision_manual_reference(d, no, idx, pn_, sr2_, S)
+                    if _exact24_pr is None:
+                        raise SystemExit(f'【停止】分段记录的增益与脚本 分段增益dB 对不上（26 前没有自动调平）：S{idx + 1}')
+                    pr_ = _exact24_pr
             rgn_ = d.get('段内渐变dB', {}).get(f'S{idx + 1}') if idx >= 0 else None   # 2026-11-03 段内渐变：段内线性渐变，乘在分段记录的原始区间
             rg_ = []
             if rgn_:

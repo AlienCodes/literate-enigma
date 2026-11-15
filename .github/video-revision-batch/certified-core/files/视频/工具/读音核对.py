@@ -300,12 +300,22 @@ def selftest(no):
         # espeak pronunciation. Popping Haber-Bosch also changes the replacement
         # count for Haber inside that compound and aborts before check() can
         # identify the intentionally wrong pronunciation.
-        keep_w = PRON_WORDS[w]
-        PRON_WORDS[w] = re.sub(r'[,;:.!?]', '', KT.tokenizer.phonemize(w, 'en-us')).strip()
+        # Fault-inject coupled base/possessive aliases coherently. Leaving the
+        # Worsley base correction active while making only Worsley's BAD lets
+        # the base repair the sentence first, so the possessive count guard
+        # aborts before check() can report the intended incorrect pronunciation.
+        # Keep every key (including compounds), and preserve case-sensitive
+        # activation classes such as NeXT versus ordinary next.
+        base_w = re.sub(r"['’]s$", '', w).casefold()
+        keys_w = [k for k in PRON_WORDS if _wf(k) == _wf(w)
+                  and re.sub(r"['’]s$", '', k).casefold() == base_w]
+        keep_w = {k: PRON_WORDS[k] for k in keys_w}
         try:
+            for k in keys_w:
+                PRON_WORDS[k] = re.sub(r'[,;:.!?]', '', KT.tokenizer.phonemize(k, 'en-us')).strip()
             got = {line for _, line, bad in check(no) if bad}
         finally:
-            PRON_WORDS[w] = keep_w
+            PRON_WORDS.update(keep_w)
         hit = any(re.search(r'\] ' + re.escape(w) + r"(['’]s)? ", l_) for l_ in got - base)   # 文中只有所有格的（10 Uffizi's）也算
         print(f'  K102 ② {w}：单独关掉改正 → ' + ('报 BAD（当样本）' if hit else '不报（关掉后仍读对，不当样本）'))
         if hit: valid.append(w)
