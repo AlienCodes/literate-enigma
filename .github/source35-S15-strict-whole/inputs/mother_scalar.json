@@ -1,0 +1,222 @@
+{
+  "kind": "one_independent_target_only_two_original_model_mothers",
+  "source_id": "35",
+  "book_order": 54,
+  "quality_acceptance": false,
+  "formal_acceptance": false,
+  "whole_audio_or_ASR_or_GT_or_encoding_run": false,
+  "source_or_GEN_or_MD_or_CF_written": false,
+  "completed": true,
+  "model_calls": [
+    {
+      "method": "create",
+      "strict_cache": false
+    },
+    {
+      "method": "create_timed",
+      "strict_cache": false
+    },
+    {
+      "method": "create",
+      "strict_cache": true
+    },
+    {
+      "method": "create_timed",
+      "strict_cache": true
+    }
+  ],
+  "cache_entries": [
+    {
+      "method": "create",
+      "name": "3f83831048941d66ea88c111fccbf8dcd055496a.pkl",
+      "pkl_SHA256": "005e6e9b842be83ca6a9bcddc8f8160f4d99c14c46b3e3aa2d18b5c38b71e161",
+      "marker_name": "3f83831048941d66ea88c111fccbf8dcd055496a.pkl.单线程",
+      "marker_SHA256": "3c42a6c7202ac881e8731a75e718149e203f335075efbc4cf19913ac862ddd6a",
+      "marker_value": "005e6e9b842be83c",
+      "preexisted": false,
+      "actual_original_native_method_entries": 1,
+      "samples": 80384,
+      "SR": 24000,
+      "dtype": "float32",
+      "array_SHA256": "b025f7faa005c4d7e347a2f19703f6715f55796a2f7a5998becdf41ad398b986",
+      "timed_token_count": null
+    },
+    {
+      "method": "create_timed",
+      "name": "52b0bb10ca17f206906f1844abcdec44897d3149.pkl",
+      "pkl_SHA256": "d83241f13c861d0d0d5540a42f1d2cce86c17b2486a4669e82647c9e8eb4f8a6",
+      "marker_name": "52b0bb10ca17f206906f1844abcdec44897d3149.pkl.单线程",
+      "marker_SHA256": "6e4112ee07bd9ca7b76631b522c6e505a3e2bf6dcca8519a20d29b0d33c33417",
+      "marker_value": "d83241f13c861d0d",
+      "preexisted": false,
+      "actual_original_native_method_entries": 1,
+      "samples": 83456,
+      "SR": 24000,
+      "dtype": "float32",
+      "array_SHA256": "407b748462e6a8a5c43764b01cadf0f2abeaeb619f3ec775a715d522c96a013a",
+      "timed_token_count": 58
+    }
+  ],
+  "actual_new_code_certificate_SHA256": "50a3abb8d8388ba4587eed0baab4eed5b57afad9fc73cbdb1aa4b48bbaa56c01",
+  "actual_new_110_stamp_SHA256": "7d7ebf20b78143231992f8880f70e3cf1581c75acd2d977bc054e3ff151a1a41",
+  "execution_adoption_SHA256": "832843bcf41eda593d758deec32989a84e89ee898d4ccc3b05fec4fb02513449",
+  "request_SHA256": "4afcf9036da5dae05314f40a31e5051c12d413bbea719858477f76b0c450a0d5",
+  "shadow_SHA256": "94da83458e1aa1dac2e0efe13385de7658dea1cd9ccd3a26e21a95ddeaaa7207",
+  "dictionary_SHA256": "5f558c61f8ffb99009a89989afcc07a9ce168b2b70a6c9377289040d14ec402b",
+  "context_SHA256": "4d8905dc1a87f97b707270f03f41ea0fdf2b207ca218ed74608cdb134e3dc8e3",
+  "models_SHA256": {
+    "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+    "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+    "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+  },
+  "voice_SHA256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+  "original_Kokoro061_class_source_SHA256": "32602bee21b14ed161fdfd3c8b921b267782ad143a49c3ebd256c16c473808f5",
+  "native_method_entry_count_is_not_ONNX_session_run_telemetry": true,
+  "actual_planned_input_witness": [
+    {
+      "method": "create",
+      "actual_post_pron_input": "In 2014 came an eerie man-made twist.",
+      "actual_post_pron_SHA256": "2cecff826593afe4deeba2b735e9e7782dded8ee015b62a6e3d02fafe3ddf079",
+      "portable_mid": "kokoro-v1.0.onnx:7d5df8ecf7d4b187",
+      "exact_native_cache_key": "3f83831048941d66ea88c111fccbf8dcd055496a.pkl",
+      "voice_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "voice_npy_SHA256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kwargs": {},
+      "cache_preexisted": false
+    },
+    {
+      "method": "create_timed",
+      "actual_post_pron_input": "In 2014 came an eerie man-made twist.",
+      "actual_post_pron_SHA256": "2cecff826593afe4deeba2b735e9e7782dded8ee015b62a6e3d02fafe3ddf079",
+      "portable_mid": "kokoro-v1.0-timed.onnx:beb0d1848dee9a49",
+      "exact_native_cache_key": "52b0bb10ca17f206906f1844abcdec44897d3149.pkl",
+      "voice_sha1": "20e9c8405ef6959c2eb22c99565c4269cae818d4",
+      "voice_npy_SHA256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+      "speed": 0.95,
+      "lang": "en-us",
+      "kwargs": {
+        "clause_pause": 0,
+        "sentence_pause": 0
+      },
+      "cache_preexisted": false
+    }
+  ],
+  "planned_input_witness_written_before_possible_inference": true,
+  "original_raw_create_internal_delegate_parameters": {
+    "text": [
+      "str",
+      "In 2014 came an eerie man-made twist."
+    ],
+    "voice": [
+      "voice_sha1",
+      "20e9c8405ef6959c2eb22c99565c4269cae818d4"
+    ],
+    "speed": [
+      "float",
+      0.95
+    ],
+    "lang": [
+      "str",
+      "en-us"
+    ],
+    "is_phonemes": [
+      "bool",
+      false
+    ],
+    "trim": [
+      "bool",
+      true
+    ],
+    "sentence_pause": [
+      "float",
+      0.25
+    ],
+    "clause_pause": [
+      "float",
+      0.1
+    ],
+    "continuous": [
+      "bool",
+      false
+    ]
+  },
+  "original_raw_create_internal_delegate_calls": [
+    {
+      "same_object": true,
+      "original_create_caller_code_exact": true,
+      "parameters": {
+        "text": [
+          "str",
+          "In 2014 came an eerie man-made twist."
+        ],
+        "voice": [
+          "voice_sha1",
+          "20e9c8405ef6959c2eb22c99565c4269cae818d4"
+        ],
+        "speed": [
+          "float",
+          0.95
+        ],
+        "lang": [
+          "str",
+          "en-us"
+        ],
+        "is_phonemes": [
+          "bool",
+          false
+        ],
+        "trim": [
+          "bool",
+          true
+        ],
+        "sentence_pause": [
+          "float",
+          0.25
+        ],
+        "clause_pause": [
+          "float",
+          0.1
+        ],
+        "continuous": [
+          "bool",
+          false
+        ]
+      },
+      "is_original_internal_delegate_not_extra_logical_model_call": true
+    }
+  ],
+  "actual_native_original_method_entry_count": 2,
+  "both_original_STRICT_cache_readbacks_exact": true,
+  "normal_scripts_namespace_restored": true,
+  "environment_cwd_sys_path_restored": true,
+  "existing_PCM_exact": true,
+  "public_repository_cache_exact": true,
+  "immutable_inputs_exact": true,
+  "original_runtime_maker_dict_models_voice_exact_after": true,
+  "all_existing_private_cache_files_exact": true,
+  "only_actual_two_mother_four_private_files_added": true,
+  "new_private_files": [
+    {
+      "name": "3f83831048941d66ea88c111fccbf8dcd055496a.pkl",
+      "SHA256": "005e6e9b842be83ca6a9bcddc8f8160f4d99c14c46b3e3aa2d18b5c38b71e161"
+    },
+    {
+      "name": "3f83831048941d66ea88c111fccbf8dcd055496a.pkl.单线程",
+      "SHA256": "3c42a6c7202ac881e8731a75e718149e203f335075efbc4cf19913ac862ddd6a"
+    },
+    {
+      "name": "52b0bb10ca17f206906f1844abcdec44897d3149.pkl",
+      "SHA256": "d83241f13c861d0d0d5540a42f1d2cce86c17b2486a4669e82647c9e8eb4f8a6"
+    },
+    {
+      "name": "52b0bb10ca17f206906f1844abcdec44897d3149.pkl.单线程",
+      "SHA256": "6e4112ee07bd9ca7b76631b522c6e505a3e2bf6dcca8519a20d29b0d33c33417"
+    }
+  ],
+  "private_fixture": {
+    "file": "35-S15-two-mother-private-cache-identity.json",
+    "SHA256": "6a433937296a7755bc496791fe24c60a2c577e51fb3e45d7d247e1242dc5a8d8"
+  }
+}
