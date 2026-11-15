@@ -1,0 +1,3773 @@
+{
+  "actual_successful_job_verified": true,
+  "actual_genuine_upstream_pass_with_missing_art_recovery": false,
+  "actual_job_uploaded_selected_artifact": false,
+  "overall_matrix_success_required": false,
+  "acceptance_basis": "actual successful article job + immutable run artifact + actual native passed article/media/source identity; upload log is auxiliary",
+  "run": {
+    "id": 43702972097,
+    "name": "本轮改动篇目原缓存正式4K",
+    "node_id": "WFR_kwLODJcpM88AAAAKLOZuwQ",
+    "head_branch": "codex/finish-05-and-summaries-20261112",
+    "head_sha": "ba630a4bf896d1d2c084c27e5ce1ec4498658b2c",
+    "path": ".github/workflows/produce-revision-batch4K.yml",
+    "display_title": "Produce only source66 individual final with exact approved post-G35 t…",
+    "run_number": 90,
+    "event": "push",
+    "status": "completed",
+    "conclusion": "success",
+    "workflow_id": 417752518,
+    "check_suite_id": 118322632821,
+    "check_suite_node_id": "CS_kwDODJcpM88AAAAbjJQYdQ",
+    "url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43702972097",
+    "html_url": "https://github.com/AlienCodes/literate-enigma/actions/runs/43702972097",
+    "pull_requests": [],
+    "created_at": "2026-11-15T10:12:47Z",
+    "updated_at": "2026-11-15T10:29:07Z",
+    "actor": {
+      "login": "AlienCodes",
+      "id": 52247027,
+      "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/AlienCodes",
+      "html_url": "https://github.com/AlienCodes",
+      "followers_url": "https://api.github.com/users/AlienCodes/followers",
+      "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+      "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+      "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+      "repos_url": "https://api.github.com/users/AlienCodes/repos",
+      "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "run_attempt": 1,
+    "referenced_workflows": [],
+    "run_started_at": "2026-11-15T10:12:47Z",
+    "triggering_actor": {
+      "login": "AlienCodes",
+      "id": 52247027,
+      "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/AlienCodes",
+      "html_url": "https://github.com/AlienCodes",
+      "followers_url": "https://api.github.com/users/AlienCodes/followers",
+      "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+      "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+      "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+      "repos_url": "https://api.github.com/users/AlienCodes/repos",
+      "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "jobs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43702972097/jobs",
+    "logs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43702972097/logs",
+    "check_suite_url": "https://api.github.com/repos/AlienCodes/literate-enigma/check-suites/118322632821",
+    "artifacts_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43702972097/artifacts",
+    "cancel_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43702972097/cancel",
+    "rerun_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43702972097/rerun",
+    "previous_attempt_url": null,
+    "workflow_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/workflows/417752518",
+    "head_commit": {
+      "id": "ba630a4bf896d1d2c084c27e5ce1ec4498658b2c",
+      "tree_id": "9290c93f3213ce4620405b6f7bf292198ada85ad",
+      "message": "Produce only source66 individual final with exact approved post-G35 text metadata, preserved existing voice and all original full native audio ASR4K gates; explicit9034 consent",
+      "timestamp": "2026-11-15T10:12:44Z",
+      "author": {
+        "name": "the Sword God",
+        "email": "52247027+AlienCodes@users.noreply.github.com"
+      },
+      "committer": {
+        "name": "the Sword God",
+        "email": "52247027+AlienCodes@users.noreply.github.com"
+      }
+    },
+    "repository": {
+      "id": 211233075,
+      "node_id": "MDEwOlJlcG9zaXRvcnkyMTEyMzMwNzU=",
+      "name": "literate-enigma",
+      "full_name": "AlienCodes/literate-enigma",
+      "private": false,
+      "owner": {
+        "login": "AlienCodes",
+        "id": 52247027,
+        "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+        "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/AlienCodes",
+        "html_url": "https://github.com/AlienCodes",
+        "followers_url": "https://api.github.com/users/AlienCodes/followers",
+        "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+        "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+        "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+        "repos_url": "https://api.github.com/users/AlienCodes/repos",
+        "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/AlienCodes/literate-enigma",
+      "description": "I am exploring this world!",
+      "fork": false,
+      "url": "https://api.github.com/repos/AlienCodes/literate-enigma",
+      "forks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/forks",
+      "keys_url": "https://api.github.com/repos/AlienCodes/literate-enigma/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/AlienCodes/literate-enigma/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/AlienCodes/literate-enigma/teams",
+      "hooks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/hooks",
+      "issue_events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/events",
+      "assignees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/AlienCodes/literate-enigma/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/tags",
+      "blobs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/AlienCodes/literate-enigma/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/AlienCodes/literate-enigma/languages",
+      "stargazers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/stargazers",
+      "contributors_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contributors",
+      "subscribers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscribers",
+      "subscription_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscription",
+      "commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/AlienCodes/literate-enigma/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/AlienCodes/literate-enigma/merges",
+      "archive_url": "https://api.github.com/repos/AlienCodes/literate-enigma/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/AlienCodes/literate-enigma/downloads",
+      "issues_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/AlienCodes/literate-enigma/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/AlienCodes/literate-enigma/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/AlienCodes/literate-enigma/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/AlienCodes/literate-enigma/labels{/name}",
+      "releases_url": "https://api.github.com/repos/AlienCodes/literate-enigma/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/deployments"
+    },
+    "head_repository": {
+      "id": 211233075,
+      "node_id": "MDEwOlJlcG9zaXRvcnkyMTEyMzMwNzU=",
+      "name": "literate-enigma",
+      "full_name": "AlienCodes/literate-enigma",
+      "private": false,
+      "owner": {
+        "login": "AlienCodes",
+        "id": 52247027,
+        "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+        "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/AlienCodes",
+        "html_url": "https://github.com/AlienCodes",
+        "followers_url": "https://api.github.com/users/AlienCodes/followers",
+        "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+        "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+        "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+        "repos_url": "https://api.github.com/users/AlienCodes/repos",
+        "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/AlienCodes/literate-enigma",
+      "description": "I am exploring this world!",
+      "fork": false,
+      "url": "https://api.github.com/repos/AlienCodes/literate-enigma",
+      "forks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/forks",
+      "keys_url": "https://api.github.com/repos/AlienCodes/literate-enigma/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/AlienCodes/literate-enigma/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/AlienCodes/literate-enigma/teams",
+      "hooks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/hooks",
+      "issue_events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/events",
+      "assignees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/AlienCodes/literate-enigma/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/tags",
+      "blobs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/AlienCodes/literate-enigma/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/AlienCodes/literate-enigma/languages",
+      "stargazers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/stargazers",
+      "contributors_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contributors",
+      "subscribers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscribers",
+      "subscription_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscription",
+      "commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/AlienCodes/literate-enigma/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/AlienCodes/literate-enigma/merges",
+      "archive_url": "https://api.github.com/repos/AlienCodes/literate-enigma/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/AlienCodes/literate-enigma/downloads",
+      "issues_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/AlienCodes/literate-enigma/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/AlienCodes/literate-enigma/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/AlienCodes/literate-enigma/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/AlienCodes/literate-enigma/labels{/name}",
+      "releases_url": "https://api.github.com/repos/AlienCodes/literate-enigma/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/deployments"
+    }
+  },
+  "job": {
+    "id": 132778002108,
+    "run_id": 43702972097,
+    "workflow_name": "本轮改动篇目原缓存正式4K",
+    "head_branch": "codex/finish-05-and-summaries-20261112",
+    "run_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43702972097",
+    "run_attempt": 1,
+    "node_id": "CR_kwDODJcpM88AAAAe6i-GvA",
+    "head_sha": "ba630a4bf896d1d2c084c27e5ce1ec4498658b2c",
+    "url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/jobs/132778002108",
+    "html_url": "https://github.com/AlienCodes/literate-enigma/actions/runs/43702972097/job/132778002108",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-11-15T10:13:12Z",
+    "started_at": "2026-11-15T10:13:14Z",
+    "completed_at": "2026-11-15T10:29:07Z",
+    "name": "produce (66)",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-11-15T10:13:14Z",
+        "completed_at": "2026-11-15T10:13:15Z"
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-11-15T10:13:15Z",
+        "completed_at": "2026-11-15T10:13:43Z"
+      },
+      {
+        "name": "按批准的原图清单解析本篇原生文件名",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3,
+        "started_at": "2026-11-15T10:13:43Z",
+        "completed_at": "2026-11-15T10:13:43Z"
+      },
+      {
+        "name": "取固定主仓中已批准的本篇书中原图",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4,
+        "started_at": "2026-11-15T10:13:43Z",
+        "completed_at": "2026-11-15T10:13:44Z"
+      },
+      {
+        "name": "先验本篇原图的主仓提交、原生blob和批准SHA",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5,
+        "started_at": "2026-11-15T10:13:44Z",
+        "completed_at": "2026-11-15T10:13:44Z"
+      },
+      {
+        "name": "Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6,
+        "started_at": "2026-11-15T10:13:44Z",
+        "completed_at": "2026-11-15T10:13:44Z"
+      },
+      {
+        "name": "Run actions/cache/restore@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7,
+        "started_at": "2026-11-15T10:13:44Z",
+        "completed_at": "2026-11-15T10:14:38Z"
+      },
+      {
+        "name": "确认恢复既有机器缓存",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8,
+        "started_at": "2026-11-15T10:14:38Z",
+        "completed_at": "2026-11-15T10:14:38Z"
+      },
+      {
+        "name": "准备原有核查工具",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 9,
+        "started_at": "2026-11-15T10:14:38Z",
+        "completed_at": "2026-11-15T10:15:12Z"
+      },
+      {
+        "name": "Run actions/cache/restore@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 10,
+        "started_at": "2026-11-15T10:15:12Z",
+        "completed_at": "2026-11-15T10:15:12Z"
+      },
+      {
+        "name": "确认原快测印章缓存命中",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 11,
+        "started_at": "2026-11-15T10:15:12Z",
+        "completed_at": "2026-11-15T10:15:12Z"
+      },
+      {
+        "name": "原程序做稿并正式定稿4K",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 12,
+        "started_at": "2026-11-15T10:15:12Z",
+        "completed_at": "2026-11-15T10:29:01Z"
+      },
+      {
+        "name": "仅保留本篇公开成片和核验材料",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 13,
+        "started_at": "2026-11-15T10:29:01Z",
+        "completed_at": "2026-11-15T10:29:03Z"
+      },
+      {
+        "name": "Post Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 24,
+        "started_at": "2026-11-15T10:29:03Z",
+        "completed_at": "2026-11-15T10:29:03Z"
+      },
+      {
+        "name": "Post 取固定主仓中已批准的本篇书中原图",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 25,
+        "started_at": "2026-11-15T10:29:03Z",
+        "completed_at": "2026-11-15T10:29:04Z"
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 26,
+        "started_at": "2026-11-15T10:29:04Z",
+        "completed_at": "2026-11-15T10:29:04Z"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 27,
+        "started_at": "2026-11-15T10:29:04Z",
+        "completed_at": "2026-11-15T10:29:04Z"
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/AlienCodes/literate-enigma/check-runs/132778002108",
+    "labels": [
+      "ubuntu-latest"
+    ],
+    "runner_id": 1000008762,
+    "runner_name": "GitHub Actions 1000008762",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  "artifact": {
+    "id": 14158390370,
+    "node_id": "MDg6QXJ0aWZhY3QxNDE1ODM5MDM3MA==",
+    "name": "article66-revised-canonical-4K-final",
+    "size_in_bytes": 38799452,
+    "url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/artifacts/14158390370",
+    "archive_download_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/artifacts/14158390370/zip",
+    "expired": false,
+    "digest": "sha256:35204facb46bf0d5d79cc190643fd28b5f50aa1069f0e4b2e1295eb562e37077",
+    "created_at": "2026-11-15T10:29:03Z",
+    "updated_at": "2026-11-15T10:29:03Z",
+    "expires_at": "2026-12-15T10:29:01Z",
+    "workflow_run": {
+      "id": 43702972097,
+      "repository_id": 211233075,
+      "head_repository_id": 211233075,
+      "head_branch": "codex/finish-05-and-summaries-20261112",
+      "head_sha": "ba630a4bf896d1d2c084c27e5ce1ec4498658b2c"
+    }
+  },
+  "upload_step_proof": {
+    "unambiguous_selected_step_upload": false,
+    "auxiliary_only": true,
+    "reason": "Upload action log block is missing or ambiguous in selected API step interval",
+    "acceptance_blocked_by_log": false
+  },
+  "native_status": {
+    "article": "66",
+    "passed": true,
+    "stage": "final4K-passed",
+    "original_audit_and_quality_thresholds_unchanged": true,
+    "original_maker_unchanged": true,
+    "core_repairs": [
+      {
+        "target": "视频/工具/草稿声音.sh",
+        "file": "files/视频/工具/草稿声音.sh",
+        "original_sha256": "0ce3277812cf16ed30438509b6dc97db0c26725db4c5db5d9b058c3ef6531aa2",
+        "patched_sha256": "43fc6a1acdae6bb1c2252178bf034407400bbbe92eb1752053f3047da9760491",
+        "repair_scope": "explicit revision flags keep reviewed gain, existing valid ending and reviewed physical cuts; automatic cuts still measured/proposed without --写入 in CUTS=1 mode; default full JSON/PCM/AAC exact to prior5; all original later quality checks retained"
+      },
+      {
+        "target": "视频/工具/句内响度.py",
+        "file": "files/视频/工具/句内响度.py",
+        "original_sha256": "58735b7173a3c03efa61fb300b4aed4039c164fa970e0593a40bae2a3f3cbd27",
+        "patched_sha256": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea",
+        "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+      },
+      {
+        "target": "视频/工具/独立复核/synth.py",
+        "file": "files/视频/工具/独立复核/synth.py",
+        "original_sha256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+        "patched_sha256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+        "repair_scope": "validated unprocessed raw-mother reference input only; independent transforms/audit/thresholds retained"
+      },
+      {
+        "target": "视频/工具/结尾句接点.py",
+        "file": "files/视频/工具/结尾句接点.py",
+        "original_sha256": "15303682c605dd4544172c92d42c016d8d0536e0c6d1f9816d0d38dd5d2b9a61",
+        "patched_sha256": "1a5d43c4f5483014b69bbea7ad43dddb0333a9a80e29bb2b4c8029d8915ff798",
+        "repair_scope": "validate existing ending entry with original producer guard then keep it; bad points fail, missing points use original algorithm; default unchanged"
+      },
+      {
+        "target": "视频/工具/读音核对.py",
+        "file": "files/视频/工具/读音核对.py",
+        "original_sha256": "0a3b97e1179e47c0593f69286f4206eecc123cc7ec5d5adf4f5e62457c228a41",
+        "patched_sha256": "50f4363bb2fc2930be59904cdccfa44fd46f14393a0385c7846028ee25b4e84c",
+        "repair_scope": "selftest-only fault injection keeps compound registry and injects actual uncorrected espeak IPA; normal checker AST/output and dictionaries unchanged; unrelated exceptions propagate with restoration"
+      }
+    ],
+    "strict_production_cache": true,
+    "pdf_requested": false,
+    "review_only": false,
+    "user_individual_finalization_authorized": true,
+    "specific_final_authorization_sha256": "d568ec00742ae476c407d7ce3707e883545576d5777fd4a491a8f75036128d60",
+    "check_summaries": {
+      "approved-illustration-resource.log": [],
+      "certified-core-original-stamp-verification.log": [],
+      "original-restored-stamp.log": [],
+      "canonical-module-copy.log": [],
+      "canonical-draft-00.log": [
+        "第66篇 做完（363 秒）：修了 1 处、疑点 53 处",
+        "① 文本：通过，自动修 1 处",
+        "② 声音：66 词尾辅音核对 问题数 0；66 纯人声核对（配音指纹 b4ac745defc1）问题数 0；问题数 0；66 句间停顿核对 问题数 0；问题数 0",
+        "③ 出片前核查：通过",
+        "⑤ 出片后核查：全部通过",
+        "⑥ 已拷 视频/视频/草稿1080p/66_1080p.mp4（--不推）"
+      ],
+      "canonical-final4K-00.log": [
+        "第66篇 用户定稿原话：有"
+      ],
+      "original-stamp-after-production.log": []
+    },
+    "actual_native_core_certification": {
+      "run_id": 43550422832,
+      "job_id": 132311381738,
+      "commit": "5ecda5ba57c151cb74fc3d36193b60fa59f51c26",
+      "actual_full_quickcheck_exit": 0,
+      "actual_full_quickcheck_seconds": 384.1,
+      "artifact_id": 14096681983,
+      "artifact_zip_sha256": "19dee7da557610e78f39567446bd7dd17ee2c1fe58a0070bb2d6f2c11c22b347",
+      "full_original_quickcheck_log_sha256": "43e1f723087d59c15e78593b23dc37cd2360ba3526474cc5484fbe80edc253d8",
+      "article_audio_or_video_passed_not_implied": true
+    },
+    "actual_native_fastcheck_stamp": {
+      "target": "视频/工具/新管/快测通过.json",
+      "file": "files/视频/工具/新管/快测通过.json",
+      "sha256": "bb75875985ff106abe142caf7ecbf0a5eb76a1412309bf78d77bf146f64512af",
+      "origin": "actual unmodified original full quickcheck, native run43550422832"
+    },
+    "reviewed_regression_resource": {
+      "target": "视频/工具/新管/回归基准_27.json",
+      "file": "files/视频/工具/新管/回归基准_27.json",
+      "sha256": "b8ddb4656ae27cbfc7ec8e3b99511983b4e568997bd4ad4ee33c364f3926ae94",
+      "origin": "pre-existing root-reviewed 67-screen data; original voice/segment MD5 unchanged"
+    },
+    "core_repair_manifest_sha256": "24766577a0001a4920f21cf4887c4cff080d233c34d57cf45a83b7ac660cdcac",
+    "reviewed_gain_preservation_mode": true,
+    "reviewed_existing_ending_preservation_mode": true,
+    "reviewed_existing_physical_cuts_preservation_mode": true,
+    "real_restored_stamp_validated": true,
+    "reviewed_cross_article_context": {
+      "provided": true,
+      "manifest_sha256": "0305761ae34073397f8060b13b1c8f684d2beffff870785ce8d15fcdad03cc08",
+      "files_sha256": {
+        "视频/脚本/01.json": "2be2f80a69af28703992204ac95f987c745362c326e62ad81b3cd8e0e0735d3a",
+        "新版定稿/01-the-robber-who-thought-lemon-juice-made-him-invisible.md": "572054065b5bb65446bf8939a21c789c1e9c7664d82da5117c43efdded894351",
+        "视频/脚本/02.json": "0403368c77fd3e0f91e1ee3780e1c7c147894ad13c16b5f14707d700a8f717c8",
+        "新版定稿/02-the-truth-about-one-marshmallow.md": "91b92505aad03f963861bec39e96f0a472c126d1d57c9fc538676c32f65e545c",
+        "视频/脚本/03.json": "527f3bf4a11843f4d606188dabc6ebce6830da3fb454a49c782e3a595cb47407",
+        "新版定稿/03-the-doctor-who-drank-bacteria-to-win-an-argument.md": "6dfb56504882e24854a3584fd740e7f6601e3f2532818aee3a56d5330d317aa3",
+        "视频/脚本/04.json": "93cc1ff58d65ebe43a65ecb2fb2dbd2da262d80877c05740bbdf4eab4eaca1e8",
+        "新版定稿/04-the-brain-that-learned-london.md": "a8ccb31ffff50aaae77de4b83de1847fafae1d585981cf960c5880c409f6cfc3",
+        "视频/脚本/05.json": "96116f6806b8783cc8abe9583424047683505025dab6c3bc5b38629bbafb418b",
+        "新版定稿/05-the-fingerprint-in-the-blood.md": "612deac4ed066489e04e214ca969f8f27dda05856e0ef0ed2e540e7a4a52ae34",
+        "视频/脚本/06.json": "2cbf1d6cd6e66a59285298ea830f5ef914590b64286d40b2ae5f3168aa27a2e9",
+        "新版定稿/06-the-horse-that-could-count.md": "7fd21ba491c7596c53c486f2bb0b0f2f6da8e67bac75461a4649a7caff822f74",
+        "视频/脚本/07.json": "842e44e5aa19fddcfa239cb6530c5152341cd86e11db959543d02d8670ca13e8",
+        "新版定稿/07-the-octopus-that-escaped.md": "b8544281bb2ada88fce9d1082cbc30233dcb63ee3e9c2bbefafc22cb28b8cb39",
+        "视频/脚本/08.json": "254832e09f12759d950384dd9f31f671ad5a3bc1590b7466065dd3ef5fe4b8d5",
+        "新版定稿/08-the-doctor-who-solved-the-cholera-mystery.md": "0b2bfa68070ce585a452f6b7034d03c3683e710dcabec5e86d7b221950dc7bab",
+        "视频/脚本/09.json": "fa3e429351d629de188c184d04e9986200e16e80606fcbec82332b6433301dae",
+        "新版定稿/09-the-great-emu-war.md": "af5c3e844bad15f94bfc43aeed6d7417c4bfae85f026b194da667a7a3bdb6196",
+        "视频/脚本/10.json": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
+        "新版定稿/10-the-stolen-smile.md": "ff63cf94e4d2c835e2e2f1ffd3e6c5642f0916f0b13c012f1f13c3dff716d47a",
+        "视频/脚本/11.json": "665cbb80cc70b700ecc0cc5813209fd100ad4fa8f0eead3929b9e53778d9d07f",
+        "新版定稿/11-move-37.md": "7e0b49b346c1fa3ab994a11a2301167c0d6a1bb00916508bdc0b1acf71e68053",
+        "视频/脚本/12.json": "e3bfbcce6f1a8e14cfe451d656574353321e297c90c62f5a7b422f37478311d5",
+        "新版定稿/12-the-79-days-of-new-coke.md": "5a23c1e0c81318527bcbf27573487d1845c5318905a2b1e020cc6e2eaf5d643f",
+        "视频/脚本/13.json": "c22ccc9eb34a92380ecbd2ea72189db492264c4730141c73024685b3fca5fd1e",
+        "新版定稿/13-eleven-days-without-sleep.md": "41998b355721703f761685dd351fbf4628b2be67dfed8b3d37276f9e8f929ecb",
+        "视频/脚本/14.json": "2889a9b31bc7945ee55c306d3507b8557bf1efe371af8a97483a61172be800b8",
+        "新版定稿/14-the-fungus-that-turns-ants-into-zombies.md": "618900d05bd2cecc8d577c446146e4df98d71e070c0b779b40992820d1fdd332",
+        "视频/脚本/15.json": "9b42f089b79e4e0c54c254c948ac4d9ae28d224585095a373607122a0d7c6898",
+        "新版定稿/15-the-myth-of-the-unsinkable.md": "bc2d0c8613437b39149cd6e66729104b26efceb8681fb645f782a97b40007584",
+        "视频/脚本/16.json": "d25aa07f3fac316c26c2ae1006d3efa7eb82a396b66150432b50239c1628396d",
+        "新版定稿/16-the-bread-made-from-air.md": "4da63148111213f6d77451b0eb4193893e6fc2fc170400bc39ce5f5ffcaa0b20",
+        "视频/脚本/17.json": "9750857c3e2c67e6abe5ea6913cb0602347be8b58836bbbc03e2c4153bb12e1b",
+        "新版定稿/17-the-curse-of-the-pharaoh.md": "0dc7b6ee7f4ef05d5e4382beeb077d57578d0bb6a6b69415485008facae98717",
+        "视频/脚本/18.json": "5192b78e582c36fd7d5a34973d8314c5b23e13b8313c8960ac29653bd7fa5d8c",
+        "新版定稿/18-the-mould-that-changed-the-world.md": "ef41cea03f471fe3b9a53939c843e450da3325eb711f6414e108ae92a7518dd8",
+        "视频/脚本/19.json": "cc3c5eea0f7d9ec0712b2e58adba7e5ef8b61d6518a322f9b25a12fcc45282fb",
+        "新版定稿/19-tulip-mania.md": "3882d487383b759c31dda4785966091c362960cd873a5d83c530d08d52e2e97c",
+        "视频/脚本/20.json": "cc5ed6d7be8767e5e7e9b098e8f3836821c0b3f51c17581b2746722da1cf3001",
+        "新版定稿/20-the-5000-year-old-murder-in-the-ice.md": "8d55638070787f7ff5432c197292af1188c463a8b018e01bdefc32999b888e95",
+        "视频/脚本/21.json": "61c1569a26d7569ee0f586178be6b307b1c394c0a30c3cb02541c910038b0589",
+        "新版定稿/21-the-man-who-sold-the-eiffel-tower-twice.md": "e8e966b70f579235d696ba11fb01d3b2cae3fa26efb9071bbea95071be259e1f",
+        "视频/脚本/22.json": "e3027a42c532fee9935afcecdd0542713cbb907183802c2345b9472f93b75f59",
+        "新版定稿/22-the-building-that-melted-a-car.md": "49ae09483bc80bbc40a71551cd98aebec355d96d9ff7b2bcdea59a06fe599267",
+        "视频/脚本/23.json": "c4574a79fd3a58577a1402ce095ea9e4a0ea1f98883ce63e3cc60d126e819409",
+        "新版定稿/23-the-man-who-gave-machines-a-mind.md": "72ed3049e87fe75ce1e753d5e443bdbe6a7ab72f6e282e8467fbbb62be873169",
+        "视频/脚本/24.json": "f08620b534bb10b718f7515c805dcb541721427d855bd5a092b8954847a351b8",
+        "新版定稿/24-survival-in-the-ice.md": "cb7f810d9a74256e0c00625290be4f16207feb90f5719ca87d5d7c9912b91307",
+        "视频/脚本/25.json": "c73e854e052b3df9bd920d4a59fafb183dee19bd58765fa426af6ea3d7c9a329",
+        "新版定稿/25-apollo-13-the-successful-failure.md": "b6b7d55fe66e6e32116431ea955778fab779b8bda622df0ba1036c2f40a3969f",
+        "视频/脚本/26.json": "22349b0a29f05689aae5bd5e9d0907846a68e6ad42949eb0b8cc392d6dce18d6",
+        "新版定稿/26-the-language-the-children-invented.md": "f64089bc9487e756522746058fba2e27c45e56ffc339d8590038643012eb496d",
+        "视频/脚本/27.json": "e1214d8e9314a1cb54da82e2532889198bec555d6be9189fbfb43b5fdedcd728",
+        "新版定稿/27-life-in-the-forbidden-zone.md": "c592b44a8e6ec26f3c2e96ed19191958e57c81d31e54329c20d726e538c10e52",
+        "视频/脚本/28.json": "e0c8e6c644ab0c5d52d99c23461b99e9ae1574aa574369e56feb35e2ac20698b",
+        "新版定稿/28-a-handful-of-wormwood-that-saved-millions.md": "d609cd99ab982365c6f0167e211c55b31e52a354d50918780f3da66ef702a5bb",
+        "视频/脚本/29.json": "1e5f1d9f0c22b5d14b757f029be694c2a3969666d732ca79bb695282763de791",
+        "新版定稿/29-the-volcano-that-gave-us-frankenstein.md": "69045ee19a170c7ea9d0008b468c7e947bc28b639b834c0192dc0aeafc3ef4d0",
+        "视频/脚本/30.json": "34eb48747f1ea7d14b41ccc0cf45aa1592907aacf6618999b3506944e2ff4a0c",
+        "新版定稿/30-the-stink-that-built-londons-sewers.md": "84dbf19cee0045ea2608b13ee0677cb9623dd8fbb371c67093bf50c64186137a",
+        "视频/脚本/31.json": "d81f8645a1e5663ba8c84668e817cdb218bc6689079fbfd51326b3a7fd3cd384",
+        "新版定稿/31-the-book-twelve-publishers-turned-down.md": "7abd20fed44918dcf01586c056e9d0acd9d2ad3b90aa7d3d403762d9f06d2659",
+        "视频/脚本/32.json": "357aa59bed62154f7302a5efcf528859b303004e028657b93058138fe931bf85",
+        "新版定稿/32-the-planet-that-was-demoted.md": "1421f2b0921e7e9478ebc48777e3e8b2c979172de63d0124015107c3750a3542",
+        "视频/脚本/33.json": "da87d68fdee3401e499aa145c23d9b2c663ce3b27f79feec5eca1ddb0d794e72",
+        "新版定稿/33-thirteen-in-the-cave.md": "b96faac786ace911140b835d9f9c6e37eeb0c5f3e7a077b913805b8942c56067",
+        "视频/脚本/34.json": "5350c08cdc6dfa5579f0bdc6960805cbe079a1c471c46bb2250f11b32da34868",
+        "新版定稿/34-the-game-that-escaped-the-soviet-union.md": "fdfd966f8624bc506b7cfe16da04f2f7382ce5566fab3bcb35c3d99dd6d4a5f2",
+        "视频/脚本/35.json": "d8439077dc2c909b1c6cbd1347f31e9625f25fffe447d6f5945c9492561f1a16",
+        "新版定稿/35-the-bird-that-beat-the-letter-home.md": "ba8c38e38b21a3345624e2d44fd352561d3096cfb6f62214b48ea9b6e66faead",
+        "视频/脚本/36.json": "e35a3dcb2ff0f0c7054493331370c0364190771ecf56e0dad6dbee3af860a628",
+        "新版定稿/36-the-company-that-invented-its-own-killer.md": "4b0f1d016d3e94bd7f77d3a36bfc423700006c7a23c0b0cae5ca68d5c5af883f",
+        "视频/脚本/37.json": "b1b8945ccf3581df48ade5714a2d0e93e4cc6812708f95bef6f5e44439106c99",
+        "新版定稿/37-dynamite-for-the-heart.md": "4933e24d2384471a96d9c8c26c15d5224a85dae98d9971a3fed15b4978dafc51",
+        "视频/脚本/38.json": "8d0379032000967c9f72e550574874949f798eefbfbfb58ab2b38e4e23ecbc6b",
+        "新版定稿/38-the-web-beneath-the-woods.md": "abb7eead9f3da0b2b326ceed5a649cfbf71fc28dad22e0d52f7b19caa798c54f",
+        "视频/脚本/39.json": "6c3e9539f624b192335312912572a05fba2c7bcfb821b44c3c1dbb21b42527a7",
+        "新版定稿/39-y2k-the-crisis-that-success-erased.md": "abbc9804661126aa006595031ed8f201ce55e8eb5fd9e1ad5669c0c6fcdb80ab",
+        "视频/脚本/40.json": "1c50d1a47ee6f8528d0f7299e8a45bc8c30312622f3f465a964d21cc1395ee7f",
+        "新版定稿/40-the-glue-that-failed.md": "dce9f78f3a0828307843dd667b7eeebf3380a3630f03d234bd5824870aba61a1",
+        "视频/脚本/41.json": "6b6673ffc1db986f4c355f3685de6a0faf2272cee042c5e917f26a8b3057c2be",
+        "新版定稿/41-the-toad-that-invaded-australia.md": "eca590f97120f4e76d719e29aa07b094f9117cd462f5a70c029331a63b85f710",
+        "视频/脚本/42.json": "eceb10ae92aa4b9cd23180d1138149a7fa7b674385462c898bc0d2283c8739e7",
+        "新版定稿/42-the-telescope-that-needed-glasses.md": "d4aa049779a0eba06c555d76ca14103648378eef90465df424120126fa771280",
+        "视频/脚本/43.json": "aa9da1246e293c80408edf94a7c9bed65ef3178ae7cb5265a8273e8c4396687f",
+        "新版定稿/43-from-a-garage-to-the-top-of-the-world.md": "bd70c83e5ac867238ca179f3c9f3548eb9cbdcae1f6df40994aef0bda721ae54",
+        "视频/脚本/44.json": "87f531203ca38d88ae5e71ffd88190b1530715cdc0adba146c2a4a78ebe9b976",
+        "新版定稿/44-the-night-sweden-switched-sides.md": "d3f7ad2ac43f02aae9205a15b9808280ca3db597d6ef3b36aca8ca6176c5f74a",
+        "视频/脚本/45.json": "569406607d2bf18dce5e916052d6460509450d97fe17ac9820be524f59c2c3cc",
+        "新版定稿/45-the-record-humanity-threw-into-the-stars.md": "27deabec4a8478fe570f7f237a2fb850ffdce3deebfd952f512d82a60cf7314f",
+        "视频/脚本/46.json": "c8c7ce7a76226f5274a91af693d24410d5eacfa59206b085a70d133f3634c12b",
+        "新版定稿/46-lost-in-the-glare.md": "7aaa06e875fe56c5d78210b90a8769b8b2051714025ef10df37c2fe89db7a68c",
+        "视频/脚本/47.json": "4c33bb0764a9b98e914a55806486ce841a1503efda1ff001cd2f8c9bb1626c06",
+        "新版定稿/47-shadows-of-wolves-over-yellowstone.md": "6b51ae76b8ec4ffd0ff1748c5902ef59754fa446479fc40357e9946a9aaac7a1",
+        "视频/脚本/48.json": "4f146ce6a70bb0bf5d2c6e1f6b47bd6a2bcc2f311be7a948092d7bde1a08f449",
+        "新版定稿/48-rice-for-the-world.md": "76416be21f857e8a05c37baa33ac90f5785812291485231c249e38a1d0edf15f",
+        "视频/脚本/49.json": "fdcc3a438e50a32fdf8c7bcbe27a97d20fc101b6169ca305f920fedbd3303c3c",
+        "新版定稿/49-the-woman-who-won-two-nobels.md": "1e4fb068aa9ae4513d01b199a074b84dc9d819f57b2134df32588a0e4a4b6b6a",
+        "视频/脚本/50.json": "1d4a41824dfa5e8d11e5990b2a4b802ba2fcc3231d85b15ed6630396c6f027bf",
+        "新版定稿/50-microplastics.md": "5439589bacf1abb2abbb184eb658492bc02bcc5bdd8dfd8ababcd80ab93621cb",
+        "视频/脚本/51.json": "39886d83593a31fb575b124ecf6457190773dca695b6ff78f8434d52aebd6d7c",
+        "新版定稿/51-the-joke-that-became-ok.md": "8de30ea4846f4e88d8b71c8d5ced3ee63a73955e39b7dc3c5adad0971b854fd0",
+        "视频/脚本/52.json": "832249bb44617d38ede75560a5e57af6ba79ec284c9609407cb30ce879f6f862",
+        "新版定稿/52-the-killer-smog-of-1952.md": "179500361e4a837d7edb2e0497e08677d5abd425e8ad542f788205a6f7667b4b",
+        "视频/脚本/53.json": "73393dad5d67261f2ec7819f3749a6589278900e2f214a1da06b0dbde55fe31b",
+        "新版定稿/53-the-wind-that-kept-no-time.md": "5d8007a8c953bc0dd47bfb2536e6f3b3308c0bcf93ca607d6f1c6d02dcac457f",
+        "视频/脚本/54.json": "b1fcb8ae86045b3d35ccfa0f52eb9594b8921d43063835769ee3ecc4543be75e",
+        "新版定稿/54-the-sound-that-shook-the-world.md": "abd5f4bfe11ed73bcc5326a92cf99b0a8e5ad70adaca1ce8d0c8f622b57fa519",
+        "视频/脚本/55.json": "06344fc0ad5975cba2f4dbe5262a9957dd7c024f9a05b9abbfa327f32ea8c719",
+        "新版定稿/55-the-secret-of-romes-undying-concrete.md": "a7759eddcc7ec06dfd6dab7912e06b3b5ef8576df0c025a97812006669d0be61",
+        "视频/脚本/56.json": "22ca3b4180a8ae6a37b4c8e25f5e357d5696d9b23bf148fb7064425d1403e59c",
+        "新版定稿/56-the-letter-that-startled-darwin.md": "aad1e2aab9ff28f534a510362e807ef401e0b502475240f4b2531e9e518a8d7a",
+        "视频/脚本/57.json": "a0ba65b769430289a33ec1f7bc6dbf91dad8d2c3b1d725348851de546563cd6f",
+        "新版定稿/57-a-change-of-anthem-in-the-deep.md": "0731d925a98bafc222718c111985362e166b38b9189c516219a481e36d0d4b6e",
+        "视频/脚本/58.json": "8b0bd3d7d39000518789e9907aec53bd52fab1b9d6b4f22a152d158635b6e8ee",
+        "新版定稿/58-from-a-scratch-to-a-world-without-smallpox.md": "1aa2a0d2c51da76f9c9ebb88d049dd1a55ab530791566fdbf6476e5aa48c15ee",
+        "视频/脚本/59.json": "df1db4174d942371166048b220ef6d55b0b700b2ce31c866edf6dfdf33b92f0c",
+        "新版定稿/59-saving-the-sky.md": "7bf9c4661e733e7af23dc2f11bc820b809ec93dad75a94fb6a12748226e8722c",
+        "视频/脚本/60.json": "cd10eb60e8ea365ce653938ba4339901001cf8d6535c50096c2e736a385b844e",
+        "新版定稿/60-the-scientific-giant-who-changed-the-world.md": "130158a4a5cd0bb680bf8ebaa83fb309e3ae3b41e1818bfd3179eadb13c26810",
+        "视频/脚本/61.json": "2d08704376faff25b06d334d7567a381460975a56a4cef6b4ae97b3580ea8dbc",
+        "新版定稿/61-the-steel-box-that-remade-the-world.md": "135cc9cfbcbd68d957f831cf55558112a45b1cc3749366cb9a304507355c7d2c",
+        "视频/脚本/62.json": "0779c44ccd17679ec853adc3fcc733623fc774e3cb6f68e59c7bb2c4ae62d541",
+        "新版定稿/62-dolly-the-copied-sheep.md": "9edfbd3ebacdecc8c3aa3034d38dd371a105c19382282e8c0de2d08a1713f863",
+        "视频/脚本/63.json": "5d266d80f9cf29cce6f7e34531449cf75191a42f180102685a5bcd04849e75c5",
+        "新版定稿/63-the-crowded-heavens.md": "6ef79d4310019dfefa7364b8a428411a6bc337678c69fa5cbc89b84689e253a4",
+        "视频/脚本/64.json": "12a36862765922d72ce6e5a4c5fe85f548364eed65fe3b3b284f0b38899a965f",
+        "新版定稿/64-the-day-zero-that-never-came.md": "e0c83cbe36745adbbffd33a156fa8d0671704ea976cb13215cabb612639b37a5",
+        "视频/脚本/65.json": "875ecf68f5e196bb02c198533c5b5928852a1c1083419f92acccc65617b3f670",
+        "新版定稿/65-the-day-the-doomsday-vault-opened.md": "24b59a22149441c5cf39b4295ca0c2296eb4aec18e7eb3f10011df8a2e76fa23",
+        "视频/脚本/66.json": "9ae838c6f274244e3e4b5228dd5be7036eabea6b97784cd36dde4365925b6dc6",
+        "新版定稿/66-the-burrs-that-became-velcro.md": "39795a163c4972f7178d6b8c9ec238f4a10a316e539aa6c37e742fb7118606a3",
+        "视频/脚本/67.json": "6839a46ebdb51cdcff6a65ca238efc228f1e114efd1734cee6c994ca659a29cb",
+        "新版定稿/67-the-cave-found-by-a-dog.md": "10e37b81eeef4e3289448a6b4fd679f34d495a4fc087c57747e6dca949e00cf1",
+        "视频/脚本/68.json": "568f72dacac48e206811d35a57c7fa22e3da428783f64e507c184f2090e579f3",
+        "新版定稿/68-the-last-flight-of-the-hindenburg.md": "c25f58ffb0e3748336767bb7470dd7cef10374c53cbb48af89dba26f65b2dd5c",
+        "视频/脚本/69.json": "c493528f054e2d572e56b8ea15be0950158e86e3d3271b0f94237e8d296163ff",
+        "新版定稿/69-the-trial-of-the-father-of-the-atomic-bomb.md": "570eda5b7d979d71e9bcad1c67e295ed326ecdb8b61e663aba33272c8a9451bd",
+        "视频/脚本/70.json": "0f6827f02cef0d2416f9d7d69b7e1c5553acee7cf6dc89f3379201264587236c",
+        "新版定稿/70-the-stamp-that-changed-the-post.md": "edfd85cea33730ba67e4210e756da1f2945f1a21bce55c7e75497cb5f0095d80"
+      },
+      "source_file_count": 140,
+      "working_script_count": 70,
+      "target_request_exactly_matches_context": true
+    },
+    "request_source_sha256": {
+      "视频/脚本/66.json": "9ae838c6f274244e3e4b5228dd5be7036eabea6b97784cd36dde4365925b6dc6",
+      "视频/工具/初稿生成/gen66.py": "83e34da12ea8c5e337a67e0c02fd665cd7fb1b394eef1e901c5c0112e5611f88",
+      "新版定稿/66-the-burrs-that-became-velcro.md": "39795a163c4972f7178d6b8c9ec238f4a10a316e539aa6c37e742fb7118606a3",
+      "视频/制作记录/66_待改清单.md": "853284fab5ec226faba96f42e52842b6978f5e311603c456c12df23044e5827e",
+      "视频/制作记录/逐句确认/66.json": "e1b3f82d19657947fb98583713aae6ec4b8de4fcfdafc6352838790f3c8440de"
+    },
+    "accepted_source": {
+      "id": "66",
+      "path": "最终版4K视频/66 - The Burrs That Became Velcro - 一颗刺果钩出的发明.mp4",
+      "sha256": "08abaad8f83ef3ea45e597a23079fed2bc8e3b65cced1eb44a1f0a0421827153",
+      "git_blob_sha": "fd8f2e2a227d0f076f80b2b62955735bf20c3f36",
+      "bytes": 11071083,
+      "width": 3840,
+      "height": 2160,
+      "summary_frames": 60,
+      "aac_adts_sha256": "96ff3f072646fd8273e9e2a507c43d4219f026eac413af33a7440b13b8b1c9ec"
+    },
+    "checker_reference_preparation": {
+      "article": "66",
+      "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+      "reference_prepared": true,
+      "acceptance": false,
+      "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+      "source_sha256": "9ae838c6f274244e3e4b5228dd5be7036eabea6b97784cd36dde4365925b6dc6",
+      "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+      "checker_program_sha256": {
+        "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+        "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+        "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+        "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+        "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+        "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+      },
+      "reference_calls": [
+        {
+          "sentence": "标题",
+          "piece": null,
+          "reference_kind": "title-default-raw",
+          "method": "create",
+          "source_slice": "The Burrs That Became Velcro",
+          "exact_native_cache_key": "dbf38fc5d3c7b369e331277ab6641059e028aa55.pkl",
+          "cache_input_text_sha256": "39f46ed99074bbdfc82e94fefda4d992a5ad5918704e0ad38c5d536e73bb5097",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "标题",
+          "piece": null,
+          "reference_kind": "title-default-timed",
+          "method": "create_timed",
+          "source_slice": "The Burrs That Became Velcro",
+          "exact_native_cache_key": "cce3f907101913f0f7bcc264e9d82ea63140cbaf.pkl",
+          "cache_input_text_sha256": "39f46ed99074bbdfc82e94fefda4d992a5ad5918704e0ad38c5d536e73bb5097",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In 1941 George de Mestral, a Swiss engineer, returned from hunting in the Alps with his hound, an Irish Pointer.",
+          "exact_native_cache_key": "6f69de4bb4cc71beaa384171fe6ccc844bae46a8.pkl",
+          "cache_input_text_sha256": "3dd3e4be97b3bb70d94db43a21c7b63dfa660d2372be81fb2044d3878c939e90",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "In 1941 George de Mestral, a Swiss engineer, returned from hunting in the Alps with his hound, an Irish Pointer.",
+          "exact_native_cache_key": "7a1a866d1e006b26c067fc4dcee18af3eee17199.pkl",
+          "cache_input_text_sha256": "3dd3e4be97b3bb70d94db43a21c7b63dfa660d2372be81fb2044d3878c939e90",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In 1941 George de Mestral, a Swiss engineer,",
+          "exact_native_cache_key": "98892ea30ff82e8401bde33cd7c15d7c586600bb.pkl",
+          "cache_input_text_sha256": "be0422921aaa7eea0a18ce216c8fb0fb8cd848ff52796b16497ead9f72b41928",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "returned from hunting in the Alps with his hound, an Irish Pointer.",
+          "exact_native_cache_key": "6765aca0b388447359b317d2c179524edb30a361.pkl",
+          "cache_input_text_sha256": "969f92cbc6a9bebe65540cdd275c950d0411f2b7cb6114814ea7cb19d2a5cda6",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In 1941 George de Mestral,",
+          "exact_native_cache_key": "472575574cd0b3a1e2bd86653883631b4d53f1c9.pkl",
+          "cache_input_text_sha256": "acfa46b5f8ee24bf35aabbb83e18243431492b4a0ed3644b53109bcf69554759",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a Swiss engineer,",
+          "exact_native_cache_key": "537ed0d78607993fecdd3424a2730aa0aec1ee04.pkl",
+          "cache_input_text_sha256": "0c1d8984cabd430cd9c68eb7c0ed0e25068e23ed65468e09458ef5a659939b24",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "returned from hunting in the Alps with his hound,",
+          "exact_native_cache_key": "ba3ba68e4d899ab0b51dd349f86d568de618fd6c.pkl",
+          "cache_input_text_sha256": "b0ff93344fba553dd4bc71aec4c9cd4348878f10251414d8f1ea11a498a7c5be",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "an Irish Pointer.",
+          "exact_native_cache_key": "4e32963c4081c1bbb9416ae6f710e5973b33a9b0.pkl",
+          "cache_input_text_sha256": "471b356a6251da194ba8ae5860915f3f7f0b4391eacb67da690f424ce05f4171",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Prickly burdock seed-heads had hitched themselves to his clothes and lay tangled in the dog's fur.",
+          "exact_native_cache_key": "f1df2215dedba4e2a6180eacc0ce8be54daad0e0.pkl",
+          "cache_input_text_sha256": "6c43c3d79d82150959ad59d537612d501bbcd7f780e92ed5b2457eee3ffb0cd6",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Prickly burdock seed-heads had hitched themselves to his clothes and lay tangled in the dog's fur.",
+          "exact_native_cache_key": "cf128c04106638d842ef85a6d1db8875eeb28afc.pkl",
+          "cache_input_text_sha256": "6c43c3d79d82150959ad59d537612d501bbcd7f780e92ed5b2457eee3ffb0cd6",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Prickly burdock seed-heads had hitched themselves to his clothes",
+          "exact_native_cache_key": "702c671aac3bb6efa0b5789f5663dfeb3a8cf10f.pkl",
+          "cache_input_text_sha256": "fa113e4e5435462a6596172218109b31b9e72c3041acebe58664cb696b95933f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and lay tangled in the dog's fur.",
+          "exact_native_cache_key": "de16bb554461a3189c5d1e8a5835a4d3a9b87ee3.pkl",
+          "cache_input_text_sha256": "ed225ad71cc941088a99bb6954154ca89b7e93ff72e554a7bce647331d5b4d64",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Under a microscope he saw thousands of tiny barbs, each a hook grasping the small loops in cloth.",
+          "exact_native_cache_key": "8dedab19883dad2de515dc8dd8011ea017d1cc5b.pkl",
+          "cache_input_text_sha256": "029dc83650a59570a4bf45175180bd652c81d102d1e5ee92f5de4e6b3235d5b6",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Under a microscope he saw thousands of tiny barbs, each a hook grasping the small loops in cloth.",
+          "exact_native_cache_key": "fe1e67e0b96acb23b6d07c8f021c06473b32bbc8.pkl",
+          "cache_input_text_sha256": "029dc83650a59570a4bf45175180bd652c81d102d1e5ee92f5de4e6b3235d5b6",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Under a microscope he saw thousands of tiny barbs,",
+          "exact_native_cache_key": "44d71cfd7f79f9d4cc992166a6ec5077aff38651.pkl",
+          "cache_input_text_sha256": "24f3b4433e93b750258bff3fd601cce7e731d56ebc8501a8f85a604d5c9ba316",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "each a hook grasping the small loops in cloth.",
+          "exact_native_cache_key": "cf7b923a2e476eb585e618498f8fffa8cfee099d.pkl",
+          "cache_input_text_sha256": "70fc95ad54ca861d8fa5477d35a3f623c7c220f35b73424846e261384f2b1a05",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Under a microscope he saw thousands of tiny barbs,",
+          "exact_native_cache_key": "44d71cfd7f79f9d4cc992166a6ec5077aff38651.pkl",
+          "cache_input_text_sha256": "24f3b4433e93b750258bff3fd601cce7e731d56ebc8501a8f85a604d5c9ba316",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "each a hook grasping the small loops in cloth.",
+          "exact_native_cache_key": "cf7b923a2e476eb585e618498f8fffa8cfee099d.pkl",
+          "cache_input_text_sha256": "70fc95ad54ca861d8fa5477d35a3f623c7c220f35b73424846e261384f2b1a05",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Few took his idea seriously at first.",
+          "exact_native_cache_key": "f3bba4116fb16a12a03f887c25148d1157032171.pkl",
+          "cache_input_text_sha256": "d9a5b233e318555cb76831291bd9bdc264ee62930035f279c27b6791666b976f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Few took his idea seriously at first.",
+          "exact_native_cache_key": "5f62ffd6f79e122ecc319cffffeb508c35396d3b.pkl",
+          "cache_input_text_sha256": "d9a5b233e318555cb76831291bd9bdc264ee62930035f279c27b6791666b976f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In Lyon, then a weaving centre, a cotton version proved too frail to survive abrasion.",
+          "exact_native_cache_key": "f2551101dc851a3898707c9eaaa8a3ec3162fcf3.pkl",
+          "cache_input_text_sha256": "0f6c66b1561a8dc0fb917cb4638efe235e5a0b6e78e970a2167c64f44b9dc075",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "In Lyon, then a weaving centre, a cotton version proved too frail to survive abrasion.",
+          "exact_native_cache_key": "7021535bb16d3d728b203e37d3ed810078caa40c.pkl",
+          "cache_input_text_sha256": "0f6c66b1561a8dc0fb917cb4638efe235e5a0b6e78e970a2167c64f44b9dc075",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In Lyon, then a weaving centre,",
+          "exact_native_cache_key": "9ca313acec4b6ae6034f69304391b09d5b36649e.pkl",
+          "cache_input_text_sha256": "55f25745dc926a4bc5db42dccb1e6338c16b8dd8365577444721a3aa365af677",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "a cotton version proved too frail to survive abrasion.",
+          "exact_native_cache_key": "532ebec589667611918f98a39a7affec0c0ac24a.pkl",
+          "cache_input_text_sha256": "448e4a69344865d0b24d49e18c629b4b63b7e09a276e818335876dd5aa4e4c0c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In Lyon,",
+          "exact_native_cache_key": "abfc0c22a8278353fbcc263622a3290cfc1b7e29.pkl",
+          "cache_input_text_sha256": "c08fa05a0910708ad0cbd3d6b2cab36d02198aa0bb64b48708f1ebdd2d264051",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "then a weaving centre,",
+          "exact_native_cache_key": "5dabfd2423fe4a0328b6a2a1950170a1fdb6fcbb.pkl",
+          "cache_input_text_sha256": "18fbbcd1d4cba732b5e5346e5d69d6639882621e7c2800eb85cf3de8b523ba9d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a cotton version proved too frail to survive abrasion.",
+          "exact_native_cache_key": "532ebec589667611918f98a39a7affec0c0ac24a.pkl",
+          "cache_input_text_sha256": "448e4a69344865d0b24d49e18c629b4b63b7e09a276e818335876dd5aa4e4c0c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Working with a textiles firm, he turned to nylon, whose hooks were stiff enough to hold yet easy to pull apart.",
+          "exact_native_cache_key": "f418b527d37cb7484e031237e30ddffb6bb445aa.pkl",
+          "cache_input_text_sha256": "217c094a3818807170dca8a7c16b713cd402f841d6a3e7e4d09356f8dcbf4abb",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Working with a textiles firm, he turned to nylon, whose hooks were stiff enough to hold yet easy to pull apart.",
+          "exact_native_cache_key": "433ad74a0bfea11107317f770861be6293389a2c.pkl",
+          "cache_input_text_sha256": "217c094a3818807170dca8a7c16b713cd402f841d6a3e7e4d09356f8dcbf4abb",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Working with a textiles firm,",
+          "exact_native_cache_key": "184fd3bfc35673c6fbdc44b5469d620a56a995d2.pkl",
+          "cache_input_text_sha256": "7ba03d81161f63b2f896ffa50107697750a0ce9b0ee942bb4d429e84b005afbe",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "he turned to nylon,",
+          "exact_native_cache_key": "279e43007af52835fa75098d716f76cdf980fc2c.pkl",
+          "cache_input_text_sha256": "cacfb5b624d69b141e5f250553b1ebe9cafed6d67eb2eea02843a29841639448",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "whose hooks were stiff enough to hold yet easy to pull apart.",
+          "exact_native_cache_key": "929e41e326d1dffebb1593ca9fde8754fe318030.pkl",
+          "cache_input_text_sha256": "24906e43132d27ffd4923336dc5ffd996026fa0a01d8528c99c659a6fd948262",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Working with a textiles firm,",
+          "exact_native_cache_key": "184fd3bfc35673c6fbdc44b5469d620a56a995d2.pkl",
+          "cache_input_text_sha256": "7ba03d81161f63b2f896ffa50107697750a0ce9b0ee942bb4d429e84b005afbe",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "he turned to nylon,",
+          "exact_native_cache_key": "279e43007af52835fa75098d716f76cdf980fc2c.pkl",
+          "cache_input_text_sha256": "cacfb5b624d69b141e5f250553b1ebe9cafed6d67eb2eea02843a29841639448",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "whose hooks were stiff enough to hold yet easy to pull apart.",
+          "exact_native_cache_key": "929e41e326d1dffebb1593ca9fde8754fe318030.pkl",
+          "cache_input_text_sha256": "24906e43132d27ffd4923336dc5ffd996026fa0a01d8528c99c659a6fd948262",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The trial-and-error at the looms and mills lasted about ten years.",
+          "exact_native_cache_key": "a42f216e575d7f8feaed3df8cfa4b3b4571557a5.pkl",
+          "cache_input_text_sha256": "ef41add6d92285ccfc76da7e9382e6d6d233dc6ebb9f57fa2ea01b1da14c253d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "The trial-and-error at the looms and mills lasted about ten years.",
+          "exact_native_cache_key": "7d95eaf5b73850fcf4d1118b2225c324b999298b.pkl",
+          "cache_input_text_sha256": "ef41add6d92285ccfc76da7e9382e6d6d233dc6ebb9f57fa2ea01b1da14c253d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The name Velcro merged two French words, velours, meaning velvet, and crochet, meaning hook.",
+          "exact_native_cache_key": "83b430384d202b96540149ed4c9d18d73d0056b3.pkl",
+          "cache_input_text_sha256": "b360944306937a7cd404028e809529309f7e6ff37010f80f5888bd3958a1e923",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "The name Velcro merged two French words, velours, meaning velvet, and crochet, meaning hook.",
+          "exact_native_cache_key": "b2201d19ab75c8db3971a5f69d56a7cb7ffa1c6b.pkl",
+          "cache_input_text_sha256": "b360944306937a7cd404028e809529309f7e6ff37010f80f5888bd3958a1e923",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "The name Velcro merged two French words,",
+          "exact_native_cache_key": "83640cfea3f9e0835d29bc2aab8a3c097dfdf78b.pkl",
+          "cache_input_text_sha256": "38c56de03941091ce3c4f63abb449053e8a849f0984a09f3065e53b1060d0c09",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "velours, meaning velvet, and crochet, meaning hook.",
+          "exact_native_cache_key": "6408f54bf30a336fec6cd8d72b28ce011d8e4d97.pkl",
+          "cache_input_text_sha256": "72f94d5425cdcbe15d9d8a97258edc06492d694f35aa1eaf6e9349ec448ece24",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "The name Velcro merged two French words,",
+          "exact_native_cache_key": "83640cfea3f9e0835d29bc2aab8a3c097dfdf78b.pkl",
+          "cache_input_text_sha256": "38c56de03941091ce3c4f63abb449053e8a849f0984a09f3065e53b1060d0c09",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "velours,",
+          "exact_native_cache_key": "0f190b97c5288672a3dad17187b1cdfbb56e094a.pkl",
+          "cache_input_text_sha256": "a82625513b188cf1a6779f5bd04b920aa00914ec870de981b50b2dfc90429afb",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "meaning velvet,",
+          "exact_native_cache_key": "f2cd5bd1a1c518f980f41adf864e47303747351a.pkl",
+          "cache_input_text_sha256": "a610ebd9745f7fc2a6dca3ccfb1357279e443c2c77e5f85985e7042bf7e17eb9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and crochet,",
+          "exact_native_cache_key": "1f5fd20af8a62db9c4197e2735abdb6123f8f5a8.pkl",
+          "cache_input_text_sha256": "e45c29c13acbcca6ec5310b84168dcf229493d07bd6a0f64acbf324665ebd789",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 5,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "meaning hook.",
+          "exact_native_cache_key": "119d7ffee30c3a9ce9443734fb15479e55160af1.pkl",
+          "cache_input_text_sha256": "a9ae246ea43aab32a4947838078723b0d4e5c27f86edf42029db9d1a7baddf9a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "A US patent duly followed in 1955.",
+          "exact_native_cache_key": "aee259ad39f5057de8a3eb3e87607c35e5ff97b9.pkl",
+          "cache_input_text_sha256": "82cf462e21a57bff7102becadc6e5591f70e985f9cd2077462e9e8e6bcea5bef",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "A US patent duly followed in 1955.",
+          "exact_native_cache_key": "9dd716bc843e6ee055b0992cd0036ce78222a0c0.pkl",
+          "cache_input_text_sha256": "82cf462e21a57bff7102becadc6e5591f70e985f9cd2077462e9e8e6bcea5bef",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In 1959 a New York fashion show sent apparel stitched with the fasteners down the runway.",
+          "exact_native_cache_key": "ddc81dbd0ba339a692d162bec2fb93476ac0ed54.pkl",
+          "cache_input_text_sha256": "7be6ef377d759cec284911ae28aca1e2b8d26e2e5c2055877cad988ed2a43f8b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "In 1959 a New York fashion show sent apparel stitched with the fasteners down the runway.",
+          "exact_native_cache_key": "60e4be8f0fce489d9f91a0127ed8b4a987aa4ff6.pkl",
+          "cache_input_text_sha256": "7be6ef377d759cec284911ae28aca1e2b8d26e2e5c2055877cad988ed2a43f8b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In 1959 a New York fashion show",
+          "exact_native_cache_key": "98e425e487a24a4bb6179d9a6a68c81d7455d122.pkl",
+          "cache_input_text_sha256": "e93f2bf229c585a59b334e4ae1bdc689fd16b0c688300f05514135edf133cc85",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "sent apparel stitched with the fasteners down the runway.",
+          "exact_native_cache_key": "cd756d4acfaf39ed1a43564a68ccd64afeca68ae.pkl",
+          "cache_input_text_sha256": "4d8ac99e70d535129a4c6f1ef645880c8c6173c06e69adb378c4e560feecb2ef",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The public was less charmed than expected, mostly because of the aesthetic.",
+          "exact_native_cache_key": "024728e8e310e05d67a4e39a10304826bc236380.pkl",
+          "cache_input_text_sha256": "f5322c6866790ca72401684568e47b963300ce711a4924af966ad4e82b3d8baa",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "The public was less charmed than expected, mostly because of the aesthetic.",
+          "exact_native_cache_key": "33d4602e8d771aee5e91af57f16f0d67d667234e.pkl",
+          "cache_input_text_sha256": "f5322c6866790ca72401684568e47b963300ce711a4924af966ad4e82b3d8baa",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "The public was less charmed than expected,",
+          "exact_native_cache_key": "a56b8b474d8c36427d5dce69d2ad7e14d9b5bf4f.pkl",
+          "cache_input_text_sha256": "70c4f88901a14c21b7a7536fdba0c9f7b89403216c5f5bb51ef5699f1abcea1a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "mostly because of the aesthetic.",
+          "exact_native_cache_key": "357e4a042f16dafb78d7e6ad0aab570756a2acee.pkl",
+          "cache_input_text_sha256": "38d621a875253209136f8a9bd63bcff5ad09fb5cf7a89681b3a54c7ac82f34c9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "The public was less charmed than expected,",
+          "exact_native_cache_key": "a56b8b474d8c36427d5dce69d2ad7e14d9b5bf4f.pkl",
+          "cache_input_text_sha256": "70c4f88901a14c21b7a7536fdba0c9f7b89403216c5f5bb51ef5699f1abcea1a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "mostly because of the aesthetic.",
+          "exact_native_cache_key": "357e4a042f16dafb78d7e6ad0aab570756a2acee.pkl",
+          "cache_input_text_sha256": "38d621a875253209136f8a9bd63bcff5ad09fb5cf7a89681b3a54c7ac82f34c9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The underdog proved its utility in outer space.",
+          "exact_native_cache_key": "32e7ad4a8b3ef4b823e222dec00d289a10f5fc03.pkl",
+          "cache_input_text_sha256": "9c73e86098e4ee45085c43a4f397979266271e2f1fb87b00dfa7cf49c148062c",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "The underdog proved its utility in outer space.",
+          "exact_native_cache_key": "9179a1aa834184655438569a93d3c13ff2e62840.pkl",
+          "cache_input_text_sha256": "9c73e86098e4ee45085c43a4f397979266271e2f1fb87b00dfa7cf49c148062c",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "NASA used it in the Apollo programme to keep gear anchored in weightlessness, so that nothing would hover in mid-air.",
+          "exact_native_cache_key": "3dc8aeffc9a231fdb3a38bb2ec73f32c04de9ce2.pkl",
+          "cache_input_text_sha256": "cf7a0d5b5d303b900aee4e2a46b091657acd2a563c9737a5c5948c59923e5e41",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "NASA used it in the Apollo programme to keep gear anchored in weightlessness, so that nothing would hover in mid-air.",
+          "exact_native_cache_key": "3de708a638e443bb8be11b29c4cf24318d56de62.pkl",
+          "cache_input_text_sha256": "cf7a0d5b5d303b900aee4e2a46b091657acd2a563c9737a5c5948c59923e5e41",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "NASA used it in the Apollo programme",
+          "exact_native_cache_key": "00f56db5f996ea40c111e4555c789bb1ff415915.pkl",
+          "cache_input_text_sha256": "beddcade955cf5885a706855b84462e642f17060ec74ec3dbd668ee0e8ccf60f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "to keep gear anchored in weightlessness,",
+          "exact_native_cache_key": "238547384bdb0dae935861e4ea0a618c68f888ee.pkl",
+          "cache_input_text_sha256": "01c7a0d308c1e4bd7ce72f61a7e3f9f5f489dd6282147fa12569fbde21dd03d6",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "so that nothing would hover in mid-air.",
+          "exact_native_cache_key": "5e00e92712b69f9c88b1dc1b9130bba4b1518b29.pkl",
+          "cache_input_text_sha256": "77f8518887e7c8473b61d78e36c4e40bee3f07898e6beaeaee55aa930dd895b3",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "NASA used it in the Apollo programme to keep gear anchored in weightlessness,",
+          "exact_native_cache_key": "f5d4cfeba750b33b232da109fb1f6a2558fc1e1e.pkl",
+          "cache_input_text_sha256": "1f91ed9ddfb22066922e71982068129d38b7d0bb10c9633795aa7f6b7d5f94ef",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "so that nothing would hover in mid-air.",
+          "exact_native_cache_key": "5e00e92712b69f9c88b1dc1b9130bba4b1518b29.pkl",
+          "cache_input_text_sha256": "77f8518887e7c8473b61d78e36c4e40bee3f07898e6beaeaee55aa930dd895b3",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Apollo 11 was equipped with a sizeable amount, about 3,300 square inches.",
+          "exact_native_cache_key": "295d5893f1f4aeedc324adb526fc0c94fadc8752.pkl",
+          "cache_input_text_sha256": "c52797ac98a95683d468f35d9c76a4bbd6135c6a31bfae298414e725436f48b8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Apollo 11 was equipped with a sizeable amount, about 3,300 square inches.",
+          "exact_native_cache_key": "f8e69835f6dd561df5851bb15abab3f559902932.pkl",
+          "cache_input_text_sha256": "c52797ac98a95683d468f35d9c76a4bbd6135c6a31bfae298414e725436f48b8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Apollo 11 was equipped with a sizeable amount,",
+          "exact_native_cache_key": "ba8b57475fd8b1663b974737c6435483f3a376e1.pkl",
+          "cache_input_text_sha256": "66a07e57e555e6f039562bc53944eed2e152a32a69676430a2a8f91742e2159c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "about 3,300 square inches.",
+          "exact_native_cache_key": "bf1741649b3fb4aba8376a64ea83643062654242.pkl",
+          "cache_input_text_sha256": "ae43fc27855bbe22f8f2e3a3cf539fb00770208d4d23b78ba79d49556b13e4fb",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "NASA did not invent the nylon clasp.",
+          "exact_native_cache_key": "f2ca3c83538a4bcb7c852577091f8f75ee3da685.pkl",
+          "cache_input_text_sha256": "0e9f8141e9941a6328030f4d06de91c83cefed3bd1de96c3b563729e5de0ff0a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "NASA did not invent the nylon clasp.",
+          "exact_native_cache_key": "c950fc34bfd8b8e97ce7b34367efa6913a7eb861.pkl",
+          "cache_input_text_sha256": "0e9f8141e9941a6328030f4d06de91c83cefed3bd1de96c3b563729e5de0ff0a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "When the patent ran out in 1978, cut-price knock-offs from other countries overran the market, and a niche product went mainstream.",
+          "exact_native_cache_key": "5aebf54b4f8c8f2ae112b40dfaf67b7a4428efcd.pkl",
+          "cache_input_text_sha256": "ae8cf7c8382771e90da92f73a733f0db2d10c3a4cf1e5291cd83454d3e9d245a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "When the patent ran out in 1978, cut-price knock-offs from other countries overran the market, and a niche product went mainstream.",
+          "exact_native_cache_key": "29199b9bbde7d84441e244e052fd7c62b2b3ede0.pkl",
+          "cache_input_text_sha256": "ae8cf7c8382771e90da92f73a733f0db2d10c3a4cf1e5291cd83454d3e9d245a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "When the patent ran out in 1978,",
+          "exact_native_cache_key": "e608bad7f8d980fdb9ed74054359ba65f2007db8.pkl",
+          "cache_input_text_sha256": "7b8d843dadbe5acc754d507c0b2758272cd85a723ca7a1d7154be1f5538aec4e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "cut-price knock-offs from other countries overran the market,",
+          "exact_native_cache_key": "4c5de765c13d26474cc3719c10fe49521181a379.pkl",
+          "cache_input_text_sha256": "71949ab5ca7ee7920a5aaa4f031e21575c2bd77f3d818e5b3ed63e69df129947",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and a niche product went mainstream.",
+          "exact_native_cache_key": "bc8dd91db0a708ab62fb1aff84d9a7d30e066889.pkl",
+          "cache_input_text_sha256": "770b11c84a58cc71982d5593a54be8d5de8480a17a59dee7322d71403b6612a0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "When the patent ran out in 1978,",
+          "exact_native_cache_key": "e608bad7f8d980fdb9ed74054359ba65f2007db8.pkl",
+          "cache_input_text_sha256": "7b8d843dadbe5acc754d507c0b2758272cd85a723ca7a1d7154be1f5538aec4e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "cut-price knock-offs from other countries overran the market,",
+          "exact_native_cache_key": "4c5de765c13d26474cc3719c10fe49521181a379.pkl",
+          "cache_input_text_sha256": "71949ab5ca7ee7920a5aaa4f031e21575c2bd77f3d818e5b3ed63e69df129947",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and a niche product went mainstream.",
+          "exact_native_cache_key": "bc8dd91db0a708ab62fb1aff84d9a7d30e066889.pkl",
+          "cache_input_text_sha256": "770b11c84a58cc71982d5593a54be8d5de8480a17a59dee7322d71403b6612a0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In 2017, to stop its brand-name melting into a generic noun, the company asked people to call such mimics hook and loop fasteners.",
+          "exact_native_cache_key": "00ddc7d9a69c66cc7585b8c00e2cc2ee5cc0d338.pkl",
+          "cache_input_text_sha256": "7d071666ca83877b7eedd754d284fe1230d8a2400af75700e1055cdb20692f80",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "In 2017, to stop its brand-name melting into a generic noun, the company asked people to call such mimics hook and loop fasteners.",
+          "exact_native_cache_key": "c49cbd67be2bca07fd71f2c9079af7d02c324832.pkl",
+          "cache_input_text_sha256": "7d071666ca83877b7eedd754d284fe1230d8a2400af75700e1055cdb20692f80",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In 2017, to stop its brand-name melting into a generic noun,",
+          "exact_native_cache_key": "3788fbc909b1b4c710bc91ac37aa2ccebabe1e8d.pkl",
+          "cache_input_text_sha256": "dfb8f3f7fc5e77dd2579666b177ea4d512b911c293250e890d65ec3fe83f4c24",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "the company asked people to call such mimics hook and loop fasteners.",
+          "exact_native_cache_key": "1308131418b8343b1722703504ee67c19381ce85.pkl",
+          "cache_input_text_sha256": "1ff7520150f7d3e88cde579c6b039f20f1ac9e1a8d8bc5df032e45c4ac3b5f61",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In 2017,",
+          "exact_native_cache_key": "75ff36b38f2b0f22ba0585ffa4dd007de0d73db6.pkl",
+          "cache_input_text_sha256": "eb129dfb4df2f25eb049403f74ca94970c473c74c971818621a1600c6c5c9236",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "to stop its brand-name melting into a generic noun,",
+          "exact_native_cache_key": "735843341815f50d49456ce0edb92905fec133b9.pkl",
+          "cache_input_text_sha256": "78b24b3caaae7a0b3ecddc03593b147b0e6ba35d5c33b91dc88a9f87cf69d3ac",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "the company asked people to call such mimics hook and loop fasteners.",
+          "exact_native_cache_key": "1308131418b8343b1722703504ee67c19381ce85.pkl",
+          "cache_input_text_sha256": "1ff7520150f7d3e88cde579c6b039f20f1ac9e1a8d8bc5df032e45c4ac3b5f61",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S18",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In effect, the firm was asking the public to stop using its own name for rivals' goods.",
+          "exact_native_cache_key": "a1fe8ab7dc84f802d8c860d0a62304937a8f7f33.pkl",
+          "cache_input_text_sha256": "23ea8c5e9afce8e4675f0f7379c45cde76290395887dd3b83f5a108c3195bc23",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S18",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "In effect, the firm was asking the public to stop using its own name for rivals' goods.",
+          "exact_native_cache_key": "5161794290268de445c47653d9a0b2a05d0466b0.pkl",
+          "cache_input_text_sha256": "23ea8c5e9afce8e4675f0f7379c45cde76290395887dd3b83f5a108c3195bc23",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S18",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In effect,",
+          "exact_native_cache_key": "6731f89fd42e2ff81c155448dd238042983e673e.pkl",
+          "cache_input_text_sha256": "f6df1d4b6b76b8536bd72b43838d8b607bbe038ffc87724e0be10a3f4f5cb31c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S18",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "the firm was asking the public to stop using its own name for rivals' goods.",
+          "exact_native_cache_key": "e37e038f354eeb02f1dac5c7c31addbcbca6116d.pkl",
+          "cache_input_text_sha256": "cf0d36e5b269bee0b3658abd18095261d262f91be08249493110292c42369c6e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "unique_reference_key_count": 80,
+      "raw_mother_cache_scalar_manifest": [
+        {
+          "exact_native_cache_key": "dbf38fc5d3c7b369e331277ab6641059e028aa55.pkl",
+          "pkl_sha256": "cbb478ace785cce160fc8f7cdb7f927f2d7a7fa3f3d726ef3d142ef43a5a224e",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "标题",
+              "piece": null,
+              "reference_kind": "title-default-raw",
+              "method": "create",
+              "source_slice": "The Burrs That Became Velcro",
+              "exact_native_cache_key": "dbf38fc5d3c7b369e331277ab6641059e028aa55.pkl",
+              "cache_input_text_sha256": "39f46ed99074bbdfc82e94fefda4d992a5ad5918704e0ad38c5d536e73bb5097",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "cbb478ace785cce1",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            41472
+          ],
+          "unprocessed_array_sha256": "b772df912fa80baccaa3d5a7ff2724ec621636c8314f2010fb16bdfc983129f6"
+        },
+        {
+          "exact_native_cache_key": "6f69de4bb4cc71beaa384171fe6ccc844bae46a8.pkl",
+          "pkl_sha256": "96697086b30ceeecec969938b12efc47afc556849b8461bc564da8c1919b4101",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "In 1941 George de Mestral, a Swiss engineer, returned from hunting in the Alps with his hound, an Irish Pointer.",
+              "exact_native_cache_key": "6f69de4bb4cc71beaa384171fe6ccc844bae46a8.pkl",
+              "cache_input_text_sha256": "3dd3e4be97b3bb70d94db43a21c7b63dfa660d2372be81fb2044d3878c939e90",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "96697086b30ceeec",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            215552
+          ],
+          "unprocessed_array_sha256": "d01a0255e8ef309feb90edb79978b99002bf022cf4623ea1977969e2dc3ab97d"
+        },
+        {
+          "exact_native_cache_key": "98892ea30ff82e8401bde33cd7c15d7c586600bb.pkl",
+          "pkl_sha256": "96c687feeaef4968085b38d13d6dd0dcee5a48d68738cce20a3c109ee20b6728",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "In 1941 George de Mestral, a Swiss engineer,",
+              "exact_native_cache_key": "98892ea30ff82e8401bde33cd7c15d7c586600bb.pkl",
+              "cache_input_text_sha256": "be0422921aaa7eea0a18ce216c8fb0fb8cd848ff52796b16497ead9f72b41928",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "96c687feeaef4968",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            97280
+          ],
+          "unprocessed_array_sha256": "7bc594ffefac9f72c2ee731b199a0e32cf778f44f786c5efb939a73cd8e24865"
+        },
+        {
+          "exact_native_cache_key": "6765aca0b388447359b317d2c179524edb30a361.pkl",
+          "pkl_sha256": "82eb5b874fc7476354d822ff0d7f230bef68424382deb50d24de6587fb600bef",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "returned from hunting in the Alps with his hound, an Irish Pointer.",
+              "exact_native_cache_key": "6765aca0b388447359b317d2c179524edb30a361.pkl",
+              "cache_input_text_sha256": "969f92cbc6a9bebe65540cdd275c950d0411f2b7cb6114814ea7cb19d2a5cda6",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "82eb5b874fc74763",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            98816
+          ],
+          "unprocessed_array_sha256": "a71588615ae06eccb9ba308d32533adc3bdb3ec6ea56285b21cdf9de81560963"
+        },
+        {
+          "exact_native_cache_key": "472575574cd0b3a1e2bd86653883631b4d53f1c9.pkl",
+          "pkl_sha256": "4293b66d9e01a59288c7373e23e56ad31b8f417087d6eb5a676ddd5d33476dc6",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "In 1941 George de Mestral,",
+              "exact_native_cache_key": "472575574cd0b3a1e2bd86653883631b4d53f1c9.pkl",
+              "cache_input_text_sha256": "acfa46b5f8ee24bf35aabbb83e18243431492b4a0ed3644b53109bcf69554759",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "4293b66d9e01a592",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            67072
+          ],
+          "unprocessed_array_sha256": "de70d06ef52bc64170d0194af8b41d9dfec7522e8c0419059161f11b95363763"
+        },
+        {
+          "exact_native_cache_key": "537ed0d78607993fecdd3424a2730aa0aec1ee04.pkl",
+          "pkl_sha256": "e1c3b58267220621d85eff7653f08dcacf31677cb5400140133c325cad68b7a2",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "a Swiss engineer,",
+              "exact_native_cache_key": "537ed0d78607993fecdd3424a2730aa0aec1ee04.pkl",
+              "cache_input_text_sha256": "0c1d8984cabd430cd9c68eb7c0ed0e25068e23ed65468e09458ef5a659939b24",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "e1c3b58267220621",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            29696
+          ],
+          "unprocessed_array_sha256": "4fd8c9f97eed1363ca16ba04d10932a9faf3c336ea15b5489bd472f8e158e7d5"
+        },
+        {
+          "exact_native_cache_key": "ba3ba68e4d899ab0b51dd349f86d568de618fd6c.pkl",
+          "pkl_sha256": "f80794f93b53ca1cdd26ae9a247315617dbc7b004d91ac6c9a490f68fb9000f3",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "returned from hunting in the Alps with his hound,",
+              "exact_native_cache_key": "ba3ba68e4d899ab0b51dd349f86d568de618fd6c.pkl",
+              "cache_input_text_sha256": "b0ff93344fba553dd4bc71aec4c9cd4348878f10251414d8f1ea11a498a7c5be",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "f80794f93b53ca1c",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            59904
+          ],
+          "unprocessed_array_sha256": "e9232ba5bb87e74a70462b0a0309fc8489892459cf6a7c39c4a4103ee4207a47"
+        },
+        {
+          "exact_native_cache_key": "4e32963c4081c1bbb9416ae6f710e5973b33a9b0.pkl",
+          "pkl_sha256": "aae7c581e2c6391d3ee3cf8a1ddd8b1055d2d13fb1f17c788f4f56496459647b",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": 4,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "an Irish Pointer.",
+              "exact_native_cache_key": "4e32963c4081c1bbb9416ae6f710e5973b33a9b0.pkl",
+              "cache_input_text_sha256": "471b356a6251da194ba8ae5860915f3f7f0b4391eacb67da690f424ce05f4171",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "aae7c581e2c6391d",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            30720
+          ],
+          "unprocessed_array_sha256": "7268c9cbc7fc30b4e4ea22ed5ad89b3e2818eb063dd3bbb468795c3fa53bd5d9"
+        },
+        {
+          "exact_native_cache_key": "f1df2215dedba4e2a6180eacc0ce8be54daad0e0.pkl",
+          "pkl_sha256": "0e5e170312fc9edc32a4e0516c9f3f53790a20dbeee5766fc8ef961559167daf",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S2",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Prickly burdock seed-heads had hitched themselves to his clothes and lay tangled in the dog's fur.",
+              "exact_native_cache_key": "f1df2215dedba4e2a6180eacc0ce8be54daad0e0.pkl",
+              "cache_input_text_sha256": "6c43c3d79d82150959ad59d537612d501bbcd7f780e92ed5b2457eee3ffb0cd6",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "0e5e170312fc9edc",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            141312
+          ],
+          "unprocessed_array_sha256": "1bb1ada227fbbd1f9d6b73cb6f3c8c66d02b91bae2db6ef3c9d0e7c1ad98d66b"
+        },
+        {
+          "exact_native_cache_key": "702c671aac3bb6efa0b5789f5663dfeb3a8cf10f.pkl",
+          "pkl_sha256": "5fb88f3dfd3e5d779e658798efbeeb1488c1f5a1127d6a9993357dd4f69add8d",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S2",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Prickly burdock seed-heads had hitched themselves to his clothes",
+              "exact_native_cache_key": "702c671aac3bb6efa0b5789f5663dfeb3a8cf10f.pkl",
+              "cache_input_text_sha256": "fa113e4e5435462a6596172218109b31b9e72c3041acebe58664cb696b95933f",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "5fb88f3dfd3e5d77",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            83456
+          ],
+          "unprocessed_array_sha256": "b42cf78ec8bbadc5c3c15727147b945a112e92a166452869cbf6bcbef705e5ba"
+        },
+        {
+          "exact_native_cache_key": "de16bb554461a3189c5d1e8a5835a4d3a9b87ee3.pkl",
+          "pkl_sha256": "66b5fcb5840ff18caecea34a39afc6c5f5fdbeb659098c582bd34006e5320ed4",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S2",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "and lay tangled in the dog's fur.",
+              "exact_native_cache_key": "de16bb554461a3189c5d1e8a5835a4d3a9b87ee3.pkl",
+              "cache_input_text_sha256": "ed225ad71cc941088a99bb6954154ca89b7e93ff72e554a7bce647331d5b4d64",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "66b5fcb5840ff18c",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            46592
+          ],
+          "unprocessed_array_sha256": "f9821526cbfcb63b8a0c0f18282b1258c801b66074d2de8744dc263fcd3d2d07"
+        },
+        {
+          "exact_native_cache_key": "8dedab19883dad2de515dc8dd8011ea017d1cc5b.pkl",
+          "pkl_sha256": "c41f7eff8a9168dcc5a41e1197ffafe28dbfd8bf4bf7e5ec6e94a313305cdb10",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S3",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Under a microscope he saw thousands of tiny barbs, each a hook grasping the small loops in cloth.",
+              "exact_native_cache_key": "8dedab19883dad2de515dc8dd8011ea017d1cc5b.pkl",
+              "cache_input_text_sha256": "029dc83650a59570a4bf45175180bd652c81d102d1e5ee92f5de4e6b3235d5b6",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "c41f7eff8a9168dc",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            160256
+          ],
+          "unprocessed_array_sha256": "724187711ac6943d9e124dfa73bf8fa785c6feb50347ca9dfec31e4b3cc7e1f3"
+        },
+        {
+          "exact_native_cache_key": "44d71cfd7f79f9d4cc992166a6ec5077aff38651.pkl",
+          "pkl_sha256": "d2f19248e760ec0ef17ebd436118117702001df4a9d39bbc0d81352d9a0908ae",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S3",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Under a microscope he saw thousands of tiny barbs,",
+              "exact_native_cache_key": "44d71cfd7f79f9d4cc992166a6ec5077aff38651.pkl",
+              "cache_input_text_sha256": "24f3b4433e93b750258bff3fd601cce7e731d56ebc8501a8f85a604d5c9ba316",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S3",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Under a microscope he saw thousands of tiny barbs,",
+              "exact_native_cache_key": "44d71cfd7f79f9d4cc992166a6ec5077aff38651.pkl",
+              "cache_input_text_sha256": "24f3b4433e93b750258bff3fd601cce7e731d56ebc8501a8f85a604d5c9ba316",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "d2f19248e760ec0e",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            81920
+          ],
+          "unprocessed_array_sha256": "f712807b4383f028a0b43cc0217b2b6c248c312c7a3b17f480014d84aef34fac"
+        },
+        {
+          "exact_native_cache_key": "cf7b923a2e476eb585e618498f8fffa8cfee099d.pkl",
+          "pkl_sha256": "c8adedb6a90f6190131a3842f1d0f97562d3a32ced1444952e2bd249acd010da",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S3",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "each a hook grasping the small loops in cloth.",
+              "exact_native_cache_key": "cf7b923a2e476eb585e618498f8fffa8cfee099d.pkl",
+              "cache_input_text_sha256": "70fc95ad54ca861d8fa5477d35a3f623c7c220f35b73424846e261384f2b1a05",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S3",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "each a hook grasping the small loops in cloth.",
+              "exact_native_cache_key": "cf7b923a2e476eb585e618498f8fffa8cfee099d.pkl",
+              "cache_input_text_sha256": "70fc95ad54ca861d8fa5477d35a3f623c7c220f35b73424846e261384f2b1a05",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "c8adedb6a90f6190",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            61952
+          ],
+          "unprocessed_array_sha256": "8dd97dceb05de3c6ae7c67e151fa820f368686b67c0de359e84051d2936ddc1e"
+        },
+        {
+          "exact_native_cache_key": "f3bba4116fb16a12a03f887c25148d1157032171.pkl",
+          "pkl_sha256": "7e2ae5415d94772ee44a408a30e3e031793cce80468f6717d05e654b6037587a",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Few took his idea seriously at first.",
+              "exact_native_cache_key": "f3bba4116fb16a12a03f887c25148d1157032171.pkl",
+              "cache_input_text_sha256": "d9a5b233e318555cb76831291bd9bdc264ee62930035f279c27b6791666b976f",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "7e2ae5415d94772e",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            56320
+          ],
+          "unprocessed_array_sha256": "cfcfc84ca3edffa97cacb2c5457940731111d506414f10fa0d820e86ad8a7166"
+        },
+        {
+          "exact_native_cache_key": "f2551101dc851a3898707c9eaaa8a3ec3162fcf3.pkl",
+          "pkl_sha256": "e9ddd2a1a084571aec55544ab9237064ab12d2458df522c491656a6f7c31c8f8",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "In Lyon, then a weaving centre, a cotton version proved too frail to survive abrasion.",
+              "exact_native_cache_key": "f2551101dc851a3898707c9eaaa8a3ec3162fcf3.pkl",
+              "cache_input_text_sha256": "0f6c66b1561a8dc0fb917cb4638efe235e5a0b6e78e970a2167c64f44b9dc075",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "e9ddd2a1a084571a",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            141824
+          ],
+          "unprocessed_array_sha256": "76bcf9c46d513e94ffc6c865e8a390c8853d133c392d270f46480cdb985d1914"
+        },
+        {
+          "exact_native_cache_key": "9ca313acec4b6ae6034f69304391b09d5b36649e.pkl",
+          "pkl_sha256": "2ad5e458663d09f07d6493714b09d292ce75463d8026352b2508bfb6c938a81d",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "In Lyon, then a weaving centre,",
+              "exact_native_cache_key": "9ca313acec4b6ae6034f69304391b09d5b36649e.pkl",
+              "cache_input_text_sha256": "55f25745dc926a4bc5db42dccb1e6338c16b8dd8365577444721a3aa365af677",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "2ad5e458663d09f0",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            48128
+          ],
+          "unprocessed_array_sha256": "51add3fa0348336e7c5ff4a4f0bc39e4d180d8eff01aeefbb2cf7ea751a222d6"
+        },
+        {
+          "exact_native_cache_key": "532ebec589667611918f98a39a7affec0c0ac24a.pkl",
+          "pkl_sha256": "a63b8fe0a3b967edf81753aa868685047f7dcccfb894305423df1c941e8a2bb0",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "a cotton version proved too frail to survive abrasion.",
+              "exact_native_cache_key": "532ebec589667611918f98a39a7affec0c0ac24a.pkl",
+              "cache_input_text_sha256": "448e4a69344865d0b24d49e18c629b4b63b7e09a276e818335876dd5aa4e4c0c",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S5",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "a cotton version proved too frail to survive abrasion.",
+              "exact_native_cache_key": "532ebec589667611918f98a39a7affec0c0ac24a.pkl",
+              "cache_input_text_sha256": "448e4a69344865d0b24d49e18c629b4b63b7e09a276e818335876dd5aa4e4c0c",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "a63b8fe0a3b967ed",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            82432
+          ],
+          "unprocessed_array_sha256": "3ad6c42d519f4bae06dc796c94bf9f11e268b0ef23a3704f9e55d0b295ff80af"
+        },
+        {
+          "exact_native_cache_key": "abfc0c22a8278353fbcc263622a3290cfc1b7e29.pkl",
+          "pkl_sha256": "afe93e0aabb77f5cc8f809099c172bc9c6081d0fabf9244b4f73b7a01b009237",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "In Lyon,",
+              "exact_native_cache_key": "abfc0c22a8278353fbcc263622a3290cfc1b7e29.pkl",
+              "cache_input_text_sha256": "c08fa05a0910708ad0cbd3d6b2cab36d02198aa0bb64b48708f1ebdd2d264051",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "afe93e0aabb77f5c",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            22016
+          ],
+          "unprocessed_array_sha256": "949af37e1f2baede59dce0f23f49ccbb0819d577076d2d21fa7a9c972ce84a95"
+        },
+        {
+          "exact_native_cache_key": "5dabfd2423fe4a0328b6a2a1950170a1fdb6fcbb.pkl",
+          "pkl_sha256": "8c05b6b0a4bc5f8e2cf7078456222365c5b7eecff3b43c90b58d9ac6fb6c8d05",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "then a weaving centre,",
+              "exact_native_cache_key": "5dabfd2423fe4a0328b6a2a1950170a1fdb6fcbb.pkl",
+              "cache_input_text_sha256": "18fbbcd1d4cba732b5e5346e5d69d6639882621e7c2800eb85cf3de8b523ba9d",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "8c05b6b0a4bc5f8e",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            31744
+          ],
+          "unprocessed_array_sha256": "9e5a126e5a00e3eaa65f9c60d90d23088348b81cfdc507bc8de96681f72c1591"
+        },
+        {
+          "exact_native_cache_key": "f418b527d37cb7484e031237e30ddffb6bb445aa.pkl",
+          "pkl_sha256": "42b8bb73884bc19718c00424c0e45fc9bd9e57bd58b76ca32a4584cb025f6eb2",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Working with a textiles firm, he turned to nylon, whose hooks were stiff enough to hold yet easy to pull apart.",
+              "exact_native_cache_key": "f418b527d37cb7484e031237e30ddffb6bb445aa.pkl",
+              "cache_input_text_sha256": "217c094a3818807170dca8a7c16b713cd402f841d6a3e7e4d09356f8dcbf4abb",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "42b8bb73884bc197",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            175104
+          ],
+          "unprocessed_array_sha256": "abfbeacc998467570bd938e9e18723c0ee6be1e2e38f5df464f43a63da4aa425"
+        },
+        {
+          "exact_native_cache_key": "184fd3bfc35673c6fbdc44b5469d620a56a995d2.pkl",
+          "pkl_sha256": "c06cb85c7bece86b5b12ca8f106677befee850d5d9c2f21eaed25d0429de58dc",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Working with a textiles firm,",
+              "exact_native_cache_key": "184fd3bfc35673c6fbdc44b5469d620a56a995d2.pkl",
+              "cache_input_text_sha256": "7ba03d81161f63b2f896ffa50107697750a0ce9b0ee942bb4d429e84b005afbe",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S6",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Working with a textiles firm,",
+              "exact_native_cache_key": "184fd3bfc35673c6fbdc44b5469d620a56a995d2.pkl",
+              "cache_input_text_sha256": "7ba03d81161f63b2f896ffa50107697750a0ce9b0ee942bb4d429e84b005afbe",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "c06cb85c7bece86b",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            39936
+          ],
+          "unprocessed_array_sha256": "33af004423ed5eabaf720d6e73e6dc18238b02e8ad2e545827100fa95837f80b"
+        },
+        {
+          "exact_native_cache_key": "279e43007af52835fa75098d716f76cdf980fc2c.pkl",
+          "pkl_sha256": "2b33e0b834ded69b0ff4014f4ee5c3aa37cf8c287b3909693569d26a5faca6c5",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "he turned to nylon,",
+              "exact_native_cache_key": "279e43007af52835fa75098d716f76cdf980fc2c.pkl",
+              "cache_input_text_sha256": "cacfb5b624d69b141e5f250553b1ebe9cafed6d67eb2eea02843a29841639448",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S6",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "he turned to nylon,",
+              "exact_native_cache_key": "279e43007af52835fa75098d716f76cdf980fc2c.pkl",
+              "cache_input_text_sha256": "cacfb5b624d69b141e5f250553b1ebe9cafed6d67eb2eea02843a29841639448",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "2b33e0b834ded69b",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            31744
+          ],
+          "unprocessed_array_sha256": "58ad000953988991c0e1081be7b337f3a817b83152d59a904fb1fe5c973babaa"
+        },
+        {
+          "exact_native_cache_key": "929e41e326d1dffebb1593ca9fde8754fe318030.pkl",
+          "pkl_sha256": "3591e84820f946910d43816cf7a1e2c14f2202824ed459a7a7f96d08e6cd9c8c",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": 3,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "whose hooks were stiff enough to hold yet easy to pull apart.",
+              "exact_native_cache_key": "929e41e326d1dffebb1593ca9fde8754fe318030.pkl",
+              "cache_input_text_sha256": "24906e43132d27ffd4923336dc5ffd996026fa0a01d8528c99c659a6fd948262",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S6",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "whose hooks were stiff enough to hold yet easy to pull apart.",
+              "exact_native_cache_key": "929e41e326d1dffebb1593ca9fde8754fe318030.pkl",
+              "cache_input_text_sha256": "24906e43132d27ffd4923336dc5ffd996026fa0a01d8528c99c659a6fd948262",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "3591e84820f94691",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            83968
+          ],
+          "unprocessed_array_sha256": "edb0e2cca11e0d74e740d145ea2c9aee6940f02e74a2e9f3b5f895158ad3eda0"
+        },
+        {
+          "exact_native_cache_key": "a42f216e575d7f8feaed3df8cfa4b3b4571557a5.pkl",
+          "pkl_sha256": "cc05d6ccd72af03dc9ad45344e60c545e0de3eeed2322cc2ecba94895801abcb",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S7",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "The trial-and-error at the looms and mills lasted about ten years.",
+              "exact_native_cache_key": "a42f216e575d7f8feaed3df8cfa4b3b4571557a5.pkl",
+              "cache_input_text_sha256": "ef41add6d92285ccfc76da7e9382e6d6d233dc6ebb9f57fa2ea01b1da14c253d",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "cc05d6ccd72af03d",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            100864
+          ],
+          "unprocessed_array_sha256": "8c26354ff02d717432a1af04db048226c8c8625a45888aba3585aa59b99cf149"
+        },
+        {
+          "exact_native_cache_key": "83b430384d202b96540149ed4c9d18d73d0056b3.pkl",
+          "pkl_sha256": "a6544dafbe942569a48e5bad5f65774d46706fa0d25065ac671b3c1ce127cd58",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "The name Velcro merged two French words, velours, meaning velvet, and crochet, meaning hook.",
+              "exact_native_cache_key": "83b430384d202b96540149ed4c9d18d73d0056b3.pkl",
+              "cache_input_text_sha256": "b360944306937a7cd404028e809529309f7e6ff37010f80f5888bd3958a1e923",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "a6544dafbe942569",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            143872
+          ],
+          "unprocessed_array_sha256": "15823a02193a53c55f87854f08f69fe66d5645c088e0880224ef75b6c0b69394"
+        },
+        {
+          "exact_native_cache_key": "83640cfea3f9e0835d29bc2aab8a3c097dfdf78b.pkl",
+          "pkl_sha256": "37996368595c55f59ce2b7bfd419241b3d4fda13536dfbefb896ab921d8b5c14",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "The name Velcro merged two French words,",
+              "exact_native_cache_key": "83640cfea3f9e0835d29bc2aab8a3c097dfdf78b.pkl",
+              "cache_input_text_sha256": "38c56de03941091ce3c4f63abb449053e8a849f0984a09f3065e53b1060d0c09",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S8",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "The name Velcro merged two French words,",
+              "exact_native_cache_key": "83640cfea3f9e0835d29bc2aab8a3c097dfdf78b.pkl",
+              "cache_input_text_sha256": "38c56de03941091ce3c4f63abb449053e8a849f0984a09f3065e53b1060d0c09",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "37996368595c55f5",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            58368
+          ],
+          "unprocessed_array_sha256": "be1034ba0ae6f72f09b5d86cd9ce0e46dd76ce49ebc1b5b28a574dc96ddfb265"
+        },
+        {
+          "exact_native_cache_key": "6408f54bf30a336fec6cd8d72b28ce011d8e4d97.pkl",
+          "pkl_sha256": "99a2636f3feb6fe5bafe3875eca27229ca811dd92164fda0e6ce0a6a6e353939",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "velours, meaning velvet, and crochet, meaning hook.",
+              "exact_native_cache_key": "6408f54bf30a336fec6cd8d72b28ce011d8e4d97.pkl",
+              "cache_input_text_sha256": "72f94d5425cdcbe15d9d8a97258edc06492d694f35aa1eaf6e9349ec448ece24",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "99a2636f3feb6fe5",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            73216
+          ],
+          "unprocessed_array_sha256": "f6ea41ad0d1b49e9951689c501605ef6b5247c4569ba883290e684e07be5e6a4"
+        },
+        {
+          "exact_native_cache_key": "0f190b97c5288672a3dad17187b1cdfbb56e094a.pkl",
+          "pkl_sha256": "58fcadc17bb6ed511f22c7dbd859d8e66bf41b8943ffe2bcb738b8569bd8b3d4",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "velours,",
+              "exact_native_cache_key": "0f190b97c5288672a3dad17187b1cdfbb56e094a.pkl",
+              "cache_input_text_sha256": "a82625513b188cf1a6779f5bd04b920aa00914ec870de981b50b2dfc90429afb",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "58fcadc17bb6ed51",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            17920
+          ],
+          "unprocessed_array_sha256": "12e1f386e45828ca76110ff912dbe343e46e03078b0fbc59b35dfa556b0b42d5"
+        },
+        {
+          "exact_native_cache_key": "f2cd5bd1a1c518f980f41adf864e47303747351a.pkl",
+          "pkl_sha256": "7e4ecda68f57a978a581c967b70cfa474797a4f1a10fe5a2022b46820529d6b4",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "meaning velvet,",
+              "exact_native_cache_key": "f2cd5bd1a1c518f980f41adf864e47303747351a.pkl",
+              "cache_input_text_sha256": "a610ebd9745f7fc2a6dca3ccfb1357279e443c2c77e5f85985e7042bf7e17eb9",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "7e4ecda68f57a978",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            24064
+          ],
+          "unprocessed_array_sha256": "580ff309dc948059e582164496ceef98c384bb80138f0fa4485852249435b2d9"
+        },
+        {
+          "exact_native_cache_key": "1f5fd20af8a62db9c4197e2735abdb6123f8f5a8.pkl",
+          "pkl_sha256": "0b4d43368f000bdab98a7be84d3123f5d3025707454739acef7661fdf2ab96bb",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": 4,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "and crochet,",
+              "exact_native_cache_key": "1f5fd20af8a62db9c4197e2735abdb6123f8f5a8.pkl",
+              "cache_input_text_sha256": "e45c29c13acbcca6ec5310b84168dcf229493d07bd6a0f64acbf324665ebd789",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "0b4d43368f000bda",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            23040
+          ],
+          "unprocessed_array_sha256": "2e9ef33edc181cd3ebd5c4539eab07abfcc62d240777fa0b037a54269afda018"
+        },
+        {
+          "exact_native_cache_key": "119d7ffee30c3a9ce9443734fb15479e55160af1.pkl",
+          "pkl_sha256": "b331c02c6dcf774b22a478c36b6871c85466b7534185c8743ce9ab514492b370",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": 5,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "meaning hook.",
+              "exact_native_cache_key": "119d7ffee30c3a9ce9443734fb15479e55160af1.pkl",
+              "cache_input_text_sha256": "a9ae246ea43aab32a4947838078723b0d4e5c27f86edf42029db9d1a7baddf9a",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "b331c02c6dcf774b",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            22528
+          ],
+          "unprocessed_array_sha256": "d580a208c9318262f2304aa5381a5b752f63b8258d464be7acc53d11b0989c3b"
+        },
+        {
+          "exact_native_cache_key": "aee259ad39f5057de8a3eb3e87607c35e5ff97b9.pkl",
+          "pkl_sha256": "5f714a134d726f429cf4be11eb7c0f239ef2db3e9751866014c2b5cfaa3de737",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S9",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "A US patent duly followed in 1955.",
+              "exact_native_cache_key": "aee259ad39f5057de8a3eb3e87607c35e5ff97b9.pkl",
+              "cache_input_text_sha256": "82cf462e21a57bff7102becadc6e5591f70e985f9cd2077462e9e8e6bcea5bef",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "5f714a134d726f42",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            83968
+          ],
+          "unprocessed_array_sha256": "2cf5dabb68588fdb15efd1aa231c78424eb50729563ecb08dbba75bef2aaae9d"
+        },
+        {
+          "exact_native_cache_key": "ddc81dbd0ba339a692d162bec2fb93476ac0ed54.pkl",
+          "pkl_sha256": "fa0ad7c1c58c7e4be110b2d6519ba097c0c553556ca12d227e66a2bd2892b779",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S10",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "In 1959 a New York fashion show sent apparel stitched with the fasteners down the runway.",
+              "exact_native_cache_key": "ddc81dbd0ba339a692d162bec2fb93476ac0ed54.pkl",
+              "cache_input_text_sha256": "7be6ef377d759cec284911ae28aca1e2b8d26e2e5c2055877cad988ed2a43f8b",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "fa0ad7c1c58c7e4b",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            156672
+          ],
+          "unprocessed_array_sha256": "fbe7feba6d6050fc13890fc4fb5060aabdc1e6f81525351050330a007f1a5050"
+        },
+        {
+          "exact_native_cache_key": "98e425e487a24a4bb6179d9a6a68c81d7455d122.pkl",
+          "pkl_sha256": "f2eecf959ce9e9d0601ef43fc7da9c21cb74995999f11207dd88168b3622139d",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S10",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "In 1959 a New York fashion show",
+              "exact_native_cache_key": "98e425e487a24a4bb6179d9a6a68c81d7455d122.pkl",
+              "cache_input_text_sha256": "e93f2bf229c585a59b334e4ae1bdc689fd16b0c688300f05514135edf133cc85",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "f2eecf959ce9e9d0",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            67584
+          ],
+          "unprocessed_array_sha256": "cf8980bd38bc877f311b6ff5678551b0898989c1329506c7603bcbcfb023369b"
+        },
+        {
+          "exact_native_cache_key": "cd756d4acfaf39ed1a43564a68ccd64afeca68ae.pkl",
+          "pkl_sha256": "3b88762fb49caa8aaac04e338a9fcd53af5cd2ccbc13a4432b044cfed35d6424",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S10",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "sent apparel stitched with the fasteners down the runway.",
+              "exact_native_cache_key": "cd756d4acfaf39ed1a43564a68ccd64afeca68ae.pkl",
+              "cache_input_text_sha256": "4d8ac99e70d535129a4c6f1ef645880c8c6173c06e69adb378c4e560feecb2ef",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "3b88762fb49caa8a",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            70144
+          ],
+          "unprocessed_array_sha256": "c70e5f78b52c16a53a25e97909d1fa03b6256992a73ff35a535e8c3990208067"
+        },
+        {
+          "exact_native_cache_key": "024728e8e310e05d67a4e39a10304826bc236380.pkl",
+          "pkl_sha256": "f9943c6957229ce68089be872c2730e0d92f5fa8427e8bfb1fdcf696441be48d",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "The public was less charmed than expected, mostly because of the aesthetic.",
+              "exact_native_cache_key": "024728e8e310e05d67a4e39a10304826bc236380.pkl",
+              "cache_input_text_sha256": "f5322c6866790ca72401684568e47b963300ce711a4924af966ad4e82b3d8baa",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "f9943c6957229ce6",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            113152
+          ],
+          "unprocessed_array_sha256": "264724e162a0e218f6214818dce192a2564869110dfec03935fb9100d2d5f8fd"
+        },
+        {
+          "exact_native_cache_key": "a56b8b474d8c36427d5dce69d2ad7e14d9b5bf4f.pkl",
+          "pkl_sha256": "40681b25a2d356f1b27411f2a3f964c0b24ec154a630048b9d111ce34dbc8aed",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "The public was less charmed than expected,",
+              "exact_native_cache_key": "a56b8b474d8c36427d5dce69d2ad7e14d9b5bf4f.pkl",
+              "cache_input_text_sha256": "70c4f88901a14c21b7a7536fdba0c9f7b89403216c5f5bb51ef5699f1abcea1a",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S11",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "The public was less charmed than expected,",
+              "exact_native_cache_key": "a56b8b474d8c36427d5dce69d2ad7e14d9b5bf4f.pkl",
+              "cache_input_text_sha256": "70c4f88901a14c21b7a7536fdba0c9f7b89403216c5f5bb51ef5699f1abcea1a",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "40681b25a2d356f1",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            55808
+          ],
+          "unprocessed_array_sha256": "7a9a30c222c48ca9941cb3422b17abd5637ef3971c8e187ef47c724455c58014"
+        },
+        {
+          "exact_native_cache_key": "357e4a042f16dafb78d7e6ad0aab570756a2acee.pkl",
+          "pkl_sha256": "0fce76772f2919e1e35cf76cd35545b21c65a98fb6c4987e51e1dbe01aff7cc0",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "mostly because of the aesthetic.",
+              "exact_native_cache_key": "357e4a042f16dafb78d7e6ad0aab570756a2acee.pkl",
+              "cache_input_text_sha256": "38d621a875253209136f8a9bd63bcff5ad09fb5cf7a89681b3a54c7ac82f34c9",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S11",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "mostly because of the aesthetic.",
+              "exact_native_cache_key": "357e4a042f16dafb78d7e6ad0aab570756a2acee.pkl",
+              "cache_input_text_sha256": "38d621a875253209136f8a9bd63bcff5ad09fb5cf7a89681b3a54c7ac82f34c9",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "0fce76772f2919e1",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            44544
+          ],
+          "unprocessed_array_sha256": "977d742f0547f4b813176f3ba38316d715fe0258eccf3f1bcd7539836f4d4356"
+        },
+        {
+          "exact_native_cache_key": "32e7ad4a8b3ef4b823e222dec00d289a10f5fc03.pkl",
+          "pkl_sha256": "82344bd4af2ab280f9d5a266e16ae9d86551eaf4f3a6a031ad5fb773ac77ce80",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S12",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "The underdog proved its utility in outer space.",
+              "exact_native_cache_key": "32e7ad4a8b3ef4b823e222dec00d289a10f5fc03.pkl",
+              "cache_input_text_sha256": "9c73e86098e4ee45085c43a4f397979266271e2f1fb87b00dfa7cf49c148062c",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "82344bd4af2ab280",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            70656
+          ],
+          "unprocessed_array_sha256": "e8f18ff20b4bffb55e455f9017c537b6c84bc2001b748551b202d891e8667226"
+        },
+        {
+          "exact_native_cache_key": "3dc8aeffc9a231fdb3a38bb2ec73f32c04de9ce2.pkl",
+          "pkl_sha256": "e72e52d8c13bbfcf98ddb461df0d1a8fc1559704565568d3c7bb70dcd108eaf9",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S13",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "NASA used it in the Apollo programme to keep gear anchored in weightlessness, so that nothing would hover in mid-air.",
+              "exact_native_cache_key": "3dc8aeffc9a231fdb3a38bb2ec73f32c04de9ce2.pkl",
+              "cache_input_text_sha256": "cf7a0d5b5d303b900aee4e2a46b091657acd2a563c9737a5c5948c59923e5e41",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "e72e52d8c13bbfcf",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            171520
+          ],
+          "unprocessed_array_sha256": "5a07f6484fee3ff272f1752a905174a17897695884257966d5355d6836c57df1"
+        },
+        {
+          "exact_native_cache_key": "00f56db5f996ea40c111e4555c789bb1ff415915.pkl",
+          "pkl_sha256": "18dbe526ff234f376317b9983284697824c8f34e9d6d8bbd05dcc05037bea725",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S13",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "NASA used it in the Apollo programme",
+              "exact_native_cache_key": "00f56db5f996ea40c111e4555c789bb1ff415915.pkl",
+              "cache_input_text_sha256": "beddcade955cf5885a706855b84462e642f17060ec74ec3dbd668ee0e8ccf60f",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "18dbe526ff234f37",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            55296
+          ],
+          "unprocessed_array_sha256": "e72c4bc21b1bae3d1dab704d6280c154d727a68db445bea3606e0a70d21c0d2c"
+        },
+        {
+          "exact_native_cache_key": "238547384bdb0dae935861e4ea0a618c68f888ee.pkl",
+          "pkl_sha256": "6162d3a905f03b262cfa7a2e7f5fe9eb17d1961ab504ba41be4b11546dcbecd3",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S13",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "to keep gear anchored in weightlessness,",
+              "exact_native_cache_key": "238547384bdb0dae935861e4ea0a618c68f888ee.pkl",
+              "cache_input_text_sha256": "01c7a0d308c1e4bd7ce72f61a7e3f9f5f489dd6282147fa12569fbde21dd03d6",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "6162d3a905f03b26",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            51200
+          ],
+          "unprocessed_array_sha256": "642e3b78a6d8d57d216d2d1e88eb79f095ba01dd438761599ee813b9af456900"
+        },
+        {
+          "exact_native_cache_key": "5e00e92712b69f9c88b1dc1b9130bba4b1518b29.pkl",
+          "pkl_sha256": "31dcadba1a544d92d9fb6a692b07224994bb1068069e4e5cf4e1713181e58927",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S13",
+              "piece": 3,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "so that nothing would hover in mid-air.",
+              "exact_native_cache_key": "5e00e92712b69f9c88b1dc1b9130bba4b1518b29.pkl",
+              "cache_input_text_sha256": "77f8518887e7c8473b61d78e36c4e40bee3f07898e6beaeaee55aa930dd895b3",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S13",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "so that nothing would hover in mid-air.",
+              "exact_native_cache_key": "5e00e92712b69f9c88b1dc1b9130bba4b1518b29.pkl",
+              "cache_input_text_sha256": "77f8518887e7c8473b61d78e36c4e40bee3f07898e6beaeaee55aa930dd895b3",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "31dcadba1a544d92",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            49664
+          ],
+          "unprocessed_array_sha256": "c55392c5b7f455f57f38082d07763a8283828f433a3c8d6b8a6ceff55ea3bb34"
+        },
+        {
+          "exact_native_cache_key": "f5d4cfeba750b33b232da109fb1f6a2558fc1e1e.pkl",
+          "pkl_sha256": "b167e4abcadcb310c3c4099b66dadc723a339d35b21f5bd055ba95af7ec91242",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S13",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "NASA used it in the Apollo programme to keep gear anchored in weightlessness,",
+              "exact_native_cache_key": "f5d4cfeba750b33b232da109fb1f6a2558fc1e1e.pkl",
+              "cache_input_text_sha256": "1f91ed9ddfb22066922e71982068129d38b7d0bb10c9633795aa7f6b7d5f94ef",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "b167e4abcadcb310",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            117760
+          ],
+          "unprocessed_array_sha256": "c3f3a333d2615d0a1d520f64c68aaecfa48e846013ba0582ba554e0816c72b43"
+        },
+        {
+          "exact_native_cache_key": "295d5893f1f4aeedc324adb526fc0c94fadc8752.pkl",
+          "pkl_sha256": "beb669e58ec4a61516595a5e4ec188a85c938b8f44704eb211be770928e32bf9",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S14",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Apollo 11 was equipped with a sizeable amount, about 3,300 square inches.",
+              "exact_native_cache_key": "295d5893f1f4aeedc324adb526fc0c94fadc8752.pkl",
+              "cache_input_text_sha256": "c52797ac98a95683d468f35d9c76a4bbd6135c6a31bfae298414e725436f48b8",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "beb669e58ec4a615",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            156160
+          ],
+          "unprocessed_array_sha256": "eee6472990b2cd27fe3ed2443b27bb3da81bd96bdbcb6a199d4e98db6bbb162f"
+        },
+        {
+          "exact_native_cache_key": "ba8b57475fd8b1663b974737c6435483f3a376e1.pkl",
+          "pkl_sha256": "9fa0e45ede7b60a288b6fbadda074e2848af2ef2c1ed186aa03155395a31a0d4",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S14",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Apollo 11 was equipped with a sizeable amount,",
+              "exact_native_cache_key": "ba8b57475fd8b1663b974737c6435483f3a376e1.pkl",
+              "cache_input_text_sha256": "66a07e57e555e6f039562bc53944eed2e152a32a69676430a2a8f91742e2159c",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "9fa0e45ede7b60a2",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            78848
+          ],
+          "unprocessed_array_sha256": "9c074a5d357d6f7407cc3813dbcfdd734c96e0d04d4ea7bc343d7a3672ee25d0"
+        },
+        {
+          "exact_native_cache_key": "bf1741649b3fb4aba8376a64ea83643062654242.pkl",
+          "pkl_sha256": "166a94aef6812b797c15cc5197956dd4ab7edcd5ddf58e0d663179804f3f4553",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S14",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "about 3,300 square inches.",
+              "exact_native_cache_key": "bf1741649b3fb4aba8376a64ea83643062654242.pkl",
+              "cache_input_text_sha256": "ae43fc27855bbe22f8f2e3a3cf539fb00770208d4d23b78ba79d49556b13e4fb",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "166a94aef6812b79",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            65024
+          ],
+          "unprocessed_array_sha256": "089a4cd0b982eb72e51996e5efd04ea96a0ce09264d0e541ebd50a50f4d8ec80"
+        },
+        {
+          "exact_native_cache_key": "f2ca3c83538a4bcb7c852577091f8f75ee3da685.pkl",
+          "pkl_sha256": "495efb9b0158a84519e2877a7eba397dcb17b51e5225532dc59a6bed514bc75e",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S15",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "NASA did not invent the nylon clasp.",
+              "exact_native_cache_key": "f2ca3c83538a4bcb7c852577091f8f75ee3da685.pkl",
+              "cache_input_text_sha256": "0e9f8141e9941a6328030f4d06de91c83cefed3bd1de96c3b563729e5de0ff0a",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "495efb9b0158a845",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            58880
+          ],
+          "unprocessed_array_sha256": "f2fd01c56b89636900e987237a6a89ceb342dd368f98e14f294f86b2e5d25395"
+        },
+        {
+          "exact_native_cache_key": "5aebf54b4f8c8f2ae112b40dfaf67b7a4428efcd.pkl",
+          "pkl_sha256": "b19e87c3c4610c8fb067325be8fb3b0ab8d8ee3eca3e75a4baf470061469c29e",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S16",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "When the patent ran out in 1978, cut-price knock-offs from other countries overran the market, and a niche product went mainstream.",
+              "exact_native_cache_key": "5aebf54b4f8c8f2ae112b40dfaf67b7a4428efcd.pkl",
+              "cache_input_text_sha256": "ae8cf7c8382771e90da92f73a733f0db2d10c3a4cf1e5291cd83454d3e9d245a",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "b19e87c3c4610c8f",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            219136
+          ],
+          "unprocessed_array_sha256": "c0c811eea52c4a47dc712ef2c359670618eecd3c3a23f1ee306a801d80729569"
+        },
+        {
+          "exact_native_cache_key": "e608bad7f8d980fdb9ed74054359ba65f2007db8.pkl",
+          "pkl_sha256": "d9c29d5de25cea9fa297387656e5e97a522b868e94798c6a4472f094a6de2e81",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S16",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "When the patent ran out in 1978,",
+              "exact_native_cache_key": "e608bad7f8d980fdb9ed74054359ba65f2007db8.pkl",
+              "cache_input_text_sha256": "7b8d843dadbe5acc754d507c0b2758272cd85a723ca7a1d7154be1f5538aec4e",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S16",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "When the patent ran out in 1978,",
+              "exact_native_cache_key": "e608bad7f8d980fdb9ed74054359ba65f2007db8.pkl",
+              "cache_input_text_sha256": "7b8d843dadbe5acc754d507c0b2758272cd85a723ca7a1d7154be1f5538aec4e",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "d9c29d5de25cea9f",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            65536
+          ],
+          "unprocessed_array_sha256": "01f360e7da4ed5e36d24f0142740366be4f91ad40d1e3265776f8959fb6b3604"
+        },
+        {
+          "exact_native_cache_key": "4c5de765c13d26474cc3719c10fe49521181a379.pkl",
+          "pkl_sha256": "8a791394d3fafede72ece9a679a923f54efc4b0e6646439140858c059ca4f157",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S16",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "cut-price knock-offs from other countries overran the market,",
+              "exact_native_cache_key": "4c5de765c13d26474cc3719c10fe49521181a379.pkl",
+              "cache_input_text_sha256": "71949ab5ca7ee7920a5aaa4f031e21575c2bd77f3d818e5b3ed63e69df129947",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S16",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "cut-price knock-offs from other countries overran the market,",
+              "exact_native_cache_key": "4c5de765c13d26474cc3719c10fe49521181a379.pkl",
+              "cache_input_text_sha256": "71949ab5ca7ee7920a5aaa4f031e21575c2bd77f3d818e5b3ed63e69df129947",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "8a791394d3fafede",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            89600
+          ],
+          "unprocessed_array_sha256": "0494c74a5980de63b659e0ff5bb3a3ac954691554353cab82a6971fdb860cb8c"
+        },
+        {
+          "exact_native_cache_key": "bc8dd91db0a708ab62fb1aff84d9a7d30e066889.pkl",
+          "pkl_sha256": "7e5acfd32f3d3a2b549e8a8891f8675a1b1e05443c6b4477ab95591d215dace0",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S16",
+              "piece": 3,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "and a niche product went mainstream.",
+              "exact_native_cache_key": "bc8dd91db0a708ab62fb1aff84d9a7d30e066889.pkl",
+              "cache_input_text_sha256": "770b11c84a58cc71982d5593a54be8d5de8480a17a59dee7322d71403b6612a0",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S16",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "and a niche product went mainstream.",
+              "exact_native_cache_key": "bc8dd91db0a708ab62fb1aff84d9a7d30e066889.pkl",
+              "cache_input_text_sha256": "770b11c84a58cc71982d5593a54be8d5de8480a17a59dee7322d71403b6612a0",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "7e5acfd32f3d3a2b",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            49152
+          ],
+          "unprocessed_array_sha256": "c1eafb1ea924c82ccbd8758f7a2615ba585c790cf9b1824ce9defd82af99c7dc"
+        },
+        {
+          "exact_native_cache_key": "00ddc7d9a69c66cc7585b8c00e2cc2ee5cc0d338.pkl",
+          "pkl_sha256": "94b8cc0c1b1d926cfa07e091bb62273a12e5599807a7a0968f3b127120bcf9f7",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S17",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "In 2017, to stop its brand-name melting into a generic noun, the company asked people to call such mimics hook and loop fasteners.",
+              "exact_native_cache_key": "00ddc7d9a69c66cc7585b8c00e2cc2ee5cc0d338.pkl",
+              "cache_input_text_sha256": "7d071666ca83877b7eedd754d284fe1230d8a2400af75700e1055cdb20692f80",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "94b8cc0c1b1d926c",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            238080
+          ],
+          "unprocessed_array_sha256": "6eb79ae3650355c265d7ad02adb4a077581ec76e9f3936f34452dcafcd3c5eb8"
+        },
+        {
+          "exact_native_cache_key": "3788fbc909b1b4c710bc91ac37aa2ccebabe1e8d.pkl",
+          "pkl_sha256": "8f8fd64e450eea37c457f34fd5b0a859632bf8d52de02dd8d92580d5491a942c",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S17",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "In 2017, to stop its brand-name melting into a generic noun,",
+              "exact_native_cache_key": "3788fbc909b1b4c710bc91ac37aa2ccebabe1e8d.pkl",
+              "cache_input_text_sha256": "dfb8f3f7fc5e77dd2579666b177ea4d512b911c293250e890d65ec3fe83f4c24",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "8f8fd64e450eea37",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            130048
+          ],
+          "unprocessed_array_sha256": "33c0960fa0c3b4d0f87d83345186fc701881d3b0e57ed28a3b7d625376237617"
+        },
+        {
+          "exact_native_cache_key": "1308131418b8343b1722703504ee67c19381ce85.pkl",
+          "pkl_sha256": "d8ba40cd765ccc08ab1f34a968c8fd0959b864dbcd2eee10397ed01903938faf",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S17",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "the company asked people to call such mimics hook and loop fasteners.",
+              "exact_native_cache_key": "1308131418b8343b1722703504ee67c19381ce85.pkl",
+              "cache_input_text_sha256": "1ff7520150f7d3e88cde579c6b039f20f1ac9e1a8d8bc5df032e45c4ac3b5f61",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S17",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "the company asked people to call such mimics hook and loop fasteners.",
+              "exact_native_cache_key": "1308131418b8343b1722703504ee67c19381ce85.pkl",
+              "cache_input_text_sha256": "1ff7520150f7d3e88cde579c6b039f20f1ac9e1a8d8bc5df032e45c4ac3b5f61",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "d8ba40cd765ccc08",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            99328
+          ],
+          "unprocessed_array_sha256": "372a9c5bf00ef2cbed21f7723187db17af32f02b5a59562a19589e39abebcbfd"
+        },
+        {
+          "exact_native_cache_key": "75ff36b38f2b0f22ba0585ffa4dd007de0d73db6.pkl",
+          "pkl_sha256": "5bdf0a6aabf5bc55b545d80ba9e6dd11c9fd11445d1e43448195e83febe5abdf",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S17",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "In 2017,",
+              "exact_native_cache_key": "75ff36b38f2b0f22ba0585ffa4dd007de0d73db6.pkl",
+              "cache_input_text_sha256": "eb129dfb4df2f25eb049403f74ca94970c473c74c971818621a1600c6c5c9236",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "5bdf0a6aabf5bc55",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            39424
+          ],
+          "unprocessed_array_sha256": "20960dcf8ab7af5d8dc46a2a27a65bfabfe53240a1e86d83bf192cda39cc47b9"
+        },
+        {
+          "exact_native_cache_key": "735843341815f50d49456ce0edb92905fec133b9.pkl",
+          "pkl_sha256": "3936b5639fec28ffc85b383b0cddd4d8c2f8b2ad5a90d1eb151ba6742f871652",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S17",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "to stop its brand-name melting into a generic noun,",
+              "exact_native_cache_key": "735843341815f50d49456ce0edb92905fec133b9.pkl",
+              "cache_input_text_sha256": "78b24b3caaae7a0b3ecddc03593b147b0e6ba35d5c33b91dc88a9f87cf69d3ac",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "3936b5639fec28ff",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            79872
+          ],
+          "unprocessed_array_sha256": "467d9ff9ef8067e5206cf0411788ad13fb70fe8cf2e40a0108021547f6ae9328"
+        },
+        {
+          "exact_native_cache_key": "a1fe8ab7dc84f802d8c860d0a62304937a8f7f33.pkl",
+          "pkl_sha256": "c430f6430539c48a0a3b4fc715093b94317da7e6a48d64ec51a2b50a3874f4cb",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S18",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "In effect, the firm was asking the public to stop using its own name for rivals' goods.",
+              "exact_native_cache_key": "a1fe8ab7dc84f802d8c860d0a62304937a8f7f33.pkl",
+              "cache_input_text_sha256": "23ea8c5e9afce8e4675f0f7379c45cde76290395887dd3b83f5a108c3195bc23",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "c430f6430539c48a",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            132608
+          ],
+          "unprocessed_array_sha256": "b0bc47d8fd34a2940369138458b07db330d5db081bcff1cbf3677a0759f627d2"
+        },
+        {
+          "exact_native_cache_key": "6731f89fd42e2ff81c155448dd238042983e673e.pkl",
+          "pkl_sha256": "e3f084dff784e898d2afd467f3f2a39a8a0b13486f24766d74ba2f365ff62001",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S18",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "In effect,",
+              "exact_native_cache_key": "6731f89fd42e2ff81c155448dd238042983e673e.pkl",
+              "cache_input_text_sha256": "f6df1d4b6b76b8536bd72b43838d8b607bbe038ffc87724e0be10a3f4f5cb31c",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "e3f084dff784e898",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            20992
+          ],
+          "unprocessed_array_sha256": "430aba62757166dc274bd44d5c0d9213756d320ad4a2e880d359209ec34b7201"
+        },
+        {
+          "exact_native_cache_key": "e37e038f354eeb02f1dac5c7c31addbcbca6116d.pkl",
+          "pkl_sha256": "f6a87b0cf94121ab19ef282b046b81c485da31c311bfe16217e0b91e165d9fb1",
+          "native_single_thread_marker_present": true,
+          "input_proofs": [
+            {
+              "sentence": "S18",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "the firm was asking the public to stop using its own name for rivals' goods.",
+              "exact_native_cache_key": "e37e038f354eeb02f1dac5c7c31addbcbca6116d.pkl",
+              "cache_input_text_sha256": "cf0d36e5b269bee0b3658abd18095261d262f91be08249493110292c42369c6e",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "native_single_thread_marker_value": "f6a87b0cf94121ab",
+          "native_single_thread_marker_matches": true,
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            113664
+          ],
+          "unprocessed_array_sha256": "4c56727396609d6301afc3fb31e9e529d92134f50db7321551f0473860f558b8"
+        }
+      ],
+      "missing_reference_key_count": 0,
+      "observed_missing_keys_covered": [],
+      "new_private_cache_names": [],
+      "native_single_thread_marker_verified": true,
+      "single_thread_sessions": [
+        {
+          "intra_op_num_threads": 1,
+          "inter_op_num_threads": 1
+        },
+        {
+          "intra_op_num_threads": 1,
+          "inter_op_num_threads": 1
+        }
+      ],
+      "models_sha256": {
+        "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+        "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+        "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+      },
+      "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+      "existing_private_cache_count": 11514,
+      "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+      "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+      "existing_private_cache_bytes_unchanged": true,
+      "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+      "public_repository_cache_unchanged": true,
+      "producer_pcm_existed_before": false,
+      "producer_pcm_sha256_before": null,
+      "producer_pcm_sha256_after": null,
+      "accepted_aac_adts_sha256_before": "96ff3f072646fd8273e9e2a507c43d4219f026eac413af33a7440b13b8b1c9ec",
+      "accepted_aac_adts_sha256_after": "96ff3f072646fd8273e9e2a507c43d4219f026eac413af33a7440b13b8b1c9ec",
+      "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+      "private_cache_exported": false
+    },
+    "checker_reference_preparation_program_sha256": "f6f2a032e207085e7252d036e39430fb80b06e84a721c525b61196d021c5ca12",
+    "fresh_current_article_reference": {
+      "article": "66",
+      "removed_temporary_gt_files": [],
+      "processed_pcm_or_raw_mother_cache_modified": false,
+      "purpose": "Original synth/labels/audit rebuild fresh for this production; no old CPU GT reuse."
+    },
+    "temporary_output_reset": {
+      "removed": [],
+      "production_started_ns": 1794737722529604481,
+      "repository_outputs_modified": false
+    },
+    "reviewed_gain_control_preservation": [
+      {
+        "stage": "canonical-draft",
+        "requested_gain_controls": {
+          "/句子增益dB": {
+            "S18": -0.6
+          },
+          "/分段增益dB": {
+            "S8": {
+              "1": 2.5,
+              "2": 1.5,
+              "3": -1.0
+            },
+            "S18": {
+              "1": -1.5
+            }
+          }
+        },
+        "actual_gain_controls": {
+          "/句子增益dB": {
+            "S18": -0.6
+          },
+          "/分段增益dB": {
+            "S8": {
+              "1": 2.5,
+              "2": 1.5,
+              "3": -1.0
+            },
+            "S18": {
+              "1": -1.5
+            }
+          }
+        },
+        "exactly_preserved": true
+      },
+      {
+        "stage": "canonical-final4K",
+        "requested_gain_controls": {
+          "/句子增益dB": {
+            "S18": -0.6
+          },
+          "/分段增益dB": {
+            "S8": {
+              "1": 2.5,
+              "2": 1.5,
+              "3": -1.0
+            },
+            "S18": {
+              "1": -1.5
+            }
+          }
+        },
+        "actual_gain_controls": {
+          "/句子增益dB": {
+            "S18": -0.6
+          },
+          "/分段增益dB": {
+            "S8": {
+              "1": 2.5,
+              "2": 1.5,
+              "3": -1.0
+            },
+            "S18": {
+              "1": -1.5
+            }
+          }
+        },
+        "exactly_preserved": true
+      }
+    ],
+    "canonical_video_sha256": "e776172b9d1ffe360615d01d9fa1477981955e406fa3b0ee761091390295b915",
+    "canonical_aac_adts_sha256": "96ff3f072646fd8273e9e2a507c43d4219f026eac413af33a7440b13b8b1c9ec",
+    "canonical_pipeline_passed": true,
+    "cached_input_wav_sha256": null,
+    "final_wav_sha256": "7f20531d779a6f5514e212c05e092e0e89506044c09b4b3222afb096ceef00ac",
+    "accepted_prior_aac_identical": true,
+    "video_sha256": "16d3c08f79be0f475a874bc6484510c0dc3f0fa9dccb65f8c7b4456ab573573e",
+    "width": 3840,
+    "height": 2160,
+    "summary_seconds": 2,
+    "summary_frames": 60,
+    "summary_start_seconds": 128.2,
+    "delay_after_voice_seconds": 0.030000000000001137,
+    "actual_source_collection": {
+      "article": "66",
+      "kind": "actual-production-source-collection",
+      "new_quality_gate": false,
+      "files": {
+        "request_json": {
+          "file": "66-request-source.json",
+          "sha256": "9ae838c6f274244e3e4b5228dd5be7036eabea6b97784cd36dde4365925b6dc6",
+          "origin": "immutable_request"
+        },
+        "request_generator": {
+          "file": "66-request-gen.py",
+          "sha256": "83e34da12ea8c5e337a67e0c02fd665cd7fb1b394eef1e901c5c0112e5611f88",
+          "origin": "immutable_request"
+        },
+        "used_generator": {
+          "file": "66-used-gen.py",
+          "sha256": "83e34da12ea8c5e337a67e0c02fd665cd7fb1b394eef1e901c5c0112e5611f88",
+          "origin": "actual_production_filesystem"
+        },
+        "actual_working_source": {
+          "file": "66-actual-working-source.json",
+          "sha256": "bf01225b9acd510a61a86808f13294ac91a26c2ad76a527b7ff01777b5b5df15",
+          "origin": "actual_production_filesystem"
+        },
+        "request_manuscript": {
+          "file": "66-request-manuscript.md",
+          "sha256": "39795a163c4972f7178d6b8c9ec238f4a10a316e539aa6c37e742fb7118606a3",
+          "origin": "immutable_request"
+        },
+        "actual_working_manuscript": {
+          "file": "66-actual-working-manuscript.md",
+          "sha256": "d8f865a04d20097f44a6dac3276e5777fdfa7fd869b960fe2ee57b322e3e3da3",
+          "origin": "actual_production_filesystem"
+        }
+      },
+      "generator_execution_observed": false,
+      "generator_execution_evidence": "No fresh generator execution log; do not claim this GEN was executed during rendering.",
+      "source_differences": {
+        "file": "66-actual-source-differences.json",
+        "sha256": "b1733acaa2c600f86a0a8a3c24c787539133674ff0398e230ec9b5590b65f9f2"
+      }
+    }
+  },
+  "native_status_sha256": "6ce889c9b5f43fbf184ad99d52e58c3c1b8c5aaa3786f73176f50878ea2ed882"
+}
