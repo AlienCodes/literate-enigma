@@ -411,7 +411,9 @@ def run_phase(label, input_bytes, expected_source, paths, support, profile, repo
                 'Actual complete WAV clock mismatch')
         phase_int16_arrays[label]=actual16
         result['actual_complete_WAV']={'file_sha256':digest(work/'a.wav'),'file_bytes':(work/'a.wav').stat().st_size,
-            'sample_rate':sr,'samples':len(value),'duration_s':len(value)/sr,'subtype':m.sf.info(work/'a.wav').subtype}
+            'sample_rate':sr,'samples':len(value),'duration_s':len(value)/sr,'subtype':m.sf.info(work/'a.wav').subtype,
+            'file_md5':hashlib.md5((work/'a.wav').read_bytes()).hexdigest(),
+            'file_md5_first12':hashlib.md5((work/'a.wav').read_bytes()).hexdigest()[:12]}
         result['actual_complete_AAC']=audio_metadata(output_audio)
         packet_evidence=actual_aac(output_audio)
         result['actual_codec_packet_payload_side_and_absolute_clock']={k:v for k,v in packet_evidence.items() if k!='projection'}
