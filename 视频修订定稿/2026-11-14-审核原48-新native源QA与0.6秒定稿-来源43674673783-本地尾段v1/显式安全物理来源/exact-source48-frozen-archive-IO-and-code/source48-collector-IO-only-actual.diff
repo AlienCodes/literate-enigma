@@ -1,0 +1,28 @@
+diff --git a/workspace/work/video-archive-batches-20261114/prepare_new_sourceQA_normal18_assets.py b/workspace/work/source48-low-disk-streaming-transport-review-20261115/prepare_source48_exact208205_same_content_IO_assets.py
+index bedfbfc..7842d43 100644
+--- a/workspace/work/video-archive-batches-20261114/prepare_new_sourceQA_normal18_assets.py
++++ b/workspace/work/source48-low-disk-streaming-transport-review-20261115/prepare_source48_exact208205_same_content_IO_assets.py
+@@ -47,6 +47,8 @@ def main():
+     old_asset={'asset_commit':None}
+     authority=Path('/workspace/work/first50-review-release/USER-REVIEW-2026-11-14-051.json');assert digest(authority)=='4bcae46b68b9584f107966f683af580b474fa9835f101834fe55ed6968dfc36b';assert load(authority)['required_behavior']['nominal_extra_hold_frames']==18
+     prefix=Path('视频修订定稿')/f"2026-11-14-审核原{sid}-新native源QA与0.6秒定稿-来源{h['source_run']}-本地尾段v1";pay=w/'payload';bindings=[];stored={}
++    import source48_same_content_collector_io as exact_IO
++    host_candidates=exact_IO.candidates(a.explicit_public_manifest,sid,nid,a.expected_handoff_sha256)
+     def add(source,relative,size=None,sha=None):
+         source=Path(source)
+         if source.suffix.lower()=='.wav':
+@@ -57,13 +59,7 @@ def main():
+         actual=digest(source);n=source.stat().st_size;assert size is None or n==size;assert sha is None or actual==sha
+         target=pay/relative;target.parent.mkdir(parents=True,exist_ok=True);key=(n,actual)
+         if target.exists():assert digest(target)==actual
+-        elif source.suffix.lower() in BINARY:
+-            try:os.link(stored.get(key,source),target)
+-            except OSError as error:
+-                if error.errno!=errno.EXDEV:raise
+-                shutil.copyfile(source,target)
+-        else:shutil.copyfile(source,target)
+-        if source.suffix.lower() in BINARY:stored[key]=target
++        else:exact_IO.materialize(source,target,n,actual,stored,host_candidates)
+         bindings.append({'original_path':str(source),'repo_path':str(relative),'bytes':n,'sha256':actual})
+     def spec(row,relative):add(row['path'],relative,row['bytes'],row['sha256'])
+     for source_row in source_qa['validation_files']:
