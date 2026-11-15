@@ -1,0 +1,106 @@
+name: 书53仅S2强and与S6原boost真实既有母整篇标量
+on:
+  push:
+    branches: [codex/finish-05-and-summaries-20261112]
+    paths: ['.github/source68-combined-whole/**', '.github/workflows/source68-combined-whole.yml']
+permissions:
+  contents: read
+jobs:
+  S2strong-S6boost-combined-whole:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github/source68-combined-whole
+      - uses: actions/checkout@v4
+        with:
+          repository: alienalgorithm/postgraduate-vocabulary
+          ref: fc0b56af9a0ac0e97015548b756d4e51d66dc2ea
+          path: official-main
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /视频/工具/
+            /视频/配音缓存/*.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/cache/restore@v4
+        id: original-cache
+        with:
+          path: |
+            ${{ runner.temp }}/completion-machine
+            ~/asr
+          key: completion-05-machine-43294745262
+      - name: 原机器必须命中，禁止重建模型缓存
+        env:
+          CACHE_HIT: ${{ steps.original-cache.outputs.cache-hit }}
+        run: test "$CACHE_HIT" = true
+      - name: 安装原运行依赖
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg espeak-ng
+          python -m pip install --quiet -r official-main/视频/工具/环境/requirements.txt
+      - uses: actions/cache/restore@v4
+        id: old-S2-mothers
+        with:
+          path: |
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/957f2b32009a98dec0354ea08bc770a90a477c6d.pkl
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/957f2b32009a98dec0354ea08bc770a90a477c6d.pkl.单线程
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/ade031d5fbb2952cfc8aa8483ba9eef5751f2c08.pkl
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/ade031d5fbb2952cfc8aa8483ba9eef5751f2c08.pkl.单线程
+          key: Linux-native68-exact-S2-first-spoken-comma-43702410293
+      - uses: actions/cache/restore@v4
+        id: new-S2-STRONG-mothers
+        with:
+          path: |
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/1ab001a046392ed783dcad3aa300da903bf8ecac.pkl
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/1ab001a046392ed783dcad3aa300da903bf8ecac.pkl.单线程
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/78208efc481759ba1522d25d08dd9f0a5c450b18.pkl
+            ${{ runner.temp }}/completion-machine/tts/cache_tts/78208efc481759ba1522d25d08dd9f0a5c450b18.pkl.单线程
+          key: Linux-native68-exact-S2-strong-and-pronCTX-43758184941
+      - uses: actions/cache/restore@v4
+        id: existing-S2-G36
+        with:
+          path: ${{ runner.temp }}/completion-machine/tts/source68-only-target-whole-original-math-cache/调平_e55a8ac21608c0b20b2761284675f784cb01d85f.json
+          key: Linux-native68-only-target-whole-original-math-43722945326
+      - uses: actions/cache/restore@v4
+        id: existing-S6-G36
+        with:
+          path: ${{ runner.temp }}/completion-machine/tts/source68-only-S6-local-original-math-cache/调平_9f74438055acdbd15c7477cf5cb48aaacbf28642.json
+          key: Linux-native68-only-S6-local-original-math-43766261084
+      - name: 实际ROOT5b366与独立父审绑定的两阶段原缓存整篇测量
+        id: cachedwhole
+        env:
+          OLD_S2_MOTHER_CACHE_HIT: ${{ steps.old-S2-mothers.outputs.cache-hit }}
+          NEW_S2_STRONG_MOTHER_CACHE_HIT: ${{ steps.new-S2-STRONG-mothers.outputs.cache-hit }}
+          OLD_S2_G36_CACHE_HIT: ${{ steps.existing-S2-G36.outputs.cache-hit }}
+          EXISTING_S6_G36_CACHE_HIT: ${{ steps.existing-S6-G36.outputs.cache-hit }}
+          AUDIO_ONLY: '1'
+          STRICT_CACHE: '1'
+          XG_NOPUSH: '1'
+          XG_KEEP_REVIEWED_GAIN: '1'
+          XG_KEEP_REVIEWED_ENDING: '1'
+          XG_KEEP_REVIEWED_CUTS: '1'
+        run: |
+          parent_sha=$(cat .github/source68-combined-whole/actual-parent-combined-whole-review.sha256)
+          python -u .github/source68-combined-whole/run68_combined_cachedwhole.py \
+            --actual-root-execution-adoption .github/source68-combined-whole/root-combined-whole-execution-scope.json \
+            --actual-root-execution-adoption-sha256 5b3662be03af72ff6fa203d7a7d68318145871edc81b7c11517cba638922e068 \
+            --actual-parent-review-adoption .github/source68-combined-whole/actual-parent-combined-whole-review.json \
+            --actual-parent-review-adoption-sha256 "$parent_sha"
+      - name: 所有内外恢复后只保存实际单S2新原数学JSON
+        if: always() && steps.cachedwhole.outputs.cache_key != ''
+        uses: actions/cache/save@v4
+        with:
+          key: ${{ steps.cachedwhole.outputs.cache_key }}
+          path: ${{ steps.cachedwhole.outputs.cache_paths }}
+      - name: 只上传实际标量JSON，不上传音频模型或缓存母
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: source68-combined-cachedwhole-actual-scalar-only
+          path: source68-combined-whole-public/*.json
+          retention-days: 30
+          if-no-files-found: error
