@@ -1,0 +1,22 @@
+--- root-adopted97152/audio52-controlled-qc-reference.json
++++ root-selected-f9e3/audio52-controlled-qc-reference.json
+@@ -4,8 +4,8 @@
+   "enabled": true,
+   "numeric_utilities_sha256": "3a2bd846386b16bd74e9785c548e97283131efcad9989b9e886f64e86e57c7c6",
+   "fingerprints": {
+-    "request_source_sha256": "97152c3408e320ddec7acb1cedb426c1ec44e2a3a796ad90aedb4229735f1764",
+-    "request_generator_sha256": "6459a6db54cf34dfdc2f2488e57a9a61bf0645ca48ff48a60928fe84a706bec7",
++    "request_source_sha256": "f9e3fa65ddf161a0d7b83e17fe60ac56552535566bf64512ca0f785e21e49862",
++    "request_generator_sha256": "015ff440b86dac3423da4ca936f2cb91f1752c42dc485b563163285a88251177",
+     "actual_raw_WAV_sha256": "c7f8109501ae2a0efb384eef993cadf7079de7e98f5f383efbcd601797dcc79f",
+     "accepted_video_sha256": "1d0cf6064c36ec7ed223956ebf98b7aabf21aa63241202f01d1895acc094b280",
+     "accepted_AAC_ADTS_sha256": "ecabdc3b21c705715a83ade00e644d2e8888b9a43443958078ffc15ab4d8cd2c",
+@@ -1126,7 +1126,7 @@
+   "bridge_role_notes": {
+     "stage0": "Actual5c4a contains real accepted ecab baseline and c00 new-spoken/gain candidate ad119/2491. Original report bytes remain unmodified.",
+     "stage1": "Actual5edf contains selected two-NV physical2e49, RAWc7f810/AAC13001/99d. It is diagnostic; formal original full gates and both ASRs still required.",
+-    "metadata_request": "Root-adopted actual19 lexicalCF97152/GEN6459 changes only review metadata and has identical physical voice controls to2e49.",
++    "metadata_request": "Root adopted actual19 lexicalCF97152/GEN6459, then specifically adopted six typed A10 confirmations, S10 onset confirmation and S14 G40 mapped record under cdb726. Final f9e3/015f changes only acoustic-review metadata; all physical controls and voice equal2e49. CurrentGT bytes were not replayed or falsely compared.",
+     "original_native_wrapper_legacy_accepted_is_not_QC_before": "QC --accepted-source remains exact1d0/ecab as original profile; original pipeline may separately bind its legacy67cb source. Roles are not equated."
+   }
+ }

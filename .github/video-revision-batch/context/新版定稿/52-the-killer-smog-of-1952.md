@@ -6,7 +6,7 @@ On Friday 5 December 1952, cold, **stagnant** air **descended on** London. **Ove
 
 That smoke, from coal burned in **domestic** **fireplaces** and **power stations**, was **laden with** soot and **noxious** sulphur dioxide. In places, **visibility** fell to a few metres. **Ambulance** services were **suspended**, an opera at the Sadler's Wells theatre was abandoned at the **interval**, and prize **cattle** at the Smithfield **agricultural** show died or had to be **slaughtered**.
 
-The smog **dissipated** on Tuesday 9 December. Officials at the time put the **excess** deaths at about 4,000, but a 1954 Ministry of Health report blamed later deaths on **influenza**. A study published in Environmental Health Perspectives in 2001 **reassessed** the evidence and **cast doubt on** that **explanation**, estimating about 12,000 excess deaths between December 1952 and February 1953.
+The smog **dissipated** on Tuesday 9 December. Officials at the time put the **excess** deaths at about 4,000, but a 1954 Ministry of Health report **blamed** later deaths **on** **influenza**. A study published in Environmental Health Perspectives in 2001 **reassessed** the evidence and **cast doubt on** that **explanation**, estimating about 12,000 excess deaths between December 1952 and February 1953.
 
 For decades Londoners had **tolerated** the smoke as a **nuisance**. One **villain** **flickered** in their own grates, a source of **warmth** and **comfort** so **habitual** that few thought to **accuse** it. Such **complacency** may help to explain the government's **grudging** **response**. It **withstood** pressure for an **inquiry** until May 1953.
 
@@ -18,11 +18,11 @@ Reform proved **protracted**, slowed by official **inertia**. The Clean Air **Ac
 
 这些煤烟来自于烧的煤，在**家庭**(domestic)**壁炉**(fireplaces)和**发电厂**(power stations)里，**充满了**(laden with)煤烟和**有毒的**(noxious)二氧化硫。（from coal…：介词短语作后置定语，修饰 smoke；burned in…：过去分词短语作后置定语，修饰 coal）（be laden with…：满载……，充满……）有些地方，**能见度**(visibility)降到只有几米。**救护车**(Ambulance)服务被**暂停**(suspended)，萨德勒之井剧院的一场歌剧在**幕间休息**(interval)时被中止，而史密斯菲尔德**农业**(agricultural)展上的获奖**牛**(cattle)则死亡或不得不被**宰杀**(slaughtered)。（an opera at…：介词短语作后置定语，修饰 opera；at the interval：在幕间休息时）（at the Smithfield agricultural show：后置定语，修饰 cattle；had to be slaughtered：不得不被宰杀）
 
-烟雾**消散**(dissipated)于12月9日，星期二。当时的官员估计**超额**(excess)死亡约4,000人，但卫生部1954年的一份报告把后来的死亡归因于**流感**(influenza)。（put A at B：估计 A 为 B）（blame A on B：把 A 归咎于 B）2001年发表于《环境健康展望》的一项研究**重新评估了**(reassessed)证据，并**对**(cast doubt on)这一**解释**(explanation)**提出了质疑**(cast doubt on)，估计在1952年12月至1953年2月期间约有12,000例超额死亡。（published in…：过去分词短语作后置定语，修饰 study）（cast doubt on…：对……提出质疑）（estimating…：现在分词短语作状语，补充说明研究结论）
+烟雾**消散**(dissipated)于12月9日，星期二。当时的官员估计**超额**(excess)死亡约4,000人，但卫生部1954年的一份报告**把**(blamed on)后来的死亡**归咎于**(blamed on)**流感**(influenza)。（put A at B：估计 A 为 B）（blame A on B：把 A 归咎于 B）2001年发表于《环境健康展望》的一项研究**重新评估了**(reassessed)证据，并**对**(cast doubt on)这一**解释**(explanation)**提出了质疑**(cast doubt on)，估计在1952年12月至1953年2月期间约有12,000例超额死亡。（published in…：过去分词短语作后置定语，修饰 study）（cast doubt on…：对……提出质疑）（estimating…：现在分词短语作状语，补充说明研究结论）
 
-几十年来，伦敦人一直**容忍**(tolerated)着煤烟，只是把它当成一种**让人讨厌的事情**(nuisance)。（tolerate A as B：把 A 当作 B 来容忍）一个**元凶**(villain)就在他们自家的炉栅里**闪烁**(flickered)，一个**温暖**(warmth)与**舒适**(comfort)的来源，如此**习以为常**(habitual)，以至于很少有人想到去**指责**(accuse)它。（grates：炉栅，壁炉里放煤的铁架）（a source of…：同位语，补充说明 villain；so… that…：如此……以至于……）这种**自满**(complacency)，或许有助于解释政府**勉强的**(grudging)**回应**(response)。政府**顶住了**(withstood)要求**调查**(inquiry)的压力，直到1953年的5月。（pressure for an inquiry：要求调查的压力）
+几十年来，伦敦人一直**容忍**(tolerated)着煤烟，只是把它当成一种**让人讨厌的事情**(nuisance)。（tolerate A as B：把 A 当作 B 来容忍）一个**元凶**(villain)就在他们自家的炉栅里**闪烁**(flickered)，一个**温暖**(warmth)与**舒适**(comfort)的来源，如此**习以为常**(habitual)，以至于很少有人想到去**指责**(accuse)它。（grates：炉栅，壁炉里放煤的铁架）（a source of…：同位语，补充说明 villain；so… that…：如此……以至于……）这种**自满**(complacency)，或许有助于解释政府**勉强的**(grudging)**回应**(response)。（人们把煤烟当成寻常的生活麻烦，很少想到家中取暖的煤火也是污染元凶。这种掉以轻心，或许也是政府应对不够积极的原因之一。）政府**顶住了**(withstood)要求**调查**(inquiry)的压力，直到1953年的5月。（pressure for an inquiry：要求调查的压力）
 
-改革被证明是**旷日持久的**(protracted)，并被官方的**惰性**(inertia)拖慢了。（prove＋形容词：结果是……，事实证明……；slowed by…：过去分词短语作状语）《清洁空气**法**(Act)》于1956年7月5日成为法律，此时距那场烟雾已过去三年半。（Act：法案，法令；常作“某某法”，如 the Clean Air Act《清洁空气法》）（three and a half years after the smog：补充说明时间）该法**授权**(empowered)**市镇**(municipal)议会设立**无烟**(smokeless)区，从**源头**(source)上**遏制**(combating)煤烟。（empower sb to do sth：授权某人做某事）（combating…：现在分词短语作状语；at source：从源头）英国家庭**深受喜爱的**(beloved of)、**温馨的**(cosy)**炉膛**(hearth)，原来一直都在主要的**肇事者**(offenders)之列。（beloved of…：受……喜爱，作后置定语，修饰 hearth）（all along：一直，始终；be among…：在……之列，是……之一）（简述：1952年12月5日，冷空气被上方的暖空气压住，伦敦的煤烟散不出去，成了令人窒息的烟雾。煤烟来自家庭壁炉和发电厂，能见度只有几米，救护车停运，歌剧中止，展会上的获奖牛死去或被宰杀。12月9日烟雾散去，当时估计超额死亡约4,000人，1954年的报告却归因于流感，2001年的研究对此提出质疑，估计超额死亡约12,000人。伦敦人对自家炉火习以为常，政府也回应勉强，直到1953年5月才不再顶住调查的压力。1956年《清洁空气法》授权市镇议会设立无烟区，原来温馨的炉膛一直是主要肇事者之一。）
+改革被证明是**旷日持久的**(protracted)，并被官方的**惰性**(inertia)拖慢了。（prove＋形容词：结果是……，事实证明……；slowed by…：过去分词短语作状语）《清洁空气**法**(Act)》于1956年7月5日成为法律，此时距那场烟雾已过去三年半。（Act：法案，法令；常作“某某法”，如 the Clean Air Act《清洁空气法》）（three and a half years after the smog：补充说明时间）该法**授权**(empowered)**市镇**(municipal)议会设立**无烟**(smokeless)区，从**源头**(source)上**遏制**(combating)煤烟。（empower sb to do sth：授权某人做某事）（combating…：现在分词短语作状语；at source：从源头）英国家庭**深受喜爱的**(beloved of)、**温馨的**(cosy)**炉膛**(hearth)，原来一直都在主要的**肇事者**(offenders)之列。（beloved of…：受……喜爱，作后置定语，修饰 hearth）（all along：一直，始终；be among…：在……之列，是……之一）（简述：▸困住：1952年12月5至9日，伦敦上方暖空气像盖子压住冷空气，煤烟无法散去，形成致命烟雾。▸源头：家庭壁炉和发电厂烧煤，释放烟尘及有毒二氧化硫；熟悉的温暖炉火也是污染元凶。▸瘫痪：局部能见度仅几米，救护车停运、演出中止，农业展的牛也死亡或被迫宰杀。▸复核：官方初估比常态多死亡约4000人，后续死亡曾被归于流感；2001年研究重估1952年12月至1953年2月，多死亡约1.2万人。▸改革：政府拖延调查与改革，直到三年半后的1956年才制定《清洁空气法》，授权设无烟区，从源头控烟。）
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -54,6 +54,7 @@ Reform proved **protracted**, slowed by official **inertia**. The Clean Air **Ac
 | slaughtered | 本文：宰杀；v. (slaughter) 宰杀（牲畜）（be slaughtered for meat）；屠杀 | 2 |
 | dissipated | 本文：消散；v. (dissipate) （雾、烟等）消散（the fog/tension dissipated）；挥霍（dissipate a fortune） | 3 |
 | excess | 本文：超额；adj. 超额的，过量的（excess deaths/baggage）；n. 过度（in excess of） | 3 |
+| blamed on | 本文：把……归咎于；v. (blame A on B) 把A归咎于B；将A的责任归于B（blamed为blame的过去式） | 3 |
 | influenza | 本文：流感；n. 流行性感冒（正式用语，口语作 flu）（an influenza epidemic） | 3 |
 | reassessed | 本文：重新评估了；v. (reassess) 重新评估（reassess the situation/risks） | 3 |
 | cast doubt on | 本文：对……提出了质疑；phr. 对……提出质疑，使人怀疑（cast doubt on a claim/an explanation） | 3 |
