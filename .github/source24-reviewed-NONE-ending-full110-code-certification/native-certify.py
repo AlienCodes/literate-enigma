@@ -1,7 +1,7 @@
 """Independent core certification; never creates or accepts a production deliverable."""
 from pathlib import Path
 import argparse,os,sys,json,hashlib,shutil,subprocess,time,copy
-p=argparse.ArgumentParser();p.add_argument('--variant',choices=['original','case-consistent-producer'],required=True);p.add_argument('--source68-code-adoption',type=Path,required=True);p.add_argument('--source68-code-adoption-sha256',required=True);p.add_argument('--source35-code-adoption',type=Path,required=True);p.add_argument('--source35-code-adoption-sha256',required=True);p.add_argument('--reviewed-none-code-adoption',type=Path,required=True);p.add_argument('--reviewed-none-code-adoption-sha256',required=True);a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--variant',choices=['original','case-consistent-producer'],required=True);p.add_argument('--source68-code-adoption',type=Path,required=True);p.add_argument('--source68-code-adoption-sha256',required=True);p.add_argument('--source35-code-adoption',type=Path,required=True);p.add_argument('--source35-code-adoption-sha256',required=True);p.add_argument('--reviewed-none-code-adoption',type=Path,required=True);p.add_argument('--reviewed-none-code-adoption-sha256',required=True);p.add_argument('--A45-writer-code-adoption',type=Path,required=True);p.add_argument('--A45-writer-code-adoption-sha256',required=True);a=p.parse_args()
 ROOT=Path.cwd();PKG=ROOT/'.github/source24-reviewed-NONE-ending-full110-code-certification';REPO=ROOT/'official-main';T=REPO/'视频/工具';W=Path(os.environ['RUNNER_TEMP'])/'completion-machine/video';OUT=ROOT/'certification-public';OUT.mkdir(exist_ok=True)
 sha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest();report={'variant':a.variant,'passed':False,'production_audio_or_video_acceptance':False,'official_main_commit':'fc0b56af9a0ac0e97015548b756d4e51d66dc2ea','stage':'start'}
 def save(): (OUT/'certification.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
@@ -12,6 +12,11 @@ try:
  # Separate external dependency: the original tools-tree stamp still has110 entries.
  assert len(a.reviewed_none_code_adoption_sha256)==64 and sha(a.reviewed_none_code_adoption)==a.reviewed_none_code_adoption_sha256,'Actual ROOT reviewed-NONE code adoption is required; review templates cannot execute'
  binding=json.loads((PKG/'reviewed-none-codecert-execution-binding.json').read_text())
+ assert a.A45_writer_code_adoption_sha256=='a941554951cbde2fd0f366746ff2659ce073e87551f2c2709addaa6dd4c942d3' and sha(a.A45_writer_code_adoption)==a.A45_writer_code_adoption_sha256,'Actual new ROOT A45 writer logic scope required'
+ writer_binding=binding['A45_writer_extension'];assert writer_binding['execution_authorized_by_actual_ROOT_review']is True and writer_binding['actual_ROOT_adoption_SHA256']==a.A45_writer_code_adoption_sha256
+ assert writer_binding['candidate_utility_SHA256']=='ece967ee62c56839ff848f59d401f47640abfd99c060a068aa7e541abcf0f88c' and writer_binding['original_utility_SHA256']=='d7bc6ec887ce191d651ae8f19786b20bc5d428533062ac4b02985253e396c390' and sha(PKG/'patch/视频/工具/区间作废.py')==writer_binding['candidate_utility_SHA256']
+ assert writer_binding['actual_prior110_stamp_SHA256']=='fe94cc7c38d43471f8fb192ffa374fa8e07620bb8492c0b789e8fa1960accd4d' and writer_binding['runtime_overlay_file_count']==18 and writer_binding['other109_actual_program_identities_unchanged']is True
+ report['actual_ROOT_A45_writer_logic_adoption_SHA256']=a.A45_writer_code_adoption_sha256
  alias_repair_binding=binding['A23_selftest_alias_repair'];assert alias_repair_binding['execution_authorized_by_actual_ROOT_review']is True,'Actual ROOT A23 selftest-alias code adoption required'
  assert sha(PKG/'actual-A23-alias-code-adoption.json')==alias_repair_binding['actual_ROOT_adoption_SHA256'] and len(alias_repair_binding['actual_ROOT_adoption_SHA256'])==64
  assert sha(PKG/'patch/视频/工具/读音核对.py')==alias_repair_binding['candidate_checker_SHA256']=='b0b4f1a2d3151489aa8174e8bd734bb3f963e89fffb22e3dc170535327a2feb4' and alias_repair_binding['only_reader_selftest_changes_beyond_actual628d']is True
@@ -31,6 +36,9 @@ try:
  report['reviewed_NONE_constructor_external_dependency']={'helper_SHA256':sha(helper_dst),'root_code_adoption_SHA256':a.reviewed_none_code_adoption_sha256,'helper_outside_tools_tree110':True,'original110_claim_does_not_include_external_helper':True,'separate_pure_data_original_AST_and_fake_command_route_tests_required':True,'no_marker_installed_for_original_fullquick':True}
  assert subprocess.check_output(['git','rev-parse','HEAD'],cwd=REPO,text=True).strip()==report['official_main_commit']
  manifest=json.loads((PKG/'overlay-manifest.json').read_text());report['overlay_manifest']=manifest
+ priorfe94=PKG/'fixtures/actual-prior-fe94-A23-reader110-certificate.json';assert sha(priorfe94)==writer_binding['actual_prior17_certificate_SHA256']=='0cc1c5d7962555e450125e3df5b76b04e54a66ab6dc8baf14325e4bf2d098186'
+ priorfe94cert=json.loads(priorfe94.read_text());assert priorfe94cert['passed']is True and len(manifest['files'])==manifest['final_integrated_program_count']==18
+ assert manifest['files'][:-1]==priorfe94cert['overlay_manifest']['files'] and manifest['files'][-1]=={'path': '视频/工具/区间作废.py', 'main_SHA256': 'd7bc6ec887ce191d651ae8f19786b20bc5d428533062ac4b02985253e396c390', 'patch_SHA256': 'ece967ee62c56839ff848f59d401f47640abfd99c060a068aa7e541abcf0f88c', 'scope': 'Retain only actual raw fingerprint of active valid original spoken-comma controls already bound to that exact raw; original clear/parser/A45 all unchanged'},'Exactly original fe94 seventeen records plus one approved utility required'
  assert a.variant=='case-consistent-producer', 'This caller certifies only the exact source24 candidate extension'
  assert len(a.source68_code_adoption_sha256)==64 and sha(a.source68_code_adoption)==a.source68_code_adoption_sha256, 'Separately adopted exact source68 code extension is required'
  report['source68_code_adoption_SHA256']=a.source68_code_adoption_sha256
@@ -88,6 +96,8 @@ try:
  assert sha(T/'make_video.py')=='0e6c4ff6dd4ab4e3774bc060188de72356cd9aa37a7bc092d1f28a5508cc1c36'
  r=run([sys.executable,PKG/'pure_reviewed_none_ending24_tests.py','--output',OUT/'reviewed-NONE-separate-pure-data-and-routes.json'],'reviewed-NONE-separate-pure-data-and-shell-routes',cwd=W);assert r.returncode==0
  report['reviewed_NONE_separate_guard_and_original_shell_route_tests_passed']=True
+ r=run([sys.executable,PKG/'pure-A45-writer-real-data-tests.py','--tools',T,'--output-dir',OUT],'A45-writer-real-current-raw-and-legacy-pure-tests',cwd=W);assert r.returncode==0
+ report['A45_writer_separate_actual_current13_legacy_and_original_guard_pure_tests_passed']=True
  fonts=REPO/'视频/资源/字体';fonts.parent.mkdir(parents=True,exist_ok=True)
  if not fonts.exists():fonts.symlink_to(T/'fonts',target_is_directory=True)
  if not (W/'fonts').exists():(W/'fonts').symlink_to(T/'fonts',target_is_directory=True)
@@ -119,10 +129,11 @@ try:
  fresh_stamp=json.loads(prior_stamp.read_text());assert len(fresh_stamp['程序'])==110 and fresh_stamp['程序']['make_video.py']=='0e6c4ff6dd4ab4e3'
  assert sha(prior_stamp)!='3c251c77fb58b775ae1389a52ce31467686201ba98b842af545f2923357a6c32'
  assert sha(prior_stamp)!='7d7ebf20b78143231992f8880f70e3cf1581c75acd2d977bc054e3ff151a1a41','Old successful spoken20 stamp cannot certify the new constructor shell'
- oldNONEstamp_path=PKG/'fixtures/actual-prior-reviewedNONE-110-stamp.json';assert sha(oldNONEstamp_path)==alias_repair_binding['actual_prior_constructor_110_stamp_SHA256']
- oldNONEstamp=json.loads(oldNONEstamp_path.read_text());expected_programs=dict(oldNONEstamp['程序']);expected_programs['读音核对.py']=alias_repair_binding['candidate_checker_SHA256'][:16]
- assert fresh_stamp['程序']==expected_programs and fresh_stamp['规则表版本']==oldNONEstamp['规则表版本'],'All original110 program identities must be exact except the reviewed reader selftest'
- report['all_109_other_original_program_hashes_equal_actual_successful_reviewedNONE_stamp']=True
+ priorfe94stamp_path=PKG/'fixtures/actual-prior-fe94-A23-reader110-stamp.json';assert sha(priorfe94stamp_path)==writer_binding['actual_prior110_stamp_SHA256']
+ priorfe94stamp=json.loads(priorfe94stamp_path.read_text());expected_programs=dict(priorfe94stamp['程序']);expected_programs['区间作废.py']=writer_binding['candidate_utility_SHA256'][:16]
+ assert fresh_stamp['程序']==expected_programs and fresh_stamp['规则表版本']==priorfe94stamp['规则表版本'],'All original110 identities must be exact except the approved interval writer'
+ assert sha(prior_stamp)!=writer_binding['actual_prior110_stamp_SHA256'],'Actual fe94 stamp cannot certify new interval writer'
+ report['all_109_other_original_program_hashes_equal_actual_successful_fe94_stamp']=True
  report['new_shell_stamp_entry_full_dependency_is_separately_declared']=True
  report['new_actual_110_program_stamp_created_after_full_quickcheck']=True
  report['original_full_fastcheck_passed']=True
@@ -146,6 +157,6 @@ try:
  report['target35_new_mother_and_timing_test_run']=False
  report['original_three_case_mother_test_not_rerun_prior_actual_result_is_history']=True
  report['native16_cache_preparation_not_repeated_existing_separate_certificate_preserved']=True
- report.update({'passed':True,'stage':'source24-reviewed-NONE-constructor-original110-and-separate-external-helper-code-only-certified-no-target-models'});save()
+ report.update({'passed':True,'stage':'source24-A45-bound-spoken-writer-true18-original110-and-separate-NONE-helper-code-only-certified-no-target-models'});save()
 except Exception as e:
  report.update({'passed':False,'error':str(e)});save();raise

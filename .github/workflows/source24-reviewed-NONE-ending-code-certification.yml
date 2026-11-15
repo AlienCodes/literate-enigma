@@ -1,4 +1,4 @@
-name: 第49篇原读音自检别名一致故障注入原110代码认证
+name: 第49篇原A45当前母音绑定指纹写回18文件原110代码认证
 on:
   push:
     branches: [codex/finish-05-and-summaries-20261112]
@@ -133,12 +133,12 @@ jobs:
           git config --global user.name 'github-actions[bot]'
           git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
       - name: 原快测与新模式真实认证
-        run: python -u .github/source24-reviewed-NONE-ending-full110-code-certification/native-certify.py --variant '${{ matrix.variant }}' --source68-code-adoption .github/source24-reviewed-NONE-ending-full110-code-certification/actual-root-spoken20-code-adoption.json --source68-code-adoption-sha256 bcc58ae2420796c04b66ee264809affbf72ffc50a3588642e48c4390f17ccc1f --source35-code-adoption .github/source24-reviewed-NONE-ending-full110-code-certification/actual-root-spoken20-code-adoption.json --source35-code-adoption-sha256 bcc58ae2420796c04b66ee264809affbf72ffc50a3588642e48c4390f17ccc1f --reviewed-none-code-adoption .github/source24-reviewed-NONE-ending-full110-code-certification/actual-reviewed-none-code-adoption.json --reviewed-none-code-adoption-sha256 13f82c08f6e55a9bd8c4cf87a0e611437eba291677c751840f3bef8e56319c80
+        run: python -u .github/source24-reviewed-NONE-ending-full110-code-certification/native-certify.py --variant '${{ matrix.variant }}' --source68-code-adoption .github/source24-reviewed-NONE-ending-full110-code-certification/actual-root-spoken20-code-adoption.json --source68-code-adoption-sha256 bcc58ae2420796c04b66ee264809affbf72ffc50a3588642e48c4390f17ccc1f --source35-code-adoption .github/source24-reviewed-NONE-ending-full110-code-certification/actual-root-spoken20-code-adoption.json --source35-code-adoption-sha256 bcc58ae2420796c04b66ee264809affbf72ffc50a3588642e48c4390f17ccc1f --reviewed-none-code-adoption .github/source24-reviewed-NONE-ending-full110-code-certification/actual-reviewed-none-code-adoption.json --reviewed-none-code-adoption-sha256 13f82c08f6e55a9bd8c4cf87a0e611437eba291677c751840f3bef8e56319c80 --A45-writer-code-adoption .github/source24-reviewed-NONE-ending-full110-code-certification/actual-A45-writer-code-adoption.json --A45-writer-code-adoption-sha256 a941554951cbde2fd0f366746ff2659ce073e87551f2c2709addaa6dd4c942d3
       - name: 仅上传认证日志与公开标量证据
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: source24-reviewed-NONE-ending-code-only-certification-${{ matrix.variant }}
+          name: source24-A45-writer-true18-original110-code-only-certification-${{ matrix.variant }}
           path: |
             certification-public/*.json
             certification-public/*.log
