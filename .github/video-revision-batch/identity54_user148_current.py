@@ -4,7 +4,7 @@ import argparse, copy, hashlib, json, subprocess, tempfile
 from fractions import Fraction
 from pathlib import Path
 
-EXPECTED_REFERENCE_SHA256 = 'a8b77c7df2cd2b421fbb239aed8e24de2ea37569ded2ded890ba615fbff5815e'
+EXPECTED_REFERENCE_SHA256 = '673c534d75973f58a2b0deced5d49a8400755edc8b446f607cc4e6709840ea6e'
 
 def require(ok, message):
     if not ok:

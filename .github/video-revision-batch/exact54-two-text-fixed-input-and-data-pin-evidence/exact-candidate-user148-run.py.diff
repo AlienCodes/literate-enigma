@@ -1,0 +1,13 @@
+--- original-adopted/candidate-user148-run.py
++++ text-input-rebound/candidate-user148-run.py
+@@ -1101,8 +1101,8 @@
+         assert status['canonical_pipeline_passed'] is True
+         identity_program = TASK / 'identity54_user148_current.py'
+         identity_reference = TASK / 'identity54_user148_current-reference.json'
+-        assert sha(identity_program) == '0a3a06fad13550a9fbc7f744c551696743b938a2632729e13d292c9479fd9ac3'
+-        assert sha(identity_reference) == 'a8b77c7df2cd2b421fbb239aed8e24de2ea37569ded2ded890ba615fbff5815e'
++        assert sha(identity_program) == '4753a334955dae380737374dd0ed67708976ad8eb7eb75d72ac2956dd449228f'
++        assert sha(identity_reference) == '673c534d75973f58a2b0deced5d49a8400755edc8b446f607cc4e6709840ea6e'
+         spec = importlib.util.spec_from_file_location('source54_exact_user148_current_identity', identity_program)
+         identity = importlib.util.module_from_spec(spec);spec.loader.exec_module(identity)
+         evidence = identity.bind(request, current, W / 'work_54/a.wav', canonical, source_video, T, TASK,
