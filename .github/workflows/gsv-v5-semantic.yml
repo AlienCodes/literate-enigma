@@ -1,0 +1,88 @@
+name: gsv-v5-semantic
+
+# 查清楚：v5dev 和 v2ProPlus 提取语义 token（1C）用的那部分权重是不是一模一样。
+# 1C 用 SoVITS 底模里的 ssl_proj + quantizer 把 hubert 特征变成语义 token；一样的话两个版本可以共用一份 6-name2semantic.tsv。
+# 下载官方底模（Hugging Face lj1995/GPT-SoVITS），逐个比较这部分张量，结果提交到 research/gsv_v4_v5/官方资料/语义token对比.txt。
+on:
+  workflow_dispatch:
+  push:
+    branches: ["claude/**"]
+    paths:
+      - ".github/workflows/gsv-v5-semantic.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install
+        run: python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - name: Download
+        run: |
+          mkdir -p /tmp/m && cd /tmp/m
+          base=https://huggingface.co/lj1995/GPT-SoVITS/resolve/main
+          for f in v2Pro/s2Gv2ProPlus.pth gsv-v5-pretrained/s2Gv5dev.pth gsv-v5-pretrained/s2Gv5turbo.pth gsv-v4-pretrained/s2Gv4.pth; do
+            curl -fL --retry 5 -o "$(basename $f)" "$base/$f?download=true"
+          done
+          ls -l
+      - name: Compare
+        shell: python
+        run: |
+          import hashlib, io, os, torch
+          D = "/tmp/m"
+          def load(name):
+              raw = open(os.path.join(D, name), "rb").read()
+              md5 = hashlib.md5(raw[:8192]).hexdigest()
+              if raw[:2] != b"PK":   # 官方 my_save2：开头 2 字节是版本标记，后面才是 zip
+                  raw = b"PK" + raw[2:]
+              obj = torch.load(io.BytesIO(raw), map_location="cpu", weights_only=False)
+              w = obj.get("weight", obj) if isinstance(obj, dict) else obj
+              return md5, w
+          names = ["s2Gv2ProPlus.pth", "s2Gv5dev.pth", "s2Gv5turbo.pth", "s2Gv4.pth"]
+          got = {n: load(n) for n in names}
+          lines = ["# v5dev / v5turbo / v4 和 v2ProPlus 底模里提取语义 token 的权重（ssl_proj、quantizer）比较", ""]
+          for n in names:
+              md5, w = got[n]
+              lines.append(f"{n}: 前 8192 字节 MD5 {md5}，张量 {len(w)} 个")
+          lines.append("")
+          ref = got["s2Gv2ProPlus.pth"][1]
+          keys = sorted(k for k in ref if k.startswith(("ssl_proj", "quantizer")))
+          lines.append("v2ProPlus 里这部分的张量：" + "、".join(f"{k}{tuple(ref[k].shape)}" for k in keys))
+          for n in names[1:]:
+              w = got[n][1]
+              same, diff, missing = [], [], []
+              for k in keys:
+                  if k not in w:
+                      missing.append(k)
+                  elif tuple(w[k].shape) != tuple(ref[k].shape):
+                      diff.append(f"{k}（形状 {tuple(w[k].shape)}）")
+                  elif torch.equal(w[k].float(), ref[k].float()):
+                      same.append(k)
+                  else:
+                      d = (w[k].float() - ref[k].float()).abs().max().item()
+                      diff.append(f"{k}（最大差 {d:.3g}）")
+              verdict = "一模一样" if len(same) == len(keys) else "不一样"
+              lines.append(f"{n} 和 v2ProPlus：{verdict}（一样 {len(same)} 个，不一样 {len(diff)} 个，没有 {len(missing)} 个）")
+              for x in diff + [m + "（没有）" for m in missing]:
+                  lines.append("  - " + x)
+          out = "research/gsv_v4_v5/官方资料/语义token对比.txt"
+          os.makedirs(os.path.dirname(out), exist_ok=True)
+          open(out, "w", encoding="utf-8").write("\n".join(lines) + "\n")
+          print("\n".join(lines))
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/gsv_v4_v5/官方资料
+          git commit -m "记录：V5 和 v2ProPlus 提取语义 token 的权重比较（GitHub 自动取回）" || exit 0
+          for i in 1 2 3 4; do
+            git pull --rebase origin ${GITHUB_REF_NAME} && git push origin HEAD:${GITHUB_REF_NAME} && break
+            sleep $((i * 5))
+          done
