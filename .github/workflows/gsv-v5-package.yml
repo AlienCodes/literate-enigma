@@ -1,6 +1,6 @@
 name: gsv-v5-package
 
-# 查清楚官方 V5 整合包（RTX 50 系列版）里面是什么：Python、各个库的版本、预训练模型、GPT-SoVITS 代码。
+# 查清楚官方 V5 整合包（通用版、RTX 50 系列版）里面是什么：Python、各个库的版本、预训练模型、GPT-SoVITS 代码。
 # 只看清单、只解出小文件（*.dist-info、配置、版本标记），结果提交到 research/gsv_v4_v5/官方资料/。
 on:
   workflow_dispatch:
@@ -16,9 +16,22 @@ jobs:
   package:
     runs-on: ubuntu-latest
     timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        include:
+          - pkg: GPT-SoVITS-v5-20261005nvidia50x0.7z
+            sha: 27b269fc1c53823dc9d404ada83f4444b300e455011db9861ec72e01b6fc5d5e
+            dir: v5整合包
+            label: 50 系列版
+          - pkg: GPT-SoVITS-v5-20261005.7z
+            sha: 2c1cd034af0e76854a8023d0f1fd6156ef2414bcfd5c88aae3309e1263e0fffe
+            dir: v5整合包_通用版
+            label: 通用版
     env:
-      PKG: GPT-SoVITS-v5-20261005nvidia50x0.7z
-      SHA: 27b269fc1c53823dc9d404ada83f4444b300e455011db9861ec72e01b6fc5d5e
+      PKG: ${{ matrix.pkg }}
+      SHA: ${{ matrix.sha }}
     steps:
       - uses: actions/checkout@v4
       - name: Free disk
@@ -36,7 +49,7 @@ jobs:
       - name: Inspect
         run: |
           sudo apt-get install -y -qq p7zip-full >/dev/null
-          D="$GITHUB_WORKSPACE/research/gsv_v4_v5/官方资料/v5整合包"
+          D="$GITHUB_WORKSPACE/research/gsv_v4_v5/官方资料/${{ matrix.dir }}"
           mkdir -p "$D"
           cd /mnt/w
           7z l -slt "$PKG" > list_slt.txt
@@ -86,6 +99,6 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add research/gsv_v4_v5/官方资料
-          git commit -m "记录：官方 V5 整合包（50 系列版）的内容清单（GitHub 自动取回）" || exit 0
+          git commit -m "记录：官方 V5 整合包（${{ matrix.label }}）的内容清单（GitHub 自动取回）" || exit 0
           git pull --rebase origin ${GITHUB_REF_NAME}
           git push origin HEAD:${GITHUB_REF_NAME}
