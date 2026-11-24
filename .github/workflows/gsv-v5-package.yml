@@ -1,0 +1,91 @@
+name: gsv-v5-package
+
+# 查清楚官方 V5 整合包（RTX 50 系列版）里面是什么：Python、各个库的版本、预训练模型、GPT-SoVITS 代码。
+# 只看清单、只解出小文件（*.dist-info、配置、版本标记），结果提交到 research/gsv_v4_v5/官方资料/。
+on:
+  workflow_dispatch:
+  push:
+    branches: ["claude/**"]
+    paths:
+      - ".github/workflows/gsv-v5-package.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      PKG: GPT-SoVITS-v5-20261005nvidia50x0.7z
+      SHA: 27b269fc1c53823dc9d404ada83f4444b300e455011db9861ec72e01b6fc5d5e
+    steps:
+      - uses: actions/checkout@v4
+      - name: Free disk
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/share/boost || true
+          df -h /
+      - name: Download
+        run: |
+          mkdir -p /mnt/w || sudo mkdir -p /mnt/w
+          sudo chown $USER /mnt/w
+          df -h /mnt
+          cd /mnt/w
+          curl -fL --retry 5 -o "$PKG" "https://huggingface.co/lj1995/GPT-SoVITS-windows-package/resolve/main/$PKG?download=true"
+          echo "$SHA  $PKG" | sha256sum -c
+      - name: Inspect
+        run: |
+          sudo apt-get install -y -qq p7zip-full >/dev/null
+          D="$GITHUB_WORKSPACE/research/gsv_v4_v5/官方资料/v5整合包"
+          mkdir -p "$D"
+          cd /mnt/w
+          7z l -slt "$PKG" > list_slt.txt
+          python3 - "$D" <<'PY'
+          import sys, re, json, collections
+          D = sys.argv[1]
+          rows, cur = [], {}
+          for line in open("list_slt.txt", encoding="utf-8", errors="replace"):
+              line = line.rstrip("\n")
+              if not line:
+                  if "Path" in cur: rows.append(cur)
+                  cur = {}
+                  continue
+              if " = " in line:
+                  k, v = line.split(" = ", 1); cur[k] = v
+          if "Path" in cur: rows.append(cur)
+          files = [r for r in rows if r.get("Folder") == "-"]
+          with open(f"{D}/文件清单.tsv", "w", encoding="utf-8") as f:
+              for r in files:
+                  f.write(f"{r['Path']}\t{r.get('Size','')}\t{r.get('Modified','')}\n")
+          dist = sorted({re.sub(r"\.dist-info$", "", p.split("\\")[-2] if "\\" in p else p.split("/")[-2])
+                         for p in (r["Path"] for r in files) if re.search(r"\.dist-info[\\/]METADATA$", p)})
+          open(f"{D}/runtime_包版本.txt", "w").write("\n".join(dist) + "\n")
+          top = collections.Counter()
+          for r in files:
+              parts = re.split(r"[\\/]", r["Path"])
+              top["/".join(parts[:3])] += int(r.get("Size") or 0)
+          with open(f"{D}/目录大小.tsv", "w", encoding="utf-8") as f:
+              for k, v in sorted(top.items(), key=lambda x: -x[1])[:200]:
+                  f.write(f"{k}\t{v}\n")
+          print(len(files), "files;", len(dist), "dist-info")
+          PY
+          # 小文件：GPT-SoVITS 的配置和版本相关代码、启动脚本、python 版本
+          7z x -y -o/mnt/w/x "$PKG" -r '*.bat' '*.ps1' 'config.py' 'process_ckpt.py' 'api_v2.py' 'tts_infer.yaml' 'python*._pth' 'requirements*.txt' 'weight.json' 'version*' 'webui.py' >/dev/null || true
+          cd /mnt/w/x
+          find . -maxdepth 3 -type f | head -100 > "$D/解出的小文件.txt"
+          root=$(dirname "$(find . -name api_v2.py | head -1)")
+          for f in config.py api_v2.py webui.py GPT_SoVITS/process_ckpt.py GPT_SoVITS/configs/tts_infer.yaml requirements.txt; do
+            [ -f "$root/$f" ] && cp "$root/$f" "$D/$(echo $f | tr / _)" || true
+          done
+          ls "$root" > "$D/根目录.txt" || true
+          find . -name 'python*._pth' -exec cp {} "$D/" \; || true
+          find . -maxdepth 2 -name '*.bat' -exec cp {} "$D/" \; || true
+          ls -la "$D"
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/gsv_v4_v5/官方资料
+          git commit -m "记录：官方 V5 整合包（50 系列版）的内容清单（GitHub 自动取回）" || exit 0
+          git pull --rebase origin ${GITHUB_REF_NAME}
+          git push origin HEAD:${GITHUB_REF_NAME}
