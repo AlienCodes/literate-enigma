@@ -70,6 +70,10 @@ def make_cfg(workspace: Path, **extra):
                  "speaker_encoder": "mfcc", "similarity": {"model_dir": str(Path(workspace) / "_sv_models")}}
     for k, v in extra.items():
         overrides[k] = dict(overrides[k], **v) if k == "similarity" else v
+    # 以前的测试都按 v2ProPlus 写（单一版本的流程）；V5 的测试自己写 version: v5dev（见 test_gsv_v5.py）
+    gsv = dict((overrides.get("backends") or {}).get("gptsovits") or {})
+    gsv.setdefault("version", "v2ProPlus")
+    overrides["backends"] = dict(overrides.get("backends") or {}, gptsovits=gsv)
     return load_config(overrides=overrides, user_config=False)
 
 

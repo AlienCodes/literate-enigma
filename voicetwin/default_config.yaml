@@ -58,7 +58,8 @@ backends:
   gptsovits:
     root: ./third_party/GPT-SoVITS    # GPT-SoVITS 目录（Windows 整合包解压后的目录也可以）
     python: auto              # auto 会依次查找 runtime/python.exe、.venv、当前 Python
-    version: v2ProPlus        # v2Pro | v2ProPlus（官方 2026 年推荐，接近 v4 的效果、v2 的速度）
+    version: v5dev            # v5dev（默认，V5 完整版，最像）| v5turbo（V5 加速版，快、略差）| v2ProPlus | v2Pro | v4
+                              # 官方实测（不训练）：v5 0.805、v4 0.735；要用 V5 需要官方的 V5 整合包
     api_url: ""               # 如果你已经手动启动了 api_v2.py，填 http://127.0.0.1:9880，程序就不再自己启动
     port: 9880
     device: cuda
@@ -88,6 +89,12 @@ backends:
       if_dpo: auto            # DPO（GPT-SoVITS 的实验功能）：auto = 不开（没有可靠的测量说明它能让声音更像）；
                               # true 手动打开（语气训练慢 2～4 倍，显存最好 ≥ 22GB，不够会出错），false 关
       text_low_lr_rate: 0.4
+      compare_versions: auto  # 一起练、一起比较的版本：auto = 用 V4 / V5 时同时练 v2ProPlus，挑选时用你没参加训练的录音实测，
+                              # 哪个更像用哪个（训练时间会长一些）；none = 只练上面 version 写的那一个
+      lora_epochs: auto       # V4 / V5 音色 LoRA：auto = 标准 4 轮、「一模一样」8 轮，每轮存一个（官方默认 2 轮、最多 16 轮）
+      lora_batch_size: auto   # auto = 官方公式（显存 + 0.4）÷ 8，8 GB 显卡每批 1 条
+      lora_save_every: auto
+      lora_rank: 32           # LoRA 的秩：16 / 32（官方默认）/ 64 / 128
       gpu: "0"
     infer:
       top_k: 15
@@ -96,7 +103,7 @@ backends:
       repetition_penalty: 1.35
       aux_refs: 2             # 额外参考音频数量（v2/v2Pro：把几条参考的音色平均一下）。快速/均衡/最好用这个数；
                               # 极致/完美自动用 3 条（显存小于 8GB 用 2 条）。说实话：它几乎不占显存，效果提升也有限
-      sample_steps: 32        # 仅 v3/v4 使用
+      sample_steps: auto      # 仅 V4 / V5：每句算几步；auto = 官方默认（v5dev 32 步、v5turbo 4 步）
 
   qwen3tts:
     python: auto

@@ -25,7 +25,7 @@ def test_detect_version_from_file_head_hash_and_size(tmp_path, monkeypatch):
     assert v4["version"] == "v4" and v4["lora"] is True
     old = g.detect_sovits_version(_w(tmp_path / "d.pth", b"PK" + b"\0" * 100))  # 旧格式：按大小，小文件是 v1
     assert old["version"] == "v1" and "大小" in old["how"]
-    unknown = g.detect_sovits_version(_w(tmp_path / "e.pth", b"07" + b"\0" * 100))  # 不认识的标记：不猜
+    unknown = g.detect_sovits_version(_w(tmp_path / "e.pth", b"09" + b"\0" * 100))  # 不认识的标记：不猜
     assert unknown["version"] is None and "不认识" in unknown["how"]
     assert g.detect_sovits_version(tmp_path / "没有这个文件.pth")["how"] == "找不到模型文件"
     # 官方底模按开头 8192 字节的 MD5 认（底模文件开头不是版本标记）
@@ -38,13 +38,13 @@ def test_detect_version_from_file_head_hash_and_size(tmp_path, monkeypatch):
 def test_builtin_tables_match_gptsovits_and_new_versions_come_from_the_package(tmp_path):
     # 内置对照表和 GPT-SoVITS 官方 process_ckpt.py（2026-08-18 主分支）一致
     assert g.SOVITS_HEAD_VERSION[b"06"] == ("v2ProPlus", False) and g.SOVITS_HEAD_VERSION[b"04"] == ("v4", True)
-    # 以后官方出了 v5：整合包里的 process_ckpt.py 有新标记，就能认出来（不用等声音分身更新）
+    # 以后官方出了新版本（比如 v6）：整合包里的 process_ckpt.py 有新标记，就能认出来（不用等声音分身更新）
     _w(tmp_path / "GSV" / "GPT_SoVITS" / "process_ckpt.py", (
-        'head2version = {\n    b"00": ["v1", "v1", False],\n    b"07": ["v2", "v5", False],\n}\n'
-        'hash_pretrained_dict = {\n    "0123456789abcdef0123456789abcdef": ["v2", "v5", False],  # s2Gv5.pth\n}\n'
+        'head2version = {\n    b"00": ["v1", "v1", False],\n    b"09": ["v2", "v6", False],\n}\n'
+        'hash_pretrained_dict = {\n    "0123456789abcdef0123456789abcdef": ["v2", "v6", False],  # s2Gv6.pth\n}\n'
     ).encode("utf-8"))
-    f = _w(tmp_path / "x.pth", b"07" + b"\0" * 10)
-    assert g.detect_sovits_version(f, tmp_path / "GSV")["version"] == "v5"
+    f = _w(tmp_path / "x.pth", b"09" + b"\0" * 10)
+    assert g.detect_sovits_version(f, tmp_path / "GSV")["version"] == "v6"
     assert g.detect_sovits_version(f)["version"] is None  # 没有整合包的对照表：如实说不认识
     _w(tmp_path / "GSV2" / "GPT_SoVITS" / "process_ckpt.py", b"head2version = {broken\n")  # 读不懂：用内置的
     assert g.detect_sovits_version(_w(tmp_path / "y.pth", b"06xx"), tmp_path / "GSV2")["version"] == "v2ProPlus"

@@ -361,8 +361,12 @@ if ($Mode -eq "gsv") {
     if (-not (Test-Path -LiteralPath (Join-Path $GsvRoot "api_v2.py"))) {
         Fail "这个 GPT-SoVITS 整合包版本太旧（缺少 api_v2.py），请下载最新版整合包后重试。"
     }
-    if (-not (Test-Path -LiteralPath (Join-Path $GsvRoot "GPT_SoVITS\prepare_datasets\2-get-sv.py"))) {
-        Fail "这个整合包版本较旧，不支持 v2Pro。请下载最新的 v2pro 整合包后重试。"
+    # 要 V5 整合包（2026-10 以后）：官方的 process_ckpt.py 认识 v5dev，并且有 V5 的 LoRA 训练脚本
+    $ckpt = Join-Path $GsvRoot "GPT_SoVITS\process_ckpt.py"
+    $v5 = ((Test-Path -LiteralPath (Join-Path $GsvRoot "GPT_SoVITS\s2_train_v3_lora.py")) -and (Test-Path -LiteralPath $ckpt) -and
+           (Select-String -LiteralPath $ckpt -Pattern "v5dev" -SimpleMatch -Quiet))
+    if (-not $v5) {
+        Fail "这个整合包版本较旧，不支持 V5。请下载 GPT-SoVITS V5 整合包（文件名以 GPT-SoVITS-v5 开头）后重试。"
     }
     if (Test-NonAsciiOrSpace $GsvRoot) {
         $ans = Ask "⚠️ 整合包的路径里有中文或空格（$GsvRoot），训练时可能出错。建议把整合包移到类似 D:\GPT-SoVITS 的位置。输入 Y 继续安装，直接按回车退出" "Y"

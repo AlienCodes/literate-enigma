@@ -109,6 +109,15 @@ def markdown_to_html(md_text: str, title: str, online_path: str = "快速上手.
 
 #: 每个版本在 Release 页面上写的「这一版新增」（没有写的版本就不显示这一段）
 WHATS_NEW = {
+    "18.7": [
+        "**升级到 GPT-SoVITS V5**：默认用 v5dev（官方公布的零样本相似度：V5 0.805，上一代 V4 0.735）。"
+        "要用官方的 V5 整合包（文件名以 `GPT-SoVITS-v5` 开头；RTX 50 系列显卡用带 `nvidia50` 的），V5 和 v2ProPlus 的底模它都自带，不用另外下载",
+        "**训练时 V5 和 v2ProPlus 两种一起练，用你没参加训练的录音实测，哪个更像你就用哪个**"
+        "（V5 训练以后和 v2ProPlus 比哪个更像，官方没有公布，所以按你自己的声音实测来定）",
+        "V5 的音色按官方的 LoRA 方式微调，每轮存一个，挑的时候每一轮都试",
+        "生成的文件名最后写实际用的模型，例如 `第3课_10月05日09点30分_v5dev.wav`",
+        "网页标题永远是「声音分身 VoiceTwin v18」（这次的安装包叫 v18.7）",
+    ],
     "18.6": [
         "**新的质量档「一模一样」（以后默认就是它）**：每句话换几条你自己的录音当参考、试很多个版本，挑出最像你的；"
         "句子之间的停顿长短和每句的音量按你讲课录音里实测的习惯来；句子之间照样是**绝对静音**。最像你，也最慢",
@@ -264,7 +273,7 @@ def release_notes(version: str, zip_name: str) -> str:
 ### 🚀 最快用起来
 
 **安装（一次）**
-1. 下载 [GPT-SoVITS 整合包](https://www.yuque.com/baicaigongchang1145haoyuangong/ib3g1e/dkxgpiy9zb96hob4#KTvnO)（最新 v2pro 版），解压并改名为 `D:\\GPT-SoVITS`
+1. 下载 [GPT-SoVITS V5 整合包](https://www.yuque.com/baicaigongchang1145haoyuangong/ib3g1e/dkxgpiy9zb96hob4#KTvnO)（文件名以 `GPT-SoVITS-v5` 开头；RTX 50 系列显卡选带 `nvidia50` 的；打不开就用 [国内镜像](https://hf-mirror.com/lj1995/GPT-SoVITS-windows-package/tree/main)），解压并改名为 `D:\\GPT-SoVITS`
 2. 把 `{zip_name}` 解压到 `D:\\`，双击 `D:\\VoiceTwin\\install_windows.bat`，输入 **1** 回车，再输入 `D:\\GPT-SoVITS` 回车，等它装完，黑色窗口里写着「声音分身 VoiceTwin v{version} 正在启动」就对了（网页标题永远显示 v18）
 
 **训练（一次）**
@@ -277,7 +286,7 @@ def release_notes(version: str, zip_name: str) -> str:
 
 图文版：[快速上手]({REPO_URL}/blob/master/快速上手.md)（解压后双击 `使用教程（先看我）.html` 也能看）。
 
-> 电脑要求：Windows 10/11，NVIDIA 显卡 6GB 显存以上，硬盘空闲 30GB。只克隆你自己的声音；公开发布 AI 合成音频时请按平台规定标注。
+> 电脑要求：Windows 10/11，NVIDIA 显卡 6GB 显存以上，硬盘空闲 30GB（V5 整合包下载 10.6 GB、解压后 17.1 GB，解压完压缩包可以删掉）。只克隆你自己的声音；公开发布 AI 合成音频时请按平台规定标注。
 """
 
 

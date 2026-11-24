@@ -1,7 +1,7 @@
 # 真实的 GPT-SoVITS 推理服务代码（测试专用）
 
 `api_v2.py` 是 [RVC-Boss/GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS) 官方原样的文件，
-版本 `abe9843`（2025-12-19），和老师电脑上整合包里的那份一致（老师的报错里 `text_lang.lower()` 在第 484 行，这份也是）。
+取自官方 V5 整合包 `GPT-SoVITS-v5-20261005`（GitHub 上解开整合包取出，见 `.github/workflows/gsv-v5-package.yml`；和 `research/gsv_v4_v5/官方资料/v5整合包/api_v2.py` 一字不差）。上一份是 `abe9843`（2025-12-19）。
 许可证是 MIT，见同目录的 `LICENSE`。**不要改这个文件**；GPT-SoVITS 出新版本时整份换掉，并更新这里写的版本号。
 
 为什么放在这里：v18.2 时，程序判断「合成引擎好了没有」用的是不带参数的 `GET /tts`。我们自己写的模拟版

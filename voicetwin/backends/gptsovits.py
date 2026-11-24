@@ -30,6 +30,7 @@
 
 from __future__ import annotations
 
+import contextlib
 import dataclasses
 import hashlib
 import json
@@ -74,40 +75,68 @@ PRETRAINED_SOVITS = {
     "v2": "GPT_SoVITS/pretrained_models/gsv-v2final-pretrained/s2G2333k.pth",
     "v2Pro": "GPT_SoVITS/pretrained_models/v2Pro/s2Gv2Pro.pth",
     "v2ProPlus": "GPT_SoVITS/pretrained_models/v2Pro/s2Gv2ProPlus.pth",
+    "v4": "GPT_SoVITS/pretrained_models/gsv-v4-pretrained/s2Gv4.pth",
+    "v5dev": "GPT_SoVITS/pretrained_models/gsv-v5-pretrained/s2Gv5dev.pth",
+    "v5turbo": "GPT_SoVITS/pretrained_models/gsv-v5-pretrained/s2Gv5turbo.pth",
 }
 PRETRAINED_GPT = {
     "v2": "GPT_SoVITS/pretrained_models/gsv-v2final-pretrained/s1bert25hz-5kh-longer-epoch=12-step=369668.ckpt",
     "v2Pro": "GPT_SoVITS/pretrained_models/s1v3.ckpt",
     "v2ProPlus": "GPT_SoVITS/pretrained_models/s1v3.ckpt",
+    "v4": "GPT_SoVITS/pretrained_models/s1v3.ckpt",
+    "v5dev": "GPT_SoVITS/pretrained_models/s1v3.ckpt",
+    "v5turbo": "GPT_SoVITS/pretrained_models/s1v3.ckpt",
 }
+#: V4 / V5 生成声音还要一个声码器（官方 TTS.py 的 init_vocoder：V5 的两种共用 gsv-v5-pretrained/vocoder.pth）
+VOCODER = {
+    "v4": "GPT_SoVITS/pretrained_models/gsv-v4-pretrained/vocoder.pth",
+    "v5dev": "GPT_SoVITS/pretrained_models/gsv-v5-pretrained/vocoder.pth",
+    "v5turbo": "GPT_SoVITS/pretrained_models/gsv-v5-pretrained/vocoder.pth",
+}
+#: 「一模一样」挑选时，V4 / V5 的音色 LoRA 从第几轮起都试（官方默认只练 2 轮，「训太多=作死」）
+LORA_SELECT_FROM = 2
+#: 扩散路线（V4 / V5）：音色用 LoRA 微调（官方 webui.py 的 v3v4set：s2_train_v3_lora.py、没有 s2D、每批 显存 // 8 条）
+LORA_VERSIONS = ("v4", "v5dev", "v5turbo")
 BERT_DIR = "GPT_SoVITS/pretrained_models/chinese-roberta-wwm-ext-large"
 HUBERT_DIR = "GPT_SoVITS/pretrained_models/chinese-hubert-base"
 SV_PATH = "GPT_SoVITS/pretrained_models/sv/pretrained_eres2netv2w24s4ep4.ckpt"
 SUPPORTED_VERSIONS = tuple(PRETRAINED_SOVITS)
-#: 目前公开的最新、最强版本。官方 wiki《GPT‐SoVITS‐features(Latest‐Including‐v5)》：
-#: 时间顺序 V1<V2<V3<V4<V2Pro(Plus)<V5；v2ProPlus "超 v4 的性能"，Zero Shot 相似度比 v2Pro 略高；
-#: V5 截至 2026-10-01 还没有公开的代码和模型（GitHub 最新发布 20250606v2pro）。V5 公开后再实测比较。
-LATEST_VERSION = "v2ProPlus"
+#: 默认版本：V5 的完整版 v5dev（老师 2026-11-24 要求换成 V5）。官方 README 的「Seed-TTS-Eval 中文 SIM」图（零样本、不训练）：
+#: v5 0.805、v4 0.735；官方代码里 v5dev 每句算 32 步（带 cfg 1.30），v5turbo 只算 4 步（快、略差：官方 wiki 0.782）。
+#: v2ProPlus 官方没有公布同一个测试的数字。训练以后哪个更像，官方没有测过，所以默认同时练 v2ProPlus（COMPARE_VERSIONS），
+#: 用老师没参加训练的录音实测挑（永久规定 11）。
+LATEST_VERSION = "v5dev"
+DEFAULT_VERSION = "v5dev"
+COMPARE_VERSIONS = ("v2ProPlus",)
+
+
+def is_lora_version(version: str) -> bool:
+    return str(version) in LORA_VERSIONS
 
 
 def version_status(version: str) -> Tuple[bool, str]:
     """GPT-SoVITS 模型版本是不是目前公开的最新版本：(是否最新, 说明)。"""
     if version == LATEST_VERSION:
-        return True, (f"{version}：目前公开的最新、最强版本（官方版本顺序 V1<V2<V3<V4<V2Pro(Plus)<V5，"
-                      "V5 还没有公开；v2ProPlus 比 v2Pro 更像）")
+        return True, (f"{version}：目前公开的最新版本 V5 的完整版（官方 2026-10 发布；官方实测不训练时的相似度 v5 0.805、"
+                      "v4 0.735；v5turbo 快但略差）")
+    if version == "v5turbo":
+        return True, ("v5turbo：V5 的加速版（每句只算 4 步，比 v5dev 快，像的程度略低）。要最像就把 config.yaml 里 "
+                      "backends → gptsovits 下面的 version 改成 v5dev")
     return False, (f"设置里用的是 {version}，不是最新的 {LATEST_VERSION}。怎么办：用记事本打开 config.yaml，把 "
                    f"backends → gptsovits 下面的 version 改成 {LATEST_VERSION}，保存后在 ② 训练模型 重新训练一次")
 
 # ---------------------------------------------------------------- 从模型文件本身读出版本
 # 和 GPT-SoVITS 自己判断的方法完全一样（GPT_SoVITS/process_ckpt.py 的 get_sovits_version_from_path_fast）：
 #   1. 官方底模：文件开头 8192 字节的 MD5 对照表；
-#   2. 训练出来的新格式模型：文件开头 2 个字节是版本标记（00=v1 01=v2 02=v3 03=v3 LoRA 04=v4 LoRA 05=v2Pro 06=v2ProPlus）；
+#   2. 训练出来的新格式模型：文件开头 2 个字节是版本标记（00=v1 01=v2 02=v3 03=v3 LoRA 04=v4 LoRA 05=v2Pro 06=v2ProPlus
+#      07=v5dev LoRA 08=v5turbo LoRA）；
 #   3. 旧格式（开头是 PK 的 zip）：按文件大小分 v1 / v2 / v3。
-# 对照表会再从整合包里的 process_ckpt.py 读一遍（以后官方出了新版本，例如 v5，标记会自动认出来）；
+# 对照表会再从整合包里的 process_ckpt.py 读一遍（以后官方出了新版本，标记会自动认出来）；
 # 两边都不认识的标记就如实显示"未知版本"，不猜。
 SOVITS_HEAD_VERSION: Dict[bytes, Tuple[str, bool]] = {
     b"00": ("v1", False), b"01": ("v2", False), b"02": ("v3", False), b"03": ("v3", True),
     b"04": ("v4", True), b"05": ("v2Pro", False), b"06": ("v2ProPlus", False),
+    b"07": ("v5dev", True), b"08": ("v5turbo", True),
 }
 SOVITS_HASH_VERSION: Dict[str, str] = {
     "dc3c97e17592963677a4a1681f30c653": "v2",         # s2G488k.pth（v1 底模，官方按 v2 处理）
@@ -116,6 +145,8 @@ SOVITS_HASH_VERSION: Dict[str, str] = {
     "4f26b9476d0c5033e04162c486074374": "v4",         # s2Gv4.pth
     "c7e9fce2223f3db685cdfa1e6368728a": "v2Pro",      # s2Gv2Pro.pth
     "66b313e39455b57ab1b0bc0b239c9d0a": "v2ProPlus",  # s2Gv2ProPlus.pth
+    "c4ce1f839a0d271e41963f9fb16ade76": "v5dev",      # s2Gv5dev.pth
+    "6bc5cb2a195cc8ec22b2e723cd4d6f47": "v5turbo",    # s2Gv5turbo.pth
 }
 _GSV_MAPS_CACHE: Dict[str, Tuple[float, Dict[bytes, Tuple[str, bool]], Dict[str, str]]] = {}
 
@@ -923,6 +954,49 @@ def plan_training(n_clips: int, minutes: float, total_gb: Optional[float] = None
     }
 
 
+#: V4 / V5 音色 LoRA 的轮数（官方界面默认 2 轮、每轮存、最多 16 轮，注释「训太多=作死」）：标准 4 轮、「一模一样」8 轮，
+#: 每轮都存，训练完用老师没参加训练的录音实测挑最像的那一轮（练过头的那几轮自然会被比下去）
+LORA_EPOCHS_STANDARD = 4
+LORA_EPOCHS_DEEP = 8
+LORA_MAX_EPOCHS = 16
+
+
+def plan_lora(version: str, total_gb: Optional[float] = None, free_gb: Optional[float] = None, *, is_half: bool = True,
+              mode: str = "identical", n_clips: int = 0, user: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+    """V4 / V5 音色 LoRA 的训练设置：{"version", "batch_size", "epochs", "save_every", "rank", "auto", "summary"}。
+
+    每批条数照官方 webui.py：(显存 + 0.4) // 8（8 GB 显卡每批 1 条；空闲的少时按空闲的算），没有 N 卡 1 条，全精度减半，
+    不超过素材条数的 1/4。user 是 config.yaml 的 train 一节：lora_batch_size / lora_epochs / lora_save_every / lora_rank
+    写了数字就照写的。"""
+    user = dict(user or {})
+    total = _pos_float(total_gb)
+    free = _pos_float(free_gb)
+    g = (total + REPORTED_FUDGE_GB) if total else 0.0
+    if g and free is not None:
+        g = min(g, free + FREE_SLACK_GB)
+    auto = {k: _is_auto(user.get(k, "auto")) for k in ("lora_batch_size", "lora_epochs", "lora_save_every")}
+    if auto["lora_batch_size"]:
+        bs = max(1, int(g // 8)) if g > 0 else 1
+        if not is_half:
+            bs = max(1, bs // 2)
+    else:
+        bs = max(1, _to_int(user.get("lora_batch_size"), 1))
+    if n_clips:
+        bs = min(bs, max(1, int(n_clips) // 4))
+    base = LORA_EPOCHS_DEEP if mode == "identical" else LORA_EPOCHS_STANDARD
+    ep = base if auto["lora_epochs"] else max(1, min(_to_int(user.get("lora_epochs"), base), LORA_MAX_EPOCHS))
+    save = 1 if auto["lora_save_every"] else max(1, min(_to_int(user.get("lora_save_every"), 1), ep))
+    if ep % save:   # 最后一轮一定要存下来
+        ep = min(LORA_MAX_EPOCHS, int(math.ceil(ep / float(save)) * save))
+    rank = _to_int(user.get("lora_rank"), 32)
+    rank = rank if rank in (16, 32, 64, 128) else 32
+    every = "每轮" if save == 1 else f"每 {save} 轮"
+    summary = (f"{version} 音色（LoRA 微调，官方的练法）：每批 {bs} 条、{ep} 轮、{every}存一个，"
+               f"练完用你没参加训练的录音实测挑最像的那一轮")
+    return {"version": version, "batch_size": bs, "epochs": ep, "save_every": save, "rank": rank, "auto": auto,
+            "summary": summary}
+
+
 def _probe_pair(probe_batch: Any) -> Tuple[Optional[int], Optional[int]]:
     """probe_batch（一个数，或 {"sovits": b1, "gpt": b2}）→ (音色的每批条数, 语气的每批条数)，没有的是 None。"""
     if isinstance(probe_batch, dict):
@@ -1487,10 +1561,12 @@ class GPTSoVITSBackend(Backend):
     def __init__(self, cfg, project):
         super().__init__(cfg, project)
         self.root = self.resolve("root", "./third_party/GPT-SoVITS")
-        self.version = str(self.bcfg.get("version", "v2ProPlus"))
+        self.version = str(self.bcfg.get("version", DEFAULT_VERSION))
         if self.version not in SUPPORTED_VERSIONS:
-            log.warning(f"暂只自动化支持 {SUPPORTED_VERSIONS}，当前配置 {self.version}，改用 v2ProPlus")
-            self.version = "v2ProPlus"
+            log.warning(f"暂只自动化支持 {SUPPORTED_VERSIONS}，当前配置 {self.version}，改用 {DEFAULT_VERSION}")
+            self.version = DEFAULT_VERSION
+        #: 设置里的版本（训练时练对比版本会临时换 self.version，练完换回来）
+        self.main_version = self.version
         self.python = resolve_python(self.bcfg.get("python", "auto"), self.root, cfg)
         self.exp_name = _exp_name(project.voice)
         self.external_url = (self.bcfg.get("api_url") or "").rstrip("/")
@@ -1540,11 +1616,75 @@ class GPTSoVITSBackend(Backend):
             problems.append("可运行 voicetwin download-models 自动下载（国内加 --source hf-mirror）")
         return problems
 
-    def _required_pretrained(self) -> List[str]:
-        needed = [BERT_DIR, HUBERT_DIR, PRETRAINED_SOVITS[self.version], PRETRAINED_SOVITS[self.version].replace("s2G", "s2D"),
-                  PRETRAINED_GPT[self.version]]
-        if "Pro" in self.version:
+    def compare_versions(self) -> List[str]:
+        """训练时同时练、一起比较的别的版本（设置 train.compare_versions）：auto = 主版本是 V4 / V5 时加上 v2ProPlus
+        （训练以后哪个更像官方没有测过，用老师的录音实测挑）；none / false / [] = 不加。不认识的版本不加。"""
+        raw = self._tcfg().get("compare_versions", "auto")
+        if raw is None or raw is False or (isinstance(raw, str) and raw.strip().lower() in ("none", "false", "off", "no", "")):
+            vers: List[str] = []
+        elif _is_auto(raw):
+            vers = list(COMPARE_VERSIONS) if is_lora_version(self.main_version) else []
+        elif isinstance(raw, str):
+            vers = [x.strip() for x in re.split(r"[,，\s]+", raw) if x.strip()]
+        else:
+            vers = [str(x).strip() for x in raw if str(x).strip()]
+        out = []
+        for v in vers:
+            if v in SUPPORTED_VERSIONS and v != self.main_version and v not in out:
+                out.append(v)
+            elif v not in SUPPORTED_VERSIONS:
+                log.warning(f"train.compare_versions 里的 {v} 不认识，不练它（认识的：{'、'.join(SUPPORTED_VERSIONS)}）")
+        return out
+
+    def train_versions(self) -> List[str]:
+        """这次训练要练的音色模型版本：设置里的版本在前，后面是对比版本。"""
+        return [self.main_version] + self.compare_versions()
+
+    @contextlib.contextmanager
+    def _as_version(self, version: str):
+        """临时按另一个版本做（练对比版本的音色模型）；做完换回设置里的版本。"""
+        old = self.version
+        self.version = version
+        try:
+            yield
+        finally:
+            self.version = old
+
+    def _needs_sv(self) -> bool:
+        """要不要提取声纹（7-sv_cn）：要练的版本里有 v2Pro / v2ProPlus 时要。"""
+        return any("Pro" in v for v in self.train_versions())
+
+    def _semantic_version(self) -> str:
+        """提取语义（1C）用哪个版本的底模：和官方一样用设置里的版本（V5 用 s2Gv5dev）。各版本的语义编码是同一套
+        （官方：同属 v2 音素的 GPT 和 SoVITS 可以混搭），所以练出来的一个 GPT 给所有版本的音色模型用。"""
+        return self.main_version
+
+    def _weight_dirs(self, kind: str) -> List[str]:
+        """模型文件夹：SoVITS 按这次要练的每个版本，GPT 只有设置里的版本（语气模型只练一个，各版本共用）。
+        找不到时（换过设置）也到别的版本的文件夹里找。"""
+        vers = self.train_versions() if kind == "sovits" else [self.main_version]
+        head = "SoVITS_weights_" if kind == "sovits" else "GPT_weights_"
+        out = [head + v for v in vers]
+        return out + [head + v for v in SUPPORTED_VERSIONS if head + v not in out]
+
+    @staticmethod
+    def _pretrained_for(version: str) -> List[str]:
+        """一个版本训练、生成要用的官方预训练模型（相对 GPT-SoVITS 目录）。"""
+        needed = [PRETRAINED_SOVITS[version], PRETRAINED_GPT[version]]
+        if is_lora_version(version):
+            needed.append(VOCODER[version])   # V4 / V5 没有 s2D（判别器）
+        else:
+            needed.append(PRETRAINED_SOVITS[version].replace("s2G", "s2D"))
+        if "Pro" in version:
             needed.append(SV_PATH)
+        return needed
+
+    def _required_pretrained(self) -> List[str]:
+        needed = [BERT_DIR, HUBERT_DIR]
+        for v in self.train_versions():
+            for rel in self._pretrained_for(v):
+                if rel not in needed:
+                    needed.append(rel)
         return needed
 
     def _pretrained_ok(self, rel: str) -> bool:
@@ -1815,9 +1955,31 @@ class GPTSoVITSBackend(Backend):
                 plan_kw.setdefault(k, v)
         plan = plan_training(n_clips, minutes, total, free, is_half=self.is_half, noisy=noisy, suspects=suspects,
                              user=self._user_settings(opts), mode=mode, **plan_kw)
+        self._add_versions_to_plan(plan, n_clips, total, free, mode)
         plan["gpu_source"] = source
         plan["noisy_share"] = round(share, 2)
         return plan
+
+    def _add_versions_to_plan(self, plan: Dict[str, Any], n_clips: int, total: Optional[float], free: Optional[float],
+                              mode: str) -> None:
+        """训练计划里加上这次要练哪几个版本的音色模型（V4 / V5 的 LoRA 设置在 plan["lora"]）。"""
+        vers = self.train_versions()
+        lora = [v for v in vers if is_lora_version(v)]
+        vits = [v for v in vers if not is_lora_version(v)]
+        plan["versions"], plan["lora_versions"], plan["sovits_versions"] = vers, lora, vits
+        if lora:
+            plan["lora"] = plan_lora(lora[0], total, free, is_half=self.is_half, mode=mode, n_clips=n_clips,
+                                     user=self._tcfg())
+        extra = []
+        if lora:
+            extra.append(plan["lora"]["summary"])
+        if len(vers) > 1:
+            extra.append(f"这次练 {len(vers)} 个版本的音色模型（{'、'.join(vers)}），语气模型（GPT）只练一个、大家共用；"
+                         f"挑选时放在一起用你的录音实测，哪个更像用哪个")
+        elif lora:
+            extra.append(f"只练 {lora[0]}，上面说的音色 SoVITS 轮数不用")
+        if extra:
+            plan["summary"] = str(plan.get("summary") or "") + "".join(f"{x}。" for x in extra)
 
     def training_plan(self, quick: bool = False, **opts: Any) -> Dict[str, Any]:
         """训练前预览这次的自动训练设置（不训练、不导出文件）。
@@ -1870,11 +2032,12 @@ class GPTSoVITSBackend(Backend):
         names = [line.split("|", 1)[0] for line in data.decode("utf-8", errors="replace").splitlines() if line.strip()]
         frontend = self._text_frontend()
         clip_sig = _clip_signature(names, wav_dir)
-        digest = hashlib.sha1(data + self.version.encode() + b"|text=" + frontend.encode()
+        vers = "+".join(self.train_versions())
+        digest = hashlib.sha1(data + vers.encode() + b"|text=" + frontend.encode()
                               + b"|clips=" + clip_sig.encode()).hexdigest()
         return {"digest": digest, "list_sha1": hashlib.sha1(data + self.version.encode()).hexdigest(),
                 "frontend": frontend, "clip_sig": clip_sig, "names_sig": short_hash(*sorted(names), n=16),
-                "version": self.version}
+                "version": vers}
 
     def _material_changes(self, feat: Dict[str, str], opt_dir: Path) -> Tuple[bool, List[str], List[str]]:
         """和上次提取特征时比：(变了没有, 变了哪些 [list / frontend / clips / names / version / legacy / first], 中文原因)。"""
@@ -2049,8 +2212,9 @@ class GPTSoVITSBackend(Backend):
     def _weight_files(self) -> List[Tuple[str, Path]]:
         """这个声音导出过的模型文件：[(所在的文件夹名, 文件)]。"""
         out: List[Tuple[str, Path]] = []
-        for sub, pattern in ((f"SoVITS_weights_{self.version}", f"{self.exp_name}_e*_s*.pth"),
-                             (f"GPT_weights_{self.version}", f"{self.exp_name}-e*.ckpt")):
+        subs = [(sub, f"{self.exp_name}_e*_s*.pth") for sub in self._weight_dirs("sovits")[:len(self.train_versions())]]
+        subs.append((f"GPT_weights_{self.main_version}", f"{self.exp_name}-e*.ckpt"))
+        for sub, pattern in subs:
             d = self.p(sub)
             if d.is_dir():
                 out += [(sub, f) for f in sorted(d.glob(pattern)) if f.is_file()]
@@ -2097,7 +2261,9 @@ class GPTSoVITSBackend(Backend):
 
         模型文件也要挪走：素材条数不变时（例如只改了错字），新模型的文件名和旧的一模一样，不挪的话会直接覆盖掉
         原来选中的模型，而且新旧模型分不出来（生成时会一直用到旧模型的缓存）。models.json 里的路径跟着改到新位置。"""
-        names = [f"logs_s2_{self.version}", f"logs_s1_{self.version}", "logs_s1"]
+        names = [f"logs_s2_{v}" for v in self.train_versions()]
+        names += [d.name for d in opt_dir.glob("logs_s2_*_lora_*") if d.is_dir()]
+        names += [f"logs_s1_{self.main_version}", "logs_s1"]
         existing = []
         for n in names:
             d = opt_dir / n
@@ -2282,7 +2448,7 @@ class GPTSoVITSBackend(Backend):
         self._run_parts([self.python, "-s", "GPT_SoVITS/prepare_datasets/2-get-hubert-wav32k.py"], env_1b, parts,
                         "gsv_1b_hubert", progress, (pos["hubert"], pos["sv"]), label="提取声音特征",
                         poll=_count_files(opt_dir / "4-cnhubert", "*.pt", n))
-        if "Pro" in self.version:
+        if self._needs_sv():
             self.step(progress, pos["sv"], "提取声纹")
             self._run_parts([self.python, "-s", "GPT_SoVITS/prepare_datasets/2-get-sv.py"], env_1b, parts,
                             "gsv_1b_sv", progress, (pos["sv"], pos["semantic"]), label="提取声纹",
@@ -2294,8 +2460,9 @@ class GPTSoVITSBackend(Backend):
             self.step(progress, pos["semantic"], "提取语义（大约 1~3 分钟）")
             # 官方 3-get-semantic.py 看到分块结果已经在了就什么都不做（直接用旧的），所以先删；删不掉就停下说清楚
             _remove_parts(opt_dir, "6-name2semantic-*.tsv")
-            env_1c = self.env({**base, "pretrained_s2G": str(self.p(PRETRAINED_SOVITS[self.version])),
-                               "s2config_path": self._s2_config_template()})
+            with self._as_version(self._semantic_version()):
+                env_1c = self.env({**base, "pretrained_s2G": str(self.p(PRETRAINED_SOVITS[self.version])),
+                                   "s2config_path": self._s2_config_template()})
             self._run_parts([self.python, "-s", "GPT_SoVITS/prepare_datasets/3-get-semantic.py"], env_1c, parts,
                             "gsv_1c_semantic", progress, (pos["semantic"], pos["probe"]), label="提取语义")
             got = self._merge_parts(opt_dir, "6-name2semantic-{}.tsv", parts, "6-name2semantic.tsv",
@@ -2493,10 +2660,19 @@ class GPTSoVITSBackend(Backend):
 
         return {"expected": int(n), "text": rows("2-name2text.txt"), "semantic": rows("6-name2semantic.tsv", True),
                 "hubert": files("4-cnhubert", "*.pt"), "wav32k": files("5-wav32k", "*"),
-                "sv": files("7-sv_cn", "*.pt") if "Pro" in self.version else None, "bert": files("3-bert", "*.pt")}
+                "sv": files("7-sv_cn", "*.pt") if self._needs_sv() else None, "bert": files("3-bert", "*.pt")}
 
     def _s2_config_template(self) -> str:
         return "GPT_SoVITS/configs/s2.json" if "Pro" not in self.version else f"GPT_SoVITS/configs/s2{self.version}.json"
+
+    def _lora_rank(self) -> int:
+        """V4 / V5 音色 LoRA 的秩（官方界面默认 32，可选 16 / 32 / 64 / 128；train.lora_rank 可以改）。"""
+        v = _to_int(self._tcfg().get("lora_rank"), 32)
+        return v if v in (16, 32, 64, 128) else 32
+
+    def _s2_script(self) -> str:
+        """训练音色用的官方脚本：V4 / V5 用 LoRA 微调（s2_train_v3_lora.py），其他用 s2_train.py（官方 webui.py 一样）。"""
+        return "GPT_SoVITS/s2_train_v3_lora.py" if is_lora_version(self.version) else "GPT_SoVITS/s2_train.py"
 
     # ---------------------------------------------------------------- 写训练设置
     def _write_s2_config(self, path: Path, bs: int, epochs: int, save_every: int, exp_dir: Path, *,
@@ -2510,10 +2686,10 @@ class GPTSoVITSBackend(Backend):
         s2["train"].update({
             "batch_size": int(bs), "epochs": int(epochs),
             "text_low_lr_rate": float(tcfg.get("text_low_lr_rate", 0.4)),
-            "pretrained_s2G": pre_g, "pretrained_s2D": pre_g.replace("s2G", "s2D"),
+            "pretrained_s2G": pre_g, "pretrained_s2D": "" if is_lora_version(self.version) else pre_g.replace("s2G", "s2D"),
             "if_save_latest": not probe, "if_save_every_weights": not probe,
             "save_every_epoch": 9999 if probe else int(save_every), "gpu_numbers": self._gpu(),
-            "grad_ckpt": False, "lora_rank": 32,
+            "grad_ckpt": False, "lora_rank": self._lora_rank(),
             # 日志里多久记一次进度（官方模板是 100 步）：训练时 20 步，看得到进度；实测时 2 步，几十步就能算出速度
             "log_interval": 2 if probe else 20,
         })
@@ -2607,7 +2783,7 @@ class GPTSoVITSBackend(Backend):
         if kind == "sovits":
             cfg = self.work_dir / "tmp_probe_s2.json"
             self._write_s2_config(cfg, bs, 100, 9999, probe_dir, probe=True)
-            cmd = [self.python, "-s", "GPT_SoVITS/s2_train.py", "--config", str(cfg)]
+            cmd = [self.python, "-s", self._s2_script(), "--config", str(cfg)]
             env = self.env()
             label = "实测显卡（音色）"
         else:
@@ -2751,10 +2927,13 @@ class GPTSoVITSBackend(Backend):
             if kind == "sovits":
                 cfg = self.work_dir / "tmp_s2.json"
                 self._write_s2_config(cfg, bs, total, save, opt_dir)
-                cmd = [self.python, "-s", "GPT_SoVITS/s2_train.py", "--config", str(cfg)]
+                cmd = [self.python, "-s", self._s2_script(), "--config", str(cfg)]
                 env = self.env()
                 parser = self._sovits_progress(total, counts, params)
-                log_name, label = "gsv_s2_train", "训练音色"
+                if is_lora_version(self.version):
+                    log_name, label = f"gsv_s2_train_{self.version}", f"训练音色（{self.version}）"
+                else:
+                    log_name, label = "gsv_s2_train", "训练音色"
             else:
                 cfg = self.work_dir / "tmp_s1.yaml"
                 self._write_s1_config(cfg, bs, total, save, opt_dir, bool(params.get("if_dpo")))
@@ -2808,6 +2987,25 @@ class GPTSoVITSBackend(Backend):
                                 lambda bs: self._run_stage("sovits", opt_dir, params, progress, (pos["sovits"], pos["gpt"]),
                                                            counts, bs), progress, pos["sovits"])
 
+    def _train_lora(self, opt_dir: Path, params: Dict[str, Any], progress: Optional[ProgressFn],
+                    pos: Optional[Dict[str, float]] = None, counts: Optional[Dict[str, Any]] = None) -> int:
+        """V4 / V5 的音色 LoRA（调用前已经换到这个版本：self.version）。设置在 params["lora"]。"""
+        pos = pos or TRAIN_POS["standard"]
+        counts = {} if counts is None else counts
+        lp = params["lora"]
+        sub = dict(params, batch_size=int(lp["batch_size"]), sovits_epochs=int(lp["epochs"]),
+                   sovits_save_every=int(lp["save_every"]))
+        what = f"训练音色（{self.version}，LoRA 微调）"
+        self.step(progress, pos["sovits"], f"{what}，共 {int(lp['epochs'])} 轮……")
+        try:
+            return self._oom_ladder(what, int(lp["batch_size"]),
+                                    lambda bs: self._run_stage("sovits", opt_dir, sub, progress, (pos["sovits"], pos["gpt"]),
+                                                               counts, bs), progress, pos["sovits"])
+        finally:  # 硬盘不够时保存间隔会加倍：记下实际用的
+            lp["save_every"] = int(sub["sovits_save_every"])
+            if "disk_guard" in sub:
+                lp["disk_guard"] = sub["disk_guard"]
+
     def _train_gpt(self, opt_dir: Path, params: Dict[str, Any], progress: Optional[ProgressFn],
                    pos: Optional[Dict[str, float]] = None, counts: Optional[Dict[str, Any]] = None) -> int:
         pos = pos or TRAIN_POS["standard"]
@@ -2849,8 +3047,12 @@ class GPTSoVITSBackend(Backend):
             self.stop()
         exp = export_gptsovits(self.project, speaker=self.exp_name)
         latest, note = version_status(self.version)
+        vers = self.train_versions()
+        lora_vers = [v for v in vers if is_lora_version(v)]
+        vits_vers = [v for v in vers if not is_lora_version(v)]
         log.info(f"实验名 {self.exp_name}；GPT-SoVITS 版本 {self.version}"
-                 + ("（目前公开的最新、最强版本）" if latest else f"（⚠️ {note}）"))
+                 + ("（目前公开的最新版本）" if latest else f"（⚠️ {note}）")
+                 + (f"；一起练、一起比较的版本：{'、'.join(vers[1:])}" if len(vers) > 1 else ""))
         n = int(exp["count"])
         minutes = float(exp["minutes"])
         self.step(progress, pos["plan"] - 0.01, f"训练素材 {n} 条，共 {minutes} 分钟")
@@ -2916,7 +3118,9 @@ class GPTSoVITSBackend(Backend):
         probe: Optional[Dict[str, Any]] = None
         probed = False
         if will_probe:
-            probe, probe_s = self._probe_or_cached(opt_dir, feat["digest"], n, bool(params.get("if_dpo")), progress, pos)
+            with self._as_version(vits_vers[0] if vits_vers else self.main_version):
+                probe, probe_s = self._probe_or_cached(opt_dir, feat["digest"], n, bool(params.get("if_dpo")), progress,
+                                                       pos, sovits=bool(vits_vers))
             probed = bool(probe and (probe.get("sovits") or probe.get("gpt")))
             if probed:
                 assert probe is not None
@@ -2942,27 +3146,50 @@ class GPTSoVITSBackend(Backend):
         gpu_used: Dict[str, Any] = {}
         timing: Dict[str, Any] = {"features_s": round(features_s, 1), "probe_s": probe_s}
         used_s, used_g = int(params["batch_size"]), int(params["gpt_batch_size"])
-        for kind in ("sovits", "gpt"):
-            total = int(params[f"{kind}_epochs"])
-            done = s_done if kind == "sovits" else g_done
+        if lora_vers and not params.get("lora"):   # 接着上次的计划练、上次的计划里没有 LoRA 的设置
+            total_gb, free_gb, _src = gpu
+            params["lora"] = plan_lora(lora_vers[0], total_gb, free_gb, is_half=self.is_half, mode=mode, n_clips=n,
+                                       user=self._tcfg())
+        params.update(versions=vers, lora_versions=lora_vers, sovits_versions=vits_vers)
+        counts_l: Dict[str, Dict[str, Any]] = {}
+        # 音色模型：每个版本练一个（V5 在前）；语气模型（GPT）只练一个，各版本共用（同一套语义编码）
+        steps: List[Tuple[str, str]] = [("lora", v) for v in lora_vers] + [("sovits", v) for v in vits_vers]
+        lo, hi = pos["sovits"], pos["gpt"]
+        span = (hi - lo) / max(1, len(steps))
+        steps_all: List[Tuple[str, str, Dict[str, float]]] = [
+            (kind, ver, dict(pos, sovits=lo + span * i, gpt=lo + span * (i + 1))) for i, (kind, ver) in enumerate(steps)]
+        steps_all.append(("gpt", self.main_version, pos))
+        for kind, ver, pos_k in steps_all:
+            if kind == "lora":
+                lp = params["lora"]
+                total, done = int(lp["epochs"]), (_to_int((pp.get("lora") or {}).get("epochs"), 0) if state == "extend" else 0)
+            else:
+                total = int(params[f"{kind}_epochs"])
+                done = s_done if kind == "sovits" else g_done
             if state == "extend" and total <= done:
-                log.info(f"{'音色（SoVITS）' if kind == 'sovits' else '语气（GPT）'}上次已经练到第 {done} 轮，这次不用再练")
+                what = {"lora": f"音色（{ver}）", "sovits": f"音色（{ver}）", "gpt": "语气（GPT）"}[kind]
+                log.info(f"{what}上次已经练到第 {done} 轮，这次不用再练")
                 continue
             sampler = _gpu_sampler(self._gpu())
             t0 = time.time()
             try:
-                if kind == "sovits":
-                    used_s = self._train_sovits(opt_dir, params, progress, pos, counts_s)
-                else:
-                    used_g = self._train_gpt(opt_dir, params, progress, pos, counts_g)
+                with self._as_version(ver):
+                    if kind == "lora":
+                        counts_l[ver] = {}
+                        params["lora"]["batch_size_used"] = self._train_lora(opt_dir, params, progress, pos_k, counts_l[ver])
+                    elif kind == "sovits":
+                        used_s = self._train_sovits(opt_dir, params, progress, pos_k, counts_s)
+                    else:
+                        used_g = self._train_gpt(opt_dir, params, progress, pos_k, counts_g)
             finally:
-                gpu_used[kind] = sampler.stop()
+                gpu_used[kind if kind != "lora" else f"lora_{ver}"] = sampler.stop()
             secs = time.time() - t0
-            counts = counts_s if kind == "sovits" else counts_g
+            counts = counts_g if kind == "gpt" else (counts_s if kind == "sovits" else counts_l[ver])
             start = _stage_start(counts, done)   # 这一步第一次开始时接着第几轮练（中途重新开始的不算）
-            timing[f"{kind}_s"] = round(secs, 1)
+            key = kind if kind != "lora" else f"lora_{ver}"
+            timing[f"{key}_s"] = round(secs, 1)
             if total > start:
-                timing[f"{kind}_s_per_epoch"] = round(secs / (total - start), 1)
+                timing[f"{key}_s_per_epoch"] = round(secs / (total - start), 1)
         if used_s != params["batch_size"] or used_g != params["gpt_batch_size"]:
             params["oom_retry"] = True
             params["batch_size_used"] = used_s
@@ -2972,7 +3199,11 @@ class GPTSoVITSBackend(Backend):
         sovits, gpt = self._list_weights()
         if not sovits or not gpt:
             raise RuntimeError("训练结束但没有找到权重文件，请查看 logs/gsv_s2_train.log 与 logs/gsv_s1_train.log")
-        trained = _trained_counts(counts_s, counts_g, n)
+        # 只练 V4 / V5 时，「音色实际练了几条」按 LoRA 那一步的日志算
+        first_s = counts_s if vits_vers else (counts_l.get(lora_vers[0]) if lora_vers else {}) or {}
+        trained = _trained_counts(first_s, counts_g, n)
+        if lora_vers and vits_vers:
+            params["lora"]["trained_counts"] = _trained_counts(counts_l.get(lora_vers[0]) or {}, {}, n).get("sovits")
         if state == "extend":  # 这次没练的那一步：沿用上次实测的条数
             old_tc = pp.get("trained_counts") or {}
             for kind in ("sovits", "gpt"):
@@ -2988,7 +3219,8 @@ class GPTSoVITSBackend(Backend):
         for line in params["report"]:
             self.step(progress, pos["save"], line)
         info = {
-            "version": self.version, "exp_name": self.exp_name, "trained_at": time.strftime("%Y-%m-%d %H:%M"),
+            "version": self.version, "versions": vers, "exp_name": self.exp_name,
+            "trained_at": time.strftime("%Y-%m-%d %H:%M"),
             "params": params, "sovits": [str(p) for p in sovits], "gpt": [str(p) for p in gpt],
             "selected": {"id": f"s{_epoch(sovits[-1])}-g{_epoch(gpt[-1])}", "sovits": str(sovits[-1]), "gpt": str(gpt[-1])},
             # 这个模型是用哪份素材训练好的（训练做完才记：训练失败 / 停止了，还是旧模型的指纹，提醒不会消失）
@@ -3000,7 +3232,7 @@ class GPTSoVITSBackend(Backend):
         return info
 
     def _probe_or_cached(self, opt_dir: Path, digest: str, n: int, dpo: bool, progress: Optional[ProgressFn],
-                         pos: Dict[str, float]) -> Tuple[Optional[Dict[str, Any]], Optional[float]]:
+                         pos: Dict[str, float], sovits: bool = True) -> Tuple[Optional[Dict[str, Any]], Optional[float]]:
         """实测显卡一次能练几条（同一份素材实测过就用上次的结果，例如上次训练中途停下了）。返回 (结果, 用了几秒)。"""
         try:
             cached = json.loads((opt_dir / PROBE_FILE).read_text(encoding="utf-8"))
@@ -3018,8 +3250,11 @@ class GPTSoVITSBackend(Backend):
         cap = max(1, n // 4)
         mid = pos["probe"] + (pos["sovits"] - pos["probe"]) / 2
         try:
-            b_s, tab_s = self._probe_batch("sovits", [b for b in PROBE_SOVITS if b <= cap], probe_dir, progress,
-                                           (pos["probe"], mid))
+            if sovits:
+                b_s, tab_s = self._probe_batch("sovits", [b for b in PROBE_SOVITS if b <= cap], probe_dir, progress,
+                                               (pos["probe"], mid))
+            else:  # 只练 V4 / V5 的 LoRA：每批条数按官方的公式（显存 // 8），不实测
+                b_s, tab_s = None, []
             if dpo:  # 开了 DPO：语气训练每批的条数官方代码里还会再减半，不实测
                 b_g, tab_g = None, []
             else:
@@ -3037,12 +3272,14 @@ class GPTSoVITSBackend(Backend):
 
     def _list_weights(self) -> Tuple[List[Path], List[Path]]:
         """这一轮训练存下的模型（素材变过以后，旧素材练出来的不算），按轮数排序。"""
-        sov_dir = self.p(f"SoVITS_weights_{self.version}")
-        gpt_dir = self.p(f"GPT_weights_{self.version}")
-        sovits = list(sov_dir.glob(f"{self.exp_name}_e*_s*.pth")) if sov_dir.exists() else []
+        sovits: List[Path] = []
+        for v in self.train_versions():   # 每个版本各挑这一轮的（版本之间文件名一样也不会混）
+            d = self.p(f"SoVITS_weights_{v}")
+            if d.exists():
+                sovits += _pick_run(list(d.glob(f"{self.exp_name}_e*_s*.pth")), self._run_started())
+        gpt_dir = self.p(f"GPT_weights_{self.main_version}")
         gpt = list(gpt_dir.glob(f"{self.exp_name}-e*.ckpt")) if gpt_dir.exists() else []
-        since = self._run_started()
-        return _pick_run(sovits, since), _pick_run(gpt, since)
+        return sovits, _pick_run(gpt, self._run_started())
 
     def _locate_weight(self, path: str) -> Optional[Path]:
         """models.json 里记的是绝对路径；整合包被移动 / 换了电脑后，到当前 root 里重新找。
@@ -3066,7 +3303,13 @@ class GPTSoVITSBackend(Backend):
                     if cand.exists():
                         return cand
             return None
-        for d in (f"SoVITS_weights_{self.version}", f"GPT_weights_{self.version}"):
+        # 原来在哪个版本的文件夹里，先到同名的文件夹里找（各版本的文件名可能一样）
+        dirs = self._weight_dirs("sovits") + self._weight_dirs("gpt")
+        if len(parts) >= 2 and parts[-2] in dirs:
+            dirs = [parts[-2]] + [d for d in dirs if d != parts[-2]]
+            cand = self.p(parts[-2]) / parts[-1]
+            return cand if cand.exists() else None
+        for d in dirs:
             cand = self.p(d) / parts[-1]
             if cand.exists():
                 return cand
@@ -3124,27 +3367,44 @@ class GPTSoVITSBackend(Backend):
                             "sovits_epoch": _epoch(sov), "gpt_epoch": _epoch(gpt), "previous": True})
         return out
 
+    def _weight_version(self, path: Path) -> str:
+        """一个音色模型文件是哪个版本：按所在的文件夹（SoVITS_weights_<版本>）；不在这种文件夹里时读文件里的版本标记。"""
+        name = Path(path).parent.name
+        if name.startswith("SoVITS_weights_") and name[len("SoVITS_weights_"):] in SUPPORTED_VERSIONS:
+            return name[len("SoVITS_weights_"):]
+        return str(detect_sovits_version(path, self.root).get("version") or self.main_version)
+
     def _checkpoint_grid(self, max_sovits: Optional[int], max_gpt: Optional[int], every: bool) -> List[Dict[str, Any]]:
         info = self.project.load_models().get(self.name) or {}
         sovits = [w for w in (self._locate_weight(p) for p in info.get("sovits", [])) if w]
         gpt = [w for w in (self._locate_weight(p) for p in info.get("gpt", [])) if w]
         if not sovits or not gpt:
             sovits, gpt = self._list_weights()
-        sovits = sorted(dict.fromkeys(sovits), key=_epoch)
         gpt = sorted(dict.fromkeys(gpt), key=_epoch)
         tcfg = self.bcfg.get("train", {}) or {}
         ks = max_sovits or max(1, _to_int(tcfg.get("select_sovits"), SELECT_SOVITS))
         kg = max_gpt or max(1, _to_int(tcfg.get("select_gpt"), SELECT_GPT))
-        if every:
-            pick_s = [w for w in sovits if _epoch(w) >= 4] or sovits[-1:]
-            pick_g = [w for w in gpt if _epoch(w) >= 4] or gpt[-1:]
-        else:
-            pick_s, pick_g = _spread(sovits, ks), _spread(gpt, kg)
+        # 音色模型按版本分开挑（各版本练的轮数不一样）；V4 / V5 的 LoRA 练得少，从第 LORA_SELECT_FROM 轮起都试
+        by_ver: Dict[str, List[Path]] = {}
+        for w in dict.fromkeys(sovits):
+            by_ver.setdefault(self._weight_version(w), []).append(w)
+        pick_s: List[Tuple[str, Path]] = []
+        for ver in sorted(by_ver, key=lambda v: (v != self.main_version, v)):
+            ws = sorted(by_ver[ver], key=_epoch)
+            if every:
+                start = LORA_SELECT_FROM if is_lora_version(ver) else 4
+                chosen = [w for w in ws if _epoch(w) >= start] or ws[-1:]
+            else:
+                chosen = _spread(ws, ks)
+            pick_s += [(ver, w) for w in chosen]
+        pick_g = ([w for w in gpt if _epoch(w) >= 4] or gpt[-1:]) if every else _spread(gpt, kg)
+        many = len(by_ver) > 1
         out = []
-        for s in pick_s:
+        for ver, s in pick_s:
             for g in pick_g:
-                out.append({"id": f"s{_epoch(s)}-g{_epoch(g)}", "sovits": str(s), "gpt": str(g),
-                            "sovits_epoch": _epoch(s), "gpt_epoch": _epoch(g)})
+                cid = f"s{_epoch(s)}-g{_epoch(g)}"
+                out.append({"id": f"{ver}-{cid}" if many else cid, "sovits": str(s), "gpt": str(g),
+                            "sovits_epoch": _epoch(s), "gpt_epoch": _epoch(g), "version": ver})
         return out
 
     # ================================================================ 推理服务
@@ -3511,7 +3771,7 @@ class GPTSoVITSBackend(Backend):
         speed_factor = _speed_of(req) if speed is None else max(0.25, min(4.0, float(speed)))
         # 语言：句子里只要有汉字就按 zh 发（zh 模式中英混读；以前英文单词多的句子被判成 en，
         # GPT-SoVITS 的 en 模式会把里面的汉字整个丢掉）。参考音频的文字也一样
-        return {
+        out: Dict[str, Any] = {
             "text": req.text,
             "text_lang": send_lang(req.text, req.lang),
             "ref_audio_path": str(Path(req.ref_audio).resolve()),
@@ -3530,9 +3790,14 @@ class GPTSoVITSBackend(Backend):
             "streaming_mode": False,
             "parallel_infer": True,
             "repetition_penalty": float(icfg.get("repetition_penalty", 1.35)),
-            "sample_steps": int(icfg.get("sample_steps", 32)),
             "super_sampling": False,
         }
+        # 扩散模型（V4 / V5）每句算几步：auto 不发，让引擎按版本用官方的默认（v5dev 32 步、v5turbo 4 步；
+        # 旧的 api_v2 不发时也是 32）。写了数字才发。
+        steps = icfg.get("sample_steps", "auto")
+        if not _is_auto(steps) and _to_int(steps, 0) > 0:
+            out["sample_steps"] = _to_int(steps, 32)
+        return out
 
     def synthesize(self, req: SynthRequest, out_path: Path) -> Path:
         if not self._alive():
@@ -3817,5 +4082,5 @@ class GPTSoVITSBackend(Backend):
 
 
 def _epoch(path: Path) -> int:
-    m = re.search(r"_e(\d+)_s\d+\.pth$", str(path)) or re.search(r"-e(\d+)\.ckpt$", str(path))
+    m = re.search(r"_e(\d+)_s\d+(?:_l\d+)?\.pth$", str(path)) or re.search(r"-e(\d+)\.ckpt$", str(path))
     return int(m.group(1)) if m else 0

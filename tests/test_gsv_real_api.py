@@ -1,4 +1,4 @@
-"""拿真实的 GPT-SoVITS 推理服务代码（tests/gsv_real/api_v2.py，老师电脑上的版本 abe9843）来测。
+"""拿真实的 GPT-SoVITS 推理服务代码（tests/gsv_real/api_v2.py，官方 V5 整合包里的那份）来测。
 
 为什么要有这个文件：v18.2 时，程序判断「引擎好了没有」用的是不带参数的 GET /tts。我们自己写的模拟版对它回 400，
 测试全部通过；可真实的 api_v2.py 对它报错回 500，结果老师那里引擎明明一分钟内就开好了，程序却一直等到 10 分钟超时。
@@ -92,14 +92,18 @@ def _ref(project):
     return project.abspath(r["path"]), r["text"], r.get("lang", "zh")
 
 
-def test_vendored_api_is_the_teachers_version():
-    """tests/gsv_real/api_v2.py 必须是原样的官方文件（老师的报错在第 484 行：text_lang.lower()）。"""
+def test_vendored_api_is_the_v5_package_version():
+    """tests/gsv_real/api_v2.py 必须是官方 V5 整合包里原样的那份（GitHub 上解开整合包取出来的，一字不差）。"""
+    from pathlib import Path
+
+    got = Path(__file__).resolve().parents[1] / "research" / "gsv_v4_v5" / "官方资料" / "v5整合包" / "api_v2.py"
+    assert REAL_API_V2.read_bytes() == got.read_bytes()
     lines = REAL_API_V2.read_text(encoding="utf-8").splitlines()
-    assert lines[483].strip() == '"text_lang": text_lang.lower(),'
-    assert '@APP.get("/control")' in lines[447]
+    assert lines[491].strip() == '"text_lang": text_lang.lower(),'
+    assert "from tools.portable_runtime import FFMPEG_EXE" in lines[103]
 
 
-@pytest.mark.parametrize("api_src", [REAL_API_V2, REAL_API_V2_2025], ids=["abe9843", "20250606v2pro"])
+@pytest.mark.parametrize("api_src", [REAL_API_V2, REAL_API_V2_2025], ids=["v5", "20250606v2pro"])
 def test_real_api_start_switch_synthesize_stop(prepared, tmp_path, quick, api_src):
     cfg, project, _ = prepared
     root = build_fake_root(tmp_path / "GPT-SoVITS", real_api=api_src)

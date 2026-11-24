@@ -10,7 +10,14 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
-        python: ["3.9", "3.11"]
+        python: ["3.9", "3.11", "3.12"]
+        gsv: [""]
+        include:
+          # 和官方 V5 整合包（GPT-SoVITS-v5-20261005）一样：Windows、Python 3.12、各个库的版本一样（gradio 4.44.1……）
+          - os: windows-latest
+            python: "3.12"
+            gsv: v5
+    name: test (${{ matrix.os }}, ${{ matrix.python }}${{ matrix.gsv && ', V5 整合包的版本' || '' }})
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -18,7 +25,11 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
       - name: Install
+        if: matrix.gsv == ''
         run: python -m pip install -e ".[dev]"
+      - name: Install (和官方 V5 整合包一样的版本)
+        if: matrix.gsv == 'v5'
+        run: python -m pip install -c tests/constraints-gsv-v5.txt -e ".[dev,webui,sv]"
       - name: Test
         run: python -m pytest -q -rf --junitxml=junit.xml
       # 失败时把每个没通过的测试写成注释（annotation），不用下载日志也能看到是哪个测试、为什么

@@ -47,7 +47,7 @@ VoiceTwin 把目前最好的开源技术组合起来，逐项处理：
 | 语音识别 | faster-whisper large-v3 / 阿里 FunASR，中英文逐段自动判断，输出简体+标点 | 文字和声音严格对齐 |
 | 质量过滤 | 剔除识别置信度低、语速异常（文字对不上）、爆音、**不是你本人**（声纹比对）的片段 | 模型只学你的声音 |
 | 风格档案 | 统计你的语速（中/英分开）、逗号/句号/段落的停顿时长、音高和起伏、原始录音响度 | 节奏、语气 |
-| 微调训练 | GPT-SoVITS v2ProPlus 用你全部素材微调（官方说明：v2Pro 系列更贴近**整个训练集的风格**，而不只是模仿参考音频） | 音色 + 语气 + 口音 |
+| 微调训练 | GPT-SoVITS **V5（v5dev）** 和 v2ProPlus 两种都用你全部素材微调（V5 的音色按官方的 LoRA 方式练），挑模型时用你的录音实测，哪个更像就用哪个 | 音色 + 语气 + 口音 |
 | 自动挑模型 | 训练会保存多个版本；用**没参与训练**的你的真实录音做考试：让每个模型读同样的句子，比声纹相似度、错字率、时长比，选总分最高的 | 选出最像的 |
 | 语速校准 | 同一句话，模型读的时长 ÷ 你本人读的时长 → 自动算出语速系数 | 快慢和你一致 |
 | 多候选择优 | 每句话生成多个版本（默认的「一模一样」档每句试很多个版本、「完美」档每句最多试 20 次），按"声纹相似度 + 语速/音高偏差 + 识别错字率"打分，只保留最好的；漏字/读错会自动重试 | 每一句都尽量最像 |
@@ -81,8 +81,8 @@ VoiceTwin 把目前最好的开源技术组合起来，逐项处理：
 
 ### 第 1 步：下载 GPT-SoVITS 整合包
 
-- 国内：打开 [GPT-SoVITS 官方文档的整合包下载页](https://www.yuque.com/baicaigongchang1145haoyuangong/ib3g1e/dkxgpiy9zb96hob4#KTvnO)，下载**最新版**（文件名里带 `v2pro` 或更新日期的）。
-- 海外：[Hugging Face 整合包仓库](https://huggingface.co/lj1995/GPT-SoVITS-windows-package/tree/main)。
+- 国内：打开 [GPT-SoVITS 官方文档的整合包下载页](https://www.yuque.com/baicaigongchang1145haoyuangong/ib3g1e/dkxgpiy9zb96hob4#KTvnO)，下载 **V5 整合包**（文件名以 `GPT-SoVITS-v5` 开头；RTX 50 系列显卡选带 `nvidia50` 的，别的显卡选不带的）。
+- 海外：[Hugging Face 整合包仓库](https://huggingface.co/lj1995/GPT-SoVITS-windows-package/tree/main)；国内也可以用镜像 [hf-mirror](https://hf-mirror.com/lj1995/GPT-SoVITS-windows-package/tree/main)。
 - 用 7-Zip 解压到**不含中文和空格**的路径，例如 `D:\GPT-SoVITS`。解压后里面应该有 `go-webui.bat` 和 `runtime` 文件夹。
 
 ### 第 2 步：下载 VoiceTwin
@@ -99,7 +99,7 @@ VoiceTwin 把目前最好的开源技术组合起来，逐项处理：
 
 ### 第 4 步：补齐预训练模型（如有提示）
 
-如果环境检查提示"缺少预训练模型：…v2Pro…"（旧整合包没有 v2Pro 模型），在 VoiceTwin 目录打开命令行运行：
+官方 V5 整合包里 V5 和 v2ProPlus 的预训练模型都有。如果环境检查提示"缺少预训练模型"，在 VoiceTwin 目录打开命令行运行：
 
 ```bat
 voicetwin.bat download-models --source hf-mirror
@@ -273,7 +273,7 @@ workspace/我的声音/
 
 | 引擎 | 特点 | 是否需要训练 | 显存 |
 |---|---|---|---|
-| **GPT-SoVITS v2ProPlus**（默认） | 微调后最像，中英混读好，速度快 | 需要（全自动） | 6GB+ |
+| **GPT-SoVITS V5**（默认 v5dev，同时练 v2ProPlus 实测比较） | 微调后最像，中英混读好 | 需要（全自动） | v2ProPlus 6GB+；V5 官方没写最低显存 |
 | **Qwen3-TTS**（阿里 2026 开源） | 零样本 3 秒克隆，也支持微调；自然度高 | 可选 | 零样本 8GB+；微调 0.6B 约 12GB+，1.7B 建议 32GB+ |
 | **IndexTTS 2.5**（B 站开源） | 零样本克隆，情绪和时长控制强 | 不需要 | 8GB+ |
 

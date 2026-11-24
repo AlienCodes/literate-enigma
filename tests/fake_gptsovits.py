@@ -238,6 +238,17 @@ for e in range(epoch_str, t["epochs"] + 1):
 print("training done", flush=True)
 '''
 
+# s2_train_v3_lora.py（v4 / v5dev / v5turbo）：日志和 s2_train.py 一样；不用 s2D；
+# 断点存在 logs_s2_{版本}_lora_{rank}；模型文件名多一个 _l{rank}；开头 2 字节 07=v5dev、08=v5turbo（process_ckpt.py）
+S2_TRAIN_LORA = (S2_TRAIN
+    .replace('assert os.path.exists(t["pretrained_s2G"]) and os.path.exists(t["pretrained_s2D"])',
+             'assert os.path.exists(t["pretrained_s2G"]) and int(t["lora_rank"]) in (16, 32, 64, 128)')
+    .replace("ckpt_dir = f\"{exp_dir}/logs_s2_{cfg['model']['version']}\"",
+             "ckpt_dir = f\"{exp_dir}/logs_s2_{cfg['model']['version']}_lora_{t['lora_rank']}\"")
+    .replace('ck = f"{name}_e{e}_s{global_step}"', 'ck = f"{name}_e{e}_s{global_step}_l{t[\'lora_rank\']}"')
+    .replace('{"v3": b"03", "v4": b"04", "v2Pro": b"05", "v2ProPlus": b"06"}', '{"v3": b"03", "v4": b"04", "v5dev": b"07", "v5turbo": b"08"}'))
+assert S2_TRAIN_LORA.count("_lora_") == 1 and "_l{t[" in S2_TRAIN_LORA and "v5dev" in S2_TRAIN_LORA and "lora_rank" in S2_TRAIN_LORA
+
 S1_TRAIN = '''
 import math, os, re, sys, time, yaml
 ''' + OOM + '''
@@ -448,7 +459,7 @@ print("fake api_v2 ready", flush=True)
 srv.serve_forever()
 '''
 
-#: 真实的 api_v2.py（GPT-SoVITS @ abe9843，老师电脑上的版本，MIT 许可，见 tests/gsv_real/README.md）
+#: 真实的 api_v2.py（官方 V5 整合包 GPT-SoVITS-v5-20261005 里的那份，MIT 许可，见 tests/gsv_real/README.md）
 REAL_API_V2 = Path(__file__).resolve().parent / "gsv_real" / "api_v2.py"
 #: 2025 年中的整合包（20250606v2pro）里的 api_v2.py：老师以后也可能装这一版
 REAL_API_V2_2025 = Path(__file__).resolve().parent / "gsv_real" / "api_v2_20250606v2pro.py"
@@ -456,6 +467,19 @@ REAL_API_V2_2025 = Path(__file__).resolve().parent / "gsv_real" / "api_v2_202506
 #: real_api=True 时，真实 api_v2.py 要 import 的几个模块换成假的：不用 torch、不用模型，
 #: 但输入检查和打印的内容照着真实的 TTS.py（@ abe9843）写，输出也是真实格式（int16、32000 Hz）。
 REAL_API_STUBS = {
+    # V5 的 api_v2.py 一开头就调用它（整合包 runtime 的 DLL、ffmpeg 位置；change_cwd=True 时切到 GPT-SoVITS 根目录）
+    "tools/portable_runtime.py": '''
+import os, sys
+from pathlib import Path
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+FFMPEG_EXE = "ffmpeg"
+def activate(*, change_cwd=False):
+    if change_cwd:
+        os.chdir(PROJECT_ROOT)
+    for p in (str(PROJECT_ROOT / "GPT_SoVITS"), str(PROJECT_ROOT)):
+        if p not in sys.path:
+            sys.path.insert(0, p)
+''',
     "tools/i18n/i18n.py": '''
 class I18nAuto:
     def __init__(self, *a, **k): pass
@@ -657,6 +681,7 @@ def build_fake_root(root: Path, version: str = "v2ProPlus", real_api=False, text
         "GPT_SoVITS/prepare_datasets/2-get-sv.py": GET_SV,
         "GPT_SoVITS/prepare_datasets/3-get-semantic.py": GET_SEMANTIC,
         "GPT_SoVITS/s2_train.py": S2_TRAIN,
+        "GPT_SoVITS/s2_train_v3_lora.py": S2_TRAIN_LORA,
         "GPT_SoVITS/s1_train.py": S1_TRAIN,
     }
     if text_stubs:
@@ -674,7 +699,8 @@ def build_fake_root(root: Path, version: str = "v2ProPlus", real_api=False, text
         (cfgs / name).write_text(json.dumps(s2), encoding="utf-8")
     (cfgs / "s1longer-v2.yaml").write_text("train:\n  batch_size: 8\n  epochs: 20\n  precision: 16-mixed\n", encoding="utf-8")
     pm = root / "GPT_SoVITS" / "pretrained_models"
-    for d in ("chinese-roberta-wwm-ext-large", "chinese-hubert-base", "gsv-v2final-pretrained", "v2Pro", "sv"):
+    for d in ("chinese-roberta-wwm-ext-large", "chinese-hubert-base", "gsv-v2final-pretrained", "v2Pro", "sv", "gsv-v4-pretrained",
+              "gsv-v5-pretrained"):
         (pm / d).mkdir(parents=True, exist_ok=True)
     # 和 Hugging Face 上 lj1995/GPT-SoVITS 里这两个文件夹的文件一致
     for d in ("chinese-roberta-wwm-ext-large", "chinese-hubert-base"):
@@ -685,6 +711,8 @@ def build_fake_root(root: Path, version: str = "v2ProPlus", real_api=False, text
     for f in ("v2Pro/s2Gv2Pro.pth", "v2Pro/s2Dv2Pro.pth", "v2Pro/s2Gv2ProPlus.pth", "v2Pro/s2Dv2ProPlus.pth", "s1v3.ckpt",
               "sv/pretrained_eres2netv2w24s4ep4.ckpt", "gsv-v2final-pretrained/s2G2333k.pth",
               "gsv-v2final-pretrained/s2D2333k.pth",
-              "gsv-v2final-pretrained/s1bert25hz-5kh-longer-epoch=12-step=369668.ckpt"):
+              "gsv-v2final-pretrained/s1bert25hz-5kh-longer-epoch=12-step=369668.ckpt",
+              "gsv-v4-pretrained/s2Gv4.pth", "gsv-v4-pretrained/vocoder.pth", "gsv-v5-pretrained/s2Gv5dev.pth",
+              "gsv-v5-pretrained/s2Gv5turbo.pth", "gsv-v5-pretrained/vocoder.pth"):
         (pm / f).write_bytes(FAKE_WEIGHT)
     return root

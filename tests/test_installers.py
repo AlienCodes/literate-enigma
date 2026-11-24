@@ -104,6 +104,36 @@ def test_requirements_accept_gsv_package_versions():
         assert Version(ver) in reqs[name].specifier, f"{name} {ver} 不满足 {reqs[name]}"
 
 
+
+def test_requirements_accept_v5_package_versions():
+    """官方 V5 整合包（GPT-SoVITS-v5-20261005，Python 3.12）里装好的版本也必须满足声音分身的依赖。
+    版本表是 GitHub 上解开官方整合包读出来的（.github/workflows/gsv-v5-package.yml）。"""
+    import re
+
+    import pytest
+
+    packaging = pytest.importorskip("packaging.requirements")
+    from packaging.version import Version
+
+    text = (ROOT / "pyproject.toml").read_text(encoding="utf-8")
+    deps = re.search(r"dependencies = \[(.*?)\]", text, re.S).group(1)
+    reqs = {r.name.lower(): r for r in (packaging.Requirement(s) for s in re.findall(r'"([^"]+)"', deps))}
+    assert Version("3.12") in packaging.SpecifierSet(re.search(r'requires-python = "([^"]+)"', text).group(1))
+    have = {}
+    for name in ("v5整合包", "v5整合包_通用版"):
+        f = ROOT / "research" / "gsv_v4_v5" / "官方资料" / name / "runtime_包版本.txt"
+        if f.exists():
+            for line in f.read_text(encoding="utf-8").split():
+                n, _, v = line.rpartition("-")
+                have.setdefault(n.lower().replace("_", "-"), []).append(v.split("+")[0])
+    assert have, "没有官方 V5 整合包的版本表"
+    checked = 0
+    for name, req in reqs.items():
+        for ver in have.get(name, []):
+            assert Version(ver) in req.specifier, f"{name} {ver} 不满足 {req}"
+            checked += 1
+    assert checked >= 6  # numpy、scipy、soundfile、pyyaml、tqdm、requests、librosa 整合包里都有
+
 # ---- 老式黑色窗口里中文全部变成「?」（老师右键「以管理员身份运行」安装 v0.1.8 时遇到）----
 def test_windows_launcher_reopens_in_windows_terminal():
     text = (ROOT / "install_windows.bat").read_bytes().decode("utf-8")

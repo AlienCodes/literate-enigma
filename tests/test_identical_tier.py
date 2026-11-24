@@ -70,9 +70,9 @@ def _free_port() -> int:
         return s.getsockname()[1]
 
 
-@pytest.mark.parametrize("api", ["abe9843", "20250606v2pro"])
+@pytest.mark.parametrize("api", ["v5", "20250606v2pro"])
 def test_real_api_receives_zh_for_mixed_sentence(prepared, tmp_path, quick_gsv, api):
-    """拿两个真实的 api_v2.py（老师用的 abe9843 和 20250606v2pro）：中英混合、被判成 en 的句子，实际发的是 text_lang=zh；
+    """拿两个真实的 api_v2.py（V5 整合包的和 20250606v2pro）：中英混合、被判成 en 的句子，实际发的是 text_lang=zh；
     参考音频的文字有汉字时 prompt_lang 也是 zh；纯英文照旧是 en。"""
     pytest.importorskip("fastapi")
     pytest.importorskip("uvicorn")
@@ -80,7 +80,7 @@ def test_real_api_receives_zh_for_mixed_sentence(prepared, tmp_path, quick_gsv, 
     from voicetwin.backends.base import SynthRequest, get_backend
 
     cfg, project, _ = prepared
-    root = build_fake_root(tmp_path / "GPT-SoVITS", real_api=REAL_API_V2 if api == "abe9843" else REAL_API_V2_2025)
+    root = build_fake_root(tmp_path / "GPT-SoVITS", real_api=REAL_API_V2 if api == "v5" else REAL_API_V2_2025)
     gcfg = make_cfg(project.root.parent, backends={"gptsovits": {
         "root": str(root), "python": sys.executable, "port": _free_port(), "startup_timeout": 60}})
     p2 = wf.open_project(gcfg, project.voice, must_exist=True)

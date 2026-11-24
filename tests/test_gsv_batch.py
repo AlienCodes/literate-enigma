@@ -45,7 +45,7 @@ from fake_gptsovits import REAL_API_V2, REAL_API_V2_2025, build_fake_root
 ROOT = Path(__file__).resolve().parents[1]
 MASTER_CSV = ROOT / "research" / "文字校正" / "老师的母本" / "母本_修缮后.csv"
 TEXT = "大家好，今天我们讲第一课。"
-APIS = pytest.mark.parametrize("api_src", [REAL_API_V2, REAL_API_V2_2025], ids=["abe9843", "20250606v2pro"])
+APIS = pytest.mark.parametrize("api_src", [REAL_API_V2, REAL_API_V2_2025], ids=["v5", "20250606v2pro"])
 
 
 # ---------------------------------------------------------------------------- 小工具
@@ -193,7 +193,8 @@ def _bare_backend(prepared, tmp_path):
 
 
 def test_single_request_payload_is_unchanged(prepared, tmp_path):
-    """单独生成的请求和 P4 以前 synthesize 发的一模一样（字段、类型、数值）。"""
+    """单独生成的请求和 P4 以前 synthesize 发的一模一样（字段、类型、数值）。只有 sample_steps 不再发：
+    V5 的 api_v2.py 不发时按版本用官方的步数（v5dev 32 步、v5turbo 4 步），旧版不发时也是 32 步。"""
     b = _bare_backend(prepared, tmp_path)
     ref = tmp_path / "ref.wav"
     req = SynthRequest(text="你好。", lang="zh", ref_audio=ref, ref_text="参考", ref_lang="zh",
@@ -203,7 +204,7 @@ def test_single_request_payload_is_unchanged(prepared, tmp_path):
         "aux_ref_audio_paths": [str((tmp_path / "a.wav").resolve())], "prompt_text": "参考", "prompt_lang": "zh",
         "top_k": 15, "top_p": 1.0, "temperature": 1.0, "text_split_method": "cut0", "batch_size": 1,
         "speed_factor": 0.9, "fragment_interval": 0.3, "seed": 7, "media_type": "wav", "streaming_mode": False,
-        "parallel_infer": True, "repetition_penalty": 1.35, "sample_steps": 32, "super_sampling": False,
+        "parallel_infer": True, "repetition_penalty": 1.35, "super_sampling": False,
     }
     got = b._payload(req)
     assert got == want and json.dumps(got, sort_keys=True) == json.dumps(want, sort_keys=True)
