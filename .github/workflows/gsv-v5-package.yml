@@ -53,11 +53,11 @@ jobs:
               if " = " in line:
                   k, v = line.split(" = ", 1); cur[k] = v
           if "Path" in cur: rows.append(cur)
-          files = [r for r in rows if r.get("Folder") == "-"]
+          files = [r for r in rows if r.get("Folder", "-") == "-" and "D" not in r.get("Attributes", "")[:1] and "Size" in r]
           with open(f"{D}/文件清单.tsv", "w", encoding="utf-8") as f:
               for r in files:
                   f.write(f"{r['Path']}\t{r.get('Size','')}\t{r.get('Modified','')}\n")
-          dist = sorted({re.sub(r"\.dist-info$", "", p.split("\\")[-2] if "\\" in p else p.split("/")[-2])
+          dist = sorted({re.split(r"[\\/]", p)[-2][:-len(".dist-info")]
                          for p in (r["Path"] for r in files) if re.search(r"\.dist-info[\\/]METADATA$", p)})
           open(f"{D}/runtime_包版本.txt", "w").write("\n".join(dist) + "\n")
           top = collections.Counter()
