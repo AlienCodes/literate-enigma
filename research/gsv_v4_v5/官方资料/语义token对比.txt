@@ -1,0 +1,17 @@
+# v5dev / v5turbo / v4 和 v2ProPlus 底模里提取语义 token 的权重（ssl_proj、quantizer）比较
+
+s2Gv2ProPlus.pth: 前 8192 字节 MD5 66b313e39455b57ab1b0bc0b239c9d0a，张量 781 个
+s2Gv5dev.pth: 前 8192 字节 MD5 c4ce1f839a0d271e41963f9fb16ade76，张量 681 个
+s2Gv5turbo.pth: 前 8192 字节 MD5 6bc5cb2a195cc8ec22b2e723cd4d6f47，张量 681 个
+s2Gv4.pth: 前 8192 字节 MD5 4f26b9476d0c5033e04162c486074374，张量 685 个
+
+v2ProPlus 里这部分的张量：quantizer.vq.layers.0._codebook.cluster_size(1024,)、quantizer.vq.layers.0._codebook.embed(1024, 768)、quantizer.vq.layers.0._codebook.embed_avg(1024, 768)、quantizer.vq.layers.0._codebook.inited(1,)、ssl_proj.bias(768,)、ssl_proj.weight(768, 768, 2)
+s2Gv5dev.pth 和 v2ProPlus：不一样（一样 3 个，不一样 3 个，没有 0 个）
+  - quantizer.vq.layers.0._codebook.embed（最大差 0.00391）
+  - quantizer.vq.layers.0._codebook.embed_avg（最大差 0.25）
+  - ssl_proj.weight（最大差 0.000977）
+s2Gv5turbo.pth 和 v2ProPlus：不一样（一样 3 个，不一样 3 个，没有 0 个）
+  - quantizer.vq.layers.0._codebook.embed（最大差 0.00391）
+  - quantizer.vq.layers.0._codebook.embed_avg（最大差 0.25）
+  - ssl_proj.weight（最大差 0.000977）
+s2Gv4.pth 和 v2ProPlus：一模一样（一样 6 个，不一样 0 个，没有 0 个）
