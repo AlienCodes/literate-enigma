@@ -1,0 +1,42 @@
+name: gsv-v5-probe
+
+# V5 的官方资料（开发机连不上 Hugging Face、打不开官方图片，交给 GitHub 去取）：
+#   - 官方 README 里「零样本相似度对比图」原图；
+#   - Hugging Face 上 V5 预训练模型的文件清单（大小、sha256）；
+#   - 官方 Windows 整合包清单（看有没有 V5 整合包）。
+# 结果提交到 research/gsv_v4_v5/官方资料/。
+on:
+  workflow_dispatch:
+  push:
+    branches: ["claude/**"]
+    paths:
+      - ".github/workflows/gsv-v5-probe.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch
+        run: |
+          set -x
+          D="research/gsv_v4_v5/官方资料"
+          mkdir -p "$D"
+          curl -fsSL -o "$D/零样本相似度对比图.png" "https://github.com/user-attachments/assets/8c2a0e0a-7212-4b77-b5ef-2d192e09127f" || echo "图片下载失败" > "$D/图片下载失败.txt"
+          api=https://huggingface.co/api/models
+          curl -fsSL "$api/lj1995/GPT-SoVITS/tree/main/gsv-v5-pretrained?expand=true" -o "$D/hf_gsv-v5-pretrained.json" || true
+          curl -fsSL "$api/lj1995/GPT-SoVITS/tree/main?expand=false" -o "$D/hf_GPT-SoVITS_root.json" || true
+          curl -fsSL "$api/lj1995/GPT-SoVITS-windows-package/tree/main?expand=true" -o "$D/hf_windows-package.json" || true
+          curl -fsSL "https://huggingface.co/api/models/lj1995/GPT-SoVITS-windows-package" -o "$D/hf_windows-package_info.json" || true
+          curl -fsSL "https://modelscope.cn/api/v1/models/XXXXRT/GPT-SoVITS-Pretrained/repo/files?Recursive=true" -o "$D/modelscope_pretrained.json" || true
+          ls -la "$D"
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/gsv_v4_v5/官方资料
+          git commit -m "记录：V5 官方资料（GitHub 自动取回）" || exit 0
+          git push origin HEAD:${GITHUB_REF_NAME}
